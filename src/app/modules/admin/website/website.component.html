@@ -1,0 +1,96 @@
+<div class="page-content">
+  <div class="main-wrapper">
+    <div class="row">
+      <div class="col-lg-2 bg-072944">
+        <div class="card overflow-hidden rounded-0 border-end-0 p-0 border-0">
+          <div class="card-body card-tabs">
+            <ul class="nav nav-tabs p-0" id="myTab" role="tablist">
+              <li class="nav-item differ-nav-item" role="presentation">
+                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
+                  type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true"
+                  (click)="switchTab('webpages')">
+                  <svg id="users-icon" width="14" height="17" viewBox="0 0 14 17" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M0.75 0.375H9.12891L9.32422 0.550781L13.0742 4.30078L13.25 4.49609V16.625H0.75V0.375ZM2 1.625V15.375H12V5.375H8.25V1.625H2ZM9.5 2.52344V4.125H11.1016L9.5 2.52344ZM3.875 6.625H10.125V7.875H3.875V6.625ZM3.875 9.125H10.125V10.375H3.875V9.125ZM3.875 11.625H10.125V12.875H3.875V11.625Z"
+                      fill="#111418" />
+                  </svg>
+
+                  {{'pages' | translate }}
+                </button>
+              </li>
+              <li class="nav-item differ-nav-item" role="presentation">
+                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane"
+                  type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false"
+                  (click)="switchTab('blog')">
+                  <svg id="users-icon" width="18" height="15" viewBox="0 0 18 15" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M0.875 0.625H13.375V5H17.125V11.875C17.125 12.3307 17.0143 12.7539 16.793 13.1445C16.5716 13.5221 16.2656 13.8216 15.875 14.043C15.4974 14.2643 15.0807 14.375 14.625 14.375H3.375C2.91927 14.375 2.49609 14.2643 2.10547 14.043C1.72786 13.8216 1.42839 13.5221 1.20703 13.1445C0.985677 12.7539 0.875 12.3307 0.875 11.875V0.625ZM2.125 1.875V11.875C2.125 12.2526 2.23568 12.5586 2.45703 12.793C2.69141 13.0143 2.9974 13.125 3.375 13.125H12.4766C12.2422 12.7214 12.125 12.3047 12.125 11.875V1.875H2.125ZM3.375 3.125H10.875V6.25H3.375V3.125ZM4.625 4.375V5H9.625V4.375H4.625ZM13.375 6.25V11.875C13.375 12.2526 13.4857 12.5586 13.707 12.793C13.9414 13.0143 14.2474 13.125 14.625 13.125C15.0026 13.125 15.3021 13.0143 15.5234 12.793C15.7578 12.5586 15.875 12.2526 15.875 11.875V6.25H13.375ZM3.375 6.875H6.5V8.125H3.375V6.875ZM7.75 6.875H10.875V8.125H7.75V6.875ZM3.375 8.75H6.5V10H3.375V8.75ZM7.75 8.75H10.875V10H7.75V8.75ZM3.375 10.625H6.5V11.875H3.375V10.625ZM7.75 10.625H10.875V11.875H7.75V10.625Z"
+                      fill="#111418" fill-opacity="0.5" />
+                  </svg>
+
+                  {{'blog' | translate}}
+                </button>
+              </li>
+              <li class="nav-item differ-nav-item" role="presentation">
+                <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane"
+                  type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false"
+                  (click)="switchTab('coupons')">
+                  <svg id="users-icon" width="15" height="16" viewBox="0 0 15 16" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M8 0.625H14.875V7.5L14.6992 7.69531L7.0625 15.2539L6.61328 14.8242L0.675781 8.88672L0.246094 8.4375L7.80469 0.800781L8 0.625ZM8.52734 1.875L2.00391 8.4375L7.0625 13.4961L13.625 6.97266V1.875H8.52734ZM11.75 3.125C11.9193 3.125 12.0625 3.1901 12.1797 3.32031C12.3099 3.4375 12.375 3.58073 12.375 3.75C12.375 3.91927 12.3099 4.06901 12.1797 4.19922C12.0625 4.31641 11.9193 4.375 11.75 4.375C11.5807 4.375 11.431 4.31641 11.3008 4.19922C11.1836 4.06901 11.125 3.91927 11.125 3.75C11.125 3.58073 11.1836 3.4375 11.3008 3.32031C11.431 3.1901 11.5807 3.125 11.75 3.125Z"
+                      fill="#111418" fill-opacity="0.5" />
+                  </svg>
+
+                  {{'couponCode' | translate}}
+                </button>
+              </li>
+              <li class="nav-item differ-nav-item" role="presentation">
+                <button class="nav-link border-bottom-0" id="contact-tab" data-bs-toggle="tab"
+                  data-bs-target="#contact-tab-pane1" type="button" role="tab" aria-controls="contact-tab-pane1"
+                  aria-selected="false" (click)="switchTab('advertising')">
+                  <!-- <svg id="users-icon"
+                    width="18"
+                    height="13"
+                    viewBox="0 0 18 13"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M0.25 0.875H17.75V12.125H0.25V0.875ZM1.5 2.125V10.875H16.5V2.125H1.5ZM6.32422 3.375H7.30078L8.98047 8.62891L9 8.72656V9.625H7.75V9H5.875V9.625H4.625V8.72656L4.64453 8.62891L6.1875 3.80469L6.32422 3.375ZM12.125 3.375H13.375V9.625H11.1875C10.7578 9.625 10.3867 9.47526 10.0742 9.17578C9.77474 8.86328 9.625 8.49219 9.625 8.0625V7.4375C9.625 7.00781 9.77474 6.64323 10.0742 6.34375C10.3867 6.03125 10.7578 5.875 11.1875 5.875H12.125V3.375ZM6.8125 5.97266L6.24609 7.75H7.37891L6.8125 5.97266ZM11.1875 7.125C11.0964 7.125 11.0182 7.15755 10.9531 7.22266C10.901 7.27474 10.875 7.34635 10.875 7.4375V8.0625C10.875 8.15365 10.901 8.23177 10.9531 8.29688C11.0182 8.34896 11.0964 8.375 11.1875 8.375H12.125V7.125H11.1875Z"
+                      fill="#111418"
+                      fill-opacity="0.5"
+                    />
+                  </svg> -->
+
+                  <svg id="users-icon" width="18" height="13" viewBox="0 0 18 13" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M0.25 0.875H17.75V12.125H0.25V0.875ZM1.5 2.125V10.875H16.5V2.125H1.5ZM6.32422 3.375H7.30078L8.98047 8.62891L9 8.72656V9.625H7.75V9H5.875V9.625H4.625V8.72656L4.64453 8.62891L6.1875 3.80469L6.32422 3.375ZM12.125 3.375H13.375V9.625H11.1875C10.7578 9.625 10.3867 9.47526 10.0742 9.17578C9.77474 8.86328 9.625 8.49219 9.625 8.0625V7.4375C9.625 7.00781 9.77474 6.64323 10.0742 6.34375C10.3867 6.03125 10.7578 5.875 11.1875 5.875H12.125V3.375ZM6.8125 5.97266L6.24609 7.75H7.37891L6.8125 5.97266ZM11.1875 7.125C11.0964 7.125 11.0182 7.15755 10.9531 7.22266C10.901 7.27474 10.875 7.34635 10.875 7.4375V8.0625C10.875 8.15365 10.901 8.23177 10.9531 8.29688C11.0182 8.34896 11.0964 8.375 11.1875 8.375H12.125V7.125H11.1875Z"
+                      fill="#111418" fill-opacity="0.5" />
+                  </svg>
+
+                  {{'adBanners' | translate}}
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-10">
+        <div class="">
+          <div class="tab-content" id="myTabContent">
+            <app-web-pages *ngIf="tab == 'webpages'"></app-web-pages>
+            <app-blog *ngIf="tab == 'blog'"></app-blog>
+            <app-coupons *ngIf="tab == 'coupons'"></app-coupons>
+            <app-advertising *ngIf="tab == 'advertising'"></app-advertising>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <app-footer></app-footer> -->
+  </div>
+</div>

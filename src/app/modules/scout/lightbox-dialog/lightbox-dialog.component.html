@@ -1,0 +1,42 @@
+<div class="lightbox-container">
+  <div class="main-image-container text-center">
+    <img [src]="mainImage.src" alt="Main Image" class="main-image" />
+    <div class="navigation-buttons">
+      <button (click)="navigateImage('prev')" class="prev-button">
+        <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M45.334 58.666L18.6673 31.9993L45.334 5.33269" stroke="white" stroke-width="2"/>
+        </svg>
+        
+      </button>
+      <button (click)="navigateImage('next')" class="next-button">
+        <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M18.666 5.33398L45.3327 32.0006L18.666 58.6673" stroke="white" stroke-width="2"/>
+        </svg>
+      </button>
+    </div>
+    <div class="slider-close-btn">
+      <button class="close-btn" (click)="closeDialog()">
+        <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20.9375 3C10.9437 3 3 10.9437 3 20.9375C3 30.9312 10.9437 38.875 20.9375 38.875C30.9312 38.875 38.875 30.9312 38.875 20.9375C38.875 10.9437 30.9312 3 20.9375 3ZM20.9375 36.3125C12.4812 36.3125 5.5625 29.3937 5.5625 20.9375C5.5625 12.4812 12.4812 5.5625 20.9375 5.5625C29.3937 5.5625 36.3125 12.4812 36.3125 20.9375C36.3125 29.3937 29.3937 36.3125 20.9375 36.3125Z" fill="#627C97"/>
+        <path d="M28.0039 30.0977L20.9375 23.0313L13.8711 30.0977L11.7773 28.0039L18.8437 20.9375L11.7773 13.8711L13.8711 11.7773L20.9375 18.8437L28.0039 11.7773L30.0977 13.8711L23.0313 20.9375L30.0977 28.0039L28.0039 30.0977Z" fill="#627C97"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+ 
+  <div class="select-slider_image">
+    <div class="thumbnails-container">
+      <div
+        class="thumbnail"
+        *ngFor="let image of album; let i = index"
+      >
+        <img
+          [src]="image.src"
+          alt="Thumbnail"
+          class="thumbnail-image"
+          (click)="openImage(i)"
+        />
+      </div>
+    </div>
+  </div>
+</div>

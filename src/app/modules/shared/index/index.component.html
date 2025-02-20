@@ -1,0 +1,15 @@
+
+<div class="d-flex flex-row" style="height: 100vh;">
+  <div class="sidebar">
+    <shared-sidebar></shared-sidebar>
+  </div>
+
+  <div class="all-page-content flex-grow-1" style="overflow: hidden;">
+    <div class="page-container" [ngStyle]="{'width': '100%'}">
+      <shared-header></shared-header>
+      <div class="outlet_outer">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

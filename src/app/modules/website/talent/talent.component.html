@@ -1,0 +1,428 @@
+<section class="website-code">
+    <div class="main">
+
+        <!-- <app-header></app-header> -->
+
+        <div class="banner py-0" style="background-image: url('{{baseUrl + pageData?.banner_bg_img}}');">
+            <div class="overlay1"></div>
+            <div class="container">
+                <div class="banner-data">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-4 col-12">
+                            <div class="banner-left">
+                                <h1 class="banner-heading">{{pageData?.banner_title}}</h1>
+                                <h4 class="banner-heading5" [innerHTML]="pageData?.banner_desc"></h4>
+                                <a class="btn btn-register" data-bs-toggle="modal" data-bs-target="#exampleModal1">{{ pageData?.banner_btn_txt }}</a>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-8 col-12">
+                            <div class="banner-images">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="banner-image1">
+                                            <img class="light-images" src="./assets/images/Frame 3863.png">
+                                            <img class="dark-images" src="./assets/images/club-dark-banner1.png">
+                                        </div>
+                                        <div class="banner-image2">
+                                            <img class="light-images" src="./assets/images/Gallery-Highlight.png">
+                                            <img class="dark-images" src="./assets/images/club-dark-banner2.png">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="banner-image3">
+                                            <img class="light-images" src="./assets/images/talent-banner-image.png">
+                                            <img class="dark-images" src="./assets/images/club-dark-banner3.png">
+                                        </div>
+                                        <div class="banner-image4">
+                                            <img class="light-images" src="./assets/images/talent-main-content (3).png">
+                                            <img class="dark-images" src="./assets/images/club-dark-banner4.png">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="isEmptyObject(advertisemnetData?.skyscraper)" class="skyscraper-image">
+                        <img src="{{ advertisemnet_base_url + advertisemnetData?.skyscraper?.featured_image }}"
+                            alt="Skyscraper-Image Ad">
+                        <button (click)="closeAd('skyscraper')" class="ad-close-button"><i
+                                class="fa-solid fa-xmark"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="advertisment" [ngClass]="{'hidden': isEmptyObject(advertisemnetData?.leaderboard)}">
+            <div *ngIf="isEmptyObject(advertisemnetData?.leaderboard)" class="leaderboard-image">
+                <img [src]="advertisemnet_base_url + advertisemnetData?.leaderboard?.featured_image"
+                    alt="Leaderboard-image Ad">
+                <button (click)="closeAd('leaderboard')" class="ad-close-button"><i
+                        class="fa-solid fa-xmark"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="club-scout py_0">
+        <div class="container">
+            <h3 class="club-heading4 pb-4">{{pageData?.talent_section_title}}</h3>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-12 mb-4">
+                    <div class="club_text">
+                        <img class="light-images" src="./assets/images/talent-icon1.svg">
+                        <img class="dark-images" src="./assets/images/dark-talent-icon1.svg">
+                        <p class="club-text1">{{pageData?.talent_section?.first_tab?.txt}}</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12 mb-4">
+                    <div class="club_text">
+                        <img class="light-images" src="./assets/images/talent-icon2.svg">
+                        <img class="dark-images" src="./assets/images/dark-talent-icon2.svg">
+                        <p class="club-text1">{{pageData?.talent_section?.sec_tab?.txt}}</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12 mb-4">
+                    <div class="club_text">
+                        <img class="light-images" src="./assets/images/talent-icon3.svg">
+                        <img class="dark-images" src="./assets/images/dark-talent-icon3.svg">
+                        <p class="club-text1">{{pageData?.talent_section?.third_tab?.txt}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="features py_0">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-12 col-12">
+                    <div class="left-accordion">
+                        <h3 class="feature-heading3">{{pageData?.feature_sctn_title}}</h3>
+                        <div class="accordion" id="accordionExample">
+                            <ng-container *ngFor="let feature of pageData.feature_sctn; let i = index">
+                                <div class="accordion-item" (click)="setActiveAccordion(i+1)">
+                                    <div class="accordion-flex" data-bs-toggle="collapse"
+                                        [attr.data-bs-target]="'#collapse' + i" aria-expanded="false"
+                                        [attr.aria-controls]="'collapse' + i">
+                                        <img class="light-feature1" src="./assets/images/feature-img1.svg">
+                                        <img class="dark-feature1" src="./assets/images/dark-club1.svg">
+                                        <h2 class="accordion-header">
+                                            {{feature.title}}
+                                        </h2>
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse' + i"
+                                            aria-expanded="false" [attr.aria-controls]="'collapse' + i">
+                                        </button>
+                                    </div>
+                                    <div [id]="'collapse' + i" class="accordion-collapse collapse"
+                                        data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <p class="feature-text">{{feature.desc}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-container>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12 col-12">
+                    <div class="club-scouts">
+                        <div class="club-offer" *ngIf="activeAccordionIndex === 1">
+                            <div class="club-offers1">
+                                <img class="light-images" src="./assets/images/club-scouts5.png">
+                                <img class="dark-images" src="./assets/images/dark-design5.PNG">
+                            </div>
+                            <div class="club-offers2">
+                                <img class="light-images" src="./assets/images/club-scouts6.png">
+                                <img class="dark-images" src="./assets/images/dark-design6.PNG">
+                            </div>
+                            <div class="club-offers3">
+                                <img class="light-images" src="./assets/images/club-scouts7.png">
+                                <img class="dark-images" src="./assets/images/dark-design4.PNG">
+                            </div>
+                        </div>
+
+                        <div *ngIf="activeAccordionIndex === 2">
+                            <div class="accodian-box2-images">
+                                <div class="accodian-image1">
+                                    <img class="light-images" src="./assets/images/accodian1.png">
+                                    <img class="dark-images" src="./assets/images/dark-accodian1.png">
+                                </div>
+                                <div class="accodian-image2">
+                                    <img class="light-images" src="./assets/images/accodian2.png">
+                                    <img class="dark-images" src="./assets/images/dark-accodian2.png">
+                                </div>
+                                <div class="accodian-image3">
+                                    <img class="light-images" src="./assets/images/accodian3.png">
+                                    <img class="dark-images" src="./assets/images/dark-accodian3.png">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div *ngIf="activeAccordionIndex === 3">
+                            <div class="networking-images">
+                                <div class="networking-images1">
+                                    <img class="light-images" src="./assets/images/network1.png">
+                                    <img class="dark-images" src="./assets/images/dark-network1.png">
+                                </div>
+                                <div class="networking-images2">
+                                    <img class="light-images" src="./assets/images/network2.png">
+                                    <img class="dark-images" src="./assets/images/dark-network2.png">
+                                </div>
+                                <div class="networking-images3">
+                                    <img class="light-images" src="./assets/images/network3.png">
+                                    <img class="dark-images" src="./assets/images/dark-network3.png">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div *ngIf="activeAccordionIndex === 4">
+                            <div class="feature-players">
+                                <div class="feature-player1">
+                                    <div class="player1">
+                                        <div class="player-img">
+                                            <img src="./assets/images/ziddane.png">
+                                        </div>
+                                        <p class="player-name1">Ziddane</p>
+                                    </div>
+                                    <div class="corner-image">
+                                        <img src="./assets/images/FC Thun 1.png">
+                                    </div>
+                                    <div class="flag">
+                                        <div class="flag-image">
+                                            <img src="./assets/images/flag.svg" class="flag-img">
+                                            <div class="bottom-line"></div>
+                                            <div class="flag-bottom">
+                                                <img src="./assets/images/birthday.svg" class="birthday-img">
+                                                <p class="d-o-b">2004</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="feature-player2">
+                                    <div class="player2">
+                                        <div class="player-img">
+                                            <img src="./assets/images/Ronaldinho Gaúcho.png">
+                                        </div>
+                                        <p class="player-name2">Ronaldinho Gaúcho
+
+                                        </p>
+                                    </div>
+                                    <div class="corner-image4">
+                                        <img src="./assets/images/FC Thun 1.png">
+                                    </div>
+                                    <div class="flag">
+                                        <div class="flag-image4">
+                                            <img src="./assets/images/flag.svg" class="flag-img">
+                                            <div class="bottom-line"></div>
+                                            <div class="flag-bottom">
+                                                <img src="./assets/images/birthday.svg" class="birthday-img">
+                                                <p class="d-o-b">2004</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="feature-player3">
+                                    <div class="player3">
+                                        <div class="player-img">
+                                            <img src="./assets/images/Gabriel Jesus.png">
+                                        </div>
+                                        <p class="player-name3">Gabriel Jesus
+                                        </p>
+                                    </div>
+                                    <div class="corner-image7">
+                                        <img src="./assets/images/FC Thun 1.png">
+                                    </div>
+                                    <div class="flag">
+                                        <div class="flag-image7">
+                                            <img src="./assets/images/flag.svg" class="flag-img">
+                                            <div class="bottom-line"></div>
+                                            <div class="flag-bottom">
+                                                <img src="./assets/images/birthday.svg" class="birthday-img">
+                                                <p class="d-o-b">2004</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="button1">
+                                    <button mat-icon-button>
+                                        <mat-icon>Foot: Left, Right</mat-icon>
+                                        <i class="fa-solid fa-xmark"></i>
+                                    </button>
+                                </div>
+                                <div class="button2">
+                                    <button mat-icon-button>
+                                        <mat-icon>Location: Switzerland</mat-icon>
+                                        <i class="fa-solid fa-xmark"></i>
+                                    </button>
+                                </div>
+                                <div class="button3">
+                                    <button mat-icon-button>
+                                        <mat-icon>Age: 15, 16</mat-icon>
+                                        <i class="fa-solid fa-xmark"></i>
+                                    </button>
+                                </div>
+                                <div class="button4">
+                                    <button mat-icon-button>
+                                        <mat-icon>Top Speed: 20-25 km/h</mat-icon>
+                                        <i class="fa-solid fa-xmark"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- mobile-features -->
+    <div class="features1 py_0 ">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-12 col-12">
+                    <div class="left-accordion">
+                        <h3 class="feature-heading3">{{pageData?.feature_sctn_title}}</h3>
+                        <div class="accordion" id="accordionExample">
+                            <ng-container *ngFor="let feature of pageData.feature_sctn; let i = index">
+                                <div class="accordion-item" (click)="setActiveAccordion(i+1)">
+                                    <div class="accordion-flex" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                                        aria-expanded="true" aria-controls="collapseOne">
+                                        <img class="light-feature1" src="./assets/images/feature-img1.svg">
+                                        <img class="dark-feature1" src="./assets/images/dark-club1.svg">
+                                        <h2 class="accordion-header">
+                                            {{feature.title}}
+                                        </h2>
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#collapseOne" aria-expanded="true"
+                                            aria-controls="collapseOne">
+                                        </button>
+                                    </div>
+                                    <div id="collapseOne" class="accordion-collapse collapse show"
+                                        data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <p class="feature-text">{{feature.desc}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- mobile-features -->
+
+    <div class="advertisement" [ngClass]="{'hidden': isEmptyObject(advertisemnetData?.small_square)}">
+        <div class="container">
+            <div class="adv">
+                <div *ngIf="isEmptyObject(advertisemnetData?.small_square)" class="small-sqaure-image">
+                    <img [src]="advertisemnet_base_url + advertisemnetData?.small_square?.featured_image">
+                    <button (click)="closeAd('small_square')" class="ad-close-button"><i
+                            class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div *ngIf="isEmptyObject(advertisemnetData?.banner_image)" class="banner-image">
+                    <img [src]="advertisemnet_base_url + advertisemnetData?.banner_image?.featured_image">
+                    <button (click)="closeAd('banner_image')" class="ad-close-button"><i
+                            class="fa-solid fa-xmark"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pricing py_0">
+        <div class="container">
+            <h3 class="price-heading3">{{'pricing' | translate}}</h3>
+
+            <div *ngFor="let plan of pageData.pricing_tab; let i = index">
+                <div class="billed">
+                    <p [ngClass]="{ 'active-text': isActivePlan[i], 'inactive-text': !isActivePlan[i] }"
+                        class="billed-monthly">
+                        {{'billedMonthly' | translate}}
+                    </p>
+                    <div class="toggle-button" [ngClass]="{ 'active': isActivePlan[i], 'inactive': !isActivePlan[i] }"
+                        (click)="togglePlan(i)">
+                    </div>
+                    <p [ngClass]="{ 'active-text': !isActivePlan[i], 'inactive-text': isActivePlan[i] }">
+                        {{'billedYearly' | translate}}
+                    </p>
+                </div>
+
+                <div class="premium">
+                    <div class="row">
+
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="premium-img">
+                                <img class="bg-image" src="./assets/images/feature-image.svg">
+                                <h2 class="premium-heading2">{{ plan.plan_name }}</h2>
+                                <h3 class="premium-heading3">
+                                    {{ !isActivePlan[i] ? plan.monthly_plan_price : plan.yearly_plan_price }}<span>.- {{ !isActivePlan[i] ? plan.monthly_plan_price_currency :
+                                        plan.yearly_plan_price_currency }}
+                                        / {{ !isActivePlan[i] ? 'Month' : 'Year' }}</span>
+                                </h3>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-12">
+                            <div class="premium-col-right">
+                                <h5 class="premium-heading5">{{ plan.plan_name }} Includes</h5>
+                                <div class="premium-text" *ngFor="let feature of plan.plan_feature_desc">
+                                    <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                                    <p>{{ feature }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="">
+        <div class="container">
+            <!-- Advertisement Section -->
+            <div class="advertisement1" *ngIf="advertisemnetData"
+                [ngClass]="{'hidden': isEmptyObject(advertisemnetData?.large_rectangle) && isEmptyObject(advertisemnetData?.inline_rectangle) && isEmptyObject(advertisemnetData?.square)}">
+
+                <!-- Large Rectangle Ad -->
+                <div *ngIf="isEmptyObject(advertisemnetData?.large_rectangle)" class="large-rectangle">
+                    <img [src]="advertisemnet_base_url + advertisemnetData?.large_rectangle?.featured_image"
+                        alt="Large Rectangle Ad">
+                    <button (click)="closeAd('large_rectangle')" class="ad-close-button">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+
+                <!-- Inline Rectangle Ad -->
+                <div *ngIf="isEmptyObject(advertisemnetData?.inline_rectangle)" class="inline-rectangle">
+                    <img [src]="advertisemnet_base_url + advertisemnetData?.inline_rectangle?.featured_image"
+                        alt="Inline Rectangle Ad">
+                    <button (click)="closeAd('inline_rectangle')" class="ad-close-button">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+
+                <!-- Square Ad -->
+                <div *ngIf="isEmptyObject(advertisemnetData?.square)" class="square">
+                    <img [src]="advertisemnet_base_url + advertisemnetData?.square?.featured_image" alt="Square Ad">
+                    <button (click)="closeAd('square')" class="ad-close-button">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- <app-footer></app-footer> -->
+</section>

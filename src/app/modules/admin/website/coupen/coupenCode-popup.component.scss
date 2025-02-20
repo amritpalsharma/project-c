@@ -1,0 +1,109 @@
+.code-parent{
+    position: relative;
+}
+
+.custom-button {
+    color: #999999;
+    border: none;
+    border: 1px solid #999999;
+    border-radius: 10px;
+    padding: 5px 15px;
+    cursor: pointer;
+    background: none;
+    font-size: 14px;
+
+    }
+    
+  
+.custom-button:hover {
+  color: #E05263;
+  border: 1px solid #E05263;
+  background: none;
+  }
+
+  .cupen-btn{
+    color: black;
+    border: none;
+    border: 1px solid #999999;
+    border-radius: 10px;
+    padding: 8px 8px;
+    cursor: pointer;
+    background: none;
+    font-size: 13px;
+  }
+
+  .cupen-btn-date{
+    color: black;
+    border: 1px solid #999999;
+    border-radius: 10px;
+    cursor: pointer;
+    background: none;
+    font-size: 13px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .cupen-btn-date-1{
+    color: black;
+    border: 1px solid #999999;
+    border-radius: 10px;
+    cursor: pointer;
+    background: none;
+    font-size: 13px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left: none !important;
+  }
+  .cupen-btn-1{
+    color: black;
+    border: none;
+    border: 1px solid #999999;
+    border-radius: 10px;
+    padding: 8px 8px;
+    cursor: pointer;
+    font-size: 13px;
+    background: none;
+    width: 130px;
+  }
+
+  .codeCoupen{
+    // position: absolute;
+    display: flex;
+    column-gap: 160px; 
+    bottom: -40px;
+}
+.Launch{
+    background-color: #6FB95D;
+    color: #ffffff;
+}
+.close-img{
+    background-image: url(../../../../../assets/images/carbon_close-outline.png);
+    background-size: cover;
+    width: 33px;
+    height: 33px;
+    border: none;
+    padding: 0px;
+    position: absolute;
+    right: 17px;
+    top: 15px;
+    z-index: 2;
+    opacity: 1;
+    cursor: pointer;
+}
+.code-text{
+   color: #000;
+}
+.form-check-input:checked {
+    background-color: #e05263;
+    border-color: #e05263;
+  }
+
+  .form-check-input:checked + label .custom-button{
+    border-color: #E05263; /* Border color when checked */
+    color: #E05263;
+  }
+  .form-check-input:checked + label {
+    color: #E05263; /* Text color when checked */
+  }
+

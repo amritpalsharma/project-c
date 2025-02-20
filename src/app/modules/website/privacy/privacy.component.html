@@ -1,0 +1,36 @@
+<section class="website-code">
+  <!-- <app-header></app-header> -->
+  <div class="main">
+    <div class="main1" style="background-image: url('{{base_url+banner_img}}');">
+    <div class="overlay"></div>
+    <div class="banner-inner py_0">
+      <div class="container">
+        <div class="about">
+          <h2 class="privacy-text">{{banner_title}}</h2>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="adVisible[0]" class="skyscraper-left">
+      <img src="./assets/images/skyscraper - 120x600.png">
+      <button (click)="closeAd(0)" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <div *ngIf="adVisible[1]" class="skyscraper-right">
+      <img src="./assets/images/skyscraper - 120x600.png">
+      <button (click)="closeAd(1)" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+  </div>
+
+  <div class="privacy">
+    <div class="container content_page" [innerHTML]="page_content">
+      <div class="advertisment" [ngClass]="{'hidden': !adVisible[2]}">
+        <div *ngIf="adVisible[2]" class="leaderboard-image">
+          <img src="./assets/images/leaderboard - 728x90.png">
+          <button (click)="closeAd(2)" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <!-- <app-footer></app-footer> -->
+</section>

@@ -1,0 +1,21 @@
+<div class="msg-popup-dialog">
+    <div class="msg-popup-close">
+        <img src="../../../assets/images/close-icon-circle.png" alt="Close" (click)="close()" />
+    </div>
+    <div class="msg-popup-content p-4">
+        <h5 class="popup-title">{{'countryPlanCancel' | translate}}</h5>
+        <div *ngIf="data.countries && data.countries.length > 0">
+            <div class="country-option" *ngFor="let country of data.countries">
+                <label class="country-label">
+                    <input type="radio" name="country" [value]="country.id" [(ngModel)]="selectedCountryId" [disabled]="country.stripe_cancel_at != null" class="country-radio" />
+                    <span class="country-info">
+                        {{ country.package_name }} - {{ country.price }} {{country.currency}}/{{ country.interval === 'monthly' ? ('month' | translate) : ('year' | translate) }} {{country.stripe_cancel_at != null ? ' - Cancelled' : ''}}
+                    </span>
+                </label>
+            </div>
+            <button class="confirm-btn" [disabled]="!selectedCountryId" (click)="confirmSelection()">
+                {{'Confirm Cancellation' | translate}}
+            </button>
+        </div>
+    </div>
+</div>

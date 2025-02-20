@@ -1,0 +1,134 @@
+@if(!pageDetail){
+<div class="container mt-5">
+  <!-- <h2 class="mb-4">Add Page</h2> -->
+  <div (click)="close()" class="close-img mb-1"></div>
+  <form (ngSubmit)="onSubmit()" #myForm="ngForm" enctype="multipart/form-data">
+    <div class="row mb-3">
+      <!-- <div class="col-md-12">
+        <label for="activate" class="form-label">Select Page <span class="text-danger">*</span>
+        </label>
+        <select id="activate" class="form-select" (change)="onChangeSelectedPage($event)" name="status" required>
+          @if(pages && pages.length > 0){
+            <option value="0">Select page</option>
+            @for (page of pages; track $index) {
+             <option value="{{page}}">{{page}}</option>
+            }
+          }
+        </select>
+      </div> -->
+    </div>
+    <!-- <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="title" class="form-label">Title <span class="text-danger">*</span>
+        </label>
+        <input type="text" class="form-control" id="title" placeholder="Title" (input)="getSlug($event)"
+          [(ngModel)]="title" name="title" required>
+      </div>
+      <div class="col-md-6">
+        <label for="slug" class="form-label">Slug <span class="text-danger">*</span>
+        </label>
+        <input type="text" class="form-control" id="slug" placeholder="Slug" [(ngModel)]="slug" name="slug" required>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="activate" class="form-label">Language <span class="text-danger">*</span>
+        </label>
+        <select id="activate" class="form-select" [(ngModel)]="selectedLanguage" name="status" required>
+          @if(languages && languages.length > 0){
+          @for (language of languages; track $index) {
+          <option value="{{language.id}}">{{language.language}}</option>
+          }
+          }
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label for="mobileBanner" class="form-label">Feature Image</label>
+        <input type="file" (change)="handleFileInput($event)" class="form-control" id="mobileBanner"
+          name="featured_image">
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-12">
+        <label for="activate" class="form-label">Activate <span class="text-danger">*</span>
+        </label>
+        <select id="activate" class="form-select" [(ngModel)]="status" name="status" required>
+          <option value="1">Draft</option>
+          <option value="2">Publish</option>
+        </select>
+      </div>
+    </div>
+    <div class="mb-4">
+      <label for="description" class="form-label">Description <span class="text-danger">*</span>
+      </label>
+      <ckeditor *ngIf="( Editor && config )" [editor]="Editor" [config]="config" (change)="onChange($event)"
+        (ready)="onEditorReady($event)">
+      </ckeditor>
+    </div> -->
+    <!-- <button type="submit" class="btn btn-primary mb-2">Add Page</button> -->
+    <app-add-home-page *ngIf="selectedPageType == 'home'" [pageId]="selectedPageId"
+      [languages]="languages"></app-add-home-page>
+    <app-add-talent-page *ngIf="selectedPageType == 'talent'" [pageType]="selectedPageType" [pageId]="selectedPageId"
+      [languages]="languages"></app-add-talent-page>
+    <app-add-clubnscout-page *ngIf="selectedPageType == 'clubs_and_scouts'" [pageType]="selectedPageType"
+      [pageId]="selectedPageId" [languages]="languages"></app-add-clubnscout-page>
+    <app-add-about-page *ngIf="selectedPageType == 'about_us' " [pageId]="selectedPageId"
+      [languages]="languages"></app-add-about-page>
+    <app-add-pricing-page *ngIf="selectedPageType == 'pricing'" [pageType]="selectedPageType" [pageId]="selectedPageId"
+      [languages]="languages"></app-add-pricing-page>
+    <app-add-news-page *ngIf="selectedPageType == 'news'" [pageType]="selectedPageType" [pageId]="selectedPageId"
+      [languages]="languages"></app-add-news-page>
+    <app-add-contact-page *ngIf="selectedPageType == 'contact'" [pageId]="selectedPageId"
+      [languages]="languages"></app-add-contact-page>
+    <app-add-content-page
+      *ngIf="selectedPageType == 'imprint' ||  selectedPageType == 'privacy_policy' ||  selectedPageType == 'terms_and_conditions' ||  selectedPageType == 'cookie_policy' ||  selectedPageType == 'content_page'"
+      [pageType]="selectedPageType" [pageId]="selectedPageId" [languages]="languages"></app-add-content-page>
+    <app-add-faq-page *ngIf="selectedPageType == 'faq'" [pageId]="selectedPageId"
+      [languages]="languages"></app-add-faq-page>
+  </form>
+</div>
+}@else {
+<!-- <div class="container mt-5">
+  <h2 class="mb-4">View Page</h2>
+  <form>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="title" class="form-label">Title <span class="text-danger">*</span>
+        </label>
+        <input type="text" class="form-control" id="title" placeholder="Title" (input)="getSlug($event)"
+          [(ngModel)]="title" name="title" readonly>
+      </div>
+      <div class="col-md-6">
+        <label for="slug" class="form-label">Slug <span class="text-danger">*</span>
+        </label>
+        <input type="text" class="form-control" id="slug" placeholder="Slug" [(ngModel)]="slug" name="slug" readonly>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="language" class="form-label">Language <span class="text-danger">*</span>
+        </label>
+        <input type="text" class="form-control" id="language" placeholder="Language" [value]="pageDetail.language" name="ac" readonly>
+      </div>
+      <div class="col-md-6">
+        <label for="mobileBanner" class="form-label">Feature Image</label>
+          <img id="featureImagePreview" src="{{pageDetail.featured_image_path}}" alt="Selected Image" style="margin-top: 10px; max-width: 100%; height: auto;">
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-12">
+        <label for="status" class="form-label">Status <span class="text-danger">*</span>
+        </label>
+        <input type="text" class="form-control" id="activate" placeholder="status" [value]="pageDetail.status" name="status" readonly>
+      </div>
+    </div>
+    <div class="mb-4">
+      <label for="description" class="form-label">Description <span class="text-danger">*</span>
+      </label>
+      <ckeditor *ngIf="( Editor && config )"  data="{{pageDetail.content}}" [editor]="Editor" [config]="config" (change)="onChange($event)"
+        (ready)="onEditorReady($event)">
+      </ckeditor>
+    </div>
+  </form>
+</div> -->
+}

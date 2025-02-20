@@ -1,0 +1,293 @@
+@if(!showTabForm){
+<div class="container mt-3">
+  <h2 class="mb-3">{{ 'homePage' | translate }}</h2>
+
+  <form [formGroup]="addHomePageForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+
+    <!-- General Information Block -->
+    <fieldset *ngIf="!pageId" class="border p-3 mb-4">
+      <legend class="w-auto px-2">{{ 'languageInformation' | translate }}</legend>
+      <div class="row">
+        <div class="mb-3 col-md-12">
+          <label for="langId" class="form-label">{{ 'selectLanguage' | translate }}</label>
+          <select class="form-select" id="langId" formControlName="lang_id">
+            <option value="" disabled selected>{{ 'selectALanguage' | translate }}</option>
+            @if(languages && languages.length > 0){
+            @for (language of languages; track $index) {
+            <option value="{{language.id}}">{{language.language}}</option>
+            }
+            }
+          </select>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset class="border p-3 mb-4">
+      <legend class="w-auto px-2">{{ 'seoInformation' | translate }}</legend>
+      <div class="row">
+        <div class="mb-3 col-md-6">
+          <label for="metaTitle" class="form-label">{{ 'metaTitle' | translate }}</label>
+          <input type="text" class="form-control" id="metaTitle" formControlName="meta_title" />
+        </div>
+        <div class="mb-3 col-md-6">
+          <label for="metaDescription" class="form-label">{{ 'metaDescription' | translate }}</label>
+          <textarea class="form-control" id="metaDescription" formControlName="meta_description" rows="3"></textarea>
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- Banner Section -->
+    <fieldset class="border p-3 mb-4">
+      <legend class="w-auto px-2">{{ 'bannerSection' | translate }}</legend>
+      <div class="row">
+
+        <div class="mb-3 col-md-6">
+          <label for="bannerBgImg" class="form-label">{{ 'bannerBackgroundImage' | translate }}</label>
+          <input type="file" class="form-control" id="bannerBgImg" (change)="handleFileInput($event, 'banner_bg_img')"
+            formControlName="banner_bg_img" />
+          <div *ngIf="bannerBgImagePreview" class="position-relative mt-2">
+            <div class="image_cut">
+              <img [src]="bannerBgImagePreview" alt="Preview" class="img-thumbnail p-0" style="max-width: 150px;"
+                (load)="imageLoaded = true" />
+              <div class="close_image" *ngIf="imageLoaded" (click)="removeImage('banner_bg_img')">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="26px">
+                  <path
+                    d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-3 col-md-6">
+          <label for="bannerImg" class="form-label">{{ 'bannerImages' | translate }}</label>
+          <input type="file" id="banner_img" class="form-control" (change)="handleFileInput($event, 'banner_img')"
+            required />
+
+          <div *ngIf="bannerImagePreview" class="position-relative mt-2">
+            <div class="image_cut">
+              <img [src]="bannerImagePreview" alt="Preview" class="img-thumbnail p-0" style="max-width: 150px;"
+                (load)="imageLoaded = true" />
+              <div class="close_image" *ngIf="imageLoaded" (click)="removeImage('banner_img')">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="26px">
+                  <path
+                    d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="mb-3 col-md-6">
+          <label for="bannerBtnTxt" class="form-label">{{ 'bannerButtonText' | translate }}</label>
+          <input type="text" class="form-control" id="bannerBtnTxt" formControlName="banner_btn_txt" />
+        </div>
+        <div class="mb-3 col-md-6">
+          <label for="bannerBtnLink" class="form-label">{{ 'bannerButtonLink' | translate }}</label>
+          <input type="text" class="form-control" id="bannerBtnLink" formControlName="banner_btn_link" />
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- Slider Section -->
+    <fieldset class="border p-3 mb-4">
+      <legend class="w-auto px-2">{{ 'sliderSection' | translate }}</legend>
+      <div class="row">
+        <div class="mb-3 col-md-6">
+          <label for="sliderHeading" class="form-label">{{ 'sliderHeading' | translate }}</label>
+          <input type="text" class="form-control" id="sliderHeading" formControlName="slider_heading" />
+        </div>
+        <div class="mb-3 col-md-6">
+          <label for="sliderBtnTxt" class="form-label">{{ 'sliderButtonText' | translate }}</label>
+          <input type="text" class="form-control" id="sliderBtnTxt" formControlName="slider_btn_txt" />
+        </div>
+        <div class="mb-3 col-md-6">
+          <label for="sliderBtnLink" class="form-label">{{ 'sliderButtonLink' | translate }}</label>
+          <input type="text" class="form-control" id="sliderBtnLink" formControlName="slider_btn_link" />
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- Hero Section -->
+    <fieldset class="border p-3 mb-4">
+      <legend class="w-auto px-2">{{ 'heroSection' | translate }}</legend>
+      <div class="row">
+        <div class="mb-3 col-md-6">
+          <label for="heroBgImg" class="form-label">{{ 'heroBackgroundImage' | translate }}</label>
+          <input type="file" class="form-control" id="heroBgImg" (change)="handleFileInput($event, 'hero_bg_img')"
+            formControlName="hero_bg_img" />
+          <div *ngIf="heroBgImagePreview" class="position-relative mt-2">
+            <div class="image_cut">
+              <img [src]="heroBgImagePreview" alt="Preview" class="img-thumbnail p-0" style="max-width: 150px;"
+                (load)="imageLoaded = true" />
+              <div class="close_image" *ngIf="imageLoaded" (click)="removeImage('hero_bg_img')">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="26px">
+                  <path
+                    d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-3 col-md-6">
+          <label for="heroHeadingTxt" class="form-label">{{ 'heroHeadingText' | translate }}</label>
+          <input type="text" class="form-control" id="heroHeadingTxt" formControlName="hero_heading_txt" />
+        </div>
+        <div class="mb-3 col-md-6">
+          <label for="heroBtnTxt" class="form-label">{{ 'heroButtonText' | translate }}</label>
+          <input type="text" class="form-control" id="heroBtnTxt" formControlName="hero_btn_txt" />
+        </div>
+        <div class="mb-3 col-md-6">
+          <label for="heroBtnLink" class="form-label">{{ 'heroButtonLink' | translate }}</label>
+          <input type="text" class="form-control" id="heroBtnLink" formControlName="hero_btn_link" />
+        </div>
+      </div>
+    </fieldset>
+    <!-- Submit Button -->
+    <button type="submit" class="next_btn mb-3 float-end">{{ 'next' | translate }}</button>
+  </form>
+
+</div>
+}@else{
+
+<div class="container mt-3">
+  <h2 class="mb-3">{{ 'tabSection' | translate }}</h2>
+
+  <form (ngSubmit)="onTabFormSubmit()" #myForm="ngForm" enctype="multipart/form-data">
+    <!-- Tab Section -->
+    <fieldset class="border p-3 mb-4">
+      <legend class="w-auto px-2">{{ 'tabSectionInformation' | translate }}</legend>
+      <div class="row">
+        <div class="mb-3 col-md-6">
+          <label class="form-label">{{ 'title' | translate }}</label>
+          <input type="text" class="form-control" [(ngModel)]="title" name="title" />
+        </div>
+        <div class="mb-3 col-md-6">
+          <label class="form-label">{{ 'firstButtonText' | translate }}</label>
+          <input type="text" class="form-control" [(ngModel)]="first_btn_txt" name="first_btn_txt" />
+        </div>
+        <div class="mb-3 col-md-12">
+          <label class="form-label">{{ 'secondButtonText' | translate }}</label>
+          <input type="text" class="form-control" [(ngModel)]="sec_btn_txt" name="sec_btn_txt" />
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- First Tab Section -->
+    <fieldset class="border p-3 mb-4">
+      <legend class="w-auto px-2">{{ 'firstTabSection' | translate }}</legend>
+      <div *ngFor="let firstTab of first_tab; let firstIndex = index" class="row">
+        <div class="mb-3 col-md-6">
+          <label class="form-label">{{ 'images' | translate }}</label>
+          <input type="file" class="form-control" (change)="handleTabFilesInput($event, firstIndex, 'first_tab')"
+            multiple />
+          <!-- Preview Images -->
+          <div class="mt-2">
+            <div *ngFor="let preview of firstTab.imagePreviews; let i = index"
+              class="d-inline-block position-relative me-2">
+              <img [src]="preview" alt="Preview" class="img-thumbnail" style="width: 100px; height: 100px;" />
+              <div class="close_image" (click)="removeTabImage('first_tab', firstIndex, i)"
+                style="position: absolute; top: 0; right: 0; cursor: pointer;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="26px">
+                  <path
+                    d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+         <!-- Dark Images Input -->
+        <div class="mb-3 col-md-6">
+          <label class="form-label">{{ 'darkImages' | translate }}</label>
+          <input type="file" class="form-control" (change)="handleTabFilesInput($event, firstIndex, 'first_tab', 'darkImages')" multiple />
+          <!-- Preview Dark Images -->
+          <div class="mt-2">
+            <div *ngFor="let preview of firstTab.darkImagePreviews; let i = index" class="d-inline-block position-relative me-2">
+              <img [src]="preview" alt="Preview" class="img-thumbnail" style="width: 100px; height: 100px;" />
+              <div class="close_image" (click)="removeTabImage('first_tab', firstIndex, i, 'darkImages')" style="position: absolute; top: 0; right: 0; cursor: pointer;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="26px">
+                  <path
+                    d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-3 col-md-6">
+          <label class="form-label">{{ 'title' | translate }}</label>
+          <input type="text" class="form-control" [(ngModel)]="firstTab.title"
+            [name]="'first_tab_title_' + firstIndex" />
+        </div>
+        <div class="mb-3 col-md-6">
+          <label class="form-label">{{ 'description' | translate }}</label>
+          <input type="text" class="form-control" [(ngModel)]="firstTab.desc" [name]="'first_tab_desc_' + firstIndex" />
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- Second Tab Section -->
+    <fieldset class="border p-3 mb-4">
+      <legend class="w-auto px-2">{{ 'secondTabSection' | translate }}</legend>
+      <div *ngFor="let secondTab of second_tab; let secondIndex = index" class="row">
+        <div class="mb-3 col-md-6">
+          <label class="form-label">{{ 'images' | translate }}</label>
+          <input type="file" class="form-control" (change)="handleTabFilesInput($event, secondIndex, 'second_tab')"
+            multiple />
+          <!-- Preview Images -->
+          <div class="mt-2">
+            <div *ngFor="let preview of secondTab.imagePreviews; let i = index"
+              class="d-inline-block position-relative me-2">
+              <img [src]="preview" alt="Preview" class="img-thumbnail" style="width: 100px; height: 100px;" />
+              <div class="close_image" (click)="removeTabImage('second_tab', secondIndex, i)"
+                style="position: absolute; top: 0; right: 0; cursor: pointer;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="26px">
+                  <path
+                    d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+         <!-- Dark Images Input -->
+        <div class="mb-3 col-md-6">
+          <label class="form-label">{{ 'darkImages' | translate }}</label>
+          <input type="file" class="form-control" (change)="handleTabFilesInput($event, secondIndex, 'first_tab', 'darkImages')" multiple />
+          <!-- Preview Dark Images -->
+          <div class="mt-2">
+            <div *ngFor="let preview of secondTab.darkImagePreviews; let i = index" class="d-inline-block position-relative me-2">
+              <img [src]="preview" alt="Preview" class="img-thumbnail" style="width: 100px; height: 100px;" />
+              <div class="close_image" (click)="removeTabImage('first_tab', secondIndex, i, 'darkImages')" style="position: absolute; top: 0; right: 0; cursor: pointer;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="26px">
+                  <path
+                    d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-3 col-md-6">
+          <label class="form-label">{{ 'title' | translate }}</label>
+          <input type="text" class="form-control" [(ngModel)]="secondTab.title"
+            [name]="'second_tab_title_' + secondIndex" />
+        </div>
+        <div class="mb-3 col-md-6">
+          <label class="form-label">{{ 'description' | translate }}</label>
+          <input type="text" class="form-control" [(ngModel)]="secondTab.desc"
+            [name]="'second_tab_desc_' + secondIndex" />
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- Submit Button -->
+    <button type="submit" class="next_btn mb-3 float-end">{{ 'updatePage' | translate }}</button>
+  </form>
+
+</div>
+
+
+}

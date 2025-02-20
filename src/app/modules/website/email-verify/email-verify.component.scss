@@ -1,0 +1,550 @@
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+// @import '~ngx-toastr/toastr.css';
+
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 35px;
+  color: white;
+}
+
+h4 {
+  font-size: 30px;
+}
+
+h5 {
+  font-size: 22px;
+}
+
+p {
+  font-size: 20px;
+}
+
+.py_0 {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+body {
+  background-color: #fff;
+}
+
+.font-w400 {
+  font-weight: 400;
+}
+
+.hidden {
+  display: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style-type: none;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+img.image3 {
+  display: none;
+}
+
+img.image4 {
+  display: none;
+}
+
+.fs-14 {
+  font-size: 14px;
+}
+
+.text-light {
+  color: #a2acbb !important;
+}
+
+.phone,
+.email {
+  color: #fff;
+}
+
+a {
+  text-decoration: none;
+  margin-bottom: 20px;
+}
+.coming-soon-banner {
+  width: 553px;
+  height: 246px;
+  object-fit: cover;
+  margin-bottom: 30px;
+}
+
+.check-resister {
+  padding: 10px 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #85b1d3;
+  cursor: pointer;
+  /* Added for better UX */
+}
+
+.check-resister.active {
+  border-color: #e05263;
+}
+
+.check-resister .form-check-label span {
+  font-size: 18px;
+  font-weight: 400;
+  color: #85b1d3;
+}
+
+.check-resister.active .form-check-label span {
+  color: #e05263;
+}
+
+.form-check-input:checked {
+  background-color: #e05263;
+  border-color: #e05263;
+}
+
+.social-media ul li a {
+  color: #fff;
+  margin-right: 10px;
+}
+
+.form-check-input[type="checkbox"] {
+  border-radius: 3px;
+}
+
+.form-check-input:checked {
+  background-color: #e05263;
+  border-color: #e05263;
+}
+
+.header-btn {
+  margin-left: 40px;
+  position: relative;
+}
+
+.header-btn:after {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: -12px;
+  width: 21px;
+  height: 46px;
+  transform: skew(20deg);
+  background-color: #e05263;
+}
+
+.btn {
+  border-radius: 10px;
+  font-size: 16px;
+  border: none;
+  color: #86AA7D;
+  background: transparent;
+}
+
+.nav-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+.nav-link {
+  text-transform: uppercase;
+  padding: 18px !important;
+  font-size: 20px;
+  font-weight: 400;
+  color: #fff;
+}
+
+.overlay {
+  position: absolute;
+  height: 100%;
+  right: 0;
+  left: 0;
+  top: 0;
+}
+
+.main-bnr {
+  background-image: url("../../../../assets/images/bnr.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  min-height: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-position: center;
+}
+ .overlay {
+  // background-color: #072944;
+  background: linear-gradient(0deg, #072944, transparent);
+}
+
+.header-transparent {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+
+  nav {
+    background-image: linear-gradient(180deg,
+        #000000 -45.83%,
+        rgba(0, 0, 0, 0) 85.42%);
+    background: linear-gradient(180deg, #000000 -45.83%, rgba(0, 0, 0, 0) 85.42%);
+
+  }
+}
+
+.site-footer {
+  padding-top: 91px;
+}
+
+// .nav-link.active{
+//     color:#E05263;
+// }
+.nav-link:hover {
+  color: #e05263;
+}
+
+.navbar-brand img {
+  width: 190px;
+}
+
+.banner-content svg {
+  width: 400px;
+}
+
+.banner-inner {
+  position: absolute;
+  z-index: 2;
+}
+.coming-soon {
+    text-align: center;
+}
+
+.banner-content {
+  color: white;
+  display: flex;
+  justify-content: center;
+}
+h2.coming-heading {
+    font-size: 75px;
+    text-transform: uppercase;
+    // margin-top: 100px;
+    font-weight: 700;
+    color: #BDE34F;
+    // margin-bottom: 20px;
+}
+
+h4.comming-heading4 {
+    color: white;
+    font-size: 40px;
+    font-weight: 400;
+    margin-bottom: 50px;
+}
+p.coming-text {
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 50px;
+}
+ .mat-mdc-button:not(:disabled) {
+  color: #072944;
+}
+
+input#mat-input-0 {
+  background: white;
+  color: grey;
+  height: 80px;
+  width: 100%;
+  border-radius: 80px;
+  font-size: 22px;
+  padding: 20px 30px;
+}
+
+
+/* Form field container */
+mat-form-field {
+  width: 100%;
+  margin-bottom: 0; /* Add space between input fields */
+}
+
+/* Styling for the email input field */
+// input[type="email"] {
+//   font-size: 22px;
+//   padding: 20px 30px;
+// }
+
+/* Error message styling */
+mat-error {
+  color: #f44336; /* Use a red color for error messages */
+  font-size: 22px; /* Adjust error font size */
+  font-weight: 400;
+  margin-top: 10px;
+
+}
+
+
+/* Error state for form control */
+.mat-form-field.ng-invalid .mat-input-element {
+  border-color: #f44336 !important; /* Red border for invalid input */
+}
+
+
+/* Adding padding to form container */
+form {
+  padding: 16px;
+}
+// button.email-btn.mdc-button.mat-mdc-button.ng-tns-c1132357239-0.mat-unthemed.mat-mdc-button-base {
+//   height: 60px;
+//   width: 25%;
+//   border-radius: 60px;
+//   font-size: 22px;
+//   position: absolute;
+//   right: 15px;
+//   top: 10px;
+//   cursor: pointer;
+//   background: #BDE34F;
+// }
+button.email-btn.mdc-button.mat-mdc-button.ng-tns-c1132357239-0.mat-unthemed.mat-mdc-button-base:hover{
+  background: linear-gradient(0deg, #BDE34F, #EFFFC1);
+}
+.footer-bottom {
+  padding: 12px 0;
+  background: #BDE34F;
+}
+.mb-0{
+  font-size: 16px;
+  color: #072944;
+}
+p.error.ng-star-inserted{
+  color: red;
+  font-size: 22px;
+  margin-top: 10px;
+  margin-left: 30px;
+}
+a.btn.btn-register {
+    border-radius: 20px;
+    font-size: 18px;
+    font-weight: 500;
+    height: 41px;
+    width: 354px;
+    background: #BDE34F;
+    color: #072944;
+}
+a.btn.btn-register:hover{
+  background: linear-gradient(0deg, #BDE34F, #EFFFC1);
+  color: #072944;
+}
+.coming-email {
+    text-align: center;
+}
+
+
+@media (min-width: 2560px) {
+.coming-soon-banner {
+  width: 700px;
+  height: 310px;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+}
+
+
+@media (max-width: 1199px) {
+    .main-bnr {
+        min-height: 650px;
+    }
+  .banner-content svg {
+    width: 300px;
+}
+h2.coming-heading {
+  font-size: 50px;
+  margin-top: 0;
+}
+h4.comming-heading4 {
+  font-size: 24px;
+  margin-top: 10px;
+}
+p.coming-text {
+  font-size: 16px;
+}
+input#mat-input-0 {
+  height: 50px;
+}
+button.email-btn.mdc-button.mat-mdc-button.ng-tns-c1132357239-0.mat-unthemed.mat-mdc-button-base{
+  height: 41px;
+  width: 20%;
+  font-size: 16px;
+  right: 6px;
+  top: 5px;
+}
+.coming-soon-banner {
+  width: 480px;
+  height: 210px;
+}
+input[type=email] {
+  font-size: 17px;
+  padding: 20px 30px;
+}
+p.error.ng-star-inserted {
+  color: red;
+  font-size: 16px;
+}
+p.error.ng-star-inserted {
+  margin-left: 0;
+}
+form {
+  padding: 0;
+  padding-top: 20px;
+}
+ 
+}
+
+
+
+@media (max-width: 575px){
+ .main-bnr {
+    min-height: 600px;
+  }
+  a.btn.btn-register{
+    font-size: 17px;
+    line-height: 26px;
+}
+
+h2.coming-heading {
+    font-size: 45px;
+}
+h4.comming-heading4 {
+  margin-bottom: 60px;
+}
+p.coming-text {
+  font-size: 17px;
+}
+// button.email-btn.mdc-button.mat-mdc-button.ng-tns-c1132357239-0.mat-unthemed.mat-mdc-button-base {
+//   width: 100%;
+//   font-size: 16px;
+//   position: static;
+//   margin-top: 20px;
+// }
+.coming-soon-banner {
+  width: 360px;
+  height: 160px;
+}
+
+input#mat-input-0 {
+  height: 41px;
+}
+form {
+  padding: 0;
+}
+.mb-0{
+  font-size: 14px;
+}
+p.error.ng-star-inserted {
+  color: red;
+  font-size: 16px;
+}
+input#mat-input-0 {
+  font-size: 16px;
+}
+button.email-btn.mdc-button.mat-mdc-button.ng-tns-c1132357239-0.mat-unthemed.mat-mdc-button-base {
+  height: 41px;
+  width: 100%;
+  font-size: 16px;
+  right: 0;
+  top: 55px;
+}
+p.error.ng-star-inserted {
+  margin-left: 10px;
+}
+
+}
+@media (max-width: 376px){
+  .coming-soon-banner {
+    width: 100%;
+    height: 150px;
+}
+a.btn.btn-register{
+    width: 100%;
+}
+a.btn.btn-register {
+    font-size: 16px;
+    line-height: 30px;
+}
+
+
+  .main-bnr {
+    height: 100vh;
+    min-height: 650px;
+}
+p.coming-text {
+  font-size: 16px;
+}
+.banner-content svg {
+  width: 260px;
+  height: 200px;
+}
+h4.comming-heading4 {
+  margin-bottom: 40px;
+}
+// button.email-btn.mdc-button.mat-mdc-button.ng-tns-c1132357239-0.mat-unthemed.mat-mdc-button-base {
+//   margin-top: 15px;
+// }
+}
+
+@media (max-width: 345px){
+.coming-soon-banner {
+
+  height: 135px;
+}
+}
+
+@media (max-width: 321px){
+  .main-bnr {
+    height: 98vh;
+    min-height: 550px;
+}
+.coming-soon-banner {
+  height: 130px;
+}
+.banner-content svg {
+  width: 200px;
+  height: 160px;
+}
+// button.email-btn.mdc-button.mat-mdc-button.ng-tns-c1132357239-0.mat-unthemed.mat-mdc-button-base{
+//   margin-top: 10px;
+// }
+h2.coming-heading {
+  font-size: 40px;
+}
+h4.comming-heading4 {
+  font-size: 21px;
+  margin-top: 10px;
+  margin-bottom: 40px;
+}
+.mb-0{
+  font-size: 12px;
+}
+
+}
+
+

@@ -1,0 +1,102 @@
+<section class="website-code">
+<!-- <app-header></app-header> -->
+<div class="main">
+    <div class="overlay"></div>
+    <div class="banner-inner py_0">
+        <div class="container">
+            <div class="about">
+                <h2 class="cookie-text">{{faq_banner_title}}</h2>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="adVisible[0]" class="skyscraper-left">
+        <img src="./assets/images/skyscraper - 120x600.png">
+        <button (click)="closeAd(0)" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <div *ngIf="adVisible[1]" class="skyscraper-right">
+        <img src="./assets/images/skyscraper - 120x600.png">
+        <button (click)="closeAd(1)" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+</div>
+
+<div class="faq py_0">
+    <div class="container">
+        <h3>{{faq_collapse_titile}}</h3>
+        <div class="tabs">
+            <button class="faq-talent-button" (click)="selectTab('talent')"
+                [ngClass]="{'active': selectedTab === 'talent'}">
+                {{faq_first_btn_txt}}
+            </button>
+            <button class="faq-club-button" (click)="selectTab('club')" [ngClass]="{'active': selectedTab === 'club'}">
+                {{faq_sec_btn_txt}}
+            </button>
+            <button class="faq-scout-button" (click)="selectTab('scout')"
+                [ngClass]="{'active': selectedTab === 'scout'}">
+                {{faq_third_btn_txt}}
+            </button>
+        </div>
+
+
+        <div *ngIf="selectedTab === 'talent'">
+            <div class="talent-content" *ngFor="let section of talentSections; let i = index">
+                <div class="header" (click)="toggleContent(i)" style="cursor: pointer;">
+                    <h4>{{ section.title }}</h4>
+                    <span [attr.id]="'toggle-icon-' + i" (click)="toggleContent(i); $event.stopPropagation();"
+                        class="toggle-icon">
+                        {{ isOpen[selectedTab][i] ? '-' : '+' }}
+                    </span>
+                </div>
+                <p class="faq-content" [ngClass]="{'faq-content-open': isOpen[selectedTab][i]}">
+                    {{ section.desc }}
+                  </p>
+
+            </div>
+
+        </div>
+
+        <!-- Repeat the following block for each tab -->
+        <div *ngIf="selectedTab === 'club'">
+            <div class="club-content" *ngFor="let section of clubSections; let i = index">
+                <div class="header" (click)="toggleContent(i)" style="cursor: pointer;">
+                    <h4>{{ section.title }}</h4>
+                    <span [attr.id]="'toggle-icon-' + i" (click)="toggleContent(i); $event.stopPropagation();"
+                        class="toggle-icon">
+                        {{ isOpen[selectedTab][i] ? '-' : '+' }}
+                    </span>
+                </div>
+                <p class="faq-content" [ngClass]="{'faq-content-open': isOpen[selectedTab][i]}">
+                    {{ section.desc }}
+                </p>
+             
+            </div>
+        </div>
+
+        <div *ngIf="selectedTab === 'scout'">
+            <div class="scout-content" *ngFor="let section of scoutSections; let i = index">
+                <div class="header" (click)="toggleContent(i)" style="cursor: pointer;">
+                    <h4>{{ section.title }}</h4>
+                    <span [attr.id]="'toggle-icon-' + i" (click)="toggleContent(i); $event.stopPropagation();"
+                        class="toggle-icon">
+                        {{ isOpen[selectedTab][i] ? '-' : '+' }}
+                    </span>
+                </div>
+                <p class="faq-content" [ngClass]="{'faq-content-open': isOpen[selectedTab][i]}">
+                    {{ section.desc }}
+                </p>
+              
+            </div>
+
+        </div>
+
+        <div class="advertisment" [ngClass]="{'hidden': !adVisible[2]}">
+            <div *ngIf="adVisible[2]" class="leaderboard-image">
+                <img src="./assets/images/leaderboard - 728x90.png">
+                <button (click)="closeAd(2)" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- <app-footer></app-footer> -->
+</section>

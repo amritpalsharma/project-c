@@ -1,0 +1,79 @@
+<div class="container">
+  <div class="row">
+    <!-- Right column: Form for editing player details -->
+    <div class="col-md-12 p-0">
+      <div  class="personal_edit">
+        <div  class="dialog-header m-auto">
+          <h2>{{ 'editPerformaceDetails' | translate }}</h2>
+        </div>
+        
+        <div class="close_buttons">
+          <button class="close-btn" (click)="onCancel()">X</button>
+          </div>
+      </div>
+      <hr>
+     
+      <form class="general_form" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
+        <div class="overflow-card">        
+        <div class="row">
+          <div class="form-group col-lg-6">
+            <label for="team" class="form-label">{{ 'team' | translate }}</label>
+            <!-- <input type="number" id="team" name="team_id" [(ngModel)]="performance.team_id" required> -->
+
+            <select id="team" name="team" [(ngModel)]="performance.team" required>
+              <option *ngFor="let team of teams" [value]="team.id">
+                {{ team.team_name }}
+              </option>
+            </select>
+          </div>
+          <div class="form-group col-lg-6">
+            <label for="matches" class="form-label">{{ 'matches' | translate }}</label>
+            <input type="number" id="matches" name="matches" [(ngModel)]="performance.matches" required>
+          </div>        
+        </div>
+        
+        <div class="row">
+          <div class="form-group col-lg-6">
+            <label for="goals" class="form-label">{{ 'goals' | translate }}</label>
+            <input type="number" id="goals" name="goals" [(ngModel)]="performance.goals" required>
+          </div>
+          <div class="form-group col-lg-6">
+            <label for="Coach" class="form-label">{{ 'coachDuringDebut' | translate }}</label>
+            <input type="text" id="Coach" name="coach" [(ngModel)]="performance.coach" required>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-lg-6">
+            <label for="session" class="form-label">{{ 'session' | translate }}</label>
+            <input class="form-select" type="text" id="session" name="session" [(ngModel)]="performance.session" required>
+          </div>
+          <div class="form-group col-lg-6">
+            <label for="player_age" class="form-label">{{ 'playerAge' | translate }}</label>
+            <input type="text" id="player_age" name="player_age" [(ngModel)]="performance.player_age" required>
+          </div>
+        </div>
+
+        <div class="row mb-5">
+          <div class="form-group col-lg-10">
+            <div class="col-lg-4 p-0">
+              <label for="form-date" class="form-label">{{ 'form-upto' | translate }}</label>
+              <div class="date-imputs d-flex align-items-center">
+                <input type="date" name="from_date" class="form-upto_date" [(ngModel)]="performance.from_date" required>
+                <input type="date" name="to_date" class="form-upto_date-2" [(ngModel)]="performance.to_date" required>
+              </div>
+            </div>
+            <!-- <div class="col-lg-4 p-0">
+              <input type="date" name="form-date" id="form-date">
+            </div> -->
+          </div>
+        </div>
+      </div>
+      <div class="dialog-actions align-items-center d-flex justify-content-between">
+        <button class="cancel-btn" type="button" (click)="onCancel()">{{ 'cancel' | translate }}</button>
+        <button class="save-btn" type="submit">{{ 'Save' | translate }}</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>

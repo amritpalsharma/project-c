@@ -1,0 +1,53 @@
+<div class="container my-3">
+  <div class="row justify-content-center">
+    <div class="col-md-11 m-3">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="text-center mb-4">{{'addCard&CreateCustomer' | translate}}</h3>
+          <form >
+            <!-- Email input -->
+            <div class="form-group mb-3">
+              <label for="email" class="form-label">{{'email' | translate}}</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                name="email"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+
+            <!-- Name input -->
+            <div class="form-group mb-3">
+              <label for="name" class="form-label">{{'name' | translate}}</label>
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                name="name"
+                placeholder="Enter your name"
+                required
+              />
+            </div>
+
+            <!-- Stripe Card Element -->
+            <div class="form-group mb-3">
+              <label for="card-element" class="form-label">{{'cardDetails' | translate}}</label>
+              <div
+                id="card-element"
+                class="form-control"
+                style="padding: 10px; height: auto;"
+              ></div>
+            </div>
+
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-success btn-block w-100">
+              {{'addCard&CreateCustomer' | translate}}
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

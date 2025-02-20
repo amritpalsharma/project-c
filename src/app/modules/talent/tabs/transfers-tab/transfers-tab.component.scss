@@ -1,0 +1,260 @@
+.unlock_page{
+  position: relative;
+    height: 30vh;
+    .unlock_btn{
+        background: #6FB95D;
+        padding: 10px 24px;
+        font-size: 12px;
+        font-weight: 700;
+        color: #fff;
+        border-radius: 10px;
+        border: none;
+      }
+      .upgrade_unlock{
+        height: 100%;
+        background: rgb(255 255 255 / 65%);
+        position: absolute;
+        width: 100%;
+        top: 0;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .date-togal{
+        color: black;
+      }
+      .custom-size {
+        padding: 5px 11px;
+        border: 1px solid #dee2e6;
+      }
+
+      .custom-size-calendar {
+        width: 120px;
+        padding-bottom: 0px;
+      }
+
+  .custom-size-calendar .mat-form-field-underline {
+    display: none;
+  }
+  .custom-size-2{
+    width: 200px;
+    border: 1px solid #dee2e6;
+  }
+
+  .custom-size-season{
+    min-width: 100px;
+  }
+
+  .pointer{
+    cursor:pointer;
+  }
+
+  .dropdown-wrapper {
+    position: relative;
+    display: inline-block;
+    width: fit-content;
+  }
+  
+  select{
+    width: 200px;
+  }
+  
+  .form-control {
+    appearance: none;
+    padding-right: 20px;
+  }
+  .dropdown-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none; 
+  }
+
+  .dropdown-container {
+    position: relative;
+    display: inline-block;
+    width: fit-content;
+  }
+
+  .no-arrow {
+    appearance: none; 
+    -webkit-appearance: none; 
+    -moz-appearance: none; 
+    background-image: none; 
+  }
+  .new_performance button {
+    background: none;
+    border: 1px solid #E7E7E7;
+    padding: 7px 10px;
+    border-radius: 4px;
+    color: #a7a7a7;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: auto;
+  }
+
+  .new_performance button svg {
+      width: 16px;
+      fill: #a7a7a7;
+  }
+
+  .details_2 {
+    font-size: 16px;
+    color: #a9a9a9;
+    font-weight: 400;
+    margin-bottom: 6px;
+  }
+  .details-1 {
+    font-size: 16px;
+    font-weight: 400;
+  }
+  .box-transfer{
+    border-right: 1px solid #dadada;
+  }
+  .moving-team-logo img {
+    width: 70px;
+  }
+  .moving_logo h2 {
+  font-size: 20px;
+  font-weight: 400;
+  color: #5b5a5a;
+  margin-bottom: 14px;
+  }
+  .edit_button {
+  border: 1px solid #918f8f;
+  background: no-repeat;
+  padding: 5px 14px;
+  border-radius: 4px;
+  margin-bottom: 14px;
+  }
+  .moving_box {
+  padding: 0px 30px;
+  row-gap: 40px;
+  }
+  .transfer_underline{
+  margin: 40px 0px;
+  }
+
+}
+
+.date-togal{
+    color: black;
+}
+.custom-size {
+    padding: 5px 11px;
+    border: 1px solid #dee2e6;
+}
+
+.custom-size-calendar {
+  width: 120px;
+  padding-bottom: 0px;
+}
+
+
+
+  .custom-size-calendar .mat-form-field-underline {
+    display: none;
+  }
+  .custom-size-2{
+    width: 200px;
+    border: 1px solid #dee2e6;
+  }
+
+  .custom-size-season{
+    min-width: 100px;
+  }
+
+  .pointer{
+    cursor:pointer;
+  }
+
+  .dropdown-wrapper {
+    position: relative;
+    display: inline-block;
+    width: fit-content;
+    }
+    
+    select{
+      width: 200px;
+    }
+    
+    .form-control {
+      appearance: none;
+      padding-right: 20px;
+    }
+    .dropdown-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none; 
+    }
+
+    .dropdown-container {
+      position: relative;
+      display: inline-block;
+      width: fit-content;
+    }
+
+    .no-arrow {
+      appearance: none; 
+      -webkit-appearance: none; 
+      -moz-appearance: none; 
+      background-image: none; 
+    }
+    .new_performance button {
+      background: none;
+      border: 1px solid #E7E7E7;
+      padding: 7px 10px;
+      border-radius: 4px;
+      color: #a7a7a7;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-left: auto;
+  }
+  
+  .new_performance button svg {
+      width: 16px;
+      fill: #a7a7a7;
+  }
+
+  .details_2 {
+    font-size: 16px;
+    color: #a9a9a9;
+    font-weight: 400;
+    margin-bottom: 6px;
+  }
+  .details-1 {
+    font-size: 16px;
+    font-weight: 400;
+  }
+  .box-transfer{
+    border-right: 1px solid #dadada;
+  }
+  .moving-team-logo img {
+    width: 70px;
+}
+.moving_logo h2 {
+  font-size: 20px;
+  font-weight: 400;
+  color: #5b5a5a;
+  margin-bottom: 14px;
+}
+.edit_button {
+  border: 1px solid #918f8f;
+  background: no-repeat;
+  padding: 5px 14px;
+  border-radius: 4px;
+  margin-bottom: 14px;
+}
+.moving_box {
+  padding: 0px 30px;
+  row-gap: 40px;
+}
+.transfer_underline{
+  margin: 40px 0px;
+}

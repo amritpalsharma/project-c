@@ -1,0 +1,3848 @@
+/*--------------------------------------------------------------
+#  banner
+--------------------------------------------------------------*/
+h1 {
+    font-size: 45px;
+}
+
+h2 {
+    font-size: 40px;
+}
+
+h3 {
+    font-size: 35px;
+}
+
+h4 {
+    font-size: 22px;
+}
+
+h5 {
+    font-size: 20px;
+}
+
+p {
+    font-size: 18px;
+}
+
+.features1 {
+    display: none;
+}
+
+// .main {
+//     background-color: #236115;
+// }
+
+.py_0 {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.overlay {
+    position: absolute;
+    height: 100%;
+    right: 0;
+    left: 0;
+    top: 0;
+}
+
+.overlay1 {
+    position: absolute;
+    height: 100%;
+    right: 0;
+    left: 0;
+    top: 0;
+    z-index: 2;
+}
+
+P {
+    font-size: 18px;
+    color: white;
+}
+
+.banner {
+    position: relative;
+    // background: url(../../../../assets/images/club-banner.png), #236115;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    padding-top: 100px;
+    height: 1000px;
+}
+
+.banner-data {
+    padding-top: 130px;
+}
+
+.banner-left {
+    position: relative;
+    top: 65%;
+    left: 0;
+    z-index: 2;
+    margin-right: 48%;
+}
+
+.banner-heading {
+    color: white;
+    font-size: 45px;
+    text-transform: uppercase;
+}
+
+.banner-heading5 {
+    color: white;
+    font-size: 22px;
+    margin-top: 20px;
+    font-weight: 400;
+}
+
+a.btn.btn-register {
+    border-radius: 20px;
+    /* padding: 10px 60px; */
+    font-size: 18px;
+    margin-top: 20px;
+    font-weight: 700;
+    height: 41px;
+    width: 278px;
+}
+
+.banner-image1 img {
+    content: "";
+    z-index: 2;
+    position: absolute;
+    width: 297px;
+    height: 518px;
+    object-fit: cover;
+    top: 15%;
+    right: 30%;
+    border-radius: 9px;
+    margin-bottom: 20px;
+}
+
+.banner-image2 img {
+    content: "";
+    z-index: 1;
+    position: absolute;
+    object-fit: cover;
+    top: 69%;
+    right: 30%;
+    width: 297px;
+    height: 231px;
+    // opacity: 0.4;
+}
+
+/* Add a gradient background */
+.banner-image2::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    // background: linear-gradient(to bottom, #092E01, transparent);
+    z-index: 0;
+    /* Ensure this is behind the image */
+    border-radius: 10px;
+    /* Match the border-radius of the image */
+}
+
+.banner-image3 img {
+    content: "";
+    z-index: 2;
+    top: 14%;
+    right: 0;
+    position: absolute;
+    object-fit: cover;
+    width: 415px;
+    height: 283px;
+    border-radius: 9px;
+    margin-top: 40px;
+}
+
+.banner-image4 img {
+    content: "";
+    z-index: 1;
+    position: absolute;
+    object-fit: cover;
+    top: 48%;
+    right: 0;
+    height: 407px;
+    width: 415px;
+    // opacity: 0.4;
+    /* Use a value between 0 and 1 */
+    border-radius: 10px;
+}
+
+/* Add a gradient background */
+.banner-image4::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    // background: linear-gradient(to bottom, #092E01, transparent);
+    z-index: 0;
+    /* Ensure this is behind the image */
+    border-radius: 10px;
+    /* Match the border-radius of the image */
+}
+
+
+
+
+// .banner-image4 img {
+//     content: "";
+//     z-index: 1;
+//     position: absolute;
+//     object-fit: cover;
+//     top: 350px;
+//     right: -70px;
+//     height: 407px;
+//     width: 430px;
+//     opacity: 70%;
+//     border-radius: 10px;
+// }
+
+/*--------------------------------------------------------------
+#  banner
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+#  Club & scouts
+--------------------------------------------------------------*/
+// .club-scout {
+//     background-color: #092E01;
+// }
+
+.club-heading4 {
+    color: white;
+    text-align: center;
+    font-size: 35px;
+    text-transform: uppercase;
+}
+
+.club_text {
+    padding: 25px;
+    border-radius: 10px;
+    height: 100%;
+}
+
+.club-text1 {
+    color: white;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+/*--------------------------------------------------------------
+#  Club & scouts
+--------------------------------------------------------------*/
+
+
+
+
+/*--------------------------------------------------------------
+#  features
+--------------------------------------------------------------*/
+.features {
+    position: relative;
+    // height: 600px;
+}
+
+.feature-heading3 {
+    color: white;
+    text-align: left;
+    font-size: 35px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.accordion-item:first-of-type {
+    // background-color: #092E01;
+    color: white;
+}
+
+.accordion-body,
+.accordion-item,
+.accordion-button {
+    // background-color: #092E01;
+    color: white;
+}
+
+.accordion-item {
+    // background-color: #092E01;
+    color: white;
+    position: relative;
+}
+
+.club-scouts {
+    position: relative;
+    height: 500px;
+}
+
+.accordion-item::after {
+    content: " ";
+    width: 515px;
+    z-index: 1;
+    height: 1px;
+    /* color: red; */
+    // position: absolute;
+    // background-color: #2B4A24;
+}
+
+.accordion-button {
+    width: 10%;
+}
+
+.accordion-button:not(.collapsed) {
+    // background-color: #092E01;
+    color: white;
+    box-shadow: none;
+}
+
+.accordion-button:not(.collapsed)::after,
+.accordion-button::after {
+    filter: brightness(0) invert(1);
+}
+
+.accordion {
+    --bs-accordion-border-color: transparent;
+}
+
+.accordion-button:focus {
+    border-color: transparent;
+    box-shadow: none;
+}
+
+.accordion-flex {
+    cursor: pointer;
+}
+
+h2.accordion-header {
+    font-size: 20px;
+    width: 100%;
+}
+
+button.btn.btn-danger {
+    // background-color: white;
+    // color: #E05263;
+    font-weight: 700;
+    // border: 1px solid #E05263;
+    border-radius: 20px;
+    width: 203px;
+    height: 41px;
+    margin-top: 30px;
+}
+
+.left-accodian {
+    padding-top: 55px;
+    padding-right: 0;
+}
+
+.feature-text {
+    font-size: 16px;
+    margin-left: 30px;
+}
+
+.accordion-item::after {
+    content: " ";
+    width: 100%;
+    z-index: 1;
+    height: 1px;
+    position: absolute;
+}
+
+.accordion-flex {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.accordion-flex img {
+    margin-right: 10px;
+}
+
+img.light-feature1,
+img.dark-feature1 {
+    width: 50px;
+    height: 34px;
+}
+
+img.light-feature3,
+img.dark-feature3 {
+    width: 35px;
+    height: 37px;
+}
+
+img.light-feature4,
+img.dark-feature4 {
+    width: 37px;
+    height: 32px;
+}
+
+img.light-feature2,
+img.dark-feature2 {
+    height: 28px;
+    width: 39px;
+}
+
+
+.accodian-image2 img {
+    position: absolute;
+    content: "";
+    z-index: 1;
+    height: 232px;
+    width: 282px;
+    object-fit: cover;
+    top: 45.5%;
+    left: 13%;
+}
+
+.accodian-image1 img {
+    position: absolute;
+    top: 8%;
+    right: 11%;
+    content: "";
+    z-index: 1;
+    height: 309px;
+    width: 398px;
+    object-fit: cover;
+}
+
+.accodian-image3 img {
+    position: absolute;
+    top: 45%;
+    right: 0;
+    content: "";
+    z-index: 1;
+    height: 172px;
+    width: 209px;
+    object-fit: cover;
+}
+
+.networking-images1 img {
+    position: absolute;
+    left: 22%;
+    content: "";
+    z-index: 1;
+    top: 4%;
+    width: 382px;
+    height: 492px;
+    object-fit: cover;
+}
+
+.networking-images2 img {
+    position: absolute;
+    right: 0;
+    content: "";
+    z-index: 1;
+    top: 18%;
+    width: 244px;
+    height: 73px;
+    object-fit: cover;
+}
+
+.networking-images3 img {
+    position: absolute;
+    content: "";
+    z-index: 1;
+    top: 72%;
+    left: 4%;
+    width: 221px;
+    height: 73px;
+    object-fit: cover;
+}
+
+.club-offers1 img {
+    position: absolute;
+    content: "";
+    z-index: 1;
+    top: 0;
+    right: 49%;
+    height: 253px;
+    width: 299px;
+    object-fit: cover;
+    // border: 1px solid #E5E5E5;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.club-offers2 img {
+    position: absolute;
+    content: "";
+    z-index: 1;
+    right: 0;
+    top: 12%;
+    width: 293px;
+    height: 285px;
+    // border: 1px solid #E5E5E5;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.club-offers3 img {
+    position: absolute;
+    content: "";
+    z-index: 0;
+    right: 26%;
+    bottom: 0;
+    width: 394px;
+    height: 315px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.bottom-line {
+    height: 1px;
+    background-color: #E0E0E0;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+.feature-players {
+    margin-left: 50px;
+}
+
+.feature-player1 .player-name1 {
+    background: linear-gradient(145deg, #6FB95D, #236115);
+    color: white;
+    top: 211px;
+    width: 230px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    position: absolute;
+    text-align: center;
+    margin-right: 4px;
+    margin-left: 4px;
+    border-radius: 0px 0px 5px 5px;
+}
+
+.feature-player2 .player-name2 {
+    background: linear-gradient(145deg, #6FB95D, #236115);
+    color: white;
+    top: 210px;
+    width: 230px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    position: absolute;
+    text-align: center;
+    margin-right: 4px;
+    margin-left: 4px;
+    border-radius: 0px 0px 5px 5px;
+}
+
+.feature-player1 .player1 {
+    height: 245px;
+    object-fit: cover;
+    width: 238px;
+    // position: absolute;
+    border-radius: 5px;
+    background-image: linear-gradient(45deg, #C2A64A, #A77A2E);
+}
+
+.player-img img {
+    height: 235px;
+    object-fit: cover;
+    width: 230px;
+    border-radius: 5px;
+    // background: linear-gradient(45deg, #FFFFFF, #ababab);
+    margin: 4px 4px 4px 4px;
+}
+
+.feature-player2 .player2 {
+    height: 245px;
+    object-fit: cover;
+    width: 238px;
+    // position: absolute;
+    border-radius: 5px;
+    background-image: linear-gradient(45deg, #C2A64A, #A77A2E);
+}
+
+.feature-player3 .player3 {
+    height: 245px;
+    object-fit: cover;
+    width: 238px;
+    // position: absolute;
+    border-radius: 5px;
+    background-image: linear-gradient(45deg, #C2A64A, #A77A2E);
+}
+
+.feature-player1 {
+    position: absolute;
+    height: 245px;
+    width: 238px;
+    top: 3%;
+    right: 57%;
+}
+
+.feature-player1 .corner-image img {
+    position: absolute;
+    height: 37px;
+    width: 32px;
+    top: 7px;
+    right: 8px;
+    z-index: 1;
+}
+
+.feature-player1 .flag-image {
+    background-color: white;
+    width: 50px;
+    height: 58px;
+    border-radius: 5px;
+    text-align: center;
+    position: absolute;
+    z-index: 1;
+    top: 140px;
+    left: 10px;
+}
+
+.feature-player2 {
+    position: absolute;
+    width: 238px;
+    height: 245px;
+    z-index: 1;
+    top: 45%;
+    right: 215px;
+}
+
+.feature-player2 .flag-image4 {
+    background-color: white;
+    width: 50px;
+    height: 58px;
+    border-radius: 5px;
+    text-align: center;
+    position: absolute;
+    z-index: 1;
+    top: 140px;
+    right: 178px;
+}
+
+.feature-player2 .corner-image4 img {
+    position: absolute;
+    height: 37px;
+    width: 32px;
+    top: 8px;
+    right: 8px;
+    z-index: 1;
+}
+
+.feature-player2 .player2 .player-img::after,
+.feature-player1 .player1 .player-img::after,
+.feature-player3 .player3 .player-img::after {
+    content: "";
+    position: absolute;
+    border: none;
+    z-index: 1;
+    bottom: 32px;
+    left: 4px;
+    width: 80px;
+    height: 55px;
+    background: linear-gradient(10deg, #6FB95D, #236115);
+    clip-path: polygon(0% 100%, 100% 100%, 0% 10%);
+}
+
+.feature-player2 .player2 .player-img::before,
+.feature-player1 .player1 .player-img::before,
+.feature-player3 .player3 .player-img::before {
+    content: "";
+    position: absolute;
+    border: none;
+    z-index: 1;
+    top: 4px;
+    right: 4px;
+    border-radius: 0 5px 0;
+    width: 70px;
+    height: 70px;
+    background: #E2001A;
+    color: #E2001A;
+    clip-path: polygon(100% 100%, 100% 0%, 0% 0%);
+}
+
+
+
+.feature-player3 {
+    width: 238px;
+    height: 245px;
+    top: 21%;
+    position: absolute;
+    z-index: 1;
+    right: 0;
+}
+
+.feature-player3 .player-name3 {
+    background: linear-gradient(145deg, #6FB95D, #236115);
+    color: white;
+    bottom: 4px;
+    width: 230px;
+    height: 30px;
+    font-size: 14px;
+    line-height: 30px;
+    position: absolute;
+    text-align: center;
+    margin-right: 4px;
+    margin-left: 4px;
+    border-radius: 0px 0px 5px 5px;
+}
+
+.feature-player3 .flag-image7 {
+    background-color: white;
+    width: 50px;
+    height: 58px;
+    border-radius: 5px;
+    text-align: center;
+    position: absolute;
+    z-index: 1;
+    top: 138px;
+    right: 178px;
+}
+
+.feature-player3 .corner-image7 img {
+    position: absolute;
+    height: 37px;
+    width: 32px;
+    top: 8px;
+    right: 8px;
+    z-index: 1;
+}
+
+.button1 {
+    position: absolute;
+    z-index: 1;
+    top: 57%;
+    right: 71%;
+}
+
+.button1 button {
+    height: 36px;
+    width: 170px;
+    border-radius: 20px;
+    border: none;
+    // background-color: #E05263;
+    // color: white;
+    display: flex;
+    align-items: center;
+}
+
+.button1 .mat-icon {
+    height: 19px;
+    width: 118px;
+    display: flex;
+    font-size: 16px;
+    font-weight: 400;
+    overflow: unset;
+    align-items: center;
+    margin-left: 5px;
+}
+
+.feature-players i.fa-solid.fa-xmark {
+    font-size: 15px;
+    text-align: center;
+    margin-left: 6px;
+    margin-top: 2px;
+}
+
+.button2 {
+    position: absolute;
+    z-index: 1;
+    top: 97%;
+    right: 10%;
+}
+
+.button2 .mat-icon {
+    height: 24px;
+    width: 159px;
+    display: flex;
+    font-size: 16px;
+    font-weight: 400;
+    align-items: center;
+    margin-left: 5px;
+}
+
+p.d-o-b {
+    font-size: 12px;
+    color: #559B44;
+    font-weight: 700;
+}
+
+.flag-bottom {
+    display: flex;
+}
+
+.button2 button {
+    height: 36px;
+    width: 210px;
+    border-radius: 20px;
+    border: none;
+    // background-color: #E05263;
+    // color: white;
+    display: flex;
+    align-items: center;
+}
+
+.button3 {
+    position: absolute;
+    z-index: 1;
+    top: 73%;
+    right: 50px;
+}
+
+.button3 .mat-icon {
+    height: 24px;
+    width: 80px;
+    display: flex;
+    font-size: 16px;
+    font-weight: 400;
+    align-items: center;
+    margin-left: 5px;
+}
+
+.button3 button {
+    height: 36px;
+    width: 130px;
+    border-radius: 20px;
+    border: none;
+    // background-color: #E05263;
+    // color: white;
+    display: flex;
+    align-items: center;
+}
+
+.button4 {
+    position: absolute;
+    z-index: 1;
+    top: 10%;
+    right: 100px;
+}
+
+.button4 .mat-icon {
+    height: 19px;
+    width: 175px;
+    display: flex;
+    font-size: 16px;
+    font-weight: 400;
+    align-items: center;
+    margin-left: 5px;
+}
+
+.button4 button {
+    height: 36px;
+    width: 230px;
+    border-radius: 20px;
+    border: none;
+    display: flex;
+    align-items: center;
+}
+
+
+/*--------------------------------------------------------------
+#  features
+--------------------------------------------------------------*/
+
+
+/*--------------------------------------------------------------
+#  pricing
+--------------------------------------------------------------*/
+
+// .pricing {
+//     background-color: #092E01;
+// }
+
+.premium-img {
+    // background-image: url(../../../../assets/images/feature-image.svg);
+    background-repeat: no-repeat;
+    // height: 510px;
+    width: 100%;
+    // padding-top: 50px;
+    // padding-left: 50px;
+    // padding-bottom: 20%;
+}
+
+.premium-text-data {
+    font-size: 13px;
+}
+
+img.bg-image {
+    position: absolute;
+    content: "";
+    z-index: 1;
+    top: 0;
+    left: 0;
+    height: 100%;
+}
+
+.premium {
+    width: 100%;
+    min-height: 338px;
+    /* Ensures it starts with a base size */
+    border-radius: 10px;
+    padding: 50px 20px 90px 40px;
+    position: relative;
+    box-sizing: border-box;
+}
+
+
+.price-heading3 {
+    height: 35px;
+    color: white;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+.premium-heading5 {
+    font-size: 20px;
+    color: white;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.premium-heading2 {
+    font-size: 40px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.premium-heading3 {
+    font-size: 60px;
+    color: white;
+}
+
+span {
+    font-size: 18px;
+}
+
+.premium-text {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.premium-text img {
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    // background-color: #092E01;
+    margin-right: 10px;
+}
+
+.billed {
+    display: flex;
+    justify-content: right;
+    margin-bottom: 10px;
+    margin-top: 50px;
+}
+
+.billed1 {
+    display: flex;
+    justify-content: right;
+    margin-bottom: 10px;
+
+}
+
+.billed-text {
+    display: flex;
+    justify-content: right;
+    font-size: 13px;
+    margin-bottom: 10px;
+    margin-right: 40px;
+
+}
+
+.billed-monthly {
+    color: #498D39;
+    position: relative;
+}
+
+
+.toggle-button.inactive {
+    background-color: gray;
+}
+
+.toggle-button {
+    content: "";
+    display: block;
+    height: 32px;
+    width: 56px;
+    border-radius: 100px;
+    position: relative;
+    top: 11px;
+    margin-left: 10px;
+    margin-right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: #498D39;
+}
+
+.toggle-button.active::after {
+    transform: translateX(21px);
+    /* Moves the slider to the right */
+}
+
+.toggle-button::after {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    left: 9px;
+    bottom: 7px;
+    transition: 0.4s;
+    background-color: white;
+}
+
+.active-text {
+    opacity: 50%;
+    color: #FFFFFF;
+}
+
+/* Text color when toggle is inactive */
+.inactive-text {
+    color: white;
+    /* Color for inactive text */
+}
+
+/*--------------------------------------------------------------
+#  adv
+--------------------------------------------------------------*/
+
+.large-rectangle {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    content: "";
+    height: 280px;
+    width: 336px;
+}
+
+.large-rectangle img {
+    height: 280px;
+    width: 336px;
+}
+
+.inline-rectangle {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    content: "";
+    width: 300px;
+    height: 250px;
+}
+
+.inline-rectangle img {
+    width: 300px;
+    height: 250px;
+}
+
+.square {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    content: "";
+    width: 250px;
+    height: 250px;
+    display: flex;
+}
+
+.square img {
+    width: 250px;
+    height: 250px;
+}
+
+// .adv{
+//     position: relative;
+//     height: 200px;
+//  }
+// .advertisment {
+//     position: relative;
+//     height: 100px;
+// }
+// .hidden{
+//     display: none;
+// }
+// .advertisement1 {
+//     position: relative;
+//     height: 350px;
+// }
+
+.skyscraper-image {
+    height: 600px;
+    width: 120px;
+    content: "";
+    z-index: 2;
+    position: absolute;
+    left: 1%;
+    top: 16%;
+}
+
+.skyscraper-image img {
+    height: 600px;
+    width: 120px;
+}
+
+.leaderboard-image {
+    position: absolute;
+    content: "";
+    z-index: 1;
+    height: 90px;
+    width: 728px;
+    bottom: 5%;
+    left: 50%;
+    /* Centering */
+    transform: translateX(-50%);
+}
+
+.leaderboard-image img {
+    height: 90px;
+    width: 728px;
+}
+
+.small-sqaure-image {
+    position: absolute;
+    content: "";
+    z-index: 1;
+    bottom: 3%;
+    left: 0;
+    height: 200px;
+    width: 200px;
+}
+
+.small-sqaure-image img {
+    height: 200px;
+    width: 200px;
+}
+
+.banner-image {
+    position: absolute;
+    content: "";
+    z-index: 1;
+    bottom: 3%;
+    right: 0;
+    height: 60px;
+    width: 468px;
+
+}
+
+.banner-image img {
+    height: 60px;
+    width: 468px;
+
+}
+
+/*--------------------------------------------------------------
+#  adv
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+#  pricing
+--------------------------------------------------------------*/
+@media (min-width: 1440px){
+    .club-offers2 img {
+        right: 0;
+        top: 16%;
+        width: 280px;
+        height: 275px;
+    }
+    .club-offers1 img {
+        right: 51%;
+        height: 245px;
+        width: 285px;
+    }    
+    .accodian-image2 img {
+        left: 7%;
+    }
+    .banner-left {
+  
+        margin-right: 42%;
+    }
+}
+
+
+@media (min-width: 1536px) {
+    .banner-image1 img {
+        width: 340px;
+        height: 605px;
+        top: 15%;
+        right: 32%;
+    }
+
+    .banner {
+        height: 1100px;
+    }
+    .banner-left {
+        margin-right: 45%;
+    }
+
+    .banner-image2 img {
+        top: 72%;
+        right: 32%;
+        width: 335px;
+        height: 265px;
+    }
+
+    .banner-image3 img {
+        top: 14%;
+        right: 0;
+        width: 470px;
+        height: 325px;
+    }
+
+    .banner-image4 img {
+        top: 49%;
+        right: 0;
+        height: 430px;
+        width: 470px;
+    }
+
+    .club-offers3 img {
+        right: 26%;
+
+    }
+
+    .club-offers1 img {
+        right: 50%;
+    }
+
+    // .banner-left {
+    //     left: 8%;
+    //     padding-right: 70.5%;
+    // }
+}
+
+@media (min-width: 1920px) {
+    .banner {
+        height: 1200px;
+    }
+
+    .skyscraper-image {
+        top: 12%;
+    }
+
+    .banner-image1 img {
+        width: 380px;
+        height: 665px;
+        top: 12%;
+        right: 30%;
+    }
+
+    .banner-image2 img {
+        top: 70%;
+        right: 30%;
+        width: 380px;
+        height: 300px;
+    }
+
+    .banner-image3 img {
+        width: 550px;
+        height: 370px;
+    }
+
+    .banner-image4 img {
+        top: 51%;
+        right: 0;
+        height: 480px;
+        width: 550px;
+    }
+
+    // .banner-left {
+    //     left: 16%;
+    //     padding-right: 66.7%;
+    // }
+
+    .club-offers2 img {
+        width: 280px;
+        height: 250px;
+        top: 21%;
+    }
+
+    .club-offers3 img {
+        right: 24%;
+        bottom: 0;
+        width: 400px;
+        height: 290px;
+
+    }
+
+    .club-offers1 img {
+        top: 5%;
+        right: 48%;
+        height: 230px;
+        width: 280px;
+    }
+
+    .accodian-image3 img {
+        height: 182px;
+        width: 220px;
+        top: 51%;
+    }
+
+    .accodian-image1 img {
+        top: 8%;
+        right: 10%;
+        height: 354px;
+        width: 455px;
+    }
+
+    .accodian-image2 img {
+        right: 23%;
+        top: 49%;
+        height: 219px;
+        width: 270px;
+
+    }
+
+    .networking-images1 img {
+        height: 480px;
+        width: 370px;
+    }
+
+    .networking-images2 img {
+        width: 250px;
+        height: 74px;
+    }
+
+    .networking-images3 img {
+        width: 224px;
+        height: 74px;
+    }
+
+    .networking-images2 {
+        top: 23%;
+    }
+
+    .networking-images3 {
+        top: 77%;
+        left: 57%;
+    }
+
+    .player-img img {
+        height: 232px;
+        width: 229px;
+    }
+}
+
+@media (min-width: 2560px) {
+    // .features {
+    //     height: 830px;
+    // }
+
+    // .banner-left {
+    //     left: 25%;
+    //     padding-right: 60%;
+    // }
+
+    .banner-image1 img {
+        width: 400px;
+        height: 700px;
+        top: 12%;
+        right: 26%;
+    }
+
+    .banner-image2 img {
+        top: 66%;
+        right: 26%;
+        width: 400px;
+        height: 310px;
+    }
+
+    .banner-image3 img {
+        top: 12%;
+        right: 0;
+        width: 640px;
+        height: 410px;
+    }
+
+    .banner-image4 img {
+        top: 48%;
+        right: 0;
+        height: 500px;
+        width: 640px;
+    }
+
+    .banner {
+        height: 1350px;
+    }
+
+    .club-offers2 img {
+        right: 0;
+        top: 14%;
+        width: 285px;
+        height: 260px;
+    }
+
+    .club-offers3 img {
+        right: 25%;
+        bottom: 6%;
+        width: 400px;
+        height: 300px;
+    }
+
+    .club-offers1 img {
+        top: 0;
+        right: 49%;
+        height: 230px;
+        width: 285px;
+    }
+
+    .accodian-image1 img {
+        top: 8%;
+        right: 15%;
+        height: 300px;
+        width: 390px;
+    }
+
+    .accodian-image2 img {
+        right: 26%;
+        top: 45%;
+        height: 210px;
+        width: 260px;
+    }
+
+    .accodian-image3 img {
+        height: 190px;
+        width: 230px;
+        top: 45%;
+        right: 0;
+    }
+
+    .networking-images1 img {
+        width: 360px;
+        height: 450px;
+    }
+
+    .networking-images2 img {
+        width: 250px;
+        height: 75px;
+    }
+
+    .networking-images3 img {
+        width: 230px;
+        height: 75px;
+    }
+
+    .networking-images3 img {
+        top: 66%;
+        left: 6%;
+    }
+
+}
+
+@media (max-width: 1404px) {
+    .banner-image1 img {
+        top: 12%;
+        right: 32%;
+    }
+
+    .banner-image2 img {
+        top: 69%;
+        right: 32%;
+    }
+
+    // .banner-left {
+    //     left: 9%;
+    //     padding-right: 65%;
+    // }
+
+    .club-offers2 img {
+        position: absolute;
+        content: "";
+        z-index: 1;
+        right: 0;
+        top: 17%;
+        width: 260px;
+        height: 260px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .club-offers1 img {
+        position: absolute;
+        content: "";
+        z-index: 1;
+        top: 2%;
+        right: 50%;
+        height: 235px;
+        width: 283px;
+        object-fit: cover;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .club-offers3 img {
+        position: absolute;
+        content: "";
+        z-index: 0;
+        right: 24%;
+        bottom: 0;
+        width: 394px;
+        height: 315px;
+        object-fit: cover;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .accodian-image1 img {
+        top: 8%;
+        right: 12%;
+        height: 300px;
+        width: 390px;
+    }
+
+    .accodian-image2 img {
+        height: 200px;
+        width: 250px;
+        top: 44.5%;
+        left: 6%;
+    }
+
+    .accodian-image3 img {
+        top: 44%;
+        right: 0;
+        height: 165px;
+        width: 200px;
+    }
+
+    .networking-images1 img {
+        left: 17%;
+    }
+
+    .button4 {
+        position: absolute;
+        z-index: 1;
+        top: 4%;
+        right: 50px;
+    }
+
+    .feature-player3 {
+        top: 14%;
+    }
+
+    .button3 {
+        top: 68%;
+        right: 50px;
+    }
+
+}
+
+@media (max-width: 1281px) {
+    .club_text {
+        padding: 20px;
+        border-radius: 10px;
+        // height: 185px;
+        // margin-top: 100px;
+    }
+    .banner-left {
+        top: 72%;
+        margin-right: 33%;
+    }
+
+    .banner-image1 img {
+        right: 34%;
+        top: 15%;
+    }
+
+
+    .banner-image2 img {
+        right: 34%;
+    }
+
+    .club-offers2 img {
+        right: 0;
+        top: 21%;
+        width: 240px;
+        height: 236px;
+    }
+
+    .club-offers3 img {
+        right: 26%;
+        bottom: 5%;
+        width: 349px;
+        height: 280px;
+    }
+
+    .club-offers1 img {
+        top: 8%;
+        right: 53%;
+        height: 210px;
+        width: 245px;
+
+    }
+
+    .accodian-image2 img {
+        left: 0;
+    }
+
+    .networking-images1 img {
+        left: 16%;
+        top: 4%;
+        width: 350px;
+        height: 440px;
+    }
+
+    .networking-images2 img {
+        top: 18%;
+        width: 217px;
+        height: 65px;
+    }
+
+    .networking-images3 img {
+        top: 65%;
+        left: 4%;
+        width: 197px;
+        height: 65px;
+    }
+
+    .player-img img {
+        height: 210px;
+        width: 210px;
+    }
+
+    .feature-player1 .player1,
+    .feature-player2 .player2,
+    .feature-player3 .player3 {
+        height: 225px;
+        width: 218px;
+    }
+
+    .feature-player1,
+    .feature-player2,
+    .feature-player3 {
+        height: 225px;
+        width: 218px;
+
+    }
+
+    .feature-player3 .player-name3 {
+        bottom: 4px;
+        width: 211px;
+    }
+
+    .feature-player2 .player-name2 {
+        top: 192px;
+        width: 211px;
+    }
+
+    .feature-player1 .player-name1 {
+        top: 192px;
+        width: 211px;
+    }
+
+    .feature-player2 {
+        right: 190px;
+        top: 41%;
+    }
+
+    .feature-player2 .flag-image4 {
+        top: 120px;
+        right: 160px;
+    }
+
+    .feature-player3 .flag-image7 {
+        top: 120px;
+        right: 160px;
+    }
+
+    .feature-player1 .flag-image {
+        top: 120px;
+        left: 10px;
+    }
+
+    .feature-player3 {
+        top: 15%;
+    }
+
+    .button4 {
+        top: 4%;
+        right: 30px;
+    }
+
+    .button3 {
+        top: 63%;
+        right: 32px;
+    }
+
+    .button2 {
+        top: 89%;
+        right: 10%;
+    }
+
+    .button1 {
+        top: 53%;
+        right: 71%;
+    }
+}
+@media (max-width: 1200px){
+    .banner-image2 img {
+        width: 285px;
+        height: 220px;
+        top: 68%;
+    }
+
+    .banner-image1 img {
+        width: 290px;
+        height: 505px;
+    }
+    .banner-image3 img {
+        width: 395px;
+        height: 270px;
+    }
+    .banner-image4 img {
+        top: 47%;
+        right: 0;
+        height: 380px;
+        width: 395px;
+    }
+    .banner-left {
+        margin-right: 31%;
+    }
+    .club-offers2 img {
+        width: 240px;
+        height: 240px;
+    }
+    .club-offers1 img {
+        height: 210px;
+        width: 250px;
+    }
+    .club-offers3 img {
+        right: 27%;
+        bottom: 5%;
+        width: 340px;
+        height: 270px;
+    }
+    .accodian-image3 img {
+        height: 160px;
+        width: 195px;
+    }
+    .accodian-image2 img {
+        height: 190px;
+        width: 240px;
+        top: 44.5%;
+    }
+    .networking-images1 img {
+        left: 15%;
+    }
+    .button1 {
+        top: 90%;
+        right: 64%;
+    }
+    .button4 {
+        top: 4%;
+        right: 30px;
+    }
+    .feature-player2{
+        right: 180px;
+    }
+
+
+}
+
+@media(max-width: 1024px) {
+    .features {
+        height: 520px;
+    }
+
+    .banner {
+        height: 820px;
+    }
+
+    // .premium-col-right {
+    //     padding-top: 50px;
+    //     padding-right: 50px;
+    // }
+
+    h1 {
+        font-size: 35px;
+    }
+
+    h2 {
+        font-size: 30px;
+    }
+
+    h3 {
+        font-size: 35px;
+    }
+
+    h4 {
+        font-size: 22px;
+    }
+
+    h5 {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 18px;
+    }
+
+    .banner-left {
+        top: 60%;
+        left: 0;
+        z-index: 2;
+        margin-right: 43%;
+    }
+
+    .banner-heading {
+        font-size: 35px;
+    }
+
+    .banner-image1 img {
+        width: 250px;
+        height: 430px;
+        right: 32%
+    }
+
+    .banner-image2 img {
+        width: 250px;
+        height: 190px;
+        right: 32%;
+        top: 69%;
+    }
+
+    .banner-image3 img {
+        width: 313px;
+        height: 250px;
+    }
+
+    .banner-image4 img {
+        height: 305px;
+        width: 313px;
+        top: 51%;
+    }
+
+    .button1 .mat-icon {
+        font-size: 14px;
+        width: 105px;
+    }
+
+    .button1 button {
+        width: 150px;
+    }
+
+    .button1 {
+        position: absolute;
+        z-index: 1;
+        top: 242px;
+        right: 302px;
+
+    }
+
+    .button4 .mat-icon {
+        width: 155px;
+        font-size: 14px;
+    }
+
+    .button3 .mat-icon {
+        width: 73px;
+        font-size: 14px;
+    }
+
+    .button2 .mat-icon {
+        width: 140px;
+        font-size: 14px;
+    }
+
+    .button4 button {
+        width: 200px;
+    }
+
+    .button2 button {
+        width: 190px;
+    }
+
+    .button2 {
+        top: 405px;
+        // left: 47%;
+    }
+
+    .button3 {
+        top: 315px;
+        right: 8px;
+    }
+
+    .button4 {
+        top: 25px;
+        right: 20px;
+    }
+
+    .banner-heading5 {
+        font-size: 16px;
+    }
+
+    a.btn.btn-register {
+        font-size: 16px;
+        height: 41px;
+        width: 215px;
+    }
+
+    .club-text1 {
+        font-size: 15px;
+    }
+
+    .club_text{
+        padding: 20px;
+        // height: 170px;
+        // margin-top: 50px;
+    }
+
+
+    .accordion-item::after {
+        width: 100%;
+    }
+
+    .accordion-flex {
+        margin-top: 20px;
+        margin-top: 10px;
+    }
+
+    h2.accordion-header {
+        font-size: 16px;
+        width: 100%;
+    }
+
+    .club-offers2 img {
+        width: 210px;
+        height: 200px;
+        top: 27%;
+    }
+
+    .club-offers1 img {
+        height: 180px;
+        width: 220px;
+        right: 48%;
+        top: 16%;
+    }
+
+    .club-offers3 img {
+        width: 300px;
+        height: 220px;
+        bottom: 12%;
+        right: 24%;
+    }
+
+    .accodian-image2 img {
+        top: 44%;
+        height: 160px;
+        width: 190px;
+        left: 8%;
+    }
+
+    .accodian-image1 img {
+        top: 15%;
+        right: 17%;
+        height: 230px;
+        width: 300px;
+    }
+
+    .accodian-image3 img {
+        top: 43%;
+        right: 0;
+        width: 180px;
+        height: 150px;
+    }
+
+    .networking-images1 img {
+        height: 380px;
+        width: 300px;
+        left: 18%;
+    }
+
+    .networking-images2 img {
+        width: 180px;
+        height: 54px;
+        right: 0;
+    }
+
+    .networking-images3 img {
+        height: 54px;
+        width: 164px;
+        top: 57%;
+        left: 4%;
+    }
+
+    // .networking-images3 {
+    //     top: 52%;
+    //     left: 56%;
+    // }
+
+    .player-img img {
+        height: 170px;
+        width: 170px;
+    }
+
+    .feature-player1 .player1,
+    .feature-player2 .player2,
+    .feature-player3 .player3 {
+        height: 200px;
+        width: 178px;
+    }
+
+    .feature-player1 {
+        top: 5%;
+        right: 57%;
+    }
+
+
+    .feature-player1,
+    .feature-player2,
+    .feature-player3 {
+        height: 201px;
+        width: 178px;
+    }
+
+    .feature-player1 .player-name1 {
+        top: 167px;
+        width: 171px;
+    }
+
+    .feature-player2 .player-name2 {
+        top: 167px;
+        width: 171px;
+    }
+
+    .feature-player3 .player-name3 {
+        bottom: 4px;
+        width: 171px;
+    }
+
+    .feature-player2 {
+        top: 38%;
+        right: 147px;
+    }
+
+    .feature-player3 {
+        top: 15%;
+    }
+
+    .feature-player3 .flag-image7 {
+        width: 49px;
+        height: 54px;
+        top: 97px;
+        right: 120px;
+    }
+
+    .feature-player2 .flag-image4 {
+        top: 95px;
+        right: 120px;
+    }
+
+    .feature-player1 .flag-image {
+        top: 95px;
+        left: 10px;
+    }
+
+    .left-accodian {
+        padding-top: 0;
+        padding-right: 20px;
+    }
+
+    .feature-text {
+        font-size: 14px;
+    }
+
+    button.btn.btn-danger {
+        width: 203px;
+        height: 36px;
+        font-size: 15px;
+        margin-top: 20px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    .premium-heading5 {
+        font-size: 18px;
+    }
+
+    .premium-heading2 {
+        font-size: 35px;
+    }
+
+    .premium-heading3 {
+        font-size: 50px;
+    }
+
+
+}
+
+
+@media (max-width: 991px) {
+    .accordion-collapse {
+        transition: height 0.5s ease-in-out;
+    }
+
+    .leaderboard-club-image img,
+    .small-sqaure-image img,
+    .skyscraper-image img,
+    .skyscraper-image img,
+    .wide-skyscraper-image img,
+    .leaderboard-image img,
+    .banner-image img,
+    .advertisement,
+    .advertisement1 {
+        display: none;
+    }
+
+    .skyscraper-image,
+    .wide-skyscraper-image,
+    .leaderboard-club-image,
+    .leaderboard-image,
+    .small-sqaure-image {
+        display: none;
+    }
+
+    .banner-left {
+        top: 50%;
+        margin-right: 14%;
+    }
+
+    .banner-image2 img {
+        top: 70%;
+    }
+
+    .banner-image4 img {
+        top: 52%;
+    }
+
+    .premium {
+        height: 100%;
+        margin-bottom: 0;
+        padding-bottom: 30px;
+    }
+
+    .features {
+        // height: 980px;
+        display: none;
+    }
+
+    .banner-heading {
+        font-size: 25px;
+    }
+
+    .banner-heading5 {
+        font-size: 15px;
+    }
+
+    a.btn.btn-register {
+        font-size: 15px;
+        height: 35px;
+        width: 190px;
+    }
+
+    .py_0 {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+
+    .banner-data {
+        padding-top: 100px;
+    }
+
+    .banner {
+        height: 600px;
+    }
+
+    .banner-image1 img {
+        width: 180px;
+        height: 320px;
+        border-radius: 10px;
+    }
+
+    .banner-image2 img {
+        width: 180px;
+        height: 134px;
+        border-radius: 10px;
+    }
+
+    .banner-image3 img {
+        width: 235px;
+        height: 175px;
+    }
+
+    .banner-image4 img {
+        height: 225px;
+        width: 235px;
+        border-radius: 10px;
+    }
+
+    .accordion-flex {
+        margin-top: 0;
+    }
+
+    .club_text {
+        margin-top: 0px;
+        // margin-bottom: 25px;
+    }
+
+    .club-heading4 {
+        margin-bottom: 30px;
+    }
+
+    .accordion-item::after {
+        width: 100%;
+    }
+
+    .club-scout.py_0 {
+        padding-top: 30px;
+    }
+
+    .club-scouts {
+        height: 520px;
+    }
+
+    .premium-img {
+        padding-top: 30px;
+        padding-left: 30px;
+        height: 300px;
+    }
+
+    // .premium-col-right {
+    //     padding-top: 30px;
+    //     padding-right: 30px;
+    // }
+    .premium {
+        width: 100%;
+        min-height: 270px;
+        padding: 30px 20px 20px 10px;
+    }
+
+    .premium {
+        padding-bottom: 0;
+    }
+
+    .premium-img {
+        padding-top: 0;
+        padding-left: 10px;
+        height: 260px;
+    }
+
+
+    .premium-text p {
+        font-size: 14px;
+    }
+
+    .features.py_0 {
+        padding-top: 0;
+    }
+
+    .left-accodian {
+        padding-right: 0;
+    }
+
+    .player-img img {
+        height: 220px;
+        width: 220px;
+    }
+
+    .feature-player1,
+    .feature-player2,
+    .feature-player3 {
+        height: 228px;
+        width: 228px;
+    }
+
+    .feature-player1 .player1,
+    .feature-player2 .player2,
+    .feature-player3 .player3 {
+        height: 228px;
+        width: 228px;
+    }
+
+    .feature-player1 .player-name1 {
+        top: 195px;
+        width: 220px;
+    }
+
+    .feature-player2 .player-name2 {
+        top: 195px;
+        width: 220px;
+    }
+
+    .feature-player3 .player-name3 {
+        bottom: 4px;
+        width: 220px;
+    }
+
+    .feature-player3 {
+        top: 24%;
+        right: 9%;
+    }
+
+    .feature-player2 {
+        top: 51%;
+        right: 38%;
+    }
+
+    .button1 {
+        top: 64%;
+        left: 8%;
+        right: 70%;
+    }
+
+    .button2 {
+        left: 50%;
+        top: 97%;
+        right: 23%;
+    }
+
+    .button3 {
+        top: 70%;
+        right: 14%;
+    }
+
+    .button4 {
+        top: 14%;
+        right: 22%;
+    }
+
+    .feature-player1 .flag-image {
+        top: 120px;
+        left: 10px;
+    }
+
+    .feature-player3 .flag-image7 {
+        top: 123px;
+        left: 10px;
+    }
+
+    .feature-player2 .flag-image4 {
+        top: 120px;
+        left: 10px;
+    }
+
+    // features1
+
+    .features1 {
+        display: block;
+    }
+
+    .accodian-box2-images,
+    .networking-images,
+    .feature-players,
+    .club-scout-box {
+        height: 500px;
+        position: relative;
+    }
+
+    .club-offers1 img {
+        width: 288px;
+        height: 235px;
+        top: 8%;
+        right: 53%;
+    }
+
+    .club-offers2 img {
+        height: 260px;
+        width: 280px;
+        right: 7%;
+        top: 20%;
+    }
+
+    .club-offers3 img {
+        width: 350px;
+        height: 265px;
+        right: 32%;
+        bottom: 4%;
+    }
+
+    .accodian-image1 img {
+        top: 8%;
+        right: 25%;
+        height: 300px;
+        width: 380px;
+    }
+
+    .accodian-image2 img {
+        left: 15%;
+        top: 44%;
+        height: 180px;
+        width: 220px;
+
+    }
+
+    .accodian-image3 img {
+        top: 44.5%;
+        right: 14%;
+        width: 210px;
+        height: 170px;
+    }
+
+    .networking-images1 img {
+        height: 453px;
+        width: 360px;
+        left: 20%;
+        top: 6%;
+    }
+
+    .networking-images2 img {
+        width: 230px;
+        height: 68px;
+        right: 10%;
+        top: 22%;
+    }
+
+    .networking-images3 img {
+        height: 68px;
+        width: 207px;
+        top: 69%;
+        left: 5%;
+    }
+
+    .feature-player1 {
+        top: 7%;
+        left: 1%;
+    }
+
+    .feature-player2 {
+        top: 46%;
+        right: 34%;
+    }
+
+    .feature-player3 {
+        top: 16%;
+        right: 1%;
+    }
+
+    .button1 {
+        top: 59%;
+        // left: 5%;
+        right: 70%;
+
+    }
+
+    .button2 {
+        // left: 50%;
+        top: 94%;
+        right: 19%;
+
+
+    }
+
+    .button3 {
+        top: 65%;
+        right: 7%;
+    }
+
+
+    .button4 {
+        top: 7%;
+        right: 19%;
+    }
+
+}
+
+@media (max-width: 821px) {
+    .banner-image3 img {
+        width: 255px;
+        height: 175px;
+    }
+    .banner-image4 img {
+        height: 225px;
+        width: 255px;
+        border-radius: 10px;
+    }
+    .club-offers2 img {
+        right: 10%;
+        top: 19%;
+    }
+    .club-offers1 img {
+        top: 5%;
+        right: 50%;
+    }
+    .accodian-image2 img {
+        left: 20%;
+    }
+    .accodian-image1 img {
+        top: 8%;
+        right: 28%;
+    }
+    .accodian-image3 img {
+        right: 18%;
+    }
+    .networking-images2 img {
+        right: 18%;
+    }
+    .networking-images3 img {
+        left: 8%;
+    }
+    .feature-player2 {
+        top: 46%;
+        right: 47%;
+    }
+    .feature-player3 {
+        top: 16%;
+        right: 18%;
+    }
+    .button1 {
+        top: 59%;
+        right: 78%;
+        left: 1%;
+    }
+    .button3 {
+        top: 65%;
+        right: 23%;
+    }
+    .button4 {
+        top: 7%;
+        right: 32%;
+    }
+}
+@media (max-width: 769px){
+    .club-offers2 img {
+        height: 260px;
+        width: 280px;
+        right: 8%;
+        top: 19%;
+    }
+    .club-offers1 img {
+        width: 288px;
+        height: 235px;
+        top: 8%;
+        right: 51%;
+    }
+    .accodian-image2 img {
+        height: 200px;
+        width: 253px;
+    }
+    .feature-player2 {
+        top: 46%;
+        right: 43%;
+    }
+    .feature-player3{
+        top: 16%;
+        right: 12%;
+    }
+    .button1{
+        top: 59%;
+        right: 76%;
+        left: 0;
+    }
+    .button4{
+        top: 7%;
+        right: 27%;
+    }
+    .networking-images2 img {
+        width: 230px;
+        height: 68px;
+        right: 14%;
+        top: 22%;
+    }
+
+}
+
+
+@media (max-width: 767px) {
+    .features {
+        height: 850px;
+    }
+
+    .club-scout.py_0 {
+        padding-top: 70px;
+    }
+
+    .banner {
+        height: 800px;
+    }
+
+    .club-scouts {
+        height: 400px;
+    }
+
+    .club-offers1 img {
+        width: 225px;
+        height: 185px;
+        right: 0;
+        left: 0;
+        top: 5%;
+    }
+
+    .club-offers2 img {
+        height: 215px;
+        width: 230px;
+        top: 17%;
+    }
+
+    .club-offers3 img {
+        width: 315px;
+        height: 250px;
+    }
+
+    .banner-data {
+        padding-top: 100px;
+        position: relative;
+        height: 700px;
+    }
+
+    .banner-image1 img {
+        width: 185px;
+        height: 320px;
+        top: 43%;
+        left: 0;
+    }
+
+    .banner-image2 img {
+        width: 185px;
+        height: 140px;
+        left: 0;
+        border-radius: 10px;
+        top: 90%;
+    }
+
+    .banner-image3 img {
+        width: 320px;
+        height: 190px;
+        top: 41%;
+        right: 0;
+    }
+
+
+    .banner-image4 img {
+        height: 225px;
+        width: 320px;
+        top: 76%;
+    }
+
+    .premium {
+        height: 100%;
+    }
+
+    .premium-img {
+        height: 180px;
+        padding-left: 10px;
+    }
+
+    .banner-left {
+        padding-right: 0;
+        left: 0;
+        top: 20%;
+    }
+
+    .accodian-image1 img {
+        top: 6%;
+        right: 15%;
+    }
+
+    .accodian-image3 img {
+        top: 51.5%;
+        right: 0;
+        width: 210px;
+        height: 170px;
+    }
+
+    .accodian-image2 img {
+        right: 0;
+        top: 51%;
+        height: 195px;
+        width: 242px;
+        left: 0;
+    }
+
+    .networking-images1 img {
+        height: 410px;
+        width: 330px;
+        left: 15%;
+        top: 6%;
+    }
+
+    .networking-images2 img {
+        width: 230px;
+        height: 68px;
+        right: 0;
+        top: 23%;
+    }
+
+    .networking-images3 img {
+        height: 68px;
+        width: 207px;
+        top: 76%;
+        left: 0;
+    }
+
+    .feature-player1 {
+        top: 5%;
+        right: 0;
+        left: 0;
+    }
+
+    .feature-player2 {
+        top: 54%;
+        right: 32%;
+    }
+
+    .feature-player3 {
+        top: 16%;
+        right: 0;
+    }
+
+    .button1 {
+        top: 67%;
+        // left: 0;
+    }
+
+    .button2 {
+        // left: 71%;
+        top: 97%;
+    }
+
+    .button3 {
+        top: 78%;
+        right: 5%;
+    }
+
+    .button4 {
+        top: 6%;
+        right: 11%;
+    }
+
+    .premium {
+        height: 450px;
+
+    }
+
+    .premium-img {
+        height: 200px;
+    }
+}
+
+@media (max-width: 575px) {
+
+    h1 {
+        font-size: 31px;
+    }
+
+    h3 {
+        font-size: 25px;
+    }
+
+    .banner-left {
+        margin-right: 0;
+    }
+
+    .banner-heading {
+        font-size: 31px;
+    }
+
+    .banner {
+        height: 750px;
+    }
+
+    .banner-image1 img {
+        width: 150px;
+        height: 265px;
+        border-radius: 10px;
+        top: 48%;
+    }
+
+    .banner-image2 img {
+        width: 150px;
+        height: 115px;
+        top: 87%;
+    }
+
+    .banner-image3 img {
+        width: 245px;
+        height: 140px;
+        top: 43%;
+    }
+
+    .banner-image4 img {
+        height: 185px;
+        width: 245px;
+        top: 70%;
+    }
+
+    .features {
+        height: 780px;
+    }
+
+    .club-scout.py_0 {
+        padding-top: 40px;
+    }
+
+    .player-img img {
+        height: 150px;
+        width: 150px;
+    }
+
+    .feature-player1 .player1,
+    .feature-player2 .player2,
+    .feature-player3 .player3 {
+        height: 158px;
+        width: 158px;
+    }
+
+    .feature-player1,
+    .feature-player2,
+    .feature-player3 {
+        height: 158px;
+        width: 158px;
+    }
+
+    .feature-player3 .player-name3 {
+        bottom: 4px;
+        width: 150px;
+    }
+
+    .feature-player1 .player-name1 {
+        top: 125px;
+        width: 150px;
+    }
+
+    .feature-player2 .player-name2 {
+        top: 125px;
+        width: 150px;
+    }
+
+    .banner-left {
+        padding-right: 0;
+        top: 15%;
+    }
+
+    .feature-player1 {
+        top: 15%;
+        right: 0;
+        left: 0;
+    }
+
+    .feature-player2 {
+        top: 50%;
+        right: 35%;
+    }
+
+    .feature-player3 {
+        top: 23%;
+        right: 0;
+    }
+
+    .button1 {
+        top: 97%;
+        right: 68%;
+    }
+
+    .button2 {
+        left: 50%;
+        top: 96%;
+        right: 12%;
+    }
+
+
+    .button3 {
+        top: 71%;
+        right: 25px;
+    }
+
+    .button4 {
+        top: 12%;
+        right: 7%;
+    }
+
+    .button4 .mat-icon {
+        width: 123px;
+        font-size: 11px;
+    }
+
+    .feature-players i.fa-solid.fa-xmark {
+        font-size: 11px;
+    }
+
+    .button1 .mat-icon {
+        font-size: 11px;
+        width: 82px;
+    }
+
+    .button2 .mat-icon {
+        width: 112px;
+        font-size: 11px;
+    }
+
+    .button3 .mat-icon {
+        width: 60px;
+        font-size: 11px;
+    }
+
+    .button1 button {
+        width: 126px;
+        height: 30px;
+    }
+
+    .button2 button {
+        width: 158px;
+        height: 30px;
+    }
+
+    .button3 button {
+        height: 30px;
+        width: 105px;
+    }
+
+    .button4 button {
+        width: 165px;
+        height: 30px;
+    }
+
+    .feature-player1 .flag-image {
+        top: 60px;
+        left: 7px;
+    }
+
+    .feature-player2 .flag-image4 {
+        top: 59px;
+        left: 7px;
+    }
+
+    img.bg-image {
+        width: 100%;
+    }
+
+    .feature-player3 .flag-image7 {
+        top: 58px;
+        left: 7px;
+    }
+
+    .billed {
+        margin-top: 30px;
+    }
+
+    .premium {
+        height: auto;
+        padding-bottom: 20px;
+    }
+
+
+    .premium-img {
+        padding-top: 10px;
+        padding-left: 0;
+        height: 180px;
+    }
+
+    // .premium-col-right {
+    //     padding-left: 10px;
+    //     padding-top: 20px;
+    // }
+
+    .club-heading4 {
+        font-size: 25px;
+    }
+
+    .feature-heading3 {
+        font-size: 25px;
+    }
+
+    //features1
+    .accodian-box2-images,
+    .networking-images,
+    .feature-players,
+    .club-scout-box {
+        height: 350px;
+    }
+
+    .club-offers1 img {
+        width: 180px;
+        height: 150px;
+        top: 7%;
+        left: 0;
+    }
+
+    .club-scouts {
+        height: 350px;
+    }
+
+    .club-offers2 img {
+        height: 160px;
+        width: 165px;
+        top: 22%;
+        right: 0;
+    }
+
+    .club-offers3 img {
+        width: 265px;
+        height: 195px;
+        left: 5%;
+        bottom: 7%;
+    }
+
+    .accodian-image1 img {
+        top: 6%;
+        right: 15%;
+        height: 235px;
+        width: 300px;
+    }
+
+    .accodian-image3 img {
+        top: 47%;
+        right: 0;
+        width: 164px;
+        height: 135px;
+    }
+
+    .accodian-image2 img {
+        right: 0;
+        top: 47%;
+        height: 155px;
+        width: 190px;
+        left: 0;
+    }
+
+    .networking-images1 img {
+        height: 330px;
+        width: 265px;
+        left: 15%;
+    }
+
+    .networking-images2 img {
+        width: 160px;
+        height: 47px;
+        right: 0;
+        top: 22%;
+    }
+
+    .networking-images3 img {
+        height: 47px;
+        width: 143px;
+        top: 72%;
+        left: 0;
+    }
+
+    .feature-player1 {
+        top: 8%;
+        left: -22%;
+
+    }
+
+    .feature-player2 {
+        top: 44%;
+        right: 35%;
+    }
+
+    .feature-player3 {
+        top: 19%;
+        right: -6%;
+    }
+
+    .button1 {
+        top: 92%;
+        right: 60%;
+    }
+
+    .button2 {
+        // left: 53%;
+        top: 92%;
+        right: -3%;
+
+    }
+
+    .button3 {
+        top: 66%;
+        right: 0;
+    }
+
+    .button4 {
+        top: 8%;
+        right: 7%;
+    }
+
+}
+
+@media (max-width: 415px) {
+    .banner-image1 img {
+        width: 140px;
+        height: 255px;
+    }
+
+    .banner-image2 img {
+        width: 140px;
+        height: 108px;
+        top: 86%;
+    }
+
+    .banner-image3 img {
+        width: 243px;
+    }
+
+    .banner-image4 img {
+        width: 243px;
+    }
+
+
+    //features
+    .club-offers2 img {
+        height: 178px;
+        width: 180px;
+        top: 22%;
+        right: -5%;
+    }
+
+    .club-offers1 img {
+        width: 195px;
+        height: 165px;
+        top: 7%;
+        left: -5%;
+    }
+
+    .club-offers3 img {
+        bottom: 2%;
+    }
+
+    .networking-images2 img {
+        right: -5%;
+    }
+
+    .networking-images3 img {
+        left: -5%;
+    }
+
+
+
+}
+
+@media (max-width: 391px) {
+    .banner-image3 img {
+        width: 220px;
+        height: 135px;
+        top: 41%;
+    }
+
+    .banner-image1 img {
+        width: 135px;
+        height: 240px;
+    }
+
+    .banner-image4 img {
+        width: 220px;
+        top: 68%;
+    }
+
+    .banner-image2 img {
+        width: 135px;
+        height: 100px;
+        top: 84%;
+    }
+
+    //features1
+
+    .club-offers1 img {
+        width: 180px;
+        height: 150px;
+        top: 12%;
+    }
+
+    .club-offers2 img {
+        height: 170px;
+        width: 175px;
+        top: 26%;
+    }
+
+    .club-offers3 img {
+        width: 265px;
+        height: 190px;
+    }
+
+    .accodian-image1 img {
+        top: 15%;
+        right: 15%;
+        height: 210px;
+        width: 275px;
+    }
+
+    .accodian-image2 img {
+
+        top: 52%;
+        height: 140px;
+        width: 170px;
+    }
+
+    .accodian-image3 img {
+        top: 52%;
+        width: 150px;
+        height: 120px;
+    }
+
+    .feature-player3 {
+        top: 23%;
+
+    }
+
+    .feature-player1 {
+        top: 8%;
+        left: -25%;
+    }
+
+    .button4 {
+        top: 10%;
+        right: 3%;
+    }
+
+    .button1 {
+        top: 91%;
+        right: 67%;
+    }
+
+    .button2 {
+        top: 93%;
+        right: 6%;
+    }
+
+    .button3 {
+        top: 71%;
+        right: -4%;
+    }
+
+
+
+}
+
+
+@media (max-width: 376px) {
+    .features {
+        height: 700px;
+    }
+
+    .banner-data {
+        padding-top: 60px;
+    }
+
+    .banner {
+        height: 650px;
+    }
+
+    .banner-image1 img {
+        width: 122px;
+        height: 225px;
+        top: 39%;
+    }
+
+    .banner-image2 img {
+        width: 122px;
+        height: 95px;
+        top: 73%;
+    }
+
+    .banner-image3 img {
+        width: 222px;
+        height: 130px;
+        top: 36%;
+    }
+
+    .banner-image4 img {
+        height: 155px;
+        width: 222px;
+        top: 62%;
+    }
+
+    .club-scout.py_0 {
+        padding-top: 30px;
+        padding-bottom: 0;
+    }
+
+    .club-scouts {
+        height: 280px;
+    }
+
+
+    .banner-left {
+        top: 10%;
+    }
+
+    .premium-img {
+        width: 100%;
+        height: 150px;
+    }
+
+    h2.accordion-header {
+        font-size: 15px;
+    }
+
+    .premium-heading2 {
+        font-size: 25px;
+    }
+
+    .premium-heading3 {
+        font-size: 35px;
+    }
+
+    // .premium-img {
+    //     padding-top: 30px;
+    //     padding-left: 10px;
+    // }
+
+    // .premium-col-right {
+    //     padding-top: 20px;
+    //     padding-right: 0;
+    //     padding-left: 10px;
+    // }
+
+    p {
+        font-size: 14px;
+    }
+
+    .toggle-button {
+        height: 23px;
+        width: 45px;
+    }
+
+    .toggle-button::after {
+        height: 15px;
+        width: 14px;
+        left: 5px;
+        bottom: 4px;
+    }
+
+    .player-img img {
+        height: 130px;
+        width: 130px;
+    }
+
+    .feature-player1 .player1,
+    .feature-player2 .player2,
+    .feature-player3 .player3 {
+        height: 137px;
+        width: 137px;
+    }
+
+    .feature-player1,
+    .feature-player2,
+    .feature-player3 {
+        height: 138px;
+        width: 138px;
+    }
+
+    .feature-player2 .player2 .player-img::before,
+    .feature-player1 .player1 .player-img::before,
+    .feature-player3 .player3 .player-img::before {
+        width: 50px;
+        height: 50px;
+    }
+
+    .feature-player3 .corner-image7 img {
+        height: 27px;
+        width: 24px;
+        top: 6px;
+        right: 6px;
+    }
+
+    .feature-player1 .corner-image img {
+        height: 27px;
+        width: 24px;
+        top: 6px;
+        right: 6px;
+    }
+
+    .feature-player2 .corner-image4 img {
+        height: 27px;
+        width: 24px;
+        top: 6px;
+        right: 6px;
+    }
+
+    .feature-player1 .player-name1,
+    .feature-player2 .player-name2,
+    .feature-player3 .player-name3 {
+        top: 112px;
+        width: 130px;
+        font-size: 12px;
+        height: 22px;
+        line-height: 22px;
+    }
+
+    .feature-player2 .player2 .player-img::after,
+    .feature-player1 .player1 .player-img::after,
+    .feature-player3 .player3 .player-img::after {
+        bottom: 25px;
+        left: 4px;
+        width: 55px;
+        height: 40px;
+    }
+
+    .button1 .mat-icon {
+        font-size: 9px;
+        width: 68px;
+    }
+
+    .feature-players i.fa-solid.fa-xmark {
+        font-size: 9px;
+    }
+
+    .button4 .mat-icon {
+        width: 102px;
+        font-size: 9px;
+    }
+
+    .button3 .mat-icon {
+        width: 45px;
+        font-size: 9px;
+    }
+
+    .button2 .mat-icon {
+        width: 92px;
+        font-size: 9px;
+    }
+
+    .button4 button {
+        width: 140px;
+        height: 22px;
+    }
+
+    .button3 button {
+        height: 22px;
+        width: 90px;
+    }
+
+    .button1 button {
+        width: 110px;
+        height: 22px;
+    }
+
+    .button2 button {
+        width: 135px;
+        height: 22px;
+    }
+
+
+    p.d-o-b {
+        font-size: 9px;
+        color: #559B44;
+        font-weight: 700;
+    }
+
+    img.birthday-img {
+        height: 12px;
+        width: 15px;
+    }
+
+    img.flag-img {
+        height: 30px;
+        width: 40px;
+    }
+
+    .feature-player3 .flag-image7,
+    .feature-player2 .flag-image4,
+    .feature-player1 .flag-image {
+        width: 43px;
+        height: 46px;
+    }
+
+    //features1
+
+    .club-offers1 img {
+        width: 170px;
+        height: 140px;
+        top: 7%;
+        left: -6%;
+    }
+
+    .club-offers2 img {
+        height: 155px;
+        width: 170px;
+        top: 22%;
+        right: -6%;
+    }
+
+    .club-offers3 img {
+        left: 1%;
+        width: 235px;
+        height: 180px;
+        top: 38%;
+    }
+
+    .accodian-image1 img {
+        top: 11%;
+        right: 20%;
+        height: 180px;
+        width: 230px;
+    }
+
+    .accodian-image3 img {
+        top: 42.5%;
+        right: 0;
+        width: 150px;
+        height: 120px;
+    }
+
+    .accodian-image2 img {
+        right: 0;
+        top: 42.5%;
+        height: 135px;
+        width: 165px;
+        left: 0;
+    }
+
+    .networking-images1 img {
+        height: 260px;
+        width: 207px;
+        left: 18%;
+        top: 10%;
+    }
+
+    .networking-images2 img {
+        width: 130px;
+        height: 39px;
+        top: 23%;
+    }
+
+    .networking-images3 img {
+        height: 40px;
+        width: 125px;
+        top: 62%;
+    }
+
+    .feature-player1 {
+        top: 7%;
+        right: 0;
+        left: -27%;
+    }
+
+    .feature-player2 {
+        top: 39%;
+        right: 34%;
+    }
+
+    .feature-player3 {
+        top: 18%;
+        right: -8%;
+    }
+
+    .button1 {
+        top: 50%;
+        right: 86%;
+    }
+
+    .button2 {
+        top: 82%;
+    }
+
+    .button3 {
+        top: 60%;
+        right: -4%;
+
+    }
+
+    .button4 {
+        top: 7%;
+        right: 7%;
+    }
+
+
+}
+
+@media (max-width: 361px) {
+    .banner-image3 img {
+        width: 205px;
+    }
+
+    .banner-image4 img {
+        width: 205px;
+    }
+
+    .club-offers2 img {
+        height: 150px;
+        width: 160px;
+        top: 23%;
+    
+    }
+
+    .club-offers1 img {
+        width: 165px;
+        height: 135px;
+        top: 8%;
+     
+    }
+
+    .accodian-image3 img {
+        top: 50.5%;
+     
+        width: 145px;
+        height: 115px;
+    }
+
+    .accodian-image2 img {
+        right: 0;
+        top: 50.5%;
+        height: 135px;
+        width: 160px;
+     
+    }
+}
+
+@media (max-width: 345px) {
+    .banner-image1 img {
+        width: 115px;
+        height: 215px;
+        top: 39%;
+    }
+
+    .banner-image3 img {
+        width: 198px;
+        top: 36%;
+        height: 125px;
+    }
+
+    .banner-image4 img {
+        width: 198px;
+        top: 61%;
+    }
+
+    .banner-image2 img {
+        width: 115px;
+        height: 95px;
+        top: 71%;
+    }
+
+    .club-offers2 img {
+        height: 140px;
+        width: 150px;
+    }
+
+    .club-offers1 img {
+        width: 163px;
+        height: 135px;
+    }
+
+
+}
+
+@media (max-width: 321px) {
+    .banner-heading {
+        font-size: 25px;
+    }
+
+    .club-scout.py_0 {
+        padding-top: 0;
+    }
+
+    .banner {
+        height: 575px;
+    }
+
+    .banner-image1 img {
+        width: 110px;
+        height: 200px;
+        top: 37%;
+    }
+
+    .banner-image3 img {
+        width: 177px;
+        height: 115px;
+        top: 33%;
+    }
+
+    .banner-image4 img {
+        height: 140px;
+        width: 177px;
+        top: 57%;
+    }
+
+    .banner-image2 img {
+        width: 110px;
+        height: 85px;
+        top: 67%;
+    }
+
+    h3 {
+        font-size: 22px;
+    }
+
+    .feature-heading3 {
+        font-size: 22px;
+        margin-bottom: 10px;
+    }
+
+    .club-heading4 {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .premium-text p {
+        font-size: 12px;
+    }
+
+    .club-scouts {
+        height: 240px;
+    }
+
+    /*----------------------------------- accodian ------------------------------- */
+
+
+    .features {
+        height: 700px;
+    }
+
+
+    .player-img img {
+        height: 110px;
+        width: 110px;
+    }
+
+    .feature-player1 .player1,
+    .feature-player2 .player2,
+    .feature-player3 .player3 {
+        height: 118px;
+        width: 118px;
+    }
+
+    .feature-player1,
+    .feature-player2,
+    .feature-player3 {
+        height: 118px;
+        width: 118px;
+    }
+
+    .feature-player1 .player-name1,
+    .feature-player2 .player-name2,
+    .feature-player3 .player-name3 {
+        top: 95px;
+        width: 110px;
+        font-size: 9px;
+        height: 20px;
+        line-height: 22px;
+    }
+
+    .feature-player2 .player2 .player-img::after,
+    .feature-player1 .player1 .player-img::after,
+    .feature-player3 .player3 .player-img::after {
+        bottom: 22px;
+        left: 4px;
+        width: 55px;
+        height: 40px;
+    }
+
+
+    img.flag-img {
+        height: 22px;
+        width: 28px;
+    }
+
+    p.d-o-b {
+        font-size: 7px;
+        color: #559B44;
+        font-weight: 700;
+    }
+
+    img.birthday-img {
+        height: 9px;
+        width: 11px;
+    }
+
+    .feature-player3 .flag-image7,
+    .feature-player2 .flag-image4,
+    .feature-player1 .flag-image {
+        width: 33px;
+        height: 38px;
+        top: 48px;
+    }
+
+    /*----------------------------------- accodian ------------------------------- */
+
+    //features
+
+    .accodian-box2-images,
+    .networking-images,
+    .feature-players,
+    .club-scout-box {
+        height: 260px;
+    }
+
+    .club-offers1 img {
+        width: 145px;
+        height: 122px;
+        top: 7%;
+        left: -8%;
+    }
+
+    .club-offers2 img {
+        height: 135px;
+        width: 145px;
+        top: 22%;
+        right: -8%;
+    }
+
+    .club-offers3 img {
+        left: 0;
+        width: 200px;
+        height: 150px;
+        top: 42%;
+
+    }
+
+    .accodian-image2 img {
+        right: 0;
+        top: 40.5%;
+        height: 120px;
+        width: 145px;
+        left: 0;
+    }
+
+    .accodian-image1 img {
+        top: 3%;
+        right: 16%;
+        height: 160px;
+        width: 210px;
+    }
+
+    .accodian-image3 img {
+        top: 40.5%;
+        right: 0;
+        width: 120px;
+        height: 100px;
+    }
+
+    .networking-images1 img {
+        height: 240px;
+        width: 190px;
+        left: 15%;
+    }
+
+    .networking-images2 img {
+        width: 118px;
+        height: 35px;
+        top: 26%;
+        right: -8%;
+    }
+
+    .networking-images3 img {
+        height: 35px;
+        width: 106px;
+        top: 74%;
+        left: -8%;
+    }
+
+    .feature-player2 {
+        top: 46%;
+        right: 34%;
+    }
+
+    .feature-player1 {
+        top: 7%;
+        right: 0;
+        left: -34%;
+    }
+
+    .button1 {
+        top: 93%;
+        right: 71%;
+    }
+
+    .button2 {
+        top: 94%;
+        right: 1%;
+
+    }
+
+    .button3 {
+        top: 66%;
+        right: -6%;
+    }
+
+    .button4 {
+        top: 7%;
+        right: 2%;
+
+    }
+
+}

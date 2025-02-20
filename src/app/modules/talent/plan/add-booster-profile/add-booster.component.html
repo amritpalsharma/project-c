@@ -1,0 +1,137 @@
+<div class="boost-profile container p-0 my-3">
+    <div class="personal_edit">
+        <div class="dialog-header m-auto">
+            <h2 class="text-center">{{ 'boostProfile' | translate }}</h2>
+        </div>
+        <div class="close_buttons">
+            <button class="close-btn">X</button>
+        </div>
+    </div>
+    <hr>
+    <div class="overflow-card">
+        <div class="row mt-4 mobile-table">
+            <div class="col-5 image-right-border">
+
+                <div class="profile-preview text-center mb-4">
+                    <h2 class="boosted-profile">{{ 'boostedProfilePreview' | translate }}</h2>
+                    <div class=" profile_preview">
+                        <div class="player_img player-image-bg">
+
+                            <img [src]="loggedInUser?.meta?.profile_image_path" alt="player-image"
+                                *ngIf="loggedInUser?.meta && loggedInUser?.meta?.profile_image_path"
+                                class=" mt-1 w-100" />
+                            <img src="../../../../../assets/images/default/talent-profile-default.png" alt=""
+                                *ngIf="!loggedInUser?.meta || !loggedInUser?.meta?.profile_image_path" class="" />
+                        </div>
+
+                        <div class="player-names">
+                            <a href="#">
+                                {{ loggedInUser.first_name }} {{ loggedInUser.last_name }}
+                            </a>
+                        </div>
+
+                        <div class="player-team-logo">
+                            <div class="team-logo-bg"></div>
+                            <img alt="team-logo" src="assets\images\team-logo.png">
+                        </div>
+                        <div class="flag_box"><img src="https://api.socceryou.ch/uploads/logos/Afghanistan.svg">
+                            <hr><span><svg width="16" viewBox="0 0 30 30" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M5 27.5C4.64583 27.5 4.34917 27.38 4.11 27.14C3.87083 26.9 3.75083 26.6033 3.75 26.25V21.25C3.75 20.5625 3.995 19.9742 4.485 19.485C4.975 18.9958 5.56333 18.7508 6.25 18.75H23.75C24.4375 18.75 25.0263 18.995 25.5163 19.485C26.0063 19.975 26.2508 20.5633 26.25 21.25V26.25C26.25 26.6042 26.13 26.9012 25.89 27.1412C25.65 27.3812 25.3533 27.5008 25 27.5H5ZM6.25 16.25V12.5C6.25 11.8125 6.495 11.2242 6.985 10.735C7.475 10.2458 8.06333 10.0008 8.75 10H13.75V8.1875C13.375 7.9375 13.0729 7.63542 12.8438 7.28125C12.6146 6.92708 12.5 6.5 12.5 6C12.5 5.6875 12.5625 5.38 12.6875 5.0775C12.8125 4.775 13 4.49917 13.25 4.25L15 2.5L16.75 4.25C17 4.5 17.1875 4.77583 17.3125 5.0775C17.4375 5.37917 17.5 5.68667 17.5 6C17.5 6.5 17.3854 6.92708 17.1562 7.28125C16.9271 7.63542 16.625 7.9375 16.25 8.1875V10H21.25C21.9375 10 22.5263 10.2446 23.0163 10.7337C23.5063 11.2229 23.7508 11.8117 23.75 12.5V16.25H6.25Z"
+                                        fill="#023A4A"></path>
+                                    <path
+                                        d="M6.25 16.25V12.5C6.25 11.8125 6.495 11.2242 6.985 10.735C7.475 10.2458 8.06333 10.0008 8.75 10H13.75V8.1875C13.375 7.9375 13.0729 7.63542 12.8438 7.28125C12.6146 6.92708 12.5 6.5 12.5 6C12.5 5.6875 12.5625 5.38 12.6875 5.0775C12.8125 4.775 13 4.49917 13.25 4.25L15 2.5L16.75 4.25C17 4.5 17.1875 4.77583 17.3125 5.0775C17.4375 5.37917 17.5 5.68667 17.5 6C17.5 6.5 17.3854 6.92708 17.1562 7.28125C16.9271 7.63542 16.625 7.9375 16.25 8.1875V10H21.25C21.9375 10 22.5263 10.2446 23.0163 10.7337C23.5063 11.2229 23.7508 11.8117 23.75 12.5V16.25H6.25Z"
+                                        fill="#6FB95D"></path>
+                                </svg></span>
+
+                            <span class="player-age">{{calculateAge(loggedInUser?.meta?.date_of_birth ??'--')}}</span>
+
+                        </div>
+                        <div class="boosted-box"> {{'boosted' | translate}} </div>
+                    </div>
+
+                </div>
+
+                <div class="profile-preview text-center mb-4">
+                    <h2 class="boosted-profile">{{'deafultProfilePreview' | translate}}</h2>
+                    <div class=" profile_preview">
+                        <div class="player_img player-image-bg-2">
+                            <img [src]="loggedInUser?.meta?.profile_image_path" alt="player-image"
+                                *ngIf="loggedInUser?.meta && loggedInUser?.meta?.profile_image_path"
+                                class=" mt-1 w-100" />
+                            <img src="../../../../../assets/images/default/talent-profile-default.png" alt=""
+                                *ngIf="!loggedInUser?.meta || !loggedInUser?.meta?.profile_image_path" class="" />
+                        </div>
+
+                        <div class="player-names">
+                            <a href="#">
+                                {{ loggedInUser.first_name }} {{ loggedInUser.last_name }}
+                            </a>
+                        </div>
+                        <div class="player-team-logo">
+                            <div class="team-logo-bg"></div>
+                            <img alt="team-logo" src="assets\images\team-logo.png">
+                        </div>
+                        <div class="flag_box">
+
+                            <img src="https://api.socceryou.ch/uploads/logos/Afghanistan.svg">
+                            <hr>
+                            <span>
+                                <svg width="16" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M5 27.5C4.64583 27.5 4.34917 27.38 4.11 27.14C3.87083 26.9 3.75083 26.6033 3.75 26.25V21.25C3.75 20.5625 3.995 19.9742 4.485 19.485C4.975 18.9958 5.56333 18.7508 6.25 18.75H23.75C24.4375 18.75 25.0263 18.995 25.5163 19.485C26.0063 19.975 26.2508 20.5633 26.25 21.25V26.25C26.25 26.6042 26.13 26.9012 25.89 27.1412C25.65 27.3812 25.3533 27.5008 25 27.5H5ZM6.25 16.25V12.5C6.25 11.8125 6.495 11.2242 6.985 10.735C7.475 10.2458 8.06333 10.0008 8.75 10H13.75V8.1875C13.375 7.9375 13.0729 7.63542 12.8438 7.28125C12.6146 6.92708 12.5 6.5 12.5 6C12.5 5.6875 12.5625 5.38 12.6875 5.0775C12.8125 4.775 13 4.49917 13.25 4.25L15 2.5L16.75 4.25C17 4.5 17.1875 4.77583 17.3125 5.0775C17.4375 5.37917 17.5 5.68667 17.5 6C17.5 6.5 17.3854 6.92708 17.1562 7.28125C16.9271 7.63542 16.625 7.9375 16.25 8.1875V10H21.25C21.9375 10 22.5263 10.2446 23.0163 10.7337C23.5063 11.2229 23.7508 11.8117 23.75 12.5V16.25H6.25Z"
+                                        fill="#023A4A"></path>
+                                    <path
+                                        d="M6.25 16.25V12.5C6.25 11.8125 6.495 11.2242 6.985 10.735C7.475 10.2458 8.06333 10.0008 8.75 10H13.75V8.1875C13.375 7.9375 13.0729 7.63542 12.8438 7.28125C12.6146 6.92708 12.5 6.5 12.5 6C12.5 5.6875 12.5625 5.38 12.6875 5.0775C12.8125 4.775 13 4.49917 13.25 4.25L15 2.5L16.75 4.25C17 4.5 17.1875 4.77583 17.3125 5.0775C17.4375 5.37917 17.5 5.68667 17.5 6C17.5 6.5 17.3854 6.92708 17.1562 7.28125C16.9271 7.63542 16.625 7.9375 16.25 8.1875V10H21.25C21.9375 10 22.5263 10.2446 23.0163 10.7337C23.5063 11.2229 23.7508 11.8117 23.75 12.5V16.25H6.25Z"
+                                        fill="#6FB95D"></path>
+                                </svg>
+                            </span>
+                            <span class="player-age">{{calculateAge(loggedInUser?.meta?.date_of_birth ??'--')}}</span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-7 audience_box  boost-plan_profile">
+                <div class="target-audience mb-4">
+                    <div class="form-group col-lg-8">
+                        <mat-label>{{ 'selectTargetAudience' | translate }}</mat-label>
+                        <mat-select ngClass="mat-options" [(ngModel)]="selectedAudienceIds" (selectionChange)="applyFilter()" multiple
+                            placeholder="Select">
+                            <mat-option *ngFor="let audience of audiences" [value]="audience.id">
+                                {{ audience.role }}
+                            </mat-option>
+                        </mat-select>
+                    </div>
+
+                    <!-- Display selected audiences in .explore-chip -->
+                    <div class="explore-chip mt-4 d-flex align-items-center">
+                        <div class="chip" *ngFor="let audience of getSelectedAudienceRoles()">
+                            <span>{{ audience.role }}</span>
+                            <span>
+                                <button class="explore-chip_cut"
+                                    (click)="toggleAudienceSelection(audience.id, { target: { checked: false } })">
+                                    <svg width="13px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                        <path
+                                            d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z">
+                                        </path>
+                                    </svg>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="actions text-end mb-0">
+                    <button class="btn puse-btn" (click)="pauseBoost()">{{ 'cancel' | translate }}</button>
+                    <button class="btn save_button" (click)="saveBoost()">{{ 'saveAndBoost' | translate }}</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

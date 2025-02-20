@@ -1,0 +1,102 @@
+<div class="add-chat w-100" *ngIf="action != 'showInvitedUsers'">
+
+  <div class="chat_box">
+    <div class="p-3 w-100">
+      <div>
+        <h4 class="text-center mb-3 title-text">{{ 'inviteTalnetsTo' | translate }} {{'eventName' | translate}} {{ 'sighting' | translate }}</h4>
+      </div>
+
+      <div class="close-img" (click)="close()">
+      </div>
+    </div>
+
+    <div class="inbox-body">
+      <div class="text-center w-100 py-1 px-3 body-background">
+        <mat-form-field class="example-chip-list inbox-wrapper bg-color-2 w-100">
+          <!-- <mat-label>To:</mat-label> -->
+          <!-- <span>To:</span> -->
+          <mat-chip-grid #chipGrid aria-label="Fruit selection "
+            class="messanger-selector messanger-selector-name bg-color-2 w-100 ">
+            <p>{{ 'to:' | translate }}</p>
+            @for (user of users; track $index) {
+            <mat-chip-row (removed)="remove(user)">
+              <img width="20" height="20" style="border-radius: 20px;" class="img-list"
+                *ngIf="!user.meta.profile_image_path" src="../../../../../assets/images/1.jpg">
+              <img width="20" height="20" style="border-radius: 20px;" class="img-list"
+                *ngIf="user.meta.profile_image_path" src="{{user.meta.profile_image_path}}">
+              {{user?.first_name}}
+              <span matChipRemove [attr.aria-label]="'remove ' + user" class="cancel-icon"> </span>
+            </mat-chip-row>
+            }
+            <input placeholder="{{ 'searchUser' | translate }}" #userInput [matAutocomplete]="auto"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputFor]="chipGrid"
+              (focus)="callListApi(userInput)" (keyup)="onKeyPress($event)" />
+          </mat-chip-grid>
+
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)"
+            class="listBox w-100 users-name-list">
+            @for (user of filteredUsers; track user) {
+            <mat-option [value]="user" class="mb-4 select-user-name">
+              <img width="50" height="50" style="border-radius: 50px;" class="img-list "
+                *ngIf="!user.meta.profile_image_path" src="../../../../../assets/images/1.jpg">
+              <img width="50" height="50" class="img-list " *ngIf="user.meta.profile_image_path"
+                src="{{user.meta.profile_image_path}}">
+              {{user.first_name}}
+            </mat-option>
+            }
+          </mat-autocomplete>
+
+        </mat-form-field>
+      </div>
+
+    </div>
+    <!-- <div class="user-details d-flex align-items-center justify-content-between">
+            <div class="user-detail-list">
+              <span><img width="60" height="60" class="img-list" src="../../../../../assets/images/1.jpg"></span>
+              <span class="user-name">Lindsey Vetrovs</span>
+            </div>
+            <div class="check-user-list">
+                <input type="checkbox" checked id="user-checkbox" />
+              <label for="user-checkbox"></label>
+            </div>
+        </div> -->
+  </div>
+  <div class="chat-btn">
+    <button class="btn btn-success btn-sm web-create-bg w-100" (click)="sendInvite()" type="button">{{'sendInvite' | translate }}</button>
+  </div>
+
+</div>
+
+<div class="add-chat w-100" *ngIf="action == 'showInvitedUsers'">
+
+  <div class="chat_box">
+    <div class="p-3 w-100">
+      <div>
+        <h4 class="text-center mb-3 title-text">{{ 'peopleJoining' | translate }}</h4>
+      </div>
+      <div class="close-img" (click)="close()"></div>
+    </div>
+
+    <div class="inbox-body" style="max-height: 450px !important; overflow: auto;">
+      <div class="user-details d-flex align-items-center justify-content-between" *ngFor="let invitee of invitedUsers"
+        [ngClass]="{'blur': invitee.status == 'pending'}">
+        <div class="user-detail-list">
+          <span>
+            <img width="60" height="60" *ngIf="invitee.profile_image_path" src="{{invitee.profile_image_path}}"
+              src="../../../../../assets/images/1.jpg" class="img-list">
+            <img width="60" height="60" *ngIf="!invitee.profile_image_path" src="../../../../../assets/images/1.jpg"
+              class="img-list">
+          </span>
+          <span class="user-name">
+            {{invitee.first_name}} {{invitee.last_name}} <span class="ml-4"
+              [ngClass]="{'d-none': invitee.status != 'pending'}">(Invite Sent)</span>
+          </span>
+        </div>
+        <div class="check-user-list">
+          <!-- <input type="checkbox" checked="" id="user-checkbox">
+              <label for="user-checkbox"></label> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,745 @@
+<!---------------------- navbar -------------------------->
+
+<nav class="navbar navbar-expand-lg navbar-light sticky" [ngClass]="{'scrolled': isScrolled}">
+    <div class="container">
+        <a class="navbar-brand" [routerLink]="''">
+            <div class="logo">
+                <img width="197" height="79" src="./assets/images/light-logo.svg">
+            </div>
+        </a>
+
+        <div class="switch1">
+            <label class="switch">
+                <input class='toggle-checkbox' type='checkbox' (change)="toggleTheme($event)" id="themeToggle"
+                [checked]="isDarkMode"/>
+                <div class='toggle-slot'>
+                    <div class='sun-icon-wrapper'>
+                        <div class="iconify sun-icon" data-icon="feather-sun" data-inline="false"></div>
+                    </div>
+                    <div class='toggle-button'></div>
+                    <div class='moon-icon-wrapper'>
+                        <div class="iconify moon-icon" data-icon="feather-moon" data-inline="false">
+                        </div>
+                    </div>
+                </div>
+            </label>
+        </div>
+
+
+        <div class="coustom-select1">
+            <a class="form-select custom-select1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <!-- Display current language name -->
+                <span>{{ slug.toUpperCase() }}</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end">
+                <!-- Loop through langs array to display each language and flag -->
+                <a href="#" *ngFor="let lang of langs" class="dropdown-item ai-icon"
+                    [class.selected]="slug === lang.slug" (click)="ChangeLang(lang.slug, $event)">
+                    <!-- Display language flag -->
+                    <img src="https://api.socceryou.ch/uploads/logos/{{ lang.flag }}" width="30" height="24"
+                        class="me-3">
+                    <!-- Display language slug -->
+                    <span style="text-transform: uppercase;">{{ lang.slug }}</span>
+                </a>
+            </div>
+        </div>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" [attr.aria-expanded]="isNavbarExpanded.toString()"
+            (click)="toggleNavbar()" aria-label="Toggle navigation">
+            <span class="icon-hamburger"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" [routerLink]="'/talent'" routerLinkActive="active">{{
+                        'talents' | translate }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="'/club'" routerLinkActive="active">{{ 'club&scout' | translate }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="'/about'" routerLinkActive="active">{{ 'about' | translate }}</a>
+                </li>
+            </ul>
+
+
+            <div class="sidebar"
+                [ngClass]="{ 'sidebar-expanded': isNavbarExpanded, 'sidebar-collapsed': !isNavbarExpanded }">
+                <div class="container">
+                    <!---------logo sidebar ----------->
+                    <div class="navbar-logo1" (click)="closeNavbar()">
+                        <div class="logo1" [routerLink]="''">
+                            <img width="197" height="79" src="./assets/images/light-logo.svg">
+                        </div>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            [attr.aria-expanded]="isNavbarExpanded.toString()" (click)="toggleNavbar()"
+                            aria-label="Toggle navigation">
+                            <span class="icon-cross"></span>
+                        </button>
+                    </div>
+                    <!---------logo sidebar ----------->
+                    <div class="navbar-list">
+                        <!-- HTML -->
+                        <ul class="sidebar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" [routerLink]="'/talent'" (click)="closeNavbar()"
+                                    routerLinkActive="active">{{ 'talent' | translate }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" [routerLink]="'/club'" (click)="closeNavbar()"
+                                    routerLinkActive="active">{{ 'club&scout' | translate }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" [routerLink]="'/about'" (click)="closeNavbar()"
+                                    routerLinkActive="active">{{ 'about' | translate }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" [routerLink]="'/news'" (click)="closeNavbar()"
+                                    routerLinkActive="active">{{ 'news' | translate }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" [routerLink]="'/contact'" (click)="closeNavbar()"
+                                    routerLinkActive="active">{{ 'contact' | translate }}</a>
+                            </li>
+                        </ul>
+
+                        <ul class="social-links">
+                            <li>
+                                <a target="_blank" (click)="closeNavbar()" href="#">
+
+                                    <i width="25" height="25" class="fa-brands fa-instagram"></i>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a target="_blank" (click)="closeNavbar()" href="#">
+                                    <i class="fa-brands fa-linkedin-in"></i>
+                                </a>
+                            </li>
+                            <li class="follow-us"> Follow Us </li>
+                        </ul>
+
+                    </div>
+
+                    <div class=" footer-links">
+                        <ul class="footer-links1">
+                            <li><a (click)="closeNavbar()" [routerLink]="'/pricing'">{{ 'pricing' | translate }} </a></li>
+                            <li><a (click)="closeNavbar()" href="javascript:void(0);" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal-login">{{ 'signIn' | translate }}</a></li>
+                            <li><a (click)="closeNavbar()" data-bs-toggle="modal" data-bs-target="#exampleModal1">{{ 'createProfile' | translate }}</a>
+                            <li><a (click)="closeNavbar()" [routerLink]="'/faq'">{{ 'faq' | translate }}</a></li>
+                        </ul>
+                        <ul class="footer-links2">
+                            <li>
+                                <a><img src="./assets/images/arrow-image.svg" (click)="closeNavbar()"
+                                        [routerLink]="'/pricing'"></a>
+
+                            </li>
+                            <li>
+                                <a><img src="./assets/images/arrow-image.svg" (click)="closeNavbar()"
+                                        href="javascript:void(0);" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal-login"></a>
+
+                            </li>
+                            <li>
+                                <a><img src="./assets/images/arrow-image.svg" (click)="closeNavbar()"
+                                        data-bs-toggle="modal" data-bs-target="#exampleModal1"></a>
+                            </li>
+                            <li>
+                                <a><img src="./assets/images/arrow-image.svg" (click)="closeNavbar()"
+                                        [routerLink]="'/faq'"></a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-bottom">
+                        <div class="text-center text-white">
+                            <p class="mb-1">© 2024 Succer You Sports AG, All Rights Reserved.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <form class="d-flex">
+                <div class="extra-nav d-flex align-items-center">
+                    <div class="theme_btn d-flex align-items-center">
+                        <div class="d-flex">
+
+                            <label class="switch">
+                                <input class='toggle-checkbox' type='checkbox' (change)="toggleTheme($event)" id="themeToggle"
+                                [checked]="isDarkMode"/>
+                                <div class='toggle-slot'>
+                                    <div class='sun-icon-wrapper'>
+                                        <div class="iconify sun-icon" data-icon="feather-sun" data-inline="false"></div>
+                                    </div>
+                                    <div class='toggle-button'></div>
+                                    <div class='moon-icon-wrapper'>
+                                        <div class="iconify moon-icon" data-icon="feather-moon" data-inline="false">
+                                        </div>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- <div class="coustom-select">
+                        <a class="form-select custom-select" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          {{ slug.toUpperCase() }}
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end">
+                          <a href="#" *ngFor="let domain of langs" class="dropdown-item ai-icon"
+                             [class.selected]="slug === domain.slug" (click)="ChangeLang(domain.slug, $event)">
+                            <img src="https://api.socceryou.ch/uploads/logos/{{domain.flag}}" width="30" height="24" class="me-3">
+                            <span style="text-transform: uppercase;">{{ domain.slug }}</span>
+                          </a>
+                        </div>
+                      </div> -->
+
+                    <div class="custom-select">
+                        <a class="form-select custom-select" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <!-- Display current language (slug is 'en' by default) -->
+                            <span>{{ slug.toUpperCase() }}</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <!-- Loop through langs array to display each language with its flag -->
+                            <a href="" *ngFor="let lang of langs" class="dropdown-item ai-icon"
+                                [class.selected]="slug === lang.slug" (click)="ChangeLang(lang.slug, $event)">
+                                <!-- Display language flag -->
+                                <img src="https://api.socceryou.ch/uploads/logos/{{ lang.flag }}" width="30" height="24"
+                                    class="me-3">
+                                <!-- Display language slug (uppercase) -->
+                                <span style="text-transform: uppercase;">{{ lang.slug }}</span>
+                            </a>
+                        </div>
+                    </div>
+
+
+                    <a href="javascript:void(0);" class="login-btn" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal-login">{{ 'loginButton' | translate }}<svg class="ms-2" width="8"
+                            height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.34766 1.5L6.34766 6L1.34766 10.5" stroke="white" stroke-width="2"
+                                stroke-linecap="round" />
+                        </svg>
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<!---------------------- navbar -------------------------->
+
+
+<!---------------------- Modal -------------------------->
+
+<!-- login -->
+
+<div class="modal fade" id="exampleModal-login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="login">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="logo text-center">
+                        <div class="logo-image">
+                            <img class="light-images register-logo" src="./assets/images/light-logo-sy.png">
+                            <img class="dark-images register-logo" src="./assets/images/dark-logo-sy.png">
+                        </div>
+                        <h6>{{'welcomeBack' | translate}}</h6>
+                        <p>{{'loginMessage' | translate}}</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">{{'emailLabel' |
+                                    translate}}</label>
+                                <input [(ngModel)]="email" type="email" class="form-control"
+                                    placeholder="example@email.com" name="password" required />
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput2" class="form-label">{{'passwordLabel' |
+                                    translate}}</label>
+                                <input [(ngModel)]="password" type="password" class="form-control"
+                                    id="exampleFormControlInput2" placeholder="**************" />
+                                <a href="#" class="forgot_btn" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">{{'forgotPasswordLink' | translate}}
+                                </a>
+                            </div>
+                            <div *ngIf="loginButtonClicked && (!email || !password)" class="text-danger">
+                                {{'requiredFieldsMessage' | translate}}
+                            </div>
+                            <div *ngIf="invalidCred" class="text-danger" #invalidCredMessage>
+                                {{ invalidCred | translate}}
+                            </div>
+
+                            <!-------------------- modal-box-2 ----------------------->
+
+                            <!-- Modal -->
+                            <!-- Modal -->
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer modal-btn border-0 d-block" style="text-align: center;">
+                    <a href="javascript:void(0)" (click)="login()" class="btn btn-primary d-block">{{'loginButton' | translate}}</a>
+
+                    <!-- <div class="seperter">
+                        <h6 class="mb-0 font-w400">or</h6>
+                    </div>
+
+                    <div class="google-sign-in">
+                        <div class="google-box" >
+                            <img class="google-image" src="./assets/images/devicon_google.png">
+                            <p class="google-text">Sign In with Google</p>
+                        </div>
+                    </div> -->
+
+                    <div>
+                        <span class="mt-3 dont-account">{{'dontHaveAccount' | translate}}
+                            <a class="register" href="#" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal1">{{'register' | translate}}
+                            </a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- forget-password -->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="forget-password">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="logo text-center">
+                        <div class="logo-image">
+                            <img class="light-images register-logo" src="./assets/images/light-logo-sy.png">
+                            <img class="dark-images register-logo" src="./assets/images/dark-logo-sy.png">
+                        </div>
+
+
+                        <h6>{{ 'passwordRecovery' | translate }}</h6>
+                        <p>{{ 'passwordRecoveryDescription' | translate }}</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">{{ 'emailLabel' | translate
+                                    }}</label>
+                                <input type="email" class="form-control" id="exampleFormControlInput1"
+                                    [placeholder]="'example@email.com'" [(ngModel)]="forgotPasswordEmail" />
+                                    <div *ngIf="forgotPasswordMessage" class="text-danger mt-2">
+                                        <!-- {{forgotPasswordMessage}} -->
+                                        {{ 'provideEmailAddress' | translate }}
+                                    </div>
+
+                            </div>
+                        </div>
+            </div>
+        </div>
+                <div class="modal-footer modal-btn border-0 justify-content-center">
+                    <button (click)="forgotPassword()" class="btn btn-primary d-block">{{ 'reset' | translate
+                        }}</button>
+                    <a class="register mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal-login">{{
+                        'backToLogin' | translate }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- confirm password -->
+
+<div class="modal fade" id="exampleModal-confirm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+            </div>
+            <div class="modal-body">
+                <div class="logo text-center">
+                    <svg width="65" height="74" viewBox="0 0 65 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M26.0491 28.6204C26.0469 28.6235 26.0446 28.6267 26.0415 28.6245C26.0437 28.6213 26.0459 28.6182 26.0491 28.6204Z"
+                            fill="white" />
+                        <path
+                            d="M21.7902 35.1213C21.7864 35.1376 21.7826 35.154 21.7806 35.1678C21.7869 35.1532 21.7882 35.1351 21.7902 35.1213Z"
+                            fill="white" />
+                        <path
+                            d="M43.0547 48.1786C42.7436 48.5054 42.1395 49.0575 42.1395 49.0575C41.5487 49.596 40.8894 50.0714 40.2415 50.509C38.5146 51.6729 36.6523 52.4718 34.706 52.8807C34.3885 52.948 34.0604 52.9926 33.7479 53.0367L33.648 53.0506L30.417 57.6699C29.4837 59.0044 28.3974 60.1062 27.1859 60.9415C25.9768 61.7785 24.6892 62.3627 23.3612 62.6825C22.0306 63.0005 20.6763 63.0355 19.3397 62.782C17.9988 62.5294 16.6992 61.9706 15.4784 61.1167C14.2575 60.2628 13.2826 59.2345 12.5897 58.0608C11.895 56.8896 11.4505 55.6079 11.2756 54.2521C11.0989 52.8988 11.206 51.489 11.5974 50.0648C12.363 47.273 14.2762 44.9298 15.9087 42.5959C17.3784 40.4945 18.8248 38.373 20.2946 36.2717C21.0688 35.1648 21.843 34.0579 22.6172 32.951C22.8193 32.6621 22.9441 32.2849 23.1227 31.9759C23.8179 30.7832 24.775 29.7586 25.8741 28.9284C26.1121 29.152 26.348 29.3893 26.5801 29.643C25.7961 30.2482 24.1026 32.1968 23.8476 33.1415C22.9861 33.6696 22.3385 34.4235 21.8987 35.0524C21.9741 34.7244 22.0631 34.3984 22.1666 34.0786C20.3576 36.7079 18.7502 39.2155 17.4393 41.4279C17.8019 42.8161 18.3595 44.135 19.1304 45.4013C20.1767 47.1116 21.5882 48.5899 23.3715 49.8373C25.8158 51.5469 28.6387 52.5163 31.6395 52.5709C33.6967 52.605 35.7542 52.2091 37.6636 51.4127C38.6383 51.0019 39.5714 50.4896 40.451 49.898C41.4138 49.2465 42.3111 48.4846 43.1455 47.6139C43.6475 47.0895 44.13 46.5285 44.5854 45.9258C44.736 45.7265 44.8859 45.523 45.0325 45.3134L54.7631 31.4017C55.8609 29.832 56.6739 28.2078 57.2071 26.5326C57.3126 26.1991 57.4131 25.862 57.4982 25.5256C58.0038 23.4923 58.1134 21.4827 57.8295 19.4986C57.5456 17.5146 56.878 15.6657 55.8327 13.9485C54.7856 12.2339 53.3709 10.7495 51.585 9.50038C49.7991 8.25125 47.9213 7.42893 45.9498 7.03598C43.9801 6.64047 42.0161 6.6449 40.064 7.04594C38.1119 7.44698 36.2653 8.23407 34.5306 9.40387C32.794 10.5762 31.2597 12.1146 29.924 14.0242L21.4254 26.1746C21.6933 25.8937 21.9687 25.6181 22.2496 25.3615C22.8457 24.8153 23.473 24.3214 24.127 23.8804C25.8636 22.708 27.7083 21.9235 29.6605 21.5225C30.015 21.4506 30.3714 21.403 30.726 21.3578L33.9051 16.8126C34.8635 15.4424 35.944 14.3327 37.1508 13.4827C38.3576 12.6327 39.6312 12.0578 40.9716 11.7581C42.312 11.4583 43.6591 11.4335 45.0111 11.6864C46.3632 11.9392 47.6534 12.4952 48.8843 13.3562C50.1153 14.2171 51.0801 15.2384 51.7813 16.4217C52.4825 17.6051 52.9101 18.8788 53.0692 20.2464C53.2283 21.614 53.1198 23.0152 52.7454 24.4474C52.3709 25.8796 51.7138 27.2702 50.7733 28.6148L47.3331 33.5333L47.0756 33.9014L41.6847 41.6088C41.4179 42.1836 41.1086 42.7439 40.7331 43.2808C40.3577 43.8176 39.9356 44.3029 39.489 44.7481C39.1545 45.0813 38.8044 45.3885 38.4388 45.6695C38.3126 45.764 38.1857 45.8542 38.0544 45.9451C37.9455 45.9451 37.8323 45.9458 37.6993 45.948C37.5149 45.9485 37.3082 45.9486 37.1066 45.9522C37.4124 45.123 37.5154 44.0681 37.4079 42.8737C38.0478 42.2972 39.6391 40.1134 39.8943 39.2868C40.7252 39.1675 41.7029 38.8653 42.236 38.6671C42.2769 38.8556 42.3469 39.0455 42.4274 39.2312C42.3344 39.6649 42.2098 40.0041 42.0573 40.4532L41.9861 40.6623L42.1131 40.4808C43.9039 37.8883 45.5288 35.3664 46.904 33.0352C46.9454 32.9652 46.8304 32.6677 46.8028 32.5837C45.9473 29.6821 44.1794 27.1398 41.836 25.2646C41.5635 25.0473 41.2856 24.8377 41.0005 24.6384C39.9134 23.878 38.7386 23.2428 37.4929 22.7789C36.2447 22.3131 34.8447 22.0268 33.5102 21.9423C33.0496 21.9133 32.5909 21.9085 32.1309 21.9218C31.2443 21.9488 30.3355 22.0289 29.4616 22.2095C27.5095 22.6105 25.663 23.3976 23.9282 24.5674C22.9332 25.2382 22.0083 26.0341 21.1453 26.9457C20.4804 27.6493 19.8507 28.3777 19.2964 29.1702C18.8065 29.8706 18.3148 30.5736 17.8249 31.274C16.7377 32.8283 15.6506 34.3826 14.5635 35.9369C13.4549 37.5218 12.3463 39.1068 11.2377 40.6917C10.383 41.9136 9.52826 43.1089 8.82272 44.4237C8.16967 45.642 7.5185 46.8845 7.06454 48.1887C6.30887 50.3594 6.14856 52.7637 6.48302 55.0191C6.77259 56.9843 7.4518 58.8489 8.49637 60.5618C9.54095 62.2746 10.9733 63.7713 12.7541 65.0169C14.535 66.2625 16.434 67.0921 18.3994 67.4884C20.3666 67.8821 22.3539 67.8712 24.3089 67.4607C26.2639 67.0503 28.1323 66.248 29.867 65.0782C31.5975 63.9092 33.1423 62.3666 34.4565 60.4877L43.0623 48.1839L43.0547 48.1786ZM38.2535 33.0987C38.1739 33.9643 37.9654 34.8425 37.6955 35.4646C37.3864 35.5682 37.0687 35.6734 36.7631 35.7719C35.7554 36.1063 34.7113 36.4496 33.7344 36.8475C33.1802 36.281 31.5286 34.6841 29.9073 34.1288C29.9631 33.5549 30.0167 32.9413 30.0688 32.3458C30.103 31.9586 30.1361 31.5782 30.1686 31.2203C30.1939 30.9372 30.2171 30.6945 30.2404 30.4786C31.0074 29.8654 32.0892 29.4304 32.8701 29.1733C33.3644 29.009 33.8043 28.8903 34.0866 28.825C34.2568 28.7804 34.3922 28.7533 34.4716 28.7365C35.8859 29.5125 37.0797 30.4427 38.1641 31.3306C38.292 31.717 38.3227 32.3552 38.2545 33.0918L38.311 33.097L38.3117 33.1013L38.2535 33.0987ZM23.6092 43.4555C23.3456 43.1074 23.1013 42.7423 22.8857 42.3631C22.7493 42.1231 22.6313 41.873 22.5236 41.6187C22.816 41.9794 23.1206 42.3066 23.4365 42.5961C23.5442 42.9684 23.6931 43.3999 23.9385 43.8762C23.8259 43.7365 23.7158 43.5985 23.6092 43.4555ZM32.0794 47.8495C31.6068 47.8539 31.1358 47.8291 30.6694 47.7655C29.8211 47.6518 28.9911 47.4368 28.2009 47.1163C27.5703 46.858 26.9688 46.5363 26.3989 46.1643C27.3105 46.4936 28.1992 46.6355 29.0443 46.5604C30.0374 47.3425 31.2813 47.691 32.1696 47.8441C32.143 47.8445 32.1103 47.8483 32.0794 47.8495ZM29.1468 43.4493C27.5986 42.5264 26.4285 41.6965 25.5778 40.9149C25.4286 40.2205 25.3963 39.4289 25.4759 38.5633C25.5448 37.831 25.6816 37.1843 25.7868 36.7707C25.8467 36.5347 25.9 36.3511 25.9341 36.2379C25.9387 36.2259 25.9426 36.2096 25.9472 36.1976C27.1637 35.4305 28.5487 34.8574 29.7569 34.3814C30.7095 34.6899 31.6973 35.415 32.3625 35.9679C32.679 36.2349 32.996 36.5176 33.2979 36.8163C33.4256 36.9399 33.5197 37.0362 33.5739 37.0931C33.5442 37.533 33.5285 37.9636 33.5078 38.4174C33.4745 39.1631 33.4388 39.9338 33.36 40.8038C33.3416 40.9965 33.3215 41.1918 33.3024 41.3802C33.2472 41.4216 33.1841 41.4688 33.1131 41.522C32.4184 42.0373 30.6489 43.2513 29.1468 43.4493ZM26.1071 28.7563C26.1272 28.7437 26.1465 28.7268 26.1684 28.7117C28.269 27.2229 30.9397 26.525 33.4879 26.754C33.9075 26.8039 34.3233 26.8701 34.7262 26.9654C34.5414 27.4605 34.4291 28.1205 34.3797 28.4704C33.7619 28.6018 31.5141 29.1462 30.133 30.2132C29.3909 29.8349 28.0413 29.2831 26.8456 29.5051C26.5984 29.2408 26.3534 28.9895 26.1071 28.7563ZM23.8656 33.4701C24.0591 34.1118 24.902 35.5008 25.6617 36.1654C25.5406 36.5642 25.2919 37.4676 25.1943 38.5415C25.1151 39.3959 25.1449 40.1858 25.2836 40.8843C24.3431 41.3267 23.7599 41.7792 23.5025 42.2654C23.0618 41.8429 22.6412 41.3432 22.2449 40.7766C22.2218 40.7452 22.2004 40.7113 22.1791 40.6773C22.0218 40.2094 21.8921 39.7342 21.803 39.2493C21.7748 39.0963 21.7509 38.9426 21.7313 38.788C21.6023 37.8069 21.6102 36.8074 21.7548 35.8274C21.7551 35.8162 21.758 35.8067 21.7601 35.793C22.1416 35.1347 22.8379 34.1446 23.8656 33.4701ZM37.1373 44.4851C37.084 45.0608 36.9622 45.5733 36.7833 46.0116C35.919 46.6405 34.364 47.4297 33.1435 47.6763C33.1075 47.674 33.0647 47.6707 33.0108 47.6672C32.4539 47.6203 30.5412 47.3903 29.2005 46.3156C29.1769 45.8231 29.1665 44.651 29.2313 43.9729C29.2392 43.8757 29.2494 43.7914 29.2617 43.7201C30.9077 43.4666 32.8011 42.1184 33.4446 41.6281C34.5031 42.3381 35.806 42.8116 37.1361 42.9615C37.1791 43.5017 37.1791 44.0118 37.1373 44.4851ZM39.8731 39.0055C39.6003 38.0152 38.3785 36.0832 37.9647 35.5578C38.2395 34.9124 38.4548 34.0085 38.535 33.1204C38.6014 32.3864 38.5765 31.7561 38.4549 31.3284C39.0334 31.162 39.9713 31.0186 40.7751 31.0402C41.0175 31.381 41.2338 31.7379 41.4335 32.1022C42.2761 33.7385 42.6906 35.654 42.6283 37.5101C42.4967 37.7949 42.3704 38.0721 42.2665 38.3496C41.7676 38.5527 40.7206 38.8787 39.8731 39.0055Z"
+                            fill="#E05263" />
+                    </svg>
+
+
+                    <h6>Set Password</h6>
+
+                </div>
+                <div class="row pt-5 pb-5">
+
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label class="form-label">{{ 'passwordLabel' | translate }}</label>
+                            <input type="password" class="form-control" placeholder="Password" name="password"
+                                required />
+                            <div class="text-danger">
+                                {{ 'passwordLabel' | translate }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label class="form-label">{{ 'confirmPasswordLabel' | translate }}</label>
+                            <input type="password" class="form-control" placeholder="ConfirmPassword"
+                                name="confirmPassword" required />
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button class="btn btn-success btn-sm web-create-bg" style="width: 300px;">{{ 'save' | translate
+                            }}</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Register modal -->
+
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="reg-model">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="register">
+                <div class="modal-content">
+                    <div class="modal-header border-0">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="logo text-center">
+                            <div class="logo-image">
+                                <img class="light-images register-logo" src="./assets/images/light-logo-sy.png">
+                                <img class="dark-images register-logo" src="./assets/images/dark-logo-sy.png">
+                            </div>
+                            <h6>{{ 'createAccount' | translate }}</h6>
+                            <p>{{ 'createAccountDescription' | translate }}</p>
+                        </div>
+                        <form (submit)="register()" #registerForm="ngForm">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">{{ 'firstNameLabel' | translate }}</label>
+                                        <input type="text" class="form-control"
+                                            placeholder="{{ 'firstNameLabel' | translate }}" [(ngModel)]="firstName"
+                                            name="firstName" required />
+                                        <div *ngIf="registerForm.controls['firstName']?.errors?.['required'] && (registerForm.controls['firstName']?.dirty || registerForm.controls['firstName']?.touched)"
+                                            class="text-danger">
+                                            {{ 'firstNameRequired' | translate }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">{{ 'lastNameLabel' | translate }}</label>
+                                        <input type="text" class="form-control"
+                                            placeholder="{{ 'lastNameLabel' | translate }}" [(ngModel)]="lastName"
+                                            name="lastName" required />
+                                        <div *ngIf="registerForm.controls['lastName']?.errors?.['required'] && (registerForm.controls['lastName']?.dirty || registerForm.controls['lastName']?.touched)"
+                                            class="text-danger">
+                                            {{ 'lastNameRequired' | translate }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">{{ 'usernameLabel' | translate }}</label>
+                                        <input type="text" class="form-control"
+                                            placeholder="{{ 'usernameLabel' | translate }}" [(ngModel)]="username"
+                                            name="username" required />
+                                        <div *ngIf="registerForm.controls['username']?.errors?.['required'] && (registerForm.controls['username']?.dirty || registerForm.controls['username']?.touched)"
+                                            class="text-danger">
+                                            {{ 'usernameRequired' | translate }}
+                                        </div>
+                                        <div *ngIf="registerForm.controls['username']?.errors?.['usernameExists'] && (registerForm.controls['username']?.dirty || registerForm.controls['username']?.touched)"
+                                            class="text-danger">
+                                            {{ 'usernameExists' | translate }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <label for="ManualInput" [ngClass]="{'active': activeIndex === 1}"
+                                        class="check-resister" (click)="setActive(1)">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" value="4" [(ngModel)]="role"
+                                                name="role" id="ManualInput" required />
+                                            <div class="form-check-label">
+                                                <span class="font-w400">{{ 'playerRole' | translate }}</span>
+                                                <i *ngIf="activeIndex === 1"
+                                                    class="bi bi-check-circle-fill text-success"></i>
+                                                <i *ngIf="activeIndex !== 1" class="bi bi-circle text-muted"></i>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <label for="AutomaticInput" [ngClass]="{'active': activeIndex === 2}"
+                                        class="check-resister" (click)="setActive(2)">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" value="2" [(ngModel)]="role"
+                                                name="role" id="AutomaticInput" required />
+                                            <div class="form-check-label">
+                                                <span class="font-w400">{{ 'clubRole' | translate }}</span>
+                                                <i *ngIf="activeIndex === 2"
+                                                    class="bi bi-check-circle-fill text-success"></i>
+                                                <i *ngIf="activeIndex !== 2" class="bi bi-circle text-muted"></i>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+
+                                <div class="col-lg-4 col-md-4 col-12">
+                                    <label for="scoutRole" [ngClass]="{'active': activeIndex === 3}"
+                                        class="check-resister" (click)="setActive(3)">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" value="3" [(ngModel)]="role"
+                                                name="role" id="scoutRole" required />
+                                            <div class="form-check-label">
+                                                <span class="font-w400">{{ 'scoutRole' | translate }}</span>
+                                                <i *ngIf="activeIndex === 3"
+                                                    class="bi bi-check-circle-fill text-success"></i>
+                                                <i *ngIf="activeIndex !== 3" class="bi bi-circle text-muted"></i>
+                                            </div>
+                                        </div>
+                                    </label>
+                                </div>
+
+
+                                <div *ngIf="activeIndex === 1" class="content-box">
+                                    <div class="row">
+                                        <label class="form-label">{{ 'clubDetails' | translate }}</label>
+                                        <div class="col-lg-6 col-md-6 col-12 mb-3">
+                                            <select class="form-select" (change)="onCountryChange($event)">
+                                                <option value="" disabled selected>{{ 'country' | translate
+                                                    }}</option>
+                                                <option *ngFor="let country of countrie" [value]="country.country_id">{{
+                                                    country.name }}</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-12 mb-3">
+                                            <select class="form-select" (change)="onClubChange($event)"
+                                                [disabled]="!selectedCountry">
+                                                <option value="" disabled selected>{{ 'clubRole' | translate }}
+                                                </option>
+                                                <option *ngFor="let club of clubs" [value]="club.id">{{ club.name }}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div *ngIf="activeIndex === 2" class="content-box">
+                                    <label class="form-label">{{ 'clubDetails' | translate }}</label>
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-12 mb-3">
+                                            <select class="form-select" (change)="onCountryChange($event)">
+                                                <option value="" disabled selected>{{ 'country' | translate
+                                                    }}</option>
+                                                <option *ngFor="let country of countrie" [value]="country.code">{{
+                                                    country.name }}</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-12 mb-3">
+                                            <select class="form-select" (change)="onClubChange($event)">
+                                                <option value="" disabled selected>{{ 'clubRole' | translate }}
+                                                </option>
+                                                <option *ngFor="let club of clubs" [value]="club.id">{{ club.name }}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div *ngIf="activeIndex === 3" class="content-box">
+                                    <div class="form-group">
+                                        <label class="c-name" for="companyName">{{ 'companyName' | translate
+                                            }}</label>
+                                        <input type="text" id="companyName" class="form-control"
+                                            [(ngModel)]="companyName" (input)="onCompanyNameChange($event)"
+                                            placeholder="Enter your company name" required />
+                                    </div>
+                                </div>
+
+
+                                <div *ngIf="registerForm.controls['role']?.errors?.['required'] && (registerForm.controls['role']?.dirty || registerForm.controls['role']?.touched)"
+                                    class="text-danger">
+                                    {{ 'moreInformation' | translate }}
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">{{ 'Email' | translate }}</label>
+                                        <input type="email" class="form-control"
+                                            placeholder="{{ 'example@email.com' | translate }}" [(ngModel)]="email"
+                                            name="email" required />
+                                        <div *ngIf="registerForm.controls['email']?.errors?.['required'] && (registerForm.controls['email']?.dirty || registerForm.controls['email']?.touched)"
+                                            class="text-danger">
+                                            {{ 'emailRequiredError' | translate }}
+                                        </div>
+                                        <div *ngIf="registerForm.controls['email']?.errors?.['emailExists'] && (registerForm.controls['email']?.dirty || registerForm.controls['email']?.touched)"
+                                            class="text-danger">
+                                            {{ 'emailTakenError' | translate }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6" style="display: none;">
+                                    <div class="mb-3">
+                                        <label class="form-label">{{ 'language' | translate }}</label>
+                                        <select class="form-select form-control" [(ngModel)]="language" name="language"
+                                            required>
+                                            <option value="" disabled selected>{{ 'selectLanguage' | translate }}
+                                            </option>
+                                            <option value="1">English</option>
+                                            <option value="2">German</option>
+                                            <option value="3">Italian</option>
+                                            <option value="4">French</option>
+                                            <option value="5">Spanish</option>
+                                            <option value="6">Portuguese</option>
+                                            <option value="7">Danish</option>
+                                            <option value="8">Swedish</option>
+                                        </select>
+                                        <div *ngIf="registerForm.controls['language']?.errors?.['required'] && (registerForm.controls['language']?.dirty || registerForm.controls['language']?.touched)"
+                                            class="text-danger">
+                                            {{ 'languageRequired' | translate }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6" style="display: none;">
+                                    <div class="mb-3">
+                                        <label class="form-label">{{ 'userDomain' | translate }}</label>
+                                        <select class="form-select form-control" [(ngModel)]="userDomain"
+                                            name="userDomain" required>
+                                            <option value="" disabled selected>{{ 'selectDomain' | translate
+                                                }}</option>
+                                            <option value="1">socceryou.ch</option>
+                                            <option value="2">socceryou.de</option>
+                                            <option value="3">socceryou.it</option>
+                                            <option value="4">socceryou.fr</option>
+                                            <option value="5">socceryou.co.uk</option>
+                                            <option value="6">socceryou.es</option>
+                                            <option value="7">socceryou.pt</option>
+                                            <option value="8">socceryou.be</option>
+                                            <option value="9">socceryou.dk</option>
+                                            <option value="10">socceryou.se</option>
+                                        </select>
+                                        <div *ngIf="registerForm.controls['userDomain']?.errors?.['required'] && (registerForm.controls['userDomain']?.dirty || registerForm.controls['userDomain']?.touched)"
+                                            class="text-danger">
+                                            {{ 'domainRequired' | translate }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">{{ 'passwordLabel' | translate }}</label>
+                                        <input type="password" class="form-control"
+                                            placeholder="{{ 'passwordPlaceholder' | translate }}" [(ngModel)]="password"
+                                            name="password" required />
+                                        <div *ngIf="registerForm.controls['password']?.errors?.['required'] && (registerForm.controls['password']?.dirty || registerForm.controls['password']?.touched)"
+                                            class="text-danger">
+                                            {{ 'passwordRequiredError' | translate }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="confirmPassword">{{ 'confirmPasswordLabel'
+                                            |
+                                            translate }}</label>
+                                        <input type="password" id="confirmPassword" class="form-control"
+                                            placeholder="{{ 'confirmPasswordPlaceholder' | translate }}"
+                                            [(ngModel)]="confirmPassword" name="confirmPassword"
+                                            #confirmPasswordControl="ngModel" required />
+                                        <div *ngIf="confirmPasswordControl.invalid && (confirmPasswordControl.dirty || confirmPasswordControl.touched)"
+                                            class="text-danger">
+                                            <ng-container *ngIf="confirmPasswordControl.errors?.['required']">
+                                                {{ 'passwordRequiredError' | translate }}
+                                            </ng-container>
+                                            <ng-container *ngIf="password !== confirmPassword">
+                                                {{ confirmPasswordError' | translate }}
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- <div *ngIf="registerFormSubmitted && !isFormValid()" class="text-danger">
+                                    Please fill in all required fields
+                                </div>
+                                <div *ngIf="registerError" class="text-danger">
+                                    Registration failed. Please try again.
+                                </div> -->
+
+                                <div *ngIf="registerFormSubmitted && !isFormValid()" class="text-danger">
+                                    {{ 'requiredFieldsMessage' | translate }}
+                                </div>
+                                <div *ngIf="registerError" class="text-danger">
+                                    {{ registerError }}
+                                </div>
+
+
+                                <div class="col-lg-12">
+                                    <div class="form-check checkbox">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"
+                                            [(ngModel)]="privacyPolicy" name="privacyPolicy" required />
+                                        <label class="form-check-label fs-14 font-w400 text-light"
+                                            for="flexCheckDefault">
+                                            {{ 'privacyPolicyLabel' | translate }}
+                                        </label>
+                                        <div *ngIf="registerForm.controls['privacyPolicy']?.errors?.['required'] && (registerForm.controls['privacyPolicy']?.dirty || registerForm.controls['privacyPolicy']?.touched)"
+                                            class="text-danger">
+                                            {{ 'privacyPolicyCheckboxError' | translate }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-check checkbox">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault-1"
+                                            [(ngModel)]="newsletter" name="newsletter" />
+                                        <label class="form-check-label fs-14 font-w400 text-light"
+                                            for="flexCheckDefault-1">
+                                            {{ 'newsletterLabel' | translate }}
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="modal-footer1 modal-btn border-0 justify-content-center">
+                                    <button type="submit" class="create-account d-block">{{ 'createAccount' |
+                                        translate
+                                        }}</button>
+                                    <span class="mt-3 dont-account">
+                                        {{ 'alreadyHaveAccount' | translate }}
+                                        <a class="register" href="#" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal-login">{{ 'loginButton' | translate
+                                            }}</a>
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

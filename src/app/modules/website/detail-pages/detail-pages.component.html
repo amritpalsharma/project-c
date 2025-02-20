@@ -1,0 +1,111 @@
+<section class="website-code">
+<!-- <app-header></app-header> -->
+<div class="main">
+    <div class="learn-banner">
+    <div class="container">
+        <button [routerLink]="'/news'" class="back-button">
+            <img src="./assets/images/back-image.svg">
+            {{'back_to_news' | translate}}</button>
+       <h1>{{news.title}}</h1>
+       <p class="p-text">{{news.created_at | date:'dd.MM.yy'}}</p>
+       <img class="banner-image" src="{{news.featured_image}}">
+    </div>
+
+    <div *ngIf="adVisible[0]" class="skyscraper-left">
+        <img src="./assets/images/skyscraper - 120x600.png">
+        <button (click)="closeAd(0)" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <div *ngIf="adVisible[1]" class="skyscraper-right">
+        <img src="./assets/images/skyscraper - 120x600.png">
+        <button (click)="closeAd(1)" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+</div>
+</div>
+<div class="learn py_0">
+<div class="container" [innerHTML]="news.content"  > 
+
+</div>
+
+<div class="file">
+<div class="container">
+    <div class="files">
+        <h3 class="attachments"  *ngIf="news.attachments" >{{'attachments' | translate}}</h3>
+        <a *ngFor="let attachment of news.attachments"   href="https://www.example.com/dummy.pdf" target="_blank" download>
+            <img class="dark-files" src="./assets/images/pdf.png" alt="PDF Icon">
+        </a>
+</div>
+</div>
+</div>
+
+<div class="container">
+    <div class="social-icons">
+    <h5 class="share">{{'share' | translate}}</h5>
+    <a href="https://www.instagram.com" target="_blank">
+        <img class="instagram" src="./assets/images/instagram.svg">
+    </a>
+
+    <a href="https://www.linkedin.com" target="_blank">
+    <img class="linkedin" src="./assets/images/linkedin.svg">
+    </a>
+
+    <a href="https://www.facebook.com" target="_blank">
+    <img class="facebook" src="./assets/images/facebook.svg">
+    </a>
+
+    <a href="https://www.email.com" target="_blank">
+    <img class="email" src="./assets/images/email.svg">
+    </a>
+
+    <a href="https://www.twitter.com" target="_blank">
+    <img class="twitter" src="./assets/images/twitter.svg">
+    </a>
+
+</div>
+
+<div class="advertisment" [ngClass]="{'hidden': !adVisible[2]}">
+    <div *ngIf="adVisible[2]" class="leaderboard-image">
+      <img src="./assets/images/leaderboard - 728x90.png">
+      <button (click)="closeAd(2)" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    </div>
+  
+</div>
+</div>
+
+<div class="latest-news py_0">
+    <div class="container">
+        <h4>{{'more_news' | translate}}</h4>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-12" *ngFor="let new of moreNews"  >
+                <div routerLink="{{'/news'+new.id}}" class="news-box">
+                    <img src="{{news.news_img_path + new.featured_image}}">
+                    <p class="p-text">{{new.created_at | date:'dd.MM.yy'}}</p>
+                    <p>{{new.content}}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="advertisement1" [ngClass]="{'hidden': !adVisible[3] && !adVisible[4]  && !adVisible[5]}">
+
+            <div *ngIf="adVisible[3]" class="large-rectangle">
+                <img src="./assets/images/large rectangle - 336x280 .png">
+                <button (click)="closeAd(3)" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div *ngIf="adVisible[4]" class="inline-rectangle">
+                <img src="./assets/images/inline rectangle - 300x250.png">
+                <button (click)="closeAd(4)" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div *ngIf="adVisible[5]" class="square">
+                <img src="./assets/images/sqaure - 250x250.png">
+                <button (click)="closeAd(5)" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- <app-footer></app-footer> -->
+</section>

@@ -1,0 +1,50 @@
+<div class="page-content">
+    <div class="main-wrapper">
+        <div class="card bg-color pb-3 px-3">
+
+            <!-- Subscription message -->
+            <h4 class="card-billing">{{'multiCountryVisibility' | translate }}</h4>
+            <div *ngIf="filteredCountries?.length>0" class="alert alert-success multi-country-box mt-4">
+                {{'alertMessage' | translate }}
+            </div>
+
+            <!-- Country Cards -->
+            <div class="row px-2 countries-box-list">
+                <div class="col-md-3 mt-3" *ngFor="let country of countries">
+                    <div class="country-card country-flag-box h-100" [ngClass]="{'selected': (country.is_default==1 || country.is_package_active=='active')}" (click)="toggleCountrySelection(country)" >
+
+                        <div class="contries-flag-image">
+                            <img src="{{flag_path + country.domain_flag}}" alt="{{country.location}}">
+                            <div class="d-flex align-items-center justify-content-between countries-primium">
+                                <div class="premium_button-cousntries" *ngIf="country.is_default==1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                        <path
+                                            d="M464 0H112c-4 0-7.8 2-10 5.4L2 152.6c-2.9 4.4-2.6 10.2 .7 14.2l276 340.8c4.8 5.9 13.8 5.9 18.6 0l276-340.8c3.3-4.1 3.6-9.8 .7-14.2L474.1 5.4C471.8 2 468.1 0 464 0zm-19.3 48l63.3 96h-68.4l-51.7-96h56.8zm-202.1 0h90.7l51.7 96H191l51.6-96zm-111.3 0h56.8l-51.7 96H68l63.3-96zm-43 144h51.4L208 352 88.3 192zm102.9 0h193.6L288 435.3 191.2 192zM368 352l68.2-160h51.4L368 352z">
+                                        </path>
+                                    </svg>
+                                    <span>{{'default' | translate }}</span>
+                                </div>
+                            </div>
+
+                            <div class="d-flex align-items-center justify-content-between countries-primium"
+                                *ngIf="country.is_package_active=='active'">
+                                <div class="premium_button-cousntries">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                        <path
+                                            d="M464 0H112c-4 0-7.8 2-10 5.4L2 152.6c-2.9 4.4-2.6 10.2 .7 14.2l276 340.8c4.8 5.9 13.8 5.9 18.6 0l276-340.8c3.3-4.1 3.6-9.8 .7-14.2L474.1 5.4C471.8 2 468.1 0 464 0zm-19.3 48l63.3 96h-68.4l-51.7-96h56.8zm-202.1 0h90.7l51.7 96H191l51.6-96zm-111.3 0h56.8l-51.7 96H68l63.3-96zm-43 144h51.4L208 352 88.3 192zm102.9 0h193.6L288 435.3 191.2 192zM368 352l68.2-160h51.4L368 352z">
+                                        </path>
+                                    </svg>
+                                    <span>{{'purchased' | translate}}</span>
+                                </div>
+                                <a href="/talent/explore">{{'startExploring' | translate}}</a>
+                            </div>
+                        </div>
+                        <div class="country-info">
+                            <h4>{{ country.location }}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

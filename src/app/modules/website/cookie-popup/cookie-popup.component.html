@@ -1,0 +1,62 @@
+<section class="website-code">
+<div class="main">
+  <div class="overlay" *ngIf="showPopup"></div>
+  <div class="cookie-popup" *ngIf="showPopup">
+    <div class="container" style="width: 860px;">
+          <p class="cookie-text">
+            We value your privacy. We and our partners use trackers to measure the audience
+            of our website and to provide you with offers and improve our own SoccerYou marketing operations. <span style="text-decoration: underline;">More
+              info on cookies and providers we use</span>. You can withdraw your consent at any time in your settings.
+          </p>
+  
+          <div class="cookie-button" *ngIf="showPopup">
+            <div class="choice-btn">
+              <button type="button" class="choice" (click)="personalizeChoices()">Personalize my choices</button>
+            </div>
+            <div class="accept&decline">
+              <button type="button" class="accept" (click)="acceptCookies()">I accept</button>
+              <button type="button" class="decline" (click)="declineCookies()">I decline</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="overlay" *ngIf="showPersonalizationBox"></div>
+      <div class="personalization-box" *ngIf="showPersonalizationBox" [class.show]="showPopup">
+        <div>
+          <h5 class="model-heading">Manage Consent Preferences</h5>
+          <!-- <button type="button" class="close" (click)="closePersonalizationBox()">&times;</button> -->
+        </div>
+
+        <div class="modal-body">
+          <div class="model-text" *ngFor="let permission of permissions">
+            <div>
+              <h6 class="modal-text-h6" 
+                  [ngClass]="{'readonly-text': permission.readOnly}">
+                {{ permission.name }}
+              </h6>
+              <p [ngStyle]="{'color': permission.enabled ? '#6FB95D' : (permission.readOnly ? 'grey' : 'white')}">
+                {{ permission.description }}
+              </p>
+            </div>
+        
+            <div class="slider-toggle">
+              <label class="switch">
+                <input type="checkbox" [(ngModel)]="permission.enabled" 
+                       [disabled]="permission.readOnly === true"
+                       [attr.aria-label]="'Toggle consent for ' + permission.name">
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+        
+
+        <div class="modal-footer">
+          <button type="button" class="accept" (click)="allowAll()">Allow All</button>
+          <button type="button" class="accept" (click)="refuseAll()">Refuse All</button>
+          <button type="button" class="accept" (click)="savePreferences()">Save</button>
+        </div>
+      </div>
+    </div>
+</section>

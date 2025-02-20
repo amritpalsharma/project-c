@@ -1,0 +1,527 @@
+.readonly-text {
+    color: #aaa;
+    /* Set the color for the read-only text */
+}
+
+.slider-toggle input[disabled]+.slider {
+    background-color: #aaa;
+    /* Grey background for disabled toggle */
+}
+
+/* Optional: Add styles for the toggle switch when disabled */
+.slider-toggle input[disabled]:checked+.slider {
+    background-color: #ccc;
+    /* Grey background when the switch is checked and disabled */
+}
+
+.slider-toggle input[disabled]:checked+.slider:before {
+    background-color: #aaa;
+    /* Grey background when the switch is checked and disabled */
+}
+
+
+
+/* Optional: Add hover effects for the slider when disabled */
+.slider-toggle input[disabled]+.slider:hover {
+    cursor: not-allowed;
+    /* Change cursor to indicate it's not interactive */
+}
+
+
+
+
+
+.cookie-text {
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    margin-right: 0;
+    line-height: 26px;
+}
+
+.accept\&decline {
+    display: flex;
+    margin-left: auto;
+}
+
+.cookie-button {
+    display: flex;
+}
+
+.choice {
+    width: 297px;
+    height: 42px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.accept {
+    width: 133px;
+    height: 42px;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 8px;
+    margin-right: 20px;
+}
+
+.decline {
+    width: 133px;
+    height: 42px;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 8px;
+    color: white;
+}
+
+// .chat-content{
+//     height: 184px;
+// }
+// .chat-content {
+//     height: 184px;
+//     position: fixed;
+//     bottom: 0;
+//     left: 0;
+//     right: 0;
+//     // background-color: #fff;
+//     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+//     padding: 20px;
+//     z-index: 1000;
+//   }
+.cookie-popup {
+    position: fixed;
+    bottom: -200px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 1000; /* Above the overlay */
+    animation: slideUp 2s ease-out forwards;
+  }
+
+  @keyframes slideUp {
+    from {
+      bottom: -200px; /* Start off the screen */
+      opacity: 0;
+    }
+    to {
+      bottom: 0; /* Final position */
+      opacity: 1;
+    }
+  }
+  
+
+.modal-body {
+    max-height: 300px;
+    /* Adjust as needed */
+    overflow-y: auto;
+    /* Scroll if content exceeds height */
+}
+
+
+// .overlay {
+//     position: fixed;
+//     top: 0;
+//     left: 0;
+//     width: 100%;
+//     height: 100%;
+//     background-color: rgba(0, 0, 0, 0.8);
+//     /* semi-transparent background */
+//     z-index: 10;
+//     /* Ensure it sits above other content */
+// }
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    z-index: 999; /* Below the popup */
+  }
+
+
+.modal-body {
+    max-height: 100vh;
+    /* Adjust as needed */
+    overflow-y: auto;
+    /* Scroll if content exceeds height */
+}
+
+.personalization-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    // padding: 20px;
+    border-radius: 8px;
+    z-index: 1000;
+    /* Ensure it sits above the overlay */
+    width: 850px;
+    height: 451px;
+    border-radius: 20px;
+}
+
+
+.modal-footer {
+    margin-top: 70px;
+}
+
+
+.accept {
+    font-size: 18px;
+    height: 42px;
+    width: 133px;
+    border-radius: 8px;
+    margin-left: 20px;
+    font-weight: 500;
+}
+
+.model-heading {
+    height: 68px;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    padding-top: 25px;
+    color: white;
+}
+
+.model-text {
+    height: 84px;
+    font-size: 14px;
+    border: 1px solid #EBEBEB;
+    border-right: none;
+    border-left: none;
+    padding: 20px;
+    display: flex;
+}
+
+.modal-text-h6 {
+    color: white;
+    font-weight: 600;
+}
+
+.buttons {
+    margin-left: 40%;
+    margin-top: 60px;
+    margin-right: 20px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 34px;
+    height: 20px;
+}
+
+.slider-toggle {
+    margin-left: auto;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 7px;
+    left: -20px;
+    right: 0;
+    bottom: 0;
+    // background-color: white;
+    transition: .4s;
+    height: 30px;
+    width: 50px;
+    border-radius: 34px;
+}
+
+.slider {
+    background-color: white;
+    border: 1px solid grey;
+}
+
+.slider:before {
+    background-color: #ccc;
+    border: 1px solid #ccc;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 29px;
+    width: 28px;
+    left: 0;
+    bottom: 0;
+    // background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: #BDE34F;
+}
+
+input:checked+.slider:before {
+    transform: translateX(20px);
+}
+
+input:checked+.slider:before {
+    // transform: translateX(14px);
+    background-color: white;
+}
+
+p {
+    font-size: 16px;
+}
+
+@media (min-width: 1441px) {
+    .slider:before {
+        height: 28px;
+        width: 28px;
+    }
+}
+
+@media (max-width: 1281px) {
+    .slider:before {
+        height: 28px;
+        width: 28px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .cookie-text {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .choice {
+        width: 220px;
+        height: 35px;
+        font-size: 14px;
+    }
+
+    .accept,
+    .decline {
+        font-size: 14px;
+        height: 35px;
+        width: 120px;
+    }
+
+    .cookie-popup {
+        height: 140px;
+    }
+}
+
+@media (max-width: 991px) {
+    .personalization-box {
+        position: fixed;
+        top: 45%;
+        left: 50%;
+        width: 600px;
+        height: 330px;
+    }
+
+    .model-heading {
+        height: 40px;
+        font-size: 14px;
+        padding-top: 12px;
+    }
+
+    .modal-text-h6 {
+        font-size: 11px;
+    }
+
+    p {
+        font-size: 11px;
+    }
+
+    .model-text {
+        padding: 15px;
+        height: 65px;
+    }
+
+    .modal-footer {
+        margin-top: 40px;
+    }
+
+    .slider {
+        top: 0;
+        height: 25px;
+        width: 40px;
+    }
+
+    .slider:before {
+        height: 23.3px;
+        width: 23px;
+    }
+
+    .accept {
+        margin-left: 0px;
+    }
+
+    input:checked+.slider:before {
+        transform: translateX(15px);
+    }
+}
+
+@media (max-width: 767px) {}
+
+@media (max-width: 575px) {
+    .cookie-popup {
+        height: 180px;
+    }
+
+    .choice {
+        width: 160px;
+        height: 30px;
+        font-size: 12px;
+    }
+
+    .accept {
+        font-size: 12px;
+        height: 30px;
+        width: 90px;
+        margin-left: -10px;
+    }
+
+    .decline {
+        font-size: 12px;
+        height: 30px;
+        width: 90px;
+    }
+
+    .personalization-box {
+        width: 420px;
+    }
+
+    p {
+        margin-right: 35px;
+    }
+
+    .model-text {
+        padding: 15px;
+        height: 70px;
+    }
+
+    .slider {
+        top: 5px;
+    }
+
+    .modal-footer {
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: 415px) {
+    .cookie-popup .accept {
+        margin-right: 5px;
+    }
+}
+
+@media (max-width: 415px) {
+    .personalization-box {
+        width: 400px;
+    }
+}
+
+@media (max-width: 391px) {
+    .personalization-box {
+        width: 370px;
+    }
+
+    .cookie-popup .accept {
+        margin-right: 3px;
+    }
+}
+
+@media (max-width: 376px) {
+    .cookie-popup {
+        height: 150px;
+    }
+
+    .choice {
+        width: 130px;
+        height: 28px;
+        font-size: 10px;
+    }
+
+    .accept {
+        font-size: 10px;
+        height: 28px;
+        width: 68px;
+        margin-right: 5px;
+    }
+
+    .decline {
+        font-size: 10px;
+        height: 28px;
+        width: 68px;
+    }
+
+    .cookie-text {
+        font-size: 10px;
+    }
+
+    .slider {
+        left: -10px;
+    }
+
+    p {
+        margin-right: 25px;
+    }
+
+    .accept {
+        margin-right: 20px;
+    }
+
+    .personalization-box {
+        width: 350px;
+    }
+
+    p {
+        font-size: 10px;
+    }
+
+    .modal-text-h6 {
+        font-size: 10px;
+    }
+
+    .model-heading {
+        height: 35px;
+        font-size: 12px;
+        padding-top: 10px;
+    }
+
+}
+
+@media (max-width: 345px) {
+    .personalization-box {
+        width: 320px;
+    }
+
+    p {
+        margin-right: 20px;
+    }
+
+    .slider {
+        left: 0px;
+    }
+}
+
+@media (max-width: 321px) {
+    .personalization-box {
+        width: 310px;
+    }
+
+    .slider:before {
+        height: 23px;
+        bottom: 0;
+        width: 23px;
+    }
+}

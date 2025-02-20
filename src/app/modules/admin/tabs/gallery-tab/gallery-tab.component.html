@@ -1,0 +1,125 @@
+<div class="gallery-parent bg-0C3453">
+  <h5 class="mb-2 gallery-h5">{{'coverPhoto' | translate }}</h5>
+
+
+  <div class="covergallery" style="background-image:url('{{coverImage}}')">
+    <div class="cover-photo-container d-flex align-items-center">
+      <!-- <button class="Delete-cover me-2" type="file"> <svg id="users-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-260q75 0 127.5-52.5T660-440q0-75-52.5-127.5T480-620q-75 0-127.5 52.5T300-440q0 75 52.5 127.5T480-260Zm0-80q-42 0-71-29t-29-71q0-42 29-71t71-29q42 0 71 29t29 71q0 42-29 71t-71 29ZM160-120q-33 0-56.5-23.5T80-200v-480q0-33 23.5-56.5T160-760h126l74-80h240l74 80h126q33 0 56.5 23.5T880-680v480q0 33-23.5 56.5T800-120H160Zm0-80h640v-480H638l-73-80H395l-73 80H160v480Zm320-240Z"/></svg>  {{'UploadCoverPhoto' | translate}} </button> -->
+      <label for="cover-file-upload" class="Delete-cover me-1 d-flex gallery-upload-icon">
+        <svg width="18" height="16" viewBox="0 0 18 16" fill="none" class="me-2" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2.33268 2.33464H4.83268L6.49935 0.667969H11.4993L13.166 2.33464H15.666C16.108 2.33464 16.532 2.51023 16.8445 2.82279C17.1571 3.13535 17.3327 3.55927 17.3327 4.0013V14.0013C17.3327 14.4433 17.1571 14.8673 16.8445 15.1798C16.532 15.4924 16.108 15.668 15.666 15.668H2.33268C1.89065 15.668 1.46673 15.4924 1.15417 15.1798C0.84161 14.8673 0.666016 14.4433 0.666016 14.0013V4.0013C0.666016 3.55927 0.84161 3.13535 1.15417 2.82279C1.46673 2.51023 1.89065 2.33464 2.33268 2.33464ZM8.99935 4.83464C7.89428 4.83464 6.83447 5.27362 6.05307 6.05502C5.27167 6.83643 4.83268 7.89623 4.83268 9.0013C4.83268 10.1064 5.27167 11.1662 6.05307 11.9476C6.83447 12.729 7.89428 13.168 8.99935 13.168C10.1044 13.168 11.1642 12.729 11.9456 11.9476C12.727 11.1662 13.166 10.1064 13.166 9.0013C13.166 7.89623 12.727 6.83643 11.9456 6.05502C11.1642 5.27362 10.1044 4.83464 8.99935 4.83464ZM8.99935 6.5013C9.66239 6.5013 10.2983 6.76469 10.7671 7.23353C11.236 7.70238 11.4993 8.33826 11.4993 9.0013C11.4993 9.66434 11.236 10.3002 10.7671 10.7691C10.2983 11.2379 9.66239 11.5013 8.99935 11.5013C8.33631 11.5013 7.70042 11.2379 7.23158 10.7691C6.76274 10.3002 6.49935 9.66434 6.49935 9.0013C6.49935 8.33826 6.76274 7.70238 7.23158 7.23353C7.70042 6.76469 8.33631 6.5013 8.99935 6.5013Z" fill="black"/>
+          </svg>   
+        {{'addCoverPhoto' | translate}}
+
+    </label>
+    <input id="cover-file-upload" (change)="onCoverFileChange($event)" accept="image/*" type="file" class="d-none" />
+      <button class="Delete-cover py-2" (click)="deleteCoverImage()">  <svg id="users-icon"
+        width="22"
+        height="26"
+        viewBox="0 0 22 23"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M5.49967 17.5589C5.49967 18.5112 6.32467 19.2904 7.33301 19.2904H14.6663C15.6747 19.2904 16.4997 18.5112 16.4997 17.5589V7.16999H5.49967V17.5589ZM17.4163 4.57277H14.208L13.2913 3.70703H8.70801L7.79134 4.57277H4.58301V6.30425H17.4163V4.57277Z"
+          fill="#111418"
+        ></path>
+      </svg> </button>
+    </div>
+
+  
+    
+  </div>
+
+<div class="d-flex justify-content-between mt-3">
+  <p class="gallery-photo">{{'photos' | translate }} </p>
+  <p class="gallery-pic-upload pointer" (click)="addPhotosPopup()">{{'addPhotos' | translate}}</p>
+</div>
+  
+<div class="row mt-3">
+  <div *ngIf="userImages.length == '0'">{{ 'noRecordFound' | translate }}</div>
+  <div class="col-md-2 position-relative w-20" *ngFor="let image of userImages">
+    <svg (click)="openMenu(image.id)" id="users-icon" class="me-1 edit-cover pointer" width="24" height="25" viewBox="0 0 24 25" fill="#787878" xmlns="http://www.w3.org/2000/svg">
+      <path d="M3 17.7495V21.4995H6.75L17.81 10.4395L14.06 6.68951L3 17.7495ZM20.71 7.53951C20.8027 7.447 20.8762 7.33711 20.9264 7.21614C20.9766 7.09517 21.0024 6.96548 21.0024 6.83451C21.0024 6.70355 20.9766 6.57386 20.9264 6.45289C20.8762 6.33192 20.8027 6.22203 20.71 6.12951L18.37 3.78951C18.2775 3.69681 18.1676 3.62326 18.0466 3.57308C17.9257 3.5229 17.796 3.49707 17.665 3.49707C17.534 3.49707 17.4043 3.5229 17.2834 3.57308C17.1624 3.62326 17.0525 3.69681 16.96 3.78951L15.13 5.61951L18.88 9.36951L20.71 7.53951Z"/>
+    </svg>
+    <img src="{{imageBaseUrl}}{{image.file_name}}" alt="" srcset="" class="img-fluid">
+
+    <div class="wc_floatingMenu" [ngClass]="{ 'active': openedMenuId == image.id}">
+      <div class="wc_menuItem pointer font-14" (click)="deleteImage(image.id)">
+        <span>
+          <svg class="del-icon-margin"  width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1.50065 14.0589C1.50065 15.0112 2.32565 15.7904 3.33398 15.7904H10.6673C11.6757 15.7904 12.5007 15.0112 12.5007 14.0589V3.66999H1.50065V14.0589ZM13.4173 1.07277H10.209L9.29232 0.207031H4.70898L3.79232 1.07277H0.583984V2.80425H13.4173V1.07277Z" fill="#111418"/>
+            </svg>            
+            
+           Delete Photo</span>
+      </div>
+      <div class="wc_menuItem pointer font-14" (click)="downloadImage(imageBaseUrl, image.file_name)">
+        <span>
+            <svg class="me-1" width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_2403_70930)">
+                <path d="M6.37435 15.5846H10.6243C14.166 15.5846 15.5827 14.168 15.5827 10.6263V6.3763C15.5827 2.83464 14.166 1.41797 10.6243 1.41797H6.37435C2.83268 1.41797 1.41602 2.83464 1.41602 6.3763V10.6263C1.41602 14.168 2.83268 15.5846 6.37435 15.5846Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M6.375 8.15104L8.5 10.276L10.625 8.15104M8.5 10.276V4.60938M4.25 11.6927C7.00542 12.6135 9.99458 12.6135 12.75 11.6927" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+              <defs>
+              <clipPath id="clip0_2403_70930">
+              <rect width="17" height="17" fill="white"/>
+              </clipPath>
+              </defs>
+            </svg>                    
+            {{ 'downloadPhoto' | translate }}
+          </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="d-flex justify-content-between mt-3">
+  <p class="gallery-photo">{{'videos' | translate }} </p>
+  <p class="gallery-pic-upload pointer" (click)="addVideosPopup()">{{'addVideos' | translate}}</p>
+</div>
+  
+<div class="row mt-3">
+  <div *ngIf="userVideos.length == '0'">{{ 'noRecordFound' | translate }}</div>
+  <div class="col-md-2 position-relative w-20" *ngFor="let video of userVideos">
+    <svg (click)="openMenu(video.id)" style="z-index:99999" id="users-icon" class="me-1 edit-cover pointer" width="24" height="25" viewBox="0 0 24 25" fill="#787878" xmlns="http://www.w3.org/2000/svg">
+      <path d="M3 17.7495V21.4995H6.75L17.81 10.4395L14.06 6.68951L3 17.7495ZM20.71 7.53951C20.8027 7.447 20.8762 7.33711 20.9264 7.21614C20.9766 7.09517 21.0024 6.96548 21.0024 6.83451C21.0024 6.70355 20.9766 6.57386 20.9264 6.45289C20.8762 6.33192 20.8027 6.22203 20.71 6.12951L18.37 3.78951C18.2775 3.69681 18.1676 3.62326 18.0466 3.57308C17.9257 3.5229 17.796 3.49707 17.665 3.49707C17.534 3.49707 17.4043 3.5229 17.2834 3.57308C17.1624 3.62326 17.0525 3.69681 16.96 3.78951L15.13 5.61951L18.88 9.36951L20.71 7.53951Z"/>
+    </svg>    
+    <video style="max-width:100%;">
+      <source src="{{imageBaseUrl}}{{video.file_name}}" type="video/mp4">
+      {{ 'browserDoesNotSupportHtml' | translate }}
+    </video>
+
+    <div class="wc_floatingMenu" [ngClass]="{ 'active': openedMenuId == video.id}">
+      <div class="wc_menuItem pointer font-14" (click)="deleteVideo(video.id)">
+        <span>
+          <svg class="del-icon-margin"  width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1.50065 14.0589C1.50065 15.0112 2.32565 15.7904 3.33398 15.7904H10.6673C11.6757 15.7904 12.5007 15.0112 12.5007 14.0589V3.66999H1.50065V14.0589ZM13.4173 1.07277H10.209L9.29232 0.207031H4.70898L3.79232 1.07277H0.583984V2.80425H13.4173V1.07277Z" fill="#111418"/>
+            </svg>            
+            
+            {{ 'deleteVideo' | translate }}</span>
+      </div>
+      <div class="wc_menuItem pointer font-14" (click)="downloadVideo(imageBaseUrl, video.file_name)">
+        <span>
+            <svg class="me-1" width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_2403_70930)">
+                <path d="M6.37435 15.5846H10.6243C14.166 15.5846 15.5827 14.168 15.5827 10.6263V6.3763C15.5827 2.83464 14.166 1.41797 10.6243 1.41797H6.37435C2.83268 1.41797 1.41602 2.83464 1.41602 6.3763V10.6263C1.41602 14.168 2.83268 15.5846 6.37435 15.5846Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M6.375 8.15104L8.5 10.276L10.625 8.15104M8.5 10.276V4.60938M4.25 11.6927C7.00542 12.6135 9.99458 12.6135 12.75 11.6927" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+              <defs>
+              <clipPath id="clip0_2403_70930">
+              <rect width="17" height="17" fill="white"/>
+              </clipPath>
+              </defs>
+            </svg>                    
+            {{ 'downloadVideo' | translate }}
+          </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</div>

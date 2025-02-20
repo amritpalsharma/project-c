@@ -1,0 +1,139 @@
+<div class="container mt-4">
+    <h2>{{ 'contactUs' | translate }}</h2>
+    <form #contactForm="ngForm" (ngSubmit)="submitForm()" enctype="multipart/form-data">
+
+        <fieldset class="border p-3 mb-4">
+            <div class="row">
+                <div class="mb-3 col-md-6">
+                    <label for="metaTitle" class="form-label">{{ 'metaTitle' | translate }}</label>
+                    <input type="text" class="form-control" id="metaTitle" name="meta_title"
+                        [(ngModel)]="formData.meta_title" />
+                </div>
+                <div class="mb-3 col-md-6">
+                    <label for="metaDescription" class="form-label">{{ 'metaDescription' | translate }}</label>
+                    <textarea class="form-control" id="metaDescription" name="meta_description"
+                        [(ngModel)]="formData.meta_description" rows="3"></textarea>
+                </div>
+            </div>
+        </fieldset>
+
+        <div class="row mt-3">
+            <!-- Banner Title -->
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="banner_title">{{ 'bannerTitle' | translate }}</label>
+                    <input type="text" id="banner_title" class="form-control" name="banner_title"
+                        [(ngModel)]="formData.banner_title" required>
+                </div>
+            </div>
+
+            <!-- Banner Background Image -->
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="banner_bg_img">{{ 'bannerBackgroundImage' | translate }}</label>
+                    <input type="file" id="banner_bg_img" class="form-control" (change)="onFileChange($event)" required>
+                </div>
+                <div *ngIf="bannerImagePreview" class="position-relative mt-2">
+                    <div class="image_cut">
+                        <img [src]="bannerImagePreview" alt="Preview" class="img-thumbnail p-0"
+                            style="max-width: 150px;" (load)="imageLoaded = true" />
+                        <div class="close_image" *ngIf="imageLoaded" (click)="removeImage('banner_bg_img')">
+                            <svg width="26px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                <!-- SVG Content -->
+                                <path
+                                    d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <!-- Form Title -->
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="form_title">{{ 'formTitle' | translate }}</label>
+                    <input type="text" id="form_title" class="form-control" name="form_title"
+                        [(ngModel)]="formData.form_title" required>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="txt_before_radio_btn">{{ 'beforeProfileText' | translate }}</label>
+                    <input type="text" id="txt_before_radio_btn" class="form-control" name="txt_before_radio_btn"
+                        [(ngModel)]="formData.txt_before_radio_btn" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="talent_label_txt">{{ 'talentLabelText' | translate }}</label>
+                    <input type="text" id="talent_label_txt" class="form-control" name="talent_label_txt"
+                        [(ngModel)]="formData.talent_label_txt" required>
+                </div>
+            </div>
+
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="club_label_txt">{{ 'clubLabelText' | translate }}</label>
+                    <input type="text" id="club_label_txt" class="form-control" name="club_label_txt"
+                        [(ngModel)]="formData.club_label_txt" required>
+                </div>
+            </div>
+
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="scout_label_txt">{{ 'scoutLabelText' | translate }}</label>
+                    <input type="text" id="scout_label_txt" class="form-control" name="scout_label_txt"
+                        [(ngModel)]="formData.scout_label_txt" required>
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <div class="row mt-3">
+
+            <div class="col-md-8">
+                <div class="form-group">
+                    <label for="email">{{ 'email' | translate }}</label>
+                    <input type="email" id="email" class="form-control" name="email" [(ngModel)]="formData.email"
+                        required>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="submit_btn_txt">{{ 'submitButtonText' | translate }}</label>
+                    <input type="text" id="submit_btn_txt" class="form-control" name="submit_btn_txt"
+                        [(ngModel)]="formData.submit_btn_txt" required>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="address">{{ 'address' | translate }}</label>
+                    <div class="NgxEditor__Wrapper">
+                        <ngx-editor-menu [editor]="editor" [colorPresets]="colorPresets"> </ngx-editor-menu>
+                        <ngx-editor [editor]="editor" class="editor-width" name="address" [(ngModel)]="formData.address"
+                            [disabled]="false" [placeholder]="'typeHere' | translate" ></ngx-editor>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <button type="submit" class="next_btn mb-3 float-end mb-2 mt-2">{{ 'submit' | translate }}</button>
+    </form>
+</div>

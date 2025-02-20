@@ -1,0 +1,29 @@
+<div class="p-3">
+    <div class="d-flex align-items-center">
+
+        <h6 class="mb-0 me-2 main-template"> {{ 'SoccerHire' | translate}} </h6>
+
+        <a class="btn btn-outline-white main-template" *ngIf="!isEditable" (click)="editHistory()">
+            <svg id="users-icon" class="me-1" width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 17.7495V21.4995H6.75L17.81 10.4395L14.06 6.68951L3 17.7495ZM20.71 7.53951C20.8027 7.447 20.8762 7.33711 20.9264 7.21614C20.9766 7.09517 21.0024 6.96548 21.0024 6.83451C21.0024 6.70355 20.9766 6.57386 20.9264 6.45289C20.8762 6.33192 20.8027 6.22203 20.71 6.12951L18.37 3.78951C18.2775 3.69681 18.1676 3.62326 18.0466 3.57308C17.9257 3.5229 17.796 3.49707 17.665 3.49707C17.534 3.49707 17.4043 3.5229 17.2834 3.57308C17.1624 3.62326 17.0525 3.69681 16.96 3.78951L15.13 5.61951L18.88 9.36951L20.71 7.53951Z" fill="#787878"/>
+            </svg>
+            {{ 'edit' | translate}}
+        </a>
+
+        <a class="btn btn-outline-white main-template" *ngIf="isEditable" (click)="updateHistory()">
+            <svg id="users-icon" class="me-1" width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 17.7495V21.4995H6.75L17.81 10.4395L14.06 6.68951L3 17.7495ZM20.71 7.53951C20.8027 7.447 20.8762 7.33711 20.9264 7.21614C20.9766 7.09517 21.0024 6.96548 21.0024 6.83451C21.0024 6.70355 20.9766 6.57386 20.9264 6.45289C20.8762 6.33192 20.8027 6.22203 20.71 6.12951L18.37 3.78951C18.2775 3.69681 18.1676 3.62326 18.0466 3.57308C17.9257 3.5229 17.796 3.49707 17.665 3.49707C17.534 3.49707 17.4043 3.5229 17.2834 3.57308C17.1624 3.62326 17.0525 3.69681 16.96 3.78951L15.13 5.61951L18.88 9.36951L20.71 7.53951Z" fill="#787878"/>
+            </svg>
+            {{ 'update' | translate}}
+        </a>
+    </div>
+
+    <div class="mt-3">
+        <app-loader *ngIf="isLoading"></app-loader>
+        <div *ngIf="!history && !isLoading">No history available.</div>
+        <div *ngIf="!isEditable" class="history-text">{{history}}</div>
+        <div *ngIf="isEditable">
+            <textarea class="historyTextarea" #historyTextarea>{{'history' | translate}}</textarea>            
+        </div>
+    </div>
+</div>

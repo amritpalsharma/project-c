@@ -1,0 +1,132 @@
+<div class="player-profile">
+    <div class="close_buttons ">
+        <button class="close-btn" (click)="onCancel()">X</button>
+        <div class="player-elton d-flex align-items-center gap-1">
+            <div class="player-title">
+                <h6>{{'player:' | translate}}</h6>
+            </div>
+            <div class="elton-btn d-flex align-items-center gap-2">
+               <div class="player-elton-img ">
+                <img width="32px" height="32px" *ngIf="user.profile_image_path" [src]="user.profile_image_path" alt="">
+                <img width="32px" height="32px" *ngIf="!user.profile_image_path"   src="../../../../assets/images/default/talent-profile-default.png"  alt="">
+               </div>
+                <div class="player-name_title">
+                    <h6>{{user.first_name + ' ' + user.last_name}}</h6>
+                </div>
+        
+                <button class="elton-close_btn" (click)="onCancel()">
+                    <svg width="14px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                        <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+    <div class="overflow-card">
+        <div class="general-details">
+            <h2>{{'generalDetails' | translate}}</h2>
+            <div class="row general-details-items">
+                <div class="col-lg-3">
+                    <h4 class="details_2 mb-2">{{'currentClub' | translate}}</h4>
+                    <span>
+                        <img 
+                          width="26px"
+                          [src]="user.club_logo_path ? user.club_logo_path : 'assets/images/team-badge.png'" 
+                          alt="">
+                      </span>
+                      
+                    <span class="details-1">{{userData.club_name}}</span>
+                    <!-- <span><img
+                        width="26px"
+                        [src]="user.club_logo_path ? user.club_logo_path : '../../../../assets/images/flag.svg'" alt=""></span> -->
+                </div>
+                <div class="col-lg-3">
+                    <h4 class="details_2 mb-2">{{'leagueLevel' | translate}}</h4>
+                    <span class="details-1">{{user.league_name}}</span>
+                </div>
+                <div class="col-lg-3">
+                    <h4 class="details_2 mb-2">{{'nationality' | translate}}</h4>
+                    
+                    <div class="mt-2" *ngFor="let nation of userNationalities">
+                        <span><img width="26px" src="{{nation.flag_path}}" alt=""></span>
+                        <span class="details-1">{{nation.country_name  }}</span>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <h4 class="details_2 mb-2">{{'position' | translate}}</h4>
+                    <span class="details-1" *ngFor="let position of positions">{{position.name}}</span>              
+                </div>
+                <div class="col-lg-3">
+                    <h4 class="details_2 mb-2">{{'internationalPlayer' | translate}}</h4>
+                    <span><img width="26px" src="assets\images\team-badge.png" alt=""></span>
+                    <span class="details-1">{{user.int_player_country}}</span>    
+                </div>
+            </div>
+        </div>
+        <div class="personal-details pb-5">
+            <h2>{{'personalDetails' | translate}}</h2>
+            <div class="row general-details_box">
+                <div class="col-lg-3">
+                    <h4 class="details_2 mb-2">{{'fullName' | translate}}</h4>
+                    <span class="details-1 p-0">{{user.first_name + ' ' + user.last_name}}</span>
+                </div>
+                <div class="col-lg-3">
+                    <h4 class="details_2 mb-2">{{'dateOfBirth' | translate}}</h4>
+                    <span class="details-1">{{userData.date_of_birth}}</span>
+                </div>
+                <div class="col-lg-3">
+                    <h4 class="details_2 mb-2">{{'foot' | translate}}</h4>
+                    <span class="details-1">{{userData.foot}}</span>
+                </div>
+                <div class="col-lg-3">
+                    <h4 class="details_2 mb-2">{{'InTheTeamSince' | translate}}</h4>
+                    <span class="details-1">{{userData.in_team_since}}</span>
+                </div>
+                <div class="col-lg-3">
+                    <h4 class="details_2 mb-2">{{'age' | translate}}</h4>
+                    <span class="details-1">{{userData.age}}</span>
+                </div>
+                <div class="col-lg-3">
+                    <h4 class="details_2 mb-2">{{'placeOfBirth' | translate}}</h4>
+                    <span class="details-1">{{userData.place_of_birth}}</span>
+                </div>
+                <div class="col-lg-3">
+                    <h4 class="details_2 mb-2">{{'contractUntil' | translate}}</h4>
+                    <span class="details-1">{{userData.contract_end}}</span>                
+                </div>
+                <div class="col-lg-3">
+                 <h4 class="details_2 mb-2">{{'topSpeed' | translate}}</h4>
+                    <span class="details-1">{{userData.top_speed}}</span>    
+                </div>
+                <div class="col-lg-3">
+                    <h4 class="details_2 mb-2">{{'height' | translate}}</h4>
+                       <span class="details-1">{{userData.height}}</span>    
+                </div>
+                <div class="col-lg-3">
+                    <h4 class="details_2 mb-2">{{'position' | translate}}</h4>
+                    <span class="details-1" *ngFor="let position of positions">{{position.name}}</span>        
+                </div>
+                <div class="col-lg-3">
+                    <h4 class="details_2 mb-2">{{'socialMedia' | translate}}</h4>
+                    <div class="facebook_links mb-2 d-flex align-items-center">
+                        <span>
+                            <svg id="users-icon" width="20" height="18" viewBox="0 0 9 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="social-svg">
+                                <path d="M5.6044 6.13187V3.89011C5.6044 3.2967 6.13187 2.76923 6.72528 2.76923H7.84615V0H5.6044C3.75824 0 2.24176 1.51648 2.24176 3.36264V6.1978H0V9.03297H2.24176V18H5.6044V8.9011H7.84615L8.96703 6.06593L5.6044 6.13187Z" fill="#111418"></path>
+                            </svg>
+                        </span>
+                        <span class="details-1">www.facebook.com/{{userData.sm_facebook}}</span>   
+                    </div>
+                     <div class="instagram_links d-flex align-items-center">
+                        <span>
+                            <svg id="users-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="social-svg"><path  d="M13.75 0H6.25C2.79412 0 0 2.79412 0 6.25V13.75C0 17.2059 2.79412 20 6.25 20H13.75C17.2059 20 20 17.2059 20 13.75V6.25C20.0735 2.79412 17.2794 0 13.75 0ZM18.1618 13.75C18.1618 16.1765 16.1765 18.1618 13.75 18.1618H6.25C3.82353 18.1618 1.83824 16.1765 1.83824 13.75V6.25C1.83824 3.82353 3.82353 1.83824 6.25 1.83824H13.75C16.1765 1.83824 18.1618 3.82353 18.1618 6.25V13.75Z" fill="#111418"></path><path d="M10.0004 5C7.20625 5 5.00037 7.20588 5.00037 10C5.00037 12.7941 7.20625 15 10.0004 15C12.7945 15 15.0004 12.7941 15.0004 10C15.0004 7.27941 12.7945 5 10.0004 5ZM10.0004 13.1618C8.30919 13.1618 6.8386 11.7647 6.8386 10C6.8386 8.23529 8.23566 6.83824 10.0004 6.83824C11.7651 6.83824 13.1621 8.23529 13.1621 10C13.1621 11.7647 11.7651 13.1618 10.0004 13.1618Z" fill="#111418"></path><path  d="M15.4412 3.9707C15.8089 3.9707 16.103 4.26482 16.103 4.63247C16.103 5.00011 15.8089 5.29423 15.4412 5.29423C15.0736 5.29423 14.7794 5.00011 14.7794 4.63247C14.7059 4.26482 15 3.9707 15.4412 3.9707Z"></path>
+                            </svg>
+                           </span> 
+                           <span class="details-1">www.instagram.com/{{userData.sm_instagram}}</span>   
+                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

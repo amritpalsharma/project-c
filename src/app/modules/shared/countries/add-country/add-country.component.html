@@ -1,0 +1,20 @@
+<div class="dialog-container">
+  <div class="personal_edit">
+    <div class="dialog-header">
+      <h2>{{'countrySelectionConfirmation' | translate}}</h2>
+    </div>
+    <div class="close_buttons">
+      <button class="close-btn" (click)="dialogRef.close()">X</button>
+    </div>
+  </div>
+  <hr>
+  <div class="country-information">
+    <p>{{'addCountryText' | translate}}</p>
+    <h2>{{'Do you want to add “' + country.package_name + '” to your profile?' | translate}}</h2> <!--Use the country name dynamically-->
+    <!-- <h2>{{ 'addCountry' | translate: { package_name: country.package_name } }}</h2> -->
+    <div class="d-flex country-btn justify-content-between">
+      <button class="cancel-button" (click)="dialogRef.close()">{{'cancel' | translate}}</button>
+      <button class="confirm-button" (click)="onConfirm()">{{'confirm' | translate}}</button> <!-- Trigger onConfirm method -->
+    </div>
+  </div>
+</div>

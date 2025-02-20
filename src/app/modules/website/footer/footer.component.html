@@ -1,0 +1,98 @@
+<footer id="footer">
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-12 col-12 footer-contact">
+          <div class="footer-logo">
+            <img class="light-images" src="./assets/images/pink-logo.png">
+            <img class="dark-images" src="./assets/images/yellow1-logo.png">
+          </div>
+
+          <!-- <ul class="social-link">
+            <li class="insta-icon">
+              <i class="fa-brands fa-instagram"></i>
+            </li>
+            <li class="linkedin-icon">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </li>
+          </ul> -->
+          <ul class="social-link">
+            <li class="insta-icon">
+              <a href="https://www.instagram.com" target="_blank">
+                <i class="fa-brands fa-instagram"></i>
+              </a>
+            </li>
+            <li class="linkedin-icon">
+              <a href="https://www.linkedin.com" target="_blank">
+                <i class="fa-brands fa-linkedin-in"></i>
+              </a>
+            </li>
+          </ul>
+          
+        </div>
+
+        <div class="col-lg-3 col-md-4  col-12 footer-links">
+          <h4>{{ 'getStartedNow' | translate }}</h4>
+          <ul>
+            <li><a [routerLink]="'/pricing'">{{ 'pricing' | translate }}</a></li>
+            <li>
+              <a href="javascript:void(0);" class="login-btn" data-bs-toggle="modal"
+                data-bs-target="#exampleModal-login">
+                {{ 'signIn' | translate }}
+                <svg class="ms-2" width="8" height="12" viewBox="0 0 8 12" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                {{ 'createAccount' | translate }}</a>
+            </li>
+            <li><a [routerLink]="'/faq'">{{ 'faq' | translate }}</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-4  col-12 footer-links">
+          <h4>{{ 'about' | translate }}</h4>
+          <ul>
+            <li><a [routerLink]="'/talent'">{{ 'talents' | translate }}</a></li> 
+            <li><a [routerLink]="'/club'">{{ 'club&scout' | translate }}</a></li>
+            <li><a [routerLink]="'/about'">{{ 'about' | translate }}</a></li>
+            <li><a [routerLink]="'/news'">{{ 'news&Media' | translate }}</a></li>
+            <li><a [routerLink]="'/contact'">{{ 'contact' | translate }}</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-4 col-12 footer-links">
+          <h4>{{ 'legal' | translate }}</h4>
+          <ul>
+            <li><a [routerLink]="'/imprint'">{{ 'imprint' | translate }}</a></li>
+            <li><a [routerLink]="'/privacy'">{{ 'privacyPolicy' | translate }}</a></li>
+            <li><a [routerLink]="'/terms'">{{ 'terms&Conditions' | translate }}</a></li>
+            <li><a [routerLink]="'/cookie'">{{ 'cookies' | translate }}</a></li>
+          </ul>
+        </div>
+      </div>
+
+
+      <div class="form-select1">
+        <p class="country">{{ 'selectCountry' | translate }}</p>
+        <a class="form-select select-country" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          {{ name }}
+        </a>
+        <div class="dropdown-menu dropdown-menu-end">
+          <a *ngFor="let country of countrie" href="{{ country.url }}" class="dropdown-item ai-icon options-country"
+            [class.selected]="selectedcountry == country.id">
+            <img src="https://api.socceryou.ch/uploads/logos/{{country.flag}}" width="30" height="24" class="me-3">
+            <span>{{ country.name }}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>    
+
+  <div class="footer-bottom bgprimary">
+    <div class="text-center text-white">
+      <p class="mb-0">{{ 'copyright' | translate }}</p>
+    </div>
+  </div>
+</footer>

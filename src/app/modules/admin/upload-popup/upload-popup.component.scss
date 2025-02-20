@@ -1,0 +1,81 @@
+.msg-popup-close {
+    text-align: right;
+}
+.msg-popup-dialog {
+    padding: 10px 15px 35px;
+    text-align: center;
+}
+
+.close-img{
+  background-image: url(../../../../assets/images/carbon_close-outline.png);
+  background-size: cover;
+  width: 35px;
+  height: 35px;
+  border: none;
+  padding: 0px;
+  position: absolute;
+  right: 17px;
+  top: 15px;
+  z-index: 2;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.msg-popup-close img {
+    max-width: 40px;
+    cursor:pointer;
+}
+
+.pointer{
+    cursor:pointer;
+}
+
+.upload-box {
+    border: 2px dashed #EBEBEB;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    margin: 10px;
+  }
+  
+  .upload-box.dragover {
+    border-color: #3f51b5;
+    background-color: #f0f8ff;
+  }
+  
+  .file-list {
+    margin-top: 20px;
+  } 
+  .file-list span{
+    color: #FD5454ed;
+  }
+  h6, p{
+    color: #A9AAAB;
+  }
+
+  .gallery-upload-button{    
+      color: #A9AAAB;
+      background: #fff;
+      border: 1px solid #A9AAAB;
+      border-radius: 5px;
+      padding: 5px 10px;
+
+  }
+
+  .gallery-h6 {
+    font-family: Libre Franklin, sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 27px;
+    text-align: center;
+  }
+
+  .gallery-p{
+    font-family: Libre Franklin,sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    text-align: center;
+
+  }

@@ -1,0 +1,178 @@
+<div class="p-0 code-parent">
+  <div class="bg-0C3453 p-4">
+    <h6 class="code-text text-center" *ngIf="this.data.action == 'create'">{{ 'newCoupon' | translate }}</h6>
+    <h6 class="code-text text-center" *ngIf="this.data.action == 'update'">{{ 'editCoupon' | translate }}</h6>
+    <div (click)="close()" class="close-img mb-1">
+    </div>
+  </div>
+
+  <hr class="m-0">
+
+  <div class="p-3 create-new_popup">
+
+    <div class="mb-3 discount-btn">
+      <p class="code-text">
+        {{ 'typeOfCoupon' | translate }}:
+      </p>
+      <button class="custom-button">
+        <label>
+          <input class="form-check-input" type="radio" name="options" [(ngModel)]="type" value="amount"
+            (change)="resetDiscountInputs()">
+          {{ '$Discount' | translate }}
+        </label>
+      </button>
+      <button class="custom-button ms-3">
+        <label>
+          <input class="form-check-input" type="radio" name="options" [(ngModel)]="type" value="percent"
+            (change)="resetDiscountInputs()">
+          {{ '%Discount' | translate }}
+        </label>
+      </button>
+      <div *ngIf="errorMsg.type" class="error-msg">{{ errorMsg.type }}</div>
+    </div>
+
+    <div class="d-flex mb-3 create-new_btn">
+      <div>
+        <p class="code-text">
+          {{ 'couponName' | translate }}
+        </p>
+        <input type="text" class="cupen-btn  code-text" style="min-width: 170px;" [(ngModel)]="name" />
+        <div *ngIf="errorMsg.name" class="error-msg">{{errorMsg.name}}</div>
+      </div>
+      <div class="ms-3">
+        <p class="code-text">
+          {{ 'couponCode' | translate }}
+        </p>
+        <input type="text" class="cupen-btn" style="min-width: 170px;" [(ngModel)]="code">
+        <div *ngIf="errorMsg.code" class="error-msg">{{errorMsg.code}}</div>
+      </div>
+
+    </div>
+
+    <!-- Conditional Inputs Based on Selected Type -->
+    <div *ngIf="type === 'percent'" class="mb-3">
+      <p class="code-text">{{ 'discount' | translate }} (%)</p>
+      <input type="text" class="cupen-btn-1" [(ngModel)]="discount" />
+      <div *ngIf="errorMsg.discount" class="error-msg">{{ errorMsg.discount }}</div>
+    </div>
+
+    <div *ngIf="type === 'amount'" class="mb-3">
+      <p class="code-text">{{ 'discount' | translate }} ($)</p>
+
+      <div class="row mb-3" *ngFor="let discount of discountInputs; let i = index">
+        <div class="col-md-4">
+          <input type="number" class="cupen-btn-1 w-100" [(ngModel)]="discount.discount"
+            placeholder="{{ 'enterDiscountValue' | translate }}">
+        </div>
+        <div class="col-md-4">
+          <select class="cupen-btn-1 w-100" [(ngModel)]="discount.currency" (change)="validateCurrencySelection(i)">
+            <option *ngFor="let currency of currencies" [value]="currency">
+              {{ currency }}
+            </option>
+          </select>
+        </div>
+        <div class="col-md-4 text-end">
+          <button class="btn btn-danger btn-sm" [disabled]="discountInputs.length === 1"
+            (click)="removeDiscountInput(i)">
+            {{ 'remove' | translate }} 
+          </button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <button class="btn btn-primary" (click)="addDiscountInput()">{{ 'addDiscount' | translate }} </button>
+        </div>
+      </div>
+
+      <div *ngIf="errorMsg.duplicateCurrency" class="text-danger mt-2">
+        {{ errorMsg.duplicateCurrency }}
+      </div>
+    </div>
+
+
+    <div class="mb-3">
+      <p class="code-text">
+        {{ 'validBetween' | translate }} 
+      </p>
+      <div class="d-flex calender-inputs-box">
+        <div class="d-flex coupon-dateRange">
+          <div>
+            <div class="cupen-btn-date ">
+              <!-- <svg id="users-icon"  xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-80h80v80h320v-80h80v80h40q33 0 56.5 23.5T840-720v560q0 33-23.5 56.5T760-80H200Zm0-80h560v-400H200v400Zm0-480h560v-80H200v80Zm0 0v-80 80Zm280 240q-17 0-28.5-11.5T440-440q0-17 11.5-28.5T480-480q17 0 28.5 11.5T520-440q0 17-11.5 28.5T480-400Zm-160 0q-17 0-28.5-11.5T280-440q0-17 11.5-28.5T320-480q17 0 28.5 11.5T360-440q0 17-11.5 28.5T320-400Zm320 0q-17 0-28.5-11.5T600-440q0-17 11.5-28.5T640-480q17 0 28.5 11.5T680-440q0 17-11.5 28.5T640-400ZM480-240q-17 0-28.5-11.5T440-280q0-17 11.5-28.5T480-320q17 0 28.5 11.5T520-280q0 17-11.5 28.5T480-240Zm-160 0q-17 0-28.5-11.5T280-280q0-17 11.5-28.5T320-320q17 0 28.5 11.5T360-280q0 17-11.5 28.5T320-240Zm320 0q-17 0-28.5-11.5T600-280q0-17 11.5-28.5T640-320q17 0 28.5 11.5T680-280q0 17-11.5 28.5T640-240Z"/></svg>  May 8, 2024 -->
+
+              <mat-form-field class="meta-date">
+                <mat-label>{{ 'chooseADate' | translate }} </mat-label>
+                <input matInput [matDatepicker]="picker1" [(ngModel)]="startDate"
+                  (dateChange)="onDateChange('start', $event)" />
+                <mat-datepicker-toggle matIconPrefix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+              </mat-form-field>
+
+            </div>
+            <div *ngIf="errorMsg.startDate" class="error-msg">{{errorMsg.startDate}}</div>
+          </div>
+
+          <div>
+            <div class="cupen-btn-date-1" [ngClass]="{'disable-end-date': disableEndDate}">
+              <!-- <svg id="users-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-80h80v80h320v-80h80v80h40q33 0 56.5 23.5T840-720v560q0 33-23.5 56.5T760-80H200Zm0-80h560v-400H200v400Zm0-480h560v-80H200v80Zm0 0v-80 80Zm280 240q-17 0-28.5-11.5T440-440q0-17 11.5-28.5T480-480q17 0 28.5 11.5T520-440q0 17-11.5 28.5T480-400Zm-160 0q-17 0-28.5-11.5T280-440q0-17 11.5-28.5T320-480q17 0 28.5 11.5T360-440q0 17-11.5 28.5T320-400Zm320 0q-17 0-28.5-11.5T600-440q0-17 11.5-28.5T640-480q17 0 28.5 11.5T680-440q0 17-11.5 28.5T640-400ZM480-240q-17 0-28.5-11.5T440-280q0-17 11.5-28.5T480-320q17 0 28.5 11.5T520-280q0 17-11.5 28.5T480-240Zm-160 0q-17 0-28.5-11.5T280-280q0-17 11.5-28.5T320-320q17 0 28.5 11.5T360-280q0 17-11.5 28.5T320-240Zm320 0q-17 0-28.5-11.5T600-280q0-17 11.5-28.5T640-320q17 0 28.5 11.5T680-280q0 17-11.5 28.5T640-240Z"/></svg>   May 8, 2024 -->
+              <mat-form-field class="meta-date">
+                <mat-label>{{ 'chooseADate' | translate }}</mat-label>
+                <input matInput [matDatepicker]="picker2" [(ngModel)]="endDate"
+                  (dateChange)="onDateChange('end', $event)">
+                <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+                <mat-datepicker-toggle matIconPrefix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex align-items-center ms-2 code-text">
+          <span class="form-check align-self-center ">
+            <label for="defaultCheck1" class="form-check-label">
+              <input type="checkbox" value="" id="defaultCheck1" class="form-check-input" [(ngModel)]="noEndDate"
+                (change)="onNoEndDateChange($event)" />
+                {{ 'dontsetAnEnd' | translate }}
+            </label>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="d-flex align-items-center code-text">
+        <span class="form-check align-self-center code-text ">
+          <label for="defaultCheck2" class="form-check-label">
+            <input type="checkbox" value="1" id="defaultCheck2" class="form-check-input" [(ngModel)]="isLimitedUse" />
+            {{ 'totalNumberOfUSers' | translate }}
+          </label>
+        </span>
+      </div>
+      <input type="text" class="cupen-btn-1" [(ngModel)]="limit">
+      <div *ngIf="errorMsg.limit" class="error-msg">{{errorMsg.limit}}</div>
+      <div class="d-flex align-items-center code-text mt-2">
+        <span class="form-check align-self-center">
+          <label for="defaultCheck3" class="form-check-label">
+            <input type="checkbox" value="" id="defaultCheck3" class="form-check-input"
+              [(ngModel)]="isSingleUsePerCustomer" />
+              {{ 'limitToOneUseCustomer' | translate }}
+          </label>
+        </span>
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="m-0">
+
+  <div>
+    <div class=" d-flex justify-content-between bg-0C3453 p-3">
+      <div>
+        <a class="btn btn-delete text-danger" (click)="close()">{{ 'cancel' | translate }}</a>
+      </div>
+      <div>
+        <a class="btn Launch px-5" (click)="createCoupon()">{{ 'createCoupon' | translate }}</a>
+      </div>
+    </div>
+  </div>

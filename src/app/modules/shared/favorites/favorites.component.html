@@ -1,0 +1,211 @@
+
+<div class="page-content">
+  <div class="main-wrapper">
+    <div class="card bg-color">
+      <div class="card-header border-0">
+        <div class="d-flex align-items-center justify-content-between marketing-header-bar">
+          <div class="d-flex align-items-center">
+            <h2 class="card-title mb-0 me-3">{{'favorites' | translate}} ({{totalFavorites}})</h2>
+          </div>
+          <div class="card-search bg-072944 bg-custom p-1">
+            <div class="input-group d-flex align-items-center ">
+              <span class="input-group-text "
+                ><svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g opacity="0.5">
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M9.1441 11.9881C11.8739 10.8279 13.1464 7.67448 11.9863 4.94465C10.8261 2.21481 7.67265 0.942328 4.94281 2.10248C2.21297 3.26263 0.94049 6.4161 2.10064 9.14593C3.2608 11.8758 6.41426 13.1483 9.1441 11.9881Z"
+                      stroke="black"
+                      stroke-width="1.2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="search-icon-favourites"
+                    ></path>
+                    <path
+                      d="M10.8408 10.8398L15.0062 15.0058"
+                      stroke="black"
+                      stroke-width="1.2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="search-icon-favourites"
+                    ></path>
+                  </g></svg></span
+              >
+              <input
+                type="text"
+                placeholder="{{ 'search' | translate }}"
+                aria-label="Username"
+                aria-describedby="basic-addon1"
+                class="form-control ps-0 "
+                (keyup)="search($event)"
+              />
+            </div>
+            <div class="d-flex align-items-center pe-2 border-start ps-3 cursor-pointer filter-svg" (click)="showFilterPopup()">
+              <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg"
+                class="me-2">
+                <path
+                  d="M16.5938 6.23438H1.40625C1.18247 6.23438 0.967862 6.14054 0.809629 5.97352C0.651395 5.80649 0.5625 5.57996 0.5625 5.34375C0.5625 5.10754 0.651395 4.88101 0.809629 4.71398C0.967862 4.54696 1.18247 4.45313 1.40625 4.45312H16.5938C16.8175 4.45312 17.0321 4.54696 17.1904 4.71398C17.3486 4.88101 17.4375 5.10754 17.4375 5.34375C17.4375 5.57996 17.3486 5.80649 17.1904 5.97352C17.0321 6.14054 16.8175 6.23438 16.5938 6.23438ZM13.7812 10.3906H4.21875C3.99497 10.3906 3.78036 10.2968 3.62213 10.1298C3.46389 9.96274 3.375 9.73621 3.375 9.5C3.375 9.26379 3.46389 9.03726 3.62213 8.87023C3.78036 8.70321 3.99497 8.60938 4.21875 8.60938H13.7812C14.005 8.60938 14.2196 8.70321 14.3779 8.87023C14.5361 9.03726 14.625 9.26379 14.625 9.5C14.625 9.73621 14.5361 9.96274 14.3779 10.1298C14.2196 10.2968 14.005 10.3906 13.7812 10.3906ZM10.4062 14.5469H7.59375C7.36997 14.5469 7.15536 14.453 6.99713 14.286C6.83889 14.119 6.75 13.8925 6.75 13.6562C6.75 13.42 6.83889 13.1935 6.99713 13.0265C7.15536 12.8595 7.36997 12.7656 7.59375 12.7656H10.4062C10.63 12.7656 10.8446 12.8595 11.0029 13.0265C11.1611 13.1935 11.25 13.42 11.25 13.6562C11.25 13.8925 11.1611 14.119 11.0029 14.286C10.8446 14.453 10.63 14.5469 10.4062 14.5469Z"
+                  fill="#787878"></path>
+              </svg>
+              <span class="input-filter-text">{{ 'filter' | translate }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex align-items-center justify-content-between ">
+          <div class="d-flex align-items-center">
+            <div class="dropdown dropdown-favourites">
+              <button
+                class="btn btn-secondary dropdown-toggle  toggle-padding dropdown-toggle-checkbox favourites-main-checkbox"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false" 
+                (click)="selectAllFavorites()"
+              >
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked *ngIf="allSelected" />
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" *ngIf="!allSelected" />
+                </div>
+                <svg width="9" height="5" viewBox="0 0 9 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4.08333 3.25838L0.995812 0.170854C0.768006 -0.0569515 0.39866 -0.0569515 0.170854 0.170854C-0.0569515 0.39866 -0.0569515 0.768006 0.170854 0.995812L3.67085 4.49581C3.89866 4.72362 4.26801 4.72362 4.49581 4.49581L7.99581 0.995812C8.22362 0.768006 8.22362 0.39866 7.99581 0.170854C7.76801 -0.0569515 7.39866 -0.0569515 7.17085 0.170854L4.08333 3.25838Z" fill="#646464"/>
+                </svg>
+              </button>
+            </div>
+
+            <a class="btn btn-outline-white ms-2 delete-text" id="users-icon" (click)="confirmDeletion()">
+              <svg
+                width="22"
+                height="23"
+                viewBox="0 0 22 23"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                class="me-1"
+              >
+                <path
+                  d="M5.49967 17.5589C5.49967 18.5112 6.32467 19.2904 7.33301 19.2904H14.6663C15.6747 19.2904 16.4997 18.5112 16.4997 17.5589V7.16999H5.49967V17.5589ZM17.4163 4.57277H14.208L13.2913 3.70703H8.70801L7.79134 4.57277H4.58301V6.30425H17.4163V4.57277Z"
+                  fill="#787878"
+                ></path>
+              </svg> 
+              {{'removeFromFavorite' | translate }}</a
+            >
+
+          </div>
+          <div class="d-flex align-items-center">
+            <mat-paginator class="paginator-components bg-0C3453 pagination-values" 
+            [length]="totalItems" 
+            [pageSize]="pageSize" 
+            [pageSizeOptions]="[5, 10, 20]"  (page)="onPageChange()"></mat-paginator> 
+          </div>
+        </div>
+
+        <div class="table-responsive" >
+          <table mat-table [dataSource]="userFavorites" class="table table-striped table-hover table-users ">
+            <!-- Position Column -->
+            <ng-container matColumnDef="#">
+              <th mat-header-cell *matHeaderCellDef> </th>
+              <td mat-cell *matCellDef="let element">
+                <span class="form-check align-self-center ">
+                  <input
+                    type="checkbox"
+                    class="form-check-input "
+                    [checked]="selectedIds.includes(element.id)"
+                    (change)="onCheckboxChange(element)"
+                  />
+                  <label for="defaultCheck1" class="form-check-label"></label>
+                </span>
+              </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="Name">
+              <th mat-header-cell *matHeaderCellDef> {{'name' | translate}} </th>
+              <td mat-cell *matCellDef="let element">  
+                
+                <div class="d-flex align-items-center">
+                  <span class="position-relative">
+                    <img *ngIf="!element.profile_image_path"
+                      src="../../../../assets/images/default/talent-profile-default.png"
+                      alt=""
+                      class="table_img"
+                    />
+
+                    <img *ngIf="element.profile_image_path"
+                      src="{{element.profile_image_path}}"
+                      alt=""
+                      class="table_img"
+                    />
+                    <span class="position-absolute verified-icon">
+                      <img src="../../../assets/images/pending.png" alt="" class="user-pending-icon" *ngIf="element.user_status === '1'"/>
+                      <img src="../../../assets/images/approved.png" alt="" class="user-approved-icon" *ngIf="element.user_status === '2'"/>
+                      <img src="../../../assets/images/rejected.png" alt="" class="user-rejected-icon" *ngIf="element.user_status === '3'"/>
+                    </span>
+                  </span>
+                  <span class="main-template"
+                  style="padding-left: 15px">{{element.first_name}} {{element.last_name}}</span>
+                </div>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="User Type">
+              <th mat-header-cell *matHeaderCellDef > {{'userType' | translate}} 
+                <svg width="9" height="13" viewBox="0 0 9 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1.15341 7.43701H7.84716C8.44903 7.43701 8.74997 8.1958 8.32528 8.63818L4.97841 12.1245C4.71404 12.3999 4.28654 12.3999 4.02497 12.1245L0.675285 8.63818C0.250597 8.1958 0.551535 7.43701 1.15341 7.43701ZM8.32528 4.36084L4.97841 0.874512C4.71404 0.599121 4.28654 0.599121 4.02497 0.874512L0.675285 4.36084C0.250597 4.80322 0.551535 5.56201 1.15341 5.56201H7.84716C8.44903 5.56201 8.74997 4.80322 8.32528 4.36084Z" fill="#111418" class="td-icon-favourites"/>
+                  </svg>
+                  
+              </th>
+              <td mat-cell *matCellDef="let element">  {{ element.role_name }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="Location">
+              <th mat-header-cell *matHeaderCellDef > {{'location' | translate}} </th>
+              <td mat-cell *matCellDef="let element">  {{ element.location }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="Joined Date - Time">
+              <th mat-header-cell *matHeaderCellDef>   {{'joinedDateTime' | translate}} 
+                <svg width="9" height="13" viewBox="0 0 9 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1.15341 7.43701H7.84716C8.44903 7.43701 8.74997 8.1958 8.32528 8.63818L4.97841 12.1245C4.71404 12.3999 4.28654 12.3999 4.02497 12.1245L0.675285 8.63818C0.250597 8.1958 0.551535 7.43701 1.15341 7.43701ZM8.32528 4.36084L4.97841 0.874512C4.71404 0.599121 4.28654 0.599121 4.02497 0.874512L0.675285 4.36084C0.250597 4.80322 0.551535 5.56201 1.15341 5.56201H7.84716C8.44903 5.56201 8.74997 4.80322 8.32528 4.36084Z" fill="#111418" class="td-icon-favourites"/>
+                </svg>
+              </th>
+              <td mat-cell *matCellDef="let element"> {{ element.user_created_at | date:'dd.MM.yyyy - hh.mm a' }}</td>
+            </ng-container>
+            <ng-container matColumnDef="View Profile">            
+              <th mat-header-cell *matHeaderCellDef class="text-center">   {{'viewProfile' | translate}}  </th>
+              <td mat-cell *matCellDef="let element" class="text-center">
+                <svg class="pointer"  (click)="openViewProfile(element)" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12.5 15.625C14.2259 15.625 15.625 14.2259 15.625 12.5C15.625 10.7741 14.2259 9.375 12.5 9.375C10.7741 9.375 9.375 10.7741 9.375 12.5C9.375 14.2259 10.7741 15.625 12.5 15.625Z" fill="#787878" class="td-icon-favourites"/>
+                  <path d="M24.1715 12.2344C23.2527 9.85754 21.6575 7.80204 19.5831 6.32194C17.5087 4.84184 15.0461 4.00201 12.4997 3.90625C9.9532 4.00201 7.4906 4.84184 5.41623 6.32194C3.34187 7.80204 1.74667 9.85754 0.827793 12.2344C0.765736 12.406 0.765736 12.594 0.827793 12.7656C1.74667 15.1425 3.34187 17.198 5.41623 18.6781C7.4906 20.1582 9.9532 20.998 12.4997 21.0938C15.0461 20.998 17.5087 20.1582 19.5831 18.6781C21.6575 17.198 23.2527 15.1425 24.1715 12.7656C24.2336 12.594 24.2336 12.406 24.1715 12.2344ZM12.4997 17.5781C11.4953 17.5781 10.5135 17.2803 9.67841 16.7223C8.84332 16.1643 8.19244 15.3712 7.80809 14.4433C7.42374 13.5154 7.32318 12.4944 7.51912 11.5093C7.71506 10.5242 8.1987 9.61941 8.90889 8.90922C9.61908 8.19903 10.5239 7.71539 11.509 7.51945C12.494 7.32351 13.5151 7.42407 14.443 7.80842C15.3709 8.19278 16.164 8.84365 16.722 9.67875C17.28 10.5138 17.5778 11.4956 17.5778 12.5C17.5757 13.8462 17.04 15.1366 16.0882 16.0885C15.1363 17.0404 13.8458 17.5761 12.4997 17.5781Z" fill="#787878" class="td-icon-favourites" />
+                </svg>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="Remove">
+              <th mat-header-cell *matHeaderCellDef class="text-center">   {{'remove' | translate}} </th>
+              <td mat-cell *matCellDef="let element" class="text-center">  
+                <svg  class="pointer" (click)="confirmSingleDeletion(element.id)" width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1.50065 14.0589C1.50065 15.0112 2.32565 15.7904 3.33398 15.7904H10.6673C11.6757 15.7904 12.5007 15.0112 12.5007 14.0589V3.66999H1.50065V14.0589ZM13.4173 1.07277H10.209L9.29232 0.207031H4.70898L3.79232 1.07277H0.583984V2.80425H13.4173V1.07277Z" fill="#787878" class="td-icon-favourites"/>
+                </svg>                  
+              </td>
+            </ng-container>
+            
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            
+            <tr class="mat-row user-empty-tr" *matNoDataRow>
+              <td [attr.colspan]="displayedColumns.length" class="user-empty-td">
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

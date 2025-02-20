@@ -1,0 +1,53 @@
+<div class="p-3">
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h1 class="modal-title text-center fs-5 " >
+        {{ 'addTeamMember' | translate }}
+      </h1>
+      <div class="close-img " (click)="close()">
+      </div>
+    </div>
+ <hr>
+
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label"
+              >{{ 'email' | translate }}</label
+            >
+            <input
+              type="email"
+              class="form-control"
+              id="exampleFormControlInput1"
+              placeholder="example@email.com"
+            />
+          </div>
+        </div>
+        <div class="col-xl-12">
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label"
+              >{{ 'siteRole' | translate }}</label
+            >
+            <select class="form-select" aria-label="Default select example">
+              <option selected>{{ 'select' | translate }}</option>
+              <option value="1">{{ 'one' | translate }}</option>
+              <option value="2">{{ 'two' | translate }}</option>
+              <option value="3">{{ 'three' | translate }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="upload d-flex justify-content-around mt-5">
+    <!-- <div class="marketing-button-child"> -->
+  <div>
+    <a class="btn btn-delete code-text">{{ 'cancel' | translate }}</a>
+  </div>
+  <div>
+    <a class="btn Launch" > {{ 'invite' | translate }}</a>
+  </div>
+</div>

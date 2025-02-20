@@ -1,0 +1,69 @@
+<div class="dialog-content add-perfomance">
+    <div class="personal_edit">
+        <div class="dialog-header m-auto">
+            <h2>Upload Performance Report</h2>
+        </div>
+        <div class="close_buttons" (click)="dialogRef.close()">
+            <button class="close-btn">X</button>
+        </div>
+    </div>
+    <hr>
+    <div class="overflow-card perfomance-report">
+
+        <label class="choose-file d-block cursor-pointer" for="reportUpload"
+            (dragover)="onDragOver($event)" (drop)="onDrop($event)">
+            <div class="choose-icon">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M15.9987 29.3347H6.66536C5.92898 29.3347 5.33203 28.7377 5.33203 28.0013V4.0013C5.33203 3.26492 5.92898 2.66797 6.66536 2.66797H25.332C26.0684 2.66797 26.6654 3.26492 26.6654 4.0013V16.0013"
+                        stroke="#787878" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M23.6641 29.3346V20.668" stroke="#787878" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M20.6641 23L21.6641 22L23.6641 20L25.6641 22L26.6641 23" stroke="#787878" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M10.6641 10.668H21.3307" stroke="#787878" stroke-width="2" stroke-linecap="round" />
+                    <path d="M10.6641 16H15.9974" stroke="#787878" stroke-width="2" stroke-linecap="round" />
+                </svg>
+            </div>
+            <h2>Drag and Drop files here</h2>
+            <p>Files supported: JPG, PNG, PDF</p>
+            <input id="reportUpload" (change)="onFileSelected($event)" accept="image/*" type="file" class="d-none" />
+            <p>Maximum Size: 5MB</p>
+        </label>
+
+        <div class="row align-items-center document-title_box">
+            <div class="form-group col-lg-6 ">
+                <label for="document-title">Document Title</label> <br>
+                <input type="text" id="document-title" [(ngModel)]="documentTitle" placeholder="Enter Document Title" />
+            </div>
+            <div class="col-lg-6 choose-file-name" id="upload-file-process"  *ngIf="selectedFile" >
+                <div class="choose-file-box d-flex align-items-center justify-content-between" >
+                    <span *ngIf="selectedFile" class="w-100"> 
+                        <svg width="18" height="24" viewBox="0 0 18 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 0C2.20435 0 1.44129 0.316071 0.87868 0.87868C0.31607 1.44129 0 2.20435 0 3V21C0 21.7956 0.31607 22.5587 0.87868 23.1213C1.44129 23.6839 2.20435 24 3 24H15C15.7956 24 16.5587 23.6839 17.1213 23.1213C17.6839 22.5587 18 21.7956 18 21V3C18 2.20435 17.6839 1.44129 17.1213 0.87868C16.5587 0.316071 15.7956 0 15 0L3 0ZM3 1.5H15C15.3978 1.5 15.7794 1.65804 16.0607 1.93934C16.342 2.22064 16.5 2.60218 16.5 3V21C16.5 21.3978 16.342 21.7794 16.0607 22.0607C15.7794 22.342 15.3978 22.5 15 22.5H3C2.60218 22.5 2.22064 22.342 1.93934 22.0607C1.65804 21.7794 1.5 21.3978 1.5 21V3C1.5 2.60218 1.65804 2.22064 1.93934 1.93934C2.22064 1.65804 2.60218 1.5 3 1.5Z" fill="black"/>
+                            <path d="M3.90426 18.1295C3.61102 18.0139 3.37502 17.7876 3.24726 17.4995C2.95476 16.9175 3.05226 16.3355 3.36726 15.8465C3.66426 15.386 4.15626 14.9945 4.71276 14.666C5.41777 14.2664 6.16287 13.9421 6.93576 13.6985C7.535 12.6189 8.06701 11.5032 8.52876 10.358C8.25358 9.73207 8.03764 9.08173 7.88376 8.41551C7.75476 7.81551 7.70526 7.22151 7.81476 6.71151C7.92726 6.18051 8.22576 5.70351 8.78976 5.47701C9.07776 5.36151 9.38976 5.29701 9.69276 5.36151C9.84517 5.39395 9.98846 5.45992 10.1122 5.55462C10.236 5.64932 10.3371 5.77037 10.4083 5.90901C10.5403 6.15501 10.5883 6.44301 10.5988 6.71601C10.6093 6.99651 10.5808 7.30851 10.5283 7.63701C10.4023 8.40201 10.1233 9.33801 9.74826 10.328C10.1624 11.2129 10.6544 12.0592 11.2183 12.857C11.8859 12.8049 12.5574 12.8301 13.2193 12.932C13.7653 13.0295 14.3203 13.2245 14.6593 13.6295C14.8393 13.8455 14.9488 14.1095 14.9593 14.4065C14.9698 14.6945 14.8888 14.9795 14.7523 15.251C14.634 15.5026 14.4507 15.718 14.2213 15.875C13.9943 16.0226 13.7267 16.095 13.4563 16.082C12.9598 16.061 12.4753 15.788 12.0568 15.4565C11.5478 15.0359 11.0892 14.5577 10.6903 14.0315C9.67583 14.1462 8.67346 14.35 7.69476 14.6405C7.24609 15.4355 6.73392 16.193 6.16326 16.8975C5.58426 17.6175 4.84926 18.1695 4.05326 18.4075C4.11176 18.2935 4.22601 18.229 4.34776 18.181C4.34326 18.1735 4.33876 18.166 4.33426 18.1585C4.20526 18.0285 4.06426 17.9115 3.90426 18.1295Z" fill="black"/>
+                        </svg>
+                        <span class="ps-2">{{ selectedFile.name }}</span>
+                        
+                        <div class="progress d-block" *ngIf="uploadProgress > 0">
+                            <div class="progress-bar" [ngStyle]="{ 'width': uploadProgress + '%' }"></div>
+                        </div>
+                    </span>
+
+                    
+                    <label for="reportUpload" class="explore-chip_cut">
+                        <svg  width="13px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path  d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path>
+                        </svg>
+                    </label>
+                </div>            
+            </div>
+        </div>
+      
+    </div>
+    <div class="dialog-actions align-items-center d-flex justify-content-between perfomance-report-btn">            
+        <button class="cancel-btn" (click)="dialogRef.close()">Cancel</button>
+        <button class="upload-btn" (click)="uploadFile()">Upload</button>
+    </div>
+
+</div>
+

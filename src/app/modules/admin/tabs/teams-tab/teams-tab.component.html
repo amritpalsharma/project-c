@@ -1,0 +1,98 @@
+
+<div class="player-view-container p-3" *ngIf="view == 'team'">
+    <div class="mb-3 club-team">{{ 'teams' | translate }}</div>
+    <app-loader *ngIf="isLoading"></app-loader>
+    <div *ngIf="teams.length == '0' && !isLoading">{{ 'NoTeamsAvailable' | translate }}</div>
+    <div *ngFor="let team of teams" (click)="getTeamPlayers(team.id, team.team_name) " class="box-square position-relative">
+        <div class="team-types">{{team.team_name}}</div> 
+    </div>
+</div>
+
+<div class="player-view-container" *ngIf="view == 'player'">
+    <div class="container"> 
+      <div class="row">
+        <span class="p-3 team-type" style="display: flex; align-items: center;">
+          <span class="back-link" (click)="backToTeamView();">{{ 'back' | translate }}</span> 
+          {{selectedTeam}}
+        </span>
+        <div class="col pl-5">
+          <div class="table-responsive">
+            <table mat-table [dataSource]="players" class="table table-hover table-striped table-users ">
+             
+              <!-- Name Column -->
+              <ng-container matColumnDef="Player Name">
+                <th mat-header-cell *matHeaderCellDef> {{ 'playerName' | translate }} </th>
+                <td mat-cell *matCellDef="let element">  
+
+                  <div class="d-flex align-items-center pic-with-name">
+                    <span class="position-relative">
+                      <img src="../../../assets/images/1.jpg" alt="" class="table_img" *ngIf="!element.profile_image_path" />
+                      <img src="{{element.profile_image_path}}" alt="" class="table_img" *ngIf="element.profile_image_path" />
+                      <span
+                        class="position-absolute verified-icon"
+                      >
+                      <img src="../../../assets/images/pending.png" alt="" class="user-pending-icon" *ngIf="element.user_status === '1'"/>
+                      <img src="../../../assets/images/approved.png" alt="" class="user-approved-icon" *ngIf="element.user_status === '2'"/>
+                      <img src="../../../assets/images/rejected.png" alt="" class="user-rejected-icon" *ngIf="element.user_status === '3'"/>
+                      </span>
+                    </span>
+                    <span class="main-template" style="padding-left: 15px">
+                      {{ element.first_name }} {{ element.last_name }}
+                    </span>
+                  </div>
+
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Joining Date">
+                <th mat-header-cell *matHeaderCellDef >{{ 'joiningDate' | translate }}
+                  <!-- <svg width="9" height="13" viewBox="0 0 9 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.15341 7.43701H7.84716C8.44903 7.43701 8.74997 8.1958 8.32528 8.63818L4.97841 12.1245C4.71404 12.3999 4.28654 12.3999 4.02497 12.1245L0.675285 8.63818C0.250597 8.1958 0.551535 7.43701 1.15341 7.43701ZM8.32528 4.36084L4.97841 0.874512C4.71404 0.599121 4.28654 0.599121 4.02497 0.874512L0.675285 4.36084C0.250597 4.80322 0.551535 5.56201 1.15341 5.56201H7.84716C8.44903 5.56201 8.74997 4.80322 8.32528 4.36084Z"  class="team-up-down" fill="#111418"/>
+                    </svg>                     -->
+                </th>
+                <td mat-cell *matCellDef="let element">  {{ element.join_date | date:'MM.dd.yyyy' }}</td>
+              </ng-container>
+              
+              <ng-container matColumnDef="Exit Date">
+                <th mat-header-cell *matHeaderCellDef>{{ 'exitDate' | translate }}
+                  <!-- <svg width="9" height="13" viewBox="0 0 9 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.15341 7.43701H7.84716C8.44903 7.43701 8.74997 8.1958 8.32528 8.63818L4.97841 12.1245C4.71404 12.3999 4.28654 12.3999 4.02497 12.1245L0.675285 8.63818C0.250597 8.1958 0.551535 7.43701 1.15341 7.43701ZM8.32528 4.36084L4.97841 0.874512C4.71404 0.599121 4.28654 0.599121 4.02497 0.874512L0.675285 4.36084C0.250597 4.80322 0.551535 5.56201 1.15341 5.56201H7.84716C8.44903 5.56201 8.74997 4.80322 8.32528 4.36084Z"  class="team-up-down" fill="#111418"/>
+                    </svg>                     -->
+                </th>
+                <td mat-cell *matCellDef="let element"> 
+                    <span *ngIf="element.end_date">{{ element.end_date | date:'MM.dd.yyyy' }}</span>
+                    <span *ngIf="!element.end_date">-</span>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Location">
+                <th mat-header-cell *matHeaderCellDef > {{ 'location' | translate }} </th>
+                <td mat-cell *matCellDef="let element"> {{element.location}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Edit">
+                <th mat-header-cell *matHeaderCellDef class="text-center"> {{ 'edit' | translate }}</th>
+                <td mat-cell *matCellDef="let element" class="text-center cursor-pointer">  
+                    <svg (click)="navigate(element.player_id)" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 17.4585V20.4985C3 20.7785 3.22 20.9985 3.5 20.9985H6.54C6.67 20.9985 6.8 20.9485 6.89 20.8485L17.81 9.93854L14.06 6.18854L3.15 17.0985C3.05 17.1985 3 17.3185 3 17.4585ZM20.71 7.03854C20.8027 6.94602 20.8762 6.83614 20.9264 6.71516C20.9766 6.59419 21.0024 6.46451 21.0024 6.33354C21.0024 6.20257 20.9766 6.07289 20.9264 5.95191C20.8762 5.83094 20.8027 5.72105 20.71 5.62854L18.37 3.28854C18.2775 3.19583 18.1676 3.12229 18.0466 3.07211C17.9257 3.02192 17.796 2.99609 17.665 2.99609C17.534 2.99609 17.4043 3.02192 17.2834 3.07211C17.1624 3.12229 17.0525 3.19583 16.96 3.28854L15.13 5.11854L18.88 8.86854L20.71 7.03854Z" class="club-edit" fill="#787878"/>
+                    </svg>       
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              
+              <tr class="mat-row user-empty-tr" *matNoDataRow>
+                <td [attr.colspan]="displayedColumns.length" class="user-empty-td">
+                  <app-loader *ngIf="isLoading"></app-loader>
+                  <div *ngIf="players.length == 0 && !isLoading" style="text-align: center;">{{ 'noRecordFound' | translate }}</div>
+                </td>
+              </tr>
+              
+            </table>
+            
+
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="d-flex flex-row" style="height: 100vh;">
+  <div class="sidebar">
+    <app-sidebar></app-sidebar>
+  </div>
+
+  <div class="all-page-content flex-grow-1" style="overflow: hidden;">
+    <div class="page-container" [ngStyle]="{'width': isDashboard ? '100%' : 'calc(100% - 300px)'}">
+      <app-header></app-header>
+      <div class="outlet_outer">
+        <router-outlet></router-outlet>
+      </div>
+      <app-footer></app-footer>
+    </div>
+  </div>
+</div>

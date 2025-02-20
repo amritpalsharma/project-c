@@ -1,0 +1,248 @@
+<div class="overflow-auto bg-0C3453 p-4">
+    <div>
+        <div class="d-flex align-items-center">
+            <span class="scout-player-name">{{ 'player:' | translate }}</span>
+            <span class="d-flex align-items-center border-player scout-player-detail">
+                <img src="{{player.meta.profile_image_path}}" *ngIf="player.meta && player.meta.profile_image_path"
+                    height="26" width="24" class="fc-club-img mx-1" alt="">
+                <img src="../../../../assets/images/1.jpg" *ngIf="!player.meta || !player.meta.profile_image_path"
+                    height="26" width="24" class="fc-club-img mx-1" alt="">
+                <span class="mx-1"> {{player.first_name}} {{player.last_name}} </span>
+                <img src="../../../../assets/images/cross-icon.png" class="fc-img mx-1 style-1" alt="">
+            </span>
+            <div class="close-img" (click)="close()">
+            </div>
+        </div>
+    </div>
+    <hr class="m-0 mt-2">
+    <div class="user-right-content py-4">
+        <div class="d-flex align-items-center mb-4">
+            <h6 class="mb-0 me-2 main-template"> {{ 'generalDetails' | translate}} </h6>
+        </div>
+        <div class="row mb-4">
+            <div class="col-lg-3">
+                <div class="team-details">
+                    <p>{{ 'currentClub' | translate}}</p>
+                    <h6>
+                        <img src="{{player.club_logo_path}}" class="fc-club-img" alt="">
+                        {{player?.current_club_name |translate }}
+                        <img src="../../../../assets/images/flag.svg" class="fc-img  style-1" alt="">
+                    </h6>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="team-details">
+                    <p> {{ 'leagueLevel' | translate }}</p>
+                    <h6>{{ player?.league_name | translate }}</h6>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="team-details">
+                    <p> {{ 'nationality' | translate }}</p>
+                    <div class="d-flex align-items-center mb-2" *ngFor="let nation of userNationalities">
+                        <img src="{{nation.flag_path}}" alt="">
+                        <h6> {{nation.country_name | translate }} </h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="team-details">
+                    <p> {{ 'position' | translate}}</p>
+                    <h6>{{player?.meta?.main_position | translate}}</h6>
+                </div>
+            </div>
+            <div class="col-lg-3 mt-3">
+                <div class="team-details">
+                    <p> {{ 'internationalPlayer' | translate}}</p>
+                    <div class="d-flex align-items-center">
+                        <img *ngIf="player.int_player_country_logo_path" src="{{player.int_player_country_logo_path}}"
+                            alt="">
+                        <h6>{{player?.int_player_country}}</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="user-right-content py-4">
+        <div class="d-flex align-items-center mb-4">
+            <h6 class="mb-0 me-2 main-template"> {{ 'personalDetails' | translate}}</h6>
+        </div>
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="team-details style-1">
+                    <p> {{ 'fullName' | translate}}</p>
+                    <h6>{{player.first_name}} {{player.last_name}}</h6>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="team-details style-1">
+                    <p> {{ 'dateOfBirth' | translate}}</p>
+                    <h6>{{player?.meta?.date_of_birth | date:'MMM d, y' }}</h6>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="team-details style-1">
+                    <p> {{ 'foot' | translate}}</p>
+                    <h6>{{player?.meta?.foot}}</h6>
+                </div>
+            </div>
+            <div class="col-lg-3 mt-3">
+                <div class="team-details style-1">
+                    <p>{{ 'inTheTeamSince' | translate}}</p>
+                    <h6>{{player?.meta?.in_team_since | date:'MMM d, y' }}</h6>
+                </div>
+            </div>
+            <div class="col-lg-3 mt-3">
+                <div class="team-details style-1">
+                    <p>{{ 'age' | translate}}</p>
+                    <h6>{{calculateAge(player?.meta?.date_of_birth)}}</h6>
+                </div>
+            </div>
+            <div class="col-lg-3 mt-3 ">
+                <div class="team-details style-1">
+                    <p> {{'placeOfBirth' | translate }}</p>
+                    <h6>{{player?.meta?.place_of_birth}}, <img src="../../../../assets/images/flag.svg"
+                            alt="">Switzerland</h6>
+                </div>
+            </div>
+            <div class="col-lg-3 mt-3">
+                <div class="team-details style-1">
+                    <p>{{ 'contractUntil' | translate}}</p>
+                    <h6 *ngIf="player.plan_period_end">{{player.plan_period_end | date:'MMM d, y' }}</h6>
+                    <h6 *ngIf="!player.plan_period_end">NA</h6>
+                </div>
+            </div>
+            <div class="col-lg-3 mt-3">
+                <div class="team-details style-1">
+                    <p> {{ 'topSpeed' | translate}}</p>
+                    <h6 *ngIf="player.meta && player.meta.top_speed">{{player.meta.top_speed}}
+                        {{player.meta.top_speed_unit}}</h6>
+                    <h6 *ngIf="!player.meta || !player.meta.top_speed">NA</h6>
+                </div>
+            </div>
+            <div class="col-lg-3 mt-3">
+                <div class="team-details style-1">
+                    <p> {{ 'height' | translate }}</p>
+                    <h6 *ngIf="player.meta && player.meta.height">{{player.meta.height}} {{player.meta.height_unit}}
+                    </h6>
+                    <h6 *ngIf="!player.meta || !player.meta.height">NA</h6>
+                </div>
+            </div>
+            <div class="col-lg-3 mt-3">
+                <div class="team-details style-1">
+                    <p> {{ 'otherPositions' | translate }}</p>
+                    <h6 *ngIf="player.meta && player.meta.other_position">{{player.meta.other_position}}</h6>
+                    <h6 *ngIf="!player.meta || !player.meta.other_position">NA</h6>
+                </div>
+            </div>
+            <div class="col-lg-4 mt-3">
+                <div class="team-details style-1">
+                    <p> {{'socialMedia' | translate }}</p>
+                    <div class="d-flex align-items-center team-details-sub my-3"
+                        *ngIf="player.meta && player.meta.sm_x">
+                        <h6 class="mb-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" id="twitter-icon" class="" social-svg width="20"
+                                height="20" viewBox="0 0 512 512" fill="none">
+                                <g clip-path="url(#a)">
+                                    <rect width="512" height="512" fill="none" rx="60"></rect>
+                                    <path
+                                        d="M355.904 100H408.832L293.2 232.16L429.232 412H322.72L239.296 302.928L143.84 412H90.8805L214.56 270.64L84.0645 100H193.28L268.688 199.696L355.904 100ZM337.328 380.32H366.656L177.344 130.016H145.872L337.328 380.32Z"
+                                        fill="#111418" class="social-svg-x"></path>
+                                </g>
+                            </svg>
+
+
+                            www.x.com/{{player.meta.sm_x}}
+                        </h6>
+                    </div>
+                    <div class="d-flex align-items-center team-details-sub my-3"
+                        *ngIf="player.meta && player.meta.sm_facebook">
+                        <h6 class="mb-0">
+                            <svg id="users-icon" class="social-svg" width="20" height="18" viewBox="0 0 9 18"
+                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M5.6044 6.13187V3.89011C5.6044 3.2967 6.13187 2.76923 6.72528 2.76923H7.84615V0H5.6044C3.75824 0 2.24176 1.51648 2.24176 3.36264V6.1978H0V9.03297H2.24176V18H5.6044V8.9011H7.84615L8.96703 6.06593L5.6044 6.13187Z"
+                                    fill="#111418" />
+                            </svg>
+                            www.facebook.com/{{player.meta.sm_facebook}}
+                        </h6>
+                    </div>
+                    <div class="d-flex align-items-center team-details-sub my-3"
+                        *ngIf="player.meta && player.meta.sm_instagram">
+                        <h6 class="mb-0">
+                            <svg id="users-icon" class="social-svg" width="20" height="20" viewBox="0 0 20 20"
+                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M13.75 0H6.25C2.79412 0 0 2.79412 0 6.25V13.75C0 17.2059 2.79412 20 6.25 20H13.75C17.2059 20 20 17.2059 20 13.75V6.25C20.0735 2.79412 17.2794 0 13.75 0ZM18.1618 13.75C18.1618 16.1765 16.1765 18.1618 13.75 18.1618H6.25C3.82353 18.1618 1.83824 16.1765 1.83824 13.75V6.25C1.83824 3.82353 3.82353 1.83824 6.25 1.83824H13.75C16.1765 1.83824 18.1618 3.82353 18.1618 6.25V13.75Z"
+                                    fill="#111418" />
+                                <path
+                                    d="M10.0004 5C7.20625 5 5.00037 7.20588 5.00037 10C5.00037 12.7941 7.20625 15 10.0004 15C12.7945 15 15.0004 12.7941 15.0004 10C15.0004 7.27941 12.7945 5 10.0004 5ZM10.0004 13.1618C8.30919 13.1618 6.8386 11.7647 6.8386 10C6.8386 8.23529 8.23566 6.83824 10.0004 6.83824C11.7651 6.83824 13.1621 8.23529 13.1621 10C13.1621 11.7647 11.7651 13.1618 10.0004 13.1618Z"
+                                    fill="#111418" />
+                                <path
+                                    d="M15.4412 3.9707C15.8089 3.9707 16.103 4.26482 16.103 4.63247C16.103 5.00011 15.8089 5.29423 15.4412 5.29423C15.0736 5.29423 14.7794 5.00011 14.7794 4.63247C14.7059 4.26482 15 3.9707 15.4412 3.9707Z" />
+                            </svg>
+
+                            www.instagram.com/{{player.meta.sm_instagram}}
+                        </h6>
+                    </div>
+
+                    <div class="d-flex align-items-center team-details-sub my-3"
+                        *ngIf="player.meta && player.meta.sm_tiktok">
+                        <h6 class="mb-0">
+                            <svg id="users-icon" class="social-svg" width="20" height="20"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                <path
+                                    d="M448 209.9a210.1 210.1 0 0 1 -122.8-39.3V349.4A162.6 162.6 0 1 1 185 188.3V278.2a74.6 74.6 0 1 0 52.2 71.2V0l88 0a121.2 121.2 0 0 0 1.9 22.2h0A122.2 122.2 0 0 0 381 102.4a121.4 121.4 0 0 0 67 20.1z"
+                                    stroke="#111418" fill="#111418" />
+                            </svg>
+                            www.tiktok.com/{{player.meta.sm_tiktok}}
+                        </h6>
+                    </div>
+
+                    <div class="d-flex align-items-center team-details-sub my-3"
+                        *ngIf="player.meta && player.meta.sm_youtube">
+                        <h6 class="mb-0">
+                            <svg id="users-icon" class="social-svg" width="20" height="18" viewBox="0 0 256 180"
+                                fill="#fff" xmlns="http://www.w3.org/2000/svg">
+                                <path fill="#f00"
+                                    d="M250.346 28.075A32.18 32.18 0 0 0 227.69 5.418C207.824 0 127.87 0 127.87 0S47.912.164 28.046 5.582A32.18 32.18 0 0 0 5.39 28.24c-6.009 35.298-8.34 89.084.165 122.97a32.18 32.18 0 0 0 22.656 22.657c19.866 5.418 99.822 5.418 99.822 5.418s79.955 0 99.82-5.418a32.18 32.18 0 0 0 22.657-22.657c6.338-35.348 8.291-89.1-.164-123.134" />
+                                <path fill="#fff" class="youtube" d="M102.421 128.06l66.328-38.418l-66.328-38.418z" />
+                            </svg>
+
+
+                            www.youtube.com/{{player.meta.sm_youtube}}
+                        </h6>
+                    </div>
+
+                    <div class="d-flex align-items-center team-details-sub my-3"
+                        *ngIf="player.meta && player.meta.sm_vimeo">
+                        <h6 class="mb-0">
+
+                            <svg id="users-icon" class="social-svg" width="20" height="18" viewBox="0 0 9 18"
+                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill="#32b8e8"
+                                    d="M8.987 3.634C8.854 7.139 7.028 10.718 3.953 14.725C2.178 16.85 0.756 17.978 0.21 17.977C-0.081 17.977-0.303 17.507-0.455 16.566C-0.676 15.402-0.89 14.238-1.105 13.073C-1.453 11.447-1.782 10.721-2.092 10.721C-2.156 10.721-2.378 10.785-2.75 10.913L-3.44 8.471C-2.68 7.909-2.272 7.567-2.205 7.444C-2.013 7.116-1.548 6.982-0.812 7.044C0.278 7.124 0.867 7.934 0.925 9.474C0.983 11.013 1.08 11.937 1.216 12.246C1.517 12.968 1.88 13.297 2.305 13.233C2.578 13.192 3.047 12.677 3.713 11.687C4.379 10.698 4.742 9.864 4.801 9.187C4.892 8.172 4.423 7.571 3.713 7.571C3.454 7.571 3.167 7.637 2.853 7.768C3.574 5.951 4.693 4.741 6.206 4.642C6.837 4.597 7.08 4.966 7.024 5.971z" />
+                            </svg>
+
+
+                            www.vimeo.com/{{player.meta.sm_vimeo}}
+                        </h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="team-details">
+                    <p> {{ 'email' | translate }}</p>
+                    <h6>{{player.email}}</h6>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="team-details">
+                    <p> {{ 'password' | translate }}</p>
+                    <h6>***************</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

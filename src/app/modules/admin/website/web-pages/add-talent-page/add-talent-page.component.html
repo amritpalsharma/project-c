@@ -1,0 +1,346 @@
+<div class="container mt-3">
+  <form (ngSubmit)="submitForm()" #aboutForm="ngForm" enctype="multipart/form-data">
+    <h2>{{ 'talentPage' | translate }}</h2>
+
+    <!-- General Information Block -->
+    <fieldset class="border p-3 mb-4" *ngIf="!pageId">
+      <div class="row">
+        <div class="mb-3 col-md-12">
+          <label for="langId" class="form-label">{{ 'selectLanguage' | translate }}</label>
+          <select class="form-select" id="langId" name="language" [(ngModel)]="formData.language">
+            <option value="" disabled selected>{{ 'selectALanguage' | translate }}</option>
+            <ng-container *ngIf="languages && languages.length > 0">
+              <ng-container *ngFor="let language of languages; let i = index">
+                <option [value]="language.id">{{ language.language }}</option>
+              </ng-container>
+            </ng-container>
+          </select>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset class="border p-3 mb-4">
+      <div class="row">
+        <div class="mb-3 col-md-6">
+          <label for="metaTitle" class="form-label">{{ 'metaTitle' | translate }}</label>
+          <input type="text" class="form-control" id="metaTitle" name="meta_title" [(ngModel)]="formData.meta_title" />
+        </div>
+        <div class="mb-3 col-md-6">
+          <label for="metaDescription" class="form-label">{{ 'metaDescription' | translate }}</label>
+          <textarea class="form-control" id="metaDescription" name="meta_description"
+            [(ngModel)]="formData.meta_description" rows="3"></textarea>
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="mb-3">
+      <label for="banner_title" class="form-label">{{ 'bannerTitle' | translate }}</label>
+      <input type="text" id="banner_title" class="form-control" name="banner_title" [(ngModel)]="formData.banner_title"
+        required />
+    </div>
+
+    <div class="mb-3 col-md-12">
+      <label for="bannerBgImg" class="form-label">{{ 'bannerBackgroundImage' | translate }}</label>
+      <input type="file" class="form-control" id="bannerBgImg" (change)="handleFileInput($event, 'banner_bg_img')" />
+
+      <div class="position-relative me-2 my-2" *ngIf="bannerBgImagePreview">
+        <div class="image_cut">
+          <img [src]="bannerBgImagePreview" alt="Preview" class="img-thumbnail p-0" style="max-width: 150px;" />
+          <div class="close_image" (click)="removeImage('banner_bg_img')">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="26px">
+              <path
+                d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="mb-3">
+      <label for="bannerImgs" class="form-label">{{ 'bannerImages' | translate }}</label>
+      <input type="file" id="bannerImgs" class="form-control" multiple (change)="onFileChange($event)" />
+      <div class="d-flex flex-wrap mt-2">
+        <div class="position-relative me-2 mb-2" *ngFor="let preview of bannerImagesPreviews; let i = index">
+          <div class="image_cut">
+            <img [src]="preview" alt="Preview" class="img-thumbnail p-0" style="max-width: 150px;"
+              (load)="imageLoaded = true" />
+            <div class="close_image" *ngIf="imageLoaded" (click)="removeSingleImage(i)">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="26px">
+                <path
+                  d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="mb-3">
+      <label for="banner_desc" class="form-label">{{ 'bannerDescription' | translate }}</label>
+      <div class="NgxEditor__Wrapper">
+        <ngx-editor-menu [editor]="editor" [colorPresets]="colorPresets"> </ngx-editor-menu>
+        <ngx-editor [editor]="editor" class="editor-width" name="banner_desc" [(ngModel)]="formData.banner_desc"
+          [disabled]="false" [placeholder]="'typeHere' | translate"></ngx-editor>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="banner_btn_txt" class="form-label">{{ 'bannerButtonText' | translate }}</label>
+      <input type="text" id="banner_btn_txt" class="form-control" name="banner_btn_txt"
+        [(ngModel)]="formData.banner_btn_txt" required />
+    </div>
+
+    <!-- Talent Section -->
+    <fieldset class="border p-3 mb-4">
+      <legend class="w-auto px-2">{{ 'talentSection' | translate }}</legend>
+      <div class="mb-3">
+        <label for="talentSectionTitle" class="form-label">{{ 'talentSectionTitle' | translate }}:</label>
+        <input type="text" class="form-control" id="talentSectionTitle" name="talent_section_title"
+          [(ngModel)]="formData.talent_section_title" />
+      </div>
+
+      <!-- First Tab -->
+      <fieldset class="border p-3 mb-4">
+        <h4 class="w-auto mb-2 tabs">{{ 'firstTab' | translate }}</h4>
+        <div class="mb-3">
+          <label for="firstTabTxt" class="form-label">{{ 'text' | translate }}:</label>
+          <textarea class="form-control" id="firstTabTxt" name="talent_section[first_tab][txt]" rows="2"
+            [(ngModel)]="formData.talent_section.first_tab.txt"></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="firstTabIcon" class="form-label">{{ 'icon' | translate }}:</label>
+          <input type="file" class="form-control" id="firstTabIcon" name="talent_section[first_tab][icon]"
+            accept="image/*" (change)="onIconFileChange($event, 'first_tab')" />
+          <div *ngIf="formData.talent_section.first_tab.iconPreview" class="position-relative mt-2">
+            <div class="image_cut">
+              <img [src]="formData.talent_section.first_tab.iconPreview" alt="Preview" class="img-thumbnail p-0"
+                style="max-width: 150px;" />
+              <div class="close_image" (click)="removeIcon('first_tab')">
+                <svg width="26px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                  <path
+                    d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Sec Tab -->
+      <fieldset class="border p-3 mb-4">
+        <h4 class="w-auto mb-2 tabs">{{ 'secondTab' | translate }}</h4>
+        <div class="mb-3">
+          <label for="secTabTxt" class="form-label">{{ 'text' | translate }}:</label>
+          <textarea class="form-control" id="secTabTxt" name="talent_section[sec_tab][txt]" rows="2"
+            [(ngModel)]="formData.talent_section.sec_tab.txt"></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="secTabIcon" class="form-label">{{ 'icon' | translate }}:</label>
+          <input type="file" class="form-control" id="secTabIcon" name="talent_section[sec_tab][icon]" accept="image/*"
+            (change)="onIconFileChange($event, 'sec_tab')" />
+          <div *ngIf="formData.talent_section.sec_tab.iconPreview" class="position-relative mt-2">
+            <div class="image_cut">
+              <img [src]="formData.talent_section.sec_tab.iconPreview" alt="Preview" class="img-thumbnail p-0"
+                style="max-width: 150px;" />
+              <div class="close_image" (click)="removeIcon('sec_tab')">
+                <svg width="26px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                  <path
+                    d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Third Tab -->
+      <fieldset class="border p-3 mb-4">
+        <h4 class="w-auto mb-2 tabs">{{ 'thirdTab' | translate }}</h4>
+        <div class="mb-3">
+          <label for="thirdTabTxt" class="form-label">{{ 'text' | translate }}:</label>
+          <textarea class="form-control" id="thirdTabTxt" name="talent_section[third_tab][txt]" rows="2"
+            [(ngModel)]="formData.talent_section.third_tab.txt"></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="thirdTabIcon" class="form-label">{{ 'icon' | translate }}:</label>
+          <input type="file" class="form-control" id="thirdTabIcon" name="talent_section[third_tab][icon]"
+            accept="image/*" (change)="onIconFileChange($event, 'third_tab')" />
+          <div *ngIf="formData.talent_section.third_tab.iconPreview" class="position-relative mt-2">
+            <div class="image_cut">
+              <img [src]="formData.talent_section.third_tab.iconPreview" alt="Preview" class="img-thumbnail p-0"
+                style="max-width: 150px;" />
+              <div class="close_image" (click)="removeIcon('third_tab')">
+                <svg width="26px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                  <path
+                    d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+    </fieldset>
+
+
+    <!-- Features Section -->
+    <div class="form-group">
+      <label class="form-label">{{ 'features' | translate }}</label>
+
+      <div class="mb-3">
+        <label for="feature_sctn_title" class="form-label">{{ 'featureSectionTitle' | translate }}:</label>
+        <input type="text" class="form-control" id="feature_sctn_title" name="feature_sctn_title"
+          [(ngModel)]="formData.feature_sctn_title" />
+      </div>
+
+      <div *ngFor="let feature of formData.feature_sctn; let i = index" class="card mb-3 p-3">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label for="feature_title_{{ i }}" class="form-label">{{ 'featureTitle' | translate }}</label>
+
+            <input type="text" [(ngModel)]="feature.title" class="form-control" name="feature_title_{{ i }}"
+              placeholder="{{ 'featureTitle' | translate }}" required />
+          </div>
+
+          <div class="col-md-6">
+            <label for="featureIcon_{{ i }}" class="form-label">{{ 'featureIcon' | translate }}</label>
+            <input type="file" class="form-control" id="featureIcon_{{ i }}"
+              (change)="onFeatureIconFileChange($event, i)" accept="image/*" />
+            <div *ngIf="feature.iconPreview" class="position-relative mt-2">
+              <div class="image_cut">
+                <img [src]="feature.iconPreview" alt="Preview" class="img-thumbnail p-0" style="max-width: 150px;" />
+                <div class="close_image" (click)="removeFeatureIcon(i)">
+                  <svg width="26px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                    <path
+                      d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-9">
+            <textarea [(ngModel)]="feature.desc" class="form-control" name="feature_desc_{{ i }}"
+              placeholder="{{ 'enterFeature' | translate }}" required></textarea>
+          </div>
+          <div class="col-md-3">
+            <button type="button" (click)="removeFeature(i)" class="next_btn btn-danger btn-sm ">
+              {{ 'remove' | translate }}
+            </button>
+          </div>
+
+          <!-- Add file input for images -->
+          <div class="col-md-6">
+            <label for="featureImg_{{ i }}" class="form-label">{{ 'featureImage' | translate }}</label>
+            <input type="file" class="form-control" id="featureImg_{{ i }}" (change)="onFeatureFileChange($event, i)"
+              accept="image/*" />
+            <div *ngIf="feature.imgPreview" class="position-relative mt-2">
+              <div class="image_cut">
+                <img [src]="feature.imgPreview" alt="Preview" class="img-thumbnail p-0" style="max-width: 150px;" />
+                <div class="close_image" (click)="removeFeatureImage(i)">
+                  <svg width="26px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                    <path
+                      d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button type="button" (click)="addFeature()" class="next_btn btn-primary btn-sm mt-2">
+        {{ 'addFeature' | translate }}
+      </button>
+    </div>
+
+    <!-- Pricing Section -->
+    <div class="form-group mt-4">
+      <label class="form-label">{{ 'pricingPlans' | translate }}: </label>
+      <div *ngFor="let plan of formData.pricing_tab; let i = index" class="card mb-3 p-3">
+        <div class="row g-3">
+          <!-- Plan Name -->
+          <div class="col-md-12">
+            <label for="plan_name_{{ i }}" class="form-label">{{ 'planName' | translate }}</label>
+            <input type="text" [(ngModel)]="plan.plan_name" class="form-control" name="plan_name_{{ i }}"
+              id="plan_name_{{ i }}" placeholder="Plan Name" required />
+          </div>
+
+
+          <!-- Monthly Price -->
+          <div class="col-md-6">
+            <label for="monthly_plan_label_{{ i }}" class="form-label">{{ 'monthlyLabel' | translate }}</label>
+            <input type="text" [(ngModel)]="plan.monthly_label" class="form-control" name="monthly_plan_label_{{ i }}"
+              id="monthly_plan_label_{{ i }}" placeholder="{{ 'monthlyLabel' | translate }}" required />
+          </div>
+
+          <!-- Yearly label -->
+          <div class="col-md-6">
+            <label for="yearly_plan_label_{{ i }}" class="form-label">{{ 'yearlyLabel' | translate }}</label>
+            <input type="text" [(ngModel)]="plan.yearly_label" class="form-control" name="yearly_plan_label_{{ i }}"
+              id="yearly_plan_label_{{ i }}" placeholder="{{ 'yearlyLabel' | translate }}" required />
+          </div>
+
+          <!-- Monthly Price -->
+          <div class="col-md-6">
+            <label for="monthly_plan_price_{{ i }}" class="form-label">{{ 'monthlyPrice' | translate }}</label>
+            <input type="text" [(ngModel)]="plan.monthly_plan_price" class="form-control"
+              name="monthly_plan_price_{{ i }}" id="monthly_plan_price_{{ i }}" placeholder="{{ 'monthlyPrice' | translate }}" required />
+          </div>
+
+          <!-- Yearly Price -->
+          <div class="col-md-6">
+            <label for="yearly_plan_price_{{ i }}" class="form-label">{{ 'yearlyPrice' | translate }}</label>
+            <input type="text" [(ngModel)]="plan.yearly_plan_price" class="form-control"
+              name="yearly_plan_price_{{ i }}" id="yearly_plan_price_{{ i }}" placeholder="{{ 'yearlyPrice' | translate }}" required />
+          </div>
+
+          <!-- Monthly Price Currency -->
+          <div class="col-md-6">
+            <label for="monthly_plan_currency_{{ i }}" class="form-label">{{ 'monthlyCurrency' | translate }}</label>
+            <input type="text" [(ngModel)]="plan.monthly_plan_price_currency" class="form-control"
+              name="monthly_plan_currency_{{ i }}" id="monthly_plan_currency_{{ i }}" placeholder="{{ 'Currency' | translate }}" required />
+          </div>
+
+          <!-- Yearly Price Currency -->
+          <div class="col-md-6">
+            <label for="yearly_plan_currency_{{ i }}" class="form-label">{{ 'yearlyCurrency' | translate }}</label>
+            <input type="text" [(ngModel)]="plan.yearly_plan_price_currency" class="form-control"
+              name="yearly_plan_currency_{{ i }}" id="yearly_plan_currency_{{ i }}" placeholder="{{ 'Currency' | translate }}" required />
+          </div>
+        </div>
+
+        <!-- Plan Features -->
+        <div class="mt-3">
+          <label class="form-label">{{ 'planFeatures' | translate }}</label>
+          <div *ngFor="let feature of plan.plan_feature_desc; let j = index" class="input-group mb-2">
+            <!-- <label for="plan_feature_{{ i }}_{{ j }}" class="form-label">Feature {{ j + 1 }}</label> -->
+            <input type="text" [(ngModel)]="plan.plan_feature_desc[j]" class="form-control"
+              name="plan_feature_{{ i }}_{{ j }}" id="plan_feature_{{ i }}_{{ j }}" placeholder="{{ 'featureDescription' | translate }}"
+              required />
+            <button type="button" (click)="removePricingFeature(i, j)" class="next_btn btn-outline-danger">
+              {{ 'remove' | translate }}
+            </button>
+          </div>
+          <button type="button" (click)="addPricingFeature(i)" class="next_btn btn-outline-primary btn-sm ms-2">
+            {{ 'addFeature' | translate }}
+          </button>
+        </div>
+
+        <!-- Remove Plan Button -->
+        <button type="button" (click)="removePricingPlan(i)" class="next_btn btn-danger btn-sm mt-3 w-25">
+          {{ 'removePlan' | translate }}
+        </button>
+      </div>
+
+      <!-- Add Pricing Plan Button -->
+      <button type="button" (click)="addPricingPlan()" class="next_btn btn-primary btn-sm mb-3">
+        {{ 'addPricingPlan' | translate }}
+      </button>
+    </div>
+
+
+    <button type="submit" class="next_btn mb-3 float-end">{{ 'submit' | translate }}</button>
+  </form>
+</div>

@@ -1,0 +1,8 @@
+<div *ngIf="showPopup" class="popup-overlay">
+    <div class="popup-content p-5">
+      <h2>{{'subscriptionCanceled' | translate}}</h2>
+      <h5 class="py-2 mb-3">{{'subscriptionProcess' | translate}}</h5>
+      <button (click)="closePopup()">{{'close' | translate}}</button>
+    </div>
+  </div>
+  

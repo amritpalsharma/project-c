@@ -1,0 +1,137 @@
+.dialog-container {
+    border-radius: 4px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  .dialog-content{
+    padding: 0px 20px 20px 20px;
+  }
+  .dialog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .personal_edit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 20px 0px 20px;
+  }
+  
+.overflow-card{
+  max-height: 60vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding:0px 20px 0px 20px;
+}
+.mat-mdc-dialog-surface{
+  overflow: hidden !important;
+}
+.overflow-card::-webkit-scrollbar {
+  width: 6px;
+}
+.overflow-card::-webkit-scrollbar-thumb {
+  background: rgb(228, 228, 228); 
+  border-radius: 10px;
+}
+  .close-btn {
+    background: none;
+    font-size: 19px;
+    cursor: pointer;
+    font-weight: 600;
+    padding: 2px 9px;
+    color: #849aa2;
+    border: 4px solid #849aa2;
+    border-radius: 50%;
+  }
+  
+  .dialog-content {
+    margin-top: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 26px;
+    padding: 0px 32px;
+  }
+  .market_input-gap{
+    gap: 10px;
+    padding-right: 10px;
+  }
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+  }
+  .speed_inputs{
+    gap: 10px;
+    padding-right: 42px !important;
+  }
+  .form-group input, .form-group select {
+    width:100%;
+    padding: 14px;
+    line-height: normal;
+    border: 1px solid #bbb7b7;
+    border-radius: 10px;
+  }
+  span.note_titles {
+    margin-left: 26px;
+    font-weight: 500;
+    font-size: 16px;
+  }
+  .position_inputs{
+  margin-bottom: 36px;
+  }
+  .social_network{
+  position: relative;
+  }
+  .social_icon{
+  position: absolute;
+  top: 10px;
+  left: 46px;
+  }
+  .social_network input {
+  padding-left: 44px !important;
+  }
+  span.social_heddig {
+  font-size: 16px;
+  font-weight: 700;
+  }
+  .dialog-actions {
+    margin-top: 20px;
+    text-align: right;
+    padding: 0px 20px 20px 20px;
+  }
+  
+  .cancel-btn, .save-btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .form-upto_date-2{
+    border-left: none !important;
+    border-radius: 0px 10px 10px 0px !important;
+  }
+  .form-upto_date{
+    border-right: 1px solid #bbb7b7;
+    border-radius: 10px 0px 0px 10px !important;
+  }
+  .cancel-btn {
+    background: none;
+    color: #f44336;
+    font-weight: 700;
+    width: 45%;
+  }
+  .social_form-box{
+    margin: 20px 0px;
+  }
+  .save-btn {
+    background: #58bc5c;
+    color: white;
+    font-weight: 700;
+    width: 45%;
+  }
+  .dialog-header h2 {
+    font-size: 20px;
+    font-weight: 600;
+  }
+  

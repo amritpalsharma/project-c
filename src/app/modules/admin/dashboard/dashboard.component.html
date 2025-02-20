@@ -1,0 +1,241 @@
+<!-- <app-header></app-header> -->
+<div class="page-content">
+
+
+  <div class="main-wrapper ">
+    <div class="dashboard_table pb-4 ">
+
+      <div class="table_title p-3">
+        <div class="d-flex align-items-center">
+          <p>{{ 'overview' | translate }}</p>
+
+
+        </div>
+        <span>
+          <div>
+            <select name="" id="" (change)='yearChange($event)'>
+              <option *ngFor="let year of years" [value]="year" >{{ year }}</option>
+            </select>
+          </div>
+        </span>
+      </div>
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade " id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
+          tabindex="0">
+
+          <canvas id="canvas1" class="canvas" #canvas1></canvas>
+        </div>
+        <div class="tab-pane fade show active" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+          <canvas id="canvas2" class="canvas" #canvas2></canvas>
+        </div>
+        <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
+          <canvas id="canvas3" class="canvas" #canvas3></canvas>
+        </div>
+        <!--  <div
+              class="tab-pane fade"
+              id="disabled-tab-pane"
+              role="tabpanel"
+              aria-labelledby="disabled-tab"
+              tabindex="0"
+            >
+              <canvas id="canvas4" class="canvas"  #canvas4></canvas>
+            </div> -->
+      </div>
+      <ul class="nav nav-tabs " id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link trans-color w-100 active" id="home-tab" data-bs-toggle="tab"
+            data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true"
+            (click)="scrollToTop()">
+            <div class="navtabs_button">
+              <p>{{ 'totalUsers' | translate }} </p>
+              <h6>{{chartData?.users?.total}}</h6>
+            </div>
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link trans-color w-100" id="profile-tab" data-bs-toggle="tab"
+            data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane"
+            aria-selected="false" (click)="scrollToTop()">
+            <div class="navtabs_button">
+              <p> {{ 'totalSales' | translate}}</p>
+              <h6>{{chartData?.sales?.total}}</h6>
+
+            </div>
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link trans-color  w-100" id="contact-tab" data-bs-toggle="tab"
+            data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane"
+            aria-selected="false" (click)="scrollToTop()">
+            <div class="navtabs_button">
+              <p>{{ 'totalSubscriptions' | translate }}</p>
+              <h6>{{chartData?.subscriptions?.total}}</h6>
+
+            </div>
+          </button>
+        </li>
+        <!-- <li class="nav-item" role="presentation">
+              <button
+                class="nav-link w-100"
+                id="disabled-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#disabled-tab-pane"
+                type="button"
+                role="tab"
+                aria-controls="disabled-tab-pane"
+                aria-selected="false"
+              >
+              </button>
+            </li> -->
+      </ul>
+    </div>
+
+    <div class="dashboard_table-2 mt-5">
+      <div class="table_title table-main-header">
+        <div class="d-flex">
+          <div>
+            <p>{{ 'newRegistrations' | translate }}</p>
+          </div>
+          <!-- <div >
+                <select name="" id="">
+                  <option value="">October 2024</option>
+                  <option value="">October 2024</option>
+                  <option value="">October 2024</option>
+                  <option value="">October 2024</option>
+                </select>
+              </div> -->
+        </div>
+        <div class="view-all text-end ">
+          <a href="admin/users">{{ 'view' | translate }} </a>
+        </div>
+
+      </div>
+      <table class="table user-dash-table overflow-auto ">
+        <thead class="dashboard-table-2-table-head">
+          <tr>
+
+            <th scope="col-2">{{ 'name' | translate }}</th>
+            <th scope="col">{{ 'userType' | translate }}</th>
+            <th scope="col">{{ 'language' | translate }}</th>
+            <th scope="col">{{ 'location' | translate }}</th>
+            <th scope="col">{{ 'dateTime' | translate }}</th>
+            <th scope="col">{{ 'status' | translate }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of newRegistrations" (click)="redirectUser(user.role_name, user.id)" class="pointer">
+            <td class="main-table ">
+              <div class="d-flex align-items-center">
+                <span>
+                  <img src="../../../assets/images/1.jpg" alt="" class="table_img" />
+                </span>
+                <span>{{user.first_name +' '+user.last_name }}</span>
+              </div>
+            </td>
+            <td>{{user.role_name}}</td>
+            <td>{{ user.language }}</td>
+            <td> {{ user.user_location }}</td>
+            <td> {{ user.created_at  | date:'MM.dd.yyyy - hh.mm a' }}</td>
+            <td class="main-table-2">
+              <span *ngIf="user.status==1" class="bg_pending">{{ 'pending' | translate }} </span>
+              <span *ngIf="user.status==2" class="bg_success approved"> {{ 'approved' | translate }}</span>
+              <span *ngIf="user.status==3" class="bg_reject"> {{ 'rejected' | translate }} </span>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- <app-footer></app-footer> -->
+  </div>
+</div>
+
+<div class="right-sidebar">
+  <div class="card p-0 ">
+    <div class="card-header d-flex align-items-center justify-content-between border-0 rounded-0">
+      <h4>{{ 'registrations' | translate }}</h4>
+      <a href="admin/users">{{ 'view' | translate }} </a>
+    </div>
+    <div class="card-body card-tabs overflow-auto registered-content">
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="home-tab-1" data-bs-toggle="tab" data-bs-target="#home-tab-pane-1"
+            type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">{{ 'talent' | translate }}
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="profile-tab-1" data-bs-toggle="tab" data-bs-target="#profile-tab-pane-1"
+            type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">{{ 'my-club' | translate
+            }}</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="contact-tab-1" data-bs-toggle="tab" data-bs-target="#contact-tab-pane-1"
+            type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">{{ 'scout' | translate
+            }}</button>
+        </li>
+
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home-tab-pane-1" role="tabpanel" aria-labelledby="home-tab-1"
+          tabindex="0">
+          <div *ngFor="let player of newRegistrationPlayers" class="card-tabs-content"
+            [routerLink]="['/admin/player', player.id]">
+            <img src="{{player.meta.profile_image_path}}" class="message-media me-3" alt=""
+              *ngIf="player.meta && player.meta.profile_image_path">
+            <img src="../../../assets/images/1.jpg" class="message-media me-3" alt=""
+              *ngIf="!player.meta || !player.meta.profile_image_path">
+            <div class="mesaage-content">
+              <h6 class="mb-0">{{player.first_name}} {{player.last_name}}</h6>
+              <small>{{getDaysAgo(player.created_at)}}</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane fade" id="profile-tab-pane-1" role="tabpanel" aria-labelledby="profile-tab-1" tabindex="0">
+          <div *ngFor="let club of newRegistrationClubs" class="card-tabs-content"
+            [routerLink]="['/admin/club', club.id]">
+            <img src="{{club.meta.profile_image_path}}" class="message-media me-3" alt=""
+              *ngIf="club.meta && club.meta.profile_image_path">
+            <img src="../../../assets/images/1.jpg" class="message-media me-3" alt=""
+              *ngIf="!club.meta || !club.meta.profile_image_path">
+            <div class="mesaage-content">
+              <h6 class="mb-0">{{club.first_name}} {{club.last_name}}</h6>
+              <small>{{getDaysAgo(club.created_at)}}</small>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="contact-tab-pane-1" role="tabpanel" aria-labelledby="contact-tab-1" tabindex="0">
+
+          <div *ngFor="let scout of newRegistrationScouts" class="card-tabs-content"
+            [routerLink]="['/admin/scout', scout.id]">
+            <img src="{{scout.meta.profile_image_path}}" class="message-media me-3" alt=""
+              *ngIf="scout.meta && scout.meta.profile_image_path">
+            <img src="../../../assets/images/1.jpg" class="message-media me-3" alt=""
+              *ngIf="!scout.meta || !scout.meta.profile_image_path">
+            <div class="mesaage-content">
+              <h6 class="mb-0">{{scout.first_name}} {{scout.last_name}}</h6>
+              <small>{{getDaysAgo(scout.created_at)}}</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Select the element with class 'view-show-notification'
+    const viewShowNotificationButton = document.querySelector('.view-show-notification');
+
+    // Add a click event listener to the button
+    if (viewShowNotificationButton) {
+      viewShowNotificationButton.addEventListener('click', () => {
+        // Select all elements with the id 'hiddenNotification'
+        const hiddenNotifications = document.querySelectorAll < HTMLElement > ('#hiddenNotification');
+
+        // Loop through each element and remove the 'd-none' class
+        hiddenNotifications.forEach(notification => {
+          notification.classList.remove('d-none');
+        });
+      });
+    }
+  </script>

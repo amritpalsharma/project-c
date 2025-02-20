@@ -1,0 +1,254 @@
+<section class="website-code">
+  <!-- <app-header></app-header> -->
+  <div class="main player-list-code">
+    <div class="adv-player-list">
+
+      <div class="container">
+        <div class="player-list">
+          <h1>{{'explore' | translate}} {{'talent' | translate}} and {{'club' | translate}}</h1>
+
+          <!-- Tabs for Talent, Club, and Scouts -->
+          <div class="tabs">
+            <button class="faq-club-button" (click)="selectTab('talent')"
+              [class.active]="selectedTab === 'talent'">{{'talent' | translate}}</button>
+            <button class="faq-club-button" (click)="selectTab('club')"
+              [class.active]="selectedTab === 'club'">{{'club' | translate}}</button>
+            <button class="faq-club-button" (click)="selectTab('scouts')"
+              [class.active]="selectedTab === 'scouts'">{{'scout' | translate}}</button>
+          </div>
+
+          <div class="tab-content">
+            <!-- Talent Tab Content -->
+            <div *ngIf="selectedTab === 'talent'">
+              <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-4 col-6" *ngFor="let player of getCurrentPlayers(); let i = index">
+                  <div class="players player-card">
+                    <div class="player1">
+                      <div class="player-img">
+                        <img [src]="player.image" alt="{{ player.name }}" [ngClass]="{ 'bg-red': player.name === 'Zidane', 'bg-green': player.name !== 'Zidane' }">
+                        <div *ngIf="player.name === 'Zidane'" class="image-text">{{'boosted' | translate}}</div>
+                      </div>
+                      <p class="player-name7">{{ player.name }}</p>
+                      <p *ngIf="player.class">Class: {{ player.class }}</p>
+                    </div>
+                    <div class="corner-image7">
+                      <img [src]="player.cornerImage || './assets/images/default-corner.png'" />
+                    </div>
+                    <div class="flag">
+                      <div class="flag-image7">
+                        <img [src]="player.flagImage || './assets/images/default-flag.svg'" class="flag-img" />
+                        <div class="bottom-line"></div>
+                        <div class="flag-bottom">
+                          <img src="./assets/images/birthday.svg" class="birthday-img" />
+                          <p class="d-o-b">{{ player.birthYear || 'N/A' }}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+
+              <!-- Pagination controls -->
+              <div class="pagination-controls">
+                <div class="input-number">
+                  <label for="numberSelect">{{'resultsPerPage' | translate}}</label>
+                  <select id="numberSelect" [(ngModel)]="itemsPerPage" (change)="onItemsPerPageChange()" required>
+                    <option *ngFor="let num of getNumbers()" [value]="num">{{ num }}</option>
+                  </select>
+                </div>
+
+                <div class="pages">
+                  <!-- "Back" button: Only show if not on the first page -->
+                  <ng-container *ngIf="currentPage > 1">
+                    <button class="prev-page" (click)="prevPage()">
+                      <i class="fa-solid fa-angle-left"></i>
+                      <p>{{'back' | translate}}</p>
+                    </button>
+                  </ng-container>
+
+                  <!-- Page buttons: Dynamically display pages based on the current page and total pages -->
+                  <ng-container *ngFor="let page of pagesToShow()">
+                    <button class="page-active" (click)="goToPage(page)" [class.active]="currentPage === page">
+                      {{ page }}
+                    </button>
+                  </ng-container>
+
+                  <!-- "Next" button: Only show if not on the last page -->
+                  <ng-container *ngIf="currentPage < totalPages()">
+                    <button class="next-page" (click)="nextPage()">
+                      <p>{{'next' | translate}}</p>
+                      <i class="fa-solid fa-angle-right"></i>
+                    </button>
+                  </ng-container>
+                </div>
+              </div>
+
+
+            </div>
+
+            <!-- Club Tab Content -->
+            <div *ngIf="selectedTab === 'club'">
+              <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-4 col-6" *ngFor="let player of getCurrentPlayers(); let i = index">
+                  <div class="players player-card"
+                    [ngClass]="{ 'bg-red': player.name === 'Zidane', 'bg-green': player.name !== 'Zidane' }">
+                    <div class="player1">
+                      <div class="player-img">
+                        <img [src]="player.image" alt="{{ player.name }}" [ngClass]="{ 'bg-red': player.name === 'Zidane', 'bg-green': player.name !== 'Zidane' }">
+                        <div *ngIf="player.name === 'Zidane'" class="image-text">{{'boosted' | translate}}</div>
+                      </div>
+                      <p class="player-name7">{{ player.name }}</p>
+                      <p *ngIf="player.class">Class: {{ player.class }}</p>
+                    </div>
+                    <div class="corner-image7">
+                      <img [src]="player.cornerImage || './assets/images/default-corner.png'" />
+                    </div>
+                    <div class="flag">
+                      <div class="flag-image7">
+                        <img [src]="player.flagImage || './assets/images/default-flag.svg'" class="flag-img" />
+                        <div class="bottom-line"></div>
+                        <div class="flag-bottom">
+                          <img src="./assets/images/birthday.svg" class="birthday-img" />
+                          <p class="d-o-b">{{ player.birthYear || 'N/A' }}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Pagination controls -->
+              <div class="pagination-controls">
+                <div class="input-number">
+                  <label for="numberSelect">{{'resultsPerPage' | translate}}</label>
+                  <select id="numberSelect" [(ngModel)]="itemsPerPage" (change)="onItemsPerPageChange()" required>
+                    <option *ngFor="let num of getNumbers()" [value]="num">{{ num }}</option>
+                  </select>
+                </div>
+
+                <div class="pages">
+                  <!-- "Back" button: Only show if not on the first page -->
+                  <ng-container *ngIf="currentPage > 1">
+                    <button class="prev-page" (click)="prevPage()">
+                      <i class="fa-solid fa-angle-left"></i>
+                      <p>{{'back' | translate}}</p>
+                    </button>
+                  </ng-container>
+
+                  <!-- Page buttons: Dynamically display pages based on the current page and total pages -->
+                  <ng-container *ngFor="let page of pagesToShow()">
+                    <button class="page-active" (click)="goToPage(page)" [class.active]="currentPage === page">
+                      {{ page }}
+                    </button>
+                  </ng-container>
+
+                  <!-- "Next" button: Only show if not on the last page -->
+                  <ng-container *ngIf="currentPage < totalPages()">
+                    <button class="next-page" (click)="nextPage()">
+                      <p>{{'next' | translate}}</p>
+                      <i class="fa-solid fa-angle-right"></i>
+                    </button>
+                  </ng-container>
+                </div>
+              </div>
+
+
+            </div>
+
+            <!-- Scouts Tab Content -->
+            <div *ngIf="selectedTab === 'scouts'">
+              <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-4 col-6" *ngFor="let player of getCurrentPlayers(); let i = index">
+                  <div class="players player-card">
+                    <div class="player1">
+                      <div class="player-img">
+                        <img [src]="player.image" alt="{{ player.name }}" [ngClass]="{ 'bg-red': player.name === 'Zidane', 'bg-green': player.name !== 'Zidane' }">
+                        <div *ngIf="player.name === 'Zidane'" class="image-text">{{'boosted' | translate}}</div>
+                      </div>
+                      <p class="player-name7">{{ player.name }}</p>
+                      <p *ngIf="player.class">Class: {{ player.class }}</p>
+                    </div>
+                    <div class="corner-image7">
+                      <img [src]="player.cornerImage || './assets/images/default-corner.png'" />
+                    </div>
+                    <div class="flag">
+                      <div class="flag-image7">
+                        <img [src]="player.flagImage || './assets/images/default-flag.svg'" class="flag-img" />
+                        <div class="bottom-line"></div>
+                        <div class="flag-bottom">
+                          <img src="./assets/images/birthday.svg" class="birthday-img" />
+                          <p class="d-o-b">{{ player.birthYear || 'N/A' }}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Pagination controls -->
+              <div class="pagination-controls">
+                <div class="input-number">
+                  <label for="numberSelect">{{'resultsPerPage' | translate}}</label>
+                  <select id="numberSelect" [(ngModel)]="itemsPerPage" (change)="onItemsPerPageChange()" required>
+                    <option *ngFor="let num of getNumbers()" [value]="num">{{ num }}</option>
+                  </select>
+                </div>
+
+                <div class="pages">
+                  <!-- "Back" button: Only show if not on the first page -->
+                  <ng-container *ngIf="currentPage > 1">
+                    <button class="prev-page" (click)="prevPage()">
+                      <i class="fa-solid fa-angle-left"></i>
+                      <p>{{'back' | translate}}</p>
+                    </button>
+                  </ng-container>
+
+                  <!-- Page buttons: Dynamically display pages based on the current page and total pages -->
+                  <ng-container *ngFor="let page of pagesToShow()">
+                    <button class="page-active" (click)="goToPage(page)" [class.active]="currentPage === page">
+                      {{ page }}
+                    </button>
+                  </ng-container>
+
+                  <!-- "Next" button: Only show if not on the last page -->
+                  <ng-container *ngIf="currentPage < totalPages()">
+                    <button class="next-page" (click)="nextPage()">
+                      <p>{{'next' | translate}}</p>
+                      <i class="fa-solid fa-angle-right"></i>
+                    </button>
+                  </ng-container>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Advertisement banners -->
+        <div class="advertisement1" [ngClass]="{'hidden': !adVisible[2] && !adVisible[3]  && !adVisible[4]}">
+
+          <div *ngIf="adVisible[2]" class="large-rectangle">
+            <img src="./assets/images/large rectangle - 336x280 .png">
+            <button (click)="closeAd(2)" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+
+          <div *ngIf="adVisible[3]" class="inline-rectangle">
+            <img src="./assets/images/inline rectangle - 300x250.png">
+            <button (click)="closeAd(3)" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+
+          <div *ngIf="adVisible[4]" class="square">
+            <img src="./assets/images/sqaure - 250x250.png">
+            <button (click)="closeAd(4)" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <app-footer></app-footer> -->
+</section>

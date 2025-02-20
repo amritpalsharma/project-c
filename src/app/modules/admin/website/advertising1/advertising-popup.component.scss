@@ -1,0 +1,121 @@
+.code-parent{
+    position: relative;
+}
+.cupen-btn{
+  color: black;
+  border: none;
+  border: 1px solid #999999;
+  border-radius: 4px;
+  padding: 8px 8px;
+  cursor: pointer;
+  background: none;
+  font-size: 13px;
+}
+.cupen-btn-1{
+  color: black;
+  border: none;
+  border: 1px solid #999999;
+  border-radius: 4px;
+  padding: 6px 8px;
+  cursor: pointer;
+  font-size: 13px;
+  background: none;
+  width: 150px;
+}
+
+.cupen-btn-date{
+  color: black;
+  border: 1px solid #999999;
+  border-radius: 10px;
+  cursor: pointer;
+  background: none;
+  font-size: 13px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.cupen-btn-date-1{
+  color: black;
+  border: 1px solid #999999;
+  border-radius: 10px;
+  cursor: pointer;
+  background: none;
+  font-size: 13px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left: none !important;
+}
+.cupen-btn-1{
+  color: black;
+  border: none;
+  border: 1px solid #999999;
+  border-radius: 10px;
+  padding: 8px 8px;
+  cursor: pointer;
+  font-size: 13px;
+  background: none;
+  width: 130px;
+}
+.form-select:focus{
+  box-shadow: none;
+}
+
+.Launch{
+    background-color: #6FB95D;
+    color: #ffffff;
+}
+
+.close-img{
+    background-image: url(../../../../../assets/images/carbon_close-outline.png);
+    background-size: cover;
+    width: 33px;
+    height: 33px;
+    border: none;
+    padding: 0px;
+    position: absolute;
+    right: 17px;
+    top: 15px;
+    z-index: 2;
+    opacity: 1;
+    cursor: pointer;
+}
+.code-text{
+
+   color: #111418;
+   font-size: 15px;
+
+}
+
+.upload-img {
+  border: 2px dashed #EBEBEB;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.heading-text{
+  font-size: 18px;
+  color: #A9AAAB;
+}
+.main-upload-text{
+  font-size: 14px;
+  color: #A9AAAB;
+}
+.upload-btn{
+  background: #ffffff;
+  color: #A9AAAB;
+  font-size: 13px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #A9AAAB;
+  font-weight: 500;
+}
+.upload{
+  position: absolute;
+    display: flex;
+    column-gap: 160px; 
+    bottom: -40px;
+}
