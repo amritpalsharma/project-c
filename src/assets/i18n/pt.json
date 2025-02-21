@@ -1199,5 +1199,6 @@
   "editProfile": "Edit e profile",
   "thanksMessage": "muito obrigado",
   "thanksMessage2": "Entraremos em contacto consigo.",
-  "backToHome" : "Voltar ao início"
+  "backToHome" : "Voltar ao início",
+  "removeFavoriteConfirm":"Tem a certeza de que pretende apagar dos favoritos?"
 }

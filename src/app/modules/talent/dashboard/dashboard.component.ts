@@ -142,7 +142,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   startIntroTour(lang: string) {
 
     this.translateService.use(lang); // Change language before fetching translations
-
     this.translateService.get([
       'profilePhoto',
       'uploadYourBestHeadshot',
@@ -317,7 +316,26 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
           if (this.StartTour) {
             setTimeout(() => {
-              this.startIntroTour('en');  // Start the tour after a slight delay
+              // alert('Found lang in Db : '+response.data.user_data.lang)
+              var dblang = 'en';
+              if(response.data.user_data.lang == 1){
+                dblang = 'en';
+              }else if(response.data.user_data.lang == 2){
+                dblang = 'de';
+              }else if(response.data.user_data.lang == 3){
+                dblang = 'it';
+              }else if(response.data.user_data.lang == 4){
+                dblang = 'fr';
+              }else if(response.data.user_data.lang == 5){
+                dblang = 'es';
+              }else if(response.data.user_data.lang == 6){
+                dblang = 'pt';
+              }else if(response.data.user_data.lang == 7){
+                dblang = 'dk';
+              }else if(response.data.user_data.lang == 8){
+                dblang = 'se';
+              }
+              this.startIntroTour(dblang);  // Start the tour after a slight delay
             }, 2500);
           }
 
@@ -682,7 +700,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
     if (monthDifference < 0 || (monthDifference === 0 && dayDifference < 0)) {
       age--;
     }
-
+    if(!age){
+      age = 0;
+    }
     return age;
   }
 

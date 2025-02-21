@@ -1138,5 +1138,6 @@
   "editProfile": "Edit og profile",
   "thanksMessage": "Mange tak skal du have",
   "thanksMessage2": "Vi tager kontakt til dig.",
-  "backToHome" : "Tilbage til start"
+  "backToHome" : "Tilbage til start",
+  "removeFavoriteConfirm":"Er du sikker på, at du vil slette fra favoritter?"
 }

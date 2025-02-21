@@ -72,7 +72,7 @@
               <div class="plan_box premium-plan-list">
                 <h3>{{'premiumIncludes' | translate}}</h3>
                 <ul class="premium_list">
-                  <li *ngFor="let feature of premiumPlans.includes">
+                  <li *ngFor="let feature of premiumFeatures">
                     <label>
                       <input type="checkbox" checked="checked" disabled>
                       <span class="checkmark"></span>{{ feature }}
@@ -146,7 +146,7 @@
               <div class="plan_box premium-plan-list">
                 <h3>{{'demo' | translate}}</h3>
                 <ul class="premium_list">
-                  <li *ngFor="let feature of demoPlans.includes">
+                  <li *ngFor="let feature of premiumFeatures">
                     <label>
                       <input type="checkbox" checked="checked" disabled>
                       <span class="checkmark"></span>{{ feature }}
@@ -215,7 +215,7 @@
               <div class="plan_box premium-plan-list">
                 <h3>{{'multiCountryPlanIncludes' | translate}}</h3>
                 <ul class="premium_list">
-                  <li *ngFor="let feature of countryPlans?.includes">
+                  <li *ngFor="let feature of multiCountryPlanDesc">
                     <label>
                       <input type="checkbox" checked="checked" disabled>
                       <span class="checkmark"></span>{{ feature }}
@@ -287,7 +287,7 @@
               <div class="plan_box premium-plan-list">
                 <h3>{{'boostPlanIncludes' | translate}}</h3>
                 <ul class="premium_list">
-                  <li *ngFor="let feature of boostedPlans.includes">
+                  <li *ngFor="let feature of bostProfileDesc">
                     <label>
                       <input type="checkbox" checked="checked" disabled>
                       <span class="checkmark"></span>{{ feature }}

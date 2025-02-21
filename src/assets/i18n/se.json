@@ -1246,5 +1246,6 @@
   "editProfile": "Edit och profile",
   "thanksMessage": "muito obrigado",
   "thanksMessage2": "Entraremos em contacto consigo.",
-  "backToHome" : "Voltar ao início"
+  "backToHome" : "Voltar ao início",
+  "removeFavoriteConfirm":"Är du säker på att ta bort från favoriter?"
 }

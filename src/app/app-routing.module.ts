@@ -5,6 +5,7 @@ import { NonAuthGuard } from './services/non.guard';
 import { SuccessComponent } from './modules/shared/success/success.component';
 import { CancelComponent } from './modules/shared/cancel/cancel.component';
 import { ViewProfileComponent } from './modules/shared/view-profile/view-profile.component';
+// import { ViewComponent } from './view/view.component';
 
 const routes: Routes = [
   {
@@ -57,7 +58,8 @@ const routes: Routes = [
         (m) => m.ScoutModule
       ),
     // canActivate: [AuthGuard]  // Protect this route with AuthGuard if necessary
-  }
+  },
+  // { path: 'view/:slug/:id', canActivate: [AuthGuard] }
 ];
 
 @NgModule({

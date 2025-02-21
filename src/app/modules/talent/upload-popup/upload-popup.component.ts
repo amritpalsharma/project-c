@@ -79,11 +79,12 @@ export class UploadPopupComponent {
       disableTimeOut: true, // Keep the toaster open until manually cleared
     });
     const formdata = new FormData();
-
+    // let lang_id = localStorage.getItem('lang_id');
+    // formdata.append("lang",lang_id);
     for (let i = 0; i < files.length; i++) {
       formdata.append("gallery_images[]", files[i]);
     }
-
+    
     this.userService.uploadGalleryImages(formdata).subscribe((response) => {
       console.log(response);
       response.forEach((row: any) => {

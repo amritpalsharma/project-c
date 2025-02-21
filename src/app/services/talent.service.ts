@@ -86,7 +86,7 @@ export class TalentService {
   getPackages(): Observable<any> {
     const headers = this.headers();
     return this.http.get<{ status: boolean, message: string, data: {} }>(
-      `${this.apiUrl}user/get-packages`,
+      `${this.apiUrl}user/get-packages?lang=`+localStorage.getItem('lang_id'),
       { headers }
     );
   }

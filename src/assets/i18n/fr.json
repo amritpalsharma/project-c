@@ -1259,5 +1259,6 @@
   "editProfile": "Edit et profile",
   "thanksMessage": "merci beaucoup",
   "thanksMessage2": "Nous prendrons contact avec vous.",
-  "backToHome": "Retour à l'accueil"
+  "backToHome": "Retour à l'accueil",
+  "removeFavoriteConfirm":"Êtes-vous sûr d'avoir supprimé les favoris ?"
 }

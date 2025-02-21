@@ -14,6 +14,8 @@ import { EditMembershipProfileComponent } from '../edit-membership-profile/edit-
 import { UpdateConfirmationPlanComponent } from '../../shared/update-confirmation-plan/update-confirmation-plan.component';
 import { EditPlanComponent } from '../../shared/edit-plan/edit-plan.component';
 import { WebPages } from '../../../services/webpages.service';
+import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
+
 
 
 interface Plan {
@@ -62,6 +64,10 @@ export class PlanComponent implements OnInit, OnDestroy {
 
   private plansSubscription: Subscription = new Subscription();
   stripePromise = loadStripe(environment.stripePublishableKey);
+  premiumFeatures: string[] = []; // Store the fetched feature list
+  multiCountryPlanDesc: string[] = []; // Store the fetched feature list
+  bostProfileDesc: string[] = []; // Store the fetched feature list
+  langSubscription!: Subscription; 
 
   constructor(
     private talentService: TalentService,
@@ -69,7 +75,8 @@ export class PlanComponent implements OnInit, OnDestroy {
     public dialog: MatDialog,
     private route: ActivatedRoute,
     private toastr: ToastrService,
-    public webPages: WebPages
+    public webPages: WebPages,
+    private translate: TranslateService
   ) {}
 
   async ngOnInit() {
@@ -78,7 +85,11 @@ export class PlanComponent implements OnInit, OnDestroy {
     this.getBoosterData()
     this.stripe = await this.paymentService.getStripe();
     this.loggedInUser = JSON.parse(this.loggedInUser || '{}');
-    this.getBoosterData()
+    this.getBoosterData();
+    this.loadFeatures();
+    this.langSubscription = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      this.loadFeatures(); // Reload features when the language changes
+    });
   }
 
   // Open coupon dialog
@@ -143,6 +154,9 @@ export class PlanComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.plansSubscription.unsubscribe();
+    if (this.langSubscription) {
+      this.langSubscription.unsubscribe();
+    }
   }
 
   fetchPlans() {
@@ -468,7 +482,7 @@ export class PlanComponent implements OnInit, OnDestroy {
   }
 
   editPlanPopup(plans:any,country:any) {
-
+    this.fetchPlans();
     const dialogRef = this.dialog.open(EditPlanComponent, {
       width: '800px',
       data: {
@@ -549,5 +563,18 @@ export class PlanComponent implements OnInit, OnDestroy {
       console.error('Error creating Stripe Checkout session:', error);
     }
   }
-
+  loadFeatures() {
+    this.translate.get('premiumPlanDesc.features').subscribe((data: string[]) => {
+      this.premiumFeatures = data;
+      // this.premiumFeatures = [];
+    });
+    this.translate.get('multiCountryPlanDesc.features').subscribe((data: string[]) => {
+      this.multiCountryPlanDesc = data;
+      // this.premiumFeatures = [];
+    });
+    this.translate.get('bostProfileDesc.features').subscribe((data: string[]) => {
+      this.bostProfileDesc = data;
+      // this.premiumFeatures = [];
+    });
+  }
 }
