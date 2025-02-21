@@ -1,0 +1,33 @@
+.close-img{
+    background-image: url(../../../../../assets/images/carbon_close-outline.png);
+    background-size: cover;
+    width: 35px;
+    height: 35px;
+    border: none;
+    padding: 0px;
+    position: absolute;
+    right: 17px;
+    top: 0;
+    z-index: 2;
+    opacity: 1;
+    cursor: pointer;
+}
+
+.upload-btn{
+    background: none;
+    color: #A9AAAB;
+    font-size: 13px;
+    padding: 5px 8px;
+    border-radius: 4px;
+    border: 1px solid #D9D9D9;
+    font-weight: 500;
+  }
+
+  .Launch{
+    background-color: #6FB95D;
+    color: #ffffff;
+    padding: 0.5rem 2.5rem;
+  }
+  .btn-delete{
+      color: #FD5454;
+  }

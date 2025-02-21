@@ -1,0 +1,17 @@
+// .bottom_box .sidebar_menu {
+//   position: relative;
+//   top: 50%;
+//   transform: translate(0%, -60%);
+// }
+
+.sidebar_menu li svg path {
+  fill: #fff;
+}
+
+
+.page-sidebar {
+  position: static !important;
+}
+.sidebar_state {
+  cursor: pointer;
+}

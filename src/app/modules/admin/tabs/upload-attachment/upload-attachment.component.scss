@@ -1,0 +1,247 @@
+
+.main-popup-div{
+    display: flex;
+    justify-content: space-between;
+}
+
+.close-img{
+    background-image: url(../../../../../assets/images/carbon_close-outline.png);
+    background-size: cover;
+    width: 33px;
+    height: 33px;
+    border: none;
+    padding: 0px;
+    cursor: pointer;
+}
+
+.cupen-btn{
+color: black;
+border: none;
+border: 1px solid #999999;
+border-radius: 10px;
+padding: 8px 8px;
+// cursor: pointer;
+background: none;
+font-size: 13px;
+}
+
+.code-text{
+   color: #000;
+}
+
+
+.upload-img {
+    border: 2px dashed #EBEBEB;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    margin: 10px;
+  }
+  
+  .heading-text{
+    font-size: 18px;
+    color: #A9AAAB;
+  }
+  .main-upload-text{
+    font-size: 14px;
+    color: #A9AAAB;
+  }
+  .upload-btn{
+    background: #ffffff;
+    color: #A9AAAB;
+    font-size: 13px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #A9AAAB;
+    font-weight: 500;
+  }
+
+  .mr-4{
+    margin-right: 2rem;
+  }
+
+    .custom-date-input {
+    border: none;         
+    font-size: 14px;     
+    outline: none;       
+    }
+
+
+   
+    .overflow-auto {
+        overflow: auto;
+        max-height: 600px; 
+        max-width:100%; 
+      }
+      
+      .overflow-auto::-webkit-scrollbar {
+        display: none;
+      }
+     .invite-form{
+      font-size: 13px;
+      font-weight: 400;
+      padding: 8px;
+      border: 1px solid #999999;
+      border-radius: 10px;
+    }
+
+    .pop-up-button{
+      font-family: Libre Franklin, sans-serif !important;
+      font-size: 16px !important;
+      font-weight: 700 !important;
+      padding: 10px 5px 10px 5px !important;
+      border-radius: 10px 0px 0px 0px !important;     
+    }
+    
+.overflow-card{
+  max-height: 60vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding:0px 20px 0px 20px;
+}
+.mat-mdc-dialog-surface{
+  overflow: hidden !important;
+}
+.overflow-card::-webkit-scrollbar {
+  width: 6px;
+}
+.overflow-card::-webkit-scrollbar-thumb {
+  background: rgb(228, 228, 228); 
+  border-radius: 10px;
+}
+.create-sight .cupen-btn{
+  padding: 12px;
+}
+.custom-file-button {
+  background-color: #f9f8f8;
+  color: #9a9595;
+  border: 1px solid #dadada;
+  padding: 6px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.progress {
+  width: 100%;
+  background-color: #f3f3f3;
+  border-radius: 5px;
+  margin-top: 5px;
+  height:4px;  
+}
+.progress-bar {
+  height: 4px; 
+  background-color: #4caf50;
+  text-align: center;
+  color: white;
+  line-height: 10px;  
+  border-radius: 5px;
+}
+ .choose-file-box {
+  padding: 6px 20px;
+    line-height: normal;
+    border: 1px solid #bbb7b7;
+    border-radius: 10px;
+    margin-top: 22px;
+}
+.about-event textarea{
+  overflow: auto;
+  padding: 10px 18px;
+  margin-top: 6px;
+  border-radius: 6px;
+}
+
+.about-event textarea::-webkit-scrollbar {
+  width: 6px;
+}
+.about-event textarea::-webkit-scrollbar-thumb {
+  background: rgb(228, 228, 228); 
+  border-radius: 10px;
+}
+.cancel-btn, .create-btn {
+  padding: 14px 15px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.cancel-btn {
+  background: none;
+  color: #f44336;
+  font-weight: 700;
+  width: 45%;
+}
+.create-btn {
+  background: #58bc5c;
+  color: white;
+  font-weight: 700;
+  width: 45%;
+}
+.dialog-actions{
+  padding: 0px 20px 20px 20px;
+}
+.user-chip_image img{
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 50px;
+  margin-right: 10px;
+}
+.user-chip span{
+  color: #111418;
+  font-size: 14px;
+}
+.user-chip span button{
+  background: none;
+  border: none;
+  margin-left: 10px;
+}
+.user-chip{
+  border: 1px solid #D9D9D9;
+  border-radius: 20px;
+  padding: 3px 5px;
+  width: fit-content;
+  margin-top: 14px;
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 0px !important;
+}
+@media (max-width:768px) {
+  .name-details{
+    row-gap: 20px;
+  }
+  .input-box{
+    flex-direction: column;
+  }
+}
+
+.upload-label{
+  width: 105px;
+  justify-content: center;
+}
+
+.inviteesWrap {
+  border: 1px solid #999999;
+  padding: 20px 10px;
+  border-radius: 10px;
+  min-height: 245px;
+  padding-top: 3px;
+}
+
+.mat-mdc-text-field-wrapper{
+  padding-left: 10px !important;
+}
+
+.chat-btn {
+  margin-top: 175px;
+}
+.mdc-list-item__primary-text img{
+  border-radius: 50%;
+} 
+
+.mat-mdc-form-field-flex{
+  padding-left:10px !important
+}
+

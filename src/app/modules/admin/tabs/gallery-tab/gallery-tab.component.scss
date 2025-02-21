@@ -1,0 +1,90 @@
+//   --------------gallery--------
+h5{
+    font-size: 14px;
+    font-weight: 700;
+    color: #111418;
+  }
+  p{
+    font-size: 14px;
+    font-weight: 700;
+    color: #111418; 
+  }
+
+  .gallery-pic-upload{
+    color: #023A4A;
+  }
+.gallery-parent{
+    padding: 15px 20px ;
+}
+.covergallery{
+    // background-image: url('../../../../../assets/images/palyers.png');
+    height: 400px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: contain;
+        background-position: center;
+        position: relative;
+    }
+    .cover-photo-container{
+    position: absolute;
+    bottom: 9px;
+    right: 15px;
+    }
+    .Delete-cover{
+        background-color: #ffffff;
+        border: none;
+        border-radius: 5px;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 10px 10px;
+    }
+    .img-fluid {
+        height: 200px;
+        width: 100%;
+        object-fit: cover;
+      }
+     .edit-cover{
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        background: rgb(0 0 0 / 50%);
+        border-radius: 50%;
+        height: 31px;
+        width: 28px;
+        padding: 7px 5px;
+        fill: #fff !important;
+     }
+
+     .pointer{
+      cursor:pointer;
+     }
+
+  .wc_floatingMenu {
+      display: none;
+      position: absolute;
+      float: left;
+      top: 42px;
+      right: 15px;
+      background: #ffffff;
+      padding: 10px 10px;
+      border-radius: 4px;
+      box-shadow: 1px 1px 4px #999;
+  }
+
+  .wc_floatingMenu.active{
+    display: block;
+  }
+
+  .w-20{
+    width: 20% !important;
+  }
+
+.font-14{
+  font-family: Libre Franklin, sans-serif;
+font-size: 14px;
+font-weight: 400;
+text-align: left;
+}
+.del-icon-margin{
+  margin: 0 5px 0 2px;
+}

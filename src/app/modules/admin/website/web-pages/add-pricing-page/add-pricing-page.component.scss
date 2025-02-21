@@ -1,0 +1,26 @@
+.close_image {
+    width: fit-content;
+    top: -5px;
+    position: absolute;
+    right: -5px;
+    cursor: pointer;
+}
+.image_cut{
+    position: relative;
+    width: fit-content;
+}
+.close_image svg{
+    background: red;
+    padding: 4px 6PX;
+    border-radius: 50%;
+    fill: #fff;
+}
+::ng-deep { /* to penetrate <ngx-editor> CSS styling */
+  .NgxEditor {
+    height: 200px;
+    overflow-y: scroll;
+  }
+  .NgxEditor__Content {
+    min-height: 400px; /* make all of the editor area clickable */
+  }
+}

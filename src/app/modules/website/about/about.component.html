@@ -1,0 +1,128 @@
+<section class="website-code">
+<!-- <app-header></app-header> -->
+<div class="main">
+<div class="main-bnr" style="background-image: url('{{about_banner_bg_img}}');">
+
+
+  <div class="overlay"></div>
+  <div class="banner-inner py_0">
+    <div class="container">
+      <div class="about">
+        <h3 class="about-text">{{about_banner_title}}</h3> 
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!isEmptyObject(advertisemnetData?.skyscraper)"  class="skyscraper-left">
+    <img src="{{ advertisemnet_base_url + advertisemnetData?.skyscraper?.featured_image }}">
+    <button (click)="closeAd('skyscraper')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+
+  <div *ngIf="!isEmptyObject(advertisemnetData?.banner_image)" class="skyscraper-right">
+    <img [src]="advertisemnet_base_url + advertisemnetData?.banner_image?.featured_image">
+    <button (click)="closeAd('banner_image')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  </div>
+
+<div class="about-content py_0">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-12">
+        <div class="content-image">
+          <img src="{{about_banner_img}}" alt="About Us" >
+      </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-12">
+        <p class="content-text" [innerHTML]="about_banner_desc">
+         </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="countries py_0">
+  <div class="container">
+    <h2 class="country-available">{{country_section_title}}
+    </h2>
+    <div class="row">
+      <div class="col-xxl-4 col-lg-6 col-md-6 col-12"> 
+          
+          <mat-list>
+            <mat-list-item *ngFor="let country of countries" rel="noopener noreferrer">
+              <a class="custom-list-item country-name"  target="_blank">{{country}}</a>
+            </mat-list-item>
+          </mat-list> 
+      </div>
+      <div class="col-xxl-8 col-lg-6 col-md-6 col-12">
+        <div class="map">
+          <img class="light-map" src="{{country_section_banner_img}}" alt="Light Map">
+          <img class="dark-map" src="./assets/images/dark-map.png" alt="Dark Map">
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="club py_0">
+  
+    <div class="club-overlay"></div>
+  
+    <div class="container club-banner">
+  
+      <div class="container1">
+        <div class="advertisment" >
+          <div  *ngIf="!isEmptyObject(advertisemnetData?.leaderboard)"  class="leaderboard-club-image">
+            <img [src]="advertisemnet_base_url + advertisemnetData?.leaderboard?.featured_image">
+            <button (click)="closeAd('leaderboard')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+        
+          <div *ngIf="!isEmptyObject(advertisemnetData?.small_square)"  class="small-sqaure-image">
+            <img [src]="advertisemnet_base_url + advertisemnetData?.small_square?.featured_image">
+            <button (click)="closeAd('small_square')"  class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+          </div>    
+        </div>
+        </div>
+  
+      <div class="club_players">
+        <h3>{{about_hero_heading_txt}}</h3>
+        <!-- <h3>Players, Clubs and Scouts.</h3> -->
+        <div class="club-buttons">
+          <div data-bs-toggle="modal" data-bs-target="#exampleModal1">
+            <div class="button-border">
+              <div class="join-text">
+               <p>{{about_hero_btn_txt}}</p>
+               <img class="join-btn check-image-dark" src="./assets/images/dark-join-now.png">
+               <img class="join-btn check-image-light" src="./assets/images/light-join-now.png">
+              </div>
+            </div>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+
+  <div class="py_1">
+    <div class="container">
+      <div class="advertisement1" [ngClass]="{'hidden': isEmptyObject(advertisemnetData?.large_rectangle) && isEmptyObject(advertisemnetData?.inline_rectangle) && isEmptyObject(advertisemnetData?.square)}">
+        <div *ngIf="!isEmptyObject(advertisemnetData?.large_rectangle)" class="large-rectangle">
+            <img [src]="advertisemnet_base_url + advertisemnetData?.large_rectangle?.featured_image">
+            <button (click)="closeAd('large_rectangle')"  class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <div *ngIf="!isEmptyObject(advertisemnetData?.inline_rectangle)"  class="inline-rectangle">
+            <img [src]="advertisemnet_base_url + advertisemnetData?.inline_rectangle?.featured_image">
+            <button (click)="closeAd('inline_rectangle')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <div *ngIf="!isEmptyObject(advertisemnetData?.square)"  class="square">
+            <img [src]="advertisemnet_base_url + advertisemnetData?.square?.featured_image">
+            <button (click)="closeAd('square')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+    </div>
+    </div>
+  </div>
+</div>
+ <!-- <app-footer></app-footer> -->
+</section>

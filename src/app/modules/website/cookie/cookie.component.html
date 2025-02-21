@@ -1,0 +1,92 @@
+<section class="website-code">
+<!-- <app-header></app-header> -->
+<div class="main">
+<div class="main1" style="background-image: url('{{base_url+banner_img}}');">
+  <div class="overlay"></div>
+  <div class="banner-inner py_0">
+    <div class="container">
+      <div class="about">
+        <h2 class="cookie-text">{{banner_title}}</h2>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="adVisible[0]" class="skyscraper-left">
+    <img src="./assets/images/skyscraper - 120x600.png">
+    <button (click)="closeAd(0)" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+
+  <div *ngIf="adVisible[1]" class="skyscraper-right">
+    <img src="./assets/images/skyscraper - 120x600.png">
+    <button (click)="closeAd(1)" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+</div>
+
+  <div class="cookie-policy">
+      <div class="container content_page" [innerHTML]="page_content" >
+
+      <!-- <div class="cookie py_0">
+      <h4>Cookie Policy</h4>
+      <p>At SoccerYou, we use cookies to enhance your experience on our website. This Cookie Policy explains what cookies are, how we use them, and how you can manage them.</p>
+      </div>
+
+      <div class="cookie1 py_0">
+      <h4>What Are Cookies?</h4>
+      <p>Cookies are small text files stored on your device when you visit a website. They help us remember your preferences, improve site functionality, and understand how you interact with our content.</p>
+      </div>
+
+  <div class="types py_0">
+      <h4>Types of Cookies We Use</h4>
+      <ul>
+          <li>Essential Cookies: These are necessary for the website to function properly. They enable basic features such as page navigation and access to secure areas of the site.</li>
+          <li>Performance Cookies: These cookies collect information about how you use our website, such as which pages you visit most often. This data helps us improve the site’s performance and user experience.</li>
+          <li>Functionality Cookies: These cookies remember your preferences and choices, such as language settings and login details, to provide a more personalized experience.</li>
+          <li>Targeting Cookies: These cookies track your browsing habits to deliver relevant advertisements and measure the effectiveness of our marketing campaigns.</li>
+      </ul>
+      </div>
+
+      <div class="py_0">
+      <h4>How We Use Cookies</h4>
+      <ul>
+          <li>Personalization: To remember your preferences and settings.</li>
+          <li>Analytics: To analyze website traffic and user behavior.</li>
+          <li>Advertising: To show you relevant ads based on your interests.</li>
+      </ul>
+  </div>
+
+  <div class="managing py_0">
+      <h4>Managing Cookies</h4>
+      <p>You can manage your cookie preferences through your browser settings. Most browsers allow you to block or delete cookies. However, please note that disabling cookies may affect your experience on our website.</p>
+      </div>
+      <div class="managing py_0">
+      <h4>Third-Party Cookies</h4>
+      <p>We may also use third-party cookies from service providers such as Google Analytics to help us understand how visitors use our site. These third-party cookies are subject to the privacy policies of their respective providers.</p>
+      </div>
+
+      <div class="managing py_0">
+      <h4>Changes to This Policy</h4>
+      <p>We may update our Cookie Policy from time to time. Any changes will be posted on this page, and we will notify you of significant updates through our website or email.</p>
+  </div>
+
+  <div class="contact py_0">
+      <h4>Contact Us</h4>
+      <p class="contact-text">If you have any questions or concerns about these Cookie Policy, please contact us at:</p>
+
+      <p>Address:</p>
+      <p>Succer You Sports AG</p>
+      <p>Ida-Stäuli-Strasse 95</p>
+      <p>CH-8404 Winterthur</p>
+      <p>Switzerland</p>
+
+      <div class="advertisment" [ngClass]="{'hidden': !adVisible[2]}">
+      <div *ngIf="adVisible[2]" class="leaderboard-image">
+        <img src="./assets/images/leaderboard - 728x90.png">
+        <button (click)="closeAd(2)" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      </div>
+  </div> -->
+  </div>
+  </div>
+  </div>
+  <!-- <app-footer></app-footer> -->
+  </section>

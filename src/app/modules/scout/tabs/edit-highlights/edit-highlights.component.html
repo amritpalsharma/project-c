@@ -1,0 +1,66 @@
+<div class="dialog-container">
+    <div class="personal_edit">
+        <div class="dialog-header d-flex align-items-center gap-4">
+            <h2>{{ 'editHighlights' | translate}}</h2>
+            <p>{{ 'featureUpTo6PhotosVideos' | translate}}</p>
+        </div>
+        <div class="close_buttons">
+            <button class="close-btn"  (click)="dialogRef.close()">X</button>
+        </div>
+    </div>
+    <hr>
+    <div class="upload-photos">
+        <button class="upload-btn"  (click)="addPhotosPopup()" >{{ 'Upload Photos' | translate}}</button>
+        <hr>
+        <div class="overflow-card">
+            <div class="all-photos">
+                <h4 class="upload-titel">{{ 'Photos' | translate }}</h4>
+                <div class="row upload-player-image">
+                    <ng-container *ngFor="let image of images">
+                        <label class="col-lg-3 player-image_box cursor-pointer">
+                            <img [src]="url + image.file_name" alt="player-image">
+                            <div class="round-checkbox">
+                                <input 
+                                    type="checkbox" 
+                                    [checked]="image.is_featured != 0" 
+                                    (change)="onImageSelect($event, image.id)" 
+                                    id="{{image.id}}" 
+                                    [value]="image.id"
+                                />
+                                <label for="{{image.id}}"></label>
+                            </div>
+                        </label>
+                    </ng-container>                
+                </div>
+            </div>
+        
+            <div class="all-videos mt-5">
+                <h4 class="upload-titel">{{ 'Videos' | translate }}</h4>
+                <div class="row upload-player-image">                    
+                    <ng-container *ngFor="let video of videos">
+                        <label class="col-lg-3 player-image_box cursor-pointer">
+                            <video [src]="url + video.file_name" ></video>
+                            <div class="round-checkbox">
+                                <input 
+                                    type="checkbox" 
+                                    [checked]="video.is_featured != 0" 
+                                    (change)="onVideoSelect($event, video.id)" 
+                                    id="{{video.id}}" 
+                                    [value]="video.id"
+                                />
+                                <label for="{{video.id}}"></label>
+                            </div>
+                        </label>
+                    </ng-container>      
+                </div>
+            </div>
+        
+           
+        </div>   
+        <div class="dialog-actions align-items-center d-flex justify-content-between mt-4">
+            <button type="button" class="cancel-btn" (click)="dialogRef.close()">{{'cancel' | translate}}</button>
+            <button type="submit" class="save-btn" (click)="onSubmit()">{{'save' | translate}}</button>
+        </div>     
+    </div>
+    
+</div>

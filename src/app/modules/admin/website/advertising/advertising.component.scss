@@ -1,0 +1,24 @@
+.dropdown-toggle:after{
+    display: none !important;
+  }
+  ::ng-deep .cutam-cupen .mat-mdc-dialog-surface{
+    overflow-y: hidden !important;
+  }
+  ::ng-deep .create-new_popup{
+    max-height: 54vh !important;
+    overflow: auto !important;
+  }
+  @media (max-width: 425px) {
+    .table > :not(caption) > * > * {
+       padding: 0.938rem 0.8rem;
+   }
+   .webpage-card{
+       overflow:  auto !important;
+   }
+   .webpage-card .table-responsive{
+       overflow: visible !important;
+   }
+   .webpage-card .card-header{
+       min-width: 700px;
+   }
+}

@@ -1,0 +1,93 @@
+<section class="website-code">
+    <!-- <app-header></app-header> -->
+    <div class="main">
+      <div class="main-bnr">
+        <div class="overlay"></div>
+        <div class="banner-inner py_0">
+          <div class="container">
+            <div class="about">
+              <h2 class="cookie-text">{{banner_title}}</h2>
+            </div>
+          </div>
+        </div>
+  
+        <div *ngIf="!isEmptyObject(advertisemnetData?.skyscraper)" class="skyscraper-left">
+          <img [src]="advertisemnet_base_url + advertisemnetData?.skyscraper?.featured_image">
+          <button (click)="closeAd('skyscraper')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+  
+        <div *ngIf="!isEmptyObject(advertisemnetData?.skyscraper_large)" class="skyscraper-right">
+          <img [src]="advertisemnet_base_url + advertisemnetData?.skyscraper_large?.featured_image" >
+          <button (click)="closeAd('skyscraper_large')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+      </div>
+  
+      <div class="news-slider py_0">
+        <div class="container">
+          <div class="image-slider">
+            <div class="image-wrapper" 
+                 (touchstart)="onTouchStart($event)" 
+                 (touchmove)="onTouchMove($event)"
+                 (touchend)="onTouchEnd($event)">
+              <!-- Dynamic Image -->
+              <img [src]="currentImage" [alt]="images[currentImageIndex].title" />
+              <div class="image-text">
+                <!-- Dynamic Content for Each Slide -->
+                <p class="p-text">{{images[currentImageIndex].date}}</p>
+                <h3 class="text-heading">{{images[currentImageIndex].title}}</h3>
+                <button class="learn-more" [routerLink]="getRouterLink(currentImageIndex)">
+                  {{images[currentImageIndex].buttonText || 'Learn More'}}
+                </button>
+              </div>
+            </div>
+  
+            <!-- Thumbnails for Navigation -->
+            <div class="container">
+              <div class="thumbnail-scroll">
+                <div class="slider-image">
+                  <img 
+                    *ngFor="let image of images; let i = index" 
+                    [src]="image.featured_image" 
+                    [alt]="image.title"
+                    (click)="changeImage(image.featured_image, i)" 
+                    [class.active]="i === currentImageIndex"
+                    class="thumbnail" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="latest-news py_0">
+        <div class="container">
+          <h4>{{news_title}}</h4>
+          <div class="row">
+            <div *ngFor="let newsData of latestNewsData; let i = index;" class="col-lg-4 col-md-6 col-12">
+              <div routerLink="{{'/news/' + newsData.id}}" class="news-box">
+                <img [src]="news_img_path + newsData.featured_image" />
+                <p class="p-text">{{newsData.created_at | date: 'dd.MM.yy'}}</p>
+                <p>{{newsData.title}}</p>
+              </div>
+            </div>
+          </div>
+  
+          <div class="advertisement1">
+            <div *ngIf="!isEmptyObject(advertisemnetData?.large_rectangel)" class="large-rectangle">
+              <img [src]="advertisemnet_base_url + advertisemnetData?.large_rectangel?.featured_image">
+              <button (click)="closeAd('large_rectangel')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div  *ngIf="!isEmptyObject(advertisemnetData?.inline_rectangel)" class="inline-rectangle">
+              <img [src]="advertisemnet_base_url + advertisemnetData?.inline_rectangel?.featured_image">
+              <button (click)="closeAd('inline_rectangel')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div *ngIf="!isEmptyObject(advertisemnetData?.square)" class="square">
+              <img [src]="advertisemnet_base_url + advertisemnetData?.square?.featured_image">
+              <button (click)="closeAd('square')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <app-footer></app-footer> -->
+  </section>

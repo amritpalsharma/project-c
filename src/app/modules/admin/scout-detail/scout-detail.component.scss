@@ -1,0 +1,266 @@
+.card-header{
+    border-bottom: 0px;
+}
+
+.font-w400{
+    font-weight: 400!important;
+}
+
+.user-details-left{
+    .list-view h6{
+        font-size: 12px;
+        font-weight: 500;
+    }
+    .list-view p{
+        font-size: 12px;
+        color: #787878;
+    }
+}
+
+.user-text{
+    color: #111418;
+}
+// .user-media{
+//     position: relative;
+//     // width: 187px;
+//     margin: auto;
+//     height:191px;
+//     margin-bottom: 15px;
+//     margin-top: 15px;
+//     img{
+//         width: 156px;
+//         height:191px;
+//         object-fit: contain;
+//     }
+//     .user-edit{
+//         width: 59px;
+//         height: 56px;
+//         border-radius: 30px;
+//         background-color: #fff;
+//         display: inline-block;
+//         text-align: center;
+//         line-height: 56px;
+//         position: absolute;
+//         bottom: 5px;
+//         right: 5px;
+//         img{
+//             width: 30px;
+//             height: 30px;
+//             object-fit: cover;
+//         }
+
+//     }
+
+// }
+.user-info{
+    text-align: center;
+    h6{
+        font-weight: 400;
+        color: #111418;
+    }
+    small{
+        font-size: 12px;
+        font-weight: 400;
+        color: #111418;
+        margin-bottom: 18px;
+        display: block;
+
+    }
+}
+.main-template{
+    color: black;
+}
+
+.nav-tabs{
+    &.user-tabs{
+        border:0;
+        border-bottom: 1px solid #E7E7E7;
+        .nav-item{
+            position: relative;
+            .nav-link{
+                border: 0;
+                color: #023A4A;
+                font-size: 14px;
+                font-weight: 600;
+                padding:16px 10px 11px 18px;
+                svg{
+                    margin-right: 10px;
+                }
+                &:after{
+                    content: "";
+                    position: absolute;
+                    height: 1px;
+                    background: #023A4A;
+                    width: 0px;
+                    left: 50%;
+                    bottom: 0px;
+                    border-radius: 5px;
+                    transform: translateX(-50%);
+                    -webkit-transition: all 0.2s;
+                    -ms-transition: all 0.2s;
+                    transition: all 0.5;
+                }
+                &.active{
+                    &:after{
+                        width: 100%;
+                    }
+                }
+            }
+        }
+
+    }
+}
+
+.social-svg{
+    margin-right: 11px;
+}
+
+.modal-delete{
+    .text-danger{
+        color: #FD5454!important;
+        font-weight: 500;
+        font-size: 16px;
+    }
+    .modal-body{
+        color: #111418;
+        font-size: 16px;
+        font-weight: 500;
+    }
+}
+
+
+/* user-detail.component.css */
+
+
+  .tab-pane {
+    display: none;
+  }
+
+  .tab-pane.show {
+    display: block;
+  }
+
+
+  @media(max-width: 425px){
+    .btn-outline-white {
+      padding: 3px;
+      border: 1px solid #D9D9D9;
+      font-size: 10px;
+      color: #787878;
+      font-weight: 400;
+      display: flex;
+      align-items: center;
+      border-radius: 5px !important;
+      margin-right: 5px;
+    }
+
+    .btn-outline-white svg{
+      height: 17px;
+      width: 17px;
+    }
+    .paging-data{
+      font-size:9px;
+      font-weight: 500;
+      margin-left: 5px;
+    }
+    .left-slide svg, .right-slide svg{
+      height: 20px;
+      width: 20px;
+    }
+
+
+  }
+
+
+
+  .user-pending-icon{
+    max-width: 22px;
+    margin-left: 10px;
+  }
+  
+  .user-approved-icon{
+    max-width: 26px;
+    margin-left: 10px;
+  }
+  
+  .user-rejected-icon{
+    max-width: 22px;
+    margin-left: 10px;
+  }
+
+//   .edit-profile{
+//     position: absolute;
+//     bottom: 161px;
+//     right: 6px;
+//     cursor: pointer;
+//   }
+
+
+//   new csss
+.user-media {
+    position: relative;
+    // max-width: 178px ;
+    min-width: 168px;
+    width: 100%;
+    height: 190px;
+    margin: auto;
+    background-color: #F6F6F6;
+    // border-radius: 50%;
+    overflow: hidden;
+}
+
+.user-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.user-edit {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.edit-profile {
+    position: absolute;
+    width: 30px;
+    top: 10px;
+    right: 0;
+    height: 30px;
+    margin-bottom: 5px;
+}
+
+.club-icon {
+    position: absolute;
+    top: 138px;
+    background-color: #E3E3E3;
+    padding: 0.5rem;
+    border-radius: 50%;
+    right: 5px;
+   
+}
+
+.club-icon-round{
+    width: 30px;
+    border-radius: 50%;
+    height: 30px
+}
+.border-end, .border-bottom, .border-top{
+    border-color: #E7E7E7 ;
+  }
+
+.profile-tab-content{
+    color: #787878 ;
+}
+
+.border-bottom-card{
+    border-bottom: 1px solid #e7e7e7;
+}
+
+.border-top-list-view{
+    border-top:  1px solid #e7e7e7;
+}
+// new css end 

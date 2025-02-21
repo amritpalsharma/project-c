@@ -1,0 +1,103 @@
+<div class="p-1">
+  <div class="shadow-sm p-1 mb-1 bg-body rounded">
+    <h5 class="filter-text mb-1">{{ 'alphabetically' | translate }}</h5>
+    <div class="d-flex gap-3">
+      <label class="btn btn-light filter-button" [class.activefilter]="userFilters['alphabetically'] == 'asc'">
+        <input type="radio" name="alphabetically" value="A-Z" hidden (click)="setFilter('alphabetically', 'asc')"> A-Z
+      </label>
+      <label class="btn btn-light filter-button" [class.activefilter]="userFilters['alphabetically'] == 'desc'">
+        <input type="radio" name="alphabetically" value="Z-A" hidden (click)="setFilter('alphabetically', 'desc')"> Z-A
+      </label>
+    </div>
+  </div>
+  <div class="shadow-sm p-1 mb-1 bg-body rounded">
+    <h5 class="filter-text mb-1">{{ 'membership' | translate }}</h5>
+    <div class="d-flex gap-3">
+      <label class="btn btn-light filter-button" [class.activefilter]="userFilters['membership'] == 'free'">
+        <input type="radio" name="membership" value="Free" hidden (click)="setFilter('membership', 'free')"> {{ 'free' |
+        translate }}
+      </label>
+      <label class="btn btn-light filter-button" [class.activefilter]="userFilters['membership'] == 'paid'">
+        <input type="radio" name="membership" value="Premium" hidden (click)="setFilter('membership', 'paid')"> {{
+        'premium' | translate }}
+      </label>
+
+
+    </div>
+  </div>
+  <div class="shadow-sm p-1 mb-1 bg-body rounded">
+    <h5 class="filter-text mb-1">{{ 'activity' | translate }}</h5>
+    <div>
+      <label class="btn btn-light filter-button" [class.activefilter]="userFilters['activity'] == 'Recent Login'">
+        <input type="radio" name="activity" value="Recent Login" hidden (click)="setFilter('activity', 'Recent Login')">
+        {{ 'recentLogin' | translate }}
+      </label>
+    </div>
+  </div>
+  <div class="shadow-sm p-1 mb-1 bg-body rounded">
+    <h5 class="filter-text mb-1">{{ 'userType' | translate }}</h5>
+    <div class="d-flex gap-3">
+      <label class="btn btn-light filter-button-2" [class.activefilter]="userFilters['role'] == '4'">
+        <input type="radio" name="userType" value="Talent" hidden (click)="setFilter('role', '4')"> {{ 'talent' |
+        translate }}
+      </label>
+      <label class="btn btn-light filter-button-2" [class.activefilter]="userFilters['role'] == '2'">
+        <input type="radio" name="userType" value="Club" hidden (click)="setFilter('role', '2')"> {{ 'club' | translate
+        }}
+      </label>
+      <label class="btn btn-light filter-button-2" [class.activefilter]="userFilters['role'] == '3'">
+        <input type="radio" name="userType" value="Scout" hidden (click)="setFilter('role', '3')"> {{ 'scout' |
+        translate }}
+      </label>
+    </div>
+  </div>
+  <div class="shadow-sm p-1 mb-1 bg-body rounded">
+    <h5 class="filter-text mb-1">{{ 'newsletterSubscription' | translate }}</h5>
+    <div class="d-flex gap-3">
+      <label class="btn btn-light filter-button-2" [class.activefilter]="userFilters['newsletter'] == '1'">
+        <input type="radio" name="newsletterSubscription" value="Yes" hidden (click)="setFilter('newsletter', '1')"> {{
+        'yes' | translate }}
+      </label>
+      <label class="btn btn-light filter-button-2" [class.activefilter]="userFilters['newsletter'] == '0'">
+        <input type="radio" name="newsletterSubscription" value="No" hidden (click)="setFilter('newsletter', '0')"> {{
+        'no' | translate }}
+      </label>
+    </div>
+  </div>
+  <div class="shadow-sm p-1 mb-1 bg-body rounded">
+    <h5 class="filter-text mb-1">{{ 'location' | translate }}</h5>
+    <label class="btn btn-light filter-button" [class.activefilter]="userFilters['location']">
+      <!-- <input type="radio" name="location" value="Type to search" hidden> Type to search -->
+
+      <select [(ngModel)]="selectedLocation" class="location-filter" [class.activefilter]="userFilters['location']"
+        (change)="onLocationChange($event)">
+        <option value="">{{ 'selectLocation' | translate }}</option>
+        <option *ngFor="let location of locations" [value]="location.id" [selected]="location.id == selectedLocation">{{
+          location.location }}</option>
+      </select>
+    </label>
+  </div>
+  <div class="shadow-sm p-1 mb-1 bg-body rounded">
+    <h5 class="filter-text mb-1">{{ 'userStatus' | translate }}</h5>
+    <div class="d-flex gap-3">
+      <label class="btn btn-light filter-button" [class.activefilter]="userFilters['status'] == '2'">
+        <input type="radio" name="userStatus" value="Approved" hidden (click)="setFilter('status', '2')"> {{ 'approved'
+        | translate }}
+      </label>
+      <label class="btn btn-light filter-button" [class.activefilter]="userFilters['status'] == '1'">
+        <input type="radio" name="userStatus" value="Pending" hidden (click)="setFilter('status', '1')"> {{ 'pending' |
+        translate }}
+      </label>
+      <label class="btn btn-light filter-button" [class.activefilter]="userFilters['status'] == '3'">
+        <input type="radio" name="userStatus" value="Rejected" hidden (click)="setFilter('status', '3')">{{ 'rejected' |
+        translate }}
+      </label>
+    </div>
+  </div>
+  <div class="filter-bottom-button">
+    <div class="filetr-child-button">
+      <button type="button" class="btn btn-delete" (click)="resetUserFilter()">{{ 'reset' | translate }}</button>
+      <button type="button" class="btn Launch" (click)="applyUserFilter()">{{ 'showResults' | translate }}</button>
+    </div>
+  </div>
+</div>

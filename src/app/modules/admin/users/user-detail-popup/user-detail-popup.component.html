@@ -1,0 +1,146 @@
+<div let user of users class="offcanvas offcanvas-end edit-canvas show" tabindex="-1">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasRightLabel">{{ 'userDetail' | translate }}</h5>
+    <a class="close c_pointer" data-bs-dismiss="offcanvas" (click)="close()" aria-label="Close">{{ 'close' | translate }}</a>
+  </div>
+  <div class="offcanvas-body">
+    <div class="d-flex align-items-center edit-bx">
+      <div class="edit-canvas-media">
+        <img src="../../../../assets/images/1.jpg" alt="" *ngIf="!user.meta.profile_image_path" />
+        <img src="{{user.meta.profile_image_path}}" alt="" *ngIf="user.meta.profile_image_path" />
+        <!-- <div class="shield"> -->
+          <img src="../../../assets/images/pending.png" alt="" class="user-pending-icon" *ngIf="user.status === '1'"/>
+          <img src="../../../assets/images/approved.png" alt="" class="user-approved-icon" *ngIf="user.status === '2'"/>
+          <img src="../../../assets/images/rejected.png" alt="" class="user-rejected-icon" *ngIf="user.status === '3'"/>
+        <!-- </div> -->
+      </div>
+      <div class="edit-canvas-content">
+        <h6>{{ user.first_name }} {{ user.last_name }}</h6>
+        <h6 class="font-w400">{{(user.role_name == 'player') ? 'talent' : user.role_name}}</h6>
+      </div>
+    </div>
+    <h6 (click)="closePopup(user.role_name, user.id)" class="list-view-title">{{ 'viewFullProfile' | translate }}</h6>
+     
+      <!-- <h6 class="list-view-title">
+        <a  class="text-danger">View Full Profile</a>
+      </h6>
+       -->
+
+    <div class="list-view d-flex align-items-center">
+      <h6 class="mb-0 me-3">{{ 'status' | translate }}:</h6>
+      <span class="bg_pending" *ngIf="user.status == '1'">{{ 'pending' | translate }}</span>
+      <span class="bg_success" *ngIf="user.status == '2'">{{ 'approved' | translate }}</span>
+      <span class="bg_reject" *ngIf="user.status == '3'">{{ 'rejected' | translate }}</span>
+    </div>
+    <!-- comment -->
+
+    <!-- <div class="list-view">
+        <h6 class="mb-3">Company Name:</h6>
+        <div class="d-flex align-items-center">
+        
+              <img src="../../../../assets/images/1.jpg" class="modal-avtar" alt="">
+          
+          <h6>Soccer Hire
+        </h6></div>
+       
+    </div> -->
+
+    <!-- <div class="list-view">
+        <h6 class="mb-3">Club Representators:</h6>
+        <div class="d-flex align-items-center mb-2">
+        
+              <img src="../../../../assets/images/1.jpg" class="modal-avtar me-3" alt="">
+          
+          <h6>Felix Taylor 
+        </h6></div>
+        <div class="d-flex align-items-center">
+        
+          <img src="../../../../assets/images/1.jpg" class="modal-avtar" alt="">
+      
+      <h6>Lina Weber 
+    </h6></div>
+       
+    </div> -->
+
+    <div class="list-view">
+      <h6 class="mb-2">{{ 'registrationDate' | translate }}:</h6>
+      <h6 class="mb-0">{{user.created_at}}</h6>
+      <!-- <h6 class="mb-0">{{ user.created_at.strftime('%I:%M %p') }}</h6> -->
+    </div>
+    <div class="list-view">
+      <h6 class="mb-2">{{ 'nextPaymentDue' | translate }}:</h6>
+      <h6 class="mb-2 font-w400" *ngIf="user.plan_period_end">{{user.plan_period_end | date:'MMM d, y' }} / {{user.plan_interval}} cycle</h6>
+      <h6 class="mb-2 font-w400" *ngIf="!user.plan_period_end">NA</h6>
+      <h6 class="text-light font-w400">{{'viewPaymentDetails' | translate}}</h6>
+    </div>
+    <div class="list-view">
+      <h6 class="mb-2">{{ 'lastPayment' | translate }}:</h6>
+      <h6 class="mb-2 font-w400" *ngIf="user.plan_period_start">{{user.plan_period_start | date:'MMM d, y' }}</h6>
+      <h6 class="mb-2 font-w400" *ngIf="!user.plan_period_start">NA</h6>
+      <h6 class="text-light font-w400">{{'viewInvoice' | translate}}</h6>
+    </div>
+    <div class="list-view">
+      <h6 class="mb-2">{{ 'voucherApplied' | translate }}:</h6>
+      <h6 class="mb-2 font-w400" *ngIf="user.coupon_used">{{user.coupon_used}}</h6>
+      <h6 class="mb-2 font-w400" *ngIf="!user.coupon_used">NA</h6>
+    </div>
+    <div class="list-view">
+      <h6 class="mb-2">{{ 'paymentMethod' | translate }}:</h6>
+      <div class="d-flex align-items-center">
+        <svg *ngIf="user.last4"
+          width="29"
+          height="13"
+          viewBox="0 0 29 13"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g clip-path="url(#clip0_2019_4040)">
+            <path
+              d="M11.0106 0.166491L7.21375 9.28451H4.73674L2.86828 2.00747C2.755 1.56034 2.65656 1.39579 2.31184 1.20672C1.74838 0.898597 0.817891 0.61043 0 0.431167L0.055168 0.166491H4.04312C4.55062 0.166491 5.0076 0.506658 5.12382 1.09565L6.11107 6.3724L8.54843 0.166491H11.0106ZM14.3592 0.166491L12.4217 9.28451H10.0782L12.0159 0.166491H14.3592ZM20.7161 6.30751C20.7258 3.90148 17.4112 3.76795 17.4329 2.69294C17.4408 2.36611 17.75 2.01819 18.427 1.92925C18.7623 1.88557 19.6887 1.85079 20.7381 2.33749L21.1486 0.402772C20.5848 0.197509 19.8592 0 18.9567 0C16.6401 0 15.0106 1.23865 14.9975 3.01372C14.9824 4.32672 16.1615 5.05848 17.0483 5.49581C17.9616 5.94237 18.268 6.22939 18.2638 6.62852C18.2572 7.24032 17.5342 7.51115 16.8621 7.52118C15.6836 7.54 15.0004 7.20052 14.4554 6.94497L14.03 8.94377C14.5783 9.1967 15.5887 9.41645 16.6354 9.42762C19.0981 9.42762 20.7088 8.20311 20.7161 6.30751ZM26.8333 9.28462H29L27.1071 0.166491H25.108C24.6571 0.166491 24.2782 0.429912 24.1101 0.834851L20.5939 9.28451H23.0547L23.5428 7.92247H26.5493L26.8333 9.28462ZM24.2176 6.05412L25.4515 2.62999L26.1603 6.05412H24.2176ZM17.3584 11.7944H16.4062V12.6865H17.4713V12.9547H16.0854V10.4798H17.4167V10.748H16.4062V11.53H17.3583L17.3584 11.7944ZM17.9632 10.3478H18.284V12.9546H17.9632V10.3478ZM19.0936 12.1248C19.1008 12.5619 19.3745 12.7417 19.6989 12.7417C19.9289 12.7417 20.0711 12.7013 20.188 12.65L20.2462 12.8814C20.1331 12.9327 19.9363 12.9951 19.6552 12.9951C19.1119 12.9951 18.7874 12.6317 18.7874 12.0955C18.7874 11.5595 19.1008 11.1408 19.6152 11.1408C20.1952 11.1408 20.3447 11.6477 20.3447 11.9744C20.3447 12.0404 20.341 12.0881 20.3336 12.1249L19.0936 12.1248ZM20.0346 11.8935C20.0383 11.6917 19.9508 11.3721 19.5896 11.3721C19.2613 11.3721 19.1227 11.6696 19.0971 11.8935H20.0346ZM22.0911 12.8922C22.0073 12.9327 21.8211 12.9952 21.5842 12.9952C21.0516 12.9952 20.7051 12.6317 20.7051 12.0882C20.7051 11.541 21.077 11.1409 21.6534 11.1409C21.843 11.1409 22.0108 11.1884 22.0983 11.2363L22.0256 11.4823C21.9487 11.4419 21.8284 11.3977 21.6534 11.3977C21.2484 11.3977 21.0298 11.7025 21.0298 12.0699C21.0298 12.481 21.2923 12.7344 21.6425 12.7344C21.8249 12.7344 21.9452 12.6904 22.0364 12.65L22.0911 12.8922ZM22.9914 10.7516V11.1775H23.4509V11.4234H22.9914V12.3818C22.9914 12.6024 23.0535 12.727 23.2322 12.727C23.3196 12.727 23.3708 12.7198 23.4183 12.7049L23.4329 12.9512C23.3708 12.9731 23.2724 12.9951 23.1483 12.9951C22.9987 12.9951 22.8783 12.9437 22.8018 12.8594C22.7143 12.7601 22.6778 12.6024 22.6778 12.393V11.4234H22.4041V11.1775H22.6778V10.847L22.9914 10.7516ZM23.8992 11.732C23.8992 11.5227 23.8953 11.3428 23.8846 11.1775H24.1655L24.1802 11.5299H24.1909C24.2713 11.2914 24.4681 11.1408 24.6832 11.1408C24.7162 11.1408 24.7418 11.1445 24.771 11.1481V11.453C24.7381 11.4455 24.7054 11.4455 24.6613 11.4455C24.4354 11.4455 24.2747 11.6144 24.2311 11.8569C24.2236 11.9067 24.2199 11.9571 24.2201 12.0074V12.9548H23.8992V11.732ZM26.7438 12.0513C26.7438 12.7086 26.2877 12.9951 25.8647 12.9951C25.3904 12.9951 25.0185 12.6425 25.0185 12.0809C25.0185 11.4896 25.4088 11.1409 25.8939 11.1409C26.4009 11.1409 26.7438 11.5114 26.7438 12.0513ZM25.3467 12.0699C25.3467 12.4591 25.5655 12.753 25.8792 12.753C26.1858 12.753 26.4154 12.4627 26.4154 12.0625C26.4154 11.7615 26.2658 11.3831 25.8865 11.3831C25.5109 11.3831 25.3467 11.7358 25.3467 12.0699ZM27.2356 11.6586C27.2356 11.4715 27.2318 11.3245 27.2209 11.1777H27.5055L27.5237 11.4715H27.531C27.6185 11.3061 27.8228 11.141 28.1146 11.141C28.3588 11.141 28.7383 11.2879 28.7383 11.8972V12.9548H28.4174V11.9304C28.4174 11.6441 28.3116 11.4052 28.0089 11.4052C27.8009 11.4052 27.6367 11.5559 27.5785 11.7357C27.5638 11.7762 27.5566 11.8311 27.5566 11.8863V12.9548H27.2356V11.6586Z"
+              fill="#1A1F71"
+            />
+          </g>
+          <defs>
+            <clipPath id="clip0_2019_4040">
+              <rect width="29" height="13" fill="white" />
+            </clipPath>
+          </defs>
+        </svg>
+        <h6 class="mb-2 font-w400" *ngIf="user.last4">••••••••{{user.last4}}</h6>
+        <h6 class="mb-2 font-w400" *ngIf="!user.last4">NA</h6>
+      </div>
+    </div>
+
+    <div class="list-view mb-3" style="border: none;">
+      <div class="form-check" *ngIf="user.status == '1' || user.status == '3'">
+        <label class="form-check-label pointer" for="flexCheckDefault1">
+          <input
+            class="form-check-input"
+            name="userAction"
+            type="radio"
+            value="2"
+            id="flexCheckDefault1" (change)="onSelectionChange($event)"
+          /> {{ 'verifyUserAfterSave' | translate }}
+        </label>
+      </div>
+      <div class="form-check" *ngIf="user.status == '1' || user.status == '2'">
+        <label class="form-check-label pointer text-danger" for="flexCheckDefault2">
+          <input
+            class="form-check-input"
+            name="userAction"
+            type="radio"
+            value="3"
+            id="flexCheckDefault2" (change)="onSelectionChange($event)"
+          /> {{ 'rejectUserAfterSave' | translate }}
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="offcanvas-footer p-3">
+    <div class="d-flex align-items-center justify-content-between">
+      <span class="text-danger pointer" (click)="closePopup(user.role_name, user.id)">{{ 'editAccount' | translate }}</span>   
+      <button class="btn btn-success btn-sm web-create-bg" (click)="save()">{{ 'save' | translate }}</button>
+
+    </div>
+  </div>
+</div>

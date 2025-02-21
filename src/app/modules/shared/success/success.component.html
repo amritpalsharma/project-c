@@ -1,0 +1,11 @@
+<!-- src/app/success/success.component.html -->
+<div *ngIf="showPopup" class="popup-overlay ">
+    <div class="popup-content p-4">
+        <div class="inner_container p-5">
+            <img class="mb-3" src="../../../../assets/images/check.svg" alt="">
+            <h2>{{ 'success!' | translate }}</h2>
+            <h5 class="py-3">{{ 'subscriptionSuccessful' | translate }}</h5>
+            <button class="btn my-btn mt-2" (click)="closePopup()">{{ 'close' | translate }}</button>
+        </div>
+    </div>
+</div>

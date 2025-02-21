@@ -1,0 +1,99 @@
+.main-template{
+    color: black;
+}
+
+.Performance-btn {
+    border-radius: 7px;
+    padding: 2px 15px;
+    color: black;
+    border: 1px solid black;
+    font-weight: 400;
+}
+.Performance-btn:hover {
+   background-color: transparent ;
+}
+.table tbody tr:hover td {
+    border-top: none !important; 
+    border-bottom: none !important; 
+}
+.testing{
+    background-image: url('../../../../../assets/images/players-2.jpg');
+    height: 200px;
+}
+
+.pointer{
+    cursor: pointer;
+}
+
+.form-control{
+    width:80px;
+}
+
+select.form-control{
+    min-width:190px;
+    width: 80%;
+
+}
+.coach-debt-input{
+    min-width: 150px;
+    width: 80%;
+}
+.year-input{
+    max-width: 120px;
+    width: 100px; 
+}
+
+.select-wrapper {
+position: relative;
+display: inline-block;
+}
+
+.dropdown-icon {
+position: absolute;
+top: 50%;
+right: 10px;
+transform: translateY(-50%);
+pointer-events: none; 
+}
+
+.w-10{
+    width:10%;
+}
+
+  
+
+
+
+
+.autocomplete-wrap {
+    width: 250px;
+}
+
+.autocomplete-wrap input{
+    width: 100%;
+}
+.suggestion-wrap{
+    background: #ffffff;
+    position: absolute;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    
+}
+
+.suggestion-wrap div{
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ccc;
+}
+.suggestion-wrap div:hover{
+    cursor: pointer;
+}   
+
+.suggestion-wrap div img{
+    margin-right:10px;
+    width:20px
+}

@@ -1,0 +1,76 @@
+<div class="page-content">
+  <div class="main-wrapper mt-2">
+    <h4 class="setting-title  mb-2">{{'accountSettings' | translate}}</h4>
+    <div class="row">
+      <div class="col-lg-3">
+        <div class="card border-0 p-0 card-account-setting">
+          <div class="card-body card-tabs settings-tabs">
+            <ul class="nav nav-tabs p-0 " id="myTab" role="tablist">
+
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link d-flex align-items-center"
+                  [ngClass]="{'active': tab === 'activity'}"
+                  id="profile-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#profile-tab-pane"
+                  type="button"
+                  role="tab"
+                  aria-controls="profile-tab-pane"
+                  [attr.aria-selected]="tab === 'activity'"
+                  (click)="switchTab('activity')"
+                >
+                  <svg id="users-icon"
+                    class="me-1 activity"
+                    width="20"
+                    height="25"
+                    viewBox="0 0 16 14"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M14.3333 7H11.6667L9.66667 13L5.66667 1L3.66667 7H1"
+                      stroke="#9D9EA0"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                 {{'activityLog' | translate}}
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link d-flex align-items-center"
+                  [ngClass]="{'active': tab === 'setting'}"
+                  id="settings-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#settings-tab-pane"
+                  type="button"
+                  role="tab"
+                  aria-controls="settings-tab-pane"
+                  [attr.aria-selected]="tab === 'setting'"
+                  (click)="switchTab('setting')"
+                >
+                <svg width="16" height="15" viewBox="0 0 16 15" fill="none" class="me-2" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7.375 0.625C7.77865 0.625 8.13672 0.742188 8.44922 0.976562C8.77474 1.21094 9.0026 1.51042 9.13281 1.875H15.5V3.125H9.13281C9.0026 3.48958 8.77474 3.78906 8.44922 4.02344C8.13672 4.25781 7.77865 4.375 7.375 4.375C6.97135 4.375 6.60677 4.25781 6.28125 4.02344C5.96875 3.78906 5.7474 3.48958 5.61719 3.125H0.5V1.875H5.61719C5.7474 1.51042 5.96875 1.21094 6.28125 0.976562C6.60677 0.742188 6.97135 0.625 7.375 0.625ZM7.375 1.875C7.20573 1.875 7.05599 1.93359 6.92578 2.05078C6.80859 2.16797 6.75 2.31771 6.75 2.5C6.75 2.66927 6.80859 2.81901 6.92578 2.94922C7.05599 3.06641 7.20573 3.125 7.375 3.125C7.55729 3.125 7.70703 3.06641 7.82422 2.94922C7.94141 2.81901 8 2.66927 8 2.5C8 2.31771 7.94141 2.16797 7.82422 2.05078C7.70703 1.93359 7.55729 1.875 7.375 1.875ZM11.75 5.625C12.1536 5.625 12.5117 5.74219 12.8242 5.97656C13.1497 6.21094 13.3776 6.51042 13.5078 6.875H15.5V8.125H13.5078C13.3776 8.48958 13.1497 8.78906 12.8242 9.02344C12.5117 9.25781 12.1536 9.375 11.75 9.375C11.3464 9.375 10.9818 9.25781 10.6562 9.02344C10.3438 8.78906 10.1224 8.48958 9.99219 8.125H0.5V6.875H9.99219C10.1224 6.51042 10.3438 6.21094 10.6562 5.97656C10.9818 5.74219 11.3464 5.625 11.75 5.625ZM11.75 6.875C11.5807 6.875 11.431 6.93359 11.3008 7.05078C11.1836 7.16797 11.125 7.31771 11.125 7.5C11.125 7.66927 11.1836 7.81901 11.3008 7.94922C11.431 8.06641 11.5807 8.125 11.75 8.125C11.9323 8.125 12.082 8.06641 12.1992 7.94922C12.3164 7.81901 12.375 7.66927 12.375 7.5C12.375 7.31771 12.3164 7.16797 12.1992 7.05078C12.082 6.93359 11.9323 6.875 11.75 6.875ZM4.875 10.625C5.27865 10.625 5.63672 10.7422 5.94922 10.9766C6.27474 11.2109 6.5026 11.5104 6.63281 11.875H15.5V13.125H6.63281C6.5026 13.4896 6.27474 13.7891 5.94922 14.0234C5.63672 14.2578 5.27865 14.375 4.875 14.375C4.47135 14.375 4.10677 14.2578 3.78125 14.0234C3.46875 13.7891 3.2474 13.4896 3.11719 13.125H0.5V11.875H3.11719C3.2474 11.5104 3.46875 11.2109 3.78125 10.9766C4.10677 10.7422 4.47135 10.625 4.875 10.625ZM4.875 11.875C4.70573 11.875 4.55599 11.9336 4.42578 12.0508C4.30859 12.168 4.25 12.3177 4.25 12.5C4.25 12.6693 4.30859 12.819 4.42578 12.9492C4.55599 13.0664 4.70573 13.125 4.875 13.125C5.05729 13.125 5.20703 13.0664 5.32422 12.9492C5.44141 12.819 5.5 12.6693 5.5 12.5C5.5 12.3177 5.44141 12.168 5.32422 12.0508C5.20703 11.9336 5.05729 11.875 4.875 11.875Z" fill="#111418" fill-opacity="0.5"/>
+                </svg>
+
+                  {{'appSettings'|translate }}
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-9">
+        <div class="tab-content" id="myTabContent">
+          <app-activity-log id="activity-log" *ngIf="tab === 'activity'"></app-activity-log>
+          <app-app-setting id="app-settings" *ngIf="tab === 'setting'"> </app-app-setting>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- Modal -->
+</div>

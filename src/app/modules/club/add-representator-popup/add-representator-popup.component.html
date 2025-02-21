@@ -1,0 +1,117 @@
+<ng-container>
+    <div class="p-0 code-parent">
+        <div class="bg-0C3453 p-4">
+            <h6 class=" code-text text-left" *ngIf="data.action == 'add'">{{ 'addTeamMember' | translate }}</h6>
+            <h6 class=" code-text text-left" *ngIf="data.action == 'edit'">{{ 'editTeamMember' | translate }}</h6>
+            <div (click)="close()" class="close-img mb-1"></div>
+        </div>
+        <hr class="m-0">
+
+
+        <div class="p-3" *ngIf="data.action == 'add'">
+            <div class="d-flex1 mb-3">
+                <div>
+                    <p class="code-text">{{ 'email' | translate }}</p>
+                    <input class="cupen-btn-1 code-text" style="width:100%;" [(ngModel)]="email">
+                    <div *ngIf="errorMsg.email" class="error-msg">{{errorMsg.email}}</div>
+                </div>
+            </div>
+            <div class="d-flex1 mb-3">
+                <div>
+                    <p class="code-text">{{ 'siteRole' | translate }}</p>
+                    <div class="btn-group" style="width:100%;">
+                        <select class="cupen-btn-1 form-select" style="width:100%;" aria-label="Default select example"
+                            [(ngModel)]="role">
+                            <option value="">{{ 'select' | translate }}</option>
+                            <option value="admin-access">{{ 'admin' | translate }}</option>
+                            <option value="view-only">{{ 'viewOnly' | translate }}</option>
+                            <option value="editor">{{ 'editor' | translate }}</option>
+                            <option value="transfer-ownership">{{ 'transferOwnership' | translate }}</option>
+                        </select>
+                        <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M4.08333 3.25838L0.995812 0.170854C0.768006 -0.0569515 0.39866 -0.0569515 0.170854 0.170854C-0.0569515 0.39866 -0.0569515 0.768006 0.170854 0.995812L3.67085 4.49581C3.89866 4.72362 4.26801 4.72362 4.49581 4.49581L7.99581 0.995812C8.22362 0.768006 8.22362 0.39866 7.99581 0.170854C7.76801 -0.0569515 7.39866 -0.0569515 7.17085 0.170854L4.08333 3.25838Z"
+                                fill="#646464" />
+                        </svg>
+                    </div>
+                    <div *ngIf="errorMsg.role" class="error-msg">{{errorMsg.role}}</div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="p-3" *ngIf="data.action == 'edit'">
+            <div class="d-flex1 mb-3">
+                <div>
+                    <p class="code-text">{{ 'firstName' | translate }}</p>
+                    <input class="cupen-btn-1 code-text" style="width:100%;" [(ngModel)]="firstName">
+                    <div *ngIf="errorMsg.firstName" class="error-msg">{{errorMsg.firstName}}</div>
+                </div>
+            </div>
+            <div class="d-flex1 mb-3">
+                <div>
+                    <p class="code-text">{{ 'lastName' | translate }}</p>
+                    <input class="cupen-btn-1 code-text" style="width:100%;" [(ngModel)]="lastName">
+                    <div *ngIf="errorMsg.lastName" class="error-msg">{{errorMsg.lastName}}</div>
+                </div>
+            </div>
+            <div class="d-flex1 mb-3">
+                <div>
+                    <p class="code-text">{{ 'designation' | translate }}</p>
+                    <input class="cupen-btn-1 code-text" style="width:100%;" [(ngModel)]="designation">
+                </div>
+            </div>
+        </div>
+
+        <div class="p-3" *ngIf="data.action == 'admin-add'">
+            <div class="d-flex1 mb-3">
+                <div>
+                    <p class="code-text">{{ 'email' | translate }}</p>
+                    <input class="cupen-btn-1 code-text" style="width:100%;" [(ngModel)]="email">
+                    <div *ngIf="errorMsg.email" class="error-msg">{{errorMsg.email}}</div>
+                </div>
+            </div>
+            <div class="d-flex1 mb-3">
+                <div>
+                    <p class="code-text">{{ 'siteRole' | translate }}</p>
+                    <div class="btn-group" style="width:100%;">
+                        <select class="cupen-btn-1 form-select" style="width:100%;" aria-label="Default select example"
+                            [(ngModel)]="role">
+                            <option value="">{{ 'select' | translate }}</option>
+                            <option value="admin-access">{{ 'admin' | translate }}</option>
+                            <option value="view-only">{{ 'viewOnly' | translate }}</option>
+                            <option value="editor">{{ 'editor' | translate }}</option>
+                            <option value="transfer-ownership">{{ 'transferOwnership' | translate }}</option>
+                        </select>
+                        <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M4.08333 3.25838L0.995812 0.170854C0.768006 -0.0569515 0.39866 -0.0569515 0.170854 0.170854C-0.0569515 0.39866 -0.0569515 0.768006 0.170854 0.995812L3.67085 4.49581C3.89866 4.72362 4.26801 4.72362 4.49581 4.49581L7.99581 0.995812C8.22362 0.768006 8.22362 0.39866 7.99581 0.170854C7.76801 -0.0569515 7.39866 -0.0569515 7.17085 0.170854L4.08333 3.25838Z"
+                                fill="#646464" />
+                        </svg>
+                    </div>
+                    <div *ngIf="errorMsg.role" class="error-msg">{{errorMsg.role}}</div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <hr class="m-0">
+
+        <div class=" d-flex justify-content-around bg-0C3453 p-3">
+            <div>
+                <a class="btn btn-delete text-danger" (click)="close()">{{ 'cancel' | translate }}</a>
+            </div>
+            <div>
+                <a class="btn Launch px-5" *ngIf="data.action == 'add'" (click)="sendInvite()">{{ 'invite' | translate
+                    }}</a>
+                <a class="btn Launch px-5" *ngIf="data.action == 'edit'" (click)="updateRepresentator()">{{ 'update' |
+                    translate }}</a>
+                <a class="btn Launch px-5" *ngIf="data.action == 'admin-add'" (click)="sendAdminInvite()">{{ 'invite' |
+                    translate }}</a>
+            </div>
+        </div>
+    </div>
+</ng-container>

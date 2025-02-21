@@ -1,0 +1,77 @@
+<div class="card mb-3">
+  <div class="card-header border-0">
+    <div>
+      <h6 class="card-title">{{ 'teamMembers' | translate }}</h6>
+      <p>{{ 'inviteOrManage' | translate }}</p>
+    </div>
+  </div>
+</div>
+<div class="card">
+  <div class="card-header d-flex align-items-center justify-content-between">
+    <h4 class="card-title">{{ 'team' | translate }}</h4>
+    <a><small><i class="fa-solid fa-plus plus-color me-1 "></i></small> <span class="Addmember"
+        (click)="addRepresentator()">{{ 'addMember' | translate }}</span></a>
+  </div>
+  <div class="card-body px-3 py-2 overflow-auto">
+    <table class="table">
+      <tbody>
+        <tr *ngFor="let representator of representators">
+          <td>
+            <div style="display: flex; align-items: center;">
+              <img src="../../../assets/images/1.jpg" alt="" class="table_img" />
+              <span style="margin-left:15px;">
+                <span style="display: block;">{{representator.first_name}} {{representator.last_name}}</span>
+                <span style="display: block;">{{representator.email}} </span>
+              </span>
+            </div>
+          </td>
+          <td>
+            @if(currentUserId != representator.id){
+            <span class="bg_pending" *ngIf="representator.status == '1'">{{ 'invited' | translate }}</span>
+            <span class="bg_success" *ngIf="representator.status == '2'">{{ 'active' | translate }}</span>
+            <span class="bg_secondary" *ngIf="representator.status == '3'">{{ 'inactive' | translate }}</span>
+            }@else {
+            <span class="bg_success" *ngIf="representator.status == '1' && currentUserId == representator.id">{{
+              'active' | translate }}</span>
+            }
+
+          </td>
+
+          <td>
+            <select class="custom-select custom-select-wrapper" *ngIf="currentUserId != representator.id"
+              (change)="updateRepresentatorRole($event, representator.id)">
+
+              <option value="admin-access"
+                *ngIf="representator.permission != null && representator.permission != 'admin-access'">{{ 'admin' |
+                translate }}</option>
+              <option value="admin-access"
+                *ngIf="representator.permission == null || representator.permission == 'admin-access'" selected>{{
+                'admin' | translate }}</option>
+
+              <option value="view-only" *ngIf="representator.permission != 'view-only'">{{ 'viewOnly' | translate }}</option>
+              <option value="view-only" *ngIf="representator.permission == 'view-only'" selected>{{ 'viewOnly' | translate }}</option>
+
+              <option value="editor" *ngIf="representator.permission != 'editor'">{{ 'editor' | translate }}</option>
+              <option value="editor" *ngIf="representator.permission == 'editor'" selected>{{ 'editor' | translate }}</option>
+
+              <option value="transfer-ownership" *ngIf="representator.permission != 'transfer-ownership'">{{ 'transferOwnership' | translate }}</option>
+              <option value="transfer-ownership" *ngIf="representator.permission == 'transfer-ownership'" selected>
+                {{ 'transferOwnership' | translate }}</option>
+
+            </select>
+
+            <p *ngIf="currentUserId == representator.id">{{ 'owner' | translate }}</p>
+          </td>
+          <td class="c_pointer">
+            <svg *ngIf="currentUserId != representator.id" (click)="confirmSingleDeletion(representator.id)"
+              id="users-icon" width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M5.49967 17.0589C5.49967 18.0112 6.32467 18.7904 7.33301 18.7904H14.6663C15.6747 18.7904 16.4997 18.0112 16.4997 17.0589V6.66999H5.49967V17.0589ZM17.4163 4.07277H14.208L13.2913 3.20703H8.70801L7.79134 4.07277H4.58301V5.80425H17.4163V4.07277Z"
+                fill="#787878" />
+            </svg>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

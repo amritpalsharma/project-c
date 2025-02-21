@@ -1,0 +1,164 @@
+<section class="website-code">
+<!-- <app-header></app-header> -->
+<div class="main">
+    <div class="learn-banner">
+    <div class="container">
+        <button [routerLink]="'/news'" class="back-button">
+            <img src="./assets/images/back-image.svg">
+            Back to News & Media</button>
+       <h1>SoccerYou launched in 10 countries</h1>
+       <p class="p-text">02.02.2024</p>
+       <img class="banner-image" src="./assets/images/slider.png">
+    </div>
+
+    <div *ngIf="adVisible[0]" class="skyscraper-left">
+        <img src="./assets/images/skyscraper - 120x600.png">
+        <button (click)="closeAd(0)" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <div *ngIf="adVisible[1]" class="skyscraper-right">
+        <img src="./assets/images/skyscraper - 120x600.png">
+        <button (click)="closeAd(1)" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+</div>
+</div>
+<div class="learn py_0">
+<div class="container">
+    <p>SoccerYou, the innovative platform designed to connect aspiring soccer talents with scouts and clubs, has made a significant leap by launching in 10 countries. This expansion marks a new era for the platform, aimed at revolutionizing how young players gain visibility and opportunities in the competitive world of soccer.</p>
+
+    <h3>Expanding Horizons</h3>
+    <p>The launch in multiple countries reflects SoccerYou’s commitment to democratizing access to soccer opportunities. By bridging the gap between emerging talents and professional scouts, the platform offers a unique space where players can showcase their skills, track their progress, and get noticed by top clubs and scouts worldwide.</p>
+
+    <h3>Features and Benefits</h3>
+    <p>SoccerYou is equipped with several key features to enhance the experience for its users:</p>
+
+    <ul>
+        <li>Player Profiles: Young athletes can create detailed profiles highlighting their skills, stats, and achievements.</li>
+        <li>Video Uploads: Players can upload videos of their matches and training sessions, providing scouts with a comprehensive view of their abilities.</li>
+        <li>Performance Analytics: Advanced analytics tools help players and scouts analyze performance metrics, aiding in talent identification and development.</li>
+    </ul>
+
+    <h3>For Clubs and Scouts</h3>
+    <p>The platform is not just beneficial for players but also for clubs and scouts. It offers:</p>
+
+    <ul>
+        <li>Talent Pool Access: Easy access to a global pool of emerging talents. </li>
+        <li>Scouting Tools: Advanced tools to track and compare player performances. </li>
+        <li>Engagement: Direct engagement with potential recruits through the platform’s messaging and feedback systems.</li>
+    </ul>
+
+    <h3>The Global Impact</h3>
+    <p>By launching in 10 countries, SoccerYou aims to create a more inclusive and diverse soccer community. This global reach allows players from various backgrounds and regions to gain the exposure they need to advance their careers.</p>
+
+    <h3>Looking Ahead</h3>
+    <p>With this expansion, SoccerYou is poised to become a leading platform in the soccer industry. The next steps involve continuous improvement of the platform’s features, expanding into more countries, and forging partnerships with more clubs and scouts to enhance the opportunities available to young talents.</p>
+
+</div>
+
+<div class="file">
+<div class="container">
+    <div class="files">
+        <h3 class="attachments">Attachments</h3>
+        <a href="https://www.example.com/dummy.pdf" target="_blank" download>
+            <img class="dark-files" src="./assets/images/pdf.png" alt="PDF Icon">
+        </a>
+    <a href="../../../../assets/images/bnr.jpg" target="_blank">
+    <img  class="dark-files" src="./assets/images/jpg.png">
+    </a>
+
+    <a href="./../../../../assets/images/About-us-banner.png" target="_blank">
+    <img class="dark-files" src="./assets/images/png.png">
+    </a>
+</div>
+</div>
+</div>
+
+<div class="container">
+    <div class="social-icons">
+    <h5 class="share">Share</h5>
+    <a href="https://www.instagram.com" target="_blank">
+        <img class="instagram" src="./assets/images/instagram.svg">
+    </a>
+
+    <a href="https://www.linkedin.com" target="_blank">
+    <img class="linkedin" src="./assets/images/linkedin.svg">
+    </a>
+
+    <a href="https://www.facebook.com" target="_blank">
+    <img class="facebook" src="./assets/images/facebook.svg">
+    </a>
+
+    <a href="https://www.email.com" target="_blank">
+    <img class="email" src="./assets/images/email.svg">
+    </a>
+
+    <a href="https://www.twitter.com" target="_blank">
+    <img class="twitter" src="./assets/images/twitter.svg">
+    </a>
+
+</div>
+
+<div class="advertisment" [ngClass]="{'hidden': !adVisible[2]}">
+    <div *ngIf="adVisible[2]" class="leaderboard-image">
+      <img src="./assets/images/leaderboard - 728x90.png">
+      <button (click)="closeAd(2)" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    </div>
+  
+</div>
+</div>
+
+<div class="latest-news py_0">
+    <div class="container">
+        <h4>More News</h4>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                <div [routerLink]="'/learn-more'" class="news-box">
+                    <img src="./assets/images/news1.png">
+                    <p class="p-text">02.02.2024</p>
+                    <p>SoccerYou Hosts Charity Tournament in Germany</p>
+                </div>
+
+            </div >
+            <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+
+                <div [routerLink]="'/learn-more'" class="news-box">
+                    <img src="./assets/images/news2.png">
+                    <p class="p-text">02.02.2024</p>
+                    <p>Legendary Midfielder Joins SoccerYou  as Global Ambassador</p>
+                </div>
+
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                <div [routerLink]="'/learn-more'" class="news-box">
+                    <img src="./assets/images/news3.png">
+                    <p class="p-text">02.02.2024</p>
+                    <p>Behind the Scenes: Exclusive Interview with the Head Coach</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="advertisement1" [ngClass]="{'hidden': !adVisible[3] && !adVisible[4]  && !adVisible[5]}">
+
+            <div *ngIf="adVisible[3]" class="large-rectangle">
+                <img src="./assets/images/large rectangle - 336x280 .png">
+                <button (click)="closeAd(3)" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div *ngIf="adVisible[4]" class="inline-rectangle">
+                <img src="./assets/images/inline rectangle - 300x250.png">
+                <button (click)="closeAd(4)" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div *ngIf="adVisible[5]" class="square">
+                <img src="./assets/images/sqaure - 250x250.png">
+                <button (click)="closeAd(5)" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- <app-footer></app-footer> -->
+</section>

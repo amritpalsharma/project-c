@@ -1,0 +1,55 @@
+<div class="dialog-content transfer_details">
+  <div class="personal_edit">
+    <div class="dialog-header m-auto">
+      <h2>{{ 'editTransferDetails' | translate }}</h2>
+    </div>
+    <div class="close_buttons">
+      <button class="close-btn" (click)="onCancel()">X</button>
+    </div>
+  </div>
+  <hr>
+  
+    
+  <form class="transfer_box" (ngSubmit)="onSubmit(transferForm)" #transferForm="ngForm">
+    <div class="overflow-card">
+     <div class="row mb-4">
+      <div class="form-group moving_select col-lg-6">
+        <h2>Moving To</h2>
+        <label for="team_to" class="form-label">{{ 'team' | translate }}</label>
+        <select id="team_to" name="team_to" class="form-select" [(ngModel)]="data.team_to" required>
+          <option *ngFor="let team of teams" [value]="team.id">
+            {{ team.team_name }}
+          </option>
+        </select>
+      </div>
+      <div class="form-group moving_select col-lg-6">
+        <h2>Moving From</h2>
+        <label for="team_from" class="form-label">{{ 'team' | translate }}</label>
+        
+        <select id="team_from" name="team_from" class="form-select" [(ngModel)]="data.team_from" required>
+          <option *ngFor="let team of teams" [value]="team.id">
+            {{ team.team_name }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <hr>
+    <div class="row mt-5">
+      <div class="form-group moving_select col-lg-6">        
+        <label for="session" class="form-label">{{ 'session' | translate }}</label>
+        <input class="form-select" type="text" id="session" name="session" [(ngModel)]="data.session" required>
+      </div>
+      <div class="form-group moving_select col-lg-6">
+        <label for="date_of_transfer" class="form-label">{{ 'date' | translate }}</label>
+        <input type="date" id="date_of_transfer" name="date_of_transfer" [(ngModel)]="data.date_of_transfer" required>        
+      </div>
+    </div>
+  </div>
+    <div class="dialog-actions align-items-center d-flex justify-content-between mt-5">
+      <button class="cancel-btn" type="button" (click)="onCancel()">{{ 'cancel' | translate }}</button>
+      <button class="save-btn" type="submit" [disabled]="!transferForm.valid">{{ 'save' | translate }}</button>
+    </div>
+
+  </form>
+
+</div>

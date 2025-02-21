@@ -1,0 +1,52 @@
+@media (max-width: 425px) {
+     .table > :not(caption) > * > * {
+        padding: 0.938rem 0.8rem;
+    }
+    .webpage-card{
+        overflow:  auto !important;
+    }
+    .webpage-card .table-responsive{
+        overflow: visible !important;
+    }
+    .webpage-card .card-header{
+        min-width: 770px;
+    }
+}
+.webpage-card .card-header{
+    padding: 20px 18px 10px 10px;
+}
+.website-main-checkbox{
+    border-radius: 5px;
+    padding: 5px;
+}
+.webpages-chekbox{
+    padding-left: 20px;
+}
+.dropdown-toggle:after{
+    margin: 0;
+}
+
+.bg_draft {
+    background: #FCBE2D;
+    padding: 5px 15px;
+    color: #fff !important;
+    text-align: center;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    border-radius: 15px;
+  }
+
+  .dropdown-coupon .dropdown-toggle::after{
+ 
+    display: none;
+    margin-left: .255em;
+    vertical-align: .255em;
+    content: "";
+    border-top: .3em solid;
+    border-right: .3em solid transparent;
+    border-bottom: 0;
+    border-left: .3em solid transparent;
+}
+.mat-mdc-dialog-inner-container.mdc-dialog__container{
+    top: 0px !important;
+}

@@ -1,0 +1,31 @@
+<div class="card mb-3">
+  <div class="card-header border-0">
+    <div>
+      <h6 class="card-title">{{'appSettings' | translate}}</h6>
+      <p>{{'customizeExperience' | translate}}</p>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header header-activity-log">
+    <h6 class="card-title">
+      {{'generalPermissions' | translate}}
+    </h6>
+  </div>
+  <div class="card-body">
+    <div class="permission-item d-flex align-items-center justify-content-between">
+      <label for="newsletter" class="mb-0"><b>{{'newsLetter' | translate}}</b></label>
+      <label class="switch">
+        <input
+          type="checkbox"
+          id="newsletter"
+          name="newsletter"
+          [checked]="loggedInUser.newsletter == 1"
+          (change)="onNewsletterToggle($event)">
+        <span class="slider round"></span>
+      </label>
+    </div>
+    <p>{{'appSettingText' | translate}}</p>
+  </div>
+</div>

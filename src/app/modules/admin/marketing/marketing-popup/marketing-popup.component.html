@@ -1,0 +1,136 @@
+<div appClickOutside (clickOutside)="onClickOutside()" class="p-0 parent-popup">
+  <div class="p-4 bg-0C3453">
+
+    <h4 class="text-center title-text" *ngIf="!data">{{ 'createNewPopUp' | translate }}</h4>
+    <h4 class="text-center title-text" *ngIf="data">{{ 'editPopUp' | translate }}</h4>
+
+    <div class="close-img" (click)="close()">
+    </div>
+  </div>
+  <hr class="m-0">
+
+    <div class="d-flex align-items-baseline py-2 bg-0C3453 px-3">
+        <h4 class="text-size">Name: &nbsp;</h4>
+        <input type="text" class="template-name-inputField" [(ngModel)]="title" style="border: none;width: 500px;outline: none;">
+    </div>
+    <div *ngIf="errorMsg.title" class="error-msg" style="padding-left:15px;">{{errorMsg.title}}</div>
+
+    <hr class="m-0">
+
+    <div class="d-flex  main-popup-div py-2 px-3 bg-0C3453">
+        <div class="d-flex align-items-baseline ">
+          <h4 class="text-size fw-bold">{{ 'for:' | translate }}</h4>
+          <!-- <div class="btn-group">
+            <mat-select [(ngModel)]="selectedRole">
+                <mat-option [value]="0">All</mat-option>
+                @for (role of roles; track role) {
+                  <mat-option [value]="role.id" *ngIf="role.id !=1">{{role.role}}</mat-option>
+                }
+            </mat-select>
+
+          </div> -->
+
+          <div class="btn-group" style="position: relative; display: inline-block;">
+
+              <mat-select multiple class="mat-select-div" [(ngModel)]="selectedRole" (selectionChange)="onSelectionChange($event)">
+                @for (option of options; track option) {
+                  <mat-option [value]="option.id" *ngIf="option.id == '0'">All</mat-option>
+                  <mat-option [value]="option.id" *ngIf="option.id != '0'">{{option.role_name}} - {{option.payment_type}}</mat-option>
+                }
+              </mat-select>
+
+            <!-- <mat-select [(ngModel)]="selectedRole" class="mat-select-div">
+              <mat-option [value]="0">All</mat-option>
+            
+              <ng-container *ngFor="let role of roles">
+                <mat-option *ngIf="role.id != 1" [value]="role.id">{{ role.role }}</mat-option>
+              </ng-container>
+            </mat-select> -->
+          
+            <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4.08333 3.25838L0.995812 0.170854C0.768006 -0.0569515 0.39866 -0.0569515 0.170854 0.170854C-0.0569515 0.39866 -0.0569515 0.768006 0.170854 0.995812L3.67085 4.49581C3.89866 4.72362 4.26801 4.72362 4.49581 4.49581L7.99581 0.995812C8.22362 0.768006 8.22362 0.39866 7.99581 0.170854C7.76801 -0.0569515 7.39866 -0.0569515 7.17085 0.170854L4.08333 3.25838Z" fill="#646464"/>
+            </svg>
+          </div>
+          
+        </div>
+        <div  class="d-flex align-items-baseline" >
+         <h4 class="text-size fw-bold">{{ 'language:' | translate }}</h4>
+         <div class="btn-group">
+            <mat-select [(ngModel)]="selectedLang" class="mat-select-div">
+                @for (lang of langs; track lang) {
+                  <mat-option [value]="lang.id">{{lang.language}}</mat-option>
+                }
+              </mat-select>
+              <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4.08333 3.25838L0.995812 0.170854C0.768006 -0.0569515 0.39866 -0.0569515 0.170854 0.170854C-0.0569515 0.39866 -0.0569515 0.768006 0.170854 0.995812L3.67085 4.49581C3.89866 4.72362 4.26801 4.72362 4.49581 4.49581L7.99581 0.995812C8.22362 0.768006 8.22362 0.39866 7.99581 0.170854C7.76801 -0.0569515 7.39866 -0.0569515 7.17085 0.170854L4.08333 3.25838Z" fill="#646464"/>
+              </svg>
+
+          </div>
+        </div>
+        <div  class="d-flex align-items-baseline">
+          <h4 class="text-size fw-bold">{{ 'location:' | translate }}</h4>
+          <div class="btn-group">
+              <mat-select [(ngModel)]="selectedLocation" class="mat-select-div">
+                  @for (location of locations; track location) {
+                    <mat-option [value]="location.id">{{location.name}}</mat-option>
+                  }
+                </mat-select>
+                <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4.08333 3.25838L0.995812 0.170854C0.768006 -0.0569515 0.39866 -0.0569515 0.170854 0.170854C-0.0569515 0.39866 -0.0569515 0.768006 0.170854 0.995812L3.67085 4.49581C3.89866 4.72362 4.26801 4.72362 4.49581 4.49581L7.99581 0.995812C8.22362 0.768006 8.22362 0.39866 7.99581 0.170854C7.76801 -0.0569515 7.39866 -0.0569515 7.17085 0.170854L4.08333 3.25838Z" fill="#646464"/>
+                </svg>
+          </div>
+        </div>
+    </div>
+    <hr class="m-0">
+
+    <div class="main-popup-div bg-0C3453 " style="padding-right: 1rem;">
+        <div class="d-flex align-items-center ">
+            <mat-form-field class="marketing-calender-field">
+                <mat-date-range-picker #picker></mat-date-range-picker>
+                <mat-label class="label-enter-date-range">{{ 'enterADateRange' | translate }}</mat-label>
+                <mat-date-range-input [rangePicker]="picker">
+                  <input matStartDate placeholder="{{ 'startDate' | translate }}" [(ngModel)]="startDate"  (dateChange)="onDateChange($event, 'startDate')">
+                  <input matEndDate placeholder="{{ 'endDate' | translate }}" [(ngModel)]="endDate" (dateChange)="onDateChange($event, 'endDate')">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matIconPrefix [for]="picker"></mat-datepicker-toggle> 
+            </mat-form-field>
+            <div *ngIf="errorMsg.dateRange" class="error-msg" style="padding-left:15px;margin-bottom: 10px;">{{errorMsg.dateRange}}</div>
+           <!-- <p class="text-size">01-04-2024  to  30-04-2024</p> -->
+
+
+        </div> 
+        <div class="d-flex align-items-center">
+            <h4 class="text-size fw-bold"> {{ 'displayFreq:' | translate }} </h4>
+            <div class="btn-group">
+              <mat-select [(ngModel)]="selectedFrequency" class="mat-select-div">
+                  @for (freq of frequency; track freq) {
+                    <mat-option [value]="freq">{{freq}}</mat-option>
+                  }
+                </mat-select>
+                <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4.08333 3.25838L0.995812 0.170854C0.768006 -0.0569515 0.39866 -0.0569515 0.170854 0.170854C-0.0569515 0.39866 -0.0569515 0.768006 0.170854 0.995812L3.67085 4.49581C3.89866 4.72362 4.26801 4.72362 4.49581 4.49581L7.99581 0.995812C8.22362 0.768006 8.22362 0.39866 7.99581 0.170854C7.76801 -0.0569515 7.39866 -0.0569515 7.17085 0.170854L4.08333 3.25838Z" fill="#646464"/>
+                </svg>
+            </div>
+        </div>   
+    </div>
+
+    <hr class="m-0 ">
+
+
+    <div class="NgxEditor__Wrapper">
+        <ngx-editor-menu [editor]="editor" [colorPresets]="colorPresets"> </ngx-editor-menu>
+        <ngx-editor [editor]="editor" [(ngModel)]="html" [disabled]="false" [placeholder]="'typeHere' | translate"></ngx-editor>
+        <div *ngIf="errorMsg.html" class="error-msg" style="padding-left:20px;">{{errorMsg.html}}</div>
+    </div>
+    <div>
+      <div class=" d-flex justify-content-around bg-0C3453 p-3 marketing-calender-btn">
+    
+       <div>
+         <a class="btn btn-delete text-danger" (click)="close()">{{ 'cancel' | translate }}</a>
+       </div>
+       <div>
+         <a class="btn Launch px-5" (click)="createPopup()" *ngIf="!data">{{ 'createAndLaunch' | translate }}</a>
+         <a class="btn Launch px-5" (click)="updatePopup()" *ngIf="data">{{ 'update' | translate }}</a>
+       </div>
+      </div>
+    </div>

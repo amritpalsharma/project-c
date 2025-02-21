@@ -1,0 +1,37 @@
+<!-- <div class="main">
+            <div class="container">
+                <div class="chat-content">
+                    <div class="modal-header border-0">
+                        <div class="model-heading">
+                            <h5>Manage Consent Preferences</h5>
+                        </div>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="model-text" *ngFor="let permission of permissions">
+                            <div>
+                                <h6>{{ permission.name }}</h6>
+                                <p [ngStyle]="{'color': permission.enabled ? '#6FB95D' : 'white'}">
+                                    {{ permission.description }}
+                                </p>
+                            </div>
+                            <div class="slider-toggle">
+                                <label class="switch">
+                                    Use string interpolation for aria-label 
+                                    <input type="checkbox" [(ngModel)]="permission.enabled" [attr.aria-label]="'Toggle consent for ' + permission.name">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer border-0">
+                        <button type="button" class="btn btn-success" (click)="allowAll()">Allow All</button>
+                        <button type="button" class="btn btn-danger" (click)="refuseAll()">Refuse All</button>
+                        <button type="button" class="btn btn-primary" (click)="savePreferences()">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->

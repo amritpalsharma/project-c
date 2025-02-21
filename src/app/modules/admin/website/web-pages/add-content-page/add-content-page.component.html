@@ -1,0 +1,73 @@
+<div class="container mt-5">
+  <form (ngSubmit)="submitForm()" #aboutForm="ngForm" enctype="multipart/form-data">
+    <h2>{{ 'contentPage' | translate }}</h2>
+
+    <!-- General Information Block -->
+    <fieldset class="border p-3 mb-4" *ngIf="!pageId">
+      <div class="row">
+        <div class="mb-3 col-md-12">
+          <label for="langId" class="form-label">{{ 'selectLanguage' | translate }}</label>
+          <select class="form-select" id="langId" name="language" [(ngModel)]="formData.language">
+            <option value="" disabled selected>{{ 'selectALanguage' | translate }}</option>
+            <ng-container *ngIf="languages && languages.length > 0">
+              <ng-container *ngFor="let language of languages; let i = index">
+                <option [value]="language.id">{{ language.language }}</option>
+              </ng-container>
+            </ng-container>
+          </select>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset class="border p-3 mb-4">
+      <div class="row">
+        <div class="mb-3 col-md-6">
+          <label for="metaTitle" class="form-label">{{ 'metaTitle' | translate }}</label>
+          <input type="text" class="form-control" id="metaTitle" name="meta_title" [(ngModel)]="formData.meta_title" />
+        </div>
+        <div class="mb-3 col-md-6">
+          <label for="metaDescription" class="form-label">{{ 'metaDescription' | translate }}</label>
+          <textarea class="form-control" id="metaDescription" name="meta_description"
+            [(ngModel)]="formData.meta_description" rows="3"></textarea>
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="mb-3">
+      <label for="banner_title" class="form-label">{{ 'bannerTitle' | translate }}</label>
+      <input type="text" id="banner_title" class="form-control" name="banner_title" [(ngModel)]="formData.banner_title"
+        required />
+    </div>
+
+    <div class="mb-3">
+      <label for="banner_img" class="form-label">{{ 'bannerImages' | translate }}</label>
+      <input type="file" id="banner_img" class="form-control" (change)="onFileChange($event, 'banner_img')" required />
+
+      <div *ngIf="bannerImagePreview" class="position-relative mt-2">
+        <div class="image_cut">
+          <img [src]="bannerImagePreview" alt="Preview" class="img-thumbnail p-0" style="max-width: 150px;"
+            (load)="imageLoaded = true" />
+          <div class="close_image" *ngIf="imageLoaded" (click)="removeImage('banner_img')">
+            <svg width="26px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+              <!-- SVG Content -->
+              <path
+                d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="mb-3">
+      <label for="page_content" class="form-label">{{ 'description' | translate }}</label>
+      <div class="NgxEditor__Wrapper">
+        <ngx-editor-menu [editor]="editor" [colorPresets]="colorPresets"> </ngx-editor-menu>
+        <ngx-editor [editor]="editor" class="editor-width" name="page_content" [(ngModel)]="formData.page_content"
+          [disabled]="false" [placeholder]="'typeHere' | translate"></ngx-editor>
+      </div>
+    </div>
+
+    <button type="submit" class="next_btn mb-3 float-end mb-2 mt-2">{{ 'submit' | translate }}</button>
+  </form>
+</div>

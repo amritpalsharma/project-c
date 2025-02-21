@@ -1,0 +1,140 @@
+<div class="container mt-5">
+  <form (ngSubmit)="submitForm()" #aboutForm="ngForm" enctype="multipart/form-data">
+    <h2>{{ 'faqPage' | translate }}</h2>
+
+    <!-- General Information Block -->
+    <fieldset class="border p-3 mb-4" *ngIf="!pageId">
+      <!-- <legend class="w-auto px-2">Language Information</legend> -->
+      <div class="row">
+        <div class="mb-3 col-md-12">
+          <label for="langId" class="form-label">{{ 'selectLanguage' | translate }}</label>
+          <select class="form-select" id="langId" name="language" [(ngModel)]="formData.language">
+            <option value="" disabled selected>{{ 'selectALanguage' | translate }}</option>
+            @if(languages && languages.length > 0){
+            @for (language of languages; track $index) {
+            <option value="{{language.id}}">{{language.language}}</option>
+            }
+            }
+          </select>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset class="border p-3 mb-4">
+      <!-- <legend class="w-auto px-2">SEO Information</legend> -->
+      <div class="row">
+        <div class="mb-3 col-md-6">
+          <label for="metaTitle" class="form-label">{{ 'metaTitle' | translate }}</label>
+          <input type="text" class="form-control" id="metaTitle" name="meta_title" [(ngModel)]="formData.meta_title" />
+        </div>
+        <div class="mb-3 col-md-6">
+          <label for="metaDescription" class="form-label">{{ 'metaDescription' | translate }}</label>
+          <textarea class="form-control" id="metaDescription" name="meta_description"
+            [(ngModel)]="formData.meta_description" rows="3"></textarea>
+        </div>
+      </div>
+    </fieldset>
+    <!-- About Banner Title -->
+    <!-- About Banner Title -->
+    <div class="mb-3">
+      <label for="faq_banner_title" class="form-label">{{ 'faqBannerTitle' | translate }}</label>
+      <input type="text" id="faq_banner_title" class="form-control" name="faq_banner_title"
+        [(ngModel)]="formData.faq_banner_title" required />
+    </div>
+    <!-- About Banner Title -->
+    <div class="mb-3">
+      <label for="faq_collapse_titile" class="form-label">{{ 'FaqCollapseTitle' | translate }}</label>
+      <input type="text" id="faq_collapse_titile" class="form-control" name="faq_collapse_titile"
+        [(ngModel)]="formData.faq_collapse_titile" required />
+    </div>
+    <!-- About Banner Title -->
+    <div class="mb-3">
+      <label for="faq_first_btn_txt" class="form-label">{{ 'faqFirstButtonText' | translate }}</label>
+      <input type="text" id="faq_first_btn_txt" class="form-control" name="faq_first_btn_txt"
+        [(ngModel)]="formData.faq_first_btn_txt" required />
+    </div>
+    <!-- About Banner Title -->
+    <div class="mb-3">
+      <label for="faq_sec_btn_txt" class="form-label">{{ 'faqSecondButtonText' | translate }}</label>
+      <input type="text" id="faq_sec_btn_txt" class="form-control" name="faq_sec_btn_txt"
+        [(ngModel)]="formData.faq_sec_btn_txt" required />
+    </div>
+    <!-- About Banner Title -->
+    <div class="mb-3">
+      <label for="faq_third_btn_txt" class="form-label">{{ 'faqThirdButtonText' | translate }}</label>
+      <input type="text" id="faq_third_btn_txt" class="form-control" name="faq_third_btn_txt"
+        [(ngModel)]="formData.faq_third_btn_txt" required />
+    </div>
+
+    <!-- About Banner Title -->
+    <fieldset class="border p-3 mb-4">
+      <div *ngFor="let feature of formData.faq_first_btn_content; let i = index" class="card mb-3 p-3">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <input type="text" [(ngModel)]="feature.title" class="form-control" name="title_{{ i }}" placeholder="{{ 'title' | translate }}"
+              required />
+          </div>
+          <div class="col-md-9">
+            <textarea [(ngModel)]="feature.desc" class="form-control" name="desc_{{ i }}" placeholder="{{ 'description' | translate }}"
+              required></textarea>
+          </div>
+          <div class="col-md-3">
+            <button type="button" (click)="removeFirstButtonContent(i)" class="next_btn btn-danger btn-sm ">
+              {{ 'remove' | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+      <button type="button" (click)="addFirstButtonContent()" class="next_btn btn-sm mt-2">
+        {{ 'addFirstButtonContent' | translate }}
+      </button>
+    </fieldset>
+    <fieldset class="border p-3 mb-4">
+      <div *ngFor="let feature of formData.faq_second_btn_content; let i = index" class="card mb-3 p-3">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <input type="text" [(ngModel)]="feature.title" class="form-control" name="title_{{ i }}" placeholder="{{ 'title' | translate }}"
+              required />
+          </div>
+          <div class="col-md-9">
+            <textarea [(ngModel)]="feature.desc" class="form-control" name="desc_{{ i }}" placeholder="{{ 'description' | translate }}"
+              required></textarea>
+          </div>
+          <div class="col-md-3">
+            <button type="button" (click)="removeSecondButtonContent(i)" class="next_btn btn-danger btn-sm ">
+              {{ 'remove' | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+      <button type="button" (click)="addSecondButtonContent()" class="next_btn btn-sm mt-2">
+        {{ 'addSecondButtonContent' | translate }}
+      </button>
+    </fieldset>
+    <fieldset class="border p-3 mb-4">
+      <div *ngFor="let feature of formData.faq_third_btn_content; let i = index" class="card mb-3 p-3">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <input type="text" [(ngModel)]="feature.title" class="form-control" name="title_{{ i }}" placeholder="{{ 'title' | translate }}"
+              required />
+          </div>
+          <div class="col-md-9">
+            <textarea [(ngModel)]="feature.desc" class="form-control" name="desc_{{ i }}" placeholder="{{ 'description' | translate }}"
+              required></textarea>
+          </div>
+          <div class="col-md-3">
+            <button type="button" (click)="removeThirdButtonContent(i)" class="next_btn btn-danger btn-sm ">
+              {{ 'remove' | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+      <button type="button" (click)="addThirdButtonContent()" class="next_btn btn-sm mt-2">
+        {{ 'addThirdButtonContent' | translate }}
+      </button>
+    </fieldset>
+    <!-- Submit Button -->
+    <button type="submit" class="next_btn mb-3 float-end mb-3 float-end">{{ 'submit' | translate }}</button>
+  </form>
+
+</div>

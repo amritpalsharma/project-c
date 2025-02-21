@@ -1,0 +1,114 @@
+<div class=" px-3 bg-0C3453" style="width: 100%;">
+  <table class=" table table-striped w-100 ">
+      <thead>
+        <tr>
+          <th scope="col" >{{'team' | translate}}</th>
+          <th scope="col" class="text-center w-10 " >{{'saison' | translate}}</th>
+          <th scope="col" class="text-center w-10 " >{{'matches' | translate}}</th>
+          <th scope="col" class="text-center w-10 " >{{'goal' | translate}}
+            <!-- <svg id="users-icon" width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1.15341 8.43701H7.84716C8.44903 8.43701 8.74997 9.1958 8.32528 9.63818L4.97841 13.1245C4.71404 13.3999 4.28654 13.3999 4.02497 13.1245L0.675285 9.63818C0.250597 9.1958 0.551535 8.43701 1.15341 8.43701ZM8.32528 5.36084L4.97841 1.87451C4.71404 1.59912 4.28654 1.59912 4.02497 1.87451L0.675285 5.36084C0.250597 5.80322 0.551535 6.56201 1.15341 6.56201H7.84716C8.44903 6.56201 8.74997 5.80322 8.32528 5.36084Z" fill="#111418"/>
+            </svg> -->
+          </th>
+          <th scope="col">{{'coachDuringDebut' | translate}}</th>
+          <th scope="col">{{'ageOfThePlayer' | translate}}</th>
+          <th scope="col" class="text-center">{{'edit' | translate}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let performance of performances">
+          <td>
+            <div class="d-flex align-items-center">
+              <span class="position-relative">
+                <span class="position-absolute" style="right: -10px; bottom: 0px"></span>
+              </span>
+              <span class="main-template" *ngIf="editableId != performance.id"> 
+                <img src="{{performance.team_logo_path}}" height="20px" /> 
+                {{performance.country_name}}
+                <img src="{{performance.country_flag_path}}" width="26" height="26" alt=""> 
+              </span>
+            </div>
+              <div *ngIf="editableId == performance.id" class="select-wrapper perfermance-team-country mt-1">
+
+                <div class="autocomplete-wrap">
+                  <input type="text" class="form-control performance-dark-bg coach-debt-input" (input)="suggestTeams($event)" [(ngModel)]="inputValue">
+                  <div class="suggestion-wrap" *ngIf="filteredTeams.length">
+                    <div *ngFor="let team of filteredTeams" (click)="selectTeam(team.id, team.team_name, team.country_name)">
+                      <img *ngIf="team.team_club_logo_path" src="{{team.team_club_logo_path}}"> 
+                      {{team.team_name}}, {{team.country_name}}</div>
+                  </div>
+                </div>
+
+                <!--<select class="form-control performance-dark-bg h-auto py-1 px-2" *ngIf="editableId == performance.id" (change)="onSelectChange($event)">
+                  <ng-container *ngFor="let team of teams">
+                    <option *ngIf="team.id == performance.team_id" selected [value]="team.id">
+                      {{team.team_name}}, {{team.country_name}}
+                    </option>
+              
+                    <option *ngIf="team.id != performance.team_id" [value]="team.id">
+                      {{team.team_name}}, {{team.country_name}}
+                    </option>
+                  </ng-container>
+                </select>
+                
+                <svg class="dropdown-icon" width="11" height="8" viewBox="0 0 11 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 1L5.5 6L1 1" stroke="#111418" stroke-width="2" stroke-linecap="round"/>
+                </svg>-->
+
+
+              </div>
+              
+           
+          </td>
+          <td>
+            <span *ngIf="editableId != performance.id"  class="d-flex justify-content-center" >{{performance.session}}</span>
+            <input *ngIf="editableId == performance.id" type="text" value="{{performance.session}}" (input)="onInputChange($event, 'session')" class="form-control performance-dark-bg w-100 text-center">
+          </td>
+          <td>
+            <span *ngIf="editableId != performance.id" class="d-flex justify-content-center">{{performance.matches}}</span>
+            <input *ngIf="editableId == performance.id" type="text" value="{{performance.matches}}" class="form-control w-100 performance-dark-bg text-center" (input)="onInputChange($event, 'matches')">
+          </td>
+          <td>
+            <span *ngIf="editableId != performance.id"  class="d-flex justify-content-center">{{performance.goals}}</span>
+            <input *ngIf="editableId == performance.id" type="text" value="{{performance.goals}}" class="form-control w-100 performance-dark-bg text-center" (input)="onInputChange($event, 'goals')">
+          </td>
+          <td>
+            <span *ngIf="editableId != performance.id">{{performance.coach}}</span>
+            <input *ngIf="editableId == performance.id" type="text" value="{{performance.coach}}" class="form-control performance-dark-bg coach-debt-input" (input)="onInputChange($event, 'coach')">
+          </td>
+          <!-- <td>
+            <span *ngIf="editableId != performance.id">{{performance.player_age}}</span> 
+            <input *ngIf="editableId == performance.id" type="text" value="{{performance.player_age + ' Year'}}" class="form-control performance-dark-bg text-center" (input)="onInputChange($event, 'player_age')"> <span id="Player-age-year"> Year </span> 
+          </td> -->
+
+          <td>
+            <span *ngIf="editableId != performance.id">{{performance.player_age}}</span>
+          
+            <input *ngIf="editableId == performance.id" type="text" value="{{performance.player_age}}" class="form-control performance-dark-bg year-input" (input)="onInputChange($event, 'player_age')" /> <span id="Player-age-year" *ngIf="editableId != performance.id"> &nbsp;Year</span>
+          </td>
+          
+          <td class="d-flex justify-content-center ">
+            <svg  *ngIf="editableId != performance.id" (click)="editPerformance(performance.id)" id="users-icon"  width="24" height="24" viewBox="0 0 24 24" fill="#787878" xmlns="http://www.w3.org/2000/svg" class="pointer ">
+              <path d="M3 17.4585V20.4985C3 20.7785 3.22 20.9985 3.5 20.9985H6.54C6.67 20.9985 6.8 20.9485 6.89 20.8485L17.81 9.93854L14.06 6.18854L3.15 17.0985C3.05 17.1985 3 17.3185 3 17.4585ZM20.71 7.03854C20.8027 6.94602 20.8762 6.83614 20.9264 6.71516C20.9766 6.59419 21.0024 6.46451 21.0024 6.33354C21.0024 6.20257 20.9766 6.07289 20.9264 5.95191C20.8762 5.83094 20.8027 5.72105 20.71 5.62854L18.37 3.28854C18.2775 3.19583 18.1676 3.12229 18.0466 3.07211C17.9257 3.02192 17.796 2.99609 17.665 2.99609C17.534 2.99609 17.4043 3.02192 17.2834 3.07211C17.1624 3.12229 17.0525 3.19583 16.96 3.28854L15.13 5.11854L18.88 8.86854L20.71 7.03854Z"/>
+            </svg>
+
+            <!-- <img *ngIf="editableId == performance.id" (click)="savePerformance(performance.id)" src="../../../../assets/images/save-icon.png" width="26px"> -->
+
+            <svg *ngIf="editableId == performance.id" (click)="savePerformance(performance.id)" class="light-performance-save-svg cursor-pointer mt-2" width="22" height="22" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M21.3496 4.66667V18.6667C21.3496 19.3083 21.1213 19.8578 20.6648 20.3152C20.2082 20.7725 19.6587 21.0008 19.0163 21H2.68294C2.04128 21 1.49216 20.7717 1.03561 20.3152C0.579054 19.8586 0.350387 19.3091 0.349609 18.6667V2.33333C0.349609 1.69167 0.578276 1.14256 1.03561 0.686C1.49294 0.229444 2.04205 0.000777778 2.68294 0H16.6829L21.3496 4.66667ZM10.8496 17.5C11.8218 17.5 12.6482 17.1597 13.3288 16.4792C14.0093 15.7986 14.3496 14.9722 14.3496 14C14.3496 13.0278 14.0093 12.2014 13.3288 11.5208C12.6482 10.8403 11.8218 10.5 10.8496 10.5C9.87739 10.5 9.051 10.8403 8.37044 11.5208C7.68989 12.2014 7.34961 13.0278 7.34961 14C7.34961 14.9722 7.68989 15.7986 8.37044 16.4792C9.051 17.1597 9.87739 17.5 10.8496 17.5ZM3.84961 8.16667H14.3496V3.5H3.84961V8.16667Z" fill="#BDE34F"/>
+              </svg>
+
+              <svg  *ngIf="editableId == performance.id" (click)="savePerformance(performance.id)" class="dark-performance-save-svg cursor-pointer mt-2" width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21.5 5.16667V19.1667C21.5 19.8083 21.2717 20.3578 20.8152 20.8152C20.3586 21.2725 19.8091 21.5008 19.1667 21.5H2.83333C2.19167 21.5 1.64256 21.2717 1.186 20.8152C0.729444 20.3586 0.500778 19.8091 0.5 19.1667V2.83333C0.5 2.19167 0.728667 1.64256 1.186 1.186C1.64333 0.729444 2.19244 0.500778 2.83333 0.5H16.8333L21.5 5.16667ZM11 18C11.9722 18 12.7986 17.6597 13.4792 16.9792C14.1597 16.2986 14.5 15.4722 14.5 14.5C14.5 13.5278 14.1597 12.7014 13.4792 12.0208C12.7986 11.3403 11.9722 11 11 11C10.0278 11 9.20139 11.3403 8.52083 12.0208C7.84028 12.7014 7.5 13.5278 7.5 14.5C7.5 15.4722 7.84028 16.2986 8.52083 16.9792C9.20139 17.6597 10.0278 18 11 18ZM4 8.66667H14.5V4H4V8.66667Z" fill="#236115"/>
+                </svg>                         
+          </td>
+        </tr>
+        <tr *ngIf="isLoading || performances.length == '0'">
+          <td colspan="7">  
+            <app-loader *ngIf="isLoading"></app-loader>
+            <div *ngIf="performances.length == 0 && !isLoading" style="text-align: center;">{{ 'noRecordFound' | translate }}</div>
+          </td>
+        </tr>
+      </tbody>
+  </table>
+</div>

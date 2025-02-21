@@ -1,0 +1,202 @@
+<div class="page-content">
+  <div class="main-wrapper">
+    <div class="card bg-color">
+      <div class="card-header border-0 py-0">
+        <div class="table-responsive">
+          <table class="table table-striped explore-table">
+            <thead>
+              <tr class="explore-inputs">
+                <!-- Talent Filter -->
+                <th>
+                  <div class="form-group explore-all_input">
+                    <mat-form-field appearance="fill">
+                      <mat-label>{{ 'talents' | translate }}</mat-label>
+                      <mat-select [(ngModel)]="selectedRole" (selectionChange)="applyFilter()" id="roles" name="role">
+                        <mat-option *ngFor="let role of roles" [value]="role.id">{{role.role}}</mat-option>
+                      </mat-select> 
+                    </mat-form-field>
+                  </div>
+                </th>
+        
+                <!-- Country Filter -->
+                <th>
+                  <div class="form-group explore-all_input">
+                    <mat-form-field appearance="fill">
+                      <mat-label>{{ 'country' | translate }}</mat-label>
+                      <mat-select [(ngModel)]="selectedCountry" (selectionChange)="applyFilter()" id="country" name="country">
+                        <mat-option *ngFor="let country of countries" [value]="country.id">{{country.location}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </th>
+        
+                <!-- Position Filter -->
+                <th>
+                  <div class="form-group explore-all_input">
+                    <mat-form-field appearance="fill">
+                      <mat-label>{{'position' | translate}}</mat-label>
+                      <mat-select [(ngModel)]="selectedPositions" (selectionChange)="applyFilter()" id="position" name="position" multiple>
+                        <mat-option *ngFor="let position of positions" [value]="position.id">{{position.position}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </th>
+        
+                <!-- Age Filter -->
+                <th>
+                  <div class="form-group explore-all_input">
+                    <mat-form-field appearance="fill">
+                      <mat-label>{{'age' | translate}}</mat-label>
+                      <mat-select [(ngModel)]="selectedAge" (selectionChange)="applyFilter()" id="age" name="age" multiple>
+                        <mat-option *ngFor="let age of ageRange" [value]="age">{{ age }}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </th>
+        
+                <!-- Foot Filter -->
+                <th>
+                  <div class="form-group explore-all_input">
+                    <mat-form-field appearance="fill">
+                      <mat-label>{{'foot' | translate}}</mat-label>
+                      <mat-select [(ngModel)]="selectedFoot" (selectionChange)="applyFilter()" id="foot" name="foot" multiple>
+                        <mat-option value="right">{{'right' | translate}}</mat-option>
+                        <mat-option value="left">{{'left' | translate}}</mat-option>
+                        <mat-option value="both">{{'both' | translate}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </th>
+        
+                <!-- Top Speed Filter -->
+                <th>
+                  <div class="form-group explore-all_input">
+                    <mat-form-field appearance="fill">
+                      <mat-label>{{'topSpeed' | translate}}</mat-label>
+                      <mat-select [(ngModel)]="selectedTopSpeed" (selectionChange)="applyFilter()" id="top-speed" name="topSpeed">
+                        <mat-option value="15">15-20 Km/hr</mat-option>
+                        <mat-option value="20">20-25 km/hr</mat-option>
+                        <mat-option value="25">25-30 km/hr</mat-option>
+                        <mat-option value="30">30-35 km/hr</mat-option>
+                        <mat-option value="35">35-40 km/hr</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </th>
+        
+                <!-- League Filter -->
+                <th>
+                  <div class="form-group explore-all_input">
+                    <mat-form-field appearance="fill">
+                      <mat-label>{{'league' | translate}}</mat-label>
+                      <mat-select [(ngModel)]="selectedLeague" (selectionChange)="applyFilter()" id="league" name="league">
+                        <mat-option *ngFor="let league of leagues" [value]="league.id">{{league.league_name}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </th>
+        
+                <!-- Club Filter -->
+                <th>
+                  <div class="form-group explore-all_input">
+                    <mat-form-field appearance="fill">
+                      <mat-label>{{'clubRole' | translate}}</mat-label>
+                      <mat-select [(ngModel)]="selectedClub" (selectionChange)="applyFilter()" id="club" name="club">
+                        <mat-option *ngFor="let club of clubs" [value]="club.id">{{club.club_name}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+        
+        <div class="explore-chip d-flex align-items-center my-2">
+          
+          <div *ngFor="let filter of getSelectedFilters()">
+            <div class="chip" *ngIf="!empty(filter.label)"> <!-- Check if label is not empty -->
+              <span>
+                {{ filter.label }}:
+                <strong>{{ getNameById(filter.label, filter.value) }}</strong>
+              </span>
+              <span>
+                <button class="explore-chip_cut" (click)="removeFilter(filter.label)">
+                  <svg width="13px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                    <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z">
+                    </path>
+                  </svg>
+                </button>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="explore-box_images mt-3">
+          <div class="row player-image-list ">
+            <div class="col-lg-2"  *ngFor="let player of players"  >
+              <ng-container  *ngIf="player.id != loggedInUser">
+
+                <div class="image_box cursor-pointer"
+                  [ngClass]="{'booster_box': player?.package_name == 'Booster'}"
+                  (click)="exploreUser(player.role_name, player.id)">
+                  <div class="image_box2">
+                    <div class="player_img">
+                      <img *ngIf="player.meta.profile_image_path" [src]="player.meta.profile_image_path" alt="player-image"class="w-100">
+                      <img *ngIf="!player.meta.profile_image_path" src="../../../../assets/images/default/talent-profile-default.png" class="w-100" alt="player-image">
+                    </div>
+                    <div class="player-names">
+                      <a href="javascript:void(0)">{{player?.first_name?? 'N/A'}}</a>
+                    </div>
+                  </div>
+
+                  <div class="card-shape">
+                  </div>
+                  <div class="player-team-logo">
+                    <div *ngIf="player.pre_current_club_logo_path" class="team-logo-bg">
+                    </div>
+                    <img *ngIf="player.pre_current_club_logo_path" src="{{player.pre_current_club_logo_path}}" alt="team-logo">
+                  </div>
+                    @if (getNationality(player.user_nationalities) ||player?.meta?.formation_date) {
+                      <div class="flag_box">
+                        @if (getNationality(player.user_nationalities)) {
+                          <img src="{{getNationality(player.user_nationalities)}}" >
+                        }@else{
+                          <span>--</span>
+                        }
+                        <hr>
+                        <ng-container *ngIf="player?.meta?.formation_date">
+                          <span>
+                            <svg width="16" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                d="M5 27.5C4.64583 27.5 4.34917 27.38 4.11 27.14C3.87083 26.9 3.75083 26.6033 3.75 26.25V21.25C3.75 20.5625 3.995 19.9742 4.485 19.485C4.975 18.9958 5.56333 18.7508 6.25 18.75H23.75C24.4375 18.75 25.0263 18.995 25.5163 19.485C26.0063 19.975 26.2508 20.5633 26.25 21.25V26.25C26.25 26.6042 26.13 26.9012 25.89 27.1412C25.65 27.3812 25.3533 27.5008 25 27.5H5ZM6.25 16.25V12.5C6.25 11.8125 6.495 11.2242 6.985 10.735C7.475 10.2458 8.06333 10.0008 8.75 10H13.75V8.1875C13.375 7.9375 13.0729 7.63542 12.8438 7.28125C12.6146 6.92708 12.5 6.5 12.5 6C12.5 5.6875 12.5625 5.38 12.6875 5.0775C12.8125 4.775 13 4.49917 13.25 4.25L15 2.5L16.75 4.25C17 4.5 17.1875 4.77583 17.3125 5.0775C17.4375 5.37917 17.5 5.68667 17.5 6C17.5 6.5 17.3854 6.92708 17.1562 7.28125C16.9271 7.63542 16.625 7.9375 16.25 8.1875V10H21.25C21.9375 10 22.5263 10.2446 23.0163 10.7337C23.5063 11.2229 23.7508 11.8117 23.75 12.5V16.25H6.25Z"
+                                fill="#023A4A"></path>
+                              <path
+                                d="M6.25 16.25V12.5C6.25 11.8125 6.495 11.2242 6.985 10.735C7.475 10.2458 8.06333 10.0008 8.75 10H13.75V8.1875C13.375 7.9375 13.0729 7.63542 12.8438 7.28125C12.6146 6.92708 12.5 6.5 12.5 6C12.5 5.6875 12.5625 5.38 12.6875 5.0775C12.8125 4.775 13 4.49917 13.25 4.25L15 2.5L16.75 4.25C17 4.5 17.1875 4.77583 17.3125 5.0775C17.4375 5.37917 17.5 5.68667 17.5 6C17.5 6.5 17.3854 6.92708 17.1562 7.28125C16.9271 7.63542 16.625 7.9375 16.25 8.1875V10H21.25C21.9375 10 22.5263 10.2446 23.0163 10.7337C23.5063 11.2229 23.7508 11.8117 23.75 12.5V16.25H6.25Z"
+                                fill="#6FB95D"></path>
+                            </svg>
+                          </span>
+                          <span class="player-age">{{player?.meta?.formation_date | date:'y' }}</span>
+                        </ng-container>
+                      </div>
+                    }
+                  <div class="boosted-box" *ngIf="player.package_name == 'Booster'">
+                    {{ 'boosted' | translate}}
+                  </div>
+                </div>
+                
+              </ng-container>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="result-page-slider">
+          <div class="paginator-container">
+             <mat-paginator [length]="totalItems" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25, 100]" (page)="onPageChange($event)" aria-label="Select page" showFirstLastButtons></mat-paginator>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,231 @@
+//   --------------gallery--------
+h5 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #111418;
+}
+
+p {
+    font-size: 14px;
+    font-weight: 700;
+    color: #111418;
+}
+
+.gallery-pic-upload {
+    color: #023A4A;
+}
+
+.gallery-parent {
+    padding: 15px 20px;
+}
+
+.cover-photo-container {
+    position: absolute;
+    bottom: 9px;
+    right: 15px;
+}
+
+.Delete-cover {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 10px;
+}
+
+.img-fluid {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.edit-cover {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    background: rgb(0 0 0 / 50%);
+    border-radius: 50%;
+    height: 31px;
+    width: 28px;
+    padding: 7px 5px;
+    fill: #fff !important;
+    z-index: 99;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.wc_floatingMenu {
+    display: none;
+    position: absolute;
+    float: left;
+    top: 42px;
+    right: 15px;
+    background: #ffffff;
+    padding: 10px 10px;
+    border-radius: 4px;
+    box-shadow: 1px 1px 4px #999;
+}
+
+.wc_floatingMenu.active {
+    display: block;
+}
+
+.w-20 {
+    width: 20% !important;
+}
+
+.font-14 {
+    font-family: Libre Franklin, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: left;
+}
+
+.del-icon-margin {
+    margin: 0 5px 0 2px;
+}
+
+button.add_potos-btn {
+    border: none;
+    background: none;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.gallery-new_image img {
+    width: 100%;
+}
+
+.gallery-all_images {
+    gap: 10px;
+}
+
+.gallery-new_image svg {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    height: 34px;
+    width: 34px;
+    border-radius: 50%;
+    padding: 6px;
+    background: #0000009c;
+}
+
+.gallery-new_image svg path {
+    fill: #fff;
+}
+
+.ten-columns>.col-lg-2 {
+    width: 20%;
+}
+
+.gallery-all_images .ten-columns .col-lg-2 {
+    padding: 5px !important;
+    position: relative;
+}
+
+.gallery-parent p {
+    color: #000;
+}
+
+.portfolio-tab table {
+    width: 100%;
+    overflow: auto;
+    max-width: 100%;
+}
+
+.portfolio-tab table th {
+    font-size: 14px;
+    color: #111418;
+    font-weight: 700;
+}
+
+.table_image {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+}
+
+.portfolio-images {
+    position: relative;
+}
+
+.verified-icon {
+    position: absolute;
+    bottom: 0;
+    right: -18px;
+}
+
+.portfolio_row {
+    background: #FAFAFA;
+}
+
+.portfolio-tab tbody tr:hover {
+    border: 1px solid #236115;
+    border-collapse: separate;
+    background: #edffe9;
+}
+
+.portfolio-tab table tr td button {
+    border: none;
+    background: none;
+}
+
+.portfolio-tab table td,
+th {
+    padding: 16px 24px;
+}
+
+.portfolio-tab tbody span {
+    line-height: normal;
+}
+
+.table_image img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.add_talent-popup {
+    background: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add_talent-popup .modal-content {
+    background: #fff;
+    border-radius: 8px;
+    padding: 30px;
+}
+
+.add_talent-popup .modal-content .modal-header {
+    border-bottom: none;
+}
+
+@media (max-width:768px) {
+    .ten-columns>.col-lg-2 {
+        width: 100%;
+    }
+
+    .gallery-all_images .ten-columns {
+        flex-direction: column;
+        row-gap: 10px;
+        margin: auto;
+    }
+
+    .gallery-all_images .ten-columns .col-lg-2 {
+        padding: 0px !important;
+    }
+}

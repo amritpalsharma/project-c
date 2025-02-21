@@ -1,0 +1,60 @@
+<div class="container p-4">
+  <div class="inner_container p-4">
+    <!-- Dialog header -->
+    <div class="modal-header pb-2">
+      <h5 class="modal-title" id="couponModalLabel">{{'enterCouponCode' | translate}}</h5>
+      <button type="button" class="btn-close" (click)="closeDialog()"></button>
+    </div>
+
+    <!-- Dialog body -->
+    <div class="modal-body">
+      <!-- Form field for coupon code -->
+      <div class="my-2 position-relative">
+        <input type="text" class="form-control p-3" id="couponCode" [(ngModel)]="couponCode"
+          placeholder="{{'Enter your coupon code' | translate}}" (input)="onCouponInput()" />
+
+        
+
+        <button *ngIf="!couponApplied" type="button" class="btn btn-success coupon-btn" [disabled]="!couponCode.trim()"
+          (click)="applyCoupon()">
+          {{ 'checkCoupon' | translate }}
+        </button>
+
+        <button *ngIf="couponApplied" class="btn btn-primary proceed-btn" (click)="proceedToCheckout()">
+          {{ 'proceedToCheckout' | translate }}
+        </button>
+      </div>
+
+      <!-- Display error message if coupon is invalid -->
+      <div *ngIf="couponError" class="text-danger mt-2">
+        {{ couponError }}
+      </div>
+
+      <!-- Display success message if coupon is valid -->
+      <div *ngIf="couponSuccess" class="text-success mt-2">
+        {{ couponSuccess }}
+      </div>
+
+      <!-- Option for users who don't have a coupon -->
+      <div class="mt-3">
+        <span>{{ "dont'tHaveCoupon" | translate }} </span> 
+        <button class="btn btn-link coupon-btn-link p-0" (click)="noCoupon()">
+          {{ "proceedToCheckout" | translate }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Dialog footer -->
+
+    <!-- <div class="modal-footer mt-1">
+      <button *ngIf="!couponApplied" type="button" class="btn btn-success coupon-btn" [disabled]="!couponCode.trim()"
+        (click)="applyCoupon()">
+        {{ 'checkCoupon' | translate }}
+      </button>
+
+      <button *ngIf="couponApplied" class="btn btn-primary" (click)="proceedToCheckout()">
+        {{ 'proceedToCheckout' | translate }}
+      </button>
+    </div> -->
+  </div>
+</div>

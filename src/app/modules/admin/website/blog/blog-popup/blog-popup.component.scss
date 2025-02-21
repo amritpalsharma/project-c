@@ -1,0 +1,113 @@
+
+.main-popup-div{
+    display: flex;
+    justify-content: space-between;
+}
+.close-img{
+   // background-image: url(../../../../../assets/images/carbon_close-outline.png);
+    background-size: cover;
+    width: 35px;
+    height: 35px;
+    border: none;
+    padding: 0px;
+    position: absolute;
+    right: 17px;
+    top: 15px;
+    z-index: 2;
+    opacity: 1;
+    cursor: pointer;
+}
+
+.button-text{
+    color: black;
+    padding: 5px;
+    font-size: 14px;
+    margin-left: 10px;
+    background: none;
+}
+.text-name{
+font-size: 13px;
+}
+.Launch{
+    background-color: #6FB95D;
+    color: #ffffff;
+}
+.btn-delete{
+    color: #FD5454;
+}
+.button-text:hover {
+    background: none;
+}
+.button-text:active {
+    background: none !important;
+}
+.marketing-button{
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    column-gap: 94px;
+}
+
+// .marketing-button-child{
+//     display: flex;
+//     justify-content: space-between;
+
+// }
+.text-size{
+    font-size: 14px;
+}
+.title-text{
+    font-size: 16px;
+}
+.template-name-input input{
+  border-top: 0 !important;
+  border-left: 0 !important;
+  border-right: 0 !important;
+}
+
+.template-name-input input:focus-visible {
+ outline: 0px !important;
+}
+
+.template-name-input input[type=text]:disabled {
+  border: none !important;
+}
+ngx-editor {
+    height: 35vh; /* Set the height you want */
+    display: block; /* Ensure it behaves like a block element */
+}
+
+::ng-deep .mat-mdc-select-panel{
+    min-width: 110px !important;
+    scrollbar-width: none !important;
+}
+
+.Launch{
+    padding: 0.5rem 3rem;
+}
+
+.NgxEditor__Wrapper{
+    border: 0 !important;
+}
+ 
+.mat-mdc-select-arrow-wrapper{
+    display: none !important;
+  }
+
+  .dropdown-icon {
+    position: absolute;
+    right: 5px; 
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+  
+
+  .add_custom_width{
+    width: 80% !important;
+  }
+
+  .editor-width{
+    height: 275px;
+    overflow: auto;
+  }

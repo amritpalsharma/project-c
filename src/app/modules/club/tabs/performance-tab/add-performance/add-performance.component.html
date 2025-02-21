@@ -1,0 +1,80 @@
+<div class="container">
+    <div class="row">
+      <!-- Right column: Form for editing player details -->
+      <div class="col-md-12 p-0">
+        <div  class="personal_edit">
+          <div class="dialog-header m-auto">
+            <h2>Add Performace Details</h2>
+          </div>
+          
+          <div class="close_buttons">
+            <button class="close-btn" (click)="onCancel()">X</button>
+            </div>
+        </div>
+        <hr>
+        <form class="general_form" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">  
+          <div class="overflow-card">        
+          <div class="row">
+            <div class="form-group col-lg-6">
+              <label for="team" class="form-label">Team</label>
+              <!-- <input type="number" id="team" name="team_id" [(ngModel)]="performance.team_id" required> -->
+  
+              <select id="team" name="team" [(ngModel)]="performance.team" required>
+                <option *ngFor="let team of teams" [value]="team.id">
+                  {{ team.team_name }}
+                </option>
+              </select>
+            </div>
+            <div class="form-group col-lg-6">
+              <label for="matches" class="form-label">Matches</label>
+              <input type="number" id="matches" name="matches" [(ngModel)]="performance.matches" required>
+            </div>        
+          </div>
+          
+          <div class="row">
+            <div class="form-group col-lg-6">
+              <label for="goals" class="form-label">Goals</label>
+              <input type="number" id="goals" name="goals" [(ngModel)]="performance.goals" required>
+            </div>
+            <div class="form-group col-lg-6">
+              <label for="Coach" class="form-label">Coach during debut</label>
+              <input type="text" id="Coach" name="coach" [(ngModel)]="performance.coach" required>
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="form-group col-lg-6">
+              <label for="session" class="form-label">Session</label>
+              <select class="form-select" id="session" name="session" [(ngModel)]="performance.session" required>
+                <option value="23/24">23/24</option>
+                <option value="24/25">24/25</option>
+                <option value="25/26">25/26</option>
+              </select>
+            </div>
+            <div class="form-group col-lg-6">
+              <label for="player_age" class="form-label">Player Age</label>
+              <input type="text" id="player_age" name="player_age" [(ngModel)]="performance.player_age" required>
+            </div>
+          </div>
+  
+          <div class="row mb-5">
+            <div class="form-group col-lg-10">
+              <div class="col-lg-4 p-0">
+                <label for="form-date" class="form-label">Form-Upto</label>
+                <div class="date-imputs d-flex align-items-center">
+                  <input type="date" name="from_date" class="form-upto_date" [(ngModel)]="performance.from_date" required>
+                  <input type="date" name="to_date" class="form-upto_date-2" [(ngModel)]="performance.to_date" required>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+          <div class="dialog-actions align-items-center d-flex justify-content-between">
+            <button class="cancel-btn" type="button" (click)="onCancel()">Cancel</button>
+            <button class="save-btn" type="submit">Save</button>
+          </div>
+          
+        </form>
+      </div>
+    </div>
+  </div>

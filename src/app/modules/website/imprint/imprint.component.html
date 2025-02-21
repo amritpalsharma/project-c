@@ -1,0 +1,110 @@
+<section class="website-code">
+    <!-- <app-header></app-header> -->
+    <div class="main">
+    <div class="main-bnr"  style="background-image: url('{{base_url+banner_img}}');">
+    <div class="overlay"></div>
+    <div class="banner-inner py_0">
+      <div class="container">
+        <div class="about">
+          <h2 class="imprint-text">{{banner_title}}</h2>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!isEmptyObject(advertisemnetData?.skyscraper)" class="skyscraper-left">
+      <img [src]="advertisemnet_base_url + advertisemnetData?.skyscraper?.featured_image">
+      <button (click)="closeAd('skyscraper')"  class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+  
+    <div *ngIf="!isEmptyObject(advertisemnetData?.skyscraper_large)" class="skyscraper-right">
+      <img [src]="advertisemnet_base_url + advertisemnetData?.skyscraper_large?.featured_image" >
+      <button (click)="closeAd('skyscraper_large')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+  </div>
+  
+  <div class="imprint">
+
+    <div class="container content_page " [innerHTML]="page_content">
+        <!-- <div class="imprint-cols">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="information">
+                    <div class="info-text">
+                    <h4 class="company-heading">Company Information</h4>
+                    <p>SoccerYou</p>
+                    </div>
+  
+                    <div>
+                        <h4 class="company-heading">Address:</h4>
+                    <p>SoccerYou</p>
+                    <p>Succer You Sports AG</p>
+                    <p>CH-8404 Winterthur</p>
+                    <p>Switzerland</p>
+                    </div>
+                    </div>
+  
+                </div>
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="address">
+                        <div class="info-text">
+                            <h4 class="company-heading">Contact Information</h4>
+                            <p class="e-mail">
+                              <a href="mailto:info@socceryou.ch">E-Mail</a>
+                            </p>
+                          </div>
+                        <div>
+                            <h4 class="company-heading">Company Registration</h4>
+                        <p>CHE-485.510.837 UID</p>
+                        <p>CHE-485.510.837 MWST</p>
+                        <p>Zuerich</p>
+                        </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+  
+        <div class="py_0">
+            <h4>Disclaimer</h4>
+            <ul>
+                <li>Accountability for Content:</li>
+            </ul>
+            <p class="list-text">The contents of our pages have been created with the utmost care. However, we cannot guarantee the accuracy, completeness, or topicality of the contents. As a service provider, we are responsible for our own content on these pages under the general laws. According to §§ 8 to 10 of the Telemedia Act (TMG), we are not obliged to monitor transmitted or stored information or to investigate circumstances that indicate illegal activity. Obligations to remove or block the use of information according to general laws remain unaffected.
+            </p>
+  
+            <ul>
+                <li>Accountability for Links</li>
+            </ul>
+            <p class="list-text">Our website contains links to external websites. We have no influence on the content of these websites; therefore, we cannot assume any liability for their content. The respective providers or operators of the linked websites are always responsible for their content. At the time of linking, the linked websites were checked for possible legal violations. Illegal contents were not identifiable at the time of linking. Permanent monitoring of the content of the linked pages is not reasonable without concrete evidence of a violation. Upon notification of violations, we will remove such links immediately.
+            </p>
+        </div>
+  
+        <div class="py_0">
+            <h4>Copyright</h4>
+            <p>The content and works on these pages created by the site operators are subject to German copyright law. Duplication, processing, distribution, or any form of commercialization of such material beyond the scope of the copyright law shall require the prior written consent of its respective author or creator. Downloads and copies of these pages are permitted for private, non-commercial use only. Insofar as the content on this site was not created by the operator, the copyrights of third parties are respected. In particular, third-party content is marked as such. Should you nevertheless become aware of a copyright infringement, please inform us accordingly. Upon notification of violations, we will remove such content immediately.
+            </p>
+        </div>
+  
+        <div class="py_0">
+            <h4>Privacy Policy</h4>
+            <p>For information about how we collect and use personal data, please refer to our [Privacy Policy](link to privacy policy).
+            </p>
+        </div>
+  
+        <div class="py_0">
+            <h4>Dispute Resolution</h4>
+            <p>We are not willing or obliged to participate in dispute resolution proceedings before a consumer arbitration board.
+            </p>
+        </div>
+   -->
+       
+          
+    </div>
+    <div class="advertisment" >
+      <div *ngIf="!isEmptyObject(advertisemnetData?.leaderboard)"  class="leaderboard-image">
+        <img [src]="advertisemnet_base_url + advertisemnetData?.leaderboard?.featured_image">
+        <button (click)="closeAd('featured_image')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- <app-footer></app-footer> -->
+  </section>

@@ -1,0 +1,199 @@
+<!-- unlock page  -->
+<div class="unlock_page" *ngIf="!isPremium">
+    <div class="general_titels d-flex align-items-center">
+        <h2>{{ 'GeneralDetails' | translate}}</h2>
+        <div class="edit_button">
+            <button class="tour-general-details" matTooltip="Edit General Details" matTooltipPosition="right" >
+                <svg width="22" height="23" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 17.7505V21.5005H6.75L17.81 10.4405L14.06 6.69049L3 17.7505ZM20.71 7.54049C20.8027 7.44798 20.8762 7.33809 20.9264 7.21712C20.9766 7.09614 21.0024 6.96646 21.0024 6.83549C21.0024 6.70452 20.9766 6.57484 20.9264 6.45387C20.8762 6.33289 20.8027 6.223 20.71 6.13049L18.37 3.79049C18.2775 3.69779 18.1676 3.62424 18.0466 3.57406C17.9257 3.52388 17.796 3.49805 17.665 3.49805C17.534 3.49805 17.4043 3.52388 17.2834 3.57406C17.1624 3.62424 17.0525 3.69779 16.96 3.79049L15.13 5.62049L18.88 9.37049L20.71 7.54049Z" fill="#787878"/>
+                    </svg>
+                <span>Edit</span>
+            </button>
+        </div>
+    </div>
+    <div class="unlock-view">
+        <div class="d-flex justify-content-between mt-4 details_info">
+            <div class="general_details">
+                <h6 class="details_2">{{ 'In the team since ' | translate}}</h6>
+                <h5 class="details-1">--</h5>
+            </div>
+            <div class="general_details">            
+                <h6 class="details_2"> {{ 'Top Speed' | translate}}</h6>
+                <h5 class="details-1" >NA</h5>
+            </div>
+            <div class="general_details">
+                <h6 class="details_2">{{ 'InternationalPlayer' | translate}}</h6>
+                <span class="m-2">--</span>
+            </div>
+            <div class="general_details">
+                <h6 class="details_2"> {{ 'Current Market Value' | translate}}</h6>
+                <h5 class="details-1" >NA</h5>
+            </div>
+            <div class="general_details">            
+                <h6 class="details_2"> {{ 'Last Change' | translate}}</h6>
+                <h5 class="details-1" >--</h5>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-lg-6 position-boxs d-flex p-3">
+            <div class="col-lg-6">
+                <!-- <img class="position-image" src="./media/palyers.png" alt=""> -->
+            </div>
+            <div class="col-lg-6 d-flex flex-column justify-content-between">
+                <div class="main-position">
+                    <h6 class="details_2"> {{ 'Main-position' | translate}}</h6>
+                    <h5 class="details-1">--</h5>
+                </div>
+                <div class="main-position">
+                <h6 class="details_2"> {{ 'Other-position(s)' | translate}}</h6>
+                <h5 class="details-1">--</h5>
+                </div>
+            </div>
+            </div>
+            <div class="col-lg-6 p-3">
+                <div class="main-position">
+                    <h6 class="details_2">{{ 'Social Media' | translate}}</h6>
+                    <div class="social_icons my-2">
+                        <span class="me-2">                    
+                            <svg id="users-icon" class="social-svg" width="20" height="18" viewBox="0 0 9 18" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M5.6044 6.13187V3.89011C5.6044 3.2967 6.13187 2.76923 6.72528 2.76923H7.84615V0H5.6044C3.75824 0 2.24176 1.51648 2.24176 3.36264V6.1978H0V9.03297H2.24176V18H5.6044V8.9011H7.84615L8.96703 6.06593L5.6044 6.13187Z"
+                                fill="#111418" />
+                            </svg>
+                        </span>
+                        <span>
+                            www.facebook.com/
+                        </span>
+                    </div>
+                    <div class="social_icons">
+                        <span class="me-2">
+                            <svg id="users-icon" class="social-svg" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M13.75 0H6.25C2.79412 0 0 2.79412 0 6.25V13.75C0 17.2059 2.79412 20 6.25 20H13.75C17.2059 20 20 17.2059 20 13.75V6.25C20.0735 2.79412 17.2794 0 13.75 0ZM18.1618 13.75C18.1618 16.1765 16.1765 18.1618 13.75 18.1618H6.25C3.82353 18.1618 1.83824 16.1765 1.83824 13.75V6.25C1.83824 3.82353 3.82353 1.83824 6.25 1.83824H13.75C16.1765 1.83824 18.1618 3.82353 18.1618 6.25V13.75Z" fill="#111418"/>
+                                <path d="M10.0004 5C7.20625 5 5.00037 7.20588 5.00037 10C5.00037 12.7941 7.20625 15 10.0004 15C12.7945 15 15.0004 12.7941 15.0004 10C15.0004 7.27941 12.7945 5 10.0004 5ZM10.0004 13.1618C8.30919 13.1618 6.8386 11.7647 6.8386 10C6.8386 8.23529 8.23566 6.83824 10.0004 6.83824C11.7651 6.83824 13.1621 8.23529 13.1621 10C13.1621 11.7647 11.7651 13.1618 10.0004 13.1618Z" fill="#111418"/>
+                                <path d="M15.4412 3.9707C15.8089 3.9707 16.103 4.26482 16.103 4.63247C16.103 5.00011 15.8089 5.29423 15.4412 5.29423C15.0736 5.29423 14.7794 5.00011 14.7794 4.63247C14.7059 4.26482 15 3.9707 15.4412 3.9707Z" />
+                                </svg>
+                        </span>
+                        <span>www.instagram.com/</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="upgrade_unlock">
+            <a class="unlock_btn cursor-pointer" href="/scout/plans">
+                <svg width="15" height="19" viewBox="0 0 15 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_7084_24851)">
+                    <path d="M2.83968 18.125C2.41035 18.125 2.0449 17.9742 1.74335 17.6727C1.44179 17.3711 1.29102 17.006 1.29102 16.5773V8.17271C1.29102 7.74465 1.44179 7.37953 1.74335 7.07733C2.0449 6.77578 2.41035 6.625 2.83968 6.625H4.16602V4.70833C4.16602 3.64075 4.53817 2.73512 5.28247 1.99146C6.02614 1.24715 6.93177 0.875 7.99935 0.875C9.06693 0.875 9.97288 1.24715 10.7172 1.99146C11.4615 2.73576 11.8333 3.64139 11.8327 4.70833V6.625H13.16C13.588 6.625 13.9532 6.77578 14.2553 7.07733C14.5569 7.37889 14.7077 7.74433 14.7077 8.17367V16.5773C14.7077 17.0053 14.5569 17.3705 14.2553 17.6727C13.9538 17.9742 13.5887 18.125 13.16 18.125H2.83968ZM2.83968 17.1667H13.16C13.3318 17.1667 13.473 17.1114 13.5836 17.0009C13.6941 16.8903 13.7493 16.7492 13.7493 16.5773V8.17271C13.7493 8.00085 13.6941 7.85965 13.5836 7.74913C13.473 7.6386 13.3318 7.58333 13.16 7.58333H2.83872C2.66686 7.58333 2.52567 7.6386 2.41514 7.74913C2.30461 7.85965 2.24935 8.00117 2.24935 8.17367V16.5773C2.24935 16.7492 2.30461 16.8903 2.41514 17.0009C2.52567 17.1114 2.66718 17.1667 2.83968 17.1667ZM7.99935 13.8125C8.40377 13.8125 8.74429 13.6739 9.02093 13.3966C9.29821 13.1199 9.43685 12.7794 9.43685 12.375C9.43685 11.9706 9.29821 11.6301 9.02093 11.3534C8.74365 11.0768 8.40313 10.9381 7.99935 10.9375C7.59557 10.9369 7.25504 11.0755 6.97777 11.3534C6.70049 11.6301 6.56185 11.9706 6.56185 12.375C6.56185 12.7794 6.70049 13.1199 6.97777 13.3966C7.2544 13.6739 7.59493 13.8125 7.99935 13.8125ZM5.12435 6.625H10.8743V4.70833C10.8743 3.90972 10.5948 3.2309 10.0358 2.67188C9.47678 2.11285 8.79796 1.83333 7.99935 1.83333C7.20074 1.83333 6.52192 2.11285 5.96289 2.67188C5.40386 3.2309 5.12435 3.90972 5.12435 4.70833V6.625Z" fill="white"/>
+                    </g>
+                    <defs>
+                    <clipPath id="clip0_7084_24851">
+                    <rect width="14" height="19" fill="white" transform="translate(0.5)"/>
+                    </clipPath>
+                    </defs>
+                </svg>    
+                {{'Upgrade to unlock'|translate}}
+              </a>
+        </div> 
+    </div>    
+</div>
+
+<ng-container *ngIf="isPremium">
+    <div class="general_titels d-flex align-items-center mb-2">
+        <h2>{{ 'GeneralDetails' | translate}}</h2>
+    </div>
+    <div class="forms_details mb-2">
+        <form class="d-flex align-items-center form-boxs">
+            <div class="email_box">
+                <label for="email">{{ 'email' | translate}}</label><br>
+                <div>{{user.email}}</div>
+            </div>
+            <div class="password_box">
+                <label for="password"></label>
+                <label for="pass"> {{ 'password' | translate}}</label><br>
+                <input type="password"  id="pass" name="password" minlength="8" value="***************" required readonly />
+                <input class="password" type="reset" value="Reset Password"  (click)="openResetDialog()">
+            </div>
+        </form>
+    </div>
+
+    <hr>
+
+    <div class="table-responsive ">
+        <table class="table table-scout-profile table-hover bg-072944 ">
+            <thead class="border-table-thead">
+                <tr>
+                    <th>{{ 'company representators:' | translate }} &nbsp; &nbsp;<button
+                            class="btn btn-success btn-sm web-create-bg" (click)="addRepresentator()">{{ 'addNew' |
+                            translate }}</button></th>
+                    <th>{{ 'roles' | translate }}</th>
+                    <th>{{ 'designation' | translate }}</th>
+                    <th class="text-center">{{ 'edit' | translate }}</th>
+                    <th class="text-center">{{ 'delete' | translate }}</th>
+                </tr>
+            </thead>
+            <tbody class="tbody-scout-profile">
+                <tr *ngFor="let representator of representators">
+                    <td>
+                        <div style="display: flex; align-items: center;">
+                            <img src="../../../assets/images/1.jpg" alt="" class="table_img" />
+                            <span style="margin-left:15px;">
+                                <span style="display: block;">{{representator.first_name}}
+                                    {{representator.last_name}}</span>
+                                <span style="display: block;">{{representator.email}} </span>
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <select class="custom-select custom-select-wrapper"
+                            (change)="updateRepresentatorRole($event, representator.id)">
+
+                            <option value="admin-access"
+                                *ngIf="representator.permission != null && representator.permission != 'admin-access'">
+                                {{ 'admin' | translate }}</option>
+                            <option value="admin-access"
+                                *ngIf="representator.permission == null || representator.permission == 'admin-access'"
+                                selected>{{ 'admin' | translate }}</option>
+
+                            <option value="view-only" *ngIf="representator.permission != 'view-only'">{{ 'viewOnly'
+                                | translate }}</option>
+                            <option value="view-only" *ngIf="representator.permission == 'view-only'" selected>{{
+                                'viewOnly' | translate }}</option>
+
+                            <option value="editor" *ngIf="representator.permission != 'editor'">{{ 'editor' |
+                                translate }}</option>
+                            <option value="editor" *ngIf="representator.permission == 'editor'" selected>{{ 'editor'
+                                | translate }}</option>
+
+                            <option value="transfer-ownership"
+                                *ngIf="representator.permission != 'transfer-ownership'">{{ 'transferOwnership' |
+                                translate }}</option>
+                            <option value="transfer-ownership"
+                                *ngIf="representator.permission == 'transfer-ownership'" selected>{{
+                                'transferOwnership' | translate }}</option>
+
+                        </select>
+                    </td>
+                    <td>{{ getMetaValue(representator.meta, 'designation') }}</td>
+                    <td class="text-center">
+                        <svg class="pointer" (click)="editRepresentator(representator)" width="24" height="24"
+                            viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M3 17.4585V20.4985C3 20.7785 3.22 20.9985 3.5 20.9985H6.54C6.67 20.9985 6.8 20.9485 6.89 20.8485L17.81 9.93854L14.06 6.18854L3.15 17.0985C3.05 17.1985 3 17.3185 3 17.4585ZM20.71 7.03854C20.8027 6.94602 20.8762 6.83614 20.9264 6.71516C20.9766 6.59419 21.0024 6.46451 21.0024 6.33354C21.0024 6.20257 20.9766 6.07289 20.9264 5.95191C20.8762 5.83094 20.8027 5.72105 20.71 5.62854L18.37 3.28854C18.2775 3.19583 18.1676 3.12229 18.0466 3.07211C17.9257 3.02192 17.796 2.99609 17.665 2.99609C17.534 2.99609 17.4043 3.02192 17.2834 3.07211C17.1624 3.12229 17.0525 3.19583 16.96 3.28854L15.13 5.11854L18.88 8.86854L20.71 7.03854Z"
+                                fill="#787878" class="scout-edit" />
+                        </svg>
+                    </td>
+                    <td class="text-center">
+                        <svg class="pointer" (click)="confirmSingleDeletion(representator.id)" width="13"
+                            height="16" viewBox="0 0 13 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M0.916667 13.8519C0.916667 14.8042 1.74167 15.5833 2.75 15.5833H10.0833C11.0917 15.5833 11.9167 14.8042 11.9167 13.8519V3.46296H0.916667V13.8519ZM12.8333 0.865741H9.625L8.70833 0H4.125L3.20833 0.865741H0V2.59722H12.8333V0.865741Z"
+                                fill="#787878" class="scout-delete" />
+                        </svg>
+                    </td>
+                </tr>
+                <!-- Add more rows as necessary -->
+            </tbody>
+        </table>
+    </div>
+</ng-container>

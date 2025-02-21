@@ -1,0 +1,300 @@
+.unlock_page{
+    position: relative;
+    height: 30vh;
+    .unlock_btn{
+        background: #6FB95D;
+        padding: 10px 24px;
+        font-size: 12px;
+        font-weight: 700;
+        color: #fff;
+        border-radius: 10px;
+        border: none;
+      }
+      .upgrade_unlock{
+        height: 100%;
+        background: rgb(255 255 255 / 65%);
+        position: absolute;
+        width: 100%;
+        top: 0;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    .main-template{
+        color: black;
+    }
+    
+    .Performance-btn {
+        border-radius: 7px;
+        padding: 2px 15px;
+        color: black;
+        border: 1px solid black;
+        font-weight: 400;
+    }
+    .Performance-btn:hover {
+       background-color: transparent ;
+    }
+    .table tbody tr:hover td {
+        border-top: none !important; 
+        border-bottom: none !important; 
+    }
+    // .testing{
+    //     background-image: url('../../../../../assets/images/players-2.jpg');
+    //     height: 200px;
+    // }
+    
+    .pointer{
+        cursor: pointer;
+    }
+    
+    .form-control{
+        width:80px;
+    }
+    
+    select.form-control{
+        min-width:190px;
+        width: 80%;
+    
+    }
+    .coach-debt-input{
+        min-width: 150px;
+        width: 80%;
+    }
+    .year-input{
+        max-width: 120px;
+        width: 100px; 
+    }
+    
+    .select-wrapper {
+    position: relative;
+    display: inline-block;
+    }
+    
+    .dropdown-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none; 
+    }
+    
+    .w-10{
+        width:10%;
+    }
+    .new_performance button {
+        background: none;
+        border: 1px solid #E7E7E7;
+        padding: 7px 10px;
+        border-radius: 4px;
+        color: #a7a7a7;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-left: auto;
+    }
+    
+    .new_performance button svg {
+        width: 16px;
+        fill: #a7a7a7;
+    }
+    .edit_icon {
+        width: 20px;
+        fill: #6d6d6d;
+    }
+    .edit_button-2 {
+        border: 1px solid #918f8f;
+        background: no-repeat;
+        padding: 5px 14px;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+    }
+    .edit_button-2 span {
+        font-size: 16px;
+        color: #918f8f;
+        padding-left: 10px;
+       
+    }
+    .details_2 {
+        font-size: 16px;
+        color: #a9a9a9;
+        font-weight: 400;
+        margin-bottom: 6px;
+      }
+      .details-1 {
+        font-size: 16px;
+        font-weight: 400;
+        margin-bottom: 10px;
+      }
+      .team-logo-img img {
+        width: 72px;
+    }
+    .team-logos{
+        gap: 20px;
+    }
+    .edit-gap{
+        gap: 10px;
+    }
+    .country-details{
+        gap: 10px;
+    }
+    .table-striped > tbody > tr:nth-of-type(odd) > *{
+        --bs-table-bg-type: none !important;
+    }
+    .table tbody tr:hover{
+        border-top: none !important;
+        border-left: none !important;
+        border-right: none !important;
+        border-bottom: 3.3px solid #e6e6e6 !important;
+        background: none;
+    }
+    .team_logo {
+        padding: 24px 10px !important;
+    }
+    tr.table_underline {
+        border-bottom: 3.3px solid #e6e6e6 ;
+    }
+    .underline_gap{
+        margin-bottom: 18px;
+    }
+    
+}
+
+.main-template{
+    color: black;
+}
+
+.Performance-btn {
+    border-radius: 7px;
+    padding: 2px 15px;
+    color: black;
+    border: 1px solid black;
+    font-weight: 400;
+}
+.Performance-btn:hover {
+   background-color: transparent ;
+}
+.table tbody tr:hover td {
+    border-top: none !important; 
+    border-bottom: none !important; 
+}
+// .testing{
+//     background-image: url('../../../../../assets/images/players-2.jpg');
+//     height: 200px;
+// }
+
+.pointer{
+    cursor: pointer;
+}
+
+.form-control{
+    width:80px;
+}
+
+select.form-control{
+    min-width:190px;
+    width: 80%;
+
+}
+.coach-debt-input{
+    min-width: 150px;
+    width: 80%;
+}
+.year-input{
+    max-width: 120px;
+    width: 100px; 
+}
+
+.select-wrapper {
+position: relative;
+display: inline-block;
+}
+
+.dropdown-icon {
+position: absolute;
+top: 50%;
+right: 10px;
+transform: translateY(-50%);
+pointer-events: none; 
+}
+
+.w-10{
+    width:10%;
+}
+.new_performance button {
+    background: none;
+    border: 1px solid #E7E7E7;
+    padding: 7px 10px;
+    border-radius: 4px;
+    color: #a7a7a7;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: auto;
+}
+
+.new_performance button svg {
+    width: 16px;
+    fill: #a7a7a7;
+}
+.edit_icon {
+    width: 20px;
+    fill: #6d6d6d;
+}
+.edit_button-2 {
+    border: 1px solid #918f8f;
+    background: no-repeat;
+    padding: 5px 14px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+}
+.edit_button-2 span {
+    font-size: 16px;
+    color: #918f8f;
+    padding-left: 10px;
+   
+}
+.details_2 {
+    font-size: 16px;
+    color: #a9a9a9;
+    font-weight: 400;
+    margin-bottom: 6px;
+  }
+  .details-1 {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 10px;
+  }
+  .team-logo-img img {
+    width: 72px;
+}
+.team-logos{
+    gap: 20px;
+}
+.edit-gap{
+    gap: 10px;
+}
+.country-details{
+    gap: 10px;
+}
+.table-striped > tbody > tr:nth-of-type(odd) > *{
+    --bs-table-bg-type: none !important;
+}
+.table tbody tr:hover{
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-bottom: 3.3px solid #e6e6e6 !important;
+    background: none;
+}
+.team_logo {
+    padding: 24px 10px !important;
+}
+tr.table_underline {
+    border-bottom: 3.3px solid #e6e6e6 ;
+}
+.underline_gap{
+    margin-bottom: 18px;
+}

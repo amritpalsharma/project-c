@@ -1,0 +1,16 @@
+<!-- message-popup.component.html -->
+<div class="msg-popup-dialog p-3">
+    <div class="msg-popup-close">
+        <img src="../../../assets/images/close-icon-circle.png" alt="" (click)="onCancel()" />
+    </div>
+    <div class="msg-popup-content p-3 pt-1">
+        <div class="display-message">
+            {{'youWantToUpdate' | translate}} 
+        </div>
+        <div class="popup-delete-btn d-flex align-items-center justify-content-between mx-5 px-5 py-2">
+            <div (click)="onConfirm()">{{'confirm' | translate}}</div>
+            <div (click)="onCancel()">{{'close' | translate}}</div>
+        </div>        
+    </div>
+</div>
+  

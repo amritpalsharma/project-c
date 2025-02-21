@@ -1,0 +1,184 @@
+<div class="card mb-4">
+    <div class="card-header border-0">
+      <div>
+        <h6 class="card-title">{{'profile' | translate}}</h6>
+        <p>{{'setYourPersonalInformation' | translate}} </p>
+      </div>
+    </div>
+  </div>
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title mb-0">{{'profile' | translate}}</h4>
+        <span class="font-w500"
+          ><svg id="users-icon"
+            width="18"
+            height="18"
+            viewBox="0 0 18 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M2.25 13.0968V15.3768C2.25 15.5868 2.415 15.7518 2.625 15.7518H4.905C5.0025 15.7518 5.1 15.7143 5.1675 15.6393L13.3575 7.45683L10.545 4.64433L2.3625 12.8268C2.2875 12.9018 2.25 12.9918 2.25 13.0968ZM15.5325 5.28183C15.602 5.21245 15.6572 5.13003 15.6948 5.0393C15.7325 4.94857 15.7518 4.85131 15.7518 4.75308C15.7518 4.65486 15.7325 4.55759 15.6948 4.46686C15.6572 4.37613 15.602 4.29372 15.5325 4.22433L13.7775 2.46933C13.7081 2.39981 13.6257 2.34464 13.535 2.30701C13.4442 2.26937 13.347 2.25 13.2488 2.25C13.1505 2.25 13.0533 2.26937 12.9625 2.30701C12.8718 2.34464 12.7894 2.39981 12.72 2.46933L11.3475 3.84183L14.16 6.65433L15.5325 5.28183Z"
+              fill="#787878"
+            />
+          </svg>
+          <span class="Addmember">{{'editProfile' | translate}}</span></span
+        >
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-4">
+            <!-- <div class="setting-media">
+              <img src="../../../assets/images/1.jpg" alt="" />
+              <span class="setting-edit">
+                <br>
+                Click to <br>
+                Change Photo
+                  <br>
+                <input type="file"  class="setting-media-2"/>
+              </span>
+            </div> -->
+            <div class="setting-media">
+              <label for="file-upload" class="custom-file-upload">
+                <img src="{{image}}" alt="" />
+                <span class="setting-edit" *ngIf="!imageLoading">
+                  {{'clickTo' | translate}} <br>
+                  {{'changePhoto' | translate}}
+                  <br>
+                </span>
+                <span class="setting-edit" *ngIf="imageLoading">
+                  {{'uploading' | translate}} <br>
+                  {{ 'image...' | translate }}
+                  <br>
+                </span>
+              </label>
+              <input id="file-upload" type="file" class="setting-media-2" style="display: none;" (change)="onProfileImageChange($event)" accept="image/*" />
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="mb-3">
+                  <label for="firstNameInput" class="form-label">{{ 'firstName' | translate }}</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="firstNameInput"
+                    placeholder="{{ 'firstName' | translate }}"
+                    [(ngModel)]="firstName"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="emailInput" class="form-label">{{ 'email' | translate }}</label>
+                  <!-- <label for="formFileLg" class="form-label">Large file input example</label>
+                  <input class="form-control form-control-lg"
+                  id="formFileLg"
+                  type="file"
+                  [(ngModel)]="image"
+                  > -->
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="emailInput"
+                    placeholder="{{ 'email' | translate }}"
+                    [(ngModel)]="email"
+                  />
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="mb-3">
+                  <label for="lastNameInput" class="form-label">{{ 'lastName' | translate }}</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="lastNameInput"
+                    placeholder="{{ 'lastName' | translate }}"
+                    [(ngModel)]="lastName"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="contactNumberInput" class="form-label">{{ 'contactNumber' | translate }}</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="contactNumberInput"
+                    placeholder="{{ 'contactNumber' | translate }}"
+                    [(ngModel)]="contactNumber"
+                  />
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="mb-3">
+                  <label for="addressInput" class="form-label">{{ 'address' | translate }}</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="addressInput"
+                    placeholder="{{ 'address' | translate }}"
+                    [(ngModel)]="address"
+                  />
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="mb-3">
+                  <label for="cityInput" class="form-label">{{ 'city' | translate }}</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="cityInput"
+                    placeholder="{{ 'city' | translate }}"
+                    [(ngModel)]="city"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="stateSelect" class="form-label">{{ 'state' | translate }}</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="stateInput"
+                    placeholder="{{ 'state' | translate }}"
+                    [(ngModel)]="state"
+                  />
+                  <!-- <select
+                    class="form-select"
+                    aria-label="Default select example"
+                    [(ngModel)]="state"
+                  >
+                    <option value="" disabled  class="text-white">Select</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select> -->
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="mb-3">
+                  <label for="zipcodeInput" class="form-label">{{ 'zipcode' | translate }}</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="zipcodeInput"
+                    placeholder="{{ 'zipcode' | translate }}"
+                    [(ngModel)]="zipcode"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="passwordInput" class="form-label">{{ 'password' | translate }}</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="passwordInput"
+                    placeholder="{{ 'password' | translate }}"
+                    [(ngModel)]="password"
+                  />
+                </div>
+              </div>
+              <div class="setting-btn">
+                <a href="javascript:void(0);" class="btn btn-primary" (click)="updateAdminProfile()">{{ 'save' | translate }}</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>

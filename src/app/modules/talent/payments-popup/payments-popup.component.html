@@ -1,0 +1,51 @@
+<div class="payment-methods container">
+  <!-- Close button at the top-right -->
+  <div class="d-flex justify-content-between mb-4">
+    <div class="payment-titles">
+      <h2 class="mb-2">{{'paymentMethods' | translate}}</h2>
+      <p>{{'chooseYourPreferredPayment' | translate}}</p>
+    </div>
+    <div class="close-btns">
+      <button type="button" class="btn-close close-button" aria-label="Close" (click)="closeDialog()"></button>
+    </div>
+  </div>
+
+  <div class="overflow-card">
+    <div class="payment-method primary-card card p-3 mb-3" *ngFor="let payment of plans">
+      <div class="card-details d-flex justify-content-between align-items-center">
+        <div class="d-flex gap-3">
+          <div class="visa-card">
+            <!-- Dynamically load the image based on the card brand -->
+            <img [src]="getCardBrandImage(payment.brand)" alt="{{ payment.brand }} icon">
+          </div>
+          <div class="visa-titles">
+            <span class="d-block">{{ payment.brand }} ending in {{ payment.last4 }}</span>
+            <span class="d-block">{{'expiry' | translate}} {{ payment.exp_month }}/{{ payment.exp_year }}</span>
+          </div>
+        </div>
+  
+        <!-- Radio button for setting payment method as primary -->
+        <span class="badge round">
+          <input type="radio" [checked]="payment.is_default" (change)="togglePrimary(payment)" name="primaryCard"
+            id="radio-{{payment.last4}}" />
+          <label for="radio-{{payment.last4}}"></label>
+        </span>
+      </div>
+  
+      <div class="actions mt-3 d-flex align-items-center justify-content-between">
+        <div class="primary_card-title">
+          <span *ngIf="payment.is_default" class="primary-label">{{'primaryCard' | translate}}</span>
+          <span *ngIf="!payment.is_default" class="primary-label">{{'setPrimary' | translate}}</span>
+        </div>
+        <div class="payment-method_buttons">
+          <button class="btn me-2 remove-btn" (click)="removePayment(payment)">{{'remove' | translate}}</button>
+          <button class="btn" (click)="updatePayment(payment)">{{'update' | translate}}</button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="text-justify">
+      <button class="btn" (click)="addNewPaymentMethod()">+ {{'addNewPaymentMethod' | translate}}</button>
+    </div>
+  </div>
+</div>

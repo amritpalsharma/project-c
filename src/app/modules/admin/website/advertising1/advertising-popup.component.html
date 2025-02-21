@@ -1,0 +1,228 @@
+<div class="p-0 code-parent">
+  <div class="bg-0C3453 p-4">
+    <h6 class=" code-text text-center " >
+      {{ 'advertising' | translate }}
+    </h6>
+    <div (click)="close()" class="close-img mb-1" >
+   </div>
+
+  </div>
+<hr class="m-0">
+
+
+<div class="p-3">
+
+
+  <div class="d-flex mb-3">
+    <div>
+    <p  class="code-text">
+     {{ 'name' | translate }}
+    </p>
+      <div class="cupen-btn-1  code-text">
+        {{ 'puma' | translate }}
+      </div>
+    </div>
+    <div class="ms-3">
+      <p  class="code-text">
+        {{ 'clickDirectUrl' | translate }}
+      </p>
+        <div class="cupen-btn-1">
+          _blank
+        </div>
+      </div>
+  
+   </div>
+  
+   <div class="d-flex mb-3">
+    <div>
+    <p  class="code-text">
+      {{ 'type' | translate }}
+    </p>
+    <select class="cupen-btn-1 form-select" aria-label="Default select example">
+      <option selected>{{ 'select' | translate }}</option>
+      <option value="1">{{ 'one' | translate }}</option>
+      <option value="2">{{ 'two' | translate }}</option>
+      <option value="3">{{ 'three' | translate }}</option>
+    </select>
+    </div>
+    <div class="ms-3">
+      <p  class="code-text">
+      {{ 'page' | translate }}
+      </p>
+      <select class="cupen-btn-1 form-select" aria-label="Default select example">
+        <option selected>{{ 'select' | translate }}</option>
+        <option value="1">{{ 'one' | translate }}</option>
+        <option value="2">{{ 'two' | translate }}</option>
+        <option value="3">{{ 'three' | translate }}</option>
+      </select>
+      </div>
+  
+   </div>
+  <div class="upload-img mb-3">
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16.0007 29.3347H6.66732C5.93094 29.3347 5.33398 28.7377 5.33398 28.0013V4.0013C5.33398 3.26492 5.93094 2.66797 6.66732 2.66797H25.334C26.0704 2.66797 26.6673 3.26492 26.6673 4.0013V16.0013" stroke="#787878" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M23.668 29.3346V20.668" stroke="#787878" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M20.668 23L21.668 22L23.668 20L25.668 22L26.668 23" stroke="#787878" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M10.668 10.668H21.3346" stroke="#787878" stroke-width="2" stroke-linecap="round"/>
+      <path d="M10.668 16H16.0013" stroke="#787878" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+    
+    <h5 class="heading-text mb-1 mt-2">
+      {{ 'dragAndDropFileHere' | translate }}
+    </h5>
+    <p class="main-upload-text mb-2">
+    <span class="mr-4">{{ 'Dimension: 160 x 600 px' | translate }}</span> {{ 'fileSupported1' | translate }}
+    </p>
+    <button type="button" class="btn btn-secondary upload-btn mb-2 mt-2">{{ 'chooseFile' | translate }}</button>
+    <p class="main-upload-text mb-1">
+      {{ 'maximumSize5MB' | translate }}
+    </p>
+  </div>
+  
+  
+  <!-- fjghkdhfg -->
+  
+  <div class="mb-3">
+    <p  class="code-text">
+      {{ 'validBetween' | translate }}
+    </p>
+    <div class="d-flex"> 
+      
+      <div class="d-flex coupon-dateRange">
+     
+        <div>   
+          <div class="cupen-btn-date">
+            <!-- <svg id="users-icon"  xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-80h80v80h320v-80h80v80h40q33 0 56.5 23.5T840-720v560q0 33-23.5 56.5T760-80H200Zm0-80h560v-400H200v400Zm0-480h560v-80H200v80Zm0 0v-80 80Zm280 240q-17 0-28.5-11.5T440-440q0-17 11.5-28.5T480-480q17 0 28.5 11.5T520-440q0 17-11.5 28.5T480-400Zm-160 0q-17 0-28.5-11.5T280-440q0-17 11.5-28.5T320-480q17 0 28.5 11.5T360-440q0 17-11.5 28.5T320-400Zm320 0q-17 0-28.5-11.5T600-440q0-17 11.5-28.5T640-480q17 0 28.5 11.5T680-440q0 17-11.5 28.5T640-400ZM480-240q-17 0-28.5-11.5T440-280q0-17 11.5-28.5T480-320q17 0 28.5 11.5T520-280q0 17-11.5 28.5T480-240Zm-160 0q-17 0-28.5-11.5T280-280q0-17 11.5-28.5T320-320q17 0 28.5 11.5T360-280q0 17-11.5 28.5T320-240Zm320 0q-17 0-28.5-11.5T600-280q0-17 11.5-28.5T640-320q17 0 28.5 11.5T680-280q0 17-11.5 28.5T640-240Z"/></svg>  May 8, 2024 -->
+            <mat-form-field class="meta-date">
+              <mat-label>{{ 'chooseADate' | translate }}</mat-label>
+              <input matInput [matDatepicker]="picker1">
+              <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+              <mat-datepicker-toggle matIconPrefix [for]="picker1" ></mat-datepicker-toggle>
+              <mat-datepicker #picker1 ></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+        
+        <div>      
+            <div class="cupen-btn-date-1">
+              <!-- <svg id="users-icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-80h80v80h320v-80h80v80h40q33 0 56.5 23.5T840-720v560q0 33-23.5 56.5T760-80H200Zm0-80h560v-400H200v400Zm0-480h560v-80H200v80Zm0 0v-80 80Zm280 240q-17 0-28.5-11.5T440-440q0-17 11.5-28.5T480-480q17 0 28.5 11.5T520-440q0 17-11.5 28.5T480-400Zm-160 0q-17 0-28.5-11.5T280-440q0-17 11.5-28.5T320-480q17 0 28.5 11.5T360-440q0 17-11.5 28.5T320-400Zm320 0q-17 0-28.5-11.5T600-440q0-17 11.5-28.5T640-480q17 0 28.5 11.5T680-440q0 17-11.5 28.5T640-400ZM480-240q-17 0-28.5-11.5T440-280q0-17 11.5-28.5T480-320q17 0 28.5 11.5T520-280q0 17-11.5 28.5T480-240Zm-160 0q-17 0-28.5-11.5T280-280q0-17 11.5-28.5T320-320q17 0 28.5 11.5T360-280q0 17-11.5 28.5T320-240Zm320 0q-17 0-28.5-11.5T600-280q0-17 11.5-28.5T640-320q17 0 28.5 11.5T680-280q0 17-11.5 28.5T640-240Z"/></svg>   May 8, 2024 -->
+              <mat-form-field class="meta-date"> 
+                <mat-label>{{ 'chooseADate' | translate }}</mat-label>
+                <input matInput [matDatepicker]="picker2">
+                <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+                <mat-datepicker-toggle matIconPrefix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+              </mat-form-field>
+            </div>
+        </div>
+      </div>
+  
+      <div class="d-flex align-items-center ms-2 code-text">
+        <span class="form-check align-self-center ">
+          <input
+            type="checkbox"
+            value=""
+            id="defaultCheck1"
+            class="form-check-input"
+          /> <label for="defaultCheck1" class="form-check-label"> </label>
+        </span> {{ 'don'tSetDate' | translate }}
+      </div>
+  
+    </div>
+  
+  </div>
+  <!-- skdjfhkjs -->
+   <!-- <div class="mb-2">
+    <p  class="code-text">
+      Display Duration
+    </p>
+    <div class="d-flex">
+   
+      <div>
+     
+        <div class="cupen-btn">
+          <mat-form-field class="meta-date">
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker1">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconPrefix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="ms-2">
+        
+          <div class="cupen-btn">
+            <mat-form-field class="meta-date">
+              <mat-label>Choose a date</mat-label>
+              <input matInput [matDatepicker]="picker2">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconPrefix [for]="picker2"></mat-datepicker-toggle>
+              <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+          </div>
+      </div>
+      <div class="d-flex align-items-center ms-2 code-text">
+        <span class="form-check align-self-center ">
+          <input
+            type="checkbox"
+            value=""
+            id="defaultCheck1"
+            class="form-check-input"
+          /> <label for="defaultCheck1" class="form-check-label"> </label>
+        </span> Don't set an end date
+      </div>
+    
+     </div>
+  
+   </div> -->
+   <div class="d-flex mb-3">
+    <div>
+    <p  class="code-text">
+      {{ 'maxViews' | translate }}
+    </p>
+      <div class="cupen-btn-1  code-text">
+        500
+      </div>
+    </div>
+    <div class="ms-3">
+      <p  class="code-text">
+        {{ 'maxClicks' | translate }}
+      </p>
+        <div class="cupen-btn-1">
+          500
+        </div>
+      </div>
+  
+   </div>
+
+</div>
+
+<hr class="m-0">
+
+
+<!--  <div>
+  <div class="upload"> -->
+    <!-- <div class="marketing-button-child"> -->
+   <!-- <div style=" margin-left: 52px;">
+    <a class="btn btn-delete text-danger code-text">Delete</a>
+   </div>
+
+    <div>
+    <a class="btn Launch" >Create and Launch</a>
+   </div>
+
+</div> -->
+
+<div>
+  <div class=" d-flex justify-content-around bg-0C3453 p-3">
+
+   <div>
+     <a class="btn btn-delete text-danger ">{{ 'delete' | translate }}</a>
+   </div>
+   <div>
+     <a class="btn Launch px-5" >{{ 'createAndLaunch' | translate }}</a>
+   </div>
+
+  </div>
+</div>

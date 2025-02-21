@@ -1,0 +1,318 @@
+<!-- unlock page  -->
+<div class="unlock_page" *ngIf="!isPremium">
+    <div class="general_titels d-flex align-items-center">
+        <h2>{{ 'generalDetails' | translate}}</h2>
+    </div>
+    <div class="unlock-view">
+        <div class="d-flex justify-content-between mt-4 details_info">
+            <div class="general_details">
+                <h6 class="details_2">{{ 'inTheTeamSince' | translate}}</h6>
+                <h5 class="details-1">--</h5>
+            </div>
+            <div class="general_details">            
+                <h6 class="details_2"> {{ 'topSpeed' | translate}}</h6>
+                <h5 class="details-1" >NA</h5>
+            </div>
+            <div class="general_details">
+                <h6 class="details_2">{{ 'internationalPlayer' | translate}}</h6>
+                <span class="m-2">--</span>
+            </div>
+            <div class="general_details">
+                <h6 class="details_2"> {{ 'currentMarketValue' | translate}}</h6>
+                <h5 class="details-1" >NA</h5>
+            </div>
+            <div class="general_details">            
+                <h6 class="details_2"> {{ 'lastChange' | translate}}</h6>
+                <h5 class="details-1" >--</h5>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-lg-6 position-boxs d-flex p-3">
+            <div class="col-lg-6">
+                <img class="position-image" src="./media/palyers.png" alt="">
+            </div>
+            <div class="col-lg-6 d-flex flex-column justify-content-between">
+                <div class="main-position">
+                    <h6 class="details_2"> {{ 'mainPosition' | translate}}</h6>
+                    <h5 class="details-1">--</h5>
+                </div>
+                <div class="main-position">
+                <h6 class="details_2"> {{ 'otherPositions' | translate}}</h6>
+                <h5 class="details-1">--</h5>
+                </div>
+            </div>
+            </div>
+            <div class="col-lg-6 p-3">
+                <div class="main-position">
+                    <h6 class="details_2">{{ 'socialMedia' | translate}}</h6>
+                    <div class="social_icons my-2">
+                        <span class="me-2">                    
+                            <svg id="users-icon" class="social-svg" width="20" height="18" viewBox="0 0 9 18" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M5.6044 6.13187V3.89011C5.6044 3.2967 6.13187 2.76923 6.72528 2.76923H7.84615V0H5.6044C3.75824 0 2.24176 1.51648 2.24176 3.36264V6.1978H0V9.03297H2.24176V18H5.6044V8.9011H7.84615L8.96703 6.06593L5.6044 6.13187Z"
+                                fill="#111418" />
+                            </svg>
+                        </span>
+                        <span>
+                            www.facebook.com/
+                        </span>
+                    </div>
+                    <div class="social_icons">
+                        <span class="me-2">
+                            <svg id="users-icon" class="social-svg" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M13.75 0H6.25C2.79412 0 0 2.79412 0 6.25V13.75C0 17.2059 2.79412 20 6.25 20H13.75C17.2059 20 20 17.2059 20 13.75V6.25C20.0735 2.79412 17.2794 0 13.75 0ZM18.1618 13.75C18.1618 16.1765 16.1765 18.1618 13.75 18.1618H6.25C3.82353 18.1618 1.83824 16.1765 1.83824 13.75V6.25C1.83824 3.82353 3.82353 1.83824 6.25 1.83824H13.75C16.1765 1.83824 18.1618 3.82353 18.1618 6.25V13.75Z" fill="#111418"/>
+                                <path d="M10.0004 5C7.20625 5 5.00037 7.20588 5.00037 10C5.00037 12.7941 7.20625 15 10.0004 15C12.7945 15 15.0004 12.7941 15.0004 10C15.0004 7.27941 12.7945 5 10.0004 5ZM10.0004 13.1618C8.30919 13.1618 6.8386 11.7647 6.8386 10C6.8386 8.23529 8.23566 6.83824 10.0004 6.83824C11.7651 6.83824 13.1621 8.23529 13.1621 10C13.1621 11.7647 11.7651 13.1618 10.0004 13.1618Z" fill="#111418"/>
+                                <path d="M15.4412 3.9707C15.8089 3.9707 16.103 4.26482 16.103 4.63247C16.103 5.00011 15.8089 5.29423 15.4412 5.29423C15.0736 5.29423 14.7794 5.00011 14.7794 4.63247C14.7059 4.26482 15 3.9707 15.4412 3.9707Z" />
+                                </svg>
+                        </span>
+                        <span>www.instagram.com/</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="upgrade_unlock">
+            <button class="unlock_btn">
+                
+                <svg width="15" height="19" viewBox="0 0 15 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_7084_24851)">
+                    <path d="M2.83968 18.125C2.41035 18.125 2.0449 17.9742 1.74335 17.6727C1.44179 17.3711 1.29102 17.006 1.29102 16.5773V8.17271C1.29102 7.74465 1.44179 7.37953 1.74335 7.07733C2.0449 6.77578 2.41035 6.625 2.83968 6.625H4.16602V4.70833C4.16602 3.64075 4.53817 2.73512 5.28247 1.99146C6.02614 1.24715 6.93177 0.875 7.99935 0.875C9.06693 0.875 9.97288 1.24715 10.7172 1.99146C11.4615 2.73576 11.8333 3.64139 11.8327 4.70833V6.625H13.16C13.588 6.625 13.9532 6.77578 14.2553 7.07733C14.5569 7.37889 14.7077 7.74433 14.7077 8.17367V16.5773C14.7077 17.0053 14.5569 17.3705 14.2553 17.6727C13.9538 17.9742 13.5887 18.125 13.16 18.125H2.83968ZM2.83968 17.1667H13.16C13.3318 17.1667 13.473 17.1114 13.5836 17.0009C13.6941 16.8903 13.7493 16.7492 13.7493 16.5773V8.17271C13.7493 8.00085 13.6941 7.85965 13.5836 7.74913C13.473 7.6386 13.3318 7.58333 13.16 7.58333H2.83872C2.66686 7.58333 2.52567 7.6386 2.41514 7.74913C2.30461 7.85965 2.24935 8.00117 2.24935 8.17367V16.5773C2.24935 16.7492 2.30461 16.8903 2.41514 17.0009C2.52567 17.1114 2.66718 17.1667 2.83968 17.1667ZM7.99935 13.8125C8.40377 13.8125 8.74429 13.6739 9.02093 13.3966C9.29821 13.1199 9.43685 12.7794 9.43685 12.375C9.43685 11.9706 9.29821 11.6301 9.02093 11.3534C8.74365 11.0768 8.40313 10.9381 7.99935 10.9375C7.59557 10.9369 7.25504 11.0755 6.97777 11.3534C6.70049 11.6301 6.56185 11.9706 6.56185 12.375C6.56185 12.7794 6.70049 13.1199 6.97777 13.3966C7.2544 13.6739 7.59493 13.8125 7.99935 13.8125ZM5.12435 6.625H10.8743V4.70833C10.8743 3.90972 10.5948 3.2309 10.0358 2.67188C9.47678 2.11285 8.79796 1.83333 7.99935 1.83333C7.20074 1.83333 6.52192 2.11285 5.96289 2.67188C5.40386 3.2309 5.12435 3.90972 5.12435 4.70833V6.625Z" fill="white"/>
+                    </g>
+                    <defs>
+                    <clipPath id="clip0_7084_24851">
+                    <rect width="14" height="19" fill="white" transform="translate(0.5)"/>
+                    </clipPath>
+                    </defs>
+                </svg>
+                {{ 'upgradeToUnlock' | translate }} 
+            </button>
+        </div> 
+    </div>    
+</div>
+
+<ng-container *ngIf="isPremium">
+    <div class="general_titels d-flex align-items-center">
+        <h2>{{ 'generalDetails' | translate}}</h2>
+    </div>
+    <div class="d-flex justify-content-between mt-4 details_info">
+        <div class="general_details">
+            <h6 class="details_2">{{ 'inTheTeamSince' | translate}}</h6>
+            <h5 class="details-1">{{user?.meta?.in_team_since | date:'MMM d, y' }}</h5>
+        </div>
+        <div class="general_details">            
+            <h6 class="details_2"> {{ 'topSpeed' | translate}}</h6>
+            <h5 class="details-1" *ngIf="user.meta && user.meta.top_speed">{{user.meta.top_speed}} {{user.meta.top_speed_unit}}</h5>
+            <h5 class="details-1" *ngIf="!user.meta || !user.meta.top_speed">NA</h5>
+        </div>
+        <div class="general_details">
+            <h6 class="details_2">{{ 'internationalPlayer' | translate}}</h6>
+            <img *ngIf="user.int_player_country_logo_path" src="{{user.int_player_country_logo_path}}" alt="">
+            <span class="m-2">{{user?.int_player_country}}</span>
+        </div>
+        <div class="general_details">
+            <h6 class="details_2"> {{ 'currentMarketValue' | translate}}</h6>
+            <h5 class="details-1" *ngIf="user.meta && user.meta.market_value">€{{user.meta.market_value}} {{user.meta.market_value_unit}}</h5>
+            <h5 class="details-1" *ngIf="!user.meta || !user.meta.market_value">NA</h5>
+        </div>
+        <div class="general_details">            
+            <h6 class="details_2"> {{ 'lastChange' | translate}}</h6>
+            <h5 class="details-1" *ngIf="user.meta && user.meta.market_value_last_updated">{{user.meta.market_value_last_updated |date:'MMM d, y'}} </h5>
+            <h5 class="details-1" *ngIf="!user.meta || !user.meta.market_value_last_updated">NA</h5>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-lg-6 position-boxs d-flex p-3">
+        <div class="col-lg-6">
+
+            <svg class="position-image" width="149" height="120" viewBox="0 0 149 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_2861_7270)">
+                <path d="M149 120H0L11.9519 0H137.048L149 120Z" fill="#236115"/>
+                <path d="M12.668 44.2363H136.45" stroke="white" stroke-width="2" stroke-miterlimit="10"/>
+                <path d="M23.7441 115.524L26.2939 87.9199H122.188L124.777 115.524" stroke="white" stroke-width="2" stroke-miterlimit="10"/>
+                <path d="M51.791 116.04V105.545H96.8097V115.525" stroke="white" stroke-width="2" stroke-miterlimit="10"/>
+                <path d="M74.6989 58.2169C86.4704 58.2169 96.0131 52.011 96.0131 44.3555C96.0131 36.7001 86.4704 30.4941 74.6989 30.4941C62.9274 30.4941 53.3848 36.7001 53.3848 44.3555C53.3848 52.011 62.9274 58.2169 74.6989 58.2169Z" stroke="white" stroke-width="2" stroke-miterlimit="10"/>
+                <path d="M54.6602 87.9214C57.6481 82.6145 65.4965 78.8125 74.6995 78.8125C84.0219 78.8125 91.9102 82.6937 94.8184 88.1194" stroke="white" stroke-width="2" stroke-miterlimit="10"/>
+                <path d="M92.4283 5.06857C89.7989 9.74184 82.9067 13.1082 74.7794 13.1082C66.5724 13.1082 59.6005 9.70224 57.0508 4.91016" stroke="white" stroke-width="2" stroke-miterlimit="10"/>
+                <path d="M143.421 115.524H5.57617L16.6516 4.47461H132.346L143.421 115.524Z" stroke="white" stroke-width="2" stroke-miterlimit="10"/>
+                <path d="M6.0957 110.258C6.0957 110.258 11.1553 109.703 13.1473 115.644" stroke="white" stroke-width="2" stroke-miterlimit="10"/>
+                <path d="M143.024 110.258C143.024 110.258 137.965 109.703 135.973 115.644" stroke="white" stroke-width="2" stroke-miterlimit="10"/>
+                <ellipse cx="29.939" cy="25.6638" rx="12.5327" ry="4.16185" fill="#D9D9D9" fill-opacity="0.2"/>
+                <ellipse cx="29.9383" cy="25.6635" rx="10.0262" ry="3.32948" fill="#D9D9D9" fill-opacity="0.4"/>
+                <ellipse cx="29.9376" cy="25.6631" rx="7.51963" ry="2.49711" fill="#D9D9D9" fill-opacity="0.6"/>
+                <ellipse cx="29.9389" cy="25.6628" rx="5.01308" ry="1.66474" fill="#D9D9D9"/>
+                <ellipse cx="119.757" cy="25.6638" rx="12.5327" ry="4.16185" fill="#D9D9D9" fill-opacity="0.2"/>
+                <ellipse cx="119.757" cy="25.6635" rx="10.0262" ry="3.32948" fill="#D9D9D9" fill-opacity="0.4"/>
+                <ellipse cx="119.756" cy="25.6631" rx="7.51963" ry="2.49711" fill="#D9D9D9" fill-opacity="0.6"/>
+                <ellipse cx="119.757" cy="25.6628" rx="5.01308" ry="1.66474" fill="#D9D9D9"/>
+                <ellipse cx="74.4995" cy="18.7283" rx="12.5327" ry="4.16185" fill="#D9D9D9" fill-opacity="0.2"/>
+                <ellipse cx="74.4988" cy="18.7279" rx="10.0262" ry="3.32948" fill="#D9D9D9" fill-opacity="0.4"/>
+                <ellipse cx="74.4981" cy="18.7276" rx="7.51963" ry="2.49711" fill="#D9D9D9" fill-opacity="0.6"/>
+                <ellipse cx="74.4994" cy="18.7272" rx="5.01308" ry="1.66474" fill="#D9D9D9"/>
+                </g>
+                <defs>
+                <clipPath id="clip0_2861_7270">
+                <rect width="149" height="120" fill="white"/>
+                </clipPath>
+                </defs>
+            </svg>
+        </div>
+        <div class="col-lg-6 d-flex flex-column justify-content-between">
+            <div class="main-position">
+                <h6 class="details_2"> {{ 'mainPosition' | translate}}</h6>
+                <h5 class="details-1">{{position}}</h5>
+            </div>
+            <div class="main-position">
+            <h6 class="details_2"> {{ 'otherPositions' | translate}}</h6>
+            <h5 class="details-1">{{otherPositions}}</h5>
+            </div>
+        </div>
+        </div>
+        <div class="col-lg-6 p-3">
+            <div class="main-position">
+                <h6 class="details_2">{{ 'socialMedia' | translate}}</h6>
+
+
+                <div class="social_icons my-2" *ngIf="userData?.meta?.sm_facebook" >
+
+                    <span class="me-2">
+                        <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_3009_6591)">
+                            <path d="M17.3151 0.716797H1.68609C1.15077 0.716797 0.716797 1.15077 0.716797 1.68609V17.3151C0.716797 17.8504 1.15077 18.2844 1.68609 18.2844H17.3151C17.8504 18.2844 18.2844 17.8504 18.2844 17.3151V1.68609C18.2844 1.15077 17.8504 0.716797 17.3151 0.716797Z" fill="#3D5A98"/>
+                            <path d="M12.8366 18.2829V11.48H15.1196L15.461 8.82892H12.8366V7.13673C12.8366 6.36931 13.0504 5.84532 14.1503 5.84532H15.5545V3.47032C14.8745 3.39959 14.1912 3.36589 13.5076 3.36939C11.4859 3.36939 10.0935 4.60142 10.0935 6.874V8.82892H7.81055V11.48H10.0935V18.2829H12.8366Z" fill="white"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0_3009_6591">
+                            <rect width="19" height="19" fill="white"/>
+                            </clipPath>
+                            </defs>
+                        </svg>
+                    </span>
+                    <span>
+                        <a href="https://www.facebook.com/{{userData?.meta?.sm_facebook}}" target="_blank"> www.facebook.com/{{userData?.meta?.sm_facebook}}</a>
+                    </span>
+
+                </div>
+                <div *ngIf="userData?.meta?.sm_instagram" class="social_icons mb-1">
+                    <span class="me-2">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_3008_6583)">
+                            <path d="M15.3125 0H4.6875C2.09867 0 0 2.09867 0 4.6875V15.3125C0 17.9013 2.09867 20 4.6875 20H15.3125C17.9013 20 20 17.9013 20 15.3125V4.6875C20 2.09867 17.9013 0 15.3125 0Z" fill="url(#paint0_radial_3008_6583)"/>
+                            <path d="M15.3125 0H4.6875C2.09867 0 0 2.09867 0 4.6875V15.3125C0 17.9013 2.09867 20 4.6875 20H15.3125C17.9013 20 20 17.9013 20 15.3125V4.6875C20 2.09867 17.9013 0 15.3125 0Z" fill="url(#paint1_radial_3008_6583)"/>
+                            <path d="M10.0007 2.1875C7.87898 2.1875 7.61266 2.1968 6.77938 2.23469C5.94766 2.27281 5.37992 2.40445 4.8832 2.59766C4.3693 2.79719 3.93344 3.06414 3.49922 3.49852C3.06461 3.93281 2.79766 4.36867 2.5975 4.88234C2.40375 5.37922 2.27195 5.94719 2.23453 6.77852C2.19727 7.61188 2.1875 7.87828 2.1875 10.0001C2.1875 12.1219 2.19688 12.3873 2.23469 13.2206C2.27297 14.0523 2.40461 14.6201 2.59766 15.1168C2.79734 15.6307 3.0643 16.0666 3.49867 16.5008C3.93281 16.9354 4.36867 17.203 4.88219 17.4025C5.3793 17.5957 5.94711 17.7273 6.77867 17.7655C7.61203 17.8034 7.87813 17.8127 9.99977 17.8127C12.1217 17.8127 12.3872 17.8034 13.2205 17.7655C14.0522 17.7273 14.6205 17.5957 15.1177 17.4025C15.6313 17.203 16.0666 16.9354 16.5006 16.5008C16.9352 16.0666 17.2021 15.6307 17.4023 15.117C17.5944 14.6201 17.7262 14.0522 17.7653 13.2208C17.8027 12.3875 17.8125 12.1219 17.8125 10.0001C17.8125 7.87828 17.8027 7.61203 17.7653 6.77867C17.7262 5.94695 17.5944 5.3793 17.4023 4.88258C17.2021 4.36867 16.9352 3.93281 16.5006 3.49852C16.0661 3.06398 15.6315 2.79703 15.1172 2.59773C14.6191 2.40445 14.0511 2.27273 13.2194 2.23469C12.386 2.1968 12.1207 2.1875 9.99828 2.1875H10.0007ZM9.29984 3.59539C9.50789 3.59508 9.74 3.59539 10.0007 3.59539C12.0867 3.59539 12.3339 3.60289 13.1577 3.64031C13.9194 3.67516 14.3328 3.80242 14.6082 3.90938C14.9728 4.05094 15.2327 4.22023 15.506 4.49375C15.7795 4.76719 15.9487 5.02758 16.0906 5.39219C16.1976 5.66719 16.325 6.08063 16.3597 6.84234C16.3971 7.66594 16.4052 7.91328 16.4052 9.99828C16.4052 12.0833 16.3971 12.3307 16.3597 13.1542C16.3248 13.9159 16.1976 14.3294 16.0906 14.6045C15.9491 14.9691 15.7795 15.2287 15.506 15.502C15.2326 15.7754 14.973 15.9446 14.6082 16.0863C14.3331 16.1937 13.9194 16.3206 13.1577 16.3555C12.3341 16.3929 12.0867 16.401 10.0007 16.401C7.91461 16.401 7.66734 16.3929 6.84383 16.3555C6.08211 16.3203 5.66867 16.193 5.39305 16.0861C5.02852 15.9445 4.76805 15.7752 4.49461 15.5018C4.22117 15.2284 4.05195 14.9686 3.91 14.6038C3.80305 14.3287 3.67562 13.9153 3.64094 13.1536C3.60352 12.33 3.59602 12.0827 3.59602 9.99633C3.59602 7.91008 3.60352 7.66398 3.64094 6.84039C3.67578 6.07867 3.80305 5.66523 3.91 5.38984C4.05164 5.02523 4.22117 4.76484 4.49469 4.49141C4.76813 4.21797 5.02852 4.04867 5.39312 3.9068C5.66852 3.79938 6.08211 3.67242 6.84383 3.63742C7.56453 3.60484 7.84383 3.59508 9.29984 3.59344V3.59539ZM14.171 4.89258C13.6534 4.89258 13.2335 5.31211 13.2335 5.82977C13.2335 6.34734 13.6534 6.76727 14.171 6.76727C14.6886 6.76727 15.1085 6.34734 15.1085 5.82977C15.1085 5.31219 14.6886 4.89227 14.171 4.89227V4.89258ZM10.0007 5.98797C7.78508 5.98797 5.98867 7.78438 5.98867 10.0001C5.98867 12.2158 7.78508 14.0113 10.0007 14.0113C12.2164 14.0113 14.0122 12.2158 14.0122 10.0001C14.0122 7.78445 12.2163 5.98797 10.0005 5.98797H10.0007ZM10.0007 7.39586C11.4389 7.39586 12.6049 8.56172 12.6049 10.0001C12.6049 11.4383 11.4389 12.6043 10.0007 12.6043C8.56242 12.6043 7.39656 11.4383 7.39656 10.0001C7.39656 8.56172 8.56242 7.39586 10.0007 7.39586Z" fill="white"/>
+                            </g>
+                            <defs>
+                            <radialGradient id="paint0_radial_3008_6583" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(5.3125 21.5404) rotate(-90) scale(19.8215 18.4355)">
+                            <stop stop-color="#FFDD55"/>
+                            <stop offset="0.1" stop-color="#FFDD55"/>
+                            <stop offset="0.5" stop-color="#FF543E"/>
+                            <stop offset="1" stop-color="#C837AB"/>
+                            </radialGradient>
+                            <radialGradient id="paint1_radial_3008_6583" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(-3.35008 1.4407) rotate(78.681) scale(8.86031 36.5225)">
+                            <stop stop-color="#3771C8"/>
+                            <stop offset="0.128" stop-color="#3771C8"/>
+                            <stop offset="1" stop-color="#6600FF" stop-opacity="0"/>
+                            </radialGradient>
+                            <clipPath id="clip0_3008_6583">
+                            <rect width="20" height="20" fill="white"/>
+                            </clipPath>
+                            </defs>
+                        </svg>
+                    </span>
+                    <span>
+                        <a href="https://www.instagram.com/{{userData?.meta?.sm_instagram}}" target="_blank"> www.instagram.com/{{userData?.meta?.sm_instagram}}</a>
+                    </span>
+                </div>
+
+                <!-- TikTok Link -->
+                <div *ngIf="userData?.meta?.sm_tiktok" class="social_icons mb-1">
+                    <span class="me-2">
+
+                        <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_3009_6594)">
+                            <path d="M11.8575 6.48185C13.0249 7.31016 14.455 7.79753 15.9995 7.79753V4.84739C15.7072 4.84745 15.4157 4.81716 15.1297 4.75702V7.07921C13.5852 7.07921 12.1553 6.5919 10.9877 5.76365V11.7841C10.9877 14.7959 8.52792 17.2372 5.49392 17.2372C4.36186 17.2372 3.30961 16.8975 2.43555 16.3148C3.43317 17.3274 4.82442 17.9554 6.36355 17.9554C9.3978 17.9554 11.8576 15.5141 11.8576 12.5022V6.48185H11.8575ZM12.9306 3.50552C12.334 2.85858 11.9422 2.02251 11.8575 1.09818V0.71875H11.0332C11.2407 1.89353 11.9485 2.89718 12.9306 3.50552ZM4.35455 14.0037C4.02123 13.57 3.84105 13.0393 3.84186 12.4936C3.84186 11.1162 4.96692 9.9993 6.35498 9.9993C6.61362 9.99917 6.87074 10.0386 7.1173 10.1162V7.10006C6.82917 7.06089 6.53842 7.0442 6.2478 7.05034V9.39791C6.00113 9.32027 5.74387 9.28087 5.48511 9.2811C4.09711 9.2811 2.97211 10.3978 2.97211 11.7755C2.97211 12.7496 3.53442 13.5929 4.35455 14.0037Z" fill="#FF004F"/>
+                            <path d="M10.987 5.76359C12.1547 6.59184 13.5845 7.07914 15.129 7.07914V4.75696C14.2669 4.57466 13.5037 4.12752 12.9299 3.50552C11.9477 2.89712 11.24 1.89347 11.0325 0.71875H8.86733V12.5021C8.86239 13.8758 7.73927 14.9881 6.3542 14.9881C5.53808 14.9881 4.81295 14.602 4.35377 14.0037C3.53377 13.5929 2.97139 12.7495 2.97139 11.7755C2.97139 10.398 4.09639 9.28116 5.48439 9.28116C5.75033 9.28116 6.00664 9.32225 6.24708 9.39798V7.05041C3.26633 7.11154 0.869141 9.52901 0.869141 12.5022C0.869141 13.9864 1.46608 15.3318 2.43495 16.3149C3.30902 16.8975 4.3612 17.2373 5.49333 17.2373C8.52739 17.2373 10.9871 14.7958 10.9871 11.7841L10.987 5.76359Z" fill="black"/>
+                            <path d="M15.1297 4.75634V4.12858C14.3522 4.12975 13.5902 3.91364 12.9306 3.50497C13.5144 4.13945 14.2833 4.57698 15.1297 4.75647M11.0331 0.718138C11.0133 0.605893 10.9982 0.492896 10.9876 0.379428V0H7.998V11.7835C7.99325 13.1571 6.87013 14.2693 5.485 14.2693C5.09233 14.2699 4.70502 14.1788 4.35437 14.0033C4.81356 14.6014 5.53869 14.9875 6.35481 14.9875C7.73981 14.9875 8.86306 13.8753 8.86794 12.5016V0.7182L11.0331 0.718138ZM6.24788 7.04979V6.38137C5.99806 6.34746 5.7462 6.3305 5.49406 6.3306C2.45969 6.3306 0 8.77202 0 11.7835C0 13.6716 0.966688 15.3355 2.43569 16.3143C1.46681 15.3312 0.869875 13.9857 0.869875 12.5016C0.869875 9.52845 3.267 7.11093 6.24788 7.04979Z" fill="#00F2EA"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0_3009_6594">
+                            <rect width="16" height="18" fill="white"/>
+                            </clipPath>
+                            </defs>
+                        </svg>
+                    </span>
+                    <span>
+
+                        <a href="https://www.tiktok.com/{{userData?.meta?.sm_tiktok}}" target="_blank"> www.tiktok.com/{{userData?.meta?.sm_tiktok}}</a>
+
+                    </span>
+                </div>
+
+                <!-- Vimeo Link -->
+                <div *ngIf="userData?.meta?.sm_vimeo" class="social_icons mb-1">
+                    <span class="me-2">
+
+                      <svg width="19" height="16" viewBox="0 0 19 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_3009_6598)">
+                        <path d="M18.9908 3.70619C18.9063 5.49761 17.6144 7.95063 15.1159 11.064C12.5327 14.3162 10.3471 15.9422 8.5592 15.9422C7.45201 15.9422 6.5144 14.9521 5.74906 12.9713C5.23754 11.1557 4.7267 9.34012 4.2154 7.52452C3.64666 5.54482 3.03696 4.55368 2.38509 4.55368C2.24296 4.55368 1.74555 4.84341 0.893965 5.42048L0 4.305C0.930608 3.51356 1.85491 2.71521 2.77281 1.91002C4.0234 0.863208 4.96227 0.312751 5.58793 0.257074C7.06674 0.119531 7.97681 1.09854 8.31844 3.19433C8.6876 5.45542 8.94299 6.86185 9.0866 7.4123C9.51277 9.28818 9.98168 10.2249 10.4942 10.2249C10.8918 10.2249 11.4892 9.61664 12.2857 8.39993C13.0814 7.18285 13.5076 6.25693 13.5652 5.62088C13.6784 4.57062 13.252 4.04419 12.2857 4.04419C11.8308 4.04419 11.3619 4.14558 10.8795 4.34597C11.8132 1.38346 13.5972 -0.0553209 16.2307 0.0267599C18.1829 0.0822217 19.1032 1.3087 18.9908 3.70619Z" fill="#32B8E8"/>
+                        </g>
+                        <defs>
+                        <clipPath id="clip0_3009_6598">
+                        <rect width="19" height="16" fill="white"/>
+                        </clipPath>
+                        </defs>
+                    </svg>
+                    </span>
+                    <span>
+
+                        <a href="https://www.vimeo.com/{{userData?.meta?.sm_vimeo}}" target="_blank"> www.vimeo.com/{{userData?.meta?.sm_vimeo}}</a>
+
+                    </span>
+                </div>
+
+                <!-- X (formerly Twitter) Link -->
+                <div *ngIf="userData?.meta?.sm_x" class="social_icons mb-1">
+                    <span class="me-2">
+                        <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_3008_6581)">
+                            <path d="M10.0834 7.19844L16.276 0H14.8084L9.43159 6.25016L5.13697 0H0.183594L6.67786 9.45147L0.183594 17H1.65117L7.32944 10.3996L11.8647 17H16.8181L10.083 7.19844H10.0834ZM8.07345 9.53461L7.41537 8.5935L2.1799 1.10473H4.43399L8.65889 7.1485L9.31684 8.08961L14.809 15.9455H12.5552L8.07345 9.53501V9.53461Z" fill="black"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0_3008_6581">
+                            <rect width="17" height="17" fill="white"/>
+                            </clipPath>
+                            </defs>
+                        </svg>
+                    </span>
+                    <span>
+                        <a href="https://www.twitter.com/{{userData?.meta?.sm_x}}" target="_blank"> www.twitter.com/{{userData?.meta?.sm_x}}</a>
+                    </span>
+                </div>
+
+                <!-- YouTube Link -->
+                <div *ngIf="userData?.meta?.sm_youtube" class="social_icons mb-1">
+                    <span class="me-2">
+
+                        <svg width="22" height="15" viewBox="0 0 22 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_3008_6588)">
+                            <path d="M21.5141 2.33958C21.3879 1.88738 21.1418 1.47512 20.8002 1.14386C20.4586 0.812593 20.0335 0.573884 19.5671 0.4515C17.8599 0 10.9888 0 10.9888 0C10.9888 0 4.11745 0.0136666 2.41022 0.465167C1.94388 0.587558 1.51874 0.82628 1.17714 1.15756C0.835539 1.48884 0.589395 1.90111 0.46322 2.35333C-0.0531788 5.29483 -0.253499 9.777 0.477399 12.6008C0.603588 13.053 0.849737 13.4653 1.19134 13.7966C1.53294 14.1278 1.95807 14.3665 2.4244 14.4889C4.13163 14.9404 11.0029 14.9404 11.0029 14.9404C11.0029 14.9404 17.874 14.9404 19.5811 14.4889C20.0475 14.3665 20.4726 14.1278 20.8142 13.7966C21.1559 13.4653 21.402 13.053 21.5282 12.6008C22.0729 9.65517 22.2407 5.17575 21.5141 2.33958Z" fill="#FF0000"/>
+                            <path d="M8.80273 10.6725L14.5028 7.47103L8.80273 4.26953V10.6725Z" fill="white"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0_3008_6588">
+                            <rect width="22" height="15" fill="white"/>
+                            </clipPath>
+                            </defs>
+                        </svg>
+                    </span>
+                    <span>
+
+                        <a href="https://www.youtube.com/{{userData?.meta?.sm_youtube}}" target="_blank"> www.youtube.com/{{userData?.meta?.sm_youtube}}</a>
+                    </span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <hr>
+</ng-container>

@@ -1,0 +1,159 @@
+<section class="website-code">
+    <!-- <app-header></app-header> -->
+    <div class="main">
+      <div class="main-bnr">
+        <div class="overlay"></div>
+        <div class="banner-inner py_0">
+          <div class="container">
+            <div class="about">
+              <h2 class="imprint-text">{{ pageData?.pricing_title }}</h2> <!-- Dynamic Title -->
+            </div>
+          </div>
+        </div>
+  
+        <div *ngIf="adVisible[0]" class="skyscraper-left">
+          <img src="./assets/images/skyscraper - 120x600.png">
+          <button (click)="closeAd(0)" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+  
+        <div *ngIf="adVisible[1]" class="skyscraper-right">
+          <img src="./assets/images/skyscraper - 120x600.png">
+          <button (click)="closeAd(1)" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+      </div>
+  
+      <div class="pricing py_0">
+        <div class="container">
+          <h3 class="price-heading3">{{ pageData?.pricing_tabs_title }}</h3> <!-- Dynamic Subtitle -->
+          <div class="row">
+            <div class="col-lg-4 col-md-12 col-12">
+              <mat-card>
+                <div class="billed">
+                  <p [ngClass]="{ 'active-text': isActive1, 'inactive-text': !isActive1 }" class="billed-monthly">
+                    {{ pageData?.first_tab_monthly_label }}
+                  </p>
+                  <div class="toggle-button" [ngClass]="{ 'active': isActive1, 'inactive': !isActive1 }" (click)="toggle1()"></div>
+                  <p [ngClass]="{ 'active-text': !isActive1, 'inactive-text': isActive1 }">
+                    {{ pageData?.first_tab_yearly_label }}
+                  </p>
+                </div>
+  
+                <div class="premium">
+                  <div class="premium-img">
+                    <h2 class="premium-heading2">{{ pageData?.first_tab_plan_name }}</h2>
+                    <h3 class="premium-heading3">
+                      {{isActive1 ? pageData?.first_tab_yearly_price : pageData?.first_tab_monthly_price}}<span>.- CHF / {{ isActive1 ? ('year' | translate) : ('month' | translate) }}</span>
+                    </h3>
+                  </div>
+                </div>
+              </mat-card>
+            </div>
+  
+            <div class="col-lg-4 col-md-12 col-12">
+              <mat-card>
+                <div class="billed">
+                  <p [ngClass]="{ 'active-text': isActive2, 'inactive-text': !isActive2 }">{{ pageData?.sec_tab_monthly_label }}</p>
+                  <div class="toggle-button" [ngClass]="{ 'active': isActive2, 'inactive': !isActive2 }" (click)="toggle2()"></div>
+                  <p [ngClass]="{ 'active-text': !isActive2, 'inactive-text': isActive2 }">{{ pageData?.sec_tab_yearly_label }}</p>
+                </div>
+  
+                <div class="premium">
+                  <div class="premium-img">
+                    <h2 class="premium-heading2">{{ pageData?.sec_tab_plan_name }}</h2>
+                    <h3 class="premium-heading3">
+                      {{ isActive2 ? pageData?.sec_tab_yearly_price : pageData?.sec_tab_monthly_price }}<span>.- CHF / {{ isActive2 ? ('year' | translate) : ('month' | translate) }}</span>
+                    </h3>
+                  </div>
+                </div>
+              </mat-card>
+            </div>
+  
+            <div class="col-lg-4 col-md-12 col-12">
+              <mat-card>
+                <div class="billed">
+                  <p [ngClass]="{ 'active-text': isActive3, 'inactive-text': !isActive3 }">{{ pageData?.third_tab_monthly_label }}</p>
+                  <div class="toggle-button" [ngClass]="{ 'active': isActive3, 'inactive': !isActive3 }" (click)="toggle3()"></div>
+                  <p [ngClass]="{ 'active-text': !isActive3, 'inactive-text': isActive3 }">{{ pageData?.third_tab_yearly_label }}</p>
+                </div>
+  
+                <div class="premium">
+                  <div class="premium-img">
+                    <h2 class="premium-heading2">{{ pageData?.third_tab_plan_name }}</h2>
+                    <h3 class="premium-heading3">
+                      {{ isActive3 ? pageData?.third_tab_yearly_price : pageData?.third_tab_monthly_price }}<span>.- CHF / {{ isActive3 ? ('year' | translate) : ('month' | translate) }}</span>
+                    </h3>
+                  </div>
+                </div>
+              </mat-card>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="features py_0">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4 col-md-12 col-12">
+              <mat-card class="feature-box">
+                <h3 class="feature-heading">{{ pageData?.first_tab_free_features_title }}</h3>
+                <div class="feature-data">
+                  <div class="feature-height">
+                    <div class="free">
+                      <h4 class="free-heading">{{ pageData?.first_tab_free_features_sub_title }}</h4>
+                      <ul class="mb-4">
+                        <li *ngFor="let feature of pageData?.first_tab_free_features_desc">{{ feature }}</li>
+                      </ul>
+                    </div>
+                    <button type="button" class="btn btn-join" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                      {{ pageData?.first_tab_btn_txt }}
+                    </button>
+                  </div>
+                </div>
+              </mat-card>
+            </div>
+            <div class="col-lg-4 col-md-12 col-12">
+              <mat-card class="feature-box">
+                <h3 class="feature-heading">{{ pageData?.sec_tab_free_features_title }}</h3>
+                <div class="feature-data">
+                  <div class="feature-height">
+                    <div class="free">
+                      <h4 class="free-heading">{{ pageData?.sec_tab_free_features_sub_title }}</h4>
+                      <ul class="mb-4">
+                        <li *ngFor="let feature of pageData?.sec_tab_free_features_desc">{{ feature }}</li>
+                      </ul>
+                    </div>
+                    <button type="button" class="btn btn-join" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                      {{ pageData?.sec_tab_btn_txt }}
+                    </button>
+                  </div>
+                </div>
+              </mat-card>
+            </div>
+            <div class="col-lg-4 col-md-12 col-12">
+              <mat-card class="feature-box">
+                <h3 class="feature-heading">{{ pageData?.third_tab_free_features_title }}</h3>
+                <div class="feature-data">
+                  <div class="feature-height">
+                    <div class="free">
+                      <h4 class="free-heading">{{ pageData?.third_tab_free_features_sub_title }}</h4>
+                      <ul class="mb-4">
+                        <li *ngFor="let feature of pageData?.third_tab_free_features_desc">{{ feature }}</li>
+                      </ul>
+                    </div>
+                    <button type="button" class="btn btn-join" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                      {{ pageData?.third_tab_btn_txt }}
+                    </button>
+                  </div>
+                </div>
+              </mat-card>
+            </div>
+  
+            <!-- Repeat for the other feature sections... -->
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- <app-footer></app-footer> -->
+  </section>
+  

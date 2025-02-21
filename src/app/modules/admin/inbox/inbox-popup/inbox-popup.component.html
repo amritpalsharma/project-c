@@ -1,0 +1,52 @@
+<div class="position-relative w-100">
+
+  <div class="p-3 w-100">
+    <div><h4 class="text-center mb-3 title-text">{{ 'newMessage' | translate }}</h4></div>
+
+    <div class="close-img" (click)="close()">
+    </div>
+  </div>
+
+    <div class="inbox-body">
+      <div class="text-center w-100  body-background">
+        <mat-form-field class="example-chip-list inbox-wrapper bg-white">
+          <!-- <mat-label>To:</mat-label> -->
+           <!-- <span>To:</span> -->
+          <mat-chip-grid #chipGrid aria-label="Fruit selection " class="messanger-selector bg-white w-100 " >
+            <p>{{ 'to:' | translate }}</p>
+            @for (user of users; track $index) {
+              <mat-chip-row (removed)="remove(user)">
+                <img width="20" height="20" class="img-list" src="../../../../../assets/images/1.jpg">
+                {{user?.first_name}}
+                <span  matChipRemove [attr.aria-label]="'remove ' + user" class="cancel-icon" > </span>
+              </mat-chip-row>
+            }
+            <input
+              placeholder="{{ 'searchUser' | translate }}"
+              #userInput
+              [matAutocomplete]="auto"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              [matChipInputFor]="chipGrid"
+              (input)="callListApi(userInput)"
+            />
+          </mat-chip-grid>
+         
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)" class="listBox w-100">
+              @for (user of filteredUsers; track user) {
+                <mat-option [value]="user" class="fruit-font">
+                  <img width="50" height="50" class="img-list" src="../../../../../assets/images/1.jpg">
+                  {{user.first_name}}
+                </mat-option>
+              }
+            </mat-autocomplete>
+
+        </mat-form-field>
+      </div>
+    
+    </div>
+    <div class=" position-absolute w-100">
+      <button class="btn btn-success btn-sm web-create-bg mx-2 w-100"(click)="startChat()"  type="button">Chat</button>
+    </div>
+
+</div>
+

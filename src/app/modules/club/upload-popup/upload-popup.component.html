@@ -1,0 +1,31 @@
+<div class="msg-popup-dialog">
+    <div class="msg-popup-close">
+        <img src="../../../assets/images/close-icon-circle.png" alt="" class="" (click)="close()" />
+    </div>
+
+    <div class="msg-popup-content">
+        
+        <div
+            class="upload-box"
+            (dragover)="onDragOver($event)"
+            (dragleave)="onDragLeave($event)"
+            (drop)="onFileDropped($event)"
+        >
+            <p>Drag and drop your files here or click to upload</p>
+            <input
+                type="file"
+                (change)="onFileSelect($event)"
+                multiple
+                hidden
+                #fileInput
+            />
+            <button type="button" (click)="fileInput.click()">{{'uploadFiles' | translate}}</button>
+        </div>
+
+        <div class="file-list">
+            <div *ngFor="let result of uploadResponse">
+                <span>{{ result }}</span>
+            </div>
+        </div>
+    </div>
+</div>

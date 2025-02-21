@@ -1,0 +1,408 @@
+<ng-container *ngIf="data.action != 'view'">
+  <div class="p-0 code-parent">
+    <div class="bg-0C3453 p-4">
+      <h6 class=" code-text text-center " >
+        {{ 'advertising' | translate }}
+      </h6>
+      <div (click)="close()" class="close-img mb-1"> </div>
+
+    </div>
+    <hr class="m-0">
+
+  <div class="p-3 create-new_popup">
+
+    <div class="d-flex mb-3 add-banners">
+      <div>
+
+      <p  class="code-text">
+        {{ 'name' | translate }}
+      </p>
+        <input class="cupen-btn-1 code-text" [(ngModel)]="name">
+        <div *ngIf="errorMsg.name" class="error-msg">{{errorMsg.name}}</div>
+      </div>
+      <div class="ms-5">
+        <p  class="code-text">
+          {{ 'clickDirectUrl' | translate }}
+        </p>
+          <input class="cupen-btn-1" [(ngModel)]="redirect">
+          <div *ngIf="errorMsg.redirect" class="error-msg">{{errorMsg.redirect}}</div>
+        </div>
+    </div>
+
+
+    <div class="d-flex mb-3 add-banners">
+    <div>
+      <p  class="code-text">
+        {{ 'page' | translate }}
+      </p>
+      <div class="btn-group">
+        <select class="cupen-btn-1 form-select" aria-label="Default select example" [(ngModel)]="page" (change)="onChange($event)">
+          <option value="">{{ 'select' | translate }}</option>
+          <option *ngFor="let option of pageOptions" [value]="option.id">{{option.page}}</option>
+        </select>
+        <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4.08333 3.25838L0.995812 0.170854C0.768006 -0.0569515 0.39866 -0.0569515 0.170854 0.170854C-0.0569515 0.39866 -0.0569515 0.768006 0.170854 0.995812L3.67085 4.49581C3.89866 4.72362 4.26801 4.72362 4.49581 4.49581L7.99581 0.995812C8.22362 0.768006 8.22362 0.39866 7.99581 0.170854C7.76801 -0.0569515 7.39866 -0.0569515 7.17085 0.170854L4.08333 3.25838Z" fill="#646464"/>
+        </svg>
+      </div>
+      <div *ngIf="errorMsg.page" class="error-msg">{{errorMsg.page}}</div>
+    </div>
+    <div class="ms-5">
+      <p  class="code-text">
+        {{ 'type' | translate }}
+      </p>
+      <div class="btn-group">
+          <select class="cupen-btn-1 form-select" aria-label="Default select example" [(ngModel)]="type">
+            <option value="">{{ 'select' | translate }}</option>
+            <option *ngFor="let option of typeOptions" value="{{option}}">{{option}}</option>
+          </select>
+          <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4.08333 3.25838L0.995812 0.170854C0.768006 -0.0569515 0.39866 -0.0569515 0.170854 0.170854C-0.0569515 0.39866 -0.0569515 0.768006 0.170854 0.995812L3.67085 4.49581C3.89866 4.72362 4.26801 4.72362 4.49581 4.49581L7.99581 0.995812C8.22362 0.768006 8.22362 0.39866 7.99581 0.170854C7.76801 -0.0569515 7.39866 -0.0569515 7.17085 0.170854L4.08333 3.25838Z" fill="#646464"/>
+          </svg>
+      </div>
+      <div *ngIf="errorMsg.type" class="error-msg">{{errorMsg.type}}</div>
+    </div>
+    </div>
+    <div class="upload-img mb-3">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16.0007 29.3347H6.66732C5.93094 29.3347 5.33398 28.7377 5.33398 28.0013V4.0013C5.33398 3.26492 5.93094 2.66797 6.66732 2.66797H25.334C26.0704 2.66797 26.6673 3.26492 26.6673 4.0013V16.0013" stroke="#787878" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M23.668 29.3346V20.668" stroke="#787878" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M20.668 23L21.668 22L23.668 20L25.668 22L26.668 23" stroke="#787878" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M10.668 10.668H21.3346" stroke="#787878" stroke-width="2" stroke-linecap="round"/>
+        <path d="M10.668 16H16.0013" stroke="#787878" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+
+      <h5 class="heading-text mb-1 mt-2">
+        {{ 'dragAndDropFiles' | translate }}
+      </h5>
+      <p class="main-upload-text mb-2">
+      <span class="mr-4"> {{ 'dimensions' | translate }} {{type}}</span> {{ 'fileSupported1' | translate }}
+      </p>
+      <label for="file-upload" class="btn btn-secondary upload-btn mb-2 mt-2">{{ 'chooseFile' | translate }}</label>
+      <input id="file-upload" type="file" class="setting-media-2" style="display: none;" (change)="onImageChange($event)" accept="image/*" />
+      <p class="main-upload-text mb-1">
+        {{ 'maximumSize5MB' | translate }}
+      </p>
+    </div>
+
+    <!-- fjghkdhfg -->
+
+    <div class="mb-3">
+      <p  class="code-text">
+        {{ 'validBetween' | translate }}
+      </p>
+      <div class="d-flex calender-inputs-box">
+
+        <div class="d-flex coupon-dateRange">
+
+          <div>
+            <div class="cupen-btn-date">
+              <mat-form-field class="meta-date">
+                <mat-label>{{ 'chooseADate' | translate }}</mat-label>
+                <input matInput  [matDatepicker]="dp" [(ngModel)]="startDate" (dateChange)="onDateChange('start', $event)">
+                <mat-datepicker-toggle matIconPrefix [for]="dp"></mat-datepicker-toggle>
+                <mat-datepicker #dp ></mat-datepicker>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div>
+              <div class="cupen-btn-date-1" [ngClass]="{'disable-end-date': disableEndDate}">
+                <mat-form-field class="meta-date">
+                  <mat-label>{{ 'chooseADate' | translate }}</mat-label>
+                  <input matInput [matDatepicker]="dp1" [(ngModel)]="endDate" (dateChange)="onDateChange('end', $event)">
+                  <mat-datepicker-toggle matIconPrefix [for]="dp1"></mat-datepicker-toggle>
+                  <mat-datepicker #dp1></mat-datepicker>
+                </mat-form-field>
+              </div>
+          </div>
+        </div>
+
+        <div class="d-flex align-items-center ms-2 code-text">
+          <span class="form-check align-self-center ">
+            <label for="defaultCheck1" class="form-check-label">
+              <input
+                type="checkbox"
+                value=""
+                id="defaultCheck1"
+                class="form-check-input"
+                [(ngModel)]="noEndDate"
+                (change)="onNoEndDateChange($event)"
+              />
+            </label>
+          </span> {{ 'dontsetAnEnd' | translate }}
+        </div>
+
+      </div>
+
+    </div>
+    <!-- skdjfhkjs -->
+     <!-- <div class="mb-2">
+      <p  class="code-text">
+        Display Duration
+      </p>
+      <div class="d-flex">
+
+        <div>
+
+          <div class="cupen-btn">
+            <mat-form-field class="meta-date">
+              <mat-label>Choose a date</mat-label>
+              <input matInput [matDatepicker]="picker1">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconPrefix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="ms-2">
+
+            <div class="cupen-btn">
+              <mat-form-field class="meta-date">
+                <mat-label>Choose a date</mat-label>
+                <input matInput [matDatepicker]="picker2">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconPrefix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+              </mat-form-field>
+            </div>
+        </div>
+        <div class="d-flex align-items-center ms-2 code-text">
+          <span class="form-check align-self-center ">
+            <input
+              type="checkbox"
+              value=""
+              id="defaultCheck1"
+              class="form-check-input"
+            /> <label for="defaultCheck1" class="form-check-label"> </label>
+          </span> Don't set an end date
+        </div>
+
+       </div>
+
+     </div> -->
+
+     <div class="d-flex mb-3 add-banners ">
+    <div>
+    <p  class="code-text">
+      {{ 'maxViews' | translate }}
+    </p>
+      <input class="cupen-btn-1 code-text" [(ngModel)]="maxViews">
+      <div *ngIf="errorMsg.maxViews" class="error-msg">{{errorMsg.maxViews}}</div>
+    </div>
+    <div class="ms-3">
+      <p  class="code-text">
+        {{ 'maxClicks' | translate }}
+      </p>
+      <input class="cupen-btn-1 code-text" [(ngModel)]="maxClicks">
+      <div *ngIf="errorMsg.maxClicks" class="error-msg">{{errorMsg.maxClicks}}</div>
+    </div>
+
+    </div>
+  </div>
+
+  <hr class="m-0">
+
+  <!--  <div>
+    <div class="upload"> -->
+      <!-- <div class="marketing-button-child"> -->
+     <!-- <div style=" margin-left: 52px;">
+      <a class="btn btn-delete text-danger code-text">Delete</a>
+     </div>
+      <div>
+      <a class="btn Launch" >Create and Launch</a>
+     </div>
+  </div> -->
+
+  <div>
+    <div class=" d-flex justify-content-between bg-0C3453 p-3">
+     <div>
+       <a class="btn btn-delete text-danger" (click)="close()">{{ 'cancel' | translate }}</a>
+     </div>
+     <div>
+       <a class="btn Launch px-5" *ngIf="data.action == 'create'" (click)="createAd()">{{ 'createAndLaunch' | translate }}</a>
+       <a class="btn Launch px-5" *ngIf="data.action == 'update'" (click)="updateAd()">{{ 'update' | translate }}</a>
+     </div>
+    </div>
+  </div>
+
+  </div>
+</ng-container>
+
+<ng-container *ngIf="data.action == 'view'">
+  <div class="p-0 code-parent">
+    <div class="bg-0C3453 p-4">
+      <h6 class=" code-text text-center " >
+        {{ 'advertising' | translate }}
+      </h6>
+      <div (click)="close()" class="close-img mb-1" ></div>
+
+    </div>
+    <hr class="m-0">
+
+    <div class="p-3">
+      <div class="d-flex mb-3">
+        <div>
+        <p  class="code-text">
+          {{ 'name' | translate }}
+        </p>
+          <div class="cupen-btn-1  code-text">
+            {{name}}
+          </div>
+        </div>
+        <div class="ms-5">
+          <p  class="code-text">
+            {{ 'clickDirectUrl' | translate }}
+          </p>
+            <div class="cupen-btn-1  code-text">
+              {{redirect}}
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex mb-3">
+        <div>
+          <p  class="code-text">
+            {{ 'page' | translate }}
+          </p>
+          <div class="cupen-btn-1  code-text">
+            {{pageName}}
+          </div>
+        </div>
+        <div class="ms-5">
+          <p  class="code-text">
+            {{ 'type' | translate }}
+          </p>
+          <div class="cupen-btn-1  code-text">
+            {{typeForView}}
+          </div>
+
+        </div>
+
+
+        </div>
+      <div class="upload-img mb-3">
+        <img src="{{imageUrl}}" style="max-height:80px;">
+      </div>
+
+
+      <!-- fjghkdhfg -->
+
+      <div class="mb-3">
+        <p  class="code-text">
+          {{ 'displayDuration' | translate }}
+        </p>
+        <div class="d-flex">
+
+          <div class="d-flex coupon-dateRange">
+
+            <div>
+              <div class="cupen-btn-date display-duration">
+
+                <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g clip-path="url(#clip0_2457_3571)">
+                  <path d="M25.0827 4.66797H22.5549V6.22352H24.8882V23.3346H3.11044V6.22352H5.44378V4.66797H2.916C2.73418 4.67101 2.55475 4.70983 2.38794 4.78223C2.22113 4.85463 2.07022 4.95918 1.94382 5.08991C1.81743 5.22064 1.71802 5.37498 1.65129 5.54414C1.58456 5.71329 1.5518 5.89393 1.55489 6.07575V23.4824C1.5518 23.6642 1.58456 23.8449 1.65129 24.014C1.71802 24.1832 1.81743 24.3375 1.94382 24.4683C2.07022 24.599 2.22113 24.7035 2.38794 24.7759C2.55475 24.8483 2.73418 24.8872 2.916 24.8902H25.0827C25.2645 24.8872 25.4439 24.8483 25.6107 24.7759C25.7775 24.7035 25.9284 24.599 26.0548 24.4683C26.1812 24.3375 26.2806 24.1832 26.3474 24.014C26.4141 23.8449 26.4469 23.6642 26.4438 23.4824V6.07575C26.4469 5.89393 26.4141 5.71329 26.3474 5.54414C26.2806 5.37498 26.1812 5.22064 26.0548 5.08991C25.9284 4.95918 25.7775 4.85463 25.6107 4.78223C25.4439 4.70983 25.2645 4.67101 25.0827 4.66797Z" fill="black"/>
+                  <path d="M6.22266 10.8906H7.77821V12.4462H6.22266V10.8906Z" fill="black"/>
+                  <path d="M10.8887 10.8906H12.4442V12.4462H10.8887V10.8906Z" fill="black"/>
+                  <path d="M15.5557 10.8906H17.1112V12.4462H15.5557V10.8906Z" fill="black"/>
+                  <path d="M20.2227 10.8906H21.7782V12.4462H20.2227V10.8906Z" fill="black"/>
+                  <path d="M6.22266 14.7773H7.77821V16.3329H6.22266V14.7773Z" fill="black"/>
+                  <path d="M10.8887 14.7773H12.4442V16.3329H10.8887V14.7773Z" fill="black"/>
+                  <path d="M15.5557 14.7773H17.1112V16.3329H15.5557V14.7773Z" fill="black"/>
+                  <path d="M20.2227 14.7773H21.7782V16.3329H20.2227V14.7773Z" fill="black"/>
+                  <path d="M6.22266 18.668H7.77821V20.2235H6.22266V18.668Z" fill="black"/>
+                  <path d="M10.8887 18.668H12.4442V20.2235H10.8887V18.668Z" fill="black"/>
+                  <path d="M15.5557 18.668H17.1112V20.2235H15.5557V18.668Z" fill="black"/>
+                  <path d="M20.2227 18.668H21.7782V20.2235H20.2227V18.668Z" fill="black"/>
+                  <path d="M7.77778 7.77691C7.98406 7.77691 8.18189 7.69497 8.32775 7.5491C8.47361 7.40324 8.55556 7.20541 8.55556 6.99913V2.33247C8.55556 2.12619 8.47361 1.92835 8.32775 1.78249C8.18189 1.63663 7.98406 1.55469 7.77778 1.55469C7.5715 1.55469 7.37367 1.63663 7.22781 1.78249C7.08194 1.92835 7 2.12619 7 2.33247V6.99913C7 7.20541 7.08194 7.40324 7.22781 7.5491C7.37367 7.69497 7.5715 7.77691 7.77778 7.77691Z" fill="black"/>
+                  <path d="M20.2221 7.77691C20.4284 7.77691 20.6262 7.69497 20.7721 7.5491C20.9179 7.40324 20.9999 7.20541 20.9999 6.99913V2.33247C20.9999 2.12619 20.9179 1.92835 20.7721 1.78249C20.6262 1.63663 20.4284 1.55469 20.2221 1.55469C20.0158 1.55469 19.818 1.63663 19.6721 1.78249C19.5263 1.92835 19.4443 2.12619 19.4443 2.33247V6.99913C19.4443 7.20541 19.5263 7.40324 19.6721 7.5491C19.818 7.69497 20.0158 7.77691 20.2221 7.77691Z" fill="black"/>
+                  <path d="M10.1113 4.66797H17.8891V6.22352H10.1113V4.66797Z" fill="black"/>
+                  </g>
+                  <defs>
+                  <clipPath id="clip0_2457_3571">
+                  <rect width="28" height="28" fill="white"/>
+                  </clipPath>
+                  </defs>
+                </svg>
+
+                <span>{{ startDate | date: 'MMM d, yyyy' }}
+                </span>
+
+              </div>
+            </div>
+
+            <div>
+                <div class="cupen-btn-date-1 display-duration" [ngClass]="{'disable-end-date': disableEndDate}">
+
+                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_2457_3571)">
+                    <path d="M25.0827 4.66797H22.5549V6.22352H24.8882V23.3346H3.11044V6.22352H5.44378V4.66797H2.916C2.73418 4.67101 2.55475 4.70983 2.38794 4.78223C2.22113 4.85463 2.07022 4.95918 1.94382 5.08991C1.81743 5.22064 1.71802 5.37498 1.65129 5.54414C1.58456 5.71329 1.5518 5.89393 1.55489 6.07575V23.4824C1.5518 23.6642 1.58456 23.8449 1.65129 24.014C1.71802 24.1832 1.81743 24.3375 1.94382 24.4683C2.07022 24.599 2.22113 24.7035 2.38794 24.7759C2.55475 24.8483 2.73418 24.8872 2.916 24.8902H25.0827C25.2645 24.8872 25.4439 24.8483 25.6107 24.7759C25.7775 24.7035 25.9284 24.599 26.0548 24.4683C26.1812 24.3375 26.2806 24.1832 26.3474 24.014C26.4141 23.8449 26.4469 23.6642 26.4438 23.4824V6.07575C26.4469 5.89393 26.4141 5.71329 26.3474 5.54414C26.2806 5.37498 26.1812 5.22064 26.0548 5.08991C25.9284 4.95918 25.7775 4.85463 25.6107 4.78223C25.4439 4.70983 25.2645 4.67101 25.0827 4.66797Z" fill="black"/>
+                    <path d="M6.22266 10.8906H7.77821V12.4462H6.22266V10.8906Z" fill="black"/>
+                    <path d="M10.8887 10.8906H12.4442V12.4462H10.8887V10.8906Z" fill="black"/>
+                    <path d="M15.5557 10.8906H17.1112V12.4462H15.5557V10.8906Z" fill="black"/>
+                    <path d="M20.2227 10.8906H21.7782V12.4462H20.2227V10.8906Z" fill="black"/>
+                    <path d="M6.22266 14.7773H7.77821V16.3329H6.22266V14.7773Z" fill="black"/>
+                    <path d="M10.8887 14.7773H12.4442V16.3329H10.8887V14.7773Z" fill="black"/>
+                    <path d="M15.5557 14.7773H17.1112V16.3329H15.5557V14.7773Z" fill="black"/>
+                    <path d="M20.2227 14.7773H21.7782V16.3329H20.2227V14.7773Z" fill="black"/>
+                    <path d="M6.22266 18.668H7.77821V20.2235H6.22266V18.668Z" fill="black"/>
+                    <path d="M10.8887 18.668H12.4442V20.2235H10.8887V18.668Z" fill="black"/>
+                    <path d="M15.5557 18.668H17.1112V20.2235H15.5557V18.668Z" fill="black"/>
+                    <path d="M20.2227 18.668H21.7782V20.2235H20.2227V18.668Z" fill="black"/>
+                    <path d="M7.77778 7.77691C7.98406 7.77691 8.18189 7.69497 8.32775 7.5491C8.47361 7.40324 8.55556 7.20541 8.55556 6.99913V2.33247C8.55556 2.12619 8.47361 1.92835 8.32775 1.78249C8.18189 1.63663 7.98406 1.55469 7.77778 1.55469C7.5715 1.55469 7.37367 1.63663 7.22781 1.78249C7.08194 1.92835 7 2.12619 7 2.33247V6.99913C7 7.20541 7.08194 7.40324 7.22781 7.5491C7.37367 7.69497 7.5715 7.77691 7.77778 7.77691Z" fill="black"/>
+                    <path d="M20.2221 7.77691C20.4284 7.77691 20.6262 7.69497 20.7721 7.5491C20.9179 7.40324 20.9999 7.20541 20.9999 6.99913V2.33247C20.9999 2.12619 20.9179 1.92835 20.7721 1.78249C20.6262 1.63663 20.4284 1.55469 20.2221 1.55469C20.0158 1.55469 19.818 1.63663 19.6721 1.78249C19.5263 1.92835 19.4443 2.12619 19.4443 2.33247V6.99913C19.4443 7.20541 19.5263 7.40324 19.6721 7.5491C19.818 7.69497 20.0158 7.77691 20.2221 7.77691Z" fill="black"/>
+                    <path d="M10.1113 4.66797H17.8891V6.22352H10.1113V4.66797Z" fill="black"/>
+                    </g>
+                    <defs>
+                    <clipPath id="clip0_2457_3571">
+                    <rect width="28" height="28" fill="white"/>
+                    </clipPath>
+                    </defs>
+                  </svg>
+
+                  <span>{{ endDate | date: 'MMM d, yyyy' }}</span>
+
+                </div>
+            </div>
+          </div>
+
+          <div class="d-flex align-items-center ms-2 code-text">
+            <span class="form-check align-self-center ">
+              <label for="defaultCheck1" class="form-check-label">
+                <input
+                  type="checkbox"
+                  value=""
+                  id="defaultCheck1"
+                  class="form-check-input"
+                  [(ngModel)]="noEndDate"
+                />
+              </label>
+            </span> {{ "don'tSetDate" | translate }}
+          </div>
+
+        </div>
+
+      </div>
+
+        <div class="d-flex mb-3">
+        <div>
+        <p  class="code-text">
+          Max Views
+        </p>
+          <div class="cupen-btn-1  code-text">
+            {{maxViews}}
+          </div>
+        </div>
+        <div class="ms-3">
+          <p  class="code-text">
+            {{ 'maxClicks' | translate }}
+          </p>
+          <div class="cupen-btn-1  code-text">
+            {{maxClicks}}
+          </div>
+        </div>
+
+        </div>
+
+    </div>
+  </div>
+</ng-container>

@@ -1,0 +1,51 @@
+.user-right-content > div{
+    margin-bottom: 24px;
+}
+.user-right-content{
+    padding: 28px 19px;
+    h6{
+        color: #111418;
+        opacity: 0.8;
+        font-weight: 400;
+        font-size: 16px;
+        margin-bottom: 32px;
+
+    }
+    .fc-club-img{
+        width: 38px;
+        height: 36px;
+    }
+    .fc-img{
+        width: 24px;
+        height: 26px;
+        margin-right: 3px;
+        &.style-1{
+            margin-right: 0;
+            margin-left: 3px;
+            
+        }
+    }
+    .team-details{
+        &.style-1{
+            margin-bottom: 47px;
+        }
+        p{
+            color: #787878;
+            opacity: 0.8;
+            margin-bottom: 10px;
+        }
+        h6{
+            color: #111418;
+            font-weight: 500;
+            font-size: 16px;
+            margin-bottom: 0;
+        }
+        img{
+            margin-right: 7px;
+        }
+    }
+}
+
+.team-details-sub{
+    margin-bottom: 19px;
+}

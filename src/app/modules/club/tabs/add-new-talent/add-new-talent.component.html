@@ -1,0 +1,98 @@
+<div class="add-chat w-100" *ngIf="action != 'showInvitedUsers'">
+  <div class="chat_box">
+    <div class="p-3 w-100">
+      <div>
+        <h4 class="text-center mb-3 title-text">{{ edit ? 'editPlayer' : 'addNewPlayer' | translate }}</h4>
+      </div>
+
+      <div class="close-img" (click)="close()"></div>
+    </div>
+
+    <div class="inbox-body">
+      <!-- Input for selecting users -->
+      <div class="text-center w-100 py-1 px-3 body-background">
+        <mat-form-field class="example-chip-list inbox-wrapper bg-color-2 w-100">
+          <mat-chip-grid #chipGrid aria-label="User selection" class="messanger-selector bg-color-2 w-100">
+            <p>{{ 'to:' | translate }}</p>
+            <mat-chip-row *ngFor="let user of users; let i = index" (removed)="remove(user)">
+              <img width="20" height="20" style="border-radius: 20px;" class="img-list"
+                *ngIf="!user.meta.profile_image_path" src="../../../../../assets/images/1.jpg">
+              <img width="20" height="20" style="border-radius: 20px;" class="img-list"
+                *ngIf="user.meta.profile_image_path" src="{{user.meta.profile_image_path}}">
+              {{user?.first_name}}
+              <span matChipRemove [attr.aria-label]="'remove ' + user" class="cancel-icon"></span>
+            </mat-chip-row>
+            <input placeholder="{{ 'searchUser' | translate }}" #userInput [matAutocomplete]="auto"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputFor]="chipGrid"
+              (focus)="callListApi(userInput)" (keyup)="onKeyPress($event)" />
+          </mat-chip-grid>
+
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)"
+            class="listBox w-100 users-name-list">
+            <mat-option *ngFor="let user of filteredUsers" [value]="user" class="mb-4 select-user-name">
+              <img width="50" height="50" style="border-radius: 50px;" class="img-list"
+                *ngIf="!user.meta.profile_image_path" src="../../../../../assets/images/1.jpg">
+              <img width="50" height="50" class="img-list" *ngIf="user.meta.profile_image_path"
+                src="{{user.meta.profile_image_path}}">
+              {{user.first_name}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+
+      <!-- Start and End Date Inputs in a Single Row -->
+      <h4 class="join-end-date mt-5 mb-1 px-4"> {{ 'Join and End Dates' | translate }}</h4>
+      <div class="d-flex align-items-center justify-content-between w-100 px-4">
+        <!-- Start Date -->
+        <div class="date-input col-lg-4 p-0">
+          <label for="startDate" class="d-block font-weight-bold">
+          </label>
+          <input
+            type="date"
+            class="form-control join-start"
+            id="startDate"
+            [(ngModel)]="startDate"
+            placeholder="{{ 'selectStartDate' | translate }}"
+          />
+        </div>
+
+        <!-- End Date -->
+        <div class="date-input col-lg-4 p-0">
+          <label for="endDate" class="d-block font-weight-bold">
+          </label>
+          <input
+            type="date"
+            class="form-control join-end"
+            id="endDate"
+            [(ngModel)]="endDate"
+            [disabled]="noEndDate"
+            placeholder="{{ 'selectEndDate' | translate }}"
+          />
+        </div>
+
+        <!-- Checkbox for "Don't Set End Date" -->
+        <div class="d-flex align-items-center col-lg-6 ms-5">
+          <input
+            type="checkbox"
+            id="noEndDate"
+            class="mr-2"
+            [(ngModel)]="noEndDate"
+          />
+          <label for="noEndDate" class="mb-0">
+            {{ 'dontSetEndDate' | translate }}
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chat-btn mt-4">
+    <button
+      class="btn btn-success btn-sm web-create-bg w-100"
+      (click)="sendInvite()"
+      type="button"
+    >
+      {{ edit ? 'Update' : 'Add' | translate }}
+    </button>
+  </div>
+</div>

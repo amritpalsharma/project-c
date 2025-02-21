@@ -1,0 +1,26 @@
+<!-- <div class="d-flex flex-wrap">
+  <talent-sidebar></talent-sidebar>
+  <div class="page-container">
+    <shared-header></shared-header>
+    <div class="outlet_outer">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div> -->
+
+
+<div class="d-flex flex-row" style="height: 100vh;">
+  <div class="sidebar">
+    <talent-sidebar></talent-sidebar>
+  </div>
+
+  <div class="all-page-content flex-grow-1" style="overflow: hidden;">
+    <div class="page-container" style="width: 100%;">
+      <shared-header></shared-header>
+      <div class="outlet_outer">
+        <router-outlet></router-outlet>
+      </div>
+      <talent-footer></talent-footer>
+    </div>
+  </div>
+</div>

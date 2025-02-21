@@ -1,0 +1,77 @@
+<div class="container p-4">
+  <div class="personal_edit">
+    <div class="dialog-header m-auto">
+      <h2>{{ 'viewMembership' | translate }}</h2>
+    </div>
+    <div class="close_buttons">
+      <button class="close-btn" (click)="onCancel()">X</button>
+    </div>
+  </div>
+
+
+  <hr>
+
+<div class="overflow-card-2">
+<div class="view-membership">
+  <div class="table-responsive ">
+    <div class="row">
+     <div class="col-lg-4">
+       <h2 class="rechnung-titel">{{ 'invoice' | translate }}</h2>
+     </div>
+     <div class="col-lg-8 rechnung-headdings">
+       <table class="table table-bordered">
+         <thead class="table-light">
+           <tr>
+             <th>{{ 'invoiceNumber' | translate }}</th>
+             <th>{{ 'date' | translate }}</th>
+           </tr>
+           <tr>
+             <td>#{{ plan.invoice_number }}</td>
+             <td>{{ todayDate }}</td>
+           </tr>
+         </thead>
+ 
+       </table>
+     </div>
+    </div>
+     <table class="table table-bordered membership-data">
+       <thead class="table-light">
+         <tr>
+           <th>{{ 'pos' | translate }}</th>
+            <th>{{ 'plan' | translate }}</th>
+           <th>{{ 'duration' | translate }}</th>
+           <th>{{ 'validUntil' | translate }}</th>
+           <th class="text-end">{{ 'price' | translate }}</th>
+         </tr>
+         <tr class="bordered-bottom">
+            <td>1</td>
+            <td>{{ plan.plan }}</td>
+            <td>{{ plan.duration }}</td>
+            <td>{{ plan.valid_until | date: 'dd.MM.YYYY'}}</td>
+            <td class="text-end" >{{ plan.price }} {{plan.currency | translate}}</td>
+         </tr>
+       </thead>
+       
+     </table>
+   </div>
+ 
+</div>
+
+  <div class="bottom-details">
+    <p><strong>{{ 'subTotal' | translate }}:</strong> {{ plan.subtotal }} {{plan.currency}}</p>
+    <p *ngIf="plan.tax_percentage>0"><strong>Incl. VAT {{plan.tax_percentage}}%:</strong> {{plan.tax}} {{plan.currency}}</p>
+    <p><strong>{{ 'total' | translate }}:</strong> {{ plan.total }} {{plan.currency}}</p>
+
+    <div class="download-btn mt-4" *ngIf="plan.download_path">
+      <a href="{{ plan.download_path }}" target="_blank" class="pdf-download_btn ">
+        <span>
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="pointer"><path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke="#787878" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="td-icon-purchase"></path><path d="M9 11.5117L12 14.5117L15 11.5117M12 14.5117V6.51172M6 16.5117C9.89 17.8117 14.11 17.8117 18 16.5117" stroke="#787878" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="td-icon-purchase"></path>
+          </svg>
+        </span>
+        {{ 'downloadPDF' | translate }}
+      </a>
+    </div>
+  </div>
+</div>
+</div>
+

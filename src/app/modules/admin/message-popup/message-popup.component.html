@@ -1,0 +1,78 @@
+<div class="msg-popup-dialog">
+    <div class="msg-popup-close">
+        <img src="../../../assets/images/close-icon-circle.png" alt="" class="" (click)="close()" />
+    </div>
+
+    <div class="msg-popup-content">
+        <div class="display-message" *ngIf="data.action == 'display'">{{data.message}}</div>
+        <div class="display-message" *ngIf="data.action == 'delete-confirmation'">
+            {{'confirmDeleteinformation' | translate}} <br> {{'confirmDeleteinformation1' | translate}}
+
+            <div class="popup-delete-btn">
+                <span (click)="deleteConfirmed()">{{'deleteAccount' | translate}}</span>
+            </div>
+        </div>
+        <div class="display-message" *ngIf="data.action == 'delete-favorite-confirmation'">
+            {{'areToSure' | translate}}
+            <div class="popup-delete-btn">
+                <span (click)="deleteConfirmed()">{{'remove' | translate}}</span>
+            </div>
+        </div>
+        <div class="display-message" *ngIf="data.action == 'delete-scout-player-confirmation'">
+            {{ 'wantToDelete' | translate }} “{{data.name}}” {{ 'fromPortfolio' | translate }}
+            <div class="popup-delete-btn">
+                <span (click)="deleteConfirmed()">{{'delete' | translate}}</span>
+            </div>
+        </div>
+        <div class="display-message" *ngIf="data.action == 'popup-delete-confirmation'">
+            {{'adminPopupText' | translate}} <br> {{'confirmDeleteUser1' | translate}}
+
+            <div class="popup-delete-btn">
+                <span (click)="deleteConfirmed()">{{'delete' | translate}}</span>
+            </div>
+        </div>
+        <div class="display-message" *ngIf="data.action == 'template-delete-confirmation'">
+            {{'templateIsDeleted' | translate}} <br>  {{'confirmDeleteUser1' | translate}}
+
+            <div class="popup-delete-btn">
+                <span (click)="deleteConfirmed()">{{'delete' | translate}}</span>
+            </div>
+        </div>
+        <div class="display-message" *ngIf="data.action == 'delete-coupon-confirmation'">
+            {{'areToSure' | translate}}
+            <div class="popup-delete-btn">
+                <span (click)="deleteConfirmed()">{{'remove' | translate}}</span>
+            </div>
+        </div>
+        <div class="display-message" *ngIf="data.action == 'delete-advertisement-confirmation'">
+            {{'areToSure' | translate}}
+            <div class="popup-delete-btn">
+                <span (click)="deleteConfirmed()">{{'remove' | translate}}</span>
+            </div>
+        </div>
+        <div class="display-message" *ngIf="data.action == 'delete-activity-confirmation'">
+            {{'areToSure' | translate}}
+            <div class="popup-delete-btn">
+                <span (click)="deleteConfirmed()">{{'remove' | translate}}</span>
+            </div>
+        </div>
+        <div class="display-message" *ngIf="data.action == 'delete-representator-confirmation'">
+            {{'areToSure' | translate}}
+            <div class="popup-delete-btn">
+                <span (click)="deleteConfirmed()">{{'remove' | translate}}</span>
+            </div>
+        </div>
+        <div class="display-message" *ngIf="data.action == 'delete-sighting-confirmation'">
+            {{'areToSure' | translate}}
+            <div class="popup-delete-btn">
+                <span (click)="deleteConfirmed()">{{'remove' | translate}}</span>
+            </div>
+        </div>
+        <div class="display-message" *ngIf="data.action == 'delete-attachment-confirmation'">
+            {{'areToSure' | translate}}
+            <div class="popup-delete-btn">
+                <span (click)="deleteConfirmed()">{{'remove' | translate}}</span>
+            </div>
+        </div>
+    </div>
+</div>

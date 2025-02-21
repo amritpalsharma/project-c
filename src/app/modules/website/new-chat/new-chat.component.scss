@@ -1,0 +1,95 @@
+.accept {
+    font-size: 18px;
+    height: 42px;
+    width: 133px;
+    border-radius: 8px;
+    margin-left: 20px;
+    font-weight: 500;
+}
+.chat-content {
+    height: 451px;
+    width: 850px;
+    color: white;
+    border-radius: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 150px;
+}
+.model-heading {
+    height: 68px;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    padding-top: 20px;
+}
+.model-text {
+    height: 84px;
+    font-size: 14px;
+    border: 1px solid;
+    border-right: none;
+    border-left: none;
+    padding: 20px;
+    display: flex;
+}
+.buttons {
+    margin-left: 40%;
+    margin-top: 60px;
+    margin-right: 20px;
+}
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 34px;
+    height: 20px;
+}
+.slider-toggle{
+    margin-left: auto;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 7px;
+    left: -20px;
+    right: 0;
+    bottom: 0;
+    // background-color: white;
+    transition: .4s;
+    height: 30px;
+    width: 50px;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 29px;
+    width: 28px;
+    left: 0;
+    bottom: 0;
+    // background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #BDE34F;
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+input:checked + .slider:before {
+    // transform: translateX(14px);
+    background-color: white;
+}
+p{
+    font-size: 16px;
+}
+

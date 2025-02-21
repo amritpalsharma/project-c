@@ -1,0 +1,45 @@
+<!-- <div class="msg-popup-dialog"> -->
+<!-- <div class="msg-popup-close">
+        <img src="../../../assets/images/close-icon-circle.png" alt="" class="" (click)="close()" />
+    </div> -->
+
+
+<div class="py-3 parent-popup">
+    <h4 class="text-center mb-3 title-text">{{ 'uploadFiles' | translate }}</h4>
+
+    <div class="close-img" (click)="close()">
+    </div>
+
+    <hr>
+
+    <div class="msg-popup-content px-3 py-2">
+
+        <div class="upload-box" (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)"
+            (drop)="onFileDropped($event)">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M16.0007 29.3347H6.66732C5.93094 29.3347 5.33398 28.7377 5.33398 28.0013V4.0013C5.33398 3.26492 5.93094 2.66797 6.66732 2.66797H25.334C26.0704 2.66797 26.6673 3.26492 26.6673 4.0013V16.0013"
+                    stroke="#787878" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M23.668 29.3346V20.668" stroke="#787878" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path d="M20.668 23L21.668 22L23.668 20L25.668 22L26.668 23" stroke="#787878" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M10.668 10.668H21.3346" stroke="#787878" stroke-width="2" stroke-linecap="round" />
+                <path d="M10.668 16H16.0013" stroke="#787878" stroke-width="2" stroke-linecap="round" />
+            </svg>
+
+            <h6 class="gallery-h6 mt-2">{{ 'dragAndDropFiles' | translate }}</h6>
+            <p class="gallery-p">{{ 'fileSupported1' | translate }} </p>
+            <input type="file" (change)="onFileSelect($event)" multiple hidden #fileInput />
+            <button type="button" (click)="fileInput.click()" class="gallery-upload-button mb-3 mt-3">{{ 'uploadFiles' |
+                translate }}</button>
+            <p class="gallery-p">{{ 'maximumSize5MB' | translate }}</p>
+        </div>
+
+        <div class="file-list">
+            <div *ngFor="let result of uploadResponse">
+                <span>{{ result }}</span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+.msg-popup-close {
+    text-align: right;
+}
+.msg-popup-dialog {
+    padding: 10px 15px 35px;
+    text-align: center;
+}
+
+.msg-popup-close img {
+    max-width: 40px;
+    cursor:pointer;
+}
+
+.pointer{
+    cursor:pointer;
+}
+
+.upload-box {
+    border: 2px dashed #ddd;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    margin: 10px;
+  }
+  
+  .upload-box.dragover {
+    border-color: #3f51b5;
+    background-color: #f0f8ff;
+  }
+  
+  .file-list {
+    margin-top: 20px;
+  }

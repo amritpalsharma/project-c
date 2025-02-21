@@ -1,0 +1,196 @@
+.code-parent{
+    position: relative;
+}
+.cupen-btn{
+  color: black;
+  border: none;
+  border: 1px solid #999999;
+  border-radius: 4px;
+  padding: 8px 8px;
+  cursor: pointer;
+  background: none;
+  font-size: 13px;
+}
+.cupen-btn-1{
+  color: black;
+  border: none;
+  border: 1px solid #999999;
+  border-radius: 4px;
+  padding: 6px 8px;
+  cursor: text !important;
+  font-size: 13px;
+  background: none;
+  width: 150px;
+  min-width: 150px !important;
+}
+
+.cupen-btn-date{
+  color: black;
+  border: 1px solid #999999;
+  border-radius: 10px;
+  cursor: pointer;
+  background: none;
+  font-size: 13px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.cupen-btn-date-1{
+  color: black;
+  border: 1px solid #999999;
+  border-radius: 10px;
+  cursor: pointer;
+  background: none;
+  font-size: 13px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left: none !important;
+}
+.cupen-btn-1{
+  color: black;
+  border: none;
+  border: 1px solid #999999;
+  border-radius: 10px;
+  padding: 8px 8px;
+  cursor: pointer;
+  font-size: 13px;
+  background: none;
+  width: 130px;
+}
+.form-select:focus{
+  box-shadow: none;
+}
+
+.Launch{
+    background-color: #6FB95D;
+    color: #ffffff;
+}
+
+.close-img{
+    background-image: url(../../../../assets/images/carbon_close-outline.png);
+    background-size: cover;
+    width: 33px;
+    height: 33px;
+    border: none;
+    padding: 0px;
+    position: absolute;
+    right: 17px;
+    top: 15px;
+    z-index: 2;
+    opacity: 1;
+    cursor: pointer;
+}
+.code-text{
+
+   color: #111418;
+   font-size: 15px;
+
+}
+
+.upload-img {
+  border: 2px dashed #EBEBEB;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.heading-text{
+  font-size: 18px;
+  color: #A9AAAB;
+}
+.main-upload-text{
+  font-size: 14px;
+  color: #A9AAAB;
+}
+.upload-btn{
+  background: #ffffff;
+  color: #A9AAAB;
+  font-size: 13px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #A9AAAB;
+  font-weight: 500;
+}
+.upload{
+  position: absolute;
+    display: flex;
+    column-gap: 160px; 
+    bottom: -40px;
+}
+
+
+.cdk-overlay-pane{
+  min-width:180px !important;
+}
+
+.dropdown-icon {
+  position: absolute;
+  right: 5px; 
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.disable-end-date{
+  opacity: 0.4;
+}
+.disable-end-date div, .disable-end-date button {
+    pointer-events: none;
+}
+
+
+.display-duration{
+  min-height: 48px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.display-duration svg{
+  margin-left: 12px;
+}
+
+.display-duration span{
+  margin-left: 12px;
+  margin-right: 12px;
+}
+.platform_wrapper {
+    width: 100%;
+}
+.single_platform{
+    width: 95%;
+    border: 1px solid #999999;
+    border-radius: 10px;
+    padding: 8px 8px;
+    display: inline-flex;
+}
+
+span.platform_input input {
+    width: 105px;
+    border: none;
+    outline: none;
+}
+
+.lm-5 .single_platform{
+    margin-left:5%;
+}
+
+span.platform_url {
+    margin-left: 8px;
+}
+
+::ng-deep .mat-mdc-select-panel{
+  min-width: 110px !important;
+  scrollbar-width: none !important;
+}
+
+.mat-mdc-select-arrow-wrapper{
+  display: none !important;
+}
+
+.showTeamsDropdown{
+  display: block !important;
+}

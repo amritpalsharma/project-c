@@ -1,0 +1,45 @@
+.offcanvas-body {
+  overflow-y: none  !important; 
+}
+
+.offcanvas{
+
+  --bs-offcanvas-width: 360px;}
+
+.list-view-title:focus-visible{
+  outline: none;
+}
+.list-view-title{
+  cursor: pointer;
+}
+
+.pointer{
+  cursor: pointer;
+}
+
+.user-pending-icon{
+  max-width: 22px;
+  position: absolute;
+  margin-top: 25px;
+  margin-left: -40px;
+  margin-right: 0px !important;
+  height: auto !important;
+}
+
+.user-approved-icon{
+  max-width: 26px;
+  position: absolute;
+  margin-top: 23px;
+  margin-left: -40px;
+  margin-right: 0px !important;
+  height: auto !important;
+}
+
+.user-rejected-icon{
+  max-width: 22px;
+  position: absolute;
+  margin-top: 25px;
+  margin-left: -40px;
+  margin-right: 0px !important;
+  height: auto !important;
+}

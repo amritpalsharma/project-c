@@ -1,0 +1,302 @@
+<div class="page-content">
+    <div class="main-wrapper">
+        <div class="card bg-color">
+            <div class="card-header">
+                <div class="d-flex align-items-center justify-content-between inbox-header-bar">
+                    <div class="d-flex align-items-center heading w-100">
+                        <h2 class="card-title mb-0 me-3">{{'inbox' | translate}}</h2>
+                        <a (click)="editinbox()" href="javascript:void(0);"
+                            class="btn btn-success btn-sm web-create-bg">{{'newMessage' | translate}}</a>
+                    </div>
+
+                    <div class="card-search">
+                    </div>
+                </div>
+                <div class="d-flex align-items-center justify-content-between mt-3 ">
+
+                    <div class="d-flex align-items-center">
+                        <!-- <div class="dropdown">
+                            <button
+                                class="btn btn-secondary dropdown-toggle inbox-main-checkbox"
+                                type="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                            >
+                                <div class="form-check">
+                                <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    value=""
+                                    id="flexCheckDefault"
+                                />
+                                </div>
+                            </button>
+                            </div> -->
+                        <!-- <a href="javascript:void(0);" class="btn btn-outline-white">
+                                <svg width="22" class="me-1" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5.49967 17.5589C5.49967 18.5112 6.32467 19.2904 7.33301 19.2904H14.6663C15.6747 19.2904 16.4997 18.5112 16.4997 17.5589V7.16999H5.49967V17.5589ZM17.4163 4.57277H14.208L13.2913 3.70703H8.70801L7.79134 4.57277H4.58301V6.30425H17.4163V4.57277Z" fill="#787878"/>
+                                </svg>
+                                {{'Delete'|translate}}
+                            </a> -->
+                    </div>
+                    <div>
+                        <!-- <a href="javascript:void(0);" class="left-slide">
+                            <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="33" y="33" width="33" height="33" rx="16.5" transform="rotate(-180 33 33)" fill="#F3F3F3"/>
+                                <path d="M18 21L13 16.5L18 12" stroke="#C2C2C2" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </a>
+                        <a href="javascript:void(0);" class="right-slide ms-1">
+                            <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="33" height="33" rx="16.5" fill="#F3F3F3"/>
+                                <path d="M14 12L19 16.5L14 21" stroke="#787878" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </a> -->
+                    </div>
+                </div>
+
+            </div>
+            <div class="card-body p-0">
+                <div class="row h-100" style="min-height: 68vh;">
+                    <!-- <div class="col-lg-3 border-end pe-0">
+                    <div class="d-flex p-4 border-bottom align">
+                            <div class="form-check align-self-center me-2">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+
+                                </label>
+                                </div>
+                            <img src="../../../assets/images/1.jpg" class="message-media" alt="">
+                            <div class="mesaage-content">
+                                <h6 class="mb-0">Kadin Septimus</h6>
+                                <small>Haha oh man 🔥</small>
+                            </div>
+                            <span class="ms-auto time-title">12m</span>
+                        </div> -->
+                    <!-- <div class="d-flex p-4 border-bottom">
+                            <div class="form-check align-self-center me-3">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+
+                                </label>
+                                </div>
+                            <img src="../../../assets/images/1.jpg" class="message-media" alt="">
+                            <div class="mesaage-content">
+                                <h6 class="mb-0">Kadin Septimus</h6>
+                                <small>Haha oh man 🔥</small>
+                            </div>
+                            <span class="ms-auto time-title">12m</span>
+                        </div> -->
+                    <!-- <div class="d-flex p-4 border-bottom">
+                            <div class="form-check align-self-center me-3">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+
+                                </label>
+                                </div>
+                            <img src="../../../assets/images/1.jpg" class="message-media" alt="">
+                            <div class="mesaage-content">
+                                <h6 class="mb-0">Kadin Septimus</h6>
+                                <small>Haha oh man 🔥</small>
+                            </div>
+                            <span class="ms-auto time-title">12m</span>
+                        </div> -->
+                    <!-- <div class="d-flex p-4 border-bottom">
+                            <div class="form-check align-self-center me-3">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+
+                                </label>
+                                </div>
+                            <img src="../../../assets/images/1.jpg" class="message-media" alt="">
+                            <div class="mesaage-content">
+                                <h6 class="mb-0">Kadin Septimus</h6>
+                                <small>Haha oh man 🔥</small>
+                            </div>
+                            <span class="ms-auto time-title">12m</span>
+                        </div> -->
+                    <!-- <div class="d-flex p-4 border-bottom">
+                            <div class="form-check align-self-center me-3">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+
+                                </label>
+                                </div>
+                            <img src="../../../assets/images/1.jpg" class="message-media" alt="">
+                            <div class="mesaage-content">
+                                <h6 class="mb-0">Kadin Septimus</h6>
+                                <small>Haha oh man 🔥</small>
+                            </div>
+                            <span class="ms-auto time-title">12m</span>
+                        </div> -->
+                    <!-- <div class="d-flex p-4 border-bottom">
+                            <div class="form-check align-self-center me-3">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+
+                                </label>
+                                </div>
+                            <img src="../../../assets/images/1.jpg" class="message-media" alt="">
+                            <div class="mesaage-content">
+                                <h6 class="mb-0">Kadin Septimus</h6>
+                                <small>Haha oh man 🔥</small>
+                            </div>
+                            <span class="ms-auto time-title">12m</span>
+                        </div>
+                    </div> -->
+                    <div class="col-lg-12 border-end px-0 " id="talkjs-container">
+                        <!-- <div class="d-flex p-4 border-bottom align-items-center">
+
+                            <img src="../../../assets/images/1.jpg" class="message-media" alt="">
+                            <div class="mesaage-content">
+                                <h6 class="mb-0">Kadin Septimus</h6>
+                                <small><svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="5" cy="5.5" r="5" fill="#68D391"/>
+                                    </svg> Online</small>
+                            </div>
+
+                        </div>
+                        <div class="chat-bx">
+                            <div class="message-received w-auto">
+                                <div class="d-flex">
+                                    <img src="../../../assets/images/1.jpg" class="chat-img rounded-circle" alt="">
+                                    <div class="ms-1 text">
+                                        <p class="mb-2">omg, this is amazing</p>
+                                        <p class="mb-2">perfect! ✅</p>
+                                        <p class="mb-2">Wow, this is really epic</p>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="message-sent w-auto">
+
+                                <div class="d-flex">
+
+                                    <div class="ms-1 text">
+                                        <p class="mb-0 me-3">How are you?</p>
+
+                                    </div>
+                                    <img src="../../../assets/images/1.jpg" class="chat-img rounded-circle" alt="">
+                                </div>
+
+                            </div>
+                            <div class="message-received w-auto">
+                                <div class="d-flex">
+                                    <img src="../../../assets/images/1.jpg" class="chat-img rounded-circle" alt="">
+                                    <div class="ms-1 text">
+                                        <p class="mb-2">just ideas for next time</p>
+                                        <p class="mb-2">I'll be there in 2 mins ⏰</p>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="message-sent w-auto">
+
+                                <div class="d-flex">
+
+                                    <div class="ms-1 text">
+                                        <p class=" me-3 mb-2">woohoooo</p>
+                                        <p class="me-3">Haha oh man</p>
+
+                                    </div>
+                                    <img src="../../../assets/images/1.jpg" class="chat-img rounded-circle" alt="">
+                                </div>
+
+                            </div>
+                            <div class="message-send d-flex align-items-center style-2">
+                                <svg class="me-4" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M11.9697 12V15.5C11.9697 17.43 13.5397 19 15.4697 19C17.3997 19 18.9697 17.43 18.9697 15.5V10C18.9697 6.13 15.8397 3 11.9697 3C8.09973 3 4.96973 6.13 4.96973 10V16C4.96973 19.31 7.65973 22 10.9697 22" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+
+                                <div class="input-group mb-3">
+
+                                    <input type="text" class="form-control border-end-0" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                                    <span class="input-group-text" id="basic-addon1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16.1401 2.96004L7.11012 5.96004C1.04012 7.99004 1.04012 11.3 7.11012 13.32L9.79012 14.21L10.6801 16.89C12.7001 22.96 16.0201 22.96 18.0401 16.89L21.0501 7.87004C22.3901 3.82004 20.1901 1.61004 16.1401 2.96004ZM16.4601 8.34004L12.6601 12.16C12.5101 12.31 12.3201 12.38 12.1301 12.38C11.9401 12.38 11.7501 12.31 11.6001 12.16C11.4606 12.0189 11.3824 11.8285 11.3824 11.63C11.3824 11.4316 11.4606 11.2412 11.6001 11.1L15.4001 7.28004C15.6901 6.99004 16.1701 6.99004 16.4601 7.28004C16.7501 7.57004 16.7501 8.05004 16.4601 8.34004Z" fill="#6FB95D"/>
+                                        </svg>
+                                        </span>
+                                    </div>
+
+                            </div>
+                        </div>
+                        -->
+                    </div>
+                    <!-- <div class="col-lg-3">
+                        <div class="chat-right-bx">
+                            <h6 class="mb-4">Files <span class="badge badge-info rounded-circle me-2">3</span></h6>
+
+                            <div class="d-flex align-items-center mb-2">
+
+                                <div class="icon-bx">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8 12.2H15M8 16.2H12.38M10 6H14C16 6 16 5 16 4C16 2 15 2 14 2H10C9 2 8 2 8 4C8 6 9 6 10 6Z" stroke="#F56565" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M16 4.01953C19.33 4.19953 21 5.42953 21 9.99953V15.9995C21 19.9995 20 21.9995 15 21.9995H9C4 21.9995 3 19.9995 3 15.9995V9.99953C3 5.43953 4.67 4.19953 8 4.01953" stroke="#F56565" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+
+                                </div>
+                                <div class="mesaage-content">
+                                    <h6 class="mb-0">resume.pdf</h6>
+                                    <small class="font-w600">PDF 4mb</small>
+                                </div>
+                                <div class="ms-auto">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke="#787878" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M9 11.5117L12 14.5117L15 11.5117M12 14.5117V6.51172M6 16.5117C9.89 17.8117 14.11 17.8117 18 16.5117" stroke="#787878" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                </div>
+
+
+
+                            </div>
+                            <div class="d-flex align-items-center mb-2">
+
+                                <div class="icon-bx bg-success-light">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke="#48BB78" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M2.66992 18.95L7.59992 15.64C8.38992 15.11 9.52992 15.17 10.2399 15.78L10.5699 16.07C11.3499 16.74 12.6099 16.74 13.3899 16.07L17.5499 12.5C18.3299 11.83 19.5899 11.83 20.3699 12.5L21.9999 13.9M8.99992 10C9.53035 10 10.0391 9.78929 10.4141 9.41421C10.7892 9.03914 10.9999 8.53043 10.9999 8C10.9999 7.46957 10.7892 6.96086 10.4141 6.58579C10.0391 6.21071 9.53035 6 8.99992 6C8.46949 6 7.96078 6.21071 7.58571 6.58579C7.21064 6.96086 6.99992 7.46957 6.99992 8C6.99992 8.53043 7.21064 9.03914 7.58571 9.41421C7.96078 9.78929 8.46949 10 8.99992 10Z" stroke="#48BB78" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+
+                                </div>
+                                <div class="mesaage-content">
+                                    <h6 class="mb-0">Screenshot-3817.png</h6>
+                                    <small class="font-w600">PDF 4mb</small>
+                                </div>
+                                <div class="ms-auto">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke="#787878" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M9 11.5117L12 14.5117L15 11.5117M12 14.5117V6.51172M6 16.5117C9.89 17.8117 14.11 17.8117 18 16.5117" stroke="#787878" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                </div>
+
+
+
+                            </div>
+                            <div class="d-flex align-items-center">
+
+                                <div class="icon-bx bg-info-light">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M21 7V17C21 20 19.5 22 16 22H8C4.5 22 3 20 3 17V7C3 4 4.5 2 8 2H16C19.5 2 21 4 21 7Z" stroke="#4299E1" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M14.5 4.5V6.5C14.5 7.6 15.4 8.5 16.5 8.5H18.5M8 13H12M8 17H16" stroke="#4299E1" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+
+                                </div>
+                                <div class="mesaage-content">
+                                    <h6 class="mb-0">sharefile.docx</h6>
+                                    <small class="font-w600">DOC 555kb</small>
+                                </div>
+                                <div class="ms-auto">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke="#787878" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M9 11.5117L12 14.5117L15 11.5117M12 14.5117V6.51172M6 16.5117C9.89 17.8117 14.11 17.8117 18 16.5117" stroke="#787878" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
