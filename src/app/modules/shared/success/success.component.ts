@@ -15,13 +15,15 @@ export class SuccessComponent implements OnInit {
 
   ngOnInit(): void {
     this.showPopup = true; // Show the popup on initialization
-    console.log('authToken : ',localStorage.getItem('authToken'));
   }
 
   closePopup() {
-   // this.router.navigate(['/talent/dashboard']); // Navigate to the specified route
-  //  console.log(localStorage);
-  console.log('after Close Popup authToken : ',localStorage.getItem('authToken'));
+    // this.router.navigate(['/talent/membership']); // Navigate to the specified route
+    // setTimeout(() => {
+      this.router.navigate(['/talent/membership']).then(() => {
+        console.log('After Navigation:', this.router.url); // Check where it actually goes
+      });
+    // }, 2500);
   }
 
 }

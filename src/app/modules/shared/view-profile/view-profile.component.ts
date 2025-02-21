@@ -7,6 +7,7 @@ import { SocketService } from '../../../services/socket.service';
 import { environment } from '../../../../environments/environment';
 import { ToastrService } from 'ngx-toastr';
 import { WebPages } from '../../../services/webpages.service';
+import { TalentModule } from '../../talent/talent.module'; 
 @Component({
   selector: 'app-view-profile',
   templateUrl: './view-profile.component.html',
@@ -31,6 +32,7 @@ export class ViewProfileComponent implements OnInit {
   downloadPath: any = '';
   isPremium: any = false;
   countryFlagUrl: any;
+  
   @Output() dataEmitter = new EventEmitter<string>();
 
   constructor(

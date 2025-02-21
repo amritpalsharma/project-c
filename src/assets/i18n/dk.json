@@ -1139,5 +1139,7 @@
   "thanksMessage": "Mange tak skal du have",
   "thanksMessage2": "Vi tager kontakt til dig.",
   "backToHome" : "Tilbage til start",
-  "removeFavoriteConfirm":"Er du sikker på, at du vil slette fra favoritter?"
+  "removeFavoriteConfirm":"Er du sikker på, at du vil slette fra favoritter?",
+  "dontShowAgain": "Vis det ikke igen",
+  "cancelConfirmationMsg":"Er du sikker på, at du vil opsige dette abonnement? Denne handling kan ikke fortrydes."
 }

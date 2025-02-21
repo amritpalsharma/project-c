@@ -1244,5 +1244,7 @@
   "thanksMessage": "Grazie mille",
   "thanksMessage2": "Ci metteremo in contatto con voi.",
   "backToHome" : "Torna a casa",
-  "removeFavoriteConfirm":"Sei sicuro di voler eliminare dai preferiti?"
+  "removeFavoriteConfirm":"Sei sicuro di voler eliminare dai preferiti?",
+  "dontShowAgain": "Non mostrarlo più",
+  "cancelConfirmationMsg":"È sicuro di voler cancellare questo abbonamento? Questa azione non può essere annullata."
 }

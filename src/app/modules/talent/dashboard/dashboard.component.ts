@@ -62,6 +62,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   countries: any;
   isPremium: any = false;
   StartTour: boolean = true;
+  dontShowAgainTourTxt: string = 'profile';
   @Output() dataEmitter = new EventEmitter<string>();
   private routeSubscription: Subscription | null = null; // Initialize with null
   private introInstance: any; // Reference to the Intro.js instance
@@ -155,8 +156,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
       'editGeneralDetails',
       'previous',
       'next',
-      'finish'
-    ]).subscribe((translations) => {
+      'finish',
+      'dontShowAgain'
+    ]).subscribe((translations) => { 
+      this.dontShowAgainTourTxt = translations['dontShowAgain'];
       this.introInstance.setOptions({
         steps: [
           {
@@ -218,7 +221,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
           closeSection.innerHTML = `
             <label style="font-size: 12px; display: flex; align-items: center; margin-right: 10px; color: white;">
               <input type="checkbox" id="dontShowAgain" style="margin-right: 5px; cursor: pointer;" />
-              Don't show it again
+              `+this.dontShowAgainTourTxt+`
             </label>
           `;
 

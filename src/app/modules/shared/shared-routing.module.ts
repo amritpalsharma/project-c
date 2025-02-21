@@ -8,7 +8,7 @@ const routes: Routes = [
      path: '',
      component: IndexComponent,
      children: [
-       { path: 'player/:id', component: ViewProfileComponent},
+       { path: 'talent/:id', component: ViewProfileComponent},
        { path: 'scout/:id', component: ViewProfileComponent },
        { path: 'club/:id', component: ViewProfileComponent },
      ]

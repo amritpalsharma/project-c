@@ -67,7 +67,7 @@
     </div>
 
     <!-- About Banner Title -->
-    <fieldset class="border p-3 mb-4">
+    <!-- <fieldset class="border p-3 mb-4">
       <div *ngFor="let feature of formData.faq_first_btn_content; let i = index" class="card mb-3 p-3">
         <div class="row g-3">
           <div class="col-md-6">
@@ -124,6 +124,119 @@
           </div>
           <div class="col-md-3">
             <button type="button" (click)="removeThirdButtonContent(i)" class="next_btn btn-danger btn-sm ">
+              {{ 'remove' | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+      <button type="button" (click)="addThirdButtonContent()" class="next_btn btn-sm mt-2">
+        {{ 'addThirdButtonContent' | translate }}
+      </button>
+    </fieldset> -->
+    <!-- FAQ First Button Content Section -->
+    <!-- <fieldset class="border p-3 mb-4">
+      <div *ngFor="let feature of formData.faq_first_btn_content; let i = index" class="card mb-3 p-3">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <input type="text" [(ngModel)]="feature.title" class="form-control" name="title_{{ i }}_first"
+              placeholder="{{ 'title' | translate }}" required />
+          </div>
+          <div class="col-md-9">
+            <textarea [(ngModel)]="feature.desc" class="form-control" name="desc_{{ i }}_first"
+              placeholder="{{ 'description' | translate }}" required></textarea>
+          </div>
+          <div class="col-md-3">
+            <button type="button" (click)="removeFirstButtonContent(i)" class="next_btn btn-danger btn-sm">
+              {{ 'remove' | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+      <button type="button" (click)="addFirstButtonContent()" class="next_btn btn-sm mt-2">
+        {{ 'addFirstButtonContent' | translate }}
+      </button>
+    </fieldset> -->
+    <fieldset class="border p-3 mb-4">
+      <div *ngFor="let feature of formData.faq_first_btn_content; let i = index" class="card mb-3 p-3">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <input 
+              type="text" 
+              [(ngModel)]="feature.title" 
+              class="form-control" 
+              [name]="'title_' + i + '_first'" 
+              placeholder="{{ 'title' | translate }}" 
+              required 
+            />
+          </div>
+          <div class="col-md-9">
+            <textarea 
+              [(ngModel)]="feature.desc" 
+              class="form-control" 
+              [name]="'desc_' + i + '_first'" 
+              placeholder="{{ 'description' | translate }}" 
+              required
+            ></textarea>
+          </div>
+          <div class="col-md-3">
+            <button 
+              type="button" 
+              (click)="removeFirstButtonContent(i)" 
+              class="next_btn btn-danger btn-sm"
+            >
+              {{ 'remove' | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+      <button 
+        type="button" 
+        (click)="addFirstButtonContent()" 
+        class="next_btn btn-sm mt-2"
+      >
+        {{ 'addFirstButtonContent' | translate }}
+      </button>
+    </fieldset>
+    
+
+    <!-- FAQ Second Button Content Section -->
+    <fieldset class="border p-3 mb-4">
+      <div *ngFor="let feature of formData.faq_sec_btn_content; let i = index" class="card mb-3 p-3">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <input type="text" [(ngModel)]="feature.title" class="form-control" name="title_{{ i }}_second"
+              placeholder="{{ 'title' | translate }}" required />
+          </div>
+          <div class="col-md-9">
+            <textarea [(ngModel)]="feature.desc" class="form-control" name="desc_{{ i }}_second"
+              placeholder="{{ 'description' | translate }}" required></textarea>
+          </div>
+          <div class="col-md-3">
+            <button type="button" (click)="removeSecondButtonContent(i)" class="next_btn btn-danger btn-sm">
+              {{ 'remove' | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+      <button type="button" (click)="addSecondButtonContent()" class="next_btn btn-sm mt-2">
+        {{ 'addSecondButtonContent' | translate }}
+      </button>
+    </fieldset>
+
+    <!-- FAQ Third Button Content Section -->
+    <fieldset class="border p-3 mb-4">
+      <div *ngFor="let feature of formData.faq_third_btn_content; let i = index" class="card mb-3 p-3">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <input type="text" [(ngModel)]="feature.title" class="form-control" name="title_{{ i }}_third"
+              placeholder="{{ 'title' | translate }}" required />
+          </div>
+          <div class="col-md-9">
+            <textarea [(ngModel)]="feature.desc" class="form-control" name="desc_{{ i }}_third"
+              placeholder="{{ 'description' | translate }}" required></textarea>
+          </div>
+          <div class="col-md-3">
+            <button type="button" (click)="removeThirdButtonContent(i)" class="next_btn btn-danger btn-sm">
               {{ 'remove' | translate }}
             </button>
           </div>

@@ -71,7 +71,8 @@ export class WebPages {
         );
     }
 
-    addFaqPage(params: any): Observable<any>{
+    addFaqPage(params: any): Observable<any>{ 
+        // console.log(params);
         return this.http.post<any>(`${this.frontendApiUrl}save-faqpage`, params);
     }
 

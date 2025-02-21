@@ -1260,5 +1260,7 @@
   "thanksMessage": "merci beaucoup",
   "thanksMessage2": "Nous prendrons contact avec vous.",
   "backToHome": "Retour à l'accueil",
-  "removeFavoriteConfirm":"Êtes-vous sûr d'avoir supprimé les favoris ?"
+  "removeFavoriteConfirm":"Êtes-vous sûr d'avoir supprimé les favoris ?",
+  "dontShowAgain": "Ne le montrez plus",
+  "cancelConfirmationMsg":"Êtes-vous sûr de vouloir annuler cet abonnement ? Cette action ne peut être annulée."
 }

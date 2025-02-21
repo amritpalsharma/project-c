@@ -1247,5 +1247,7 @@
   "thanksMessage": "muito obrigado",
   "thanksMessage2": "Entraremos em contacto consigo.",
   "backToHome" : "Voltar ao início",
-  "removeFavoriteConfirm":"Är du säker på att ta bort från favoriter?"
+  "removeFavoriteConfirm":"Är du säker på att ta bort från favoriter?",
+  "dontShowAgain": "Visa det inte igen",
+  "cancelConfirmationMsg":"Är du säker på att du vill säga upp prenumerationen? Denna åtgärd kan inte ångras."
 }

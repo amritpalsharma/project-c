@@ -30,7 +30,7 @@ const routes: Routes = [
       { path: 'marketing', component: MarketingComponent},
       { path: 'website', component: WebsiteComponent},
       { path: 'setting', component: SettingComponent},
-      { path: 'player/:id', component: PlayerDetailComponent},
+      { path: 'talent/:id', component: PlayerDetailComponent}, // update talent to player
       { path: 'gallery-detail', component: GalleryTabComponent },
       { path: 'scout/:id', component: ScoutDetailComponent },
       { path: 'club/:id', component: ClubDetailComponent },

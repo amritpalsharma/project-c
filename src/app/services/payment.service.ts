@@ -24,8 +24,18 @@ export class PaymentService {
   }
 
   createCheckoutSession(planId: string, booster_audience: any = '', couponCode: any = ''): Observable<any> {
-    const successUrl = window.location.origin + '/success'; // Define your success URL
-    const cancelUrl = window.location.origin + '/cancel'; // Define your cancel URL
+    const userDataString = localStorage.getItem('userData');
+    let successUrl = window.location.origin + '/success'; // Define your success URL
+    const cancelUrl = window.location.origin + '/cancel';
+    if (userDataString) {
+      const userData = JSON.parse(userDataString); // Parse the JSON string into an object
+      if (userData.role == 4) {
+        successUrl = window.location.origin + '/talent/success';
+      }
+    }else{
+      successUrl = window.location.origin + '/success';
+    }
+    // Define your cancel URL
 
     // Define the request body with the necessary parameters
     const body: any = {
@@ -55,7 +65,7 @@ export class PaymentService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
-    
+
     const formData = new FormData();
     formData.append('subscription_id', subscriptionId);
 

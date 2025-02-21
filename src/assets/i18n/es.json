@@ -1227,5 +1227,7 @@
   "thanksMessage": "muchas gracias",
   "thanksMessage2": "Nos pondremos en contacto con usted.",
   "backToHome" : "Volver al inicio",
-    "removeFavoriteConfirm":"¿ Está seguro de borrar de favoritos ?"
+    "removeFavoriteConfirm":"¿ Está seguro de borrar de favoritos ?",
+    "dontShowAgain": "No lo vuelvas a mostrar",
+    "cancelConfirmationMsg":"¿Está seguro de que desea cancelar esta suscripción? Esta acción no se puede deshacer."
 }

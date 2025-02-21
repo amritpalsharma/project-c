@@ -11,6 +11,7 @@ import { PaymentService } from '../../../services/payment.service';
 import { MessagePopupComponent } from '../../shared/message-popup/message-popup.component';
 import { CancelCountryPlanComponent } from './cancel-country-plan/cancel-country-plan.component';
 import { WebPages } from '../../../services/webpages.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-membership',
@@ -39,9 +40,11 @@ export class MembershipComponent {
   isdemo: any = false;
   stats: any;
   exportLink: any;
+  cancelConfirmationMsg:String = '';
+  userPurchasesNotFound:String = '';
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private route: ActivatedRoute, private talentService: TalentService, private paymentService:PaymentService, public dialog: MatDialog,private router: Router , private webpages : WebPages) { }
+  constructor(private route: ActivatedRoute, private talentService: TalentService, private paymentService:PaymentService, public dialog: MatDialog,private router: Router , private webpages : WebPages, private translateService: TranslateService,) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params:any) => {
@@ -57,6 +60,10 @@ export class MembershipComponent {
       this.getUserPlans();
       this.getUserCards();
       this.getBoosterData()
+    });
+    this.translateService.get(['cancelConfirmationMsg','userPurchasesNotFound']).subscribe((translations) => {
+      this.cancelConfirmationMsg = translations['cancelConfirmationMsg'];
+      this.userPurchasesNotFound = translations['userPurchasesNotFound'];
     });
   }
 
@@ -299,12 +306,14 @@ export class MembershipComponent {
   }
 
 
-  confirmAndCancelSubscription(subscriptionId: string): void {
+  confirmAndCancelSubscription(subscriptionId: string): void { 
+    
     const dialogRef = this.dialog.open(MessagePopupComponent, {
       width: '600px',
       data: {
         action: 'delete-confirmation',
-        message: 'Are you sure you want to cancel this subscription? This action cannot be undone.'
+        message: this.cancelConfirmationMsg
+        // message: 'Are you sure you want to cancel this subscription? This action cannot be undone.'
       }
     });
 

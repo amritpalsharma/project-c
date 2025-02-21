@@ -1220,11 +1220,13 @@
       "Baue dir ein internationales Netzwerk auf"
     ]
   },
-  "bostProfileDesc":{
+  "bostProfileDesc": {
     "features": [
       "Dein Profilbild erhält einen besonderen und hervorgehobenen Hintergrund",
       "Dein Profil erscheint in der Suche, wenn nach deinen Merkmalen gesucht wird, am Anfang der Suchresultate",
       "Mehr Sichtbarkeit - höhere Chancen entdeckt zu werden"
     ]
-  }
+  },
+  "dontShowAgain": "Nicht mehr anzeigen",
+  "cancelConfirmationMsg":"Sind Sie sicher, dass Sie dieses Abonnement kündigen möchten? Diese Aktion kann nicht rückgängig gemacht werden."
 }
