@@ -13,7 +13,21 @@
     <div class="country-selection mb-4">
       <div class="form-group col-lg-4">
         <label for="select-countries">{{ 'selectCountries' | translate }}</label>
-        <select class="form-select" id="select-countries" (change)="onCountrySelect($event)">
+        <mat-select [(ngModel)]="selectedCountryIds" (selectionChange)="onCountrySelect($event)" multiple>
+  
+          <!-- Custom display for selected options -->
+          <mat-select-trigger>
+            <ng-container *ngIf="selectedCountries.length > 0">
+              {{ getSelectedDisplayText() }}
+            </ng-container>
+          </mat-select-trigger>
+        
+          <mat-option *ngFor="let country of countries" [value]="country.id">
+            {{ country.package_name }}
+          </mat-option>
+        </mat-select>
+
+        <!-- <select class="form-select" id="select-countries" (change)="onCountrySelect($event)" multiple>
           <option value="" disabled selected>{{ 'selectACountries' | translate }}</option>
           <option
             *ngFor="let country of countries"
@@ -21,7 +35,7 @@
             [value]="country.id">
             {{ country.package_name }}
           </option>
-        </select>
+        </select> -->
       </div>
 
       <div class="explore-chip d-flex align-items-center mt-2">
@@ -30,7 +44,7 @@
           <div class="chip p-2">
             <!-- Check if label is not empty -->
             <span class="">
-              <strong>{{item.package_name}} - {{(item.interval == 'yearly' ? 'Yearly' : 'Monthly')}}</strong>
+              <strong>{{item.monthly.location}}</strong>
             </span>
             <span>
               <button class="explore-chip_cut" (click)="confirmAndCancelSubscription(item.id, item.stripe_cancel_at == null ? false :true)">
