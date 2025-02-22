@@ -293,8 +293,8 @@ export class TalentService {
 
   uploadGalleryImages(formdata: any): Observable<any> {
     const headers = this.headers();
-
-    return this.http.post<any>(`${this.apiUrl}user/upload-gallery-image/?lang=`+localStorage.getItem('lang_id'), formdata, { headers });
+    let currentLang = localStorage.getItem('lang_id');
+    return this.http.post<any>(`${this.apiUrl}user/upload-gallery-image/${currentLang}/`, formdata, { headers });
   }
 
   deleteGalleryImage(params: any): Observable<any> {

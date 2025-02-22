@@ -24,7 +24,6 @@ interface Language {
 export class AddFaqPageComponent implements OnInit {
   @Input() pageId: any;
   @Input() pageType: any;
-
   @Input() languages: Language[] = [];
   editor!: Editor;
   toolbar: Toolbar = [

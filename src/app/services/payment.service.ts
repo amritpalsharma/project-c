@@ -65,7 +65,6 @@ export class PaymentService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
-
     const formData = new FormData();
     formData.append('subscription_id', subscriptionId);
 
