@@ -2,7 +2,7 @@
   "privacyPolicy": "Política de privacidad",
   "terms&Conditions": "Términos & Condiciones",
   "cookies": "Cookies",
-"fillCaptcha": "Por favor, rellene el captcha",
+  "fillCaptcha": "Por favor, rellene el captcha",
   "createProfile": "Crear perfil",
   "premium": "Premium",
   "boostProfileActive": "Perfil Boost activo",
@@ -100,13 +100,12 @@
   "next": "Siguiente",
   "previous": "Anterior",
   "finish": "Finalizar",
-  
   "messages": "Mensajes",
   "chat": "Chat",
   "inbox": "Bandeja de entrada",
   "newMessage": "Nuevo mensaje",
   "files": "Archivos",
-  "favorites": "Favoritos (100)",
+  "favorites": "Favoritos",
   "removeFavorite": "Eliminar favorito",
   "userType": "Tipo de usuario",
   "location": "Ubicación",
@@ -207,7 +206,15 @@
     "leftStriker": "Delantero izquierdo"
   },
   "numbers": [
-    15, 16, 17, 18, 19, 20, 21, 22, 23
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23
   ],
   "speedRanges": [
     "15-20km/h",
@@ -258,31 +265,6 @@
   "multiCountryPlansActivated": "2 Planes plurinacionales activados.",
   "attractAttention": "Atrae la atención de scouts y clubes de otros países con tu perfil.",
   "growNetwork": "Amplía tu red global.",
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   "lightMode": "Modo claro",
   "darkMode": "Modo oscuro",
   "about": "Acerca de",
@@ -535,24 +517,6 @@
   "sweden": "Suecia",
   "denmark": "Dinamarca",
   "general": "Generalidades",
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   "homePage": "Home y page",
   "updatePage": "Update y page",
   "description": "Description",
@@ -1197,20 +1161,18 @@
   "viewAll": "View y all",
   "code": "Code",
   "subscription": {
-      "paid": "Paid",
-      "free": "Free"
+    "paid": "Paid",
+    "free": "Free"
   },
   "editors": {
-      "placeholder": "Type here..."
+    "placeholder": "Type here..."
   },
   "tooltip": {
-      "totalUsers": "Total Users: {{count}}",
-      "totalSales": "Total Sales: {{count}}",
-      "totalSubscriptions": "Total Subscriptions: {{count}}"
+    "totalUsers": "Total Users: {{count}}",
+    "totalSales": "Total Sales: {{count}}",
+    "totalSubscriptions": "Total Subscriptions: {{count}}"
   },
-
-
-  "more_news": "Más noticias",  
+  "more_news": "Más noticias",
   "back_to_news": "Volver a Noticias y Medios",
   "share": "Compartir",
   "uses": "Uses",
@@ -1226,8 +1188,18 @@
   "editProfile": "Edit y profile",
   "thanksMessage": "muchas gracias",
   "thanksMessage2": "Nos pondremos en contacto con usted.",
-  "backToHome" : "Volver al inicio",
-    "removeFavoriteConfirm":"¿ Está seguro de borrar de favoritos ?",
-    "dontShowAgain": "No lo vuelvas a mostrar",
-    "cancelConfirmationMsg":"¿Está seguro de que desea cancelar esta suscripción? Esta acción no se puede deshacer."
+  "backToHome": "Volver al inicio",
+  "removeFavoriteConfirm": "¿ Está seguro de borrar de favoritos ?",
+  "dontShowAgain": "No lo vuelvas a mostrar",
+  "cancelConfirmationMsg": "¿Está seguro de que desea cancelar esta suscripción? Esta acción no se puede deshacer.",
+  "youHaveAnActive": "Tiene activos",
+  "pleaseWait": "Espere por favor...",
+  "uploadingPhotos": "Subir fotos",
+  "noNotification": "¡No se encontraron notificaciones!",
+  "TOOLTIPS": {
+    "removeFavorite": "Eliminar de favoritos",
+    "addFavorite": "Agregar a favoritos",
+    "downloadPdf": "Descargar el PDF del perfil",
+    "startConversation": "Iniciar una conversación"
+  }
 }

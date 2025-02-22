@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core'; 
+import { Component, Input, OnInit } from '@angular/core';
 import { TalentService } from '../../../../services/talent.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddPerfomanceReportComponent } from './add-perfomance-report/add-perfomance-report.component';
@@ -26,10 +26,10 @@ export class PerformanceAnalysisTabComponent implements OnInit {
   allSelected: boolean = false;
   selectedIds: number[] = [];
   idsToDelete: any = [];
-  path: any ;
+  path: any;
   @Input() isPremium: any;
 
-  constructor(private talentService: TalentService, public dialog: MatDialog) {}
+  constructor(private talentService: TalentService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.loadReports();
@@ -60,7 +60,7 @@ export class PerformanceAnalysisTabComponent implements OnInit {
   }
 
   // Download a single report
-  async downloadInvoice(id: any, src: any ,type : any) {
+  async downloadInvoice(id: any, src: any, type: any) {
     try {
       const response = await fetch(src);
       if (!response.ok) {
@@ -130,7 +130,7 @@ export class PerformanceAnalysisTabComponent implements OnInit {
 
   openAddReport() {
     const dialogRef = this.dialog.open(AddPerfomanceReportComponent, {
-      width: '870px',    
+      width: '870px',
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -139,7 +139,7 @@ export class PerformanceAnalysisTabComponent implements OnInit {
       }
     });
   }
-  
+
   onCheckboxChange(report: any) {
     const index = this.selectedIds.indexOf(report.id);
     if (index === -1) {
@@ -151,7 +151,7 @@ export class PerformanceAnalysisTabComponent implements OnInit {
 
   selectAllReports() {
     this.allSelected = !this.allSelected;
-  
+
     // Toggle selection for all reports
     this.reports.forEach(report => {
       report.selected = this.allSelected;
@@ -163,17 +163,17 @@ export class PerformanceAnalysisTabComponent implements OnInit {
         this.selectedIds = [];
       }
     });
-  
+
     console.log('Selected report IDs:', this.selectedIds);
   }
 
   deleteReports() {
-    if(this.selectedIds.length <= 0){
+    if (this.selectedIds.length <= 0) {
       return
     }
-    let params :any = {id:this.selectedIds};
+    let params: any = { id: this.selectedIds };
     if (confirm('Are you sure you want to delete the selected reports?')) {
-      
+
       this.talentService.deletePerformanceReport(params).subscribe(
         (response) => {
           if (response.status) {
@@ -192,5 +192,55 @@ export class PerformanceAnalysisTabComponent implements OnInit {
 
     }
   }
-  
+  // function by amrit to convert time
+  onvertDateWithTimezone(dateTimeString: string): string {
+    try {
+      if (!dateTimeString) return "Invalid Date";
+
+      const userLang = localStorage.getItem('lang') || 'en'; // Default to English
+
+      const languageTimeZones: { [key: string]: string } = {
+        'en': 'Europe/London',   // 🇬🇧 English - UK Time
+        'de': 'Europe/Berlin',   // 🇩🇪 German - Germany Time
+        'fr': 'Europe/Paris',    // 🇫🇷 French - France Time
+        'it': 'Europe/Rome',     // 🇮🇹 Italian - Italy Time
+        'es': 'Europe/Madrid',   // 🇪🇸 Spanish - Spain Time
+        'pt': 'Europe/Lisbon',   // 🇵🇹 Portuguese - Portugal Time
+        'da': 'Europe/Copenhagen', // 🇩🇰 Danish - Denmark Time
+        'sv': 'Europe/Stockholm' // 🇸🇪 Swedish - Sweden Time
+      };
+
+      const selectedTimeZone = languageTimeZones[userLang] || 'UTC';
+
+      const timeFormats: { [key: string]: { format: string; showUhr?: boolean } } = {
+        'en': { format: 'HH:mm', showUhr: false },  // 🇬🇧 English - 24-hour format without "Uhr"
+        'de': { format: 'HH:mm', showUhr: true },   // 🇩🇪 German - Uses "Uhr"
+        'fr': { format: 'HH:mm', showUhr: false },  // 🇫🇷 French - 24-hour format
+        'it': { format: 'HH:mm', showUhr: false },  // 🇮🇹 Italian - 24-hour format
+        'es': { format: 'HH:mm', showUhr: false },  // 🇪🇸 Spanish - 24-hour format
+        'pt': { format: 'HH:mm', showUhr: false },  // 🇵🇹 Portuguese - 24-hour format
+        'da': { format: 'HH:mm', showUhr: false },  // 🇩🇰 Danish - 24-hour format
+        'sv': { format: 'HH:mm', showUhr: false }   // 🇸🇪 Swedish - 24-hour format
+      };
+
+      const selectedFormat = timeFormats[userLang] || { format: 'HH:mm', showUhr: false };
+
+      const formatter = new Intl.DateTimeFormat(userLang, {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        hourCycle: 'h23', // ✅ Ensures 24-hour format
+        timeZone: selectedTimeZone
+      });
+
+      const parts = formatter.formatToParts(new Date(dateTimeString));
+      const formattedTime = `${parts[6].value}:${parts[8].value}`;
+
+      return selectedFormat.showUhr ? `${formattedTime} Uhr` : formattedTime;
+    } catch (error) {
+      return "Invalid Date";
+    }
+  }
 }

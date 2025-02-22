@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +10,11 @@ export class ThemeService {
   private readonly themeKey = 'theme';
   private readonly darkThemeClass = 'dark-theme';
   private readonly lightThemeClass = 'light-theme';
-
+  private themeSubject: BehaviorSubject<string> = new BehaviorSubject<string>('light'); // ✅ Default theme
+  public theme$: Observable<string> = this.themeSubject.asObservable(); 
   constructor() {
     this.loadTheme();
+    
   }
 
   private loadTheme() {
@@ -40,4 +42,9 @@ export class ThemeService {
       localStorage.setItem(this.themeKey, 'light');
     }
   }
+
+  getTheme(): string {
+    return this.themeSubject.getValue();
+  }
+
 }

@@ -142,7 +142,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   startIntroTour(lang: string) {
 
-    this.translateService.use(lang); // Change language before fetching translations
+    //this.translateService.use(lang); // Change language before fetching translations
     this.translateService.get([
       'profilePhoto',
       'uploadYourBestHeadshot',

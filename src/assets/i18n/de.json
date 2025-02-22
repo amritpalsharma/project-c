@@ -1228,5 +1228,15 @@
     ]
   },
   "dontShowAgain": "Nicht mehr anzeigen",
-  "cancelConfirmationMsg":"Sind Sie sicher, dass Sie dieses Abonnement kündigen möchten? Diese Aktion kann nicht rückgängig gemacht werden."
+  "cancelConfirmationMsg": "Sind Sie sicher, dass Sie dieses Abonnement kündigen möchten? Diese Aktion kann nicht rückgängig gemacht werden.",
+  "youHaveAnActive": "Sie haben aktive",
+  "pleaseWait": "Bitte warten...",
+  "uploadingPhotos": "Fotos hochladen",
+  "TOOLTIPS": {
+    "profilePhoto": "Laden Sie Ihr bestes Porträtfoto hoch, um einen großartigen ersten Eindruck zu hinterlassen.",
+    "removeFavorite": "Aus den Favoriten entfernen",
+    "addFavorite": "Zu den Favoriten hinzufügen",
+    "downloadPdf":"Profil Pdf herunterladen",
+    "startConversation":"ein Gespräch beginnen"
+  }
 }

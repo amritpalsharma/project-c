@@ -1123,7 +1123,7 @@
       "Build an international network"
     ]
   },
-  "bostProfileDesc":{
+  "bostProfileDesc": {
     "features": [
       "Your profile picture will have a special and highlighted background",
       "Your profile will appear at the top of the search results when your characteristics are searched for",
@@ -1131,5 +1131,19 @@
     ]
   },
   "dontShowAgain": "Don't show it again",
-  "cancelConfirmationMsg":"Are you sure you want to cancel this subscription? This action cannot be undone."
+  "cancelConfirmationMsg": "Are you sure you want to cancel this subscription? This action cannot be undone.",
+  "youHaveAnActive": "You have active",
+  "pleaseWait": "Please Wait...",
+  "uploadingPhotos": "Uploading Photos",
+  "imageDeletedSuccess": "Image deleted successfully!",
+  "failedToDeleteImage": "Failed to delete image.",
+  "DeleteFailed": "Delete Failed",
+  "noNotification":"No Notification Found!",
+  "TOOLTIPS": {
+    "profilePhoto": "Upload your best headshot to make a great first impression.",
+    "removeFavorite":"Remove from favorites",
+    "addFavorite":"Add in favorites",
+    "downloadPdf":"Download Profile Pdf",
+    "startConversation":"start a conversation"
+  }
 }

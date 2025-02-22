@@ -202,7 +202,7 @@
             <img src="https://api.socceryou.ch/uploads/logos/{{language.flag}}" width="45" height="30" class="me-3">
           </a>
           <div class="dropdown-menu dropdown-menu-end">
-            <h6 class="mx-3 border-bottom pb-2 fs-15">Select Language</h6>
+            <h6 class="mx-3 border-bottom pb-2 fs-15">Select Language {{lang}}</h6>
             <a href="javascript:void(0)" *ngFor="let domain of domains" class="dropdown-item ai-icon "
               [class.selected]="lang===domain.slug" (click)="ChangeLang(domain.slug)">
               <img src="https://api.socceryou.ch/uploads/logos/{{domain.flag}}" width="30" height="24" class="me-3">

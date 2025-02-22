@@ -105,7 +105,7 @@
   "inbox": "Inkorg",
   "newMessage": "Nytt meddelande",
   "files": "Filer",
-  "favorites": "Favoriter (100)",
+  "favorites": "Favoriter",
   "removeFavorite": "Ta bort favorit",
   "userType": "Användartyp",
   "location": "Plats",
@@ -1228,9 +1228,7 @@
     "totalSales": "Total Sales: {{count}}",
     "totalSubscriptions": "Total Subscriptions: {{count}}"
   },
-
-
-  "more_news": "Fler nyheter",  
+  "more_news": "Fler nyheter",
   "back_to_news": "Tillbaka till Nyheter och Media",
   "share": "Dela",
   "uses": "Uses",
@@ -1246,8 +1244,18 @@
   "editProfile": "Edit och profile",
   "thanksMessage": "muito obrigado",
   "thanksMessage2": "Entraremos em contacto consigo.",
-  "backToHome" : "Voltar ao início",
-  "removeFavoriteConfirm":"Är du säker på att ta bort från favoriter?",
+  "backToHome": "Voltar ao início",
+  "removeFavoriteConfirm": "Är du säker på att ta bort från favoriter?",
   "dontShowAgain": "Visa det inte igen",
-  "cancelConfirmationMsg":"Är du säker på att du vill säga upp prenumerationen? Denna åtgärd kan inte ångras."
+  "cancelConfirmationMsg": "Är du säker på att du vill säga upp prenumerationen? Denna åtgärd kan inte ångras.",
+  "youHaveAnActive": "Du har ett aktivt",
+  "pleaseWait": "Vänligen vänta...",
+  "uploadingPhotos": "Ladda upp foton",
+  "noNotification": "Inga meddelanden hittades!",
+  "TOOLTIPS": {
+    "removeFavorite": "Ta bort från favoriter",
+    "addFavorite": "Lägg till i favoriter",
+    "downloadPdf": "Ladda ner profil PDF",
+    "startConversation": "Starta en konversation"
+  }
 }

@@ -17,8 +17,9 @@ export class GalleryTabComponent {
   userVideos: any = [];
   imageBaseUrl: any = `${environment.url}uploads/`;
   selectedFile: any = '';
+  isdefaultCoverImage:string='';
   // defaultCoverImage:any = "./media/palyers.png";
-  defaultCoverImage:any = "../../../../assets/images/palyers.png";
+  defaultCoverImage:any = "./assets/images/no_cover_img.png";
   openedMenuId:any = '';
   @Input() coverImage: string = '';  // Define an input property
   @Output() dataEmitter = new EventEmitter<string>();
@@ -32,7 +33,11 @@ export class GalleryTabComponent {
     });
     
     if(this.coverImage == ""){
-      this.coverImage = this.defaultCoverImage;
+      this.isdefaultCoverImage = 'no_cover_img_css1';
+      // this.isShowDefaultImg = '';
+      this.coverImage = this.defaultCoverImage; 
+      // Client ask remove deafult image for admin in ticket #196
+      // https://farooqmalik.atlassian.net/jira/software/projects/KAN/boards/1?selectedIssue=KAN-196&text=Talent
     }
   }
 

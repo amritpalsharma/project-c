@@ -98,7 +98,6 @@
   "next": "Avanti",
   "previous": "Precedente",
   "finish": "Finitura",
-  
   "messages": "Messaggi",
   "chat": "Chat",
   "inbox": "Posta in arrivo",
@@ -1225,9 +1224,7 @@
     "totalSales": "Total Sales: {{count}}",
     "totalSubscriptions": "Total Subscriptions: {{count}}"
   },
-
-
-  "more_news": "Altre notizie",  
+  "more_news": "Altre notizie",
   "back_to_news": "Torna a Notizie e Media",
   "share": "Condividere",
   "uses": "Uses",
@@ -1243,8 +1240,18 @@
   "editProfile": "Edit e profile",
   "thanksMessage": "Grazie mille",
   "thanksMessage2": "Ci metteremo in contatto con voi.",
-  "backToHome" : "Torna a casa",
-  "removeFavoriteConfirm":"Sei sicuro di voler eliminare dai preferiti?",
+  "backToHome": "Torna a casa",
+  "removeFavoriteConfirm": "Sei sicuro di voler eliminare dai preferiti?",
   "dontShowAgain": "Non mostrarlo più",
-  "cancelConfirmationMsg":"È sicuro di voler cancellare questo abbonamento? Questa azione non può essere annullata."
+  "cancelConfirmationMsg": "È sicuro di voler cancellare questo abbonamento? Questa azione non può essere annullata.",
+  "youHaveAnActive": "Avete attivo",
+  "pleaseWait": "Attendere prego...",
+  "uploadingPhotos": "Caricamento delle foto",
+  "noNotification": "Nessuna notifica trovata!",
+  "TOOLTIPS": {
+    "removeFavorite": "Rimuovi dai preferiti",
+    "addFavorite": "Aggiungi ai preferiti",
+    "downloadPdf": "Scarica il PDF del profilo",
+    "startConversation": "Inizia una conversazione"
+  }
 }

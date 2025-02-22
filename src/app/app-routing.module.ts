@@ -16,6 +16,11 @@ const routes: Routes = [
       ), 
     canActivate: [NonAuthGuard]
   },
+  // Added by amrit
+  { path: 'home', loadChildren: () => import('./modules/website/website.module').then(m => m.WebsiteModule) },
+  { path: 'about', loadChildren: () => import('./modules/website/website.module').then(m => m.WebsiteModule) },
+  { path: 'contact', loadChildren: () => import('./modules/website/website.module').then(m => m.WebsiteModule) },
+  // Added by amrit
   {
     path: 'admin',
     loadChildren: () =>
@@ -51,7 +56,6 @@ const routes: Routes = [
   { path: 'success', component: SuccessComponent ,canActivate: [AuthGuard]},
   { path: 'talent/success', component: SuccessComponent ,canActivate: [AuthGuard]},
   { path: 'cancel', component: CancelComponent ,canActivate: [AuthGuard]},
-
   {
     path: 'club',
     loadChildren: () =>

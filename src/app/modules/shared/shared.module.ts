@@ -47,6 +47,7 @@ import { ExploreComponent } from './explore/explore.component';
 import { ActivityLogComponent } from './setting/activity-log/activity-log.component';
 import { AppSettingComponent } from './setting/app-setting/app-setting.component';
 import { CommonFilterPopupComponent } from './common-filter-popup/common-filter-popup.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -104,6 +105,7 @@ import { CommonFilterPopupComponent } from './common-filter-popup/common-filter-
     MatToolbarModule,
     MatPaginator,
     NgxEditorModule,
+    MatTooltipModule 
   ],
   exports:[
     SuccessComponent,

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talk.js Test</title>
+    <script src="https://cdn.talkjs.com/talk.js"></script> <!-- Include Talk.js CDN -->
+    <style>
+        /* Optional: Add some basic styling */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #talkjs-container {
+            height: 500px;
+            width: 100%;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Welcome to Talk.js Chat</h2>
+    <div id="talkjs-container"></div>
+
+    <script>
+        // Initialize Talk.js
+        window.Talk.ready.then(function() {
+            var me = new Talk.User({
+                id: '12345',
+                name: 'John Doe',
+                email: 'john@example.com',
+                photoUrl: 'https://talkjs.com/images/logo.png',
+                welcomeMessage: 'Hey there! How can I help you today?'
+            });
+
+            var other = new Talk.User({
+                id: '67890',
+                name: 'Support Team',
+                email: 'support@example.com',
+                photoUrl: 'https://talkjs.com/images/logo.png',
+                welcomeMessage: 'Hi, how can I assist you today?'
+            });
+
+            var session = new Talk.Session({
+                appId: 'tbrCzBbz',  // Replace with your Talk.js App ID
+                me: me
+            });
+
+            var conversation = session.getOrCreateConversation('12345-67890');
+            conversation.setParticipant(me);
+            conversation.setParticipant(other);
+
+            var chatbox = session.createChatbox(conversation);
+            chatbox.mount(document.getElementById('talkjs-container'));
+        });
+    </script>
+</body>
+</html>

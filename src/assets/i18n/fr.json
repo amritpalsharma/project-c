@@ -106,7 +106,7 @@
   "inbox": "Boîte de réception",
   "newMessage": "Nouveau message",
   "files": "Dossiers",
-  "favorites": "Favoris (100)",
+  "favorites": "Favoris",
   "removeFavorite": "Supprimer le favori",
   "userType": "Type d'utilisateur",
   "location": "Localisation",
@@ -1241,9 +1241,7 @@
     "totalSales": "Total Sales: {{count}}",
     "totalSubscriptions": "Total Subscriptions: {{count}}"
   },
-
-
-  "more_news": "Plus de nouvelles",  
+  "more_news": "Plus de nouvelles",
   "back_to_news": "Retour aux Actualités et Médias",
   "share": "Partager",
   "uses": "Uses",
@@ -1260,7 +1258,17 @@
   "thanksMessage": "merci beaucoup",
   "thanksMessage2": "Nous prendrons contact avec vous.",
   "backToHome": "Retour à l'accueil",
-  "removeFavoriteConfirm":"Êtes-vous sûr d'avoir supprimé les favoris ?",
+  "removeFavoriteConfirm": "Êtes-vous sûr d'avoir supprimé les favoris ?",
   "dontShowAgain": "Ne le montrez plus",
-  "cancelConfirmationMsg":"Êtes-vous sûr de vouloir annuler cet abonnement ? Cette action ne peut être annulée."
+  "cancelConfirmationMsg": "Êtes-vous sûr de vouloir annuler cet abonnement ? Cette action ne peut être annulée.",
+  "youHaveAnActive": "Vous êtes actif",
+  "pleaseWait": "Veuillez patienter...",
+  "uploadingPhotos": "Téléchargement de photos",
+  "noNotification": "Aucune notification trouvée !",
+  "TOOLTIPS": {
+    "removeFavorite": "Eliminar de favoritos",
+    "addFavorite": "Agregar a favoritos",
+    "downloadPdf": "Descargar el PDF del perfil",
+    "startConversation": "Iniciar una conversación"
+  }
 }

@@ -1,11 +1,11 @@
 import { Component, Inject } from '@angular/core';
 import {
-  MatDialogRef,MAT_DIALOG_DATA
+  MatDialogRef, MAT_DIALOG_DATA
 } from '@angular/material/dialog';
 import { UserService } from '../../../services/user.service';
 import { TalentService } from '../../../services/talent.service';
 import { ToastrService } from 'ngx-toastr';
-
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'talent-upload-popup',
@@ -15,14 +15,16 @@ import { ToastrService } from 'ngx-toastr';
 export class UploadPopupComponent {
 
   userId: any = '';
-  uploadedFiles:any = [];
+  uploadedFiles: any = [];
   uploadResponse: { message: string; status: boolean }[] = []; // Updated type
-  file:any='all';
+  file: any = 'all';
+  pleaseWait: string = '';
+  uploadingPhotos: string = '';
 
-  constructor(private userService: TalentService, public dialogRef : MatDialogRef<UploadPopupComponent>, private toastr: ToastrService,
+  constructor(private userService: TalentService, public dialogRef: MatDialogRef<UploadPopupComponent>, private toastr: ToastrService, private translateService: TranslateService,
     @Inject(MAT_DIALOG_DATA) public data: any) {
-      this.userId = data.userId;
-      this.file = data.file ? data.file : 'all';
+    this.userId = data.userId;
+    this.file = data.file ? data.file : 'all';
   }
 
   files: File[] = [];
@@ -69,36 +71,41 @@ export class UploadPopupComponent {
     for (let i = 0; i < files.length; i++) {
       this.files.push(files.item(i)!);
     }
-
     this.uploadImages(this.files);
   }
 
 
   uploadImages(files: any) {
-    const loadingToast = this.toastr.info('Please wait...', 'Uploading Photos', {
-      disableTimeOut: true, // Keep the toaster open until manually cleared
-    });
-    const formdata = new FormData();
-    // let lang_id = localStorage.getItem('lang_id');
-    // formdata.append("lang",lang_id);
-    for (let i = 0; i < files.length; i++) {
-      formdata.append("gallery_images[]", files[i]);
-    }
-    
-    this.userService.uploadGalleryImages(formdata).subscribe((response) => {
-      console.log(response);
-      response.forEach((row: any) => {
-        console.log('row', row);
-        // Add both message and status to uploadResponse array
-        this.uploadResponse.push({ message: row.message, status: row.status });
+    // let loadingToast = [];
+    this.translateService.get([
+      'pleaseWait',
+      'uploadingPhotos',
+    ]).subscribe((translations) => {
+      const loadingToast = this.toastr.info(translations['pleaseWait'], translations['uploadingPhotos'], {
+        disableTimeOut: true, // Keep the toaster open until manually cleared
+      });
+      const formdata = new FormData();
+      // let lang_id = localStorage.getItem('lang_id');
+      // formdata.append("lang",lang_id);
+      for (let i = 0; i < files.length; i++) {
+        formdata.append("gallery_images[]", files[i]);
+      }
 
-        if (row.status) {
-          this.toastr.clear(loadingToast.toastId);
-          this.uploadedFiles.push({ id: row.data.id, file_name: row.data.uploaded_file });
-        } else {
-          this.toastr.clear(loadingToast.toastId);
-          this.toastr.error(row.message, 'Error');
-        }
+      this.userService.uploadGalleryImages(formdata).subscribe((response) => {
+        console.log(response);
+        response.forEach((row: any) => {
+          console.log('row', row);
+          // Add both message and status to uploadResponse array
+          this.uploadResponse.push({ message: row.message, status: row.status });
+
+          if (row.status) {
+            this.toastr.clear(loadingToast.toastId);
+            this.uploadedFiles.push({ id: row.data.id, file_name: row.data.uploaded_file });
+          } else {
+            this.toastr.clear(loadingToast.toastId);
+            this.toastr.error(row.message, 'Error');
+          }
+        });
       });
     });
   }
