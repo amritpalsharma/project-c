@@ -214,7 +214,9 @@ export class UserService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
-    return this.http.post<any>(`${this.apiUrl2}/upload-gallery-image/${userId}`, formdata, { headers });
+    console.log('Data sending......')
+    console.log(formdata);
+    return this.http.post<any>(`${this.apiUrl2}/upload-gallery-image/${userId}/?lang=`+localStorage.getItem('lang_id'), formdata, { headers });
   }
 
   deleteGalleryImage(params:any): Observable<any> {

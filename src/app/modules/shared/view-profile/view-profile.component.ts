@@ -7,7 +7,10 @@ import { SocketService } from '../../../services/socket.service';
 import { environment } from '../../../../environments/environment';
 import { ToastrService } from 'ngx-toastr';
 import { WebPages } from '../../../services/webpages.service';
-import { TalentModule } from '../../talent/talent.module'; 
+import { TalentModule } from '../../talent/talent.module';
+import { TalentTooltipService } from '../../../services/talent-tooltip.service';
+import { Subscription } from 'rxjs';
+
 @Component({
   selector: 'app-view-profile',
   templateUrl: './view-profile.component.html',
@@ -32,7 +35,15 @@ export class ViewProfileComponent implements OnInit {
   downloadPath: any = '';
   isPremium: any = false;
   countryFlagUrl: any;
-  
+  personalDetailsTooltip: string = '';
+  highlightsTooltip: string = '';
+  profilePhotoTooltip: string = ''; 
+  addFavorite: string = ''; 
+  removeFavorite: string = ''; 
+  downloadPdf: string = ''; 
+  startConversation: string = ''; 
+  private tooltipSubscription!: Subscription; // ✅ Subscription for tooltips
+
   @Output() dataEmitter = new EventEmitter<string>();
 
   constructor(
@@ -43,7 +54,8 @@ export class ViewProfileComponent implements OnInit {
     public dialog: MatDialog,
     private router: Router,
     private socketService: SocketService,
-    private webPages: WebPages
+    private webPages: WebPages,
+    private tooltipService: TalentTooltipService
   ) { }
 
   ngOnInit(): void {
@@ -52,6 +64,23 @@ export class ViewProfileComponent implements OnInit {
       this.userId = params.id;
       this.getUser(this.userId);
       this.activeTab = 'profile';
+      // code by amrit
+      this.tooltipSubscription = this.tooltipService.getTooltip('profilePhoto').subscribe(tooltip => {
+        this.profilePhotoTooltip = tooltip;
+      });
+      this.tooltipSubscription = this.tooltipService.getTooltip('addFavorite').subscribe(tooltip => {
+        this.addFavorite = tooltip;
+      });
+      this.tooltipSubscription = this.tooltipService.getTooltip('removeFavorite').subscribe(tooltip => {
+        this.removeFavorite = tooltip;
+      });
+      this.tooltipSubscription = this.tooltipService.getTooltip('downloadPdf').subscribe(tooltip => {
+        this.downloadPdf = tooltip;
+      });
+      this.tooltipSubscription = this.tooltipService.getTooltip('startConversation').subscribe(tooltip => {
+        this.startConversation = tooltip;
+      });
+      // code by amrit
     });
 
     if (this.coverImage == '') {
@@ -332,5 +361,10 @@ export class ViewProfileComponent implements OnInit {
       })
       .catch(error => console.error("Error fetching geocoding data:", error));
   }
-
+  ngOnDestroy() {
+    // ✅ Unsubscribe to prevent memory leaks
+    if (this.tooltipSubscription) {
+      this.tooltipSubscription.unsubscribe();
+    }
+  }
 }

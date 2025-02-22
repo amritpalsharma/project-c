@@ -10,6 +10,7 @@ import { TemplatePopupComponent } from './template-popup/template-popup.componen
 import { consumerPollProducersForChange } from '@angular/core/primitives/signals';
 import { TemplateService } from '../../../services/template.service';
 import { CommonFilterPopupComponent } from '../common-filter-popup/common-filter-popup.component';
+import { AdminHelperService } from '../../../services/admin-helper.service';
 
 @Component({
   selector: 'app-templates',
@@ -31,7 +32,7 @@ export class TemplatesComponent {
   roles: any = [];
   langs: any = environment.langs;
 
-  constructor(public dialog: MatDialog,private tempalateApi: TemplateService) {}
+  constructor(public dialog: MatDialog,private tempalateApi: TemplateService, public adminHelper: AdminHelperService) {}
   ngOnInit(): void {
     this.getTemplates();
 
@@ -90,8 +91,10 @@ export class TemplatesComponent {
 
   createTemplate(){
     const dialogRef = this.dialog.open(TemplatePopupComponent,{
-      height: '598px',
-      width: '600px',
+      // height: '598px',
+      // width: '600px',
+      height: '90vh',
+      width: '90vw',
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -208,8 +211,10 @@ export class TemplatesComponent {
 
   editTemplate(data:any){
     const updateDialogRef = this.dialog.open(TemplatePopupComponent,{
-      height: '598px',
-      width: '600px',
+      // height: '598px',
+      // width: '600px',
+      height: '90vh',
+      width: '90vw',
       data: data
     });
 
