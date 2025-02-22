@@ -111,7 +111,8 @@
 }
 .image_box .player_img img{
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    object-position: bottom;
 }
 .player-names{
     background: #429130;
@@ -198,11 +199,24 @@
     .explore-table{
         width: 100%;
     }
-    .explore-box_images .player-image-list .col-lg-2 {
-        width: 25% !important;
-    }
     
 }
+
+@media (min-width: 1200px) and (max-width:1440px) {
+.explore-box_images .player-image-list .col-lg-2 {
+    width: 25% !important;
+}
+}
+
+@media (min-width: 992px) and (max-width:1199px) {
+    .explore-box_images .player-image-list .col-lg-2 {
+        width: 33.33% !important;
+    }
+    .booster_box {
+        height: 230px;
+    }
+}
+
 @media (max-width:768px) {
     
     .form-group input, .form-group select{

@@ -24,6 +24,7 @@ export class EditPlanComponent implements OnInit {
   stripe: any;
   isYearly = false; // Subscription type
   defaultCard: any = null; // Variable to hold the default card
+  selectedCountryIds: string[] = [];
 
   @Output() buys: EventEmitter<any> = new EventEmitter();
 
@@ -283,10 +284,22 @@ export class EditPlanComponent implements OnInit {
   }
 
   onCountrySelect(event: any) {
-    const selectedCountryId = event.target.value;
-    console.log(selectedCountryId)
-    this.selectedPlan = this.countries.find(country => country.id === selectedCountryId);
+    console.log(event.value);
+    this.selectedCountryIds = event.value; // Update selected IDs
+  
+    // Find and store the selected country objects
+    this.selectedCountries = this.countries.filter(country => this.selectedCountryIds.includes(country.id));
+  
+    console.log('Selected Countries:', this.selectedCountries);
+    console.log('Selected Locations:', this.selectedCountries.map(country => country.monthly.location));
   }
+  
+  // Function to return custom selected display text (showing locations)
+  getSelectedDisplayText(): any {
+    console.log(this.selectedCountries);
+    return this.selectedCountries.map(country => country.monthly.location).join(', ');
+  }
+  
 
   removeCountry(country: any) {
     this.selectedCountries = this.selectedCountries.filter(c => c.id !== country.id);

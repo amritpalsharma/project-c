@@ -38,6 +38,7 @@
             ],
             "styles": [
               "src/styles.scss",
+              "src/responsive.scss",
               "src/dark-styles.scss",
               "node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "node_modules/ngx-toastr/toastr.css",
@@ -111,6 +112,7 @@
             ],
             "styles": [
               "src/styles.scss",
+              "src/responsive.scss",
               "src/dark-styles.scss",
               "src/app/modules/website/website-dark.scss",
               "src/app/modules/website/website-light.scss",

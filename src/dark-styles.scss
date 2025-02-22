@@ -2707,8 +2707,11 @@ input:checked+.slider:before {
 
 .dark-theme .form-group mat-select {
   color: #fff;
+      background: #072944;
 }
-
+.dark-theme .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) .mdc-list-item__primary-text {
+  color: #fff !important;
+}
 .dark-theme .title_2 {
   color: #fff !important;
 }
