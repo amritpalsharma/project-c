@@ -388,8 +388,12 @@ export class PlanComponent implements OnInit, OnDestroy {
     });
   }
 
+  // animate : boolean = false;
 
   toggleBillingPlan(plan: any, isYearly: boolean, subscribeId: any): void {
+
+    // this.animate = (!this.animate);
+
     console.log('toggleBillingPlan', plan, isYearly, subscribeId);
     const originalIsYearly = plan.isYearly;
 

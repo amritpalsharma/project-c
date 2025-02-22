@@ -42,6 +42,7 @@ export class MembershipComponent {
   exportLink: any;
   cancelConfirmationMsg:String = '';
   userPurchasesNotFound:String = '';
+  isLoading : boolean = true;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private route: ActivatedRoute, private talentService: TalentService, private paymentService:PaymentService, public dialog: MatDialog,private router: Router , private webpages : WebPages, private translateService: TranslateService,) { }
@@ -76,6 +77,7 @@ export class MembershipComponent {
 
     this.talentService.getPurchaseData(pageNumber, pageSize, lang).subscribe(response => {
       if (response && response.status && response.data) {
+        this.isLoading = false;
         this.userPurchases = response.data.purchaseHistory;
         this.totalItems = response.data.totalCount; // Assuming API returns the total number of purchases
         console.log(this.userPurchases)

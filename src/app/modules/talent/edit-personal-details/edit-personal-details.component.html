@@ -100,10 +100,9 @@
       <div class="row">
         <!-- Contract Start Date -->
         <div class="form-group col-lg-6">
-          <label for="contractStart">{{'contractStartDate' | translate}}:</label>
+          <label for="contractStart">{{'contractStartDate' | translate}}:</label> 
           <div class="d-flex align-items-center justify-content-center dob1">
-            <input class="dob" matInput id="contractStart" name="contractStart" [matDatepicker]="contractStartPicker"
-              [(ngModel)]="contractStart" placeholder="DD.MM.YYYY" />
+            <input class="dob" matInput id="contractStart" name="contractStart" [matDatepicker]="contractStartPicker" [formControl]="contractStart" placeholder="DD.MM.YYYY" />
             <mat-datepicker-toggle matSuffix [for]="contractStartPicker"></mat-datepicker-toggle>
             <mat-datepicker #contractStartPicker></mat-datepicker>
           </div>
@@ -113,8 +112,7 @@
         <div class="form-group col-lg-6">
           <label for="contractEnd">{{'contractEndDate' | translate}}:</label>
           <div class="d-flex align-items-center justify-content-center dob1">
-            <input class="dob" matInput id="contractEnd" name="contractEnd" [matDatepicker]="contractEndPicker"
-              [(ngModel)]="contractEnd" placeholder="DD.MM.YYYY" />
+            <input class="dob" matInput id="contractEnd" name="contractEnd" [matDatepicker]="contractEndPicker" [formControl]="contractEnd" placeholder="DD.MM.YYYY" />
             <mat-datepicker-toggle matSuffix [for]="contractEndPicker"></mat-datepicker-toggle>
             <mat-datepicker #contractEndPicker></mat-datepicker>
           </div>

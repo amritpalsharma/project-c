@@ -17,13 +17,13 @@
           <!-- premium plans -->
           <div class="col-lg-4 my-2 ">
             <div class="subscription-switch mb-2">
-              <label class="switch_off cursor-pointer" (click)="toggleBillingPlan(premiumPlans, false ,premium)">
+              <label class="switch_off cursor-pointer" >
                 {{'billedMonthly' | translate}}</label>
               <input class="cursor-pointer" type="checkbox" [id]="premiumPlans.id" [checked]="(premiumPlans.isYearly)"
                 [(ngModel)]="premiumPlans.isYearly"
-                (change)="toggleBillingPlan(premiumPlans, (premiumPlans.isYearly),premium)"
+                (change)="toggleBillingPlan(premiumPlans, (premiumPlans.isYearly), premium)"
                 [value]="premiumPlans.isYearly">
-              <label class="switch_on cursor-pointer" (click)="toggleBillingPlan(premiumPlans, true,premium)">
+              <label class="switch_on cursor-pointer" >
                 {{'billedYearly' | translate}}
               </label>
             </div>
@@ -93,12 +93,12 @@
           <!-- premium plans -->
           <div class="col-lg-4 my-2 ">
             <div class="subscription-switch mb-2">
-              <label class="switch_off cursor-pointer" (click)="toggleBillingPlan(demoPlans, false ,premium)">
+              <label class="switch_off cursor-pointer" >
                 {{'billedMonthly' | translate}}</label>
               <input class="cursor-pointer" type="checkbox" [id]="demoPlans.id" [checked]="(demoPlans.isYearly)"
-                [(ngModel)]="demoPlans.isYearly" (change)="toggleBillingPlan(demoPlans, (demoPlans.isYearly),premium)"
+                [(ngModel)]="demoPlans.isYearly" (change)="toggleBillingPlan(demoPlans, (demoPlans.isYearly), demoPlans)"
                 [value]="demoPlans.isYearly">
-              <label class="switch_on cursor-pointer" (click)="toggleBillingPlan(demoPlans, true,premium)">
+              <label class="switch_on cursor-pointer" >
                 {{'billedYearly' | translate}}
               </label>
             </div>
@@ -168,7 +168,7 @@
           <div class="col-lg-4 my-2 ">
             <div class="subscription-switch mb-2">
               <label class="switch_off cursor-pointer">{{'billedMonthly' | translate}}</label>
-              <input type="checkbox" class="cursor-pointer">
+              <input type="checkbox" (change)="toggleBillingPlan(countryPlans, (countryPlans.isYearly), countryPlans)" class="cursor-pointer">
               <label class="switch_on cursor-pointer">{{'billedYearly' | translate}}</label>
             </div>
 
@@ -236,15 +236,13 @@
           <!-- boosted plans -->
           <div class="col-lg-4 my-2">
             <div class="subscription-switch mb-2">
-              <label class="switch_off cursor-pointer"
-                (click)="toggleBillingPlan(boostedPlans, false ,booster)">{{'billedMonthly' |
+              <label class="switch_off cursor-pointer">{{'billedMonthly' |
                 translate}}</label>
               <input type="checkbox" class="switch_on cursor-pointer" [id]="boostedPlans.id"
                 [(ngModel)]="boostedPlans.isYearly"
                 [checked]="boostedPlans.isYearly || (booster && booster.interval == 'yearly')"
-                (change)="toggleBillingPlan(boostedPlans, (boostedPlans.isYearly ? false: true),booster)">
-              <label class="switch_on cursor-pointer"
-                (click)="toggleBillingPlan(boostedPlans, true,booster)">{{'billedYearly' |
+                (change)="toggleBillingPlan(boostedPlans, (boostedPlans.isYearly), booster)">
+              <label class="switch_on cursor-pointer">{{'billedYearly' |
                 translate}}</label>
             </div>
             <div class="premium-plan_box">

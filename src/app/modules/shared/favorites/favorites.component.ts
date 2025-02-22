@@ -37,6 +37,7 @@ export class FavoritesComponent {
   selectedIds: number[] = [];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   keyword: any = "";
+  isLoading : boolean = true;
 
   loggedInUser: any = localStorage.getItem('userData');
 
@@ -126,6 +127,7 @@ export class FavoritesComponent {
       // Make the API request with query parameters
       this.talentService.getFavoritesData(params).subscribe((response) => {
         if (response && response.status && response.data) {
+          this.isLoading = false;
           this.userFavorites = response.data[0].favorites;
           this.totalFavorites = response.data[0].totalCount;
           this.paginator.length = response.data[0].totalCount;

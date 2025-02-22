@@ -94,7 +94,7 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-4 mt-2" *ngIf="isbooster">
+          <div class="col-lg-4" *ngIf="isbooster">
             <div class="premium-card ">
               <div class="d-flex align-items-end justify-content-between">
                 <h5>{{ 'boostProfile' | translate }}</h5>
@@ -220,10 +220,22 @@
                     </a>
                   </td>
                 </tr>
+
+                <tr *ngIf="isLoading">
+                  <td colspan="7">
+                    <div style="text-align: center;margin-top:20px;">
+                      <span class="loader"></span>
+                    </div>
+                  </td>
+                </tr>
+
+                <tr *ngIf="userPurchases.length == '0' && !isLoading">
+                  <td colspan="7" class="text-center">
+                    <h1>{{'userPurchasesNotFound' | translate}}</h1>
+                  </td>
+                </tr>
+
               </tbody>
-              <tr *ngIf="userPurchases.length == '0'">
-                <td colspan="7" class="text-center">{{'userPurchasesNotFound' | translate}}</td>
-              </tr>
             </table>
           </div>
         </div>
