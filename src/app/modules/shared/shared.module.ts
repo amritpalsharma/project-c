@@ -48,6 +48,7 @@ import { ActivityLogComponent } from './setting/activity-log/activity-log.compon
 import { AppSettingComponent } from './setting/app-setting/app-setting.component';
 import { CommonFilterPopupComponent } from './common-filter-popup/common-filter-popup.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { LoaderComponent } from './loader/loader.component';
 
 
 @NgModule({
@@ -82,7 +83,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     AppSettingComponent,
     FavoritesComponent,
     ExploreComponent,
-    CommonFilterPopupComponent
+    CommonFilterPopupComponent,
+    LoaderComponent
   ],
   imports: [
     CommonModule,
@@ -122,6 +124,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     FooterComponent,
     CouponCodeAlertComponent,
     HeaderComponent,
+    
   ]
 })
 export class SharedModule { }

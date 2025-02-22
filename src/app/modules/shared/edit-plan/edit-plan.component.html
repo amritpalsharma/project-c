@@ -17,25 +17,13 @@
   
           <!-- Custom display for selected options -->
           <mat-select-trigger>
-            <ng-container *ngIf="selectedCountries.length > 0">
-              {{ getSelectedDisplayText() }}
-            </ng-container>
+            Select
           </mat-select-trigger>
         
           <mat-option *ngFor="let country of countries" [value]="country.id">
             {{ country.package_name }}
           </mat-option>
         </mat-select>
-
-        <!-- <select class="form-select" id="select-countries" (change)="onCountrySelect($event)" multiple>
-          <option value="" disabled selected>{{ 'selectACountries' | translate }}</option>
-          <option
-            *ngFor="let country of countries"
-            [selected]="selectedPlan?.id == country.id"
-            [value]="country.id">
-            {{ country.package_name }}
-          </option>
-        </select> -->
       </div>
 
       <div class="explore-chip d-flex align-items-center mt-2">

@@ -186,7 +186,8 @@ export class TalentService {
   updateGeneralProfile(formData: FormData): Observable<any> {
     const headers = this.headers();
 
-    return this.http.post(`${this.apiUrl}player/update-general-info`, formData, { headers });
+    // return this.http.post(`${this.apiUrl}player/update-general-info`, formData, { headers });
+    return this.http.post(`${this.apiUrl}user/update-profile`, formData, { headers });
   }
 
   getPerformanceData(): Observable<any> {

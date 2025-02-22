@@ -75,6 +75,7 @@ export class HeaderComponent {
   roles: any = environment.roles;
   showAll: boolean = true;
   isDarkMode: boolean = false;
+  totalNotification: boolean = true;
 
   notificationSeen: boolean = false;
 
@@ -445,6 +446,9 @@ export class HeaderComponent {
         console.log('Fetched notifications response:', response);
 
         if (response.status && response.notifications) {
+          if(response.total_count == '0'){
+            this.totalNotification = false;
+          }
           this.unseenCount = response.unseen_count;
           // Clear existing notifications to avoid stale data
           this.allNotifications = [];
