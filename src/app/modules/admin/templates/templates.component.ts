@@ -25,6 +25,7 @@ export class TemplatesComponent {
   allSelected: boolean = false;
   selectedIds: number[] = [];  
   filterValue: string = '';
+  lang_id: string = '';
   idsToDelete: any = [];
   customFilters:any = [];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -39,7 +40,9 @@ export class TemplatesComponent {
     let envRoles:any = environment.roles;
     envRoles.unshift({id: 0, role: 'All'});
     this.roles = envRoles;
-  }
+  } 
+
+  
 
   async getTemplates(filterApplied:boolean = false): Promise<void> {
     this.isLoading = true;

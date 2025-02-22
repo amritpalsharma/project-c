@@ -216,12 +216,16 @@ export class AddClubnScoutPageComponent implements OnInit {
       formData.append('banner_imgs[]', this.formData.banner_imgs[key]);
     }
 
+    // Append lang_id to FormData
+    formData.append('lang', String(localStorage.getItem('lang_id')));
+
     // Send the formData
     this.webpages.addClubnScoutPage(formData).subscribe(
       response => {
         console.log('Page added successfully:', response);
         this.dialogRef.close({
           action: 'page-added-successfully',
+          message: response.message
         });
       },
       error => {

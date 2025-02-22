@@ -368,20 +368,34 @@ export class AddHomePageComponent {
     this.first_tab.forEach((tab, index) => {
       formData.append(`first_tab[${index}][title]`, tab.title);
       formData.append(`first_tab[${index}][desc]`, tab.desc);
-      tab.images.forEach((file, i) => formData.append(`first_tab[${index}][images][${i}]`, file));
-      tab.darkImages.forEach((file, i) => formData.append(`first_tab[${index}][images_dark_mode][${i}]`, file)); // Include dark images
+      if (Array.isArray(tab.images)) {
+        tab.images.forEach((file, i) => formData.append(`first_tab[${index}][images][${i}]`, file));
+      }
+      if (Array.isArray(tab.darkImages)) {
+        tab.darkImages.forEach((file, i) => formData.append(`first_tab[${index}][images_dark_mode][${i}]`, file)); // Include dark images
+      }
     });
 
     // Process second_tab
     this.second_tab.forEach((tab, index) => {
       formData.append(`second_tab[${index}][title]`, tab.title);
       formData.append(`second_tab[${index}][desc]`, tab.desc);
-      tab.images.forEach((file, i) => formData.append(`second_tab[${index}][images][${i}]`, file));
-      tab.darkImages.forEach((file, i) => formData.append(`second_tab[${index}][images_dark_mode][${i}]`, file)); // Include dark images
+      if (Array.isArray(tab.images)) {
+        tab.images.forEach((file, i) => formData.append(`second_tab[${index}][images][${i}]`, file));
+      }
+      if (Array.isArray(tab.darkImages)) {
+        tab.darkImages.forEach((file, i) => formData.append(`second_tab[${index}][images_dark_mode][${i}]`, file)); // Include dark images
+      }
     });
 
-    this.webpages.addHomePageTabData(formData).subscribe(() => {
-      this.dialogRef.close({ action: "page-added-successfully" });
+    // Append lang_id to FormData
+    formData.append('lang', String(localStorage.getItem('lang_id')));
+
+    this.webpages.addHomePageTabData(formData).subscribe((response) => {
+      this.dialogRef.close({ 
+        action: "page-added-successfully",
+        message: response.message 
+      });
     });
   }
 

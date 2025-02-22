@@ -98,6 +98,7 @@ export class AddNewsPageComponent implements OnInit {
 
   submitForm(): void {
     const formData = new FormData();
+    
     for (const key in this.formData) {
       if (Array.isArray(this.formData[key])) {
         this.formData[key].forEach((item: string, index: number) => {
@@ -107,11 +108,16 @@ export class AddNewsPageComponent implements OnInit {
         formData.append(key, this.formData[key]);
       }
     }
+
+    // Append lang_id to FormData
+    formData.append('lang', String(localStorage.getItem('lang_id')));
+
     console.log('content', this.content);
     console.log(this.formData, 'submit-form');
     this.webpages.addNewsPage(formData).subscribe(response => {
       this.dialogRef.close({
-        action: 'page-added-successfully'
+        action: 'page-added-successfully',
+        message: response.message
       });
     });
   }

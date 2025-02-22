@@ -68,6 +68,7 @@ export class UploadPopupComponent {
 
   // Adds the selected files to the list
   addFiles(files: FileList) {
+    this.files = [];
     for (let i = 0; i < files.length; i++) {
       this.files.push(files.item(i)!);
     }
