@@ -27,8 +27,10 @@ export class WebPages {
     }
 
     getAllPages(lang_id:any=1,params:any): Observable<any> {
+        let currentLang = localStorage.getItem('lang_id');
+
         return this.http.get<{ status: boolean, message: string, data: {} }>(
-            `${this.apiUrl}admin/get-pages`, {params}
+            `${this.apiUrl}admin/get-pages/${currentLang}`, {params}
         );
     }
 
@@ -71,8 +73,7 @@ export class WebPages {
         );
     }
 
-    addFaqPage(params: any): Observable<any>{ 
-        // console.log(params);
+    addFaqPage(params: any): Observable<any>{
         return this.http.post<any>(`${this.frontendApiUrl}save-faqpage`, params);
     }
 

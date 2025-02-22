@@ -87,6 +87,7 @@ export class UploadPopupComponent {
     
     this.userService.uploadGalleryImages(formdata).subscribe((response) => {
       console.log(response);
+      // console.log('>>>>>>>> uploadGalleryImages talent 1 >>>>>>>>');
       response.forEach((row: any) => {
         console.log('row', row);
         // Add both message and status to uploadResponse array

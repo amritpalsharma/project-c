@@ -1129,7 +1129,11 @@
       "Your profile will appear at the top of the search results when your characteristics are searched for",
       "More visibility - higher chances of being discovered"
     ]
+<<<<<<< HEAD
   },
   "dontShowAgain": "Don't show it again",
   "cancelConfirmationMsg":"Are you sure you want to cancel this subscription? This action cannot be undone."
+=======
+  }
+>>>>>>> 8ef9d0e1771098790d3e8ed0564bc05ef52f6888
 }

@@ -383,8 +383,11 @@
       </thead>
       <tbody>
 
-        @if (allPages.length > 0 && allPages) {
+        
+
+        @if ((allPages.length > 0 && allPages) && (!isLoading ) ) {
         @for (page of allPages; track $index) {
+          
         <tr>
           <td class="webpages-chekbox" style="width: 50px;">
             <span class="form-check align-self-center me-2">

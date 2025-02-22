@@ -40,6 +40,7 @@ export class WebPagesComponent {
   getPageDetail:any = [];
   pages:any = [];
   lang_id: any = localStorage.getItem('lang_id');
+  isLoading:boolean = false;
 
   customFilters:any = [];
   languages:any;
@@ -53,6 +54,7 @@ export class WebPagesComponent {
     this.getFrontendPages();
     this.sharedservice.data$.subscribe((data) => {
         if(data.action == 'lang_updated'){
+            this.isLoading = true;
             this.lang_id = data.id;
             this.getAllPagesData();
         }
@@ -91,6 +93,7 @@ export class WebPagesComponent {
   }
 
   getAllPagesData(){
+    
     let params:any = {};
     params.search = this.filterValue;
 
@@ -104,6 +107,7 @@ export class WebPagesComponent {
 
     this.webpages.getAllPages(this.lang_id,params).subscribe((response) => {
       if(response.status){
+        this.isLoading = false;
         this.allPages = response.data.pages.map((page: any) => ({
           ...page,
           created_at: this.formatDate(page.created_at),
