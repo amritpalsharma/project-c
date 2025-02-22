@@ -123,8 +123,8 @@
       <ng-container matColumnDef="Type">
         <th mat-header-cell *matHeaderCellDef> {{ 'type' | translate }} </th>
         <td mat-cell *matCellDef="let element">
-          <span *ngIf="element.discount_type == 'amount_off'">${{ element.discount }} discount</span>
-          <span *ngIf="element.discount_type == 'percent_off'">% discount</span>
+          <span *ngIf="element.discount_type == 'amount_off'">${{ element.discount }} {{ 'discount' | translate }} </span>
+          <span *ngIf="element.discount_type == 'percent_off'">% {{ 'discount' | translate }} </span>
         </td>
       </ng-container>
       <ng-container matColumnDef="Code">

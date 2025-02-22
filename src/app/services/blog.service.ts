@@ -14,8 +14,9 @@ export class BlogService {
     
     }
     getBlogs(params:any): Observable<{ status: boolean, message: string, data: any }> {
+        let $currentLang = localStorage.getItem('lang_id');
         return this.http.get<{ status: boolean, message: string, data: any }>(
-            `${this.apiUrl}admin/get-blogs`, {params}
+            `${this.apiUrl}admin/get-blogs/${$currentLang}`, {params}
           );
     }
     getBlogBySlug(slug:any){

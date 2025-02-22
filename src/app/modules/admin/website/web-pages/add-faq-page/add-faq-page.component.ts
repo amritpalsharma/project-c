@@ -136,12 +136,17 @@ export class AddFaqPageComponent implements OnInit {
       }
 
     }
+
+    // Append lang_id to FormData
+    formData.append('lang', String(localStorage.getItem('lang_id')));
+
       console.log(formData);
     // Append specific club_nd_scout_section values (if they exist)
 
     this.webpages.addFaqPage(formData).subscribe(response => {
       this.dialogRef.close({
-        action: 'page-added-successfully'
+        action: 'page-added-successfully',
+        message: response.message
       });
     });
   }

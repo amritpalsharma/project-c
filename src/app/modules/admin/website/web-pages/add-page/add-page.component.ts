@@ -261,10 +261,15 @@ export class AddPageComponent {
   }
 
   addNewPage(form: any){
+
+    // Append lang_id to FormData
+    form.append('lang', String(localStorage.getItem('lang_id')));
+
     this.webpages.addNewPage(form).subscribe((res) => {
       if(res.status){
         this.dialogRef.close({
-          action: "page-added-successfully"
+          action: "page-added-successfully",
+          message: res.message 
         });
       }
     });

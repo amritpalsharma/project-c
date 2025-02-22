@@ -165,10 +165,16 @@ export class AddPricingPageComponent implements OnInit, OnDestroy {
         formData.append(key, this.formData[key]);
       }
     }
-  
+    
+    // Append lang_id to FormData
+    formData.append('lang', String(localStorage.getItem('lang_id')));
+    
     // Submit the form data
-    this.webpages.addPricingPage(formData).subscribe(() => {
-      this.dialogRef.close({ action: 'page-added-successfully' });
+    this.webpages.addPricingPage(formData).subscribe((response) => {
+      this.dialogRef.close({ 
+        action: "page-added-successfully",
+        message: response.message 
+      });
     });
   }
   

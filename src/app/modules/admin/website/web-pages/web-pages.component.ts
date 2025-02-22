@@ -239,7 +239,7 @@ export class WebPagesComponent {
     addNewPage.afterClosed().subscribe(result => {
       if (result !== undefined) {
         if(result.action == "page-added-successfully"){
-          this.showMatDialog('Page added successfully!.', 'display');
+          this.showMatDialog(result.message, 'display');
           this.getAllPagesData();
         }
       }
@@ -272,7 +272,7 @@ export class WebPagesComponent {
     addNewPage.afterClosed().subscribe(result => {
       if (result !== undefined) {
         if(result.action == "page-added-successfully"){
-          this.showMatDialog('Page updated successfully!.', 'display');
+          this.showMatDialog(result.message, 'display');
           this.getAllPagesData();
         }
       }

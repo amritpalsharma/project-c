@@ -66,6 +66,7 @@ export class UploadPopupComponent {
 
   // Adds the selected files to the list
   addFiles(files: FileList) {
+    this.files = [];
     for (let i = 0; i < files.length; i++) {
       this.files.push(files.item(i)!);
     }
@@ -79,17 +80,16 @@ export class UploadPopupComponent {
       disableTimeOut: true, // Keep the toaster open until manually cleared
     });
     const formdata = new FormData();
-    // let lang_id = localStorage.getItem('lang_id');
-    // formdata.append("lang",lang_id);
+
     for (let i = 0; i < files.length; i++) {
       formdata.append("gallery_images[]", files[i]);
     }
     
+    // Clear the previous upload responses before making a new request
+    this.uploadResponse = [];
+
     this.userService.uploadGalleryImages(formdata).subscribe((response) => {
-      console.log(response);
-      // console.log('>>>>>>>> uploadGalleryImages talent 1 >>>>>>>>');
       response.forEach((row: any) => {
-        console.log('row', row);
         // Add both message and status to uploadResponse array
         this.uploadResponse.push({ message: row.message, status: row.status });
 
