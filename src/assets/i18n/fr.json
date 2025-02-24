@@ -1270,5 +1270,35 @@
     "addFavorite": "Agregar a favoritos",
     "downloadPdf": "Descargar el PDF del perfil",
     "startConversation": "Iniciar una conversación"
-  }
+  },
+  "premiumPlanDesc": {
+    "features": [
+      "Profils de talents avec statistiques détaillées, données de performance, réalisations et transferts visibles",
+      "Profils des clubs et des recruteurs avec tous les contenus visibles",
+      "Télécharger le profil du talent au format PDF",
+      "Créez vos propres listes de favoris avec des talents, des recruteurs ou des clubs",
+      "Télécharger des photos et des vidéos de mise en valeur et les visualiser sur d'autres profils",
+      "Fournir et lier des canaux de médias sociaux et un site web dans votre profil",
+      "Pour les recruteurs : Créez un portfolio et invitez les talents à le rejoindre",
+      "Pour les clubs : Organiser des sessions de repérage et inviter les talents inscrits à s'y joindre",
+      "Pour les clubs : Gérez les joueurs de votre club directement dans les équipes sur SoccerYou"
+    ]
+  },
+  "multiCountryPlanDesc": {
+    "features": [
+      "Rendez votre profil visible dans les pays de votre choix",
+      "Augmentez votre visibilité à l'international",
+      "Construire un réseau international"
+    ]
+  },
+  "bostProfileDesc": {
+    "features": [
+      "Votre photo de profil aura un arrière-plan spécial et mis en évidence",
+      "Votre profil apparaîtra en tête des résultats de recherche lorsque vos caractéristiques seront recherchées",
+      "Plus de visibilité - plus de chances d'être découvert"
+    ]
+  },
+  "MyAccount": "Aller au tableau de bord",
+   "boostProfiles": "Profil Boost",
+   "changeNewsletterStatus": "Êtes-vous sûr de vouloir changer le statut de la lettre d'information ?"
 }

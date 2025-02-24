@@ -1100,6 +1100,8 @@
   "tabSection": "Tab Section",
   "darkImages": "Dark Images",
   "createAccountDescription": "Enter your details below to get started.",
+  "activeMultiCountryPlan": " 2 active Multi-Country Plan",
+  "youHaveActiveBoostPlan": "You have active boost plan",
   "selectFavoriteFirst": "Select favorite user(s) first.",
   "removeFavoriteConfirm": "Are you sure to delete from favorites ?",
   "userPurchasesNotFound": "No purchases found.",
@@ -1146,5 +1148,8 @@
     "downloadPdf":"Download Profile Pdf",
     "startConversation":"start a conversation"
   },
-  "changeNewsletterStatus":"Are you sure you want to change newsletter status?"
-}
+  "MyAccount": "Go To Dashboard",
+  "boostProfiles": "Boost Profile",
+  "renews": "Renews on",
+  "changeNewsletterStatus": "Are you sure you want to change newsletter status?"
+  }
