@@ -498,3 +498,11 @@ input.ng-valid.ng-dirty.ng-touched {
 button.submit_btn {
   cursor: pointer;
 }
+
+
+
+@media (max-width: 375px) {
+  .radio-group label.custom-radio {
+    margin-left: 0 !important;
+}
+}

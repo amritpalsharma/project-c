@@ -105,25 +105,25 @@ a {
   text-decoration: none;
 }
 
-.light-theme .page-sidebar {
-  border-radius: 20px;
-  background: linear-gradient(180deg, #236115 0%, #6fb95d 100%);
-  width: 210px;
-  margin: 20px 0px 20px 20px;
-  position: fixed;
-  height: 95%;
-  // transition: all 0.4s;
-}
+// .light-theme .page-sidebar {
+//   border-radius: 20px;
+//   background: linear-gradient(180deg, #236115 0%, #6fb95d 100%);
+//   width: 210px;
+//   margin: 20px 0px 20px 20px;
+//   position: fixed;
+//   height: 95%;
+//   // transition: all 0.4s;
+// }
 
-.page-header {
-  position: fixed;
-  width: calc(100% - 230px);
-  z-index: 9;
-  padding: 20px 25px;
-  background: #f0f0f0 !important;
-  // transition: all 0.4s;
+// .page-header {
+//   position: fixed;
+//   width: calc(100% - 230px);
+//   z-index: 9;
+//   padding: 20px 25px;
+//   background: #f0f0f0 !important;
+//   // transition: all 0.4s;
 
-}
+// }
 
 .page-container {
   margin-left: 245px;
@@ -176,12 +176,12 @@ button.btn.btn-secondary.dropdown-toggle {
 }
 
 .compact-sidebar .page-sidebar {
-  width: 80px;
-  position: fixed;
-  box-shadow: none;
-  transition: all 0.4s;
-  height: 95%;
-  z-index: 2;
+  // width: 80px;
+  // position: fixed;
+  // box-shadow: none;
+  // transition: all 0.4s;
+  // height: 95%;
+  // z-index: 2;
 }
 // mat-datepicker-toggle.mat-datepicker-toggle {
 //   position: absolute;
@@ -207,13 +207,13 @@ input#dateOfBirth, input#contractStart, input#contractEnd {
   margin-right: auto; /* Ensures alignment to the left */
 }
 .compact-sidebar .page-sidebar:before {
-  position: fixed;
-  height: 95%;
-  width: 80px;
-  display: block;
-  content: "";
-  box-shadow: 0 0 1.25rem rgba(31, 45, 61, 0.04);
-  z-index: -1;
+  // position: fixed;
+  // height: 95%;
+  // width: 80px;
+  // display: block;
+  // content: "";
+  // box-shadow: 0 0 1.25rem rgba(31, 45, 61, 0.04);
+  // z-index: -1;
 }
 .bottom_box .sidebar_menu {
   transform: none !important;
@@ -577,24 +577,32 @@ input#dateOfBirth, input#contractStart, input#contractEnd {
 }
 
 .bottom_box {
-  height: 9%;
-  min-height: 65px;
-  // display: flex;
-
-  // align-items: center;
-  // color: #fff;
+  height: 60px;
+  min-height: 60px;
   border-top: 1px solid #fff;
-  // padding: 0px 20px 0px 40px;
-  padding-top: 15px;
+  padding-top: 5px;
+  .sidebar_menu {
+    position: unset !important;
+  }
 }
 
-// .bottom_box > h5 > img {
-//   margin-right: 10px;
-// }
 .page-sidebar-inner {
-  height: 77% !important;
+  height: calc(100% - 150px) !important;
+  .sidebar_menu{
+    max-height: calc(100% - 45%);
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
 }
-
+.sidebar_menu {
+  list-style-type: none;
+  padding: 0;
+  border-radius: 10px;
+  width: 100%;
+  position: absolute;
+  top: 30%;
+  margin-bottom: 0px;
+}
 .sidebar_state {
   position: absolute;
   background-color: #fff;
@@ -608,15 +616,7 @@ input#dateOfBirth, input#contractStart, input#contractEnd {
   cursor: pointer;
 }
 
-.sidebar_menu {
-  list-style-type: none;
-  padding: 0;
-  border-radius: 10px;
-  width: 100%;
-  position: absolute;
-  top: 30%;
-  margin-bottom: 0px;
-}
+
 
 .sidebar_menu li {
   margin: 3px 10px;
@@ -698,9 +698,9 @@ html {
   }
 }
 
-.mobile-sidebar-active .page-sidebar {
-  transform: translateX(0);
-}
+// .mobile-sidebar-active .page-sidebar {
+//   transform: translateX(0);
+// }
 
 .logo_img1 {
   display: none;
@@ -1363,14 +1363,14 @@ height: auto;
 }
 
 @media (max-width: 991px) {
-  .page-sidebar {
-    width: 100%;
-    padding: 30px;
-    visibility: hidden;
-    opacity: 0;
-    transform: translateX(0);
-    z-index: 100;
-  }
+  // .page-sidebar {
+  //   width: 100%;
+  //   padding: 30px;
+  //   visibility: hidden;
+  //   opacity: 0;
+  //   transform: translateX(0);
+  //   z-index: 100;
+  // }
 
   .page-container {
     width: 100% !important;
@@ -1617,18 +1617,6 @@ height: auto;
 @media (max-width: 768px) {
   app-sidebar {
     margin-top: 60px;
-  }
-
-  .page-sidebar {
-    overflow: auto;
-  }
-
-  .page-sidebar-inner {
-    height: 67% !important;
-  }
-
-  .bottom_box {
-    min-height: 45px !important;
   }
 }
 
@@ -2010,6 +1998,20 @@ nav.navbar .country_dropdown h6.border-bottom {
 .wc_floatingMenu .wc_menuItem span {
   white-space: nowrap;
 }
+}
+
+.common_static_page {
+  .content_page h4 {
+    margin-bottom: 10px;
+    margin-top: 35px;
+  }
+  .content_page ul li {
+    margin-top: 8px;
+    margin-bottom: 10px;
+  }
+  address {
+    color: #fff;
+  }
 }
 
 .dark-theme {

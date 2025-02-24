@@ -1308,6 +1308,7 @@ img.vector-img {
   content: "";
   top: 28%;
   left: 2%;
+  width: 96%;
 }
 
 .club-banner {
@@ -3311,11 +3312,6 @@ img.success-image {
     font-size: 22px;
   }
 
-  // .vector-img img {
-  //   height: 23px;
-  //   width: 12px;
-  // }
-
   .club h4 {
     margin-left: 40px;
     font-size: 30px;
@@ -3658,6 +3654,9 @@ img.success-image {
     margin-top: 35px;
     margin-left: -30px;
   }
+  .club-btn {
+    margin-left: unset;
+  }
 
 }
 
@@ -3775,7 +3774,7 @@ img.image5 {
 @media (max-width: 767px) {
 
   .talent-img1 img {
-    width: 160px;
+    width: 195px;
     height: 275px;
     left: 0;
   }
@@ -3798,7 +3797,7 @@ img.image5 {
   }
 
   .talent-img2 img {
-    width: 160px;
+    width: 195px;
     height: 125px;
     left: 0;
     top: 283px;
@@ -3916,6 +3915,7 @@ img.image5 {
   .club_players {
     position: static;
     padding: 3rem 0;
+    width: 100%;
   }
 
   .club-banner {
@@ -3933,8 +3933,7 @@ img.image5 {
   }
 
   .join-text {
-    // width: 241px;
-    height: 46px;
+    height: 100%;
   }
 
   .button-border {
@@ -4023,7 +4022,7 @@ img.image5 {
     border-radius: 8px;
     font-weight: 700;
     padding-top: 0px;
-    font-size: 20px;
+    font-size: 17px;
     color: #092E01;
     opacity: 1;
   }
@@ -4041,6 +4040,7 @@ img.image5 {
 
   .club-s {
     padding-top: 0;
+    font-size: 16px;
   }
 
   .active-btn p {
@@ -4113,14 +4113,14 @@ img.image5 {
   }
 
   .talent-img1 img {
-    width: 110px;
+    width: 160px;
     height: 190px;
     left: 12px;
   }
 
   .talent-img2 img {
     top: 200px;
-    width: 110px;
+    width: 160px;
     height: auto;
     left: 12px;
   }
@@ -4610,12 +4610,6 @@ img.image5 {
     width: 95%;
   }
 
-  .join-text {
-    width: 220px;
-    height: 46px;
-    padding-left: 10px;
-  }
-
   .button-border {
     width: 230px;
     height: 55px;
@@ -4957,11 +4951,6 @@ img.image5 {
     margin-top: 60px;
   }
 
-  .join-text {
-    width: 205px;
-    height: 40px;
-  }
-
   .button-border {
     width: 216px;
     height: 49px;
@@ -5157,8 +5146,6 @@ img.image5 {
   }
 
   button.btn.btn-success.active-btn .club-s {
-    width: 180px;
-    height: 35px;
     font-size: 15px;
   }
 
