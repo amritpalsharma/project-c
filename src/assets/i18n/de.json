@@ -1227,6 +1227,7 @@
       "Mehr Sichtbarkeit - höhere Chancen entdeckt zu werden"
     ]
   },
+  "noNotification": "Keine Benachrichtigung gefunden!",
   "dontShowAgain": "Nicht mehr anzeigen",
   "cancelConfirmationMsg": "Sind Sie sicher, dass Sie dieses Abonnement kündigen möchten? Diese Aktion kann nicht rückgängig gemacht werden.",
   "youHaveAnActive": "Sie haben aktive",
@@ -1239,5 +1240,14 @@
     "downloadPdf":"Profil Pdf herunterladen",
     "startConversation":"ein Gespräch beginnen"
   },
+<<<<<<< HEAD
   "changeNewsletterStatus":"Sind Sie sicher, dass Sie den Newsletter-Status ändern möchten?"
 }
+=======
+  "uploadNewProfileImage": "Neues Profilbild hochladen",
+  "editCoverImage": "Titelbild bearbeiten",
+  "MyAccount": "Zum Dashboard gehen",
+  "boostProfiles": "Profil verstärken",
+  "changeNewsletterStatus": "Sind Sie sicher, dass Sie den Newsletter-Status ändern möchten?"
+  }
+>>>>>>> 3d2c8b71ce758eb419d45b4fddefaefcee3bee6b

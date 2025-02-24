@@ -143,5 +143,9 @@ export class InboxComponent {
       }
     }
   }
-  
+    // This method is called when the user toggles the dark mode switch
+  onThemeToggle(isDarkModeEnabled: boolean): void {
+    // Call the toggleTheme function from the service
+    this.talkService.toggleTheme(isDarkModeEnabled);
+  }
 }

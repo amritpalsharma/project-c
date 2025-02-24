@@ -74,7 +74,7 @@ export class TemplatesComponent {
     
     try {
       this.isLoading = true;
-      this.tempalateApi.getTemplates(params).subscribe((response)=>{
+      this.tempalateApi.getTemplates(params).subscribe((response:any)=>{
       if (response && response.status && response.data && response.data.emailTemplates) {
         this.templates = response.data.emailTemplates;
         this.paginator.length = response.data.totalCount;
@@ -86,7 +86,7 @@ export class TemplatesComponent {
         console.error('Invalid API response structure:', response);
       }
       });     
-    } catch (error) {
+    } catch (error:any) {
       this.isLoading = false;
       console.error('Error fetching users:', error);
     }
@@ -172,14 +172,14 @@ export class TemplatesComponent {
 
     let params = {id:this.idsToDelete};
     this.tempalateApi.deleteEmailTemplate(params).subscribe(
-      response => {
+      (response: any) => {
         this.getTemplates();
         this.selectedIds = [];
         this.allSelected = false;
         // console.log('Popups deleted successfully:', response);
         this.showMessage('Template(s) deleted successfully!');
       },
-      error => {
+      (error: any) => {
         console.error('Error deleting template:', error);
         this.showMessage('Error deleting template. Please try again.');
       }

@@ -12,6 +12,7 @@ import { SharedService } from '../../../services/shared.service';
 import { FormControl } from '@angular/forms';
 import { filter } from 'rxjs/operators';
 import { debounceTime, distinctUntilChanged, switchMap, finalize } from 'rxjs/operators';
+import { TalkService } from '../../../services/talkjs.service';
 
 interface Notification {
   id: number;
@@ -32,7 +33,7 @@ interface Notification {
 })
 export class HeaderComponent {
   //constructor(private themeService: ThemeService) {}
-  constructor(private shareService:  SharedService, private userService: UserService, private themeService: ThemeService, private authService: AuthService, private router: Router, private translateService: TranslateService,private talentService: TalentService, private socketService: SocketService) { }
+  constructor(private shareService:  SharedService, private userService: UserService, private themeService: ThemeService, private authService: AuthService, private router: Router, private translateService: TranslateService,private talentService: TalentService, private socketService: SocketService, private talkService : TalkService) { }
 
   loggedInUser: any = localStorage.getItem('userData');
   profileImgUrl: any = "";
@@ -321,8 +322,13 @@ export class HeaderComponent {
 
   toggleTheme(event: any): void {
     this.themeService.setDarkTheme(event.target.checked);
-  }
+    this.onThemeToggle(event.target.checked);
 
+  }
+  onThemeToggle(isDarkModeEnabled: boolean): void {
+    // Call the toggleTheme function from the service
+    this.talkService.toggleTheme(isDarkModeEnabled);
+  }
   onSearch() {
     if (this.searchUser.trim().length === 0) {
       this.searchResults = [];

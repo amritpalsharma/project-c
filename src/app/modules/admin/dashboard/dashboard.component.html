@@ -181,7 +181,7 @@
         <div class="tab-pane fade show active" id="home-tab-pane-1" role="tabpanel" aria-labelledby="home-tab-1"
           tabindex="0">
           <div *ngFor="let player of newRegistrationPlayers" class="card-tabs-content"
-            [routerLink]="['/admin/player', player.id]">
+            [routerLink]="['/admin/talent', player.id]">
             <img src="{{player.meta.profile_image_path}}" class="message-media me-3" alt=""
               *ngIf="player.meta && player.meta.profile_image_path">
             <img src="../../../assets/images/1.jpg" class="message-media me-3" alt=""

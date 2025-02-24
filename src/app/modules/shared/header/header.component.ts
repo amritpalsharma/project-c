@@ -12,6 +12,7 @@ import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, switchMap, finalize } from 'rxjs/operators';
 import { CommonDataService } from '../../../services/common-data.service';
 import { WebPages } from '../../../services/webpages.service';
+import { TalkService } from '../../../services/talkjs.service';
 
 interface Notification {
   id: number;
@@ -48,6 +49,7 @@ export class HeaderComponent {
     private socketService: SocketService,
     private commonDataService: CommonDataService,
     private webPages: WebPages,
+    private talkService:TalkService
   ) { }
 
   loggedInUser: any = localStorage.getItem('userInfo');
@@ -342,7 +344,11 @@ export class HeaderComponent {
   themeText: string = 'Light Mode'
 
   toggleTheme(event: any): void {
+
     this.themeService.setDarkTheme(event.target.checked);
+    // if(event.target.checked){
+      this.onThemeToggle(event.target.checked);
+    // }
   }
 
   toggleSidebar() {
@@ -582,5 +588,10 @@ export class HeaderComponent {
       slug = 'se';
     }
     return slug;
+  }
+
+  onThemeToggle(isDarkModeEnabled: boolean): void {
+    // Call the toggleTheme function from the service
+    this.talkService.toggleTheme(isDarkModeEnabled);
   }
 }

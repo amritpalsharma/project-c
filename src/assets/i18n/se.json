@@ -1257,5 +1257,35 @@
     "addFavorite": "Lägg till i favoriter",
     "downloadPdf": "Ladda ner profil PDF",
     "startConversation": "Starta en konversation"
-  }
+  },
+  "premiumPlanDesc": {
+    "features": [
+      "Talangprofiler med detaljerad statistik, prestationsdata, prestationer och transfers synliga",
+      "Klubb- och scoutprofiler med allt innehåll synligt",
+      "Ladda ner talangprofilen som PDF",
+      "Skapa dina egna favoritlistor med talanger, scouter eller klubbar",
+      "Ladda upp foton och videor av höjdpunkter och visa dem på andra profiler",
+      "Ange och länka sociala mediekanaler och webbplats i din profil",
+      "För scouter: Skapa en portfölj och bjud in talanger att ansluta sig till den",
+      "För klubbar: Organisera scoutingsessioner och bjud in registrerade talanger att delta",
+      "För klubbar: Hantera dina egna klubbspelare direkt i lagen på SoccerYou"
+    ]
+  },
+  "multiCountryPlanDesc": {
+    "features": [
+      "Gör din profil synlig i andra länder som du själv väljer",
+      "Öka din synlighet - internationellt",
+      "Bygg upp ett internationellt nätverk"
+    ]
+  },
+  "bostProfileDesc": {
+    "features": [
+      "Din profilbild kommer att ha en speciell och markerad bakgrund",
+      "Din profil kommer att visas högst upp i sökresultaten när dina egenskaper söks efter",
+      "Mer synlighet - större chans att bli upptäckt"
+    ]
+  },
+  "MyAccount": "Gå till instrumentpanelen",
+   "boostProfiles": "Boost-profil",
+   "changeNewsletterStatus": "Är du säker på att du vill ändra nyhetsbrevsstatus?"
 }

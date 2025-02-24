@@ -507,7 +507,7 @@ export class HeaderComponent implements OnInit {
           if (modal) {
             modal.hide();
           }
-          // this.router.navigate([navigationRoute]);
+          this.router.navigate([navigationRoute]);
         }
       },
       error => {

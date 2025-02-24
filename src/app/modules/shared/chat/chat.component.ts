@@ -64,7 +64,7 @@ export class ChatComponent  {
       .then(() => {
         this.talkService.mountChat('talkjs-container');
       })
-      .catch(err => {
+      .catch((err:any) => {
         console.error('Error starting group chat:', err);
       });
   }

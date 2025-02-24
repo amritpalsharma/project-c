@@ -5,7 +5,7 @@ import {
 import { Editor, Toolbar } from 'ngx-editor';
 import { environment } from '../../../../../../environments/environment';
 import { BlogService } from '../../../../../services/blog.service';
-import { TemplateService } from '../../../../../services/template.service';
+// import { TemplateService } from '../../../../../services/template.service';
 
 @Component({
   selector: 'app-blog-popup',
@@ -46,7 +46,7 @@ export class BlogPopupComponent  implements OnInit, OnDestroy  {
 
 
   constructor(    
-    public dialogRef: MatDialogRef<BlogPopupComponent>, private blogApi: BlogService,private tempalateApi: TemplateService,
+    public dialogRef: MatDialogRef<BlogPopupComponent>, private blogApi: BlogService,
     @Inject(MAT_DIALOG_DATA) public blog: any
   ) {
     if(blog){

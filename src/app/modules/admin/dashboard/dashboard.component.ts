@@ -741,6 +741,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   isValidProfileImage(imageUrl : string){
     return this.commonHelper.checkImageExists(imageUrl);
   }
+
+  async processImages(url : string) {
+    const validImageUrl = await this.commonHelper.checkAndReturnImage(url, '');
+    return validImageUrl;
+    // console.log(`Image URL: ${url} is valid: ${validImageUrl === url ? 'Yes' : 'No'}`);
+  }
 }
 
 // @Component({

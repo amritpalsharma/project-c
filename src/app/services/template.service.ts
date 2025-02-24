@@ -16,7 +16,6 @@ export class TemplateService {
     }
     getTemplates(data:any): Observable<{ status: boolean, message: string, data: any }> {
         let params = new HttpParams();
-        let currentLang = localStorage.getItem('lang_id');
         // Loop through the queryParams object and set each parameter
         for (const key in data) {
             if (data.hasOwnProperty(key)) {
@@ -24,8 +23,7 @@ export class TemplateService {
             }
         }
         return this.http.get<{ status: boolean, message: string, data: any }>(
-            
-            `${this.apiUrl}admin/get-email-templates/${currentLang}`, { params }
+            `${this.apiUrl}admin/get-email-templates`, { params }
           );
     }
 
@@ -48,10 +46,4 @@ export class TemplateService {
     deleteEmailTemplate(params: any): Observable<any> {
         return this.http.post<any>(`${this.apiUrl}admin/delete-email-template`, params);
     }
-
-    /* onPageChange() {
-        console.log('>>>>>>>>>>');
-        const params = {lang:localStorage.getItem('lang_id')}
-        this.getTemplates(params);
-      } */
 }
