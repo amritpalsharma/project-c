@@ -1145,5 +1145,6 @@
     "addFavorite":"Add in favorites",
     "downloadPdf":"Download Profile Pdf",
     "startConversation":"start a conversation"
-  }
+  },
+  "changeNewsletterStatus":"Are you sure you want to change newsletter status?"
 }

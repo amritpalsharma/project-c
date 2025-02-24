@@ -206,6 +206,7 @@ export class FooterComponent implements OnInit {
   invalidCred: string = '';
 
   registerFormSubmitted: boolean = false;
+  isUserLoggedIn: boolean = false;
   registerError: string = '';
   forgotPasswordEmail: string = '';
   forgotPasswordMessage: string = '';
@@ -235,6 +236,7 @@ export class FooterComponent implements OnInit {
   tokenVerified = false;
 
   ngOnInit(): void {
+    this.isUserLoggedIn = this.authService.isLoggedIn();
     this.webPages.languageId$.subscribe((data) => {
       this.selectedcountry = 1; //Number(data);
       const selectedLang = this.countrie.find((data: any) => data.id == this.selectedcountry);

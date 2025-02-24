@@ -1238,5 +1238,6 @@
     "addFavorite": "Zu den Favoriten hinzufügen",
     "downloadPdf":"Profil Pdf herunterladen",
     "startConversation":"ein Gespräch beginnen"
-  }
+  },
+  "changeNewsletterStatus":"Sind Sie sicher, dass Sie den Newsletter-Status ändern möchten?"
 }

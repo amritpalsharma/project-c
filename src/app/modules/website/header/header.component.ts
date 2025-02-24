@@ -29,7 +29,8 @@ export class HeaderComponent implements OnInit {
   //default language
   slug: string = 'en'; 
   lang_id:any = 1;
-
+  isUserLoggedIn: boolean = false;
+  LoggedInUserDashboardLink: string = ''; 
   isNavbarExpanded = false;
   isDarkMode: boolean = false;
   activeIndex: number = 1; // Default active tab
@@ -332,7 +333,8 @@ export class HeaderComponent implements OnInit {
 
 
     });
-
+    this.isUserLoggedIn = this.authService.isLoggedIn();
+    this.LoggedInUserDashboardLink = this.authService.getDashboardLink();
     // Ensure language is set to 'en' if it's not already in localStorage
     this.lang = localStorage.getItem('lang') || 'en'; // Default to 'en' if no language is set
     this.slug = this.lang;
@@ -505,7 +507,7 @@ export class HeaderComponent implements OnInit {
           if (modal) {
             modal.hide();
           }
-          this.router.navigate([navigationRoute]);
+          // this.router.navigate([navigationRoute]);
         }
       },
       error => {

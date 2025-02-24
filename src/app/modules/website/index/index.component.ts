@@ -4,6 +4,8 @@ import { trigger, transition, style, animate } from '@angular/animations';
 import { AdvertisementService } from '../../../services/advertisement.service';
 import { WebPages } from '../../../services/webpages.service';
 import { SharedService } from '../../../services/shared.service';
+import { AuthService } from '../../../services/auth.service';
+
 export interface ClubMember {
   name: string;
   image: string;
@@ -11,6 +13,7 @@ export interface ClubMember {
   cornerImage?: string;
   imageClass?: string; // Class for the main image
   cornerImageClass?: string; // Class for the corner image
+  
 }
 
 @Component({
@@ -72,6 +75,7 @@ export class IndexComponent {
   banner_bg_img:string= '';
   hero_bg_img:string= '';
   advertisemnet_base_url:string= '';
+  isUserLoggedIn: boolean = false;
   players = [
     { name: 'Ronaldinho Gaúcho', image: './assets/images/Ronaldinho Gaúcho.svg', year: '2004' },
     { name: 'Ziddane', image: './assets/images/ziddane.svg', year: '2004' },
@@ -177,7 +181,7 @@ export class IndexComponent {
   // Manage Navbar Expansion
   isNavbarExpanded = false;
 
-  constructor( private shareservice:SharedService,private advertisementService: AdvertisementService, private webPages: WebPages) {
+  constructor( private shareservice:SharedService,private advertisementService: AdvertisementService, private webPages: WebPages, private authService: AuthService,) {
    
   }
 
@@ -241,6 +245,7 @@ export class IndexComponent {
 
   ngOnInit() {
     // Initially, all ads are visible
+    this.isUserLoggedIn = this.authService.isLoggedIn();
     this.adVisible = [true, true, true, true, true];
     this.webPages.languageId$.subscribe((data) => {
       this.getPageDynamicData(data);

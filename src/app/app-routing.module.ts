@@ -14,7 +14,7 @@ const routes: Routes = [
       import('./modules/website/website.module').then(
         (m) => m.WebsiteModule
       ), 
-    canActivate: [NonAuthGuard]
+    // canActivate: [NonAuthGuard, AuthGuard]
   },
   // Added by amrit
   { path: 'home', loadChildren: () => import('./modules/website/website.module').then(m => m.WebsiteModule) },

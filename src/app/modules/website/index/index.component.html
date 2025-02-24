@@ -29,7 +29,7 @@
                 </a>
                 <!-- {{ 'registerNow' | translate }} -->
 
-                <a href="javascript:void(0);" class="login-btn" data-bs-toggle="modal"
+                <a *ngIf="!isUserLoggedIn" href="javascript:void(0);" class="login-btn" data-bs-toggle="modal"
                   data-bs-target="#exampleModal-login">{{ 'login' | translate }}<svg class="ms-2" width="8" height="12" viewBox="0 0 8 12"
                     fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M1.34766 1.5L6.34766 6L1.34766 10.5" stroke="white" stroke-width="2"
@@ -873,7 +873,7 @@
         <div class="club_players">
           <h3>{{pageDetail?.hero_heading_txt}}</h3>
           <div class="club-buttons">
-            <div data-bs-toggle="modal" data-bs-target="#exampleModal1">
+            <div *ngIf="!isUserLoggedIn" data-bs-toggle="modal" data-bs-target="#exampleModal1">
               <div class="button-border">
                 <div class="join-text">
                   <p> {{pageDetail?.hero_btn_txt}}</p>

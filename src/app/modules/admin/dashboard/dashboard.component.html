@@ -126,9 +126,11 @@
           <tr *ngFor="let user of newRegistrations" (click)="redirectUser(user.role_name, user.id)" class="pointer">
             <td class="main-table ">
               <div class="d-flex align-items-center">
-                <span>
+                <!-- <span>
                   <img src="../../../assets/images/1.jpg" alt="" class="table_img" />
-                </span>
+                </span> -->
+                <img *ngIf="user.meta || user.meta.profile_image_path != ''" src="{{user.meta.profile_image_path}}" class="table_img" alt="">
+                <!-- <img *ngIf="!user.meta || !user.meta.profile_image_path" src="../../../assets/images/1.jpg" class="table_img" alt=""> -->
                 <span>{{user.first_name +' '+user.last_name }}</span>
               </div>
             </td>

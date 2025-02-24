@@ -21,7 +21,7 @@ export class AuthService {
 
       // Default to a specific language ID if none is found (e.g., English)
       this.lang = selectedLanguageSlug ? selectedLanguageSlug : 1;
-
+     // this.getDashboardLink();
   }
 
   login(loginData: any): Observable<any> {
@@ -105,5 +105,23 @@ export class AuthService {
     const apiKey = 'AIzaSyDTYy_yjGzg_FN54cp9KiqRH2w60fc0PUs';
     const url = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${input}&types=(cities)&key=${apiKey}`;
     return this.http.get(url);
+  }
+
+  getDashboardLink(): string {
+    // const role = this.getUserRole();
+    const role =  localStorage.getItem('userRole');
+    // console.log('current role is : '+role);
+    switch (role) {
+      case '1':
+        return '/admin/dashboard';
+      case '2':
+        return '/club/dashboard';
+      case '3':
+        return '/scout/dashboard';
+      case '4':
+        return '/talent/dashboard';
+      default:
+        return '/home';  // Default page if no role found
+    }
   }
 }

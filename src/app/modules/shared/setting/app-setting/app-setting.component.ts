@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { TalentService } from '../../../../services/talent.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MessagePopupComponent } from '../../message-popup/message-popup.component';
+import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-app-setting',
@@ -10,14 +12,23 @@ import { MessagePopupComponent } from '../../message-popup/message-popup.compone
 })
 export class AppSettingComponent {
   loggedInUser: any = localStorage.getItem('userData'); // User data from local storage
-
-  constructor(private talentService: TalentService, public dialog: MatDialog) {}
+  translatedText: string = '';
+  langSubscription!: Subscription; 
+  constructor(private talentService: TalentService, public dialog: MatDialog, private translate: TranslateService) {}
 
   ngOnInit() {
     // Parse user data from localStorage
     this.loggedInUser = JSON.parse(this.loggedInUser);
+    this.updateTranslation();
+    this.langSubscription = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      this.updateTranslation();
+    });
   }
-
+  updateTranslation() {
+    this.translate.get('changeNewsletterStatus').subscribe((res: string) => {
+      this.translatedText = res;
+    });
+  }
   // Open confirmation dialog
   showMatDialog(message: string, action: string, event: any) {
     const messageDialog = this.dialog.open(MessagePopupComponent, {
@@ -27,7 +38,7 @@ export class AppSettingComponent {
     });
 
     messageDialog.afterClosed().subscribe((result) => {
-      if (result?.action === 'delete-confirmed') {
+      if (result?.action === 'newsletter-confirmed') {
         // Proceed with API call
         this.updateNewsletter(event);
       } else {
@@ -40,7 +51,7 @@ export class AppSettingComponent {
   // Handle toggle event
   onNewsletterToggle(event: any) {
     this.showMatDialog(
-      "Are you sure you want to change newsletter status?",
+      this.translatedText,
       "newsletter-confirmation",
       event
     );
@@ -60,6 +71,9 @@ export class AppSettingComponent {
           console.error('Invalid API response structure:', response);
           // Revert the checkbox state on failure
           event.target.checked = !event.target.checked;
+        }
+        if(response.message != ''){
+          this.showMatDialog(response.message, 'display','');
         }
       },
       (error) => {

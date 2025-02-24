@@ -36,7 +36,7 @@
           <ul>
             <li><a [routerLink]="'/pricing'">{{ 'pricing' | translate }}</a></li>
             <li>
-              <a href="javascript:void(0);" class="login-btn" data-bs-toggle="modal"
+              <a *ngIf="!isUserLoggedIn" href="javascript:void(0);" class="login-btn" data-bs-toggle="modal"
                 data-bs-target="#exampleModal-login">
                 {{ 'signIn' | translate }}
                 <svg class="ms-2" width="8" height="12" viewBox="0 0 8 12" fill="none"
@@ -44,7 +44,7 @@
                 </svg>
               </a>
             </li>
-            <li>
+            <li *ngIf="!isUserLoggedIn">
               <a data-bs-toggle="modal" data-bs-target="#exampleModal1">
                 {{ 'createAccount' | translate }}</a>
             </li>

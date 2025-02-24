@@ -16,6 +16,9 @@ export class MessagePopupComponent {
   deleteConfirmed() {
     this.dialogRef.close({ action: 'delete-confirmed' });
   }
+  newsletterConfirmed(){
+    this.dialogRef.close({ action: 'newsletter-confirmed' });
+  }
 
   close() {
     this.dialogRef.close();

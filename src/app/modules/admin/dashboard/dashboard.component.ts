@@ -15,6 +15,7 @@ import { filter } from 'rxjs/operators';
 import { SocketService } from '../../../services/socket.service';
 import { TalentService } from '../../../services/talent.service';
 import { debounceTime, distinctUntilChanged, switchMap, finalize } from 'rxjs/operators';
+import { CommonHelperService } from '../../../services/common-helper.service';
 
 interface Notification {
   id: number;
@@ -88,7 +89,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     private viewportScroller: ViewportScroller,
     private userService: UserService,
     private talentService: TalentService,
-    private socketService: SocketService
+    private socketService: SocketService,
+    private commonHelper: CommonHelperService
   ) {
 
   }
@@ -735,7 +737,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   goToSetting() {
     goToActiveLog(this.router);
   }
-
+  
+  isValidProfileImage(imageUrl : string){
+    return this.commonHelper.checkImageExists(imageUrl);
+  }
 }
 
 // @Component({
