@@ -1148,13 +1148,8 @@
     "downloadPdf":"Download Profile Pdf",
     "startConversation":"start a conversation"
   },
-<<<<<<< HEAD
-  "changeNewsletterStatus":"Are you sure you want to change newsletter status?"
-}
-=======
   "MyAccount": "Go To Dashboard",
   "boostProfiles": "Boost Profile",
   "renews": "Renews on",
   "changeNewsletterStatus": "Are you sure you want to change newsletter status?"
   }
->>>>>>> 3d2c8b71ce758eb419d45b4fddefaefcee3bee6b
