@@ -8,16 +8,23 @@
       <div class="table_title p-3">
         <div class="d-flex align-items-center">
           <p>{{ 'overview' | translate }}</p>
-
-
         </div>
         <span>
           <div>
-            <select name="" id="" (change)='yearChange($event)'>
+            <select name="" id="" [(ngModel)]="selectedYear" (change)='yearChange($event)'>
               <option *ngFor="let year of years" [value]="year" >{{ year }}</option>
             </select>
           </div>
         </span>
+
+        <span>
+          <div>
+            <select id="domainSelect" [(ngModel)]="selectedDomain" (change)='domainChange($event)'>
+              <option *ngFor="let domain of domainsList" [value]="domain.id">{{ domain.domain_name }}</option>
+            </select>
+          </div>
+        </span>
+
       </div>
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade " id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
@@ -188,7 +195,8 @@
               *ngIf="!player.meta || !player.meta.profile_image_path">
             <div class="mesaage-content">
               <h6 class="mb-0">{{player.first_name}} {{player.last_name}}</h6>
-              <small>{{getDaysAgo(player.created_at)}}</small>
+              <small>{{player.registration_time}}</small>
+              <!-- <small>{{getDaysAgo(player.created_at)}}</small> -->
             </div>
           </div>
         </div>
@@ -202,7 +210,8 @@
               *ngIf="!club.meta || !club.meta.profile_image_path">
             <div class="mesaage-content">
               <h6 class="mb-0">{{club.first_name}} {{club.last_name}}</h6>
-              <small>{{getDaysAgo(club.created_at)}}</small>
+              <small>{{club.registration_time}}</small>
+              <!-- <small>{{getDaysAgo(club.created_at)}}</small> -->
             </div>
           </div>
         </div>
@@ -216,7 +225,8 @@
               *ngIf="!scout.meta || !scout.meta.profile_image_path">
             <div class="mesaage-content">
               <h6 class="mb-0">{{scout.first_name}} {{scout.last_name}}</h6>
-              <small>{{getDaysAgo(scout.created_at)}}</small>
+              <small>{{scout.registration_time}}</small>
+              <!-- <small>{{getDaysAgo(scout.created_at)}}</small> -->
             </div>
           </div>
         </div>

@@ -38,6 +38,7 @@ export class UserService {
     //   .set('order', 'desc');
 
     let params = new HttpParams();
+    let currentLang = localStorage.getItem('lang_id');
   
     // Loop through the queryParams object and set each parameter
     for (const key in data) {
@@ -47,7 +48,7 @@ export class UserService {
     }
     // params = params.set("whereClause[membership]", 'free');
     return this.http.get<{ status: boolean, message: string, data: { userData: User[],totalCount:number } }>(
-      `${this.apiUrl}admin/users`,
+      `${this.apiUrl}admin/users/${currentLang}`,
       { params }
     );
   }

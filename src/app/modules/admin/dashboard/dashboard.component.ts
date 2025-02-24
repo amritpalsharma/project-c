@@ -16,6 +16,7 @@ import { SocketService } from '../../../services/socket.service';
 import { TalentService } from '../../../services/talent.service';
 import { debounceTime, distinctUntilChanged, switchMap, finalize } from 'rxjs/operators';
 import { CommonHelperService } from '../../../services/common-helper.service';
+import { SharedService } from '../../../services/shared.service';
 
 interface Notification {
   id: number;
@@ -50,13 +51,20 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   newRegistrations: any = [];
   chartData: any = [];
   activeLanguage: string = '';
+  lang_id: string = '';
   themeText: string = 'Light Mode'
   newRegistrationClubs: any = [];
   newRegistrationPlayers: any = [];
   newRegistrationScouts: any = [];
   years: any = [];
-  selectedYear: any = new Date().getFullYear()-1;
+  yearOfstarting : any = 2024;
+  selectedYear: any = new Date().getFullYear();
+  // selectedYear: any = new Date().getFullYear() - 1;
+  // year: any = 2020;
+  year: any = new Date().getFullYear();
   language: any;
+  // year: any;
+  domain_id: any;
   loggedInUser: any = localStorage.getItem('userData');
 
   searchResults: any[] = [];
@@ -80,6 +88,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   unseenCount = 0;
   isClosed: boolean = false;
 
+  domainsList: any[] = [];
+  selectedDomain: string = ''; // Store selected domain
+
   constructor(
     private themeService: ThemeService,
     private authService: AuthService,
@@ -90,7 +101,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     private userService: UserService,
     private talentService: TalentService,
     private socketService: SocketService,
+<<<<<<< HEAD
     private commonHelper: CommonHelperService
+=======
+    private sharedservice: SharedService
+>>>>>>> f27a5a958fe2ca6702b548acaf8d7f18cc95046a
   ) {
 
   }
@@ -159,13 +174,19 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       }, 5000); // 5000 ms = 5 seconds
     });
 
+    this.selectedYear = this.year;
+
+    let lang_id = localStorage.getItem('lang_id');
+
     this.loggedInUser = JSON.parse(this.loggedInUser);
     this.getNewRegistrations();
     this.getNewRegistrationsWithScout();
     this.getNewRegistrationsWithClub();
     this.getNewRegistrationsWithPlayers();
+    this.getChardData(this.selectedYear, this.selectedDomain, this.lang_id);
     this.generateYears();
     this.lang = localStorage.getItem('lang') || 'en';
+    this.getLocations();
 
 
     const selectedLanguage = this.envlangs.find((lang: any) => lang.slug === this.lang);
@@ -214,18 +235,65 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         }
       );
 
+    this.sharedservice.data$.subscribe((data) => {
+      if (data.action == 'lang_updated') {
+        this.isLoading = true;
+        this.lang_id = data.id;
+        this.getNewRegistrations();
+        this.getNewRegistrationsWithScout();
+        this.getNewRegistrationsWithClub();
+        this.getNewRegistrationsWithPlayers();
+        this.getChardData(this.year, this.domain_id, this.lang_id);
+        this.getLocations();
+        // this.generateYears();
+      }
+    });
+
   }
 
   ngAfterViewInit() {
 
   }
 
-  yearChange(e:any){
-   this.updateChartData(e.target.value);
+  yearChange(e: any) {
+    // , domain_id:any, lang_id:any
+    let lang_id = localStorage.getItem('lang_id');
+    // let domain_id = 2;
+    this.selectedYear = e.target.value;
+    console.log('Selected Year:', this.selectedYear);
+    console.log('Selected Domain ID:', this.domain_id);
+    console.log('Selected Language ID:', this.lang_id);
+
+    this.updateChartData(this.selectedYear, this.selectedDomain, lang_id);
   }
+
+  domainChange(e: any) {
+    // this.updateChartData(e.target.value);
+    // let year = 2025;
+    let lang_id = localStorage.getItem('lang_id');
+    this.selectedDomain = e.target.value;
+    console.log('Selected Year 111:', this.selectedYear);
+    console.log('Selected Domain ID 111:', this.domain_id);
+    console.log('Selected Language ID 111:', this.lang_id);
+    this.updateChartData(this.selectedYear, this.selectedDomain, lang_id);
+
+  }
+
+  getLocations() {
+    try {
+      this.userService.getLocations().subscribe((response) => {
+        this.domainsList = response.data.domains;
+        this.selectedDomain = this.domainsList[0].id;
+      });
+    } catch (error) {
+      console.error('Error fetching locations:', error);
+    }
+  }
+
   getNewRegistrations() {
     try {
-      this.dashboardApi.getNewRegistration(5).subscribe((response) => {
+      const newRegistrationLimit = 5;
+      this.dashboardApi.getNewRegistration(newRegistrationLimit).subscribe((response) => {
         if (response && response.status && response.data) {
           this.newRegistrations = response.data.userData;
         } else {
@@ -275,16 +343,18 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       console.error('Error fetching users:', error);
     }
   }
-  setSelectedYear(year: any) {
-    this.getChardData(year);
+
+  setSelectedYear(year: any, domain_id: any, lang_id: any) {
+    this.getChardData(year, domain_id, lang_id);
   }
-  updateChartData(year: any){
+
+  updateChartData(year: any, domain_id: any, lang_id: any) {
     try {
       this.chart1.destroy();
       this.chart2.destroy();
       this.chart3.destroy();
-      
-      this.dashboardApi.getChartData(year).subscribe((response) => {
+
+      this.dashboardApi.getChartData(year, domain_id, lang_id).subscribe((response) => {
         if (response && response.status && response.data) {
           this.chartData = response.data;
           setTimeout(() => {
@@ -304,9 +374,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       console.error('Error fetching users:', error);
     }
   }
-  getChardData(year: any) {
+  getChardData(year: any, domain_id: any = 1, lang_id: any = 2) {
+    // let langId = localStorage.getItem('lang_id');
     try {
-      this.dashboardApi.getChartData(year).subscribe((response) => {
+      this.dashboardApi.getChartData(year, domain_id, lang_id).subscribe((response) => {
         if (response && response.status && response.data) {
           this.chartData = response.data;
           setTimeout(() => {
@@ -327,13 +398,19 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     }
   }
 
+  private chartsMap: Map<string, Chart> = new Map(); // Store charts by ID
   createChart(canvas: HTMLCanvasElement, chartId: string, labels: any, values: any): Chart | null {
     const ctx = canvas.getContext('2d');
     if (!ctx) {
       console.error(`Failed to get canvas context for ${chartId}`);
       return null;
     }
-   
+
+    // Destroy existing chart if it exists
+    if (this.chartsMap.has(chartId)) {
+      this.chartsMap.get(chartId)?.destroy();
+      this.chartsMap.delete(chartId);
+    }
 
     const gradientStroke = ctx.createLinearGradient(100, 0, 700, 0);
     gradientStroke.addColorStop(0, '#7BDA66');
@@ -361,8 +438,56 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         } as ChartDataset<'line'>,
       ],
     };
-   
-    return new Chart(ctx, {
+
+    // Create and store new chart instance
+    const newChart = new Chart(ctx, {
+      type: 'line',
+      data,
+      options: {
+        layout: { padding: 0 },
+        responsive: true,
+        scales: {
+          y: {
+            stacked: false,
+            beginAtZero: true,
+            grid: { display: false },
+            ticks: { display: false },
+            border: { display: false },
+          },
+          x: {
+            grid: { display: false },
+            ticks: {
+              display: true,
+              font: { size: 20, family: 'poppins,sans-serif', weight: 700 },
+            },
+            border: { display: false },
+          },
+        },
+        elements: { line: { tension: 0.5 } },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            enabled: true,
+            mode: 'index',
+            intersect: false,
+            backgroundColor: '#E05263',
+            titleColor: '#fff',
+            titleFont: { family: 'Poppins', size: 20, weight: 800 },
+            callbacks: {
+              label: (tooltipItem: any) => {
+                return this.translateService.instant('tooltip.totalUsers', { count: tooltipItem.raw });
+              },
+            },
+            displayColors: false,
+          },
+        },
+      },
+    });
+
+    this.chartsMap.set(chartId, newChart); // Save chart instance
+    return newChart;
+
+    /* return new Chart(ctx, {
       type: 'line',
       data,
       options: {
@@ -434,18 +559,18 @@ export class DashboardComponent implements OnInit, AfterViewInit {
           },
         },
       },
-    });
+    }); */
 
   }
 
   updateChartBackgroundColor() {
-    let isDarkMode : any;
+    let isDarkMode: any;
     this.themeService.isDarkTheme.subscribe((isDarkTheme: boolean) => {
       isDarkMode = isDarkTheme;
     });
     const charts = [this.chart1, this.chart2, this.chart3];
     charts.forEach((chart) => {
-      
+
       if (chart.options && chart.options.scales && chart.options.plugins) {
         if (chart.options.scales['x'] && chart.options.scales['x'].grid) {
           chart.options.scales['x'].grid.color = isDarkMode ? '#333' : '#E0E0E0';
@@ -476,7 +601,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
 
   isUserOnline(senderId: number): boolean {
-    if(!this.socketService.onlineUsers){
+    if (!this.socketService.onlineUsers) {
       return false;
     }
     return senderId.toString() in this.socketService.onlineUsers;
@@ -500,15 +625,15 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.isClosed = !this.isClosed;
   }
 
-  notificationClicked(id:number, seen: number, notification: any){
-    if(!notification.seen){
+  notificationClicked(id: number, seen: number, notification: any) {
+    if (!notification.seen) {
       this.talentService.updateNotificationSeen(notification.id, 1).subscribe({
         next: (response) => {
-          if(response.status){
+          if (response.status) {
             notification.seen = 1;
             console.log('Message from API:', response.message);
           }
-          else{
+          else {
             console.log("something went wrong");
           }
         },
@@ -517,7 +642,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         }
       });
     }
-    else{
+    else {
       console.log("already seen");
     }
   }
@@ -567,18 +692,18 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.talentService.getNotifications(userId, langId).subscribe({
       next: (response) => {
         console.log('Fetched notifications response:', response);
-  
+
         if (response.status && response.notifications) {
           this.unseenCount = response.unseen_count;
           // Clear existing notifications to avoid stale data
           this.allNotifications = [];
           this.notifications = [];
           console.log("info", this.currentIndex, this.notificationsPerPage)
-          if(this.currentIndex != 0){
+          if (this.currentIndex != 0) {
             this.notificationsPerPage = this.currentIndex;
           }
           this.currentIndex = 0;
-  
+
           // Map fetched notifications to the Notification interface
           this.allNotifications = response.notifications.map((notif: any) => ({
             id: notif.id,
@@ -587,11 +712,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             content: notif.message,
             time: notif.time,
             seen: notif.seen,
-            senderId : notif.senderId,
-            shouldAnimate:false,
+            senderId: notif.senderId,
+            shouldAnimate: false,
             relativeTime: notif.relativeTime,
           }));
-  
+
           this.loadMoreNotifications(); // Load the initial set of notifications
         } else {
           console.warn('No notifications found in the response.');
@@ -603,12 +728,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     });
   }
 
-  something : boolean = false;
-  
+  something: boolean = false;
+
 
   // Load notifications in chunks of 3
   loadMoreNotifications(): void {
-    this.something=true;
+    this.something = true;
 
     const nextNotifications = this.allNotifications.slice(
       this.currentIndex,
@@ -620,7 +745,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     }, 2000);
 
     this.currentIndex += this.notificationsPerPage;
-    if(this.notificationsPerPage>=3){
+    if (this.notificationsPerPage >= 3) {
       this.notificationsPerPage = 3;
     }
 
@@ -638,7 +763,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     //   this.notificationCount = 0;
     //   this.isShowAllNotification = false;
     // }, 5000); // 3000 ms = 3 seconds
-    
+
   }
 
   toggleLoadmore() {
@@ -672,15 +797,16 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     return years.sort((a, b) => b - a); // This will sort in descending order
   }
   generateYears() {
-    const startYear = this.selectedYear;
+    const startYear = this.yearOfstarting;
     const currentYear = new Date().getFullYear();
     // Populate the years array from startYear to currentYear
-    for (let year = startYear; year <= currentYear; year++) { 
+    for (let year = startYear; year <= currentYear; year++) {
       this.years.push(year);
     }
     this.years = this.sortYearsDescending(this.years);
-    this.getChardData(this.years[0]);
-    
+    // this.getChardData(this.years[0]);
+    // this.getChardData(this.years[0], this.domain_id, this.lang_id);    
+    this.getChardData(this.years[0], 1, 2);
   }
 
   scrollToTop2() {
