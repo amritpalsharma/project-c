@@ -1140,21 +1140,16 @@
   "imageDeletedSuccess": "Image deleted successfully!",
   "failedToDeleteImage": "Failed to delete image.",
   "DeleteFailed": "Delete Failed",
-  "noNotification":"No Notification Found!",
+  "noNotification": "No Notification Found!",
   "TOOLTIPS": {
     "profilePhoto": "Upload your best headshot to make a great first impression.",
-    "removeFavorite":"Remove from favorites",
-    "addFavorite":"Add in favorites",
-    "downloadPdf":"Download Profile Pdf",
-    "startConversation":"start a conversation"
+    "removeFavorite": "Remove from favorites",
+    "addFavorite": "Add in favorites",
+    "downloadPdf": "Download Profile Pdf",
+    "startConversation": "start a conversation"
   },
-<<<<<<< HEAD
-  "changeNewsletterStatus":"Are you sure you want to change newsletter status?"
-}
-=======
   "MyAccount": "Go To Dashboard",
   "boostProfiles": "Boost Profile",
   "renews": "Renews on",
   "changeNewsletterStatus": "Are you sure you want to change newsletter status?"
-  }
->>>>>>> 3d2c8b71ce758eb419d45b4fddefaefcee3bee6b
+}
