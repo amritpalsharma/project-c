@@ -1106,5 +1106,10 @@
   "backToHome" : "Back To Home",
   "tabSection": "Tab Section",
   "darkImages": "Dark Images",
-  "createAccountDescription": "Enter your details below to get started."
+  "createAccountDescription": "Enter your details below to get started.",
+
+
+  "youHaveAnActive": "You have active Premium Plan",
+  "activeMultiCountryPlan": " 2 active Multi-Country Plan",
+  "youHaveActiveBoostPlan": "You have active boost plan"
 }

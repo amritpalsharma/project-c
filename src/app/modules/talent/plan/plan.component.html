@@ -41,8 +41,7 @@
                         </path>
                       </svg>
                     </span>
-                    <span>{{'youHaveAnActive' | translate}} {{ premiumPlans.package_name }}
-                      {{'plan' | translate}}</span>
+                    <span>{{'youHaveAnActive' | translate}}</span>
                   </div>
                 </div>
 
@@ -108,7 +107,7 @@
                   <h3>{{'demo' | translate}}</h3>
 
                   <!-- Display this only if there is an active premium plan -->
-                  <div class="premium_button py-1 px-3" *ngIf="(( demoPlans?.package_name==demo?.package_name ))">
+                  <!-- <div class="premium_button py-1 px-3" *ngIf="(( demoPlans?.package_name==demo?.package_name ))">
                     <span class="px-1">
                       <svg width="22" height="23" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                         <path
@@ -118,7 +117,7 @@
                     </span>
                     <span>{{'youHaveAnActive' | translate}} {{ demoPlans.package_name }}
                       {{'plan' | translate}}</span>
-                  </div>
+                  </div> -->
                 </div>
 
                 <!-- Plan price and frequency -->
@@ -184,7 +183,7 @@
                         </path>
                       </svg>
                     </span>
-                    <span class="ps-2">{{getActiveMultiCountryPlanCount()}} {{'activeMulti-CountryPlan'| translate}}</span>
+                    <span class="ps-2">{{'activeMultiCountryPlan' | translate}}</span>
                     <button class="premium_btn" (click)="editPlanPopup(countryPlans.plans,country)">
                       <svg width="22" height="23" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -259,7 +258,7 @@
                         </path>
                       </svg>
                     </span>
-                    <span>{{'You have active '}}{{ boostedPlans.package_name }} {{'Plan'}}</span>
+                    <span>{{'youHaveActiveBoostPlan' | translate}}</span>
 
                     <button class="premium_btn" (click)="editBooster(booster)">
                       <svg width="22" height="23" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
