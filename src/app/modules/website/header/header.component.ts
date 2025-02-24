@@ -341,6 +341,7 @@ export class HeaderComponent implements OnInit {
       this.lang = 'en';
       localStorage.setItem('lang', this.lang); // Store default language in localStorage
     }
+    document.body.classList.add(this.slug);
 
     this.lang_id = localStorage.getItem('lang_id');
     if (this.lang_id == null) {
@@ -431,6 +432,21 @@ export class HeaderComponent implements OnInit {
       this.lang = target.value;
       this.getContentForLanguage(this.lang);
     }
+    // Define the array of classes to remove
+    const MyClassesArray = ['en', 'de', 'it', 'fr', 'es', 'pt' ,'da', 'sv'];  // Example array, adjust it as needed
+
+    // Get the body element
+    const body = document.getElementsByTagName('body')[0];
+
+    // Remove all classes that are in the MyClassesArray
+    Array.from(body.classList).forEach(className => {
+      if (MyClassesArray.includes(className)) {
+        body.classList.remove(className);
+      }
+    });
+
+    // Add the new class
+    body.classList.add(selectedLanguageSlug);
   }
 
   getContentForLanguage(lang: string): void {
