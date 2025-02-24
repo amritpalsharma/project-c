@@ -106,7 +106,7 @@
   "inbox": "Boîte de réception",
   "newMessage": "Nouveau message",
   "files": "Dossiers",
-  "favorites": "Favoris (100)",
+  "favorites": "Favoris",
   "removeFavorite": "Supprimer le favori",
   "userType": "Type d'utilisateur",
   "location": "Localisation",
@@ -1241,9 +1241,7 @@
     "totalSales": "Total Sales: {{count}}",
     "totalSubscriptions": "Total Subscriptions: {{count}}"
   },
-
-
-  "more_news": "Plus de nouvelles",  
+  "more_news": "Plus de nouvelles",
   "back_to_news": "Retour aux Actualités et Médias",
   "share": "Partager",
   "uses": "Uses",
@@ -1259,5 +1257,48 @@
   "editProfile": "Edit et profile",
   "thanksMessage": "merci beaucoup",
   "thanksMessage2": "Nous prendrons contact avec vous.",
-  "backToHome": "Retour à l'accueil"
+  "backToHome": "Retour à l'accueil",
+  "removeFavoriteConfirm": "Êtes-vous sûr d'avoir supprimé les favoris ?",
+  "dontShowAgain": "Ne le montrez plus",
+  "cancelConfirmationMsg": "Êtes-vous sûr de vouloir annuler cet abonnement ? Cette action ne peut être annulée.",
+  "youHaveAnActive": "Vous êtes actif",
+  "pleaseWait": "Veuillez patienter...",
+  "uploadingPhotos": "Téléchargement de photos",
+  "noNotification": "Aucune notification trouvée !",
+  "TOOLTIPS": {
+    "removeFavorite": "Eliminar de favoritos",
+    "addFavorite": "Agregar a favoritos",
+    "downloadPdf": "Descargar el PDF del perfil",
+    "startConversation": "Iniciar una conversación"
+  },
+  "premiumPlanDesc": {
+    "features": [
+      "Profils de talents avec statistiques détaillées, données de performance, réalisations et transferts visibles",
+      "Profils des clubs et des recruteurs avec tous les contenus visibles",
+      "Télécharger le profil du talent au format PDF",
+      "Créez vos propres listes de favoris avec des talents, des recruteurs ou des clubs",
+      "Télécharger des photos et des vidéos de mise en valeur et les visualiser sur d'autres profils",
+      "Fournir et lier des canaux de médias sociaux et un site web dans votre profil",
+      "Pour les recruteurs : Créez un portfolio et invitez les talents à le rejoindre",
+      "Pour les clubs : Organiser des sessions de repérage et inviter les talents inscrits à s'y joindre",
+      "Pour les clubs : Gérez les joueurs de votre club directement dans les équipes sur SoccerYou"
+    ]
+  },
+  "multiCountryPlanDesc": {
+    "features": [
+      "Rendez votre profil visible dans les pays de votre choix",
+      "Augmentez votre visibilité à l'international",
+      "Construire un réseau international"
+    ]
+  },
+  "bostProfileDesc": {
+    "features": [
+      "Votre photo de profil aura un arrière-plan spécial et mis en évidence",
+      "Votre profil apparaîtra en tête des résultats de recherche lorsque vos caractéristiques seront recherchées",
+      "Plus de visibilité - plus de chances d'être découvert"
+    ]
+  },
+  "MyAccount": "Aller au tableau de bord",
+   "boostProfiles": "Profil Boost",
+   "changeNewsletterStatus": "Êtes-vous sûr de vouloir changer le statut de la lettre d'information ?"
 }

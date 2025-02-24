@@ -5,6 +5,7 @@ import { NonAuthGuard } from './services/non.guard';
 import { SuccessComponent } from './modules/shared/success/success.component';
 import { CancelComponent } from './modules/shared/cancel/cancel.component';
 import { ViewProfileComponent } from './modules/shared/view-profile/view-profile.component';
+// import { ViewComponent } from './view/view.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,11 @@ const routes: Routes = [
       ), 
     canActivate: [NonAuthGuard]
   },
+  // Added by amrit
+  { path: 'home', loadChildren: () => import('./modules/website/website.module').then(m => m.WebsiteModule) },
+  { path: 'about', loadChildren: () => import('./modules/website/website.module').then(m => m.WebsiteModule) },
+  { path: 'contact', loadChildren: () => import('./modules/website/website.module').then(m => m.WebsiteModule) },
+  // Added by amrit
   {
     path: 'admin',
     loadChildren: () =>
@@ -48,8 +54,8 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   { path: 'success', component: SuccessComponent ,canActivate: [AuthGuard]},
+  { path: 'talent/success', component: SuccessComponent ,canActivate: [AuthGuard]},
   { path: 'cancel', component: CancelComponent ,canActivate: [AuthGuard]},
-
   {
     path: 'club',
     loadChildren: () =>
@@ -57,7 +63,8 @@ const routes: Routes = [
         (m) => m.ScoutModule
       ),
     // canActivate: [AuthGuard]  // Protect this route with AuthGuard if necessary
-  }
+  },
+  // { path: 'view/:slug/:id', canActivate: [AuthGuard] }
 ];
 
 @NgModule({

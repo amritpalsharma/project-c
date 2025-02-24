@@ -25,8 +25,7 @@ export class PrivacyComponent implements OnInit {
     });
   }
   getPageData(languageId: any){ 
-    // if(.)
-    languageId = 1;
+    // languageId = 1;
     this.webPages.getDynamicContentPage('privacy_policy',languageId).subscribe((res) => {
       if(res.status){
           this.banner_title = res.data.pageData.banner_title;

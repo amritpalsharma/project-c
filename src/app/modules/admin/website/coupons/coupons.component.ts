@@ -7,6 +7,7 @@ import { MessagePopupComponent } from '../../message-popup/message-popup.compone
 import { CouponService } from '../../../../services/coupon.service';
 import { CoupenPopupComponent } from '../coupon-popup/coupon-popup.component';
 import { CommonFilterPopupComponent } from '../../common-filter-popup/common-filter-popup.component';
+import { SharedService } from '../../../../services/shared.service';
 
 @Component({
   selector: 'app-coupons',
@@ -24,6 +25,7 @@ export class CouponsComponent {
   newStatus: any;
   isLoading:boolean = false;
   filterValue: string = '';
+  lang_id: string = '';
   filterDialogRef:any = ""
   idsToProceed: any = [];
   selectedIds:any = [];
@@ -31,10 +33,17 @@ export class CouponsComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private couponService: CouponService, public dialog: MatDialog) {}
+  constructor(private couponService: CouponService, public dialog: MatDialog, private sharedservice:SharedService ) {}
 
-  ngOnInit(): void {
+  ngOnInit(){
     this.getCoupons();
+    this.sharedservice.data$.subscribe((data) => {
+        if(data.action == 'lang_updated'){
+            this.isLoading = true;
+            this.lang_id = data.id;
+            this.getCoupons();
+        }
+    });
   }
 
   getCoupons(filterApplied:boolean = false) {

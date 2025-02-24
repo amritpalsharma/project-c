@@ -6,7 +6,7 @@ import { TalentService } from '../../../services/talent.service';
 import { environment } from '../../../../environments/environment';
 import { UserService } from '../../../services/user.service';
 import { SocketService } from '../../../services/socket.service';
-import { map,filter, timeout } from 'rxjs/operators';
+import { map, filter, timeout } from 'rxjs/operators';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, switchMap, finalize } from 'rxjs/operators';
@@ -56,14 +56,14 @@ export class HeaderComponent {
   domains: any = environment.langs;
   message: string = '';
   isLoading: boolean = false; // Flag to track loading state
-  language : any;
+  language: any;
   liveNotification: any[] = [];
   showNotification: boolean = false;
 
   searchControl = new FormControl('');
   filteredUsers: any[] = [];
-  clickedNewNotification : boolean = false;
-  isScrolledBeyond : boolean = false;
+  clickedNewNotification: boolean = false;
+  isScrolledBeyond: boolean = false;
 
   isClosed: boolean = false;
   allNotifications: Notification[] = [];
@@ -71,12 +71,13 @@ export class HeaderComponent {
   currentIndex = 0;
   notificationsPerPage = 3;
   unseenCount = 0;
-  role:any;
-  roles:any= environment.roles;
-  showAll : boolean = true;
+  role: any;
+  roles: any = environment.roles;
+  showAll: boolean = true;
   isDarkMode: boolean = false;
+  totalNotification: boolean = true;
 
-  notificationSeen : boolean = false;
+  notificationSeen: boolean = false;
 
   ngOnInit() {
 
@@ -98,6 +99,15 @@ export class HeaderComponent {
     if (jsonData) {
       let userData = JSON.parse(jsonData);
       userId = userData.id;
+      if (localStorage.getItem("lang") == '' || localStorage.getItem("userData") == null && userData.lang != '') {
+        let dbLanguage = this.getSlugFromID(userData.lang);
+        if (dbLanguage != '') {
+          this.ChangeLang(dbLanguage);
+          this.lang = dbLanguage;
+          // alert('done');
+        }
+      }
+      // console.log('userData => ',userData);
     }
     else {
       console.log("No data found in localStorage.");
@@ -106,7 +116,7 @@ export class HeaderComponent {
     let userRole = localStorage.getItem("userRole");
 
     // Find the role based on the id
-    this.role = this.roles.find((role:any) => role.id == userRole);
+    this.role = this.roles.find((role: any) => role.id == userRole);
     let langId = localStorage.getItem('lang_id');
     this.fetchNotifications(userId, langId);
     this.loggedInUser = JSON.parse(this.loggedInUser);
@@ -116,10 +126,10 @@ export class HeaderComponent {
     });
 
     this.lang = localStorage.getItem('lang') || 'en';
-    const selectedLanguage = this.domains.find((lang:any) => lang.slug === this.lang);
+    const selectedLanguage = this.domains.find((lang: any) => lang.slug === this.lang);
     if (selectedLanguage) {
       this.language = selectedLanguage;
-    }else{
+    } else {
       this.language = this.domains[0];
     }
 
@@ -139,16 +149,16 @@ export class HeaderComponent {
         seen: data.seen,
         senderId: data.senderId,
         shouldAnimate: true,
-        relativeTime : 'just now',
+        relativeTime: 'just now',
       };
-      
+
       // Add the notification to the array and show the notification box
       this.liveNotification = [obj]; // Keep only the latest notification
       this.showNotification = true;
-      if(this.isScrolledBeyond){
+      if (this.isScrolledBeyond) {
         this.clickedNewNotification = true;
       }
-      
+
       this.notifications.unshift(obj);
 
       // Hide the notification after 3 seconds
@@ -173,11 +183,11 @@ export class HeaderComponent {
 
     // }
 
-      // Set the page name for the initial load
-      this.setPageTitleFromRoute();
+    // Set the page name for the initial load
+    this.setPageTitleFromRoute();
 
-      // Listen for route changes and update the title
-      this.router.events
+    // Listen for route changes and update the title
+    this.router.events
       .pipe(
         filter(event => event instanceof NavigationEnd), // Ensure only navigation events are handled
         map(() => this.route.firstChild?.snapshot.data['title'] || 'Home') // Default to 'Home' if no title
@@ -188,35 +198,35 @@ export class HeaderComponent {
 
 
     this.searchControl.valueChanges
-    .pipe(
-      filter((value): value is string => value !== null && value.trim().length > 0), // Exclude null or empty strings
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap((searchText: string) => {
-        this.isLoading = true;
-        return this.userService.searchUser(searchText).pipe(
-          finalize(() => (this.isLoading = false))
-        );
-      })
-    )
-    .subscribe(
-      (response: any) => {
-        if (response && response.status && response.data?.userData) {
-          this.filteredUsers = response.data.userData;
-        } else {
-          console.error('Invalid API response structure:', response);
+      .pipe(
+        filter((value): value is string => value !== null && value.trim().length > 0), // Exclude null or empty strings
+        debounceTime(300),
+        distinctUntilChanged(),
+        switchMap((searchText: string) => {
+          this.isLoading = true;
+          return this.userService.searchUser(searchText).pipe(
+            finalize(() => (this.isLoading = false))
+          );
+        })
+      )
+      .subscribe(
+        (response: any) => {
+          if (response && response.status && response.data?.userData) {
+            this.filteredUsers = response.data.userData;
+          } else {
+            console.error('Invalid API response structure:', response);
+            this.filteredUsers = [];
+          }
+        },
+        (error) => {
+          console.error('Error fetching users:', error);
           this.filteredUsers = [];
         }
-      },
-      (error) => {
-        console.error('Error fetching users:', error);
-        this.filteredUsers = [];
-      }
-    );
+      );
   }
 
   isUserOnline(senderId: number): boolean {
-    if(!this.socketService.onlineUsers){
+    if (!this.socketService.onlineUsers) {
       return false;
     }
     return senderId.toString() in this.socketService.onlineUsers;
@@ -247,15 +257,15 @@ export class HeaderComponent {
     this.isClosed = !this.isClosed;
   }
 
-  notificationClicked(id:number, seen: number, notification: any){
-    if(!notification.seen){
+  notificationClicked(id: number, seen: number, notification: any) {
+    if (!notification.seen) {
       this.talentService.updateNotificationSeen(notification.id, 1).subscribe({
         next: (response) => {
-          if(response.status){
+          if (response.status) {
             notification.seen = 1;
             console.log('Message from API:', response.message);
           }
-          else{
+          else {
             console.log("something went wrong");
           }
         },
@@ -264,7 +274,7 @@ export class HeaderComponent {
         }
       });
     }
-    else{
+    else {
       console.log("already seen");
     }
   }
@@ -291,7 +301,7 @@ export class HeaderComponent {
     localStorage.setItem('lang', selectedLanguage);
     this.lang = selectedLanguage;
 
-    const selectedLang = this.domains.find((lang:any) => lang.slug === selectedLanguage);
+    const selectedLang = this.domains.find((lang: any) => lang.slug === selectedLanguage);
     this.language = selectedLang;
     let selectedLandId = selectedLang ? selectedLang.id : 1;
     localStorage.setItem('lang_id', selectedLandId);
@@ -308,7 +318,7 @@ export class HeaderComponent {
       console.log("No data found in localStorage.");
     }
 
-    this.socketService.emit('updateLanguage', {userId, langId: selectedLandId});
+    this.socketService.emit('updateLanguage', { userId, langId: selectedLandId });
     this.fetchNotifications(userId, selectedLandId);
   }
 
@@ -324,7 +334,7 @@ export class HeaderComponent {
     }
     console.log(userId);
     this.socketService.disconnectUser(userId);
-    
+
     this.authService.logout();
 
   }
@@ -434,18 +444,21 @@ export class HeaderComponent {
     this.talentService.getNotifications(userId, langId).subscribe({
       next: (response) => {
         console.log('Fetched notifications response:', response);
-  
+
         if (response.status && response.notifications) {
+          if(response.total_count == '0'){
+            this.totalNotification = false;
+          }
           this.unseenCount = response.unseen_count;
           // Clear existing notifications to avoid stale data
           this.allNotifications = [];
           this.notifications = [];
           console.log("info", this.currentIndex, this.notificationsPerPage)
-          if(this.currentIndex != 0){
+          if (this.currentIndex != 0) {
             this.notificationsPerPage = this.currentIndex;
           }
           this.currentIndex = 0;
-  
+
           // Map fetched notifications to the Notification interface
           this.allNotifications = response.notifications.map((notif: any) => ({
             id: notif.id,
@@ -454,11 +467,11 @@ export class HeaderComponent {
             content: notif.message,
             time: notif.time,
             seen: notif.seen,
-            senderId : notif.senderId,
-            shouldAnimate:false,
+            senderId: notif.senderId,
+            shouldAnimate: false,
             relativeTime: notif.relativeTime,
           }));
-  
+
           this.loadMoreNotifications(); // Load the initial set of notifications
         } else {
           console.warn('No notifications found in the response.');
@@ -470,11 +483,11 @@ export class HeaderComponent {
     });
   }
 
-  something : boolean = false;
+  something: boolean = false;
 
   // Load notifications in chunks of 3
   loadMoreNotifications(): void {
-    this.something=true;
+    this.something = true;
 
     const nextNotifications = this.allNotifications.slice(
       this.currentIndex,
@@ -486,7 +499,7 @@ export class HeaderComponent {
     }, 1000);
 
     this.currentIndex += this.notificationsPerPage;
-    if(this.notificationsPerPage>=3){
+    if (this.notificationsPerPage >= 3) {
       this.notificationsPerPage = 3;
     }
   }
@@ -547,5 +560,27 @@ export class HeaderComponent {
 
   private saveTrackedViews(): void {
     sessionStorage.setItem('viewsTracked', JSON.stringify(this.viewsTracked));
+  }
+
+  getSlugFromID(lang_id: number) {
+    let slug = '';
+    if (lang_id == 1) {
+      slug = 'en';
+    } else if (lang_id == 2) {
+      slug = 'de';
+    } else if (lang_id == 3) {
+      slug = 'it';
+    } else if (lang_id == 4) {
+      slug = 'fr';
+    } else if (lang_id == 5) {
+      slug = 'es';
+    } else if (lang_id == 6) {
+      slug = 'pt';
+    } else if (lang_id == 7) {
+      slug = 'dk';
+    } else if (lang_id == 8) {
+      slug = 'se';
+    }
+    return slug;
   }
 }

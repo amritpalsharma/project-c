@@ -9,6 +9,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MessagePopupComponent } from '../message-popup/message-popup.component';
 import { SocketService } from '../../../services/socket.service';
+import { SharedService } from '../../../services/shared.service';
 
 @Component({
   selector: 'app-users',
@@ -25,6 +26,7 @@ export class UsersComponent implements OnInit {
   newStatus: any;
   isLoading = false;
   filterValue: string = '';
+  lang_id: string = '';
   filterDialogRef: any = ""
 
   customFilters: any = [];
@@ -33,7 +35,7 @@ export class UsersComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
 
-  constructor(private userService: UserService, public dialog: MatDialog, private socketService: SocketService) { }
+  constructor(private userService: UserService, public dialog: MatDialog, private socketService: SocketService, private sharedservice:SharedService) { }
 
 
   ngOnInit(): void {
@@ -41,7 +43,13 @@ export class UsersComponent implements OnInit {
     this.fetchUsers();
     this.getLocations();
     //  this.showMessage("My message here");
-
+    this.sharedservice.data$.subscribe((data) => {
+        if(data.action == 'lang_updated'){
+            this.isLoading = true;
+            this.lang_id = data.id;
+            this.fetchUsers();
+        }
+    });
     
   }
 

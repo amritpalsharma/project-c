@@ -133,6 +133,12 @@
         </div>
 
         <div class="explore-box_images mt-3">
+
+          <div *ngIf="players.length<=0" class="loader-container py-5">
+            <div class="loader"></div>
+            <p>{{'loading' | translate}}</p>
+          </div>
+
           <div class="row player-image-list ">
             <div class="col-lg-2"  *ngFor="let player of players"  >
               <ng-container  *ngIf="player.id != loggedInUser">
@@ -191,7 +197,7 @@
           </div>
         </div>
 
-        <div class="result-page-slider">
+        <div *ngIf="players.length>0" class="result-page-slider">
           <div class="paginator-container">
              <mat-paginator [length]="totalItems" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25, 100]" (page)="onPageChange($event)" aria-label="Select page" showFirstLastButtons></mat-paginator>
           </div>

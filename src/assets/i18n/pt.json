@@ -101,13 +101,12 @@
   "next": "Seguinte",
   "previous": "Anterior",
   "finish": "Acabamento",
-  
   "messages": "Mensagens",
   "chat": "Conversa",
   "inbox": "Caixa de entrada",
   "newMessage": "Nova mensagem",
   "files": "Ficheiros",
-  "favorites": "Favoritos (100)",
+  "favorites": "Favoritos",
   "removeFavorite": "Remover favoritos",
   "userType": "Tipo de utilizador",
   "location": "Localização",
@@ -1181,9 +1180,7 @@
     "totalSales": "Total Sales: {{count}}",
     "totalSubscriptions": "Total Subscriptions: {{count}}"
   },
-
-
-  "more_news": "Mais notícias",  
+  "more_news": "Mais notícias",
   "back_to_news": "Voltar para Notícias e Mídia",
   "share": "Compartilhar",
   "uses": "Uses",
@@ -1199,5 +1196,48 @@
   "editProfile": "Edit e profile",
   "thanksMessage": "muito obrigado",
   "thanksMessage2": "Entraremos em contacto consigo.",
-  "backToHome" : "Voltar ao início"
+  "backToHome": "Voltar ao início",
+  "removeFavoriteConfirm": "Tem a certeza de que pretende apagar dos favoritos?",
+  "dontShowAgain": "Não voltar a mostrar",
+  "cancelConfirmationMsg": "Tem a certeza de que pretende cancelar esta subscrição? Esta ação não pode ser anulada.",
+  "youHaveAnActive": "Tem activos",
+  "pleaseWait": "Por favor, aguarde...",
+  "uploadingPhotos": "Carregar fotografias",
+  "noNotification": "Nenhuma notificação encontrada!",
+  "TOOLTIPS": {
+    "removeFavorite": "Remover dos favoritos",
+    "addFavorite": "Adicionar aos favoritos",
+    "downloadPdf": "Baixar o PDF do perfil",
+    "startConversation": "Iniciar uma conversa"
+  },
+  "premiumPlanDesc": {
+    "features": [
+      "Perfis de talentos com estatísticas detalhadas, dados de desempenho, conquistas e transferências visíveis",
+      "Perfis de clubes e olheiros com todos os conteúdos visíveis",
+      "Descarregar o perfil do talento como PDF",
+      "Criar as suas próprias listas de favoritos com talentos, olheiros ou clubes",
+      "Carregar fotografias e vídeos de destaques e visualizá-los noutros perfis",
+      "Fornecer e ligar canais de redes sociais e sítio Web no seu perfil",
+      "Para olheiros: Criar um portefólio e convidar talentos a juntarem-se a ele",
+      "Para os clubes: Organizar sessões de prospeção e convidar talentos registados a participar",
+      "Para os clubes: Gerir os jogadores do seu próprio clube diretamente nas equipas do SoccerYou"
+    ]
+  },
+  "multiCountryPlanDesc": {
+    "features": [
+      "Torne o seu perfil visível noutros países à sua escolha",
+      "Aumentar a sua visibilidade - internacional",
+      "Construir uma rede internacional"
+    ]
+  },
+  "bostProfileDesc": {
+    "features": [
+      "A sua fotografia de perfil terá um fundo especial e destacado",
+      "O seu perfil aparecerá no topo dos resultados da pesquisa quando as suas caraterísticas forem procuradas",
+      "Mais visibilidade - maiores hipóteses de ser descoberto"
+    ]
+  },
+  "MyAccount": "Ir para o painel de controlo",
+   "boostProfiles": "Impulsionar o perfil",
+   "changeNewsletterStatus": "Tem a certeza de que pretende alterar o estatuto de boletim informativo?"
 }

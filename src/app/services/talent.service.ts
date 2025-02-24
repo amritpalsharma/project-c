@@ -86,7 +86,7 @@ export class TalentService {
   getPackages(): Observable<any> {
     const headers = this.headers();
     return this.http.get<{ status: boolean, message: string, data: {} }>(
-      `${this.apiUrl}user/get-packages`,
+      `${this.apiUrl}user/get-packages?lang=`+localStorage.getItem('lang_id'),
       { headers }
     );
   }
@@ -186,7 +186,8 @@ export class TalentService {
   updateGeneralProfile(formData: FormData): Observable<any> {
     const headers = this.headers();
 
-    return this.http.post(`${this.apiUrl}player/update-general-info`, formData, { headers });
+    // return this.http.post(`${this.apiUrl}player/update-general-info`, formData, { headers });
+    return this.http.post(`${this.apiUrl}user/update-profile`, formData, { headers });
   }
 
   getPerformanceData(): Observable<any> {
@@ -293,8 +294,8 @@ export class TalentService {
 
   uploadGalleryImages(formdata: any): Observable<any> {
     const headers = this.headers();
-
-    return this.http.post<any>(`${this.apiUrl}user/upload-gallery-image/`, formdata, { headers });
+    let currentLang = localStorage.getItem('lang_id');
+    return this.http.post<any>(`${this.apiUrl}user/upload-gallery-image/${currentLang}/`, formdata, { headers });
   }
 
   deleteGalleryImage(params: any): Observable<any> {

@@ -16,7 +16,7 @@ import { UpdateConfirmationPlanComponent } from '../update-confirmation-plan/upd
   styleUrls: ['./edit-plan.component.scss']
 })
 export class EditPlanComponent implements OnInit {
-  
+
   countries: any[] = []; // Array to hold country plans
   selectedCountries: any[] = []; // Holds the selected countries
   selectedPlan: any = {}; // Selected country plan details
@@ -24,6 +24,9 @@ export class EditPlanComponent implements OnInit {
   stripe: any;
   isYearly = false; // Subscription type
   defaultCard: any = null; // Variable to hold the default card
+  selectedCountryIds: string[] = [];
+// selectedCountries: any[] = []; // Stores full country objects
+
 
   @Output() buys: EventEmitter<any> = new EventEmitter();
 
@@ -31,16 +34,16 @@ export class EditPlanComponent implements OnInit {
     public dialogRef: MatDialogRef<EditPlanComponent>,
     public talentService: TalentService,
     private stripeService: PaymentService,
-    private paymentService:PaymentService,
+    private paymentService: PaymentService,
     public dialog: MatDialog,
     private route: ActivatedRoute,
     private toastr: ToastrService,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+  ) { }
 
   async ngOnInit() {
     // If this.data.plans is an array, assign it directly
-    this.selectedPlan =this.data.selectedPlan;
+    this.selectedPlan = this.data.selectedPlan;
     this.populateCountries();
     this.defaultCard = this.data.defaultCard;
     this.selectedCountries = this.data.country;
@@ -57,14 +60,14 @@ export class EditPlanComponent implements OnInit {
       return {
         id: plan.id,
         package_name: plan.package_name,
-        priceMonthly : plan.month_price,
-        priceYearly : plan.year_price,
+        priceMonthly: plan.month_price,
+        priceYearly: plan.year_price,
         currency: plan.currency,
-        month_package_id : plan.month_package_id,
-        year_id : plan.id,
-        year_package_id : plan.year_package_id,
-        monthly : plan.plans.monthly,
-        yearly : plan.plans.yearly,
+        month_package_id: plan.month_package_id,
+        year_id: plan.id,
+        year_package_id: plan.year_package_id,
+        monthly: plan.plans.monthly,
+        yearly: plan.plans.yearly,
       };
     });
     this.selectedPlan = this.countries.find(country => country.id === this.selectedPlan.id);
@@ -121,7 +124,7 @@ export class EditPlanComponent implements OnInit {
     }
 
     const oldPlan = this.selectedCountries.find(c => c.package_name === this.selectedPlan.package_name) || null;
-    
+
     if (this.selectedPlan) {
       const planId = this.isYearly ? this.selectedPlan.yearly : this.selectedPlan.monthly;
 
@@ -143,7 +146,7 @@ export class EditPlanComponent implements OnInit {
       console.error('No country plan selected');
     }
   }
-  
+
   updatePlan(plan: any, isYearly: boolean, subscribeId: any): void {
     if (plan?.is_package_active === 'active') {
       this.toastr.warning('This plan has already been subscribed.', 'Warning');
@@ -200,23 +203,23 @@ export class EditPlanComponent implements OnInit {
   cancel(): void {
     this.dialogRef.close();
   }
-  
+
   toggleBillingPlan(isYearly: boolean) {
     this.isYearly = isYearly; // Toggle between monthly and yearly
   }
 
-  cancelPlan(item:any):void{}
+  cancelPlan(item: any): void { }
 
   isPlanAlreadySelected(): boolean {
-    return this.selectedCountries.some(country => 
+    return this.selectedCountries.some(country =>
       country.package_name === this.selectedPlan?.package_name &&
       (
-        (this.isYearly && country.interval === 'yearly') || 
+        (this.isYearly && country.interval === 'yearly') ||
         (!this.isYearly && country.interval === 'monthly')
       )
     );
   }
-  
+
   confirmAndCancelSubscription(subscriptionId: string, canceled = false): void {
     if (canceled) {
       this.toastr.warning('Subscription is already canceled.', 'Warning');
@@ -282,15 +285,44 @@ export class EditPlanComponent implements OnInit {
     );
   }
 
+  // onCountrySelect(event: any) {
+  //   console.log(event.value);
+  //   const selectedCountryIds = event.value;
+  //   console.log(selectedCountryIds)
+
+  //   const selectedCountries = this.countries.filter(country => selectedCountryIds.includes(country.id));
+
+  //   const selectedLocations = selectedCountries.map(country => country.monthly.location);
+
+  //   console.log('Selected Countries:', selectedCountries ); // Full objects
+  //   console.log('Selected Locations:', selectedLocations); // Only locations
+  //   console.log('Selected this.selectedCountries:', this.selectedCountries); // Only locations
+
+  //   // this.selectedPlan = this.countries.find(country => country.id === selectedCountryId);
+  //   // console.log(this.selectedCountries);
+  // }
+
   onCountrySelect(event: any) {
-    const selectedCountryId = event.target.value;
-    console.log(selectedCountryId)
-    this.selectedPlan = this.countries.find(country => country.id === selectedCountryId);
+    console.log(event.value);
+    this.selectedCountryIds = event.value; // Update selected IDs
+  
+    // Find and store the selected country objects
+    this.selectedCountries = this.countries.filter(country => this.selectedCountryIds.includes(country.id));
+  
+    console.log('Selected Countries:', this.selectedCountries);
+    console.log('Selected Locations:', this.selectedCountries.map(country => country.monthly.location));
   }
+  
+  // Function to return custom selected display text (showing locations)
+  getSelectedDisplayText(): any {
+    console.log(this.selectedCountries);
+    return this.selectedCountries.map(country => country.monthly.location).join(', ');
+  }
+  
 
   removeCountry(country: any) {
     this.selectedCountries = this.selectedCountries.filter(c => c.id !== country.id);
   }
-  
+
 
 }

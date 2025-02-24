@@ -1,38 +1,32 @@
 <div class="msg-popup-dialog">
     <div class="msg-popup-close d-flex align-items-center">
-       <div class="m-auto">
-        <h2 class="upload-file">{{'uploadFiles' | translate}}</h2>
-       </div>
+        <div class="m-auto">
+            <h2 class="upload-file">{{'uploadFiles' | translate}}</h2>
+        </div>
         <img src="../../../assets/images/close-icon-circle.png" alt="" class="" (click)="close()" />
     </div>
-<hr>
+    <hr>
     <div class="msg-popup-content">
-        
-        <div
-            class="upload-box"
-            (dragover)="onDragOver($event)"
-            (dragleave)="onDragLeave($event)"
-            (drop)="onFileDropped($event)"
-        >
-        <div class="upload-icon mb-2">   
-            <svg width="24" height="30" viewBox="0 0 24 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M11.9987 28.3347H2.66536C1.92898 28.3347 1.33203 27.7377 1.33203 27.0013V3.0013C1.33203 2.26492 1.92898 1.66797 2.66536 1.66797H21.332C22.0684 1.66797 22.6654 2.26492 22.6654 3.0013V15.0013" stroke="#787878" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M19.6641 28.3346V19.668" stroke="#787878" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M16.6641 22L17.6641 21L19.6641 19L21.6641 21L22.6641 22" stroke="#787878" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M6.66406 9.66797H17.3307" stroke="#787878" stroke-width="2" stroke-linecap="round"/>
-                <path d="M6.66406 15H11.9974" stroke="#787878" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-        </div>
+
+        <div class="upload-box" (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)"
+            (drop)="onFileDropped($event)">
+            <div class="upload-icon mb-2">
+                <svg width="24" height="30" viewBox="0 0 24 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M11.9987 28.3347H2.66536C1.92898 28.3347 1.33203 27.7377 1.33203 27.0013V3.0013C1.33203 2.26492 1.92898 1.66797 2.66536 1.66797H21.332C22.0684 1.66797 22.6654 2.26492 22.6654 3.0013V15.0013"
+                        stroke="#787878" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M19.6641 28.3346V19.668" stroke="#787878" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M16.6641 22L17.6641 21L19.6641 19L21.6641 21L22.6641 22" stroke="#787878" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M6.66406 9.66797H17.3307" stroke="#787878" stroke-width="2" stroke-linecap="round" />
+                    <path d="M6.66406 15H11.9974" stroke="#787878" stroke-width="2" stroke-linecap="round" />
+                </svg>
+            </div>
             <p class="upload-file_name">{{'dragAndDropFiles' | translate}}</p>
             <p class="upload-file_name">{{'fileSupported1' | translate}}</p>
-            <input
-                type="file"
-                (change)="onFileSelect($event)"
-                multiple                
-                [accept]="file === 'video' ? 'video/*' : ''"
-                hidden
-                #fileInput
-            />
+            <input type="file" (change)="onFileSelect($event)" multiple [accept]="file === 'video' ? 'video/*' : ''"
+                hidden #fileInput />
 
             <button type="button" (click)="fileInput.click()">{{'chooseFile' | translate}}</button>
             <p class="upload-file_name">{{'maximumSize' | translate}}</p>
@@ -41,11 +35,9 @@
 
         <div class="file-list">
             <div *ngFor="let result of uploadResponse">
-              <span
-                [ngStyle]="{'color': result.status ? 'green' : 'red'}"
-                class="result-text">
-                {{ result.message }}
-              </span>
+                <span [ngStyle]="{'color': result.status ? 'green' : 'red'}" class="result-text">
+                    {{ result.message }}
+                </span>
             </div>
         </div>
     </div>

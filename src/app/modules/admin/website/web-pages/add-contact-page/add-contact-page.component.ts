@@ -118,10 +118,15 @@ export class AddContactPageComponent {
     for (const key in this.formData) {
       formData.append(key, this.formData[key]);
     }
+
+    // Append lang_id to FormData
+    formData.append('lang', String(localStorage.getItem('lang_id')));
+
     console.log(this.formData, 'submit-form');
     this.webpages.addContactPage(formData).subscribe(response => {
       this.dialogRef.close({
-        action: "page-added-successfully"
+        action: "page-added-successfully",
+        message: response.message
       });
     });
   }

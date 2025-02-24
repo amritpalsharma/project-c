@@ -105,7 +105,7 @@
   "inbox": "Inkorg",
   "newMessage": "Nytt meddelande",
   "files": "Filer",
-  "favorites": "Favoriter (100)",
+  "favorites": "Favoriter",
   "removeFavorite": "Ta bort favorit",
   "userType": "Användartyp",
   "location": "Plats",
@@ -1228,9 +1228,7 @@
     "totalSales": "Total Sales: {{count}}",
     "totalSubscriptions": "Total Subscriptions: {{count}}"
   },
-
-
-  "more_news": "Fler nyheter",  
+  "more_news": "Fler nyheter",
   "back_to_news": "Tillbaka till Nyheter och Media",
   "share": "Dela",
   "uses": "Uses",
@@ -1246,5 +1244,48 @@
   "editProfile": "Edit och profile",
   "thanksMessage": "muito obrigado",
   "thanksMessage2": "Entraremos em contacto consigo.",
-  "backToHome" : "Voltar ao início"
+  "backToHome": "Voltar ao início",
+  "removeFavoriteConfirm": "Är du säker på att ta bort från favoriter?",
+  "dontShowAgain": "Visa det inte igen",
+  "cancelConfirmationMsg": "Är du säker på att du vill säga upp prenumerationen? Denna åtgärd kan inte ångras.",
+  "youHaveAnActive": "Du har ett aktivt",
+  "pleaseWait": "Vänligen vänta...",
+  "uploadingPhotos": "Ladda upp foton",
+  "noNotification": "Inga meddelanden hittades!",
+  "TOOLTIPS": {
+    "removeFavorite": "Ta bort från favoriter",
+    "addFavorite": "Lägg till i favoriter",
+    "downloadPdf": "Ladda ner profil PDF",
+    "startConversation": "Starta en konversation"
+  },
+  "premiumPlanDesc": {
+    "features": [
+      "Talangprofiler med detaljerad statistik, prestationsdata, prestationer och transfers synliga",
+      "Klubb- och scoutprofiler med allt innehåll synligt",
+      "Ladda ner talangprofilen som PDF",
+      "Skapa dina egna favoritlistor med talanger, scouter eller klubbar",
+      "Ladda upp foton och videor av höjdpunkter och visa dem på andra profiler",
+      "Ange och länka sociala mediekanaler och webbplats i din profil",
+      "För scouter: Skapa en portfölj och bjud in talanger att ansluta sig till den",
+      "För klubbar: Organisera scoutingsessioner och bjud in registrerade talanger att delta",
+      "För klubbar: Hantera dina egna klubbspelare direkt i lagen på SoccerYou"
+    ]
+  },
+  "multiCountryPlanDesc": {
+    "features": [
+      "Gör din profil synlig i andra länder som du själv väljer",
+      "Öka din synlighet - internationellt",
+      "Bygg upp ett internationellt nätverk"
+    ]
+  },
+  "bostProfileDesc": {
+    "features": [
+      "Din profilbild kommer att ha en speciell och markerad bakgrund",
+      "Din profil kommer att visas högst upp i sökresultaten när dina egenskaper söks efter",
+      "Mer synlighet - större chans att bli upptäckt"
+    ]
+  },
+  "MyAccount": "Gå till instrumentpanelen",
+   "boostProfiles": "Boost-profil",
+   "changeNewsletterStatus": "Är du säker på att du vill ändra nyhetsbrevsstatus?"
 }

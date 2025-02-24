@@ -498,10 +498,6 @@
   "youChangedYourPassword": "You changed your password.",
   "youGeneratedReports": "You generated reports using the app's reporting tools to analyze sales performance and track progress against targets.",
   "owner": "Owner",
-
-
-
-
   "loginButton": "Login",
   "register": "Register",
   "product": "Product",
@@ -720,7 +716,7 @@
   "newsLetter": "Newsletter",
   "deleteAccount": "Delete Account",
   "proceed": "Proceed",
-  "areToSure": "Are you sure to remove?", 
+  "areToSure": "Are you sure to remove?",
   "chooseYourPreferredPayment": "Choose your preferred payment method for making future payments.",
   "searchUser": "Search users...",
   "to:": "To:",
@@ -972,8 +968,6 @@
   "heroButtonText": "Hero Button Text",
   "heroButtonLink": "Hero Button Link",
   "aboutBannerDescription": "About Banner Description",
-
-
   "talentPage": "Talent Page",
   "talentSectionTitle": "Talent Section Title",
   "bannerImages": "Banner Images",
@@ -1083,8 +1077,7 @@
     "sweden": "Sweden",
     "switzerland": "Switzerland"
   },
-
-  "more_news": "More News",  
+  "more_news": "More News",
   "back_to_news": "Back to News & Media",
   "share": "Share",
   "uses": "Uses",
@@ -1103,13 +1096,61 @@
   "editProfile": "edit Profile",
   "thanksMessage": "thank you very much",
   "thanksMessage2": "We will get in touch with you.",
-  "backToHome" : "Back To Home",
+  "backToHome": "Back To Home",
   "tabSection": "Tab Section",
   "darkImages": "Dark Images",
   "createAccountDescription": "Enter your details below to get started.",
-
-
-  "youHaveAnActive": "You have active Premium Plan",
   "activeMultiCountryPlan": " 2 active Multi-Country Plan",
-  "youHaveActiveBoostPlan": "You have active boost plan"
+  "youHaveActiveBoostPlan": "You have active boost plan",
+  "selectFavoriteFirst": "Select favorite user(s) first.",
+  "removeFavoriteConfirm": "Are you sure to delete from favorites ?",
+  "userPurchasesNotFound": "No purchases found.",
+  "premiumPlanDesc": {
+    "features": [
+      "Talent profiles with detailed statistics, performance data, achievements, and transfers visible",
+      "Club and scout profiles with all contents visible",
+      "Download talent profile as PDF",
+      "Create your own favorites lists with talents, scouts, or clubs",
+      "Upload highlight photos and videos and view them on other profiles",
+      "Provide and link social media channels and website in your profile",
+      "For scouts: Create a portfolio and invite talents to join it",
+      "For clubs: Organize scouting sessions and invite registered talents to join",
+      "For clubs: Manage your own club players directly in the teams on SoccerYou"
+    ]
+  },
+  "multiCountryPlanDesc": {
+    "features": [
+      "Make your profile visible in other countries of your choice",
+      "Increase your visibility – internationally",
+      "Build an international network"
+    ]
+  },
+  "bostProfileDesc": {
+    "features": [
+      "Your profile picture will have a special and highlighted background",
+      "Your profile will appear at the top of the search results when your characteristics are searched for",
+      "More visibility - higher chances of being discovered"
+    ]
+  },
+  "dontShowAgain": "Don't show it again",
+  "cancelConfirmationMsg": "Are you sure you want to cancel this subscription? This action cannot be undone.",
+  "youHaveAnActive": "You have active",
+  "pleaseWait": "Please Wait...",
+  "uploadingPhotos": "Uploading Photos",
+  "imageDeletedSuccess": "Image deleted successfully!",
+  "failedToDeleteImage": "Failed to delete image.",
+  "DeleteFailed": "Delete Failed",
+  "noNotification":"No Notification Found!",
+  "TOOLTIPS": {
+    "profilePhoto": "Upload your best headshot to make a great first impression.",
+    "removeFavorite":"Remove from favorites",
+    "addFavorite":"Add in favorites",
+    "downloadPdf":"Download Profile Pdf",
+    "startConversation":"start a conversation"
+  },
+
+  "MyAccount": "Go To Dashboard",
+  "boostProfiles": "Boost Profile",
+  "renews": "Renews on",
+  "changeNewsletterStatus": "Are you sure you want to change newsletter status?"
 }

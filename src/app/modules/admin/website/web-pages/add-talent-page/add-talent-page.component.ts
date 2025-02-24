@@ -216,6 +216,9 @@ export class AddTalentPageComponent implements OnInit {
       formData.append('banner_imgs[]', this.formData.banner_imgs[key]);
     }
 
+    // Append lang_id to FormData
+    formData.append('lang', String(localStorage.getItem('lang_id')));
+
     console.log(formData)
     // Send the formData
     this.webpages.addTalentPage(formData).subscribe(
@@ -223,6 +226,7 @@ export class AddTalentPageComponent implements OnInit {
         console.log('Page added successfully:', response);
         this.dialogRef.close({
           action: 'page-added-successfully',
+          message: response.message 
         });
       },
       error => {

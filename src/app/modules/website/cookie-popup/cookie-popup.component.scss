@@ -91,7 +91,7 @@
 //   }
 .cookie-popup {
     position: fixed;
-    bottom: -200px;
+    bottom: 0;
     left: 0;
     right: 0;
     width: 100%;
@@ -100,6 +100,9 @@
     margin-right: auto;
     z-index: 1000; /* Above the overlay */
     animation: slideUp 2s ease-out forwards;
+    .container {
+        max-width: 860px;
+    }
   }
 
   @keyframes slideUp {
@@ -312,10 +315,6 @@ p {
         height: 35px;
         width: 120px;
     }
-
-    .cookie-popup {
-        height: 140px;
-    }
 }
 
 @media (max-width: 991px) {
@@ -373,10 +372,6 @@ p {
 @media (max-width: 767px) {}
 
 @media (max-width: 575px) {
-    .cookie-popup {
-        height: 180px;
-    }
-
     .choice {
         width: 160px;
         height: 30px;
@@ -441,9 +436,6 @@ p {
 }
 
 @media (max-width: 376px) {
-    .cookie-popup {
-        height: 150px;
-    }
 
     .choice {
         width: 130px;

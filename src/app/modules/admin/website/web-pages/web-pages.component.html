@@ -19,7 +19,8 @@
             </svg></span><input type="text" placeholder="{{'searchPages' | translate}}" aria-label="Username"
             aria-describedby="basic-addon1" (keyup)="applyFilter($event)" class="form-control ps-0" />
         </div>
-        <div class="d-flex align-items-center pe-2 border-start ps-3 cursor-pointer filter-svg" (click)="showFilterPopup()">
+        <div class="d-flex align-items-center pe-2 border-start ps-3 cursor-pointer filter-svg"
+          (click)="showFilterPopup()">
           <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg" class="me-2">
             <path
               d="M16.5938 6.23438H1.40625C1.18247 6.23438 0.967862 6.14054 0.809629 5.97352C0.651395 5.80649 0.5625 5.57996 0.5625 5.34375C0.5625 5.10754 0.651395 4.88101 0.809629 4.71398C0.967862 4.54696 1.18247 4.45313 1.40625 4.45312H16.5938C16.8175 4.45312 17.0321 4.54696 17.1904 4.71398C17.3486 4.88101 17.4375 5.10754 17.4375 5.34375C17.4375 5.57996 17.3486 5.80649 17.1904 5.97352C17.0321 6.14054 16.8175 6.23438 16.5938 6.23438ZM13.7812 10.3906H4.21875C3.99497 10.3906 3.78036 10.2968 3.62213 10.1298C3.46389 9.96274 3.375 9.73621 3.375 9.5C3.375 9.26379 3.46389 9.03726 3.62213 8.87023C3.78036 8.70321 3.99497 8.60938 4.21875 8.60938H13.7812C14.005 8.60938 14.2196 8.70321 14.3779 8.87023C14.5361 9.03726 14.625 9.26379 14.625 9.5C14.625 9.73621 14.5361 9.96274 14.3779 10.1298C14.2196 10.2968 14.005 10.3906 13.7812 10.3906ZM10.4062 14.5469H7.59375C7.36997 14.5469 7.15536 14.453 6.99713 14.286C6.83889 14.119 6.75 13.8925 6.75 13.6562C6.75 13.42 6.83889 13.1935 6.99713 13.0265C7.15536 12.8595 7.36997 12.7656 7.59375 12.7656H10.4062C10.63 12.7656 10.8446 12.8595 11.0029 13.0265C11.1611 13.1935 11.25 13.42 11.25 13.6562C11.25 13.8925 11.1611 14.119 11.0029 14.286C10.8446 14.453 10.63 14.5469 10.4062 14.5469Z"
@@ -31,7 +32,7 @@
     </div>
     <div class="d-flex align-items-center justify-content-between mt-3">
       <div class="d-flex align-items-center">
-        <div class="dropdown  dropdown-coupon">
+        <!-- <div class="dropdown  dropdown-coupon">
           <button (click)="selectAllCoupons()"
             class="btn btn-secondary dropdown-toggle dropdown-toggle-checkbox coupon-main-checkbox" type="button">
             <div class="form-check">
@@ -43,7 +44,7 @@
                 fill="#646464" />
             </svg>
           </button>
-          
+
         </div>
         <button class="btn btn-outline-white" (click)="getPublishOrDraftFilterData('Published')">
           <svg id="users-icon" width="24" height="24" viewBox="0 0 24 25" fill="none"
@@ -69,7 +70,7 @@
               d="M5.49967 17.5589C5.49967 18.5112 6.32467 19.2904 7.33301 19.2904H14.6663C15.6747 19.2904 16.4997 18.5112 16.4997 17.5589V7.16999H5.49967V17.5589ZM17.4163 4.57277H14.208L13.2913 3.70703H8.70801L7.79134 4.57277H4.58301V6.30425H17.4163V4.57277Z"
               fill="#787878"></path>
           </svg>
-          {{'delete' | translate}}</a>
+          {{'delete' | translate}}</a> -->
       </div>
       <div class="d-flex align-items-center">
         <div class="items-count" style="
@@ -383,8 +384,11 @@
       </thead>
       <tbody>
 
-        @if (allPages.length > 0 && allPages) {
+        
+
+        @if ((allPages.length > 0 && allPages) && (!isLoading ) ) {
         @for (page of allPages; track $index) {
+          
         <tr>
           <td class="webpages-chekbox" style="width: 50px;">
             <span class="form-check align-self-center me-2">
@@ -404,8 +408,10 @@
           <td>{{page?.created_at}}</td>
           <td>{{page?.updated_at}}</td>
           <td>
-            <span [ngClass]="getStatusClass(page?.status)" *ngIf="page?.status == 'published'">{{ 'published' | translate }}</span>
-            <span [ngClass]="getStatusClass(page?.status)" *ngIf="page?.status == 'draft'">{{ 'draft' | translate }}</span>
+            <span [ngClass]="getStatusClass(page?.status)" *ngIf="page?.status == 'published'">{{ 'published' |
+              translate }}</span>
+            <span [ngClass]="getStatusClass(page?.status)" *ngIf="page?.status == 'draft'">{{ 'draft' | translate
+              }}</span>
           </td>
           <!-- <td class="c_pointer text-center view" >
                   <svg id="users-icon"

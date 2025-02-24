@@ -2,7 +2,7 @@
   "privacyPolicy": "Privatlivspolitik",
   "terms&Conditions": "Vilkår og betingelser",
   "cookies": "Cookies",
-"fillCaptcha": "Udfyld venligst captcha",
+  "fillCaptcha": "Udfyld venligst captcha",
   "createProfile": "Opret profil",
   "club&scout": "Klubber & spejdere",
   "premium": "Premium",
@@ -74,7 +74,6 @@
   "resultsPerPage": "Resultater pr. side",
   "back": "Tilbage",
   "next": "Næste",
-  
   "previous": "Tidligere",
   "finish": "Afslut",
   "messages": "Beskeder",
@@ -173,7 +172,15 @@
     "leftStriker": "Venstre angriber"
   },
   "numbers": [
-    15, 16, 17, 18, 19, 20, 21, 22, 23
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23
   ],
   "speedRanges": [
     "15-20km/h",
@@ -224,31 +231,6 @@
   "multiCountryPlansActivated": "2 Multi-Country Plans aktiveret.",
   "attractAttention": "Tiltræk opmærksomhed fra spejdere og klubber i andre lande med din profil.",
   "growNetwork": "Udvid dit globale netværk.",
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   "lightMode": "Lys tilstand",
   "darkMode": "Mørk tilstand",
   "about": "Om",
@@ -488,7 +470,6 @@
   "denmark": "Danmark",
   "multiCountryPlan": "Planer for flere lande aktiveret",
   "premiumPlan": "Du er på Premium Plan",
-
   "yourProfileIsListedAtTheTopOfTheSearchResults": "Din profil vises øverst i søgeresultaterne.",
   "yourPortraitGetsABackgroundEffectForMoreVisibility": "Dit portræt får en baggrundseffekt, så det bliver mere synligt.",
   "inTheTalentOverviewYouWillAppearInTheFirstPositionsForMatchingSearchParameters": "I talentoversigten vil du blive vist i de første positioner for matchende søgeparametre.",
@@ -518,20 +499,6 @@
   "favorites100": "Favoritter (100)",
   "latestTransactions": "Seneste transaktioner",
   "general": "Generel information",
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
   "homePage": "Home og page",
   "updatePage": "Update og page",
   "description": "Description",
@@ -1109,19 +1076,17 @@
   "viewAll": "View og all",
   "code": "Code",
   "subscription": {
-      "paid": "Paid",
-      "free": "Free"
+    "paid": "Paid",
+    "free": "Free"
   },
   "editors": {
-      "placeholder": "Type here..."
+    "placeholder": "Type here..."
   },
   "tooltip": {
-      "totalUsers": "Total Users: {{count}}",
-      "totalSales": "Total Sales: {{count}}",
-      "totalSubscriptions": "Total Subscriptions: {{count}}"
+    "totalUsers": "Total Users: {{count}}",
+    "totalSales": "Total Sales: {{count}}",
+    "totalSubscriptions": "Total Subscriptions: {{count}}"
   },
-
-
   "more_news": "Flere nyheder",
   "back_to_news": "Tilbage til Nyheder og Media",
   "share": "Del",
@@ -1138,5 +1103,48 @@
   "editProfile": "Edit og profile",
   "thanksMessage": "Mange tak skal du have",
   "thanksMessage2": "Vi tager kontakt til dig.",
-  "backToHome" : "Tilbage til start"
+  "backToHome": "Tilbage til start",
+  "removeFavoriteConfirm": "Er du sikker på, at du vil slette fra favoritter?",
+  "dontShowAgain": "Vis det ikke igen",
+  "cancelConfirmationMsg": "Er du sikker på, at du vil opsige dette abonnement? Denne handling kan ikke fortrydes.",
+  "youHaveAnActive": "Du har aktive",
+  "pleaseWait": "Vent venligst lidt...",
+  "uploadingPhotos": "Upload af fotos",
+  "noNotification": "Ingen notifikationer fundet!",
+  "TOOLTIPS": {
+    "removeFavorite": "Fjern fra favoritter",
+    "addFavorite": "Tilføj til favoritter",
+    "downloadPdf": "Download profil PDF",
+    "startConversation": "Start en samtale"
+  },
+  "premiumPlanDesc": {
+    "features": [
+      "Talentprofiler med detaljerede statistikker, præstationsdata, præstationer og synlige transfers",
+      "Klub- og spejderprofiler med alt indhold synligt",
+      "Download talentprofil som PDF",
+      "Opret dine egne favoritlister med talenter, spejdere eller klubber",
+      "Upload highlight-fotos og -videoer og se dem på andre profiler",
+      "Angiv og link sociale mediekanaler og hjemmeside i din profil",
+      "For talentspejdere: Opret en portefølje og inviter talenter til at deltage i den",
+      "For klubber: Organiser scouting-sessioner og inviter registrerede talenter til at deltage",
+      "For klubber: Administrer dine egne klubspillere direkte i holdene på SoccerYou"
+    ]
+  },
+  "multiCountryPlanDesc": {
+    "features": [
+      "Gør din profil synlig i andre lande efter eget valg",
+      "Øg din synlighed - internationalt",
+      "Opbyg et internationalt netværk"
+    ]
+  },
+  "bostProfileDesc": {
+    "features": [
+      "Dit profilbillede får en særlig og fremhævet baggrund",
+      "Din profil vises øverst i søgeresultaterne, når der søges efter dine egenskaber",
+      "Mere synlighed - større chance for at blive opdaget"
+    ]
+  },
+  "MyAccount": "Gå til instrumentbrættet",
+   "boostProfiles": "Boost-profil",
+   "changeNewsletterStatus": "Er du sikker på, at du vil ændre nyhedsbrevets status?"
 }

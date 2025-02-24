@@ -1,3 +1,5 @@
+@import './responsive.scss';
+
 body {
   font-family: "Libre Franklin", sans-serif;
   background: #f0f0f0;
@@ -188,7 +190,7 @@ button.btn.btn-secondary.dropdown-toggle {
  mat-datepicker-toggle {
   position: absolute;
   left: 0;
-  top: -20px;
+  top: 0px;
   margin-left: 0 !important;
 }
 .d-flex.align-items-center.justify-content-center.dob1 {
@@ -583,6 +585,7 @@ input#dateOfBirth, input#contractStart, input#contractEnd {
   // color: #fff;
   border-top: 1px solid #fff;
   // padding: 0px 20px 0px 40px;
+  padding-top: 15px;
 }
 
 // .bottom_box > h5 > img {
@@ -877,7 +880,7 @@ input:checked+.slider:before {
 .notification_dropdown .dropdown-menu p {
   font-size: 14px;
   font-weight: 400;
-  padding-bottom: 3px;
+  padding-bottom: 3px !important;
 }
 
 .small {
@@ -1945,4 +1948,100 @@ width: 40%;
   /* Optional: Limit the maximum height */
   overflow-y: auto;
   /* Enable scrolling if content exceeds height */
+}
+
+
+
+nav.navbar .country_dropdown h6.border-bottom {
+  white-space: nowrap;
+}
+.sidebar {
+  position: relative;
+  z-index: 1;
+}
+.date_field input {
+  text-indent: 30px !important;
+}
+.upgrade_unlock .unlock_btn  {
+  padding: 12px 25px 10px !important;
+  font-size: 17px !important;
+}
+.edit-multi-country-plan .country-plan {
+ .country-selection { 
+  label {
+  font-size: 16px;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 8px;
+}
+.mat-mdc-select-trigger {
+  border: 1px solid grey;
+  padding: 10px;
+  border-radius: 10px;
+}
+.explore-chip {
+  flex-wrap: wrap;
+.chip {
+  padding-left: 16px !important;
+  padding-bottom: 6px !important;
+  margin-bottom: 5px;
+}
+}
+ }
+}
+
+#notifications {
+  img.rounded-circle {
+    object-fit: cover;
+    object-position: top center;
+  }
+}
+
+.home_galery {
+  img.img-fluid {
+    height: 130px;
+  background: rgb(240 240 240 / 42%);
+  object-fit: contain;
+}
+.edit-cover {
+  height: 30px !important;
+  width: 30px !important;
+}
+.wc_floatingMenu .wc_menuItem span {
+  white-space: nowrap;
+}
+}
+
+.dark-theme {
+span.toggle-password svg path {
+  stroke: #fff !important;
+}
+.notification_dropdown .dropdown-menu h6, .notification_dropdown .dropdown-menu p,
+.notification_dropdown .dropdown-menu small {
+  color: #fff !important;
+}
+label.btn.filter-button, select.location-filter {
+  background: #fff !important;
+  color: #000 !important;
+}
+select.location-filter.activefilter, select.location-filter option {
+  color: #000 !important;
+}
+#notification-box-id  {
+  background: #072944;
+  svg path {
+    fill: #fff !important;
+  }
+  .load_more  span {
+    color: #fff !important;
+  }
+}
+.home_galery {
+  img.img-fluid {
+    background: rgb(12 52 83);
+  }
+}
+.explore-inputs .explore-all_input mat-select {
+  background: #0c3453;
+}
 }

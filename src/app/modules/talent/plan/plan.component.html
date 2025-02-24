@@ -17,13 +17,13 @@
           <!-- premium plans -->
           <div class="col-lg-4 my-2 ">
             <div class="subscription-switch mb-2">
-              <label class="switch_off cursor-pointer" (click)="toggleBillingPlan(premiumPlans, false ,premium)">
+              <label class="switch_off cursor-pointer" >
                 {{'billedMonthly' | translate}}</label>
               <input class="cursor-pointer" type="checkbox" [id]="premiumPlans.id" [checked]="(premiumPlans.isYearly)"
                 [(ngModel)]="premiumPlans.isYearly"
-                (change)="toggleBillingPlan(premiumPlans, (premiumPlans.isYearly),premium)"
+                (change)="toggleBillingPlan(premiumPlans, (premiumPlans.isYearly), premium)"
                 [value]="premiumPlans.isYearly">
-              <label class="switch_on cursor-pointer" (click)="toggleBillingPlan(premiumPlans, true,premium)">
+              <label class="switch_on cursor-pointer" >
                 {{'billedYearly' | translate}}
               </label>
             </div>
@@ -35,11 +35,14 @@
                   <!-- Display this only if there is an active premium plan -->
                   <div class="premium_button py-1 px-3" *ngIf="(( premiumPlans?.package_name==premium?.package_name ))">
                     <span class="px-1">
-                      <svg width="22" height="23" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                      <!-- <svg width="22" height="23" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                         <path
                           d="M464 0H112c-4 0-7.8 2-10 5.4L2 152.6c-2.9 4.4-2.6 10.2 .7 14.2l276 340.8c4.8 5.9 13.8 5.9 18.6 0l276-340.8c3.3-4.1 3.6-9.8 .7-14.2L474.1 5.4C471.8 2 468.1 0 464 0zm-19.3 48l63.3 96h-68.4l-51.7-96h56.8zm-202.1 0h90.7l51.7 96H191l51.6-96zm-111.3 0h56.8l-51.7 96H68l63.3-96zm-43 144h51.4L208 352 88.3 192zm102.9 0h193.6L288 435.3 191.2 192zM368 352l68.2-160h51.4L368 352z">
                         </path>
-                      </svg>
+                      </svg> -->
+                      <svg width="15" height="13" viewBox="0 0 15 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3.00019 9.66115e-07C2.90741 4.07945e-06 2.81646 0.0258214 2.73752 0.0745645C2.65858 0.123308 2.59475 0.193054 2.55319 0.276001L0.553186 4.276C0.509933 4.36212 0.492491 4.45891 0.502958 4.55471C0.513426 4.65051 0.551357 4.74125 0.612187 4.816L7.11219 12.816C7.15907 12.8737 7.21822 12.9202 7.28534 12.9521C7.35246 12.9841 7.42586 13.0006 7.50019 13.0006C7.57452 13.0006 7.64791 12.9841 7.71503 12.9521C7.78215 12.9202 7.8413 12.8737 7.88819 12.816L14.3882 4.816C14.4492 4.74135 14.4873 4.65067 14.4979 4.55486C14.5086 4.45906 14.4913 4.36222 14.4482 4.276L12.4482 0.276001C12.4065 0.192902 12.3426 0.123055 12.2634 0.0743015C12.1843 0.0255481 12.0931 -0.000181722 12.0002 9.66115e-07H3.00019ZM1.80919 4L3.30919 1H5.35919L4.60919 4H1.80919ZM2.05019 5H4.63319L6.24619 10.164L2.05019 5ZM5.68019 5H9.32019L7.50019 10.823L5.68019 5ZM10.3682 5H12.9502L8.75419 10.164L10.3682 5ZM13.1912 4H10.3912L9.64119 1H11.6912L13.1912 4ZM9.36019 4H5.64019L6.39019 1H8.61019L9.36019 4Z" fill="#111418"/>
+                        </svg>                        
                     </span>
                     <span>{{'youHaveAnActive' | translate}}</span>
                   </div>
@@ -71,7 +74,7 @@
               <div class="plan_box premium-plan-list">
                 <h3>{{'premiumIncludes' | translate}}</h3>
                 <ul class="premium_list">
-                  <li *ngFor="let feature of premiumPlans.includes">
+                  <li *ngFor="let feature of premiumFeatures">
                     <label>
                       <input type="checkbox" checked="checked" disabled>
                       <span class="checkmark"></span>{{ feature }}
@@ -92,12 +95,12 @@
           <!-- premium plans -->
           <div class="col-lg-4 my-2 ">
             <div class="subscription-switch mb-2">
-              <label class="switch_off cursor-pointer" (click)="toggleBillingPlan(demoPlans, false ,premium)">
+              <label class="switch_off cursor-pointer" >
                 {{'billedMonthly' | translate}}</label>
               <input class="cursor-pointer" type="checkbox" [id]="demoPlans.id" [checked]="(demoPlans.isYearly)"
-                [(ngModel)]="demoPlans.isYearly" (change)="toggleBillingPlan(demoPlans, (demoPlans.isYearly),premium)"
+                [(ngModel)]="demoPlans.isYearly" (change)="toggleBillingPlan(demoPlans, (demoPlans.isYearly), demoPlans)"
                 [value]="demoPlans.isYearly">
-              <label class="switch_on cursor-pointer" (click)="toggleBillingPlan(demoPlans, true,premium)">
+              <label class="switch_on cursor-pointer" >
                 {{'billedYearly' | translate}}
               </label>
             </div>
@@ -145,7 +148,7 @@
               <div class="plan_box premium-plan-list">
                 <h3>{{'demo' | translate}}</h3>
                 <ul class="premium_list">
-                  <li *ngFor="let feature of demoPlans.includes">
+                  <li *ngFor="let feature of premiumFeatures">
                     <label>
                       <input type="checkbox" checked="checked" disabled>
                       <span class="checkmark"></span>{{ feature }}
@@ -167,7 +170,7 @@
           <div class="col-lg-4 my-2 ">
             <div class="subscription-switch mb-2">
               <label class="switch_off cursor-pointer">{{'billedMonthly' | translate}}</label>
-              <input type="checkbox" class="cursor-pointer">
+              <input type="checkbox" (change)="toggleBillingPlan(countryPlans, (countryPlans.isYearly), countryPlans)" class="cursor-pointer">
               <label class="switch_on cursor-pointer">{{'billedYearly' | translate}}</label>
             </div>
 
@@ -183,7 +186,7 @@
                         </path>
                       </svg>
                     </span>
-                    <span class="ps-2">{{'activeMultiCountryPlan' | translate}}</span>
+                    <!-- <span class="ps-2">{{'activeMultiCountryPlan' | translate}}</span> -->
                     <button class="premium_btn" (click)="editPlanPopup(countryPlans.plans,country)">
                       <svg width="22" height="23" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -214,7 +217,7 @@
               <div class="plan_box premium-plan-list">
                 <h3>{{'multiCountryPlanIncludes' | translate}}</h3>
                 <ul class="premium_list">
-                  <li *ngFor="let feature of countryPlans?.includes">
+                  <li *ngFor="let feature of multiCountryPlanDesc">
                     <label>
                       <input type="checkbox" checked="checked" disabled>
                       <span class="checkmark"></span>{{ feature }}
@@ -235,15 +238,13 @@
           <!-- boosted plans -->
           <div class="col-lg-4 my-2">
             <div class="subscription-switch mb-2">
-              <label class="switch_off cursor-pointer"
-                (click)="toggleBillingPlan(boostedPlans, false ,booster)">{{'billedMonthly' |
+              <label class="switch_off cursor-pointer">{{'billedMonthly' |
                 translate}}</label>
               <input type="checkbox" class="switch_on cursor-pointer" [id]="boostedPlans.id"
                 [(ngModel)]="boostedPlans.isYearly"
                 [checked]="boostedPlans.isYearly || (booster && booster.interval == 'yearly')"
-                (change)="toggleBillingPlan(boostedPlans, (boostedPlans.isYearly ? false: true),booster)">
-              <label class="switch_on cursor-pointer"
-                (click)="toggleBillingPlan(boostedPlans, true,booster)">{{'billedYearly' |
+                (change)="toggleBillingPlan(boostedPlans, (boostedPlans.isYearly), booster)">
+              <label class="switch_on cursor-pointer">{{'billedYearly' |
                 translate}}</label>
             </div>
             <div class="premium-plan_box">
@@ -286,7 +287,7 @@
               <div class="plan_box premium-plan-list">
                 <h3>{{'boostPlanIncludes' | translate}}</h3>
                 <ul class="premium_list">
-                  <li *ngFor="let feature of boostedPlans.includes">
+                  <li *ngFor="let feature of bostProfileDesc">
                     <label>
                       <input type="checkbox" checked="checked" disabled>
                       <span class="checkmark"></span>{{ feature }}

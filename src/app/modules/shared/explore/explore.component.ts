@@ -221,7 +221,12 @@ export class ExploreComponent implements OnInit {
 
   exploreUser(slug: string, id: number): void {
     this.trackProfileClick(id); // Track the click before navigation
+    // alert(slug);
+    // if(slug == 'Talent'){
+    //   slug = 'club'; // update by amrit talent page is not open
+    // }
     const pageRoute = 'view/' + slug.toLowerCase();
+    //console.log(pageRoute);
     this.router.navigate([pageRoute, id]);
 
     let jsonData = localStorage.getItem("userData");

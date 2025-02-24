@@ -8,6 +8,7 @@ import { BlogPopupComponent } from './blog-popup/blog-popup.component';
 import { MessagePopupComponent } from '../../message-popup/message-popup.component';
 import { WebPages } from '../../../../services/webpages.service';
 import { CommonFilterPopupComponent } from '../../common-filter-popup/common-filter-popup.component';
+import { SharedService } from '../../../../services/shared.service';
 @Component({
   selector: 'app-blog',
   templateUrl: './blog.component.html',
@@ -17,6 +18,7 @@ export class BlogComponent {
   blogs:any = [];
   displayedColumns: string[] = ['#','Name', 'Language', 'Published', 'Last Modified','Status','View all', 'Edit','Remove'];
   checkboxIds: string[] = [];
+  lang_id: string = '';
   allSelected: boolean = false;
   userId: any; 
   newStatus: any;
@@ -30,11 +32,25 @@ export class BlogComponent {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  constructor(private blogService: BlogService,private webpages:WebPages, public dialog: MatDialog) {}
+  constructor(private blogService: BlogService,private webpages:WebPages, public dialog: MatDialog, private sharedservice:SharedService, ) {}
 
-  ngOnInit(): void {
+  // ngOnInit(): void {
+  //   this.getAllLanguages();
+  //   this.getBlogs();
+  // }
+
+  ngOnInit(){
     this.getAllLanguages();
     this.getBlogs();
+    this.sharedservice.data$.subscribe((data) => {
+        if(data.action == 'lang_updated'){
+            this.isLoading = true;
+            this.lang_id = data.id;
+            this.getBlogs();
+        }
+    });
+
+    this.getAllLanguages();
   }
 
 

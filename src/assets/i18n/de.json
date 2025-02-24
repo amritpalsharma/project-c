@@ -952,8 +952,7 @@
     "totalSales": "Gesamtverkäufe: {{count}}",
     "totalSubscriptions": "Gesamtabonnements: {{count}}"
   },
-
-  "more_news": "Weitere News",  
+  "more_news": "Weitere News",
   "back_to_news": "Zurück zu News & Medien",
   "share": "Teilen",
   "uses": "verwendet",
@@ -1184,8 +1183,7 @@
   "editPerformaceDetails": "Leistungsdetails bearbeiten",
   "thanksMessage": "Ich danke Ihnen vielmals",
   "thanksMessage2": "Wir werden uns mit Ihnen in Verbindung setzen.",
-  "backToHome" : "Zurück zu Home",
-
+  "backToHome": "Zurück zu Home",
   "tabSection": "Registerkarte Abschnitt",
   "darkImages": "Dunkle Bilder",
   "countriesName": {
@@ -1198,5 +1196,53 @@
     "portugal": "Portugal",
     "sweden": "Sweden",
     "switzerland": "Switzerland"
-  }
+  },
+  "selectFavoriteFirst": "Wählen Sie zuerst den/die bevorzugten Benutzer aus.",
+  "removeFavoriteConfirm": "Sind Sie sicher, dass Sie aus den Favoriten löschen wollen?",
+  "userPurchasesNotFound": "Keine Käufe gefunden.",
+  "premiumPlanDesc": {
+    "features": [
+      "Talentprofile mit detaillierten Statistiken, Leistungsdaten, Erfolgen und Transfers sichtbar",
+      "Club- und Scoutprofile mit allen Inhalten sichtbar",
+      "Talent Profile als PDF herunterladen",
+      "Eigene Favoritenlisten mit Talenten, Scouts oder Clubs anlegen",
+      "Highlight Fotos und Videos hochladen und bei anderen Profilen anschauen",
+      "Social Media Kanäle und Webseite im Profil angeben und verlinken",
+      "Für Scouts: Porftolio erstellen und Talente einladen, diesem beizutreten",
+      "Für Clubs: Sichtungs-Trainings organisieren und registrierte Talente dazu einladen",
+      "Für Clubs: Eigene Club Spieler in den Teams direkt auf SoccerYou verwalten"
+    ]
+  },
+  "multiCountryPlanDesc": {
+    "features": [
+      "Lass dein Profil in anderen Ländern deiner Wahl anzeigen",
+      "Erhöhe damit deine Sichtbarkeit - international",
+      "Baue dir ein internationales Netzwerk auf"
+    ]
+  },
+  "bostProfileDesc": {
+    "features": [
+      "Dein Profilbild erhält einen besonderen und hervorgehobenen Hintergrund",
+      "Dein Profil erscheint in der Suche, wenn nach deinen Merkmalen gesucht wird, am Anfang der Suchresultate",
+      "Mehr Sichtbarkeit - höhere Chancen entdeckt zu werden"
+    ]
+  },
+  "noNotification": "Keine Benachrichtigung gefunden!",
+  "dontShowAgain": "Nicht mehr anzeigen",
+  "cancelConfirmationMsg": "Sind Sie sicher, dass Sie dieses Abonnement kündigen möchten? Diese Aktion kann nicht rückgängig gemacht werden.",
+  "youHaveAnActive": "Sie haben aktive",
+  "pleaseWait": "Bitte warten...",
+  "uploadingPhotos": "Fotos hochladen",
+  "TOOLTIPS": {
+    "profilePhoto": "Laden Sie Ihr bestes Porträtfoto hoch, um einen großartigen ersten Eindruck zu hinterlassen.",
+    "removeFavorite": "Aus den Favoriten entfernen",
+    "addFavorite": "Zu den Favoriten hinzufügen",
+    "downloadPdf":"Profil Pdf herunterladen",
+    "startConversation":"ein Gespräch beginnen"
+  },
+  "uploadNewProfileImage": "Neues Profilbild hochladen",
+  "editCoverImage": "Titelbild bearbeiten",
+  "MyAccount": "Zum Dashboard gehen",
+  "boostProfiles": "Profil verstärken",
+  "changeNewsletterStatus": "Sind Sie sicher, dass Sie den Newsletter-Status ändern möchten?"
 }

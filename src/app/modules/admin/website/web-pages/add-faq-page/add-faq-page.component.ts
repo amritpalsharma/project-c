@@ -24,7 +24,6 @@ interface Language {
 export class AddFaqPageComponent implements OnInit {
   @Input() pageId: any;
   @Input() pageType: any;
-  
   @Input() languages: Language[] = [];
   editor!: Editor;
   toolbar: Toolbar = [
@@ -37,30 +36,30 @@ export class AddFaqPageComponent implements OnInit {
   ];
   content: string = '';
   formData: any = {
-    meta_title:'',
-    meta_description:'',
-    title:'',
+    meta_title: '',
+    meta_description: '',
+    title: '',
     faq_banner_title: '',
     banner_img: null,
     page_content: '',
-    faq_collapse_titile:'',
-    faq_first_btn_txt:'',
-    faq_sec_btn_txt:'',
-    faq_third_btn_txt:'',
-    faq_first_btn_content:[{ title: '', desc: ''}],
-    faq_second_btn_content:[{ title: '', desc: ''}],
-    faq_third_btn_content:[{ title: '', desc: ''}],
+    faq_collapse_titile: '',
+    faq_first_btn_txt: '',
+    faq_sec_btn_txt: '',
+    faq_third_btn_txt: '',
+    faq_first_btn_content: [{ title: '', desc: '' }],
+    faq_sec_btn_content: [{ title: '', desc: '' }],
+    faq_third_btn_content: [{ title: '', desc: '' }],
     page_id: '',
-    page_type:'',
+    page_type: '',
     language: localStorage.getItem('lang'),
     lang_id: localStorage.getItem('lang_id'),
   };
 
-  constructor(private webpages: WebPages, public dialogRef: MatDialogRef<AddFaqPageComponent>) {}
+  constructor(private webpages: WebPages, public dialogRef: MatDialogRef<AddFaqPageComponent>) { }
 
   ngOnInit(): void {
     this.editor = new Editor();
-    if(this.pageType){
+    if (this.pageType) {
       this.formData.page_type = this.pageType;
     }
     if (this.pageId) {
@@ -77,23 +76,23 @@ export class AddFaqPageComponent implements OnInit {
   onFileChange(event: any, fieldName: string): void {
     this.formData[fieldName] = event.target.files[0];
   }
-  addFirstButtonContent(){
-    this.formData.faq_first_btn_content.push({ title: '', desc: ''});
+  addFirstButtonContent() {
+    this.formData.faq_first_btn_content.push({ title: '', desc: '' });
   }
-  addSecondButtonContent(){
-    this.formData.faq_second_btn_content.push({ title: '', desc: ''});
+  addSecondButtonContent() {
+    this.formData.faq_sec_btn_content.push({ title: '', desc: '' });
   }
-  addThirdButtonContent(){
-    this.formData.faq_second_btn_content.push({ title: '', desc: ''});
+  addThirdButtonContent() {
+    this.formData.faq_third_btn_content.push({ title: '', desc: '' });
   }
 
-  removeFirstButtonContent(i:number): void {
+  removeFirstButtonContent(i: number): void {
     this.formData.faq_first_btn_content.splice(i, 1);
   }
-  removeSecondButtonContent(i:number): void {
-    this.formData.faq_third_btn_content.splice(i, 1);
+  removeSecondButtonContent(i: number): void {
+    this.formData.faq_sec_btn_content.splice(i, 1);
   }
-  removeThirdButtonContent(i:number): void {
+  removeThirdButtonContent(i: number): void {
     this.formData.faq_third_btn_content.splice(i, 1);
   }
   getPageById(id: number): void {
@@ -105,8 +104,8 @@ export class AddFaqPageComponent implements OnInit {
         this.formData.faq_first_btn_txt = response.data.pageData.faq_first_btn_txt;
         this.formData.faq_sec_btn_content = response.data.pageData.faq_sec_btn_content;
         this.formData.faq_sec_btn_txt = response.data.pageData.faq_sec_btn_txt;
-        this.formData.faq_third_btn_content= response.data.pageData.faq_third_btn_content;
-        this.formData.faq_third_btn_txt = response.data.pageData.faq_third_btn_content;
+        this.formData.faq_third_btn_content = response.data.pageData.faq_third_btn_content;
+        this.formData.faq_third_btn_txt = response.data.pageData.faq_third_btn_txt;
         this.formData.meta_title = response.data.meta_title;
         this.formData.meta_description = response.data.meta_description;
       }
@@ -115,20 +114,40 @@ export class AddFaqPageComponent implements OnInit {
   submitForm(): void {
     const formData = new FormData();
     for (const key in this.formData) {
-      if (Array.isArray(this.formData[key])) {
-        this.formData[key].forEach((item: string, index: number) => {
-          formData.append(`${key}[${index}]`, item);
-        });
+      // console.log(key);
+      // console.log(this.formData);
+      // return false;
+      if (key == 'faq_first_btn_content') {
+        console.log(JSON.stringify(this.formData[key]));
+        formData.append(key, JSON.stringify(this.formData[key]));
+      } else if (key == 'faq_sec_btn_content') {
+        formData.append(key, JSON.stringify(this.formData[key]));
+      } else if (key == 'faq_third_btn_content') {
+        formData.append(key, JSON.stringify(this.formData[key]));
       } else {
-        formData.append(key, this.formData[key]);
+        // if (Array.isArray(this.formData[key])) {
+        //   // this.formData[key].forEach((item: string, index: number) => {
+        //   //   formData.append(`${key}[${index}]`, item);
+        //   // });
+        // } else {
+        
+          formData.append(key, this.formData[key]);
+        // }
       }
+
     }
-     // Append specific club_nd_scout_section values (if they exist)
- 
-     this.webpages.addFaqPage(formData).subscribe(response => {
+
+    // Append lang_id to FormData
+    formData.append('lang', String(localStorage.getItem('lang_id')));
+
+      console.log(formData);
+    // Append specific club_nd_scout_section values (if they exist)
+
+    this.webpages.addFaqPage(formData).subscribe(response => {
       this.dialogRef.close({
-        action: 'page-added-successfully'
+        action: 'page-added-successfully',
+        message: response.message
       });
-    }); 
+    });
   }
 }

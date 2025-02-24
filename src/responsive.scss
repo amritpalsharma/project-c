@@ -1,0 +1,88 @@
+
+@media (min-width: 992px) {
+    .works {
+    .player-list-image img, .player-list-images img {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 50% !important;
+        height: 100%;
+        object-fit: contain;
+        object-position: right;
+  }
+    }
+    .features {
+        position: relative;
+        .club-scouts, .accordion-banner {
+        position: absolute !important;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 48%;
+        height: 100% !important;
+        margin-right: 20px;
+        .club-offer {
+            position: relative;
+            height: 100%;
+        }
+    }
+}
+.accordion-banner .feature-players, .accordion-banner .club-offer {
+    max-width: 650px;
+    position: relative;
+    overflow: hidden;
+    height: 600px !important;
+    display: block;
+    margin: 0 auto !important;
+}
+.accordion-banner .club-offer .club-offers3 img {
+    object-position: left top;
+}
+
+.talent_page .banner-images {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    padding-top: 150px;
+    .row {
+        --bs-gutter-x: 1rem;
+    }
+    img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        position: unset !important;
+        object-position: top left;
+    }
+    .banner-image1, .banner-image2, .banner-image3, .banner-image4 {
+        width: 100%;
+    }
+    .banner-image1 {
+        height: 60%;
+        padding-bottom: 1rem;
+    }
+    .banner-image2 {
+        height: 40%;
+    }
+    .banner-image3 {
+        height: 30%;
+        padding-bottom: 1rem;
+    }
+    .banner-image4 {
+        height: 50%;
+    }
+}
+}
+
+
+@media (min-width: 1441px) {
+.home_galery {
+    img.img-fluid {
+      height: 200px !important;
+  }
+  }
+}

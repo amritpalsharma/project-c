@@ -185,7 +185,7 @@ sub.premium-month_title {
     padding-left: 35px;
     margin-bottom: 20px;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
     color: #fff;
     -webkit-user-select: none;
@@ -311,6 +311,7 @@ sub.premium-month_title {
 }
 
 
+
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
@@ -350,3 +351,17 @@ sub.premium-month_title {
         row-gap: 10px;
     }    
 }
+
+
+// .animate{
+//     animation: rotateMe 0.8s ease-in-out forwards;
+// }
+
+// @keyframes rotateMe {
+//     from{
+//         transform: rotateY(0);
+//     }
+//     to{
+//         transform: rotateY(360deg);
+//     }
+// }
