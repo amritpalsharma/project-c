@@ -1100,8 +1100,11 @@
   "tabSection": "Tab Section",
   "darkImages": "Dark Images",
   "createAccountDescription": "Enter your details below to get started.",
+<<<<<<< HEAD
   "activeMultiCountryPlan": " 2 active Multi-Country Plan",
   "youHaveActiveBoostPlan": "You have active boost plan",
+=======
+>>>>>>> 536226dc6ebf21208245d2b5d3c334df3178edbd
   "selectFavoriteFirst": "Select favorite user(s) first.",
   "removeFavoriteConfirm": "Are you sure to delete from favorites ?",
   "userPurchasesNotFound": "No purchases found.",
@@ -1153,4 +1156,4 @@
   "boostProfiles": "Boost Profile",
   "renews": "Renews on",
   "changeNewsletterStatus": "Are you sure you want to change newsletter status?"
-}
+  }

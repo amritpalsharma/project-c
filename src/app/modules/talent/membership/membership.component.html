@@ -32,6 +32,26 @@
                   <div *ngIf="premium.stripe_cancel_at != null">{{ 'renewSubscription' | translate }}</div>
                 </button>
 
+
+          <div class="col-lg-4" *ngIf="ispremium">
+            <div class="premium-card ">
+              <div class="d-flex align-items-end justify-content-between flex_wrap">
+                <h5>{{ 'premium' | translate }}</h5>
+                <h6> {{ premium.price}}<sub class="premium-month_title">{{premium.currency}}/{{ premium.interval ==
+                    'monthly' ? ('month' | translate) : ('year' | translate) }}</sub></h6>
+              </div>
+              <p *ngIf="premium.stripe_cancel_at == null">{{ 'renewsOn' | translate }} {{ premium.plan_period_end |
+                date: 'dd.MM.yyyy' }}</p>
+              <p *ngIf="premium.stripe_cancel_at != null">{{ 'expiresOn' | translate }} {{ premium.stripe_cancel_at |
+                date: 'dd.MM.yyyy' }}</p>
+              <div class="d-flex align-items-center justify-content-between mt-4 mob_wrap">
+                <a class="premium-edit_btn text-white" href="/talent/plans">{{'editPlan' | translate}}</a>
+                <button class="premium-subscription_btn" [disabled]="premium.stripe_cancel_at != null"
+                  (click)="confirmAndCancelSubscription(premium.id)">
+                  <div *ngIf="premium.stripe_cancel_at == null">{{ 'cancelSubscription' | translate }}</div>
+                  <div *ngIf="premium.stripe_cancel_at != null">{{ 'renewSubscription' | translate }}</div>
+                </button>
+
               </div>
               <div class="premium-card_football">
                 <svg width="226" height="185" viewBox="0 0 226 153" fill="none" xmlns="http://www.w3.org/2000/svg">
