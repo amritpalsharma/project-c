@@ -49,8 +49,7 @@
                 <h6> {{ demo.price}}<sub class="premium-month_title">{{demo.currency}}/{{ demo.interval == 'monthly' ?
                     ('month' | translate) : ('year' | translate) }}</sub></h6>
               </div>
-              <p *ngIf="demo.stripe_cancel_at == null">{{ '2_countries' | translate }} {{ demo.plan_period_end | date:
-                'dd.MM.yyyy' }}</p>
+              <p *ngIf="demo.stripe_cancel_at == null">{{ '2_countries' | translate }}</p>
               <p *ngIf="demo.stripe_cancel_at != null">{{ 'expiresOn' | translate }} {{ demo.stripe_cancel_at | date:
                 'dd.MM.yyyy' }}</p>
               <div class="d-flex align-items-center justify-content-between mt-4 mob_wrap">
@@ -78,7 +77,8 @@
                 <h6> {{ country[0].price }}<sub class="premium-month_title">{{country[0].currency}}/{{ country.interval
                     == 'monthly' ? ('month' | translate) : ('year' | translate) }}</sub></h6>
               </div>
-              <p>{{ country.length }} {{ 'countriesSelected' | translate }}</p>
+              <p>{{ 'renewsOn' | translate }} {{ premium.plan_period_end |
+                date: 'dd.MM.yyyy' }}</p>
               <div class="d-flex align-items-center justify-content-between mt-4 mob_wrap">
                 <a class="premium-edit_btn text-white" href="/talent/plans">{{ 'editPlan' | translate }}</a>
                 <button class="premium-subscription_btn" (click)="confirmCountryPlanCancellation(country)">
