@@ -7,6 +7,16 @@
 })
 export class SidebarComponent {
   sidebarOpen: boolean = false;
+  isNum:Number = 1;
+
+  ngOnInit(): void {
+    // Add any initialization logic if needed
+    if(this.isNum == 1 && window.innerWidth >= 992){
+      document.body.classList.remove('compact-sidebar');
+      document.body.classList.add('mobile-sidebar-active');
+      this.isNum = 0;
+    }
+  }
 
   toggleState() {
     this.sidebarOpen = !this.sidebarOpen;

@@ -13,7 +13,7 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit(): void {
     // Add any initialization logic if needed
-    if(this.isNum == 1){
+    if(this.isNum == 1 && window.innerWidth >= 992){
       document.body.classList.remove('compact-sidebar');
       document.body.classList.add('mobile-sidebar-active');
       this.isNum = 0;
@@ -22,6 +22,7 @@ export class SidebarComponent implements OnInit {
 
   toggleState(): void {
     this.sidebarOpen = !this.sidebarOpen; // Toggles the sidebar state
+    console.log("working");
   
     // Update body classes based on sidebar state
     if (this.sidebarOpen) {
@@ -33,15 +34,18 @@ export class SidebarComponent implements OnInit {
     }
   }
 
+
+
   closeSidebar(): void {
+    console.log("working close")
     this.sidebarOpen = false;
     document.body.classList.remove('mobile-sidebar-active');
     document.body.classList.add('compact-sidebar');
   }
 
-  openSidebar(): void {
-    this.sidebarOpen = true;
-    document.body.classList.remove('compact-sidebar');
-    document.body.classList.add('mobile-sidebar-active');
-  }
+  // openSidebar(): void {
+  //   this.sidebarOpen = true;
+  //   document.body.classList.remove('compact-sidebar');
+  //   document.body.classList.add('mobile-sidebar-active');
+  // }
 }
