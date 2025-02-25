@@ -76,6 +76,36 @@
         height: 50%;
     }
 }
+.sidebar {
+.page-sidebar {
+    border-radius: 20px;
+    background: linear-gradient(180deg, #236115, #6fb95d);
+    width: 210px;
+    margin: 20px 0 20px 20px;
+    position: fixed;
+    height: 95%;
+}
+}
+.compact-sidebar .page-sidebar {
+    width: 80px;
+    position: fixed;
+    box-shadow: none;
+    transition: all .4s;
+    height: calc(100% - 40px);
+    z-index: 2;
+}
+.compact-sidebar .page-sidebar:before {
+    position: fixed;
+    height: calc(100% - 40px);
+    width: 80px;
+    display: block;
+    content: "";
+    box-shadow: 0 0 1.25rem #1f2d3d0a;
+    z-index: -1;
+}
+.page-header .mobile-logo {
+    display: none;
+}
 }
 
 
@@ -85,4 +115,84 @@
       height: 200px !important;
   }
   }
+}
+
+
+@media (max-width: 991px) {
+.sidebar {
+    position: fixed;
+    z-index: 1000;
+    transition: all .5s ease;
+    top: 0;
+    bottom: 0;
+    left: -100%;
+    width: 0;
+    height: 100% !important;
+    display: block;
+    background: #F8F8F8;
+    .logo-box {
+        justify-content: flex-start;
+        padding: 0;
+    }
+    .sidebar-close {
+        top: 20px;
+        right: 20px;
+        cursor: pointer;
+        svg {
+            display: none;
+        }
+    }
+    
+.sidebar_menu {
+    position: relative;
+    top: 15px;
+    max-height: 100%;
+}
+.bottom_box .sidebar_menu {
+    max-height: unset;
+}
+}
+.page-header .mobile-logo img {
+    width: 40px;
+}
+.mobile-sidebar-active .sidebar{
+    left: 0;
+    width: 100%;
+}
+.compact-sidebar .page-sidebar .sidebar_menu a:hover {
+    width: 100%;
+}
+.compact-sidebar .page-container {
+    padding: 0 10px !important;
+}
+.compact-sidebar .page-header {
+    padding: 0 !important;
+}
+.page-header .sidebar-menu a.nav-link {
+    padding-left: 0;
+}
+.page-header .notification_dropdown, .page-header .country_dropdown, .page-header .theme_dropdown {
+    display: block;
+}
+.page-header .country_dropdown a img {
+    margin-right: 0 !important;
+}
+.page-header label.input-group.search-area {
+    display: none !important;
+}
+.page-header .light-theme {
+    min-width: 46px;
+}
+body.compact-sidebar.dark-theme .sidebar-menu svg path {
+    stroke: #fff;
+}
+.dark-theme .page-header .mobile-logo img {
+    filter: brightness(0) invert(1);
+}
+.footer_main.footer-responsive {
+    flex-direction: column;
+    .footer_main_inner {
+        padding: 0 !important;
+    }
+}
 }

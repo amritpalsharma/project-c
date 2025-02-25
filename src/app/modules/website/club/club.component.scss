@@ -901,6 +901,9 @@ button.btn.btn-danger {
 
 .accordion-flex img {
     margin-right: 10px;
+    height: 42px;
+    width: 42px;
+    min-width: 42px;
 }
 
 img.light-feature1,
@@ -5836,4 +5839,24 @@ span {
     }
 
 
+}
+
+
+
+
+
+@media (max-width: 575px) {
+  .club_text {
+    height: auto !important;
+    padding: 20px;
+}
+.accordion-flex img {
+    margin-right: 10px;
+    width: 30px !important;
+    height: 36px;
+    min-width: 30px !important;
+}
+.feature-text {
+    margin-left: 18px !important;
+}
 }

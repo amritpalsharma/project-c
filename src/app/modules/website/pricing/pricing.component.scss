@@ -687,3 +687,10 @@ li::before {
     }
 
 }
+
+
+@media (max-width: 991px) {
+ .feature-box {
+    height: auto !important;
+ }
+  }

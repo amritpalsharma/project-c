@@ -9,7 +9,7 @@ export class SidebarComponent {
   sidebarOpen: boolean = true;
   isNum : Number = 1;
   ngOnInit() {
-    if(this.isNum == 1){
+    if(this.isNum == 1 && window.innerWidth >= 992){
       document.body.classList.remove('compact-sidebar');
       document.body.classList.add('mobile-sidebar-active');
       this.isNum = 0;
