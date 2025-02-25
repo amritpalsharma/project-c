@@ -349,9 +349,15 @@ sub.premium-month_title {
     }
     .multi-country-select{
         row-gap: 10px;
-    }    
+    }   
 }
 
+
+@media (max-width:1199px) {
+.football-icon {
+    display: none;
+} 
+}
 
 // .animate{
 //     animation: rotateMe 0.8s ease-in-out forwards;
