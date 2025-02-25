@@ -519,17 +519,27 @@ legend.w-auto.px-2 {
   color: #4F7A9D !important;
   // padding: 5px;
 }
-.dark-theme .country_dropdown .dropdown-menu  {
+.dark-theme {
+  .country_dropdown .dropdown-menu  {
   background: #072944;
     color: #fff;
 }
-.dark-theme .country_dropdown .dropdown-menu a.dropdown-item span,
-.dark-theme .country_dropdown .dropdown-menu a.dropdown-item {
+.custom-select .dropdown-menu {
+  background: #072944;
+  color: #fff;
+}
+.country_dropdown .dropdown-menu a.dropdown-item span,
+.country_dropdown .dropdown-menu a.dropdown-item,
+.custom-select .dropdown-menu a.dropdown-item,
+.custom-select .dropdown-menu a.dropdown-item span{
   color: #fff !important;
 }
-.dark-theme .country_dropdown .dropdown-menu a.dropdown-item.selected span,
-.dark-theme .country_dropdown .dropdown-menu a.dropdown-item.selected {
+.country_dropdown .dropdown-menu a.dropdown-item.selected span,
+.country_dropdown .dropdown-menu a.dropdown-item.selected,
+.custom-select .dropdown-menu a.dropdown-item.selected span,
+.custom-select .dropdown-menu a.dropdown-item.selected {
   color: #072944 !important;
+}
 }
 
 .sidebar_menu a svg {
