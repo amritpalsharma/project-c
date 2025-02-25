@@ -51,7 +51,7 @@
   </div>
 
   <div class="row mt-3">
-    <div class="col-md-2 position-relative w-20 my-2" *ngFor="let image of userImages">
+    <div class="col-sm-4 col-lg-2 position-relative w-20 my-2" *ngFor="let image of userImages">
       <svg (click)="openMenu(image.id)" id="users-icon" class="me-1 edit-cover pointer" width="24" height="25"
         viewBox="0 0 24 25" fill="#787878" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -101,7 +101,7 @@
   </div>
 
   <div class="row mt-3">
-    <div class="col-md-2 position-relative w-20" *ngFor="let image of userVideos">
+    <div class="col-sm-4 col-lg-2 position-relative w-20" *ngFor="let image of userVideos">
       <svg (click)="openMenu(image.id)" id="users-icon" class="me-1 edit-cover pointer" width="24" height="25"
         viewBox="0 0 24 25" fill="#787878" xmlns="http://www.w3.org/2000/svg">
         <path

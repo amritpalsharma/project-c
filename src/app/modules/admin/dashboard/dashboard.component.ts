@@ -232,7 +232,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         }
       );
 
-    this.sharedservice.data$.subscribe((data) => {
+    this.sharedservice.data$.subscribe((data:any) => {
       if (data.action == 'lang_updated') {
         this.isLoading = true;
         this.lang_id = data.id;
@@ -863,23 +863,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   
   isValidProfileImage(imageUrl : string){
     return this.commonHelper.checkImageExists(imageUrl);
-  }
-  isValidImage(imageUrl : string){
-    if(imageUrl != ''){
-      let img = new Image();
-      img.onload = function() {
-          // Image loaded successfully, it's valid
-          console.log(imageUrl + " is valid.");
-          return imageUrl;  
-      };
-      img.onerror = function() {
-          // Image failed to load, it's invalid
-          return '../../../assets/images/1.jpg';
-      };
-      return imageUrl;  // Initiates the image loading
-    }else{
-      return '../../../assets/images/1.jpg';
-    }
   }
 }
 

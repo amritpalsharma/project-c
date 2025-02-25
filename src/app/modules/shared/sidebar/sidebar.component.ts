@@ -33,11 +33,20 @@
     }
   }
 
-  // closeSidebar() {
-  //   this.sidebarOpen = !this.sidebarOpen;
-  //   document.body.classList.remove('mobile-sidebar-active');
-  //   document.body.classList.add('compact-sidebar');
-  // }
+  closeSidebar(isMobile: any): void {
+    if (!isMobile) {
+      this.sidebarOpen = false;
+      document.body.classList.remove('mobile-sidebar-active');
+      document.body.classList.add('compact-sidebar');
+    }
+    else {
+      if (window.innerWidth < 992) {
+        this.sidebarOpen = false;
+        document.body.classList.remove('mobile-sidebar-active');
+        document.body.classList.add('compact-sidebar');
+      }
+    }
+  }
 
   role(role:any){
     if(role == 'Club') return "club";
