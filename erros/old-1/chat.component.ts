@@ -30,7 +30,7 @@ export class ChatComponent  {
         name: this.userData.first_name,
         email: this.userData.username,
         photoUrl: this.userData.profile_image_path,
-        welcomeMessage: null,
+        welcomeMessage: "Hi!",
         role: (this.userData.role == '1') ? "hidden" : "default"
       };
       const session = await this.talkService.init(this.user);
@@ -40,12 +40,6 @@ export class ChatComponent  {
       setTimeout(() => {
         chatbox.mount(document.getElementById('talkjs-container'));
       }, 0);
-    }
-
-    const theme = localStorage.getItem('theme');
-
-    if(theme == 'dark'){
-      this.talkService.toggleTheme(true);
     }
   }
   

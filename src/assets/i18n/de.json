@@ -1237,23 +1237,12 @@
     "profilePhoto": "Laden Sie Ihr bestes Porträtfoto hoch, um einen großartigen ersten Eindruck zu hinterlassen.",
     "removeFavorite": "Aus den Favoriten entfernen",
     "addFavorite": "Zu den Favoriten hinzufügen",
-    "downloadPdf":"Profil Pdf herunterladen",
-    "startConversation":"ein Gespräch beginnen"
+    "downloadPdf": "Profil Pdf herunterladen",
+    "startConversation": "ein Gespräch beginnen"
   },
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-  "changeNewsletterStatus":"Sind Sie sicher, dass Sie den Newsletter-Status ändern möchten?"
-}
-=======
->>>>>>> 8d30545608a2e96c3b0b07f79c8440faa7ba179e
   "uploadNewProfileImage": "Neues Profilbild hochladen",
   "editCoverImage": "Titelbild bearbeiten",
   "MyAccount": "Zum Dashboard gehen",
   "boostProfiles": "Profil verstärken",
   "changeNewsletterStatus": "Sind Sie sicher, dass Sie den Newsletter-Status ändern möchten?"
-  }
-<<<<<<< HEAD
-=======
->>>>>>> 3d2c8b71ce758eb419d45b4fddefaefcee3bee6b
->>>>>>> 8d30545608a2e96c3b0b07f79c8440faa7ba179e
+}

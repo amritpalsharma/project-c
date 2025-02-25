@@ -15,7 +15,16 @@
       </svg>
       X
     </a> -->
-      <a class="sidebar_state" (click)="toggleState()" [ngStyle]="{'cursor': sidebarOpen ? 'pointer' : 'default'}">
+    <a class="sidebar-close check" (click)="closeSidebar()">
+      <svg *ngIf="sidebarOpen" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <!-- Replace with the content of your previous arrow SVG -->
+        <path d="M15.5 19L8 12L15.5 5" stroke="#95A3B8" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round" />
+      </svg>
+      X
+    </a>
+      <a class="sidebar_state check" (click)="toggleState()" [ngStyle]="{'cursor': sidebarOpen ? 'pointer' : 'default'}">
         <svg *ngIf="!sidebarOpen" width="8" height="11" viewBox="0 0 8 11" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M1 1L6 5.5L1 10" stroke="#95A3B8" stroke-width="2" stroke-linecap="round" />
         </svg>
