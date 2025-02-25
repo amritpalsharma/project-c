@@ -160,10 +160,6 @@
     }
   }
   @media (max-width:1200px) and (min-width:769px) {
-    .user-info {
-      flex-direction: column !important;
-      row-gap: 10px;
-    }
     span.active_btn {
       margin: 0px 32px 0px 8px !important;
     }
@@ -787,34 +783,46 @@
   }
 }
 @media (max-width:1200px) and (min-width:769px) {
-  .user-info {
-    flex-direction: column !important;
-    row-gap: 10px;
-  }
+  .edit_button.responsive-edit_btn {
+    text-align: right;
+    padding-right: 10px;
+}
   span.active_btn {
     margin: 0px 32px 0px 8px !important;
   }
 }
 @media (max-width:1024px) {
-  .elton-box{
-    flex-direction: column;
-  }
-  .elton-box .col-lg-6{
-    width: 100%;
-  }
+  
   .boost_profile {
     margin-right: 16px;
 }
 
 }
-@media (max-width: 600px) {
-  .team-logos .col-lg-3,.team-logos .col-lg-9{
-    width: fit-content;
-    gap: 20px;
-  }
+
+
+.elton-box.dashboard-icons .team-badge_image {
+  padding: 0 5px 0 0;
+  width: 40px !important;
+}
+.elton-box.dashboard-icons .team-badge_content {
+  padding: 0 0 0 5px;
+  width: calc(100% - 40px) !important;
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+.main-wrapper .card_box-1, .main-wrapper .card_box--2 {
+  width: 100%;
+}
+}
+
+
+@media (max-width: 575px) {
   .team-logos{
     border-bottom: 1px solid #E5E5E5;
     padding-bottom: 20px;
+  }
+  .elton-box{
+    flex-direction: column;
   }
 }
 @media(max-width: 425px){

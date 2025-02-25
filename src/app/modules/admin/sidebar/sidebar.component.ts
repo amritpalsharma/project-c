@@ -29,9 +29,18 @@ export class SidebarComponent {
     console.log(this.isNum)
   }
 
-  closeSidebar() {
-    this.sidebarOpen = false;
-    document.body.classList.remove('mobile-sidebar-active');
-    document.body.classList.add('compact-sidebar');
+  closeSidebar(isMobile: any): void {
+    if (!isMobile) {
+      this.sidebarOpen = false;
+      document.body.classList.remove('mobile-sidebar-active');
+      document.body.classList.add('compact-sidebar');
+    }
+    else {
+      if (window.innerWidth < 992) {
+        this.sidebarOpen = false;
+        document.body.classList.remove('mobile-sidebar-active');
+        document.body.classList.add('compact-sidebar');
+      }
+    }
   }
 }

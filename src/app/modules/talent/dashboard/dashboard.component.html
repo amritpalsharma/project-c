@@ -3,7 +3,7 @@
     <div class="card pb-0">
       <div class="card-body py-0">
         <div class="row">
-          <div class="col-lg-3 border-end p-0 card_box-1">
+          <div class="col-lg-3 border-end p-lg-0 card_box-1">
 
             <div class="user-details-left col-lg-12">
 
@@ -96,22 +96,22 @@
                     <!-- <small>{{user.role_name}}</small> -->
                   </div>
                   <div class="row elton-box dashboard-icons">
-                    <div class="col-lg-6">
+                    <div class="col-sm-6">
                       <div class="row align-items-center team-logos">
-                        <div class="team-badge_image col-lg-3">
+                        <div class="team-badge_image col-sm-3">
                           <img *ngIf="!user.pre_current_club_logo_path"
                             src="../../../../assets/images/default/Club-logo-default.png" class="fc-club-img" alt="">
 
                           <img *ngIf="user.pre_current_club_logo_path" src="{{user.pre_current_club_logo_path}}"
                             class="fc-club-img" alt="">
                         </div>
-                        <div class="team-badge_content col-lg-9 p-0">
+                        <div class="team-badge_content col-sm-9 p-0">
                           <h6 class="title_2 mb-1">{{ 'currentClub' | translate}}</h6>
                           <h5 class="title-1">{{user?.pre_current_club_name |translate }} </h5>
                         </div>
                       </div>
                     </div>
-                    <div class="col-lg-6 team-logos">
+                    <div class="col-sm-6 team-logos">
                       <h6 class="title_2 mb-1">{{ 'nationality' | translate }}</h6>
                       <div class="d-flex align-items-center gap-2 mb-1 " *ngFor="let nation of userNationalities">
                         <div class="team-badge_image">
@@ -121,9 +121,9 @@
                         <h5 class="title-1">{{nation.country_name | translate }} </h5>
                       </div>
                     </div>
-                    <div class="col-lg-6 team-logos">
+                    <div class="col-sm-6 team-logos">
                       <div class="row align-items-center">
-                        <div class="col-lg-3 team-badge_image">
+                        <div class="col-sm-3 team-badge_image">
                           <svg width="100%" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path class=" blue-bg"
                               d="M5 27.5C4.64583 27.5 4.34917 27.38 4.11 27.14C3.87083 26.9 3.75083 26.6033 3.75 26.25V21.25C3.75 20.5625 3.995 19.9742 4.485 19.485C4.975 18.9958 5.56333 18.7508 6.25 18.75H23.75C24.4375 18.75 25.0263 18.995 25.5163 19.485C26.0063 19.975 26.2508 20.5633 26.25 21.25V26.25C26.25 26.6042 26.13 26.9012 25.89 27.1412C25.65 27.3812 25.3533 27.5008 25 27.5H5ZM6.25 16.25V12.5C6.25 11.8125 6.495 11.2242 6.985 10.735C7.475 10.2458 8.06333 10.0008 8.75 10H13.75V8.1875C13.375 7.9375 13.0729 7.63542 12.8438 7.28125C12.6146 6.92708 12.5 6.5 12.5 6C12.5 5.6875 12.5625 5.38 12.6875 5.0775C12.8125 4.775 13 4.49917 13.25 4.25L15 2.5L16.75 4.25C17 4.5 17.1875 4.77583 17.3125 5.0775C17.4375 5.37917 17.5 5.68667 17.5 6C17.5 6.5 17.3854 6.92708 17.1562 7.28125C16.9271 7.63542 16.625 7.9375 16.25 8.1875V10H21.25C21.9375 10 22.5263 10.2446 23.0163 10.7337C23.5063 11.2229 23.7508 11.8117 23.75 12.5V16.25H6.25Z"
@@ -133,27 +133,27 @@
                               fill="#6FB95D" />
                           </svg>
                         </div>
-                        <div class="col-lg-9 p-0 team-badge_content">
+                        <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'dateOfBirth' | translate}}</h6>
                           <h5 class="title-1">{{user?.meta?.date_of_birth | date:'dd.MM.yyyy' }}</h5>
                         </div>
                       </div>
                     </div>
-                    <div class="col-lg-6 team-logos">
+                    <div class="col-sm-6 team-logos">
                       <div class="row align-items-center">
-                        <div class="col-lg-3 team-badge_image">
+                        <div class="col-sm-3 team-badge_image">
                           <img [src]="countryFlagUrl" alt="" />
                         </div>
 
-                        <div class=" col-lg-9 p-0 team-badge_content">
+                        <div class=" col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2"> {{"placeOfBirth" | translate }}</h6>
                           <h5 class="title-1">{{user?.meta?.place_of_birth }}</h5>
                         </div>
                       </div>
                     </div>
-                    <div class="col-lg-6 team-logos">
+                    <div class="col-sm-6 team-logos">
                       <div class="row align-items-center">
-                        <div class="col-lg-3 team-badge_image">
+                        <div class="col-sm-3 team-badge_image">
                           <svg width="100%" height="36px" viewBox="0 0 16 32" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path class="green-bg"
@@ -171,7 +171,7 @@
                             </defs>
                           </svg>
                         </div>
-                        <div class="col-lg-9 p-0 team-badge_content">
+                        <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'height' | translate }}</h6>
                           <h5 *ngIf="user.meta && user.meta.height" class="title-1">{{user.meta.height}}
                             {{user.meta.height_unit}}</h5>
@@ -180,9 +180,9 @@
                       </div>
                     </div>
 
-                    <div class="col-lg-6 team-logos">
+                    <div class="col-sm-6 team-logos">
                       <div class="row align-items-center">
-                        <div class="col-lg-3 team-badge_image">
+                        <div class="col-sm-3 team-badge_image">
                           <svg width="26" height="26" viewBox="0 0 26 26" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path class="blue-bg"
@@ -193,7 +193,7 @@
                               fill="#6FB95D" />
                           </svg>
                         </div>
-                        <div class="col-lg-9 p-0 team-badge_content">
+                        <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'weight' | translate }}</h6>
                           <h5 *ngIf="user.meta && user.meta.weight" class="title-1">{{user.meta.weight}}
                             {{user.meta.weight_unit}}</h5>
@@ -201,9 +201,9 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-lg-6 team-logos ">
+                    <div class="col-sm-6 team-logos ">
                       <div class="row align-items-center">
-                        <div class="col-lg-3 team-badge_image">
+                        <div class="col-sm-3 team-badge_image">
                           <svg width="100%" height="36px" viewBox="0 0 28 26" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_2958_4755786)">
@@ -227,7 +227,7 @@
                           </svg>
 
                         </div>
-                        <div class="col-lg-9 p-0 team-badge_content">
+                        <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'contract' | translate}}</h6>
                           <h5 class="title-1" *ngIf="user?.meta?.contract_start">{{user?.meta?.contract_start | date:'y'
                             }} - {{user?.meta?.contract_end | date:'y' }}</h5>
@@ -235,9 +235,9 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-lg-6 team-logos">
+                    <div class="col-sm-6 team-logos">
                       <div class="row align-items-center">
-                        <div class="col-lg-3 team-badge_image">
+                        <div class="col-sm-3 team-badge_image">
 
                           <svg width="100%" height="36px" viewBox="0 0 32 25" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
@@ -254,7 +254,7 @@
                           </svg>
 
                         </div>
-                        <div class="col-lg-9 p-0 team-badge_content">
+                        <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'leagueLevel' | translate}}</h6>
                           <h5 class="title-1" *ngIf="user?.meta?.league_level">{{user?.meta?.league_level}}</h5>
                           <h5 class="title-1" *ngIf="!user?.meta?.league_level">NA</h5>
@@ -262,9 +262,9 @@
                       </div>
                     </div>
 
-                    <div class="col-lg-6 team-logos">
+                    <div class="col-sm-6 team-logos">
                       <div class="row align-items-center">
-                        <div class="col-lg-3 team-badge_image">
+                        <div class="col-sm-3 team-badge_image">
                           <svg *ngIf="user?.meta?.foot=='Right'" width="100%" height="36px" viewBox="0 0 30 31"
                             fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_2961_4755793)">
@@ -328,15 +328,15 @@
 
 
                         </div>
-                        <div class="col-lg-9 p-0  team-badge_content">
+                        <div class="col-sm-9 p-0  team-badge_content">
                           <h6 class="title_2">{{ 'foot' | translate}}</h6>
                           <h5 class="title-1">{{user?.meta?.foot}}</h5>
                         </div>
                       </div>
                     </div>
-                    <div class="col-lg-6 team-logos">
+                    <div class="col-sm-6 team-logos">
                       <div class="row align-items-center">
-                        <div class="col-lg-3 team-badge_image">
+                        <div class="col-sm-3 team-badge_image">
                           <svg width="100%" height="36px" viewBox="0 0 27 27" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_2961_4755811)">
@@ -360,7 +360,7 @@
                             </defs>
                           </svg>
                         </div>
-                        <div class="col-lg-9 p-0 team-badge_content">
+                        <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'age' | translate}}</h6>
                           <h5 class="title-1">{{calculateAge(user?.meta?.date_of_birth)}}</h5>
                         </div>
@@ -465,7 +465,7 @@
             </div>
 
           </div>
-          <div class="col-lg-9">
+          <div class="col-lg-9 card_box--2">
             <div class="players_image d-flex align-items-center justify-content-center">
               <img [src]="coverImage" *ngIf="coverImage" alt="Cover Image" />
               <svg *ngIf="!coverImage" width="54" height="54" viewBox="0 0 54 54" fill="none"
@@ -568,7 +568,7 @@
                 </li>
               </ul>
             </div>
-            <div class="general_details mt-4 p-4 bg-color ">
+            <div class="general_details mt-4 p-4 bg-color justify_mobile">
               <talent-profile-tab *ngIf="activeTab == 'profile'" [userData]="user"
                 [isPremium]="isPremium"></talent-profile-tab>
               <talent-performance-tab *ngIf="activeTab == 'performance'"

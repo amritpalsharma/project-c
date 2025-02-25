@@ -2397,10 +2397,6 @@ a {
     padding: 0px 10px !important;
   }
 
-  .main-wrapper {
-    top: 75px;
-  }
-
   .page-content {
     padding: 0px 10px;
   }
@@ -2425,7 +2421,7 @@ a {
     flex: auto;
     min-width: 0;
     width: 180px;
-    height: 100px;
+    // height: 100px;
     position: relative;
     box-sizing: border-box;
   }
