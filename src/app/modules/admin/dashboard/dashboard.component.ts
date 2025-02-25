@@ -101,11 +101,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     private userService: UserService,
     private talentService: TalentService,
     private socketService: SocketService,
-<<<<<<< HEAD
-    private commonHelper: CommonHelperService
-=======
+    private commonHelper: CommonHelperService,
     private sharedservice: SharedService
->>>>>>> f27a5a958fe2ca6702b548acaf8d7f18cc95046a
   ) {
 
   }
