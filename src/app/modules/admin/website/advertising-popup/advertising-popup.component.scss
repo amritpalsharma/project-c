@@ -190,11 +190,16 @@ width: 350px !important;
     border-radius: 10px !important;
   }
   .cupen-btn-1{
-    width: 100%;
+    width: 100% !important;
   }
   .btn{
     font-size: 14px;
     padding-right: 2rem !important;
     padding-left: 2rem !important;
   }
+}
+
+
+.adv_modal .calender-inputs-box mat-datepicker-toggle {
+  top: -23px;
 }

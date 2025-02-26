@@ -785,7 +785,7 @@
 @media (max-width:1200px) and (min-width:769px) {
   .edit_button.responsive-edit_btn {
     text-align: right;
-    padding-right: 10px;
+    padding-right: 10px !important;
 }
   span.active_btn {
     margin: 0px 32px 0px 8px !important;
@@ -1241,12 +1241,7 @@ span.active_btn {
   font-size: 11px;
   font-weight: 400 !important;
 }
-@media(max-width:1024px){
-  .player-name-box{
-    padding: 0 !important;
-  }
-  
-}
+
 @media (max-width:1200px) {
   .user-info h6 {
     font-size: 18px;

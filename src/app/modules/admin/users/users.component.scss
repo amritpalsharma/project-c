@@ -30,14 +30,6 @@ button.btn.btn-secondary:hover {
     font-size: 10px;
   }
 
-  .checkbox-button-user{
-
-      font-size: 12px;
-      font-weight: 700;
-      border-radius: 4px;
-      padding: 4px;
-
-  }
   .form-check .form-check-input {
       float: left;
       margin-top: 6px;
@@ -65,16 +57,8 @@ button.btn.btn-secondary:hover {
     height: 12px;
     width: 12px;
   }
-  .filter-icon span{
-   font-size: 10px
-  }
   .form-control {
-    font-size: 9px;
     font-weight: 400;
-}
-
-h2{
-  font-size: 12px;
 }
 
 .verified-icon{
@@ -145,6 +129,7 @@ h2{
     }
     .form-check {
       padding-left: 0;
+      padding-right: 5px;
 
     }
     .paging-data{
@@ -165,19 +150,8 @@ h2{
       height: 12px;
       width: 12px;
     }
-    .filter-icon span{
-     font-size: 10px
-    }
     .form-control {
-      font-size: 9px;
       font-weight: 400;
-    }
-    h2{
-      font-size: 12px;
-    }
-
-    .table th {
-      font-size: 10px ;
     }
 
     .verified-icon{
@@ -201,7 +175,6 @@ h2{
 
     .table td, .table td span {
       color: #111418;
-      font-size: 10px !important;
       font-weight: 400 !important;
     }
     .table_img {

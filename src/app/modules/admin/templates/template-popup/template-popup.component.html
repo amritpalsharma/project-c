@@ -1,15 +1,15 @@
 
-<div class="p-0 parent-popup">
+<div class="p-0 parent-popup mobile_popup_responsive">
   <div class="p-3 bg-0C3453">
     
-    <h4 class="text-center mb-3 title-text">{{ 'emailTemplate' | translate }}</h4>
+    <h4 class="text-center mb-md-3 title-text">{{ 'emailTemplate' | translate }}</h4>
   
     <div class="close-img" (click)="close()">
     </div>
   </div>
   <hr class="m-0">
 
-  <div class="d-flex">
+  <div class="d-flex mobile_wrap_fields">
     <div>
     <div class="d-flex align-items-baseline py-2 bg-0C3453 px-3 template-name-input">
       <h4 class="text-size" style="margin-right: 5px;">{{ 'name' | translate }}:</h4>
@@ -28,11 +28,13 @@
   </div>
     
   </div>
+  <div class="mobile_wrap_fields">
   <div class="d-flex align-items-baseline py-2 bg-0C3453 px-3 template-name-input">
     <h4 class="text-size" style="margin-right: 5px;">{{ 'subject' | translate }}:</h4>
     <input type="text" class="template-name-inputField add_custom_width" [(ngModel)]="subject" >
   </div>
   <div *ngIf="errorMsg.subject" class="error-msg" style="padding-left:60px;">{{errorMsg.subject}}</div>
+</div>
 
   
   <hr class="m-0">
@@ -78,7 +80,7 @@
     </div>
   </div> -->
 
-  <div class="d-flex  main-popup-div py-2 px-3 bg-0C3453">
+  <div class="d-flex main-popup-div py-2 px-3 bg-0C3453 mobile_wrap_fields">
     <div class="d-flex align-items-baseline ">
       <h4 class="text-size fw-bold">{{ 'for' | translate }}:</h4>
       <!-- <div class="btn-group">
@@ -145,7 +147,7 @@
         <div *ngIf="errorMsg.content" class="error-msg" style="padding-left:20px;">{{errorMsg.content}}</div>
       </div>
 
-      <div>
+      <div class="popup_buttons_mobile">
         <div class=" d-flex justify-content-around bg-0C3453 p-3">
 
          <div>
