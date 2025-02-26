@@ -25,7 +25,9 @@ export class EditPlanComponent implements OnInit {
   isYearly = false; // Subscription type
   defaultCard: any = null; // Variable to hold the default card
   selectedCountryIds: string[] = [];
-// selectedCountries: any[] = []; // Stores full country objects
+  activePlans: any[] = [];
+  allPlans: any[] = [];
+  // selectedCountries: any[] = []; // Stores full country objects
 
 
   @Output() buys: EventEmitter<any> = new EventEmitter();
@@ -44,11 +46,13 @@ export class EditPlanComponent implements OnInit {
   async ngOnInit() {
     // If this.data.plans is an array, assign it directly
     this.selectedPlan = this.data.selectedPlan;
+    this.activePlans = this.data.activePlans;
+    this.allPlans = this.data.allPlans.filter((plan: any) => plan.interval === 'monthly');
     this.populateCountries();
     this.defaultCard = this.data.defaultCard;
     this.selectedCountries = this.data.country;
     this.stripe = await this.stripeService.getStripe();
-    console.log(this.data)
+    console.log("data here", this.data)
 
   }
 
@@ -220,6 +224,12 @@ export class EditPlanComponent implements OnInit {
     );
   }
 
+  deletePlan(id: any) {
+    console.log("check", id);
+    this.activePlans = this.activePlans.filter(plan => plan.id !== id);
+    console.log(this.activePlans);
+  }
+
   confirmAndCancelSubscription(subscriptionId: string, canceled = false): void {
     if (canceled) {
       this.toastr.warning('Subscription is already canceled.', 'Warning');
@@ -302,23 +312,43 @@ export class EditPlanComponent implements OnInit {
   //   // console.log(this.selectedCountries);
   // }
 
+  alreadySelected : boolean = false;
+
   onCountrySelect(event: any) {
     console.log(event.value);
-    this.selectedCountryIds = event.value; // Update selected IDs
-  
+    // this.selectedPlan = event.value; // Update selected IDs
+    this.selectedCountryIds = event.value;
+
+    this.selectedPlan = this.countries.find(country => country.id === this.selectedCountryIds);
+
     // Find and store the selected country objects
-    this.selectedCountries = this.countries.filter(country => this.selectedCountryIds.includes(country.id));
-  
-    console.log('Selected Countries:', this.selectedCountries);
-    console.log('Selected Locations:', this.selectedCountries.map(country => country.monthly.location));
+    // this.selectedCountries = this.allPlans.filter(country => this.selectedCountryIds.includes(country.id));
+
+    // const selectedCountry = this.selectedCountries[0];
+
+    // console.log('Selected Countries:', this.selectedCountries);
+    // console.log('Selected Locations:', selectedCountry);
+
+    // if (selectedCountry) {
+    //   console.log('Selected Country:', selectedCountry);
+    //   if(this.alreadySelected){
+    //     this.activePlans = this.activePlans.slice(1);
+    //   }
+    //   this.activePlans.unshift(selectedCountry);
+    //   this.alreadySelected = true;
+    // }
+
+    // console.log(this.activePlans)
+
+
   }
-  
+
   // Function to return custom selected display text (showing locations)
   getSelectedDisplayText(): any {
     console.log(this.selectedCountries);
     return this.selectedCountries.map(country => country.monthly.location).join(', ');
   }
-  
+
 
   removeCountry(country: any) {
     this.selectedCountries = this.selectedCountries.filter(c => c.id !== country.id);
