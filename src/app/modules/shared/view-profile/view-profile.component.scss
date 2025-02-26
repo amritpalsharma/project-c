@@ -168,12 +168,6 @@
     }
   }
   @media (max-width:1024px) {
-    .elton-box{
-      flex-direction: column;
-    }
-    .elton-box .col-lg-6{
-      width: 100%;
-    }
     .boost_profile {
       margin-right: 16px;
   }
@@ -762,12 +756,7 @@
     }
   }
   @media (max-width:1024px) {
-    .elton-box{
-      flex-direction: column;
-    }
-    .elton-box .col-lg-6{
-      width: 100%;
-    }
+
     .boost_profile {
       margin-right: 16px;
   }
@@ -1225,4 +1214,29 @@
 .players_image {
   background: #B6B6B6;
   border-radius: 10px;
+}
+
+.elton-box.dashboard-icons .team-badge_image {
+  padding: 0 5px 0 0 !important;
+  width: 40px !important;
+}
+.elton-box.dashboard-icons .team-badge_content {
+  padding: 0 0 0 5px !important;
+  width: calc(100% - 40px) !important;
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+.main-wrapper .card_box-1, .main-wrapper .card_box--2 {
+  width: 100%;
+}
+}
+
+@media (max-width: 575px) {
+  .team-logos{
+    border-bottom: 1px solid #E5E5E5;
+    padding-bottom: 20px;
+  }
+  .elton-box{
+    flex-direction: column;
+  }
 }

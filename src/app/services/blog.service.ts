@@ -9,14 +9,15 @@ import { environment } from '../../environments/environment';
 })
 export class BlogService {
     private apiUrl;
+    // private currentLang;
     constructor(private http: HttpClient) {
-        this.apiUrl = environment?.apiUrl;
-    
+        this.apiUrl = environment?.apiUrl;    
+        // this.currentLang = localStorage.getItem('lang_id');    
     }
     getBlogs(params:any): Observable<{ status: boolean, message: string, data: any }> {
-        let $currentLang = localStorage.getItem('lang_id');
+        let currentLang = localStorage.getItem('lang_id');
         return this.http.get<{ status: boolean, message: string, data: any }>(
-            `${this.apiUrl}admin/get-blogs/${$currentLang}`, {params}
+            `${this.apiUrl}admin/get-blogs/${currentLang}`, {params}
           );
     }
     getBlogBySlug(slug:any){
@@ -30,11 +31,13 @@ export class BlogService {
           );
     }
     addBlog(record: any): Observable<any> {
-        return this.http.post<any>(`${this.apiUrl}admin/add-blog`, record);
+        let currentLang = localStorage.getItem('lang_id');
+        return this.http.post<any>(`${this.apiUrl}admin/add-blog/${currentLang}`, record);
     }
     // Method to update an existing record
     updateBlog(id: number, record: any): Observable<any> {
-        return this.http.post<any>(`${this.apiUrl}admin/edit-blog/${id}`, record);
+        let currentLang = localStorage.getItem('lang_id');
+        return this.http.post<any>(`${this.apiUrl}admin/edit-blog/${id}/${currentLang}`, record);
     }
 
     // Method to delete a record by IDs

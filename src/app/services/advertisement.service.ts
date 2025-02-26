@@ -21,11 +21,13 @@ export class AdvertisementService {
     }
 
     createAd(record: any): Observable<any> {
-        return this.http.post<any>(`${this.apiUrl}admin/add-advertisement`, record);
+        let currentLang = localStorage.getItem('lang_id');
+        return this.http.post<any>(`${this.apiUrl}admin/add-advertisement/${currentLang}`, record);
     }
     // Method to update an existing record
     updateAd(id: any, record: any): Observable<any> {
-        return this.http.post<any>(`${this.apiUrl}admin/edit-advertisement/${id}`, record);
+        let currentLang = localStorage.getItem('lang_id');
+        return this.http.post<any>(`${this.apiUrl}admin/edit-advertisement/${id}/${currentLang}`, record);
     }
 
     // Method to delete a record by IDs

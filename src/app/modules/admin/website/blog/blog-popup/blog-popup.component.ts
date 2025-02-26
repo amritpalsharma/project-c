@@ -5,6 +5,8 @@ import {
 import { Editor, Toolbar } from 'ngx-editor';
 import { environment } from '../../../../../../environments/environment';
 import { BlogService } from '../../../../../services/blog.service';
+import { WebPages } from '../../../../../services/webpages.service';
+
 // import { TemplateService } from '../../../../../services/template.service';
 
 @Component({
@@ -16,6 +18,7 @@ export class BlogPopupComponent  implements OnInit, OnDestroy  {
   // id = 0;
   editor!: Editor;
   title:string = "";
+  status : string = "";
   selectedRole:any = 0;
   selectedLang:any = 1;
   selectedLocation:any = 1;
@@ -43,10 +46,11 @@ export class BlogPopupComponent  implements OnInit, OnDestroy  {
   slug: string = "";
   meta_description: string = "";
   meta_title: string = "";
-
+  
 
   constructor(    
     public dialogRef: MatDialogRef<BlogPopupComponent>, private blogApi: BlogService,
+    private webpages:WebPages,
     @Inject(MAT_DIALOG_DATA) public blog: any
   ) {
     if(blog){
@@ -56,7 +60,8 @@ export class BlogPopupComponent  implements OnInit, OnDestroy  {
     let envRoles:any = environment.roles;
     
     this.roles = envRoles;
-    this.langs = environment.langs;
+    // this.langs = environment.langs;
+    this.langs = this.getAllLanguages();
     this.locations = environment.domains;
   }
 
@@ -86,6 +91,23 @@ export class BlogPopupComponent  implements OnInit, OnDestroy  {
       let FileToUpload = input.files[0];
       this.featured_image = FileToUpload;
     }
+  }
+
+  getAllLanguages(){
+    this.webpages.getAllLanguage().subscribe((response) => {
+      if(response.status){
+        let languages = response.data.languages;
+
+        this.langs = languages
+        .map((value: any) => {
+          return {
+            id: value.id,
+            language: value.language,
+            slug: value.slug
+          }
+        });
+      }
+    });
   }
 
   validateForm(){
@@ -131,14 +153,15 @@ export class BlogPopupComponent  implements OnInit, OnDestroy  {
       if (response && response.status && response.data && response.data.blog) {
         
         this.blog = response.data.blog;
-        // console.log(this.template)
         this.blogIdToEdit = this.blog.id;
         this.title = this.blog.title;
         this.content = this.blog.content;
-        this.selectedLang = Number(this.blog.lang_id);
+        // this.selectedLang = Number(this.blog.lang_id);
+        this.selectedLang = this.blog.lang_id;
         this.meta_title = this.blog.meta_title;
         this.meta_description = this.blog.meta_description;
         this.slug = this.blog.slug;
+        this.status = this.blog.status;        
         this.isLoading = false;
       } else {
         this.blog = [];
@@ -153,7 +176,6 @@ export class BlogPopupComponent  implements OnInit, OnDestroy  {
   }
 
   createBlog():any{
-
     let validForm:any = this.validateForm();
     if(validForm){
       return false;
@@ -172,13 +194,25 @@ export class BlogPopupComponent  implements OnInit, OnDestroy  {
     this.blogApi.addBlog(params).subscribe((response)=>{
       if (response && response.status) {
         this.dialogRef.close({
-          action: 'blogAdded'
+          action: 'blogAdded',
+          message: response.message
         });
       } else {
         // this.isLoading = false;
         console.error('Invalid API response structure:', response);
+        this.errorMsg = response.errors; // Assign API errors to the errorMsg object
       }
-    });         
+    },
+    (error) => {
+      if (error && error.errors) {
+          this.errorMsg = error.errors; // Assign API errors to the errorMsg object
+      } else {
+          console.error('Unexpected error response:', error);
+          this.errorMsg.general = "Something went wrong. Please try again.";
+      }
+  }
+  
+  );         
   }
 
   updateBlog():any{
@@ -196,12 +230,14 @@ export class BlogPopupComponent  implements OnInit, OnDestroy  {
     params.slug = this.slug;
     params.meta_title = this.meta_title;
     params.meta_description = this.meta_description;
-    params.status  = 1; // 1 for active, 2 for inactive    
+    // params.status  = 1; // 1 for active, 2 for inactive    
+    params.status  = this.status;
     
     this.blogApi.updateBlog(this.blogIdToEdit, params).subscribe((response)=>{
       if (response && response.status) {
         this.dialogRef.close({
-          action: 'templateUpdated'
+          action: 'templateUpdated',
+          message: response.message
         });
       } else {
         // this.isLoading = false;

@@ -232,7 +232,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         }
       );
 
-    this.sharedservice.data$.subscribe((data) => {
+    this.sharedservice.data$.subscribe((data:any) => {
       if (data.action == 'lang_updated') {
         this.isLoading = true;
         this.lang_id = data.id;
@@ -863,12 +863,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   
   isValidProfileImage(imageUrl : string){
     return this.commonHelper.checkImageExists(imageUrl);
-  }
-
-  async processImages(url : string) {
-    const validImageUrl = await this.commonHelper.checkAndReturnImage(url, '');
-    return validImageUrl;
-    // console.log(`Image URL: ${url} is valid: ${validImageUrl === url ? 'Yes' : 'No'}`);
   }
 }
 

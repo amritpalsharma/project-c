@@ -230,7 +230,8 @@ export class AdvertisingPopupComponent   {
       response => {
         if(response.status){
           this.dialogRef.close({
-            action: 'added'
+            action: 'added',
+            message: response.message
           });
         }else if(response.data?.error){
           this.errorMsg = response.data.error
@@ -273,7 +274,8 @@ export class AdvertisingPopupComponent   {
       response => {
         if(response.status){
           this.dialogRef.close({
-            action: 'updated'
+            action: 'updated',
+            message: response.message
           });
         }else{
           this.errorMsg = response.data.error

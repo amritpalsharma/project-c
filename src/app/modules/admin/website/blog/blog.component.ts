@@ -47,10 +47,10 @@ export class BlogComponent {
             this.isLoading = true;
             this.lang_id = data.id;
             this.getBlogs();
+            this.getAllLanguages();
         }
     });
 
-    this.getAllLanguages();
   }
 
 
@@ -258,12 +258,10 @@ export class BlogComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result !== undefined) {
-        if(result.action == "blogAdded"){
-         // this.showMessage('Blog created successfully!');
+        if(result && result.action == "templateUpdated"){
+          this.showMatDialog(result.message, 'display');
           this.getBlogs();
         }
-      }
     });
   }
 

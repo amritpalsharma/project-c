@@ -106,6 +106,18 @@
 
       </div>
     </div>
+
+    <!-- Status Selection -->
+    <div class="d-flex align-items-baseline">
+      <h4 class="text-size fw-bold">{{ 'status' | translate }}:</h4>
+      <div class="btn-group">
+        <mat-select [(ngModel)]="status" class="mat-select-div">
+          <mat-option [value]="'published'">{{ 'publish' | translate }}</mat-option>
+          <mat-option [value]="'draft'">{{ 'draft' | translate }}</mat-option>
+        </mat-select>
+      </div>
+    </div>
+    
     <div class="d-flex align-items-baseline">
       <h4 class="text-size fw-bold">{{ 'featuredImage' | translate }}: </h4>
       <div class="btn-group">

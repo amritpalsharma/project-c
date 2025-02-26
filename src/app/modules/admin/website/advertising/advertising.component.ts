@@ -146,7 +146,7 @@ export class AdvertisingComponent {
     updateAdDialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
         if(result.action == "updated"){
-          this.showMatDialog('Advertisement updated successfully!', 'display');
+          this.showMatDialog(result.message, 'display');
           this.getAdvertisements();
         }
       //  console.log('Dialog result:', result);
@@ -168,7 +168,7 @@ export class AdvertisingComponent {
     createAdDialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
         if(result.action == "added"){
-          this.showMatDialog('Advertisement created successfully!', 'display');
+          this.showMatDialog(result.message, 'display');
           this.getAdvertisements();
         }
       //  console.log('Dialog result:', result);
