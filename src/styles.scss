@@ -17,7 +17,7 @@ img.admin-logo {
   height: 40px;
 }
 
-.next_btn{
+.next_btn {
   font-weight: 700;
   border-radius: 10px;
   padding: 8px 24px;
@@ -25,10 +25,12 @@ img.admin-logo {
   background: #e05263;
   color: white;
 }
-.light-theme .next_btn{
+
+.light-theme .next_btn {
   background: #e05263;
   color: white;
 }
+
 .light-theme .next_btn:hover {
   background: linear-gradient(to bottom right, #6fb95d, #236115);
   color: white;
@@ -175,25 +177,33 @@ button.btn.btn-secondary.dropdown-toggle {
   transition: all 0.4s;
 }
 
- mat-datepicker-toggle {
+mat-datepicker-toggle {
   position: absolute;
   left: 0;
   top: 0px;
   margin-left: 0 !important;
 }
+
 .d-flex.align-items-center.justify-content-center.dob1 {
   position: relative;
 }
-input#dateOfBirth, input#contractStart, input#contractEnd {
+
+input#dateOfBirth,
+input#contractStart,
+input#contractEnd {
   padding-left: 4rem;
 }
+
 .custom-datepicker .mat-datepicker-content {
-  transform: translateX(-100%) !important; /* Moves the datepicker to the left */
+  transform: translateX(-100%) !important;
+  /* Moves the datepicker to the left */
 }
 
 .custom-datepicker .mat-calendar {
-  margin-right: auto; /* Ensures alignment to the left */
+  margin-right: auto;
+  /* Ensures alignment to the left */
 }
+
 .compact-sidebar .page-sidebar:before {
   // position: fixed;
   // height: 95%;
@@ -203,6 +213,7 @@ input#dateOfBirth, input#contractStart, input#contractEnd {
   // box-shadow: 0 0 1.25rem rgba(31, 45, 61, 0.04);
   // z-index: -1;
 }
+
 .bottom_box .sidebar_menu {
   transform: none !important;
 }
@@ -570,6 +581,7 @@ input#dateOfBirth, input#contractStart, input#contractEnd {
   min-height: 60px;
   border-top: 1px solid #fff;
   padding-top: 5px;
+
   .sidebar_menu {
     position: unset !important;
   }
@@ -581,13 +593,16 @@ input#dateOfBirth, input#contractStart, input#contractEnd {
   overflow-y: auto;
   display: flex;
   align-items: center;
-  .sidebar_menu{
+
+  .sidebar_menu {
     max-height: 100%;
   }
 }
+
 .page-sidebar-inner::-webkit-scrollbar {
   width: 0px;
 }
+
 .sidebar_menu {
   list-style-type: none;
   padding: 0;
@@ -596,6 +611,7 @@ input#dateOfBirth, input#contractStart, input#contractEnd {
   position: static;
   margin-bottom: 0px;
 }
+
 .sidebar_state {
   position: absolute;
   background-color: #fff;
@@ -665,6 +681,7 @@ html {
 .compact-sidebar .page-sidebar .sidebar_menu a:hover {
   // width: max-content;
 }
+
 .compact-sidebar .page-sidebar .sidebar_menu a .sidebar_menu_span {
   display: none;
 }
@@ -678,9 +695,11 @@ html {
   // margin-right: 10px;
   min-width: 32px;
 }
+
 .sidebar_menu a .sidebar_menu_span {
   margin-left: 10px;
 }
+
 .sidebar-close {
   position: absolute;
   top: -10px;
@@ -1285,9 +1304,11 @@ input:checked+.slider:before {
 .mat-mdc-dialog-surface.mdc-dialog__surface {
   z-index: 9;
 }
-.blog-popup-2 .mat-mdc-dialog-surface.mdc-dialog__surface{
-height: auto;
+
+.blog-popup-2 .mat-mdc-dialog-surface.mdc-dialog__surface {
+  height: auto;
 }
+
 .mat-mdc-dialog-inner-container.mdc-dialog__container {
   position: relative;
   top: 0px;
@@ -1309,7 +1330,8 @@ height: auto;
 .cutam-cupen {
   margin: auto;
 }
-.cutam-cupen .mat-mdc-dialog-surface.mdc-dialog__surface{
+
+.cutam-cupen .mat-mdc-dialog-surface.mdc-dialog__surface {
   height: auto;
 }
 
@@ -1731,12 +1753,15 @@ height: auto;
 .cupen-btn-date-1 .mat-mdc-form-field-infix {
   width: 168px;
 }
-.cupen-btn-date .mat-mdc-form-field-icon-prefix{
-width: 40%;
-}
-.cupen-btn-date-1 .mat-mdc-form-field-icon-prefix{
+
+.cupen-btn-date .mat-mdc-form-field-icon-prefix {
   width: 40%;
-  }
+}
+
+.cupen-btn-date-1 .mat-mdc-form-field-icon-prefix {
+  width: 40%;
+}
+
 // new changes CSS Start
 
 .nav-tabs .nav-link:focus,
@@ -1943,39 +1968,46 @@ width: 40%;
 nav.navbar .country_dropdown h6.border-bottom {
   white-space: nowrap;
 }
+
 .sidebar {
   position: relative;
   z-index: 1;
 }
+
 .date_field input {
   text-indent: 30px !important;
 }
-.upgrade_unlock .unlock_btn  {
+
+.upgrade_unlock .unlock_btn {
   padding: 12px 25px 10px !important;
   font-size: 17px !important;
 }
+
 .edit-multi-country-plan .country-plan {
- .country-selection { 
-  label {
-  font-size: 16px;
-  font-weight: 700;
-  color: #000;
-  margin-bottom: 8px;
-}
-.mat-mdc-select-trigger {
-  border: 1px solid grey;
-  padding: 10px;
-  border-radius: 10px;
-}
-.explore-chip {
-  flex-wrap: wrap;
-.chip {
-  padding-left: 16px !important;
-  padding-bottom: 6px !important;
-  margin-bottom: 5px;
-}
-}
- }
+  .country-selection {
+    label {
+      font-size: 16px;
+      font-weight: 700;
+      color: #000;
+      margin-bottom: 8px;
+    }
+
+    .mat-mdc-select-trigger {
+      border: 1px solid grey;
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    .explore-chip {
+      flex-wrap: wrap;
+
+      .chip {
+        padding-left: 16px !important;
+        padding-bottom: 6px !important;
+        margin-bottom: 5px;
+      }
+    }
+  }
 }
 
 .filter-button select {
@@ -1992,16 +2024,18 @@ nav.navbar .country_dropdown h6.border-bottom {
 .home_galery {
   img.img-fluid {
     height: 130px;
-  background: rgb(240 240 240 / 42%);
-  object-fit: contain;
-}
-.edit-cover {
-  height: 30px !important;
-  width: 30px !important;
-}
-.wc_floatingMenu .wc_menuItem span {
-  white-space: nowrap;
-}
+    background: rgb(240 240 240 / 42%);
+    object-fit: contain;
+  }
+
+  .edit-cover {
+    height: 30px !important;
+    width: 30px !important;
+  }
+
+  .wc_floatingMenu .wc_menuItem span {
+    white-space: nowrap;
+  }
 }
 
 .common_static_page {
@@ -2009,51 +2043,65 @@ nav.navbar .country_dropdown h6.border-bottom {
     margin-bottom: 10px;
     margin-top: 35px;
   }
+
   .content_page ul li {
     margin-top: 8px;
     margin-bottom: 10px;
   }
+
   address {
     color: #fff;
   }
 }
 
 .dark-theme {
-span.toggle-password svg path {
-  stroke: #fff !important;
-}
-.notification_dropdown .dropdown-menu h6, .notification_dropdown .dropdown-menu p,
-.notification_dropdown .dropdown-menu small {
-  color: #fff !important;
-}
-label.btn.filter-button, select.location-filter {
-  background: #fff !important;
-  color: #000 !important;
-}
-select.location-filter.activefilter, select.location-filter option {
-  color: #000 !important;
-}
-label.filter-button.activefilter {
-  background: #072944 !important;
-  color: #fff !important;
-}
-#notification-box-id  {
-  background: #072944;
-  svg path {
-    fill: #fff !important;
+  span.toggle-password svg path {
+    stroke: #fff !important;
   }
-  .load_more  span {
+
+  .notification_dropdown .dropdown-menu h6,
+  .notification_dropdown .dropdown-menu p,
+  .notification_dropdown .dropdown-menu small {
     color: #fff !important;
   }
-}
-.home_galery {
-  img.img-fluid {
-    background: rgb(12 52 83);
+
+  label.btn.filter-button,
+  select.location-filter {
+    background: #fff !important;
+    color: #000 !important;
   }
-}
-.explore-inputs .explore-all_input mat-select {
-  background: #0c3453;
-}
+
+  select.location-filter.activefilter,
+  select.location-filter option {
+    color: #000 !important;
+  }
+
+  label.filter-button.activefilter {
+    background: #072944 !important;
+    color: #fff !important;
+  }
+
+  #notification-box-id {
+    background: #072944;
+
+    svg path {
+      fill: #fff !important;
+    }
+
+    .load_more span {
+      color: #fff !important;
+    }
+  }
+
+  .home_galery {
+    img.img-fluid {
+      background: rgb(12 52 83);
+    }
+  }
+
+  .explore-inputs .explore-all_input mat-select {
+    background: #0c3453;
+  }
 }
 
 
@@ -2062,11 +2110,13 @@ label.filter-button.activefilter {
     background: #0c3453 !important;
     border-radius: 0 !important;
     border: 0 !important;
-}
-.chat_popup_srch_color .mdc-text-field.mdc-text-field--filled mat-chip-grid.mat-mdc-chip-set.mat-mdc-chip-grid.mdc-evolution-chip-set.messanger-selector {
-  background: #0c3453 !important;
-}
-.chat_popup_srch_color .mat-mdc-autocomplete-panel {
-  background: #072944 !important;
-}
+  }
+
+  .chat_popup_srch_color .mdc-text-field.mdc-text-field--filled mat-chip-grid.mat-mdc-chip-set.mat-mdc-chip-grid.mdc-evolution-chip-set.messanger-selector {
+    background: #0c3453 !important;
+  }
+
+  .chat_popup_srch_color .mat-mdc-autocomplete-panel {
+    background: #072944 !important;
+  }
 }

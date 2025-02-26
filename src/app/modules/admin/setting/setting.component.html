@@ -44,6 +44,38 @@
                   {{ 'teamMembers' | translate }}
                 </button>
               </li>
+              <li class="nav-item" role="presentation">
+                <button
+                  class="nav-link d-flex align-items-center"
+                  [ngClass]="{'active': tab === 'notifications'}"
+                  id="profile-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#profile-tab-pane"
+                  type="button"
+                  role="tab"
+                  aria-controls="profile-tab-pane"
+                  [attr.aria-selected]="tab === 'notifications'"
+                  (click)="switchTab('notifications')"
+                >
+                  <svg id="users-icon"
+                    class="me-1 notifications"
+                    width="20"
+                    height="25"
+                    viewBox="0 0 16 14"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M14.3333 7H11.6667L9.66667 13L5.66667 1L3.66667 7H1"
+                      stroke="#9D9EA0"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                 {{'notification' | translate}}
+                </button>
+              </li>
             </ul>
           </div>
         </div>
@@ -53,6 +85,7 @@
           <app-profile *ngIf="tab == 'profile'"></app-profile>
           <app-activity-log *ngIf="tab == 'activity'"></app-activity-log>
           <app-team-members *ngIf="tab == 'team'"></app-team-members>
+          <app-notifications-log id="notifications-log" *ngIf="tab === 'notifications'"></app-notifications-log>
         </div>
       </div>
     </div>
