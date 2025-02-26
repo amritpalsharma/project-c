@@ -49,6 +49,7 @@ import { AppSettingComponent } from './setting/app-setting/app-setting.component
 import { CommonFilterPopupComponent } from './common-filter-popup/common-filter-popup.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { LoaderComponent } from './loader/loader.component';
+import { NotificationsLogComponent } from './setting/notifications-log/notifications-log.component';
 
 
 @NgModule({
@@ -84,7 +85,8 @@ import { LoaderComponent } from './loader/loader.component';
     FavoritesComponent,
     ExploreComponent,
     CommonFilterPopupComponent,
-    LoaderComponent
+    LoaderComponent,
+    NotificationsLogComponent
   ],
   imports: [
     CommonModule,
