@@ -8,16 +8,8 @@
       <img class="admin-logo" src="../../../../assets/images/dark-logo-sy.png">
     </a>
 
-    <!-- <a class="sidebar-close" (click)="closeSidebar(true)">X</a>
-      <a (click)="toggleState()" class="sidebar_state">
-        <svg width="8" height="11" viewBox="0 0 8 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M1 1L6 5.5L1 10" stroke="#95A3B8" stroke-width="2" stroke-linecap="round"/>
-          </svg>
 
-      </a> -->
-
-
-    <a class="sidebar-close" (click)="closeSidebar(true)">
+    <a class="sidebar-close" (click)="closeSidebar(false)">
       <svg *ngIf="sidebarOpen" width="24" height="24" viewBox="0 0 24 24" fill="none"
         xmlns="http://www.w3.org/2000/svg">
         <!-- Replace with the content of your previous arrow SVG -->
@@ -51,7 +43,8 @@
         </li> -->
 
       <li>
-        <a routerLink="/admin/dashboard" (click)="closeSidebar(false)" routerLinkActive="active" class="">
+        <a routerLink="/admin/dashboard" matTooltip="Dashboard" (click)="closeSidebar(true)" routerLinkActive="active"
+          class="">
           <svg width="24" height="20" viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg"
             class="my-svg-icon">
             <path
@@ -76,8 +69,8 @@
         </a>
       </li>
       <li>
-        <a routerLink="/admin/inbox" (click)="closeSidebar(true)" routerLinkActive="active"><svg width="28" height="26" viewBox="0 0 28 26"
-            fill="none" xmlns="http://www.w3.org/2000/svg" class="my-svg-icon">
+        <a routerLink="/admin/inbox" (click)="closeSidebar(true)" routerLinkActive="active"><svg width="28" height="26"
+            viewBox="0 0 28 26" fill="none" xmlns="http://www.w3.org/2000/svg" class="my-svg-icon">
             <path
               d="M0 0H20V16H10.3438L4 21.0938V16H0V0ZM2 2V14H6V16.9062L9.65625 14H18V2H2ZM22 4H28V20H24V25.0938L17.6562 20H8.34375L10.8438 18H18.3438L22 20.9062V18H26V6H22V4Z"
               fill="white" class="my-path" />

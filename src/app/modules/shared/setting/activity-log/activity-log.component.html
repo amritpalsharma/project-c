@@ -10,7 +10,7 @@
 
   <div class="card">
 
-    <div class="card-header header-activity-log setting_card_wrap">
+    <div class="card-header header-activity-log setting_card_hdr_mobil">
       <div class="d-flex col-md-3">
          <button class="btn activity-log-del-checkbox btn-secondary dropdown-toggle dropdown-activity-log p-0 "
       type="button" (click)="selectAll()">
@@ -47,6 +47,7 @@
 
     </div>
     <div class="card-body p-0">
+      <div class="table-responsive">
       <table mat-table [dataSource]="activities" class="table table-hover table-striped table-users ">
                  
         <!-- Position Column -->
@@ -97,6 +98,7 @@
           </td> 
         </tr>
       </table>
+    </div>
       <!-- <table class="table setting-table">
         <thead>
           <tr>

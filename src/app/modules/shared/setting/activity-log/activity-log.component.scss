@@ -377,14 +377,3 @@
   .plus-color{
     color: #148DE4;
   }
-
-@media (max-width: 575px) {
-  .setting_card_wrap {
-    flex-direction: column;
-    align-items: flex-start !important;
-}
-.mat-mdc-paginator-container {
-  justify-content: flex-start !important;
-  margin-left: -20px;
-}
-}

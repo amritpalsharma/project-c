@@ -752,36 +752,6 @@ button.faq-scout-button {
   color: #FFFFFF
 }
 
-// .compact-sidebar .page-sidebar {
-//   width: 80px;
-//   position: fixed;
-//   box-shadow: none;
-//   transition: all 0.4s;
-//   height: 95%;
-//   z-index: 2;
-// }
-
-// .compact-sidebar .page-sidebar:before {
-//   position: fixed;
-//   height: 95%;
-//   width: 80px;
-//   display: block;
-//   content: "";
-//   box-shadow: 0 0 1.25rem rgba(31, 45, 61, 0.04);
-//   z-index: -1;
-// }
-// .dark-theme .page-sidebar {
-//   border-radius: 20px;
-//   width: 210px;
-//   margin: 20px 0px 20px 20px;
-//   position: static !important;
-//   height: 95%;
-//   transition: all 0.4s;
-// }
-
-.compact-sidebar .sidebar_menu_span {
-  display: none;
-}
 
 .compact-sidebar .logo_img {
   display: none !important;
@@ -1119,11 +1089,6 @@ button.faq-scout-button {
 .dark-theme .website-code .sidebar_menu a.active {
   background: #BDE34F;
   // padding: 5px;
-}
-
-.sidebar_menu a svg {
-  margin-right: 10px;
-  min-width: 32px;
 }
 
 .sidebar_menu a:hover {

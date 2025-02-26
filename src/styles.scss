@@ -175,18 +175,6 @@ button.btn.btn-secondary.dropdown-toggle {
   transition: all 0.4s;
 }
 
-.compact-sidebar .page-sidebar {
-  // width: 80px;
-  // position: fixed;
-  // box-shadow: none;
-  // transition: all 0.4s;
-  // height: 95%;
-  // z-index: 2;
-}
-// mat-datepicker-toggle.mat-datepicker-toggle {
-//   position: absolute;
-//   left: 50px;
- // }
  mat-datepicker-toggle {
   position: absolute;
   left: 0;
@@ -589,8 +577,8 @@ input#dateOfBirth, input#contractStart, input#contractEnd {
 
 .page-sidebar-inner {
   height: calc(100% - 150px) !important;
-  // overflow-x: hidden;
-  // overflow-y: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
   display: flex;
   align-items: center;
   .sidebar_menu{
@@ -675,7 +663,10 @@ html {
 }
 
 .compact-sidebar .page-sidebar .sidebar_menu a:hover {
-  width: max-content;
+  // width: max-content;
+}
+.compact-sidebar .page-sidebar .sidebar_menu a .sidebar_menu_span {
+  display: none;
 }
 
 .sidebar_menu a.active {
@@ -687,7 +678,9 @@ html {
   // margin-right: 10px;
   min-width: 32px;
 }
-
+.sidebar_menu a .sidebar_menu_span {
+  margin-left: 10px;
+}
 .sidebar-close {
   position: absolute;
   top: -10px;
@@ -699,7 +692,7 @@ html {
 
 .sidebar_menu a:hover {
   .sidebar_menu_span {
-    display: block;
+    // display: block;
   }
 }
 
@@ -865,6 +858,8 @@ input:checked+.slider:before {
   object-fit: cover;
   border-radius: 100%;
   width: 40px;
+  background: rgba(130, 128, 255, 1);
+  padding-top: 5px;
 }
 
 .dropdown-menu[data-bs-popper] {
@@ -1417,7 +1412,7 @@ height: auto;
     width: 100%;
 
     .sidebar_menu_span {
-      display: block;
+      display: block !important;
     }
 
     .sidebar_state {
@@ -1718,7 +1713,7 @@ height: auto;
 .search-area {
   width: 100% !important;
   margin-right: 20px;
-  max-width: 55vw;
+  max-width: 400px;
 }
 
 .light-theme {
@@ -2038,6 +2033,10 @@ label.btn.filter-button, select.location-filter {
 select.location-filter.activefilter, select.location-filter option {
   color: #000 !important;
 }
+label.filter-button.activefilter {
+  background: #072944 !important;
+  color: #fff !important;
+}
 #notification-box-id  {
   background: #072944;
   svg path {
@@ -2054,5 +2053,20 @@ select.location-filter.activefilter, select.location-filter option {
 }
 .explore-inputs .explore-all_input mat-select {
   background: #0c3453;
+}
+}
+
+
+.dark-theme {
+  .chat_popup_srch_color .mdc-text-field.mdc-text-field--filled {
+    background: #0c3453 !important;
+    border-radius: 0 !important;
+    border: 0 !important;
+}
+.chat_popup_srch_color .mdc-text-field.mdc-text-field--filled mat-chip-grid.mat-mdc-chip-set.mat-mdc-chip-grid.mdc-evolution-chip-set.messanger-selector {
+  background: #0c3453 !important;
+}
+.chat_popup_srch_color .mat-mdc-autocomplete-panel {
+  background: #072944 !important;
 }
 }

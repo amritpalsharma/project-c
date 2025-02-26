@@ -96,24 +96,7 @@ a {
   color: #FFFFFF
 }
 
-// .compact-sidebar .page-sidebar {
-//   width: 80px;
-//   position: fixed;
-//   box-shadow: none;
-//   transition: all 0.4s;
-//   height: 95%;
-//   z-index: 2;
-// }
 
-// .compact-sidebar .page-sidebar:before {
-//   position: fixed;
-//   height: 95%;
-//   width: 80px;
-//   display: block;
-//   content: "";
-//   box-shadow: 0 0 1.25rem rgba(31, 45, 61, 0.04);
-//   z-index: -1;
-// }
 .dark-theme .page-sidebar {
   border-radius: 20px;
   // background: linear-gradient(180deg, #236115 0%, #6fb95d 100%);
@@ -121,10 +104,6 @@ a {
   margin: 20px 0px 20px 20px;
   position: fixed;
   height: 95%;
-}
-
-.compact-sidebar .sidebar_menu_span {
-  display: none;
 }
 
 .compact-sidebar .logo_img {
@@ -519,22 +498,34 @@ legend.w-auto.px-2 {
   color: #4F7A9D !important;
   // padding: 5px;
 }
-.dark-theme .country_dropdown .dropdown-menu  {
+.dark-theme {
+  .country_dropdown .dropdown-menu  {
   background: #072944;
     color: #fff;
 }
-.dark-theme .country_dropdown .dropdown-menu a.dropdown-item span,
-.dark-theme .country_dropdown .dropdown-menu a.dropdown-item {
+.custom-select .dropdown-menu {
+  background: #072944;
+  color: #fff;
+}
+.country_dropdown .dropdown-menu a.dropdown-item span,
+.country_dropdown .dropdown-menu a.dropdown-item,
+.custom-select .dropdown-menu a.dropdown-item,
+.custom-select .dropdown-menu a.dropdown-item span{
   color: #fff !important;
 }
-.dark-theme .country_dropdown .dropdown-menu a.dropdown-item.selected span,
-.dark-theme .country_dropdown .dropdown-menu a.dropdown-item.selected {
+.country_dropdown .dropdown-menu a.dropdown-item.selected span,
+.country_dropdown .dropdown-menu a.dropdown-item.selected,
+.custom-select .dropdown-menu a.dropdown-item.selected span,
+.custom-select .dropdown-menu a.dropdown-item.selected {
   color: #072944 !important;
 }
-
-.sidebar_menu a svg {
-  // margin-right: 10px;
-  min-width: 32px;
+.profile .dropdown-menu {
+  background: #072944;
+  color: #fff;
+}
+.profile .dropdown-menu span, .profile.dropdown .header-view-profile {
+  color: #fff !important;
+}
 }
 
 .sidebar_menu a:hover {
@@ -2684,7 +2675,7 @@ input:checked+.slider:before {
 // }
 
 .dark-theme .navbar-expand .navbar-nav .dropdown-menu span {
-  color: #072944 !important;
+  color: #072944;
 }
 .dark-theme .website-code .dropdown-item:focus, .dark-theme .dropdown-item:hover {
   background: rgba(169, 169, 169, 0.3098039216) !important;

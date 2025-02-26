@@ -202,7 +202,7 @@
 .page-header li.nav-item.profile a.nav-link {
     padding: 0;
 }
-.page-header .country_dropdown a img {
+.page-header .country_dropdown a.nav-link img {
     margin-right: 0 !important;
 }
 .page-header label.input-group.search-area {
@@ -236,13 +236,43 @@ body.compact-sidebar.dark-theme .sidebar-menu svg path {
         text-align: center;
     }
 }
+.adv_modal .add-banners {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+.adv_modal .add-banners > div {
+    width: 100%;
+    margin-left: 0 !important;
+}
+.adv_modal .add-banners input, .adv_modal .add-banners .btn-group , .adv_modal .add-banners .btn-group select{
+    width: 100% !important;
+}
+.edit_genrl_details .speed_inputs {
+    width: 100%;
+    display: block !important;
+    padding: 0px 26px !important;
+}
+.edit_genrl_details .mobile-input {
+    width: 100%;
+}
 }
 
 
 @media (max-width: 1024px) {
-    .justify_mobile .general_titels {
-        justify-content: space-between;
-    }
+.justify_mobile .general_titels, .adv_modal .calender-inputs-box {
+    justify-content: space-between;
+}
+}
+
+
+@media (min-width: 576px) and (max-width: 1024px) {
+.marketing_modal .d-flex.main-popup-div.mobile_wrap_fields {
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-start;
+    flex-direction: row;
+}
 }
     
 @media (max-width: 767px) {
@@ -254,12 +284,35 @@ body.compact-sidebar.dark-theme .sidebar-menu svg path {
         width: 33.33%;
         margin-bottom: 15px;
     }
+    .mobile_popup_responsive {
+    .mobile_wrap_fields {
+        flex-direction: column;
+        gap: 10px;
+        .template-name-input input.template-name-inputField {
+            width: 100% !important;
+        }
+        .my_mobile {
+            margin: 15px 0;
+        }
+    }
+    }
+}
+
+
+@media (max-width: 620px) {
+.user_card_header .slide-table .btn-outline-white, .setting_card_hdr_mobil .btn-outline-white,
+.membership_mobile .wrap_flex .btn-outline-white, .favorite_card_hdr .btn-outline-white {
+    font-size: 0 !important;
+}
 }
 
 @media (max-width: 575px) {
+.navtabs_button p {
+    line-height: 15px;
+}
 .marketing-header-bar .heading {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: flex-start !important;
     justify-content: flex-start;
     text-align: left;
     gap: 10px;
@@ -287,18 +340,56 @@ table.table  th {
 .view-membership .table-responsive {
     overflow-x: auto !important;
 }
+
+.mobile_popup_responsive {
+     .close-img {
+    top: 8px;
+}
+}
 }
 
 @media (max-width: 480px) {
-    .justify_mobile .position-boxs{
-        flex-wrap: wrap;
-    }
-    .membership_mobile .wrap_flex {
-        flex-direction: column !important;
-        gap: 10px;
-        align-items: flex-start !important;
-    }
-    .membership_mobile .wrap_flex > * {
-        margin-left: 0 !important;
-    }
+.justify_mobile .position-boxs{
+    flex-wrap: wrap;
+}
+.membership_mobile .wrap_flex > * {
+    margin-left: 0 !important;
+}
+.user_card_header .slide-table {
+    flex-direction: column;
+    margin-top: 15px !important;
+    align-items: flex-start !important;
+}
+.user_card_header .mobile_wrap {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 10px;
+}
+.user_card_header .card-search {
+    width: 100%;
+}
+.marketing_card_header .wrap_small_dev .btn-outline-white{
+    font-size: 0 !important;
+}
+.marketing_card_header .wrap_small_dev .mat-mdc-paginator-range-label, .slide-table .mat-mdc-paginator-range-label,
+.setting_card_hdr_mobil .mat-mdc-paginator-range-label, .membership_mobile .wrap_flex .mat-mdc-paginator-range-label,
+.favorite_card_hdr .mat-mdc-paginator-range-label {
+    margin-left: 0 !important;
+    margin-right: 15px !important;
+}
+.slide-table .mat-mdc-paginator-container, .setting_card_hdr_mobil .mat-mdc-paginator-container,
+.membership_mobile .wrap_flex .mat-mdc-paginator-container, .favorite_card_hdr .mat-mdc-paginator-container{
+    padding-left: 0 !important;
+}
+.mobile_popup_responsive {
+.popup_buttons_mobile .d-flex.justify-content-around {
+    flex-direction: column;
+    align-items: center;
+}
+.popup_buttons_mobile .d-flex.justify-content-around .btn {
+    padding: 8px 15px !important;
+    width: 100%;
+    min-width: 240px;
+}
+}
 }
