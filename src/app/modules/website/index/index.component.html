@@ -71,6 +71,7 @@
         <div class="carousel-slide" #owlCarousel (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()"
           (touchstart)="onTouchStart()" (touchend)="onTouchEnd()">
           <owl-carousel-o [options]="customOptions">
+            <!-- {{sliderDetail?.users | json}} -->
             @for (slider of sliderDetail?.users; track $index) {
               <ng-template carouselSlide>
                 <div *ngIf="slider.role_name != 'Club'" class="player-carousel">
@@ -80,9 +81,19 @@
                     </div>
                     <p class="player-name">{{slider.first_name +' '+ slider.last_name}}</p>
 
-                    <div *ngIf="slider?.meta?.club_logo" class="corner-image">
-                      <img src="{{slider.meta.club_logo}}">
-                    </div> 
+                    <!-- <div *ngIf="slider?.meta?.current_club_logo" class="corner-image">
+                      <img src="{{slider.meta.current_club_logo}}">
+                    </div>  -->
+                    <div class="corner-image">
+                      <!-- First condition: if current_club_logo exists -->
+                      <img *ngIf="slider?.current_club_logo" [src]="club_logo_path + slider.current_club_logo" alt="Current Club Logo">
+                      
+                      <!-- Second condition: if current_club_logo doesn't exist, use pre_current_club_logo -->
+                      <img *ngIf="!slider?.current_club_logo && slider?.pre_current_club_logo" [src]="club_logo_path + slider.pre_current_club_logo" alt="Pre Current Club Logo">
+                      
+                      <!-- Third condition: if both are missing, show a blank or default image -->
+                      <!-- <img *ngIf="!slider?.current_club_logo && !slider?.pre_current_club_logo" [src]="'path/to/default/image.jpg'" alt="Default Logo"> -->
+                    </div>                                       
                     <div *ngIf="slider.meta.date_of_birth"  class="flag">
                       <div class="flag-image">
                         <!-- <img src="{{getFlagImage(slider.user_nationalities)}}" class="flag-img"> -->

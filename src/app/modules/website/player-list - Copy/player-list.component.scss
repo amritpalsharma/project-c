@@ -95,7 +95,6 @@ button.faq-club-button.active {
     line-height: 20px;
     opacity: 1;
 }
-
 .pagination-controls {
     margin-top: 50px;
     padding-bottom: 50px;
@@ -104,7 +103,6 @@ button.faq-club-button.active {
     align-items: center;
     justify-content: flex-end;
 }
-
 label {
     display: inline-block;
     font-size: 14px;
@@ -419,7 +417,6 @@ button.page-active {
     .player-list {
         padding-top: 100px;
     }
-
     h1 {
         font-size: 40px;
         margin-bottom: 30px;
@@ -450,12 +447,10 @@ button.page-active {
         height: 30px;
         object-fit: cover;
     }
-
     img.birthday-img {
         height: 13px;
         width: 15px;
     }
-
     p.d-o-b {
         font-size: 9px;
     }
@@ -486,7 +481,6 @@ button.page-active {
     .input-number {
         margin-bottom: 20px;
     }
-
     p.d-o-b {
         font-size: 11px;
     }
@@ -510,7 +504,6 @@ button.page-active {
     h1 {
         font-size: 25px;
     }
-
     button.faq-talent-button.active,
     button.faq-club-button.active {
         height: 37px;
@@ -587,21 +580,17 @@ button.page-active {
 /*--- new css ---*/
 .players.player-card {
     width: 100% !important;
-
     .player1 {
         width: 100%;
-
         .player-img:before {
             width: 70px;
-            height: 70px;
+            height: 70px;   
         }
-
         .player-img:after {
             width: 80px;
-            height: 65px;
-            bottom: -2px;
+            height: 65px;  
+            bottom: -2px; 
         }
-
         .player-img {
             img {
                 width: 100% !important;
@@ -610,11 +599,9 @@ button.page-active {
                 object-position: bottom center;
             }
         }
-
         p.player-name7 {
             width: calc(100% - 10px) !important;
         }
-
         .image-text {
             height: 36px;
             width: 92px;
@@ -622,13 +609,11 @@ button.page-active {
             font-size: 11px;
         }
     }
-
     .flag-image7 {
         transform: scale(0.75);
         bottom: 35px;
         left: 6px;
     }
-
     .corner-image7 {
         img {
             height: 40px;
@@ -642,58 +627,52 @@ button.page-active {
 @media (max-width: 991px) {
     .players.player-card {
         .player1 {
-            height: 250px;
-
-            .player-img {
-                img {
-                    height: 210px !important;
-                }
-            }
-
-            .player-img:after {
-                bottom: 0px;
+        height: 250px;
+        .player-img {
+            img {
+                height: 210px !important;
             }
         }
+        .player-img:after { 
+            bottom: 0px; 
+        }
+    }
     }
 }
 
 @media (max-width: 575px) {
-    .pagination-controls .pages {
-        justify-content: center;
-    }
-
-    .pagination-controls .input-number {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+.pagination-controls .pages {
+    justify-content: center;
+}
+.pagination-controls .input-number {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 }
 
 @media (max-width: 420px) {
     .players.player-card {
         .player1 {
-            height: 220px;
-
-            .player-img {
-                img {
-                    height: 180px !important;
-                }
-            }
-
-            .player-name7 {
-                font-size: 13px;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-
-            .image-text {
-                height: 29px;
-                width: 72px;
-                padding: 5px;
-                font-size: 9px;
+        height: 220px;
+        .player-img {
+            img {
+                height: 180px !important;
             }
         }
+        .player-name7 {
+            font-size: 13px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .image-text {
+            height: 29px;
+            width: 72px;
+            padding: 5px;
+            font-size: 9px;
+        }
+    }
     }
 }
 
@@ -701,22 +680,12 @@ button.page-active {
 @media (max-width: 360px) {
     .players.player-card {
         .player1 {
-            height: 190px;
-
-            .player-img {
-                img {
-                    height: 150px !important;
-                }
+        height: 190px;
+        .player-img {
+            img {
+                height: 150px !important;
             }
         }
     }
-}
-
-.player-list-loader {
-    // position: absolute;
-    // top: 50%;
-    // left: 50%;
-    // transform: translate(-50%, -50%);
-    font-size: 24px;
-    color: rgb(0, 255, 34);
+    }
 }

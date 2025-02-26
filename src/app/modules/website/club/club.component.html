@@ -327,8 +327,8 @@
                                     <div class="accordion-item"   (click)="setActiveAccordion(i+1)">
                                         <div class="accordion-flex" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse' + (i + 1)"
                                             aria-expanded="false" [attr.aria-controls]="'collapse' + (i + 1)">
-                                            <img class="light-feature1" src="./assets/images/feature-img1.svg">
-                                            <img class="dark-feature1" src="./assets/images/dark-club1.svg">
+                                            <img class="light-feature1" src="{{baseUrl + feature.icon}}">
+                                            <img class="dark-feature1" src="{{baseUrl + feature.dark_icon}}">
                                             <h2 class="accordion-header">
                                                 {{feature.title}}
                                             </h2>
