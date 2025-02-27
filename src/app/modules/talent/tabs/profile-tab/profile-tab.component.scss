@@ -136,9 +136,10 @@
     }
   }
   @media (max-width:375px) {
-    .general_titels{
+    .general_titels  {
       flex-direction: column;
-      row-gap: 14px;
+      align-items: flex-start !important;
+      gap: 14px;
     }
   }
   .team-details-sub{
@@ -375,12 +376,6 @@
   }
   .password{
     margin: 0 !important;
-  }
-}
-@media (max-width:375px) {
-  .general_titels{
-    flex-direction: column;
-    row-gap: 14px;
   }
 }
 .team-details-sub{

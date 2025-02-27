@@ -2056,6 +2056,12 @@ label.filter-button.activefilter {
 }
 }
 
+.club.light_theme_iclub {
+  display: block;
+}
+.club.dark_theme_iclub {
+  display: none;
+}
 
 .dark-theme {
   .chat_popup_srch_color .mdc-text-field.mdc-text-field--filled {
@@ -2068,5 +2074,11 @@ label.filter-button.activefilter {
 }
 .chat_popup_srch_color .mat-mdc-autocomplete-panel {
   background: #072944 !important;
+}
+.club.light_theme_iclub {
+  display: none;
+}
+.club.dark_theme_iclub {
+  display: block;
 }
 }
