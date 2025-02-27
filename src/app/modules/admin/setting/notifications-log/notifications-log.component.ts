@@ -40,16 +40,22 @@ export class NotificationsLogComponent {
 
   constructor(public dialog: MatDialog, public webPages: WebPages, private talentService: TalentService, private translateService: TranslateService) {
     translateService.onLangChange.subscribe(() => {
-      this.fetchNotifications()
+      let jsonData = localStorage.getItem("userData");
+      let userId;
+      if (jsonData) {
+        let userData = JSON.parse(jsonData);
+        userId = userData.id;
+      }
+      else {
+        console.log("No data found in localStorage.");
+      }
+      let langId = localStorage.getItem('lang_id');
+
+      this.fetchNotifications(userId, langId);
     });
   }
 
   ngOnInit() {
-    this.fetchNotifications();
-  }
-
-
-  fetchNotifications(): void {
     let jsonData = localStorage.getItem("userData");
     let userId;
     if (jsonData) {
@@ -60,6 +66,14 @@ export class NotificationsLogComponent {
       console.log("No data found in localStorage.");
     }
     let langId = localStorage.getItem('lang_id');
+
+    this.fetchNotifications(userId, langId);;
+  }
+
+
+  fetchNotifications(userId: any, langId: any): void {
+    console.log("here is lang_id", langId);
+
 
     const page = this.paginator ? this.paginator.pageIndex + 1 : 1;
     const pageSize = this.paginator ? this.paginator.pageSize : 10;
@@ -80,8 +94,20 @@ export class NotificationsLogComponent {
     });
   }
 
+
   onPageChange() {
-    this.fetchNotifications();
+    let jsonData = localStorage.getItem("userData");
+    let userId;
+    if (jsonData) {
+      let userData = JSON.parse(jsonData);
+      userId = userData.id;
+    }
+    else {
+      console.log("No data found in localStorage.");
+    }
+    let langId = localStorage.getItem('lang_id');
+
+    this.fetchNotifications(userId, langId);
   }
 
   onCheckboxChange(item: any) {
@@ -117,7 +143,18 @@ export class NotificationsLogComponent {
     this.talentService.deleteNotifications(ids).subscribe(
       response => {
         if (response.status) {
-          this.fetchNotifications();
+          let jsonData = localStorage.getItem("userData");
+          let userId;
+          if (jsonData) {
+            let userData = JSON.parse(jsonData);
+            userId = userData.id;
+          }
+          else {
+            console.log("No data found in localStorage.");
+          }
+          let langId = localStorage.getItem('lang_id');
+
+          this.fetchNotifications(userId, langId);
           this.selectedIds = [];
           this.allSelected = false;
           this.showMessage(response.message);
