@@ -39,20 +39,20 @@ export class NotificationsLogComponent {
   idsToDelete: any = [];
 
   constructor(public dialog: MatDialog, public webPages: WebPages, private talentService: TalentService, private translateService: TranslateService) {
-    translateService.onLangChange.subscribe(() => {
-      let jsonData = localStorage.getItem("userData");
-      let userId;
-      if (jsonData) {
-        let userData = JSON.parse(jsonData);
-        userId = userData.id;
-      }
-      else {
-        console.log("No data found in localStorage.");
-      }
-      let langId = localStorage.getItem('lang_id');
+    // translateService.onLangChange.subscribe(() => {
+    //   let jsonData = localStorage.getItem("userData");
+    //   let userId;
+    //   if (jsonData) {
+    //     let userData = JSON.parse(jsonData);
+    //     userId = userData.id;
+    //   }
+    //   else {
+    //     console.log("No data found in localStorage.");
+    //   }
+    //   let langId = localStorage.getItem('lang_id');
 
-      this.fetchNotifications(userId, langId);
-    });
+    //   this.fetchNotifications(userId, langId);
+    // });
   }
 
   ngOnInit() {
@@ -73,6 +73,7 @@ export class NotificationsLogComponent {
 
   fetchNotifications(userId: any, langId: any): void {
 
+    console.log("here is the lang id", langId);
 
     const page = this.paginator ? this.paginator.pageIndex + 1 : 1;
     const pageSize = this.paginator ? this.paginator.pageSize : 10;
