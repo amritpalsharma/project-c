@@ -74,6 +74,7 @@ export class IndexComponent {
   banner_img:string= '';
   banner_bg_img:string= '';
   hero_bg_img:string= '';
+  hero_bg_img_dark_mode:string= '';
   advertisemnet_base_url:string= '';
   isUserLoggedIn: boolean = false;
   players = [
@@ -291,6 +292,7 @@ export class IndexComponent {
           this.banner_img =  res.data.base_url + pageData.banner_img;
           this.banner_bg_img =  res.data.base_url + pageData.banner_bg_img;
           this.hero_bg_img =  res.data.base_url + pageData.hero_bg_img;
+          this.hero_bg_img_dark_mode =  res.data.base_url + pageData.hero_bg_img_dark_mode;
 
           this.sliderDetail = sliderData;
           this.advertisemnetData = res.data.advertisemnetData;

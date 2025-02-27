@@ -167,3 +167,10 @@
 mat-datepicker-toggle{
   margin-left: -50px;
 }
+
+
+@media (max-width: 991px) {
+.form-group {
+  padding: 0 15px !important;
+}
+}

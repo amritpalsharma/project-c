@@ -592,11 +592,14 @@ button.page-active {
             bottom: -2px; 
         }
         .player-img {
+            height: 262px !important;
+            width: 100%;
             img {
                 width: 100% !important;
-                height: 250px !important;
-                object-fit: contain;
-                object-position: bottom center;
+                height: 100% !important;
+                object-fit: cover;
+                object-position: top center;
+                padding-top: 20px;
             }
         }
         p.player-name7 {
@@ -629,9 +632,7 @@ button.page-active {
         .player1 {
         height: 250px;
         .player-img {
-            img {
-                height: 210px !important;
-            }
+            height: 222px !important;
         }
         .player-img:after { 
             bottom: 0px; 
@@ -656,9 +657,7 @@ button.page-active {
         .player1 {
         height: 220px;
         .player-img {
-            img {
-                height: 180px !important;
-            }
+            height: 192px !important;
         }
         .player-name7 {
             font-size: 13px;
@@ -682,9 +681,7 @@ button.page-active {
         .player1 {
         height: 190px;
         .player-img {
-            img {
-                height: 150px !important;
-            }
+            height: 162px !important;
         }
     }
     }

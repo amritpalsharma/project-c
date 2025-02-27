@@ -15,11 +15,8 @@
           <input type="file" class="upload-input " id="upload-banner" (change)="onBannerFileChange($event)" accept="image/*">
         </div>
       </div>
-      <div class="col-lg-5 mt-4 d-flex align-items-center gap-2">
-        <div class="ms-3">
-          <!-- <button type="button" class="btn btn-outline-white code-text">Upload</button> -->
-        </div>
-        <div class="ms-3">
+      <div class="col-lg-5 mt-3 d-flex align-items-center gap-2">
+        <div class="">
           <small class="form-text text-muted code-text">{{ 'filesSupportedJpgPngPdf' | translate }} <br> {{ 'maximumSize5MB' | translate }}</small>
         </div>
       </div>
@@ -170,7 +167,7 @@
             </label>
           </div>
 
-          <div class="ms-3 mt-4" *ngIf="row.file == ''">
+          <div class="mt-4" *ngIf="row.file == ''">
             <label for="file-upload-{{i}}" type="button" class="btn btn-outline-white code-text upload-label">{{ 'upload' | translate }}</label>
             <input id="file-upload-{{i}}" (change)="onAttachmentFileChange($event, i)" type="file" class="d-none" />
           </div>

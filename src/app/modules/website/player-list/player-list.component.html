@@ -11,43 +11,53 @@
           <div class="tabs">
             <button class="faq-club-button" (click)="selectTab('talent')"
               [class.active]="selectedTab === 'talent'">{{'talent' | translate}}</button>
-            <button class="faq-club-button" (click)="selectTab('club')"
-              [class.active]="selectedTab === 'club'">{{'club' | translate}}</button>
+            <button class="faq-club-button" (click)="selectTab('club')" [class.active]="selectedTab === 'club'">{{'club'
+              | translate}}</button>
             <button class="faq-club-button" (click)="selectTab('scouts')"
               [class.active]="selectedTab === 'scouts'">{{'scout' | translate}}</button>
           </div>
 
           <div class="tab-content">
+            <div *ngIf="isLoading">
+              <h1>Loading...</h1>
+            </div>
             <!-- Talent Tab Content -->
-            <div *ngIf="selectedTab === 'talent'">
+            <div *ngIf="selectedTab === 'talent' && !isLoading">
               <div class="row">
-                <div class="col-lg-3 col-md-3 col-sm-4 col-6" *ngFor="let player of getCurrentPlayers(); let i = index">
+                <div class="col-lg-3 col-md-3 col-sm-4 col-6" *ngFor="let player of myTalents; let i = index">
                   <div class="players player-card">
                     <div class="player1">
                       <div class="player-img">
-                        <img [src]="player.image" alt="{{ player.name }}" [ngClass]="{ 'bg-red': player.name === 'Zidane', 'bg-green': player.name !== 'Zidane' }">
-                        <div *ngIf="player.name === 'Zidane'" class="image-text">{{'boosted' | translate}}</div>
+                        <img [src]="player.meta.profile_image_path" alt="{{ player.first_name+' '+player.last_name }}"
+                          [ngClass]="{ 'bg-red': player.name === 'Zidane', 'bg-green': player.name !== 'Zidane' }">
+                        <div *ngIf="player.package_name === 'Booster'" class="image-text">{{'boosted' | translate}}
+                        </div>
                       </div>
-                      <p class="player-name7">{{ player.name }}</p>
+                      <p class="player-name7">{{ player.first_name+' '+player.last_name }}</p>
                       <!-- <p *ngIf="player.class">Class: {{ player.class }}</p> -->
                     </div>
                     <div class="corner-image7">
-                      <img [src]="player.cornerImage || './assets/images/default-corner.png'" />
+                      <img
+                        [src]="player.current_club_logo ? imagePath +  player.current_club_logo : (player.pre_current_club_logo ? imagePath +  player.pre_current_club_logo : './assets/images/default-corner.png')" />
+                      <!-- <img [src]="player.cornerImage || './assets/images/default-corner.png'" /> -->
                     </div>
                     <div class="flag">
                       <div class="flag-image7">
-                        <img [src]="player.flagImage || './assets/images/default-flag.svg'" class="flag-img" />
+                        <span
+                          *ngIf="player.birth_country_flag && player.birth_country_flag != null && player.birth_country_flag != ''">
+                          <img
+                            [src]="player.birth_country_flag ? logoBaseUrl + player.birth_country_flag : './assets/images/default-flag.svg'"
+                            class="flag-img" />
+                        </span>
                         <div class="bottom-line"></div>
                         <div class="flag-bottom">
                           <img src="./assets/images/birthday.svg" class="birthday-img" />
-                          <p class="d-o-b">{{ player.birthYear || 'N/A' }}</p>
+                          <p class="d-o-b">{{ getBirthYear(player.meta.date_of_birth) || 'N/A' }}</p>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-
-
               </div>
 
               <!-- Pagination controls -->
@@ -89,29 +99,47 @@
             </div>
 
             <!-- Club Tab Content -->
-            <div *ngIf="selectedTab === 'club'">
+            <div *ngIf="selectedTab === 'club' && !isLoading">
               <div class="row">
-                <div class="col-lg-3 col-md-4 col-sm-4 col-6" *ngFor="let player of getCurrentPlayers(); let i = index">
+                <div class="col-lg-3 col-md-4 col-sm-4 col-6" *ngFor="let player of myClubs; let i = index">
                   <div class="players player-card"
                     [ngClass]="{ 'bg-red': player.name === 'Zidane', 'bg-green': player.name !== 'Zidane' }">
                     <div class="player1">
                       <div class="player-img">
-                        <img [src]="player.image" alt="{{ player.name }}" [ngClass]="{ 'bg-red': player.name === 'Zidane', 'bg-green': player.name !== 'Zidane' }">
-                        <div *ngIf="player.name === 'Zidane'" class="image-text">{{'boosted' | translate}}</div>
+                        <img [src]="player.meta.profile_image_path" alt="{{ player.first_name + ' '+player.last_name }}"
+                          [ngClass]="{ 'bg-red': player.name === 'Zidane', 'bg-green': player.name !== 'Zidane' }">
+                        <!-- <div *ngIf="player.name === 'Zidane'" class="image-text">{{'boosted' | translate}}</div> -->
                       </div>
-                      <p class="player-name7">{{ player.name }}</p>
-                      <p *ngIf="player.class">Class: {{ player.class }}</p>
+                      <!-- <p class="player-name7" *ngIf="player.current_club_name">{{ player.current_club_name }}</p>
+                      <p class="player-name7" *ngIf="player.pre_current_club_name">{{ player.pre_current_club_name }}</p>
+                      <p class="player-name7" *ngIf="player.first_name">{{ player.first_name }}</p> -->
+                      <p class="player-name7" *ngIf="player.current_club_name; else preClub">
+                        {{ player.current_club_name }}
+                      </p>
+
+                      <ng-template #preClub>
+                        <p class="player-name7" *ngIf="player.pre_current_club_name; else firstName">
+                          {{ player.pre_current_club_name }}
+                        </p>
+                      </ng-template>
+
+                      <ng-template #firstName>
+                        <p class="player-name7" *ngIf="player.first_name">
+                          {{ player.first_name }}
+                        </p>
+                      </ng-template>
+                      <!-- <p *ngIf="player.class">Class: {{ player.class }}</p> -->
                     </div>
-                    <div class="corner-image7">
+                    <!-- <div class="corner-image7">
                       <img [src]="player.cornerImage || './assets/images/default-corner.png'" />
-                    </div>
+                    </div> -->
                     <div class="flag">
-                      <div class="flag-image7">
-                        <img [src]="player.flagImage || './assets/images/default-flag.svg'" class="flag-img" />
+                      <div class="flag-image7" *ngIf="getFlagPath(player.user_nationalities)">
+                        <img [src]="getFlagPath(player.user_nationalities)" class="flag-img" />
                         <div class="bottom-line"></div>
                         <div class="flag-bottom">
-                          <img src="./assets/images/birthday.svg" class="birthday-img" />
-                          <p class="d-o-b">{{ player.birthYear || 'N/A' }}</p>
+                          <!-- <img src="./assets/images/birthday.svg" class="birthday-img" /> -->
+                          <!-- <p class="d-o-b">{{ player.birthYear || 'N/A' }}</p> -->
                         </div>
                       </div>
                     </div>
@@ -158,28 +186,42 @@
             </div>
 
             <!-- Scouts Tab Content -->
-            <div *ngIf="selectedTab === 'scouts'">
+            <!-- {{scoutProfiles | json}} -->
+            <div *ngIf="selectedTab === 'scouts' && !isLoading">
               <div class="row">
-                <div class="col-lg-3 col-md-4 col-sm-4 col-6" *ngFor="let player of getCurrentPlayers(); let i = index">
+                <div class="col-lg-3 col-md-4 col-sm-4 col-6" *ngFor="let player of scoutProfiles; let i = index">
                   <div class="players player-card">
                     <div class="player1">
                       <div class="player-img">
-                        <img [src]="player.image" alt="{{ player.name }}" [ngClass]="{ 'bg-red': player.name === 'Zidane', 'bg-green': player.name !== 'Zidane' }">
-                        <div *ngIf="player.name === 'Zidane'" class="image-text">{{'boosted' | translate}}</div>
+                        <img src="{{player.meta.profile_image_path}}" alt="{{ player.first_name+' '+player.last_name }}"
+                          onerror="this.onerror=null; this.src='../assets/images/1.jpg';">
+                        <img [src]="player.meta.profile_image_path" alt="{{ player.first_name+' '+player.last_name }}"
+                          [ngClass]="{ 'bg-red': player.name === 'Zidane', 'bg-green': player.name !== 'Zidane' }">
+                        <div *ngIf="player.package_name === 'Booster'" class="image-text">{{'boosted' | translate}}
+                        </div>
+                        <!-- <img [src]="player.image" alt="{{ player.name }}"
+                          [ngClass]="{ 'bg-red': player.name === 'Zidane', 'bg-green': player.name !== 'Zidane' }">
+                        <div *ngIf="player.name === 'Zidane'" class="image-text">{{'boosted' | translate}}</div> -->
                       </div>
-                      <p class="player-name7">{{ player.name }}</p>
-                      <p *ngIf="player.class">Class: {{ player.class }}</p>
+                      <p class="player-name7">{{ player.first_name+' '+player.last_name }}</p>
+                      <!-- <p *ngIf="player.class">Class: {{ player.class }}</p> -->
                     </div>
-                    <div class="corner-image7">
+                    <!-- <div class="corner-image7">
                       <img [src]="player.cornerImage || './assets/images/default-corner.png'" />
-                    </div>
+                    </div> -->
                     <div class="flag">
                       <div class="flag-image7">
-                        <img [src]="player.flagImage || './assets/images/default-flag.svg'" class="flag-img" />
+                        <span
+                          *ngIf="player.birth_country_flag && player.birth_country_flag != null && player.birth_country_flag != ''">
+                          <img
+                            [src]="player.birth_country_flag ? logoBaseUrl + player.birth_country_flag : './assets/images/default-flag.svg'"
+                            class="flag-img" />
+                        </span>
+                        <!-- <img [src]="player.flagImage || './assets/images/default-flag.svg'" class="flag-img" /> -->
                         <div class="bottom-line"></div>
                         <div class="flag-bottom">
                           <img src="./assets/images/birthday.svg" class="birthday-img" />
-                          <p class="d-o-b">{{ player.birthYear || 'N/A' }}</p>
+                          <p class="d-o-b">{{ getBirthYear(player.meta.date_of_birth) || 'N/A' }}</p>
                         </div>
                       </div>
                     </div>

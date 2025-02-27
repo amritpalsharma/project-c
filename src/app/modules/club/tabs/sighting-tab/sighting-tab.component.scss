@@ -314,3 +314,24 @@ margin-top: 20px;
   letter-spacing: .3px;
 }
 
+
+.sighting_tab {
+  padding: 0 !important;
+}
+.card-search {
+  max-width: 344px;
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+.card_sight_btns .btn-outline-white {
+  font-size: 0 !important;
+}
+}
+
+@media (max-width: 480px) {
+.mobile_sight {
+  flex-direction: column;
+  gap: 10px;
+}
+}

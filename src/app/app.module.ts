@@ -16,6 +16,7 @@ import { SharedModule } from './modules/shared/shared.module';
 import { ToastrModule } from 'ngx-toastr';
 import { LightboxDialogComponent } from './modules/talent/lightbox-dialog/lightbox-dialog.component';
 import { WebsiteModule } from './modules/website/website.module';
+import { MatTooltipModule } from '@angular/material/tooltip';
 // import '../../style.scss';
 
 
@@ -32,6 +33,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    MatTooltipModule,
     HttpClientModule,
     MaterialModule,
     MatDialogModule,

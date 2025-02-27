@@ -111,7 +111,7 @@
   cursor: pointer;
 }
 .perfomance-report-btn{
-  margin-top: 100px;
+  margin-top: 40px;
 }
 // .choose-file-name::after{
 //   content: "";
@@ -137,4 +137,11 @@
   color: white;
   line-height: 10px;  /* Adjusted the line height to match the smaller bar */
   border-radius: 5px;
+}
+
+
+@media (max-width: 991px) {
+  .add-perfomance .overflow-card {
+    max-height: 46vh;
+  }
 }

@@ -1,8 +1,8 @@
 <div class="page-content">
   <div class="main-wrapper">
     <div class="card p-0 border-0">
-      <div class="card-header p-3">
-        <div class="d-flex align-items-center justify-content-between">
+      <div class="card-header p-3 user_card_header">
+        <div class="d-flex align-items-center justify-content-between mobile_wrap">
           <div class="d-flex align-items-center">
             <h2 class="card-title mb-0 me-3">{{ 'userManagement' | translate }}</h2>
           </div>
@@ -37,7 +37,7 @@
           </div>
         </div>
         <div class="d-flex align-items-center justify-content-between mt-1 slide-table">
-          <div class="d-flex align-items-center">
+          <div class="d-flex align-items-center filtr_option_wrapp">
             <div class="dropdown dropdown-users">
               <button (click)="selectAllUsers()" class="btn btn-secondary dropdown-toggle checkbox-button-user"
                 type="button">
@@ -104,7 +104,7 @@
 
               {{ 'exportXLS' | translate }}</a>
           </div>
-          <div class="d-flex align-items-center">
+          <div class="d-flex align-items-center pagination_wrapp">
             <mat-paginator class="paginator-components bg-072944 pagination-values" [length]="0" [pageSize]="10"
               (page)="onPageChange()"></mat-paginator>
           </div>
