@@ -202,7 +202,8 @@ export class AdvertisingComponent {
           this.selectedIds = [];
           this.allSelected = false;
           // console.log('Coupons deleted successfully:', response);
-          this.showMatDialog('Advertisement(s) published successfully!.', 'display');
+          // this.showMatDialog('Advertisement(s) published successfully!.', 'display');
+          this.showMatDialog(response.message, 'display');
         }else{
           this.showMatDialog('Error in publishing advertisement. Please try again.', 'display');
         }
@@ -227,8 +228,8 @@ export class AdvertisingComponent {
           this.getAdvertisements();
           this.selectedIds = [];
           this.allSelected = false;
-          // console.log('Coupons deleted successfully:', response);
-          this.showMatDialog('Advertisement(s) drafted successfully!.', 'display');
+          // this.showMatDialog('Advertisement(s) drafted successfully!.', 'display');
+          this.showMatDialog(response.message, 'display');
         }else{
           this.showMatDialog('Error in drafting advertisement. Please try again.', 'display');
         }
@@ -284,7 +285,8 @@ export class AdvertisingComponent {
           this.selectedIds = [];
           this.allSelected = false;
           // console.log('Coupons deleted successfully:', response);
-          this.showMatDialog('Advertisement(s) deleted successfully!.', 'display');
+          // this.showMatDialog('Advertisement(s) deleted successfully!.', 'display');
+          this.showMatDialog(response.message, 'display');
         }else{
           this.showMatDialog('Error in removing advertisement. Please try again.', 'display');
         }

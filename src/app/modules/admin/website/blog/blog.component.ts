@@ -32,7 +32,7 @@ export class BlogComponent {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  constructor(private blogService: BlogService,private webpages:WebPages, public dialog: MatDialog, private sharedservice:SharedService, ) {}
+  constructor(private blogService: BlogService,private webpages:WebPages, public dialog: MatDialog, private sharedservice:SharedService) {}
 
   // ngOnInit(): void {
   //   this.getAllLanguages();
@@ -122,7 +122,7 @@ export class BlogComponent {
           this.getBlogs();
           this.selectedIds = [];
           this.allSelected = false;
-          this.showMatDialog('Blog(s) published successfully!.', 'display');
+          this.showMatDialog(response.message, 'display');
         }else{
           this.showMatDialog('Error in publishing blog. Please try again.', 'display');
         }
@@ -155,8 +155,7 @@ export class BlogComponent {
           this.getBlogs();
           this.selectedIds = [];
           this.allSelected = false;
-          // console.log('Coupons deleted successfully:', response);
-          this.showMatDialog('Blog(s) drafted successfully!.', 'display');
+          this.showMatDialog(response.message, 'display');
         }else{
           this.showMatDialog('Error in drafting Blog. Please try again.', 'display');
         }
@@ -209,8 +208,7 @@ export class BlogComponent {
           this.getBlogs();
           this.selectedIds = [];
           this.allSelected = false;
-          // console.log('Coupons deleted successfully:', response);
-          this.showMatDialog('Blog(s) deleted successfully!.', 'display');
+          this.showMatDialog(response.message, 'display');
         }else{
           this.showMatDialog('Error in removing Blog. Please try again.', 'display');
         }

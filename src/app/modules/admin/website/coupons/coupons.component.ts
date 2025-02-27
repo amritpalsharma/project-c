@@ -149,7 +149,6 @@ export class CouponsComponent {
     createCouponDialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
         if(result.action == "popupAdded"){
-          // this.showMatDialog('Coupon created successfully!', 'display');
           this.showMatDialog(result.message, 'display');
           this.getCoupons();
         }
@@ -171,8 +170,7 @@ export class CouponsComponent {
           this.getCoupons();
           this.selectedIds = [];
           this.allSelected = false;
-          // console.log('Coupons deleted successfully:', response);
-          this.showMatDialog('Coupon(s) published successfully!.', 'display');
+          this.showMatDialog(response.message, 'display');
         }else{
           this.showMatDialog('Error in publishing coupons. Please try again.', 'display');
         }
@@ -197,8 +195,7 @@ export class CouponsComponent {
           this.getCoupons();
           this.selectedIds = [];
           this.allSelected = false;
-          // console.log('Coupons deleted successfully:', response);
-          this.showMatDialog('Coupon(s) drafted successfully!.', 'display');
+          this.showMatDialog(response.message, 'display');
         }else{
           this.showMatDialog('Error in drafting coupons. Please try again.', 'display');
         }
@@ -253,8 +250,7 @@ export class CouponsComponent {
           this.getCoupons();
           this.selectedIds = [];
           this.allSelected = false;
-          // console.log('Coupons deleted successfully:', response);
-          this.showMatDialog('Coupon(s) deleted successfully!.', 'display');
+          this.showMatDialog(response.message, 'display');
         }else{
           this.showMatDialog('Error in removing coupons. Please try again.', 'display');
         }

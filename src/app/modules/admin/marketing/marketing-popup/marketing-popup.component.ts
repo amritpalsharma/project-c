@@ -37,7 +37,8 @@ export class MarketingPopupComponent {
   frequency:any = ['Once a day', 'Once a week', 'Once 2 Hrs', 'Twice a day', 'Once a month', 'One time only'];
   startDate:any = "";
   endDate:any = "";
-  error:boolean = false
+  error:boolean = false;
+  status:any = "";
   errorMsg:any = {}
   constructor(
     public dialogRef: MatDialogRef<MarketingPopupComponent>,
@@ -77,6 +78,8 @@ export class MarketingPopupComponent {
       this.selectedFrequency = this.data.frequency
       this.startDate = this.data.start_date
       this.endDate = this.data.end_date;
+      this.status = this.data.status;
+      
       // this.selectedRole = [this.data.popupfor]
 
       let selectedRoleData = JSON.parse(this.data.popupfor);
@@ -161,12 +164,14 @@ export class MarketingPopupComponent {
     params.start_date = this.startDate;
     params.end_date = this.endDate;
     params.status  = 1; // 1 for active, 2 for inactive
+    // params.status  = this.status; // 1 for active, 2 for inactive
     
 
     this.marketingApi.addPopups(params).subscribe((response)=>{
       if (response && response.status) {
         this.dialogRef.close({
-          action: 'popupAdded'
+          action: 'popupAdded',
+          message: response.message
         });
         // this.popups = response.data.popups;
         // this.paginator.length = response.data.totalCount;
@@ -196,12 +201,13 @@ export class MarketingPopupComponent {
     params.frequency = this.selectedFrequency;
     params.start_date = this.startDate;
     params.end_date = this.endDate;
-    params.status  = 1; // 1 for active, 2 for inactive
+    params.status  = this.status; // 1 for active, 2 for inactive
     
     this.marketingApi.updatePopups(this.popupIdToEdit, params).subscribe((response)=>{
       if (response && response.status) {
         this.dialogRef.close({
-          action: 'popupUpdated'
+          action: 'popupUpdated',
+          message: response.message
         });
       } else {
         // this.isLoading = false;

@@ -58,6 +58,13 @@ export class WebPages {
         );
     }
 
+    getAllLocations(): Observable<any>{
+        let currentLang = localStorage.getItem('lang_id');
+        return this.http.get<{ status: boolean, message: string, data: {} }>(
+            `${this.apiUrl}get-domains/${currentLang}`
+        );
+    }
+
     addNewPage(params: any): Observable<any>{
         return this.http.post<any>(`${this.apiUrl}admin/add-page`, params);
     }

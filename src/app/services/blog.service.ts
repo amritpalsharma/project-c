@@ -42,15 +42,18 @@ export class BlogService {
 
     // Method to delete a record by IDs
     deleteBlog(params: any): Observable<any> {
-        return this.http.post<any>(`${this.apiUrl}admin/delete-blog`, params);
+        let currentLang = localStorage.getItem('lang_id');
+        return this.http.post<any>(`${this.apiUrl}admin/delete-blog/${currentLang}`, params);
     }
 
     publishBlogs(params: any): Observable<any> {
-        return this.http.post<any>(`${this.apiUrl}admin/publish-blog`, params);
+        let currentLang = localStorage.getItem('lang_id');
+        return this.http.post<any>(`${this.apiUrl}admin/publish-blog/${currentLang}`, params);
     }
 
     draftBlogs(params: any): Observable<any> {
-        return this.http.post<any>(`${this.apiUrl}admin/draft-blog`, params);
+        let currentLang = localStorage.getItem('lang_id');
+        return this.http.post<any>(`${this.apiUrl}admin/draft-blog/${currentLang}`, params);
     }
 
 }

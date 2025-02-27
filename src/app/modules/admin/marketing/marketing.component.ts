@@ -9,6 +9,10 @@ import { MatSort } from '@angular/material/sort';
 import { environment } from '../../../../environments/environment';
 import { MessagePopupComponent } from '../message-popup/message-popup.component';
 import { CommonFilterPopupComponent } from '../common-filter-popup/common-filter-popup.component';
+import { WebPages } from '../../../services/webpages.service';
+import { SharedService } from '../../../services/shared.service';
+
+
 
 @Component({
   selector: 'app-marketing',
@@ -32,10 +36,22 @@ export class MarketingComponent {
   locations:any = environment.domains;
   frequency:any = ['Once a day', 'Once a week', 'Once 2 Hrs', 'Twice a day', 'Once a month', 'One time only'];
 
-  constructor(public dialog: MatDialog,private marketingApi: MarketingService) {}
+  constructor(public dialog: MatDialog,private marketingApi: MarketingService, private webpages:WebPages, private sharedservice:SharedService) {}
   ngOnInit(): void {
     this.getSystemPopups();
     this.getRoles();
+    this.getAllLanguages();
+    this.getAllLocations();
+
+    this.sharedservice.data$.subscribe((data) => {
+      if(data.action == 'lang_updated'){
+          this.isLoading = true;
+          this.getSystemPopups();
+          this.getRoles();
+          this.getAllLanguages();
+          this.getAllLocations();
+      }
+  });
   }
 
   async getSystemPopups(filterApplied:boolean = false): Promise<void> {
@@ -109,7 +125,8 @@ export class MarketingComponent {
     dialogRef.afterClosed().subscribe(result => {
       if (result !== undefined) {
         if(result.action == "popupAdded"){
-          this.showMessage('Popup created successfully!');
+          // this.showMessage('Popup created successfully!');
+          this.showMessage(result.message);
           this.getSystemPopups();
         }
       //  console.log('Dialog result:', result);
@@ -184,7 +201,8 @@ export class MarketingComponent {
         this.selectedIds = [];
         this.allSelected = false;
         // console.log('Popups deleted successfully:', response);
-        this.showMessage('Popup(s) deleted successfully!');
+        // this.showMessage('Popup(s) deleted successfully!');
+        this.showMessage(response.message);
       },
       error => {
         console.error('Error deleting popup:', error);
@@ -238,7 +256,8 @@ export class MarketingComponent {
     dialogRef.afterClosed().subscribe(result => {
       if (result !== undefined) {
         if(result.action == "popupUpdated"){
-          this.showMessage('Popup updated successfully!');
+          // this.showMessage('Popup updated successfully!');
+          this.showMessage(result.message);
           this.getSystemPopups();
         }
       //  console.log('Dialog result:', result);
@@ -308,6 +327,43 @@ export class MarketingComponent {
       }
     });
   }
+
+  getAllLanguages(){
+    this.webpages.getAllLanguage().subscribe((response: any) => {
+      if(response.status){
+        console.log('languages',response);
+        let languages = response.data.languages;
+
+
+        this.langs = languages.map((value: any) => {
+          return {
+            id: value.id,
+            language: value.language,
+            slug: value.slug
+          }
+        });
+      }
+    });
+  }
+
+
+
+  getAllLocations(){
+    this.webpages.getAllLocations().subscribe((response: any) => {
+      if(response.status){
+        let domains = response.data.domains;
+        this.locations = domains.map((value: any) => {
+          return {
+            id: value.id,
+            name: value.location,
+            slug: value.domain_country_code,
+            flag: value.country_flag,
+          }
+        });
+      }
+    });
+  }
+  
 
   applyUserFilter(filters:any){
     this.customFilters = filters;
