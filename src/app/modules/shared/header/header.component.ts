@@ -49,7 +49,7 @@ export class HeaderComponent {
     private socketService: SocketService,
     private commonDataService: CommonDataService,
     private webPages: WebPages,
-    private talkService:TalkService
+    private talkService: TalkService
   ) { }
 
   loggedInUser: any = localStorage.getItem('userInfo');
@@ -292,16 +292,16 @@ export class HeaderComponent {
   }
 
   navigateToTab(tab: string) {
-  let fragment = 'activity'; // Default fragment
-  
-  if (tab === 'setting') {
-    fragment = 'app-settings';
-  } else if (tab === 'notifications') {
-    fragment = 'notifications';
-  }
+    let fragment = 'activity'; // Default fragment
 
-  this.router.navigate([`/${this.role.slug}/setting`], { fragment });
-}
+    if (tab === 'setting') {
+      fragment = 'app-settings';
+    } else if (tab === 'notifications') {
+      fragment = 'notifications';
+    }
+
+    this.router.navigate([`/${this.role.slug}/setting`], { fragment });
+  }
 
 
   ChangeLang(lang: any) {
@@ -356,7 +356,7 @@ export class HeaderComponent {
 
     this.themeService.setDarkTheme(event.target.checked);
     // if(event.target.checked){
-      this.onThemeToggle(event.target.checked);
+    this.onThemeToggle(event.target.checked);
     // }
   }
 
@@ -394,7 +394,7 @@ export class HeaderComponent {
         console.log('Fetched notifications response:', response);
 
         if (response.status && response.notifications) {
-          if(response.total_count == '0'){
+          if (response.total_count == '0') {
             this.totalNotification = false;
           }
           this.unseenCount = response.unseen_count;
@@ -532,9 +532,9 @@ export class HeaderComponent {
     return slug;
   }
 
-  checkRole(role:any){
-    if(role == 'Club') return "club";
-    else if(role == 'Scout') return "scout";
+  checkRole(role: any) {
+    if (role == 'Club') return "club";
+    else if (role == 'Scout') return "scout";
     else return "talent";
   }
 

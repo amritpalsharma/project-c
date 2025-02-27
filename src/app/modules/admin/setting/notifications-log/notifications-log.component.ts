@@ -40,22 +40,24 @@ export class NotificationsLogComponent {
 
   constructor(public dialog: MatDialog, public webPages: WebPages, private talentService: TalentService, private translateService: TranslateService) {
     translateService.onLangChange.subscribe(() => {
-      let jsonData = localStorage.getItem("userData");
-      let userId;
-      if (jsonData) {
-        let userData = JSON.parse(jsonData);
-        userId = userData.id;
+      let langId;
+      if(translateService.currentLang == 'en'){
+        langId = 1;
       }
-      else {
-        console.log("No data found in localStorage.");
+      else{
+        langId = 2;
       }
-      let langId = localStorage.getItem('lang_id');
-
-      this.fetchNotifications(userId, langId);
+      this.fetchNotifications(langId);
     });
   }
 
   ngOnInit() {
+    let langId = localStorage.getItem('lang_id');
+    this.fetchNotifications(langId);
+  }
+
+
+  fetchNotifications(langId : any): void {
     let jsonData = localStorage.getItem("userData");
     let userId;
     if (jsonData) {
@@ -65,15 +67,6 @@ export class NotificationsLogComponent {
     else {
       console.log("No data found in localStorage.");
     }
-    let langId = localStorage.getItem('lang_id');
-
-    this.fetchNotifications(userId, langId);;
-  }
-
-
-  fetchNotifications(userId: any, langId: any): void {
-    console.log("here is lang_id", langId);
-
 
     const page = this.paginator ? this.paginator.pageIndex + 1 : 1;
     const pageSize = this.paginator ? this.paginator.pageSize : 10;
@@ -81,12 +74,10 @@ export class NotificationsLogComponent {
     this.notifications = [];
     this.isLoading = true;
 
-    console.log('language updating', userId, langId, page, pageSize);
     this.talentService.getNotifications(userId, langId, page, pageSize).subscribe({
       next: (response) => {
         this.notifications = response.notifications;
         this.paginator.length = response.total_count;
-        console.log('Fetched notifications response:', this.notifications, this.paginator.length);
 
         this.isLoading = false;
 
@@ -96,18 +87,8 @@ export class NotificationsLogComponent {
 
 
   onPageChange() {
-    let jsonData = localStorage.getItem("userData");
-    let userId;
-    if (jsonData) {
-      let userData = JSON.parse(jsonData);
-      userId = userData.id;
-    }
-    else {
-      console.log("No data found in localStorage.");
-    }
     let langId = localStorage.getItem('lang_id');
-
-    this.fetchNotifications(userId, langId);
+    this.fetchNotifications(langId);
   }
 
   onCheckboxChange(item: any) {
@@ -143,18 +124,8 @@ export class NotificationsLogComponent {
     this.talentService.deleteNotifications(ids).subscribe(
       response => {
         if (response.status) {
-          let jsonData = localStorage.getItem("userData");
-          let userId;
-          if (jsonData) {
-            let userData = JSON.parse(jsonData);
-            userId = userData.id;
-          }
-          else {
-            console.log("No data found in localStorage.");
-          }
           let langId = localStorage.getItem('lang_id');
-
-          this.fetchNotifications(userId, langId);
+          this.fetchNotifications(langId);
           this.selectedIds = [];
           this.allSelected = false;
           this.showMessage(response.message);
