@@ -17,7 +17,7 @@ interface Player {
 })
 export class PlayerListComponent implements OnInit {
   selectedTab: 'talent' | 'club' | 'scouts' = 'talent';
-  isPageLoading:boolean=false;
+  isLoading:boolean=false;
   currentPage: number = 1;
   itemsPerPage: number = 8;
   number: number = 12;
@@ -84,6 +84,9 @@ export class PlayerListComponent implements OnInit {
     }
   }
 
+
+
+  
   goToPage(page: number) {
     if (page >= 1 && page <= this.totalPages()) {
       this.currentPage = page;
@@ -101,8 +104,8 @@ export class PlayerListComponent implements OnInit {
 
   onItemsPerPageChange() {
     this.currentPage = 1;
-    this.fetchData(this.selectedTab);
-    this.currentPage = 1;
+    // this.fetchData(this.selectedTab);
+    // this.currentPage = 1;
     this.fetchData(this.selectedTab);
   }
 
@@ -123,7 +126,7 @@ export class PlayerListComponent implements OnInit {
   }
 
   fetchData(selectedTab: string) {
-    this.isPageLoading = true;
+    this.isLoading = true;
     const url = 'https://api.socceryou.ch/api/users-frontend?=4';
     let role = '';
     if (selectedTab == 'club') {
@@ -156,7 +159,7 @@ export class PlayerListComponent implements OnInit {
         // Calculate total pages based on total count and items per page
         this.totalPagesCount = Math.ceil(response.data.userData.totalCount / this.itemsPerPage);
         this.TotalCount = response.data.userData.totalCount;
-        this.isPageLoading = false;
+        this.isLoading = false;
       },
       (error) => {
         console.error(error);

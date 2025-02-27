@@ -67,17 +67,6 @@ export class IndexComponent {
   @ViewChild('owlCarousel') owlCarousel!: ElementRef;
   fallbackImage: string = 'assets/images/1.jpg'; // Path to your fallback image
 
-<<<<<<< HEAD
-  selectedLangId: any = null;
-  pageDetail: any = null;
-  sliderDetail: any = null;
-  advertisemnetData: any = null;
-  imageBaseUrl: string = '';
-  banner_img: string = '';
-  banner_bg_img: string = '';
-  hero_bg_img: string = '';
-  advertisemnet_base_url: string = '';
-=======
   selectedLangId:any = null;
   pageDetail:any=null;
   sliderDetail:any=null;
@@ -88,7 +77,6 @@ export class IndexComponent {
   hero_bg_img:string= '';
   hero_bg_img_dark_mode:string= '';
   advertisemnet_base_url:string= '';
->>>>>>> c717c678b0562be411788ffefc9b1c83efd11af6
   isUserLoggedIn: boolean = false;
   club_logo_path: string = '';
   pre_club_logo_path: string = '';
@@ -307,20 +295,12 @@ export class IndexComponent {
     this.webPages.getDynamicHomePage(languageId).subscribe((res) => {
       let pageData = res.data.pageData;
       let sliderData = res.data.sliderData;
-<<<<<<< HEAD
-      if (res.status) {
-        this.pageDetail = pageData;
-        this.banner_img = res.data.base_url + pageData.banner_img;
-        this.banner_bg_img = res.data.base_url + pageData.banner_bg_img;
-        this.hero_bg_img = res.data.base_url + pageData.hero_bg_img_dark_mode;
-=======
       if(res.status){
           this.pageDetail = pageData;
           this.banner_img =  res.data.base_url + pageData.banner_img;
           this.banner_bg_img =  res.data.base_url + pageData.banner_bg_img;
           this.hero_bg_img =  res.data.base_url + pageData.hero_bg_img;
           this.hero_bg_img_dark_mode =  res.data.base_url + pageData.hero_bg_img_dark_mode;
->>>>>>> c717c678b0562be411788ffefc9b1c83efd11af6
 
         this.sliderDetail = sliderData;
         this.club_logo_path = this.sliderDetail.imagePath;
@@ -340,6 +320,7 @@ export class IndexComponent {
     // console.log(parseData, 'parse-data');
   }
 
+  
   getBirthYear(date: any) {
     if (date) {
       const birthYear = new Date(date); // Convert to Date object
