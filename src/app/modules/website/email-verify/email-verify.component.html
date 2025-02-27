@@ -12,11 +12,11 @@
                             <img class="coming-soon-banner" src="./assets/images/coming-soon-banner.png">
                         </div>
                         <div class="coming-soon">
-                            <h2 class="coming-heading">VERIFY YOUR EMAIL</h2>
-                            <h4 class="comming-heading4">We’ve sent a confirmation link to your email.</h4>
+                            <h2 class="coming-heading">{{ 'verifyEmail' | translate }}</h2>
+                            <h4 class="comming-heading4">{{ 'sentConfirmationLink' | translate }}</h4>
                         </div>
                         <div class="coming-email">
-                            <p class="coming-text">Click the link in your inbox to complete the verification process.
+                            <p class="coming-text">{{ 'completeVerificationProcess' | translate }}
                             </p>
                             <a class="btn btn-register" [routerLink]="''">{{'backToHome' | translate}}</a> 
                         </div>

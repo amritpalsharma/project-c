@@ -1283,9 +1283,14 @@
       "Mer synlighet - större chans att bli upptäckt"
     ]
   },
-  "MyAccount": "Gå till instrumentpanelen",
+  "MyAccount": "till Panel",
    "boostProfiles": "Boost-profil",
    "changeNewsletterStatus": "Är du säker på att du vill ändra nyhetsbrevsstatus?",
    "representators": "Medlem i teamet",
-   "representators:": "Medlem i teamet:"
+   "representators:": "Medlem i teamet:",
+
+   "errorMessage": "denna sida kunde tyvärr inte hittas",
+   "verifyEmail": "VERIFIERA DIN E-POST",
+   "sentConfirmationLink": "Vi har skickat en bekräftelselänk till din e-post.",
+   "completeVerificationProcess": "Klicka på länken i din inkorg för att slutföra verifieringsprocessen."
 }

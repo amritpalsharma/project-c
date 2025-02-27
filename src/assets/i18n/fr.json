@@ -1296,9 +1296,14 @@
       "Plus de visibilité - plus de chances d'être découvert"
     ]
   },
-  "MyAccount": "Aller au tableau de bord",
+  "MyAccount": "vers Tableau",
    "boostProfiles": "Profil Boost",
    "changeNewsletterStatus": "Êtes-vous sûr de vouloir changer le statut de la lettre d'information ?",
    "representators": "Membre de l'équipe",
-  "representators:": "Membre de l'équipe:"
+  "representators:": "Membre de l'équipe:",
+
+  "errorMessage": "cette page n'a malheureusement pas pu être trouvée",
+  "verifyEmail": "VÉRIFIER VOTRE EMAIL",
+  "sentConfirmationLink": "Nous avons envoyé un lien de confirmation à votre adresse électronique.",
+  "completeVerificationProcess": "Cliquez sur le lien dans votre boîte de réception pour terminer la procédure de vérification."
 }

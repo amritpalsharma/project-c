@@ -750,7 +750,7 @@
   "subTotal": "Zwischensumme",
   "downloadPDF": "PDF herunterladen",
   "success!": "Erfolgreich!",
-  "subscriptionSuccessful": "Ihre Anmeldung war erfolgreich.",
+  "subscriptionSuccessful": "Dein Kauf war erfolgreich!",
   "browserDoesNotSupport": "Ihr Browser unterstützt das Video-Tag nicht.",
   "ADMINSCREEN": "ADMINSCREEN",
   "addTeamMember": "Neues Teammitglied hinzufügen",
@@ -1258,10 +1258,14 @@
     "profilePhoto": "Laden Sie Ihr bestes Porträtfoto hoch, um einen großartigen ersten Eindruck zu hinterlassen.",
     "removeFavorite": "Aus den Favoriten entfernen",
     "addFavorite": "Zu den Favoriten hinzufügen",
-    "downloadPdf":"Profil Pdf herunterladen",
-    "startConversation":"ein Gespräch beginnen"
+    "downloadPdf": "Profil Pdf herunterladen",
+    "startConversation": "ein Gespräch beginnen"
   },
   "changeNewsletterStatus":"Sind Sie sicher, dass Sie den Newsletter-Status ändern möchten?",
   "representators": "Team-Mitglied",
-  "representators:": "Team-Mitglied:"
+  "representators:": "Team-Mitglied:",
+  "errorMessage": "Diese Seite konnte leider nicht gefunden werden",
+  "verifyEmail": "ÜBERPRÜFEN SIE IHRE E-MAIL",
+  "sentConfirmationLink": "Wir haben Ihnen einen Bestätigungslink an Ihre E-Mail geschickt.",
+  "completeVerificationProcess": "Klicken Sie auf den Link in Ihrem Posteingang, um den Verifizierungsprozess abzuschließen."
 }

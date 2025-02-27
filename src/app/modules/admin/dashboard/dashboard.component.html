@@ -136,8 +136,16 @@
                 <!-- <span>
                   <img src="../../../assets/images/1.jpg" alt="" class="table_img" />
                 </span> -->
-                <img *ngIf="user.meta || user.meta.profile_image_path != ''" src="{{user.meta.profile_image_path}}" class="table_img" alt="">
-                <!-- <img *ngIf="!user.meta || !user.meta.profile_image_path" src="../../../assets/images/1.jpg" class="table_img" alt=""> -->
+                <!-- <img *ngIf="user.meta && user.meta.profile_image_path != ''" src="{{user.meta.profile_image_path}}" class="table_img" alt="">
+                <img  src="../../../assets/images/1.jpg" class="table_img" alt=""> -->
+                <img *ngIf="user.meta && user.meta.profile_image_path; else defaultImage" 
+                  [src]="user.meta.profile_image_path" 
+                  class="table_img" alt="">
+
+                  <ng-template #defaultImage>
+                      <img src="../../../assets/images/1.jpg" class="table_img" alt="">
+                  </ng-template>
+
                 <span>{{user.first_name +' '+user.last_name }}</span>
               </div>
             </td>

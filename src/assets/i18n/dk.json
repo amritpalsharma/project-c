@@ -1142,9 +1142,14 @@
       "Mere synlighed - større chance for at blive opdaget"
     ]
   },
-  "MyAccount": "Gå til instrumentbrættet",
+  "MyAccount": "til Dashboard",
    "boostProfiles": "Boost-profil",
    "changeNewsletterStatus": "Er du sikker på, at du vil ændre nyhedsbrevets status?",
    "representators": "Medlem af teamet",
-  "representators:": "Medlem af teamet:"
+  "representators:": "Medlem af teamet:",
+
+  "errorMessage": "Denne side kunne desværre ikke findes",
+  "verifyEmail": "BEKRÆFT DIN E-MAIL",
+  "sentConfirmationLink": "Vi har sendt et bekræftelseslink til din e-mail.",
+  "completeVerificationProcess": "Klik på linket i din indbakke for at fuldføre bekræftelsesprocessen."
   }

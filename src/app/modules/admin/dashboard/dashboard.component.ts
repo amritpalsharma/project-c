@@ -232,7 +232,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         }
       );
 
-    this.sharedservice.data$.subscribe((data) => {
+    this.sharedservice.data$.subscribe((data:any) => {
       if (data.action == 'lang_updated') {
         this.isLoading = true;
         this.lang_id = data.id;

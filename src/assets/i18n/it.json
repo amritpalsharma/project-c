@@ -1279,9 +1279,14 @@
       "Più visibilità - maggiori possibilità di essere scoperti"
     ]
   },
-  "MyAccount": "Vai al cruscotto",
+  "MyAccount": "al Dashboard",
    "boostProfiles": "Profilo di spinta",
    "changeNewsletterStatus": "Sei sicuro di voler cambiare lo stato della newsletter?",
    "representators": "Membro del team",
-  "representators:": "Membro del team:"
+  "representators:": "Membro del team:",
+
+  "errorMessage": "questa pagina purtroppo non è stata trovata",
+  "verifyEmail": "VERIFICA IL TUO INDIRIZZO E-MAIL",
+  "sentConfirmationLink": "Abbiamo inviato un link di conferma al tuo indirizzo e-mail.",
+  "completeVerificationProcess": "Fai clic sul link nella tua casella di posta per completare il processo di verifica."
 }

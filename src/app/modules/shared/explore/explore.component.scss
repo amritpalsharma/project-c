@@ -212,9 +212,6 @@
     .explore-box_images .player-image-list .col-lg-2 {
         width: 33.33% !important;
     }
-    .booster_box {
-        height: 230px;
-    }
 }
 
 @media (max-width:768px) {
@@ -228,13 +225,29 @@
         text-align: left;
        
     }
-    .player-image-list .col-lg-2 {
-        width: 100% !important;
-    }
     .player-image-list {
         row-gap: 20px;
     }
     
+}
+
+@media (min-width: 600px) and (max-width:991px) {
+    .explore-box_images .player-image-list .col-lg-2 {
+        width: 33.33% !important;
+    }
+ }
+
+@media (min-width: 481px) and (max-width:599px) {
+.explore-box_images .player-image-list .col-lg-2 {
+    width: 50% !important;
+}
+}
+
+
+@media (max-width: 480px) {
+.explore-box_images .player-image-list .col-lg-2 {
+    width: 100% !important;
+}
 }
 
 

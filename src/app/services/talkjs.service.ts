@@ -25,7 +25,7 @@ export class TalkService {
       name: user.name,
       email: user.email,
       photoUrl: user.photoUrl,
-      welcomeMessage: 'Hey there! How can I help?',
+      welcomeMessage: null,
       role:user.role
     });
 
@@ -61,7 +61,7 @@ export class TalkService {
         name: name,
         email: email,
         photoUrl: photoUrl,
-        welcomeMessage: '',
+        welcomeMessage: null,
         role:'default'
 
       });
@@ -116,7 +116,7 @@ export class TalkService {
           name: user.name,
           email: user.email,
           photoUrl: user.photoUrl,
-          welcomeMessage: 'Hey there! How can I help?',
+          welcomeMessage: null,
           role:'default'
         });
         conversation.setParticipant(participant);
@@ -124,10 +124,16 @@ export class TalkService {
 
       const hiddenUser = new Talk.User({
         id: 1,
-        name: '',
+        name: 'Admin',
         email: 'testmails.cts@gmail.com',
         role:'hidden'
       });
+
+      // Group chat name
+      // conversation.setAttributes({
+      //     subject: "Group Chat!"
+      // });
+
       conversation.setParticipant(hiddenUser);
 
       if (!this.inbox) {

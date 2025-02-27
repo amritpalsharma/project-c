@@ -1174,5 +1174,9 @@
   "boostProfiles": "Boost Profile",
   "renews": "Renews on",
   "changeNewsletterStatus": "Are you sure you want to change newsletter status?",
-  "representators:": "Team Member:"
+  "representators:": "Team Member:",
+  "errorMessage": "this page could unfortunately notfound",
+  "verifyEmail": "VERIFY YOUR EMAIL",
+  "sentConfirmationLink": "We’ve sent a confirmation link to your email.",
+  "completeVerificationProcess": "Click the link in your inbox to complete the verification process."
 }

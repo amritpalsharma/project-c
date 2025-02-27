@@ -46,6 +46,8 @@ export class PlanComponent implements OnInit, OnDestroy {
   countryPlans: any;
   demoPlans: any;
   selectedPlan: any | null = null;
+  activePlans: any[] = [];
+  allCountryPlans: any[] = [];
   userCards: any[] = [];
   defaultCard: any = null;
   stripe: any;
@@ -216,6 +218,8 @@ export class PlanComponent implements OnInit, OnDestroy {
 
               const plans = res[key]?.plans || {};
 
+              this.allCountryPlans = plans;
+
               Object.keys(plans).forEach((planKey) => {
                 const plan = plans[planKey];
 
@@ -268,10 +272,16 @@ export class PlanComponent implements OnInit, OnDestroy {
               this.demoPlans.includes =  ["The complete talent profile with all stages of his career and performance data.", "Export data in excel and pdf formats.", "Create your favorite list.", "Highlight your best photos and videos on your profile."];;
             }
           });
-          console.log('jgfdkhg',this.countryPlans)
+          console.log('jgfdkhg',this.countryPlans, this.allCountryPlans)
 
           // Set the default selected plan (first country plan or null if none exist)
           this.selectedPlan = this.countryPlans.plans[0] || null;
+
+          let activePlan = [];
+          activePlan.push(this.countryPlans.plans[0]);
+          activePlan.push(this.countryPlans.plans[7]);
+
+          this.activePlans = activePlan;
 
           // Fetch user cards
           // this.getUserCards();
@@ -492,6 +502,8 @@ export class PlanComponent implements OnInit, OnDestroy {
       data: {
         plans: plans.data ,
         selectedPlan :this.selectedPlan,
+        activePlans : this.activePlans,
+        allPlans : this.allCountryPlans,
         defaultCard : this.defaultCard ,
         country : country ,
       }

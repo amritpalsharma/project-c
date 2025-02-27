@@ -831,9 +831,9 @@ body {
   background-image: url("/assets/images/thanku-dark.png");
 }
 
-// .light-theme .website-code .main-bnr {
-//   background-image: url("/assets/images/error-png.jpg");
-// }
+.light-theme .website-code .main-bnr {
+  background-image: url("/assets/images/error-png.jpg");
+}
 
 .light-theme .website-code .player-list {
   background-color: #092E01;
@@ -2266,7 +2266,7 @@ a {
   //   bottom: 0px;
   // }
 
-  .page-sidebar {
+  //.page-sidebar {
     // width: 100%;
     // padding: 30px;
     // visibility: hidden;
@@ -2370,7 +2370,7 @@ a {
   .leaderboard-image {
     display: none;
   }
-}
+
 
 @media (max-width: 767px) {
 
@@ -2397,10 +2397,6 @@ a {
     padding: 0px 10px !important;
   }
 
-  .main-wrapper {
-    top: 75px;
-  }
-
   .page-content {
     padding: 0px 10px;
   }
@@ -2425,7 +2421,7 @@ a {
     flex: auto;
     min-width: 0;
     width: 180px;
-    height: 100px;
+    // height: 100px;
     position: relative;
     box-sizing: border-box;
   }
