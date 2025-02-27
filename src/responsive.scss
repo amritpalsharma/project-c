@@ -10,6 +10,15 @@
         width: 175px;
         font-size: 14px;
     }
+    .es .website-code .login-btn, .de .website-code .login-btn {
+        font-size: 13px;
+        width: 155px;
+    }
+    
+    .en .website-code nav.navbar .login-btn {
+        width: 155px;
+        font-size: 15px;
+    }
     .works {
     .player-list-image img, .player-list-images img {
         position: absolute;
@@ -127,6 +136,28 @@
 .page-header .mobile-logo {
     display: none;
 }
+}
+
+
+@media (min-width: 1600px) {
+.it .website-code nav.navbar li.nav-item .nav-link, .fr .website-code nav.navbar li.nav-item .nav-link,
+    .es .website-code nav.navbar li.nav-item .nav-link, .pt .website-code nav.navbar li.nav-item .nav-link,
+    .dk .website-code nav.navbar li.nav-item .nav-link, .se .website-code nav.navbar li.nav-item .nav-link,
+    .de .website-code nav.navbar li.nav-item .nav-link {
+        font-size: 18px;
+    }
+    .fr .website-code nav.navbar .login-btn {
+        width: 200px;
+        font-size: 17px;
+    }
+    .es .website-code .login-btn, .de .website-code .login-btn {
+        font-size: 17px;
+        width: 200px;
+    }
+    .en .website-code nav.navbar .login-btn {
+        width: 180px;
+        font-size: 16px;
+    }
 }
 
 
@@ -307,6 +338,17 @@ body.compact-sidebar.dark-theme .sidebar-menu svg path {
 }
 
 @media (max-width: 575px) {
+.edit_button span, .edit_button button span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.edit_button button {
+    display: flex;
+    max-width: 75px;
+    white-space: nowrap;
+    overflow: hidden;
+}
 .navtabs_button p {
     line-height: 15px;
 }
