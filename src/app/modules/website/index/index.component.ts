@@ -320,7 +320,7 @@ export class IndexComponent {
     // console.log(parseData, 'parse-data');
   }
 
-  
+
   getBirthYear(date: any) {
     if (date) {
       const birthYear = new Date(date); // Convert to Date object
@@ -328,6 +328,7 @@ export class IndexComponent {
     }
     return 'N/A';
   }
+  
   chnageHerosectionBgImg() {
     //  alert('theme chnaged');
     console.log('Index Page theme updated');
