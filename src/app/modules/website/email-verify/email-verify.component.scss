@@ -248,7 +248,7 @@ a {
   margin-top: 10rem;
 }
 h2.coming-heading {
-    font-size: 75px;
+    font-size: 65px;
     text-transform: uppercase;
     // margin-top: 100px;
     font-weight: 700;
@@ -258,15 +258,19 @@ h2.coming-heading {
 
 h4.comming-heading4 {
     color: white;
-    font-size: 40px;
+    font-size: 38px;
     font-weight: 400;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
+}
+.py_0{
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 p.coming-text {
     color: white;
-    font-size: 20px;
+    font-size: 18px;
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
  .mat-mdc-button:not(:disabled) {
   color: #072944;
@@ -418,6 +422,9 @@ form {
   padding: 0;
   padding-top: 20px;
 }
+.banner-content {
+  margin-top: 7rem;
+}
  
 }
 
@@ -425,7 +432,11 @@ form {
 
 @media (max-width: 575px){
  .main-bnr {
-    min-height: 600px;
+    min-height: 650px;
+  }
+  .py_0{
+    padding-top: 30px;
+    padding-bottom: 30px;
   }
   a.btn.btn-register{
     font-size: 17px;
@@ -433,13 +444,15 @@ form {
 }
 
 h2.coming-heading {
-    font-size: 45px;
+    font-size: 42px;
 }
 h4.comming-heading4 {
-  margin-bottom: 60px;
+  margin-bottom: 40px;
 }
+
 p.coming-text {
-  font-size: 17px;
+  font-size: 14px;
+  margin-bottom: 20px;
 }
 // button.email-btn.mdc-button.mat-mdc-button.ng-tns-c1132357239-0.mat-unthemed.mat-mdc-button-base {
 //   width: 100%;
@@ -477,6 +490,9 @@ button.email-btn.mdc-button.mat-mdc-button.ng-tns-c1132357239-0.mat-unthemed.mat
 }
 p.error.ng-star-inserted {
   margin-left: 10px;
+}
+h4.comming-heading4 {
+  font-size: 22px;
 }
 
 }
