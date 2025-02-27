@@ -228,7 +228,7 @@ input#dateOfBirth, input#contractStart, input#contractEnd {
 
 
 .compact-sidebar .sidebar_menu_span {
-  display: none;
+  // display: none;
 }
 
 .custom-size-calendar .mdc-text-field--filled {
@@ -285,6 +285,7 @@ input#dateOfBirth, input#contractStart, input#contractEnd {
 
 .light-theme a.dropdown-item.ai-icon.selected {
   background: linear-gradient(180deg, #236115 0%, #6fb95d 100%) !important;
+  color: #fff !important;
 }
 
 
@@ -588,19 +589,23 @@ input#dateOfBirth, input#contractStart, input#contractEnd {
 
 .page-sidebar-inner {
   height: calc(100% - 150px) !important;
+  // overflow-x: hidden;
+  // overflow-y: auto;
+  display: flex;
+  align-items: center;
   .sidebar_menu{
-    max-height: calc(100% - 45%);
-    overflow-x: hidden;
-    overflow-y: auto;
+    max-height: 100%;
   }
+}
+.page-sidebar-inner::-webkit-scrollbar {
+  width: 0px;
 }
 .sidebar_menu {
   list-style-type: none;
   padding: 0;
   border-radius: 10px;
   width: 100%;
-  position: absolute;
-  top: 30%;
+  position: static;
   margin-bottom: 0px;
 }
 .sidebar_state {
@@ -898,7 +903,7 @@ input:checked+.slider:before {
 
 .profile .dropdown-menu {
   padding: 20px 15px;
-  width: 200px;
+  width: 250px;
 }
 
 .profile .dropdown-menu h6 {
@@ -1976,6 +1981,10 @@ nav.navbar .country_dropdown h6.border-bottom {
 }
 }
  }
+}
+
+.filter-button select {
+  width: 100%;
 }
 
 #notifications {

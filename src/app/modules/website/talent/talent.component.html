@@ -104,7 +104,7 @@
                                     <div class="accordion-flex" data-bs-toggle="collapse"
                                         [attr.data-bs-target]="'#collapse' + i" aria-expanded="false"
                                         [attr.aria-controls]="'collapse' + i">
-                                        <img class="light-feature1" src="./assets/images/feature-img1.svg">
+                                        <img class="light-feature1" src="{{baseUrl + feature.icon}}">
                                         <img class="dark-feature1" src="./assets/images/dark-club1.svg">
                                         <h2 class="accordion-header">
                                             {{feature.title}}
@@ -295,7 +295,7 @@
                                 <div class="accordion-item" (click)="setActiveAccordion(i+1)">
                                     <div class="accordion-flex" data-bs-toggle="collapse" data-bs-target="#collapseOne"
                                         aria-expanded="true" aria-controls="collapseOne">
-                                        <img class="light-feature1" src="./assets/images/feature-img1.svg">
+                                        <img class="light-feature1" src="{{baseUrl + feature.icon}}">
                                         <img class="dark-feature1" src="./assets/images/dark-club1.svg">
                                         <h2 class="accordion-header">
                                             {{feature.title}}
