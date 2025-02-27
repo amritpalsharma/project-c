@@ -14,33 +14,40 @@ export class CouponService {
     
     }
     getCoupons(params:any): Observable<{ status: boolean, message: string, data: any }> {
+        let currentLang = localStorage.getItem('lang_id');
         return this.http.get<{ status: boolean, message: string, data: any }>(
-            `${this.apiUrl}admin/get-coupons`, {params}
+            `${this.apiUrl}admin/get-coupons/${currentLang}`, {params}
           );
     }
 
     addPopups(record: any): Observable<any> {
-        return this.http.post<any>(`${this.apiUrl}admin/add-coupon`, record);
+        let currentLang = localStorage.getItem('lang_id');
+        return this.http.post<any>(`${this.apiUrl}admin/add-coupon/${currentLang}`, record);
     }
     // Method to update an existing record
     updatePopups(id: number, record: any): Observable<any> {
-        return this.http.post<any>(`${this.apiUrl}admin/edit-coupon/${id}`, record);
+        let currentLang = localStorage.getItem('lang_id');
+        return this.http.post<any>(`${this.apiUrl}admin/edit-coupon/${id}/${currentLang}`, record);
     }
 
     // Method to delete a record by IDs
     deleteCoupons(params: any): Observable<any> {
-        return this.http.post<any>(`${this.apiUrl}admin/delete-coupon`, params);
+        let currentLang = localStorage.getItem('lang_id');
+        return this.http.post<any>(`${this.apiUrl}admin/delete-coupon/${currentLang}`, params);
     }
 
     publishCoupons(params: any): Observable<any> {
-        return this.http.post<any>(`${this.apiUrl}admin/publish-coupon`, params);
+        let currentLang = localStorage.getItem('lang_id');
+        return this.http.post<any>(`${this.apiUrl}admin/publish-coupon/${currentLang}`, params);
     }
 
     draftCoupons(params: any): Observable<any> {
-        return this.http.post<any>(`${this.apiUrl}admin/draft-coupon`, params);
+        let currentLang = localStorage.getItem('lang_id');
+        return this.http.post<any>(`${this.apiUrl}admin/draft-coupon/${currentLang}`, params);
     }
 
     expireCoupons(params: any): Observable<any> {
-        return this.http.post<any>(`${this.apiUrl}admin/expire-coupon`, params);
+        let currentLang = localStorage.getItem('lang_id');
+        return this.http.post<any>(`${this.apiUrl}admin/expire-coupon/${currentLang}`, params);
     }
 }

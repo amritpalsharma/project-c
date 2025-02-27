@@ -149,7 +149,8 @@ export class CouponsComponent {
     createCouponDialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
         if(result.action == "popupAdded"){
-          this.showMatDialog('Coupon created successfully!', 'display');
+          // this.showMatDialog('Coupon created successfully!', 'display');
+          this.showMatDialog(result.message, 'display');
           this.getCoupons();
         }
       //  console.log('Dialog result:', result);

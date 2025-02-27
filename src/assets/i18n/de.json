@@ -1244,5 +1244,15 @@
   "editCoverImage": "Titelbild bearbeiten",
   "MyAccount": "Zum Dashboard gehen",
   "boostProfiles": "Profil verstärken",
-  "changeNewsletterStatus": "Sind Sie sicher, dass Sie den Newsletter-Status ändern möchten?"
+  "changeNewsletterStatus": "Sind Sie sicher, dass Sie den Newsletter-Status ändern möchten?",
+  "couponDeactivatedSuccess": "Der Coupon wurde erfolgreich deaktiviert.",
+  "editCouponNotAllowed": "Kupon bearbeiten ist im Moment nicht erlaubt!" ,
+  "couponNameEr": "Bitte geben Sie den Namen des Gutscheins ein",
+  "couponCodeEr": "Bitte einmaligen Gutscheincode eingeben",
+  "typeOfCouponEr": "Rabatttyp ist erforderlich",
+  "discountInputsEr": "Mindestens ein Rabatt mit Währung ist erforderlich",
+  "startDateEr": "Startdatum ist erforderlich",
+  "limitEr": "Grenze ist erforderlich",
+  "discountPercent": "Rabatt ist erforderlich"
+
 }
