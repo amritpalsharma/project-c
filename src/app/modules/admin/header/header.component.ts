@@ -290,19 +290,12 @@ export class HeaderComponent {
     // Default to a specific language ID if none is found (e.g., English)
     const selectedLanguageId = selectedLanguageObj ? selectedLanguageObj.id : 1;
     localStorage.setItem('lang_id', selectedLanguageId);
-<<<<<<< HEAD
     // this.shareService.updateData({
     //   action: 'lang_updated',
     //   id: selectedLanguageId
     // })
 
     this.shareService.updateLanguage(selectedLanguageId);
-=======
-    this.shareService.updateData({
-      action: 'lang_updated',
-      id: selectedLanguageId
-    })
->>>>>>> a9001bd7413d3d31bf4cfa802be2848c1b0b0adc
 
     let jsonData = localStorage.getItem("userData");
     let userId;
@@ -492,8 +485,6 @@ export class HeaderComponent {
     //   this.isShowAllNotification = false;
     // }, 5000); // 3000 ms = 3 seconds
 
-<<<<<<< HEAD
-=======
   }
 
   navigateToTab(tab: string) {
@@ -506,7 +497,6 @@ export class HeaderComponent {
     }
 
     this.router.navigate([`/${this.role.slug}/setting`], { fragment });
->>>>>>> a9001bd7413d3d31bf4cfa802be2848c1b0b0adc
   }
 
   accountSetting() {
