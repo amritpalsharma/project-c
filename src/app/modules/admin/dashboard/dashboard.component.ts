@@ -101,11 +101,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     private userService: UserService,
     private talentService: TalentService,
     private socketService: SocketService,
-<<<<<<< HEAD
-    private commonHelper: CommonHelperService
-=======
+    private commonHelper: CommonHelperService,
     private sharedservice: SharedService
->>>>>>> f27a5a958fe2ca6702b548acaf8d7f18cc95046a
   ) {
 
   }
@@ -867,11 +864,22 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   isValidProfileImage(imageUrl : string){
     return this.commonHelper.checkImageExists(imageUrl);
   }
-
-  async processImages(url : string) {
-    const validImageUrl = await this.commonHelper.checkAndReturnImage(url, '');
-    return validImageUrl;
-    // console.log(`Image URL: ${url} is valid: ${validImageUrl === url ? 'Yes' : 'No'}`);
+  isValidImage(imageUrl : string){
+    if(imageUrl != ''){
+      let img = new Image();
+      img.onload = function() {
+          // Image loaded successfully, it's valid
+          console.log(imageUrl + " is valid.");
+          return imageUrl;  
+      };
+      img.onerror = function() {
+          // Image failed to load, it's invalid
+          return '../../../assets/images/1.jpg';
+      };
+      return imageUrl;  // Initiates the image loading
+    }else{
+      return '../../../assets/images/1.jpg';
+    }
   }
 }
 
@@ -892,5 +900,3 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 //     this.showAll = !this.showAll;
 //   }
 // }
-
-
