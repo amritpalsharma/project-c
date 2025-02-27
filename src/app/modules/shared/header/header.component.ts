@@ -49,7 +49,7 @@ export class HeaderComponent {
     private socketService: SocketService,
     private commonDataService: CommonDataService,
     private webPages: WebPages,
-    private talkService:TalkService
+    private talkService: TalkService
   ) { }
 
   loggedInUser: any = localStorage.getItem('userInfo');
@@ -292,8 +292,17 @@ export class HeaderComponent {
   }
 
   navigateToTab(tab: string) {
-    this.router.navigate([`/${this.role.slug}/setting`], { fragment: tab === 'setting' ? 'app-settings' : 'activity' });
+    let fragment = 'activity'; // Default fragment
+
+    if (tab === 'setting') {
+      fragment = 'app-settings';
+    } else if (tab === 'notifications') {
+      fragment = 'notifications';
+    }
+
+    this.router.navigate([`/${this.role.slug}/setting`], { fragment });
   }
+
 
   ChangeLang(lang: any) {
 
@@ -347,7 +356,7 @@ export class HeaderComponent {
 
     this.themeService.setDarkTheme(event.target.checked);
     // if(event.target.checked){
-      this.onThemeToggle(event.target.checked);
+    this.onThemeToggle(event.target.checked);
     // }
   }
 
@@ -358,73 +367,6 @@ export class HeaderComponent {
   closeSidebar() {
     document.body.classList.toggle('mobile-sidebar-active');
   }
-
-  // notifications: Notification[] = [
-  //   {
-  //     image: '../../../assets/images/1.jpg',
-  //     title: 'Elton Price1',
-  //     content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-  //     time: '14 hours ago'
-  //   }
-  // ];
-
-
-
-  // loadMoreNotifications() {
-  //   const moreNotifications: Notification[] = [
-  //     {
-  //       image: '../../../assets/images/1.jpg',
-  //       title: 'John Doe2',
-  //       content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-  //       time: '13 hours ago'
-  //     },
-  //     {
-  //       image: '../../../assets/images/1.jpg',
-  //       title: 'John Doe',
-  //       content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-  //       time: '12 hours ago'
-  //     },
-  //     {
-  //       image: '../../../assets/images/1.jpg',
-  //       title: 'John Doe',
-  //       content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-  //       time: '12 hours ago'
-  //     },
-  //     {
-  //       image: '../../../assets/images/1.jpg',
-  //       title: 'John Doe',
-  //       content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-  //       time: '11 hours ago'
-  //     },
-  //     {
-  //       image: '../../../assets/images/1.jpg',
-  //       title: 'John Doe',
-  //       content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-  //       time: '10 hours ago'
-  //     },
-  //     {
-  //       image: '../../../assets/images/1.jpg',
-  //       title: 'John Doe',
-  //       content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-  //       time: '10 hours ago'
-  //     },
-  //     {
-  //       image: '../../../assets/images/1.jpg',
-  //       title: 'John Doe',
-  //       content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-  //       time: '9 hours ago'
-  //     },
-  //     {
-  //       image: '../../../assets/images/1.jpg',
-  //       title: 'John Doe',
-  //       content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-  //       time: '18 hours ago'
-  //     }
-  //   ];
-
-  //   this.notifications = [...this.notifications, ...moreNotifications];
-
-  // }
 
   onNotificationClick(event: Event) {
     event.stopPropagation(); // Prevent dropdown from closing
@@ -447,12 +389,12 @@ export class HeaderComponent {
   }
 
   fetchNotifications(userId: number, langId: any): void {
-    this.talentService.getNotifications(userId, langId).subscribe({
+    this.talentService.getNotifications(userId, langId, 1, 10).subscribe({
       next: (response) => {
         console.log('Fetched notifications response:', response);
 
         if (response.status && response.notifications) {
-          if(response.total_count == '0'){
+          if (response.total_count == '0') {
             this.totalNotification = false;
           }
           this.unseenCount = response.unseen_count;
@@ -588,6 +530,12 @@ export class HeaderComponent {
       slug = 'se';
     }
     return slug;
+  }
+
+  checkRole(role: any) {
+    if (role == 'Club') return "club";
+    else if (role == 'Scout') return "scout";
+    else return "talent";
   }
 
   onThemeToggle(isDarkModeEnabled: boolean): void {

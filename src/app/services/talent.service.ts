@@ -63,10 +63,17 @@ export class TalentService {
     this.messageSource.next(pic);
   }
 
-  getNotifications(userId: any = 1, langId: any): Observable<any> {
+  getNotifications(userId: any = 1, langId: any, page: any, pageSize: any): Observable<any> {
     return this.http.get<{ status: boolean, notifications: Notification[], unseen_count: number, total_count: number }>(
-      `${this.apiUrl3}notifications?userId=${userId}&langId=${langId}`,
+      `${this.apiUrl3}notifications?userId=${userId}&langId=${langId}&page=${page}&limit=${pageSize}`,
     );
+  }
+
+  deleteNotifications(ids: any[] = []): Observable<{ status: boolean, message: string }> {
+    return this.http.request<{ status: boolean, message: string }>('DELETE', `${this.apiUrl3}notifications`, {
+      body: { ids },
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    });
   }
 
   updateNotificationSeen(id: number, seen: number): Observable<any> {

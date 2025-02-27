@@ -36,6 +36,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatTooltipModule,
     HttpClientModule,
     MaterialModule,
+    MatTooltipModule,
     MatDialogModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({

@@ -39,7 +39,8 @@
 
       <div class="search-container w-75 ms-2">
         <!-- <mat-form-field class="w-100"> -->
-        <input matInput placeholder="{{ 'search' | translate }}" [formControl]="searchControl" [matAutocomplete]="auto" class="form-control w-100" />
+        <input matInput placeholder="{{ 'search' | translate }}" [formControl]="searchControl" [matAutocomplete]="auto"
+          class="form-control w-100" />
         <mat-autocomplete class="suggestion-list" #auto="matAutocomplete"
           (optionSelected)="selectUser($event.option.value)">
           <!-- Show loader while loading -->
@@ -81,16 +82,17 @@
             <!-- (click)="toggleTheme($event)" -->
 
             <label class="switch">
-              <input class='toggle-checkbox' type='checkbox' (change)="toggleTheme($event)" id="themeToggle" [checked]="isDarkMode"/>
+              <input class='toggle-checkbox' type='checkbox' (change)="toggleTheme($event)" id="themeToggle"
+                [checked]="isDarkMode" />
               <div class='toggle-slot'>
-                  <div class='sun-icon-wrapper'>
-                      <div class="iconify sun-icon" data-icon="feather-sun" data-inline="false"></div>
+                <div class='sun-icon-wrapper'>
+                  <div class="iconify sun-icon" data-icon="feather-sun" data-inline="false"></div>
+                </div>
+                <div class='toggle-button'></div>
+                <div class='moon-icon-wrapper'>
+                  <div class="iconify moon-icon" data-icon="feather-moon" data-inline="false">
                   </div>
-                  <div class='toggle-button'></div>
-                  <div class='moon-icon-wrapper'>
-                      <div class="iconify moon-icon" data-icon="feather-moon" data-inline="false">
-                      </div>
-                  </div>
+                </div>
               </div>
             </label>
           </div>
@@ -99,12 +101,19 @@
           <a class="nav-link nav-action" type="button" (click)="toggleDropdown()" data-bs-toggle="dropdown"
             aria-expanded="false">
 
-            <svg [ngClass]="{'bell-animate' : unseenCount>0 && !notificationSeen, 'new-bell-animate' : showNotification}" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M27.091 23.1915C26.2874 22.4751 25.5839 21.6539 24.9993 20.7498C24.3612 19.502 23.9787 18.1392 23.8743 16.7415V12.6248C23.8799 10.4295 23.0835 8.30773 21.635 6.65815C20.1864 5.00856 18.1853 3.94472 16.0077 3.6665V2.5915C16.0077 2.29645 15.8905 2.01348 15.6818 1.80485C15.4732 1.59621 15.1902 1.479 14.8952 1.479C14.6001 1.479 14.3172 1.59621 14.1085 1.80485C13.8999 2.01348 13.7827 2.29645 13.7827 2.5915V3.68317C11.6246 3.98144 9.64766 5.05172 8.21812 6.69576C6.78859 8.3398 6.00329 10.4462 6.00768 12.6248V16.7415C5.90331 18.1392 5.52083 19.502 4.88268 20.7498C4.30842 21.6518 3.61618 22.473 2.82435 23.1915C2.73546 23.2696 2.66422 23.3657 2.61536 23.4735C2.56651 23.5813 2.54117 23.6982 2.54102 23.8165V24.9498C2.54102 25.1709 2.62881 25.3828 2.78509 25.5391C2.94137 25.6954 3.15334 25.7832 3.37435 25.7832H26.541C26.762 25.7832 26.974 25.6954 27.1303 25.5391C27.2866 25.3828 27.3743 25.1709 27.3743 24.9498V23.8165C27.3742 23.6982 27.3489 23.5813 27.3 23.4735C27.2512 23.3657 27.1799 23.2696 27.091 23.1915ZM4.27435 24.1165C5.04969 23.3675 5.73235 22.5282 6.30768 21.6165C7.11153 20.1094 7.58054 18.4465 7.68268 16.7415V12.6248C7.64963 11.6482 7.81345 10.6749 8.16439 9.76289C8.51532 8.85089 9.04619 8.01882 9.72539 7.31625C10.4046 6.61369 11.2182 6.05498 12.1178 5.6734C13.0174 5.29182 13.9847 5.09518 14.9618 5.09518C15.939 5.09518 16.9062 5.29182 17.8059 5.6734C18.7055 6.05498 19.5191 6.61369 20.1983 7.31625C20.8775 8.01882 21.4084 8.85089 21.7593 9.76289C22.1102 10.6749 22.2741 11.6482 22.241 12.6248V16.7415C22.3432 18.4465 22.8122 20.1094 23.616 21.6165C24.1914 22.5282 24.874 23.3675 25.6493 24.1165H4.27435Z" fill="#202224"/>
-              <path d="M15.0009 28.5665C15.5259 28.5544 16.0296 28.3571 16.4231 28.0094C16.8165 27.6616 17.0744 27.186 17.1509 26.6665H12.7676C12.8463 27.2001 13.1162 27.6869 13.527 28.0364C13.9378 28.3859 14.4616 28.5743 15.0009 28.5665Z" fill="#202224"/>
+            <svg
+              [ngClass]="{'bell-animate' : unseenCount>0 && !notificationSeen, 'new-bell-animate' : showNotification}"
+              width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M27.091 23.1915C26.2874 22.4751 25.5839 21.6539 24.9993 20.7498C24.3612 19.502 23.9787 18.1392 23.8743 16.7415V12.6248C23.8799 10.4295 23.0835 8.30773 21.635 6.65815C20.1864 5.00856 18.1853 3.94472 16.0077 3.6665V2.5915C16.0077 2.29645 15.8905 2.01348 15.6818 1.80485C15.4732 1.59621 15.1902 1.479 14.8952 1.479C14.6001 1.479 14.3172 1.59621 14.1085 1.80485C13.8999 2.01348 13.7827 2.29645 13.7827 2.5915V3.68317C11.6246 3.98144 9.64766 5.05172 8.21812 6.69576C6.78859 8.3398 6.00329 10.4462 6.00768 12.6248V16.7415C5.90331 18.1392 5.52083 19.502 4.88268 20.7498C4.30842 21.6518 3.61618 22.473 2.82435 23.1915C2.73546 23.2696 2.66422 23.3657 2.61536 23.4735C2.56651 23.5813 2.54117 23.6982 2.54102 23.8165V24.9498C2.54102 25.1709 2.62881 25.3828 2.78509 25.5391C2.94137 25.6954 3.15334 25.7832 3.37435 25.7832H26.541C26.762 25.7832 26.974 25.6954 27.1303 25.5391C27.2866 25.3828 27.3743 25.1709 27.3743 24.9498V23.8165C27.3742 23.6982 27.3489 23.5813 27.3 23.4735C27.2512 23.3657 27.1799 23.2696 27.091 23.1915ZM4.27435 24.1165C5.04969 23.3675 5.73235 22.5282 6.30768 21.6165C7.11153 20.1094 7.58054 18.4465 7.68268 16.7415V12.6248C7.64963 11.6482 7.81345 10.6749 8.16439 9.76289C8.51532 8.85089 9.04619 8.01882 9.72539 7.31625C10.4046 6.61369 11.2182 6.05498 12.1178 5.6734C13.0174 5.29182 13.9847 5.09518 14.9618 5.09518C15.939 5.09518 16.9062 5.29182 17.8059 5.6734C18.7055 6.05498 19.5191 6.61369 20.1983 7.31625C20.8775 8.01882 21.4084 8.85089 21.7593 9.76289C22.1102 10.6749 22.2741 11.6482 22.241 12.6248V16.7415C22.3432 18.4465 22.8122 20.1094 23.616 21.6165C24.1914 22.5282 24.874 23.3675 25.6493 24.1165H4.27435Z"
+                fill="#202224" />
+              <path
+                d="M15.0009 28.5665C15.5259 28.5544 16.0296 28.3571 16.4231 28.0094C16.8165 27.6616 17.0744 27.186 17.1509 26.6665H12.7676C12.8463 27.2001 13.1162 27.6869 13.527 28.0364C13.9378 28.3859 14.4616 28.5743 15.0009 28.5665Z"
+                fill="#202224" />
             </svg>
 
-            <span *ngIf="unseenCount>0 && !notificationSeen" class="badge light text-white bg-danger rounded-circle">{{unseenCount}}</span>
+            <span *ngIf="unseenCount>0 && !notificationSeen"
+              class="badge light text-white bg-danger rounded-circle">{{unseenCount}}</span>
           </a>
           <div class="dropdown-menu py-0 notification-box" id="notification-box-id"
             (click)="onNotificationClick($event)" (scroll)="onScroll()">
@@ -140,8 +149,18 @@
                       alt="">
                   </div>
 
-                  <div class="col-9" (click)="notificationClicked(notification.id, notification.seen, notification)"
-                    style="cursor: pointer;">
+                  <!-- <div class="col-9" (click)="notificationClicked(notification.id, notification.seen, notification)"
+                    style="cursor: pointer;"> -->
+                  <div class="col-9" (click)="navigateToTab('notifications')" style="cursor: pointer;">
+                    <!-- <h6 [ngStyle]="{'font-weight': notification.seen == 0 ? 'bold' : 'normal'}">
+                      {{ notification.title }}
+                    </h6>
+                    <p class="pb-3" [ngStyle]="{'font-weight': notification.seen == 0 ? 'bold' : 'normal'}">
+                      {{ notification.content }}
+                    </p>
+                    <small [ngStyle]="{'font-weight': notification.seen == 0 ? 'bold' : 'normal'}">
+                      {{ notification.relativeTime }}
+                    </small> -->
                     <h6 [ngStyle]="{'font-weight': notification.seen == 0 ? 'bold' : 'normal'}">
                       {{ notification.title }}
                     </h6>
@@ -166,13 +185,18 @@
                   <span>{{'noNotification' | translate}}</span>
                 </div>
 
-                <div *ngIf="(notifications.length<=0 || something) && totalNotification" style="text-align: center;margin:10px 0;">
+                <div *ngIf="(notifications.length<=0 || something) && totalNotification"
+                  style="text-align: center;margin:10px 0;">
                   <span class="loader"></span>
                 </div>
               </div>
-              <div class="load_more" *ngIf="currentIndex < allNotifications.length && !something && notifications.length>0">
-                <span (click)="loadMoreNotifications()" style="cursor: pointer;">{{ 'viewAllNotifications' | translate
-                  }}</span>
+              <div class="load_more"
+                *ngIf="currentIndex < allNotifications.length && !something && notifications.length>0">
+                <!-- <span (click)="loadMoreNotifications()" style="cursor: pointer;">{{ 'viewAllNotifications' | translate
+                  }}</span> -->
+                <span (click)="navigateToTab('notifications')" class="cursor-pointer">
+                  {{ 'viewAllNotifications' | translate }}
+                </span>
               </div>
 
             </div>
