@@ -1151,5 +1151,7 @@
   "MyAccount": "Go To Dashboard",
   "boostProfiles": "Boost Profile",
   "renews": "Renews on",
-  "changeNewsletterStatus": "Are you sure you want to change newsletter status?"
+  "changeNewsletterStatus": "Are you sure you want to change newsletter status?",
+  "areYouSuretoDeleteActivity":"Are you sure to delete activity ?",
+  "subsciptionCancelSuccess":"Your subscription has been successfully cancelled."
   }

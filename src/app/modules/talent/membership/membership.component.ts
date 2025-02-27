@@ -42,6 +42,7 @@ export class MembershipComponent {
   exportLink: any;
   cancelConfirmationMsg:String = '';
   userPurchasesNotFound:String = '';
+  subsciptionCancelSuccess:String = '';
   isLoading : boolean = true;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -62,9 +63,10 @@ export class MembershipComponent {
       this.getUserCards();
       this.getBoosterData()
     });
-    this.translateService.get(['cancelConfirmationMsg','userPurchasesNotFound']).subscribe((translations) => {
+    this.translateService.get(['cancelConfirmationMsg','userPurchasesNotFound','subsciptionCancelSuccess']).subscribe((translations) => {
       this.cancelConfirmationMsg = translations['cancelConfirmationMsg'];
       this.userPurchasesNotFound = translations['userPurchasesNotFound'];
+      this.subsciptionCancelSuccess = translations['subsciptionCancelSuccess'];
     });
   }
 
@@ -326,7 +328,8 @@ export class MembershipComponent {
     });
   }
 
-  private cancelSubscription(subscriptionId: string): void {
+  private cancelSubscription(subscriptionId: string): void { 
+
     this.paymentService.cancelSubscription(subscriptionId).subscribe(
       (response: any) => {
         if (response && response.status) {
@@ -335,7 +338,7 @@ export class MembershipComponent {
             width: '600px',
             data: {
               action: 'display',
-              message: 'Subscription canceled successfully.'
+              message: this.subsciptionCancelSuccess
             }
           });
           console.log('Subscription canceled successfully:', response);

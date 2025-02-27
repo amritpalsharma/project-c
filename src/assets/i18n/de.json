@@ -1244,5 +1244,7 @@
   "editCoverImage": "Titelbild bearbeiten",
   "MyAccount": "Zum Dashboard gehen",
   "boostProfiles": "Profil verstärken",
-  "changeNewsletterStatus": "Sind Sie sicher, dass Sie den Newsletter-Status ändern möchten?"
+  "changeNewsletterStatus": "Sind Sie sicher, dass Sie den Newsletter-Status ändern möchten?",
+  "areYouSuretoDeleteActivity":"Sind Sie sicher, dass Sie die Aktivität löschen wollen?",
+  "subsciptionCancelSuccess":"Ihr Abonnement wurde erfolgreich gekündigt."
 }

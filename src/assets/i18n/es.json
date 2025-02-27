@@ -1231,5 +1231,7 @@
   },
   "MyAccount": "Ir al panel de control",
    "boostProfiles": "Perfil Boost",
-   "changeNewsletterStatus": "¿Estás seguro de que quieres cambiar el estado del boletín?"
+   "changeNewsletterStatus": "¿Estás seguro de que quieres cambiar el estado del boletín?",
+   "areYouSuretoDeleteActivity":"Está seguro de eliminar la actividad ?",
+   "subsciptionCancelSuccess":"Su suscripción ha sido cancelada con éxito."
   }

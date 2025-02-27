@@ -1299,6 +1299,8 @@
     ]
   },
   "MyAccount": "vers Tableau",
-   "boostProfiles": "Profil Boost",
-   "changeNewsletterStatus": "Êtes-vous sûr de vouloir changer le statut de la lettre d'information ?"
+  "boostProfiles": "Profil Boost",
+  "changeNewsletterStatus": "Êtes-vous sûr de vouloir changer le statut de la lettre d'information ?",
+  "areYouSuretoDeleteActivity": "Êtes-vous sûr de vouloir supprimer l'activité ?",
+  "subsciptionCancelSuccess": "Votre abonnement a été annulé avec succès."
 }

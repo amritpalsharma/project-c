@@ -26,11 +26,12 @@ export class PaymentService {
   createCheckoutSession(planId: string, booster_audience: any = '', couponCode: any = ''): Observable<any> {
     const userDataString = localStorage.getItem('userData');
     let successUrl = window.location.origin + '/success'; // Define your success URL
-    const cancelUrl = window.location.origin + '/cancel';
+    let cancelUrl = window.location.origin + '/cancel';
     if (userDataString) {
       const userData = JSON.parse(userDataString); // Parse the JSON string into an object
       if (userData.role == 4) {
         successUrl = window.location.origin + '/talent/success';
+        cancelUrl = window.location.origin + '/talent/cancel';
       }
     }else{
       successUrl = window.location.origin + '/success';

@@ -129,7 +129,25 @@
             </div>
           </div>
         </div>
-
+        <!-- Dark Mode -->
+        <div class="mb-3 col-md-6">
+          <label for="heroBgImg" class="form-label">{{ 'heroBackgroundImage' | translate }} Dark Mode</label>
+          <input type="file" class="form-control" id="heroBgImg" (change)="handleFileInput($event, 'hero_bg_img_dark_mode')"
+            formControlName="hero_bg_img" />
+          <div *ngIf="heroBgImagePreview" class="position-relative mt-2">
+            <div class="image_cut">
+              <img [src]="heroBgImagePreviewDarkMode" alt="Preview" class="img-thumbnail p-0" style="max-width: 150px;"
+                (load)="imageLoaded = true" />
+              <div class="close_image" *ngIf="imageLoaded" (click)="removeImage('hero_bg_img_dark_mode')">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="26px">
+                  <path
+                    d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End Dark Mode -->
         <div class="mb-3 col-md-6">
           <label for="heroHeadingTxt" class="form-label">{{ 'heroHeadingText' | translate }}</label>
           <input type="text" class="form-control" id="heroHeadingTxt" formControlName="hero_heading_txt" />
