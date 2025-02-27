@@ -3,10 +3,10 @@ import { Component, OnInit, inject, Renderer2, ElementRef } from '@angular/core'
 import { AuthService } from '../../../services/auth.service';
 import { ThemeService } from '../../../services/theme.service';
 import { UserService } from '../../../services/user.service';
-import {  MatDialog } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 
 import { TeamMemberDetailComponent } from './teamMember/teamMember.detail.component';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 
 import {
   MatDialogRef,
@@ -20,15 +20,16 @@ import {
 })
 export class SettingComponent implements OnInit {
   readonly dialog = inject(MatDialog);
-  tab:string = "profile";
+  tab: string = "profile";
   constructor(
     private themeService: ThemeService,
     private authService: AuthService,
     private userService: UserService,
     private router: Router,
-    private renderer: Renderer2, 
+    private route: ActivatedRoute,
+    private renderer: Renderer2,
     private el: ElementRef
-    ) {}
+  ) { }
 
   userData: any;
   firstName: string = '';
@@ -63,26 +64,41 @@ export class SettingComponent implements OnInit {
     }
     // this.fetchProfileData();
     let getActiveTab = localStorage.getItem('makeActiveTab');
-    if(getActiveTab){
+    if (getActiveTab) {
       this.switchTab(getActiveTab);
       setTimeout(() => {
         localStorage.removeItem('makeActiveTab');
       }, 1000);
-    }else{
+    } else {
       this.switchTab(this.tab);
     }
 
+
+    this.route.fragment.subscribe((fragment) => {
+      if (fragment === 'profile') {
+        this.tab = 'profile'; // Switch to the App Settings tab
+      } else if (fragment === 'activity') {
+        this.tab = 'activity'; // Switch to Activity Log tab
+      }
+      else if (fragment === 'team') {
+        this.tab = 'team'; // Switch to Activity Log tab
+      }
+      else if(fragment === 'notifications'){
+        this.tab = 'notifications';
+      }
+    });
+
   }
 
-  editTeamMember(){
+  editTeamMember() {
     console.log('Edit user button clicked!');
     const dialogRef = this.dialog.open(TeamMemberDetailComponent,
-     {
-      height: '380px',
-      width: '500px',
-  });
-}
-  switchTab(tab:any){
+      {
+        height: '380px',
+        width: '500px',
+      });
+  }
+  switchTab(tab: any) {
     this.tab = tab;
     this.activateTab(tab);
   }

@@ -7,7 +7,7 @@
           <div class="card-body card-tabs settings-tabs">
             <ul class="nav nav-tabs p-0 " id="myTab" role="tablist">
               <li class="nav-item" role="presentation">
-                <button class="nav-link d-flex align-items-center" id="home-tab" data-bs-toggle="tab"
+                <button class="nav-link d-flex align-items-center" [ngClass]="{'active': tab === 'profile'}" id="home-tab" data-bs-toggle="tab"
                   data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane"
                   aria-selected="true" (click)="switchTab('profile')">
                   <svg id="users-icon" class="me-1 profile" width="20" height="20" viewBox="0 0 14 15" fill="none"
@@ -21,7 +21,7 @@
               </li>
               <li class="nav-item" role="presentation">
                 <button class="nav-link d-flex align-items-center" id="profile-tab" data-bs-toggle="tab"
-                  data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane"
+                  data-bs-target="#profile-tab-pane" type="button" role="tab" [ngClass]="{'active': tab === 'activity'}" aria-controls="profile-tab-pane"
                   aria-selected="false" (click)="switchTab('activity')">
                   <svg id="users-icon" class="me-1 activity" width="20" height="25" viewBox="0 0 16 14" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
@@ -33,7 +33,7 @@
               </li>
               <li class="nav-item" role="presentation">
                 <button class="nav-link d-flex align-items-center" id="contact-tab" data-bs-toggle="tab"
-                  data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane"
+                  data-bs-target="#contact-tab-pane" type="button" role="tab" [ngClass]="{'active': tab === 'team'}" aria-controls="contact-tab-pane"
                   aria-selected="false" (click)="switchTab('team')">
                   <svg id="users-icon" class="me-1" width="20" height="25" viewBox="0 0 14 17" fill="none"
                     xmlns="http://www.w3.org/2000/svg">

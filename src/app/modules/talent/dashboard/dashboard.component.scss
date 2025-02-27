@@ -150,7 +150,8 @@
       row-gap: 10px;
     }
     .player-name-box{
-      width:fit-content !important
+      width:fit-content !important;
+      padding-left: 0 !important;
     }
     .responsive-edit_btn{
       width: fit-content !important;
@@ -773,7 +774,8 @@
     row-gap: 10px;
   }
   .player-name-box{
-    width:fit-content !important
+    width:fit-content !important;
+    padding-left: 0 !important;
   }
   .responsive-edit_btn{
     width: fit-content !important;
@@ -823,6 +825,9 @@
   }
   .elton-box{
     flex-direction: column;
+  }
+  .general_details {
+    padding: 15px !important;
   }
 }
 @media(max-width: 425px){

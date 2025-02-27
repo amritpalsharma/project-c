@@ -48,6 +48,7 @@ export class UsersComponent implements OnInit {
             this.isLoading = true;
             this.lang_id = data.id;
             this.fetchUsers();
+            this.getLocations();
         }
     });
     
@@ -207,6 +208,7 @@ export class UsersComponent implements OnInit {
   }
 
   editfilter(): void {
+    // this.getLocations();
     const filterDialog = this.dialog.open(FilterPopupComponrnt, {
       height: '450px',
       width: '300px',

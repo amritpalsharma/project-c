@@ -326,8 +326,18 @@
                     <p>{{ notification.content }}</p>
                     <small>{{ notification.time }}</small>
                   </div> -->
-                  <div class="col-9" (click)="notificationClicked(notification.id, notification.seen, notification)"
-                    style="cursor: pointer;">
+                  <!-- <div class="col-9" (click)="notificationClicked(notification.id, notification.seen, notification)"
+                    style="cursor: pointer;"> -->
+                  <div class="col-9" (click)="navigateToTab('notifications')" style="cursor: pointer;">
+                    <!-- <h6 [ngStyle]="{'font-weight': notification.seen == 0 ? 'bold' : 'normal'}">
+                      {{ notification.title }}
+                    </h6>
+                    <p class="pb-3" [ngStyle]="{'font-weight': notification.seen == 0 ? 'bold' : 'normal'}">
+                      {{ notification.content }}
+                    </p>
+                    <small [ngStyle]="{'font-weight': notification.seen == 0 ? 'bold' : 'normal'}">
+                      {{ notification.relativeTime }}
+                    </small> -->
                     <h6 [ngStyle]="{'font-weight': notification.seen == 0 ? 'bold' : 'normal'}">
                       {{ notification.title }}
                     </h6>
@@ -352,9 +362,12 @@
                   <span class="loader"></span>
                 </div>
               </div>
-              <div class="load_more" *ngIf="currentIndex < allNotifications.length && !something && notifications.length>0">
+              <!-- <div class="load_more" *ngIf="currentIndex < allNotifications.length && !something && notifications.length>0">
                 <span (click)="loadMoreNotifications()" style="cursor: pointer;">{{ 'viewAllNotifications' | translate
                 }}</span>
+              </div> -->
+              <div class="load_more" *ngIf="currentIndex < allNotifications.length && !something && notifications.length>0">
+                <span (click)="navigateToTab('notifications')" style="cursor: pointer;" >{{ 'viewAllNotifications' | translate }}</span>
               </div>
 
             </div>

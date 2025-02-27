@@ -32,7 +32,8 @@
 
 .team-types{
   position: absolute  ;
-  top: 63px;
+  top: 50%;
+  transform: translateY(-50%);
   left:25px;
 }
 
@@ -72,4 +73,23 @@
 
 .add-player-link {
   margin-left: auto; /* This will push the add button to the right */
+}
+
+.player-view-container {
+  padding: 0 !important;
+}
+
+
+@media (max-width: 1199px) {
+  .box-square {
+    width: 140px;
+    height: 140px;
+  }
+}
+@media (max-width: 767px) {
+  .box-square {
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+  }
 }

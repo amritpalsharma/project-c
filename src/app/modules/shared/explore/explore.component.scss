@@ -112,7 +112,8 @@
 .image_box .player_img img{
     height: 100%;
     object-fit: cover;
-    object-position: top;
+    object-position: top center;
+    padding-top: 12px;
 }
 .player-names{
     background: #429130;

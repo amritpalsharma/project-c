@@ -215,11 +215,24 @@ font-size: 13px;
   .input-box{
     flex-direction: column;
   }
+  .overflow-card {
+    max-height: 45vh;
+  }
+  .dialog-actions {
+    margin-top: 15px !important;
+  }
 }
 
 .upload-label{
-  width: 105px;
+  width: 100%;
   justify-content: center;
+  height: 47px;
+  color: black;
+  border: 1px solid #999999;
+  border-radius: 10px !important;
+  padding: 8px 8px;
+  background: none;
+  font-size: 13px;
 }
 
 .inviteesWrap {

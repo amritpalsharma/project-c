@@ -136,10 +136,11 @@
 
                       <div class="d-flex align-items-center pic-with-name">
                         <span class="position-relative">
-                          <img src="../../../assets/images/1.jpg" alt="" class="table_img"
+                          <!-- <img src="../../../assets/images/1.jpg" alt="" class="table_img"
                             *ngIf="!element.meta.profile_image_path" />
                           <img src="{{element.meta.profile_image_path}}" alt="" class="table_img"
-                            *ngIf="element.meta.profile_image_path" />
+                            *ngIf="element.meta.profile_image_path" /> -->
+                            <img src="{{element.meta.profile_image_path}}" class="dashboard_users_profile_images table_img" onerror="this.onerror=null; this.src='../../../assets/images/1.jpg';">
                           <span class="position-absolute verified-icon">
                             <img src="../../../assets/images/pending.png" alt="" class="user-pending-icon"
                               *ngIf="element.status === '1'" />
@@ -214,9 +215,10 @@
                     <th mat-header-cell *matHeaderCellDef class="text-center"> {{ 'membership' | translate }} </th>
                     <!-- <td mat-cell *matCellDef="let element" class="text-center"> {{ element.subscription_status ==
                       "active" ? "Paid" : "Free" }}</td> -->
-                      <td mat-cell *matCellDef="let element" class="text-center">
-                        {{ (element.subscription_status === 'active' ? 'subscription.paid' : 'subscription.free') | translate }}
-                      </td>
+                    <td mat-cell *matCellDef="let element" class="text-center">
+                      {{ (element.subscription_status === 'active' ? 'subscription.paid' : 'subscription.free') |
+                      translate }}
+                    </td>
                   </ng-container>
                   <ng-container matColumnDef="Status">
                     <th mat-header-cell *matHeaderCellDef class="text-center"> {{ 'status' | translate }} </th>

@@ -73,6 +73,7 @@ export class PlayerListComponent implements OnInit {
     if (this.currentPage > 1) {
       this.currentPage--;
       this.fetchData(this.selectedTab); // Added fetchData call
+      this.fetchData(this.selectedTab); // Added fetchData call
     }
   }
 
@@ -101,10 +102,13 @@ export class PlayerListComponent implements OnInit {
   onItemsPerPageChange() {
     this.currentPage = 1;
     this.fetchData(this.selectedTab);
+    this.currentPage = 1;
+    this.fetchData(this.selectedTab);
   }
 
   getCurrentPlayers(): Player[] {
     let playersToShow: Player[] = [];
+
 
     if (this.selectedTab === 'scouts') {
       playersToShow = this.scoutsPlayers;
@@ -124,7 +128,7 @@ export class PlayerListComponent implements OnInit {
     let role = '';
     if (selectedTab == 'club') {
       role = '2';
-    } else if (selectedTab == 'scout') {
+    } else if (selectedTab == 'scouts') {
       role = '3';
     } else {
       role = '4';

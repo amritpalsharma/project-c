@@ -138,13 +138,14 @@
                 </span> -->
                 <!-- <img *ngIf="user.meta && user.meta.profile_image_path != ''" src="{{user.meta.profile_image_path}}" class="table_img" alt="">
                 <img  src="../../../assets/images/1.jpg" class="table_img" alt=""> -->
-                <img *ngIf="user.meta && user.meta.profile_image_path; else defaultImage" 
+                <!-- <img *ngIf="user.meta && user.meta.profile_image_path; else defaultImage" 
                   [src]="user.meta.profile_image_path" 
-                  class="table_img" alt="">
+                  class="table_img dashboard_users_profile_images" alt=""> -->
+                  <img src="{{user.meta.profile_image_path}}" class="dashboard_users_profile_images table_img" onerror="this.onerror=null; this.src='../../../assets/images/1.jpg';">
 
-                  <ng-template #defaultImage>
+                  <!-- <ng-template #defaultImage>
                       <img src="../../../assets/images/1.jpg" class="table_img" alt="">
-                  </ng-template>
+                  </ng-template> -->
 
                 <span>{{user.first_name +' '+user.last_name }}</span>
               </div>

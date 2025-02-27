@@ -304,3 +304,24 @@ tr.table_underline {
     background: #6FB95D;
     border-color: #6FB95D;
 }
+
+
+@media (max-width: 767px) {
+.performance_card_hedr .btn-outline-white {
+    font-size: 0 !important;
+}
+.performance_card_hedr .btn-outline-white svg {
+    padding-right: 0 !important;
+    margin-right: 0 !important;
+}
+}
+
+@media (max-width: 420px) {
+.performance_card_hedr {
+    flex-wrap: wrap;
+}
+.performance_card_hedr .add_new-btn {
+    margin: 10px 0 !important;
+    padding: 12px !important;
+}
+}

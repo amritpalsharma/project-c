@@ -1973,7 +1973,13 @@ nav.navbar .country_dropdown h6.border-bottom {
   position: relative;
   z-index: 1;
 }
+<<<<<<< HEAD
 
+=======
+.date_field {
+  position: relative;
+}
+>>>>>>> c717c678b0562be411788ffefc9b1c83efd11af6
 .date_field input {
   text-indent: 30px !important;
 }
@@ -2104,12 +2110,19 @@ nav.navbar .country_dropdown h6.border-bottom {
   }
 }
 
+.club.light_theme_iclub {
+  display: block;
+}
+.club.dark_theme_iclub {
+  display: none;
+}
 
 .dark-theme {
   .chat_popup_srch_color .mdc-text-field.mdc-text-field--filled {
     background: #0c3453 !important;
     border-radius: 0 !important;
     border: 0 !important;
+<<<<<<< HEAD
   }
 
   .chat_popup_srch_color .mdc-text-field.mdc-text-field--filled mat-chip-grid.mat-mdc-chip-set.mat-mdc-chip-grid.mdc-evolution-chip-set.messanger-selector {
@@ -2120,3 +2133,19 @@ nav.navbar .country_dropdown h6.border-bottom {
     background: #072944 !important;
   }
 }
+=======
+}
+.chat_popup_srch_color .mdc-text-field.mdc-text-field--filled mat-chip-grid.mat-mdc-chip-set.mat-mdc-chip-grid.mdc-evolution-chip-set.messanger-selector {
+  background: #0c3453 !important;
+}
+.chat_popup_srch_color .mat-mdc-autocomplete-panel {
+  background: #072944 !important;
+}
+.club.light_theme_iclub {
+  display: none;
+}
+.club.dark_theme_iclub {
+  display: block;
+}
+}
+>>>>>>> c717c678b0562be411788ffefc9b1c83efd11af6

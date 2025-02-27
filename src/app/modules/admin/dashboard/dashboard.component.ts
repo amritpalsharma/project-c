@@ -57,7 +57,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   newRegistrationPlayers: any = [];
   newRegistrationScouts: any = [];
   years: any = [];
-  yearOfstarting : any = 2024;
+  yearOfstarting: any = 2024;
   selectedYear: any = new Date().getFullYear();
   // selectedYear: any = new Date().getFullYear() - 1;
   // year: any = 2020;
@@ -232,7 +232,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         }
       );
 
-    this.sharedservice.data$.subscribe((data:any) => {
+    this.sharedservice.data$.subscribe((data: any) => {
       if (data.action == 'lang_updated') {
         this.isLoading = true;
         this.lang_id = data.id;
@@ -471,7 +471,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             titleColor: '#fff',
             titleFont: { family: 'Poppins', size: 20, weight: 800 },
             callbacks: {
-              label: (tooltipItem: any) => {
+              label: (tooltipItem: any) => { 
+                // console.log(tooltipItem);
+                // alert(tooltipItem)
                 return this.translateService.instant('tooltip.totalUsers', { count: tooltipItem.raw });
               },
             },
@@ -686,7 +688,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   fetchNotifications(userId: number, langId: any): void {
-    this.talentService.getNotifications(userId, langId).subscribe({
+    this.talentService.getNotifications(userId, langId, 1, 10).subscribe({
       next: (response) => {
         console.log('Fetched notifications response:', response);
 
@@ -852,7 +854,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   redirectUser(slug: string, id: Number): void {
-
+    slug = slug.toLowerCase();
+    if (slug == 'späher') {
+      slug = 'scout';
+    } else if (slug == 'verein') {
+      slug = 'club';
+    }
     let pageRoute = 'admin/' + slug.toLowerCase();
     this.router.navigate([pageRoute, id]);
   }
@@ -860,8 +867,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   goToSetting() {
     goToActiveLog(this.router);
   }
-  
-  isValidProfileImage(imageUrl : string){
+
+  isValidProfileImage(imageUrl: string) {
     return this.commonHelper.checkImageExists(imageUrl);
   }
 }

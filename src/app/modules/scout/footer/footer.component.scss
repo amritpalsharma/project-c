@@ -3,6 +3,11 @@
     display: flex;
     align-items: center;
     justify-content: end;
+    position: sticky;
+    padding-top: 10px;
+    bottom: 0px;
+    right: 0;
+    z-index: 1;
 }
 .footer_main_inner{
     display: flex;
