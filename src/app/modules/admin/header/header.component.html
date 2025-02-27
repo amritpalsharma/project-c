@@ -353,8 +353,7 @@
                 </div>
               </div>
               <div class="load_more" *ngIf="currentIndex < allNotifications.length && !something && notifications.length>0">
-                <span (click)="loadMoreNotifications()" style="cursor: pointer;">{{ 'viewAllNotifications' | translate
-                }}</span>
+                <a routerLink="/admin/setting">{{ 'viewAllNotifications' | translate }}</a>
               </div>
 
             </div>

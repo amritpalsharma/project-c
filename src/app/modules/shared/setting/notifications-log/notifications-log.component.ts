@@ -38,31 +38,18 @@ export class NotificationsLogComponent {
   @ViewChild(MatSort) sort!: MatSort;
   idsToDelete: any = [];
 
-  constructor(private activityService: ActivityService, public dialog: MatDialog, public webPages: WebPages, private talentService: TalentService, private translateService: TranslateService) {
+  constructor(public dialog: MatDialog, public webPages: WebPages, private talentService: TalentService, private translateService: TranslateService) {
     translateService.onLangChange.subscribe(() => {
-      let jsonData = localStorage.getItem("userData");
-      let userId;
-      if (jsonData) {
-        let userData = JSON.parse(jsonData);
-        userId = userData.id;
-      }
-      else {
-        console.log("No data found in localStorage.");
-      }
-
-      let langId = localStorage.getItem('lang_id');
-
-      this.fetchNotifications(userId, langId)
+      this.fetchNotifications()
     });
   }
 
   ngOnInit() {
-    // this.getActivity();
+    this.fetchNotifications();
+  }
 
-    // this.webPages.languageId$.subscribe((data) => {
-    //   this.getActivity();
-    // });
 
+  fetchNotifications(): void {
     let jsonData = localStorage.getItem("userData");
     let userId;
     if (jsonData) {
@@ -72,22 +59,20 @@ export class NotificationsLogComponent {
     else {
       console.log("No data found in localStorage.");
     }
-
     let langId = localStorage.getItem('lang_id');
 
-    
-    this.fetchNotifications(userId, langId);
-  }
+    const page = this.paginator ? this.paginator.pageIndex + 1 : 1;
+    const pageSize = this.paginator ? this.paginator.pageSize : 10;
 
-
-  fetchNotifications(userId: number, langId: any): void {
     this.notifications = [];
     this.isLoading = true;
-    console.log('language updating', userId, langId);
-    this.talentService.getNotifications(userId, langId).subscribe({
+
+    console.log('language updating', userId, langId, page, pageSize);
+    this.talentService.getNotifications(userId, langId, page, pageSize).subscribe({
       next: (response) => {
         this.notifications = response.notifications;
-        console.log('Fetched notifications response:', this.notifications);
+        this.paginator.length = response.total_count;
+        console.log('Fetched notifications response:', this.notifications, this.paginator.length);
 
         this.isLoading = false;
 
@@ -95,39 +80,9 @@ export class NotificationsLogComponent {
     });
   }
 
-  async getActivity(): Promise<void> {
-
-    this.isLoading = true;
-
-    const page = this.paginator ? this.paginator.pageIndex * 10 : 0;
-    const pageSize = this.paginator ? this.paginator.pageSize : 10;
-    const sortOrder = this.sort ? this.sort.direction : 'asc';
-    const sortField = this.sort ? this.sort.active : '';
-
-    let params: any = {};
-    params.offset = page;
-    params.limit = pageSize;
-    params.lang = localStorage.getItem('lang_id');
-
-    try {
-      this.activityService.getActivity(params).subscribe((response) => {
-        if (response && response.status && response.data && response.data.userData) {
-          this.activities = response.data.userData;
-          this.paginator.length = response.data.totalCount;
-          this.isLoading = false;
-        } else {
-          this.isLoading = false;
-          console.error('Invalid API response structure:', response);
-        }
-      });
-    } catch (error) {
-      this.isLoading = false;
-      console.error('Error fetching users:', error);
-    }
-  }
 
   onPageChange() {
-    this.getActivity();
+    this.fetchNotifications();
   }
 
   onCheckboxChange(item: any) {
@@ -155,23 +110,24 @@ export class NotificationsLogComponent {
       return false;
     }
     this.idsToDelete = this.selectedIds;
-    this.showMatDialog("Are you sure you want to delete this Notification?", "delete-activity-confirmation");
+    this.showMatDialog("Are you sure you want to delete this Notification?", "delete-confirmation");
   }
 
   deleteActivity(): any {
-    let params = { id: this.idsToDelete };
-    this.activityService.deleteActivity(params).subscribe(
+    let ids = this.idsToDelete;
+    this.talentService.deleteNotifications(ids).subscribe(
       response => {
-        this.getActivity();
-        this.selectedIds = [];
-        this.allSelected = false;
-        this.showMessage('Activity deleted successfully!');
-      },
-      error => {
-        console.error('Error deleting activity:', error);
-        this.showMessage('Error deleting activity. Please try again.');
+        if (response.status) {
+          this.fetchNotifications();
+          this.selectedIds = [];
+          this.allSelected = false;
+          this.showMessage(response.message);
+        }
+        else {
+          this.showMessage('getting some error!');
+        }
       }
-    );
+    )
   }
 
   showMessage(message: string) {
@@ -202,6 +158,6 @@ export class NotificationsLogComponent {
 
   confirmSingleDeletion(id: any) {
     this.idsToDelete = [id];
-    this.showMatDialog("Are you sure you want to delete this Activity?", "delete-activity-confirmation");
+    this.showMatDialog("Are you sure you want to delete this Activity?", "delete-confirmation");
   }
 }

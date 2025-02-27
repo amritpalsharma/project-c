@@ -686,7 +686,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   fetchNotifications(userId: number, langId: any): void {
-    this.talentService.getNotifications(userId, langId).subscribe({
+    this.talentService.getNotifications(userId, langId, 1, 10).subscribe({
       next: (response) => {
         console.log('Fetched notifications response:', response);
 
