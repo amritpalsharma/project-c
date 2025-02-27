@@ -562,7 +562,6 @@
   "userDetail": "User e details",
   "verifyUser ": "Verify e user",
   "deleteUser ": "Delete e user",
-  "representators": "Representatives",
   "aboutScout": "About e scout",
   "video": "Video",
   "place": "Place",
@@ -993,7 +992,7 @@
   "header": "Header",
   "overviewSection": "Overview e section",
   "registrations": "Registrations",
-  "footer": "Footer",
+  "footer": "Rodapé",
   "manageUsers": "Manage e users",
   "userManagement": "User e management",
   "talentEditPopup": "Talent e edit e popup",
@@ -1047,7 +1046,6 @@
   "three": "Three",
   "managerUsers": "Manager e users",
   "marketing": "Marketing",
-  "representators:": "Representators:",
   "browserDoesNotSupportHtml": " e your e browser e does e not e support e html e video.",
   "noHistoryAvailable": "No e history e available.",
   "inviteTalnetsTo": "Invite e talents e to",
@@ -1116,7 +1114,7 @@
   "addFeature": "Add e feature",
   "removePlan": "Remove e plan",
   "addPricingPlan": " e add e pricing e plan",
-  "contactUs": "Contact e us",
+  "contactUs": "Contacte-nos",
   "bannerTitle": "Banner e title",
   "bannerBackgroundImage": "Banner e background e image",
   "formTitle": "Form e title",
@@ -1239,5 +1237,12 @@
   },
   "MyAccount": "para Painel",
    "boostProfiles": "Impulsionar o perfil",
-   "changeNewsletterStatus": "Tem a certeza de que pretende alterar o estatuto de boletim informativo?"
+   "changeNewsletterStatus": "Tem a certeza de que pretende alterar o estatuto de boletim informativo?",
+   "representators": "Membro da equipa",
+  "representators:": "Membro da equipa:",
+
+  "errorMessage": "esta página infelizmente não foi encontrada",
+  "verifyEmail": "VERIFICAR O SEU CORREIO ELECTRÓNICO",
+  "sentConfirmationLink": "Enviámos uma ligação de confirmação para o seu e-mail.",
+  "completeVerificationProcess": "Clique na ligação na sua caixa de correio eletrónico para concluir o processo de verificação."
   }

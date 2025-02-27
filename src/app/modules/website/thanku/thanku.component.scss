@@ -14,6 +14,9 @@ body {
     position: relative;
     background-image: url(/assets/images/thanku-bnr.png);
 }
+.thanku-page{
+    position: relative;
+}
 
 .overlay {
     position: absolute;
@@ -27,15 +30,13 @@ body {
 
 .banner-text-h2 {
     color: white;
-    font-size: 55px;
+    font-size: 52px;
     text-transform: uppercase;
     font-weight: 600;
     position: absolute;
     content: "";
     z-index: 1;
-    padding: 18% 50% 10% 0%;
-    top: 0;
-    left: 5%;
+    top: 15rem;
 }
 
 h3.banner-text-h3 {
@@ -44,7 +45,7 @@ h3.banner-text-h3 {
     position: absolute;
     content: "";
     z-index: 1;
-    top: 58%;
+    top: 24rem;
 }
 
 img.check-image-light,
@@ -66,8 +67,7 @@ a.btn.btn-register {
     width: 278px;
     content: "";
     z-index: 1;
-    bottom: 26%;
-    left: 5%;
+    top: 28rem;
     color: #072944;
     background-color: #BDE34F;
 }
@@ -79,91 +79,49 @@ a.btn.btn-register {
 /*--------------------------------------------------------------
 #  Banner
 --------------------------------------------------------------*/
-
 @media (min-width: 1441px) {
-    .banner-text-h2 {
-        padding: 13% 50% 10% 0%;
-        left: 5%;
-    }
-    h3.banner-text-h3 {
-        top: 48%;
-    }
+
     img.check-image-light, img.check-image-dark {
         padding: 10% 5% 0% 0%;
     }
-    a.btn.btn-register {
-        left: 5%;
-        top: 58%;
-        bottom: 0;
-    }
 }
-@media (min-width: 1502px) {
+
+@media (min-width: 1536px) {
     .banner-text-h2 {
-        padding: 13% 50% 10% 0%;
-        left: 7%;
-    }
-    a.btn.btn-register {
-        left: 7%;
-        top: 56%;
-    }
-}
-@media (min-width: 1919px) {
-    .banner-text-h2 {
-        padding: 13% 50% 10% 0%;
-        left: 16%;
+        top: 26rem;
     }
     h3.banner-text-h3 {
-        top: 56%;
+        top: 36rem;
     }
     a.btn.btn-register {
-        left: 16%;
-        top: 65%;
-        bottom: 0;
-    }
-    img.check-image-light, img.check-image-dark {
-        padding: 10% 15% 0% 0%;
-    }
-}
-@media (min-width: 1990px){
-    .banner-text-h2 {
-        padding: 13% 58% 10% 0%;
-        left: 16%;
-    }
-    h3.banner-text-h3 {
-        top: 57%;
-        left: 16%;
-    }
+        top: 41rem;
+    }    
+    
+    
+
 }
 
 @media (max-width: 1281px){
-.banner-text-h2 {
-    padding: 18% 55% 10% 0%;
-    left: 6%;
-}
-h3.banner-text-h3{
-    top: 53%;
-}
-a.btn.btn-register {
-    bottom: 33%;
-    left: 6%;
-}
+
 }
 
 @media (max-width: 1199px) {
     .thanku-bnr {
         height: 600px;
     }
-
-    .banner-text-h2 {
-        font-size: 50px;
+    .banner-text-h2{
+        font-size: 45px;
+        top: 13rem;
     }
-
     h3.banner-text-h3 {
-        top: 52%;
+        font-size: 24px;
+        top: 21rem;
     }
-
     a.btn.btn-register {
-        bottom: 32%;
+        font-size: 14px;
+        height: 38px;
+        width: 272px;
+        top: 25rem;
     }
 
     img.check-image-light,
@@ -182,21 +140,18 @@ a.btn.btn-register {
 
     .banner-text-h2 {
         font-size: 38px;
-        top: 5%;
+        top: 10rem;
     }
-
     h3.banner-text-h3 {
-        top: 53%;
-        font-size: 17px;
+        font-size: 20px;
+        top: 17rem;
     }
 
     a.btn.btn-register {
         font-size: 16px;
         height: 36px;
         width: 230px;
-        bottom: 32%;
-        left: 5%;
-        line-height: 22px;
+        top: 20rem;
     }
 
     img.check-image-light,
@@ -206,16 +161,7 @@ a.btn.btn-register {
     }
 }
 
-@media (max-width: 767px) {
-    h3.banner-text-h3 {
-        top: 49%;
-        font-size: 17px;
-        left: 5%;
-    }
-
-    a.btn.btn-register {
-        bottom: 35%;
-    }
+@media (max-width: 768px) {
 
     img.check-image-light,
     img.check-image-dark {
@@ -232,24 +178,16 @@ a.btn.btn-register {
 
     .banner-text-h2 {
         font-size: 40px;
-        top: 16%;
-        padding: 0;
     }
 
     h3.banner-text-h3 {
-        top: 29%;
         font-size: 22px;
-        left: 5%;
     }
 
     a.btn.btn-register {
         font-size: 18px;
-        height: 36px;
-        width: 94%;
-        bottom: 0;
-        left: 3%;
-        line-height: 22px;
-        top: 35%;
+        width: 100%;
+        height: 42px;
     }
 
     img.check-image-light,
@@ -262,37 +200,7 @@ a.btn.btn-register {
 
 }
 
-@media (max-width: 541px) {
-    .banner-text-h2 {
-        font-size: 43px;
-        top: 20%;
-        padding: 0;
-    }
 
-    h3.banner-text-h3 {
-        top: 34%;
-    }
-
-    a.btn.btn-register {
-        font-size: 20px;
-        height: 43px;
-        width: 94%;
-        bottom: 0;
-        left: 3%;
-        line-height: 24px;
-        top: 40%;
-    }
-
-    img.check-image-light,
-    img.check-image-dark {
-        padding: 0;
-        height: 430px;
-        top: 45%;
-        left: 12%;
-    }
-}
-
-@media (max-width: 500px) {}
 
 @media (max-width: 391px) {
     img.check-image-light, img.check-image-dark {
@@ -300,14 +208,8 @@ a.btn.btn-register {
     }
     .banner-text-h2 {
         font-size: 38px;
-        top: 16%;
     }
-    h3.banner-text-h3 {
-        top: 30%;
-    }
-    a.btn.btn-register {
-        top: 36%;
-    }
+
 }
 
 @media (max-width: 376px) {
@@ -319,8 +221,18 @@ a.btn.btn-register {
 
     .banner-text-h2 {
         font-size: 38px;
-        top: 16%;
-        padding: 0;
+    }
+    a.btn.btn-register {
+        font-size: 15px;
+        width: 100%;
+        height: 36px;
+        line-height: 18px;
+    }
+    h3.banner-text-h3 {
+        top: 16rem;
+    }
+    a.btn.btn-register {
+        top: 19rem;
     }
 
 
@@ -348,42 +260,32 @@ a.btn.btn-register {
         height: 380px;
         left: 2%;
     }
-    h3.banner-text-h3 {
-        top: 30%;
-    }
-    a.btn.btn-register{
-        top: 36%;
-    }
+   
 }
 
 
 
 @media (max-width: 321px) {
-    .thanku-bnr {
-        height: 600px;
-    }
 
     .banner-text-h2 {
         font-size: 32px;
-        top: 18%;
-        padding: 0;
     }
 
     h3.banner-text-h3 {
-        top: 32%;
         font-size: 18px;
-        left: 5%;
-    }
-
-    a.btn.btn-register {
-        top: 38%;
     }
 
     img.check-image-light,
     img.check-image-dark {
         padding: 0;
         height: 360px;
-        top: 44%;
+        top: 50%;
+    }
+    a.btn.btn-register {
+        font-size: 14px;
+        width: 100%;
+        height: 33px;
+        line-height: 15px;
     }
 
 }
