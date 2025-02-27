@@ -24,7 +24,7 @@ export class PlayerListComponent implements OnInit {
 
 
   players: Player[] = [
-    { name: 'Zidane', image: './assets/images/ziddane.png', class: 'midfielder', cornerImage: './assets/images/FC Thun 1.png', flagImage: './assets/images/flag.svg', birthYear: 1972},
+    { name: 'Zidane', image: './assets/images/ziddane.png', class: 'midfielder', cornerImage: './assets/images/FC Thun 1.png', flagImage: './assets/images/flag.svg', birthYear: 1972 },
     { name: 'Ronaldinho Gaúcho', image: './assets/images/Ronaldinho Gaúcho.png', cornerImage: './assets/images/FC Thun 1.png', flagImage: './assets/images/flag.svg', birthYear: 1972 },
     { name: 'Gabriel Jesus', image: './assets/images/Gabriel Jesus.png', cornerImage: './assets/images/FC Thun 1.png', flagImage: './assets/images/flag.svg', birthYear: 1972 },
     { name: 'Messi', image: './assets/images/Messi.png', cornerImage: './assets/images/FC Thun 1.png', flagImage: './assets/images/flag.svg', birthYear: 1972 },
@@ -48,7 +48,7 @@ export class PlayerListComponent implements OnInit {
     { name: 'Aaron Ramsey', image: './assets/images/aaron.png', cornerImage: './assets/images/FC Thun 1.png', flagImage: './assets/images/flag.svg', birthYear: 1972 },
     { name: 'Adam Lallana', image: './assets/images/Adam Lallana.png', cornerImage: './assets/images/FC Thun 1.png', flagImage: './assets/images/flag.svg', birthYear: 1972 },
     { name: 'Harry Kane', image: './assets/images/Harry Kane.png', cornerImage: './assets/images/FC Thun 1.png', flagImage: './assets/images/flag.svg', birthYear: 1972 },
-    { name: 'Zidane', image: './assets/images/ziddane.png', class: 'midfielder', cornerImage: './assets/images/FC Thun 1.png', flagImage: './assets/images/flag.svg', birthYear: 1972},
+    { name: 'Zidane', image: './assets/images/ziddane.png', class: 'midfielder', cornerImage: './assets/images/FC Thun 1.png', flagImage: './assets/images/flag.svg', birthYear: 1972 },
     { name: 'Kasper Schmeichel', image: './assets/images/kasper.png', cornerImage: './assets/images/FC Thun 1.png', flagImage: './assets/images/flag.svg', birthYear: 1972 },
     { name: 'Elton Prince Morina', image: './assets/images/Elton Prince Morina.png', cornerImage: './assets/images/FC Thun 1.png', flagImage: './assets/images/flag.svg', birthYear: 1972 },
     { name: 'Adam Lallana', image: './assets/images/Adam Lallana.png', cornerImage: './assets/images/FC Thun 1.png', flagImage: './assets/images/flag.svg', birthYear: 1972 },
@@ -62,7 +62,7 @@ export class PlayerListComponent implements OnInit {
     { name: 'Kevin De Bruyne', image: './assets/images/kevin.png', cornerImage: './assets/images/FC Thun 1.png', flagImage: './assets/images/flag.svg', birthYear: 1972 },
     { name: 'Jamie Vardy', image: './assets/images/jammie.png', cornerImage: './assets/images/FC Thun 1.png', flagImage: './assets/images/flag.svg', birthYear: 1972 },
     { name: 'Aaron Ramsey', image: './assets/images/aaron.png', cornerImage: './assets/images/FC Thun 1.png', flagImage: './assets/images/flag.svg', birthYear: 1972 },
-    
+
   ];
 
   clubPlayers: Player[] = [
@@ -70,7 +70,7 @@ export class PlayerListComponent implements OnInit {
     { name: 'Messi', image: './assets/images/Messi.png', cornerImage: './assets/images/FC Thun 1.png', flagImage: './assets/images/flag.svg', birthYear: 1972 },
     { name: 'Cristiano Ronaldo', image: './assets/images/cristo-ronaldo.png', cornerImage: './assets/images/FC Thun 1.png', flagImage: './assets/images/flag.svg', birthYear: 1972 },
     { name: 'Jermain Defoe', image: './assets/images/Jermain Defoe.png', cornerImage: './assets/images/FC Thun 1.png', flagImage: './assets/images/flag.svg', birthYear: 1972 },
-    { name: 'Zidane', image: './assets/images/ziddane.png', class: 'midfielder', cornerImage: './assets/images/FC Thun 1.png', flagImage: './assets/images/flag.svg', birthYear: 1972},
+    { name: 'Zidane', image: './assets/images/ziddane.png', class: 'midfielder', cornerImage: './assets/images/FC Thun 1.png', flagImage: './assets/images/flag.svg', birthYear: 1972 },
     { name: 'Mohamed Salah', image: './assets/images/mohamad.png', cornerImage: './assets/images/FC Thun 1.png', flagImage: './assets/images/flag.svg', birthYear: 1972 },
     { name: 'Bukayo Saka', image: './assets/images/Bukayo Saka.png', cornerImage: './assets/images/FC Thun 1.png', flagImage: './assets/images/flag.svg', birthYear: 1972 },
     { name: 'Kevin De Bruyne', image: './assets/images/kevin.png', cornerImage: './assets/images/FC Thun 1.png', flagImage: './assets/images/flag.svg', birthYear: 1972 },
@@ -91,7 +91,7 @@ export class PlayerListComponent implements OnInit {
     { name: 'Kevin De Bruyne', image: './assets/images/kevin.png', cornerImage: './assets/images/FC Thun 1.png', flagImage: './assets/images/flag.svg', birthYear: 1972 },
     { name: 'Jamie Vardy', image: './assets/images/jammie.png', cornerImage: './assets/images/FC Thun 1.png', flagImage: './assets/images/flag.svg', birthYear: 1972 },
     { name: 'Aaron Ramsey', image: './assets/images/aaron.png', cornerImage: './assets/images/FC Thun 1.png', flagImage: './assets/images/flag.svg', birthYear: 1972 },
-    { name: 'Zidane', image: './assets/images/ziddane.png', class: 'midfielder', cornerImage: './assets/images/FC Thun 1.png', flagImage: './assets/images/flag.svg', birthYear: 1972},
+    { name: 'Zidane', image: './assets/images/ziddane.png', class: 'midfielder', cornerImage: './assets/images/FC Thun 1.png', flagImage: './assets/images/flag.svg', birthYear: 1972 },
     { name: 'Adam Lallana', image: './assets/images/Adam Lallana.png', cornerImage: './assets/images/FC Thun 1.png', flagImage: './assets/images/flag.svg', birthYear: 1972 },
     { name: 'Harry Kane', image: './assets/images/Harry Kane.png', cornerImage: './assets/images/FC Thun 1.png', flagImage: './assets/images/flag.svg', birthYear: 1972 },
     { name: 'Kasper Schmeichel', image: './assets/images/kasper.png', cornerImage: './assets/images/FC Thun 1.png', flagImage: './assets/images/flag.svg', birthYear: 1972 },
@@ -117,12 +117,12 @@ export class PlayerListComponent implements OnInit {
   //   return Math.ceil(totalItems / this.itemsPerPage); // Calculate total pages based on items per page
   // }
 
-   // Calculate total pages (currently it's fixed to 12 in this example)
-   totalPages(): number {
+  // Calculate total pages (currently it's fixed to 12 in this example)
+  totalPages(): number {
     return this.totalPagesCount;
   }
 
- // Get the range of pages to display
+  // Get the range of pages to display
   pagesToShow(): number[] {
     const total = this.totalPages();
     const pages: number[] = [];
@@ -143,26 +143,26 @@ export class PlayerListComponent implements OnInit {
     return pages;
   }
 
- 
+
 
   prevPage() {
     if (this.currentPage > 1) {
       this.currentPage--;
     }
   }
- // Go to next page
- nextPage() {
-  if (this.currentPage < this.totalPages()) {
-    this.currentPage++;
+  // Go to next page
+  nextPage() {
+    if (this.currentPage < this.totalPages()) {
+      this.currentPage++;
+    }
   }
-}
 
-// Go to a specific page
-goToPage(page: number) {
-  if (page >= 1 && page <= this.totalPages()) {
-    this.currentPage = page;
+  // Go to a specific page
+  goToPage(page: number) {
+    if (page >= 1 && page <= this.totalPages()) {
+      this.currentPage = page;
+    }
   }
-}
 
   closeAd(index: number) {
     this.adVisible[index] = false;
@@ -178,7 +178,7 @@ goToPage(page: number) {
 
   getCurrentPlayers(): Player[] {
     let playersToShow: Player[] = [];
-    
+
     if (this.selectedTab === 'scouts') {
       playersToShow = this.scoutsPlayers;
     } else if (this.selectedTab === 'club') {

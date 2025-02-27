@@ -38,8 +38,6 @@ export class CommonFilterPopupComponent {
     console.log(data);
     console.log(this.userFilters);
     if(this.page == "marketing"){
-
-      
       this.roles = data.roles;
       this.languages = data.languages;
       this.frequencies = data.frequency;
