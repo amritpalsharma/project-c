@@ -422,9 +422,9 @@
             <h6>{{loggedInUser.first_name}} {{loggedInUser.last_name}}</h6>
             <span class="badgewarning">{{ 'superAdmin' | translate }}</span>
             <br>
-            <a routerLink="/admin/setting" class="header-view-profile">{{ 'viewMyProfile' | translate }}</a>
+            <a (click)="navigateToTab('profile')" class="header-view-profile">{{ 'viewMyProfile' | translate }}</a>
 
-            <a routerLink="/admin/setting" class="dropdown-item ai-icon px-0 py-2 border-bottom ">
+            <a (click)="navigateToTab('activity')" class="dropdown-item ai-icon px-0 py-2 border-bottom ">
               <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16px"
                 height="16px" viewBox="0 0 24 24" version="1.1" class="svg-main-icon">
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -436,7 +436,7 @@
               </svg>
               <span class="ms-1 fs-15">{{ 'activityLog' | translate }}</span>
             </a>
-            <a (click)="accountSetting()" class="dropdown-item ai-icon px-0 py-2">
+            <a routerLink="/admin/setting" class="dropdown-item ai-icon px-0 py-2">
               <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16px"
                 height="16px" viewBox="0 0 24 24" version="1.1" class="svg-main-icon">
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">

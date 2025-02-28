@@ -489,10 +489,12 @@ export class HeaderComponent {
   navigateToTab(tab: string) {
     let fragment = 'activity'; // Default fragment
 
-    if (tab === 'setting') {
-      fragment = 'app-settings';
+    if (tab === 'team') {
+      fragment = 'team';
     } else if (tab === 'notifications') {
       fragment = 'notifications';
+    } else if(tab === 'profile'){
+      fragment = 'profile';
     }
 
     this.router.navigate([`/${this.role.slug}/setting`], { fragment });
