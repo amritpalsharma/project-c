@@ -331,6 +331,12 @@ export class HeaderComponent {
 
     this.socketService.emit('updateLanguage', { userId, langId: selectedLandId });
     this.fetchNotifications(userId, selectedLandId);
+
+     // Now safely access the locale
+     const locale = selectedLang.locale;
+
+     // Change the TalkJS locale by passing the locale string (e.g., 'en-US')
+     this.talkService.changeLocale(locale);
   }
 
   logout() {

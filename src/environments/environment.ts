@@ -20,28 +20,52 @@ export const environment = {
       { language:'German', slug: "de", id: 2, flag: "Germany.svg" },
     ],
 
-    langs:[
-      { language:'English', slug: "en", id: 1, flag: "England.svg" },
-      { language:'German', slug: "de", id: 2, flag: "Germany.svg" },
-      { language:'Italian', slug: "it", id: 3, flag: "Italy.svg"},
-      { language:'French', slug: "fr", id: 4, flag: "France.svg"},
-      { language:'Spanish', slug: "es", id: 5, flag: "Spain.svg" },
-      { language:'Portuguese', slug: "pt", id: 6, flag: "Portugal.svg" },
-      { language:'Danish', slug: "dk", id: 7, flag: "Denmark.svg" },
-      { language:'Swedish', slug: "se", id: 8, flag: "Sweden-sweden.svg"},
+    // langs:[
+    //   { language:'English', slug: "en", id: 1, flag: "England.svg" },
+    //   { language:'German', slug: "de", id: 2, flag: "Germany.svg" },
+    //   { language:'Italian', slug: "it", id: 3, flag: "Italy.svg"},
+    //   { language:'French', slug: "fr", id: 4, flag: "France.svg"},
+    //   { language:'Spanish', slug: "es", id: 5, flag: "Spain.svg" },
+    //   { language:'Portuguese', slug: "pt", id: 6, flag: "Portugal.svg" },
+    //   { language:'Danish', slug: "dk", id: 7, flag: "Denmark.svg" },
+    //   { language:'Swedish', slug: "se", id: 8, flag: "Sweden-sweden.svg"},
+    // ],
+
+    // domains:[
+    //   { name:'Switzerland', slug: "ch", id: 1, flag: "Switzerland.svg" },
+    //   { name:'German', slug: "de", id: 2, flag: "Germany.svg" },
+    //   { name:'Italy', slug: "it", id: 3, flag: "Italy.svg" },
+    //   { name:'France', slug: "fr", id: 4, flag: "France.svg" },
+    //   { name:'United Kingdom', slug: "uk", id: 5, flag: "England.svg" },
+    //   { name:'Spain', slug: "es", id: 6, flag: "Spain.svg" },
+    //   { name:'Portugal', slug: "pt", id: 7, flag: "Portugal.svg" },
+    //   { name:'Belgium', slug: "be", id: 8, flag: "Belgium.svg" },
+    //   { name:'Denmark', slug: "dk", id: 9, flag: "Denmark.svg" },
+    //   { name:'Sweden', slug: "se", id: 10, flag: "Sweden-sweden.svg" },
+    // ],
+
+    langs :[
+      { language: 'English', slug: 'en', id: 1, flag: 'England.svg', locale: 'en-US' },
+      { language: 'German', slug: 'de', id: 2, flag: 'Germany.svg', locale: 'de-DE' },
+      { language: 'Italian', slug: 'it', id: 3, flag: 'Italy.svg', locale: 'it-IT' },
+      { language: 'French', slug: 'fr', id: 4, flag: 'France.svg', locale: 'fr-FR' },
+      { language: 'Spanish', slug: 'es', id: 5, flag: 'Spain.svg', locale: 'es-ES' },
+      { language: 'Portuguese', slug: 'pt', id: 6, flag: 'Portugal.svg', locale: 'pt-PT' },
+      { language: 'Danish', slug: 'da', id: 7, flag: 'Denmark.svg', locale: 'da-DK' },
+      { language: 'Swedish', slug: 'sv', id: 8, flag: 'Sweden.svg', locale: 'sv-SE' },
     ],
 
-    domains:[
-      { name:'Switzerland', slug: "ch", id: 1, flag: "Switzerland.svg" },
-      { name:'German', slug: "de", id: 2, flag: "Germany.svg" },
-      { name:'Italy', slug: "it", id: 3, flag: "Italy.svg" },
-      { name:'France', slug: "fr", id: 4, flag: "France.svg" },
-      { name:'United Kingdom', slug: "uk", id: 5, flag: "England.svg" },
-      { name:'Spain', slug: "es", id: 6, flag: "Spain.svg" },
-      { name:'Portugal', slug: "pt", id: 7, flag: "Portugal.svg" },
-      { name:'Belgium', slug: "be", id: 8, flag: "Belgium.svg" },
-      { name:'Denmark', slug: "dk", id: 9, flag: "Denmark.svg" },
-      { name:'Sweden', slug: "se", id: 10, flag: "Sweden-sweden.svg" },
+    domains : [
+      { name: 'Switzerland', slug: 'ch', id: 1, flag: 'Switzerland.svg', locale: 'de-CH' }, // Assuming German is predominant
+      { name: 'German', slug: 'de', id: 2, flag: 'Germany.svg', locale: 'de-DE' },
+      { name: 'Italy', slug: 'it', id: 3, flag: 'Italy.svg', locale: 'it-IT' },
+      { name: 'France', slug: 'fr', id: 4, flag: 'France.svg', locale: 'fr-FR' },
+      { name: 'United Kingdom', slug: 'uk', id: 5, flag: 'England.svg', locale: 'en-GB' },
+      { name: 'Spain', slug: 'es', id: 6, flag: 'Spain.svg', locale: 'es-ES' },
+      { name: 'Portugal', slug: 'pt', id: 7, flag: 'Portugal.svg', locale: 'pt-PT' },
+      { name: 'Belgium', slug: 'be', id: 8, flag: 'Belgium.svg', locale: 'fr-BE' }, // or 'nl-BE' depending on the language
+      { name: 'Denmark', slug: 'dk', id: 9, flag: 'Denmark.svg', locale: 'da-DK' },
+      { name: 'Sweden', slug: 'se', id: 10, flag: 'Sweden-sweden.svg', locale: 'sv-SE' },
     ],
 
 

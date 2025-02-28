@@ -85,7 +85,7 @@ export class AppSettingComponent {
     );
   }
 
-  showDeleteProfileMatDialog(message: string, action: string, event: any) {
+  showDeleteProfileMatDialog(message: string, action: string) {
     const messageDialog = this.dialog.open(DeleteProfileComponent, {
       width: '500px',
       position: { top: '150px' },
@@ -93,12 +93,17 @@ export class AppSettingComponent {
     });
 
     messageDialog.afterClosed().subscribe((result) => {
-      if (result?.action === 'newsletter-confirmed') {
+      // alert(JSON.stringify(result))
+      if (result?.action === 'delete-profile-confirmed') {
         // Proceed with API call
-        this.updateNewsletter(event);
-      } else {
-        // Revert the checkbox to its original state
-        event.target.checked = this.loggedInUser.newsletter === 1;
+        // this.updateNewsletter(event);
+        this.talentService.deleteProfile().subscribe(
+          (response) => {
+            //  console.log(response);
+            if (response.status === true) {
+              this.showMatDialog(response.message, 'delete-account-close', '');
+            }
+          })
       }
     });
   }
@@ -106,8 +111,8 @@ export class AppSettingComponent {
   confirmDeleteProfile(event: any) {
     this.showDeleteProfileMatDialog(
       this.translatedText,
-      "newsletter-confirmation",
-      event
+      "newsletter-confirmation"
+      // event
     );
   }
 }

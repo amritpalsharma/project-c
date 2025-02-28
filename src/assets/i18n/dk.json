@@ -1148,5 +1148,7 @@
   "boostProfiles": "Boost-profil",
   "changeNewsletterStatus": "Er du sikker på, at du vil ændre nyhedsbrevets status?",
   "areYouSuretoDeleteActivity": "Er du sikker på, at du vil slette aktiviteten?",
-  "subsciptionCancelSuccess":"Dit abonnement er blevet opsagt med succes."
+  "subsciptionCancelSuccess": "Dit abonnement er blevet opsagt med succes.",
+  "deleteAccountDesc": "Dette vil slette din konto permanent fra vores database.",
+  "deleteMyAccount" : "Slet min konto"
 }

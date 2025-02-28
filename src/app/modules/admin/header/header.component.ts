@@ -39,6 +39,7 @@ export class HeaderComponent {
   profileImgUrl: any = "";
   lang: string = '';
   domains: any = environment.domains;
+  langs: any = environment.langs;
   envLang: any = environment.adminLangs;
   isDarkMode: boolean = false;
   role: any;
@@ -290,12 +291,12 @@ export class HeaderComponent {
     // Default to a specific language ID if none is found (e.g., English)
     const selectedLanguageId = selectedLanguageObj ? selectedLanguageObj.id : 1;
     localStorage.setItem('lang_id', selectedLanguageId);
-    this.shareService.updateData({
-      action: 'lang_updated',
-      id: selectedLanguageId
-    })
+    // this.shareService.updateData({
+    //   action: 'lang_updated',
+    //   id: selectedLanguageId
+    // })
 
-    // this.shareService.updateLanguage(selectedLanguageId);
+    this.shareService.updateLanguage(selectedLanguageId);
 
     let jsonData = localStorage.getItem("userData");
     let userId;
@@ -309,6 +310,12 @@ export class HeaderComponent {
 
     this.socketService.emit('updateLanguage', { userId, langId: selectedLanguageId });
     this.fetchNotifications(userId, selectedLanguageId);
+    const chatSelectedLanguage = this.langs.find((lang: any) => lang.slug === this.lang);
+    // Now safely access the locale
+    const locale = chatSelectedLanguage.locale;
+    // Change the TalkJS locale by passing the locale string (e.g., 'en-US')
+    this.talkService.changeLocale(locale);
+    // langs
   }
 
 

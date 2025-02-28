@@ -1230,8 +1230,10 @@
     ]
   },
   "MyAccount": "Ir al panel de control",
-   "boostProfiles": "Perfil Boost",
-   "changeNewsletterStatus": "¿Estás seguro de que quieres cambiar el estado del boletín?",
-   "areYouSuretoDeleteActivity":"Está seguro de eliminar la actividad ?",
-   "subsciptionCancelSuccess":"Su suscripción ha sido cancelada con éxito."
-  }
+  "boostProfiles": "Perfil Boost",
+  "changeNewsletterStatus": "¿Estás seguro de que quieres cambiar el estado del boletín?",
+  "areYouSuretoDeleteActivity": "Está seguro de eliminar la actividad ?",
+  "subsciptionCancelSuccess": "Su suscripción ha sido cancelada con éxito.",
+  "deleteAccountDesc": "Esto eliminará su cuenta permanentemente de nuestra base de datos.",
+  "deleteMyAccount" : "Eliminar mi cuenta"
+}

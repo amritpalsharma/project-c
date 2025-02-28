@@ -1255,5 +1255,7 @@
   "discountInputsEr": "Mindestens ein Rabatt mit Währung ist erforderlich",
   "startDateEr": "Startdatum ist erforderlich",
   "limitEr": "Grenze ist erforderlich",
-  "discountPercent": "Rabatt ist erforderlich"
+  "discountPercent": "Rabatt ist erforderlich",
+  "deleteAccountDesc":"Dadurch wird Ihr Konto dauerhaft aus unserer Datenbank gelöscht.",
+  "deleteMyAccount" : "Mein Konto löschen"
 }

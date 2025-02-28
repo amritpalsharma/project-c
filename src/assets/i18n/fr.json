@@ -1302,5 +1302,7 @@
   "boostProfiles": "Profil Boost",
   "changeNewsletterStatus": "Êtes-vous sûr de vouloir changer le statut de la lettre d'information ?",
   "areYouSuretoDeleteActivity": "Êtes-vous sûr de vouloir supprimer l'activité ?",
-  "subsciptionCancelSuccess": "Votre abonnement a été annulé avec succès."
+  "subsciptionCancelSuccess": "Votre abonnement a été annulé avec succès.",
+  "deleteAccountDesc": "Cela supprimera définitivement votre compte de notre base de données.",
+  "deleteMyAccount" : "Supprimer mon compte"
 }

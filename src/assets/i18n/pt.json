@@ -1241,5 +1241,7 @@
    "boostProfiles": "Impulsionar o perfil",
    "changeNewsletterStatus": "Tem a certeza de que pretende alterar o estatuto de boletim informativo?",
    "areYouSuretoDeleteActivity":"Tem a certeza de que pretende eliminar a atividade?",
-   "subsciptionCancelSuccess": "A sua subscrição foi cancelada com sucesso."
+   "subsciptionCancelSuccess": "A sua subscrição foi cancelada com sucesso.",
+   "deleteAccountDesc": "Esta ação elimina permanentemente a sua conta da nossa base de dados.",
+   "deleteMyAccount" : "Eliminar a minha conta"
   }

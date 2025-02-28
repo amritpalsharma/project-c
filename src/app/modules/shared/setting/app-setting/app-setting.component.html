@@ -29,11 +29,11 @@
   </div>
   <div class="card-body">
     <div class="acount_del-item d-flex align-items-center justify-content-between">
-      <label for="newsletter" class="mb-0"><b>Delete Account</b></label>
+      <label for="newsletter" class="mb-0"><b>{{ 'deleteAccount' | translate}}</b></label>
     </div>
     <div class="acount_del-item d-flex align-items-center justify-content-between flex-wrap">
-      <p>This will delete you account permanently from our database.</p>
-      <button type="button" class="button acount_delete_btn" (click)="confirmDeleteProfile(1)">Delete my account</button>
+      <p>{{ 'deleteAccountDesc' | translate}}</p>
+      <button type="button" class="button acount_delete_btn" (click)="confirmDeleteProfile(1)">{{'deleteMyAccount' | translate}}</button>
     </div>
   </div>
 </div>

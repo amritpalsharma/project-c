@@ -11,10 +11,11 @@
         <div class="popup-delete-btn d-flex align-items-end justify-content-between flex-wrap">
             <div class="confirm_del_wrap">
                 <label>To confirm this, type “DELETE”</label>
-                <input type="" class="del_input" />
+                <input type="" class="del_input" [(ngModel)]="deleteAccount" />
+               
             </div>
-            <div (click)="newsletterConfirmed()" class="delet_acnt_btn">Delete Account</div>
+            <div (click)="deleteProfileConfirmed()" class="delet_acnt_btn">Delete Account</div>
+            <p class="text-danger mt-2" *ngIf="isShowErrorMsg">{{errorMsg}}</p>
         </div>       
     </div>
 </div>
-  
