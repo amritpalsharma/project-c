@@ -522,7 +522,7 @@
   "passwordLabel": "Password",
   "forgotPasswordLink": "Forgot password?",
   "login": "Login",
-  "dontHaveAccount": "Don't have an account?",
+  "dontHaveAccount": "Don't have an account yet?",
   "registerNow": "Register Now",
   "passwordRecovery": "Password Recovery",
   "passwordRecoveryDescription": "Enter the email you used to create your SoccerYou profile, and we'll send you a link to reset your password.",
