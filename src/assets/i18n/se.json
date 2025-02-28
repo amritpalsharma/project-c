@@ -301,7 +301,7 @@
   "loginButton": "Logga in",
   "orText": "eller",
   "signInWithGoogle": "Logga in med Google",
-  "dontHaveAccount": "Har du inget konto?",
+  "dontHaveAccount": "Har du inget konto än?",
   "register": "Registrera",
   "passwordRecovery": "Återställning av lösenord",
   "passwordRecoveryDescription": "Skriv in den e-postadress du använde för att skapa ditt SoccerYou-konto så skickar vi en länk för att återställa ditt lösenord.",
@@ -1296,7 +1296,8 @@
    "completeVerificationProcess": "Klicka på länken i din inkorg för att slutföra verifieringsprocessen.",
 
    "cookiePopupText": "Vi värdesätter din integritet. Vi och våra partners använder spårare för att mäta målgruppen på vår webbplats och för att ge dig erbjudanden och förbättra vår egen SoccerYou-marknadsföring.",
-  "cookiePopupText2": "Mer information om cookies och leverantörer som vi använder. Du kan återkalla ditt samtycke när som helst i dina inställningar.",
+  "cookiePopupText2": "Mer information om cookies och leverantörer som vi använder.",
+  "cookiePopupText3": "Du kan återkalla ditt samtycke när som helst i dina inställningar.",
   "PersonalizeMyChoices": "Personifiera mina val",
   "iAccept": "Jag accepterar",
   "iDecline": "I decline",

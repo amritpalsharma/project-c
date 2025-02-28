@@ -304,7 +304,7 @@
   "loginButton": "Accedi",
   "orText": "o",
   "signInWithGoogle": "Accedi con Google",
-  "dontHaveAccount": "Non hai un account?",
+  "dontHaveAccount": "Non hai ancora un account?",
   "register": "Registrati",
   "passwordRecovery": "Recupero password",
   "passwordRecoveryDescription": "Inserisci l'email che hai usato per creare il tuo profilo SoccerYou e ti invieremo un link per reimpostare la tua password.",
@@ -1293,7 +1293,8 @@
   "completeVerificationProcess": "Fai clic sul link nella tua casella di posta per completare il processo di verifica.",
 
   "cookiePopupText": "Teniamo alla vostra privacy. Noi e i nostri partner utilizziamo i tracker per misurare l'audience del nostro sito web e per fornirvi offerte e migliorare le nostre operazioni di marketing di SoccerYou.",
-  "cookiePopupText2": "Maggiori informazioni sui cookie e sui fornitori che utilizziamo. Puoi ritirare il tuo consenso in qualsiasi momento nelle tue impostazioni.",
+  "cookiePopupText2": "Maggiori informazioni sui cookie e sui fornitori che utilizziamo.",
+  "cookiePopupText3": "Puoi ritirare il tuo consenso in qualsiasi momento nelle tue impostazioni.",
   "PersonalizeMyChoices": "Personalizzare le mie scelte",
   "iAccept": "Accetto",
   "iDecline": "Rifiuto",
