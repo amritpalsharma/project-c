@@ -78,13 +78,13 @@
           </button>
         </div>
       </div>
+      <div *ngIf="errorMsg.discountInputs" class="error-msg">{{errorMsg.discountInputs}}</div>
 
       <div class="row">
         <div class="col">
           <button class="btn btn-primary" (click)="addDiscountInput()">{{ 'addDiscount' | translate }} </button>
         </div>
       </div>
-
       <div *ngIf="errorMsg.duplicateCurrency" class="text-danger mt-2">
         {{ errorMsg.duplicateCurrency }}
       </div>

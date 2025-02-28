@@ -4,6 +4,8 @@ import {DateAdapter, MAT_DATE_LOCALE} from '@angular/material/core';
 import { CouponService } from '../../../../services/coupon.service';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { CommonDataService } from '../../../../services/common-data.service';
+import { TranslateService } from '@ngx-translate/core';
+
 @Component({
   selector: 'app-templates',
   templateUrl: './coupon-popup.component.html',
@@ -29,11 +31,22 @@ export class CoupenPopupComponent   {
   discountInputs: Array<{ discount: string; currency: string }> = []; // For $ Discounts
   currencies: string[] = []; // Add more currencies as needed
 
+  // coupon validation translations
+  couponNameEr: any = "";
+  couponCodeEr: any = "";
+  typeOfCouponEr: any = "";
+  discountInputsEr: any = "";
+  startDateEr: any = "";
+  limitEr: any = "";
+  discountPercent: any = "";
+  
+
   private readonly _adapter = inject<DateAdapter<unknown, unknown>>(DateAdapter);
   private readonly _locale = signal(inject<unknown>(MAT_DATE_LOCALE)); 
 
   constructor(
     public dialogRef: MatDialogRef<CoupenPopupComponent>,
+    private translateService: TranslateService,
     @Inject(MAT_DIALOG_DATA) public data: any, private couponService: CouponService,private commonService:CommonDataService
   ) {}
 
@@ -63,6 +76,19 @@ export class CoupenPopupComponent   {
       this.endDate = existingRecord.valid_to;
     }
     this.getCurrencies();
+
+    this.translateService.get(['couponNameEr', 'couponCodeEr', 'typeOfCouponEr', 'discountInputsEr', 'startDateEr', 'limitEr', 'discountPercent']).subscribe((translations) => {
+        this.couponNameEr = translations['couponNameEr'];
+        this.couponCodeEr = translations['couponCodeEr'];
+        this.typeOfCouponEr = translations['typeOfCouponEr'];
+        this.discountInputsEr = translations['discountInputsEr'];
+        this.startDateEr = translations['startDateEr'];
+        this.limitEr = translations['limitEr'];
+        this.discountPercent = translations['discountPercent'];
+        
+        // this.userPurchasesNotFound = translations['userPurchasesNotFound'];
+        // this.subsciptionCancelSuccess = translations['subsciptionCancelSuccess'];
+    });
   }
 
   getCurrencies(){
@@ -105,40 +131,49 @@ export class CoupenPopupComponent   {
 
     if (!this.type) {
       this.error = true;
-      this.errorMsg.type = "Type is required";
+      // this.errorMsg.type = "Type is required";
+      this.errorMsg.type = this.typeOfCouponEr;
     }
 
     if (this.type === 'percent' && !this.discount) {
       this.error = true;
-      this.errorMsg.discount = "Discount (%) is required";
+      // this.errorMsg.discount = "Discount (%) is required";
+      this.errorMsg.discount = this.discountPercent;
     }
 
     if (this.type === 'amount') {
       const hasValidDiscount = this.discountInputs.some(d => d.discount && d.currency);
       if (!hasValidDiscount) {
         this.error = true;
-        this.errorMsg.discountInputs = "At least one $ Discount with currency is required";
+        // this.errorMsg.discountInputs = "At least one $ Discount with currency is required";
+        this.errorMsg.discountInputs = this.discountInputsEr;
+        
       }
     }
 
     if (!this.name) {
       this.error = true;
-      this.errorMsg.name = "Name is required";
+      // this.errorMsg.name = "Name is required";
+      this.errorMsg.name = this.couponNameEr;
+      
     }
 
     if (!this.code) {
       this.error = true;
-      this.errorMsg.code = "Code is required";
+      // this.errorMsg.code = "Code is required";
+      this.errorMsg.code = this.couponCodeEr;
     }
 
     if (!this.startDate) {
       this.error = true;
-      this.errorMsg.startDate = "Start date is required";
+      // this.errorMsg.startDate = "Start date is required";
+      this.errorMsg.startDate = this.startDateEr;
     }
 
     if (this.isLimitedUse && !this.limit) {
       this.error = true;
-      this.errorMsg.limit = "Limit is required";
+      // this.errorMsg.limit = "Limit is required";
+      this.errorMsg.limit = this.limitEr;
     }
     console.log(this.errorMsg); // Debug: Check the final payload structure
 
@@ -189,39 +224,69 @@ export class CoupenPopupComponent   {
     }
 
     // Transform discountInputs into the amounts array
-    const amounts = this.discountInputs.map((input: any, index: number) => ({
-      [`amounts[${index}][currency]`]: input.currency.toLowerCase(),
-      [`amounts[${index}][discount]`]: input.discount,
-    }));
+    // const amounts = this.discountInputs.map((input: any, index: number) => ({
+    //   [`amounts[${index}][currency]`]: input.currency.toLowerCase(),
+    //   [`amounts[${index}][discount]`]: input.discount,
+    // }));
 
-    console.log(amounts); // Debug: Check the final payload structure
+    // console.log(amounts); // Debug: Check the final payload structure
 
-    // Construct the params in the required format
-    const params: any = {
-      title: this.name,
-      description: `${this.name} description`, // Adding description field
-      coupon_code: this.code,
-      discount: this.type === "percent" ? Number(this.discount) : undefined,
-      discount_type: this.type === "amount" ? "amount_off" : "percent_off",
-      valid_from: this.formatDate(this.startDate), // Format as YYYY-MM-DD
-      valid_to: this.noEndDate ? undefined : this.formatDate(this.endDate),
-      no_validity: this.noEndDate ? 1 : 0,
-      status: 'published',
-      is_limit: this.isLimitedUse ? 1 : 0,
-      limit: this.isLimitedUse ? Number(this.limit) : undefined,
-      limit_per_user: this.isSingleUsePerCustomer ? 1 : 0,
-      duration: 'forever',
-      ...amounts.reduce((acc, curr) => ({ ...acc, ...curr }), {}) // Flatten amounts array
-    };
+    // // Construct the params in the required format
+    // const params: any = {
+    //   title: this.name,
+    //   description: `${this.name} description`, // Adding description field
+    //   coupon_code: this.code,
+    //   discount: this.type === "percent" ? Number(this.discount) : undefined,
+    //   discount_type: this.type === "amount" ? "amount_off" : "percent_off",
+    //   valid_from: this.formatDate(this.startDate), // Format as YYYY-MM-DD
+    //   valid_to: this.noEndDate ? undefined : this.formatDate(this.endDate),
+    //   no_validity: this.noEndDate ? 1 : 0,
+    //   status: 'published',
+    //   is_limit: this.isLimitedUse ? 1 : 0,
+    //   limit: this.isLimitedUse ? Number(this.limit) : undefined,
+    //   limit_per_user: this.isSingleUsePerCustomer ? 1 : 0,
+    //   duration: 'forever',
+    //   ...amounts.reduce((acc, curr) => ({ ...acc, ...curr }), {}) // Flatten amounts array
+    // };
+    // console.log(params); // Debug: Check the final payload structure
 
-    console.log(params); // Debug: Check the final payload structure
 
-    this.couponService.addPopups(params).subscribe(
+    const formData = new FormData();
+    formData.append('title', this.name);
+    formData.append('description', `${this.name} description`);
+    formData.append('coupon_code', this.code);
+    formData.append('discount', this.type === "percent" ? String(this.discount) : '');
+    formData.append('discount_type', this.type === "amount" ? "amount_off" : "percent_off");
+    formData.append('valid_from', this.formatDate(this.startDate) || ''); 
+    formData.append('valid_to', this.noEndDate ? '' : (this.formatDate(this.endDate) || ''));
+    formData.append('no_validity', this.noEndDate ? '1' : '0');
+    formData.append('status', 'published');
+    formData.append('is_limit', this.isLimitedUse ? '1' : '0');
+    formData.append('limit', this.isLimitedUse ? String(this.limit) : '');
+    formData.append('limit_per_user', this.isSingleUsePerCustomer ? '1' : '0');
+    formData.append('duration', 'forever');
+
+    if(this.type === "amount" ){
+      // Append amounts array properly
+      this.discountInputs.forEach((input: any, index: number) => {
+        formData.append(`amounts[${index}][currency]`, input.currency.toLowerCase());
+        formData.append(`amounts[${index}][discount]`, String(input.discount));
+      });
+    }
+    
+
+    this.couponService.addPopups(formData).subscribe(
       response => {
         if (response.status) {
-          this.dialogRef.close({ action: 'popupAdded' });
+          this.dialogRef.close({ 
+            action: 'popupAdded', 
+            message: response.message
+          });
         } else {
-          this.errorMsg = response.data.error;
+          this.errorMsg = response.error;
+          this.errorMsg.discount = "Discount (%) is required";
+          this.errorMsg.code = response.error.coupon_code;
+          
         }
       },
       error => {
