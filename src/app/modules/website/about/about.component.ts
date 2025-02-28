@@ -159,7 +159,7 @@ export class AboutComponent {
   }
 
   isExists(key: string): boolean {
-    return this.advertisementData.hasOwnProperty(key);
+    return key in this.advertisementData && 'featured_image' in this.advertisementData[key];
   }
   
 
