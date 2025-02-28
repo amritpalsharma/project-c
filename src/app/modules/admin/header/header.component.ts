@@ -41,7 +41,7 @@ export class HeaderComponent {
   domains: any = environment.domains;
   envLang: any = environment.adminLangs;
   isDarkMode: boolean = false;
-  role : any; 
+  role: any;
   roles: any = environment.roles;
 
   notificationCount: number = 0;
@@ -290,12 +290,12 @@ export class HeaderComponent {
     // Default to a specific language ID if none is found (e.g., English)
     const selectedLanguageId = selectedLanguageObj ? selectedLanguageObj.id : 1;
     localStorage.setItem('lang_id', selectedLanguageId);
-    // this.shareService.updateData({
-    //   action: 'lang_updated',
-    //   id: selectedLanguageId
-    // })
+    this.shareService.updateData({
+      action: 'lang_updated',
+      id: selectedLanguageId
+    })
 
-    this.shareService.updateLanguage(selectedLanguageId);
+    // this.shareService.updateLanguage(selectedLanguageId);
 
     let jsonData = localStorage.getItem("userData");
     let userId;
@@ -490,10 +490,12 @@ export class HeaderComponent {
   navigateToTab(tab: string) {
     let fragment = 'activity'; // Default fragment
 
-    if (tab === 'setting') {
-      fragment = 'app-settings';
+    if (tab === 'team') {
+      fragment = 'team';
     } else if (tab === 'notifications') {
       fragment = 'notifications';
+    } else if(tab === 'profile'){
+      fragment = 'profile';
     }
 
     this.router.navigate([`/${this.role.slug}/setting`], { fragment });

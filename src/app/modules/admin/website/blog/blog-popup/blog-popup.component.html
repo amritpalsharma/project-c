@@ -103,7 +103,19 @@
 
       </div>
     </div>
-    <div class="col-12 col-md-6 d-flex align-items-baseline  mt-3">
+
+    <!-- Status Selection -->
+    <div class="col-12 col-md-6 d-flex align-items-baseline mt-3">
+      <h4 class="text-size fw-bold">{{ 'status' | translate }}:</h4>
+      <div class="btn-group">
+        <mat-select [(ngModel)]="status" class="mat-select-div">
+          <mat-option [value]="'published'">{{ 'publish' | translate }}</mat-option>
+          <mat-option [value]="'draft'">{{ 'draft' | translate }}</mat-option>
+        </mat-select>
+      </div>
+    </div>
+    
+    <div class="col-12 d-flex align-items-baseline mt-3">
       <h4 class="text-size fw-bold">{{ 'featuredImage' | translate }}: </h4>
       <div class="btn-group">
         <input type="file" class="form-control" (change)="onImageChange($event)" accept="image/*" />

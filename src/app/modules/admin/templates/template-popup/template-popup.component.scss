@@ -118,10 +118,31 @@ ngx-editor {
     overflow: auto;
 }
 
+
+input.template-name-inputField {
+    width: 100% !important;
+}
+
   @media (max-width: 575px) {
     .popup_buttons_mobile {
         flex-wrap: wrap;
         align-items: center !important;
         justify-content: center !important;
     }
+    }
+
+    @media (max-width: 767px) {
+        .template_body_form .template-name-input, .main-popup-div .d-flex.align-items-baseline {
+            flex-direction: column;
+            margin: 10px 0;
+        }
+        .main-popup-div .d-flex.align-items-baseline .btn-group {
+            width: 100%;
+        }
+        .main-popup-div .mat-mdc-select-trigger {
+            width: 100% !important;
+            margin-left: 0;
+            margin-top: 10px;
+            min-width: 100%;
+        }
     }

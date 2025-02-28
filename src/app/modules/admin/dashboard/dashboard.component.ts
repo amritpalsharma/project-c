@@ -17,6 +17,7 @@ import { TalentService } from '../../../services/talent.service';
 import { debounceTime, distinctUntilChanged, switchMap, finalize } from 'rxjs/operators';
 import { CommonHelperService } from '../../../services/common-helper.service';
 import { SharedService } from '../../../services/shared.service';
+import { AdminHelperService } from '../../../services/admin-helper.service';
 
 interface Notification {
   id: number;
@@ -102,7 +103,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     private talentService: TalentService,
     private socketService: SocketService,
     private commonHelper: CommonHelperService,
-    private sharedservice: SharedService
+    private sharedservice: SharedService,
+    private adminHelper: AdminHelperService
   ) {
 
   }
@@ -242,6 +244,13 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.getNewRegistrationsWithPlayers();
         this.getChardData(this.year, this.domain_id, this.lang_id);
         this.getLocations();
+
+        // setTimeout(() => {
+        let selected_domain = localStorage.getItem('selected_domain');
+        if (selected_domain != '') {
+          this.selectedDomain = selected_domain ? selected_domain : '';
+        }
+        // }, 1500);
         // this.generateYears();
       }
     });
@@ -273,7 +282,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     console.log('Selected Domain ID 111:', this.domain_id);
     console.log('Selected Language ID 111:', this.lang_id);
     this.updateChartData(this.selectedYear, this.selectedDomain, lang_id);
-
+    localStorage.setItem('selected_domain', this.selectedDomain)
   }
 
   getLocations() {
@@ -471,7 +480,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             titleColor: '#fff',
             titleFont: { family: 'Poppins', size: 20, weight: 800 },
             callbacks: {
-              label: (tooltipItem: any) => { 
+              label: (tooltipItem: any) => {
                 // console.log(tooltipItem);
                 // alert(tooltipItem)
                 return this.translateService.instant('tooltip.totalUsers', { count: tooltipItem.raw });
@@ -870,6 +879,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   isValidProfileImage(imageUrl: string) {
     return this.commonHelper.checkImageExists(imageUrl);
+  }
+
+  formatDateTime(datetime: string) {
+    // convertAdminDateTime
+    let formattedDate = this.adminHelper.convertAdminDateTime(datetime, 'users');
+    return formattedDate;
   }
 }
 

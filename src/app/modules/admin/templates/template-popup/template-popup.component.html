@@ -7,7 +7,7 @@
   </div>
   <hr class="m-0">
 <div class="template_body_form">
-  <div class="row mobile_wrap_fields">
+  <div class="row">
     <div class="col-12 col-sm-6">
     <div class="d-flex align-items-baseline py-2 bg-0C3453 template-name-input">
       <h4 class="text-size" style="margin-right: 5px;">{{ 'name' | translate }}:</h4>
@@ -26,7 +26,7 @@
   </div>
     
 
-  <div class="col-12 col-sm-6 mobile_wrap_fields">
+  <div class="col-12 col-sm-6">
   <div class="d-flex align-items-baseline py-2 bg-0C3453 template-name-input">
     <h4 class="text-size" style="margin-right: 5px;">{{ 'subject' | translate }}:</h4>
     <input type="text" class="template-name-inputField add_custom_width" [(ngModel)]="subject" >
@@ -79,8 +79,8 @@
     </div>
   </div> -->
 
-  <div class="d-flex main-popup-div py-2 bg-0C3453 mobile_wrap_fields">
-    <div class="d-flex align-items-baseline ">
+  <div class="row main-popup-div py-2 bg-0C3453">
+    <div class="col-12 col-md-6 mt-3 d-flex align-items-baseline ">
       <h4 class="text-size fw-bold">{{ 'for' | translate }}:</h4>
       <!-- <div class="btn-group">
         <mat-select [(ngModel)]="selectedRole">
@@ -106,7 +106,7 @@
       </div>
       
     </div>
-    <div  class="d-flex align-items-baseline" >
+    <div  class="col-12 col-md-6 mt-3 d-flex align-items-baseline" >
      <h4 class="text-size fw-bold">{{ 'language' | translate }}:</h4>
      <div class="btn-group">
         <mat-select [(ngModel)]="selectedLang" class="mat-select-div">
@@ -121,7 +121,7 @@
 
       </div>
     </div>
-    <div  class="d-flex align-items-baseline">
+    <div  class="col-12 col-md-6 mt-3 d-flex align-items-baseline">
       <h4 class="text-size fw-bold">{{ 'location' | translate }}:</h4>
       <div class="btn-group">
           <mat-select [(ngModel)]="selectedLocation" class="mat-select-div">

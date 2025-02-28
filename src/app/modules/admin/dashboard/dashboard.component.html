@@ -153,7 +153,8 @@
             <td>{{user.role_name}}</td>
             <td>{{ user.language }}</td>
             <td> {{ user.user_location }}</td>
-            <td> {{ user.created_at  | date:'MM.dd.yyyy - hh.mm a' }}</td>
+            <td> {{ formatDateTime(user.created_at) }}</td>
+            <!-- <td> {{ user.created_at  | date:'MM.dd.yyyy - hh.mm a' }}</td> -->
             <td class="main-table-2">
               <span *ngIf="user.status==1" class="bg_pending">{{ 'pending' | translate }} </span>
               <span *ngIf="user.status==2" class="bg_success approved"> {{ 'approved' | translate }}</span>
