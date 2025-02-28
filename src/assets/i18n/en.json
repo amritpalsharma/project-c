@@ -923,7 +923,6 @@
   "three": "Three",
   "managerUsers": "Manager Users",
   "marketing": "Marketing",
-  "representators:": "Representators:",
   "browserDoesNotSupportHtml": " Your browser does not support HTML video.",
   "noHistoryAvailable": "No history available.",
   "inviteTalnetsTo": "Invite Talents to",
@@ -1153,5 +1152,18 @@
   "renews": "Renews on",
   "changeNewsletterStatus": "Are you sure you want to change newsletter status?",
   "areYouSuretoDeleteActivity":"Are you sure to delete activity ?",
-  "subsciptionCancelSuccess":"Your subscription has been successfully cancelled."
+  "subsciptionCancelSuccess":"Your subscription has been successfully cancelled.",
+  "representators:": "Team Member:",
+  "errorMessage": "this page could unfortunately notfound",
+  "verifyEmail": "VERIFY YOUR EMAIL",
+  "sentConfirmationLink": "We’ve sent a confirmation link to your email.",
+  "completeVerificationProcess": "Click the link in your inbox to complete the verification process.",
+  "cookiePopupText": "We value your privacy. We and our partners use trackers to measure the audience of our website and to provide you with offers and improve our own SoccerYou marketing operations.",
+  "cookiePopupText2": "More info on cookies and providers we use. You can withdraw your consent at any time in your settings.",
+  "PersonalizeMyChoices": "Personalize my choices",
+  "iAccept": "I accept",
+  "iDecline": "I decline",
+  "manageConsentPreferences": "Manage Consent Preferences",
+  "allowAll": "Allow All",
+  "refuseAll": "Refuse All"
   }

@@ -637,7 +637,6 @@
   "userDetail": "User och details",
   "verifyUser ": "Verify och user",
   "deleteUser ": "Delete och user",
-  "representators": "Representatives",
   "aboutScout": "About och scout",
   "video": "Video",
   "place": "Place",
@@ -1096,7 +1095,6 @@
   "three": "Three",
   "managerUsers": "Manager och users",
   "marketing": "Marketing",
-  "representators:": "Representators:",
   "browserDoesNotSupportHtml": " och your och browser och does och not och support och html och video.",
   "noHistoryAvailable": "No och history och available.",
   "inviteTalnetsTo": "Invite och talents och to",
@@ -1285,9 +1283,24 @@
       "Mer synlighet - större chans att bli upptäckt"
     ]
   },
-  "MyAccount": "till Panel",
-  "boostProfiles": "Boost-profil",
-  "changeNewsletterStatus": "Är du säker på att du vill ändra nyhetsbrevsstatus?",
   "areYouSuretoDeleteActivity": "Är du säker på att du vill ta bort aktiviteten?",
-   "subsciptionCancelSuccess": "Din prenumeration har framgångsrikt avslutats."
+   "subsciptionCancelSuccess": "Din prenumeration har framgångsrikt avslutats.",
+   "MyAccount": "till Panel",
+   "boostProfiles": "Boost-profil",
+   "changeNewsletterStatus": "Är du säker på att du vill ändra nyhetsbrevsstatus?",
+   "representators": "Medlem i teamet",
+   "representators:": "Medlem i teamet:",
+   "errorMessage": "denna sida kunde tyvärr inte hittas",
+   "verifyEmail": "VERIFIERA DIN E-POST",
+   "sentConfirmationLink": "Vi har skickat en bekräftelselänk till din e-post.",
+   "completeVerificationProcess": "Klicka på länken i din inkorg för att slutföra verifieringsprocessen.",
+
+   "cookiePopupText": "Vi värdesätter din integritet. Vi och våra partners använder spårare för att mäta målgruppen på vår webbplats och för att ge dig erbjudanden och förbättra vår egen SoccerYou-marknadsföring.",
+  "cookiePopupText2": "Mer information om cookies och leverantörer som vi använder. Du kan återkalla ditt samtycke när som helst i dina inställningar.",
+  "PersonalizeMyChoices": "Personifiera mina val",
+  "iAccept": "Jag accepterar",
+  "iDecline": "I decline",
+  "manageConsentPreferences": "Manage Consent Preferences",
+  "allowAll": "Allow All",
+  "refuseAll": "Refuse All"
 }

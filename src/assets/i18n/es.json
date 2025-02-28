@@ -529,7 +529,6 @@
   "userDetail": "User y details",
   "verifyUser ": "Verify y user",
   "deleteUser ": "Delete y user",
-  "representators": "Representatives",
   "aboutScout": "About y scout",
   "video": "Video",
   "place": "Place",
@@ -1039,7 +1038,6 @@
   "three": "Three",
   "managerUsers": "Manager y users",
   "marketing": "Marketing",
-  "representators:": "Representators:",
   "browserDoesNotSupportHtml": " y your y browser y does y not y support y html y video.",
   "noHistoryAvailable": "No y history y available.",
   "inviteTalnetsTo": "Invite y talents y to",
@@ -1229,9 +1227,25 @@
       "Más visibilidad - más posibilidades de ser descubierto"
     ]
   },
-  "MyAccount": "Ir al panel de control",
+   "areYouSuretoDeleteActivity":"Está seguro de eliminar la actividad ?",
+   "subsciptionCancelSuccess":"Su suscripción ha sido cancelada con éxito.",
+   "MyAccount": "Ir al panel de control",
    "boostProfiles": "Perfil Boost",
    "changeNewsletterStatus": "¿Estás seguro de que quieres cambiar el estado del boletín?",
-   "areYouSuretoDeleteActivity":"Está seguro de eliminar la actividad ?",
-   "subsciptionCancelSuccess":"Su suscripción ha sido cancelada con éxito."
+   "representators": "Miembro del equipo",
+  "representators:": "Miembro del equipo:",
+
+  "errorMessage": "lamentablemente no se ha encontrado esta página",
+  "verifyEmail": "VERIFIQUE SU CORREO ELECTRÓNICO",
+  "sentConfirmationLink": "Hemos enviado un enlace de confirmación a tu correo electrónico.",
+  "completeVerificationProcess": "Haga clic en el enlace de su bandeja de entrada para completar el proceso de verificación.",
+
+  "cookiePopupText": "Valoramos su privacidad. Nosotros y nuestros socios utilizamos rastreadores para medir la audiencia de nuestro sitio web y para ofrecerle ofertas y mejorar nuestras propias operaciones de marketing SoccerYou.",
+  "cookiePopupText2": "Más información sobre las cookies y los proveedores que utilizamos. Puedes retirar tu consentimiento en cualquier momento en tu configuración.",
+  "PersonalizeMyChoices": "Personalizar mis opciones",
+  "iAccept": "Acepto",
+  "iDecline": "No acepto",
+  "manageConsentPreferences": "Gestionar preferencias de consentimiento",
+  "allowAll": "Permitir todo",
+  "refuseAll": "Rechazar todo"
   }

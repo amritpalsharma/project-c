@@ -641,7 +641,6 @@
   "userDetail": "User e details",
   "verifyUser ": "Verify e user",
   "deleteUser ": "Delete e user",
-  "representators": "Representatives",
   "aboutScout": "About e scout",
   "place": "Place",
   "systemPopUps": "System e pop-ups",
@@ -1094,7 +1093,6 @@
   "three": "Three",
   "managerUsers": "Manager e users",
   "marketing": "Marketing",
-  "representators:": "Representators:",
   "browserDoesNotSupportHtml": " e your e browser e does e not e support e html e video.",
   "noHistoryAvailable": "No e history e available.",
   "inviteTalnetsTo": "Invite e talents e to",
@@ -1281,9 +1279,25 @@
       "Più visibilità - maggiori possibilità di essere scoperti"
     ]
   },
-  "MyAccount": "al Dashboard",
+   "areYouSuretoDeleteActivity":"Sei sicuro di voler eliminare l'attività?",
+   "subsciptionCancelSuccess": "L'abbonamento è stato annullato con successo.",
+   "MyAccount": "al Dashboard",
    "boostProfiles": "Profilo di spinta",
    "changeNewsletterStatus": "Sei sicuro di voler cambiare lo stato della newsletter?",
-   "areYouSuretoDeleteActivity":"Sei sicuro di voler eliminare l'attività?",
-   "subsciptionCancelSuccess": "L'abbonamento è stato annullato con successo."
+   "representators": "Membro del team",
+  "representators:": "Membro del team:",
+
+  "errorMessage": "questa pagina purtroppo non è stata trovata",
+  "verifyEmail": "VERIFICA IL TUO INDIRIZZO E-MAIL",
+  "sentConfirmationLink": "Abbiamo inviato un link di conferma al tuo indirizzo e-mail.",
+  "completeVerificationProcess": "Fai clic sul link nella tua casella di posta per completare il processo di verifica.",
+
+  "cookiePopupText": "Teniamo alla vostra privacy. Noi e i nostri partner utilizziamo i tracker per misurare l'audience del nostro sito web e per fornirvi offerte e migliorare le nostre operazioni di marketing di SoccerYou.",
+  "cookiePopupText2": "Maggiori informazioni sui cookie e sui fornitori che utilizziamo. Puoi ritirare il tuo consenso in qualsiasi momento nelle tue impostazioni.",
+  "PersonalizeMyChoices": "Personalizzare le mie scelte",
+  "iAccept": "Accetto",
+  "iDecline": "Rifiuto",
+  "manageConsentPreferences": "Gestione delle preferenze di consenso",
+  "allowAll": "Consenti a tutti",
+  "refuseAll": "Rifiuta tutto"
 }
