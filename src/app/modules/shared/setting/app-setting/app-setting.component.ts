@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MessagePopupComponent } from '../../message-popup/message-popup.component';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { DeleteProfileComponent } from '../../delete-profile/delete-profile.component'
 
 @Component({
   selector: 'app-app-setting',
@@ -13,8 +14,8 @@ import { Subscription } from 'rxjs';
 export class AppSettingComponent {
   loggedInUser: any = localStorage.getItem('userData'); // User data from local storage
   translatedText: string = '';
-  langSubscription!: Subscription; 
-  constructor(private talentService: TalentService, public dialog: MatDialog, private translate: TranslateService) {}
+  langSubscription!: Subscription;
+  constructor(private talentService: TalentService, public dialog: MatDialog, private translate: TranslateService) { }
 
   ngOnInit() {
     // Parse user data from localStorage
@@ -72,8 +73,8 @@ export class AppSettingComponent {
           // Revert the checkbox state on failure
           event.target.checked = !event.target.checked;
         }
-        if(response.message != ''){
-          this.showMatDialog(response.message, 'display','');
+        if (response.message != '') {
+          this.showMatDialog(response.message, 'display', '');
         }
       },
       (error) => {
@@ -81,6 +82,32 @@ export class AppSettingComponent {
         // Revert the checkbox state on error
         event.target.checked = !event.target.checked;
       }
+    );
+  }
+
+  showDeleteProfileMatDialog(message: string, action: string, event: any) {
+    const messageDialog = this.dialog.open(DeleteProfileComponent, {
+      width: '500px',
+      position: { top: '150px' },
+      data: { message, action },
+    });
+
+    messageDialog.afterClosed().subscribe((result) => {
+      if (result?.action === 'newsletter-confirmed') {
+        // Proceed with API call
+        this.updateNewsletter(event);
+      } else {
+        // Revert the checkbox to its original state
+        event.target.checked = this.loggedInUser.newsletter === 1;
+      }
+    });
+  }
+
+  confirmDeleteProfile(event: any) {
+    this.showDeleteProfileMatDialog(
+      this.translatedText,
+      "newsletter-confirmation",
+      event
     );
   }
 }

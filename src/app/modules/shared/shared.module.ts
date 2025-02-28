@@ -50,6 +50,7 @@ import { CommonFilterPopupComponent } from './common-filter-popup/common-filter-
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { LoaderComponent } from './loader/loader.component';
 import { NotificationsLogComponent } from './setting/notifications-log/notifications-log.component';
+import { DeleteProfileComponent } from './delete-profile/delete-profile.component';
 
 
 @NgModule({
@@ -86,7 +87,8 @@ import { NotificationsLogComponent } from './setting/notifications-log/notificat
     ExploreComponent,
     CommonFilterPopupComponent,
     LoaderComponent,
-    NotificationsLogComponent
+    NotificationsLogComponent,
+    DeleteProfileComponent
   ],
   imports: [
     CommonModule,
