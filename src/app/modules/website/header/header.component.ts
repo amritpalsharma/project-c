@@ -737,8 +737,11 @@ export class HeaderComponent implements OnInit {
 
   onCountryChange(event: Event): void {
     const selectElement = event.target as HTMLSelectElement;
+    console.log('>>>>>>>>>>>>>>>>>>> onCountryChange selectElement >>>>>>>>>>>', selectElement);
+
     this.selectedCountry = selectElement.value;
-    this.getClugById(this.selectedCountry);
+    let clubs = this.getClugById(this.selectedCountry);
+    console.log('>>>>>>>>>>>>>>>>>>> onCountryChange clubs >>>>>>>>>>>', clubs);
   }
 
   onClubChange(event: Event): void {
@@ -771,30 +774,38 @@ export class HeaderComponent implements OnInit {
 
   getAllCountries(){
     this.commonDataService.getAllCountries().subscribe((resp) => {
+      console.log('>>>>>>>>>>>>>>>> getAllCountries resp >>>>>>>', resp);
       this.countries = resp.data.domains.map((country: any) => ({
         code: country.country_id || '',
         name: country.location || ''
       }));
+
+      console.log('>>>>>>>>>>>>>>>> getAllCountries this.countries >>>>>>>', this.countries);
+
     });
   }
 
   getClugById(id :any ){
     if(id){
+      console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>> getClugById id >>>", id);
+
       this.commonDataService.getAllClubsbyId(id).subscribe((resp) => {
+        console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>> getClugById clubs >>>", resp);
         this.clubs = resp.data.clubs.map((club: any) => ({
           id: club.id || '',
           name: club.club_name || ''
         }));
+        return this.clubs;
         console.log(resp, 'club-resp');
       });
     }
   }
   getAllClubs(){
     this.commonDataService.getAllClubs().subscribe((resp) => {
-      this.clubs = resp.data.clubs.map((club: any) => ({
-        id: club.id || '',
-        name: club.club_name || ''
-      }));
+      // this.clubs = resp.data.clubs.map((club: any) => ({
+      //   id: club.id || '',
+      //   name: club.club_name || ''
+      // }));
       console.log(resp, 'club-resp');
     });
   }

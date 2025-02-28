@@ -57,8 +57,9 @@ export class CommonDataService {
   }
 
   getAllCountries(): Observable<any> {
+    let currentLang = localStorage.getItem('lang_id');
     return this.http.get(
-      `${this.apiUrl}get-domains`
+      `${this.apiUrl}get-domains/${currentLang}`
     );
   }
 
@@ -68,6 +69,7 @@ export class CommonDataService {
     );
   }
   getAllClubsbyId(id=0): Observable<any> {
+    console.log(" >>>>>>>>>>>>>>>>>>>> getAllClubsbyId id>> ", id);
     return this.http.get(
       `${this.apiUrl}get-clubs-list?country=${id}`
     );
