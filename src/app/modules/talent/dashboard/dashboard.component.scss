@@ -804,11 +804,11 @@
 
 .elton-box.dashboard-icons .team-badge_image {
   padding: 0 5px 0 0;
-  width: 40px !important;
+  width: 35px !important;
 }
 .elton-box.dashboard-icons .team-badge_content {
   padding: 0 0 0 5px;
-  width: calc(100% - 40px) !important;
+  width: calc(100% - 35px) !important;
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
@@ -1049,11 +1049,11 @@
   font-weight: 500; 
 }
 .dashboard-icons svg{
-  max-width: 36px;
+  max-width: 30px;
 }
 .team-badge_image img {
   width: 100%;
-  max-width: 36px;
+  max-width: 30px;
 }
 .title_2{
     font-size: 12px;
@@ -1407,3 +1407,14 @@ width:  100% !important;
   text-overflow: ellipsis;
 }
 }
+
+
+@media (max-width: 991px) {
+  .card_box-1, .card_box--2 {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .card_box--2 {
+    margin-top: 15px;
+  }
+  }

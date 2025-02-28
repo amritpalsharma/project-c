@@ -200,6 +200,13 @@ width: 350px !important;
 }
 
 
-.adv_modal .calender-inputs-box mat-datepicker-toggle {
-  top: -23px;
+@media (max-width: 575px) {
+  .popup_buttons_mobile > .d-flex {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+  .create-new_popup {
+    max-height: 44vh !important;
+}
 }

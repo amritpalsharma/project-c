@@ -1,24 +1,21 @@
 <div class="p-0 parent-popup">
   <div class="p-3 bg-0C3453">
-
-    <h4 class="text-center mb-3 title-text">{{ 'news' | translate }}</h4>
-
-    <div class="close-img" (click)="close()">
-    </div>
+    <h4 class="mb-0">{{ 'news' | translate }}</h4>
+    <img src="../../../assets/images/close-icon-circle.png" alt="" class="close-img" (click)="close()" />
   </div>
   <hr class="m-0">
-
-  <div class="d-flex">
-    <div>
-      <div class="d-flex align-items-baseline py-2 bg-0C3453 px-3 template-name-input">
+  <div class="news_content_form_popup">
+  <div class="row">
+    <div class="col-12 col-sm-6">
+      <div class="d-flex align-items-baseline py-2 bg-0C3453 template-name-input">
         <h4 class="text-size" style="margin-right: 5px;">{{ 'name' | translate }}:</h4>
         <input type="text" class="template-name-inputField" [(ngModel)]="title">
 
       </div>
       <div *ngIf="errorMsg.title" class="error-msg" style="padding-left:60px;">{{errorMsg.title}}</div>
     </div>
-    <div>
-      <div class="d-flex align-items-baseline py-2 bg-0C3453 px-3 template-name-input">
+    <div class="col-12 col-sm-6">
+      <div class="d-flex align-items-baseline py-2 bg-0C3453  template-name-input">
         <h4 class="text-size" style="margin-right: 5px;">{{ 'metaTitle' | translate }}:</h4>
         <input type="text" class="template-name-inputField" [(ngModel)]="meta_title">
 
@@ -26,8 +23,8 @@
       <div *ngIf="errorMsg.meta_title" class="error-msg" style="padding-left:60px;">{{errorMsg.meta_title}}</div>
     </div>
 
-    <div>
-      <div class="d-flex align-items-baseline py-2 bg-0C3453 px-3 template-name-input">
+    <div class="col-12 col-sm-6">
+      <div class="d-flex align-items-baseline py-2 bg-0C3453  template-name-input">
         <h4 class="text-size" style="margin-right: 5px;">{{ 'slug' | translate }}:</h4>
         <input type="text" class="template-name-inputField" [(ngModel)]="slug">
 
@@ -35,14 +32,13 @@
       <div *ngIf="errorMsg.slug" class="error-msg" style="padding-left:60px;">{{errorMsg.slug}}</div>
     </div>
 
-  </div>
-  <div class="d-flex align-items-baseline py-2 bg-0C3453 px-3 template-name-input">
+  <div class="col-12 col-sm-6">
+  <div class="d-flex align-items-baseline py-2 bg-0C3453 template-name-input">
     <h4 class="text-size" style="margin-right: 5px;">{{ 'metaDescription' | translate }}:</h4>
     <input type="text" class="template-name-inputField add_custom_width" [(ngModel)]="meta_description">
   </div>
-  <div *ngIf="errorMsg.meta_description" class="error-msg" style="padding-left:60px;">{{errorMsg.meta_description}}
+  <div *ngIf="errorMsg.meta_description" class="error-msg" style="padding-left:60px;">{{errorMsg.meta_description}}</div>
   </div>
-
 
   <hr class="m-0">
 
@@ -86,9 +82,10 @@
       </div>
     </div>
   </div> -->
+  </div>
 
-  <div class="d-flex  main-popup-div py-2 px-3 bg-0C3453">
-    <div class="d-flex align-items-baseline">
+  <div class="row main-popup-div bg-0C3453">
+    <div class=" col-12 col-md-6 d-flex align-items-baseline  mt-3">
       <h4 class="text-size fw-bold">{{ 'language' | translate }}:</h4>
       <div class="btn-group">
         <mat-select [(ngModel)]="selectedLang" class="mat-select-div">
@@ -108,7 +105,7 @@
     </div>
 
     <!-- Status Selection -->
-    <div class="d-flex align-items-baseline">
+    <div class="col-12 col-md-6 d-flex align-items-baseline mt-3">
       <h4 class="text-size fw-bold">{{ 'status' | translate }}:</h4>
       <div class="btn-group">
         <mat-select [(ngModel)]="status" class="mat-select-div">
@@ -118,25 +115,27 @@
       </div>
     </div>
     
-    <div class="d-flex align-items-baseline">
+    <div class="col-12 d-flex align-items-baseline mt-3">
       <h4 class="text-size fw-bold">{{ 'featuredImage' | translate }}: </h4>
       <div class="btn-group">
         <input type="file" class="form-control" (change)="onImageChange($event)" accept="image/*" />
       </div>
     </div>
-  </div>
-  <hr class="m-0">
+
+  <hr class="m-0  mt-3 mb-3">
 
 
-  <div class="NgxEditor__Wrapper">
+  <div class="col-12 NgxEditor__Wrapper  mt-3">
     <ngx-editor-menu [editor]="editor" [colorPresets]="colorPresets"> </ngx-editor-menu>
     <ngx-editor [editor]="editor" class="editor-width" [(ngModel)]="content" [disabled]="false"
       [placeholder]="'editors.placeholder' | translate"></ngx-editor>
     <div *ngIf="errorMsg.content" class="error-msg" style="padding-left:20px;">{{errorMsg.content}}</div>
   </div>
+  </div>
+  </div>
 
   <div>
-    <div class=" d-flex justify-content-between bg-0C3453 p-3">
+    <div class=" d-flex justify-content-between bg-0C3453 p-3 mobile_btn_wrap">
 
       <div>
         <a class="btn btn-delete text-danger" (click)="close()">{{ 'cancel' | translate }}</a>

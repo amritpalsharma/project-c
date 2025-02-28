@@ -1680,7 +1680,9 @@ input:checked+.slider:before {
 .mat-mdc-paginator-page-size {
   display: none !important;
 }
-
+.mdc-dialog__container .btn-group {
+  width: 100% !important;
+}
 .main-popup-div .mat-mdc-select-trigger {
   display: inline-flex;
   align-items: center;
@@ -1755,11 +1757,13 @@ input:checked+.slider:before {
 }
 
 .cupen-btn-date .mat-mdc-form-field-icon-prefix {
-  width: 40%;
+  width: 50px;
+  height: 50px;
 }
 
 .cupen-btn-date-1 .mat-mdc-form-field-icon-prefix {
-  width: 40%;
+  width: 50px;
+  height: 50px;
 }
 
 // new changes CSS Start
@@ -2132,3 +2136,135 @@ nav.navbar .country_dropdown h6.border-bottom {
   display: block;
 }
 }
+
+
+
+/*---- Advertisement Styling ----*/
+.advirtismnt_2 {
+  display: flex;
+  justify-content: center;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .ad-close-button {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .advirtismnt_2_large {
+    width: 728px;
+    height: 90px;
+    background-color: rgba(207, 207, 207, 1);
+    position: relative;
+  }
+  .advirtismnt_2_small {
+    width: 468px;
+    height: 60px;
+    background-color: rgba(207, 207, 207, 1);
+    position: relative;
+  }
+}
+
+.advertisement_two_top {
+  display: flex;
+  justify-content: space-between;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .ad-close-button {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .leaderboard-club-image {
+    width: 728px;
+    height: 90px;
+    background-color: rgba(207, 207, 207, 1);
+    position: relative;
+  }
+  .small-sqaure-image {
+    width: 200px;
+    height: 200px;
+    background-color: rgba(207, 207, 207, 1);
+    position: relative;
+    margin-left: auto;
+  }
+}
+
+
+.advertisement_two_bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .ad-close-button {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .leaderboard-club-image {
+    width: 468px;
+    height: 60px;
+    background-color: rgba(207, 207, 207, 1);
+    position: relative;
+    margin-left: auto;
+  }
+  .small-sqaure-image {
+    width: 200px;
+    height: 200px;
+    background-color: rgba(207, 207, 207, 1);
+    position: relative;
+  }
+}
+
+
+.advertisement_three_block {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .ad-close-button {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .large-rectangle {
+    background-color: rgba(207, 207, 207, 1);
+    position: absolute;
+    width: 336px;
+    height: 280px;
+    left: 0;
+    bottom: 0;
+  }
+  .inline-rectangle {
+    background-color: rgba(207, 207, 207, 1);
+    position: absolute;
+    width: 300px;
+    height: 250px;
+    left: 55%;
+    transform: translateX(-50%);
+    bottom: 0;
+  }
+  .square {
+    background-color: rgba(207, 207, 207, 1);
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    right: 0;
+    bottom: 0;
+  }
+}
+/*---- Advertisement Styling ----*/
