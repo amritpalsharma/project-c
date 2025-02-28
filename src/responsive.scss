@@ -327,6 +327,15 @@ body.compact-sidebar.dark-theme .sidebar-menu svg path {
         }
     }
     }
+
+    .marketing-header-bar {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 10px;
+    }
+    .marketing-header-bar .heading {
+        justify-content: space-between !important;
+    }
 }
 
 
@@ -353,7 +362,7 @@ body.compact-sidebar.dark-theme .sidebar-menu svg path {
     line-height: 15px;
 }
 .marketing-header-bar .heading {
-    flex-direction: column;
+    flex-wrap: wrap;
     align-items: flex-start !important;
     justify-content: flex-start;
     text-align: left;

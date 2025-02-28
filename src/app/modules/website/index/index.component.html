@@ -7,13 +7,13 @@
       <div class="overlay" >
       </div>
 
-      <div *ngIf="isEmptyObject(advertisemnetData?.skyscraper)" class="skyscraper-image">
-        <img src="{{advertisemnet_base_url + advertisemnetData?.skyscraper?.featured_image}}">
+      <div *ngIf="checkActive('skyscraper')" class="skyscraper-left">
+        <img [src]="advertisemnet_base_url + advertisementData?.skyscraper?.featured_image">
         <button (click)="closeAd('skyscraper')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
       </div>
 
-      <div *ngIf="isEmptyObject(advertisemnetData?.wide_skyscraper)" class="wide-skyscraper-image">
-        <img src="{{advertisemnet_base_url + advertisemnetData?.wide_skyscraper?.featured_image}}">
+      <div *ngIf="checkActive('wide_skyscraper')" class="skyscraper-right">
+        <img [src]="advertisemnet_base_url + advertisementData?.wide_skyscraper?.featured_image">
         <button (click)="closeAd('wide_skyscraper')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
       </div>
 
@@ -43,10 +43,17 @@
       </div>
 
     </div>
-    <div class="advertisment" [ngClass]="{'hidden': isEmptyObject(advertisemnetData?.leaderboard)}">
-      <div *ngIf="isEmptyObject(advertisemnetData?.leaderboard)" class="leaderboard-image">
-        <img src="{{advertisemnet_base_url + advertisemnetData?.leaderboard?.featured_image}}">
-        <button (click)="closeAd('leaderboard')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+
+    <div class="container">
+      <div *ngIf="checkActive('leaderboard') || checkActive('banner')" class="advertisment advirtismnt_2">
+        <div *ngIf="isExists('leaderboard')" class="leaderboard-club-image advirtismnt_2_large">
+          <img [src]="advertisemnet_base_url + advertisementData?.leaderboard?.featured_image">
+          <button (click)="closeAd('leaderboard')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div *ngIf="!isExists('leaderboard')" class="leaderboard-club-image advirtismnt_2_small">
+          <img [src]="advertisemnet_base_url + advertisementData?.banner?.featured_image">
+          <button (click)="closeAd('banner')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+        </div>
       </div>
     </div>
 
@@ -157,7 +164,7 @@
                 </div>
               </div>
               <div class="work-text" (click)="showContent('Sign-up & Profile Creation')"
-                [class.active]="isActive('Sign-up & Profile Creation')" *ngIf="selectedCategory === 'Talent'">
+                [class.active]="isActive2('Sign-up & Profile Creation')" *ngIf="selectedCategory === 'Talent'">
                 <div class="number">
                   <p>1</p>
                 </div>
@@ -172,7 +179,7 @@
               </div>
 
               <div class="work-text" (click)="showContent('Networking & Opportunity')"
-                [class.active]="isActive('Networking & Opportunity')" *ngIf="selectedCategory === 'Talent'">
+                [class.active]="isActive2('Networking & Opportunity')" *ngIf="selectedCategory === 'Talent'">
                 <div class="number">
                   <p>2</p>
                 </div>
@@ -185,7 +192,7 @@
               </div>
 
               <div class="work-text" (click)="showContent('Success & Progression')"
-                [class.active]="isActive('Success & Progression')" *ngIf="selectedCategory === 'Talent'">
+                [class.active]="isActive2('Success & Progression')" *ngIf="selectedCategory === 'Talent'">
                 <div class="number">
                   <p>3</p>
                 </div>
@@ -198,7 +205,7 @@
               </div>
 
               <div class="work-text" (click)="showContent('Sign-up & Profile Creation')"
-                [class.active]="isActive('Sign-up & Profile Creation')" *ngIf="selectedCategory === 'Clubs & Scouts'">
+                [class.active]="isActive2('Sign-up & Profile Creation')" *ngIf="selectedCategory === 'Clubs & Scouts'">
                 <div class="number">
                   <p>1</p>
                 </div>
@@ -211,7 +218,7 @@
               </div>
 
               <div class="work-text" (click)="showContent('Networking & Opportunity')"
-                [class.active]="isActive('Networking & Opportunity')" *ngIf="selectedCategory === 'Clubs & Scouts'">
+                [class.active]="isActive2('Networking & Opportunity')" *ngIf="selectedCategory === 'Clubs & Scouts'">
                 <div class="number">
                   <p>2</p>
                 </div>
@@ -224,7 +231,7 @@
               </div>
 
               <div class="work-text" (click)="showContent('Success & Progression')"
-                [class.active]="isActive('Success & Progression')" *ngIf="selectedCategory === 'Clubs & Scouts'">
+                [class.active]="isActive2('Success & Progression')" *ngIf="selectedCategory === 'Clubs & Scouts'">
                 <div class="number">
                   <p>3</p>
                 </div>
@@ -540,7 +547,7 @@
                 <div class="col-sm-12" *ngIf="selectedCategory === 'Talent'">
                   <div class="work-text1">
                     <div class="work-text" (touchstart)="showContent('Sign-up & Profile Creation')"
-                      [class.active]="isActive('Sign-up & Profile Creation')" *ngIf="selectedCategory === 'Talent'">
+                      [class.active]="isActive2('Sign-up & Profile Creation')" *ngIf="selectedCategory === 'Talent'">
                       <div class="number">
                         <p>1</p>
                       </div>
@@ -584,7 +591,7 @@
                   <div class="work-text2">
                     <div class="work-text" (click)="showContent('Networking & Opportunity')"
                       (touchstart)="showContent('Networking & Opportunity')"
-                      [class.active]="isActive('Networking & Opportunity')" *ngIf="selectedCategory === 'Talent'">
+                      [class.active]="isActive2('Networking & Opportunity')" *ngIf="selectedCategory === 'Talent'">
                       <div class="number">
                         <p>2</p>
                       </div>
@@ -715,7 +722,7 @@
                 <div class="col-sm-12" *ngIf="selectedCategory === 'Talent'">
                   <div class="work-text3">
                     <div class="work-text" (touchstart)="showContent('Success & Progression')"
-                      (click)="showContent('Success & Progression')" [class.active]="isActive('Success & Progression')"
+                      (click)="showContent('Success & Progression')" [class.active]="isActive2('Success & Progression')"
                       *ngIf="selectedCategory === 'Talent'">
                       <div class="number">
                         <p>3</p>
@@ -748,7 +755,7 @@
                   <div class="work-text1">
                     <div class="work-text" (touchstart)="showContent(' Sign-up & Profile Creation')"
                       (click)="showContent('Sign-up & Profile Creation')"
-                      [class.active]="isActive('Sign-up & Profile Creation')">
+                      [class.active]="isActive2('Sign-up & Profile Creation')">
                       <div class="number">
                         <p>1</p>
                       </div>
@@ -792,7 +799,7 @@
                   <div class="work-text2">
                     <div class="work-text" (touchstart)="showContent('Networking & Opportunity')"
                       (click)="showContent('Networking & Opportunity')"
-                      [class.active]="isActive('Networking & Opportunity')">
+                      [class.active]="isActive2('Networking & Opportunity')">
                       <div class="number">
                         <p>2</p>
                       </div>
@@ -824,7 +831,7 @@
                   <div class="work-text3">
                     <div class="work-text" (click)="showContent('Success & Progression')"
                       (touchstart)="showContent('Success & Progression')"
-                      [class.active]="isActive('Success & Progression')" *ngIf="selectedCategory === 'Clubs & Scouts'">
+                      [class.active]="isActive2('Success & Progression')" *ngIf="selectedCategory === 'Clubs & Scouts'">
                       <div class="number">
                         <p>3</p>
                       </div>
@@ -858,6 +865,39 @@
       </div>
     </div>
 
+    <div class="advertismnt_container">
+      <div class="container">
+        <div *ngIf="isExists('large_leaderboard')" class="advertisment advertisement_two_top">
+
+          <div *ngIf="checkActive('large_leaderboard')" class="leaderboard-club-image">
+            <img [src]="advertisemnet_base_url + advertisementData?.leaderboard?.featured_image">
+            <button (click)="closeAd('large_leaderboard')" class="ad-close-button"><i
+                class="fa-solid fa-xmark"></i></button>
+          </div>
+
+          <div *ngIf="checkActive('small_square')" class="small-sqaure-image">
+            <img [src]="advertisemnet_base_url + advertisementData?.small_square?.featured_image">
+            <button (click)="closeAd('small_square')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+
+        </div>
+
+        <div *ngIf="!isExists('large_leaderboard')" class="advertisment advertisement_two_bottom">
+
+          <div *ngIf="checkActive('small_square')" class="small-sqaure-image">
+            <img [src]="advertisemnet_base_url + advertisementData?.small_square?.featured_image">
+            <button (click)="closeAd('small_square')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+          <div *ngIf="checkActive('banner')" class="leaderboard-club-image">
+            <img [src]="advertisemnet_base_url + advertisementData?.banner?.featured_image">
+            <button (click)="closeAd('banner')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+
 
     <!-- How It Works-->
 
@@ -867,19 +907,6 @@
       <div class="club-overlay"></div>
 
       <div class="container club-banner">
-
-        <div class="container1">
-          <div class="advertisment">
-            <div *ngIf="isEmptyObject(advertisemnetData?.large_leaderboard)" class="leaderboard-club-image">
-              <img src="{{advertisemnet_base_url + advertisemnetData?.large_leaderboard?.featured_image}}">
-              <button (click)="closeAd('large_leaderboard')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-           <div *ngIf="isEmptyObject(advertisemnetData?.small_square)" class="small-sqaure-image">
-              <img src="{{advertisemnet_base_url + advertisemnetData?.small_square?.featured_image}}">
-              <button (click)="closeAd('small_square')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-          </div>
-        </div>
 
         <div class="club_players">
           <h3>{{pageDetail?.hero_heading_txt}}</h3>
@@ -903,20 +930,6 @@
       <div class="club-overlay"></div>
 
       <div class="container club-banner">
-
-        <div class="container1">
-          <div class="advertisment">
-            <div *ngIf="isEmptyObject(advertisemnetData?.large_leaderboard)" class="leaderboard-club-image">
-              <img src="{{advertisemnet_base_url + advertisemnetData?.large_leaderboard?.featured_image}}">
-              <button (click)="closeAd('large_leaderboard')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-           <div *ngIf="isEmptyObject(advertisemnetData?.small_square)" class="small-sqaure-image">
-              <img src="{{advertisemnet_base_url + advertisemnetData?.small_square?.featured_image}}">
-              <button (click)="closeAd('small_square')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-          </div>
-        </div>
-
         <div class="club_players">
           <h3>{{pageDetail?.hero_heading_txt}}</h3>
           <div class="club-buttons">

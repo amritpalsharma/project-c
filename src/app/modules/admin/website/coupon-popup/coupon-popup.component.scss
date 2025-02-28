@@ -1,7 +1,20 @@
 .code-parent{
     position: relative;
 }
-
+.discount-btn, .create-new_btn {
+  justify-content: space-between !important;
+  display: flex;
+  flex-wrap: wrap;
+  .code-text {
+    width: 100%;
+  }
+}
+.create-new_btn .w-50, .coupon-dateRange, .coupon-dateRange .code-text {
+  width: 49% !important;
+}
+.d-flex.coupon-dateRange > div {
+  width: 50%;
+}
 .custom-button {
     color: #999999;
     border: none;
@@ -11,10 +24,7 @@
     cursor: pointer;
     background: none;
     font-size: 14px;
-width: 350px !important;
-    }
-    .cupen-btn.code-text,.cupen-btn{
-width: 350px !important;
+  width: 49% !important;
     }
   
 .custom-button:hover {
@@ -124,6 +134,18 @@ width: 350px !important;
     max-height: 54vh;
     overflow: auto;
   }
+
+  @media (max-width: 991px) {
+  .coupon-dateRange, .coupon-dateRange .code-text {
+    width: 100% !important;
+  }
+  .calender-inputs-box {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
+
+
   @media (max-width: 600px) {
     .create-new_btn{
       flex-direction: column;
@@ -161,7 +183,21 @@ width: 350px !important;
       padding-right: 2rem !important;
       padding-left: 2rem !important;
     }
+    .create-new_btn .w-50, .d-flex.coupon-dateRange > div {
+      width: 100% !important;
+    }
+    
   }
+
+  @media (max-width: 480px) {
+  .mobile_btnns {
+    flex-direction: column;
+    align-items: center !important;
+    gap: 5px;
+  }
+}
+
+  
   @media (max-width: 360px) {
     .discount-btn button{
         width: 100%;

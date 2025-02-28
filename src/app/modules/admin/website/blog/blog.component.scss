@@ -2,13 +2,28 @@
     .table > :not(caption) > * > * {
        padding: 0.938rem 0.8rem;
    }
-   .webpage-card{
-       overflow:  auto !important;
-   }
-   .webpage-card .table-responsive{
-       overflow: visible !important;
-   }
-   .webpage-card .card-header{
-       min-width: 770px;
-   }
+}
+
+.card-search {
+    width: 100%;
+    max-width: 345px;
+  }
+
+  @media (max-width: 600px) {
+  .website_heder_edits .btn-outline-white {
+      font-size: 0 !important;
+      padding: 5px;
+  }
+  }
+
+  @media (max-width: 575px) {
+  .website-header-bar {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 10px;
+}
+.website-header-bar .heading {
+  flex-wrap: wrap;
+  gap: 6px;
+}
 }

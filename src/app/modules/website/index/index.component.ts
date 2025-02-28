@@ -70,7 +70,7 @@ export class IndexComponent {
   selectedLangId:any = null;
   pageDetail:any=null;
   sliderDetail:any=null;
-  advertisemnetData:any=null;
+  // advertisementData:any=null;
   imageBaseUrl:string= '';
   banner_img:string= '';
   banner_bg_img:string= '';
@@ -90,6 +90,57 @@ export class IndexComponent {
     { name: 'Harry Kane', image: './assets/images/Harry Kane.svg', year: '2004' },
     { name: 'Messi', image: './assets/images/Messi.svg', year: '2004' }
   ];
+
+  isActive : any = {
+    skyscraper: true,
+    wide_skyscraper: true,
+    leaderboard: true,
+    large_leaderboard:true,
+    banner: true,
+    square:true,
+    small_square: true,
+    large_rectangle: true,
+    inline_rectangle: true,
+  }
+
+  advertisementData:any = {
+    // skyscraper: {
+    //   id: '1',
+    //   featured_image: "leaderboard.png"
+    // },
+    // wide_skyscraper: {
+    //   id: '1',
+    //   featured_image: "leaderboard.png"
+    // },
+    // leaderboard: {
+    //   id: '1',
+    //   featured_image: "leaderboard.png"
+    // },
+    // large_leaderboard: {
+    //   id: '1',
+    //   featured_image: "leaderboard.png"
+    // },
+    // banner: {
+    //   id: '1',
+    //   featured_image: "leaderboard.png"
+    // },
+    // square: {
+    //   id: '1',
+    //   featured_image: "leaderboard.png"
+    // },
+    // small_square: {
+    //   id: '1',
+    //   featured_image: "leaderboard.png"
+    // },
+    // large_rectangle: {
+    //   id: '1',
+    //   featured_image: "leaderboard.png"
+    // },
+    // inline_rectangle: {
+    //   id: '1',
+    //   featured_image: "leaderboard.png"
+    // },
+  }
 
 
   // Initialize the array of club members
@@ -205,7 +256,7 @@ export class IndexComponent {
   // }
 
   // Method to check if content is active
-  isActive(content: string): boolean {
+  isActive2(content: string): boolean {
     return this.selectedContent === content;
   }
 
@@ -261,35 +312,31 @@ export class IndexComponent {
     });
   }
 
-
   closeAd(object: any) {
 
-    switch (object) {
-      case 'skyscraper':
-        this.advertisemnetData.skyscraper = [];
-        break;
-      case 'wide_skyscraper':
-        this.advertisemnetData.wide_skyscraper = [];
-        break;
-      case 'leaderboard':
-        this.advertisemnetData.leaderboard = [];
-        break;
-      case 'large_leaderboard':
-        this.advertisemnetData.large_leaderboard = [];
-        break;
-      case 'small_square':
-        this.advertisemnetData.small_square = [];
-        break;
-      default:
-        //when no case is matched, this block will be executed;
-        break;  //optional
+    this.isActive[object] = false;
+
+  }
+
+  checkActive(obj: any){
+    if(this.isExists(obj) && this.isActive[obj]){
+      return true;
     }
-
+    return false;
   }
 
-  isEmptyObject(obj: any) {
-    return (obj && (Object.keys(obj).length === 0));
+  isExists(key: string): boolean {
+    return key in this.advertisementData && 'featured_image' in this.advertisementData[key];
   }
+  
+
+  isEmptyObject(obj:any) {
+    if(typeof obj != 'undefined'){
+      return (obj && (Object.keys(obj).length === 0));
+    }
+    return true;
+  }
+
   getPageDynamicData(languageId: any) {
 
     this.webPages.getDynamicHomePage(languageId).subscribe((res) => {
@@ -305,10 +352,10 @@ export class IndexComponent {
         this.sliderDetail = sliderData;
         this.club_logo_path = this.sliderDetail.imagePath;
         this.pre_club_logo_path = this.sliderDetail.flagPath;
-        this.advertisemnetData = res.data.advertisemnetData;
-        this.advertisemnetData = [];
+        // this.advertisementData = res.data.advertisementData;
+        // this.advertisementData = [];
 
-        console.log('advertisemnetData', this.advertisemnetData);
+        // console.log('advertisementData', this.advertisementData);
         this.imageBaseUrl = res.data.base_url;
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
       }

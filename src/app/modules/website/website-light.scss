@@ -25,25 +25,9 @@
   left: 3px;
 }
 
-.adv {
-  position: relative;
-  height: 200px;
-}
-
-.advertisment {
-  position: relative;
-  height: 200px;
-  display: flex;
-  align-items: center;
-}
 
 .hidden {
   display: none;
-}
-
-.advertisement1 {
-  position: relative;
-  height: 350px;
 }
 
 /*---------------------------------------------------------------------------------------------------------
@@ -1989,7 +1973,7 @@ a {
   cursor: pointer;
   position: relative;
   box-sizing: border-box;
-  width: 8rem;
+  // width: 8rem;
   border: 1px solid black;
   border-radius: 10px;
   padding: 5px 10px;
@@ -2030,11 +2014,6 @@ a {
   .skyscraper-right img {
     height: 580px !important;
     width: 105px !important;
-  }
-
-  .inline-rectangle {
-    left: 54% !important;
-
   }
 
   .skyscraper-image,
@@ -2152,11 +2131,6 @@ a {
     padding: 10px 22px;
     font-size: 12px;
     width: 200px;
-  }
-
-  .inline-rectangle {
-
-    left: 54.5% !important;
   }
 }
 
