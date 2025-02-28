@@ -83,7 +83,16 @@
     .transfer_box .row {
         row-gap: 20px;
     }
+    .form-group{
+        padding: 0px 15px !important;
+    }
+    form.transfer_box {
+        max-height: 410px;
+    }
 }
 mat-datepicker-toggle{
     margin-left: -50px;
   }
+
+
+

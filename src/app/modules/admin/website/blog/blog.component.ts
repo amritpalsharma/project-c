@@ -9,6 +9,8 @@ import { MessagePopupComponent } from '../../message-popup/message-popup.compone
 import { WebPages } from '../../../../services/webpages.service';
 import { CommonFilterPopupComponent } from '../../common-filter-popup/common-filter-popup.component';
 import { SharedService } from '../../../../services/shared.service';
+import { AdminHelperService } from '../../../../services/admin-helper.service';
+
 @Component({
   selector: 'app-blog',
   templateUrl: './blog.component.html',
@@ -32,7 +34,7 @@ export class BlogComponent {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  constructor(private blogService: BlogService,private webpages:WebPages, public dialog: MatDialog, private sharedservice:SharedService, ) {}
+  constructor(private blogService: BlogService,private webpages:WebPages, public dialog: MatDialog, private sharedservice:SharedService, private adminHelper : AdminHelperService) {}
 
   // ngOnInit(): void {
   //   this.getAllLanguages();
@@ -47,10 +49,10 @@ export class BlogComponent {
             this.isLoading = true;
             this.lang_id = data.id;
             this.getBlogs();
+            this.getAllLanguages();
         }
     });
 
-    this.getAllLanguages();
   }
 
 
@@ -122,7 +124,7 @@ export class BlogComponent {
           this.getBlogs();
           this.selectedIds = [];
           this.allSelected = false;
-          this.showMatDialog('Blog(s) published successfully!.', 'display');
+          this.showMatDialog(response.message, 'display');
         }else{
           this.showMatDialog('Error in publishing blog. Please try again.', 'display');
         }
@@ -155,8 +157,7 @@ export class BlogComponent {
           this.getBlogs();
           this.selectedIds = [];
           this.allSelected = false;
-          // console.log('Coupons deleted successfully:', response);
-          this.showMatDialog('Blog(s) drafted successfully!.', 'display');
+          this.showMatDialog(response.message, 'display');
         }else{
           this.showMatDialog('Error in drafting Blog. Please try again.', 'display');
         }
@@ -209,8 +210,7 @@ export class BlogComponent {
           this.getBlogs();
           this.selectedIds = [];
           this.allSelected = false;
-          // console.log('Coupons deleted successfully:', response);
-          this.showMatDialog('Blog(s) deleted successfully!.', 'display');
+          this.showMatDialog(response.message, 'display');
         }else{
           this.showMatDialog('Error in removing Blog. Please try again.', 'display');
         }
@@ -258,12 +258,10 @@ export class BlogComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result !== undefined) {
-        if(result.action == "blogAdded"){
-         // this.showMessage('Blog created successfully!');
+        if(result && result.action == "templateUpdated"){
+          this.showMatDialog(result.message, 'display');
           this.getBlogs();
         }
-      }
     });
   }
 
@@ -297,6 +295,12 @@ export class BlogComponent {
         console.log('Dialog closed without result');
       }
     });
+  }
+
+  formatDateTime(datetime: string) {
+    // convertAdminDateTime
+    let formattedDate = this.adminHelper.convertAdminDateTime(datetime, 'users');
+    return formattedDate;
   }
 
 }

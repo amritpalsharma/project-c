@@ -5,6 +5,7 @@ import { AdvertisementService } from '../../../services/advertisement.service';
 import { WebPages } from '../../../services/webpages.service';
 import { SharedService } from '../../../services/shared.service';
 import { AuthService } from '../../../services/auth.service';
+import { ThemeService } from '../../../services/theme.service';
 
 export interface ClubMember {
   name: string;
@@ -13,7 +14,7 @@ export interface ClubMember {
   cornerImage?: string;
   imageClass?: string; // Class for the main image
   cornerImageClass?: string; // Class for the corner image
-  
+
 }
 
 @Component({
@@ -74,8 +75,12 @@ export class IndexComponent {
   banner_img:string= '';
   banner_bg_img:string= '';
   hero_bg_img:string= '';
+  hero_bg_img_dark_mode:string= '';
   advertisemnet_base_url:string= '';
   isUserLoggedIn: boolean = false;
+  club_logo_path: string = '';
+  pre_club_logo_path: string = '';
+  heroSectionBgImage: string = '';
   players = [
     { name: 'Ronaldinho Gaúcho', image: './assets/images/Ronaldinho Gaúcho.svg', year: '2004' },
     { name: 'Ziddane', image: './assets/images/ziddane.svg', year: '2004' },
@@ -181,11 +186,11 @@ export class IndexComponent {
   // Manage Navbar Expansion
   isNavbarExpanded = false;
 
-  constructor( private shareservice:SharedService,private advertisementService: AdvertisementService, private webPages: WebPages, private authService: AuthService,) {
-   
+  constructor(private shareservice: SharedService, private advertisementService: AdvertisementService, private webPages: WebPages, private authService: AuthService, private themeService: ThemeService) {
+
   }
 
- 
+
   handleImageError(event: Event) {
     const imgElement = event.target as HTMLImageElement;
     imgElement.src = this.fallbackImage;
@@ -250,38 +255,42 @@ export class IndexComponent {
     this.webPages.languageId$.subscribe((data) => {
       this.getPageDynamicData(data);
     });
+
+    this.themeService.theme$.subscribe(() => {
+      this.chnageHerosectionBgImg();
+    });
   }
 
 
   closeAd(object: any) {
 
-    switch(object){
+    switch (object) {
       case 'skyscraper':
-          this.advertisemnetData.skyscraper = [];
-          break;
+        this.advertisemnetData.skyscraper = [];
+        break;
       case 'wide_skyscraper':
-          this.advertisemnetData.wide_skyscraper = [];
-          break;
+        this.advertisemnetData.wide_skyscraper = [];
+        break;
       case 'leaderboard':
-          this.advertisemnetData.leaderboard = [];
-          break;
+        this.advertisemnetData.leaderboard = [];
+        break;
       case 'large_leaderboard':
-          this.advertisemnetData.large_leaderboard = [];
-          break;
+        this.advertisemnetData.large_leaderboard = [];
+        break;
       case 'small_square':
-          this.advertisemnetData.small_square = [];
-          break;
+        this.advertisemnetData.small_square = [];
+        break;
       default:
-          //when no case is matched, this block will be executed;
-          break;  //optional
-      }
+        //when no case is matched, this block will be executed;
+        break;  //optional
+    }
 
   }
 
-  isEmptyObject(obj:any) {
+  isEmptyObject(obj: any) {
     return (obj && (Object.keys(obj).length === 0));
   }
-  getPageDynamicData(languageId:any){
+  getPageDynamicData(languageId: any) {
 
     this.webPages.getDynamicHomePage(languageId).subscribe((res) => {
       let pageData = res.data.pageData;
@@ -291,29 +300,37 @@ export class IndexComponent {
           this.banner_img =  res.data.base_url + pageData.banner_img;
           this.banner_bg_img =  res.data.base_url + pageData.banner_bg_img;
           this.hero_bg_img =  res.data.base_url + pageData.hero_bg_img;
+          this.hero_bg_img_dark_mode =  res.data.base_url + pageData.hero_bg_img_dark_mode;
 
-          this.sliderDetail = sliderData;
-          this.advertisemnetData = res.data.advertisemnetData;
-          this.advertisemnetData = [];
-          
-          console.log('advertisemnetData',this.advertisemnetData);
-          this.imageBaseUrl = res.data.base_url;
-          this.advertisemnet_base_url = res.data.advertisemnet_base_url;
-        }
+        this.sliderDetail = sliderData;
+        this.club_logo_path = this.sliderDetail.imagePath;
+        this.pre_club_logo_path = this.sliderDetail.flagPath;
+        this.advertisemnetData = res.data.advertisemnetData;
+        this.advertisemnetData = [];
+
+        console.log('advertisemnetData', this.advertisemnetData);
+        this.imageBaseUrl = res.data.base_url;
+        this.advertisemnet_base_url = res.data.advertisemnet_base_url;
+      }
     });
   }
 
-  getFlagImage(data:any){
+  getFlagImage(data: any) {
     let parseData = JSON.parse(data);
     // console.log(parseData, 'parse-data');
   }
 
-  getBirthYear(date:any){
-    if(date){
+
+  getBirthYear(date: any) {
+    if (date) {
       const birthYear = new Date(date); // Convert to Date object
       return birthYear.getFullYear();
     }
     return 'N/A';
   }
-
+  
+  chnageHerosectionBgImg() {
+    //  alert('theme chnaged');
+    console.log('Index Page theme updated');
+  }
 }

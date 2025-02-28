@@ -168,7 +168,7 @@ span.social_heading {
 }
 @media(max-width:768px){
   .mobile-input{
-    width: 50% !important;
+    width: 100% !important;
   }
   .speed_inputs{
     gap: 10px;
@@ -177,4 +177,11 @@ span.social_heading {
 .social_network input {
   max-width: 100%;
   }
+  .form-group {
+    padding: 0px 15px;
+}
+.speed_inputs {
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+}
 }

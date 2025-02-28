@@ -56,7 +56,7 @@
 <div class="card bg-color" *ngIf="isPremium">
   <div class="card-header border-0">
     <div class="d-flex align-items-center justify-content-between">
-      <div class="d-flex align-items-center">
+      <div class="d-flex align-items-center performance_card_hedr">
         <!-- Select All Checkbox -->
         <div class="dropdown dropdown-favourites">
           <div class="form-check">
@@ -91,7 +91,7 @@
       </div>
     </div>
 
-    <div class="">
+    <div class="table-responsive">
       <table mat-table [dataSource]="reports" class="table table-striped table-hover table-users">
         <!-- Checkbox Column -->
         <ng-container matColumnDef="select">

@@ -64,6 +64,7 @@ export class AddHomePageComponent {
 
   bannerImagePreview: any = null;
   heroBgImagePreview: any = null;
+  heroBgImagePreviewDarkMode: any = null;
   bannerBgImagePreview: any = null;
 
 
@@ -271,6 +272,7 @@ export class AddHomePageComponent {
         this.bannerBgImagePreview = response?.data?.pageData?.banner_bg_img ? response.data.base_url + response.data.pageData.banner_bg_img : null;
         this.bannerImagePreview  = response?.data?.pageData?.banner_img ? response.data.base_url + response.data.pageData.banner_img : null;
         this.heroBgImagePreview = response?.data?.pageData?.hero_bg_img ? response.data.base_url + response.data.pageData.hero_bg_img : null;
+        this.heroBgImagePreviewDarkMode = response?.data?.pageData?.hero_bg_img_dark_mode ? response.data.base_url + response.data.pageData.hero_bg_img_dark_mode : null;
 
         this.first_btn_txt = response.data.pageData.tabs_data.first_btn_txt;
         this.first_tab = response.data.pageData.tabs_data.first_tab;
@@ -319,6 +321,8 @@ export class AddHomePageComponent {
           this.bannerBgImagePreview = reader.result;
         } else if (fieldName === 'hero_bg_img') {
           this.heroBgImagePreview = reader.result;
+        }else if (fieldName === 'hero_bg_img_dark_mode') {
+          this.heroBgImagePreviewDarkMode = reader.result;
         }
       };
       reader.readAsDataURL(file);
@@ -334,6 +338,8 @@ export class AddHomePageComponent {
       this.bannerBgImagePreview = null;
     } else if (fieldName === 'hero_bg_img') {
       this.heroBgImagePreview = null;
+    }else if (fieldName === 'hero_bg_img_dark_mode') {
+      this.heroBgImagePreviewDarkMode = null;
     }
   }
 

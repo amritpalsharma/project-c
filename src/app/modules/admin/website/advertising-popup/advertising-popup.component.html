@@ -1,5 +1,5 @@
 <ng-container *ngIf="data.action != 'view'">
-  <div class="p-0 code-parent">
+  <div class="p-0 code-parent adv_modal mobile_popup_responsive">
     <div class="bg-0C3453 p-4">
       <h6 class=" code-text text-center " >
         {{ 'advertising' | translate }}
@@ -213,7 +213,7 @@
      </div>
   </div> -->
 
-  <div>
+  <div class="popup_buttons_mobile">
     <div class=" d-flex justify-content-between bg-0C3453 p-3">
      <div>
        <a class="btn btn-delete text-danger" (click)="close()">{{ 'cancel' | translate }}</a>
@@ -229,7 +229,7 @@
 </ng-container>
 
 <ng-container *ngIf="data.action == 'view'">
-  <div class="p-0 code-parent">
+  <div class="p-0 code-parent adv_modal mobile_popup_responsive">
     <div class="bg-0C3453 p-4">
       <h6 class=" code-text text-center " >
         {{ 'advertising' | translate }}

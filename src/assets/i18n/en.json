@@ -1140,16 +1140,26 @@
   "imageDeletedSuccess": "Image deleted successfully!",
   "failedToDeleteImage": "Failed to delete image.",
   "DeleteFailed": "Delete Failed",
-  "noNotification":"No Notification Found!",
+  "noNotification": "No Notification Found!",
   "TOOLTIPS": {
     "profilePhoto": "Upload your best headshot to make a great first impression.",
-    "removeFavorite":"Remove from favorites",
-    "addFavorite":"Add in favorites",
-    "downloadPdf":"Download Profile Pdf",
-    "startConversation":"start a conversation"
+    "removeFavorite": "Remove from favorites",
+    "addFavorite": "Add in favorites",
+    "downloadPdf": "Download Profile Pdf",
+    "startConversation": "start a conversation"
   },
   "MyAccount": "Go To Dashboard",
   "boostProfiles": "Boost Profile",
   "renews": "Renews on",
-  "changeNewsletterStatus": "Are you sure you want to change newsletter status?"
-  }
+  "changeNewsletterStatus": "Are you sure you want to change newsletter status?",
+  "areYouSuretoDeleteActivity": "Are you sure to delete activity ?",
+  "subsciptionCancelSuccess": "Your subscription has been successfully cancelled.",
+  "couponDeactivatedSuccess": "Coupon deactivated successfully.",
+  "editCouponNotAllowed": "Edit coupon is not allowed at the moment!",
+  "couponNameEr": "Please enter coupon name",
+  "couponCodeEr": "Please enter unique coupon code",
+  "typeOfCouponEr": "Discount type is required",
+  "discountInputsEr": "At least one discount with currency is required",
+  "startDateEr": "Start date is required",
+  "limitEr": "Limit is required"
+}

@@ -1283,5 +1283,7 @@
   },
   "MyAccount": "al Dashboard",
    "boostProfiles": "Profilo di spinta",
-   "changeNewsletterStatus": "Sei sicuro di voler cambiare lo stato della newsletter?"
+   "changeNewsletterStatus": "Sei sicuro di voler cambiare lo stato della newsletter?",
+   "areYouSuretoDeleteActivity":"Sei sicuro di voler eliminare l'attività?",
+   "subsciptionCancelSuccess": "L'abbonamento è stato annullato con successo."
 }

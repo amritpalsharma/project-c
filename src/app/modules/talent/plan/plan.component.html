@@ -17,13 +17,13 @@
           <!-- premium plans -->
           <div class="col-lg-4 my-2 ">
             <div class="subscription-switch mb-2">
-              <label class="switch_off cursor-pointer" >
+              <label class="switch_off cursor-pointer">
                 {{'billedMonthly' | translate}}</label>
               <input class="cursor-pointer" type="checkbox" [id]="premiumPlans.id" [checked]="(premiumPlans.isYearly)"
                 [(ngModel)]="premiumPlans.isYearly"
                 (change)="toggleBillingPlan(premiumPlans, (premiumPlans.isYearly), premium)"
                 [value]="premiumPlans.isYearly">
-              <label class="switch_on cursor-pointer" >
+              <label class="switch_on cursor-pointer">
                 {{'billedYearly' | translate}}
               </label>
             </div>
@@ -41,10 +41,12 @@
                         </path>
                       </svg> -->
                       <svg width="15" height="13" viewBox="0 0 15 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M3.00019 9.66115e-07C2.90741 4.07945e-06 2.81646 0.0258214 2.73752 0.0745645C2.65858 0.123308 2.59475 0.193054 2.55319 0.276001L0.553186 4.276C0.509933 4.36212 0.492491 4.45891 0.502958 4.55471C0.513426 4.65051 0.551357 4.74125 0.612187 4.816L7.11219 12.816C7.15907 12.8737 7.21822 12.9202 7.28534 12.9521C7.35246 12.9841 7.42586 13.0006 7.50019 13.0006C7.57452 13.0006 7.64791 12.9841 7.71503 12.9521C7.78215 12.9202 7.8413 12.8737 7.88819 12.816L14.3882 4.816C14.4492 4.74135 14.4873 4.65067 14.4979 4.55486C14.5086 4.45906 14.4913 4.36222 14.4482 4.276L12.4482 0.276001C12.4065 0.192902 12.3426 0.123055 12.2634 0.0743015C12.1843 0.0255481 12.0931 -0.000181722 12.0002 9.66115e-07H3.00019ZM1.80919 4L3.30919 1H5.35919L4.60919 4H1.80919ZM2.05019 5H4.63319L6.24619 10.164L2.05019 5ZM5.68019 5H9.32019L7.50019 10.823L5.68019 5ZM10.3682 5H12.9502L8.75419 10.164L10.3682 5ZM13.1912 4H10.3912L9.64119 1H11.6912L13.1912 4ZM9.36019 4H5.64019L6.39019 1H8.61019L9.36019 4Z" fill="#111418"/>
-                        </svg>                        
+                        <path
+                          d="M3.00019 9.66115e-07C2.90741 4.07945e-06 2.81646 0.0258214 2.73752 0.0745645C2.65858 0.123308 2.59475 0.193054 2.55319 0.276001L0.553186 4.276C0.509933 4.36212 0.492491 4.45891 0.502958 4.55471C0.513426 4.65051 0.551357 4.74125 0.612187 4.816L7.11219 12.816C7.15907 12.8737 7.21822 12.9202 7.28534 12.9521C7.35246 12.9841 7.42586 13.0006 7.50019 13.0006C7.57452 13.0006 7.64791 12.9841 7.71503 12.9521C7.78215 12.9202 7.8413 12.8737 7.88819 12.816L14.3882 4.816C14.4492 4.74135 14.4873 4.65067 14.4979 4.55486C14.5086 4.45906 14.4913 4.36222 14.4482 4.276L12.4482 0.276001C12.4065 0.192902 12.3426 0.123055 12.2634 0.0743015C12.1843 0.0255481 12.0931 -0.000181722 12.0002 9.66115e-07H3.00019ZM1.80919 4L3.30919 1H5.35919L4.60919 4H1.80919ZM2.05019 5H4.63319L6.24619 10.164L2.05019 5ZM5.68019 5H9.32019L7.50019 10.823L5.68019 5ZM10.3682 5H12.9502L8.75419 10.164L10.3682 5ZM13.1912 4H10.3912L9.64119 1H11.6912L13.1912 4ZM9.36019 4H5.64019L6.39019 1H8.61019L9.36019 4Z"
+                          fill="#111418" />
+                      </svg>
                     </span>
-                    <span>{{'youHaveAnActive' | translate}}</span>
+                    <span>{{'youHaveAnActive' | translate}} {{'premium' | translate}} Plan</span>
                   </div>
                 </div>
 
@@ -60,7 +62,8 @@
                 <!-- Choose Plan Button -->
                 <div class="row">
                   <div class="col-lg-12">
-                    <button class="choose-plan-btn"  [disabled]="((premiumPlans?.active_interval=='monthly' && !premiumPlans.isYearly) || premiumPlans?.active_interval=='yearly' && premiumPlans.isYearly)"
+                    <button class="choose-plan-btn"
+                      [disabled]="((premiumPlans?.active_interval=='monthly' && !premiumPlans.isYearly) || premiumPlans?.active_interval=='yearly' && premiumPlans.isYearly)"
                       (click)="openCouponDialog(premiumPlans.isYearly ? premiumPlans.year_package_id : premiumPlans.month_package_id)">
                       {{'choosePlan' | translate}}
                     </button>
@@ -95,12 +98,12 @@
           <!-- premium plans -->
           <div class="col-lg-4 my-2 ">
             <div class="subscription-switch mb-2">
-              <label class="switch_off cursor-pointer" >
+              <label class="switch_off cursor-pointer">
                 {{'billedMonthly' | translate}}</label>
               <input class="cursor-pointer" type="checkbox" [id]="demoPlans.id" [checked]="(demoPlans.isYearly)"
-                [(ngModel)]="demoPlans.isYearly" (change)="toggleBillingPlan(demoPlans, (demoPlans.isYearly), demoPlans)"
-                [value]="demoPlans.isYearly">
-              <label class="switch_on cursor-pointer" >
+                [(ngModel)]="demoPlans.isYearly"
+                (change)="toggleBillingPlan(demoPlans, (demoPlans.isYearly), demoPlans)" [value]="demoPlans.isYearly">
+              <label class="switch_on cursor-pointer">
                 {{'billedYearly' | translate}}
               </label>
             </div>
@@ -110,7 +113,7 @@
                   <h3>{{'demo' | translate}}</h3>
 
                   <!-- Display this only if there is an active premium plan -->
-                  <!-- <div class="premium_button py-1 px-3" *ngIf="(( demoPlans?.package_name==demo?.package_name ))">
+                  <div class="premium_button py-1 px-3" *ngIf="(( demoPlans?.package_name==demo?.package_name ))">
                     <span class="px-1">
                       <svg width="22" height="23" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                         <path
@@ -120,21 +123,23 @@
                     </span>
                     <span>{{'youHaveAnActive' | translate}} {{ demoPlans.package_name }}
                       {{'plan' | translate}}</span>
-                  </div> -->
+                  </div>
                 </div>
 
                 <!-- Plan price and frequency -->
                 <div class="premium-currency">
                   <h6>
                     {{ demoPlans.isYearly ? demoPlans.priceYearly : demoPlans.priceMonthly }}
-                    <sub class="premium-month_title">.-{{ demoPlans.currency }}/{{ demoPlans.isYearly || (premium && premium.interval == 'yearly') ? ('year' | translate) : ('month' | translate) }}</sub>
+                    <sub class="premium-month_title">.-{{ demoPlans.currency }}/{{ demoPlans.isYearly || (premium &&
+                      premium.interval == 'yearly') ? ('year' | translate) : ('month' | translate) }}</sub>
                   </h6>
                 </div>
 
                 <!-- Choose Plan Button -->
                 <div class="row">
                   <div class="col-lg-12">
-                    <button class="choose-plan-btn" [disabled]="((demoPlans?.active_interval=='monthly' && !demoPlans.isYearly) || demoPlans?.active_interval=='yearly' && demoPlans.isYearly)"
+                    <button class="choose-plan-btn"
+                      [disabled]="((demoPlans?.active_interval=='monthly' && !demoPlans.isYearly) || demoPlans?.active_interval=='yearly' && demoPlans.isYearly)"
                       (click)="openCouponDialog(demoPlans.isYearly ? demoPlans.year_package_id : demoPlans.month_package_id)">
                       {{'choosePlan' | translate}}
                     </button>
@@ -170,7 +175,8 @@
           <div class="col-lg-4 my-2 ">
             <div class="subscription-switch mb-2">
               <label class="switch_off cursor-pointer">{{'billedMonthly' | translate}}</label>
-              <input type="checkbox" (change)="toggleBillingPlan(countryPlans, (countryPlans.isYearly), countryPlans)" class="cursor-pointer">
+              <input type="checkbox" (change)="toggleBillingPlan(countryPlans, (countryPlans.isYearly), countryPlans)"
+                class="cursor-pointer">
               <label class="switch_on cursor-pointer">{{'billedYearly' | translate}}</label>
             </div>
 
@@ -186,7 +192,7 @@
                         </path>
                       </svg>
                     </span>
-                    <!-- <span class="ps-2">{{'activeMultiCountryPlan' | translate}}</span> -->
+                    <span class="ps-2">{{'youHaveAnActive' | translate}} {{'multiCountry' | translate}} Plan</span>
                     <button class="premium_btn" (click)="editPlanPopup(countryPlans.plans,country)">
                       <svg width="22" height="23" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -198,15 +204,15 @@
                 </div>
                 <div class="premium-currency">
                   <h6>{{ selectedPlan?.price }}
-                    <sub class="premium-month_title">.-{{ selectedPlan?.currency }}/{{ selectedPlan?.isYearly ? ('year' | translate) :
+                    <sub class="premium-month_title">.-{{ selectedPlan?.currency }}/{{ selectedPlan?.isYearly ? ('year'
+                      | translate) :
                       ('month' | translate) }}</sub>
                   </h6>
                 </div>
 
                 <div class="row  multi-country-select ">
                   <div class="col-lg-12 plan-2">
-                    <button class="choose-plan-btn"
-                      (click)="editPlanPopup(countryPlans,country)">{{'choosePlan' |
+                    <button class="choose-plan-btn" (click)="editPlanPopup(countryPlans,country)">{{'choosePlan' |
                       translate}}</button>
                   </div>
                 </div>
@@ -259,7 +265,7 @@
                         </path>
                       </svg>
                     </span>
-                    <span>{{'youHaveActiveBoostPlan' | translate}}</span>
+                    <span>{{'youHaveAnActive' | translate}} {{'boostProfile' | translate}} Plan</span>
 
                     <button class="premium_btn" (click)="editBooster(booster)">
                       <svg width="22" height="23" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -273,13 +279,16 @@
                 <div class="premium-currency">
                   <h6>{{ boostedPlans.isYearly || (booster && booster.interval == 'yearly') ? boostedPlans.priceYearly :
                     boostedPlans.priceMonthly }}<sub class="premium-month_title">.-{{ boostedPlans.currency }}/{{
-                      boostedPlans.isYearly || (booster && booster.interval == 'yearly') ? ('year' | translate) : ('month' | translate) }}</sub>
+                      boostedPlans.isYearly || (booster && booster.interval == 'yearly') ? ('year' | translate) :
+                      ('month' | translate) }}</sub>
                   </h6>
                 </div>
                 <div class="row">
                   <div class="col-lg-12">
-                    <button class="choose-plan-btn" [disabled]="((boostedPlans?.active_interval=='monthly' && !boostedPlans.isYearly) || boostedPlans?.active_interval=='yearly' && boostedPlans.isYearly)"
-                      (click)="addBoostPopup(boostedPlans.isYearly==true ? boostedPlans.year_package_id : boostedPlans.month_package_id )">{{'choosePlan' | translate}}</button>
+                    <button class="choose-plan-btn"
+                      [disabled]="((boostedPlans?.active_interval=='monthly' && !boostedPlans.isYearly) || boostedPlans?.active_interval=='yearly' && boostedPlans.isYearly)"
+                      (click)="addBoostPopup(boostedPlans.isYearly==true ? boostedPlans.year_package_id : boostedPlans.month_package_id )">{{'choosePlan'
+                      | translate}}</button>
                   </div>
                 </div>
               </div>

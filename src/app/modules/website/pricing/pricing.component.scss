@@ -694,3 +694,29 @@ li::before {
     height: auto !important;
  }
   }
+
+
+
+@media (min-width: 1200px) {
+.price_mat_wrapper {
+    height: 100%;
+ .plan_price_box {
+    margin-bottom: 40px;
+}
+.feature-box {
+    height: calc(100% - 360px) !important;
+}
+}
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .price_mat_wrapper {
+        height: 100%;
+     .plan_price_box {
+        margin-bottom: 40px;
+    }
+    .feature-box {
+        height: calc(100% - 300px) !important;
+    }
+}
+}

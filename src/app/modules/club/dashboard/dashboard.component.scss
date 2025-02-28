@@ -168,17 +168,15 @@
     }
   }
   @media (max-width:1024px) {
-    .elton-box{
-      flex-direction: column;
-    }
-    .elton-box .col-lg-6{
-      width: 100%;
-    }
+  
     .boost_profile {
       margin-right: 16px;
   }
-
+  
   }
+  
+  
+  
   @media(max-width: 425px){
     .btn-outline-white {
       padding: 3px;
@@ -795,27 +793,11 @@
   }
 }
 @media (max-width:1024px) {
-  .elton-box{
-    flex-direction: column;
-  }
-  .elton-box .col-lg-6{
-    width: 100%;
-  }
   .boost_profile {
     margin-right: 16px;
 }
+}
 
-}
-@media (max-width: 600px) {
-  .team-logos .col-lg-3,.team-logos .col-lg-9{
-    width: fit-content;
-    gap: 20px;
-  }
-  .team-logos{
-    border-bottom: 1px solid #E5E5E5;
-    padding-bottom: 20px;
-  }
-}
 @media(max-width: 425px){
   .btn-outline-white {
     padding: 3px;
@@ -1374,4 +1356,37 @@ width:  100% !important;
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+
+
+.elton-box.dashboard-icons .team-badge_image {
+  padding: 0 5px 0 0 !important;
+  width: 40px !important;
+}
+.elton-box.dashboard-icons .team-badge_content {
+  padding: 0 0 0 5px !important;
+  width: calc(100% - 40px) !important;
+}
+.elton-box.dashboard-icons .col-lg-12.team-badge_content {
+  width: 100% !important;
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+.main-wrapper .card_box-1, .main-wrapper .card_box--2 {
+  width: 100%;
+}
+}
+
+
+@media (max-width: 575px) {
+  .team-logos{
+    border-bottom: 1px solid #E5E5E5;
+    padding-bottom: 20px;
+  }
+  .elton-box{
+    flex-direction: column;
+  }
+  .general_details {
+    padding: 15px !important;
+  }
 }

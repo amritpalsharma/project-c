@@ -1145,6 +1145,8 @@
     ]
   },
   "MyAccount": "til Dashboard",
-   "boostProfiles": "Boost-profil",
-   "changeNewsletterStatus": "Er du sikker på, at du vil ændre nyhedsbrevets status?"
-  }
+  "boostProfiles": "Boost-profil",
+  "changeNewsletterStatus": "Er du sikker på, at du vil ændre nyhedsbrevets status?",
+  "areYouSuretoDeleteActivity": "Er du sikker på, at du vil slette aktiviteten?",
+  "subsciptionCancelSuccess":"Dit abonnement er blevet opsagt med succes."
+}

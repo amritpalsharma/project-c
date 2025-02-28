@@ -43,7 +43,7 @@
                             </div>
                         </div>
                     </div>
-                    <div *ngIf="isEmptyObject(advertisemnetData?.skyscraper)" class="skyscraper-image">
+                    <div *ngIf="true" class="skyscraper-image">
                         <img src="{{ advertisemnet_base_url + advertisemnetData?.skyscraper?.featured_image }}"
                             alt="Skyscraper-Image Ad">
                         <button (click)="closeAd('skyscraper')" class="ad-close-button"><i
@@ -105,7 +105,7 @@
                                         [attr.data-bs-target]="'#collapse' + i" aria-expanded="false"
                                         [attr.aria-controls]="'collapse' + i">
                                         <img class="light-feature1" src="{{baseUrl + feature.icon}}">
-                                        <img class="dark-feature1" src="./assets/images/dark-club1.svg">
+                                        <img class="dark-feature1" src="{{baseUrl + feature.dark_icon}}">
                                         <h2 class="accordion-header">
                                             {{feature.title}}
                                         </h2>
@@ -296,7 +296,7 @@
                                     <div class="accordion-flex" data-bs-toggle="collapse" data-bs-target="#collapseOne"
                                         aria-expanded="true" aria-controls="collapseOne">
                                         <img class="light-feature1" src="{{baseUrl + feature.icon}}">
-                                        <img class="dark-feature1" src="./assets/images/dark-club1.svg">
+                                        <img class="dark-feature1" src="{{baseUrl + feature.dark_icon}}">
                                         <h2 class="accordion-header">
                                             {{feature.title}}
                                         </h2>

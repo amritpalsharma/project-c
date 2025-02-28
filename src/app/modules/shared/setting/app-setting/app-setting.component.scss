@@ -48,3 +48,17 @@ input:checked + .slider {
 input:checked + .slider:before {
     transform: translateX(26px);
 }
+
+
+
+
+.acount_delete_btn {
+    padding: 9px 30px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    border: 0;
+    outline: none;
+    color: #fff;
+    background-color: rgba(249, 60, 101, 1);
+}

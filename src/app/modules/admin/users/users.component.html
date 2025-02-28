@@ -1,8 +1,8 @@
 <div class="page-content">
   <div class="main-wrapper">
     <div class="card p-0 border-0">
-      <div class="card-header p-3">
-        <div class="d-flex align-items-center justify-content-between">
+      <div class="card-header p-3 user_card_header">
+        <div class="d-flex align-items-center justify-content-between mobile_wrap">
           <div class="d-flex align-items-center">
             <h2 class="card-title mb-0 me-3">{{ 'userManagement' | translate }}</h2>
           </div>
@@ -37,7 +37,7 @@
           </div>
         </div>
         <div class="d-flex align-items-center justify-content-between mt-1 slide-table">
-          <div class="d-flex align-items-center">
+          <div class="d-flex align-items-center filtr_option_wrapp">
             <div class="dropdown dropdown-users">
               <button (click)="selectAllUsers()" class="btn btn-secondary dropdown-toggle checkbox-button-user"
                 type="button">
@@ -104,7 +104,7 @@
 
               {{ 'exportXLS' | translate }}</a>
           </div>
-          <div class="d-flex align-items-center">
+          <div class="d-flex align-items-center pagination_wrapp">
             <mat-paginator class="paginator-components bg-072944 pagination-values" [length]="0" [pageSize]="10"
               (page)="onPageChange()"></mat-paginator>
           </div>
@@ -136,10 +136,11 @@
 
                       <div class="d-flex align-items-center pic-with-name">
                         <span class="position-relative">
-                          <img src="../../../assets/images/1.jpg" alt="" class="table_img"
+                          <!-- <img src="../../../assets/images/1.jpg" alt="" class="table_img"
                             *ngIf="!element.meta.profile_image_path" />
                           <img src="{{element.meta.profile_image_path}}" alt="" class="table_img"
-                            *ngIf="element.meta.profile_image_path" />
+                            *ngIf="element.meta.profile_image_path" /> -->
+                            <img src="{{element.meta.profile_image_path}}" class="dashboard_users_profile_images table_img" onerror="this.onerror=null; this.src='../../../assets/images/1.jpg';">
                           <span class="position-absolute verified-icon">
                             <img src="../../../assets/images/pending.png" alt="" class="user-pending-icon"
                               *ngIf="element.status === '1'" />
@@ -204,7 +205,8 @@
 
                       </span>
                     </th>
-                    <td mat-cell *matCellDef="let element"> {{ element.updated_at | date: 'MM.dd.yyyy - hh.mm a' }}</td>
+                    <td mat-cell *matCellDef="let element"> {{ formatDateTime(element.updated_at) }}</td>
+                    <!-- <td mat-cell *matCellDef="let element"> {{ element.updated_at | date: 'MM.dd.yyyy - hh.mm a' }}</td> -->
                   </ng-container>
                   <ng-container matColumnDef="Email">
                     <th mat-header-cell *matHeaderCellDef> {{ 'email' | translate }} </th>
@@ -214,9 +216,10 @@
                     <th mat-header-cell *matHeaderCellDef class="text-center"> {{ 'membership' | translate }} </th>
                     <!-- <td mat-cell *matCellDef="let element" class="text-center"> {{ element.subscription_status ==
                       "active" ? "Paid" : "Free" }}</td> -->
-                      <td mat-cell *matCellDef="let element" class="text-center">
-                        {{ (element.subscription_status === 'active' ? 'subscription.paid' : 'subscription.free') | translate }}
-                      </td>
+                    <td mat-cell *matCellDef="let element" class="text-center">
+                      {{ (element.subscription_status === 'active' ? 'subscription.paid' : 'subscription.free') |
+                      translate }}
+                    </td>
                   </ng-container>
                   <ng-container matColumnDef="Status">
                     <th mat-header-cell *matHeaderCellDef class="text-center"> {{ 'status' | translate }} </th>

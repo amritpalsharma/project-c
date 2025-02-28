@@ -37,7 +37,7 @@ export class AddTalentPageComponent implements OnInit {
     ['align_left', 'align_center', 'align_right', 'align_justify']
   ];
   content: string = '';
-  colorPresets :any = environment.colors;
+  colorPresets: any = environment.colors;
 
   imageLoaded: boolean = false;
 
@@ -57,7 +57,8 @@ export class AddTalentPageComponent implements OnInit {
       third_tab: [],
     },
     feature_sctn: [
-      { title: '', desc: '', icon: null },
+      // { title: '', desc: '', icon: null, dark_icon:''},
+      { id: '', title: '', desc: '', icon: null, dark_icon: '', image: null, dark_image: null }
     ],
     feature_sctn_imgs: [], // Correctly added the 'imgs' array for feature section
     feature_sctn_title: '',
@@ -73,7 +74,7 @@ export class AddTalentPageComponent implements OnInit {
   bannerImagesPreviews: string[] = [];
   bannerImagePreview: string | ArrayBuffer | null = null;
 
-  constructor(private webpages: WebPages, public dialogRef: MatDialogRef<AddTalentPageComponent>,private cdr: ChangeDetectorRef) {}
+  constructor(private webpages: WebPages, public dialogRef: MatDialogRef<AddTalentPageComponent>, private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.editor = new Editor();
@@ -84,6 +85,9 @@ export class AddTalentPageComponent implements OnInit {
       this.formData.page_id = this.pageId;
       this.getPageById(this.pageId);
     }
+    // feature_sctn: this.fb.array(this.formData.feature_sctn.map(item => this.createFeatureItem(item))),
+    //   feature_sctn_imgs: [this.formData.feature_sctn_imgs],
+    //   feature_sctn_title: [this.formData.feature_sctn_title],
   }
 
   ngOnDestroy(): void {
@@ -166,7 +170,7 @@ export class AddTalentPageComponent implements OnInit {
 
     // Iterate over this.formData and append fields
     for (const key in this.formData) {
-      if (key == 'banner_bg_img' || key == 'banner_imgs' || key == 'talent_section' ||   key == 'feature_sctn') continue;
+      if (key == 'banner_bg_img' || key == 'banner_imgs' || key == 'talent_section' || key == 'feature_sctn') continue;
       if (Array.isArray(this.formData[key])) {
         this.formData[key].forEach((item: any, index: number) => {
           if (typeof item === 'object' && item !== null) {
@@ -197,11 +201,20 @@ export class AddTalentPageComponent implements OnInit {
 
     // Append feature section images and icons, excluding iconPreview
     this.formData.feature_sctn.forEach((feature: any, index: number) => {
+      if (feature.id && feature.id != '') {
+        formData.append(`feature_sctn[${index}][id]`, feature.id);
+      }
       if (feature.icon) {
         formData.append(`feature_sctn[${index}][icon]`, feature.icon);
       }
+      if (feature.dark_icon) {
+        formData.append(`feature_sctn[${index}][dark_icon]`, feature.dark_icon);
+      }
       if (feature.img) {
-        formData.append(`feature_sctn[imgs][]`, feature.img);
+        formData.append(`feature_sctn[${index}][img]`, feature.img);
+      }
+      if (feature.dark_img) {
+        formData.append(`feature_sctn[${index}][dark_image]`, feature.dark_img);
       }
       if (feature.title) {
         formData.append(`feature_sctn[${index}][title]`, feature.title);
@@ -210,7 +223,8 @@ export class AddTalentPageComponent implements OnInit {
         formData.append(`feature_sctn[${index}][desc]`, feature.desc);
       }
     });
-
+    console.log(this.formData.feature_sctn);
+    // return false;
     formData.append(`banner_bg_img`, this.formData.banner_bg_img);
     for (const key in this.formData.banner_imgs) {
       formData.append('banner_imgs[]', this.formData.banner_imgs[key]);
@@ -226,7 +240,7 @@ export class AddTalentPageComponent implements OnInit {
         console.log('Page added successfully:', response);
         this.dialogRef.close({
           action: 'page-added-successfully',
-          message: response.message 
+          message: response.message
         });
       },
       error => {
@@ -264,6 +278,7 @@ export class AddTalentPageComponent implements OnInit {
             if (pageData.talent_section[tab]) {
               this.formData.talent_section[tab].txt = pageData.talent_section[tab].txt;
               this.formData.talent_section[tab].iconPreview = response.data.base_url + pageData.talent_section[tab].icon;
+              this.formData.talent_section[tab].DarkiconPreview = response.data.base_url + pageData.talent_section[tab].dark_icon;
             }
           });
         }
@@ -271,9 +286,11 @@ export class AddTalentPageComponent implements OnInit {
         // Map feature_sctn
         if (pageData.feature_sctn) {
           this.formData.feature_sctn = pageData.feature_sctn.map((feature: any) => ({
+            id: feature.id,
             title: feature.title,
             desc: feature.desc,
             iconPreview: response.data.base_url + feature.icon,
+            DarkiconPreview: response.data.base_url + feature.dark_icon,
           }));
         }
 
@@ -348,8 +365,24 @@ export class AddTalentPageComponent implements OnInit {
       this.formData.talent_section[tabName].icon = file; // Save the file
     }
   }
+  onDarkIconFileChange(event: any, tabName: string): void {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.formData.talent_section[tabName].DarkiconPreview = reader.result;
+      };
+      reader.readAsDataURL(file);
+      this.formData.talent_section[tabName].dark_icon = file; // Save the file
+    }
+  }
 
   removeIcon(tabName: string): void {
+    this.formData.talent_section[tabName].icon = 'remove_image'; // Reset the icon file
+    this.formData.talent_section[tabName].iconPreview = null; // Reset the preview
+  }
+
+  removeDarkIcon(tabName: string): void {
     this.formData.talent_section[tabName].icon = 'remove_image'; // Reset the icon file
     this.formData.talent_section[tabName].iconPreview = null; // Reset the preview
   }
@@ -370,6 +403,43 @@ export class AddTalentPageComponent implements OnInit {
       this.formData.feature_sctn[index].icon = file; // Save the file
     }
   }
+  // Dark Mode
+  onFeaturedarkIconFileChange(event: any, index: number): void {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.formData.feature_sctn[index].darkiconPreview = reader.result;
+      };
+      reader.readAsDataURL(file);
+      this.formData.feature_sctn[index].dark_icon = file; // Save the file
+    }
+  }
+  removeFeatureDarkIcon(index: number): void {
+    this.formData.feature_sctn[index].dark_icon = 'remove_image';
+    this.formData.feature_sctn[index].darkiconPreview = null;
+  }
+
+  onFeatureDarkFileChange(event: any, index: number): void {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        // Assign preview for the feature image
+        this.formData.feature_sctn[index].darkimgPreview = reader.result;
+      };
+      reader.readAsDataURL(file);
+      // Save the file
+      this.formData.feature_sctn[index].dark_img = file;
+    }
+  }
+
+  removeDarkFeatureImage(index: number): void {
+    this.formData.feature_sctn[index].dark_img = 'remove_image'; // Mark for removal
+    this.formData.feature_sctn[index].darkimgPreview = null; // Clear the preview
+  }
+
+  // Dark Mode
 
 
 

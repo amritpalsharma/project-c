@@ -10,6 +10,7 @@ import { MatSort } from '@angular/material/sort';
 import { MessagePopupComponent } from '../message-popup/message-popup.component';
 import { SocketService } from '../../../services/socket.service';
 import { SharedService } from '../../../services/shared.service';
+import { AdminHelperService } from '../../../services/admin-helper.service';
 
 @Component({
   selector: 'app-users',
@@ -35,7 +36,7 @@ export class UsersComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
 
-  constructor(private userService: UserService, public dialog: MatDialog, private socketService: SocketService, private sharedservice:SharedService) { }
+  constructor(private userService: UserService, public dialog: MatDialog, private socketService: SocketService, private sharedservice: SharedService, private adminHelper: AdminHelperService) { }
 
 
   ngOnInit(): void {
@@ -44,13 +45,14 @@ export class UsersComponent implements OnInit {
     this.getLocations();
     //  this.showMessage("My message here");
     this.sharedservice.data$.subscribe((data) => {
-        if(data.action == 'lang_updated'){
-            this.isLoading = true;
-            this.lang_id = data.id;
-            this.fetchUsers();
-        }
+      if (data.action == 'lang_updated') {
+        this.isLoading = true;
+        this.lang_id = data.id;
+        this.fetchUsers();
+        this.getLocations();
+      }
     });
-    
+
   }
 
 
@@ -175,7 +177,7 @@ export class UsersComponent implements OnInit {
       response => {
         console.log('Response:', response);
         // alert('User status updated successfully!');
-        if(response.message != ''){
+        if (response.message != '') {
           this.showMessage(response.message);
         }
       },
@@ -207,6 +209,7 @@ export class UsersComponent implements OnInit {
   }
 
   editfilter(): void {
+    // this.getLocations();
     const filterDialog = this.dialog.open(FilterPopupComponrnt, {
       height: '450px',
       width: '300px',
@@ -259,7 +262,7 @@ export class UsersComponent implements OnInit {
         this.selectedUserIds = [];
         this.allSelected = false;
         // console.log('User status updated successfully:', response);
-        if(response.message != ''){
+        if (response.message != '') {
           this.showMessage(response.message);
         }
       },
@@ -277,13 +280,13 @@ export class UsersComponent implements OnInit {
     let jsonData = localStorage.getItem("userData");
     let userId;
     if (jsonData) {
-        let userData = JSON.parse(jsonData);
-        userId = userData.id;
+      let userData = JSON.parse(jsonData);
+      userId = userData.id;
     }
-    else{
-      console.log("No data found in localStorage."); 
+    else {
+      console.log("No data found in localStorage.");
     }
-    this.socketService.emit('userVerified', {senderId: userId, receiverIds: this.selectedUserIds});
+    this.socketService.emit('userVerified', { senderId: userId, receiverIds: this.selectedUserIds });
   }
 
 
@@ -303,7 +306,7 @@ export class UsersComponent implements OnInit {
 
   deleteUsers(): any {
     let langId = localStorage.getItem('lang_id');
-    console.log(langId, typeof(langId));
+    console.log(langId, typeof (langId));
     this.userService.deleteUser(this.selectedUserIds, langId).subscribe(
       response => {
         this.fetchUsers();
@@ -452,5 +455,11 @@ export class UsersComponent implements OnInit {
       .catch(error => {
         console.error('There was an error downloading the file:', error);
       });
+  }
+
+  formatDateTime(datetime: string) {
+    // convertAdminDateTime
+    let formattedDate = this.adminHelper.convertAdminDateTime(datetime, 'users');
+    return formattedDate;
   }
 }

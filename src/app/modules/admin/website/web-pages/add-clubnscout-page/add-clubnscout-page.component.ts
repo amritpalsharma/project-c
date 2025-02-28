@@ -1,5 +1,5 @@
 // Angular Component
-import { ChangeDetectorRef,Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { WebPages } from '../../../../../services/webpages.service';
@@ -23,57 +23,61 @@ interface Language {
   styleUrls: ['./add-clubnscout-page.component.scss']
 })
 export class AddClubnScoutPageComponent implements OnInit {
-    @Input() pageId: any;
-    @Input() pageType: any;
-    @Input() languages: Language[] = [];
+  @Input() pageId: any;
+  @Input() pageType: any;
+  @Input() languages: Language[] = [];
 
-    editor!: Editor;
-    toolbar: Toolbar = [
-      ['bold', 'italic'],
-      ['underline', 'strike'],
-      ['ordered_list', 'bullet_list'],
-      ['link', 'image'],
-      ['text_color', 'background_color'],
-      ['align_left', 'align_center', 'align_right', 'align_justify']
-    ];
-    content: string = '';
-    colorPresets :any = environment.colors;
+  editor!: Editor;
+  toolbar: Toolbar = [
+    ['bold', 'italic'],
+    ['underline', 'strike'],
+    ['ordered_list', 'bullet_list'],
+    ['link', 'image'],
+    ['text_color', 'background_color'],
+    ['align_left', 'align_center', 'align_right', 'align_justify']
+  ];
+  content: string = '';
+  colorPresets: any = environment.colors;
 
-    imageLoaded: boolean = false;
+  imageLoaded: boolean = false;
 
-    formData: any = {
-      slug: '',
-      meta_title: '',
-      meta_description: '',
-      banner_title: '',
-      banner_bg_img: null,
-      banner_desc: '',
-      banner_btn_txt: '',
-      banner_imgs: [],
-      club_nd_scout_section_title: '',
-      club_nd_scout_section: {
-        first_tab: [],
-        sec_tab: [],
-        third_tab: [],
-      },
-      feature_sctn: [
-        { title: '', desc: '', icon: null },
-      ],
-      feature_sctn_imgs: [], // Correctly added the 'imgs' array for feature section
-      feature_sctn_title: '',
-      pricing_tab: [],
-      page_content: '',
-      page_id: '',
-      page_type: '',
-      language: localStorage.getItem('lang'),
-      lang_id: localStorage.getItem('lang_id'),
-    };
+  formData: any = {
+    slug: '',
+    meta_title: '',
+    meta_description: '',
+    banner_title: '',
+    banner_bg_img: null,
+    banner_desc: '',
+    banner_btn_txt: '',
+    banner_imgs: [],
+    club_nd_scout_section_title: '',
+    club_nd_scout_section: {
+      first_tab: [],
+      sec_tab: [],
+      third_tab: [],
+    },
+    // feature_sctn: [
+    //   { title: '', desc: '', icon: null },
+    // ],
+    feature_sctn: [
+      // { title: '', desc: '', icon: null, dark_icon:''},
+      { id: '', title: '', desc: '', icon: null, dark_icon: '', image: null, dark_image: null }
+    ],
+    feature_sctn_imgs: [], // Correctly added the 'imgs' array for feature section
+    feature_sctn_title: '',
+    pricing_tab: [],
+    page_content: '',
+    page_id: '',
+    page_type: '',
+    language: localStorage.getItem('lang'),
+    lang_id: localStorage.getItem('lang_id'),
+  };
 
-    bannerBgImagePreview: string | ArrayBuffer | null = null;
-    bannerImagesPreviews: string[] = [];
-    bannerImagePreview: string | ArrayBuffer | null = null;
+  bannerBgImagePreview: string | ArrayBuffer | null = null;
+  bannerImagesPreviews: string[] = [];
+  bannerImagePreview: string | ArrayBuffer | null = null;
 
-    constructor(private webpages: WebPages, public dialogRef: MatDialogRef<AddClubnScoutPageComponent>,private cdr: ChangeDetectorRef) {}
+  constructor(private webpages: WebPages, public dialogRef: MatDialogRef<AddClubnScoutPageComponent>, private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.editor = new Editor();
@@ -166,7 +170,7 @@ export class AddClubnScoutPageComponent implements OnInit {
 
     // Iterate over this.formData and append fields
     for (const key in this.formData) {
-      if (key == 'banner_bg_img' || key == 'banner_imgs' || key == 'club_nd_scout_section' ||   key == 'feature_sctn') continue;
+      if (key == 'banner_bg_img' || key == 'banner_imgs' || key == 'club_nd_scout_section' || key == 'feature_sctn') continue;
       if (Array.isArray(this.formData[key])) {
         this.formData[key].forEach((item: any, index: number) => {
           if (typeof item === 'object' && item !== null) {
@@ -197,11 +201,20 @@ export class AddClubnScoutPageComponent implements OnInit {
 
     // Append feature section images and icons, excluding iconPreview
     this.formData.feature_sctn.forEach((feature: any, index: number) => {
+      if (feature.id && feature.id != '') {
+        formData.append(`feature_sctn[${index}][id]`, feature.id);
+      }
       if (feature.icon) {
         formData.append(`feature_sctn[${index}][icon]`, feature.icon);
       }
+      if (feature.dark_icon) {
+        formData.append(`feature_sctn[${index}][dark_icon]`, feature.dark_icon);
+      }
       if (feature.img) {
-        formData.append(`feature_sctn[imgs][]`, feature.img);
+        formData.append(`feature_sctn[${index}][img]`, feature.img);
+      }
+      if (feature.dark_img) {
+        formData.append(`feature_sctn[${index}][dark_image]`, feature.dark_img);
       }
       if (feature.title) {
         formData.append(`feature_sctn[${index}][title]`, feature.title);
@@ -334,9 +347,11 @@ export class AddClubnScoutPageComponent implements OnInit {
         this.bannerBgImagePreview = response.data.base_url + pageData.banner_bg_img;
 
         // Map banner images if any
-        if (pageData.banner_imgs) {
-          this.formData.banner_imgs = pageData.banner_imgs.split(','); // Convert comma-separated string to array
-          this.bannerImagesPreviews = this.formData.banner_imgs.map((img: string) => response.data.base_url + img);
+        if (pageData.banner_imgs && pageData.banner_imgs != '') {
+          this.formData.banner_imgs = [];
+          this.bannerImagesPreviews = [];
+          // this.formData.banner_imgs = pageData.banner_imgs.split(','); // Convert comma-separated string to array
+          // this.bannerImagesPreviews = this.formData.banner_imgs.map((img: string) => response.data.base_url + img);
         } else {
           this.formData.banner_imgs = [];
           this.bannerImagesPreviews = [];
@@ -354,18 +369,27 @@ export class AddClubnScoutPageComponent implements OnInit {
             }
           });
         }
-
         // Map feature section
         if (pageData.feature_sctn) {
           this.formData.feature_sctn = pageData.feature_sctn.map((feature: any) => ({
-            title: feature.title || '',
-            desc: feature.desc || '',
-            icon: feature.icon || null,
+            id: feature.id,
+            title: feature.title,
+            desc: feature.desc,
             iconPreview: response.data.base_url + feature.icon,
+            DarkiconPreview: response.data.base_url + feature.dark_icon
           }));
-        } else {
-          this.formData.feature_sctn = [];
         }
+        // Map feature section
+        // if (pageData.feature_sctn) {
+        //   this.formData.feature_sctn = pageData.feature_sctn.map((feature: any) => ({
+        //     title: feature.title || '',
+        //     desc: feature.desc || '',
+        //     icon: feature.icon || null,
+        //     iconPreview: response.data.base_url + feature.icon,
+        //   }));
+        // } else {
+        //   this.formData.feature_sctn = [];
+        // }
 
         // Map pricing tab
         if (pageData.pricing_tab) {
@@ -459,5 +483,45 @@ export class AddClubnScoutPageComponent implements OnInit {
   removePricingFeature(planIndex: number, featureIndex: number): void {
     this.formData.pricing_tab[planIndex].plan_feature_desc.splice(featureIndex, 1);
   }
+  // code by amrit
+  // Dark Mode
+  onFeaturedarkIconFileChange(event: any, index: number): void {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.formData.feature_sctn[index].darkiconPreview = reader.result;
+      };
+      reader.readAsDataURL(file);
+      this.formData.feature_sctn[index].dark_icon = file; // Save the file
+    }
+  }
+  removeFeatureDarkIcon(index: number): void {
+    this.formData.feature_sctn[index].dark_icon = 'remove_image';
+    this.formData.feature_sctn[index].darkiconPreview = null;
+  }
 
+  onFeatureDarkFileChange(event: any, index: number): void {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        // Assign preview for the feature image
+        this.formData.feature_sctn[index].darkimgPreview = reader.result;
+      };
+      reader.readAsDataURL(file);
+      // Save the file
+      this.formData.feature_sctn[index].dark_img = file;
+    }
+  }
+
+  removeDarkFeatureImage(index: number): void {
+    this.formData.feature_sctn[index].dark_img = 'remove_image'; // Mark for removal
+    this.formData.feature_sctn[index].darkimgPreview = null; // Clear the preview
+  }
+
+  removeFeatureImage(index: number): void {
+    this.formData.feature_sctn[index].img = 'remove_image'; // Mark for removal
+    this.formData.feature_sctn[index].imgPreview = null; // Clear the preview
+  }
 }

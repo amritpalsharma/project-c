@@ -15,34 +15,39 @@ export class MarketingService {
     }
     getSystemPopups(data:any): Observable<{ status: boolean, message: string, data: any }> {
         let params = new HttpParams();
+        let currentLang = localStorage.getItem("lang_id"); 
         // Loop through the queryParams object and set each parameter
         for (const key in data) {
             if (data.hasOwnProperty(key)) {
                 params = params.set(key, data[key]);
             }
         }
+
         return this.http.get<{ status: boolean, message: string, data: any }>(
-            `${this.apiUrl}admin/get-system-popups`, {params}
+            `${this.apiUrl}admin/get-system-popups/${currentLang}`, {params}
         );
     }
 
     getRolePaymentTypes(): Observable<{ status: boolean, message: string, data: any }> {
-        
+        let currentLang = localStorage.getItem("lang_id"); 
         return this.http.get<{ status: boolean, message: string, data: any }>(
-            `${this.apiUrl}admin/get-role-payment-types`
+            `${this.apiUrl}admin/get-role-payment-types/${currentLang}`
         );
     }
 
     addPopups(record: any): Observable<any> {
-        return this.http.post<any>(`${this.apiUrl}admin/add-system-popup`, record);
+        let currentLang = localStorage.getItem("lang_id"); 
+        return this.http.post<any>(`${this.apiUrl}admin/add-system-popup/${currentLang}`, record);
     }
     // Method to update an existing record
     updatePopups(id: number, record: any): Observable<any> {
-        return this.http.post<any>(`${this.apiUrl}admin/edit-system-popup/${id}`, record);
+        let currentLang = localStorage.getItem("lang_id"); 
+        return this.http.post<any>(`${this.apiUrl}admin/edit-system-popup/${id}/${currentLang}`, record);
     }
 
     // Method to delete a record by IDs
     deletePopups(params: any): Observable<any> {
-        return this.http.post<any>(`${this.apiUrl}admin/delete-system-popup`, params);
+        let currentLang = localStorage.getItem("lang_id"); 
+        return this.http.post<any>(`${this.apiUrl}admin/delete-system-popup/${currentLang}`, params);
     }
 }

@@ -26,3 +26,11 @@
     background-color: #fff;  
     box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
 }
+
+
+.club_history {
+    padding: 0 !important;
+    & > .d-flex {
+        justify-content: space-between;
+    }
+}

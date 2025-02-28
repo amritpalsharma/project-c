@@ -199,7 +199,9 @@ tr td:last-child {
   .page-heading {
     font-size: 14px;
   }
-
+  .dashboard_table .table_title {
+    overflow: auto;
+}
 
 }
 

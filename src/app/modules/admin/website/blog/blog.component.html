@@ -109,13 +109,15 @@
 
       <ng-container matColumnDef="Published">
         <th mat-header-cell *matHeaderCellDef> {{ 'published' | translate }} </th>
-        <td mat-cell *matCellDef="let element">
+        <!-- <td mat-cell *matCellDef="let element">
           {{ element.updated_at }}
-        </td>
+        </td> -->
+        <td mat-cell *matCellDef="let element"> {{ formatDateTime(element.created_at) }}</td>
       </ng-container>
       <ng-container matColumnDef="Last Modified">
         <th mat-header-cell *matHeaderCellDef> {{ 'lastModified' | translate }} </th>
-        <td mat-cell *matCellDef="let element"> {{ element.updated_at }}</td>
+        <!-- <td mat-cell *matCellDef="let element"> {{ element.updated_at }}</td> -->
+        <td mat-cell *matCellDef="let element"> {{ formatDateTime(element.updated_at) }}</td>
       </ng-container>
 
 
@@ -170,7 +172,8 @@
       <tr class="mat-row user-empty-tr" *matNoDataRow>
         <td [attr.colspan]="displayedColumns.length" class="user-empty-td">
           <app-loader *ngIf="isLoading"></app-loader>
-          <div *ngIf="blogs.length == 0 && !isLoading" style="text-align: center;">{{ 'noRecordFound' | translate }}</div>
+          <div *ngIf="blogs.length == 0 && !isLoading" style="text-align: center;">{{ 'noRecordFound' | translate }}
+          </div>
         </td>
       </tr>
     </table>

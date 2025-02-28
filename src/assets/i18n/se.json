@@ -1286,6 +1286,8 @@
     ]
   },
   "MyAccount": "till Panel",
-   "boostProfiles": "Boost-profil",
-   "changeNewsletterStatus": "Är du säker på att du vill ändra nyhetsbrevsstatus?"
+  "boostProfiles": "Boost-profil",
+  "changeNewsletterStatus": "Är du säker på att du vill ändra nyhetsbrevsstatus?",
+  "areYouSuretoDeleteActivity": "Är du säker på att du vill ta bort aktiviteten?",
+   "subsciptionCancelSuccess": "Din prenumeration har framgångsrikt avslutats."
 }

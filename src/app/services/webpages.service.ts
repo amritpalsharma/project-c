@@ -52,8 +52,16 @@ export class WebPages {
     }
 
     getAllLanguage(): Observable<any>{
+        let currentLang = localStorage.getItem('lang_id');
         return this.http.get<{ status: boolean, message: string, data: {} }>(
-            `${this.apiUrl}get-languages`
+            `${this.apiUrl}get-languages/${currentLang}`
+        );
+    }
+
+    getAllLocations(): Observable<any>{
+        let currentLang = localStorage.getItem('lang_id');
+        return this.http.get<{ status: boolean, message: string, data: {} }>(
+            `${this.apiUrl}get-domains/${currentLang}`
         );
     }
 

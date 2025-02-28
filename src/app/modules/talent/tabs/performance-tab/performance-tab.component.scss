@@ -299,3 +299,9 @@ tr.table_underline {
 .underline_gap{
     margin-bottom: 18px;
 }
+
+@media (max-width: 767px) {
+.new_performance button {
+    font-size: 14px;
+}
+}

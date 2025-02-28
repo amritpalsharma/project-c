@@ -1,4 +1,4 @@
-<div appClickOutside (clickOutside)="onClickOutside()" class="p-0 parent-popup">
+<div appClickOutside (clickOutside)="onClickOutside()" class="p-0 parent-popup marketing_modal mobile_popup_responsive">
   <div class="p-4 bg-0C3453">
 
     <h4 class="text-center title-text" *ngIf="!data">{{ 'createNewPopUp' | translate }}</h4>
@@ -11,13 +11,13 @@
 
     <div class="d-flex align-items-baseline py-2 bg-0C3453 px-3">
         <h4 class="text-size">Name: &nbsp;</h4>
-        <input type="text" class="template-name-inputField" [(ngModel)]="title" style="border: none;width: 500px;outline: none;">
+        <input type="text" class="template-name-inputField" [(ngModel)]="title" style="border: none; width: 100%; outline: none;">
     </div>
     <div *ngIf="errorMsg.title" class="error-msg" style="padding-left:15px;">{{errorMsg.title}}</div>
 
     <hr class="m-0">
 
-    <div class="d-flex  main-popup-div py-2 px-3 bg-0C3453">
+    <div class="d-flex  main-popup-div py-2 px-3 bg-0C3453 mobile_wrap_fields">
         <div class="d-flex align-items-baseline ">
           <h4 class="text-size fw-bold">{{ 'for:' | translate }}</h4>
           <!-- <div class="btn-group">
@@ -83,7 +83,7 @@
     </div>
     <hr class="m-0">
 
-    <div class="main-popup-div bg-0C3453 " style="padding-right: 1rem;">
+    <div class="main-popup-div bg-0C3453 px-3 mobile_wrap_fields" style="padding-right: 1rem;">
         <div class="d-flex align-items-center ">
             <mat-form-field class="marketing-calender-field">
                 <mat-date-range-picker #picker></mat-date-range-picker>
@@ -99,7 +99,7 @@
 
 
         </div> 
-        <div class="d-flex align-items-center">
+        <div class="d-flex align-items-center my_mobile">
             <h4 class="text-size fw-bold"> {{ 'displayFreq:' | translate }} </h4>
             <div class="btn-group">
               <mat-select [(ngModel)]="selectedFrequency" class="mat-select-div">
@@ -122,8 +122,8 @@
         <ngx-editor [editor]="editor" [(ngModel)]="html" [disabled]="false" [placeholder]="'typeHere' | translate"></ngx-editor>
         <div *ngIf="errorMsg.html" class="error-msg" style="padding-left:20px;">{{errorMsg.html}}</div>
     </div>
-    <div>
-      <div class=" d-flex justify-content-around bg-0C3453 p-3 marketing-calender-btn">
+    <div class="popup_buttons_mobile">
+      <div class=" d-flex justify-content-around bg-0C3453 p-3">
     
        <div>
          <a class="btn btn-delete text-danger" (click)="close()">{{ 'cancel' | translate }}</a>

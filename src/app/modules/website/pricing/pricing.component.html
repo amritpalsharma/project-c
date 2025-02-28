@@ -27,7 +27,8 @@
           <h3 class="price-heading3">{{ pageData?.pricing_tabs_title }}</h3> <!-- Dynamic Subtitle -->
           <div class="row">
             <div class="col-lg-4 col-md-12 col-12">
-              <mat-card>
+              <div class="price_mat_wrapper">
+              <mat-card class="plan_price_box">
                 <div class="billed">
                   <p [ngClass]="{ 'active-text': isActive1, 'inactive-text': !isActive1 }" class="billed-monthly">
                     {{ pageData?.first_tab_monthly_label }}
@@ -47,53 +48,6 @@
                   </div>
                 </div>
               </mat-card>
-            </div>
-  
-            <div class="col-lg-4 col-md-12 col-12">
-              <mat-card>
-                <div class="billed">
-                  <p [ngClass]="{ 'active-text': isActive2, 'inactive-text': !isActive2 }">{{ pageData?.sec_tab_monthly_label }}</p>
-                  <div class="toggle-button" [ngClass]="{ 'active': isActive2, 'inactive': !isActive2 }" (click)="toggle2()"></div>
-                  <p [ngClass]="{ 'active-text': !isActive2, 'inactive-text': isActive2 }">{{ pageData?.sec_tab_yearly_label }}</p>
-                </div>
-  
-                <div class="premium">
-                  <div class="premium-img">
-                    <h2 class="premium-heading2">{{ pageData?.sec_tab_plan_name }}</h2>
-                    <h3 class="premium-heading3">
-                      {{ isActive2 ? pageData?.sec_tab_yearly_price : pageData?.sec_tab_monthly_price }}<span>.- CHF / {{ isActive2 ? ('year' | translate) : ('month' | translate) }}</span>
-                    </h3>
-                  </div>
-                </div>
-              </mat-card>
-            </div>
-  
-            <div class="col-lg-4 col-md-12 col-12">
-              <mat-card>
-                <div class="billed">
-                  <p [ngClass]="{ 'active-text': isActive3, 'inactive-text': !isActive3 }">{{ pageData?.third_tab_monthly_label }}</p>
-                  <div class="toggle-button" [ngClass]="{ 'active': isActive3, 'inactive': !isActive3 }" (click)="toggle3()"></div>
-                  <p [ngClass]="{ 'active-text': !isActive3, 'inactive-text': isActive3 }">{{ pageData?.third_tab_yearly_label }}</p>
-                </div>
-  
-                <div class="premium">
-                  <div class="premium-img">
-                    <h2 class="premium-heading2">{{ pageData?.third_tab_plan_name }}</h2>
-                    <h3 class="premium-heading3">
-                      {{ isActive3 ? pageData?.third_tab_yearly_price : pageData?.third_tab_monthly_price }}<span>.- CHF / {{ isActive3 ? ('year' | translate) : ('month' | translate) }}</span>
-                    </h3>
-                  </div>
-                </div>
-              </mat-card>
-            </div>
-          </div>
-        </div>
-      </div>
-  
-      <div class="features py_0">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-4 col-md-12 col-12">
               <mat-card class="feature-box">
                 <h3 class="feature-heading">{{ pageData?.first_tab_free_features_title }}</h3>
                 <div class="feature-data">
@@ -111,7 +65,26 @@
                 </div>
               </mat-card>
             </div>
+            </div>
+  
             <div class="col-lg-4 col-md-12 col-12">
+              <div class="price_mat_wrapper">
+              <mat-card class="plan_price_box">
+                <div class="billed">
+                  <p [ngClass]="{ 'active-text': isActive2, 'inactive-text': !isActive2 }">{{ pageData?.sec_tab_monthly_label }}</p>
+                  <div class="toggle-button" [ngClass]="{ 'active': isActive2, 'inactive': !isActive2 }" (click)="toggle2()"></div>
+                  <p [ngClass]="{ 'active-text': !isActive2, 'inactive-text': isActive2 }">{{ pageData?.sec_tab_yearly_label }}</p>
+                </div>
+  
+                <div class="premium">
+                  <div class="premium-img">
+                    <h2 class="premium-heading2">{{ pageData?.sec_tab_plan_name }}</h2>
+                    <h3 class="premium-heading3">
+                      {{ isActive2 ? pageData?.sec_tab_yearly_price : pageData?.sec_tab_monthly_price }}<span>.- CHF / {{ isActive2 ? ('year' | translate) : ('month' | translate) }}</span>
+                    </h3>
+                  </div>
+                </div>
+              </mat-card>
               <mat-card class="feature-box">
                 <h3 class="feature-heading">{{ pageData?.sec_tab_free_features_title }}</h3>
                 <div class="feature-data">
@@ -129,7 +102,26 @@
                 </div>
               </mat-card>
             </div>
+            </div>
+  
             <div class="col-lg-4 col-md-12 col-12">
+              <div class="price_mat_wrapper">
+              <mat-card class="plan_price_box">
+                <div class="billed">
+                  <p [ngClass]="{ 'active-text': isActive3, 'inactive-text': !isActive3 }">{{ pageData?.third_tab_monthly_label }}</p>
+                  <div class="toggle-button" [ngClass]="{ 'active': isActive3, 'inactive': !isActive3 }" (click)="toggle3()"></div>
+                  <p [ngClass]="{ 'active-text': !isActive3, 'inactive-text': isActive3 }">{{ pageData?.third_tab_yearly_label }}</p>
+                </div>
+  
+                <div class="premium">
+                  <div class="premium-img">
+                    <h2 class="premium-heading2">{{ pageData?.third_tab_plan_name }}</h2>
+                    <h3 class="premium-heading3">
+                      {{ isActive3 ? pageData?.third_tab_yearly_price : pageData?.third_tab_monthly_price }}<span>.- CHF / {{ isActive3 ? ('year' | translate) : ('month' | translate) }}</span>
+                    </h3>
+                  </div>
+                </div>
+              </mat-card>
               <mat-card class="feature-box">
                 <h3 class="feature-heading">{{ pageData?.third_tab_free_features_title }}</h3>
                 <div class="feature-data">
@@ -147,8 +139,7 @@
                 </div>
               </mat-card>
             </div>
-  
-            <!-- Repeat for the other feature sections... -->
+            </div>
           </div>
         </div>
       </div>

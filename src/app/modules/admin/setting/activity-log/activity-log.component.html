@@ -10,7 +10,7 @@
 
 <div class="card">
 
-  <div class="card-header header-activity-log">
+  <div class="card-header header-activity-log setting_card_hdr_mobil">
     <div class="d-flex col-md-3">
       <button class="btn activity-log-del-checkbox btn-secondary dropdown-toggle dropdown-activity-log p-0 "
         type="button" (click)="selectAll()">
@@ -67,7 +67,8 @@
         <th mat-header-cell *matHeaderCellDef> {{'dateTime' | translate}}
           <!-- <small><i class="fas fa-sort"></i> </small>   -->
         </th>
-        <td mat-cell *matCellDef="let element"> {{ element.created_at | date: 'MM.dd.yyyy hh:mm a' }}</td>
+        <td mat-cell *matCellDef="let element"> {{formatDateTime(element.created_at)}}</td>
+        <!-- <td mat-cell *matCellDef="let element"> {{ element.created_at | date: 'MM.dd.yyyy hh:mm a' }}</td> -->
       </ng-container>
 
 

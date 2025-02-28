@@ -70,3 +70,51 @@ a.pdf-download_btn {
 .pdf-download_btn span svg path{
     stroke: #fff;
 }
+thead.table-light th:first-child, thead.table-light td:first-child {
+    padding-left: 0;
+}
+
+
+@media (max-width: 991px) {
+    h2.rechnung-titel {
+        font-size: 22px;
+    }
+    thead.table-light th {
+        font-weight: 600;
+    }
+    thead.table-light th, thead.table-light td {
+        font-size: 14px !important;
+        padding: 8px !important;
+    }
+    thead.table-light th:first-child, thead.table-light td:first-child {
+        padding-left: 0 !important;
+    }
+    .bottom-details {
+        padding-right: 0 !important;
+    p {
+        font-size: 14px !important;
+        text-align: left;
+        margin-bottom: 0;
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    strong {
+        font-size: 14px !important;
+        text-align: left;
+        margin-right: 0;
+        padding-right: 8px;
+    }
+}
+a.pdf-download_btn {
+    font-size: 16px !important;
+}
+.pdf-download_btn span {
+    padding: 8px 10px 10px;
+}
+.download-btn svg {
+    width: 20px !important;
+    height: 20px !important;
+}
+}

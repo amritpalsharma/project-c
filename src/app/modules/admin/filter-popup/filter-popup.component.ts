@@ -9,50 +9,49 @@ import {
   templateUrl: './filter-popup.component.html',
   styleUrl: './filter-popup.component.scss'
 })
-export class FilterPopupComponrnt
- {
+export class FilterPopupComponrnt {
 
   readonly dialogRef = inject(MatDialogRef<FilterPopupComponrnt>);
   userFilters: any = [];
-  condition:any = 1;
+  condition: any = 1;
   locations: any = []
   selectedLocation: any = "";
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
     this.userFilters = data.filters;
     this.locations = data.locations;
 
-    if(this.userFilters['location']){
+    if (this.userFilters['location']) {
       this.selectedLocation = this.userFilters['location'];
     }
   }
-  
-  close(){
+
+  close() {
     this.dialogRef.close(this.userFilters);
   }
 
-  setFilter(type:any, value:any){
+  setFilter(type: any, value: any) {
     this.userFilters[type] = value;
-    if(type == "activity"){
+    if (type == "activity") {
       delete this.userFilters['alphabetically'];
-    }else if(type == "alphabetically"){
+    } else if (type == "alphabetically") {
       delete this.userFilters['activity'];
     }
   }
 
-  applyUserFilter(){
+  applyUserFilter() {
     this.close();
   }
-  
-  resetUserFilter(){
+
+  resetUserFilter() {
     this.userFilters = [];
     this.close();
   }
 
-  onLocationChange(event:any){
+  onLocationChange(event: any) {
     this.selectedLocation = (event.target as HTMLSelectElement).value;
-    if(this.selectedLocation == ""){
+    if (this.selectedLocation == "") {
       delete this.userFilters['location'];
-    }else{
+    } else {
       this.setFilter('location', this.selectedLocation)
     }
   }

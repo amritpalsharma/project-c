@@ -1239,5 +1239,7 @@
   },
   "MyAccount": "para Painel",
    "boostProfiles": "Impulsionar o perfil",
-   "changeNewsletterStatus": "Tem a certeza de que pretende alterar o estatuto de boletim informativo?"
+   "changeNewsletterStatus": "Tem a certeza de que pretende alterar o estatuto de boletim informativo?",
+   "areYouSuretoDeleteActivity":"Tem a certeza de que pretende eliminar a atividade?",
+   "subsciptionCancelSuccess": "A sua subscrição foi cancelada com sucesso."
   }

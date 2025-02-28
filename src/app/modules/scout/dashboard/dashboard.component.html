@@ -4,7 +4,7 @@
       <div class="card-body py-0">
         <div class="row">
 
-          <div class="col-lg-3 border-end p-0 card_box-1">
+          <div class="col-lg-3 border-end p-lg-0 card_box-1">
 
             <div class="user-details-left col-lg-12">
               <div>
@@ -51,7 +51,7 @@
 
                 <div class="bg-color card-bg">
                   <div class="user-info pt-3 row align-items-center justify-content-between p-3 responsive-name">
-                    <div class="col-lg-9 d-flex align-items-center player-name-box">
+                    <div class="col-md-8 d-flex align-items-center player-name-box">
                       <h6 class="user-info-name">
                         {{ user.first_name }} {{ user.last_name }}
                       </h6>
@@ -64,7 +64,7 @@
                           *ngIf="user.status == '3'" />
                       </div>
                     </div>
-                    <div class="col-lg-3 p-0 edit_button responsive-edit_btn ">
+                    <div class="col-md-4 p-0 edit_button responsive-edit_btn ">
                       <button (click)="openEditDialog()" class="" matTooltip="Edit Personal Details"
                         matTooltipPosition="right">
                         <div class="tour-personal-details px-1">
@@ -80,9 +80,9 @@
                     </div>
                   </div>
                   <div class="row elton-box dashboard-icons">
-                    <div class="col-lg-6">
+                    <div class="col-sm-6">
                       <div class="row align-items-center team-logos">
-                        <div class="team-badge_image col-lg-3">
+                        <div class="team-badge_image col-sm-3">
                           <!-- <img *ngIf="!user.pre_current_club_logo_path"
                             src="../../../../assets/images/default/Club-logo-default.png" class="fc-club-img" alt="">
 
@@ -104,13 +104,13 @@
                           </svg>
 
                         </div>
-                        <div class="team-badge_content col-lg-9 p-0">
+                        <div class="team-badge_content col-sm-9 p-0">
                           <h6 class="title_2 mb-1">{{ 'companyName' | translate}}</h6>
                           <h5 class="title-1">{{user?.meta?.company_name |translate }} </h5>
                         </div>
                       </div>
                     </div>
-                    <div class="col-lg-6 team-logos">
+                    <div class="col-sm-6 team-logos">
                       <h6 class="title_2 mb-1">{{ 'nationality' | translate }}</h6>
                       <div class="d-flex align-items-center gap-2 mb-1 " *ngFor="let nation of userNationalities">
                         <div class="team-badge_image">
@@ -120,9 +120,9 @@
                         <h5 class="title-1">{{nation.country_name | translate }} </h5>
                       </div>
                     </div>
-                    <div class="col-lg-6 team-logos">
+                    <div class="col-sm-6 team-logos">
                       <div class="row align-items-center">
-                        <div class="col-lg-3 team-badge_image">
+                        <div class="col-sm-3 team-badge_image">
                           <!-- <svg width="100%" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path class=" blue-bg"
                               d="M5 27.5C4.64583 27.5 4.34917 27.38 4.11 27.14C3.87083 26.9 3.75083 26.6033 3.75 26.25V21.25C3.75 20.5625 3.995 19.9742 4.485 19.485C4.975 18.9958 5.56333 18.7508 6.25 18.75H23.75C24.4375 18.75 25.0263 18.995 25.5163 19.485C26.0063 19.975 26.2508 20.5633 26.25 21.25V26.25C26.25 26.6042 26.13 26.9012 25.89 27.1412C25.65 27.3812 25.3533 27.5008 25 27.5H5ZM6.25 16.25V12.5C6.25 11.8125 6.495 11.2242 6.985 10.735C7.475 10.2458 8.06333 10.0008 8.75 10H13.75V8.1875C13.375 7.9375 13.0729 7.63542 12.8438 7.28125C12.6146 6.92708 12.5 6.5 12.5 6C12.5 5.6875 12.5625 5.38 12.6875 5.0775C12.8125 4.775 13 4.49917 13.25 4.25L15 2.5L16.75 4.25C17 4.5 17.1875 4.77583 17.3125 5.0775C17.4375 5.37917 17.5 5.68667 17.5 6C17.5 6.5 17.3854 6.92708 17.1562 7.28125C16.9271 7.63542 16.625 7.9375 16.25 8.1875V10H21.25C21.9375 10 22.5263 10.2446 23.0163 10.7337C23.5063 11.2229 23.7508 11.8117 23.75 12.5V16.25H6.25Z"
@@ -143,26 +143,26 @@
                           </svg>
 
                         </div>
-                        <div class="col-lg-9 p-0 team-badge_content">
+                        <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'designation' | translate}}</h6>
                           <h5 class="title-1">{{user?.meta?.designation }}</h5>
                         </div>
                       </div>
                     </div>
-                    <div class="col-lg-6 team-logos">
+                    <div class="col-sm-6 team-logos">
                       <div class="row align-items-center">
-                        <div class="col-lg-3 team-badge_image">
+                        <div class="col-sm-3 team-badge_image">
                           <img [src]="countryFlagUrl" alt="" />
                         </div>
-                        <div class=" col-lg-9 p-0 team-badge_content">
+                        <div class=" col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2"> {{'city' | translate }}</h6>
                           <h5 class="title-1">{{user?.meta?.city}}</h5>
                         </div>
                       </div>
                     </div>
-                    <div class="col-lg-6 team-logos">
+                    <div class="col-sm-6 team-logos">
                       <div class="row align-items-center">
-                        <div class="col-lg-3 team-badge_image">
+                        <div class="col-sm-3 team-badge_image">
                           <!-- <svg width="100%" height="36px" viewBox="0 0 16 32" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path class="green-bg"
@@ -196,7 +196,7 @@
                           </svg>
 
                         </div>
-                        <div class="col-lg-9 p-0 team-badge_content">
+                        <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'contactNumber' | translate }}</h6>
                           <h5 *ngIf="user.meta && user.meta.contact_number" class="title-1">{{user.meta.contact_number}}</h5>
                           <h5 *ngIf="!user.meta || !user.meta.contact_number">NA</h5>
@@ -204,9 +204,9 @@
                       </div>
                     </div>
 
-                    <div class="col-lg-6 team-logos">
+                    <div class="col-sm-6 team-logos">
                       <div class="row align-items-center">
-                        <div class="col-lg-3 team-badge_image">
+                        <div class="col-sm-3 team-badge_image">
                           <!-- <svg width="26" height="26" viewBox="0 0 26 26" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path class="blue-bg"
@@ -228,16 +228,16 @@
                           </svg>
 
                         </div>
-                        <div class="col-lg-9 p-0 team-badge_content">
+                        <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'website' | translate }}</h6>
                           <h5 *ngIf="user.meta && user.meta.website" class="title-1">{{user.meta.website}}</h5>
                           <h5 *ngIf="!user.meta || !user.meta.website">NA</h5>
                         </div>
                       </div>
                     </div>
-                    <div class="col-lg-6 team-logos ">
+                    <div class="col-sm-6 team-logos ">
                       <div class="row align-items-center">
-                        <div class="col-lg-3 team-badge_image">
+                        <div class="col-sm-3 team-badge_image">
                           <!-- <svg width="100%" height="36px" viewBox="0 0 28 26" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_2958_4755786)">
@@ -269,14 +269,14 @@
                           </svg>
 
                         </div>
-                        <div class="col-lg-9 p-0 team-badge_content">
+                        <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'zipCode' | translate}}</h6>
                           <h5 class="title-1" *ngIf="user?.meta?.zipcode">{{user?.meta?.zipcode}}</h5>
                           <h5 class="title-1" *ngIf="!user?.meta?.zipcode">NA</h5>
                         </div>
                       </div>
                     </div>
-                    <div class="col-lg-6 team-logos">
+                    <div class="col-sm-6 team-logos">
                       <div class="row align-items-center">
                         <div class="col-lg-12 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'socialMedia' | translate}}</h6>
@@ -411,9 +411,9 @@
                       </div>
                     </div>
 
-                    <div class="col-lg-6 team-logos">
+                    <div class="col-sm-6 team-logos">
                       <div class="row align-items-center">
-                        <div class="col-lg-3 team-badge_image">
+                        <div class="col-sm-3 team-badge_image">
 
                           <!-- <svg width="100%" height="36px" viewBox="0 0 32 25" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
@@ -445,7 +445,7 @@
                           </svg>
 
                         </div>
-                        <div class="col-lg-9 p-0 team-badge_content">
+                        <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'address' | translate}}</h6>
                           <h5 class="title-1" *ngIf="user?.meta?.address">{{user?.meta?.address}}</h5>
                           <h5 class="title-1" *ngIf="!user?.meta?.address">NA</h5>
@@ -549,7 +549,7 @@
 
           </div>
 
-          <div class="col-lg-9">
+          <div class="col-lg-9 card_box--2">
 
             <div class="players_image d-flex align-items-center justify-content-center">
               <img *ngIf="coverImage" [src]="coverImage" alt="Cover Image" />

@@ -41,7 +41,7 @@ export class HeaderComponent {
   domains: any = environment.domains;
   envLang: any = environment.adminLangs;
   isDarkMode: boolean = false;
-  role : any; 
+  role: any;
   roles: any = environment.roles;
 
   notificationCount: number = 0;
@@ -295,6 +295,8 @@ export class HeaderComponent {
       id: selectedLanguageId
     })
 
+    // this.shareService.updateLanguage(selectedLanguageId);
+
     let jsonData = localStorage.getItem("userData");
     let userId;
     if (jsonData) {
@@ -307,7 +309,6 @@ export class HeaderComponent {
 
     this.socketService.emit('updateLanguage', { userId, langId: selectedLanguageId });
     this.fetchNotifications(userId, selectedLanguageId);
-
   }
 
 

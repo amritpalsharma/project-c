@@ -1,0 +1,20 @@
+<!-- message-popup.component.html -->
+<div class="delete-popup-dialog">
+    <div class="del-popup-close d-flex align-items-center justify-content-between p-3">
+        <h3>Deleting Account</h3>
+        <img src="../../../assets/images/close-icon-circle.png" alt="" (click)="close()" />
+    </div>
+    <div class="del-popup-content">
+        <div class="display-message">
+            <p>This will delete your account permanently from our database. This cannot be undone.</p>
+        </div>
+        <div class="popup-delete-btn d-flex align-items-end justify-content-between flex-wrap">
+            <div class="confirm_del_wrap">
+                <label>To confirm this, type “DELETE”</label>
+                <input type="" class="del_input" />
+            </div>
+            <div (click)="newsletterConfirmed()" class="delet_acnt_btn">Delete Account</div>
+        </div>       
+    </div>
+</div>
+  
