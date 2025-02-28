@@ -111,3 +111,29 @@ ngx-editor {
     height: 275px;
     overflow: auto;
   }
+
+  .news_content_form_popup {
+    padding: 10px 20px;
+    max-height: 60vh;
+    overflow: auto;
+}
+
+input.template-name-inputField {
+    width: 100% !important;
+}
+
+@media (max-width: 767px) {
+.news_content_form_popup .template-name-input {
+    flex-direction: column;
+    margin: 10px 0;
+}
+}
+
+
+@media (max-width: 575px) {
+.mobile_btn_wrap {
+    flex-wrap: wrap;
+    align-items: center !important;
+    justify-content: center !important;
+}
+}

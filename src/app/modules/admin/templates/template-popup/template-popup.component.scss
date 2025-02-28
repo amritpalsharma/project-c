@@ -111,3 +111,17 @@ ngx-editor {
     height: 275px;
     overflow: auto;
   }
+  
+  .template_body_form {
+    max-height: 60vh;
+    padding: 15px;
+    overflow: auto;
+}
+
+  @media (max-width: 575px) {
+    .popup_buttons_mobile {
+        flex-wrap: wrap;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    }

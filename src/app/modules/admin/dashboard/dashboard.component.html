@@ -9,7 +9,7 @@
         <div class="d-flex align-items-center">
           <p>{{ 'overview' | translate }}</p>
         </div>
-        <span>
+        <span class="ms-auto">
           <div>
             <select name="" id="" [(ngModel)]="selectedYear" (change)='yearChange($event)'>
               <option *ngFor="let year of years" [value]="year" >{{ year }}</option>
