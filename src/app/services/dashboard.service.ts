@@ -13,9 +13,7 @@ export class DashboardService {
         this.apiUrl = environment?.apiUrl;
     
     }
-    getChartData(year:number, domain_id:number, lang_id:number): Observable<{ status: boolean, message: string, data: any }> {
-        // let currentLang = localStorage.getItem('lang_id');
-        // let domain_id = 1;
+    getChartData(year:any, domain_id:any, lang_id:any): Observable<{ status: boolean, message: string, data: any }> {
         return this.http.get<{ status: boolean, message: string, data: any }>(
             `${this.apiUrl}admin/get-graph-data/${year}/${domain_id}/${lang_id}`,
           );

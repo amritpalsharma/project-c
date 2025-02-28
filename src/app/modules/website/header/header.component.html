@@ -534,7 +534,7 @@
                                             <select class="form-select" (change)="onCountryChange($event)">
                                                 <option value="" disabled selected>{{ 'country' | translate
                                                     }}</option>
-                                                <option *ngFor="let country of countrie" [value]="country.country_id">{{
+                                                <option *ngFor="let country of countries" [value]="country.code">{{
                                                     country.name }}</option>
                                             </select>
                                         </div>
@@ -554,12 +554,14 @@
                                     <label class="form-label">{{ 'clubDetails' | translate }}</label>
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6 col-12 mb-3">
+                                           
                                             <select class="form-select" (change)="onCountryChange($event)">
                                                 <option value="" disabled selected>{{ 'country' | translate
                                                     }}</option>
-                                                <option *ngFor="let country of countrie" [value]="country.code">{{
+                                                <option *ngFor="let country of countries" [value]="country.code">{{
                                                     country.name }}</option>
                                             </select>
+                                            
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-12 mb-3">
                                             <select class="form-select" (change)="onClubChange($event)">
