@@ -44,42 +44,42 @@ export class AboutComponent {
   }
 
   advertisementData:any = {
-    skyscraper: {
-      id: '1',
-      featured_image: "leaderboard.png"
-    },
-    wide_skyscraper: {
-      id: '1',
-      featured_image: "leaderboard.png"
-    },
-    leaderboard: {
-      id: '1',
-      featured_image: "leaderboard.png"
-    },
-    large_leaderboard: {
-      id: '1',
-      featured_image: "leaderboard.png"
-    },
-    banner: {
-      id: '1',
-      featured_image: "leaderboard.png"
-    },
-    square: {
-      id: '1',
-      featured_image: "leaderboard.png"
-    },
-    small_square: {
-      id: '1',
-      featured_image: "leaderboard.png"
-    },
-    large_rectangle: {
-      id: '1',
-      featured_image: "leaderboard.png"
-    },
-    inline_rectangle: {
-      id: '1',
-      featured_image: "leaderboard.png"
-    },
+    // skyscraper: {
+    //   id: '1',
+    //   featured_image: "leaderboard.png"
+    // },
+    // wide_skyscraper: {
+    //   id: '1',
+    //   featured_image: "leaderboard.png"
+    // },
+    // leaderboard: {
+    //   id: '1',
+    //   featured_image: "leaderboard.png"
+    // },
+    // large_leaderboard: {
+    //   id: '1',
+    //   featured_image: "leaderboard.png"
+    // },
+    // banner: {
+    //   id: '1',
+    //   featured_image: "leaderboard.png"
+    // },
+    // square: {
+    //   id: '1',
+    //   featured_image: "leaderboard.png"
+    // },
+    // small_square: {
+    //   id: '1',
+    //   featured_image: "leaderboard.png"
+    // },
+    // large_rectangle: {
+    //   id: '1',
+    //   featured_image: "leaderboard.png"
+    // },
+    // inline_rectangle: {
+    //   id: '1',
+    //   featured_image: "leaderboard.png"
+    // },
   }
 
 
@@ -120,34 +120,6 @@ export class AboutComponent {
   closeAd(object: any) {
 
     this.isActive[object] = false;
-
-    // switch(object){
-    //   case 'skyscraper':
-    //       this.advertisementData.skyscraper = [];
-    //       break;
-    //   case 'small_square':
-    //       this.advertisementData.small_square = [];
-    //       break;
-    //   case 'leaderboard':
-    //       this.advertisementData.leaderboard = [];
-    //       break;
-    //   case 'large_leaderboard':
-    //       this.advertisementData.large_leaderboard = [];
-    //       break;
-    //   case 'large_rectangle':
-    //       this.advertisementData.large_rectangle = [];
-    //       break;
-
-    //   case 'inline_rectangle':
-    //       this.advertisementData.inline_rectangle = [];
-    //       break;
-    //   case 'square':
-    //       this.advertisementData.square = [];
-    //       break;
-    //   default:
-    //       //when no case is matched, this block will be executed;
-    //       break;  //optional
-    //   }
 
   }
 
