@@ -36,6 +36,8 @@ export class MarketingComponent {
   ngOnInit(): void {
     this.getSystemPopups();
     this.getRoles();
+
+    
   }
 
   async getSystemPopups(filterApplied:boolean = false): Promise<void> {
@@ -281,7 +283,8 @@ export class MarketingComponent {
     });
   }
 
-  showFilterPopup():void {
+  showFilterPopup():void { 
+
     const filterDialog = this.dialog.open(CommonFilterPopupComponent,{
       height: '340px',
       width: '300px',

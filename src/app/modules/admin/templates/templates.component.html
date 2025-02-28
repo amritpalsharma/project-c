@@ -98,7 +98,7 @@
             <ng-container matColumnDef="Created Date - Time">
               <th mat-header-cell *matHeaderCellDef> {{ 'createdDateTime' | translate }} </th>
               <!-- <td mat-cell *matCellDef="let element">{{ element.created_at | date:'MM.dd.yyyy - hh.mm a' }}</td> -->
-              <td mat-cell *matCellDef="let element">{{adminHelper.dateTimeFormatEmailTemplates(element.created_at)}}</td>
+              <td mat-cell *matCellDef="let element">{{formatDateTime(element.created_at)}}</td>
             </ng-container>
             <ng-container matColumnDef="Edit">
               <th mat-header-cell *matHeaderCellDef> {{ 'edit' | translate }}</th>

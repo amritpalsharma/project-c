@@ -9,6 +9,8 @@ import { MessagePopupComponent } from '../../message-popup/message-popup.compone
 import { WebPages } from '../../../../services/webpages.service';
 import { CommonFilterPopupComponent } from '../../common-filter-popup/common-filter-popup.component';
 import { SharedService } from '../../../../services/shared.service';
+import { AdminHelperService } from '../../../../services/admin-helper.service';
+
 @Component({
   selector: 'app-blog',
   templateUrl: './blog.component.html',
@@ -32,7 +34,7 @@ export class BlogComponent {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  constructor(private blogService: BlogService,private webpages:WebPages, public dialog: MatDialog, private sharedservice:SharedService, ) {}
+  constructor(private blogService: BlogService,private webpages:WebPages, public dialog: MatDialog, private sharedservice:SharedService, private adminHelper : AdminHelperService) {}
 
   // ngOnInit(): void {
   //   this.getAllLanguages();
@@ -297,6 +299,12 @@ export class BlogComponent {
         console.log('Dialog closed without result');
       }
     });
+  }
+
+  formatDateTime(datetime: string) {
+    // convertAdminDateTime
+    let formattedDate = this.adminHelper.convertAdminDateTime(datetime, 'users');
+    return formattedDate;
   }
 
 }

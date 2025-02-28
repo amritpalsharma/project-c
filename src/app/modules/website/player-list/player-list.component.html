@@ -193,8 +193,8 @@
                       <div class="player-img">
                         <img src="{{player.meta.profile_image_path}}" alt="{{ player.first_name+' '+player.last_name }}"
                           onerror="this.onerror=null; this.src='../assets/images/1.jpg';">
-                        <img [src]="player.meta.profile_image_path" alt="{{ player.first_name+' '+player.last_name }}"
-                          [ngClass]="{ 'bg-red': player.name === 'Zidane', 'bg-green': player.name !== 'Zidane' }">
+                        <!-- <img [src]="player.meta.profile_image_path" alt="{{ player.first_name+' '+player.last_name }}" -->
+                          <!-- [ngClass]="{ 'bg-red': player.name === 'Zidane', 'bg-green': player.name !== 'Zidane' }"> -->
                         <div *ngIf="player.package_name === 'Booster'" class="image-text">{{'boosted' | translate}}
                         </div>
                         <!-- <img [src]="player.image" alt="{{ player.name }}"
