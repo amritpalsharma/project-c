@@ -1282,10 +1282,13 @@
     ]
   },
   "MyAccount": "al Dashboard",
-   "boostProfiles": "Profilo di spinta",
-   "changeNewsletterStatus": "Sei sicuro di voler cambiare lo stato della newsletter?",
-   "areYouSuretoDeleteActivity":"Sei sicuro di voler eliminare l'attività?",
-   "subsciptionCancelSuccess": "L'abbonamento è stato annullato con successo.",
-   "deleteAccountDesc": "In questo modo il vostro account verrà eliminato definitivamente dal nostro database.",
-   "deleteMyAccount" : "Cancellare il mio account"
+  "boostProfiles": "Profilo di spinta",
+  "changeNewsletterStatus": "Sei sicuro di voler cambiare lo stato della newsletter?",
+  "areYouSuretoDeleteActivity": "Sei sicuro di voler eliminare l'attività?",
+  "subsciptionCancelSuccess": "L'abbonamento è stato annullato con successo.",
+  "deleteAccountDesc": "In questo modo il vostro account verrà eliminato definitivamente dal nostro database.",
+  "deleteMyAccount": "Cancellare il mio account",
+  "uploadNewProfileImage": "Carica nuova immagine del profilo",
+  "editCoverImage": "Modifica dell'immagine di copertina",
+  "learnMore":"Per saperne di più"
 }

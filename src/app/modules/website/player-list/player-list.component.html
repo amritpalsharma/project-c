@@ -7,7 +7,7 @@
       <div class="container">
         <div class="player-list">
           <h1>{{'explore' | translate}} {{'talent' | translate}} and {{'club' | translate}}</h1>
-          <h2>{{TotalCount}}</h2>
+          <!-- <h2>{{TotalCount}}</h2> -->
           <!-- Tabs for Talent, Club, and Scouts -->
           <div class="tabs">
             <button class="faq-club-button" (click)="selectTab('talent')"
@@ -20,8 +20,9 @@
 
           <div class="tab-content">
             <div *ngIf="isLoading">
-              <h1>Loading...</h1>
+              <app-loader class="loader123 player-list-loader"></app-loader>
             </div>
+
             <!-- Talent Tab Content -->
             <div *ngIf="selectedTab === 'talent' && !isLoading">
               <div class="row">
@@ -182,7 +183,6 @@
 
 
             </div>
-            <div class="player-list-loader" *ngIf="isLoading">Loading...</div>
             <!-- Scouts Tab Content -->
             <!-- {{scoutProfiles | json}} -->
             <div *ngIf="selectedTab === 'scouts' && !isLoading">

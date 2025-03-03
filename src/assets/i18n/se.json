@@ -1289,7 +1289,10 @@
   "boostProfiles": "Boost-profil",
   "changeNewsletterStatus": "Är du säker på att du vill ändra nyhetsbrevsstatus?",
   "areYouSuretoDeleteActivity": "Är du säker på att du vill ta bort aktiviteten?",
-   "subsciptionCancelSuccess": "Din prenumeration har framgångsrikt avslutats.",
-   "deleteAccountDesc": "Detta kommer att radera ditt konto permanent från vår databas.",
-   "deleteMyAccount" : "Ta bort mitt konto"
+  "subsciptionCancelSuccess": "Din prenumeration har framgångsrikt avslutats.",
+  "deleteAccountDesc": "Detta kommer att radera ditt konto permanent från vår databas.",
+  "deleteMyAccount": "Ta bort mitt konto",
+  "uploadNewProfileImage": "Ladda upp ny profilbild",
+  "editCoverImage": "Redigera omslagsbild",
+  "learnMore":"Lär dig mer"
 }

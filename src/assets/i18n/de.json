@@ -1257,5 +1257,6 @@
   "limitEr": "Grenze ist erforderlich",
   "discountPercent": "Rabatt ist erforderlich",
   "deleteAccountDesc":"Dadurch wird Ihr Konto dauerhaft aus unserer Datenbank gelöscht.",
-  "deleteMyAccount" : "Mein Konto löschen"
+  "deleteMyAccount" : "Mein Konto löschen",
+  "learnMore":"Mehr erfahren"
 }

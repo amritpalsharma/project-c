@@ -605,6 +605,7 @@ button.page-active {
         .player-img {
             height: 262px !important;
             width: 100%;
+
             img {
                 width: 100% !important;
                 height: 100% !important;
@@ -722,4 +723,13 @@ button.page-active {
     // transform: translate(-50%, -50%);
     font-size: 24px;
     color: rgb(0, 255, 34);
+}
+
+.loader123 {
+    border: 6px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 6px solid #3498db;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
 }

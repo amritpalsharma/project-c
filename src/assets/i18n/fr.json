@@ -1304,5 +1304,8 @@
   "areYouSuretoDeleteActivity": "Êtes-vous sûr de vouloir supprimer l'activité ?",
   "subsciptionCancelSuccess": "Votre abonnement a été annulé avec succès.",
   "deleteAccountDesc": "Cela supprimera définitivement votre compte de notre base de données.",
-  "deleteMyAccount" : "Supprimer mon compte"
+  "deleteMyAccount": "Supprimer mon compte",
+  "uploadNewProfileImage": "Télécharger une nouvelle image de profil",
+  "editCoverImage": "Modifier l'image de couverture",
+  "learnMore":"En savoir plus"
 }

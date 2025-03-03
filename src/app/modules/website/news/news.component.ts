@@ -4,6 +4,7 @@ import { WebPages } from '../../../services/webpages.service';
 interface NewsData {
   id: number;
   title: string;
+  slug: string;
   created_at: string;
   featured_image: string;
 }
@@ -33,7 +34,7 @@ export class NewsComponent implements OnInit, OnDestroy {
   touchStartX: number = 0;
   advertisemnetData: any;
   advertisemnet_base_url: string = '';
-  base_url: string = '';
+  base_url: string = 'https://api.socceryou.ch/uploads/';
   adVisible: boolean[] = [true, true, true, true, true];
 
   images: SliderImage[] = [
@@ -83,13 +84,13 @@ export class NewsComponent implements OnInit, OnDestroy {
         this.banner_title = res.data.pageData.banner_title;
         
         this.news_title = res.data.pageData.news_title;
-        this.latestNewsData = res.data.latestNewsData;
+        this.latestNewsData = res.data.newsSliderData;
         this.news_img_path = res.data.news_img_path;
         this.slider_btn_txt = res.data.pageData.slider_btn_txt;
         this.slider_date = res.data.pageData.slider_date;
 
         this.images = res.data.newsSliderData || this.images;
-        this.base_url = res.data.base_url;
+        // this.base_url = res.data.base_url;
       }
     }, error => {
       console.error('Error fetching dynamic page data', error);

@@ -1163,5 +1163,8 @@
   "startDateEr": "Start date is required",
   "limitEr": "Limit is required",
   "deleteAccountDesc":"This will delete you account permanently from our database.",
-  "deleteMyAccount" : "Delete My Account"
+  "deleteMyAccount" : "Delete My Account",
+  "uploadNewProfileImage":"Upload New Profile Image",
+  "editCoverImage":"Edit Cover Image",
+  "learnMore":"Learn More"
 }

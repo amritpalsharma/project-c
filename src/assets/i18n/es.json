@@ -1235,5 +1235,8 @@
   "areYouSuretoDeleteActivity": "Está seguro de eliminar la actividad ?",
   "subsciptionCancelSuccess": "Su suscripción ha sido cancelada con éxito.",
   "deleteAccountDesc": "Esto eliminará su cuenta permanentemente de nuestra base de datos.",
-  "deleteMyAccount" : "Eliminar mi cuenta"
+  "deleteMyAccount" : "Eliminar mi cuenta",
+  "uploadNewProfileImage": "Cargar nueva imagen de perfil",
+  "editCoverImage": "Editar imagen de portada",
+  "learnMore":"Más información"
 }

@@ -409,7 +409,7 @@
   "InTheTeamSince": "No time desde",
   "Height": "Altura",
   "SocialMedia": "Mídias sociais",
-  "pt": "Senha",
+  "pt": "PT",
   "RegistrationDate": "Data de registro",
   "NextPaymentDue": "Próximo pagamento devido",
   "LastPayment": "Último pagamento",
@@ -1238,10 +1238,13 @@
     ]
   },
   "MyAccount": "para Painel",
-   "boostProfiles": "Impulsionar o perfil",
-   "changeNewsletterStatus": "Tem a certeza de que pretende alterar o estatuto de boletim informativo?",
-   "areYouSuretoDeleteActivity":"Tem a certeza de que pretende eliminar a atividade?",
-   "subsciptionCancelSuccess": "A sua subscrição foi cancelada com sucesso.",
-   "deleteAccountDesc": "Esta ação elimina permanentemente a sua conta da nossa base de dados.",
-   "deleteMyAccount" : "Eliminar a minha conta"
-  }
+  "boostProfiles": "Impulsionar o perfil",
+  "changeNewsletterStatus": "Tem a certeza de que pretende alterar o estatuto de boletim informativo?",
+  "areYouSuretoDeleteActivity": "Tem a certeza de que pretende eliminar a atividade?",
+  "subsciptionCancelSuccess": "A sua subscrição foi cancelada com sucesso.",
+  "deleteAccountDesc": "Esta ação elimina permanentemente a sua conta da nossa base de dados.",
+  "deleteMyAccount": "Eliminar a minha conta",
+  "uploadNewProfileImage": "Carregar nova imagem de perfil",
+  "editCoverImage": "Editar imagem de capa",
+  "learnMore":"Saiba mais"
+}
