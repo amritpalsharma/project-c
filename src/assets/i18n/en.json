@@ -546,7 +546,7 @@
   "confirmPasswordLabel": "Confirm Password",
   "confirmPasswordPlaceholder": "Confirm Password",
   "confirmPasswordError": "Passwords do not match.",
-  "privacyPolicyLabel": "More information on our processing can be found in the Privacy Policy. By submitting this form, I acknowledge that I have read and understand the Privacy Policy of SoccerYou.",
+  "privacyPolicyLabel": "For more information on how we process your data, please refer to our Privacy Policy. By submitting this form, you confirm that you have read and understood SoccerYou's privacy policy.",
   "privacyPolicyCheckboxError": "Please check the Privacy Policy.",
   "newsletterLabel": "Subscribe to newsletter",
   "submitButton": "Create Account",

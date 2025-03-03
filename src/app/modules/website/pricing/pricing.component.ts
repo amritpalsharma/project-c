@@ -110,6 +110,7 @@ export class PricingComponent {
       if (res.status) {
         this.pageData = res.data.pageData; // Store the page data in the component
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
+        this.advertisementData = res?.data?.advertisemnetData;
       }
     });
   }
@@ -118,17 +119,6 @@ export class PricingComponent {
 
     this.isActive[object] = false;
 
-  }
-
-  checkActive(obj: any){
-    if(this.isExists(obj) && this.isActive[obj]){
-      return true;
-    }
-    return false;
-  }
-
-  isExists(key: string): boolean {
-    return key in this.advertisementData && 'featured_image' in this.advertisementData[key];
   }
   
 
@@ -142,5 +132,19 @@ export class PricingComponent {
   openModal(modalId: string) {
     console.log(`Open modal: ${modalId}`);
     // Implement modal opening logic here
+  }
+  checkActive(obj: any) {
+    if (this.isExists(obj) && this.isFeaturedImageExists(obj) && this.isActive[obj]) {
+      return true;
+    }
+    return false;
+  }
+
+  isExists(key: any): boolean {
+    return key in this.advertisementData;
+  }
+
+  isFeaturedImageExists(key: any): boolean {
+    return 'featured_image' in this.advertisementData[key];
   }
 }

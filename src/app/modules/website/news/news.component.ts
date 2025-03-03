@@ -143,6 +143,7 @@ export class NewsComponent implements OnInit, OnDestroy {
         // this.base_url = res.data.base_url;
 
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
+        this.advertisementData = res?.data?.advertisemnetData;
       }
     }, error => {
       console.error('Error fetching dynamic page data', error);
@@ -257,16 +258,16 @@ export class NewsComponent implements OnInit, OnDestroy {
 
   }
 
-  checkActive(obj: any){
-    if(this.isExists(obj) && this.isActive[obj]){
-      return true;
-    }
-    return false;
-  }
+  // checkActive(obj: any){
+  //   if(this.isExists(obj) && this.isActive[obj]){
+  //     return true;
+  //   }
+  //   return false;
+  // }
 
-  isExists(key: string): boolean {
-    return key in this.advertisementData && 'featured_image' in this.advertisementData[key];
-  }
+  // isExists(key: string): boolean {
+  //   return key in this.advertisementData && 'featured_image' in this.advertisementData[key];
+  // }
   
 
   isEmptyObject(obj:any) {
@@ -278,6 +279,21 @@ export class NewsComponent implements OnInit, OnDestroy {
   openModal(modalId: string) {
     console.log(`Open modal: ${modalId}`);
     // Implement modal opening logic here
+  }
+
+  checkActive(obj: any) {
+    if (this.isExists(obj) && this.isFeaturedImageExists(obj) && this.isActive[obj]) {
+      return true;
+    }
+    return false;
+  }
+
+  isExists(key: any): boolean {
+    return key in this.advertisementData;
+  }
+
+  isFeaturedImageExists(key: any): boolean {
+    return 'featured_image' in this.advertisementData[key];
   }
 
 }

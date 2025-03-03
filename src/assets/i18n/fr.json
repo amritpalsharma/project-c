@@ -325,7 +325,7 @@
   "confirmPasswordLabel": "Confirmer le mot de passe",
   "confirmPasswordPlaceholder": "Confirmer le mot de passe",
   "confirmPasswordError": "Les mots de passe ne correspondent pas.",
-  "privacyPolicyLabel": "Plus d'informations sur notre traitement sont disponibles dans la Politique de confidentialité. En soumettant ce formulaire, j'accepte d'avoir lu et compris la Politique de confidentialité de SoccerYou.",
+  "privacyPolicyLabel": "Pour plus d'informations sur le traitement de vos données, veuillez consulter notre Politique de confidentialité. En soumettant ce formulaire, vous confirmez avoir lu et compris la politique de confidentialité de SoccerYou.",
   "privacyPolicyCheckboxError": "Veuillez accepter la Politique de confidentialité.",
   "newsletterLabel": "S'abonner à la newsletter",
   "submitButton": "Créer un compte",

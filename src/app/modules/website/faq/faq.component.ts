@@ -95,6 +95,7 @@ export class FaqComponent {
           this.talentSections = res.data.pageData.faq_first_btn_content; //this.faq_first_btn_content
            this.clubSections = res.data.pageData.faq_sec_btn_content;
            this.scoutSections = res.data.pageData.faq_third_btn_content;
+           this.advertisementData = res?.data?.advertisemnetData;
 
            this.advertisemnet_base_url = res.data.advertisemnet_base_url;
           
@@ -307,17 +308,6 @@ export class FaqComponent {
     this.isActive[object] = false;
 
   }
-
-  checkActive(obj: any){
-    if(this.isExists(obj) && this.isActive[obj]){
-      return true;
-    }
-    return false;
-  }
-
-  isExists(key: string): boolean {
-    return key in this.advertisementData && 'featured_image' in this.advertisementData[key];
-  }
   
 
   isEmptyObject(obj:any) {
@@ -329,5 +319,20 @@ export class FaqComponent {
   openModal(modalId: string) {
     console.log(`Open modal: ${modalId}`);
     // Implement modal opening logic here
+  }
+
+  checkActive(obj: any) {
+    if (this.isExists(obj) && this.isFeaturedImageExists(obj) && this.isActive[obj]) {
+      return true;
+    }
+    return false;
+  }
+
+  isExists(key: any): boolean {
+    return key in this.advertisementData;
+  }
+
+  isFeaturedImageExists(key: any): boolean {
+    return 'featured_image' in this.advertisementData[key];
   }
 }

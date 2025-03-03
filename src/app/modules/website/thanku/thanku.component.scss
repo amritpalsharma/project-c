@@ -17,6 +17,9 @@ body {
 .thanku-page{
     position: relative;
 }
+.banner-image-error{
+    position: relative;
+}
 
 .overlay {
     position: absolute;
@@ -53,8 +56,7 @@ img.check-image-dark {
     position: absolute;
     content: "";
     z-index: 1;
-    padding: 10% 10% 0% 18%;
-    top: 0;
+    top: 12rem;
     right: 0;
 }
 
@@ -76,29 +78,44 @@ a.btn.btn-register {
 
 
 
+
 /*--------------------------------------------------------------
 #  Banner
 --------------------------------------------------------------*/
 @media (min-width: 1441px) {
-
-    img.check-image-light, img.check-image-dark {
-        padding: 10% 5% 0% 0%;
+    img.check-image-light,
+    img.check-image-dark {
+        top: 17rem;
     }
 }
 
 @media (min-width: 1536px) {
     .banner-text-h2 {
-        top: 26rem;
+        top: 19rem;
+    }
+    h3.banner-text-h3 {
+        top: 28rem;
+    }
+    a.btn.btn-register {
+        top: 32rem;
+    }    
+    
+    
+
+}
+@media (min-width: 2560px){
+    .banner-text-h2 {
+        top: 28rem;
     }
     h3.banner-text-h3 {
         top: 36rem;
     }
     a.btn.btn-register {
-        top: 41rem;
-    }    
-    
-    
-
+        top: 42rem;
+    }  
+    img.check-image-light, img.check-image-dark {
+        top: 23rem;
+    }
 }
 
 @media (max-width: 1281px){
@@ -126,9 +143,8 @@ a.btn.btn-register {
 
     img.check-image-light,
     img.check-image-dark {
-
-        padding: 12% 5% 0% 0%;
-        height: 550px;
+        width: 100%;
+        top: 9rem;
     }
 
 }
@@ -153,20 +169,15 @@ a.btn.btn-register {
         width: 230px;
         top: 20rem;
     }
-
-    img.check-image-light,
-    img.check-image-dark {
-        padding: 14% 5% 0% 0%;
-        height: 450px;
-    }
 }
 
 @media (max-width: 768px) {
 
     img.check-image-light,
     img.check-image-dark {
-        padding: 18% 5% 0% 0%;
-        height: 400px;
+        top: 7rem;
+        height: 100%;
+        min-height: 330px;
     }
 
 }
@@ -192,10 +203,8 @@ a.btn.btn-register {
 
     img.check-image-light,
     img.check-image-dark {
-        padding: 0;
-        height: 450px;
-        top: 42%;
-        left: 6%;
+        top: 23rem;
+        left: 0;
     }
 
 }
@@ -204,7 +213,7 @@ a.btn.btn-register {
 
 @media (max-width: 391px) {
     img.check-image-light, img.check-image-dark {
-        left: 6%;
+        left: 0;
     }
     .banner-text-h2 {
         font-size: 38px;
@@ -240,11 +249,6 @@ a.btn.btn-register {
 
 @media (max-width: 361px) {
 
-    img.check-image-light,
-    img.check-image-dark {
-        height: 430px;
-    }
-
     .banner-text-h2 {
         font-size: 36px;
     }
@@ -257,8 +261,7 @@ a.btn.btn-register {
         height: 650px;
     }
     img.check-image-light, img.check-image-dark {
-        height: 380px;
-        left: 2%;
+        left: 0;
     }
    
 }
@@ -277,9 +280,7 @@ a.btn.btn-register {
 
     img.check-image-light,
     img.check-image-dark {
-        padding: 0;
-        height: 360px;
-        top: 50%;
+        top: 21rem;
     }
     a.btn.btn-register {
         font-size: 14px;
