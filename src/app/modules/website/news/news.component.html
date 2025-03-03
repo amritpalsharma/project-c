@@ -102,13 +102,13 @@
                   class="fa-solid fa-xmark"></i></button>
             </div>
   
-            <div *ngIf="!isEmptyObject(advertisementData?.inline_rectangle)" class="inline-rectangle">
+            <div *ngIf="checkActive('inline_rectangle')" class="inline-rectangle">
               <img [src]="advertisemnet_base_url + advertisementData?.inline_rectangle?.featured_image">
               <button (click)="closeAd('inline_rectangle')" class="ad-close-button"><i
                   class="fa-solid fa-xmark"></i></button>
             </div>
   
-            <div *ngIf="!isEmptyObject(advertisementData?.square)" class="square">
+            <div *ngIf="checkActive('square')" class="square">
               <img [src]="advertisemnet_base_url + advertisementData?.square?.featured_image">
               <button (click)="closeAd('square')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
             </div>

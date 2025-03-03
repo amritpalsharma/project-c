@@ -681,7 +681,6 @@
   "default": "Default",
   "startExploring": "Start Exploring",
   "demo": "Demo",
-  "addCountryText": "By adding countries, your profile will be showcased in that country. Your profile would be visible to all the Talent, Clubs and Scouts of that country.",
   "editMulti-countryPlan": "Edit Multi-Country Plan",
   "selectCountries": "Select Countries",
   "selectACountries": "Select a country",
@@ -1176,5 +1175,6 @@
   "startDateEr": "Start date is required",
   "limitEr": "Limit is required",
   "deleteAccountDesc":"This will delete you account permanently from our database.",
-  "deleteMyAccount" : "Delete My Account"
+  "deleteMyAccount" : "Delete My Account",
+  "addCountryText": "If you add another country, your profile will be displayed in that country. Your profile will then also be visible to all talents, clubs, and scouts in that country."
 }

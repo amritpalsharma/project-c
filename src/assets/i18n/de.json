@@ -529,7 +529,7 @@
   "default": "Standard",
   "demo": "Demo",
   "startExploring": "Erkundung beginnen",
-  "addCountryText": "Wenn du Länder hinzufügst, wird dein Profil in diesem Land präsentiert. Dein Profil ist dann für alle Talente, Clubs und Scouts in diesem Land sichtbar.",
+
   "editMulti-countryPlan": "Mehrländerplan bearbeiten",
   "selectCountries": "Länder auswählen",
   "selectACountries": "Wählen Sie ein Land",
@@ -1176,6 +1176,7 @@
   "talentSection": "Talent-Bereich",
   "selectPosition": "Position auswählen",
   "gn-note": "Hinweis: Sie müssen nur Ihren Benutzernamen hinzufügen.",
+  "addCountryText": "Wenn du ein weiteres Land hinzufügst, wird dein Profil in diesem Land angezeigt. Dein Profil ist dann für alle Talente, Clubs und Scouts in diesem Land zusätzlich sichtbar.",
   "demoPlayer": "Demo-Spieler",
   "pause": "Pause",
   "editPerformaceDetails": "Leistungsdetails bearbeiten",
