@@ -108,7 +108,7 @@ export class AboutComponent {
           this.about_banner_img =  res.data.base_url+res.data.pageData.about_banner_img;
           this.country_section_banner_img=  res.data.base_url+res.data.pageData.country_section_banner_img;
          
-          // this.advertisementData = res.data.advertisementData;
+          this.advertisementData = res.data.advertisementData;
           // this.advertisementData = [];
           this.advertisemnet_base_url = res.data.advertisemnet_base_url;
         
@@ -122,17 +122,6 @@ export class AboutComponent {
     this.isActive[object] = false;
 
   }
-
-  checkActive(obj: any){
-    if(this.isExists(obj) && this.isActive[obj]){
-      return true;
-    }
-    return false;
-  }
-
-  isExists(key: string): boolean {
-    return key in this.advertisementData && 'featured_image' in this.advertisementData[key];
-  }
   
 
   isEmptyObject(obj:any) {
@@ -145,5 +134,20 @@ export class AboutComponent {
   openModal(modalId: string) {
     console.log(`Open modal: ${modalId}`);
     // Implement modal opening logic here
+  }
+
+  checkActive(obj: any) {
+    if (this.isExists(obj) && this.isFeaturedImageExists(obj) && this.isActive[obj]) {
+      return true;
+    }
+    return false;
+  }
+
+  isExists(key: any): boolean {
+    return key in this.advertisementData;
+  }
+
+  isFeaturedImageExists(key: any): boolean {
+    return 'featured_image' in this.advertisementData[key];
   }
 }

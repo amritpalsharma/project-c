@@ -317,17 +317,6 @@ export class IndexComponent {
     this.isActive[object] = false;
 
   }
-
-  checkActive(obj: any){
-    if(this.isExists(obj) && this.isActive[obj]){
-      return true;
-    }
-    return false;
-  }
-
-  isExists(key: string): boolean {
-    return key in this.advertisementData && 'featured_image' in this.advertisementData[key];
-  }
   
 
   isEmptyObject(obj:any) {
@@ -352,12 +341,14 @@ export class IndexComponent {
         this.sliderDetail = sliderData;
         this.club_logo_path = this.sliderDetail.imagePath;
         this.pre_club_logo_path = this.sliderDetail.flagPath;
-        // this.advertisementData = res.data.advertisementData;
+        this.advertisementData = res.data.advertisementData;
         // this.advertisementData = [];
 
         // console.log('advertisementData', this.advertisementData);
         this.imageBaseUrl = res.data.base_url;
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
+        
+        
       }
     });
   }
@@ -379,5 +370,20 @@ export class IndexComponent {
   chnageHerosectionBgImg() {
     //  alert('theme chnaged');
     console.log('Index Page theme updated');
+  }
+
+  checkActive(obj: any) {
+    if (this.isExists(obj) && this.isFeaturedImageExists(obj) && this.isActive[obj]) {
+      return true;
+    }
+    return false;
+  }
+
+  isExists(key: any): boolean {
+    return key in this.advertisementData;
+  }
+
+  isFeaturedImageExists(key: any): boolean {
+    return 'featured_image' in this.advertisementData[key];
   }
 }

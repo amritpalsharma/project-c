@@ -114,7 +114,7 @@ export class ClubComponent {
           this.baseUrl = res.data.base_url;
          
           this.advertisemnetData = res.data.advertisemnetData;
-          this.advertisemnetData = [];
+          // this.advertisemnetData = [];
           this.advertisemnet_base_url = res.data.advertisemnet_base_url;
         
           // Initialize toggle states for pricing plans with Monthly active (false)
@@ -216,16 +216,16 @@ export class ClubComponent {
 
   }
 
-  checkActive(obj: any){
-    if(this.isExists(obj) && this.isActive[obj]){
-      return true;
-    }
-    return false;
-  }
+  // checkActive(obj: any){
+  //   if(this.isExists(obj) && this.isActive[obj]){
+  //     return true;
+  //   }
+  //   return false;
+  // }
 
-  isExists(key: string): boolean {
-    return key in this.advertisementData && 'featured_image' in this.advertisementData[key];
-  }
+  // isExists(key: string): boolean {
+  //   return key in this.advertisementData && 'featured_image' in this.advertisementData[key];
+  // }
   
 
   isEmptyObject(obj:any) {
@@ -237,6 +237,21 @@ export class ClubComponent {
   openModal(modalId: string) {
     console.log(`Open modal: ${modalId}`);
     // Implement modal opening logic here
+  }
+
+  checkActive(obj: any) {
+    if (this.isExists(obj) && this.isFeaturedImageExists(obj) && this.isActive[obj]) {
+      return true;
+    }
+    return false;
+  }
+
+  isExists(key: any): boolean {
+    return key in this.advertisementData;
+  }
+
+  isFeaturedImageExists(key: any): boolean {
+    return 'featured_image' in this.advertisementData[key];
   }
 
 }

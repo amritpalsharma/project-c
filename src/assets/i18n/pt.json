@@ -325,7 +325,7 @@
   "confirmPasswordLabel": "Confirmar Senha",
   "confirmPasswordPlaceholder": "Confirmar Senha",
   "confirmPasswordError": "Senhas não coincidem.",
-  "privacyPolicyLabel": "Mais informações sobre nosso processamento podem ser encontradas na Política de Privacidade. Ao enviar este formulário, reconheço que li e entendi a Política de Privacidade do SoccerYou.",
+  "privacyPolicyLabel": "Para mais informações sobre como processamos seus dados, consulte nossa Política de Privacidade. Ao enviar este formulário, você confirma que leu e entendeu a política de privacidade da SoccerYou.",
   "privacyPolicyCheckboxError": "Por favor, aceite a Política de Privacidade.",
   "newsletterLabel": "Inscrever-se para receber newsletter",
   "submitButton": "Criar Conta",
