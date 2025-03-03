@@ -60,7 +60,7 @@ export class AboutComponent {
     },
     large_leaderboard: {
       id: '1',
-      // featured_image: "leaderboard.png"
+      featured_image: "leaderboard.png"
     },
     banner: {
       id: '1',

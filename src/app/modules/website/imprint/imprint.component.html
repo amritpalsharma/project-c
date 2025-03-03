@@ -10,14 +10,14 @@
         </div>
       </div>
     </div>
-    <div *ngIf="!isEmptyObject(advertisemnetData?.skyscraper)" class="skyscraper-left">
-      <img [src]="advertisemnet_base_url + advertisemnetData?.skyscraper?.featured_image">
-      <button (click)="closeAd('skyscraper')"  class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+    <div *ngIf="checkActive('skyscraper')" class="skyscraper-left">
+      <img [src]="advertisemnet_base_url + advertisementData?.skyscraper?.featured_image">
+      <button (click)="closeAd('skyscraper')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
     </div>
-  
-    <div *ngIf="!isEmptyObject(advertisemnetData?.skyscraper_large)" class="skyscraper-right">
-      <img [src]="advertisemnet_base_url + advertisemnetData?.skyscraper_large?.featured_image" >
-      <button (click)="closeAd('skyscraper_large')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+
+    <div *ngIf="checkActive('wide_skyscraper')" class="skyscraper-right">
+      <img [src]="advertisemnet_base_url + advertisementData?.wide_skyscraper?.featured_image">
+      <button (click)="closeAd('wide_skyscraper')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
     </div>
   </div>
   
@@ -98,10 +98,18 @@
        
           
     </div>
-    <div class="advertisment" >
-      <div *ngIf="!isEmptyObject(advertisemnetData?.leaderboard)"  class="leaderboard-image">
-        <img [src]="advertisemnet_base_url + advertisemnetData?.leaderboard?.featured_image">
-        <button (click)="closeAd('featured_image')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+    <div class="advertisment py_0">
+      <div class="container py_0">
+        <div *ngIf="checkActive('leaderboard') || checkActive('banner')" class="advertisment advirtismnt_2">
+          <div *ngIf="isExists('leaderboard') && checkActive('leaderboard')" class="leaderboard-club-image advirtismnt_2_large">
+            <img [src]="advertisemnet_base_url + advertisementData?.leaderboard?.featured_image">
+            <button (click)="closeAd('leaderboard')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+          <div *ngIf="!isExists('leaderboard') && checkActive('banner')" class="leaderboard-club-image advirtismnt_2_small">
+            <img [src]="advertisemnet_base_url + advertisementData?.banner?.featured_image">
+            <button (click)="closeAd('banner')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+        </div>
       </div>
     </div>
   </div>

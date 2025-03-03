@@ -636,16 +636,16 @@ li {
   display: none;
 }
 
-.leaderboard-image {
-  position: absolute;
-  content: "";
-  z-index: 1;
-  height: 90px;
-  width: 728px;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-}
+// .leaderboard-image {
+//   position: absolute;
+//   content: "";
+//   z-index: 1;
+//   height: 90px;
+//   width: 728px;
+//   bottom: 0;
+//   left: 50%;
+//   transform: translateX(-50%);
+// }
 
 .leaderboard-image img {
   height: 90px;
