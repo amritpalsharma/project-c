@@ -67,16 +67,16 @@ export class IndexComponent {
   @ViewChild('owlCarousel') owlCarousel!: ElementRef;
   fallbackImage: string = 'assets/images/1.jpg'; // Path to your fallback image
 
-  selectedLangId:any = null;
-  pageDetail:any=null;
-  sliderDetail:any=null;
+  selectedLangId: any = null;
+  pageDetail: any = null;
+  sliderDetail: any = null;
   // advertisementData:any=null;
-  imageBaseUrl:string= '';
-  banner_img:string= '';
-  banner_bg_img:string= '';
-  hero_bg_img:string= '';
-  hero_bg_img_dark_mode:string= '';
-  advertisemnet_base_url:string= '';
+  imageBaseUrl: string = '';
+  banner_img: string = '';
+  banner_bg_img: string = '';
+  hero_bg_img: string = '';
+  hero_bg_img_dark_mode: string = '';
+  advertisemnet_base_url: string = '';
   isUserLoggedIn: boolean = false;
   club_logo_path: string = '';
   pre_club_logo_path: string = '';
@@ -91,19 +91,23 @@ export class IndexComponent {
     { name: 'Messi', image: './assets/images/Messi.svg', year: '2004' }
   ];
 
-  isActive : any = {
+  isActive: any = {
     skyscraper: true,
     wide_skyscraper: true,
     leaderboard: true,
-    large_leaderboard:true,
+    large_leaderboard: true,
     banner: true,
-    square:true,
+    square: true,
     small_square: true,
     large_rectangle: true,
     inline_rectangle: true,
   }
 
+<<<<<<< HEAD
   advertisementData:any = {
+=======
+  advertisementData: any = {
+>>>>>>> 166f522f98dea2de86467c99fa57e3adecb9a4b8
     skyscraper: {
       id: '1',
       featured_image: "leaderboard.png"
@@ -114,11 +118,19 @@ export class IndexComponent {
     },
     leaderboard: {
       id: '1',
+<<<<<<< HEAD
       featured_image: "leaderboard.png"
     },
     large_leaderboard: {
       id: '1',
       featured_image: "leaderboard.png"
+=======
+      // featured_image: "leaderboard.png"
+    },
+    large_leaderboard: {
+      id: '1',
+      // featured_image: "leaderboard.png"
+>>>>>>> 166f522f98dea2de86467c99fa57e3adecb9a4b8
     },
     banner: {
       id: '1',
@@ -319,20 +331,10 @@ export class IndexComponent {
 
   }
 
-  checkActive(obj: any){
-    if(this.isExists(obj) && this.isActive[obj]){
-      return true;
-    }
-    return false;
-  }
 
-  isExists(key: string): boolean {
-    return key in this.advertisementData && 'featured_image' in this.advertisementData[key];
-  }
-  
 
-  isEmptyObject(obj:any) {
-    if(typeof obj != 'undefined'){
+  isEmptyObject(obj: any) {
+    if (typeof obj != 'undefined') {
       return (obj && (Object.keys(obj).length === 0));
     }
     return true;
@@ -343,22 +345,24 @@ export class IndexComponent {
     this.webPages.getDynamicHomePage(languageId).subscribe((res) => {
       let pageData = res.data.pageData;
       let sliderData = res.data.sliderData;
-      if(res.status){
-          this.pageDetail = pageData;
-          this.banner_img =  res.data.base_url + pageData.banner_img;
-          this.banner_bg_img =  res.data.base_url + pageData.banner_bg_img;
-          this.hero_bg_img =  res.data.base_url + pageData.hero_bg_img;
-          this.hero_bg_img_dark_mode =  res.data.base_url + pageData.hero_bg_img_dark_mode;
+      if (res.status) {
+        this.pageDetail = pageData;
+        this.banner_img = res.data.base_url + pageData.banner_img;
+        this.banner_bg_img = res.data.base_url + pageData.banner_bg_img;
+        this.hero_bg_img = res.data.base_url + pageData.hero_bg_img;
+        this.hero_bg_img_dark_mode = res.data.base_url + pageData.hero_bg_img_dark_mode;
 
         this.sliderDetail = sliderData;
         this.club_logo_path = this.sliderDetail.imagePath;
         this.pre_club_logo_path = this.sliderDetail.flagPath;
-        // this.advertisementData = res.data.advertisementData;
+        this.advertisementData = res.data.advertisemnetData;
         // this.advertisementData = [];
 
         // console.log('advertisementData', this.advertisementData);
         this.imageBaseUrl = res.data.base_url;
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
+
+
       }
     });
   }
@@ -376,9 +380,25 @@ export class IndexComponent {
     }
     return 'N/A';
   }
-  
+
   chnageHerosectionBgImg() {
     //  alert('theme chnaged');
     console.log('Index Page theme updated');
+  }
+
+  checkActive(obj: any) {
+    if (this.isExists(obj) && this.isFeaturedImageExists(obj) && this.isActive[obj]) {
+      return true;
+    }
+    return false;
+  }
+
+  isExists(key: any): boolean {
+    return this.advertisementData && key in this.advertisementData;
+  }
+
+
+  isFeaturedImageExists(key: any): boolean {
+    return 'featured_image' in this.advertisementData[key];
   }
 }
