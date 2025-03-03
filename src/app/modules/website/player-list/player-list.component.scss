@@ -726,10 +726,19 @@ button.page-active {
 }
 
 .loader123 {
-    border: 6px solid #f3f3f3;
+    border: 3;
     border-radius: 50%;
-    border-top: 6px solid #3498db;
-    width: 40px;
-    height: 40px;
+    border-top: 0;
+    width: 100%;
+    height: 80px;
+    display: inline-block;
     animation: spin 1s linear infinite;
+    position: relative;
+}
+.make-loader-center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: 0 !important;
 }

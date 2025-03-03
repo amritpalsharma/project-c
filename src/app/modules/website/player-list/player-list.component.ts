@@ -17,7 +17,7 @@ interface Player {
 })
 export class PlayerListComponent implements OnInit {
   selectedTab: 'talent' | 'club' | 'scouts' = 'talent';
-  isLoading:boolean=false;
+  isLoading:boolean=true;
   currentPage: number = 1;
   itemsPerPage: number = 8;
   number: number = 12;
@@ -159,7 +159,7 @@ export class PlayerListComponent implements OnInit {
         // Calculate total pages based on total count and items per page
         this.totalPagesCount = Math.ceil(response.data.userData.totalCount / this.itemsPerPage);
         this.TotalCount = response.data.userData.totalCount;
-        this.isLoading = false;
+        this.isLoading = true;
       },
       (error) => {
         console.error(error);

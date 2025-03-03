@@ -7,12 +7,12 @@
     </div>
   
       <div class="inbox-body chat_popup_srch_color">
-        <div class="text-center w-100 py-1 px-3 body-background">
+        <div class="text-center w-100 body-background">
           <mat-form-field class="example-chip-list inbox-wrapper bg-color-2 w-100">
             <!-- <mat-label>To:</mat-label> -->
              <!-- <span>To:</span> -->
             <mat-chip-grid #chipGrid aria-label="Fruit selection " class="messanger-selector messanger-selector-name bg-color-2 w-100 " >
-              <p>{{'to' | translate}}</p>
+              <p class="main_to_label">{{'to' | translate}}</p>
               @for (user of users; track $index) {
                 <mat-chip-row (removed)="remove(user)">
                   <img width="20" height="20" class="img-list" src="{{user?.meta?.profile_image_path ? user?.meta?.profile_image_path :'../../../../../assets/images/default/talent-profile-default.png'}}">
@@ -50,5 +50,4 @@
       <button class="btn btn-success btn-sm web-create-bg w-100"(click)="startChat()"  type="button">Chat</button>
     </div>
 
-</div>
-
+  </div>
