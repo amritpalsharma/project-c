@@ -342,14 +342,14 @@ export class IndexComponent {
         this.sliderDetail = sliderData;
         this.club_logo_path = this.sliderDetail.imagePath;
         this.pre_club_logo_path = this.sliderDetail.flagPath;
-        this.advertisementData = res.data.advertisementData;
+        this.advertisementData = res.data.advertisemnetData;
         // this.advertisementData = [];
 
         // console.log('advertisementData', this.advertisementData);
         this.imageBaseUrl = res.data.base_url;
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
-        
-        
+
+
       }
     });
   }
@@ -381,8 +381,9 @@ export class IndexComponent {
   }
 
   isExists(key: any): boolean {
-    return key in this.advertisementData;
+    return this.advertisementData && key in this.advertisementData;
   }
+
 
   isFeaturedImageExists(key: any): boolean {
     return 'featured_image' in this.advertisementData[key];
