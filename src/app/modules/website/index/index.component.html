@@ -46,11 +46,11 @@
 
     <div class="container">
       <div *ngIf="checkActive('leaderboard') || checkActive('banner')" class="advertisment advirtismnt_2">
-        <div *ngIf="isExists('leaderboard')" class="leaderboard-club-image advirtismnt_2_large">
+        <div *ngIf="isExists('leaderboard') && checkActive('leaderboard')" class="leaderboard-club-image advirtismnt_2_large">
           <img [src]="advertisemnet_base_url + advertisementData?.leaderboard?.featured_image">
           <button (click)="closeAd('leaderboard')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
         </div>
-        <div *ngIf="!isExists('leaderboard')" class="leaderboard-club-image advirtismnt_2_small">
+        <div *ngIf="!isExists('leaderboard') && checkActive('banner')" class="leaderboard-club-image advirtismnt_2_small">
           <img [src]="advertisemnet_base_url + advertisementData?.banner?.featured_image">
           <button (click)="closeAd('banner')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
         </div>
