@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray,Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { WebPages } from '../../../../../services/webpages.service';
 import { FormsModule } from '@angular/forms';
 import {
@@ -26,11 +26,11 @@ export class AddHomePageComponent {
   @Input() languages: Language[] = [];
   addHomePageForm: FormGroup;
   selectedLanguage: string = '0';
-  showTabForm: boolean = false;
-  filesData:  any = {
-    banner_bg_img : null,
-    banner_img : null,
-    hero_bg_img : null,
+  showTabForm: boolean = true;
+  filesData: any = {
+    banner_bg_img: null,
+    banner_img: null,
+    hero_bg_img: null,
   }
   baseUrl: string = '';
   first_btn_txt: string = '';
@@ -40,6 +40,7 @@ export class AddHomePageComponent {
   // Update the tab data structure
   first_tab = [
     {
+      // row_id: '',
       title: '',
       desc: '',
       images: [] as File[],
@@ -51,6 +52,7 @@ export class AddHomePageComponent {
 
   second_tab = [
     {
+      // row_id: '',
       title: '',
       desc: '',
       images: [] as File[],
@@ -68,7 +70,7 @@ export class AddHomePageComponent {
   bannerBgImagePreview: any = null;
 
 
-  constructor(private fb: FormBuilder, private webpages: WebPages, public dialogRef : MatDialogRef<AddHomePageComponent>,) {
+  constructor(private fb: FormBuilder, private webpages: WebPages, public dialogRef: MatDialogRef<AddHomePageComponent>,) {
     this.addHomePageForm = this.fb.group({
       page_id: [''],
       lang_id: [''],
@@ -90,9 +92,9 @@ export class AddHomePageComponent {
   }
 
   ngOnInit() {
-     if(this.pageId){
-        this.getPagebyId(this.pageId);
-     }
+    if (this.pageId) {
+      this.getPagebyId(this.pageId);
+    }
   }
 
   onSubmit(): void {
@@ -247,20 +249,20 @@ export class AddHomePageComponent {
   }
 
 
-  getPagebyId(id:number){
+  getPagebyId(id: number) {
 
     this.webpages.getPageById(id).subscribe(response => {
       if (response.status) {
 
-         this.addHomePageForm.patchValue({
-         // banner_bg_img: response.data.pageData.banner_bg_img,
-         // banner_img: response.data.pageData.banner_img,
+        this.addHomePageForm.patchValue({
+          // banner_bg_img: response.data.pageData.banner_bg_img,
+          // banner_img: response.data.pageData.banner_img,
           banner_btn_txt: response.data.pageData.banner_btn_txt,
           banner_btn_link: response.data.pageData.banner_btn_link,
           slider_heading: response.data.pageData.slider_heading,
           slider_btn_txt: response.data.pageData.slider_btn_txt,
           slider_btn_link: response.data.pageData.slider_btn_link,
-         // hero_bg_img: response.data.pageData.hero_bg_img,
+          // hero_bg_img: response.data.pageData.hero_bg_img,
           hero_heading_txt: response.data.pageData.hero_heading_txt,
           hero_btn_txt: response.data.pageData.hero_btn_txt,
           hero_btn_link: response.data.pageData.hero_btn_link,
@@ -270,7 +272,7 @@ export class AddHomePageComponent {
         })
 
         this.bannerBgImagePreview = response?.data?.pageData?.banner_bg_img ? response.data.base_url + response.data.pageData.banner_bg_img : null;
-        this.bannerImagePreview  = response?.data?.pageData?.banner_img ? response.data.base_url + response.data.pageData.banner_img : null;
+        this.bannerImagePreview = response?.data?.pageData?.banner_img ? response.data.base_url + response.data.pageData.banner_img : null;
         this.heroBgImagePreview = response?.data?.pageData?.hero_bg_img ? response.data.base_url + response.data.pageData.hero_bg_img : null;
         this.heroBgImagePreviewDarkMode = response?.data?.pageData?.hero_bg_img_dark_mode ? response.data.base_url + response.data.pageData.hero_bg_img_dark_mode : null;
 
@@ -321,7 +323,7 @@ export class AddHomePageComponent {
           this.bannerBgImagePreview = reader.result;
         } else if (fieldName === 'hero_bg_img') {
           this.heroBgImagePreview = reader.result;
-        }else if (fieldName === 'hero_bg_img_dark_mode') {
+        } else if (fieldName === 'hero_bg_img_dark_mode') {
           this.heroBgImagePreviewDarkMode = reader.result;
         }
       };
@@ -338,7 +340,7 @@ export class AddHomePageComponent {
       this.bannerBgImagePreview = null;
     } else if (fieldName === 'hero_bg_img') {
       this.heroBgImagePreview = null;
-    }else if (fieldName === 'hero_bg_img_dark_mode') {
+    } else if (fieldName === 'hero_bg_img_dark_mode') {
       this.heroBgImagePreviewDarkMode = null;
     }
   }
@@ -369,7 +371,9 @@ export class AddHomePageComponent {
   onTabFormSubmit() {
     let formData = new FormData();
     formData.append('page_id', this.pageId);
-
+    formData.append('title', this.title);
+    formData.append('first_btn_txt', this.first_btn_txt);
+    formData.append('sec_btn_txt', this.sec_btn_txt);
     // Process first_tab
     this.first_tab.forEach((tab, index) => {
       formData.append(`first_tab[${index}][title]`, tab.title);
@@ -398,11 +402,44 @@ export class AddHomePageComponent {
     formData.append('lang', String(localStorage.getItem('lang_id')));
 
     this.webpages.addHomePageTabData(formData).subscribe((response) => {
-      this.dialogRef.close({ 
+      this.dialogRef.close({
         action: "page-added-successfully",
-        message: response.message 
+        message: response.message
       });
     });
+  }
+
+  addFirstTab() {
+    this.first_tab.push({
+      // row_id: '',
+      title: '',
+      desc: '',
+      images: [] as File[],
+      imagePreviews: [] as string[],
+      darkImages: [] as File[], // New field for dark images
+      darkImagePreviews: [] as string[], // New field for dark image previews
+    });
+  }
+
+
+  removeSection(index: any) {
+    this.first_tab.splice(index, 1);
+  }
+
+  addSecondTab() {
+    this.second_tab.push({
+      // row_id: '',
+      title: '',
+      desc: '',
+      images: [] as File[],
+      imagePreviews: [] as string[],
+      darkImages: [] as File[], // New field for dark images
+      darkImagePreviews: [] as string[], // New field for dark image previews
+    });
+  }
+
+  remove2TabSection(index: any) {
+    this.second_tab.splice(index, 1);
   }
 
 

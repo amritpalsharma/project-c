@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MessagePopupComponent } from '../../message-popup/message-popup.component';
 import { ActivityService } from '../../../../services/activity';
+import { AdminHelperService } from '../../../../services/admin-helper.service';
 
 @Component({
   selector: 'app-activity-log',
@@ -23,7 +24,7 @@ export class ActivityLogComponent {
   @ViewChild(MatSort) sort!: MatSort;
   idsToDelete: any = [];
 
-  constructor(private activityService: ActivityService, public dialog: MatDialog){}
+  constructor(private activityService: ActivityService, public dialog: MatDialog, public adminHelper : AdminHelperService){}
 
   ngOnInit(){
     this.getActivity();
@@ -142,5 +143,11 @@ export class ActivityLogComponent {
   confirmSingleDeletion(id:any){
     this.idsToDelete = [id];
     this.showMatDialog("", "delete-activity-confirmation");
+  }
+
+  formatDateTime(datetime: string) {
+    // convertAdminDateTime
+    let formattedDate = this.adminHelper.convertAdminDateTime(datetime, 'users');
+    return formattedDate;
   }
 }

@@ -271,5 +271,11 @@ export class TemplatesComponent {
     this.customFilters = filters;
     this.getTemplates(true);
   }
+
+  formatDateTime(datetime: string) {
+    // convertAdminDateTime
+    let formattedDate = this.adminHelper.convertAdminDateTime(datetime, 'users');
+    return formattedDate;
+  }
 }
    

@@ -1300,5 +1300,7 @@
   "iDecline": "Rifiuto",
   "manageConsentPreferences": "Gestione delle preferenze di consenso",
   "allowAll": "Consenti a tutti",
-  "refuseAll": "Rifiuta tutto"
+  "refuseAll": "Rifiuta tutto",
+   "deleteAccountDesc": "In questo modo il vostro account verrà eliminato definitivamente dal nostro database.",
+   "deleteMyAccount" : "Cancellare il mio account"
 }

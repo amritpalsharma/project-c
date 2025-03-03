@@ -1303,5 +1303,7 @@
   "iDecline": "I decline",
   "manageConsentPreferences": "Manage Consent Preferences",
   "allowAll": "Allow All",
-  "refuseAll": "Refuse All"
+  "refuseAll": "Refuse All",
+   "deleteAccountDesc": "Detta kommer att radera ditt konto permanent från vår databas.",
+   "deleteMyAccount" : "Ta bort mitt konto"
 }

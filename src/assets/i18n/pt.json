@@ -1256,5 +1256,7 @@
   "iDecline": "Recuso-me",
   "manageConsentPreferences": "Gerir preferências de consentimento",
   "allowAll": "Permitir tudo",
-  "refuseAll": "Recusar tudo"
+  "refuseAll": "Recusar tudo",
+   "deleteAccountDesc": "Esta ação elimina permanentemente a sua conta da nossa base de dados.",
+   "deleteMyAccount" : "Eliminar a minha conta"
   }

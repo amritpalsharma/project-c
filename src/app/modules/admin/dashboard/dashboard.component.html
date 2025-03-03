@@ -9,7 +9,7 @@
         <div class="d-flex align-items-center">
           <p>{{ 'overview' | translate }}</p>
         </div>
-        <span>
+        <span class="ms-auto">
           <div>
             <select name="" id="" [(ngModel)]="selectedYear" (change)='yearChange($event)'>
               <option *ngFor="let year of years" [value]="year" >{{ year }}</option>
@@ -27,12 +27,10 @@
 
       </div>
       <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade " id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
-          tabindex="0">
-
+        <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
           <canvas id="canvas1" class="canvas" #canvas1></canvas>
         </div>
-        <div class="tab-pane fade show active" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+        <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
           <canvas id="canvas2" class="canvas" #canvas2></canvas>
         </div>
         <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
@@ -65,7 +63,7 @@
             aria-selected="false" (click)="scrollToTop()">
             <div class="navtabs_button">
               <p> {{ 'totalSales' | translate}}</p>
-              <h6>{{chartData?.sales?.total}}</h6>
+              <h6>{{chartData?.sales?.total}} {{chartData?.sales?.currency}} </h6>
 
             </div>
           </button>
@@ -153,7 +151,8 @@
             <td>{{user.role_name}}</td>
             <td>{{ user.language }}</td>
             <td> {{ user.user_location }}</td>
-            <td> {{ user.created_at  | date:'MM.dd.yyyy - hh.mm a' }}</td>
+            <td> {{ formatDateTime(user.created_at) }}</td>
+            <!-- <td> {{ user.created_at  | date:'MM.dd.yyyy - hh.mm a' }}</td> -->
             <td class="main-table-2">
               <span *ngIf="user.status==1" class="bg_pending">{{ 'pending' | translate }} </span>
               <span *ngIf="user.status==2" class="bg_success approved"> {{ 'approved' | translate }}</span>

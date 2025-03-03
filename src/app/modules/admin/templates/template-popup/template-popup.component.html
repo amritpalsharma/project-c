@@ -2,24 +2,22 @@
 <div class="p-0 parent-popup mobile_popup_responsive">
   <div class="p-3 bg-0C3453">
     
-    <h4 class="text-center mb-md-3 title-text">{{ 'emailTemplate' | translate }}</h4>
-  
-    <div class="close-img" (click)="close()">
-    </div>
+    <h4 class="mb-md-3">{{ 'emailTemplate' | translate }}</h4>
+        <img src="../../../assets/images/close-icon-circle.png" alt="" class="close-img" (click)="close()" />
   </div>
   <hr class="m-0">
-
-  <div class="d-flex mobile_wrap_fields">
-    <div>
-    <div class="d-flex align-items-baseline py-2 bg-0C3453 px-3 template-name-input">
+<div class="template_body_form">
+  <div class="row">
+    <div class="col-12 col-sm-6">
+    <div class="d-flex align-items-baseline py-2 bg-0C3453 template-name-input">
       <h4 class="text-size" style="margin-right: 5px;">{{ 'name' | translate }}:</h4>
       <input type="text" class="template-name-inputField" [(ngModel)]="title" >
 
     </div>
     <div *ngIf="errorMsg.title" class="error-msg" style="padding-left:60px;">{{errorMsg.title}}</div>
   </div>
-    <div>
-    <div class="d-flex align-items-baseline py-2 bg-0C3453 px-3 template-name-input">
+    <div class="col-12 col-sm-6">
+    <div class="d-flex align-items-baseline py-2 bg-0C3453 template-name-input">
       <h4 class="text-size" style="margin-right: 5px;">{{ 'type' | translate }}:</h4>
       <input type="text" class="template-name-inputField" [(ngModel)]="type" >
       
@@ -27,17 +25,18 @@
     <div *ngIf="errorMsg.type" class="error-msg" style="padding-left:60px;">{{errorMsg.type}}</div>
   </div>
     
-  </div>
-  <div class="mobile_wrap_fields">
-  <div class="d-flex align-items-baseline py-2 bg-0C3453 px-3 template-name-input">
+
+  <div class="col-12 col-sm-6">
+  <div class="d-flex align-items-baseline py-2 bg-0C3453 template-name-input">
     <h4 class="text-size" style="margin-right: 5px;">{{ 'subject' | translate }}:</h4>
     <input type="text" class="template-name-inputField add_custom_width" [(ngModel)]="subject" >
   </div>
   <div *ngIf="errorMsg.subject" class="error-msg" style="padding-left:60px;">{{errorMsg.subject}}</div>
 </div>
+</div>
 
   
-  <hr class="m-0">
+  <hr class="m-0 mt-3 mb-3">
 
   <!-- <div class="d-flex  main-popup-div ">
     <div class="d-flex align-items-baseline mb-3">
@@ -80,8 +79,8 @@
     </div>
   </div> -->
 
-  <div class="d-flex main-popup-div py-2 px-3 bg-0C3453 mobile_wrap_fields">
-    <div class="d-flex align-items-baseline ">
+  <div class="row main-popup-div py-2 bg-0C3453">
+    <div class="col-12 col-md-6 mt-3 d-flex align-items-baseline ">
       <h4 class="text-size fw-bold">{{ 'for' | translate }}:</h4>
       <!-- <div class="btn-group">
         <mat-select [(ngModel)]="selectedRole">
@@ -107,7 +106,7 @@
       </div>
       
     </div>
-    <div  class="d-flex align-items-baseline" >
+    <div  class="col-12 col-md-6 mt-3 d-flex align-items-baseline" >
      <h4 class="text-size fw-bold">{{ 'language' | translate }}:</h4>
      <div class="btn-group">
         <mat-select [(ngModel)]="selectedLang" class="mat-select-div">
@@ -122,7 +121,7 @@
 
       </div>
     </div>
-    <div  class="d-flex align-items-baseline">
+    <div  class="col-12 col-md-6 mt-3 d-flex align-items-baseline">
       <h4 class="text-size fw-bold">{{ 'location' | translate }}:</h4>
       <div class="btn-group">
           <mat-select [(ngModel)]="selectedLocation" class="mat-select-div">
@@ -138,7 +137,7 @@
       </div>
     </div>
 </div>
-<hr class="m-0">
+<hr class="m-0 mt-3 mb-3">
 
 
       <div class="NgxEditor__Wrapper">
@@ -146,9 +145,9 @@
         <ngx-editor [editor]="editor" class="editor-width" [(ngModel)]="content" [disabled]="false" [placeholder]="'typeHere' | translate"></ngx-editor>
         <div *ngIf="errorMsg.content" class="error-msg" style="padding-left:20px;">{{errorMsg.content}}</div>
       </div>
+      </div>
 
-      <div class="popup_buttons_mobile">
-        <div class=" d-flex justify-content-around bg-0C3453 p-3">
+        <div class=" d-flex justify-content-around bg-0C3453 p-3 popup_buttons_mobile">
 
          <div>
            <a class="btn btn-delete text-danger" (click)="close()">{{ 'cancel' | translate }}</a>
@@ -159,5 +158,4 @@
          </div>
       
         </div>
-      </div>
 </div>

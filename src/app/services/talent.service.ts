@@ -93,7 +93,7 @@ export class TalentService {
   getPackages(): Observable<any> {
     const headers = this.headers();
     return this.http.get<{ status: boolean, message: string, data: {} }>(
-      `${this.apiUrl}user/get-packages?lang=`+localStorage.getItem('lang_id'),
+      `${this.apiUrl}user/get-packages?lang=` + localStorage.getItem('lang_id'),
       { headers }
     );
   }
@@ -649,15 +649,15 @@ export class TalentService {
 
     // Conditionally append parameters only if they have a value
     // if (params.offset !== undefined) {
-      queryParams = queryParams.set('offset', params.offset);
+    queryParams = queryParams.set('offset', params.offset);
     // }
 
     // if (params.limit !== undefined) {
-      queryParams = queryParams.set('limit', params.limit);
+    queryParams = queryParams.set('limit', params.limit);
     // }
 
     // if (params.search) {
-      queryParams = queryParams.set('search', params.search);
+    queryParams = queryParams.set('search', params.search);
     // }
 
     if (params.user_domain) {
@@ -722,4 +722,14 @@ export class TalentService {
     return this.http.post<any>(`${this.apiUrl}user/track-booster-profile`, params, { headers });
   }
 
+  deleteProfile(): Observable<any> {
+    const headers = this.headers();
+    let langID = localStorage.getItem('lang_id')
+    // const headers = this.headers();
+    return this.http.get<{ status: boolean, message: string, data: { userData: User[] } }>(
+      `${this.apiUrl}user/delete-my-account/${langID}`,
+      { headers }
+    )
+    // return this.http.get<any>(`${this.apiUrl}/delete-user`, params, { headers });
+  }
 }

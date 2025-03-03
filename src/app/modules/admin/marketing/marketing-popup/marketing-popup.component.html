@@ -11,14 +11,14 @@
 
     <div class="d-flex align-items-baseline py-2 bg-0C3453 px-3">
         <h4 class="text-size">Name: &nbsp;</h4>
-        <input type="text" class="template-name-inputField" [(ngModel)]="title" style="border: none; width: 100%; outline: none;">
+        <input type="text" class="template-name-inputField" [(ngModel)]="title" style="border: none; border-bottom: 1px solid #000; width: 100%; outline: none;">
     </div>
     <div *ngIf="errorMsg.title" class="error-msg" style="padding-left:15px;">{{errorMsg.title}}</div>
 
-    <hr class="m-0">
+    <hr class="m-0 mt-2 mb-2">
 
-    <div class="d-flex  main-popup-div py-2 px-3 bg-0C3453 mobile_wrap_fields">
-        <div class="d-flex align-items-baseline ">
+    <div class="row main-popup-div px-3 bg-0C3453">
+        <div class="col-12 col-sm-6 d-flex align-items-baseline mt-2">
           <h4 class="text-size fw-bold">{{ 'for:' | translate }}</h4>
           <!-- <div class="btn-group">
             <mat-select [(ngModel)]="selectedRole">
@@ -53,7 +53,7 @@
           </div>
           
         </div>
-        <div  class="d-flex align-items-baseline" >
+        <div  class="col-12 col-sm-6 d-flex align-items-baseline mt-2" >
          <h4 class="text-size fw-bold">{{ 'language:' | translate }}</h4>
          <div class="btn-group">
             <mat-select [(ngModel)]="selectedLang" class="mat-select-div">
@@ -67,7 +67,7 @@
 
           </div>
         </div>
-        <div  class="d-flex align-items-baseline">
+        <div  class="col-12 col-sm-6 d-flex align-items-baseline  mt-2">
           <h4 class="text-size fw-bold">{{ 'location:' | translate }}</h4>
           <div class="btn-group">
               <mat-select [(ngModel)]="selectedLocation" class="mat-select-div">
@@ -81,10 +81,10 @@
           </div>
         </div>
     </div>
-    <hr class="m-0">
+    <hr class="m-0  mt-3 mb-2">
 
-    <div class="main-popup-div bg-0C3453 px-3 mobile_wrap_fields" style="padding-right: 1rem;">
-        <div class="d-flex align-items-center ">
+    <div class="main-popup-div row bg-0C3453 px-3">
+        <div class="d-flex align-items-center col-12 col-md-6">
             <mat-form-field class="marketing-calender-field">
                 <mat-date-range-picker #picker></mat-date-range-picker>
                 <mat-label class="label-enter-date-range">{{ 'enterADateRange' | translate }}</mat-label>
@@ -99,7 +99,7 @@
 
 
         </div> 
-        <div class="d-flex align-items-center my_mobile">
+        <div class="d-flex align-items-center my_mobile  col-12 col-md-6">
             <h4 class="text-size fw-bold"> {{ 'displayFreq:' | translate }} </h4>
             <div class="btn-group">
               <mat-select [(ngModel)]="selectedFrequency" class="mat-select-div">

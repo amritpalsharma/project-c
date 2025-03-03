@@ -8,6 +8,7 @@ import { ActivityService } from '../../../../services/activity';
 import { WebPages } from '../../../../services/webpages.service';
 import { TalentService } from '../../../../services/talent.service';
 import { TranslateService } from '@ngx-translate/core';
+import { AdminHelperService } from '../../../../services/admin-helper.service';
 
 interface Notification {
   id: number;
@@ -38,13 +39,13 @@ export class NotificationsLogComponent {
   @ViewChild(MatSort) sort!: MatSort;
   idsToDelete: any = [];
 
-  constructor(public dialog: MatDialog, public webPages: WebPages, private talentService: TalentService, private translateService: TranslateService) {
+  constructor(public dialog: MatDialog, public webPages: WebPages, private talentService: TalentService, private translateService: TranslateService, public adminHelper: AdminHelperService) {
     translateService.onLangChange.subscribe(() => {
       let langId;
-      if(translateService.currentLang == 'en'){
+      if (translateService.currentLang == 'en') {
         langId = 1;
       }
-      else{
+      else {
         langId = 2;
       }
       this.fetchNotifications(langId);
@@ -57,7 +58,7 @@ export class NotificationsLogComponent {
   }
 
 
-  fetchNotifications(langId : any): void {
+  fetchNotifications(langId: any): void {
     let jsonData = localStorage.getItem("userData");
     let userId;
     if (jsonData) {
@@ -166,5 +167,11 @@ export class NotificationsLogComponent {
   confirmSingleDeletion(id: any) {
     this.idsToDelete = [id];
     this.showMatDialog("Are you sure you want to delete this Activity?", "delete-confirmation");
+  }
+
+  formatDateTime(datetime: string) {
+    // convertAdminDateTime
+    let formattedDate = this.adminHelper.convertAdminDateTime(datetime, 'users');
+    return formattedDate;
   }
 }

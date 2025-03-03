@@ -1248,5 +1248,7 @@
   "iDecline": "No acepto",
   "manageConsentPreferences": "Gestionar preferencias de consentimiento",
   "allowAll": "Permitir todo",
-  "refuseAll": "Rechazar todo"
-  }
+  "refuseAll": "Rechazar todo",
+  "deleteAccountDesc": "Esto eliminará su cuenta permanentemente de nuestra base de datos.",
+  "deleteMyAccount" : "Eliminar mi cuenta"
+}

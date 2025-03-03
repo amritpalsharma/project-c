@@ -1260,5 +1260,16 @@
   "iDecline": "Ich lehne ab",
   "manageConsentPreferences": "Präferenzen für die Zustimmung verwalten",
   "allowAll": "Alle zulassen",
-  "refuseAll": "Alle verweigern"
+  "refuseAll": "Alle verweigern",
+  "couponDeactivatedSuccess": "Der Coupon wurde erfolgreich deaktiviert.",
+  "editCouponNotAllowed": "Kupon bearbeiten ist im Moment nicht erlaubt!",
+  "couponNameEr": "Bitte geben Sie den Namen des Gutscheins ein",
+  "couponCodeEr": "Bitte einmaligen Gutscheincode eingeben",
+  "typeOfCouponEr": "Rabatttyp ist erforderlich",
+  "discountInputsEr": "Mindestens ein Rabatt mit Währung ist erforderlich",
+  "startDateEr": "Startdatum ist erforderlich",
+  "limitEr": "Grenze ist erforderlich",
+  "discountPercent": "Rabatt ist erforderlich",
+  "deleteAccountDesc":"Dadurch wird Ihr Konto dauerhaft aus unserer Datenbank gelöscht.",
+  "deleteMyAccount" : "Mein Konto löschen"
 }

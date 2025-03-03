@@ -41,25 +41,77 @@ export class AdminHelperService {
     try {
       if (!dateTimeString) return "Invalid Date";
 
-      // ✅ Parse the input date-time
       const dateObj = new Date(dateTimeString);
 
-      // ✅ Ensure valid date
       if (isNaN(dateObj.getTime())) return "Invalid Date";
 
-      // ✅ Extract date components
       const year = dateObj.getFullYear();
       const month = (dateObj.getMonth() + 1).toString().padStart(2, '0'); // Month starts from 0
       const day = dateObj.getDate().toString().padStart(2, '0');
 
-      // ✅ Extract 24-hour format time
       const hours = dateObj.getHours().toString().padStart(2, '0');
       const minutes = dateObj.getMinutes().toString().padStart(2, '0');
 
       return `${year}-${month}-${day} ${hours}:${minutes}`;
     } catch (error) {
-      // console.error("❌ Error formatting date:", error);
       return "Invalid Date";
     }
   }
+
+  convertAdminDateTime(datetime: string, pageName: string): string {
+    // Convert the input string into a Date object
+    let date = new Date(datetime);
+
+    // Get language from localStorage
+    let language = localStorage.getItem('lang') || 'en'; // Default to English if null
+
+    // Define locale and time zone based on language
+    let locale: string;
+    let timeZone: string;
+
+    switch (language) {
+      case 'de':  // Germany / Switzerland
+        locale = 'de-DE';
+        timeZone = 'Europe/Zurich';
+        break;
+      case 'en':  // England
+        locale = 'en-GB';
+        timeZone = 'Europe/London';
+        break;
+      default:
+        locale = 'en-GB';
+        timeZone = 'UTC';
+    }
+
+    // Correct formatting options with valid types
+    let options: Intl.DateTimeFormatOptions = {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: language === 'en', // AM/PM in English, 24-hour in German
+      timeZone: timeZone
+    };
+
+    // Format date and time correctly
+    let formattedDate = new Intl.DateTimeFormat(locale, options).format(date);
+
+    // Adjust format for German (replace ',' with ' Uhr')
+    if (language === 'de') {
+      formattedDate = formattedDate.replace(',', '') + ' Uhr';
+    } else if (language === 'en') {
+      formattedDate = formattedDate.replaceAll('/', '.');
+      formattedDate = formattedDate.replaceAll(',', ' ');
+      formattedDate = formattedDate.replaceAll('am', 'AM');
+      formattedDate = formattedDate.replaceAll('pm', 'PM');
+      // console.log(formattedDate);
+      // formattedDate = formattedDate.replace(',', '') + ' Uhr';
+    }
+
+    return formattedDate;
+  }
+
+
 }

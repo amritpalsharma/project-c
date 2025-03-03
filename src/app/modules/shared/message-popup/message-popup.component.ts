@@ -11,18 +11,23 @@ export class MessagePopupComponent {
   constructor(
     public dialogRef: MatDialogRef<MessagePopupComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+  ) { }
 
   deleteConfirmed() {
     this.dialogRef.close({ action: 'delete-confirmed' });
   }
-  newsletterConfirmed(){
+  newsletterConfirmed() {
     this.dialogRef.close({ action: 'newsletter-confirmed' });
   }
-  activityConfirmed(){
+  activityConfirmed() {
     this.dialogRef.close({ action: 'activity-delete-confirmed' });
   }
   close() {
     this.dialogRef.close();
+  }
+
+  closeAccount() {
+    localStorage.clear();
+    window.location.href = '/';
   }
 }

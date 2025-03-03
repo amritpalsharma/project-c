@@ -39,9 +39,10 @@ export class HeaderComponent {
   profileImgUrl: any = "";
   lang: string = '';
   domains: any = environment.domains;
+  langs: any = environment.langs;
   envLang: any = environment.adminLangs;
   isDarkMode: boolean = false;
-  role : any; 
+  role: any;
   roles: any = environment.roles;
 
   notificationCount: number = 0;
@@ -309,6 +310,12 @@ export class HeaderComponent {
 
     this.socketService.emit('updateLanguage', { userId, langId: selectedLanguageId });
     this.fetchNotifications(userId, selectedLanguageId);
+    const chatSelectedLanguage = this.langs.find((lang: any) => lang.slug === this.lang);
+    // Now safely access the locale
+    const locale = chatSelectedLanguage.locale;
+    // Change the TalkJS locale by passing the locale string (e.g., 'en-US')
+    this.talkService.changeLocale(locale);
+    // langs
   }
 
 
@@ -490,10 +497,12 @@ export class HeaderComponent {
   navigateToTab(tab: string) {
     let fragment = 'activity'; // Default fragment
 
-    if (tab === 'setting') {
-      fragment = 'app-settings';
+    if (tab === 'team') {
+      fragment = 'team';
     } else if (tab === 'notifications') {
       fragment = 'notifications';
+    } else if(tab === 'profile'){
+      fragment = 'profile';
     }
 
     this.router.navigate([`/${this.role.slug}/setting`], { fragment });

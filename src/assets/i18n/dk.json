@@ -1163,5 +1163,7 @@
  "iDecline": "Jeg afviser",
  "manageConsentPreferences": "Administrer præferencer for samtykke",
  "allowAll": "Tillad alle",
- "refuseAll": "Afvis alle"
+ "refuseAll": "Afvis alle",
+  "deleteAccountDesc": "Dette vil slette din konto permanent fra vores database.",
+  "deleteMyAccount" : "Slet min konto"
 }

@@ -1317,5 +1317,6 @@
   "iDecline": "Je refuse",
   "manageConsentPreferences": "Gérer les préférences en matière de consentement",
   "allowAll": "Tout autoriser",
-  "refuseAll": "Refuser tout"
+  "refuseAll": "Refuser tout",
+  "deleteMyAccount" : "Supprimer mon compte"
 }
