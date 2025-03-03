@@ -17,7 +17,7 @@ interface Player {
 })
 export class PlayerListComponent implements OnInit {
   selectedTab: 'talent' | 'club' | 'scouts' = 'talent';
-  isLoading: boolean = false;
+  isLoading:boolean=true;
   currentPage: number = 1;
   itemsPerPage: number = 8;
   number: number = 12;

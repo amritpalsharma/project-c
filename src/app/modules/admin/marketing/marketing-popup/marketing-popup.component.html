@@ -11,7 +11,7 @@
 
     <div class="d-flex align-items-baseline py-2 bg-0C3453 px-3">
         <h4 class="text-size">Name: &nbsp;</h4>
-        <input type="text" class="template-name-inputField" [(ngModel)]="title" style="border: none; border-bottom: 1px solid #000; width: 100%; outline: none;">
+        <input type="text" class="template-name-inputField" [(ngModel)]="title" style="border: none; width: 100%; outline: none;">
     </div>
     <div *ngIf="errorMsg.title" class="error-msg" style="padding-left:15px;">{{errorMsg.title}}</div>
 
@@ -84,7 +84,7 @@
     <hr class="m-0  mt-3 mb-2">
 
     <div class="main-popup-div row bg-0C3453 px-3">
-        <div class="d-flex align-items-center col-12 col-md-6">
+        <div class="d-flex align-items-center col-12 col-md-6  mb-3 mb-md-0">
             <mat-form-field class="marketing-calender-field">
                 <mat-date-range-picker #picker></mat-date-range-picker>
                 <mat-label class="label-enter-date-range">{{ 'enterADateRange' | translate }}</mat-label>
@@ -99,7 +99,7 @@
 
 
         </div> 
-        <div class="d-flex align-items-center my_mobile  col-12 col-md-6">
+        <div class="d-flex align-items-center my_mobile col-12 col-md-6 mb-3 mb-md-0">
             <h4 class="text-size fw-bold"> {{ 'displayFreq:' | translate }} </h4>
             <div class="btn-group">
               <mat-select [(ngModel)]="selectedFrequency" class="mat-select-div">
