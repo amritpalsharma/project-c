@@ -124,11 +124,13 @@ export class ScoutService {
   }
 
   updateScoutHistory(history:any): Observable<any> {
+
     const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
     return this.http.post<any>(`${this.apiUrl2}scout/add-company-history`, {company_history: history}, { headers });
+    // return this.http.post<any>(`${this.apiUrl2}scout/edit-company-history`, {company_history: history}, { headers });
   }
 
 
