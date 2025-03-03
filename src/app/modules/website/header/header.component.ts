@@ -426,6 +426,16 @@ export class HeaderComponent implements OnInit {
       id:selectedLanguageId
     });
 
+    this.sharedservice.data$.subscribe((data: any) => {
+      if (data.action == 'updatedLang') {
+        // this.isLoading = true;
+        this.lang_id = data.id;
+        this.getAllCountries();
+        this.getAllClubs();
+        this.getAllLanguage();
+      }
+    });
+
 
     this.translateService.use(newSlug);
 
@@ -449,10 +459,14 @@ export class HeaderComponent implements OnInit {
 
     // Add the new class
     body.classList.add(selectedLanguageSlug);
+
+
+    
   }
 
   getContentForLanguage(lang: string): void {
-    const apiUrl = `${environment.apiUrl}language/${lang}`;  // Use the API URL from the environment file
+    let currentLang = localStorage.getItem('lang_id');
+    const apiUrl = `${environment.apiUrl}get-languages/${currentLang}`;  // Use the API URL from the environment file
     this.http.get(apiUrl).subscribe({
       next: (response: any) => {
         // Handle the API response based on the selected language
@@ -737,11 +751,8 @@ export class HeaderComponent implements OnInit {
 
   onCountryChange(event: Event): void {
     const selectElement = event.target as HTMLSelectElement;
-    console.log('>>>>>>>>>>>>>>>>>>> onCountryChange selectElement >>>>>>>>>>>', selectElement);
-
     this.selectedCountry = selectElement.value;
     let clubs = this.getClugById(this.selectedCountry);
-    console.log('>>>>>>>>>>>>>>>>>>> onCountryChange clubs >>>>>>>>>>>', clubs);
   }
 
   onClubChange(event: Event): void {
@@ -774,23 +785,16 @@ export class HeaderComponent implements OnInit {
 
   getAllCountries(){
     this.commonDataService.getAllCountries().subscribe((resp) => {
-      console.log('>>>>>>>>>>>>>>>> getAllCountries resp >>>>>>>', resp);
       this.countries = resp.data.domains.map((country: any) => ({
         code: country.country_id || '',
         name: country.location || ''
       }));
-
-      console.log('>>>>>>>>>>>>>>>> getAllCountries this.countries >>>>>>>', this.countries);
-
     });
   }
 
   getClugById(id :any ){
     if(id){
-      console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>> getClugById id >>>", id);
-
       this.commonDataService.getAllClubsbyId(id).subscribe((resp) => {
-        console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>> getClugById clubs >>>", resp);
         this.clubs = resp.data.clubs.map((club: any) => ({
           id: club.id || '',
           name: club.club_name || ''
