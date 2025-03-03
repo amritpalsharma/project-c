@@ -1258,7 +1258,7 @@
   "thanksMessage": "merci beaucoup",
   "thanksMessage2": "Nous prendrons contact avec vous.",
   "backToHome": "Retour à l'accueil",
-  "removeFavoriteConfirm": "Êtes-vous sûr d'avoir supprimé les favoris ?",
+  "removeFavoriteConfirm": "Êtes-vous sûr de vouloir supprimer ce favori de votre liste ?",
   "dontShowAgain": "Ne le montrez plus",
   "cancelConfirmationMsg": "Êtes-vous sûr de vouloir annuler cet abonnement ? Cette action ne peut être annulée.",
   "youHaveAnActive": "Vous êtes actif",
@@ -1307,5 +1307,7 @@
   "deleteMyAccount": "Supprimer mon compte",
   "uploadNewProfileImage": "Télécharger une nouvelle image de profil",
   "editCoverImage": "Modifier l'image de couverture",
-  "learnMore":"En savoir plus"
+  "learnMore": "En savoir plus",
+  "removeFavbtn": "Oui, supprimer",
+  "cancelRemoveFavBtn": "Non, ne pas supprimer"
 }

@@ -16,6 +16,7 @@ import { Subscription } from 'rxjs';
 import { ScoutService } from '../../../services/scout.service';
 import { environment } from '../../../../environments/environment';
 import { CommonDataService } from '../../../services/common-data.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-dashboard',
@@ -38,7 +39,8 @@ export class DashboardComponent implements OnInit , OnDestroy {
     public dialog: MatDialog,
     private router: Router,
     private lightbox: Lightbox,
-    private commonDataService: CommonDataService
+    private commonDataService: CommonDataService,
+    private translateService : TranslateService
   ) { }
   activeTab: string = 'profile';
   userId: any ;

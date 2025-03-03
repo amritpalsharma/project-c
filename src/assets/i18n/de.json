@@ -1198,7 +1198,7 @@
     "switzerland": "Switzerland"
   },
   "selectFavoriteFirst": "Wählen Sie zuerst den/die bevorzugten Benutzer aus.",
-  "removeFavoriteConfirm": "Sind Sie sicher, dass Sie aus den Favoriten löschen wollen?",
+  "removeFavoriteConfirm": "Bist du sicher, dass du diesen Favoriten aus deiner Liste löschen möchtest?",
   "userPurchasesNotFound": "Keine Käufe gefunden.",
   "premiumPlanDesc": {
     "features": [
@@ -1236,9 +1236,9 @@
   "TOOLTIPS": {
     "profilePhoto": "Laden Sie Ihr bestes Porträtfoto hoch, um einen großartigen ersten Eindruck zu hinterlassen.",
     "removeFavorite": "Aus den Favoriten entfernen",
-    "addFavorite": "Zu den Favoriten hinzufügen",
-    "downloadPdf": "Profil Pdf herunterladen",
-    "startConversation": "ein Gespräch beginnen"
+    "addFavorite": "deiner Favoritenliste hinzufügen",
+    "downloadPdf": "Spieler-PDF herunterladen",
+    "startConversation": "Nachricht senden"
   },
   "uploadNewProfileImage": "Neues Profilbild hochladen",
   "editCoverImage": "Titelbild bearbeiten",
@@ -1258,5 +1258,7 @@
   "discountPercent": "Rabatt ist erforderlich",
   "deleteAccountDesc":"Dadurch wird Ihr Konto dauerhaft aus unserer Datenbank gelöscht.",
   "deleteMyAccount" : "Mein Konto löschen",
-  "learnMore":"Mehr erfahren"
+  "learnMore":"Mehr erfahren",
+  "removeFavbtn":"Ja, löschen",
+  "cancelRemoveFavBtn":"Nein, nicht löschen"
 }

@@ -30,13 +30,13 @@
                  (touchmove)="onTouchMove($event)"
                  (touchend)="onTouchEnd($event)">
               <!-- Dynamic Image -->
-               <!-- <h1>{{currentImage}}</h1> -->
+               <!-- <h1>{{images | json}}</h1> -->
               <img [src]="base_url + currentImage" [alt]="images[currentImageIndex].title" />
               <div class="image-text">
                 <!-- Dynamic Content for Each Slide -->
                 <p class="p-text">{{images[currentImageIndex].date}}</p>
                 <h3 class="text-heading" [innerHTML]="images[currentImageIndex].title"></h3>
-                <button class="learn-more" [routerLink]="getRouterLink(currentImageIndex)">
+                <button class="learn-more" [routerLink]="getRouterLink(images[currentImageIndex].slug)">
                   {{'learnMore' | translate}}
                 </button>
               </div>

@@ -8,15 +8,16 @@ import { WebPages } from '../../../services/webpages.service';
 })
 export class DetailPagesComponent {
   id!: string;
-  news:any = [{content:'',title:'',featured_image:'',created_at:''}]
-  moreNews:any = [];
-  adVisible: boolean[] = [true, true, true,true, true, true]; // Array to manage ad visibility
-  constructor(private route: ActivatedRoute,private webPages: WebPages) {}
+  news: any = [{ content: '', title: '', featured_image: '', created_at: '' }]
+  moreNews: any = [];
+  adVisible: boolean[] = [true, true, true, true, true, true]; // Array to manage ad visibility
+  baseUrl: string = 'https://api.socceryou.ch/uploads/';
+  constructor(private route: ActivatedRoute, private webPages: WebPages) { }
 
   ngOnInit() {
     // Initially, all ads are visible
     // this.adVisible = [true, true, true,true, true, true];
-    this.adVisible = [false, false, false,false, false, false];
+    this.adVisible = [false, false, false, false, false, false];
     this.route.params.subscribe((params) => {
       this.id = params['slug'];
       //this.getPageData(1);
@@ -27,11 +28,11 @@ export class DetailPagesComponent {
 
   }
   getPageData(languageId: any): void {
-    this.webPages.getNewsContentPage(this.id,languageId).subscribe((res) => {
-      if(res.status){
-          this.news = res.data.news;
-          this.moreNews = res.data.moreNews;
-          this.news.featured_image = res.data.news_img_path + res.data.news.featured_image;
+    this.webPages.getNewsContentPage(this.id, languageId).subscribe((res) => {
+      if (res.status) {
+        this.news = res.data.news;
+        this.moreNews = res.data.moreNews;
+        this.news.featured_image = res.data.news_img_path + res.data.news.featured_image;
       }
     });
   }

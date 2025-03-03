@@ -61,6 +61,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   activeDomains: any;
   countries: any;
   isPremium: any = false;
+  isTourFirstTime: boolean = true;
   StartTour: boolean = true;
   dontShowAgainTourTxt: string = 'profile';
   @Output() dataEmitter = new EventEmitter<string>();
@@ -158,7 +159,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       'next',
       'finish',
       'dontShowAgain'
-    ]).subscribe((translations) => { 
+    ]).subscribe((translations) => {
       this.dontShowAgainTourTxt = translations['dontShowAgain'];
       this.introInstance.setOptions({
         steps: [
@@ -221,7 +222,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
           closeSection.innerHTML = `
             <label style="font-size: 12px; display: flex; align-items: center; margin-right: 10px; color: white;">
               <input type="checkbox" id="dontShowAgain" style="margin-right: 5px; cursor: pointer;" />
-              `+this.dontShowAgainTourTxt+`
+              `+ this.dontShowAgainTourTxt + `
             </label>
           `;
 
@@ -316,33 +317,34 @@ export class DashboardComponent implements OnInit, OnDestroy {
           this.user = response.data.user_data;
           this.userNationalities = JSON.parse(this.user.user_nationalities);
           this.StartTour = this.user?.show_tour == 1 ? true : false;
-
-          if (this.StartTour) {
+          this.isPremium = this.user?.active_subscriptions?.premium.length > 0 ? true : false;
+          if (this.StartTour && this.isPremium && this.isTourFirstTime) {
             setTimeout(() => {
+              this.isTourFirstTime = false;
               // alert('Found lang in Db : '+response.data.user_data.lang)
               var dblang = 'en';
-              if(response.data.user_data.lang == 1){
+              if (response.data.user_data.lang == 1) {
                 dblang = 'en';
-              }else if(response.data.user_data.lang == 2){
+              } else if (response.data.user_data.lang == 2) {
                 dblang = 'de';
-              }else if(response.data.user_data.lang == 3){
+              } else if (response.data.user_data.lang == 3) {
                 dblang = 'it';
-              }else if(response.data.user_data.lang == 4){
+              } else if (response.data.user_data.lang == 4) {
                 dblang = 'fr';
-              }else if(response.data.user_data.lang == 5){
+              } else if (response.data.user_data.lang == 5) {
                 dblang = 'es';
-              }else if(response.data.user_data.lang == 6){
+              } else if (response.data.user_data.lang == 6) {
                 dblang = 'pt';
-              }else if(response.data.user_data.lang == 7){
+              } else if (response.data.user_data.lang == 7) {
                 dblang = 'dk';
-              }else if(response.data.user_data.lang == 8){
+              } else if (response.data.user_data.lang == 8) {
                 dblang = 'se';
               }
               this.startIntroTour(dblang);  // Start the tour after a slight delay
             }, 2500);
           }
 
-          this.isPremium = this.user?.active_subscriptions?.premium.length > 0 ? true : false;
+
           this.premium = this.user.active_subscriptions?.premium?.length > 0 ? true : false;
           this.booster = this.user.active_subscriptions?.booster?.length > 0 ? true : false;
           this.activeDomains = this.user.active_subscriptions?.country?.length > 0 ? true : false;
@@ -703,7 +705,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     if (monthDifference < 0 || (monthDifference === 0 && dayDifference < 0)) {
       age--;
     }
-    if(!age){
+    if (!age) {
       age = 0;
     }
     return age;

@@ -1245,7 +1245,7 @@
   "thanksMessage": "muito obrigado",
   "thanksMessage2": "Entraremos em contacto consigo.",
   "backToHome": "Voltar ao início",
-  "removeFavoriteConfirm": "Är du säker på att ta bort från favoriter?",
+  "removeFavoriteConfirm": "Är du säker på att du vill ta bort denna favorit från din lista?",
   "dontShowAgain": "Visa det inte igen",
   "cancelConfirmationMsg": "Är du säker på att du vill säga upp prenumerationen? Denna åtgärd kan inte ångras.",
   "youHaveAnActive": "Du har ett aktivt",
@@ -1294,5 +1294,7 @@
   "deleteMyAccount": "Ta bort mitt konto",
   "uploadNewProfileImage": "Ladda upp ny profilbild",
   "editCoverImage": "Redigera omslagsbild",
-  "learnMore":"Lär dig mer"
+  "learnMore": "Lär dig mer",
+  "removeFavbtn": "Ja, ta bort",
+  "cancelRemoveFavBtn": "Nej, ta inte bort"
 }

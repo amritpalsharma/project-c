@@ -1103,7 +1103,7 @@
   "activeMultiCountryPlan": " 2 active Multi-Country Plan",
   "youHaveActiveBoostPlan": "You have active boost plan",
   "selectFavoriteFirst": "Select favorite user(s) first.",
-  "removeFavoriteConfirm": "Are you sure to delete from favorites ?",
+  "removeFavoriteConfirm": "Are you sure you want to remove this favorite from your list?",
   "userPurchasesNotFound": "No purchases found.",
   "premiumPlanDesc": {
     "features": [
@@ -1166,5 +1166,7 @@
   "deleteMyAccount" : "Delete My Account",
   "uploadNewProfileImage":"Upload New Profile Image",
   "editCoverImage":"Edit Cover Image",
-  "learnMore":"Learn More"
+  "learnMore":"Learn More",
+  "removeFavbtn": "Yes, delete",
+  "cancelRemoveFavBtn": "No, don't delete"
 }

@@ -1238,5 +1238,7 @@
   "deleteMyAccount" : "Eliminar mi cuenta",
   "uploadNewProfileImage": "Cargar nueva imagen de perfil",
   "editCoverImage": "Editar imagen de portada",
-  "learnMore":"Más información"
+  "learnMore":"Más información",
+  "removeFavbtn":"Ja, löschen",
+  "cancelRemoveFavBtn":"Nein, nicht löschen"
 }

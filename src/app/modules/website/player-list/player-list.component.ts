@@ -17,7 +17,7 @@ interface Player {
 })
 export class PlayerListComponent implements OnInit {
   selectedTab: 'talent' | 'club' | 'scouts' = 'talent';
-  isLoading:boolean=false;
+  isLoading: boolean = false;
   currentPage: number = 1;
   itemsPerPage: number = 8;
   number: number = 12;
@@ -29,6 +29,8 @@ export class PlayerListComponent implements OnInit {
   ScoutPlayers: any = [];
   profileBaseUrl: string = 'https://api.socceryou.ch/uploads/';
   birthCountryFlags: string = 'https://api.socceryou.ch/uploads/logos/';
+  apiDefaultImage: string = 'https://api.socceryou.ch/uploads/not_a_valid_image.jpg';
+  isDefaultImage:string='default_img';
   constructor(private http: HttpClient) { }
 
   players: Player[] = [ /* ... existing player data ... */];
@@ -86,7 +88,7 @@ export class PlayerListComponent implements OnInit {
 
 
 
-  
+
   goToPage(page: number) {
     if (page >= 1 && page <= this.totalPages()) {
       this.currentPage = page;
@@ -145,7 +147,7 @@ export class PlayerListComponent implements OnInit {
       limit: this.itemsPerPage.toString(),
       offset: offset.toString(), // Dynamic offset
     };
-   
+
     this.http.get<any[]>(url, { params }).subscribe(
       (response: any) => {
 
@@ -178,4 +180,9 @@ export class PlayerListComponent implements OnInit {
     let flagPath = countryArray[0].flag_path;
     return flagPath;
   }
+
+  setDefaultImage(event: any) {
+    event.target.src = this.apiDefaultImage;
+  }
+
 }

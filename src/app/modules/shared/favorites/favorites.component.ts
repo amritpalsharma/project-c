@@ -191,7 +191,7 @@ export class FavoritesComponent {
   }
 
   showDeleteConfirmationPopup() {
-    this.showMatDialog(this.translatedText, "delete-confirmation");
+    this.showMatDialog(this.translatedText, "remove-fav-confirmation");
   }
 
 
@@ -301,7 +301,7 @@ export class FavoritesComponent {
           if (response.message != '') {
             this.showMatDialog(response.message, 'display');
           } else {
-            this.showMatDialog('Favorite(s) removed successfully!.', 'display');
+            this.showMatDialog(response.message, 'display');
           }
         } else {
           this.showMatDialog('Error in removing favorite. Please try again.', 'display');
@@ -316,7 +316,7 @@ export class FavoritesComponent {
 
   confirmSingleDeletion(favoriteId: any) {
     this.idsToDelete = [favoriteId];
-    this.showMatDialog(this.translatedText, "delete-confirmation");
+    this.showMatDialog(this.translatedText, "remove-fav-confirmation");
   }
   applyUserFilter(filters: any) {
     this.customFilters = filters;

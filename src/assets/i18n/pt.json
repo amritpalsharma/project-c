@@ -1197,7 +1197,7 @@
   "thanksMessage": "muito obrigado",
   "thanksMessage2": "Entraremos em contacto consigo.",
   "backToHome": "Voltar ao início",
-  "removeFavoriteConfirm": "Tem a certeza de que pretende apagar dos favoritos?",
+  "removeFavoriteConfirm": "Tem certeza de que deseja remover este favorito da sua lista?",
   "dontShowAgain": "Não voltar a mostrar",
   "cancelConfirmationMsg": "Tem a certeza de que pretende cancelar esta subscrição? Esta ação não pode ser anulada.",
   "youHaveAnActive": "Tem activos",
@@ -1246,5 +1246,7 @@
   "deleteMyAccount": "Eliminar a minha conta",
   "uploadNewProfileImage": "Carregar nova imagem de perfil",
   "editCoverImage": "Editar imagem de capa",
-  "learnMore":"Saiba mais"
+  "learnMore": "Saiba mais",
+  "removeFavbtn": "Sim, excluir",
+  "cancelRemoveFavBtn": "Não, não excluir"
 }

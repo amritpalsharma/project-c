@@ -14,6 +14,7 @@ interface SliderImage {
   title: string;
   date: string;
   buttonText: string;
+  slug:string;
 }
 
 @Component({
@@ -42,19 +43,22 @@ export class NewsComponent implements OnInit, OnDestroy {
       featured_image: 'assets/images/slider-image.png',
       title: 'Welcome to Soccer World',
       date: 'January 1, 2025',
-      buttonText: 'Learn More 1'
+      buttonText: 'Learn More 1',
+      slug:'default-slug'
     },
     {
       featured_image: 'assets/images/About-us-banner.png',
       title: 'Discover the Legends',
       date: 'February 1, 2025',
-      buttonText: 'Learn More 2'
+      buttonText: 'Learn More 2',
+      slug:'default-slug'
     },
     {
       featured_image: 'assets/images/banner-bg.png',
       title: 'Unleash Your Potential',
       date: 'March 1, 2025',
-      buttonText: 'Learn More 3'
+      buttonText: 'Learn More 3',
+      slug:'default-slug'
     }
   ];
 
@@ -187,7 +191,7 @@ export class NewsComponent implements OnInit, OnDestroy {
     return this.images[this.currentImageIndex].featured_image;
   }
   
-  getRouterLink(index: number): string {
+  getRouterLink(index: any): string {
     // Returns a dynamic URL based on the slider index
     return '/news/' + index;
   }
