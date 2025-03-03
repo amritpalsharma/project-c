@@ -11,15 +11,15 @@
           </div>
         </div>
   
-        <div *ngIf="adVisible[0]" class="skyscraper-left">
-          <img src="./assets/images/skyscraper - 120x600.png">
-          <button (click)="closeAd(0)" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
-        </div>
-  
-        <div *ngIf="adVisible[1]" class="skyscraper-right">
-          <img src="./assets/images/skyscraper - 120x600.png">
-          <button (click)="closeAd(1)" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
-        </div>
+         <div *ngIf="checkActive('skyscraper')" class="skyscraper-left">
+        <img [src]="advertisemnet_base_url + advertisementData?.skyscraper?.featured_image">
+        <button (click)="closeAd('skyscraper')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div *ngIf="checkActive('wide_skyscraper')" class="skyscraper-right">
+        <img [src]="advertisemnet_base_url + advertisementData?.wide_skyscraper?.featured_image">
+        <button (click)="closeAd('wide_skyscraper')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+      </div>
       </div>
   
       <div class="pricing py_0">
@@ -143,6 +143,33 @@
           </div>
         </div>
       </div>
+
+      <div class="py_1">
+        <div class="container">
+          <div class="advertisment advertisement1 advertisement_three_block"
+            *ngIf="checkActive('large_rectangle') || checkActive('inline_rectangle') || checkActive('square')">
+  
+            <div *ngIf="checkActive('large_rectangle')" class="large-rectangle">
+              <img [src]="advertisemnet_base_url + advertisementData?.large_rectangle?.featured_image">
+              <button (click)="closeAd('large_rectangle')" class="ad-close-button"><i
+                  class="fa-solid fa-xmark"></i></button>
+            </div>
+  
+            <div *ngIf="checkActive('inline_rectangle')" class="inline-rectangle">
+              <img [src]="advertisemnet_base_url + advertisementData?.inline_rectangle?.featured_image">
+              <button (click)="closeAd('inline_rectangle')" class="ad-close-button"><i
+                  class="fa-solid fa-xmark"></i></button>
+            </div>
+  
+            <div *ngIf="checkActive('square')" class="square">
+              <img [src]="advertisemnet_base_url + advertisementData?.square?.featured_image">
+              <button (click)="closeAd('square')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+  
+          </div>
+        </div>
+      </div>
+
     </div>
   
     <!-- <app-footer></app-footer> -->

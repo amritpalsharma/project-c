@@ -1991,6 +1991,8 @@ a {
 
 
 
+
+
 // ------------------------- users end ------------------
 
 // ------------------------- respone------------------
@@ -2226,14 +2228,14 @@ a {
   //   bottom: 0px;
   // }
 
-  .page-sidebar {
+  //.page-sidebar {
     // width: 100%;
     // padding: 30px;
     // visibility: hidden;
     // opacity: 0;
     // transform: translateX(0);
     // z-index: 100;
-  }
+  //}
 
   .dark-theme .slider.round {
     border-radius: 34px;
@@ -2390,7 +2392,7 @@ a {
     background-image: url("/assets/images/thanku-m-light.png");
   }
 
-  .dark-theme .thanku-bnr {
+  .dark-theme .website-code .thanku-bnr {
     background-image: url("/assets/images/thanku-m-dark.png");
   }
 
@@ -2398,7 +2400,7 @@ a {
     background-image: url("/assets/images/error-m-light.png");
   }
 
-  .dark-theme .main-bnr {
+  .dark-theme .website-code .main-bnr {
     background-image: url("/assets/images/error-m-dark.png");
   }
 }

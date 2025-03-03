@@ -50,6 +50,57 @@ export class TalentComponent {
     });
   }
 
+  isActive : any = {
+    skyscraper: true,
+    wide_skyscraper: true,
+    leaderboard: true,
+    large_leaderboard:true,
+    banner: true,
+    square:true,
+    small_square: true,
+    large_rectangle: true,
+    inline_rectangle: true,
+  }
+
+  advertisementData:any = {
+    skyscraper: {
+      id: '1',
+      featured_image: "leaderboard.png"
+    },
+    wide_skyscraper: {
+      id: '1',
+      // featured_image: "leaderboard.png"
+    },
+    leaderboard: {
+      id: '1',
+      featured_image: "leaderboard.png"
+    },
+    large_leaderboard: {
+      id: '1',
+      // featured_image: "leaderboard.png"
+    },
+    banner: {
+      id: '1',
+      featured_image: "leaderboard.png"
+    },
+    square: {
+      id: '1',
+      featured_image: "leaderboard.png"
+    },
+    small_square: {
+      id: '1',
+      featured_image: "leaderboard.png"
+    },
+    large_rectangle: {
+      id: '1',
+      featured_image: "leaderboard.png"
+    },
+    inline_rectangle: {
+      id: '1',
+      featured_image: "leaderboard.png"
+    },
+  }
+
   getPageData(languageId: any){
     this.webPages.getDynamicContentPage('talent',languageId).subscribe((res) => {
       if(res.status){
@@ -58,6 +109,7 @@ export class TalentComponent {
           this.advertisemnetData = res.data.advertisemnetData;
           this.advertisemnetData = null;
           
+  
           this.advertisemnet_base_url = res.data.advertisemnet_base_url;
           // Initialize toggle states for pricing plans with Monthly active (false)
           this.pageData.pricing_tab.forEach((_: any, index: number) => {
@@ -67,37 +119,37 @@ export class TalentComponent {
     });
   }
 
-  closeAd(object: any) {
+  // closeAd(object: any) {
 
-    switch(object){
-      case 'skyscraper':
-          this.advertisemnetData.skyscraper = [];
-          break;
-      case 'small_square':
-          this.advertisemnetData.small_square = [];
-          break;
-      case 'leaderboard':
-          this.advertisemnetData.leaderboard = [];
-          break;
-      case 'large_leaderboard':
-          this.advertisemnetData.large_leaderboard = [];
-          break;
-      case 'large_rectangle':
-          this.advertisemnetData.large_rectangle = [];
-          break;
+  //   switch(object){
+  //     case 'skyscraper':
+  //         this.advertisemnetData.skyscraper = [];
+  //         break;
+  //     case 'small_square':
+  //         this.advertisemnetData.small_square = [];
+  //         break;
+  //     case 'leaderboard':
+  //         this.advertisemnetData.leaderboard = [];
+  //         break;
+  //     case 'large_leaderboard':
+  //         this.advertisemnetData.large_leaderboard = [];
+  //         break;
+  //     case 'large_rectangle':
+  //         this.advertisemnetData.large_rectangle = [];
+  //         break;
 
-      case 'inline_rectangle':
-          this.advertisemnetData.inline_rectangle = [];
-          break;
-      case 'square':
-          this.advertisemnetData.square = [];
-          break;
-      default:
-          //when no case is matched, this block will be executed;
-          break;  //optional
-      }
+  //     case 'inline_rectangle':
+  //         this.advertisemnetData.inline_rectangle = [];
+  //         break;
+  //     case 'square':
+  //         this.advertisemnetData.square = [];
+  //         break;
+  //     default:
+  //         //when no case is matched, this block will be executed;
+  //         break;  //optional
+  //     }
 
-  }
+  // }
 
   toggle1() {
     this.isActive1 = !this.isActive1;
@@ -149,8 +201,42 @@ export class TalentComponent {
     this.isActivePlan[index] = !this.isActivePlan[index];
   }
 
-  isEmptyObject(obj:any) {
-    return (obj && (Object.keys(obj).length === 0));
+  // isEmptyObject(obj:any) {
+  //   return (obj && (Object.keys(obj).length === 0));
+  // }
+
+  closeAd(object: any) {
+
+    this.isActive[object] = false;
+
   }
+  
+
+  isEmptyObject(obj:any) {
+    if(typeof obj != 'undefined'){
+      return (obj && (Object.keys(obj).length === 0));
+    }
+    return true;
+  }
+  openModal(modalId: string) {
+    console.log(`Open modal: ${modalId}`);
+    // Implement modal opening logic here
+  }
+
+  checkActive(obj: any) {
+    if (this.isExists(obj) && this.isFeaturedImageExists(obj) && this.isActive[obj]) {
+      return true;
+    }
+    return false;
+  }
+
+  isExists(key: any): boolean {
+    return key in this.advertisementData;
+  }
+
+  isFeaturedImageExists(key: any): boolean {
+    return 'featured_image' in this.advertisementData[key];
+  }
+
 
 }
