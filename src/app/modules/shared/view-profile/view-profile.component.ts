@@ -361,6 +361,40 @@ export class ViewProfileComponent implements OnInit {
       })
       .catch(error => console.error("Error fetching geocoding data:", error));
   }
+
+  // navigateToChat() {
+  //   if (this.user) {
+  //     const encodedUserData = encodeURIComponent(JSON.stringify(this.user)); // Convert object to string and encode
+  //     this.router.navigate(['/talent/chat'], { queryParams: { userData: encodedUserData } });
+  //   } else {
+  //     console.warn('No userData available');
+  //   }
+  // }
+
+  navigateToChat() {
+    if (this.user) {
+      const userData = {
+        id: this.user.id,
+        name: this.user.first_name,
+        email: this.user.username,
+        photoUrl: this.user.meta.profile_image_path
+      };
+
+      console.log(userData, this.user);
+      let tempUser = JSON.stringify(userData);
+  
+      const encodedUserData = encodeURIComponent(JSON.stringify(userData)); // Convert to JSON and encode
+      // this.router.navigate(['/talent/chat'], { queryParams: { userData: encodedUserData } });
+
+      localStorage.setItem('otherUserData',tempUser);
+      this.router.navigate(['/talent/chat']);
+    } else {
+      console.warn('No userData available');
+    }
+  }
+  
+  
+
   ngOnDestroy() {
     // ✅ Unsubscribe to prevent memory leaks
     if (this.tooltipSubscription) {
@@ -368,3 +402,18 @@ export class ViewProfileComponent implements OnInit {
     }
   }
 }
+
+
+// this.route.queryParams.subscribe(params => {
+//   if (params['userData']) {
+//     try {
+//       const userDataString = decodeURIComponent(params['userData']); // Decode
+//       console.log("Updated userData:", userDataString);
+
+//       const userData = JSON.parse(userDataString); // Convert string back to object
+//       this.startNewChat(userData);
+//     } catch (error) {
+//       console.error('Invalid userData format:', error);
+//     }
+//   }
+// });
