@@ -848,7 +848,6 @@ input:checked+.slider:before {
 .header-left-content .search-area {
   width: 15.625rem;
   height: 3rem;
-
   overflow: hidden;
 }
 
@@ -860,6 +859,12 @@ input:checked+.slider:before {
   position: absolute;
   top: 0;
   right: 0;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  line-height: 20px;
+  text-align: center;
+  font-size: 10px;
 }
 
 .bg-danger {
@@ -2306,4 +2311,8 @@ nav.navbar .country_dropdown h6.border-bottom {
 .skyscraper-right img {
   height: 600px;
   width: 120px;
+}
+
+sub.premium-month_title {
+  bottom: 0.15em;
 }
