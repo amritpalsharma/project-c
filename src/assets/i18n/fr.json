@@ -1256,7 +1256,7 @@
   "thanksMessage": "merci beaucoup",
   "thanksMessage2": "Nous prendrons contact avec vous.",
   "backToHome": "Retour à l'accueil",
-  "removeFavoriteConfirm": "Êtes-vous sûr d'avoir supprimé les favoris ?",
+  "removeFavoriteConfirm": "Êtes-vous sûr de vouloir supprimer ce favori de votre liste ?",
   "dontShowAgain": "Ne le montrez plus",
   "cancelConfirmationMsg": "Êtes-vous sûr de vouloir annuler cet abonnement ? Cette action ne peut être annulée.",
   "youHaveAnActive": "Vous êtes actif",
@@ -1298,6 +1298,13 @@
   },
   "areYouSuretoDeleteActivity": "Êtes-vous sûr de vouloir supprimer l'activité ?",
   "subsciptionCancelSuccess": "Votre abonnement a été annulé avec succès.",
+  "deleteAccountDesc": "Cela supprimera définitivement votre compte de notre base de données.",
+  "deleteMyAccount": "Supprimer mon compte",
+  "uploadNewProfileImage": "Télécharger une nouvelle image de profil",
+  "editCoverImage": "Modifier l'image de couverture",
+  "learnMore": "En savoir plus",
+  "removeFavbtn": "Oui, supprimer",
+  "cancelRemoveFavBtn": "Non, ne pas supprimer",
   "MyAccount": "vers Tableau",
    "boostProfiles": "Profil Boost",
    "changeNewsletterStatus": "Êtes-vous sûr de vouloir changer le statut de la lettre d'information ?",
@@ -1317,6 +1324,5 @@
   "iDecline": "Je refuse",
   "manageConsentPreferences": "Gérer les préférences en matière de consentement",
   "allowAll": "Tout autoriser",
-  "refuseAll": "Refuser tout",
-  "deleteMyAccount" : "Supprimer mon compte"
+  "refuseAll": "Refuser tout"
 }

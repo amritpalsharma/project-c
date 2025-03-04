@@ -15,6 +15,9 @@ export class ImprintComponent implements OnInit {
   advertisemnet_base_url:string = '';
   banner_img:any=null;
   base_url:any=null;
+
+  isLoading : boolean = true;
+
   // advertisemnet_base_url:string= '';
   adVisible: boolean[] = [true, true, true]; // Array to manage ad visibility
   constructor( private webPages: WebPages, private sanitizer: DomSanitizer){
@@ -93,6 +96,8 @@ export class ImprintComponent implements OnInit {
          
           this.banner_img = res.data.pageData.banner_img;
           this.base_url =  res.data.base_url;
+
+          this.isLoading = false;
 
           this.advertisementData = res?.data?.advertisemnetData;
         }

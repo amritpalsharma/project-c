@@ -51,8 +51,8 @@ export const environment = {
       { language: 'French', slug: 'fr', id: 4, flag: 'France.svg', locale: 'fr-FR' },
       { language: 'Spanish', slug: 'es', id: 5, flag: 'Spain.svg', locale: 'es-ES' },
       { language: 'Portuguese', slug: 'pt', id: 6, flag: 'Portugal.svg', locale: 'pt-PT' },
-      { language: 'Danish', slug: 'da', id: 7, flag: 'Denmark.svg', locale: 'da-DK' },
-      { language: 'Swedish', slug: 'sv', id: 8, flag: 'Sweden.svg', locale: 'sv-SE' },
+      { language: 'Danish', slug: 'dk', id: 7, flag: 'Denmark.svg', locale: 'da-DK' },
+      { language: 'Swedish', slug: 'sv', id: 8, flag: 'Sweden-sweden.svg', locale: 'sv-SE' },
     ],
 
     domains : [

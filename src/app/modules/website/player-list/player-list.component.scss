@@ -336,84 +336,84 @@ button.page-active {
 
 // advertisement
 
-.skyscraper-left {
-    height: 600px;
-    width: 120px;
-    content: "";
-    z-index: 2;
-    position: absolute;
-    left: 0;
-    top: 10%;
-}
+// .skyscraper-left {
+//     height: 600px;
+//     width: 120px;
+//     content: "";
+//     z-index: 2;
+//     position: absolute;
+//     left: 0;
+//     top: 10%;
+// }
 
-.skyscraper-left img {
-    height: 600px;
-    width: 120px;
-}
+// .skyscraper-left img {
+//     height: 600px;
+//     width: 120px;
+// }
 
-.skyscraper-right {
-    height: 600px;
-    width: 120px;
-    content: "";
-    z-index: 2;
-    position: absolute;
-    right: 0;
-    top: 10%;
-}
+// .skyscraper-right {
+//     height: 600px;
+//     width: 120px;
+//     content: "";
+//     z-index: 2;
+//     position: absolute;
+//     right: 0;
+//     top: 10%;
+// }
 
-.skyscraper-right img {
-    height: 600px;
-    width: 120px;
-}
+// .skyscraper-right img {
+//     height: 600px;
+//     width: 120px;
+// }
 
-.large-rectangle {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    content: "";
-    height: 280px;
-    width: 336px;
-}
+// .large-rectangle {
+//     position: absolute;
+//     left: 0;
+//     bottom: 0;
+//     content: "";
+//     height: 280px;
+//     width: 336px;
+// }
 
-.large-rectangle img {
-    height: 280px;
-    width: 336px;
-}
+// .large-rectangle img {
+//     height: 280px;
+//     width: 336px;
+// }
 
-.inline-rectangle {
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    transform: translateX(-50%);
-    content: "";
-    width: 300px;
-    height: 250px;
-}
+// .inline-rectangle {
+//     position: absolute;
+//     left: 50%;
+//     bottom: 0;
+//     transform: translateX(-50%);
+//     content: "";
+//     width: 300px;
+//     height: 250px;
+// }
 
-.inline-rectangle img {
-    width: 300px;
-    height: 250px;
-}
+// .inline-rectangle img {
+//     width: 300px;
+//     height: 250px;
+// }
 
-.square {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    content: "";
-    width: 250px;
-    height: 250px;
-    display: flex;
-}
+// .square {
+//     position: absolute;
+//     right: 0;
+//     bottom: 0;
+//     content: "";
+//     width: 250px;
+//     height: 250px;
+//     display: flex;
+// }
 
-.square img {
-    width: 250px;
-    height: 250px;
-}
+// .square img {
+//     width: 250px;
+//     height: 250px;
+// }
 
-.advertisement {
-    position: relative;
-    height: 350px;
-}
+// .advertisement {
+//     position: relative;
+//     height: 350px;
+// }
 
 @media (max-width: 1199px) {
     .player-list {
@@ -429,19 +429,19 @@ button.page-active {
 
 @media (max-width: 991px) {
 
-    .leaderboard-club-image img,
-    .small-sqaure-image img,
-    .skyscraper-image img,
-    .skyscraper-image img,
-    .wide-skyscraper-image img,
-    .leaderboard-image img,
-    .banner-image img,
-    .advertisement,
-    .advertisement1,
-    .skyscraper-left img,
-    .skyscraper-right img {
-        display: none;
-    }
+    // .leaderboard-club-image img,
+    // .small-sqaure-image img,
+    // .skyscraper-image img,
+    // .skyscraper-image img,
+    // .wide-skyscraper-image img,
+    // .leaderboard-image img,
+    // .banner-image img,
+    // .advertisement,
+    // .advertisement1,
+    // .skyscraper-left img,
+    // .skyscraper-right img {
+    //     display: none;
+    // }
 }
 
 @media (max-width: 767px) {
@@ -605,6 +605,7 @@ button.page-active {
         .player-img {
             height: 262px !important;
             width: 100%;
+
             img {
                 width: 100% !important;
                 height: 100% !important;
@@ -722,4 +723,27 @@ button.page-active {
     // transform: translate(-50%, -50%);
     font-size: 24px;
     color: rgb(0, 255, 34);
+}
+
+.loader123 {
+    border: 0;
+    border-radius: 50%;
+    border-top: 0;
+    width: 100%;
+    height: 80px;
+    display: inline-block;
+    animation: spin 1s linear infinite;
+    position: relative;
+}
+
+.default-img{
+    padding-top: 0px !important;
+    position: relative;
+}
+.make-loader-center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: 0 !important;
 }

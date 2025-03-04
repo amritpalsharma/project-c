@@ -9,13 +9,13 @@ import { TranslateService } from '@ngx-translate/core';
 export class ThankuComponent {
   constructor(
     private translateService: TranslateService,
-  ){
-    this.translateService.setDefaultLang('en'); // Set default language
-    this.translateService.use('en'); // Use default language
+  ) {
+    //this.translateService.setDefaultLang('en'); // Set default language
+    //this.translateService.use('en'); // Use default language
   }
 
-  
 
-  
+
+
 
 }

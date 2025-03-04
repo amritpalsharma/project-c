@@ -1250,5 +1250,10 @@
   "allowAll": "Permitir todo",
   "refuseAll": "Rechazar todo",
   "deleteAccountDesc": "Esto eliminará su cuenta permanentemente de nuestra base de datos.",
-  "deleteMyAccount" : "Eliminar mi cuenta"
+  "deleteMyAccount" : "Eliminar mi cuenta",
+  "uploadNewProfileImage": "Cargar nueva imagen de perfil",
+  "editCoverImage": "Editar imagen de portada",
+  "learnMore":"Más información",
+  "removeFavbtn":"Ja, löschen",
+  "cancelRemoveFavBtn":"Nein, nicht löschen"
 }

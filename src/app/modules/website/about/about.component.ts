@@ -32,7 +32,7 @@ export class AboutComponent {
   advertisemnet_base_url:string= '';
 
   isLoading : boolean = true;
-
+  
   isActive : any ={
     skyscraper: true,
     wide_skyscraper: true,
