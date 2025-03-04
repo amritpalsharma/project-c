@@ -11,22 +11,22 @@ import { SocketService } from '../../../services/socket.service';
 })
 export class InboxComponent {
   readonly dialog = inject(MatDialog);
-  userData:any;
+  userData: any;
   groupName: string = '';
   groupId: string = '';
   users: { id: string; name: string; email: string; photoUrl: string }[] = [];
-  newUser : { id: string; name: string; email: string; photoUrl: string }[] = [];
+  newUser: { id: string; name: string; email: string; photoUrl: string }[] = [];
   createdGroups: { groupId: string, groupName: string }[] = [];
-  user:any = {};
-  receiverUser:any = {};
+  user: any = {};
+  receiverUser: any = {};
   private isDarkMode = false;
-  constructor(private talkService : TalkService, private socketService: SocketService) {}
-  
+  constructor(private talkService: TalkService, private socketService: SocketService) { }
+
   async ngOnInit() {
     const userDataString = localStorage.getItem('userData');
     if (userDataString) {
       this.userData = JSON.parse(userDataString);
-      console.log('pic',this.userData)
+      console.log('pic', this.userData)
       this.user = {
         id: this.userData.id,
         name: this.userData.first_name,
@@ -37,13 +37,13 @@ export class InboxComponent {
       };
       const session = await this.talkService.init(this.user);
       const chatbox = session.createInbox();
-      
+
 
       chatbox.onSendMessage((event) => {
         let getReceiverIds = Object.keys(event.conversation.participants)
           .filter(val => val != this.user.id);
-        this.socketService.emit('sendMessage', {senderId: this.user.id, receiverIds: getReceiverIds});
-    });
+        this.socketService.emit('sendMessage', { senderId: this.user.id, receiverIds: getReceiverIds });
+      });
 
       // Defer mounting chatbox until next event loop cycle
       setTimeout(() => {
@@ -53,18 +53,18 @@ export class InboxComponent {
 
     const theme = localStorage.getItem('theme');
 
-    if(theme == 'dark'){
+    if (theme == 'dark') {
       this.talkService.toggleTheme(true);
     }
   }
-  
 
 
-   // Start a one-on-one chat
-   startOneOnOneChat(user:any) {
+
+  // Start a one-on-one chat
+  startOneOnOneChat(user: any) {
     this.receiverUser = user;
-    this.socketService.emit('sendMessage', {senderId: this.user.id, receiverIds: [user.id]});
-    this.talkService.createOneOnOneConversation(user.id,user.name,user.email,user.photoUrl)
+    this.socketService.emit('sendMessage', { senderId: this.user.id, receiverIds: [user.id] });
+    this.talkService.createOneOnOneConversation(user.id, user.name, user.email, user.photoUrl)
       .then(() => {
         this.talkService.mountChat('talkjs-container');
       })
@@ -74,17 +74,17 @@ export class InboxComponent {
   }
 
 
-  
-    // Start a group chat
-    startGroupChat() {
-      this.talkService.createGroupConversation(this.talkService.generateUniqueId(), this.users)
-        .then(() => {
-          this.talkService.mountChat('talkjs-container');
-        })
-        .catch(err => {
-          console.error('Error starting group chat:', err);
-        });
-    }
+
+  // Start a group chat
+  startGroupChat() {
+    this.talkService.createGroupConversation(this.talkService.generateUniqueId(), this.users)
+      .then(() => {
+        this.talkService.mountChat('talkjs-container');
+      })
+      .catch(err => {
+        console.error('Error starting group chat:', err);
+      });
+  }
 
   editinbox() {
     this.users = [];
@@ -92,25 +92,43 @@ export class InboxComponent {
       height: '450px',
       width: '850px',
     })
-    .afterClosed()
+      .afterClosed()
       .subscribe(users => {
-        
-        for(let user of users.data){
-            this.users.push({
-              id: user.id,
-              name: user.first_name,
-              email: user.username,
-              photoUrl: user.profile_image_path,
-            })
+
+        for (let user of users.data) {
+          this.users.push({
+            id: user.id,
+            name: user.first_name,
+            email: user.username,
+            photoUrl: user.profile_image_path,
+          })
         }
-        if(this.users.length == 1){
+        if (this.users.length == 1) {
           this.startOneOnOneChat(this.users[0]);
-        }else if(this.users.length > 1){
+        } else if (this.users.length > 1) {
           this.startGroupChat();
         }
-        console.log('last users',this.users);
+        console.log('last users', this.users);
         //this.createGroup();
       });
+  }
+
+  startNewChat(user: any) {
+    let users = [];
+
+    users.push({
+      id: user.id,
+      name: user.first_name,
+      email: user.username,
+      photoUrl: user.profile_image_path,
+    })
+    
+    if (users.length === 1) {
+      this.startOneOnOneChat(users[0]);
+    } else if (users.length > 1) {
+      this.startGroupChat();
+    }
+    console.log('last users', this.users);
   }
 
   toggleTheme() {
@@ -133,9 +151,9 @@ export class InboxComponent {
     const iframe = document.querySelector('iframe[data-talkjs-container]') as HTMLIFrameElement;
     if (iframe && iframe.contentDocument) {
       const iframeDocument = iframe.contentDocument;
-  
+
       const htmlElement = iframeDocument.documentElement;
-  
+
       if (isDarkMode) {
         htmlElement.style.setProperty('--background-color', '#1e1e1e');
         htmlElement.style.setProperty('--text-color', '#ffffff');
@@ -149,7 +167,7 @@ export class InboxComponent {
       }
     }
   }
-    // This method is called when the user toggles the dark mode switch
+  // This method is called when the user toggles the dark mode switch
   onThemeToggle(isDarkModeEnabled: boolean): void {
     // Call the toggleTheme function from the service
     this.talkService.toggleTheme(isDarkModeEnabled);

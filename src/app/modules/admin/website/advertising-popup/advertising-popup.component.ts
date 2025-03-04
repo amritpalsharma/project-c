@@ -15,16 +15,7 @@ export class AdvertisingPopupComponent   {
   private readonly _adapter = inject<DateAdapter<unknown, unknown>>(DateAdapter);
   private readonly _locale = signal(inject<unknown>(MAT_DATE_LOCALE)); 
   
-  typeOptions: any = [
-              '250 x 250 - Square',
-              '200 x 200 - Small Square',
-              '468 x 60 - Banner',
-              '728 x 90 - Leaderboard',
-              '300 x 250 - Inline Rectangle',
-              '336 x 280 - Large Rectangle',
-              '120 x 600 - Skyscraper',
-              '160 x 600 - Wide Skyscraper'
-          ];
+  typeOptions: any = [];
   
   pageOptions: any = [];
   idToEdit:any = '';
@@ -42,6 +33,9 @@ export class AdvertisingPopupComponent   {
   error:boolean = false
   errorMsg:any = {}
 
+  languages: any = localStorage.getItem('languages');
+  selectedLanguage: any = "" ;
+
   typeForView:any = "";
   pageName:any = "";
   imageUrl:any = ""
@@ -54,6 +48,8 @@ export class AdvertisingPopupComponent   {
     this._locale.set('fr');
     this._adapter.setLocale(this._locale()); 
     this.getAdvertisement();
+    this.languages = JSON.parse(this.languages);
+
     if(this.data.action == "update" || this.data.action == "view"){
       let existingRecord = this.data.ad;
       this.idToEdit = existingRecord.id;
@@ -288,13 +284,19 @@ export class AdvertisingPopupComponent   {
   }
 
   onChange(event: any){
-    this.advertisementService.getAdvertisementType(event.target.value).subscribe((response) => {
-      let adsTypes = response.data.ad_types;
-      if(adsTypes){
-        this.typeOptions = adsTypes;
-      }else{
-        this.typeOptions = [];
-      }
-    });
+    if(this.page && this.selectedLanguage){
+      console.log(this.page, this.selectedLanguage);
+      this.advertisementService.getAdvertisementType(this.page).subscribe((response) => {
+        let adsTypes = response.data.ad_types;
+        if(adsTypes){
+          this.typeOptions = adsTypes;
+        }else{
+          this.typeOptions = [];
+        }
+      });
+    }
+    else{
+      this.typeOptions = [];
+    }
   }
 }
