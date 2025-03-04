@@ -918,78 +918,47 @@ p.club-p {
 
 .works-btn {
   display: flex;
+  justify-content: flex-start;
   margin-top: 50px;
   margin-bottom: 50px;
-}
-
-button.btn.btn-success.active-btn .club-p {
-  width: 126px;
-  height: 40px;
+button.btn {
   border-radius: 8px;
-  font-weight: 700;
   font-size: 20px;
-  padding-top: 5px;
+  padding: 10px 30px;
+  margin-right: 15px;
+}
+button.btn.active-btn {
   color: #092E01;
-  opacity: 1;
 }
-
-button.btn.btn-success.active-btn .club-s {
-  width: 210px;
-  height: 40px;
-  border-radius: 8px;
-  font-weight: 700;
-  padding-top: 5px;
-  font-size: 20px;
-  color: #092E01;
-  opacity: 1;
-}
-
-.club-p {
-  font-size: 20px;
-  padding-top: 5px;
-  opacity: 75%;
-}
-
-.club-s {
-  font-size: 20px;
-  padding-top: 5px;
-  opacity: 75%;
+button.btn p {
+  opacity: 0.75;
   font-weight: 400;
+  text-transform: lowercase;
+  font-size: inherit;
 }
-
-// .active-btn p{
-//   font-weight: 700;
-//   font-size: 20px;
-//   color: #092E01;
-//}
-
+button.btn p:first-letter {
+  text-transform: uppercase;
+}
+button.btn.active-btn p {
+  opacity: 1;
+  font-weight: 700;
+}
+}
 .player1 {
   display: block;
-  /* Ensure it is displayed when selectedContent is 'Sign-up & Profile Creation' */
 }
-
-// .club-buttons img {
-//   width: 283px;
-//   height: 66px;
-//   object-fit: cover;
-// }
-
 .progress_btn {
   padding: 0 20px;
 }
-
 .progress_btn {
   padding: 0 20px;
 }
-
 .progress_btn h5 {
   margin-bottom: 20px;
 }
-
 .progress_btn h5 {
   margin-bottom: 20px;
 }
-
 .work-text {
   display: flex;
   margin-bottom: 50px;
@@ -997,50 +966,26 @@ button.btn.btn-success.active-btn .club-s {
   border-radius: 8px;
   cursor: pointer;
   position: relative;
-  /* Ensure relative positioning for the pseudo-element */
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
-
-/* Hover effect for work-text items */
-// .work-text:hover {
-//   color: #f0f0f0;
-//   /* Light background on hover */
-//   transform: translateY(-2px);
-//   /* Slight lift on hover */
-// }
-
-// /* Style for the active work-text item */
-// .work-text.active {
-//   color: #e0e0e0;
-//   /* Highlight background for active item */
-// }
 .talent-scroll {
   scroll-behavior: smooth;
 }
-
 .work-text a.active {
   color: white;
-  /* Background color when active */
 }
-
 .work-text p.active {
   color: white;
-  /* Background color when active */
 }
-
 .work-text.active .progress_btn a,
 .work-text.active .progress_btn p {
   color: white;
-  /* White color for active state */
 }
-
 .work-text.active .number p {
-  // background-color: #6FB95D;
   border-radius: 50%;
   height: 33px;
   width: 33px;
 }
-
 .work-text.active::before {
   content: "";
   position: absolute;
@@ -1051,47 +996,29 @@ button.btn.btn-success.active-btn .club-s {
   height: 100%;
   background-color: #6FB95D;
 }
-
-/* Specific styles for active link */
 .work-text .progress_btn a.active {
   color: white;
-  /* Text color for active link */
-
 }
-
 .progress_btn p {
   margin-top: 20px;
 }
-
-.club-btn {
-  margin-left: auto;
-}
-
 .progress_btn a {
   font-size: 22px;
 }
-
 .number p {
   height: 33px;
   width: 33px;
   border-radius: 50%;
   text-align: center;
   padding-top: 3px;
-  // background-color: #175B07;
   opacity: 75%;
   font-weight: 700;
   color: #092E01;
   margin-left: 20px;
 }
-
 .work-banner {
   margin-right: 22%;
 }
-
-// .player-list-images {
-//   position: relative;
-// }
-
 .talent-img1 img {
   position: absolute;
   /* Positions the .talent-img absolutely within the .container */
@@ -3245,8 +3172,6 @@ img.success-image {
   .works-btn {
     margin-top: 30px;
     margin-bottom: 10px;
-    margin-left: 20px;
-    margin-right: 20px;
   }
 
   .work-text {
@@ -3876,6 +3801,13 @@ img.image5 {
 }
 
 @media (max-width: 575px) {
+  .works-btn {
+    button.btn {
+      font-size: 16px;
+      padding: 10px 20px;
+      margin-right: 0;
+    }
+    }
   .main-bnr {
     height: 700px;
   }
@@ -4006,54 +3938,13 @@ img.image5 {
   .recently-joined .corner-image {
     width: 28px;
   }
-
   .progress_btn p {
     margin-top: 10px;
     font-size: 18px;
   }
-
-  .works-btn {
-    justify-content: space-between;
-  }
-
-  button.btn.btn-success.active-btn .club-s {
-    width: 200px;
-    height: 40px;
-    border-radius: 8px;
-    font-weight: 700;
-    padding-top: 0px;
-    font-size: 17px;
-    color: #092E01;
-    opacity: 1;
-  }
-
-  .club-btn button.btn.btn-success {
-    border: none;
-    opacity: 75%;
-    font-weight: 400;
-    height: 40px;
-  }
-
-  .club-p {
-    padding-top: 0;
-  }
-
-  .club-s {
-    padding-top: 0;
-    font-size: 16px;
-  }
-
-  .active-btn p {
-    font-weight: 700;
-  }
-
   .progress_btn {
     padding: 0 15px;
     margin-top: 35px;
-  }
-
-  .club-btn {
-    margin-left: 0;
   }
 
   .player-img {
@@ -4109,7 +4000,7 @@ img.image5 {
   }
 
   .work-text1 {
-    height: 500px;
+    height: 550px;
   }
 
   .talent-img1 img {
@@ -4403,14 +4294,7 @@ img.image5 {
     font-size: 5px;
   }
 
-  .works-btn .talent-btn .btn {
-    padding: 0;
-    padding-top: 0px;
-    font-size: 20px;
-    width: 126px;
-    height: 40px;
-    font-weight: 400;
-  }
+
 
   .buttonss button {
     border: 1px solid #8d8c8c;
@@ -4593,12 +4477,6 @@ img.image5 {
     left: 5%;
     border-radius: 3px;
   }
-
-  button.btn.btn-success.active-btn .club-s {
-    width: 180px;
-  }
-
-
 }
 
 @media (max-width: 376px) {
@@ -4726,10 +4604,6 @@ img.image5 {
     left: 5%;
   }
 
-  button.btn.btn-success.active-btn .club-s {
-    width: 170px;
-  }
-
 
 
 }
@@ -4793,23 +4667,6 @@ img.image5 {
     right: 0;
   }
 
-  button.btn.btn-success.active-btn .club-s {
-    width: 160px;
-    height: 40px;
-    font-size: 18px;
-  }
-
-  .club-s,
-  .club-p {
-    font-size: 18px;
-  }
-
-  button.btn.btn-success.active-btn .club-p {
-    width: 120px;
-    height: 36px;
-    font-size: 18px;
-  }
-
   .club_member1,
   .club_member5,
   .club_member7,
@@ -4825,23 +4682,6 @@ img.image5 {
 
 
 @media (max-width: 345px) {
-  .works-btn .talent-btn .btn {
-    width: 105px;
-    height: 35px;
-  }
-
-  button.btn.btn-success.active-btn .club-p {
-    width: 105px;
-    height: 33px;
-    font-size: 18px;
-  }
-
-  button.btn.btn-success.active-btn .club-s {
-    width: 160px;
-    height: 35px;
-    font-size: 18px;
-  }
-
   .talent-img1 img {
     width: 95px;
     height: 165px;
@@ -5099,17 +4939,6 @@ img.image5 {
     font-size: 13px;
   }
 
-  .works-btn {
-    margin-left: 0;
-    margin-right: 10px;
-  }
-
-
-  .work-text.active .number p {
-    height: 27px;
-    width: 27px;
-    line-height: 24px;
-  }
 
   .work-text .number p {
     height: 27px;
@@ -5120,43 +4949,6 @@ img.image5 {
   .work-text1 {
     height: 400px;
   }
-
-  .works-btn .talent-btn .btn {
-
-    width: 95px;
-    height: 35px;
-  }
-
-  button.btn.btn-success.active-btn .club-p {
-    width: 95px;
-    height: 35px;
-    line-height: 24px;
-    font-weight: 700;
-    font-size: 15px;
-  }
-
-  .club-s {
-    font-size: 15px;
-
-  }
-
-  .club-p {
-    font-size: 15px;
-
-  }
-
-  button.btn.btn-success.active-btn .club-s {
-    font-size: 15px;
-  }
-
-  .club-btn button.btn.btn-success {
-    border: none;
-    opacity: 75%;
-    font-weight: 400;
-    height: 35px;
-    width: 195px;
-  }
-
   .right-side img.image3 {
     width: 205px;
     top: 10px;
@@ -5248,4 +5040,21 @@ img.image5 {
 
 .club-corner-img::before{
   background: none !important;
+}
+
+
+@media (min-width: 1200px) {
+  .works-btn {
+    width: calc(100% + 15%);
+  }
+}
+
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .works-btn {
+    button.btn {
+      font-size: 15px;
+      padding: 10px 20px;
+    }
+  }
 }
