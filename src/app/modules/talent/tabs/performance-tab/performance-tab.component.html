@@ -8,7 +8,7 @@
     <table class="table table-striped w-100 ">
       <tbody>
         <tr class="table_underline" >
-          <div class="team_logo row justify-content-between align-items-center">
+          <div class="team_logo row justify-content-between">
             <div class="col-lg-8 d-flex team-logos">
               <div class="team-logo-img">              
               </div>
@@ -18,10 +18,10 @@
                 <h6 class="details_2">---</h6>
               </div>
             </div>
-            <div class="col-lg-4 d-flex align-items-center justify-content-end edit-gap">
+            <div class="col-lg-4 d-flex justify-content-end edit-gap">
             </div>
           </div>
-          <div class="d-flex align-items-center justify-content-between underline_gap">
+          <div class="d-flex justify-content-between underline_gap">
             <td>
               <div class="d-flex country-details">              
                 <div class="main-template" >
@@ -100,7 +100,7 @@
 </div>
 
 
-<div class="table-responsive px-3 bg-0C3453" style="width: 100%;"  *ngIf="isPremium ">
+<div class="table-responsive bg-0C3453" style="width: 100%;"  *ngIf="isPremium ">
   <div class="new_performance">
     <button (click)="openAddDialog()">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -115,8 +115,8 @@
   <table class=" table table-striped w-100 ">
     <tbody>
       <tr class="table_underline" *ngFor="let performance of performances">
-        <div class="team_logo row justify-content-between align-items-center">
-          <div class="col-lg-8 d-flex team-logos">
+        <div class="team_logo row justify-content-between">
+          <div class="col-8 d-flex team-logos">
             <div class="team-logo-img">
               <img src="{{performance.team_club_logo_path}}" alt=""/>
             </div>
@@ -126,7 +126,7 @@
               <h6 class="details_2">{{calculateDateRange(performance)}}</h6>
             </div>
           </div>
-          <div class="col-lg-4 d-flex align-items-center justify-content-end edit-gap">
+          <div class="col-4 d-flex justify-content-end edit-gap">
             <button class="edit_button-2" (click)="openDeleteDialog(performance.id)">
               <svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -145,7 +145,7 @@
             </button>
           </div>
         </div>
-        <div class="d-flex align-items-center justify-content-between underline_gap">
+        <div class="d-flex justify-content-between underline_gap">
           <td>
             <div class="d-flex country-details">
               <div class="main-template" *ngIf="editableId != performance.id">

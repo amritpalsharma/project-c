@@ -38,6 +38,9 @@ export class NewsComponent implements OnInit, OnDestroy {
   base_url: string = 'https://api.socceryou.ch/uploads/';
   adVisible: boolean[] = [true, true, true, true, true];
 
+  isLoading : boolean = true;
+
+
   images: SliderImage[] = [
     {
       featured_image: 'assets/images/slider-image.png',
@@ -142,6 +145,8 @@ export class NewsComponent implements OnInit, OnDestroy {
         this.news_img_path = res.data.news_img_path;
         this.slider_btn_txt = res.data.pageData.slider_btn_txt;
         this.slider_date = res.data.pageData.slider_date;
+
+        this.isLoading = false;
 
         // this.images = res.data.newsSliderData || this.images;
         // this.base_url = res.data.base_url;

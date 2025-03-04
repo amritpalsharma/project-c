@@ -81,6 +81,11 @@ export class IndexComponent {
   club_logo_path: string = '';
   pre_club_logo_path: string = '';
   heroSectionBgImage: string = '';
+
+
+  isLoading : boolean = true;
+
+
   players = [
     { name: 'Ronaldinho Gaúcho', image: './assets/images/Ronaldinho Gaúcho.svg', year: '2004' },
     { name: 'Ziddane', image: './assets/images/ziddane.svg', year: '2004' },
@@ -349,6 +354,8 @@ export class IndexComponent {
         // console.log('advertisementData', this.advertisementData);
         this.imageBaseUrl = res.data.base_url;
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
+
+        this.isLoading = false;
 
 
       }

@@ -13,6 +13,9 @@ export class FaqComponent {
   faq_sec_btn_txt:string='';
   faq_third_btn_txt:string='';
   advertisemnet_base_url:string= '';
+
+  isLoading : boolean = true;
+
   
   isOpen: { [key: string]: boolean[] } = {
     talent: [],
@@ -98,6 +101,8 @@ export class FaqComponent {
            this.advertisementData = res?.data?.advertisemnetData;
 
            this.advertisemnet_base_url = res.data.advertisemnet_base_url;
+
+           this.isLoading = false;
           
         }
     });

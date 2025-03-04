@@ -217,104 +217,64 @@ select .form-select-box {
     background-color: white;
     margin-top: 0px;
 }
-
 .c-name {
     margin-bottom: 10px;
 }
-
 input#companyName {
     margin-bottom: 10px;
 }
-
 /*--------------------------------------------------------------
 #  register
 --------------------------------------------------------------*/
-
-
 .icon-hamburger::before {
     content: '\2630';
-    /* Unicode for hamburger menu (≡) */
     font-size: 30px;
     color: white;
 }
-
 .icon-cross::before {
     content: '\00d7';
-    /* Unicode for a cross (×) */
     color: white;
     font-size: 40px;
 }
-
 .font-w400 {
     font-weight: 400;
 }
-
-// .d-flex {
-//   display: block !important;
-// }
-// .login-btn {
-//   font-size: 16px;
-//   background-color: #E05263;
-//   color: white;
-//   padding: 10px 90px;
-//   border-radius: 20px;
-// }
-// .login-btn a{
-//   margin-top: 20px;
-// }
-
 a {
     text-decoration: none;
 }
-
 li {
     list-style-type: none;
 }
-
 ul {
     padding: 0;
     margin: 0;
 }
-
 .fs-14 {
     font-size: 14px;
 }
-
 .text-light {
     color: #a2acbb !important;
 }
-
-.phone,
-.email {
+.phone, .email {
     color: #fff;
 }
-
-// .modal-dialog {
-//     // max-width: 600px;
-//     margin-right: auto;
-//     margin-left: auto;
-// }
 .register .modal {
     --bs-modal-zindex: 1055;
     --bs-modal-width: 600px;
 }
-
 .reg-model .modal-dialog.modal-dialog-centered {
     transform: none;
     max-width: 600px !important;
 }
-
 .modal-content {
     border-radius: 20px;
 }
-
 .modal-btn .btn {
     width: 100%;
     padding: 10px;
     border-radius: 8px;
     font-weight: 700;
 }
-
 .check-resister {
     padding: 10px 15px;
     border-radius: 10px;
@@ -325,30 +285,23 @@ ul {
     height: 53px;
     margin-bottom: 20px;
     margin-top: 10px;
-    /* Added for better UX */
-
 }
-
 .form-label {
     margin-bottom: 0;
 }
-
 .check-resister .form-check-input:checked {
     background-color: white;
     border-color: white;
 }
-
 .check-resister .form-check-label span {
     font-size: 18px;
     font-weight: 400;
     margin-left: 10px;
 }
-
 .register .form-check {
     line-height: 30px;
     padding-left: 0;
 }
-
 .text-light {
     line-height: 20px;
     display: flex;
@@ -369,37 +322,25 @@ ul {
     text-align: center;
     margin-bottom: 20px;
 }
-
 .register .form-check .form-check-input {
     float: left;
     margin-left: 0;
     margin-top: 5px;
 }
-
 .check-resister.active .form-check-label span {
     color: #e05263;
-    // background-color: #e05263;
 }
-
 .social-media ul li a {
     color: #fff;
     margin-right: 10px;
 }
-
 .form-check-input[type="checkbox"] {
     border-radius: 3px;
 }
-
-// .form-check-input:checked {
-//   background-color: #e05263;
-//   border-color: #e05263;
-// }
-
 .header-btn {
     margin-left: 40px;
     position: relative;
 }
-
 .header-btn:after {
     position: absolute;
     content: "";
@@ -410,82 +351,39 @@ ul {
     transform: skew(20deg);
     background-color: #e05263;
 }
-
 .btn {
     border-radius: 10px;
-    // padding: 10px 20px;
     font-size: 16px;
 }
-
 a.btn-primary {
     border: #E05263;
 }
-
-// .navbar-toggler {
-//   transition: none
-// }
-// .navbar-collapse {
-//   max-height: 0;
-//   overflow: hidden;
-//   opacity: 0;
-//   transition: max-height 0.35s ease, opacity 0.35s ease; /* Smooth transition for height and opacity */
-// }
-
-// /* Expanded state */
-// .navbar-collapse.show {
-//   max-height: 0px; /* Adjust based on the content height */
-//   opacity: 1;
-// }
-
-
-// .light-theme .btn-primary {
-//   background-color: #e05263 !important;
-//   border-color: #e05263 !important;
-// }
-
-// .btn-primary:hover {
-//   background-color: #e05263;
-//   border-color: #e05263;
-// }
-// .btn-primary:hover:active {
-//   background-color: #e05263;
-//   border-color: #e05263;
-// }
 .nav-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 10px 0;
 }
-
 .navbar-expand-lg .navbar-nav .nav-link {
     padding-right: 0;
     padding-left: 0;
 }
-
 li.nav-item {
     margin-left: 20px;
 }
-
 .nav-link {
     text-transform: uppercase;
-    // padding: 18px !important;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 400;
-    // margin-right: 20px;
     color: #fff;
     position: relative;
 }
-
-
-
 .navbar-nav .nav-link.active {
     position: relative;
     font-weight: 400;
     padding-left: 0;
     padding-right: 0;
 }
-
 .navbar-nav .nav-link.active::after {
     content: "";
     display: block;
@@ -2608,20 +2506,6 @@ select.form-select.custom-select1 {
         font-size: 11px;
     }
 }
-
-//     .forget-password .modal-btn .btn {
-//         padding: 6px;
-//     }
-
-//     .forget-password .btn.btn-primary.d-block {
-//         font-size: 12px;
-//     }
-
-//     &.active {
-//         border-color: #e05263;
-//     }
-// }
-
 .seperter {
     position: relative;
 

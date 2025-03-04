@@ -1012,49 +1012,49 @@ span {
 #  adv
 --------------------------------------------------------------*/
 
-.large-rectangle {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    content: "";
-    height: 280px;
-    width: 336px;
-}
+// .large-rectangle {
+//     position: absolute;
+//     left: 0;
+//     bottom: 0;
+//     content: "";
+//     height: 280px;
+//     width: 336px;
+// }
 
-.large-rectangle img {
-    height: 280px;
-    width: 336px;
-}
+// .large-rectangle img {
+//     height: 280px;
+//     width: 336px;
+// }
 
-.inline-rectangle {
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    transform: translateX(-50%);
-    content: "";
-    width: 300px;
-    height: 250px;
-}
+// .inline-rectangle {
+//     position: absolute;
+//     left: 50%;
+//     bottom: 0;
+//     transform: translateX(-50%);
+//     content: "";
+//     width: 300px;
+//     height: 250px;
+// }
 
-.inline-rectangle img {
-    width: 300px;
-    height: 250px;
-}
+// .inline-rectangle img {
+//     width: 300px;
+//     height: 250px;
+// }
 
-.square {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    content: "";
-    width: 250px;
-    height: 250px;
-    display: flex;
-}
+// .square {
+//     position: absolute;
+//     right: 0;
+//     bottom: 0;
+//     content: "";
+//     width: 250px;
+//     height: 250px;
+//     display: flex;
+// }
 
-.square img {
-    width: 250px;
-    height: 250px;
-}
+// .square img {
+//     width: 250px;
+//     height: 250px;
+// }
 
 // .adv{
 //     position: relative;
@@ -1072,37 +1072,37 @@ span {
 //     height: 350px;
 // }
 
-.skyscraper-image {
-    height: 600px;
-    width: 120px;
-    content: "";
-    z-index: 2;
-    position: absolute;
-    left: 1%;
-    top: 16%;
-}
+// .skyscraper-image {
+//     height: 600px;
+//     width: 120px;
+//     content: "";
+//     z-index: 2;
+//     position: absolute;
+//     left: 1%;
+//     top: 16%;
+// }
 
-.skyscraper-image img {
-    height: 600px;
-    width: 120px;
-}
+// .skyscraper-image img {
+//     height: 600px;
+//     width: 120px;
+// }
 
-.leaderboard-image {
-    position: absolute;
-    content: "";
-    z-index: 1;
-    height: 90px;
-    width: 728px;
-    bottom: 5%;
-    left: 50%;
-    /* Centering */
-    transform: translateX(-50%);
-}
+// .leaderboard-image {
+//     position: absolute;
+//     content: "";
+//     z-index: 1;
+//     height: 90px;
+//     width: 728px;
+//     bottom: 5%;
+//     left: 50%;
+//     /* Centering */
+//     transform: translateX(-50%);
+// }
 
-.leaderboard-image img {
-    height: 90px;
-    width: 728px;
-}
+// .leaderboard-image img {
+//     height: 90px;
+//     width: 728px;
+// }
 
 // .small-sqaure-image {
 //     position: absolute;
@@ -1119,22 +1119,22 @@ span {
 //     width: 200px;
 // }
 
-.banner-image {
-    position: absolute;
-    content: "";
-    z-index: 1;
-    bottom: 3%;
-    right: 0;
-    height: 60px;
-    width: 468px;
+// .banner-image {
+//     position: absolute;
+//     content: "";
+//     z-index: 1;
+//     bottom: 3%;
+//     right: 0;
+//     height: 60px;
+//     width: 468px;
 
-}
+// }
 
-.banner-image img {
-    height: 60px;
-    width: 468px;
+// .banner-image img {
+//     height: 60px;
+//     width: 468px;
 
-}
+// }
 
 /*--------------------------------------------------------------
 #  adv
@@ -1221,9 +1221,9 @@ span {
         height: 1200px;
     }
 
-    .skyscraper-image {
-        top: 12%;
-    }
+    // .skyscraper-image {
+    //     top: 12%;
+    // }
 
     .banner-image1 img {
         width: 380px;
@@ -2078,25 +2078,25 @@ span {
         transition: height 0.5s ease-in-out;
     }
 
-    .leaderboard-club-image img,
-    .small-sqaure-image img,
-    .skyscraper-image img,
-    .skyscraper-image img,
-    .wide-skyscraper-image img,
-    .leaderboard-image img,
-    .banner-image img,
-    .advertisement,
-    .advertisement1 {
-        display: none;
-    }
+    // .leaderboard-club-image img,
+    // .small-sqaure-image img,
+    // .skyscraper-image img,
+    // .skyscraper-image img,
+    // .wide-skyscraper-image img,
+    // .leaderboard-image img,
+    // .banner-image img,
+    // .advertisement,
+    // .advertisement1 {
+    //     display: none;
+    // }
 
-    .skyscraper-image,
-    .wide-skyscraper-image,
-    .leaderboard-club-image,
-    .leaderboard-image,
-    .small-sqaure-image {
-        display: none;
-    }
+    // .skyscraper-image,
+    // .wide-skyscraper-image,
+    // .leaderboard-club-image,
+    // .leaderboard-image,
+    // .small-sqaure-image {
+    //     display: none;
+    // }
 
     .banner-left {
         top: 50%;

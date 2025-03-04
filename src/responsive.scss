@@ -141,23 +141,59 @@
 
 @media (min-width: 1600px) {
 .it .website-code nav.navbar li.nav-item .nav-link, .fr .website-code nav.navbar li.nav-item .nav-link,
-    .es .website-code nav.navbar li.nav-item .nav-link, .pt .website-code nav.navbar li.nav-item .nav-link,
-    .dk .website-code nav.navbar li.nav-item .nav-link, .se .website-code nav.navbar li.nav-item .nav-link,
-    .de .website-code nav.navbar li.nav-item .nav-link {
-        font-size: 18px;
-    }
-    .fr .website-code nav.navbar .login-btn {
-        width: 200px;
-        font-size: 17px;
-    }
-    .es .website-code .login-btn, .de .website-code .login-btn {
-        font-size: 17px;
-        width: 200px;
-    }
-    .en .website-code nav.navbar .login-btn {
-        width: 180px;
-        font-size: 16px;
-    }
+.es .website-code nav.navbar li.nav-item .nav-link, .pt .website-code nav.navbar li.nav-item .nav-link,
+.dk .website-code nav.navbar li.nav-item .nav-link, .se .website-code nav.navbar li.nav-item .nav-link,
+.de .website-code nav.navbar li.nav-item .nav-link, .en .website-code nav.navbar li.nav-item .nav-link {
+    font-size: 19px;
+}
+.fr .website-code nav.navbar .login-btn {
+    width: 210px;
+    font-size: 17.5px;
+}
+.es .website-code .login-btn, .de .website-code .login-btn {
+    font-size: 17.5px;
+    width: 210px;
+}
+.en .website-code nav.navbar .login-btn {
+    width: 190px;
+    font-size: 16.5px;
+}
+.table th, .table td {
+    font-size: 18px !important;
+}
+}
+
+@media (min-width: 2000px) {
+.it .website-code nav.navbar li.nav-item .nav-link, .fr .website-code nav.navbar li.nav-item .nav-link,
+.es .website-code nav.navbar li.nav-item .nav-link, .pt .website-code nav.navbar li.nav-item .nav-link,
+.dk .website-code nav.navbar li.nav-item .nav-link, .se .website-code nav.navbar li.nav-item .nav-link,
+.de .website-code nav.navbar li.nav-item .nav-link, .en .website-code nav.navbar li.nav-item .nav-link {
+    font-size: 20px !important;
+}
+.fr .website-code nav.navbar .login-btn {
+    width: 220px !important;
+    font-size: 18px !important;
+}
+.es .website-code .login-btn, .de .website-code .login-btn {
+    font-size: 18px !important;
+    width: 220px !important;
+}
+.en .website-code nav.navbar .login-btn {
+    width: 200px !important;
+    font-size: 17px !important;
+}
+.table th, .table td {
+    font-size: 18px !important;
+}
+.card-title {
+    font-size: 22px;
+}
+.sidebar_menu a {
+    font-size: 16px !important;
+}
+.page-sidebar-inner {
+    height: calc(100% - 160px) !important;
+}
 }
 
 
@@ -167,6 +203,20 @@
       height: 200px !important;
   }
   }
+}
+
+@media (min-width: 576px) {
+    .cdk-overlay-pane.mat-mdc-dialog-panel {
+      min-width: 350px !important;
+      min-height: 180px !important;
+    }
+}
+
+@media (max-width:1300px) and (min-width:992px) {
+.mobile-sidebar-active .plan_box .d-flex.gap-2 {
+    flex-direction: column;
+    align-items: flex-start !important;
+}
 }
 
 

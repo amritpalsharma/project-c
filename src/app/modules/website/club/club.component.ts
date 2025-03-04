@@ -21,6 +21,8 @@ export class ClubComponent {
   }];
   advertisemnetData:any=null;
   advertisemnet_base_url:string= '';
+  isLoading : boolean = true;
+
 
   isActive1 = true; // Premium Plan
   isActive2 = true; // Multi-Country Plan
@@ -112,6 +114,8 @@ export class ClubComponent {
       if(res.status){
           this.pageData = res.data.pageData;
           this.baseUrl = res.data.base_url;
+
+          this.isLoading = false;
          
           this.advertisemnetData = res.data.advertisemnetData;
           // this.advertisemnetData = [];
