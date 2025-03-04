@@ -4,7 +4,7 @@
     </div>
 
     <div class="msg-popup-content">
-        <div class="display-message" >{{data.message}}</div>
+        <div class="display-message">{{data.message}}</div>
         <!-- <div class="display-message" *ngIf="data.action == 'delete-confirmation'">
             {{'confirmDeleteinformation' | translate}} <br> {{'confirmDeleteinformation1' | translate}}
 
@@ -32,7 +32,7 @@
             </div>
         </div>
         <div class="display-message" *ngIf="data.action == 'template-delete-confirmation'">
-            {{'templateIsDeleted' | translate}} <br>  {{'confirmDeleteUser1' | translate}}
+            {{'templateIsDeleted' | translate}} <br> {{'confirmDeleteUser1' | translate}}
 
             <div class="popup-delete-btn">
                 <span (click)="deleteConfirmed()">{{'delete' | translate}}</span>
@@ -74,9 +74,10 @@
                 <span (click)="deleteConfirmed()">{{'remove' | translate}}</span>
             </div>
         </div>
-        <div *ngIf="data.action === 'delete-confirmation'" class="popup-delete-btn d-flex align-items-center justify-content-between mx-5 px-5 py-2">
-            <div (click)="deleteConfirmed()">{{ 'confirm' | translate }}</div>
-            <div (click)="close()">{{ 'close' | translate }}</div>
-        </div> 
+        <div *ngIf="data.action === 'delete-confirmation'"
+            class="popup-delete-btn d-flex align-items-center justify-content-between mx-5 px-5 py-2">
+            <div (click)="deleteConfirmed()">{{ 'removeFavbtn' | translate }}</div>
+            <div (click)="close()">{{ 'cancelRemoveFavBtn' | translate }}</div>
+        </div>
     </div>
 </div>

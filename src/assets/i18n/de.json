@@ -1275,5 +1275,9 @@
   "deleteMyAccount" : "Mein Konto löschen",
   "learnMore":"Mehr erfahren",
   "removeFavbtn":"Ja, löschen",
-  "cancelRemoveFavBtn":"Nein, nicht löschen"
+  "cancelRemoveFavBtn":"Nein, nicht löschen",
+  "deleteProfileConfirm":"Dadurch wird Ihr Konto dauerhaft aus unserer Datenbank gelöscht. Dies kann nicht rückgängig gemacht werden.",
+  "downloading":"Herunterladen...",
+  "submittingPerformanceData":"Übermittlung von Leistungsdaten...",
+  "enterDocumentTitle":"Titel des Dokuments eingeben"
 }

@@ -6,6 +6,7 @@ import { EditPerformanceDetailsComponent } from '../../edit-performance-details/
 import { MatDialog } from '@angular/material/dialog';
 import { AddPerformanceComponent } from './add-performance/add-performance.component';
 import { DeletePopupComponent } from '../../delete-popup/delete-popup.component';
+import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 
 @Component({
   selector: 'talent-performance-tab',
@@ -14,11 +15,13 @@ import { DeletePopupComponent } from '../../delete-popup/delete-popup.component'
 })
 export class PerformanceTabComponent {
   isEditing: boolean = false;
-  userId:any = 71;
-  performances:any = [];
+  userId: any = 71;
+  performances: any = [];
   editableId: string = "";
-  teams:any = [];
-  dataTOBeUpdated:any = {
+  pleaseWait: string = "";
+  successTxt: string = "";
+  teams: any = [];
+  dataTOBeUpdated: any = {
     coach: "",
     team_id: "",
     matches: "",
@@ -26,28 +29,33 @@ export class PerformanceTabComponent {
     session: "",
     player_age: ""
   }
-  loggedInUser:any = localStorage.getItem('userData');
+  loggedInUser: any = localStorage.getItem('userData');
   @Input() isPremium: any;
 
   // from_date:2021-01-01
   // to_date:2022-01-01
-  constructor(private route: ActivatedRoute, private userService: UserService,private talentService: TalentService, public dialog: MatDialog, private router: Router) { }
-  
+  constructor(private route: ActivatedRoute, private userService: UserService, private talentService: TalentService, public dialog: MatDialog, private router: Router, private translate: TranslateService) { }
+
   async ngOnInit() {
-    this.route.params.subscribe((params:any) => {      
+    this.route.params.subscribe((params: any) => {
       this.loggedInUser = JSON.parse(this.loggedInUser);
       this.userId = this.loggedInUser.id;
       this.getUserPerformance(this.userId);
     });
     await this.getAllTeams();
+    this.getToasterMsg();
+    this.translate.onLangChange.subscribe((event) => {
+      this.getToasterMsg();
+      // alert(`Language changed to: ${event.lang}`);
+    });
   }
 
-  
-  openEditDialog(performance:any) {
+
+  openEditDialog(performance: any) {
 
     const dialogRef = this.dialog.open(EditPerformanceDetailsComponent, {
       width: '800px',
-      data: { performance : performance , teams : this.teams}
+      data: { performance: performance, teams: this.teams }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -63,7 +71,8 @@ export class PerformanceTabComponent {
     console.log(this.teams)
     const dialogRef = this.dialog.open(AddPerformanceComponent, {
       width: '800px',
-      data: { performance : {
+      data: {
+        performance: {
           "team_id": "",
           "matches": "",
           "goals": "",
@@ -71,7 +80,8 @@ export class PerformanceTabComponent {
           "session": "",
           "from_date": "0000-00-00",
           "to_date": "0000-00-00"
-      } , teams : this.teams}
+        }, teams: this.teams
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -83,14 +93,14 @@ export class PerformanceTabComponent {
     });
   }
 
-  openDeleteDialog(id:any) {
+  openDeleteDialog(id: any) {
     const dialogRef = this.dialog.open(DeletePopupComponent, {
       width: '600px',
       minWidth: '400px', // Add min-width here
     });
-  
+
     dialogRef.afterClosed().subscribe(result => {
-      console.log('openDeleteDialog',id)
+      console.log('openDeleteDialog', id)
       if (result) {
         // If result is true, proceed with deletion logic
         this.deleteUserPerformance(id);
@@ -114,21 +124,22 @@ export class PerformanceTabComponent {
       }
     );
   }
-  
-  getUserPerformance(userId:any){
+
+  getUserPerformance(userId: any) {
     try {
-      this.talentService.getPerformanceData().subscribe((response)=>{
+      this.talentService.getPerformanceData().subscribe((response) => {
         if (response && response.status && response.data && response.data.performanceDetail) {
           this.editableId = "";
-          this.performances = response.data.performanceDetail; 
+          this.performances = response.data.performanceDetail;
 
           console.log(this.performances)
           // this.isLoading = false;
         } else {
+          this.performances = [];
           // this.isLoading = false;
-          console.error('Invalid API response structure:', response);
+          // console.error('Invalid API response structure:', response);
         }
-      });     
+      });
     } catch (error) {
       // this.isLoading = false;
       console.error('Error fetching users:', error);
@@ -136,16 +147,16 @@ export class PerformanceTabComponent {
   }
 
 
-  getAllTeams(){
+  getAllTeams() {
     this.talentService.getTeams().subscribe((data) => {
       this.teams = data;
     });
   }
 
-  editPerformance(performanceId:any){
+  editPerformance(performanceId: any) {
     console.log(performanceId)
     this.editableId = performanceId;
-    let index = this.performances.findIndex((x:any) => x.id == performanceId);
+    let index = this.performances.findIndex((x: any) => x.id == performanceId);
     let currentRow = this.performances[index];
 
     this.dataTOBeUpdated = {
@@ -158,8 +169,8 @@ export class PerformanceTabComponent {
     }
   }
 
-  
-  savePerformance(performanceId:any){
+
+  savePerformance(performanceId: any) {
 
     // let index = this.performances.findIndex((x:any) => x.id == performanceId);
     // let teamInfo = this.getUpdatedTeamInfoToDisplay(this.dataTOBeUpdated.team_id)
@@ -168,26 +179,26 @@ export class PerformanceTabComponent {
     // this.performances[index] = updatedIndexData;
     // console.log(JSON.stringify(this.performances))
     // this.editableId = "";
-    this.userService.updatePerformance(performanceId, this.dataTOBeUpdated).subscribe((response)=>{
+    this.userService.updatePerformance(performanceId, this.dataTOBeUpdated).subscribe((response) => {
       // console.log(response)
       // this.editableId = "";
-      if(response.status){
+      if (response.status) {
         this.getUserPerformance(this.userId);
       }
-    }); 
+    });
   }
 
   onSelectChange(event: Event): void {
     const selectElement = event.target as HTMLSelectElement;
-    this.updateRow('team_id',Number(selectElement.value));
+    this.updateRow('team_id', Number(selectElement.value));
   }
 
-  onInputChange(event: Event, key:string): void {
+  onInputChange(event: Event, key: string): void {
     let inputElement = event.target as HTMLInputElement;
-    this.updateRow(key,inputElement.value);
+    this.updateRow(key, inputElement.value);
   }
 
-  updateRow(key:any, value:any){
+  updateRow(key: any, value: any) {
     this.dataTOBeUpdated[key] = value;
   }
 
@@ -196,39 +207,46 @@ export class PerformanceTabComponent {
     const toDate = performance_detail.to_date === '0000-00-00'
       ? new Date() // Current date for "Present"
       : new Date(performance_detail.to_date);
-  
+
     // Check if fromDate or toDate is invalid
     // if (isNaN(fromDate.getTime()) || isNaN(toDate.getTime())) {
     //   return '-'; // Return '-' if either date is invalid
     // }
-  
+
     let years = toDate.getFullYear() - fromDate.getFullYear();
     let months = toDate.getMonth() - fromDate.getMonth();
-  
+
     // Adjust if the month difference is negative
     if (months < 0) {
       years--;
       months += 12;
     }
-  
+
     const displayYears = years;
     const displayMonths = months;
-  
+
     // Format the date strings
     const fromDateString = fromDate.toLocaleString('default', { month: 'long', year: 'numeric' });
-    const toDateString = performance_detail.to_date === '0000-00-00' 
+    const toDateString = performance_detail.to_date === '0000-00-00'
       ? 'Present'
       : toDate.toLocaleString('default', { month: 'long', year: 'numeric' });
-  
+
     let dateRange = `${fromDateString ?? '-'} - ${toDateString ?? '-'}`;
-  
+
     if (displayYears > 0 || displayMonths > 0) {
       dateRange += ` (${displayYears} yr ${displayMonths} mos)`;
     }
-  
+
     return dateRange;
   }
-  
-  
+  getToasterMsg() {
+    this.translate.get(['success!', 'submittingPerformanceData', 'pleaseWait']).subscribe((res: any) => {
+      this.successTxt = res['success!'];
+      //  / this.submittingPerformanceData = res['submittingPerformanceData'];
+      this.pleaseWait = res['pleaseWait'];
+      // this.downloading = res['downloading'];
+    });
+  }
+
 }
 

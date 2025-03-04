@@ -1181,5 +1181,9 @@
   "learnMore":"Learn More",
   "removeFavbtn": "Yes, delete",
   "cancelRemoveFavBtn": "No, don't delete",
-  "addCountryText": "If you add another country, your profile will be displayed in that country. Your profile will then also be visible to all talents, clubs, and scouts in that country."
+  "addCountryText": "If you add another country, your profile will be displayed in that country. Your profile will then also be visible to all talents, clubs, and scouts in that country.",
+  "deleteProfileConfirm":"This will delete your account permanently from our database. This cannot be undone.",
+  "downloading":"Downloading...",
+  "submittingPerformanceData":"Submitting performance data...",
+  "enterDocumentTitle":"Enter document title"
 }

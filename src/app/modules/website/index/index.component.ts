@@ -303,6 +303,7 @@ export class IndexComponent {
     // Initially, all ads are visible
     this.isUserLoggedIn = this.authService.isLoggedIn();
     this.adVisible = [true, true, true, true, true];
+    // alert(localStorage.getItem('lang'));
     this.webPages.languageId$.subscribe((data) => {
       this.getPageDynamicData(data);
     });
