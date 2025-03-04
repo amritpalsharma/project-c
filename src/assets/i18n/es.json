@@ -327,7 +327,7 @@
   "privacyPolicyCheckboxError": "Por favor, acepte la Política de Privacidad.",
   "newsletterLabel": "Suscribirse al boletín",
   "submitButton": "Crear cuenta",
-  "alreadyHaveAccount": "¿Ya tienes una cuenta?",
+  "alreadyHaveAccount": "¿Ya tienes un perfil?",
   "loginLink": "Iniciar sesión",
   "nameRequired": "El nombre es requerido.",
   "emailRequired": "email es requerido.",
@@ -1227,19 +1227,17 @@
       "Más visibilidad - más posibilidades de ser descubierto"
     ]
   },
-   "areYouSuretoDeleteActivity":"Está seguro de eliminar la actividad ?",
-   "subsciptionCancelSuccess":"Su suscripción ha sido cancelada con éxito.",
-   "MyAccount": "Ir al panel de control",
-   "boostProfiles": "Perfil Boost",
-   "changeNewsletterStatus": "¿Estás seguro de que quieres cambiar el estado del boletín?",
-   "representators": "Miembro del equipo",
+  "areYouSuretoDeleteActivity": "Está seguro de eliminar la actividad ?",
+  "subsciptionCancelSuccess": "Su suscripción ha sido cancelada con éxito.",
+  "MyAccount": "Ir al panel de control",
+  "boostProfiles": "Perfil Boost",
+  "changeNewsletterStatus": "¿Estás seguro de que quieres cambiar el estado del boletín?",
+  "representators": "Miembro del equipo",
   "representators:": "Miembro del equipo:",
-
   "errorMessage": "lamentablemente no se ha encontrado esta página",
   "verifyEmail": "VERIFIQUE SU CORREO ELECTRÓNICO",
   "sentConfirmationLink": "Hemos enviado un enlace de confirmación a tu correo electrónico.",
   "completeVerificationProcess": "Haga clic en el enlace de su bandeja de entrada para completar el proceso de verificación.",
-
   "cookiePopupText": "Valoramos su privacidad. Nosotros y nuestros socios utilizamos rastreadores para medir la audiencia de nuestro sitio web y para ofrecerle ofertas y mejorar nuestras propias operaciones de marketing SoccerYou.",
   "cookiePopupText2": "Más información sobre las cookies y los proveedores que utilizamos.",
   "cookiePopupText3": "Puedes retirar tu consentimiento en cualquier momento en tu configuración.",
@@ -1250,10 +1248,11 @@
   "allowAll": "Permitir todo",
   "refuseAll": "Rechazar todo",
   "deleteAccountDesc": "Esto eliminará su cuenta permanentemente de nuestra base de datos.",
-  "deleteMyAccount" : "Eliminar mi cuenta",
+  "deleteMyAccount": "Eliminar mi cuenta",
   "uploadNewProfileImage": "Cargar nueva imagen de perfil",
   "editCoverImage": "Editar imagen de portada",
-  "learnMore":"Más información",
-  "removeFavbtn":"Ja, löschen",
-  "cancelRemoveFavBtn":"Nein, nicht löschen"
+  "learnMore": "Más información",
+  "removeFavbtn": "Ja, löschen",
+  "cancelRemoveFavBtn": "Nein, nicht löschen",
+  "year": " Año"
 }

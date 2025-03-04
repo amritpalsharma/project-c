@@ -329,7 +329,7 @@
   "privacyPolicyCheckboxError": "Por favor, aceite a Política de Privacidade.",
   "newsletterLabel": "Inscrever-se para receber newsletter",
   "submitButton": "Criar Conta",
-  "alreadyHaveAccount": "Já tem uma conta?",
+  "alreadyHaveAccount": "Você já tem um perfil?",
   "loginLink": "Entrar",
   "nameRequired": "O nome é obrigatório.",
   "emailRequired": "O correio eletrónico é obrigatório.",
@@ -1194,7 +1194,7 @@
   "editProfile": "Edit e profile",
   "thanksMessage": "muito obrigado",
   "thanksMessage2": "Entraremos em contacto consigo.",
-  "backToHome": "Voltar ao início",
+  "backToHome": "Voltar para a página inicial",
   "removeFavoriteConfirm": "Tem certeza de que deseja remover este favorito da sua lista?",
   "dontShowAgain": "Não voltar a mostrar",
   "cancelConfirmationMsg": "Tem a certeza de que pretende cancelar esta subscrição? Esta ação não pode ser anulada.",
@@ -1247,14 +1247,12 @@
   "learnMore": "Saiba mais",
   "removeFavbtn": "Sim, excluir",
   "cancelRemoveFavBtn": "Não, não excluir",
-   "representators": "Membro da equipa",
+  "representators": "Membro da equipa",
   "representators:": "Membro da equipa:",
-
   "errorMessage": "esta página infelizmente não foi encontrada",
-  "verifyEmail": "VERIFICAR O SEU CORREIO ELECTRÓNICO",
-  "sentConfirmationLink": "Enviámos uma ligação de confirmação para o seu e-mail.",
-  "completeVerificationProcess": "Clique na ligação na sua caixa de correio eletrónico para concluir o processo de verificação.",
-
+  "verifyEmail": "VERIFIQUE SEU E-MAIL",
+  "sentConfirmationLink": "Enviamos um link de confirmação para o seu e-mail.",
+  "completeVerificationProcess": "Clique no link na sua caixa de entrada para concluir o processo de verificação.",
   "cookiePopupText": "Valorizamos a sua privacidade. Nós e os nossos parceiros utilizamos rastreadores para medir a audiência do nosso sítio Web e para lhe fornecer ofertas e melhorar as nossas próprias operações de marketing SoccerYou.",
   "cookiePopupText2": "Mais informações sobre cookies e fornecedores que utilizamos.",
   "cookiePopupText3": "Pode retirar o seu consentimento a qualquer momento nas suas definições.",
@@ -1263,5 +1261,6 @@
   "iDecline": "Recuso-me",
   "manageConsentPreferences": "Gerir preferências de consentimento",
   "allowAll": "Permitir tudo",
-  "refuseAll": "Recusar tudo"
-  }
+  "refuseAll": "Recusar tudo",
+  "year": "Ano"
+}
