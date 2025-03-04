@@ -293,10 +293,10 @@
   color: #072944 !important;  /* Optional: Change the text color to white for better contrast */
 }
 
-.dark-theme .website-code .advertisement,
-.dark-theme .website-code .py_1 {
-  background: #072944;
-}
+// .dark-theme .website-code .advertisement,
+// .dark-theme .website-code .py_1 {
+//   background: #072944;
+// }
 // .dark-theme .dropdown-menu {
 //  background: linear-gradient(45deg, #EFFFC1, #BDE34F);
 // }
@@ -2162,14 +2162,14 @@ button.faq-scout-button {
 }
 
 @media (max-width: 991px) {
-  .page-sidebar {
-    // width: 100%;
-    // padding: 30px;
-    // visibility: hidden;
-    // opacity: 0;
-    // transform: translateX(0);
-    // z-index: 100;
-  }
+  // .page-sidebar {
+  //   // width: 100%;
+  //   // padding: 30px;
+  //   // visibility: hidden;
+  //   // opacity: 0;
+  //   // transform: translateX(0);
+  //   // z-index: 100;
+  // }
 
   .dark-theme .website-code .login-btn {
     background-color: transparent;

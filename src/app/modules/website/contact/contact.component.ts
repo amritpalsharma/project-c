@@ -25,6 +25,9 @@ export class ContactComponent implements OnInit {
   advertisemnetData:any;
   advertisemnet_base_url:string = '';
 
+  isLoading : boolean = true;
+
+
   captchaKey: string = environment.captchaKey;
   selectedOption = 'option1'; // Default option for some dropdown/radio buttons
   contactForm!: FormGroup; // Form group for the contact form
@@ -127,6 +130,8 @@ export class ContactComponent implements OnInit {
           this.semail= res.data.pageData.email;
           this.advertisemnetData =  res.data.advertisemnetData;
           // this.advertisemnetData = [];
+
+          this.isLoading = false;
           
           this.advertisemnet_base_url = res.data.advertisemnet_base_url;
           this.base_url =  res.data.base_url;

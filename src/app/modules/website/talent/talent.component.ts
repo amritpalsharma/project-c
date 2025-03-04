@@ -26,6 +26,8 @@ export class TalentComponent {
   advertisemnetData:any=null;
   advertisemnet_base_url:string= '';
 
+  isLoading : boolean = true;
+
   setActiveAccordion(index: number): void {
     this.activeAccordionIndex = index;
   }
@@ -108,6 +110,8 @@ export class TalentComponent {
           this.baseUrl = res.data.base_url;
           this.advertisemnetData = res.data.advertisemnetData;
           this.advertisemnetData = null;
+
+          this.isLoading = false;
           
   
           this.advertisemnet_base_url = res.data.advertisemnet_base_url;

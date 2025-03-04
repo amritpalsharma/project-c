@@ -116,16 +116,16 @@
               class="badge light text-white bg-danger rounded-circle">{{unseenCount}}</span>
           </a>
           <div class="dropdown-menu py-0 notification-box" id="notification-box-id"
-            (click)="onNotificationClick($event)" (scroll)="onScroll()">
+            (scroll)="onScroll()">
 
             <div *ngIf="isScrolledBeyond && clickedNewNotification" class="go-to-top-btn my-animate"
               style="position: sticky; top: 0; z-index: 10;">
               <button class="btn btn-primary" (click)="scrollToTop()" style="width: 100%;">New Notification</button>
             </div>
 
-            <div class="d-flex align-items-center justify-content-between pt-3 pb-3 px-4">
+            <div (click)="onNotificationClick($event)" class="d-flex align-items-center justify-content-between pt-3 pb-3 px-4">
               <h6>{{ 'notification' | translate }}</h6>
-              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16px"
+              <!-- <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16px"
                 height="16px" viewBox="0 0 24 24" version="1.1" class="svg-main-icon">
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <rect x="0" y="0" width="24" height="24"></rect>
@@ -136,7 +136,7 @@
                     d="M12,15 C13.6568542,15 15,13.6568542 15,12 C15,10.3431458 13.6568542,9 12,9 C10.3431458,9 9,10.3431458 9,12 C9,13.6568542 10.3431458,15 12,15 Z"
                     fill="#000000"></path>
                 </g>
-              </svg>
+              </svg> -->
             </div>
             <div>
 
@@ -153,7 +153,7 @@
 
                   <!-- <div class="col-9" (click)="notificationClicked(notification.id, notification.seen, notification)"
                     style="cursor: pointer;"> -->
-                  <div class="col-9" (click)="navigateToTab('notifications')" style="cursor: pointer;">
+                  <div class="col-9" [routerLink]="['/view/talent', notification.senderId]" style="cursor: pointer;">
                     <!-- <h6 [ngStyle]="{'font-weight': notification.seen == 0 ? 'bold' : 'normal'}">
                       {{ notification.title }}
                     </h6>
@@ -163,13 +163,13 @@
                     <small [ngStyle]="{'font-weight': notification.seen == 0 ? 'bold' : 'normal'}">
                       {{ notification.relativeTime }}
                     </small> -->
-                    <h6 [ngStyle]="{'font-weight': notification.seen == 0 ? 'bold' : 'normal'}">
+                    <h6>
                       {{ notification.title }}
                     </h6>
-                    <p class="pb-3" [ngStyle]="{'font-weight': notification.seen == 0 ? 'bold' : 'normal'}">
+                    <p class="pb-3">
                       {{ notification.content }}
                     </p>
-                    <small [ngStyle]="{'font-weight': notification.seen == 0 ? 'bold' : 'normal'}">
+                    <small>
                       {{ notification.relativeTime }}
                     </small>
                   </div>
