@@ -30,6 +30,7 @@ export class AboutComponent {
   country_section_banner_img:string='';
   // advertisementData:any=null;
   advertisemnet_base_url:string= '';
+  isLoading : boolean = true;
 
   isActive : any ={
     skyscraper: true,
@@ -113,6 +114,8 @@ export class AboutComponent {
           this.advertisementData = res.data.advertisementData;
           // this.advertisementData = [];
           this.advertisemnet_base_url = res.data.advertisemnet_base_url;
+
+          this.isLoading = false;
         
         }
     });

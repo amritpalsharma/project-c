@@ -15,6 +15,9 @@ export class TermsComponent implements OnInit {
   base_url: any = null;
   advertisemnet_base_url:string = '';
 
+  isLoading : boolean = true;
+
+
   adVisible: boolean[] = [true, true, true]; // Array to manage ad visibility
   constructor(private webPages: WebPages, private sanitizer: DomSanitizer) {
 
@@ -85,6 +88,9 @@ export class TermsComponent implements OnInit {
         this.page_content = this.sanitizer.bypassSecurityTrustHtml(res.data.pageData.page_content);
         this.banner_img = res.data.pageData.banner_img;
         this.base_url = res.data.base_url;
+
+        
+      this.isLoading = false;
 
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
         this.advertisementData = res?.data?.advertisemnetData;

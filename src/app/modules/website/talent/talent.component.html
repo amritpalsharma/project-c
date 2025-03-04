@@ -7,12 +7,12 @@
         <div class="banner py-0" style="background-image: url('{{baseUrl + pageData?.banner_bg_img}}');">
             <div class="overlay1"></div>
 
-            <div *ngIf="checkActive('skyscraper')" class="skyscraper-left">
+            <div *ngIf="checkActive('skyscraper')  && !isLoading" class="skyscraper-left">
                 <img [src]="advertisemnet_base_url + advertisementData?.skyscraper?.featured_image">
                 <button (click)="closeAd('skyscraper')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
               </div>
         
-              <div *ngIf="checkActive('wide_skyscraper')" class="skyscraper-right">
+              <div *ngIf="checkActive('wide_skyscraper')  && !isLoading" class="skyscraper-right">
                 <img [src]="advertisemnet_base_url + advertisementData?.wide_skyscraper?.featured_image">
                 <button (click)="closeAd('wide_skyscraper')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
               </div>
@@ -63,11 +63,11 @@
 
         <div class="container">
       <div *ngIf="checkActive('leaderboard') || checkActive('banner')" class="advertisment advirtismnt_2">
-        <div *ngIf="isExists('leaderboard') && checkActive('leaderboard')" class="leaderboard-club-image advirtismnt_2_large">
+        <div *ngIf="isExists('leaderboard') && checkActive('leaderboard')  && !isLoading" class="leaderboard-club-image advirtismnt_2_large">
           <img [src]="advertisemnet_base_url + advertisementData?.leaderboard?.featured_image">
           <button (click)="closeAd('leaderboard')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
         </div>
-        <div *ngIf="!isExists('leaderboard') && checkActive('banner')" class="leaderboard-club-image advirtismnt_2_small">
+        <div *ngIf="!isExists('leaderboard') && checkActive('banner')  && !isLoading" class="leaderboard-club-image advirtismnt_2_small">
           <img [src]="advertisemnet_base_url + advertisementData?.banner?.featured_image">
           <button (click)="closeAd('banner')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
         </div>
@@ -340,13 +340,13 @@
         <div class="container">
           <div *ngIf="isExists('large_leaderboard')" class="advertisment advertisement_two_top">
   
-            <div *ngIf="checkActive('large_leaderboard')" class="leaderboard-club-image">
+            <div *ngIf="checkActive('large_leaderboard')  && !isLoading" class="leaderboard-club-image">
               <img [src]="advertisemnet_base_url + advertisementData?.leaderboard?.featured_image">
               <button (click)="closeAd('large_leaderboard')" class="ad-close-button"><i
                   class="fa-solid fa-xmark"></i></button>
             </div>
   
-            <div *ngIf="checkActive('small_square')" class="small-sqaure-image">
+            <div *ngIf="checkActive('small_square')  && !isLoading" class="small-sqaure-image">
               <img [src]="advertisemnet_base_url + advertisementData?.small_square?.featured_image">
               <button (click)="closeAd('small_square')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
             </div>
@@ -355,11 +355,11 @@
   
           <div *ngIf="!isExists('large_leaderboard')" class="advertisment advertisement_two_bottom">
   
-            <div *ngIf="checkActive('small_square')" class="small-sqaure-image">
+            <div *ngIf="checkActive('small_square')  && !isLoading" class="small-sqaure-image">
               <img [src]="advertisemnet_base_url + advertisementData?.small_square?.featured_image">
               <button (click)="closeAd('small_square')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
             </div>
-            <div *ngIf="checkActive('banner')" class="leaderboard-club-image">
+            <div *ngIf="checkActive('banner')  && !isLoading" class="leaderboard-club-image">
               <img [src]="advertisemnet_base_url + advertisementData?.banner?.featured_image">
               <button (click)="closeAd('banner')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
             </div>
@@ -422,19 +422,19 @@
           <div class="advertisment advertisement1 advertisement_three_block"
             *ngIf="checkActive('large_rectangle') || checkActive('inline_rectangle') || checkActive('square')">
   
-            <div *ngIf="checkActive('large_rectangle')" class="large-rectangle">
+            <div *ngIf="checkActive('large_rectangle')  && !isLoading" class="large-rectangle">
               <img [src]="advertisemnet_base_url + advertisementData?.large_rectangle?.featured_image">
               <button (click)="closeAd('large_rectangle')" class="ad-close-button"><i
                   class="fa-solid fa-xmark"></i></button>
             </div>
   
-            <div *ngIf="checkActive('inline_rectangle')" class="inline-rectangle">
+            <div *ngIf="checkActive('inline_rectangle')  && !isLoading" class="inline-rectangle">
               <img [src]="advertisemnet_base_url + advertisementData?.inline_rectangle?.featured_image">
               <button (click)="closeAd('inline_rectangle')" class="ad-close-button"><i
                   class="fa-solid fa-xmark"></i></button>
             </div>
   
-            <div *ngIf="checkActive('square')" class="square">
+            <div *ngIf="checkActive('square')  && !isLoading" class="square">
               <img [src]="advertisemnet_base_url + advertisementData?.square?.featured_image">
               <button (click)="closeAd('square')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
             </div>

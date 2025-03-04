@@ -15,6 +15,9 @@ export class CookieComponent implements OnInit {
   base_url:any=null;
   advertisemnet_base_url:string = '';
 
+  isLoading : boolean = true;
+
+
   constructor( private webPages: WebPages, private sanitizer: DomSanitizer){
 
   }
@@ -87,6 +90,9 @@ export class CookieComponent implements OnInit {
 
           this.advertisemnet_base_url = res.data.advertisemnet_base_url;
           this.advertisementData = res?.data?.advertisemnetData;
+
+          
+          this.isLoading = false;
         }
     });
   }
