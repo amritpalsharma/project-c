@@ -31,6 +31,8 @@ export class AboutComponent {
   // advertisementData:any=null;
   advertisemnet_base_url:string= '';
 
+  isLoading : boolean = true;
+
   isActive : any ={
     skyscraper: true,
     wide_skyscraper: true,
@@ -110,9 +112,11 @@ export class AboutComponent {
           this.about_banner_img =  res.data.base_url+res.data.pageData.about_banner_img;
           this.country_section_banner_img=  res.data.base_url+res.data.pageData.country_section_banner_img;
          
-          this.advertisementData = res.data.advertisementData;
+          this.advertisementData = res.data.advertisemnetData;
           // this.advertisementData = [];
           this.advertisemnet_base_url = res.data.advertisemnet_base_url;
+
+          this.isLoading = false;
         
         }
     });
