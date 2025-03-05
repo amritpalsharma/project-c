@@ -10,7 +10,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 })
 export class ImprintComponent implements OnInit {
   banner_title:any = null;
-  advertisemnetData:any;
+  // advertisementData:any;
   page_content:any=null;
   advertisemnet_base_url:string = '';
   banner_img:any=null;
@@ -89,8 +89,8 @@ export class ImprintComponent implements OnInit {
       if(res.status){
           this.banner_title = res.data.pageData.banner_title;
           this.page_content = res.data.pageData.page_content;
-          this.advertisemnetData =  res.data.advertisemnetData;
-          this.advertisemnetData = [];
+          this.advertisementData =  res.data.advertisementData;
+          this.advertisementData = [];
           
           this.advertisemnet_base_url = res.data.advertisemnet_base_url;
          
@@ -99,7 +99,7 @@ export class ImprintComponent implements OnInit {
 
           this.isLoading = false;
 
-          this.advertisementData = res?.data?.advertisemnetData;
+          this.advertisementData = res?.data?.advertisementData;
         }
     });
   }
@@ -113,26 +113,26 @@ export class ImprintComponent implements OnInit {
 
   //   switch(object){
   //     case 'skyscraper':
-  //         this.advertisemnetData.skyscraper = [];
+  //         this.advertisementData.skyscraper = [];
   //         break;
   //     case 'small_square':
-  //         this.advertisemnetData.small_square = [];
+  //         this.advertisementData.small_square = [];
   //         break;
   //     case 'leaderboard':
-  //         this.advertisemnetData.leaderboard = [];
+  //         this.advertisementData.leaderboard = [];
   //         break;
   //     case 'large_leaderboard':
-  //         this.advertisemnetData.large_leaderboard = [];
+  //         this.advertisementData.large_leaderboard = [];
   //         break;
   //     case 'large_rectangle':
-  //         this.advertisemnetData.large_rectangle = [];
+  //         this.advertisementData.large_rectangle = [];
   //         break;
 
   //     case 'inline_rectangle':
-  //         this.advertisemnetData.inline_rectangle = [];
+  //         this.advertisementData.inline_rectangle = [];
   //         break;
   //     case 'square':
-  //         this.advertisemnetData.square = [];
+  //         this.advertisementData.square = [];
   //         break;
   //     default:
   //         //when no case is matched, this block will be executed;

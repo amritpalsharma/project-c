@@ -33,7 +33,7 @@ export class NewsComponent implements OnInit, OnDestroy {
   latestNewsData: NewsData[] = [];
   intervalId: any;
   touchStartX: number = 0;
-  advertisemnetData: any;
+  // advertisementData: any;
   advertisemnet_base_url: string = '';
   base_url: string = 'https://api.socceryou.ch/uploads/';
   adVisible: boolean[] = [true, true, true, true, true];
@@ -133,8 +133,8 @@ export class NewsComponent implements OnInit, OnDestroy {
   getPageData(languageId: any) {
     this.webPages.getDynamicContentPage('news', languageId).subscribe((res) => {
       if (res.status) {
-        this.advertisemnetData = res.data.advertisemnetData;
-        this.advertisemnetData = [];
+        this.advertisementData = res.data.advertisementData;
+        this.advertisementData = [];
         
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
         this.slider_title = res.data.pageData.slider_title;
@@ -152,7 +152,7 @@ export class NewsComponent implements OnInit, OnDestroy {
         // this.base_url = res.data.base_url;
 
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
-        this.advertisementData = res?.data?.advertisemnetData;
+        this.advertisementData = res?.data?.advertisementData;
       }
     }, error => {
       console.error('Error fetching dynamic page data', error);
@@ -217,26 +217,26 @@ export class NewsComponent implements OnInit, OnDestroy {
 
   //   switch(object){
   //     case 'skyscraper':
-  //         this.advertisemnetData.skyscraper = [];
+  //         this.advertisementData.skyscraper = [];
   //         break;
   //     case 'small_square':
-  //         this.advertisemnetData.small_square = [];
+  //         this.advertisementData.small_square = [];
   //         break;
   //     case 'leaderboard':
-  //         this.advertisemnetData.leaderboard = [];
+  //         this.advertisementData.leaderboard = [];
   //         break;
   //     case 'large_leaderboard':
-  //         this.advertisemnetData.large_leaderboard = [];
+  //         this.advertisementData.large_leaderboard = [];
   //         break;
   //     case 'large_rectangle':
-  //         this.advertisemnetData.large_rectangle = [];
+  //         this.advertisementData.large_rectangle = [];
   //         break;
 
   //     case 'inline_rectangle':
-  //         this.advertisemnetData.inline_rectangle = [];
+  //         this.advertisementData.inline_rectangle = [];
   //         break;
   //     case 'square':
-  //         this.advertisemnetData.square = [];
+  //         this.advertisementData.square = [];
   //         break;
   //     default:
   //         //when no case is matched, this block will be executed;

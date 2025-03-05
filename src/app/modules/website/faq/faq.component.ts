@@ -98,7 +98,7 @@ export class FaqComponent {
           this.talentSections = res.data.pageData.faq_first_btn_content; //this.faq_first_btn_content
            this.clubSections = res.data.pageData.faq_sec_btn_content;
            this.scoutSections = res.data.pageData.faq_third_btn_content;
-           this.advertisementData = res?.data?.advertisemnetData;
+           this.advertisementData = res?.data?.advertisementData;
 
            this.advertisemnet_base_url = res.data.advertisemnet_base_url;
 

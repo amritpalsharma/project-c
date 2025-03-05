@@ -36,7 +36,7 @@
           </p>
           <div class="btn-group">
             <select class="cupen-btn-1 form-select" style="cursor: pointer !important;" aria-label="Default select example" [(ngModel)]="page"
-              (change)="onChange($event)">
+              (change)="onChange()">
               <option value="">{{ 'select' | translate }}</option>
               <option *ngFor="let option of pageOptions" [value]="option.id">{{option.page}}</option>
             </select>
@@ -51,7 +51,7 @@
         </div>
         
 
-        <div class="ms-5">
+        <!-- <div class="ms-5">
           <p class="code-text">
             {{ 'language' | translate }}
           </p>
@@ -68,7 +68,7 @@
             </svg>
           </div>
           <div *ngIf="errorMsg.type" class="error-msg">{{errorMsg.type}}</div>
-        </div>
+        </div> -->
 
         <div class="ms-5">
           <p class="code-text">

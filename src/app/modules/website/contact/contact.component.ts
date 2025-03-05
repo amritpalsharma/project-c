@@ -22,7 +22,7 @@ export class ContactComponent implements OnInit {
   submit_btn_txt: string = '';
   talent_label_txt: string = '';
   txt_before_radio_btn: string = '';
-  advertisemnetData:any;
+  // advertisementData:any;
   advertisemnet_base_url:string = '';
 
   isLoading : boolean = true;
@@ -128,8 +128,8 @@ export class ContactComponent implements OnInit {
           this.talent_label_txt = res.data.pageData.talent_label_txt;
           this.txt_before_radio_btn = res.data.pageData.txt_before_radio_btn;
           this.semail= res.data.pageData.email;
-          this.advertisemnetData =  res.data.advertisemnetData;
-          // this.advertisemnetData = [];
+          this.advertisementData =  res.data.advertisementData;
+          // this.advertisementData = [];
 
           this.isLoading = false;
           
@@ -152,25 +152,25 @@ export class ContactComponent implements OnInit {
 
   //   switch(object){
   //     case 'skyscraper':
-  //         this.advertisemnetData.skyscraper = [];
+  //         this.advertisementData.skyscraper = [];
   //         break;
   //     case 'small_square':
-  //         this.advertisemnetData.small_square = [];
+  //         this.advertisementData.small_square = [];
   //         break;
   //     case 'leaderboard':
-  //         this.advertisemnetData.leaderboard = [];
+  //         this.advertisementData.leaderboard = [];
   //         break;
   //     case 'large_leaderboard':
-  //         this.advertisemnetData.large_leaderboard = [];
+  //         this.advertisementData.large_leaderboard = [];
   //         break;
   //     case 'large_rectangle':
-  //         this.advertisemnetData.large_rectangle = [];
+  //         this.advertisementData.large_rectangle = [];
   //         break;
   //     case 'inline_rectangle':
-  //         this.advertisemnetData.inline_rectangle = [];
+  //         this.advertisementData.inline_rectangle = [];
   //         break;
   //     case 'square':
-  //         this.advertisemnetData.square = [];
+  //         this.advertisementData.square = [];
   //         break;
   //     default:
   //         //when no case is matched, this block will be executed;
