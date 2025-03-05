@@ -1,4 +1,4 @@
-import { Component,HostListener, ViewChild, ElementRef, OnInit } from '@angular/core';
+import { Component, HostListener, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { AuthService } from '../../../services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -16,6 +16,7 @@ declare var bootstrap: any; // Declare bootstrap
 declare var google: any; // Declare google
 import { WebPages } from '../../../services/webpages.service';
 import { SocketService } from '../../../services/socket.service';
+import { GlobalSettingsService } from '../../../services/global-settings.service';
 
 @Component({
   selector: 'app-header',
@@ -25,12 +26,12 @@ import { SocketService } from '../../../services/socket.service';
 export class HeaderComponent implements OnInit {
   @ViewChild('invalidCredMessage') invalidCredMessage!: ElementRef;
   @ViewChild('registerForm') registerForm!: NgForm;
-  
+
   //default language
-  slug: string = 'en'; 
-  lang_id:any = 1;
+  slug: string = 'en';
+  lang_id: any = 1;
   isUserLoggedIn: boolean = false;
-  LoggedInUserDashboardLink: string = ''; 
+  LoggedInUserDashboardLink: string = '';
   isNavbarExpanded = false;
   isDarkMode: boolean = false;
   activeIndex: number = 1; // Default active tab
@@ -54,38 +55,38 @@ export class HeaderComponent implements OnInit {
   lang: string = '';
   token: string = '';
   tokenVerified: boolean = false;
-  languages:any = environment.langs;
+  languages: any = environment.langs;
   selectedClub: number | null = null;
   selectedCountry: string = '';
   selectedTeam: number | null = null;
   companyName: string = '';
-  verifyToken:any = null;
-  verifyTime:any = null;
- //this is get by the domain
- countries: Array<{ code: string; name: string }> = [];
- clubs: Array<{ id: number; name: string }> = [];
- langs: any = environment.langs;
+  verifyToken: any = null;
+  verifyTime: any = null;
+  //this is get by the domain
+  countries: Array<{ code: string; name: string }> = [];
+  clubs: Array<{ id: number; name: string }> = [];
+  langs: any = environment.langs;
 
 
   allLanguage = [];
   selectedLanguageId = null;
-    //clubs
-    // clubs = [
-    //   { id: 1, name: 'Club A' },
-    //   { id: 2, name: 'Club B' },
-    //   { id: 3, name: 'Club C' },
-    //   { id: 4, name: 'Club D' },
-    //   { id: 5, name: 'Club E' },
-    // ];
+  //clubs
+  // clubs = [
+  //   { id: 1, name: 'Club A' },
+  //   { id: 2, name: 'Club B' },
+  //   { id: 3, name: 'Club C' },
+  //   { id: 4, name: 'Club D' },
+  //   { id: 5, name: 'Club E' },
+  // ];
 
-    teams = [
-      { id: 1, name: 'Team Alpha' },
-      { id: 2, name: 'Team Bravo' },
-      { id: 3, name: 'Team Charlie' },
-      { id: 4, name: 'Team Delta' },
-      { id: 5, name: 'Team Echo' },
-    ];
-    countrie: any[] = [];
+  teams = [
+    { id: 1, name: 'Team Alpha' },
+    { id: 2, name: 'Team Bravo' },
+    { id: 3, name: 'Team Charlie' },
+    { id: 4, name: 'Team Delta' },
+    { id: 5, name: 'Team Echo' },
+  ];
+  countrie: any[] = [];
 
   // English Country Names
   countrie_en = [
@@ -100,7 +101,7 @@ export class HeaderComponent implements OnInit {
     { name: 'Denmark', slug: 'dk', id: 9, flag: 'Denmark.svg', url: 'https://www.socceryou.se' },
     { name: 'Sweden', slug: 'se', id: 10, flag: 'Sweden-sweden.svg', url: 'https://www.socceryou.dk' },
   ];
-  
+
   // German Country Names
   countrie_de = [
     { name: 'Schweiz', slug: "ch", id: 1, flag: "Switzerland.svg", url: 'https://www.socceryou.ch' },
@@ -114,7 +115,7 @@ export class HeaderComponent implements OnInit {
     { name: 'Dänemark', slug: 'dk', id: 9, flag: 'Denmark.svg', url: 'https://www.socceryou.se' },
     { name: 'Schweden', slug: 'se', id: 10, flag: 'Sweden-sweden.svg', url: 'https://www.socceryou.dk' },
   ];
-  
+
   // Italian Country Names
   countrie_it = [
     { name: 'Svizzera', slug: "ch", id: 1, flag: "Switzerland.svg", url: 'https://www.socceryou.ch' },
@@ -128,7 +129,7 @@ export class HeaderComponent implements OnInit {
     { name: 'Danimarca', slug: 'dk', id: 9, flag: 'Denmark.svg', url: 'https://www.socceryou.se' },
     { name: 'Svezia', slug: 'se', id: 10, flag: 'Sweden-sweden.svg', url: 'https://www.socceryou.dk' },
   ];
-  
+
   // French Country Names
   countrie_fr = [
     { name: 'Suisse', slug: "ch", id: 1, flag: "Switzerland.svg", url: 'https://www.socceryou.ch' },
@@ -142,7 +143,7 @@ export class HeaderComponent implements OnInit {
     { name: 'Danemark', slug: 'dk', id: 9, flag: 'Denmark.svg', url: 'https://www.socceryou.se' },
     { name: 'Suède', slug: 'se', id: 10, flag: 'Sweden-sweden.svg', url: 'https://www.socceryou.dk' },
   ];
-  
+
   // Spanish Country Names
   countrie_es = [
     { name: 'Suiza', slug: "ch", id: 1, flag: "Switzerland.svg", url: 'https://www.socceryou.ch' },
@@ -156,7 +157,7 @@ export class HeaderComponent implements OnInit {
     { name: 'Dinamarca', slug: 'dk', id: 9, flag: 'Denmark.svg', url: 'https://www.socceryou.se' },
     { name: 'Suecia', slug: 'se', id: 10, flag: 'Sweden-sweden.svg', url: 'https://www.socceryou.dk' },
   ];
-  
+
   // Portuguese Country Names
   countrie_pt = [
     { name: 'Suíça', slug: "ch", id: 1, flag: "Switzerland.svg", url: 'https://www.socceryou.ch' },
@@ -170,8 +171,8 @@ export class HeaderComponent implements OnInit {
     { name: 'Dinamarca', slug: 'dk', id: 9, flag: 'Denmark.svg', url: 'https://www.socceryou.se' },
     { name: 'Suécia', slug: 'se', id: 10, flag: 'Sweden-sweden.svg', url: 'https://www.socceryou.dk' },
   ];
-  
-  
+
+
   // Danish Country Names
   countrie_dk = [
     { name: 'Schweiz', slug: "ch", id: 1, flag: "Switzerland.svg", url: 'https://www.socceryou.ch' },
@@ -185,7 +186,7 @@ export class HeaderComponent implements OnInit {
     { name: 'Danmark', slug: 'dk', id: 9, flag: 'Denmark.svg', url: 'https://www.socceryou.se' },
     { name: 'Sverige', slug: 'se', id: 10, flag: 'Sweden-sweden.svg', url: 'https://www.socceryou.dk' },
   ];
-  
+
   // Swedish Country Names
   countrie_se = [
     { name: 'Schweiz', slug: "ch", id: 1, flag: "Switzerland.svg", url: 'https://www.socceryou.ch' },
@@ -201,47 +202,48 @@ export class HeaderComponent implements OnInit {
   ];
 
 
-    customOptions: OwlOptions = {
-      loop: true,
-      mouseDrag: false,
-      touchDrag: false,
-      pullDrag: false,
-      dots: false,
-      navSpeed: 700,
-      navText: ['', ''],
-      responsive: {
-        0: { items: 1 },
-        400: { items: 2 },
-        740: { items: 3 },
-        940: { items: 6 }
-      },
-      nav: true
-    };
+  customOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: false,
+    touchDrag: false,
+    pullDrag: false,
+    dots: false,
+    navSpeed: 700,
+    navText: ['', ''],
+    responsive: {
+      0: { items: 1 },
+      400: { items: 2 },
+      740: { items: 3 },
+      940: { items: 6 }
+    },
+    nav: true
+  };
 
-    constructor(
-      private sharedservice:SharedService,
-      private themeService: ThemeService,
-      private authService: AuthService,
-      private route: ActivatedRoute,
-      private router: Router,
-      private translateService: TranslateService,
-      public dialog: MatDialog,
-      private commonDataService: CommonDataService,
-      private http: HttpClient,
-      private toastr : ToastrService,
-      private webpage: WebPages,
-      private socketService: SocketService
-    ) {
-      this.language = translateService.currentLang || 'en';  // Get current language
-      this.loadCountries();  // Load countries based on selected language
-      translateService.onLangChange.subscribe(() => {
-        this.language = translateService.currentLang;
-        this.loadCountries();
-      });
-    }
+  constructor(
+    private sharedservice: SharedService,
+    private themeService: ThemeService,
+    private authService: AuthService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private translateService: TranslateService,
+    public dialog: MatDialog,
+    private commonDataService: CommonDataService,
+    private http: HttpClient,
+    private toastr: ToastrService,
+    private webpage: WebPages,
+    private socketService: SocketService,
+    private globalSettings: GlobalSettingsService
+  ) {
+    this.language = translateService.currentLang || 'en';  // Get current language
+    this.loadCountries();  // Load countries based on selected language
+    translateService.onLangChange.subscribe(() => {
+      this.language = translateService.currentLang;
+      this.loadCountries();
+    });
+  }
 
-    loadCountries() {
-      if (this.language === 'en') {
+  loadCountries() {
+    if (this.language === 'en') {
       this.countrie = this.countrie_en;
     } else if (this.language === 'de') {
       this.countrie = this.countrie_de;
@@ -257,18 +259,19 @@ export class HeaderComponent implements OnInit {
       this.countrie = this.countrie_dk;
     } else if (this.language === 'se') {
       this.countrie = this.countrie_se;
-    } 
     }
+  }
 
-    isScrolled = false;
-    serverBusy = false;
-    @HostListener('window:scroll', [])
+  isScrolled = false;
+  serverBusy = false;
+  @HostListener('window:scroll', [])
 
   onWindowScroll() {
     this.isScrolled = window.scrollY > 50; // Adjust the scroll value as needed
   }
 
   ngOnInit(): void {
+
 
     this.route.queryParams.subscribe(params => {
       this.token = params['confirm-token'] || '';
@@ -307,7 +310,7 @@ export class HeaderComponent implements OnInit {
       if (this.verifyToken && this.verifyTime) {
         this.toastr.info('Processing...', 'Please Wait!');
 
-        this.authService.verifyEmail(this.verifyToken,this.verifyTime).subscribe(
+        this.authService.verifyEmail(this.verifyToken, this.verifyTime).subscribe(
           response => {
             if (response.status) {
               this.toastr.clear();
@@ -336,7 +339,7 @@ export class HeaderComponent implements OnInit {
     this.isUserLoggedIn = this.authService.isLoggedIn();
     this.LoggedInUserDashboardLink = this.authService.getDashboardLink();
     // Ensure language is set to 'en' if it's not already in localStorage
-    this.lang = localStorage.getItem('lang') || 'en'; // Default to 'en' if no language is set
+    this.lang = this.globalSettings.getLanguage(); // Default to 'en' if no language is set
     this.slug = this.lang;
     // Set default language to English if not set
     if (!this.lang || this.lang === '') {
@@ -345,7 +348,10 @@ export class HeaderComponent implements OnInit {
     }
     document.body.classList.add(this.slug);
 
-    this.lang_id = localStorage.getItem('lang_id');
+    this.lang_id = this.globalSettings.getLanguageId();
+    if (localStorage.getItem('lang_id') == '' || localStorage.getItem('lang_id') == null) {
+      localStorage.setItem('lang_id', this.lang_id);
+    }
     if (this.lang_id == null) {
       this.lang_id = environment.targetDomain.default_lang;
       localStorage.setItem('lang_id', this.lang_id); // Store default language in localStorage
@@ -361,9 +367,15 @@ export class HeaderComponent implements OnInit {
 
     // Initialize Google Sign-In if available
     if (typeof google !== 'undefined' && google.accounts) {
-    //  this.initializeGoogleSignIn();
+      //  this.initializeGoogleSignIn();
     }
-
+    let isFrontendDarkMode = localStorage.getItem('theme');
+    if (isFrontendDarkMode != '' && isFrontendDarkMode == 'dark') {
+      this.isDarkMode = true;
+    } else {
+      this.isDarkMode = false;
+    }
+    console.log('LocalStorage Mode is Dark ? = ' + this.isDarkMode);
     this.getAllCountries();
     this.getAllClubs();
     this.getAllLanguage();
@@ -390,19 +402,19 @@ export class HeaderComponent implements OnInit {
 
   ChangeLang(newSlug: string, event: Event): void {
     this.translateService.use(newSlug);  // Switch translation language
-    console.log('working',newSlug);
+    console.log('working', newSlug);
 
     this.slug = newSlug;  // Update the slug to the selected language
     event.preventDefault(); // Prevent default action (e.g., preventing link navigation)
 
-    let selectedLanguageId : any = null;
-    let getLanguageIndex = this.langs.findIndex((val:any) => {
-      if(val.slug == newSlug){
+    let selectedLanguageId: any = null;
+    let getLanguageIndex = this.langs.findIndex((val: any) => {
+      if (val.slug == newSlug) {
         selectedLanguageId = val.id
         return val;
       }
     });
-    
+
     this.selectedLanguageId = selectedLanguageId;
     localStorage.setItem('lang', newSlug);
 
@@ -420,10 +432,10 @@ export class HeaderComponent implements OnInit {
     this.webpage.updateData(selectedLanguageId);
     localStorage.setItem('lang_id', selectedLanguageId);
 
-    console.log('selectedLanguageId',selectedLanguageId);
+    console.log('selectedLanguageId', selectedLanguageId);
     this.sharedservice.updateData({
-      action:'updatedLang',
-      id:selectedLanguageId
+      action: 'updatedLang',
+      id: selectedLanguageId
     });
 
     this.sharedservice.data$.subscribe((data: any) => {
@@ -445,7 +457,7 @@ export class HeaderComponent implements OnInit {
       this.getContentForLanguage(this.lang);
     }
     // Define the array of classes to remove
-    const MyClassesArray = ['en', 'de', 'it', 'fr', 'es', 'pt' ,'da', 'sv'];  // Example array, adjust it as needed
+    const MyClassesArray = ['en', 'de', 'it', 'fr', 'es', 'pt', 'da', 'sv'];  // Example array, adjust it as needed
 
     // Get the body element
     const body = document.getElementsByTagName('body')[0];
@@ -461,7 +473,7 @@ export class HeaderComponent implements OnInit {
     body.classList.add(selectedLanguageSlug);
 
 
-    
+
   }
 
   getContentForLanguage(lang: string): void {
@@ -508,8 +520,8 @@ export class HeaderComponent implements OnInit {
 
           let langId = localStorage.getItem("lang_id") || '1';
           console.log("socket connected with user: ", response.data.user_data.id)
-          this.socketService.connectUser({userId:response.data.user_data.id, langId});
-          
+          this.socketService.connectUser({ userId: response.data.user_data.id, langId });
+
           const userRole = userData.role;
           let navigationRoute = '';
           switch (userRole) {
@@ -577,7 +589,7 @@ export class HeaderComponent implements OnInit {
 
     // Default to a specific language ID if none is found (e.g., English)
     const selectedLanguageId = selectedLanguageObj ? selectedLanguageObj.id : 1;
-    let verification_link = window.location.origin+'/home';
+    let verification_link = window.location.origin + '/home';
 
     const registrationData = {
       first_name: this.firstName,
@@ -593,7 +605,7 @@ export class HeaderComponent implements OnInit {
       lang: selectedLanguageId,
       domain: domain,
       club_id: this.selectedClub,
-      verification_link : verification_link
+      verification_link: verification_link
     };
 
     this.authService.register(registrationData).subscribe(
@@ -601,9 +613,9 @@ export class HeaderComponent implements OnInit {
         console.log('Registration response:', response);
         if (response.status === true) {
           // sending registration notification to admin
-          let senderId = response.data.userInfo?.id ;
-          if(senderId){
-            this.socketService.emit('userRegistered', {senderId: senderId, receiverId: "1"});
+          let senderId = response.data.userInfo?.id;
+          if (senderId) {
+            this.socketService.emit('userRegistered', { senderId: senderId, receiverId: "1" });
             console.log("work done");
           }
 
@@ -690,9 +702,9 @@ export class HeaderComponent implements OnInit {
       this.confirmPassword,
       this.privacyPolicy
     ].every(field => fieldType.includes(typeof field)) &&
-    this.role > 0 && // Assuming role should be a positive number
-    this.language.trim() !== '' && // Ensure language is a non-empty string
-    this.userDomain.trim() !== ''; // Assuming userDomain is a string
+      this.role > 0 && // Assuming role should be a positive number
+      this.language.trim() !== '' && // Ensure language is a non-empty string
+      this.userDomain.trim() !== ''; // Assuming userDomain is a string
   }
 
   forgotPassword() {
@@ -704,7 +716,7 @@ export class HeaderComponent implements OnInit {
     this.authService.forgotPassword(this.forgotPasswordEmail).subscribe(
       response => {
         if (response.status) {
-            this.forgotPasswordMessage = response.message;
+          this.forgotPasswordMessage = response.message;
         } else {
           this.forgotPasswordMessage = response.message;
         }
@@ -783,7 +795,7 @@ export class HeaderComponent implements OnInit {
   }
 
 
-  getAllCountries(){
+  getAllCountries() {
     this.commonDataService.getAllCountries().subscribe((resp) => {
       this.countries = resp.data.domains.map((country: any) => ({
         code: country.country_id || '',
@@ -792,8 +804,8 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  getClugById(id :any ){
-    if(id){
+  getClugById(id: any) {
+    if (id) {
       this.commonDataService.getAllClubsbyId(id).subscribe((resp) => {
         this.clubs = resp.data.clubs.map((club: any) => ({
           id: club.id || '',
@@ -804,7 +816,7 @@ export class HeaderComponent implements OnInit {
       });
     }
   }
-  getAllClubs(){
+  getAllClubs() {
     this.commonDataService.getAllClubs().subscribe((resp) => {
       // this.clubs = resp.data.clubs.map((club: any) => ({
       //   id: club.id || '',
@@ -815,7 +827,7 @@ export class HeaderComponent implements OnInit {
   }
 
 
-  getAllLanguage(){
+  getAllLanguage() {
 
     this.webpage.getAllLanguage().subscribe((response) => {
       if (response.status) {

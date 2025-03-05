@@ -1274,5 +1274,9 @@
   "learnMore": "Mehr erfahren",
   "removeFavbtn": "Ja, löschen",
   "cancelRemoveFavBtn": "Nein, nicht löschen",
-  "doYouAdd": "Möchten Sie hinzufügen"
+  "doYouAdd": "Möchten Sie hinzufügen",
+  "deleteProfileConfirm":"Dadurch wird Ihr Konto dauerhaft aus unserer Datenbank gelöscht. Dies kann nicht rückgängig gemacht werden.",
+  "downloading":"Herunterladen...",
+  "submittingPerformanceData":"Übermittlung von Leistungsdaten...",
+  "enterDocumentTitle":"Titel des Dokuments eingeben"
 }

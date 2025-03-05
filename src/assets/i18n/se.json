@@ -1032,7 +1032,7 @@
   "price": "Price",
   "subTotal": "Subtotal",
   "downloadPDF": "Download och pdf",
-  "success!": "Success!",
+  "success!": "Framgång",
   "subscriptionSuccessful": "Your och subscription och was och successful.",
   "browserDoesNotSupport": "Your och browser och does och not och support och the och video och tag.",
   "ADMINSCREEN": "Adminscreen",
@@ -1309,5 +1309,9 @@
   "iDecline": "I decline",
   "manageConsentPreferences": "Manage Consent Preferences",
   "allowAll": "Allow All",
-  "refuseAll": "Refuse All"
+  "refuseAll": "Refuse All",
+  "deleteProfileConfirm": "Detta raderar ditt konto permanent från vår databas. Detta kan inte ångras.",
+  "downloading": "Nedladdning...",
+  "submittingPerformanceData": "Inlämning av resultatdata...",
+  "enterDocumentTitle": "Ange dokumentets titel"
 }

@@ -29,7 +29,7 @@ interface Plan {
   includes: string[];
   yearly: any;
   monthly: any;
-  is_package_active:any;
+  is_package_active: any;
 }
 
 @Component({
@@ -56,7 +56,7 @@ export class PlanComponent implements OnInit, OnDestroy {
   country: any = '';
   booster: any = null;
   demo: any = null;
-  stats:any;
+  stats: any;
   couponCode: string = '';
   isCouponApplied: boolean = false;
 
@@ -69,7 +69,7 @@ export class PlanComponent implements OnInit, OnDestroy {
   premiumFeatures: string[] = []; // Store the fetched feature list
   multiCountryPlanDesc: string[] = []; // Store the fetched feature list
   bostProfileDesc: string[] = []; // Store the fetched feature list
-  langSubscription!: Subscription; 
+  langSubscription!: Subscription;
 
   constructor(
     private talentService: TalentService,
@@ -79,7 +79,7 @@ export class PlanComponent implements OnInit, OnDestroy {
     private toastr: ToastrService,
     public webPages: WebPages,
     private translate: TranslateService
-  ) {}
+  ) { }
 
   async ngOnInit() {
     this.isLoadingPlans = true;
@@ -95,7 +95,7 @@ export class PlanComponent implements OnInit, OnDestroy {
   }
 
   // Open coupon dialog
-  openCouponDialog(planId:any): void {
+  openCouponDialog(planId: any): void {
 
     const dialogRef = this.dialog.open(CouponCodeAlertComponent, {
       width: '500px'
@@ -107,7 +107,7 @@ export class PlanComponent implements OnInit, OnDestroy {
         this.couponCode = result; // Store the coupon code entered by the user
         this.redirectToCheckout(planId);
       }
-      if (result==null) {
+      if (result == null) {
         this.redirectToCheckout(planId);
       }
     });
@@ -116,7 +116,7 @@ export class PlanComponent implements OnInit, OnDestroy {
   // Redirect to Stripe Checkout with coupon code logic
   async redirectToCheckout(planId: string) {
     this.isLoadingCheckout = true;
-    this.toastr.info('Redirecting to payment...', 'Loading',{ disableTimeOut: true });
+    this.toastr.info('Redirecting to payment...', 'Loading', { disableTimeOut: true });
 
     try {
       const response = await this.paymentService.createCheckoutSession(planId, '', this.couponCode).toPromise();
@@ -169,33 +169,33 @@ export class PlanComponent implements OnInit, OnDestroy {
 
           const res = response.data;
 
-          let country_plans:any=[];
+          let country_plans: any = [];
           // Iterate over the keys in the response object (e.g., premium, booster, country, demo)
           Object.keys(res).forEach((key) => {
 
             // Group plans by category
             if (key.toLowerCase().includes('premium')) {
               this.premiumPlans = res[key];
-              this.premiumPlans.isYearly = res[key].active_interval=='yearly';
+              this.premiumPlans.isYearly = res[key].active_interval == 'yearly';
 
-                Object.keys(this.premiumPlans?.plans).forEach((key) => {
-                    this.premiumPlans[this.premiumPlans.plans[key].interval] = this.premiumPlans.plans[key];
-                })
+              Object.keys(this.premiumPlans?.plans).forEach((key) => {
+                this.premiumPlans[this.premiumPlans.plans[key].interval] = this.premiumPlans.plans[key];
+              })
 
-                this.premiumPlans.priceMonthly = this.premiumPlans['monthly'].price;
-                this.premiumPlans.priceYearly = this.premiumPlans['yearly'].price;
-                this.premiumPlans.currency = this.premiumPlans['yearly'].currency;
-                this.premiumPlans.includes = ["The complete talent profile with all stages of his career and performance data.", "Export data in excel and pdf formats.", "Create your favorite list.", "Highlight your best photos and videos on your profile."];
+              this.premiumPlans.priceMonthly = this.premiumPlans['monthly'].price.trim();
+              this.premiumPlans.priceYearly = this.premiumPlans['yearly'].price.trim();
+              this.premiumPlans.currency = this.premiumPlans['yearly'].currency;
+              this.premiumPlans.includes = ["The complete talent profile with all stages of his career and performance data.", "Export data in excel and pdf formats.", "Create your favorite list.", "Highlight your best photos and videos on your profile."];
 
-                  this.premiumPlans.id = this.premiumPlans['monthly'].package_id;
-                  this.premiumPlans.month_package_id = this.premiumPlans['monthly'].id;
-                  this.premiumPlans.month_price = this.premiumPlans['monthly'].price;
-                  this.premiumPlans.year_package_id = this.premiumPlans['yearly'].id;
-                  this.premiumPlans.year_price = this.premiumPlans['yearly'].price;
+              this.premiumPlans.id = this.premiumPlans['monthly'].package_id;
+              this.premiumPlans.month_package_id = this.premiumPlans['monthly'].id;
+              this.premiumPlans.month_price = this.premiumPlans['monthly'].price;
+              this.premiumPlans.year_package_id = this.premiumPlans['yearly'].id;
+              this.premiumPlans.year_price = this.premiumPlans['yearly'].price;
 
             } else if (key.toLowerCase().includes('booster')) {
               this.boostedPlans = res[key];
-              this.boostedPlans.isYearly = res[key].active_interval=='yearly';
+              this.boostedPlans.isYearly = res[key].active_interval == 'yearly';
 
               Object.keys(this.boostedPlans?.plans).forEach((key) => {
                 this.boostedPlans[this.boostedPlans.plans[key].interval] = this.boostedPlans.plans[key];
@@ -256,7 +256,7 @@ export class PlanComponent implements OnInit, OnDestroy {
               this.countryPlans.country_plans = country_plans;
             } else if (key.toLowerCase().includes('demo')) {
               this.demoPlans = res[key];
-              this.demoPlans.isYearly = res[key].active_interval=='weekly';
+              this.demoPlans.isYearly = res[key].active_interval == 'weekly';
 
               Object.keys(this.demoPlans?.plans).forEach((key) => {
                 this.demoPlans[this.demoPlans.plans[key].interval] = this.demoPlans.plans[key];
@@ -269,10 +269,10 @@ export class PlanComponent implements OnInit, OnDestroy {
               this.demoPlans.month_price = this.demoPlans['daily'].price;
               this.demoPlans.year_package_id = this.demoPlans['weekly'].id;
               this.demoPlans.year_price = this.demoPlans['weekly'].price;
-              this.demoPlans.includes =  ["The complete talent profile with all stages of his career and performance data.", "Export data in excel and pdf formats.", "Create your favorite list.", "Highlight your best photos and videos on your profile."];;
+              this.demoPlans.includes = ["The complete talent profile with all stages of his career and performance data.", "Export data in excel and pdf formats.", "Create your favorite list.", "Highlight your best photos and videos on your profile."];;
             }
           });
-          console.log('jgfdkhg',this.countryPlans, this.allCountryPlans)
+          console.log('jgfdkhg', this.countryPlans, this.allCountryPlans)
 
           // Set the default selected plan (first country plan or null if none exist)
           this.selectedPlan = this.countryPlans.plans[0] || null;
@@ -421,7 +421,7 @@ export class PlanComponent implements OnInit, OnDestroy {
     return;
   }
 
-  updatePlan(plan: any, isYearly: boolean, subscribeId: any){
+  updatePlan(plan: any, isYearly: boolean, subscribeId: any) {
     const originalIsYearly = plan.isYearly;
 
     const newPlanId = isYearly ? plan.yearly : plan.monthly;
@@ -441,7 +441,7 @@ export class PlanComponent implements OnInit, OnDestroy {
 
   updateSubscription(oldId: any, newId: any) {
 
-    this.toastr.info('Updating Plan, Please wait...', 'Loading',{ disableTimeOut: true });
+    this.toastr.info('Updating Plan, Please wait...', 'Loading', { disableTimeOut: true });
 
     this.getUserPlans();
 
@@ -495,26 +495,26 @@ export class PlanComponent implements OnInit, OnDestroy {
     if (plan.quantity < this.maxQuantity) plan.quantity++;
   }
 
-  editPlanPopup(plans:any,country:any) {
+  editPlanPopup(plans: any, country: any) {
     this.fetchPlans();
     const dialogRef = this.dialog.open(EditPlanComponent, {
       width: '800px',
       data: {
-        plans: plans.data ,
-        selectedPlan :this.selectedPlan,
-        activePlans : this.activePlans,
-        allPlans : this.allCountryPlans,
-        defaultCard : this.defaultCard ,
-        country : country ,
+        plans: plans.data,
+        selectedPlan: this.selectedPlan,
+        activePlans: this.activePlans,
+        allPlans: this.allCountryPlans,
+        defaultCard: this.defaultCard,
+        country: country,
       }
     });
   }
 
-  addBoostPopup(planId:any) {
+  addBoostPopup(planId: any) {
     const dialogRef = this.dialog.open(AddBoosterComponent, {
       width: '850px',
       data: {
-        id: planId ,
+        id: planId,
       }
     });
 
@@ -535,7 +535,7 @@ export class PlanComponent implements OnInit, OnDestroy {
   }
 
 
-  onSelectPlan(selectedId:any) {
+  onSelectPlan(selectedId: any) {
 
     const selected = this.countryPlans.find((plan: any) => plan.id === selectedId);
 
@@ -548,16 +548,17 @@ export class PlanComponent implements OnInit, OnDestroy {
     return this.country.length;
   }
 
-  editBooster(data:any){
+  editBooster(data: any) {
 
     const dialogRef = this.dialog.open(EditMembershipProfileComponent, {
       width: '1000px',
-      data: { stats : this.stats
+      data: {
+        stats: this.stats
       }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result ) {
+      if (result) {
         this.getBoosterData()
         // alert('Booster profile updated')
       }
@@ -565,7 +566,7 @@ export class PlanComponent implements OnInit, OnDestroy {
   }
 
 
-  async getBoosterData(){
+  async getBoosterData() {
     try {
       const response = await this.talentService.getBoosterData().toPromise();
       if (response?.data) {
@@ -592,5 +593,13 @@ export class PlanComponent implements OnInit, OnDestroy {
       this.bostProfileDesc = data;
       // this.premiumFeatures = [];
     });
+  }
+
+  removeSpace(str: string) {
+    let Price = str;
+    Price = Price.trim();
+    Price = Price.replaceAll(' ', '');
+    // alert(Price)
+    return Price;
   }
 }

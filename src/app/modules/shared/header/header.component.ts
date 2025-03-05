@@ -13,6 +13,7 @@ import { debounceTime, distinctUntilChanged, switchMap, finalize } from 'rxjs/op
 import { CommonDataService } from '../../../services/common-data.service';
 import { WebPages } from '../../../services/webpages.service';
 import { TalkService } from '../../../services/talkjs.service';
+import { GlobalSettingsService } from '../../../services/global-settings.service';
 
 interface Notification {
   id: number;
@@ -49,7 +50,8 @@ export class HeaderComponent {
     private socketService: SocketService,
     private commonDataService: CommonDataService,
     private webPages: WebPages,
-    private talkService: TalkService
+    private talkService: TalkService,
+    private globalSettings: GlobalSettingsService
   ) { }
 
   loggedInUser: any = localStorage.getItem('userInfo');
@@ -82,7 +84,12 @@ export class HeaderComponent {
   notificationSeen: boolean = false;
 
   ngOnInit() {
-
+    let isFrontendDarkMode = localStorage.getItem('theme');
+    if (isFrontendDarkMode != '' && isFrontendDarkMode == 'dark') {
+      this.isDarkMode = true;
+    } else {
+      this.isDarkMode = false;
+    }
     this.themeService.isDarkTheme.subscribe((isDarkTheme: boolean) => {
       this.isDarkMode = isDarkTheme;
     });
@@ -95,7 +102,12 @@ export class HeaderComponent {
     else {
       console.log("No data found in localStorage.");
     }
-
+    let domainLang = this.globalSettings.getLanguage();
+    if (domainLang != '' && localStorage.getItem('lang') == '') {
+      localStorage.setItem('lang', domainLang);
+    } else {
+      // alert(localStorage.getItem('lang'));
+    }
     let jsonData = localStorage.getItem("userData");
     let userId;
     if (jsonData) {
@@ -106,7 +118,6 @@ export class HeaderComponent {
         if (dbLanguage != '') {
           this.ChangeLang(dbLanguage);
           this.lang = dbLanguage;
-          // alert('done');
         }
       }
       // console.log('userData => ',userData);
@@ -330,14 +341,14 @@ export class HeaderComponent {
     }
 
     this.socketService.emit('updateLanguage', { userId, langId: selectedLandId });
-    
+
     this.fetchNotifications(userId, selectedLandId);
 
-     // Now safely access the locale
-     const locale = selectedLang.locale;
+    // Now safely access the locale
+    const locale = selectedLang.locale;
 
-     // Change the TalkJS locale by passing the locale string (e.g., 'en-US')
-     this.talkService.changeLocale(locale);
+    // Change the TalkJS locale by passing the locale string (e.g., 'en-US')
+    this.talkService.changeLocale(locale);
   }
 
   logout() {

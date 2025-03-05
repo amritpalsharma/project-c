@@ -1045,7 +1045,7 @@
   "price": "Price",
   "subTotal": "Subtotal",
   "downloadPDF": "Download et pdf",
-  "success!": "Success!",
+  "success!": "Succès",
   "subscriptionSuccessful": "Your et subscription et was et successful.",
   "browserDoesNotSupport": "Your et browser et does et not et support et the et video et tag.",
   "ADMINSCREEN": "Adminscreen",
@@ -1322,5 +1322,9 @@
   "iDecline": "Je refuse",
   "manageConsentPreferences": "Gérer les préférences en matière de consentement",
   "allowAll": "Tout autoriser",
-  "refuseAll": "Refuser tout"
+  "refuseAll": "Refuser tout",
+  "deleteProfileConfirm":"Cette opération supprimera définitivement votre compte de notre base de données. Cette opération ne peut être annulée.",
+  "downloading":"Téléchargement...",
+  "submittingPerformanceData":"Soumettre des données de performance...",
+  "enterDocumentTitle":"Saisir le titre du document"
 }

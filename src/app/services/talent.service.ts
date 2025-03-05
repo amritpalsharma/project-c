@@ -333,8 +333,8 @@ export class TalentService {
 
   updatePerformance(performanceId: any, params: any): Observable<any> {
     const headers = this.headers();
-
-    return this.http.post<any>(`${this.apiUrl}player/edit-performance-detail/${performanceId}`, params, { headers });
+    let lang_id = localStorage.getItem('lang_id');
+    return this.http.post<any>(`${this.apiUrl}player/edit-performance-detail/${performanceId}/${lang_id}`, params, { headers });
   }
 
   // Update newsletter subscription
@@ -357,13 +357,13 @@ export class TalentService {
 
   addPerformance(params: any): Observable<any> {
     const headers = this.headers();
-
-    return this.http.post<any>(`${this.apiUrl}player/add-performance-detail`, params, { headers });
+    let lang_id = localStorage.getItem('lang_id');
+    return this.http.post<any>(`${this.apiUrl}player/add-performance-detail/${lang_id}`, params, { headers });
   }
 
   deletePerformanceReport(params: any): Observable<any> {
     const headers = this.headers();
-
+    let lang_id = localStorage.getItem('lang_id');
     return this.http.post<any>(`${this.apiUrl}player/delete-performance-report`, params, { headers });
   }
 

@@ -975,7 +975,7 @@
   "price": "Price",
   "subTotal": "Subtotal",
   "downloadPDF": "Download y pdf",
-  "success!": "Success!",
+  "success!": "Éxito",
   "subscriptionSuccessful": "Your y subscription y was y successful.",
   "browserDoesNotSupport": "Your y browser y does y not y support y the y video y tag.",
   "ADMINSCREEN": "Adminscreen",
@@ -1254,5 +1254,9 @@
   "learnMore": "Más información",
   "removeFavbtn": "Ja, löschen",
   "cancelRemoveFavBtn": "Nein, nicht löschen",
-  "year": " Año"
+  "year": " Año",
+  "deleteProfileConfirm": "Esto eliminará su cuenta permanentemente de nuestra base de datos. Esto no se puede deshacer.",
+  "downloading":"Descargando...",
+  "submittingPerformanceData":"Presentar datos de rendimiento...",
+  "enterDocumentTitle":"Introduzca el título del documento"
 }
