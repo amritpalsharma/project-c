@@ -38,7 +38,7 @@ export class AdvertisingPopupComponent   {
 
   typeForView:any = "";
   pageName:any = "";
-  imageUrl:any = ""
+  imageUrl:any = null;
   constructor(
     public dialogRef: MatDialogRef<AdvertisingPopupComponent>,@Inject(MAT_DIALOG_DATA) public data: any, private advertisementService: AdvertisementService, private toastr : ToastrService
   ) {}
@@ -51,7 +51,9 @@ export class AdvertisingPopupComponent   {
     this.languages = JSON.parse(this.languages);
 
     if(this.data.action == "update" || this.data.action == "view"){
+      console.log(this.data.ad);
       let existingRecord = this.data.ad;
+
       this.idToEdit = existingRecord.id;
       this.name = existingRecord.title;
       this.redirect = existingRecord.redirect_url;
@@ -60,6 +62,7 @@ export class AdvertisingPopupComponent   {
       this.startDate = existingRecord.valid_from;
       this.endDate = existingRecord.valid_to;
       this.noEndDate = existingRecord.no_validity;
+      this.imageUrl = existingRecord.featured_image;
       if(this.noEndDate == '0'){
         this.disableEndDate = false;
         this.noEndDate = false;
@@ -74,13 +77,13 @@ export class AdvertisingPopupComponent   {
 
       /* for view only*/
 
-      this.typeForView = this.type.split('-')[0];
-      let index = this.pageOptions.findIndex((x:any) => x.id == this.page);
-      this.pageName = this.pageOptions[index].page;
-      this.imageUrl = environment.url+"uploads/"+existingRecord.featured_image
+      // this.typeForView = this.type.split('-')[0];
+      // let index = this.pageOptions.findIndex((x:any) => x.id == this.page);
+      // this.pageName = this.pageOptions[index].page;
+      
     }
 
-    this.onChange();
+    // this.onChange();
   }
 
   close(): void {
@@ -98,6 +101,8 @@ export class AdvertisingPopupComponent   {
           page: value.title
         }
       });
+
+      this.onChange();
     });
   }
   
@@ -130,34 +135,26 @@ export class AdvertisingPopupComponent   {
     }
   }
 
+  imagePreview: any = null;
+
   onImageChange(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
-      let FileToUpload = input.files[0];
-      this.imageToUpload = FileToUpload;
-      // let $this = this;
-      // let reader = new FileReader();
-      // reader.onload = function (fileData:any) {
-      //   $this.image = fileData.target.result;
-      // };
-      // reader.readAsDataURL(FileToUpload);
+      let fileToUpload = input.files[0];
+      this.imageToUpload = fileToUpload;
+      // console.log("fileToUpload", fileToUpload)
 
-      // let formdata = new FormData();
-      // formdata.append("profile_image", this.imageToUpload);
-      // this.imageLoading = true;
-      // this.userService.updateAdminImage(formdata).subscribe((response)=>{
-      //   if (response && response.status) {
-      //     // this.isLoading = false;
-      //     this.imageLoading = false;
-      //     this.showMatDialog("Profile image updated successfully!", 'display')
-      //   } else {
-      //     // this.isLoading = false;
-      //     this.imageLoading = false;
-      //     console.error('Invalid API response structure:', response);
-      //     this.showMatDialog("Error in uploading image", 'display')
-      //   }
-      // });
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagePreview = reader.result;
+      };
+      reader.readAsDataURL(fileToUpload);
     }
+  }
+
+  closeImage(){
+    this.imagePreview = null;
+    this.imageUrl = null;
   }
 
 
@@ -270,6 +267,7 @@ export class AdvertisingPopupComponent   {
     this.advertisementService.updateAd(this.idToEdit, formdata).subscribe(
       response => {
         if(response.status){
+          console.log(response.message);
           this.dialogRef.close({
             action: 'updated',
             message: response.message
