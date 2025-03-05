@@ -23,7 +23,7 @@ export class TalentComponent {
     pricing_tab:[],
   }];
   activeAccordionIndex = 1;
-  advertisemnetData:any=null;
+  // advertisementData:any=null;
   advertisemnet_base_url:string= '';
 
   isLoading : boolean = true;
@@ -108,8 +108,8 @@ export class TalentComponent {
       if(res.status){
           this.pageData = res.data.pageData;
           this.baseUrl = res.data.base_url;
-          this.advertisemnetData = res.data.advertisemnetData;
-          this.advertisemnetData = null;
+          this.advertisementData = res.data.advertisementData;
+          // this.advertisementData = null;
 
           this.isLoading = false;
           
@@ -127,26 +127,26 @@ export class TalentComponent {
 
   //   switch(object){
   //     case 'skyscraper':
-  //         this.advertisemnetData.skyscraper = [];
+  //         this.advertisementData.skyscraper = [];
   //         break;
   //     case 'small_square':
-  //         this.advertisemnetData.small_square = [];
+  //         this.advertisementData.small_square = [];
   //         break;
   //     case 'leaderboard':
-  //         this.advertisemnetData.leaderboard = [];
+  //         this.advertisementData.leaderboard = [];
   //         break;
   //     case 'large_leaderboard':
-  //         this.advertisemnetData.large_leaderboard = [];
+  //         this.advertisementData.large_leaderboard = [];
   //         break;
   //     case 'large_rectangle':
-  //         this.advertisemnetData.large_rectangle = [];
+  //         this.advertisementData.large_rectangle = [];
   //         break;
 
   //     case 'inline_rectangle':
-  //         this.advertisemnetData.inline_rectangle = [];
+  //         this.advertisementData.inline_rectangle = [];
   //         break;
   //     case 'square':
-  //         this.advertisemnetData.square = [];
+  //         this.advertisementData.square = [];
   //         break;
   //     default:
   //         //when no case is matched, this block will be executed;

@@ -350,7 +350,7 @@ export class IndexComponent {
         this.sliderDetail = sliderData;
         this.club_logo_path = this.sliderDetail.imagePath;
         this.pre_club_logo_path = this.sliderDetail.flagPath;
-        this.advertisementData = res.data.advertisemnetData;
+        this.advertisementData = res.data.advertisementData;
         // this.advertisementData = [];
 
         // console.log('advertisementData', this.advertisementData);

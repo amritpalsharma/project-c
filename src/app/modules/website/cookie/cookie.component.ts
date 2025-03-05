@@ -89,7 +89,7 @@ export class CookieComponent implements OnInit {
           this.base_url =  res.data.base_url;
 
           this.advertisemnet_base_url = res.data.advertisemnet_base_url;
-          this.advertisementData = res?.data?.advertisemnetData;
+          this.advertisementData = res?.data?.advertisementData;
 
           
           this.isLoading = false;

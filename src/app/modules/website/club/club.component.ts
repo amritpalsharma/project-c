@@ -19,7 +19,7 @@ export class ClubComponent {
     pricing_sctn_title:'',
     pricing_tab:[],
   }];
-  advertisemnetData:any=null;
+  // advertisementData:any=null;
   advertisemnet_base_url:string= '';
   isLoading : boolean = true;
 
@@ -117,8 +117,8 @@ export class ClubComponent {
 
           this.isLoading = false;
          
-          this.advertisemnetData = res.data.advertisemnetData;
-          // this.advertisemnetData = [];
+          this.advertisementData = res.data.advertisementData;
+          // this.advertisementData = [];
           this.advertisemnet_base_url = res.data.advertisemnet_base_url;
         
           // Initialize toggle states for pricing plans with Monthly active (false)
@@ -134,26 +134,26 @@ export class ClubComponent {
 
   //   switch(object){
   //     case 'skyscraper':
-  //         this.advertisemnetData.skyscraper = [];
+  //         this.advertisementData.skyscraper = [];
   //         break;
   //     case 'small_square':
-  //         this.advertisemnetData.small_square = [];
+  //         this.advertisementData.small_square = [];
   //         break;
   //     case 'leaderboard':
-  //         this.advertisemnetData.leaderboard = [];
+  //         this.advertisementData.leaderboard = [];
   //         break;
   //     case 'large_leaderboard':
-  //         this.advertisemnetData.large_leaderboard = [];
+  //         this.advertisementData.large_leaderboard = [];
   //         break;
   //     case 'large_rectangle':
-  //         this.advertisemnetData.large_rectangle = [];
+  //         this.advertisementData.large_rectangle = [];
   //         break;
 
   //     case 'inline_rectangle':
-  //         this.advertisemnetData.inline_rectangle = [];
+  //         this.advertisementData.inline_rectangle = [];
   //         break;
   //     case 'square':
-  //         this.advertisemnetData.square = [];
+  //         this.advertisementData.square = [];
   //         break;
   //     default:
   //         //when no case is matched, this block will be executed;

@@ -80,6 +80,7 @@ export class AdvertisingPopupComponent   {
       this.imageUrl = environment.url+"uploads/"+existingRecord.featured_image
     }
 
+    this.onChange();
   }
 
   close(): void {
@@ -283,9 +284,10 @@ export class AdvertisingPopupComponent   {
     );
   }
 
-  onChange(event: any){
-    if(this.page && this.selectedLanguage){
-      console.log(this.page, this.selectedLanguage);
+  onChange(){
+    // if(this.page && this.selectedLanguage){
+    if(this.page){
+      console.log("updated page", this.page, this.typeOptions);
       this.advertisementService.getAdvertisementType(this.page).subscribe((response) => {
         let adsTypes = response.data.ad_types;
         if(adsTypes){
