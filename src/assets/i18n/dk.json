@@ -1173,5 +1173,9 @@
   "downloading":"Downloading...",
   "submittingPerformanceData":"Indsendelse af præstationsdata...",
   "enterDocumentTitle":"Indtast dokumentets titel",
-  "year": "År"
+  "year": "År",
+  "registrationInProcess":"Registreringen er i gang.",
+  "registrationFailed":"Registrering mislykkedes",
+  "Processing":"Behandling...",
+  "EmailVerified":"E-mail bekræftet!"
 }

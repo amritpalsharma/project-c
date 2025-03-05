@@ -1258,5 +1258,9 @@
   "downloading":"Descargando...",
   "submittingPerformanceData":"Presentar datos de rendimiento...",
   "enterDocumentTitle":"Introduzca el título del documento",
-  "year": " Año"
+  "year": " Año",
+  "registrationInProcess":"La inscripción está en curso...",
+  "registrationFailed":"Registro fallido",
+  "Processing":"Procesando...",
+  "EmailVerified":"Correo electrónico verificado"
 }

@@ -62,11 +62,17 @@ export class HeaderComponent implements OnInit {
   companyName: string = '';
   verifyToken: any = null;
   verifyTime: any = null;
+
   //this is get by the domain
   countries: Array<{ code: string; name: string }> = [];
   clubs: Array<{ id: number; name: string }> = [];
   langs: any = environment.langs;
-
+  pleaseWait: string = '';
+  registrationInProcess: string = '';
+  successTxt: string = '';
+  registrationFailed: string = '';
+  Processing: string = '';
+  EmailVerified: string = '';
 
   allLanguage = [];
   selectedLanguageId = null;
@@ -239,6 +245,7 @@ export class HeaderComponent implements OnInit {
     translateService.onLangChange.subscribe(() => {
       this.language = translateService.currentLang;
       this.loadCountries();
+      this.loadToasterMsg();
     });
   }
 
@@ -271,12 +278,11 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-
+    this.loadToasterMsg();
     this.route.queryParams.subscribe(params => {
       this.token = params['confirm-token'] || '';
       if (this.token) {
-        this.toastr.info('Processing...', 'Please Wait!');
+        this.toastr.info(this.Processing, this.pleaseWait);
 
         this.authService.magicLogin(this.token).subscribe(
           response => {
@@ -307,32 +313,37 @@ export class HeaderComponent implements OnInit {
       this.verifyToken = params['token'];
       this.verifyTime = params['time'];
 
-      if (this.verifyToken && this.verifyTime) {
-        this.toastr.info('Processing...', 'Please Wait!');
+      setTimeout(() => {
+        if (this.verifyToken && this.verifyTime) {
+          this.toastr.info(this.Processing, this.pleaseWait);
 
-        this.authService.verifyEmail(this.verifyToken, this.verifyTime).subscribe(
-          response => {
-            if (response.status) {
-              this.toastr.clear();
+          this.authService.verifyEmail(this.verifyToken, this.verifyTime).subscribe(
+            response => {
+              if (response.status) {
+                // this.toastr.clear();
+                if (response.message != '') {
+                  this.toastr.success(response.message, this.EmailVerified);
+                } else {
+                  this.toastr.success('Email is verified. You can login now...', this.EmailVerified);
+                }
 
-              this.toastr.success('Email is verified. You can login now...', 'Email Verified!');
+                const loginModal = new bootstrap.Modal(document.getElementById('exampleModal-login'));
+                loginModal.show();
 
-              const loginModal = new bootstrap.Modal(document.getElementById('exampleModal-login'));
-              loginModal.show();
+              } else {
+                this.toastr.clear();
 
-            } else {
+                this.router.navigate(['/expired-link']);
+              }
+            },
+            error => {
               this.toastr.clear();
 
               this.router.navigate(['/expired-link']);
             }
-          },
-          error => {
-            this.toastr.clear();
-
-            this.router.navigate(['/expired-link']);
-          }
-        );
-      }
+          );
+        }
+      }, 1000);
 
 
     });
@@ -340,9 +351,16 @@ export class HeaderComponent implements OnInit {
     this.LoggedInUserDashboardLink = this.authService.getDashboardLink();
     // Ensure language is set to 'en' if it's not already in localStorage
     this.lang = this.globalSettings.getLanguage(); // Default to 'en' if no language is set
-    this.slug = this.lang;
+
+    if (localStorage.getItem('lang') != null || localStorage.getItem('lang') != undefined) {
+      this.slug = '' + localStorage.getItem('lang');
+      console.warn('Selected Lang in LocalStoroage ' + localStorage.getItem('lang'));
+    } else {
+      console.warn('No Selected Lang in LocalStoroage');
+      this.slug = this.lang;
+    }
     // Set default language to English if not set
-    if (!this.lang || this.lang === '') {
+    if (!this.lang || this.lang === '' && localStorage.getItem('lang') == null) {
       this.lang = 'en';
       localStorage.setItem('lang', this.lang); // Store default language in localStorage
     }
@@ -574,10 +592,12 @@ export class HeaderComponent implements OnInit {
       return;
     }
 
-    this.toastr.info('Registration is in process...', 'Please wait', { disableTimeOut: true });
+    this.toastr.info(this.registrationInProcess, this.pleaseWait, { disableTimeOut: true });
 
     const selectedLanguage = localStorage.getItem('lang') || '';
-    const domain = environment.targetDomain?.domain || 'ch';
+    const domain = this.globalSettings.getdomainExtension();
+    this.userDomain = '' + this.globalSettings.getdomainId();
+    // const domain = ;
 
     // Retrieve the selected language code from localStorage
     const selectedLanguageSlug = localStorage.getItem('lang') || '';
@@ -622,7 +642,11 @@ export class HeaderComponent implements OnInit {
           this.toastr.clear();
 
           this.serverBusy = false;
-          this.toastr.success('Registration successful! Thank you.', 'Success');
+          if (response.message != '') {
+            this.toastr.success(response.message, this.successTxt);
+          } else {
+            this.toastr.success('Registration successful! Thank you.', 'Success');
+          }
           const registerModal = bootstrap.Modal.getInstance(document.getElementById('exampleModal1'));
           if (registerModal) {
             registerModal.hide();
@@ -646,7 +670,7 @@ export class HeaderComponent implements OnInit {
           } else {
             errorMessage = response.message;
           }
-          this.toastr.error(errorMessage.trim(), 'Registration Failed');
+          this.toastr.error(errorMessage.trim(), this.registrationFailed);
           this.registerError = errorMessage.trim();
           this.registerFormSubmitted = false;
         }
@@ -837,4 +861,14 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  loadToasterMsg() {
+    this.translateService.get(['pleaseWait', 'registrationInProcess', 'success!', 'registrationFailed', 'Processing', 'EmailVerified']).subscribe((translations) => {
+      this.pleaseWait = translations['pleaseWait'];
+      this.registrationInProcess = translations['registrationInProcess'];
+      this.successTxt = translations['success!'];
+      this.registrationFailed = translations['registrationFailed'];
+      this.Processing = translations['Processing'];
+      this.EmailVerified = translations['EmailVerified'];
+    })
+  }
 }

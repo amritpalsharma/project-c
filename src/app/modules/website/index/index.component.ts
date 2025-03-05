@@ -83,7 +83,7 @@ export class IndexComponent {
   heroSectionBgImage: string = '';
 
 
-  isLoading : boolean = true;
+  isLoading: boolean = true;
 
 
   players = [
@@ -316,6 +316,8 @@ export class IndexComponent {
     this.themeService.theme$.subscribe(() => {
       this.chnageHerosectionBgImg();
     });
+    let selectedLang = localStorage.getItem('lang');
+    console.warn('In Index component LocalStorage Language selected = ' + selectedLang)
   }
 
   closeAd(object: any) {

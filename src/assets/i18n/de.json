@@ -1278,5 +1278,9 @@
   "downloading": "Herunterladen...",
   "submittingPerformanceData": "Übermittlung von Leistungsdaten...",
   "enterDocumentTitle": "Titel des Dokuments eingeben",
-  "doYouAdd": "Möchten Sie hinzufügen"
+  "doYouAdd": "Möchten Sie hinzufügen",
+  "registrationInProcess":"Die Registrierung ist im Gange...",
+  "registrationFailed":"Registrierung fehlgeschlagen",
+  "Processing":"Verarbeitung...",
+  "EmailVerified":"E-Mail verifiziert!"
 }

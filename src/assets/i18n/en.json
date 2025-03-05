@@ -1186,5 +1186,9 @@
   "downloading": "Downloading...",
   "submittingPerformanceData": "Submitting performance data...",
   "enterDocumentTitle": "Enter document title",
-  "doYouAdd": "Do you want to add"
+  "doYouAdd": "Do you want to add",
+  "registrationInProcess":"Registration is in process...",
+  "registrationFailed":"Registration Failed",
+  "Processing":"Processing...",
+  "EmailVerified":"Email Verified!"
 }

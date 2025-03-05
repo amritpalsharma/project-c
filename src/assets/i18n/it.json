@@ -1309,5 +1309,9 @@
   "deleteProfileConfirm":"In questo modo il vostro account verrà eliminato definitivamente dal nostro database. Questa operazione non può essere annullata.",
   "downloading":"Scaricare...",
   "submittingPerformanceData":"Invio di dati sulle prestazioni...",
-  "enterDocumentTitle":"Inserire il titolo del documento"
+  "enterDocumentTitle":"Inserire il titolo del documento",
+  "registrationInProcess":"La registrazione è in corso...",
+  "registrationFailed": "Registrazione fallita",
+  "Processing":"Elaborazione...",
+  "EmailVerified":"Email verificata!"
 }
