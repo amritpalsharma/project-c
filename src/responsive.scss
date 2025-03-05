@@ -205,12 +205,12 @@
   }
 }
 
-@media (min-width: 576px) {
-    .cdk-overlay-pane.mat-mdc-dialog-panel {
-      min-width: 350px !important;
-      min-height: 180px !important;
-    }
-}
+// @media (min-width: 576px) {
+//     .cdk-overlay-pane.mat-mdc-dialog-panel {
+//       min-width: 350px !important;
+//       min-height: 180px !important;
+//     }
+// }
 
 @media (max-width:1300px) and (min-width:992px) {
 .mobile-sidebar-active .plan_box .d-flex.gap-2 {
