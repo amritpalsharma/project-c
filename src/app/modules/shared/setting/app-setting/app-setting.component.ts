@@ -14,6 +14,7 @@ import { DeleteProfileComponent } from '../../delete-profile/delete-profile.comp
 export class AppSettingComponent {
   loggedInUser: any = localStorage.getItem('userData'); // User data from local storage
   translatedText: string = '';
+  deleteProfiletranslatedText: string = '';
   langSubscription!: Subscription;
   constructor(private talentService: TalentService, public dialog: MatDialog, private translate: TranslateService) { }
 
@@ -28,6 +29,9 @@ export class AppSettingComponent {
   updateTranslation() {
     this.translate.get('changeNewsletterStatus').subscribe((res: string) => {
       this.translatedText = res;
+    });
+    this.translate.get('deleteProfiletranslatedText').subscribe((res: string) => {
+      this.deleteProfiletranslatedText = res;
     });
   }
   // Open confirmation dialog
@@ -110,7 +114,7 @@ export class AppSettingComponent {
 
   confirmDeleteProfile(event: any) {
     this.showDeleteProfileMatDialog(
-      this.translatedText,
+      this.deleteProfiletranslatedText,
       "newsletter-confirmation"
       // event
     );

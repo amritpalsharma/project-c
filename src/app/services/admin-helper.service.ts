@@ -92,7 +92,7 @@ export class AdminHelperService {
       minute: "2-digit",
       second: "2-digit",
       hour12: language === 'en', // AM/PM in English, 24-hour in German
-      timeZone: timeZone
+      // timeZone: timeZone
     };
 
     // Format date and time correctly

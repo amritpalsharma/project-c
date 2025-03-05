@@ -9,6 +9,7 @@ import { environment } from '../../../../environments/environment';
 import { ConfirmPasswordComponent } from '../SetPassword/confirmPassword.component';
 import { MatDialog } from '@angular/material/dialog';
 import { WebPages } from '../../../services/webpages.service';
+import { GlobalSettingsService } from '../../../services/global-settings.service';
 
 declare var bootstrap: any; // Declare bootstrap
 declare var google: any; // Declare google
@@ -218,7 +219,8 @@ export class FooterComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private translateService: TranslateService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private globalSettings: GlobalSettingsService
   ) {
     this.language = translateService.currentLang || 'en';  // Get current language
     this.loadCountries();  // Load countries based on selected language
@@ -242,8 +244,10 @@ export class FooterComponent implements OnInit {
   ngOnInit(): void {
     this.isUserLoggedIn = this.authService.isLoggedIn();
     this.webPages.languageId$.subscribe((data) => {
-      this.selectedcountry = 1; //Number(data);
-      const selectedLang = this.countrie.find((data: any) => data.id == this.selectedcountry);
+      // this.selectedcountry = 1; //Number(data);
+      this.selectedcountry = this.globalSettings.getLanguageId();
+      let selectedLang = this.countrie.find((data: any) => data.id == this.selectedcountry);
+
       this.name = selectedLang?.name || '';
     });
     // Check if the google.accounts.id library is loaded
@@ -262,7 +266,7 @@ export class FooterComponent implements OnInit {
       console.log(this.selectedcountry);
       setTimeout(() => {
         const selectedLang = this.countrie.find((data: any) => data.id == this.selectedcountry);
-      this.name = selectedLang?.name || '';
+        this.name = selectedLang?.name || '';
         // this.selectedcountry = this.countrie[0]?.id || 1;
         // this.name = this.selectedLang?.name || '';
       }, 100);

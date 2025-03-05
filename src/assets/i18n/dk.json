@@ -891,7 +891,7 @@
   "price": "Price",
   "subTotal": "Subtotal",
   "downloadPDF": "Download og pdf",
-  "success!": "Success!",
+  "success!": "Succes!",
   "subscriptionSuccessful": "Your og subscription og was og successful.",
   "browserDoesNotSupport": "Your og browser og does og not og support og the og video og tag.",
   "ADMINSCREEN": "Adminscreen",
@@ -1170,5 +1170,9 @@
   "editCoverImage": "Rediger forsidebillede",
   "learnMore": "Få mere at vide",
   "removeFavbtn": "Ja, slet",
-  "cancelRemoveFavBtn": "Nej, ikke slet"
+  "cancelRemoveFavBtn": "Nej, ikke slet",
+  "deleteProfileConfirm":"Dette vil slette din konto permanent fra vores database. Dette kan ikke fortrydes.",
+  "downloading":"Downloading...",
+  "submittingPerformanceData":"Indsendelse af præstationsdata...",
+  "enterDocumentTitle":"Indtast dokumentets titel"
 }
