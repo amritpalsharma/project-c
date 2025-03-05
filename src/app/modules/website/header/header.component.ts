@@ -363,6 +363,7 @@ export class HeaderComponent implements OnInit {
     if (!this.lang || this.lang === '' && localStorage.getItem('lang') == null) {
       this.lang = 'en';
       localStorage.setItem('lang', this.lang); // Store default language in localStorage
+      this.translateService.use(this.lang);
     }
     document.body.classList.add(this.slug);
 
@@ -375,7 +376,7 @@ export class HeaderComponent implements OnInit {
       localStorage.setItem('lang_id', this.lang_id); // Store default language in localStorage
     }
     // Use the selected language (or 'en' if none)
-    this.translateService.use(this.lang);  // Set the language for ngx-translate
+  // Set the language for ngx-translate
 
     // Apply dark mode from localStorage
     this.themeService.isDarkTheme.subscribe((isDarkTheme: boolean) => {
@@ -397,6 +398,7 @@ export class HeaderComponent implements OnInit {
     this.getAllCountries();
     this.getAllClubs();
     this.getAllLanguage();
+    console.log('Header Last updated language localstorage ' + localStorage.getItem('lang'));
   }
 
 
