@@ -4,7 +4,7 @@
     <!-- <app-header></app-header> -->
 
     <div class="main-bnr" style="background-image: url('{{banner_bg_img}}');">
-      <div class="overlay" >
+      <div class="overlay">
       </div>
 
       <div *ngIf="checkActive('skyscraper') && !isLoading" class="skyscraper-left">
@@ -31,13 +31,14 @@
                 <img class="home-banner-image" src="{{banner_img}}">
               </div>
               <div class="banner-btn text-center mt-5">
-                <a href="javascript:void(0)" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1"> {{ pageDetail?.banner_btn_txt }}
+                <a href="javascript:void(0)" class="btn btn-primary" data-bs-toggle="modal"
+                  data-bs-target="#exampleModal1"> {{ pageDetail?.banner_btn_txt }}
                 </a>
                 <!-- {{ 'registerNow' | translate }} -->
 
                 <a *ngIf="!isUserLoggedIn" href="javascript:void(0);" class="login-btn" data-bs-toggle="modal"
-                  data-bs-target="#exampleModal-login">{{ 'login' | translate }}<svg class="ms-2" width="8" height="12" viewBox="0 0 8 12"
-                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                  data-bs-target="#exampleModal-login">{{ 'login' | translate }}<svg class="ms-2" width="8" height="12"
+                    viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M1.34766 1.5L6.34766 6L1.34766 10.5" stroke="white" stroke-width="2"
                       stroke-linecap="round" />
                   </svg>
@@ -80,7 +81,8 @@
             <h3>{{pageDetail?.slider_heading}}</h3>
           </div>
           <div class="joined-btn">
-            <button type="button" [routerLink]="'/player-list'" class="btn btn-light">{{pageDetail?.slider_btn_txt}}</button>
+            <button type="button" [routerLink]="'/player-list'"
+              class="btn btn-light">{{pageDetail?.slider_btn_txt}}</button>
             <!-- <a href="{{pageDetail.slider_btn_link}}" type="button" class="btn btn-light">{{pageDetail.slider_btn_txt}}</a> -->
           </div>
         </div>
@@ -92,47 +94,51 @@
           <owl-carousel-o [options]="customOptions">
             <!-- {{sliderDetail?.users | json}} -->
             @for (slider of sliderDetail?.users; track $index) {
-              <ng-template carouselSlide>
-                <div *ngIf="slider.role_name != 'Club'" class="player-carousel">
-                  <div  class="player-border">
-                    <div class="player-img">
-                      <img src="{{slider.meta.profile_image_path}}" (error)="handleImageError($event)"  class="player-image">
-                    </div>
-                    <p class="player-name">{{slider.first_name +' '+ slider.last_name}}</p>
+            <ng-template carouselSlide>
+              <div *ngIf="slider.role_name != 'Club'" class="player-carousel">
+                <div class="player-border">
+                  <div class="player-img">
+                    <img src="{{slider.meta.profile_image_path}}" (error)="handleImageError($event)"
+                      class="player-image">
+                  </div>
+                  <p class="player-name">{{slider.first_name +' '+ slider.last_name}}</p>
 
-                    <!-- <div *ngIf="slider?.meta?.current_club_logo" class="corner-image">
+                  <!-- <div *ngIf="slider?.meta?.current_club_logo" class="corner-image">
                       <img src="{{slider.meta.current_club_logo}}">
                     </div>  -->
-                    <div class="corner-image">
-                      <!-- First condition: if current_club_logo exists -->
-                      <img *ngIf="slider?.current_club_logo" [src]="club_logo_path + slider.current_club_logo" alt="Current Club Logo">
-                      
-                      <!-- Second condition: if current_club_logo doesn't exist, use pre_current_club_logo -->
-                      <img *ngIf="!slider?.current_club_logo && slider?.pre_current_club_logo" [src]="club_logo_path + slider.pre_current_club_logo" alt="Pre Current Club Logo">
-                      
-                      <!-- Third condition: if both are missing, show a blank or default image -->
-                      <!-- <img *ngIf="!slider?.current_club_logo && !slider?.pre_current_club_logo" [src]="'path/to/default/image.jpg'" alt="Default Logo"> -->
-                    </div>                                       
-                    <div *ngIf="slider.meta.date_of_birth"  class="flag">
-                      <div class="flag-image">
-                        <!-- <img src="{{getFlagImage(slider.user_nationalities)}}" class="flag-img"> -->
-                        <div class="bottom-line"></div>
-                        <div class="flag-bottom">
-                          <img src="./assets/images/birthday.svg" class="birthday-img">
-                          <p class="d-o-b">{{getBirthYear(slider.meta.date_of_birth)}}</p>
-                        </div>
+                  <div class="corner-image">
+                    <!-- First condition: if current_club_logo exists -->
+                    <img *ngIf="slider?.current_club_logo" [src]="club_logo_path + slider.current_club_logo"
+                      alt="Current Club Logo">
+
+                    <!-- Second condition: if current_club_logo doesn't exist, use pre_current_club_logo -->
+                    <img *ngIf="!slider?.current_club_logo && slider?.pre_current_club_logo"
+                      [src]="club_logo_path + slider.pre_current_club_logo" alt="Pre Current Club Logo">
+
+                    <!-- Third condition: if both are missing, show a blank or default image -->
+                    <!-- <img *ngIf="!slider?.current_club_logo && !slider?.pre_current_club_logo" [src]="'path/to/default/image.jpg'" alt="Default Logo"> -->
+                  </div>
+                  <div *ngIf="slider.meta.date_of_birth" class="flag">
+                    <div class="flag-image">
+                      <!-- <img src="{{getFlagImage(slider.user_nationalities)}}" class="flag-img"> -->
+                      <div class="bottom-line"></div>
+                      <div class="flag-bottom">
+                        <img src="./assets/images/birthday.svg" class="birthday-img">
+                        <p class="d-o-b">{{getBirthYear(slider.meta.date_of_birth)}}</p>
                       </div>
                     </div>
                   </div>
                 </div>
-                
-                <div *ngIf="slider.role_name == 'Club'" class="player-carousel-club">
-                  <div  class="player-border">
-                    <div class="player-img">
-                      <img src="{{slider.meta.profile_image_path}}" (error)="handleImageError($event)"  class="player-image">
-                    </div>
-                    <p class="player-name">{{slider.first_name +' '+ slider.last_name}}</p>
-                    <!-- <div *ngIf="slider.meta.date_of_birth"  class="flag">
+              </div>
+
+              <div *ngIf="slider.role_name == 'Club'" class="player-carousel-club">
+                <div class="player-border">
+                  <div class="player-img">
+                    <img src="{{slider.meta.profile_image_path}}" (error)="handleImageError($event)"
+                      class="player-image">
+                  </div>
+                  <p class="player-name">{{slider.first_name +' '+ slider.last_name}}</p>
+                  <!-- <div *ngIf="slider.meta.date_of_birth"  class="flag">
                       <div class="flag-image">
                         <div class="bottom-line"></div>
                         <div class="flag-bottom">
@@ -141,9 +147,9 @@
                         </div>
                       </div>
                     </div> -->
-                  </div>
                 </div>
-              </ng-template>
+              </div>
+            </ng-template>
             }
 
           </owl-carousel-o>
@@ -162,8 +168,8 @@
             <div class="work-banner">
               <div class="works-btn">
                 <div class="talent-btn">
-                  <button type="button" class="btn btn-success" [ngClass]="{'active-btn': selectedCategory === 'Talent'}"
-                    (click)="showCategory('Talent')">
+                  <button type="button" class="btn btn-success"
+                    [ngClass]="{'active-btn': selectedCategory === 'Talent'}" (click)="showCategory('Talent')">
                     <p class="club-p">{{pageDetail?.tabs_data?.first_btn_txt}}</p>
                   </button>
                 </div>
@@ -300,7 +306,7 @@
                 <div class="row">
                   <div class="football-club player-list-image">
                     <img src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[1]?.images}}">
-                    
+
                     <!-- <div class="col-4">
                       <div class="network1">
                         <div class="club_member1">
@@ -453,7 +459,7 @@
                 <div class="row">
                   <div class="player-list-images">
                     <img src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[0]?.images}}">
-                    
+
                     <!-- <div class="col-md-6 col-4">
                         
                       <div class="talent-img1">
@@ -539,8 +545,8 @@
             <div class="work-banner">
               <div class="works-btn">
                 <div class="talent-btn">
-                  <button type="button" class="btn btn-success" [ngClass]="{'active-btn': selectedCategory === 'Talent'}"
-                    (click)="showCategory('Talent')">
+                  <button type="button" class="btn btn-success"
+                    [ngClass]="{'active-btn': selectedCategory === 'Talent'}" (click)="showCategory('Talent')">
                     <p class="club-p">Talent</p>
                   </button>
                 </div>
@@ -938,7 +944,7 @@
               <div class="button-border">
                 <div class="join-text">
                   <p> {{pageDetail?.hero_btn_txt}}</p>
-                  <img class="join-btn check-image-dark" src="./assets/images/dark-join-now.png"> 
+                  <img class="join-btn check-image-dark" src="./assets/images/dark-join-now.png">
                   <img class="join-btn check-image-light" src="./assets/images/light-join-now.png">
                 </div>
               </div>
@@ -960,7 +966,7 @@
               <div class="button-border">
                 <div class="join-text">
                   <p> {{pageDetail?.hero_btn_txt}}</p>
-                  <img class="join-btn check-image-dark" src="./assets/images/dark-join-now.png"> 
+                  <img class="join-btn check-image-dark" src="./assets/images/dark-join-now.png">
                   <img class="join-btn check-image-light" src="./assets/images/light-join-now.png">
                 </div>
               </div>
@@ -974,4 +980,4 @@
     <!-- <app-footer></app-footer> -->
 
   </div>
-  </section>
+</section>

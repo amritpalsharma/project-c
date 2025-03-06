@@ -39,6 +39,8 @@ export class NewsComponent implements OnInit, OnDestroy {
   adVisible: boolean[] = [true, true, true, true, true];
 
   isLoading : boolean = true;
+  btnLoading : boolean = true;
+  countdown: number = 10;
 
 
   images: SliderImage[] = [
@@ -146,17 +148,29 @@ export class NewsComponent implements OnInit, OnDestroy {
         this.slider_btn_txt = res.data.pageData.slider_btn_txt;
         this.slider_date = res.data.pageData.slider_date;
 
-        this.isLoading = false;
-
+        
         // this.images = res.data.newsSliderData || this.images;
         // this.base_url = res.data.base_url;
-
+        
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
         this.advertisementData = res?.data?.advertisementData;
+        
+        this.isLoading = false;
+        this.startCountdown();
       }
     }, error => {
       console.error('Error fetching dynamic page data', error);
     });
+  }
+  startCountdown() {
+    this.countdown = 5; // Reset countdown
+    const interval = setInterval(() => {
+      this.countdown--;
+      if (this.countdown === 0) {
+        clearInterval(interval);
+        this.btnLoading = false; // Stop loading when countdown reaches 0
+      }
+    }, 1000);
   }
 
   changeImage(imageSrc: string, index: number) {

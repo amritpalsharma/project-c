@@ -15,6 +15,8 @@ export class FaqComponent {
   advertisemnet_base_url:string= '';
 
   isLoading : boolean = true;
+  btnLoading : boolean = true;
+  countdown: number = 10;
 
   
   isOpen: { [key: string]: boolean[] } = {
@@ -103,11 +105,22 @@ export class FaqComponent {
            this.advertisemnet_base_url = res.data.advertisemnet_base_url;
 
            this.isLoading = false;
+           this.startCountdown();
           
         }
     });
   }
 
+  startCountdown() {
+    this.countdown = 5; // Reset countdown
+    const interval = setInterval(() => {
+      this.countdown--;
+      if (this.countdown === 0) {
+        clearInterval(interval);
+        this.btnLoading = false; // Stop loading when countdown reaches 0
+      }
+    }, 1000);
+  }
   // Sections for each tab
   talentSections:any = [
     // {

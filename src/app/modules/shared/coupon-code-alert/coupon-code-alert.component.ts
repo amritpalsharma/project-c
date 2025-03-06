@@ -68,7 +68,7 @@ export class CouponCodeAlertComponent implements OnInit {
 
   // Close dialog without a coupon
   noCoupon(): void {
-    this.dialogRef.close(null); // Close without coupon
+    this.dialogRef.close('no_coupon'); // Close without coupon
   }
 
   // Close the dialog

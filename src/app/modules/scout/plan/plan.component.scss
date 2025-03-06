@@ -78,9 +78,11 @@
     padding: 30px 20px 0px 20px;
 }
 .premium-currency {
-    padding: 36px 10px 80px 10px;
+    padding: 36px 0 80px 0;
 }
-
+.plan_box .d-flex.gap-2 {
+    min-height: 50px;
+}
 .plan_box.premium-plan-list {
     padding: 20px 20px 36px;
 }
@@ -103,9 +105,9 @@
 .premium_button {
     width: fit-content;
     background: #fcc704;
-    padding: 1px 8px;
+    padding: 6px 8px !important;
+    line-height: 1;
     display: flex;
-    // gap: 8px;
     align-items: center;
     border-radius: 20px;
 }
@@ -131,6 +133,7 @@
 sub.premium-month_title {
     font-size: 14px;
     font-weight: 400;
+    bottom: 0.15em;
 }
 
 .choose-plan-btn {
@@ -350,3 +353,10 @@ sub.premium-month_title {
         row-gap: 10px;
     }
 }
+
+@media (max-width:480px) {
+    .plan_box .d-flex.gap-2 {
+        flex-direction: column;
+        align-items: flex-start !important;
+    }
+    }

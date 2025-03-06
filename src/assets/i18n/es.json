@@ -1254,9 +1254,13 @@
   "learnMore": "Más información",
   "removeFavbtn": "Ja, löschen",
   "cancelRemoveFavBtn": "Nein, nicht löschen",
-  "year": " Año",
   "deleteProfileConfirm": "Esto eliminará su cuenta permanentemente de nuestra base de datos. Esto no se puede deshacer.",
   "downloading":"Descargando...",
   "submittingPerformanceData":"Presentar datos de rendimiento...",
-  "enterDocumentTitle":"Introduzca el título del documento"
+  "enterDocumentTitle":"Introduzca el título del documento",
+  "year": " Año",
+  "registrationInProcess":"La inscripción está en curso...",
+  "registrationFailed":"Registro fallido",
+  "Processing":"Procesando...",
+  "EmailVerified":"Correo electrónico verificado"
 }

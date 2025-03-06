@@ -17,6 +17,8 @@ export class ImprintComponent implements OnInit {
   base_url:any=null;
 
   isLoading : boolean = true;
+  btnLoading : boolean = true;
+  countdown: number = 10;
 
   // advertisemnet_base_url:string= '';
   adVisible: boolean[] = [true, true, true]; // Array to manage ad visibility
@@ -97,11 +99,24 @@ export class ImprintComponent implements OnInit {
           this.banner_img = res.data.pageData.banner_img;
           this.base_url =  res.data.base_url;
 
-          this.isLoading = false;
-
+          
           this.advertisementData = res?.data?.advertisementData;
+          
+          this.isLoading = false;
+          this.startCountdown();
         }
     });
+  }
+
+  startCountdown() {
+    this.countdown = 5; // Reset countdown
+    const interval = setInterval(() => {
+      this.countdown--;
+      if (this.countdown === 0) {
+        clearInterval(interval);
+        this.btnLoading = false; // Stop loading when countdown reaches 0
+      }
+    }, 1000);
   }
   // isEmptyObject(obj:any) {
   //   if(typeof obj != 'undefined'){

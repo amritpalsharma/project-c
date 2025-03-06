@@ -8,6 +8,7 @@ export class GlobalSettingsService {
   private domainExtensions = ['.ch', '.de', '.it', '.fr', '.co.uk', '.es', '.pt', '.be', '.dk', '.sv']; // List of domain extensions to check
   private defaultLanguage = 'en'; // Default language
   private defaultLangId: number = 1;
+  private defaultDomainId: number = 1;
 
   constructor() {
     this.setDefaultLanguage();
@@ -29,33 +30,43 @@ export class GlobalSettingsService {
     switch (domainExt) {
       case '.ch':
         this.defaultLanguage = 'de';
+        this.defaultDomainId = 1;
         break;
       case '.de':
         this.defaultLanguage = 'de';
+        this.defaultDomainId = 2;
         break;
       case '.it':
         this.defaultLanguage = 'it';
+        this.defaultDomainId = 3;
         break;
       case '.fr':
         this.defaultLanguage = 'fr';
+        this.defaultDomainId = 4;
         break;
       case '.co.uk':
         this.defaultLanguage = 'en';
+        this.defaultDomainId = 5;
         break;
       case '.es':
         this.defaultLanguage = 'es';
+        this.defaultDomainId = 6;
         break;
       case '.pt':
         this.defaultLanguage = 'pt';
+        this.defaultDomainId = 7;
         break;
       case '.be':
         this.defaultLanguage = 'fr';
+        this.defaultDomainId = 8;
         break;
       case '.dk':
         this.defaultLanguage = 'dk';
+        this.defaultDomainId = 9;
         break;
       case '.sv':
         this.defaultLanguage = 'se';
+        this.defaultDomainId = 10;
         break;
       default:
         this.defaultLanguage = 'en';
@@ -68,6 +79,9 @@ export class GlobalSettingsService {
     return this.defaultLanguage;
   }
 
+  public getdomainId(): number {
+    return this.defaultDomainId;
+  }
   public getLanguageId(): number {
     // this.setDefaultLanguage();
     let language = this.defaultLanguage;
@@ -89,5 +103,11 @@ export class GlobalSettingsService {
       this.defaultLangId = 8;
     }
     return this.defaultLangId;
+  }
+
+  public getdomainExtension(): string {
+    let hostname = window.location.hostname;  // Get domain (e.g., "example.ch")
+    let parts = hostname.split('.');          // Split by dots
+    return parts.length > 1 ? '' + parts.pop() : '';
   }
 }

@@ -13,6 +13,8 @@ export class PricingComponent {
   pageData: any; // To hold the API response data
   advertisemnet_base_url:string= '';
   isLoading : boolean = true;
+  btnLoading : boolean = true;
+  countdown: number = 10;
 
 
   // adVisible: boolean[] = [true, true, true, true, true, true, true]; // Array to manage ad visibility
@@ -115,8 +117,20 @@ export class PricingComponent {
         this.advertisementData = res?.data?.advertisementData;
 
         this.isLoading = false;
+        this.startCountdown();
       }
     });
+  }
+
+  startCountdown() {
+    this.countdown = 5; // Reset countdown
+    const interval = setInterval(() => {
+      this.countdown--;
+      if (this.countdown === 0) {
+        clearInterval(interval);
+        this.btnLoading = false; // Stop loading when countdown reaches 0
+      }
+    }, 1000);
   }
 
   closeAd(object: any) {

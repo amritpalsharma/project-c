@@ -1182,9 +1182,13 @@
   "removeFavbtn": "Yes, delete",
   "cancelRemoveFavBtn": "No, don't delete",
   "addCountryText": "If you add another country, your profile will be displayed in that country. Your profile will then also be visible to all talents, clubs, and scouts in that country.",
+  "deleteProfileConfirm": "This will delete your account permanently from our database. This cannot be undone.",
+  "downloading": "Downloading...",
+  "submittingPerformanceData": "Submitting performance data...",
+  "enterDocumentTitle": "Enter document title",
   "doYouAdd": "Do you want to add",
-  "deleteProfileConfirm":"This will delete your account permanently from our database. This cannot be undone.",
-  "downloading":"Downloading...",
-  "submittingPerformanceData":"Submitting performance data...",
-  "enterDocumentTitle":"Enter document title"
+  "registrationInProcess":"Registration is in process...",
+  "registrationFailed":"Registration Failed",
+  "Processing":"Processing...",
+  "EmailVerified":"Email Verified!"
 }

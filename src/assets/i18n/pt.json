@@ -1262,13 +1262,13 @@
   "manageConsentPreferences": "Gerir preferências de consentimento",
   "allowAll": "Permitir tudo",
   "refuseAll": "Recusar tudo",
-<<<<<<< HEAD
-  "year": "Ano"
-}
-=======
   "deleteProfileConfirm":"Esta ação elimina a sua conta permanentemente da nossa base de dados. Esta ação não pode ser anulada.",
   "downloading":"Descarregar...",
   "submittingPerformanceData":"Apresentação de dados de desempenho...",
-  "enterDocumentTitle":"Introduzir o título do documento"
-  }
->>>>>>> 52dc89d5844f85b0396b4d67395c6932f1fa51cd
+  "enterDocumentTitle":"Introduzir o título do documento",
+  "year": "Ano",
+  "registrationInProcess":"O registo está em curso...",
+  "registrationFailed": "Falha no registo",
+  "Processing":"Processamento...",
+  "EmailVerified":"E-mail verificado!"
+}

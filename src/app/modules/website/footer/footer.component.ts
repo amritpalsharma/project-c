@@ -270,6 +270,9 @@ export class FooterComponent implements OnInit {
         // this.selectedcountry = this.countrie[0]?.id || 1;
         // this.name = this.selectedLang?.name || '';
       }, 100);
+
+      let selectedLang = localStorage.getItem('lang');
+      console.warn('In Footer component LocalStorage Language selected = ' + selectedLang)
     });
 
 

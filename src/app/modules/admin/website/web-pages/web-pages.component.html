@@ -355,7 +355,7 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th scope="col"></th>
+          <!-- <th scope="col"></th> -->
           <th scope="col">{{ 'name' | translate }}</th>
           <th scope="col">{{ 'language' | translate }}</th>
           <th scope="col" class=" d-sm-table-cell">
@@ -390,14 +390,14 @@
         @for (page of allPages; track $index) {
           
         <tr>
-          <td class="webpages-chekbox" style="width: 50px;">
+          <!-- <td class="webpages-chekbox" style="width: 50px;">
             <span class="form-check align-self-center me-2">
               <input type="checkbox" value="" id="defaultCheck1" class="form-check-input"
                 [checked]="selectedIds.includes(page.id)" (change)="onCheckboxChange(page)" /><label for="defaultCheck1"
                 class="form-check-label"></label>
             </span>
 
-          </td>
+          </td> -->
           <td>
             <div class="d-flex align-items-center">
               <span class="main-template">{{page?.title}}</span>

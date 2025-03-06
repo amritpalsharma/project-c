@@ -22,7 +22,7 @@
         <div class="form-group col-lg-6">
           <label for="formation_date">{{ 'Formation' | translate }}:</label>
 
-          <div class="d-flex align-items-center justify-content-center">
+          <div class="d-flex align-items-center justify-content-center date_field">
             <input matInput id="formation_date" name="formation_date" [matDatepicker]="dp" [formControl]="formation_date"
               placeholder="DD.MM.YYYY" required />
             <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
