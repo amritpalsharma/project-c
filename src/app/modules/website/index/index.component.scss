@@ -921,44 +921,55 @@ p.club-p {
   justify-content: flex-start;
   margin-top: 50px;
   margin-bottom: 50px;
-button.btn {
-  border-radius: 8px;
-  font-size: 20px;
-  padding: 10px 30px;
-  margin-right: 15px;
+
+  button.btn {
+    border-radius: 8px;
+    font-size: 20px;
+    padding: 10px 30px;
+    margin-right: 15px;
+  }
+
+  button.btn.active-btn {
+    color: #092E01;
+  }
+
+  button.btn p {
+    opacity: 0.75;
+    font-weight: 400;
+    text-transform: lowercase;
+    font-size: inherit;
+  }
+
+  button.btn p:first-letter {
+    text-transform: uppercase;
+  }
+
+  button.btn.active-btn p {
+    opacity: 1;
+    font-weight: 700;
+  }
 }
-button.btn.active-btn {
-  color: #092E01;
-}
-button.btn p {
-  opacity: 0.75;
-  font-weight: 400;
-  text-transform: lowercase;
-  font-size: inherit;
-}
-button.btn p:first-letter {
-  text-transform: uppercase;
-}
-button.btn.active-btn p {
-  opacity: 1;
-  font-weight: 700;
-}
-}
+
 .player1 {
   display: block;
 }
+
 .progress_btn {
   padding: 0 20px;
 }
+
 .progress_btn {
   padding: 0 20px;
 }
+
 .progress_btn h5 {
   margin-bottom: 20px;
 }
+
 .progress_btn h5 {
   margin-bottom: 20px;
 }
+
 .work-text {
   display: flex;
   margin-bottom: 50px;
@@ -968,24 +979,30 @@ button.btn.active-btn p {
   position: relative;
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
+
 .talent-scroll {
   scroll-behavior: smooth;
 }
+
 .work-text a.active {
   color: white;
 }
+
 .work-text p.active {
   color: white;
 }
+
 .work-text.active .progress_btn a,
 .work-text.active .progress_btn p {
   color: white;
 }
+
 .work-text.active .number p {
   border-radius: 50%;
   height: 33px;
   width: 33px;
 }
+
 .work-text.active::before {
   content: "";
   position: absolute;
@@ -996,15 +1013,19 @@ button.btn.active-btn p {
   height: 100%;
   background-color: #6FB95D;
 }
+
 .work-text .progress_btn a.active {
   color: white;
 }
+
 .progress_btn p {
   margin-top: 20px;
 }
+
 .progress_btn a {
   font-size: 22px;
 }
+
 .number p {
   height: 33px;
   width: 33px;
@@ -1016,9 +1037,11 @@ button.btn.active-btn p {
   color: #092E01;
   margin-left: 20px;
 }
+
 .work-banner {
   margin-right: 22%;
 }
+
 .talent-img1 img {
   position: absolute;
   /* Positions the .talent-img absolutely within the .container */
@@ -1069,9 +1092,12 @@ button.btn.active-btn p {
   border-radius: 9px;
   // border: 0.89px solid #E5E5E5;
 }
-.player-list-image img,.player-list-images img{
-  width: 100% ;
+
+.player-list-image img,
+.player-list-images img {
+  width: 100%;
 }
+
 .player-list-images .talent-img2 img {
   position: absolute;
   top: 62%;
@@ -2635,107 +2661,129 @@ img.success-image {
     right: 27%;
   }
 }
-@media (max-width: 1200px){
+
+@media (max-width: 1200px) {
   .talent-img1 img {
     top: 10%;
     left: 48%;
     width: 270px;
     height: 470px;
-}
-.talent-img2 img {
-  top: 65%;
-  left: 48%;
-  width: 270px;
-  height: 220px;
-}
-.talent-img3 img {
-  top: 14%;
-  right: 0;
-  width: 340px;
-  height: 255px;
-}
-.talent-img4 img {
-  top: 45%;
-  right: 0;
-  width: 340px;
-  height: 345px;
-}
-.player-list-images .talent-img2 img {
-  top: 60%;
-  left: 48%;
-  width: 270px;
-  height: 210px;
-}
-.player-list-images .talent-img4 img {
-  top: 42%;
-  right: 0;
-  width: 340px;
-  height: 350px;
-}
-.network1{
-  width: 220px;
-  height: 230px;
-}
-.network2{
-  width: 200px;
-  height: 280px;
-  top: 49%;
-}
-.network3 {
-  width: 220px;
-  height: 230px;
-}
-.network4 {
-  width: 200px;
-  height: 280px;
-  top: 30%;
-  right: 188px;
+  }
 
-}
-.network5{
-  width: 220px;
-  height: 240px;
-  top: 63%;
-}
-.network6 {
-  width: 160px;
-  height: 280px;
-}
-.network7 {
-  width: 160px;
-  height: 300px;
-}
-.member1-image img {
-  height: 205px;
-}
-.member2-image{
-  height: 255px;
-  padding-top: 60px;
-  padding-left: 37px;
-}
-.member3-image img, .member5-image img{
-  height: 205px;
-}
-.club_member2 {
-  height: 265px;
-}
-.message-panel1 img {
-  width: 230px;
-  height: 630px;
+  .talent-img2 img {
+    top: 65%;
+    left: 48%;
+    width: 270px;
+    height: 220px;
+  }
 
-}
-.message-panel img {
-  width: 380px;
-  height: 490px;
-}
-.club-offers1 img {
-  height: 260px;
-  width: 320px;
-}
-.club-offers2 img {
-  width: 300px;
-  height: 300px;
-}
+  .talent-img3 img {
+    top: 14%;
+    right: 0;
+    width: 340px;
+    height: 255px;
+  }
+
+  .talent-img4 img {
+    top: 45%;
+    right: 0;
+    width: 340px;
+    height: 345px;
+  }
+
+  .player-list-images .talent-img2 img {
+    top: 60%;
+    left: 48%;
+    width: 270px;
+    height: 210px;
+  }
+
+  .player-list-images .talent-img4 img {
+    top: 42%;
+    right: 0;
+    width: 340px;
+    height: 350px;
+  }
+
+  .network1 {
+    width: 220px;
+    height: 230px;
+  }
+
+  .network2 {
+    width: 200px;
+    height: 280px;
+    top: 49%;
+  }
+
+  .network3 {
+    width: 220px;
+    height: 230px;
+  }
+
+  .network4 {
+    width: 200px;
+    height: 280px;
+    top: 30%;
+    right: 188px;
+
+  }
+
+  .network5 {
+    width: 220px;
+    height: 240px;
+    top: 63%;
+  }
+
+  .network6 {
+    width: 160px;
+    height: 280px;
+  }
+
+  .network7 {
+    width: 160px;
+    height: 300px;
+  }
+
+  .member1-image img {
+    height: 205px;
+  }
+
+  .member2-image {
+    height: 255px;
+    padding-top: 60px;
+    padding-left: 37px;
+  }
+
+  .member3-image img,
+  .member5-image img {
+    height: 205px;
+  }
+
+  .club_member2 {
+    height: 265px;
+  }
+
+  .message-panel1 img {
+    width: 230px;
+    height: 630px;
+
+  }
+
+  .message-panel img {
+    width: 380px;
+    height: 490px;
+  }
+
+  .club-offers1 img {
+    height: 260px;
+    width: 320px;
+  }
+
+  .club-offers2 img {
+    width: 300px;
+    height: 300px;
+  }
 
 }
 
@@ -3579,119 +3627,137 @@ img.success-image {
     margin-top: 35px;
     margin-left: -30px;
   }
+
   .club-btn {
     margin-left: unset;
   }
 
 }
 
-@media (max-width: 821px){
-  .work-text1{
+@media (max-width: 821px) {
+  .work-text1 {
     height: 800px;
+  }
+
+  .talent-img1 img {
+    width: 230px;
+    height: 400px;
+    left: 0;
+  }
+
+  .talent-img2 img {
+    width: 230px;
+    height: 180px;
+    left: 0;
+    top: 415px;
+  }
+
+  img.image3 {
+    width: 550px;
+    height: 205px;
+  }
+
+  img.image4 {
+    width: 550px;
+    top: 255px;
+    right: 0;
+    height: 280px;
+  }
+
+  .club_member2 {
+    width: 220px;
+    height: 230px;
+    left: 6%;
+  }
+
+  .member2-image {
+    padding-top: 35px;
+    padding-left: 55px;
+  }
+
+  .right-side img.image3 {
+    width: 550px;
+    height: 250px;
+  }
+
+  img.image5 {
+    width: 550px;
+    height: 280px;
+    margin-top: 290px;
+    margin-bottom: 40px;
+  }
+
+  .club_member7 {
+    width: 235px;
+    border-radius: 8px;
+  }
+
+  .member7-image img {
+    width: 227px;
+  }
+
+  .message-panels {
+    display: flex;
+    justify-content: center;
+  }
+
+  .club-offers2 img {
+    top: 41%;
+    height: 230px;
+    right: 157px;
+    z-index: 2;
+  }
+
 }
 
-.talent-img1 img {
-  width: 230px;
-  height: 400px;
-  left: 0;
-}
-.talent-img2 img {
-  width: 230px;
-  height: 180px;
-  left: 0;
-  top: 415px;
-}
-
-img.image3 {
-  width: 550px;
-  height: 205px;
-}
-img.image4 {
-  width: 550px;
-  top: 255px;
-  right: 0;
-  height: 280px;
-}
-.club_member2 {
-  width: 220px;
-  height: 230px;
-  left: 6%;
-}
-.member2-image {
-  padding-top: 35px;
-  padding-left: 55px;
-}
-.right-side img.image3 {
-  width: 550px;
-  height: 250px;
-}
-img.image5 {
-  width: 550px;
-  height: 280px;
-  margin-top: 290px;
-  margin-bottom: 40px;
-}
-.club_member7 {
-  width: 235px;
-  border-radius: 8px;
-}
-.member7-image img {
-  width: 227px;
-}
-.message-panels {
-  display: flex;
-  justify-content: center;
-}
-.club-offers2 img {
-  top: 41%;
-  height: 230px;
-  right: 157px;
-  z-index: 2;
-}
-
-}
-
-@media (max-width: 769px){
+@media (max-width: 769px) {
   .talent-img1 img {
     width: 210px;
     height: 365px;
     left: 0;
-}
-.talent-img2 img {
-  width: 210px;
-  height: 160px;
-  left: 0;
-  top: 380px;
-}
-img.image3 {
-  width: 510px;
-  height: 205px;
-  top: 23px;
-}
-img.image4 {
-  width: 510px;
-  top: 250px;
-  height: 255px;
-}
-.right-side img.image3 {
-  width: 505px;
-  height: 210px;
-}
-img.image5 {
-  width: 505px;
-  height: 280px;
-  margin-top: 250px;
-  margin-bottom: 40px;
-}
-.work-text1 {
-  height: 730px;
-}
-.club-offers2 img {
-  top: 40%;
-  height: 230px;
-  right: 115px;
-  z-index: 2;
-}
+  }
+
+  .talent-img2 img {
+    width: 210px;
+    height: 160px;
+    left: 0;
+    top: 380px;
+  }
+
+  img.image3 {
+    width: 510px;
+    height: 205px;
+    top: 23px;
+  }
+
+  img.image4 {
+    width: 510px;
+    top: 250px;
+    height: 255px;
+  }
+
+  .right-side img.image3 {
+    width: 505px;
+    height: 210px;
+  }
+
+  img.image5 {
+    width: 505px;
+    height: 280px;
+    margin-top: 250px;
+    margin-bottom: 40px;
+  }
+
+  .work-text1 {
+    height: 730px;
+  }
+
+  .club-offers2 img {
+    top: 40%;
+    height: 230px;
+    right: 115px;
+    z-index: 2;
+  }
 
 }
 
@@ -3807,17 +3873,20 @@ img.image5 {
       padding: 10px 20px;
       margin-right: 0;
     }
-    }
+  }
+
   .main-bnr {
     height: 700px;
   }
-  .joined{
+
+  .joined {
     display: block;
-}
-.joined-btn button.btn {
-  width: 100%;
-  margin-top: 10px;
-}
+  }
+
+  .joined-btn button.btn {
+    width: 100%;
+    margin-top: 10px;
+  }
 
   .joined-text {
     display: flex;
@@ -3938,10 +4007,12 @@ img.image5 {
   .recently-joined .corner-image {
     width: 28px;
   }
+
   .progress_btn p {
     margin-top: 10px;
     font-size: 18px;
   }
+
   .progress_btn {
     padding: 0 15px;
     margin-top: 35px;
@@ -4392,22 +4463,27 @@ img.image5 {
 }
 
 @media (max-width: 394px) {
-  img.image3, img.image4{
-      width: 225px;
+
+  img.image3,
+  img.image4 {
+    width: 225px;
   }
 
-   .right-side img.image3, .right-side img.image5{
+  .right-side img.image3,
+  .right-side img.image5 {
     width: 245px;
-}
-.club-offers2 img {
-  height: 160px;
-  width: 165px;
-  right: 0;
-}
-.club-offers1 img {
-  height: 145px;
-  width: 175px;
-}
+  }
+
+  .club-offers2 img {
+    height: 160px;
+    width: 165px;
+    right: 0;
+  }
+
+  .club-offers1 img {
+    height: 145px;
+    width: 175px;
+  }
 }
 
 
@@ -4779,10 +4855,11 @@ img.image5 {
   .main-bnr {
     height: 600px;
   }
-  .joined{
+
+  .joined {
     display: block;
-   
-}
+
+  }
 
   .message-panel img {
     width: 160px;
@@ -4949,6 +5026,7 @@ img.image5 {
   .work-text1 {
     height: 400px;
   }
+
   .right-side img.image3 {
     width: 205px;
     top: 10px;
@@ -5038,7 +5116,7 @@ img.image5 {
   }
 }
 
-.club-corner-img::before{
+.club-corner-img::before {
   background: none !important;
 }
 
@@ -5057,4 +5135,12 @@ img.image5 {
       padding: 10px 20px;
     }
   }
+}
+
+.light-theme .dark-talant-img {
+  display: none;
+}
+
+.dark-theme .light-talant-img {
+  display: none;
 }

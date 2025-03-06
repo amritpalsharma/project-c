@@ -111,13 +111,13 @@ export class WebPages {
     getDynamicHomePage(langId: any): Observable<any> {
         let currentDomain = this.globalSettings.getdomainId();
         return this.http.get<{ status: boolean, message: string, data: {} }>(
-            `${this.frontendApiUrl}get-page-by-slug?page_type=home&lang_id=${langId}&domain=${currentDomain}`
+            `${this.frontendApiUrl}get-page-by-slug1?page_type=home&lang_id=${langId}&domain=${currentDomain}`
         );
     }
 
     getDynamicContentPage(content: any, langId: any): Observable<any> {
         return this.http.get<{ status: boolean, message: string, data: {} }>(
-            `${this.frontendApiUrl}get-page-by-slug?page_type=${content}&lang_id=${langId}`
+            `${this.frontendApiUrl}get-page-by-slug1?page_type=${content}&lang_id=${langId}`
         );
     }
 

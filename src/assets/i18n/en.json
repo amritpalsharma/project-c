@@ -1190,5 +1190,7 @@
   "registrationInProcess":"Registration is in process...",
   "registrationFailed":"Registration Failed",
   "Processing":"Processing...",
-  "EmailVerified":"Email Verified!"
+  "EmailVerified":"Email Verified!",
+  "bannerBackgroundImageDark":"Banner Background Image Dark Mode",
+  "bannerImagesDarkMode":"Banner Image Dark Mode"
 }

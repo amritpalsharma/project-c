@@ -414,6 +414,7 @@ export class HeaderComponent implements OnInit {
 
   toggleTheme(event: any) {
     this.themeService.setDarkTheme(event.target.checked);
+    this.globalSettings.callIndexComponentFunction();
   }
 
   applyTheme() {

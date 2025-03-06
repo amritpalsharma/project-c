@@ -6,6 +6,7 @@ import { WebPages } from '../../../services/webpages.service';
 import { SharedService } from '../../../services/shared.service';
 import { AuthService } from '../../../services/auth.service';
 import { ThemeService } from '../../../services/theme.service';
+import { GlobalSettingsService } from '../../../services/global-settings.service';
 
 export interface ClubMember {
   name: string;
@@ -66,7 +67,7 @@ export interface ClubMember {
 export class IndexComponent {
   @ViewChild('owlCarousel') owlCarousel!: ElementRef;
   fallbackImage: string = 'assets/images/1.jpg'; // Path to your fallback image
-
+  currentTheme: string = '';
   selectedLangId: any = null;
   pageDetail: any = null;
   sliderDetail: any = null;
@@ -242,7 +243,7 @@ export class IndexComponent {
   // Manage Navbar Expansion
   isNavbarExpanded = false;
 
-  constructor(private shareservice: SharedService, private advertisementService: AdvertisementService, private webPages: WebPages, private authService: AuthService, private themeService: ThemeService) {
+  constructor(private shareservice: SharedService, private advertisementService: AdvertisementService, private webPages: WebPages, private authService: AuthService, private themeService: ThemeService, private globalSettings: GlobalSettingsService) {
 
   }
 
@@ -305,6 +306,9 @@ export class IndexComponent {
   adVisible: boolean[] = [true, true, true, true, true]; // Array to manage ad visibility
 
   ngOnInit() {
+    this.globalSettings.indexFunctionCall$.subscribe(() => {
+      this.indexFunction(); // Call the function when event is received
+    });
     // Initially, all ads are visible
     this.isUserLoggedIn = this.authService.isLoggedIn();
     this.adVisible = [true, true, true, true, true];
@@ -405,5 +409,9 @@ export class IndexComponent {
 
   isFeaturedImageExists(key: any): boolean {
     return 'featured_image' in this.advertisementData[key];
+  }
+
+  indexFunction() {
+    this.currentTheme = localStorage.getItem('theme') + '';
   }
 }

@@ -26,11 +26,12 @@ export class AddHomePageComponent {
   @Input() languages: Language[] = [];
   addHomePageForm: FormGroup;
   selectedLanguage: string = '0';
-  showTabForm: boolean = true;
+  showTabForm: boolean = false;
   filesData: any = {
     banner_bg_img: null,
     banner_img: null,
     hero_bg_img: null,
+    hero_bg_img_dark_mode: null,
   }
   baseUrl: string = '';
   first_btn_txt: string = '';
@@ -82,6 +83,7 @@ export class AddHomePageComponent {
       slider_btn_txt: [''],
       slider_btn_link: [''],
       hero_bg_img: [null],
+      hero_bg_img_dark_mode: [null],
       hero_heading_txt: [''],
       hero_btn_txt: [''],
       hero_btn_link: [''],
@@ -113,6 +115,10 @@ export class AddHomePageComponent {
 
     if (this.filesData.hero_bg_img) {
       formData.append('hero_bg_img', this.filesData.hero_bg_img);
+    }
+
+    if (this.filesData.hero_bg_img_dark_mode) {
+      formData.append('hero_bg_img_dark_mode', this.filesData.hero_bg_img_dark_mode);
     }
 
     // Append text fields
@@ -322,19 +328,43 @@ export class AddHomePageComponent {
   removeTabImage(type: string, index: number, imageIndex: number, field: string = 'images'): void {
     if (type === 'first_tab') {
       if (field === 'images') {
-        this.first_tab[index].images.splice(imageIndex, 1);
-        this.first_tab[index].imagePreviews.splice(imageIndex, 1);
+        if (Array.isArray(this.first_tab[index].images)) {
+          // If it's an array, use splice
+          this.first_tab[index].images.splice(imageIndex, 1);
+          this.first_tab[index].imagePreviews.splice(imageIndex, 1);
+        } else {
+          this.first_tab[index].images = [];
+          this.first_tab[index].imagePreviews = [];
+        }
       } else if (field === 'darkImages') {
-        this.first_tab[index].darkImages.splice(imageIndex, 1);
-        this.first_tab[index].darkImagePreviews.splice(imageIndex, 1);
+        if (Array.isArray(this.first_tab[index].darkImages)) {
+          // If it's an array, use splice
+          this.first_tab[index].darkImages.splice(imageIndex, 1);
+          this.first_tab[index].darkImagePreviews.splice(imageIndex, 1);
+        } else {
+          this.first_tab[index].darkImages = [];
+          this.first_tab[index].darkImagePreviews = [];
+        }
       }
     } else if (type === 'second_tab') {
       if (field === 'images') {
-        this.second_tab[index].images.splice(imageIndex, 1);
-        this.second_tab[index].imagePreviews.splice(imageIndex, 1);
+        if (Array.isArray(this.second_tab[index].images)) {
+          // If it's an array, use splice
+          this.second_tab[index].images.splice(imageIndex, 1);
+          this.second_tab[index].imagePreviews.splice(imageIndex, 1);
+        } else {
+          this.second_tab[index].images = [];
+          this.second_tab[index].imagePreviews = [];
+        }
       } else if (field === 'darkImages') {
-        this.second_tab[index].darkImages.splice(imageIndex, 1);
-        this.second_tab[index].darkImagePreviews.splice(imageIndex, 1);
+        if (Array.isArray(this.second_tab[index].darkImages)) {
+          // If it's an array, use splice
+          this.second_tab[index].darkImages.splice(imageIndex, 1);
+          this.second_tab[index].darkImagePreviews.splice(imageIndex, 1);
+        } else {
+          this.second_tab[index].darkImages = [];
+          this.second_tab[index].darkImagePreviews = [];
+        }
       }
     }
   }
