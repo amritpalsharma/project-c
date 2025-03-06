@@ -3,6 +3,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { TalentService } from '../../../../../services/talent.service';
 import { ToastrService } from 'ngx-toastr';
+import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-perfomance-report',
@@ -13,6 +14,7 @@ export class AddPerfomanceReportComponent {
   selectedFile: File | null = null;
   uploadProgress: number = 0;
   documentTitle: string = '';
+  enterDocumentTitle: string = '';
   isLoading: boolean = false;
 
   constructor(
@@ -20,10 +22,17 @@ export class AddPerfomanceReportComponent {
     public dialogRef: MatDialogRef<AddPerfomanceReportComponent>,
     public dialog: MatDialog,
     private talentService: TalentService,
+    private translate: TranslateService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private http: HttpClient // Inject HttpClient to handle requests
-  ) {}
+  ) { }
 
+  ngOnInit(): void {
+    this.getToasterMsg();
+    this.translate.onLangChange.subscribe((event) => {
+      this.getToasterMsg();
+    });
+  }
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
@@ -45,7 +54,7 @@ export class AddPerfomanceReportComponent {
       const formData = new FormData();
       formData.append('report', this.selectedFile);
       formData.append('document_title', this.documentTitle);
-  
+
       // Using talentService to upload the file with progress tracking
       this.talentService.uploadReport(formData).subscribe(event => {
         if (event.type === HttpEventType.UploadProgress) {
@@ -66,7 +75,6 @@ export class AddPerfomanceReportComponent {
       console.log('No file selected for upload.');
     }
   }
-  
 
   // Upload the performance report
   uploadPerformanceReport() {
@@ -81,16 +89,16 @@ export class AddPerfomanceReportComponent {
       this.talentService.uploadReport(formData).subscribe({
         next: (response) => {
           console.log('Upload successful:', response);
-          
+
           // Close loading toaster, then show success message
           this.toastr.clear(loadingToast.toastId);
           this.toastr.success('Report uploaded successfully!', 'Success');
-          
+
           this.dialogRef.close(true); // Close the dialog and return success
         },
         error: (error) => {
           console.error('Error uploading report:', error);
-          
+
           // Close loading toaster, then show error message
           this.toastr.clear(loadingToast.toastId);
           this.toastr.error('Failed to upload report. Please try again.', 'Error');
@@ -100,5 +108,13 @@ export class AddPerfomanceReportComponent {
       this.toastr.warning('No file selected for upload.', 'Warning');
     }
   }
-  
+
+  getToasterMsg() {
+    this.translate.get(['enterDocumentTitle', 'submittingPerformanceData', 'pleaseWait']).subscribe((res: any) => {
+      this.enterDocumentTitle = res['enterDocumentTitle'];
+      // this.submittingPerformanceData = res['submittingPerformanceData'];
+      // this.pleaseWait = res['pleaseWait'];
+      // this.downloading = res['downloading'];
+    });
+  }
 }
