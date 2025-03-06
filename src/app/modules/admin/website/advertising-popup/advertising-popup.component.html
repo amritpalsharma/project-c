@@ -143,7 +143,7 @@
               <div class="cupen-btn-date">
                 <mat-form-field class="meta-date">
                   <mat-label>{{ 'chooseADate' | translate }}</mat-label>
-                  <input matInput [matDatepicker]="dp" [(ngModel)]="startDate"
+                  <input matInput [min]="today" [matDatepicker]="dp" [(ngModel)]="startDate"
                     (dateChange)="onDateChange('start', $event)">
                   <mat-datepicker-toggle matIconPrefix [for]="dp"></mat-datepicker-toggle>
                   <mat-datepicker #dp></mat-datepicker>
@@ -152,10 +152,11 @@
             </div>
 
             <div>
-              <div class="cupen-btn-date-1" [ngClass]="{'disable-end-date': disableEndDate}">
+              <!-- <div class="cupen-btn-date-1" [ngClass]="{'disable-end-date': disableEndDate}"> -->
+              <div class="cupen-btn-date-1" >
                 <mat-form-field class="meta-date">
                   <mat-label>{{ 'chooseADate' | translate }}</mat-label>
-                  <input matInput [matDatepicker]="dp1" [(ngModel)]="endDate"
+                  <input [min]="today" matInput [matDatepicker]="dp1" [(ngModel)]="endDate"
                     (dateChange)="onDateChange('end', $event)">
                   <mat-datepicker-toggle matIconPrefix [for]="dp1"></mat-datepicker-toggle>
                   <mat-datepicker #dp1></mat-datepicker>

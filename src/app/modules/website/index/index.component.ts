@@ -71,6 +71,7 @@ export class IndexComponent {
   pageDetail: any = null;
   sliderDetail: any = null;
   // advertisementData:any=null;
+  advertisementList: any = null;
   imageBaseUrl: string = '';
   banner_img: string = '';
   banner_bg_img: string = '';
@@ -361,6 +362,7 @@ export class IndexComponent {
         this.club_logo_path = this.sliderDetail.imagePath;
         this.pre_club_logo_path = this.sliderDetail.flagPath;
         this.advertisementData = res.data.advertisementData;
+        this.advertisementList = res.data.allAdsList;
         // this.advertisementData = [];
 
         // console.log('advertisementData', this.advertisementData);
@@ -414,9 +416,8 @@ export class IndexComponent {
   }
 
   isExists(key: any): boolean {
-    return this.advertisementData && key in this.advertisementData;
-  }
-
+    return (this.advertisementData && key in this.advertisementData) || this.advertisementList.includes(key);
+  } 
 
   isFeaturedImageExists(key: any): boolean {
     return 'featured_image' in this.advertisementData[key];

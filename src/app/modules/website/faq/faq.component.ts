@@ -29,6 +29,8 @@ export class FaqComponent {
     this.initializeIsOpen();
   
   }
+  advertisementList: any= null;
+
   isActive : any ={
     skyscraper: true,
     wide_skyscraper: true,
@@ -101,6 +103,7 @@ export class FaqComponent {
            this.clubSections = res.data.pageData.faq_sec_btn_content;
            this.scoutSections = res.data.pageData.faq_third_btn_content;
            this.advertisementData = res?.data?.advertisementData;
+           this.advertisementList = res?.data?.allAdsList;
 
            this.advertisemnet_base_url = res.data.advertisemnet_base_url;
 
@@ -347,8 +350,12 @@ export class FaqComponent {
   }
 
   isExists(key: any): boolean {
-    return key in this.advertisementData;
+    return (this.advertisementData && key in this.advertisementData) || this.advertisementList.includes(key);
   }
+
+  // isExists(key: any): boolean {
+  //   return key in this.advertisementData;
+  // }
 
   isFeaturedImageExists(key: any): boolean {
     return 'featured_image' in this.advertisementData[key];

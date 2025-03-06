@@ -29,9 +29,13 @@ export class AboutComponent {
   about_banner_img:string='';
   country_section_banner_img:string='';
   // advertisementData:any=null;
+  advertisementList: any = null;
   advertisemnet_base_url:string= '';
-
   isLoading : boolean = true;
+  btnLoading : boolean = true;
+  countdown: number = 10;
+
+  // isLoading : boolean = true;
   
   isActive : any ={
     skyscraper: true,
@@ -113,13 +117,26 @@ export class AboutComponent {
           this.country_section_banner_img=  res.data.base_url+res.data.pageData.country_section_banner_img;
          
           this.advertisementData = res.data.advertisementData;
+          this.advertisementList = res.data.allAdsList;
           // this.advertisementData = [];
           this.advertisemnet_base_url = res.data.advertisemnet_base_url;
 
           this.isLoading = false;
+          this.startCountdown();
         
         }
     });
+  }
+
+  startCountdown() {
+    this.countdown = 5; // Reset countdown
+    const interval = setInterval(() => {
+      this.countdown--;
+      if (this.countdown === 0) {
+        clearInterval(interval);
+        this.btnLoading = false; // Stop loading when countdown reaches 0
+      }
+    }, 1000);
   }
  
 
@@ -149,8 +166,12 @@ export class AboutComponent {
     return false;
   }
 
+  // isExists(key: any): boolean {
+  //   return key in this.advertisementData;
+  // }
+
   isExists(key: any): boolean {
-    return key in this.advertisementData;
+    return (this.advertisementData && key in this.advertisementData) || this.advertisementList.includes(key);
   }
 
   isFeaturedImageExists(key: any): boolean {

@@ -283,7 +283,7 @@ export class PlanComponent implements OnInit, OnDestroy {
           activePlan.push(this.countryPlans.plans[0]);
           activePlan.push(this.countryPlans.plans[7]);
 
-          this.activePlans = activePlan;
+          // this.activePlans = activePlan;
 
           // Fetch user cards
           // this.getUserCards();

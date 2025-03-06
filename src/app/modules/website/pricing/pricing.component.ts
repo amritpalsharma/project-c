@@ -37,7 +37,9 @@ export class PricingComponent {
       this.getPageData(data);
     });
   }
+
   
+  advertisementList: any =null;
 
   isActive : any ={
     skyscraper: true,
@@ -115,6 +117,7 @@ export class PricingComponent {
         this.pageData = res.data.pageData; // Store the page data in the component
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
         this.advertisementData = res?.data?.advertisementData;
+        this.advertisementList = res?.data?.allAdsList;
 
         this.isLoading = false;
         this.startCountdown();
@@ -159,8 +162,12 @@ export class PricingComponent {
   }
 
   isExists(key: any): boolean {
-    return key in this.advertisementData;
+    return (this.advertisementData && key in this.advertisementData) || this.advertisementList.includes(key);
   }
+
+  // isExists(key: any): boolean {
+  //   return key in this.advertisementData;
+  // }
 
   isFeaturedImageExists(key: any): boolean {
     return 'featured_image' in this.advertisementData[key];

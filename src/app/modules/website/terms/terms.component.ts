@@ -33,6 +33,8 @@ export class TermsComponent implements OnInit {
     });
   }
 
+  advertisementList : any = null;
+
   isActive : any ={
     skyscraper: true,
     wide_skyscraper: true,
@@ -95,6 +97,7 @@ export class TermsComponent implements OnInit {
         
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
         this.advertisementData = res?.data?.advertisementData;
+        this.advertisementList = res?.data?.allAdsList;
         
         this.isLoading = false;
         this.startCountdown();
@@ -138,8 +141,12 @@ export class TermsComponent implements OnInit {
     return false;
   }
 
+  // isExists(key: any): boolean {
+  //   return key in this.advertisementData;
+  // }
+
   isExists(key: any): boolean {
-    return key in this.advertisementData;
+    return (this.advertisementData && key in this.advertisementData) || this.advertisementList.includes(key);
   }
 
   isFeaturedImageExists(key: any): boolean {

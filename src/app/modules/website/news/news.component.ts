@@ -78,6 +78,8 @@ export class NewsComponent implements OnInit, OnDestroy {
     });
   }
 
+  advertisementList: any ;
+
   isActive : any ={
     skyscraper: true,
     wide_skyscraper: true,
@@ -154,6 +156,7 @@ export class NewsComponent implements OnInit, OnDestroy {
         
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
         this.advertisementData = res?.data?.advertisementData;
+        this.advertisementList = res?.data?.allAdsList;
         
         this.isLoading = false;
         this.startCountdown();
@@ -311,8 +314,12 @@ export class NewsComponent implements OnInit, OnDestroy {
     return false;
   }
 
+  // isExists(key: any): boolean {
+  //   return key in this.advertisementData;
+  // }
+
   isExists(key: any): boolean {
-    return key in this.advertisementData;
+    return (this.advertisementData && key in this.advertisementData) || (this.advertisementList && this.advertisementList.includes(key));
   }
 
   isFeaturedImageExists(key: any): boolean {

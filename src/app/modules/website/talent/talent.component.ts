@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { WebPages } from '../../../services/webpages.service';
+import { provideNetlifyLoader } from '@angular/common';
 @Component({
   selector: 'app-talent',
   templateUrl: './talent.component.html',
@@ -53,6 +54,8 @@ export class TalentComponent {
       this.getPageData(data)
     });
   }
+
+  advertisementList: any =null;
 
   isActive : any = {
     skyscraper: true,
@@ -111,6 +114,7 @@ export class TalentComponent {
           this.pageData = res.data.pageData;
           this.baseUrl = res.data.base_url;
           this.advertisementData = res.data.advertisementData;
+          this.advertisementList = res.data.allAdsList;
           // this.advertisementData = null;
 
           
@@ -137,38 +141,6 @@ export class TalentComponent {
       }
     }, 1000);
   }
-
-  // closeAd(object: any) {
-
-  //   switch(object){
-  //     case 'skyscraper':
-  //         this.advertisementData.skyscraper = [];
-  //         break;
-  //     case 'small_square':
-  //         this.advertisementData.small_square = [];
-  //         break;
-  //     case 'leaderboard':
-  //         this.advertisementData.leaderboard = [];
-  //         break;
-  //     case 'large_leaderboard':
-  //         this.advertisementData.large_leaderboard = [];
-  //         break;
-  //     case 'large_rectangle':
-  //         this.advertisementData.large_rectangle = [];
-  //         break;
-
-  //     case 'inline_rectangle':
-  //         this.advertisementData.inline_rectangle = [];
-  //         break;
-  //     case 'square':
-  //         this.advertisementData.square = [];
-  //         break;
-  //     default:
-  //         //when no case is matched, this block will be executed;
-  //         break;  //optional
-  //     }
-
-  // }
 
   toggle1() {
     this.isActive1 = !this.isActive1;
@@ -249,9 +221,15 @@ export class TalentComponent {
     return false;
   }
 
+  // isExists(key: any): boolean {
+  //   return key in this.advertisementData;
+  // }
+  
   isExists(key: any): boolean {
-    return key in this.advertisementData;
+    return (this.advertisementData && key in this.advertisementData) || this.advertisementList.includes(key);
   }
+
+
 
   isFeaturedImageExists(key: any): boolean {
     return 'featured_image' in this.advertisementData[key];

@@ -33,6 +33,8 @@ export class AdvertisingPopupComponent   {
   error:boolean = false
   errorMsg:any = {}
 
+  today: Date = new Date();
+
   languages: any = localStorage.getItem('languages');
   selectedLanguage: any = "" ;
 

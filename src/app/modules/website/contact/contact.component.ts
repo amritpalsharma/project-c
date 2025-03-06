@@ -22,7 +22,7 @@ export class ContactComponent implements OnInit {
   submit_btn_txt: string = '';
   talent_label_txt: string = '';
   txt_before_radio_btn: string = '';
-  // advertisementData:any;
+  advertisementList:any;
   advertisemnet_base_url:string = '';
 
   isLoading : boolean = true;
@@ -131,6 +131,7 @@ export class ContactComponent implements OnInit {
           this.txt_before_radio_btn = res.data.pageData.txt_before_radio_btn;
           this.semail= res.data.pageData.email;
           this.advertisementData =  res.data.advertisementData;
+          this.advertisementList =  res.data.allAdsList;
           // this.advertisementData = [];
 
           
@@ -317,8 +318,12 @@ export class ContactComponent implements OnInit {
     return false;
   }
 
+  // isExists(key: any): boolean {
+  //   return key in this.advertisementData;
+  // }
+
   isExists(key: any): boolean {
-    return key in this.advertisementData;
+    return (this.advertisementData && key in this.advertisementData) || this.advertisementList.includes(key);
   }
 
   isFeaturedImageExists(key: any): boolean {
