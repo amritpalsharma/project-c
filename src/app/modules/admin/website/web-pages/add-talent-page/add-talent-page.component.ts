@@ -47,9 +47,11 @@ export class AddTalentPageComponent implements OnInit {
     meta_description: '',
     banner_title: '',
     banner_bg_img: null,
+    banner_bg_img_dark_mode: null,
     banner_desc: '',
     banner_btn_txt: '',
     banner_imgs: [],
+    banner_imgsDarkMode: [],
     talent_section_title: '',
     talent_section: {
       first_tab: [],
@@ -71,7 +73,9 @@ export class AddTalentPageComponent implements OnInit {
   };
 
   bannerBgImagePreview: string | ArrayBuffer | null = null;
+  bannerBgImagePreviewDarkMode: string | ArrayBuffer | null = null;
   bannerImagesPreviews: string[] = [];
+  bannerImagesPreviewsDarkMode: string[] = [];
   bannerImagePreview: string | ArrayBuffer | null = null;
 
   constructor(private webpages: WebPages, public dialogRef: MatDialogRef<AddTalentPageComponent>, private cdr: ChangeDetectorRef) { }
@@ -103,6 +107,9 @@ export class AddTalentPageComponent implements OnInit {
         if (fieldName === 'banner_bg_img') {
           this.bannerBgImagePreview = reader.result; // Preview for the background image
         }
+        if (fieldName === 'banner_bg_img_dark_mode') {
+          this.bannerBgImagePreviewDarkMode = reader.result; // Preview for the background image
+        }
       };
       reader.readAsDataURL(file);
       this.formData[fieldName] = file;
@@ -114,6 +121,10 @@ export class AddTalentPageComponent implements OnInit {
     if (fieldName === 'banner_bg_img') {
       this.formData.banner_bg_img = 'remove_image';
       this.bannerBgImagePreview = null; // Clear the preview
+    }
+    if (fieldName === 'banner_bg_img_dark_mode') {
+      this.formData.banner_bg_img_dark_mode = 'remove_image';
+      this.bannerBgImagePreviewDarkMode = null; // Clear the preview
     }
     this.imageLoaded = false; // Reset the image loaded state
   }
@@ -132,9 +143,28 @@ export class AddTalentPageComponent implements OnInit {
     }
   }
 
+  onFileChangeDarkMode(event: any): void {
+    const files = event.target.files;
+    if (files && files.length > 0) {
+      Array.from(files).forEach((file: any) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          this.bannerImagesPreviewsDarkMode.push(reader.result as string); // Add preview
+        };
+        reader.readAsDataURL(file);
+        this.formData.banner_imgsDarkMode.push(file); // Add file to formData
+      });
+    }
+  }
+
   removeSingleImage(index: number): void {
     this.formData.banner_imgs.splice(index, 1); // Remove file from formData
     this.bannerImagesPreviews.splice(index, 1); // Remove preview
+  }
+
+  removeSingleImageDarkMode(index: number): void {
+    this.formData.banner_imgs.splice(index, 1); // Remove file from formData
+    this.bannerImagesPreviewsDarkMode.splice(index, 1); // Remove preview
   }
 
   removeImages(fieldName: string): void {

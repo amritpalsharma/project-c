@@ -270,32 +270,10 @@
                 <div class="row">
 
                   <div class="player-list-image">
-                    <img src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[0]?.images}}">
-
-                    <!-- <div class="col-lg-4 col-md-6 col-4">
-                      
-                       <div class="talent-img1">
-                        <img src="./assets/images/Frame 3863.png">
-                        <img class="dark-images" src="./assets/images/dark-works3.png">
-                      </div>
-                      <div class="talent-img2">
-                        <img src="./assets/images/Gallery-Highlight.png">
-                        <img class="dark-images" src="./assets/images/dark-works2.png">
-                      </div> 
-                    </div> -->
-
-                    <!-- <div class="col-lg-8 col-md-6 col-8">
-                      <img class="image3" src="./assets/images/talent-banner-image.png">
-                      <div class="talent-img3">
-                        <img src="./assets/images/talent-banner-image.png">
-                        <img class="dark-images" src="./assets/images/talent-banner-image.png">
-                      </div>
-                      <img class="image4" src="./assets/images/talent-main-content (1).svg">
-                      <div class="talent-img4">
-                        <img src="./assets/images/table-image.png">
-                        <img class="dark-images" src="./assets/images/dark-works4.png">
-                      </div>
-                    </div> -->
+                    <img *ngIf="currentTheme == 'light'"
+                      src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[0]?.images}}">
+                    <img *ngIf="currentTheme == 'dark'"
+                      src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[0]?.darkImages}}">
                   </div>
                 </div>
               </div>
@@ -305,131 +283,10 @@
               <div class="player2" *ngIf="selectedContent === 'Networking & Opportunity'" @slideIn>
                 <div class="row">
                   <div class="football-club player-list-image">
-                    <img src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[1]?.images}}">
-
-                    <!-- <div class="col-4">
-                      <div class="network1">
-                        <div class="club_member1">
-                          <div class="member1-image">
-                            <img src="./assets/images/ziddane.png" alt="Player Image">
-                          </div>
-                          <p class="club_member1-name">Ziddane</p>
-                          <img src="./assets/images/FC Zu╠êrich.png" class="ziddane-image" alt="Corner Image">
-                          <div class="flag-image">
-                            <img src="./assets/images/flag.svg" class="flag-img" alt="Flag Image">
-                            <div class="bottom-line"></div>
-                            <div class="flag-bottom">
-                              <img src="./assets/images/birthday.svg" class="birthday-img" alt="Birthday Image">
-                              <p class="d-o-b">2003</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-
-                      <div class="network2">
-                        <div class="club_member2">
-                          <div class="member2-image">
-                            <img src="./assets/images/FC Thun 1.png" alt="Player Image">
-                          </div>
-                          <p class="club_member1-name">FC Thun </p>
-
-                          <div class="flag-image">
-                            <img src="./assets/images/flag.svg" class="flag-img" alt="Flag Image">
-
-                          </div>
-                        </div>
-                      </div>
-                    </div> -->
-
-                    <!-- <div class="col-4">
-                      <div class="network_1">
-                        <div class="network3">
-                          <div class="club_member3">
-                            <div class="member3-image">
-                              <img src="./assets/images/Ronaldinho Gaúcho.png" alt="Player Image">
-                            </div>
-                            <p class="club_member3-name">Ronaldinho Gaúcho</p>
-                            <img src="assets/images/SC Bru╠êhl .png" class="Ronaldinho-image" alt="Corner Image">
-                            <div class="flag-image">
-                              <img src="./assets/images/flag.svg" class="flag-img" alt="Flag Image">
-                              <div class="bottom-line"></div>
-                              <div class="flag-bottom">
-                                <img src="./assets/images/birthday.svg" class="birthday-img" alt="Birthday Image">
-                                <p class="d-o-b">2004</p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="network4">
-                          <div class="club_member2">
-                            <div class="member2-image">
-                              <img src="./assets/images/FC Rapperswil-Jona.png" alt="Player Image">
-                            </div>
-                            <p class="club_member1-name">FC Rapperswil Jona </p>
-
-                            <div class="flag-image">
-                              <img src="./assets/images/flag.svg" class="flag-img" alt="Flag Image">
-
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="network5">
-                          <div class="club_member5">
-                            <div class="member5-image">
-                              <img src="./assets/images/jammie.png" alt="Player Image">
-                            </div>
-                            <p class="club_member5-name">Jamie Vardy</p>
-                            <img src="./assets/images/FC Wil.png" class="fc-image" alt="Corner Image">
-                            <div class="flag-image">
-                              <img src="./assets/images/flag.svg" class="flag-img" alt="Flag Image">
-                              <div class="bottom-line"></div>
-                              <div class="flag-bottom">
-                                <img src="./assets/images/birthday.svg" class="birthday-img" alt="Birthday Image">
-                                <p class="d-o-b">2003</p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                      </div>
-                    </div>
-                    <div class="col-4">
-                      <div class="network6">
-                        <div class="club_member2">
-                          <div class="member2-image">
-                            <img src="./assets/images/E╠ütoile Carouge FC..png" alt="Player Image">
-                          </div>
-                          <p class="club_member1-name">Eütoile Carouge FC</p>
-
-                          <div class="flag-image">
-                            <img src="./assets/images/flag.svg" class="flag-img" alt="Flag Image">
-
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="network7">
-                        <div class="club_member7">
-                          <div class="member7-image">
-                            <img src="./assets/images/mohamad.png" alt="Player Image">
-                          </div>
-                          <p class="club_member7-name">Mohamed Salah</p>
-                          <img src="./assets/images/FC Thun 1.png" class="sc-image" alt="Corner Image">
-                          <div class="flag-image">
-                            <img src="./assets/images/flag.svg" class="flag-img" alt="Flag Image">
-                            <div class="bottom-line"></div>
-                            <div class="flag-bottom">
-                              <img src="./assets/images/birthday.svg" class="birthday-img" alt="Birthday Image">
-                              <p class="d-o-b">2003</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                    </div> -->
+                    <img *ngIf="currentTheme == 'light'"
+                      src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[1]?.images}}">
+                    <img *ngIf="currentTheme == 'dark'"
+                      src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[1]?.darkImages}}">
                   </div>
                 </div>
               </div>
@@ -439,16 +296,10 @@
             <div class="talent-scroll" *ngIf="selectedCategory === 'Talent'">
               <div class="player3" *ngIf="selectedContent === 'Success & Progression'" @slideIn>
                 <div class="message-panels player-list-image">
-                  <img src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[2]?.images}}">
-
-                  <!-- <div class="message-panel">
-                    <img src="./assets/images/Message Panel (1).png">
-                    <img class="dark-images" src="./assets/images/dark-Message Panel.png">
-                  </div>
-                  <div class="message-panel1">
-                    <img src="./assets/images/Messages Panel1.png">
-                    <img class="dark-images" src="./assets/images/dark-Message Panel-1.png">
-                  </div> -->
+                  <img *ngIf="currentTheme == 'light'"
+                    src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[2]?.images}}">
+                  <img *ngIf="currentTheme == 'dark'"
+                    src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[2]?.darkImages}}">
                 </div>
               </div>
             </div>
@@ -458,30 +309,10 @@
               <div class="player1" *ngIf="selectedContent === 'Sign-up & Profile Creation'" @slideIn>
                 <div class="row">
                   <div class="player-list-images">
-                    <img src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[0]?.images}}">
-
-                    <!-- <div class="col-md-6 col-4">
-                        
-                      <div class="talent-img1">
-                        <img src="./assets/images/club-scouts1.png">
-                        <img class="dark-images" src="./assets/images/dark-club3.png">
-                      </div>
-                      <div class="talent-img2">
-                        <img src="./assets/images/Gallery-Highlight.png">
-                        <img class="dark-images" src="./assets/images/dark-club1.png">
-                      </div>
-                    </div>
-
-                    <div class="col-md-6 col-8">
-                      <div class="talent-img3">
-                        <img src="./assets/images/club-scouts2.png">
-                        <img class="dark-images" src="./assets/images/dark-club2.png">
-                      </div>
-                      <div class="talent-img4">
-                        <img src="./assets/images/club-scouts4.png">
-                        <img class="dark-images" src="./assets/images/dark-club4.png">
-                      </div>
-                    </div> -->
+                    <img *ngIf="currentTheme == 'light'"
+                      src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[0]?.images}}">
+                    <img *ngIf="currentTheme == 'dark'"
+                      src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[0]?.darkImages}}">
                   </div>
                 </div>
               </div>
@@ -491,16 +322,8 @@
               <div class="player2" *ngIf="selectedContent === 'Networking & Opportunity'" @slideIn>
                 <div class="row">
                   <div class="player-list-image">
-                    <img src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[1]?.images}}">
-
-                    <!-- <div class="message-panel">
-                      <img class="light-images" src="./assets/images/Message Panel (1).png">
-                      <img class="dark-images" src="./assets/images/dark-Message Panel.png">
-                    </div>
-                    <div class="message-panel1">
-                      <img class="light-images" src="./assets/images/Messages Panel1.png">
-                      <img class="dark-images" src="./assets/images/dark-Message Panel-1.png">
-                    </div> -->
+                    <img *ngIf="currentTheme == 'light'" src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[1]?.images}}">
+                    <img *ngIf="currentTheme == 'dark'" src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[1]?.darkImages}}">
                   </div>
                 </div>
               </div>
@@ -512,22 +335,9 @@
                 <div class="row">
 
                   <div class="player-list-image">
-                    <img src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[2]?.images}}">
+                    <img *ngIf="currentTheme == 'light'" src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[2]?.images}}">
+                    <img *ngIf="currentTheme == 'dark'" src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[2]?.darkImages}}">
                   </div>
-
-                  <!-- <div class="club-offers1">
-                    <img class="light-images" src="./assets/images/club-scouts5.png">
-                    <img class="dark-images" src="./assets/images/dark-design5.PNG">
-
-                  </div>
-                  <div class="club-offers2">
-                    <img class="light-images" src="./assets/images/club-scouts6.png">
-                    <img class="dark-images" src="./assets/images/dark-design6.PNG">
-                  </div>
-                  <div class="club-offers3">
-                    <img class="light-images" src="./assets/images/club-scouts7.png">
-                    <img class="dark-images" src="./assets/images/dark-design4.PNG">
-                  </div> -->
                 </div>
               </div>
             </div>
@@ -967,7 +777,7 @@
                 <div class="join-text">
                   <p> {{pageDetail?.hero_btn_txt}}</p>
                   <img class="join-btn check-image-dark" src="./assets/images/dark-join-now.png">
-                  <img class="join-btn check-image-light" src="./assets/images/light-join-now.png">
+                  <!-- <img class="join-btn check-image-light" src="./assets/images/light-join-now.png"> -->
                 </div>
               </div>
             </div>

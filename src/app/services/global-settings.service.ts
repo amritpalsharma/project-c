@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,8 @@ export class GlobalSettingsService {
   private defaultLanguage = 'en'; // Default language
   private defaultLangId: number = 1;
   private defaultDomainId: number = 1;
-
+  private indexFunctionCallSubject = new Subject<void>();
+  indexFunctionCall$ = this.indexFunctionCallSubject.asObservable();
   constructor() {
     this.setDefaultLanguage();
   }
@@ -109,5 +111,9 @@ export class GlobalSettingsService {
     let hostname = window.location.hostname;  // Get domain (e.g., "example.ch")
     let parts = hostname.split('.');          // Split by dots
     return parts.length > 1 ? '' + parts.pop() : '';
+  }
+
+  callIndexComponentFunction() {
+    this.indexFunctionCallSubject.next(); // Notify listeners (IndexComponent)
   }
 }

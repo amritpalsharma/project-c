@@ -1282,5 +1282,7 @@
   "registrationInProcess":"Die Registrierung ist im Gange...",
   "registrationFailed":"Registrierung fehlgeschlagen",
   "Processing":"Verarbeitung...",
-  "EmailVerified":"E-Mail verifiziert!"
+  "EmailVerified":"E-Mail verifiziert!",
+  "bannerBackgroundImageDark":"Banner Hintergrundbild Dunkler Modus",
+  "bannerImagesDarkMode":"Bannerbild Dunkler Modus"
 }
