@@ -152,7 +152,7 @@ export class PrivacyComponent implements OnInit {
   // }
 
   isFeaturedImageExists(key: any): boolean {
-    return 'featured_image' in this.advertisementData[key];
+    return this.advertisementData && this.advertisementData[key] && 'featured_image' in this.advertisementData[key];
   }
 
 
