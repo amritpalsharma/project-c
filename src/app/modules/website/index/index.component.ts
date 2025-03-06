@@ -84,6 +84,8 @@ export class IndexComponent {
 
 
   isLoading : boolean = true;
+  btnLoading : boolean = true;
+  countdown: number = 10;
 
 
   players = [
@@ -357,9 +359,22 @@ export class IndexComponent {
 
         this.isLoading = false;
 
+        this.startCountdown();
+
 
       }
     });
+  }
+
+  startCountdown() {
+    this.countdown = 5; // Reset countdown
+    const interval = setInterval(() => {
+      this.countdown--;
+      if (this.countdown === 0) {
+        clearInterval(interval);
+        this.btnLoading = false; // Stop loading when countdown reaches 0
+      }
+    }, 1000);
   }
 
   getFlagImage(data: any) {

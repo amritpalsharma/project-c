@@ -268,16 +268,19 @@ export class AdvertisingPopupComponent   {
       response => {
         if(response.status){
           console.log(response.message);
+          this.toastr.success(response.message, 'Ad Updated');
           this.dialogRef.close({
             action: 'updated',
             message: response.message
           });
         }else{
-          this.errorMsg = response.data.error
+          this.errorMsg = response.message
+          this.toastr.error(response.message, 'Error');
         }
       },
       error => {
         console.error('Error publishing ad:', error);
+        this.toastr.error(error, 'Error');
       }
     );
   }
