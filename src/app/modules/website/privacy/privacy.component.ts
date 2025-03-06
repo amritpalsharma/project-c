@@ -91,7 +91,7 @@ export class PrivacyComponent implements OnInit {
 
           
           this.advertisemnet_base_url = res.data.advertisemnet_base_url;
-          this.advertisementData = res?.data?.advertisemnetData;
+          this.advertisementData = res?.data?.advertisementData;
 
           
           this.isLoading = false;

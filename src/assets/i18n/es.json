@@ -327,7 +327,7 @@
   "privacyPolicyCheckboxError": "Por favor, acepte la Política de Privacidad.",
   "newsletterLabel": "Suscribirse al boletín",
   "submitButton": "Crear cuenta",
-  "alreadyHaveAccount": "¿Ya tienes una cuenta?",
+  "alreadyHaveAccount": "¿Ya tienes un perfil?",
   "loginLink": "Iniciar sesión",
   "nameRequired": "El nombre es requerido.",
   "emailRequired": "email es requerido.",
@@ -1257,5 +1257,10 @@
   "deleteProfileConfirm": "Esto eliminará su cuenta permanentemente de nuestra base de datos. Esto no se puede deshacer.",
   "downloading":"Descargando...",
   "submittingPerformanceData":"Presentar datos de rendimiento...",
-  "enterDocumentTitle":"Introduzca el título del documento"
+  "enterDocumentTitle":"Introduzca el título del documento",
+  "year": " Año",
+  "registrationInProcess":"La inscripción está en curso...",
+  "registrationFailed":"Registro fallido",
+  "Processing":"Procesando...",
+  "EmailVerified":"Correo electrónico verificado"
 }

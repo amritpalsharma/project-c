@@ -109,8 +109,9 @@ export class WebPages {
     }
 
     getDynamicHomePage(langId: any): Observable<any> {
+        let currentDomain = this.globalSettings.getdomainId();
         return this.http.get<{ status: boolean, message: string, data: {} }>(
-            `${this.frontendApiUrl}get-page-by-slug?page_type=home&lang_id=${langId}`
+            `${this.frontendApiUrl}get-page-by-slug?page_type=home&lang_id=${langId}&domain=${currentDomain}`
         );
     }
 

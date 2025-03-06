@@ -45,7 +45,7 @@ export class AboutComponent {
     inline_rectangle: true,
   }
 
-  // advertisemnetData
+  // advertisementData
 
   advertisementData:any = {
     skyscraper: {
@@ -112,7 +112,7 @@ export class AboutComponent {
           this.about_banner_img =  res.data.base_url+res.data.pageData.about_banner_img;
           this.country_section_banner_img=  res.data.base_url+res.data.pageData.country_section_banner_img;
          
-          this.advertisementData = res.data.advertisemnetData;
+          this.advertisementData = res.data.advertisementData;
           // this.advertisementData = [];
           this.advertisemnet_base_url = res.data.advertisemnet_base_url;
 

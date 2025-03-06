@@ -22,11 +22,20 @@ export class AppComponent implements OnInit {
     private router: Router,
     private globalSettings: GlobalSettingsService
   ) {
-    this.translateService.setDefaultLang('en'); // Set default language
+    //this.translateService.setDefaultLang('en'); // Set default language
     this.domainSelectedLanguage = this.globalSettings.getLanguage();
-    // this.translateService.use(localStorage.getItem('lang') || 'en');
-    this.translateService.use(this.domainSelectedLanguage);
-    localStorage.setItem('lang', this.domainSelectedLanguage);
+    let selectedLang = localStorage.getItem('lang');
+    if (selectedLang == null || selectedLang == undefined) {
+      this.translateService.use(this.domainSelectedLanguage);
+      localStorage.setItem('lang', this.domainSelectedLanguage);
+      console.warn('In App component Domain Language selected = ' + this.domainSelectedLanguage);
+    } else if (selectedLang != '') {
+      localStorage.setItem('lang', selectedLang);
+      console.warn('In App component LocalStorage Language selected = ' + selectedLang)
+      this.translateService.setDefaultLang(selectedLang);
+    } else {
+      this.translateService.setDefaultLang('en');
+    }
     // Listen to router events to check route changes
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)

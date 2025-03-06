@@ -83,7 +83,7 @@ export class IndexComponent {
   heroSectionBgImage: string = '';
 
 
-  isLoading : boolean = true;
+  isLoading: boolean = true;
 
 
   players = [
@@ -316,6 +316,8 @@ export class IndexComponent {
     this.themeService.theme$.subscribe(() => {
       this.chnageHerosectionBgImg();
     });
+    let selectedLang = localStorage.getItem('lang');
+    console.warn('In Index component LocalStorage Language selected = ' + selectedLang)
   }
 
   closeAd(object: any) {
@@ -346,9 +348,17 @@ export class IndexComponent {
         this.hero_bg_img_dark_mode = res.data.base_url + pageData.hero_bg_img_dark_mode;
 
         this.sliderDetail = sliderData;
+        if (sliderData.totalCount < 6) {
+          for (let i = sliderData.totalCount; i < 7; i++) {
+            this.sliderDetail.users.push({ isPlaceholder: true, role_name: 'talent', first_name: 'lorem', last_name: 'ipusam', meta: { profile_image_path: this.fallbackImage, date_of_birth: '04-01-2002' } });
+          }
+          console.warn('placeholders ', this.sliderDetail.users);
+        } else {
+          console.warn('Slider is greater than 6');
+        }
         this.club_logo_path = this.sliderDetail.imagePath;
         this.pre_club_logo_path = this.sliderDetail.flagPath;
-        this.advertisementData = res.data.advertisemnetData;
+        this.advertisementData = res.data.advertisementData;
         // this.advertisementData = [];
 
         // console.log('advertisementData', this.advertisementData);

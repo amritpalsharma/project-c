@@ -112,7 +112,7 @@ export class PricingComponent {
       if (res.status) {
         this.pageData = res.data.pageData; // Store the page data in the component
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
-        this.advertisementData = res?.data?.advertisemnetData;
+        this.advertisementData = res?.data?.advertisementData;
 
         this.isLoading = false;
       }

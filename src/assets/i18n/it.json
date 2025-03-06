@@ -330,7 +330,7 @@
   "privacyPolicyCheckboxError": "Accetta l'Informativa sulla Privacy.",
   "newsletterLabel": "Iscriviti alla newsletter",
   "submitButton": "Crea Account",
-  "alreadyHaveAccount": "Hai già un account?",
+  "alreadyHaveAccount": "Hai già un profilo?",
   "loginLink": "Accedi",
   "nameRequired": "Il nome è obbligatorio.",
   "emailRequired": "L'e-mail è obbligatoria.",
@@ -1288,17 +1288,15 @@
   "deleteMyAccount": "Cancellare il mio account",
   "uploadNewProfileImage": "Carica nuova immagine del profilo",
   "editCoverImage": "Modifica dell'immagine di copertina",
-  "learnMore":"Per saperne di più",
+  "learnMore": "Per saperne di più",
   "removeFavbtn": "Sì, elimina",
   "cancelRemoveFavBtn": "No, non eliminare",
   "representators": "Membro del team",
   "representators:": "Membro del team:",
-
   "errorMessage": "questa pagina purtroppo non è stata trovata",
-  "verifyEmail": "VERIFICA IL TUO INDIRIZZO E-MAIL",
-  "sentConfirmationLink": "Abbiamo inviato un link di conferma al tuo indirizzo e-mail.",
+  "verifyEmail": "VERIFICA LA TUA E-MAIL",
+  "sentConfirmationLink": "Abbiamo inviato un link di conferma alla tua e-mail.",
   "completeVerificationProcess": "Fai clic sul link nella tua casella di posta per completare il processo di verifica.",
-
   "cookiePopupText": "Teniamo alla vostra privacy. Noi e i nostri partner utilizziamo i tracker per misurare l'audience del nostro sito web e per fornirvi offerte e migliorare le nostre operazioni di marketing di SoccerYou.",
   "cookiePopupText2": "Maggiori informazioni sui cookie e sui fornitori che utilizziamo.",
   "cookiePopupText3": "Puoi ritirare il tuo consenso in qualsiasi momento nelle tue impostazioni.",
@@ -1311,5 +1309,9 @@
   "deleteProfileConfirm":"In questo modo il vostro account verrà eliminato definitivamente dal nostro database. Questa operazione non può essere annullata.",
   "downloading":"Scaricare...",
   "submittingPerformanceData":"Invio di dati sulle prestazioni...",
-  "enterDocumentTitle":"Inserire il titolo del documento"
+  "enterDocumentTitle":"Inserire il titolo del documento",
+  "registrationInProcess":"La registrazione è in corso...",
+  "registrationFailed": "Registrazione fallita",
+  "Processing":"Elaborazione...",
+  "EmailVerified":"Email verificata!"
 }
