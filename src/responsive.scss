@@ -219,6 +219,12 @@
 }
 }
 
+@media (max-width: 1199px) {
+.skyscraper-left, .skyscraper-right, .advirtismnt_2, .advertisement_two_top, .advertisement_two_bottom, .advertisement_three_block {
+    display: none !important;
+}
+}
+
 
 @media (max-width: 991px) {
     .page-sidebar-inner {
