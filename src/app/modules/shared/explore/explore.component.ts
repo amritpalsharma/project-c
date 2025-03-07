@@ -256,10 +256,10 @@ export class ExploreComponent implements OnInit {
       limit: pageSize,
       whereClause: {
         role: this.selectedRole,
-        user_domain: this.selectedCountry,
+        location: this.selectedCountry,
         age: this.selectedAge,
         position: this.selectedPositions,
-        location:this.userDomain
+        user_domain:this.userDomain
       },
       metaQuery: [],
       lang: localStorage.getItem('lang_id')

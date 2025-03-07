@@ -47,7 +47,8 @@ export class TalentComponent {
     this.isActive3 = savedState2 === 'true' ? true : false;
     this.adVisible = [true, true, true, true, true, true, true];
 
-    this.webPages.languageId$.subscribe((data) => {
+    this.webPages.languageId$.subscribe((data) => { 
+      alert(data);
       this.getPageData(data)
     });
   }

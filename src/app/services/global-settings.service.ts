@@ -6,7 +6,7 @@ import { Subject } from 'rxjs';
 })
 export class GlobalSettingsService {
 
-  private domainExtensions = ['.ch', '.de', '.it', '.fr', '.co.uk', '.es', '.pt', '.be', '.dk', '.sv']; // List of domain extensions to check
+  private domainExtensions = ['.ch', '.de', '.it', '.fr', '.co.uk', '.es', '.pt', '.be', '.dk', '.se']; // List of domain extensions to check
   private defaultLanguage = 'en'; // Default language
   private defaultLangId: number = 1;
   private defaultDomainId: number = 1;
@@ -28,7 +28,7 @@ export class GlobalSettingsService {
 
   private setDefaultLanguage(): void {
     const domainExt = this.getDomainExtension();
-
+    // alert(domainExt)
     switch (domainExt) {
       case '.ch':
         this.defaultLanguage = 'de';
@@ -66,8 +66,8 @@ export class GlobalSettingsService {
         this.defaultLanguage = 'dk';
         this.defaultDomainId = 9;
         break;
-      case '.sv':
-        this.defaultLanguage = 'se';
+      case '.se':
+        this.defaultLanguage = 'sv';
         this.defaultDomainId = 10;
         break;
       default:
@@ -99,10 +99,16 @@ export class GlobalSettingsService {
       this.defaultLangId = 5;
     } else if (language == 'pt') {
       this.defaultLangId = 6;
-    } else if (language == 'da') {
+    } else if (language == 'dk') {
       this.defaultLangId = 7;
     } else if (language == 'sv') {
       this.defaultLangId = 8;
+    }
+    let localStorage_lang_id = localStorage.getItem('lang_id');
+    if (localStorage_lang_id == null || localStorage_lang_id === undefined) {
+      localStorage.setItem('lang_id', this.defaultLangId + '');
+    } else {
+      console.log('In Global service Localstorage has already  lang ' + localStorage_lang_id);
     }
     return this.defaultLangId;
   }
