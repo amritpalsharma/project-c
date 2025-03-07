@@ -38,54 +38,16 @@
       <input type="text" id="banner_title" class="form-control" name="banner_title" [(ngModel)]="formData.banner_title"
         required />
     </div>
-    <!-- Banner Image Light Mode -->
-    <div class="mb-3 col-md-12">
-      <label for="bannerBgImg" class="form-label">{{ 'bannerBackgroundImage' | translate }}</label>
-      <input type="file" class="form-control" id="bannerBgImg" (change)="handleFileInput($event, 'banner_bg_img')" />
+    <div class="row">
+      <!-- Banner Image Light Mode -->
+      <div class="mb-3 col-md-6">
+        <label for="bannerBgImg" class="form-label">{{ 'bannerBackgroundImage' | translate }}</label>
+        <input type="file" class="form-control" id="bannerBgImg" (change)="handleFileInput($event, 'banner_bg_img')" />
 
-      <div class="position-relative me-2 my-2" *ngIf="bannerBgImagePreview">
-        <div class="image_cut">
-          <img [src]="bannerBgImagePreview" alt="Preview" class="img-thumbnail p-0" style="max-width: 150px;" />
-          <div class="close_image" (click)="removeImage('banner_bg_img')">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="26px">
-              <path
-                d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
-            </svg>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Banner Image Dark Mode -->
-    <div class="mb-3 col-md-12">
-      <label for="bannerBgImgDark" class="form-label">{{ 'bannerBackgroundImageDark' | translate }}</label>
-      <input type="file" class="form-control" id="bannerBgImgDark"
-        (change)="handleFileInput($event, 'banner_bg_img_dark_mode')" />
-
-      <div class="position-relative me-2 my-2" *ngIf="bannerBgImagePreviewDarkMode">
-        <div class="image_cut">
-          <img [src]="bannerBgImagePreviewDarkMode" alt="Preview" class="img-thumbnail p-0" style="max-width: 150px;" />
-          <div class="close_image" (click)="removeImage('banner_bg_img_dark_mode')">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="26px">
-              <path
-                d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
-            </svg>
-          </div>
-        </div>
-      </div>
-
-    </div>
-    <!-- Banner Image -->
-    <div class="mb-3">
-      <label for="bannerImgs" class="form-label">{{ 'bannerImages' | translate }}</label>
-      <input type="file" id="bannerImgs" class="form-control" multiple (change)="onFileChange($event)" />
-      <div class="d-flex flex-wrap mt-2">
-        <div class="position-relative me-2 mb-2" *ngFor="let preview of bannerImagesPreviews; let i = index">
+        <div class="position-relative me-2 my-2" *ngIf="bannerBgImagePreview">
           <div class="image_cut">
-            <img [src]="preview" alt="Preview" class="img-thumbnail p-0" style="max-width: 150px;"
-              (load)="imageLoaded = true" />
-            <div class="close_image" *ngIf="imageLoaded" (click)="removeSingleImage(i)">
+            <img [src]="bannerBgImagePreview" alt="Preview" class="img-thumbnail p-0" style="max-width: 150px;" />
+            <div class="close_image" (click)="removeImage('banner_bg_img')">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="26px">
                 <path
                   d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
@@ -93,20 +55,20 @@
             </div>
           </div>
         </div>
+
       </div>
 
-    </div>
+      <!-- Banner Image Dark Mode -->
+      <div class="mb-3 col-md-6">
+        <label for="bannerBgImgDark" class="form-label">{{ 'bannerBackgroundImageDark' | translate }}</label>
+        <input type="file" class="form-control" id="bannerBgImgDark"
+          (change)="handleFileInput($event, 'banner_bg_img_dark_mode')" />
 
-    <!-- Banner Image Dark Mode -->
-    <div class="mb-3">
-      <label for="bannerImgsDarkMode" class="form-label">{{ 'bannerImagesDarkMode' | translate }}</label>
-      <input type="file" id="bannerImgsDarkMode" class="form-control" multiple (change)="onFileChangeDarkMode($event)" />
-      <div class="d-flex flex-wrap mt-2">
-        <div class="position-relative me-2 mb-2" *ngFor="let preview of bannerImagesPreviewsDarkMode; let i = index">
+        <div class="position-relative me-2 my-2" *ngIf="bannerBgImagePreviewDarkMode">
           <div class="image_cut">
-            <img [src]="preview" alt="Preview" class="img-thumbnail p-0" style="max-width: 150px;"
-              (load)="imageLoaded = true" />
-            <div class="close_image" *ngIf="imageLoaded" (click)="removeSingleImageDarkMode(i)">
+            <img [src]="bannerBgImagePreviewDarkMode" alt="Preview" class="img-thumbnail p-0"
+              style="max-width: 150px;" />
+            <div class="close_image" (click)="removeImage('banner_bg_img_dark_mode')">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="26px">
                 <path
                   d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
@@ -114,8 +76,56 @@
             </div>
           </div>
         </div>
+
       </div>
     </div>
+    <div class="row">
+      <!-- Banner Image -->
+      <div class="mb-3 col-sm-6">
+        <label for="bannerImgs" class="form-label">{{ 'bannerImages' | translate }}</label>
+        <input type="file" id="bannerImgs" class="form-control" (change)="uploadBannerImages($event, 'banner_img')" />
+        <!-- <input type="file" id="bannerImgs" class="form-control" (change)="onFileChange($event)" /> -->
+        <div class="d-flex flex-wrap mt-2">
+          <div class="position-relative me-2 mb-2" *ngIf="bannerImagePreview">
+            <div class="image_cut">
+              <img [src]="bannerImagePreview" alt="Preview" class="img-thumbnail p-0" style="max-width: 150px;"
+                (load)="imageLoaded = true" />
+              <div class="close_image" *ngIf="imageLoaded" (click)="removeSingleImage('banner_img')">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="26px">
+                  <path
+                    d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Banner Image Dark Mode -->
+      <div class="mb-3 col-sm-6">
+        <label for="bannerImgsDarkMode" class="form-label">{{ 'bannerImagesDarkMode' | translate }}</label>
+        <input type="file" id="bannerImgsDarkMode" class="form-control"
+          (change)="uploadBannerImages($event,'banner_img_dark_mode')" />
+        <!-- <input type="file" id="bannerImgsDarkMode" class="form-control" (change)="onFileChangeDarkMode($event)" /> -->
+        <div class="d-flex flex-wrap mt-2">
+          <div class="position-relative me-2 mb-2" *ngIf="bannerImagesPreviewsDarkMode">
+            <div class="image_cut">
+              <img [src]="bannerImagesPreviewsDarkMode" alt="Preview" class="img-thumbnail p-0"
+                style="max-width: 150px;" (load)="imageLoaded = true" />
+              <div class="close_image" *ngIf="imageLoaded">
+                <!-- <div class="close_image" *ngIf="imageLoaded" (click)="removeSingleImageDarkMode(i)"> -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="26px">
+                  <path
+                    d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="mb-3">
       <label for="banner_desc" class="form-label">{{ 'bannerDescription' | translate }}</label>
       <div class="NgxEditor__Wrapper">
@@ -416,36 +426,36 @@
           </div>
 
           <!-- Monthly Price -->
-          <div class="col-md-6">
+          <!-- <div class="col-md-6">
             <label for="monthly_plan_price_{{ i }}" class="form-label">{{ 'monthlyPrice' | translate }}</label>
             <input type="text" [(ngModel)]="plan.monthly_plan_price" class="form-control"
               name="monthly_plan_price_{{ i }}" id="monthly_plan_price_{{ i }}"
               placeholder="{{ 'monthlyPrice' | translate }}" required />
-          </div>
+          </div> -->
 
           <!-- Yearly Price -->
-          <div class="col-md-6">
+          <!-- <div class="col-md-6">
             <label for="yearly_plan_price_{{ i }}" class="form-label">{{ 'yearlyPrice' | translate }}</label>
             <input type="text" [(ngModel)]="plan.yearly_plan_price" class="form-control"
               name="yearly_plan_price_{{ i }}" id="yearly_plan_price_{{ i }}"
               placeholder="{{ 'yearlyPrice' | translate }}" required />
-          </div>
+          </div> -->
 
           <!-- Monthly Price Currency -->
-          <div class="col-md-6">
+          <!-- <div class="col-md-6">
             <label for="monthly_plan_currency_{{ i }}" class="form-label">{{ 'monthlyCurrency' | translate }}</label>
             <input type="text" [(ngModel)]="plan.monthly_plan_price_currency" class="form-control"
               name="monthly_plan_currency_{{ i }}" id="monthly_plan_currency_{{ i }}"
               placeholder="{{ 'Currency' | translate }}" required />
-          </div>
+          </div> -->
 
           <!-- Yearly Price Currency -->
-          <div class="col-md-6">
+          <!-- <div class="col-md-6">
             <label for="yearly_plan_currency_{{ i }}" class="form-label">{{ 'yearlyCurrency' | translate }}</label>
             <input type="text" [(ngModel)]="plan.yearly_plan_price_currency" class="form-control"
               name="yearly_plan_currency_{{ i }}" id="yearly_plan_currency_{{ i }}"
               placeholder="{{ 'Currency' | translate }}" required />
-          </div>
+          </div> -->
         </div>
 
         <!-- Plan Features -->

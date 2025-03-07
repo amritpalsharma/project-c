@@ -48,7 +48,7 @@ export class TalentComponent {
     this.adVisible = [true, true, true, true, true, true, true];
 
     this.webPages.languageId$.subscribe((data) => { 
-      alert(data);
+      // alert(data);
       this.getPageData(data)
     });
   }
