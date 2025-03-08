@@ -823,7 +823,7 @@
                 <!-- <div class="billed">
                     <p class="billed-text">2 months free on yearly plan</p>
                 </div> -->
-                <div *ngFor="let plan of pageData.pricing_tab; let i = index">
+                <div *ngFor="let plan of pageData.pricing_tab; let i = index; trackBy: trackByFn">
                     <div class="billed">
                         <p [ngClass]="{ 'active-text': isActivePlan[i], 'inactive-text': !isActivePlan[i] }"
                             class="billed-monthly">
@@ -845,17 +845,29 @@
                                     <img class="bg-image" src="./assets/images/feature-image.svg">
                                     <h2 class="premium-heading2">{{ plan.plan_name }}</h2>
                                     <h3 class="premium-heading3">
-                                        {{ !isActivePlan[i] ? plan.monthly_plan_price : plan.yearly_plan_price
+                                        <!-- {{ !isActivePlan[i] ? plan.monthly_plan_price : plan.yearly_plan_price
                                         }}<span>.- {{ !isActivePlan[i] ? plan.monthly_plan_price_currency :
                                             plan.yearly_plan_price_currency }}
-                                            / {{ !isActivePlan[i] ? 'Month' : 'Year' }}</span>
+                                            / {{ !isActivePlan[i] ? 'Month' : 'Year' }}</span> -->
+
+                                        <!-- {{ getPlanPrice(plan.plan_name, isActivePlan[i]) }}<span>.- {{ Currency }} /
+                                            {{ !isActivePlan[i] ? 'Month' : 'Year' }}
+                                            </span> -->
+                                        <!-- <h3 class="premium-heading3"> -->
+                                        {{ getPlanPrice(plan.plan_name, isActivePlan[i]) }}<span>.-/ {{ Currency }}
+                                            <span *ngIf="!isActivePlan[i]">{{'billedMonthly' | translate}}</span>
+                                            <span *ngIf="isActivePlan[i]">{{'billedYearly' | translate}}</span>
+                                            <!-- {{ isActivePlan[i] ? 'Year' : 'Month' }} -->
+                                        </span>
+                                        <!-- </h3> -->
+
                                     </h3>
                                 </div>
                             </div>
 
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="premium-col-right">
-                                    <h5 class="premium-heading5">{{ plan.plan_name }} Includes</h5>
+                                    <!-- <h5 class="premium-heading5">{{ plan.plan_name }} Includes</h5> -->
                                     <div class="premium-text" *ngFor="let feature of plan.plan_feature_desc">
                                         <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
                                         <p>{{ feature }}</p>

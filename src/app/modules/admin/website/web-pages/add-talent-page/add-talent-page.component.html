@@ -298,7 +298,7 @@
           [(ngModel)]="formData.feature_sctn_title" />
       </div>
 
-      <div *ngFor="let feature of formData.feature_sctn; let i = index" class="card mb-3 p-3">
+      <div *ngFor="let feature of formData.feature_sctn; let i = index; trackBy: trackByFn" class="card mb-3 p-3">
         <div class="row">
           <input type="hidden" [(ngModel)]="feature.id" class="form-control" name="feature_id_{{ i }}">
           <!-- <div class="col-sm-12">{{ feature | json }}</div> -->
@@ -412,18 +412,18 @@
 
 
           <!-- Monthly Price -->
-          <div class="col-md-6">
+          <!-- <div class="col-md-6">
             <label for="monthly_plan_label_{{ i }}" class="form-label">{{ 'monthlyLabel' | translate }}</label>
             <input type="text" [(ngModel)]="plan.monthly_label" class="form-control" name="monthly_plan_label_{{ i }}"
               id="monthly_plan_label_{{ i }}" placeholder="{{ 'monthlyLabel' | translate }}" required />
-          </div>
+          </div> -->
 
           <!-- Yearly label -->
-          <div class="col-md-6">
+          <!-- <div class="col-md-6">
             <label for="yearly_plan_label_{{ i }}" class="form-label">{{ 'yearlyLabel' | translate }}</label>
             <input type="text" [(ngModel)]="plan.yearly_label" class="form-control" name="yearly_plan_label_{{ i }}"
               id="yearly_plan_label_{{ i }}" placeholder="{{ 'yearlyLabel' | translate }}" required />
-          </div>
+          </div> -->
 
           <!-- Monthly Price -->
           <!-- <div class="col-md-6">
@@ -461,7 +461,7 @@
         <!-- Plan Features -->
         <div class="mt-3">
           <label class="form-label">{{ 'planFeatures' | translate }}</label>
-          <div *ngFor="let feature of plan.plan_feature_desc; let j = index" class="input-group mb-2">
+          <div *ngFor="let feature of plan.plan_feature_desc; let j = index; trackBy: trackByFn" class="input-group mb-2">
             <!-- <label for="plan_feature_{{ i }}_{{ j }}" class="form-label">Feature {{ j + 1 }}</label> -->
             <input type="text" [(ngModel)]="plan.plan_feature_desc[j]" class="form-control"
               name="plan_feature_{{ i }}_{{ j }}" id="plan_feature_{{ i }}_{{ j }}"

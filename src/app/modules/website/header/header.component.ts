@@ -376,7 +376,7 @@ export class HeaderComponent implements OnInit {
       localStorage.setItem('lang_id', this.lang_id); // Store default language in localStorage
     }
     // Use the selected language (or 'en' if none)
-  // Set the language for ngx-translate
+    // Set the language for ngx-translate
 
     // Apply dark mode from localStorage
     this.themeService.isDarkTheme.subscribe((isDarkTheme: boolean) => {
@@ -423,12 +423,15 @@ export class HeaderComponent implements OnInit {
 
   ChangeLang(newSlug: string, event: Event): void {
     this.translateService.use(newSlug);  // Switch translation language
-    console.log('working', newSlug);
+    // console.log('working', newSlug);
 
     this.slug = newSlug;  // Update the slug to the selected language
     event.preventDefault(); // Prevent default action (e.g., preventing link navigation)
 
     let selectedLanguageId: any = null;
+    if (newSlug == 'sv') {
+      // newSlug == 'se';
+    }
     let getLanguageIndex = this.langs.findIndex((val: any) => {
       if (val.slug == newSlug) {
         selectedLanguageId = val.id

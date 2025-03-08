@@ -7,21 +7,21 @@ import { WebPages } from '../../../services/webpages.service';
   styleUrl: './club.component.scss'
 })
 export class ClubComponent {
-  baseUrl:string='';
-  pageData:any = [{
-    banner_title:'',
-    banner_desc:'',
-    banner_btn_txt:'',
-    club_nd_scout_section_title:'',
-    club_nd_scout_section:[],
-    feature_sctn_title:'',
-    feature_sctn:[],
-    pricing_sctn_title:'',
-    pricing_tab:[],
+  baseUrl: string = '';
+  pageData: any = [{
+    banner_title: '',
+    banner_desc: '',
+    banner_btn_txt: '',
+    club_nd_scout_section_title: '',
+    club_nd_scout_section: [],
+    feature_sctn_title: '',
+    feature_sctn: [],
+    pricing_sctn_title: '',
+    pricing_tab: [],
   }];
   // advertisementData:any=null;
-  advertisemnet_base_url:string= '';
-  isLoading : boolean = true;
+  advertisemnet_base_url: string = '';
+  isLoading: boolean = true;
 
 
   isActive1 = true; // Premium Plan
@@ -29,8 +29,22 @@ export class ClubComponent {
   isActive3 = true; // Multi-Country Plan
 
   activeAccordionIndex = 1;
+  Currency: string = '';
+  premiumPackageName: string = '';
 
-  constructor( private webPages: WebPages){ 
+  premiumPrice: number = 0;
+  premiumYearlyPrice: number = 0;
+
+  boostPrice: number = 0;
+  boostYearlyPrice: number = 0;
+
+
+  countryPrice: number = 0;
+  countryYearlyPrice: number = 0;
+
+  // 
+
+  constructor(private webPages: WebPages) {
 
   }
 
@@ -51,26 +65,31 @@ export class ClubComponent {
     this.isActive2 = savedState2 === 'true' ? true : false;
     this.isActive3 = savedState2 === 'true' ? true : false;
 
+    this.getCurrencyPrice('monthly');
+    this.getCurrencyPrice('yearly');
+
     this.webPages.languageId$.subscribe((data) => {
-    this.getPageData(data)
-  });
+      this.getPageData(data);
+      this.getCurrencyPrice('monthly');
+      this.getCurrencyPrice('yearly');
+    });
 
   }
 
-  
-  isActive : any = {
+
+  isActive: any = {
     skyscraper: true,
     wide_skyscraper: true,
     leaderboard: true,
-    large_leaderboard:true,
+    large_leaderboard: true,
     banner: true,
-    square:true,
+    square: true,
     small_square: true,
     large_rectangle: true,
     inline_rectangle: true,
   }
 
-  advertisementData:any = {
+  advertisementData: any = {
     skyscraper: {
       id: '1',
       featured_image: "leaderboard.png"
@@ -109,24 +128,24 @@ export class ClubComponent {
     },
   }
 
-  getPageData(languageId: any){
-    this.webPages.getDynamicContentPage('clubs_and_scouts',languageId).subscribe((res) => {
-      if(res.status){
-          this.pageData = res.data.pageData;
-          this.baseUrl = res.data.base_url;
+  getPageData(languageId: any) {
+    this.webPages.getDynamicContentPage('clubs_and_scouts', languageId).subscribe((res) => {
+      if (res.status) {
+        this.pageData = res.data.pageData;
+        this.baseUrl = res.data.base_url;
 
-          this.isLoading = false;
-         
-          this.advertisementData = res.data.advertisementData;
-          // this.advertisementData = [];
-          this.advertisemnet_base_url = res.data.advertisemnet_base_url;
-        
-          // Initialize toggle states for pricing plans with Monthly active (false)
-          this.pageData.pricing_tab.forEach((_: any, index: number) => {
-            this.isActivePlan[index] = false; // Default to "Monthly"
-          });
+        this.isLoading = false;
 
-        }
+        this.advertisementData = res.data.advertisementData;
+        // this.advertisementData = [];
+        this.advertisemnet_base_url = res.data.advertisemnet_base_url;
+
+        // Initialize toggle states for pricing plans with Monthly active (false)
+        this.pageData.pricing_tab.forEach((_: any, index: number) => {
+          this.isActivePlan[index] = false; // Default to "Monthly"
+        });
+
+      }
     });
   }
 
@@ -205,7 +224,7 @@ export class ClubComponent {
   ];
 
   adVisible: boolean[] = [true, true, true, true, true, true, true]; // Array to manage ad visibility
-  
+
   // isEmptyObject(obj:any) {
   //   if(typeof obj != 'undefined'){
   //     return (obj && (Object.keys(obj).length === 0));
@@ -230,10 +249,10 @@ export class ClubComponent {
   // isExists(key: string): boolean {
   //   return key in this.advertisementData && 'featured_image' in this.advertisementData[key];
   // }
-  
 
-  isEmptyObject(obj:any) {
-    if(typeof obj != 'undefined'){
+
+  isEmptyObject(obj: any) {
+    if (typeof obj != 'undefined') {
       return (obj && (Object.keys(obj).length === 0));
     }
     return true;
@@ -258,4 +277,62 @@ export class ClubComponent {
     return 'featured_image' in this.advertisementData[key];
   }
 
+  getCurrencyPrice(interval: string) {
+    this.webPages.getPriceAndCurrency(interval).subscribe((res) => {
+      if (res.status) {
+        if (res.status && res.data?.premium?.plans?.length > 0) {
+          this.Currency = res.data.premium.plans[0].currency;
+          if (interval == 'yearly') {
+            this.premiumYearlyPrice = parseInt(res.data.premium.plans[0].price, 10);
+            this.boostYearlyPrice = parseInt(res.data.booster.plans[0].price, 10);
+            this.countryYearlyPrice = parseInt(res.data.country.plans[0].price, 10);
+          }
+          if (interval == 'monthly') {
+            this.premiumPrice = parseInt(res.data.premium.plans[0].price, 10);
+            this.boostPrice = parseInt(res.data.booster.plans[0].price, 10);
+            this.countryPrice = parseInt(res.data.country.plans[0].price, 10);
+          }
+        }
+      }
+    })
+  }
+
+  // getPlanPrice(planName: string, isMonthly: boolean): number {
+  //   if (!planName) return 0;
+
+  //   const lowerPlanName = planName.toLowerCase();
+
+  //   if (lowerPlanName.includes('premium')) {
+  //     return isMonthly ? this.premiumPrice : this.premiumYearlyPrice;
+  //   }
+  //   if (lowerPlanName.includes('country') || lowerPlanName.includes('multi') || lowerPlanName.includes('flera')) {
+  //     return isMonthly ? this.countryPrice : this.countryYearlyPrice;
+  //   }
+  //   if (lowerPlanName.includes('boost') || lowerPlanName.includes('perfil')) {
+  //     //
+  //     return isMonthly ? this.boostPrice : this.boostYearlyPrice;
+  //   }
+
+  //   console.warn(lowerPlanName);
+  //   return 0; // Default price if no match
+  // }
+  getPlanPrice(planName: string, isMonthly: boolean): number {
+    if (!planName) return 0;
+
+    const lowerPlanName = planName.toLowerCase();
+
+    if (lowerPlanName.includes('premium')) {
+      return !isMonthly ? this.premiumPrice : this.premiumYearlyPrice;
+    }
+    if (lowerPlanName.includes('country') || lowerPlanName.includes('multi') || lowerPlanName.includes('flera')) {
+      return !isMonthly ? this.countryPrice : this.countryYearlyPrice;
+    }
+    if (lowerPlanName.includes('boost')) {
+      return !isMonthly ? this.boostPrice : this.boostYearlyPrice;
+    }
+    return 0; // Default price if no match
+  }
+  trackByFn(index: number, item: any): number {
+    return index; // Tracks items by index to prevent re-rendering
+  }
 }

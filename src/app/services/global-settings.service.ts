@@ -67,7 +67,7 @@ export class GlobalSettingsService {
         this.defaultDomainId = 9;
         break;
       case '.se':
-        this.defaultLanguage = 'sv';
+        this.defaultLanguage = 'se';
         this.defaultDomainId = 10;
         break;
       default:
@@ -101,7 +101,7 @@ export class GlobalSettingsService {
       this.defaultLangId = 6;
     } else if (language == 'dk') {
       this.defaultLangId = 7;
-    } else if (language == 'sv') {
+    } else if (language == 'se') {
       this.defaultLangId = 8;
     }
     let localStorage_lang_id = localStorage.getItem('lang_id');

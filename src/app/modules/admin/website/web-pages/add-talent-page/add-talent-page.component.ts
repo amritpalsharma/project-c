@@ -41,6 +41,19 @@ export class AddTalentPageComponent implements OnInit {
 
   imageLoaded: boolean = false;
 
+  premiumMonthlyPrice: string = '';
+  Currency: string = '';
+  premiumPackageName: string = '';
+
+  premiumPrice: string = '';
+  premiumYearlyPrice: string = '';
+
+  boostPrice: string = '';
+  boostYearlyPrice: string = '';
+
+
+  countryPrice: string = '';
+  countryYearlyPrice: string = '';
   formData: any = {
     slug: '',
     meta_title: '',
@@ -327,7 +340,7 @@ export class AddTalentPageComponent implements OnInit {
         }
 
         // Map talent_section
-        
+
         if (pageData.talent_section) {
           console.warn(pageData.talent_section);
           ['first_tab', 'sec_tab', 'third_tab'].forEach(tab => {
@@ -519,5 +532,7 @@ export class AddTalentPageComponent implements OnInit {
     this.formData.feature_sctn[index].imgPreview = null; // Clear the preview
   }
 
-
+  trackByFn(index: number, item: any): number {
+    return index; // Tracks items by index to prevent re-rendering
+  }
 }

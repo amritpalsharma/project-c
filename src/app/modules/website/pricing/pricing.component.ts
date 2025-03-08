@@ -11,14 +11,29 @@ export class PricingComponent {
   isActive2 = true; // Multi-Country Plan
   isActive3 = true; // Boost Profile Plan
   pageData: any; // To hold the API response data
-  advertisemnet_base_url:string= '';
-  isLoading : boolean = true;
+  advertisemnet_base_url: string = '';
+  base_url: string = '';
+  isLoading: boolean = true;
 
+  premiumMonthlyPrice: string = '';
+  Currency: string = '';
+  premiumPackageName: string = '';
+
+  premiumPrice: string = '';
+  premiumYearlyPrice: string = '';
+
+  boostPrice: string = '';
+  boostYearlyPrice: string = '';
+
+
+  countryPrice: string = '';
+  countryYearlyPrice: string = '';
+  pricing_banner_img: string = '../../../../assets/images/Pricing-banner.png';
 
   // adVisible: boolean[] = [true, true, true, true, true, true, true]; // Array to manage ad visibility
   adVisible: boolean[] = [false, false, false, false, false, false, false];
-  
-  constructor(private webPages: WebPages) {}
+
+  constructor(private webPages: WebPages) { }
 
   ngOnInit() {
     // Retrieve the states from local storage
@@ -33,23 +48,27 @@ export class PricingComponent {
 
     this.webPages.languageId$.subscribe((data) => {
       this.getPageData(data);
+      // this.getCurrencyandMonthlyPrice('monthly');
+      // this.getCurrencyandYearlyPrice('yearly');
+      this.getCurrencyPrice('monthly');
+      this.getCurrencyPrice('yearly');
     });
   }
-  
 
-  isActive : any ={
+
+  isActive: any = {
     skyscraper: true,
     wide_skyscraper: true,
     leaderboard: true,
-    large_leaderboard:true,
+    large_leaderboard: true,
     banner: true,
-    square:true,
+    square: true,
     small_square: true,
     large_rectangle: true,
     inline_rectangle: true,
   }
 
-  advertisementData:any = {
+  advertisementData: any = {
     skyscraper: {
       id: '1',
       featured_image: "leaderboard.png"
@@ -89,6 +108,7 @@ export class PricingComponent {
   }
 
   toggle1() {
+
     this.isActive1 = !this.isActive1;
     localStorage.setItem('toggleState1', this.isActive1.toString());
   }
@@ -113,7 +133,13 @@ export class PricingComponent {
         this.pageData = res.data.pageData; // Store the page data in the component
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
         this.advertisementData = res?.data?.advertisementData;
-
+        this.pricing_banner_img = this.pageData.pricing_banner_img;
+        this.base_url = res.data.base_url;
+        if (this.pricing_banner_img != '') {
+          this.pricing_banner_img = this.base_url + this.pricing_banner_img;
+          
+        }
+        
         this.isLoading = false;
       }
     });
@@ -124,10 +150,10 @@ export class PricingComponent {
     this.isActive[object] = false;
 
   }
-  
 
-  isEmptyObject(obj:any) {
-    if(typeof obj != 'undefined'){
+
+  isEmptyObject(obj: any) {
+    if (typeof obj != 'undefined') {
       return (obj && (Object.keys(obj).length === 0));
     }
     return true;
@@ -150,5 +176,54 @@ export class PricingComponent {
 
   isFeaturedImageExists(key: any): boolean {
     return 'featured_image' in this.advertisementData[key];
+  }
+
+  getCurrencyandMonthlyPrice(tab_and_interval: string) {
+    let interval = 'monthly';
+    this.webPages.getPriceAndCurrency(interval).subscribe((res) => {
+      if (res.status) {
+        if (res.status && res.data?.premium?.plans?.length > 0) {
+          this.Currency = res.data.premium.plans[0].currency;
+          this.premiumPrice = parseInt(res.data.premium.plans[0].price, 10) + '';
+          this.boostPrice = parseInt(res.data.booster.plans[0].price, 10) + '';
+          this.countryPrice = parseInt(res.data.country.plans[0].price, 10) + '';
+        }
+      }
+    })
+  }
+
+  getCurrencyandYearlyPrice(tab_and_interval: string) {
+    let interval = 'yearly';
+    this.webPages.getPriceAndCurrency(interval).subscribe((res) => {
+      if (res.status) {
+        if (res.status && res.data?.premium?.plans?.length > 0) {
+          this.Currency = res.data.premium.plans[0].currency;
+          this.premiumYearlyPrice = parseInt(res.data.premium.plans[0].price, 10) + '';
+          this.boostYearlyPrice = parseInt(res.data.booster.plans[0].price, 10) + '';
+          this.countryYearlyPrice = parseInt(res.data.country.plans[0].price, 10) + '';
+        }
+      }
+    })
+  }
+
+
+  getCurrencyPrice(interval: string) {
+    this.webPages.getPriceAndCurrency(interval).subscribe((res) => {
+      if (res.status) {
+        if (res.status && res.data?.premium?.plans?.length > 0) {
+          this.Currency = res.data.premium.plans[0].currency;
+          if (interval == 'yearly') {
+            this.premiumYearlyPrice = parseInt(res.data.premium.plans[0].price, 10) + '';
+            this.boostYearlyPrice = parseInt(res.data.booster.plans[0].price, 10) + '';
+            this.countryYearlyPrice = parseInt(res.data.country.plans[0].price, 10) + '';
+          }
+          if (interval == 'monthly') {
+            this.premiumPrice = parseInt(res.data.premium.plans[0].price, 10) + '';
+            this.boostPrice = parseInt(res.data.booster.plans[0].price, 10) + '';
+            this.countryPrice = parseInt(res.data.country.plans[0].price, 10) + '';
+          }
+        }
+      }
+    })
   }
 }

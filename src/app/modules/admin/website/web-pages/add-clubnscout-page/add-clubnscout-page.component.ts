@@ -524,4 +524,8 @@ export class AddClubnScoutPageComponent implements OnInit {
     this.formData.feature_sctn[index].img = 'remove_image'; // Mark for removal
     this.formData.feature_sctn[index].imgPreview = null; // Clear the preview
   }
+
+  trackByFn(index: number, item: any): number {
+    return index; // Tracks items by index to prevent re-rendering
+  }
 }

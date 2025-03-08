@@ -33,6 +33,9 @@ export class AddPricingPageComponent implements OnInit, OnDestroy {
     ['align_left', 'align_center', 'align_right', 'align_justify']
   ];
   content: string = '';
+  pricing_banner_img: any = [];
+  bannerBgImagePreview: any = [];
+  base_url: string = '';
   formData: any = {
     slug: '',
     meta_title: '',
@@ -45,6 +48,7 @@ export class AddPricingPageComponent implements OnInit, OnDestroy {
     page_type: '',
     pricing_title: ['PRICING'],
     pricing_tabs_title: ['Membership Plans'],
+    pricing_banner_img: '',
     first_tab: {
       monthly_label: ['Billed Monthly'],
       yearly_label: ['Billed Yearly'],
@@ -53,7 +57,7 @@ export class AddPricingPageComponent implements OnInit, OnDestroy {
       monthly_price_currency: ['CHF/Month'],
       yearly_price: ['470'],
       yearly_price_currency: ['CHF/Year'],
-      free_features_title: ['Talent Features'],
+      features_title: ['Talent Features'],
       free_features_sub_title: ['Free Features'],
       free_features_desc: [['Create a personal profile showcasing abilities, performance data, and achievements.']],
       premium_features_title: ['Premium Features'],
@@ -100,7 +104,7 @@ export class AddPricingPageComponent implements OnInit, OnDestroy {
   constructor(
     private webpages: WebPages,
     public dialogRef: MatDialogRef<AddPricingPageComponent>
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.editor = new Editor();
@@ -111,6 +115,8 @@ export class AddPricingPageComponent implements OnInit, OnDestroy {
       this.formData.page_id = this.pageId;
       this.getPageById(this.pageId);
     }
+
+
   }
 
   ngOnDestroy(): void {
@@ -133,15 +139,16 @@ export class AddPricingPageComponent implements OnInit, OnDestroy {
   // Update the `removeImage` method to reset the `imageLoaded` property.
   removeImage(fieldName: string): void {
     this.formData[fieldName] = 'remove_image';
-    this.bannerImagePreview = null;
+    this.bannerBgImagePreview = null;
     this.imageLoaded = false;
   }
 
   submitForm(): void {
     const formData = new FormData();
     console.log(this.formData);  // Log the data to check its structure
-  
+
     for (const key in this.formData) {
+      console.log(typeof this.formData[key]);
       if (Array.isArray(this.formData[key])) {
         // For arrays, append each item with the key as 'key[]'
         this.formData[key].forEach((item: string, index: number) => {
@@ -165,25 +172,36 @@ export class AddPricingPageComponent implements OnInit, OnDestroy {
         formData.append(key, this.formData[key]);
       }
     }
-    
+
+    if (this.formData.pricing_banner_img) {
+      formData.append('pricing_banner_img', this.formData.pricing_banner_img);
+    }
+
     // Append lang_id to FormData
     formData.append('lang', String(localStorage.getItem('lang_id')));
-    
+
     // Submit the form data
     this.webpages.addPricingPage(formData).subscribe((response) => {
-      this.dialogRef.close({ 
+      this.dialogRef.close({
         action: "page-added-successfully",
-        message: response.message 
+        message: response.message
       });
     });
   }
-  
+
 
   getPageById(id: number): void {
     this.webpages.getPageById(id).subscribe((response: any) => {
       if (response.status) {
         const pageData = response.data.pageData;
-  
+        this.base_url = response.data.base_url;
+        console.warn(pageData);
+        // Amrit Final code
+        if (pageData.pricing_banner_img != '' || pageData.pricing_banner_img != null || pageData.pricing_banner_img != undefined) {
+          // pageData.pricing_banner_img = this.base_url + pageData.pricing_banner_img;
+          this.bannerBgImagePreview = this.base_url + pageData.pricing_banner_img;
+        }
+
         this.formData = {
           ...this.formData,
           banner_title: pageData.banner_title || 'Default Banner Title', // Example default value if undefined
@@ -193,6 +211,7 @@ export class AddPricingPageComponent implements OnInit, OnDestroy {
           slug: response.data.slug || 'default-slug',
           pricing_title: pageData.pricing_title,
           pricing_tabs_title: pageData.pricing_tabs_title,
+          pricing_banner_img: pageData.pricing_banner_img || null,
           first_tab: {
             monthly_label: pageData.first_tab_monthly_label,
             yearly_label: pageData.first_tab_yearly_label,
@@ -201,12 +220,17 @@ export class AddPricingPageComponent implements OnInit, OnDestroy {
             monthly_price_currency: pageData.first_tab_monthly_price_currency,
             yearly_price: pageData.first_tab_yearly_price,
             yearly_price_currency: pageData.first_tab_yearly_price_currency,
-            free_features_title: pageData.first_tab_free_features_title,
-            free_features_sub_title: pageData.first_tab_free_features_sub_title,
-            free_features_desc: pageData.first_tab_free_features_desc,
+            features_title: pageData.first_tab_free_features_title,
+            features_sub_title: pageData.first_tab_free_features_sub_title,
+            // free_features_desc: pageData.first_tab_free_features_desc,
+            free_features_desc: Array.isArray(pageData.first_tab_free_features_desc)
+              ? pageData.first_tab_free_features_desc
+              : [],
+
+
             btn_txt: pageData.first_tab_btn_txt,
             premium_features_title: pageData.first_tab_premium_features_title || 'Premium Features', // Add missing field
-            premium_features_desc: pageData.first_tab_premium_features_desc || [], // Default to empty array
+            premium_features_desc: pageData.first_tab_premium_features_desc1 || [], // Default to empty array
           },
           sec_tab: {
             monthly_label: pageData.sec_tab_monthly_label,
@@ -216,10 +240,12 @@ export class AddPricingPageComponent implements OnInit, OnDestroy {
             monthly_price_currency: pageData.sec_tab_monthly_price_currency,
             yearly_price: pageData.sec_tab_yearly_price,
             yearly_price_currency: pageData.sec_tab_yearly_price_currency,
-            free_features_sub_title: pageData.sec_tab_free_features_sub_title,
-            free_features_desc: pageData.sec_tab_free_features_desc,
+            features_sub_title: pageData.sec_tab_free_features_sub_title,
+            free_features_desc: Array.isArray(pageData.sec_tab_free_features_desc)
+              ? pageData.sec_tab_free_features_desc
+              : [],
             btn_txt: pageData.sec_tab_btn_txt,
-            features_title: pageData.sec_tab_features_title || 'Features', // Add missing field
+            features_title: pageData.sec_tab_free_features_title || 'Features', // Add missing field
             premium_features_title: pageData.sec_tab_premium_features_title || 'Premium Features', // Add missing field
             premium_features_desc: pageData.sec_tab_premium_features_desc || [], // Default to empty array
           },
@@ -231,23 +257,28 @@ export class AddPricingPageComponent implements OnInit, OnDestroy {
             monthly_price_currency: pageData.third_tab_monthly_price_currency,
             yearly_price: pageData.third_tab_yearly_price,
             yearly_price_currency: pageData.third_tab_yearly_price_currency,
-            free_features_sub_title: pageData.third_tab_free_features_sub_title,
-            free_features_desc: pageData.third_tab_free_features_desc,
+            features_sub_title: pageData.third_tab_free_features_sub_title,
+            free_features_desc: Array.isArray(pageData.third_tab_free_features_desc)
+              ? pageData.third_tab_free_features_desc
+              : [],
             btn_txt: pageData.third_tab_btn_txt,
-            features_title: pageData.third_tab_features_title || 'Features', // Add missing field
+            features_title: pageData.third_tab_free_features_title || 'Features', // Add missing field
             premium_features_title: pageData.third_tab_premium_features_title || 'Premium Features', // Add missing field
             premium_features_desc: pageData.third_tab_premium_features_desc || [], // Default to empty array
           },
           page_type: response.data.page_type,
         };
 
-        console.log(this.formData)
+        // console.log(this.formData.first_tab.free_features_desc)
         // Update banner image preview
         this.bannerImagePreview = response.data.base_url + pageData.banner_img;
+        // this.formData.first_tab.free_features_desc = first_tab_free_features_desc;
+        // this.formData.sec_tab.free_features_desc = sec_tab_free_features_desc;
+        // this.formData.third_tab.free_features_desc = third_tab_free_features_desc;
       }
     });
   }
-  
+
 
   // Add feature for the second tab (premium features)
   addSecTabPremiumFeature() {
@@ -275,13 +306,6 @@ export class AddPricingPageComponent implements OnInit, OnDestroy {
     this.formData.sec_tab.free_features_desc.splice(index, 1);
   }
 
-  addFirstTabDescFeature(): void {
-    this.formData.first_tab.free_features_desc.push([]);
-  }
-
-  removeFirstTabDescFeature(index: number): void {
-    this.formData.first_tab.free_features_desc.splice(index, 1);
-  }
 
   add_premium_features_desc(): void {
     this.formData.first_tab.premium_features_desc.push([]);
@@ -316,5 +340,55 @@ export class AddPricingPageComponent implements OnInit, OnDestroy {
   // Remove a feature from the first tab (free features)
   removeThirdTabDescFeature(index: number) {
     this.formData.third_tab.free_features_desc.splice(index, 1);
+  }
+
+  // Amrit Code 
+  addFirstTabDescFeature(): void {
+    console.log(this.formData.first_tab.free_features_desc.length)
+    if (!Array.isArray(this.formData.first_tab.free_features_desc)) {
+      this.formData.first_tab.free_features_desc = []; // Ensure it's an array
+      console.log('total features ' + this.formData.first_tab.free_features_desc.length)
+    }
+    this.formData.first_tab.free_features_desc.push(''); // Add empty string for input
+  }
+
+  removeFirstTabDescFeature(index: number): void {
+    if (Array.isArray(this.formData.first_tab.free_features_desc)) {
+      this.formData.first_tab.free_features_desc.splice(index, 1);
+    }
+  }
+
+  trackByFn(index: number, item: any): number {
+    return index; // Tracks items by index to prevent re-rendering
+  }
+
+  handleFileInput(event: any, fieldName: string): void {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const imageUrl = reader.result as string;
+
+        // Assign the preview URL to the corresponding field
+        if (fieldName === 'pricing_banner_img') {
+          this.pricing_banner_img = imageUrl;
+          this.bannerBgImagePreview = imageUrl;
+          this.bannerBgImagePreview = this.bannerBgImagePreview.replace('https://api.socceryou.ch/uploads/frontend/', '');
+        }
+      };
+      reader.readAsDataURL(file);
+
+      // Update formData
+      this.formData[fieldName] = file;
+      // alert(file)
+    }
+  }
+
+  removeBannerImage(fieldName: string): void {
+    this.formData[fieldName] = 'remove_image';
+    if (fieldName == 'about_banner_bg_img') {
+      this.pricing_banner_img = 'remove_image';
+      this.bannerBgImagePreview = false;
+    }
   }
 }
