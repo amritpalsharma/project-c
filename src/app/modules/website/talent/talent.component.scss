@@ -3846,6 +3846,8 @@ span {
 
 }
 
+
+
 @media (min-width: 992px) {
     .banner_image_combo img {
         width: 52%;
@@ -3855,6 +3857,14 @@ span {
         top: 130px;
         object-fit: cover;
         object-position: top left;
+    }
+    .talent_tab_image img.single_tab_img {
+        width: 48%;
+        max-height: 100%;
+        position: absolute;
+        right: 0;
+        top: 0;
+        object-fit: contain;
     }
 }
 
@@ -3874,6 +3884,10 @@ span {
     .banner_image_combo img {
         width: 100%;
         margin-top: 1.5rem;
+    }
+    .talent_tab_image img.single_tab_img {
+        width: 100%;
+        object-fit: contain;
     }
 }
 
