@@ -261,9 +261,9 @@
 
                   <div class="player-list-image">
                     <img *ngIf="currentTheme == 'light'"
-                      src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[0]?.images}}">
+                      src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[0]?.images}}" loading="lazy">
                     <img *ngIf="currentTheme == 'dark'"
-                      src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[0]?.darkImages}}">
+                      src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[0]?.darkImages}}" loading="lazy">
                   </div>
                 </div>
               </div>
@@ -274,9 +274,9 @@
                 <div class="row">
                   <div class="football-club player-list-image">
                     <img *ngIf="currentTheme == 'light'"
-                      src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[1]?.images}}">
+                      src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[1]?.images}}" loading="lazy">
                     <img *ngIf="currentTheme == 'dark'"
-                      src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[1]?.darkImages}}">
+                      src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[1]?.darkImages}}" loading="lazy">
                   </div>
                 </div>
               </div>
@@ -287,9 +287,9 @@
               <div class="player3" *ngIf="selectedContent === 'Success & Progression'" @slideIn>
                 <div class="message-panels player-list-image">
                   <img *ngIf="currentTheme == 'light'"
-                    src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[2]?.images}}">
+                    src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[2]?.images}}" loading="lazy">
                   <img *ngIf="currentTheme == 'dark'"
-                    src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[2]?.darkImages}}">
+                    src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[2]?.darkImages}}" loading="lazy">
                 </div>
               </div>
             </div>
@@ -300,9 +300,9 @@
                 <div class="row">
                   <div class="player-list-images">
                     <img *ngIf="currentTheme == 'light'"
-                      src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[0]?.images}}">
+                      src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[0]?.images}}" loading="lazy">
                     <img *ngIf="currentTheme == 'dark'"
-                      src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[0]?.darkImages}}">
+                      src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[0]?.darkImages}}" loading="lazy">
                   </div>
                 </div>
               </div>
@@ -312,8 +312,8 @@
               <div class="player2" *ngIf="selectedContent === 'Networking & Opportunity'" @slideIn>
                 <div class="row">
                   <div class="player-list-image">
-                    <img *ngIf="currentTheme == 'light'" src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[1]?.images}}">
-                    <img *ngIf="currentTheme == 'dark'" src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[1]?.darkImages}}">
+                    <img *ngIf="currentTheme == 'light'" src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[1]?.images}}" loading="lazy">
+                    <img *ngIf="currentTheme == 'dark'" src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[1]?.darkImages}}" loading="lazy">
                   </div>
                 </div>
               </div>
@@ -325,8 +325,8 @@
                 <div class="row">
 
                   <div class="player-list-image">
-                    <img *ngIf="currentTheme == 'light'" src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[2]?.images}}">
-                    <img *ngIf="currentTheme == 'dark'" src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[2]?.darkImages}}">
+                    <img *ngIf="currentTheme == 'light'" src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[2]?.images}}" loading="lazy">
+                    <img *ngIf="currentTheme == 'dark'" src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[2]?.darkImages}}" loading="lazy">
                   </div>
                 </div>
               </div>

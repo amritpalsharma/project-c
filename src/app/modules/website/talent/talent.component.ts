@@ -1,3 +1,12 @@
+interface FeatureSection {
+  title: string;
+  desc: string;
+  icon: string;
+  dark_icon: string;
+  image: string;
+  dark_image: string;
+}
+
 import { Component } from '@angular/core';
 import { WebPages } from '../../../services/webpages.service';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
@@ -8,12 +17,18 @@ import { GlobalSettingsService } from '../../../services/global-settings.service
   templateUrl: './talent.component.html',
   styleUrl: './talent.component.scss'
 })
+
 export class TalentComponent {
+
   isActive1 = true; // Premium Plan
   isActive2 = true; // Multi-Country Plan
   isActive3 = true; // Multi-Country Plan
+  accordinCurrentIndex = 0;
   dynamicTexts: string[] = []
+  feature_sctn: [] = [];
   baseUrl: string = '';
+  currentFeatureImage = '';
+
   pageData: any = [{
     banner_title: '',
     banner_desc: '',
@@ -71,7 +86,7 @@ export class TalentComponent {
     });
 
     this.globalSettings.indexFunctionCall$.subscribe(() => {
-      this.indexFunction(); // Call the function when event is received
+      this.ThemeUpdated(); // Call the function when event is received
     });
   }
 
@@ -133,7 +148,8 @@ export class TalentComponent {
         this.baseUrl = res.data.base_url;
         this.advertisementData = res.data.advertisementData;
         // this.advertisementData = null;
-
+        // console.warn(this.pageData.feature_sctn)
+        this.feature_sctn = this.pageData.feature_sctn;
         this.isLoading = false;
         if (this.currentTheme == 'dark') {
           this.pageData.banner_bg_img = this.pageData.banner_bg_img;
@@ -146,6 +162,7 @@ export class TalentComponent {
         this.pageData.pricing_tab.forEach((_: any, index: number) => {
           this.isActivePlan[index] = false; // Default to "Monthly"
         });
+        this.getArrayItemByIndex(this.accordinCurrentIndex, 'image');
       }
     });
   }
@@ -312,7 +329,31 @@ export class TalentComponent {
     return index; // Tracks items by index to prevent re-rendering
   }
 
-  indexFunction() {
+  ThemeUpdated() {
+    this.getArrayItemByIndex(this.accordinCurrentIndex, 'image');
     this.currentTheme = localStorage.getItem('theme') + '';
   }
+
+  getArrayItemByIndex(index: number, field: keyof FeatureSection) {
+    let theme = localStorage.getItem('theme');
+    // alert(index);
+    if (index >= 0 && index < this.feature_sctn.length) {
+      this.accordinCurrentIndex = index;
+      if (theme == 'dark') {
+        this.currentFeatureImage = this.feature_sctn[index]['dark_image'];
+      } else {
+        this.currentFeatureImage = this.feature_sctn[index]['image'];
+      }
+      if (this.currentFeatureImage != '') {
+        this.currentFeatureImage = this.baseUrl + this.currentFeatureImage;
+      }
+      console.warn('Index is ' + index + ' Image is ' + this.currentFeatureImage)
+      // console.warn(this.feature_sctn[index]) 
+      // alert(this.currentFeatureImage)
+      // this.currentFeatureImage = this.feature_sctn[index][field]; // ✅ TypeScript now recognizes 'field' as valid
+      //return this.feature_sctn[index][field]; // ✅ TypeScript now recognizes 'field' as valid
+    }
+    // return null;
+  }
+
 }

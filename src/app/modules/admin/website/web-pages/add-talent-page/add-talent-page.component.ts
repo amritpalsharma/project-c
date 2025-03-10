@@ -361,6 +361,8 @@ export class AddTalentPageComponent implements OnInit {
             desc: feature.desc,
             iconPreview: response.data.base_url + feature.icon,
             DarkiconPreview: response.data.base_url + feature.dark_icon,
+            imgPreview: response.data.base_url + feature.image,
+            darkimgPreview: response.data.base_url + feature.dark_image,  
           }));
         }
 

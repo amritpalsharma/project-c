@@ -1,7 +1,8 @@
 <section class="website-code">
     <div class="main">
         <!-- <app-header></app-header> -->
-        <div class="banner py-0" style="background-image: url('{{baseUrl + pageData?.banner_bg_img}}');">
+        <div class="banner py-0" [style.background-image]="'url(' + baseUrl + (currentTheme === 'dark' ? pageData?.banner_bg_img_dark_mode : pageData?.banner_bg_img) + ')'">
+        <!-- <div class="banner py-0" style="background-image: url('{{baseUrl + pageData?.banner_bg_img}}');"> -->
             <div class="overlay1"></div>
 
             <div *ngIf="checkActive('skyscraper')  && !isLoading" class="skyscraper-left">
@@ -34,257 +35,11 @@
                         </div>
 
                         <div class="col-lg-8 col-md-12 col-12">
-                            <div class="player-cols d-none">
-                                <div class="player-col-1">
-                                    <div class="player-member1">
-                                        <div class="player1">
-                                            <div class="player-img">
-                                                <img src="./assets/images/ziddane.png">
-                                            </div>
-                                            <p class="player-name">Ziddane</p>
-                                        </div>
-                                        <div class="corner-image">
-                                            <img src="./assets/images/FC Thun 1.png">
-                                        </div>
-                                        <div class="flag">
-                                            <div class="flag-image">
-                                                <img src="./assets/images/flag.svg" class="flag-img">
-                                                <div class="bottom-line"></div>
-                                                <div class="flag-bottom">
-                                                    <img src="./assets/images/birthday.svg" class="birthday-img">
-                                                    <p class="d-o-b">2004</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="player-member2">
-                                        <div class="player1">
-                                            <div class="player-img">
-                                                <img src="./assets/images/cristo-ronaldo.png">
-                                            </div>
-                                            <p class="player-name1">Cristiano Ronaldo</p>
-                                        </div>
-                                        <div class="corner-image2">
-                                            <img src="./assets/images/FC Thun 1.png">
-                                        </div>
-                                        <div class="flag">
-                                            <div class="flag-image1">
-                                                <img src="./assets/images/flag.svg" class="flag-img">
-                                                <div class="bottom-line"></div>
-                                                <div class="flag-bottom">
-                                                    <img src="./assets/images/birthday.svg" class="birthday-img">
-                                                    <p class="d-o-b">2004</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="player-member3">
-                                        <div class="player3">
-                                            <div class="player-img3">
-                                                <img src="./assets/images/blue-tshirt.png">
-                                            </div>
-                                            <p class="player-name1">Cristiano Ronaldo</p>
-                                        </div>
-                                        <div class="corner-image3">
-                                            <img src="./assets/images/FC Thun 1.png">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="player-col-2">
-                                    <div class="player-member4">
-                                        <div class="player1">
-                                            <div class="player-img">
-                                                <img src="./assets/images/Ronaldinho Gaúcho.png">
-                                            </div>
-                                            <p class="player-name">Ronaldinho Gaúcho
-                                            </p>
-                                        </div>
-                                        <div class="corner-image4">
-                                            <img src="./assets/images/FC Thun 1.png">
-                                        </div>
-                                        <div class="flag">
-                                            <div class="flag-image4">
-                                                <img src="./assets/images/flag.svg" class="flag-img">
-                                                <div class="bottom-line"></div>
-                                                <div class="flag-bottom">
-                                                    <img src="./assets/images/birthday.svg" class="birthday-img">
-                                                    <p class="d-o-b">2004</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="player-member5">
-                                        <div class="player1">
-                                            <div class="player-img">
-                                                <img src="./assets/images/Jermain Defoe.png">
-                                            </div>
-                                            <p class="player-name1">Jermain Defoe</p>
-                                        </div>
-                                        <div class="corner-image5">
-                                            <img src="./assets/images/FC Thun 1.png">
-                                        </div>
-                                        <div class="flag">
-                                            <div class="flag-image5">
-                                                <img src="./assets/images/flag.svg" class="flag-img">
-                                                <div class="bottom-line"></div>
-                                                <div class="flag-bottom">
-                                                    <img src="./assets/images/birthday.svg" class="birthday-img">
-                                                    <p class="d-o-b">2004</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="player-member6">
-                                        <div class="player1">
-                                            <div class="player-img">
-                                                <img src="./assets/images/jammie.png">
-                                            </div>
-                                            <p class="player-name3">Jamie Vardy</p>
-                                        </div>
-                                        <div class="corner-image6">
-                                            <img src="./assets/images/FC Thun 1.png">
-                                        </div>
-                                        <div class="flag">
-                                            <div class="flag-image6">
-                                                <img src="./assets/images/flag.svg" class="flag-img">
-                                                <div class="bottom-line"></div>
-                                                <div class="flag-bottom">
-                                                    <img src="./assets/images/birthday.svg" class="birthday-img">
-                                                    <p class="d-o-b">2004</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="player-col-3">
-                                    <div class="player-member7">
-                                        <div class="player1">
-                                            <div class="player-img">
-                                                <img src="./assets/images/Gabriel Jesus.png">
-                                            </div>
-                                            <p class="player-name7">Gabriel Jesus
-                                            </p>
-                                        </div>
-                                        <div class="corner-image7">
-                                            <img src="./assets/images/FC Thun 1.png">
-                                        </div>
-                                        <div class="flag">
-                                            <div class="flag-image7">
-                                                <img src="./assets/images/flag.svg" class="flag-img">
-                                                <div class="bottom-line"></div>
-                                                <div class="flag-bottom">
-                                                    <img src="./assets/images/birthday.svg" class="birthday-img">
-                                                    <p class="d-o-b">2004</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="player-member8">
-                                        <div class="player1">
-                                            <div class="player-img">
-                                                <img src="./assets/images/mohamad.png">
-                                            </div>
-                                            <p class="player-name8">Mohamed Salah</p>
-                                        </div>
-                                        <div class="corner-image8">
-                                            <img src="./assets/images/FC Thun 1.png">
-                                        </div>
-                                        <div class="flag">
-                                            <div class="flag-image8">
-                                                <img src="./assets/images/flag.svg" class="flag-img">
-                                                <div class="bottom-line"></div>
-                                                <div class="flag-bottom">
-                                                    <img src="./assets/images/birthday.svg" class="birthday-img">
-                                                    <p class="d-o-b">2004</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="player-member9">
-                                        <div class="player2">
-                                            <div class="player-img">
-                                                <img src="./assets/images/club-player1.png">
-                                            </div>
-                                            <p class="player-name9"></p>
-                                        </div>
-                                        <div class="corner-image9">
-                                            <img src="./assets/images/FC Thun 1.png">
-                                        </div>
-                                        <div class="flag">
-                                            <div class="flag-image9">
-                                                <img src="./assets/images/flag.svg" class="flag-img">
-                                                <div class="bottom-line"></div>
-                                                <div class="flag-bottom">
-                                                    <img src="./assets/images/birthday.svg" class="birthday-img">
-                                                    <p class="d-o-b">2004</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="player-col-4">
-                                    <div class="player-member11">
-                                        <div class="player10">
-                                            <div class="player-img">
-                                                <img class="half-image" src="./assets/images/club-player2.png">
-                                                <img class="full-image" src="./assets/images/Bukayo Saka.png">
-                                            </div>
-                                            <p class="player-name10">Bu
-                                            </p>
-                                            <p class="player-name_full_10">Bukayo Saka</p>
-                                        </div>
-                                        <div class="corner-image4">
-                                            <img src="./assets/images/FC Thun 1.png">
-                                        </div>
-                                        <div class="flag">
-                                            <div class="flag-image10">
-                                                <img src="./assets/images/flag.svg" class="flag-img">
-                                                <div class="bottom-line"></div>
-                                                <div class="flag-bottom">
-                                                    <img src="./assets/images/birthday.svg" class="birthday-img">
-                                                    <p class="d-o-b">2004</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="player-member12">
-                                        <div class="player10">
-                                            <div class="player-img">
-                                                <img class="half-image" src="./assets/images/club-player3.png">
-                                                <img class="full-image" src="./assets/images/Adam Lallana.png">
-                                            </div>
-                                            <p class="player-name11">Ad</p>
-                                            <p class="player-name_full_11">Adam Lallana</p>
-                                        </div>
-                                        <div class="corner-image5">
-                                            <img src="./assets/images/FC Thun 1.png">
-                                        </div>
-                                        <div class="flag">
-                                            <div class="flag-image11">
-                                                <img src="./assets/images/flag.svg" class="flag-img">
-                                                <div class="bottom-line"></div>
-                                                <div class="flag-bottom">
-                                                    <img src="./assets/images/birthday.svg" class="birthday-img">
-                                                    <p class="d-o-b">2004</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
                             <div class="banner_image_combo">
-                                <img src="./assets/images/Talent-banner-neww.png" />
+                                <img *ngIf="pageData?.banner_img != '' && currentTheme == 'light'"
+                                    src="{{baseUrl + pageData?.banner_img}}" />
+                                <img *ngIf="pageData?.banner_img_dark_mode != '' && currentTheme == 'dark'"
+                                    src="{{baseUrl + pageData?.banner_img_dark_mode}}" />
                             </div>
                         </div>
                     </div>
@@ -346,13 +101,13 @@
                             <h3 class="feature-heading3">{{pageData?.feature_sctn_title}}</h3>
                             <div class="accordion" id="accordionExample">
                                 <ng-container *ngFor="let feature of pageData.feature_sctn; let i = index">
-                                    <div class="accordion-item" (click)="setActiveAccordion(i+1)">
+                                    <div class="accordion-item" (click)="getArrayItemByIndex(i,'dark_image')">
                                         <div class="accordion-flex" data-bs-toggle="collapse"
                                             [attr.data-bs-target]="'#collapse' + (i + 1)" aria-expanded="false"
                                             [attr.aria-controls]="'collapse' + (i + 1)">
                                             <img class="light-feature1" src="{{baseUrl + feature.icon}}">
                                             <img class="dark-feature1" src="{{baseUrl + feature.dark_icon}}">
-                                            <h2 class="accordion-header">
+                                            <h2 class="accordion-header" (click)="getArrayItemByIndex(i,'dark_image')">
                                                 {{feature.title}}
                                             </h2>
                                             <button class="accordion-button collapsed" type="button"
@@ -375,147 +130,37 @@
                     </div>
 
                     <div class="col-lg-6 col-md-12 col-12">
-                        <div class="accordion-banner">
-                            <div class="feature-players" *ngIf="activeAccordionIndex === 1">
-                                <div class="feature-player1">
-                                    <div class="player1">
-                                        <div class="player-img">
-                                            <img src="./assets/images/ziddane.png">
-                                        </div>
-                                        <p class="player-name1">Ziddane</p>
-                                    </div>
-                                    <div class="corner-image">
-                                        <img src="./assets/images/FC Thun 1.png">
-                                    </div>
-                                    <div class="flag">
-                                        <div class="flag-image">
-                                            <img src="./assets/images/flag.svg" class="flag-img">
-                                            <div class="bottom-line"></div>
-                                            <div class="flag-bottom">
-                                                <img src="./assets/images/birthday.svg" class="birthday-img">
-                                                <p class="d-o-b">2004</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="feature-player2">
-                                    <div class="player2">
-                                        <div class="player-img">
-                                            <img src="./assets/images/Ronaldinho Gaúcho.png">
-                                        </div>
-                                        <p class="player-name2">Ronaldinho Gaúcho
-                                        </p>
-                                    </div>
-                                    <div class="corner-image4">
-                                        <img src="./assets/images/FC Thun 1.png">
-                                    </div>
-                                    <div class="flag">
-                                        <div class="flag-image4">
-                                            <img src="./assets/images/flag.svg" class="flag-img">
-                                            <div class="bottom-line"></div>
-                                            <div class="flag-bottom">
-                                                <img src="./assets/images/birthday.svg" class="birthday-img">
-                                                <p class="d-o-b">2004</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="feature-player3">
-                                    <div class="player3">
-                                        <div class="player-img">
-                                            <img src="./assets/images/Gabriel Jesus.png">
-                                        </div>
-                                        <p class="player-name3">Gabriel Jesus
-                                        </p>
-                                    </div>
-                                    <div class="corner-image7">
-                                        <img src="./assets/images/FC Thun 1.png">
-                                    </div>
-                                    <div class="flag">
-                                        <div class="flag-image7">
-                                            <img src="./assets/images/flag.svg" class="flag-img">
-                                            <div class="bottom-line"></div>
-                                            <div class="flag-bottom">
-                                                <img src="./assets/images/birthday.svg" class="birthday-img">
-                                                <p class="d-o-b">2004</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="button1">
-                                    <button mat-icon-button>
-                                        <mat-icon>Foot: Left, Right</mat-icon>
-                                        <i class="fa-solid fa-xmark"></i>
-                                    </button>
-                                </div>
-                                <div class="button2">
-                                    <button mat-icon-button>
-                                        <mat-icon>Location: Switzerland</mat-icon>
-                                        <i class="fa-solid fa-xmark"></i>
-                                    </button>
-                                </div>
-                                <div class="button3">
-                                    <button mat-icon-button>
-                                        <mat-icon>Age: 15, 16</mat-icon>
-                                        <i class="fa-solid fa-xmark"></i>
-                                    </button>
-                                </div>
-                                <div class="button4">
-                                    <button mat-icon-button>
-                                        <mat-icon>Top Speed: 20-25 km/h</mat-icon>
-                                        <i class="fa-solid fa-xmark"></i>
-                                    </button>
+                        <div class="club_page_accordion">
+                            <div class="feature-players">
+                                <div class="talent_tab_image">
+                                    <img class="single_tab_img light-images" src="{{currentFeatureImage}}">
+                                    <img class="single_tab_img dark-images" src="{{currentFeatureImage}}">
                                 </div>
                             </div>
-
+                            <!-- <div class="feature-players" *ngIf="activeAccordionIndex === 1">
+                                <div class="talent_tab_image">
+                                    <img class="single_tab_img light-images" src="./assets/images/foto-club-dark-1.png">
+                                    <img class="single_tab_img dark-images" src="./assets/images/foto-club-dark-1.png">
+                                </div>
+                            </div>
                             <div class="club-offer" *ngIf="activeAccordionIndex === 2">
-                                <div class="club-offers1">
-                                    <img class="light-images" src="./assets/images/club-scouts5.png">
-                                    <img class="dark-images" src="./assets/images/dark-design5.PNG">
-                                </div>
-                                <div class="club-offers3">
-                                    <img class="light-images" src="./assets/images/profile-scroll.png">
-                                    <img class="dark-images" src="./assets/images/dark-profile-scroll.png">
+                                <div class="talent_tab_image">
+                                    <img class="single_tab_img light-images" src="./assets/images/foto-club-dark-2.png">
+                                    <img class="single_tab_img dark-images" src="./assets/images/foto-club-dark-2.png">
                                 </div>
                             </div>
-
                             <div *ngIf="activeAccordionIndex === 3">
-                                <div class="accodian-box2-images">
-                                    <div class="accodian-image1">
-                                        <img class="light-images" src="./assets/images/accodian1.png">
-                                        <img class="dark-images" src="./assets/images/dark-accodian1.png">
-                                    </div>
-                                    <div class="accodian-image2">
-                                        <img class="light-images" src="./assets/images/accodian2.png">
-                                        <img class="dark-images" src="./assets/images/dark-accodian2.png">
-                                    </div>
-                                    <div class="accodian-image3">
-                                        <img class="light-images" src="./assets/images/accodian3.png">
-                                        <img class="dark-images" src="./assets/images/dark-accodian3.png">
-                                    </div>
-
+                                <div class="talent_tab_image">
+                                    <img class="single_tab_img light-images" src="./assets/images/foto-club-dark-3.png">
+                                    <img class="single_tab_img dark-images" src="./assets/images/foto-club-dark-3.png">
                                 </div>
                             </div>
-
                             <div *ngIf="activeAccordionIndex === 4">
-                                <div class="networking-images">
-                                    <div class="networking-images1">
-                                        <img class="light-images" src="./assets/images/network1.png">
-                                        <img class="dark-images" src="./assets/images/dark-network1.png">
-                                    </div>
-                                    <div class="networking-images2">
-                                        <img class="light-images" src="./assets/images/network2.png">
-                                        <img class="dark-images" src="./assets/images/dark-network2.png">
-                                    </div>
-                                    <div class="networking-images3">
-                                        <img class="light-images" src="./assets/images/network3.png">
-                                        <img class="dark-images" src="./assets/images/dark-network3.png">
-                                    </div>
+                                <div class="talent_tab_image">
+                                    <img class="single_tab_img light-images" src="./assets/images/foto-club-dark-4.png">
+                                    <img class="single_tab_img dark-images" src="./assets/images/foto-club-dark-4.png">
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -548,103 +193,11 @@
                                         <div class="accordion-body">
                                             <p class="feature-text">Browse a comprehensive database of football talents
                                                 with detailed profiles and filtering options.</p>
-
-                                            <div class="feature-players">
-                                                <div class="feature-player1">
-                                                    <div class="player1">
-                                                        <div class="player-img">
-                                                            <img src="./assets/images/ziddane.png">
-                                                        </div>
-                                                        <p class="player-name1">Ziddane</p>
-                                                    </div>
-                                                    <div class="corner-image">
-                                                        <img src="./assets/images/FC Thun 1.png">
-                                                    </div>
-                                                    <div class="flag">
-                                                        <div class="flag-image">
-                                                            <img src="./assets/images/flag.svg" class="flag-img">
-                                                            <div class="bottom-line"></div>
-                                                            <div class="flag-bottom">
-                                                                <img src="./assets/images/birthday.svg"
-                                                                    class="birthday-img">
-                                                                <p class="d-o-b">2004</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="feature-player2">
-                                                    <div class="player2">
-                                                        <div class="player-img">
-                                                            <img src="./assets/images/Ronaldinho Gaúcho.png">
-                                                        </div>
-                                                        <p class="player-name2">Ronaldinho Gaúcho
-                                                        </p>
-                                                    </div>
-                                                    <div class="corner-image4">
-                                                        <img src="./assets/images/FC Thun 1.png">
-                                                    </div>
-                                                    <div class="flag">
-                                                        <div class="flag-image4">
-                                                            <img src="./assets/images/flag.svg" class="flag-img">
-                                                            <div class="bottom-line"></div>
-                                                            <div class="flag-bottom">
-                                                                <img src="./assets/images/birthday.svg"
-                                                                    class="birthday-img">
-                                                                <p class="d-o-b">2004</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="feature-player3">
-                                                    <div class="player3">
-                                                        <div class="player-img">
-                                                            <img src="./assets/images/Gabriel Jesus.png">
-                                                        </div>
-                                                        <p class="player-name3">Gabriel Jesus
-                                                        </p>
-                                                    </div>
-                                                    <div class="corner-image7">
-                                                        <img src="./assets/images/FC Thun 1.png">
-                                                    </div>
-                                                    <div class="flag">
-                                                        <div class="flag-image7">
-                                                            <img src="./assets/images/flag.svg" class="flag-img">
-                                                            <div class="bottom-line"></div>
-                                                            <div class="flag-bottom">
-                                                                <img src="./assets/images/birthday.svg"
-                                                                    class="birthday-img">
-                                                                <p class="d-o-b">2004</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="button1">
-                                                    <button mat-icon-button>
-                                                        <mat-icon>Foot: Left, Right</mat-icon>
-                                                        <i class="fa-solid fa-xmark"></i>
-                                                    </button>
-                                                </div>
-                                                <div class="button2">
-                                                    <button mat-icon-button>
-                                                        <mat-icon>Location: Switzerland</mat-icon>
-                                                        <i class="fa-solid fa-xmark"></i>
-                                                    </button>
-                                                </div>
-                                                <div class="button3">
-                                                    <button mat-icon-button>
-                                                        <mat-icon>Age: 15, 16</mat-icon>
-                                                        <i class="fa-solid fa-xmark"></i>
-                                                    </button>
-                                                </div>
-                                                <div class="button4">
-                                                    <button mat-icon-button>
-                                                        <mat-icon>Top Speed: 20-25 km/h</mat-icon>
-                                                        <i class="fa-solid fa-xmark"></i>
-                                                    </button>
-                                                </div>
+                                            <div class="talent_tab_image">
+                                                <img class="single_tab_img light-images"
+                                                    src="./assets/images/foto-club-dark-1.png">
+                                                <img class="single_tab_img dark-images"
+                                                    src="./assets/images/foto-club-dark-1.png">
                                             </div>
                                         </div>
                                     </div>
@@ -666,19 +219,13 @@
                                         <div class="accordion-body">
                                             <p class="feature-text"> View in-depth profiles of players, including
                                                 statistics, achievements, and personal information.</p>
-                                        </div>
-                                        <div class="club-scout-box">
-                                            <div class="club-offers1">
-                                                <img class="light-images" src="./assets/images/club-scouts5.png">
-                                                <img class="dark-images" src="./assets/images/dark-design5.PNG">
-                                            </div>
-                                            <div class="club-offers3">
-                                                <img class="light-images" src="./assets/images/profile-scroll.png">
-                                                <img class="dark-images" src="./assets/images/dark-profile-scroll.png">
+                                            <div class="talent_tab_image">
+                                                <img class="single_tab_img light-images"
+                                                    src="./assets/images/foto-club-dark-2.png">
+                                                <img class="single_tab_img dark-images"
+                                                    src="./assets/images/foto-club-dark-2.png">
                                             </div>
                                         </div>
-
-
                                     </div>
                                 </div>
 
@@ -701,27 +248,11 @@
                                         <div class="accordion-body">
                                             <p class="feature-text">Access highlight videos and match reports to stay
                                                 updated on player performances.</p>
-
-
-                                            <div>
-                                                <div class="accodian-box2-images">
-                                                    <div class="accodian-image1">
-                                                        <img class="light-images" src="./assets/images/accodian1.png">
-                                                        <img class="dark-images"
-                                                            src="./assets/images/dark-accodian1.png">
-                                                    </div>
-                                                    <div class="accodian-image2">
-                                                        <img class="light-images" src="./assets/images/accodian2.png">
-                                                        <img class="dark-images"
-                                                            src="./assets/images/dark-accodian2.png">
-                                                    </div>
-                                                    <div class="accodian-image3">
-                                                        <img class="light-images" src="./assets/images/accodian3.png">
-                                                        <img class="dark-images"
-                                                            src="./assets/images/dark-accodian3.png">
-                                                    </div>
-
-                                                </div>
+                                            <div class="talent_tab_image">
+                                                <img class="single_tab_img light-images"
+                                                    src="./assets/images/foto-club-dark-3.png">
+                                                <img class="single_tab_img dark-images"
+                                                    src="./assets/images/foto-club-dark-3.png">
                                             </div>
                                         </div>
                                     </div>
@@ -747,24 +278,11 @@
                                         <div class="accordion-body">
                                             <p class="feature-text">Connect with clubs, scouts, and players from around
                                                 the world for unique networking opportunities.</p>
-                                            <div>
-                                                <div class="networking-images">
-                                                    <div class="networking-images1">
-                                                        <img class="light-images" src="./assets/images/network1.png">
-                                                        <img class="dark-images"
-                                                            src="./assets/images/dark-network1.png">
-                                                    </div>
-                                                    <div class="networking-images2">
-                                                        <img class="light-images" src="./assets/images/network2.png">
-                                                        <img class="dark-images"
-                                                            src="./assets/images/dark-network2.png">
-                                                    </div>
-                                                    <div class="networking-images3">
-                                                        <img class="light-images" src="./assets/images/network3.png">
-                                                        <img class="dark-images"
-                                                            src="./assets/images/dark-network3.png">
-                                                    </div>
-                                                </div>
+                                            <div class="talent_tab_image">
+                                                <img class="single_tab_img light-images"
+                                                    src="./assets/images/foto-club-dark-4.png">
+                                                <img class="single_tab_img dark-images"
+                                                    src="./assets/images/foto-club-dark-4.png">
                                             </div>
                                         </div>
                                     </div>

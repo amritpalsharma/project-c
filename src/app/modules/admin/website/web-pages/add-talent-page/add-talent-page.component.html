@@ -158,7 +158,7 @@
           <textarea class="form-control" id="firstTabTxt" name="talent_section[first_tab][txt]" rows="2"
             [(ngModel)]="formData.talent_section.first_tab.txt"></textarea>
         </div>
-        <div class="mb-3">
+        <div class="mb-3 d-none" style="display: none;">
           <label for="firstTabIcon" class="form-label">{{ 'icon' | translate }}:</label>
           <input type="file" class="form-control" id="firstTabIcon" name="talent_section[first_tab][icon]"
             accept="image/*" (change)="onIconFileChange($event, 'first_tab')" />
@@ -176,7 +176,7 @@
           </div>
         </div>
         <!-- Dark Mode -->
-        <div class="mb-3">
+        <div class="mb-3 d-none" style="display: none;">
           <label for="firstTabDarkIcon" class="form-label">{{ 'icon' | translate }}:</label>
           <input type="file" class="form-control" id="firstTabDarkIcon" name="talent_section[first_tab][dark_icon]"
             accept="image/*" (change)="onDarkIconFileChange($event, 'first_tab')" />
@@ -203,7 +203,7 @@
           <textarea class="form-control" id="secTabTxt" name="talent_section[sec_tab][txt]" rows="2"
             [(ngModel)]="formData.talent_section.sec_tab.txt"></textarea>
         </div>
-        <div class="mb-3">
+        <div class="mb-3 d-none" style="display: none;">
           <label for="secTabIcon" class="form-label">{{ 'icon' | translate }}:</label>
           <input type="file" class="form-control" id="secTabIcon" name="talent_section[sec_tab][icon]" accept="image/*"
             (change)="onIconFileChange($event, 'sec_tab')" />
@@ -221,7 +221,7 @@
           </div>
         </div>
         <!-- Dark Mode -->
-        <div class="mb-3">
+        <div class="mb-3 d-none" style="display: none;">
           <label for="secTabDarkIcon" class="form-label">{{ 'icon' | translate }}:</label>
           <input type="file" class="form-control" id="secTabDarkIcon" name="talent_section[sec_tab][dark_icon]"
             accept="image/*" (change)="onDarkIconFileChange($event, 'sec_tab')" />
@@ -248,7 +248,7 @@
           <textarea class="form-control" id="thirdTabTxt" name="talent_section[third_tab][txt]" rows="2"
             [(ngModel)]="formData.talent_section.third_tab.txt"></textarea>
         </div>
-        <div class="mb-3">
+        <div class="mb-3 d-none" style="display: none;">
           <label for="thirdTabIcon" class="form-label">{{ 'icon' | translate }}:</label>
           <input type="file" class="form-control" id="thirdTabIcon" name="talent_section[third_tab][icon]"
             accept="image/*" (change)="onIconFileChange($event, 'third_tab')" />
@@ -266,7 +266,7 @@
           </div>
         </div>
         <!-- Dark icon -->
-        <div class="mb-3">
+        <div class="mb-3" style="display: none;">
           <label for="thirdTabDarkIcon" class="form-label">{{ 'icon' | translate }}:</label>
           <input type="file" class="form-control" id="thirdTabDarkIcon" name="talent_section[third_tab][dark_icon]"
             accept="image/*" (change)="onDarkIconFileChange($event, 'third_tab')" />

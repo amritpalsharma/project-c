@@ -771,7 +771,7 @@ img.birthday-img {
 .club_text {
     padding: 25px 50px 25px 30px;
     border-radius: 10px;
-    height: 200px;
+    height: calc(100% - 100px);
     margin-top: 100px;
 }
 
@@ -2604,7 +2604,6 @@ span {
     .club_text {
         padding: 20px;
         border-radius: 10px;
-        height: 185px;
         margin-top: 100px;
     }
 
@@ -3217,7 +3216,6 @@ span {
 
     .club_text {
         padding: 19px;
-        height: 180px;
     }
 
     h2.accordion-header {
@@ -3549,6 +3547,7 @@ span {
 
     .club_text {
         margin-top: 30px;
+        height: calc(100% - 30px);
     }
 
     .accordion-item::after {
@@ -4630,7 +4629,6 @@ span {
 
     .club_text {
         padding: 30px;
-        height: 180px;
     }
 
     .club-scout.py_0 {
@@ -5832,8 +5830,6 @@ span {
         right: -7%;
         top: 24%;
     }
-
-
 }
 
 
@@ -5846,6 +5842,14 @@ span {
     top: 130px;
     object-fit: cover;
     object-position: top left;
+}
+.talent_tab_image img.single_tab_img {
+    width: 48%;
+    max-height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    object-fit: contain;
 }
 }
 
@@ -5863,8 +5867,12 @@ span {
     margin-right: 0;
 }
 .banner_image_combo img {
-    width: calc(100% + 1.5rem);
+    width: calc(100% + .75rem);
     margin-top: 1.5rem;
+}
+.talent_tab_image img.single_tab_img {
+    width: 100%;
+    object-fit: contain;
 }
 }
 

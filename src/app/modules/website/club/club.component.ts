@@ -1,5 +1,15 @@
+interface FeatureSection {
+  title: string;
+  desc: string;
+  icon: string;
+  dark_icon: string;
+  image: string;
+  dark_image: string;
+}
+
 import { Component } from '@angular/core';
 import { WebPages } from '../../../services/webpages.service';
+import { GlobalSettingsService } from '../../../services/global-settings.service';
 
 @Component({
   selector: 'app-club',
@@ -8,6 +18,10 @@ import { WebPages } from '../../../services/webpages.service';
 })
 export class ClubComponent {
   baseUrl: string = '';
+  currentFeatureImage: string = '';
+  accordinCurrentIndex: number = 0;
+  feature_sctn: any = [];
+  currentTheme: string = localStorage.getItem('theme') + '';
   pageData: any = [{
     banner_title: '',
     banner_desc: '',
@@ -22,6 +36,7 @@ export class ClubComponent {
   // advertisementData:any=null;
   advertisemnet_base_url: string = '';
   isLoading: boolean = true;
+
 
 
   isActive1 = true; // Premium Plan
@@ -44,7 +59,7 @@ export class ClubComponent {
 
   // 
 
-  constructor(private webPages: WebPages) {
+  constructor(private webPages: WebPages, private globalSettings: GlobalSettingsService) {
 
   }
 
@@ -73,7 +88,9 @@ export class ClubComponent {
       this.getCurrencyPrice('monthly');
       this.getCurrencyPrice('yearly');
     });
-
+    this.globalSettings.indexFunctionCall$.subscribe(() => {
+      this.ThemeUpdated(); // Call the function when event is received
+    });
   }
 
 
@@ -144,7 +161,8 @@ export class ClubComponent {
         this.pageData.pricing_tab.forEach((_: any, index: number) => {
           this.isActivePlan[index] = false; // Default to "Monthly"
         });
-
+        this.feature_sctn = this.pageData.feature_sctn;
+        this.getArrayItemByIndex(this.accordinCurrentIndex, 'image');
       }
     });
   }
@@ -334,5 +352,29 @@ export class ClubComponent {
   }
   trackByFn(index: number, item: any): number {
     return index; // Tracks items by index to prevent re-rendering
+  }
+
+  getArrayItemByIndex(index: number, field: keyof FeatureSection) { 
+    // alert('button clicked')
+    let theme = localStorage.getItem('theme');
+    // alert(index);
+    if (index >= 0 && index < this.feature_sctn.length) {
+      this.accordinCurrentIndex = index;
+      if (theme == 'dark') {
+        this.currentFeatureImage = this.feature_sctn[index]['dark_image'];
+      } else {
+        this.currentFeatureImage = this.feature_sctn[index]['image'];
+      }
+      if (this.currentFeatureImage != '') {
+        this.currentFeatureImage = this.baseUrl + this.currentFeatureImage;
+      }
+      // alert(this.currentFeatureImage)
+      console.warn('Index is ' + index + ' Image is ' + this.currentFeatureImage)
+    }
+    console.warn('Index is ' + index + ' Image is ' + this.currentFeatureImage)
+  }
+  ThemeUpdated() {
+    this.getArrayItemByIndex(this.accordinCurrentIndex, 'image');
+    this.currentTheme = localStorage.getItem('theme') + '';
   }
 }

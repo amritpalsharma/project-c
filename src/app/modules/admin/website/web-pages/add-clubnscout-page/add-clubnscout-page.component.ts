@@ -49,7 +49,8 @@ export class AddClubnScoutPageComponent implements OnInit {
     banner_bg_img: null,
     banner_desc: '',
     banner_btn_txt: '',
-    banner_imgs: [],
+    banner_img: [],
+    banner_img_dark_mode: [],
     club_nd_scout_section_title: '',
     club_nd_scout_section: {
       first_tab: [],
@@ -74,7 +75,9 @@ export class AddClubnScoutPageComponent implements OnInit {
   };
 
   bannerBgImagePreview: string | ArrayBuffer | null = null;
-  bannerImagesPreviews: string[] = [];
+  bannerBgImagePreviewDarkMode: string | ArrayBuffer | null = null;
+  bannerImagesPreviews: string | ArrayBuffer | null = null;
+  bannerImagesPreviewsDark: string | ArrayBuffer | null = null;
   bannerImagePreview: string | ArrayBuffer | null = null;
 
   constructor(private webpages: WebPages, public dialogRef: MatDialogRef<AddClubnScoutPageComponent>, private cdr: ChangeDetectorRef) { }
@@ -103,6 +106,9 @@ export class AddClubnScoutPageComponent implements OnInit {
         if (fieldName === 'banner_bg_img') {
           this.bannerBgImagePreview = reader.result; // Preview for the background image
         }
+        if (fieldName === 'banner_bg_img_dark_mode') {
+          this.bannerBgImagePreviewDarkMode = reader.result; // Preview for the background image
+        }
       };
       reader.readAsDataURL(file);
       this.formData[fieldName] = file;
@@ -115,35 +121,32 @@ export class AddClubnScoutPageComponent implements OnInit {
       this.formData.banner_bg_img = 'remove_image';
       this.bannerBgImagePreview = null; // Clear the preview
     }
-    this.imageLoaded = false; // Reset the image loaded state
-  }
-
-  onFileChange(event: any): void {
-    const files = event.target.files;
-    if (files && files.length > 0) {
-      Array.from(files).forEach((file: any) => {
-        const reader = new FileReader();
-        reader.onload = () => {
-          this.bannerImagesPreviews.push(reader.result as string); // Add preview
-        };
-        reader.readAsDataURL(file);
-        this.formData.banner_imgs.push(file); // Add file to formData
-      });
-    }
-  }
-
-  removeSingleImage(index: number): void {
-    this.formData.banner_imgs.splice(index, 1); // Remove file from formData
-    this.bannerImagesPreviews.splice(index, 1); // Remove preview
-  }
-
-  removeImages(fieldName: string): void {
-    if (fieldName === 'banner_imgs') {
-      this.formData.banner_imgs = []; // Clear all files
-      this.bannerImagesPreviews = []; // Clear all previews
+    if (fieldName === 'banner_bg_img_dark_mode') {
+      this.formData.banner_bg_img_dark_mode = 'remove_image';
+      this.bannerBgImagePreviewDarkMode = null; // Clear the preview
     }
     this.imageLoaded = false; // Reset the image loaded state
   }
+
+  onFileChange(event: any, field: string): void {
+    const file = event.target.files[0]; // Get the first file
+  
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (field === 'banner_img') {
+          this.bannerImagesPreviews = reader.result;
+        } else if (field === 'banner_img_dark_mode') {
+          this.bannerImagesPreviewsDark = reader.result;
+        }
+      };
+      reader.readAsDataURL(file); // Read file as Data URL
+      this.formData[field] = file;
+    }
+  }
+  
+
+
 
   submitForm(): void {
     const formData = new FormData();
@@ -169,8 +172,9 @@ export class AddClubnScoutPageComponent implements OnInit {
     };
 
     // Iterate over this.formData and append fields
+    console.info(this.formData)
     for (const key in this.formData) {
-      if (key == 'banner_bg_img' || key == 'banner_imgs' || key == 'club_nd_scout_section' || key == 'feature_sctn') continue;
+      if (key == 'banner_bg_img' || key == 'banner_bg_img_dark_mode' || key == 'banner_img' || key == 'banner_img_dark_mode' || key == 'club_nd_scout_section' || key == 'feature_sctn') continue;
       if (Array.isArray(this.formData[key])) {
         this.formData[key].forEach((item: any, index: number) => {
           if (typeof item === 'object' && item !== null) {
@@ -200,6 +204,7 @@ export class AddClubnScoutPageComponent implements OnInit {
     }
 
     // Append feature section images and icons, excluding iconPreview
+    // console.log()
     this.formData.feature_sctn.forEach((feature: any, index: number) => {
       if (feature.id && feature.id != '') {
         formData.append(`feature_sctn[${index}][id]`, feature.id);
@@ -225,8 +230,12 @@ export class AddClubnScoutPageComponent implements OnInit {
     });
 
     formData.append(`banner_bg_img`, this.formData.banner_bg_img);
-    for (const key in this.formData.banner_imgs) {
-      formData.append('banner_imgs[]', this.formData.banner_imgs[key]);
+    formData.append(`banner_bg_img_dark_mode`, this.formData.banner_bg_img_dark_mode);
+    if (this.formData.banner_img) {
+      formData.append('banner_img', this.formData.banner_img);
+    }
+    if (this.formData.banner_img_dark_mode) {
+      formData.append('banner_img_dark_mode', this.formData.banner_img_dark_mode);
     }
 
     // Append lang_id to FormData
@@ -258,78 +267,9 @@ export class AddClubnScoutPageComponent implements OnInit {
         this.formData.feature_sctn[index].imgPreview = reader.result;
       };
       reader.readAsDataURL(file);
+      this.formData.feature_sctn[index].img = file;
     }
   }
-
-  // getPageById(id: number): void {
-  //   this.webpages.getPageById(id).subscribe((response) => {
-  //     if (response.status) {
-  //       const pageData = response.data.pageData;
-
-  //       // Map general fields
-  //       this.formData.page_type = response.data.page_type;
-  //       this.formData.slug = response.data.slug;
-  //       // this.formData.page_content = pageData.page_content || '';
-  //       this.formData.meta_title = response.data.meta_title;
-  //       this.formData.meta_description = response.data.meta_description;
-  //       this.formData.banner_title = pageData.banner_title || '';
-  //       this.formData.banner_desc = pageData.banner_desc;
-  //       this.formData.banner_btn_txt = pageData.banner_btn_txt;
-  //       this.bannerBgImagePreview = response.data.base_url + pageData.banner_bg_img;
-
-  //       // Map banner images if any
-  //       if (pageData.banner_imgs) {
-  //         this.formData.banner_imgs = pageData.banner_imgs;
-  //         this.bannerImagesPreviews = pageData.banner_imgs.map((img: string) => response.data.base_url + img);
-  //       }
-
-  //       // Map club_nd_scout_section
-  //       if (pageData.club_nd_scout_section) {
-  //         ['first_tab', 'sec_tab', 'third_tab'].forEach(tab => {
-  //           if (pageData.club_nd_scout_section[tab]) {
-  //             this.formData.club_nd_scout_section[tab].txt = pageData.club_nd_scout_section[tab].txt;
-  //             this.formData.club_nd_scout_section[tab].iconPreview = response.data.base_url + pageData.club_nd_scout_section[tab].icon;
-  //           }
-  //         });
-  //       }
-
-
-  //       // Map feature_sctn
-  //       if (pageData.feature_sctn) {
-  //         this.formData.feature_sctn = pageData.feature_sctn.map((feature: any) => ({
-  //           title: feature.title,
-  //           desc: feature.desc,
-  //           iconPreview: response.data.base_url + feature.icon,
-  //         }));
-  //       }
-
-  //       // Map pricing_tab
-  //       if (pageData.pricing_tab) {
-  //         this.formData.pricing_tab = pageData.pricing_tab.map((plan: any) => ({
-  //           monthly_label: plan.monthly_label || '',
-  //           yearly_label: plan.yearly_label || '',
-  //           plan_name: plan.plan_name,
-  //           monthly_plan_price: plan.monthly_plan_price,
-  //           yearly_plan_price: plan.yearly_plan_price,
-  //           monthly_plan_label: plan.monthly_plan_label,
-  //           yearly_plan_label: plan.yearly_plan_label,
-  //           monthly_plan_price_currency: plan.monthly_plan_price_currency,
-  //           yearly_plan_price_currency: plan.yearly_plan_price_currency,
-  //           plan_feature_title: plan.plan_feature_title || '',
-  //           plan_feature_desc: plan.plan_feature_desc || [],
-  //         }));
-  //       }
-
-  //       // Map section titles
-  //       this.formData.club_nd_scout_section_title = pageData.club_nd_scout_section_title || '';
-  //       this.formData.feature_sctn_title = pageData.feature_sctn_title || '';
-  //       this.formData.pricing_sctn_title = pageData.pricing_sctn_title || '';
-
-  //       // Trigger change detection after assigning data
-  //       this.cdr.detectChanges();
-  //     }
-  //   });
-  // }
 
   getPageById(id: number): void {
     this.webpages.getPageById(id).subscribe((response) => {
@@ -345,17 +285,12 @@ export class AddClubnScoutPageComponent implements OnInit {
         this.formData.banner_desc = pageData.banner_desc || '';
         this.formData.banner_btn_txt = pageData.banner_btn_txt || '';
         this.bannerBgImagePreview = response.data.base_url + pageData.banner_bg_img;
+        this.bannerImagesPreviews = response.data.base_url + pageData.banner_img;
+        this.bannerImagesPreviewsDark = response.data.base_url + pageData.banner_img_dark_mode;
+        this.bannerBgImagePreviewDarkMode = response.data.base_url + pageData.banner_bg_img_dark_mode;
 
         // Map banner images if any
-        if (pageData.banner_imgs && pageData.banner_imgs != '') {
-          this.formData.banner_imgs = [];
-          this.bannerImagesPreviews = [];
-          // this.formData.banner_imgs = pageData.banner_imgs.split(','); // Convert comma-separated string to array
-          // this.bannerImagesPreviews = this.formData.banner_imgs.map((img: string) => response.data.base_url + img);
-        } else {
-          this.formData.banner_imgs = [];
-          this.bannerImagesPreviews = [];
-        }
+
 
         // Map club_nd_scout_section
         if (pageData.club_nd_scout_section) {
@@ -376,7 +311,9 @@ export class AddClubnScoutPageComponent implements OnInit {
             title: feature.title,
             desc: feature.desc,
             iconPreview: response.data.base_url + feature.icon,
-            DarkiconPreview: response.data.base_url + feature.dark_icon
+            DarkiconPreview: response.data.base_url + feature.dark_icon,
+            imgPreview: response.data.base_url + feature.image,
+            darkimgPreview: response.data.base_url + feature.dark_image,
           }));
         }
         // Map feature section
