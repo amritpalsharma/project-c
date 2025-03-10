@@ -24,6 +24,7 @@
                     <div class="row">
                         <div class="col-lg-6 col-lg-4 col-12">
                             <div class="banner-left">
+                                <!-- <h1>Theme {{currentTheme}}</h1> -->
                                 <h1 class="banner-heading">{{pageData?.banner_title}}</h1>
                                 <h4 class="banner-heading5" [innerHTML]="pageData?.banner_desc"></h4>
                                 <a class="btn btn-register" data-bs-toggle="modal" data-bs-target="#exampleModal1">{{
@@ -33,7 +34,9 @@
 
                         <div class="col-lg-6 col-lg-8 col-12">
                             <div class="banner_image_combo">
-                                <img src="./assets/images/How-it-works.png" />
+                                <!-- <img src="./assets/images/How-it-works.png" /> -->
+                                <img *ngIf="pageData?.banner_img && currentTheme == 'light'" src="{{baseUrl + pageData?.banner_img}}" />
+                                <img *ngIf="pageData?.banner_img_dark_mode && currentTheme == 'dark'" src="{{baseUrl + pageData?.banner_img_dark_mode}}" />
                             </div>
                         </div>
                     </div>
@@ -366,13 +369,15 @@
                 <div class="billed">
                     <p [ngClass]="{ 'active-text': isActivePlan[i], 'inactive-text': !isActivePlan[i] }"
                         class="billed-monthly">
-                        {{'billedMonthly' | translate}}
+                        <!-- {{'billedMonthly' | translate}} -->
+                        {{plan.monthly_label}}
                     </p>
                     <div class="toggle-button" [ngClass]="{ 'active': isActivePlan[i], 'inactive': !isActivePlan[i] }"
                         (click)="togglePlan(i)">
                     </div>
                     <p [ngClass]="{ 'active-text': !isActivePlan[i], 'inactive-text': isActivePlan[i] }">
-                        {{'billedYearly' | translate}}
+                        <!-- {{'billedYearly' | translate}} -->
+                        {{plan.yearly_label}}
                     </p>
                 </div>
 
@@ -403,8 +408,10 @@
                                     {{ getPlanPrice(plan.plan_name, isActivePlan[i]) }}<span>.- {{ Currency }} /
                                         <!-- {{ !isActivePlan[i] ? 'billedMonthly' : 'billedYearly' }} -->
                                         <!-- {{'billedMonthly' | translate}} -->
-                                        <span *ngIf="!isActivePlan[i]">{{'billedMonthly' | translate}}</span>
-                                        <span *ngIf="isActivePlan[i]">{{'billedYearly' | translate}}</span>
+                                        <span *ngIf="!isActivePlan[i]">{{plan.monthly_label}}</span>
+                                        <!-- <span *ngIf="!isActivePlan[i]">{{'billedMonthly' | translate}}</span> -->
+                                        <!-- <span *ngIf="isActivePlan[i]">{{'billedYearly' | translate}}</span> -->
+                                        <span *ngIf="isActivePlan[i]">{{plan.yearly_label}}</span>
                                     </span>
                                 </h3>
                             </div>
@@ -412,7 +419,7 @@
 
                         <div class="col-lg-6 col-md-6 col-12">
                             <div class="premium-col-right">
-                                <!-- <h5 class="premium-heading5">{{ plan.plan_name }} Includes</h5> -->
+                                <h5 class="premium-heading5">{{ plan.plan_feature_title }}</h5>
                                 <div class="premium-text" *ngFor="let feature of plan.plan_feature_desc">
                                     <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
                                     <p>{{ feature }}</p>

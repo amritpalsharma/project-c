@@ -854,8 +854,8 @@
                                             {{ !isActivePlan[i] ? 'Month' : 'Year' }}
                                             </span> -->
                                         <!-- <h3 class="premium-heading3"> -->
-                                        {{ getPlanPrice(plan.plan_name, isActivePlan[i]) }}<span>.-/ {{ Currency }}
-                                            <span *ngIf="!isActivePlan[i]">{{'billedMonthly' | translate}}</span>
+                                        {{ getPlanPrice(plan.plan_name, isActivePlan[i]) }}<span>.- {{ Currency }}
+                                            / <span *ngIf="!isActivePlan[i]">{{'billedMonthly' | translate}}</span>
                                             <span *ngIf="isActivePlan[i]">{{'billedYearly' | translate}}</span>
                                             <!-- {{ isActivePlan[i] ? 'Year' : 'Month' }} -->
                                         </span>

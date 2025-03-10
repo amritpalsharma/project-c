@@ -14,7 +14,7 @@ interface SliderImage {
   title: string;
   date: string;
   buttonText: string;
-  slug:string;
+  slug: string;
 }
 
 @Component({
@@ -38,34 +38,14 @@ export class NewsComponent implements OnInit, OnDestroy {
   base_url: string = 'https://api.socceryou.ch/uploads/';
   adVisible: boolean[] = [true, true, true, true, true];
 
-  isLoading : boolean = true;
+  isLoading: boolean = true;
 
 
   images: SliderImage[] = [
-    {
-      featured_image: 'assets/images/slider-image.png',
-      title: 'Welcome to Soccer World',
-      date: 'January 1, 2025',
-      buttonText: 'Learn More 1',
-      slug:'default-slug'
-    },
-    {
-      featured_image: 'assets/images/About-us-banner.png',
-      title: 'Discover the Legends',
-      date: 'February 1, 2025',
-      buttonText: 'Learn More 2',
-      slug:'default-slug'
-    },
-    {
-      featured_image: 'assets/images/banner-bg.png',
-      title: 'Unleash Your Potential',
-      date: 'March 1, 2025',
-      buttonText: 'Learn More 3',
-      slug:'default-slug'
-    }
+   
   ];
 
-  constructor(private webPages: WebPages) {}
+  constructor(private webPages: WebPages) { }
 
   ngOnInit() {
     this.startAutoplay();
@@ -76,18 +56,18 @@ export class NewsComponent implements OnInit, OnDestroy {
     });
   }
 
-  isActive : any ={
+  isActive: any = {
     skyscraper: true,
     wide_skyscraper: true,
     leaderboard: true,
-    large_leaderboard:true,
+    large_leaderboard: true,
     banner: true,
-    square:true,
+    square: true,
     small_square: true,
     large_rectangle: true,
     inline_rectangle: true,
   }
-  advertisementData:any = {
+  advertisementData: any = {
     skyscraper: {
       id: '1',
       featured_image: "leaderboard.png"
@@ -135,13 +115,14 @@ export class NewsComponent implements OnInit, OnDestroy {
       if (res.status) {
         this.advertisementData = res.data.advertisementData;
         this.advertisementData = [];
-        
+
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
         this.slider_title = res.data.pageData.slider_title;
         this.banner_title = res.data.pageData.banner_title;
-        
+
         this.news_title = res.data.pageData.news_title;
         this.latestNewsData = res.data.newsSliderData;
+        console.log(this.latestNewsData);
         this.news_img_path = res.data.news_img_path;
         this.slider_btn_txt = res.data.pageData.slider_btn_txt;
         this.slider_date = res.data.pageData.slider_date;
@@ -150,7 +131,7 @@ export class NewsComponent implements OnInit, OnDestroy {
 
         // this.images = res.data.newsSliderData || this.images;
         // this.base_url = res.data.base_url;
-
+        this.addThreeElements(this.latestNewsData);
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
         this.advertisementData = res?.data?.advertisementData;
       }
@@ -248,7 +229,7 @@ export class NewsComponent implements OnInit, OnDestroy {
   get currentImage() {
     return this.images[this.currentImageIndex].featured_image;
   }
-  
+
   getRouterLink(index: any): string {
     // Returns a dynamic URL based on the slider index
     return '/news/' + index;
@@ -277,10 +258,10 @@ export class NewsComponent implements OnInit, OnDestroy {
   // isExists(key: string): boolean {
   //   return key in this.advertisementData && 'featured_image' in this.advertisementData[key];
   // }
-  
 
-  isEmptyObject(obj:any) {
-    if(typeof obj != 'undefined'){
+
+  isEmptyObject(obj: any) {
+    if (typeof obj != 'undefined') {
       return (obj && (Object.keys(obj).length === 0));
     }
     return true;
@@ -303,6 +284,12 @@ export class NewsComponent implements OnInit, OnDestroy {
 
   isFeaturedImageExists(key: any): boolean {
     return 'featured_image' in this.advertisementData[key];
+  }
+
+  addThreeElements(originalArray:any) {
+    let selectedItems = originalArray.slice(0, 3); // Get first 3 elements
+    this.images.push(...selectedItems); // Push to target array
+    console.warn(this.images)
   }
 
 }

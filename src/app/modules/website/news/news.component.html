@@ -1,126 +1,124 @@
 <section class="website-code">
-    <!-- <app-header></app-header> -->
-    <div class="main">
-      <div class="main-bnr">
-        <div class="overlay"></div>
-        <div class="banner-inner py_0">
-          <div class="container">
-            <div class="about">
-              <h2 class="cookie-text">{{banner_title}}</h2>
-            </div>
-          </div>
-        </div>
-  
-        <div *ngIf="checkActive('skyscraper')  && !isLoading" class="skyscraper-left">
-          <img [src]="advertisemnet_base_url + advertisementData?.skyscraper?.featured_image">
-          <button (click)="closeAd('skyscraper')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
-        </div>
-    
-        <div *ngIf="checkActive('wide_skyscraper')  && !isLoading" class="skyscraper-right">
-          <img [src]="advertisemnet_base_url + advertisementData?.wide_skyscraper?.featured_image">
-          <button (click)="closeAd('wide_skyscraper')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
-        </div>
-        
-      </div>
-  
-      <div class="news-slider py_0">
+  <!-- <app-header></app-header> -->
+  <div class="main">
+    <div class="main-bnr">
+      <div class="overlay"></div>
+      <div class="banner-inner py_0">
         <div class="container">
-          <div class="image-slider">
-            <div class="image-wrapper" 
-                 (touchstart)="onTouchStart($event)" 
-                 (touchmove)="onTouchMove($event)"
-                 (touchend)="onTouchEnd($event)">
-              <!-- Dynamic Image -->
-               <!-- <h1>{{images | json}}</h1> -->
-              <img [src]="base_url + currentImage" [alt]="images[currentImageIndex].title" />
-              <div class="image-text">
-                <!-- Dynamic Content for Each Slide -->
-                <p class="p-text">{{images[currentImageIndex].date}}</p>
-                <h3 class="text-heading" [innerHTML]="images[currentImageIndex].title"></h3>
-                <button class="learn-more" [routerLink]="getRouterLink(images[currentImageIndex].slug)">
-                  {{'learnMore' | translate}}
-                </button>
-              </div>
-            </div>
-  
-            <!-- Thumbnails for Navigation -->
-            <div class="container">
-              <div class="thumbnail-scroll">
-                <div class="slider-image">
-                  <img 
-                    *ngFor="let image of images; let i = index" 
-                    [src]="news_img_path + image.featured_image" 
-                    [alt]="image.title"
-                    (click)="changeImage(image.featured_image, i)" 
-                    [class.active]="i === currentImageIndex"
-                    class="thumbnail" />
-                </div>
-              </div>
-            </div>
+          <div class="about">
+            <h2 class="cookie-text">{{banner_title}}</h2>
           </div>
         </div>
       </div>
 
-      <div class="advertisment">
-        <div class="container">
-          <div *ngIf="checkActive('leaderboard') || checkActive('banner')" class="advertisment advirtismnt_2">
-            <div *ngIf="isExists('leaderboard') && checkActive('leaderboard')  && !isLoading" class="leaderboard-club-image advirtismnt_2_large">
-              <img [src]="advertisemnet_base_url + advertisementData?.leaderboard?.featured_image">
-              <button (click)="closeAd('leaderboard')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <div *ngIf="!isExists('leaderboard') && checkActive('banner')  && !isLoading" class="leaderboard-club-image advirtismnt_2_small">
-              <img [src]="advertisemnet_base_url + advertisementData?.banner?.featured_image">
-              <button (click)="closeAd('banner')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-          </div>
-        </div>
-      </div>
-  
-      <div class="latest-news py_0">
-        <div class="container">
-          <h4>{{news_title}}</h4>
-          <div class="row">
-            <div *ngFor="let newsData of latestNewsData; let i = index;" class="col-lg-4 col-sm-6 col-12 news_cols">
-              <!-- {{news_img_path + newsData.featured_image}} -->
-               <!-- {{newsData | json}} -->
-              <div routerLink="{{'/news/' + newsData.slug}}" class="news-box">
-                <img [src]="news_img_path + newsData.featured_image" />
-                <p class="p-text">{{newsData.created_at | date: 'dd.MM.yy'}}</p>
-                <p>{{newsData.title}}</p>
-              </div>
-            </div>
-          </div>
-
-        </div>
+      <div *ngIf="checkActive('skyscraper')  && !isLoading" class="skyscraper-left">
+        <img [src]="advertisemnet_base_url + advertisementData?.skyscraper?.featured_image">
+        <button (click)="closeAd('skyscraper')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
       </div>
 
-      <div class="py_1">
-        <div class="container">
-          <div class="advertisment advertisement1 advertisement_three_block"
-            *ngIf="checkActive('large_rectangle') || checkActive('inline_rectangle') || checkActive('square')">
-  
-            <div *ngIf="checkActive('large_rectangle')  && !isLoading" class="large-rectangle">
-              <img [src]="advertisemnet_base_url + advertisementData?.large_rectangle?.featured_image">
-              <button (click)="closeAd('large_rectangle')" class="ad-close-button"><i
-                  class="fa-solid fa-xmark"></i></button>
-            </div>
-  
-            <div *ngIf="checkActive('inline_rectangle')  && !isLoading" class="inline-rectangle">
-              <img [src]="advertisemnet_base_url + advertisementData?.inline_rectangle?.featured_image">
-              <button (click)="closeAd('inline_rectangle')" class="ad-close-button"><i
-                  class="fa-solid fa-xmark"></i></button>
-            </div>
-  
-            <div *ngIf="checkActive('square')  && !isLoading" class="square">
-              <img [src]="advertisemnet_base_url + advertisementData?.square?.featured_image">
-              <button (click)="closeAd('square')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-  
-          </div>
-        </div>
+      <div *ngIf="checkActive('wide_skyscraper')  && !isLoading" class="skyscraper-right">
+        <img [src]="advertisemnet_base_url + advertisementData?.wide_skyscraper?.featured_image">
+        <button (click)="closeAd('wide_skyscraper')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
       </div>
 
-      
     </div>
-    <!-- <app-footer></app-footer> -->
-  </section>
+
+    <div class="news-slider py_0">
+      <div class="container">
+        <div class="image-slider">
+          <div class="image-wrapper" (touchstart)="onTouchStart($event)" (touchmove)="onTouchMove($event)"
+            (touchend)="onTouchEnd($event)">
+            <!-- Dynamic Image -->
+            <!-- <h1>{{images | json}}</h1> -->
+            <img [src]="base_url + currentImage" [alt]="images[currentImageIndex].title" />
+            <div class="image-text">
+              <!-- Dynamic Content for Each Slide -->
+              <p class="p-text">{{images[currentImageIndex].date}}</p>
+              <h3 class="text-heading" [innerHTML]="images[currentImageIndex].title"></h3>
+              <button class="learn-more" [routerLink]="getRouterLink(images[currentImageIndex].slug)">
+                {{'learnMore' | translate}}
+              </button>
+
+            </div>
+          </div>
+
+          <!-- Thumbnails for Navigation -->
+           
+          <div class="container">
+            <div class="thumbnail-scroll">
+              <div class="slider-image">
+                <img *ngFor="let image of images; let i = index" [src]="news_img_path + image.featured_image"
+                  [alt]="image.title" (click)="changeImage(image.featured_image, i)"
+                  [class.active]="i === currentImageIndex" class="thumbnail" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="advertisment">
+      <div class="container">
+        <div *ngIf="checkActive('leaderboard') || checkActive('banner')" class="advertisment advirtismnt_2">
+          <div *ngIf="isExists('leaderboard') && checkActive('leaderboard')  && !isLoading"
+            class="leaderboard-club-image advirtismnt_2_large">
+            <img [src]="advertisemnet_base_url + advertisementData?.leaderboard?.featured_image">
+            <button (click)="closeAd('leaderboard')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+          <div *ngIf="!isExists('leaderboard') && checkActive('banner')  && !isLoading"
+            class="leaderboard-club-image advirtismnt_2_small">
+            <img [src]="advertisemnet_base_url + advertisementData?.banner?.featured_image">
+            <button (click)="closeAd('banner')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="latest-news py_0">
+      <div class="container">
+        <h4>{{news_title}}</h4>
+        <div class="row">
+          <div *ngFor="let newsData of latestNewsData; let i = index;" class="col-lg-4 col-sm-6 col-12 news_cols">
+            <!-- {{news_img_path + newsData.featured_image}} -->
+            <!-- {{newsData | json}} -->
+            <div routerLink="{{'/news/' + newsData.slug}}" class="news-box">
+              <img [src]="news_img_path + newsData.featured_image" />
+              <p class="p-text">{{newsData.created_at | date: 'dd.MM.yy'}}</p>
+              <p>{{newsData.title}}</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="py_1">
+      <div class="container">
+        <div class="advertisment advertisement1 advertisement_three_block"
+          *ngIf="checkActive('large_rectangle') || checkActive('inline_rectangle') || checkActive('square')">
+
+          <div *ngIf="checkActive('large_rectangle')  && !isLoading" class="large-rectangle">
+            <img [src]="advertisemnet_base_url + advertisementData?.large_rectangle?.featured_image">
+            <button (click)="closeAd('large_rectangle')" class="ad-close-button"><i
+                class="fa-solid fa-xmark"></i></button>
+          </div>
+
+          <div *ngIf="checkActive('inline_rectangle')  && !isLoading" class="inline-rectangle">
+            <img [src]="advertisemnet_base_url + advertisementData?.inline_rectangle?.featured_image">
+            <button (click)="closeAd('inline_rectangle')" class="ad-close-button"><i
+                class="fa-solid fa-xmark"></i></button>
+          </div>
+
+          <div *ngIf="checkActive('square')  && !isLoading" class="square">
+            <img [src]="advertisemnet_base_url + advertisementData?.square?.featured_image">
+            <button (click)="closeAd('square')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <!-- <app-footer></app-footer> -->
+</section>

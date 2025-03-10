@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { WebPages } from '../../../services/webpages.service';
+import { GlobalSettingsService } from '../../../services/global-settings.service';
+
+
 @Component({
   selector: 'app-talent',
   templateUrl: './talent.component.html',
@@ -22,7 +25,7 @@ export class TalentComponent {
     pricing_sctn_title: '',
     pricing_tab: [],
   }];
-
+  currentTheme: string = localStorage.getItem('theme') + '';
   activeAccordionIndex = 1;
   // advertisementData:any=null;
   advertisemnet_base_url: string = '';
@@ -45,7 +48,7 @@ export class TalentComponent {
     this.activeAccordionIndex = index;
   }
 
-  constructor(private webPages: WebPages) { }
+  constructor(private webPages: WebPages, private globalSettings: GlobalSettingsService) { }
 
   isActivePlan: { [key: number]: boolean } = {}; // Keeps track of toggle states for each pricing plan
 
@@ -65,6 +68,10 @@ export class TalentComponent {
       this.getPageData(data)
       this.getCurrencyPrice('monthly');
       this.getCurrencyPrice('yearly');
+    });
+
+    this.globalSettings.indexFunctionCall$.subscribe(() => {
+      this.indexFunction(); // Call the function when event is received
     });
   }
 
@@ -128,7 +135,11 @@ export class TalentComponent {
         // this.advertisementData = null;
 
         this.isLoading = false;
-
+        if (this.currentTheme == 'dark') {
+          this.pageData.banner_bg_img = this.pageData.banner_bg_img;
+        } else {
+          this.pageData.banner_bg_img = this.pageData.banner_bg_img_dark_mode;
+        }
 
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
         // Initialize toggle states for pricing plans with Monthly active (false)
@@ -299,5 +310,9 @@ export class TalentComponent {
   }
   trackByFn(index: number, item: any): number {
     return index; // Tracks items by index to prevent re-rendering
+  }
+
+  indexFunction() {
+    this.currentTheme = localStorage.getItem('theme') + '';
   }
 }

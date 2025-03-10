@@ -1192,5 +1192,7 @@
   "Processing":"Processing...",
   "EmailVerified":"Email Verified!",
   "bannerBackgroundImageDark":"Banner Background Image Dark Mode",
-  "bannerImagesDarkMode":"Banner Image Dark Mode"
+  "bannerImagesDarkMode":"Banner Image Dark Mode",
+  "planFeaturesTitle":"Plan Feature Title",
+  "countrySectionBannerImageDark": "Country Section Banner Image Dark Mode"
 }
