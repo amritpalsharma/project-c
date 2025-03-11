@@ -22,7 +22,8 @@
           <div class="row">
             <div class="col-lg-12">
               <div class="banner-content" routerLink="/admin">
-                <img class="home-banner-image" src="{{banner_img}}">
+                <img class="home-banner-image" src="{{banner_img}}" *ngIf="currentTheme == 'light'">
+                <img class="home-banner-image" src="{{banner_img}}" *ngIf="currentTheme == 'dark'">
               </div>
               <div class="banner-btn text-center mt-5">
                 <a href="javascript:void(0)" class="btn btn-primary" data-bs-toggle="modal"

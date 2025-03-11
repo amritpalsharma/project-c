@@ -4,8 +4,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CommonHelperService {
-  defaultImage: string = '../../../assets/images/1.jpg';
-  defaultImageUrl: string = '../../../assets/images/1.jpg';
+  defaultImage: string = '../../../assets/images/1.png';
+  defaultImageUrl: string = '../../../assets/images/1.png';
   profileImage: string = '';
   constructor() { }
   checkImageExists(imageUrl: string): void {

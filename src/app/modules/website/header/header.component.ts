@@ -17,6 +17,7 @@ declare var google: any; // Declare google
 import { WebPages } from '../../../services/webpages.service';
 import { SocketService } from '../../../services/socket.service';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-header',
@@ -60,8 +61,10 @@ export class HeaderComponent implements OnInit {
   selectedCountry: string = '';
   selectedTeam: number | null = null;
   companyName: string = '';
+  registerationErrorHtml: string = '';
   verifyToken: any = null;
   verifyTime: any = null;
+
 
   //this is get by the domain
   countries: Array<{ code: string; name: string }> = [];
@@ -238,7 +241,8 @@ export class HeaderComponent implements OnInit {
     private toastr: ToastrService,
     private webpage: WebPages,
     private socketService: SocketService,
-    private globalSettings: GlobalSettingsService
+    private globalSettings: GlobalSettingsService,
+    private sanitizer: DomSanitizer
   ) {
     this.language = translateService.currentLang || 'en';  // Get current language
     this.loadCountries();  // Load countries based on selected language
@@ -271,6 +275,8 @@ export class HeaderComponent implements OnInit {
 
   isScrolled = false;
   serverBusy = false;
+  isEmailError = false;
+  isPasswordError = false;
   @HostListener('window:scroll', [])
 
   onWindowScroll() {
@@ -518,6 +524,21 @@ export class HeaderComponent implements OnInit {
 
   login() {
     this.loginButtonClicked = true;
+
+    // isEmailError = false;
+    // isPasswordError = false;
+    if (!this.email) {
+      this.isEmailError = true;
+    } else {
+      this.isEmailError = false;
+    }
+
+    if (!this.password) {
+      this.isPasswordError = true;
+    } else {
+      this.isPasswordError = false;
+    }
+
     if (!this.email || !this.password) {
       console.error('Please fill in all required fields.');
       return;
@@ -669,14 +690,23 @@ export class HeaderComponent implements OnInit {
           this.toastr.clear();
 
           let errorMessage = '';
+          this.registerationErrorHtml = '';
           if (typeof response.message === 'object') {
             Object.keys(response.message).forEach((key) => {
               errorMessage += response.message[key] + ' ';
+              this.registerationErrorHtml += response.message[key] + '<br>';
+              if (key == 'first_name') {
+                this.updateInputClass('firstName');
+              } else if (key == 'last_name') {
+                this.updateInputClass('lastName');
+              } else {
+                this.updateInputClass(key);
+              }
             });
           } else {
             errorMessage = response.message;
           }
-          this.toastr.error(errorMessage.trim(), this.registrationFailed);
+          // this.toastr.error(errorMessage.trim(), this.registrationFailed);
           this.registerError = errorMessage.trim();
           this.registerFormSubmitted = false;
         }
@@ -876,5 +906,24 @@ export class HeaderComponent implements OnInit {
       this.Processing = translations['Processing'];
       this.EmailVerified = translations['EmailVerified'];
     })
+  }
+
+  updateInputClass(inputName: string): void {
+    // Select all input elements with the given name inside the modal form
+    let inputFields = document.querySelectorAll<HTMLInputElement>(`#exampleModal1 form input[name="${inputName}"]`);
+
+    inputFields.forEach(input => {
+      // Remove "empty-field" class first
+      input.classList.remove("empty-field");
+
+      // Check if the input is empty and add "empty-field" class dynamically
+      if (input.value.trim() === "") {
+        input.classList.add("empty-field");
+      }
+    });
+  }
+
+  get sanitizedError(): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(this.registerationErrorHtml);
   }
 }

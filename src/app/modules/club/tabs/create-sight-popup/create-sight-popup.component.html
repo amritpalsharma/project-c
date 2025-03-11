@@ -56,7 +56,7 @@
                       @for (user of users; track $index) {
                       <mat-chip-row (removed)="remove(user)">
                         <img width="25" height="25" style="border-radius: 20px;" class="img-list"
-                          *ngIf="!user.meta.profile_image_path" src="../../../../../assets/images/1.jpg">
+                          *ngIf="!user.meta.profile_image_path" src="../../../../../assets/images/1.png">
                         <img width="25" height="25" style="border-radius: 20px;" class="img-list"
                           *ngIf="user.meta.profile_image_path" src="{{user.meta.profile_image_path}}">
                         {{user?.first_name}}
@@ -79,7 +79,7 @@
                       @for (user of filteredUsers; track user) {
                       <mat-option [value]="user" class="mb-4 select-user-name">
                         <img width="50" height="50" style="border-radius: 50px;" class="img-list "
-                          *ngIf="!user.meta.profile_image_path" src="../../../../../assets/images/1.jpg">
+                          *ngIf="!user.meta.profile_image_path" src="../../../../../assets/images/1.png">
                         <img width="50" height="50" class="img-list " *ngIf="user.meta.profile_image_path"
                           src="{{user.meta.profile_image_path}}">
                         {{user.first_name}}
@@ -102,7 +102,7 @@
     </div>
     <div class="user-chip mb-4" *ngFor="let user of users">
       <span class="user-chip_image">
-        <img src=" assets/images/1.jpg" *ngIf="!user.meta.profile_image_path" alt="usre-image">
+        <img src=" assets/images/1.png" *ngIf="!user.meta.profile_image_path" alt="usre-image">
         <img src="{{user.meta.profile_image_path}}" *ngIf="user.meta.profile_image_path" alt="usre-image">
       </span>
       <span>{{user.first_name}}</span>

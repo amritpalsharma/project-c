@@ -69,6 +69,7 @@ export class ExploreComponent implements OnInit {
   // Filters and UI variables (other code omitted for brevity)
   viewsTracked: { [profileId: string]: { viewed: boolean, clicked: boolean } } = {}; // Track view and click per profile
   isLoading: boolean = false;
+  noUsersFound: boolean = false;
 
   roles_en = [
     { role: 'Clubs', id: 2 },
@@ -245,7 +246,7 @@ export class ExploreComponent implements OnInit {
 
   // Event handler for page change in paginator
   getUsers() {
-    //this.isLoading = true; // Start loading
+    this.isLoading = true; // Start loading
 
     const pageIndex = this.currentPage;
     const pageSize = this.pageSize;
@@ -312,6 +313,10 @@ export class ExploreComponent implements OnInit {
         if (response?.status && response?.data) {
           this.players = response.data.userData.users;
           this.totalItems = response.data.userData.totalCount;
+          this.noUsersFound = false;
+          if (this.totalItems < 0 || this.totalItems == 0) {
+            this.noUsersFound = true;
+          }
           this.trackBoostedProfileViews(this.players); // Track views if necessary
           setTimeout(() => this.cdr.detectChanges(), 0);
         } else {

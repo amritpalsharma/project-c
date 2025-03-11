@@ -85,6 +85,7 @@ export class AddHomePageComponent {
       hero_bg_img: [null],
       hero_bg_img_dark_mode: [null],
       hero_heading_txt: [''],
+      hero_heading: [''],
       hero_btn_txt: [''],
       hero_btn_link: [''],
       meta_title: [''],
@@ -128,6 +129,7 @@ export class AddHomePageComponent {
     formData.append('slider_btn_txt', this.addHomePageForm.value.slider_btn_txt);
     formData.append('slider_btn_link', this.addHomePageForm.value.slider_btn_link);
     formData.append('hero_heading_txt', this.addHomePageForm.value.hero_heading_txt);
+    formData.append('hero_heading', this.addHomePageForm.value.hero_heading);
     formData.append('hero_btn_txt', this.addHomePageForm.value.hero_btn_txt);
     formData.append('hero_btn_link', this.addHomePageForm.value.hero_btn_link);
     formData.append('meta_title', this.addHomePageForm.value.meta_title);
@@ -229,6 +231,7 @@ export class AddHomePageComponent {
           slider_btn_link: response.data.pageData.slider_btn_link,
           // hero_bg_img: response.data.pageData.hero_bg_img,
           hero_heading_txt: response.data.pageData.hero_heading_txt,
+          hero_heading: response.data.pageData.hero_heading,
           hero_btn_txt: response.data.pageData.hero_btn_txt,
           hero_btn_link: response.data.pageData.hero_btn_link,
 

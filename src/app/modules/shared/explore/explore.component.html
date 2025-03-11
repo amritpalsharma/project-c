@@ -148,6 +148,10 @@
             <div class="loader"></div>
             <p>{{'loading' | translate}}</p>
           </div>
+          
+          <div class="noUserFound text-center py-1" *ngIf="noUsersFound && !isLoading">
+              {{ 'noResultFound' | translate }}
+          </div>
 
           <div class="row player-image-list ">
             <div class="col-lg-2" *ngFor="let player of players">

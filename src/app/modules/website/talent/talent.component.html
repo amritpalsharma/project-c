@@ -4,8 +4,9 @@
 
         <!-- <app-header></app-header> -->
 
-        <div class="banner py-0" [style.background-image]="'url(' + baseUrl + (currentTheme === 'dark' ? pageData?.banner_bg_img_dark_mode : pageData?.banner_bg_img) + ')'">
-        <!-- <div class="banner py-0" style="background-image: url('{{baseUrl + pageData?.banner_bg_img}}');"> -->
+        <div class="banner py-0"
+            [style.background-image]="'url(' + baseUrl + (currentTheme === 'dark' ? pageData?.banner_bg_img_dark_mode : pageData?.banner_bg_img) + ')'">
+            <!-- <div class="banner py-0" style="background-image: url('{{baseUrl + pageData?.banner_bg_img}}');"> -->
             <div class="overlay1"></div>
 
             <div *ngIf="checkActive('skyscraper')  && !isLoading" class="skyscraper-left">
@@ -177,29 +178,31 @@
                         <h3 class="feature-heading3">{{pageData?.feature_sctn_title}}</h3>
                         <div class="accordion" id="accordionExample">
                             <ng-container *ngFor="let feature of pageData.feature_sctn; let i = index">
+                                <!-- <h1 id="'test_id_'+i">{{feature | json}}</h1> -->
                                 <div class="accordion-item" (click)="setActiveAccordion(i+1)">
-                                    <div class="accordion-flex" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-                                        aria-expanded="true" aria-controls="collapseOne">
+                                    <div class="accordion-flex" data-bs-toggle="collapse"
+                                        [attr.data-bs-target]="'#collapseOne' + i" aria-expanded="false"
+                                        [attr.aria-controls]="'collapseOne' + i">
                                         <img class="light-feature1" src="{{baseUrl + feature.icon}}">
                                         <img class="dark-feature1" src="{{baseUrl + feature.dark_icon}}">
                                         <h2 class="accordion-header">
                                             {{feature.title}}
                                         </h2>
                                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#collapseOne" aria-expanded="true"
-                                            aria-controls="collapseOne">
+                                            [attr.data-bs-target]="'#collapseOne' + i" aria-expanded="false"
+                                            [attr.aria-controls]="'collapseOne' + i">
                                         </button>
                                     </div>
-                                    <div id="collapseOne" class="accordion-collapse collapse show"
+                                    <div [id]="'collapseOne' + i" class="accordion-collapse collapse"
                                         data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
                                             <p class="feature-text">{{feature.desc}}
                                             </p>
                                             <div class="talent_tab_image">
                                                 <img class="single_tab_img light-images"
-                                                    src="./assets/images/foto-talent-dark-1.png">
+                                                    src="{{baseUrl + feature.image}}">
                                                 <img class="single_tab_img dark-images"
-                                                    src="./assets/images/foto-talent-dark-1.png">
+                                                    src="{{baseUrl + feature.dark_image	}}">
                                             </div>
                                         </div>
                                     </div>

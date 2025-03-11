@@ -397,7 +397,7 @@ export class SightingTabComponent {
     if(url){
       return url;
     }else{
-      return "../../../../../assets/images/1.jpg";
+      return "../../../../../assets/images/1.png";
     }
   }
 }

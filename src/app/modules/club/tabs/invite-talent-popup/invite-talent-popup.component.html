@@ -21,7 +21,7 @@
             @for (user of users; track $index) {
             <mat-chip-row (removed)="remove(user)">
               <img width="20" height="20" style="border-radius: 20px;" class="img-list"
-                *ngIf="!user.meta.profile_image_path" src="../../../../../assets/images/1.jpg">
+                *ngIf="!user.meta.profile_image_path" src="../../../../../assets/images/1.png">
               <img width="20" height="20" style="border-radius: 20px;" class="img-list"
                 *ngIf="user.meta.profile_image_path" src="{{user.meta.profile_image_path}}">
               {{user?.first_name}}
@@ -38,7 +38,7 @@
             @for (user of filteredUsers; track user) {
             <mat-option [value]="user" class="mb-4 select-user-name">
               <img width="50" height="50" style="border-radius: 50px;" class="img-list "
-                *ngIf="!user.meta.profile_image_path" src="../../../../../assets/images/1.jpg">
+                *ngIf="!user.meta.profile_image_path" src="../../../../../assets/images/1.png">
               <img width="50" height="50" class="img-list " *ngIf="user.meta.profile_image_path"
                 src="{{user.meta.profile_image_path}}">
               {{user.first_name}}
@@ -52,7 +52,7 @@
     </div>
     <!-- <div class="user-details d-flex align-items-center justify-content-between">
             <div class="user-detail-list">
-              <span><img width="60" height="60" class="img-list" src="../../../../../assets/images/1.jpg"></span>
+              <span><img width="60" height="60" class="img-list" src="../../../../../assets/images/1.png"></span>
               <span class="user-name">Lindsey Vetrovs</span>
             </div>
             <div class="check-user-list">
@@ -83,8 +83,8 @@
         <div class="user-detail-list">
           <span>
             <img width="60" height="60" *ngIf="invitee.profile_image_path" src="{{invitee.profile_image_path}}"
-              src="../../../../../assets/images/1.jpg" class="img-list">
-            <img width="60" height="60" *ngIf="!invitee.profile_image_path" src="../../../../../assets/images/1.jpg"
+              src="../../../../../assets/images/1.png" class="img-list">
+            <img width="60" height="60" *ngIf="!invitee.profile_image_path" src="../../../../../assets/images/1.png"
               class="img-list">
           </span>
           <span class="user-name">

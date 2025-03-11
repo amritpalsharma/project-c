@@ -204,7 +204,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.userService.getAdminProfile().subscribe((response) => {
       if (response && response.status) {
         let userData = response.data.user_data;
-        this.loggedInUser.profile_image_path = userData.meta.profile_image_path || '../../../assets/images/1.jpg';
+        this.loggedInUser.profile_image_path = userData.meta.profile_image_path || '../../../assets/images/1.png';
       } else {
         console.error('Invalid API response structure:', response);
       }

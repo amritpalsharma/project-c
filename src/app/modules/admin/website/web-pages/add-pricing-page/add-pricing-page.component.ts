@@ -391,4 +391,12 @@ export class AddPricingPageComponent implements OnInit, OnDestroy {
       this.bannerBgImagePreview = false;
     }
   }
+
+  trackByFn2(index: number, item: any): number {
+    return index; // Tracks items by index to prevent re-rendering
+  }
+
+  trackByFn3(index: number, item: any): number {
+    return index; // Tracks items by index to prevent re-rendering
+  }
 }

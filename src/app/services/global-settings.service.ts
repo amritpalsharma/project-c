@@ -26,6 +26,16 @@ export class GlobalSettingsService {
     return ''; // Return empty string if no match
   }
 
+  public getCurrentDomainExtension() {
+    const hostname = window.location.hostname; // Get full domain name
+    for (const ext of this.domainExtensions) {
+      if (hostname.endsWith(ext)) {
+        return ext; // Return matched extension
+      }
+    }
+    return '';
+  }
+
   private setDefaultLanguage(): void {
     const domainExt = this.getDomainExtension();
     // alert(domainExt)

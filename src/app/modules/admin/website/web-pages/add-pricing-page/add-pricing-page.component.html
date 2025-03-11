@@ -282,7 +282,7 @@
         <!-- Additional Feature Sections for Second Tab -->
         <div class="form-group mb-3">
           <label>{{ 'freeFeatures' | translate }}</label>
-          <div *ngFor="let feature of formData.sec_tab.free_features_desc; let i = index; trackBy: trackByFn"
+          <div *ngFor="let feature of formData.sec_tab.free_features_desc; let i = index; trackBy: trackByFn2"
             class="mb-2">
             <input type="text" class="form-control" [(ngModel)]="formData.sec_tab.free_features_desc[i]"
               name="secTabFeature{{ i }}" placeholder="{{ 'enterFeature' | translate }}" />
@@ -386,7 +386,7 @@
         <!-- Features Section -->
         <div class="form-group mb-3">
           <label>{{ 'freeFeatures' | translate}}</label>
-          <div *ngFor="let feature of formData.third_tab.free_features_desc; let i = index; trackBy: trackByFn"
+          <div *ngFor="let feature of formData.third_tab.free_features_desc; let i = index; trackBy: trackByFn3"
             class="mb-2">
             <input type="text" class="form-control " [(ngModel)]="formData.third_tab.free_features_desc[i]"
               name="thirdTabFeature{{ i }}" placeholder="{{ 'enterFeature' | translate }}" />

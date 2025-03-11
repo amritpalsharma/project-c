@@ -66,7 +66,7 @@ export interface ClubMember {
 })
 export class IndexComponent {
   @ViewChild('owlCarousel') owlCarousel!: ElementRef;
-  fallbackImage: string = 'assets/images/1.jpg'; // Path to your fallback image
+  fallbackImage: string = 'assets/images/1.png'; // Path to your fallback image
   currentTheme: string = '';
   selectedLangId: any = null;
   pageDetail: any = null;
@@ -74,6 +74,7 @@ export class IndexComponent {
   // advertisementData:any=null;
   imageBaseUrl: string = '';
   banner_img: string = '';
+  banner_img_dark_mode: string = '';
   banner_bg_img: string = '';
   hero_bg_img: string = '';
   hero_bg_img_dark_mode: string = '';
@@ -347,6 +348,7 @@ export class IndexComponent {
       if (res.status) {
         this.pageDetail = pageData;
         this.banner_img = res.data.base_url + pageData.banner_img;
+        this.banner_img_dark_mode = res.data.base_url + pageData.banner_img_dark_mode;
         this.banner_bg_img = res.data.base_url + pageData.banner_bg_img;
         this.hero_bg_img = res.data.base_url + pageData.hero_bg_img;
         this.hero_bg_img_dark_mode = res.data.base_url + pageData.hero_bg_img_dark_mode;

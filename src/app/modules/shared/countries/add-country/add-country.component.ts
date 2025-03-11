@@ -59,8 +59,9 @@ export class AddCountryComponent {
     this.dialogRef.close(); // Close the dialog after confirming 
     const selected = this.countryPlans.find((plan: any) => plan.id === this.country.id);
     // alert('Current Selected '+selected)
-    if (selected.package_id != '') {
-      this.redirectToCheckout(selected.package_id);
+    if (selected.id != '') {
+      console.warn(selected)
+      this.redirectToCheckout(selected.id);
     }
   }
 
