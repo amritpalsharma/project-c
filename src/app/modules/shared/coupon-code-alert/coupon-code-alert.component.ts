@@ -1,8 +1,8 @@
 import { MatDialogRef } from '@angular/material/dialog';
 import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
 import { debounceTime, Subject } from 'rxjs';
-import { CouponService } from '../../../services/coupon.service'; 
-import { TalentService } from '../../../services/talent.service'; 
+import { CouponService } from '../../../services/coupon.service';
+import { TalentService } from '../../../services/talent.service';
 
 @Component({
   selector: 'app-coupon-code-alert',
@@ -18,9 +18,9 @@ export class CouponCodeAlertComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<CouponCodeAlertComponent>,
     private talentService: TalentService
-  ) {}
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   // Clear error and success messages when user starts typing a new coupon
   onCouponInput(): void {
@@ -63,11 +63,11 @@ export class CouponCodeAlertComponent implements OnInit {
 
   // Proceed to checkout without coupon or after applying it
   proceedToCheckout(): void {
-    // if(this.couponCode != ''){
-    //   this.dialogRef.close('coupon_applied'); // Pass coupon code (if applied) or null
-    // }else{
-    // }
-    this.dialogRef.close(null); // Pass coupon code (if applied) or null
+    if (this.couponCode != '' && this.couponApplied) {
+      this.dialogRef.close(this.couponCode); // Pass coupon code (if applied) or null
+    } else {
+      this.dialogRef.close(null); // Pass coupon code (if applied) or null
+    }
   }
 
   // Close dialog without a coupon

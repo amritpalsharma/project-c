@@ -245,7 +245,7 @@
                   </svg>
                   {{ 'purchases' | translate }}</button>
               </li>
-              <li class="nav-item" role="presentation">
+              <!-- <li class="nav-item" role="presentation">
                 <button class="nav-link" (click)="switchTab('chat')" [ngClass]="{'active': activeTab == 'chat'}"
                   id="contact-tab-4" data-bs-toggle="tab" data-bs-target="#contact-tab-pane-4" type="button" role="tab"
                   id="manage-button" aria-controls="contact-tab-pane-4" aria-selected="false">
@@ -256,7 +256,7 @@
                       fill="#023A4A" />
                   </svg>
                   {{ 'chat' | translate }}</button>
-              </li>
+              </li> -->
             </ul>
 
             <app-profile-tab *ngIf="activeTab == 'profile'" [userData]="user" [userCountryFlag]="userCountryFlag"

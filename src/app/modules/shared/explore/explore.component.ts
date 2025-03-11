@@ -245,7 +245,7 @@ export class ExploreComponent implements OnInit {
 
   // Event handler for page change in paginator
   getUsers() {
-    this.isLoading = true; // Start loading
+    //this.isLoading = true; // Start loading
 
     const pageIndex = this.currentPage;
     const pageSize = this.pageSize;
@@ -259,7 +259,7 @@ export class ExploreComponent implements OnInit {
         location: this.selectedCountry,
         age: this.selectedAge,
         position: this.selectedPositions,
-        user_domain:this.userDomain
+        user_domain: this.userDomain
       },
       metaQuery: [],
       lang: localStorage.getItem('lang_id')

@@ -102,16 +102,14 @@ export class PlanComponent implements OnInit, OnDestroy {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result == 'no_coupon') {
-        this.redirectToCheckout(planId);
-      }
-      
-      if (result && result != null) {
-        this.isCouponApplied = true; // Show that the coupon has been applied
-        this.couponCode = result; // Store the coupon code entered by the user
-        this.redirectToCheckout(planId);
-      }
-
+      // if (result == 'no_coupon') {
+      //   this.redirectToCheckout(planId);
+      // }
+      // if (result) {
+      this.isCouponApplied = true; // Show that the coupon has been applied
+      this.couponCode = result; // Store the coupon code entered by the user
+      this.redirectToCheckout(planId);
+      // }
     });
   }
 
