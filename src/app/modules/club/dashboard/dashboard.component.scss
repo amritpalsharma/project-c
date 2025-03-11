@@ -1400,3 +1400,21 @@ width:  100% !important;
     margin-top: 15px;
   }
   }
+  .user-details-left .user-info button {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .user-details-left .user-info button .tour-personal-details {
+    display: flex;
+    max-width: 75px;
+    overflow: hidden;
+  }
+  .user-details-left .user-info button .tour-personal-details span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .user-details-left .user-info button .tour-personal-details svg {
+  width: 15px !important;
+  min-width: 15px;
+  }

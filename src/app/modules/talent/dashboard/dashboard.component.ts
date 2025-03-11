@@ -142,7 +142,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   startIntroTour(lang: string) {
-
+    // introJs().start().goToStep(1);
     //this.translateService.use(lang); // Change language before fetching translations
     this.translateService.get([
       'profilePhoto',
@@ -191,14 +191,17 @@ export class DashboardComponent implements OnInit, OnDestroy {
         ],
         showBullets: false,
         showProgress: false,
-        scrollToElement: true,
+        exitOnOverlayClick: false,
+        scrollToElement: false,
         prevLabel: translations['previous'],
         nextLabel: translations['next'],
         doneLabel: translations['finish'],
         tooltipPosition: 'auto',
       });
-
-      this.introInstance.start(); // Start the tour after setting options
+      setTimeout(() => {
+        this.introInstance.start();
+      }, 1000); 
+      // this.introInstance.start(); // Start the tour after setting options
     });
 
     // Add the "Don't show again" checkbox dynamically
@@ -250,12 +253,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
     });
 
     // Handle when the tour finishes
-    this.introInstance.oncomplete(() => this.handleTourExit());
+    // this.introInstance.oncomplete(() => this.handleTourExit());
 
     // Handle when the tour is exited manually
     // introInstance.onexit(() => this.handleTourExit());
-
-    this.introInstance.start();
+    this.introInstance.oncomplete(() => this.handleTourExit());
+    // this.introInstance.start();
   }
 
   // Centralized handling of "Don't show again" logic

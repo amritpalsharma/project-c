@@ -97,12 +97,12 @@ P {
 
 a.btn.btn-register {
     border-radius: 20px;
-    /* padding: 10px 60px; */
+    padding: 10px 20px;
+    min-width: 250px;
+    text-align: center;
     font-size: 18px;
     margin-top: 20px;
     font-weight: 700;
-    height: 41px;
-    width: 278px;
 }
 
 .banner-image1 img {
@@ -1876,8 +1876,6 @@ span {
 
     a.btn.btn-register {
         font-size: 16px;
-        height: 41px;
-        width: 215px;
     }
 
     .club-text1 {
@@ -2131,17 +2129,11 @@ span {
 
     a.btn.btn-register {
         font-size: 15px;
-        height: 35px;
-        width: 190px;
     }
 
     .py_0 {
         padding-top: 30px;
         padding-bottom: 30px;
-    }
-
-    .banner-data {
-        padding-top: 100px;
     }
 
     .banner {
@@ -2574,7 +2566,6 @@ span {
     }
 
     .banner-data {
-        padding-top: 100px;
         position: relative;
         height: 700px;
     }
@@ -3201,10 +3192,6 @@ span {
 @media (max-width: 376px) {
     .features {
         height: 700px;
-    }
-
-    .banner-data {
-        padding-top: 60px;
     }
 
     .banner {
@@ -3908,7 +3895,4 @@ span {
   .accordion-body {
     padding-top: 0 !important;
   }
-  .banner-data {
-    padding-top: 100px;
-}
   }

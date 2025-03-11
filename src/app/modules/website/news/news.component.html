@@ -82,7 +82,7 @@
             <!-- {{news_img_path + newsData.featured_image}} -->
             <!-- {{newsData | json}} -->
             <div routerLink="{{'/news/' + newsData.slug}}" class="news-box">
-              <img [src]="news_img_path + newsData.featured_image" />
+              <div class="news_img_thumb_wrap"><img [src]="news_img_path + newsData.featured_image" /></div>
               <p class="p-text">{{newsData.created_at | date: 'dd.MM.yy'}}</p>
               <p>{{newsData.title}}</p>
             </div>

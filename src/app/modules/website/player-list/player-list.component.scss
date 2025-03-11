@@ -212,6 +212,8 @@ select#numberSelect {
     position: absolute;
     border: none;
     z-index: 1;
+    width: 80px;
+    height: 65px;
     bottom: 28px;
     left: -1px;
     background: linear-gradient(10deg, #6FB95D, #236115);
@@ -599,11 +601,11 @@ button.page-active {
         .player-img:after {
             width: 80px;
             height: 65px;
-            bottom: -2px;
+            bottom: 28px;
         }
 
         .player-img {
-            height: 262px !important;
+            height: 100% !important;
             width: 100%;
 
             img {
@@ -653,10 +655,6 @@ button.page-active {
                     height: 210px !important;
                 }
             }
-
-            .player-img:after {
-                bottom: 0px;
-            }
         }
     }
 }
@@ -670,6 +668,19 @@ button.page-active {
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+    .players.player-card .flag-image7 {
+        transform: scale(0.75);
+        bottom: 35px;
+        left: 8px;
+    }
+    .player-list .tabs {
+        width: 100%;
+    }
+    .players.player-card .player1 .player-img:after {
+        width: 60px;
+        height: 55px;
+        bottom: 28px;
     }
 }
 

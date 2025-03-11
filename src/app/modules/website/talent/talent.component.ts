@@ -85,9 +85,9 @@ export class TalentComponent {
       this.getCurrencyPrice('yearly');
     });
 
-    this.globalSettings.indexFunctionCall$.subscribe(() => {
-      this.ThemeUpdated(); // Call the function when event is received
-    });
+    // this.globalSettings.indexFunctionCall$.subscribe(() => {
+    //   this.ThemeUpdated(); // Call the function when event is received
+    // });
   }
 
   isActive: any = {
