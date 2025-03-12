@@ -28,8 +28,8 @@
                 <path d="M10.668 16H16.0013" stroke="#787878" stroke-width="2" stroke-linecap="round" />
             </svg>
 
-            <h6 class="gallery-h6 mt-2">{{ 'dragAndDropFiles' | translate }}</h6>
-            <p class="gallery-p">{{ 'fileSupported1' | translate }} </p>
+            <h6 class="gallery-h6 mt-2">{{ 'dragAndDropFilesHere' | translate }}</h6>
+            <p class="gallery-p">{{ 'filesSupported' | translate }} </p>
             <input type="file" (change)="onFileSelect($event)" multiple hidden #fileInput />
             <button type="button" (click)="fileInput.click()" class="gallery-upload-button mb-3 mt-3">{{ 'uploadFiles' |
                 translate }}</button>
