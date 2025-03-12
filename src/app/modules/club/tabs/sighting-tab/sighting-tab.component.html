@@ -1,14 +1,14 @@
-<div *ngIf="view == 'listing'" class=" bg-0C3453" id="myTabContent-2">
-    <div class="tab-pane fade show active p-3" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
+<div *ngIf="view == 'listing'" class="bg-0C3453" id="myTabContent-2">
+    <div class="sighting_tab tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
     tabindex="0">
   
-      <div class="d-flex align-items-center justify-content-between" >
-        <div class="d-flex align-items-center">
+      <div class="d-flex align-items-center justify-content-between mobile_sight">
+        <div class="d-flex align-items-center card_sight_title">
           <h2 class="card-title mb-0 me-3">{{'sighting' | translate}}</h2>
           <a (click)="createSightPopup()" class="btn btn-success btn-sm pop-up-button web-create-bg">{{'addNewSighting' | translate}}</a>
         </div>
 
-        <div class="card-search bg-072944 p-1">
+        <div class="card-search bg-072944 p-1 ">
           <div class="input-group d-flex align-items-center ">
             <span class="input-group-text "
               ><svg
@@ -65,7 +65,7 @@
           </div> -->
         </div>
       </div>
-      <div class="d-flex align-items-center justify-content-between ">
+      <div class="d-flex align-items-center justify-content-between card_sight_btns ">
         <div class="d-flex align-items-center">
           <div class="dropdown dropdown-favourites">
             <button

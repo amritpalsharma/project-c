@@ -136,6 +136,7 @@
     }
     .edit-gap{
         gap: 10px;
+        align-items: flex-start;
     }
     .country-details{
         gap: 10px;
@@ -151,7 +152,7 @@
         background: none;
     }
     .team_logo {
-        padding: 24px 10px !important;
+        padding: 10px 10px 20px !important;
     }
     tr.table_underline {
         border-bottom: 3.3px solid #e6e6e6 ;
@@ -160,6 +161,26 @@
         margin-bottom: 18px;
     }
     
+}
+
+.underline_gap .country_name * {
+    font-size: 14px;
+}
+.underline_gap .main-template img, .underline_gap .main-template svg {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+}
+.team_logo .team-logos {
+    align-items: center;
+}
+.team-names h6.details_2 {
+    font-size: 13px;
+    margin-bottom: 0;
+}
+.team-names h5.details-1 {
+    margin-bottom: 4px;
+    font-size: 16px;
 }
 
 .main-template{
@@ -269,13 +290,14 @@ pointer-events: none;
     margin-bottom: 10px;
   }
   .team-logo-img img {
-    width: 72px;
+    width: 70px;
 }
 .team-logos{
     gap: 20px;
 }
 .edit-gap{
     gap: 10px;
+    align-items: flex-start;
 }
 .country-details{
     gap: 10px;
@@ -291,11 +313,71 @@ pointer-events: none;
     background: none;
 }
 .team_logo {
-    padding: 24px 10px !important;
+    padding: 10px 10px 20px !important;
 }
 tr.table_underline {
     border-bottom: 3.3px solid #e6e6e6 ;
 }
 .underline_gap{
     margin-bottom: 18px;
+}
+
+@media (max-width: 991px) {
+.underline_gap td {
+    display: block !important;
+    width: 33%;
+}
+.underline_gap {
+    flex-wrap: wrap;
+    gap: 15px 0;
+    margin-bottom: 0;
+}
+}
+
+@media (max-width: 767px) {
+.new_performance button {
+    font-size: 14px;
+}
+.edit-gap button {
+    padding: 5px !important;
+}
+.edit-gap button span {
+    display: none;
+}
+.team-logos {
+    padding-left: 0;
+    padding-right: 0;
+    gap: 10px;
+    .team-logo-img img {
+        width: 40px;
+    }
+}
+.edit-gap {
+    padding-right: 5px;
+}
+.underline_gap .country_name * {
+    font-size: 12px;
+}
+}
+
+
+@media (max-width: 575px) {
+    .underline_gap td {
+        display: block !important;
+        width: 50%;
+    }   
+}
+
+@media (max-width: 480px) {
+.team-names h6.details_2 {
+    font-size: 11px;
+}
+.team-names h5.details-1 {
+    font-size: 13px;
+}
+.team-logos {
+    .team-logo-img img {
+        width: 30px;
+    }
+}
 }

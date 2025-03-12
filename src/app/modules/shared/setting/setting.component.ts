@@ -63,6 +63,9 @@ export class SettingComponent implements OnInit {
       } else if (fragment === 'activity') {
         this.tab = 'activity'; // Switch to Activity Log tab
       }
+      else if (fragment === 'notifications') {
+        this.tab = 'notifications'; // Switch to Activity Log tab
+      }
     });
     // this.fetchProfileData();
   }

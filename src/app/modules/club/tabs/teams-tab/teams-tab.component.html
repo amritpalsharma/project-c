@@ -22,7 +22,7 @@
           </span>
         </div>
 
-        <div class="col pl-5">
+        <div class="col">
           <div class="table-responsive">
 
             <table mat-table [dataSource]="players" class="table table-hover table-striped table-users ">
@@ -34,7 +34,7 @@
 
                   <div class="d-flex align-items-center pic-with-name">
                     <span class="position-relative">
-                      <img src="../../../assets/images/1.jpg" alt="" class="table_img" *ngIf="!element.profile_image_path" />
+                      <img src="../../../assets/images/1.png" alt="" class="table_img" *ngIf="!element.profile_image_path" />
                       <img src="{{element.profile_image_path}}" alt="" class="table_img" *ngIf="element.profile_image_path" />
                       <span class="position-absolute verified-icon" >
                         <img src="../../../assets/images/pending.png" alt="" class="user-pending-icon" *ngIf="element.user_status === '1'"/>

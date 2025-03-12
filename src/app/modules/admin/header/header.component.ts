@@ -33,14 +33,17 @@ interface Notification {
 })
 export class HeaderComponent {
   //constructor(private themeService: ThemeService) {}
-  constructor(private shareService:  SharedService, private userService: UserService, private themeService: ThemeService, private authService: AuthService, private router: Router, private translateService: TranslateService,private talentService: TalentService, private socketService: SocketService, private talkService : TalkService) { }
+  constructor(private shareService: SharedService, private userService: UserService, private themeService: ThemeService, private authService: AuthService, private router: Router, private translateService: TranslateService, private talentService: TalentService, private socketService: SocketService, private talkService: TalkService) { }
 
   loggedInUser: any = localStorage.getItem('userData');
   profileImgUrl: any = "";
   lang: string = '';
-  domains: any = environment.domains; 
-  envLang:any = environment.adminLangs;
+  domains: any = environment.domains;
+  langs: any = environment.langs;
+  envLang: any = environment.adminLangs;
   isDarkMode: boolean = false;
+  role: any;
+  roles: any = environment.roles;
 
   notificationCount: number = 0;
 
@@ -60,7 +63,7 @@ export class HeaderComponent {
   currentIndex = 0;
   notificationsPerPage = 3;
   unseenCount = 0;
-  language : any;
+  language: any;
 
   searchResults: any[] = [];
   searchUser: any;
@@ -68,7 +71,7 @@ export class HeaderComponent {
   searchControl = new FormControl('');
   filteredUsers: any[] = [];
 
-  notificationSeen : boolean = false;
+  notificationSeen: boolean = false;
 
   ngOnInit() {
 
@@ -76,10 +79,14 @@ export class HeaderComponent {
       this.isDarkMode = isDarkTheme;
     });
 
+    let userRole = localStorage.getItem("userRole");
+
+    this.role = this.roles.find((role: any) => role.id == userRole);
+
     let notificationStatus = localStorage.getItem("notificationSeen");
     if (notificationStatus) {
       let jsonData = JSON.parse(notificationStatus);
-      this.notificationSeen = jsonData; 
+      this.notificationSeen = jsonData;
     }
     else {
       console.log("No data found in localStorage.");
@@ -98,7 +105,7 @@ export class HeaderComponent {
     let langId = localStorage.getItem('lang_id');
 
     this.fetchNotifications(userId, langId);
-    this.languages = JSON.parse(this.languages); 
+    this.languages = JSON.parse(this.languages);
 
     this.socketService.on('notification').subscribe((data) => {
       // Fetch all notifications to update this.allNotifications with the latest data
@@ -118,18 +125,18 @@ export class HeaderComponent {
         seen: data.seen,
         senderId: data.senderId,
         shouldAnimate: true,
-        relativeTime : 'just now',
+        relativeTime: 'just now',
       };
-      
+
       // Add the notification to the array and show the notification box
       this.liveNotification = [obj]; // Keep only the latest notification
       this.showNotification = true;
-      if(this.isScrolledBeyond){
+      if (this.isScrolledBeyond) {
         this.clickedNewNotification = true;
       }
-      
+
       this.notifications.unshift(obj);
-      
+
       console.log('New notification:', data.message);
 
       // Hide the notification after 3 seconds
@@ -139,14 +146,14 @@ export class HeaderComponent {
         obj.shouldAnimate = false;
       }, 5000); // 5000 ms = 5 seconds
     });
-    
+
     this.userService.adminImageUrl.subscribe((newUrl) => {
       console.log(newUrl, 'testing...', this.loggedInUser.profile_image_path)
       if (newUrl == 'default') {
         if (this.loggedInUser.profile_image_path) {
           this.profileImgUrl = this.loggedInUser.profile_image_path;
         } else {
-          this.profileImgUrl = "../../../assets/images/1.jpg";
+          this.profileImgUrl = "../../../assets/images/1.png";
         }
       }
 
@@ -154,15 +161,15 @@ export class HeaderComponent {
       if (this.loggedInUser.profile_image_path) {
         this.profileImgUrl = this.loggedInUser.profile_image_path;
       } else {
-        this.profileImgUrl = "../../../assets/images/1.jpg";
+        this.profileImgUrl = "../../../assets/images/1.png";
       }
 
       this.lang = localStorage.getItem('lang') || 'en';
 
-      const selectedLanguage = this.envLang.find((lang:any) => lang.slug === this.lang);
+      const selectedLanguage = this.envLang.find((lang: any) => lang.slug === this.lang);
       if (selectedLanguage) {
         this.language = selectedLanguage;
-      }else{
+      } else {
         this.language = this.envLang[0];
       }
 
@@ -170,33 +177,33 @@ export class HeaderComponent {
 
 
     this.searchControl.valueChanges
-    .pipe(
-      filter((value): value is string => value !== null && value.trim().length > 0), // Exclude null or empty strings
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap((searchText: string) => {
-        this.isLoading = true;
-        return this.userService.searchUser(searchText).pipe(
-          finalize(() => (this.isLoading = false))
-        );
-      })
-    )
-    .subscribe(
-      (response: any) => {
-        if (response && response.status && response.data?.userData) {
-          this.filteredUsers = response.data.userData;
-        } else {
-          console.error('Invalid API response structure:', response);
+      .pipe(
+        filter((value): value is string => value !== null && value.trim().length > 0), // Exclude null or empty strings
+        debounceTime(300),
+        distinctUntilChanged(),
+        switchMap((searchText: string) => {
+          this.isLoading = true;
+          return this.userService.searchUser(searchText).pipe(
+            finalize(() => (this.isLoading = false))
+          );
+        })
+      )
+      .subscribe(
+        (response: any) => {
+          if (response && response.status && response.data?.userData) {
+            this.filteredUsers = response.data.userData;
+          } else {
+            console.error('Invalid API response structure:', response);
+            this.filteredUsers = [];
+          }
+        },
+        (error) => {
+          console.error('Error fetching users:', error);
           this.filteredUsers = [];
         }
-      },
-      (error) => {
-        console.error('Error fetching users:', error);
-        this.filteredUsers = [];
-      }
-    );
+      );
 
-    this.userService.getAdminProfile().subscribe((response)=>{
+    this.userService.getAdminProfile().subscribe((response) => {
       if (response && response.status) {
         let userData = response.data.user_data;
         // this.firstName = this.userData.first_name || '';
@@ -207,7 +214,7 @@ export class HeaderComponent {
         // this.city = this.userData.meta.city || '';
         // this.state = this.userData.meta.state || '';
         // this.zipcode = this.userData.meta.zipcode || '';
-        this.profileImgUrl = userData.meta.profile_image_path || '../../../assets/images/1.jpg';
+        this.profileImgUrl = userData.meta.profile_image_path || '../../../assets/images/1.png';
         // this.isLoading = false;
 
       } else {
@@ -216,8 +223,10 @@ export class HeaderComponent {
     });
   }
 
+
+
   isUserOnline(senderId: number): boolean {
-    if(!this.socketService.onlineUsers){
+    if (!this.socketService.onlineUsers) {
       return false;
     }
     return senderId.toString() in this.socketService.onlineUsers;
@@ -241,15 +250,15 @@ export class HeaderComponent {
     this.isClosed = !this.isClosed;
   }
 
-  notificationClicked(id:number, seen: number, notification: any){
-    if(!notification.seen){
+  notificationClicked(id: number, seen: number, notification: any) {
+    if (!notification.seen) {
       this.talentService.updateNotificationSeen(notification.id, 1).subscribe({
         next: (response) => {
-          if(response.status){
+          if (response.status) {
             notification.seen = 1;
             console.log('Message from API:', response.message);
           }
-          else{
+          else {
             console.log("something went wrong");
           }
         },
@@ -258,7 +267,7 @@ export class HeaderComponent {
         }
       });
     }
-    else{
+    else {
       console.log("already seen");
     }
   }
@@ -283,9 +292,11 @@ export class HeaderComponent {
     const selectedLanguageId = selectedLanguageObj ? selectedLanguageObj.id : 1;
     localStorage.setItem('lang_id', selectedLanguageId);
     this.shareService.updateData({
-      action:'lang_updated',
-      id:selectedLanguageId
+      action: 'lang_updated',
+      id: selectedLanguageId
     })
+
+    // this.shareService.updateLanguage(selectedLanguageId);
 
     let jsonData = localStorage.getItem("userData");
     let userId;
@@ -297,9 +308,14 @@ export class HeaderComponent {
       console.log("No data found in localStorage.");
     }
 
-    this.socketService.emit('updateLanguage', {userId, langId: selectedLanguageId});
+    this.socketService.emit('updateLanguage', { userId, langId: selectedLanguageId });
     this.fetchNotifications(userId, selectedLanguageId);
-
+    const chatSelectedLanguage = this.langs.find((lang: any) => lang.slug === this.lang);
+    // Now safely access the locale
+    const locale = chatSelectedLanguage.locale;
+    // Change the TalkJS locale by passing the locale string (e.g., 'en-US')
+    this.talkService.changeLocale(locale);
+    // langs
   }
 
 
@@ -314,7 +330,7 @@ export class HeaderComponent {
       console.log("No data found in localStorage.");
     }
     this.socketService.disconnectUser(userId);
-    
+
     this.authService.logout();
   }
 
@@ -357,8 +373,8 @@ export class HeaderComponent {
     this.exploreUser(user.role_name, user.id);
   }
 
-  exploreUser(slug:string, id:Number): void {
-    let pageRoute = 'admin/'+slug.toLowerCase();
+  exploreUser(slug: string, id: Number): void {
+    let pageRoute = 'admin/' + slug.toLowerCase();
     this.router.navigate([pageRoute, id]);
   }
 
@@ -373,7 +389,7 @@ export class HeaderComponent {
 
   // notifications: Notification[] = [
   //   {
-  //     image: '../../../assets/images/1.jpg',
+  //     image: '../../../assets/images/1.png',
   //     title: 'Elton Price',
   //     content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
   //     time: '14 hours ago'
@@ -401,21 +417,21 @@ export class HeaderComponent {
   }
 
   fetchNotifications(userId: number, langId: any): void {
-    this.talentService.getNotifications(userId, langId).subscribe({
+    this.talentService.getNotifications(userId, langId, 1, 10).subscribe({
       next: (response) => {
         console.log('Fetched notifications response:', response);
-  
+
         if (response.status && response.notifications) {
           this.unseenCount = response.unseen_count;
           // Clear existing notifications to avoid stale data
           this.allNotifications = [];
           this.notifications = [];
           console.log("info", this.currentIndex, this.notificationsPerPage)
-          if(this.currentIndex != 0){
+          if (this.currentIndex != 0) {
             this.notificationsPerPage = this.currentIndex;
           }
           this.currentIndex = 0;
-  
+
           // Map fetched notifications to the Notification interface
           this.allNotifications = response.notifications.map((notif: any) => ({
             id: notif.id,
@@ -424,11 +440,11 @@ export class HeaderComponent {
             content: notif.message,
             time: notif.time,
             seen: notif.seen,
-            senderId : notif.senderId,
-            shouldAnimate:false,
+            senderId: notif.senderId,
+            shouldAnimate: false,
             relativeTime: notif.relativeTime,
           }));
-  
+
           this.loadMoreNotifications(); // Load the initial set of notifications
         } else {
           console.warn('No notifications found in the response.');
@@ -440,12 +456,12 @@ export class HeaderComponent {
     });
   }
 
-  something : boolean = false;
-  
+  something: boolean = false;
+
 
   // Load notifications in chunks of 3
   loadMoreNotifications(): void {
-    this.something=true;
+    this.something = true;
 
     const nextNotifications = this.allNotifications.slice(
       this.currentIndex,
@@ -457,7 +473,7 @@ export class HeaderComponent {
     }, 2000);
 
     this.currentIndex += this.notificationsPerPage;
-    if(this.notificationsPerPage>=3){
+    if (this.notificationsPerPage >= 3) {
       this.notificationsPerPage = 3;
     }
 
@@ -475,10 +491,26 @@ export class HeaderComponent {
     //   this.notificationCount = 0;
     //   this.isShowAllNotification = false;
     // }, 5000); // 3000 ms = 3 seconds
-    
+
+  }
+
+  navigateToTab(tab: string) {
+    let fragment = 'activity'; // Default fragment
+
+    if (tab === 'team') {
+      fragment = 'team';
+    } else if (tab === 'notifications') {
+      fragment = 'notifications';
+    } else if (tab === 'profile') {
+      fragment = 'profile';
+    }
+
+    this.router.navigate([`/${this.role.slug}/setting`], { fragment });
   }
 
   accountSetting() {
     goToActiveLog(this.router);
   }
 }
+
+

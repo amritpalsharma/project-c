@@ -17,15 +17,23 @@
     <div class="permission-item d-flex align-items-center justify-content-between">
       <label for="newsletter" class="mb-0"><b>{{'newsLetter' | translate}}</b></label>
       <label class="switch">
-        <input
-          type="checkbox"
-          id="newsletter"
-          name="newsletter"
-          [checked]="loggedInUser.newsletter == 1"
+        <input type="checkbox" id="newsletter" name="newsletter" [checked]="loggedInUser.newsletter == 1"
           (change)="onNewsletterToggle($event)">
         <span class="slider round"></span>
       </label>
     </div>
     <p>{{'appSettingText' | translate}}</p>
+  </div>
+  <div class="card-header header-delete-account mt-4">
+    <h6 class="card-title">Account</h6>
+  </div>
+  <div class="card-body">
+    <div class="acount_del-item d-flex align-items-center justify-content-between">
+      <label for="DeleteAccount" class="mb-0"><b>{{ 'deleteAccount' | translate}}</b></label>
+    </div>
+    <div class="acount_del-item d-flex align-items-center justify-content-between flex-wrap">
+      <p>{{ 'deleteAccountDesc' | translate}}</p>
+      <button id="DeleteAccount" type="button" class="button acount_delete_btn" (click)="confirmDeleteProfile(1)">{{'deleteMyAccount' | translate}}</button>
+    </div>
   </div>
 </div>

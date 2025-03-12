@@ -17,6 +17,7 @@ import { TalentService } from '../../../services/talent.service';
 import { debounceTime, distinctUntilChanged, switchMap, finalize } from 'rxjs/operators';
 import { CommonHelperService } from '../../../services/common-helper.service';
 import { SharedService } from '../../../services/shared.service';
+import { AdminHelperService } from '../../../services/admin-helper.service';
 
 interface Notification {
   id: number;
@@ -57,7 +58,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   newRegistrationPlayers: any = [];
   newRegistrationScouts: any = [];
   years: any = [];
-  yearOfstarting : any = 2024;
+  yearOfstarting: any = 2024;
   selectedYear: any = new Date().getFullYear();
   // selectedYear: any = new Date().getFullYear() - 1;
   // year: any = 2020;
@@ -102,7 +103,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     private talentService: TalentService,
     private socketService: SocketService,
     private commonHelper: CommonHelperService,
-    private sharedservice: SharedService
+    private sharedservice: SharedService,
+    private adminHelper: AdminHelperService
   ) {
 
   }
@@ -172,6 +174,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     });
 
     this.selectedYear = this.year;
+    let da = localStorage.getItem('selected_domain')?.toString();
+    if(da){
+      this.selectedDomain = da;
+    }
 
     let lang_id = localStorage.getItem('lang_id');
 
@@ -180,7 +186,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.getNewRegistrationsWithScout();
     this.getNewRegistrationsWithClub();
     this.getNewRegistrationsWithPlayers();
-    this.getChardData(this.selectedYear, this.selectedDomain, this.lang_id);
+    this.getChardData(this.selectedYear, this.selectedDomain, lang_id);
     this.generateYears();
     this.lang = localStorage.getItem('lang') || 'en';
     this.getLocations();
@@ -198,7 +204,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.userService.getAdminProfile().subscribe((response) => {
       if (response && response.status) {
         let userData = response.data.user_data;
-        this.loggedInUser.profile_image_path = userData.meta.profile_image_path || '../../../assets/images/1.jpg';
+        this.loggedInUser.profile_image_path = userData.meta.profile_image_path || '../../../assets/images/1.png';
       } else {
         console.error('Invalid API response structure:', response);
       }
@@ -232,7 +238,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         }
       );
 
-    this.sharedservice.data$.subscribe((data:any) => {
+    this.sharedservice.data$.subscribe((data: any) => {
       if (data.action == 'lang_updated') {
         this.isLoading = true;
         this.lang_id = data.id;
@@ -240,47 +246,68 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.getNewRegistrationsWithScout();
         this.getNewRegistrationsWithClub();
         this.getNewRegistrationsWithPlayers();
-        this.getChardData(this.year, this.domain_id, this.lang_id);
-        this.getLocations();
+
+        // this.getChardData(this.year, this.domain_id, this.lang_id);
+        this.getChardData(this.selectedYear, this.selectedDomain, this.lang_id);
+
+        // setTimeout(() => {
+        let selected_domain = localStorage.getItem('selected_domain');
+        if (selected_domain != '') {
+          this.selectedDomain = selected_domain ? selected_domain : '';
+        }
+        // }, 1500);
         // this.generateYears();
       }
     });
 
   }
 
+  // ngAfterViewInit() {}
   ngAfterViewInit() {
-
+    this.initializeTabs();
+  }
+  
+  initializeTabs() {
+    const tabs = document.querySelectorAll('[data-bs-toggle="tab"]');
+    
+    tabs.forEach((tab) => {
+      tab.addEventListener('shown.bs.tab', (event: any) => {
+        const targetPaneId = event.target.getAttribute('data-bs-target');
+  
+        setTimeout(() => {
+          if (targetPaneId === '#home-tab-pane') {
+            this.chart1?.destroy();
+            this.chart1 = this.createChart(this.canvas1.nativeElement, 'canvas1', this.chartData.users.labels, this.chartData.users.values)!;
+          } else if (targetPaneId === '#profile-tab-pane') {
+            this.chart2?.destroy();
+            this.chart2 = this.createChart(this.canvas2.nativeElement, 'canvas2', this.chartData.sales.labels, this.chartData.sales.values)!;
+          } else if (targetPaneId === '#contact-tab-pane') {
+            this.chart3?.destroy();
+            this.chart3 = this.createChart(this.canvas3.nativeElement, 'canvas3', this.chartData.subscriptions.labels, this.chartData.subscriptions.values)!;
+          }
+        }, 200); // Delay to allow tab switch animation
+      });
+    });
   }
 
   yearChange(e: any) {
-    // , domain_id:any, lang_id:any
     let lang_id = localStorage.getItem('lang_id');
-    // let domain_id = 2;
     this.selectedYear = e.target.value;
-    console.log('Selected Year:', this.selectedYear);
-    console.log('Selected Domain ID:', this.domain_id);
-    console.log('Selected Language ID:', this.lang_id);
-
     this.updateChartData(this.selectedYear, this.selectedDomain, lang_id);
   }
 
   domainChange(e: any) {
-    // this.updateChartData(e.target.value);
-    // let year = 2025;
     let lang_id = localStorage.getItem('lang_id');
     this.selectedDomain = e.target.value;
-    console.log('Selected Year 111:', this.selectedYear);
-    console.log('Selected Domain ID 111:', this.domain_id);
-    console.log('Selected Language ID 111:', this.lang_id);
     this.updateChartData(this.selectedYear, this.selectedDomain, lang_id);
-
+    localStorage.setItem('selected_domain', this.selectedDomain)
   }
 
   getLocations() {
     try {
       this.userService.getLocations().subscribe((response) => {
         this.domainsList = response.data.domains;
-        this.selectedDomain = this.domainsList[0].id;
+        // this.selectedDomain = this.domainsList[0].id;
       });
     } catch (error) {
       console.error('Error fetching locations:', error);
@@ -371,12 +398,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       console.error('Error fetching users:', error);
     }
   }
-  getChardData(year: any, domain_id: any = 1, lang_id: any = 2) {
-    // let langId = localStorage.getItem('lang_id');
+  getChardData(year: any, domain_id: any, lang_id: any) {
     try {
       this.dashboardApi.getChartData(year, domain_id, lang_id).subscribe((response) => {
         if (response && response.status && response.data) {
           this.chartData = response.data;
+
           setTimeout(() => {
             this.chart1 = this.createChart(this.canvas1.nativeElement, 'canvas1', response.data.users.labels, response.data.users.values)!;
             this.chart2 = this.createChart(this.canvas2.nativeElement, 'canvas2', response.data.sales.labels, response.data.sales.values)!;
@@ -482,6 +509,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     });
 
     this.chartsMap.set(chartId, newChart); // Save chart instance
+    setTimeout(() => {
+      newChart.resize(); // Ensures it adapts to the canvas size
+    }, 300);
     return newChart;
 
     /* return new Chart(ctx, {
@@ -567,7 +597,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     });
     const charts = [this.chart1, this.chart2, this.chart3];
     charts.forEach((chart) => {
-
       if (chart.options && chart.options.scales && chart.options.plugins) {
         if (chart.options.scales['x'] && chart.options.scales['x'].grid) {
           chart.options.scales['x'].grid.color = isDarkMode ? '#333' : '#E0E0E0';
@@ -686,7 +715,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   fetchNotifications(userId: number, langId: any): void {
-    this.talentService.getNotifications(userId, langId).subscribe({
+    this.talentService.getNotifications(userId, langId, 1, 10).subscribe({
       next: (response) => {
         console.log('Fetched notifications response:', response);
 
@@ -803,7 +832,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.years = this.sortYearsDescending(this.years);
     // this.getChardData(this.years[0]);
     // this.getChardData(this.years[0], this.domain_id, this.lang_id);    
-    this.getChardData(this.years[0], 1, 2);
+    // this.getChardData(this.years[0], 1, 2);
   }
 
   scrollToTop2() {
@@ -852,7 +881,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   redirectUser(slug: string, id: Number): void {
-
+    slug = slug.toLowerCase();
+    if (slug == 'späher') {
+      slug = 'scout';
+    } else if (slug == 'verein') {
+      slug = 'club';
+    }
     let pageRoute = 'admin/' + slug.toLowerCase();
     this.router.navigate([pageRoute, id]);
   }
@@ -860,9 +894,15 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   goToSetting() {
     goToActiveLog(this.router);
   }
-  
-  isValidProfileImage(imageUrl : string){
+
+  isValidProfileImage(imageUrl: string) {
     return this.commonHelper.checkImageExists(imageUrl);
+  }
+
+  formatDateTime(datetime: string) {
+    // convertAdminDateTime
+    let formattedDate = this.adminHelper.convertAdminDateTime(datetime, 'users');
+    return formattedDate;
   }
 }
 

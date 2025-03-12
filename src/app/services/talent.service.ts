@@ -63,10 +63,17 @@ export class TalentService {
     this.messageSource.next(pic);
   }
 
-  getNotifications(userId: any = 1, langId: any): Observable<any> {
+  getNotifications(userId: any = 1, langId: any, page: any, pageSize: any): Observable<any> {
     return this.http.get<{ status: boolean, notifications: Notification[], unseen_count: number, total_count: number }>(
-      `${this.apiUrl3}notifications?userId=${userId}&langId=${langId}`,
+      `${this.apiUrl3}notifications?userId=${userId}&langId=${langId}&page=${page}&limit=${pageSize}`,
     );
+  }
+
+  deleteNotifications(ids: any[] = []): Observable<{ status: boolean, message: string }> {
+    return this.http.request<{ status: boolean, message: string }>('DELETE', `${this.apiUrl3}notifications`, {
+      body: { ids },
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    });
   }
 
   updateNotificationSeen(id: number, seen: number): Observable<any> {
@@ -86,7 +93,7 @@ export class TalentService {
   getPackages(): Observable<any> {
     const headers = this.headers();
     return this.http.get<{ status: boolean, message: string, data: {} }>(
-      `${this.apiUrl}user/get-packages?lang=`+localStorage.getItem('lang_id'),
+      `${this.apiUrl}user/get-packages?lang=` + localStorage.getItem('lang_id'),
       { headers }
     );
   }
@@ -326,8 +333,8 @@ export class TalentService {
 
   updatePerformance(performanceId: any, params: any): Observable<any> {
     const headers = this.headers();
-
-    return this.http.post<any>(`${this.apiUrl}player/edit-performance-detail/${performanceId}`, params, { headers });
+    let lang_id = localStorage.getItem('lang_id');
+    return this.http.post<any>(`${this.apiUrl}player/edit-performance-detail/${performanceId}/${lang_id}`, params, { headers });
   }
 
   // Update newsletter subscription
@@ -350,13 +357,13 @@ export class TalentService {
 
   addPerformance(params: any): Observable<any> {
     const headers = this.headers();
-
-    return this.http.post<any>(`${this.apiUrl}player/add-performance-detail`, params, { headers });
+    let lang_id = localStorage.getItem('lang_id');
+    return this.http.post<any>(`${this.apiUrl}player/add-performance-detail/${lang_id}`, params, { headers });
   }
 
   deletePerformanceReport(params: any): Observable<any> {
     const headers = this.headers();
-
+    let lang_id = localStorage.getItem('lang_id');
     return this.http.post<any>(`${this.apiUrl}player/delete-performance-report`, params, { headers });
   }
 
@@ -642,15 +649,15 @@ export class TalentService {
 
     // Conditionally append parameters only if they have a value
     // if (params.offset !== undefined) {
-      queryParams = queryParams.set('offset', params.offset);
+    queryParams = queryParams.set('offset', params.offset);
     // }
 
     // if (params.limit !== undefined) {
-      queryParams = queryParams.set('limit', params.limit);
+    queryParams = queryParams.set('limit', params.limit);
     // }
 
     // if (params.search) {
-      queryParams = queryParams.set('search', params.search);
+    queryParams = queryParams.set('search', params.search);
     // }
 
     if (params.user_domain) {
@@ -715,4 +722,14 @@ export class TalentService {
     return this.http.post<any>(`${this.apiUrl}user/track-booster-profile`, params, { headers });
   }
 
+  deleteProfile(): Observable<any> {
+    const headers = this.headers();
+    let langID = localStorage.getItem('lang_id')
+    // const headers = this.headers();
+    return this.http.get<{ status: boolean, message: string, data: { userData: User[] } }>(
+      `${this.apiUrl}user/delete-my-account/${langID}`,
+      { headers }
+    )
+    // return this.http.get<any>(`${this.apiUrl}/delete-user`, params, { headers });
+  }
 }

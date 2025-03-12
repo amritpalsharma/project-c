@@ -22,7 +22,7 @@
 
                   <div class="user-edit ">
                     <label for="profile-upload" class="">
-                      <div class="edit-profile cursor-pointer" matTooltip="Upload New Profile Image"
+                      <div class="edit-profile cursor-pointer" matTooltip="{{'uploadNewProfileImage' | translate}}"
                         matTooltipPosition="right">
 
                         <svg width="21" height="19" viewBox="0 0 21 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -66,7 +66,7 @@
 
                 <div class="bg-color card-bg">
                   <div class="user-info pt-3 row align-items-center justify-content-between p-3 responsive-name">
-                    <div class="col-lg-8 d-flex align-items-center player-name-box">
+                    <div class="col-md-8 d-flex align-items-center player-name-box">
                       <h6 class="user-info-name">
                         {{ user.first_name }} {{ user.last_name }}
                       </h6>
@@ -79,8 +79,8 @@
                           *ngIf="user.status == '3'" />
                       </div>
                     </div>
-                    <div class="col-lg-4 p-0 edit_button responsive-edit_btn ">
-                      <button (click)="openEditDialog()" class="" matTooltip="Edit Personal Details"
+                    <div class="col-md-4 p-0 edit_button responsive-edit_btn ">
+                      <button (click)="openEditDialog()" class="" matTooltip="{{'editPersonalDetails' | translate}}"
                         matTooltipPosition="right">
                         <div class="tour-personal-details px-1">
                           <svg class="" width="22" height="23" viewBox="0 0 24 25" fill="none"
@@ -439,7 +439,7 @@
                   </div>
                 </div>
                 <div class="d-flex w-100 m-auto image_gallery-box mt-2">
-                  <div class="col-lg-4 gallery_images" *ngFor="let image of highlights?.images let i = index">
+                  <div class="col-6 col-sm-4 col-md-3 col-lg-4 gallery_images" *ngFor="let image of highlights?.images let i = index">
                     <img [src]="highlights.file_path + image.file_name" alt="" (click)="openImage(i)">
                   </div>
 
@@ -456,7 +456,7 @@
 
 
                 <div class="d-flex w-100 m-auto image_gallery-box mt-2">
-                  <div class="col-lg-4 gallery_images " *ngFor="let video of highlights?.videos">
+                  <div class="col-6 col-sm-4 col-md-3 col-lg-4 gallery_images " *ngFor="let video of highlights?.videos">
                     <video [src]="highlights.file_path + video.file_name" autoplay></video>
                   </div>
                 </div>
@@ -476,7 +476,7 @@
               </svg>
 
 
-              <div class="edit-photo d-flex align-items-center tour-cover-photo" matTooltip="Edit Cover Image"
+              <div class="edit-photo d-flex align-items-center tour-cover-photo" matTooltip="{{'editCoverImage' | translate}}"
                 matTooltipPosition="right">
                 <div class="edit_image-2 ">
                   <label for="file-upload" class="cursor-pointer ">

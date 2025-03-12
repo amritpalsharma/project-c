@@ -1,7 +1,7 @@
 <!-- unlock page  -->
 <div class="unlock_page" *ngIf="!isPremium">
     <div class="general_titels d-flex align-items-center">
-        <h2>{{ 'GeneralDetails' | translate}}</h2>
+        <h2>{{ 'generalDetails' | translate}}</h2>
         <div class="edit_button">
             <button class="tour-general-details" matTooltip="Edit General Details" matTooltipPosition="right" >
                 <svg width="22" height="23" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -100,7 +100,7 @@
 
 <ng-container *ngIf="isPremium">
     <div class="general_titels d-flex align-items-center mb-2">
-        <h2>{{ 'GeneralDetails' | translate}}</h2>
+        <h2>{{ 'generalDetails' | translate}}</h2>
     </div>
     <div class="forms_details mb-2">
         <form class="d-flex align-items-center form-boxs">
@@ -136,7 +136,7 @@
                 <tr *ngFor="let representator of representators">
                     <td>
                         <div style="display: flex; align-items: center;">
-                            <img src="../../../assets/images/1.jpg" alt="" class="table_img" />
+                            <img src="../../../assets/images/1.png" alt="" class="table_img" />
                             <span style="margin-left:15px;">
                                 <span style="display: block;">{{representator.first_name}}
                                     {{representator.last_name}}</span>

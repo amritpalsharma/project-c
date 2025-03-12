@@ -43,7 +43,7 @@ export class ProfileComponent {
         this.city = this.userData.meta.city || '';
         this.state = this.userData.meta.state || '';
         this.zipcode = this.userData.meta.zipcode || '';
-        this.image = this.userData.meta.profile_image_path || '../../../assets/images/1.jpg';
+        this.image = this.userData.meta.profile_image_path || '../../../assets/images/1.png';
         // this.isLoading = false;
         
       } else {

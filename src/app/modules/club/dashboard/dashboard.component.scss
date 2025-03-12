@@ -168,17 +168,15 @@
     }
   }
   @media (max-width:1024px) {
-    .elton-box{
-      flex-direction: column;
-    }
-    .elton-box .col-lg-6{
-      width: 100%;
-    }
+  
     .boost_profile {
       margin-right: 16px;
   }
-
+  
   }
+  
+  
+  
   @media(max-width: 425px){
     .btn-outline-white {
       padding: 3px;
@@ -795,27 +793,11 @@
   }
 }
 @media (max-width:1024px) {
-  .elton-box{
-    flex-direction: column;
-  }
-  .elton-box .col-lg-6{
-    width: 100%;
-  }
   .boost_profile {
     margin-right: 16px;
 }
+}
 
-}
-@media (max-width: 600px) {
-  .team-logos .col-lg-3,.team-logos .col-lg-9{
-    width: fit-content;
-    gap: 20px;
-  }
-  .team-logos{
-    border-bottom: 1px solid #E5E5E5;
-    padding-bottom: 20px;
-  }
-}
 @media(max-width: 425px){
   .btn-outline-white {
     padding: 3px;
@@ -1035,11 +1017,11 @@
   font-weight: 500;
 }
 .dashboard-icons svg{
-  max-width: 36px;
+  max-width: 30px;
 }
 .team-badge_image img {
   width: 100%;
-  max-width: 36px;
+  max-width: 30px;
 }
 .title_2{
     font-size: 12px;
@@ -1375,3 +1357,64 @@ width:  100% !important;
   height: 100%;
   object-fit: contain;
 }
+
+
+.elton-box.dashboard-icons .team-badge_image {
+  padding: 0 5px 0 0 !important;
+  width: 35px !important;
+}
+.elton-box.dashboard-icons .team-badge_content {
+  padding: 0 0 0 5px !important;
+  width: calc(100% - 35px) !important;
+}
+.elton-box.dashboard-icons .col-lg-12.team-badge_content {
+  width: 100% !important;
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+.main-wrapper .card_box-1, .main-wrapper .card_box--2 {
+  width: 100%;
+}
+}
+
+
+@media (max-width: 575px) {
+  .team-logos{
+    border-bottom: 1px solid #E5E5E5;
+    padding-bottom: 20px;
+  }
+  .elton-box{
+    flex-direction: column;
+  }
+  .general_details {
+    padding: 15px !important;
+  }
+}
+
+@media (max-width: 991px) {
+  .card_box-1, .card_box--2 {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .card_box--2 {
+    margin-top: 15px;
+  }
+  }
+  .user-details-left .user-info button {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .user-details-left .user-info button .tour-personal-details {
+    display: flex;
+    max-width: 75px;
+    overflow: hidden;
+  }
+  .user-details-left .user-info button .tour-personal-details span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .user-details-left .user-info button .tour-personal-details svg {
+  width: 15px !important;
+  min-width: 15px;
+  }

@@ -10,6 +10,7 @@ import { WebPages } from '../../../services/webpages.service';
 import { TalentModule } from '../../talent/talent.module';
 import { TalentTooltipService } from '../../../services/talent-tooltip.service';
 import { Subscription } from 'rxjs';
+import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-view-profile',
@@ -37,11 +38,13 @@ export class ViewProfileComponent implements OnInit {
   countryFlagUrl: any;
   personalDetailsTooltip: string = '';
   highlightsTooltip: string = '';
-  profilePhotoTooltip: string = ''; 
-  addFavorite: string = ''; 
-  removeFavorite: string = ''; 
-  downloadPdf: string = ''; 
-  startConversation: string = ''; 
+  profilePhotoTooltip: string = '';
+  addFavorite: string = '';
+  removeFavorite: string = '';
+  downloadPdf: string = '';
+  startConversation: string = '';
+  pleaseWaitTxt: string = '';
+  downloading: string = '';
   private tooltipSubscription!: Subscription; // ✅ Subscription for tooltips
 
   @Output() dataEmitter = new EventEmitter<string>();
@@ -55,7 +58,8 @@ export class ViewProfileComponent implements OnInit {
     private router: Router,
     private socketService: SocketService,
     private webPages: WebPages,
-    private tooltipService: TalentTooltipService
+    private tooltipService: TalentTooltipService,
+    private translate: TranslateService
   ) { }
 
   ngOnInit(): void {
@@ -83,11 +87,11 @@ export class ViewProfileComponent implements OnInit {
       // code by amrit
     });
 
-    if (this.coverImage == '') {
+    if (this.coverImage == '') { 
       this.coverImage = this.defaultCoverImage;
     }
-
     this.webPages.languageId$.subscribe((data) => {
+      this.getToasterMsg();
       this.getUser(this.userId);
     });
   }
@@ -255,7 +259,7 @@ export class ViewProfileComponent implements OnInit {
     try {
 
       // Set loading state and display info toast
-      this.toastr.info('Downloading...', 'Please wait', { disableTimeOut: true });
+      this.toastr.info(this.downloading, this.pleaseWaitTxt, { disableTimeOut: true });
 
       this.userService.exportSingleUser(userId).subscribe((response) => {
         if (response && response.status && response.data) {
@@ -361,10 +365,67 @@ export class ViewProfileComponent implements OnInit {
       })
       .catch(error => console.error("Error fetching geocoding data:", error));
   }
+
+  // navigateToChat() {
+  //   if (this.user) {
+  //     const encodedUserData = encodeURIComponent(JSON.stringify(this.user)); // Convert object to string and encode
+  //     this.router.navigate(['/talent/chat'], { queryParams: { userData: encodedUserData } });
+  //   } else {
+  //     console.warn('No userData available');
+  //   }
+  // }
+
+  navigateToChat() {
+    if (this.user) {
+      const userData = {
+        id: this.user.id,
+        name: this.user.first_name,
+        email: this.user.username,
+        photoUrl: this.user.meta.profile_image_path
+      };
+
+      console.log(userData, this.user);
+      let tempUser = JSON.stringify(userData);
+  
+      const encodedUserData = encodeURIComponent(JSON.stringify(userData)); // Convert to JSON and encode
+      // this.router.navigate(['/talent/chat'], { queryParams: { userData: encodedUserData } });
+
+      localStorage.setItem('otherUserData',tempUser);
+      this.router.navigate(['/talent/chat']);
+    } else {
+      console.warn('No userData available');
+    }
+  }
+  
+  
+
   ngOnDestroy() {
     // ✅ Unsubscribe to prevent memory leaks
     if (this.tooltipSubscription) {
       this.tooltipSubscription.unsubscribe();
     }
   }
+
+  getToasterMsg() {
+    this.translate.get(['pleaseWait', 'downloading']).subscribe((res: any) => {
+      this.pleaseWaitTxt = res['pleaseWait'];
+      this.downloading = res['downloading'];
+    });
+  }
+
 }
+
+
+// this.route.queryParams.subscribe(params => {
+//   if (params['userData']) {
+//     try {
+//       const userDataString = decodeURIComponent(params['userData']); // Decode
+//       console.log("Updated userData:", userDataString);
+
+//       const userData = JSON.parse(userDataString); // Convert string back to object
+//       this.startNewChat(userData);
+//     } catch (error) {
+//       console.error('Invalid userData format:', error);
+//     }
+//   }
+// });

@@ -243,8 +243,8 @@ export class TemplatesComponent {
 
   showFilterPopup():void {
     const filterDialog = this.dialog.open(CommonFilterPopupComponent,{
-      height: '170px',
-      width: '300px',
+      height: '200px',
+      width: '320px',
       position: {
         right: '30px',
         top:'150px'
@@ -270,6 +270,12 @@ export class TemplatesComponent {
   applyUserFilter(filters:any){
     this.customFilters = filters;
     this.getTemplates(true);
+  }
+
+  formatDateTime(datetime: string) {
+    // convertAdminDateTime
+    let formattedDate = this.adminHelper.convertAdminDateTime(datetime, 'users');
+    return formattedDate;
   }
 }
    

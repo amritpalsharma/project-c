@@ -15,7 +15,9 @@
 //   background: var(--bs-dropdown-link-hover-bg) !important;
 // }
 
-
+.light-theme .check-image-dark {
+  display: none;
+}
 
 .dark-theme .website-code {
   position: relative;
@@ -291,10 +293,10 @@
   color: #072944 !important;  /* Optional: Change the text color to white for better contrast */
 }
 
-.dark-theme .website-code .advertisement,
-.dark-theme .website-code .py_1 {
-  background: #072944;
-}
+// .dark-theme .website-code .advertisement,
+// .dark-theme .website-code .py_1 {
+//   background: #072944;
+// }
 // .dark-theme .dropdown-menu {
 //  background: linear-gradient(45deg, #EFFFC1, #BDE34F);
 // }
@@ -660,18 +662,9 @@ button.faq-scout-button {
   display: none;
 }
 
-.dark-theme .website-code input#name {
-  border: 1px solid #2B4A24;
-  background-color: #0C3453;
-}
-
-.dark-theme .website-code input#email {
-  border: 1px solid #2B4A24;
-  background-color: #0C3453;
-}
-
-.dark-theme .website-code input#phone {
-  border: 1px solid #2B4A24;
+.dark-theme .website-code input#name, .dark-theme .website-code input#email, .dark-theme .website-code input#phone,
+.dark-theme .website-code #message {
+  border: 1px solid #072944;
   background-color: #0C3453;
 }
 
@@ -752,36 +745,6 @@ button.faq-scout-button {
   color: #FFFFFF
 }
 
-// .compact-sidebar .page-sidebar {
-//   width: 80px;
-//   position: fixed;
-//   box-shadow: none;
-//   transition: all 0.4s;
-//   height: 95%;
-//   z-index: 2;
-// }
-
-// .compact-sidebar .page-sidebar:before {
-//   position: fixed;
-//   height: 95%;
-//   width: 80px;
-//   display: block;
-//   content: "";
-//   box-shadow: 0 0 1.25rem rgba(31, 45, 61, 0.04);
-//   z-index: -1;
-// }
-// .dark-theme .page-sidebar {
-//   border-radius: 20px;
-//   width: 210px;
-//   margin: 20px 0px 20px 20px;
-//   position: static !important;
-//   height: 95%;
-//   transition: all 0.4s;
-// }
-
-.compact-sidebar .sidebar_menu_span {
-  display: none;
-}
 
 .compact-sidebar .logo_img {
   display: none !important;
@@ -864,20 +827,17 @@ button.faq-scout-button {
 
 .dark-theme .website-code .table td span {
   color: white !important;
-  font-size: 16px !important;
   font-weight: 400 !important;
 }
 
 .dark-theme .website-code .table td {
   color: white !important;
-  font-size: 16px !important;
   font-weight: 400 !important;
 }
 
 .table td,
 .table td span {
   color: #111418;
-  font-size: 16px !important;
   font-weight: 400 !important;
 }
 
@@ -1121,11 +1081,6 @@ button.faq-scout-button {
   // padding: 5px;
 }
 
-.sidebar_menu a svg {
-  margin-right: 10px;
-  min-width: 32px;
-}
-
 .sidebar_menu a:hover {
   .sidebar_menu_span {
     display: block;
@@ -1243,12 +1198,6 @@ button.faq-scout-button {
 
 .nav-action {
   position: relative;
-}
-
-.nav-action .badge {
-  position: absolute;
-  top: 0;
-  right: 0;
 }
 
 .bg-danger {
@@ -2195,14 +2144,14 @@ button.faq-scout-button {
 }
 
 @media (max-width: 991px) {
-  .page-sidebar {
-    // width: 100%;
-    // padding: 30px;
-    // visibility: hidden;
-    // opacity: 0;
-    // transform: translateX(0);
-    // z-index: 100;
-  }
+  // .page-sidebar {
+  //   // width: 100%;
+  //   // padding: 30px;
+  //   // visibility: hidden;
+  //   // opacity: 0;
+  //   // transform: translateX(0);
+  //   // z-index: 100;
+  // }
 
   .dark-theme .website-code .login-btn {
     background-color: transparent;

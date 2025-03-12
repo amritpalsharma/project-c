@@ -12,6 +12,10 @@ export class FaqComponent {
   faq_first_btn_txt:string='';
   faq_sec_btn_txt:string='';
   faq_third_btn_txt:string='';
+  advertisemnet_base_url:string= '';
+
+  isLoading : boolean = true;
+
   
   isOpen: { [key: string]: boolean[] } = {
     talent: [],
@@ -22,6 +26,55 @@ export class FaqComponent {
   constructor( private webPages: WebPages){ 
     this.initializeIsOpen();
   
+  }
+  isActive : any ={
+    skyscraper: true,
+    wide_skyscraper: true,
+    leaderboard: true,
+    large_leaderboard:true,
+    banner: true,
+    square:true,
+    small_square: true,
+    large_rectangle: true,
+    inline_rectangle: true,
+  }
+  advertisementData:any = {
+    skyscraper: {
+      id: '1',
+      featured_image: "leaderboard.png"
+    },
+    wide_skyscraper: {
+      id: '1',
+      featured_image: "leaderboard.png"
+    },
+    leaderboard: {
+      id: '1',
+      featured_image: "leaderboard.png"
+    },
+    large_leaderboard: {
+      id: '1',
+      featured_image: "leaderboard.png"
+    },
+    banner: {
+      id: '1',
+      featured_image: "leaderboard.png"
+    },
+    square: {
+      id: '1',
+      featured_image: "leaderboard.png"
+    },
+    small_square: {
+      id: '1',
+      featured_image: "leaderboard.png"
+    },
+    large_rectangle: {
+      id: '1',
+      featured_image: "leaderboard.png"
+    },
+    inline_rectangle: {
+      id: '1',
+      featured_image: "leaderboard.png"
+    },
   }
 
   ngOnInit() {
@@ -45,6 +98,11 @@ export class FaqComponent {
           this.talentSections = res.data.pageData.faq_first_btn_content; //this.faq_first_btn_content
            this.clubSections = res.data.pageData.faq_sec_btn_content;
            this.scoutSections = res.data.pageData.faq_third_btn_content;
+           this.advertisementData = res?.data?.advertisementData;
+
+           this.advertisemnet_base_url = res.data.advertisemnet_base_url;
+
+           this.isLoading = false;
           
         }
     });
@@ -246,7 +304,40 @@ export class FaqComponent {
  
   adVisible: boolean[] = [true, true, true, true, true, true, true]; // Array to manage ad visibility
   
-  closeAd(index: number) {
-    this.adVisible[index] = false; // Set the specific ad to not visible based on index
+  // closeAd(index: number) {
+  //   this.adVisible[index] = false; // Set the specific ad to not visible based on index
+  // }
+
+  closeAd(object: any) {
+
+    this.isActive[object] = false;
+
+  }
+  
+
+  isEmptyObject(obj:any) {
+    if(typeof obj != 'undefined'){
+      return (obj && (Object.keys(obj).length === 0));
+    }
+    return true;
+  }
+  openModal(modalId: string) {
+    console.log(`Open modal: ${modalId}`);
+    // Implement modal opening logic here
+  }
+
+  checkActive(obj: any) {
+    if (this.isExists(obj) && this.isFeaturedImageExists(obj) && this.isActive[obj]) {
+      return true;
+    }
+    return false;
+  }
+
+  isExists(key: any): boolean {
+    return key in this.advertisementData;
+  }
+
+  isFeaturedImageExists(key: any): boolean {
+    return 'featured_image' in this.advertisementData[key];
   }
 }

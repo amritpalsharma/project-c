@@ -33,6 +33,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    MatTooltipModule,
     HttpClientModule,
     MaterialModule,
     MatTooltipModule,

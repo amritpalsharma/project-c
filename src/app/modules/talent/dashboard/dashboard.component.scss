@@ -150,13 +150,11 @@
       row-gap: 10px;
     }
     .player-name-box{
-      width:fit-content !important
+      width:fit-content !important;
+      padding-left: 0 !important;
     }
     .responsive-edit_btn{
       width: fit-content !important;
-    }
-    .image_gallery-box .col-lg-4{
-      width: 50%;
     }
   }
   @media (max-width:1200px) and (min-width:769px) {
@@ -438,20 +436,17 @@
     font-size: 20px;
     font-weight: 400;
   }
-  .gallery_images img ,.gallery_images video {
+  .gallery_images img , .gallery_images video {
     width: 100%;
     height: 116px !important;
     object-fit: cover !important;
+    object-position: top center !important;
   }
   .settings svg {
     width: 20px;
   }
   .gallery_images{
     padding: 2px;
-  }
-  .gallery_images img{
-    height: 116px;
-    object-fit: cover;
   }
 
   .image_gallery-box{
@@ -773,19 +768,17 @@
     row-gap: 10px;
   }
   .player-name-box{
-    width:fit-content !important
+    width:fit-content !important;
+    padding-left: 0 !important;
   }
   .responsive-edit_btn{
     width: fit-content !important;
-  }
-  .image_gallery-box .col-lg-4{
-    width: 50%;
   }
 }
 @media (max-width:1200px) and (min-width:769px) {
   .edit_button.responsive-edit_btn {
     text-align: right;
-    padding-right: 10px;
+    padding-right: 10px !important;
 }
   span.active_btn {
     margin: 0px 32px 0px 8px !important;
@@ -802,19 +795,25 @@
 
 .elton-box.dashboard-icons .team-badge_image {
   padding: 0 5px 0 0;
-  width: 40px !important;
+  width: 35px !important;
 }
 .elton-box.dashboard-icons .team-badge_content {
   padding: 0 0 0 5px;
-  width: calc(100% - 40px) !important;
+  width: calc(100% - 35px) !important;
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
 .main-wrapper .card_box-1, .main-wrapper .card_box--2 {
   width: 100%;
 }
+.main-wrapper .card_box-1 .image-gallery .col-lg-4.gallery_images {
+  width: 25%;
+}
 }
 
+.main-wrapper .card_box-1 .image-gallery .image_gallery-box {
+  justify-content: flex-start !important;
+}
 
 @media (max-width: 575px) {
   .team-logos{
@@ -823,6 +822,9 @@
   }
   .elton-box{
     flex-direction: column;
+  }
+  .general_details {
+    padding: 15px !important;
   }
 }
 @media(max-width: 425px){
@@ -1044,11 +1046,11 @@
   font-weight: 500; 
 }
 .dashboard-icons svg{
-  max-width: 36px;
+  max-width: 30px;
 }
 .team-badge_image img {
   width: 100%;
-  max-width: 36px;
+  max-width: 30px;
 }
 .title_2{
     font-size: 12px;
@@ -1087,14 +1089,11 @@
   width: 100%;
   height: 116px !important;
   object-fit: cover !important;
+  object-position: top center;
 }
 
 .gallery_images{
   padding: 2px;
-}
-.gallery_images img{
-  height: 116px;
-  object-fit: cover;
 }
 
 .image_gallery-box{
@@ -1241,12 +1240,7 @@ span.active_btn {
   font-size: 11px;
   font-weight: 400 !important;
 }
-@media(max-width:1024px){
-  .player-name-box{
-    padding: 0 !important;
-  }
-  
-}
+
 @media (max-width:1200px) {
   .user-info h6 {
     font-size: 18px;
@@ -1407,3 +1401,14 @@ width:  100% !important;
   text-overflow: ellipsis;
 }
 }
+
+
+@media (max-width: 991px) {
+  .card_box-1, .card_box--2 {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .card_box--2 {
+    margin-top: 15px;
+  }
+  }

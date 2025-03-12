@@ -10,14 +10,68 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 })
 export class ImprintComponent implements OnInit {
   banner_title:any = null;
-  advertisemnetData:any;
+  // advertisementData:any;
   page_content:any=null;
   advertisemnet_base_url:string = '';
   banner_img:any=null;
   base_url:any=null;
+
+  isLoading : boolean = true;
+
+  // advertisemnet_base_url:string= '';
   adVisible: boolean[] = [true, true, true]; // Array to manage ad visibility
   constructor( private webPages: WebPages, private sanitizer: DomSanitizer){
 
+  }
+
+  isActive : any ={
+    skyscraper: true,
+    wide_skyscraper: true,
+    leaderboard: true,
+    large_leaderboard:true,
+    banner: true,
+    square:true,
+    small_square: true,
+    large_rectangle: true,
+    inline_rectangle: true,
+  }
+  advertisementData:any = {
+    skyscraper: {
+      id: '1',
+      featured_image: "leaderboard.png"
+    },
+    wide_skyscraper: {
+      id: '1',
+      featured_image: "leaderboard.png"
+    },
+    leaderboard: {
+      id: '1',
+      featured_image: "leaderboard.png"
+    },
+    large_leaderboard: {
+      id: '1',
+      featured_image: "leaderboard.png"
+    },
+    banner: {
+      id: '1',
+      featured_image: "leaderboard.png"
+    },
+    square: {
+      id: '1',
+      featured_image: "leaderboard.png"
+    },
+    small_square: {
+      id: '1',
+      featured_image: "leaderboard.png"
+    },
+    large_rectangle: {
+      id: '1',
+      featured_image: "leaderboard.png"
+    },
+    inline_rectangle: {
+      id: '1',
+      featured_image: "leaderboard.png"
+    },
   }
 
   ngOnInit() {
@@ -35,52 +89,100 @@ export class ImprintComponent implements OnInit {
       if(res.status){
           this.banner_title = res.data.pageData.banner_title;
           this.page_content = res.data.pageData.page_content;
-          this.advertisemnetData =  res.data.advertisemnetData;
-          this.advertisemnetData = [];
+          this.advertisementData =  res.data.advertisementData;
+          this.advertisementData = [];
           
           this.advertisemnet_base_url = res.data.advertisemnet_base_url;
          
           this.banner_img = res.data.pageData.banner_img;
           this.base_url =  res.data.base_url;
+
+          this.isLoading = false;
+
+          this.advertisementData = res?.data?.advertisementData;
         }
     });
   }
+  // isEmptyObject(obj:any) {
+  //   if(typeof obj != 'undefined'){
+  //     return (obj && (Object.keys(obj).length === 0));
+  //   }
+  //   return true;
+  // }
+  // closeAd(object: any) {
+
+  //   switch(object){
+  //     case 'skyscraper':
+  //         this.advertisementData.skyscraper = [];
+  //         break;
+  //     case 'small_square':
+  //         this.advertisementData.small_square = [];
+  //         break;
+  //     case 'leaderboard':
+  //         this.advertisementData.leaderboard = [];
+  //         break;
+  //     case 'large_leaderboard':
+  //         this.advertisementData.large_leaderboard = [];
+  //         break;
+  //     case 'large_rectangle':
+  //         this.advertisementData.large_rectangle = [];
+  //         break;
+
+  //     case 'inline_rectangle':
+  //         this.advertisementData.inline_rectangle = [];
+  //         break;
+  //     case 'square':
+  //         this.advertisementData.square = [];
+  //         break;
+  //     default:
+  //         //when no case is matched, this block will be executed;
+  //         break;  //optional
+  //     }
+
+  // }
+
+  closeAd(object: any) {
+
+    this.isActive[object] = false;
+
+  }
+
+  // checkActive(obj: any){
+  //   if(this.isExists(obj) && this.isActive[obj]){
+  //     return true;
+  //   }
+  //   return false;
+  // }
+
+  // isExists(key: string): boolean {
+  //   return key in this.advertisementData && 'featured_image' in this.advertisementData[key];
+  // }
+  
+
   isEmptyObject(obj:any) {
     if(typeof obj != 'undefined'){
       return (obj && (Object.keys(obj).length === 0));
     }
     return true;
   }
-  closeAd(object: any) {
+  openModal(modalId: string) {
+    console.log(`Open modal: ${modalId}`);
+    // Implement modal opening logic here
+  }
 
-    switch(object){
-      case 'skyscraper':
-          this.advertisemnetData.skyscraper = [];
-          break;
-      case 'small_square':
-          this.advertisemnetData.small_square = [];
-          break;
-      case 'leaderboard':
-          this.advertisemnetData.leaderboard = [];
-          break;
-      case 'large_leaderboard':
-          this.advertisemnetData.large_leaderboard = [];
-          break;
-      case 'large_rectangle':
-          this.advertisemnetData.large_rectangle = [];
-          break;
+  checkActive(obj: any) {
+    if (this.isExists(obj) && this.isFeaturedImageExists(obj) && this.isActive[obj]) {
+      return true;
+    }
+    return false;
+  }
 
-      case 'inline_rectangle':
-          this.advertisemnetData.inline_rectangle = [];
-          break;
-      case 'square':
-          this.advertisemnetData.square = [];
-          break;
-      default:
-          //when no case is matched, this block will be executed;
-          break;  //optional
-      }
+  isExists(key: any): boolean {
+    return key in this.advertisementData;
+  }
 
+  isFeaturedImageExists(key: any): boolean {
+    return 'featured_image' in this.advertisementData[key];
   }
 
 }

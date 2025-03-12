@@ -22,8 +22,12 @@ export class ContactComponent implements OnInit {
   submit_btn_txt: string = '';
   talent_label_txt: string = '';
   txt_before_radio_btn: string = '';
-  advertisemnetData:any;
+  // advertisementData:any;
   advertisemnet_base_url:string = '';
+
+  isLoading : boolean = true;
+
+
   captchaKey: string = environment.captchaKey;
   selectedOption = 'option1'; // Default option for some dropdown/radio buttons
   contactForm!: FormGroup; // Form group for the contact form
@@ -61,6 +65,57 @@ export class ContactComponent implements OnInit {
     });
   }
 
+  
+  isActive : any ={
+    skyscraper: true,
+    wide_skyscraper: true,
+    leaderboard: true,
+    large_leaderboard:true,
+    banner: true,
+    square:true,
+    small_square: true,
+    large_rectangle: true,
+    inline_rectangle: true,
+  }
+  advertisementData:any = {
+    skyscraper: {
+      id: '1',
+      featured_image: "leaderboard.png"
+    },
+    wide_skyscraper: {
+      id: '1',
+      featured_image: "leaderboard.png"
+    },
+    leaderboard: {
+      id: '1',
+      featured_image: "leaderboard.png"
+    },
+    large_leaderboard: {
+      id: '1',
+      featured_image: "leaderboard.png"
+    },
+    banner: {
+      id: '1',
+      featured_image: "leaderboard.png"
+    },
+    square: {
+      id: '1',
+      featured_image: "leaderboard.png"
+    },
+    small_square: {
+      id: '1',
+      featured_image: "leaderboard.png"
+    },
+    large_rectangle: {
+      id: '1',
+      featured_image: "leaderboard.png"
+    },
+    inline_rectangle: {
+      id: '1',
+      featured_image: "leaderboard.png"
+    },
+  }
+
   getPageData(languageId: any){
     this.webPages.getDynamicContentPage('contact',languageId).subscribe((res) => {
       if(res.status){
@@ -73,8 +128,10 @@ export class ContactComponent implements OnInit {
           this.talent_label_txt = res.data.pageData.talent_label_txt;
           this.txt_before_radio_btn = res.data.pageData.txt_before_radio_btn;
           this.semail= res.data.pageData.email;
-          this.advertisemnetData =  res.data.advertisemnetData;
-          this.advertisemnetData = [];
+          this.advertisementData =  res.data.advertisementData;
+          // this.advertisementData = [];
+
+          this.isLoading = false;
           
           this.advertisemnet_base_url = res.data.advertisemnet_base_url;
           this.base_url =  res.data.base_url;
@@ -85,42 +142,42 @@ export class ContactComponent implements OnInit {
         }
     });
   }
-  isEmptyObject(obj:any) {
-    if(typeof obj != 'undefined'){
-      return (obj && (Object.keys(obj).length === 0));
-    }
-    return true;
-  }
-  closeAd(object: any) {
+  // isEmptyObject(obj:any) {
+  //   if(typeof obj != 'undefined'){
+  //     return (obj && (Object.keys(obj).length === 0));
+  //   }
+  //   return true;
+  // }
+  // closeAd(object: any) {
 
-    switch(object){
-      case 'skyscraper':
-          this.advertisemnetData.skyscraper = [];
-          break;
-      case 'small_square':
-          this.advertisemnetData.small_square = [];
-          break;
-      case 'leaderboard':
-          this.advertisemnetData.leaderboard = [];
-          break;
-      case 'large_leaderboard':
-          this.advertisemnetData.large_leaderboard = [];
-          break;
-      case 'large_rectangle':
-          this.advertisemnetData.large_rectangle = [];
-          break;
-      case 'inline_rectangle':
-          this.advertisemnetData.inline_rectangle = [];
-          break;
-      case 'square':
-          this.advertisemnetData.square = [];
-          break;
-      default:
-          //when no case is matched, this block will be executed;
-          break;  //optional
-      }
+  //   switch(object){
+  //     case 'skyscraper':
+  //         this.advertisementData.skyscraper = [];
+  //         break;
+  //     case 'small_square':
+  //         this.advertisementData.small_square = [];
+  //         break;
+  //     case 'leaderboard':
+  //         this.advertisementData.leaderboard = [];
+  //         break;
+  //     case 'large_leaderboard':
+  //         this.advertisementData.large_leaderboard = [];
+  //         break;
+  //     case 'large_rectangle':
+  //         this.advertisementData.large_rectangle = [];
+  //         break;
+  //     case 'inline_rectangle':
+  //         this.advertisementData.inline_rectangle = [];
+  //         break;
+  //     case 'square':
+  //         this.advertisementData.square = [];
+  //         break;
+  //     default:
+  //         //when no case is matched, this block will be executed;
+  //         break;  //optional
+  //     }
 
-  }
+  // }
   // Form field getters for template validation
   get name() {
     return this.contactForm.get('name');
@@ -218,6 +275,39 @@ export class ContactComponent implements OnInit {
       this.responseMessage = '';
       this.messageType = '';
     }, 10000);
+  }
+
+  closeAd(object: any) {
+
+    this.isActive[object] = false;
+
+  }
+
+  isEmptyObject(obj:any) {
+    if(typeof obj != 'undefined'){
+      return (obj && (Object.keys(obj).length === 0));
+    }
+    return true;
+  }
+  openModal(modalId: string) {
+    console.log(`Open modal: ${modalId}`);
+    // Implement modal opening logic here
+  }
+
+
+  checkActive(obj: any) {
+    if (this.isExists(obj) && this.isFeaturedImageExists(obj) && this.isActive[obj]) {
+      return true;
+    }
+    return false;
+  }
+
+  isExists(key: any): boolean {
+    return key in this.advertisementData;
+  }
+
+  isFeaturedImageExists(key: any): boolean {
+    return 'featured_image' in this.advertisementData[key];
   }
 
 }

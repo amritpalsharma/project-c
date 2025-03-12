@@ -78,9 +78,10 @@ export class UserService {
   //   return this.http.get<any>(`${this.apiUrl2}/profile/`, { headers });
   // }
 
-  getLocations(): Observable<any> {
+  getLocations(): Observable<any> { 
+    const lang = localStorage.getItem('lang_id');
     return this.http.get<{ status: boolean, message: string, data: { userData: User[],totalCount:number } }>(
-      `${this.apiUrl}get-domains`
+      `${this.apiUrl}get-domains?lang=`+lang
     );
   }
 

@@ -10,28 +10,28 @@ export class TalkService {
   private user: Talk.User | undefined;
   private inbox: Talk.Inbox | undefined;
 
-  constructor() {}
+  constructor() { }
 
-   // Generate a unique ID using Date and Math.random
+  // Generate a unique ID using Date and Math.random
   public generateUniqueId(): string {
     return `group-${Date.now()}-${Math.floor(Math.random() * 10000)}`;
   }
 
-  async init(user: { id: string; name: string; email: string; photoUrl: string,role: string }) {
+  async init(user: { id: string; name: string; email: string; photoUrl: string, role: string }) {
     await Talk.ready;
 
-    this.user  = new Talk.User({
+    this.user = new Talk.User({
       id: user.id,
       name: user.name,
       email: user.email,
       photoUrl: user.photoUrl,
       welcomeMessage: null,
-      role:user.role
+      role: user.role
     });
 
     this.session = new Talk.Session({
-       appId: 'tmI75KXB', //tHcyGZjg //tmI75KXB:live
-      me:  this.user,
+      appId: 'tmI75KXB', //tHcyGZjg //tmI75KXB:live
+      me: this.user,
     });
     return this.session;
   }
@@ -62,7 +62,7 @@ export class TalkService {
         email: email,
         photoUrl: photoUrl,
         welcomeMessage: null,
-        role:'default'
+        role: 'default'
 
       });
       const conversation = this.session.getOrCreateConversation(Talk.oneOnOneId(this.user, otherUser));
@@ -71,7 +71,7 @@ export class TalkService {
         id: 1,
         name: 'testmails.cts@gmail.com',
         email: 'testmails.cts@gmail.com',
-        role:'hidden'
+        role: 'hidden'
       });
 
 
@@ -117,7 +117,7 @@ export class TalkService {
           email: user.email,
           photoUrl: user.photoUrl,
           welcomeMessage: null,
-          role:'default'
+          role: 'default'
         });
         conversation.setParticipant(participant);
       });
@@ -126,7 +126,7 @@ export class TalkService {
         id: 1,
         name: 'Admin',
         email: 'testmails.cts@gmail.com',
-        role:'hidden'
+        role: 'hidden'
       });
 
       // Group chat name
@@ -146,7 +146,7 @@ export class TalkService {
     });
   }
 
-   // Mount the chat UI to a container
+  // Mount the chat UI to a container
   mountChat(containerId: string): void {
     if (this.inbox) {
       this.inbox.mount(document.getElementById(containerId) as HTMLElement);
@@ -169,6 +169,40 @@ export class TalkService {
     this.inbox.mount(document.getElementById('talkjs-container') as HTMLElement);
   }
 
+  public changeLocale(newLocale: string): void {
+    if (!this.session || !this.user) {
+      console.error('TalkJS session is not initialized.');
+      return;
+    }
+
+    // Update the user with the new locale
+    this.user = new Talk.User({
+      id: this.user.id,
+      name: this.user.name,
+      email: this.user.email,
+      photoUrl: this.user.photoUrl,
+      welcomeMessage: null,
+      role: this.user.role,
+      locale: newLocale,
+    });
+
+    // Destroy the current inbox if it exists
+    if (this.inbox) {
+      this.inbox.destroy();
+      this.inbox = undefined;
+    }
+
+    // Reinitialize the session with the updated user
+    this.session = new Talk.Session({
+      appId: 'tmI75KXB',
+      me: this.user,
+    });
+
+    // Optionally, re-create the inbox or re-mount your chat UI.
+    // For example:
+    this.inbox = this.session.createInbox();
+    this.inbox.mount(document.getElementById('talkjs-container') as HTMLElement);
+  }
 
 
 }

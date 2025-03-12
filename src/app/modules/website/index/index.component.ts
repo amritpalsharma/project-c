@@ -5,6 +5,8 @@ import { AdvertisementService } from '../../../services/advertisement.service';
 import { WebPages } from '../../../services/webpages.service';
 import { SharedService } from '../../../services/shared.service';
 import { AuthService } from '../../../services/auth.service';
+import { ThemeService } from '../../../services/theme.service';
+import { GlobalSettingsService } from '../../../services/global-settings.service';
 
 export interface ClubMember {
   name: string;
@@ -13,7 +15,7 @@ export interface ClubMember {
   cornerImage?: string;
   imageClass?: string; // Class for the main image
   cornerImageClass?: string; // Class for the corner image
-  
+
 }
 
 @Component({
@@ -64,18 +66,28 @@ export interface ClubMember {
 })
 export class IndexComponent {
   @ViewChild('owlCarousel') owlCarousel!: ElementRef;
-  fallbackImage: string = 'assets/images/1.jpg'; // Path to your fallback image
-
-  selectedLangId:any = null;
-  pageDetail:any=null;
-  sliderDetail:any=null;
-  advertisemnetData:any=null;
-  imageBaseUrl:string= '';
-  banner_img:string= '';
-  banner_bg_img:string= '';
-  hero_bg_img:string= '';
-  advertisemnet_base_url:string= '';
+  fallbackImage: string = 'assets/images/1.png'; // Path to your fallback image
+  currentTheme: string = '';
+  selectedLangId: any = null;
+  pageDetail: any = null;
+  sliderDetail: any = null;
+  // advertisementData:any=null;
+  imageBaseUrl: string = '';
+  banner_img: string = '';
+  banner_img_dark_mode: string = '';
+  banner_bg_img: string = '';
+  hero_bg_img: string = '';
+  hero_bg_img_dark_mode: string = '';
+  advertisemnet_base_url: string = '';
   isUserLoggedIn: boolean = false;
+  club_logo_path: string = '';
+  pre_club_logo_path: string = '';
+  heroSectionBgImage: string = '';
+
+
+  isLoading: boolean = true;
+
+
   players = [
     { name: 'Ronaldinho Gaúcho', image: './assets/images/Ronaldinho Gaúcho.svg', year: '2004' },
     { name: 'Ziddane', image: './assets/images/ziddane.svg', year: '2004' },
@@ -85,6 +97,57 @@ export class IndexComponent {
     { name: 'Harry Kane', image: './assets/images/Harry Kane.svg', year: '2004' },
     { name: 'Messi', image: './assets/images/Messi.svg', year: '2004' }
   ];
+
+  isActive: any = {
+    skyscraper: true,
+    wide_skyscraper: true,
+    leaderboard: true,
+    large_leaderboard: true,
+    banner: true,
+    square: true,
+    small_square: true,
+    large_rectangle: true,
+    inline_rectangle: true,
+  }
+
+  advertisementData: any = {
+    skyscraper: {
+      id: '1',
+      featured_image: "leaderboard.png"
+    },
+    wide_skyscraper: {
+      id: '1',
+      featured_image: "leaderboard.png"
+    },
+    leaderboard: {
+      id: '1',
+      // featured_image: "leaderboard.png"
+    },
+    large_leaderboard: {
+      id: '1',
+      // featured_image: "leaderboard.png"
+    },
+    banner: {
+      id: '1',
+      featured_image: "leaderboard.png"
+    },
+    square: {
+      id: '1',
+      featured_image: "leaderboard.png"
+    },
+    small_square: {
+      id: '1',
+      featured_image: "leaderboard.png"
+    },
+    large_rectangle: {
+      id: '1',
+      featured_image: "leaderboard.png"
+    },
+    inline_rectangle: {
+      id: '1',
+      featured_image: "leaderboard.png"
+    },
+  }
 
 
   // Initialize the array of club members
@@ -181,11 +244,11 @@ export class IndexComponent {
   // Manage Navbar Expansion
   isNavbarExpanded = false;
 
-  constructor( private shareservice:SharedService,private advertisementService: AdvertisementService, private webPages: WebPages, private authService: AuthService,) {
-   
+  constructor(private shareservice: SharedService, private advertisementService: AdvertisementService, private webPages: WebPages, private authService: AuthService, private themeService: ThemeService, private globalSettings: GlobalSettingsService) {
+
   }
 
- 
+
   handleImageError(event: Event) {
     const imgElement = event.target as HTMLImageElement;
     imgElement.src = this.fallbackImage;
@@ -200,7 +263,7 @@ export class IndexComponent {
   // }
 
   // Method to check if content is active
-  isActive(content: string): boolean {
+  isActive2(content: string): boolean {
     return this.selectedContent === content;
   }
 
@@ -244,76 +307,113 @@ export class IndexComponent {
   adVisible: boolean[] = [true, true, true, true, true]; // Array to manage ad visibility
 
   ngOnInit() {
+    this.globalSettings.indexFunctionCall$.subscribe(() => {
+      this.indexFunction(); // Call the function when event is received
+    });
     // Initially, all ads are visible
     this.isUserLoggedIn = this.authService.isLoggedIn();
     this.adVisible = [true, true, true, true, true];
+    // alert(localStorage.getItem('lang'));
     this.webPages.languageId$.subscribe((data) => {
       this.getPageDynamicData(data);
     });
-  }
 
+    this.themeService.theme$.subscribe(() => {
+      this.chnageHerosectionBgImg();
+    });
+    let selectedLang = localStorage.getItem('lang');
+    console.warn('In Index component LocalStorage Language selected = ' + selectedLang)
+  }
 
   closeAd(object: any) {
 
-    switch(object){
-      case 'skyscraper':
-          this.advertisemnetData.skyscraper = [];
-          break;
-      case 'wide_skyscraper':
-          this.advertisemnetData.wide_skyscraper = [];
-          break;
-      case 'leaderboard':
-          this.advertisemnetData.leaderboard = [];
-          break;
-      case 'large_leaderboard':
-          this.advertisemnetData.large_leaderboard = [];
-          break;
-      case 'small_square':
-          this.advertisemnetData.small_square = [];
-          break;
-      default:
-          //when no case is matched, this block will be executed;
-          break;  //optional
-      }
+    this.isActive[object] = false;
 
   }
 
-  isEmptyObject(obj:any) {
-    return (obj && (Object.keys(obj).length === 0));
+
+
+  isEmptyObject(obj: any) {
+    if (typeof obj != 'undefined') {
+      return (obj && (Object.keys(obj).length === 0));
+    }
+    return true;
   }
-  getPageDynamicData(languageId:any){
+
+  getPageDynamicData(languageId: any) {
 
     this.webPages.getDynamicHomePage(languageId).subscribe((res) => {
       let pageData = res.data.pageData;
       let sliderData = res.data.sliderData;
-      if(res.status){
-          this.pageDetail = pageData;
-          this.banner_img =  res.data.base_url + pageData.banner_img;
-          this.banner_bg_img =  res.data.base_url + pageData.banner_bg_img;
-          this.hero_bg_img =  res.data.base_url + pageData.hero_bg_img;
+      if (res.status) {
+        this.pageDetail = pageData;
+        this.banner_img = res.data.base_url + pageData.banner_img;
+        this.banner_img_dark_mode = res.data.base_url + pageData.banner_img_dark_mode;
+        this.banner_bg_img = res.data.base_url + pageData.banner_bg_img;
+        this.hero_bg_img = res.data.base_url + pageData.hero_bg_img;
+        this.hero_bg_img_dark_mode = res.data.base_url + pageData.hero_bg_img_dark_mode;
 
-          this.sliderDetail = sliderData;
-          this.advertisemnetData = res.data.advertisemnetData;
-          this.advertisemnetData = [];
-          
-          console.log('advertisemnetData',this.advertisemnetData);
-          this.imageBaseUrl = res.data.base_url;
-          this.advertisemnet_base_url = res.data.advertisemnet_base_url;
+        this.sliderDetail = sliderData;
+        if (sliderData.totalCount < 6) {
+          for (let i = sliderData.totalCount; i < 7; i++) {
+            this.sliderDetail.users.push({ isPlaceholder: true, role_name: 'talent', first_name: 'lorem', last_name: 'ipusam', meta: { profile_image_path: this.fallbackImage, date_of_birth: '04-01-2002' } });
+          }
+          console.warn('placeholders ', this.sliderDetail.users);
+        } else {
+          console.warn('Slider is greater than 6');
         }
+        this.club_logo_path = this.sliderDetail.imagePath;
+        this.pre_club_logo_path = this.sliderDetail.flagPath;
+        this.advertisementData = res.data.advertisementData;
+        // this.advertisementData = [];
+
+        // console.log('advertisementData', this.advertisementData);
+        this.imageBaseUrl = res.data.base_url;
+        this.advertisemnet_base_url = res.data.advertisemnet_base_url;
+
+        this.isLoading = false;
+
+
+      }
     });
   }
 
-  getFlagImage(data:any){
+  getFlagImage(data: any) {
     let parseData = JSON.parse(data);
     // console.log(parseData, 'parse-data');
   }
 
-  getBirthYear(date:any){
-    if(date){
+
+  getBirthYear(date: any) {
+    if (date) {
       const birthYear = new Date(date); // Convert to Date object
       return birthYear.getFullYear();
     }
     return 'N/A';
   }
 
+  chnageHerosectionBgImg() {
+    //  alert('theme chnaged');
+    console.log('Index Page theme updated');
+  }
+
+  checkActive(obj: any) {
+    if (this.isExists(obj) && this.isFeaturedImageExists(obj) && this.isActive[obj]) {
+      return true;
+    }
+    return false;
+  }
+
+  isExists(key: any): boolean {
+    return this.advertisementData && key in this.advertisementData;
+  }
+
+
+  isFeaturedImageExists(key: any): boolean {
+    return 'featured_image' in this.advertisementData[key];
+  }
+
+  indexFunction() {
+    this.currentTheme = localStorage.getItem('theme') + '';
+  }
 }

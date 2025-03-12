@@ -342,132 +342,35 @@ img.join-btn {
 
 // advertisement
 
-.skyscraper-left {
-  height: 600px;
-  width: 120px;
-  content: "";
-  z-index: 1;
-  position: absolute;
-  left: 1%;
-  top: 43%;
-}
+// .skyscraper-left {
+//   height: 600px;
+//   width: 120px;
+//   content: "";
+//   z-index: 1;
+//   position: absolute;
+//   left: 1%;
+//   top: 43%;
+// }
 
-.skyscraper-left img {
-  height: 600px;
-  width: 120px;
-}
+// .skyscraper-left img {
+//   height: 600px;
+//   width: 120px;
+// }
 
-.skyscraper-right {
-  height: 600px;
-  width: 120px;
-  content: "";
-  z-index: 1;
-  position: absolute;
-  right: 1%;
-  top: 43%;
-}
+// .skyscraper-right {
+//   height: 600px;
+//   width: 120px;
+//   content: "";
+//   z-index: 1;
+//   position: absolute;
+//   right: 1%;
+//   top: 43%;
+// }
 
-.skyscraper-right img {
-  height: 600px;
-  width: 120px;
-}
-
-.leaderboard-club-image img {
-  width: 728px;
-  height: 90px;
-}
-
-.leaderboard-club-image {
-  position: absolute;
-  content: "";
-  z-index: 1;
-  height: 90px;
-  width: 728px;
-  top: 0;
-  left: 0;
-}
-
-.small-sqaure-image {
-  position: absolute;
-  content: "";
-  z-index: 1;
-  height: 200px;
-  width: 200px;
-  top: 0;
-  right: 0;
-}
-
-.small-sqaure-image img {
-  height: 200px;
-  width: 200px;
-}
-
-.large-rectangle {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  content: "";
-  height: 280px;
-  width: 336px;
-}
-
-.large-rectangle img {
-  height: 280px;
-  width: 336px;
-}
-
-.inline-rectangle {
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  transform: translateX(-50%);
-  content: "";
-  width: 300px;
-  height: 250px;
-}
-
-.inline-rectangle img {
-  width: 300px;
-  height: 250px;
-}
-
-.square {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  content: "";
-  width: 250px;
-  height: 250px;
-  display: flex;
-}
-
-.square img {
-  width: 250px;
-  height: 250px;
-}
-
-.leaderboard-image {
-  position: absolute;
-  content: "";
-  z-index: 1;
-  height: 90px;
-  width: 728px;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.leaderboard-image img {
-  height: 90px;
-  width: 728px;
-}
-
-.advertisement1 {
-  position: relative;
-  height: 100px;
-}
-
-
+// .skyscraper-right img {
+//   height: 600px;
+//   width: 120px;
+// }
 
 // advertisement
 
@@ -480,20 +383,20 @@ img.join-btn {
   }
 }
 
-@media (min-width: 1536px) {
+// @media (min-width: 1536px) {
 
-  .skyscraper-left,
-  .skyscraper-right {
-    top: 46%;
-  }
-}
+//   .skyscraper-left,
+//   .skyscraper-right {
+//     top: 46%;
+//   }
+// }
 
 @media (min-width: 1920px) {
 
-  .skyscraper-left,
-  .skyscraper-right {
-    top: 40%;
-  }
+  // .skyscraper-left,
+  // .skyscraper-right {
+  //   top: 40%;
+  // }
 
   .map {
     height: 850px;
@@ -512,9 +415,9 @@ img.join-btn {
     left: 2%;
   }
 
-  .advertisement1 {
-    height: 330px;
-  }
+  // .advertisement1 {
+  //   height: 330px;
+  // }
 
   .map{
     height: 1100px;
@@ -548,11 +451,11 @@ img.join-btn {
     height: 300px;
   }
 
-  .advertisement1 {
-    position: relative;
-    height: 200px;
-    margin-bottom: 20px;
-  }
+  // .advertisement1 {
+  //   position: relative;
+  //   height: 200px;
+  //   margin-bottom: 20px;
+  // }
 
   .club_players {
     top: 22%;
@@ -761,6 +664,10 @@ img.join-btn {
 
   .map {
     height: 400px;
+  }
+  .mat-mdc-list-base {
+    margin-bottom: 80px;
+    width: 100%;
   }
 
   .map img {
