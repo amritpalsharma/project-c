@@ -4,21 +4,12 @@
     </div>
 
     <div class="msg-popup-content">
-        
-        <div
-            class="upload-box"
-            (dragover)="onDragOver($event)"
-            (dragleave)="onDragLeave($event)"
-            (drop)="onFileDropped($event)"
-        >
-            <p>Drag and drop your files here or click to upload</p>
-            <input
-                type="file"
-                (change)="onFileSelect($event)"
-                multiple
-                hidden
-                #fileInput
-            />
+
+        <div class="upload-box" (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)"
+            (drop)="onFileDropped($event)">
+            <p class="upload-file_name">{{'dragAndDropFiles' | translate}}</p>
+            <p class="upload-file_name">{{'fileSupported1' | translate}}</p>
+            <input type="file" (change)="onFileSelect($event)" multiple hidden #fileInput />
             <button type="button" (click)="fileInput.click()">{{'uploadFiles' | translate}}</button>
         </div>
 

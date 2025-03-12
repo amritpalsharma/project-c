@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit, OnDestroy } from '@angular/core';
 import {
-  MatDialogRef,MAT_DIALOG_DATA
+  MatDialogRef, MAT_DIALOG_DATA
 } from '@angular/material/dialog';
 import { Editor, Toolbar } from 'ngx-editor';
 import { environment } from '../../../../../../environments/environment';
@@ -14,19 +14,19 @@ import { WebPages } from '../../../../../services/webpages.service';
   templateUrl: './blog-popup.component.html',
   styleUrl: './blog-popup.component.scss'
 })
-export class BlogPopupComponent  implements OnInit, OnDestroy  {
+export class BlogPopupComponent implements OnInit, OnDestroy {
   // id = 0;
   editor!: Editor;
-  title:string = "";
-  status : string = "";
-  selectedRole:any = 0;
-  selectedLang:any = 1;
-  selectedLocation:any = 1;
-  roles:any = [];
-  langs:any = [];
-  locations:any = [];
+  title: string = "";
+  status: string = "";
+  selectedRole: any = 0;
+  selectedLang: any = 1;
+  selectedLocation: any = 1;
+  roles: any = [];
+  langs: any = [];
+  locations: any = [];
   blogIdToEdit: any = '';
-  featured_image:any = "";
+  featured_image: any = "";
   toolbar: Toolbar = [
     ['bold', 'italic'],
     ['underline', 'strike'],
@@ -36,29 +36,29 @@ export class BlogPopupComponent  implements OnInit, OnDestroy  {
     ['align_left', 'align_center', 'align_right', 'align_justify'],
   ];
 
-  colorPresets :any = environment.colors;
+  colorPresets: any = environment.colors;
 
 
   content: string = '';
-  isLoading:boolean = false
-  error:boolean = false
-  errorMsg:any = {}
+  isLoading: boolean = false
+  error: boolean = false
+  errorMsg: any = {}
   slug: string = "";
   meta_description: string = "";
   meta_title: string = "";
-  
 
-  constructor(    
+
+  constructor(
     public dialogRef: MatDialogRef<BlogPopupComponent>, private blogApi: BlogService,
-    private webpages:WebPages,
+    private webpages: WebPages,
     @Inject(MAT_DIALOG_DATA) public blog: any
   ) {
-    if(blog){
+    if (blog) {
       this.getBlog(blog.id)
     }
 
-    let envRoles:any = environment.roles;
-    
+    let envRoles: any = environment.roles;
+
     this.roles = envRoles;
     // this.langs = environment.langs;
     this.langs = this.getAllLanguages();
@@ -74,124 +74,150 @@ export class BlogPopupComponent  implements OnInit, OnDestroy  {
   }
 
   close(): void {
-   console.log(this.editor);
+    console.log(this.editor);
     this.dialogRef.close({
     });
   }
-  
+
   remove(): void {
     this.dialogRef.close({
-      action:'remove'
+      action: 'remove'
     });
   }
+
+  // onImageChange(event: Event): void {
+  //   const input = event.target as HTMLInputElement;
+  //   if (input.files && input.files.length > 0) {
+  //     let FileToUpload = input.files[0];
+  //     this.featured_image = FileToUpload;
+  //   }
+  // }
 
   onImageChange(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
-      let FileToUpload = input.files[0];
-      this.featured_image = FileToUpload;
+      let fileToUpload = input.files[0];
+      this.featured_image = fileToUpload;
+      console.log("fileToUpload", fileToUpload)
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        // this.imagePreview = reader.result;
+      };
+      reader.readAsDataURL(fileToUpload);
     }
+
+    console.log("fileToUpload", this.featured_image)
   }
 
-  getAllLanguages(){
+
+  getAllLanguages() {
     this.webpages.getAllLanguage().subscribe((response) => {
-      if(response.status){
+      if (response.status) {
         let languages = response.data.languages;
 
         this.langs = languages
-        .map((value: any) => {
-          return {
-            id: value.id,
-            language: value.language,
-            slug: value.slug
-          }
-        });
+          .map((value: any) => {
+            return {
+              id: value.id,
+              language: value.language,
+              slug: value.slug
+            }
+          });
       }
     });
   }
 
-  validateForm(){
+  validateForm() {
 
     this.error = false;
     this.errorMsg = {};
-    
-    if(this.title == ""){
+
+    if (this.title == "") {
       this.error = true;
       this.errorMsg.title = "Title is required";
     }
-    if(this.content == "" || this.content == "<p></p>"){
+    if (this.content == "" || this.content == "<p></p>") {
       this.error = true;
       this.errorMsg.content = "Content is required";
     }
-    if(this.slug == ""){
+    if (this.slug == "") {
       this.error = true;
       this.errorMsg.slug = "Slug is required";
     }
-    if(this.slug.includes(' ')){
+    if (this.slug.includes(' ')) {
       this.error = true;
       this.errorMsg.slug = "Slug is Invalid";
     }
 
-    if(this.meta_title == ""){
+    if (this.meta_title == "") {
       this.error = true;
       this.errorMsg.meta_title = "Meta title is required";
     }
-    if(this.meta_description == ""){
+    if (this.meta_description == "") {
       this.error = true;
       this.errorMsg.meta_description = "Meta description is required";
     }
     return this.error;
   }
 
-  
-  async getBlog(id:any): Promise<void> {
+
+  async getBlog(id: any): Promise<void> {
     this.isLoading = true;
 
     try {
       this.isLoading = true;
-      this.blogApi.getBlogById(id).subscribe((response)=>{
-      if (response && response.status && response.data && response.data.blog) {
-        
-        this.blog = response.data.blog;
-        this.blogIdToEdit = this.blog.id;
-        this.title = this.blog.title;
-        this.content = this.blog.content;
-        // this.selectedLang = Number(this.blog.lang_id);
-        this.selectedLang = this.blog.lang_id;
-        this.meta_title = this.blog.meta_title;
-        this.meta_description = this.blog.meta_description;
-        this.slug = this.blog.slug;
-        this.status = this.blog.status;        
-        this.isLoading = false;
-      } else {
-        this.blog = [];
-        this.isLoading = false;
-        console.error('Invalid API response structure:', response);
-      }
-      });     
+      this.blogApi.getBlogById(id).subscribe((response) => {
+        if (response && response.status && response.data && response.data.blog) {
+
+          this.blog = response.data.blog;
+          this.blogIdToEdit = this.blog.id;
+          this.title = this.blog.title;
+          this.content = this.blog.content;
+          // this.selectedLang = Number(this.blog.lang_id);
+          this.selectedLang = this.blog.lang_id;
+          this.meta_title = this.blog.meta_title;
+          this.meta_description = this.blog.meta_description;
+          this.slug = this.blog.slug;
+          this.status = this.blog.status;
+          this.isLoading = false;
+        } else {
+          this.blog = [];
+          this.isLoading = false;
+          console.error('Invalid API response structure:', response);
+        }
+      });
     } catch (error) {
       this.isLoading = false;
       console.error('Error fetching users:', error);
     }
   }
 
-  createBlog():any{
-    let validForm:any = this.validateForm();
-    if(validForm){
+  createBlog(): any {
+    let validForm: any = this.validateForm();
+    if (validForm) {
       return false;
     }
-   
-    let params:any = {}
-    params.title = this.title;
-    params.content = this.content;
-    params.language = this.selectedLang;
-    params.featured_image = this.featured_image;
-    params.slug = this.slug;
-    params.meta_title = this.meta_title;
-    params.meta_description = this.meta_description;
-    params.status  = 1; // 1 for active, 2 for inactive    
-    
-    this.blogApi.addBlog(params).subscribe((response)=>{
+
+    // let params: any = {}
+    // params.title = this.title;
+    // params.content = this.content;
+    // params.language = this.selectedLang;
+    // params.featured_image = this.featured_image;
+    // params.slug = this.slug;
+    // params.meta_title = this.meta_title;
+    // params.meta_description = this.meta_description;
+    // params.status = 1; // 1 for active, 2 for inactive    
+    let formData = new FormData();
+    formData.append("title", this.title);
+    formData.append("content", this.content);
+    formData.append("language", this.selectedLang);
+    formData.append("featured_image", this.featured_image); // Ensure this is a File object
+    formData.append("slug", this.slug);
+    formData.append("meta_title", this.meta_title);
+    formData.append("meta_description", this.meta_description);
+    formData.append("status", "1"); // Convert number to string for FormData
+    this.blogApi.addBlog(formData).subscribe((response) => {
       if (response && response.status) {
         this.dialogRef.close({
           action: 'blogAdded',
@@ -203,26 +229,26 @@ export class BlogPopupComponent  implements OnInit, OnDestroy  {
         this.errorMsg = response.errors; // Assign API errors to the errorMsg object
       }
     },
-    (error) => {
-      if (error && error.errors) {
+      (error) => {
+        if (error && error.errors) {
           this.errorMsg = error.errors; // Assign API errors to the errorMsg object
-      } else {
+        } else {
           console.error('Unexpected error response:', error);
           this.errorMsg.general = "Something went wrong. Please try again.";
+        }
       }
-  }
-  
-  );         
+
+    );
   }
 
-  updateBlog():any{
+  updateBlog(): any {
 
-    let validForm:any = this.validateForm();
-    if(validForm){
+    let validForm: any = this.validateForm();
+    if (validForm) {
       return false;
     }
 
-    let params:any = {}
+    let params: any = {}
     params.title = this.title;
     params.content = this.content;
     params.language = this.selectedLang;
@@ -231,9 +257,9 @@ export class BlogPopupComponent  implements OnInit, OnDestroy  {
     params.meta_title = this.meta_title;
     params.meta_description = this.meta_description;
     // params.status  = 1; // 1 for active, 2 for inactive    
-    params.status  = this.status;
-    
-    this.blogApi.updateBlog(this.blogIdToEdit, params).subscribe((response)=>{
+    params.status = this.status;
+
+    this.blogApi.updateBlog(this.blogIdToEdit, params).subscribe((response) => {
       if (response && response.status) {
         this.dialogRef.close({
           action: 'templateUpdated',
@@ -243,7 +269,7 @@ export class BlogPopupComponent  implements OnInit, OnDestroy  {
         // this.isLoading = false;
         console.error('Invalid API response structure:', response);
       }
-    });         
+    });
   }
 
 }

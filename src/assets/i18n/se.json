@@ -1314,8 +1314,9 @@
   "downloading": "Nedladdning...",
   "submittingPerformanceData": "Inlämning av resultatdata...",
   "enterDocumentTitle": "Ange dokumentets titel",
-  "registrationInProcess":"Registrering är på gång...",
+  "registrationInProcess": "Registrering är på gång...",
   "registrationFailed": "Registreringen misslyckades",
-  "Processing":"Bearbetning...",
-  "EmailVerified":"E-post verifierad!"
+  "Processing": "Bearbetning...",
+  "EmailVerified": "E-post verifierad!",
+  "doYouWantToaddPackage": "Vill du lägga till “{{package_name}}” i din profil?"
 }

@@ -727,7 +727,11 @@
       <div class="container club-banner">
 
         <div class="club_players">
-          <h3>{{pageDetail?.hero_heading_txt}}</h3>
+          <div class="title_text_p">
+            <h3 *ngIf="pageDetail?.hero_heading" class="mb-3">{{pageDetail?.hero_heading}}</h3>
+            <!-- <p><strong>SoccerYou is the platform for the decisive advantage in the game for talents, clubs and scouts.</strong></p> -->
+            <p><strong>{{pageDetail?.hero_heading_txt}}</strong></p>
+          </div>
           <div class="club-buttons">
             <div data-bs-toggle="modal" data-bs-target="#exampleModal1">
               <div class="button-border">
@@ -749,8 +753,11 @@
 
       <div class="container club-banner">
         <div class="club_players">
-          <h3>{{pageDetail?.hero_heading_txt}}</h3>
-          <div class="club-buttons">
+          <div class="title_text_p">
+            <h3 *ngIf="pageDetail?.hero_heading" class="mb-3">{{pageDetail?.hero_heading}}</h3>
+            <p><strong>{{pageDetail?.hero_heading_txt}}</strong></p>
+          </div>
+            <div class="club-buttons">
             <div data-bs-toggle="modal" data-bs-target="#exampleModal1">
               <div class="button-border">
                 <div class="join-text">

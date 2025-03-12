@@ -34,6 +34,7 @@ export class ClubComponent {
     pricing_tab: [],
   }];
   // advertisementData:any=null;
+  activeIndex: number = 0;  
   advertisemnet_base_url: string = '';
   isLoading: boolean = true;
 
@@ -376,5 +377,15 @@ export class ClubComponent {
   ThemeUpdated() {
     this.getArrayItemByIndex(this.accordinCurrentIndex, 'image');
     this.currentTheme = localStorage.getItem('theme') + '';
+  }
+
+  setActiveAccordionNew(index: number): void {
+    if (this.activeIndex === index) {
+      // If the clicked tab is already active, close it
+      this.activeIndex = -1; 
+    } else {
+      // Open the clicked tab
+      this.activeIndex = index;
+    }
   }
 }

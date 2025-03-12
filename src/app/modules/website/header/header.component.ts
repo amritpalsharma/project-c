@@ -503,7 +503,7 @@ export class HeaderComponent implements OnInit {
     body.classList.add(selectedLanguageSlug);
 
 
-
+    this.globalSettings.callIndexComponentFunction();
   }
 
   getContentForLanguage(lang: string): void {
