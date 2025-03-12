@@ -15,6 +15,9 @@ export class PricingComponent {
   isLoading : boolean = true;
   btnLoading : boolean = true;
   countdown: number = 10;
+  // advertisemnet_base_url: string = '';
+  base_url: string = '';
+  // isLoading: boolean = true;
 
   premiumMonthlyPrice: string = '';
   Currency: string = '';
@@ -131,7 +134,7 @@ export class PricingComponent {
   //   this.adVisible[index] = false;
   // }
 
-  base_url : string = '';
+  // base_url : string = '';
 
   getPageData(languageId: any) {
     this.webPages.getDynamicContentPage('pricing', languageId).subscribe((res) => {
@@ -139,6 +142,8 @@ export class PricingComponent {
         this.pageData = res.data.pageData; // Store the page data in the component
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
         this.advertisementData = res?.data?.advertisementData;
+        this.advertisementList = res?.data?.allAdsList;
+
         this.pricing_banner_img = this.pageData.pricing_banner_img;
         this.base_url = res.data.base_url;
         if (this.pricing_banner_img != '') {
