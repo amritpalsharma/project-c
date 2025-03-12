@@ -728,7 +728,10 @@
 
         <div class="club_players">
           <div class="title_text_p">
-            <h3 *ngIf="pageDetail?.hero_heading" class="mb-3">{{pageDetail?.hero_heading}}</h3>
+            <h3 *ngIf="pageDetail?.hero_heading && pageDetail.hero_heading && pageDetail.hero_heading.trim().length > 0" class="mb-3 text_{{ pageDetail.hero_heading }}">
+              {{ pageDetail.hero_heading }}
+            </h3>
+            
             <!-- <p><strong>SoccerYou is the platform for the decisive advantage in the game for talents, clubs and scouts.</strong></p> -->
             <p><strong>{{pageDetail?.hero_heading_txt}}</strong></p>
           </div>
