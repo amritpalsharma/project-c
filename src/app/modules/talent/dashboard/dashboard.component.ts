@@ -142,7 +142,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   startIntroTour(lang: string) {
-    console.warn('Tour is Started Now')
     // introJs().start().goToStep(1);
     //this.translateService.use(lang); // Change language before fetching translations
     this.translateService.get([
@@ -323,9 +322,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
           this.StartTour = this.user?.show_tour == 1 ? true : false;
           this.isPremium = this.user?.active_subscriptions?.premium.length > 0 ? true : false;
           if (this.StartTour && this.isTourFirstTime) {
-          // if (this.StartTour && this.isPremium && this.isTourFirstTime) {
             setTimeout(() => {
               this.isTourFirstTime = false;
+              // alert('Found lang in Db : '+response.data.user_data.lang)
               var dblang = 'en';
               if (response.data.user_data.lang == 1) {
                 dblang = 'en';
