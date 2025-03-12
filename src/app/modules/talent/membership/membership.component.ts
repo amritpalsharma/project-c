@@ -78,6 +78,7 @@ export class MembershipComponent {
     let lang  = localStorage.getItem('lang_id');
 
     this.talentService.getPurchaseData(pageNumber, pageSize, lang).subscribe(response => {
+      console.warn(response.data)
       if (response && response.status && response.data) {
         this.isLoading = false;
         this.userPurchases = response.data.purchaseHistory;

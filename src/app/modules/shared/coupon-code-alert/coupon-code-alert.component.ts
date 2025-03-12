@@ -66,13 +66,13 @@ export class CouponCodeAlertComponent implements OnInit {
     if (this.couponCode != '' && this.couponApplied) {
       this.dialogRef.close(this.couponCode); // Pass coupon code (if applied) or null
     } else {
-      this.dialogRef.close(null); // Pass coupon code (if applied) or null
+      this.dialogRef.close('proceed_to_checkout_without_coupon'); // Pass coupon code (if applied) or null
     }
   }
 
   // Close dialog without a coupon
   noCoupon(): void {
-    this.dialogRef.close(null); // Close without coupon
+    this.dialogRef.close('proceed_to_checkout_without_coupon'); // Close without coupon
   }
 
   // Close the dialog

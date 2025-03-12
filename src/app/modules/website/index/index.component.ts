@@ -67,7 +67,7 @@ export interface ClubMember {
 export class IndexComponent {
   @ViewChild('owlCarousel') owlCarousel!: ElementRef;
   fallbackImage: string = 'assets/images/1.png'; // Path to your fallback image
-  currentTheme: string = '';
+  currentTheme: string = 'light';
   selectedLangId: any = null;
   pageDetail: any = null;
   sliderDetail: any = null;

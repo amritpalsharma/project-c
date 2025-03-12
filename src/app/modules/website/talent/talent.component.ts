@@ -41,7 +41,7 @@ export class TalentComponent {
     pricing_tab: [],
   }];
   currentTheme: string = localStorage.getItem('theme') + '';
-  activeAccordionIndex = 1;
+  activeAccordionIndex = 0;
   // advertisementData:any=null;
   advertisemnet_base_url: string = '';
 

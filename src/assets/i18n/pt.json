@@ -1256,13 +1256,14 @@
   "manageConsentPreferences": "Gerir preferências de consentimento",
   "allowAll": "Permitir tudo",
   "refuseAll": "Recusar tudo",
-  "deleteProfileConfirm":"Esta ação elimina a sua conta permanentemente da nossa base de dados. Esta ação não pode ser anulada.",
-  "downloading":"Descarregar...",
-  "submittingPerformanceData":"Apresentação de dados de desempenho...",
-  "enterDocumentTitle":"Introduzir o título do documento",
+  "deleteProfileConfirm": "Esta ação elimina a sua conta permanentemente da nossa base de dados. Esta ação não pode ser anulada.",
+  "downloading": "Descarregar...",
+  "submittingPerformanceData": "Apresentação de dados de desempenho...",
+  "enterDocumentTitle": "Introduzir o título do documento",
   "year": "Ano",
-  "registrationInProcess":"O registo está em curso...",
+  "registrationInProcess": "O registo está em curso...",
   "registrationFailed": "Falha no registo",
-  "Processing":"Processamento...",
-  "EmailVerified":"E-mail verificado!"
+  "Processing": "Processamento...",
+  "EmailVerified": "E-mail verificado!",
+  "doYouWantToaddPackage": "Pretende adicionar “{{package_name}}” ao seu perfil?"
 }

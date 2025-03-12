@@ -115,7 +115,8 @@ import { AddNewTalentComponent } from './tabs/add-new-talent/add-new-talent.comp
   imports: [
     CommonModule,
     ScoutRoutingModule,  // This includes RouterModule
-    TranslateModule.forChild(),
+    // TranslateModule.forChild(),
+    TranslateModule,
     RouterModule,
     RouterOutlet,
     MatPaginator,    

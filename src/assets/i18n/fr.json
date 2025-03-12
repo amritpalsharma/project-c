@@ -1324,6 +1324,7 @@
   "enterDocumentTitle": "Saisir le titre du document",
   "registrationInProcess": "L'inscription est en cours...",
   "registrationFailed": "Échec de l'enregistrement",
-  "Processing":"Traitement...",
-  "EmailVerified":"Courriel vérifié !"
+  "Processing": "Traitement...",
+  "EmailVerified": "Courriel vérifié !",
+  "doYouWantToaddPackage": "Voulez-vous ajouter “{{package_name}}” à votre profil ?"
 }
