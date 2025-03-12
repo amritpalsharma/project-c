@@ -288,3 +288,21 @@
 div#cdk-overlay-3 {
   height: unset !important;
 }
+
+
+@media (min-width: 2000px) {
+.card-tabs {
+  .nav-tabs {
+    .nav-link {
+      font-size: 18px;
+      svg {
+        width: 25px !important;
+        height: 25px !important;
+      }
+    }
+  }
+}
+.website_heder_edits .items-count {
+  font-size: 18px !important;
+}
+}

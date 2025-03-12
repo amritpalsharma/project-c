@@ -260,6 +260,9 @@
       border: 1px solid;
       border-radius: 50%;
       padding: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
   }
   .premium_button svg {
     width: 14px;
@@ -913,6 +916,9 @@
     border: 1px solid;
     border-radius: 50%;
     padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .premium_button svg {
   width: 14px;
@@ -1388,6 +1394,7 @@ width:  100% !important;
 }
 .user-info button .tour-personal-details {
   display: flex;
+  align-items: center;
   max-width: 75px;
   overflow: hidden;
 }
@@ -1412,3 +1419,18 @@ width:  100% !important;
     margin-top: 15px;
   }
   }
+
+@media (min-width: 2000px) {
+  .nav-tabs.user-tabs .nav-item .nav-link {
+    font-size: 18px;
+  }
+  .title_2{
+    font-size: 14px;
+}
+.title-1{
+  font-size: 16px;
+}
+.details_2, .details-1 {
+  font-size: 19px !important;
+}
+}
