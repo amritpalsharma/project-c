@@ -10,31 +10,32 @@
             <h2 class="imprint-text">{{ pageData?.banner_title }}</h2> <!-- Dynamic Title -->
           </div>
         </div>
-  
-        <div *ngIf="checkActive('skyscraper')  && !isLoading" class="skyscraper-left">
-          <a href="{{advertisementData?.skyscraper?.redirect_url}}" target="_blank">
-            <img [src]="advertisemnet_base_url + advertisementData?.skyscraper?.featured_image">
-          </a>
-          <button *ngIf="!btnLoading" (click)="closeAd('skyscraper')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
-          <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
-        </div>
-  
-        <div *ngIf="checkActive('wide_skyscraper')  && !isLoading" class="skyscraper-right">
-          <a href="{{advertisementData?.wide_skyscraper?.redirect_url}}" target="_blank">
-          <img [src]="advertisemnet_base_url + advertisementData?.wide_skyscraper?.featured_image">
-          </a>
-          <button *ngIf="!btnLoading" (click)="closeAd('wide_skyscraper')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
-          <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
-        </div>
-
       </div>
-  
-      <div class="pricing py_0">
-        <div class="container">
-          <h3 class="price-heading3">{{ pageData?.pricing_tabs_title }}</h3> <!-- Dynamic Subtitle -->
-          <div class="row">
-            <div class="col-lg-4 col-md-12 col-12">
-              <div class="price_mat_wrapper">
+
+      <div *ngIf="checkActive('skyscraper')  && !isLoading" class="skyscraper-left">
+        <a href="{{advertisementData?.skyscraper?.redirect_url}}" target="_blank">
+          <img [src]="advertisemnet_base_url + advertisementData?.skyscraper?.featured_image">
+        </a>
+        <button *ngIf="!btnLoading" (click)="closeAd('skyscraper')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+        <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+      </div>
+
+      <div *ngIf="checkActive('wide_skyscraper')  && !isLoading" class="skyscraper-right">
+        <a href="{{advertisementData?.wide_skyscraper?.redirect_url}}" target="_blank">
+        <img [src]="advertisemnet_base_url + advertisementData?.wide_skyscraper?.featured_image">
+        </a>
+        <button *ngIf="!btnLoading" (click)="closeAd('wide_skyscraper')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+        <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+      </div>
+
+    </div>
+
+    <div class="pricing py_0">
+      <div class="container">
+        <h3 class="price-heading3">{{ pageData?.pricing_tabs_title }}</h3> <!-- Dynamic Subtitle -->
+        <div class="row">
+          <div class="col-lg-4 col-md-12 col-12">
+            <div class="price_mat_wrapper">
               <mat-card class="plan_price_box">
                 <div class="billed">
                   <p [ngClass]="{ 'active-text': isActive1, 'inactive-text': !isActive1 }" class="billed-monthly">
@@ -163,10 +164,11 @@
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="py_1">
-        <div class="container">
-          <div class="advertisment advertisement1 advertisement_three_block"
+    <div class="py_1">
+      <div class="container">
+        <div class="advertisment advertisement1 advertisement_three_block"
             *ngIf="checkActive('large_rectangle') || checkActive('inline_rectangle') || checkActive('square')">
   
             <div *ngIf="checkActive('large_rectangle')  && !isLoading" class="large-rectangle">
@@ -196,12 +198,9 @@
             </div>
   
           </div>
-        </div>
       </div>
+    </div>
 
-
-  </div>
-  </div>
   </div>
 
   <!-- <app-footer></app-footer> -->

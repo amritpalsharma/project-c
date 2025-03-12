@@ -173,8 +173,15 @@
           <div class="col-lg-4 my-2 ">
             <div class="subscription-switch mb-2">
               <label class="switch_off cursor-pointer">{{'billedMonthly' | translate}}</label>
-              <input type="checkbox" (change)="toggleBillingPlan(countryPlans, (countryPlans.isYearly), countryPlans)"
+              
+              <input type="checkbox" (change)="toggleBillingPlan(countryPlans, (countryPlans.isYearly), country)"
                 class="cursor-pointer">
+
+                <!-- <input class="cursor-pointer" type="checkbox" [id]="countryPlans.id" [checked]="(countryPlans.isYearly)"
+                [(ngModel)]="countryPlans.isYearly"
+                (change)="toggleBillingPlan(countryPlans, (countryPlans.isYearly), country)"
+                [value]="countryPlans.isYearly"> -->
+
               <label class="switch_on cursor-pointer">{{'billedYearly' | translate}}</label>
             </div>
 
@@ -201,7 +208,7 @@
                   </div>
                 </div>
                 <div class="premium-currency">
-                  <h6>{{ selectedPlan?.price }}<sub class="premium-month_title">.-{{ selectedPlan?.currency }} / {{ selectedPlan?.isYearly ? ('year'
+                  <h6>{{ selectedPlan?.price }}<sub class="premium-month_title">.-{{ selectedPlan?.currency }} / {{ selectedPlan?.interval=='yearly' ? ('year'
                       | translate) :
                       ('month' | translate) }}</sub>
                   </h6>
