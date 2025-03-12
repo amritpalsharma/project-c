@@ -108,7 +108,7 @@
           {{ 'dragAndDropFiles' | translate }}
         </h5>
         <p class="main-upload-text mb-2">
-          <span class="mr-4"> {{ 'dimensions:' | translate }} {{type}}</span> {{ 'fileSupported1' | translate }}
+          <span class="mr-4" *ngIf="type"> {{ 'dimensions:' | translate }} {{type}}</span> <br> {{ 'fileSupported1' | translate }}
         </p>
         <label for="file-upload" class="btn btn-secondary upload-btn mb-2 mt-2">{{ 'chooseFile' | translate }}</label>
         <input id="file-upload" type="file" class="setting-media-2" style="display: none;"
@@ -117,12 +117,13 @@
           {{ 'maximumSize5MB' | translate }}
         </p>
       </div>
+      <div *ngIf="errorMsg.image" class="error-msg mb-3 text-center">{{errorMsg.image}}</div>
 
       <div *ngIf="imagePreview || imageUrl" class="preview-image-container position-relative">
         <img *ngIf="imagePreview" [src]="imagePreview" alt="Preview" class="image-preview" />
         <img *ngIf="imageUrl" [src]="'https://api.socceryou.ch/uploads/' + imageUrl" alt="Preview" class="image-preview" />
 
-        <button (click)="closeImage()" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+        <button (click)="closeImage()" class="ad-close-button d-block"><i class="fa-solid fa-xmark"></i></button>
       </div>
 
       
@@ -143,7 +144,7 @@
               <div class="cupen-btn-date">
                 <mat-form-field class="meta-date">
                   <mat-label>{{ 'chooseADate' | translate }}</mat-label>
-                  <input matInput [matDatepicker]="dp" [(ngModel)]="startDate"
+                  <input matInput [min]="today" readonly [matDatepicker]="dp" [(ngModel)]="startDate"
                     (dateChange)="onDateChange('start', $event)">
                   <mat-datepicker-toggle matIconPrefix [for]="dp"></mat-datepicker-toggle>
                   <mat-datepicker #dp></mat-datepicker>
@@ -153,9 +154,10 @@
 
             <div>
               <div class="cupen-btn-date-1" [ngClass]="{'disable-end-date': disableEndDate}">
+              <!-- <div class="cupen-btn-date-1" > -->
                 <mat-form-field class="meta-date">
                   <mat-label>{{ 'chooseADate' | translate }}</mat-label>
-                  <input matInput [matDatepicker]="dp1" [(ngModel)]="endDate"
+                  <input [min]="startDate" readonly [disabled]="!this.startDate || disableEndDate" matInput [matDatepicker]="dp1" [(ngModel)]="endDate"
                     (dateChange)="onDateChange('end', $event)">
                   <mat-datepicker-toggle matIconPrefix [for]="dp1"></mat-datepicker-toggle>
                   <mat-datepicker #dp1></mat-datepicker>
@@ -174,6 +176,8 @@
           </div>
 
         </div>
+
+        <div *ngIf="errorMsg.endDate" class="error-msg">{{errorMsg.endDate}}</div>
 
       </div>
       <!-- skdjfhkjs -->

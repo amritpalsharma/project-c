@@ -38,7 +38,9 @@ export class NewsComponent implements OnInit, OnDestroy {
   base_url: string = 'https://api.socceryou.ch/uploads/';
   adVisible: boolean[] = [true, true, true, true, true];
 
-  isLoading: boolean = true;
+  isLoading : boolean = true;
+  btnLoading : boolean = true;
+  countdown: number = 10;
 
 
   images: SliderImage[] = [
@@ -56,7 +58,9 @@ export class NewsComponent implements OnInit, OnDestroy {
     });
   }
 
-  isActive: any = {
+  advertisementList: any ;
+
+  isActive : any ={
     skyscraper: true,
     wide_skyscraper: true,
     leaderboard: true,
@@ -127,17 +131,30 @@ export class NewsComponent implements OnInit, OnDestroy {
         this.slider_btn_txt = res.data.pageData.slider_btn_txt;
         this.slider_date = res.data.pageData.slider_date;
 
-        this.isLoading = false;
-
+        
         // this.images = res.data.newsSliderData || this.images;
         // this.base_url = res.data.base_url;
         this.addThreeElements(this.latestNewsData);
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
         this.advertisementData = res?.data?.advertisementData;
+        this.advertisementList = res?.data?.allAdsList;
+        
+        this.isLoading = false;
+        this.startCountdown();
       }
     }, error => {
       console.error('Error fetching dynamic page data', error);
     });
+  }
+  startCountdown() {
+    this.countdown = 5; // Reset countdown
+    const interval = setInterval(() => {
+      this.countdown--;
+      if (this.countdown === 0) {
+        clearInterval(interval);
+        this.btnLoading = false; // Stop loading when countdown reaches 0
+      }
+    }, 1000);
   }
 
   changeImage(imageSrc: string, index: number) {
@@ -278,12 +295,16 @@ export class NewsComponent implements OnInit, OnDestroy {
     return false;
   }
 
+  // isExists(key: any): boolean {
+  //   return key in this.advertisementData;
+  // }
+
   isExists(key: any): boolean {
-    return key in this.advertisementData;
+    return (this.advertisementData && key in this.advertisementData) || (this.advertisementList && this.advertisementList.includes(key));
   }
 
   isFeaturedImageExists(key: any): boolean {
-    return 'featured_image' in this.advertisementData[key];
+    return this.advertisementData && this.advertisementData[key] && 'featured_image' in this.advertisementData[key];
   }
 
   addThreeElements(originalArray:any) {

@@ -12,13 +12,19 @@
 
    
     <div *ngIf="checkActive('skyscraper')  && !isLoading" class="skyscraper-left">
-      <img [src]="advertisemnet_base_url + advertisementData?.skyscraper?.featured_image">
-      <button (click)="closeAd('skyscraper')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+      <a href="{{advertisementData?.skyscraper?.redirect_url}}" target="_blank">
+        <img [src]="advertisemnet_base_url + advertisementData?.skyscraper?.featured_image">
+      </a>
+      <button *ngIf="!btnLoading" (click)="closeAd('skyscraper')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+      <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
     </div>
 
     <div *ngIf="checkActive('wide_skyscraper')  && !isLoading" class="skyscraper-right">
+      <a href="{{advertisementData?.wide_skyscraper?.redirect_url}}" target="_blank">
       <img [src]="advertisemnet_base_url + advertisementData?.wide_skyscraper?.featured_image">
-      <button (click)="closeAd('wide_skyscraper')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+      </a>
+      <button *ngIf="!btnLoading" (click)="closeAd('wide_skyscraper')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+      <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
     </div>
 
   </div>
@@ -146,14 +152,20 @@
           <div *ngIf="isExists('large_leaderboard')" class="advertisment advertisement_two_top">
   
             <div *ngIf="checkActive('large_leaderboard')  && !isLoading" class="leaderboard-club-image">
-              <img [src]="advertisemnet_base_url + advertisementData?.leaderboard?.featured_image">
-              <button (click)="closeAd('large_leaderboard')" class="ad-close-button"><i
+              <a href="{{advertisementData?.large_leaderboard?.redirect_url}}" target="_blank">
+              <img [src]="advertisemnet_base_url + advertisementData?.large_leaderboard?.featured_image">
+              </a>
+              <button *ngIf="!btnLoading" (click)="closeAd('large_leaderboard')" class="ad-close-button"><i
                   class="fa-solid fa-xmark"></i></button>
+                  <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
             </div>
   
             <div *ngIf="checkActive('small_square')  && !isLoading" class="small-sqaure-image">
+              <a href="{{advertisementData?.small_square?.redirect_url}}" target="_blank">
               <img [src]="advertisemnet_base_url + advertisementData?.small_square?.featured_image">
-              <button (click)="closeAd('small_square')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+              </a>
+              <button *ngIf="!btnLoading" (click)="closeAd('small_square')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+              <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
             </div>
   
           </div>
@@ -161,12 +173,18 @@
           <div *ngIf="!isExists('large_leaderboard')" class="advertisment advertisement_two_bottom">
   
             <div *ngIf="checkActive('small_square')  && !isLoading" class="small-sqaure-image">
+              <a href="{{advertisementData?.small_square?.redirect_url}}" target="_blank">
               <img [src]="advertisemnet_base_url + advertisementData?.small_square?.featured_image">
-              <button (click)="closeAd('small_square')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+              </a>
+              <button *ngIf="!btnLoading" (click)="closeAd('small_square')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+              <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
             </div>
             <div *ngIf="checkActive('banner')  && !isLoading" class="leaderboard-club-image">
+              <a href="{{advertisementData?.banner?.redirect_url}}" target="_blank">
               <img [src]="advertisemnet_base_url + advertisementData?.banner?.featured_image">
-              <button (click)="closeAd('banner')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+              </a>
+              <button *ngIf="!btnLoading" (click)="closeAd('banner')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+              <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
             </div>
   
   

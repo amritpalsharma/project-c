@@ -9,6 +9,7 @@ interface FeatureSection {
 
 import { Component } from '@angular/core';
 import { WebPages } from '../../../services/webpages.service';
+import { provideNetlifyLoader } from '@angular/common';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
 
 
@@ -46,6 +47,9 @@ export class TalentComponent {
   advertisemnet_base_url: string = '';
 
   isLoading: boolean = true;
+  btnLoading: boolean = true;
+  countdown: number = 10;
+
   Currency: string = '';
   premiumPackageName: string = '';
 
@@ -89,6 +93,8 @@ export class TalentComponent {
     //   this.ThemeUpdated(); // Call the function when event is received
     // });
   }
+
+  advertisementList: any = null;
 
   isActive: any = {
     skyscraper: true,
@@ -144,9 +150,24 @@ export class TalentComponent {
   getPageData(languageId: any) {
     this.webPages.getDynamicContentPage('talent', languageId).subscribe((res) => {
       if (res.status) {
+
+
+
+
+
         this.pageData = res.data.pageData;
         this.baseUrl = res.data.base_url;
         this.advertisementData = res.data.advertisementData;
+        this.advertisementList = res.data.allAdsList;
+
+        this.advertisemnet_base_url = res.data.advertisemnet_base_url;
+        // Initialize toggle states for pricing plans with Monthly active (false)
+        this.pageData.pricing_tab.forEach((_: any, index: number) => {
+          this.isActivePlan[index] = false; // Default to "Monthly"
+        });
+
+        this.isLoading = false;
+        this.startCountdown()
         // this.advertisementData = null;
         // console.warn(this.pageData.feature_sctn)
         this.feature_sctn = this.pageData.feature_sctn;
@@ -167,37 +188,16 @@ export class TalentComponent {
     });
   }
 
-  // closeAd(object: any) {
-
-  //   switch(object){
-  //     case 'skyscraper':
-  //         this.advertisementData.skyscraper = [];
-  //         break;
-  //     case 'small_square':
-  //         this.advertisementData.small_square = [];
-  //         break;
-  //     case 'leaderboard':
-  //         this.advertisementData.leaderboard = [];
-  //         break;
-  //     case 'large_leaderboard':
-  //         this.advertisementData.large_leaderboard = [];
-  //         break;
-  //     case 'large_rectangle':
-  //         this.advertisementData.large_rectangle = [];
-  //         break;
-
-  //     case 'inline_rectangle':
-  //         this.advertisementData.inline_rectangle = [];
-  //         break;
-  //     case 'square':
-  //         this.advertisementData.square = [];
-  //         break;
-  //     default:
-  //         //when no case is matched, this block will be executed;
-  //         break;  //optional
-  //     }
-
-  // }
+  startCountdown() {
+    this.countdown = 5; // Reset countdown
+    const interval = setInterval(() => {
+      this.countdown--;
+      if (this.countdown === 0) {
+        clearInterval(interval);
+        this.btnLoading = false; // Stop loading when countdown reaches 0
+      }
+    }, 1000);
+  }
 
   toggle1() {
     this.isActive1 = !this.isActive1;
@@ -278,12 +278,18 @@ export class TalentComponent {
     return false;
   }
 
+  // isExists(key: any): boolean {
+  //   return key in this.advertisementData;
+  // }
+
   isExists(key: any): boolean {
-    return key in this.advertisementData;
+    return (this.advertisementData && key in this.advertisementData) || this.advertisementList.includes(key);
   }
 
+
+
   isFeaturedImageExists(key: any): boolean {
-    return 'featured_image' in this.advertisementData[key];
+    return this.advertisementData && this.advertisementData[key] && 'featured_image' in this.advertisementData[key];
   }
 
   getCurrencyPrice(interval: string) {

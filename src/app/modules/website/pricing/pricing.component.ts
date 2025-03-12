@@ -11,9 +11,13 @@ export class PricingComponent {
   isActive2 = true; // Multi-Country Plan
   isActive3 = true; // Boost Profile Plan
   pageData: any; // To hold the API response data
-  advertisemnet_base_url: string = '';
+  advertisemnet_base_url:string= '';
+  isLoading : boolean = true;
+  btnLoading : boolean = true;
+  countdown: number = 10;
+  // advertisemnet_base_url: string = '';
   base_url: string = '';
-  isLoading: boolean = true;
+  // isLoading: boolean = true;
 
   premiumMonthlyPrice: string = '';
   Currency: string = '';
@@ -54,6 +58,9 @@ export class PricingComponent {
       this.getCurrencyPrice('yearly');
     });
   }
+
+  
+  advertisementList: any =null;
 
 
   isActive: any = {
@@ -127,12 +134,16 @@ export class PricingComponent {
   //   this.adVisible[index] = false;
   // }
 
+  // base_url : string = '';
+
   getPageData(languageId: any) {
     this.webPages.getDynamicContentPage('pricing', languageId).subscribe((res) => {
       if (res.status) {
         this.pageData = res.data.pageData; // Store the page data in the component
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
         this.advertisementData = res?.data?.advertisementData;
+        this.advertisementList = res?.data?.allAdsList;
+
         this.pricing_banner_img = this.pageData.pricing_banner_img;
         this.base_url = res.data.base_url;
         if (this.pricing_banner_img != '') {
@@ -141,8 +152,20 @@ export class PricingComponent {
         }
         
         this.isLoading = false;
+        this.startCountdown();
       }
     });
+  }
+
+  startCountdown() {
+    this.countdown = 5; // Reset countdown
+    const interval = setInterval(() => {
+      this.countdown--;
+      if (this.countdown === 0) {
+        clearInterval(interval);
+        this.btnLoading = false; // Stop loading when countdown reaches 0
+      }
+    }, 1000);
   }
 
   closeAd(object: any) {
@@ -171,11 +194,15 @@ export class PricingComponent {
   }
 
   isExists(key: any): boolean {
-    return key in this.advertisementData;
+    return (this.advertisementData && key in this.advertisementData) || this.advertisementList.includes(key);
   }
 
+  // isExists(key: any): boolean {
+  //   return key in this.advertisementData;
+  // }
+
   isFeaturedImageExists(key: any): boolean {
-    return 'featured_image' in this.advertisementData[key];
+    return this.advertisementData && this.advertisementData[key] && 'featured_image' in this.advertisementData[key];
   }
 
   getCurrencyandMonthlyPrice(tab_and_interval: string) {

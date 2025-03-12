@@ -284,7 +284,7 @@ export class PlanComponent implements OnInit, OnDestroy {
           activePlan.push(this.countryPlans.plans[0]);
           activePlan.push(this.countryPlans.plans[7]);
 
-          this.activePlans = activePlan;
+          // this.activePlans = activePlan;
 
           // Fetch user cards
           // this.getUserCards();
@@ -407,7 +407,7 @@ export class PlanComponent implements OnInit, OnDestroy {
 
     // this.animate = (!this.animate);
 
-    console.log('toggleBillingPlan', plan, isYearly, subscribeId);
+    console.log('toggleBillingPlan', plan, isYearly, subscribeId, this.selectedPlan);
     const originalIsYearly = plan.isYearly;
 
     if (isYearly && plan.active_interval == 'yearly') {
@@ -421,6 +421,44 @@ export class PlanComponent implements OnInit, OnDestroy {
     }
 
     plan.isYearly = originalIsYearly;
+
+    if(this.selectedPlan.interval === 'monthly'){
+      plan.plans.forEach((element:any) => {
+        if(element.interval === 'yearly'){
+          this.selectedPlan = element;
+          return;
+        }
+      })
+    }
+    else{
+      plan.plans.forEach((element:any) => {
+        if(element.interval === 'monthly'){
+          this.selectedPlan = element;
+          return;
+        }
+      })
+    }
+
+
+    // plan.plans.forEach((element:any) => {
+    //   if(this.selectedPlan.interval === 'monthly'){
+    //     console.log("selected plan 1",this.selectedPlan)
+    //     if(element.interval === 'yearly'){
+    //       this.selectedPlan = element;
+    //       return;
+    //     }
+    //   }
+    //   else{
+    //     console.log("selected plan 2",this.selectedPlan)
+    //     if(element.interval === 'monthly'){
+    //       this.selectedPlan = element;
+    //       return;
+    //     }
+    //   }
+    // });
+    
+
+    // this.onSelectPlan()
     return;
   }
 

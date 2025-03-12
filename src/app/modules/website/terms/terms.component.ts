@@ -16,6 +16,8 @@ export class TermsComponent implements OnInit {
   advertisemnet_base_url:string = '';
 
   isLoading : boolean = true;
+  btnLoading : boolean = true;
+  countdown: number = 10;
 
 
   adVisible: boolean[] = [true, true, true]; // Array to manage ad visibility
@@ -30,6 +32,8 @@ export class TermsComponent implements OnInit {
       this.getPageData(data)
     });
   }
+
+  advertisementList : any = null;
 
   isActive : any ={
     skyscraper: true,
@@ -90,12 +94,26 @@ export class TermsComponent implements OnInit {
         this.base_url = res.data.base_url;
 
         
-      this.isLoading = false;
-
+        
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
         this.advertisementData = res?.data?.advertisementData;
+        this.advertisementList = res?.data?.allAdsList;
+        
+        this.isLoading = false;
+        this.startCountdown();
       }
     });
+  }
+
+  startCountdown() {
+    this.countdown = 5; // Reset countdown
+    const interval = setInterval(() => {
+      this.countdown--;
+      if (this.countdown === 0) {
+        clearInterval(interval);
+        this.btnLoading = false; // Stop loading when countdown reaches 0
+      }
+    }, 1000);
   }
 
   closeAd(object: any) {
@@ -123,12 +141,16 @@ export class TermsComponent implements OnInit {
     return false;
   }
 
+  // isExists(key: any): boolean {
+  //   return key in this.advertisementData;
+  // }
+
   isExists(key: any): boolean {
-    return key in this.advertisementData;
+    return (this.advertisementData && key in this.advertisementData) || this.advertisementList.includes(key);
   }
 
   isFeaturedImageExists(key: any): boolean {
-    return 'featured_image' in this.advertisementData[key];
+    return this.advertisementData && this.advertisementData[key] && 'featured_image' in this.advertisementData[key];
   }
 
 }

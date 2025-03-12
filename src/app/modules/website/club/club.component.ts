@@ -35,9 +35,12 @@ export class ClubComponent {
   }];
   // advertisementData:any=null;
   activeIndex: number = 0;  
-  advertisemnet_base_url: string = '';
-  isLoading: boolean = true;
 
+  advertisementList:any=null;
+  advertisemnet_base_url:string= '';
+  isLoading : boolean = true;
+  btnLoading : boolean = true;
+  countdown: number = 10;
 
 
   isActive1 = true; // Premium Plan
@@ -152,20 +155,32 @@ export class ClubComponent {
         this.pageData = res.data.pageData;
         this.baseUrl = res.data.base_url;
 
-        this.isLoading = false;
-
-        this.advertisementData = res.data.advertisementData;
-        // this.advertisementData = [];
-        this.advertisemnet_base_url = res.data.advertisemnet_base_url;
-
-        // Initialize toggle states for pricing plans with Monthly active (false)
-        this.pageData.pricing_tab.forEach((_: any, index: number) => {
-          this.isActivePlan[index] = false; // Default to "Monthly"
-        });
-        this.feature_sctn = this.pageData.feature_sctn;
-        this.getArrayItemByIndex(this.accordinCurrentIndex, 'image');
-      }
+          
+          this.advertisementData = res.data.advertisementData;
+          this.advertisementList = res.data.allAdsList;
+          // this.advertisementData = [];
+          this.advertisemnet_base_url = res.data.advertisemnet_base_url;
+          
+          // Initialize toggle states for pricing plans with Monthly active (false)
+          this.pageData.pricing_tab.forEach((_: any, index: number) => {
+            this.isActivePlan[index] = false; // Default to "Monthly"
+          });
+          
+          this.isLoading = false;
+          this.startCountdown();
+        }
     });
+  }
+
+  startCountdown() {
+    this.countdown = 5; // Reset countdown
+    const interval = setInterval(() => {
+      this.countdown--;
+      if (this.countdown === 0) {
+        clearInterval(interval);
+        this.btnLoading = false; // Stop loading when countdown reaches 0
+      }
+    }, 1000);
   }
 
   // closeAd(object: any) {
@@ -288,12 +303,16 @@ export class ClubComponent {
     return false;
   }
 
+  // isExists(key: any): boolean {
+  //   return key in this.advertisementData;
+  // }
+
   isExists(key: any): boolean {
-    return key in this.advertisementData;
+    return (this.advertisementData && key in this.advertisementData) || this.advertisementList.includes(key);
   }
 
   isFeaturedImageExists(key: any): boolean {
-    return 'featured_image' in this.advertisementData[key];
+    return this.advertisementData && this.advertisementData[key] && 'featured_image' in this.advertisementData[key];
   }
 
   getCurrencyPrice(interval: string) {

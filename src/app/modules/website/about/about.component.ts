@@ -32,11 +32,15 @@ export class AboutComponent {
   country_section_banner_img: string = '';
   country_section_banner_img_dark_mode: string = '';
   // advertisementData:any=null;
-  advertisemnet_base_url: string = '';
+  advertisementList: any = null;
+  advertisemnet_base_url:string= '';
+  isLoading : boolean = true;
+  btnLoading : boolean = true;
+  countdown: number = 10;
 
-  isLoading: boolean = true;
-
-  isActive: any = {
+  // isLoading : boolean = true;
+  
+  isActive : any ={
     skyscraper: true,
     wide_skyscraper: true,
     leaderboard: true,
@@ -92,40 +96,52 @@ export class AboutComponent {
 
   constructor(
     private webPages: WebPages,
-  ) { }
-  ngOnInit(): void {
-    // Initialize form with validation rules
-    this.webPages.languageId$.subscribe((data) => {
-      this.getPageData(data)
+    ) { }
+    ngOnInit(): void {
+      // Initialize form with validation rules
+      this.webPages.languageId$.subscribe((data) => {
+        this.getPageData(data)
+      });
+    }
+
+    
+  getPageData(languageId: any){
+    this.webPages.getDynamicContentPage('about_us',languageId).subscribe((res) => {
+      if(res.status){
+          this.about_banner_title = res.data.pageData.about_banner_title;
+          this.about_banner_desc = res.data.pageData.about_banner_desc;
+          this.countries = res.data.pageData.about_country_names;
+          this.country_section_title = res.data.pageData.country_section_title;
+          this.about_hero_heading_txt = res.data.pageData.about_hero_heading_txt;
+          this.about_hero_btn_txt = res.data.pageData.about_hero_btn_txt;
+          this.about_hero_btn_link = res.data.pageData.about_hero_btn_link;
+          this.about_banner_bg_img = res.data.base_url+res.data.pageData.about_banner_bg_img;
+          this.about_banner_img =  res.data.base_url+res.data.pageData.about_banner_img;
+          this.country_section_banner_img=  res.data.base_url+res.data.pageData.country_section_banner_img;
+         
+          this.advertisementData = res.data.advertisementData;
+          this.advertisementList = res.data.allAdsList;
+          // this.advertisementData = [];
+          this.advertisemnet_base_url = res.data.advertisemnet_base_url;
+
+          this.isLoading = false;
+          this.startCountdown();
+        
+        }
     });
   }
 
-
-  getPageData(languageId: any) {
-    this.webPages.getDynamicContentPage('about_us', languageId).subscribe((res) => {
-      if (res.status) {
-        this.about_banner_title = res.data.pageData.about_banner_title;
-        this.about_banner_desc = res.data.pageData.about_banner_desc;
-        this.countries = res.data.pageData.about_country_names;
-        this.country_section_title = res.data.pageData.country_section_title;
-        this.about_hero_heading_txt = res.data.pageData.about_hero_heading_txt;
-        this.about_hero_btn_txt = res.data.pageData.about_hero_btn_txt;
-        this.about_hero_btn_link = res.data.pageData.about_hero_btn_link;
-        this.about_banner_bg_img = res.data.base_url + res.data.pageData.about_banner_bg_img;
-        this.about_banner_img = res.data.base_url + res.data.pageData.about_banner_img;
-        this.country_section_banner_img = res.data.base_url + res.data.pageData.country_section_banner_img;
-        this.country_section_banner_img_dark_mode = res.data.base_url + res.data.pageData.country_section_banner_img_dark_mode;
-
-        this.advertisementData = res.data.advertisementData;
-        // this.advertisementData = [];
-        this.advertisemnet_base_url = res.data.advertisemnet_base_url;
-
-        this.isLoading = false;
-
+  startCountdown() {
+    this.countdown = 5; // Reset countdown
+    const interval = setInterval(() => {
+      this.countdown--;
+      if (this.countdown === 0) {
+        clearInterval(interval);
+        this.btnLoading = false; // Stop loading when countdown reaches 0
       }
-    });
+    }, 1000);
   }
-
+ 
 
   closeAd(object: any) {
 
@@ -153,11 +169,15 @@ export class AboutComponent {
     return false;
   }
 
+  // isExists(key: any): boolean {
+  //   return key in this.advertisementData;
+  // }
+
   isExists(key: any): boolean {
-    return key in this.advertisementData;
+    return (this.advertisementData && key in this.advertisementData) || this.advertisementList.includes(key);
   }
 
   isFeaturedImageExists(key: any): boolean {
-    return 'featured_image' in this.advertisementData[key];
+    return this.advertisementData && this.advertisementData[key] && 'featured_image' in this.advertisementData[key];
   }
 }
