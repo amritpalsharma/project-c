@@ -704,6 +704,7 @@
             <button *ngIf="!btnLoading" (click)="closeAd('large_leaderboard')" class="ad-close-button"><i
                 class="fa-solid fa-xmark"></i></button>
                 <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+                <h1>{{advertisementData?.large_leaderboard?.featured_image}}</h1>
           </div>
 
           <div *ngIf="checkActive('small_square') && !isLoading" class="small-sqaure-image">

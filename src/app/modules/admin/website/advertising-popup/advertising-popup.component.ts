@@ -24,7 +24,7 @@ export class AdvertisingPopupComponent   {
   type: any = "";
   page: any = "";
   startDate: any = new Date();
-  endDate: any = new Date();
+  endDate: any = null;
   noEndDate: any = false;
   disableEndDate:boolean = false;
   maxViews:any = "";
@@ -113,6 +113,7 @@ export class AdvertisingPopupComponent   {
     let date = this.formatDate(selectedDate);
     if(dateType == 'start'){
       this.startDate = date;
+      this.endDate = null;
     }else if(dateType == 'end'){
       this.endDate = date;
     }
@@ -129,17 +130,21 @@ export class AdvertisingPopupComponent   {
 
   onNoEndDateChange(event: any): void{
     const checked = event.target.checked;
+    this.endDate = null
     console.log(checked)
     if(checked){
       this.disableEndDate = true;
     }else{
       this.disableEndDate = false;
     }
+
+    console.log(this.startDate, this.endDate)
   }
 
   imagePreview: any = null;
 
   onImageChange(event: Event): void {
+    this.error = false;
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       let fileToUpload = input.files[0];
@@ -184,6 +189,16 @@ export class AdvertisingPopupComponent   {
       this.errorMsg.page = "Page is required";
     }
     
+    if(this.imageToUpload == "" && !this.imagePreview){
+      this.error = true;
+      this.errorMsg.image = "image is required";
+    }
+
+    if((this.endDate == "0000-00-00" || !this.endDate) && !this.disableEndDate ){
+      this.error = true;
+      this.errorMsg.endDate = "enter the end date or check the box";
+    }
+
     if(this.maxViews == ""){
       this.error = true;
       this.errorMsg.maxViews = "Max views is required";
