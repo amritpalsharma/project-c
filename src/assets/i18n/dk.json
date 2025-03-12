@@ -1169,13 +1169,14 @@
   "learnMore": "Få mere at vide",
   "removeFavbtn": "Ja, slet",
   "cancelRemoveFavBtn": "Nej, ikke slet",
-  "deleteProfileConfirm":"Dette vil slette din konto permanent fra vores database. Dette kan ikke fortrydes.",
-  "downloading":"Downloading...",
-  "submittingPerformanceData":"Indsendelse af præstationsdata...",
-  "enterDocumentTitle":"Indtast dokumentets titel",
+  "deleteProfileConfirm": "Dette vil slette din konto permanent fra vores database. Dette kan ikke fortrydes.",
+  "downloading": "Downloading...",
+  "submittingPerformanceData": "Indsendelse af præstationsdata...",
+  "enterDocumentTitle": "Indtast dokumentets titel",
   "year": "År",
-  "registrationInProcess":"Registreringen er i gang.",
-  "registrationFailed":"Registrering mislykkedes",
-  "Processing":"Behandling...",
-  "EmailVerified":"E-mail bekræftet!"
+  "registrationInProcess": "Registreringen er i gang.",
+  "registrationFailed": "Registrering mislykkedes",
+  "Processing": "Behandling...",
+  "EmailVerified": "E-mail bekræftet!",
+  "doYouWantToaddPackage": "Vil du tilføje “{{package_name}}” til din profil?"
 }

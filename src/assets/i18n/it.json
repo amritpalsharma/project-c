@@ -1306,12 +1306,13 @@
   "manageConsentPreferences": "Gestione delle preferenze di consenso",
   "allowAll": "Consenti a tutti",
   "refuseAll": "Rifiuta tutto",
-  "deleteProfileConfirm":"In questo modo il vostro account verrà eliminato definitivamente dal nostro database. Questa operazione non può essere annullata.",
-  "downloading":"Scaricare...",
-  "submittingPerformanceData":"Invio di dati sulle prestazioni...",
-  "enterDocumentTitle":"Inserire il titolo del documento",
-  "registrationInProcess":"La registrazione è in corso...",
+  "deleteProfileConfirm": "In questo modo il vostro account verrà eliminato definitivamente dal nostro database. Questa operazione non può essere annullata.",
+  "downloading": "Scaricare...",
+  "submittingPerformanceData": "Invio di dati sulle prestazioni...",
+  "enterDocumentTitle": "Inserire il titolo del documento",
+  "registrationInProcess": "La registrazione è in corso...",
   "registrationFailed": "Registrazione fallita",
-  "Processing":"Elaborazione...",
-  "EmailVerified":"Email verificata!"
+  "Processing": "Elaborazione...",
+  "EmailVerified": "Email verificata!",
+  "doYouWantToaddPackage": "Vuoi aggiungere “{{package_name}}” al tuo profilo?"
 }
