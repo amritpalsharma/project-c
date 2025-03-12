@@ -1,13 +1,13 @@
 <section class="website-code">
-    <!-- <app-header></app-header> -->
-    <div class="main">
-      <div class="main-bnr">
-        <div class="overlay"></div>
-        <div class="banner-inner py_0">
-          <div class="container">
-            <div class="about">
-              <h2 class="imprint-text">{{ pageData?.pricing_title }}</h2> <!-- Dynamic Title -->
-            </div>
+  <!-- <app-header></app-header> -->
+  <div class="main">
+    <div class="main-bnr" [ngStyle]="{'background-image': 'url('  + pricing_banner_img + ')'}">
+      <!-- <div [ngStyle]="{'background-image': 'url(' + formData.banner_img + ')'}" class="banner-section"></div> -->
+      <div class="overlay"></div>
+      <div class="banner-inner py_0">
+        <div class="container">
+          <div class="about">
+            <h2 class="imprint-text">{{ pageData?.banner_title }}</h2> <!-- Dynamic Title -->
           </div>
         </div>
   
@@ -40,17 +40,20 @@
                   <p [ngClass]="{ 'active-text': isActive1, 'inactive-text': !isActive1 }" class="billed-monthly">
                     {{ pageData?.first_tab_monthly_label }}
                   </p>
-                  <div class="toggle-button" [ngClass]="{ 'active': isActive1, 'inactive': !isActive1 }" (click)="toggle1()"></div>
+                  <div class="toggle-button" [ngClass]="{ 'active': isActive1, 'inactive': !isActive1 }"
+                    (click)="toggle1()"></div>
                   <p [ngClass]="{ 'active-text': !isActive1, 'inactive-text': isActive1 }">
                     {{ pageData?.first_tab_yearly_label }}
                   </p>
                 </div>
-  
+
                 <div class="premium">
                   <div class="premium-img">
                     <h2 class="premium-heading2">{{ pageData?.first_tab_plan_name }}</h2>
                     <h3 class="premium-heading3">
-                      {{isActive1 ? pageData?.first_tab_yearly_price : pageData?.first_tab_monthly_price}}<span>.- CHF / {{ isActive1 ? ('year' | translate) : ('month' | translate) }}</span>
+                      {{isActive1 ? premiumYearlyPrice : premiumPrice}}<span>.- {{Currency}} / {{isActive1 ? pageData?.first_tab_yearly_label :
+                        pageData?.first_tab_monthly_label}}</span>
+                      <!-- {{isActive1 ? pageData?.first_tab_yearly_price: pageData?.first_tab_monthly_price}}<span>.- CHF / {{ isActive1 ? ('year' | translate) : ('month' | translate) }}</span> -->
                     </h3>
                   </div>
                 </div>
@@ -72,22 +75,27 @@
                 </div>
               </mat-card>
             </div>
-            </div>
-  
-            <div class="col-lg-4 col-md-12 col-12">
-              <div class="price_mat_wrapper">
+          </div>
+
+          <div class="col-lg-4 col-md-12 col-12">
+            <div class="price_mat_wrapper">
               <mat-card class="plan_price_box">
                 <div class="billed">
-                  <p [ngClass]="{ 'active-text': isActive2, 'inactive-text': !isActive2 }">{{ pageData?.sec_tab_monthly_label }}</p>
-                  <div class="toggle-button" [ngClass]="{ 'active': isActive2, 'inactive': !isActive2 }" (click)="toggle2()"></div>
-                  <p [ngClass]="{ 'active-text': !isActive2, 'inactive-text': isActive2 }">{{ pageData?.sec_tab_yearly_label }}</p>
+                  <p [ngClass]="{ 'active-text': isActive2, 'inactive-text': !isActive2 }">{{
+                    pageData?.sec_tab_monthly_label }}</p>
+                  <div class="toggle-button" [ngClass]="{ 'active': isActive2, 'inactive': !isActive2 }"
+                    (click)="toggle2()"></div>
+                  <p [ngClass]="{ 'active-text': !isActive2, 'inactive-text': isActive2 }">{{
+                    pageData?.sec_tab_yearly_label }}</p>
                 </div>
-  
+
                 <div class="premium">
                   <div class="premium-img">
                     <h2 class="premium-heading2">{{ pageData?.sec_tab_plan_name }}</h2>
                     <h3 class="premium-heading3">
-                      {{ isActive2 ? pageData?.sec_tab_yearly_price : pageData?.sec_tab_monthly_price }}<span>.- CHF / {{ isActive2 ? ('year' | translate) : ('month' | translate) }}</span>
+                      {{isActive2 ? countryYearlyPrice : countryPrice}}<span>.- {{Currency}} / {{isActive2 ? pageData?.sec_tab_yearly_label :
+                        pageData?.sec_tab_monthly_label}}</span>
+                      <!-- {{ isActive2 ? pageData?.sec_tab_yearly_price : pageData?.sec_tab_monthly_price }}<span>.- CHF / {{ isActive2 ? ('year' | translate) : ('month' | translate) }}</span> -->
                     </h3>
                   </div>
                 </div>
@@ -109,22 +117,28 @@
                 </div>
               </mat-card>
             </div>
-            </div>
-  
-            <div class="col-lg-4 col-md-12 col-12">
-              <div class="price_mat_wrapper">
+          </div>
+
+          <div class="col-lg-4 col-md-12 col-12">
+            <div class="price_mat_wrapper">
               <mat-card class="plan_price_box">
                 <div class="billed">
-                  <p [ngClass]="{ 'active-text': isActive3, 'inactive-text': !isActive3 }">{{ pageData?.third_tab_monthly_label }}</p>
-                  <div class="toggle-button" [ngClass]="{ 'active': isActive3, 'inactive': !isActive3 }" (click)="toggle3()"></div>
-                  <p [ngClass]="{ 'active-text': !isActive3, 'inactive-text': isActive3 }">{{ pageData?.third_tab_yearly_label }}</p>
+                  <p [ngClass]="{ 'active-text': isActive3, 'inactive-text': !isActive3 }">{{
+                    pageData?.third_tab_monthly_label }}</p>
+                  <div class="toggle-button" [ngClass]="{ 'active': isActive3, 'inactive': !isActive3 }"
+                    (click)="toggle3()"></div>
+                  <p [ngClass]="{ 'active-text': !isActive3, 'inactive-text': isActive3 }">{{
+                    pageData?.third_tab_yearly_label }}</p>
                 </div>
-  
+
                 <div class="premium">
                   <div class="premium-img">
                     <h2 class="premium-heading2">{{ pageData?.third_tab_plan_name }}</h2>
                     <h3 class="premium-heading3">
-                      {{ isActive3 ? pageData?.third_tab_yearly_price : pageData?.third_tab_monthly_price }}<span>.- CHF / {{ isActive3 ? ('year' | translate) : ('month' | translate) }}</span>
+                      <!-- {{ isActive3 ? pageData?.third_tab_yearly_price : pageData?.third_tab_monthly_price }}<span>.- CHF -->
+                        <!-- / {{ isActive3 ? ('year' | translate) : ('month' | translate) }}</span> -->
+                        {{isActive3 ? boostYearlyPrice : boostPrice}}<span>.- {{Currency}} / {{isActive3 ? pageData?.third_tab_yearly_label :
+                          pageData?.third_tab_monthly_label}}</span>
                     </h3>
                   </div>
                 </div>
@@ -145,7 +159,6 @@
                   </div>
                 </div>
               </mat-card>
-            </div>
             </div>
           </div>
         </div>
@@ -186,8 +199,10 @@
         </div>
       </div>
 
-    </div>
-  
-    <!-- <app-footer></app-footer> -->
-  </section>
-  
+
+  </div>
+  </div>
+  </div>
+
+  <!-- <app-footer></app-footer> -->
+</section>

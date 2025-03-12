@@ -230,7 +230,7 @@ a {
 
 .home-banner-image {
   width: 546px;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .main-bnr {
@@ -280,7 +280,8 @@ a {
 }
 
 .banner-btn .btn {
-  padding: 10px 90px;
+  padding: 10px 20px;
+  min-width: 280px;
   border-radius: 20px;
   font-weight: 700;
 }
@@ -726,7 +727,6 @@ li {
   cursor: pointer; // Changes the cursor to a pointer on hover
 }
 
-
 .player-img {
   height: 310px;
   width: 100%;
@@ -734,21 +734,21 @@ li {
   border-radius: 9px;
   border-radius: 9px;
   border: 4px solid transparent;
+  overflow: hidden;
   background: linear-gradient(45deg, #C2A64A, #A77A2E);
-
 }
-
-
 .player-image {
-  height: 295px;
+  height: calc(100% - 15px);
   object-fit: cover;
   display: block;
-  /* Remove any default inline spacing */
   width: 100%;
-  /* Adjust based on your needs */
   border-radius: 9px;
+  transition: .5s all;
 }
 
+.player-border:hover .player-image {
+  transform: scale(1.15);
+}
 .player-image1 {
   height: 300px;
   object-fit: scale-down;
@@ -992,11 +992,17 @@ p.club-p {
   color: white;
 }
 
+.work-text .progress_btn a,
+.work-text .progress_btn p {
+  color: white;
+  opacity: 30%;
+}
+
 .work-text.active .progress_btn a,
 .work-text.active .progress_btn p {
   color: white;
+  opacity: 1;
 }
-
 .work-text.active .number p {
   border-radius: 50%;
   height: 33px;
@@ -2804,7 +2810,7 @@ img.success-image {
   .home-banner-image {
     width: 400px;
     height: 155px;
-    object-fit: cover;
+    object-fit: contain;
   }
 
   .club_players {
@@ -3268,14 +3274,13 @@ img.success-image {
 
   .progress_btn a {
     font-size: 22px;
-    color: white;
   }
-
   .progress_btn p {
-    color: white;
     font-size: 18px;
   }
-
+  .progress_btn a,  .progress_btn p {
+    color: #fff;
+  }
   .work-banner {
     margin-left: 0;
     margin-right: 0;
@@ -3896,7 +3901,7 @@ img.success-image {
   .home-banner-image {
     width: 260px;
     height: 100px;
-    object-fit: cover;
+    object-fit: contain;
   }
 
   .player-image {
@@ -5125,6 +5130,21 @@ img.success-image {
   .works-btn {
     width: calc(100% + 15%);
   }
+}
+
+
+@media (min-width: 1600px) {
+.banner-btn .btn {
+  padding: 17px 20px;
+  min-width: 320px;
+  font-size: 20px;
+}
+.banner-btn {
+  margin-top: 6rem !important;
+}
+.home-banner-image {
+  width: 660px;
+}
 }
 
 

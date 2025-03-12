@@ -154,4 +154,12 @@ export class WebPages {
             `${this.apiUrl}admin/get-pagecontent/${id}`
         );
     }
+
+    getPriceAndCurrency(interVal: string): Observable<any> {
+        let currentLang = localStorage.getItem('lang_id');
+        let currentDomainId = this.globalSettings.getdomainId();
+        return this.http.get<{ status: boolean, message: string, data: {} }>(
+            `${this.apiUrl}/get-packages-by-domain/${interVal}/${currentDomainId}/${currentLang}`
+        );
+    }
 }

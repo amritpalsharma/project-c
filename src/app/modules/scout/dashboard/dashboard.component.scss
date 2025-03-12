@@ -366,6 +366,7 @@
     padding-left: 6px;
     font-weight: 400;
   }
+
   .edit_icon {
     width: 20px;
     fill: #6d6d6d;
@@ -1365,4 +1366,23 @@ width:  100% !important;
   .general_details {
     padding: 15px !important;
   }
+}
+
+.user-details-left .user-info button {
+  padding-left: 0;
+  padding-right: 0;
+}
+.user-details-left .user-info button .tour-personal-details {
+  display: flex;
+  max-width: 75px;
+  overflow: hidden;
+}
+.user-details-left .user-info button .tour-personal-details span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.user-details-left .user-info button .tour-personal-details svg {
+width: 15px !important;
+min-width: 15px;
 }

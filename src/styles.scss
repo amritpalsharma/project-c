@@ -284,11 +284,15 @@ input#contractEnd {
 .custom-size-calendar .mat-mdc-form-field-subscript-wrapper {
   display: none;
 }
+.light-theme .website-code .dropdown-item:focus, .light-theme .dropdown-item:hover {
+  background: #b9e5b0;
+}
 
 .light-theme a.dropdown-item.ai-icon.selected {
   background: linear-gradient(180deg, #236115 0%, #6fb95d 100%) !important;
   color: #fff !important;
 }
+
 
 
 .compact-sidebar .logo_img {
@@ -2334,4 +2338,23 @@ nav.navbar .country_dropdown h6.border-bottom {
 
 sub.premium-month_title {
   bottom: 0.15em;
+}
+
+
+.dark-theme {
+img.join-btn.check-image-light {
+  display: none;
+}
+img.join-btn.check-image-dark {
+  display: block;
+}
+}
+
+.light-theme {
+  img.join-btn.check-image-light {
+    display: block;
+  }
+  img.join-btn.check-image-dark {
+    display: none;
+  }
 }

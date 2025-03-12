@@ -1284,5 +1284,9 @@
   "Processing":"Verarbeitung...",
   "EmailVerified":"E-Mail verifiziert!",
   "bannerBackgroundImageDark":"Banner Hintergrundbild Dunkler Modus",
-  "bannerImagesDarkMode":"Bannerbild Dunkler Modus"
+  "bannerImagesDarkMode":"Bannerbild Dunkler Modus",
+  "planFeaturesTitle":"Planmerkmal Titel",
+  "countrySectionBannerImageDark": "Bannerbild des Länderbereichs im dunklen Modus",
+  "Onwards":"weiter",
+  "heroHeading":"Überschrift Held"
 }

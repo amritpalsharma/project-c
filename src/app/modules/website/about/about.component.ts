@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { WebPages } from '../../../services/webpages.service';
+import { GlobalSettingsService } from '../../../services/global-settings.service';
+
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
@@ -7,8 +9,8 @@ import { WebPages } from '../../../services/webpages.service';
 })
 export class AboutComponent {
   adVisible = [true, true, true, true, true, true, true]; // Array to control ad visibility
-  about_banner_title:string='';
-  about_banner_desc:string='';
+  about_banner_title: string = '';
+  about_banner_desc: string = '';
   countries = [
     { name: 'Switzerland', url: 'https://www.socceryou.ch' },
     { name: 'Germany', url: 'https://www.socceryou.de' },
@@ -21,13 +23,14 @@ export class AboutComponent {
     { name: 'Sweden', url: 'https://www.socceryou.se' },
     { name: 'Denmark', url: 'https://www.socceryou.dk' }
   ];
-  about_hero_heading_txt:string='';
-  country_section_title:string='';
-  about_hero_btn_txt:string='';
-  about_hero_btn_link:string='';
-  about_banner_bg_img:string='';
-  about_banner_img:string='';
-  country_section_banner_img:string='';
+  about_hero_heading_txt: string = '';
+  country_section_title: string = '';
+  about_hero_btn_txt: string = '';
+  about_hero_btn_link: string = '';
+  about_banner_bg_img: string = '';
+  about_banner_img: string = '';
+  country_section_banner_img: string = '';
+  country_section_banner_img_dark_mode: string = '';
   // advertisementData:any=null;
   advertisementList: any = null;
   advertisemnet_base_url:string= '';
@@ -41,9 +44,9 @@ export class AboutComponent {
     skyscraper: true,
     wide_skyscraper: true,
     leaderboard: true,
-    large_leaderboard:true,
+    large_leaderboard: true,
     banner: true,
-    square:true,
+    square: true,
     small_square: true,
     large_rectangle: true,
     inline_rectangle: true,
@@ -51,7 +54,7 @@ export class AboutComponent {
 
   // advertisementData
 
-  advertisementData:any = {
+  advertisementData: any = {
     skyscraper: {
       id: '1',
       featured_image: "leaderboard.png"
@@ -145,10 +148,10 @@ export class AboutComponent {
     this.isActive[object] = false;
 
   }
-  
 
-  isEmptyObject(obj:any) {
-    if(typeof obj != 'undefined'){
+
+  isEmptyObject(obj: any) {
+    if (typeof obj != 'undefined') {
       return (obj && (Object.keys(obj).length === 0));
     }
     return true;

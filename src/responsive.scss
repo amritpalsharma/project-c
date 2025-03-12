@@ -168,19 +168,19 @@
 .es .website-code nav.navbar li.nav-item .nav-link, .pt .website-code nav.navbar li.nav-item .nav-link,
 .dk .website-code nav.navbar li.nav-item .nav-link, .se .website-code nav.navbar li.nav-item .nav-link,
 .de .website-code nav.navbar li.nav-item .nav-link, .en .website-code nav.navbar li.nav-item .nav-link {
-    font-size: 20px !important;
+    font-size: 22px !important;
 }
 .fr .website-code nav.navbar .login-btn {
     width: 220px !important;
-    font-size: 18px !important;
+    font-size: 20px !important;
 }
 .es .website-code .login-btn, .de .website-code .login-btn {
-    font-size: 18px !important;
+    font-size: 20px !important;
     width: 220px !important;
 }
 .en .website-code nav.navbar .login-btn {
     width: 200px !important;
-    font-size: 17px !important;
+    font-size: 19px !important;
 }
 .table th, .table td {
     font-size: 18px !important;
@@ -216,6 +216,12 @@
 .mobile-sidebar-active .plan_box .d-flex.gap-2 {
     flex-direction: column;
     align-items: flex-start !important;
+}
+}
+
+@media (max-width: 1199px) {
+.skyscraper-left, .skyscraper-right, .advirtismnt_2, .advertisement_two_top, .advertisement_two_bottom, .advertisement_three_block {
+    display: none !important;
 }
 }
 

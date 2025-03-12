@@ -35,6 +35,7 @@ export class AddFaqPageComponent implements OnInit {
     ['align_left', 'align_center', 'align_right', 'align_justify'],
   ];
   content: string = '';
+  bannerImagePreview: string | ArrayBuffer | null = null;
   formData: any = {
     meta_title: '',
     meta_description: '',
@@ -73,8 +74,20 @@ export class AddFaqPageComponent implements OnInit {
   }
 
 
+  // onFileChange(event: any, fieldName: string): void {
+  //   this.formData[fieldName] = event.target.files[0];
+  // }
   onFileChange(event: any, fieldName: string): void {
-    this.formData[fieldName] = event.target.files[0];
+    const file = event.target.files[0];
+    if (file) {
+      this.formData[fieldName] = file;
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.bannerImagePreview = reader.result;
+      };
+      reader.readAsDataURL(file);
+    }
   }
   addFirstButtonContent() {
     this.formData.faq_first_btn_content.push({ title: '', desc: '' });
@@ -108,6 +121,7 @@ export class AddFaqPageComponent implements OnInit {
         this.formData.faq_third_btn_txt = response.data.pageData.faq_third_btn_txt;
         this.formData.meta_title = response.data.meta_title;
         this.formData.meta_description = response.data.meta_description;
+        this.bannerImagePreview = response.data?.pageData?.banner_img ? response.data.base_url + response.data.pageData.banner_img : null;
       }
     });
   }
@@ -149,5 +163,12 @@ export class AddFaqPageComponent implements OnInit {
         message: response.message
       });
     });
+  }
+
+  // To remove Image
+  removeImage(fieldName: string): void {
+    this.formData[fieldName] = 'remove_image';
+    this.bannerImagePreview = null;
+    // this.imageLoaded = false;
   }
 }

@@ -243,8 +243,8 @@ export class TemplatesComponent {
 
   showFilterPopup():void {
     const filterDialog = this.dialog.open(CommonFilterPopupComponent,{
-      height: '170px',
-      width: '300px',
+      height: '200px',
+      width: '320px',
       position: {
         right: '30px',
         top:'150px'

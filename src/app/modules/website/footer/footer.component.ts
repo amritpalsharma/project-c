@@ -37,7 +37,7 @@ export class FooterComponent implements OnInit {
     { name: 'Germany', slug: 'de', id: 2, flag: 'Germany.svg', url: 'https://www.socceryou.de' },
     { name: 'Italy', slug: 'it', id: 3, flag: 'Italy.svg', url: 'https://www.socceryou.it' },
     { name: 'France', slug: 'fr', id: 4, flag: 'France.svg', url: 'https://www.socceryou.fr' },
-    { name: 'England', slug: 'ch', id: 5, flag: 'England.svg', url: 'https://www.socceryou.co.uk' },
+    { name: 'England', slug: 'en', id: 5, flag: 'England.svg', url: 'https://www.socceryou.co.uk' },
     { name: 'Spain', slug: 'es', id: 6, flag: 'Spain.svg', url: 'https://www.socceryou.es' },
     { name: 'Portugal', slug: 'pt', id: 7, flag: 'Portugal.svg', url: 'https://www.socceryou.pt' },
     { name: 'Belgium', slug: "be", id: 8, flag: "Belgium.svg", url: 'https://www.socceryou.be' },
@@ -51,7 +51,7 @@ export class FooterComponent implements OnInit {
     { name: 'Deutschland', slug: 'de', id: 2, flag: 'Germany.svg', url: 'https://www.socceryou.de' },
     { name: 'Italien', slug: 'it', id: 3, flag: 'Italy.svg', url: 'https://www.socceryou.it' },
     { name: 'Frankreich', slug: 'fr', id: 4, flag: 'France.svg', url: 'https://www.socceryou.fr' },
-    { name: 'England', slug: 'ch', id: 5, flag: 'England.svg', url: 'https://www.socceryou.co.uk' },
+    { name: 'England', slug: 'en', id: 5, flag: 'England.svg', url: 'https://www.socceryou.co.uk' },
     { name: 'Spanien', slug: 'es', id: 6, flag: 'Spain.svg', url: 'https://www.socceryou.es' },
     { name: 'Portugal', slug: 'pt', id: 7, flag: 'Portugal.svg', url: 'https://www.socceryou.pt' },
     { name: 'Belgien', slug: "be", id: 8, flag: "Belgium.svg", url: 'https://www.socceryou.be' },
@@ -65,7 +65,7 @@ export class FooterComponent implements OnInit {
     { name: 'Germania', slug: 'de', id: 2, flag: 'Germany.svg', url: 'https://www.socceryou.de' },
     { name: 'Italia', slug: 'it', id: 3, flag: 'Italy.svg', url: 'https://www.socceryou.it' },
     { name: 'Francia', slug: 'fr', id: 4, flag: 'France.svg', url: 'https://www.socceryou.fr' },
-    { name: 'Inghilterra', slug: 'ch', id: 5, flag: 'England.svg', url: 'https://www.socceryou.co.uk' },
+    { name: 'Inghilterra', slug: 'en', id: 5, flag: 'England.svg', url: 'https://www.socceryou.co.uk' },
     { name: 'Spagna', slug: 'es', id: 6, flag: 'Spain.svg', url: 'https://www.socceryou.es' },
     { name: 'Portogallo', slug: 'pt', id: 7, flag: 'Portugal.svg', url: 'https://www.socceryou.pt' },
     { name: 'Belgio', slug: "be", id: 8, flag: "Belgium.svg", url: 'https://www.socceryou.be' },
@@ -79,7 +79,7 @@ export class FooterComponent implements OnInit {
     { name: 'Allemagne', slug: 'de', id: 2, flag: 'Germany.svg', url: 'https://www.socceryou.de' },
     { name: 'Italie', slug: 'it', id: 3, flag: 'Italy.svg', url: 'https://www.socceryou.it' },
     { name: 'France', slug: 'fr', id: 4, flag: 'France.svg', url: 'https://www.socceryou.fr' },
-    { name: 'Angleterre', slug: 'ch', id: 5, flag: 'England.svg', url: 'https://www.socceryou.co.uk' },
+    { name: 'Angleterre', slug: 'en', id: 5, flag: 'England.svg', url: 'https://www.socceryou.co.uk' },
     { name: 'Suède', slug: 'es', id: 6, flag: 'Spain.svg', url: 'https://www.socceryou.es' },
     { name: 'Portugal', slug: 'pt', id: 7, flag: 'Portugal.svg', url: 'https://www.socceryou.pt' },
     { name: 'Belgique', slug: "be", id: 8, flag: "Belgium.svg", url: 'https://www.socceryou.be' },
@@ -93,7 +93,7 @@ export class FooterComponent implements OnInit {
     { name: 'Alemania', slug: 'de', id: 2, flag: 'Germany.svg', url: 'https://www.socceryou.de' },
     { name: 'Italia', slug: 'it', id: 3, flag: 'Italy.svg', url: 'https://www.socceryou.it' },
     { name: 'Francia', slug: 'fr', id: 4, flag: 'France.svg', url: 'https://www.socceryou.fr' },
-    { name: 'Inglaterra', slug: 'ch', id: 5, flag: 'England.svg', url: 'https://www.socceryou.co.uk' },
+    { name: 'Inglaterra', slug: 'en', id: 5, flag: 'England.svg', url: 'https://www.socceryou.co.uk' },
     { name: 'España', slug: 'es', id: 6, flag: 'Spain.svg', url: 'https://www.socceryou.es' },
     { name: 'Portugal', slug: 'pt', id: 7, flag: 'Portugal.svg', url: 'https://www.socceryou.pt' },
     { name: 'Bélgica', slug: "be", id: 8, flag: "Belgium.svg", url: 'https://www.socceryou.be' },
@@ -107,7 +107,7 @@ export class FooterComponent implements OnInit {
     { name: 'Alemanha', slug: 'de', id: 2, flag: 'Germany.svg', url: 'https://www.socceryou.de' },
     { name: 'Itália', slug: 'it', id: 3, flag: 'Italy.svg', url: 'https://www.socceryou.it' },
     { name: 'França', slug: 'fr', id: 4, flag: 'France.svg', url: 'https://www.socceryou.fr' },
-    { name: 'Inglaterra', slug: 'ch', id: 5, flag: 'England.svg', url: 'https://www.socceryou.co.uk' },
+    { name: 'Inglaterra', slug: 'en', id: 5, flag: 'England.svg', url: 'https://www.socceryou.co.uk' },
     { name: 'Espanha', slug: 'es', id: 6, flag: 'Spain.svg', url: 'https://www.socceryou.es' },
     { name: 'Portugal', slug: 'pt', id: 7, flag: 'Portugal.svg', url: 'https://www.socceryou.pt' },
     { name: 'Bélgica', slug: "be", id: 8, flag: "Belgium.svg", url: 'https://www.socceryou.be' },
@@ -122,7 +122,7 @@ export class FooterComponent implements OnInit {
     { name: 'Tyskland', slug: 'de', id: 2, flag: 'Germany.svg', url: 'https://www.socceryou.de' },
     { name: 'Italien', slug: 'it', id: 3, flag: 'Italy.svg', url: 'https://www.socceryou.it' },
     { name: 'Frankrig', slug: 'fr', id: 4, flag: 'France.svg', url: 'https://www.socceryou.fr' },
-    { name: 'England', slug: 'ch', id: 5, flag: 'England.svg', url: 'https://www.socceryou.co.uk' },
+    { name: 'England', slug: 'en', id: 5, flag: 'England.svg', url: 'https://www.socceryou.co.uk' },
     { name: 'Spanien', slug: 'es', id: 6, flag: 'Spain.svg', url: 'https://www.socceryou.es' },
     { name: 'Portugal', slug: 'pt', id: 7, flag: 'Portugal.svg', url: 'https://www.socceryou.pt' },
     { name: 'Belgien', slug: "be", id: 8, flag: "Belgium.svg", url: 'https://www.socceryou.be' },
@@ -136,7 +136,7 @@ export class FooterComponent implements OnInit {
     { name: 'Tyskland', slug: 'de', id: 2, flag: 'Germany.svg', url: 'https://www.socceryou.de' },
     { name: 'Italien', slug: 'it', id: 3, flag: 'Italy.svg', url: 'https://www.socceryou.it' },
     { name: 'Frankrike', slug: 'fr', id: 4, flag: 'France.svg', url: 'https://www.socceryou.fr' },
-    { name: 'England', slug: 'ch', id: 5, flag: 'England.svg', url: 'https://www.socceryou.co.uk' },
+    { name: 'England', slug: 'en', id: 5, flag: 'England.svg', url: 'https://www.socceryou.co.uk' },
     { name: 'Spanien', slug: 'es', id: 6, flag: 'Spain.svg', url: 'https://www.socceryou.es' },
     { name: 'Portugal', slug: 'pt', id: 7, flag: 'Portugal.svg', url: 'https://www.socceryou.pt' },
     { name: 'Belgien', slug: "be", id: 8, flag: "Belgium.svg", url: 'https://www.socceryou.be' },
@@ -198,6 +198,7 @@ export class FooterComponent implements OnInit {
   lastName: string = '';
   role: number = 4; // Initialize role to 4 (Player)
   email: string = '';
+  currentDomainExtension: string = '';
   // language: string = '1';
   newsletter: boolean = false;
   userDomain: string = '1';
@@ -245,9 +246,15 @@ export class FooterComponent implements OnInit {
     this.isUserLoggedIn = this.authService.isLoggedIn();
     this.webPages.languageId$.subscribe((data) => {
       // this.selectedcountry = 1; //Number(data);
-      this.selectedcountry = this.globalSettings.getLanguageId();
-      let selectedLang = this.countrie.find((data: any) => data.id == this.selectedcountry);
-
+      // this.selectedcountry = this.globalSettings.getLanguageId();
+      this.currentDomainExtension = this.globalSettings.getCurrentDomainExtension();
+      this.currentDomainExtension = this.currentDomainExtension.replaceAll('.', '');
+      if (this.currentDomainExtension == 'couk') {
+        this.currentDomainExtension = 'en';
+      }
+      // alert(this.currentDomainExtension)
+      let selectedLang = this.countrie.find((data: any) => data.slug == this.currentDomainExtension);
+      console.info(selectedLang)
       this.name = selectedLang?.name || '';
     });
     // Check if the google.accounts.id library is loaded

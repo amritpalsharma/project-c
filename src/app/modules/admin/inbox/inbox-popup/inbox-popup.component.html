@@ -17,7 +17,7 @@
             <p class="main_to_label">{{ 'to:' | translate }}</p>
             @for (user of users; track $index) {
               <mat-chip-row (removed)="remove(user)">
-                <img width="20" height="20" class="img-list" src="../../../../../assets/images/1.jpg">
+                <img width="20" height="20" class="img-list" src="../../../../../assets/images/1.png">
                 {{user?.first_name}}
                 <span  matChipRemove [attr.aria-label]="'remove ' + user" class="cancel-icon" > </span>
               </mat-chip-row>
@@ -35,7 +35,7 @@
             <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)" class="listBox w-100">
               @for (user of filteredUsers; track user) {
                 <mat-option [value]="user" class="fruit-font">
-                  <img width="50" height="50" class="img-list" src="../../../../../assets/images/1.jpg">
+                  <img width="50" height="50" class="img-list" src="../../../../../assets/images/1.png">
                   {{user.first_name}}
                 </mat-option>
               }

@@ -34,15 +34,18 @@ export class AddAboutPageComponent implements OnInit {
     ['align_left', 'align_center', 'align_right', 'align_justify']
   ];
 
-  colorPresets :any = environment.colors;
+  colorPresets: any = environment.colors;
 
-  about_banner_bg_img:any;
-  about_banner_img:any;
-  country_section_banner_img:any;
+  about_banner_bg_img: any;
+  about_banner_img: any;
+  country_section_banner_img: any;
+  country_section_banner_img_dark: any;
+  countriesArr: any;
 
   bannerBgimageLoaded: boolean = false;
   aboutBannerImagePreview: boolean = false;
   aboutCountryBannerImagePreview: boolean = false;
+  aboutCountryBannerImagePreviewDark: boolean = false;
 
   dark_theme_banner_img: any;
   darkThemeImagePreview: boolean = false;
@@ -57,6 +60,7 @@ export class AddAboutPageComponent implements OnInit {
     country_section_title: '',
     about_country_names: [],
     country_section_banner_img: null,
+    country_section_banner_img_dark: null,
     about_hero_heading_txt: '',
     about_hero_btn_txt: '',
     about_hero_btn_link: '',
@@ -67,12 +71,12 @@ export class AddAboutPageComponent implements OnInit {
 
   countries: string[] = ['Switzerland', 'France', 'Germany', 'Italy', 'Portugal'];
 
-  constructor(private webpages: WebPages, public dialogRef: MatDialogRef<AddAboutPageComponent>) {}
+  constructor(private webpages: WebPages, public dialogRef: MatDialogRef<AddAboutPageComponent>) { }
 
   ngOnInit(): void {
     this.editor = new Editor();
-    
-    if(this.pageId){
+
+    if (this.pageId) {
       this.formData.page_id = this.pageId;
       this.getPagebyId(this.pageId);
     }
@@ -84,6 +88,21 @@ export class AddAboutPageComponent implements OnInit {
   getPagebyId(id: number): void {
     this.webpages.getPageById(id).subscribe(response => {
       if (response.status) {
+        // console.warn(response.data.pageData.about_country_names)
+        // convertToArray
+        // if (response.data.pageData.about_country_names && response.data.pageData.about_country_names != '') {
+        //   this.countriesArr = this.convertToArray(response.data.pageData.about_country_names);
+        //   console.warn(this.countriesArr)
+        // }
+        if (response.data.pageData.about_country_names && response.data.pageData.about_country_names !== '') {
+          if (Array.isArray(response.data.pageData.about_country_names)) {
+            this.formData.about_country_names = response.data.pageData.about_country_names;
+          } else {
+            this.formData.about_country_names = this.convertToArray(response.data.pageData.about_country_names);
+          }
+        } else {
+          this.formData.about_country_names = []; // Initialize empty array
+        }
         this.formData.meta_title = response.data.meta_title;
         this.formData.meta_description = response.data.meta_description;
         this.formData.about_banner_title = response.data.pageData.about_banner_title;
@@ -91,18 +110,22 @@ export class AddAboutPageComponent implements OnInit {
         this.formData.about_hero_heading_txt = response.data.pageData.about_hero_heading_txt;
         this.formData.about_hero_btn_txt = response.data.pageData.about_hero_btn_txt;
         this.formData.about_hero_btn_link = response.data.pageData.about_hero_btn_link;
-        this.formData.about_banner_desc =  response.data.pageData.about_banner_desc;
-        if(response.data.pageData.about_banner_bg_img !=''){
+        this.formData.about_banner_desc = response.data.pageData.about_banner_desc;
+        if (response.data.pageData.about_banner_bg_img != '') {
           this.about_banner_bg_img = response.data.base_url + response.data.pageData.about_banner_bg_img;
           this.bannerBgimageLoaded = true;
         }
-        if(response.data.pageData.about_banner_img !=''){
+        if (response.data.pageData.about_banner_img != '') {
           this.about_banner_img = response.data.base_url + response.data.pageData.about_banner_img;
           this.aboutBannerImagePreview = true;
         }
-        if(response.data.pageData.country_section_banner_img !=''){
+        if (response.data.pageData.country_section_banner_img != '') {
           this.country_section_banner_img = response.data.base_url + response.data.pageData.country_section_banner_img;
           this.aboutCountryBannerImagePreview = true;
+        }
+        if (response.data.pageData.country_section_banner_img_dark != '') {
+          this.country_section_banner_img_dark = response.data.base_url + response.data.pageData.country_section_banner_img_dark;
+          this.aboutCountryBannerImagePreviewDark = true;
         }
 
       }
@@ -111,18 +134,22 @@ export class AddAboutPageComponent implements OnInit {
   // Update the `removeImage` method to reset the `imageLoaded` property.
   removeImage(fieldName: string): void {
     this.formData[fieldName] = 'remove_image';
-    if(fieldName == 'about_banner_bg_img'){
+    if (fieldName == 'about_banner_bg_img') {
       this.about_banner_bg_img = 'remove_image';
       this.bannerBgimageLoaded = false;
-    }else if(fieldName == 'about_banner_img'){
+    } else if (fieldName == 'about_banner_img') {
       this.about_banner_img = 'remove_image';
       this.aboutBannerImagePreview = false;
-    }else if(fieldName == 'country_section_banner_img'){
+    } else if (fieldName == 'country_section_banner_img') {
       this.country_section_banner_img = 'remove_image';
       this.aboutCountryBannerImagePreview = false;
-    }else if (fieldName === 'dark_theme_banner_img') {
+    } else if (fieldName === 'dark_theme_banner_img') {
       this.dark_theme_banner_img = 'remove_image';
       this.darkThemeImagePreview = false;
+    }
+    else if (fieldName == 'country_section_banner_img_dark') {
+      this.country_section_banner_img_dark = 'remove_image';
+      this.aboutCountryBannerImagePreviewDark = false;
     }
     //this.about_banner_bg_img = null;
     //this.bannerBgimageLoaded = false;
@@ -148,6 +175,9 @@ export class AddAboutPageComponent implements OnInit {
         } else if (fieldName === 'dark_theme_banner_img') {
           this.dark_theme_banner_img = imageUrl;
           this.darkThemeImagePreview = true;
+        } else if (fieldName === 'country_section_banner_img_dark') {
+          this.country_section_banner_img_dark = imageUrl;
+          this.aboutCountryBannerImagePreviewDark = true;
         }
       };
       reader.readAsDataURL(file);
@@ -178,5 +208,40 @@ export class AddAboutPageComponent implements OnInit {
         message: response.message
       });
     });
+  }
+
+  // convertToArray(inputString: any) {
+  //   return inputString
+  //     .split(",") // Split by comma
+  //     .map((country: any) => country.trim()) // Trim spaces
+  //     .filter((country: any) => country !== "") // Remove empty values
+  //     .filter((country: any, index: any, self: any) => self.indexOf(country) === index); // Remove duplicates
+  // }
+  convertToArray(inputString: string | null | undefined): string[] {
+    if (!inputString) return []; // Return an empty array if input is null/undefined/empty
+
+    return inputString
+      .split(",") // Split by comma
+      .map(country => country.trim()) // Trim spaces
+      .filter(country => country !== "") // Remove empty values
+      .filter((country, index, self) => self.indexOf(country) === index); // Remove duplicates
+  }
+  // removeField(str: number) {
+  //   alert(str)
+  // }
+  addField() {
+    this.formData.about_country_names.push('');
+  }
+  
+
+  // Function to remove an input field
+  removeField(index: number) {
+    if (this.formData.about_country_names.length > 1) {
+      this.formData.about_country_names.splice(index, 1);
+    }
+  }
+  
+  trackByFn(index: number, item: any): number {
+    return index; // Tracks items by index to prevent re-rendering
   }
 }

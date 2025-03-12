@@ -16,7 +16,7 @@
             <p>{{ 'to:' | translate }}</p>
             <mat-chip-row *ngFor="let user of users; let i = index" (removed)="remove(user)">
               <img width="20" height="20" style="border-radius: 20px;" class="img-list"
-                *ngIf="!user.meta.profile_image_path" src="../../../../../assets/images/1.jpg">
+                *ngIf="!user.meta.profile_image_path" src="../../../../../assets/images/1.png">
               <img width="20" height="20" style="border-radius: 20px;" class="img-list"
                 *ngIf="user.meta.profile_image_path" src="{{user.meta.profile_image_path}}">
               {{user?.first_name}}
@@ -31,7 +31,7 @@
             class="listBox w-100 users-name-list">
             <mat-option *ngFor="let user of filteredUsers" [value]="user" class="mb-4 select-user-name">
               <img width="50" height="50" style="border-radius: 50px;" class="img-list"
-                *ngIf="!user.meta.profile_image_path" src="../../../../../assets/images/1.jpg">
+                *ngIf="!user.meta.profile_image_path" src="../../../../../assets/images/1.png">
               <img width="50" height="50" class="img-list" *ngIf="user.meta.profile_image_path"
                 src="{{user.meta.profile_image_path}}">
               {{user.first_name}}
