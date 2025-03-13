@@ -34,12 +34,12 @@ export class ClubComponent {
     pricing_tab: [],
   }];
   // advertisementData:any=null;
-  activeIndex: number = 0;  
+  activeIndex: number = 0;
 
-  advertisementList:any=null;
-  advertisemnet_base_url:string= '';
-  isLoading : boolean = true;
-  btnLoading : boolean = true;
+  advertisementList: any = null;
+  advertisemnet_base_url: string = '';
+  isLoading: boolean = true;
+  btnLoading: boolean = true;
   countdown: number = 10;
 
 
@@ -155,20 +155,26 @@ export class ClubComponent {
         this.pageData = res.data.pageData;
         this.baseUrl = res.data.base_url;
 
-          
-          this.advertisementData = res.data.advertisementData;
-          this.advertisementList = res.data.allAdsList;
-          // this.advertisementData = [];
-          this.advertisemnet_base_url = res.data.advertisemnet_base_url;
-          
-          // Initialize toggle states for pricing plans with Monthly active (false)
-          this.pageData.pricing_tab.forEach((_: any, index: number) => {
-            this.isActivePlan[index] = false; // Default to "Monthly"
-          });
-          
-          this.isLoading = false;
-          this.startCountdown();
+
+        this.advertisementData = res.data.advertisementData;
+        this.advertisementList = res.data.allAdsList;
+        // this.advertisementData = [];
+        this.advertisemnet_base_url = res.data.advertisemnet_base_url;
+
+        // Initialize toggle states for pricing plans with Monthly active (false)
+        this.pageData.pricing_tab.forEach((_: any, index: number) => {
+          this.isActivePlan[index] = false; // Default to "Monthly"
+        });
+        if (this.pageData.feature_sctn && typeof this.pageData.feature_sctn != undefined) {
+          this.feature_sctn = this.pageData.feature_sctn;
+
+          setTimeout(() => {
+            this.getArrayItemByIndex(this.accordinCurrentIndex, 'image');
+          }, 1000);
         }
+        this.isLoading = false;
+        this.startCountdown();
+      }
     });
   }
 
@@ -374,10 +380,10 @@ export class ClubComponent {
     return index; // Tracks items by index to prevent re-rendering
   }
 
-  getArrayItemByIndex(index: number, field: keyof FeatureSection) { 
+  getArrayItemByIndex(index: number, field: keyof FeatureSection) {
     // alert('button clicked')
     let theme = localStorage.getItem('theme');
-    // alert(index);
+    console.info(this.feature_sctn);
     if (index >= 0 && index < this.feature_sctn.length) {
       this.accordinCurrentIndex = index;
       if (theme == 'dark') {
@@ -401,7 +407,7 @@ export class ClubComponent {
   setActiveAccordionNew(index: number): void {
     if (this.activeIndex === index) {
       // If the clicked tab is already active, close it
-      this.activeIndex = -1; 
+      this.activeIndex = -1;
     } else {
       // Open the clicked tab
       this.activeIndex = index;

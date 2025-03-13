@@ -120,7 +120,8 @@
                                             <button class="accordion-button" type="button"
                                                 [class.show]="activeIndex == i" data-bs-toggle="collapse"
                                                 [attr.data-bs-target]="'#collapse' + (i + 1)" aria-expanded="false"
-                                                [attr.aria-controls]="'collapse' + (i + 1)">
+                                                [attr.aria-controls]="'collapse' + (i + 1)"
+                                                [ngClass]="{'collapsed' : activeIndex != i}">
                                             </button>
                                         </div>
                                         <div id="collapse{{i + 1}}" class="accordion-collapse collapse"
