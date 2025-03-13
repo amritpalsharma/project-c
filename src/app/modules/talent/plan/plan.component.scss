@@ -373,3 +373,24 @@ sub.premium-month_title {
     align-items: flex-start !important;
 }
 }
+
+@media (min-width:2000px) {
+.subscription-switch label {
+    font-size: 18px;
+}
+.premium_list label .checkmark:after {
+    left: 8px;
+}
+.premium_button span {
+    font-size: 14px;
+}
+.premium-currency h6 {
+    font-size: 36px;
+}
+sub.premium-month_title {
+    font-size: 18px;
+}
+.premium-plan_box h3 {
+    font-size: 28px;
+}
+}

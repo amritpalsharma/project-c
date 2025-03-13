@@ -1191,6 +1191,5 @@
   "countrySectionBannerImageDark": "Country Section Banner Image Dark Mode",
   "Onwards":"Onwards",
   "heroHeading":"Hero heading",
-  "doYouWantToaddPackage":"Do you want to add “{{package_name}}” to your profile?",
-  "emailExample": "example@email.com"
+  "doYouWantToaddPackage":"Do you want to add “{{package_name}}” to your profile?"
 }

@@ -22,10 +22,12 @@ export class ContactComponent implements OnInit {
   submit_btn_txt: string = '';
   talent_label_txt: string = '';
   txt_before_radio_btn: string = '';
-  // advertisementData:any;
+  advertisementList:any;
   advertisemnet_base_url:string = '';
 
   isLoading : boolean = true;
+  btnLoading : boolean = true;
+  countdown: number = 10;
 
 
   captchaKey: string = environment.captchaKey;
@@ -129,9 +131,9 @@ export class ContactComponent implements OnInit {
           this.txt_before_radio_btn = res.data.pageData.txt_before_radio_btn;
           this.semail= res.data.pageData.email;
           this.advertisementData =  res.data.advertisementData;
+          this.advertisementList =  res.data.allAdsList;
           // this.advertisementData = [];
 
-          this.isLoading = false;
           
           this.advertisemnet_base_url = res.data.advertisemnet_base_url;
           this.base_url =  res.data.base_url;
@@ -139,8 +141,22 @@ export class ContactComponent implements OnInit {
           this.phone_placeholder = res.data.pageData.phone_placeholder;
           this.email_placeholder = res.data.pageData.email_placeholder;
           this.message_placeholder = res.data.pageData.message_placeholder;
+
+          this.isLoading = false;
+          this.startCountdown();
         }
     });
+  }
+
+  startCountdown() {
+    this.countdown = 5; // Reset countdown
+    const interval = setInterval(() => {
+      this.countdown--;
+      if (this.countdown === 0) {
+        clearInterval(interval);
+        this.btnLoading = false; // Stop loading when countdown reaches 0
+      }
+    }, 1000);
   }
   // isEmptyObject(obj:any) {
   //   if(typeof obj != 'undefined'){
@@ -302,12 +318,16 @@ export class ContactComponent implements OnInit {
     return false;
   }
 
+  // isExists(key: any): boolean {
+  //   return key in this.advertisementData;
+  // }
+
   isExists(key: any): boolean {
-    return key in this.advertisementData;
+    return (this.advertisementData && key in this.advertisementData) || this.advertisementList.includes(key);
   }
 
   isFeaturedImageExists(key: any): boolean {
-    return 'featured_image' in this.advertisementData[key];
+    return this.advertisementData && this.advertisementData[key] && 'featured_image' in this.advertisementData[key];
   }
 
 }

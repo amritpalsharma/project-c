@@ -16,6 +16,8 @@ export class PrivacyComponent implements OnInit {
   advertisemnet_base_url:string = '';
 
   isLoading : boolean = true;
+  btnLoading : boolean = true;
+  countdown: number = 10;
 
 
   constructor( private webPages: WebPages,private sanitizer: DomSanitizer){
@@ -29,6 +31,8 @@ export class PrivacyComponent implements OnInit {
       this.getPageData(data)
     });
   }
+
+  advertisementList : any =null;
 
   isActive : any ={
     skyscraper: true,
@@ -92,29 +96,33 @@ export class PrivacyComponent implements OnInit {
           
           this.advertisemnet_base_url = res.data.advertisemnet_base_url;
           this.advertisementData = res?.data?.advertisementData;
+          this.advertisementList = res?.data?.allAdsList;
 
           
           this.isLoading = false;
+          this.startCountdown();
 
         }
     });
   }
+
+  startCountdown() {
+    this.countdown = 5; // Reset countdown
+    const interval = setInterval(() => {
+      this.countdown--;
+      if (this.countdown === 0) {
+        clearInterval(interval);
+        this.btnLoading = false; // Stop loading when countdown reaches 0
+      }
+    }, 1000);
+  }
+
   closeAd(object: any) {
 
     this.isActive[object] = false;
 
   }
 
-  // checkActive(obj: any){
-  //   if(this.isExists(obj) && this.isActive[obj]){
-  //     return true;
-  //   }
-  //   return false;
-  // }
-
-  // isExists(key: string): boolean {
-  //   return key in this.advertisementData && 'featured_image' in this.advertisementData[key];
-  // }
   
 
   isEmptyObject(obj:any) {
@@ -136,11 +144,15 @@ export class PrivacyComponent implements OnInit {
   }
 
   isExists(key: any): boolean {
-    return key in this.advertisementData;
+    return (this.advertisementData && key in this.advertisementData) || this.advertisementList.includes(key);
   }
 
+  // isExists(key: any): boolean {
+  //   return key in this.advertisementData;
+  // }
+
   isFeaturedImageExists(key: any): boolean {
-    return 'featured_image' in this.advertisementData[key];
+    return this.advertisementData && this.advertisementData[key] && 'featured_image' in this.advertisementData[key];
   }
 
 

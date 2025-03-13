@@ -92,6 +92,7 @@ body {
 
 .login {
     max-width: 550px;
+    margin: 0 auto;
 }
 
 .login svg.login-logo {
@@ -2158,7 +2159,7 @@ select.form-select.custom-select1 {
     }
 
     .login .modal-footer {
-        padding: 0px 30px;
+        padding: 0px 30px 15px;
     }
 
     .login .modal-body {

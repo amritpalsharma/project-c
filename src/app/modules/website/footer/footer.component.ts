@@ -242,17 +242,15 @@ export class FooterComponent implements OnInit {
   tokenVerified = false;
 
   ngOnInit(): void {
-
+    this.footerCountries();
     this.globalSettings.indexFunctionCall$.subscribe(() => {
       this.footerCountries(); // Call the function when event is received
     });
     this.isUserLoggedIn = this.authService.isLoggedIn();
     this.webPages.languageId$.subscribe((data) => {
-      // this.selectedcountry = 1; //Number(data);
-      // this.selectedcountry = this.globalSettings.getLanguageId();
       this.footerCountries();
     });
-    this.footerCountries();
+
     // Check if the google.accounts.id library is loaded
     if (typeof google !== 'undefined' && typeof google.accounts !== 'undefined' && typeof google.accounts.id !== 'undefined') {
       // Initialize Google Sign-In
@@ -647,15 +645,13 @@ export class FooterComponent implements OnInit {
     this.currentDomainExtension = this.currentDomainExtension.replaceAll('.', '');
     if (this.currentDomainExtension == 'couk') {
       this.currentDomainExtension = 'en';
+    }else if(this.currentDomainExtension == ''){
+      this.currentDomainExtension = 'ch';
     }
-    // alert(this.currentDomainExtension)
+
     let selectedLang = this.countrie.find((data: any) => data.slug == this.currentDomainExtension);
     console.info(selectedLang)
     this.name = selectedLang?.name || '';
     this.selectedcountry = selectedLang?.id || '';
-    // setTimeout(() => {
-    //   this.selectedcountry = this.countrie[0]?.id || 1;
-    // }, 500);
-    console.info('The Selected Country Id is ' + this.selectedcountry);
   }
 }

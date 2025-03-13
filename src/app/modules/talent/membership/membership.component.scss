@@ -247,3 +247,21 @@ button.premium-edit_btn,a.premium-edit_btn {
       transform: rotate(360deg);
   }
 }
+
+@media (min-width: 2000px) {
+.card-billing{
+  font-size: 22px;
+}
+button.premium-edit_btn, a.premium-edit_btn {
+  font-size: 18px;
+}
+.premium-card h5 {
+  font-size: 28px;
+}
+.premium-card h6 {
+  font-size: 30px;
+}
+sub.premium-month_title, .premium-card p, button.premium-subscription_btn {
+  font-size: 17px !important;
+}
+}
