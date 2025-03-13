@@ -7,6 +7,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { UserService } from '../../../services/user.service';
 import { TalentService } from '../../../services/talent.service';
 import { ScoutService } from '../../../services/scout.service';
+import { SocketService } from '../../../services/socket.service';
 
 @Component({
   selector: 'app-invite-scout-talent-popup',
@@ -28,6 +29,7 @@ export class InviteScoutTalentPopupComponent {
     private userService: UserService,
     private scoutService: ScoutService,
     public dialogRef: MatDialogRef<InviteScoutTalentPopupComponent>,
+    private socketService: SocketService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.scoutId = data.scoutId;
@@ -58,13 +60,19 @@ export class InviteScoutTalentPopupComponent {
   sendInvite(){
     const formData = new FormData();  
     let x= 0;
+    let receiverIds : any[] = [];
     this.users.map(function(user:any) {
       formData.append('players['+x+'][player_id]', user.id);
+      receiverIds.push(user.id)
       x++;
     });
 
     this.scoutService.sendScoutPortfolioInvite(this.scoutId, formData).subscribe((response)=>{
       if (response && response.status) {
+        console.log(this.scoutId)
+        receiverIds.forEach((id : any) => {
+          this.socketService.emit("scoutAddPlayer", { senderId: this.scoutId, receiverIds: receiverIds })
+        });
         this.dialogRef.close({
           action: 'added',
           id: this.scoutId
