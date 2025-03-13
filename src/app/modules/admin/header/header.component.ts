@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { ThemeService } from '../../../services/theme.service';
 import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { TalentService } from '../../../services/talent.service';
 import { UserService } from '../../../services/user.service';
@@ -10,8 +11,10 @@ import { SocketService } from '../../../services/socket.service';
 import { goToActiveLog } from '../../../../utlis';
 import { SharedService } from '../../../services/shared.service';
 import { FormControl } from '@angular/forms';
-import { filter } from 'rxjs/operators';
-import { debounceTime, distinctUntilChanged, switchMap, finalize } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, switchMap, filter, tap, finalize, catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
+// import { filter, tap } from 'rxjs/operators';
+// import { debounceTime, distinctUntilChanged, switchMap, finalize } from 'rxjs/operators';
 import { TalkService } from '../../../services/talkjs.service';
 
 interface Notification {
@@ -33,7 +36,19 @@ interface Notification {
 })
 export class HeaderComponent {
   //constructor(private themeService: ThemeService) {}
-  constructor(private shareService: SharedService, private userService: UserService, private themeService: ThemeService, private authService: AuthService, private router: Router, private translateService: TranslateService, private talentService: TalentService, private socketService: SocketService, private talkService: TalkService) { }
+  constructor(
+    private shareService: SharedService,
+    private userService: UserService,
+    private themeService: ThemeService,
+    private authService: AuthService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private translateService: TranslateService,
+    private talentService: TalentService,
+    private socketService: SocketService,
+    private talkService: TalkService,
+    private cdRef: ChangeDetectorRef
+  ) { }
 
   loggedInUser: any = localStorage.getItem('userData');
   profileImgUrl: any = "";
@@ -74,6 +89,7 @@ export class HeaderComponent {
   notificationSeen: boolean = false;
 
   ngOnInit() {
+    this.searchControl.setValue('', { emitEvent: false });
 
     this.themeService.isDarkTheme.subscribe((isDarkTheme: boolean) => {
       this.isDarkMode = isDarkTheme;
@@ -176,9 +192,44 @@ export class HeaderComponent {
     });
 
 
+    // this.searchControl.valueChanges
+    //   .pipe(
+    //     filter((value): value is string => value !== null), // Exclude null or empty strings
+    //     // filter((value): value is string => value !== null && value.trim().length > 0), // removed by amrit
+    //     debounceTime(300),
+    //     distinctUntilChanged(),
+    //     tap((value: any) => {
+    //       if (!value?.trim()) {
+    //         this.filteredUsers = []; // Clear search results if input is empty
+    //       }
+    //     }),
+    //     switchMap((searchText: string) => {
+    //       this.isLoading = true;
+    //       return this.userService.searchUser(searchText).pipe(
+    //         finalize(() => (this.isLoading = false))
+    //       );
+    //     })
+    //   )
+    //   .subscribe(
+    //     (response: any) => {
+    //       if (response && response.status && response.data?.userData) {
+    //         this.filteredUsers = response.data.userData;
+    //       } else {
+    //         console.error('Invalid API response structure:', response);
+    //         this.filteredUsers = [];
+    //       }
+    //     },
+    //     (error) => {
+    //       console.error('Error fetching users:', error);
+    //       this.filteredUsers = [];
+    //     }
+    //   );
+
+    //  Update code by amrit for search
+    // this is used in ngOnit Now 
     this.searchControl.valueChanges
       .pipe(
-        filter((value): value is string => value !== null && value.trim().length > 0), // Exclude null or empty strings
+        filter((value): value is string => value !== null),
         debounceTime(300),
         distinctUntilChanged(),
         switchMap((searchText: string) => {
@@ -190,10 +241,10 @@ export class HeaderComponent {
       )
       .subscribe(
         (response: any) => {
-          if (response && response.status && response.data?.userData) {
+          if (response?.status && response.data?.userData) {
             this.filteredUsers = response.data.userData;
           } else {
-            console.error('Invalid API response structure:', response);
+            console.error('Invalid API response:', response);
             this.filteredUsers = [];
           }
         },
@@ -202,6 +253,13 @@ export class HeaderComponent {
           this.filteredUsers = [];
         }
       );
+
+    // **Listen for route changes and reset search**
+    this.route.params.subscribe(() => {
+      this.searchControl.setValue('', { emitEvent: false }); // Clear search input
+      this.filteredUsers = []; // Reset search results
+    });
+
 
     this.userService.getAdminProfile().subscribe((response) => {
       if (response && response.status) {
@@ -221,6 +279,8 @@ export class HeaderComponent {
         console.error('Invalid API response structure:', response);
       }
     });
+
+
   }
 
 
@@ -510,6 +570,10 @@ export class HeaderComponent {
 
   accountSetting() {
     goToActiveLog(this.router);
+  }
+
+  ngAfterViewInit() {
+    this.cdRef.detectChanges();
   }
 }
 
