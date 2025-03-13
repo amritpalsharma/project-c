@@ -1289,5 +1289,6 @@
   "countrySectionBannerImageDark": "Bannerbild des Länderbereichs im dunklen Modus",
   "Onwards": "weiter",
   "heroHeading": "Überschrift Held",
-  "doYouWantToaddPackage": "Möchten Sie “{{package_name}}” zu Ihrem Profil hinzufügen?"
+  "doYouWantToaddPackage": "Möchten Sie “{{package_name}}” zu Ihrem Profil hinzufügen?",
+  "deletePerformanceConfirm":"Sind Sie sicher, dass Sie die ausgewählten Berichte löschen wollen?"
 }

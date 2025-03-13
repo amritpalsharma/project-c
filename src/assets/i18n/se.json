@@ -1318,5 +1318,6 @@
   "registrationFailed": "Registreringen misslyckades",
   "Processing": "Bearbetning...",
   "EmailVerified": "E-post verifierad!",
-  "doYouWantToaddPackage": "Vill du lägga till “{{package_name}}” i din profil?"
+  "doYouWantToaddPackage": "Vill du lägga till “{{package_name}}” i din profil?",
+  "deletePerformanceConfirm": "Är du säker på att du vill ta bort de valda rapporterna?"
 }

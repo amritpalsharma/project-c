@@ -21,4 +21,8 @@ export class MessagePopupComponent {
   close() {
     this.dialogRef.close();
   }
+
+  performanceDeleteConfirmed(){
+    this.dialogRef.close({ action: 'performance-delete-confirmed' });
+  }
 }
