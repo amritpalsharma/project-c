@@ -572,7 +572,6 @@ export class UserService {
 
 
   searchUser(query: string): Observable<any[]> {
-    console.log(query);
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -583,6 +582,30 @@ export class UserService {
       })
     );
   }
+  // Function By amrit
+  getUsersAll(data: any = {}): Observable<{ status: boolean, message: string, data: { userData: User[], totalCount: number } }> {
+    // const params = new HttpParams()
+    //   .set('offset',pageIndex)
+    //   .set('search',filter)
+    //   .set('limit', pageSize)
+    //   .set('orderBy', 'id')
+    //   .set('order', 'desc');
 
+    let params = new HttpParams();
+    let currentLang = localStorage.getItem('lang_id');
+
+    // Loop through the queryParams object and set each parameter
+    for (const key in data) {
+      if (data.hasOwnProperty(key)) {
+        params = params.set(key, data[key]);
+      }
+    }
+    params = params.set('noLimit', true);
+    // params = params.set("whereClause[membership]", 'free');
+    return this.http.get<{ status: boolean, message: string, data: { userData: User[], totalCount: number } }>(
+      `${this.apiUrl}admin/users/${currentLang}`,
+      { params }
+    );
+  }
 
 }
