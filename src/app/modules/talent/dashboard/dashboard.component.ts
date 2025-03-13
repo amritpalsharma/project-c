@@ -141,9 +141,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.stopIntroTour(); // Ensure the tour stops when the component is destroyed
   }
 
+  showOnce: boolean = true;
+
   startIntroTour(lang: string) {
     // introJs().start().goToStep(1);
-    //this.translateService.use(lang); // Change language before fetching translations
+    this.translateService.use(lang); // Change language before fetching translations
     this.translateService.get([
       'profilePhoto',
       'uploadYourBestHeadshot',
@@ -179,12 +181,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
             tooltipClass: 'custom-tooltip',
           },
           {
-            element: '.tour-cover-photo',
+            element: '.edit_image-2',
             intro: `<div><h6>${translations['coverPhoto']}</h6>${translations['uploadCoverPhoto']}.</div>`,
             tooltipClass: 'custom-tooltip',
           },
           {
-            element: '.tour-general-details',
+            element: '.general_details',
             intro: `<div><h6>${translations['generalDetails']}</h6>${translations['editGeneralDetails']}.</div>`,
             tooltipClass: 'custom-tooltip',
           },
@@ -192,20 +194,22 @@ export class DashboardComponent implements OnInit, OnDestroy {
         showBullets: false,
         showProgress: false,
         exitOnOverlayClick: false,
-        scrollToElement: false,
+        scrollToElement: true,
         prevLabel: translations['previous'],
         nextLabel: translations['next'],
         doneLabel: translations['finish'],
         tooltipPosition: 'auto',
       });
-      setTimeout(() => {
+
+      if(this.showOnce){
         this.introInstance.start();
-      }, 1000); 
-      // this.introInstance.start(); // Start the tour after setting options
+        this.showOnce = false
+      }
     });
 
     // Add the "Don't show again" checkbox dynamically
     this.introInstance.onafterchange(() => {
+      
       const tooltipHeader = document.querySelector('.introjs-tooltip-header') as HTMLElement;
 
       if (tooltipHeader) {
@@ -251,6 +255,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
         }
       }
     });
+
+    
 
     // Handle when the tour finishes
     // this.introInstance.oncomplete(() => this.handleTourExit());
@@ -344,7 +350,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
                 dblang = 'se';
               }
               this.startIntroTour(dblang);  // Start the tour after a slight delay
-            }, 2500);
+            }, 0);
           }
 
 

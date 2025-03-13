@@ -106,6 +106,14 @@ export class TalentService {
     );
   }
 
+  UpdateScoutRequest(id:any, params: any, lang: any): Observable<any> {
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${this.userToken}`
+      });
+  
+      return this.http.post<any>(`${this.apiUrl}player/update-scout-request/${id}/${lang}`, params, { headers });
+    }
+
   getCards(): Observable<any> {
     const headers = this.headers();
     return this.http.get<{ status: boolean, message: string, data: {} }>(

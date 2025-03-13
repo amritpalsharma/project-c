@@ -54,7 +54,11 @@ export class HistoryTabComponent {
   updateScoutHistory(): any {
     const history = this.textarea.nativeElement.value;
 
-    if(history.trim() == ""){
+    // if(history.trim() == ""){
+    //   return false;
+    // }
+    
+    if(history === ""){
       return false;
     }
 
@@ -71,7 +75,6 @@ export class HistoryTabComponent {
         }
       });
     } catch (error) {
-      // this.isLoading = false;
       console.error('Error fetching users:', error);
     }
   }
