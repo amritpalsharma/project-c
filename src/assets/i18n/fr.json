@@ -1327,5 +1327,9 @@
   "Processing": "Traitement...",
   "EmailVerified": "Courriel vérifié !",
   "doYouWantToaddPackage": "Voulez-vous ajouter “{{package_name}}” à votre profil ?",
+<<<<<<< HEAD
   "emailExample": "exemple@email.com"
+=======
+  "deletePerformanceConfirm": "Êtes-vous sûr de vouloir supprimer les rapports sélectionnés ?"
+>>>>>>> ba0ebce767a9fe96aeff2f42e3241976839a6dff
 }

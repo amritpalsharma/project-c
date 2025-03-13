@@ -1312,5 +1312,9 @@
   "Processing": "Bearbetning...",
   "EmailVerified": "E-post verifierad!",
   "doYouWantToaddPackage": "Vill du lägga till “{{package_name}}” i din profil?",
+<<<<<<< HEAD
   "emailExample": "Exempel@email.com"
+=======
+  "deletePerformanceConfirm": "Är du säker på att du vill ta bort de valda rapporterna?"
+>>>>>>> ba0ebce767a9fe96aeff2f42e3241976839a6dff
 }

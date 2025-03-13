@@ -89,9 +89,9 @@ export class TalentComponent {
       this.getCurrencyPrice('yearly');
     });
 
-    // this.globalSettings.indexFunctionCall$.subscribe(() => {
-    //   this.ThemeUpdated(); // Call the function when event is received
-    // });
+    this.globalSettings.indexFunctionCall$.subscribe(() => {
+      this.ThemeUpdated(); // Call the function when event is received
+    });
   }
 
   advertisementList: any = null;
@@ -150,11 +150,6 @@ export class TalentComponent {
   getPageData(languageId: any) {
     this.webPages.getDynamicContentPage('talent', languageId).subscribe((res) => {
       if (res.status) {
-
-
-
-
-
         this.pageData = res.data.pageData;
         this.baseUrl = res.data.base_url;
         this.advertisementData = res.data.advertisementData;
@@ -336,8 +331,8 @@ export class TalentComponent {
   }
 
   ThemeUpdated() {
-    this.getArrayItemByIndex(this.accordinCurrentIndex, 'image');
     this.currentTheme = localStorage.getItem('theme') + '';
+    this.getArrayItemByIndex(this.accordinCurrentIndex, 'image');
   }
 
   getArrayItemByIndex(index: number, field: keyof FeatureSection) {

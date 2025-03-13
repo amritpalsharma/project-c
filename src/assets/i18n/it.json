@@ -1307,5 +1307,9 @@
   "Processing": "Elaborazione...",
   "EmailVerified": "Email verificata!",
   "doYouWantToaddPackage": "Vuoi aggiungere “{{package_name}}” al tuo profilo?",
+<<<<<<< HEAD
   "emailExample": "esempio@email.com"
+=======
+  "deletePerformanceConfirm": "Siete sicuri di voler eliminare i rapporti selezionati?"
+>>>>>>> ba0ebce767a9fe96aeff2f42e3241976839a6dff
 }

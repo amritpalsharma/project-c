@@ -10,7 +10,7 @@
 
             <div class="popup-delete-btn">
                 <span (click)="deleteConfirmed()">{{'deleteAccount' | translate}}</span>
-            </div> 
+            </div>
         </div>
 
         <div class="display-message" *ngIf="data.action == 'delete-activity-confirmation'">
@@ -33,6 +33,16 @@
             {{'areToSure' | translate}}
             <div class="popup-delete-btn">
                 <span (click)="deleteConfirmed()">{{'remove' | translate}}</span>
+            </div>
+        </div>
+
+        <div class="display-message" *ngIf="data.action === 'delete-performance-analysis'">
+            {{data.message}}
+
+            <div
+                class="popup-delete-btn popup-delete-btn d-flex align-items-center justify-content-between mx-5 px-5 py-2">
+                <span (click)="performanceDeleteConfirmed()">{{'removeFavbtn' | translate}}</span>
+                <div (click)="close()">{{ 'cancelRemoveFavBtn' | translate }}</div>
             </div>
         </div>
     </div>

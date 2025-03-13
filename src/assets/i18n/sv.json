@@ -1309,9 +1309,15 @@
   "downloading": "Nedladdning...",
   "submittingPerformanceData": "Inlämning av resultatdata...",
   "enterDocumentTitle": "Ange dokumentets titel",
-  "registrationInProcess":"Registrering är på gång...",
+  "registrationInProcess": "Registrering är på gång...",
   "registrationFailed": "Registreringen misslyckades",
+<<<<<<< HEAD
   "Processing":"Bearbetning...",
   "EmailVerified":"E-post verifierad!",
   "emailExample": "Exempel@email.com"
+=======
+  "Processing": "Bearbetning...",
+  "EmailVerified": "E-post verifierad!",
+  "deletePerformanceConfirm": "Är du säker på att du vill ta bort de valda rapporterna?"
+>>>>>>> ba0ebce767a9fe96aeff2f42e3241976839a6dff
 }

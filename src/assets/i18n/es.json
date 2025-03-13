@@ -1258,5 +1258,9 @@
   "Processing": "Procesando...",
   "EmailVerified": "Correo electrónico verificado",
   "doYouWantToaddPackage": "Quieres añadir “{{package_name}}” a tu perfil?",
+<<<<<<< HEAD
   "emailExample": "ejemplo@email.com"
+=======
+  "deletePerformanceConfirm": "Está seguro de que desea eliminar los informes seleccionados?"
+>>>>>>> ba0ebce767a9fe96aeff2f42e3241976839a6dff
 }

@@ -1173,5 +1173,9 @@
   "Processing": "Behandling...",
   "EmailVerified": "E-mail bekræftet!",
   "doYouWantToaddPackage": "Vil du tilføje “{{package_name}}” til din profil?",
+<<<<<<< HEAD
   "emailExample": "eksempel@email.com"
+=======
+  "deletePerformanceConfirm": "Er du sikker på, at du vil slette de valgte rapporter?"
+>>>>>>> ba0ebce767a9fe96aeff2f42e3241976839a6dff
 }

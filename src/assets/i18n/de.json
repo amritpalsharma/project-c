@@ -1284,5 +1284,9 @@
   "Onwards": "weiter",
   "heroHeading": "Überschrift Held",
   "doYouWantToaddPackage": "Möchten Sie “{{package_name}}” zu Ihrem Profil hinzufügen?",
+<<<<<<< HEAD
   "emailExample": "Beispiel@email.com"
+=======
+  "deletePerformanceConfirm":"Sind Sie sicher, dass Sie die ausgewählten Berichte löschen wollen?"
+>>>>>>> ba0ebce767a9fe96aeff2f42e3241976839a6dff
 }

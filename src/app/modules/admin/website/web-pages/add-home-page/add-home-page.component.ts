@@ -431,6 +431,7 @@ export class AddHomePageComponent {
 
   removeSection(index: any) {
     this.first_tab.splice(index, 1);
+    console.warn(this.first_tab)
   }
 
   addSecondTab() {
