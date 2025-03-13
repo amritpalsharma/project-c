@@ -356,7 +356,7 @@
   "confirmPasswordLabel": "Passwort bestätigen",
   "confirmPasswordPlaceholder": "Passwort bestätigen",
   "confirmPasswordError": "Passwörter stimmen nicht überein.",
-  "privacyPolicyLabel": "Weitere Informationen zu unserer Datenverarbeitung findest du in der Datenschutzrichtlinie. Mit dem Absenden dieses Formulars bestätigst du,  dass du die Datenschutzbestimmungen von SoccerYou gelesen und verstanden hast.",
+  "privacyPolicyLabel": "Weitere Informationen zu unserer Datenverarbeitung findest du in der <a href='/privacy' target='_blank'>Datenschutzrichtlinie</a>. Mit dem Absenden dieses Formulars bestätigst du,  dass du die Datenschutzbestimmungen von SoccerYou gelesen und verstanden hast.",
   "privacyPolicyCheckboxError": "Bitte akzeptieren Sie die Datenschutzerklärung.",
   "newsletterLabel": "Newsletter abonnieren",
   "submitButton": "Konto erstellen",
@@ -451,7 +451,7 @@
   "showcaseYourProfile": "Präsentiere dein Profil",
   "selectCountry": "Land auswählen",
   "provideEmailAddress": "Bitte geben Sie eine gültige E-Mail Adresse an.",
-  "clubDetails": "Details zum Verein",
+  "clubDetails": "Details zum Club",
   "companyName": "Wählen Sie eine Sprache",
   "_comment": "Dieser Abschnitt enthält Übersetzungen für das Talente-Modul.",
   "month": "Monat",
@@ -1283,5 +1283,6 @@
   "countrySectionBannerImageDark": "Bannerbild des Länderbereichs im dunklen Modus",
   "Onwards": "weiter",
   "heroHeading": "Überschrift Held",
-  "doYouWantToaddPackage": "Möchten Sie “{{package_name}}” zu Ihrem Profil hinzufügen?"
+  "doYouWantToaddPackage": "Möchten Sie “{{package_name}}” zu Ihrem Profil hinzufügen?",
+  "emailExample": "Beispiel@email.com"
 }

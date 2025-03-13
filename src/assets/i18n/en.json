@@ -544,7 +544,7 @@
   "confirmPasswordLabel": "Confirm Password",
   "confirmPasswordPlaceholder": "Confirm Password",
   "confirmPasswordError": "Passwords do not match.",
-  "privacyPolicyLabel": "For more information on how we process your data, please refer to our Privacy Policy. By submitting this form, you confirm that you have read and understood SoccerYou's privacy policy.",
+  "privacyPolicyLabel": "For more information on how we process your data, please refer to our <a href='/privacy' target='_blank'>Privacy Policy</a>. By submitting this form, you confirm that you have read and understood SoccerYou's privacy policy.",
   "privacyPolicyCheckboxError": "Please check the Privacy Policy.",
   "newsletterLabel": "Subscribe to newsletter",
   "submitButton": "Create Account",
@@ -1191,5 +1191,6 @@
   "countrySectionBannerImageDark": "Country Section Banner Image Dark Mode",
   "Onwards":"Onwards",
   "heroHeading":"Hero heading",
-  "doYouWantToaddPackage":"Do you want to add “{{package_name}}” to your profile?"
+  "doYouWantToaddPackage":"Do you want to add “{{package_name}}” to your profile?",
+  "emailExample": "example@email.com"
 }

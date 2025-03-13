@@ -323,7 +323,7 @@
   "confirmPasswordLabel": "Bekräfta lösenord",
   "confirmPasswordPlaceholder": "Bekräfta lösenord",
   "confirmPasswordError": "Lösenorden matchar inte.",
-  "privacyPolicyLabel": "För mer information om hur vi hanterar dina uppgifter, vänligen läs vår integritetspolicy. Genom att skicka in detta formulär bekräftar du att du har läst och förstått SoccerYous integritetspolicy.",
+  "privacyPolicyLabel": "För mer information om hur vi hanterar dina uppgifter, vänligen läs vår <a href='/privacy' target='_blank'>integritetspolicy</a>. Genom att skicka in detta formulär bekräftar du att du har läst och förstått SoccerYous integritetspolicy.",
   "privacyPolicyCheckboxError": "Vänligen acceptera integritetspolicyn.",
   "newsletterLabel": "Prenumerera på nyhetsbrevet",
   "submitButton": "Skapa konto",
@@ -1311,5 +1311,6 @@
   "registrationFailed": "Registreringen misslyckades",
   "Processing": "Bearbetning...",
   "EmailVerified": "E-post verifierad!",
-  "doYouWantToaddPackage": "Vill du lägga till “{{package_name}}” i din profil?"
+  "doYouWantToaddPackage": "Vill du lägga till “{{package_name}}” i din profil?",
+  "emailExample": "Exempel@email.com"
 }

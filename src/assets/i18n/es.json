@@ -323,7 +323,7 @@
   "confirmPasswordLabel": "Confirmar Contraseña",
   "confirmPasswordPlaceholder": "Confirmar Contraseña",
   "confirmPasswordError": "Las contraseñas no coinciden.",
-  "privacyPolicyLabel": "Para obtener más información sobre cómo procesamos tus datos, consulta nuestra Política de privacidad. Al enviar este formulario, confirmas que has leído y entendido las políticas de privacidad de SoccerYou.",
+  "privacyPolicyLabel": "Para obtener más información sobre cómo procesamos tus datos, consulta nuestra <a href='/privacy' target='_blank'>Política de privacidad</a>. Al enviar este formulario, confirmas que has leído y entendido las políticas de privacidad de SoccerYou.",
   "privacyPolicyCheckboxError": "Por favor, acepte la Política de Privacidad.",
   "newsletterLabel": "Suscribirse al boletín",
   "submitButton": "Crear cuenta",
@@ -1257,5 +1257,6 @@
   "registrationFailed": "Registro fallido",
   "Processing": "Procesando...",
   "EmailVerified": "Correo electrónico verificado",
-  "doYouWantToaddPackage": "Quieres añadir “{{package_name}}” a tu perfil?"
+  "doYouWantToaddPackage": "Quieres añadir “{{package_name}}” a tu perfil?",
+  "emailExample": "ejemplo@email.com"
 }

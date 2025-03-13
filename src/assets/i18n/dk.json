@@ -282,7 +282,7 @@
   "confirmPasswordLabel": "Bekræft adgangskode",
   "confirmPasswordPlaceholder": "Bekræft adgangskode",
   "confirmPasswordError": "Adgangskoderne matcher ikke.",
-  "privacyPolicyLabel": "For mere information om, hvordan vi behandler dine data, kan du finde det i vores privatlivspolitik. Ved at indsende denne formular bekræfter du, at du har læst og forstået SoccerYous privatlivspolitik..",
+  "privacyPolicyLabel": "For mere information om, hvordan vi behandler dine data, kan du finde det i vores <a href='/privacy' target='_blank'>privatlivspolitik</a>. Ved at indsende denne formular bekræfter du, at du har læst og forstået SoccerYous privatlivspolitik..",
   "privacyPolicyCheckboxError": "Acceptér venligst privatlivspolitikken.",
   "newsletterLabel": "Abonner på nyhedsbrev",
   "submitButton": "Opret konto",
@@ -1172,5 +1172,6 @@
   "registrationFailed": "Registrering mislykkedes",
   "Processing": "Behandling...",
   "EmailVerified": "E-mail bekræftet!",
-  "doYouWantToaddPackage": "Vil du tilføje “{{package_name}}” til din profil?"
+  "doYouWantToaddPackage": "Vil du tilføje “{{package_name}}” til din profil?",
+  "emailExample": "eksempel@email.com"
 }
