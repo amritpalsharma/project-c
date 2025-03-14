@@ -141,23 +141,115 @@
 
 @media (min-width: 1600px) {
 .it .website-code nav.navbar li.nav-item .nav-link, .fr .website-code nav.navbar li.nav-item .nav-link,
-    .es .website-code nav.navbar li.nav-item .nav-link, .pt .website-code nav.navbar li.nav-item .nav-link,
-    .dk .website-code nav.navbar li.nav-item .nav-link, .se .website-code nav.navbar li.nav-item .nav-link,
-    .de .website-code nav.navbar li.nav-item .nav-link {
-        font-size: 18px;
+.es .website-code nav.navbar li.nav-item .nav-link, .pt .website-code nav.navbar li.nav-item .nav-link,
+.dk .website-code nav.navbar li.nav-item .nav-link, .se .website-code nav.navbar li.nav-item .nav-link,
+.de .website-code nav.navbar li.nav-item .nav-link, .en .website-code nav.navbar li.nav-item .nav-link {
+    font-size: 19px;
+}
+.fr .website-code nav.navbar .login-btn {
+    width: 210px;
+    font-size: 17.5px;
+}
+.es .website-code .login-btn, .de .website-code .login-btn {
+    font-size: 17.5px;
+    width: 210px;
+}
+.en .website-code nav.navbar .login-btn {
+    width: 190px;
+    font-size: 16.5px;
+}
+.table th, .table td {
+    font-size: 18px !important;
+}
+}
+
+@media (min-width: 2000px) {
+body {
+    font-size: 22px !important;
+}
+.it .website-code nav.navbar li.nav-item .nav-link, .fr .website-code nav.navbar li.nav-item .nav-link,
+.es .website-code nav.navbar li.nav-item .nav-link, .pt .website-code nav.navbar li.nav-item .nav-link,
+.dk .website-code nav.navbar li.nav-item .nav-link, .se .website-code nav.navbar li.nav-item .nav-link,
+.de .website-code nav.navbar li.nav-item .nav-link, .en .website-code nav.navbar li.nav-item .nav-link {
+    font-size: 22px !important;
+}
+.fr .website-code nav.navbar .login-btn {
+    width: 220px !important;
+    font-size: 20px !important;
+}
+.es .website-code .login-btn, .de .website-code .login-btn {
+    font-size: 20px !important;
+    width: 220px !important;
+}
+.en .website-code nav.navbar .login-btn {
+    width: 200px !important;
+    font-size: 19px !important;
+}
+.table th, .table td, .table td span {
+    font-size: 20px !important;
+}
+.card-title {
+    font-size: 22px !important;
+}
+.sidebar_menu a {
+    font-size: 18px !important;
+    padding: 13px 10px !important;
+}
+.page-sidebar-inner {
+    height: calc(100% - 220px) !important;
+}
+.mobile-sidebar-active .sidebar .page-sidebar {
+    width: 250px;
+}
+.page-sidebar .logo_img {
+    width: 180px;
+}
+.table_title p {
+    font-size: 22px !important;
+}
+.profile .dropdown-menu h6 {
+    font-size: 19px !important;
+}
+.header-view-profile {
+    font-size: 15px !important;
+}
+.profile .dropdown-menu .badgewarning {
+    padding: 3px 15px !important;
+    font-size: 13px !important;
+}
+.profile img {
+    height: 60px !important;
+    width: 60px !important;
+}
+.btn-outline-white {
+    font-size: 17px !important;
+    svg {
+    height: 30px !important;
+    width: 30px !important;
+    margin-right: 10px;
+}}
+.mat-mdc-paginator-range-label, .web-create-bg {
+    font-size: 18px !important;
+}
+td.cdk-column-Remove.mat-column-Remove svg {
+    width: 24px !important;
+    height: 24px !important;
+}
+.form-control, .table td span.bg_pending, .card-tabs .nav-tabs .nav-item .nav-link, .card-tabs .mesaage-content h6 {
+    font-size: 17px !important;
+}
+.card-tabs .mesaage-content small {
+    font-size: 15px !important;
+}
+.club-banner .title_text_p {
+    max-width: 600px;
+    h3 {
+      font-size: 36px;
     }
-    .fr .website-code nav.navbar .login-btn {
-        width: 200px;
-        font-size: 17px;
-    }
-    .es .website-code .login-btn, .de .website-code .login-btn {
-        font-size: 17px;
-        width: 200px;
-    }
-    .en .website-code nav.navbar .login-btn {
-        width: 180px;
-        font-size: 16px;
-    }
+    p {
+      font-size: 24px;
+  }
+  }
 }
 
 
@@ -167,6 +259,26 @@
       height: 200px !important;
   }
   }
+}
+
+// @media (min-width: 576px) {
+//     .cdk-overlay-pane.mat-mdc-dialog-panel {
+//       min-width: 350px !important;
+//       min-height: 180px !important;
+//     }
+// }
+
+@media (max-width:1300px) and (min-width:992px) {
+.mobile-sidebar-active .plan_box .d-flex.gap-2 {
+    flex-direction: column;
+    align-items: flex-start !important;
+}
+}
+
+@media (max-width: 1199px) {
+.skyscraper-left, .skyscraper-right, .advirtismnt_2, .advertisement_two_top, .advertisement_two_bottom, .advertisement_three_block {
+    display: none !important;
+}
 }
 
 
@@ -287,6 +399,14 @@ body.compact-sidebar.dark-theme .sidebar-menu svg path {
 .edit_genrl_details .mobile-input {
     width: 100%;
 }
+.club-banner .title_text_p {
+    h3 {
+      font-size: 28px;
+    }
+    p {
+      font-size: 18px;
+  }
+  }
 }
 
 
@@ -397,6 +517,14 @@ table.table  th {
     top: 8px;
 }
 }
+.club-banner .title_text_p {
+    h3 {
+      font-size: 28px;
+    }
+    p {
+      font-size: 18px;
+  }
+  }
 }
 
 @media (max-width: 480px) {

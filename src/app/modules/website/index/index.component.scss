@@ -230,7 +230,7 @@ a {
 
 .home-banner-image {
   width: 546px;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .main-bnr {
@@ -280,7 +280,8 @@ a {
 }
 
 .banner-btn .btn {
-  padding: 10px 90px;
+  padding: 10px 20px;
+  min-width: 280px;
   border-radius: 20px;
   font-weight: 700;
 }
@@ -602,35 +603,35 @@ li {
 # advertisement
 --------------------------------------------------------------*/
 
-.skyscraper-image {
-  height: 600px;
-  width: 120px;
-  content: "";
-  z-index: 1;
-  position: absolute;
-  left: 1%;
-  top: 16%;
-}
+// .skyscraper-image {
+//   height: 600px;
+//   width: 120px;
+//   content: "";
+//   z-index: 1;
+//   position: absolute;
+//   left: 1%;
+//   top: 16%;
+// }
 
-.skyscraper-image img {
-  height: 600px;
-  width: 120px;
-}
+// .skyscraper-image img {
+//   height: 600px;
+//   width: 120px;
+// }
 
-.wide-skyscraper-image img {
-  height: 600px;
-  width: 160px;
-}
+// .wide-skyscraper-image img {
+//   height: 600px;
+//   width: 160px;
+// }
 
-.wide-skyscraper-image {
-  position: absolute;
-  content: "";
-  z-index: 1;
-  height: 600px;
-  width: 160px;
-  top: 16%;
-  right: 1%;
-}
+// .wide-skyscraper-image {
+//   position: absolute;
+//   content: "";
+//   z-index: 1;
+//   height: 600px;
+//   width: 160px;
+//   top: 16%;
+//   right: 1%;
+// }
 
 .hidden {
   display: none;
@@ -726,7 +727,6 @@ li {
   cursor: pointer; // Changes the cursor to a pointer on hover
 }
 
-
 .player-img {
   height: 310px;
   width: 100%;
@@ -734,21 +734,21 @@ li {
   border-radius: 9px;
   border-radius: 9px;
   border: 4px solid transparent;
+  overflow: hidden;
   background: linear-gradient(45deg, #C2A64A, #A77A2E);
-
 }
-
-
 .player-image {
-  height: 295px;
+  height: calc(100% - 15px);
   object-fit: cover;
   display: block;
-  /* Remove any default inline spacing */
   width: 100%;
-  /* Adjust based on your needs */
   border-radius: 9px;
+  transition: .5s all;
 }
 
+.player-border:hover .player-image {
+  transform: scale(1.15);
+}
 .player-image1 {
   height: 300px;
   object-fit: scale-down;
@@ -918,61 +918,41 @@ p.club-p {
 
 .works-btn {
   display: flex;
+  justify-content: flex-start;
   margin-top: 50px;
   margin-bottom: 50px;
-}
 
-button.btn.btn-success.active-btn .club-p {
-  width: 126px;
-  height: 40px;
-  border-radius: 8px;
-  font-weight: 700;
-  font-size: 20px;
-  padding-top: 5px;
-  color: #092E01;
-  opacity: 1;
-}
+  button.btn {
+    border-radius: 8px;
+    font-size: 20px;
+    padding: 10px 30px;
+    margin-right: 15px;
+  }
 
-button.btn.btn-success.active-btn .club-s {
-  width: 210px;
-  height: 40px;
-  border-radius: 8px;
-  font-weight: 700;
-  padding-top: 5px;
-  font-size: 20px;
-  color: #092E01;
-  opacity: 1;
-}
+  button.btn.active-btn {
+    color: #092E01;
+  }
 
-.club-p {
-  font-size: 20px;
-  padding-top: 5px;
-  opacity: 75%;
-}
+  button.btn p {
+    opacity: 0.75;
+    font-weight: 400;
+    text-transform: lowercase;
+    font-size: inherit;
+  }
 
-.club-s {
-  font-size: 20px;
-  padding-top: 5px;
-  opacity: 75%;
-  font-weight: 400;
-}
+  button.btn p:first-letter {
+    text-transform: uppercase;
+  }
 
-// .active-btn p{
-//   font-weight: 700;
-//   font-size: 20px;
-//   color: #092E01;
-//}
+  button.btn.active-btn p {
+    opacity: 1;
+    font-weight: 700;
+  }
+}
 
 .player1 {
   display: block;
-  /* Ensure it is displayed when selectedContent is 'Sign-up & Profile Creation' */
 }
-
-// .club-buttons img {
-//   width: 283px;
-//   height: 66px;
-//   object-fit: cover;
-// }
 
 .progress_btn {
   padding: 0 20px;
@@ -997,45 +977,33 @@ button.btn.btn-success.active-btn .club-s {
   border-radius: 8px;
   cursor: pointer;
   position: relative;
-  /* Ensure relative positioning for the pseudo-element */
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-/* Hover effect for work-text items */
-// .work-text:hover {
-//   color: #f0f0f0;
-//   /* Light background on hover */
-//   transform: translateY(-2px);
-//   /* Slight lift on hover */
-// }
-
-// /* Style for the active work-text item */
-// .work-text.active {
-//   color: #e0e0e0;
-//   /* Highlight background for active item */
-// }
 .talent-scroll {
   scroll-behavior: smooth;
 }
 
 .work-text a.active {
   color: white;
-  /* Background color when active */
 }
 
 .work-text p.active {
   color: white;
-  /* Background color when active */
+}
+
+.work-text .progress_btn a,
+.work-text .progress_btn p {
+  color: white;
+  opacity: 30%;
 }
 
 .work-text.active .progress_btn a,
 .work-text.active .progress_btn p {
   color: white;
-  /* White color for active state */
+  opacity: 1;
 }
-
 .work-text.active .number p {
-  // background-color: #6FB95D;
   border-radius: 50%;
   height: 33px;
   width: 33px;
@@ -1052,19 +1020,12 @@ button.btn.btn-success.active-btn .club-s {
   background-color: #6FB95D;
 }
 
-/* Specific styles for active link */
 .work-text .progress_btn a.active {
   color: white;
-  /* Text color for active link */
-
 }
 
 .progress_btn p {
   margin-top: 20px;
-}
-
-.club-btn {
-  margin-left: auto;
 }
 
 .progress_btn a {
@@ -1077,7 +1038,6 @@ button.btn.btn-success.active-btn .club-s {
   border-radius: 50%;
   text-align: center;
   padding-top: 3px;
-  // background-color: #175B07;
   opacity: 75%;
   font-weight: 700;
   color: #092E01;
@@ -1087,10 +1047,6 @@ button.btn.btn-success.active-btn .club-s {
 .work-banner {
   margin-right: 22%;
 }
-
-// .player-list-images {
-//   position: relative;
-// }
 
 .talent-img1 img {
   position: absolute;
@@ -1142,9 +1098,12 @@ button.btn.btn-success.active-btn .club-s {
   border-radius: 9px;
   // border: 0.89px solid #E5E5E5;
 }
-.player-list-image img,.player-list-images img{
-  width: 100% ;
+
+.player-list-image img,
+.player-list-images img {
+  width: 100%;
 }
+
 .player-list-images .talent-img2 img {
   position: absolute;
   top: 62%;
@@ -2011,10 +1970,10 @@ img.success-image {
     height: 800px;
   }
 
-  .skyscraper-image,
-  .wide-skyscraper-image {
-    top: 22%;
-  }
+  // .skyscraper-image,
+  // .wide-skyscraper-image {
+  //   top: 22%;
+  // }
 
   .work-text {
     margin-bottom: 80px;
@@ -2206,10 +2165,10 @@ img.success-image {
     height: 900px;
   }
 
-  .skyscraper-image,
-  .wide-skyscraper-image {
-    top: 16%;
-  }
+  // .skyscraper-image,
+  // .wide-skyscraper-image {
+  //   top: 16%;
+  // }
 
   .talent-img1 img {
     top: 10%;
@@ -2361,10 +2320,10 @@ img.success-image {
     height: 1200px;
   }
 
-  .skyscraper-image,
-  .wide-skyscraper-image {
-    top: 14%;
-  }
+  // .skyscraper-image,
+  // .wide-skyscraper-image {
+  //   top: 14%;
+  //}
 
   .works {
     height: 1400px;
@@ -2708,107 +2667,129 @@ img.success-image {
     right: 27%;
   }
 }
-@media (max-width: 1200px){
+
+@media (max-width: 1200px) {
   .talent-img1 img {
     top: 10%;
     left: 48%;
     width: 270px;
     height: 470px;
-}
-.talent-img2 img {
-  top: 65%;
-  left: 48%;
-  width: 270px;
-  height: 220px;
-}
-.talent-img3 img {
-  top: 14%;
-  right: 0;
-  width: 340px;
-  height: 255px;
-}
-.talent-img4 img {
-  top: 45%;
-  right: 0;
-  width: 340px;
-  height: 345px;
-}
-.player-list-images .talent-img2 img {
-  top: 60%;
-  left: 48%;
-  width: 270px;
-  height: 210px;
-}
-.player-list-images .talent-img4 img {
-  top: 42%;
-  right: 0;
-  width: 340px;
-  height: 350px;
-}
-.network1{
-  width: 220px;
-  height: 230px;
-}
-.network2{
-  width: 200px;
-  height: 280px;
-  top: 49%;
-}
-.network3 {
-  width: 220px;
-  height: 230px;
-}
-.network4 {
-  width: 200px;
-  height: 280px;
-  top: 30%;
-  right: 188px;
+  }
 
-}
-.network5{
-  width: 220px;
-  height: 240px;
-  top: 63%;
-}
-.network6 {
-  width: 160px;
-  height: 280px;
-}
-.network7 {
-  width: 160px;
-  height: 300px;
-}
-.member1-image img {
-  height: 205px;
-}
-.member2-image{
-  height: 255px;
-  padding-top: 60px;
-  padding-left: 37px;
-}
-.member3-image img, .member5-image img{
-  height: 205px;
-}
-.club_member2 {
-  height: 265px;
-}
-.message-panel1 img {
-  width: 230px;
-  height: 630px;
+  .talent-img2 img {
+    top: 65%;
+    left: 48%;
+    width: 270px;
+    height: 220px;
+  }
 
-}
-.message-panel img {
-  width: 380px;
-  height: 490px;
-}
-.club-offers1 img {
-  height: 260px;
-  width: 320px;
-}
-.club-offers2 img {
-  width: 300px;
-  height: 300px;
-}
+  .talent-img3 img {
+    top: 14%;
+    right: 0;
+    width: 340px;
+    height: 255px;
+  }
+
+  .talent-img4 img {
+    top: 45%;
+    right: 0;
+    width: 340px;
+    height: 345px;
+  }
+
+  .player-list-images .talent-img2 img {
+    top: 60%;
+    left: 48%;
+    width: 270px;
+    height: 210px;
+  }
+
+  .player-list-images .talent-img4 img {
+    top: 42%;
+    right: 0;
+    width: 340px;
+    height: 350px;
+  }
+
+  .network1 {
+    width: 220px;
+    height: 230px;
+  }
+
+  .network2 {
+    width: 200px;
+    height: 280px;
+    top: 49%;
+  }
+
+  .network3 {
+    width: 220px;
+    height: 230px;
+  }
+
+  .network4 {
+    width: 200px;
+    height: 280px;
+    top: 30%;
+    right: 188px;
+
+  }
+
+  .network5 {
+    width: 220px;
+    height: 240px;
+    top: 63%;
+  }
+
+  .network6 {
+    width: 160px;
+    height: 280px;
+  }
+
+  .network7 {
+    width: 160px;
+    height: 300px;
+  }
+
+  .member1-image img {
+    height: 205px;
+  }
+
+  .member2-image {
+    height: 255px;
+    padding-top: 60px;
+    padding-left: 37px;
+  }
+
+  .member3-image img,
+  .member5-image img {
+    height: 205px;
+  }
+
+  .club_member2 {
+    height: 265px;
+  }
+
+  .message-panel1 img {
+    width: 230px;
+    height: 630px;
+
+  }
+
+  .message-panel img {
+    width: 380px;
+    height: 490px;
+  }
+
+  .club-offers1 img {
+    height: 260px;
+    width: 320px;
+  }
+
+  .club-offers2 img {
+    width: 300px;
+    height: 300px;
+  }
 
 }
 
@@ -2817,10 +2798,10 @@ img.success-image {
     height: 820px;
   }
 
-  .skyscraper-image,
-  .wide-skyscraper-image {
-    top: 16%;
-  }
+  // .skyscraper-image,
+  // .wide-skyscraper-image {
+  //   top: 16%;
+  // }
 
   .joined-text h3 {
     font-size: 28px;
@@ -2829,7 +2810,7 @@ img.success-image {
   .home-banner-image {
     width: 400px;
     height: 155px;
-    object-fit: cover;
+    object-fit: contain;
   }
 
   .club_players {
@@ -3154,22 +3135,22 @@ img.success-image {
 
 @media (max-width: 991px) {
 
-  .skyscraper-image,
-  .wide-skyscraper-image,
-  .leaderboard-club-image,
-  .leaderboard-image,
-  .small-sqaure-image {
-    display: none;
-  }
+  // .skyscraper-image,
+  // .wide-skyscraper-image,
+  // .leaderboard-club-image,
+  // .leaderboard-image,
+  // .small-sqaure-image {
+  //   display: none;
+  // }
 
-  .leaderboard-club-image img,
-  .small-sqaure-image img,
-  .skyscraper-image img,
-  .skyscraper-image img,
-  .wide-skyscraper-image img,
-  .leaderboard-image img {
-    display: none;
-  }
+  // .leaderboard-club-image img,
+  // .small-sqaure-image img,
+  // .skyscraper-image img,
+  // .skyscraper-image img,
+  // .wide-skyscraper-image img,
+  // .leaderboard-image img {
+  //   display: none;
+  // }
 
   .py_0 {
     padding-top: 20px;
@@ -3245,8 +3226,6 @@ img.success-image {
   .works-btn {
     margin-top: 30px;
     margin-bottom: 10px;
-    margin-left: 20px;
-    margin-right: 20px;
   }
 
   .work-text {
@@ -3295,14 +3274,13 @@ img.success-image {
 
   .progress_btn a {
     font-size: 22px;
-    color: white;
   }
-
   .progress_btn p {
-    color: white;
     font-size: 18px;
   }
-
+  .progress_btn a,  .progress_btn p {
+    color: #fff;
+  }
   .work-banner {
     margin-left: 0;
     margin-right: 0;
@@ -3654,119 +3632,137 @@ img.success-image {
     margin-top: 35px;
     margin-left: -30px;
   }
+
   .club-btn {
     margin-left: unset;
   }
 
 }
 
-@media (max-width: 821px){
-  .work-text1{
+@media (max-width: 821px) {
+  .work-text1 {
     height: 800px;
+  }
+
+  .talent-img1 img {
+    width: 230px;
+    height: 400px;
+    left: 0;
+  }
+
+  .talent-img2 img {
+    width: 230px;
+    height: 180px;
+    left: 0;
+    top: 415px;
+  }
+
+  img.image3 {
+    width: 550px;
+    height: 205px;
+  }
+
+  img.image4 {
+    width: 550px;
+    top: 255px;
+    right: 0;
+    height: 280px;
+  }
+
+  .club_member2 {
+    width: 220px;
+    height: 230px;
+    left: 6%;
+  }
+
+  .member2-image {
+    padding-top: 35px;
+    padding-left: 55px;
+  }
+
+  .right-side img.image3 {
+    width: 550px;
+    height: 250px;
+  }
+
+  img.image5 {
+    width: 550px;
+    height: 280px;
+    margin-top: 290px;
+    margin-bottom: 40px;
+  }
+
+  .club_member7 {
+    width: 235px;
+    border-radius: 8px;
+  }
+
+  .member7-image img {
+    width: 227px;
+  }
+
+  .message-panels {
+    display: flex;
+    justify-content: center;
+  }
+
+  .club-offers2 img {
+    top: 41%;
+    height: 230px;
+    right: 157px;
+    z-index: 2;
+  }
+
 }
 
-.talent-img1 img {
-  width: 230px;
-  height: 400px;
-  left: 0;
-}
-.talent-img2 img {
-  width: 230px;
-  height: 180px;
-  left: 0;
-  top: 415px;
-}
-
-img.image3 {
-  width: 550px;
-  height: 205px;
-}
-img.image4 {
-  width: 550px;
-  top: 255px;
-  right: 0;
-  height: 280px;
-}
-.club_member2 {
-  width: 220px;
-  height: 230px;
-  left: 6%;
-}
-.member2-image {
-  padding-top: 35px;
-  padding-left: 55px;
-}
-.right-side img.image3 {
-  width: 550px;
-  height: 250px;
-}
-img.image5 {
-  width: 550px;
-  height: 280px;
-  margin-top: 290px;
-  margin-bottom: 40px;
-}
-.club_member7 {
-  width: 235px;
-  border-radius: 8px;
-}
-.member7-image img {
-  width: 227px;
-}
-.message-panels {
-  display: flex;
-  justify-content: center;
-}
-.club-offers2 img {
-  top: 41%;
-  height: 230px;
-  right: 157px;
-  z-index: 2;
-}
-
-}
-
-@media (max-width: 769px){
+@media (max-width: 769px) {
   .talent-img1 img {
     width: 210px;
     height: 365px;
     left: 0;
-}
-.talent-img2 img {
-  width: 210px;
-  height: 160px;
-  left: 0;
-  top: 380px;
-}
-img.image3 {
-  width: 510px;
-  height: 205px;
-  top: 23px;
-}
-img.image4 {
-  width: 510px;
-  top: 250px;
-  height: 255px;
-}
-.right-side img.image3 {
-  width: 505px;
-  height: 210px;
-}
-img.image5 {
-  width: 505px;
-  height: 280px;
-  margin-top: 250px;
-  margin-bottom: 40px;
-}
-.work-text1 {
-  height: 730px;
-}
-.club-offers2 img {
-  top: 40%;
-  height: 230px;
-  right: 115px;
-  z-index: 2;
-}
+  }
+
+  .talent-img2 img {
+    width: 210px;
+    height: 160px;
+    left: 0;
+    top: 380px;
+  }
+
+  img.image3 {
+    width: 510px;
+    height: 205px;
+    top: 23px;
+  }
+
+  img.image4 {
+    width: 510px;
+    top: 250px;
+    height: 255px;
+  }
+
+  .right-side img.image3 {
+    width: 505px;
+    height: 210px;
+  }
+
+  img.image5 {
+    width: 505px;
+    height: 280px;
+    margin-top: 250px;
+    margin-bottom: 40px;
+  }
+
+  .work-text1 {
+    height: 730px;
+  }
+
+  .club-offers2 img {
+    top: 40%;
+    height: 230px;
+    right: 115px;
+    z-index: 2;
+  }
 
 }
 
@@ -3876,16 +3872,26 @@ img.image5 {
 }
 
 @media (max-width: 575px) {
+  .works-btn {
+    button.btn {
+      font-size: 16px;
+      padding: 10px 20px;
+      margin-right: 0;
+    }
+  }
+
   .main-bnr {
     height: 700px;
   }
-  .joined{
+
+  .joined {
     display: block;
-}
-.joined-btn button.btn {
-  width: 100%;
-  margin-top: 10px;
-}
+  }
+
+  .joined-btn button.btn {
+    width: 100%;
+    margin-top: 10px;
+  }
 
   .joined-text {
     display: flex;
@@ -3895,7 +3901,7 @@ img.image5 {
   .home-banner-image {
     width: 260px;
     height: 100px;
-    object-fit: cover;
+    object-fit: contain;
   }
 
   .player-image {
@@ -4012,48 +4018,9 @@ img.image5 {
     font-size: 18px;
   }
 
-  .works-btn {
-    justify-content: space-between;
-  }
-
-  button.btn.btn-success.active-btn .club-s {
-    width: 200px;
-    height: 40px;
-    border-radius: 8px;
-    font-weight: 700;
-    padding-top: 0px;
-    font-size: 17px;
-    color: #092E01;
-    opacity: 1;
-  }
-
-  .club-btn button.btn.btn-success {
-    border: none;
-    opacity: 75%;
-    font-weight: 400;
-    height: 40px;
-  }
-
-  .club-p {
-    padding-top: 0;
-  }
-
-  .club-s {
-    padding-top: 0;
-    font-size: 16px;
-  }
-
-  .active-btn p {
-    font-weight: 700;
-  }
-
   .progress_btn {
     padding: 0 15px;
     margin-top: 35px;
-  }
-
-  .club-btn {
-    margin-left: 0;
   }
 
   .player-img {
@@ -4109,7 +4076,7 @@ img.image5 {
   }
 
   .work-text1 {
-    height: 500px;
+    height: 550px;
   }
 
   .talent-img1 img {
@@ -4403,14 +4370,7 @@ img.image5 {
     font-size: 5px;
   }
 
-  .works-btn .talent-btn .btn {
-    padding: 0;
-    padding-top: 0px;
-    font-size: 20px;
-    width: 126px;
-    height: 40px;
-    font-weight: 400;
-  }
+
 
   .buttonss button {
     border: 1px solid #8d8c8c;
@@ -4508,22 +4468,27 @@ img.image5 {
 }
 
 @media (max-width: 394px) {
-  img.image3, img.image4{
-      width: 225px;
+
+  img.image3,
+  img.image4 {
+    width: 225px;
   }
 
-   .right-side img.image3, .right-side img.image5{
+  .right-side img.image3,
+  .right-side img.image5 {
     width: 245px;
-}
-.club-offers2 img {
-  height: 160px;
-  width: 165px;
-  right: 0;
-}
-.club-offers1 img {
-  height: 145px;
-  width: 175px;
-}
+  }
+
+  .club-offers2 img {
+    height: 160px;
+    width: 165px;
+    right: 0;
+  }
+
+  .club-offers1 img {
+    height: 145px;
+    width: 175px;
+  }
 }
 
 
@@ -4593,12 +4558,6 @@ img.image5 {
     left: 5%;
     border-radius: 3px;
   }
-
-  button.btn.btn-success.active-btn .club-s {
-    width: 180px;
-  }
-
-
 }
 
 @media (max-width: 376px) {
@@ -4726,10 +4685,6 @@ img.image5 {
     left: 5%;
   }
 
-  button.btn.btn-success.active-btn .club-s {
-    width: 170px;
-  }
-
 
 
 }
@@ -4793,23 +4748,6 @@ img.image5 {
     right: 0;
   }
 
-  button.btn.btn-success.active-btn .club-s {
-    width: 160px;
-    height: 40px;
-    font-size: 18px;
-  }
-
-  .club-s,
-  .club-p {
-    font-size: 18px;
-  }
-
-  button.btn.btn-success.active-btn .club-p {
-    width: 120px;
-    height: 36px;
-    font-size: 18px;
-  }
-
   .club_member1,
   .club_member5,
   .club_member7,
@@ -4825,23 +4763,6 @@ img.image5 {
 
 
 @media (max-width: 345px) {
-  .works-btn .talent-btn .btn {
-    width: 105px;
-    height: 35px;
-  }
-
-  button.btn.btn-success.active-btn .club-p {
-    width: 105px;
-    height: 33px;
-    font-size: 18px;
-  }
-
-  button.btn.btn-success.active-btn .club-s {
-    width: 160px;
-    height: 35px;
-    font-size: 18px;
-  }
-
   .talent-img1 img {
     width: 95px;
     height: 165px;
@@ -4939,10 +4860,11 @@ img.image5 {
   .main-bnr {
     height: 600px;
   }
-  .joined{
+
+  .joined {
     display: block;
-   
-}
+
+  }
 
   .message-panel img {
     width: 160px;
@@ -5099,17 +5021,6 @@ img.image5 {
     font-size: 13px;
   }
 
-  .works-btn {
-    margin-left: 0;
-    margin-right: 10px;
-  }
-
-
-  .work-text.active .number p {
-    height: 27px;
-    width: 27px;
-    line-height: 24px;
-  }
 
   .work-text .number p {
     height: 27px;
@@ -5119,42 +5030,6 @@ img.image5 {
 
   .work-text1 {
     height: 400px;
-  }
-
-  .works-btn .talent-btn .btn {
-
-    width: 95px;
-    height: 35px;
-  }
-
-  button.btn.btn-success.active-btn .club-p {
-    width: 95px;
-    height: 35px;
-    line-height: 24px;
-    font-weight: 700;
-    font-size: 15px;
-  }
-
-  .club-s {
-    font-size: 15px;
-
-  }
-
-  .club-p {
-    font-size: 15px;
-
-  }
-
-  button.btn.btn-success.active-btn .club-s {
-    font-size: 15px;
-  }
-
-  .club-btn button.btn.btn-success {
-    border: none;
-    opacity: 75%;
-    font-weight: 400;
-    height: 35px;
-    width: 195px;
   }
 
   .right-side img.image3 {
@@ -5246,6 +5121,49 @@ img.image5 {
   }
 }
 
-.club-corner-img::before{
+.club-corner-img::before {
   background: none !important;
+}
+
+
+@media (min-width: 1200px) {
+  .works-btn {
+    width: calc(100% + 15%);
+  }
+}
+
+
+@media (min-width: 1600px) {
+.banner-btn .btn {
+  padding: 17px 20px;
+  min-width: 320px;
+  font-size: 20px;
+}
+.banner-btn {
+  margin-top: 6rem !important;
+}
+.home-banner-image {
+  width: 660px;
+}
+}
+
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .works-btn {
+    button.btn {
+      font-size: 15px;
+      padding: 10px 20px;
+    }
+  }
+}
+
+.light-theme .dark-talant-img {
+  display: none;
+}
+
+.dark-theme .light-talant-img {
+  display: none;
+}
+.text_undefined{
+  display: none;
 }

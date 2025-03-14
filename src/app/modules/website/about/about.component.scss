@@ -342,35 +342,35 @@ img.join-btn {
 
 // advertisement
 
-.skyscraper-left {
-  height: 600px;
-  width: 120px;
-  content: "";
-  z-index: 1;
-  position: absolute;
-  left: 1%;
-  top: 43%;
-}
+// .skyscraper-left {
+//   height: 600px;
+//   width: 120px;
+//   content: "";
+//   z-index: 1;
+//   position: absolute;
+//   left: 1%;
+//   top: 43%;
+// }
 
-.skyscraper-left img {
-  height: 600px;
-  width: 120px;
-}
+// .skyscraper-left img {
+//   height: 600px;
+//   width: 120px;
+// }
 
-.skyscraper-right {
-  height: 600px;
-  width: 120px;
-  content: "";
-  z-index: 1;
-  position: absolute;
-  right: 1%;
-  top: 43%;
-}
+// .skyscraper-right {
+//   height: 600px;
+//   width: 120px;
+//   content: "";
+//   z-index: 1;
+//   position: absolute;
+//   right: 1%;
+//   top: 43%;
+// }
 
-.skyscraper-right img {
-  height: 600px;
-  width: 120px;
-}
+// .skyscraper-right img {
+//   height: 600px;
+//   width: 120px;
+// }
 
 // advertisement
 
@@ -383,20 +383,20 @@ img.join-btn {
   }
 }
 
-@media (min-width: 1536px) {
+// @media (min-width: 1536px) {
 
-  .skyscraper-left,
-  .skyscraper-right {
-    top: 46%;
-  }
-}
+//   .skyscraper-left,
+//   .skyscraper-right {
+//     top: 46%;
+//   }
+// }
 
 @media (min-width: 1920px) {
 
-  .skyscraper-left,
-  .skyscraper-right {
-    top: 40%;
-  }
+  // .skyscraper-left,
+  // .skyscraper-right {
+  //   top: 40%;
+  // }
 
   .map {
     height: 850px;
@@ -415,9 +415,9 @@ img.join-btn {
     left: 2%;
   }
 
-  .advertisement1 {
-    height: 330px;
-  }
+  // .advertisement1 {
+  //   height: 330px;
+  // }
 
   .map{
     height: 1100px;
@@ -451,11 +451,11 @@ img.join-btn {
     height: 300px;
   }
 
-  .advertisement1 {
-    position: relative;
-    height: 200px;
-    margin-bottom: 20px;
-  }
+  // .advertisement1 {
+  //   position: relative;
+  //   height: 200px;
+  //   margin-bottom: 20px;
+  // }
 
   .club_players {
     top: 22%;
@@ -664,6 +664,10 @@ img.join-btn {
 
   .map {
     height: 400px;
+  }
+  .mat-mdc-list-base {
+    margin-bottom: 80px;
+    width: 100%;
   }
 
   .map img {

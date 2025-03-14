@@ -133,7 +133,7 @@
         <div class="mb-3 col-md-6">
           <label for="heroBgImg" class="form-label">{{ 'heroBackgroundImage' | translate }} Dark Mode</label>
           <input type="file" class="form-control" id="heroBgImg"
-            (change)="handleFileInput($event, 'hero_bg_img_dark_mode')" formControlName="hero_bg_img" />
+            (change)="handleFileInput($event, 'hero_bg_img_dark_mode')" formControlName="hero_bg_img_dark_mode" />
           <div *ngIf="heroBgImagePreview" class="position-relative mt-2">
             <div class="image_cut">
               <img [src]="heroBgImagePreviewDarkMode" alt="Preview" class="img-thumbnail p-0" style="max-width: 150px;"
@@ -148,6 +148,10 @@
           </div>
         </div>
         <!-- End Dark Mode -->
+        <div class="mb-3 col-md-6">
+          <label for="heroHeading" class="form-label">{{ 'heroHeading' | translate }}</label>
+          <input type="text" class="form-control" id="heroHeading" formControlName="hero_heading" />
+        </div>
         <div class="mb-3 col-md-6">
           <label for="heroHeadingTxt" class="form-label">{{ 'heroHeadingText' | translate }}</label>
           <input type="text" class="form-control" id="heroHeadingTxt" formControlName="hero_heading_txt" />

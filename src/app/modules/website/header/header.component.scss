@@ -92,6 +92,7 @@ body {
 
 .login {
     max-width: 550px;
+    margin: 0 auto;
 }
 
 .login svg.login-logo {
@@ -160,6 +161,8 @@ body {
 
 .custom-select {
     margin-right: 10px;
+    border-radius: 10px;
+
     .dropdown-menu {
         left: auto;
         right: auto;
@@ -229,18 +232,14 @@ input#companyName {
 /*--------------------------------------------------------------
 #  register
 --------------------------------------------------------------*/
-
-
 .icon-hamburger::before {
     content: '\2630';
-    /* Unicode for hamburger menu (≡) */
     font-size: 30px;
     color: white;
 }
 
 .icon-cross::before {
     content: '\00d7';
-    /* Unicode for a cross (×) */
     color: white;
     font-size: 40px;
 }
@@ -248,20 +247,6 @@ input#companyName {
 .font-w400 {
     font-weight: 400;
 }
-
-// .d-flex {
-//   display: block !important;
-// }
-// .login-btn {
-//   font-size: 16px;
-//   background-color: #E05263;
-//   color: white;
-//   padding: 10px 90px;
-//   border-radius: 20px;
-// }
-// .login-btn a{
-//   margin-top: 20px;
-// }
 
 a {
     text-decoration: none;
@@ -289,11 +274,6 @@ ul {
     color: #fff;
 }
 
-// .modal-dialog {
-//     // max-width: 600px;
-//     margin-right: auto;
-//     margin-left: auto;
-// }
 .register .modal {
     --bs-modal-zindex: 1055;
     --bs-modal-width: 600px;
@@ -325,8 +305,6 @@ ul {
     height: 53px;
     margin-bottom: 20px;
     margin-top: 10px;
-    /* Added for better UX */
-
 }
 
 .form-label {
@@ -378,7 +356,6 @@ ul {
 
 .check-resister.active .form-check-label span {
     color: #e05263;
-    // background-color: #e05263;
 }
 
 .social-media ul li a {
@@ -389,11 +366,6 @@ ul {
 .form-check-input[type="checkbox"] {
     border-radius: 3px;
 }
-
-// .form-check-input:checked {
-//   background-color: #e05263;
-//   border-color: #e05263;
-// }
 
 .header-btn {
     margin-left: 40px;
@@ -413,7 +385,6 @@ ul {
 
 .btn {
     border-radius: 10px;
-    // padding: 10px 20px;
     font-size: 16px;
 }
 
@@ -421,36 +392,6 @@ a.btn-primary {
     border: #E05263;
 }
 
-// .navbar-toggler {
-//   transition: none
-// }
-// .navbar-collapse {
-//   max-height: 0;
-//   overflow: hidden;
-//   opacity: 0;
-//   transition: max-height 0.35s ease, opacity 0.35s ease; /* Smooth transition for height and opacity */
-// }
-
-// /* Expanded state */
-// .navbar-collapse.show {
-//   max-height: 0px; /* Adjust based on the content height */
-//   opacity: 1;
-// }
-
-
-// .light-theme .btn-primary {
-//   background-color: #e05263 !important;
-//   border-color: #e05263 !important;
-// }
-
-// .btn-primary:hover {
-//   background-color: #e05263;
-//   border-color: #e05263;
-// }
-// .btn-primary:hover:active {
-//   background-color: #e05263;
-//   border-color: #e05263;
-// }
 .nav-header {
     display: flex;
     align-items: center;
@@ -469,15 +410,11 @@ li.nav-item {
 
 .nav-link {
     text-transform: uppercase;
-    // padding: 18px !important;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 400;
-    // margin-right: 20px;
     color: #fff;
     position: relative;
 }
-
-
 
 .navbar-nav .nav-link.active {
     position: relative;
@@ -891,6 +828,7 @@ input:checked+.slider:before {
 .form-select {
     background-color: transparent;
     filter: brightness(14.5);
+    border-radius: 10px;
 }
 
 .custom-select option {
@@ -1339,6 +1277,7 @@ select.form-select.custom-select1 {
     .navbar-brand img {
         width: 230px;
         height: 100px;
+        margin-right: 20px;
     }
 
     .coustom-select .form-select {
@@ -1383,12 +1322,6 @@ select.form-select.custom-select1 {
         padding: 0 !important;
         margin-right: 10px;
         font-size: 16px;
-    }
-
-
-    .navbar-brand img {
-        width: 180px;
-        height: 80px;
     }
 
     .coustom-select .form-select {
@@ -1568,25 +1501,32 @@ select.form-select.custom-select1 {
         color: #000;
     }
 
-
-    .logo1 svg {
-        height: 60px;
-    }
-
-    // .logo1 {
-    //     // width: 250px;
-    //     /* Adjust width of the logo image */
-    //     height: auto;
-    //     /* Maintain aspect ratio */
-    // }
-
     .logo1 {
         position: relative;
-        /* Ensure the logo is the reference for absolute positioning */
         display: flex;
-        margin-left: auto;
+        margin-left: 0;
         margin-right: auto;
+        justify-content: center;
         top: 5px;
+        width: calc(100% - 80px);
+    }
+
+    .logo1::after,
+    .logo1::before {
+        content: "";
+        display: block;
+        height: 1px;
+        width: calc(50% - 60px);
+        background-color: white;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .logo1::after {
+        left: auto;
+        right: 0;
     }
 
     .navbar-collapse {
@@ -1610,24 +1550,6 @@ select.form-select.custom-select1 {
         margin-top: 8px;
     }
 
-    .logo1::after {
-        content: "";
-        display: block;
-        /* Ensures the pseudo-element is a block-level element */
-        height: 1px;
-        /* Thickness of the line */
-        width: 180px;
-        /* Width of the line */
-        background-color: white;
-        /* Color of the line */
-        position: absolute;
-        /* Absolute positioning for alignment */
-        left: 100%;
-        /* Aligns the line to the right of the logo */
-        top: 43%;
-        /* Center vertically with respect to the logo */
-        transform: translateY(-50%);
-    }
 
     .social-links li {
         margin-bottom: 40px;
@@ -1635,25 +1557,7 @@ select.form-select.custom-select1 {
         color: white;
     }
 
-    .logo1::before {
-        content: "";
-        display: block;
-        /* Ensures the pseudo-element is a block-level element */
-        height: 1px;
-        /* Thickness of the line */
-        width: 180px;
-        /* Width of the line */
-        background-color: white;
-        /* Color of the line */
-        position: absolute;
-        /* Absolute positioning for alignment */
-        right: 100%;
-        /* Aligns the line to the left of the logo */
-        top: 43%;
-        /* Center vertically with respect to the logo */
-        transform: translateY(-50%);
-        /* Center the line vertically */
-    }
+
 
     .navbar-nav {
         display: none;
@@ -1737,13 +1641,10 @@ select.form-select.custom-select1 {
 
     .follow-us {
         display: inline-block;
-        /* Ensure the element is an inline-block for rotation */
         transform: rotate(-90deg);
-        /* Rotate counterclockwise */
         transform-origin: right bottom;
-        /* Adjust this if needed */
         white-space: nowrap;
-        /* Prevent text wrapping if needed */
+        letter-spacing: 3px;
     }
 
     .nav-link.active {
@@ -1900,14 +1801,6 @@ select.form-select.custom-select1 {
         margin-left: 0;
     }
 
-    .logo1::after {
-        width: 130px;
-    }
-
-    .logo1::before {
-        width: 130px;
-    }
-
 }
 
 @media (max-width: 575px) {
@@ -1915,6 +1808,7 @@ select.form-select.custom-select1 {
         margin-left: 10px;
         margin-right: 10px;
     }
+
     .logo-image img {
         height: 60px;
         width: 70px;
@@ -1924,21 +1818,8 @@ select.form-select.custom-select1 {
         height: 44px;
     }
 
-    .navbar-brand img {
-        width: 130px;
-        height: 58px;
-    }
-
     .footer-bottom p {
         font-size: 16px;
-    }
-
-    // .sidebar {
-    //     display: block;
-    // }
-    .logo1 svg {
-        height: 60px;
-        margin-top: 10px;
     }
 
     p.mb-0 {
@@ -2049,14 +1930,6 @@ select.form-select.custom-select1 {
         font-size: 14px;
     }
 
-    .logo1::after {
-        width: 65px;
-    }
-
-    .logo1::before {
-        width: 65px;
-    }
-
     .navbar-nav {
         display: none;
     }
@@ -2150,7 +2023,7 @@ select.form-select.custom-select1 {
     }
 
     .social-links li {
-        margin-bottom: 40px;
+        margin-bottom: 20px;
     }
 
     .d-flex {
@@ -2160,17 +2033,6 @@ select.form-select.custom-select1 {
     select.form-select.custom-select1.hidden {
         display: none;
         /* Hide the element */
-    }
-
-    .follow-us {
-        display: inline-block;
-        /* Ensure the element is an inline-block for rotation */
-        transform: rotate(-90deg);
-        /* Rotate counterclockwise */
-        transform-origin: right bottom;
-        /* Adjust this if needed */
-        white-space: nowrap;
-        /* Prevent text wrapping if needed */
     }
 
     .nav-link.active {
@@ -2297,7 +2159,7 @@ select.form-select.custom-select1 {
     }
 
     .login .modal-footer {
-        padding: 0px 30px;
+        padding: 0px 30px 15px;
     }
 
     .login .modal-body {
@@ -2343,23 +2205,6 @@ select.form-select.custom-select1 {
         margin-right: 0;
     }
 
-    .logo1::after {
-        left: 95%;
-        top: 33px;
-        width: 51px;
-    }
-
-    .logo1::before {
-        right: 95%;
-        top: 33px;
-        width: 51px;
-    }
-
-    .logo1 img {
-        height: 72px;
-        width: 200px;
-    }
-
     .nav-link {
         font-size: 17px;
         font-weight: 600;
@@ -2388,11 +2233,6 @@ select.form-select.custom-select1 {
         margin-right: auto;
     }
 
-    .logo1 svg {
-        height: 55px;
-        margin-top: 10px;
-    }
-
     .register .register {
         font-size: 15px;
     }
@@ -2405,11 +2245,6 @@ select.form-select.custom-select1 {
         height: 30px;
         margin-right: 0;
     }
-
-    .logo1 img {
-        height: 72px;
-        width: 200px;
-    }
 }
 
 @media(max-width: 361px) {}
@@ -2417,11 +2252,6 @@ select.form-select.custom-select1 {
 @media (max-width: 321px) {
     input:checked+.slider:before {
         transform: translateX(21px);
-    }
-
-    .navbar-brand img {
-        width: 115px;
-        height: 50px;
     }
 
     .logo svg {
@@ -2433,11 +2263,6 @@ select.form-select.custom-select1 {
         height: 33px;
         font-size: 14px;
         padding: 0px 0px 0px 10px;
-    }
-
-    .logo1 img {
-        height: 65px;
-        width: 220px;
     }
 
     .logo h6 {
@@ -2517,20 +2342,6 @@ select.form-select.custom-select1 {
     .register .form-control {
         height: 30px;
     }
-    .logo1 svg {
-        height: 45px;
-    }
-
-    .logo1::after {
-        left: 85%;
-        top: 50%;
-
-    }
-
-    .logo1::before {
-        right: 85%;
-        top: 50%;
-    }
 
     .footer-bottom p {
         font-size: 11px;
@@ -2609,19 +2420,6 @@ select.form-select.custom-select1 {
     }
 }
 
-//     .forget-password .modal-btn .btn {
-//         padding: 6px;
-//     }
-
-//     .forget-password .btn.btn-primary.d-block {
-//         font-size: 12px;
-//     }
-
-//     &.active {
-//         border-color: #e05263;
-//     }
-// }
-
 .seperter {
     position: relative;
 
@@ -2696,6 +2494,59 @@ select.form-select.custom-select1 {
 .toggle-checkbox:checked~.toggle-slot .toggle-button {
     background-color: #072944;
     transform: translate(110%, -50%) rotate(360deg);
-    background-image:  url('../../../../assets/images/images-moon-removebg-preview-A5CDJ5QQ.png');
+    background-image: url('../../../../assets/images/images-moon-removebg-preview-A5CDJ5QQ.png');
     background-size: 80%;
+}
+
+.empty-field {
+    border: 1px solid red;
+}
+
+@media (min-width: 992px) {
+    .nav_mobile_logo {
+        display: none;
+    }
+}
+
+@media (max-width: 991px) {
+    .nav_desktop_logo {
+        display: none;
+    }
+
+    .navbar-brand img {
+        width: 100px;
+        height: 100px;
+        object-fit: contain;
+    }
+
+    .sidebar img.nav_mobile_logo {
+        width: 120px;
+        height: 90px;
+        padding: 0 10px;
+        object-fit: contain;
+        position: relative;
+        z-index: 1;
+    }
+
+    .social-links li {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 575px) {
+    .follow-us {
+        position: relative;
+        top: -27px;
+    }
+}
+
+
+@media (max-width: 420px) {
+    .navbar-toggler {
+        width: 30px;
+
+        img {
+            width: 100%;
+        }
+    }
 }

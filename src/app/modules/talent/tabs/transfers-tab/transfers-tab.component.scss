@@ -102,14 +102,15 @@
   }
 
   .details_2 {
-    font-size: 16px;
+    font-size: 14px;
     color: #a9a9a9;
     font-weight: 400;
-    margin-bottom: 6px;
+    margin-bottom: 2px;
   }
   .details-1 {
     font-size: 16px;
     font-weight: 400;
+    margin-bottom: 2px;
   }
   .box-transfer{
     border-right: 1px solid #dadada;
@@ -131,11 +132,11 @@
   margin-bottom: 14px;
   }
   .moving_box {
-  padding: 0px 30px;
+  padding: 0px 0 0 10px;
   row-gap: 40px;
   }
   .transfer_underline{
-  margin: 40px 0px;
+  margin: 20px 0px;
   }
 
 }
@@ -223,14 +224,15 @@
   }
 
   .details_2 {
-    font-size: 16px;
+    font-size: 14px;
     color: #a9a9a9;
     font-weight: 400;
-    margin-bottom: 6px;
+    margin-bottom: 2px;
   }
   .details-1 {
     font-size: 16px;
     font-weight: 400;
+    margin-bottom: 2px;
   }
   .box-transfer{
     border-right: 1px solid #dadada;
@@ -252,9 +254,99 @@
   margin-bottom: 14px;
 }
 .moving_box {
-  padding: 0px 30px;
+  padding: 0px 0 0 10px;
   row-gap: 40px;
 }
 .transfer_underline{
   margin: 40px 0px;
+}
+
+.moving_box_inner h2 {
+  font-size: 16px;
+  text-transform: uppercase;
+  color: rgba(17, 20, 24, 1);
+  margin-bottom: 15px;
+}
+.moving_box .btn_column{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+.edit_button {
+  padding: 4px 8px 2px !important;
+  font-size: 14px;
+  margin-bottom: 10px;
+  border: 1px solid rgba(217, 217, 217, 1);
+  display: block;
+}
+}
+.moving_box .edit_button svg {
+  width: 18px;
+  position: relative;
+  left: -3px;
+  top: -2px;
+}
+.moving_box_inner .moving_logo, .moving_box_inner .moving_country {
+  margin-bottom: 20px;
+}
+.moving_box_inner .moving-team-logo img {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+  object-position: left;
+}
+.moving_box_inner .moving_country .moving-team-logo img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+
+@media (max-width: 1300px) {
+  .details-1 {
+    font-size: 14px;
+  }
+  .details_2 {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 991px) {
+  .moving_box {
+    padding: 0;
+  }
+  .transfer_box.row {
+    flex-wrap: wrap-reverse;
+}
+.transfer_box .box-transfer {
+  border-right: 0;
+}
+}
+
+@media (max-width: 991px) and (min-width: 576px) {
+.transfer_box .box-transfer {
+  display: flex;
+  flex-direction: row;
+  padding: 0 .75rem;
+  margin-bottom: 20px;
+}
+.transfer_box .box-transfer .col-lg-12:last-child {
+  margin-left: -20px;
+}
+}
+
+
+@media (max-width: 575px){
+.moving_box_inner .moving-team-logo img {
+  width: 30px;
+  height: 30px;
+}
+.moving_box .btn_column .edit_button span {
+    display: none;
+}
+.moving_box .btn_column .edit_button svg {
+  left: 0;
+}
+.moving_box .moving_box_inner {
+  margin-top: -120px;
+}
 }

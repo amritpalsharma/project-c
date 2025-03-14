@@ -6,6 +6,7 @@ import { WebPages } from '../../../services/webpages.service';
 import { SharedService } from '../../../services/shared.service';
 import { AuthService } from '../../../services/auth.service';
 import { ThemeService } from '../../../services/theme.service';
+import { GlobalSettingsService } from '../../../services/global-settings.service';
 
 export interface ClubMember {
   name: string;
@@ -65,14 +66,16 @@ export interface ClubMember {
 })
 export class IndexComponent {
   @ViewChild('owlCarousel') owlCarousel!: ElementRef;
-  fallbackImage: string = 'assets/images/1.jpg'; // Path to your fallback image
-
+  fallbackImage: string = 'assets/images/1.png'; // Path to your fallback image
+  currentTheme: string = 'light';
   selectedLangId: any = null;
   pageDetail: any = null;
   sliderDetail: any = null;
   // advertisementData:any=null;
+  advertisementList: any = null;
   imageBaseUrl: string = '';
   banner_img: string = '';
+  banner_img_dark_mode: string = '';
   banner_bg_img: string = '';
   hero_bg_img: string = '';
   hero_bg_img_dark_mode: string = '';
@@ -81,6 +84,13 @@ export class IndexComponent {
   club_logo_path: string = '';
   pre_club_logo_path: string = '';
   heroSectionBgImage: string = '';
+
+
+  isLoading : boolean = true;
+  btnLoading : boolean = true;
+  countdown: number = 10;
+
+
   players = [
     { name: 'Ronaldinho Gaúcho', image: './assets/images/Ronaldinho Gaúcho.svg', year: '2004' },
     { name: 'Ziddane', image: './assets/images/ziddane.svg', year: '2004' },
@@ -237,7 +247,7 @@ export class IndexComponent {
   // Manage Navbar Expansion
   isNavbarExpanded = false;
 
-  constructor(private shareservice: SharedService, private advertisementService: AdvertisementService, private webPages: WebPages, private authService: AuthService, private themeService: ThemeService) {
+  constructor(private shareservice: SharedService, private advertisementService: AdvertisementService, private webPages: WebPages, private authService: AuthService, private themeService: ThemeService, private globalSettings: GlobalSettingsService) {
 
   }
 
@@ -300,9 +310,13 @@ export class IndexComponent {
   adVisible: boolean[] = [true, true, true, true, true]; // Array to manage ad visibility
 
   ngOnInit() {
+    this.globalSettings.indexFunctionCall$.subscribe(() => {
+      this.indexFunction(); // Call the function when event is received
+    });
     // Initially, all ads are visible
     this.isUserLoggedIn = this.authService.isLoggedIn();
     this.adVisible = [true, true, true, true, true];
+    // alert(localStorage.getItem('lang'));
     this.webPages.languageId$.subscribe((data) => {
       this.getPageDynamicData(data);
     });
@@ -310,6 +324,8 @@ export class IndexComponent {
     this.themeService.theme$.subscribe(() => {
       this.chnageHerosectionBgImg();
     });
+    let selectedLang = localStorage.getItem('lang');
+    console.warn('In Index component LocalStorage Language selected = ' + selectedLang)
   }
 
   closeAd(object: any) {
@@ -336,23 +352,48 @@ export class IndexComponent {
       if (res.status) {
         this.pageDetail = pageData;
         this.banner_img = res.data.base_url + pageData.banner_img;
+        this.banner_img_dark_mode = res.data.base_url + pageData.banner_img_dark_mode;
         this.banner_bg_img = res.data.base_url + pageData.banner_bg_img;
         this.hero_bg_img = res.data.base_url + pageData.hero_bg_img;
         this.hero_bg_img_dark_mode = res.data.base_url + pageData.hero_bg_img_dark_mode;
 
         this.sliderDetail = sliderData;
+        if (sliderData.totalCount < 6) {
+          for (let i = sliderData.totalCount; i < 7; i++) {
+            this.sliderDetail.users.push({ isPlaceholder: true, role_name: 'talent', first_name: 'lorem', last_name: 'ipusam', meta: { profile_image_path: this.fallbackImage, date_of_birth: '04-01-2002' } });
+          }
+          console.warn('placeholders ', this.sliderDetail.users);
+        } else {
+          console.warn('Slider is greater than 6');
+        }
         this.club_logo_path = this.sliderDetail.imagePath;
         this.pre_club_logo_path = this.sliderDetail.flagPath;
-        this.advertisementData = res.data.advertisemnetData;
+        this.advertisementData = res.data.advertisementData;
+        this.advertisementList = res.data.allAdsList;
         // this.advertisementData = [];
 
         // console.log('advertisementData', this.advertisementData);
         this.imageBaseUrl = res.data.base_url;
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
 
+        this.isLoading = false;
+
+        this.startCountdown();
+
 
       }
     });
+  }
+
+  startCountdown() {
+    this.countdown = 5; // Reset countdown
+    const interval = setInterval(() => {
+      this.countdown--;
+      if (this.countdown === 0) {
+        clearInterval(interval);
+        this.btnLoading = false; // Stop loading when countdown reaches 0
+      }
+    }, 1000);
   }
 
   getFlagImage(data: any) {
@@ -382,11 +423,14 @@ export class IndexComponent {
   }
 
   isExists(key: any): boolean {
-    return this.advertisementData && key in this.advertisementData;
-  }
-
+    return (this.advertisementData && key in this.advertisementData) || this.advertisementList.includes(key);
+  } 
 
   isFeaturedImageExists(key: any): boolean {
-    return 'featured_image' in this.advertisementData[key];
+    return this.advertisementData && this.advertisementData[key] && 'featured_image' in this.advertisementData[key];
+  }
+
+  indexFunction() {
+    this.currentTheme = localStorage.getItem('theme') + '';
   }
 }

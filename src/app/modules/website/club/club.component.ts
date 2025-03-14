@@ -1,5 +1,15 @@
+interface FeatureSection {
+  title: string;
+  desc: string;
+  icon: string;
+  dark_icon: string;
+  image: string;
+  dark_image: string;
+}
+
 import { Component } from '@angular/core';
 import { WebPages } from '../../../services/webpages.service';
+import { GlobalSettingsService } from '../../../services/global-settings.service';
 
 @Component({
   selector: 'app-club',
@@ -7,28 +17,53 @@ import { WebPages } from '../../../services/webpages.service';
   styleUrl: './club.component.scss'
 })
 export class ClubComponent {
-  baseUrl:string='';
-  pageData:any = [{
-    banner_title:'',
-    banner_desc:'',
-    banner_btn_txt:'',
-    club_nd_scout_section_title:'',
-    club_nd_scout_section:[],
-    feature_sctn_title:'',
-    feature_sctn:[],
-    pricing_sctn_title:'',
-    pricing_tab:[],
+  baseUrl: string = '';
+  currentFeatureImage: string = '';
+  accordinCurrentIndex: number = 0;
+  feature_sctn: any = [];
+  currentTheme: string = localStorage.getItem('theme') + '';
+  pageData: any = [{
+    banner_title: '',
+    banner_desc: '',
+    banner_btn_txt: '',
+    club_nd_scout_section_title: '',
+    club_nd_scout_section: [],
+    feature_sctn_title: '',
+    feature_sctn: [],
+    pricing_sctn_title: '',
+    pricing_tab: [],
   }];
-  advertisemnetData:any=null;
-  advertisemnet_base_url:string= '';
+  // advertisementData:any=null;
+  activeIndex: number = 0;
+
+  advertisementList: any = null;
+  advertisemnet_base_url: string = '';
+  isLoading: boolean = true;
+  btnLoading: boolean = true;
+  countdown: number = 10;
+
 
   isActive1 = true; // Premium Plan
   isActive2 = true; // Multi-Country Plan
   isActive3 = true; // Multi-Country Plan
 
   activeAccordionIndex = 1;
+  Currency: string = '';
+  premiumPackageName: string = '';
 
-  constructor( private webPages: WebPages){ 
+  premiumPrice: number = 0;
+  premiumYearlyPrice: number = 0;
+
+  boostPrice: number = 0;
+  boostYearlyPrice: number = 0;
+
+
+  countryPrice: number = 0;
+  countryYearlyPrice: number = 0;
+
+  // 
+
+  constructor(private webPages: WebPages, private globalSettings: GlobalSettingsService) {
 
   }
 
@@ -49,26 +84,33 @@ export class ClubComponent {
     this.isActive2 = savedState2 === 'true' ? true : false;
     this.isActive3 = savedState2 === 'true' ? true : false;
 
-    this.webPages.languageId$.subscribe((data) => {
-    this.getPageData(data)
-  });
+    this.getCurrencyPrice('monthly');
+    this.getCurrencyPrice('yearly');
 
+    this.webPages.languageId$.subscribe((data) => {
+      this.getPageData(data);
+      this.getCurrencyPrice('monthly');
+      this.getCurrencyPrice('yearly');
+    });
+    this.globalSettings.indexFunctionCall$.subscribe(() => {
+      this.ThemeUpdated(); // Call the function when event is received
+    });
   }
 
-  
-  isActive : any = {
+
+  isActive: any = {
     skyscraper: true,
     wide_skyscraper: true,
     leaderboard: true,
-    large_leaderboard:true,
+    large_leaderboard: true,
     banner: true,
-    square:true,
+    square: true,
     small_square: true,
     large_rectangle: true,
     inline_rectangle: true,
   }
 
-  advertisementData:any = {
+  advertisementData: any = {
     skyscraper: {
       id: '1',
       featured_image: "leaderboard.png"
@@ -107,49 +149,70 @@ export class ClubComponent {
     },
   }
 
-  getPageData(languageId: any){
-    this.webPages.getDynamicContentPage('clubs_and_scouts',languageId).subscribe((res) => {
-      if(res.status){
-          this.pageData = res.data.pageData;
-          this.baseUrl = res.data.base_url;
-         
-          this.advertisemnetData = res.data.advertisemnetData;
-          // this.advertisemnetData = [];
-          this.advertisemnet_base_url = res.data.advertisemnet_base_url;
-        
-          // Initialize toggle states for pricing plans with Monthly active (false)
-          this.pageData.pricing_tab.forEach((_: any, index: number) => {
-            this.isActivePlan[index] = false; // Default to "Monthly"
-          });
+  getPageData(languageId: any) {
+    this.webPages.getDynamicContentPage('clubs_and_scouts', languageId).subscribe((res) => {
+      if (res.status) {
+        this.pageData = res.data.pageData;
+        this.baseUrl = res.data.base_url;
 
+
+        this.advertisementData = res.data.advertisementData;
+        this.advertisementList = res.data.allAdsList;
+        // this.advertisementData = [];
+        this.advertisemnet_base_url = res.data.advertisemnet_base_url;
+
+        // Initialize toggle states for pricing plans with Monthly active (false)
+        this.pageData.pricing_tab.forEach((_: any, index: number) => {
+          this.isActivePlan[index] = false; // Default to "Monthly"
+        });
+        if (this.pageData.feature_sctn && typeof this.pageData.feature_sctn != undefined) {
+          this.feature_sctn = this.pageData.feature_sctn;
+
+          setTimeout(() => {
+            this.getArrayItemByIndex(this.accordinCurrentIndex, 'image');
+          }, 1000);
         }
+        this.isLoading = false;
+        this.startCountdown();
+      }
     });
+  }
+
+  startCountdown() {
+    this.countdown = 5; // Reset countdown
+    const interval = setInterval(() => {
+      this.countdown--;
+      if (this.countdown === 0) {
+        clearInterval(interval);
+        this.btnLoading = false; // Stop loading when countdown reaches 0
+      }
+    }, 1000);
   }
 
   // closeAd(object: any) {
 
   //   switch(object){
   //     case 'skyscraper':
-  //         this.advertisemnetData.skyscraper = [];
+  //         this.advertisementData.skyscraper = [];
   //         break;
   //     case 'small_square':
-  //         this.advertisemnetData.small_square = [];
+  //         this.advertisementData.small_square = [];
   //         break;
   //     case 'leaderboard':
-  //         this.advertisemnetData.leaderboard = [];
+  //         this.advertisementData.leaderboard = [];
   //         break;
   //     case 'large_leaderboard':
-  //         this.advertisemnetData.large_leaderboard = [];
+  //         this.advertisementData.large_leaderboard = [];
   //         break;
   //     case 'large_rectangle':
-  //         this.advertisemnetData.large_rectangle = [];
+  //         this.advertisementData.large_rectangle = [];
   //         break;
 
   //     case 'inline_rectangle':
-  //         this.advertisemnetData.inline_rectangle = [];
+  //         this.advertisementData.inline_rectangle = [];
   //         break;
   //     case 'square':
-  //         this.advertisemnetData.square = [];
+  //         this.advertisementData.square = [];
   //         break;
   //     default:
   //         //when no case is matched, this block will be executed;
@@ -201,7 +264,7 @@ export class ClubComponent {
   ];
 
   adVisible: boolean[] = [true, true, true, true, true, true, true]; // Array to manage ad visibility
-  
+
   // isEmptyObject(obj:any) {
   //   if(typeof obj != 'undefined'){
   //     return (obj && (Object.keys(obj).length === 0));
@@ -226,10 +289,10 @@ export class ClubComponent {
   // isExists(key: string): boolean {
   //   return key in this.advertisementData && 'featured_image' in this.advertisementData[key];
   // }
-  
 
-  isEmptyObject(obj:any) {
-    if(typeof obj != 'undefined'){
+
+  isEmptyObject(obj: any) {
+    if (typeof obj != 'undefined') {
       return (obj && (Object.keys(obj).length === 0));
     }
     return true;
@@ -246,12 +309,108 @@ export class ClubComponent {
     return false;
   }
 
+  // isExists(key: any): boolean {
+  //   return key in this.advertisementData;
+  // }
+
   isExists(key: any): boolean {
-    return key in this.advertisementData;
+    return (this.advertisementData && key in this.advertisementData) || this.advertisementList.includes(key);
   }
 
   isFeaturedImageExists(key: any): boolean {
-    return 'featured_image' in this.advertisementData[key];
+    return this.advertisementData && this.advertisementData[key] && 'featured_image' in this.advertisementData[key];
   }
 
+  getCurrencyPrice(interval: string) {
+    this.webPages.getPriceAndCurrency(interval).subscribe((res) => {
+      if (res.status) {
+        if (res.status && res.data?.premium?.plans?.length > 0) {
+          this.Currency = res.data.premium.plans[0].currency;
+          if (interval == 'yearly') {
+            this.premiumYearlyPrice = parseInt(res.data.premium.plans[0].price, 10);
+            this.boostYearlyPrice = parseInt(res.data.booster.plans[0].price, 10);
+            this.countryYearlyPrice = parseInt(res.data.country.plans[0].price, 10);
+          }
+          if (interval == 'monthly') {
+            this.premiumPrice = parseInt(res.data.premium.plans[0].price, 10);
+            this.boostPrice = parseInt(res.data.booster.plans[0].price, 10);
+            this.countryPrice = parseInt(res.data.country.plans[0].price, 10);
+          }
+        }
+      }
+    })
+  }
+
+  // getPlanPrice(planName: string, isMonthly: boolean): number {
+  //   if (!planName) return 0;
+
+  //   const lowerPlanName = planName.toLowerCase();
+
+  //   if (lowerPlanName.includes('premium')) {
+  //     return isMonthly ? this.premiumPrice : this.premiumYearlyPrice;
+  //   }
+  //   if (lowerPlanName.includes('country') || lowerPlanName.includes('multi') || lowerPlanName.includes('flera')) {
+  //     return isMonthly ? this.countryPrice : this.countryYearlyPrice;
+  //   }
+  //   if (lowerPlanName.includes('boost') || lowerPlanName.includes('perfil')) {
+  //     //
+  //     return isMonthly ? this.boostPrice : this.boostYearlyPrice;
+  //   }
+
+  //   console.warn(lowerPlanName);
+  //   return 0; // Default price if no match
+  // }
+  getPlanPrice(planName: string, isMonthly: boolean): number {
+    if (!planName) return 0;
+
+    const lowerPlanName = planName.toLowerCase();
+
+    if (lowerPlanName.includes('premium')) {
+      return !isMonthly ? this.premiumPrice : this.premiumYearlyPrice;
+    }
+    if (lowerPlanName.includes('country') || lowerPlanName.includes('multi') || lowerPlanName.includes('flera')) {
+      return !isMonthly ? this.countryPrice : this.countryYearlyPrice;
+    }
+    if (lowerPlanName.includes('boost')) {
+      return !isMonthly ? this.boostPrice : this.boostYearlyPrice;
+    }
+    return 0; // Default price if no match
+  }
+  trackByFn(index: number, item: any): number {
+    return index; // Tracks items by index to prevent re-rendering
+  }
+
+  getArrayItemByIndex(index: number, field: keyof FeatureSection) {
+    // alert('button clicked')
+    let theme = localStorage.getItem('theme');
+    console.info(this.feature_sctn);
+    if (index >= 0 && index < this.feature_sctn.length) {
+      this.accordinCurrentIndex = index;
+      if (theme == 'dark') {
+        this.currentFeatureImage = this.feature_sctn[index]['dark_image'];
+      } else {
+        this.currentFeatureImage = this.feature_sctn[index]['image'];
+      }
+      if (this.currentFeatureImage != '') {
+        this.currentFeatureImage = this.baseUrl + this.currentFeatureImage;
+      }
+      // alert(this.currentFeatureImage)
+      console.warn('Index is ' + index + ' Image is ' + this.currentFeatureImage)
+    }
+    console.warn('Index is ' + index + ' Image is ' + this.currentFeatureImage)
+  }
+  ThemeUpdated() {
+    this.getArrayItemByIndex(this.accordinCurrentIndex, 'image');
+    this.currentTheme = localStorage.getItem('theme') + '';
+  }
+
+  setActiveAccordionNew(index: number): void {
+    if (this.activeIndex === index) {
+      // If the clicked tab is already active, close it
+      this.activeIndex = -1;
+    } else {
+      // Open the clicked tab
+      this.activeIndex = index;
+    }
+  }
 }

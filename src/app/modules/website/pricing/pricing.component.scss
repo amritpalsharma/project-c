@@ -23,9 +23,9 @@ p {
     margin-top: 50px;
     margin-bottom: 50px;
 }
-.advertisment{
-    min-height: 300px;
-}
+// .advertisment{
+//     min-height: 300px;
+// }
 li {
     font-size: 17px;
     color: white;
@@ -81,7 +81,7 @@ body {
 }
 
 .main-bnr {
-    background-image: url("../../../../assets/images/Pricing-banner.png");
+    // background-image: url("../../../../assets/images/Pricing-banner.png");
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
@@ -349,75 +349,75 @@ li::before {
 
 // advertisement
 
-.skyscraper-left{
-    height: 600px;
-    width: 120px;
-    content: "";
-    z-index: 1;
-    position: absolute;
-    left: 1%;
-    top: 43%;
-}
-.skyscraper-left img{
-    height: 600px;
-    width: 120px;
-}
-.skyscraper-right{
-    height: 600px;
-    width: 120px;
-    content: "";
-    z-index: 1;
-    position: absolute;
-    right: 1%;
-    top: 43%;
-}
-.skyscraper-right img{
-    height: 600px;
-    width: 120px;
-}
+// .skyscraper-left{
+//     height: 600px;
+//     width: 120px;
+//     content: "";
+//     z-index: 1;
+//     position: absolute;
+//     left: 1%;
+//     top: 43%;
+// }
+// .skyscraper-left img{
+//     height: 600px;
+//     width: 120px;
+// }
+// .skyscraper-right{
+//     height: 600px;
+//     width: 120px;
+//     content: "";
+//     z-index: 1;
+//     position: absolute;
+//     right: 1%;
+//     top: 43%;
+// }
+// .skyscraper-right img{
+//     height: 600px;
+//     width: 120px;
+// }
 
-.large-rectangle {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    content: "";
-    height: 280px;
-    width: 336px;
-  }
+// .large-rectangle {
+//     position: absolute;
+//     left: 0;
+//     bottom: 0;
+//     content: "";
+//     height: 280px;
+//     width: 336px;
+//   }
   
-  .large-rectangle img {
-    height: 280px;
-    width: 336px;
-  }
+//   .large-rectangle img {
+//     height: 280px;
+//     width: 336px;
+//   }
   
-  .inline-rectangle {
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    transform: translateX(-50%);
-    content: "";
-    width: 300px;
-    height: 250px;
-  }
+//   .inline-rectangle {
+//     position: absolute;
+//     left: 50%;
+//     bottom: 0;
+//     transform: translateX(-50%);
+//     content: "";
+//     width: 300px;
+//     height: 250px;
+//   }
   
-  .inline-rectangle img {
-    width: 300px;
-    height: 250px;
-  }
+//   .inline-rectangle img {
+//     width: 300px;
+//     height: 250px;
+//   }
   
-  .square {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    content: "";
-    width: 250px;
-    height: 250px;
-    display: flex;
-  }
-.advertisement {
-    position: relative;
-    height: 400px;
-  }
+//   .square {
+//     position: absolute;
+//     right: 0;
+//     bottom: 0;
+//     content: "";
+//     width: 250px;
+//     height: 250px;
+//     display: flex;
+//   }
+// .advertisement {
+//     position: relative;
+//     height: 400px;
+//   }
 
   .mat-mdc-icon-button .mat-icon {
     z-index: 1;
@@ -578,19 +578,19 @@ li::before {
         margin-left: 0px;
         padding: 20px;
     }
-    .leaderboard-club-image img,
-    .small-sqaure-image img,
-    .skyscraper-image img,
-    .skyscraper-image img,
-    .wide-skyscraper-image img,
-    .leaderboard-image img,
-    .banner-image img,
-    .advertisement,
-    .advertisement1, 
-    .skyscraper-left img,
-    .skyscraper-right img{
-      display: none;
-    }
+    // .leaderboard-club-image img,
+    // .small-sqaure-image img,
+    // .skyscraper-image img,
+    // .skyscraper-image img,
+    // .wide-skyscraper-image img,
+    // .leaderboard-image img,
+    // .banner-image img,
+    // .advertisement,
+    // .advertisement1, 
+    // .skyscraper-left img,
+    // .skyscraper-right img{
+    //   display: none;
+    // }
 }
 
 @media (max-width: 767px) {}

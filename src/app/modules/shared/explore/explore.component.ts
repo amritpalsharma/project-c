@@ -8,6 +8,7 @@ import { ScoutService } from '../../../services/scout.service';
 import { TranslateService } from '@ngx-translate/core';
 import { WebPages } from '../../../services/webpages.service';
 import { lang } from 'moment';
+import { GlobalSettingsService } from '../../../services/global-settings.service';
 
 @Component({
   selector: 'shared-explore',
@@ -16,6 +17,25 @@ import { lang } from 'moment';
 })
 export class ExploreComponent implements OnInit {
 
+  constructor(
+    private toastr: ToastrService,
+    private talentService: TalentService,
+    private router: Router,
+    private cdr: ChangeDetectorRef,
+    private socketService: SocketService,
+    private translateService: TranslateService,
+    public webPages: WebPages,
+    private globalSettings: GlobalSettingsService
+  ) {
+    this.language = translateService.currentLang || 'en';  // Get current language
+    this.loadRoles(this.language);  // Load Roles based on selected language
+    translateService.onLangChange.subscribe(() => {
+      this.language = translateService.currentLang;
+      console.log(this.language);
+      this.loadRoles(this.language);
+    });
+  }
+  userDomain: number = this.globalSettings.getdomainId();
   players: any[] = [];
   pageSize = 15; // Default page size
   totalItems: number = 0;
@@ -49,6 +69,7 @@ export class ExploreComponent implements OnInit {
   // Filters and UI variables (other code omitted for brevity)
   viewsTracked: { [profileId: string]: { viewed: boolean, clicked: boolean } } = {}; // Track view and click per profile
   isLoading: boolean = false;
+  noUsersFound: boolean = false;
 
   roles_en = [
     { role: 'Clubs', id: 2 },
@@ -106,25 +127,6 @@ export class ExploreComponent implements OnInit {
     { role: 'Liga', id: 5 }
   ];
 
-
-  constructor(
-    private toastr: ToastrService,
-    private talentService: TalentService,
-    private router: Router,
-    private cdr: ChangeDetectorRef, 
-    private socketService: SocketService,
-    private translateService: TranslateService,
-    public webPages: WebPages
-  ) {
-    this.language = translateService.currentLang || 'en';  // Get current language
-    this.loadRoles(this.language);  // Load Roles based on selected language
-    translateService.onLangChange.subscribe(() => {
-      this.language = translateService.currentLang;
-      console.log(this.language);
-      this.loadRoles(this.language);
-    });
-  }
-
   ngOnInit(): void {
 
     this.loggedInUser = JSON.parse(this.loggedInUser);
@@ -157,8 +159,8 @@ export class ExploreComponent implements OnInit {
     }
   }
 
-  loadRoles(lang : string) {
-    const currentRole : { [key: string]: any } = {
+  loadRoles(lang: string) {
+    const currentRole: { [key: string]: any } = {
       en: this.roles_en,
       de: this.roles_de,
       dk: this.roles_dk,
@@ -255,9 +257,10 @@ export class ExploreComponent implements OnInit {
       limit: pageSize,
       whereClause: {
         role: this.selectedRole,
-        user_domain: this.selectedCountry,
+        location: this.selectedCountry,
         age: this.selectedAge,
-        position: this.selectedPositions
+        position: this.selectedPositions,
+        user_domain: this.userDomain
       },
       metaQuery: [],
       lang: localStorage.getItem('lang_id')
@@ -310,6 +313,10 @@ export class ExploreComponent implements OnInit {
         if (response?.status && response?.data) {
           this.players = response.data.userData.users;
           this.totalItems = response.data.userData.totalCount;
+          this.noUsersFound = false;
+          if (this.totalItems < 0 || this.totalItems == 0) {
+            this.noUsersFound = true;
+          }
           this.trackBoostedProfileViews(this.players); // Track views if necessary
           setTimeout(() => this.cdr.detectChanges(), 0);
         } else {
@@ -339,9 +346,9 @@ export class ExploreComponent implements OnInit {
   }
 
   loadCountries(): void {
-      // Prepare query parameters
+    // Prepare query parameters
     let params: any = {
-      lang : localStorage.getItem('lang_id'),
+      lang: localStorage.getItem('lang_id'),
     };
 
     this.talentService.getDomains(params).subscribe(
@@ -360,7 +367,7 @@ export class ExploreComponent implements OnInit {
 
     // Prepare query parameters
     let params: any = {
-      lang : localStorage.getItem('lang_id'),
+      lang: localStorage.getItem('lang_id'),
     };
 
     this.talentService.getPositions(params).subscribe(
@@ -381,7 +388,7 @@ export class ExploreComponent implements OnInit {
 
     // Prepare query parameters
     let params: any = {
-      lang : localStorage.getItem('lang_id'),
+      lang: localStorage.getItem('lang_id'),
     };
 
     this.talentService.getLeagues(params).subscribe(
@@ -399,10 +406,10 @@ export class ExploreComponent implements OnInit {
   }
 
   loadClubs(): void {
-      // Prepare query parameters
-      let params: any = {
-        lang : localStorage.getItem('lang_id'),
-      };
+    // Prepare query parameters
+    let params: any = {
+      lang: localStorage.getItem('lang_id'),
+    };
 
     this.talentService.getClubs(params).subscribe(
       (response: any) => {

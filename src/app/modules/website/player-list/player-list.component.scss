@@ -212,6 +212,8 @@ select#numberSelect {
     position: absolute;
     border: none;
     z-index: 1;
+    width: 80px;
+    height: 65px;
     bottom: 28px;
     left: -1px;
     background: linear-gradient(10deg, #6FB95D, #236115);
@@ -336,84 +338,84 @@ button.page-active {
 
 // advertisement
 
-.skyscraper-left {
-    height: 600px;
-    width: 120px;
-    content: "";
-    z-index: 2;
-    position: absolute;
-    left: 0;
-    top: 10%;
-}
+// .skyscraper-left {
+//     height: 600px;
+//     width: 120px;
+//     content: "";
+//     z-index: 2;
+//     position: absolute;
+//     left: 0;
+//     top: 10%;
+// }
 
-.skyscraper-left img {
-    height: 600px;
-    width: 120px;
-}
+// .skyscraper-left img {
+//     height: 600px;
+//     width: 120px;
+// }
 
-.skyscraper-right {
-    height: 600px;
-    width: 120px;
-    content: "";
-    z-index: 2;
-    position: absolute;
-    right: 0;
-    top: 10%;
-}
+// .skyscraper-right {
+//     height: 600px;
+//     width: 120px;
+//     content: "";
+//     z-index: 2;
+//     position: absolute;
+//     right: 0;
+//     top: 10%;
+// }
 
-.skyscraper-right img {
-    height: 600px;
-    width: 120px;
-}
+// .skyscraper-right img {
+//     height: 600px;
+//     width: 120px;
+// }
 
-.large-rectangle {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    content: "";
-    height: 280px;
-    width: 336px;
-}
+// .large-rectangle {
+//     position: absolute;
+//     left: 0;
+//     bottom: 0;
+//     content: "";
+//     height: 280px;
+//     width: 336px;
+// }
 
-.large-rectangle img {
-    height: 280px;
-    width: 336px;
-}
+// .large-rectangle img {
+//     height: 280px;
+//     width: 336px;
+// }
 
-.inline-rectangle {
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    transform: translateX(-50%);
-    content: "";
-    width: 300px;
-    height: 250px;
-}
+// .inline-rectangle {
+//     position: absolute;
+//     left: 50%;
+//     bottom: 0;
+//     transform: translateX(-50%);
+//     content: "";
+//     width: 300px;
+//     height: 250px;
+// }
 
-.inline-rectangle img {
-    width: 300px;
-    height: 250px;
-}
+// .inline-rectangle img {
+//     width: 300px;
+//     height: 250px;
+// }
 
-.square {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    content: "";
-    width: 250px;
-    height: 250px;
-    display: flex;
-}
+// .square {
+//     position: absolute;
+//     right: 0;
+//     bottom: 0;
+//     content: "";
+//     width: 250px;
+//     height: 250px;
+//     display: flex;
+// }
 
-.square img {
-    width: 250px;
-    height: 250px;
-}
+// .square img {
+//     width: 250px;
+//     height: 250px;
+// }
 
-.advertisement {
-    position: relative;
-    height: 350px;
-}
+// .advertisement {
+//     position: relative;
+//     height: 350px;
+// }
 
 @media (max-width: 1199px) {
     .player-list {
@@ -429,19 +431,19 @@ button.page-active {
 
 @media (max-width: 991px) {
 
-    .leaderboard-club-image img,
-    .small-sqaure-image img,
-    .skyscraper-image img,
-    .skyscraper-image img,
-    .wide-skyscraper-image img,
-    .leaderboard-image img,
-    .banner-image img,
-    .advertisement,
-    .advertisement1,
-    .skyscraper-left img,
-    .skyscraper-right img {
-        display: none;
-    }
+    // .leaderboard-club-image img,
+    // .small-sqaure-image img,
+    // .skyscraper-image img,
+    // .skyscraper-image img,
+    // .wide-skyscraper-image img,
+    // .leaderboard-image img,
+    // .banner-image img,
+    // .advertisement,
+    // .advertisement1,
+    // .skyscraper-left img,
+    // .skyscraper-right img {
+    //     display: none;
+    // }
 }
 
 @media (max-width: 767px) {
@@ -599,11 +601,11 @@ button.page-active {
         .player-img:after {
             width: 80px;
             height: 65px;
-            bottom: -2px;
+            bottom: 28px;
         }
 
         .player-img {
-            height: 262px !important;
+            height: 100% !important;
             width: 100%;
 
             img {
@@ -653,10 +655,6 @@ button.page-active {
                     height: 210px !important;
                 }
             }
-
-            .player-img:after {
-                bottom: 0px;
-            }
         }
     }
 }
@@ -670,6 +668,19 @@ button.page-active {
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+    .players.player-card .flag-image7 {
+        transform: scale(0.75);
+        bottom: 35px;
+        left: 8px;
+    }
+    .player-list .tabs {
+        width: 100%;
+    }
+    .players.player-card .player1 .player-img:after {
+        width: 60px;
+        height: 55px;
+        bottom: 28px;
     }
 }
 

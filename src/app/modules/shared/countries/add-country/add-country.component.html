@@ -10,7 +10,8 @@
   <hr>
   <div class="country-information">
     <p>{{'addCountryText' | translate}}</p>
-    <h2>{{'Do you want to add “' + country.package_name + '” to your profile?' | translate}}</h2> <!--Use the country name dynamically-->
+    <h2>{{ 'doYouWantToaddPackage' | translate: { package_name: country.package_name } }}</h2>
+    <!-- <h2>{{'Do you want to add “' + country.package_name + '” to your profile?' | translate}}</h2> Use the country name dynamically -->
     <!-- <h2>{{ 'addCountry' | translate: { package_name: country.package_name } }}</h2> -->
     <div class="d-flex country-btn justify-content-between">
       <button class="cancel-button" (click)="dialogRef.close()">{{'cancel' | translate}}</button>

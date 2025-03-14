@@ -153,7 +153,7 @@ export class HeaderComponent {
         if (this.loggedInUser.profile_image_path) {
           this.profileImgUrl = this.loggedInUser.profile_image_path;
         } else {
-          this.profileImgUrl = "../../../assets/images/1.jpg";
+          this.profileImgUrl = "../../../assets/images/1.png";
         }
       }
 
@@ -161,7 +161,7 @@ export class HeaderComponent {
       if (this.loggedInUser.profile_image_path) {
         this.profileImgUrl = this.loggedInUser.profile_image_path;
       } else {
-        this.profileImgUrl = "../../../assets/images/1.jpg";
+        this.profileImgUrl = "../../../assets/images/1.png";
       }
 
       this.lang = localStorage.getItem('lang') || 'en';
@@ -214,7 +214,7 @@ export class HeaderComponent {
         // this.city = this.userData.meta.city || '';
         // this.state = this.userData.meta.state || '';
         // this.zipcode = this.userData.meta.zipcode || '';
-        this.profileImgUrl = userData.meta.profile_image_path || '../../../assets/images/1.jpg';
+        this.profileImgUrl = userData.meta.profile_image_path || '../../../assets/images/1.png';
         // this.isLoading = false;
 
       } else {
@@ -389,7 +389,7 @@ export class HeaderComponent {
 
   // notifications: Notification[] = [
   //   {
-  //     image: '../../../assets/images/1.jpg',
+  //     image: '../../../assets/images/1.png',
   //     title: 'Elton Price',
   //     content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
   //     time: '14 hours ago'

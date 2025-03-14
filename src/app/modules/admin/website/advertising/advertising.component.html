@@ -129,11 +129,16 @@
 
           <ng-template #secondCondition>
             <div *ngIf="element.valid_from && !element.valid_to; else defaultCondition">
-              {{ element.valid_from | date:'dd.MM.yyyy' }} Onwards
+              {{ element.valid_from === '0000-00-00' ? '31.12.2099' : (element.valid_from | date:'dd.MM.yyyy')  }} {{ 'Onwards' | translate}}
             </div>
           </ng-template>
           <ng-template #defaultCondition>
-            <div>{{ element.valid_from | date:'dd.MM.yyyy' }} - {{ element.valid_to | date:'dd.MM.yyyy' }}</div>
+            <!-- <div>{{ element.valid_from | date:'dd.MM.yyyy' }} - {{ element.valid_to | date:'dd.MM.yyyy' }}</div> -->
+            <div>
+              <!-- {{ element.valid_from | date:'dd.MM.yyyy' }} -  -->
+              {{ element.valid_from === '0000-00-00' ? '31.12.2099' : (element.valid_from | date:'dd.MM.yyyy') }} -
+              {{ element.valid_to === '0000-00-00' ? '31.12.2099' : (element.valid_to | date:'dd.MM.yyyy') }}
+            </div>            
           </ng-template>
         </td>
       </ng-container>

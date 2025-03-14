@@ -13,6 +13,11 @@ export class FaqComponent {
   faq_sec_btn_txt:string='';
   faq_third_btn_txt:string='';
   advertisemnet_base_url:string= '';
+
+  isLoading : boolean = true;
+  btnLoading : boolean = true;
+  countdown: number = 10;
+
   
   isOpen: { [key: string]: boolean[] } = {
     talent: [],
@@ -24,6 +29,8 @@ export class FaqComponent {
     this.initializeIsOpen();
   
   }
+  advertisementList: any= null;
+
   isActive : any ={
     skyscraper: true,
     wide_skyscraper: true,
@@ -95,14 +102,28 @@ export class FaqComponent {
           this.talentSections = res.data.pageData.faq_first_btn_content; //this.faq_first_btn_content
            this.clubSections = res.data.pageData.faq_sec_btn_content;
            this.scoutSections = res.data.pageData.faq_third_btn_content;
-           this.advertisementData = res?.data?.advertisemnetData;
+           this.advertisementData = res?.data?.advertisementData;
+           this.advertisementList = res?.data?.allAdsList;
 
            this.advertisemnet_base_url = res.data.advertisemnet_base_url;
+
+           this.isLoading = false;
+           this.startCountdown();
           
         }
     });
   }
 
+  startCountdown() {
+    this.countdown = 5; // Reset countdown
+    const interval = setInterval(() => {
+      this.countdown--;
+      if (this.countdown === 0) {
+        clearInterval(interval);
+        this.btnLoading = false; // Stop loading when countdown reaches 0
+      }
+    }, 1000);
+  }
   // Sections for each tab
   talentSections:any = [
     // {
@@ -329,10 +350,14 @@ export class FaqComponent {
   }
 
   isExists(key: any): boolean {
-    return key in this.advertisementData;
+    return (this.advertisementData && key in this.advertisementData) || this.advertisementList.includes(key);
   }
 
+  // isExists(key: any): boolean {
+  //   return key in this.advertisementData;
+  // }
+
   isFeaturedImageExists(key: any): boolean {
-    return 'featured_image' in this.advertisementData[key];
+    return this.advertisementData && this.advertisementData[key] && 'featured_image' in this.advertisementData[key];
   }
 }

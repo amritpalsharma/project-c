@@ -70,7 +70,6 @@ P {
     padding-top: 100px;
     height: 1000px;
 }
-
 .banner-data {
     padding-top: 130px;
 }
@@ -98,12 +97,12 @@ P {
 
 a.btn.btn-register {
     border-radius: 20px;
-    /* padding: 10px 60px; */
+    padding: 10px 20px;
+    min-width: 250px;
+    text-align: center;
     font-size: 18px;
     margin-top: 20px;
     font-weight: 700;
-    height: 41px;
-    width: 278px;
 }
 
 .banner-image1 img {
@@ -1012,49 +1011,49 @@ span {
 #  adv
 --------------------------------------------------------------*/
 
-.large-rectangle {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    content: "";
-    height: 280px;
-    width: 336px;
-}
+// .large-rectangle {
+//     position: absolute;
+//     left: 0;
+//     bottom: 0;
+//     content: "";
+//     height: 280px;
+//     width: 336px;
+// }
 
-.large-rectangle img {
-    height: 280px;
-    width: 336px;
-}
+// .large-rectangle img {
+//     height: 280px;
+//     width: 336px;
+// }
 
-.inline-rectangle {
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    transform: translateX(-50%);
-    content: "";
-    width: 300px;
-    height: 250px;
-}
+// .inline-rectangle {
+//     position: absolute;
+//     left: 50%;
+//     bottom: 0;
+//     transform: translateX(-50%);
+//     content: "";
+//     width: 300px;
+//     height: 250px;
+// }
 
-.inline-rectangle img {
-    width: 300px;
-    height: 250px;
-}
+// .inline-rectangle img {
+//     width: 300px;
+//     height: 250px;
+// }
 
-.square {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    content: "";
-    width: 250px;
-    height: 250px;
-    display: flex;
-}
+// .square {
+//     position: absolute;
+//     right: 0;
+//     bottom: 0;
+//     content: "";
+//     width: 250px;
+//     height: 250px;
+//     display: flex;
+// }
 
-.square img {
-    width: 250px;
-    height: 250px;
-}
+// .square img {
+//     width: 250px;
+//     height: 250px;
+// }
 
 // .adv{
 //     position: relative;
@@ -1072,37 +1071,37 @@ span {
 //     height: 350px;
 // }
 
-.skyscraper-image {
-    height: 600px;
-    width: 120px;
-    content: "";
-    z-index: 2;
-    position: absolute;
-    left: 1%;
-    top: 16%;
-}
+// .skyscraper-image {
+//     height: 600px;
+//     width: 120px;
+//     content: "";
+//     z-index: 2;
+//     position: absolute;
+//     left: 1%;
+//     top: 16%;
+// }
 
-.skyscraper-image img {
-    height: 600px;
-    width: 120px;
-}
+// .skyscraper-image img {
+//     height: 600px;
+//     width: 120px;
+// }
 
-.leaderboard-image {
-    position: absolute;
-    content: "";
-    z-index: 1;
-    height: 90px;
-    width: 728px;
-    bottom: 5%;
-    left: 50%;
-    /* Centering */
-    transform: translateX(-50%);
-}
+// .leaderboard-image {
+//     position: absolute;
+//     content: "";
+//     z-index: 1;
+//     height: 90px;
+//     width: 728px;
+//     bottom: 5%;
+//     left: 50%;
+//     /* Centering */
+//     transform: translateX(-50%);
+// }
 
-.leaderboard-image img {
-    height: 90px;
-    width: 728px;
-}
+// .leaderboard-image img {
+//     height: 90px;
+//     width: 728px;
+// }
 
 // .small-sqaure-image {
 //     position: absolute;
@@ -1119,22 +1118,22 @@ span {
 //     width: 200px;
 // }
 
-.banner-image {
-    position: absolute;
-    content: "";
-    z-index: 1;
-    bottom: 3%;
-    right: 0;
-    height: 60px;
-    width: 468px;
+// .banner-image {
+//     position: absolute;
+//     content: "";
+//     z-index: 1;
+//     bottom: 3%;
+//     right: 0;
+//     height: 60px;
+//     width: 468px;
 
-}
+// }
 
-.banner-image img {
-    height: 60px;
-    width: 468px;
+// .banner-image img {
+//     height: 60px;
+//     width: 468px;
 
-}
+// }
 
 /*--------------------------------------------------------------
 #  adv
@@ -1221,9 +1220,9 @@ span {
         height: 1200px;
     }
 
-    .skyscraper-image {
-        top: 12%;
-    }
+    // .skyscraper-image {
+    //     top: 12%;
+    // }
 
     .banner-image1 img {
         width: 380px;
@@ -1877,8 +1876,6 @@ span {
 
     a.btn.btn-register {
         font-size: 16px;
-        height: 41px;
-        width: 215px;
     }
 
     .club-text1 {
@@ -2078,25 +2075,25 @@ span {
         transition: height 0.5s ease-in-out;
     }
 
-    .leaderboard-club-image img,
-    .small-sqaure-image img,
-    .skyscraper-image img,
-    .skyscraper-image img,
-    .wide-skyscraper-image img,
-    .leaderboard-image img,
-    .banner-image img,
-    .advertisement,
-    .advertisement1 {
-        display: none;
-    }
+    // .leaderboard-club-image img,
+    // .small-sqaure-image img,
+    // .skyscraper-image img,
+    // .skyscraper-image img,
+    // .wide-skyscraper-image img,
+    // .leaderboard-image img,
+    // .banner-image img,
+    // .advertisement,
+    // .advertisement1 {
+    //     display: none;
+    // }
 
-    .skyscraper-image,
-    .wide-skyscraper-image,
-    .leaderboard-club-image,
-    .leaderboard-image,
-    .small-sqaure-image {
-        display: none;
-    }
+    // .skyscraper-image,
+    // .wide-skyscraper-image,
+    // .leaderboard-club-image,
+    // .leaderboard-image,
+    // .small-sqaure-image {
+    //     display: none;
+    // }
 
     .banner-left {
         top: 50%;
@@ -2132,17 +2129,11 @@ span {
 
     a.btn.btn-register {
         font-size: 15px;
-        height: 35px;
-        width: 190px;
     }
 
     .py_0 {
         padding-top: 30px;
         padding-bottom: 30px;
-    }
-
-    .banner-data {
-        padding-top: 100px;
     }
 
     .banner {
@@ -2575,7 +2566,6 @@ span {
     }
 
     .banner-data {
-        padding-top: 100px;
         position: relative;
         height: 700px;
     }
@@ -3202,10 +3192,6 @@ span {
 @media (max-width: 376px) {
     .features {
         height: 700px;
-    }
-
-    .banner-data {
-        padding-top: 60px;
     }
 
     .banner {
@@ -3845,6 +3831,51 @@ span {
 
     }
 
+}
+
+
+
+@media (min-width: 992px) {
+    .banner_image_combo img {
+        width: 52%;
+        height: calc(100% - 130px);
+        position: absolute;
+        right: 0;
+        top: 130px;
+        object-fit: cover;
+        object-position: top left;
+    }
+    .talent_tab_image img.single_tab_img {
+        width: 48%;
+        max-height: 100%;
+        position: absolute;
+        right: 0;
+        top: 0;
+        object-fit: contain;
+    }
+}
+
+@media (max-width: 991px) {
+    .banner {
+        height: auto;
+    }
+    .banner-data {
+        position: relative;
+        z-index: 2;
+        padding-top: 150px;
+    }
+    .banner-left {
+        position: unset;
+        margin-right: 0;
+    }
+    .banner_image_combo img {
+        width: 100%;
+        margin-top: 1.5rem;
+    }
+    .talent_tab_image img.single_tab_img {
+        width: 100%;
+        object-fit: contain;
+    }
 }
 
 @media (max-width: 575px) {

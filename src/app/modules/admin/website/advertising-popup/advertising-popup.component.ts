@@ -15,16 +15,7 @@ export class AdvertisingPopupComponent   {
   private readonly _adapter = inject<DateAdapter<unknown, unknown>>(DateAdapter);
   private readonly _locale = signal(inject<unknown>(MAT_DATE_LOCALE)); 
   
-  typeOptions: any = [
-              '250 x 250 - Square',
-              '200 x 200 - Small Square',
-              '468 x 60 - Banner',
-              '728 x 90 - Leaderboard',
-              '300 x 250 - Inline Rectangle',
-              '336 x 280 - Large Rectangle',
-              '120 x 600 - Skyscraper',
-              '160 x 600 - Wide Skyscraper'
-          ];
+  typeOptions: any = [];
   
   pageOptions: any = [];
   idToEdit:any = '';
@@ -33,7 +24,7 @@ export class AdvertisingPopupComponent   {
   type: any = "";
   page: any = "";
   startDate: any = new Date();
-  endDate: any = new Date();
+  endDate: any = null;
   noEndDate: any = false;
   disableEndDate:boolean = false;
   maxViews:any = "";
@@ -42,9 +33,14 @@ export class AdvertisingPopupComponent   {
   error:boolean = false
   errorMsg:any = {}
 
+  today: Date = new Date();
+
+  languages: any = localStorage.getItem('languages');
+  selectedLanguage: any = "" ;
+
   typeForView:any = "";
   pageName:any = "";
-  imageUrl:any = ""
+  imageUrl:any = null;
   constructor(
     public dialogRef: MatDialogRef<AdvertisingPopupComponent>,@Inject(MAT_DIALOG_DATA) public data: any, private advertisementService: AdvertisementService, private toastr : ToastrService
   ) {}
@@ -54,8 +50,12 @@ export class AdvertisingPopupComponent   {
     this._locale.set('fr');
     this._adapter.setLocale(this._locale()); 
     this.getAdvertisement();
+    this.languages = JSON.parse(this.languages);
+
     if(this.data.action == "update" || this.data.action == "view"){
+      console.log(this.data.ad);
       let existingRecord = this.data.ad;
+
       this.idToEdit = existingRecord.id;
       this.name = existingRecord.title;
       this.redirect = existingRecord.redirect_url;
@@ -64,6 +64,7 @@ export class AdvertisingPopupComponent   {
       this.startDate = existingRecord.valid_from;
       this.endDate = existingRecord.valid_to;
       this.noEndDate = existingRecord.no_validity;
+      this.imageUrl = existingRecord.featured_image;
       if(this.noEndDate == '0'){
         this.disableEndDate = false;
         this.noEndDate = false;
@@ -78,12 +79,13 @@ export class AdvertisingPopupComponent   {
 
       /* for view only*/
 
-      this.typeForView = this.type.split('-')[0];
-      let index = this.pageOptions.findIndex((x:any) => x.id == this.page);
-      this.pageName = this.pageOptions[index].page;
-      this.imageUrl = environment.url+"uploads/"+existingRecord.featured_image
+      // this.typeForView = this.type.split('-')[0];
+      // let index = this.pageOptions.findIndex((x:any) => x.id == this.page);
+      // this.pageName = this.pageOptions[index].page;
+      
     }
 
+    // this.onChange();
   }
 
   close(): void {
@@ -101,6 +103,8 @@ export class AdvertisingPopupComponent   {
           page: value.title
         }
       });
+
+      this.onChange();
     });
   }
   
@@ -109,6 +113,7 @@ export class AdvertisingPopupComponent   {
     let date = this.formatDate(selectedDate);
     if(dateType == 'start'){
       this.startDate = date;
+      this.endDate = null;
     }else if(dateType == 'end'){
       this.endDate = date;
     }
@@ -125,42 +130,38 @@ export class AdvertisingPopupComponent   {
 
   onNoEndDateChange(event: any): void{
     const checked = event.target.checked;
+    this.endDate = null
     console.log(checked)
     if(checked){
       this.disableEndDate = true;
     }else{
       this.disableEndDate = false;
     }
+
+    console.log(this.startDate, this.endDate)
   }
 
+  imagePreview: any = null;
+
   onImageChange(event: Event): void {
+    this.error = false;
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
-      let FileToUpload = input.files[0];
-      this.imageToUpload = FileToUpload;
-      // let $this = this;
-      // let reader = new FileReader();
-      // reader.onload = function (fileData:any) {
-      //   $this.image = fileData.target.result;
-      // };
-      // reader.readAsDataURL(FileToUpload);
+      let fileToUpload = input.files[0];
+      this.imageToUpload = fileToUpload;
+      // console.log("fileToUpload", fileToUpload)
 
-      // let formdata = new FormData();
-      // formdata.append("profile_image", this.imageToUpload);
-      // this.imageLoading = true;
-      // this.userService.updateAdminImage(formdata).subscribe((response)=>{
-      //   if (response && response.status) {
-      //     // this.isLoading = false;
-      //     this.imageLoading = false;
-      //     this.showMatDialog("Profile image updated successfully!", 'display')
-      //   } else {
-      //     // this.isLoading = false;
-      //     this.imageLoading = false;
-      //     console.error('Invalid API response structure:', response);
-      //     this.showMatDialog("Error in uploading image", 'display')
-      //   }
-      // });
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagePreview = reader.result;
+      };
+      reader.readAsDataURL(fileToUpload);
     }
+  }
+
+  closeImage(){
+    this.imagePreview = null;
+    this.imageUrl = null;
   }
 
 
@@ -188,6 +189,16 @@ export class AdvertisingPopupComponent   {
       this.errorMsg.page = "Page is required";
     }
     
+    if(this.imageToUpload == "" && !this.imagePreview){
+      this.error = true;
+      this.errorMsg.image = "image is required";
+    }
+
+    if((this.endDate == "0000-00-00" || !this.endDate) && !this.disableEndDate ){
+      this.error = true;
+      this.errorMsg.endDate = "enter the end date or check the box";
+    }
+
     if(this.maxViews == ""){
       this.error = true;
       this.errorMsg.maxViews = "Max views is required";
@@ -273,28 +284,39 @@ export class AdvertisingPopupComponent   {
     this.advertisementService.updateAd(this.idToEdit, formdata).subscribe(
       response => {
         if(response.status){
+          console.log(response.message);
+          this.toastr.success(response.message, 'Ad Updated');
           this.dialogRef.close({
             action: 'updated',
             message: response.message
           });
         }else{
-          this.errorMsg = response.data.error
+          this.errorMsg = response.message
+          this.toastr.error(response.message, 'Error');
         }
       },
       error => {
         console.error('Error publishing ad:', error);
+        this.toastr.error(error, 'Error');
       }
     );
   }
 
-  onChange(event: any){
-    this.advertisementService.getAdvertisementType(event.target.value).subscribe((response) => {
-      let adsTypes = response.data.ad_types;
-      if(adsTypes){
-        this.typeOptions = adsTypes;
-      }else{
-        this.typeOptions = [];
-      }
-    });
+  onChange(){
+    // if(this.page && this.selectedLanguage){
+    if(this.page){
+      console.log("updated page", this.page, this.typeOptions);
+      this.advertisementService.getAdvertisementType(this.page).subscribe((response) => {
+        let adsTypes = response.data.ad_types;
+        if(adsTypes){
+          this.typeOptions = adsTypes;
+        }else{
+          this.typeOptions = [];
+        }
+      });
+    }
+    else{
+      this.typeOptions = [];
+    }
   }
 }

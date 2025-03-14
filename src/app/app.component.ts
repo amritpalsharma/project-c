@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { filter } from 'rxjs/operators';
+import { GlobalSettingsService } from './services/global-settings.service';
 
 @Component({
   selector: 'app-root',
@@ -14,14 +15,27 @@ export class AppComponent implements OnInit {
   showContent: boolean = false; // Control when to show the main content
   showHeader = true;
   showFooter = true;
+  domainSelectedLanguage: string = '';
 
   constructor(
     private translateService: TranslateService,
-    private router: Router
+    private router: Router,
+    private globalSettings: GlobalSettingsService
   ) {
-    this.translateService.setDefaultLang('en'); // Set default language
-    this.translateService.use(localStorage.getItem('lang') || 'en');
-    
+    //this.translateService.setDefaultLang('en'); // Set default language
+    this.domainSelectedLanguage = this.globalSettings.getLanguage();
+    let selectedLang = localStorage.getItem('lang');
+    if (selectedLang == null || selectedLang == undefined) {
+      this.translateService.use(this.domainSelectedLanguage);
+      localStorage.setItem('lang', this.domainSelectedLanguage);
+      console.warn('In App component Domain Language selected = ' + this.domainSelectedLanguage);
+    } else if (selectedLang != '') {
+      localStorage.setItem('lang', selectedLang);
+      console.warn('In App component LocalStorage Language selected = ' + selectedLang)
+      this.translateService.setDefaultLang(selectedLang);
+    } else {
+      this.translateService.setDefaultLang('en');
+    }
     // Listen to router events to check route changes
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
@@ -55,10 +69,10 @@ export class AppComponent implements OnInit {
     const currentRoute = this.router.url;
 
     // Assuming 'website' is part of the route for WebsiteModule
-    if ( currentRoute.startsWith('/admin') ||
-    currentRoute.startsWith('/material') ||
-    currentRoute.startsWith('/scout') ||
-    currentRoute === '/') {
+    if (currentRoute.startsWith('/admin') ||
+      currentRoute.startsWith('/material') ||
+      currentRoute.startsWith('/scout') ||
+      currentRoute === '/') {
       this.showHeader = true;
       this.showFooter = true;
     } else {

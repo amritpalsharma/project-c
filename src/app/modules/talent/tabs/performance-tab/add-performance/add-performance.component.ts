@@ -2,11 +2,14 @@ import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TalentService } from '../../../../../services/talent.service';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
-import {FormControl, NgForm } from '@angular/forms';
+import { FormControl, NgForm } from '@angular/forms';
 import * as _moment from 'moment';
 // tslint:disable-next-line:no-duplicate-imports
-import {default as _rollupMoment} from 'moment';
+import { default as _rollupMoment } from 'moment';
 import { ToastrService } from 'ngx-toastr';
+import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
+
+
 const moment = _rollupMoment || _moment;
 @Component({
   selector: 'app-add-performance',
@@ -18,10 +21,13 @@ export class AddPerformanceComponent {
   readonly date = new FormControl(moment());
   performance: any = {};
   teams: any[] = [];
-  matches : any ;
-  goals:any;
-  
+  matches: any;
+  goals: any;
+
   currentTeam: string = ''; // Initialize as empty string to avoid undefined issues
+  successTxt: string = ''; // Initialize as empty string to avoid undefined issues
+  pleaseWait: string = ''; // Initialize as empty string to avoid undefined issues
+  submittingPerformanceData: string = ''; // Initialize as empty string to avoid undefined issues
   currentTeamId: any;
   filterTeams: any[] = []; // Initialize as empty array to avoid undefined issues
   isLoading: boolean = false;
@@ -32,8 +38,9 @@ export class AddPerformanceComponent {
     private toastr: ToastrService,
     public dialogRef: MatDialogRef<AddPerformanceComponent>,
     private talentService: TalentService,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private translate: TranslateService
+  ) { }
 
   ngOnInit(): void {
     this.performance = { ...this.data.performance };
@@ -50,6 +57,11 @@ export class AddPerformanceComponent {
 
     this.from_date.setValue(this.performance.from_date ? new Date(this.performance.from_date) : null);
     this.to_date.setValue(this.performance.to_date ? new Date(this.performance.to_date) : null);
+    this.getToasterMsg();
+    this.translate.onLangChange.subscribe((event) => {
+      this.getToasterMsg();
+      // alert(`Language changed to: ${event.lang}`);
+    });
   }
 
   onCancel(): void {
@@ -72,19 +84,19 @@ export class AddPerformanceComponent {
 
   onSubmit(myForm: NgForm): void {
     if (myForm.valid) {
-      
+
       // Show loading message
-      const loadingToast = this.toastr.info('Submitting performance data...', 'Please wait', { disableTimeOut: true });
+      const loadingToast = this.toastr.info(this.submittingPerformanceData, this.pleaseWait, { disableTimeOut: true });
 
       // Add currentTeamId to the form values
       const formData = {
         ...myForm.value, // Include all form values
         team_id: this.currentTeamId, // Append the selected team ID
         from_date: this.from_date.value // Convert FormControl value to string (if necessary)
-          ? moment(this.from_date.value).format('YYYY-MM-DD') 
+          ? moment(this.from_date.value).format('YYYY-MM-DD')
           : null,
         to_date: this.to_date.value // Convert FormControl value to string (if necessary)
-          ? moment(this.to_date.value).format('YYYY-MM-DD') 
+          ? moment(this.to_date.value).format('YYYY-MM-DD')
           : null,
       };
 
@@ -92,9 +104,13 @@ export class AddPerformanceComponent {
         next: (response: any) => {
           // Close loading message
           this.toastr.clear(loadingToast.toastId);
-          
+
           // Show success message
-          this.toastr.success('Performance data submitted successfully!', 'Success');
+          if (response.status == true && response.message != '') {
+            this.toastr.success(response.message, this.successTxt);
+          } else {
+            this.toastr.success('Performance data submitted successfully!', 'Success');
+          }
 
           this.dialogRef.close(response.data); // Close the dialog with response data
         },
@@ -104,7 +120,7 @@ export class AddPerformanceComponent {
 
           // Show error message
           this.toastr.error('Failed to submit performance data. Please try again.', 'Error');
-          
+
           console.error('Error submitting the form:', error);
         }
       });
@@ -112,7 +128,7 @@ export class AddPerformanceComponent {
       this.toastr.warning('Please complete the form correctly before submitting.', 'Form Incomplete');
     }
   }
-  
+
   // Function to handle dynamic fetching of clubs based on search input
   onSearchTeams(): void {
     if (this.currentTeam.length < 2) {
@@ -136,8 +152,17 @@ export class AddPerformanceComponent {
 
   // Function to handle the selection of a club
   onSelectTeam(team: any): void {
-    this.currentTeam = team.team_name +'-' +team.team_type; // Set the selected team's name to the input
+    this.currentTeam = team.team_name + '-' + team.team_type; // Set the selected team's name to the input
     this.currentTeamId = team.id;
     this.filterTeams = []; // Clear the suggestion list
+  }
+
+  getToasterMsg() {
+    this.translate.get(['success!', 'submittingPerformanceData', 'pleaseWait']).subscribe((res: any) => {
+      this.successTxt = res['success!'];
+      this.submittingPerformanceData = res['submittingPerformanceData'];
+      this.pleaseWait = res['pleaseWait'];
+      // this.downloading = res['downloading'];
+    });
   }
 }

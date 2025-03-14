@@ -141,9 +141,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.stopIntroTour(); // Ensure the tour stops when the component is destroyed
   }
 
-  startIntroTour(lang: string) {
+  showOnce: boolean = true;
 
-    //this.translateService.use(lang); // Change language before fetching translations
+  startIntroTour(lang: string) {
+    // introJs().start().goToStep(1);
+    this.translateService.use(lang); // Change language before fetching translations
     this.translateService.get([
       'profilePhoto',
       'uploadYourBestHeadshot',
@@ -174,23 +176,24 @@ export class DashboardComponent implements OnInit, OnDestroy {
             tooltipClass: 'custom-tooltip',
           },
           {
-            element: '.tour-highlights',
+            element: '.unlock_page',
             intro: `<div><h6>${translations['highlights']}</h6>${translations['uploadPhotosAndVideos']}.</div>`,
             tooltipClass: 'custom-tooltip',
           },
           {
-            element: '.tour-cover-photo',
+            element: '.edit_image-2',
             intro: `<div><h6>${translations['coverPhoto']}</h6>${translations['uploadCoverPhoto']}.</div>`,
             tooltipClass: 'custom-tooltip',
           },
           {
-            element: '.tour-general-details',
+            element: '.general_details',
             intro: `<div><h6>${translations['generalDetails']}</h6>${translations['editGeneralDetails']}.</div>`,
             tooltipClass: 'custom-tooltip',
           },
         ],
         showBullets: false,
         showProgress: false,
+        exitOnOverlayClick: false,
         scrollToElement: true,
         prevLabel: translations['previous'],
         nextLabel: translations['next'],
@@ -198,11 +201,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
         tooltipPosition: 'auto',
       });
 
-      this.introInstance.start(); // Start the tour after setting options
+      if(this.showOnce){
+        this.introInstance.start();
+        this.showOnce = false
+      }
     });
 
     // Add the "Don't show again" checkbox dynamically
     this.introInstance.onafterchange(() => {
+      
       const tooltipHeader = document.querySelector('.introjs-tooltip-header') as HTMLElement;
 
       if (tooltipHeader) {
@@ -249,13 +256,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
       }
     });
 
+    
+
     // Handle when the tour finishes
-    this.introInstance.oncomplete(() => this.handleTourExit());
+    // this.introInstance.oncomplete(() => this.handleTourExit());
 
     // Handle when the tour is exited manually
     // introInstance.onexit(() => this.handleTourExit());
-
-    this.introInstance.start();
+    this.introInstance.oncomplete(() => this.handleTourExit());
+    // this.introInstance.start();
   }
 
   // Centralized handling of "Don't show again" logic
@@ -318,7 +327,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
           this.userNationalities = JSON.parse(this.user.user_nationalities);
           this.StartTour = this.user?.show_tour == 1 ? true : false;
           this.isPremium = this.user?.active_subscriptions?.premium.length > 0 ? true : false;
-          if (this.StartTour && this.isPremium && this.isTourFirstTime) {
+          if (this.StartTour && this.isTourFirstTime) {
             setTimeout(() => {
               this.isTourFirstTime = false;
               // alert('Found lang in Db : '+response.data.user_data.lang)
@@ -341,7 +350,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
                 dblang = 'se';
               }
               this.startIntroTour(dblang);  // Start the tour after a slight delay
-            }, 2500);
+            }, 0);
           }
 
 

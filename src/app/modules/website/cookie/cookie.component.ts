@@ -15,6 +15,11 @@ export class CookieComponent implements OnInit {
   base_url:any=null;
   advertisemnet_base_url:string = '';
 
+  isLoading : boolean = true;
+  btnLoading : boolean = true;
+  countdown: number = 10;
+
+
   constructor( private webPages: WebPages, private sanitizer: DomSanitizer){
 
   }
@@ -27,7 +32,9 @@ export class CookieComponent implements OnInit {
     });
   }
 
-  isActive : any ={
+  advertisementList: any = null;
+
+  isActive : any = {
     skyscraper: true,
     wide_skyscraper: true,
     leaderboard: true,
@@ -86,9 +93,25 @@ export class CookieComponent implements OnInit {
           this.base_url =  res.data.base_url;
 
           this.advertisemnet_base_url = res.data.advertisemnet_base_url;
-          this.advertisementData = res?.data?.advertisemnetData;
+          this.advertisementData = res?.data?.advertisementData;
+          this.advertisementList = res?.data?.allAdsList;
+
+          
+          this.isLoading = false;
+          this.startCountdown();
         }
     });
+  }
+
+  startCountdown() {
+    this.countdown = 5; // Reset countdown
+    const interval = setInterval(() => {
+      this.countdown--;
+      if (this.countdown === 0) {
+        clearInterval(interval);
+        this.btnLoading = false; // Stop loading when countdown reaches 0
+      }
+    }, 1000);
   }
   closeAd(object: any) {
 
@@ -127,12 +150,16 @@ export class CookieComponent implements OnInit {
     return false;
   }
 
+  // isExists(key: any): boolean {
+  //   return key in this.advertisementData;
+  // }
+
   isExists(key: any): boolean {
-    return key in this.advertisementData;
+    return (this.advertisementData && key in this.advertisementData) || this.advertisementList.includes(key);
   }
 
   isFeaturedImageExists(key: any): boolean {
-    return 'featured_image' in this.advertisementData[key];
+    return this.advertisementData && this.advertisementData[key] && 'featured_image' in this.advertisementData[key];
   }
 
 }

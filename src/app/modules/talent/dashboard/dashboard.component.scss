@@ -156,9 +156,6 @@
     .responsive-edit_btn{
       width: fit-content !important;
     }
-    .image_gallery-box .col-lg-4{
-      width: 50%;
-    }
   }
   @media (max-width:1200px) and (min-width:769px) {
     span.active_btn {
@@ -263,6 +260,9 @@
       border: 1px solid;
       border-radius: 50%;
       padding: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
   }
   .premium_button svg {
     width: 14px;
@@ -439,20 +439,17 @@
     font-size: 20px;
     font-weight: 400;
   }
-  .gallery_images img ,.gallery_images video {
+  .gallery_images img , .gallery_images video {
     width: 100%;
     height: 116px !important;
     object-fit: cover !important;
+    object-position: top center !important;
   }
   .settings svg {
     width: 20px;
   }
   .gallery_images{
     padding: 2px;
-  }
-  .gallery_images img{
-    height: 116px;
-    object-fit: cover;
   }
 
   .image_gallery-box{
@@ -780,9 +777,6 @@
   .responsive-edit_btn{
     width: fit-content !important;
   }
-  .image_gallery-box .col-lg-4{
-    width: 50%;
-  }
 }
 @media (max-width:1200px) and (min-width:769px) {
   .edit_button.responsive-edit_btn {
@@ -815,8 +809,14 @@
 .main-wrapper .card_box-1, .main-wrapper .card_box--2 {
   width: 100%;
 }
+.main-wrapper .card_box-1 .image-gallery .col-lg-4.gallery_images {
+  width: 25%;
+}
 }
 
+.main-wrapper .card_box-1 .image-gallery .image_gallery-box {
+  justify-content: flex-start !important;
+}
 
 @media (max-width: 575px) {
   .team-logos{
@@ -916,6 +916,9 @@
     border: 1px solid;
     border-radius: 50%;
     padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .premium_button svg {
   width: 14px;
@@ -1092,14 +1095,11 @@
   width: 100%;
   height: 116px !important;
   object-fit: cover !important;
+  object-position: top center;
 }
 
 .gallery_images{
   padding: 2px;
-}
-.gallery_images img{
-  height: 116px;
-  object-fit: cover;
 }
 
 .image_gallery-box{
@@ -1394,6 +1394,7 @@ width:  100% !important;
 }
 .user-info button .tour-personal-details {
   display: flex;
+  align-items: center;
   max-width: 75px;
   overflow: hidden;
 }
@@ -1418,3 +1419,18 @@ width:  100% !important;
     margin-top: 15px;
   }
   }
+
+@media (min-width: 2000px) {
+  .nav-tabs.user-tabs .nav-item .nav-link {
+    font-size: 18px;
+  }
+  .title_2{
+    font-size: 14px;
+}
+.title-1{
+  font-size: 16px;
+}
+.details_2, .details-1 {
+  font-size: 19px !important;
+}
+}

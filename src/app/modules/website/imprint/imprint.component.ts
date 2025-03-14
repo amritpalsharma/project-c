@@ -10,16 +10,23 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 })
 export class ImprintComponent implements OnInit {
   banner_title:any = null;
-  advertisemnetData:any;
+  // advertisementData:any;
   page_content:any=null;
   advertisemnet_base_url:string = '';
   banner_img:any=null;
   base_url:any=null;
+
+  isLoading : boolean = true;
+  btnLoading : boolean = true;
+  countdown: number = 10;
+
   // advertisemnet_base_url:string= '';
   adVisible: boolean[] = [true, true, true]; // Array to manage ad visibility
   constructor( private webPages: WebPages, private sanitizer: DomSanitizer){
 
   }
+
+  advertisementList: any = null;
 
   isActive : any ={
     skyscraper: true,
@@ -86,17 +93,31 @@ export class ImprintComponent implements OnInit {
       if(res.status){
           this.banner_title = res.data.pageData.banner_title;
           this.page_content = res.data.pageData.page_content;
-          this.advertisemnetData =  res.data.advertisemnetData;
-          this.advertisemnetData = [];
           
           this.advertisemnet_base_url = res.data.advertisemnet_base_url;
          
           this.banner_img = res.data.pageData.banner_img;
           this.base_url =  res.data.base_url;
 
-          this.advertisementData = res?.data?.advertisemnetData;
+          
+          this.advertisementData = res?.data?.advertisementData;
+          this.advertisementList = res?.data?.allAdsList;
+          
+          this.isLoading = false;
+          this.startCountdown();
         }
     });
+  }
+
+  startCountdown() {
+    this.countdown = 5; // Reset countdown
+    const interval = setInterval(() => {
+      this.countdown--;
+      if (this.countdown === 0) {
+        clearInterval(interval);
+        this.btnLoading = false; // Stop loading when countdown reaches 0
+      }
+    }, 1000);
   }
   // isEmptyObject(obj:any) {
   //   if(typeof obj != 'undefined'){
@@ -108,26 +129,26 @@ export class ImprintComponent implements OnInit {
 
   //   switch(object){
   //     case 'skyscraper':
-  //         this.advertisemnetData.skyscraper = [];
+  //         this.advertisementData.skyscraper = [];
   //         break;
   //     case 'small_square':
-  //         this.advertisemnetData.small_square = [];
+  //         this.advertisementData.small_square = [];
   //         break;
   //     case 'leaderboard':
-  //         this.advertisemnetData.leaderboard = [];
+  //         this.advertisementData.leaderboard = [];
   //         break;
   //     case 'large_leaderboard':
-  //         this.advertisemnetData.large_leaderboard = [];
+  //         this.advertisementData.large_leaderboard = [];
   //         break;
   //     case 'large_rectangle':
-  //         this.advertisemnetData.large_rectangle = [];
+  //         this.advertisementData.large_rectangle = [];
   //         break;
 
   //     case 'inline_rectangle':
-  //         this.advertisemnetData.inline_rectangle = [];
+  //         this.advertisementData.inline_rectangle = [];
   //         break;
   //     case 'square':
-  //         this.advertisemnetData.square = [];
+  //         this.advertisementData.square = [];
   //         break;
   //     default:
   //         //when no case is matched, this block will be executed;
@@ -141,17 +162,6 @@ export class ImprintComponent implements OnInit {
     this.isActive[object] = false;
 
   }
-
-  // checkActive(obj: any){
-  //   if(this.isExists(obj) && this.isActive[obj]){
-  //     return true;
-  //   }
-  //   return false;
-  // }
-
-  // isExists(key: string): boolean {
-  //   return key in this.advertisementData && 'featured_image' in this.advertisementData[key];
-  // }
   
 
   isEmptyObject(obj:any) {
@@ -173,11 +183,15 @@ export class ImprintComponent implements OnInit {
   }
 
   isExists(key: any): boolean {
-    return key in this.advertisementData;
-  }
+    return (this.advertisementData && key in this.advertisementData) || this.advertisementList.includes(key);
+  } 
+
+  // isExists(key: any): boolean {
+  //   return key in this.advertisementData;
+  // }
 
   isFeaturedImageExists(key: any): boolean {
-    return 'featured_image' in this.advertisementData[key];
+    return this.advertisementData && this.advertisementData[key] && 'featured_image' in this.advertisementData[key];
   }
 
 }

@@ -10,67 +10,42 @@
             </div>
           </div>
         </div>
-  
-        <div *ngIf="checkActive('skyscraper')" class="skyscraper-left">
-          <img [src]="advertisemnet_base_url + advertisementData?.skyscraper?.featured_image">
-          <button (click)="closeAd('skyscraper')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+        <div *ngIf="checkActive('skyscraper')  && !isLoading" class="skyscraper-left">
+          <a href="{{advertisementData?.skyscraper?.redirect_url}}" target="_blank">
+            <img [src]="advertisemnet_base_url + advertisementData?.skyscraper?.featured_image">
+          </a>
+          <button *ngIf="!btnLoading" (click)="closeAd('skyscraper')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+          <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
         </div>
-    
-        <div *ngIf="checkActive('wide_skyscraper')" class="skyscraper-right">
+  
+        <div *ngIf="checkActive('wide_skyscraper')  && !isLoading" class="skyscraper-right">
+          <a href="{{advertisementData?.wide_skyscraper?.redirect_url}}" target="_blank">
           <img [src]="advertisemnet_base_url + advertisementData?.wide_skyscraper?.featured_image">
-          <button (click)="closeAd('wide_skyscraper')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+          </a>
+          <button *ngIf="!btnLoading" (click)="closeAd('wide_skyscraper')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+          <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
         </div>
         
       </div>
   
       <div class="news-slider py_0">
-        <div class="container">
-          <div class="image-slider">
-            <div class="image-wrapper" 
-                 (touchstart)="onTouchStart($event)" 
-                 (touchmove)="onTouchMove($event)"
-                 (touchend)="onTouchEnd($event)">
-              <!-- Dynamic Image -->
-               <!-- <h1>{{images | json}}</h1> -->
-              <img [src]="base_url + currentImage" [alt]="images[currentImageIndex].title" />
-              <div class="image-text">
-                <!-- Dynamic Content for Each Slide -->
-                <p class="p-text">{{images[currentImageIndex].date}}</p>
-                <h3 class="text-heading" [innerHTML]="images[currentImageIndex].title"></h3>
-                <button class="learn-more" [routerLink]="getRouterLink(images[currentImageIndex].slug)">
-                  {{'learnMore' | translate}}
-                </button>
-              </div>
-            </div>
-  
-            <!-- Thumbnails for Navigation -->
-            <div class="container">
-              <div class="thumbnail-scroll">
-                <div class="slider-image">
-                  <img 
-                    *ngFor="let image of images; let i = index" 
-                    [src]="news_img_path + image.featured_image" 
-                    [alt]="image.title"
-                    (click)="changeImage(image.featured_image, i)" 
-                    [class.active]="i === currentImageIndex"
-                    class="thumbnail" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
       <div class="advertisment">
         <div class="container">
           <div *ngIf="checkActive('leaderboard') || checkActive('banner')" class="advertisment advirtismnt_2">
-            <div *ngIf="isExists('leaderboard') && checkActive('leaderboard')" class="leaderboard-club-image advirtismnt_2_large">
+            <div *ngIf="isExists('leaderboard') && checkActive('leaderboard')  && !isLoading" class="leaderboard-club-image advirtismnt_2_large">
+              <a href="{{advertisementData?.leaderboard?.redirect_url}}" target="_blank">
               <img [src]="advertisemnet_base_url + advertisementData?.leaderboard?.featured_image">
-              <button (click)="closeAd('leaderboard')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+              </a>
+              <button *ngIf="!btnLoading" (click)="closeAd('leaderboard')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+              <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
             </div>
-            <div *ngIf="!isExists('leaderboard') && checkActive('banner')" class="leaderboard-club-image advirtismnt_2_small">
+            <div *ngIf="!isExists('leaderboard') && checkActive('banner')  && !isLoading" class="leaderboard-club-image advirtismnt_2_small">
+              <a href="{{advertisementData?.banner?.redirect_url}}" target="_blank">
               <img [src]="advertisemnet_base_url + advertisementData?.banner?.featured_image">
-              <button (click)="closeAd('banner')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+              </a>
+              <button *ngIf="!btnLoading" (click)="closeAd('banner')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+              <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
             </div>
           </div>
         </div>
@@ -84,7 +59,9 @@
               <!-- {{news_img_path + newsData.featured_image}} -->
                <!-- {{newsData | json}} -->
               <div routerLink="{{'/news/' + newsData.slug}}" class="news-box">
+                <div class="news_img_thumb_wrap">
                 <img [src]="news_img_path + newsData.featured_image" />
+              </div>
                 <p class="p-text">{{newsData.created_at | date: 'dd.MM.yy'}}</p>
                 <p>{{newsData.title}}</p>
               </div>
@@ -99,28 +76,31 @@
           <div class="advertisment advertisement1 advertisement_three_block"
             *ngIf="checkActive('large_rectangle') || checkActive('inline_rectangle') || checkActive('square')">
   
-            <div *ngIf="checkActive('large_rectangle')" class="large-rectangle">
+            <div *ngIf="checkActive('large_rectangle')  && !isLoading" class="large-rectangle">
+              <a href="{{advertisementData?.large_rectangle?.redirect_url}}" target="_blank">
               <img [src]="advertisemnet_base_url + advertisementData?.large_rectangle?.featured_image">
-              <button (click)="closeAd('large_rectangle')" class="ad-close-button"><i
+              </a>
+              <button *ngIf="!btnLoading" (click)="closeAd('large_rectangle')" class="ad-close-button"><i
                   class="fa-solid fa-xmark"></i></button>
+                  <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
             </div>
   
-            <div *ngIf="checkActive('inline_rectangle')" class="inline-rectangle">
+            <div *ngIf="checkActive('inline_rectangle')  && !isLoading" class="inline-rectangle">
+              <a href="{{advertisementData?.inline_rectangle?.redirect_url}}" target="_blank">
               <img [src]="advertisemnet_base_url + advertisementData?.inline_rectangle?.featured_image">
-              <button (click)="closeAd('inline_rectangle')" class="ad-close-button"><i
+              </a>
+              <button *ngIf="!btnLoading" (click)="closeAd('inline_rectangle')" class="ad-close-button"><i
                   class="fa-solid fa-xmark"></i></button>
+                  <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
             </div>
   
-            <div *ngIf="checkActive('square')" class="square">
+            <div *ngIf="checkActive('square')  && !isLoading" class="square">
+              <a href="{{advertisementData?.square?.redirect_url}}" target="_blank">
               <img [src]="advertisemnet_base_url + advertisementData?.square?.featured_image">
-              <button (click)="closeAd('square')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+              </a>
+              <button *ngIf="!btnLoading" (click)="closeAd('square')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+              <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
             </div>
   
           </div>
         </div>
-      </div>
-
-      
-    </div>
-    <!-- <app-footer></app-footer> -->
-  </section>

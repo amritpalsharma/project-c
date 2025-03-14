@@ -196,20 +196,17 @@ a {
 
 .dark-theme .table td span {
   color: white !important;
-  font-size: 16px !important;
   font-weight: 400 !important;
 }
 
 .dark-theme .table td {
   color: white !important;
-  font-size: 16px !important;
   font-weight: 400 !important;
 }
 
 .table td,
 .table td span {
   color: #111418;
-  font-size: 16px !important;
   font-weight: 400 !important;
 }
 
@@ -668,12 +665,6 @@ input:checked+.slider:before {
   position: relative;
 }
 
-.nav-action .badge {
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-
 .bg-danger {
   background-color: #f93c65 !important;
 }
@@ -1127,10 +1118,10 @@ input:checked+.slider:before {
 
 
 .dark-theme .table tbody tr:hover {
-  border: 1px solid #072944;
-  // border-collapse: separate;
-  background: #072944;
-  color: #ffffff;
+  // border: 1px solid #072944;
+  // // border-collapse: separate;
+  // background: #072944;
+  // color: #ffffff;
 
 }
 
@@ -1139,13 +1130,13 @@ input:checked+.slider:before {
   // border-bottom: 1px solid #072944;
   //  border: 1px solid #072944;
 
-  &:first-child {
-    border-right: 0;
-  }
+  // &:first-child {
+  //   border-right: 0;
+  // }
 
-  &:last-child {
-    border-left: 0;
-  }
+  // &:last-child {
+  //   border-left: 0;
+  // }
 
   // &:nth-child(2),
   // &:nth-child(3),
@@ -1158,13 +1149,13 @@ input:checked+.slider:before {
 
 }
 
-.dark-theme .table tbody tr:hover {
-  border: none !important;
-}
+// .dark-theme .table tbody tr:hover {
+//   border: none !important;
+// }
 
-.dark-theme .table tbody tr:hover td {
-  border: none !important;
-}
+// .dark-theme .table tbody tr:hover td {
+//   border: none !important;
+// }
 
 .dark-theme .card .card-header {
   background-color: #072944;
@@ -1710,7 +1701,7 @@ input:checked+.slider:before {
 
   .notification_dropdown .notification-box {
     padding: 20px 0px !important;
-    width: 360px !important;
+    width: 300px !important;
   }
 }
 
@@ -1719,9 +1710,11 @@ input:checked+.slider:before {
     margin-top: 60px;
   }
 }
-
+.dark-theme table {
+  background: transparent;
+}
 .dark-theme .table-users tr {
-  background: #072944 !important;
+  // background: #072944 !important;
 }
 
 
@@ -2729,11 +2722,15 @@ input:checked+.slider:before {
 .dark-theme .form-group .mat-mdc-select-arrow {
   color: #fff;
 }
-
+.dark-theme div#mat-autocomplete-2, .dark-theme div#mat-autocomplete-0 {
+  background: #072944;
+}
 .dark-theme .mdc-list-item__primary-text {
   color: #fff;
 }
-
+.dark-theme .mdc-list-item__primary-text img {
+  background: #fff;
+}
 .dark-theme .cdk-overlay-pane:not(.mat-mdc-select-panel-above) div.mat-mdc-select-panel {
   background: #072944;
 }
