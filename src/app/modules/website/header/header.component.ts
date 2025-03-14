@@ -227,7 +227,9 @@ export class HeaderComponent implements OnInit {
     },
     nav: true
   };
+ 
 
+  isViewPassword = false;
   constructor(
     private sharedservice: SharedService,
     private themeService: ThemeService,
@@ -925,5 +927,9 @@ export class HeaderComponent implements OnInit {
 
   get sanitizedError(): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(this.registerationErrorHtml);
+  }
+
+  togglePassword() {
+    this.isViewPassword = !this.isViewPassword;
   }
 }

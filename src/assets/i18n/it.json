@@ -1314,5 +1314,6 @@
   "registrationFailed": "Registrazione fallita",
   "Processing": "Elaborazione...",
   "EmailVerified": "Email verificata!",
-  "doYouWantToaddPackage": "Vuoi aggiungere “{{package_name}}” al tuo profilo?"
+  "doYouWantToaddPackage": "Vuoi aggiungere “{{package_name}}” al tuo profilo?",
+  "deletePerformanceConfirm": "Siete sicuri di voler eliminare i rapporti selezionati?"
 }

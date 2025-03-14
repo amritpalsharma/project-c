@@ -1331,5 +1331,6 @@
   "registrationFailed": "Échec de l'enregistrement",
   "Processing": "Traitement...",
   "EmailVerified": "Courriel vérifié !",
-  "doYouWantToaddPackage": "Voulez-vous ajouter “{{package_name}}” à votre profil ?"
+  "doYouWantToaddPackage": "Voulez-vous ajouter “{{package_name}}” à votre profil ?",
+  "deletePerformanceConfirm": "Êtes-vous sûr de vouloir supprimer les rapports sélectionnés ?"
 }

@@ -1178,5 +1178,6 @@
   "registrationFailed": "Registrering mislykkedes",
   "Processing": "Behandling...",
   "EmailVerified": "E-mail bekræftet!",
-  "doYouWantToaddPackage": "Vil du tilføje “{{package_name}}” til din profil?"
+  "doYouWantToaddPackage": "Vil du tilføje “{{package_name}}” til din profil?",
+  "deletePerformanceConfirm": "Er du sikker på, at du vil slette de valgte rapporter?"
 }

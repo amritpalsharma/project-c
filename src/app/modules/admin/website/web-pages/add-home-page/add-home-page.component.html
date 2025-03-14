@@ -200,6 +200,11 @@
     <fieldset class="border p-3 mb-4">
       <legend class="w-auto px-2">{{ 'firstTabSection' | translate }}</legend>
       <div *ngFor="let firstTab of first_tab; let firstIndex = index" class="row">
+        <div class="col-sm-12">
+          <!-- <pre>
+            {{firstTab | json}}
+          </pre> -->
+        </div>
         <div class="mb-3 col-md-6">
           <label class="form-label">{{ 'title' | translate }}</label>
           <input type="text" class="form-control" [(ngModel)]="firstTab.title"

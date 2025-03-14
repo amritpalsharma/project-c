@@ -26,7 +26,7 @@ export class AddHomePageComponent {
   @Input() languages: Language[] = [];
   addHomePageForm: FormGroup;
   selectedLanguage: string = '0';
-  showTabForm: boolean = false;
+  showTabForm: boolean = true;
   filesData: any = {
     banner_bg_img: null,
     banner_img: null,
@@ -430,6 +430,17 @@ export class AddHomePageComponent {
 
 
   removeSection(index: any) {
+    // console.warn('Full section ',this.first_tab);
+    // console.warn('recived index',index);
+
+    this.hideFirstTab(index);
+  }
+
+  deleteTabFromBackend(id: number) {
+
+  }
+
+  hideFirstTab(index: any) {
     this.first_tab.splice(index, 1);
   }
 

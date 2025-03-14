@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { ThemeService } from '../../../services/theme.service';
 import { AuthService } from '../../../services/auth.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -9,7 +9,10 @@ import { SocketService } from '../../../services/socket.service';
 import { map, filter, timeout } from 'rxjs/operators';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { FormControl } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, switchMap, finalize } from 'rxjs/operators';
+// import { debounceTime, distinctUntilChanged, switchMap, finalize } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, switchMap, tap, finalize, catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
+
 import { CommonDataService } from '../../../services/common-data.service';
 import { WebPages } from '../../../services/webpages.service';
 import { TalkService } from '../../../services/talkjs.service';
@@ -51,7 +54,8 @@ export class HeaderComponent {
     private commonDataService: CommonDataService,
     private webPages: WebPages,
     private talkService: TalkService,
-    private globalSettings: GlobalSettingsService
+    private globalSettings: GlobalSettingsService,
+    private cdRef: ChangeDetectorRef
   ) { }
 
   loggedInUser: any = localStorage.getItem('userInfo');
@@ -209,10 +213,45 @@ export class HeaderComponent {
         this.currentPageName = title;
       });
 
+    // old code 
+    // this.searchControl.valueChanges
+    //   .pipe(
+    //     filter((value): value is string => value !== null && value.trim().length > 0), // Exclude null or empty strings
+    //     debounceTime(300),
+    //     distinctUntilChanged(),
+    //     switchMap((searchText: string) => {
+    //       this.isLoading = true;
+    //       return this.userService.searchUser(searchText).pipe(
+    //         finalize(() => (this.isLoading = false))
+    //       );
+    //     })
+    //   )
+    //   .subscribe(
+    //     (response: any) => {
+    //       if (response && response.status && response.data?.userData) {
+    //         this.filteredUsers = response.data.userData;
+    //       } else {
+    //         console.error('Invalid API response structure:', response);
+    //         this.filteredUsers = [];
+    //       }
+    //     },
+    //     (error) => {
+    //       console.error('Error fetching users:', error);
+    //       this.filteredUsers = [];
+    //     }
+    //   );
 
+    // code update by amrit 13 march 2025
     this.searchControl.valueChanges
       .pipe(
-        filter((value): value is string => value !== null && value.trim().length > 0), // Exclude null or empty strings
+        map((value) => (typeof value === 'string' ? value.trim() : '')), // Ensure value is a trimmed string
+        tap((value:any) => {
+          console.log("Search input changed:", value);
+          if (!value) {
+            this.filteredUsers = []; // Clear search results when input is empty
+          }
+        }),
+        filter((value) => value.length > 0), // Ensure search triggers only for non-empty input
         debounceTime(300),
         distinctUntilChanged(),
         switchMap((searchText: string) => {
@@ -224,18 +263,23 @@ export class HeaderComponent {
       )
       .subscribe(
         (response: any) => {
-          if (response && response.status && response.data?.userData) {
+          if (response?.status && response.data?.userData) {
             this.filteredUsers = response.data.userData;
           } else {
-            console.error('Invalid API response structure:', response);
+            console.error("Invalid API response structure:", response);
             this.filteredUsers = [];
           }
         },
         (error) => {
-          console.error('Error fetching users:', error);
+          console.error("Error fetching users:", error);
           this.filteredUsers = [];
         }
       );
+
+    this.route.params.subscribe(() => {
+      this.searchControl.setValue('', { emitEvent: false }); // Clear search input
+      this.filteredUsers = []; // Reset search results
+    });
   }
 
   isUserOnline(senderId: number): boolean {
@@ -559,5 +603,9 @@ export class HeaderComponent {
   onThemeToggle(isDarkModeEnabled: boolean): void {
     // Call the toggleTheme function from the service
     this.talkService.toggleTheme(isDarkModeEnabled);
+  }
+
+  ngAfterViewInit() {
+    this.cdRef.detectChanges();
   }
 }

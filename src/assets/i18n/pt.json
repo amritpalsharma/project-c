@@ -1271,5 +1271,6 @@
   "registrationFailed": "Falha no registo",
   "Processing": "Processamento...",
   "EmailVerified": "E-mail verificado!",
-  "doYouWantToaddPackage": "Pretende adicionar “{{package_name}}” ao seu perfil?"
+  "doYouWantToaddPackage": "Pretende adicionar “{{package_name}}” ao seu perfil?",
+  "deletePerformanceConfirm": "Tem a certeza de que pretende eliminar os relatórios selecionados?"
 }

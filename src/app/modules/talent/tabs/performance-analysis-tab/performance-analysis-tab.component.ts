@@ -2,6 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { TalentService } from '../../../../services/talent.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddPerfomanceReportComponent } from './add-perfomance-report/add-perfomance-report.component';
+import { MessagePopupComponent } from '../../message-popup/message-popup.component';
+import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 
 interface Report {
   id: string;
@@ -20,6 +23,7 @@ interface Report {
 
 
 export class PerformanceAnalysisTabComponent implements OnInit {
+  private plansSubscription: Subscription = new Subscription();
 
   reports: Report[] = [];
   errorMessage: string | null = null;
@@ -28,11 +32,18 @@ export class PerformanceAnalysisTabComponent implements OnInit {
   idsToDelete: any = [];
   path: any;
   @Input() isPremium: any;
+  deletePerformanceConfirm: string = '';
+  langSubscription!: Subscription;
 
-  constructor(private talentService: TalentService, public dialog: MatDialog) { }
+  constructor(private talentService: TalentService, public dialog: MatDialog, private translateService: TranslateService,) { }
 
   ngOnInit() {
     this.loadReports();
+    this.translateMsg();
+    this.langSubscription = this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
+      this.translateMsg(); // Reload features when the language changes
+    });
+
   }
 
   loadReports() {
@@ -172,25 +183,38 @@ export class PerformanceAnalysisTabComponent implements OnInit {
       return
     }
     let params: any = { id: this.selectedIds };
-    if (confirm('Are you sure you want to delete the selected reports?')) {
+    const messageDialog = this.dialog.open(MessagePopupComponent, {
+      width: '500px',
+      position: {
+        top: '150px'
+      },
+      data: {
+        message: this.deletePerformanceConfirm,
+        action: 'delete-performance-analysis'
+      }
+    })
 
-      this.talentService.deletePerformanceReport(params).subscribe(
-        (response) => {
-          if (response.status) {
-            this.loadReports();
-            this.selectedIds = [];
-            this.allSelected = false;
-            console.log('Reports deleted successfully.');
-          } else {
-            console.log('Reports not deleted.');
-          }
-        },
-        (error) => {
-          console.error('Error deleting reports:', error);
+    messageDialog.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        if (result.action == "performance-delete-confirmed") {
+          this.talentService.deletePerformanceReport(params).subscribe(
+            (response) => {
+              if (response.status) {
+                this.loadReports();
+                this.selectedIds = [];
+                this.allSelected = false;
+                console.log('Reports deleted successfully.');
+              } else {
+                console.log('Reports not deleted.');
+              }
+            },
+            (error) => {
+              console.error('Error deleting reports:', error);
+            }
+          );
         }
-      );
-
-    }
+      }
+    });
   }
   // function by amrit to convert time
   formatDateTime(dateString: string): string {
@@ -231,9 +255,13 @@ export class PerformanceAnalysisTabComponent implements OnInit {
       default:
         formattedDate = date.toLocaleString('en-US', options); // Default to US English
     }
-    formattedDate = formattedDate.replace(', ',' ');
+    formattedDate = formattedDate.replace(', ', ' ');
     return formattedDate;
   }
 
-
+  translateMsg() {
+    this.translateService.get(['deletePerformanceConfirm']).subscribe((translations) => {
+      this.deletePerformanceConfirm = translations['deletePerformanceConfirm'];
+    })
+  }
 }
