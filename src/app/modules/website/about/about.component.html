@@ -52,18 +52,13 @@
 
         <div *ngIf="isExists('leaderboard')  && !isLoading" class="leaderboard-club-image advirtismnt_2_large">
           <a href="{{advertisementData?.leaderboard?.redirect_url}}" target="_blank">
-<!-- >>>>>>> e1d3db13f3221d06e7d734634d0c8a05bbfe9b42 -->
           <img [src]="advertisemnet_base_url + advertisementData?.leaderboard?.featured_image">
           </a>
           <button *ngIf="!btnLoading" (click)="closeAd('leaderboard')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
           <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
         </div>
-<!-- <<<<<<< HEAD
-        <div *ngIf="!isExists('leaderboard') && checkActive('banner')" class="leaderboard-club-image advirtismnt_2_small">
-======= -->
         <div *ngIf="!isExists('leaderboard')  && !isLoading" class="leaderboard-club-image advirtismnt_2_small">
           <a href="{{advertisementData?.banner?.redirect_url}}" target="_blank">
-<!-- >>>>>>> e1d3db13f3221d06e7d734634d0c8a05bbfe9b42 -->
           <img [src]="advertisemnet_base_url + advertisementData?.banner?.featured_image">
           </a>
           <button *ngIf="!btnLoading" (click)="closeAd('banner')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>

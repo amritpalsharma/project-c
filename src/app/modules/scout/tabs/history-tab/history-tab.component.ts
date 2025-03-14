@@ -2,6 +2,8 @@ import { Component, Input, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { ScoutService } from '../../../../services/scout.service';
+import { Editor } from 'ngx-editor';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'scout-app-history-tab',
@@ -9,6 +11,7 @@ import { ScoutService } from '../../../../services/scout.service';
   styleUrl: './history-tab.component.scss'
 })
 export class HistoryTabComponent {
+  editor!: Editor;
   isLoading:boolean = false;
   userId:any = "";
   history: any = "";
@@ -22,7 +25,14 @@ export class HistoryTabComponent {
 
   ngOnInit(): void { 
     this.getScoutHistory();
+    this.editor = new Editor();
   }
+
+  ngOnDestroy(): void {
+    this.editor.destroy();
+  }
+
+  colorPresets: any = environment.colors;
 
   getScoutHistory(){
     this.isLoading = true;
@@ -30,6 +40,7 @@ export class HistoryTabComponent {
       this.scoutService.getScoutHistory().subscribe((response)=>{
         if (response && response.status && response.data) {
           this.history = response.data.company_history.meta_value; 
+          // this.history = '<h1>dsdf</h1>';
           this.isLoading = false;
         } else {
           this.isLoading = false;
@@ -52,13 +63,15 @@ export class HistoryTabComponent {
   }
 
   updateScoutHistory(): any {
-    const history = this.textarea.nativeElement.value;
+    // const history = this.textarea.nativeElement.value;
 
     // if(history.trim() == ""){
     //   return false;
     // }
+
+    console.log(this.history)
     
-    if(history === ""){
+    if(this.history === ""){
       return false;
     }
 
