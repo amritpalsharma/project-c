@@ -43,7 +43,7 @@ export class FooterComponent implements OnInit {
     { name: 'Denmark', slug: 'dk', id: 9, flag: 'Denmark.svg', url: 'https://www.socceryou.se' },
     { name: 'Sweden', slug: 'se', id: 10, flag: 'Sweden-sweden.svg', url: 'https://www.socceryou.dk' },
   ];
-  
+
   // German Country Names
   countrie_de = [
     { name: 'Schweiz', slug: "ch", id: 1, flag: "Switzerland.svg", url: 'https://www.socceryou.ch' },
@@ -57,7 +57,7 @@ export class FooterComponent implements OnInit {
     { name: 'Dänemark', slug: 'dk', id: 9, flag: 'Denmark.svg', url: 'https://www.socceryou.se' },
     { name: 'Schweden', slug: 'se', id: 10, flag: 'Sweden-sweden.svg', url: 'https://www.socceryou.dk' },
   ];
-  
+
   // Italian Country Names
   countrie_it = [
     { name: 'Svizzera', slug: "ch", id: 1, flag: "Switzerland.svg", url: 'https://www.socceryou.ch' },
@@ -71,7 +71,7 @@ export class FooterComponent implements OnInit {
     { name: 'Danimarca', slug: 'dk', id: 9, flag: 'Denmark.svg', url: 'https://www.socceryou.se' },
     { name: 'Svezia', slug: 'se', id: 10, flag: 'Sweden-sweden.svg', url: 'https://www.socceryou.dk' },
   ];
-  
+
   // French Country Names
   countrie_fr = [
     { name: 'Suisse', slug: "ch", id: 1, flag: "Switzerland.svg", url: 'https://www.socceryou.ch' },
@@ -85,7 +85,7 @@ export class FooterComponent implements OnInit {
     { name: 'Danemark', slug: 'dk', id: 9, flag: 'Denmark.svg', url: 'https://www.socceryou.se' },
     { name: 'Suède', slug: 'se', id: 10, flag: 'Sweden-sweden.svg', url: 'https://www.socceryou.dk' },
   ];
-  
+
   // Spanish Country Names
   countrie_es = [
     { name: 'Suiza', slug: "ch", id: 1, flag: "Switzerland.svg", url: 'https://www.socceryou.ch' },
@@ -99,7 +99,7 @@ export class FooterComponent implements OnInit {
     { name: 'Dinamarca', slug: 'dk', id: 9, flag: 'Denmark.svg', url: 'https://www.socceryou.se' },
     { name: 'Suecia', slug: 'se', id: 10, flag: 'Sweden-sweden.svg', url: 'https://www.socceryou.dk' },
   ];
-  
+
   // Portuguese Country Names
   countrie_pt = [
     { name: 'Suíça', slug: "ch", id: 1, flag: "Switzerland.svg", url: 'https://www.socceryou.ch' },
@@ -113,8 +113,8 @@ export class FooterComponent implements OnInit {
     { name: 'Dinamarca', slug: 'dk', id: 9, flag: 'Denmark.svg', url: 'https://www.socceryou.se' },
     { name: 'Suécia', slug: 'se', id: 10, flag: 'Sweden-sweden.svg', url: 'https://www.socceryou.dk' },
   ];
-  
-  
+
+
   // Danish Country Names
   countrie_dk = [
     { name: 'Schweiz', slug: "ch", id: 1, flag: "Switzerland.svg", url: 'https://www.socceryou.ch' },
@@ -128,7 +128,7 @@ export class FooterComponent implements OnInit {
     { name: 'Danmark', slug: 'dk', id: 9, flag: 'Denmark.svg', url: 'https://www.socceryou.se' },
     { name: 'Sverige', slug: 'se', id: 10, flag: 'Sweden-sweden.svg', url: 'https://www.socceryou.dk' },
   ];
-  
+
   // Swedish Country Names
   countrie_se = [
     { name: 'Schweiz', slug: "ch", id: 1, flag: "Switzerland.svg", url: 'https://www.socceryou.ch' },
@@ -225,6 +225,10 @@ export class FooterComponent implements OnInit {
     translateService.onLangChange.subscribe(() => {
       this.language = translateService.currentLang;
       this.loadCountries();
+      console.log(this.selectedcountry);
+      setTimeout(() => {
+        this.selectedcountry = this.countrie[0]?.id || 1;
+      }, 500);
     });
 
   }
@@ -241,7 +245,6 @@ export class FooterComponent implements OnInit {
       this.selectedcountry = 1; //Number(data);
       const selectedLang = this.countrie.find((data: any) => data.id == this.selectedcountry);
       this.name = selectedLang?.name || '';
-
     });
     // Check if the google.accounts.id library is loaded
     if (typeof google !== 'undefined' && typeof google.accounts !== 'undefined' && typeof google.accounts.id !== 'undefined') {
@@ -252,6 +255,18 @@ export class FooterComponent implements OnInit {
       //  console.warn('Google API script is not fully loaded.');
       this.countries = environment.domains;
     }
+
+    this.translateService.onLangChange.subscribe(() => {
+      this.language = this.translateService.currentLang;
+      this.loadCountries();
+      console.log(this.selectedcountry);
+      setTimeout(() => {
+        const selectedLang = this.countrie.find((data: any) => data.id == this.selectedcountry);
+      this.name = selectedLang?.name || '';
+        // this.selectedcountry = this.countrie[0]?.id || 1;
+        // this.name = this.selectedLang?.name || '';
+      }, 100);
+    });
 
 
 
@@ -275,6 +290,8 @@ export class FooterComponent implements OnInit {
     } else if (this.language === 'se') {
       this.countrie = this.countrie_se;
     }
+
+
   }
 
   performMagicLogin(token: string) {

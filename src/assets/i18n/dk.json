@@ -1102,7 +1102,7 @@
   "thanksMessage": "Mange tak skal du have",
   "thanksMessage2": "Vi tager kontakt til dig.",
   "backToHome": "Tilbage til start",
-  "removeFavoriteConfirm": "Er du sikker på, at du vil slette fra favoritter?",
+  "removeFavoriteConfirm": "Er du sikker på, at du vil slette denne favorit fra din liste?",
   "dontShowAgain": "Vis det ikke igen",
   "cancelConfirmationMsg": "Er du sikker på, at du vil opsige dette abonnement? Denne handling kan ikke fortrydes.",
   "youHaveAnActive": "Du har aktive",
@@ -1165,5 +1165,10 @@
  "allowAll": "Tillad alle",
  "refuseAll": "Afvis alle",
   "deleteAccountDesc": "Dette vil slette din konto permanent fra vores database.",
-  "deleteMyAccount" : "Slet min konto"
+  "deleteMyAccount": "Slet min konto",
+  "uploadNewProfileImage": "Upload nyt profilbillede",
+  "editCoverImage": "Rediger forsidebillede",
+  "learnMore": "Få mere at vide",
+  "removeFavbtn": "Ja, slet",
+  "cancelRemoveFavBtn": "Nej, ikke slet"
 }

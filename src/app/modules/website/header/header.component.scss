@@ -160,6 +160,10 @@ body {
 
 .custom-select {
     margin-right: 10px;
+    .dropdown-menu {
+        left: auto;
+        right: auto;
+    }
 }
 
 .logo-image {
@@ -1845,13 +1849,6 @@ select.form-select.custom-select1 {
 }
 
 @media (max-width: 767px) {
-
-
-    .switch1 {
-        display: flex;
-        margin-left: 84px;
-    }
-
     .banner-content svg {
         width: 300px;
     }
@@ -1896,10 +1893,6 @@ select.form-select.custom-select1 {
         padding: 15px;
     }
 
-    .coustom-select1 {
-        margin-right: 0;
-    }
-
     .switch {
         width: 50px;
         height: 30px;
@@ -1918,6 +1911,10 @@ select.form-select.custom-select1 {
 }
 
 @media (max-width: 575px) {
+    .coustom-select1 {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
     .logo-image img {
         height: 60px;
         width: 70px;
@@ -1939,12 +1936,6 @@ select.form-select.custom-select1 {
     // .sidebar {
     //     display: block;
     // }
-
-    .coustom-select1 {
-        margin-left: 0;
-        margin-right: 0;
-    }
-
     .logo1 svg {
         height: 60px;
         margin-top: 10px;
@@ -2340,11 +2331,6 @@ select.form-select.custom-select1 {
         margin-bottom: 0;
     }
 
-    .switch1 {
-        display: flex;
-        margin-left: 0;
-    }
-
 }
 
 @media (max-width: 415px) {}
@@ -2355,7 +2341,6 @@ select.form-select.custom-select1 {
         width: 50px;
         height: 30px;
         margin-right: 0;
-        margin-left: 0;
     }
 
     .logo1::after {
@@ -2393,11 +2378,6 @@ select.form-select.custom-select1 {
         height: 45px;
     }
 
-    .coustom-select1 {
-        margin-left: 0;
-        margin-right: 0;
-    }
-
     .logo svg {
         height: 40px;
         width: 130px;
@@ -2424,7 +2404,6 @@ select.form-select.custom-select1 {
         width: 50px;
         height: 30px;
         margin-right: 0;
-        margin-left: 0;
     }
 
     .logo1 img {
@@ -2538,12 +2517,6 @@ select.form-select.custom-select1 {
     .register .form-control {
         height: 30px;
     }
-
-    .coustom-select1 {
-        margin-left: 0;
-        margin-right: 0;
-    }
-
     .logo1 svg {
         height: 45px;
     }

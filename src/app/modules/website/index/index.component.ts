@@ -103,11 +103,7 @@ export class IndexComponent {
     inline_rectangle: true,
   }
 
-<<<<<<< HEAD
   advertisementData:any = {
-=======
-  advertisementData: any = {
->>>>>>> 166f522f98dea2de86467c99fa57e3adecb9a4b8
     skyscraper: {
       id: '1',
       featured_image: "leaderboard.png"
@@ -118,19 +114,11 @@ export class IndexComponent {
     },
     leaderboard: {
       id: '1',
-<<<<<<< HEAD
       featured_image: "leaderboard.png"
     },
     large_leaderboard: {
       id: '1',
       featured_image: "leaderboard.png"
-=======
-      // featured_image: "leaderboard.png"
-    },
-    large_leaderboard: {
-      id: '1',
-      // featured_image: "leaderboard.png"
->>>>>>> 166f522f98dea2de86467c99fa57e3adecb9a4b8
     },
     banner: {
       id: '1',

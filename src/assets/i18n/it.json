@@ -1239,7 +1239,7 @@
   "thanksMessage": "Grazie mille",
   "thanksMessage2": "Ci metteremo in contatto con voi.",
   "backToHome": "Torna a casa",
-  "removeFavoriteConfirm": "Sei sicuro di voler eliminare dai preferiti?",
+  "removeFavoriteConfirm": "Sei sicuro di voler eliminare questo preferito dalla tua lista?",
   "dontShowAgain": "Non mostrarlo più",
   "cancelConfirmationMsg": "È sicuro di voler cancellare questo abbonamento? Questa azione non può essere annullata.",
   "youHaveAnActive": "Avete attivo",
@@ -1279,12 +1279,19 @@
       "Più visibilità - maggiori possibilità di essere scoperti"
     ]
   },
-   "areYouSuretoDeleteActivity":"Sei sicuro di voler eliminare l'attività?",
-   "subsciptionCancelSuccess": "L'abbonamento è stato annullato con successo.",
-   "MyAccount": "al Dashboard",
-   "boostProfiles": "Profilo di spinta",
-   "changeNewsletterStatus": "Sei sicuro di voler cambiare lo stato della newsletter?",
-   "representators": "Membro del team",
+  "MyAccount": "al Dashboard",
+  "boostProfiles": "Profilo di spinta",
+  "changeNewsletterStatus": "Sei sicuro di voler cambiare lo stato della newsletter?",
+  "areYouSuretoDeleteActivity": "Sei sicuro di voler eliminare l'attività?",
+  "subsciptionCancelSuccess": "L'abbonamento è stato annullato con successo.",
+  "deleteAccountDesc": "In questo modo il vostro account verrà eliminato definitivamente dal nostro database.",
+  "deleteMyAccount": "Cancellare il mio account",
+  "uploadNewProfileImage": "Carica nuova immagine del profilo",
+  "editCoverImage": "Modifica dell'immagine di copertina",
+  "learnMore":"Per saperne di più",
+  "removeFavbtn": "Sì, elimina",
+  "cancelRemoveFavBtn": "No, non eliminare",
+  "representators": "Membro del team",
   "representators:": "Membro del team:",
 
   "errorMessage": "questa pagina purtroppo non è stata trovata",
@@ -1300,7 +1307,5 @@
   "iDecline": "Rifiuto",
   "manageConsentPreferences": "Gestione delle preferenze di consenso",
   "allowAll": "Consenti a tutti",
-  "refuseAll": "Rifiuta tutto",
-   "deleteAccountDesc": "In questo modo il vostro account verrà eliminato definitivamente dal nostro database.",
-   "deleteMyAccount" : "Cancellare il mio account"
+  "refuseAll": "Rifiuta tutto"
 }

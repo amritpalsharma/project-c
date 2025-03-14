@@ -13,18 +13,35 @@
   cursor: pointer;
 }
 .inbox-wrapper{
-  width: 545px;
+  width: 100%;
 }
-
+.main_to_label {
+  font-weight: bold;
+}
 .fruit-font{
   font-size: 1.5rem;
   padding: 1rem;
 }
-
+.chat-btn button{
+  padding: 15px 20px;
+}
+.chat-btn {
+  padding: 12px 16px;
+}
 
 
 .img-list{
   border-radius: 50%;
+  object-fit: cover;
+  object-position: top;
+}
+.mdc-list-item__primary-text {
+  font-weight: bold !important;
+}
+.mat-mdc-option.mdc-list-item {
+  padding: 8px 0;
+  border-bottom: 1px solid #dbdbdb;
+  margin: 0 !important;
 }
 .cancel-icon{
   background-image: url(../../../../../assets/images/cross-icon.png);
@@ -48,10 +65,16 @@
   // height: 90% !important;
 }
 
+.add-chat{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
 .body-background{
   border-top:  1px solid #D9D9D9 !important;
   border-bottom:  1px solid #D9D9D9 !important;
-
+  padding: 10px;
 }
 
 .listBox  ::-webkit-scrollbar {

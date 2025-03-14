@@ -7,7 +7,7 @@
       <div class="container">
         <div class="player-list">
           <h1>{{'explore' | translate}} {{'talent' | translate}} and {{'club' | translate}}</h1>
-          <h2>{{TotalCount}}</h2>
+          <!-- <h2>{{TotalCount}}</h2> -->
           <!-- Tabs for Talent, Club, and Scouts -->
           <div class="tabs">
             <button class="faq-club-button" (click)="selectTab('talent')"
@@ -20,8 +20,9 @@
 
           <div class="tab-content">
             <div *ngIf="isLoading">
-              <h1>Loading...</h1>
+              <app-loader class="loader123 player-list-loader"></app-loader>
             </div>
+
             <!-- Talent Tab Content -->
             <div *ngIf="selectedTab === 'talent' && !isLoading">
               <div class="row">
@@ -30,7 +31,8 @@
                     <div class="player1">
                       <div class="player-img">
                         <img [src]="player.meta.profile_image_path" alt="{{ player.first_name+' '+player.last_name }}"
-                          [ngClass]="{ 'bg-red': player.name === 'Zidane', 'bg-green': player.name !== 'Zidane' }">
+                          [ngClass]="{ 'bg-red': player.name === 'Zidane', 'bg-green': player.name !== 'Zidane' }"
+                          (error)="setDefaultImage($event)" [ngClass]="{ 'default-img': isDefaultImage }">
                         <div *ngIf="player.package_name === 'Booster'" class="image-text">{{'boosted' | translate}}
                         </div>
                       </div>
@@ -105,7 +107,8 @@
                     <div class="player1">
                       <div class="player-img">
                         <img [src]="player.meta.profile_image_path" alt="{{ player.first_name + ' '+player.last_name }}"
-                          [ngClass]="{ 'bg-red': player.name === 'Zidane', 'bg-green': player.name !== 'Zidane' }">
+                          [ngClass]="{ 'bg-red': player.name === 'Zidane', 'bg-green': player.name !== 'Zidane' }"
+                          (error)="setDefaultImage($event)" [ngClass]="{ 'default-img': isDefaultImage }">
                         <!-- <div *ngIf="player.name === 'Zidane'" class="image-text">{{'boosted' | translate}}</div> -->
                       </div>
                       <!-- <p class="player-name7" *ngIf="player.current_club_name">{{ player.current_club_name }}</p>
@@ -182,7 +185,6 @@
 
 
             </div>
-            <div class="player-list-loader" *ngIf="isLoading">Loading...</div>
             <!-- Scouts Tab Content -->
             <!-- {{scoutProfiles | json}} -->
             <div *ngIf="selectedTab === 'scouts' && !isLoading">
@@ -191,10 +193,10 @@
                   <div class="players player-card">
                     <div class="player1">
                       <div class="player-img">
-                        <img src="{{player.meta.profile_image_path}}" alt="{{ player.first_name+' '+player.last_name }}"
-                          onerror="this.onerror=null; this.src='../assets/images/1.jpg';">
+                        <img src="{{ player.meta.profile_image_path }}"
+                          alt="{{ player.first_name + ' ' + player.last_name }}" (error)="setDefaultImage($event)" [ngClass]="{ 'default-img': isDefaultImage }">
                         <!-- <img [src]="player.meta.profile_image_path" alt="{{ player.first_name+' '+player.last_name }}" -->
-                          <!-- [ngClass]="{ 'bg-red': player.name === 'Zidane', 'bg-green': player.name !== 'Zidane' }"> -->
+                        <!-- [ngClass]="{ 'bg-red': player.name === 'Zidane', 'bg-green': player.name !== 'Zidane' }"> -->
                         <div *ngIf="player.package_name === 'Booster'" class="image-text">{{'boosted' | translate}}
                         </div>
                         <!-- <img [src]="player.image" alt="{{ player.name }}"
@@ -269,7 +271,6 @@
 
         <!-- Advertisement banners -->
         <div class="advertisement1" [ngClass]="{'hidden': !adVisible[2] && !adVisible[3]  && !adVisible[4]}">
-
           <div *ngIf="adVisible[2]" class="large-rectangle">
             <img src="./assets/images/large rectangle - 336x280 .png">
             <button (click)="closeAd(2)" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>

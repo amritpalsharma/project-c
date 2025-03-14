@@ -409,7 +409,7 @@
   "InTheTeamSince": "No time desde",
   "Height": "Altura",
   "SocialMedia": "Mídias sociais",
-  "pt": "Senha",
+  "pt": "PT",
   "RegistrationDate": "Data de registro",
   "NextPaymentDue": "Próximo pagamento devido",
   "LastPayment": "Último pagamento",
@@ -1195,7 +1195,7 @@
   "thanksMessage": "muito obrigado",
   "thanksMessage2": "Entraremos em contacto consigo.",
   "backToHome": "Voltar ao início",
-  "removeFavoriteConfirm": "Tem a certeza de que pretende apagar dos favoritos?",
+  "removeFavoriteConfirm": "Tem certeza de que deseja remover este favorito da sua lista?",
   "dontShowAgain": "Não voltar a mostrar",
   "cancelConfirmationMsg": "Tem a certeza de que pretende cancelar esta subscrição? Esta ação não pode ser anulada.",
   "youHaveAnActive": "Tem activos",
@@ -1235,11 +1235,18 @@
       "Mais visibilidade - maiores hipóteses de ser descoberto"
     ]
   },
-   "areYouSuretoDeleteActivity":"Tem a certeza de que pretende eliminar a atividade?",
-   "subsciptionCancelSuccess": "A sua subscrição foi cancelada com sucesso.",
-   "MyAccount": "para Painel",
-   "boostProfiles": "Impulsionar o perfil",
-   "changeNewsletterStatus": "Tem a certeza de que pretende alterar o estatuto de boletim informativo?",
+  "MyAccount": "para Painel",
+  "boostProfiles": "Impulsionar o perfil",
+  "changeNewsletterStatus": "Tem a certeza de que pretende alterar o estatuto de boletim informativo?",
+  "areYouSuretoDeleteActivity": "Tem a certeza de que pretende eliminar a atividade?",
+  "subsciptionCancelSuccess": "A sua subscrição foi cancelada com sucesso.",
+  "deleteAccountDesc": "Esta ação elimina permanentemente a sua conta da nossa base de dados.",
+  "deleteMyAccount": "Eliminar a minha conta",
+  "uploadNewProfileImage": "Carregar nova imagem de perfil",
+  "editCoverImage": "Editar imagem de capa",
+  "learnMore": "Saiba mais",
+  "removeFavbtn": "Sim, excluir",
+  "cancelRemoveFavBtn": "Não, não excluir",
    "representators": "Membro da equipa",
   "representators:": "Membro da equipa:",
 
@@ -1256,7 +1263,5 @@
   "iDecline": "Recuso-me",
   "manageConsentPreferences": "Gerir preferências de consentimento",
   "allowAll": "Permitir tudo",
-  "refuseAll": "Recusar tudo",
-   "deleteAccountDesc": "Esta ação elimina permanentemente a sua conta da nossa base de dados.",
-   "deleteMyAccount" : "Eliminar a minha conta"
+  "refuseAll": "Recusar tudo"
   }

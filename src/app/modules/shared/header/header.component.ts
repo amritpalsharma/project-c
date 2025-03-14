@@ -330,6 +330,7 @@ export class HeaderComponent {
     }
 
     this.socketService.emit('updateLanguage', { userId, langId: selectedLandId });
+    
     this.fetchNotifications(userId, selectedLandId);
 
      // Now safely access the locale
