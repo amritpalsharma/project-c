@@ -77,9 +77,9 @@ export class HistoryTabComponent {
 
     try {
       this.isLoading = true;
-      this.scoutService.updateScoutHistory(history).subscribe((response)=>{
+      this.scoutService.updateScoutHistory(this.history).subscribe((response)=>{
         if (response && response.status && response.data) {
-          this.history = history; 
+          // this.history = history; 
           this.isEditable = false;
           this.isLoading = false;
         } else {

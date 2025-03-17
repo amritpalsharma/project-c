@@ -393,7 +393,8 @@ export class ViewProfileComponent implements OnInit {
       // this.router.navigate(['/talent/chat'], { queryParams: { userData: encodedUserData } });
 
       localStorage.setItem('otherUserData',tempUser);
-      this.router.navigate(['/talent/chat']);
+      const role = this.loggedInUser.role_name.toLowerCase();
+      this.router.navigate([`/${role}/chat`]);
     } else {
       console.warn('No userData available');
     }

@@ -242,7 +242,7 @@ export class DashboardComponent implements OnInit , OnDestroy {
 
   updateShowTour(showTour: number) {
     console.log("done")
-    return;
+    // return;
     this.talentService.updateShowTour(this.userId, showTour).subscribe(
       () => {
         console.log('Tour preferences updated successfully!');
@@ -323,7 +323,8 @@ export class DashboardComponent implements OnInit , OnDestroy {
             this.sendMessage();
           }
 
-          if (this.StartTour && this.isTourFirstTime) {
+          // if (this.StartTour && this.isTourFirstTime) {
+          if (this.StartTour) {
             setTimeout(() => {
               this.isTourFirstTime = false;
               // alert('Found lang in Db : '+response.data.user_data.lang)
