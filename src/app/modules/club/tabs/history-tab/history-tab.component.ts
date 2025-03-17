@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ClubService } from '../../../../services/club.service';
+import { Editor } from 'ngx-editor';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'club-history-tab',
@@ -8,6 +10,7 @@ import { ClubService } from '../../../../services/club.service';
   styleUrls: ['./history-tab.component.scss']
 })
 export class HistoryTabComponent implements OnInit {
+  editor!: Editor;
   isLoading: boolean = false;
   userId: any = "";
   history: any = "";
@@ -15,21 +18,26 @@ export class HistoryTabComponent implements OnInit {
   @Input() role: any;
   @ViewChild('historyTextarea', { static: false }) textarea!: ElementRef;
 
-  constructor(private route: ActivatedRoute, private scoutService: ClubService) {}
+  constructor(private route: ActivatedRoute, private clubService: ClubService) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void { 
     this.getClubHistory();
+    this.editor = new Editor();
   }
+
+  ngOnDestroy(): void {
+    this.editor.destroy();
+  }
+
+  colorPresets: any = environment.colors;
 
   getClubHistory() {
     this.isLoading = true;
     try {
-      this.scoutService.getClubHistory().subscribe((response) => {
+      this.clubService.getClubHistory().subscribe((response) => {
         if (response && response.status && response.data) {
           this.history = response.data.club_history.meta_value;
-          this.isEditable = !!this.history; // Set isEditable to true if history has a value
           console.log(this.history);
-          console.log(this.isEditable);
           this.isLoading = false;
         } else {
           this.isLoading = false;
@@ -47,19 +55,23 @@ export class HistoryTabComponent implements OnInit {
   }
 
   updateHistory(){
-    this.updateScoutHistory();
+    this.updateClubHistory();
   }
 
-  updateScoutHistory(): any {
-    const history = this.textarea.nativeElement.value;
+  updateClubHistory(): any {
+    const history = this.history;
 
-    if(history.trim() == ""){
+    // if(history.trim() == ""){
+    //   return false;
+    // }
+
+    if(history === ""){
       return false;
     }
 
     try {
       this.isLoading = true;
-      this.scoutService.updateClubHistory(history).subscribe((response)=>{
+      this.clubService.updateClubHistory(history).subscribe((response)=>{
         if (response && response.status && response.data) {
           this.history = history;
           this.isEditable = false;

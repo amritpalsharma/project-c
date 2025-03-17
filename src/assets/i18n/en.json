@@ -1193,5 +1193,8 @@
   "heroHeading":"Hero heading",
   "doYouWantToaddPackage":"Do you want to add “{{package_name}}” to your profile?",
   "deletePerformanceConfirm":"Are you sure you want to delete the selected reports?",
-   "emailExample": "example@email.com"
+   "emailExample": "example@email.com",
+    "EMAIL_REQUIRED": "Email is required",
+    "EMAIL_INVALID": "Please enter a valid email",
+    "EMAIL_VALID": "Email is correct"
 }
