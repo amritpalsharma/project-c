@@ -71,6 +71,7 @@ export class InviteScoutTalentPopupComponent {
       if (response && response.status) {
         console.log(this.scoutId)
         receiverIds.forEach((id : any) => {
+          console.log(this.scoutId, receiverIds)
           this.socketService.emit("scoutAddPlayer", { senderId: this.scoutId, receiverIds: receiverIds })
         });
         this.dialogRef.close({

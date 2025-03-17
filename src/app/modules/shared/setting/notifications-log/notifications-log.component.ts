@@ -180,7 +180,7 @@ export class NotificationsLogComponent {
 
   isResponded : boolean = false;
 
-  responseToScoutInvite(response: string, scoutId: any, notification : any) {
+  responseToScoutInvite(myResponse: string, scoutId: any, notification : any) {
     let jsonData = localStorage.getItem("userData");
     let userId : any;
     if (jsonData) {
@@ -193,13 +193,13 @@ export class NotificationsLogComponent {
     let langId = localStorage.getItem('lang_id');
 
     const formData = new FormData();
-    formData.append('is_accepted', response);
+    formData.append('is_accepted', myResponse);
     // formData.append('player_id', userId);
     // formData.append('scout_id', scoutId);
 
     this.talentService.UpdateScoutRequest(scoutId, formData, langId).subscribe((response)=>{
       if (response && response.status) {
-        if(response === 'accepted'){
+        if(myResponse === 'accepted'){
           this.socketService.emit("acceptScoutRequest", { senderId: userId, receiverId: scoutId })
         }
         else{
