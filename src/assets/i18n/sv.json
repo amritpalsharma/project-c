@@ -860,9 +860,9 @@
   "goalkeeperCenterBack": "Goalkeeper, och center och back",
   "loading": "Loading och , och please och wait...",
   "deafultProfilePreview": "Default och profile och preview",
-  "confirmDeleteinformation": "Once och information och is och deleted, och it och can\u2019t och be och undone.",
-  "confirmDeleteinformation1": "Do och you och want och to och delete?",
-  "confirmDeleteinformation3": "Once och information och is och deleted, och it och can\u2019t och be och undone. och do och you och want och to och delete?",
+  "confirmDeleteinformation": "När information har raderats kan det inte göras ogjort.",
+  "confirmDeleteinformation1": "Vill du radera?",
+  "confirmDeleteinformation3": "När information har raderats kan det inte göras ogjort. Vill du radera?",
   "confirmDeleteUser": "Once och user och is och deleted, och it och can\u2019t och be och undone.",
   "confirmDeleteUser1": "Do och you och want och to och delete?",
   "templateIsDeleted": "Once och template och is och deleted, och it och can\u2019t och be och undone.",
@@ -1311,13 +1311,7 @@
   "enterDocumentTitle": "Ange dokumentets titel",
   "registrationInProcess": "Registrering är på gång...",
   "registrationFailed": "Registreringen misslyckades",
-<<<<<<< HEAD
   "Processing":"Bearbetning...",
   "EmailVerified":"E-post verifierad!",
   "emailExample": "Exempel@email.com"
-=======
-  "Processing": "Bearbetning...",
-  "EmailVerified": "E-post verifierad!",
-  "deletePerformanceConfirm": "Är du säker på att du vill ta bort de valda rapporterna?"
->>>>>>> ba0ebce767a9fe96aeff2f42e3241976839a6dff
 }

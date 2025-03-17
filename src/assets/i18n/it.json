@@ -477,7 +477,7 @@
   "performanceAnalysis": "Analisi delle prestazioni",
   "uploadPerformanceReport": "Caricare il rapporto sulle prestazioni",
   "transfers": "Trasferimenti",
-  "editTransferDetails": "Modifica i dettagli del trasferimento",
+  "editTransferDetails": "Modificare i dettagli del trasferimento",
   "gallery": "Galleria",
   "settings": "Impostazioni",
   "activityLogTab": "Registro delle attività",
@@ -863,9 +863,9 @@
   "goalkeeperCenterBack": "Goalkeeper, e center e back",
   "loading": "Loading e , e please e wait...",
   "deafultProfilePreview": "Default e profile e preview",
-  "confirmDeleteinformation": "Once e information e is e deleted, e it e can\u2019t e be e undone.",
-  "confirmDeleteinformation1": "Do e you e want e to e delete?",
-  "confirmDeleteinformation3": "Once e information e is e deleted, e it e can\u2019t e be e undone. e do e you e want e to e delete?",
+  "confirmDeleteinformation": "Una volta che le informazioni sono state cancellate, non è possibile annullarle.",
+  "confirmDeleteinformation1": "Volete cancellare?",
+  "confirmDeleteinformation3": "Una volta che le informazioni sono state cancellate, non è possibile annullarle. Volete cancellare?",
   "confirmDeleteUser": "Once e user e is e deleted, e it e can\u2019t e be e undone.",
   "confirmDeleteUser1": "Do e you e want e to e delete?",
   "templateIsDeleted": "Once e template e is e deleted, e it e can\u2019t e be e undone.",
@@ -909,8 +909,8 @@
   "playerAge": "Player e age",
   "form-upto": "Form-upto",
   "session": "Session",
-  "addNewTransfer": "Add e new e transfer",
-  "addTransferDetails": "Add e transfer e details",
+  "addNewTransfer": "Aggiungere un nuovo trasferimento",
+  "addTransferDetails": "Aggiungere dettagli del trasferimento",
   "addVideos": "Add e videos",
   "galleryText": "Your e browser e does e not e support e the e video e tag.",
   "generalPermissions": "General e permissions",
@@ -1307,9 +1307,5 @@
   "Processing": "Elaborazione...",
   "EmailVerified": "Email verificata!",
   "doYouWantToaddPackage": "Vuoi aggiungere “{{package_name}}” al tuo profilo?",
-<<<<<<< HEAD
   "emailExample": "esempio@email.com"
-=======
-  "deletePerformanceConfirm": "Siete sicuri di voler eliminare i rapporti selezionati?"
->>>>>>> ba0ebce767a9fe96aeff2f42e3241976839a6dff
 }

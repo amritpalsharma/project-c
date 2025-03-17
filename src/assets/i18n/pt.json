@@ -477,7 +477,7 @@
   "performanceAnalysis": "Análise de desempenho",
   "uploadPerformanceReport": "Carregar relatório de desempenho",
   "transfers": "Transferências",
-  "editTransferDetails": "Editar detalhes de transferência",
+  "editTransferDetails": "Editar detalhes da transferência",
   "gallery": "Galeria",
   "settings": "Configurações",
   "activityLogTab": "Registro de atividades",
@@ -796,9 +796,9 @@
   "loading": "Loading e , e please e wait...",
   "deafultProfilePreview": "Default e profile e preview",
   "choosePlan": "Choose e plan",
-  "confirmDeleteinformation": "Once e information e is e deleted, e it e can\u2019t e be e undone.",
-  "confirmDeleteinformation1": "Do e you e want e to e delete?",
-  "confirmDeleteinformation3": "Once e information e is e deleted, e it e can\u2019t e be e undone. e do e you e want e to e delete?",
+  "confirmDeleteinformation": "Uma vez eliminadas, as informações não podem ser anuladas. Pretende apagar?",
+  "confirmDeleteinformation1": "Pretende apagar?",
+  "confirmDeleteinformation3": "Uma vez eliminadas, as informações não podem ser anuladas. Pretende apagar?",
   "confirmDeleteUser": "Once e user e is e deleted, e it e can\u2019t e be e undone.",
   "confirmDeleteUser1": "Do e you e want e to e delete?",
   "templateIsDeleted": "Once e template e is e deleted, e it e can\u2019t e be e undone.",
@@ -844,8 +844,8 @@
   "playerAge": "Player e age",
   "form-upto": "Form-upto",
   "session": "Session",
-  "addNewTransfer": "Add e new e transfer",
-  "addTransferDetails": "Add e transfer e details",
+  "addNewTransfer": "Adicionar nova transferência",
+  "addTransferDetails": "Adicionar detalhes da transferência",
   "addVideos": "Add e videos",
   "galleryText": "Your e browser e does e not e support e the e video e tag.",
   "generalPermissions": "General e permissions",
@@ -1266,9 +1266,5 @@
   "Processing": "Processamento...",
   "EmailVerified": "E-mail verificado!",
   "doYouWantToaddPackage": "Pretende adicionar “{{package_name}}” ao seu perfil?",
-<<<<<<< HEAD
   "emailExample": "exemplo@email.com"
-=======
-  "deletePerformanceConfirm": "Tem a certeza de que pretende eliminar os relatórios selecionados?"
->>>>>>> ba0ebce767a9fe96aeff2f42e3241976839a6dff
 }

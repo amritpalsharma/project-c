@@ -773,6 +773,16 @@ export class ScoutService {
     return this.http.post<any>(`${this.apiUrl}scout/add-scout-player`, params, { headers });
   }
 
+  UpdateScoutRequest(id:any, params: any, lang: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.userToken}`
+    });
+
+    return this.http.post<any>(`${this.apiUrl}player/update-scout-request/${id}/${lang}`, params, { headers });
+  }
+
+
+
 
   sendInviteToRepresentator(userId:any, params:any): Observable<any> {
     const headers = new HttpHeaders({

@@ -474,7 +474,7 @@
   "performanceAnalysis": "Prestandaanalys",
   "uploadPerformanceReport": "Ladda upp prestationsrapport",
   "transfers": "Överföringar",
-  "editTransferDetails": "Redigera överföringsdetaljer",
+  "editTransferDetails": "Redigera övergångsdetaljer",
   "gallery": "Galleri",
   "settings": "Inställningar",
   "activityLogTab": "Aktivitetslogg",
@@ -904,8 +904,8 @@
   "playerAge": "Player och age",
   "form-upto": "Form-upto",
   "session": "Session",
-  "addNewTransfer": "Add och new och transfer",
-  "addTransferDetails": "Add och transfer och details",
+  "addNewTransfer": "Lägg till ny övergång",
+  "addTransferDetails": "Lägg till övergångsdetaljer",
   "galleryText": "Your och browser och does och not och support och the och video och tag.",
   "generalPermissions": "General och permissions",
   "appSettingText": "Receive och our och monthly och newsletter och for och industry och updates.",
@@ -1312,9 +1312,5 @@
   "Processing": "Bearbetning...",
   "EmailVerified": "E-post verifierad!",
   "doYouWantToaddPackage": "Vill du lägga till “{{package_name}}” i din profil?",
-<<<<<<< HEAD
   "emailExample": "Exempel@email.com"
-=======
-  "deletePerformanceConfirm": "Är du säker på att du vill ta bort de valda rapporterna?"
->>>>>>> ba0ebce767a9fe96aeff2f42e3241976839a6dff
 }

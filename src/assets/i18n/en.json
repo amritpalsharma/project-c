@@ -1192,5 +1192,6 @@
   "Onwards":"Onwards",
   "heroHeading":"Hero heading",
   "doYouWantToaddPackage":"Do you want to add “{{package_name}}” to your profile?",
-  "deletePerformanceConfirm":"Are you sure you want to delete the selected reports?"
+  "deletePerformanceConfirm":"Are you sure you want to delete the selected reports?",
+   "emailExample": "example@email.com"
 }

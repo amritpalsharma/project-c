@@ -8,6 +8,8 @@ import { ActivityService } from '../../../../services/activity';
 import { WebPages } from '../../../../services/webpages.service';
 import { TalentService } from '../../../../services/talent.service';
 import { TranslateService } from '@ngx-translate/core';
+import { ScoutService } from '../../../../services/scout.service';
+import { SocketService } from '../../../../services/socket.service';
 
 interface Notification {
   id: number;
@@ -38,7 +40,7 @@ export class NotificationsLogComponent {
   @ViewChild(MatSort) sort!: MatSort;
   idsToDelete: any = [];
 
-  constructor(public dialog: MatDialog, public webPages: WebPages, private talentService: TalentService, private translateService: TranslateService) {
+  constructor(public dialog: MatDialog, public webPages: WebPages, private talentService: TalentService, private translateService: TranslateService, private scoutService: ScoutService, private socketService: SocketService) {
     translateService.onLangChange.subscribe(() => {
       this.fetchNotifications()
     });
@@ -76,6 +78,28 @@ export class NotificationsLogComponent {
 
       }
     });
+  }
+
+  notificationClicked(id: number, seen: number, notification: any) {
+    if (!notification.seen) {
+      this.talentService.updateNotificationSeen(notification.id, 1).subscribe({
+        next: (response) => {
+          if (response.status) {
+            notification.seen = 1;
+            console.log('Message from API:', response.message);
+          }
+          else {
+            console.log("something went wrong");
+          }
+        },
+        error: (err) => {
+          console.error('Error:', err);
+        }
+      });
+    }
+    else {
+      console.log("already seen");
+    }
   }
 
 
@@ -150,6 +174,43 @@ export class NotificationsLogComponent {
         if (result.action == "delete-confirmed") {
           this.deleteActivity();
         }
+      }
+    });
+  }
+
+  isResponded : boolean = false;
+
+  responseToScoutInvite(response: string, scoutId: any, notification : any) {
+    let jsonData = localStorage.getItem("userData");
+    let userId : any;
+    if (jsonData) {
+      let userData = JSON.parse(jsonData);
+      userId = userData.id;
+    }
+    else {
+      console.log("No data found in localStorage.");
+    }
+    let langId = localStorage.getItem('lang_id');
+
+    const formData = new FormData();
+    formData.append('is_accepted', response);
+    // formData.append('player_id', userId);
+    // formData.append('scout_id', scoutId);
+
+    this.talentService.UpdateScoutRequest(scoutId, formData, langId).subscribe((response)=>{
+      if (response && response.status) {
+        if(response === 'accepted'){
+          this.socketService.emit("acceptScoutRequest", { senderId: userId, receiverId: scoutId })
+        }
+        else{
+          this.socketService.emit("rejectScoutRequest", { senderId: userId, receiverId: scoutId })
+        }
+        this.showMessage(response.message);
+        // this.isResponded = true;
+        this.notificationClicked(notification.id, notification.seen, notification)
+      } else {
+        console.error('Invalid API response structure:', response);
+        this.showMessage(response.message);
       }
     });
   }

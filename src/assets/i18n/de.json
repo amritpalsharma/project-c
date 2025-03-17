@@ -507,7 +507,6 @@
   "deafultProfilePreview": "Standard-Profilvorschau",
   "choosePlan": "Plan wählen",
   "onfirmDeleteinformation": "Einmal gelöschte Informationen können nicht mehr rückgängig gemacht werden.",
-  "confirmDeleteinformation1": "Möchtest du löschen?",
   "alertMessage": "Du hast 1 aktives Multi-Länder-Abonnement. Wähle ein Land aus der folgenden Liste, um dein Profil in diesem Land zu präsentieren.",
   "active": "Aktiv",
   "Default": "Standard",
@@ -553,8 +552,8 @@
   "totalViews": "Gesamtansicht",
   "totalClicks": "Klicks insgesamt",
   "session": "Sitzung",
-  "addNewTransfer": "Neue Übertragung hinzufügen",
-  "addTransferDetails": "Überweisungsdetails hinzufügen",
+  "addNewTransfer": "Neuen Transfer hinzufügen",
+  "addTransferDetails": "Transferdetails hinzufügen",
   "addVideos": "Add Videos",
   "galleryText": "Ihr Browser unterstützt das Video-Tag nicht.",
   "deleteVideo": "Video löschen",
@@ -1062,7 +1061,8 @@
   "UserType": "Benutzertyp",
   "soccerHire": "Über Fußballvermietung",
   "scoutPortfolio": "Portfolio",
-  "confirmDeleteinformation": "Sobald Informationen gelöscht wurden, können sie nicht wiederhergestellt werden.",
+  "confirmDeleteinformation": "Einmal gelöschte Informationen können nicht mehr rückgängig gemacht werden. Möchtest du löschen?",
+  "confirmDeleteinformation1": "Möchtest du löschen?",
   "confirmDeleteinformation3": "Sobald Informationen gelöscht wurden, können sie nicht wiederhergestellt werden. Möchten Sie wirklich löschen?",
   "confirmDeleteUser1": "Möchten Sie wirklich löschen?",
   "downloadVideo": "Video herunterladen",
@@ -1284,9 +1284,5 @@
   "Onwards": "weiter",
   "heroHeading": "Überschrift Held",
   "doYouWantToaddPackage": "Möchten Sie “{{package_name}}” zu Ihrem Profil hinzufügen?",
-<<<<<<< HEAD
   "emailExample": "Beispiel@email.com"
-=======
-  "deletePerformanceConfirm":"Sind Sie sicher, dass Sie die ausgewählten Berichte löschen wollen?"
->>>>>>> ba0ebce767a9fe96aeff2f42e3241976839a6dff
 }

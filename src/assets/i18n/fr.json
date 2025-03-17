@@ -876,9 +876,9 @@
   "loading": "Loading et , et please et wait...",
   "deafultProfilePreview": "Default et profile et preview",
   "choosePlan": "Choose et plan",
-  "confirmDeleteinformation": "Once et information et is et deleted, et it et can\u2019t et be et undone.",
-  "confirmDeleteinformation1": "Do et you et want et to et delete?",
-  "confirmDeleteinformation3": "Once et information et is et deleted, et it et can\u2019t et be et undone. et do et you et want et to et delete?",
+  "confirmDeleteinformation": "Une fois les informations supprimées, il est impossible de revenir en arrière.",
+  "confirmDeleteinformation1": "Voulez-vous effacer?",
+  "confirmDeleteinformation3": "Une fois les informations supprimées, il est impossible de revenir en arrière. Voulez-vous effacer?",
   "confirmDeleteUser": "Once et user et is et deleted, et it et can\u2019t et be et undone.",
   "confirmDeleteUser1": "Do et you et want et to et delete?",
   "templateIsDeleted": "Once et template et is et deleted, et it et can\u2019t et be et undone.",
@@ -919,8 +919,8 @@
   "playerAge": "Player et age",
   "form-upto": "Form-upto",
   "session": "Session",
-  "addNewTransfer": "Add et new et transfer",
-  "addTransferDetails": "Add et transfer et details",
+  "addNewTransfer": "Ajouter un nouveau transfert",
+  "addTransferDetails": "Ajouter des détails du transfert",
   "galleryText": "Your et browser et does et not et support et the et video et tag.",
   "generalPermissions": "General et permissions",
   "appSettingText": "Receive et our et monthly et newsletter et for et industry et updates.",
@@ -1327,9 +1327,5 @@
   "Processing": "Traitement...",
   "EmailVerified": "Courriel vérifié !",
   "doYouWantToaddPackage": "Voulez-vous ajouter “{{package_name}}” à votre profil ?",
-<<<<<<< HEAD
   "emailExample": "exemple@email.com"
-=======
-  "deletePerformanceConfirm": "Êtes-vous sûr de vouloir supprimer les rapports sélectionnés ?"
->>>>>>> ba0ebce767a9fe96aeff2f42e3241976839a6dff
 }

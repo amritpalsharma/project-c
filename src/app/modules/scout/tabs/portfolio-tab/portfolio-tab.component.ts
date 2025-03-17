@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../../../services/user.service';
 import { ScoutService } from '../../../../services/scout.service';
 import { AddNewTalentComponent } from './add-new-talent/add-new-talent.component';
+import { EditNewTalentComponent } from './edit-new-talent/edit-new-talent.component';
 import { ChangeDetectionStrategy, inject, model,  } from '@angular/core';
 import { ScoutPlayerViewPopupComponent } from '../../../admin/tabs/scout-player-view-popup/scout-player-view-popup.component';
 import { MessagePopupComponent } from '../../message-popup/message-popup.component';
@@ -108,7 +109,7 @@ export class PortfolioTabComponent {
   }
 
   viewScoutPlayer(playerId:any){
-    const playerViewDialog = this.dialog.open(ScoutPlayerViewPopupComponent,{
+    const playerViewDialog = this.dialog.open(EditNewTalentComponent,{
       width: '1000px',
       height: '600px',
       position: {
@@ -127,10 +128,10 @@ export class PortfolioTabComponent {
   }
 
   confirmDeletion(id:any, firstName:any, lastName:any){
-    this.idToBeDeleted = 110; //id;
+    this.idToBeDeleted = id; //id;
     let name = firstName+" "+lastName;
     console.log(id, firstName, lastName);
-    this.showMatDialog("", "delete-scout-player-confirmation", name);
+    this.showMatDialog("", "delete-confirmation", name);
   }
 
   showMatDialog(message:string, action:string, name:any = ''){
@@ -158,8 +159,10 @@ export class PortfolioTabComponent {
 
   deleteScoutPlayer(){
     this.scoutservice.deleteScoutPlayer(this.idToBeDeleted).subscribe((response:any) => {
+      if(response && response.status){
         this.showMatDialog('Player removed from Scout successfully!', 'display');
         this.getScoutPlayers();
+      }
     },
     (error:any) => {
         console.error('Error deleting user:', error);

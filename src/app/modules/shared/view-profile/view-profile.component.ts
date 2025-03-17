@@ -386,7 +386,9 @@ export class ViewProfileComponent implements OnInit {
 
       console.log(userData, this.user);
       let tempUser = JSON.stringify(userData);
-  
+
+      localStorage.setItem('otherUserData', tempUser);
+
       const encodedUserData = encodeURIComponent(JSON.stringify(userData)); // Convert to JSON and encode
       // this.router.navigate(['/talent/chat'], { queryParams: { userData: encodedUserData } });
 

@@ -44,6 +44,16 @@ export class ChatComponent {
       }, 0);
     }
 
+    if (otherUserData) {
+      const otherUser = JSON.parse(otherUserData);
+      console.log("Starting chat with:", otherUser);
+      
+      this.startOneOnOneChat(otherUser);
+      
+      // Clear localStorage after using it to avoid unnecessary chat start on next visit
+      localStorage.removeItem('otherUserData');
+    }
+
     const theme = localStorage.getItem('theme');
 
     if (theme == 'dark') {

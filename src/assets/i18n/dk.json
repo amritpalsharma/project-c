@@ -427,7 +427,7 @@
   "addNewPerformancePopup": "Tilføj ny præstation",
   "performanceAnalysis": "Præstationsanalyse",
   "uploadPerformanceReport": "Upload præstationsrapport",
-  "editTransferDetails": "Rediger overførselsdetaljer",
+  "editTransferDetails": "Rediger transferdetaljer",
   "settings": "Indstillinger",
   "activityLogTab": "Aktivitetslog",
   "appSettingsTab": "App Indstillinger",
@@ -706,9 +706,9 @@
   "loading": "Loading og , og please og wait...",
   "deafultProfilePreview": "Default og profile og preview",
   "choosePlan": "Choose og plan",
-  "confirmDeleteinformation": "Once og information og is og deleted, og it og can\u2019t og be og undone.",
-  "confirmDeleteinformation1": "Do og you og want og to og delete?",
-  "confirmDeleteinformation3": "Once og information og is og deleted, og it og can\u2019t og be og undone. og do og you og want og to og delete?",
+  "confirmDeleteinformation": "Når oplysninger er slettet, kan det ikke gøres om.",
+  "confirmDeleteinformation1": "Ønsker du at slette?",
+  "confirmDeleteinformation3": "Når oplysninger er slettet, kan det ikke gøres om. Ønsker du at slette?",
   "confirmDeleteUser1": "Do og you og want og to og delete?",
   "templateIsDeleted": "Once og template og is og deleted, og it og can\u2019t og be og undone.",
   "alertMessage": "You og have og 1 og more og active og multi-country og subscription. og choose og one og country og from og the og below og list og to og showcase og your og profile og in og that og country.",
@@ -752,8 +752,8 @@
   "playerAge": "Player og age",
   "form-upto": "Form-upto",
   "session": "Session",
-  "addNewTransfer": "Add og new og transfer",
-  "addTransferDetails": "Add og transfer og details",
+  "addNewTransfer": "Tilføj ny transfer",
+  "addTransferDetails": "Tilføj transferdetaljer",
   "addVideos": "Add og videos",
   "galleryText": "Your og browser og does og not og support og the og video og tag.",
   "generalPermissions": "General og permissions",
@@ -1173,9 +1173,5 @@
   "Processing": "Behandling...",
   "EmailVerified": "E-mail bekræftet!",
   "doYouWantToaddPackage": "Vil du tilføje “{{package_name}}” til din profil?",
-<<<<<<< HEAD
   "emailExample": "eksempel@email.com"
-=======
-  "deletePerformanceConfirm": "Er du sikker på, at du vil slette de valgte rapporter?"
->>>>>>> ba0ebce767a9fe96aeff2f42e3241976839a6dff
 }
