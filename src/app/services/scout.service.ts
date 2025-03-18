@@ -664,13 +664,9 @@ export class ScoutService {
       params = params.append('id[]', id);  // Append each ID to the 'ids[]' query param
     });
 
-<<<<<<< HEAD
-    return this.http.post(`${this.apiUrl}user/set-featured-file`, params, { headers });
-=======
     let lang_id = localStorage.getItem('lang_id');
 
     return this.http.post(`${this.apiUrl}user/set-featured-file/${lang_id}`, params, { headers });
->>>>>>> e36a146d350d609605210e6c1d011c54b70c68da
   }
 
 
