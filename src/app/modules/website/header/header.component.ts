@@ -64,6 +64,8 @@ export class HeaderComponent implements OnInit {
   registerationErrorHtml: string = '';
   verifyToken: any = null;
   verifyTime: any = null;
+ successMessage: string = '';
+
 
 
   //this is get by the domain
@@ -560,6 +562,9 @@ export class HeaderComponent implements OnInit {
       response => {
         if (response.status === false) {
           this.invalidCred = response.message;
+          if(response.message.email != ''){
+            this.invalidCred = response.message.email;
+          }
           this.showInvalidCredMessage();
         } else {
           const token = response.data.token;
@@ -611,6 +616,27 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  validateEmail() {
+    if (!this.email) {
+      // this.forgotPasswordMessage = 'Email is required';
+      this.successMessage = '';
+      return;
+    }
+  
+    if (this.isEmailValid(this.email)) {
+      this.forgotPasswordMessage = '';
+      this.successMessage = 'Email is correct';
+    } else {
+      this.forgotPasswordMessage = 'Please enter a valid email';
+      this.successMessage = '';
+    }
+  }
+  
+  isEmailValid(email: string): boolean {
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    return emailPattern.test(email);
+  }
+  
   register() {
     this.serverBusy = true;
     this.registerFormSubmitted = true;

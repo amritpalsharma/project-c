@@ -319,7 +319,7 @@ export class ScoutService {
       params = params.append('user[show_tour]', showTour);
 
     // Send POST request with payload in body
-    return this.http.post(`${this.apiUrl}scout/update-general-info`, params , {headers});
+    return this.http.post(`${this.apiUrl}user/update-profile`, params , {headers});
   }
 
   // Fetch teams and store globally and in localStorage
@@ -513,8 +513,8 @@ export class ScoutService {
 
   uploadCoverImage(formdata: any): Observable<any> {
     const headers = this.headers();
-
-    return this.http.post<any>(`${this.apiUrl}user/upload-cover-image/`, formdata, { headers });
+    let lang_id = localStorage.getItem('lang_id');
+    return this.http.post<any>(`${this.apiUrl}user/upload-cover-image/${lang_id}`, formdata, { headers });
   }
 
   getAllUses(): Observable<any> {
@@ -536,8 +536,8 @@ export class ScoutService {
 
   uploadProfileImage(formdata: any): Observable<any> {
     const headers = this.headers();
-
-    return this.http.post<any>(`${this.apiUrl}user/upload-profile-image/`, formdata, { headers });
+    let lang_id = localStorage.getItem('lang_id');
+    return this.http.post<any>(`${this.apiUrl}user/upload-profile-image/${lang_id}`, formdata, { headers });
   }
 
   uploadGalleryImages(formdata: any): Observable<any> {

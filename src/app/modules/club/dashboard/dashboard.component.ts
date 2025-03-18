@@ -1,4 +1,4 @@
-import { Component, OnInit ,EventEmitter, Output, OnDestroy} from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, OnDestroy } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { UserService } from '../../../services/user.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -17,6 +17,7 @@ import { ScoutService } from '../../../services/scout.service';
 import { environment } from '../../../../environments/environment';
 import { CommonDataService } from '../../../services/common-data.service';
 import { TranslateService } from '@ngx-translate/core';
+import { WebPages } from '../../../services/webpages.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -24,12 +25,12 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./dashboard.component.scss'],
 })
 
-export class DashboardComponent implements OnInit , OnDestroy {
+export class DashboardComponent implements OnInit, OnDestroy {
   lightboxIsOpen: boolean = false; // Track the state of the lightbox
   mainImage: { src: string } = { src: '' }; // Current main image source
   album: any[] = []; // Array for album images
-  loggedInUser:any = localStorage.getItem('userData');
-  countryFlagUrl : any;
+  loggedInUser: any = localStorage.getItem('userData');
+  countryFlagUrl: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -40,25 +41,26 @@ export class DashboardComponent implements OnInit , OnDestroy {
     private router: Router,
     private lightbox: Lightbox,
     private commonDataService: CommonDataService,
-    private translateService : TranslateService
+    private translateService: TranslateService,
+    public webPages: WebPages
   ) { }
   activeTab: string = 'profile';
-  userId: any ;
+  userId: any;
   user: any = {};
   userNationalities: any = [];
-  coverImage: any ;
-  profileImage: any ;
-  selectedFile : any;
-  teams : any;
-  highlights : any;
+  coverImage: any;
+  profileImage: any;
+  selectedFile: any;
+  teams: any;
+  highlights: any;
   userImages: any = [];
   userVideos: any = [];
-  imageBaseUrl : any;
-  defaultCoverImage:any = "./media/palyers.png";
-  premium : any = false;
-  booster : any = false;
-  activeDomains : any;
-  countries :  any;
+  imageBaseUrl: any;
+  defaultCoverImage: any = "./media/palyers.png";
+  premium: any = false;
+  booster: any = false;
+  activeDomains: any;
+  countries: any;
   isPremium: any = false;
   StartTour: boolean = true;
   @Output() dataEmitter = new EventEmitter<string>();
@@ -66,6 +68,14 @@ export class DashboardComponent implements OnInit , OnDestroy {
   private introInstance: any; // Reference to the Intro.js instance
 
   loading: boolean = true;  // Add this line to track loading state
+  // Toaster Msg For Club
+  pleaseWait: string = '';
+  uploadingPhotos: string = '';
+  successTxt: string = '';
+  errorTxt: string = '';
+  deletingCoverImage: string = '';
+  Canceled: string = '';
+  coverImageDeletionCanceled: string = '';
 
   async ngOnInit() {
     this.introInstance = introJs();
@@ -82,6 +92,10 @@ export class DashboardComponent implements OnInit , OnDestroy {
     this.route.params.subscribe(() => {
       this.getCoverImg();
       this.activeTab = 'profile';
+    });
+    this.getToasterMsg();
+    this.webPages.languageId$.subscribe((data: any) => {
+      this.getToasterMsg();
     });
 
     await this.getAllTeams();
@@ -214,7 +228,7 @@ export class DashboardComponent implements OnInit , OnDestroy {
   updateShowTour(showTour: number) {
     this.talentService.updateShowTour(this.userId, showTour).subscribe(
       () => {
-          console.log('Tour preferences updated successfully!');
+        console.log('Tour preferences updated successfully!');
       },
       (error) => {
         console.error('Error updating tour preferences:', error);
@@ -277,7 +291,7 @@ export class DashboardComponent implements OnInit , OnDestroy {
     }
   }
 
-  getCountry(placeOfBirth: string ,key : any): void {
+  getCountry(placeOfBirth: string, key: any): void {
     if (!placeOfBirth) {
       console.error("Place of birth is empty.");
       return;
@@ -322,19 +336,19 @@ export class DashboardComponent implements OnInit , OnDestroy {
         if (response && response.status) {
           this.countries = response.data.countries;
         }
-    });
+      });
   }
 
   openEditDialog() {
     console.log(this.user)
     const dialogRef = this.dialog.open(EditPersonalDetailsComponent, {
       width: '800px',
-      data: {user : this.user , countries : this.countries}
+      data: { user: this.user, countries: this.countries }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-    		this.getUserProfile(this.userId);
+        this.getUserProfile(this.userId);
       } else {
         console.log('User canceled the edit');
       }
@@ -346,9 +360,9 @@ export class DashboardComponent implements OnInit , OnDestroy {
     const dialogRef = this.dialog.open(EditHighlightsComponent, {
       width: '800px',
       data: {
-          images: this.userImages ,
-          videos: this.userVideos ,
-          url: this.imageBaseUrl
+        images: this.userImages,
+        videos: this.userVideos,
+        url: this.imageBaseUrl
       }
     });
 
@@ -358,9 +372,9 @@ export class DashboardComponent implements OnInit , OnDestroy {
 
   }
 
-  getHighlightsData(){
+  getHighlightsData() {
     try {
-      this.talentService.getHighlightsData().subscribe((response)=>{
+      this.talentService.getHighlightsData().subscribe((response) => {
         if (response && response.status && response.data && response.data.images) {
           this.highlights = response.data;
           // this.isLoading = false;
@@ -377,7 +391,7 @@ export class DashboardComponent implements OnInit , OnDestroy {
 
   openImage(index: number): void {
     // Prepare album
-    this.album = this.highlights.images.map((image: any)=> ({
+    this.album = this.highlights.images.map((image: any) => ({
       src: this.highlights.file_path + image.file_name,
     }));
 
@@ -409,11 +423,11 @@ export class DashboardComponent implements OnInit , OnDestroy {
   }
 
 
-  getCoverImg(){
+  getCoverImg() {
     try {
-      this.talentService.getCoverImg().subscribe((response)=>{
+      this.talentService.getCoverImg().subscribe((response) => {
         if (response?.data?.userData?.metaValue) {
-            this.coverImage = response.data.userData.cover_image_path;
+          this.coverImage = response.data.userData.cover_image_path;
         } else {
           // this.isLoading = false;
           console.error('Invalid API response structure:', response);
@@ -431,7 +445,7 @@ export class DashboardComponent implements OnInit , OnDestroy {
       this.selectedFile = input.files[0];
 
       // Set loading state and display info toast
-      this.toastr.info('Uploading profile image...', 'Please wait', { disableTimeOut: true });
+      this.toastr.info(this.uploadingPhotos + '...', this.pleaseWait, { disableTimeOut: true });
 
       try {
         const formData = new FormData();
@@ -444,11 +458,18 @@ export class DashboardComponent implements OnInit , OnDestroy {
               this.dataEmitter.emit(this.profileImage);  // Emit updated profile image
               this.toastr.clear();
               this.commonDataService.updateProfilePic(this.profileImage);
-
-              this.toastr.success('Profile image uploaded successfully!', 'Success');
+              if (response.message != '') {
+                this.toastr.success(response.message, this.successTxt);
+              } else {
+                this.toastr.success('Profile image uploaded successfully!', 'Success');
+              }
             } else {
               this.toastr.clear();
-              this.toastr.error('Failed to upload profile image. Please try again.', 'Upload Failed');
+              if (response.message != '') {
+                this.toastr.error(response.message, this.errorTxt);
+              } else {
+                this.toastr.error('Failed to upload profile image. Please try again.', 'Upload Failed');
+              }
               console.error('Invalid API response structure:', response);
             }
           },
@@ -459,7 +480,7 @@ export class DashboardComponent implements OnInit , OnDestroy {
           },
         );
       } catch (error) {
-              this.toastr.clear();
+        this.toastr.clear();
         this.toastr.error('An unexpected error occurred. Please try again.', 'Upload Error');
         console.error('Error during file upload:', error);
       }
@@ -476,7 +497,7 @@ export class DashboardComponent implements OnInit , OnDestroy {
       this.selectedFile = input.files[0];
 
       // Set loading state and display info toast
-      this.toastr.info('Uploading cover image...', 'Please wait', { disableTimeOut: true });
+      this.toastr.info(this.uploadingPhotos + '...', this.pleaseWait, { disableTimeOut: true });
 
       try {
         const formData = new FormData();
@@ -488,21 +509,31 @@ export class DashboardComponent implements OnInit , OnDestroy {
               this.coverImage = `${environment.url}uploads/${response.data.uploaded_fileinfo}`;
               this.dataEmitter.emit(this.coverImage);  // Emit updated cover image
               this.toastr.clear();
-              this.toastr.success('Cover image uploaded successfully!', 'Success');
+              if (response.message != '') {
+                this.toastr.success(response.message, this.successTxt);
+              } else {
+                this.toastr.success('Cover image uploaded successfully!', 'Success');
+              }
             } else {
               this.toastr.clear();
-              this.toastr.error('Failed to upload cover image. Please try again.', 'Upload Failed');
+              if (response.message != '') {
+                // this.toastr.success(response.message, this.successTxt);
+                this.toastr.error(response.message, this.errorTxt);
+              } else {
+                // this.toastr.success('Cover image uploaded successfully!', 'Success');
+                this.toastr.error('Failed to upload cover image. Please try again.', 'Upload Failed');
+              }
               console.error('Invalid API response structure:', response);
             }
           },
           (error) => {
-              this.toastr.clear();
+            this.toastr.clear();
             this.toastr.error('An error occurred during upload. Please try again.', 'Upload Error');
             console.error('Error uploading cover image:', error);
           },
         );
       } catch (error) {
-              this.toastr.clear();
+        this.toastr.clear();
         this.toastr.error('An unexpected error occurred. Please try again.', 'Upload Error');
         console.error('Error during cover image upload:', error);
       }
@@ -511,7 +542,7 @@ export class DashboardComponent implements OnInit , OnDestroy {
 
   deleteCoverImage(): void {
     // Set loading state and display info toast
-    this.toastr.info('Deleting cover image...', 'Please wait', { disableTimeOut: true });
+    this.toastr.info(this.deletingCoverImage, this.pleaseWait, { disableTimeOut: true });
 
     try {
       this.talentService.deleteCoverImage().subscribe(
@@ -519,22 +550,32 @@ export class DashboardComponent implements OnInit , OnDestroy {
           if (response && response.status) {
             this.coverImage = null;  // Indicates no value is set
             this.dataEmitter.emit('');  // Emit empty string to indicate deletion
-              this.toastr.clear();
-            this.toastr.success('Cover image deleted successfully.', 'Success');
+            this.toastr.clear();
+            if (response.message != '') {
+              this.toastr.success(response.message, this.successTxt);
+            } else {
+              this.toastr.success('Cover image deleted successfully.', 'Success');
+            }
           } else {
-              this.toastr.clear();
-            this.toastr.error('Failed to delete cover image. Please try again.', 'Delete Failed');
+            this.toastr.clear();
+            if (response.message != '') {
+              // this.toastr.success(response.message, this.successTxt);
+              this.toastr.error(response.message, this.errorTxt);
+            } else {
+              // this.toastr.success('Cover image deleted successfully.', 'Success');
+              this.toastr.error('Failed to delete cover image. Please try again.', 'Delete Failed');
+            }
             console.error('Invalid API response structure:', response);
           }
         },
         (error) => {
-              this.toastr.clear();
+          this.toastr.clear();
           this.toastr.error('An error occurred during deletion. Please try again.', 'Delete Error');
           console.error('Error deleting cover image:', error);
         },
       );
     } catch (error) {
-              this.toastr.clear();
+      this.toastr.clear();
       this.toastr.error('An unexpected error occurred. Please try again.', 'Delete Error');
       console.error('Error during cover image deletion:', error);
     }
@@ -550,17 +591,17 @@ export class DashboardComponent implements OnInit , OnDestroy {
         // If the user confirms, proceed with deletion
         this.deleteCoverImage();
       } else {
-        this.toastr.info('Cover image deletion canceled.', 'Canceled');
+        this.toastr.info(this.coverImageDeletionCanceled, this.Canceled);
         console.log('User canceled the delete');
       }
     });
   }
 
-  showMatDialog(message:string, action:string){
-    const messageDialog = this.dialog.open(MessagePopupComponent,{
+  showMatDialog(message: string, action: string) {
+    const messageDialog = this.dialog.open(MessagePopupComponent, {
       width: '500px',
       position: {
-        top:'150px'
+        top: '150px'
       },
       data: {
         message: message,
@@ -570,14 +611,14 @@ export class DashboardComponent implements OnInit , OnDestroy {
 
     messageDialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
-        if(result.action == "delete-confirmed"){
+        if (result.action == "delete-confirmed") {
           this.deleteUser();
         }
       }
     });
   }
 
-  getAllTeams(){
+  getAllTeams() {
     this.talentService.getTeams().subscribe((data) => {
       this.teams = data;
     });
@@ -602,14 +643,14 @@ export class DashboardComponent implements OnInit , OnDestroy {
     return age;
   }
 
-  switchTab(tab: string){
-    if(!this.isPremium){
+  switchTab(tab: string) {
+    if (!this.isPremium) {
       this.activeTab = 'profile';
     }
     this.activeTab = tab;
   }
 
-  deleteUser(){
+  deleteUser() {
     let langId = localStorage.getItem('lang_id');
     this.userService.deleteUser([this.userId], langId).subscribe(
       response => {
@@ -628,4 +669,15 @@ export class DashboardComponent implements OnInit , OnDestroy {
     console.log('Data received from child:', data);
   }
 
+  getToasterMsg() {
+    this.translateService.get(['pleaseWait', 'uploadingPhotos', 'success!', 'error', 'deletingCoverImage', 'coverImageDeletionCanceled', 'Canceled']).subscribe((translations) => {
+      this.pleaseWait = translations['pleaseWait'];
+      this.uploadingPhotos = translations['uploadingPhotos'];
+      this.successTxt = translations['successTxt'];
+      this.errorTxt = translations['errorTxt'];
+      this.deletingCoverImage = translations['deletingCoverImage'];
+      this.coverImageDeletionCanceled = translations['coverImageDeletionCanceled'];
+      this.Canceled = translations['Canceled'];
+    });
+  }
 }

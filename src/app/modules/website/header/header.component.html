@@ -266,7 +266,8 @@
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">{{'emailLabel' |
                                     translate}}</label>
-                                <input [(ngModel)]="email" type="email" placeholder="example@email.com" name="password"
+                                <input [(ngModel)]="email" type="email" placeholder="{{'emailExample' |
+                                translate}}" name="password"
                                     required [ngClass]="{'empty-field': isEmailError, 'form-control': true}" />
                             </div>
                             <div class="mb-3">
@@ -346,12 +347,18 @@
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">{{ 'emailLabel' | translate
                                     }}</label>
-                                <input type="email" class="form-control" id="exampleFormControlInput1"
-                                    [placeholder]="'example@email.com'" [(ngModel)]="forgotPasswordEmail" />
-                                <div *ngIf="forgotPasswordMessage" class="text-danger mt-2">
-                                    <!-- {{forgotPasswordMessage}} -->
-                                    {{ 'provideEmailAddress' | translate }}
-                                </div>
+                                <input type="email" (input)="validateEmail()" class="form-control" id="exampleFormControlInput1"
+                                    placeholder="{{'emailExample' |
+                                    translate}}" [(ngModel)]="forgotPasswordEmail" />
+
+                                    <div *ngIf="forgotPasswordMessage" class="text-danger mt-2">
+                                        {{ forgotPasswordMessage }}
+                                    </div>
+                                    
+                                    <!-- <div *ngIf="successMessage" class="text-success mt-2">
+                                        {{ successMessage }}
+                                    </div> -->
+                                    
 
                             </div>
                         </div>
@@ -601,7 +608,8 @@
                                     <div class="mb-3">
                                         <label class="form-label">{{ 'Email' | translate }}</label>
                                         <input type="email" class="form-control"
-                                            placeholder="{{ 'example@email.com' | translate }}" [(ngModel)]="email"
+                                            placeholder="{{'emailExample' |
+                                            translate}}" [(ngModel)]="email"
                                             name="email" required />
                                         <div *ngIf="registerForm.controls['email']?.errors?.['required'] && (registerForm.controls['email']?.dirty || registerForm.controls['email']?.touched)"
                                             class="text-danger">
@@ -729,10 +737,11 @@
                                     <div class="form-check checkbox">
                                         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"
                                             [(ngModel)]="privacyPolicy" name="privacyPolicy" required />
-                                        <label class="form-check-label fs-14 font-w400 text-light"
+                                            <label 
+                                            [innerHTML]="'privacyPolicyLabel' | translate" 
+                                            class="form-check-label fs-14 font-w400 text-light"
                                             for="flexCheckDefault">
-                                            {{ 'privacyPolicyLabel' | translate }}
-                                        </label>
+                                          </label>
                                         <div *ngIf="registerForm.controls['privacyPolicy']?.errors?.['required'] && (registerForm.controls['privacyPolicy']?.dirty || registerForm.controls['privacyPolicy']?.touched)"
                                             class="text-danger">
                                             {{ 'privacyPolicyCheckboxError' | translate }}

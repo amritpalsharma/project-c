@@ -80,6 +80,28 @@ export class NotificationsLogComponent {
     });
   }
 
+  notificationClicked(id: number, seen: number, notification: any) {
+    if (!notification.seen) {
+      this.talentService.updateNotificationSeen(notification.id, 1).subscribe({
+        next: (response) => {
+          if (response.status) {
+            notification.seen = 1;
+            console.log('Message from API:', response.message);
+          }
+          else {
+            console.log("something went wrong");
+          }
+        },
+        error: (err) => {
+          console.error('Error:', err);
+        }
+      });
+    }
+    else {
+      console.log("already seen");
+    }
+  }
+
 
   onPageChange() {
     this.fetchNotifications();
@@ -158,7 +180,7 @@ export class NotificationsLogComponent {
 
   isResponded : boolean = false;
 
-  responseToScoutInvite(response: string, scoutId: any) {
+  responseToScoutInvite(myResponse: string, scoutId: any, notification : any) {
     let jsonData = localStorage.getItem("userData");
     let userId : any;
     if (jsonData) {
@@ -171,20 +193,21 @@ export class NotificationsLogComponent {
     let langId = localStorage.getItem('lang_id');
 
     const formData = new FormData();
-    formData.append('is_accepted', response);
+    formData.append('is_accepted', myResponse);
     // formData.append('player_id', userId);
     // formData.append('scout_id', scoutId);
 
     this.talentService.UpdateScoutRequest(scoutId, formData, langId).subscribe((response)=>{
       if (response && response.status) {
-        if(response === 'accepted'){
+        if(myResponse === 'accepted'){
           this.socketService.emit("acceptScoutRequest", { senderId: userId, receiverId: scoutId })
         }
         else{
           this.socketService.emit("rejectScoutRequest", { senderId: userId, receiverId: scoutId })
         }
         this.showMessage(response.message);
-        this.isResponded = true;
+        // this.isResponded = true;
+        this.notificationClicked(notification.id, notification.seen, notification)
       } else {
         console.error('Invalid API response structure:', response);
         this.showMessage(response.message);

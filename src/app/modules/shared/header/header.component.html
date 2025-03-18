@@ -193,7 +193,8 @@
                 </div>
               </div>
               <div class="load_more"
-                *ngIf="currentIndex < allNotifications.length && !something && notifications.length>0">
+                *ngIf=" !something && notifications.length>0">
+                <!-- *ngIf="currentIndex < allNotifications.length && !something && notifications.length>0"> -->
                 <!-- <span (click)="loadMoreNotifications()" style="cursor: pointer;">{{ 'viewAllNotifications' | translate
                   }}</span> -->
                 <span (click)="navigateToTab('notifications')" class="cursor-pointer">

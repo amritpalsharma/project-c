@@ -106,13 +106,13 @@ export class TalentService {
     );
   }
 
-  UpdateScoutRequest(id:any, params: any, lang: any): Observable<any> {
-      const headers = new HttpHeaders({
-        'Authorization': `Bearer ${this.userToken}`
-      });
-  
-      return this.http.post<any>(`${this.apiUrl}player/update-scout-request/${id}/${lang}`, params, { headers });
-    }
+  UpdateScoutRequest(id: any, params: any, lang: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.userToken}`
+    });
+
+    return this.http.post<any>(`${this.apiUrl}player/update-scout-request/${id}/${lang}`, params, { headers });
+  }
 
   getCards(): Observable<any> {
     const headers = this.headers();
@@ -246,8 +246,12 @@ export class TalentService {
     );
   }
 
-  getExploreDomains(){
-    
+  getExploreDomains(lang_id: any) {
+    const headers = this.headers();
+
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
+      `${this.apiUrl}get-domains/${lang_id}`, { headers }
+    );
   }
 
   getUserDomains(params: any): Observable<any> {
@@ -255,6 +259,14 @@ export class TalentService {
 
     return this.http.get<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl}user/get-active-domains`, { headers, params }
+    );
+  }
+
+  getUserDomainsWithLang(language: any): Observable<any> {
+    const headers = this.headers();
+
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
+      `${this.apiUrl}user/get-active-domains/${language}`, { headers }
     );
   }
 
@@ -307,7 +319,7 @@ export class TalentService {
 
   uploadProfileImage(formdata: any): Observable<any> {
     const headers = this.headers();
-
+    let lang_id = localStorage.getItem('lang_id');
     return this.http.post<any>(`${this.apiUrl}user/upload-profile-image/`, formdata, { headers });
   }
 
@@ -428,6 +440,15 @@ export class TalentService {
     return this.http.get<any>(
       `${this.apiUrl}/get-positions`,
       { headers, params }
+    );
+  }
+
+  getPositionswithLang(language: any = {}): Observable<any> {
+    const headers = this.headers();
+
+    return this.http.get<any>(
+      `${this.apiUrl}/get-positions/${language}`,
+      { headers }
     );
   }
 

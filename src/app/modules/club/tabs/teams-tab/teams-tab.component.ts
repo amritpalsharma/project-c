@@ -33,7 +33,7 @@ export class TeamsTabComponent {
     this.isLoading = true;
     try {
       this.userService.getClubTeams(userId).subscribe((response)=>{
-        if (response && response.status && response.data) {
+        if (response && response.status && response.data != '') {
           this.teams = response.data.teams;
           this.isLoading = false;
         } else {

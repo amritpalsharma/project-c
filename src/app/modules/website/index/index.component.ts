@@ -113,7 +113,7 @@ export class IndexComponent {
     inline_rectangle: true,
   }
 
-  advertisementData: any = {
+  advertisementData:any = {
     skyscraper: {
       id: '1',
       featured_image: "leaderboard.png"
@@ -124,11 +124,11 @@ export class IndexComponent {
     },
     leaderboard: {
       id: '1',
-      // featured_image: "leaderboard.png"
+      featured_image: "leaderboard.png"
     },
     large_leaderboard: {
       id: '1',
-      // featured_image: "leaderboard.png"
+      featured_image: "leaderboard.png"
     },
     banner: {
       id: '1',
@@ -329,6 +329,7 @@ export class IndexComponent {
   }
 
   closeAd(object: any) {
+    console.log(object);
 
     this.isActive[object] = false;
 
