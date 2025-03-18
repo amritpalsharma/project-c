@@ -201,7 +201,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         tooltipPosition: 'auto',
       });
 
-      if(this.showOnce){
+      if (this.showOnce) {
         this.introInstance.start();
         this.showOnce = false
       }
@@ -209,7 +209,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     // Add the "Don't show again" checkbox dynamically
     this.introInstance.onafterchange(() => {
-      
+
       const tooltipHeader = document.querySelector('.introjs-tooltip-header') as HTMLElement;
 
       if (tooltipHeader) {
@@ -256,7 +256,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       }
     });
 
-    
+
 
     // Handle when the tour finishes
     // this.introInstance.oncomplete(() => this.handleTourExit());
@@ -454,22 +454,56 @@ export class DashboardComponent implements OnInit, OnDestroy {
     });
   }
 
+  // openHighlight() {
+  //   this.getGalleryData();
+  //   let dialogRef = [];
+  //   setTimeout(() => {
+  //     dialogRef = this.dialog.open(EditHighlightsComponent, {
+  //       width: '800px',
+  //       data: {
+  //         images: this.userImages,
+  //         videos: this.userVideos,
+  //         url: this.imageBaseUrl
+  //       }
+  //     });
+  //   }, 1500);
+
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     this.getHighlightsData()
+  //   });
+
+  // }
   openHighlight() {
+    this.getGalleryData(); // Call function as usual
 
-    const dialogRef = this.dialog.open(EditHighlightsComponent, {
-      width: '800px',
-      data: {
-        images: this.userImages,
-        videos: this.userVideos,
-        url: this.imageBaseUrl
-      }
+    const checkDataLoaded = () => {
+      return new Promise<void>((resolve) => {
+        const interval = setInterval(() => {
+          if (this.userImages && this.userImages.length > 0) {
+            clearInterval(interval);
+            resolve(); // Data is loaded
+          }
+        }, 300); // Check every 300ms
+      });
+    };
+
+    checkDataLoaded().then(() => {
+      const dialogRef = this.dialog.open(EditHighlightsComponent, {
+        width: '800px',
+        data: {
+          images: this.userImages,
+          videos: this.userVideos,
+          url: this.imageBaseUrl
+        }
+      });
+
+      dialogRef.afterClosed().subscribe(() => {
+        this.getHighlightsData();
+      });
     });
-
-    dialogRef.afterClosed().subscribe(result => {
-      this.getHighlightsData()
-    });
-
   }
+
+
 
   getHighlightsData() {
     try {

@@ -246,6 +246,10 @@ export class TalentService {
     );
   }
 
+  getExploreDomains(){
+    
+  }
+
   getUserDomains(params: any): Observable<any> {
     const headers = this.headers();
 
