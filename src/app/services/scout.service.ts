@@ -520,8 +520,8 @@ export class ScoutService {
 
   uploadCoverImage(formdata: any): Observable<any> {
     const headers = this.headers();
-
-    return this.http.post<any>(`${this.apiUrl}user/upload-cover-image/`, formdata, { headers });
+    let lang_id = localStorage.getItem('lang_id');
+    return this.http.post<any>(`${this.apiUrl}user/upload-cover-image/${lang_id}`, formdata, { headers });
   }
 
   getAllUses(): Observable<any> {
@@ -543,8 +543,8 @@ export class ScoutService {
 
   uploadProfileImage(formdata: any): Observable<any> {
     const headers = this.headers();
-
-    return this.http.post<any>(`${this.apiUrl}user/upload-profile-image/`, formdata, { headers });
+    let lang_id = localStorage.getItem('lang_id');
+    return this.http.post<any>(`${this.apiUrl}user/upload-profile-image/${lang_id}`, formdata, { headers });
   }
 
   uploadGalleryImages(formdata: any): Observable<any> {

@@ -1010,7 +1010,6 @@
   "roleAcceptedInvitation": "[name och of och the och role] och has och accepted och your och invitation och and och joined och your och club.",
   "roleDeclinedInvitation": "[name och of och the och role] och has och declined och your och club och invitation.",
   "youHaveSolvedMultiCountryPlan": "You och have och solved och a och multi-country och plan.",
-
   "addCard&CreateCustomer": "Add och card och & och create och customer",
   "cardDetails": "Card och details",
   "confirmCancellation": "Confirm och cancellation",
@@ -1033,7 +1032,7 @@
   "browserDoesNotSupport": "Your och browser och does och not och support och the och video och tag.",
   "ADMINSCREEN": "Adminscreen",
   "editTeamMember": "Edit och team och member",
-  "designation": "Designation",
+  "designation": "Beteckning",
   "header": "Header",
   "overviewSection": "Overview och section",
   "registrations": "Registrations",
@@ -1311,7 +1310,20 @@
   "enterDocumentTitle": "Ange dokumentets titel",
   "registrationInProcess": "Registrering är på gång...",
   "registrationFailed": "Registreringen misslyckades",
-  "Processing":"Bearbetning...",
-  "EmailVerified":"E-post verifierad!",
-  "emailExample": "Exempel@email.com"
+  "Processing": "Bearbetning...",
+  "EmailVerified": "E-post verifierad!",
+  "emailExample": "Exempel@email.com",
+  "forgotPassword": {
+    "provideValidEmail": "Vänligen ange en giltig e-postadress.",
+    "successMessage": "En återställningslänk har skickats till din e-post.",
+    "errorMessage": "Denna e-post finns inte",
+    "generalError": "Ett fel inträffade. Vänligen försök igen senare.",
+    "requiredMessage": "Detta fält är obligatoriskt."
+  },
+  "account": "Konto",
+  "deletingCoverImage": "Radering av omslagsbild....",
+  "Canceled": "Avbruten",
+  "coverImageDeletionCanceled": "Radering av omslagsbild avbruten.",
+  "companyRepresentators": "Medlem i teamet",
+  "savingSelectedFiles": "Spara valda filer ..."
 }

@@ -722,7 +722,7 @@
   "addTeamMember": "Neues Teammitglied hinzufügen",
   "editTeamMember": "Team-Mitglied bearbeiten",
   "siteRole": "Seitenrolle",
-  "designation": "Designation",
+  "designation": "Bezeichnung",
   "rejectUser": "Benutzer ablehnen",
   "sighting": "Sichtung",
   "selectUserType": "Benutzertyp auswählen",
@@ -1284,5 +1284,26 @@
   "Onwards": "weiter",
   "heroHeading": "Überschrift Held",
   "doYouWantToaddPackage": "Möchten Sie “{{package_name}}” zu Ihrem Profil hinzufügen?",
-  "emailExample": "Beispiel@email.com"
+  "emailExample": "Beispiel@email.com",
+  "forgotPassword": {
+    "provideValidEmail": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+    "successMessage": "Ein Link zum Zurücksetzen wurde an Ihre E-Mail gesendet.",
+    "errorMessage": "Diese E-Mail existiert nicht",
+    "generalError": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.",
+    "requiredMessage": "Dieses Feld ist erforderlich."
+  },
+  "account": "Konto",
+  "contentFor": "Text eingeben für",
+  "german": "Deutsch",
+  "italian": "Italienisch",
+  "french": "Französisch",
+  "spanish": "Spanisch",
+  "portuguese": "Portugiesisch",
+  "danish": "Dänisch",
+  "swedish": "Schwedisch",
+  "deletingCoverImage": "Löschen des Titelbildes....",
+  "Canceled": "Abgesagt",
+  "coverImageDeletionCanceled": "Das Löschen des Titelbildes wird abgebrochen.",
+    "companyRepresentators": "Team-Mitglied",
+    "savingSelectedFiles": "Speichern von ausgewählten Dateien..."
 }

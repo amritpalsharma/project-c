@@ -347,11 +347,11 @@ export class ExploreComponent implements OnInit {
 
   loadCountries(): void {
     // Prepare query parameters
-    let params: any = {
-      lang: localStorage.getItem('lang_id'),
-    };
 
-    this.talentService.getDomains(params).subscribe(
+    let lang = localStorage.getItem('lang_id');
+    // old getDomains 
+
+    this.talentService.getExploreDomains(lang).subscribe(
       (response: any) => {
         if (response && response.status) {
           this.countries = response.data.domains;
@@ -369,8 +369,8 @@ export class ExploreComponent implements OnInit {
     let params: any = {
       lang: localStorage.getItem('lang_id'),
     };
-
-    this.talentService.getPositions(params).subscribe(
+    let lang = localStorage.getItem('lang_id');
+    this.talentService.getPositionswithLang(lang).subscribe(
       (response: any) => {
         if (response.status) {
           this.positions = response.data.positions;

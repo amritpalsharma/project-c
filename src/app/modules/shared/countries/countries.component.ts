@@ -46,8 +46,9 @@ export class CountriesComponent {
 
     let params:any = {};
     params.lang  = localStorage.getItem('lang_id');
+    let language = localStorage.getItem('lang_id');
 
-    this.talentService.getUserDomains(params).subscribe(
+    this.talentService.getUserDomainsWithLang(language).subscribe(
       (response: any) => {
         if (response && response.status) {
           this.countries = response.data.domains;
@@ -70,6 +71,7 @@ export class CountriesComponent {
     if(country.is_default==1 || country.is_package_active=='active'){
       return
     }
+    // console.warn(country);
     this.addCountryPopup(country);
   }
 

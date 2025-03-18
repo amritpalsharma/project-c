@@ -489,8 +489,6 @@
   "plans": "Plans",
   "countrySelectionConfirmation": "Confirmation de la sélection du pays",
   "ageAtDebut": "L'âge",
-  
-
   "transferTo": "Transfert vers",
   "transferFrom": "Transfert de",
   "transferDate": "Date",
@@ -1045,7 +1043,7 @@
   "browserDoesNotSupport": "Your et browser et does et not et support et the et video et tag.",
   "ADMINSCREEN": "Adminscreen",
   "editTeamMember": "Edit et team et member",
-  "designation": "Designation",
+  "designation": "Désignation",
   "header": "Header",
   "overviewSection": "Overview et section",
   "registrations": "Registrations",
@@ -1327,5 +1325,18 @@
   "Processing": "Traitement...",
   "EmailVerified": "Courriel vérifié !",
   "doYouWantToaddPackage": "Voulez-vous ajouter “{{package_name}}” à votre profil ?",
-  "emailExample": "exemple@email.com"
+  "emailExample": "exemple@email.com",
+  "forgotPassword": {
+    "provideValidEmail": "Veuillez fournir une adresse e-mail valide.",
+    "successMessage": "Un lien de réinitialisation a été envoyé à votre e-mail.",
+    "errorMessage": "Cet e-mail n'existe pas",
+    "generalError": "Une erreur est survenue. Veuillez réessayer plus tard.",
+    "requiredMessage": "Ce champ est obligatoire."
+  },
+  "account": "Compte",
+  "deletingCoverImage": "Suppression de l'image de couverture....",
+  "Canceled": "Annulé",
+  "coverImageDeletionCanceled": "La suppression de l'image de couverture est annulée.",
+    "companyRepresentators": "Membre de l'équipe",
+    "savingSelectedFiles": "Enregistrement des fichiers sélectionnés..."
 }

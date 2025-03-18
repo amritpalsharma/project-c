@@ -1031,7 +1031,7 @@
   "browserDoesNotSupport": "Your och browser och does och not och support och the och video och tag.",
   "ADMINSCREEN": "Adminscreen",
   "editTeamMember": "Edit och team och member",
-  "designation": "Designation",
+  "designation": "Beteckning",
   "header": "Header",
   "overviewSection": "Overview och section",
   "registrations": "Registrations",
@@ -1312,5 +1312,18 @@
   "Processing": "Bearbetning...",
   "EmailVerified": "E-post verifierad!",
   "doYouWantToaddPackage": "Vill du lägga till “{{package_name}}” i din profil?",
-  "emailExample": "Exempel@email.com"
+  "emailExample": "Exempel@email.com",
+  "forgotPassword": {
+    "provideValidEmail": "Vänligen ange en giltig e-postadress.",
+    "successMessage": "En återställningslänk har skickats till din e-post.",
+    "errorMessage": "Denna e-post finns inte",
+    "generalError": "Ett fel inträffade. Vänligen försök igen senare.",
+    "requiredMessage": "Detta fält är obligatoriskt."
+  },
+  "account": "Konto",
+  "deletingCoverImage": "Radering av omslagsbild....",
+  "Canceled": "Avbruten",
+  "coverImageDeletionCanceled": "Radering av omslagsbild avbruten.",
+    "companyRepresentators": "Medlem i teamet",
+    "savingSelectedFiles": "Spara valda filer ..."
 }

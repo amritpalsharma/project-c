@@ -14,23 +14,23 @@
     <div class="unlock-view">
         <div class="d-flex justify-content-between mt-4 details_info">
             <div class="general_details">
-                <h6 class="details_2">{{ 'In the team since ' | translate}}</h6>
+                <h6 class="details_2">{{ 'inTheTeamSince' | translate}}</h6>
                 <h5 class="details-1">--</h5>
             </div>
             <div class="general_details">            
-                <h6 class="details_2"> {{ 'Top Speed' | translate}}</h6>
+                <h6 class="details_2"> {{ 'topSpeed' | translate}}</h6>
                 <h5 class="details-1" >NA</h5>
             </div>
             <div class="general_details">
-                <h6 class="details_2">{{ 'InternationalPlayer' | translate}}</h6>
+                <h6 class="details_2">{{ 'internationalPlayer' | translate}}</h6>
                 <span class="m-2">--</span>
             </div>
             <div class="general_details">
-                <h6 class="details_2"> {{ 'Current Market Value' | translate}}</h6>
+                <h6 class="details_2"> {{ 'currentMarketValue' | translate}}</h6>
                 <h5 class="details-1" >NA</h5>
             </div>
             <div class="general_details">            
-                <h6 class="details_2"> {{ 'Last Change' | translate}}</h6>
+                <h6 class="details_2"> {{ 'lastChange' | translate}}</h6>
                 <h5 class="details-1" >--</h5>
             </div>
         </div>
@@ -41,18 +41,18 @@
             </div>
             <div class="col-lg-6 d-flex flex-column justify-content-between">
                 <div class="main-position">
-                    <h6 class="details_2"> {{ 'Main-position' | translate}}</h6>
+                    <h6 class="details_2"> {{ 'mainPosition' | translate}}</h6>
                     <h5 class="details-1">--</h5>
                 </div>
                 <div class="main-position">
-                <h6 class="details_2"> {{ 'Other-position(s)' | translate}}</h6>
+                <h6 class="details_2"> {{ 'otherPositions' | translate}}</h6>
                 <h5 class="details-1">--</h5>
                 </div>
             </div>
             </div>
             <div class="col-lg-6 p-3">
                 <div class="main-position">
-                    <h6 class="details_2">{{ 'Social Media' | translate}}</h6>
+                    <h6 class="details_2">{{ 'socialMedia' | translate}}</h6>
                     <div class="social_icons my-2">
                         <span class="me-2">                    
                             <svg id="users-icon" class="social-svg" width="20" height="18" viewBox="0 0 9 18" fill="none"
@@ -92,7 +92,7 @@
                     </clipPath>
                     </defs>
                 </svg>    
-                {{'Upgrade to unlock'|translate}}
+                {{'upgradeToUnlock'|translate}}
               </a>
         </div> 
     </div>    
@@ -112,7 +112,7 @@
                 <label for="password"></label>
                 <label for="pass"> {{ 'password' | translate}}</label><br>
                 <input type="password"  id="pass" name="password" minlength="8" value="***************" required readonly />
-                <input class="password" type="reset" value="Reset Password"  (click)="openResetDialog()">
+                <input class="password" type="reset" value="{{ 'resetPassword' | translate}}"  (click)="openResetDialog()">
             </div>
         </form>
     </div>
@@ -123,7 +123,7 @@
         <table class="table table-scout-profile table-hover bg-072944 ">
             <thead class="border-table-thead">
                 <tr>
-                    <th>{{ 'company representators:' | translate }} &nbsp; &nbsp;<button
+                    <th>{{ 'companyRepresentators' | translate }}: &nbsp; &nbsp;<button
                             class="btn btn-success btn-sm web-create-bg" (click)="addRepresentator()">{{ 'addNew' |
                             translate }}</button></th>
                     <th>{{ 'roles' | translate }}</th>
