@@ -1292,5 +1292,17 @@
     "generalError": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.",
     "requiredMessage": "Dieses Feld ist erforderlich."
   },
-  "account": "Konto"
+  "account": "Konto",
+  "contentFor": "Text eingeben für",
+  "german": "Deutsch",
+  "italian": "Italienisch",
+  "french": "Französisch",
+  "spanish": "Spanisch",
+  "portuguese": "Portugiesisch",
+  "danish": "Dänisch",
+  "swedish": "Schwedisch",
+  "deletingCoverImage": "Löschen des Titelbildes....",
+  "Canceled": "Abgesagt",
+  "coverImageDeletionCanceled": "Das Löschen des Titelbildes wird abgebrochen.",
+    "companyRepresentators": "Team-Mitglied"
 }

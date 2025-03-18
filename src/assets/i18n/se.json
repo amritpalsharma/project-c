@@ -1318,7 +1318,11 @@
     "successMessage": "En återställningslänk har skickats till din e-post.",
     "errorMessage": "Denna e-post finns inte",
     "generalError": "Ett fel inträffade. Vänligen försök igen senare.",
-     "requiredMessage": "Detta fält är obligatoriskt."
+    "requiredMessage": "Detta fält är obligatoriskt."
   },
-  "account": "Konto"
+  "account": "Konto",
+  "deletingCoverImage": "Radering av omslagsbild....",
+  "Canceled": "Avbruten",
+  "coverImageDeletionCanceled": "Radering av omslagsbild avbruten.",
+    "companyRepresentators": "Medlem i teamet"
 }

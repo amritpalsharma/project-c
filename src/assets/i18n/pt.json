@@ -1274,5 +1274,9 @@
     "generalError": "Ocorreu um erro. Por favor, tente novamente mais tarde.",
     "requiredMessage": "Este campo é obrigatório."
   },
-  "account": "Conta"
+  "account": "Conta",
+  "deletingCoverImage": "Eliminar a imagem de capa....",
+  "Canceled": "Cancelada",
+  "coverImageDeletionCanceled": "A eliminação da imagem de capa foi cancelada.",
+    "companyRepresentators": "Membro da equipa"
 }

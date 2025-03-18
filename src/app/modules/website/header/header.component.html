@@ -676,7 +676,7 @@
                                     <div class="mb-3">
                                         <label class="form-label">{{ 'passwordLabel' | translate }}</label>
                                         <input [type]="isViewPassword ? 'text' : 'password'" class="form-control"
-                                            placeholder="{{ 'passwordPlaceholder' | translate }} {{isViewPassword}}"
+                                            placeholder="{{ 'passwordPlaceholder' | translate }}"
                                             [(ngModel)]="password" name="password" required />
                                         <div class="form-control123">
                                             <span (click)="togglePassword()" class="password-toggle">
@@ -685,7 +685,7 @@
                                                     <path d="M24.1715 11.2344C23.2791 8.89908 21.723 6.87588..."
                                                         fill="#A1A1A1" />
                                                 </svg> -->
-                                                <span *ngIf="!isViewPassword">
+                                                <!-- <span *ngIf="!isViewPassword">
                                                     <svg _ngcontent-ng-c4111086061="" width="17" height="8"
                                                         viewBox="0 0 17 8" fill="none"
                                                         xmlns="http://www.w3.org/2000/svg" class="ng-star-inserted">
@@ -697,7 +697,7 @@
                                                 </span>
                                                 <span *ngIf="isViewPassword">
                                                     👁️
-                                                </span>
+                                                </span> -->
                                                 <!-- <svg *ngIf="isViewPassword" width="27" height="19" viewBox="0 0 27 19"
                                                     fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M26.1053 9.21313C25.1129 6.64614 23.3901 4.42621..."

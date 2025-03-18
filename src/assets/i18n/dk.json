@@ -1179,7 +1179,11 @@
     "successMessage": "Et nulstillingslink er blevet sendt til din e-mail.",
     "errorMessage": "Denne e-mail findes ikke",
     "generalError": "Der opstod en fejl. Prøv igen senere.",
-     "requiredMessage": "Dette felt er påkrævet."
+    "requiredMessage": "Dette felt er påkrævet."
   },
-  "account": "Konto"
+  "account": "Konto",
+  "deletingCoverImage": "Sletning af forsidebillede....",
+  "Canceled": "Annulleret",
+  "coverImageDeletionCanceled": "Sletning af coverbillede annulleret.",
+    "companyRepresentators": "Medlem af teamet"
 }

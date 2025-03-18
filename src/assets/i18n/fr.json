@@ -489,8 +489,6 @@
   "plans": "Plans",
   "countrySelectionConfirmation": "Confirmation de la sélection du pays",
   "ageAtDebut": "L'âge",
-  
-
   "transferTo": "Transfert vers",
   "transferFrom": "Transfert de",
   "transferDate": "Date",
@@ -1335,5 +1333,9 @@
     "generalError": "Une erreur est survenue. Veuillez réessayer plus tard.",
     "requiredMessage": "Ce champ est obligatoire."
   },
-  "account": "Compte"
+  "account": "Compte",
+  "deletingCoverImage": "Suppression de l'image de couverture....",
+  "Canceled": "Annulé",
+  "coverImageDeletionCanceled": "La suppression de l'image de couverture est annulée.",
+    "companyRepresentators": "Membre de l'équipe"
 }

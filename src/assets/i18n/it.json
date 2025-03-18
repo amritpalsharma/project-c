@@ -1313,7 +1313,11 @@
     "successMessage": "Un link per il reset è stato inviato alla tua e-mail.",
     "errorMessage": "Questa e-mail non esiste",
     "generalError": "Si è verificato un errore. Riprova più tardi.",
-     "requiredMessage": "Questo campo è obbligatorio."
+    "requiredMessage": "Questo campo è obbligatorio."
   },
-  "account": "Conto"
+  "account": "Conto",
+  "deletingCoverImage": "Eliminazione dell'immagine di copertina....",
+  "Canceled": "Annullata",
+  "coverImageDeletionCanceled": "Cancellazione dell'immagine di copertina annullata.",
+    "companyRepresentators": "Membro del team"
 }

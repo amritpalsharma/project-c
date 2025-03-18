@@ -563,6 +563,9 @@ export class HeaderComponent implements OnInit {
       response => {
         if (response.status === false) {
           this.invalidCred = response.message;
+          if(response.message.email != ''){
+            this.invalidCred = response.message.email;
+          }
           this.showInvalidCredMessage();
         } else {
           const token = response.data.token;

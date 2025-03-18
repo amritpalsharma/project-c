@@ -199,9 +199,10 @@ tr td:last-child {
   .page-heading {
     font-size: 14px;
   }
+
   .dashboard_table .table_title {
     overflow: auto;
-}
+  }
 
 }
 
@@ -367,15 +368,19 @@ tr td:last-child {
   border-radius: 20px 20px 0 0;
   padding: 26px;
   margin: 0;
+  background: #ecf7f3;
 }
 
 
 @media (max-width: 991px) {
-  .card_box-1, .card_box--2 {
+
+  .card_box-1,
+  .card_box--2 {
     padding-left: 0;
     padding-right: 0;
   }
+
   .card_box--2 {
     margin-top: 15px;
   }
-  }
+}
