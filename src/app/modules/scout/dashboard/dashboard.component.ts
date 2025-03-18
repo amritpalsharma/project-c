@@ -32,7 +32,7 @@ export class DashboardComponent implements OnInit , OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
-    private talentService: ScoutService,
+    private scoutService: ScoutService,
     private toastr: ToastrService,
     public dialog: MatDialog,
     private router: Router,
@@ -42,6 +42,7 @@ export class DashboardComponent implements OnInit , OnDestroy {
   ) { }
   activeTab: string = 'profile';
   userId: any ;
+  parentUserId : any;
   user: any = {};
   userNationalities: any = [];
   coverImage: any ;
@@ -69,12 +70,19 @@ export class DashboardComponent implements OnInit , OnDestroy {
 
   async ngOnInit() {
     this.introInstance = introJs();
+    
 
     this.loggedInUser = JSON.parse(this.loggedInUser);
     this.userId = this.loggedInUser.id;
+    let userId = this.userId;
+
+    this.parentUserId = this.loggedInUser.parent_id;
+    if(this.parentUserId){
+      userId = this.parentUserId;
+    }
 
     // Adding a slight delay to ensure elements are rendered before the tour starts
-    this.getUserProfile(this.userId);
+    this.getUserProfile(userId);
     this.getHighlightsData();
     this.loadCountries();
     this.getGalleryData();
@@ -243,7 +251,7 @@ export class DashboardComponent implements OnInit , OnDestroy {
   updateShowTour(showTour: number) {
     console.log("done")
     // return;
-    this.talentService.updateShowTour(this.userId, showTour).subscribe(
+    this.scoutService.updateShowTour(this.userId, showTour).subscribe(
       () => {
         console.log('Tour preferences updated successfully!');
       },
@@ -264,7 +272,7 @@ export class DashboardComponent implements OnInit , OnDestroy {
   // }
 
   // updateShowTour(showTour: number) {
-  //   this.talentService.updateShowTour(this.userId, showTour).subscribe(
+  //   this.scoutService.updateShowTour(this.userId, showTour).subscribe(
   //     () => {
   //         console.log('Tour preferences updated successfully!');
   //     },
@@ -278,7 +286,7 @@ export class DashboardComponent implements OnInit , OnDestroy {
   getGalleryData() {
     this.loading = true;  // Set loading to true before making the API call
     try {
-      this.talentService.getGalleryData().subscribe((response) => {
+      this.scoutService.getGalleryData().subscribe((response) => {
         if (response && response.status && response.data) {
           this.userImages = response.data.images;
           this.userVideos = response.data.videos;
@@ -298,7 +306,7 @@ export class DashboardComponent implements OnInit , OnDestroy {
     this.loading = true;  // Set loading to true before making the API call
 
     try {
-      this.talentService.getProfileData(userId).subscribe((response) => {
+      this.scoutService.getProfileData(userId).subscribe((response) => {
         if (response && response.status && response.data && response.data.user_data) {
           localStorage.setItem('userInfo', JSON.stringify(response.data.user_data));
 
@@ -410,7 +418,7 @@ export class DashboardComponent implements OnInit , OnDestroy {
 
   // After loading, mark countries as loaded and check if both are ready
   loadCountries() {
-    return this.talentService.getCountries().subscribe(
+    return this.scoutService.getCountries().subscribe(
       (response) => {
         if (response && response.status) {
           this.countries = response.data.countries;
@@ -452,7 +460,7 @@ export class DashboardComponent implements OnInit , OnDestroy {
 
   getHighlightsData(){
     try {
-      this.talentService.getHighlightsData().subscribe((response)=>{
+      this.scoutService.getHighlightsData().subscribe((response)=>{
         if (response && response.status && response.data && response.data.images) {
           this.highlights = response.data;
           // this.isLoading = false;
@@ -503,7 +511,7 @@ export class DashboardComponent implements OnInit , OnDestroy {
 
   getCoverImg(){
     try {
-      this.talentService.getCoverImg().subscribe((response)=>{
+      this.scoutService.getCoverImg().subscribe((response)=>{
         if (response?.data) {
             this.coverImage = response?.data?.userData?.meta_value && response.data.userData.meta_value != '' ? response.data.userData.cover_image_path : undefined;
             // console.log('coverImage',this.coverImage)
@@ -530,7 +538,7 @@ export class DashboardComponent implements OnInit , OnDestroy {
         const formData = new FormData();
         formData.append("profile_image", this.selectedFile);
 
-        this.talentService.uploadProfileImage(formData).subscribe(
+        this.scoutService.uploadProfileImage(formData).subscribe(
           (response) => {
             if (response && response.status) {
               this.profileImage = `${environment.url}uploads/${response.data.uploaded_fileinfo}`;
@@ -560,7 +568,7 @@ export class DashboardComponent implements OnInit , OnDestroy {
   }
 
   sendMessage() {
-    this.talentService.updatePicOnHeader(this.profileImage);
+    this.scoutService.updatePicOnHeader(this.profileImage);
   }
 
   onCoverFileChange(event: Event): void {
@@ -575,7 +583,7 @@ export class DashboardComponent implements OnInit , OnDestroy {
         const formData = new FormData();
         formData.append("cover_image", this.selectedFile);
 
-        this.talentService.uploadCoverImage(formData).subscribe(
+        this.scoutService.uploadCoverImage(formData).subscribe(
           (response) => {
             if (response && response.status) {
               this.coverImage = `${environment.url}uploads/${response.data.uploaded_fileinfo}`;
@@ -607,7 +615,7 @@ export class DashboardComponent implements OnInit , OnDestroy {
     this.toastr.info('Deleting cover image...', 'Please wait', { disableTimeOut: true });
 
     try {
-      this.talentService.deleteCoverImage().subscribe(
+      this.scoutService.deleteCoverImage().subscribe(
         (response) => {
           if (response && response.status) {
             this.coverImage = null;  // Indicates no value is set
@@ -671,7 +679,7 @@ export class DashboardComponent implements OnInit , OnDestroy {
   }
 
   getAllTeams(){
-    this.talentService.getTeams().subscribe((data) => {
+    this.scoutService.getTeams().subscribe((data) => {
       this.teams = data;
     });
   }

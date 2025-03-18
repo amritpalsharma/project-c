@@ -17,6 +17,8 @@ export class AddRepresentatorPopupComponent {
 
   userId:any = ""
   email:any = "";
+  // firstName:any = "";
+  // lastName:any = "";
   role:any = "";
 
   firstName:any = "";
@@ -110,9 +112,14 @@ export class AddRepresentatorPopupComponent {
       return false;
     }
 
+    let verification_link = window.location.origin + '/home';
+
     let params:any = {}
     params.email = this.email;
+    params.first_name = this.firstName;
+    params.last_name = this.lastName;
     params.site_role = this.role;
+    params.verification_link = verification_link;
     params.lang = localStorage.getItem('lang_id');
     this.scoutService.sendInviteToRepresentator(this.userId, params).subscribe((response)=>{
       if (response && response.status == true) {

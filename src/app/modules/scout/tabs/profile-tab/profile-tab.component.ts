@@ -239,12 +239,14 @@ export class ProfileTabComponent {
 
   confirmSingleDeletion(id:any){
     this.idsToDelete = id;
-    this.showMatDialog("", "delete-representator-confirmation");
+    this.showMatDialog("", "delete-confirmation");
   }
 
   deleteRepresentator():any {
+    console.log("ids to delete", this.idsToDelete);
+    // return;
 
-    this.userService.deleteRepresentator(this.idsToDelete).subscribe(
+    this.scoutService.deleteRepresentator(this.idsToDelete).subscribe(
       response => {
         if(response.status){
           this.getRepresentators();

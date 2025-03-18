@@ -64,7 +64,7 @@ export class HeaderComponent implements OnInit {
   registerationErrorHtml: string = '';
   verifyToken: any = null;
   verifyTime: any = null;
- successMessage: string = '';
+  successMessage: string = '';
 
 
 
@@ -229,7 +229,7 @@ export class HeaderComponent implements OnInit {
     },
     nav: true
   };
- 
+
 
   isViewPassword = false;
   constructor(
@@ -574,6 +574,9 @@ export class HeaderComponent implements OnInit {
           const userRole = userData.role;
           let navigationRoute = '';
           switch (userRole) {
+            case "1":
+              navigationRoute = '/admin/dashboard';
+              break;
             case "2":
               navigationRoute = '/club/dashboard';
               break;
@@ -583,8 +586,14 @@ export class HeaderComponent implements OnInit {
             case "4":
               navigationRoute = '/talent/dashboard';
               break;
-            case "1":
+            case "5":
               navigationRoute = '/admin/dashboard';
+              break;
+            case "6":
+              navigationRoute = '/club/dashboard';
+              break;
+            case "7":
+              navigationRoute = '/scout/dashboard';
               break;
             default:
               navigationRoute = '';
@@ -619,7 +628,7 @@ export class HeaderComponent implements OnInit {
       this.successMessage = '';
       return;
     }
-  
+
     if (this.isEmailValid(this.email)) {
       this.forgotPasswordMessage = '';
       this.successMessage = 'Email is correct';
@@ -628,12 +637,12 @@ export class HeaderComponent implements OnInit {
       this.successMessage = '';
     }
   }
-  
+
   isEmailValid(email: string): boolean {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return emailPattern.test(email);
   }
-  
+
   register() {
     this.serverBusy = true;
     this.registerFormSubmitted = true;
