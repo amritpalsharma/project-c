@@ -53,6 +53,7 @@ export class HeaderComponent implements OnInit {
   registerError: string = '';
   forgotPasswordEmail: string = '';
   forgotPasswordMessage: string = '';
+  requiredMessage: string = ''; 
   lang: string = '';
   token: string = '';
   tokenVerified: boolean = false;
@@ -613,27 +614,6 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  validateEmail() {
-    if (!this.email) {
-      // this.forgotPasswordMessage = 'Email is required';
-      this.successMessage = '';
-      return;
-    }
-  
-    if (this.isEmailValid(this.email)) {
-      this.forgotPasswordMessage = '';
-      this.successMessage = 'Email is correct';
-    } else {
-      this.forgotPasswordMessage = 'Please enter a valid email';
-      this.successMessage = '';
-    }
-  }
-  
-  isEmailValid(email: string): boolean {
-    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    return emailPattern.test(email);
-  }
-  
   register() {
     this.serverBusy = true;
     this.registerFormSubmitted = true;
@@ -792,25 +772,64 @@ export class HeaderComponent implements OnInit {
       this.userDomain.trim() !== ''; // Assuming userDomain is a string
   }
 
+  // forgotPassword() {
+  //   if (!this.forgotPasswordEmail.trim()) {
+  //     this.forgotPasswordMessage = 'Please provide a valid email address.';
+  //     return;
+  //   }
+
+  //   this.authService.forgotPassword(this.forgotPasswordEmail).subscribe(
+  //     response => {
+  //       if (response.status) {
+  //         this.forgotPasswordMessage = response.message;
+  //       } else {
+  //         this.forgotPasswordMessage = response.message;
+  //       }
+  //     },
+  //     () => {
+  //       this.forgotPasswordMessage = 'An error occurred. Please try again later.';
+  //     }
+  //   );
+  // }
+
   forgotPassword() {
-    if (!this.forgotPasswordEmail.trim()) {
-      this.forgotPasswordMessage = 'Please provide a valid email address.';
+    if (!this.forgotPasswordEmail?.trim()) {
+      this.translateService.get('forgotPassword.provideValidEmail').subscribe((res: string) => {
+        this.forgotPasswordMessage = ''; // Clear previous messages
+        this.requiredMessage = res; // Show required message
+      });
       return;
     }
+  
+    this.requiredMessage = '';
+
+
+      // Email validation regex
+  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  if (!emailPattern.test(this.forgotPasswordEmail)) {
+    this.translateService.get('forgotPassword.provideValidEmail').subscribe((res: string) => {
+      this.forgotPasswordMessage = res; // Show invalid email message
+    });
+    return;
+  }
+
+  this.forgotPasswordMessage = ''; // Clear error message before API call
 
     this.authService.forgotPassword(this.forgotPasswordEmail).subscribe(
       response => {
-        if (response.status) {
-          this.forgotPasswordMessage = response.message;
-        } else {
-          this.forgotPasswordMessage = response.message;
-        }
+        const translationKey = response.status ? 'forgotPassword.successMessage' : 'forgotPassword.errorMessage';
+        this.translateService.get(translationKey, { message: response.message }).subscribe((res: string) => {
+          this.forgotPasswordMessage = res;
+        });
       },
       () => {
-        this.forgotPasswordMessage = 'An error occurred. Please try again later.';
+        this.translateService.get('forgotPassword.generalError').subscribe((res: string) => {
+          this.forgotPasswordMessage = res;
+        });
       }
     );
   }
+  
 
   initializeGoogleSignIn(): void {
     google.accounts.id.initialize({

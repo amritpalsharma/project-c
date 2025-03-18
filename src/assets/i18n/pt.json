@@ -1266,5 +1266,12 @@
   "Processing": "Processamento...",
   "EmailVerified": "E-mail verificado!",
   "doYouWantToaddPackage": "Pretende adicionar “{{package_name}}” ao seu perfil?",
-  "emailExample": "exemplo@email.com"
+  "emailExample": "exemplo@email.com",
+  "forgotPassword": {
+    "provideValidEmail": "Por favor, forneça um endereço de e-mail válido.",
+    "successMessage": "Um link de redefinição foi enviado para seu e-mail.",
+    "errorMessage": "Este correio eletrónico não existe",
+    "generalError": "Ocorreu um erro. Por favor, tente novamente mais tarde.",
+    "requiredMessage": "Este campo é obrigatório."
+  }
 }

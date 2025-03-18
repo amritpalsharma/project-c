@@ -1173,5 +1173,12 @@
   "Processing": "Behandling...",
   "EmailVerified": "E-mail bekræftet!",
   "doYouWantToaddPackage": "Vil du tilføje “{{package_name}}” til din profil?",
-  "emailExample": "eksempel@email.com"
+  "emailExample": "eksempel@email.com",
+  "forgotPassword": {
+    "provideValidEmail": "Angiv venligst en gyldig e-mailadresse.",
+    "successMessage": "Et nulstillingslink er blevet sendt til din e-mail.",
+    "errorMessage": "Denne e-mail findes ikke",
+    "generalError": "Der opstod en fejl. Prøv igen senere.",
+     "requiredMessage": "Dette felt er påkrævet."
+  }
 }

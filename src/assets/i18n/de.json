@@ -1284,5 +1284,12 @@
   "Onwards": "weiter",
   "heroHeading": "Überschrift Held",
   "doYouWantToaddPackage": "Möchten Sie “{{package_name}}” zu Ihrem Profil hinzufügen?",
-  "emailExample": "Beispiel@email.com"
+  "emailExample": "Beispiel@email.com",
+  "forgotPassword": {
+    "provideValidEmail": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+    "successMessage": "Ein Link zum Zurücksetzen wurde an Ihre E-Mail gesendet.",
+    "errorMessage": "Diese E-Mail existiert nicht",
+    "generalError": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.",
+    "requiredMessage": "Dieses Feld ist erforderlich."
+  }
 }

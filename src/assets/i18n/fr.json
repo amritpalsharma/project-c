@@ -1327,5 +1327,12 @@
   "Processing": "Traitement...",
   "EmailVerified": "Courriel vérifié !",
   "doYouWantToaddPackage": "Voulez-vous ajouter “{{package_name}}” à votre profil ?",
-  "emailExample": "exemple@email.com"
+  "emailExample": "exemple@email.com",
+  "forgotPassword": {
+    "provideValidEmail": "Veuillez fournir une adresse e-mail valide.",
+    "successMessage": "Un lien de réinitialisation a été envoyé à votre e-mail.",
+    "errorMessage": "Cet e-mail n'existe pas",
+    "generalError": "Une erreur est survenue. Veuillez réessayer plus tard.",
+    "requiredMessage": "Ce champ est obligatoire."
+  }
 }

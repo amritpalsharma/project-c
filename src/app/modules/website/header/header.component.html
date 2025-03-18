@@ -347,13 +347,19 @@
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">{{ 'emailLabel' | translate
                                     }}</label>
-                                <input type="email" (input)="validateEmail()" class="form-control" id="exampleFormControlInput1"
+                                <input type="email" class="form-control" id="exampleFormControlInput1"
                                     placeholder="{{'emailExample' |
                                     translate}}" [(ngModel)]="forgotPasswordEmail" />
-
-                                    <div *ngIf="forgotPasswordMessage" class="text-danger mt-2">
+                                   
+                                    <div *ngIf="forgotPasswordMessage; else requiredMsg" class="text-danger mt-2">
                                         {{ forgotPasswordMessage }}
-                                    </div>
+                                      </div>
+                                      
+                                      <ng-template #requiredMsg>
+                                        <div *ngIf="requiredMessage" class="text-danger mt-2">
+                                          {{ 'emailRequired' | translate }}
+                                        </div>
+                                      </ng-template>
                                     
                                     <!-- <div *ngIf="successMessage" class="text-success mt-2">
                                         {{ successMessage }}

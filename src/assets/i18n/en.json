@@ -1196,5 +1196,12 @@
    "emailExample": "example@email.com",
     "EMAIL_REQUIRED": "Email is required",
     "EMAIL_INVALID": "Please enter a valid email",
-    "EMAIL_VALID": "Email is correct"
+    "EMAIL_VALID": "Email is correct",
+    "forgotPassword": {
+      "provideValidEmail": "Please provide a valid email address.",
+      "successMessage": "A reset link has been sent to your email.",
+      "errorMessage": "This email does not exist",
+      "generalError": "An error occurred. Please try again later.",
+      "requiredMessage": "This field is required."
+    }
 }

@@ -1312,5 +1312,12 @@
   "Processing": "Bearbetning...",
   "EmailVerified": "E-post verifierad!",
   "doYouWantToaddPackage": "Vill du lägga till “{{package_name}}” i din profil?",
-  "emailExample": "Exempel@email.com"
+  "emailExample": "Exempel@email.com",
+  "forgotPassword": {
+    "provideValidEmail": "Vänligen ange en giltig e-postadress.",
+    "successMessage": "En återställningslänk har skickats till din e-post.",
+    "errorMessage": "Denna e-post finns inte",
+    "generalError": "Ett fel inträffade. Vänligen försök igen senare.",
+     "requiredMessage": "Detta fält är obligatoriskt."
+  }
 }
