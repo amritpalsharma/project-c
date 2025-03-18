@@ -1180,5 +1180,6 @@
     "errorMessage": "Denne e-mail findes ikke",
     "generalError": "Der opstod en fejl. Prøv igen senere.",
      "requiredMessage": "Dette felt er påkrævet."
-  }
+  },
+  "account": "Konto"
 }

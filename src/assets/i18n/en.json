@@ -1203,5 +1203,6 @@
       "errorMessage": "This email does not exist",
       "generalError": "An error occurred. Please try again later.",
       "requiredMessage": "This field is required."
-    }
+    },
+    "account": "Account"
 }

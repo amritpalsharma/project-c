@@ -1265,5 +1265,6 @@
     "errorMessage": "Este correo electrónico no existe",
     "generalError": "Ocurrió un error. Por favor, inténtelo de nuevo más tarde.",
     "requiredMessage": "Este campo es obligatorio."
-  }
+  },
+  "account": "Cuenta"
 }

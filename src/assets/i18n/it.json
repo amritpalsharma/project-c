@@ -1314,5 +1314,6 @@
     "errorMessage": "Questa e-mail non esiste",
     "generalError": "Si è verificato un errore. Riprova più tardi.",
      "requiredMessage": "Questo campo è obbligatorio."
-  }
+  },
+  "account": "Conto"
 }

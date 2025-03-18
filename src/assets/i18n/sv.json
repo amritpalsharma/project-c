@@ -1320,5 +1320,6 @@
     "errorMessage": "Denna e-post finns inte",
     "generalError": "Ett fel inträffade. Vänligen försök igen senare.",
      "requiredMessage": "Detta fält är obligatoriskt."
-  }
+  },
+  "account": "Konto"
 }

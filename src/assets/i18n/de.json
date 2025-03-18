@@ -1291,5 +1291,6 @@
     "errorMessage": "Diese E-Mail existiert nicht",
     "generalError": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.",
     "requiredMessage": "Dieses Feld ist erforderlich."
-  }
+  },
+  "account": "Konto"
 }

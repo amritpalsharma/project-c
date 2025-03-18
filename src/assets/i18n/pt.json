@@ -1273,5 +1273,6 @@
     "errorMessage": "Este correio eletrónico não existe",
     "generalError": "Ocorreu um erro. Por favor, tente novamente mais tarde.",
     "requiredMessage": "Este campo é obrigatório."
-  }
+  },
+  "account": "Conta"
 }
