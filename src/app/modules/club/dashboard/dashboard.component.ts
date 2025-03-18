@@ -76,6 +76,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   deletingCoverImage: string = '';
   Canceled: string = '';
   coverImageDeletionCanceled: string = '';
+  requiredFieldsMessage: string = '';
 
   async ngOnInit() {
     this.introInstance = introJs();
@@ -347,7 +348,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result) {
+      if (result == 'all_field_required') {
+        this.toastr.error(this.requiredFieldsMessage, this.errorTxt);
+      }
+      else if (result) {
         this.getUserProfile(this.userId);
       } else {
         console.log('User canceled the edit');
@@ -670,7 +674,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   getToasterMsg() {
-    this.translateService.get(['pleaseWait', 'uploadingPhotos', 'success!', 'error', 'deletingCoverImage', 'coverImageDeletionCanceled', 'Canceled']).subscribe((translations) => {
+    this.translateService.get(['pleaseWait', 'uploadingPhotos', 'success!', 'error', 'deletingCoverImage', 'coverImageDeletionCanceled', 'Canceled', 'requiredFieldsMessage']).subscribe((translations) => {
       this.pleaseWait = translations['pleaseWait'];
       this.uploadingPhotos = translations['uploadingPhotos'];
       this.successTxt = translations['successTxt'];
@@ -678,6 +682,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.deletingCoverImage = translations['deletingCoverImage'];
       this.coverImageDeletionCanceled = translations['coverImageDeletionCanceled'];
       this.Canceled = translations['Canceled'];
+      this.requiredFieldsMessage = translations['requiredFieldsMessage'];
     });
   }
 }

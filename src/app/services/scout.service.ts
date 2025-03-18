@@ -535,9 +535,9 @@ export class ScoutService {
 
   deleteCoverImage(): Observable<any> {
     const headers = this.headers();
-
+    let lang_id = localStorage.getItem('lang_id');
     return this.http.get<{ status: boolean, message: string, data: {} }>(
-      `${this.apiUrl}user/delete-cover-image/`, { headers }
+      `${this.apiUrl}user/delete-cover-image/${lang_id}`, { headers }
     );
   }
 
@@ -555,8 +555,8 @@ export class ScoutService {
 
   deleteGalleryImage(params: any): Observable<any> {
     const headers = this.headers();
-
-    return this.http.post<any>(`${this.apiUrl}user/delete-gallery-file`, params, { headers });
+    let lang_id = localStorage.getItem('lang_id');
+    return this.http.post<any>(`${this.apiUrl}user/delete-gallery-file/${lang_id}`, params, { headers });
   }
 
   updateTransferDetails(transferId: number, transferData: any): Observable<any> {
@@ -664,7 +664,13 @@ export class ScoutService {
       params = params.append('id[]', id);  // Append each ID to the 'ids[]' query param
     });
 
+<<<<<<< HEAD
     return this.http.post(`${this.apiUrl}user/set-featured-file`, params, { headers });
+=======
+    let lang_id = localStorage.getItem('lang_id');
+
+    return this.http.post(`${this.apiUrl}user/set-featured-file/${lang_id}`, params, { headers });
+>>>>>>> e36a146d350d609605210e6c1d011c54b70c68da
   }
 
 

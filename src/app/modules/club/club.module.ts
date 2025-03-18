@@ -65,6 +65,7 @@ import { UploadAttachmentComponent } from './tabs/upload-attachment/upload-attac
 import { InviteTalentPopupComponent } from './tabs/invite-talent-popup/invite-talent-popup.component';
 import { CreateSightPopupComponent } from './tabs/create-sight-popup/create-sight-popup.component';
 import { AddNewTalentComponent } from './tabs/add-new-talent/add-new-talent.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 // import { NgxStripeModule } from 'ngx-stripe';
 
 @NgModule({
@@ -159,6 +160,7 @@ import { AddNewTalentComponent } from './tabs/add-new-talent/add-new-talent.comp
     MatPaginator,
     NgxEditorModule,
     MatProgressSpinnerModule,
+    MatTooltipModule,
   ]
 })
 

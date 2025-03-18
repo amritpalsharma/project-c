@@ -291,8 +291,8 @@ export class TalentService {
 
   uploadCoverImage(formdata: any): Observable<any> {
     const headers = this.headers();
-
-    return this.http.post<any>(`${this.apiUrl}user/upload-cover-image/`, formdata, { headers });
+    let lang_id = localStorage.getItem('lang_id');
+    return this.http.post<any>(`${this.apiUrl}user/upload-cover-image/${lang_id}`, formdata, { headers });
   }
 
   // getFavoritesData(userId:any, params:any): Observable<any> {
@@ -311,16 +311,16 @@ export class TalentService {
 
   deleteCoverImage(): Observable<any> {
     const headers = this.headers();
-
+    let lang_id = localStorage.getItem('lang_id');
     return this.http.get<{ status: boolean, message: string, data: {} }>(
-      `${this.apiUrl}user/delete-cover-image/`, { headers }
+      `${this.apiUrl}user/delete-cover-image/${lang_id}`, { headers }
     );
   }
 
   uploadProfileImage(formdata: any): Observable<any> {
     const headers = this.headers();
     let lang_id = localStorage.getItem('lang_id');
-    return this.http.post<any>(`${this.apiUrl}user/upload-profile-image/`, formdata, { headers });
+    return this.http.post<any>(`${this.apiUrl}user/upload-profile-image/${lang_id}`, formdata, { headers });
   }
 
   uploadGalleryImages(formdata: any): Observable<any> {
