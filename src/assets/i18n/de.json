@@ -1295,5 +1295,6 @@
   "swedish": "Schwedisch",
   "deletingCoverImage": "Löschen des Titelbildes....",
   "Canceled":"Abgesagt",
-  "coverImageDeletionCanceled":"Das Löschen des Titelbildes wird abgebrochen."
+  "coverImageDeletionCanceled":"Das Löschen des Titelbildes wird abgebrochen.",
+  "savingSelectedFiles":"Speichern von ausgewählten Dateien..."
 }

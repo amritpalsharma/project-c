@@ -1207,5 +1207,6 @@
   "swedish": "Swedish",
   "deletingCoverImage": "Deleting cover image....",
   "Canceled":"Canceled",
-  "coverImageDeletionCanceled":"Cover image deletion canceled."
+  "coverImageDeletionCanceled":"Cover image deletion canceled.",
+  "savingSelectedFiles":"Saving selected files..."
 }

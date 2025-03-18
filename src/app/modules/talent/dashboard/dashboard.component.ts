@@ -69,6 +69,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
   private introInstance: any; // Reference to the Intro.js instance
   loading: boolean = true;  // Add this line to track loading state
 
+  // Toaster Msg For Takent
+  pleaseWait: string = '';
+  uploadingPhotos: string = '';
+  successTxt: string = '';
+  errorTxt: string = '';
+  deletingCoverImage: string = '';
+  Canceled: string = '';
+  coverImageDeletionCanceled: string = '';
+
   async ngOnInit() {
     this.introInstance = introJs();
 
@@ -103,6 +112,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
     });
 
     this.getClubsForPlayer();
+
+    this.getToasterMsg();
+    this.webPages.languageId$.subscribe((data: any) => {
+      this.getToasterMsg();
+    });
   }
 
   getClubsForPlayer() {
@@ -581,7 +595,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.selectedFile = input.files[0];
 
       // Set loading state and display info toast
-      this.toastr.info('Uploading profile image...', 'Please wait', { disableTimeOut: true });
+      this.toastr.info(this.uploadingPhotos, this.pleaseWait, { disableTimeOut: true });
 
       try {
         const formData = new FormData();
@@ -594,8 +608,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
               this.dataEmitter.emit(this.profileImage);  // Emit updated profile image
               this.toastr.clear();
               this.commonDataService.updateProfilePic(this.profileImage);
-
-              this.toastr.success('Profile image uploaded successfully!', 'Success');
+              if (response.message != '') {
+                this.toastr.success(response.message, this.successTxt);
+              } else {
+                this.toastr.success('Profile image uploaded successfully!', 'Success');
+              }
             } else {
               this.toastr.clear();
               this.toastr.error('Failed to upload profile image. Please try again.', 'Upload Failed');
@@ -626,7 +643,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.selectedFile = input.files[0];
 
       // Set loading state and display info toast
-      this.toastr.info('Uploading cover image...', 'Please wait', { disableTimeOut: true });
+      this.toastr.info(this.uploadingPhotos, this.pleaseWait, { disableTimeOut: true });
 
       try {
         const formData = new FormData();
@@ -638,7 +655,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
               this.coverImage = `${environment.url}uploads/${response.data.uploaded_fileinfo}`;
               this.dataEmitter.emit(this.coverImage);  // Emit updated cover image
               this.toastr.clear();
-              this.toastr.success('Cover image uploaded successfully!', 'Success');
+              if (response.message != '') {
+                this.toastr.success(response.message, this.successTxt);
+              } else {
+                this.toastr.success('Cover image uploaded successfully!', 'Success');
+              }
             } else {
               this.toastr.clear();
               this.toastr.error('Failed to upload cover image. Please try again.', 'Upload Failed');
@@ -661,7 +682,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   deleteCoverImage(): void {
     // Set loading state and display info toast
-    this.toastr.info('Deleting cover image...', 'Please wait', { disableTimeOut: true });
+    this.toastr.info(this.deletingCoverImage, this.pleaseWait, { disableTimeOut: true });
 
     try {
       this.talentService.deleteCoverImage().subscribe(
@@ -670,10 +691,20 @@ export class DashboardComponent implements OnInit, OnDestroy {
             this.coverImage = null;  // Indicates no value is set
             this.dataEmitter.emit('');  // Emit empty string to indicate deletion
             this.toastr.clear();
-            this.toastr.success('Cover image deleted successfully.', 'Success');
+            if (response.message != '') {
+              this.toastr.success(response.message, this.successTxt);
+            } else {
+              this.toastr.success('Cover image deleted successfully.', 'Success');
+            }
           } else {
             this.toastr.clear();
-            this.toastr.error('Failed to delete cover image. Please try again.', 'Delete Failed');
+            if (response.message != '') {
+              // this.toastr.success(response.message, this.successTxt);
+              this.toastr.error(response.message, this.errorTxt);
+            } else {
+              // this.toastr.success('Cover image deleted successfully.', 'Success');
+              this.toastr.error('Failed to delete cover image. Please try again.', 'Delete Failed');
+            }
             console.error('Invalid API response structure:', response);
           }
         },
@@ -700,7 +731,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         // If the user confirms, proceed with deletion
         this.deleteCoverImage();
       } else {
-        this.toastr.info('Cover image deletion canceled.', 'Canceled');
+        this.toastr.info(this.coverImageDeletionCanceled, this.Canceled);
         console.log('User canceled the delete');
       }
     });
@@ -777,6 +808,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
     console.log('Data received from child:', data);
   }
 
-
+  getToasterMsg() {
+    this.translateService.get(['pleaseWait', 'uploadingPhotos', 'success!', 'error', 'deletingCoverImage', 'coverImageDeletionCanceled', 'Canceled']).subscribe((translations) => {
+      this.pleaseWait = translations['pleaseWait'];
+      this.uploadingPhotos = translations['uploadingPhotos'];
+      this.successTxt = translations['successTxt'];
+      this.errorTxt = translations['errorTxt'];
+      this.deletingCoverImage = translations['deletingCoverImage'];
+      this.coverImageDeletionCanceled = translations['coverImageDeletionCanceled'];
+      this.Canceled = translations['Canceled'];
+    });
+  }
 
 }

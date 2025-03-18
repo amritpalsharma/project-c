@@ -30,8 +30,8 @@ export class ScoutService {
   public teams: any[] = [];
   private messageSource = new Subject<string>();
   message$ = this.messageSource.asObservable();
-  public lang:any; // You can dynamically set this if needed
-  languages:any = environment.langs;
+  public lang: any; // You can dynamically set this if needed
+  languages: any = environment.langs;
   private apiUrl3 = "https://alerts.socceryou.ch/";
 
   private apiUrl2: any;
@@ -40,16 +40,16 @@ export class ScoutService {
 
   constructor(private http: HttpClient) {
 
-      // Retrieve the selected language code from localStorage
-      const selectedLanguageSlug = localStorage.getItem('lang') || '';
+    // Retrieve the selected language code from localStorage
+    const selectedLanguageSlug = localStorage.getItem('lang') || '';
 
-      // Find the corresponding language ID from the langs array
-      const lang = this.languages.find(
-        (lang:any) => lang.slug === selectedLanguageSlug
-      );
+    // Find the corresponding language ID from the langs array
+    const lang = this.languages.find(
+      (lang: any) => lang.slug === selectedLanguageSlug
+    );
 
-      // Default to a specific language ID if none is found (e.g., English)
-      this.lang = lang ? lang.id : 1;
+    // Default to a specific language ID if none is found (e.g., English)
+    this.lang = lang ? lang.id : 1;
 
     this.apiUrl = this.apiUrl2 = environment.apiUrl;
     this.userToken = localStorage.getItem('authToken');
@@ -88,8 +88,8 @@ export class ScoutService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
-    return this.http.get<{ status: boolean, message: string, data: { } }>(
-      `${this.apiUrl2}scout/get-company-history`, {headers}
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
+      `${this.apiUrl2}scout/get-company-history`, { headers }
     );
   }
 
@@ -98,18 +98,18 @@ export class ScoutService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
-    return this.http.get<{ status: boolean, message: string, data: { } }>(
-      `${this.apiUrl2}scout/get-scout-players`, {headers}
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
+      `${this.apiUrl2}scout/get-scout-players`, { headers }
     );
   }
 
-  deleteScoutPlayer(id:any): Observable<any> {
+  deleteScoutPlayer(id: any): Observable<any> {
     const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
-    return this.http.get<{ status: boolean, message: string, data: { } }>(
-      `${this.apiUrl2}scout/delete-scout-player/${id}`, {headers}
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
+      `${this.apiUrl2}scout/delete-scout-player/${id}`, { headers }
     );
   }
 
@@ -118,18 +118,18 @@ export class ScoutService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
-    return this.http.get<{ status: boolean, message: string, data: { } }>(
-      `${this.apiUrl2}scout/get-representators`, {headers}
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
+      `${this.apiUrl2}scout/get-representators`, { headers }
     );
   }
 
-  updateScoutHistory(history:any): Observable<any> {
+  updateScoutHistory(history: any): Observable<any> {
 
     const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
-    return this.http.post<any>(`${this.apiUrl2}scout/add-company-history`, {company_history: history}, { headers });
+    return this.http.post<any>(`${this.apiUrl2}scout/add-company-history`, { company_history: history }, { headers });
     // return this.http.post<any>(`${this.apiUrl2}scout/edit-company-history`, {company_history: history}, { headers });
   }
 
@@ -148,7 +148,7 @@ export class ScoutService {
   }
 
   getNotifications(userId: any = 1): Observable<any> {
-    return this.http.get<{ status: boolean, notifications: Notification[], unseen_count: number, total_count:number }>(
+    return this.http.get<{ status: boolean, notifications: Notification[], unseen_count: number, total_count: number }>(
       `${this.apiUrl3}notifications?userId=${userId}`,
     );
   }
@@ -172,7 +172,7 @@ export class ScoutService {
 
   getBoosterData(): Observable<any> {
     const headers = this.headers();
-    return this.http.get<{ status: boolean, message: string, data: { } }>(
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl}user/get-booster-stats`,
       { headers }
     );
@@ -190,16 +190,16 @@ export class ScoutService {
 
   getClubsForPlayer(): Observable<any> {
     const headers = this.headers();
-    return this.http.get<{ status: boolean, message: string, data: { } }>(
-      `${this.apiUrl}get-clubs-list`, {headers}
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
+      `${this.apiUrl}get-clubs-list`, { headers }
     );
   }
 
 
-  getViewTransferData(id:any): Observable<any> {
+  getViewTransferData(id: any): Observable<any> {
     const headers = this.headers();
 
-    return this.http.get<{ status: boolean, message: string, data: { } }>(
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl}get-transfer-detail/${id}`, { headers }
     );
   }
@@ -208,7 +208,7 @@ export class ScoutService {
   getUserDomains(): Observable<any> {
     const headers = this.headers();
 
-    return this.http.get<{ status: boolean, message: string, data: { } }>(
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl}user/get-active-domains`, { headers }
     );
   }
@@ -218,7 +218,7 @@ export class ScoutService {
     const headers = this.headers();
 
     return this.http.get<{ status: boolean, message: string, data: any }>(
-      `${this.apiUrl}user/export-purchase-history`, { headers }    );
+      `${this.apiUrl}user/export-purchase-history`, { headers });
   }
 
   getUserPlans(): Observable<any> {
@@ -241,18 +241,18 @@ export class ScoutService {
     const headers = this.headers();
 
     let params = new HttpParams();
-      params = params.append('user_id', user_id);
-      params = params.append('action',  action);
-      profileId.forEach(id => {
-        params = params.append('profile_viewed[]', id);  // Append each ID to the 'ids[]' query param
-      });
+    params = params.append('user_id', user_id);
+    params = params.append('action', action);
+    profileId.forEach(id => {
+      params = params.append('profile_viewed[]', id);  // Append each ID to the 'ids[]' query param
+    });
 
     // Send POST request with payload in body
     return this.http.post<any>(`${this.apiUrl}user/track-booster-profile`, params, { headers });
   }
 
 
-  getPerformanceReportsData(id:any): Observable<any> {
+  getPerformanceReportsData(id: any): Observable<any> {
     const headers = this.headers();
 
     return this.http.get<any>(
@@ -261,7 +261,7 @@ export class ScoutService {
     );
   }
 
-  getPerformanceList(id:any): Observable<any> {
+  getPerformanceList(id: any): Observable<any> {
     const headers = this.headers();
 
     return this.http.get<any>(
@@ -271,19 +271,19 @@ export class ScoutService {
   }
 
 
-  getGalleryFiles(id:any): Observable<any> {
+  getGalleryFiles(id: any): Observable<any> {
     const headers = this.headers();
 
-    return this.http.get<{ status: boolean, message: string, data: { } }>(
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl}get-gallery/${id}`, { headers }
     );
   }
 
 
-  getHighlightsFiles(id:any): Observable<any> {
+  getHighlightsFiles(id: any): Observable<any> {
     const headers = this.headers();
 
-    return this.http.get<{ status: boolean, message: string, data: { } }>(
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl}get-gallery-highlights/${id}`, { headers }
     );
   }
@@ -298,7 +298,7 @@ export class ScoutService {
     });
 
     // Send POST request with payload in body
-    return this.http.post(`${this.apiUrl}user/update-booster-audience`, params , {headers});
+    return this.http.post(`${this.apiUrl}user/update-booster-audience`, params, { headers });
   }
 
 
@@ -306,9 +306,9 @@ export class ScoutService {
     const headers = this.headers();
 
     let params = new HttpParams();
-      params = params.append('coupon_code', couponCode);
+    params = params.append('coupon_code', couponCode);
 
-    return this.http.post(`${this.apiUrl}user/validate-coupon`, params , {headers});
+    return this.http.post(`${this.apiUrl}user/validate-coupon`, params, { headers });
   }
 
 
@@ -316,14 +316,14 @@ export class ScoutService {
     const headers = this.headers();
 
     let params = new HttpParams();
-      params = params.append('user[show_tour]', showTour);
+    params = params.append('user[show_tour]', showTour);
 
     // Send POST request with payload in body
-    return this.http.post(`${this.apiUrl}user/update-profile`, params , {headers});
+    return this.http.post(`${this.apiUrl}user/update-profile`, params, { headers });
   }
 
   // Fetch teams and store globally and in localStorage
-  searchTeams(team:string): Observable<any> {
+  searchTeams(team: string): Observable<any> {
 
     const headers = this.headers();
 
@@ -353,12 +353,12 @@ export class ScoutService {
 
     return this.http.get<{ status: boolean, message: string, data: any }>(
       `${this.apiUrl}user/get-purchase-history`, {
-        params: {
-          page: pageNumber.toString(),
-          // limit: pageSize.toString()
-        }
-        ,headers
+      params: {
+        page: pageNumber.toString(),
+        // limit: pageSize.toString()
       }
+      , headers
+    }
     );
   }
 
@@ -373,7 +373,7 @@ export class ScoutService {
       .set('search', params.search || '');
 
     return this.http.get<{ status: boolean, message: string, data: {} }>(
-      `${this.apiUrl}get-favorites`, { params: queryParams , headers }
+      `${this.apiUrl}get-favorites`, { params: queryParams, headers }
     );
   }
 
@@ -399,7 +399,7 @@ export class ScoutService {
   getCountries(): Observable<any> {
     const headers = this.headers();
 
-    return this.http.get<{ status: boolean, message: string, data: { } }>(
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl}get-countries`, { headers }
     );
 
@@ -408,7 +408,7 @@ export class ScoutService {
   getDomains(): Observable<any> {
     const headers = this.headers();
 
-    return this.http.get<{ status: boolean, message: string, data: { } }>(
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl}get-domains`, { headers }
     );
   }
@@ -424,7 +424,7 @@ export class ScoutService {
 
   getLeagues(): Observable<any> {
     const headers = this.headers();
-    return this.http.get(`${this.apiUrl}get-leagues`, {headers});
+    return this.http.get(`${this.apiUrl}get-leagues`, { headers });
   }
 
   getGalleryData(): Observable<any> {
@@ -471,7 +471,7 @@ export class ScoutService {
     const headers = this.headers();
 
     return this.http.get<{ status: boolean, message: string, data: { userData: User[] } }>(
-      `${this.apiUrl}user/get-cover-image`, {headers}
+      `${this.apiUrl}user/get-cover-image`, { headers }
     );
   }
 
@@ -492,7 +492,7 @@ export class ScoutService {
   getPerformanceData(): Observable<any> {
     const headers = this.headers();
 
-    return this.http.get<{ status: boolean, message: string, data: { } }>(
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl}scout/get-performance-detail`, { headers }
     );
   }
@@ -500,7 +500,7 @@ export class ScoutService {
   getTransferData(): Observable<any> {
     const headers = this.headers();
 
-    return this.http.get<{ status: boolean, message: string, data: { } }>(
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl}scout/get-transfer-detail`, { headers }
     );
   }
@@ -528,9 +528,9 @@ export class ScoutService {
 
   deleteCoverImage(): Observable<any> {
     const headers = this.headers();
-
-    return this.http.get<{ status: boolean, message: string, data: { } }>(
-      `${this.apiUrl}user/delete-cover-image/`, {headers}
+    let lang_id = localStorage.getItem('lang_id');
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
+      `${this.apiUrl}user/delete-cover-image/${lang_id}`, { headers }
     );
   }
 
@@ -546,10 +546,10 @@ export class ScoutService {
     return this.http.post<any>(`${this.apiUrl}user/upload-gallery-image/`, formdata, { headers });
   }
 
-  deleteGalleryImage(params:any): Observable<any> {
+  deleteGalleryImage(params: any): Observable<any> {
     const headers = this.headers();
-
-    return this.http.post<any>(`${this.apiUrl}user/delete-gallery-file`, params, { headers });
+    let lang_id = localStorage.getItem('lang_id');
+    return this.http.post<any>(`${this.apiUrl}user/delete-gallery-file/${lang_id}`, params, { headers });
   }
 
   updateTransferDetails(transferId: number, transferData: any): Observable<any> {
@@ -572,7 +572,7 @@ export class ScoutService {
   }
 
 
-  updatePerformance(performanceId:any, params: any): Observable<any> {
+  updatePerformance(performanceId: any, params: any): Observable<any> {
     const headers = this.headers();
 
     return this.http.post<any>(`${this.apiUrl}scout/edit-performance-detail/${performanceId}`, params, { headers });
@@ -600,10 +600,10 @@ export class ScoutService {
   deletePerformance(params: any): Observable<any> {
     const headers = this.headers();
 
-    return this.http.get<any>(`${this.apiUrl}scout/delete-performance-detail/${params}`,  { headers });
+    return this.http.get<any>(`${this.apiUrl}scout/delete-performance-detail/${params}`, { headers });
   }
 
-  updateTransfer(transferId:any, params: any): Observable<any> {
+  updateTransfer(transferId: any, params: any): Observable<any> {
     const headers = this.headers();
 
     return this.http.post<any>(`${this.apiUrl}scout/edit-transfer-detail/${transferId}`, params, { headers });
@@ -657,7 +657,9 @@ export class ScoutService {
       params = params.append('id[]', id);  // Append each ID to the 'ids[]' query param
     });
 
-    return this.http.post(`${this.apiUrl}user/set-featured-file`, params , {headers});
+    let lang_id = localStorage.getItem('lang_id');
+
+    return this.http.post(`${this.apiUrl}user/set-featured-file/${lang_id}`, params, { headers });
   }
 
 
@@ -754,18 +756,18 @@ export class ScoutService {
 
   getAllPlayers(): Observable<any> {
     const params = new HttpParams()
-      .set('whereClause[role]',4)
+      .set('whereClause[role]', 4)
       .set('noLimit', true)
       .set('orderBy', 'id')
       .set('order', 'desc');
 
-    return this.http.get<{ status: boolean, message: string, data: { userData: User[],totalCount:number } }>(
+    return this.http.get<{ status: boolean, message: string, data: { userData: User[], totalCount: number } }>(
       `${this.apiUrl}users-frontend-with-login`,
       { params }
     );
   }
 
-  sendScoutPortfolioInvite(id:any, params: any): Observable<any> {
+  sendScoutPortfolioInvite(id: any, params: any): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -773,7 +775,7 @@ export class ScoutService {
     return this.http.post<any>(`${this.apiUrl}scout/add-scout-player`, params, { headers });
   }
 
-  UpdateScoutRequest(id:any, params: any, lang: any): Observable<any> {
+  UpdateScoutRequest(id: any, params: any, lang: any): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -784,21 +786,21 @@ export class ScoutService {
 
 
 
-  sendInviteToRepresentator(userId:any, params:any): Observable<any> {
+  sendInviteToRepresentator(userId: any, params: any): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
     return this.http.post<any>(`${this.apiUrl}scout/add-representator`, params, { headers });
   }
 
-  updateRepresentatorRole(id:any, params:any): Observable<any> {
+  updateRepresentatorRole(id: any, params: any): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
     return this.http.post<any>(`${this.apiUrl}scout/update-representator-role/${id}`, params, { headers });
   }
 
-  updateRepresentator(id:any, params:any): Observable<any> {
+  updateRepresentator(id: any, params: any): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });

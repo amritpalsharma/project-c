@@ -7,6 +7,8 @@ import { DeletePopupComponent } from '../../delete-popup/delete-popup.component'
 import { ToastrService } from 'ngx-toastr';
 import { ScoutService } from '../../../../services/scout.service';
 import { environment } from '../../../../../environments/environment';
+import { TranslateService } from '@ngx-translate/core';
+import { WebPages } from '../../../../services/webpages.service';
 
 @Component({
   selector: 'club-gallery-tab',
@@ -14,14 +16,14 @@ import { environment } from '../../../../../environments/environment';
   styleUrl: './gallery-tab.component.scss'
 })
 export class GalleryTabComponent {
-  
+
   userId: any = '';
   userImages: any = [];
   userVideos: any = [];
   imageBaseUrl: any = "";
   selectedFile: any = '';
-  defaultCoverImage:any = "./media/palyers.png";
-  openedMenuId:any = '';
+  defaultCoverImage: any = "./media/palyers.png";
+  openedMenuId: any = '';
   @Input() coverImage: string = '';  // Define an input property
   @Output() dataEmitter = new EventEmitter<string>();
   @Input() isPremium: any;
@@ -32,26 +34,42 @@ export class GalleryTabComponent {
     private toastr: ToastrService,
     private route: ActivatedRoute,
     private scoutService: ScoutService,
+    private translateService: TranslateService,
+    public webPages: WebPages,
     public dialog: MatDialog) { }
-  
+
+
+  pleaseWait: string = '';
+  uploadingPhotos: string = '';
+  successTxt: string = '';
+  errorTxt: string = '';
+  deletingCoverImage: string = '';
+  Canceled: string = '';
+  coverImageDeletionCanceled: string = '';
   ngOnInit(): void {
-    this.route.params.subscribe((params:any) => {
+    this.route.params.subscribe((params: any) => {
       // console.log(params.id)
       this.userId = params.id;
       this.getGalleryData()
     });
-    
-    if(this.coverImage == ""){
+
+    if (this.coverImage == "") {
       this.coverImage = this.defaultCoverImage;
     }
+
+    this.getToasterMsg();
+    this.webPages.languageId$.subscribe((data: any) => {
+      this.getToasterMsg();
+    });
+
   }
 
-  getGalleryData(){
+  getGalleryData() {
     try {
-      this.scoutService.getGalleryData().subscribe((response)=>{
+      this.scoutService.getGalleryData().subscribe((response) => {
         if (response && response.status && response.data) {
-          this.userImages = response.data.images; 
-          this.userVideos = response.data.videos; 
+          this.userImages = response.data.images;
+          this.userVideos = response.data.videos;
           this.imageBaseUrl = response.data.file_path;
         } else {
           console.error('Invalid API response structure:', response);
@@ -74,9 +92,9 @@ export class GalleryTabComponent {
         const formdata = new FormData();
         formdata.append("cover_image", this.selectedFile);
 
-        this.scoutService.uploadCoverImage(formdata).subscribe((response)=>{
+        this.scoutService.uploadCoverImage(formdata).subscribe((response) => {
           if (response && response.status) {
-            this.coverImage = `${environment.url}uploads/`+response.data.uploaded_fileinfo;
+            this.coverImage = `${environment.url}uploads/` + response.data.uploaded_fileinfo;
             this.dataEmitter.emit(this.coverImage); // Emitting the data
             // this.isLoading = false;
           } else {
@@ -86,14 +104,14 @@ export class GalleryTabComponent {
         });
       } catch (error) {
         // this.isLoading = false;
-        console.error('Error fetching users:', error); 
+        console.error('Error fetching users:', error);
       }
     }
   }
 
-  deleteCoverImage(){
+  deleteCoverImage() {
     try {
-      this.scoutService.deleteCoverImage().subscribe((response)=>{
+      this.scoutService.deleteCoverImage().subscribe((response) => {
         if (response && response.status) {
           setTimeout(() => {
             this.coverImage = './media/palyers.png';
@@ -107,25 +125,25 @@ export class GalleryTabComponent {
       });
     } catch (error) {
       // this.isLoading = false;
-      console.error('Error fetching users:', error); 
+      console.error('Error fetching users:', error);
     }
   }
 
-  addPhotosPopup(type:string='all'){
-    const messageDialog = this.dialog.open(UploadPopupComponent,{
+  addPhotosPopup(type: string = 'all') {
+    const messageDialog = this.dialog.open(UploadPopupComponent, {
       width: '715px',
       position: {
-        top:'150px',
+        top: '150px',
       },
       data: {
         userId: this.userId,
-        file:type
+        file: type
       }
     })
 
     messageDialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
-        if(result.files.length){
+        if (result.files.length) {
           console.log(result.files)
           this.getGalleryData()
         }
@@ -140,16 +158,20 @@ export class GalleryTabComponent {
 
   deleteImage(id: any) {
     try {
-      const loadingToast = this.toastr.info('Deleting image...', 'Please wait', { disableTimeOut: true });
+      const loadingToast = this.toastr.info(this.deletingCoverImage, this.pleaseWait, { disableTimeOut: true });
       let params = { id: [id] };
-  
+
       this.scoutService.deleteGalleryImage(params).subscribe({
         next: (response) => {
           this.toastr.clear(loadingToast.toastId);
           if (response && response.status) {
             const index = this.userImages.findIndex((x: any) => x.id === id);
             this.userImages.splice(index, 1);
-            this.toastr.success('Image deleted successfully!', 'Delete Success');
+            if (response.message != '') {
+              this.toastr.success(response.message, this.successTxt);
+            } else {
+              this.toastr.success('Image deleted successfully!', 'Delete Success');
+            }
           } else {
             this.toastr.error('Failed to delete image.', 'Delete Failed');
             console.error('Invalid API response structure:', response);
@@ -170,32 +192,32 @@ export class GalleryTabComponent {
   openDeleteDialog(id: any): void {
     // Close the floating menu when opening the dialog
     this.openedMenuId = null;
-  
+
     const dialogRef = this.dialog.open(DeletePopupComponent, {
       width: '600px',
     });
-  
+
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         // Proceed with deletion if the user confirms
         this.deleteImage(id);
       } else {
-        console.log('User canceled the delete');
+        this.toastr.info(this.coverImageDeletionCanceled, this.Canceled);
       }
     });
   }
-  
-  downloadImage(baseUrl:any, image:any){
 
-    fetch(baseUrl+image)
-     .then(response => {
-       if (!response.ok) {
-         throw new Error('Network response was not ok');
-       }
-       return response.blob(); // Convert the response to a Blob object
-     })
-     .then(blob => {
-      this.openedMenuId = '';
+  downloadImage(baseUrl: any, image: any) {
+
+    fetch(baseUrl + image)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.blob(); // Convert the response to a Blob object
+      })
+      .then(blob => {
+        this.openedMenuId = '';
         const url = window.URL.createObjectURL(blob);
         const anchor = document.createElement('a');
         anchor.href = url;
@@ -204,10 +226,20 @@ export class GalleryTabComponent {
         anchor.click();
         window.URL.revokeObjectURL(url);
         document.body.removeChild(anchor);
-     })
-     .catch(error => {
-       console.error('There was an error downloading the file:', error);
-     });
-  } 
-
+      })
+      .catch(error => {
+        console.error('There was an error downloading the file:', error);
+      });
+  }
+  getToasterMsg() {
+    this.translateService.get(['pleaseWait', 'uploadingPhotos', 'success!', 'error', 'deletingCoverImage', 'coverImageDeletionCanceled', 'Canceled']).subscribe((translations) => {
+      this.pleaseWait = translations['pleaseWait'];
+      this.uploadingPhotos = translations['uploadingPhotos'];
+      this.successTxt = translations['successTxt'];
+      this.errorTxt = translations['errorTxt'];
+      this.deletingCoverImage = translations['deletingCoverImage'];
+      this.coverImageDeletionCanceled = translations['coverImageDeletionCanceled'];
+      this.Canceled = translations['Canceled'];
+    });
+  }
 }

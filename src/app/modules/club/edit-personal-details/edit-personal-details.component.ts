@@ -195,6 +195,8 @@ export class EditPersonalDetailsComponent implements OnInit {
           console.error('Error submitting the form:', error);
         }
       );
+    }else{
+      this.dialogRef.close('all_field_required');
     }
   }
 
