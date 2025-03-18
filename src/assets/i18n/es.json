@@ -1270,5 +1270,6 @@
   "deletingCoverImage": "Supresión de la imagen de portada....",
   "Canceled": "Cancelado",
   "coverImageDeletionCanceled": "Cancelado el borrado de la imagen de portada.",
-    "companyRepresentators": "Miembro del equipo"
+    "companyRepresentators": "Miembro del equipo",
+    "savingSelectedFiles": "Guardar los archivos seleccionados..."
 }

@@ -1216,5 +1216,6 @@
   "deletingCoverImage": "Deleting cover image....",
   "Canceled": "Canceled",
   "coverImageDeletionCanceled": "Cover image deletion canceled.",
-  "companyRepresentators": "Team Member"
+  "companyRepresentators": "Team Member",
+  "savingSelectedFiles": "Saving selected files..."
 }

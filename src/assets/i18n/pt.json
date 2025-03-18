@@ -1278,5 +1278,6 @@
   "deletingCoverImage": "Eliminar a imagem de capa....",
   "Canceled": "Cancelada",
   "coverImageDeletionCanceled": "A eliminação da imagem de capa foi cancelada.",
-    "companyRepresentators": "Membro da equipa"
+    "companyRepresentators": "Membro da equipa",
+    "savingSelectedFiles": "Guardar ficheiros selecionados..."
 }

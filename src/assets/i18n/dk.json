@@ -1185,5 +1185,6 @@
   "deletingCoverImage": "Sletning af forsidebillede....",
   "Canceled": "Annulleret",
   "coverImageDeletionCanceled": "Sletning af coverbillede annulleret.",
-    "companyRepresentators": "Medlem af teamet"
+    "companyRepresentators": "Medlem af teamet",
+    "savingSelectedFiles": "Gemme udvalgte filer..."
 }
