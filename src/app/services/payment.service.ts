@@ -32,6 +32,9 @@ export class PaymentService {
       if (userData.role == 4) {
         successUrl = window.location.origin + '/talent/success';
         cancelUrl = window.location.origin + '/talent/cancel';
+      }else if(userData.role == 2){
+        successUrl = window.location.origin + '/club/success';
+        cancelUrl = window.location.origin + '/club/cancel';
       }
     }else{
       successUrl = window.location.origin + '/success';

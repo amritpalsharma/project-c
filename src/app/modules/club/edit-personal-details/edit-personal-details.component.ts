@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, NgForm } from '@angular/forms';
 import { ScoutService } from '../../../services/scout.service';
+import { ToastrService } from 'ngx-toastr';
 
 import * as _moment from 'moment';
 import { default as _rollupMoment } from 'moment';
@@ -31,12 +32,12 @@ export class EditPersonalDetailsComponent implements OnInit {
   social_x: string = ''; // assuming this is for Twitter (X)
   social_youtube: string = '';
 
-  sm_x:any = "";
-  sm_facebook:any = "";
-  sm_instagram:any = "";
-  sm_tiktok:any = "";
-  sm_youtube:any = "";
-  sm_vimeo:any = "";
+  sm_x: any = "";
+  sm_facebook: any = "";
+  sm_instagram: any = "";
+  sm_tiktok: any = "";
+  sm_youtube: any = "";
+  sm_vimeo: any = "";
 
   socialMediaPlatforms = [
     { id: 'x', name: 'X (Twitter)', placeholder: 'x.com/' },
@@ -48,14 +49,14 @@ export class EditPersonalDetailsComponent implements OnInit {
   ];
 
   cities: string[] = ['City1', 'City2', 'City3']; // Example cities
-  countries: any ;
+  countries: any;
   leagueLevels: string[] = ['Amateur', 'Professional', 'Semi-Pro'];
   teams: any[] = [];
   selectedClub: string = '';
   user: any = localStorage.getItem('userData');
   loggedInUser: any = localStorage.getItem('userData');
   userId: any;
-  userNationalities : any;
+  userNationalities: any;
 
   // Declare individual properties for binding
   dateOfBirth: string = '';
@@ -71,20 +72,21 @@ export class EditPersonalDetailsComponent implements OnInit {
   currentClub: string = '';
   firstName: string = '';
   lastName: string = '';
-  nationality: string = '';
-  company_name :any ;
-  contact_number :any ;
-  cover_image :any ;
-  cover_image_path :any ;
-  designation :any ;
-  profile_image :any ;
-  profile_image_path :any ;
+  nationality: any = ''; // Ensure this is set correctly
+  company_name: any;
+  contact_number: any;
+  cover_image: any;
+  cover_image_path: any;
+  designation: any;
+  profile_image: any;
+  profile_image_path: any;
 
   constructor(
     public dialogRef: MatDialogRef<EditPersonalDetailsComponent>,
     private scoutService: ScoutService,
+    private toastr: ToastrService,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.user = JSON.parse(this.user);
@@ -118,7 +120,7 @@ export class EditPersonalDetailsComponent implements OnInit {
       (response: any) => {
         if (response && response.status) {
           this.countries = response.data.countries;
-          console.log('countries',this.countries)
+          console.log('countries', this.countries)
         }
       },
       (error: any) => {
@@ -152,9 +154,13 @@ export class EditPersonalDetailsComponent implements OnInit {
           this.sm_youtube = this.user.meta.sm_youtube;
           this.website = this.user.meta.website;
           this.zipcode = this.user.meta.zipcode;
-          // this.formation_date = new FormControl(
-          //   this.user?.meta?.formation_date ? new Date(this.user.meta.formation_date) : null
-          // );
+          // this.nationality = this.user.meta.nationality;
+          this.userNationalities = JSON.parse(this.user.user_nationalities);
+          console.info(this.userNationalities)
+          if (this.userNationalities[0].country_id != '') {
+            this.nationality = this.userNationalities[0].country_id;
+          }
+
           this.formation_date = new FormControl(
             this.user?.meta?.formation_date
               ? this.formatDate(this.user.meta.formation_date)
@@ -170,41 +176,48 @@ export class EditPersonalDetailsComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     if (form.valid) {
-
+      let lang_id = localStorage.getItem('lang_id');
       console.log('Form Data:', form.value);
       this.dialogRef.close(form.value);
       const formData = new FormData();
-      console.log('Date From Modal ',this.formation_date);
+      console.log('Date From Modal ', this.formation_date);
       const formattedFormationDate = moment(this.formation_date.value).format('YYYY-MM-DD');
-      console.log('Date After Convert ',this.formation_date);
-      formData.append('user[address]' , this.address);
-      formData.append('user[city]' , this.city);
-      formData.append('user[club_name]' , this.club_name);
-      formData.append('user[contact_number]' , this.contact_number);
-      formData.append('user[formation_date]' , formattedFormationDate);
-      formData.append('user[sm_facebook]' , this.sm_facebook);
-      formData.append('user[sm_instagram]' , this.sm_instagram);
-      formData.append('user[sm_tiktok]' , this.sm_tiktok);
-      formData.append('user[sm_vimeo]' , this.sm_vimeo);
-      formData.append('user[sm_x]' , this.sm_x);
-      formData.append('user[sm_youtube]' , this.sm_youtube);
-      formData.append('user[website]' , this.website);
-      formData.append('user[zipcode]' , this.zipcode);
+      console.log('Date After Convert ', this.formation_date);
+      formData.append('user[address]', this.address);
+      formData.append('user[city]', this.city);
+      formData.append('user[club_name]', this.club_name);
+      formData.append('user[contact_number]', this.contact_number);
+      formData.append('user[formation_date]', formattedFormationDate);
+      formData.append('user[sm_facebook]', this.sm_facebook);
+      formData.append('user[sm_instagram]', this.sm_instagram);
+      formData.append('user[sm_tiktok]', this.sm_tiktok);
+      formData.append('user[sm_vimeo]', this.sm_vimeo);
+      formData.append('user[sm_x]', this.sm_x);
+      formData.append('user[sm_youtube]', this.sm_youtube);
+      formData.append('user[website]', this.website);
+      formData.append('user[zipcode]', this.zipcode);
+      formData.append('lang', lang_id + '');
+      formData.append('user[nationality][]', this.nationality);
 
       this.scoutService.updateUserProfile(formData).subscribe(
         (response: any) => {
           console.log('Form submitted successfully:', response);
-          this.dialogRef.close(response.data);
+          if (response.message != '') {
+            this.toastr.success(response.message, '');
+            this.dialogRef.close(response.message);
+          } else {
+            this.dialogRef.close(response.data);
+          }
         },
         (error: any) => {
           console.error('Error submitting the form:', error);
         }
       );
-    }else{
+    } else {
       this.dialogRef.close('all_field_required');
     }
   }
-  
+
   formatDate(dateString: string): string {
     const date = new Date(dateString);
     const day = String(date.getDate()).padStart(2, '0');
@@ -212,6 +225,6 @@ export class EditPersonalDetailsComponent implements OnInit {
     const year = date.getFullYear();
     return `${day}.${month}.${year}`;
   }
-  
+
 
 }

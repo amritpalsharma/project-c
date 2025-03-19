@@ -31,6 +31,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   album: any[] = []; // Array for album images
   loggedInUser: any = localStorage.getItem('userData');
   countryFlagUrl: any;
+  currentYear: string = '2025';
 
   constructor(
     private route: ActivatedRoute,
@@ -125,7 +126,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.stopIntroTour(); // Ensure the tour stops when the component is destroyed
   }
 
-   showOnce: boolean = true;
+  showOnce: boolean = true;
 
   startIntroTour(lang: string) {
     // introJs().start().goToStep(1);
@@ -340,9 +341,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
                 dblang = 'se';
               }
               let localStorageShowTour = localStorage.getItem('dontShowIntroTour');
-              if(localStorageShowTour != '' && localStorageShowTour == 'true'){
+              if (localStorageShowTour != '' && localStorageShowTour == 'true') {
 
-              }else{
+              } else {
                 this.startIntroTour(dblang);  // Start the tour after a slight delay
               }
             }, 0);
@@ -418,7 +419,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.toastr.error(this.requiredFieldsMessage, this.errorTxt);
       }
       else if (result) {
-        this.getUserProfile(this.userId);
+        setTimeout(() => {
+          this.getUserProfile(this.userId);
+        }, 1500);
       } else {
         console.log('User canceled the edit');
       }

@@ -608,4 +608,9 @@ export class UserService {
     );
   }
 
+  getRoles() {
+    let lang_id = localStorage.getItem('lang_id');
+    return this.http.get<any>(`${this.apiUrl}get-roles/${lang_id}`);
+  }
+
 }

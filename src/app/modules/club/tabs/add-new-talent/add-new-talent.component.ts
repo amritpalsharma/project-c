@@ -76,18 +76,29 @@ export class AddNewTalentComponent implements OnInit {
   sendInvite() {
     const formData = new FormData();
     let i = 0;
+    let lang_id = localStorage.getItem('lang_id');
+    formData.append(`lang`, lang_id + '');
     this.users.map((user: any) => {
-      formData.append(`players[${i}][player_id]`, user.id);
-      formData.append(`players[${i}][team_id]`, this.teamId);
-      formData.append(`players[${i}][join_date]`, this.startDate || '');
-      formData.append(`players[${i}][end_date]`, this.noEndDate ? '' : this.endDate || '');
-      formData.append(`players[${i}][no_end_date]`, this.noEndDate ? '1' : '0');
+      if (this.edit) {
+        formData.append(`player_id`, user.id);
+        formData.append(`team_id`, this.teamId);
+        formData.append(`join_date`, this.startDate || '');
+        formData.append(`end_date`, this.noEndDate ? '' : this.endDate || '');
+        formData.append(`no_end_date`, this.noEndDate ? '1' : '0');
+      } else {
+        formData.append(`players[${i}][player_id]`, user.id);
+        formData.append(`players[${i}][team_id]`, this.teamId);
+        formData.append(`players[${i}][join_date]`, this.startDate || '');
+        formData.append(`players[${i}][end_date]`, this.noEndDate ? '' : this.endDate || '');
+        formData.append(`players[${i}][no_end_date]`, this.noEndDate ? '1' : '0');
+      }
       i += 1;
     });
 
     if (this.edit) {
       this.updatePlayer(formData);
     } else {
+
       this.addPlayer(formData);
     }
   }
@@ -98,6 +109,7 @@ export class AddNewTalentComponent implements OnInit {
         this.dialogRef.close({
           action: 'added',
           id: this.sightId,
+          message:response.message
         });
       } else {
         console.error('Invalid API response structure:', response);
@@ -111,6 +123,7 @@ export class AddNewTalentComponent implements OnInit {
         this.dialogRef.close({
           action: 'updated',
           id: this.player.id,
+          message:response.message
         });
       } else {
         console.error('Invalid API response structure:', response);

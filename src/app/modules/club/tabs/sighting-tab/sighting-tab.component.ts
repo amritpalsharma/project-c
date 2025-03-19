@@ -9,6 +9,10 @@ import { MessagePopupComponent } from '../../message-popup/message-popup.compone
 import { UploadAttachmentComponent } from '../upload-attachment/upload-attachment.component';
 import { ClubService } from '../../../../services/club.service';
 import { environment } from '../../../../../environments/environment';
+import { WebPages } from '../../../../services/webpages.service';
+import { TranslateService } from '@ngx-translate/core';
+
+
 @Component({
   selector: 'club-sighting-tab',
   templateUrl: './sighting-tab.component.html',
@@ -18,7 +22,7 @@ import { environment } from '../../../../../environments/environment';
 
 export class SightingTabComponent {
   userId: any = '';
-  displayedColumns: string[] = ['#','Event', 'Manager Name', 'Place','Date','Time','View','Remove'];
+  displayedColumns: string[] = ['#', 'Event', 'Manager Name', 'Place', 'Date', 'Time', 'View', 'Remove'];
   sightings: any = [];
   sightingData: any = {};
   totalSightings: any = '';
@@ -26,38 +30,50 @@ export class SightingTabComponent {
   idsToDelete: any = [];
   imageBaseUrl: any = `${environment.url}uploads/`;
   singleIdToDelete: any = "";
-  isLoading:boolean = false;
+  isLoading: boolean = false;
   selectedIds: number[] = [];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  keyword:any = "";
-  view:any = "listing";
+  keyword: any = "";
+  view: any = "listing";
   playersInvited: any = [];
   playersInvitedFirstFour: any = [];
-  
-  attachments:any = [];
-  viewSightId:any = "";
-  constructor(private route: ActivatedRoute, private clubService: ClubService, private router: Router, public dialog: MatDialog) { }
-  
+  deleteRepresentorConfirmation: string = '';
+
+  attachments: any = [];
+  viewSightId: any = "";
+  constructor(
+    private route: ActivatedRoute,
+    private clubService: ClubService,
+    private router: Router,
+    public dialog: MatDialog,
+    public webPages: WebPages,
+    private translateService: TranslateService
+  ) { }
+
   ngOnInit(): void {
-    this.route.params.subscribe((params:any) => {
+    this.route.params.subscribe((params: any) => {
       console.log(params.id)
       this.userId = params.id;
       this.getSightings();
     });
+    this.getToasterMsg();
+    this.webPages.languageId$.subscribe((data: any) => {
+      this.getToasterMsg();
+    });
   }
 
-  getSightings(){ 
+  getSightings() {
     this.isLoading = true;
     try {
       const page = this.paginator ? this.paginator.pageIndex * 10 : 0;
       const pageSize = this.paginator ? this.paginator.pageSize : 10;
-    
-      let params:any = {};
+
+      let params: any = {};
       params.offset = page;
       params.search = this.keyword;
-      params.limit  = pageSize;
+      params.limit = pageSize;
 
-      this.clubService.getSightings(this.userId, params).subscribe((response)=>{
+      this.clubService.getSightings(this.userId, params).subscribe((response) => {
         if (response && response.status && response.data) {
           this.sightings = response.data.sightings;
           // this.totalSightings = response.data.totalCount;
@@ -78,15 +94,15 @@ export class SightingTabComponent {
     this.getSightings();
   }
 
-  search(filterValue:any) {
-   
+  search(filterValue: any) {
+
     this.keyword = filterValue.target?.value.trim().toLowerCase();
-    if(this.keyword.length >= 3){
+    if (this.keyword.length >= 3) {
       this.getSightings();
-     } else if(this.keyword.length == 0){
+    } else if (this.keyword.length == 0) {
       this.getSightings();
-     }
-   
+    }
+
   }
 
   onCheckboxChange(user: any) {
@@ -98,22 +114,22 @@ export class SightingTabComponent {
     }
   }
 
-  navigate(id:string): void {
-    let pageRoute = 'view/'+id.toLowerCase();
+  navigate(id: string): void {
+    let pageRoute = 'view/' + id.toLowerCase();
     this.router.navigate([pageRoute, id]);
   }
 
   selectAll() {
     this.allSelected = !this.allSelected;
     if (this.allSelected) {
-      this.selectedIds = this.sightings.map((fav:any) => fav.id);
+      this.selectedIds = this.sightings.map((fav: any) => fav.id);
     } else {
       this.selectedIds = [];
     }
   }
 
-  confirmDeletion():any {
-    if(this.selectedIds.length == 0){
+  confirmDeletion(): any {
+    if (this.selectedIds.length == 0) {
       this.showMatDialog('Select sighting(s) first.', 'display');
       return false;
     }
@@ -121,15 +137,15 @@ export class SightingTabComponent {
     this.showDeleteConfirmationPopup();
   }
 
-  showDeleteConfirmationPopup(){
-    this.showMatDialog("Are you sure You want to delete this?", "delete-sighting-confirmation");
+  showDeleteConfirmationPopup() {
+    this.showMatDialog(this.deleteRepresentorConfirmation, "delete-sighting-confirmation");
   }
 
-  showMatDialog(message:string, action:string){
-    const messageDialog = this.dialog.open(MessagePopupComponent,{
+  showMatDialog(message: string, action: string) {
+    const messageDialog = this.dialog.open(MessagePopupComponent, {
       width: '500px',
       position: {
-        top:'150px'
+        top: '150px'
       },
       data: {
         message: message,
@@ -139,49 +155,53 @@ export class SightingTabComponent {
 
     messageDialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
-        if(result.action == "delete-confirmed"){
+        if (result.action == "delete-confirmed") {
           this.deleteSightings();
         }
-      //  console.log('Dialog result:', result);
+        //  console.log('Dialog result:', result);
       }
     });
   }
 
-  deleteSightings():any {
+  deleteSightings(): any {
+    let lang_id = localStorage.getItem('lang_id');
+    let params = { id: this.idsToDelete, lang: lang_id };
 
-    let params = {id:this.idsToDelete};
 
     this.clubService.deleteSightings(params).subscribe(
       response => {
-        if(response.status){
+        if (response.status) {
           this.getSightings();
           this.selectedIds = [];
           this.allSelected = false;
-          
-          this.showMatDialog('Sighting(s) deleted successfully!.', 'display');
+          if (response.message) {
+            this.showMatDialog(response.message, 'display');
+          }else{
+            this.showMatDialog('Sighting(s) deleted successfully!.', 'display');
+          }
           this.getSightings();
-        }else{
+        } else {
           this.showMatDialog('Error in deleting sighting. Please try again.', 'display');
           this.getSightings();
         }
       },
       error => {
         console.error('Error deleting sighting:', error);
-        
+
       }
     );
   }
 
-  confirmSingleDeletion(id:any){
+  confirmSingleDeletion(id: any) {
     this.idsToDelete = [id];
-    this.showMatDialog("", "delete-sighting-confirmation");
+    this.showMatDialog(this.deleteRepresentorConfirmation, "delete-sighting-confirmation");
   }
 
-  createSightPopup(){
-    const messageDialog = this.dialog.open(CreateSightPopupComponent,{
+  createSightPopup() {
+    const messageDialog = this.dialog.open(CreateSightPopupComponent, {
       width: '750px',
       position: {
-        top:'70px'
+        top: '70px'
       },
       data: {
         clubId: this.userId
@@ -190,20 +210,20 @@ export class SightingTabComponent {
 
     messageDialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
-        if(result.action == "added"){
+        if (result.action == "added") {
           this.getSightings();
           this.showMatDialog("Sighting added successfully", 'display');
         }
-         console.log('Dialog result:', result);
+        console.log('Dialog result:', result);
       }
     });
   }
 
-  editSight(sightData:any, playersInvited:any){
-    const editDialog = this.dialog.open(CreateSightPopupComponent,{
+  editSight(sightData: any, playersInvited: any) {
+    const editDialog = this.dialog.open(CreateSightPopupComponent, {
       width: '750px',
       position: {
-        top:'70px'
+        top: '70px'
       },
       data: {
         clubId: this.userId,
@@ -214,20 +234,20 @@ export class SightingTabComponent {
 
     editDialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
-        if(result.action == "updated"){
+        if (result.action == "updated") {
           this.viewSight(result.id);
           this.showMatDialog("Sighting updated successfully", 'display');
         }
-         console.log('Dialog result:', result);
+        console.log('Dialog result:', result);
       }
     });
   }
 
-  uploadAttachment(){
-    const uploadDialog = this.dialog.open(UploadAttachmentComponent,{
+  uploadAttachment() {
+    const uploadDialog = this.dialog.open(UploadAttachmentComponent, {
       width: '650px',
       position: {
-        top:'70px'
+        top: '70px'
       },
       data: {
         id: this.viewSightId
@@ -236,7 +256,7 @@ export class SightingTabComponent {
 
     uploadDialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
-        if(result.action == "added"){
+        if (result.action == "added") {
           this.viewSight(result.id);
           this.showMatDialog("Attachment(s) added successfully", 'display');
         }
@@ -245,11 +265,11 @@ export class SightingTabComponent {
     });
   }
 
-  viewSight(id:any){
+  viewSight(id: any) {
     this.view = 'detail';
     this.isLoading = true;
     this.viewSightId = id;
-    this.clubService.getSingleSighting(id).subscribe((response)=>{
+    this.clubService.getSingleSighting(id).subscribe((response) => {
       if (response && response.status && response.data) {
         this.sightingData = response.data.sighting;
         this.playersInvited = response.data.players_invited;
@@ -263,12 +283,12 @@ export class SightingTabComponent {
     });
   }
 
-  inviteTalentsPopup(eventName:any){
-    const inviteDialog = this.dialog.open(InviteTalentPopupComponent,{
+  inviteTalentsPopup(eventName: any) {
+    const inviteDialog = this.dialog.open(InviteTalentPopupComponent, {
       width: '700px',
-      height:'530px',
+      height: '530px',
       position: {
-        top:'70px'
+        top: '70px'
       },
       data: {
         action: "inviteUsers",
@@ -280,21 +300,21 @@ export class SightingTabComponent {
     inviteDialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
         console.log(result)
-        if(result.action == "added"){
+        if (result.action == "added") {
           this.viewSight(result.id);
           this.showMatDialog("Players invited successfully", 'display')
         }
-         console.log('Dialog result:', result);
+        console.log('Dialog result:', result);
       }
     });
   }
 
-  viewInvitees(players:any){
-    const inviteesDialog = this.dialog.open(InviteTalentPopupComponent,{
+  viewInvitees(players: any) {
+    const inviteesDialog = this.dialog.open(InviteTalentPopupComponent, {
       width: '700px',
-      height:'530px',
+      height: '530px',
       position: {
-        top:'70px'
+        top: '70px'
       },
       data: {
         action: "showInvitedUsers",
@@ -304,17 +324,17 @@ export class SightingTabComponent {
 
     inviteesDialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
-         console.log('Dialog result:', result);
+        console.log('Dialog result:', result);
       }
     });
   }
 
-  backToSightings(){
+  backToSightings() {
     this.view = "listing";
   }
 
-  downloadAttachment(path:any, fileName:any){
-      
+  downloadAttachment(path: any, fileName: any) {
+
     fetch(path)
       .then(response => {
         if (!response.ok) {
@@ -346,11 +366,11 @@ export class SightingTabComponent {
     this.showDeleteConfirmationPopup();
   } */
 
-    showMatDialogV2(message:string, action:string){
-    const messageDialog = this.dialog.open(MessagePopupComponent,{
+  showMatDialogV2(message: string, action: string) {
+    const messageDialog = this.dialog.open(MessagePopupComponent, {
       width: '500px',
       position: {
-        top:'150px'
+        top: '150px'
       },
       data: {
         message: message,
@@ -360,30 +380,30 @@ export class SightingTabComponent {
 
     messageDialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
-        if(result.action == "delete-confirmed"){
+        if (result.action == "delete-confirmed") {
           this.deleteAttachment();
         }
-      //  console.log('Dialog result:', result);
+        //  console.log('Dialog result:', result);
       }
     });
   }
-  confirmDeleteAttachment(id:any){
+  confirmDeleteAttachment(id: any) {
     this.singleIdToDelete = id;
     this.showMatDialogV2("", "delete-attachment-confirmation");
   }
-  
-  deleteAttachment():any {
+
+  deleteAttachment(): any {
 
     this.clubService.deleteAttachment(this.singleIdToDelete).subscribe(
       response => {
-        if(response.status){
+        if (response.status) {
           this.singleIdToDelete = "";
-          let index = this.attachments.findIndex((x:any) => x.id == this.singleIdToDelete);
+          let index = this.attachments.findIndex((x: any) => x.id == this.singleIdToDelete);
           let temp = this.attachments;
-          temp.splice(index,1);
+          temp.splice(index, 1);
           this.attachments = temp;
           this.showMatDialog('Attachment removed successfully!.', 'display');
-        }else{
+        } else {
           this.showMatDialog('Error in removing attachment. Please try again.', 'display');
         }
       },
@@ -393,11 +413,19 @@ export class SightingTabComponent {
     );
   }
 
-  getImageUrl(url:any){
-    if(url){
+  getImageUrl(url: any) {
+    if (url) {
       return url;
-    }else{
+    } else {
       return "../../../../../assets/images/1.png";
     }
+  }
+
+  getToasterMsg() {
+    this.translateService.get([
+      'confirmDeleteinformation',
+    ]).subscribe((translations) => {
+      this.deleteRepresentorConfirmation = translations['confirmDeleteinformation'];
+    });
   }
 }

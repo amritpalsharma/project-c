@@ -4,6 +4,7 @@ import { UserService } from '../../../../services/user.service';
 import { ClubService } from '../../../../services/club.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddNewTalentComponent } from '../add-new-talent/add-new-talent.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'club-teams-tab',
@@ -12,27 +13,34 @@ import { AddNewTalentComponent } from '../add-new-talent/add-new-talent.componen
 })
 export class TeamsTabComponent {
 
-  userId:any = '';
-  teams:any = [];
-  players:any = [];
+  userId: any = '';
+  teams: any = [];
+  players: any = [];
   view: string = "team";
-  displayedColumns: string[] = ['Player Name','Joining Date','Exit Date','Location','Edit'];
-  isLoading:boolean = false;
-  selectedTeam:any = "";
-  selectedTeamId:any;
+  displayedColumns: string[] = ['Player Name', 'Joining Date', 'Exit Date', 'Location', 'Edit'];
+  isLoading: boolean = false;
+  selectedTeam: any = "";
+  selectedTeamId: any;
   @Input() userData: any;
 
-  constructor(private route: ActivatedRoute, private userService: UserService, private clubService: ClubService, private router: Router, public dialog: MatDialog){}
+  constructor(
+    private route: ActivatedRoute,
+    private userService: UserService,
+    private clubService: ClubService,
+    private router: Router,
+    public dialog: MatDialog,
+    public toaster: ToastrService
+  ) { }
 
-  ngOnInit(){
+  ngOnInit() {
     this.userId = this.userData.id;
     this.getClubTeams(this.userId)
   }
 
-  getClubTeams(userId:any){
+  getClubTeams(userId: any) {
     this.isLoading = true;
     try {
-      this.userService.getClubTeams(userId).subscribe((response)=>{
+      this.userService.getClubTeams(userId).subscribe((response) => {
         if (response && response.status && response.data != '') {
           this.teams = response.data.teams;
           this.isLoading = false;
@@ -47,13 +55,13 @@ export class TeamsTabComponent {
     }
   }
 
-  getTeamPlayers(teamId:any, teamName:any){
+  getTeamPlayers(teamId: any, teamName: any) {
     this.selectedTeam = teamName;
     this.selectedTeamId = teamId;
     this.view = 'player';
     this.isLoading = true;
     try {
-      this.clubService.getClubTeamPlayers(teamId).subscribe((response)=>{
+      this.clubService.getClubTeamPlayers(teamId).subscribe((response) => {
         if (response && response.status && response.data) {
           this.players = response.data.players;
           console.log(this.players)
@@ -69,20 +77,20 @@ export class TeamsTabComponent {
     }
   }
 
-  backToTeamView(){
+  backToTeamView() {
     this.view = 'team';
     this.players = [];
   }
 
-  navigate(playerId:any){
+  navigate(playerId: any) {
     let pageRoute = 'view/player';
     this.router.navigate([pageRoute, playerId]);
   }
 
 
-  addPlayer(){
+  addPlayer() {
 
-    const messageDialog = this.dialog.open(AddNewTalentComponent,{
+    const messageDialog = this.dialog.open(AddNewTalentComponent, {
       width: '800px',
       data: {
         teamId: this.selectedTeamId,
@@ -92,15 +100,18 @@ export class TeamsTabComponent {
     })
 
     messageDialog.afterClosed().subscribe(result => {
-      console.log('result',result);
+      console.log('result', result);
       this.getTeamPlayers(this.selectedTeamId, this.selectedTeam);
+      if (result.message != '') {
+        this.toaster.info(result.message);
+      }
     });
 
   }
 
-  editPlayer(player:any){
-    console.log('player',player);
-    const messageDialog = this.dialog.open(AddNewTalentComponent,{
+  editPlayer(player: any) {
+    console.log('player', player);
+    const messageDialog = this.dialog.open(AddNewTalentComponent, {
       width: '800px',
       data: {
         teamId: this.selectedTeamId,
@@ -111,6 +122,9 @@ export class TeamsTabComponent {
 
     messageDialog.afterClosed().subscribe(result => {
       this.getTeamPlayers(this.selectedTeamId, this.selectedTeam);
+      if (result.message != '') {
+        this.toaster.info(result.message);
+      }
     });
 
   }

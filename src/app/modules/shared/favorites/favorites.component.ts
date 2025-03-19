@@ -31,19 +31,20 @@ export class FavoritesComponent {
   languages: any;
   roles: any;
   locations: any = [];
+  dynamicLocations: any = [];
   translatedText: string = '';
   selectFavoriteFirst: string = '';
   // imageBaseUrl: any = "";
   selectedIds: number[] = [];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   keyword: any = "";
-  isLoading : boolean = true;
+  isLoading: boolean = true;
 
   loggedInUser: any = localStorage.getItem('userData');
 
   // Filters and UI variables (other code omitted for brevity)
   viewsTracked: { [profileId: string]: { viewed: boolean, clicked: boolean } } = {}; // Track view and click per profile
-  langSubscription!: Subscription; 
+  langSubscription!: Subscription;
   constructor(private userService: UserService, private route: ActivatedRoute, private talentService: TalentService, private router: Router, public dialog: MatDialog, public webPages: WebPages, private translate: TranslateService) { }
 
   ngOnInit(): void {
@@ -55,7 +56,10 @@ export class FavoritesComponent {
     });
 
     this.getLocations();
+    this.getUserRoles();
     this.webPages.languageId$.subscribe((data) => {
+      this.getLocations();
+      this.getUserRoles();
       this.getUserFavorites();
     });
     // let envRoles:any = environment.roles;
@@ -206,7 +210,7 @@ export class FavoritesComponent {
       data: {
         page: 'favoritesPage',
         appliedfilters: this.customFilters,
-        locations: this.locations,
+        locations: this.dynamicLocations,
         roles: this.roles,
       }
     })
@@ -344,10 +348,74 @@ export class FavoritesComponent {
       this.userService.getLocations().subscribe((response) => {
 
         this.locations = response.data.domains;
-
+        this.dynamicLocations = response.data.domains;
+        console.warn(this.locations)
+        this.dynamicLocations.forEach((domain: any) => {
+          this.setDynamicLocation(domain);
+        });
+        console.info(this.dynamicLocations);
       });
     } catch (error) {
       console.error('Error fetching locations:', error);
+    }
+  }
+
+  getUserRoles() {
+    this.userService.getRoles().subscribe((response) => {
+      this.roles = response.data.roles;
+      this.roles.forEach((role: any) => {
+        this.setDynamicRoles(role);
+      });
+      // console.log(this.roles)
+      let updatedRoles = this.roles.filter((role: any) => role.id !== "1");
+      updatedRoles = updatedRoles.filter((role: any) => role.id !== "5");
+      updatedRoles = updatedRoles.filter((role: any) => role.id !== "6");
+      updatedRoles = updatedRoles.filter((role: any) => role.id !== "7");
+      this.roles = updatedRoles;
+    });
+  }
+
+  setDynamicLocation(domain: any) {
+    // Let's dynamically set 'location' to 'location_de' (you can modify this condition)
+    let langSlug = localStorage.getItem('lang');
+    if (langSlug == 'en') {
+      if (domain.location_en) {
+        domain.location = domain.location_en;
+      }
+    } else if (langSlug == 'de') {
+      if (domain.location_de) {
+        domain.location = domain.location_de;
+      }
+    } else if (langSlug == 'it') {
+      if (domain.location_it) {
+        domain.location = domain.location_it;
+      }
+    } else if (langSlug == 'fr') {
+      if (domain.location_fr) {
+        domain.location = domain.location_fr;
+      }
+    } else if (langSlug == 'es') {
+      if (domain.location_es) {
+        domain.location = domain.location_es;
+      }
+    } else if (langSlug == 'pt') {
+      if (domain.location_pt) {
+        domain.location = domain.location_pt;
+      }
+    } else if (langSlug == 'da') {
+      if (domain.location_da) {
+        domain.location = domain.location_da;
+      }
+    } else if (langSlug == 'sv') {
+      if (domain.location_sv) {
+        domain.location = domain.location_sv;
+      }
+    }
+    return domain;
+  }
+  setDynamicRoles(role: any) {
+    if (role.role_name) {
+      role.role = role.role_name;
     }
   }
 }

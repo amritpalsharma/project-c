@@ -791,7 +791,7 @@ export class ClubService {
       'Authorization': `Bearer ${this.userToken}`
     });
     let lang_id = localStorage.getItem('lang_id');
-    return this.http.post<any>(`${this.apiUrl}user/update-profile`, params, { headers });
+    return this.http.post<any>(`${this.apiUrl}club/update-representator/${id}`, params, { headers });
     // return this.http.post<any>(`${this.apiUrl}user/update-profile/${id}`, params, { headers });
   }
 

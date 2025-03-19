@@ -80,6 +80,8 @@ export class ProfileTabComponent {
       if (response && response.status && response.data) {
         this.representators = response.data.representators;
         this.baseUrl = response.data.uploads_path
+      }else if(response.data == ''){
+        this.representators = [];
       } else {
         console.error('Invalid API response structure:', response);
       }

@@ -162,10 +162,13 @@ export class AddRepresentatorPopupComponent {
 
     let formdata = new FormData();
     let lang = localStorage.getItem('lang_id');
-    formdata.append("user[first_name]", this.firstName);
-    formdata.append("user[last_name]", this.lastName);
-    formdata.append("user[designation]", this.designation);
-    formdata.append("user[lang]", lang + '');
+    // formdata.append("user[first_name]", this.firstName);
+    // formdata.append("user[last_name]", this.lastName);
+    // formdata.append("user[designation]", this.designation);
+    formdata.append("lang", lang + '');
+    formdata.append("first_name", this.firstName);
+    formdata.append("last_name", this.lastName);
+    // formdata.append("user[designation]", this.designation);
 
     this.clubService.updateRepresentator(this.idToUpdate, formdata).subscribe((response) => {
       if (response && response.status) {

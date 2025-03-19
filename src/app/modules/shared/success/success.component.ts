@@ -8,21 +8,24 @@ import { Router } from '@angular/router';
   styleUrls: ['./success.component.scss']
 })
 export class SuccessComponent implements OnInit {
-  
+
   showPopup = false; // Flag to control popup visibility
 
-  constructor(private router: Router) {} // Inject Router
+  constructor(private router: Router) { } // Inject Router
 
   ngOnInit(): void {
     this.showPopup = true; // Show the popup on initialization
   }
 
   closePopup() {
-    // this.router.navigate(['/talent/membership']); // Navigate to the specified route
-    // setTimeout(() => {
-      this.router.navigate(['/talent/membership']).then(() => {
+    const path = window.location.pathname;  // Get the current URL path
+    const role = path.split('/')[1];         // Split the path by '/' and get the second element
+    if (role == 'talent' || role == 'club') {
+      this.router.navigate(['/' + role + '/membership']).then(() => {
         console.log('After Navigation:', this.router.url); // Check where it actually goes
       });
+    }
+
     // }, 2500);
   }
 

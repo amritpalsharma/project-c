@@ -486,6 +486,8 @@ export class ScoutService {
   updateUserProfile(formData: FormData): Observable<any> {
     const headers = this.headers();
 
+    console.warn('formData',formData);
+
     return this.http.post(`${this.apiUrl}user/update-profile`, formData, { headers });
   }
 
