@@ -1304,6 +1304,8 @@
   "deletingCoverImage": "Löschen des Titelbildes....",
   "Canceled": "Abgesagt",
   "coverImageDeletionCanceled": "Das Löschen des Titelbildes wird abgebrochen.",
-    "companyRepresentators": "Team-Mitglied",
-    "savingSelectedFiles": "Speichern von ausgewählten Dateien..."
+  "companyRepresentators": "Team-Mitglied",
+  "savingSelectedFiles": "Speichern von ausgewählten Dateien...",
+  "roleIsRequired": "Rolle ist erforderlich",
+  "deleteRepresentorConfirmation": "Sind Sie sicher, dass Sie dieses Teammitglied löschen möchten?"
 }

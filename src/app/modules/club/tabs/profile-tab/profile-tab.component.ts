@@ -8,6 +8,8 @@ import { MessagePopupComponent } from '../../message-popup/message-popup.compone
 import { AddRepresentatorPopupComponent } from '../../add-representator-popup/add-representator-popup.component';
 import { ClubService } from '../../../../services/club.service';
 import { ResetPasswordComponent } from '../../../shared/reset-password/reset-password.component';
+import { WebPages } from '../../../../services/webpages.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'club-profile-tab',
@@ -15,26 +17,30 @@ import { ResetPasswordComponent } from '../../../shared/reset-password/reset-pas
   styleUrl: './profile-tab.component.scss'
 })
 export class ProfileTabComponent {
- user:any = {}
-  userNationalities:any = [];
-  positions:any = [];
-  position:any;
-  mainPosition : any;
-  otherPositions : any;
-  representators:any = [];
-  baseUrl : any;
+  user: any = {}
+  userNationalities: any = [];
+  positions: any = [];
+  position: any;
+  mainPosition: any;
+  otherPositions: any;
+  representators: any = [];
+  baseUrl: any;
   @Input() userData: any;
   @Input() isPremium: any;
-  userId:any = "";
-  idsToDelete:any = "";
+  userId: any = "";
+  idsToDelete: any = "";
+  deleteRepresentorConfirmation: string = '';
 
-  constructor( public dialog: MatDialog,private scoutService: ClubService, private userService : UserService) {
+  constructor(public dialog: MatDialog, private scoutService: ClubService, private userService: UserService, public webPages: WebPages, private translateService: TranslateService,) {
     // If you want to load the user data from localStorage during initialization
   }
 
   ngOnInit(): void {
     this.user = this.userData;
-
+    this.getToasterMsg();
+    this.webPages.languageId$.subscribe((data: any) => {
+      this.getToasterMsg();
+    });
     this.getRepresentators();
   }
 
@@ -69,8 +75,8 @@ export class ProfileTabComponent {
   }
 
 
-  getRepresentators(){
-    this.scoutService.getRepresentators().subscribe((response)=>{
+  getRepresentators() {
+    this.scoutService.getRepresentators().subscribe((response) => {
       if (response && response.status && response.data) {
         this.representators = response.data.representators;
         this.baseUrl = response.data.uploads_path
@@ -133,7 +139,7 @@ export class ProfileTabComponent {
 
 
     dialogRef.afterClosed().subscribe(result => {
-        this.getUserProfile()
+      this.getUserProfile()
     });
   }
 
@@ -158,20 +164,20 @@ export class ProfileTabComponent {
   getMainPosition() {
     // Check if positions exist and are valid JSON before parsing
     if (this.userData?.positions) {
-        try {
-            // Parse the JSON string only if it's defined
-            this.positions = JSON.parse(this.userData.positions);
-            // Find the main position object with main_position set to 1
-            this.mainPosition = this.positions?.find((pos: any) => pos.main_position == 1)?.position_name;
-        } catch (error) {
-            console.error("Error parsing positions JSON:", error);
-            this.positions = []; // Set to an empty array if parsing fails
-            this.mainPosition = undefined; // Reset main position if parsing fails
-        }
+      try {
+        // Parse the JSON string only if it's defined
+        this.positions = JSON.parse(this.userData.positions);
+        // Find the main position object with main_position set to 1
+        this.mainPosition = this.positions?.find((pos: any) => pos.main_position == 1)?.position_name;
+      } catch (error) {
+        console.error("Error parsing positions JSON:", error);
+        this.positions = []; // Set to an empty array if parsing fails
+        this.mainPosition = undefined; // Reset main position if parsing fails
+      }
     } else {
-        // Handle case when positions is undefined or empty
-        this.positions = [];
-        this.mainPosition = undefined;
+      // Handle case when positions is undefined or empty
+      this.positions = [];
+      this.mainPosition = undefined;
     }
   }
 
@@ -179,17 +185,17 @@ export class ProfileTabComponent {
   // Function to get other positions from the array
   getOtherPositions() {
     this.otherPositions = this.positions
-      .filter((pos : any) => pos.main_position == null)
-      .map((pos : any) => pos.position_name)
+      .filter((pos: any) => pos.main_position == null)
+      .map((pos: any) => pos.position_name)
       .join('/');
   }
 
 
-  addRepresentator(){
-    const dialog = this.dialog.open(AddRepresentatorPopupComponent,{
+  addRepresentator() {
+    const dialog = this.dialog.open(AddRepresentatorPopupComponent, {
       height: '400',
       width: '400px',
-      data : {
+      data: {
         action: 'add',
         userId: this.userId
       }
@@ -197,33 +203,42 @@ export class ProfileTabComponent {
 
     dialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
-        if(result.action == "added"){
+        if (result.action == "added") {
           this.getRepresentators();
-          this.showMatDialog("Invite sent successfully.",'display');
+          if (result.message != '') {
+            this.showMatDialog(result.message, 'display');
+          } else {
+            this.showMatDialog("Invite sent successfully.", 'display');
+          }
         }
-      //  console.log('Dialog result:', result);
+        //  console.log('Dialog result:', result);
       }
     });
   }
 
-  updateRepresentatorRole(event: Event, id:any) {
+  updateRepresentatorRole(event: Event, id: any) {
     const target = event.target as HTMLSelectElement;
     let newRole = target.value;
 
-    this.scoutService.updateRepresentatorRole(id, {site_role:newRole}).subscribe((response)=>{
+    this.scoutService.updateRepresentatorRole(id, { site_role: newRole }).subscribe((response) => {
       if (response && response.status) {
-        this.showMatDialog("Role updated successfully.",'display');
+        if (response.message != '') {
+          this.showMatDialog(response.message, 'display');
+        } else {
+          this.showMatDialog("Role updated successfully.", 'display');
+        }
       } else {
         console.error('Invalid API response structure:', response);
       }
     });
   }
 
-  editRepresentator(representator:any){
-    const editDialog = this.dialog.open(AddRepresentatorPopupComponent,{
+  editRepresentator(representator: any) {
+    console.log(representator)
+    const editDialog = this.dialog.open(AddRepresentatorPopupComponent, {
       height: '400',
       width: '400px',
-      data : {
+      data: {
         action: 'edit',
         userId: "",
         representator: representator
@@ -232,28 +247,37 @@ export class ProfileTabComponent {
 
     editDialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
-        if(result.action == "updated"){
+        if (result.action == "updated") {
           this.getRepresentators();
-          this.showMatDialog("Representator updated successfully.",'display');
+          if (result.message != '') {
+            this.showMatDialog(result.message, 'display');
+          } else {
+            this.showMatDialog("Representator updated successfully.", 'display');
+          }
         }
-      //  console.log('Dialog result:', result);
+        //  console.log('Dialog result:', result);
       }
     });
   }
 
-  confirmSingleDeletion(id:any){
+  confirmSingleDeletion(id: any) {
     this.idsToDelete = id;
-    this.showMatDialog("", "delete-representator-confirmation");
+    console.warn(this.deleteRepresentorConfirmation)
+    this.showMatDialog(this.deleteRepresentorConfirmation, "delete-representator-confirmation");
   }
 
-  deleteRepresentator():any {
+  deleteRepresentator(): any {
 
     this.scoutService.deleteRepresentator(this.idsToDelete).subscribe(
       response => {
-        if(response.status){
+        if (response.status) {
           this.getRepresentators();
-          this.showMatDialog('Representator removed successfully!.', 'display');
-        }else{
+          if (response.message) {
+            this.showMatDialog(response.message, 'display');
+          }else{
+            this.showMatDialog('Representator removed successfully!.', 'display');
+          }
+        } else {
           this.showMatDialog('Error in removing Representator. Please try again.', 'display');
         }
       },
@@ -264,11 +288,11 @@ export class ProfileTabComponent {
     );
   }
 
-  showMatDialog(message:string, action:string){
-    const messageDialog = this.dialog.open(MessagePopupComponent,{
+  showMatDialog(message: string, action: string) {
+    const messageDialog = this.dialog.open(MessagePopupComponent, {
       width: '500px',
       position: {
-        top:'150px'
+        top: '150px'
       },
       data: {
         message: message,
@@ -278,26 +302,32 @@ export class ProfileTabComponent {
 
     messageDialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
-        if(result.action == "delete-confirmed"){
+        if (result.action == "delete-confirmed") {
           this.deleteRepresentator();
         }
-      //  console.log('Dialog result:', result);
+        //  console.log('Dialog result:', result);
       }
     });
   }
 
 
-  getMetaValue(stringifyData:any, key:any):any{
-    if(stringifyData){
+  getMetaValue(stringifyData: any, key: any): any {
+    if (stringifyData) {
       stringifyData = JSON.parse(stringifyData);
-      if(stringifyData[key]){
+      if (stringifyData[key]) {
         return stringifyData[key];
-      }else{
+      } else {
         return "NA";
       }
-    }else{
+    } else {
       return "NA";
     }
   }
-
+  getToasterMsg() {
+    this.translateService.get([
+      'deleteRepresentorConfirmation',
+    ]).subscribe((translations) => {
+      this.deleteRepresentorConfirmation = translations['deleteRepresentorConfirmation'];
+    });
+  }
 }

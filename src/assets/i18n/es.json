@@ -1270,6 +1270,8 @@
   "deletingCoverImage": "Supresión de la imagen de portada....",
   "Canceled": "Cancelado",
   "coverImageDeletionCanceled": "Cancelado el borrado de la imagen de portada.",
-    "companyRepresentators": "Miembro del equipo",
-    "savingSelectedFiles": "Guardar los archivos seleccionados..."
+  "companyRepresentators": "Miembro del equipo",
+  "savingSelectedFiles": "Guardar los archivos seleccionados...",
+  "roleIsRequired": "Función requerida",
+  "deleteRepresentorConfirmation": "Está seguro de que desea eliminar a este miembro del equipo?"
 }

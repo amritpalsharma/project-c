@@ -11,6 +11,26 @@
         <div class="p-3" *ngIf="data.action == 'add'">
             <div class="d-flex1 mb-3">
                 <div>
+                    <p class="code-text">{{ 'firstName' | translate }}</p>
+                    <input class="cupen-btn-1 code-text" style="width:100%;" [(ngModel)]="firstName">
+                    <div *ngIf="errorMsg.firstName" class="error-msg">{{errorMsg.firstName}}</div>
+                </div>
+            </div>
+            <div class="d-flex1 mb-3">
+                <div>
+                    <p class="code-text">{{ 'lastName' | translate }}</p>
+                    <input class="cupen-btn-1 code-text" style="width:100%;" [(ngModel)]="lastName">
+                    <div *ngIf="errorMsg.lastName" class="error-msg">{{errorMsg.lastName}}</div>
+                </div>
+            </div>
+            <div class="d-flex1 mb-3">
+                <div>
+                    <p class="code-text">{{ 'designation' | translate }}</p>
+                    <input class="cupen-btn-1 code-text" style="width:100%;" [(ngModel)]="designation">
+                </div>
+            </div>
+            <div class="d-flex1 mb-3">
+                <div>
                     <p class="code-text">{{ 'email' | translate }}</p>
                     <input class="cupen-btn-1 code-text" style="width:100%;" [(ngModel)]="email">
                     <div *ngIf="errorMsg.email" class="error-msg">{{errorMsg.email}}</div>
@@ -56,12 +76,12 @@
                     <div *ngIf="errorMsg.lastName" class="error-msg">{{errorMsg.lastName}}</div>
                 </div>
             </div>
-            <div class="d-flex1 mb-3">
+            <!-- <div class="d-flex1 mb-3">
                 <div>
                     <p class="code-text">{{ 'designation' | translate }}</p>
                     <input class="cupen-btn-1 code-text" style="width:100%;" [(ngModel)]="designation">
                 </div>
-            </div>
+            </div> -->
         </div>
 
         <div class="p-3" *ngIf="data.action == 'admin-add'">

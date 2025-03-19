@@ -1337,6 +1337,8 @@
   "deletingCoverImage": "Suppression de l'image de couverture....",
   "Canceled": "Annulé",
   "coverImageDeletionCanceled": "La suppression de l'image de couverture est annulée.",
-    "companyRepresentators": "Membre de l'équipe",
-    "savingSelectedFiles": "Enregistrement des fichiers sélectionnés..."
+  "companyRepresentators": "Membre de l'équipe",
+  "savingSelectedFiles": "Enregistrement des fichiers sélectionnés...",
+  "roleIsRequired": "Le rôle est requis",
+  "deleteRepresentorConfirmation": "Êtes-vous sûr de vouloir supprimer ce membre de l'équipe ?"
 }

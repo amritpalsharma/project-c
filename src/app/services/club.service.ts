@@ -782,14 +782,17 @@ export class ClubService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
-    return this.http.post<any>(`${this.apiUrl}club/update-representator-role/${id}`, params, { headers });
+    let lang_id = localStorage.getItem('lang_id');
+    return this.http.post<any>(`${this.apiUrl}club/update-representator-role/${id}/${lang_id}`, params, { headers });
   }
 
   updateRepresentator(id:any, params:any): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
-    return this.http.post<any>(`${this.apiUrl}club/update-profile/${id}`, params, { headers });
+    let lang_id = localStorage.getItem('lang_id');
+    return this.http.post<any>(`${this.apiUrl}user/update-profile`, params, { headers });
+    // return this.http.post<any>(`${this.apiUrl}user/update-profile/${id}`, params, { headers });
   }
 
 
@@ -798,8 +801,9 @@ export class ClubService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
+    let lang_id = localStorage.getItem('lang_id');
     return this.http.get<{ status: boolean, message: string, data: { } }>(
-      `${this.apiUrl}club/delete-representator/${id}`, {headers}
+      `${this.apiUrl}club/delete-representator/${id}/${lang_id}`, {headers}
     );
   }
 

@@ -19,7 +19,6 @@ export class EditPersonalDetailsComponent implements OnInit {
   readonly date = new FormControl(moment());
   formation_date: FormControl = new FormControl(null);  // Initialize with null or the correct date format
 
-  formationDate: string = '';
   city: string = '';
   contactNumber: string = '';
   website: string = '';
@@ -153,9 +152,15 @@ export class EditPersonalDetailsComponent implements OnInit {
           this.sm_youtube = this.user.meta.sm_youtube;
           this.website = this.user.meta.website;
           this.zipcode = this.user.meta.zipcode;
+          // this.formation_date = new FormControl(
+          //   this.user?.meta?.formation_date ? new Date(this.user.meta.formation_date) : null
+          // );
           this.formation_date = new FormControl(
-            this.user?.meta?.formation_date ? new Date(this.user.meta.formation_date) : null
+            this.user?.meta?.formation_date
+              ? this.formatDate(this.user.meta.formation_date)
+              : null
           );
+          console.log(this.formation_date)
         }
       } else {
         console.error('Invalid API response structure:', response);
@@ -169,9 +174,9 @@ export class EditPersonalDetailsComponent implements OnInit {
       console.log('Form Data:', form.value);
       this.dialogRef.close(form.value);
       const formData = new FormData();
-
+      console.log('Date From Modal ',this.formation_date);
       const formattedFormationDate = moment(this.formation_date.value).format('YYYY-MM-DD');
-
+      console.log('Date After Convert ',this.formation_date);
       formData.append('user[address]' , this.address);
       formData.append('user[city]' , this.city);
       formData.append('user[club_name]' , this.club_name);
@@ -199,6 +204,14 @@ export class EditPersonalDetailsComponent implements OnInit {
       this.dialogRef.close('all_field_required');
     }
   }
-
+  
+  formatDate(dateString: string): string {
+    const date = new Date(dateString);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+    const year = date.getFullYear();
+    return `${day}.${month}.${year}`;
+  }
+  
 
 }

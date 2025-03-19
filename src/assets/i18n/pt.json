@@ -1278,6 +1278,8 @@
   "deletingCoverImage": "Eliminar a imagem de capa....",
   "Canceled": "Cancelada",
   "coverImageDeletionCanceled": "A eliminação da imagem de capa foi cancelada.",
-    "companyRepresentators": "Membro da equipa",
-    "savingSelectedFiles": "Guardar ficheiros selecionados..."
+  "companyRepresentators": "Membro da equipa",
+  "savingSelectedFiles": "Guardar ficheiros selecionados...",
+  "roleIsRequired": "A função é necessária",
+  "deleteRepresentorConfirmation": "Tem a certeza de que pretende eliminar este membro da equipa?"
 }

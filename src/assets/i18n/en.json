@@ -1217,5 +1217,7 @@
   "Canceled": "Canceled",
   "coverImageDeletionCanceled": "Cover image deletion canceled.",
   "companyRepresentators": "Team Member",
-  "savingSelectedFiles": "Saving selected files..."
+  "savingSelectedFiles": "Saving selected files...",
+  "roleIsRequired":"Role is required",
+  "deleteRepresentorConfirmation":"Are you sure you want to delete this Team Member?"
 }

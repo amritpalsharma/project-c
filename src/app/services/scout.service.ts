@@ -549,8 +549,8 @@ export class ScoutService {
 
   uploadGalleryImages(formdata: any): Observable<any> {
     const headers = this.headers();
-
-    return this.http.post<any>(`${this.apiUrl}user/upload-gallery-image/`, formdata, { headers });
+    let lang_id = localStorage.getItem('lang_id');
+    return this.http.post<any>(`${this.apiUrl}user/upload-gallery-image/${lang_id}`, formdata, { headers });
   }
 
   deleteGalleryImage(params: any): Observable<any> {
@@ -804,7 +804,8 @@ export class ScoutService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
-    return this.http.post<any>(`${this.apiUrl}scout/update-representator-role/${id}`, params, { headers });
+    let lang_id = localStorage.getItem('lang_id');
+    return this.http.post<any>(`${this.apiUrl}scout/update-representator-role/${id}/${lang_id}`, params, { headers });
   }
 
   updateRepresentator(id: any, params: any): Observable<any> {

@@ -62,7 +62,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   activeDomains: any;
   countries: any;
   isPremium: any = false;
-  StartTour: boolean = true;
   @Output() dataEmitter = new EventEmitter<string>();
   private routeSubscription: Subscription | null = null; // Initialize with null
   private introInstance: any; // Reference to the Intro.js instance
@@ -77,6 +76,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
   Canceled: string = '';
   coverImageDeletionCanceled: string = '';
   requiredFieldsMessage: string = '';
+
+  // Tour 
+  isTourFirstTime: boolean = true;
+  StartTour: boolean = true;
+  dontShowAgainTourTxt: string = 'profile';
 
   async ngOnInit() {
     this.introInstance = introJs();
@@ -121,47 +125,75 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.stopIntroTour(); // Ensure the tour stops when the component is destroyed
   }
 
-  startIntroTour() {
+   showOnce: boolean = true;
 
-    this.introInstance.setOptions({
-      steps: [
-        {
-          element: '.edit-profile',
-          intro: `<div><h6>Profile Photo</h6>Upload your best headshot.</div>`,
-          tooltipClass: 'custom-tooltip',
-        },
-        {
-          element: '.tour-personal-details',
-          intro: `<div><h6>Personal Details</h6>Add your personal details here.</div>`,
-          tooltipClass: 'custom-tooltip',
-        },
-        {
-          element: '.tour-highlights',
-          intro: `<div><h6>Highlights</h6>Upload photos and videos to highlight on your profile.</div>`,
-          tooltipClass: 'custom-tooltip',
-        },
-        {
-          element: '.tour-cover-photo',
-          intro: `<div><h6>Cover Photo</h6>Upload your cover photo.</div>`,
-          tooltipClass: 'custom-tooltip',
-        },
-        {
-          element: '.tour-general-details',
-          intro: `<div><h6>General Details</h6>Add your other profile details here.</div>`,
-          tooltipClass: 'custom-tooltip',
-        },
-      ],
-      showBullets: false,
-      showProgress: false,
-      scrollToElement: true,
-      prevLabel: 'Previous',
-      nextLabel: 'Next',
-      doneLabel: 'Finish',
-      tooltipPosition: 'auto',
+  startIntroTour(lang: string) {
+    // introJs().start().goToStep(1);
+    this.translateService.use(lang); // Change language before fetching translations
+    this.translateService.get([
+      'profilePhoto',
+      'uploadYourBestHeadshot',
+      'personalDetails',
+      'addYourPersonalDetails',
+      'highlights',
+      'uploadPhotosAndVideos',
+      'coverPhoto',
+      'uploadCoverPhoto',
+      'generalDetails',
+      'editGeneralDetails',
+      'previous',
+      'next',
+      'finish',
+      'dontShowAgain'
+    ]).subscribe((translations) => {
+      this.dontShowAgainTourTxt = translations['dontShowAgain'];
+      this.introInstance.setOptions({
+        steps: [
+          {
+            element: '.edit-profile',
+            intro: `<div><h6>${translations['profilePhoto']}</h6>${translations['uploadYourBestHeadshot']}.</div>`,
+            tooltipClass: 'custom-tooltip',
+          },
+          {
+            element: '.tour-personal-details',
+            intro: `<div><h6>${translations['personalDetails']}</h6>${translations['addYourPersonalDetails']}.</div>`,
+            tooltipClass: 'custom-tooltip',
+          },
+          {
+            element: '.unlock_page',
+            intro: `<div><h6>${translations['highlights']}</h6>${translations['uploadPhotosAndVideos']}.</div>`,
+            tooltipClass: 'custom-tooltip',
+          },
+          {
+            element: '.edit_image-2',
+            intro: `<div><h6>${translations['coverPhoto']}</h6>${translations['uploadCoverPhoto']}.</div>`,
+            tooltipClass: 'custom-tooltip',
+          },
+          {
+            element: '.general_details',
+            intro: `<div><h6>${translations['generalDetails']}</h6>${translations['editGeneralDetails']}.</div>`,
+            tooltipClass: 'custom-tooltip',
+          },
+        ],
+        showBullets: false,
+        showProgress: false,
+        exitOnOverlayClick: false,
+        scrollToElement: true,
+        prevLabel: translations['previous'],
+        nextLabel: translations['next'],
+        doneLabel: translations['finish'],
+        tooltipPosition: 'auto',
+      });
+
+      if (this.showOnce) {
+        this.introInstance.start();
+        this.showOnce = false
+      }
     });
 
     // Add the "Don't show again" checkbox dynamically
     this.introInstance.onafterchange(() => {
+
       const tooltipHeader = document.querySelector('.introjs-tooltip-header') as HTMLElement;
 
       if (tooltipHeader) {
@@ -181,7 +213,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
           closeSection.innerHTML = `
             <label style="font-size: 12px; display: flex; align-items: center; margin-right: 10px; color: white;">
               <input type="checkbox" id="dontShowAgain" style="margin-right: 5px; cursor: pointer;" />
-              Don't show it again
+              `+ this.dontShowAgainTourTxt + `
             </label>
           `;
 
@@ -193,13 +225,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
           if (checkbox) {
             checkbox.addEventListener('click', (event) => {
               event.stopPropagation(); // Ensure clicks do not propagate
-              console.log('Checkbox clicked:', checkbox.checked);
               if (checkbox.checked) {
-                console.log('User selected "Don’t show it again"');
                 // Save the user's preference
                 localStorage.setItem('dontShowIntroTour', 'true');
+                this.updateShowTour(checkbox.checked ? 0 : 1);
               } else {
                 console.log('User unchecked "Don’t show it again"');
+                this.updateShowTour(checkbox.checked ? 0 : 1);
                 localStorage.removeItem('dontShowIntroTour');
               }
             });
@@ -208,13 +240,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
       }
     });
 
+
+
     // Handle when the tour finishes
-    this.introInstance.oncomplete(() => this.handleTourExit());
+    // this.introInstance.oncomplete(() => this.handleTourExit());
 
     // Handle when the tour is exited manually
     // introInstance.onexit(() => this.handleTourExit());
-
-    this.introInstance.start();
+    this.introInstance.oncomplete(() => this.handleTourExit());
+    // this.introInstance.start();
   }
 
   // Centralized handling of "Don't show again" logic
@@ -237,6 +271,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       }
     );
   }
+
 
   getGalleryData() {
     this.loading = true;  // Set loading to true before making the API call
@@ -280,6 +315,37 @@ export class DashboardComponent implements OnInit, OnDestroy {
           }
           if (this.user?.meta?.cover_image_path) {
             this.coverImage = this.user.meta.cover_image_path;
+          }
+
+          if (this.StartTour && this.isTourFirstTime) {
+            setTimeout(() => {
+              this.isTourFirstTime = false;
+              // alert('Found lang in Db : '+response.data.user_data.lang)
+              var dblang = 'en';
+              if (response.data.user_data.lang == 1) {
+                dblang = 'en';
+              } else if (response.data.user_data.lang == 2) {
+                dblang = 'de';
+              } else if (response.data.user_data.lang == 3) {
+                dblang = 'it';
+              } else if (response.data.user_data.lang == 4) {
+                dblang = 'fr';
+              } else if (response.data.user_data.lang == 5) {
+                dblang = 'es';
+              } else if (response.data.user_data.lang == 6) {
+                dblang = 'pt';
+              } else if (response.data.user_data.lang == 7) {
+                dblang = 'dk';
+              } else if (response.data.user_data.lang == 8) {
+                dblang = 'se';
+              }
+              let localStorageShowTour = localStorage.getItem('dontShowIntroTour');
+              if(localStorageShowTour != '' && localStorageShowTour == 'true'){
+
+              }else{
+                this.startIntroTour(dblang);  // Start the tour after a slight delay
+              }
+            }, 0);
           }
 
         }

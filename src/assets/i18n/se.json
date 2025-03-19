@@ -1324,6 +1324,8 @@
   "deletingCoverImage": "Radering av omslagsbild....",
   "Canceled": "Avbruten",
   "coverImageDeletionCanceled": "Radering av omslagsbild avbruten.",
-    "companyRepresentators": "Medlem i teamet",
-    "savingSelectedFiles": "Spara valda filer ..."
+  "companyRepresentators": "Medlem i teamet",
+  "savingSelectedFiles": "Spara valda filer ...",
+  "roleIsRequired": "Rollen är nödvändig",
+  "deleteRepresentorConfirmation": "Är du säker att du vill ta bort den här teammedlemmen?"
 }
