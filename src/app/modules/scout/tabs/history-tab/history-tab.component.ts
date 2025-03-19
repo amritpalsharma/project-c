@@ -16,6 +16,7 @@ export class HistoryTabComponent {
   userId:any = "";
   history: any = "";
   isEditable: boolean = false;
+  loggedInUser:any = localStorage.getItem('userData');
   @Input() role: any;
   @ViewChild('historyTextarea', { static: false }) textarea!: ElementRef;
   
@@ -24,6 +25,7 @@ export class HistoryTabComponent {
   }
 
   ngOnInit(): void { 
+    this.loggedInUser = JSON.parse(this.loggedInUser);
     this.getScoutHistory();
     this.editor = new Editor();
   }
@@ -51,6 +53,16 @@ export class HistoryTabComponent {
       this.isLoading = false;
       console.error('Error fetching users:', error);
     }
+  }
+
+  checkRole(){
+    if(!this.loggedInUser.isRepresentator){
+      return true;
+    }
+    if(this.loggedInUser.permission === 'admin.view'){
+      return false;
+    }
+    return true;
   }
 
 

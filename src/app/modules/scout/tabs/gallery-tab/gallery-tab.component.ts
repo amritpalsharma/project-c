@@ -22,6 +22,7 @@ export class GalleryTabComponent {
   selectedFile: any = '';
   defaultCoverImage:any = "./media/palyers.png";
   openedMenuId:any = '';
+  loggedInUser:any = localStorage.getItem('userData');
   @Input() coverImage: string = '';  // Define an input property
   @Output() dataEmitter = new EventEmitter<string>();
   @Input() isPremium: any;
@@ -35,6 +36,7 @@ export class GalleryTabComponent {
     public dialog: MatDialog) { }
   
   ngOnInit(): void {
+    this.loggedInUser = JSON.parse(this.loggedInUser);
     this.route.params.subscribe((params:any) => {
       // console.log(params.id)
       this.userId = params.id;
@@ -111,7 +113,20 @@ export class GalleryTabComponent {
     }
   }
 
+  checkRole(){
+    if(!this.loggedInUser.isRepresentator){
+      return true;
+    }
+    if(this.loggedInUser.permission === 'admin.view'){
+      return false;
+    }
+    return true;
+  }
+
   addPhotosPopup(type:string='all'){
+    if(!this.checkRole()){
+      return;
+    }
     const messageDialog = this.dialog.open(UploadPopupComponent,{
       width: '715px',
       position: {

@@ -27,6 +27,8 @@ export class DashboardComponent implements OnInit , OnDestroy {
   mainImage: { src: string } = { src: '' }; // Current main image source
   album: any[] = []; // Array for album images
   loggedInUser:any = localStorage.getItem('userData');
+  // isRepresentator : boolean = false;
+
   countryFlagUrl : any;
 
   constructor(
@@ -74,15 +76,9 @@ export class DashboardComponent implements OnInit , OnDestroy {
 
     this.loggedInUser = JSON.parse(this.loggedInUser);
     this.userId = this.loggedInUser.id;
-    let userId = this.userId;
-
-    this.parentUserId = this.loggedInUser.parent_id;
-    if(this.parentUserId){
-      userId = this.parentUserId;
-    }
 
     // Adding a slight delay to ensure elements are rendered before the tour starts
-    this.getUserProfile(userId);
+    this.getUserProfile(this.userId);
     this.getHighlightsData();
     this.loadCountries();
     this.getGalleryData();
@@ -309,6 +305,13 @@ export class DashboardComponent implements OnInit , OnDestroy {
       this.scoutService.getProfileData(userId).subscribe((response) => {
         if (response && response.status && response.data && response.data.user_data) {
           localStorage.setItem('userInfo', JSON.stringify(response.data.user_data));
+          if(response.data.representator_data){
+            this.loggedInUser = response.data.representator_data;
+            this.loggedInUser.isRepresentator = true;
+            let representatorData = JSON.stringify(this.loggedInUser);
+            localStorage.setItem('userData', representatorData);
+            // this.isRepresentator = true;
+          }
 
           this.user = response.data.user_data;
           this.userNationalities = JSON.parse(this.user.user_nationalities);
@@ -320,7 +323,8 @@ export class DashboardComponent implements OnInit , OnDestroy {
           //   }, 2500);
           // }
 
-          this.isPremium = this.user?.active_subscriptions?.premium.length > 0 ? true : true;
+          this.isPremium = this.user?.active_subscriptions?.premium.length > 0 ? true : false;
+          this.isPremium = true;
           this.premium = this.user.active_subscriptions?.premium?.length > 0 ? true : false;
           this.booster = this.user.active_subscriptions?.booster?.length > 0 ? true : false;
           this.activeDomains = this.user.active_subscriptions?.country?.length > 0 ? true : false;
@@ -424,6 +428,16 @@ export class DashboardComponent implements OnInit , OnDestroy {
           this.countries = response.data.countries;
         }
     });
+  }
+
+  checkRole(){
+    if(!this.loggedInUser.isRepresentator){
+      return true;
+    }
+    if(this.loggedInUser.permission === 'admin.view'){
+      return false;
+    }
+    return true;
   }
 
   openEditDialog() {

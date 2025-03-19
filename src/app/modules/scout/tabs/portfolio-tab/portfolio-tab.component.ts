@@ -29,10 +29,14 @@ export class PortfolioTabComponent {
   scoutPlayers:any = [];
   displayedColumns: string[] = ['Name', 'Language', 'Club', 'Contract Starts','Contract Expires', 'View', 'Delete'];
   isLoading = false;
+  uploadsPath : string ='';
+  loggedInUser:any = localStorage.getItem('userData');
+  logoPath : string ='';
   idToBeDeleted:any = '';
   @Input() userData: any;
 
   ngOnInit(): void{
+    this.loggedInUser = JSON.parse(this.loggedInUser);
     this.user = this.userData;
     this.userId = this.user.id;
     this.getScoutPlayers();
@@ -47,6 +51,9 @@ export class PortfolioTabComponent {
   }
 
   addNewTalet() {
+    if(!this.checkRole()){
+      return;
+    }
     const dialogRef = this.dialog.open(AddNewTalentComponent, {
       width: '600px',
       height:'450px',
@@ -96,6 +103,8 @@ export class PortfolioTabComponent {
       this.scoutservice.getScoutPlayers().subscribe((response)=>{
         if (response && response.status && response.data) {
           this.scoutPlayers = response.data.scoutPlayers;
+          this.uploadsPath = response.data.uploadsPath;
+          this.logoPath = response.data.logoPath;
           this.isLoading = false;
         } else {
           this.isLoading = false;
@@ -106,6 +115,10 @@ export class PortfolioTabComponent {
       this.isLoading = false;
       console.error('Error fetching users:', error);
     }
+  }
+
+  navigateToProfile(playerId:any){
+    this.router.navigate([`/view/talent/${playerId}`])
   }
 
   viewScoutPlayer(playerId:any){
@@ -127,7 +140,20 @@ export class PortfolioTabComponent {
     });
   }
 
+  checkRole(){
+    if(!this.loggedInUser.isRepresentator){
+      return true;
+    }
+    if(this.loggedInUser.permission === 'admin.view'){
+      return false;
+    }
+    return true;
+  }
+
   confirmDeletion(id:any, firstName:any, lastName:any){
+    if(!this.checkRole()){
+      return;
+    }
     this.idToBeDeleted = id; //id;
     let name = firstName+" "+lastName;
     console.log(id, firstName, lastName);

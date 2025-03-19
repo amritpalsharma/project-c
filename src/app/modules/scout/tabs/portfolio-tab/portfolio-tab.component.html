@@ -43,9 +43,9 @@
             <ng-container matColumnDef="Club">
               <th mat-header-cell *matHeaderCellDef> {{ 'club' | translate }} </th>
               <td mat-cell *matCellDef="let element">
-                <img src="{{element.club_logo_path}}" *ngIf="element.club_logo_path" style="max-width: 50px;">
+                <img src="{{uploadsPath + element.club_logo}}" *ngIf="element.club_logo" style="max-width: 50px;">
                 {{ element.club_name }}
-                <img src="{{element.country_flag_path}}" *ngIf="element.country_flag_path">
+                <img src="{{logoPath + element.country_flag}}" *ngIf="element.country_flag">
               </td>
             </ng-container>
 
@@ -66,7 +66,8 @@
             <ng-container matColumnDef="View">
               <th mat-header-cell *matHeaderCellDef class="text-center"> {{ 'view' | translate }}</th>
               <td mat-cell *matCellDef="let element" class="text-center cursor-pointer">
-                <svg (click)=viewScoutPlayer(element.player_id) class="pointer" width="25" height="25"
+                <!-- <svg (click)=viewScoutPlayer(element.player_id) class="pointer" width="25" height="25" -->
+                <svg (click)=navigateToProfile(element.player_id) class="pointer" width="25" height="25"
                   viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M12.5 15.625C14.2259 15.625 15.625 14.2259 15.625 12.5C15.625 10.7741 14.2259 9.375 12.5 9.375C10.7741 9.375 9.375 10.7741 9.375 12.5C9.375 14.2259 10.7741 15.625 12.5 15.625Z"

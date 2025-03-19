@@ -151,9 +151,13 @@ export class AddRepresentatorPopupComponent {
 
     let formdata = new FormData();
 
-    formdata.append("user[first_name]", this.firstName);
-    formdata.append("user[last_name]", this.lastName);
-    formdata.append("user[designation]", this.designation);
+    // formdata.append("user[first_name]", this.firstName);
+    // formdata.append("user[last_name]", this.lastName);
+    // formdata.append("user[designation]", this.designation);
+
+    formdata.append("first_name", this.firstName);
+    formdata.append("last_name", this.lastName);
+    formdata.append("designation", this.designation);
 
     this.scoutService.updateRepresentator(this.idToUpdate, formdata).subscribe((response)=>{
       if (response && response.status) {

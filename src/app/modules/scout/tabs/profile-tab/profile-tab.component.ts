@@ -21,6 +21,7 @@ export class ProfileTabComponent {
   mainPosition : any;
   otherPositions : any;
   representators:any = [];
+  loggedInUser:any = localStorage.getItem('userData');
   baseUrl : any;
   @Input() userData: any;
   @Input() isPremium: any;
@@ -32,6 +33,7 @@ export class ProfileTabComponent {
   }
 
   ngOnInit(): void {
+    this.loggedInUser = JSON.parse(this.loggedInUser);
     this.user = this.userData;
 
     this.getRepresentators();
@@ -73,6 +75,16 @@ export class ProfileTabComponent {
         console.error('Invalid API response structure:', response);
       }
     });
+  }
+
+  checkRole(){
+    if(!this.loggedInUser.isRepresentator){
+      return true;
+    }
+    if(this.loggedInUser.permission === 'admin.view'){
+      return false;
+    }
+    return true;
   }
 
   calculateAge(dob: string | Date): number {
@@ -206,9 +218,11 @@ export class ProfileTabComponent {
     const target = event.target as HTMLSelectElement;
     let newRole = target.value;
 
-    this.userService.updateRepresentatorRole(id, {site_role:newRole}).subscribe((response)=>{
+    let langId = localStorage.getItem('lang_id');
+
+    this.scoutService.updateRepresentatorRole(id, {site_role:newRole}, langId).subscribe((response)=>{
       if (response && response.status) {
-        this.showMatDialog("Role updated successfully.",'display');
+        this.showMatDialog(response.message,'display');
       } else {
         console.error('Invalid API response structure:', response);
       }
@@ -216,6 +230,9 @@ export class ProfileTabComponent {
   }
 
   editRepresentator(representator:any){
+    if(!this.checkRole()){
+      return;
+    }
     const editDialog = this.dialog.open(AddRepresentatorPopupComponent,{
       height: '400',
       width: '400px',
@@ -238,6 +255,9 @@ export class ProfileTabComponent {
   }
 
   confirmSingleDeletion(id:any){
+    if(!this.checkRole()){
+      return;
+    }
     this.idsToDelete = id;
     this.showMatDialog("", "delete-confirmation");
   }
