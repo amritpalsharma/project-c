@@ -211,6 +211,11 @@
   }
 }
 
+@media (max-width: 991px) {
+.chat_row .col-lg-12 {
+  width: 100%;
+}
+}
 
 
 /* chat.component.css */
