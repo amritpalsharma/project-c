@@ -800,18 +800,18 @@ export class ScoutService {
     return this.http.post<any>(`${this.apiUrl}scout/add-representator`, params, { headers });
   }
 
-  updateRepresentatorRole(id: any, params: any): Observable<any> {
+  updateRepresentatorRole(id: any, params: any, langId:any): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
-    return this.http.post<any>(`${this.apiUrl}scout/update-representator-role/${id}`, params, { headers });
+    return this.http.post<any>(`${this.apiUrl}scout/update-representator-role/${id}/${langId}`, params, { headers });
   }
 
   updateRepresentator(id: any, params: any): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
-    return this.http.post<any>(`${this.apiUrl}scout/update-profile/${id}`, params, { headers });
+    return this.http.post<any>(`${this.apiUrl}scout/update-representator/${id}`, params, { headers });
   }
 
 

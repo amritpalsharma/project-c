@@ -46,19 +46,26 @@ export class ResetPasswordComponent {
     }
 
     // Show a submission progress message
-    this.toastr.info('Submitting your request...', 'Please wait', { disableTimeOut: true });
+    // this.toastr.info('Submitting your request...', 'Please wait', { disableTimeOut: true });
+
+    const langId = localStorage.getItem('lang_id');
 
     // Call the service to change the password
-    this.talentService.changePassword(this.password, this.confirm_password).subscribe(
+    this.talentService.changePassword(this.password, this.confirm_password, langId).subscribe(
       (response) => {
         // Clear any persistent loading messages
         this.toastr.clear();
 
         // Show success message
-        this.toastr.success('Your password has been successfully updated!', 'Success');
+        if(response.status){
+          this.toastr.success(response.message);
+          this.dialogRef.close({ password: this.password });
+        }
+        else{
+          this.toastr.error(response.message);
+        }
 
         // Pass the updated password back to the parent component and close the dialog
-        this.dialogRef.close({ password: this.password });
       },
       (error) => {
         // Clear the persistent loading message

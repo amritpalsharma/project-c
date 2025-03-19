@@ -20,6 +20,7 @@ export class ActivityLogComponent {
   allSelected: boolean = false;
   isLoading: boolean = false;
   areYouSuretoDeleteActivity: string = '';
+  loggedInUser:any = localStorage.getItem('userData');
   activities: any = [];
   selectedIds: any = [];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -29,6 +30,8 @@ export class ActivityLogComponent {
   constructor(private activityService: ActivityService, public dialog: MatDialog, public webPages: WebPages, private translate: TranslateService) { }
 
   ngOnInit() {
+    this.loggedInUser = JSON.parse(this.loggedInUser);
+
     this.getActivity();
 
     this.webPages.languageId$.subscribe((data) => {
@@ -75,6 +78,16 @@ export class ActivityLogComponent {
     this.getActivity();
   }
 
+  checkRole(){
+    if(!this.loggedInUser.isRepresentator){
+      return true;
+    }
+    if(this.loggedInUser.permission === 'admin.view'){
+      return false;
+    }
+    return true;
+  }
+
   onCheckboxChange(item: any) {
     const index = this.selectedIds.indexOf(item.id);
     if (index === -1) {
@@ -95,6 +108,9 @@ export class ActivityLogComponent {
   }
 
   confirmDeletion(): any {
+    if(!this.checkRole()){
+      return;
+    }
     if (this.selectedIds.length == 0) {
       this.showMessage('Select activity(s) first.');
       return false;
@@ -147,6 +163,9 @@ export class ActivityLogComponent {
   }
 
   confirmSingleDeletion(id: any) {
+    if(!this.checkRole()){
+      return;
+    }
     this.idsToDelete = [id];
     this.showMatDialog(this.areYouSuretoDeleteActivity, "activity-confirmation");
   }

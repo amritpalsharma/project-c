@@ -104,6 +104,7 @@ export class ViewProfileComponent implements OnInit {
         if (response && response.status && response.data && response.data.user_data) {
           this.user = response.data.user_data;
           this.isPremium = this.loggedInUser?.active_subscriptions?.premium.length > 0 ? true : false;
+          this.isPremium = true;
           this.userNationalities = JSON.parse(this.user.user_nationalities);
           this.profileImage = this.user.meta.profile_image_path || this.profileImage;
           this.coverImage = this.user.meta.cover_image_path || this.coverImage;
@@ -134,6 +135,16 @@ export class ViewProfileComponent implements OnInit {
     } catch (error) {
       console.error('Error fetching user:', error);
     }
+  }
+
+  checkRole(){
+    if(!this.loggedInUser.isRepresentator){
+      return true;
+    }
+    if(this.loggedInUser.permission === 'admin.view'){
+      return false;
+    }
+    return true;
   }
 
   getGalleryData(id: any) {
@@ -207,6 +218,9 @@ export class ViewProfileComponent implements OnInit {
   }
 
   addToFavorites(userId: number) {
+    if(!this.checkRole()){
+      return;
+    }
 
     let jsonData = localStorage.getItem("userData");
     let myUserId: any;

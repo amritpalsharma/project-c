@@ -90,6 +90,16 @@ export class FavoritesComponent {
     }
   }
 
+  checkRole(){
+    if(!this.loggedInUser.isRepresentator){
+      return true;
+    }
+    if(this.loggedInUser.permission === 'admin.view'){
+      return false;
+    }
+    return true;
+  }
+
   getUserFavorites() {
     try {
       // Set pagination parameters
@@ -181,6 +191,9 @@ export class FavoritesComponent {
   }
 
   confirmDeletion(): any {
+    if(!this.checkRole()){
+      return;
+    }
     if (this.selectedIds.length == 0) {
       // alert(this.selectFavoriteFirst)
       this.showMatDialog(this.selectFavoriteFirst, 'display');
@@ -315,6 +328,9 @@ export class FavoritesComponent {
   }
 
   confirmSingleDeletion(favoriteId: any) {
+    if(!this.checkRole()){
+      return;
+    }
     this.idsToDelete = [favoriteId];
     this.showMatDialog(this.translatedText, "remove-fav-confirmation");
   }

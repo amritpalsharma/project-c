@@ -65,7 +65,7 @@
                       </div>
                     </div>
                     <div class="col-md-4 p-0 edit_button responsive-edit_btn ">
-                      <button (click)="openEditDialog()" class="" matTooltip="Edit Personal Details"
+                      <button *ngIf="checkRole()" (click)="openEditDialog()" class="" matTooltip="Edit Personal Details"
                         matTooltipPosition="right">
                         <div class="tour-personal-details px-1">
                           <svg class="" width="22" height="23" viewBox="0 0 24 25" fill="none"
@@ -511,7 +511,7 @@
                     <h2>{{'highlights' | translate}}</h2>
                     <p>{{'featuredPhotosAndVideos' | translate}}</p>
                   </div>
-                  <div class="settings cursor-pointer" (click)="openHighlight()">
+                  <div class="settings cursor-pointer" *ngIf="checkRole()" (click)="openHighlight()">
 
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path

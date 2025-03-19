@@ -72,6 +72,16 @@ export class EditHighlightsComponent {
     }
   }
 
+  checkRole(){
+    if(!this.loggedInUser.isRepresentator){
+      return true;
+    }
+    if(this.loggedInUser.permission === 'admin.view'){
+      return false;
+    }
+    return true;
+  }
+
   // Called when an image checkbox is toggled
   onImageSelect(event: Event, imageId: number): void {
     const isChecked = (event.target as HTMLInputElement).checked;

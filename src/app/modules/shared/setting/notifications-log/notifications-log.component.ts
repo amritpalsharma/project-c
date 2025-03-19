@@ -33,6 +33,7 @@ export class NotificationsLogComponent {
   checkboxIds: string[] = [];
   allSelected: boolean = false;
   isLoading: boolean = false;
+  loggedInUser:any = localStorage.getItem('userData');
   activities: any = [];
   selectedIds: any = [];
   notifications: any[] = [];
@@ -47,9 +48,19 @@ export class NotificationsLogComponent {
   }
 
   ngOnInit() {
+    this.loggedInUser = JSON.parse(this.loggedInUser);
     this.fetchNotifications();
   }
 
+  checkRole(){
+    if(!this.loggedInUser.isRepresentator){
+      return true;
+    }
+    if(this.loggedInUser.permission === 'admin.view'){
+      return false;
+    }
+    return true;
+  }
 
   fetchNotifications(): void {
     let jsonData = localStorage.getItem("userData");
@@ -127,6 +138,9 @@ export class NotificationsLogComponent {
   }
 
   confirmDeletion(): any {
+    if(!this.checkRole()){
+      return;
+    }
     if (this.selectedIds.length == 0) {
       this.showMessage('Select notifications(s) first.');
       return false;
@@ -216,6 +230,9 @@ export class NotificationsLogComponent {
   }
 
   confirmSingleDeletion(id: any) {
+    if(!this.checkRole()){
+      return;
+    }
     this.idsToDelete = [id];
     this.showMatDialog("Are you sure you want to delete this Activity?", "delete-confirmation");
   }

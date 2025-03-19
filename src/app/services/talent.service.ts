@@ -422,12 +422,13 @@ export class TalentService {
    * @param confirmPassword The confirmation of the new password.
    * @returns Observable of the API response.
    */
-  changePassword(newPassword: string, confirmPassword: string): Observable<any> {
+  changePassword(newPassword: string, confirmPassword: string, langId: any): Observable<any> {
     const headers = this.headers();
 
     const formData = new FormData();
     formData.append('new_password', newPassword);
     formData.append('new_con_password', confirmPassword);
+    formData.append('lang', langId);
 
     // POST request to the change-password API
     return this.http.post<any>(`${this.apiUrl}change-password`, formData, { headers });
