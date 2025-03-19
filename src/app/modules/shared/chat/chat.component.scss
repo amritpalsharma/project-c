@@ -15,6 +15,12 @@ margin-top: 20px;
   background-color: #4CAF50 !important;
 }
 
+@media (max-width: 991px) {
+  .chat_row .col-lg-12 {
+    width: 100%;
+  }
+}
+
 @media(max-width: 425px){
   .btn-outline-white {
     padding: 5px;

@@ -201,7 +201,21 @@ tr td:last-child {
   }
 
   .dashboard_table .table_title {
-    overflow: auto;
+    flex-wrap: wrap;
+    justify-content: flex-start !important;
+    .d-flex.align-items-center {
+      width: 100%;
+  }
+  span {
+    margin-left: 0 !important;
+    margin-bottom: 5px;
+  }
+  select {
+    margin-left: 0 !important;
+    margin-right: 5px !important;
+    margin-top: 5px !important;
+    padding: 5px 10px !important;
+}
   }
 
 }

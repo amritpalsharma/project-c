@@ -275,3 +275,15 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+
+.explore-table .explore-inputs .explore-all_input .mat-mdc-form-field-subscript-wrapper {
+    display: none !important;
+}
+
+
+@media (min-width: 2000px) {
+.booster_box, .image_box {
+    height: 400px !important;
+}
+}
