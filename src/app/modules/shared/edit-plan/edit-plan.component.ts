@@ -27,6 +27,7 @@ export class EditPlanComponent implements OnInit {
   selectedCountryIds: string[] = [];
   activePlans: any[] = [];
   allPlans: any[] = [];
+  selectedInterval: any;
   // selectedCountries: any[] = []; // Stores full country objects
 
 
@@ -52,8 +53,9 @@ export class EditPlanComponent implements OnInit {
     this.defaultCard = this.data.defaultCard;
     this.selectedCountries = this.data.country;
     this.stripe = await this.stripeService.getStripe();
+    this.selectedInterval = this.data.selectedInterval;
     console.log("data here", this.data)
-
+    this.toggleBillingPlan(this.selectedInterval);
   }
 
   populateCountries() {
@@ -312,7 +314,7 @@ export class EditPlanComponent implements OnInit {
   //   // console.log(this.selectedCountries);
   // }
 
-  alreadySelected : boolean = false;
+  alreadySelected: boolean = false;
 
   onCountrySelect(event: any) {
     console.log(event.value);

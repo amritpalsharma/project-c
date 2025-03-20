@@ -32,6 +32,22 @@ interface Plan {
   is_package_active: any;
 }
 
+interface PackageObject {
+  id: string;
+  package_id: string;
+  interval: string;
+  created_at: string;
+  currency: string;
+  domain_id: string;
+  package_description: string;
+  package_interval: string;
+  package_name: string;
+  price: any;
+  status: string;
+  stripe_plan_id: string;
+  updated_at: string;
+}
+
 @Component({
   selector: 'app-plan',
   templateUrl: './plan.component.html',
@@ -70,6 +86,14 @@ export class PlanComponent implements OnInit, OnDestroy {
   multiCountryPlanDesc: string[] = []; // Store the fetched feature list
   bostProfileDesc: string[] = []; // Store the fetched feature list
   langSubscription!: Subscription;
+
+  // countryMonthlyArr : PackageObject[] = [];
+  // countryYearlyArr : PackageObject[] = [];
+
+  countryMonthlyArr: PackageObject | null = null;  // Store a single object, not an array
+  countryYearlyArr: PackageObject | null = null;
+  countryPlanPrice: any;
+
 
   constructor(
     private talentService: TalentService,
@@ -275,14 +299,22 @@ export class PlanComponent implements OnInit, OnDestroy {
               this.demoPlans.includes = ["The complete talent profile with all stages of his career and performance data.", "Export data in excel and pdf formats.", "Create your favorite list.", "Highlight your best photos and videos on your profile."];;
             }
           });
-          console.log('jgfdkhg', this.countryPlans, this.allCountryPlans)
+          console.warn('countryPlans', this.countryPlans);
+          if (this.countryPlans.plans != '') {
+            this.setCountryPlans(this.countryPlans.plans);
+          }
 
           // Set the default selected plan (first country plan or null if none exist)
           this.selectedPlan = this.countryPlans.plans[0] || null;
-
+          this.selectedPlan.isYearly = this.selectedPlan.active_interval == 'yearly';
           let activePlan = [];
-          activePlan.push(this.countryPlans.plans[0]);
-          activePlan.push(this.countryPlans.plans[7]);
+          console.log('CountryPlans', this.countryPlans.plans)
+          // is_package_active
+          // activePlan.push(this.countryPlans.plans[0]);
+          // activePlan.push(this.countryPlans.plans[7]);
+          if (this.countryPlans.plans != '' && this.countryPlans.plans.length > 0) {
+            this.filterActivePlans();
+          }
 
           // this.activePlans = activePlan;
 
@@ -407,7 +439,7 @@ export class PlanComponent implements OnInit, OnDestroy {
 
     // this.animate = (!this.animate);
 
-    console.log('toggleBillingPlan', plan, isYearly, subscribeId, this.selectedPlan);
+    // console.log('toggleBillingPlan', plan, isYearly, subscribeId, this.selectedPlan);
     const originalIsYearly = plan.isYearly;
 
     if (isYearly && plan.active_interval == 'yearly') {
@@ -420,43 +452,17 @@ export class PlanComponent implements OnInit, OnDestroy {
       return;
     }
 
+
+    if (plan.type === "multi") {
+      // console.log(isYearly)
+      if (isYearly === true) {
+        this.selectedPlan.isYearly = false;
+      } else if (isYearly === false) {
+        this.selectedPlan.isYearly = true;
+      }
+    }
+
     plan.isYearly = originalIsYearly;
-
-    if(this.selectedPlan.interval === 'monthly'){
-      plan.plans.forEach((element:any) => {
-        if(element.interval === 'yearly'){
-          this.selectedPlan = element;
-          return;
-        }
-      })
-    }
-    else{
-      plan.plans.forEach((element:any) => {
-        if(element.interval === 'monthly'){
-          this.selectedPlan = element;
-          return;
-        }
-      })
-    }
-
-
-    // plan.plans.forEach((element:any) => {
-    //   if(this.selectedPlan.interval === 'monthly'){
-    //     console.log("selected plan 1",this.selectedPlan)
-    //     if(element.interval === 'yearly'){
-    //       this.selectedPlan = element;
-    //       return;
-    //     }
-    //   }
-    //   else{
-    //     console.log("selected plan 2",this.selectedPlan)
-    //     if(element.interval === 'monthly'){
-    //       this.selectedPlan = element;
-    //       return;
-    //     }
-    //   }
-    // });
-    
 
     // this.onSelectPlan()
     return;
@@ -537,7 +543,7 @@ export class PlanComponent implements OnInit, OnDestroy {
   }
 
   editPlanPopup(plans: any, country: any) {
-    this.fetchPlans();
+    // this.fetchPlans();
     const dialogRef = this.dialog.open(EditPlanComponent, {
       width: '800px',
       data: {
@@ -547,6 +553,7 @@ export class PlanComponent implements OnInit, OnDestroy {
         allPlans: this.allCountryPlans,
         defaultCard: this.defaultCard,
         country: country,
+        selectedInterval: this.selectedPlan.isYearly
       }
     });
   }
@@ -642,5 +649,21 @@ export class PlanComponent implements OnInit, OnDestroy {
     Price = Price.replaceAll(' ', '');
     // alert(Price)
     return Price;
+  }
+
+  setCountryPlans(plansArr: any) {
+    this.countryMonthlyArr = plansArr.find((obj: any) => obj.interval === "monthly");
+    this.countryYearlyArr = plansArr.find((obj: any) => obj.interval === "yearly");
+
+    console.warn('Monthly', this.countryMonthlyArr);
+    console.warn('Yearly', this.countryYearlyArr);
+  }
+
+  filterActivePlans() {
+    this.countryPlans.plans.forEach((plan: any) => {
+      if (plan.is_package_active) {
+        this.activePlans.push(plan); // Push only if is_package_active is true
+      }
+    })
   }
 }
