@@ -62,6 +62,9 @@ export class HistoryTabComponent {
     if(this.loggedInUser.permission === 'admin.view'){
       return false;
     }
+    if(this.loggedInUser.permission === 'admin.edit'){
+      return true;
+    }
     return true;
   }
 

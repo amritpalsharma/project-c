@@ -184,8 +184,8 @@ export class ExploreComponent implements OnInit {
     // Check if we have profiles to track
     if (profilesToTrack.length > 0) {
       // Send the array of profile IDs in a single API call
-      this.talentService.trackProfiles(this.loggedInUser.id, profilesToTrack, 'view').subscribe({
-        next: () => {
+      this.talentService.trackProfiles(this.loggedInUser.id, profilesToTrack, 'view').subscribe(
+        (response) => {
           console.log(`Views tracked for profiles: ${profilesToTrack.join(', ')}`);
 
           // Update the local viewsTracked object
@@ -196,8 +196,8 @@ export class ExploreComponent implements OnInit {
           // Save the updated viewsTracked state
           this.saveTrackedViews();
         },
-        error: (error) => console.error('Error tracking profile views', error)
-      });
+        // error: (error) => console.error('Error tracking profile views', error)
+      );
     }
   }
 
@@ -207,17 +207,17 @@ export class ExploreComponent implements OnInit {
 
   // Track profile click only once per session
   private trackProfileClick(profileId: number) {
-    const id: number[] = [profileId];  // Create an array of profileId
+    const id: any[] = [profileId];  // Create an array of profileId
 
     if (!this.viewsTracked[profileId]?.clicked) {
-      this.talentService.trackProfiles(this.loggedInUser.id, id, 'click').subscribe({
-        next: () => {
+      this.talentService.trackProfiles(this.loggedInUser.id, id, 'click').subscribe(
+        (response) => {
           console.log(`Click tracked for profile ${profileId}`);
           this.viewsTracked[profileId] = { ...this.viewsTracked[profileId], clicked: true };
           this.saveTrackedViews();  // Save the updated viewsTracked
         },
-        error: (error) => console.error('Error tracking profile click', error)
-      });
+        // error: (error) => console.error('Error tracking profile click', error)
+      );
     }
   }
 
@@ -243,6 +243,8 @@ export class ExploreComponent implements OnInit {
 
     this.socketService.emit("profileViewed", { senderId: userId, receiverId: id })
   }
+
+  flag : boolean = true;
 
   // Event handler for page change in paginator
   getUsers() {
@@ -317,7 +319,10 @@ export class ExploreComponent implements OnInit {
           if (this.totalItems < 0 || this.totalItems == 0) {
             this.noUsersFound = true;
           }
-          this.trackBoostedProfileViews(this.players); // Track views if necessary
+          if(this.flag){
+            this.trackBoostedProfileViews(this.players); // Track views if necessary
+            this.flag = false;
+          }
           setTimeout(() => this.cdr.detectChanges(), 0);
         } else {
           this.toastr.error('Failed to retrieve data. Please try again.', 'Error');

@@ -10,7 +10,7 @@
     </div>
     <hr>
     <div class="upload-photos">
-        <button class="upload-btn"  (click)="addPhotosPopup()" >{{ 'uploadPhotos' | translate}}</button>
+        <button class="upload-btn" *ngIf="checkRole()" (click)="addPhotosPopup()" >{{ 'uploadPhotos' | translate}}</button>
         <hr>
         <div class="overflow-card">
             <div class="all-photos">

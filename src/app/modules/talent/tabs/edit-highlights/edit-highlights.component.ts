@@ -115,11 +115,22 @@ export class EditHighlightsComponent {
   onSubmit(): void {
     const selectedData = [...this.selectedImageIds, ...this.selectedVideoIds];
 
+    const formData = new FormData();
+
+    let unset_all: any = false;
+    
+    if(selectedData.length == 0){
+      unset_all = true;
+    }
+
+    console.log("check here", this.selectedImageIds, this.selectedVideoIds, selectedData)
+    // return;
+
     // Show loading notification
     const loadingToast = this.toastr.info('Saving selected files...', 'Please wait', { disableTimeOut: true });
 
     // Send the selected IDs to your API or handle them as needed
-    this.talentService.toggleFeaturedFiles(selectedData).subscribe({
+    this.talentService.toggleFeaturedFiles(selectedData, unset_all).subscribe({
       next: (response) => {
         this.toastr.clear(loadingToast.toastId); // Clear loading notification
         this.toastr.success('Files saved successfully!', 'Success'); // Show success notification

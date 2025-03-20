@@ -50,31 +50,34 @@ export class PortfolioTabComponent {
     }
   }
 
-  addNewTalet() {
-    if(!this.checkRole()){
-      return;
-    }
-    const dialogRef = this.dialog.open(AddNewTalentComponent, {
-      width: '600px',
-      height:'450px',
-      position: {
-        top:'70px'
-      },
-      data: {
-        scoutId: this.user.id
-      }
-    });
+  // addNewTalet() {
+  //   if(!this.checkRole()){
+  //     return;
+  //   }
+  //   const dialogRef = this.dialog.open(AddNewTalentComponent, {
+  //     width: '600px',
+  //     height:'450px',
+  //     position: {
+  //       top:'70px'
+  //     },
+  //     data: {
+  //       scoutId: this.user.id
+  //     }
+  //   });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', result);
-      if (result !== undefined) {
-        this.animal.set(result);
-      }
-    });
-  }
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     console.log('The dialog was closed', result);
+  //     if (result !== undefined) {
+  //       this.animal.set(result);
+  //     }
+  //   });
+  // }
 
 
   inviteTalent(){
+    if(!this.checkRole()){
+      return;
+    }
     const inviteDialog = this.dialog.open(InviteScoutTalentPopupComponent,{
       width: '600px',
       height:'450px',
@@ -144,7 +147,7 @@ export class PortfolioTabComponent {
     if(!this.loggedInUser.isRepresentator){
       return true;
     }
-    if(this.loggedInUser.permission === 'admin.view'){
+    if(this.loggedInUser.permission === 'admin.view' || this.loggedInUser.permission === 'admin.edit'){
       return false;
     }
     return true;
