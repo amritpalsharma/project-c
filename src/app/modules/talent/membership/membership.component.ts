@@ -343,7 +343,9 @@ export class MembershipComponent {
             }
           });
           console.log('Subscription canceled successfully:', response);
-          this.getUserPlans();
+          setTimeout(() => {
+            this.getUserPlans();
+          }, 1500);
 
         } else {
           console.error('Failed to cancel subscription', response);

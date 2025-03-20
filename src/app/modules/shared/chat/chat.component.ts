@@ -20,6 +20,8 @@ export class ChatComponent {
   newUser: { id: string; name: string; email: string; photoUrl: string }[] = [];
   createdGroups: { groupId: string, groupName: string }[] = [];
   user: any = {};
+
+  chatBox: any;
   constructor(private talkService: TalkService, private route: ActivatedRoute) { }
 
   async ngOnInit() {
@@ -36,20 +38,19 @@ export class ChatComponent {
         role: (this.userData.role == '1') ? "hidden" : "default"
       };
       const session = await this.talkService.init(this.user);
-      const chatbox = session.createInbox();
+      // const chatbox = session.createInbox();
+      this.chatBox = session.createInbox();
 
       // Defer mounting chatbox until next event loop cycle
       setTimeout(() => {
-        chatbox.mount(document.getElementById('talkjs-container'));
+        this.chatBox.mount(document.getElementById('talkjs-container'));
       }, 0);
     }
 
-    if (otherUserData) {
+    if (otherUserData && otherUserData != null) {
       const otherUser = JSON.parse(otherUserData);
       console.log("Starting chat with:", otherUser);
-      
       this.startOneOnOneChat(otherUser);
-      
       // Clear localStorage after using it to avoid unnecessary chat start on next visit
       localStorage.removeItem('otherUserData');
     }
@@ -65,6 +66,7 @@ export class ChatComponent {
 
   // Start a one-on-one chat
   startOneOnOneChat(user: any) {
+
     this.talkService.createOneOnOneConversation(user.id, user.name, user.email, user.photoUrl)
       .then(() => {
         this.talkService.mountChat('talkjs-container');
@@ -129,6 +131,13 @@ export class ChatComponent {
       this.startGroupChat();
     }
     console.log('last users', users);
+  }
+
+  ngOnDestroy() {
+    if (this.chatBox) {
+      this.chatBox.destroy();
+      this.chatBox = null;
+    }
   }
 }
 
