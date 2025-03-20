@@ -185,6 +185,16 @@ mat-datepicker-toggle {
   left: 0;
   top: 0px;
   margin-left: 0 !important;
+  button {
+    border-radius: 0 !important;
+    background-image: url(./assets/images/calendar-icon.svg) !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: 23px !important;
+    svg {
+      display: none;
+    }
+  }
 }
 
 .d-flex.align-items-center.justify-content-center.dob1 {
@@ -194,7 +204,7 @@ mat-datepicker-toggle {
 input#dateOfBirth,
 input#contractStart,
 input#contractEnd {
-  padding-left: 4rem;
+  text-indent: 2rem;
 }
 
 .custom-datepicker .mat-datepicker-content {
@@ -437,6 +447,8 @@ input#contractEnd {
   height: 50px;
   object-fit: cover;
   border-radius: 50%;
+  background: #d1d1d1;
+  padding-top: 5px;
 }
 
 // .btn-primary {
@@ -702,6 +714,7 @@ html {
 .sidebar_menu a svg {
   // margin-right: 10px;
   min-width: 32px;
+  padding-left: 7px;
 }
 
 .sidebar_menu a .sidebar_menu_span {
@@ -997,6 +1010,7 @@ input:checked+.slider:before {
 
 .table {
   --bs-table-bg: transparent;
+  border-collapse: collapse !important;
 }
 
 .table_title {
@@ -1264,52 +1278,6 @@ input:checked+.slider:before {
   }
 }
 
-
-
-// .table tbody tr:hover {
-//   td.main-table-2 {
-//     border-right: 1px solid #236115 !important;
-//   }
-// }
-
-// .table tbody tr:hover {
-//   td.main-table {
-//     border-left: 1px solid #236115 !important;
-//   }
-// }
-
-// .table tbody tr:hover {
-//   border: 1px solid #236115 !important;
-//   border-collapse: separate;
-//   background: #edffe9;
-//   border-radius: 10px;
-  
-
-//   td {
-//     // border-top: 1px solid #236115 !important;
-//     //   border-bottom: 1px solid #236115 !important;
-//     //  border: 1px solid #236115;
-
-//     &:first-child {
-//       border-right: 0;
-//     }
-
-//     &:last-child {
-//       border-left: 0;
-//     }
-
-//     &:nth-child(2),
-//     &:nth-child(3),
-//     &:nth-child(4),
-//     &:nth-child(5) {
-//       // border-top: 1px solid #236115 !important;
-//       // border-bottom: 1px solid #236115 !important;
-//       border: 0;
-//     }
-
-//   }
-// }
-
 .offcanvas-body::-webkit-scrollbar {
   display: none;
 }
@@ -1334,6 +1302,10 @@ table {
   }
 }
 
+.table-striped tbody tr:nth-child(odd) {
+  background: #FAFAFA;
+}
+
 .light-theme {
   .table {
       border-collapse: separate;
@@ -1350,6 +1322,9 @@ table {
   .dark-theme {
     .table {
         border-collapse: separate;
+    }
+      .table-striped tbody tr:nth-child(odd) {
+        background: #0c3453;
     }
     .table tbody tr:hover {
       background: #072944;
@@ -1374,11 +1349,6 @@ table {
 .mat-mdc-dialog-inner-container.mdc-dialog__container {
   position: relative;
   top: 0px;
-
-  // left: 386px;
-  // bottom: 311px;
-  // height: 528px;
-  // width: 100%;
 }
 
 .mat-mdc-dialog-surface.mdc-dialog__surface {
@@ -2133,19 +2103,26 @@ nav.navbar .country_dropdown h6.border-bottom {
     color: #fff !important;
   }
 
-  label.btn.filter-button,
-  select.location-filter {
-    background: #fff !important;
-    color: #000 !important;
-  }
+  // label.btn.filter-button,
+  // select.location-filter {
+  //   background: #fff !important;
+  //   color: #000 !important;
+  // }
 
-  select.location-filter.activefilter,
-  select.location-filter option {
-    color: #000 !important;
+  // select.location-filter.activefilter,
+  // select.location-filter option {
+  //   color: #000 !important;
+  // }
+  label.btn.filter-button, .filter-button-2 {
+    border-color: #072944 !important;
+    background: #0c3453 !important;
+    color: #fff;
+    select {
+    color: #fff !important;
+    }
   }
-
-  label.filter-button.activefilter {
-    background: #072944 !important;
+  label.filter-button.activefilter, .filter-button-2.activefilter {
+    background: #6fb95d !important;
     color: #fff !important;
   }
 

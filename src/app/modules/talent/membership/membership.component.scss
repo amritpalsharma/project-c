@@ -39,6 +39,8 @@
   position: absolute;
   top: 0;
   left: 0;
+  height: 100%;
+  overflow: hidden;
 }
 .premium-card_football svg{
   z-index: -1;
@@ -248,18 +250,50 @@ button.premium-edit_btn,a.premium-edit_btn {
   }
 }
 
-@media (min-width: 2000px) {
-.card-billing{
-  font-size: 22px;
+.card_title_btn {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
-button.premium-edit_btn, a.premium-edit_btn {
-  font-size: 18px;
+.manage_payment_btn {
+  padding: 9px 30px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    border: 0;
+    outline: none;
+    color: #fff;
+    background: #6FB95D;
+    display: inline-block;
+    margin: 5px 0;
 }
+
+
+
+@media (min-width: 1700px) {
 .premium-card h5 {
-  font-size: 28px;
+  font-size: 26px;
 }
 .premium-card h6 {
-  font-size: 30px;
+  font-size: 26px;
+}
+button.premium-subscription_btn {
+  font-size: 16px;
+}
+}
+
+@media (min-width: 2000px) {
+.card-billing{
+  font-size: 22px !important;
+}
+button.premium-edit_btn, a.premium-edit_btn {
+  font-size: 18px !important;
+}
+.premium-card h5 {
+  font-size: 30px !important;
+}
+.premium-card h6 {
+  font-size: 30px !important;
 }
 sub.premium-month_title, .premium-card p, button.premium-subscription_btn {
   font-size: 17px !important;
