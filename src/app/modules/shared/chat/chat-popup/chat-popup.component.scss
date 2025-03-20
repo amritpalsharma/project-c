@@ -44,14 +44,16 @@
   border-radius: 50%;
   object-fit: cover;
   object-position: top;
+  padding-top: 2px;
+  background: #e1e1e1;
 }
 .mdc-list-item__primary-text {
   font-weight: bold !important;
 }
 .mat-mdc-option.mdc-list-item {
-  padding: 8px 0;
-  border-bottom: 1px solid #dbdbdb;
-  margin: 0 !important;
+  padding: 8px 12px;
+  border-bottom: 0;
+  margin: 0 !important;;
 }
 .cancel-icon{
   background-image: url(../../../../../assets/images/cross-icon.png);

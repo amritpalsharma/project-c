@@ -4,8 +4,9 @@
     border-radius: 5px;
     font-size: 13px;
     font-weight: 400;
-    background-color: #c6c7c8;
-  
+    background-color: #eceff2;
+    border: 1px solid #6fb95d;
+    overflow: hidden;
   }
   .filter-text{
     font-size: 13px;
@@ -16,11 +17,24 @@
     width: 86px;
     font-size: 13px;
     font-weight: 400;
-    background-color: #c6c7c8;
+    background-color: #eceff2;
+    border: 1px solid #6fb95d;
+    overflow: hidden;
   }
   .filter-bottom-button{
   position: relative;
   top: 7px;
+  }
+
+  .filter-button select {
+    background: transparent !important;
+    padding: 5px;
+    border: 0 !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+  label.activefilter{
+    background: #6fb95d;
   }
   
   .Launch{
@@ -63,25 +77,22 @@
   // }
   
   
-  label.activefilter{
-    background: #023A4A;
-    color: #ffffff;
-  }
   
-  select.location-filter.activefilter{
-    background: #023A4A;
-    color: #ffffff;
-  }
   
-  select.location-filter{
-    background: #c6c7c8;
-    border: none;
-    outline: none !important;
-  }
+  // select.location-filter.activefilter{
+  //   background: #6fb95d;
+  //   color: #ffffff;
+  // }
+  
+  // select.location-filter{
+  //   background: transparent;
+  //   border: none;
+  //   outline: none !important;
+  // }
   
   
   select.location-filter option{
-    background: #ffffff;
-    color: #333333;
+    // background: #ffffff;
+    // color: #333333;
     // outline: none !important;
   }
