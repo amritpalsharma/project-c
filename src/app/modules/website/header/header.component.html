@@ -675,34 +675,17 @@
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label class="form-label">{{ 'passwordLabel' | translate }}</label>
-                                        <input [type]="isViewPassword ? 'text' : 'password'" class="form-control"
-                                            placeholder="{{ 'passwordPlaceholder' | translate }}"
-                                            [(ngModel)]="password" name="password" required />
-                                        <div class="form-control123">
+                                        <div class="password_field_wrap">
+                                            <input [type]="isViewPassword ? 'text' : 'password'" class="form-control"
+                                                placeholder="{{ 'passwordPlaceholder' | translate }}"
+                                                [(ngModel)]="password" name="password" required />
                                             <span (click)="togglePassword()" class="password-toggle">
-                                                <!-- <svg *ngIf="!isViewPassword" width="25" height="23" viewBox="0 0 25 23"
-                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M24.1715 11.2344C23.2791 8.89908 21.723 6.87588..."
-                                                        fill="#A1A1A1" />
-                                                </svg> -->
-                                                <!-- <span *ngIf="!isViewPassword">
-                                                    <svg _ngcontent-ng-c4111086061="" width="17" height="8"
-                                                        viewBox="0 0 17 8" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg" class="ng-star-inserted">
-                                                        <path _ngcontent-ng-c4111086061=""
-                                                            d="M15.5827 1.33398C15.5827 1.33398 12.7493 5.33398 8.49935 5.33398C4.24935 5.33398 1.41602 1.33398 1.41602 1.33398M10.6243 5.00065L11.6868 6.66732M14.166 3.33398L15.5827 4.66732M1.41602 4.66732L2.83268 3.33398M6.37435 5.00065L5.31185 6.66732"
-                                                            stroke="black" stroke-width="1.5" stroke-linecap="round"
-                                                            stroke-linejoin="round"></path>
-                                                    </svg>
+                                                <span *ngIf="!isViewPassword">
+                                                    <img src="./assets/images/password-hidden.svg">
                                                 </span>
                                                 <span *ngIf="isViewPassword">
-                                                    👁️
-                                                </span> -->
-                                                <!-- <svg *ngIf="isViewPassword" width="27" height="19" viewBox="0 0 27 19"
-                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M26.1053 9.21313C25.1129 6.64614 23.3901 4.42621..."
-                                                        fill="#A1A1A1" />
-                                                </svg> -->
+                                                    <img src="./assets/images/password-visible.svg">
+                                                </span>  
                                             </span>
                                         </div>
                                         <div *ngIf="registerForm.controls['password']?.errors?.['required'] && (registerForm.controls['password']?.dirty || registerForm.controls['password']?.touched)"
@@ -716,10 +699,20 @@
                                         <label class="form-label" for="confirmPassword">{{ 'confirmPasswordLabel'
                                             |
                                             translate }}</label>
-                                        <input type="password" id="confirmPassword" class="form-control"
+                                        <div class="password_field_wrap">
+                                            <input type="password" id="confirmPassword" class="form-control"
                                             placeholder="{{ 'confirmPasswordPlaceholder' | translate }}"
                                             [(ngModel)]="confirmPassword" name="confirmPassword"
                                             #confirmPasswordControl="ngModel" required />
+                                            <span (click)="togglePassword()" class="password-toggle">
+                                                <span *ngIf="!isViewPassword">
+                                                    <img src="./assets/images/password-hidden.svg">
+                                                </span>
+                                                <span *ngIf="isViewPassword">
+                                                    <img src="./assets/images/password-visible.svg">
+                                                </span>  
+                                            </span>
+                                        </div>
                                         <div *ngIf="confirmPasswordControl.invalid && (confirmPasswordControl.dirty || confirmPasswordControl.touched)"
                                             class="text-danger">
                                             <ng-container *ngIf="confirmPasswordControl.errors?.['required']">
