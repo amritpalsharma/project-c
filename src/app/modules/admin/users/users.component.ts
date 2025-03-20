@@ -414,7 +414,7 @@ export class UsersComponent implements OnInit {
 
 
     // this.showMessage("Call api");
-    this.showMessage('Users will be exported shortly.');
+    // 
     try {
       //  this.userService.getUsers(page, pageSize,this.filterValue).subscribe((response)=>{
       this.userService.exportUsers(params).subscribe((response) => {
@@ -422,6 +422,7 @@ export class UsersComponent implements OnInit {
           let fileUrl = response.data.file_path;
           let fileName = response.data.file_name;
           this.download(fileUrl, fileName);
+          this.showMessage(response.message);
         } else {
 
         }
