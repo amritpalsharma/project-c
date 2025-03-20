@@ -233,6 +233,7 @@ export class HeaderComponent implements OnInit {
 
 
   isViewPassword = false;
+  isViewPassword1 = false;
   constructor(
     private sharedservice: SharedService,
     private themeService: ThemeService,
@@ -1006,5 +1007,9 @@ export class HeaderComponent implements OnInit {
 
   togglePassword() {
     this.isViewPassword = !this.isViewPassword;
+  }
+
+  togglePassword1(){
+    this.isViewPassword1 = !this.isViewPassword1;
   }
 }

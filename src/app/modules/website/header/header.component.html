@@ -700,15 +700,15 @@
                                             |
                                             translate }}</label>
                                         <div class="password_field_wrap">
-                                            <input type="password" id="confirmPassword" class="form-control"
+                                            <input [type]="isViewPassword1 ? 'text' : 'password'" id="confirmPassword" class="form-control"
                                             placeholder="{{ 'confirmPasswordPlaceholder' | translate }}"
                                             [(ngModel)]="confirmPassword" name="confirmPassword"
                                             #confirmPasswordControl="ngModel" required />
-                                            <span (click)="togglePassword()" class="password-toggle">
-                                                <span *ngIf="!isViewPassword">
+                                            <span (click)="togglePassword1()" class="password-toggle">
+                                                <span *ngIf="!isViewPassword1">
                                                     <img src="./assets/images/password-hidden.svg">
                                                 </span>
-                                                <span *ngIf="isViewPassword">
+                                                <span *ngIf="isViewPassword1">
                                                     <img src="./assets/images/password-visible.svg">
                                                 </span>  
                                             </span>

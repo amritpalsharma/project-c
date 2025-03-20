@@ -50,6 +50,7 @@
                 <h6> {{ demo.price}}<sub class="premium-month_title">{{demo.currency}}/{{ demo.interval == 'monthly' ?
                     ('month' | translate) : ('year' | translate) }}</sub></h6>
               </div>
+              {{demo.stripe_cancel_at}}
               <!-- <p *ngIf="demo.stripe_cancel_at == null">{{ '2_countries' | translate }}</p> -->
               <p *ngIf="demo.stripe_cancel_at != null">{{ 'expireOn' | translate }} {{ demo.stripe_cancel_at | date:
                 'dd.MM.yyyy' }}</p>

@@ -86,7 +86,8 @@ import { InviteScoutTalentPopupComponent } from './invite-scout-talent-popup/inv
   imports: [
     CommonModule,
     ScoutRoutingModule,  // This includes RouterModule
-    TranslateModule.forChild(),
+    // TranslateModule.forChild(),
+    TranslateModule,
     RouterModule,
     RouterOutlet,
     MatPaginator,
