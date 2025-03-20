@@ -96,7 +96,7 @@
           </div>
 
           <!-- premium plans -->
-          <div class="col-lg-4 my-2 ">
+          <div class="col-lg-4 my-2 d-none">
             <div class="subscription-switch mb-2">
               <label class="switch_off cursor-pointer">
                 {{'billedMonthly' | translate}}</label>
@@ -176,7 +176,7 @@
             <div class="subscription-switch mb-2">
               <label class="switch_off cursor-pointer">{{'billedMonthly' | translate}}</label>
               
-              <input type="checkbox" (change)="toggleBillingPlan(countryPlans, (countryPlans.isYearly), country)"
+              <input type="checkbox" (change)="toggleBillingPlan(countryPlans, (selectedPlan?.isYearly), country)"
                 class="cursor-pointer">
 
                 <!-- <input class="cursor-pointer" type="checkbox" [id]="countryPlans.id" [checked]="(countryPlans.isYearly)"
@@ -210,7 +210,8 @@
                   </div>
                 </div>
                 <div class="premium-currency">
-                  <h6>{{ selectedPlan?.price }}<sub class="premium-month_title">.-{{ selectedPlan?.currency }} / {{ selectedPlan?.interval=='yearly' ? ('year'
+                  <h6>
+                    {{ selectedPlan.isYearly ?  countryYearlyArr?.price : countryMonthlyArr?.price }}<sub class="premium-month_title">.-{{ selectedPlan?.currency }} / {{ selectedPlan?.interval=='yearly' ? ('year'
                       | translate) :
                       ('month' | translate) }}</sub>
                   </h6>

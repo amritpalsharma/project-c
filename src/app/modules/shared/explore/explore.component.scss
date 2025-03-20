@@ -51,7 +51,6 @@
     overflow: hidden;
     border-radius: 10px;
     text-align: center;
-    height: 300px;
 }
 
 .booster_box{
@@ -63,7 +62,10 @@
     overflow: hidden;
     border-radius: 10px;
     text-align: center;
-    height: 300px;
+}
+
+.booster_box, .image_box{
+    height: 250px
 }
 
 @keyframes gradient {
@@ -111,8 +113,8 @@
 }
 .image_box .player_img img{
     height: 100%;
-    object-fit: cover;
-    object-position: top center;
+    object-fit: contain;
+    object-position: center;
     padding-top: 12px;
 }
 .player-names{
@@ -229,7 +231,9 @@
     .player-image-list {
         row-gap: 20px;
     }
-    
+    .booster_box, .image_box{
+        height: 210px
+    }
 }
 
 @media (min-width: 600px) and (max-width:991px) {
@@ -282,8 +286,8 @@
 }
 
 
-@media (min-width: 2000px) {
+@media (min-width: 1600px) {
 .booster_box, .image_box {
-    height: 400px !important;
+    height: 300px !important;
 }
 }

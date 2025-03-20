@@ -250,6 +250,7 @@ a {
   height: 50px;
   object-fit: cover;
   border-radius: 50%;
+  background: #a5afba;
 }
 
 
@@ -1494,6 +1495,8 @@ input:checked+.slider:before {
   }
 }
 
+
+
 @media (max-width: 991px) {
   // .page-sidebar {
   //   width: 100%;
@@ -2313,6 +2316,10 @@ input:checked+.slider:before {
   background: #072944 !important;
 }
 
+.dark-theme .card {
+  border-color: #06243c;
+}
+
 .dark-theme .user-details-left .user-media {
   border-color: #1F4360 !important;
 }
@@ -2437,7 +2444,7 @@ input:checked+.slider:before {
 
 .dark-theme .users-name-list {
   background: #072944 !important;
-  border: 1px solid #EBEBEB;
+  // border: 1px solid #EBEBEB;
 }
 
 .dark-theme .select-user-name span {
@@ -2610,7 +2617,8 @@ input:checked+.slider:before {
 
 .dark-theme .form-group mat-select {
   color: #fff;
-      background: #072944;
+  background: #072944;
+  border-radius: 10px;
 }
 .dark-theme .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) .mdc-list-item__primary-text {
   color: #fff !important;
@@ -2786,5 +2794,35 @@ input:checked+.slider:before {
   h3 {
       color: #fff;
   }
+}
+.mat-mdc-select-placeholder {
+  color: #fff !important;
+}
+.explore-chip .chip {
+  background: #BDE34E !important;
+  color: #072944 !important;
+  svg {
+    fill: #072944 !important;
+  }
+}
+.radio-custom:checked + .radio-custom-label:before {
+  background: transparent !important;
+  color: #BDE34E !important;
+}
+.radio-custom + .radio-custom-label:before {
+  border-color: #BDE34E !important;
+  background: transparent !important;
+}
+}
+
+.dark-theme .card-header .manage_payment_btn {
+  color: #072944 !important;
+  background: #bde34f !important;
+}
+
+
+@media (min-width: 992px) {
+.dark-theme .sidebar_menu a {
+  color: #4F7A9D !important;
 }
 }

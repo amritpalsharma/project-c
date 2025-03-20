@@ -53,7 +53,7 @@ export class HeaderComponent implements OnInit {
   registerError: string = '';
   forgotPasswordEmail: string = '';
   forgotPasswordMessage: string = '';
-  requiredMessage: string = ''; 
+  requiredMessage: string = '';
   lang: string = '';
   token: string = '';
   tokenVerified: boolean = false;
@@ -233,6 +233,8 @@ export class HeaderComponent implements OnInit {
 
 
   isViewPassword = false;
+  isViewPassword1 = false;
+  isViewPassword2 = false;
   constructor(
     private sharedservice: SharedService,
     private themeService: ThemeService,
@@ -563,7 +565,7 @@ export class HeaderComponent implements OnInit {
       response => {
         if (response.status === false) {
           this.invalidCred = response.message;
-          if(response.message.email != ''){
+          if (response.message.email != '') {
             this.invalidCred = response.message.email;
           }
           this.showInvalidCredMessage();
@@ -833,20 +835,20 @@ export class HeaderComponent implements OnInit {
       });
       return;
     }
-  
+
     this.requiredMessage = '';
 
 
-      // Email validation regex
-  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-  if (!emailPattern.test(this.forgotPasswordEmail)) {
-    this.translateService.get('forgotPassword.provideValidEmail').subscribe((res: string) => {
-      this.forgotPasswordMessage = res; // Show invalid email message
-    });
-    return;
-  }
+    // Email validation regex
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    if (!emailPattern.test(this.forgotPasswordEmail)) {
+      this.translateService.get('forgotPassword.provideValidEmail').subscribe((res: string) => {
+        this.forgotPasswordMessage = res; // Show invalid email message
+      });
+      return;
+    }
 
-  this.forgotPasswordMessage = ''; // Clear error message before API call
+    this.forgotPasswordMessage = ''; // Clear error message before API call
 
     this.authService.forgotPassword(this.forgotPasswordEmail).subscribe(
       response => {
@@ -862,7 +864,7 @@ export class HeaderComponent implements OnInit {
       }
     );
   }
-  
+
 
   initializeGoogleSignIn(): void {
     google.accounts.id.initialize({
@@ -1006,5 +1008,12 @@ export class HeaderComponent implements OnInit {
 
   togglePassword() {
     this.isViewPassword = !this.isViewPassword;
+  }
+
+  togglePassword1() {
+    this.isViewPassword1 = !this.isViewPassword1;
+  }
+  togglePassword2() {
+    this.isViewPassword2 = !this.isViewPassword2;
   }
 }

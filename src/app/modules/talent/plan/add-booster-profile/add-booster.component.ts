@@ -30,7 +30,7 @@ export class AddBoosterComponent {
     private paymentService: PaymentService,
     public dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+  ) { }
 
   async ngOnInit() {
     this.loggedInUser = JSON.parse(this.loggedInUser);
@@ -86,12 +86,15 @@ export class AddBoosterComponent {
   }
 
   async redirectToCheckout(planId: string, booster_audience: number[] = [], coupon: any = '') {
+    if (coupon == 'proceed_to_checkout_without_coupon') {
+      coupon = null;
+    }
     this.isLoadingCheckout = true;
     this.toastr.info('Redirecting to checkout...', 'Processing');
 
     try {
       const response = await this.paymentService.createCheckoutSession(planId, booster_audience.join(','), coupon).toPromise();
-      
+
       if (response?.data?.payment_intent?.id) {
         const stripe = await this.stripe;
         await stripe?.redirectToCheckout({ sessionId: response.data.payment_intent.id });

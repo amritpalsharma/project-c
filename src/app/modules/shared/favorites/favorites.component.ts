@@ -214,7 +214,7 @@ export class FavoritesComponent {
 
   showFilterPopup(): void {
     const filterDialog = this.dialog.open(CommonFilterPopupComponent, {
-      height: '340px',
+      height: '210px',
       width: '300px',
       position: {
         right: '30px',

@@ -31,7 +31,12 @@ export class PurchaseTabComponent {
     try {
       this.userService.getPurchaseData(userId).subscribe((response)=>{
         if (response && response.status && response.data) {
-          this.userPurchases = response.data.purchaseHistory;
+          if(response.data == ''){
+            this.userPurchases = [];
+          }else{
+            this.userPurchases = response.data.purchaseHistory;
+          }
+          
           this.isLoading = false;
         } else {
           this.isLoading = false;
