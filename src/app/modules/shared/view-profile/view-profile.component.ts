@@ -87,7 +87,7 @@ export class ViewProfileComponent implements OnInit {
       // code by amrit
     });
 
-    if (this.coverImage == '') { 
+    if (this.coverImage == '') {
       this.coverImage = this.defaultCoverImage;
     }
     this.webPages.languageId$.subscribe((data) => {
@@ -137,11 +137,11 @@ export class ViewProfileComponent implements OnInit {
     }
   }
 
-  checkRole(){
-    if(!this.loggedInUser.isRepresentator){
+  checkRole() {
+    if (!this.loggedInUser.isRepresentator) {
       return true;
     }
-    if(this.loggedInUser.permission === 'admin.view' || this.loggedInUser.permission === 'admin.edit'){
+    if (this.loggedInUser.permission === 'admin.view' || this.loggedInUser.permission === 'admin.edit') {
       return false;
     }
     return true;
@@ -218,7 +218,7 @@ export class ViewProfileComponent implements OnInit {
   }
 
   addToFavorites(userId: number) {
-    if(!this.checkRole()){
+    if (!this.checkRole()) {
       return;
     }
 
@@ -390,6 +390,7 @@ export class ViewProfileComponent implements OnInit {
   // }
 
   navigateToChat() {
+    localStorage.setItem('otherUserData', '');
     if (this.user) {
       const userData = {
         id: this.user.id,
@@ -406,15 +407,21 @@ export class ViewProfileComponent implements OnInit {
       const encodedUserData = encodeURIComponent(JSON.stringify(userData)); // Convert to JSON and encode
       // this.router.navigate(['/talent/chat'], { queryParams: { userData: encodedUserData } });
 
-      localStorage.setItem('otherUserData',tempUser);
+      localStorage.setItem('otherUserData', tempUser);
       const role = this.loggedInUser.role_name.toLowerCase();
-      this.router.navigate([`/${role}/chat`]);
+      // this.router.navigate([`/${role}/chat?open_chat=true`]);
+      this.router.navigate([`/${role}/chat`], {
+        queryParams: { open_chat: 'true' }
+      });
+      
+      // setInterval(() => {
+      //   // window.location.href = '/' + role + '/chat';
+      // }, 500);
     } else {
       console.warn('No userData available');
     }
   }
-  
-  
+
 
   ngOnDestroy() {
     // ✅ Unsubscribe to prevent memory leaks

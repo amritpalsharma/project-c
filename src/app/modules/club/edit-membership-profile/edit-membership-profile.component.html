@@ -104,7 +104,7 @@
                         [(ngModel)]="selectedAudienceIds"
                         (selectionChange)="updateSelectedAudiences()"
                         multiple
-                        placeholder="Select"
+                        placeholder="{{ 'select' | translate }}"
                       >
                         <mat-option *ngFor="let audience of audiences" [value]="audience.id">
                           {{ audience.role_name }}

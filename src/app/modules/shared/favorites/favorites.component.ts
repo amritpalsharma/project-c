@@ -94,11 +94,11 @@ export class FavoritesComponent {
     }
   }
 
-  checkRole(){
-    if(!this.loggedInUser.isRepresentator){
+  checkRole() {
+    if (!this.loggedInUser.isRepresentator) {
       return true;
     }
-    if(this.loggedInUser.permission === 'admin.view' || this.loggedInUser.permission === 'admin.edit'){
+    if (this.loggedInUser.permission === 'admin.view' || this.loggedInUser.permission === 'admin.edit') {
       return false;
     }
     return true;
@@ -195,7 +195,7 @@ export class FavoritesComponent {
   }
 
   confirmDeletion(): any {
-    if(!this.checkRole()){
+    if (!this.checkRole()) {
       return;
     }
     if (this.selectedIds.length == 0) {
@@ -332,7 +332,7 @@ export class FavoritesComponent {
   }
 
   confirmSingleDeletion(favoriteId: any) {
-    if(!this.checkRole()){
+    if (!this.checkRole()) {
       return;
     }
     this.idsToDelete = [favoriteId];
@@ -434,4 +434,9 @@ export class FavoritesComponent {
       role.role = role.role_name;
     }
   }
+
+  convertTime(dateTime: any) {
+    return this.talentService.convertTalentDateTime(dateTime);
+  }
+
 }

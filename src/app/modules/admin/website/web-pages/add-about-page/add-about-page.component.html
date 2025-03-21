@@ -96,7 +96,7 @@
       <div *ngFor="let name of formData.about_country_names; let i = index; trackBy: trackByFn" class="row">
         <div class="col-sm-8">
           <input type="text" [(ngModel)]="formData.about_country_names[i]" name="about_country_names[{{i}}]"
-            placeholder="Enter Country Name" class="form-control mt-1">
+            placeholder="{{ 'enterCountryName' | translate }}" class="form-control mt-1">
         </div>
         <div class="col-sm-4">
           <button type="button" class="btn btn-danger mt-1" (click)="removeField(i)">Remove</button>

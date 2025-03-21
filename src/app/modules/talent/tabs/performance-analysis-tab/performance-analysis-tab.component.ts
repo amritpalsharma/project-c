@@ -217,7 +217,7 @@ export class PerformanceAnalysisTabComponent implements OnInit {
     });
   }
   // function by amrit to convert time
-  formatDateTime(dateString: string): string {
+  formatDateTimeOld(dateString: string): string {
     let lang = localStorage.getItem('lang') || 'en'; // Fallback to English if not set
 
     // Convert "YYYY-MM-DD HH:MM:SS" format to a valid JavaScript Date object
@@ -263,5 +263,9 @@ export class PerformanceAnalysisTabComponent implements OnInit {
     this.translateService.get(['deletePerformanceConfirm']).subscribe((translations) => {
       this.deletePerformanceConfirm = translations['deletePerformanceConfirm'];
     })
+  }
+
+  formatDateTime(dateTime: any) {
+    return this.talentService.convertTalentDateTime(dateTime);
   }
 }

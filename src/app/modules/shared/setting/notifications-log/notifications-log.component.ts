@@ -236,4 +236,8 @@ export class NotificationsLogComponent {
     this.idsToDelete = [id];
     this.showMatDialog("Are you sure you want to delete this Activity?", "delete-confirmation");
   }
+  
+  convertTime(dateTime: any) {
+    return this.talentService.convertTalentDateTime(dateTime);
+  }
 }

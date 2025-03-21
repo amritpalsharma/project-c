@@ -26,7 +26,7 @@
             <div class="form-group speed_inputs col-lg-4 d-flex align-items-center">
               <div class="col-lg-6 mobile-input">
                 <label for="topSpeed" class="form-label">{{ 'topSpeed' | translate }}</label>
-                <input type="text" class="form-control" id="topSpeed" name="top_speed" placeholder="Enter Value" [(ngModel)]="top_speed" />
+                <input type="text" class="form-control" id="topSpeed" name="top_speed" placeholder="{{ 'enterValue' | translate }}" [(ngModel)]="top_speed" />
               </div>
               <div class="col-lg-6 mobile-input">
                 <label for="speedUnit" class="form-label">{{'selectUnit' | translate }}</label>
@@ -52,7 +52,7 @@
               <div class="d-flex market_input-gap align-items-center">
                 <div class="col-lg-6 mobile-input">
                   <label for="marketValue" class="form-label">{{ 'marketValue' | translate }}</label>
-                  <input type="text" class="form-control" id="marketValue" name="market_value" placeholder="Enter value" [(ngModel)]="market_value" />
+                  <input type="text" class="form-control" id="marketValue" name="market_value" placeholder="{{ 'enterValue' | translate }}" [(ngModel)]="market_value" />
                 </div>
                 <div class="col-lg-6 mobile-input">
                   <label for="currency" class="form-label">{{ 'currency' | translate }}</label>
