@@ -277,8 +277,8 @@ export class BlogComponent {
 
   showFilterPopup(): void {
     const filterDialog = this.dialog.open(CommonFilterPopupComponent, {
-      height: '225px',
-      width: '300px',
+      height: '235px',
+      width: '310px',
       position: {
         right: '30px',
         top: '150px'

@@ -304,8 +304,8 @@ export class AdvertisingComponent {
 
   showFilterPopup():void {
     const filterDialog = this.dialog.open(CommonFilterPopupComponent,{
-      height: '225px',
-      width: '300px',
+      height: '270px',
+      width: '310px',
       position: {
         right: '30px',
         top:'150px'

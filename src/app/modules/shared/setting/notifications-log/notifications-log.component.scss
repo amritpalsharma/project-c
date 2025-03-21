@@ -34,10 +34,6 @@
       }
     }
   }
-  .card-title {
-    font-weight: 800;
-    font-size: 14px;
-  }
   .card {
     background-color: #fff;
     .card-header {
@@ -404,4 +400,11 @@
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+.card-header p{
+  font-size: 14px;
+  font-weight: 400; 
+  color: #111418;
+  font-family: "Libre Franklin", sans-serif;
 }
