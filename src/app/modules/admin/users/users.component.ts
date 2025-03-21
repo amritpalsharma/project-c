@@ -211,11 +211,11 @@ export class UsersComponent implements OnInit {
   editfilter(): void {
     // this.getLocations();
     const filterDialog = this.dialog.open(FilterPopupComponrnt, {
-      height: '450px',
-      width: '300px',
+      height: '510px',
+      width: '320px',
       position: {
-        right: '30px',
-        top: '150px'
+        right: '20px',
+        top: '130px'
       },
       data: {
         filters: this.customFilters,

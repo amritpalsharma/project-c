@@ -268,8 +268,8 @@ export class CouponsComponent {
 
   showFilterPopup():void {
     const filterDialog = this.dialog.open(CommonFilterPopupComponent,{
-      height: '170px',
-      width: '300px',
+      height: '210px',
+      width: '310px',
       position: {
         right: '30px',
         top:'150px'

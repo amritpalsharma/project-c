@@ -1,23 +1,15 @@
 
 @media (min-width: 992px) {
+    .bottom_box {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }
     .it .website-code nav.navbar li.nav-item .nav-link, .fr .website-code nav.navbar li.nav-item .nav-link,
     .es .website-code nav.navbar li.nav-item .nav-link, .pt .website-code nav.navbar li.nav-item .nav-link,
     .dk .website-code nav.navbar li.nav-item .nav-link, .se .website-code nav.navbar li.nav-item .nav-link,
     .de .website-code nav.navbar li.nav-item .nav-link {
         font-size: 16px;
-    }
-    .fr .website-code nav.navbar .login-btn {
-        width: 175px;
-        font-size: 14px;
-    }
-    .es .website-code .login-btn, .de .website-code .login-btn {
-        font-size: 13px;
-        width: 155px;
-    }
-    
-    .en .website-code nav.navbar .login-btn {
-        width: 155px;
-        font-size: 15px;
     }
     .works {
     .player-list-image img, .player-list-images img {
@@ -138,6 +130,33 @@
 }
 }
 
+@media (min-width: 992px) and (max-width: 1199px) {
+.fr .website-code nav.navbar .login-btn {
+    width: 175px;
+    font-size: 14px;
+}
+.es .website-code .login-btn, .de .website-code .login-btn {
+    font-size: 13px;
+    width: 155px;
+}
+.en .website-code nav.navbar .login-btn {
+    width: 155px;
+    font-size: 15px;
+}
+}
+
+@media (min-width: 992px) and (max-width: 2000px) {
+.explore-all_input .mat-mdc-form-field-infix {
+    width: 140px;
+}
+}
+
+@media (min-width: 1200px) and (max-width: 1599px) {
+.website-code nav.navbar .login-btn {
+    width: 175px !important;
+    font-size: 14px !important;
+}
+}
 
 @media (min-width: 1600px) {
 .it .website-code nav.navbar li.nav-item .nav-link, .fr .website-code nav.navbar li.nav-item .nav-link,
@@ -146,18 +165,18 @@
 .de .website-code nav.navbar li.nav-item .nav-link, .en .website-code nav.navbar li.nav-item .nav-link {
     font-size: 19px;
 }
-.fr .website-code nav.navbar .login-btn {
+.website-code nav.navbar .login-btn {
     width: 210px;
     font-size: 17.5px;
 }
-.es .website-code .login-btn, .de .website-code .login-btn {
-    font-size: 17.5px;
-    width: 210px;
-}
-.en .website-code nav.navbar .login-btn {
-    width: 190px;
-    font-size: 16.5px;
-}
+// .es .website-code .login-btn, .de .website-code .login-btn {
+//     font-size: 17.5px;
+//     width: 210px;
+// }
+// .en .website-code nav.navbar .login-btn {
+//     width: 190px;
+//     font-size: 16.5px;
+// }
 .table th, .table td {
     font-size: 18px !important;
 }
@@ -173,18 +192,18 @@ body {
 .de .website-code nav.navbar li.nav-item .nav-link, .en .website-code nav.navbar li.nav-item .nav-link {
     font-size: 22px !important;
 }
-.fr .website-code nav.navbar .login-btn {
+.website-code nav.navbar .login-btn {
     width: 220px !important;
     font-size: 20px !important;
 }
-.es .website-code .login-btn, .de .website-code .login-btn {
-    font-size: 20px !important;
-    width: 220px !important;
-}
-.en .website-code nav.navbar .login-btn {
-    width: 200px !important;
-    font-size: 19px !important;
-}
+// .es .website-code .login-btn, .de .website-code .login-btn {
+//     font-size: 20px !important;
+//     width: 220px !important;
+// }
+// .en .website-code nav.navbar .login-btn {
+//     width: 200px !important;
+//     font-size: 19px !important;
+// }
 .table th, .table td, .table td span {
     font-size: 20px !important;
 }
@@ -194,9 +213,6 @@ body {
 .sidebar_menu a {
     font-size: 18px !important;
     padding: 13px 10px !important;
-}
-.page-sidebar-inner {
-    height: calc(100% - 220px) !important;
 }
 .mobile-sidebar-active .sidebar .page-sidebar {
     width: 250px;
@@ -261,13 +277,6 @@ td.cdk-column-Remove.mat-column-Remove svg {
   }
 }
 
-// @media (min-width: 576px) {
-//     .cdk-overlay-pane.mat-mdc-dialog-panel {
-//       min-width: 350px !important;
-//       min-height: 180px !important;
-//     }
-// }
-
 @media (max-width:1300px) and (min-width:992px) {
 .mobile-sidebar-active .plan_box .d-flex.gap-2 {
     flex-direction: column;
@@ -283,10 +292,10 @@ td.cdk-column-Remove.mat-column-Remove svg {
 
 
 @media (max-width: 991px) {
-    .page-sidebar-inner {
-        overflow-x: hidden;
-        overflow-y: auto;
-    }
+.page-sidebar-inner {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
 .sidebar {
     position: fixed;
     z-index: 1000;
@@ -456,6 +465,7 @@ body.compact-sidebar.dark-theme .sidebar-menu svg path {
     .marketing-header-bar .heading {
         justify-content: space-between !important;
     }
+
 }
 
 
@@ -489,7 +499,7 @@ body.compact-sidebar.dark-theme .sidebar-menu svg path {
     gap: 10px;
 }
 .justify_mobile .details_info .general_details {
-    width: 100%;
+    width: 100%; 
 }
 .mat-mdc-table th {
     white-space: nowrap;

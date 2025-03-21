@@ -1857,11 +1857,6 @@ select.form-select.custom-select1 {
     .register .form-label {
         font-size: 14px;
     }
-
-    .register .form-control {
-        height: 40px;
-    }
-
     .register .ng-untouched.ng-pristine.ng-invalid {
         margin-top: 5px;
         margin-bottom: 5px;
@@ -2111,7 +2106,7 @@ select.form-select.custom-select1 {
     }
 
     .form-control {
-        height: 44px;
+        height: 40px;
     }
 
     .seperter {
@@ -2306,14 +2301,12 @@ select.form-select.custom-select1 {
         line-height: 14px;
     }
 
-    // .footer-bottom p {
-    //   font-size: 13px;
-    //   margin-top: 20px;
-    // }
     .fs-14 {
         font-size: 9px;
     }
-
+    .form-check label.form-check-label.text-light {
+        padding-left: 23px !important;
+    }
     button.create-account.d-block {
         height: 30px;
         font-size: 14px;
@@ -2338,19 +2331,9 @@ select.form-select.custom-select1 {
     .register .form-check .form-check-input {
         margin-top: 0;
     }
-
-    .register .form-control {
-        height: 30px;
-    }
-
     .footer-bottom p {
         font-size: 11px;
     }
-
-    // .footer-links {
-    //     margin-bottom: 110px;
-    // }
-
     .btn-close {
         width: 25px;
         height: 25px;
@@ -2365,11 +2348,6 @@ select.form-select.custom-select1 {
 
     .login .logo p {
         font-size: 12px;
-    }
-
-    .login .form-control {
-        font-size: 12px;
-        height: 30px;
     }
 
     .modal-btn .btn {
@@ -2502,6 +2480,29 @@ select.form-select.custom-select1 {
     border: 1px solid red;
 }
 
+.form-check label.form-check-label.text-light {
+    display: block !important;
+    padding-left: 7px !important;
+    margin-bottom: 1rem;
+}
+
+.password_field_wrap {
+    position: relative;
+    .password-toggle {
+        position: absolute;
+        right: 0;
+        top: 0;
+        background: #fff;
+        padding: 12px;
+        border-radius: 10px;
+        img {
+            width: 22px;
+            height: 22px;
+            object-fit: contain;
+        }
+    }
+}
+
 @media (min-width: 992px) {
     .nav_mobile_logo {
         display: none;
@@ -2531,6 +2532,15 @@ select.form-select.custom-select1 {
     .social-links li {
         margin-bottom: 20px;
     }
+    .password_field_wrap {
+        .password-toggle {
+            padding: 8px;
+            img {
+                width: 18px;
+                height: 18px;
+            }
+        }
+    }
 }
 
 @media (max-width: 575px) {
@@ -2551,19 +2561,3 @@ select.form-select.custom-select1 {
     }
 }
 
-.password_field_wrap {
-    position: relative;
-    .password-toggle {
-        position: absolute;
-        right: 0;
-        top: 0;
-        background: #fff;
-        padding: 12px;
-        border-radius: 10px;
-        img {
-            width: 22px;
-            height: 22px;
-            object-fit: contain;
-        }
-    }
-}

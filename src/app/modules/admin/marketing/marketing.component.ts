@@ -303,8 +303,8 @@ export class MarketingComponent {
   showFilterPopup():void { 
 
     const filterDialog = this.dialog.open(CommonFilterPopupComponent,{
-      height: '340px',
-      width: '300px',
+      height: '390px',
+      width: '320px',
       position: {
         right: '30px',
         top:'150px'

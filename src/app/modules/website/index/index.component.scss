@@ -740,6 +740,7 @@ li {
 .player-image {
   height: calc(100% - 15px);
   object-fit: cover;
+  object-position: top;
   display: block;
   width: 100%;
   border-radius: 9px;
@@ -753,9 +754,7 @@ li {
   height: 300px;
   object-fit: scale-down;
   display: block;
-  /* Remove any default inline spacing */
   width: 100%;
-  /* Adjust based on your needs */
   border-radius: 9px;
 }
 
@@ -780,7 +779,6 @@ li {
   width: 0;
   height: 0;
   z-index: 1;
-  /* Ensure it's above other content */
 }
 
 .player-carousel::before {
@@ -799,7 +797,7 @@ li {
   border-radius: 0 9px 0;
   border-width: 0 82px 76px 0;
   /* Adjust sizes as needed */
-  border-color: transparent #E2001A transparent transparent;
+  border-color: transparent #ffffff transparent transparent;
   /* Adjust color */
 }
 
@@ -813,8 +811,12 @@ li {
 }
 
 .recently-joined .flag-bottom {
-  display: flex;
-  margin-left: 4px;
+margin: 0;
+padding: 0 5px 3px;
+text-align: center;
+p {
+  margin: 0;
+}
 }
 
 .recently-joined .bottom-line {
@@ -828,7 +830,7 @@ li {
 
 .recently-joined .flag-image {
   position: absolute;
-  bottom: 34px;
+  bottom: 45px;
   left: 12px;
   border-radius: 6px;
   background-color: white;
@@ -839,8 +841,6 @@ li {
   position: absolute;
   bottom: 50px;
   left: 12px;
-  // width: 44px;
-  // height: 37px;
   border-radius: 6px;
   background-color: white;
   z-index: 2;
@@ -848,7 +848,9 @@ li {
 }
 
 .recently-joined img.birthday-img {
-  height: 13px;
+  height: 28px;
+  margin-bottom: 3px;
+  margin-left: -2px;
 }
 
 .recently-joined .d-o-b {
@@ -873,28 +875,11 @@ li {
   z-index: 1;
   top: 8px;
   right: 8px;
+  img {
+    height: 38px;
+    object-fit: contain;
+  }
 }
-
-// .corner-image.bottom-left {
-//   bottom: 120px;
-//   left: 30px;
-//   width: 44px;
-//   height: 52px;
-//   border-radius: 6px;
-//   transform: translate(-50%, 50%);
-//   background-color: white;
-//   padding: 10px;
-// }
-
-
-
-
-/*--------------------------------------------------------------
-# Recently Joined
---------------------------------------------------------------*/
-
-
-
 
 /*--------------------------------------------------------------
 # How It Works
@@ -4254,19 +4239,9 @@ img.success-image {
   .player2 .d-o-b {
     font-size: 7px;
   }
-
-  // .player2 img.birthday-img {
-  //   height: 8px;
-  // }
-
   .d-o-b {
     font-size: 6px;
   }
-
-  // img.birthday-img {
-  //   height: 10px;
-  // }
-
   .club_member1 .flag-image,
   .club_member2 .flag-image,
   .club_member3 .flag-image,
