@@ -67,6 +67,10 @@ export class InviteScoutTalentPopupComponent {
       x++;
     });
 
+    let langId:any = localStorage.getItem('lang_id');
+
+    formData.append('lang', langId);
+
     this.scoutService.sendScoutPortfolioInvite(this.scoutId, formData).subscribe((response)=>{
       if (response && response.status) {
         console.log(this.scoutId)
@@ -76,7 +80,8 @@ export class InviteScoutTalentPopupComponent {
         });
         this.dialogRef.close({
           action: 'added',
-          id: this.scoutId
+          id: this.scoutId,
+          message: response.message
         });
       } else {
         console.error('Invalid API response structure:', response);

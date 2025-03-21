@@ -13,11 +13,18 @@ export class EditMembershipProfileComponent {
 
   isLoadingCheckout: boolean = false;
   stripe: any;
-  @Input() audiences = [
-    { role_name: "Clubs", id: 2 },
-    { role_name: "Scouts", id: 3 },
-    { role_name: "Player", id: 4 },
-  ];     // List of all audiences
+  // @Input() audiences = [
+  //   { role_name: "Clubs", id: 2 },
+  //   { role_name: "Scouts", id: 3 },
+  //   { role_name: "Talent", id: 4 },
+  // ];     // List of all audiences
+
+  audiences : any[] = [
+    { role_name: "Club", target_role: 2 },
+    { role_name: "Scout", target_role: 3 },
+    { role_name: "Talent", target_role: 4 },
+  ];
+
   selectedAudienceIds: number[] = []; // Store only audience IDs
   id: any;
   loggedInUser: any = localStorage.getItem('userInfo');
@@ -36,7 +43,7 @@ export class EditMembershipProfileComponent {
   async ngOnInit() {
     this.stats = this.data.stats;
 
-    this.selectedAudiences = this.stats?.booster_audience;
+    // this.selectedAudiences = this.stats?.booster_audience;
 
     this.loggedInUser = JSON.parse(this.loggedInUser);
     this.id = this.data.id || [];
@@ -58,8 +65,9 @@ export class EditMembershipProfileComponent {
    */
   updateSelectedAudiences(): void {
     this.selectedAudiences = this.audiences.filter((audience) =>
-      this.selectedAudienceIds.includes(audience.id)
+      this.selectedAudienceIds.includes(audience.target_role)
     );
+    console.log(this.selectedAudiences);
   }
 
   /**
@@ -67,9 +75,10 @@ export class EditMembershipProfileComponent {
    * @param audienceId - ID of the audience to remove
    */
   removeAudience(audienceId: number): void {
+    console.log(this.selectedAudiences, this.selectedAudienceIds, audienceId)
     // Remove ID from selectedAudienceIds
     this.selectedAudienceIds = this.selectedAudienceIds.filter(
-      (id) => id !== audienceId
+      (target_role) => target_role != audienceId
     );
 
     // Update the displayed selected audiences
@@ -106,13 +115,15 @@ export class EditMembershipProfileComponent {
   saveBoost(): void {
     this.isLoading = true; // Set loading state
 
+    let langId: any = localStorage.getItem('lang_id');
+
     try {
       // Make API call to save the booster audience
-      this.talentService.updateBoosterAudience(this.selectedAudienceIds).subscribe(
+      this.talentService.updateBoosterAudience(this.selectedAudienceIds, langId).subscribe(
         (response) => {
           if (response?.status) {
             // Success: Notify the user and close the dialog
-            this.toastr.success('Boost saved successfully!', 'Success');
+            this.toastr.success(response.message, 'Success');
             this.dialogRef.close(true);
           } else {
             // Failure: Notify the user about failure

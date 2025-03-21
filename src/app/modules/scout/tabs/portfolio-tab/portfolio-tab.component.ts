@@ -93,7 +93,7 @@ export class PortfolioTabComponent {
       if (result !== undefined) {
         console.log(result)
         if(result.action == "added"){
-          this.showMatDialog("Players invited successfully", 'display')
+          this.showMatDialog(result.message, 'display')
         }
          console.log('Dialog result:', result);
       }

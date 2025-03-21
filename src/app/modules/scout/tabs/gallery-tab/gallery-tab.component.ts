@@ -7,6 +7,8 @@ import { DeletePopupComponent } from '../../delete-popup/delete-popup.component'
 import { ToastrService } from 'ngx-toastr';
 import { ScoutService } from '../../../../services/scout.service';
 import { environment } from '../../../../../environments/environment';
+import { WebPages } from '../../../../services/webpages.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'scout-gallery-tab',
@@ -14,6 +16,14 @@ import { environment } from '../../../../../environments/environment';
   styleUrl: './gallery-tab.component.scss'
 })
 export class GalleryTabComponent {
+
+  pleaseWait: string = '';
+  uploadingPhotos: string = '';
+  successTxt: string = '';
+  errorTxt: string = '';
+  deletingCoverImage: string = '';
+  Canceled: string = '';
+  coverImageDeletionCanceled: string = '';
   
   userId: any = '';
   userImages: any = [];
@@ -32,6 +42,8 @@ export class GalleryTabComponent {
   constructor(
     private toastr: ToastrService,
     private route: ActivatedRoute,
+    public webPages: WebPages,
+    private translateService: TranslateService,
     private scoutService: ScoutService,
     public dialog: MatDialog) { }
   
@@ -46,6 +58,11 @@ export class GalleryTabComponent {
     if(this.coverImage == ""){
       this.coverImage = this.defaultCoverImage;
     }
+
+    this.getToasterMsg();
+    this.webPages.languageId$.subscribe((data: any) => {
+      this.getToasterMsg();
+    });
   }
 
   getGalleryData(){
@@ -155,7 +172,7 @@ export class GalleryTabComponent {
 
   deleteImage(id: any) {
     try {
-      const loadingToast = this.toastr.info('Deleting image...', 'Please wait', { disableTimeOut: true });
+      const loadingToast = this.toastr.info(this.deletingCoverImage, this.pleaseWait, { disableTimeOut: true });
       let params = { id: [id] };
   
       this.scoutService.deleteGalleryImage(params).subscribe({
@@ -164,7 +181,9 @@ export class GalleryTabComponent {
           if (response && response.status) {
             const index = this.userImages.findIndex((x: any) => x.id === id);
             this.userImages.splice(index, 1);
-            this.toastr.success('Image deleted successfully!', 'Delete Success');
+            if (response.message != '') {
+              this.toastr.success(response.message, this.successTxt);
+            }
           } else {
             this.toastr.error('Failed to delete image.', 'Delete Failed');
             console.error('Invalid API response structure:', response);
@@ -224,5 +243,18 @@ export class GalleryTabComponent {
        console.error('There was an error downloading the file:', error);
      });
   } 
+
+
+  getToasterMsg() {
+    this.translateService.get(['pleaseWait', 'uploadingPhotos', 'success!', 'error', 'deletingCoverImage', 'coverImageDeletionCanceled', 'Canceled']).subscribe((translations) => {
+      this.pleaseWait = translations['pleaseWait'];
+      this.uploadingPhotos = translations['uploadingPhotos'];
+      this.successTxt = translations['successTxt'];
+      this.errorTxt = translations['errorTxt'];
+      this.deletingCoverImage = translations['deletingCoverImage'];
+      this.coverImageDeletionCanceled = translations['coverImageDeletionCanceled'];
+      this.Canceled = translations['Canceled'];
+    });
+  }
 
 }

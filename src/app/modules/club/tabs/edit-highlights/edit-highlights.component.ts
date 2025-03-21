@@ -129,11 +129,17 @@ export class EditHighlightsComponent {
   onSubmit(): void {
     const selectedData = [...this.selectedImageIds, ...this.selectedVideoIds];
 
+    let unset_all: any = false;
+    
+    if(selectedData.length == 0){
+      unset_all = true;
+    }
+
     // Show loading notification
     const loadingToast = this.toastr.info(this.savingSelectedFiles, this.pleaseWait, { disableTimeOut: true });
 
     // Send the selected IDs to your API or handle them as needed
-    this.ScoutService.toggleFeaturedFiles(selectedData).subscribe({
+    this.ScoutService.toggleFeaturedFiles(selectedData, unset_all).subscribe({
       next: (response) => {
         this.toastr.clear(loadingToast.toastId); // Clear loading notification
         if(response.message != ''){
