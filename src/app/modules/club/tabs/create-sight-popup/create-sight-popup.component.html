@@ -43,7 +43,7 @@
       <div class="form-group col-lg-8">
         <label for="talent" class="code-text">{{ 'inviteTalent' | translate }}</label>
         <div class="select-talent">
-          <input type="text" id="talent" class="cupen-btn d-flex justify-content-between code-text w-100" placeholder="Select from your favorites" readonly (click)="toggleInviteeOverlay()">
+          <input type="text" id="talent" class="cupen-btn d-flex justify-content-between code-text w-100" placeholder="{{ 'selectFromFavorites' | translate }}" readonly (click)="toggleInviteeOverlay()">
 
           <div class="add-chat w-100 inviteesWrap" [ngClass]="{'d-none': hideInviteeOverlay}">
             <div class="chat_box">
