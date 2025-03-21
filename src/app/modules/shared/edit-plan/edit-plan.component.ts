@@ -48,7 +48,9 @@ export class EditPlanComponent implements OnInit {
     // If this.data.plans is an array, assign it directly
     this.selectedPlan = this.data.selectedPlan;
     this.activePlans = this.data.activePlans;
-    this.allPlans = this.data.allPlans.filter((plan: any) => plan.interval === 'monthly');
+    if (this.data.allPlans && typeof this.data.allPlans != undefined) {
+      this.allPlans = this.data.allPlans.filter((plan: any) => plan.interval === 'monthly');
+    }
     this.populateCountries();
     this.defaultCard = this.data.defaultCard;
     this.selectedCountries = this.data.country;
@@ -59,10 +61,21 @@ export class EditPlanComponent implements OnInit {
   }
 
   populateCountries() {
-    console.log(this.data)
+    console.info(this.data)
+    // if(!this.data){
+
+    // }
+    if (!this.data || !this.data.plans) {
+      console.error("Error: this.data or this.data.plans is undefined");
+      return;
+    }
+
+    console.warn('Data Recived in EditPlanCOmponent ', this.data.plans);
+
     // Transform the 'plans' object into an array
     this.countries = Object.keys(this.data.plans).map(key => {
       const plan = this.data.plans[key];
+      console.info('Single Plan ', plan)
       return {
         id: plan.id,
         package_name: plan.package_name,
@@ -73,11 +86,13 @@ export class EditPlanComponent implements OnInit {
         year_id: plan.id,
         year_package_id: plan.year_package_id,
         monthly: plan.plans.monthly,
+        // monthly: plan.month_price,
         yearly: plan.plans.yearly,
+        // yearly: plan.year_price,
       };
     });
     this.selectedPlan = this.countries.find(country => country.id === this.selectedPlan.id);
-    console.log(this.selectedPlan)
+    console.log('this.countries', this.countries)
   }
 
 
@@ -105,8 +120,13 @@ export class EditPlanComponent implements OnInit {
     const dialogRef = this.dialog.open(CouponCodeAlertComponent, { width: '500px' });
 
     dialogRef.afterClosed().subscribe(result => {
+      console.info('After coupoun', result);
       if (result) {
-        const coupon = result;
+        let coupon = result;
+        if (result == 'proceed_to_checkout_without_coupon') {
+          coupon = '';
+        }
+
         this.toastr.info('Applying coupon, please wait...', 'Processing');
         this.redirectToCheckout(planId, coupon);
       } else if (result === null) {
@@ -130,10 +150,10 @@ export class EditPlanComponent implements OnInit {
     }
 
     const oldPlan = this.selectedCountries.find(c => c.package_name === this.selectedPlan.package_name) || null;
-
+    // console.warn(this.selectedPlan)
     if (this.selectedPlan) {
       const planId = this.isYearly ? this.selectedPlan.yearly : this.selectedPlan.monthly;
-
+      console.info('planId',planId);
       if (this.isYearly) {
         if (this.selectedPlan?.monthly?.is_package_active === 'active') {
           this.updatePlan(planId, this.isYearly, oldPlan);
@@ -356,5 +376,12 @@ export class EditPlanComponent implements OnInit {
     this.selectedCountries = this.selectedCountries.filter(c => c.id !== country.id);
   }
 
-
+  extractTextAfterDash(countryName: any) {
+    if (countryName == undefined || countryName == '' || countryName == 'undefined') {
+      // return countryName;
+    } else {
+      let parts = countryName.split(' - ');
+      return parts.length > 1 ? parts[1].trim() : '';
+    }
+  }
 }

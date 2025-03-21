@@ -743,6 +743,10 @@
                                     {{ 'requiredFieldsMessage' | translate }}
                                 </div>
 
+                                <div *ngIf="duplicateCreditionals" class="text-danger" [innerHtml]="duplicateCreditionalsError">
+                                    
+                                </div>
+
                                 <div class="col-lg-12">
                                     <div class="form-check checkbox">
                                         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"

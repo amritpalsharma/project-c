@@ -115,6 +115,7 @@ export class PlanComponent implements OnInit, OnDestroy {
     this.loadFeatures();
     this.langSubscription = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
       this.loadFeatures(); // Reload features when the language changes
+      this.fetchPlans(); // Reload features when the language changes
     });
   }
 
@@ -544,6 +545,18 @@ export class PlanComponent implements OnInit, OnDestroy {
 
   editPlanPopup(plans: any, country: any) {
     // this.fetchPlans();
+
+    // console.warn(plans)
+    // if (!plans.data && typeof plans.data !== undefined) {
+    //   console.info('Plans Data is Undifined');
+    // }
+    if (!plans.data || !plans.data && plans.length > 0) {
+      console.error("Error: this.data or this.data.plans is undefined Plan Component");
+      plans.data = plans;
+      // return;
+    }
+
+    console.info(plans);
     const dialogRef = this.dialog.open(EditPlanComponent, {
       width: '800px',
       data: {

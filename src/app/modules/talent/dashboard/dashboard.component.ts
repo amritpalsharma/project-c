@@ -159,7 +159,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   startIntroTour(lang: string) {
     // introJs().start().goToStep(1);
-    this.translateService.use(lang); // Change language before fetching translations
+    // this.translateService.use(lang); // Change language before fetching translations
     this.translateService.get([
       'profilePhoto',
       'uploadYourBestHeadshot',
@@ -363,7 +363,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
               } else if (response.data.user_data.lang == 8) {
                 dblang = 'se';
               }
-              this.startIntroTour(dblang);  // Start the tour after a slight delay
+              let dontShowAgain = localStorage.getItem('dontShowIntroTour');
+              if(dontShowAgain == 'true'){
+                //  don't show again
+              }else{
+                this.startIntroTour(dblang);  // Start the tour after a slight delay
+              }
             }, 0);
           }
 

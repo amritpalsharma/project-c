@@ -25,6 +25,7 @@ export class ChatComponent {
   constructor(private talkService: TalkService, private route: ActivatedRoute) { }
 
   async ngOnInit() {
+    this.checkAndRemoveOpenChat();
     const userDataString = localStorage.getItem('userData');
     const otherUserData = localStorage.getItem('otherUserData');
     if (userDataString) {
@@ -161,5 +162,19 @@ export class ChatComponent {
     this.user = {};
     this.users = [];
     this.userData = null;
+  }
+
+  checkAndRemoveOpenChat() {
+    // Get the current URL
+    let url = new URL(window.location.href);
+
+    // Check if 'open_chat' param exists and is set to 'true'
+    if (url.searchParams.get("open_chat") === "true") {
+      // Remove the 'open_chat' param from the URL
+      url.searchParams.delete("open_chat");
+
+      // Reload the page with the updated URL (without 'open_chat')
+      window.location.replace(url.toString());
+    }
   }
 }
