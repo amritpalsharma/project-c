@@ -5,7 +5,7 @@ import { UserService } from '../../../../services/user.service';
 import { ScoutService } from '../../../../services/scout.service';
 import { AddNewTalentComponent } from './add-new-talent/add-new-talent.component';
 import { EditNewTalentComponent } from './edit-new-talent/edit-new-talent.component';
-import { ChangeDetectionStrategy, inject, model,  } from '@angular/core';
+import { ChangeDetectionStrategy, inject, model, } from '@angular/core';
 import { ScoutPlayerViewPopupComponent } from '../../../admin/tabs/scout-player-view-popup/scout-player-view-popup.component';
 import { MessagePopupComponent } from '../../message-popup/message-popup.component';
 import { InviteScoutTalentPopupComponent } from '../../invite-scout-talent-popup/invite-scout-talent-popup.component';
@@ -24,18 +24,18 @@ export class PortfolioTabComponent {
 
   constructor(private route: ActivatedRoute, private scoutservice: ScoutService, private scoutService: ScoutService, public dialog: MatDialog, private router: Router) { }
 
-  userId:any = '';
-  user:any ;
-  scoutPlayers:any = [];
-  displayedColumns: string[] = ['Name', 'Language', 'Club', 'Contract Starts','Contract Expires', 'View', 'Delete'];
+  userId: any = '';
+  user: any;
+  scoutPlayers: any = [];
+  displayedColumns: string[] = ['Name', 'Language', 'Club', 'Contract Starts', 'Contract Expires', 'View', 'Delete'];
   isLoading = false;
-  uploadsPath : string ='';
-  loggedInUser:any = localStorage.getItem('userData');
-  logoPath : string ='';
-  idToBeDeleted:any = '';
+  uploadsPath: string = '';
+  loggedInUser: any = localStorage.getItem('userData');
+  logoPath: string = '';
+  idToBeDeleted: any = '';
   @Input() userData: any;
 
-  ngOnInit(): void{
+  ngOnInit(): void {
     this.loggedInUser = JSON.parse(this.loggedInUser);
     this.user = this.userData;
     this.userId = this.user.id;
@@ -74,15 +74,15 @@ export class PortfolioTabComponent {
   // }
 
 
-  inviteTalent(){
-    if(!this.checkRole()){
+  inviteTalent() {
+    if (!this.checkRole()) {
       return;
     }
-    const inviteDialog = this.dialog.open(InviteScoutTalentPopupComponent,{
+    const inviteDialog = this.dialog.open(InviteScoutTalentPopupComponent, {
       width: '600px',
-      height:'450px',
+      height: '450px',
       position: {
-        top:'70px'
+        top: '70px'
       },
       data: {
         scoutId: this.userId
@@ -92,18 +92,22 @@ export class PortfolioTabComponent {
     inviteDialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
         console.log(result)
-        if(result.action == "added"){
-          this.showMatDialog("Players invited successfully", 'display')
+        if (result.action == "added") {
+          if (result.message != '' && result.message != undefined) {
+            this.showMatDialog(result.message, 'display')
+          } else {
+            this.showMatDialog("Players invited successfully", 'display')
+          }
         }
-         console.log('Dialog result:', result);
+        console.log('Dialog result:', result);
       }
     });
   }
 
-  getScoutPlayers(){
+  getScoutPlayers() {
     this.isLoading = true;
     try {
-      this.scoutservice.getScoutPlayers().subscribe((response)=>{
+      this.scoutservice.getScoutPlayers().subscribe((response) => {
         if (response && response.status && response.data) {
           this.scoutPlayers = response.data.scoutPlayers;
           this.uploadsPath = response.data.uploadsPath;
@@ -120,16 +124,16 @@ export class PortfolioTabComponent {
     }
   }
 
-  navigateToProfile(playerId:any){
+  navigateToProfile(playerId: any) {
     this.router.navigate([`/view/talent/${playerId}`])
   }
 
-  viewScoutPlayer(playerId:any){
-    const playerViewDialog = this.dialog.open(EditNewTalentComponent,{
+  viewScoutPlayer(playerId: any) {
+    const playerViewDialog = this.dialog.open(EditNewTalentComponent, {
       width: '1000px',
       height: '600px',
       position: {
-        top:'30px'
+        top: '30px'
       },
       data: {
         playerId: playerId
@@ -138,36 +142,36 @@ export class PortfolioTabComponent {
 
     playerViewDialog.afterClosed().subscribe(result => {
       // if (result !== undefined) {
-        //  console.log('Dialog result:', result);
+      //  console.log('Dialog result:', result);
       // }
     });
   }
 
-  checkRole(){
-    if(!this.loggedInUser.isRepresentator){
+  checkRole() {
+    if (!this.loggedInUser.isRepresentator) {
       return true;
     }
-    if(this.loggedInUser.permission === 'admin.view' || this.loggedInUser.permission === 'admin.edit'){
+    if (this.loggedInUser.permission === 'admin.view' || this.loggedInUser.permission === 'admin.edit') {
       return false;
     }
     return true;
   }
 
-  confirmDeletion(id:any, firstName:any, lastName:any){
-    if(!this.checkRole()){
+  confirmDeletion(id: any, firstName: any, lastName: any) {
+    if (!this.checkRole()) {
       return;
     }
     this.idToBeDeleted = id; //id;
-    let name = firstName+" "+lastName;
+    let name = firstName + " " + lastName;
     console.log(id, firstName, lastName);
     this.showMatDialog("", "delete-confirmation", name);
   }
 
-  showMatDialog(message:string, action:string, name:any = ''){
-    const messageDialog = this.dialog.open(MessagePopupComponent,{
+  showMatDialog(message: string, action: string, name: any = '') {
+    const messageDialog = this.dialog.open(MessagePopupComponent, {
       width: '500px',
       position: {
-        top:'150px'
+        top: '150px'
       },
       data: {
         message: message,
@@ -178,22 +182,26 @@ export class PortfolioTabComponent {
 
     messageDialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
-        if(result.action == "delete-confirmed"){
+        if (result.action == "delete-confirmed") {
           this.deleteScoutPlayer();
         }
-      //  console.log('Dialog result:', result);
+        //  console.log('Dialog result:', result);
       }
     });
   }
 
-  deleteScoutPlayer(){
-    this.scoutservice.deleteScoutPlayer(this.idToBeDeleted).subscribe((response:any) => {
-      if(response && response.status){
-        this.showMatDialog('Player removed from Scout successfully!', 'display');
+  deleteScoutPlayer() {
+    this.scoutservice.deleteScoutPlayer(this.idToBeDeleted).subscribe((response: any) => {
+      if (response && response.status) {
+        if (response.message != '' && response.message != undefined) {
+          this.showMatDialog(response.message, 'display')
+        }else{
+          this.showMatDialog('Player removed from Scout successfully!', 'display');
+        }
         this.getScoutPlayers();
       }
     },
-    (error:any) => {
+      (error: any) => {
         console.error('Error deleting user:', error);
         this.showMatDialog('Error deleting user. Please try again.', 'display');
       }

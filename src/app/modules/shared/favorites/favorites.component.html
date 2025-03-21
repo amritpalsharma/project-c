@@ -177,7 +177,8 @@
                   <path d="M1.15341 7.43701H7.84716C8.44903 7.43701 8.74997 8.1958 8.32528 8.63818L4.97841 12.1245C4.71404 12.3999 4.28654 12.3999 4.02497 12.1245L0.675285 8.63818C0.250597 8.1958 0.551535 7.43701 1.15341 7.43701ZM8.32528 4.36084L4.97841 0.874512C4.71404 0.599121 4.28654 0.599121 4.02497 0.874512L0.675285 4.36084C0.250597 4.80322 0.551535 5.56201 1.15341 5.56201H7.84716C8.44903 5.56201 8.74997 4.80322 8.32528 4.36084Z" fill="#111418" class="td-icon-favourites"/>
                 </svg>
               </th>
-              <td mat-cell *matCellDef="let element"> {{ element.user_created_at | date:'dd.MM.yyyy - hh.mm a' }}</td>
+              <td mat-cell *matCellDef="let element"> {{convertTime(element.user_created_at)}}</td>
+              <!-- <td mat-cell *matCellDef="let element"> {{ element.user_created_at | date:'dd.MM.yyyy - hh.mm a' }}</td> -->
             </ng-container>
             <ng-container matColumnDef="View Profile">            
               <th mat-header-cell *matHeaderCellDef class="text-center">   {{'viewProfile' | translate}}  </th>

@@ -76,7 +76,8 @@ export class InviteScoutTalentPopupComponent {
         });
         this.dialogRef.close({
           action: 'added',
-          id: this.scoutId
+          id: this.scoutId,
+          message:response.message
         });
       } else {
         console.error('Invalid API response structure:', response);
