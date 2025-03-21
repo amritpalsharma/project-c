@@ -1319,5 +1319,6 @@
   "enterYourEmail": "Geben Sie Ihre E-Mail ein",
   "enterYourName": "Geben Sie Ihren Namen ein",
   "enterYourCouponCode": "Geben Sie Ihren Gutscheincode ein",
-  "enterYourCompanyName": "Geben Sie Ihren Firmennamen ein"
+  "enterYourCompanyName": "Geben Sie Ihren Firmennamen ein",
+  "deletePerformanceConfirm": "Are you sure you want to delete the selected reports?"
 }

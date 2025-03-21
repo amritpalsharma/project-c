@@ -1284,5 +1284,6 @@
   "enterYourEmail": "Ingrese su correo electrónico",
   "enterYourName": "Ingrese su nombre",
   "enterYourCouponCode": "Ingrese su código de cupón",
-  "enterYourCompanyName": "Ingrese el nombre de su empresa"
+  "enterYourCompanyName": "Ingrese el nombre de su empresa",
+  "deletePerformanceConfirm": "Are you sure you want to delete the selected reports?"
 }

@@ -1339,5 +1339,6 @@
   "enterYourEmail": "Ange din e-post",
   "enterYourName": "Ange ditt namn",
   "enterYourCouponCode": "Ange din rabattkod",
-  "enterYourCompanyName": "Ange ditt företagsnamn"
+  "enterYourCompanyName": "Ange ditt företagsnamn",
+  "deletePerformanceConfirm": "Are you sure you want to delete the selected reports?"
 }

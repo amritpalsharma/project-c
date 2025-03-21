@@ -1199,5 +1199,6 @@
   "enterYourEmail": "Indtast din e-mail",
   "enterYourName": "Indtast dit navn",
   "enterYourCouponCode": "Indtast din rabatkode",
-  "enterYourCompanyName": "Indtast dit firmanavn"
+  "enterYourCompanyName": "Indtast dit firmanavn",
+  "deletePerformanceConfirm": "Are you sure you want to delete the selected reports?"
 }

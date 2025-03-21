@@ -1333,5 +1333,6 @@
   "enterYourEmail": "Inserisci la tua email",
   "enterYourName": "Inserisci il tuo nome",
   "enterYourCouponCode": "Inserisci il tuo codice sconto",
-  "enterYourCompanyName": "Inserisci il nome della tua azienda"
+  "enterYourCompanyName": "Inserisci il nome della tua azienda",
+  "deletePerformanceConfirm": "Are you sure you want to delete the selected reports?"
 }
