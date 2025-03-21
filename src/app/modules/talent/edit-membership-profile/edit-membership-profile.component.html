@@ -75,7 +75,9 @@
                         <div class="card-shape"></div>
                         <div class="player-team-logo">
                             <div class="team-logo-bg"></div>
-                            <img alt="team-logo" src="assets\images\team-logo.png">
+                            <!-- <img alt="team-logo" src="assets\images\team-logo.png"> -->
+                            <img *ngIf="loggedInUser?.pre_current_club_logo_path" alt="team-logo" src="{{loggedInUser?.pre_current_club_logo_path}}">
+                            <img *ngIf="!loggedInUser?.pre_current_club_logo_path" alt="team-logo" src="assets\images\team-logo.png">
                         </div>
                         <div class="flag_box">
                             <img src="https://api.socceryou.ch/uploads/logos/Afghanistan.svg">

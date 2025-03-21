@@ -331,8 +331,8 @@ export class TalentService {
 
   deleteGalleryImage(params: any): Observable<any> {
     const headers = this.headers();
-
-    return this.http.post<any>(`${this.apiUrl}user/delete-gallery-file`, params, { headers });
+    let lang_id = localStorage.getItem('lang_id');
+    return this.http.post<any>(`${this.apiUrl}user/delete-gallery-file/${lang_id}`, params, { headers });
   }
 
   updateTransferDetails(transferId: number, transferData: any): Observable<any> {
@@ -453,13 +453,17 @@ export class TalentService {
     );
   }
 
-  toggleFeaturedFiles(reportIds: any[]): Observable<any> {
+  toggleFeaturedFiles(reportIds: any[], unset_all: any): Observable<any> {
     const headers = this.headers();
 
     let params = new HttpParams();
     reportIds.forEach(id => {
       params = params.append('id[]', id);  // Append each ID to the 'ids[]' query param
     });
+
+    if(unset_all){
+      params = params.append('unset_all', true);
+    }
 
     return this.http.post(`${this.apiUrl}user/set-featured-file`, params, { headers });
   }
