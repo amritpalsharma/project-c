@@ -96,7 +96,7 @@
           </div>
 
           <!-- premium plans -->
-          <div class="col-lg-4 my-2 ">
+          <div class="col-lg-4 my-2 d-none">
             <div class="subscription-switch mb-2">
               <label class="switch_off cursor-pointer">
                 {{'billedMonthly' | translate}}</label>
@@ -211,8 +211,7 @@
                 </div>
                 <div class="premium-currency">
                   <h6>
-                    {{ selectedPlan.isYearly ?  countryYearlyArr?.price : countryMonthlyArr?.price }}
-                    <sub class="premium-month_title">.-{{ selectedPlan?.currency }} / {{ selectedPlan?.interval=='yearly' ? ('year'
+                    {{ selectedPlan.isYearly ?  countryYearlyArr?.price : countryMonthlyArr?.price }}<sub class="premium-month_title">.-{{ selectedPlan?.currency }} / {{ selectedPlan?.interval=='yearly' ? ('year'
                       | translate) :
                       ('month' | translate) }}</sub>
                   </h6>
