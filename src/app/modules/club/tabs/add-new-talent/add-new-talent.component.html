@@ -13,7 +13,7 @@
       <div class="text-center w-100 py-1 px-3 body-background">
         <mat-form-field class="example-chip-list inbox-wrapper bg-color-2 w-100">
           <mat-chip-grid #chipGrid aria-label="User selection" class="messanger-selector bg-color-2 w-100">
-            <p>{{ 'to:' | translate }}</p>
+            <p>{{ 'to' | translate }}:</p>
             <mat-chip-row *ngFor="let user of users; let i = index" (removed)="remove(user)">
               <img width="20" height="20" style="border-radius: 20px;" class="img-list"
                 *ngIf="!user.meta.profile_image_path" src="../../../../../assets/images/1.png">

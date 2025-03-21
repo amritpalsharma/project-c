@@ -4,7 +4,7 @@
       <div class="col-md-12 p-0">
         <div  class="personal_edit">
           <div class="dialog-header m-auto">
-            <h2>{{'addPerformaceDetails' | translate}}</h2>
+            <h2>{{'addNewPerformance' | translate}}</h2>
           </div>
           
           <div class="close_buttons">
@@ -29,7 +29,7 @@
                 type="text"
                 id="currentTeam"
                 name="currentTeam"
-                placeholder="Type to Search"
+                placeholder="{{'typeToSearch' | translate}}"
                 [(ngModel)]="currentTeam"
                 #currentTeamsField="ngModel"
                 (input)="onSearchTeams()"
@@ -63,7 +63,7 @@
   
           <div class="row">
             <div class="form-group col-lg-6">
-              <label for="session" class="form-label">{{'session' | translate}}</label>
+              <label for="session" class="form-label">{{'saison' | translate}}</label>
               <input type="text" id="session" name="session" [(ngModel)]="performance.session" required>
             </div>
             <div class="form-group col-lg-6">

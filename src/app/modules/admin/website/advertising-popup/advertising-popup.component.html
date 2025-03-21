@@ -157,7 +157,7 @@
               <!-- <div class="cupen-btn-date-1" > -->
                 <mat-form-field class="meta-date">
                   <mat-label>{{ 'chooseADate' | translate }}</mat-label>
-                  <input [min]="startDate" readonly [disabled]="!this.startDate || disableEndDate" matInput [matDatepicker]="dp1" [(ngModel)]="endDate"
+                  <input [min]="selectedDate()" readonly [disabled]="!this.startDate || disableEndDate" matInput [matDatepicker]="dp1" [(ngModel)]="endDate"
                     (dateChange)="onDateChange('end', $event)">
                   <mat-datepicker-toggle matIconPrefix [for]="dp1"></mat-datepicker-toggle>
                   <mat-datepicker #dp1></mat-datepicker>

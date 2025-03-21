@@ -164,6 +164,13 @@ export class AdvertisingPopupComponent   {
     this.imageUrl = null;
   }
 
+  selectedDate(){
+    const todayDate = new Date(this.today);
+    const startDate = new Date(this.startDate);
+
+    return todayDate > startDate ? this.today : this.startDate;
+  }
+
 
   validateAdvertisementForm(){
 
@@ -257,6 +264,12 @@ export class AdvertisingPopupComponent   {
   }
 
   updateAd():any {
+
+    if(this.imageToUpload == '' && this.imageUrl != ''){
+      this.dialogRef.close();
+      return;
+    }
+
     
     let validForm:any = this.validateAdvertisementForm();
     if(validForm){

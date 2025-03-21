@@ -1,7 +1,7 @@
 <div class="dialog-container">
   <div class="personal_edit">
     <div class="dialog-header m-auto">
-      <h2>{{ 'editUserPersonalDetails' | translate }}</h2>
+      <h2>{{ 'editPersonalDetails' | translate }}</h2>
     </div>
     <div class="close_buttons">
       <button class="close-btn" (click)="onCancel()">X</button>
@@ -14,13 +14,13 @@
       <div class="row">
         <!-- Club Name -->
         <div class="form-group col-lg-6">
-          <label for="company_name">{{ 'companyName' | translate }}:</label>
+          <label for="company_name">{{ 'companyName' | translate }}</label>
           <input type="text" id="company_name" name="company_name" [(ngModel)]="company_name" required>
         </div>
 
         <!-- Formation Date -->
         <div class="form-group col-lg-6">
-          <label for="designation">{{ 'designation' | translate }}:</label>
+          <label for="designation">{{ 'designation' | translate }}</label>
           <input type="text" id="designation" name="designation" [(ngModel)]="designation" required>
         </div>
       </div>
@@ -28,13 +28,13 @@
       <div class="row">
         <!-- City -->
         <div class="form-group col-lg-6">
-          <label for="city">City:</label>
+          <label for="city">{{ 'city' | translate }}</label>
           <input type="text" id="city" name="city" [(ngModel)]="city" required>
         </div>
 
         <!-- Contact Number -->
         <div class="form-group col-lg-6">
-          <label for="contact_number">{{ 'contactNumber' | translate }}:</label>
+          <label for="contact_number">{{ 'contactNumber' | translate }}</label>
           <input type="tel" id="contact_number" name="contact_number" [(ngModel)]="contact_number" required>
         </div>
       </div>
@@ -42,13 +42,13 @@
       <div class="row">
         <!-- Website -->
         <div class="form-group col-lg-6">
-          <label for="website">{{ 'website' | translate }}:</label>
+          <label for="website">{{ 'website' | translate }}</label>
           <input type="url" id="website" name="website" [(ngModel)]="website" required>
         </div>
 
         <!-- Zipcode -->
         <div class="form-group col-lg-6">
-          <label for="zipcode">{{ 'zipCode' | translate }}:</label>
+          <label for="zipcode">{{ 'zipCode' | translate }}</label>
           <input type="text" id="zipcode" name="zipcode" [(ngModel)]="zipcode" required>
         </div>
       </div>
@@ -56,7 +56,7 @@
       <div class="row">
         <!-- Address -->
         <div class="form-group col-lg-12">
-          <label for="address">{{ 'address' | translate }}:</label>
+          <label for="address">{{ 'address' | translate }}</label>
           <textarea id="address" name="address" [(ngModel)]="address" required></textarea>
         </div>
       </div>

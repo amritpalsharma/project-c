@@ -15,9 +15,11 @@ export class UploadPopupComponent {
   userId: any = '';
   uploadedFiles:any = [];
   uploadResponse:any = [];
+  file: any = 'all';
   constructor(private scoutService: ScoutService, public dialogRef : MatDialogRef<UploadPopupComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
       this.userId = data.userId;
+      this.file = data.file ? data.file : 'all';
   }
 
   files: File[] = [];

@@ -109,9 +109,9 @@
                         [(ngModel)]="selectedAudienceIds"
                         (selectionChange)="updateSelectedAudiences()"
                         multiple
-                        placeholder="Select"
+                        placeholder="{{'select' | translate}}"
                       >
-                        <mat-option *ngFor="let audience of audiences" [value]="audience.id">
+                        <mat-option *ngFor="let audience of audiences" [value]="audience.target_role">
                           {{ audience.role_name }}
                         </mat-option>
                       </mat-select>
@@ -124,7 +124,7 @@
                         <span>
                           <button
                             class="explore-chip_cut"
-                            (click)="removeAudience(audience.id)"
+                            (click)="removeAudience(audience.target_role)"
                           >
                             <svg
                               width="13px"

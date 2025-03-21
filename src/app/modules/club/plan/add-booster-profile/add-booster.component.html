@@ -99,7 +99,7 @@
                     <div class="form-group col-lg-8">
                         <mat-label>{{ 'selectTargetAudience' | translate }}</mat-label>
                         <mat-select ngClass="mat-options" [(ngModel)]="selectedAudienceIds" (selectionChange)="applyFilter()" multiple
-                            placeholder="Select">
+                            placeholder="{{ 'select' | translate }}">
                             <mat-option *ngFor="let audience of audiences" [value]="audience.id">
                                 {{ audience.role }}
                             </mat-option>

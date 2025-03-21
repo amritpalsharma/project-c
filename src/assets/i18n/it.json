@@ -1327,7 +1327,7 @@
   "roleIsRequired": "Il ruolo è richiesto",
   "deleteRepresentorConfirmation": "È sicuro di voler eliminare questo membro del team?",
   "deletingAccount": "Eliminazione dell'account",
-  "deletingText": "Per confermare l'operazione, digitare “CANCELLARE”",
+  "deletingText": "Per confermare, digita “ELIMINARE”",
   "selectDateTime": "Seleziona data e ora",
   "enterCountryName": "Inserisci il paese",
   "enterYourEmail": "Inserisci la tua email",
@@ -1335,4 +1335,4 @@
   "enterYourCouponCode": "Inserisci il tuo codice sconto",
   "enterYourCompanyName": "Inserisci il nome della tua azienda",
   "deletePerformanceConfirm": "Are you sure you want to delete the selected reports?"
-}
+} 

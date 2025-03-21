@@ -506,13 +506,15 @@ export class TalentService {
   }
 
   // Method to track boosted profile views
-  updateBoosterAudience(audienceIds: any[]): Observable<any> {
+  updateBoosterAudience(audienceIds: any[], langId: any): Observable<any> {
     const headers = this.headers();
 
     let params = new HttpParams();
     audienceIds.forEach(id => {
       params = params.append('booster_audience[]', id);  // Append each ID to the 'ids[]' query param
     });
+
+    params = params.append('lang', langId);
 
     // Send POST request with payload in body
     return this.http.post(`${this.apiUrl}user/update-booster-audience`, params, { headers });

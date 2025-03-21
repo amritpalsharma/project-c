@@ -324,7 +324,7 @@ export class DashboardComponent implements OnInit , OnDestroy {
           // }
 
           this.isPremium = this.user?.active_subscriptions?.premium.length > 0 ? true : false;
-          this.isPremium = true;
+          // this.isPremium = true;
           this.premium = this.user.active_subscriptions?.premium?.length > 0 ? true : false;
           this.booster = this.user.active_subscriptions?.booster?.length > 0 ? true : false;
           this.activeDomains = this.user.active_subscriptions?.country?.length > 0 ? true : false;

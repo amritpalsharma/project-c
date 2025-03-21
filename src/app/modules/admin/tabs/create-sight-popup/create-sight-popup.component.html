@@ -44,7 +44,7 @@
       <div class="col-lg-4 px-2">
         <label for="date-select" class="code-text">{{ 'date' | translate }}</label>
         <div class="cupen-btn sighting-cal" style="min-width: 170px;">
-          <input type="text" datetimepicker placeholder="Select date & time" [format]="'MM-DD-YYYY hh:mm A'"
+          <input type="text" datetimepicker placeholder="{{'selectDateTime' | translate}}" [format]="'MM-DD-YYYY hh:mm A'"
             [(ngModel)]="dateTime">
 
           <!-- <input type="date" id="date-select" class="custom-date-input code-text"> -->
@@ -66,7 +66,7 @@
         <label for="talent" class="code-text">{{ 'inviteTalent' | translate }}</label>
         <div class="select-talent">
           <input type="text" id="talent" class="cupen-btn d-flex justify-content-between code-text w-100"
-            placeholder="Select from your favorites" readonly (click)="toggleInviteeOverlay()">
+            placeholder="{{selectFromFavorites' | translate}}" readonly (click)="toggleInviteeOverlay()">
           <!-- <select name="invite-talent" id="talent" class=""
             style="font-size: 14px;">
             <option value="talent">Select Talent</option>

@@ -178,6 +178,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     if(da){
       this.selectedDomain = da;
     }
+    else{
+      this.selectedDomain = '1';
+      localStorage.setItem('selected_domain', '1');
+    }
 
     let lang_id = localStorage.getItem('lang_id');
 

@@ -296,13 +296,15 @@ export class ScoutService {
   }
 
   // Method to track boosted profile views
-  updateBoosterAudience(audienceIds: any[]): Observable<any> {
+  updateBoosterAudience(audienceIds: any[], langId: any): Observable<any> {
     const headers = this.headers();
 
     let params = new HttpParams();
     audienceIds.forEach(id => {
       params = params.append('booster_audience[]', id);  // Append each ID to the 'ids[]' query param
     });
+
+    params = params.append('lang', langId);
 
     // Send POST request with payload in body
     return this.http.post(`${this.apiUrl}user/update-booster-audience`, params, { headers });
@@ -658,13 +660,17 @@ export class ScoutService {
     );
   }
 
-  toggleFeaturedFiles(reportIds: any[]): Observable<any> {
+  toggleFeaturedFiles(reportIds: any[], unset_all: any): Observable<any> {
     const headers = this.headers();
 
     let params = new HttpParams();
     reportIds.forEach(id => {
       params = params.append('id[]', id);  // Append each ID to the 'ids[]' query param
     });
+
+    if(unset_all){
+      params = params.append('unset_all', true);
+    }
 
     let lang_id = localStorage.getItem('lang_id');
 

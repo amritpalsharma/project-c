@@ -115,16 +115,11 @@ export class EditHighlightsComponent {
   onSubmit(): void {
     const selectedData = [...this.selectedImageIds, ...this.selectedVideoIds];
 
-    const formData = new FormData();
-
     let unset_all: any = false;
     
     if(selectedData.length == 0){
       unset_all = true;
     }
-
-    console.log("check here", this.selectedImageIds, this.selectedVideoIds, selectedData)
-    // return;
 
     // Show loading notification
     const loadingToast = this.toastr.info('Saving selected files...', 'Please wait', { disableTimeOut: true });
