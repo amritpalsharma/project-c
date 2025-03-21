@@ -20,6 +20,17 @@ button.btn.btn-secondary:hover {
   font-family: Libre Franklin, sans-serif !important;
 }
 
+td.cdk-column-Membership.mat-column-Membership {
+  text-align: left !important;
+}
+
+.table-users td {
+.bg_pending, .bg_reject, .bg_success  {
+    width: 120px;
+    text-align: center;
+    display: inline-block;
+}
+}
 
 
 @media(max-width: 425px){
@@ -70,19 +81,10 @@ button.btn.btn-secondary:hover {
   width:20px;
 }
 
-// .pic-with-name{
-//   flex-direction: column;
-//   align-items: normal !important;
-// }
 .user-approved-icon {
   margin-top: 17px !important;
   margin-left: 36px !important;
 }
-// .table td, .table td span {
-//   color: #111418;
-//   font-size: 10px !important;
-//   font-weight: 400 !important;
-// }
 .table_img {
   width: 35px;
   height:35px;
@@ -96,7 +98,6 @@ button.btn.btn-secondary:hover {
   }
 
   // screen size 425 end
-
   @media(max-width: 360px){
 
     .btn-outline-white {

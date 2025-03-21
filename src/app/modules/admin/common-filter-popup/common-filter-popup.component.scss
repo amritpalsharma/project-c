@@ -1,27 +1,41 @@
 .filter-button{
-    padding: 1px 0px !important;
-    width: 135px;
-    border-radius: 5px;
-    font-size: 13px;
-    font-weight: 400;
-    background-color: #c6c7c8;
-  
-  }
-  .filter-text{
-    font-size: 13px;
-  }
-  .filter-button-2{
-    padding: 1px 0px !important;
-    border-radius: 5px;
-    width: 86px;
-    font-size: 13px;
-    font-weight: 400;
-    background-color: #c6c7c8;
-  }
-  .filter-bottom-button{
-  position: relative;
-  top: 7px;
-  }
+  padding: 5px 0px !important;
+  width: 135px;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: 400;
+  background-color: #eceff2;
+  border: 1px solid #6fb95d;
+  overflow: hidden;
+}
+.filter-text{
+  font-size: 13px;
+}
+.filter-button-2{
+  padding: 5px 0px !important;
+  border-radius: 5px;
+  width: 86px;
+  font-size: 13px;
+  font-weight: 400;
+  background-color: #eceff2;
+  border: 1px solid #6fb95d;
+  overflow: hidden;
+}
+.filter-bottom-button{
+position: relative;
+top: 7px;
+}
+
+.filter-button select {
+  background: transparent !important;
+  padding: 0;
+  border: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+label.activefilter{
+  background: #6fb95d;
+}
   
   .Launch{
     background-color: #6FB95D;
@@ -30,7 +44,7 @@
       font-weight: 700;
       border-radius: 10px;
       margin: 3px;
-      padding: 6px 24px !important;
+      padding: 6px 15px !important;
   }
   .btn-delete{
     color: #FD5454;
@@ -42,7 +56,8 @@
   }
   .filetr-child-button{
     display: flex;
-    column-gap: 40px;
+    justify-content: space-around;
+    column-gap: 10px;
   }
   input[type="radio"] {
     display: none;
@@ -51,37 +66,4 @@
   input[type="radio"]:checked + .btn-light {
     background-color: #007bff ;
     color: white;
-  }
-  
-  
-  // div#cdk-overlay-0 {
-  //   width: 350px;
-  //     height: 550px;
-  //     position: static;
-  //     margin-top: 151px;
-  //     margin-right: 22px
-  // }
-  
-  
-  label.activefilter{
-    background: #023A4A;
-    color: #ffffff;
-  }
-  
-  select.location-filter.activefilter{
-    background: #023A4A;
-    color: #ffffff;
-  }
-  
-  select.location-filter{
-    background: #c6c7c8;
-    border: none;
-    outline: none !important;
-  }
-  
-  
-  select.location-filter option{
-    background: #ffffff;
-    color: #333333;
-    // outline: none !important;
   }
