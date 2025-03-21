@@ -76,9 +76,15 @@ export class EditHighlightsComponent {
     if(!this.loggedInUser.isRepresentator){
       return true;
     }
-    if(this.loggedInUser.permission === 'admin.view'){
+    if(this.loggedInUser.permission === 'admin.view' || this.loggedInUser.permission === 'admin.edit'){
       return false;
     }
+    // else{
+    //   alert('what')
+    // }
+    // if(this.loggedInUser.permission === 'admin.edit'){
+    //   return true;
+    // }
     return true;
   }
 
@@ -124,6 +130,9 @@ export class EditHighlightsComponent {
   // Called when the save button is clicked
   onSubmit(): void {
     const selectedData = [...this.selectedImageIds, ...this.selectedVideoIds];
+
+    console.log("check here", this.selectedImageIds, this.selectedVideoIds, selectedData)
+    return;
 
     // Show loading notification
     const loadingToast = this.toastr.info('Saving selected files...', 'Please wait', { disableTimeOut: true });

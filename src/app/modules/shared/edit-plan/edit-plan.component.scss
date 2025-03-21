@@ -36,6 +36,7 @@
 .explore-chip_cut {
     background: inherit;
     border: none;
+    display: inline-block !important;
 }
 .explore-chip_cut svg {
     fill: #fff;
@@ -160,8 +161,4 @@
     .buy-btn {
         gap: 20px !important;
     }
-}
-
-.dark-theme .mat-mdc-select-placeholder {
-    color: #fff !important;
 }

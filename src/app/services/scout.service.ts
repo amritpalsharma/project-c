@@ -129,7 +129,7 @@ export class ScoutService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
-    return this.http.post<any>(`${this.apiUrl2}scout/add-company-history`, { company_history: history }, { headers });
+    return this.http.post<any>(`${this.apiUrl2}scout/edit-company-history`, { company_history: history }, { headers });
     // return this.http.post<any>(`${this.apiUrl2}scout/edit-company-history`, {company_history: history}, { headers });
   }
 
@@ -549,7 +549,7 @@ export class ScoutService {
     return this.http.post<any>(`${this.apiUrl}user/upload-profile-image/${lang_id}`, formdata, { headers });
   }
 
-  uploadGalleryImages(formdata: any): Observable<any> {
+  uploadGalleryImages(formdata: any): Observable<any> { 
     const headers = this.headers();
     let lang_id = localStorage.getItem('lang_id');
     return this.http.post<any>(`${this.apiUrl}user/upload-gallery-image/${lang_id}`, formdata, { headers });

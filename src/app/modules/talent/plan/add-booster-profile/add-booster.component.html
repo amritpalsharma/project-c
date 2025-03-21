@@ -29,7 +29,8 @@
                                 {{ loggedInUser.first_name }} {{ loggedInUser.last_name }}
                             </a>
                         </div>
-
+                        <div class="card-shape"></div>
+                        
                         <div class="player-team-logo">
                             <div class="team-logo-bg"></div>
                             <img alt="team-logo" src="assets\images\team-logo.png">
@@ -63,12 +64,13 @@
                             <img src="../../../../../assets/images/default/talent-profile-default.png" alt=""
                                 *ngIf="!loggedInUser?.meta || !loggedInUser?.meta?.profile_image_path" class="" />
                         </div>
-
                         <div class="player-names">
                             <a href="#">
                                 {{ loggedInUser.first_name }} {{ loggedInUser.last_name }}
                             </a>
                         </div>
+                        <div class="card-shape"></div>
+
                         <div class="player-team-logo">
                             <div class="team-logo-bg"></div>
                             <img alt="team-logo" src="assets\images\team-logo.png">
@@ -99,7 +101,7 @@
                     <div class="form-group col-lg-8">
                         <mat-label>{{ 'selectTargetAudience' | translate }}</mat-label>
                         <mat-select ngClass="mat-options" [(ngModel)]="selectedAudienceIds" (selectionChange)="applyFilter()" multiple
-                            placeholder="Select">
+                            placeholder="{{ 'select' | translate }}">
                             <mat-option *ngFor="let audience of audiences" [value]="audience.id">
                                 {{ audience.role }}
                             </mat-option>

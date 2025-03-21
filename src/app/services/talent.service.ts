@@ -453,13 +453,17 @@ export class TalentService {
     );
   }
 
-  toggleFeaturedFiles(reportIds: any[]): Observable<any> {
+  toggleFeaturedFiles(reportIds: any[], unset_all: any): Observable<any> {
     const headers = this.headers();
 
     let params = new HttpParams();
     reportIds.forEach(id => {
       params = params.append('id[]', id);  // Append each ID to the 'ids[]' query param
     });
+
+    if(unset_all){
+      params = params.append('unset_all', true);
+    }
 
     return this.http.post(`${this.apiUrl}user/set-featured-file`, params, { headers });
   }

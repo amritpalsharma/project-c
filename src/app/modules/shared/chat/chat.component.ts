@@ -20,8 +20,8 @@ export class ChatComponent {
   newUser: { id: string; name: string; email: string; photoUrl: string }[] = [];
   createdGroups: { groupId: string, groupName: string }[] = [];
   user: any = {};
-
   chatBox: any;
+  chatSession: any;
   constructor(private talkService: TalkService, private route: ActivatedRoute) { }
 
   async ngOnInit() {
@@ -38,21 +38,25 @@ export class ChatComponent {
         role: (this.userData.role == '1') ? "hidden" : "default"
       };
       const session = await this.talkService.init(this.user);
+      this.chatSession = session;
       // const chatbox = session.createInbox();
-      this.chatBox = session.createInbox();
+      this.chatBox = this.chatSession.createInbox();
 
       // Defer mounting chatbox until next event loop cycle
       setTimeout(() => {
         this.chatBox.mount(document.getElementById('talkjs-container'));
+        // chatbox.mount(document.getElementById('talkjs-container'));
       }, 0);
     }
 
-    if (otherUserData && otherUserData != null) {
+    if (otherUserData) {
       const otherUser = JSON.parse(otherUserData);
       console.log("Starting chat with:", otherUser);
+      // window.location.reload();
       this.startOneOnOneChat(otherUser);
+
       // Clear localStorage after using it to avoid unnecessary chat start on next visit
-      localStorage.removeItem('otherUserData');
+      //localStorage.removeItem('otherUserData');
     }
 
     const theme = localStorage.getItem('theme');
@@ -66,7 +70,6 @@ export class ChatComponent {
 
   // Start a one-on-one chat
   startOneOnOneChat(user: any) {
-
     this.talkService.createOneOnOneConversation(user.id, user.name, user.email, user.photoUrl)
       .then(() => {
         this.talkService.mountChat('talkjs-container');
@@ -134,12 +137,29 @@ export class ChatComponent {
   }
 
   ngOnDestroy() {
+    localStorage.removeItem('otherUserData');
+    // Clean up the TalkJS chatbox
     if (this.chatBox) {
       this.chatBox.destroy();
-      this.chatBox = null;
+      this.chatBox = null; // Reset chatbox reference to null
     }
+
+    // Clean up the TalkJS session
+    if (this.chatSession) { //this.chatSession
+      this.chatSession.destroy();
+      this.chatSession = null; // Reset session reference to null
+    }
+
+    // Ensure any TalkJS UI elements are removed from the DOM
+    const existingContainer = document.getElementById('talkjs-container');
+    if (existingContainer) {
+      existingContainer.innerHTML = ''; // Clear the content of the container
+    }
+
+    // Optional: Reset any other component-related data or properties
+    // For example, you might want to reset user-specific data
+    this.user = {};
+    this.users = [];
+    this.userData = null;
   }
 }
-
-
-

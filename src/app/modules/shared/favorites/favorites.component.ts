@@ -98,7 +98,7 @@ export class FavoritesComponent {
     if(!this.loggedInUser.isRepresentator){
       return true;
     }
-    if(this.loggedInUser.permission === 'admin.view'){
+    if(this.loggedInUser.permission === 'admin.view' || this.loggedInUser.permission === 'admin.edit'){
       return false;
     }
     return true;
@@ -214,7 +214,7 @@ export class FavoritesComponent {
 
   showFilterPopup(): void {
     const filterDialog = this.dialog.open(CommonFilterPopupComponent, {
-      height: '340px',
+      height: '210px',
       width: '300px',
       position: {
         right: '30px',

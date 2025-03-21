@@ -423,7 +423,7 @@
                     <div class="col-6">
                         <div class="mb-3">
                             <label class="form-label">{{ 'passwordLabel' | translate }}</label>
-                            <input type="password" class="form-control" placeholder="Password" name="password"
+                            <input type="password" class="form-control" placeholder="{{ 'passwordPlaceholder' | translate }}" name="password"
                                 required />
                             <div class="text-danger">
                                 {{ 'passwordLabel' | translate }}
@@ -433,7 +433,7 @@
                     <div class="col-6">
                         <div class="mb-3">
                             <label class="form-label">{{ 'confirmPasswordLabel' | translate }}</label>
-                            <input type="password" class="form-control" placeholder="ConfirmPassword"
+                            <input type="password" class="form-control" placeholder="{{ 'confirmPasswordPlaceholder' | translate }}"
                                 name="confirmPassword" required />
                         </div>
                     </div>
@@ -613,7 +613,7 @@
                                             }}</label>
                                         <input type="text" id="companyName" class="form-control"
                                             [(ngModel)]="companyName" (input)="onCompanyNameChange($event)"
-                                            placeholder="Enter your company name" required />
+                                            placeholder="{{ 'enterYourCompanyName' | translate }}" required />
                                     </div>
                                 </div>
 
@@ -730,7 +730,7 @@
                                                 {{ 'passwordRequiredError' | translate }}
                                             </ng-container>
                                             <ng-container *ngIf="password !== confirmPassword">
-                                                {{ confirmPasswordError' | translate }}
+                                                {{ 'confirmPasswordError' | translate }}
                                             </ng-container>
                                         </div>
                                     </div>

@@ -17,9 +17,9 @@
     <div class="permission-item d-flex align-items-center justify-content-between">
       <label for="newsletter" class="mb-0"><b>{{'newsLetter' | translate}}</b></label>
       <label class="switch">
-        <input type="checkbox" id="newsletter" name="newsletter" [checked]="loggedInUser.newsletter == 1"
+        <input type="checkbox"  *ngIf="checkRole()" id="newsletter" name="newsletter" [checked]="loggedInUser.newsletter == 1"
           (change)="onNewsletterToggle($event)">
-        <span class="slider round"></span>
+        <span  *ngIf="checkRole()" class="slider round"></span>
       </label>
     </div>
     <p>{{'appSettingText' | translate}}</p>
@@ -33,7 +33,7 @@
     </div>
     <div class="acount_del-item d-flex align-items-center justify-content-between flex-wrap">
       <p>{{ 'deleteAccountDesc' | translate}}</p>
-      <button id="DeleteAccount" type="button" class="button acount_delete_btn" (click)="confirmDeleteProfile(1)">{{'deleteMyAccount' | translate}}</button>
+      <button *ngIf="checkRole()" id="DeleteAccount" type="button" class="button acount_delete_btn" (click)="confirmDeleteProfile(1)">{{'deleteMyAccount' | translate}}</button>
     </div>
   </div>
 </div>

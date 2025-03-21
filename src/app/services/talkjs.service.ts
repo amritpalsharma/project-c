@@ -204,10 +204,5 @@ export class TalkService {
     this.inbox.mount(document.getElementById('talkjs-container') as HTMLElement);
   }
 
-  destroyChatbox() {
-    if (this.inbox) {
-      this.inbox.destroy();
-      this.inbox = undefined;
-    }
-  }
+
 }

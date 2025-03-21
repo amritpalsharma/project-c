@@ -34,7 +34,7 @@
         <div class="row align-items-center document-title_box">
             <div class="form-group col-lg-6 ">
                 <label for="document-title">Document Title</label> <br>
-                <input type="text" id="document-title" [(ngModel)]="documentTitle" placeholder="Enter Document Title" />
+                <input type="text" id="document-title" [(ngModel)]="documentTitle" placeholder="{{ 'enterDocumentTitle' | translate }}" />
             </div>
             <div class="col-lg-6 choose-file-name" id="upload-file-process"  *ngIf="selectedFile" >
                 <div class="choose-file-box d-flex align-items-center justify-content-between" >
