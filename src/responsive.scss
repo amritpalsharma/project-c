@@ -1,9 +1,15 @@
 
 @media (min-width: 992px) {
-    .bottom_box {
+    .mobile-sidebar-active .sidebar .bottom_box {
         position: absolute;
         bottom: 0;
         width: 100%;
+    }
+    .compact-sidebar .sidebar .bottom_box {
+        position: absolute;
+        bottom: 20px;
+        width: 80px;
+        transition: .4s all;
     }
     .it .website-code nav.navbar li.nav-item .nav-link, .fr .website-code nav.navbar li.nav-item .nav-link,
     .es .website-code nav.navbar li.nav-item .nav-link, .pt .website-code nav.navbar li.nav-item .nav-link,
