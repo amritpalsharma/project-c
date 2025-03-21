@@ -363,7 +363,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
               } else if (response.data.user_data.lang == 8) {
                 dblang = 'se';
               }
-              this.startIntroTour(dblang);  // Start the tour after a slight delay
+              let dontShowAgain = localStorage.getItem('dontShowIntroTour');
+              if(dontShowAgain == 'true'){
+                //  don't show again
+              }else{
+                this.startIntroTour(dblang);  // Start the tour after a slight delay
+              }
             }, 0);
           }
 
