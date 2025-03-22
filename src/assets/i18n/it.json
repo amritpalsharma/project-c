@@ -894,8 +894,9 @@
   "monthly": "Monthly",
   "yearly": "Yearly",
   "editPlan-text": "You e will e be e charged e a e percentage e of e a e subscriptions e cost e to e reflect e partial e use e on e the e basis e of e prorata.",
-  "total": "Total",
+  "total": "Totale",
   "buyNow": "Buy e now",
+  "includeVAT": "",
   "editUserPersonalDetails": "Edit e user e personal e details",
   "clubnameRequired": "Current e club e is e required.",
   "nationalityRequired": "Nationality e is e required.",
@@ -910,7 +911,7 @@
   "playerAge": "Player e age",
   "form-upto": "Da - Fino a",
   "session": "Session",
-  "addNewTransfer": " Aggiungere dettagli del trasferimento",
+  "addNewTransfer": "Aggiungere un nuovo trasferimento",
   "addTransferDetails": "Aggiungere dettagli del trasferimento",
   "addVideos": "Add e videos",
   "galleryText": "Your e browser e does e not e support e the e video e tag.",
@@ -1021,8 +1022,8 @@
   "invoiceNumber": "Invoice e number",
   "pos": "Pos.",
   "duration": "Duration",
-  "price": "Price",
-  "subTotal": "Subtotal",
+  "price": "Prezzo",
+  "subTotal": "Totale parziale",
   "downloadPDF": "Download e pdf",
   "success!": "Il successo",
   "subscriptionSuccessful": "Your e subscription e was e successful.",
@@ -1334,5 +1335,5 @@
   "enterYourName": "Inserisci il tuo nome",
   "enterYourCouponCode": "Inserisci il tuo codice sconto",
   "enterYourCompanyName": "Inserisci il nome della tua azienda",
-  "deletePerformanceConfirm": "Are you sure you want to delete the selected reports?"
+  "deletePerformanceConfirm": "Sei sicuro di voler eliminare i report selezionati?"
 } 

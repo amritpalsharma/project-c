@@ -63,6 +63,8 @@ export class CouponCodeAlertComponent implements OnInit {
 
   // Proceed to checkout without coupon or after applying it
   proceedToCheckout(): void {
+    console.warn(this.couponCode +' ...Is applied '+this.couponApplied)
+    // alert('Here')
     if (this.couponCode != '' && this.couponApplied) {
       this.dialogRef.close(this.couponCode); // Pass coupon code (if applied) or null
     } else {
@@ -72,7 +74,12 @@ export class CouponCodeAlertComponent implements OnInit {
 
   // Close dialog without a coupon
   noCoupon(): void {
-    this.dialogRef.close('proceed_to_checkout_without_coupon'); // Close without coupon
+    if (this.couponCode != '' && this.couponApplied) {
+      this.dialogRef.close(this.couponCode); // Pass coupon code (if applied) or null
+    } else {
+      this.dialogRef.close('proceed_to_checkout_without_coupon'); // Pass coupon code (if applied) or null
+    }
+   // this.dialogRef.close('proceed_to_checkout_without_coupon'); // Close without coupon
   }
 
   // Close the dialog

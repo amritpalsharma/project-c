@@ -5,6 +5,10 @@ import {
 import { Editor, Toolbar } from 'ngx-editor';
 import { environment } from '../../../../../environments/environment';
 import { TemplateService } from '../../../../services/template.service';
+import { TranslateService } from '@ngx-translate/core';
+import { WebPages } from '../../../../services/webpages.service';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-templates',
   templateUrl: './template-popup.component.html',
@@ -37,9 +41,19 @@ export class TemplatePopupComponent  implements OnInit, OnDestroy  {
   errorMsg:any = {}
   type: string = "";
   subject: string = "";
+  
+
+  titleRequired : string = '';
+  typeRequired : string = '';
+  contentRequired : string = '';
+  subjectRequired : string = '';
 
   constructor(    
     public dialogRef: MatDialogRef<TemplatePopupComponent>, private tempalateApi: TemplateService,
+    private toastr : ToastrService,
+       private translateService: TranslateService,
+        private webPages: WebPages,
+
     @Inject(MAT_DIALOG_DATA) public template: any
   ) {
     if(template){
@@ -55,6 +69,11 @@ export class TemplatePopupComponent  implements OnInit, OnDestroy  {
 
   ngOnInit(): void {
     this.editor = new Editor();
+
+    this.getToasterMsg();
+      this.webPages.languageId$.subscribe((data: any) => {
+        this.getToasterMsg();
+      });
   }
 
   ngOnDestroy(): void {
@@ -80,19 +99,19 @@ export class TemplatePopupComponent  implements OnInit, OnDestroy  {
     
     if(this.title == ""){
       this.error = true;
-      this.errorMsg.title = "Title is required";
+      this.errorMsg.title = this.titleRequired;
     }
     if(this.content == "" || this.content == "<p></p>"){
       this.error = true;
-      this.errorMsg.content = "Content is required";
+      this.errorMsg.content = this.contentRequired;
     }
     if(this.type == ""){
       this.error = true;
-      this.errorMsg.type = "Type is required";
+      this.errorMsg.type = this.typeRequired;
     }
     if(this.subject == ""){
       this.error = true;
-      this.errorMsg.subject = "Subject is required";
+      this.errorMsg.subject = this.subjectRequired;
     }
     return this.error;
   }
@@ -187,6 +206,15 @@ export class TemplatePopupComponent  implements OnInit, OnDestroy  {
         console.error('Invalid API response structure:', response);
       }
     });         
+  }
+
+  getToasterMsg() {
+    this.translateService.get(['titleRequired','typeRequired', 'contentRequired','subjectRequired']).subscribe((translations) => {
+      this.titleRequired = translations['titleRequired'];
+      this.typeRequired = translations['typeRequired'];
+      this.contentRequired = translations['contentRequired'];
+      this.subjectRequired = translations['subjectRequired'];
+    });
   }
 
 }

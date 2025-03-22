@@ -177,13 +177,14 @@ export class MembershipComponent {
 
   viewMembership(id: any) {
     const userPurchase = this.getSubscriptionById(id);
+    console.info('userPurchase',userPurchase);
     const dialogRef = this.dialog.open(ViewMembershipPopupComponent, {
       width: '800px',
       data: {
         invoice_number: userPurchase.invoice_number,
         category: userPurchase.payment_method,
         plan: userPurchase.package_name,
-        duration: userPurchase.plan_interval,
+        duration: userPurchase.interval,
         valid_until: userPurchase.plan_period_end,
         price: userPurchase.plan_amount,
         subtotal: userPurchase.amount_paid,
