@@ -1231,5 +1231,12 @@
   "enterYourEmail": "Enter your email",
   "enterYourName": "Enter your name",
   "enterYourCouponCode": "Enter your coupon code",
-  "enterYourCompanyName": "Enter your company name"
+  "enterYourCompanyName": "Enter your company name",
+  
+  "typeRequired": "Type is required",
+  "pageRequired": "Page is required",
+  "imageRequired": "Image is required",
+  "endDateRequired": "Enter the end date or check the box",
+  "maxViewsRequired": "Max views is required",
+  "maxClicksRequired": "Max clicks is required"
 }

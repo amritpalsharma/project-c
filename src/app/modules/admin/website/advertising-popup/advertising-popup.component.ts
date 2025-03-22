@@ -5,6 +5,8 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { AdvertisementService } from '../../../../services/advertisement.service';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from '../../../../../environments/environment';
+import { TranslateService } from '@ngx-translate/core';
+import { WebPages } from '../../../../services/webpages.service';
 @Component({
   selector: 'app-AdvertisingPopupComponent',
   templateUrl: './advertising-popup.component.html',
@@ -33,6 +35,10 @@ export class AdvertisingPopupComponent   {
   error:boolean = false
   errorMsg:any = {}
 
+
+  nameError : string = '';
+  typeError : string = '';
+
   today: Date = new Date();
 
   languages: any = localStorage.getItem('languages');
@@ -42,7 +48,7 @@ export class AdvertisingPopupComponent   {
   pageName:any = "";
   imageUrl:any = null;
   constructor(
-    public dialogRef: MatDialogRef<AdvertisingPopupComponent>,@Inject(MAT_DIALOG_DATA) public data: any, private advertisementService: AdvertisementService, private toastr : ToastrService
+    public dialogRef: MatDialogRef<AdvertisingPopupComponent>,@Inject(MAT_DIALOG_DATA) public data: any, private advertisementService: AdvertisementService, private toastr : ToastrService, private translateService: TranslateService, private webPages: WebPages
   ) {}
 
   ngOnInit(): void {
@@ -76,6 +82,8 @@ export class AdvertisingPopupComponent   {
       this.maxViews = existingRecord.views;
       this.maxClicks = existingRecord.clicks;
 
+      
+
 
       /* for view only*/
 
@@ -86,6 +94,11 @@ export class AdvertisingPopupComponent   {
     }
 
     // this.onChange();
+
+    this.getToasterMsg();
+      this.webPages.languageId$.subscribe((data: any) => {
+        this.getToasterMsg();
+      });
   }
 
   close(): void {
@@ -179,7 +192,8 @@ export class AdvertisingPopupComponent   {
     
     if(this.name == ""){
       this.error = true;
-      this.errorMsg.name = "Name is required";
+      // this.errorMsg.name = "Name is required";
+      this.errorMsg.name = this.nameError;
     }
     if(this.redirect == ""){
       this.error = true;
@@ -188,7 +202,8 @@ export class AdvertisingPopupComponent   {
     
     if(this.type == ""){
       this.error = true;
-      this.errorMsg.type = "Type is required";
+      // this.errorMsg.type = "Type is required";
+      this.errorMsg.name = this.typeError;
     }
     
     if(this.page == ""){
@@ -332,4 +347,14 @@ export class AdvertisingPopupComponent   {
       this.typeOptions = [];
     }
   }
+
+  getToasterMsg() {
+    this.translateService.get(['nameRequired', 'typeRequired']).subscribe((translations) => {
+      this.nameError = translations['nameRequired'];
+      this.typeError = translations['typeRequired'];
+    });
+    // console.log('name error test : ', this.nameError)
+  }
 }
+
+
