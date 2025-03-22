@@ -6,6 +6,7 @@ import { Editor, Toolbar } from 'ngx-editor';
 import { environment } from '../../../../../../environments/environment';
 import { BlogService } from '../../../../../services/blog.service';
 import { WebPages } from '../../../../../services/webpages.service';
+import { TranslateService } from '@ngx-translate/core';
 
 // import { TemplateService } from '../../../../../services/template.service';
 
@@ -47,10 +48,18 @@ export class BlogPopupComponent implements OnInit, OnDestroy {
   meta_description: string = "";
   meta_title: string = "";
 
+  titleRequired : string = '';
+  contentRequired : string = '';
+  slugRequired : string = '';
+  metaTitleReruired : string = '';
+  descriptionRequired : string = '';
+  invalidSlug : string = '';
+
 
   constructor(
     public dialogRef: MatDialogRef<BlogPopupComponent>, private blogApi: BlogService,
     private webpages: WebPages,
+    private translateService: TranslateService,
     @Inject(MAT_DIALOG_DATA) public blog: any
   ) {
     if (blog) {
@@ -67,6 +76,11 @@ export class BlogPopupComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.editor = new Editor();
+
+    this.getToasterMsg();
+    this.webpages.languageId$.subscribe((data: any) => {
+      this.getToasterMsg();
+    });
   }
 
   ngOnDestroy(): void {
@@ -135,28 +149,28 @@ export class BlogPopupComponent implements OnInit, OnDestroy {
 
     if (this.title == "") {
       this.error = true;
-      this.errorMsg.title = "Title is required";
+      this.errorMsg.title = this.titleRequired;
     }
     if (this.content == "" || this.content == "<p></p>") {
       this.error = true;
-      this.errorMsg.content = "Content is required";
+      this.errorMsg.content = this.contentRequired;
     }
     if (this.slug == "") {
       this.error = true;
-      this.errorMsg.slug = "Slug is required";
+      this.errorMsg.slug = this.slugRequired;
     }
     if (this.slug.includes(' ')) {
       this.error = true;
-      this.errorMsg.slug = "Slug is Invalid";
+      this.errorMsg.slug = this.invalidSlug;
     }
 
     if (this.meta_title == "") {
       this.error = true;
-      this.errorMsg.meta_title = "Meta title is required";
+      this.errorMsg.meta_title = this.metaTitleReruired;
     }
     if (this.meta_description == "") {
       this.error = true;
-      this.errorMsg.meta_description = "Meta description is required";
+      this.errorMsg.meta_description = this.descriptionRequired;
     }
     return this.error;
   }
@@ -270,6 +284,18 @@ export class BlogPopupComponent implements OnInit, OnDestroy {
         console.error('Invalid API response structure:', response);
       }
     });
+  }
+
+  getToasterMsg() {
+    this.translateService.get(['titleRequired', 'contentRequired','slugRequired', 'invalidSlug','metaTitleReruired', 'descriptionRequired']).subscribe((translations) => {
+      this.contentRequired = translations['contentRequired'];
+      this.titleRequired = translations['titleRequired'];
+      this.slugRequired = translations['slugRequired'];
+      this.invalidSlug = translations['invalidSlug'];
+      this.metaTitleReruired = translations['metaTitleReruired'];
+      this.descriptionRequired = translations['descriptionRequired'];
+    });
+    // console.log('name error test : ', this.nameError)
   }
 
 }

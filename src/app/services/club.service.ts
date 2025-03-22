@@ -693,8 +693,9 @@ export class ClubService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
+    let lang_id = localStorage.getItem('lang_id');
     return this.http.get<{ status: boolean, message: string, data: { } }>(
-      `${this.apiUrl}club/get-club-players/${teamId}`, {headers}
+      `${this.apiUrl}club/get-club-players/${teamId}/${lang_id}`, {headers}
     );
   }
 

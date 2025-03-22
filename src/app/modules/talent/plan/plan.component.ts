@@ -121,6 +121,7 @@ export class PlanComponent implements OnInit, OnDestroy {
 
   // Open coupon dialog
   openCouponDialog(planId: any): void {
+    console.log(planId)
 
     const dialogRef = this.dialog.open(CouponCodeAlertComponent, {
       width: '500px'

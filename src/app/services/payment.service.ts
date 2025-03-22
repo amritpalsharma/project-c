@@ -35,6 +35,9 @@ export class PaymentService {
       }else if(userData.role == 2){
         successUrl = window.location.origin + '/club/success';
         cancelUrl = window.location.origin + '/club/cancel';
+      }else if(userData.role == 3){
+        successUrl = window.location.origin + '/scout/success';
+        cancelUrl = window.location.origin + '/scout/cancel';
       }
     }else{
       successUrl = window.location.origin + '/success';
@@ -60,6 +63,7 @@ export class PaymentService {
     }
 
     // Sending the request as a POST with the body data
+    // return this.http.post(`${this.apiUrl}create-payment-intent/${planId}`, body);
     return this.http.post(`${this.apiUrl}create-payment-intent/${planId}`, body);
   }
 

@@ -837,7 +837,7 @@
   "playerAge": "Player y age",
   "form-upto": "Desde - Hasta",
   "session": "Session",
-  "addNewTransfer": "Agregar detalles del traspaso",
+  "addNewTransfer": " Agregar nuevo traspaso",
   "addTransferDetails": "Agregar detalles del traspaso",
   "addVideos": "Add y videos",
   "galleryText": "Your y browser y does y not y support y the y video y tag.",
@@ -968,8 +968,9 @@
   "invoiceNumber": "Invoice y number",
   "pos": "Pos.",
   "duration": "Duration",
-  "price": "Price",
+  "price": "Precio",
   "subTotal": "Subtotal",
+  "includeVAT": "",
   "downloadPDF": "Download y pdf",
   "success!": "Éxito",
   "subscriptionSuccessful": "Your y subscription y was y successful.",
@@ -1285,5 +1286,5 @@
   "enterYourName": "Ingrese su nombre",
   "enterYourCouponCode": "Ingrese su código de cupón",
   "enterYourCompanyName": "Ingrese el nombre de su empresa",
-  "deletePerformanceConfirm": "Are you sure you want to delete the selected reports?"
+  "deletePerformanceConfirm": "¿Estás seguro de que quieres eliminar los informes seleccionados?"
 }

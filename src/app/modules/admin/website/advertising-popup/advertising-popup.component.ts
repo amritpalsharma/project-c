@@ -5,6 +5,8 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { AdvertisementService } from '../../../../services/advertisement.service';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from '../../../../../environments/environment';
+import { TranslateService } from '@ngx-translate/core';
+import { WebPages } from '../../../../services/webpages.service';
 @Component({
   selector: 'app-AdvertisingPopupComponent',
   templateUrl: './advertising-popup.component.html',
@@ -33,6 +35,17 @@ export class AdvertisingPopupComponent   {
   error:boolean = false
   errorMsg:any = {}
 
+
+  nameRequired : string = '';
+  typeRequired : string = '';
+  pageRequired : string = '';
+  imageRequired : string = '';
+  endDateRequired : string = '';
+  maxClicksRequired : string = '';
+  maxViewsRequired: string = '';
+  redirectrequired: string = '';
+
+
   today: Date = new Date();
 
   languages: any = localStorage.getItem('languages');
@@ -42,7 +55,12 @@ export class AdvertisingPopupComponent   {
   pageName:any = "";
   imageUrl:any = null;
   constructor(
-    public dialogRef: MatDialogRef<AdvertisingPopupComponent>,@Inject(MAT_DIALOG_DATA) public data: any, private advertisementService: AdvertisementService, private toastr : ToastrService
+    public dialogRef: MatDialogRef<AdvertisingPopupComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+     private advertisementService: AdvertisementService,
+      private toastr : ToastrService,
+       private translateService: TranslateService,
+        private webPages: WebPages
   ) {}
 
   ngOnInit(): void {
@@ -79,6 +97,8 @@ export class AdvertisingPopupComponent   {
       this.maxViews = existingRecord.views;
       this.maxClicks = existingRecord.clicks;
 
+      
+
 
       /* for view only*/
 
@@ -89,6 +109,11 @@ export class AdvertisingPopupComponent   {
     }
 
     // this.onChange();
+
+    this.getToasterMsg();
+      this.webPages.languageId$.subscribe((data: any) => {
+        this.getToasterMsg();
+      });
   }
 
   close(): void {
@@ -185,41 +210,49 @@ export class AdvertisingPopupComponent   {
     
     if(this.name == ""){
       this.error = true;
-      this.errorMsg.name = "Name is required";
+      // this.errorMsg.name = "Name is required";
+      this.errorMsg.name = this.nameRequired;
     }
     if(this.redirect == ""){
       this.error = true;
-      this.errorMsg.redirect = "Redirect url is required";
+      // this.errorMsg.redirect = "Redirect url is required";
+      this.errorMsg.redirect = this.redirectrequired;
     }
     
     if(this.type == ""){
       this.error = true;
-      this.errorMsg.type = "Type is required";
+      // this.errorMsg.type = "Type is required";
+      this.errorMsg.type = this.typeRequired;
     }
     
     if(this.page == ""){
       this.error = true;
-      this.errorMsg.page = "Page is required";
+      // this.errorMsg.page = "Page is required";
+      this.errorMsg.page = this.pageRequired;
     }
     
     if(this.imageToUpload == "" && !this.imagePreview){
       this.error = true;
-      this.errorMsg.image = "image is required";
+      // this.errorMsg.image = "image is required";
+      this.errorMsg.image = this.imageRequired;
     }
 
     if((this.endDate == "0000-00-00" || !this.endDate) && !this.disableEndDate ){
       this.error = true;
-      this.errorMsg.endDate = "enter the end date or check the box";
+      // this.errorMsg.endDate = "enter the end date or check the box";
+      this.errorMsg.endDate = this.endDateRequired;
     }
 
     if(this.maxViews == ""){
       this.error = true;
-      this.errorMsg.maxViews = "Max views is required";
+      // this.errorMsg.maxViews = "Max views is required";
+      this.errorMsg.maxViews = this.maxViewsRequired;
     }
     
     if(this.maxClicks == ""){
       this.error = true;
-      this.errorMsg.maxClicks = "Max clicks is required";
+      // this.errorMsg.maxClicks = "Max clicks is required";
+      this.errorMsg.maxClicks = this.maxClicksRequired;
     }
     return this.error;
 
@@ -338,4 +371,19 @@ export class AdvertisingPopupComponent   {
       this.typeOptions = [];
     }
   }
+
+  getToasterMsg() {
+    this.translateService.get(['nameRequired','typeRequired','pageRequired','imageRequired','endDateRequired','maxViewsRequired','maxClicksRequired','redirectrequired']).subscribe((translations) => {
+      this.nameRequired = translations['nameRequired'];
+      this.typeRequired = translations['typeRequired'];
+      this.pageRequired = translations['pageRequired'];
+      this.imageRequired = translations['imageRequired'];
+      this.endDateRequired = translations['endDateRequired'];
+      this.maxViewsRequired = translations['maxViewsRequired'];
+      this.maxClicksRequired = translations['maxClicksRequired'];
+      this.redirectrequired = translations['redirectrequired'];
+    });
+  }
 }
+
+

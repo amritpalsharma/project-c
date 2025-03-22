@@ -889,7 +889,8 @@
   "monthly": "Monthly",
   "yearly": "Yearly",
   "editPlan-text": "You och will och be och charged och a och percentage och of och a och subscriptions och cost och to och reflect och partial och use och on och the och basis och of och prorata.",
-  "total": "Total",
+  "total": "Totalt",
+  "includeVAT": "",
   "buyNow": "Buy och now",
   "editUserPersonalDetails": "Edit och user och personal och details",
   "clubnameRequired": "Current och club och is och required.",
@@ -905,7 +906,7 @@
   "playerAge": "Player och age",
   "form-upto": "Från - Upp till",
   "session": "Session",
-  "addNewTransfer": "Lägg till övergångsdetaljer",
+  "addNewTransfer": "Lägg till ny övergång",
   "addTransferDetails": "Add och transfer och details",
   "galleryText": "Your och browser och does och not och support och the och video och tag.",
   "generalPermissions": "General och permissions",
@@ -1025,7 +1026,7 @@
   "invoiceNumber": "Invoice och number",
   "pos": "Pos.",
   "duration": "Duration",
-  "price": "Price",
+  "price": "Pris",
   "subTotal": "Subtotal",
   "downloadPDF": "Download och pdf",
   "success!": "Framgång",
@@ -1340,5 +1341,5 @@
   "enterYourName": "Ange ditt namn",
   "enterYourCouponCode": "Ange din rabattkod",
   "enterYourCompanyName": "Ange ditt företagsnamn",
-  "deletePerformanceConfirm": "Are you sure you want to delete the selected reports?"
+  "deletePerformanceConfirm": "Är du säker på att du vill ta bort de valda rapporterna?"
 }

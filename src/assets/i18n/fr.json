@@ -156,7 +156,7 @@
   "left": "Gauche",
   "both": "Les deux",
   "uploadYourCoverPhoto": "Télécharge ta photo de couverture",
-  "uploadCoverPhoto": "Télécharger la photo de couverture",
+  "uploadCoverPhoto": "Téléchargez votre photo de couverture",
   "addYourOtherProfileDetails": "Ajoutez ici les autres détails de votre profil",
   "april07": "April 07, 2023",
   "kmh": "Km/h",
@@ -917,7 +917,7 @@
   "playerAge": "Player et age",
   "form-upto": "De - Jusqu'à",
   "session": "Session",
-  "addNewTransfer": "Ajouter des détails du transfert",
+  "addNewTransfer": "Ajouter un nouveau transfert",
   "addTransferDetails": "Ajouter des détails du transfert",
   "galleryText": "Your et browser et does et not et support et the et video et tag.",
   "generalPermissions": "General et permissions",
@@ -1035,8 +1035,9 @@
   "invoiceNumber": "Invoice et number",
   "pos": "Pos.",
   "duration": "Duration",
-  "price": "Price",
-  "subTotal": "Subtotal",
+  "price": "Prix",
+  "subTotal": "Sous-total",
+  "includeVAT": "TVA incluse",
   "downloadPDF": "Download et pdf",
   "success!": "Succès",
   "subscriptionSuccessful": "Your et subscription et was et successful.",
@@ -1351,5 +1352,5 @@
   "enterYourName": "Entrez votre nom",
   "enterYourCouponCode": "Entrez votre code promo",
   "enterYourCompanyName": "Entrez le nom de votre entreprise",
-  "deletePerformanceConfirm": "Are you sure you want to delete the selected reports?"
+  "deletePerformanceConfirm": "Êtes-vous sûr de vouloir supprimer les rapports sélectionnés ?"
 }
