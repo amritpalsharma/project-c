@@ -25,9 +25,9 @@ export class ChatComponent {
   constructor(private talkService: TalkService, private route: ActivatedRoute) { }
 
   async ngOnInit() {
-    this.checkAndRemoveOpenChat();
+
     const userDataString = localStorage.getItem('userData');
-    const otherUserData = localStorage.getItem('otherUserData');
+
     if (userDataString) {
       this.userData = JSON.parse(userDataString);
       this.user = {
@@ -47,24 +47,20 @@ export class ChatComponent {
       setTimeout(() => {
         this.chatBox.mount(document.getElementById('talkjs-container'));
         // chatbox.mount(document.getElementById('talkjs-container'));
-      }, 0);
+      }, 500);
     }
 
-    if (otherUserData) {
-      const otherUser = JSON.parse(otherUserData);
-      console.log("Starting chat with:", otherUser);
-      // window.location.reload();
-      this.startOneOnOneChat(otherUser);
 
-      // Clear localStorage after using it to avoid unnecessary chat start on next visit
-      //localStorage.removeItem('otherUserData');
-    }
 
     const theme = localStorage.getItem('theme');
 
     if (theme == 'dark') {
       this.talkService.toggleTheme(true);
     }
+
+   setTimeout(() => {
+    this.checkAndRemoveOpenChat();
+   }, 1000);
   }
 
 
@@ -138,7 +134,7 @@ export class ChatComponent {
   }
 
   ngOnDestroy() {
-    localStorage.removeItem('otherUserData');
+    // localStorage.removeItem('otherUserData');
     // Clean up the TalkJS chatbox
     if (this.chatBox) {
       this.chatBox.destroy();
@@ -175,6 +171,14 @@ export class ChatComponent {
 
       // Reload the page with the updated URL (without 'open_chat')
       window.location.replace(url.toString());
+    }
+    const otherUserData = localStorage.getItem('otherUserData');
+
+    if (otherUserData) {
+      const otherUser = JSON.parse(otherUserData);
+      console.log("Starting chat with:", otherUser);
+      // window.location.reload();
+      this.startOneOnOneChat(otherUser);
     }
   }
 }

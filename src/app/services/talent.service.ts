@@ -661,9 +661,9 @@ export class TalentService {
 
   getPurchaseData(pageNumber: number, pageSize: number, lang: any = {}): Observable<any> {
     const headers = this.headers();
-
+    let lang_id = localStorage.getItem('lang_id');
     return this.http.get<{ status: boolean, message: string, data: any }>(
-      `${this.apiUrl}user/get-purchase-history`, {
+      `${this.apiUrl}user/get-purchase-history?lang=${lang_id}`, {
       params: {
         page: pageNumber.toString(),
         lang: lang,

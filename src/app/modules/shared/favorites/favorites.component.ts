@@ -439,4 +439,22 @@ export class FavoritesComponent {
     return this.talentService.convertTalentDateTime(dateTime);
   }
 
+  naviGateToChat(role_id: any) {
+    let role = '';
+    if (role_id == '2') {
+      role = 'club';
+    } else if (role_id == '3') {
+      role = 'scout';
+    } else if (role_id == '4') {
+      role = 'talent';
+    } else if (role_id == '6') {
+      role = 'club';
+    } else if (role_id == '7') {
+      role = 'scout';
+    }
+    // this.router.navigate([`/${role}/chat`], {
+    //   queryParams: { open_chat: 'true' }
+    // });
+  }
+
 }
