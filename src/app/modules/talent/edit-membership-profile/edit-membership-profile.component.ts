@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
 import { TalentService } from '../../../services/talent.service';
 import { PaymentService } from '../../../services/payment.service';
 import { ToastrService } from 'ngx-toastr';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-edit-membership-profile',
@@ -19,11 +20,7 @@ export class EditMembershipProfileComponent {
   //   { role_name: "Talent", id: 4 },
   // ];     // List of all audiences
 
-  audiences : any[] = [
-    { role_name: "Club", target_role: 2 },
-    { role_name: "Scout", target_role: 3 },
-    { role_name: "Talent", target_role: 4 },
-  ];
+  audiences : any[] = [];
 
   selectedAudienceIds: number[] = []; // Store only audience IDs
   id: any;
@@ -37,6 +34,7 @@ export class EditMembershipProfileComponent {
     public talentService: TalentService,
     public dialog: MatDialog,
     private toastr: ToastrService,
+    private userServices: UserService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
@@ -47,6 +45,8 @@ export class EditMembershipProfileComponent {
 
     this.loggedInUser = JSON.parse(this.loggedInUser);
     this.id = this.data.id || [];
+
+    this.getRoles();
     // Populate pre-selected audiences from input data
     if (this.stats?.booster_audience?.length > 0) {
       this.selectedAudiences = this.data.stats.booster_audience;
@@ -58,6 +58,30 @@ export class EditMembershipProfileComponent {
 
     // console.log('audiences:', this.audiences);
 
+    
+  }
+
+  getRoles(){
+    this.userServices.getRoles().subscribe(
+      (response) => {
+        if (response?.status) {
+          // this.audiences = [];
+          response.data.roles.forEach((element : any) => {
+            if(element.id == '2' || element.id == '3' || element.id == '4'){
+              let obj = {role_name: '', target_role: 0};
+              obj.role_name = element.role_name;
+              obj.target_role = Number(element.id);
+              this.audiences.push(obj);
+            }
+          });
+        }
+      },
+      (error) => {
+        // Error: Notify user and handle error
+        this.toastr.error('An error occurred while saving the boost. Please try again.', 'Error');
+        console.error('Error creating Checkout session:', error);
+      }
+    );
   }
 
   /**

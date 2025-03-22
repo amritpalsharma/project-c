@@ -130,6 +130,10 @@ export class HeaderComponent {
       //   this.fetchNotifications(userId);
       // }
 
+      this.unseenCount++;
+      this.notificationSeen = false;
+      localStorage.setItem('notificationSeen', 'false');
+
       console.log("data", data);
 
       const obj = {
