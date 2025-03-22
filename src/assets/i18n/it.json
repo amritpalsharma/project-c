@@ -1334,10 +1334,5 @@
   "enterYourName": "Inserisci il tuo nome",
   "enterYourCouponCode": "Inserisci il tuo codice sconto",
   "enterYourCompanyName": "Inserisci il nome della tua azienda",
-<<<<<<< HEAD
   "deletePerformanceConfirm": "Sei sicuro di voler eliminare i report selezionati?"
-}
-=======
-  "deletePerformanceConfirm": "Are you sure you want to delete the selected reports?"
 } 
->>>>>>> 8c194d24e23e756da5947642ea1f2b5f0f6a2bff
