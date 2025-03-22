@@ -1231,7 +1231,7 @@
   "TOOLTIPS": {
     "profilePhoto": "Laden Sie Ihr bestes Porträtfoto hoch, um einen großartigen ersten Eindruck zu hinterlassen.",
     "removeFavorite": "Aus den Favoriten entfernen",
-    "addFavorite": "deiner Favoritenliste hinzufügen",
+    "addFavorite": "Deiner Favoritenliste hinzufügen",
     "downloadPdf": "Spieler-PDF herunterladen",
     "startConversation": "Nachricht senden"
   },
@@ -1320,5 +1320,5 @@
   "enterYourName": "Geben Sie Ihren Namen ein",
   "enterYourCouponCode": "Geben Sie Ihren Gutscheincode ein",
   "enterYourCompanyName": "Geben Sie Ihren Firmennamen ein",
-  "deletePerformanceConfirm": "Are you sure you want to delete the selected reports?"
+  "deletePerformanceConfirm": "Bist du sicher, dass du die ausgewählten Berichte löschen möchtest?"
 }
