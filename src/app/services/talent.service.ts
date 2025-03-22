@@ -148,9 +148,10 @@ export class TalentService {
 
   getBoosterData(params: any = {}): Observable<any> {
     const headers = this.headers();
+    let langId = localStorage.getItem('lang_id')
     return this.http.get<{ status: boolean, message: string, data: {} }>(
-      `${this.apiUrl}user/get-booster-stats`,
-      { headers, params }
+      `${this.apiUrl}user/get-booster-stats/${langId}`,
+      { headers }
     );
   }
 
