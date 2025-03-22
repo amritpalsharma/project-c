@@ -92,8 +92,12 @@ export class PortfolioTabComponent {
     inviteDialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
         console.log(result)
-        if(result.action == "added"){
-          this.showMatDialog(result.message, 'display')
+        if (result.action == "added") {
+          if (result.message != '' && result.message != undefined) {
+            this.showMatDialog(result.message, 'display')
+          } else {
+            this.showMatDialog("Players invited successfully", 'display')
+          }
         }
         console.log('Dialog result:', result);
       }

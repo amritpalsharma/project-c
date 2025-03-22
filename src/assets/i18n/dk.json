@@ -1193,7 +1193,11 @@
   "roleIsRequired": "Rollen er påkrævet",
   "deleteRepresentorConfirmation": "Er du sikker på, at du vil slette dette teammedlem?",
   "deletingAccount": "Sletning af konto",
+<<<<<<< HEAD
+  "deletingText": "For at bekræfte dette skal du skrive “SLET”",
+=======
   "deletingText": "För att bekräfta detta, skriv “RADERA”.",
+>>>>>>> e16173ca73873b68fc5970c004f2340f588b2e5d
   "selectDateTime": "Vælg dato og tid",
   "enterCountryName": "Indtast land",
   "enterYourEmail": "Indtast din e-mail",

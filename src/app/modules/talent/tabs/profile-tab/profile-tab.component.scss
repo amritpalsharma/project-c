@@ -92,6 +92,8 @@
   }
 
   }
+
+
   @media(max-width: 425px){
     .btn-outline-white {
       padding: 3px;
@@ -502,3 +504,21 @@
   .edit_button {
     margin-left: 14px;
 }
+
+
+
+@media(max-width: 575px){
+  .details_info {
+    border-bottom: 1px solid #c7c8c9;
+}
+.details_2 {
+  font-size: 16px;
+}
+.details-1 {
+  font-size: 18px;
+  padding-top: 7px;
+}
+.forms_details .password_box input.password {
+  width: 100% !important;
+}
+  }

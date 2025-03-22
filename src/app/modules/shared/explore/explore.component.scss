@@ -7,7 +7,7 @@
 }
 .card-shape {
     background: rgb(111, 185, 93);
-    background: linear-gradient(90deg, rgba(111, 185, 93, 1) 0%, rgba(35, 97, 21, 1) 100%);
+    background: linear-gradient(130deg, rgba(111, 185, 93, 1) 0%, rgba(35, 97, 21, 1) 100%);
     height: 60px;
     transform: rotate(43deg);
     position: absolute;
@@ -172,10 +172,10 @@
 .boosted-box {
     background: #023A4A;
     color: #fff;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
     width: fit-content;
-    padding: 14px 20px;
+    padding: 10px 20px;
     border-radius: 0px 0px 10px 0px;
     position: absolute;
     top: 0;
@@ -218,7 +218,6 @@
 }
 
 @media (max-width:768px) {
-    
     .form-group input, .form-group select{
         margin-bottom: 12px;
     }
@@ -226,13 +225,17 @@
         display: block;
         width: 100%;
         text-align: left;
-       
     }
     .player-image-list {
         row-gap: 20px;
     }
     .booster_box, .image_box{
         height: 210px
+    }
+    .explore-inputs {
+        th {
+            margin-bottom: 10px;
+        }
     }
 }
 
@@ -254,8 +257,6 @@
     width: 100% !important;
 }
 }
-
-
 
 .loader-container {
     display: flex;
@@ -289,5 +290,8 @@
 @media (min-width: 1600px) {
 .booster_box, .image_box {
     height: 300px !important;
+}
+.boosted-box {
+    font-size: 16px;
 }
 }

@@ -553,8 +553,13 @@ export class HeaderComponent implements OnInit {
       return;
     }
 
-    const selectedLanguage = localStorage.getItem('lang') || environment.targetDomain?.default_lang;
+    let selectedLanguage = localStorage.getItem('lang') || environment.targetDomain?.default_lang;
     const domain = environment.targetDomain?.domain || 'ch';
+
+    let localStorageLang = localStorage.getItem('lang_id');
+    if (localStorageLang != '' && localStorageLang != undefined) {
+      selectedLanguage = localStorageLang;
+    }
 
     const loginData = {
       email: this.email,
@@ -569,7 +574,12 @@ export class HeaderComponent implements OnInit {
           this.invalidCred = response.message;
           if (response.message.email != '') {
             this.invalidCred = response.message.email;
+
           }
+          if (response.data.error != '' && response.data.error != undefined) {
+            this.toastr.error(response.data.error);
+          }
+
           this.showInvalidCredMessage();
         } else {
           const token = response.data.token;
@@ -659,7 +669,7 @@ export class HeaderComponent implements OnInit {
       this.serverBusy = false;
       this.toastr.warning('Please fill in all required fields.', 'Validation Error');
       return;
-    }else{
+    } else {
       this.duplicateCreditionals = false;
     }
 
@@ -759,7 +769,7 @@ export class HeaderComponent implements OnInit {
           if (response.message.email != '' && response.message.email != undefined) {
             this.duplicateCreditionals = true;
             this.toastr.error(response.message.email);
-           // this.duplicateCreditionalsError += response.message.email + '<br>';
+            // this.duplicateCreditionalsError += response.message.email + '<br>';
           }
           // this.toastr.error(errorMessage.trim(), this.registrationFailed);
           this.registerError = errorMessage.trim();

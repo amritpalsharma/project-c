@@ -1,4 +1,4 @@
-import { Component, inject,ViewChild } from '@angular/core';
+import { Component, inject, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MarketingPopupComponent } from './marketing-popup/marketing-popup.component';
@@ -20,23 +20,23 @@ import { SharedService } from '../../../services/shared.service';
   styleUrls: ['./marketing.component.scss']
 })
 export class MarketingComponent {
-  displayedColumns: string[] = ['#','Name', 'For', 'Language','Display Freq','Display Location','Start Date','End Date','Status','Edit','Remove'];
-  isLoading:boolean = false;
+  displayedColumns: string[] = ['#', 'Name', 'For', 'Language', 'Display Freq', 'Display Location', 'Start Date', 'End Date', 'Status', 'Edit', 'Remove'];
+  isLoading: boolean = false;
   popups: any = [];
   checkboxIds: string[] = [];
   allSelected: boolean = false;
-  selectedIds: number[] = [];  
+  selectedIds: number[] = [];
   filterValue: string = '';
   idsToDelete: any = [];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  customFilters:any = [];
-  rolesForFilter:any = [];
-  langs:any = environment.langs;
-  locations:any = environment.domains;
-  frequency:any = ['Once a day', 'Once a week', 'Once 2 Hrs', 'Twice a day', 'Once a month', 'One time only'];
+  customFilters: any = [];
+  rolesForFilter: any = [];
+  langs: any = environment.langs;
+  locations: any = environment.domains;
+  frequency: any = ['Once a day', 'Once a week', 'Once 2 Hrs', 'Twice a day', 'Once a month', 'One time only'];
 
-  constructor(public dialog: MatDialog,private marketingApi: MarketingService, private webpages:WebPages, private sharedservice:SharedService) {}
+  constructor(public dialog: MatDialog, private marketingApi: MarketingService, private webpages: WebPages, private sharedservice: SharedService) { }
   ngOnInit(): void {
     this.getSystemPopups();
     this.getRoles();
@@ -44,106 +44,106 @@ export class MarketingComponent {
     this.getAllLocations();
 
     this.sharedservice.data$.subscribe((data) => {
-      if(data.action == 'lang_updated'){
-          this.isLoading = true;
-          this.getSystemPopups();
-          this.getRoles();
-          this.getAllLanguages();
-          this.getAllLocations();
+      if (data.action == 'lang_updated') {
+        this.isLoading = true;
+        this.getSystemPopups();
+        this.getRoles();
+        this.getAllLanguages();
+        this.getAllLocations();
       }
-  });
+    });
   }
 
-  async getSystemPopups(filterApplied:boolean = false): Promise<void> {
+  async getSystemPopups(filterApplied: boolean = false): Promise<void> {
     this.isLoading = true;
-    const page = this.paginator ? this.paginator.pageIndex*10 : 0;
+    const page = this.paginator ? this.paginator.pageIndex * 10 : 0;
     const pageSize = this.paginator ? this.paginator.pageSize : 10;
     // const sortOrder = this.sort ? this.sort.direction : 'asc';
     // const sortField = this.sort ? this.sort.active : '';
 
-    let params:any = {};
+    let params: any = {};
     params.offset = page;
     params.search = this.filterValue;
-    params.limit  = pageSize;
+    params.limit = pageSize;
     params.orderBy = "id";
     params.order = "desc";
 
-    if(filterApplied){
+    if (filterApplied) {
       params.offset = 0;
       this.paginator.firstPage(); // to reset the page if user applied filter on any page except the first one
     }
 
-    if(this.customFilters['role']){
-      let getFreePaymentType = ["1","3","5"];
+    if (this.customFilters['role']) {
+      let getFreePaymentType = ["1", "3", "5"];
       let paymentType = (getFreePaymentType.includes(this.customFilters['role'])) ? 'free' : 'paid';
-      params = {...params, "whereClause[role]" : this.customFilters['role'], "whereClause[payment_type]": paymentType};
+      params = { ...params, "whereClause[role]": this.customFilters['role'], "whereClause[payment_type]": paymentType };
     }
 
-    if(this.customFilters['language']){
-      params = {...params, "whereClause[language]" : this.customFilters['language']};
+    if (this.customFilters['language']) {
+      params = { ...params, "whereClause[language]": this.customFilters['language'] };
     }
 
-    if(this.customFilters['frequency']){
-      params = {...params, "whereClause[frequency]" : this.customFilters['frequency']};
+    if (this.customFilters['frequency']) {
+      params = { ...params, "whereClause[frequency]": this.customFilters['frequency'] };
     }
 
-    if(this.customFilters['location']){
-      params = {...params, "whereClause[popup_location]" : this.customFilters['location']};
+    if (this.customFilters['location']) {
+      params = { ...params, "whereClause[popup_location]": this.customFilters['location'] };
     }
 
-    if(this.customFilters['status']){
-      params = {...params, "whereClause[status]" : this.customFilters['status']};
+    if (this.customFilters['status']) {
+      params = { ...params, "whereClause[status]": this.customFilters['status'] };
     }
 
     try {
       this.isLoading = true;
-     this.marketingApi.getSystemPopups(params).subscribe((response)=>{
-      if (response && response.status && response.data && response.data.popups) {
-        this.popups = response.data.popups;
-        this.paginator.length = response.data.totalCount;
-        this.isLoading = false;
-      } else {
-        this.popups = [];
-        this.paginator.length = 0;
-        this.isLoading = false;
-        console.error('Invalid API response structure:', response);
-      }
-      });     
+      this.marketingApi.getSystemPopups(params).subscribe((response) => {
+        if (response && response.status && response.data && response.data.popups) {
+          this.popups = response.data.popups;
+          this.paginator.length = response.data.totalCount;
+          this.isLoading = false;
+        } else {
+          this.popups = [];
+          this.paginator.length = 0;
+          this.isLoading = false;
+          console.error('Invalid API response structure:', response);
+        }
+      });
     } catch (error) {
       this.isLoading = false;
       console.error('Error fetching users:', error);
     }
   }
 
-  createSystemPoup(){
+  createSystemPoup() {
     console.log('Edit user button clicked!');
-    const dialogRef = this.dialog.open(MarketingPopupComponent,{
+    const dialogRef = this.dialog.open(MarketingPopupComponent, {
       height: '80vh',
       width: '70vw',
     })
 
     dialogRef.afterClosed().subscribe(result => {
       if (result !== undefined) {
-        if(result.action == "popupAdded"){
+        if (result.action == "popupAdded") {
           // this.showMessage('Popup created successfully!');
           this.showMessage(result.message);
           this.getSystemPopups();
         }
-      //  console.log('Dialog result:', result);
+        //  console.log('Dialog result:', result);
       }
     });
   }
 
-  applyFilter(filterValue:any) {
+  applyFilter(filterValue: any) {
     this.filterValue = filterValue.target?.value.trim().toLowerCase();
-    if(this.filterValue.length >= 3){
+    if (this.filterValue.length >= 3) {
       this.getSystemPopups();
-    } else if(this.filterValue.length == 0){
+    } else if (this.filterValue.length == 0) {
       this.getSystemPopups();
     }
   }
 
-  showFiltersPopup(){
+  showFiltersPopup() {
     alert('show filters popup')
     //   this.dialog.open(FilterPopupComponrnt,{
     //     height: '450px',
@@ -171,15 +171,15 @@ export class MarketingComponent {
   selectAllPopups() {
     this.allSelected = !this.allSelected;
     if (this.allSelected) {
-      this.selectedIds = this.popups.map((popup:any) => popup.id);
+      this.selectedIds = this.popups.map((popup: any) => popup.id);
     } else {
       this.selectedIds = [];
     }
     console.log('Selected user IDs:', this.selectedIds);
   }
 
-  confirmDeletion():any {
-    if(this.selectedIds.length == 0){
+  confirmDeletion(): any {
+    if (this.selectedIds.length == 0) {
       this.showMessage('Select popup(s) first.');
       return false;
     }
@@ -187,14 +187,14 @@ export class MarketingComponent {
     this.showDeleteConfirmationPopup();
   }
 
-  showDeleteConfirmationPopup(){
+  showDeleteConfirmationPopup() {
     this.showMatDialog("", "popup-delete-confirmation");
   }
 
 
-  deletePopups():any {
+  deletePopups(): any {
 
-    let params = {id:this.idsToDelete};
+    let params = { id: this.idsToDelete };
     this.marketingApi.deletePopups(params).subscribe(
       response => {
         this.getSystemPopups();
@@ -211,15 +211,15 @@ export class MarketingComponent {
     );
   }
 
-  showMessage(message:string){
+  showMessage(message: string) {
     this.showMatDialog(message, 'display');
   }
 
-  showMatDialog(message:string, action:string){
-    const messageDialog = this.dialog.open(MessagePopupComponent,{
+  showMatDialog(message: string, action: string) {
+    const messageDialog = this.dialog.open(MessagePopupComponent, {
       width: '500px',
       position: {
-        top:'150px'
+        top: '150px'
       },
       data: {
         message: message,
@@ -229,15 +229,15 @@ export class MarketingComponent {
 
     messageDialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
-        if(result.action == "delete-confirmed"){
+        if (result.action == "delete-confirmed") {
           this.deletePopups();
         }
-      //  console.log('Dialog result:', result);
+        //  console.log('Dialog result:', result);
       }
     });
   }
 
-  showRole(id:number){
+  showRole(id: number) {
     return environment.roles.filter(role =>
       role.id == id
     ).map(role =>
@@ -245,9 +245,9 @@ export class MarketingComponent {
     );
   }
 
-  editPopup(data:any){
-    
-    const dialogRef = this.dialog.open(MarketingPopupComponent,{
+  editPopup(data: any) {
+
+    const dialogRef = this.dialog.open(MarketingPopupComponent, {
       height: '80vh',
       width: '70vw',
       data: data
@@ -255,42 +255,42 @@ export class MarketingComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result !== undefined) {
-        if(result.action == "popupUpdated"){
+        if (result.action == "popupUpdated") {
           // this.showMessage('Popup updated successfully!');
           this.showMessage(result.message);
           this.getSystemPopups();
         }
-      //  console.log('Dialog result:', result);
+        //  console.log('Dialog result:', result);
       }
     });
 
   }
-  
-  confirmSingleDeletion(id:any){
+
+  confirmSingleDeletion(id: any) {
     this.idsToDelete = [id];
     this.showMatDialog("", "popup-delete-confirmation");
   }
 
-  getRoleTypes(data:any){
+  getRoleTypes(data: any) {
     data = JSON.parse(data);
     let result = "";
-    for(let row of data){
+    for (let row of data) {
 
-      if(row.user_role){
+      if (row.user_role) {
         let type = '';
-        if(row.payment_type == "Paid"){
+        if (row.payment_type == "Paid") {
           type = '(P)';
-        }else if(row.payment_type == "Free"){
+        } else if (row.payment_type == "Free") {
           type = '(F)';
         }
-        result += row.user_role+type+', '
+        result += row.user_role + type + ', '
       }
     }
     return result.slice(0, -2);
   }
 
-  getRoles(){
-    this.marketingApi.getRolePaymentTypes().subscribe((response)=>{
+  getRoles() {
+    this.marketingApi.getRolePaymentTypes().subscribe((response) => {
       if (response && response.status) {
         this.rolesForFilter = response.data.userTypes;
       } else {
@@ -300,18 +300,18 @@ export class MarketingComponent {
     });
   }
 
-  showFilterPopup():void { 
+  showFilterPopup(): void {
 
-    const filterDialog = this.dialog.open(CommonFilterPopupComponent,{
-      height: '340px',
-      width: '300px',
+    const filterDialog = this.dialog.open(CommonFilterPopupComponent, {
+      height: '390px',
+      width: '320px',
       position: {
         right: '30px',
-        top:'150px'
+        top: '150px'
       },
       data: {
         page: 'marketing',
-        appliedfilters:this.customFilters,
+        appliedfilters: this.customFilters,
         roles: this.rolesForFilter,
         languages: this.langs,
         frequency: this.frequency,
@@ -323,16 +323,16 @@ export class MarketingComponent {
       if (result !== undefined) {
         this.applyUserFilter(result);
         console.log('Dialog result:', result);
-      }else{
+      } else {
         console.log('Dialog closed without result');
       }
     });
   }
 
-  getAllLanguages(){
+  getAllLanguages() {
     this.webpages.getAllLanguage().subscribe((response: any) => {
-      if(response.status){
-        console.log('languages',response);
+      if (response.status) {
+        console.log('languages', response);
         let languages = response.data.languages;
 
 
@@ -349,9 +349,9 @@ export class MarketingComponent {
 
 
 
-  getAllLocations(){
+  getAllLocations() {
     this.webpages.getAllLocations().subscribe((response: any) => {
-      if(response.status){
+      if (response.status) {
         let domains = response.data.domains;
         this.locations = domains.map((value: any) => {
           return {
@@ -364,10 +364,32 @@ export class MarketingComponent {
       }
     });
   }
-  
 
-  applyUserFilter(filters:any){
+
+  applyUserFilter(filters: any) {
     this.customFilters = filters;
     this.getSystemPopups(true);
+  }
+
+  translateFrequency(frequency: any) {
+    let selectedLang = localStorage.getItem('lang');
+    if (selectedLang == 'de') {
+      if (frequency == 'Once a day') {
+        frequency = 'Einmal am Tag';
+      } else if (frequency == 'Once a week') {
+        frequency = 'Einmal pro Woche';
+      } else if (frequency == 'Once 2 Hrs') {
+        frequency = 'Einmal alle 2 Stunden';
+      } else if (frequency == 'Twice a day') {
+        frequency = 'Zweimal am Tag';
+      } else if (frequency == 'Once a month') {
+        frequency = 'Einmal im Monat';
+      } else if (frequency == 'One time only') {
+        frequency = 'Nur einmal';
+      }
+      return frequency;
+    } else {
+      return frequency;
+    }
   }
 }

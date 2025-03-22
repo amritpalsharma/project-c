@@ -39,6 +39,7 @@ overflow: hidden;
 border-radius: 10px;
 text-align: center;
 height: 280px;
+border: 2px solid #ad8434;
 }
 .player-image-bg-2{
 background: #CACACA;
@@ -53,7 +54,7 @@ padding: 30px;
 padding-bottom: 0;
 // width: 260px;
 height: 260px;
-object-fit: cover;
+object-fit: contain;
 }
 .player-names {
 background: #429130;
@@ -80,7 +81,7 @@ font-size: 16px;
 font-weight: 500;
 }
 .team-logo-bg {
-background: #E2001A;
+background: #ffffff;
 width: 180px;
 height: 160px;
 position: absolute;

@@ -819,7 +819,7 @@
 }
 
 @media (max-width: 575px) {
-  .team-logos{
+  .team-logos:not(:last-child){
     border-bottom: 1px solid #E5E5E5;
     padding-bottom: 20px;
   }
@@ -1410,6 +1410,91 @@ width:  100% !important;
 }
 
 
+@media (min-width: 1200px) {
+.cover_pic_mobile, .mobile_profile_buttons {
+  display: none !important;
+}
+}
+
+
+@media (max-width: 1199px) {
+  .cover_pic_desktop {
+    display: none !important;
+  }
+  .padding_mobile_0 {
+    padding: 0 !important;
+  }
+  .mobile_profile_buttons {
+    padding: 0 15px;
+  }
+  .mobile_profile_buttons .btn_style {
+    background: #6FB95D;
+    margin-right: 8px;
+    padding: 6px 15px;
+    font-size: 14px;
+    display: inline-block;
+    color: #fff;
+    margin-bottom: 15px;
+    border-radius: 8px;
+  }
+  .cover_pic_mobile{
+    height: 200px !important;
+     img {
+        height: 200px !important;
+     }
+     .edit-photo {
+        bottom: auto;
+        right: 20px;
+        top: 20px;
+      }
+     .delete_image {
+      width: 35px;
+    }
+    .edit_image-2 span {
+      font-size: 12px;
+    }
+  }
+  .user-details-left .user-media {
+    border: 0;
+    width: calc(100% - 15px);
+    height: unset;
+    min-width: unset;
+    margin-left: 15px;
+    background: transparent;
+    text-align: left !important;
+    margin-top: -70px;
+}
+.user-media img {
+    border: 1px solid #E7E7E7;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: #F6F6F6;
+}
+.premium_button {
+    padding: 6px 10px;
+    right: 0;
+    left: auto;
+    bottom: 10px;
+    top: auto;
+}
+.user-edit {
+    top: 60px;
+    left: 135px;
+    right: auto !important;
+}
+.boost_profile {
+    display: none !important;
+}
+.user-info.responsive-name {
+  background: #f0f0f0;
+  margin-left: -1px;
+  width: calc(100% + 2px);
+  padding-left: 1px !important;
+  padding-right: 1px !important;
+}
+}
+
 @media (max-width: 991px) {
   .card_box-1, .card_box--2 {
     padding-left: 0;
@@ -1418,7 +1503,55 @@ width:  100% !important;
   .card_box--2 {
     margin-top: 15px;
   }
+ }
+
+
+@media (max-width: 575px) {
+.title_2 {
+    font-size: 16px;
+}
+.title-1 {
+  font-size: 18px;
+  padding-top: 3px;
+}
+.elton-box.dashboard-icons .team-badge_content {
+  padding-left: 5px !important;
+}
+.nav-tabs_box {
+  background: transparent !important;
+  border: 0 !important;
+  ul {
+    border-bottom: 0 !important;
+    li {
+      margin-right: 8px;
+      margin-top: 8px;
+    }
+    .nav-link {
+      background: transparent !important;
+      border: 1px solid #023A4A !important;
+      border-radius: 50px !important;
+      padding: 8px 15px !important;
+      &:after {
+        display: none !important;
+      }
   }
+  .nav-link.active {
+    background: #023A4A !important;
+    color: #fff !important;
+    svg path {
+      fill: #fff !important;
+    }
+}
+  }
+}
+.mobile_profile_buttons .btn_style {
+  margin-right: 5px;
+  padding: 6px 10px;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+}
 
 @media (min-width: 2000px) {
   .nav-tabs.user-tabs .nav-item .nav-link {
@@ -1440,4 +1573,10 @@ width:  100% !important;
   text-align: right;
   padding-right: 8px;
 }
+}
+
+.setting_heighlight svg {
+  width: 30px;
+  height: 30px;
+  margin-top: -15px;
 }

@@ -1366,6 +1366,44 @@ width:  100% !important;
   .general_details {
     padding: 15px !important;
   }
+    .title_2 {
+        font-size: 16px;
+    }
+    .title-1 {
+      font-size: 18px;
+      padding-top: 3px;
+    }
+    .elton-box.dashboard-icons .team-badge_content {
+      padding-left: 5px !important;
+    }
+    .nav-tabs_box {
+      background: transparent !important;
+      border: 0 !important;
+      ul {
+        border-bottom: 0 !important;
+        li {
+          margin-right: 8px;
+          margin-top: 8px;
+        }
+        .nav-link {
+          background: transparent !important;
+          border: 1px solid #023A4A !important;
+          border-radius: 50px !important;
+          padding: 8px 15px !important;
+          &:after {
+            display: none !important;
+          }
+      }
+      .nav-link.active {
+        background: #023A4A !important;
+        color: #fff !important;
+        svg path {
+          fill: #fff !important;
+        }
+    }
+      }
+    }
+
 }
 
 .user-details-left .user-info button {
@@ -1385,4 +1423,10 @@ width:  100% !important;
 .user-details-left .user-info button .tour-personal-details svg {
 width: 15px !important;
 min-width: 15px;
+}
+
+.setting_heighlight svg {
+  width: 30px;
+  height: 30px;
+  margin-top: -15px;
 }

@@ -35,7 +35,7 @@ export class MarketingPopupComponent {
   langs: any = environment.langs;
   locations: any = environment.domains;
   frequency: any = ['Once a day', 'Once a week', 'Once 2 Hrs', 'Twice a day', 'Once a month', 'One time only'];
-  frequency_de: any = ['Once a day', 'Once a week', 'Once 2 Hrs', 'Twice a day', 'Once a month', 'One time only'];
+  frequency_de: any = ['Einmal am Tag', 'Einmal pro Woche', 'Einmal alle 2 Stunden', 'Zweimal am Tag', 'Einmal im Monat', 'Nur einmal'];
   startDate: any = "";
   endDate: any = "";
   error: boolean = false;
@@ -58,6 +58,8 @@ export class MarketingPopupComponent {
     if (selectedLang == 'de') {
       this.langs = environment.langs_de;
       this.locations = environment.domains_de;
+      // this.frequency = this.frequency_de;
+      // this.selectedFrequency = 'Einmal am Tag';
     }
     this.marketingApi.getRolePaymentTypes().subscribe((response) => {
       if (response && response.status) {
@@ -80,7 +82,12 @@ export class MarketingPopupComponent {
       this.html = this.data.description
       this.selectedLang = parseInt(this.data.language)
       this.selectedLocation = parseInt(this.data.location)
-      this.selectedFrequency = this.data.frequency
+      this.selectedFrequency = this.data.frequency;
+      console.warn('DB selectedFrequency ', this.selectedFrequency);
+      let selectedLang = localStorage.getItem('lang');
+      if (selectedLang == 'de') {
+        // this.selectedFrequency = 'Einmal am Tag';
+      }
       this.startDate = this.data.start_date
       this.endDate = this.data.end_date;
       this.status = this.data.status;
@@ -224,5 +231,27 @@ export class MarketingPopupComponent {
   onSelectionChange(event: any) {
     console.log('Selected roles:', this.selectedRole);  // Updated values
     console.log('Change event:', event);  // Full event details
+  }
+
+  translateFrequency(frequency: any) {
+    let selectedLang = localStorage.getItem('lang');
+    if (selectedLang == 'de') {
+      if (frequency == 'Once a day') {
+        frequency = 'Einmal am Tag';
+      } else if (frequency == 'Once a week') {
+        frequency = 'Einmal pro Woche';
+      } else if (frequency == 'Once 2 Hrs') {
+        frequency = 'Einmal alle 2 Stunden';
+      } else if (frequency == 'Twice a day') {
+        frequency = 'Zweimal am Tag';
+      } else if (frequency == 'Once a month') {
+        frequency = 'Einmal im Monat';
+      } else if (frequency == 'One time only') {
+        frequency = 'Nur einmal';
+      }
+      return frequency;
+    } else {
+      return frequency;
+    }
   }
 }
