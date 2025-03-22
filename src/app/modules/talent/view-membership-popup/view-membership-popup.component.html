@@ -59,8 +59,12 @@
 
     <div class="bottom-details">
       <p><strong>{{ 'subTotal' | translate }}:</strong> {{ plan.subtotal }} {{strUpperCase(plan.currency)}}</p>
-      <p *ngIf="plan.tax_percentage>0"><strong>Incl. VAT {{plan.tax_percentage}}%:</strong> {{plan.tax}}
-        {{strUpperCase(plan.currency)}}</p>
+      <p *ngIf="plan.tax_percentage>0">
+        <strong *ngIf="'includeVAT' | translate as translatedText">{{ 'translatedText' | translate }} {{plan.tax_percentage}}%:</strong> 
+        
+        <span *ngIf="'includeVAT' | translate as translatedText">{{plan.tax}}</span>
+        <span *ngIf="'includeVAT' | translate as translatedText">{{strUpperCase(plan.currency)}}</span>
+      </p>
       <p><strong>{{ 'total' | translate }}:</strong> {{ plan.total }} {{strUpperCase(plan.currency)}}</p>
 
       <div class="download-btn mt-4" *ngIf="plan.download_path">

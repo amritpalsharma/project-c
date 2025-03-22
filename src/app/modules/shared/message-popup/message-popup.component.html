@@ -17,12 +17,12 @@
         </div>
         <div *ngIf="data.action === 'newsletter-confirmation'"
             class="popup-delete-btn d-flex align-items-center justify-content-between mx-5 px-5 py-2">
-            <div (click)="newsletterConfirmed()">{{ 'confirm' | translate }}</div>
+            <div (click)="newsletterConfirmed()" style="color: green;">{{ 'confirm' | translate }}</div>
             <div (click)="close()">{{ 'close' | translate }}</div>
         </div>
         <div *ngIf="data.action === 'activity-confirmation'"
             class="popup-delete-btn d-flex align-items-center justify-content-between mx-5 px-5 py-2">
-            <div (click)="activityConfirmed()">{{ 'confirm' | translate }}</div>
+            <div (click)="activityConfirmed()" style="color: green;">{{ 'confirm' | translate }}</div>
             <div (click)="close()">{{ 'close' | translate }}</div>
         </div>
         <div *ngIf="data.action === 'remove-fav-confirmation'"

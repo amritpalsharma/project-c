@@ -36,8 +36,15 @@ export class AdvertisingPopupComponent   {
   errorMsg:any = {}
 
 
-  nameError : string = '';
-  typeError : string = '';
+  nameRequired : string = '';
+  typeRequired : string = '';
+  pageRequired : string = '';
+  imageRequired : string = '';
+  endDateRequired : string = '';
+  maxClicksRequired : string = '';
+  maxViewsRequired: string = '';
+  redirectrequired: string = '';
+
 
   today: Date = new Date();
 
@@ -48,7 +55,12 @@ export class AdvertisingPopupComponent   {
   pageName:any = "";
   imageUrl:any = null;
   constructor(
-    public dialogRef: MatDialogRef<AdvertisingPopupComponent>,@Inject(MAT_DIALOG_DATA) public data: any, private advertisementService: AdvertisementService, private toastr : ToastrService, private translateService: TranslateService, private webPages: WebPages
+    public dialogRef: MatDialogRef<AdvertisingPopupComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+     private advertisementService: AdvertisementService,
+      private toastr : ToastrService,
+       private translateService: TranslateService,
+        private webPages: WebPages
   ) {}
 
   ngOnInit(): void {
@@ -193,42 +205,48 @@ export class AdvertisingPopupComponent   {
     if(this.name == ""){
       this.error = true;
       // this.errorMsg.name = "Name is required";
-      this.errorMsg.name = this.nameError;
+      this.errorMsg.name = this.nameRequired;
     }
     if(this.redirect == ""){
       this.error = true;
-      this.errorMsg.redirect = "Redirect url is required";
+      // this.errorMsg.redirect = "Redirect url is required";
+      this.errorMsg.redirect = this.redirectrequired;
     }
     
     if(this.type == ""){
       this.error = true;
       // this.errorMsg.type = "Type is required";
-      this.errorMsg.name = this.typeError;
+      this.errorMsg.type = this.typeRequired;
     }
     
     if(this.page == ""){
       this.error = true;
-      this.errorMsg.page = "Page is required";
+      // this.errorMsg.page = "Page is required";
+      this.errorMsg.page = this.pageRequired;
     }
     
     if(this.imageToUpload == "" && !this.imagePreview){
       this.error = true;
-      this.errorMsg.image = "image is required";
+      // this.errorMsg.image = "image is required";
+      this.errorMsg.image = this.imageRequired;
     }
 
     if((this.endDate == "0000-00-00" || !this.endDate) && !this.disableEndDate ){
       this.error = true;
-      this.errorMsg.endDate = "enter the end date or check the box";
+      // this.errorMsg.endDate = "enter the end date or check the box";
+      this.errorMsg.endDate = this.endDateRequired;
     }
 
     if(this.maxViews == ""){
       this.error = true;
-      this.errorMsg.maxViews = "Max views is required";
+      // this.errorMsg.maxViews = "Max views is required";
+      this.errorMsg.maxViews = this.maxViewsRequired;
     }
     
     if(this.maxClicks == ""){
       this.error = true;
-      this.errorMsg.maxClicks = "Max clicks is required";
+      // this.errorMsg.maxClicks = "Max clicks is required";
+      this.errorMsg.maxClicks = this.maxClicksRequired;
     }
     return this.error;
 
@@ -349,11 +367,16 @@ export class AdvertisingPopupComponent   {
   }
 
   getToasterMsg() {
-    this.translateService.get(['nameRequired', 'typeRequired']).subscribe((translations) => {
-      this.nameError = translations['nameRequired'];
-      this.typeError = translations['typeRequired'];
+    this.translateService.get(['nameRequired','typeRequired','pageRequired','imageRequired','endDateRequired','maxViewsRequired','maxClicksRequired','redirectrequired']).subscribe((translations) => {
+      this.nameRequired = translations['nameRequired'];
+      this.typeRequired = translations['typeRequired'];
+      this.pageRequired = translations['pageRequired'];
+      this.imageRequired = translations['imageRequired'];
+      this.endDateRequired = translations['endDateRequired'];
+      this.maxViewsRequired = translations['maxViewsRequired'];
+      this.maxClicksRequired = translations['maxClicksRequired'];
+      this.redirectrequired = translations['redirectrequired'];
     });
-    // console.log('name error test : ', this.nameError)
   }
 }
 

@@ -50,7 +50,8 @@
   "confirmNewPassword": "Confirm New Password",
   "cancel": "Cancel",
   "save": "Save",
-  "addNewPerformance": "Add new statistic",
+  "addNewPerformance": "Add New Statistic",
+  "addNewTransfer": "Add New Transfer",
   "addDiscount": "Add Discount",
   "team": "Team",
   "fcThun": "FC Thun",
@@ -519,7 +520,7 @@
   "emailLabel": "Email",
   "emailPlaceholder": "example@email.com",
   "passwordLabel": "Password",
-  "forgotPasswordLink": "Forgot password?",
+  "forgotPasswordLink": "Forgot Password?",
   "login": "Login",
   "dontHaveAccount": "Don't have an account yet?",
   "registerNow": "Register Now",
@@ -607,7 +608,7 @@
   "newChatLightPopup": "New Chat Light Popup",
   "resetPasswordPopup": "Reset Password Popup",
   "performance": "Performance",
-  "addNewPerformancePopup": "Add new statistic",
+  "addNewPerformancePopup": "Add New Statistic",
   "editStatistic": "Edit statistic",
   "performanceAnalysis": "Performance Analysis",
   "transfer": "Transfers",
@@ -704,7 +705,6 @@
   "playerAge": "Player Age",
   "form-upto": "Form-Upto",
   "session": "Session",
-  "addNewTransfer": "Add transfer details",
   "addTransferDetails": "Add Transfer Details",
   "addVideos": "Add Videos",
   "galleryText": "Your browser does not support the video tag.",
@@ -851,6 +851,7 @@
   "duration": "Duration",
   "price": "Price",
   "subTotal": "Subtotal",
+  "includeVAT": "Incl. VAT",
   "downloadPDF": "Download PDF",
   "success!": "Success!",
   "subscriptionSuccessful": "Your subscription was successful.",
@@ -1088,7 +1089,7 @@
   "don'tsetAnEnd": "Don't set an end date",
   "maxViews": "Max Views",
   "editProfile": "Edit Profile",
-  "thanksMessage": "thank you very much",
+  "thanksMessage": "Thank you very much",
   "thanksMessage2": "We will get in touch with you.",
   "backToHome": "Back To Home",
   "tabSection": "Tab Section",
@@ -1226,6 +1227,8 @@
   "deleteRepresentorConfirmation": "Are you sure you want to delete this Team Member?",
   "deletingAccount": "Deleting Account",
   "deletingText": "To confirm this, type “DELETE”",
+
+  
   "selectDateTime": "Select date & time",
   "enterCountryName": "Enter Country Name",
   "enterYourEmail": "Enter your email",
@@ -1234,9 +1237,19 @@
   "enterYourCompanyName": "Enter your company name",
   
   "typeRequired": "Type is required",
+  "redirectrequired": "Redirect URL is required",
   "pageRequired": "Page is required",
   "imageRequired": "Image is required",
   "endDateRequired": "Enter the end date or check the box",
   "maxViewsRequired": "Max views is required",
-  "maxClicksRequired": "Max clicks is required"
+  "maxClicksRequired": "Max clicks is required",
+
+  "titleRequired": "Title is required",
+  "contentRequired": "Content is required",
+  "slugRequired": "Slug is required",
+  "invalidSlug": "Slug is Invalid",
+  "metaTitleReruired": "Meta title is required",
+  "descriptionRequired": "Meta description is required",
+  "subjectRequired": "Subject is required"
+
 }
