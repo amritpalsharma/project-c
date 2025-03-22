@@ -5,6 +5,8 @@ import { TalentService } from '../../../../services/talent.service';
 import { PaymentService } from '../../../../services/payment.service';
 import { CouponCodeAlertComponent } from '../../../shared/coupon-code-alert/coupon-code-alert.component';
 import { ToastrService } from 'ngx-toastr';
+import { TranslateService } from '@ngx-translate/core';
+import { WebPages } from '../../../../services/webpages.service';
 
 @Component({
   selector: 'add-booster',
@@ -14,10 +16,14 @@ import { ToastrService } from 'ngx-toastr';
 export class AddBoosterComponent {
   isLoadingCheckout: boolean = false;
   stripe: any;
-  @Input() audiences = [
-    { role: "Clubs", id: 2 },
-    { role: "Scouts", id: 3 },
-    { role: "Player", id: 4 },
+  talent: string = '';
+  scout: string = '';
+  club: string = '';
+  // @Input() audiences = [
+  audiences = [
+    { role: this.club, id: 2 },
+    { role: this.scout, id: 3 },
+    { role: this.talent, id: 4 },
   ];     // List of all audiences
   selectedAudienceIds: number[] = []; // Store only audience IDs
   id: any;
@@ -29,6 +35,8 @@ export class AddBoosterComponent {
     private toastr: ToastrService,
     private paymentService: PaymentService,
     public dialog: MatDialog,
+    private translateService: TranslateService,
+    private webPages: WebPages,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
@@ -36,6 +44,18 @@ export class AddBoosterComponent {
     this.loggedInUser = JSON.parse(this.loggedInUser);
     this.id = this.data.id || [];
     this.stripe = await this.paymentService.getStripe();
+
+    this.getToasterMsg();
+
+    this.getToasterMsg();
+    this.webPages.languageId$.subscribe((data: any) => {
+      this.getToasterMsg();
+      this.audiences = [
+        { role: this.club, id: 2 },
+        { role: this.scout, id: 3 },
+        { role: this.talent, id: 4 },
+      ]
+    });
   }
 
   // Apply the selected audiences filter
@@ -123,5 +143,14 @@ export class AddBoosterComponent {
     }
 
     return age;
+  }
+
+
+  getToasterMsg() {
+    this.translateService.get(['talent', 'scout', 'club']).subscribe((translations) => {
+      this.talent = translations['talent'];
+      this.scout = translations['scout'];
+      this.club = translations['club'];
+    });
   }
 }

@@ -148,9 +148,10 @@ export class TalentService {
 
   getBoosterData(params: any = {}): Observable<any> {
     const headers = this.headers();
+    let langId = localStorage.getItem('lang_id')
     return this.http.get<{ status: boolean, message: string, data: {} }>(
-      `${this.apiUrl}user/get-booster-stats`,
-      { headers, params }
+      `${this.apiUrl}user/get-booster-stats/${langId}`,
+      { headers }
     );
   }
 
@@ -726,7 +727,21 @@ export class TalentService {
       headers // Specify response type for downloading files
     });
   }
+  
+  updateSightingInviteResponse(status: string, eventId: any, langId: any): Observable<any> {
 
+    const headers = this.headers();
+    let params = new HttpParams();
+
+    params = params.append('status', status);
+    params = params.append('event_id', eventId);
+
+
+    return this.http.post(`${this.apiUrl}player/update-sighting-invite-response/${langId}`, params, {
+      headers // Specify response type for downloading files
+    });
+  }
+  
   // talent.service.ts
   subscribeToPlan(subscriptionData: { paymentMethodId: string; planId: number; }): Observable<any> {
     const headers = this.headers();
