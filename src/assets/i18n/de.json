@@ -553,7 +553,7 @@
   "totalViews": "Gesamtansicht",
   "totalClicks": "Klicks insgesamt",
   "session": "Sitzung",
-  "addNewTransfer": "Transferdetails hinzufügen",
+  "addNewTransfer": "Neuen Transfer hinzufügen",
   "addTransferDetails": "Transferdetails hinzufügen",
   "addVideos": "Video hinzufügen",
   "galleryText": "Ihr Browser unterstützt das Video-Tag nicht.",
@@ -715,6 +715,7 @@
   "pos": "Pos.",
   "duration": "Dauer",
   "subTotal": "Zwischensumme",
+  "includeVAT": "inkl. MwSt.",
   "downloadPDF": "PDF herunterladen",
   "success!": "Erfolgreich!",
   "subscriptionSuccessful": "Dein Kauf war erfolgreich!",
@@ -1290,7 +1291,7 @@
   "doYouWantToaddPackage": "Möchtest du “{{package_name}}” zu deinem Profil hinzufügen?",
   "emailExample": "Beispiel@email.com",
   "forgotPassword": {
-    "provideValidEmail": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+    "provideValidEmail": "Bitte gib eine gültige E-Mail an.",
     "successMessage": "Ein Link zum Zurücksetzen wurde an Ihre E-Mail gesendet.",
     "errorMessage": "Diese E-Mail existiert nicht",
     "generalError": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.",
@@ -1320,5 +1321,21 @@
   "enterYourName": "Geben Sie Ihren Namen ein",
   "enterYourCouponCode": "Geben Sie Ihren Gutscheincode ein",
   "enterYourCompanyName": "Geben Sie Ihren Firmennamen ein",
-  "deletePerformanceConfirm": "Bist du sicher, dass du die ausgewählten Berichte löschen möchtest?"
+  "deletePerformanceConfirm": "Bist du sicher, dass du die ausgewählten Berichte löschen möchtest?",
+
+  "typeRequired": "Typ ist erforderlich",
+  "redirectrequired": "Umleitungs-URL ist erforderlich",
+  "pageRequired": "Seite ist erforderlich",
+  "imageRequired": "Bild ist erforderlich",
+  "endDateRequired": "Geben Sie das Enddatum ein oder markieren Sie das Kästchen",
+  "maxViewsRequired": "Maximale Ansichten sind erforderlich",
+  "maxClicksRequired": "Maximale Klicks sind erforderlich",
+
+  "titleRequired": "Titel ist erforderlich",
+  "contentRequired": "Inhalt ist erforderlich",
+  "slugRequired": "Schnecke ist erforderlich",
+  "invalidSlug": "Slug ist ungültig",
+  "metaTitleReruired": "Meta-Titel ist erforderlich",
+  "descriptionRequired": "Meta-Beschreibung ist erforderlich",
+  "subjectRequired": "Thema ist erforderlich"
 }
