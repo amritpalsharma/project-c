@@ -265,6 +265,13 @@
 
 }
 
+.gallery-parent{
+  padding: 15px 20px ;
+}
+.w-20{
+  width: 20% !important;
+}
+
 
 .user-right-content > div{
     margin-bottom: 24px;
@@ -506,4 +513,34 @@
 }
 .edit_button {
     margin-left: 14px;
+}
+
+.gallery-parent {
+  padding: 0 !important;
+}
+@media (max-width: 1199px) {
+  .gallery-parent .w-20 {
+    width: 25% !important;
+  }
+  .gallery-parent .img-fluid {
+    height: 150px;
+}
+  }
+
+  @media (max-width: 767px) {
+    .gallery-parent .w-20 {
+      width: 33.33% !important;
+    }
+    .gallery-parent .img-fluid {
+      height: 150px;
+  }
+    }
+
+@media (max-width: 575px) {
+.gallery-parent .w-20 {
+  width: 50% !important;
+}
+.gallery-parent .img-fluid {
+  height: 140px;
+}
 }

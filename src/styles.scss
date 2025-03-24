@@ -1281,6 +1281,9 @@ table {
     }
 }
 
+.table.no_hover_tr tbody tr:hover {
+  outline: none !important;
+}
 // ------------------marketing popup
 
 

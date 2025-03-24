@@ -395,8 +395,9 @@ body.compact-sidebar.dark-theme .sidebar-menu svg path {
 }
 .footer_main.footer-responsive {
     flex-direction: column;
-    position: fixed;
+    position: sticky;
     bottom: 0;
+    left: 0;
     z-index: 9;
     width: 100%;
     padding-bottom: 10px;
