@@ -450,13 +450,13 @@ export class PlanComponent implements OnInit, OnDestroy {
     const originalIsYearly = plan.isYearly;
 
     if (isYearly && plan.active_interval == 'yearly') {
-      this.toastr.info(`You're already subscribed to the ${isYearly ? 'yearly' : 'monthly'} plan.`);
-      return;
+      // this.toastr.info(`You're already subscribed to the ${isYearly ? 'yearly' : 'monthly'} plan.`);
+      // return;
     }
 
     if (!isYearly && plan.active_interval == 'monthly') {
-      this.toastr.info(`You're already subscribed to the ${isYearly ? 'yearly' : 'monthly'} plan.`);
-      return;
+      // this.toastr.info(`You're already subscribed to the ${isYearly ? 'yearly' : 'monthly'} plan.`);
+      // return;
     }
 
 

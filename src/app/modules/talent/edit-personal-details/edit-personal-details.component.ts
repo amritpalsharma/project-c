@@ -34,7 +34,7 @@ export class EditPersonalDetailsComponent implements OnInit {
   readonly date = new FormControl(moment());
 
   countries: any;
-  leagueLevels: string[] = ['Amateur', 'Professional', 'Semi-Pro'];
+  leagueLevels: any[] = [];
   filteredClubs: any[] = [];  // To store filtered clubs based on search
   selectedClub: string = '';
   user: any = localStorage.getItem('userData');
@@ -48,7 +48,7 @@ export class EditPersonalDetailsComponent implements OnInit {
   heightUnit: string = 'cm';
   weight: number = 0;
   weightUnit: string = 'kg';
-  leagueLevel: string = '';
+  leagueLevel: any = 1;
   placeOfBirth: string = '';
   dominantFoot: string = 'Right'; // Set a default value for dominant foot
   currentClub: string = '';
@@ -64,6 +64,7 @@ export class EditPersonalDetailsComponent implements OnInit {
   dateOfBirth: FormControl = new FormControl(null);  // Initialize with null or the correct date format
   contractStart: FormControl = new FormControl(null);
   contractEnd: FormControl = new FormControl(null);
+  // selectedLeagueId:number=16;
 
   constructor(
     public dialogRef: MatDialogRef<EditPersonalDetailsComponent>,
@@ -82,7 +83,7 @@ export class EditPersonalDetailsComponent implements OnInit {
     // this.user = JSON.parse(localStorage.getItem('userInfo') || '{}');
     this.loggedInUser = JSON.parse(localStorage.getItem('userData') || '{}');
     this.userId = this.loggedInUser.id;
-
+    this.loadLeagues();
     this.getUserProfile(this.userId);
     // this.getClubsForPlayer();
 
@@ -110,7 +111,7 @@ export class EditPersonalDetailsComponent implements OnInit {
       this.heightUnit = this.user.meta.height_unit || 'cm';
       this.weight = this.user.meta.weight || 0;
       this.weightUnit = this.user.meta.weight_unit || 'kg';
-      this.leagueLevel = this.user.meta.league_level || '';
+      this.leagueLevel = this.user.meta.league_level || 1;
       this.placeOfBirth = this.user.meta.place_of_birth || '';
       this.dominantFoot = this.user.meta.foot || 'Right';
       this.currentClub = this.user.pre_current_club_name || '';
@@ -228,7 +229,7 @@ export class EditPersonalDetailsComponent implements OnInit {
         this.weightUnit = this.user.meta.weight_unit || 'kg';
         this.contractStart = this.user.meta.contract_start || '';
         this.contractEnd = this.user.meta.contract_end || '';
-        this.leagueLevel = this.user.meta.league_level || '';
+        this.leagueLevel = this.user.meta.league_level || 1;
         this.placeOfBirth = this.user.meta.place_of_birth || '';
         this.dominantFoot = this.user.meta.foot || 'Right';
         this.currentClub = this.user.pre_current_club_name || '';
@@ -242,6 +243,10 @@ export class EditPersonalDetailsComponent implements OnInit {
 
         if (this.user.meta && this.user.meta.pre_club_id) {
           this.currentClubId = this.user.meta.pre_club_id;
+        }
+        if (this.user.meta && this.user.meta.league_level) {
+          this.leagueLevel = this.user.meta.league_level;
+          console.warn('this.leagueLevel ',this.leagueLevel);
         }
       }
     } else {
@@ -305,7 +310,7 @@ export class EditPersonalDetailsComponent implements OnInit {
       const formattedContractEnd = moment(this.contractEnd.value).format('YYYY-MM-DD');
       formData.append('user[contract_end]', formattedContractEnd);
     }
-    if (this.leagueLevel) formData.append('user[league_level]', this.leagueLevel);
+    if (this.leagueLevel) formData.append('user[league_level]', this.leagueLevel + '');
     if (this.firstName) formData.append('user[first_name]', this.firstName);
     if (this.lastName) formData.append('user[last_name]', this.lastName);
     if (this.birthCountry) formData.append('user[birth_country]', this.birthCountry);
@@ -332,23 +337,34 @@ export class EditPersonalDetailsComponent implements OnInit {
     );
   }
 
+  loadLeagues(): void {
 
-  // onDateChange(event: MatDatepickerInputEvent<Date>, type:any): void {
+    // Prepare query parameters
+    let params: any = {
+      lang: localStorage.getItem('lang_id'),
+    };
 
-  //   const selectedDate = event.value;
-  //   let date = this.formatDate(selectedDate);
-
-  //   if(type == 'dob'){
-  //     this.dateOfBirth = date;
-  //   }
-
-  // }
-
-  // formatDate(date:any) {
-  //   const year = date.getFullYear();
-  //   const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
-  //   const day = String(date.getDate()).padStart(2, '0');
-  //   return `${year}-${month}-${day}`;
-  // }
-
+    this.talentService.getLeagues(params).subscribe(
+      (response: any) => {
+        if (response.status) {
+          this.leagueLevels = response.data.leagues;
+          //this.setSeletedValue();
+        } else {
+          console.error('No data found');
+        }
+      },
+      (error: any) => {
+        console.error('Error fetching leagues:', error);
+      }
+    );
+  }
+  trackById(index: number, club: any): number {
+    return club.id;
+  }
+  setSeletedValue(){
+    setTimeout(() => {
+      // this.selectedLeagueId = this.user.meta.league_level || 1;
+      alert('done')
+    }, 500);
+  }
 }

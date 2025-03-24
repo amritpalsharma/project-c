@@ -60,6 +60,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   newRegistrationScouts: any = [];
   years: any = [];
   yearOfstarting: any = 2024;
+  currentMonth: any = '';
+  currentYear: any = '';
+
   selectedYear: any = new Date().getFullYear();
   // selectedYear: any = new Date().getFullYear() - 1;
   // year: any = 2020;
@@ -113,6 +116,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    const currentDate = new Date();
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+    const year = currentDate.getFullYear();
+    this.currentMonth = month;
+    this.currentYear = year;
     this.getJsonTranslations();
     let notificationStatus = localStorage.getItem("notificationSeen");
     if (notificationStatus) {
@@ -326,7 +334,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   getNewRegistrations() {
     try {
       const newRegistrationLimit = 5;
-      this.dashboardApi.getNewRegistration(newRegistrationLimit).subscribe((response) => {
+      let month_year = this.currentMonth + '_' + this.currentYear;
+      this.dashboardApi.getNewRegistration(newRegistrationLimit, month_year).subscribe((response) => {
         if (response && response.status && response.data) {
           this.newRegistrations = response.data.userData;
         } else {
@@ -498,7 +507,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         },
         elements: { line: { tension: 0.5 } },
         plugins: {
-          legend: { display: false },
+          legend: { display: false, labels: { color: 'red' } },
           tooltip: {
             enabled: true,
             mode: 'index',

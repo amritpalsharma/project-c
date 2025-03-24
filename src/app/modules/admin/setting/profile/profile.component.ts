@@ -11,7 +11,7 @@ import { environment } from '../../../../../environments/environment';
 })
 export class ProfileComponent {
 
-  userData:any = {};
+  userData: any = {};
   firstName: string = '';
   lastName: string = '';
   email: string = '';
@@ -22,16 +22,18 @@ export class ProfileComponent {
   zipcode: string = '';
   password: string = '';
   image: any = '';
-  imageToUpload:any = '';
-  imageLoading:boolean = false;
+  imageToUpload: any = '';
+  imageLoading: boolean = false;
   profileData: any;
   error: string | null = null;
-  
-  constructor(private userService: UserService, public dialog: MatDialog){
+  inputFieldType: string = '';
+  isReadonly: boolean = true;
+
+  constructor(private userService: UserService, public dialog: MatDialog) {
 
   }
   ngOnInit(): void {
-    this.userService.getAdminProfile().subscribe((response)=>{
+    this.userService.getAdminProfile().subscribe((response) => {
       if (response && response.status) {
 
         this.userData = response.data.user_data;
@@ -45,12 +47,12 @@ export class ProfileComponent {
         this.zipcode = this.userData.meta.zipcode || '';
         this.image = this.userData.meta.profile_image_path || '../../../assets/images/1.png';
         // this.isLoading = false;
-        
+
       } else {
         // this.isLoading = false;
         console.error('Invalid API response structure:', response);
       }
-    }); 
+    });
   }
 
   onProfileImageChange(event: Event): void {
@@ -60,7 +62,7 @@ export class ProfileComponent {
       this.imageToUpload = FileToUpload;
       let $this = this;
       let reader = new FileReader();
-      reader.onload = function (fileData:any) {
+      reader.onload = function (fileData: any) {
         $this.image = fileData.target.result;
       };
       reader.readAsDataURL(FileToUpload);
@@ -68,12 +70,12 @@ export class ProfileComponent {
       let formdata = new FormData();
       formdata.append("profile_image", this.imageToUpload);
       this.imageLoading = true;
-      this.userService.updateAdminImage(formdata).subscribe((response)=>{
+      this.userService.updateAdminImage(formdata).subscribe((response) => {
         if (response && response.status) {
           // this.isLoading = false;
           this.imageLoading = false;
-          let newImageUrl = environment.url+"uploads/"+response.data.uploaded_fileinfo;
-          let localData:any = localStorage.getItem('userData');
+          let newImageUrl = environment.url + "uploads/" + response.data.uploaded_fileinfo;
+          let localData: any = localStorage.getItem('userData');
           localData = JSON.parse(localData);
           localData.profile_image_path = newImageUrl;
           localData = JSON.stringify(localData);
@@ -86,11 +88,11 @@ export class ProfileComponent {
           console.error('Invalid API response structure:', response);
           this.showMatDialog("Error in uploading image", 'display')
         }
-      }); 
+      });
     }
   }
 
-  updateAdminProfile(){
+  updateAdminProfile() {
 
     const formdata = new FormData();
     formdata.append("user[first_name]", this.firstName);
@@ -100,27 +102,27 @@ export class ProfileComponent {
     formdata.append("user[city]", this.city);
     formdata.append("user[zipcode]", this.zipcode);
     formdata.append("user[state]", this.state);
-    if(this.imageToUpload != ""){
+    if (this.imageToUpload != "") {
       formdata.append("user[profile_image]", this.imageToUpload);
     }
 
-    this.userService.updateAdminProfile(formdata).subscribe((response)=>{
-      if (response && response.status) {        
+    this.userService.updateAdminProfile(formdata).subscribe((response) => {
+      if (response && response.status) {
         // this.isLoading = false;
         this.showMatDialog("Profile updated successfully!", 'display')
       } else {
         // this.isLoading = false;
         console.error('Invalid API response structure:', response);
       }
-    }); 
+    });
 
   }
 
-  showMatDialog(message:string, action:string){
-    const messageDialog = this.dialog.open(MessagePopupComponent,{
+  showMatDialog(message: string, action: string) {
+    const messageDialog = this.dialog.open(MessagePopupComponent, {
       width: '500px',
       position: {
-        top:'150px'
+        top: '150px'
       },
       data: {
         message: message,
@@ -130,9 +132,15 @@ export class ProfileComponent {
 
     messageDialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
-      //  console.log('Dialog result:', result);
+        //  console.log('Dialog result:', result);
       }
     });
+  }
+
+  toggleReadonly() {
+    this.isReadonly = !this.isReadonly;
+    // if (this.isReadonly === true) {
+    // }
   }
 
 
