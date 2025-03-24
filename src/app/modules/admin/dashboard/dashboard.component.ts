@@ -18,6 +18,7 @@ import { debounceTime, distinctUntilChanged, switchMap, finalize } from 'rxjs/op
 import { CommonHelperService } from '../../../services/common-helper.service';
 import { SharedService } from '../../../services/shared.service';
 import { AdminHelperService } from '../../../services/admin-helper.service';
+import { TitleService } from '../../../title.service';
 
 interface Notification {
   id: number;
@@ -91,6 +92,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   domainsList: any[] = [];
   selectedDomain: string = ''; // Store selected domain
+  pageTitle: string = '';
 
   constructor(
     private themeService: ThemeService,
@@ -104,12 +106,14 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     private socketService: SocketService,
     private commonHelper: CommonHelperService,
     private sharedservice: SharedService,
-    private adminHelper: AdminHelperService
+    private adminHelper: AdminHelperService,
+    private titleService: TitleService,
   ) {
 
   }
 
   ngOnInit() {
+    this.getJsonTranslations();
     let notificationStatus = localStorage.getItem("notificationSeen");
     if (notificationStatus) {
       let jsonData = JSON.parse(notificationStatus);
@@ -250,6 +254,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.getNewRegistrationsWithScout();
         this.getNewRegistrationsWithClub();
         this.getNewRegistrationsWithPlayers();
+        this.getJsonTranslations();
 
         // this.getChardData(this.year, this.domain_id, this.lang_id);
         this.getChardData(this.selectedYear, this.selectedDomain, this.lang_id);
@@ -893,7 +898,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   redirectUser(slug: string, id: Number): void {
-    
+
     if (slug == 'Club Representator') {
       slug = 'club';
     }
@@ -907,7 +912,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     if (slug == 'spähervertreter') {
       slug = 'scout';
     }
-    
+
     if (slug == 'späher') {
       slug = 'scout';
     } else if (slug == 'verein') {
@@ -929,6 +934,13 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     // convertAdminDateTime
     let formattedDate = this.adminHelper.convertAdminDateTime(datetime, 'users');
     return formattedDate;
+  }
+  getJsonTranslations() {
+    this.translateService.get(['dashboard']).subscribe((translations) => {
+      this.pageTitle = translations['dashboard'];
+      this.titleService.setTitle(this.pageTitle);
+      console.log('Title fetch Function Fired');
+    })
   }
 }
 

@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
-import {  MatDialog } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
+import { TitleService } from '../../../title.service';
 
 @Component({
   selector: 'app-website',
@@ -8,12 +9,16 @@ import {  MatDialog } from '@angular/material/dialog';
 })
 export class WebsiteComponent {
 
-  tab:any = "webpages";
+  tab: any = "webpages";
 
-  constructor(private dialog: MatDialog) {}
+  constructor(private dialog: MatDialog, private titleService: TitleService) { }
 
-  switchTab(tab:any){
+  switchTab(tab: any) {
     this.tab = tab;
+  }
+
+  setPageTitle() {
+    this.titleService.setTitle('Templates Component');
   }
 
 }

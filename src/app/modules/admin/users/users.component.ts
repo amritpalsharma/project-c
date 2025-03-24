@@ -11,6 +11,8 @@ import { MessagePopupComponent } from '../message-popup/message-popup.component'
 import { SocketService } from '../../../services/socket.service';
 import { SharedService } from '../../../services/shared.service';
 import { AdminHelperService } from '../../../services/admin-helper.service';
+import { TitleService } from '../../../title.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-users',
@@ -32,14 +34,24 @@ export class UsersComponent implements OnInit {
 
   customFilters: any = [];
   locations: any = [];
+  pageTitle: string = '';
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
 
-  constructor(private userService: UserService, public dialog: MatDialog, private socketService: SocketService, private sharedservice: SharedService, private adminHelper: AdminHelperService) { }
+  constructor(
+    private userService: UserService,
+    public dialog: MatDialog,
+    private socketService: SocketService,
+    private sharedservice: SharedService,
+    private adminHelper: AdminHelperService,
+    private titleService: TitleService,
+    private translateService: TranslateService
+  ) { }
 
 
   ngOnInit(): void {
+    this.getJsonTranslations();
     this.isLoading = true;
     this.fetchUsers();
     this.getLocations();
@@ -50,6 +62,7 @@ export class UsersComponent implements OnInit {
         this.lang_id = data.id;
         this.fetchUsers();
         this.getLocations();
+        this.getJsonTranslations();
       }
     });
 
@@ -462,5 +475,12 @@ export class UsersComponent implements OnInit {
     // convertAdminDateTime
     let formattedDate = this.adminHelper.convertAdminDateTime(datetime, 'users');
     return formattedDate;
+  }
+
+  getJsonTranslations() {
+    this.translateService.get(['userManagement']).subscribe((translations) => {
+      this.pageTitle = translations['userManagement'];
+      this.titleService.setTitle(this.pageTitle);
+    })
   }
 }

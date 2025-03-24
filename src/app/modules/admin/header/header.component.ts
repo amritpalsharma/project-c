@@ -13,6 +13,7 @@ import { SharedService } from '../../../services/shared.service';
 import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, switchMap, filter, tap, finalize, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { TitleService } from '../../../title.service';
 // import { filter, tap } from 'rxjs/operators';
 // import { debounceTime, distinctUntilChanged, switchMap, finalize } from 'rxjs/operators';
 import { TalkService } from '../../../services/talkjs.service';
@@ -47,7 +48,8 @@ export class HeaderComponent {
     private talentService: TalentService,
     private socketService: SocketService,
     private talkService: TalkService,
-    private cdRef: ChangeDetectorRef
+    private cdRef: ChangeDetectorRef,
+    private titleService: TitleService
   ) { }
 
   loggedInUser: any = localStorage.getItem('userData');
@@ -85,10 +87,13 @@ export class HeaderComponent {
   showSuggestions: boolean = false;
   searchControl = new FormControl('');
   filteredUsers: any[] = [];
+  pageTitle: string = '';
 
   notificationSeen: boolean = false;
 
   ngOnInit() {
+    // Component's Title
+    this.getPageTitle();
     this.searchControl.setValue('', { emitEvent: false });
 
     this.themeService.isDarkTheme.subscribe((isDarkTheme: boolean) => {
@@ -379,9 +384,14 @@ export class HeaderComponent {
     const locale = chatSelectedLanguage.locale;
     // Change the TalkJS locale by passing the locale string (e.g., 'en-US')
     this.talkService.changeLocale(locale);
+    this.getPageTitle();
     // langs
   }
-
+  getPageTitle() {
+    this.titleService.currentTitle.subscribe(updatedTitle => {
+      this.pageTitle = updatedTitle;
+    });
+  }
 
   logout() {
     let jsonData = localStorage.getItem("userData");

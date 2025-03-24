@@ -4,6 +4,11 @@ import { InboxPopupComponent } from './inbox-popup/inbox-popup.component';
 import { MatDialog } from '@angular/material/dialog';
 import { TalkService } from '../../../services/talkjs.service';
 import { SocketService } from '../../../services/socket.service';
+import { TitleService } from '../../../title.service';
+import { TranslateService } from '@ngx-translate/core';
+import { SharedService } from '../../../services/shared.service';
+
+
 @Component({
   selector: 'app-inbox',
   templateUrl: './inbox.component.html',
@@ -19,10 +24,23 @@ export class InboxComponent {
   createdGroups: { groupId: string, groupName: string }[] = [];
   user: any = {};
   receiverUser: any = {};
+  pageTitle: string = '';
   private isDarkMode = false;
-  constructor(private talkService: TalkService, private socketService: SocketService) { }
+  constructor(
+    private talkService: TalkService,
+    private socketService: SocketService,
+    private titleService: TitleService,
+    private translateService: TranslateService,
+    private sharedservice: SharedService,
+  ) { }
 
   async ngOnInit() {
+    this.getJsonTranslations();
+    this.sharedservice.data$.subscribe((data) => {
+      if (data.action == 'lang_updated') {
+        this.getJsonTranslations();
+      }
+    })
     const userDataString = localStorage.getItem('userData');
     if (userDataString) {
       this.userData = JSON.parse(userDataString);
@@ -122,7 +140,7 @@ export class InboxComponent {
       email: user.username,
       photoUrl: user.profile_image_path,
     })
-    
+
     if (users.length === 1) {
       this.startOneOnOneChat(users[0]);
     } else if (users.length > 1) {
@@ -171,5 +189,12 @@ export class InboxComponent {
   onThemeToggle(isDarkModeEnabled: boolean): void {
     // Call the toggleTheme function from the service
     this.talkService.toggleTheme(isDarkModeEnabled);
+  }
+
+  getJsonTranslations() {
+    this.translateService.get(['inbox']).subscribe((translations) => {
+      this.pageTitle = translations['inbox'];
+      this.titleService.setTitle(this.pageTitle);
+    })
   }
 }

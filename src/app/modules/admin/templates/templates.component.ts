@@ -1,16 +1,17 @@
-import { Component, inject,ViewChild } from '@angular/core';
-import {  MatDialog } from '@angular/material/dialog';
-import {  MatDialogRef} from '@angular/material/dialog';
+import { Component, inject, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 import { FilterPopupComponrnt } from '../filter-popup/filter-popup.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { environment } from '../../../../environments/environment';
 import { MessagePopupComponent } from '../message-popup/message-popup.component';
-import { TemplatePopupComponent } from './template-popup/template-popup.component'; 
+import { TemplatePopupComponent } from './template-popup/template-popup.component';
 import { consumerPollProducersForChange } from '@angular/core/primitives/signals';
 import { TemplateService } from '../../../services/template.service';
 import { CommonFilterPopupComponent } from '../common-filter-popup/common-filter-popup.component';
 import { AdminHelperService } from '../../../services/admin-helper.service';
+import { TitleService } from '../../../title.service';
 
 @Component({
   selector: 'app-templates',
@@ -18,82 +19,87 @@ import { AdminHelperService } from '../../../services/admin-helper.service';
   styleUrl: './templates.component.scss'
 })
 export class TemplatesComponent {
-  displayedColumns: string[] = ['#','Name', 'For', 'Language','Created Date - Time','Edit','Remove'];
-  isLoading:boolean = false;
+  displayedColumns: string[] = ['#', 'Name', 'For', 'Language', 'Created Date - Time', 'Edit', 'Remove'];
+  isLoading: boolean = false;
   templates: any = [];
   checkboxIds: string[] = [];
   allSelected: boolean = false;
-  selectedIds: number[] = [];  
+  selectedIds: number[] = [];
   filterValue: string = '';
   lang_id: string = '';
   idsToDelete: any = [];
-  customFilters:any = [];
+  customFilters: any = [];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   roles: any = [];
   langs: any = environment.langs;
 
-  constructor(public dialog: MatDialog,private tempalateApi: TemplateService, public adminHelper: AdminHelperService) {}
+  constructor(
+    public dialog: MatDialog,
+    private tempalateApi: TemplateService,
+    public adminHelper: AdminHelperService,
+    private titleService: TitleService
+  ) { }
   ngOnInit(): void {
     this.getTemplates();
 
-    let envRoles:any = environment.roles;
-    envRoles.unshift({id: 0, role: 'All'});
+    let envRoles: any = environment.roles;
+    envRoles.unshift({ id: 0, role: 'All' });
     this.roles = envRoles;
-  } 
+  }
 
-  
 
-  async getTemplates(filterApplied:boolean = false): Promise<void> {
+
+  async getTemplates(filterApplied: boolean = false): Promise<void> {
     this.isLoading = true;
-    const page = this.paginator ? this.paginator.pageIndex*10 : 0;
+    const page = this.paginator ? this.paginator.pageIndex * 10 : 0;
     const pageSize = this.paginator ? this.paginator.pageSize : 10;
     // const sortOrder = this.sort ? this.sort.direction : 'asc';
     // const sortField = this.sort ? this.sort.active : '';
 
-    let params:any = {};
+    let params: any = {};
     params.offset = page;
     params.search = this.filterValue;
-    params.limit  = pageSize;
+    params.limit = pageSize;
     params.orderBy = "id";
     params.order = "desc";
 
-    if(filterApplied){
+    if (filterApplied) {
       params.offset = 0;
       this.paginator.firstPage(); // to reset the page if user applied filter on any page except the first one
     }
 
-    if(this.customFilters['role']){
-      params = {...params, "whereClause[role]" : this.customFilters['role']};
+    if (this.customFilters['role']) {
+      params = { ...params, "whereClause[role]": this.customFilters['role'] };
     }
 
-    if(this.customFilters['language']){
-      params = {...params, "whereClause[language]" : this.customFilters['language']};
+    if (this.customFilters['language']) {
+      params = { ...params, "whereClause[language]": this.customFilters['language'] };
     }
 
-    
+
     try {
       this.isLoading = true;
-      this.tempalateApi.getTemplates(params).subscribe((response:any)=>{
-      if (response && response.status && response.data && response.data.emailTemplates) {
-        this.templates = response.data.emailTemplates;
-        this.paginator.length = response.data.totalCount;
-        this.isLoading = false;
-      } else {
-        this.templates = [];
-        this.paginator.length = 0;
-        this.isLoading = false;
-        console.error('Invalid API response structure:', response);
-      }
-      });     
-    } catch (error:any) {
+      this.tempalateApi.getTemplates(params).subscribe((response: any) => {
+        if (response && response.status && response.data && response.data.emailTemplates) {
+          this.templates = response.data.emailTemplates;
+          this.paginator.length = response.data.totalCount;
+          this.isLoading = false;
+        } else {
+          this.templates = [];
+          this.paginator.length = 0;
+          this.isLoading = false;
+          console.error('Invalid API response structure:', response);
+        }
+      });
+    } catch (error: any) {
       this.isLoading = false;
       console.error('Error fetching users:', error);
     }
   }
 
-  createTemplate(){
-    const dialogRef = this.dialog.open(TemplatePopupComponent,{
+  createTemplate() {
+    const dialogRef = this.dialog.open(TemplatePopupComponent, {
       // height: '598px',
       // width: '600px',
       height: '90vh',
@@ -102,7 +108,7 @@ export class TemplatesComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result !== undefined) {
-        if(result.action == "templateAdded"){
+        if (result.action == "templateAdded") {
           this.showMessage('Email template created successfully!');
           this.getTemplates();
         }
@@ -110,16 +116,16 @@ export class TemplatesComponent {
     });
   }
 
-  applyFilter(filterValue:any) {
+  applyFilter(filterValue: any) {
     this.filterValue = filterValue.target?.value.trim().toLowerCase();
-    if(this.filterValue.length >= 3){
+    if (this.filterValue.length >= 3) {
       this.getTemplates();
-    } else if(this.filterValue.length == 0){
+    } else if (this.filterValue.length == 0) {
       this.getTemplates();
     }
   }
 
-  showFiltersPopup(){
+  showFiltersPopup() {
     alert('show filters popup')
     //   this.dialog.open(FilterPopupComponrnt,{
     //     height: '450px',
@@ -147,15 +153,15 @@ export class TemplatesComponent {
   selectAllPopups() {
     this.allSelected = !this.allSelected;
     if (this.allSelected) {
-      this.selectedIds = this.templates.map((popup:any) => popup.id);
+      this.selectedIds = this.templates.map((popup: any) => popup.id);
     } else {
       this.selectedIds = [];
     }
     console.log('Selected user IDs:', this.selectedIds);
   }
 
-  confirmDeletion():any {
-    if(this.selectedIds.length == 0){
+  confirmDeletion(): any {
+    if (this.selectedIds.length == 0) {
       this.showMessage('Select template(s) first.');
       return false;
     }
@@ -163,14 +169,14 @@ export class TemplatesComponent {
     this.showDeleteConfirmationPopup();
   }
 
-  showDeleteConfirmationPopup(){
+  showDeleteConfirmationPopup() {
     this.showMatDialog("", "template-delete-confirmation");
   }
 
 
-  deleteTemplates():any {
+  deleteTemplates(): any {
 
-    let params = {id:this.idsToDelete};
+    let params = { id: this.idsToDelete };
     this.tempalateApi.deleteEmailTemplate(params).subscribe(
       (response: any) => {
         this.getTemplates();
@@ -186,15 +192,15 @@ export class TemplatesComponent {
     );
   }
 
-  showMessage(message:string){
+  showMessage(message: string) {
     this.showMatDialog(message, 'display');
   }
 
-  showMatDialog(message:string, action:string){
-    const messageDialog = this.dialog.open(MessagePopupComponent,{
+  showMatDialog(message: string, action: string) {
+    const messageDialog = this.dialog.open(MessagePopupComponent, {
       width: '500px',
       position: {
-        top:'150px'
+        top: '150px'
       },
       data: {
         message: message,
@@ -204,16 +210,16 @@ export class TemplatesComponent {
 
     messageDialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
-        if(result.action == "delete-confirmed"){
+        if (result.action == "delete-confirmed") {
           this.deleteTemplates();
         }
-      //  console.log('Dialog result:', result);
+        //  console.log('Dialog result:', result);
       }
     });
   }
 
-  editTemplate(data:any){
-    const updateDialogRef = this.dialog.open(TemplatePopupComponent,{
+  editTemplate(data: any) {
+    const updateDialogRef = this.dialog.open(TemplatePopupComponent, {
       // height: '598px',
       // width: '600px',
       height: '90vh',
@@ -223,35 +229,35 @@ export class TemplatesComponent {
 
     updateDialogRef.afterClosed().subscribe(result => {
       if (result !== undefined) {
-        if(result.action == "templateUpdated"){
+        if (result.action == "templateUpdated") {
           this.showMessage('Email template updated successfully!');
           this.getTemplates();
         }
       }
     });
   }
-  
-  confirmSingleDeletion(id:any){
+
+  confirmSingleDeletion(id: any) {
     this.idsToDelete = [id];
     this.showMatDialog("", "template-delete-confirmation");
   }
 
-  getRole(id:any){
-    let row = this.roles.find((role:any) => role.id == id);
+  getRole(id: any) {
+    let row = this.roles.find((role: any) => role.id == id);
     return row ? row.role : null;
   }
 
-  showFilterPopup():void {
-    const filterDialog = this.dialog.open(CommonFilterPopupComponent,{
+  showFilterPopup(): void {
+    const filterDialog = this.dialog.open(CommonFilterPopupComponent, {
       height: '200px',
       width: '320px',
       position: {
         right: '30px',
-        top:'150px'
+        top: '150px'
       },
       data: {
         page: 'template',
-        appliedfilters:this.customFilters,
+        appliedfilters: this.customFilters,
         roles: this.roles,
         languages: this.langs
       }
@@ -261,13 +267,13 @@ export class TemplatesComponent {
       if (result !== undefined) {
         this.applyUserFilter(result);
         console.log('Dialog result:', result);
-      }else{
+      } else {
         console.log('Dialog closed without result');
       }
     });
   }
 
-  applyUserFilter(filters:any){
+  applyUserFilter(filters: any) {
     this.customFilters = filters;
     this.getTemplates(true);
   }
@@ -277,5 +283,8 @@ export class TemplatesComponent {
     let formattedDate = this.adminHelper.convertAdminDateTime(datetime, 'users');
     return formattedDate;
   }
+
+  setPageTitle() {
+    this.titleService.setTitle('Marketing Component');
+  }
 }
-   
