@@ -27,7 +27,7 @@ export class PortfolioTabComponent {
   userId: any = '';
   user: any;
   scoutPlayers: any = [];
-  displayedColumns: string[] = ['Name', 'Language', 'Club', 'Contract Starts', 'Contract Expires', 'View', 'Delete'];
+  displayedColumns: string[] = ['Name', 'Language', 'Club', 'Contract Starts', 'Contract Expires', 'Status', 'View', 'Delete'];
   isLoading = false;
   uploadsPath: string = '';
   loggedInUser: any = localStorage.getItem('userData');
@@ -48,6 +48,11 @@ export class PortfolioTabComponent {
       this.user = changes['userData'].currentValue;
 
     }
+  }
+
+  getStatusClass(status: any): string {
+    if (status === null) return 'status-pending';
+    return status==='accepted' ? 'status-accepted' : 'status-rejected';
   }
 
   // addNewTalet() {

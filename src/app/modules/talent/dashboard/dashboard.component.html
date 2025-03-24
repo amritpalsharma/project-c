@@ -14,10 +14,10 @@
                     d="M45.5625 8.85938H8.4375C7.65428 8.85938 6.90314 9.17051 6.34933 9.72433C5.79551 10.2781 5.48438 11.0293 5.48438 11.8125V42.1875C5.48438 42.9707 5.79551 43.7219 6.34933 44.2757C6.90314 44.8295 7.65428 45.1406 8.4375 45.1406H45.5625C46.3457 45.1406 47.0969 44.8295 47.6507 44.2757C48.2045 43.7219 48.5156 42.9707 48.5156 42.1875V11.8125C48.5156 11.0293 48.2045 10.2781 47.6507 9.72433C47.0969 9.17051 46.3457 8.85938 45.5625 8.85938ZM8.4375 11.3906H45.5625C45.6744 11.3906 45.7817 11.4351 45.8608 11.5142C45.9399 11.5933 45.9844 11.7006 45.9844 11.8125V34.503L39.768 28.2867C39.4938 28.0125 39.1683 27.7949 38.8099 27.6465C38.4516 27.4981 38.0676 27.4217 37.6798 27.4217C37.2919 27.4217 36.9079 27.4981 36.5496 27.6465C36.1913 27.7949 35.8657 28.0125 35.5915 28.2867L31.0732 32.805L21.4945 23.2242C21.2203 22.95 20.8947 22.7324 20.5364 22.584C20.1781 22.4356 19.7941 22.3592 19.4062 22.3592C19.0184 22.3592 18.6344 22.4356 18.2761 22.584C17.9178 22.7324 17.5922 22.95 17.318 23.2242L8.01562 32.5266V11.8125C8.01562 11.7006 8.06007 11.5933 8.13919 11.5142C8.21831 11.4351 8.32561 11.3906 8.4375 11.3906ZM8.01562 42.1875V36.1062L19.1067 25.0151C19.1459 24.9755 19.1926 24.9442 19.244 24.9227C19.2954 24.9013 19.3506 24.8903 19.4062 24.8903C19.4619 24.8903 19.5171 24.9013 19.5685 24.9227C19.6199 24.9442 19.6666 24.9755 19.7058 25.0151L37.3001 42.6094H8.4375C8.32561 42.6094 8.21831 42.5649 8.13919 42.4858C8.06007 42.4067 8.01562 42.2994 8.01562 42.1875ZM45.5625 42.6094H40.8797L32.8641 34.5938L37.3802 30.0755C37.4194 30.0362 37.4659 30.0051 37.5172 29.9839C37.5684 29.9627 37.6233 29.9517 37.6787 29.9517C37.7342 29.9517 37.7891 29.9627 37.8403 29.9839C37.8915 30.0051 37.938 30.0362 37.9772 30.0755L45.9928 38.0911V42.1875C45.9928 42.2436 45.9816 42.2992 45.9599 42.3509C45.9382 42.4027 45.9064 42.4495 45.8663 42.4888C45.8262 42.5281 45.7787 42.559 45.7265 42.5797C45.6744 42.6004 45.6186 42.6105 45.5625 42.6094ZM30.7969 21.0938C30.7969 20.6766 30.9206 20.2687 31.1524 19.9218C31.3841 19.575 31.7136 19.3046 32.099 19.1449C32.4845 18.9853 32.9086 18.9435 33.3178 19.0249C33.7269 19.1063 34.1028 19.3072 34.3978 19.6022C34.6928 19.8972 34.8937 20.2731 34.9751 20.6822C35.0565 21.0914 35.0147 21.5155 34.8551 21.901C34.6954 22.2864 34.425 22.6159 34.0782 22.8476C33.7313 23.0794 33.3234 23.2031 32.9062 23.2031C32.3468 23.2031 31.8103 22.9809 31.4147 22.5853C31.0191 22.1897 30.7969 21.6532 30.7969 21.0938Z"
                     fill="#9F9F9F" />
                 </svg>
-
-
-                <div class="edit-photo d-flex align-items-center tour-cover-photo"
-                  matTooltip="{{'editCoverImage' | translate}}" matTooltipPosition="right">
+  
+  
+                <div class="edit-photo d-flex align-items-center tour-cover-photo" matTooltip="{{'editCoverImage' | translate}}"
+                  matTooltipPosition="right">
                   <div class="edit_image-2 ">
                     <label for="file-upload" class="cursor-pointer ">
                       <svg class="edit_image" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -94,22 +94,7 @@
                 </div>
 
                 <div class="bg-color card-bg">
-                  <div class="px-3">
-<<<<<<< HEAD
-                    <div class="user-info pt-3 row align-items-center justify-content-between responsive-name">
-                      <div class="col-md-8 d-flex align-items-center player-name-box">
-                        <h6 class="user-info-name">
-                          {{ user.first_name }} {{ user.last_name }}
-                        </h6>
-                        <div class="name_icon">
-                          <img src="../../../assets/images/pending.png" alt="" class="user-pending-icon"
-                            *ngIf="user.status == '1'" />
-                          <img src="../../../assets/images/approved.png" alt="" class="user-approved-icon"
-                            *ngIf="user.status == '2'" />
-                          <img src="../../../assets/images/rejected.png" alt="" class="user-rejected-icon"
-                            *ngIf="user.status == '3'" />
-=======
-                  <div class="user-info pt-3 row align-items-center justify-content-between responsive-name">
+                  <div class="user-info pt-3 row align-items-center justify-content-between p-3 responsive-name">
                     <div class="col-md-8 d-flex align-items-center player-name-box">
                       <h6 class="user-info-name">
                         {{ user.first_name }} {{ user.last_name }}
@@ -134,25 +119,10 @@
                               fill="#787878" />
                           </svg>
                           <span>{{'edit' | translate}}</span>
->>>>>>> 1eaa62f2fe02380ce7672f434e7f8f3fc434abbd
                         </div>
-                      </div>
-                      <div class="col-md-4 pl-0 edit_button responsive-edit_btn ">
-                        <button (click)="openEditDialog()" class="" matTooltip="{{'editPersonalDetails' | translate}}"
-                          matTooltipPosition="right">
-                          <div class="tour-personal-details px-1">
-                            <svg class="" width="22" height="23" viewBox="0 0 24 25" fill="none"
-                              xmlns="http://www.w3.org/2000/svg">
-                              <path
-                                d="M3 17.7505V21.5005H6.75L17.81 10.4405L14.06 6.69049L3 17.7505ZM20.71 7.54049C20.8027 7.44798 20.8762 7.33809 20.9264 7.21712C20.9766 7.09614 21.0024 6.96646 21.0024 6.83549C21.0024 6.70452 20.9766 6.57484 20.9264 6.45387C20.8762 6.33289 20.8027 6.223 20.71 6.13049L18.37 3.79049C18.2775 3.69779 18.1676 3.62424 18.0466 3.57406C17.9257 3.52388 17.796 3.49805 17.665 3.49805C17.534 3.49805 17.4043 3.52388 17.2834 3.57406C17.1624 3.62424 17.0525 3.69779 16.96 3.79049L15.13 5.62049L18.88 9.37049L20.71 7.54049Z"
-                                fill="#787878" />
-                            </svg>
-                            <span>{{'edit' | translate}}</span>
-                          </div>
-                        </button>
-                      </div>
-                      <!-- <small>{{user.role_name}}</small> -->
+                      </button>
                     </div>
+                    <!-- <small>{{user.role_name}}</small> -->
                   </div>
                   <!-- <div class="mobile_profile_buttons">
                     <a href="" class="btn_style">Download Profile</a>
@@ -160,8 +130,8 @@
                     <a href="" class="btn_style">Bookmark</a>
                   </div> -->
                   <div class="row elton-box dashboard-icons">
-                    <div class="col-sm-6 team-logos">
-                      <div class="row align-items-center">
+                    <div class="col-sm-6">
+                      <div class="row align-items-center team-logos">
                         <div class="team-badge_image col-sm-3">
                           <img *ngIf="!user.pre_current_club_logo_path"
                             src="../../../../assets/images/default/Club-logo-default.png" class="fc-club-img" alt="">
@@ -178,16 +148,14 @@
                     <div class="col-sm-6 team-logos">
                       <div class="row">
                         <div class="col-sm-12 p-0">
-                          <h6 class="title_2 mb-2">{{ 'nationality' | translate }}</h6>
-                            <div class="d-flex align-items-center gap-2 mb-1" *ngFor="let nation of userNationalities">
+                          <h6 class="title_2 mb-1">{{ 'nationality' | translate }}</h6>
+                            <div class="d-flex align-items-center gap-2 mb-1 " *ngFor="let nation of userNationalities">
                               <div class="team-badge_image">
                                 <img *ngIf="nation.flag_path" [src]="nation.flag_path" alt="">
                                 <img *ngIf="!nation.flag_path" src="../../../../assets/images/team-flag.png" alt="">
                               </div>
                               <h5 class="title-1">{{nation.country_name | translate }} </h5>
                             </div>
-                            <h5 class="title-1">{{nation.country_name | translate }} </h5>
-                          </div>
                         </div>
                       </div>
                     </div>
@@ -374,10 +342,10 @@
                             <g clip-path="url(#clip0_12147_24624)">
                               <path
                                 d="M8.26172 28.8867C8.26172 28.8867 8.07617 29.0723 7.70508 29.4434C7.33398 29.8145 6.64062 30 5.625 30C4.60938 30 3.73047 29.6289 2.98828 28.8867C2.24609 28.1445 1.875 27.2656 1.875 26.25V24.375H9.375V26.25C9.375 27.2656 9.00391 28.1445 8.26172 28.8867ZM0.410156 8.73047C1.07422 5.72266 2.05078 3.51562 3.33984 2.10938C4.62891 0.703125 6.01562 0 7.5 0C8.71094 0 9.74609 0.488281 10.6055 1.46484C11.4648 2.44141 12.0996 3.69141 12.5098 5.21484C12.9199 6.73828 13.125 8.41797 13.125 10.2539C13.125 12.4414 12.5 14.4727 11.25 16.3477C10.7812 17.0898 10.459 17.6074 10.2832 17.9004C10.1074 18.1934 9.91211 18.7598 9.69727 19.5996C9.48242 20.4395 9.375 21.4062 9.375 22.5H1.875L0.9375 19.1016C0.429688 17.3438 0.136719 15.7812 0.0585938 14.4141C-0.0976562 12.4219 0.0195312 10.5273 0.410156 8.73047Z"
-                                fill="#023A4A" />
+                                fill="#D5D5D5" />
                               <path
                                 d="M27.0112 29.3867C27.0112 29.3867 26.8256 29.5723 26.4545 29.9434C26.0834 30.3145 25.3901 30.5 24.3744 30.5C23.3588 30.5 22.4799 30.1289 21.7377 29.3867C20.9955 28.6445 20.6244 27.7656 20.6244 26.75V24.875H28.1244V26.75C28.1244 27.7656 27.7533 28.6445 27.0112 29.3867ZM16.8744 10.7539C16.8744 7.90234 17.3627 5.48047 18.3393 3.48828C19.3158 1.49609 20.7026 0.5 22.4994 0.5C23.9838 0.5 25.3705 1.20312 26.6596 2.60938C27.9487 4.01562 28.9252 6.22266 29.5893 9.23047C29.9799 10.9883 30.0971 12.8828 29.9408 14.9141C29.8627 16.2812 29.5698 17.8438 29.0619 19.6016L28.1244 23H20.6244C20.6244 21.9062 20.517 20.9395 20.3022 20.0996C20.0873 19.2598 19.892 18.6934 19.7162 18.4004C19.5405 18.1074 19.2182 17.5898 18.7494 16.8477C17.4994 14.9727 16.8744 12.9414 16.8744 10.7539Z"
-                                fill="#023A4A" />
+                                fill="#D5D5D5" />
                             </g>
                             <defs>
                               <clipPath id="clip0_12147_24624">
@@ -385,7 +353,6 @@
                               </clipPath>
                             </defs>
                           </svg>
-
 
                           <svg *ngIf="!user?.meta?.foot || user?.meta?.foot == ''" width="100%" height="36"
                             viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -510,8 +477,7 @@
                   </div>
                 </div>
                 <div class="d-flex w-100 m-auto image_gallery-box mt-2">
-                  <div class="col-6 col-sm-4 col-md-3 col-lg-4 gallery_images"
-                    *ngFor="let image of highlights?.images let i = index">
+                  <div class="col-6 col-sm-4 col-md-3 col-lg-4 gallery_images" *ngFor="let image of highlights?.images let i = index">
                     <img [src]="highlights.file_path + image.file_name" alt="" (click)="openImage(i)">
                   </div>
 
@@ -528,8 +494,7 @@
 
 
                 <div class="d-flex w-100 m-auto image_gallery-box mt-2">
-                  <div class="col-6 col-sm-4 col-md-3 col-lg-4 gallery_images "
-                    *ngFor="let video of highlights?.videos">
+                  <div class="col-6 col-sm-4 col-md-3 col-lg-4 gallery_images " *ngFor="let video of highlights?.videos">
                     <video [src]="highlights.file_path + video.file_name" autoplay></video>
                   </div>
                 </div>
@@ -549,8 +514,8 @@
               </svg>
 
 
-              <div class="edit-photo d-flex align-items-center tour-cover-photo"
-                matTooltip="{{'editCoverImage' | translate}}" matTooltipPosition="right">
+              <div class="edit-photo d-flex align-items-center tour-cover-photo" matTooltip="{{'editCoverImage' | translate}}"
+                matTooltipPosition="right">
                 <div class="edit_image-2 ">
                   <label for="file-upload" class="cursor-pointer ">
                     <svg class="edit_image" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -655,6 +620,7 @@
           </div>
         </div>
         <!-- <talent-footer></talent-footer> -->
+         
       </div>
     </div>
   </div>
