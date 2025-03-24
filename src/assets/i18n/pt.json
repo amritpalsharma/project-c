@@ -1,4 +1,5 @@
 {
+  "dashboard": "Painel de controlo",
   "privacyPolicy": "Política de privacidade",
   "terms&Conditions": "Termos e condições",
   "cookies": "Cookies",
@@ -74,8 +75,8 @@
   "maximumSize": "Tamanho máximo: 5MB",
   "documentTitle": "Título do documento",
   "upload": "Carregar",
-  "movingTo": "Transferir para",
-  "movingFrom": "Transferência de",
+  "movingTo": "Transferência de",
+  "movingFrom": "Transferir para",
   "editCoverPhoto": "Editar foto de capa",
   "photos": "Fotos",
   "addPhotos": "Adicionar fotos",
@@ -340,7 +341,6 @@
   "lastNameRequired": "O sobrenome é obrigatório.",
   "usernameRequired": "O nome de usuário é obrigatório.",
   "usernameExists": "O nome de usuário já está em uso.",
-  "Dashboard": "Painel de controle",
   "View": "Ver como",
   "Peter": "Peter Mark",
   "Search": "Procurar",
@@ -467,7 +467,6 @@
   "companyName": "Empresa Nome",
   "selectLanguage": "Selecione um idioma",
   "month": "mês",
-  "dashboard": "Painel de controle",
   "profileTab": "Aba de Perfil",
   "editPersonalDetails": "Editar dados pessoais",
   "editGeneralDetails": "Editar detalhes gerais",
@@ -480,7 +479,7 @@
   "transfers": "Transferências",
   "editTransferDetails": "Editar detalhes da transferência",
   "gallery": "Galeria",
-  "settings": "Configurações",
+  "settings": "Definições",
   "activityLogTab": "Registro de atividades",
   "appSettingsTab": "Configurações do aplicativo",
   "explore": "Explorar",
@@ -1294,5 +1293,6 @@
   "enterYourName": "Insira seu nome",
   "enterYourCouponCode": "Insira seu código de cupom",
   "enterYourCompanyName": "Insira o nome da sua empresa",
-  "deletePerformanceConfirm": "Tem certeza de que deseja excluir os relatórios selecionados?"
+  "deletePerformanceConfirm": "Tem certeza de que deseja excluir os relatórios selecionados?",
+  "accepted": "Aceito"
 }
