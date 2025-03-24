@@ -62,6 +62,16 @@ export class AppSettingComponent {
     );
   }
 
+  checkRole(){
+    if(!this.loggedInUser.isRepresentator){
+      return true;
+    }
+    if(this.loggedInUser.permission === 'admin.view' || this.loggedInUser.permission === 'admin.edit' || this.loggedInUser.permission === 'admin.access'){
+      return false;
+    }
+    return true;
+  }
+
   // Update newsletter subscription via API
   updateNewsletter(event: any) {
     const newsletter = event.target.checked ? 1 : 0;

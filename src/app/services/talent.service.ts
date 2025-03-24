@@ -148,9 +148,10 @@ export class TalentService {
 
   getBoosterData(params: any = {}): Observable<any> {
     const headers = this.headers();
+    let langId = localStorage.getItem('lang_id')
     return this.http.get<{ status: boolean, message: string, data: {} }>(
-      `${this.apiUrl}user/get-booster-stats`,
-      { headers, params }
+      `${this.apiUrl}user/get-booster-stats/${langId}`,
+      { headers }
     );
   }
 
@@ -331,8 +332,8 @@ export class TalentService {
 
   deleteGalleryImage(params: any): Observable<any> {
     const headers = this.headers();
-
-    return this.http.post<any>(`${this.apiUrl}user/delete-gallery-file`, params, { headers });
+    let lang_id = localStorage.getItem('lang_id');
+    return this.http.post<any>(`${this.apiUrl}user/delete-gallery-file/${lang_id}`, params, { headers });
   }
 
   updateTransferDetails(transferId: number, transferData: any): Observable<any> {
@@ -453,13 +454,17 @@ export class TalentService {
     );
   }
 
-  toggleFeaturedFiles(reportIds: any[]): Observable<any> {
+  toggleFeaturedFiles(reportIds: any[], unset_all: any): Observable<any> {
     const headers = this.headers();
 
     let params = new HttpParams();
     reportIds.forEach(id => {
       params = params.append('id[]', id);  // Append each ID to the 'ids[]' query param
     });
+
+    if (unset_all) {
+      params = params.append('unset_all', true);
+    }
 
     return this.http.post(`${this.apiUrl}user/set-featured-file`, params, { headers });
   }
@@ -502,13 +507,15 @@ export class TalentService {
   }
 
   // Method to track boosted profile views
-  updateBoosterAudience(audienceIds: any[]): Observable<any> {
+  updateBoosterAudience(audienceIds: any[], langId: any): Observable<any> {
     const headers = this.headers();
 
     let params = new HttpParams();
     audienceIds.forEach(id => {
       params = params.append('booster_audience[]', id);  // Append each ID to the 'ids[]' query param
     });
+
+    params = params.append('lang', langId);
 
     // Send POST request with payload in body
     return this.http.post(`${this.apiUrl}user/update-booster-audience`, params, { headers });
@@ -655,9 +662,9 @@ export class TalentService {
 
   getPurchaseData(pageNumber: number, pageSize: number, lang: any = {}): Observable<any> {
     const headers = this.headers();
-
+    let lang_id = localStorage.getItem('lang_id');
     return this.http.get<{ status: boolean, message: string, data: any }>(
-      `${this.apiUrl}user/get-purchase-history`, {
+      `${this.apiUrl}user/get-purchase-history?lang=${lang_id}`, {
       params: {
         page: pageNumber.toString(),
         lang: lang,
@@ -709,19 +716,6 @@ export class TalentService {
     );
   }
 
-  // Download reports (assuming backend supports this feature)
-  // downloadReports(reportIds: string[]): Observable<any> {
-  //   console.log(reportIds);
-
-  //   const headers = this.headers();
-
-  //   let params = new HttpParams();
-  //   reportIds.forEach(id => {
-  //     params = params.append('id[]', id);  // Append each ID to the 'ids[]' query param
-  //   });
-
-  //   return this.http.post(`${this.apiUrl}player/download-performance-reports`, { params, responseType: 'blob',headers });
-  // }
 
   // Download reports (assuming backend supports this feature)
   downloadReports(reportIds: string[]): Observable<any> {
@@ -733,7 +727,21 @@ export class TalentService {
       headers // Specify response type for downloading files
     });
   }
+  
+  updateSightingInviteResponse(status: string, eventId: any, langId: any): Observable<any> {
 
+    const headers = this.headers();
+    let params = new HttpParams();
+
+    params = params.append('status', status);
+    params = params.append('event_id', eventId);
+
+
+    return this.http.post(`${this.apiUrl}player/update-sighting-invite-response/${langId}`, params, {
+      headers // Specify response type for downloading files
+    });
+  }
+  
   // talent.service.ts
   subscribeToPlan(subscriptionData: { paymentMethodId: string; planId: number; }): Observable<any> {
     const headers = this.headers();
@@ -765,5 +773,81 @@ export class TalentService {
       { headers }
     )
     // return this.http.get<any>(`${this.apiUrl}/delete-user`, params, { headers });
+  }
+
+  convertTalentDateTime11(datetime: string, pageName: string): string {
+    let date = new Date(datetime);
+
+    // Get language from localStorage
+    let language = localStorage.getItem('lang') || 'en'; // Default to English
+
+    // Define locale and determine whether to use 12-hour or 24-hour format
+    let locale: string;
+    let use12HourFormat: boolean;
+
+    switch (language) {
+      case 'en':  // English (UK)
+      case 'es':  // Spanish
+      case 'pt':  // Portuguese
+        locale = language + "-GB"; // Use English locale for formatting
+        use12HourFormat = true; // AM/PM format
+        break;
+      default:  // All other languages (German, Italian, French, Danish, Swedish)
+        locale = language + "-GB"; // Keep default format
+        use12HourFormat = false; // 24-hour format
+    }
+
+    // Formatting options
+    let options: Intl.DateTimeFormatOptions = {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: use12HourFormat, // AM/PM only for selected languages
+    };
+
+    // Format date
+    let formattedDate = new Intl.DateTimeFormat(locale, options).format(date);
+
+    // Adjust formatting for German to add 'Uhr'
+    if (language === 'de') {
+      formattedDate = formattedDate.replace(',', '') + ' Uhr';
+    }
+    // Adjust formatting for English and other AM/PM languages
+    else if (use12HourFormat) {
+      formattedDate = formattedDate.replaceAll('/', '.').replaceAll(',', ' ').replaceAll('am', 'AM').replaceAll('pm', 'PM');
+    }
+
+    return formattedDate;
+  }
+
+  convertTalentDateTime(datetime: any) {
+    try {
+      // Convert input to a Date object
+      let date = new Date(datetime);
+
+      // Validate if the date is correct
+      if (isNaN(date.getTime())) {
+        console.error("Invalid Date:", datetime);
+        return "Invalid Date";
+      }
+
+      // Extract date and time components in 24-hour format
+      let day = String(date.getDate()).padStart(2, "0");
+      let month = String(date.getMonth() + 1).padStart(2, "0"); // Months are 0-based
+      let year = date.getFullYear();
+      let hours = String(date.getHours()).padStart(2, "0"); // 24-hour format
+      let minutes = String(date.getMinutes()).padStart(2, "0");
+      let seconds = String(date.getSeconds()).padStart(2, "0");
+
+      // Return formatted date in 24-hour format: DD/MM/YYYY HH:mm:ss
+      return `${day}/${month}/${year} ${hours}:${minutes}`;
+      // return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+    } catch (error) {
+      console.error("Error converting date:", error);
+      return "Invalid Date";
+    }
   }
 }

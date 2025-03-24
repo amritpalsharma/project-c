@@ -59,6 +59,8 @@ const routes: Routes = [
   { path: 'talent/cancel', component: CancelComponent ,canActivate: [AuthGuard]},
   { path: 'club/success', component: SuccessComponent ,canActivate: [AuthGuard]},
   { path: 'club/cancel', component: CancelComponent ,canActivate: [AuthGuard]},
+  { path: 'scout/success', component: SuccessComponent ,canActivate: [AuthGuard]},
+  { path: 'scout/cancel', component: CancelComponent ,canActivate: [AuthGuard]},
   {
     path: 'club',
     loadChildren: () =>

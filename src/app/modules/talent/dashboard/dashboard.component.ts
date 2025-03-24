@@ -159,7 +159,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   startIntroTour(lang: string) {
     // introJs().start().goToStep(1);
-    this.translateService.use(lang); // Change language before fetching translations
+    // this.translateService.use(lang); // Change language before fetching translations
     this.translateService.get([
       'profilePhoto',
       'uploadYourBestHeadshot',
@@ -190,7 +190,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
             tooltipClass: 'custom-tooltip',
           },
           {
-            element: '.unlock_page',
+            element: '.highlights-tour',
             intro: `<div><h6>${translations['highlights']}</h6>${translations['uploadPhotosAndVideos']}.</div>`,
             tooltipClass: 'custom-tooltip',
           },
@@ -340,6 +340,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
           this.user = response.data.user_data;
           this.userNationalities = JSON.parse(this.user.user_nationalities);
           this.StartTour = this.user?.show_tour == 1 ? true : false;
+          if(this.user?.meta && this.user?.meta?.birth_country_flag != ''){
+            this.countryFlagUrl = this.user?.meta?.birth_country_flag;
+          }
           this.isPremium = this.user?.active_subscriptions?.premium.length > 0 ? true : false;
           if (this.StartTour && this.isTourFirstTime) {
             setTimeout(() => {
@@ -363,7 +366,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
               } else if (response.data.user_data.lang == 8) {
                 dblang = 'se';
               }
-              this.startIntroTour(dblang);  // Start the tour after a slight delay
+              let dontShowAgain = localStorage.getItem('dontShowIntroTour');
+              if(dontShowAgain == 'true'){
+                //  don't show again
+              }else{
+                this.startIntroTour(dblang);  // Start the tour after a slight delay
+              }
             }, 0);
           }
 

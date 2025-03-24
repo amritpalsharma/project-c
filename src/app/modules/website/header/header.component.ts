@@ -79,6 +79,8 @@ export class HeaderComponent implements OnInit {
   registrationFailed: string = '';
   Processing: string = '';
   EmailVerified: string = '';
+  duplicateCreditionals: boolean = false;
+  duplicateCreditionalsError: any = '';
 
   allLanguage = [];
   selectedLanguageId = null;
@@ -551,8 +553,13 @@ export class HeaderComponent implements OnInit {
       return;
     }
 
-    const selectedLanguage = localStorage.getItem('lang') || environment.targetDomain?.default_lang;
+    let selectedLanguage = localStorage.getItem('lang') || environment.targetDomain?.default_lang;
     const domain = environment.targetDomain?.domain || 'ch';
+
+    let localStorageLang = localStorage.getItem('lang_id');
+    if (localStorageLang != '' && localStorageLang != undefined) {
+      selectedLanguage = localStorageLang;
+    }
 
     const loginData = {
       email: this.email,
@@ -567,7 +574,12 @@ export class HeaderComponent implements OnInit {
           this.invalidCred = response.message;
           if (response.message.email != '') {
             this.invalidCred = response.message.email;
+
           }
+          if (response.data.error != '' && response.data.error != undefined) {
+            this.toastr.error(response.data.error);
+          }
+
           this.showInvalidCredMessage();
         } else {
           const token = response.data.token;
@@ -657,6 +669,8 @@ export class HeaderComponent implements OnInit {
       this.serverBusy = false;
       this.toastr.warning('Please fill in all required fields.', 'Validation Error');
       return;
+    } else {
+      this.duplicateCreditionals = false;
     }
 
     this.toastr.info(this.registrationInProcess, this.pleaseWait, { disableTimeOut: true });
@@ -745,6 +759,17 @@ export class HeaderComponent implements OnInit {
             });
           } else {
             errorMessage = response.message;
+          }
+          this.duplicateCreditionalsError = '';
+          if (response.message.username != '' && response.message.username != undefined) {
+            this.duplicateCreditionals = true;
+            this.toastr.error(response.message.username);
+            //this.duplicateCreditionalsError += response.message.username + '<br>';
+          }
+          if (response.message.email != '' && response.message.email != undefined) {
+            this.duplicateCreditionals = true;
+            this.toastr.error(response.message.email);
+            // this.duplicateCreditionalsError += response.message.email + '<br>';
           }
           // this.toastr.error(errorMessage.trim(), this.registrationFailed);
           this.registerError = errorMessage.trim();

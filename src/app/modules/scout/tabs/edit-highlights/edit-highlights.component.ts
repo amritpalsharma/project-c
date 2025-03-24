@@ -76,9 +76,15 @@ export class EditHighlightsComponent {
     if(!this.loggedInUser.isRepresentator){
       return true;
     }
-    if(this.loggedInUser.permission === 'admin.view'){
+    if(this.loggedInUser.permission === 'admin.view' || this.loggedInUser.permission === 'admin.edit'){
       return false;
     }
+    // else{
+    //   alert('what')
+    // }
+    // if(this.loggedInUser.permission === 'admin.edit'){
+    //   return true;
+    // }
     return true;
   }
 
@@ -125,11 +131,17 @@ export class EditHighlightsComponent {
   onSubmit(): void {
     const selectedData = [...this.selectedImageIds, ...this.selectedVideoIds];
 
+    let unset_all: any = false;
+    
+    if(selectedData.length == 0){
+      unset_all = true;
+    }
+
     // Show loading notification
     const loadingToast = this.toastr.info('Saving selected files...', 'Please wait', { disableTimeOut: true });
 
     // Send the selected IDs to your API or handle them as needed
-    this.ScoutService.toggleFeaturedFiles(selectedData).subscribe({
+    this.ScoutService.toggleFeaturedFiles(selectedData, unset_all).subscribe({
       next: (response) => {
         this.toastr.clear(loadingToast.toastId); // Clear loading notification
         this.toastr.success('Files saved successfully!', 'Success'); // Show success notification

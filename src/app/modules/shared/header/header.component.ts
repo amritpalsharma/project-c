@@ -157,6 +157,14 @@ export class HeaderComponent {
       //   this.fetchNotifications(userId);
       // }
 
+      console.log(this.showNotification);
+
+      this.unseenCount++;
+      this.notificationSeen = false;
+      localStorage.setItem('notificationSeen', 'false');
+
+      console.log("data", data);
+
       const obj = {
         id: 0,
         image: data.senderProfileImage,
@@ -300,6 +308,7 @@ export class HeaderComponent {
 
   toggleDropdown() {
     this.notificationSeen = true;
+    this.unseenCount = 0;
     localStorage.setItem('notificationSeen', 'true');
     let jsonData = localStorage.getItem("userData");
     let userId;

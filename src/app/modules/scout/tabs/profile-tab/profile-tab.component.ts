@@ -25,6 +25,7 @@ export class ProfileTabComponent {
   baseUrl : any;
   @Input() userData: any;
   @Input() isPremium: any;
+  @Input() logInUser: any;
   userId:any = "";
   idsToDelete:any = "";
 
@@ -33,7 +34,7 @@ export class ProfileTabComponent {
   }
 
   ngOnInit(): void {
-    this.loggedInUser = JSON.parse(this.loggedInUser);
+    this.loggedInUser = this.logInUser;
     this.user = this.userData;
 
     this.getRepresentators();
@@ -81,7 +82,7 @@ export class ProfileTabComponent {
     if(!this.loggedInUser.isRepresentator){
       return true;
     }
-    if(this.loggedInUser.permission === 'admin.view'){
+    if(this.loggedInUser.permission === 'admin.view' || this.loggedInUser.permission === 'admin.edit'){
       return false;
     }
     return true;

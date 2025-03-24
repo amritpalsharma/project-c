@@ -72,6 +72,9 @@ export class InviteTalentPopupComponent {
       receiverIds.push(user.id);
     });
 
+    let langId: any = localStorage.getItem('lang_id');
+    formData.append('lang', langId);
+
     this.clubService.sendSightingInvite(this.sightId, formData).subscribe((response) => {
       if (response && response.status) {
         this.dialogRef.close({
@@ -89,7 +92,7 @@ export class InviteTalentPopupComponent {
           console.log("No data found in localStorage.");
         }
         console.log("datatat", myUserId, receiverIds);
-        this.socketService.emit('inviteTalent', { senderId: myUserId, receiverIds: receiverIds });
+        this.socketService.emit('inviteTalent', { senderId: myUserId, receiverIds: receiverIds, eventId: this.sightId});
 
       } else {
         console.error('Invalid API response structure:', response);

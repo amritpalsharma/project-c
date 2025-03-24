@@ -19,55 +19,52 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrl: './membership.component.scss'
 })
 export class MembershipComponent {
-  
+
   userId: any = '';
   userPurchases: any = [];
   userCards: any = [];
   userPlans: any = [];
   allSelected: boolean = false;
   idsToDownload: any = [];
-  selectedIds: number[] = [];  
+  selectedIds: number[] = [];
   totalItems: number = 0; // Total number of items for pagination
   pageSize: number = 10; // Number of items per page
   currentPage: number = 1; // Current page index
-  premium : any =[];
-  country: any=[];
-  booster: any=[];
-  demo: any=[];
-  ispremium : any = false;
+  premium: any = [];
+  country: any = [];
+  booster: any = [];
+  demo: any = [];
+  ispremium: any = false;
   iscountry: any = false;
   isbooster: any = false;
   isdemo: any = false;
   stats: any;
   exportLink: any;
-  cancelConfirmationMsg:String = '';
-  userPurchasesNotFound:String = '';
-  subsciptionCancelSuccess:String = '';
-  isLoading : boolean = true;
+  cancelConfirmationMsg: String = '';
+  userPurchasesNotFound: String = '';
+  subsciptionCancelSuccess: String = '';
+  isLoading: boolean = true;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private route: ActivatedRoute, private talentService: TalentService, private paymentService:PaymentService, public dialog: MatDialog,private router: Router , private webpages : WebPages, private translateService: TranslateService,) { }
+  constructor(private route: ActivatedRoute, private talentService: TalentService, private paymentService: PaymentService, public dialog: MatDialog, private router: Router, private webpages: WebPages, private translateService: TranslateService,) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe((params:any) => {
+    this.route.params.subscribe((params: any) => {
       this.userId = params.id;
       this.getUserPurchases();
       this.getUserPlans();
       this.getUserCards();
       this.getBoosterData()
     });
-
+    this.loadTranslations();
     this.webpages.languageId$.subscribe((data) => {
       this.getUserPurchases();
       this.getUserPlans();
       this.getUserCards();
-      this.getBoosterData()
+      this.getBoosterData();
+      this.loadTranslations();
     });
-    this.translateService.get(['cancelConfirmationMsg','userPurchasesNotFound','subsciptionCancelSuccess']).subscribe((translations) => {
-      this.cancelConfirmationMsg = translations['cancelConfirmationMsg'];
-      this.userPurchasesNotFound = translations['userPurchasesNotFound'];
-      this.subsciptionCancelSuccess = translations['subsciptionCancelSuccess'];
-    });
+
   }
 
   // Fetch purchases from API with pagination parameters
@@ -75,7 +72,7 @@ export class MembershipComponent {
     const pageNumber = this.currentPage != 0 ? this.currentPage : 1;
     const pageSize = this.pageSize;
 
-    let lang  = localStorage.getItem('lang_id');
+    let lang = localStorage.getItem('lang_id');
 
     this.talentService.getPurchaseData(pageNumber, pageSize, lang).subscribe(response => {
       console.warn(response.data)
@@ -94,8 +91,8 @@ export class MembershipComponent {
 
   exportData(): void {
 
-    let params:any = {};
-    params.lang  = localStorage.getItem('lang_id');
+    let params: any = {};
+    params.lang = localStorage.getItem('lang_id');
 
     this.talentService.getExportLinkPurchaseData(params).subscribe(
       (response) => {
@@ -119,8 +116,8 @@ export class MembershipComponent {
   // Fetch purchases from API with pagination parameters
   getUserPlans(): void {
 
-    let params:any = {};
-    params.lang  = localStorage.getItem('lang_id');
+    let params: any = {};
+    params.lang = localStorage.getItem('lang_id');
 
     this.talentService.getUserPlans(params).subscribe(response => {
       if (response && response.status && response.data) {
@@ -130,7 +127,7 @@ export class MembershipComponent {
         this.demo = this.userPlans.demo[0];
         this.country = this.userPlans.country;
 
-        this.ispremium  = this.premium ? true : false;
+        this.ispremium = this.premium ? true : false;
         this.iscountry = this.country ? true : false;
         this.isbooster = this.booster ? true : false;
         this.isdemo = this.demo ? true : false;
@@ -178,31 +175,32 @@ export class MembershipComponent {
     }
   }
 
-  viewMembership(id:any) {
+  viewMembership(id: any) {
     const userPurchase = this.getSubscriptionById(id);
+    console.info('userPurchase',userPurchase);
     const dialogRef = this.dialog.open(ViewMembershipPopupComponent, {
       width: '800px',
       data: {
         invoice_number: userPurchase.invoice_number,
         category: userPurchase.payment_method,
         plan: userPurchase.package_name,
-        duration: userPurchase.plan_interval,
+        duration: userPurchase.interval,
         valid_until: userPurchase.plan_period_end,
         price: userPurchase.plan_amount,
         subtotal: userPurchase.amount_paid,
         total: userPurchase.amount_paid,
-        currency : userPurchase.amount_paid_currency,
+        currency: userPurchase.amount_paid_currency,
         download_path: userPurchase.invoice_file_path,
-        tax_percentage:userPurchase.tax_percentage,
-        tax:userPurchase.tax_amount
+        tax_percentage: userPurchase.tax_percentage,
+        tax: userPurchase.tax_amount
       }
     });
   }
 
-  async getBoosterData(){
+  async getBoosterData() {
 
-    let params:any = {};
-    params.lang  = localStorage.getItem('lang_id');
+    let params: any = {};
+    // params.lang = localStorage.getItem('lang_id');
 
     try {
       const response = await this.talentService.getBoosterData(params).toPromise();
@@ -219,11 +217,11 @@ export class MembershipComponent {
   }
 
 
-  editMembershipDialog(id:any) {
+  editMembershipDialog(id: any) {
 
     const dialogRef = this.dialog.open(EditMembershipProfileComponent, {
       width: '1000px',
-      data: { stats : this.stats }
+      data: { stats: this.stats }
     });
 
   }
@@ -235,26 +233,26 @@ export class MembershipComponent {
         cards: this.userCards
       }
     });
-  
+
     // Optionally handle dialog closing events
     dialogRef.afterClosed().subscribe(result => {
       console.log('Dialog result:', result);
     });
   }
-  
+
   selectAllCheckboxes() {
     console.log('p', this.allSelected)
     this.allSelected = !this.allSelected;
     console.log('a', this.allSelected)
     if (this.allSelected) {
-      this.selectedIds = this.userPurchases.map((fav:any) => fav.id);
+      this.selectedIds = this.userPurchases.map((fav: any) => fav.id);
     } else {
       this.selectedIds = [];
     }
     console.log('Selected favorite IDs:', this.selectedIds);
   }
 
-  async downloadInvoice(invoideId:any, invoiceUrl:any){
+  async downloadInvoice(invoideId: any, invoiceUrl: any) {
     // use the fetch/blob method because single download isn't working 
     fetch(invoiceUrl)
       .then(response => {
@@ -267,7 +265,7 @@ export class MembershipComponent {
         const url = window.URL.createObjectURL(blob);
         const anchor = document.createElement('a');
         anchor.href = url;
-        anchor.download = 'invoice-'+invoideId+'.pdf'; // Set the filename for download
+        anchor.download = 'invoice-' + invoideId + '.pdf'; // Set the filename for download
         document.body.appendChild(anchor);
         anchor.click();
         window.URL.revokeObjectURL(url);
@@ -275,44 +273,44 @@ export class MembershipComponent {
       })
       .catch(error => {
         console.error('There was an error downloading the file:', error);
-    });
+      });
   }
 
-  downloadAll():any{
+  downloadAll(): any {
 
-    if(this.selectedIds.length == 0){
+    if (this.selectedIds.length == 0) {
       return false;
     }
-    this.selectedIds = this.userPurchases.map((fav:any) => fav.id);
+    this.selectedIds = this.userPurchases.map((fav: any) => fav.id);
 
     const allLinksToDownload = this.selectedIds.map(id => {
       // Find the user object by matching the id
-      const purchase = this.userPurchases.find((purchase:any) => purchase.id === id);
-      
+      const purchase = this.userPurchases.find((purchase: any) => purchase.id === id);
+
       // Return the image link if the user is found, otherwise return null or undefined
       return purchase ? purchase.invoice_file_path : null;
     });
-    
+
     this.downloadAllFiles(allLinksToDownload);
 
   }
 
-  async downloadAllFiles(allLinksToDownload:any) {
+  async downloadAllFiles(allLinksToDownload: any) {
     // Loop over each file URL and trigger the download sequentially
     for (const [index, fileUrl] of allLinksToDownload.entries()) {
       // Call downloadFile with each URL and a custom filename
-      await this.downloadInvoice(index+1, fileUrl);
+      await this.downloadInvoice(index + 1, fileUrl);
     }
   }
 
 
   getSubscriptionById(id: string) {
-    return this.userPurchases.find((subscription:any) => subscription.id === id);
+    return this.userPurchases.find((subscription: any) => subscription.id === id);
   }
 
 
-  confirmAndCancelSubscription(subscriptionId: string): void { 
-    
+  confirmAndCancelSubscription(subscriptionId: string): void {
+
     const dialogRef = this.dialog.open(MessagePopupComponent, {
       width: '600px',
       data: {
@@ -329,7 +327,7 @@ export class MembershipComponent {
     });
   }
 
-  private cancelSubscription(subscriptionId: string): void { 
+  private cancelSubscription(subscriptionId: string): void {
 
     this.paymentService.cancelSubscription(subscriptionId).subscribe(
       (response: any) => {
@@ -359,7 +357,7 @@ export class MembershipComponent {
     );
   }
 
-  confirmCountryPlanCancellation(country:any) {
+  confirmCountryPlanCancellation(country: any) {
     const dialogRef = this.dialog.open(CancelCountryPlanComponent, {
       width: '600px',
       data: {
@@ -387,16 +385,17 @@ export class MembershipComponent {
     return this.booster.length;
   }
 
-  editBooster(data:any){
+  editBooster(data: any) {
 
     const dialogRef = this.dialog.open(EditMembershipProfileComponent, {
       width: '1000px',
-      data: { stats : this.stats
+      data: {
+        stats: this.stats
       }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result ) {
+      if (result) {
         this.getBoosterData()
       }
     });
@@ -404,5 +403,13 @@ export class MembershipComponent {
   capitalizeFirstLetter(value: string): string {
     if (!value) return '';
     return value.charAt(0).toUpperCase() + value.slice(1);
+  }
+
+  loadTranslations() {
+    this.translateService.get(['cancelConfirmationMsg', 'userPurchasesNotFound', 'subsciptionCancelSuccess']).subscribe((translations) => {
+      this.cancelConfirmationMsg = translations['cancelConfirmationMsg'];
+      this.userPurchasesNotFound = translations['userPurchasesNotFound'];
+      this.subsciptionCancelSuccess = translations['subsciptionCancelSuccess'];
+    });
   }
 }

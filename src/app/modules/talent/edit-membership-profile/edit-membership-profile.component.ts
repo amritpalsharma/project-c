@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
 import { TalentService } from '../../../services/talent.service';
 import { PaymentService } from '../../../services/payment.service';
 import { ToastrService } from 'ngx-toastr';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-edit-membership-profile',
@@ -13,11 +14,14 @@ export class EditMembershipProfileComponent {
 
   isLoadingCheckout: boolean = false;
   stripe: any;
-  @Input() audiences = [
-    { role_name: "Clubs", id: 2 },
-    { role_name: "Scouts", id: 3 },
-    { role_name: "Player", id: 4 },
-  ];     // List of all audiences
+  // @Input() audiences = [
+  //   { role_name: "Clubs", id: 2 },
+  //   { role_name: "Scouts", id: 3 },
+  //   { role_name: "Talent", id: 4 },
+  // ];     // List of all audiences
+
+  audiences : any[] = [];
+
   selectedAudienceIds: number[] = []; // Store only audience IDs
   id: any;
   loggedInUser: any = localStorage.getItem('userInfo');
@@ -30,16 +34,19 @@ export class EditMembershipProfileComponent {
     public talentService: TalentService,
     public dialog: MatDialog,
     private toastr: ToastrService,
+    private userServices: UserService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
   async ngOnInit() {
     this.stats = this.data.stats;
 
-    this.selectedAudiences = this.stats?.booster_audience;
+    // this.selectedAudiences = this.stats?.booster_audience;
 
     this.loggedInUser = JSON.parse(this.loggedInUser);
     this.id = this.data.id || [];
+
+    this.getRoles();
     // Populate pre-selected audiences from input data
     if (this.stats?.booster_audience?.length > 0) {
       this.selectedAudiences = this.data.stats.booster_audience;
@@ -51,6 +58,30 @@ export class EditMembershipProfileComponent {
 
     // console.log('audiences:', this.audiences);
 
+    
+  }
+
+  getRoles(){
+    this.userServices.getRoles().subscribe(
+      (response) => {
+        if (response?.status) {
+          // this.audiences = [];
+          response.data.roles.forEach((element : any) => {
+            if(element.id == '2' || element.id == '3' || element.id == '4'){
+              let obj = {role_name: '', target_role: 0};
+              obj.role_name = element.role_name;
+              obj.target_role = Number(element.id);
+              this.audiences.push(obj);
+            }
+          });
+        }
+      },
+      (error) => {
+        // Error: Notify user and handle error
+        this.toastr.error('An error occurred while saving the boost. Please try again.', 'Error');
+        console.error('Error creating Checkout session:', error);
+      }
+    );
   }
 
   /**
@@ -58,8 +89,9 @@ export class EditMembershipProfileComponent {
    */
   updateSelectedAudiences(): void {
     this.selectedAudiences = this.audiences.filter((audience) =>
-      this.selectedAudienceIds.includes(audience.id)
+      this.selectedAudienceIds.includes(audience.target_role)
     );
+    console.log(this.selectedAudiences);
   }
 
   /**
@@ -67,9 +99,10 @@ export class EditMembershipProfileComponent {
    * @param audienceId - ID of the audience to remove
    */
   removeAudience(audienceId: number): void {
+    console.log(this.selectedAudiences, this.selectedAudienceIds, audienceId)
     // Remove ID from selectedAudienceIds
     this.selectedAudienceIds = this.selectedAudienceIds.filter(
-      (id) => id !== audienceId
+      (target_role) => target_role != audienceId
     );
 
     // Update the displayed selected audiences
@@ -106,13 +139,15 @@ export class EditMembershipProfileComponent {
   saveBoost(): void {
     this.isLoading = true; // Set loading state
 
+    let langId: any = localStorage.getItem('lang_id');
+
     try {
       // Make API call to save the booster audience
-      this.talentService.updateBoosterAudience(this.selectedAudienceIds).subscribe(
+      this.talentService.updateBoosterAudience(this.selectedAudienceIds, langId).subscribe(
         (response) => {
           if (response?.status) {
             // Success: Notify the user and close the dialog
-            this.toastr.success('Boost saved successfully!', 'Success');
+            this.toastr.success(response.message, 'Success');
             this.dialogRef.close(true);
           } else {
             // Failure: Notify the user about failure

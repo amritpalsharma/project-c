@@ -2,7 +2,8 @@
   <div class="chat_box">
     <div class="p-3 w-100">
       <div>
-        <h4 class="text-center mb-3 title-text">{{ edit ? 'editPlayer' : 'addNewPlayer' | translate }}</h4>
+        <h4 class="text-center mb-3 title-text" *ngIf="edit">{{ 'edit' | translate }}</h4>
+        <h4 class="text-center mb-3 title-text" *ngIf="!edit">{{ 'addNewPlayer' | translate }}</h4>
       </div>
 
       <div class="close-img" (click)="close()"></div>
@@ -13,7 +14,7 @@
       <div class="text-center w-100 py-1 px-3 body-background">
         <mat-form-field class="example-chip-list inbox-wrapper bg-color-2 w-100">
           <mat-chip-grid #chipGrid aria-label="User selection" class="messanger-selector bg-color-2 w-100">
-            <p>{{ 'to:' | translate }}</p>
+            <p>{{ 'to' | translate }}:</p>
             <mat-chip-row *ngFor="let user of users; let i = index" (removed)="remove(user)">
               <img width="20" height="20" style="border-radius: 20px;" class="img-list"
                 *ngIf="!user.meta.profile_image_path" src="../../../../../assets/images/1.png">
@@ -47,37 +48,21 @@
         <div class="date-input col-lg-4 p-0">
           <label for="startDate" class="d-block font-weight-bold">
           </label>
-          <input
-            type="date"
-            class="form-control join-start"
-            id="startDate"
-            [(ngModel)]="startDate"
-            placeholder="{{ 'selectStartDate' | translate }}"
-          />
+          <input type="date" class="form-control join-start" id="startDate" [(ngModel)]="startDate"
+            placeholder="{{ 'selectStartDate' | translate }}" />
         </div>
 
         <!-- End Date -->
         <div class="date-input col-lg-4 p-0">
           <label for="endDate" class="d-block font-weight-bold">
           </label>
-          <input
-            type="date"
-            class="form-control join-end"
-            id="endDate"
-            [(ngModel)]="endDate"
-            [disabled]="noEndDate"
-            placeholder="{{ 'selectEndDate' | translate }}"
-          />
+          <input type="date" class="form-control join-end" id="endDate" [(ngModel)]="endDate" [disabled]="noEndDate"
+            placeholder="{{ 'selectEndDate' | translate }}" />
         </div>
 
         <!-- Checkbox for "Don't Set End Date" -->
         <div class="d-flex align-items-center col-lg-6 ms-5">
-          <input
-            type="checkbox"
-            id="noEndDate"
-            class="mr-2"
-            [(ngModel)]="noEndDate"
-          />
+          <input type="checkbox" id="noEndDate" class="mr-2" [(ngModel)]="noEndDate" />
           <label for="noEndDate" class="mb-0">
             {{ 'dontSetEndDate' | translate }}
           </label>
@@ -87,12 +72,10 @@
   </div>
 
   <div class="chat-btn mt-4">
-    <button
-      class="btn btn-success btn-sm web-create-bg w-100"
-      (click)="sendInvite()"
-      type="button"
-    >
-      {{ edit ? 'Update' : 'Add' | translate }}
+    <button class="btn btn-success btn-sm web-create-bg w-100" (click)="sendInvite()" type="button">
+      <!-- {{ edit ? 'Update' : 'add' | translate }} -->
+      <span *ngIf="edit">{{ 'update' | translate }}</span>
+      <span *ngIf="!edit">{{ 'add' | translate }}</span>
     </button>
   </div>
 </div>

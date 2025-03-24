@@ -94,11 +94,11 @@ export class FavoritesComponent {
     }
   }
 
-  checkRole(){
-    if(!this.loggedInUser.isRepresentator){
+  checkRole() {
+    if (!this.loggedInUser.isRepresentator) {
       return true;
     }
-    if(this.loggedInUser.permission === 'admin.view'){
+    if (this.loggedInUser.permission === 'admin.view' || this.loggedInUser.permission === 'admin.edit') {
       return false;
     }
     return true;
@@ -195,7 +195,7 @@ export class FavoritesComponent {
   }
 
   confirmDeletion(): any {
-    if(!this.checkRole()){
+    if (!this.checkRole()) {
       return;
     }
     if (this.selectedIds.length == 0) {
@@ -332,7 +332,7 @@ export class FavoritesComponent {
   }
 
   confirmSingleDeletion(favoriteId: any) {
-    if(!this.checkRole()){
+    if (!this.checkRole()) {
       return;
     }
     this.idsToDelete = [favoriteId];
@@ -434,4 +434,27 @@ export class FavoritesComponent {
       role.role = role.role_name;
     }
   }
+
+  convertTime(dateTime: any) {
+    return this.talentService.convertTalentDateTime(dateTime);
+  }
+
+  naviGateToChat(role_id: any) {
+    let role = '';
+    if (role_id == '2') {
+      role = 'club';
+    } else if (role_id == '3') {
+      role = 'scout';
+    } else if (role_id == '4') {
+      role = 'talent';
+    } else if (role_id == '6') {
+      role = 'club';
+    } else if (role_id == '7') {
+      role = 'scout';
+    }
+    // this.router.navigate([`/${role}/chat`], {
+    //   queryParams: { open_chat: 'true' }
+    // });
+  }
+
 }

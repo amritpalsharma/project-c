@@ -22,11 +22,13 @@ export class ChatComponent {
   user: any = {};
   chatBox: any;
   chatSession: any;
+  isLoading: boolean = true;
   constructor(private talkService: TalkService, private route: ActivatedRoute) { }
 
   async ngOnInit() {
+
     const userDataString = localStorage.getItem('userData');
-    const otherUserData = localStorage.getItem('otherUserData');
+
     if (userDataString) {
       this.userData = JSON.parse(userDataString);
       this.user = {
@@ -46,24 +48,20 @@ export class ChatComponent {
       setTimeout(() => {
         this.chatBox.mount(document.getElementById('talkjs-container'));
         // chatbox.mount(document.getElementById('talkjs-container'));
-      }, 0);
+      }, 500);
     }
 
-    if (otherUserData) {
-      const otherUser = JSON.parse(otherUserData);
-      console.log("Starting chat with:", otherUser);
-      // window.location.reload();
-      this.startOneOnOneChat(otherUser);
 
-      // Clear localStorage after using it to avoid unnecessary chat start on next visit
-      //localStorage.removeItem('otherUserData');
-    }
 
     const theme = localStorage.getItem('theme');
 
     if (theme == 'dark') {
       this.talkService.toggleTheme(true);
     }
+
+    setTimeout(() => {
+      this.checkAndRemoveOpenChat();
+    }, 1000);
   }
 
 
@@ -73,6 +71,10 @@ export class ChatComponent {
     this.talkService.createOneOnOneConversation(user.id, user.name, user.email, user.photoUrl)
       .then(() => {
         this.talkService.mountChat('talkjs-container');
+
+        setTimeout(() => {
+          this.isLoading = false;
+        }, 1000);
       })
       .catch(err => {
         console.error('Error starting chat:', err);
@@ -137,7 +139,7 @@ export class ChatComponent {
   }
 
   ngOnDestroy() {
-    localStorage.removeItem('otherUserData');
+    // localStorage.removeItem('otherUserData');
     // Clean up the TalkJS chatbox
     if (this.chatBox) {
       this.chatBox.destroy();
@@ -161,5 +163,32 @@ export class ChatComponent {
     this.user = {};
     this.users = [];
     this.userData = null;
+  }
+
+  checkAndRemoveOpenChat() {
+    // Get the current URL
+    let url = new URL(window.location.href);
+
+    // Check if 'open_chat' param exists and is set to 'true'
+    if (url.searchParams.get("open_chat") === "true") {
+      // Remove the 'open_chat' param from the URL
+      url.searchParams.delete("open_chat");
+
+      // Reload the page with the updated URL (without 'open_chat')
+      window.location.replace(url.toString());
+    }else{
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 1000);
+    }
+    const otherUserData = localStorage.getItem('otherUserData');
+
+    if (otherUserData) {
+      const otherUser = JSON.parse(otherUserData);
+      console.log("Starting chat with:", otherUser);
+      // window.location.reload();
+      this.startOneOnOneChat(otherUser);
+    }
+
   }
 }

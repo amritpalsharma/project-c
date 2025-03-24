@@ -196,7 +196,7 @@ export class DashboardComponent implements OnInit , OnDestroy {
           // Add the checkbox and label
           closeSection.innerHTML = `
             <label style="font-size: 12px; display: flex; align-items: center; margin-right: 10px; color: white;">
-              <input type="checkbox" id="dontShowAgain" style="margin-right: 5px; cursor: pointer;" />
+              <input type="checkbox" id="dontShowAgainScout" style="margin-right: 5px; cursor: pointer;" />
               `+ this.dontShowAgainTourTxt + `
             </label>
           `;
@@ -205,7 +205,7 @@ export class DashboardComponent implements OnInit , OnDestroy {
           tooltipHeader.appendChild(closeSection);
 
           // Add event listener to the checkbox
-          const checkbox = closeSection.querySelector('#dontShowAgain') as HTMLInputElement;
+          const checkbox = closeSection.querySelector('#dontShowAgainScout') as HTMLInputElement;
           if (checkbox) {
             checkbox.addEventListener('click', (event) => {
               event.stopPropagation(); // Ensure clicks do not propagate
@@ -324,7 +324,7 @@ export class DashboardComponent implements OnInit , OnDestroy {
           // }
 
           this.isPremium = this.user?.active_subscriptions?.premium.length > 0 ? true : false;
-          this.isPremium = true;
+          // this.isPremium = true;
           this.premium = this.user.active_subscriptions?.premium?.length > 0 ? true : false;
           this.booster = this.user.active_subscriptions?.booster?.length > 0 ? true : false;
           this.activeDomains = this.user.active_subscriptions?.country?.length > 0 ? true : false;
@@ -358,7 +358,13 @@ export class DashboardComponent implements OnInit , OnDestroy {
               } else if (response.data.user_data.lang == 8) {
                 dblang = 'se';
               }
-              this.startIntroTour(dblang);  // Start the tour after a slight delay
+              let dontShowAgain = localStorage.getItem('dontShowIntroTour');
+              if(dontShowAgain == 'true'){
+                //  don't show again
+              }else{
+                this.startIntroTour(dblang);  // Start the tour after a slight delay
+              }
+              // this.startIntroTour(dblang);  // Start the tour after a slight delay
             }, 0);
           }
 
@@ -436,6 +442,9 @@ export class DashboardComponent implements OnInit , OnDestroy {
     }
     if(this.loggedInUser.permission === 'admin.view'){
       return false;
+    }
+    if(this.loggedInUser.permission === 'admin.edit'){
+      return true;
     }
     return true;
   }

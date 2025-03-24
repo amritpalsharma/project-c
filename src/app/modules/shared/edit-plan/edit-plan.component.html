@@ -18,7 +18,7 @@
           placeholder="{{ 'select' | translate }}">
           <!-- Custom display for selected options -->
           <mat-option *ngFor="let country of countries" [value]="country.id">
-            {{ country.package_name }}
+            {{ extractTextAfterDash(country.package_name) }}
           </mat-option>
         </mat-select>
       </div>
@@ -32,7 +32,8 @@
               <strong>{{item.location}}</strong>
             </span>
             <span>
-              <button class="explore-chip_cut d-none"
+              <button class="explore-chip_cut">&nbsp;</button>
+              <button class="explore-chip_cut d-none" style="display: none !important;"
                 (click)="confirmAndCancelSubscription(item.id, item.stripe_cancel_at == null ? false :true)">
                 <!-- <button class="explore-chip_cut" (click)="deletePlan(item.id)"> -->
                   <svg width="13px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
@@ -63,9 +64,9 @@
   </div>
 
   <div class="country-plan-2">
-    <p class="prorata-explanation mb-4">
+    <!-- <p class="prorata-explanation mb-4">
       {{ 'editPlan-text' | translate }}
-    </p>
+    </p> -->
 
     <div class="actions d-flex justify-content-end">
       <button class="btn action-cancel" (click)="cancel()">{{'cancel' | translate}}</button>

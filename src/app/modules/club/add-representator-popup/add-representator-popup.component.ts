@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ClubService } from '../../../services/club.service';
 import { TranslateService } from '@ngx-translate/core';
 import { WebPages } from '../../../services/webpages.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -40,6 +41,7 @@ export class AddRepresentatorPopupComponent {
     public dialogRef: MatDialogRef<AddRepresentatorPopupComponent>,
     private translateService: TranslateService,
     public webPages: WebPages,
+    public toaster: ToastrService,
     @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.userId = data.userId;
@@ -148,6 +150,11 @@ export class AddRepresentatorPopupComponent {
           message: response.message
         });
       } else {
+        if (response.message != '' && response.message != undefined) {
+          if (response.message.email != '' && response.message.email != undefined) {
+            this.toaster.error(response.message.email);
+          }
+        }
         console.error('Invalid API response structure:', response);
       }
     });
@@ -177,6 +184,11 @@ export class AddRepresentatorPopupComponent {
           message: response.message
         });
       } else {
+        if (response.message != '' && response.message != undefined) {
+          if (response.message.email != '' && response.message.email != undefined) {
+            this.toaster.error(response.message.email);
+          }
+        }
         console.error('Invalid API response structure:', response);
       }
     });
@@ -198,6 +210,9 @@ export class AddRepresentatorPopupComponent {
           action: 'added'
         });
       } else {
+        if (response.message != '' && response.message != undefined) {
+          this.toaster.error(response.message);
+        }
         console.error('Invalid API response structure:', response);
       }
     });

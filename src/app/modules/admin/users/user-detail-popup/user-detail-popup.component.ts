@@ -50,7 +50,19 @@ export class UserDetailPopupComponent {
   }
 
   closePopup(slug:string, id:Number): void {
-
+    if(slug == 'Club Representator'){
+      slug = 'club';
+    }
+    slug = slug.toLowerCase();
+    if (slug == 'vereinsvertreter') {
+      slug = 'club';
+    }
+    if (slug == 'scout representator') {
+      slug = 'scout';
+    }
+    if (slug == 'spähervertreter') {
+      slug = 'scout';
+    }
     let pageRoute = 'admin/'+slug.toLowerCase();
     // Navigate to User-detail with query parameter
     this.dialogRef.close(); 

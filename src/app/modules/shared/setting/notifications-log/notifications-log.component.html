@@ -38,7 +38,8 @@
 
         <div class="d-flex align-items-center justify-content-end col-md-4">
             <!-- <p class="mb-0 me-3">1-12 of 100</p> -->
-            <mat-paginator class="paginator-components bg-0C3453 pagination-values" [length]="0" [pageSize]="10" (page)="onPageChange()"></mat-paginator>
+            <mat-paginator class="paginator-components bg-0C3453 pagination-values" [length]="0" [pageSize]="10"
+                (page)="onPageChange()"></mat-paginator>
         </div>
 
     </div>
@@ -63,8 +64,19 @@
                 </th>
                 <td mat-cell *matCellDef="let element">
                     {{ element.message }} <br>
-                    <button *ngIf="element.event == 'scoutAddPlayer' && !element.seen" type="button" (click)="responseToScoutInvite('accepted', element.senderId, element)" class="btn btn-success px-md-5 py-2 me-3">{{'accept' | translate}}</button>
-                    <button *ngIf="element.event == 'scoutAddPlayer' && !element.seen" type="button" (click)="responseToScoutInvite('rejected', element.senderId, element)" class="btn btn-danger px-5 py-2">{{'reject' | translate}}</button>
+                    <button *ngIf="element.event == 'scoutAddPlayer' && !element.seen" type="button"
+                        (click)="responseToScoutInvite('accepted', element.senderId, element)"
+                        class="btn btn-success px-md-5 py-2 me-3">{{'accept' | translate}}</button>
+                    <button *ngIf="element.event == 'scoutAddPlayer' && !element.seen" type="button"
+                        (click)="responseToScoutInvite('rejected', element.senderId, element)"
+                        class="btn btn-danger px-5 py-2">{{'reject' | translate}}</button>
+
+                    <button *ngIf="element.event == 'inviteTalent' && !element.seen" type="button"
+                        (click)="updateSightingInviteResponse('accepted',element.eventId, element.senderId, element)"
+                        class="btn btn-success px-md-5 py-2 me-3">{{'accept' | translate}}</button>
+                    <button *ngIf="element.event == 'inviteTalent' && !element.seen" type="button"
+                        (click)="updateSightingInviteResponse('rejected',element.eventId, element.senderId, element)"
+                        class="btn btn-danger px-5 py-2">{{'reject' | translate}}</button>
                 </td>
             </ng-container>
 
@@ -72,7 +84,8 @@
                 <th mat-header-cell *matHeaderCellDef> {{'dateTime' | translate}}
                     <!-- <small><i class="fas fa-sort"></i> </small>   -->
                 </th>
-                <td mat-cell *matCellDef="let element"> {{ element.time | date: 'dd.MM.yyyy hh:mm a' }}</td>
+                <td mat-cell *matCellDef="let element"> {{ convertTime(element.time) }}</td>
+                <!-- <td mat-cell *matCellDef="let element"> {{ element.time | date: 'dd.MM.yyyy hh:mm a' }}</td> -->
             </ng-container>
 
 

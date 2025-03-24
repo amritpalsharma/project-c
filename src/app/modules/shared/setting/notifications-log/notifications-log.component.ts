@@ -56,7 +56,7 @@ export class NotificationsLogComponent {
     if(!this.loggedInUser.isRepresentator){
       return true;
     }
-    if(this.loggedInUser.permission === 'admin.view'){
+    if(this.loggedInUser.permission === 'admin.view' || this.loggedInUser.permission === 'admin.edit'){
       return false;
     }
     return true;
@@ -229,11 +229,46 @@ export class NotificationsLogComponent {
     });
   }
 
+  updateSightingInviteResponse(status: string, eventId: any, clubId: any, notification : any){
+
+    let jsonData = localStorage.getItem("userData");
+    let userId : any;
+    if (jsonData) {
+      let userData = JSON.parse(jsonData);
+      userId = userData.id;
+    }
+    else {
+      console.log("No data found in localStorage.");
+    }
+    let langId = localStorage.getItem('lang_id');
+
+    this.talentService.updateSightingInviteResponse(status, eventId, langId).subscribe((response)=>{
+      if (response && response.status) {
+        if(status === 'accepted'){
+          this.socketService.emit("acceptClubInvite", { senderId: userId, receiverId: clubId })
+        }
+        else{
+          this.socketService.emit("rejectClubInvite", { senderId: userId, receiverId: clubId })
+        }
+        this.showMessage(response.message);
+        // this.isResponded = true;
+        this.notificationClicked(notification.id, notification.seen, notification)
+      } else {
+        console.error('Invalid API response structure:', response);
+        this.showMessage(response.message);
+      }
+    });
+  }
+
   confirmSingleDeletion(id: any) {
     if(!this.checkRole()){
       return;
     }
     this.idsToDelete = [id];
     this.showMatDialog("Are you sure you want to delete this Activity?", "delete-confirmation");
+  }
+  
+  convertTime(dateTime: any) {
+    return this.talentService.convertTalentDateTime(dateTime);
   }
 }
