@@ -1,11 +1,8 @@
 <!-- unlock page  -->
 <div class="unlock_page" *ngIf="!isPremium ">
-  <div class="table-responsive px-3 bg-0C3453" style="width: 100%;">
-    <div class="new_performance">
-    </div>
-    <hr>
-  
-    <table class="table table-striped w-100 ">
+  <div class="table-responsive bg-0C3453" style="width: 100%;">
+ 
+    <table class="table w-100 no_hover_tr">
       <tbody>
         <tr class="table_underline" >
           <div class="team_logo row justify-content-between">
@@ -112,7 +109,7 @@
   </div>
   <hr>
 
-  <table class=" table table-striped w-100 ">
+  <table class="table w-100 no_hover_tr">
     <tbody>
       <tr class="table_underline" *ngFor="let performance of performances">
         <div class="team_logo row justify-content-between">

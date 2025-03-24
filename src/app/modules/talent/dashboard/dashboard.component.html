@@ -109,7 +109,7 @@
                           *ngIf="user.status == '3'" />
                       </div>
                     </div>
-                    <div class="col-md-4 pl-0 edit_button responsive-edit_btn ">
+                    <div class="col-md-4 p-0 edit_button responsive-edit_btn ">
                       <button (click)="openEditDialog()" class="" matTooltip="{{'editPersonalDetails' | translate}}"
                         matTooltipPosition="right">
                         <div class="tour-personal-details px-1">
@@ -132,8 +132,8 @@
                     <a href="" class="btn_style">Bookmark</a>
                   </div> -->
                   <div class="row elton-box dashboard-icons">
-                    <div class="col-sm-6">
-                      <div class="row align-items-center team-logos">
+                    <div class="col-sm-6 team-logos">
+                      <div class="row align-items-center">
                         <div class="team-badge_image col-sm-3">
                           <img *ngIf="!user.pre_current_club_logo_path"
                             src="../../../../assets/images/default/Club-logo-default.png" class="fc-club-img" alt="">
@@ -150,8 +150,8 @@
                     <div class="col-sm-6 team-logos">
                       <div class="row">
                         <div class="col-sm-12 p-0">
-                          <h6 class="title_2 mb-1">{{ 'nationality' | translate }}</h6>
-                            <div class="d-flex align-items-center gap-2 mb-1 " *ngFor="let nation of userNationalities">
+                          <h6 class="title_2 mb-2">{{ 'nationality' | translate }}</h6>
+                            <div class="d-flex align-items-center gap-2 mb-1" *ngFor="let nation of userNationalities">
                               <div class="team-badge_image">
                                 <img *ngIf="nation.flag_path" [src]="nation.flag_path" alt="">
                                 <img *ngIf="!nation.flag_path" src="../../../../assets/images/team-flag.png" alt="">

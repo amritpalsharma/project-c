@@ -1,15 +1,12 @@
 <!-- unlock page  -->
 <div class="unlock_page" *ngIf="!isPremium">
-  <div class="table-responsive px-3 bg-0C3453" style="width: 100%;">
-    <div class="new_performance">
-    </div>
-    <hr>
-  
-    <table class=" table table-striped w-100 ">
+  <div class="table-responsive bg-0C3453" style="width: 100%;">
+    
+    <table class="table w-100 no_hover_tr">
       <tbody>
         <tr class="table_underline" >
           <div class="team_logo row justify-content-between align-items-center">
-            <div class="col-lg-8 d-flex team-logos">
+            <div class="col-8 d-flex team-logos">
               <div class="team-logo-img">              
               </div>
               <div class="team-names">
@@ -18,10 +15,10 @@
                 <h6 class="details_2">---</h6>
               </div>
             </div>
-            <div class="col-lg-4 d-flex align-items-center justify-content-end edit-gap">
+            <div class="col-4 d-flex align-items-center justify-content-end edit-gap">
             </div>
           </div>
-          <div class="d-flex align-items-center justify-content-between underline_gap">
+          <div class="d-flex justify-content-between underline_gap">
             <td>
               <div class="d-flex country-details">              
                 <div class="main-template" >
@@ -102,16 +99,12 @@
 </div>
 
 
-<div class="table-responsive px-3 bg-0C3453" style="width: 100%;" *ngIf="isPremium">
-  <div class="new_performance">
-  </div>
-  <hr>
-
-  <table class=" table table-striped w-100 ">
+<div class="table-responsive bg-0C3453" style="width: 100%;" *ngIf="isPremium">
+   <table class="table w-100 no_hover_tr">
     <tbody>
       <tr class="table_underline" *ngFor="let performance of performances">
         <div class="team_logo row justify-content-between align-items-center">
-          <div class="col-lg-8 d-flex team-logos">
+          <div class="col-8 d-flex team-logos">
             <div class="team-logo-img">
               <img src="{{performance.team_club_logo_path}}" alt=""/>
             </div>
@@ -121,7 +114,7 @@
               <h6 class="details_2">{{calculateDateRange(performance)}}</h6>
             </div>
           </div>
-          <div class="col-lg-4 d-flex align-items-center justify-content-end edit-gap">
+          <div class="col-4 d-flex align-items-center justify-content-end edit-gap">
           </div>
         </div>
         <div class="d-flex align-items-center justify-content-between underline_gap">
