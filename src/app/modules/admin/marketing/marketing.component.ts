@@ -12,6 +12,7 @@ import { CommonFilterPopupComponent } from '../common-filter-popup/common-filter
 import { WebPages } from '../../../services/webpages.service';
 import { SharedService } from '../../../services/shared.service';
 import { TitleService } from '../../../title.service';
+import { TranslateService } from '@ngx-translate/core';
 
 
 
@@ -36,10 +37,17 @@ export class MarketingComponent {
   langs: any = environment.langs;
   locations: any = environment.domains;
   frequency: any = ['Once a day', 'Once a week', 'Once 2 Hrs', 'Twice a day', 'Once a month', 'One time only'];
-
-  constructor(public dialog: MatDialog, private marketingApi: MarketingService, private webpages: WebPages, private sharedservice: SharedService, private titleService: TitleService) { }
+  pageTitle: string = '';
+  constructor(
+    public dialog: MatDialog,
+    private marketingApi: MarketingService,
+    private webpages: WebPages,
+    private sharedservice: SharedService,
+    private titleService: TitleService,
+    private translateService: TranslateService
+  ) { }
   ngOnInit(): void {
-    this.setPageTitle();
+    this.getJsonTranslations();
     this.getSystemPopups();
     this.getRoles();
     this.getAllLanguages();
@@ -52,6 +60,7 @@ export class MarketingComponent {
         this.getRoles();
         this.getAllLanguages();
         this.getAllLocations();
+        this.getJsonTranslations();
       }
     });
   }
@@ -372,8 +381,11 @@ export class MarketingComponent {
     this.customFilters = filters;
     this.getSystemPopups(true);
   }
-  setPageTitle() {
-    this.titleService.setTitle('Marketing Component');
+  getJsonTranslations() {
+    this.translateService.get(['marketing']).subscribe((translations) => {
+      this.pageTitle = translations['marketing'];
+      this.titleService.setTitle(this.pageTitle);
+    })
   }
   translateFrequency(frequency: any) {
     let selectedLang = localStorage.getItem('lang');

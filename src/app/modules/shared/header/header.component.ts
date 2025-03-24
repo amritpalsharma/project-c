@@ -12,6 +12,7 @@ import { FormControl } from '@angular/forms';
 // import { debounceTime, distinctUntilChanged, switchMap, finalize } from 'rxjs/operators';
 import { debounceTime, distinctUntilChanged, switchMap, tap, finalize, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { TitleService } from '../../../title.service';
 
 import { CommonDataService } from '../../../services/common-data.service';
 import { WebPages } from '../../../services/webpages.service';
@@ -55,7 +56,8 @@ export class HeaderComponent {
     private webPages: WebPages,
     private talkService: TalkService,
     private globalSettings: GlobalSettingsService,
-    private cdRef: ChangeDetectorRef
+    private cdRef: ChangeDetectorRef,
+    private titleService: TitleService,
   ) { }
 
   loggedInUser: any = localStorage.getItem('userInfo');
@@ -86,8 +88,10 @@ export class HeaderComponent {
   totalNotification: boolean = true;
 
   notificationSeen: boolean = false;
+  pageTitle: string = '';
 
   ngOnInit() {
+    this.getPageTitle();
     let isFrontendDarkMode = localStorage.getItem('theme');
     if (isFrontendDarkMode != '' && isFrontendDarkMode == 'dark') {
       this.isDarkMode = true;
@@ -209,7 +213,7 @@ export class HeaderComponent {
     // }
 
     // Set the page name for the initial load
-    this.setPageTitleFromRoute();
+    // this.setPageTitleFromRoute();
 
     // Listen for route changes and update the title
     this.router.events
@@ -253,7 +257,7 @@ export class HeaderComponent {
     this.searchControl.valueChanges
       .pipe(
         map((value) => (typeof value === 'string' ? value.trim() : '')), // Ensure value is a trimmed string
-        tap((value:any) => {
+        tap((value: any) => {
           console.log("Search input changed:", value);
           if (!value) {
             this.filteredUsers = []; // Clear search results when input is empty
@@ -402,6 +406,7 @@ export class HeaderComponent {
 
     // Change the TalkJS locale by passing the locale string (e.g., 'en-US')
     this.talkService.changeLocale(locale);
+    this.getPageTitle();
   }
 
   logout() {
@@ -616,5 +621,11 @@ export class HeaderComponent {
 
   ngAfterViewInit() {
     this.cdRef.detectChanges();
+  }
+
+  getPageTitle() {
+    this.titleService.currentTitle.subscribe(updatedTitle => {
+      this.pageTitle = updatedTitle;
+    });
   }
 }

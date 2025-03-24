@@ -14,6 +14,9 @@ import { EditMembershipProfileComponent } from '../edit-membership-profile/edit-
 import { ScoutService } from '../../../services/scout.service';
 import { UpdateConfirmationPlanComponent } from '../../shared/update-confirmation-plan/update-confirmation-plan.component';
 import { EditPlanComponent } from '../../shared/edit-plan/edit-plan.component';
+import { TranslateService } from '@ngx-translate/core';
+import { TitleService } from '../../../title.service';
+import { WebPages } from '../../../services/webpages.service';
 
 
 interface Plan {
@@ -62,13 +65,17 @@ export class PlanComponent implements OnInit, OnDestroy {
 
   private plansSubscription: Subscription = new Subscription();
   stripePromise = loadStripe(environment.stripePublishableKey);
+  pageTitle: string = '';
 
   constructor(
     private ScoutService: ScoutService,
     private paymentService: PaymentService,
     public dialog: MatDialog,
     private route: ActivatedRoute,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private translateService: TranslateService,
+    private titleService: TitleService,
+    private webpages: WebPages,
   ) { }
 
   async ngOnInit() {
@@ -78,6 +85,10 @@ export class PlanComponent implements OnInit, OnDestroy {
     this.stripe = await this.paymentService.getStripe();
     this.loggedInUser = JSON.parse(this.loggedInUser || '{}');
     this.getBoosterData()
+    this.getJsonTranslations();
+    this.webpages.languageId$.subscribe((data) => {
+      this.getJsonTranslations();
+    })
   }
 
   // Open coupon dialog
@@ -543,6 +554,14 @@ export class PlanComponent implements OnInit, OnDestroy {
     } catch (error) {
       console.error('Error creating Stripe Checkout session:', error);
     }
+  }
+
+  getJsonTranslations() {
+    this.translateService.get(['plans']).subscribe((translations) => {
+      this.pageTitle = translations['plans'];
+      this.titleService.setTitle(this.pageTitle);
+      console.log('Title fetch Function Fired');
+    })
   }
 
 }

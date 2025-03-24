@@ -15,6 +15,7 @@ import { UpdateConfirmationPlanComponent } from '../../shared/update-confirmatio
 import { EditPlanComponent } from '../../shared/edit-plan/edit-plan.component';
 import { WebPages } from '../../../services/webpages.service';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
+import { TitleService } from '../../../title.service';
 
 
 
@@ -93,6 +94,7 @@ export class PlanComponent implements OnInit, OnDestroy {
   countryMonthlyArr: PackageObject | null = null;  // Store a single object, not an array
   countryYearlyArr: PackageObject | null = null;
   countryPlanPrice: any;
+  pageTitle: string = '';
 
 
   constructor(
@@ -102,10 +104,12 @@ export class PlanComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private toastr: ToastrService,
     public webPages: WebPages,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private titleService: TitleService
   ) { }
 
   async ngOnInit() {
+    this.getJsonTranslations();
     this.isLoadingPlans = true;
     this.getUserPlans();
     this.getBoosterData()
@@ -116,6 +120,7 @@ export class PlanComponent implements OnInit, OnDestroy {
     this.langSubscription = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
       this.loadFeatures(); // Reload features when the language changes
       this.fetchPlans(); // Reload features when the language changes
+      this.getJsonTranslations();
     });
   }
 
@@ -678,6 +683,13 @@ export class PlanComponent implements OnInit, OnDestroy {
       if (plan.is_package_active) {
         this.activePlans.push(plan); // Push only if is_package_active is true
       }
+    })
+  }
+  getJsonTranslations() {
+    this.translate.get(['plans']).subscribe((translations) => {
+      this.pageTitle = translations['plans'];
+      this.titleService.setTitle(this.pageTitle);
+      console.log('Title fetch Function Fired');
     })
   }
 }

@@ -12,6 +12,7 @@ import { MessagePopupComponent } from '../../shared/message-popup/message-popup.
 import { CancelCountryPlanComponent } from './cancel-country-plan/cancel-country-plan.component';
 import { WebPages } from '../../../services/webpages.service';
 import { TranslateService } from '@ngx-translate/core';
+import { TitleService } from '../../../title.service';
 
 @Component({
   selector: 'app-membership',
@@ -44,11 +45,22 @@ export class MembershipComponent {
   userPurchasesNotFound: String = '';
   subsciptionCancelSuccess: String = '';
   isLoading: boolean = true;
+  pageTitle: string = '';
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private route: ActivatedRoute, private talentService: TalentService, private paymentService: PaymentService, public dialog: MatDialog, private router: Router, private webpages: WebPages, private translateService: TranslateService,) { }
+  constructor(
+    private route: ActivatedRoute,
+    private talentService: TalentService,
+    private paymentService: PaymentService,
+    public dialog: MatDialog,
+    private router: Router,
+    private webpages: WebPages,
+    private translateService: TranslateService,
+    private titleService: TitleService
+  ) { }
 
   ngOnInit(): void {
+    this.getJsonTranslations();
     this.route.params.subscribe((params: any) => {
       this.userId = params.id;
       this.getUserPurchases();
@@ -63,6 +75,7 @@ export class MembershipComponent {
       this.getUserCards();
       this.getBoosterData();
       this.loadTranslations();
+      this.getJsonTranslations();
     });
 
   }
@@ -177,7 +190,7 @@ export class MembershipComponent {
 
   viewMembership(id: any) {
     const userPurchase = this.getSubscriptionById(id);
-    console.info('userPurchase',userPurchase);
+    console.info('userPurchase', userPurchase);
     const dialogRef = this.dialog.open(ViewMembershipPopupComponent, {
       width: '800px',
       data: {
@@ -411,5 +424,12 @@ export class MembershipComponent {
       this.userPurchasesNotFound = translations['userPurchasesNotFound'];
       this.subsciptionCancelSuccess = translations['subsciptionCancelSuccess'];
     });
+  }
+  getJsonTranslations() {
+    this.translateService.get(['membership']).subscribe((translations) => {
+      this.pageTitle = translations['membership'];
+      this.titleService.setTitle(this.pageTitle);
+      console.log('Title fetch Function Fired');
+    })
   }
 }

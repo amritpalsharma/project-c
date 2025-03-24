@@ -12,6 +12,8 @@ import { TemplateService } from '../../../services/template.service';
 import { CommonFilterPopupComponent } from '../common-filter-popup/common-filter-popup.component';
 import { AdminHelperService } from '../../../services/admin-helper.service';
 import { TitleService } from '../../../title.service';
+import { SharedService } from '../../../services/shared.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-templates',
@@ -33,15 +35,24 @@ export class TemplatesComponent {
   @ViewChild(MatSort) sort!: MatSort;
   roles: any = [];
   langs: any = environment.langs;
+  pageTitle: string = '';
 
   constructor(
     public dialog: MatDialog,
     private tempalateApi: TemplateService,
     public adminHelper: AdminHelperService,
-    private titleService: TitleService
+    private titleService: TitleService,
+    private sharedservice: SharedService,
+    private translateService: TranslateService
   ) { }
   ngOnInit(): void {
     this.getTemplates();
+    this.getJsonTranslations();
+    this.sharedservice.data$.subscribe((data) => {
+      if (data.action == 'lang_updated') {
+        this.getJsonTranslations();
+      }
+    });
 
     let envRoles: any = environment.roles;
     envRoles.unshift({ id: 0, role: 'All' });
@@ -284,7 +295,11 @@ export class TemplatesComponent {
     return formattedDate;
   }
 
-  setPageTitle() {
-    this.titleService.setTitle('Marketing Component');
+  getJsonTranslations() {
+    this.translateService.get(['emailTemplates']).subscribe((translations) => {
+      this.pageTitle = translations['emailTemplates'];
+      this.titleService.setTitle(this.pageTitle);
+      console.info('Function Fired getJsonTranslations')
+    })
   }
 }

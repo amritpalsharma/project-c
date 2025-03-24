@@ -10,6 +10,7 @@ import { WebPages } from '../../../services/webpages.service';
 import { environment } from '../../../../environments/environment';
 import { UserService } from '../../../services/user.service';
 import { Subscription } from 'rxjs';
+import { TitleService } from '../../../title.service';
 
 @Component({
   selector: 'shared-favorites',
@@ -39,17 +40,29 @@ export class FavoritesComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   keyword: any = "";
   isLoading: boolean = true;
+  pageTitle: string = '';
 
   loggedInUser: any = localStorage.getItem('userData');
 
   // Filters and UI variables (other code omitted for brevity)
   viewsTracked: { [profileId: string]: { viewed: boolean, clicked: boolean } } = {}; // Track view and click per profile
   langSubscription!: Subscription;
-  constructor(private userService: UserService, private route: ActivatedRoute, private talentService: TalentService, private router: Router, public dialog: MatDialog, public webPages: WebPages, private translate: TranslateService) { }
+  constructor(
+    private userService: UserService,
+    private route: ActivatedRoute,
+    private talentService: TalentService,
+    private router: Router,
+    public dialog: MatDialog,
+    public webPages: WebPages,
+    private translate: TranslateService,
+    private translateService: TranslateService,
+    private titleService: TitleService,
+  ) { }
 
   ngOnInit(): void {
     this.loggedInUser = JSON.parse(this.loggedInUser);
     this.getAllLanguages();
+    this.getJsonTranslations();
     // this.getBlogs();
     this.route.params.subscribe((params: any) => {
       this.getUserFavorites();
@@ -61,6 +74,7 @@ export class FavoritesComponent {
       this.getLocations();
       this.getUserRoles();
       this.getUserFavorites();
+      this.getJsonTranslations();
     });
     // let envRoles:any = environment.roles;
     //     envRoles.unshift({id: 0, role: 'All'});
@@ -455,6 +469,14 @@ export class FavoritesComponent {
     // this.router.navigate([`/${role}/chat`], {
     //   queryParams: { open_chat: 'true' }
     // });
+  }
+
+  getJsonTranslations() {
+    this.translateService.get(['favorites']).subscribe((translations) => {
+      this.pageTitle = translations['favorites'];
+      this.titleService.setTitle(this.pageTitle);
+      console.log('Title fetch Function Fired');
+    })
   }
 
 }

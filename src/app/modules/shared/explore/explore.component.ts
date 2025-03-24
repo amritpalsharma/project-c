@@ -9,6 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { WebPages } from '../../../services/webpages.service';
 import { lang } from 'moment';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
+import { TitleService } from '../../../title.service';
 
 @Component({
   selector: 'shared-explore',
@@ -25,16 +26,20 @@ export class ExploreComponent implements OnInit {
     private socketService: SocketService,
     private translateService: TranslateService,
     public webPages: WebPages,
-    private globalSettings: GlobalSettingsService
+    private globalSettings: GlobalSettingsService,
+    private titleService: TitleService,
   ) {
     this.language = translateService.currentLang || 'en';  // Get current language
     this.loadRoles(this.language);  // Load Roles based on selected language
+    this.getJsonTranslations();
     translateService.onLangChange.subscribe(() => {
       this.language = translateService.currentLang;
       console.log(this.language);
       this.loadRoles(this.language);
+      this.getJsonTranslations();
     });
   }
+  pageTitle: string = '';
   userDomain: number = this.globalSettings.getdomainId();
   players: any[] = [];
   pageSize = 15; // Default page size
@@ -244,7 +249,7 @@ export class ExploreComponent implements OnInit {
     this.socketService.emit("profileViewed", { senderId: userId, receiverId: id })
   }
 
-  flag : boolean = true;
+  flag: boolean = true;
 
   // Event handler for page change in paginator
   getUsers() {
@@ -319,7 +324,7 @@ export class ExploreComponent implements OnInit {
           if (this.totalItems < 0 || this.totalItems == 0) {
             this.noUsersFound = true;
           }
-          if(this.flag){
+          if (this.flag) {
             this.trackBoostedProfileViews(this.players); // Track views if necessary
             this.flag = false;
           }
@@ -551,6 +556,14 @@ export class ExploreComponent implements OnInit {
   // Method to check if the label is empty
   empty(label: string): boolean {
     return !label || label.trim() === '';
+  }
+
+  getJsonTranslations() {
+    this.translateService.get(['explore']).subscribe((translations) => {
+      this.pageTitle = translations['explore'];
+      this.titleService.setTitle(this.pageTitle);
+      console.log('Title fetch Function Fired');
+    })
   }
 
 }

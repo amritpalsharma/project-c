@@ -7,6 +7,9 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { TeamMemberDetailComponent } from './teamMember/teamMember.detail.component';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { TitleService } from '../../../title.service';
+import { TranslateService } from '@ngx-translate/core';
+import { SharedService } from '../../../services/shared.service';
 
 import {
   MatDialogRef,
@@ -28,7 +31,10 @@ export class SettingComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private renderer: Renderer2,
-    private el: ElementRef
+    private el: ElementRef,
+    private titleService: TitleService,
+    private translateService: TranslateService,
+    private sharedservice: SharedService,
   ) { }
 
   userData: any;
@@ -48,8 +54,15 @@ export class SettingComponent implements OnInit {
 
   previousUrl: string | null = null;
   currentUrl: string | null = null;
+  pageTitle: string = '';
 
   ngOnInit(): void {
+    this.getJsonTranslations();
+    this.sharedservice.data$.subscribe((data) => {
+      if (data.action == 'lang_updated') {
+        this.getJsonTranslations();
+      }
+    });
     const userDataString = localStorage.getItem('userData');
     console.log(userDataString, "check the userdata")
     if (userDataString) {
@@ -83,7 +96,7 @@ export class SettingComponent implements OnInit {
       else if (fragment === 'team') {
         this.tab = 'team'; // Switch to Activity Log tab
       }
-      else if(fragment === 'notifications'){
+      else if (fragment === 'notifications') {
         this.tab = 'notifications';
       }
     });
@@ -168,5 +181,12 @@ export class SettingComponent implements OnInit {
       this.renderer.addClass(activePane, 'show');
       this.renderer.addClass(activePane, 'active');
     }
+  }
+
+  getJsonTranslations() {
+    this.translateService.get(['settings']).subscribe((translations) => {
+      this.pageTitle = translations['settings'];
+      this.titleService.setTitle(this.pageTitle);
+    })
   }
 }
