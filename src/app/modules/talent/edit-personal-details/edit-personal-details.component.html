@@ -1,7 +1,7 @@
 <div class="dialog-container">
   <div class="personal_edit">
     <div class="dialog-header m-auto">
-      <h2>{{'editUserPersonalDetails' | translate}}</h2>
+      <h2>{{'editPersonalDetails' | translate}}</h2>
     </div>
     <div class="close_buttons">
       <button class="close-btn" (click)="onCancel()">X</button>
@@ -92,7 +92,7 @@
 
         <!-- Weight -->
         <div class="form-group col-lg-6">
-          <label for="weight">{{'weight' | translate}}(kgs):</label>
+          <label for="weight">{{'weight' | translate}} (kg):</label>
           <input type="number" id="weight" name="weight" [(ngModel)]="weight" #weightField="ngModel" placeholder="{{ 'enterValue' | translate }}" />
         </div>
       </div>
