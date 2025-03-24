@@ -558,7 +558,7 @@ export class PlanComponent implements OnInit, OnDestroy {
 
   getJsonTranslations() {
     this.translateService.get(['plans']).subscribe((translations) => {
-      this.pageTitle = translations['plans'];
+      this.pageTitle = translations['plans']; 
       this.titleService.setTitle(this.pageTitle);
       console.log('Title fetch Function Fired');
     })

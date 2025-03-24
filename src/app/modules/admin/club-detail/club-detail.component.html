@@ -22,7 +22,7 @@
                   d="M13.1749 7.80954L13.3574 7.63087L13.1749 7.45221L12.5303 6.82133L12.3555 6.65026L12.1806 6.82125L7.51415 11.3843L5.81922 9.7294L5.64436 9.55867L5.4697 9.72961L4.82513 10.3605L4.64259 10.5391L4.82513 10.7178L7.33942 13.1787L7.51429 13.3498L7.68915 13.1787L13.1749 7.80954Z"
                   fill="white" stroke="white" class="reject-stroke" stroke-width="0.5" />
               </svg>
-              <span *ngIf="user.status == '1' || user.status == '3'">{{ 'VerifyUsers' | translate }}</span>
+              <span *ngIf="user.status == '1' || user.status == '3'">{{ 'verifyUsers' | translate }}</span>
               <span *ngIf="user.status == '2'">{{ 'rejectUser' | translate }}</span>
             </span>
             <span class="btn btn-outline-white profile-tab-content" (click)="confirmDeletion()">

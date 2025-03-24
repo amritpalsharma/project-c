@@ -232,6 +232,26 @@ export class ExploreComponent implements OnInit {
     // if(slug == 'Talent'){
     //   slug = 'club'; // update by amrit talent page is not open
     // }
+    slug = slug.toLowerCase();
+    if (slug == 'club representator') {
+      slug = 'club';
+    }
+   
+    if (slug == 'vereinsvertreter') {
+      slug = 'club';
+    }
+    if (slug == 'scout representator') {
+      slug = 'scout';
+    }
+    if (slug == 'spähervertreter') {
+      slug = 'scout';
+    }
+
+    if (slug == 'späher') {
+      slug = 'scout';
+    } else if (slug == 'verein') {
+      slug = 'club';
+    }
     const pageRoute = 'view/' + slug.toLowerCase();
     //console.log(pageRoute);
     this.router.navigate([pageRoute, id]);
