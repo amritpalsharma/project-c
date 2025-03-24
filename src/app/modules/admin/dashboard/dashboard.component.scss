@@ -13,10 +13,14 @@
 }
 
 .card-tabs-content {
-  margin: 20px;
+  padding: 10px 5px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   cursor: pointer;
+  &:hover {
+    background: #f0f0f02b;
+  }
 }
 
 
@@ -26,6 +30,7 @@
   height: 60px;
   object-fit: cover;
   border-radius: 50%;
+  background: #f0f0f0;
 }
 
 .dashboard_table .nav-tabs {

@@ -13,6 +13,12 @@
       border-bottom: 0;
       border-left: .3em solid transparent;
   }
+
+  .card.border_wrap {
+    min-height: 95vh;
+    background: #ffffff;
+    border-color: #E5E5E5;
+  }
   
 
   @media(max-width: 425px){

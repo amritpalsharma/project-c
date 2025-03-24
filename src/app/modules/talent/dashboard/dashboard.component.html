@@ -94,7 +94,8 @@
                 </div>
 
                 <div class="bg-color card-bg">
-                  <div class="user-info pt-3 row align-items-center justify-content-between p-3 responsive-name">
+                  <div class="px-3">
+                  <div class="user-info pt-3 row align-items-center justify-content-between responsive-name">
                     <div class="col-md-8 d-flex align-items-center player-name-box">
                       <h6 class="user-info-name">
                         {{ user.first_name }} {{ user.last_name }}
@@ -108,7 +109,7 @@
                           *ngIf="user.status == '3'" />
                       </div>
                     </div>
-                    <div class="col-md-4 p-0 edit_button responsive-edit_btn ">
+                    <div class="col-md-4 pl-0 edit_button responsive-edit_btn ">
                       <button (click)="openEditDialog()" class="" matTooltip="{{'editPersonalDetails' | translate}}"
                         matTooltipPosition="right">
                         <div class="tour-personal-details px-1">
@@ -123,6 +124,7 @@
                       </button>
                     </div>
                     <!-- <small>{{user.role_name}}</small> -->
+                  </div>
                   </div>
                   <!-- <div class="mobile_profile_buttons">
                     <a href="" class="btn_style">Download Profile</a>

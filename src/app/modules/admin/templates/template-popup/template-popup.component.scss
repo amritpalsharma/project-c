@@ -47,12 +47,6 @@ font-size: 13px;
     display: flex;
     column-gap: 94px;
 }
-
-// .marketing-button-child{
-//     display: flex;
-//     justify-content: space-between;
-
-// }
 .text-size{
     font-size: 14px;
 }
@@ -73,8 +67,8 @@ font-size: 13px;
   border: none !important;
 }
 ngx-editor {
-    height: 35vh; /* Set the height you want */
-    display: block; /* Ensure it behaves like a block element */
+    height: 35vh;
+    display: block;
 }
 
 ::ng-deep .mat-mdc-select-panel{
@@ -110,10 +104,12 @@ ngx-editor {
   .editor-width{
     height: 275px;
     overflow: auto;
+    // background: #FCFCFC;
   }
+
   
   .template_body_form {
-    max-height: 60vh;
+    // max-height: 60vh;
     padding: 15px;
     overflow: auto;
 }

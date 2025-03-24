@@ -1,15 +1,15 @@
-<div class="card mb-4">
-    <div class="card-header border-0">
+<div class="card mb-3 mt-lg-0 mt-3">
+    <div class="card-header border-0 pb-0">
       <div>
         <h6 class="card-title">{{'profile' | translate}}</h6>
-        <p>{{'setYourPersonalInformation' | translate}} </p>
+        <p class="mb-0">{{'setYourPersonalInformation' | translate}} </p>
       </div>
     </div>
   </div>
     <div class="card">
       <div class="card-header">
         <h4 class="card-title mb-0">{{'profile' | translate}}</h4>
-        <span class="font-w500"
+        <span class="font-w500 cursor-pointer"
           ><svg id="users-icon"
             width="18"
             height="18"
@@ -38,7 +38,7 @@
                 <input type="file"  class="setting-media-2"/>
               </span>
             </div> -->
-            <div class="setting-media">
+            <div class="setting-media mb-lg-0 mb-4">
               <label for="file-upload" class="custom-file-upload">
                 <img src="{{image}}" alt="" />
                 <span class="setting-edit" *ngIf="!imageLoading">
@@ -60,13 +60,7 @@
               <div class="col-lg-6">
                 <div class="mb-3">
                   <label for="firstNameInput" class="form-label">{{ 'firstName' | translate }}</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="firstNameInput"
-                    placeholder="{{ 'firstName' | translate }}"
-                    [(ngModel)]="firstName"
-                  />
+                  <input type="text" class="form-control" id="firstNameInput" placeholder="{{ 'firstName' | translate }}" [(ngModel)]="firstName" readonly="readonly" />
                 </div>
                 <div class="mb-3">
                   <label for="emailInput" class="form-label">{{ 'email' | translate }}</label>
