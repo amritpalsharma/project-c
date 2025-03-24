@@ -89,10 +89,10 @@
 
             <!-- Name Column -->
             <ng-container matColumnDef="Name">
-              <th class="text-center" mat-header-cell *matHeaderCellDef> {{'name' | translate}} </th>
+              <th mat-header-cell *matHeaderCellDef> {{'name' | translate}} </th>
               <td class="text-center" mat-cell *matCellDef="let element">
 
-                <div class="d-flex align-items-center justify-content-center">
+                <div class="d-flex align-items-center">
                   <span class="position-relative">
                     <img *ngIf="!element.profile_image_path"
                       src="../../../../assets/images/default/talent-profile-default.png" alt="" class="table_img" />
@@ -115,7 +115,7 @@
             </ng-container>
 
             <ng-container matColumnDef="User Type">
-              <th class="text-center" mat-header-cell *matHeaderCellDef> {{'userType' | translate}}
+              <th mat-header-cell *matHeaderCellDef> {{'userType' | translate}}
                 <svg width="9" height="13" viewBox="0 0 9 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M1.15341 7.43701H7.84716C8.44903 7.43701 8.74997 8.1958 8.32528 8.63818L4.97841 12.1245C4.71404 12.3999 4.28654 12.3999 4.02497 12.1245L0.675285 8.63818C0.250597 8.1958 0.551535 7.43701 1.15341 7.43701ZM8.32528 4.36084L4.97841 0.874512C4.71404 0.599121 4.28654 0.599121 4.02497 0.874512L0.675285 4.36084C0.250597 4.80322 0.551535 5.56201 1.15341 5.56201H7.84716C8.44903 5.56201 8.74997 4.80322 8.32528 4.36084Z"
@@ -123,18 +123,18 @@
                 </svg>
 
               </th>
-              <td class="text-center" mat-cell *matCellDef="let element" (click)="naviGateToChat(element.role_id)"> {{
+              <td mat-cell *matCellDef="let element" (click)="naviGateToChat(element.role_id)"> {{
                 element.role_name }}</td>
               <!-- <td class="text-center" mat-cell *matCellDef="let element">  {{ element.role_name }}</td> -->
             </ng-container>
 
             <ng-container matColumnDef="Location">
-              <th class="text-center" mat-header-cell *matHeaderCellDef> {{'location' | translate}} </th>
-              <td class="text-center" mat-cell *matCellDef="let element"> {{ element.location }}</td>
+              <th mat-header-cell *matHeaderCellDef> {{'location' | translate}} </th>
+              <td mat-cell *matCellDef="let element"> {{ element.location }}</td>
             </ng-container>
 
             <ng-container matColumnDef="Joined Date - Time">
-              <th class="text-center" mat-header-cell *matHeaderCellDef> {{'joinedDateTime' | translate}}
+              <th mat-header-cell *matHeaderCellDef> {{'joinedDateTime' | translate}}
                 <svg width="9" height="13" viewBox="0 0 9 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M1.15341 7.43701H7.84716C8.44903 7.43701 8.74997 8.1958 8.32528 8.63818L4.97841 12.1245C4.71404 12.3999 4.28654 12.3999 4.02497 12.1245L0.675285 8.63818C0.250597 8.1958 0.551535 7.43701 1.15341 7.43701ZM8.32528 4.36084L4.97841 0.874512C4.71404 0.599121 4.28654 0.599121 4.02497 0.874512L0.675285 4.36084C0.250597 4.80322 0.551535 5.56201 1.15341 5.56201H7.84716C8.44903 5.56201 8.74997 4.80322 8.32528 4.36084Z"

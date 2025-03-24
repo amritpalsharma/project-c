@@ -1,6 +1,18 @@
 .main-template{
     color: black ;
 }
+td.col_checkbox {
+  width: 40px !important;
+  padding-right: 0 !important;
+}
+
+.card.border_wrap {
+  min-height: 95vh;
+  background: #ffffff;
+  border-color: #E5E5E5;
+}
+
+
 
 @media(max-width: 425px){
   .table-responsive {

@@ -1,6 +1,6 @@
 <div class="page-content">
   <div class="main-wrapper">
-    <div class="card p-0 border-0">
+    <div class="card p-0 border_wrap">
       <div class="card-header border-0 p-3 marketing_card_header">
         <div class="d-flex align-items-center justify-content-between marketing-header-bar">
           <div class="d-flex align-items-center heading w-100">
@@ -75,7 +75,7 @@
           <table mat-table [dataSource]="popups" class="table table-hover table-striped table-users m-0">
             <ng-container matColumnDef="#">
               <th mat-header-cell *matHeaderCellDef> </th>
-              <td mat-cell *matCellDef="let element" class="d-flex justify-content-center">
+              <td mat-cell *matCellDef="let element" class="d-flex justify-content-center col_checkbox">
                 <span class="form-check align-self-center me-2">
                   <input type="checkbox" value="" id="defaultCheck1" [checked]="selectedIds.includes(element.id)"
                     (change)="onCheckboxChange(element)" class="form-check-input" />

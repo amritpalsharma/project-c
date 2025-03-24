@@ -123,7 +123,13 @@
         <!-- League Level -->
         <div class="form-group col-lg-6">
           <label for="leagueLevel">{{'leagueLevel' | translate}}:</label>
-          <input type="text" id="leagueLevel" name="leagueLevel" [(ngModel)]="leagueLevel" />
+          <!-- <input type="text" id="leagueLevel" name="leagueLevel" [(ngModel)]="leagueLevel" /> -->
+          <select id="leagueLevel" name="leagueLevel" [(ngModel)]="leagueLevel" #dominantFootField="ngModel"
+            required >
+            <option>Testing</option>
+            <option>Testing</option>
+            <option>Testing</option>
+          </select>
         </div>
 
         <!-- Dominant Foot -->

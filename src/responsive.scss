@@ -4,12 +4,14 @@
         position: absolute;
         bottom: 0;
         width: 100%;
+        height: 70px;
     }
     .compact-sidebar .sidebar .bottom_box {
         position: absolute;
         bottom: 20px;
         width: 80px;
         transition: .4s all;
+        height: 70px;
     }
     .it .website-code nav.navbar li.nav-item .nav-link, .fr .website-code nav.navbar li.nav-item .nav-link,
     .es .website-code nav.navbar li.nav-item .nav-link, .pt .website-code nav.navbar li.nav-item .nav-link,
@@ -133,6 +135,14 @@
 }
 .page-header .mobile-logo {
     display: none;
+}
+.parent-popup.mobile_popup_responsive {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    .popup_buttons_mobile {
+        margin-top: auto;
+    }
 }
 }
 
@@ -272,6 +282,10 @@ td.cdk-column-Remove.mat-column-Remove svg {
       font-size: 24px;
   }
   }
+  mat-datepicker-toggle button {
+    background-position: top 16px center !important;
+    background-size: 26px !important;
+}
 }
 
 

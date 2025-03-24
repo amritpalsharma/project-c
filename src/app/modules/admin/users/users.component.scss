@@ -23,6 +23,11 @@ button.btn.btn-secondary:hover {
 td.cdk-column-Membership.mat-column-Membership {
   text-align: left !important;
 }
+.card.border_wrap {
+  min-height: 95vh;
+  background: #ffffff;
+  border-color: #E5E5E5;
+}
 
 .table-users td {
 .bg_pending, .bg_reject, .bg_success  {
