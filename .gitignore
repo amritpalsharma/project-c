@@ -11,6 +11,8 @@
 npm-debug.log
 yarn-error.log
 
+/icetcs.cgc.ac.in
+
 # IDEs and editors
 .idea/
 .project
