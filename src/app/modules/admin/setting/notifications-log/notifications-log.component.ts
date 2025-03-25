@@ -40,6 +40,7 @@ export class NotificationsLogComponent {
   @ViewChild(MatSort) sort!: MatSort;
   idsToDelete: any = [];
   deleteConfirmation3: string = '';
+  selectNotificationFirst: string = '';
 
   constructor(
     public dialog: MatDialog,
@@ -127,7 +128,7 @@ export class NotificationsLogComponent {
 
   confirmDeletion(): any {
     if (this.selectedIds.length == 0) {
-      this.showMessage('Select notifications(s) first.');
+      this.showMessage(this.selectNotificationFirst);
       return false;
     }
     this.idsToDelete = this.selectedIds;
@@ -190,8 +191,10 @@ export class NotificationsLogComponent {
   }
 
   getJsonTranslations() {
-    this.translateService.get(['confirmDeleteinformation3']).subscribe((translations) => {
+    this.translateService.get(['confirmDeleteinformation3','selectNotificationFirst']).subscribe((translations) => {
       this.deleteConfirmation3 = translations['confirmDeleteinformation3'];
+      this.selectNotificationFirst = translations['selectNotificationFirst'];
+      console.warn(this.selectNotificationFirst);
     })
   }
 }

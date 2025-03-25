@@ -12,44 +12,45 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class PortfolioTabComponent {
 
-  userId:any = '';
-  scoutPlayers:any = [];
-  displayedColumns: string[] = ['Name', 'Language', 'Club', 'Contract Starts','Contract Expires', 'View', 'Delete'];
-  isLoading = false; 
-  idToBeDeleted:any = '';
-  constructor(private route: ActivatedRoute, private userService: UserService, public dialog: MatDialog){}
+  userId: any = '';
+  scoutPlayers: any = [];
+  displayedColumns: string[] = ['Name', 'Language', 'Club', 'Contract Starts', 'Contract Expires', 'View', 'Delete'];
+  isLoading = false;
+  idToBeDeleted: any = '';
+  constructor(private route: ActivatedRoute, private userService: UserService, public dialog: MatDialog) { }
 
-  ngOnInit(): void{
-    this.route.params.subscribe((params:any) => {
+  ngOnInit(): void {
+    this.route.params.subscribe((params: any) => {
       this.userId = params.id;
       this.getScoutPlayers();
     })
   }
 
-  getScoutPlayers(){
+  getScoutPlayers() {
     this.isLoading = true;
     try {
-      this.userService.getScoutPlayers(this.userId).subscribe((response)=>{
+      this.userService.getScoutPlayers(this.userId).subscribe((response) => {
         if (response && response.status && response.data) {
           this.scoutPlayers = response.data.scoutPlayers;
           this.isLoading = false;
         } else {
           this.isLoading = false;
+          this.scoutPlayers = [];
           console.error('Invalid API response structure:', response);
         }
       });
     } catch (error) {
       this.isLoading = false;
-      console.error('Error fetching users:', error); 
+      console.error('Error fetching users:', error);
     }
   }
 
-  viewScoutPlayer(playerId:any){
-    const playerViewDialog = this.dialog.open(ScoutPlayerViewPopupComponent,{
+  viewScoutPlayer(playerId: any) {
+    const playerViewDialog = this.dialog.open(ScoutPlayerViewPopupComponent, {
       width: '1000px',
       height: '600px',
       position: {
-        top:'30px'
+        top: '30px'
       },
       data: {
         playerId: playerId
@@ -58,23 +59,23 @@ export class PortfolioTabComponent {
 
     playerViewDialog.afterClosed().subscribe(result => {
       // if (result !== undefined) {
-        //  console.log('Dialog result:', result);
+      //  console.log('Dialog result:', result);
       // }
     });
   }
 
-  confirmDeletion(id:any, firstName:any, lastName:any){
+  confirmDeletion(id: any, firstName: any, lastName: any) {
     this.idToBeDeleted = 110; //id;
-    let name = firstName+" "+lastName;
+    let name = firstName + " " + lastName;
     console.log(id, firstName, lastName);
     this.showMatDialog("", "delete-scout-player-confirmation", name);
   }
 
-  showMatDialog(message:string, action:string, name:any = ''){
-    const messageDialog = this.dialog.open(MessagePopupComponent,{
+  showMatDialog(message: string, action: string, name: any = '') {
+    const messageDialog = this.dialog.open(MessagePopupComponent, {
       width: '500px',
       position: {
-        top:'150px'
+        top: '150px'
       },
       data: {
         message: message,
@@ -85,20 +86,24 @@ export class PortfolioTabComponent {
 
     messageDialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
-        if(result.action == "delete-confirmed"){
+        if (result.action == "delete-confirmed") {
           this.deleteScoutPlayer();
         }
-      //  console.log('Dialog result:', result);
+        //  console.log('Dialog result:', result);
       }
     });
   }
 
-  deleteScoutPlayer(){
-    this.userService.deleteScoutPlayer(this.idToBeDeleted).subscribe((response:any) => {
+  deleteScoutPlayer() {
+    this.userService.deleteScoutPlayer(this.idToBeDeleted).subscribe((response: any) => {
+      if (response.message != '' && response.message != undefined) {
+        this.showMatDialog(response.message, 'display');
+      } else {
         this.showMatDialog('Player removed from Scout successfully!', 'display');
-        this.getScoutPlayers();
+      }
+      this.getScoutPlayers();
     },
-    (error:any) => {
+      (error: any) => {
         console.error('Error deleting user:', error);
         this.showMatDialog('Error deleting user. Please try again.', 'display');
       }

@@ -78,9 +78,9 @@ export class ScoutDetailComponent implements OnInit {
 
     this.userService.updateUserStatus([this.userId], newStatus).subscribe(response => {
       this.user.status = newStatus;
-      if(response.message != '' && response.message != undefined){
+      if (response.message != '' && response.message != undefined) {
         this.showMatDialog(response.message, 'display');
-      }else{
+      } else {
         this.showMatDialog('User status updated successfully!', 'display');
       }
     },
@@ -126,7 +126,11 @@ export class ScoutDetailComponent implements OnInit {
     let langId = localStorage.getItem('lang_id');
     this.userService.deleteUser([this.userId], langId).subscribe(
       response => {
-        this.showMatDialog('User deleted successfully!', 'display');
+        if (response.message != '' && response.message != undefined) {
+          this.showMatDialog(response.message, 'display');
+        } else {
+          this.showMatDialog('User deleted successfully!', 'display');
+        }
         this.router.navigate(['/admin/users']);
       },
       error => {
@@ -156,7 +160,7 @@ export class ScoutDetailComponent implements OnInit {
         formdata.append("profile_image", FileToUpload);
         let lang_id = localStorage.getItem('lang_id');
         formdata.append('lang', lang_id + '');
-        
+
 
         this.userService.uploadProfileImage(this.userId, formdata).subscribe((response) => {
           if (response && response.status) {

@@ -1335,5 +1335,6 @@
   "deletePerformanceConfirm": "Sei sicuro di voler eliminare i report selezionati?",
   "accepted": "Accettato",
    "category": "Categoria",
-   "selectActivityFirst": "Seleziona prima un'attività."
+   "selectActivityFirst": "Seleziona prima un'attività.",
+   "selectNotificationFirst" : "Seleziona prima la/le notifica(e)."
 }

@@ -1342,5 +1342,6 @@
   "selectBlogFirst": "Blog zuerst auswählen.",
   "selectCouponFirst": "Coupon zuerst auswählen.",
   "category": "Kategorie",
-  "selectActivityFirst": "Wähle zuerst eine Aktivität aus."
+  "selectActivityFirst": "Wähle zuerst eine Aktivität aus.",
+  "selectNotificationFirst" : "Wähle zuerst die Benachrichtigung(en) aus."
 }

@@ -1340,5 +1340,6 @@
   "deletePerformanceConfirm": "Är du säker på att du vill ta bort de valda rapporterna?",
   "accepted": "Accepterad",
   "category": "Kategori",
-  "selectActivityFirst": "Välj först en aktivitet."
+  "selectActivityFirst": "Välj först en aktivitet.",
+  "selectNotificationFirst" : "Välj först avisering(ar)."
 }

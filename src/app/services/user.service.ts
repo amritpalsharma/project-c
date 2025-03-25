@@ -85,7 +85,7 @@ export class UserService {
     );
   }
 
-  getProfileData(userId: any): Observable<any> { 
+  getProfileData(userId: any): Observable<any> {
     let lang_id = localStorage.getItem('lang_id');
     return this.http.get<{ status: boolean, message: string, data: { userData: User[] } }>(
       `${this.apiUrl}admin/profile/${lang_id}/${userId}`
@@ -268,21 +268,23 @@ export class UserService {
 
   getScoutPlayers(userId: any): Observable<any> {
     const userToken = localStorage.getItem('authToken');
+    let lang_id = localStorage.getItem('lang_id');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
     return this.http.get<{ status: boolean, message: string, data: {} }>(
-      `${this.apiUrl2}/get-scout-players/${userId}`, { headers }
+      `${this.apiUrl2}/get-scout-players/${lang_id}/${userId}`, { headers }
     );
   }
 
   deleteScoutPlayer(id: any): Observable<any> {
     const userToken = localStorage.getItem('authToken');
+    const lang_id = localStorage.getItem('lang_id');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
     return this.http.get<{ status: boolean, message: string, data: {} }>(
-      `${this.apiUrl2}/delete-scout-player/${id}`, { headers }
+      `${this.apiUrl2}/delete-scout-player/${id}/${lang_id}`, { headers }
     );
   }
 
