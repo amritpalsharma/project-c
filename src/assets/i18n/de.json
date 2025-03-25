@@ -945,7 +945,7 @@
   },
   "tooltip": {
     "totalUsers": "Gesamte Benutzer: {{count}}",
-    "totalSales": "Gesamtverkäufe: {{count}}",
+    "totalSales": "Gesamtumsatz: {{count}}",
     "totalSubscriptions": "Gesamtabonnements: {{count}}"
   },
   "more_news": "Weitere News",

@@ -62,6 +62,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   yearOfstarting: any = 2024;
   currentMonth: any = '';
   currentYear: any = '';
+  currentMonthNow:any='';
 
   selectedYear: any = new Date().getFullYear();
   // selectedYear: any = new Date().getFullYear() - 1;
@@ -120,6 +121,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     const month = String(currentDate.getMonth() + 1).padStart(2, '0');
     const year = currentDate.getFullYear();
     this.currentMonth = month;
+    this.currentMonthNow = this.currentMonth;
     this.currentYear = year;
     this.getJsonTranslations();
     let notificationStatus = localStorage.getItem("notificationSeen");
