@@ -217,7 +217,7 @@
 
         <div class="mb-3 col-md-6">
           <label class="form-label">{{ 'images' | translate }}</label>
-          <input type="file" class="form-control" (change)="handleTabFilesInput($event, firstIndex, 'first_tab')"
+          <input type="file" class="form-control d-none" (change)="handleTabFilesInput($event, firstIndex, 'first_tab')"
             multiple />
           <!-- Preview Images -->
           <div class="mt-2">

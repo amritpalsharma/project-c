@@ -75,7 +75,7 @@ export class ExploreComponent implements OnInit {
     { role: 'Clubs', id: 2 },
     { role: 'Scouts', id: 3 },
     { role: 'Talents', id: 4 },
-    { role: 'League', id: 5 }
+    // { role: 'League', id: 5 }
   ];
 
   roles_de = [
