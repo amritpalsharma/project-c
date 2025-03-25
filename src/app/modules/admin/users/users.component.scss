@@ -258,3 +258,12 @@ td.cdk-column-Membership.mat-column-Membership {
   border-bottom: 0;
   border-left: .3em solid transparent;
 }
+
+
+@media (min-width: 2000px) {
+.table-users td .bg_pending, .table-users td .bg_reject, .table-users td .bg_success {
+  width: 170px !important;
+  font-size: 18px !important;
+  padding: 8px 8px 5px !important;
+}
+}
