@@ -1,11 +1,12 @@
-.chat-box{
-display: flex;
-column-gap: 100px;
-margin-top: 20px;
+.chat-box {
+  display: flex;
+  column-gap: 100px;
+  margin-top: 20px;
 }
-.main-chat{
-   width: 700px;
-   height: 600px;
+
+.main-chat {
+  width: 700px;
+  height: 600px;
 }
 
 
@@ -19,7 +20,7 @@ margin-top: 20px;
   }
 }
 
-@media(max-width: 425px){
+@media(max-width: 425px) {
   .btn-outline-white {
     padding: 5px;
     border: 1px solid #D9D9D9;
@@ -32,19 +33,21 @@ margin-top: 20px;
     margin-right: 7px;
   }
 
-  .paging-data{
-    font-size:12px;
+  .paging-data {
+    font-size: 12px;
     font-weight: 500;
     margin-left: 5px;
   }
-  .left-slide svg, .right-slide svg{
+
+  .left-slide svg,
+  .right-slide svg {
     height: 20px;
     width: 20px;
   }
 
 }
 
-@media(max-width: 360px){
+@media(max-width: 360px) {
   .btn-outline-white {
     padding: 3px;
     border: 1px solid #D9D9D9;
@@ -57,12 +60,12 @@ margin-top: 20px;
     margin-right: 7px;
   }
 
-  .form-check-input{
+  .form-check-input {
     margin-top: 6px;
   }
 
   .toggle-padding {
-    padding: 4px  !important;
+    padding: 4px !important;
     font-size: 12px;
   }
 
@@ -70,15 +73,35 @@ margin-top: 20px;
     font-size: 14px;
   }
 
-  .input-filter-text{
+  .input-filter-text {
     font-size: 10px;
   }
-  .filter-svg svg{
-      height: 12px;
-      width: 12px;
-  }
-  .card-search .input-group .input-group-text svg{
+
+  .filter-svg svg {
     height: 12px;
     width: 12px;
   }
+
+  .card-search .input-group .input-group-text svg {
+    height: 12px;
+    width: 12px;
+  }
+}
+
+.chat_row {
+  position: relative;
+}
+
+app-loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.invisible {
+  opacity: 0;
+  /* Makes it invisible but still detectable */
+  pointer-events: none;
+  /* Prevents interaction while loading */
 }

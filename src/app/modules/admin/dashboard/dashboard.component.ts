@@ -175,10 +175,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
     this.selectedYear = this.year;
     let da = localStorage.getItem('selected_domain')?.toString();
-    if(da){
+    if (da) {
       this.selectedDomain = da;
     }
-    else{
+    else {
       this.selectedDomain = '1';
       localStorage.setItem('selected_domain', '1');
     }
@@ -270,14 +270,14 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.initializeTabs();
   }
-  
+
   initializeTabs() {
     const tabs = document.querySelectorAll('[data-bs-toggle="tab"]');
-    
+
     tabs.forEach((tab) => {
       tab.addEventListener('shown.bs.tab', (event: any) => {
         const targetPaneId = event.target.getAttribute('data-bs-target');
-  
+
         setTimeout(() => {
           if (targetPaneId === '#home-tab-pane') {
             this.chart1?.destroy();
@@ -503,7 +503,15 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             titleFont: { family: 'Poppins', size: 20, weight: 800 },
             callbacks: {
               label: (tooltipItem: any) => {
-                return this.translateService.instant('tooltip.totalUsers', { count: tooltipItem.raw });
+                let graph_label_tooltip = 'tooltip.totalUsers';
+                if (chartId == 'canvas1') {
+                  graph_label_tooltip = 'tooltip.totalUsers';
+                } else if (chartId == 'canvas2') {
+                  graph_label_tooltip = 'tooltip.totalSales';
+                } else if (chartId == 'canvas3') {
+                  graph_label_tooltip = 'tooltip.totalSubscriptions';
+                }
+                return this.translateService.instant(graph_label_tooltip, { count: tooltipItem.raw });
               },
             },
             displayColors: false,
@@ -885,7 +893,21 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   redirectUser(slug: string, id: Number): void {
+    
+    if (slug == 'Club Representator') {
+      slug = 'club';
+    }
     slug = slug.toLowerCase();
+    if (slug == 'vereinsvertreter') {
+      slug = 'club';
+    }
+    if (slug == 'scout representator') {
+      slug = 'scout';
+    }
+    if (slug == 'spähervertreter') {
+      slug = 'scout';
+    }
+    
     if (slug == 'späher') {
       slug = 'scout';
     } else if (slug == 'verein') {

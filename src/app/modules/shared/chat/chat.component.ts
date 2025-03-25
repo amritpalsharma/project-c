@@ -22,6 +22,7 @@ export class ChatComponent {
   user: any = {};
   chatBox: any;
   chatSession: any;
+  isLoading: boolean = true;
   constructor(private talkService: TalkService, private route: ActivatedRoute) { }
 
   async ngOnInit() {
@@ -58,9 +59,9 @@ export class ChatComponent {
       this.talkService.toggleTheme(true);
     }
 
-   setTimeout(() => {
-    this.checkAndRemoveOpenChat();
-   }, 1000);
+    setTimeout(() => {
+      this.checkAndRemoveOpenChat();
+    }, 1000);
   }
 
 
@@ -70,6 +71,10 @@ export class ChatComponent {
     this.talkService.createOneOnOneConversation(user.id, user.name, user.email, user.photoUrl)
       .then(() => {
         this.talkService.mountChat('talkjs-container');
+
+        setTimeout(() => {
+          this.isLoading = false;
+        }, 1000);
       })
       .catch(err => {
         console.error('Error starting chat:', err);
@@ -171,6 +176,10 @@ export class ChatComponent {
 
       // Reload the page with the updated URL (without 'open_chat')
       window.location.replace(url.toString());
+    }else{
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 1000);
     }
     const otherUserData = localStorage.getItem('otherUserData');
 
@@ -180,5 +189,6 @@ export class ChatComponent {
       // window.location.reload();
       this.startOneOnOneChat(otherUser);
     }
+
   }
 }

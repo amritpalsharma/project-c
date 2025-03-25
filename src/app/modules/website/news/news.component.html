@@ -61,6 +61,7 @@
         <div class="container">
           <h4>{{news_title}}</h4>
           <div class="row">
+            {{latestNewsData | json}}
             <div *ngFor="let newsData of latestNewsData; let i = index;" class="col-lg-4 col-sm-6 col-12 news_cols">
               <!-- {{news_img_path + newsData.featured_image}} -->
               <!-- {{newsData | json}} -->
@@ -111,7 +112,3 @@
 
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>

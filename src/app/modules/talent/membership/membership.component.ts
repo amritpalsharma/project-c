@@ -200,7 +200,7 @@ export class MembershipComponent {
   async getBoosterData() {
 
     let params: any = {};
-    params.lang = localStorage.getItem('lang_id');
+    // params.lang = localStorage.getItem('lang_id');
 
     try {
       const response = await this.talentService.getBoosterData(params).toPromise();

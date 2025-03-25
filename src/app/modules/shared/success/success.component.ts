@@ -20,13 +20,11 @@ export class SuccessComponent implements OnInit {
   closePopup() {
     const path = window.location.pathname;  // Get the current URL path
     const role = path.split('/')[1];         // Split the path by '/' and get the second element
-    if (role == 'talent' || role == 'club') {
+    if (role == 'talent' || role == 'club' || role == 'scout') {
       this.router.navigate(['/' + role + '/membership']).then(() => {
         console.log('After Navigation:', this.router.url); // Check where it actually goes
       });
     }
-
-    // }, 2500);
   }
 
 }

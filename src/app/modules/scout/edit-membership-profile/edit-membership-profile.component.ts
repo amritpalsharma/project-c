@@ -2,6 +2,7 @@ import { Component, Inject, Input } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { ScoutService } from '../../../services/scout.service';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-edit-membership-profile',
@@ -36,6 +37,7 @@ export class EditMembershipProfileComponent {
     public scoutService: ScoutService,
     public dialog: MatDialog,
     private toastr: ToastrService,
+    private userServices : UserService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
@@ -46,6 +48,9 @@ export class EditMembershipProfileComponent {
 
     this.loggedInUser = JSON.parse(this.loggedInUser);
     this.id = this.data.id || [];
+    
+    this.getRoles();
+
     // Populate pre-selected audiences from input data
     if (this.stats?.booster_audience?.length > 0) {
       this.selectedAudiences = this.data.stats.booster_audience;
@@ -57,6 +62,29 @@ export class EditMembershipProfileComponent {
 
     // console.log('audiences:', this.audiences);
 
+  }
+
+  getRoles(){
+    this.userServices.getRoles().subscribe(
+      (response) => {
+        if (response?.status) {
+          // this.audiences = [];
+          response.data.roles.forEach((element : any) => {
+            if(element.id == '2' || element.id == '3' || element.id == '4'){
+              let obj = {role_name: '', target_role: 0};
+              obj.role_name = element.role_name;
+              obj.target_role = Number(element.id);
+              this.audiences.push(obj);
+            }
+          });
+        }
+      },
+      (error) => {
+        // Error: Notify user and handle error
+        this.toastr.error('An error occurred while saving the boost. Please try again.', 'Error');
+        console.error('Error creating Checkout session:', error);
+      }
+    );
   }
 
   /**

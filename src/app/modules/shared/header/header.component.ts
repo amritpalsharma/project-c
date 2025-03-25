@@ -161,6 +161,9 @@ export class HeaderComponent {
 
       this.unseenCount++;
       this.notificationSeen = false;
+      localStorage.setItem('notificationSeen', 'false');
+
+      console.log("data", data);
 
       const obj = {
         id: 0,
@@ -306,7 +309,7 @@ export class HeaderComponent {
   toggleDropdown() {
     this.notificationSeen = true;
     this.unseenCount = 0;
-    // localStorage.setItem('notificationSeen', 'true');
+    localStorage.setItem('notificationSeen', 'true');
     let jsonData = localStorage.getItem("userData");
     let userId;
     if (jsonData) {

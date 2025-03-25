@@ -179,8 +179,9 @@ export class ScoutService {
 
   getBoosterData(): Observable<any> {
     const headers = this.headers();
+    let langId = localStorage.getItem('lang_id');
     return this.http.get<{ status: boolean, message: string, data: {} }>(
-      `${this.apiUrl}user/get-booster-stats`,
+      `${this.apiUrl}user/get-booster-stats/${langId}`,
       { headers }
     );
   }
