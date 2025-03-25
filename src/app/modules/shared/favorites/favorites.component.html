@@ -78,7 +78,7 @@
             <!-- Position Column -->
             <ng-container matColumnDef="#">
               <th class="text-center" mat-header-cell *matHeaderCellDef> </th>
-              <td class="text-center" mat-cell *matCellDef="let element">
+              <td class="text-center col_checkbox" mat-cell *matCellDef="let element">
                 <span class="form-check align-self-center justify-content-center">
                   <input type="checkbox" class="form-check-input " [checked]="selectedIds.includes(element.id)"
                     (change)="onCheckboxChange(element)" />

@@ -245,7 +245,7 @@
             </a>
           </div>
         </li>
-        <li class="nav-item dropdown  profile">
+        <li class="nav-item dropdown profile">
           <a class="nav-link" role="button" data-bs-toggle="dropdown">
             <img *ngIf="profileImgUrl" [src]="profileImgUrl" width="56" alt="">
           </a>
@@ -293,6 +293,11 @@
               <span class="ms-1 fs-14"> {{ 'signOut' | translate }} </span>
             </a>
           </div>
+        </li>
+        <li class="nav-item mobile_search">
+          <a class="nav-link" role="button">
+            <img src="../../../../assets/images/mobile-search.svg" width="56" alt="">
+          </a>
         </li>
       </ul>
     </div>

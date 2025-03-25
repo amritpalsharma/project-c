@@ -603,3 +603,19 @@ table.table  th {
 }
 }
 }
+
+@media (max-width: 400px) {
+.page-header .sidebar-menu a.nav-link {
+    margin-right: 0 !important;
+}
+.page-header .country_dropdown {
+    margin: 0 !important;
+}
+.page-header .light-theme {
+    left: 8px;
+    transform: scale(0.85);
+}
+.mobile_search .nav-link img {
+    width: 25px;
+}
+}
