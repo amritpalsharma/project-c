@@ -3,6 +3,8 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
 import { UploadPopupComponent } from '../../upload-popup/upload-popup.component';
 import { ToastrService } from 'ngx-toastr';
 import { ScoutService } from '../../../../services/scout.service';
+import { TranslateService } from '@ngx-translate/core';
+import { WebPages } from '../../../../services/webpages.service';
 
 @Component({
   selector: 'app-edit-highlights',
@@ -22,10 +24,18 @@ export class EditHighlightsComponent {
   userId:any;
   isLoading: boolean = false;
 
+  pleaseWait: string = '';
+  successTxt: string = '';
+  errorTxt: string = '';
+  Canceled: string = '';
+  savingSelectedFiles: string = '';
+
   constructor(
     private toastr: ToastrService,
     public dialogRef: MatDialogRef<EditHighlightsComponent>,
+    private translateService: TranslateService,
     private ScoutService: ScoutService,
+    public webPages: WebPages,
     @Inject(MAT_DIALOG_DATA) public data: any, public dialog: MatDialog
   ) {}
 
@@ -36,6 +46,8 @@ export class EditHighlightsComponent {
     this.images = this.data.images || [];
     this.videos = this.data.videos || [];
     this.url = this.data.url || '';
+
+    
 
     // Preselect images that are already featured
     this.images.forEach((image: any) => {
@@ -51,6 +63,11 @@ export class EditHighlightsComponent {
         this.selectedVideoIds.push(video.id);
         this.totalSelected++; // Increment total selected count
       }
+    });
+
+    this.getToasterMsg();
+    this.webPages.languageId$.subscribe((data: any) => {
+      this.getToasterMsg();
     });
   }
 
@@ -129,6 +146,7 @@ export class EditHighlightsComponent {
 
   // Called when the save button is clicked
   onSubmit(): void {
+    
     const selectedData = [...this.selectedImageIds, ...this.selectedVideoIds];
 
     let unset_all: any = false;
@@ -138,13 +156,16 @@ export class EditHighlightsComponent {
     }
 
     // Show loading notification
-    const loadingToast = this.toastr.info('Saving selected files...', 'Please wait', { disableTimeOut: true });
+    const loadingToast = this.toastr.info(this.savingSelectedFiles, this.pleaseWait, { disableTimeOut: true });
 
     // Send the selected IDs to your API or handle them as needed
     this.ScoutService.toggleFeaturedFiles(selectedData, unset_all).subscribe({
-      next: (response) => {
-        this.toastr.clear(loadingToast.toastId); // Clear loading notification
-        this.toastr.success('Files saved successfully!', 'Success'); // Show success notification
+      next: (response) => {this.toastr.clear(loadingToast.toastId); // Clear loading notification
+        if(response.message != ''){
+          this.toastr.success(response.message, this.successTxt); // Show success notification
+        }else{
+          this.toastr.success('Files saved successfully!', 'Success'); // Show success notification
+        }
         this.dialogRef.close(); // Close the dialog if needed
       },
       error: (error) => {
@@ -209,4 +230,14 @@ export class EditHighlightsComponent {
     });
   }
 
+  getToasterMsg() {
+    this.translateService.get(['pleaseWait', 'success!', 'error', 'savingSelectedFiles', 'coverImageDeletionCanceled', 'Canceled']).subscribe((translations) => {
+      this.pleaseWait = translations['pleaseWait'];
+      this.successTxt = translations['successTxt'];
+      this.errorTxt = translations['errorTxt'];
+      this.savingSelectedFiles = translations['savingSelectedFiles'];
+      // this.coverImageDeletionCanceled = translations['coverImageDeletionCanceled'];
+      this.Canceled = translations['Canceled'];
+    });
+  }
 }

@@ -9,6 +9,7 @@ import { ChangeDetectionStrategy, inject, model, } from '@angular/core';
 import { ScoutPlayerViewPopupComponent } from '../../../admin/tabs/scout-player-view-popup/scout-player-view-popup.component';
 import { MessagePopupComponent } from '../../message-popup/message-popup.component';
 import { InviteScoutTalentPopupComponent } from '../../invite-scout-talent-popup/invite-scout-talent-popup.component';
+import { TranslateService } from '@ngx-translate/core';
 export interface DialogData {
   animal: string;
   name: string;
@@ -22,7 +23,11 @@ export class PortfolioTabComponent {
   readonly animal = signal('');
   readonly name = model('');
 
-  constructor(private route: ActivatedRoute, private scoutservice: ScoutService, private scoutService: ScoutService, public dialog: MatDialog, private router: Router) { }
+  constructor(private route: ActivatedRoute, private scoutservice: ScoutService, private scoutService: ScoutService, public dialog: MatDialog, private router: Router, translateService: TranslateService) {
+    translateService.onLangChange.subscribe(() => {
+      this.getScoutPlayers();
+    });
+  }
 
   userId: any = '';
   user: any;
@@ -33,6 +38,7 @@ export class PortfolioTabComponent {
   loggedInUser: any = localStorage.getItem('userData');
   logoPath: string = '';
   idToBeDeleted: any = '';
+  langId: any = localStorage.getItem('lang_id');
   @Input() userData: any;
 
   ngOnInit(): void {
@@ -52,7 +58,7 @@ export class PortfolioTabComponent {
 
   getStatusClass(status: any): string {
     if (status === null) return 'status-pending';
-    return status==='accepted' ? 'status-accepted' : 'status-rejected';
+    return status === 'accepted' ? 'status-accepted' : 'status-rejected';
   }
 
   // addNewTalet() {
@@ -100,6 +106,7 @@ export class PortfolioTabComponent {
         if (result.action == "added") {
           if (result.message != '' && result.message != undefined) {
             this.showMatDialog(result.message, 'display')
+            this.getScoutPlayers();
           } else {
             this.showMatDialog("Players invited successfully", 'display')
           }
@@ -114,11 +121,17 @@ export class PortfolioTabComponent {
     try {
       this.scoutservice.getScoutPlayers().subscribe((response) => {
         if (response && response.status && response.data) {
-          this.scoutPlayers = response.data.scoutPlayers;
+          if (response.data.scoutPlayers) {
+            this.scoutPlayers = response.data.scoutPlayers;
+          }
+          else {
+            this.scoutPlayers = []
+          }
           this.uploadsPath = response.data.uploadsPath;
           this.logoPath = response.data.logoPath;
           this.isLoading = false;
         } else {
+          this.scoutPlayers = []
           this.isLoading = false;
           console.error('Invalid API response structure:', response);
         }
@@ -196,11 +209,12 @@ export class PortfolioTabComponent {
   }
 
   deleteScoutPlayer() {
-    this.scoutservice.deleteScoutPlayer(this.idToBeDeleted).subscribe((response: any) => {
+    let langId = localStorage.getItem('lang_id');
+    this.scoutservice.deleteScoutPlayer(this.idToBeDeleted, langId).subscribe((response: any) => {
       if (response && response.status) {
         if (response.message != '' && response.message != undefined) {
           this.showMatDialog(response.message, 'display')
-        }else{
+        } else {
           this.showMatDialog('Player removed from Scout successfully!', 'display');
         }
         this.getScoutPlayers();

@@ -70,7 +70,8 @@ export class TalentService {
   }
 
   deleteNotifications(ids: any[] = []): Observable<{ status: boolean, message: string }> {
-    return this.http.request<{ status: boolean, message: string }>('DELETE', `${this.apiUrl3}notifications`, {
+    let langId = localStorage.getItem('lang_id');
+    return this.http.request<{ status: boolean, message: string }>('DELETE', `${this.apiUrl3}notifications?langId=${langId}`, {
       body: { ids },
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     });
@@ -703,6 +704,8 @@ export class TalentService {
     // if (params.search) {
     queryParams = queryParams.set('search', params.search);
     // }
+
+    queryParams = queryParams.set('lang', params.lang);
 
     if (params.user_domain) {
       queryParams = queryParams.set('whereClause[user_domain]', params.user_domain);

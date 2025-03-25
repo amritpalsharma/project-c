@@ -124,12 +124,14 @@ export class FavoritesComponent {
       const page = this.paginator ? this.paginator.pageIndex * 10 : 0;
       const pageSize = this.paginator ? this.paginator.pageSize : 10;
 
+      let langId = localStorage.getItem('lang_id');
+
       // Prepare query parameters
       let params: any = {
         offset: page,
         limit: pageSize,
         search: this.keyword,// Search keyword
-        lang: localStorage.getItem('lang_id'),
+        lang: langId,
       };
       // console.warn('this.customFilters : ',this.customFilters)
       if (this.customFilters['language']) {

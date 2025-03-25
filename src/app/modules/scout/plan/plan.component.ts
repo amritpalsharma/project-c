@@ -14,9 +14,9 @@ import { EditMembershipProfileComponent } from '../edit-membership-profile/edit-
 import { ScoutService } from '../../../services/scout.service';
 import { UpdateConfirmationPlanComponent } from '../../shared/update-confirmation-plan/update-confirmation-plan.component';
 import { EditPlanComponent } from '../../shared/edit-plan/edit-plan.component';
-import { TranslateService } from '@ngx-translate/core';
 import { TitleService } from '../../../title.service';
 import { WebPages } from '../../../services/webpages.service';
+import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 
 
 interface Plan {
@@ -59,6 +59,10 @@ export class PlanComponent implements OnInit, OnDestroy {
   couponCode: string = '';
   isCouponApplied: boolean = false;
 
+  premiumFeatures: string[] = []; // Store the fetched feature list
+  multiCountryPlanDesc: string[] = []; // Store the fetched feature list
+  bostProfileDesc: string[] = [];
+
   isLoadingPlans: boolean = false;
   isLoadingCheckout: boolean = false;
   isLoadingCards: boolean = false;
@@ -66,6 +70,8 @@ export class PlanComponent implements OnInit, OnDestroy {
   private plansSubscription: Subscription = new Subscription();
   stripePromise = loadStripe(environment.stripePublishableKey);
   pageTitle: string = '';
+
+  langSubscription!: Subscription;
 
   constructor(
     private ScoutService: ScoutService,
@@ -89,6 +95,13 @@ export class PlanComponent implements OnInit, OnDestroy {
     this.webpages.languageId$.subscribe((data) => {
       this.getJsonTranslations();
     })
+    this.getBoosterData();
+
+    this.loadFeatures();
+    this.langSubscription = this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
+      this.loadFeatures(); // Reload features when the language changes
+      // this.fetchPlans(); // Reload features when the language changes
+    });
   }
 
   // Open coupon dialog
@@ -154,6 +167,9 @@ export class PlanComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.plansSubscription.unsubscribe();
+    if (this.langSubscription) {
+      this.langSubscription.unsubscribe();
+    }
   }
 
   fetchPlans() {
@@ -303,6 +319,21 @@ export class PlanComponent implements OnInit, OnDestroy {
     } else {
       planArray.push(newPlanData);
     }
+  }
+
+  loadFeatures() {
+    this.translateService.get('premiumPlanDesc.features').subscribe((data: string[]) => {
+      this.premiumFeatures = data;
+      // this.premiumFeatures = [];
+    });
+    this.translateService.get('multiCountryPlanDesc.features').subscribe((data: string[]) => {
+      this.multiCountryPlanDesc = data;
+      // this.premiumFeatures = [];
+    });
+    this.translateService.get('bostProfileDesc.features').subscribe((data: string[]) => {
+      this.bostProfileDesc = data;
+      // this.premiumFeatures = [];
+    });
   }
 
   getUserCards(): void {

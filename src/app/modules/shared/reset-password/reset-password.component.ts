@@ -40,10 +40,10 @@ export class ResetPasswordComponent {
     }
 
     // Validate if passwords match
-    if (this.password !== this.confirm_password) {
-      this.toastr.error('The passwords you entered do not match. Please try again.', 'Password Mismatch');
-      return;
-    }
+    // if (this.password !== this.confirm_password) {
+    //   this.toastr.error('The passwords you entered do not match. Please try again.', 'Password Mismatch');
+    //   return;
+    // }
 
     // Show a submission progress message
     // this.toastr.info('Submitting your request...', 'Please wait', { disableTimeOut: true });
@@ -62,7 +62,7 @@ export class ResetPasswordComponent {
           this.dialogRef.close({ password: this.password });
         }
         else{
-          this.toastr.error(response.message);
+          this.toastr.error(response.error.new_con_password);
         }
 
         // Pass the updated password back to the parent component and close the dialog
