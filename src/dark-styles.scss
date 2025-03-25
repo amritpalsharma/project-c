@@ -1338,10 +1338,6 @@ input:checked+.slider:before {
 
 // ------------------------- respone------------------
 @media (max-width: 1200px) {
-  .dashboard-title {
-    margin-right: 3%;
-  }
-
   .switch {
     width: 50px;
     height: 25px;
@@ -1564,18 +1560,13 @@ input:checked+.slider:before {
     display: flex;
   }
 
-  .navbar-search {
+  .navbar-search, .dashboard-title {
     display: none;
   }
 
   .dashboard-title h6 {
     font-size: 14px;
   }
-
-  .dashboard-title {
-    margin: 0px;
-  }
-
   .page-header {
     width: 100% !important;
     padding: 0px 10px !important;

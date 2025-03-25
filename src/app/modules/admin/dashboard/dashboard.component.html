@@ -111,18 +111,18 @@
               <option value="">October 2024</option>
             </select> -->
             <select name="" id="" [(ngModel)]="currentMonth" (change)='getNewRegistrations()'>
-              <option *ngIf="currentMonth >= 1" value="01">{{'jan' | translate}} {{currentYear}}</option>
-              <option *ngIf="currentMonth >= 2" value="02">{{'feb' | translate}} {{currentYear}}</option>
-              <option *ngIf="currentMonth >= 3" value="03">{{'mar' | translate}} {{currentYear}}</option>
-              <option *ngIf="currentMonth >= 4" value="04">{{'apr' | translate}} {{currentYear}}</option>
-              <option *ngIf="currentMonth >= 5" value="05">{{'may' | translate}} {{currentYear}}</option>
-              <option *ngIf="currentMonth >= 6" value="06">{{'jun' | translate}} {{currentYear}}</option>
-              <option *ngIf="currentMonth >= 7" value="07">{{'jul' | translate}} {{currentYear}}</option>
-              <option *ngIf="currentMonth >= 8" value="08">{{'aug' | translate}} {{currentYear}}</option>
-              <option *ngIf="currentMonth >= 9" value="09">{{'sep' | translate}} {{currentYear}}</option>
-              <option *ngIf="currentMonth >= 10" value="10">{{'oct' | translate}} {{currentYear}}</option>
-              <option *ngIf="currentMonth >= 11" value="11">{{'nov' | translate}} {{currentYear}}</option>
-              <option *ngIf="currentMonth >= 12" value="12">{{'dec' | translate}} {{currentYear}}</option>
+              <option *ngIf="currentMonthNow >= 1" value="01">{{'jan' | translate}} {{currentYear}}</option>
+              <option *ngIf="currentMonthNow >= 2" value="02">{{'feb' | translate}} {{currentYear}}</option>
+              <option *ngIf="currentMonthNow >= 3" value="03">{{'mar' | translate}} {{currentYear}}</option>
+              <option *ngIf="currentMonthNow >= 4" value="04">{{'apr' | translate}} {{currentYear}}</option>
+              <option *ngIf="currentMonthNow >= 5" value="05">{{'may' | translate}} {{currentYear}}</option>
+              <option *ngIf="currentMonthNow >= 6" value="06">{{'jun' | translate}} {{currentYear}}</option>
+              <option *ngIf="currentMonthNow >= 7" value="07">{{'jul' | translate}} {{currentYear}}</option>
+              <option *ngIf="currentMonthNow >= 8" value="08">{{'aug' | translate}} {{currentYear}}</option>
+              <option *ngIf="currentMonthNow >= 9" value="09">{{'sep' | translate}} {{currentYear}}</option>
+              <option *ngIf="currentMonthNow >= 10" value="10">{{'oct' | translate}} {{currentYear}}</option>
+              <option *ngIf="currentMonthNow >= 11" value="11">{{'nov' | translate}} {{currentYear}}</option>
+              <option *ngIf="currentMonthNow >= 12" value="12">{{'dec' | translate}} {{currentYear}}</option>
             </select>
           </div>
         </div>

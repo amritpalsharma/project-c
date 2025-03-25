@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import {
-  MatDialogRef,MAT_DIALOG_DATA
+  MatDialogRef, MAT_DIALOG_DATA
 } from '@angular/material/dialog';
 import { UserService } from '../../../services/user.service';
 
@@ -13,13 +13,13 @@ import { UserService } from '../../../services/user.service';
 export class UploadPopupComponent {
 
   userId: any = '';
-  uploadedFiles:any = [];
-  uploadResponse:any = [];
-  type:string = "";
-  constructor(private userService: UserService, public dialogRef : MatDialogRef<UploadPopupComponent>,
+  uploadedFiles: any = [];
+  uploadResponse: any = [];
+  type: string = "";
+  constructor(private userService: UserService, public dialogRef: MatDialogRef<UploadPopupComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
-      this.userId = data.userId;
-      this.type = data.type;
+    this.userId = data.userId;
+    this.type = data.type;
   }
 
   files: File[] = [];
@@ -67,47 +67,48 @@ export class UploadPopupComponent {
       this.files.push(files.item(i)!);
     }
 
-    if(this.type == "image"){
+    if (this.type == "image") {
       this.uploadImages(this.files);
-    }else if(this.type == "video"){
+    } else if (this.type == "video") {
       this.uploadVideos(this.files);
     }
-   
+
   }
 
-  uploadImages(files:any){
+  uploadImages(files: any) {
     const formdata = new FormData();
-    
+
     for (let i = 0; i < files.length; i++) {
       formdata.append("gallery_images[]", files[i]);
     }
-
+    let lang_id = localStorage.getItem('lang_id');
+    formdata.append('lang', lang_id + '');
     console.log('formdata')
     console.log(formdata)
 
-    this.userService.uploadGalleryImages(this.userId, formdata).subscribe((response)=>{
+    this.userService.uploadGalleryImages(this.userId, formdata).subscribe((response) => {
       console.log(response)
-      response.forEach((row:any) => {
+      response.forEach((row: any) => {
         console.log(row);
         this.uploadResponse.push(row.message)
-        if(row.status){
-          this.uploadedFiles.push({id:row.data.id, file_name: row.data.uploaded_file});
+        if (row.status) {
+          this.uploadedFiles.push({ id: row.data.id, file_name: row.data.uploaded_file });
         }
 
       });
       // if (response && response.status) {
-        
-        // this.isLoading = false;
+
+      // this.isLoading = false;
       // } else {
-        // this.isLoading = false;
-        // console.error('Invalid API response structure:', response);
+      // this.isLoading = false;
+      // console.error('Invalid API response structure:', response);
       // }
     });
   }
 
-  uploadVideos(files:any){
+  uploadVideos(files: any) {
     const formdata = new FormData();
-    
+
     for (let i = 0; i < files.length; i++) {
       formdata.append("gallery_images[]", files[i]);
     }
@@ -115,22 +116,22 @@ export class UploadPopupComponent {
     console.log('formdata')
     console.log(formdata)
 
-    this.userService.uploadGalleryImages(this.userId, formdata).subscribe((response)=>{
+    this.userService.uploadGalleryImages(this.userId, formdata).subscribe((response) => {
       console.log(response)
-      response.forEach((row:any) => {
+      response.forEach((row: any) => {
         console.log(row);
         this.uploadResponse.push(row.message)
-        if(row.status){
-          this.uploadedFiles.push({id:row.data.id, file_name: row.data.uploaded_file});
+        if (row.status) {
+          this.uploadedFiles.push({ id: row.data.id, file_name: row.data.uploaded_file });
         }
 
       });
       // if (response && response.status) {
-        
-        // this.isLoading = false;
+
+      // this.isLoading = false;
       // } else {
-        // this.isLoading = false;
-        // console.error('Invalid API response structure:', response);
+      // this.isLoading = false;
+      // console.error('Invalid API response structure:', response);
       // }
     });
   }

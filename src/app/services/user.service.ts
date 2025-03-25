@@ -85,9 +85,10 @@ export class UserService {
     );
   }
 
-  getProfileData(userId: any): Observable<any> {
+  getProfileData(userId: any): Observable<any> { 
+    let lang_id = localStorage.getItem('lang_id');
     return this.http.get<{ status: boolean, message: string, data: { userData: User[] } }>(
-      `${this.apiUrl}admin/profile/${userId}`
+      `${this.apiUrl}admin/profile/${lang_id}/${userId}`
     );
   }
 
@@ -428,7 +429,8 @@ export class UserService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
-    return this.http.post<any>(`${this.apiUrl2}/update-representator-role/${id}`, params, { headers });
+    let lang_id = localStorage.getItem('lang_id');
+    return this.http.post<any>(`${this.apiUrl2}/update-representator-role/${lang_id}/${id}`, params, { headers });
   }
 
   updateRepresentator(id: any, params: any): Observable<any> {
