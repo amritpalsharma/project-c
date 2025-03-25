@@ -286,6 +286,9 @@ td.cdk-column-Remove.mat-column-Remove svg {
     background-position: top 16px center !important;
     background-size: 26px !important;
 }
+.all-page-content .page-container > .outlet_outer {
+    min-height: calc(100vh - 200px);
+}
 }
 
 

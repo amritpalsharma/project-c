@@ -33,3 +33,25 @@
     min-height: 400px; /* make all of the editor area clickable */
   }
 }
+
+.removee_button, .addd_button {
+  border: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  padding: 10px 20px;
+  width: max-content;
+  max-width: 100%;
+  border-radius: 10px;
+}
+.removee_button {
+  margin-bottom: 1rem;
+  margin-left: 15px;
+}
+.removee_button {
+  background: #F93C65;
+  color: #fff;
+}
+.addd_button {
+  background: #bde34f;
+  color: #0c3453;
+}
