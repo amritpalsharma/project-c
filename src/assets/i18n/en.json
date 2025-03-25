@@ -1253,7 +1253,8 @@
   "metaTitleReruired": "Meta title is required",
   "descriptionRequired": "Meta description is required",
   "subjectRequired": "Subject is required",
-  "accepted": "Accepted"
-
-
+  "accepted": "Accepted",
+  "selectUserFirst":"Select user first.",
+  "selectBlogFirst":"Select Blog first.",
+  "selectCouponFirst":"Select coupon first."
 }

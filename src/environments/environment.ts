@@ -12,8 +12,17 @@ export const environment = {
     { role: "Admin", name: "Admin", slug: "admin", id: 1 },
     { role: "Club", name: "Club", slug: "club", id: 2 },
     { role: "Scout", name: "Scout", slug: "scout", id: 3 },
-    { role: "Player", name: "Talent", slug: "talent", id: 4 },
+    { role: "Talent", name: "Talent", slug: "talent", id: 4 },
   ],
+
+  roles_de: [
+    { role: "Admin", name: "Admin", slug: "admin", id: 1 },
+    { role: "Club", name: "Club", slug: "club", id: 2 },
+    { role: "Scout", name: "Scout", slug: "scout", id: 3 },
+    { role: "Talente", name: "Talente", slug: "talent", id: 4 },
+  ],
+
+
 
   adminLangs: [
     { language: 'English', slug: "en", id: 1, flag: "England.svg" },

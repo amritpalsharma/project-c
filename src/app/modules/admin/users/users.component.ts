@@ -35,6 +35,8 @@ export class UsersComponent implements OnInit {
   customFilters: any = [];
   locations: any = [];
   pageTitle: string = '';
+  selectUserFirst: string = '';
+  confirmDeleteinformation3: string = '';
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -265,7 +267,7 @@ export class UsersComponent implements OnInit {
 
   verifyUsers(): any {
     if (this.selectedUserIds.length == 0) {
-      this.showMessage('Select user(s) first.');
+      this.showMessage(this.selectUserFirst);
       return false;
     }
 
@@ -305,7 +307,7 @@ export class UsersComponent implements OnInit {
 
   confirmDeletion(): any {
     if (this.selectedUserIds.length == 0) {
-      this.showMessage('Select user(s) first.');
+      this.showMessage(this.selectUserFirst);
       return false;
     }
 
@@ -313,7 +315,7 @@ export class UsersComponent implements OnInit {
   }
 
   showDeleteConfirmationPopup() {
-    this.showMatDialog("", "delete-confirmation");
+    this.showMatDialog(this.confirmDeleteinformation3, "delete-confirmation");
   }
 
 
@@ -478,8 +480,10 @@ export class UsersComponent implements OnInit {
   }
 
   getJsonTranslations() {
-    this.translateService.get(['userManagement']).subscribe((translations) => {
+    this.translateService.get(['userManagement','selectUserFirst','confirmDeleteinformation3']).subscribe((translations) => {
       this.pageTitle = translations['userManagement'];
+      this.selectUserFirst = translations['selectUserFirst'];
+      this.confirmDeleteinformation3 = translations['confirmDeleteinformation3'];
       this.titleService.setTitle(this.pageTitle);
     })
   }

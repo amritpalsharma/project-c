@@ -191,11 +191,9 @@ export class AddRepresentatorPopupComponent {
         // console.error('Invalid API response structure:', response);
         if (response.message.last_name != '' && response.message.last_name != undefined) {
           this.toaster.error(response.message.last_name);
-        }
-        if (response.message.first_name != '' && response.message.first_name != undefined) {
+        } else if (response.message.first_name != '' && response.message.first_name != undefined) {
           this.toaster.error(response.message.first_name);
-        }
-        if (response.message.email != '' && response.message.email != undefined) {
+        } else if (response.message.email != '' && response.message.email != undefined) {
           this.toaster.error(response.message.email);
         }
 
@@ -223,7 +221,7 @@ export class AddRepresentatorPopupComponent {
           action: 'updated'
         });
       } else {
-        console.error('Invalid API response structure:', response);
+
       }
     });
   }
@@ -238,6 +236,8 @@ export class AddRepresentatorPopupComponent {
     let params: any = {}
     params.email = this.email;
     params.site_role = this.role;
+    params.first_name = this.firstName;
+    params.last_name = this.lastName;
     let lang_id = localStorage.getItem('lang_id');
     params.lang = lang_id;
     this.userService.sendInviteToAdminRepresentator(params).subscribe((response) => {
@@ -247,6 +247,13 @@ export class AddRepresentatorPopupComponent {
           message: response.message
         });
       } else {
+        if (response.message.last_name != '' && response.message.last_name != undefined) {
+          this.toaster.error(response.message.last_name);
+        } else if (response.message.first_name != '' && response.message.first_name != undefined) {
+          this.toaster.error(response.message.first_name);
+        } else if (response.message.email != '' && response.message.email != undefined) {
+          this.toaster.error(response.message.email);
+        }
         console.error('Invalid API response structure:', response);
       }
     });

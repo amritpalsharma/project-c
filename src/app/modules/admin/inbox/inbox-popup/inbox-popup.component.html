@@ -42,7 +42,7 @@
             @for (user of filteredUsers; track user) {
             <mat-option [value]="user" class="fruit-font">
               <img width="50" height="50" class="img-list" src="../../../../../assets/images/1.png">
-              {{user.first_name}}
+              {{user.first_name+' '+user.last_name}}
             </mat-option>
             }
           </mat-autocomplete>

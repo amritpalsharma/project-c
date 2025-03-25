@@ -116,7 +116,7 @@ export class InboxComponent {
         for (let user of users.data) {
           this.users.push({
             id: user.id,
-            name: user.first_name,
+            name: user.first_name+' '+user.last_name,
             email: user.username,
             photoUrl: user.profile_image_path,
           })

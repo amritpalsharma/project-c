@@ -78,7 +78,11 @@ export class ScoutDetailComponent implements OnInit {
 
     this.userService.updateUserStatus([this.userId], newStatus).subscribe(response => {
       this.user.status = newStatus;
-      this.showMatDialog('User status updated successfully!', 'display');
+      if(response.message != '' && response.message != undefined){
+        this.showMatDialog(response.message, 'display');
+      }else{
+        this.showMatDialog('User status updated successfully!', 'display');
+      }
     },
       error => {
         console.error('Error updating user status:', error);
@@ -150,6 +154,9 @@ export class ScoutDetailComponent implements OnInit {
       try {
         const formdata = new FormData();
         formdata.append("profile_image", FileToUpload);
+        let lang_id = localStorage.getItem('lang_id');
+        formdata.append('lang', lang_id + '');
+        
 
         this.userService.uploadProfileImage(this.userId, formdata).subscribe((response) => {
           if (response && response.status) {

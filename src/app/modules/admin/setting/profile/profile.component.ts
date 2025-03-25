@@ -102,6 +102,8 @@ export class ProfileComponent {
     formdata.append("user[city]", this.city);
     formdata.append("user[zipcode]", this.zipcode);
     formdata.append("user[state]", this.state);
+    let lang_id = localStorage.getItem('lang_id') + '';
+    formdata.append("lang", lang_id);
     if (this.imageToUpload != "") {
       formdata.append("user[profile_image]", this.imageToUpload);
     }
@@ -109,7 +111,11 @@ export class ProfileComponent {
     this.userService.updateAdminProfile(formdata).subscribe((response) => {
       if (response && response.status) {
         // this.isLoading = false;
-        this.showMatDialog("Profile updated successfully!", 'display')
+        if (response.message != '' && response.message != undefined) {
+          this.showMatDialog(response.message, 'display')
+        } else {
+          this.showMatDialog("Profile updated successfully!", 'display')
+        }
       } else {
         // this.isLoading = false;
         console.error('Invalid API response structure:', response);

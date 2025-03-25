@@ -6,12 +6,15 @@ import { ChangeDetectionStrategy, computed, inject, model, signal } from '@angul
 import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
 import { UserService } from '../../../../services/user.service';
+import { debounceTime, Subject } from 'rxjs';
+
 @Component({
   selector: 'app-inbox-popup',
   templateUrl: './inbox-popup.component.html',
   styleUrls: ['./inbox-popup.component.scss']
 })
 export class InboxPopupComponent {
+  searchSubject = new Subject<string>();
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   readonly announcer = inject(LiveAnnouncer);
   filteredUsers: any = [];
@@ -24,6 +27,13 @@ export class InboxPopupComponent {
     public dialogRef: MatDialogRef<InboxPopupComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
+    this.searchSubject.pipe(debounceTime(300)).subscribe(keyword => {
+      this.filteredUsers = this.allUsers.filter((user: any) => {
+        let firstName = user.first_name ? user.first_name.toLowerCase() : '';
+        let lastName = user.last_name ? user.last_name.toLowerCase() : '';
+        return firstName.includes(keyword) || lastName.includes(keyword);
+      });
+    });
     this.fetchUsers();
   }
   ngOnInit(): void {
@@ -69,7 +79,7 @@ export class InboxPopupComponent {
     // console.log(userInput.value);
   }
 
-  callListApi(userInput: HTMLInputElement) {
+  callListApi25March(userInput: HTMLInputElement) {
     if (!this.allUsers || !Array.isArray(this.allUsers)) {
       console.error('User data is not available');
       return;
@@ -79,6 +89,11 @@ export class InboxPopupComponent {
     this.filteredUsers = this.allUsers.filter((user: any) =>
       user.first_name && user.first_name.toLowerCase().includes(searchText)
     );
+  }
+
+  callListApi(userInput: HTMLInputElement) {
+    const keyword = userInput.value.trim().toLowerCase(); // Trim spaces and convert to lowercase
+    this.searchSubject.next(keyword); // Send input to debounce stream
   }
 
   remove(user: any): void {

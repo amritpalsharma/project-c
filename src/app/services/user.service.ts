@@ -81,7 +81,7 @@ export class UserService {
   getLocations(): Observable<any> {
     const lang = localStorage.getItem('lang_id');
     return this.http.get<{ status: boolean, message: string, data: { userData: User[], totalCount: number } }>(
-      `${this.apiUrl}get-domains?lang=` + lang
+      `${this.apiUrl}get-domains/${lang}?lang=` + lang
     );
   }
 
@@ -335,11 +335,12 @@ export class UserService {
 
   getAdminProfile(): Observable<any> {
     const userToken = localStorage.getItem('authToken');
+    const lang = localStorage.getItem('lang_id');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
     return this.http.get<{ status: boolean, message: string, data: {} }>(
-      `${this.apiUrl}profile`, { headers }
+      `${this.apiUrl}profile/${lang}`, { headers }
     );
   }
 

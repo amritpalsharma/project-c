@@ -156,8 +156,8 @@ export class FavoritesTabComponent {
   }
 
   deleteFavorites(): any {
-
-    let params = { id: this.idsToDelete };
+    let lang_id = localStorage.getItem('lang_id');
+    let params = { id: this.idsToDelete, lang: lang_id };
 
     this.userService.removeFavorites(params).subscribe(
       response => {
@@ -166,7 +166,11 @@ export class FavoritesTabComponent {
           this.selectedIds = [];
           this.allSelected = false;
           console.log('User deleted successfully:', response);
-          this.showMatDialog('Favorite(s) removed successfully!.', 'display');
+          if (response.message != '' && response.message != undefined) {
+            this.showMatDialog(response.message, 'display');
+          } else {
+            this.showMatDialog('Favorite(s) removed successfully!.', 'display');
+          }
         } else {
           this.showMatDialog('Error in removing favorite. Please try again.', 'display');
         }

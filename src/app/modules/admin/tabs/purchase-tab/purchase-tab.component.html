@@ -294,8 +294,10 @@
               <span class="main-template" style="padding-left: 15px">{{purchase.id}}</span>
             </div>
           </td>
-          <td>{{ purchase.plan_period_start | date:'MM.dd.yyyy - hh.mm a' }}</td>
-          <td>{{ purchase.plan_period_end | date:'MM.dd.yyyy - hh.mm a' }}</td>
+          <!-- <td>{{ purchase.plan_period_start | date:'MM.dd.yyyy - hh.mm a' }}</td> -->
+          <td>{{ purchase.plan_period_start | date:'MM.dd.yyyy' }}</td>
+          <!-- <td>{{ purchase.plan_period_end | date:'MM.dd.yyyy - hh.mm a' }}</td> -->
+          <td>{{ purchase.plan_period_end | date:'MM.dd.yyyy' }}</td>
           <td>
             <span *ngIf="purchase.coupon_used">{{purchase.coupon_used}}</span>
             <span *ngIf="!purchase.coupon_used">-</span>

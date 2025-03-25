@@ -66,6 +66,7 @@ export class HeaderComponent implements OnInit {
   verifyToken: any = null;
   verifyTime: any = null;
   successMessage: string = '';
+  requiredFieldsMessage: string = '';
 
 
 
@@ -673,7 +674,7 @@ export class HeaderComponent implements OnInit {
       this.duplicateCreditionals = false;
     }
 
-    this.toastr.info(this.registrationInProcess, this.pleaseWait, { disableTimeOut: true });
+
 
     const selectedLanguage = localStorage.getItem('lang') || '';
     const domain = this.globalSettings.getdomainExtension();
@@ -708,6 +709,11 @@ export class HeaderComponent implements OnInit {
       club_id: this.selectedClub,
       verification_link: verification_link
     };
+    if (this.privacyPolicy === false) { 
+      this.toastr.error(this.requiredFieldsMessage);
+      return;
+    }
+    this.toastr.info(this.registrationInProcess, this.pleaseWait, { disableTimeOut: true });
 
     this.authService.register(registrationData).subscribe(
       (response) => {
@@ -1002,13 +1008,14 @@ export class HeaderComponent implements OnInit {
   }
 
   loadToasterMsg() {
-    this.translateService.get(['pleaseWait', 'registrationInProcess', 'success!', 'registrationFailed', 'Processing', 'EmailVerified']).subscribe((translations) => {
+    this.translateService.get(['pleaseWait', 'registrationInProcess', 'success!', 'registrationFailed', 'Processing', 'EmailVerified', 'requiredFieldsMessage']).subscribe((translations) => {
       this.pleaseWait = translations['pleaseWait'];
       this.registrationInProcess = translations['registrationInProcess'];
       this.successTxt = translations['success!'];
       this.registrationFailed = translations['registrationFailed'];
       this.Processing = translations['Processing'];
       this.EmailVerified = translations['EmailVerified'];
+      this.requiredFieldsMessage = translations['requiredFieldsMessage'];
     })
   }
 

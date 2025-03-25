@@ -49,6 +49,12 @@ export class TemplatesComponent {
     this.getTemplates();
     this.getJsonTranslations();
     this.sharedservice.data$.subscribe((data) => {
+      let lang_id = localStorage.getItem('lang_id');
+      if (lang_id == '2') {
+        this.langs = environment.langs_de;
+      }else{
+        this.langs = environment.langs;
+      }
       if (data.action == 'lang_updated') {
         this.getJsonTranslations();
       }
