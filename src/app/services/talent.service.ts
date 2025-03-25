@@ -84,7 +84,7 @@ export class TalentService {
 
   getProfileData(params: any = {}): Observable<any> {
     const headers = this.headers();
-    let lang_id = localStorage.getItem('lang_id');
+    let lang_id =  localStorage.getItem('lang_id');
     return this.http.get<{ status: boolean, message: string, data: { userData: User[] } }>(
       `${this.apiUrl}profile/${lang_id}`,
       { headers, params }
@@ -367,6 +367,7 @@ export class TalentService {
   // Update newsletter subscription
   updateNewsletter(params: any): Observable<any> {
     const headers = this.headers();
+    params.lang = localStorage.getItem('lang_id');
 
     return this.http.post<any>(`${this.apiUrl}user/settings/newsletter`, params, { headers });
   }

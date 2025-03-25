@@ -83,7 +83,6 @@
   "activityLog": "Registro delle attività",
   "overviewActivities": "Panoramica delle attività",
   "justNow": "solo ora",
-  "name": "Nome",
   "dateTime": "Data - Ora",
   "remove": "Rimuovere",
   "appSettings": "Impostazioni",
@@ -366,8 +365,8 @@
   "scout": "Scout",
   "name-text": "Kadin Septimus",
   "time": "10 minuti fa",
-  "Name": "Nome",
-  "Status": "Stato",
+  "name": "Nome",
+  "status": "Stato",
   "Date_Time": "Data - Ora",
   "Location": "Posizione",
   "Language": "Lingua",
@@ -714,7 +713,6 @@
   "reset": "Reset",
   "showResults": "Show e results",
   "viewFullProfile": "View e full e profile",
-  "status": "Status:",
   "registrationDate": "Registration e date:",
   "nextPaymentDue": "Next e payment e due:",
   "viewPaymentDetails": "View e payment e details",
@@ -1335,5 +1333,7 @@
   "enterYourCouponCode": "Inserisci il tuo codice sconto",
   "enterYourCompanyName": "Inserisci il nome della tua azienda",
   "deletePerformanceConfirm": "Sei sicuro di voler eliminare i report selezionati?",
-  "accepted": "Accettato"
+  "accepted": "Accettato",
+   "category": "Categoria",
+   "selectActivityFirst": "Seleziona prima un'attività."
 }

@@ -363,7 +363,7 @@
   "name-text": "Kadin Septimus",
   "time": "för 10 minuter sedan",
   "Name": "Namn",
-  "Status": "Status",
+  "status": "Status",
   "Date_Time": "Datum - Tid",
   "Location": "Plats",
   "Language": "Språk",
@@ -712,7 +712,6 @@
   "reset": "Reset",
   "showResults": "Show och results",
   "viewFullProfile": "View och full och profile",
-  "status": "Status:",
   "registrationDate": "Registration och date:",
   "nextPaymentDue": "Next och payment och due:",
   "viewPaymentDetails": "View och payment och details",
@@ -762,7 +761,6 @@
   "active": "Active",
   "inactive": "Inactive",
   "createNewPopUp": "Create och new och pop och up",
-  "name:": "Name:",
   "for": "For:",
   "language": "Language:",
   "displayFreq": "Display och freq:",
@@ -1340,5 +1338,7 @@
   "enterYourCouponCode": "Ange din rabattkod",
   "enterYourCompanyName": "Ange ditt företagsnamn",
   "deletePerformanceConfirm": "Är du säker på att du vill ta bort de valda rapporterna?",
-  "accepted": "Accepterad"
+  "accepted": "Accepterad",
+  "category": "Kategori",
+  "selectActivityFirst": "Välj först en aktivitet."
 }

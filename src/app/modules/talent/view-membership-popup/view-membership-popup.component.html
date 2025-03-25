@@ -60,7 +60,7 @@
     <div class="bottom-details">
       <p><strong>{{ 'subTotal' | translate }}:</strong> {{ plan.subtotal }} {{strUpperCase(plan.currency)}}</p>
       <p *ngIf="plan.tax_percentage>0">
-        <strong *ngIf="'includeVAT' | translate as translatedText">{{ 'translatedText' | translate }} {{plan.tax_percentage}}%:</strong> 
+        <strong *ngIf="'includeVAT' | translate as translatedText">{{ 'includeVAT' | translate }} {{plan.tax_percentage}}%:</strong> 
         
         <span *ngIf="'includeVAT' | translate as translatedText">{{plan.tax}}</span>
         <span *ngIf="'includeVAT' | translate as translatedText">{{strUpperCase(plan.currency)}}</span>

@@ -463,8 +463,11 @@ export class ScoutService {
 
   getProfileData(userId: any = 1): Observable<any> {
     const headers = this.headers();
+
+    let lang_id = localStorage.getItem('lang_id');
+
     return this.http.get<{ status: boolean, message: string, data: { userData: User[] } }>(
-      `${this.apiUrl}profile`,
+      `${this.apiUrl}profile/${lang_id}`,
       { headers }
     );
   }

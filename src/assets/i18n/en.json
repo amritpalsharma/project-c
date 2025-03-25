@@ -376,7 +376,7 @@
   "reset": "Reset",
   "showResults": "Show Results",
   "viewFullProfile": "View Full Profile",
-  "status": "Status:",
+  "status": "Status",
   "registrationDate": "Registration Date:",
   "nextPaymentDue": "Next payment due:",
   "viewPaymentDetails": "View payment details",
@@ -446,7 +446,6 @@
   "active": "Active",
   "inactive": "Inactive",
   "createNewPopUp": "Create New Pop Up",
-  "name:": "Name:",
   "for": "For:",
   "language": "Language:",
   "displayFreq": "Display Freq:",
@@ -579,8 +578,6 @@
   "talent": "Talent",
   "dateTime08": "08.04.2024 - 12.53 PM",
   "setPassword": "Reset your password",
-  "Name": "Name",
-  "UserType": "User Type",
   "transfers": "Transfers",
   "purchases": "Purchases",
   "kosovo": "Kosovo",
@@ -1256,5 +1253,9 @@
   "accepted": "Accepted",
   "selectUserFirst":"Select user first.",
   "selectBlogFirst":"Select Blog first.",
-  "selectCouponFirst":"Select coupon first."
+  "selectCouponFirst":"Select coupon first.",
+  "category": "Category",
+  "selectActivityFirst": "Select activity first."
+
+
 }

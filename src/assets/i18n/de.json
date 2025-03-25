@@ -605,7 +605,7 @@
   "sweden": "Schweden",
   "denmark": "Dänemark",
   "general": "Allgemeines",
-  "clubHistory": "Club History",
+  "clubHistory": "Club Geschichte",
   "since": "Seit",
   "postalCode": "Postleitzahl",
   "foundation": "Gründung",
@@ -630,7 +630,7 @@
   "eventTime": "Zeit",
   "requests": "Anfragen",
   "uploadBanner": "Upload Banner",
-  "managerName": "Manager Name",
+  "managerName": "Name des Managers",
   "inviteTalent": "Talent einladen",
   "inviteTalentsToU19": "Talente zur U19-Sichtung einladen",
   "sendInvitation": "Einladung senden",
@@ -932,13 +932,13 @@
   "premiumFeaturesDescription": "Beschreibung der Premium-Funktionen",
   "removeFeature": "Funktion entfernen",
   "buttonText": "Schaltfläche Text",
-  "free": "Free",
-  "paid": "Paid",
+  "free": "Gratis",
+  "paid": "Bezahlt",
   "viewAll": "Alle anzeigen",
   "code": "Code",
   "subscription": {
     "paid": "Bezahlt",
-    "free": "Kostenlos"
+    "free": "Gratis"
   },
   "editors": {
     "placeholder": "Tippen Sie hier..."
@@ -1067,7 +1067,7 @@
   "scoutPortfolio": "Portfolio",
   "confirmDeleteinformation": "Einmal gelöschte Informationen können nicht mehr rückgängig gemacht werden. Möchtest du löschen?",
   "confirmDeleteinformation1": "Möchtest du löschen?",
-  "confirmDeleteinformation3": "Sobald Informationen gelöscht wurden, können sie nicht wiederhergestellt werden. Möchten Sie wirklich löschen?",
+  "confirmDeleteinformation3": "Einmal gelöschte Informationen können nicht mehr rückgängig gemacht werden. Möchtest du löschen?",
   "confirmDeleteUser1": "Möchten Sie wirklich löschen?",
   "downloadVideo": "Video herunterladen",
   "ceO": "CEO",
@@ -1340,5 +1340,7 @@
   "accepted": "Akzeptiert",
   "selectUserFirst": "Wähle zuerst den Benutzer aus.",
   "selectBlogFirst": "Blog zuerst auswählen.",
-  "selectCouponFirst": "Coupon zuerst auswählen."
+  "selectCouponFirst": "Coupon zuerst auswählen.",
+  "category": "Kategorie",
+  "selectActivityFirst": "Wähle zuerst eine Aktivität aus."
 }

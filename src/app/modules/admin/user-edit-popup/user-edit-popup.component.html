@@ -45,7 +45,7 @@
                     <p  class="code-text">{{ 'country' | translate }}</p>
                     <div class="btn-group">
                         <select class="cupen-btn-1 form-select" aria-label="Default select example" [(ngModel)]="selectedCountry">
-                            <option value="">Select</option>
+                            <option value="">{{ 'select' | translate }}</option>
                             <option *ngFor="let option of countriesListing" value="{{option.id}}">{{option.country_name}}</option>
                         </select>
                         <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none" xmlns="http://www.w3.org/2000/svg">
