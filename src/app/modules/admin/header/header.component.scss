@@ -249,3 +249,17 @@ a.dropdown-item.ai-icon.selected {
   background-image:  url('../../../../assets/images/images-moon-removebg-preview-A5CDJ5QQ.png');
   background-size: 80%;
 }
+
+
+.mobile_search {
+  display: none;
+}
+
+@media (max-width: 991px) {
+  .mobile_search {
+    display: block;
+    .nav-link img {
+      width: 30px;
+  }
+  }
+}

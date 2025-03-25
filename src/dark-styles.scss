@@ -2861,4 +2861,10 @@ mat-datepicker-toggle {
     background-image: url(./assets/images/calendar-icon-white.svg) !important;
   }
 }
+
+.mobile_search {
+  .nav-link img {
+    filter: brightness(0) invert(1)
+}
+}
 }
