@@ -94,22 +94,23 @@ export class ScoutService {
   }
 
   getScoutPlayers(): Observable<any> {
+    let langId = localStorage.getItem('lang_id');
     const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
     return this.http.get<{ status: boolean, message: string, data: {} }>(
-      `${this.apiUrl2}scout/get-scout-players`, { headers }
+      `${this.apiUrl2}scout/get-scout-players/${langId}`, { headers }
     );
   }
 
-  deleteScoutPlayer(id: any): Observable<any> {
+  deleteScoutPlayer(id: any, langId: any): Observable<any> {
     const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
     return this.http.get<{ status: boolean, message: string, data: {} }>(
-      `${this.apiUrl2}scout/delete-scout-player/${id}`, { headers }
+      `${this.apiUrl2}scout/delete-scout-player/${id}/${langId}`, { headers }
     );
   }
 
@@ -153,10 +154,10 @@ export class ScoutService {
     );
   }
 
-  deleteRepresentator(id: any): Observable<any> {
+  deleteRepresentator(id: any, langId: any): Observable<any> {
     const headers = this.headers();
     return this.http.get<{ status: boolean, message: string, data: {} }>(
-      `${this.apiUrl}scout/delete-representator/${id}`, { headers }
+      `${this.apiUrl}scout/delete-representator/${id}/${langId}`, { headers }
     );
   }
 
