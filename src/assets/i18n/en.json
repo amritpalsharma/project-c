@@ -376,7 +376,7 @@
   "reset": "Reset",
   "showResults": "Show Results",
   "viewFullProfile": "View Full Profile",
-  "status": "Status:",
+  "status": "Status",
   "registrationDate": "Registration Date:",
   "nextPaymentDue": "Next payment due:",
   "viewPaymentDetails": "View payment details",
@@ -446,7 +446,6 @@
   "active": "Active",
   "inactive": "Inactive",
   "createNewPopUp": "Create New Pop Up",
-  "name:": "Name:",
   "for": "For:",
   "language": "Language:",
   "displayFreq": "Display Freq:",
@@ -579,8 +578,6 @@
   "talent": "Talent",
   "dateTime08": "08.04.2024 - 12.53 PM",
   "setPassword": "Reset your password",
-  "Name": "Name",
-  "UserType": "User Type",
   "transfers": "Transfers",
   "purchases": "Purchases",
   "kosovo": "Kosovo",
@@ -1254,7 +1251,8 @@
   "descriptionRequired": "Meta description is required",
   "subjectRequired": "Subject is required",
   "accepted": "Accepted",
-  "category": "Category"
+  "category": "Category",
+  "selectActivityFirst": "Select activity first."
 
 
 }

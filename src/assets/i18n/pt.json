@@ -366,7 +366,7 @@
   "name-text": "Kadin Septimus",
   "time": "há 10 minutos",
   "Name": "Nome",
-  "Status": "Status",
+  "status": "Status",
   "Date_Time": "Data - Hora",
   "Location": "Localização",
   "Language": "Idioma",
@@ -638,7 +638,6 @@
   "reset": "Reset",
   "showResults": "Show e results",
   "viewFullProfile": "View e full e profile",
-  "status": "Status:",
   "registrationDate": "Registration e date:",
   "nextPaymentDue": "Next e payment e due:",
   "viewPaymentDetails": "View e payment e details",
@@ -697,7 +696,6 @@
   "active": "Active",
   "inactive": "Inactive",
   "createNewPopUp": "Create e new e pop e up",
-  "name:": "Name:",
   "for": "For:",
   "language": "Language:",
   "displayFreq": "Display e freq:",
@@ -1295,5 +1293,6 @@
   "enterYourCompanyName": "Insira o nome da sua empresa",
   "deletePerformanceConfirm": "Tem certeza de que deseja excluir os relatórios selecionados?",
   "accepted": "Aceito",
-  "category": "Categoria"
+  "category": "Categoria",
+  "selectActivityFirst": "Selecione uma atividade primeiro."
 }

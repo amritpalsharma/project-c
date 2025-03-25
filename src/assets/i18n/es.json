@@ -363,12 +363,9 @@
   "scout": "Explorador",
   "name-text": "Kadin Septimus",
   "time": "hace 10 minutos",
-  "Name": "Nombre",
-  "Status": "Estado",
+  "status": "Estado",
   "Date_Time": "Fecha - Hora",
-  "Location": "Ubicación",
-  "Language": "Idioma",
-  "User Type": "Tipo de usuario",
+  "usertType": "Tipo de usuario",
   "English": "Inglés",
   "date_time": "08.04.2024-12:53",
   "Approved": "Aprobado",
@@ -607,7 +604,6 @@
   "reset": "Restablecer",
   "showResults": "Show y results",
   "viewFullProfile": "View y full y profile",
-  "status": "Status:",
   "registrationDate": "Registration y date:",
   "nextPaymentDue": "Next y payment y due:",
   "viewPaymentDetails": "View y payment y details",
@@ -1287,5 +1283,6 @@
   "enterYourCompanyName": "Ingrese el nombre de su empresa",
   "deletePerformanceConfirm": "¿Estás seguro de que quieres eliminar los informes seleccionados?",
   "accepted": "Aceptado",
-  "category": "Categoría"
+  "category": "Categoría",
+  "selectActivityFirst": "Selecciona primero una actividad."
 }

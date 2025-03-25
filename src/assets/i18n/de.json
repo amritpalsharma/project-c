@@ -932,13 +932,13 @@
   "premiumFeaturesDescription": "Beschreibung der Premium-Funktionen",
   "removeFeature": "Funktion entfernen",
   "buttonText": "Schaltfläche Text",
-  "free": "Free",
-  "paid": "Paid",
+  "free": "Gratis",
+  "paid": "Bezahlt",
   "viewAll": "Alle anzeigen",
   "code": "Code",
   "subscription": {
     "paid": "Bezahlt",
-    "free": "Kostenlos"
+    "free": "Gratis"
   },
   "editors": {
     "placeholder": "Tippen Sie hier..."
@@ -1067,7 +1067,7 @@
   "scoutPortfolio": "Portfolio",
   "confirmDeleteinformation": "Einmal gelöschte Informationen können nicht mehr rückgängig gemacht werden. Möchtest du löschen?",
   "confirmDeleteinformation1": "Möchtest du löschen?",
-  "confirmDeleteinformation3": "Sobald Informationen gelöscht wurden, können sie nicht wiederhergestellt werden. Möchten Sie wirklich löschen?",
+  "confirmDeleteinformation3": "Einmal gelöschte Informationen können nicht mehr rückgängig gemacht werden. Möchtest du löschen?",
   "confirmDeleteUser1": "Möchten Sie wirklich löschen?",
   "downloadVideo": "Video herunterladen",
   "ceO": "CEO",
@@ -1340,5 +1340,6 @@
   "descriptionRequired": "Meta-Beschreibung ist erforderlich",
   "subjectRequired": "Thema ist erforderlich",
   "accepted": "Akzeptiert",
-  "category": "Kategorie"
+  "category": "Kategorie",
+  "selectActivityFirst": "Wähle zuerst eine Aktivität aus."
 }

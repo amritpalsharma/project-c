@@ -84,7 +84,6 @@
   "activityLog": "Journal d'activité",
   "overviewActivities": "Aperçu des activités",
   "justNow": "à l'instant",
-  "name": "Nom",
   "dateTime": "Date - Heure",
   "remove": "Retirer",
   "appSettings": "Paramètres",
@@ -363,8 +362,8 @@
   "scout": "Scout",
   "name-text": "Kadin Septimus",
   "time": "il y a 10 minutes",
-  "Name": "Nom",
-  "Status": "Statut",
+  "name": "Nom",
+  "status": "Statut",
   "Date_Time": "Date - Heure",
   "Location": "Emplacement",
   "Language": "Langue",
@@ -720,7 +719,6 @@
   "reset": "Reset",
   "showResults": "Show et results",
   "viewFullProfile": "View et full et profile",
-  "status": "Status:",
   "registrationDate": "Registration et date:",
   "nextPaymentDue": "Next et payment et due:",
   "viewPaymentDetails": "View et payment et details",
@@ -1353,5 +1351,6 @@
   "enterYourCompanyName": "Entrez le nom de votre entreprise",
   "deletePerformanceConfirm": "Êtes-vous sûr de vouloir supprimer les rapports sélectionnés ?",
   "accepted": "Accepté",
-   "category": "Catégorie"
+   "category": "Catégorie",
+   "selectActivityFirst": "Sélectionnez d'abord une activité."
 }
