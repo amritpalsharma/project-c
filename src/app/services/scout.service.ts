@@ -153,10 +153,10 @@ export class ScoutService {
     );
   }
 
-  deleteRepresentator(id: any): Observable<any> {
+  deleteRepresentator(id: any, langId: any): Observable<any> {
     const headers = this.headers();
     return this.http.get<{ status: boolean, message: string, data: {} }>(
-      `${this.apiUrl}scout/delete-representator/${id}`, { headers }
+      `${this.apiUrl}scout/delete-representator/${id}/${langId}`, { headers }
     );
   }
 

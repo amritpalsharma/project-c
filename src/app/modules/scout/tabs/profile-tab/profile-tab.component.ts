@@ -267,11 +267,13 @@ export class ProfileTabComponent {
     console.log("ids to delete", this.idsToDelete);
     // return;
 
-    this.scoutService.deleteRepresentator(this.idsToDelete).subscribe(
+    let langId = localStorage.getItem('lang_id');
+
+    this.scoutService.deleteRepresentator(this.idsToDelete, langId).subscribe(
       response => {
         if(response.status){
           this.getRepresentators();
-          this.showMatDialog('Representator removed successfully!.', 'display');
+          this.showMatDialog(response.message, 'display');
         }else{
           this.showMatDialog('Error in removing Representator. Please try again.', 'display');
         }
