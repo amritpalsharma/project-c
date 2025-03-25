@@ -1201,5 +1201,6 @@
   "enterYourCouponCode": "Indtast din rabatkode",
   "enterYourCompanyName": "Indtast dit firmanavn",
   "deletePerformanceConfirm": "Er du sikker på, at du vil slette de valgte rapporter?",
-  "accepted": "Accepteret"
+  "accepted": "Accepteret",
+   "category": "Kategori"
 }

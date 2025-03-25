@@ -1286,5 +1286,6 @@
   "enterYourCouponCode": "Ingrese su código de cupón",
   "enterYourCompanyName": "Ingrese el nombre de su empresa",
   "deletePerformanceConfirm": "¿Estás seguro de que quieres eliminar los informes seleccionados?",
-  "accepted": "Aceptado"
+  "accepted": "Aceptado",
+  "category": "Categoría"
 }

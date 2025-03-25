@@ -1340,5 +1340,6 @@
   "enterYourCouponCode": "Ange din rabattkod",
   "enterYourCompanyName": "Ange ditt företagsnamn",
   "deletePerformanceConfirm": "Är du säker på att du vill ta bort de valda rapporterna?",
-  "accepted": "Accepterad"
+  "accepted": "Accepterad",
+  "category": "Kategori"
 }

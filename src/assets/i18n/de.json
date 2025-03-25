@@ -630,7 +630,7 @@
   "eventTime": "Zeit",
   "requests": "Anfragen",
   "uploadBanner": "Upload Banner",
-  "managerName": "Manager Name",
+  "managerName": "Name des Managers",
   "inviteTalent": "Talent einladen",
   "inviteTalentsToU19": "Talente zur U19-Sichtung einladen",
   "sendInvitation": "Einladung senden",
@@ -1339,5 +1339,6 @@
   "metaTitleReruired": "Meta-Titel ist erforderlich",
   "descriptionRequired": "Meta-Beschreibung ist erforderlich",
   "subjectRequired": "Thema ist erforderlich",
-  "accepted": "Akzeptiert"
+  "accepted": "Akzeptiert",
+  "category": "Kategorie"
 }

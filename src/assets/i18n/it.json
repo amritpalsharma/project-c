@@ -1335,5 +1335,6 @@
   "enterYourCouponCode": "Inserisci il tuo codice sconto",
   "enterYourCompanyName": "Inserisci il nome della tua azienda",
   "deletePerformanceConfirm": "Sei sicuro di voler eliminare i report selezionati?",
-  "accepted": "Accettato"
+  "accepted": "Accettato",
+   "category": "Categoria"
 }

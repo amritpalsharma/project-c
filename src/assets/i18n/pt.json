@@ -1294,5 +1294,6 @@
   "enterYourCouponCode": "Insira seu código de cupom",
   "enterYourCompanyName": "Insira o nome da sua empresa",
   "deletePerformanceConfirm": "Tem certeza de que deseja excluir os relatórios selecionados?",
-  "accepted": "Aceito"
+  "accepted": "Aceito",
+  "category": "Categoria"
 }
