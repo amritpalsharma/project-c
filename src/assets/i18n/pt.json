@@ -1230,6 +1230,48 @@
       "Mais visibilidade - maiores hipóteses de ser descoberto"
     ]
   },
+  "scoutPremiumPlanDesc": {
+    "features": [
+      "Pode convidar talentos e adicioná-los ao seu portefólio.",
+      "Criar a sua lista de favoritos.",
+      "Ser guardado como favorito pelos talentos.",
+      "Capturar fotografias, vídeos e destaques adicionais.",
+      "Destaque as suas melhores fotografias e vídeos no seu perfil.",
+      "Adicionar canais de redes sociais e sítio Web.",
+      "Exportar dados de desempenho dos seus talentos como PDF.",
+      "Conte a história do seu Scout."
+    ]
+  },
+  "scoutMultiCountryPlanDesc": {
+    "features": [
+      "Apresentar o seu perfil a talentos e ligas de outros países.",
+      "Maiores hipóteses de obter talentos globais.",
+      "Expandir a sua rede global."
+    ]
+  },
+  "scoutBostProfileDesc": {
+    "features": [
+      "Saltar para o topo dos resultados da pesquisa.",
+      "Fotografia de escuteiro realçada com efeito de fundo para maior visibilidade.",
+      "Autocolante reforçado.",
+      "Na visão geral do olheiro, aparecerá nas primeiras posições para os parâmetros de pesquisa correspondentes.",
+      "Maiores hipóteses de ser encontrado por um talento.",
+      "O perfil Boost ajuda-o a expandir a sua rede global."
+    ]
+  },
+  "ClubPremiumPlanDesc": {
+    "features": [
+      "Pode adicionar e gerir os seus jogadores nas equipas.",
+      "Registar novos avistamentos.",
+      "Convide talentos para os seus eventos de seleção.",
+      "Crie a sua lista de favoritos.",
+      "Pode captar imagens, vídeos e destaques adicionais.",
+      "Destaque as suas melhores fotografias e vídeos no seu perfil.",
+      "Adicione os seus canais de redes sociais e o seu sítio Web ao seu perfil.",
+      "Exporte os dados de desempenho dos seus jogadores como um PDF.",
+      "Conte a história do seu clube."
+    ]
+  },
   "MyAccount": "para Painel",
   "boostProfiles": "Impulsionar o perfil",
   "changeNewsletterStatus": "Tem a certeza de que pretende alterar o estatuto de boletim informativo?",

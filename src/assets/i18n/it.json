@@ -1272,6 +1272,48 @@
       "Più visibilità - maggiori possibilità di essere scoperti"
     ]
   },
+  "scoutPremiumPlanDesc": {
+    "features": [
+      "È possibile invitare talenti e aggiungerli al proprio portfolio.",
+      "Creare l'elenco dei preferiti.",
+      "Essere salvati come preferiti dai talenti. saved as a favorite by talents.",
+      "Acquisire ulteriori foto, video e momenti salienti.",
+      "Evidenziare le foto e i video migliori nel proprio profilo.",
+      "Aggiungere i canali dei social media e il sito web.",
+      "Esportazione dei dati sulle prestazioni dei vostri talenti in formato PDF.",
+      "Raccontare la propria storia di scout."
+    ]
+  },
+  "scoutMultiCountryPlanDesc": {
+    "features": [
+      "Presentare il proprio profilo a talenti e leghe di altri Paesi.",
+      "Maggiori possibilità di ottenere talenti globali.",
+      "Espandere la propria rete globale."
+    ]
+  },
+  "scoutBostProfileDesc": {
+    "features": [
+      "Salta all'inizio dei risultati della ricerca.",
+      "Foto scout evidenziata con effetto di sfondo per una maggiore visibilità.",
+      "Adesivo potenziato.",
+      "Nella panoramica degli scout, apparirà nelle prime posizioni per i parametri di ricerca corrispondenti.",
+      "Maggiori possibilità di essere trovati da un talento.",
+      "Il profilo Boost vi aiuta ad ampliare la vostra rete globale."
+    ]
+  },
+  "ClubPremiumPlanDesc": {
+    "features": [
+      "È possibile aggiungere e gestire i propri giocatori alle squadre.",
+      "Registrare i nuovi avvistamenti.",
+      "Invitate i talenti ai vostri eventi di proiezione.",
+      "Creare l'elenco dei preferiti.",
+      "È possibile acquisire ulteriori immagini, video e momenti salienti.",
+      "Evidenziate le vostre foto e i vostri video migliori nel vostro profilo.",
+      "Aggiungete al vostro profilo i vostri canali di social media e il vostro sito web.",
+      "Esportazione dei dati sulle prestazioni dei giocatori in formato PDF.",
+      "Raccontate la storia del vostro club."
+    ]
+  },
   "MyAccount": "al Dashboard",
   "boostProfiles": "Profilo di spinta",
   "changeNewsletterStatus": "Sei sicuro di voler cambiare lo stato della newsletter?",

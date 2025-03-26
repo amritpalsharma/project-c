@@ -1099,6 +1099,7 @@
   "selectFavoriteFirst": "Select favorite user(s) first.",
   "removeFavoriteConfirm": "Are you sure you want to remove this favorite from your list?",
   "userPurchasesNotFound": "No purchases found.",
+  
   "premiumPlanDesc": {
     "features": [
       "Talent profiles with detailed statistics, performance data, achievements, and transfers visible",
@@ -1126,6 +1127,49 @@
       "More visibility - higher chances of being discovered"
     ]
   },
+  "scoutPremiumPlanDesc": {
+    "features": [
+      "You can invite talents and add them to your portfolio.",
+      "Create your favorites list.",
+      "Be saved as a favorite by talents.",
+      "Capture additional pictures, videos and highlights.",
+      "Highlight your best photos and videos in your profile. ",
+      "Add social media channels and website.",
+      "Export performance data of your talents as PDF.",
+      "Tell your Scout story."
+    ]
+  },
+  "scoutMultiCountryPlanDesc": {
+    "features": [
+      "Present your profile to Talents and Leagues in other countries.",
+      "Higher chances to get global Talents.",
+      "Grow your global network.Be saved as a favorite by talents."
+    ]
+  },
+  "scoutBostProfileDesc": {
+    "features": [
+      "Jump to the top of the search results.",
+      "Highlighted scout photo with background effect for more visibility.",
+      "Boosted sticker.",
+      "In the Scout overview, you will appear in the first positions for matching search parameters.",
+      "Higher chances of being found by a talent.",
+      "The Boost profile helps you to expand your global network."
+    ]
+  },
+  "ClubPremiumPlanDesc": {
+    "features": [
+      "You can add and manage your players to the teams.",
+      "Record new sightings.",
+      "Invite talents to your screening events.",
+      "Create your favorite list.",
+      "You can capture additional images, videos and highlights.",
+      "Highlight your best photos and videos in your profile.",
+      "Add your social media channels and website to your profile.",
+      "Export the performance data of your players as a PDF.Tell your Scout story.",
+      "Tell your club story."
+    ]
+  },
+
   "dontShowAgain": "Don't show it again",
   "cancelConfirmationMsg": "Are you sure you want to cancel this subscription? This cannot be undone.",
   "youHaveAnActivePremiumPlan": "You have an active Premium Plan",

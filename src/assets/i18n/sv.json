@@ -1277,6 +1277,48 @@
       "Mer synlighet - större chans att bli upptäckt"
     ]
   },
+  "scoutPremiumPlanDesc": {
+    "features": [
+      "Du kan bjuda in talanger och lägga till dem i din portfolio.",
+      "Skapa din favoritlista.",
+      "Bli sparad som en favorit av talanger.",
+      "Fånga ytterligare bilder, videor och höjdpunkter.",
+      "Lyft fram dina bästa bilder och videor i din profil.",
+      "Lägg till sociala mediekanaler och webbplats.",
+      "Exportera prestationsdata för dina talanger som PDF.",
+      "Berätta din scouthistoria."
+    ]
+  },
+  "scoutMultiCountryPlanDesc": {
+    "features": [
+      "Presentera din profil för talanger och ligor i andra länder.",
+      "Större chans att få globala talanger.",
+      "Utöka ditt globala nätverk."
+    ]
+  },
+  "scoutBostProfileDesc": {
+    "features": [
+      "Hoppa till toppen av sökresultaten.",
+      "Markerat scoutfoto med bakgrundseffekt för mer synlighet.",
+      "Förstärkt klistermärke.",
+      "I Scout-översikten kommer du att visas i de första positionerna för matchande sökparametrar.",
+      "Större chans att bli hittad av en talang.",
+      "Boost-profilen hjälper dig att utöka ditt globala nätverk."
+    ]
+  },
+  "ClubPremiumPlanDesc": {
+    "features": [
+      "Du kan lägga till och hantera dina spelare i lagen.",
+      "Registrera nya observationer.",
+      "Bjud in talanger till dina screeningevenemang.",
+      "Skapa din favoritlista.",
+      "Du kan ta ytterligare bilder, videor och höjdpunkter.",
+      "Lyft fram dina bästa foton och videor i din profil.",
+      "Lägg till dina sociala mediekanaler och din webbplats i din profil.",
+      "Exportera prestationsdata för dina spelare som en PDF-fil.",
+      "Berätta historien om din klubb."
+    ]
+  },
   "areYouSuretoDeleteActivity": "Är du säker på att du vill ta bort aktiviteten?",
   "subsciptionCancelSuccess": "Din prenumeration har framgångsrikt avslutats.",
   "deleteAccountDesc": "Detta kommer att radera ditt konto permanent från vår databas.",

@@ -322,15 +322,15 @@ export class PlanComponent implements OnInit, OnDestroy {
   }
 
   loadFeatures() {
-    this.translateService.get('premiumPlanDesc.features').subscribe((data: string[]) => {
+    this.translateService.get('scoutPremiumPlanDesc.features').subscribe((data: string[]) => {
       this.premiumFeatures = data;
       // this.premiumFeatures = [];
     });
-    this.translateService.get('multiCountryPlanDesc.features').subscribe((data: string[]) => {
+    this.translateService.get('scoutMultiCountryPlanDesc.features').subscribe((data: string[]) => {
       this.multiCountryPlanDesc = data;
       // this.premiumFeatures = [];
     });
-    this.translateService.get('bostProfileDesc.features').subscribe((data: string[]) => {
+    this.translateService.get('scoutBostProfileDesc.features').subscribe((data: string[]) => {
       this.bostProfileDesc = data;
       // this.premiumFeatures = [];
     });
