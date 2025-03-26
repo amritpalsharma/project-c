@@ -33,7 +33,7 @@
   "lastName": "Nom de famille",
   "selectUnit": "Sélectionner l'unité",
   "cancel": "Annuler",
-  "save": "Sauvegarder",
+  "save": "Enregistrer",
   "coverPhoto": "Photo de couverture",
   "inTheTeamSince": "Dans l'équipe depuis",
   "topSpeed": "Vitesse maximale",
@@ -1307,13 +1307,13 @@
   "verifyEmail": "VÉRIFIEZ VOTRE E-MAIL",
   "sentConfirmationLink": "Nous avons envoyé un lien de confirmation à votre e-mail.",
   "completeVerificationProcess": "Cliquez sur le lien dans votre boîte de réception pour terminer le processus de vérification.",
-  "cookiePopupText": "Nous accordons une grande importance à votre vie privée. Nos partenaires et nous-mêmes utilisons des traceurs pour mesurer l'audience de notre site web, vous proposer des offres et améliorer nos propres opérations de marketing SoccerYou.",
-  "cookiePopupText2": "Plus d'informations sur les cookies et les fournisseurs que nous utilisons.",
-  "cookiePopupText3": "Vous pouvez retirer votre consentement à tout moment dans vos paramètres.",
-  "PersonalizeMyChoices": "Personnaliser mes choix",
-  "iAccept": "J'accepte",
-  "iDecline": "Je refuse",
-  "manageConsentPreferences": "Gérer les préférences en matière de consentement",
+  "cookiePopupText": "Ce site utilise des cookies pour vous garantir la meilleure expérience possible. Pour plus d'informations, consultez notre",
+  "PersonalizeMyChoices": "Paramétrer les cookies",
+  "cookiePopupText1": "pour ajuster vos paramètres.",
+  "clickOn": "Cliquez sur",
+  "iAccept": "Tout accepter",
+  "iDecline": "Refuser",
+  "manageConsentPreferences": "Paramètres des cookies",
   "allowAll": "Tout autoriser",
   "refuseAll": "Refuser tout",
   "deleteProfileConfirm": "Cette opération supprimera définitivement votre compte de notre base de données. Cette opération ne peut être annulée.",
@@ -1353,5 +1353,23 @@
   "accepted": "Accepté",
    "category": "Catégorie",
    "selectActivityFirst": "Sélectionnez d'abord une activité.",
-   "selectNotificationFirst" : "Sélectionnez d'abord la/les notification(s)."
+   "selectNotificationFirst" : "Sélectionnez d'abord la/les notification(s).",
+
+   "permissions": {
+    "allowAdvertising": {
+      "name": "Autoriser les cookies publicitaires",
+      "description": "J’autorise l’utilisation des cookies publicitaires. Les nouveaux cookies publicitaires seront activés par défaut."
+    },
+    "strictlyNecessary": {
+      "name": "Cookies strictement nécessaires",
+      "description": "Ces cookies sont indispensables au bon fonctionnement de l’application et ne peuvent pas être désactivés",
+      "readOnly": true
+    },
+    "googleAnalytics": {
+      "name": "Google Analytics",
+      "description": "J’autorise l’utilisation des cookies analytiques. Les nouveaux cookies analytiques seront activés par défaut."
+    }
+  },
+  "acceptAll": "Tout accepter",
+  "pleaseConfirmSpellings": "Les valeurs ne correspondent pas, veuillez vérifier votre orthographe."
 }

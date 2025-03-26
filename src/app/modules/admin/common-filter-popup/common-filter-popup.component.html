@@ -168,7 +168,7 @@
       <select [(ngModel)]="selectedtype" class="location-filter" [class.activefilter]="userFilters['type']"
         (change)="onChange($event, 'type')">
         <option value="">{{ 'selectType' | translate }}</option>
-        <option *ngFor="let type of types" [value]="type" [selected]="type == selectedtype">{{ type }}</option>
+        <option *ngFor="let type of types" [value]="type" [selected]="type == selectedtype">{{ removeTextAfterDash(type) }}</option>
       </select>
     </label>
   </div>

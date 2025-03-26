@@ -93,6 +93,7 @@
       </div> -->
 
       <div class="btn-group" style="position: relative; display: inline-block;">
+        <!-- {{roles | json}} -->
         <mat-select [(ngModel)]="selectedRole" class="mat-select-div">
           <ng-container *ngFor="let role of roles">
             <mat-option [value]="role.id" *ngIf="selectedRole == role.id" selected>{{ role.role }}</mat-option>

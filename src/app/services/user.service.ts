@@ -376,8 +376,9 @@ export class UserService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
+    let lang_id = localStorage.getItem('lang_id');
     return this.http.get<{ status: boolean, message: string, data: {} }>(
-      `${this.apiUrl}get-positions`, { headers }
+      `${this.apiUrl}get-positions/${lang_id}`, { headers }
     );
   }
 
@@ -449,8 +450,9 @@ export class UserService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
+    let lang_id = localStorage.getItem('lang_id');
     return this.http.get<{ status: boolean, message: string, data: {} }>(
-      `${this.apiUrl2}/delete-representator/${id}`, { headers }
+      `${this.apiUrl2}/delete-representator/${id}/${lang_id}`, { headers }
     );
   }
 

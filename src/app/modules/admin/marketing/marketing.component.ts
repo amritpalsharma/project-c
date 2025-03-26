@@ -191,7 +191,14 @@ export class MarketingComponent {
 
   confirmDeletion(): any {
     if (this.selectedIds.length == 0) {
-      this.showMessage('Select popup(s) first.');
+      let lang_id = localStorage.getItem('lang_id');
+      let msg;
+      if (lang_id == '2') {
+        msg = 'Popup zuerst auswählen.';
+      } else {
+        msg = 'Select popup(s) first.';
+      }
+      this.showMessage(msg);
       return false;
     }
     this.idsToDelete = this.selectedIds;

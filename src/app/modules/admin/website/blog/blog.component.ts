@@ -185,7 +185,14 @@ export class BlogComponent {
 
   confirmDeletion(): any {
     if (this.selectedIds.length == 0) {
-      //  this.showMatDialog('Select coupon(s) first.', 'display');
+      let lang = localStorage.getItem('lang_id');
+      let msg;
+      if (lang == '2') {
+        msg = 'Blog zuerst auswählen.';
+      } else {
+        msg = 'Select Blog first.';
+      }
+      this.showMatDialog(msg, 'display');
       return false;
     }
     this.idsToProceed = this.selectedIds;

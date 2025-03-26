@@ -21,6 +21,7 @@
   "appSettings": "App Settings",
   "april2023Present": "April 2023 Present 1 yr 1 mos",
   "accept": "Accept",
+  "acceptAll": "Accept all",
   "activeSubscriptionMessage": "You have 1 more active Multi-Country subscription. Choose one country from the below list to showcase your profile in that country.",
   "addCountryConfirmation": "Do you want to add [Country Name] to your profile?",
   "addNewPaymentMethod": "Add New Payment Method",
@@ -129,7 +130,6 @@
   "upload": "Upload",
   "videos": "Videos",
   "weight": "Weight",
-  
   "previous": "Previous",
   "finish": "Finish",
   "messages": "Messages",
@@ -1155,13 +1155,13 @@
   "verifyEmail": "VERIFY YOUR E-MAIL",
   "sentConfirmationLink": "We've sent a confirmation link to your email.",
   "completeVerificationProcess": "Click the link in your inbox to complete the verification process.",
-  "cookiePopupText": "We value your privacy. We and our partners use trackers to measure the audience of our website and to provide you with offers and improve our own SoccerYou marketing operations.",
-  "cookiePopupText2": "More info on cookies and providers we use.",
-  "cookiePopupText3": "You can withdraw your consent at any time in your settings.",
-  "PersonalizeMyChoices": "Personalize my choices",
-  "iAccept": "I accept",
-  "iDecline": "I decline",
-  "manageConsentPreferences": "Manage Consent Preferences",
+  "cookiePopupText": "This website uses cookies to ensure you get the best experience on our website. For more information, please see our",
+  "PersonalizeMyChoices": "Manage cookies",
+  "clickOn": "Click On",
+  "cookiePopupText1": "to adjust your cookie settings.",
+  "iAccept": "Accept all",
+  "iDecline": "Decline",
+  "manageConsentPreferences": "Cookie Settings",
   "allowAll": "Allow All",
   "refuseAll": "Refuse All",
   "couponDeactivatedSuccess": "Coupon deactivated successfully.",
@@ -1226,15 +1226,12 @@
   "deleteRepresentorConfirmation": "Are you sure you want to delete this Team Member?",
   "deletingAccount": "Deleting Account",
   "deletingText": "To confirm this, type “DELETE”",
-
-  
   "selectDateTime": "Select date & time",
   "enterCountryName": "Enter Country Name",
   "enterYourEmail": "Enter your email",
   "enterYourName": "Enter your name",
   "enterYourCouponCode": "Enter your coupon code",
   "enterYourCompanyName": "Enter your company name",
-  
   "typeRequired": "Type is required",
   "redirectrequired": "Redirect URL is required",
   "pageRequired": "Page is required",
@@ -1242,7 +1239,6 @@
   "endDateRequired": "Enter the end date or check the box",
   "maxViewsRequired": "Max views is required",
   "maxClicksRequired": "Max clicks is required",
-
   "titleRequired": "Title is required",
   "contentRequired": "Content is required",
   "slugRequired": "Slug is required",
@@ -1251,10 +1247,26 @@
   "descriptionRequired": "Meta description is required",
   "subjectRequired": "Subject is required",
   "accepted": "Accepted",
-  "selectUserFirst":"Select user first.",
-  "selectBlogFirst":"Select Blog first.",
-  "selectCouponFirst":"Select coupon first.",
+  "selectUserFirst": "Select user first.",
+  "selectBlogFirst": "Select Blog first.",
+  "selectCouponFirst": "Select coupon first.",
   "category": "Category",
   "selectActivityFirst": "Select activity first.",
-  "selectNotificationFirst" : "Select notifications(s) first."
+  "selectNotificationFirst": "Select notifications(s) first.",
+  "permissions": {
+    "allowAdvertising": {
+      "name": "Allow Advertising Permissions",
+      "description": "I allow advertising permissions. New advertising permissions will be enabled by default."
+    },
+    "strictlyNecessary": {
+      "name": "Strictly Necessary Permissions",
+      "description": "These permissions are strictly necessary for the operation of the app and cannot be deactivated.",
+      "readOnly": true
+    },
+    "googleAnalytics": {
+      "name": "Google Analytics",
+      "description": "I allow analytics permissions. New analytics permissions will be enabled by default."
+    }
+  },
+  "pleaseConfirmSpellings": "Values do not match, please confirm your spelling."
 }

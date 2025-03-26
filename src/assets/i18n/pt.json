@@ -1248,13 +1248,12 @@
   "verifyEmail": "VERIFIQUE SEU E-MAIL",
   "sentConfirmationLink": "Enviamos um link de confirmação para o seu e-mail.",
   "completeVerificationProcess": "Clique no link na sua caixa de entrada para concluir o processo de verificação.",
-  "cookiePopupText": "Valorizamos a sua privacidade. Nós e os nossos parceiros utilizamos rastreadores para medir a audiência do nosso sítio Web e para lhe fornecer ofertas e melhorar as nossas próprias operações de marketing SoccerYou.",
-  "cookiePopupText2": "Mais informações sobre cookies e fornecedores que utilizamos.",
-  "cookiePopupText3": "Pode retirar o seu consentimento a qualquer momento nas suas definições.",
-  "PersonalizeMyChoices": "Personalizar as minhas escolhas",
-  "iAccept": "Aceito",
-  "iDecline": "Recuso-me",
-  "manageConsentPreferences": "Gerir preferências de consentimento",
+  "cookiePopupText": "Este site utiliza cookies para garantir a melhor experiência. Para mais informações, consulte a nossa",
+  "cookiePopupText1": "para ajustar suas preferências.",
+  "clickOn": "Clique em",
+  "iAccept": "Aceitar todos",
+  "iDecline": "Rejeitar",
+  "manageConsentPreferences": "Configurações de cookies",
   "allowAll": "Permitir tudo",
   "refuseAll": "Recusar tudo",
   "deleteProfileConfirm": "Esta ação elimina a sua conta permanentemente da nossa base de dados. Esta ação não pode ser anulada.",
@@ -1295,5 +1294,23 @@
   "accepted": "Aceito",
   "category": "Categoria",
   "selectActivityFirst": "Selecione uma atividade primeiro.",
-  "selectNotificationFirst": "Selecione primeiro a(s) notificação(ões)."
+  "selectNotificationFirst": "Selecione primeiro a(s) notificação(ões).",
+
+  "permissions": {
+    "allowAdvertising": {
+      "name": "Permitir cookies de publicidade",
+      "description": "Permito o uso de cookies de publicidade. Novos cookies de publicidade serão ativados por padrão."
+    },
+    "strictlyNecessary": {
+      "name": "Cookies estritamente necessários",
+      "description": "Estes cookies são estritamente necessários para o funcionamento do aplicativo e não podem ser desativados.",
+      "readOnly": true
+    },
+    "googleAnalytics": {
+      "name": "Google Analytics",
+      "description": "Permito o uso de cookies analíticos. Novos cookies analíticos serão ativados por padrão."
+    }
+  },
+  "acceptAll": "Aceitar todos",
+   "pleaseConfirmSpellings": "Os valores não correspondem, por favor confirme a sua ortografia."
 }

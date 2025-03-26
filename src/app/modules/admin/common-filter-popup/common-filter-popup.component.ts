@@ -173,4 +173,8 @@ export class CommonFilterPopupComponent {
       return frequency;
     }
   }
+
+  removeTextAfterDash(str: string) {
+    return str.split(" - ")[0]; // Splits at " - " and returns only the first part
+  }
 }

@@ -30,7 +30,7 @@
   "lastName": "Cognome",
   "selectUnit": "Selezionare l'unità",
   "cancel": "Annullamento",
-  "save": "Risparmiare",
+  "save": "Salva",
   "coverPhoto": "Foto di copertina",
   "inTheTeamSince": "In squadra da",
   "topSpeed": "Velocità massima",
@@ -1290,13 +1290,13 @@
   "verifyEmail": "VERIFICA LA TUA E-MAIL",
   "sentConfirmationLink": "Abbiamo inviato un link di conferma alla tua e-mail.",
   "completeVerificationProcess": "Fai clic sul link nella tua casella di posta per completare il processo di verifica.",
-  "cookiePopupText": "Teniamo alla vostra privacy. Noi e i nostri partner utilizziamo i tracker per misurare l'audience del nostro sito web e per fornirvi offerte e migliorare le nostre operazioni di marketing di SoccerYou.",
-  "cookiePopupText2": "Maggiori informazioni sui cookie e sui fornitori che utilizziamo.",
-  "cookiePopupText3": "Puoi ritirare il tuo consenso in qualsiasi momento nelle tue impostazioni.",
-  "PersonalizeMyChoices": "Personalizzare le mie scelte",
-  "iAccept": "Accetto",
-  "iDecline": "Rifiuto",
-  "manageConsentPreferences": "Gestione delle preferenze di consenso",
+  "cookiePopupText": "Questo sito utilizza i cookie per garantirti la migliore esperienza. Per ulteriori informazioni, consulta la nostra informativa",
+  "PersonalizeMyChoices": "Impostazioni cookie",
+  "cookiePopupText1": "per modificare le tue preferenze.",
+  "clickOn": "Fai clic su",
+  "iAccept": "Accetta tutti",
+  "iDecline": "Rifiuta",
+  "manageConsentPreferences": "Impostazioni dei cookie",
   "allowAll": "Consenti a tutti",
   "refuseAll": "Rifiuta tutto",
   "deleteProfileConfirm": "In questo modo il vostro account verrà eliminato definitivamente dal nostro database. Questa operazione non può essere annullata.",
@@ -1336,5 +1336,23 @@
   "accepted": "Accettato",
    "category": "Categoria",
    "selectActivityFirst": "Seleziona prima un'attività.",
-   "selectNotificationFirst" : "Seleziona prima la/le notifica(e)."
+   "selectNotificationFirst" : "Seleziona prima la/le notifica(e).",
+
+   "permissions": {
+    "allowAdvertising": {
+      "name": "Consenti i cookie pubblicitari",
+      "description": "Autorizzo l’uso dei cookie pubblicitari. I nuovi cookie pubblicitari saranno attivati per impostazione predefinita."
+    },
+    "strictlyNecessary": {
+      "name": "Cookie strettamente necessari",
+      "description": "Questi cookie sono strettamente necessari per il funzionamento dell’app e non possono essere disattivati.",
+      "readOnly": true
+    },
+    "googleAnalytics": {
+      "name": "Google Analytics",
+      "description": "Autorizzo l’uso dei cookie di analisi. I nuovi cookie di analisi saranno attivati per impostazione predefinita."
+    }
+  },
+  "acceptAll": "Accetta tutti",
+  "pleaseConfirmSpellings": "I valori non corrispondono, per favore conferma la tua ortografia."
 }

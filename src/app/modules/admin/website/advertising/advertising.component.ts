@@ -30,26 +30,26 @@ export class AdvertisingComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  // typeOptions: any = [
-  //   '250 x 250 - Square',
-  //   '200 x 200 - Small Square',
-  //   '468 x 60 - Banner',
-  //   '728 x 90 - Leaderboard',
-  //   '300 x 250 - Inline Rectangle',
-  //   '336 x 280 - Large Rectangle',
-  //   '120 x 600 - Skyscraper',
-  //   '160 x 600 - Wide Skyscraper'
-  // ];
   typeOptions: any = [
-    '250 x 250',
-    '200 x 200',
-    '468 x 60',
-    '728 x 90',
-    '300 x 250',
-    '336 x 280',
-    '120 x 600',
-    '160 x 600'
+    '250 x 250 - Square',
+    '200 x 200 - Small Square',
+    '468 x 60 - Banner',
+    '728 x 90 - Leaderboard',
+    '300 x 250 - Inline Rectangle',
+    '336 x 280 - Large Rectangle',
+    '120 x 600 - Skyscraper',
+    '160 x 600 - Wide Skyscraper'
   ];
+  // typeOptions: any = [
+  //   '250 x 250',
+  //   '200 x 200',
+  //   '468 x 60',
+  //   '728 x 90',
+  //   '300 x 250',
+  //   '336 x 280',
+  //   '120 x 600',
+  //   '160 x 600'
+  // ];
   pageOptions: any = [];
 
   constructor(private advertisementService: AdvertisementService, public dialog: MatDialog) { }
@@ -364,6 +364,9 @@ export class AdvertisingComponent {
     this.getAdvertisements(true);
   }
 
+  removeTextAfterDash(str: string) {
+    return str.split(" - ")[0]; // Splits at " - " and returns only the first part
+  }
 
 }
 
