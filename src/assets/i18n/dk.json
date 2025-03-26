@@ -1201,6 +1201,7 @@
   "enterYourCompanyName": "Indtast dit firmanavn",
   "deletePerformanceConfirm": "Er du sikker på, at du vil slette de valgte rapporter?",
   "accepted": "Accepteret",
-   "category": "Kategori",
-   "selectActivityFirst": "Vælg først en aktivitet."
+  "category": "Kategori",
+  "selectActivityFirst": "Vælg først en aktivitet.",
+  "selectNotificationFirst": "Vælg først notifikation(er)."
 }

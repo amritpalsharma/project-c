@@ -1,6 +1,6 @@
 <div class="page-content">
   <div class="main-wrapper">
-    <div class="card p-0 border-0">
+    <div class="card p-0 border_wrap">
       <div class="card-header p-3 user_card_header">
         <div class="d-flex align-items-center justify-content-between mobile_wrap">
           <div class="d-flex align-items-center">
@@ -120,7 +120,7 @@
                   <!-- Position Column -->
                   <ng-container matColumnDef="#">
                     <th mat-header-cell *matHeaderCellDef> </th>
-                    <td mat-cell *matCellDef="let element">
+                    <td mat-cell *matCellDef="let element" class="col_checkbox">
                       <span class="form-check align-self-center me-2">
                         <input type="checkbox" class="form-check-input" [checked]="selectedUserIds.includes(element.id)"
                           (change)="onCheckboxChange(element)" />

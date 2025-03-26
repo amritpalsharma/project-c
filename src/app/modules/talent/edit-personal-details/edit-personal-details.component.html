@@ -15,7 +15,7 @@
         <!-- First Name -->
         <div class="form-group col-lg-6">
           <label for="first_name">{{'firstName' | translate}}:</label>
-          <input type="text" id="first_name" name="first_name" [(ngModel)]="firstName" #firstNameField="ngModel"/>
+          <input type="text" id="first_name" name="first_name" [(ngModel)]="firstName" #firstNameField="ngModel" />
         </div>
 
         <!-- Last Name -->
@@ -31,8 +31,7 @@
         <div class="form-group col-lg-6 position_inputs">
           <label for="currentClub">{{'currentClub' | translate}}:</label>
 
-          <mat-select [(ngModel)]="currentClubId" class="form-select" id="currentClub" name="currentClub"
-            #currentClubField="ngModel">
+          <mat-select [(ngModel)]="currentClubId" class="form-select" id="currentClub" name="currentClub">
             <mat-option *ngFor="let club of playerClubsListing" [value]="club.id">
               {{ club.club_name }}
             </mat-option>
@@ -44,14 +43,15 @@
         <!-- Nationality (Updated for multiple selection) -->
         <div class="form-group col-lg-6 position_inputs">
           <label for="nationality" class="form-label">{{'nationality' | translate}}:</label>
-          <mat-select [(ngModel)]="nationality" class="form-select" id="nationality" name="nationality"
-            multiple #nationalityField="ngModel" required >
+          <mat-select [(ngModel)]="nationality" class="form-select" id="nationality" name="nationality" multiple
+            #nationalityField="ngModel" required>
             <mat-option *ngFor="let country of countries" [value]="country.id">
               {{ country.country_name }}
             </mat-option>
           </mat-select>
           <!-- Validation message -->
-          <div *ngIf="nationalityField.invalid && (nationalityField.touched || myForm.submitted)" class="alert text-danger my-0 px-0">
+          <div *ngIf="nationalityField.invalid && (nationalityField.touched || myForm.submitted)"
+            class="alert text-danger my-0 px-0">
             {{'nationalityRequired' | translate}}
           </div>
         </div>
@@ -64,13 +64,15 @@
         <div class="form-group col-lg-6">
           <label for="dateOfBirth">{{ 'dateOfBirth' | translate }}:</label>
           <div class="d-flex align-items-center justify-content-center dob1">
-            <input class="dob" matInput id="dateOfBirth" name="dateOfBirth" [matDatepicker]="dp" [formControl]="dateOfBirth" placeholder="DD.MM.YYYY" required />
+            <input class="dob" matInput id="dateOfBirth" name="dateOfBirth" [matDatepicker]="dp"
+              [formControl]="dateOfBirth" placeholder="DD.MM.YYYY" required />
             <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
             <mat-datepicker #dp panelClass="custom-datepicker"></mat-datepicker>
           </div>
 
           <!-- Validation message -->
-          <div *ngIf="dateOfBirth.invalid && (dateOfBirth.touched || myForm.submitted)" class="alert text-danger my-0 px-0">
+          <div *ngIf="dateOfBirth.invalid && (dateOfBirth.touched || myForm.submitted)"
+            class="alert text-danger my-0 px-0">
             {{'dobRequired' | translate}}
           </div>
 
@@ -87,22 +89,25 @@
         <!-- Height -->
         <div class="form-group col-lg-6">
           <label for="height">{{'height' | translate}}(cm):</label>
-          <input type="number" id="height" name="height" [(ngModel)]="height" #heightField="ngModel" placeholder="{{ 'enterValue' | translate }}" />
+          <input type="number" id="height" name="height" [(ngModel)]="height" #heightField="ngModel"
+            placeholder="{{ 'enterValue' | translate }}" />
         </div>
 
         <!-- Weight -->
         <div class="form-group col-lg-6">
-          <label for="weight">{{'weight' | translate}} (kg):</label>
-          <input type="number" id="weight" name="weight" [(ngModel)]="weight" #weightField="ngModel" placeholder="{{ 'enterValue' | translate }}" />
+          <label for="weight">{{'weight' | translate}}(kgs):</label>
+          <input type="number" id="weight" name="weight" [(ngModel)]="weight" #weightField="ngModel"
+            placeholder="{{ 'enterValue' | translate }}" />
         </div>
       </div>
 
       <div class="row">
         <!-- Contract Start Date -->
         <div class="form-group col-lg-6">
-          <label for="contractStart">{{'contractStartDate' | translate}}:</label> 
+          <label for="contractStart">{{'contractStartDate' | translate}}:</label>
           <div class="d-flex align-items-center justify-content-center dob1">
-            <input class="dob" matInput id="contractStart" name="contractStart" [matDatepicker]="contractStartPicker" [formControl]="contractStart" placeholder="DD.MM.YYYY" />
+            <input class="dob" matInput id="contractStart" name="contractStart" [matDatepicker]="contractStartPicker"
+              [formControl]="contractStart" placeholder="DD.MM.YYYY" />
             <mat-datepicker-toggle matSuffix [for]="contractStartPicker"></mat-datepicker-toggle>
             <mat-datepicker #contractStartPicker></mat-datepicker>
           </div>
@@ -112,7 +117,8 @@
         <div class="form-group col-lg-6">
           <label for="contractEnd">{{'contractEndDate' | translate}}:</label>
           <div class="d-flex align-items-center justify-content-center dob1">
-            <input class="dob" matInput id="contractEnd" name="contractEnd" [matDatepicker]="contractEndPicker" [formControl]="contractEnd" placeholder="DD.MM.YYYY" />
+            <input class="dob" matInput id="contractEnd" name="contractEnd" [matDatepicker]="contractEndPicker"
+              [formControl]="contractEnd" placeholder="DD.MM.YYYY" />
             <mat-datepicker-toggle matSuffix [for]="contractEndPicker"></mat-datepicker-toggle>
             <mat-datepicker #contractEndPicker></mat-datepicker>
           </div>
@@ -121,22 +127,27 @@
 
       <div class="row">
         <!-- League Level -->
-        <div class="form-group col-lg-6">
-          <label for="leagueLevel">{{'leagueLevel' | translate}}:</label>
-          <input type="text" id="leagueLevel" name="leagueLevel" [(ngModel)]="leagueLevel" />
-        </div>
+        <!-- <div class="form-group col-lg-6 position_inputs">
+          <label for="leagueLevel">{{'leagueLevel' | translate}}: {{leagueLevel}}</label>
+          <mat-select [(ngModel)]="selectedLeagueId" class="form-select" id="leagueLevel" name="leagueLevel">
+            <mat-option *ngFor="let league of leagueLevels; trackBy: trackById" [value]="league.id">
+              {{ league.league_name }}
+            </mat-option>
+          </mat-select>
+        </div> -->
 
         <!-- Dominant Foot -->
-        <div class="form-group col-lg-6">
+        <div class="form-group col-lg-6 position_inputs">
           <label for="dominantFoot">{{'dominantFoot' | translate}}:</label>
-          <select id="dominantFoot" name="dominantFoot" [(ngModel)]="dominantFoot" #dominantFootField="ngModel"
-            required >
-            <option value="Right">{{'right' | translate}}</option>
-            <option value="Left">{{'left' | translate}}</option>
-            <option value="Both">{{'both' | translate}}</option>
-          </select>
+          <mat-select class="form-select" id="dominantFoot" name="dominantFoot" [(ngModel)]="dominantFoot"
+            #dominantFootField="ngModel" required>
+            <mat-option value="Right">{{'right' | translate}}</mat-option>
+            <mat-option value="Left">{{'left' | translate}}</mat-option>
+            <mat-option value="Both">{{'both' | translate}}</mat-option>
+          </mat-select>
           <!-- Validation message -->
-          <div *ngIf="dominantFootField.invalid && (dominantFootField.touched || myForm.submitted)" class="alert text-danger my-0 px-0">
+          <div *ngIf="dominantFootField.invalid && (dominantFootField.touched || myForm.submitted)"
+            class="alert text-danger my-0 px-0">
             {{'dominantFootRequired' | translate}}.
           </div>
         </div>

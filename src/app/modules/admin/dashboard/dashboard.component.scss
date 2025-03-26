@@ -13,10 +13,14 @@
 }
 
 .card-tabs-content {
-  margin: 20px;
+  padding: 10px 5px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   cursor: pointer;
+  &:hover {
+    background: #f0f0f02b;
+  }
 }
 
 
@@ -26,6 +30,7 @@
   height: 60px;
   object-fit: cover;
   border-radius: 50%;
+  background: #f0f0f0;
 }
 
 .dashboard_table .nav-tabs {
@@ -214,7 +219,7 @@ tr td:last-child {
     margin-left: 0 !important;
     margin-right: 5px !important;
     margin-top: 5px !important;
-    padding: 5px 10px !important;
+    // padding: 5px 10px !important;
 }
   }
 

@@ -1284,5 +1284,6 @@
   "deletePerformanceConfirm": "¿Estás seguro de que quieres eliminar los informes seleccionados?",
   "accepted": "Aceptado",
   "category": "Categoría",
-  "selectActivityFirst": "Selecciona primero una actividad."
+  "selectActivityFirst": "Selecciona primero una actividad.",
+  "selectNotificationFirst" : "Selecciona primero la(s) notificación(es)."
 }

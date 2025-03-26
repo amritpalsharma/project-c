@@ -11,6 +11,8 @@ import { MessagePopupComponent } from '../message-popup/message-popup.component'
 import { SocketService } from '../../../services/socket.service';
 import { SharedService } from '../../../services/shared.service';
 import { AdminHelperService } from '../../../services/admin-helper.service';
+import { TitleService } from '../../../title.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-users',
@@ -32,14 +34,26 @@ export class UsersComponent implements OnInit {
 
   customFilters: any = [];
   locations: any = [];
+  pageTitle: string = '';
+  selectUserFirst: string = '';
+  confirmDeleteinformation3: string = '';
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
 
-  constructor(private userService: UserService, public dialog: MatDialog, private socketService: SocketService, private sharedservice: SharedService, private adminHelper: AdminHelperService) { }
+  constructor(
+    private userService: UserService,
+    public dialog: MatDialog,
+    private socketService: SocketService,
+    private sharedservice: SharedService,
+    private adminHelper: AdminHelperService,
+    private titleService: TitleService,
+    private translateService: TranslateService
+  ) { }
 
 
   ngOnInit(): void {
+    this.getJsonTranslations();
     this.isLoading = true;
     this.fetchUsers();
     this.getLocations();
@@ -50,6 +64,7 @@ export class UsersComponent implements OnInit {
         this.lang_id = data.id;
         this.fetchUsers();
         this.getLocations();
+        this.getJsonTranslations();
       }
     });
 
@@ -252,7 +267,7 @@ export class UsersComponent implements OnInit {
 
   verifyUsers(): any {
     if (this.selectedUserIds.length == 0) {
-      this.showMessage('Select user(s) first.');
+      this.showMessage(this.selectUserFirst);
       return false;
     }
 
@@ -292,7 +307,7 @@ export class UsersComponent implements OnInit {
 
   confirmDeletion(): any {
     if (this.selectedUserIds.length == 0) {
-      this.showMessage('Select user(s) first.');
+      this.showMessage(this.selectUserFirst);
       return false;
     }
 
@@ -300,7 +315,7 @@ export class UsersComponent implements OnInit {
   }
 
   showDeleteConfirmationPopup() {
-    this.showMatDialog("", "delete-confirmation");
+    this.showMatDialog(this.confirmDeleteinformation3, "delete-confirmation");
   }
 
 
@@ -462,5 +477,14 @@ export class UsersComponent implements OnInit {
     // convertAdminDateTime
     let formattedDate = this.adminHelper.convertAdminDateTime(datetime, 'users');
     return formattedDate;
+  }
+
+  getJsonTranslations() {
+    this.translateService.get(['userManagement','selectUserFirst','confirmDeleteinformation3']).subscribe((translations) => {
+      this.pageTitle = translations['userManagement'];
+      this.selectUserFirst = translations['selectUserFirst'];
+      this.confirmDeleteinformation3 = translations['confirmDeleteinformation3'];
+      this.titleService.setTitle(this.pageTitle);
+    })
   }
 }

@@ -132,11 +132,6 @@
     display: block;
   }
 
-  @media (max-width:1440px) {
-    // .user-info h6{
-    //   font-size: 20px !important;
-    // }
-  }
   @media (max-width:1024px) and (min-width:769px) {
     .col-lg-3.responsive-edit_btn{
       width: 100% !important;
@@ -276,6 +271,7 @@
     bottom: 16px;
     left: 16px;
     background: #fcc704;
+    color: #000;
     padding: 4px 30px;
     display: flex;
     gap: 8px;
@@ -753,11 +749,7 @@
   100% { transform: rotate(360deg); }
 }
 
-@media (max-width:1440px) {
-  // .user-info h6{
-  //   font-size: 20px !important;
-  // }
-}
+
 @media (max-width:1024px) and (min-width:769px) {
   .col-lg-3.responsive-edit_btn{
     width: 100% !important;
@@ -818,18 +810,6 @@
   justify-content: flex-start !important;
 }
 
-@media (max-width: 575px) {
-  .team-logos:not(:last-child){
-    border-bottom: 1px solid #E5E5E5;
-    padding-bottom: 20px;
-  }
-  .elton-box{
-    flex-direction: column;
-  }
-  .general_details {
-    padding: 15px !important;
-  }
-}
 @media(max-width: 425px){
   .btn-outline-white {
     padding: 3px;
@@ -932,6 +912,7 @@
   top: 16px;
   left: 16px;
   background: #fcc704;
+  color: #000;
   padding: 4px 8px;
   display: flex;
   gap: 8px;
@@ -1460,9 +1441,10 @@ width:  100% !important;
     height: unset;
     min-width: unset;
     margin-left: 15px;
-    background: transparent;
+    background: transparent !important;
     text-align: left !important;
     margin-top: -70px;
+    margin-bottom: 15px;
 }
 .user-media img {
     border: 1px solid #E7E7E7;
@@ -1487,7 +1469,7 @@ width:  100% !important;
     display: none !important;
 }
 .user-info.responsive-name {
-  background: #f0f0f0;
+  background: transparent !important;
   margin-left: -1px;
   width: calc(100% + 2px);
   padding-left: 1px !important;
@@ -1507,6 +1489,16 @@ width:  100% !important;
 
 
 @media (max-width: 575px) {
+  .team-logos:not(:last-child){
+    border-bottom: 1px solid #E5E5E5;
+    padding-bottom: 20px;
+  }
+  .elton-box{
+    flex-direction: column;
+  }
+  .general_details {
+    padding: 15px !important;
+  }
 .title_2 {
     font-size: 16px;
 }
@@ -1550,7 +1542,6 @@ width:  100% !important;
   font-size: 12px;
   margin-bottom: 8px;
 }
-
 }
 
 @media (min-width: 2000px) {

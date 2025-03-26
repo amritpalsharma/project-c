@@ -3,7 +3,10 @@ import { Component, OnInit, inject } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { ThemeService } from '../../../services/theme.service';
 import { UserService } from '../../../services/user.service';
-import {  MatDialog } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
+import { TranslateService } from '@ngx-translate/core';
+import { TitleService } from '../../../title.service';
+import { WebPages } from '../../../services/webpages.service';
 
 import {
   MatDialogRef,
@@ -18,31 +21,36 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class SettingComponent implements OnInit {
   readonly dialog = inject(MatDialog);
-  tab:string = "activity";
+  tab: string = "activity";
   constructor(
     private themeService: ThemeService,
     private authService: AuthService,
     private userService: UserService,
     private router: Router,
     private route: ActivatedRoute,
-     ) {}
+    private translateService: TranslateService,
+    private titleService: TitleService,
+    public webPages: WebPages,
+  ) { }
 
-    userData: any;
-    firstName: string = '';
-    lastName: string = '';
-    email: string = '';
-    contactNumber: string = '';
-    address: string = '';
-    city: string = '';
-    state: string = '';
-    zipcode: string = '';
-    password: string = '';
-    image: string = '';
+  userData: any;
+  firstName: string = '';
+  lastName: string = '';
+  email: string = '';
+  contactNumber: string = '';
+  address: string = '';
+  city: string = '';
+  state: string = '';
+  zipcode: string = '';
+  password: string = '';
+  image: string = '';
 
   profileData: any;
   error: string | null = null;
+  pageTitle: string = '';
 
   ngOnInit(): void {
+    this.getJsonTranslations();
     const userDataString = localStorage.getItem('userData');
     console.log(userDataString, "check the userdata")
     if (userDataString) {
@@ -67,12 +75,23 @@ export class SettingComponent implements OnInit {
         this.tab = 'notifications'; // Switch to Activity Log tab
       }
     });
-    // this.fetchProfileData();
+    this.webPages.languageId$.subscribe((data) => { 
+      this.getJsonTranslations();
+    })
+    // this.fetchProfileData(); 
   }
 
-  
-  switchTab(tab:any){
+
+  switchTab(tab: any) {
     this.tab = tab;
+  }
+
+  getJsonTranslations() {
+    this.translateService.get(['settings']).subscribe((translations) => {
+      this.pageTitle = translations['settings'];
+      this.titleService.setTitle(this.pageTitle);
+      console.log('Title fetch Function Fired');
+    })
   }
 
 }

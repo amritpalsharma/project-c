@@ -19,7 +19,9 @@
     </ul>
 
     <div class="dashboard-title">
-      <span class="page-heading">{{ 'dashboard' | translate }}</span>
+      <!-- <span class="page-heading">{{ 'dashboard' | translate }}</span> -->
+      <span class="page-heading" *ngIf="pageTitle != ''">{{pageTitle}}</span>
+      <span class="page-heading" *ngIf="!pageTitle"> {{ 'dashboard' | translate }}</span>
     </div>
 
     <label for="search-text" class="input-group search-area d-flex align-items-center">
@@ -115,15 +117,15 @@
             <span *ngIf="unseenCount>0 && !notificationSeen"
               class="badge light text-white bg-danger rounded-circle">{{unseenCount}}</span>
           </a>
-          <div class="dropdown-menu py-0 notification-box" id="notification-box-id"
-            (scroll)="onScroll()">
+          <div class="dropdown-menu py-0 notification-box" id="notification-box-id" (scroll)="onScroll()">
 
             <div *ngIf="isScrolledBeyond && clickedNewNotification" class="go-to-top-btn my-animate"
               style="position: sticky; top: 0; z-index: 10;">
               <button class="btn btn-primary" (click)="scrollToTop()" style="width: 100%;">New Notification</button>
             </div>
 
-            <div (click)="onNotificationClick($event)" class="d-flex align-items-center justify-content-between pt-3 pb-3 px-4">
+            <div (click)="onNotificationClick($event)"
+              class="d-flex align-items-center justify-content-between pt-3 pb-3 px-4">
               <h6>{{ 'notification' | translate }}</h6>
               <!-- <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16px"
                 height="16px" viewBox="0 0 24 24" version="1.1" class="svg-main-icon">
@@ -192,8 +194,7 @@
                   <span class="loader"></span>
                 </div>
               </div>
-              <div class="load_more"
-                *ngIf=" !something && notifications.length>0">
+              <div class="load_more" *ngIf=" !something && notifications.length>0">
                 <!-- *ngIf="currentIndex < allNotifications.length && !something && notifications.length>0"> -->
                 <!-- <span (click)="loadMoreNotifications()" style="cursor: pointer;">{{ 'viewAllNotifications' | translate
                   }}</span> -->
@@ -244,7 +245,7 @@
             </a>
           </div>
         </li>
-        <li class="nav-item dropdown  profile">
+        <li class="nav-item dropdown profile">
           <a class="nav-link" role="button" data-bs-toggle="dropdown">
             <img *ngIf="profileImgUrl" [src]="profileImgUrl" width="56" alt="">
           </a>
@@ -292,6 +293,11 @@
               <span class="ms-1 fs-14"> {{ 'signOut' | translate }} </span>
             </a>
           </div>
+        </li>
+        <li class="nav-item mobile_search">
+          <a class="nav-link" role="button">
+            <img src="../../../../assets/images/mobile-search.svg" width="56" alt="">
+          </a>
         </li>
       </ul>
     </div>

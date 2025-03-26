@@ -28,7 +28,7 @@
   "nationality": "Nationaliltät",
   "dateOfBirth": "Geburtstag",
   "placeOfBirth": "Geburtsort",
-  "height": "Größe",
+  "height": "Grösse",
   "weight": "Gewicht",
   "contract": "Vertrag",
   "league": "Liga",
@@ -945,7 +945,7 @@
   },
   "tooltip": {
     "totalUsers": "Gesamte Benutzer: {{count}}",
-    "totalSales": "Gesamtverkäufe: {{count}}",
+    "totalSales": "Gesamtumsatz: {{count}}",
     "totalSubscriptions": "Gesamtabonnements: {{count}}"
   },
   "more_news": "Weitere News",
@@ -1323,7 +1323,6 @@
   "enterYourCouponCode": "Geben Sie Ihren Gutscheincode ein",
   "enterYourCompanyName": "Geben Sie Ihren Firmennamen ein",
   "deletePerformanceConfirm": "Bist du sicher, dass du die ausgewählten Berichte löschen möchtest?",
-
   "typeRequired": "Typ ist erforderlich",
   "redirectrequired": "Umleitungs-URL ist erforderlich",
   "pageRequired": "Seite ist erforderlich",
@@ -1331,7 +1330,6 @@
   "endDateRequired": "Geben Sie das Enddatum ein oder markieren Sie das Kästchen",
   "maxViewsRequired": "Maximale Ansichten sind erforderlich",
   "maxClicksRequired": "Maximale Klicks sind erforderlich",
-
   "titleRequired": "Titel ist erforderlich",
   "contentRequired": "Inhalt ist erforderlich",
   "slugRequired": "Schnecke ist erforderlich",
@@ -1340,6 +1338,10 @@
   "descriptionRequired": "Meta-Beschreibung ist erforderlich",
   "subjectRequired": "Thema ist erforderlich",
   "accepted": "Akzeptiert",
+  "selectUserFirst": "Wähle zuerst den Benutzer aus.",
+  "selectBlogFirst": "Blog zuerst auswählen.",
+  "selectCouponFirst": "Coupon zuerst auswählen.",
   "category": "Kategorie",
-  "selectActivityFirst": "Wähle zuerst eine Aktivität aus."
+  "selectActivityFirst": "Wähle zuerst eine Aktivität aus.",
+  "selectNotificationFirst" : "Wähle zuerst die Benachrichtigung(en) aus."
 }

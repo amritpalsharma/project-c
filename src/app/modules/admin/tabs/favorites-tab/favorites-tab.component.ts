@@ -4,46 +4,64 @@ import { MatDialog } from '@angular/material/dialog';
 import { UserService } from '../../../../services/user.service';
 import { MessagePopupComponent } from '../../message-popup/message-popup.component';
 import { MatPaginator } from '@angular/material/paginator';
+import { SharedService } from '../../../../services/shared.service';
+import { TranslateService } from '@ngx-translate/core';
+
+
 @Component({
   selector: 'app-favorites-tab',
   templateUrl: './favorites-tab.component.html',
   styleUrl: './favorites-tab.component.scss'
 })
 export class FavoritesTabComponent {
-  isLoading:boolean = false;
+  isLoading: boolean = false;
   userId: any = '';
-  displayedColumns: string[] = ['#','Name', 'User Type', 'Location','Joined Date - Time','View Profile','Remove'];
+  displayedColumns: string[] = ['#', 'Name', 'User Type', 'Location', 'Joined Date - Time', 'View Profile', 'Remove'];
   userFavorites: any = [];
   totalFavorites: any = '0';
   allSelected: boolean = false;
   idsToDelete: any = [];
+  selectFavoriteFirst: string = '';
   // imageBaseUrl: any = "";
   selectedIds: number[] = [];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  keyword:any = "";
-  constructor(private route: ActivatedRoute, private userService: UserService, private router: Router, public dialog: MatDialog) { }
-  
+  keyword: any = "";
+  constructor(
+    private route: ActivatedRoute,
+    private userService: UserService,
+    private router: Router,
+    public dialog: MatDialog,
+    private translateService: TranslateService,
+    private sharedservice: SharedService
+  ) { }
+
   ngOnInit(): void {
-    this.route.params.subscribe((params:any) => {
+    this.getTranslationMsg();
+    this.sharedservice.data$.subscribe((data: any) => {
+      if (data.action == 'lang_updated') {
+        this.getTranslationMsg();
+      }
+    });
+    this.route.params.subscribe((params: any) => {
       console.log(params.id)
       this.userId = params.id;
       this.getUserFavorites();
     });
   }
 
-  getUserFavorites(){
+  getUserFavorites() {
 
     this.isLoading = true;
     try {
-      const page = this.paginator ? this.paginator.pageIndex*10 : 0;
+      const page = this.paginator ? this.paginator.pageIndex * 10 : 0;
       const pageSize = this.paginator ? this.paginator.pageSize : 10;
-    
-      let params:any = {};
+
+      let params: any = {};
       params.offset = page;
       params.search = this.keyword;
-      params.limit  = pageSize;
+      params.limit = pageSize;
 
-      this.userService.getFavoritesData(this.userId, params).subscribe((response)=>{
+      this.userService.getFavoritesData(this.userId, params).subscribe((response) => {
         console.log(response, 'get-user-favorite');
         if (response && response.status && response.data) {
           this.userFavorites = response.data[0].favorites;
@@ -65,15 +83,15 @@ export class FavoritesTabComponent {
     this.getUserFavorites();
   }
 
-  search(filterValue:any) {
-   
+  search(filterValue: any) {
+
     this.keyword = filterValue.target?.value.trim().toLowerCase();
-    if(this.keyword.length >= 3){
+    if (this.keyword.length >= 3) {
       this.getUserFavorites();
-     } else if(this.keyword.length == 0){
+    } else if (this.keyword.length == 0) {
       this.getUserFavorites();
-     }
-   
+    }
+
   }
 
   onCheckboxChange(user: any) {
@@ -85,8 +103,8 @@ export class FavoritesTabComponent {
     }
   }
 
-  navigate(slug:string, id:Number): void {
-    let pageRoute = 'admin/'+slug.toLowerCase();
+  navigate(slug: string, id: Number): void {
+    let pageRoute = 'admin/' + slug.toLowerCase();
     this.router.navigate([pageRoute, id]);
   }
 
@@ -95,31 +113,31 @@ export class FavoritesTabComponent {
     this.allSelected = !this.allSelected;
     console.log('a', this.allSelected)
     if (this.allSelected) {
-      this.selectedIds = this.userFavorites.map((fav:any) => fav.id);
+      this.selectedIds = this.userFavorites.map((fav: any) => fav.id);
     } else {
       this.selectedIds = [];
     }
     console.log('Selected favorite IDs:', this.selectedIds);
   }
 
-  confirmDeletion():any {
-    if(this.selectedIds.length == 0){
-      this.showMatDialog('Select favorite user(s) first.', 'display');
+  confirmDeletion(): any {
+    if (this.selectedIds.length == 0) {
+      this.showMatDialog(this.selectFavoriteFirst, 'display');
       return false;
     }
     this.idsToDelete = this.selectedIds;
     this.showDeleteConfirmationPopup();
   }
 
-  showDeleteConfirmationPopup(){
+  showDeleteConfirmationPopup() {
     this.showMatDialog("", "delete-favorite-confirmation");
   }
 
-  showMatDialog(message:string, action:string){
-    const messageDialog = this.dialog.open(MessagePopupComponent,{
+  showMatDialog(message: string, action: string) {
+    const messageDialog = this.dialog.open(MessagePopupComponent, {
       width: '500px',
       position: {
-        top:'150px'
+        top: '150px'
       },
       data: {
         message: message,
@@ -129,39 +147,50 @@ export class FavoritesTabComponent {
 
     messageDialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
-        if(result.action == "delete-confirmed"){
+        if (result.action == "delete-confirmed") {
           this.deleteFavorites();
         }
-      //  console.log('Dialog result:', result);
+        //  console.log('Dialog result:', result);
       }
     });
   }
 
-  deleteFavorites():any {
-
-    let params = {id:this.idsToDelete};
+  deleteFavorites(): any {
+    let lang_id = localStorage.getItem('lang_id');
+    let params = { id: this.idsToDelete, lang: lang_id };
 
     this.userService.removeFavorites(params).subscribe(
       response => {
-        if(response.status){
+        if (response.status) {
           this.getUserFavorites();
           this.selectedIds = [];
           this.allSelected = false;
           console.log('User deleted successfully:', response);
-          this.showMatDialog('Favorite(s) removed successfully!.', 'display');
-        }else{
+          if (response.message != '' && response.message != undefined) {
+            this.showMatDialog(response.message, 'display');
+          } else {
+            this.showMatDialog('Favorite(s) removed successfully!.', 'display');
+          }
+        } else {
           this.showMatDialog('Error in removing favorite. Please try again.', 'display');
         }
       },
       error => {
         console.error('Error deleting user:', error);
-        
+
       }
     );
   }
 
-  confirmSingleDeletion(favoriteId:any){
+  confirmSingleDeletion(favoriteId: any) {
     this.idsToDelete = [favoriteId];
     this.showMatDialog("", "delete-favorite-confirmation");
+  }
+
+  getTranslationMsg() {
+    // selectFavoriteFirst
+    this.translateService.get(['selectFavoriteFirst']).subscribe((translations) => {
+      this.selectFavoriteFirst = translations['selectFavoriteFirst'];
+    })
   }
 }

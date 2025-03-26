@@ -32,6 +32,42 @@
 
     <div class="news-slider py_0">
 
+      <div class="container">
+        <div class="image-slider">
+          <div class="image-wrapper" 
+               (touchstart)="onTouchStart($event)" 
+               (touchmove)="onTouchMove($event)"
+               (touchend)="onTouchEnd($event)">
+            <!-- Dynamic Image -->
+             <!-- <h1>{{images | json}}</h1> -->
+            <img [src]="base_url + currentImage" [alt]="images[currentImageIndex].title" />
+            <div class="image-text">
+              <!-- Dynamic Content for Each Slide -->
+              <p class="p-text">{{images[currentImageIndex].date}}</p>
+              <h3 class="text-heading" [innerHTML]="images[currentImageIndex].title"></h3>
+              <button class="learn-more" [routerLink]="getRouterLink(images[currentImageIndex].slug)">
+                {{'learnMore' | translate}}
+              </button>
+            </div>
+          </div>
+
+          <!-- Thumbnails for Navigation -->
+          <div class="container">
+            <div class="thumbnail-scroll">
+              <div class="slider-image">
+                <img 
+                  *ngFor="let image of images; let i = index" 
+                  [src]="news_img_path + image.featured_image" 
+                  [alt]="image.title"
+                  (click)="changeImage(image.featured_image, i)" 
+                  [class.active]="i === currentImageIndex"
+                  class="thumbnail" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="advertisment">
         <div class="container">
           <div *ngIf="checkActive('leaderboard') || checkActive('banner')" class="advertisment advirtismnt_2">
@@ -61,7 +97,6 @@
         <div class="container">
           <h4>{{news_title}}</h4>
           <div class="row">
-            {{latestNewsData | json}}
             <div *ngFor="let newsData of latestNewsData; let i = index;" class="col-lg-4 col-sm-6 col-12 news_cols">
               <!-- {{news_img_path + newsData.featured_image}} -->
               <!-- {{newsData | json}} -->
@@ -112,3 +147,7 @@
 
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>

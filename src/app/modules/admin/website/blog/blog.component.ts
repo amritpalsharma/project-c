@@ -113,7 +113,14 @@ export class BlogComponent {
 
   publishBlogs(): any {
     if (this.selectedIds.length == 0) {
-      this.showMatDialog('Select Blog(s) first.', 'display');
+      let lang_id = localStorage.getItem('lang_id');
+      let msg = '';
+      if (lang_id == '2') {
+        msg = 'Blog zuerst auswählen.';
+      } else {
+        msg = 'Select Blog first.';
+      }
+      this.showMatDialog(msg, 'display');
       return false;
     }
 
@@ -146,7 +153,15 @@ export class BlogComponent {
 
   draftBlogs(): any {
     if (this.selectedIds.length == 0) {
-      this.showMatDialog('Select Blog(s) first.', 'display');
+      let lang_id = localStorage.getItem('lang_id');
+      let msg = '';
+      if (lang_id == '2') {
+        msg = 'Blog zuerst auswählen.';
+      } else {
+        msg = 'Select Blog first.';
+      }
+      this.showMatDialog(msg, 'display');
+      // this.showMatDialog('Select Blog(s) first.', 'display');
       return false;
     }
 

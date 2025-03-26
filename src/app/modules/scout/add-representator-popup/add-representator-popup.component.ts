@@ -155,14 +155,18 @@ export class AddRepresentatorPopupComponent {
     // formdata.append("user[last_name]", this.lastName);
     // formdata.append("user[designation]", this.designation);
 
+    let langId: any = localStorage.getItem('lang_id');
+
     formdata.append("first_name", this.firstName);
     formdata.append("last_name", this.lastName);
     formdata.append("designation", this.designation);
+    formdata.append("lang", langId);
 
     this.scoutService.updateRepresentator(this.idToUpdate, formdata).subscribe((response)=>{
       if (response && response.status) {
         this.dialogRef.close({
-          action: 'updated'
+          action: 'updated',
+          message: response.message
         });
       } else {
         console.error('Invalid API response structure:', response);

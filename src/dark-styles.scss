@@ -815,10 +815,15 @@ input:checked+.slider:before {
   border-radius: 20px;
   margin-left: 15px;
   padding: 5px 15px;
+  padding-right: 30px;
   border: 0.7px solid #e5e5e5;
-  background-color: #0C3453;
   color: #ffffff;
-  border-color: transparent;
+  // border-color: transparent;
+  background: #0C3453 url(./assets/images/select-arrow-white.svg) no-repeat right 8px center;
+  background-size: 15px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 .table_title span {
@@ -882,7 +887,7 @@ input:checked+.slider:before {
     padding: 15px 17px;
     border: 1px solid #0C3453;
     white-space: nowrap;
-    background-color: #072944;
+    background-color: #0C3453;
 
     .differ-nav-item {
       border-bottom: 2px solid #0C3453;
@@ -901,7 +906,7 @@ input:checked+.slider:before {
         color: #ffffff !important;
         font-weight: 700;
         text-align: center;
-        background-color: #072944 !important;
+        background-color: #0c3453 !important;
 
         &.active {
           background: #072944 !important;
@@ -1333,10 +1338,6 @@ input:checked+.slider:before {
 
 // ------------------------- respone------------------
 @media (max-width: 1200px) {
-  .dashboard-title {
-    margin-right: 3%;
-  }
-
   .switch {
     width: 50px;
     height: 25px;
@@ -1559,18 +1560,13 @@ input:checked+.slider:before {
     display: flex;
   }
 
-  .navbar-search {
+  .navbar-search, .dashboard-title {
     display: none;
   }
 
   .dashboard-title h6 {
     font-size: 14px;
   }
-
-  .dashboard-title {
-    margin: 0px;
-  }
-
   .page-header {
     width: 100% !important;
     padding: 0px 10px !important;
@@ -1737,7 +1733,8 @@ input:checked+.slider:before {
 }
 
 .dark-theme .template-name-inputField {
-  background-color: #0C3453;
+  // background-color: #0C3453;
+  background-color: #072944;
   color: white;
 }
 
@@ -1781,12 +1778,12 @@ input:checked+.slider:before {
 // new changes css Start
 
 .dark-theme .right-sidebar .card .card-header a {
-  color: #4379EE !important;
+  color: #fff !important;
 
 }
 
 .dark-theme .card-tabs .nav-tabs .nav-item .nav-link.active {
-  background-color: #0C3453 !important;
+  background-color: #072944 !important;
   color: #ffffff !important;
 }
 
@@ -1796,9 +1793,10 @@ input:checked+.slider:before {
 
 .dark-theme .card-tabs .nav-tabs .nav-item .nav-link {
   color: #4F7A9D !important;
-  background-color: #072944 !important;
+  background-color: #0c3453 !important;
 
 }
+
 
 .dark-theme .view-all a {
   color: #ffffff;
@@ -1863,17 +1861,6 @@ input:checked+.slider:before {
   color: #ffffff !important;
 }
 
-// .dark-theme .card-tabs .nav-tabs{
-//  background-color: #0C3453;
-// }
-
-// .dark-theme .settings-tabs .nav-tabs{
-//   border-top-right-radius: 10px;
-//   border-top-left-radius: 10px;
-//   background-color: #072944 !important;
-
-// }
-
 .dark-theme .settings-tabs .nav-tabs .nav-item .nav-link {
   background-color: #072944 !important;
 }
@@ -1903,20 +1890,13 @@ input:checked+.slider:before {
 
 .dark-theme .form-control {
   background: #072944;
-  border-color: #ffffff !important;
-  // height: 44px;
+  border-color: #1F4360 !important;
   border-radius: 5px;
   color: #ffffff !important;
-  // padding: 13px 19px;
 }
-
-.dark-theme .form-control {
-  background: #072944;
-  border-color: #ffffff !important;
-  // height: 20px;
-  border-radius: 5px;
-  color: #ffffff !important;
-  // padding: 13px 19px;
+.dark-theme input.form-control:-webkit-autofill,
+.dark-theme input.form-control:-webkit-autofill:focus {
+    background: #072944 !important;
 }
 
 .dark-theme .btn-delete {
@@ -2817,6 +2797,11 @@ input:checked+.slider:before {
   background: #bde34f !important;
 }
 
+.dark-theme .password_field_wrap {
+  .password-toggle {
+      background: #072944 !important;
+  }
+}
 
 @media (min-width: 992px) {
 .dark-theme .sidebar_menu a {
@@ -2853,4 +2838,33 @@ input:checked+.slider:before {
 }
 .dark-theme .dashboard_table .nav-tabs .nav-link.active {
   background: linear-gradient(to bottom, #2E4760, #2a3744) !important;
+}
+
+.dark-theme {
+  .card.border_wrap {
+  background: #072944 !important;
+  border-color: #1F4360 !important;
+}
+.parent-popup.mobile_popup_responsive h4.text-center {
+  color: #fff !important;
+}  
+.NgxEditor__Wrapper {
+  background: #0C3453 !important;
+  .NgxEditor__Content {
+    background: #0c3453 !important;
+    color: white;
+  }
+}
+
+mat-datepicker-toggle {
+  button {
+    background-image: url(./assets/images/calendar-icon-white.svg) !important;
+  }
+}
+
+.mobile_search {
+  .nav-link img {
+    filter: brightness(0) invert(1)
+}
+}
 }

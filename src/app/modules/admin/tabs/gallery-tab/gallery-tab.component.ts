@@ -11,43 +11,43 @@ import { environment } from '../../../../../environments/environment';
   styleUrl: './gallery-tab.component.scss'
 })
 export class GalleryTabComponent {
-  
+
   userId: any = '';
   userImages: any = [];
   userVideos: any = [];
   imageBaseUrl: any = `${environment.url}uploads/`;
   selectedFile: any = '';
-  isdefaultCoverImage:string='';
+  isdefaultCoverImage: string = '';
   // defaultCoverImage:any = "./media/palyers.png";
-  defaultCoverImage:any = "./assets/images/no_cover_img.png";
-  openedMenuId:any = '';
+  defaultCoverImage: any = "./assets/images/no_cover_img.png";
+  openedMenuId: any = '';
   @Input() coverImage: string = '';  // Define an input property
   @Output() dataEmitter = new EventEmitter<string>();
   constructor(private route: ActivatedRoute, private userService: UserService, public dialog: MatDialog) { }
-  
+
   ngOnInit(): void {
-    this.route.params.subscribe((params:any) => {
+    this.route.params.subscribe((params: any) => {
       // console.log(params.id)
       this.userId = params.id;
       this.getUserGallery(this.userId)
     });
-    
-    if(this.coverImage == ""){
+
+    if (this.coverImage == "") {
       this.isdefaultCoverImage = 'no_cover_img_css1';
       // this.isShowDefaultImg = '';
-      this.coverImage = this.defaultCoverImage; 
+      this.coverImage = this.defaultCoverImage;
       // Client ask remove deafult image for admin in ticket #196
       // https://farooqmalik.atlassian.net/jira/software/projects/KAN/boards/1?selectedIssue=KAN-196&text=Talent
     }
   }
 
-  getUserGallery(userId:any){
+  getUserGallery(userId: any) {
     console.log(userId)
     try {
-      this.userService.getGalleryData(userId).subscribe((response)=>{
+      this.userService.getGalleryData(userId).subscribe((response) => {
         if (response && response.status && response.data) {
-          this.userImages = response.data.images; 
-          this.userVideos = response.data.videos; 
+          this.userImages = response.data.images;
+          this.userVideos = response.data.videos;
           this.imageBaseUrl = response.data.file_path;
           // this.isLoading = false;
         } else {
@@ -68,13 +68,15 @@ export class GalleryTabComponent {
 
       console.log(this.selectedFile)
       try {
+        let lang_id = localStorage.getItem('lang_id');
 
         const formdata = new FormData();
         formdata.append("cover_image", this.selectedFile);
+        formdata.append("lang", lang_id + '');
 
-        this.userService.uploadCoverImage(this.userId, formdata).subscribe((response)=>{
+        this.userService.uploadCoverImage(this.userId, formdata).subscribe((response) => {
           if (response && response.status) {
-            this.coverImage = environment.url+"uploads/"+response.data.uploaded_fileinfo;
+            this.coverImage = environment.url + "uploads/" + response.data.uploaded_fileinfo;
             this.dataEmitter.emit(this.coverImage); // Emitting the data
             // this.isLoading = false;
           } else {
@@ -84,14 +86,14 @@ export class GalleryTabComponent {
         });
       } catch (error) {
         // this.isLoading = false;
-        console.error('Error fetching users:', error); 
+        console.error('Error fetching users:', error);
       }
     }
   }
 
-  deleteCoverImage(){
+  deleteCoverImage() {
     try {
-      this.userService.deleteCoverImage(this.userId).subscribe((response)=>{
+      this.userService.deleteCoverImage(this.userId).subscribe((response) => {
         if (response && response.status) {
           setTimeout(() => {
             this.coverImage = './media/palyers.png';
@@ -105,16 +107,16 @@ export class GalleryTabComponent {
       });
     } catch (error) {
       // this.isLoading = false;
-      console.error('Error fetching users:', error); 
+      console.error('Error fetching users:', error);
     }
   }
 
-  addPhotosPopup(){
-    const messageDialog = this.dialog.open(UploadPopupComponent,{
+  addPhotosPopup() {
+    const messageDialog = this.dialog.open(UploadPopupComponent, {
       width: '900px',
       // height: '300px',
       position: {
-        top:'150px'
+        top: '150px'
       },
       data: {
         userId: this.userId,
@@ -124,21 +126,21 @@ export class GalleryTabComponent {
 
     messageDialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
-        if(result.files.length){
+        if (result.files.length) {
           console.log(result.files)
-         this.userImages = [...result.files, ...this.userImages];
-         console.log(this.userImages)
+          this.userImages = [...result.files, ...this.userImages];
+          console.log(this.userImages)
         }
       }
     });
   }
 
-  addVideosPopup(){
-    const messageDialog = this.dialog.open(UploadPopupComponent,{
+  addVideosPopup() {
+    const messageDialog = this.dialog.open(UploadPopupComponent, {
       width: '900px',
       // height: '300px',
       position: {
-        top:'150px'
+        top: '150px'
       },
       data: {
         userId: this.userId,
@@ -148,26 +150,26 @@ export class GalleryTabComponent {
 
     messageDialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
-        if(result.files.length){
+        if (result.files.length) {
           console.log(result.files)
-         this.userVideos = [...result.files, ...this.userVideos];
-         console.log(this.userVideos)
+          this.userVideos = [...result.files, ...this.userVideos];
+          console.log(this.userVideos)
         }
       }
     });
   }
 
-  openMenu(id:any){
+  openMenu(id: any) {
     this.openedMenuId = id;
   }
 
-  deleteImage(id:any){
-    
+  deleteImage(id: any) {
+
     try {
-      let params = {id: [id]};
-      this.userService.deleteGalleryImage(params).subscribe((response)=>{
+      let params = { id: [id] };
+      this.userService.deleteGalleryImage(params).subscribe((response) => {
         if (response && response.status) {
-          let index = this.userImages.findIndex((x:any) => x.id == id)
+          let index = this.userImages.findIndex((x: any) => x.id == id)
           this.userImages.splice(index, 1);
           // this.isLoading = false;
         } else {
@@ -177,43 +179,43 @@ export class GalleryTabComponent {
       });
     } catch (error) {
       // this.isLoading = false;
-      console.error('Error fetching users:', error); 
+      console.error('Error fetching users:', error);
     }
   }
 
-  downloadImage(baseUrl:any, image:any){
+  downloadImage(baseUrl: any, image: any) {
 
-    fetch(baseUrl+image)
-     .then(response => {
-       if (!response.ok) {
-         throw new Error('Network response was not ok');
-       }
-       return response.blob(); // Convert the response to a Blob object
-     })
-     .then(blob => {
-      this.openedMenuId = '';
-       const url = window.URL.createObjectURL(blob);
-       const anchor = document.createElement('a');
-       anchor.href = url;
-       anchor.download = image; // Set the filename for download
-       document.body.appendChild(anchor);
-       anchor.click();
-       window.URL.revokeObjectURL(url);
-       document.body.removeChild(anchor);
-     })
-     .catch(error => {
-       console.error('There was an error downloading the file:', error);
-     });
+    fetch(baseUrl + image)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.blob(); // Convert the response to a Blob object
+      })
+      .then(blob => {
+        this.openedMenuId = '';
+        const url = window.URL.createObjectURL(blob);
+        const anchor = document.createElement('a');
+        anchor.href = url;
+        anchor.download = image; // Set the filename for download
+        document.body.appendChild(anchor);
+        anchor.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(anchor);
+      })
+      .catch(error => {
+        console.error('There was an error downloading the file:', error);
+      });
   }
 
-  
-  deleteVideo(id:any){
-    
+
+  deleteVideo(id: any) {
+
     try {
-      let params = {id: [id]};
-      this.userService.deleteGalleryImage(params).subscribe((response)=>{
+      let params = { id: [id] };
+      this.userService.deleteGalleryImage(params).subscribe((response) => {
         if (response && response.status) {
-          let index = this.userVideos.findIndex((x:any) => x.id == id)
+          let index = this.userVideos.findIndex((x: any) => x.id == id)
           this.userVideos.splice(index, 1);
           // this.isLoading = false;
         } else {
@@ -223,37 +225,37 @@ export class GalleryTabComponent {
       });
     } catch (error) {
       // this.isLoading = false;
-      console.error('Error fetching users:', error); 
+      console.error('Error fetching users:', error);
     }
   }
 
-  downloadVideo(baseUrl:any, video:any){
+  downloadVideo(baseUrl: any, video: any) {
 
-    fetch(baseUrl+video)
-     .then(response => {
-       if (!response.ok) {
-         throw new Error('Network response was not ok');
-       }
-       return response.blob(); // Convert the response to a Blob object
-     })
-     .then(blob => {
-      this.openedMenuId = '';
-       const url = window.URL.createObjectURL(blob);
-       const anchor = document.createElement('a');
-       anchor.href = url;
-       anchor.download = video; // Set the filename for download
-       document.body.appendChild(anchor);
-       anchor.click();
-       window.URL.revokeObjectURL(url);
-       document.body.removeChild(anchor);
-     })
-     .catch(error => {
-       console.error('There was an error downloading the file:', error);
-     });
+    fetch(baseUrl + video)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.blob(); // Convert the response to a Blob object
+      })
+      .then(blob => {
+        this.openedMenuId = '';
+        const url = window.URL.createObjectURL(blob);
+        const anchor = document.createElement('a');
+        anchor.href = url;
+        anchor.download = video; // Set the filename for download
+        document.body.appendChild(anchor);
+        anchor.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(anchor);
+      })
+      .catch(error => {
+        console.error('There was an error downloading the file:', error);
+      });
   }
 
-  
-   
- 
+
+
+
 
 }

@@ -143,7 +143,8 @@
             </svg>
 
           </th>
-          <td mat-cell *matCellDef="let element"> {{ element.user_created_at | date:'MM.dd.yyyy - hh.mm a' }}</td>
+          <td mat-cell *matCellDef="let element"> {{ element.user_created_at | date:'MM.dd.yyyy' }}</td>
+          <!-- <td mat-cell *matCellDef="let element"> {{ element.user_created_at | date:'MM.dd.yyyy - hh.mm a' }}</td> -->
         </ng-container>
         <ng-container matColumnDef="View Profile">
 

@@ -104,10 +104,11 @@ export class ViewProfileComponent implements OnInit {
         if (response && response.status && response.data && response.data.user_data) {
           this.user = response.data.user_data;
           this.isPremium = this.loggedInUser?.active_subscriptions?.premium.length > 0 ? true : false;
-          this.isPremium = true;
+          // this.isPremium = true;
           this.userNationalities = JSON.parse(this.user.user_nationalities);
           this.profileImage = this.user.meta.profile_image_path || this.profileImage;
           this.coverImage = this.user.meta.cover_image_path || this.coverImage;
+          console.info(this.user);
           // if(this.user?.meta?.place_of_birth){
           //   this.getCountryFromPlaceOfBirth(this.user?.meta?.place_of_birth);
           // }
@@ -186,6 +187,7 @@ export class ViewProfileComponent implements OnInit {
   }
 
   calculateAge(dob: string | Date): number {
+    console.info('BirthDate is ',dob);
     const birthDate = new Date(dob);
     const today = new Date();
 
@@ -413,7 +415,7 @@ export class ViewProfileComponent implements OnInit {
       this.router.navigate([`/${role}/chat`], {
         queryParams: { open_chat: 'true' }
       });
-      
+
       // setInterval(() => {
       //   // window.location.href = '/' + role + '/chat';
       // }, 500);

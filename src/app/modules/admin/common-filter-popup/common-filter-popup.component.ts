@@ -11,25 +11,25 @@ import {
 export class CommonFilterPopupComponent {
   readonly dialogRef = inject(MatDialogRef<CommonFilterPopupComponent>);
   userFilters: any = [];
-  condition:any = 1;
-  
-  
-  page:any = "";
+  condition: any = 1;
 
-  roles:any = [];
-  languages:any = [];
-  frequencies:any = [];
+
+  page: any = "";
+
+  roles: any = [];
+  languages: any = [];
+  frequencies: any = [];
   locations: any = [];
-  pages:any = [];
-  types:any = [];
+  pages: any = [];
+  types: any = [];
 
-  selectedRoleId:any = "";
-  selectedLanguageId:any = "";
-  selectedLanguage:any = "";
-  selectedFrequency:any = "";
+  selectedRoleId: any = "";
+  selectedLanguageId: any = "";
+  selectedLanguage: any = "";
+  selectedFrequency: any = "";
   selectedLocation: any = "";
-  selectedPage:any = "";
-  selectedtype:any = "";
+  selectedPage: any = "";
+  selectedtype: any = "";
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
 
@@ -37,57 +37,67 @@ export class CommonFilterPopupComponent {
     this.userFilters = data.appliedfilters;
     console.log(data);
     console.log(this.userFilters);
-    if(this.page == "marketing"){
+    if (this.page == "marketing") {
       this.roles = data.roles;
+
       this.languages = data.languages;
       this.frequencies = data.frequency;
       this.locations = data.locations;
 
-      if(this.userFilters['role']){
+      if (this.userFilters['role']) {
         this.selectedRoleId = this.userFilters['role'];
       }
-      if(this.userFilters['language']){
+      if (this.userFilters['language']) {
         this.selectedLanguageId = this.userFilters['language'];
       }
-      if(this.userFilters['frequency']){
+      if (this.userFilters['frequency']) {
         this.selectedFrequency = this.userFilters['frequency'];
       }
-      if(this.userFilters['location']){
+      if (this.userFilters['location']) {
         this.selectedLocation = this.userFilters['location'];
       }
     }
 
-    if(this.page == "template"){
+    if (this.page == "template") {
       this.roles = data.roles;
+      let lang_id = localStorage.getItem('lang_id');
+      if (lang_id == '2') {
+        this.roles = [
+          { role: "Admin", name: "Admin", slug: "admin", id: 1 },
+          { role: "Club", name: "Club", slug: "club", id: 2 },
+          { role: "Scout", name: "Scout", slug: "scout", id: 3 },
+          { role: "Talente", name: "Talente", slug: "talent", id: 4 }
+        ];
+      }
       this.languages = data.languages;
 
-      if(this.userFilters['role']){
+      if (this.userFilters['role']) {
         this.selectedRoleId = this.userFilters['role'];
       }
-      if(this.userFilters['language']){
+      if (this.userFilters['language']) {
         this.selectedLanguageId = this.userFilters['language'];
       }
 
     }
 
 
-    if(this.page == "advertisement"){
+    if (this.page == "advertisement") {
       this.pages = data.pages;
       this.types = data.types;
 
-      if(this.userFilters['page_name']){
+      if (this.userFilters['page_name']) {
         this.selectedPage = this.userFilters['page_name'];
       }
-      if(this.userFilters['type']){
+      if (this.userFilters['type']) {
         this.selectedtype = this.userFilters['type'];
       }
     }
 
-    if(this.page == "webpages" || this.page == "blog"){
+    if (this.page == "webpages" || this.page == "blog") {
       this.languages = data.languages;
       this.types = data.types;
 
-      if(this.userFilters['language']){
+      if (this.userFilters['language']) {
         this.selectedLanguage = this.userFilters['language'];
       }
     }
@@ -98,12 +108,12 @@ export class CommonFilterPopupComponent {
     //   this.selectedLocation = this.userFilters['location'];
     // }
   }
-  
-  close(){
+
+  close() {
     this.dialogRef.close(this.userFilters);
   }
 
-  setFilter(type:any, value:any){
+  setFilter(type: any, value: any) {
     this.userFilters[type] = value;
     // if(type == "activity"){
     //   delete this.userFilters['alphabetically'];
@@ -114,31 +124,53 @@ export class CommonFilterPopupComponent {
     console.log(this.userFilters)
   }
 
-  applyUserFilter(){
+  applyUserFilter() {
     this.close();
   }
-  
-  resetUserFilter(){
+
+  resetUserFilter() {
     this.userFilters = [];
     this.close();
   }
 
-  onLocationChange(event:any){
+  onLocationChange(event: any) {
     this.selectedLocation = (event.target as HTMLSelectElement).value;
-    if(this.selectedLocation == ""){
+    if (this.selectedLocation == "") {
       delete this.userFilters['location'];
-    }else{
+    } else {
       this.setFilter('location', this.selectedLocation)
     }
   }
 
-  onChange(event:any, key:any){
+  onChange(event: any, key: any) {
     let value = (event.target as HTMLSelectElement).value;
     console.log(value, key);
-    if(value == ""){
+    if (value == "") {
       delete this.userFilters[key];
-    }else{
+    } else {
       this.setFilter(key, value)
+    }
+  }
+
+  translateFrequency(frequency: any) {
+    let selectedLang = localStorage.getItem('lang');
+    if (selectedLang == 'de') {
+      if (frequency == 'Once a day') {
+        frequency = 'Einmal am Tag';
+      } else if (frequency == 'Once a week') {
+        frequency = 'Einmal pro Woche';
+      } else if (frequency == 'Once 2 Hrs') {
+        frequency = 'Einmal alle 2 Stunden';
+      } else if (frequency == 'Twice a day') {
+        frequency = 'Zweimal am Tag';
+      } else if (frequency == 'Once a month') {
+        frequency = 'Einmal im Monat';
+      } else if (frequency == 'One time only') {
+        frequency = 'Nur einmal';
+      }
+      return frequency;
+    } else {
+      return frequency;
     }
   }
 }

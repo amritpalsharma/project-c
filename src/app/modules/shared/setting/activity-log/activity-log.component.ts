@@ -128,13 +128,14 @@ export class ActivityLogComponent {
   }
 
   deleteActivity(): any {
-    let params = { id: this.idsToDelete };
+    let langId = localStorage.getItem('lang_id');
+    let params = { id: this.idsToDelete, lang: langId };
     this.activityService.deleteActivity(params).subscribe(
       response => {
         this.getActivity();
         this.selectedIds = [];
         this.allSelected = false;
-        this.showMessage('Activity deleted successfully!');
+        this.showMessage(response.message);
       },
       error => {
         console.error('Error deleting activity:', error);

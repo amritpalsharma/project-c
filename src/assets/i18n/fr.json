@@ -1352,5 +1352,6 @@
   "deletePerformanceConfirm": "Êtes-vous sûr de vouloir supprimer les rapports sélectionnés ?",
   "accepted": "Accepté",
    "category": "Catégorie",
-   "selectActivityFirst": "Sélectionnez d'abord une activité."
+   "selectActivityFirst": "Sélectionnez d'abord une activité.",
+   "selectNotificationFirst" : "Sélectionnez d'abord la/les notification(s)."
 }

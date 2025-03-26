@@ -3,6 +3,9 @@ import { TalentService } from '../../../services/talent.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddCountryComponent } from './add-country/add-country.component';
 import { WebPages } from '../../../services/webpages.service';
+import { TranslateService } from '@ngx-translate/core';
+import { TitleService } from '../../../title.service';
+
 
 @Component({
   selector: 'shared-countries',
@@ -10,25 +13,33 @@ import { WebPages } from '../../../services/webpages.service';
   styleUrls: ['./countries.component.scss']  // Corrected here
 })
 export class CountriesComponent {
-  countries: any ;
+  countries: any;
   selectedCategory: string = 'all';
   countriesPerPage: number = 4;
   currentPage: number = 0;
-  flag_path:any;
+  flag_path: any;
   filteredImages: any[] = [];  // Fixed: explicitly set as an array
   paginatedImages: any[] = [];
-  defaultCountry : any;
-  loggedInUser:any = localStorage.getItem('userData');
-  premium : any =[];
-  country: any=[];
-  booster: any=[];
-  demo: any=[];
-  userInfo : any=[];
-  filteredCountries:any;
+  defaultCountry: any;
+  loggedInUser: any = localStorage.getItem('userData');
+  premium: any = [];
+  country: any = [];
+  booster: any = [];
+  demo: any = [];
+  userInfo: any = [];
+  filteredCountries: any;
+  pageTitle: string = '';
 
-  constructor( private talentService: TalentService ,public dialog: MatDialog,public webPages : WebPages)  {}
+  constructor(
+    private talentService: TalentService,
+    public dialog: MatDialog,
+    public webPages: WebPages,
+    private translateService: TranslateService,
+    private titleService: TitleService
+  ) { }
 
   ngOnInit() {
+    this.getJsonTranslations();
     this.userInfo = localStorage.getItem('userInfo');
     this.userInfo = JSON.parse(this.userInfo);
 
@@ -39,13 +50,14 @@ export class CountriesComponent {
 
     this.webPages.languageId$.subscribe((data) => {
       this.loadCountries();
+      this.getJsonTranslations();
     });
   }
-  
+
   loadCountries(): void {
 
-    let params:any = {};
-    params.lang  = localStorage.getItem('lang_id');
+    let params: any = {};
+    params.lang = localStorage.getItem('lang_id');
     let language = localStorage.getItem('lang_id');
 
     this.talentService.getUserDomainsWithLang(language).subscribe(
@@ -55,7 +67,7 @@ export class CountriesComponent {
           this.flag_path = response.data.logo_path;
 
           // Filter the countries where is_package_active == 'active'
-          this.filteredCountries = this.countries.filter((country:any) => country.is_package_active == 'active');
+          this.filteredCountries = this.countries.filter((country: any) => country.is_package_active == 'active');
 
         }
       },
@@ -68,24 +80,24 @@ export class CountriesComponent {
   selectedCountries: string[] = []; // Store selected country names here
 
   toggleCountrySelection(country: any) {
-    if(country.is_default==1 || country.is_package_active=='active'){
+    if (country.is_default == 1 || country.is_package_active == 'active') {
       return
     }
     // console.warn(country);
     this.addCountryPopup(country);
   }
 
-  addCountryPopup(country:any){
+  addCountryPopup(country: any) {
     const dialogRef = this.dialog.open(AddCountryComponent, {
       width: '600px',
-      data: { 
-        country: country ,
+      data: {
+        country: country,
       }
     });
   }
 
-  
-  
+
+
   // Fetch purchases from API with pagination parameters
   getUserPlans(): void {
     this.talentService.getUserPlans().subscribe(
@@ -114,5 +126,13 @@ export class CountriesComponent {
         console.error('Error fetching user purchases:', error);
       }
     );
+  }
+
+  getJsonTranslations() {
+    this.translateService.get(['countries']).subscribe((translations) => {
+      this.pageTitle = translations['countries'];
+      this.titleService.setTitle(this.pageTitle);
+      console.log('Title fetch Function Fired');
+    })
   }
 }

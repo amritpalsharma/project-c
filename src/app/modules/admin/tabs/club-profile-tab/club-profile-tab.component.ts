@@ -13,34 +13,34 @@ import { AddRepresentatorPopupComponent } from '../../add-representator-popup/ad
   styleUrl: './club-profile-tab.component.scss'
 })
 export class ClubProfileTabComponent {
-  user:any = {}
-  userNationalities:any = [];
-  representators:any = [];
-  userId:any = "";
-  baseUrl:any = "";
-  idsToDelete:any = "";
+  user: any = {}
+  userNationalities: any = [];
+  representators: any = [];
+  userId: any = "";
+  baseUrl: any = "";
+  idsToDelete: any = "";
   @Input() userData: any;
   @Output() dataEmitter = new EventEmitter<string>();
-  constructor(public dialog: MatDialog, private router: Router, private userService:UserService) { }
+  constructor(public dialog: MatDialog, private router: Router, private userService: UserService) { }
 
   ngOnInit(): void {
-    
+
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['userData']) {
       this.userId = this.userData?.id
-      if(this.userId && this.userId != ""){
+      if (this.userId && this.userId != "") {
         this.getRepresentators();
       }
-      if(changes['userData'].currentValue.user_nationalities){
+      if (changes['userData'].currentValue.user_nationalities) {
         this.userNationalities = JSON.parse(this.userData.user_nationalities);
       }
     }
   }
 
-  getRepresentators(){
-    this.userService.getRepresentators(this.userId).subscribe((response)=>{
+  getRepresentators() {
+    this.userService.getRepresentators(this.userId).subscribe((response) => {
       if (response && response.status && response.data) {
         this.representators = response.data.representators;
         this.baseUrl = response.data.uploads_path
@@ -50,45 +50,49 @@ export class ClubProfileTabComponent {
     });
   }
 
-  getMetaValue(stringifyData:any, key:any):any{
-    if(stringifyData){
+  getMetaValue(stringifyData: any, key: any): any {
+    if (stringifyData) {
       stringifyData = JSON.parse(stringifyData);
-      if(stringifyData[key]){
+      if (stringifyData[key]) {
         return stringifyData[key];
-      }else{
+      } else {
         return "NA";
       }
-    }else{
+    } else {
       return "NA";
     }
-  } 
+  }
 
-  editClub(data:any){
-    const dialog = this.dialog.open(UserEditPopupComponent,{
+  editClub(data: any) {
+    const dialog = this.dialog.open(UserEditPopupComponent, {
       height: '598px',
       width: '600px',
-      data : {
+      data: {
         role: 'club',
-        data:data
+        data: data
       }
     });
 
     dialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
-        if(result.action == "updated"){
+        if (result.action == "updated") {
           this.dataEmitter.emit('updated');
-          this.showMatDialog("Club updated successfully.",'display');
+          if (result.message != '' && result.message != undefined) {
+            this.showMatDialog(result.message, 'display');
+          }else{
+            this.showMatDialog("Club updated successfully.", 'display');
+          }
         }
-      //  console.log('Dialog result:', result);
+        //  console.log('Dialog result:', result);
       }
     });
   }
 
-  showMatDialog(message:string, action:string){
-    const messageDialog = this.dialog.open(MessagePopupComponent,{
+  showMatDialog(message: string, action: string) {
+    const messageDialog = this.dialog.open(MessagePopupComponent, {
       width: '500px',
       position: {
-        top:'150px'
+        top: '150px'
       },
       data: {
         message: message,
@@ -98,19 +102,19 @@ export class ClubProfileTabComponent {
 
     messageDialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
-        if(result.action == "delete-confirmed"){
+        if (result.action == "delete-confirmed") {
           this.deleteRepresentator();
         }
-      //  console.log('Dialog result:', result);
+        //  console.log('Dialog result:', result);
       }
     });
   }
 
-  addRepresentator(){
-    const dialog = this.dialog.open(AddRepresentatorPopupComponent,{
+  addRepresentator() {
+    const dialog = this.dialog.open(AddRepresentatorPopupComponent, {
       height: '400',
       width: '400px',
-      data : {
+      data: {
         action: 'add',
         userId: this.userId
       }
@@ -118,33 +122,41 @@ export class ClubProfileTabComponent {
 
     dialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
-        if(result.action == "added"){
+        if (result.action == "added") {
           this.getRepresentators();
-          this.showMatDialog("Invite sent successfully.",'display');
+          if (result.message != '' && result.message != undefined) {
+            this.showMatDialog(result.message, 'display');
+          } else {
+            this.showMatDialog("Invite sent successfully.", 'display');
+          }
         }
-      //  console.log('Dialog result:', result);
+        //  console.log('Dialog result:', result);
       }
     });
   }
 
-  updateRepresentatorRole(event: Event, id:any) {
+  updateRepresentatorRole(event: Event, id: any) {
     const target = event.target as HTMLSelectElement;
     let newRole = target.value;
-    
-    this.userService.updateRepresentatorRole(id, {site_role:newRole}).subscribe((response)=>{
+
+    this.userService.updateRepresentatorRole(id, { site_role: newRole }).subscribe((response) => {
       if (response && response.status) {
-        this.showMatDialog("Role updated successfully.",'display');
+        if (response.message != '' && response.message != undefined) {
+          this.showMatDialog(response.message, 'display');
+        } else {
+          this.showMatDialog("Role updated successfully.", 'display');
+        }
       } else {
         console.error('Invalid API response structure:', response);
       }
     });
   }
 
-  editRepresentator(representator:any){
-    const editDialog = this.dialog.open(AddRepresentatorPopupComponent,{
+  editRepresentator(representator: any) {
+    const editDialog = this.dialog.open(AddRepresentatorPopupComponent, {
       height: '400',
       width: '400px',
-      data : {
+      data: {
         action: 'edit',
         userId: "",
         representator: representator
@@ -153,35 +165,35 @@ export class ClubProfileTabComponent {
 
     editDialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
-        if(result.action == "updated"){
+        if (result.action == "updated") {
           this.getRepresentators();
-          this.showMatDialog("Representator updated successfully.",'display');
+          this.showMatDialog("Representator updated successfully.", 'display');
         }
-      //  console.log('Dialog result:', result);
+        //  console.log('Dialog result:', result);
       }
     });
   }
 
-  confirmSingleDeletion(id:any){
+  confirmSingleDeletion(id: any) {
     this.idsToDelete = id;
     this.showMatDialog("", "delete-representator-confirmation");
   }
 
-  
-  deleteRepresentator():any {
+
+  deleteRepresentator(): any {
 
     this.userService.deleteRepresentator(this.idsToDelete).subscribe(
       response => {
-        if(response.status){
+        if (response.status) {
           this.getRepresentators();
           this.showMatDialog('Representator removed successfully!.', 'display');
-        }else{
+        } else {
           this.showMatDialog('Error in removing Representator. Please try again.', 'display');
         }
       },
       error => {
         console.error('Error deleting user:', error);
-        
+
       }
     );
   }

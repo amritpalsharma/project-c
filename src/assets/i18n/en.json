@@ -1251,7 +1251,10 @@
   "descriptionRequired": "Meta description is required",
   "subjectRequired": "Subject is required",
   "accepted": "Accepted",
+  "selectUserFirst":"Select user first.",
+  "selectBlogFirst":"Select Blog first.",
+  "selectCouponFirst":"Select coupon first.",
   "category": "Category",
-  "selectActivityFirst": "Select activity first."
-
+  "selectActivityFirst": "Select activity first.",
+  "selectNotificationFirst" : "Select notifications(s) first."
 }

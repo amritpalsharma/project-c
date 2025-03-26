@@ -65,6 +65,8 @@ export class AdvertisingPopupComponent   {
 
   ngOnInit(): void {
 
+    this.startDate = this.formatDate(this.startDate);
+
     this._locale.set('fr');
     this._adapter.setLocale(this._locale()); 
     this.getAdvertisement();
@@ -83,6 +85,7 @@ export class AdvertisingPopupComponent   {
       this.endDate = existingRecord.valid_to;
       this.noEndDate = existingRecord.no_validity;
       this.imageUrl = existingRecord.featured_image;
+      this.imageToUpload = existingRecord.featured_image;
       if(this.noEndDate == '0'){
         this.disableEndDate = false;
         this.noEndDate = false;
@@ -182,11 +185,14 @@ export class AdvertisingPopupComponent   {
       };
       reader.readAsDataURL(fileToUpload);
     }
+
+    this.validateAdvertisementForm();
   }
 
   closeImage(){
     this.imagePreview = null;
     this.imageUrl = null;
+    this.imageToUpload = '';
   }
 
   selectedDate(){
@@ -298,10 +304,10 @@ export class AdvertisingPopupComponent   {
 
   updateAd():any {
 
-    if(this.imageToUpload == '' && this.imageUrl != ''){
-      this.dialogRef.close();
-      return;
-    }
+    // if(this.imageToUpload == '' && this.imageUrl){
+    //   this.dialogRef.close();
+    //   return;
+    // }
 
     
     let validForm:any = this.validateAdvertisementForm();

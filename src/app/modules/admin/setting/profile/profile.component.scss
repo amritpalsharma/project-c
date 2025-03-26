@@ -269,8 +269,12 @@
     line-height: 16.97px;
     text-align: left;
     color: #111418;
+    padding-left: 7px;
       }
-
+      .card-header svg#users-icon {
+        position: relative;
+        top: -2px;
+    }
   .custom-select {
     min-width: 114px;
     height: 26px;

@@ -9,6 +9,7 @@ import { WebPages } from '../../../../services/webpages.service';
 import { TalentService } from '../../../../services/talent.service';
 import { TranslateService } from '@ngx-translate/core';
 import { AdminHelperService } from '../../../../services/admin-helper.service';
+import { SharedService } from '../../../../services/shared.service';
 
 interface Notification {
   id: number;
@@ -38,8 +39,16 @@ export class NotificationsLogComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   idsToDelete: any = [];
+  deleteConfirmation3: string = '';
+  selectNotificationFirst: string = '';
 
-  constructor(public dialog: MatDialog, public webPages: WebPages, private talentService: TalentService, private translateService: TranslateService, public adminHelper: AdminHelperService) {
+  constructor(
+    public dialog: MatDialog,
+    public webPages: WebPages,
+    private talentService: TalentService,
+    private translateService: TranslateService,
+    public adminHelper: AdminHelperService,
+    private sharedservice: SharedService,) {
     translateService.onLangChange.subscribe(() => {
       let langId;
       if (translateService.currentLang == 'en') {
@@ -53,8 +62,14 @@ export class NotificationsLogComponent {
   }
 
   ngOnInit() {
+    this.getJsonTranslations();
     let langId = localStorage.getItem('lang_id');
     this.fetchNotifications(langId);
+    this.sharedservice.data$.subscribe((data: any) => {
+      if (data.action == 'lang_updated') {
+        this.getJsonTranslations();
+      }
+    });
   }
 
 
@@ -113,11 +128,11 @@ export class NotificationsLogComponent {
 
   confirmDeletion(): any {
     if (this.selectedIds.length == 0) {
-      this.showMessage('Select notifications(s) first.');
+      this.showMessage(this.selectNotificationFirst);
       return false;
     }
     this.idsToDelete = this.selectedIds;
-    this.showMatDialog("Are you sure you want to delete this Notification?", "delete-confirmation");
+    this.showMatDialog(this.deleteConfirmation3, "delete-confirmation");
   }
 
   deleteActivity(): any {
@@ -166,12 +181,20 @@ export class NotificationsLogComponent {
 
   confirmSingleDeletion(id: any) {
     this.idsToDelete = [id];
-    this.showMatDialog("Are you sure you want to delete this Activity?", "delete-confirmation");
+    this.showMatDialog(this.deleteConfirmation3, "delete-confirmation");
   }
 
   formatDateTime(datetime: string) {
     // convertAdminDateTime
     let formattedDate = this.adminHelper.convertAdminDateTime(datetime, 'users');
     return formattedDate;
+  }
+
+  getJsonTranslations() {
+    this.translateService.get(['confirmDeleteinformation3','selectNotificationFirst']).subscribe((translations) => {
+      this.deleteConfirmation3 = translations['confirmDeleteinformation3'];
+      this.selectNotificationFirst = translations['selectNotificationFirst'];
+      console.warn(this.selectNotificationFirst);
+    })
   }
 }

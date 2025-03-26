@@ -18,6 +18,7 @@ import { environment } from '../../../../environments/environment';
 import { CommonDataService } from '../../../services/common-data.service';
 import { TranslateService } from '@ngx-translate/core';
 import { WebPages } from '../../../services/webpages.service';
+import { TitleService } from '../../../title.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -43,7 +44,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     private lightbox: Lightbox,
     private commonDataService: CommonDataService,
     private translateService: TranslateService,
-    public webPages: WebPages
+    public webPages: WebPages,
+    private titleService: TitleService
   ) { }
   activeTab: string = 'profile';
   userId: any;
@@ -82,6 +84,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   isTourFirstTime: boolean = true;
   StartTour: boolean = true;
   dontShowAgainTourTxt: string = 'profile';
+  pageTitle: string = '';
 
   async ngOnInit() {
     this.introInstance = introJs();
@@ -94,6 +97,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.getHighlightsData();
     this.loadCountries();
     this.getGalleryData();
+    this.getJsonTranslations();
 
     this.route.params.subscribe(() => {
       this.getCoverImg();
@@ -102,6 +106,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.getToasterMsg();
     this.webPages.languageId$.subscribe((data: any) => {
       this.getToasterMsg();
+      this.getJsonTranslations();
     });
 
     await this.getAllTeams();
@@ -753,5 +758,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.Canceled = translations['Canceled'];
       this.requiredFieldsMessage = translations['requiredFieldsMessage'];
     });
+  }
+
+  getJsonTranslations() {
+    this.translateService.get(['dashboard']).subscribe((translations) => {
+      this.pageTitle = translations['pageTitle'];
+      this.titleService.setTitle(this.pageTitle);
+      console.log('Title fetch Function Fired');
+    })
   }
 }

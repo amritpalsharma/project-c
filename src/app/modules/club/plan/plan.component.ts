@@ -15,6 +15,7 @@ import { EditMembershipProfileComponent } from '../edit-membership-profile/edit-
 import { ScoutService } from '../../../services/scout.service';
 import { EditPlanComponent } from '../../shared/edit-plan/edit-plan.component';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
+import { TitleService } from '../../../title.service';
 
 
 interface Plan {
@@ -67,19 +68,21 @@ export class PlanComponent implements OnInit, OnDestroy {
   private plansSubscription: Subscription = new Subscription();
   langSubscription!: Subscription;
   stripePromise = loadStripe(environment.stripePublishableKey);
-
+  pageTitle: string = '';
   constructor(
     private ScoutService: ScoutService,
     private paymentService: PaymentService,
     public dialog: MatDialog,
     private route: ActivatedRoute,
     private toastr: ToastrService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private titleService: TitleService,
   ) { }
 
   async ngOnInit() {
     this.isLoadingPlans = true;
     this.getUserPlans();
+    this.getJsonTranslations();
     // this.getBoosterData()
     this.stripe = await this.paymentService.getStripe();
     this.loggedInUser = JSON.parse(this.loggedInUser || '{}');
@@ -88,6 +91,7 @@ export class PlanComponent implements OnInit, OnDestroy {
     this.loadFeatures();
     this.langSubscription = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
       this.loadFeatures(); // Reload features when the language changes
+      this.getJsonTranslations();
     });
   }
 
@@ -566,6 +570,14 @@ export class PlanComponent implements OnInit, OnDestroy {
       this.bostProfileDesc = data;
     });
     // alert('Function Fired')
+  }
+
+  getJsonTranslations() {
+    this.translate.get(['plans']).subscribe((translations) => {
+      this.pageTitle = translations['plans'];
+      this.titleService.setTitle(this.pageTitle);
+      console.log('Title fetch Function Fired');
+    })
   }
 
 }

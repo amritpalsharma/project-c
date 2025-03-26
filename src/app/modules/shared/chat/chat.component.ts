@@ -4,6 +4,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { TalkService } from '../../../services/talkjs.service';
 import { ChatPopupComponent } from './chat-popup/chat-popup.component';
 import { ActivatedRoute } from '@angular/router';
+import { TitleService } from '../../../title.service';
+import { TranslateService } from '@ngx-translate/core';
+import { WebPages } from '../../../services/webpages.service';
 
 @Component({
   selector: 'shared-chat',
@@ -23,10 +26,17 @@ export class ChatComponent {
   chatBox: any;
   chatSession: any;
   isLoading: boolean = true;
-  constructor(private talkService: TalkService, private route: ActivatedRoute) { }
+  pageTitle: string = '';
+  constructor(
+    private talkService: TalkService,
+    private route: ActivatedRoute,
+    private titleService: TitleService,
+    private translateService: TranslateService,
+    public webPages: WebPages,
+  ) { }
 
   async ngOnInit() {
-
+    this.getJsonTranslations();
     const userDataString = localStorage.getItem('userData');
 
     if (userDataString) {
@@ -62,6 +72,9 @@ export class ChatComponent {
     setTimeout(() => {
       this.checkAndRemoveOpenChat();
     }, 1000);
+    this.webPages.languageId$.subscribe((data) => {
+      this.getJsonTranslations();
+    });
   }
 
 
@@ -176,7 +189,7 @@ export class ChatComponent {
 
       // Reload the page with the updated URL (without 'open_chat')
       window.location.replace(url.toString());
-    }else{
+    } else {
       setTimeout(() => {
         this.isLoading = false;
       }, 1000);
@@ -190,5 +203,13 @@ export class ChatComponent {
       this.startOneOnOneChat(otherUser);
     }
 
+  }
+
+  getJsonTranslations() {
+    this.translateService.get(['chat']).subscribe((translations) => {
+      this.pageTitle = translations['chat'];
+      this.titleService.setTitle(this.pageTitle);
+      console.log('Title fetch Function Fired');
+    })
   }
 }

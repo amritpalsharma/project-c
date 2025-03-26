@@ -148,9 +148,9 @@
             <div class="loader"></div>
             <p>{{'loading' | translate}}</p>
           </div>
-          
+
           <div class="noUserFound text-center py-1" *ngIf="noUsersFound && !isLoading">
-              {{ 'noResultFound' | translate }}
+            {{ 'noResultFound' | translate }}
           </div>
 
           <div class="row player-image-list ">
@@ -172,7 +172,7 @@
                     </div>
                   </div>
 
-                  <div class="card-shape">
+                  <div class="card-shape" [class]="{'d-none':!getNationality(player.user_nationalities)}">
                   </div>
                   <div class="player-team-logo">
                     <div *ngIf="player.pre_current_club_logo_path" class="team-logo-bg">
@@ -181,14 +181,16 @@
                       alt="team-logo">
                   </div>
                   @if (getNationality(player.user_nationalities) ||player?.meta?.formation_date) {
-                  <div class="flag_box">
+                  <div class="flag_box" [class]="{'d-none':!getNationality(player.user_nationalities)}">
                     @if (getNationality(player.user_nationalities)) {
                     <img src="{{getNationality(player.user_nationalities)}}">
                     }@else{
-                    <span>--</span>
+                    <!-- <span>--</span> -->
                     }
-                    <hr>
-                    <ng-container *ngIf="player?.meta?.formation_date">
+
+                    <ng-container
+                      *ngIf="player?.meta?.formation_date && player?.meta?.formation_date != 'Invalid date'">
+                      <hr>
                       <span>
                         <svg width="16" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path

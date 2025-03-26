@@ -20,7 +20,8 @@
 .coupon-btn{
   background: #6FB95D;
   border-color: #6FB95D;
-
+  width: 160px;
+  padding: 8px;
   position: absolute;
   right: 7px;
   top: 50%;
@@ -52,4 +53,11 @@
 .btn-close:focus{
   box-shadow: unset;
   opacity: unset;
+}
+input#couponCode {
+  padding-right: 175px !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  outline: none !important;
+  box-shadow: none !important;
 }

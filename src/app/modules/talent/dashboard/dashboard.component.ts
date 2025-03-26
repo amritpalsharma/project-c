@@ -18,6 +18,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { environment } from '../../../../environments/environment';
 import { CommonDataService } from '../../../services/common-data.service';
 import { WebPages } from '../../../services/webpages.service';
+import { TitleService } from '../../../title.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -31,6 +32,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   album: any[] = []; // Array for album images
   loggedInUser: any = localStorage.getItem('userData');
   countryFlagUrl: any;
+  pageTitle: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -41,7 +43,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     private router: Router,
     private translateService: TranslateService,
     private commonDataService: CommonDataService,
-    public webPages: WebPages
+    public webPages: WebPages,
+    private titleService: TitleService
   ) { }
   activeTab: string = 'profile';
   userId: any;
@@ -79,6 +82,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   coverImageDeletionCanceled: string = '';
 
   async ngOnInit() {
+    this.getJsonTranslations();
     this.introInstance = introJs();
 
     this.loggedInUser = JSON.parse(this.loggedInUser);
@@ -100,6 +104,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.getHighlightsData();
       this.loadCountries();
       this.getGalleryData();
+      this.getJsonTranslations();
     });
 
     await this.getAllTeams();
@@ -340,7 +345,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
           this.user = response.data.user_data;
           this.userNationalities = JSON.parse(this.user.user_nationalities);
           this.StartTour = this.user?.show_tour == 1 ? true : false;
-          if(this.user?.meta && this.user?.meta?.birth_country_flag != ''){
+          if (this.user?.meta && this.user?.meta?.birth_country_flag != '') {
             this.countryFlagUrl = this.user?.meta?.birth_country_flag;
           }
           this.isPremium = this.user?.active_subscriptions?.premium.length > 0 ? true : false;
@@ -367,9 +372,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
                 dblang = 'se';
               }
               let dontShowAgain = localStorage.getItem('dontShowIntroTour');
-              if(dontShowAgain == 'true'){
+              if (dontShowAgain == 'true') {
                 //  don't show again
-              }else{
+              } else {
                 this.startIntroTour(dblang);  // Start the tour after a slight delay
               }
             }, 0);
@@ -826,6 +831,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.coverImageDeletionCanceled = translations['coverImageDeletionCanceled'];
       this.Canceled = translations['Canceled'];
     });
+  }
+
+  getJsonTranslations() {
+    this.translateService.get(['dashboard']).subscribe((translations) => {
+      this.pageTitle = translations['dashboard'];
+      this.titleService.setTitle(this.pageTitle);
+      console.log('Title fetch Function Fired');
+    })
   }
 
 }

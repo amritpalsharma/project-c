@@ -70,7 +70,8 @@ export class TalentService {
   }
 
   deleteNotifications(ids: any[] = []): Observable<{ status: boolean, message: string }> {
-    return this.http.request<{ status: boolean, message: string }>('DELETE', `${this.apiUrl3}notifications`, {
+    let langId = localStorage.getItem('lang_id');
+    return this.http.request<{ status: boolean, message: string }>('DELETE', `${this.apiUrl3}notifications?langId=${langId}`, {
       body: { ids },
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     });
@@ -125,8 +126,9 @@ export class TalentService {
 
   getUser(user: any, params: any = {}): Observable<any> {
     const headers = this.headers();
+    let lang_id = localStorage.getItem('lang_id');
     return this.http.get<{ status: boolean, message: string, data: {} }>(
-      `${this.apiUrl}user/profile/${user}`,
+      `${this.apiUrl}user/profile/${lang_id}/${user}`,
       { headers, params }
     );
   }
@@ -703,6 +705,8 @@ export class TalentService {
     queryParams = queryParams.set('search', params.search);
     // }
 
+    queryParams = queryParams.set('lang', params.lang);
+
     if (params.user_domain) {
       queryParams = queryParams.set('whereClause[user_domain]', params.user_domain);
     }
@@ -729,7 +733,21 @@ export class TalentService {
       headers // Specify response type for downloading files
     });
   }
+  
+  updateSightingInviteResponse(status: string, eventId: any, langId: any): Observable<any> {
 
+    const headers = this.headers();
+    let params = new HttpParams();
+
+    params = params.append('status', status);
+    params = params.append('event_id', eventId);
+
+
+    return this.http.post(`${this.apiUrl}player/update-sighting-invite-response/${langId}`, params, {
+      headers // Specify response type for downloading files
+    });
+  }
+  
   // talent.service.ts
   subscribeToPlan(subscriptionData: { paymentMethodId: string; planId: number; }): Observable<any> {
     const headers = this.headers();

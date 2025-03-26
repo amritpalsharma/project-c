@@ -2490,11 +2490,16 @@ select.form-select.custom-select1 {
     position: relative;
     .password-toggle {
         position: absolute;
-        right: 0;
-        top: 0;
-        // background: #fff;
+        right: 2px;
+        top: 2px;
+        background: #fff;
         padding: 12px;
         border-radius: 10px;
+        width: 50px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         img {
             width: 22px;
             height: 22px;
@@ -2535,6 +2540,8 @@ select.form-select.custom-select1 {
     .password_field_wrap {
         .password-toggle {
             padding: 8px;
+            width: 40px;
+            height: 38px;
             img {
                 width: 18px;
                 height: 18px;
@@ -2547,6 +2554,10 @@ select.form-select.custom-select1 {
     .follow-us {
         position: relative;
         top: -27px;
+    }
+    .password_field_wrap .password-toggle {
+        width: 36px;
+        height: 34px;
     }
 }
 

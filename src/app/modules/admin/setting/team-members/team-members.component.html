@@ -1,8 +1,8 @@
-<div class="card mb-3">
-  <div class="card-header border-0">
+<div class="card mb-3 mt-lg-0 mt-3">
+  <div class="card-header border-0 pb-0">
     <div>
       <h6 class="card-title">{{ 'teamMembers' | translate }}</h6>
-      <p>{{ 'inviteOrManage' | translate }}</p>
+      <p class="mb-0">{{ 'inviteOrManage' | translate }}</p>
     </div>
   </div>
 </div>
@@ -41,7 +41,7 @@
             <select class="custom-select custom-select-wrapper" *ngIf="currentUserId != representator.id"
               (change)="updateRepresentatorRole($event, representator.id)">
 
-              <option value="admin-access"
+              <!-- <option value="admin-access"
                 *ngIf="representator.permission != null && representator.permission != 'admin-access'">{{ 'admin' |
                 translate }}</option>
               <option value="admin-access"
@@ -56,7 +56,29 @@
 
               <option value="transfer-ownership" *ngIf="representator.permission != 'transfer-ownership'">{{ 'transferOwnership' | translate }}</option>
               <option value="transfer-ownership" *ngIf="representator.permission == 'transfer-ownership'" selected>
+                {{ 'transferOwnership' | translate }}</option> -->
+
+              <option value="admin.access"
+                *ngIf="representator.permission != null && representator.permission != 'admin.access'">
+                {{ 'admin' | translate }}</option>
+              <option value="admin.access"
+                *ngIf="representator.permission == null || representator.permission == 'admin.access'" selected>{{
+                'admin' | translate }}</option>
+
+              <option value="admin.view" *ngIf="representator.permission != 'admin.view'">{{ 'viewOnly' |
+                translate }}</option>
+              <option value="admin.view" *ngIf="representator.permission == 'admin.view'" selected>
+                {{'viewOnly' | translate }}</option>
+
+              <option value="admin.edit" *ngIf="representator.permission != 'admin.edit'">{{ 'editor' | translate
+                }}</option>
+              <option value="admin.edit" *ngIf="representator.permission == 'admin.edit'" selected>{{ 'editor' |
+                translate }}</option>
+
+              <option value="transfer.ownership" *ngIf="representator.permission != 'transfer.ownership'">
                 {{ 'transferOwnership' | translate }}</option>
+              <option value="transfer.ownership" *ngIf="representator.permission == 'transfer.ownership'" selected>{{
+                'transferOwnership' | translate }}</option>
 
             </select>
 

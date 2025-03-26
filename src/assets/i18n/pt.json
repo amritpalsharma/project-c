@@ -1294,5 +1294,6 @@
   "deletePerformanceConfirm": "Tem certeza de que deseja excluir os relatórios selecionados?",
   "accepted": "Aceito",
   "category": "Categoria",
-  "selectActivityFirst": "Selecione uma atividade primeiro."
+  "selectActivityFirst": "Selecione uma atividade primeiro.",
+  "selectNotificationFirst": "Selecione primeiro a(s) notificação(ões)."
 }

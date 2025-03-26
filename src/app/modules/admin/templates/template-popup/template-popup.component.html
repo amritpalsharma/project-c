@@ -2,13 +2,13 @@
 <div class="p-0 parent-popup mobile_popup_responsive">
   <div class="p-3 bg-0C3453">
     
-    <h4 class="mb-md-3">{{ 'emailTemplate' | translate }}</h4>
+    <h4 class="text-center mb-0">{{ 'emailTemplate' | translate }}</h4>
         <img src="../../../assets/images/close-icon-circle.png" alt="" class="close-img" (click)="close()" />
   </div>
   <hr class="m-0">
 <div class="template_body_form">
   <div class="row">
-    <div class="col-12 col-sm-6">
+    <div class="col-12 col-sm-6 col-lg-4">
     <div class="d-flex align-items-baseline py-2 bg-0C3453 template-name-input">
       <h4 class="text-size" style="margin-right: 5px;">{{ 'name' | translate }}:</h4>
       <input type="text" class="template-name-inputField" [(ngModel)]="title" >
@@ -16,7 +16,7 @@
     </div>
     <div *ngIf="errorMsg.title" class="error-msg" style="padding-left:60px;">{{errorMsg.title}}</div>
   </div>
-    <div class="col-12 col-sm-6">
+  <div class="col-12 col-sm-6 col-lg-4">
     <div class="d-flex align-items-baseline py-2 bg-0C3453 template-name-input">
       <h4 class="text-size" style="margin-right: 5px;">{{ 'type' | translate }}:</h4>
       <input type="text" class="template-name-inputField" [(ngModel)]="type" >
@@ -26,7 +26,7 @@
   </div>
     
 
-  <div class="col-12 col-sm-6">
+  <div class="col-12 col-sm-6 col-lg-4">
   <div class="d-flex align-items-baseline py-2 bg-0C3453 template-name-input">
     <h4 class="text-size" style="margin-right: 5px;">{{ 'subject' | translate }}:</h4>
     <input type="text" class="template-name-inputField add_custom_width" [(ngModel)]="subject" >
@@ -80,8 +80,8 @@
   </div> -->
 
   <div class="row main-popup-div py-2 bg-0C3453">
-    <div class="col-12 col-md-6 mt-3 d-flex align-items-baseline ">
-      <h4 class="text-size fw-bold">{{ 'for' | translate }}:</h4>
+    <div class="col-12 col-md-6 col-lg-4 mt-3 d-flex align-items-baseline ">
+      <h4 class="text-size">{{ 'for' | translate }}</h4>
       <!-- <div class="btn-group">
         <mat-select [(ngModel)]="selectedRole">
             <mat-option [value]="0">All</mat-option>
@@ -106,8 +106,8 @@
       </div>
       
     </div>
-    <div  class="col-12 col-md-6 mt-3 d-flex align-items-baseline" >
-     <h4 class="text-size fw-bold">{{ 'language' | translate }}:</h4>
+    <div  class="col-12 col-md-6 col-lg-4 mt-3 d-flex align-items-baseline" >
+     <h4 class="text-size">{{ 'language' | translate }}</h4>
      <div class="btn-group">
         <mat-select [(ngModel)]="selectedLang" class="mat-select-div">
             @for (lang of langs; track lang) {
@@ -121,8 +121,8 @@
 
       </div>
     </div>
-    <div  class="col-12 col-md-6 mt-3 d-flex align-items-baseline">
-      <h4 class="text-size fw-bold">{{ 'location' | translate }}:</h4>
+    <div  class="col-12 col-md-6 col-lg-4 mt-3 d-flex align-items-baseline">
+      <h4 class="text-size">{{ 'location' | translate }}:</h4>
       <div class="btn-group">
           <mat-select [(ngModel)]="selectedLocation" class="mat-select-div">
               @for (location of locations; track location) {

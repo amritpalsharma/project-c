@@ -30,7 +30,7 @@
         (change)="onChange($event, 'frequency')">
         <option value="">{{ 'selectFrequency' | translate }}</option>
         <option *ngFor="let frequency of frequencies" [value]="frequency" [selected]="frequency == selectedFrequency">{{
-          frequency }}</option>
+          translateFrequency(frequency) }}</option>
       </select>
     </label>
   </div>
@@ -74,6 +74,7 @@
 <div class="p-1" *ngIf="page == 'template'">
   <div class="shadow-sm p-1 mb-1 bg-body rounded">
     <h5 class="filter-text mb-1">{{ 'userType' | translate }}</h5>
+    <!-- {{roles | json}} -->
     <label class="btn btn-light filter-button" [class.activefilter]="userFilters['role']">
       <select [(ngModel)]="selectedRoleId" class="location-filter" [class.activefilter]="userFilters['role']"
         (change)="onChange($event, 'role')">

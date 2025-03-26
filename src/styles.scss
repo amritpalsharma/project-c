@@ -1281,6 +1281,9 @@ table {
     }
 }
 
+.table.no_hover_tr tbody tr:hover {
+  outline: none !important;
+}
 // ------------------marketing popup
 
 
@@ -1672,6 +1675,7 @@ table {
   border-radius: 10px;
   padding: 5px 10px;
   margin-left: 4px;
+  width: calc(100% - 4px);
 }
 
 .marketing-calender-field .mdc-text-field--filled .mdc-line-ripple::before {
@@ -1877,30 +1881,6 @@ table {
 .main-popup-div.player-country .mat-mdc-select-trigger {
   width: 150px !important;
 }
-
-// .inviteesWrap .mat-mdc-autocomplete-panel{
-//   max-height: 165px !important;
-// } 
-
-
-// .create-sight.custom-size-calendar {
-//   // width: 120px;
-//   padding-bottom: 0px;
-//   margin-top:-2px;
-// }
-
-
-
-// .create-sight.custom-size-calendar .mat-form-field-underline {
-//     display: none;
-// }
-
-// .create-sight .mat-mdc-text-field-wrapper{
-//    padding: 0px !important;
-//     border: none !important;
-//     height: 20px !important;
-// }
-
 
 .sighting-cal .custom-size-calendar .mat-mdc-text-field-wrapper {
   height: 45px;
@@ -2330,6 +2310,19 @@ sub.premium-month_title {
   bottom: 0.15em;
 }
 
+td.col_checkbox {
+  width: 40px !important;
+  padding-right: 0 !important;
+}
+
+.light-theme .table_title select {
+  padding-right: 30px;
+  background: #fff url(./assets/images/select-arrow-black.svg) no-repeat right 8px center; 
+  background-size: 15px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
 
 .dark-theme {
 img.join-btn.check-image-light {
@@ -2352,4 +2345,12 @@ img.join-btn.check-image-dark {
 
 .club_history .history-text p:not(:last-child) {
   margin-bottom: 15px !important;
+}
+.light-theme {
+.NgxEditor__Wrapper {
+  background: #FCFCFC;
+}
+.NgxEditor__Content {
+  background: #FCFCFC !important;
+}
 }
