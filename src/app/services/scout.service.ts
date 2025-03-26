@@ -359,13 +359,14 @@ export class ScoutService {
   }
 
 
-  getPurchaseData(pageNumber: number, pageSize: number): Observable<any> {
+  getPurchaseData(pageNumber: number, pageSize: number, lang: any): Observable<any> {
     const headers = this.headers();
 
     return this.http.get<{ status: boolean, message: string, data: any }>(
       `${this.apiUrl}user/get-purchase-history`, {
       params: {
         page: pageNumber.toString(),
+        lang: lang
         // limit: pageSize.toString()
       }
       , headers

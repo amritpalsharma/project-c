@@ -10,6 +10,7 @@ import { WebPages } from '../../../services/webpages.service';
 import { lang } from 'moment';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
 import { TitleService } from '../../../title.service';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'shared-explore',
@@ -28,6 +29,7 @@ export class ExploreComponent implements OnInit {
     public webPages: WebPages,
     private globalSettings: GlobalSettingsService,
     private titleService: TitleService,
+    private userService: UserService,
   ) {
     this.language = translateService.currentLang || 'en';  // Get current language
     this.loadRoles(this.language);  // Load Roles based on selected language
@@ -76,61 +78,61 @@ export class ExploreComponent implements OnInit {
   isLoading: boolean = false;
   noUsersFound: boolean = false;
 
-  roles_en = [
-    { role: 'Clubs', id: 2 },
-    { role: 'Scouts', id: 3 },
-    { role: 'Talents', id: 4 },
-    // { role: 'League', id: 5 }
-  ];
+  // roles_en = [
+  //   { role: 'Clubs', id: 2 },
+  //   { role: 'Scouts', id: 3 },
+  //   { role: 'Talents', id: 4 },
+  //   // { role: 'League', id: 5 }
+  // ];
 
-  roles_de = [
-    { role: 'Verein', id: 2 },
-    { role: 'Scout', id: 3 },
-    { role: 'Talent', id: 4 },
-    { role: 'Liga', id: 5 }
-  ];
+  // roles_de = [
+  //   { role: 'Verein', id: 2 },
+  //   { role: 'Scout', id: 3 },
+  //   { role: 'Talent', id: 4 },
+  //   { role: 'Liga', id: 5 }
+  // ];
 
-  roles_dk = [
-    { role: 'Klub', id: 2 },
-    { role: 'Spejder', id: 3 },
-    { role: 'Talent', id: 4 },
-    { role: 'Liga', id: 5 }
-  ];
+  // roles_dk = [
+  //   { role: 'Klub', id: 2 },
+  //   { role: 'Spejder', id: 3 },
+  //   { role: 'Talent', id: 4 },
+  //   { role: 'Liga', id: 5 }
+  // ];
 
-  roles_es = [
-    { role: 'Club', id: 2 },
-    { role: 'Ojeador', id: 3 },
-    { role: 'Talento', id: 4 },
-    { role: 'Liga', id: 5 }
-  ];
+  // roles_es = [
+  //   { role: 'Club', id: 2 },
+  //   { role: 'Ojeador', id: 3 },
+  //   { role: 'Talento', id: 4 },
+  //   { role: 'Liga', id: 5 }
+  // ];
 
-  roles_fr = [
-    { role: 'Club', id: 2 },
-    { role: 'Recruteur', id: 3 },
-    { role: 'Talent', id: 4 },
-    { role: 'Ligue', id: 5 }
-  ];
+  // roles_fr = [
+  //   { role: 'Club', id: 2 },
+  //   { role: 'Recruteur', id: 3 },
+  //   { role: 'Talent', id: 4 },
+  //   { role: 'Ligue', id: 5 }
+  // ];
 
-  roles_it = [
-    { role: 'Club', id: 2 },
-    { role: 'Osservatore', id: 3 },
-    { role: 'Talento', id: 4 },
-    { role: 'Lega', id: 5 }
-  ];
+  // roles_it = [
+  //   { role: 'Club', id: 2 },
+  //   { role: 'Osservatore', id: 3 },
+  //   { role: 'Talento', id: 4 },
+  //   { role: 'Lega', id: 5 }
+  // ];
 
-  roles_pt = [
-    { role: 'Clube', id: 2 },
-    { role: 'Olheiro', id: 3 },
-    { role: 'Talento', id: 4 },
-    { role: 'Liga', id: 5 }
-  ];
+  // roles_pt = [
+  //   { role: 'Clube', id: 2 },
+  //   { role: 'Olheiro', id: 3 },
+  //   { role: 'Talento', id: 4 },
+  //   { role: 'Liga', id: 5 }
+  // ];
 
-  roles_se = [
-    { role: 'Klubb', id: 2 },
-    { role: 'Scout', id: 3 },
-    { role: 'Talang', id: 4 },
-    { role: 'Liga', id: 5 }
-  ];
+  // roles_se = [
+  //   { role: 'Klubb', id: 2 },
+  //   { role: 'Scout', id: 3 },
+  //   { role: 'Talang', id: 4 },
+  //   { role: 'Liga', id: 5 }
+  // ];
 
   ngOnInit(): void {
 
@@ -166,17 +168,30 @@ export class ExploreComponent implements OnInit {
 
   loadRoles(lang: string) {
     const currentRole: { [key: string]: any } = {
-      en: this.roles_en,
-      de: this.roles_de,
-      dk: this.roles_dk,
-      es: this.roles_es,
-      fr: this.roles_fr,
-      it: this.roles_it,
-      pt: this.roles_pt,
-      se: this.roles_se
+      // en: this.roles_en,
+      // de: this.roles_de,
+      // dk: this.roles_dk,
+      // es: this.roles_es,
+      // fr: this.roles_fr,
+      // it: this.roles_it,
+      // pt: this.roles_pt,
+      // se: this.roles_se
     };
 
-    this.roles = currentRole[lang] || this.roles_en;
+    // this.roles = currentRole[lang] || this.roles_en;
+
+    this.userService.getRoles().subscribe((response) => {
+      this.roles = response.data.roles;
+      // this.roles.forEach((role: any) => {
+      //   this.setDynamicRoles(role);
+      // });
+      // console.log(this.roles)
+      let updatedRoles = this.roles.filter((role: any) => role.id !== "1");
+      updatedRoles = updatedRoles.filter((role: any) => role.id !== "5");
+      updatedRoles = updatedRoles.filter((role: any) => role.id !== "6");
+      updatedRoles = updatedRoles.filter((role: any) => role.id !== "7");
+      this.roles = updatedRoles;
+    });
   }
 
   private trackBoostedProfileViews(players: any[]) {

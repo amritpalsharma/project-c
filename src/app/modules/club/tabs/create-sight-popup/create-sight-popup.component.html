@@ -126,7 +126,7 @@
       <div class="col-lg-8  gap-3 input-box d-flex">
         <div class="zipcode-input  col-lg-6">
           <label for="zipcode" class="code-text"> {{ 'zipcode' | translate }}</label> <br>
-          <input type="text" id="zipcode" class="cupen-btn  code-text w-100" [(ngModel)]="zipcode">
+          <input type="number" #numInput id="zipcode" class="cupen-btn  code-text w-100" [(ngModel)]="zipcode">
         </div>
         <div class="city-input col-lg-6">
           <label for="city" class="code-text">{{ 'city' | translate }}</label><br>

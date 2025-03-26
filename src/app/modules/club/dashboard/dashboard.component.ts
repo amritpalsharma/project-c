@@ -629,6 +629,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
             this.coverImage = null;  // Indicates no value is set
             this.dataEmitter.emit('');  // Emit empty string to indicate deletion
             this.toastr.clear();
+            let test = document.getElementById('file-upload2') as HTMLInputElement;
+            test.value = '';
             if (response.message != '') {
               this.toastr.success(response.message, this.successTxt);
             } else {
