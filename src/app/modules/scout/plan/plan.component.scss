@@ -53,7 +53,7 @@
 }
 .subscription-plan h2 {
     font-size: 20px;
-    color: #707070;
+    // color: #707070;
     font-weight: 800;
 }
 
@@ -154,6 +154,9 @@ sub.premium-month_title {
       border-radius: 6px;
       background: rgb(111,185,93);
       background: linear-gradient(180deg, rgba(111,185,93,1) 0%, rgba(35,97,21,1) 100%);
+    }
+    &:hover {
+        background: rgb(35, 97, 21);
     }
   }
 
@@ -312,7 +315,10 @@ sub.premium-month_title {
     height: 40px;
     animation: spin 1s linear infinite;
 }
-
+.row_position {
+    position: relative;
+    z-index: 1;
+}
 
 @keyframes spin {
     0% { transform: rotate(0deg); }
