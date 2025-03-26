@@ -559,14 +559,14 @@ export class PlanComponent implements OnInit, OnDestroy {
   }
 
   loadFeatures() {
-    this.translate.get('premiumPlanDesc.features').subscribe((data: string[]) => {
+    this.translate.get('ClubPremiumPlanDesc.features').subscribe((data: string[]) => {
       this.premiumFeatures = data;
       console.warn('this.premiumFeatures ',this.premiumFeatures)
     });
-    this.translate.get('multiCountryPlanDesc.features').subscribe((data: string[]) => {
+    this.translate.get('clubMultiCountryPlanDesc.features').subscribe((data: string[]) => {
       this.multiCountryPlanDesc = data;
     });
-    this.translate.get('bostProfileDesc.features').subscribe((data: string[]) => {
+    this.translate.get('clubBostProfileDesc.features').subscribe((data: string[]) => {
       this.bostProfileDesc = data;
     });
     // alert('Function Fired')

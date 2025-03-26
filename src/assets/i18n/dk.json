@@ -1138,6 +1138,48 @@
       "Mere synlighed - større chance for at blive opdaget"
     ]
   },
+  "scoutPremiumPlanDesc": {
+    "features": [
+      "Du kan invitere talenter og føje dem til din portefølje.",
+      "Opret din favoritliste.",
+      "Bliv gemt som favorit af talenter.",
+      "Optag flere billeder, videoer og højdepunkter.",
+      "Fremhæv dine bedste billeder og videoer i din profil.",
+      "Tilføj sociale mediekanaler og hjemmeside.",
+      "Eksporter præstationsdata for dine talenter som PDF.",
+      "Fortæl din spejderhistorie."
+    ]
+  },
+  "scoutMultiCountryPlanDesc": {
+    "features": [
+      "Præsenter din profil for talenter og ligaer i andre lande.",
+      "Større chancer for at få globale talenter.",
+      "Udvid dit globale netværk."
+    ]
+  },
+  "scoutBostProfileDesc": {
+    "features": [
+      "Hop til toppen af søgeresultaterne.",
+      "Fremhævet spejderfoto med baggrundseffekt for mere synlighed.",
+      "Forstærket klistermærke.",
+      "I spejderoversigten vises du i de første positioner for matchende søgeparametre.",
+      "Større chance for at blive fundet af et talent.",
+      "Boost-profilen hjælper dig med at udvide dit globale netværk."
+    ]
+  },
+  "ClubPremiumPlanDesc": {
+    "features": [
+      "Du kan tilføje og administrere dine spillere på holdene.",
+      "Registrer nye observationer.",
+      "Inviter talenter til dine screeningsarrangementer.",
+      "Opret din favoritliste.",
+      "Du kan tage flere billeder, videoer og højdepunkter.",
+      "Fremhæv dine bedste fotos og videoer i din profil.",
+      "Tilføj dine sociale mediekanaler og din hjemmeside til din profil.",
+      "Eksporter dine spilleres præstationsdata som PDF.",
+      "Fortæl din klubs historie."
+    ]
+  },
   "MyAccount": "til Dashboard",
   "boostProfiles": "Boost-profil",
   "changeNewsletterStatus": "Er du sikker på, at du vil ændre nyhedsbrevets status?",

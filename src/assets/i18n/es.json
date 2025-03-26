@@ -1220,6 +1220,48 @@
       "Más visibilidad - más posibilidades de ser descubierto"
     ]
   },
+  "scoutPremiumPlanDesc": {
+    "features": [
+      "Puedes invitar a talentos y añadirlos a tu cartera.",
+      "Crea tu lista de favoritos.",
+      "Ser guardado como favorito por los talentos.",
+      "Captura imágenes, vídeos y momentos destacados adicionales.",
+      "Destaca tus mejores fotos y vídeos en tu perfil.",
+      "Añadir canales de medios sociales y sitio web.",
+      "Exporte los datos de rendimiento de sus talentos en formato PDF.",
+      "Contar la historia de tu Scout."
+    ]
+  },
+  "scoutMultiCountryPlanDesc": {
+    "features": [
+      "Presente su perfil a talentos y ligas de otros países.",
+      "Mayores posibilidades de conseguir talentos globales.",
+      "Amplía tu red global."
+    ]
+  },
+  "scoutBostProfileDesc": {
+    "features": [
+      "Saltar a la parte superior de los resultados de búsqueda.",
+      "Foto scout resaltada con efecto de fondo para mayor visibilidad.",
+      "Pegatina destacada.",
+      "En la vista general de ojeadores, aparecerás en las primeras posiciones si coincides con los parámetros de búsqueda.",
+      "Mayores posibilidades de ser encontrado por un talento.Higher chances of being found by a talent.",
+      "El perfil Boost te ayuda a ampliar tu red global."
+    ]
+  },
+  "ClubPremiumPlanDesc": {
+    "features": [
+      "Puedes añadir y gestionar tus jugadores a los equipos.",
+      "Registrar nuevos avistamientos.",
+      "Invite a talentos a sus actos de proyección.",
+      "Crea tu lista de favoritos.",
+      "Puedes capturar imágenes, vídeos y momentos destacados adicionales.",
+      "Destaca tus mejores fotos y vídeos en tu perfil.",
+      "Añade tus canales de redes sociales y tu sitio web a tu perfil.",
+      "Exporta los datos de rendimiento de tus jugadores en formato PDF",
+      "Cuenta la historia de tu club."
+    ]
+  },
   "areYouSuretoDeleteActivity": "Está seguro de eliminar la actividad ?",
   "subsciptionCancelSuccess": "Su suscripción ha sido cancelada con éxito.",
   "MyAccount": "al Panel",

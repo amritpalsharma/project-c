@@ -1289,6 +1289,48 @@
       "Plus de visibilité - plus de chances d'être découvert"
     ]
   },
+  "scoutPremiumPlanDesc": {
+    "features": [
+      "Tu peux inviter des talents et les ajouter à ton portfolio.",
+      "Crée ta liste de favoris.",
+      "Être enregistré comme favori par les talents.",
+      "Saisir des images, des vidéos et des moments forts supplémentaires.",
+      "Mettre en valeur tes meilleures photos et vidéos dans ton profil.",
+      "Ajouter des canaux de médias sociaux et un site web.",
+      "Exporter les données de performance de tes talents en PDF.",
+      "Raconter l'histoire de Scout."
+    ]
+  },
+  "scoutMultiCountryPlanDesc": {
+    "features": [
+      "Présente ton profil aux talents et aux ligues d'autres pays.",
+      "Augmente tes chances d'obtenir des talents mondiaux.",
+      "Élargis ton réseau mondial."
+    ]
+  },
+  "scoutBostProfileDesc": {
+    "features": [
+      "Saute en tête des résultats de recherche.",
+      "Photo Scout surlignée avec effet de fond pour plus de visibilité.",
+      "Autocollant boosté (boosted sticker).",
+      "Dans l'aperçu des scouts, tu apparais dans les premières positions en cas de paramètres de recherche matches.",
+      "Meilleures chances d'être trouvé par un talent.",
+      "Le profil Boost t'aide à élargir ton réseau global."
+    ]
+  },
+  "ClubPremiumPlanDesc": {
+    "features": [
+      "Vous pouvez ajouter vos joueurs aux équipes et les gérer.",
+      "Saisir les nouvelles observations.",
+      "Inviter des talents à vos événements de détection.",
+      "Créez votre liste de favoris.",
+      "Vous pouvez saisir des images, des vidéos et des moments forts supplémentaires.",
+      "Mettez en valeur vos meilleures photos et vidéos dans votre profil.",
+      "Ajoute tes canaux de médias sociaux et ton site web dans ton profil.",
+      "Exporte les données de performance de vos joueurs au format PDF.",
+      "Raconter l'histoire du club."
+    ]
+  },
   "areYouSuretoDeleteActivity": "Êtes-vous sûr de vouloir supprimer l'activité ?",
   "subsciptionCancelSuccess": "Votre abonnement a été annulé avec succès.",
   "deleteAccountDesc": "Cela supprimera définitivement votre compte de notre base de données.",

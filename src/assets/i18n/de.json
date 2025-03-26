@@ -393,7 +393,7 @@
   "setting": "Einstellungen",
   "template": "Vorlage",
   "registrations": "Anmeldungen",
-  "talent": "Talente",
+  "talent": "Talent",
   "my-club": "Club",
   "scout": "Scout",
   "name-text": "Kadin Septimus",
@@ -1221,6 +1221,48 @@
       "Dein Profilbild erhält einen besonderen und hervorgehobenen Hintergrund",
       "Dein Profil erscheint in der Suche, wenn nach deinen Merkmalen gesucht wird, am Anfang der Suchresultate",
       "Mehr Sichtbarkeit - höhere Chancen entdeckt zu werden"
+    ]
+  },
+  "scoutPremiumPlanDesc": {
+    "features": [
+      "Du kannst Talente einladen und in deinem Portfolio hinzufügen.",
+      "Erstelle deine persönliche Favoritenliste.",
+      "Werde von Talenten als Favorit gespeichert.",
+      "Du kannst zusätzliche Bilder, Videos und Highlights erfassen.",
+      "Highlighte deine besten Fotos und Videos in deinem Profil.",
+      "Füge deine Social Media Kanäle und Webseite deinem Profil hinzu.",
+      "Exportiere Leistungsdaten deiner Talente als PDF.",
+      "Scout Geschichte erzählen."
+    ]
+  },
+  "scoutMultiCountryPlanDesc": {
+    "features": [
+      "Falle mit deinem Profil bei Talenten und Ligen in anderen Ländern auf.",
+      "Höhere Chancen, globale Talente zu entdecken.",
+      "Erweitere dein globales Netzwerk."
+    ]
+  },
+  "scoutBostProfileDesc": {
+    "features": [
+      "Dein Profil ist am Anfang der Suchergebnisse gelistet.",
+      "Dein Scout Foto erhält einen Hintergrund Effekt für mehr Sichtbarkeit.",
+      "Boosted Sticker.",
+      "In der Scoutübersicht erscheinst du auf den ersten Positionen bei passenden Suchparametern.",
+      "Höhere Chancen von einem Talent gefunden zu werden.",
+      "Mit dem Boost erweiterst du dein globales Netzwerk."
+    ]
+  },
+  "ClubPremiumPlanDesc": {
+    "features": [
+      "Ihr könnt eure Spieler den Teams hinzufügen und verwalten.",
+      "Neue Sichtungen erfassen.",
+      "Talente zu euren Sichtungs-Events einladen.",
+      "Erstellt eure Favoritenliste.",
+      "Ihr könnt zusätzliche Bilder, Videos und Highlights erfassen.",
+      "Highlighte eure besten Fotos und Videos in eurem Profil.",
+      "Fügt eure Social Media Kanäle und Webseite im Profil hinzu.",
+      "Exportiert die Leistungsdaten eurer Spieler als PDF.",
+      "Erzählt eure Club-Geschichte."
     ]
   },
   "noNotification": "Keine Benachrichtigung gefunden!",
