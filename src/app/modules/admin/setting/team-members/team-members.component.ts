@@ -44,8 +44,12 @@ export class TeamMembersComponent {
         if (response.data.currentUser != '' && response.data.currentUser != undefined) {
           this.currentUserId = response.data.currentUser.id;
         }
-        this.representators = response.data.representators;
-        this.representators.push(response.data.currentUser);
+        if (response.data.representators != '' && response.data.representators != undefined) { 
+          this.representators = response.data.representators;
+          if (response.data.currentUser != '' && response.data.currentUser != undefined) {
+            this.representators.push(response.data.currentUser);
+          }
+        }
         this.baseUrl = response.data.uploads_path
       } else {
         console.error('Invalid API response structure:', response);
@@ -83,6 +87,7 @@ export class TeamMembersComponent {
   }
 
   showMatDialog(message: string, action: string) {
+    // alert(message)
     const messageDialog = this.dialog.open(MessagePopupComponent, {
       width: '500px',
       position: {

@@ -391,17 +391,18 @@
           </div>
         </li>
         <li class="nav-item mobile_search">
-          <a class="nav-link" role="button">
-            <img src="../../../../assets/images/mobile-search.svg" width="56" alt="">
+          <a class="nav-link" role="button" (click)="toggleSearch()">
+            <img *ngIf="!isSearchVisible" src="../../../../assets/images/mobile-search.svg" width="56" alt="">
+            <img *ngIf="isSearchVisible" src="../../../../assets/images/mobile-search-cross.svg" width="56" alt="">
           </a>
         </li>
       </ul>
     </div>
   </nav>
-  <div class="mobile_search_container">
+  <div ng-class="{'mobile_search_container': !isSearchVisible}" *ngIf="isSearchVisible">
     <div class="search-container w-100">
       <!-- <mat-form-field class="w-100"> -->
-      <input matInput placeholder="{{ 'search' | translate }}" [formControl]="searchControl" [matAutocomplete]="auto"
+      <input matInput placeholder="{{ 'search' | translate }} {{isSearchVisible}}" [formControl]="searchControl" [matAutocomplete]="auto"
         class="form-control w-100" />
       <mat-autocomplete class="suggestion-list" #auto="matAutocomplete"
         (optionSelected)="selectUser($event.option.value)">

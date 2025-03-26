@@ -171,7 +171,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
             tooltipClass: 'custom-tooltip',
           },
           {
-            element: '.edit_image-2',
+            element: '.edit_image-tour',
             intro: `<div><h6>${translations['coverPhoto']}</h6>${translations['uploadCoverPhoto']}.</div>`,
             tooltipClass: 'custom-tooltip',
           },
