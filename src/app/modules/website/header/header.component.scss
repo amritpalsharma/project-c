@@ -544,13 +544,6 @@ button.create-account.d-block {
     padding-top: 91px;
 }
 
-// .nav-link.active{
-//     color:#E05263;
-// }
-// .nav-link:hover {
-//   color: #e05263;
-// }
-
 .navbar-brand img {
     width: 261px;
     height: 116px;
@@ -1472,7 +1465,7 @@ select.form-select.custom-select1 {
     }
 
     .coustom-select1 {
-        margin-left: 20px;
+        margin-left: 1.5rem;
         margin-right: 20px;
     }
 
@@ -1649,11 +1642,8 @@ select.form-select.custom-select1 {
 
     .nav-link.active {
         color: #fff;
-        /* Change text color for the active link */
         border-radius: 50px;
-        /* Make the background rounded */
         padding: 10px 20px;
-        /* Adjust padding to fit the circle */
         margin-left: 30px;
     }
 
@@ -1662,19 +1652,12 @@ select.form-select.custom-select1 {
         display: block;
         position: absolute;
         top: 50%;
-        /* Center vertically */
         left: -18px;
-        /* Center horizontally */
         width: 10px;
-        /* Diameter of the circle */
         height: 10px;
-        /* Diameter of the circle */
         background-color: white;
-        /* Color of the circle */
         border-radius: 50%;
-        /* Make it circular */
         transform: translate(-50%, -50%);
-        /* Center the circle */
     }
 
     /* sidebar*/
@@ -1805,7 +1788,7 @@ select.form-select.custom-select1 {
 
 @media (max-width: 575px) {
     .coustom-select1 {
-        margin-left: 10px;
+        margin-left: 1.5rem;
         margin-right: 10px;
     }
 
@@ -1824,9 +1807,6 @@ select.form-select.custom-select1 {
 
     p.mb-0 {
         font-size: 11px;
-        // color: white;
-        // display: block;
-        // margin-top: auto;
     }
 
     .forget-password .modal-btn .btn {
@@ -1902,7 +1882,6 @@ select.form-select.custom-select1 {
     }
 
     .navbar-collapse {
-        /* padding-bottom: 10px; */
         margin-top: 0;
         margin-top: -75px;
     }
@@ -1929,9 +1908,7 @@ select.form-select.custom-select1 {
         display: none;
     }
 
-    .navbar-logo,
-    .navbar-list,
-    .footer-links {
+    .navbar-logo, .navbar-list, .footer-links {
         display: flex;
         margin-top: 20px;
     }
@@ -1958,38 +1935,30 @@ select.form-select.custom-select1 {
     .nav-link {
         text-transform: uppercase;
         padding: 0 !important;
-        font-size: 20px;
+        font-size: 24px;
         font-weight: 700;
         color: #fff;
         margin-bottom: 10px;
         position: relative;
         line-height: 40px;
     }
-
+    .navbar-toggler{
+        width: 40px !important;
+        margin-left: 1rem;
+    }
     .footer-links {
         position: relative;
-        // margin-bottom: 50px;
     }
 
     .footer-links::after {
         content: "";
         display: block;
-        /* Ensures the pseudo-element is a block-level element */
         height: 1px;
-        /* Thickness of the line */
         width: 100%;
-        /* Width of the line */
         background-color: white;
-        /* Color of the line */
         position: absolute;
-        /* Absolute positioning for alignment */
         transform: translateY(-50%);
     }
-
-    .form-select {
-        font-size: 12px;
-    }
-
     .icon-hamburger::before {
         content: "☰";
         font-size: 21px;
@@ -2027,16 +1996,12 @@ select.form-select.custom-select1 {
 
     select.form-select.custom-select1.hidden {
         display: none;
-        /* Hide the element */
     }
 
     .nav-link.active {
         color: #fff;
-        /* Change text color for the active link */
         border-radius: 50px;
-        /* Make the background rounded */
         padding: 10px 20px;
-        /* Adjust padding to fit the circle */
         margin-left: 30px;
     }
 
@@ -2049,22 +2014,13 @@ select.form-select.custom-select1 {
         display: block;
         position: absolute;
         top: 50%;
-        /* Center vertically */
         left: -18px;
-        /* Center horizontally */
         width: 10px;
-        /* Diameter of the circle */
         height: 10px;
-        /* Diameter of the circle */
         background-color: white;
-        /* Color of the circle */
         border-radius: 50%;
-        /* Make it circular */
         transform: translate(-50%, -50%);
-        /* Center the circle */
     }
-
-    /* sidebar*/
 
     .logo svg {
         height: 68px;
@@ -2122,15 +2078,6 @@ select.form-select.custom-select1 {
         font-size: 14px !important;
     }
 
-    //   .navbar-collapse{
-    //     background-color: #092E01;
-    //     padding-bottom: 10px;
-    //     margin-top: 171px;
-    //     position: absolute;
-    //     width: 94%;
-    // }
-
-
     .login .logo h6 {
         font-size: 20px;
     }
@@ -2178,12 +2125,6 @@ select.form-select.custom-select1 {
         margin-top: 0;
     }
 
-    // .login {
-    //     max-width: 550px;
-    //     margin-left: 20px;
-    //     margin-right: 20px;
-    // }
-
     .login .modal-btn .btn {
         margin-bottom: 0;
     }
@@ -2201,18 +2142,15 @@ select.form-select.custom-select1 {
     }
 
     .nav-link {
-        font-size: 17px;
+        font-size: 20px;
         font-weight: 600;
         line-height: 35px;
+        width: calc(100% + 20px);
     }
 
     .footer-bottom p {
         font-size: 13px;
     }
-
-    // .footer-links {
-    //     margin-bottom: 75px;
-    // }
 
     .logo svg {
         height: 45px;
@@ -2292,8 +2230,6 @@ select.form-select.custom-select1 {
     }
 
     .nav-link {
-        font-size: 16px;
-        font-weight: 600;
         line-height: 30px;
     }
 
@@ -2564,11 +2500,24 @@ select.form-select.custom-select1 {
 
 @media (max-width: 420px) {
     .navbar-toggler {
-        width: 30px;
-
         img {
             width: 100%;
         }
     }
 }
 
+@media (max-width: 374px) {
+.form-select {
+    font-size: 12px;
+  }
+  .navbar-toggler{
+    width: 32px;
+    margin-left: 0;
+}
+.coustom-select1 {
+    margin-left: 10px;
+}
+.navbar-brand img {
+    width: 85px;
+}
+}

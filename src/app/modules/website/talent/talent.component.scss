@@ -929,12 +929,14 @@ span {
     // background-color: #092E01;
     margin-right: 10px;
 }
-
+.billed_wrapp {
+    margin-top: 50px;
+}
 .billed {
     display: flex;
     justify-content: right;
     margin-bottom: 10px;
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 .billed1 {
@@ -2204,10 +2206,6 @@ span {
         padding: 30px 20px 20px 10px;
     }
 
-    .premium {
-        padding-bottom: 0;
-    }
-
     .premium-img {
         padding-top: 0;
         padding-left: 10px;
@@ -2567,7 +2565,7 @@ span {
 
     .banner-data {
         position: relative;
-        height: 700px;
+        height: 750px;
     }
 
     .banner-image1 img {
@@ -2896,7 +2894,7 @@ span {
         left: 7px;
     }
 
-    .billed {
+    .billed_wrapp {
         margin-top: 30px;
     }
 
@@ -3831,6 +3829,12 @@ span {
 
     }
 
+}
+
+.red_text_plan {
+    color: #E05263;
+    text-align: right;
+    font-size: 14px;
 }
 
 

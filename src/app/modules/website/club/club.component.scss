@@ -769,6 +769,12 @@ img.birthday-img {
     border-radius: 10px;
     height: calc(100% - 100px);
     margin-top: 100px;
+    img {
+        width: 62px;
+        height: 62px;
+        object-fit: contain;
+        margin-bottom: 15px;
+    }
 }
 
 .club-text1 {
@@ -1410,11 +1416,14 @@ span {
     margin-right: 10px;
 }
 
+.billed_wrapp {
+    margin-top: 50px;
+}
 .billed {
     display: flex;
     justify-content: right;
     margin-bottom: 10px;
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 .billed1 {
@@ -4806,7 +4815,7 @@ span {
     }
 
 
-    .billed {
+    .billed_wrapp {
         margin-top: 30px;
     }
 
@@ -5825,6 +5834,19 @@ span {
         width: 125px;
         right: -7%;
         top: 24%;
+    }
+}
+
+
+.red_text_plan {
+    color: #E05263;
+    text-align: right;
+    font-size: 14px;
+}
+.premium-heading2 {
+    .red_text_plan {
+        font-size: 14px;
+        text-align: left;
     }
 }
 

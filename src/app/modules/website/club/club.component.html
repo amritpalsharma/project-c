@@ -428,18 +428,21 @@
                     <p class="billed-text">2 months free on yearly plan</p>
                 </div> -->
                 <div *ngFor="let plan of pageData.pricing_tab; let i = index; trackBy: trackByFn">
-                    <div class="billed">
-                        <p [ngClass]="{ 'active-text': isActivePlan[i], 'inactive-text': !isActivePlan[i] }"
-                            class="billed-monthly">
-                            {{'billedMonthly' | translate}}
-                        </p>
-                        <div class="toggle-button"
-                            [ngClass]="{ 'active': isActivePlan[i], 'inactive': !isActivePlan[i] }"
-                            (click)="togglePlan(i)">
+                    <div class="billed_wrapp">
+                        <div class="red_text_plan">2 months free on yearly plan</div>
+                        <div class="billed">
+                            <p [ngClass]="{ 'active-text': isActivePlan[i], 'inactive-text': !isActivePlan[i] }"
+                                class="billed-monthly">
+                                {{'billedMonthly' | translate}}
+                            </p>
+                            <div class="toggle-button"
+                                [ngClass]="{ 'active': isActivePlan[i], 'inactive': !isActivePlan[i] }"
+                                (click)="togglePlan(i)">
+                            </div>
+                            <p [ngClass]="{ 'active-text': !isActivePlan[i], 'inactive-text': isActivePlan[i] }">
+                                {{'billedYearly' | translate}}
+                            </p>
                         </div>
-                        <p [ngClass]="{ 'active-text': !isActivePlan[i], 'inactive-text': isActivePlan[i] }">
-                            {{'billedYearly' | translate}}
-                        </p>
                     </div>
 
                     <div class="premium">
@@ -447,7 +450,7 @@
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="premium-img">
                                     <img class="bg-image" src="./assets/images/feature-image.svg">
-                                    <h2 class="premium-heading2">{{ plan.plan_name }}</h2>
+                                    <h2 class="premium-heading2">{{ plan.plan_name }} <span class="red_text_plan">For Clubs and Scouts</span></h2>
                                     <h3 class="premium-heading3">
                                         <!-- {{ !isActivePlan[i] ? plan.monthly_plan_price : plan.yearly_plan_price
                                         }}<span>.- {{ !isActivePlan[i] ? plan.monthly_plan_price_currency :
