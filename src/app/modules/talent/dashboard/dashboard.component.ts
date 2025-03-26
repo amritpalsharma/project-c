@@ -200,7 +200,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
             tooltipClass: 'custom-tooltip',
           },
           {
-            element: '.edit_image-2',
+            element: '.edit_image-tour',
             intro: `<div><h6>${translations['coverPhoto']}</h6>${translations['uploadCoverPhoto']}.</div>`,
             tooltipClass: 'custom-tooltip',
           },
@@ -349,7 +349,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
             this.countryFlagUrl = this.user?.meta?.birth_country_flag;
           }
           this.isPremium = this.user?.active_subscriptions?.premium.length > 0 ? true : false;
-          if (this.StartTour && this.isTourFirstTime) {
+          // this.isPremium = true;
+          // if (this.StartTour && this.isTourFirstTime) {
+          if (true) {
             setTimeout(() => {
               this.isTourFirstTime = false;
               // alert('Found lang in Db : '+response.data.user_data.lang)
@@ -704,6 +706,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
             this.coverImage = null;  // Indicates no value is set
             this.dataEmitter.emit('');  // Emit empty string to indicate deletion
             this.toastr.clear();
+            let test = document.getElementById('file-upload2') as HTMLInputElement;
+            test.value = '';
             if (response.message != '') {
               this.toastr.success(response.message, this.successTxt);
             } else {

@@ -5,6 +5,7 @@ import { ClubService } from '../../../../services/club.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddNewTalentComponent } from '../add-new-talent/add-new-talent.component';
 import { ToastrService } from 'ngx-toastr';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'club-teams-tab',
@@ -29,8 +30,14 @@ export class TeamsTabComponent {
     private clubService: ClubService,
     private router: Router,
     public dialog: MatDialog,
-    public toaster: ToastrService
-  ) { }
+    public toaster: ToastrService,
+    translateService: TranslateService
+  ) {
+    translateService.onLangChange.subscribe(() => {
+      // this.userId = this.userData.id;
+      this.getTeamPlayers(this.selectedTeamId, this.selectedTeam);
+    });
+  }
 
   ngOnInit() {
     this.userId = this.userData.id;

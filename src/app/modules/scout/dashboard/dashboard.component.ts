@@ -122,7 +122,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   startIntroTour(lang: string) {
     // introJs().start().goToStep(1);
-    this.translateService.use(lang); // Change language before fetching translations
+    // this.translateService.use(lang); // Change language before fetching translations
     this.translateService.get([
       'profilePhoto',
       'uploadYourBestHeadshot',
@@ -578,17 +578,20 @@ export class DashboardComponent implements OnInit, OnDestroy {
               this.toastr.clear();
               this.commonDataService.updateProfilePic(this.profileImage);
 
-              this.toastr.success('Profile image uploaded successfully!', 'Success');
+              this.toastr.success(response.message);
             } else {
               this.toastr.clear();
               this.toastr.error('Failed to upload profile image. Please try again.', 'Upload Failed');
               console.error('Invalid API response structure:', response);
             }
+            this.selectedFile = null;
           },
           (error) => {
             this.toastr.clear();
             this.toastr.error('An error occurred during upload. Please try again.', 'Upload Error');
             console.error('Error uploading profile image:', error);
+
+            this.selectedFile = null;
           },
         );
       } catch (error) {
@@ -601,6 +604,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   sendMessage() {
     this.scoutService.updatePicOnHeader(this.profileImage);
+  }
+
+  onclick(event: Event){
+    const input = event.target as HTMLInputElement;
+    console.log(this.selectedFile, input, input.files)
   }
 
   onCoverFileChange(event: Event): void {
@@ -621,18 +629,24 @@ export class DashboardComponent implements OnInit, OnDestroy {
               this.coverImage = `${environment.url}uploads/${response.data.uploaded_fileinfo}`;
               this.dataEmitter.emit(this.coverImage);  // Emit updated cover image
               this.toastr.clear();
-              this.toastr.success('Cover image uploaded successfully!', 'Success');
+              this.toastr.success(response.message);
             } else {
               this.toastr.clear();
               this.toastr.error('Failed to upload cover image. Please try again.', 'Upload Failed');
               console.error('Invalid API response structure:', response);
             }
+
+            // this.selectedFile = null;
           },
           (error) => {
             this.toastr.clear();
             this.toastr.error('An error occurred during upload. Please try again.', 'Upload Error');
             console.error('Error uploading cover image:', error);
-          },
+
+            // this.selectedFile = null;
+          }
+
+          
         );
       } catch (error) {
         this.toastr.clear();
@@ -653,7 +667,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
             this.coverImage = null;  // Indicates no value is set
             this.dataEmitter.emit('');  // Emit empty string to indicate deletion
             this.toastr.clear();
-            this.toastr.success('Cover image deleted successfully.', 'Success');
+            this.toastr.success(response.message);
+            let test = document.getElementById('file-upload2') as HTMLInputElement;
+            test.value = '';
           } else {
             this.toastr.clear();
             this.toastr.error('Failed to delete cover image. Please try again.', 'Delete Failed');

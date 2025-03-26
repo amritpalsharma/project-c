@@ -66,8 +66,12 @@ export class MembershipComponent {
       this.getBoosterData()
     });
     this.webpages.languageId$.subscribe((data) => {
+      this.getUserPurchases();
+      this.getUserPlans();
+      this.getUserCards();
+      this.getBoosterData();
       this.getJsonTranslations();
-    })
+    });
   }
 
   // Fetch purchases from API with pagination parameters
@@ -75,7 +79,9 @@ export class MembershipComponent {
     const pageNumber = this.currentPage != 0 ? this.currentPage : 1;
     const pageSize = this.pageSize;
 
-    this.scoutService.getPurchaseData(pageNumber, pageSize).subscribe(response => {
+    let lang = localStorage.getItem('lang_id');
+
+    this.scoutService.getPurchaseData(pageNumber, pageSize, lang).subscribe(response => {
       if (response && response.status && response.data) {
         this.userPurchases = response.data.purchaseHistory;
         this.totalItems = response.data.totalCount; // Assuming API returns the total number of purchases
@@ -89,6 +95,8 @@ export class MembershipComponent {
   }
 
   exportData(): void {
+    let params: any = {};
+    params.lang = localStorage.getItem('lang_id');
     this.scoutService.getExportLinkPurchaseData().subscribe(
       (response) => {
         if (response?.status && response?.data?.file_path) {
@@ -110,6 +118,8 @@ export class MembershipComponent {
 
   // Fetch purchases from API with pagination parameters
   getUserPlans(): void {
+    let params: any = {};
+    params.lang = localStorage.getItem('lang_id');
 
     this.scoutService.getUserPlans().subscribe(response => {
       if (response && response.status && response.data) {

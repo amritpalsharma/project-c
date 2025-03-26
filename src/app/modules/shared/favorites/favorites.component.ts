@@ -80,9 +80,9 @@ export class FavoritesComponent {
     //     envRoles.unshift({id: 0, role: 'All'});
     // this.roles = envRoles;
     this.roles = [
-      { role: "Club", name: "Club", slug: "club", id: 2 },
-      { role: "Scout", name: "Scout", slug: "scout", id: 3 },
-      { role: "Player", name: "Talent", slug: "talent", id: 4 },
+      { role: "club", name: "club", slug: "club", id: 2 },
+      { role: "scout", name: "scout", slug: "scout", id: 3 },
+      { role: "talent", name: "talent", slug: "talent", id: 4 },
     ];
     this.updateTranslation();
 
