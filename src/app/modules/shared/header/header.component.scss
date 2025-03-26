@@ -277,7 +277,7 @@ a.dropdown-item.ai-icon.selected {
   background-size: 80%;
 }
 
-.mobile_search {
+.mobile_search, .mobile_search_container {
   display: none;
 }
 
@@ -287,5 +287,9 @@ a.dropdown-item.ai-icon.selected {
     .nav-link img {
       width: 30px;
   }
+  }
+  .mobile_search_container {
+    padding: 10px 0;
+    border-top: 1px solid #dfdfdf;
   }
 }

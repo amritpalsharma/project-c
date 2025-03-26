@@ -199,6 +199,11 @@ button.learn-more {
 .news-box:hover .news_img_thumb_wrap img {
     transform: scale(1.25);
 }
+.news-box:hover {
+    p:not(.p-text) {
+        color: #E05263;
+    }
+}
 
 .news-slider.py_0 {
     padding-top: 0;

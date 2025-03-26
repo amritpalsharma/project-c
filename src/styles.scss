@@ -209,22 +209,10 @@ input#contractEnd {
 
 .custom-datepicker .mat-datepicker-content {
   transform: translateX(-100%) !important;
-  /* Moves the datepicker to the left */
 }
 
 .custom-datepicker .mat-calendar {
   margin-right: auto;
-  /* Ensures alignment to the left */
-}
-
-.compact-sidebar .page-sidebar:before {
-  // position: fixed;
-  // height: 95%;
-  // width: 80px;
-  // display: block;
-  // content: "";
-  // box-shadow: 0 0 1.25rem rgba(31, 45, 61, 0.04);
-  // z-index: -1;
 }
 
 .bottom_box .sidebar_menu {
@@ -235,14 +223,6 @@ input#contractEnd {
   padding: 4px 8px !important;
   border-radius: 4px !important;
 }
-
-
-
-
-.compact-sidebar .sidebar_menu_span {
-  // display: none;
-}
-
 .custom-size-calendar .mdc-text-field--filled {
   background: none !important;
   border: 1px solid #111418;
@@ -262,9 +242,6 @@ input#contractEnd {
   padding: 0 !important;
 }
 
-// .explore-all_input .mat-mdc-form-field-infix{
-//   width: 100% !important;
-// }
 .explore-all_input .mdc-text-field--filled .mdc-line-ripple::before {
   border-bottom: none !important;
 }
@@ -314,9 +291,6 @@ input#contractEnd {
   display: block !important;
 }
 
-// .table {
-//   margin-bottom: 0px;
-// }
 .table> :not(caption)>*>* {
   border-bottom-width: 0px !important;
   padding: 0.938rem .5rem;
@@ -2102,6 +2076,9 @@ nav.navbar .country_dropdown h6.border-bottom {
 }
 .club.dark_theme_iclub {
   display: block;
+}
+.filter-bottom-button .Launch {
+    color: #0C3453 !important;
 }
 }
 

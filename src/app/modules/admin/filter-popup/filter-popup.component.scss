@@ -38,7 +38,7 @@ label.activefilter{
 
 .Launch{
   background-color: #6FB95D;
-  color: #ffffff;
+  color: #fff;
   font-size: 12px;
     font-weight: 700;
     border-radius: 10px;
@@ -66,36 +66,3 @@ input[type="radio"]:checked + .btn-light {
   background-color: #007bff ;
   color: white;
 }
-
-
-// div#cdk-overlay-0 {
-//   width: 350px;
-//     height: 550px;
-//     position: static;
-//     margin-top: 151px;
-//     margin-right: 22px
-// }
-
-
-// label.activefilter{
-//   background: #023A4A;
-//   color: #ffffff;
-// }
-
-// select.location-filter.activefilter{
-//   background: #023A4A;
-//   color: #ffffff;
-// }
-
-// select.location-filter{
-//   background: #c6c7c8;
-//   border: none;
-//   outline: none !important;
-// }
-
-
-// select.location-filter option{
-//   background: #ffffff;
-//   color: #333333;
-//   // outline: none !important;
-// }

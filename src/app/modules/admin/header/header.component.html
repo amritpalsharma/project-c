@@ -398,4 +398,40 @@
       </ul>
     </div>
   </nav>
+  <div class="mobile_search_container">
+    <div class="search-container w-100">
+      <!-- <mat-form-field class="w-100"> -->
+      <input matInput placeholder="{{ 'search' | translate }}" [formControl]="searchControl" [matAutocomplete]="auto"
+        class="form-control w-100" />
+      <mat-autocomplete class="suggestion-list" #auto="matAutocomplete"
+        (optionSelected)="selectUser($event.option.value)">
+        <!-- Show loader while loading -->
+        <mat-option *ngIf="isLoading" class="loading-option" disabled>
+          <div>
+            {{ 'loading' | translate }}
+          </div>
+        </mat-option>
+
+        <!-- Show user list -->
+        <mat-option *ngFor="let user of filteredUsers" [value]="user">
+          <img width="20" height="20" class="img-list me-2" src="{{
+                user?.profile_image
+                  ? user?.profile_image
+                  : '../../../../assets/images/default/talent-profile-default.png'
+              }}" />
+          <span>
+            {{ user.first_name }} {{ user.last_name }}
+          </span>
+        </mat-option>
+
+        <!-- Show "No results found" if no users are available -->
+        <mat-option *ngIf="!isLoading && filteredUsers.length === 0" disabled>
+          <div>
+            {{ 'noResultFound' | translate }}
+          </div>
+        </mat-option>
+      </mat-autocomplete>
+      <!-- </mat-form-field> -->
+    </div>
+  </div>
 </div>

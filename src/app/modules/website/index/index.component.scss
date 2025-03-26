@@ -122,12 +122,6 @@ a {
   background-color: #e05263;
   border-color: #e05263;
 }
-
-// button.btn.btn-success.ng-tns-c2994145305-2 {
-//   background-color: transparent !important;
-//   color: #86AA7D !important;
-// }
-
 .social-media ul li a {
   color: #fff;
   margin-right: 10px;
@@ -731,20 +725,33 @@ li {
   height: 310px;
   width: 100%;
   object-fit: cover;
-  border-radius: 9px;
-  border-radius: 9px;
-  border: 4px solid transparent;
+  border: solid 4px transparent;
+  border-radius: 10px;
   overflow: hidden;
-  background: linear-gradient(45deg, #C2A64A, #A77A2E);
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(45deg, #C2A64A, #A77A2E);
+  }
 }
+
 .player-image {
   height: calc(100% - 15px);
   object-fit: cover;
   object-position: top;
   display: block;
   width: 100%;
-  border-radius: 9px;
   transition: .5s all;
+  position: relative;
+  z-index: 1;
 }
 
 .player-border:hover .player-image {
@@ -760,17 +767,21 @@ li {
 
 .player-name {
   position: absolute;
-  left: 4px;
-  right: 14px;
+  left: 50%;
+  transform: translateX(-50%);
   color: #fff;
   background: linear-gradient(to bottom right, #6FB95D, #236115);
   padding: 5px;
-  width: 97%;
+  width: calc(100% - 8px);
   text-align: center;
   font-size: 14px;
   font-weight: 500;
   bottom: 4px;
-  border-radius: 0 0 9px 9px;
+  border-radius: 0 0px 5px 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  z-index: 1;
 }
 
 .player-carousel::after {
@@ -788,17 +799,15 @@ li {
   height: 0;
   border: solid;
   z-index: 1;
-  /* Ensure it's above other content */
 }
 
 .player-carousel::before {
-  top: 4px;
+  top: 3px;
   right: 4px;
-  border-radius: 0 9px 0;
+  border-radius: 0 6px 0;
   border-width: 0 82px 76px 0;
-  /* Adjust sizes as needed */
   border-color: transparent #ffffff transparent transparent;
-  /* Adjust color */
+  z-index: 2;
 }
 
 .player-carousel::after {
@@ -872,7 +881,7 @@ p {
   width: 39px;
   height: 58px;
   object-fit: cover;
-  z-index: 1;
+  z-index: 2;
   top: 8px;
   right: 8px;
   img {
@@ -2294,36 +2303,17 @@ img.success-image {
     width: 430px;
   }
 
-  .player-name {
-    width: 97%;
-  }
-
 }
 
 @media (min-width: 2560px) {
   .main-bnr {
     height: 1200px;
   }
-
-  // .skyscraper-image,
-  // .wide-skyscraper-image {
-  //   top: 14%;
-  //}
-
   .works {
     height: 1400px;
   }
-
-  .player-name {
-    width: 97.7%;
-  }
-
   .player-img {
     height: 400px;
-  }
-
-  .player-image {
-    height: 375px;
   }
 
   .player-image1 {
@@ -2578,9 +2568,6 @@ img.success-image {
 
 
 @media (max-width: 1281px) {
-  // .skyscraper-image {
-  //   top: 18%;
-  // }
 
   .work-banner {
     margin-right: 23%;
@@ -2589,11 +2576,6 @@ img.success-image {
   .talent-img2 img {
     top: 67%;
   }
-
-  .player-name {
-    width: 97%;
-  }
-
   .talent-img1 img {
     left: 45%;
   }
@@ -3424,16 +3406,9 @@ img.success-image {
     bottom: -30px;
   }
 
-  .player1,
-  .player2,
-  .player3 {
+  .player1, .player2, .player3 {
     margin-bottom: 30px;
     margin-top: 10px;
-  }
-
-  .player-carousel::before {
-    top: 4px;
-    right: 4px;
   }
 
   .recently-joined .corner-image {
@@ -3441,22 +3416,9 @@ img.success-image {
     right: 8px;
   }
 
-  //   .flag-image.hidden {
-  //     display: none;
-  // }
-
-  .club_member1-name,
-  .club_member2-name,
-  .club_member3-name,
-  .club_member5-name,
-  .club_member7-name {
+  .club_member1-name, .club_member2-name, .club_member3-name, .club_member5-name, .club_member7-name {
     padding: 5px;
   }
-
-  .player-name {
-    right: 4px;
-  }
-
   .hidden {
     display: none;
   }
@@ -3862,15 +3824,12 @@ img.success-image {
       font-size: 16px;
       padding: 10px 20px;
       margin-right: 0;
+      min-width: 190px;
     }
   }
 
   .main-bnr {
     height: 700px;
-  }
-
-  .joined {
-    display: block;
   }
 
   .joined-btn button.btn {
@@ -3888,15 +3847,6 @@ img.success-image {
     height: 100px;
     object-fit: contain;
   }
-
-  .player-image {
-    height: 200px;
-  }
-
-  .player-name {
-    width: 97%;
-  }
-
   .club_member1,
   .club_member5,
   .club_member7 {
@@ -4417,6 +4367,22 @@ img.success-image {
 
 }
 
+
+@media (max-width: 480px) {
+.joined {
+  display: block;
+}
+}
+
+
+@media (min-width: 375px) and (max-width: 430px) {
+  .works-btn {
+    button.btn {
+      min-width: 160px;
+    }
+  }
+}
+
 @media (max-width: 415px) {
   img.image3 {
     width: 250px;
@@ -4440,6 +4406,16 @@ img.success-image {
   .progress_btn p {
     font-size: 17px;
   }
+}
+
+
+@media (max-width: 374px) {
+.works-btn {
+  button.btn {
+    min-width: 100px;
+  }
+}
+
 }
 
 @media (max-width: 394px) {
@@ -4539,11 +4515,6 @@ img.success-image {
   .main-bnr {
     height: 650px;
   }
-
-  .player-name {
-    width: 95%;
-  }
-
   .button-border {
     width: 230px;
     height: 55px;
@@ -4835,12 +4806,6 @@ img.success-image {
   .main-bnr {
     height: 600px;
   }
-
-  .joined {
-    display: block;
-
-  }
-
   .message-panel img {
     width: 160px;
     height: 215px;
