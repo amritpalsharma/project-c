@@ -94,10 +94,11 @@ export class PerformanceDetailsComponent {
     const displayMonths = months;
   
     // Format the date strings
-    const fromDateString = fromDate.toLocaleString('default', { month: 'long', year: 'numeric' });
+    let langSlug = localStorage.getItem('lang') + '';
+    const fromDateString = fromDate.toLocaleString(langSlug, { month: 'long', year: 'numeric' });
     const toDateString = performance_detail.to_date === '0000-00-00' 
       ? 'Present' 
-      : toDate.toLocaleString('default', { month: 'long', year: 'numeric' });
+      : toDate.toLocaleString(langSlug, { month: 'long', year: 'numeric' });
   
     let dateRange = `${fromDateString} - ${toDateString}`;
   

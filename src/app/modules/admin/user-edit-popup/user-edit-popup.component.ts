@@ -284,6 +284,8 @@ export class UserEditPopupComponent {
     formdata.append('user[nationality][]', this.selectedCountry);
     formdata.append('user[first_name]', this.firstName);
     formdata.append('user[last_name]', this.lastName);
+    let lang_id = localStorage.getItem('lang_id');
+    formdata.append('lang', lang_id + '');
 
     this.userService.updateUser(this.idToUpdate, formdata).subscribe(
       response => {
@@ -327,6 +329,8 @@ export class UserEditPopupComponent {
     formdata.append('user[sm_youtube]', this.sm_youtube);
     formdata.append('user[sm_vimeo]', this.sm_vimeo);
     formdata.append('user[nationality][]', this.selectedCountry);
+    let lang_id = localStorage.getItem('lang_id');
+    formdata.append('lang', lang_id + '');
 
 
     this.userService.updateUser(this.idToUpdate, formdata).subscribe(
@@ -372,6 +376,8 @@ export class UserEditPopupComponent {
     this.playerCountries.map(function (country: any, index: any) {
       formdata.append('user[nationality][]', country);
     });
+    let lang_id = localStorage.getItem('lang_id');
+    formdata.append('lang', lang_id + '');
 
     this.userService.updateUser(this.idToUpdate, formdata).subscribe(
       response => {

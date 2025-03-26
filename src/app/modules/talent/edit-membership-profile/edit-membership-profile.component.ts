@@ -4,6 +4,7 @@ import { TalentService } from '../../../services/talent.service';
 import { PaymentService } from '../../../services/payment.service';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../../../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-membership-profile',
@@ -20,14 +21,14 @@ export class EditMembershipProfileComponent {
   //   { role_name: "Talent", id: 4 },
   // ];     // List of all audiences
 
-  audiences : any[] = [];
+  audiences: any[] = [];
 
   selectedAudienceIds: number[] = []; // Store only audience IDs
   id: any;
   loggedInUser: any = localStorage.getItem('userInfo');
   stats: any;
-  selectedAudiences:any;
-  isLoading : boolean = false;
+  selectedAudiences: any;
+  isLoading: boolean = false;
 
   constructor(
     public dialogRef: MatDialogRef<EditMembershipProfileComponent>,
@@ -35,8 +36,9 @@ export class EditMembershipProfileComponent {
     public dialog: MatDialog,
     private toastr: ToastrService,
     private userServices: UserService,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private router: Router
+  ) { }
 
   async ngOnInit() {
     this.stats = this.data.stats;
@@ -58,17 +60,17 @@ export class EditMembershipProfileComponent {
 
     // console.log('audiences:', this.audiences);
 
-    
+
   }
 
-  getRoles(){
+  getRoles() {
     this.userServices.getRoles().subscribe(
       (response) => {
         if (response?.status) {
           // this.audiences = [];
-          response.data.roles.forEach((element : any) => {
-            if(element.id == '2' || element.id == '3' || element.id == '4'){
-              let obj = {role_name: '', target_role: 0};
+          response.data.roles.forEach((element: any) => {
+            if (element.id == '2' || element.id == '3' || element.id == '4') {
+              let obj = { role_name: '', target_role: 0 };
               obj.role_name = element.role_name;
               obj.target_role = Number(element.id);
               this.audiences.push(obj);
@@ -132,7 +134,7 @@ export class EditMembershipProfileComponent {
 
   // Get selected audience roles by matching the selected IDs
   getSelectedAudienceRoles() {
-    return this.selectedAudiences.filter((audience:any) => this.selectedAudienceIds.includes(audience.id));
+    return this.selectedAudiences.filter((audience: any) => this.selectedAudienceIds.includes(audience.id));
   }
 
 
@@ -185,6 +187,22 @@ export class EditMembershipProfileComponent {
     }
 
     return age;
+  }
+
+  naviGateToProfile(role_id: any, user_id: any) {
+    let role = '';
+    if (role_id == '2') {
+      role = 'club';
+    } else if (role_id == '3') {
+      role = 'scout';
+    } else if (role_id == '4') {
+      role = 'talent';
+    }
+
+    if (role != '' && user_id != '') {
+      this.dialogRef.close({ action: 'redirect', redirect_path: '/view/' + role, user_id: user_id});
+    }
+    // console.warn('ROle is '+role_id+' Id is '+user_id)
   }
 
 }

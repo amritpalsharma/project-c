@@ -310,19 +310,22 @@
             <h3 class="price-heading3">{{'pricing' | translate}}</h3>
 
             <div *ngFor="let plan of pageData.pricing_tab; let i = index">
-                <div class="billed">
-                    <p [ngClass]="{ 'active-text': isActivePlan[i], 'inactive-text': !isActivePlan[i] }"
-                        class="billed-monthly">
-                        <!-- {{'billedMonthly' | translate}} -->
-                        {{plan.monthly_label}}
-                    </p>
-                    <div class="toggle-button" [ngClass]="{ 'active': isActivePlan[i], 'inactive': !isActivePlan[i] }"
-                        (click)="togglePlan(i)">
+                <div class="billed_wrapp">
+                    <div class="red_text_plan">2 months free on yearly plan</div>
+                    <div class="billed">
+                        <p [ngClass]="{ 'active-text': isActivePlan[i], 'inactive-text': !isActivePlan[i] }"
+                            class="billed-monthly">
+                            <!-- {{'billedMonthly' | translate}} -->
+                            {{plan.monthly_label}}
+                        </p>
+                        <div class="toggle-button" [ngClass]="{ 'active': isActivePlan[i], 'inactive': !isActivePlan[i] }"
+                            (click)="togglePlan(i)">
+                        </div>
+                        <p [ngClass]="{ 'active-text': !isActivePlan[i], 'inactive-text': isActivePlan[i] }">
+                            <!-- {{'billedYearly' | translate}} -->
+                            {{plan.yearly_label}}
+                        </p>
                     </div>
-                    <p [ngClass]="{ 'active-text': !isActivePlan[i], 'inactive-text': isActivePlan[i] }">
-                        <!-- {{'billedYearly' | translate}} -->
-                        {{plan.yearly_label}}
-                    </p>
                 </div>
 
                 <div class="premium">

@@ -87,7 +87,7 @@ export class AddPerformanceComponent {
 
       // Show loading message
       const loadingToast = this.toastr.info(this.submittingPerformanceData, this.pleaseWait, { disableTimeOut: true });
-
+      let lang_id = localStorage.getItem('lang_id');
       // Add currentTeamId to the form values
       const formData = {
         ...myForm.value, // Include all form values
@@ -98,6 +98,7 @@ export class AddPerformanceComponent {
         to_date: this.to_date.value // Convert FormControl value to string (if necessary)
           ? moment(this.to_date.value).format('YYYY-MM-DD')
           : null,
+        lang: lang_id
       };
 
       this.talentService.addPerformance(formData).subscribe({

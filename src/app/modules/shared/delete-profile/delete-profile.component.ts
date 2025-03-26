@@ -12,8 +12,9 @@ export class DeleteProfileComponent {
   deleteAccount: string = '';
   deleteProfiletranslatedText: string = '';
   isShowErrorMsg: boolean = false;
-  errorMsg: string = 'Values do not match. Please confirm your spelling.';
+  errorMsg: string = 'Please confirm your spellings.';
   langSubscription!: Subscription;
+  deleteTxt: string = '';
   constructor(
     public dialogRef: MatDialogRef<DeleteProfileComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -22,19 +23,25 @@ export class DeleteProfileComponent {
   ngOnInit() {
     // Parse user data from localStorage
     // this.loggedInUser = JSON.parse(this.loggedInUser);
-    // this.updateTranslation();
+    this.updateTranslation();
     this.langSubscription = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
       this.updateTranslation();
     });
   }
   updateTranslation() {
-    this.translate.get('deleteProfileConfirm').subscribe((res: string) => {
-      this.deleteProfiletranslatedText = res;
+    this.translate.get(['deleteProfileConfirm', 'delete']).subscribe((res: any) => {
+      this.deleteProfiletranslatedText = res['deleteProfileConfirm'];
+      this.deleteTxt = res['delete'].toUpperCase();
+      this.errorMsg = res['pleaseConfirmSpellings'];
     });
   }
   deleteProfileConfirmed() {
-    if (this.deleteAccount === 'DELETE') {
+    console.warn('Your Spellings ' + this.deleteAccount + ' and match with ' + this.deleteTxt)
+    if (this.deleteAccount == this.deleteTxt) {
       this.isShowErrorMsg = false;
+      // console.warn('Match success')
+      // alert('delete success')
+
       this.dialogRef.close({ action: 'delete-profile-confirmed' });
     } else {
       this.isShowErrorMsg = true;

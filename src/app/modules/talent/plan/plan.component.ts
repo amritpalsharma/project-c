@@ -16,6 +16,7 @@ import { EditPlanComponent } from '../../shared/edit-plan/edit-plan.component';
 import { WebPages } from '../../../services/webpages.service';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { TitleService } from '../../../title.service';
+import { Router } from '@angular/router';
 
 
 
@@ -105,7 +106,8 @@ export class PlanComponent implements OnInit, OnDestroy {
     private toastr: ToastrService,
     public webPages: WebPages,
     private translate: TranslateService,
-    private titleService: TitleService
+    private titleService: TitleService,
+    private router: Router
   ) { }
 
   async ngOnInit() {
@@ -626,6 +628,9 @@ export class PlanComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        if (result.action == 'redirect' && result.redirect_path != '' && result.user_id != '') {
+          this.router.navigate([result.redirect_path + '/', result.user_id]);
+        }
         this.getBoosterData()
         // alert('Booster profile updated')
       }

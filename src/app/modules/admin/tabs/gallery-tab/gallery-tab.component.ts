@@ -96,7 +96,7 @@ export class GalleryTabComponent {
       this.userService.deleteCoverImage(this.userId).subscribe((response) => {
         if (response && response.status) {
           setTimeout(() => {
-            this.coverImage = './media/palyers.png';
+            this.coverImage = './assets/images/no_cover_img.png'; 
           }, 100);
           this.dataEmitter.emit(''); // Emitting the data
           // this.isLoading = false;

@@ -87,49 +87,49 @@ export class ExploreComponent implements OnInit {
     { role: 'Verein', id: 2 },
     { role: 'Scout', id: 3 },
     { role: 'Talent', id: 4 },
-    { role: 'Liga', id: 5 }
+    // { role: 'Liga', id: 5 }
   ];
 
   roles_dk = [
     { role: 'Klub', id: 2 },
     { role: 'Spejder', id: 3 },
     { role: 'Talent', id: 4 },
-    { role: 'Liga', id: 5 }
+    // { role: 'Liga', id: 5 }
   ];
 
   roles_es = [
     { role: 'Club', id: 2 },
     { role: 'Ojeador', id: 3 },
     { role: 'Talento', id: 4 },
-    { role: 'Liga', id: 5 }
+    // { role: 'Liga', id: 5 }
   ];
 
   roles_fr = [
     { role: 'Club', id: 2 },
     { role: 'Recruteur', id: 3 },
     { role: 'Talent', id: 4 },
-    { role: 'Ligue', id: 5 }
+    // { role: 'Ligue', id: 5 }
   ];
 
   roles_it = [
     { role: 'Club', id: 2 },
     { role: 'Osservatore', id: 3 },
     { role: 'Talento', id: 4 },
-    { role: 'Lega', id: 5 }
+    // { role: 'Lega', id: 5 }
   ];
 
   roles_pt = [
     { role: 'Clube', id: 2 },
     { role: 'Olheiro', id: 3 },
     { role: 'Talento', id: 4 },
-    { role: 'Liga', id: 5 }
+    // { role: 'Liga', id: 5 }
   ];
 
   roles_se = [
     { role: 'Klubb', id: 2 },
     { role: 'Scout', id: 3 },
     { role: 'Talang', id: 4 },
-    { role: 'Liga', id: 5 }
+    // { role: 'Liga', id: 5 }
   ];
 
   ngOnInit(): void {

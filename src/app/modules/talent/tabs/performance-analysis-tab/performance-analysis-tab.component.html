@@ -120,7 +120,8 @@
         <!-- Joined Date Column -->
         <ng-container matColumnDef="joinedDate">
           <th mat-header-cell *matHeaderCellDef> {{ 'transferDate' | translate }} </th>
-          <td mat-cell *matCellDef="let element"> {{formatDateTime(element.created_at)}} </td>
+          <!-- <td mat-cell *matCellDef="let element"> {{formatDateTime(element.created_at)}} </td> -->
+          <td mat-cell *matCellDef="let element"> {{ element.created_at | date: 'dd.MM.yyyy'}} </td>
           <!-- <td mat-cell *matCellDef="let element"> {{ element.created_at | date: 'dd.MM.yyyy - hh.mm a' }} </td> -->
         </ng-container>
 

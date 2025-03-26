@@ -33,17 +33,21 @@ export class NotificationsLogComponent {
   checkboxIds: string[] = [];
   allSelected: boolean = false;
   isLoading: boolean = false;
-  loggedInUser:any = localStorage.getItem('userData');
+  loggedInUser: any = localStorage.getItem('userData');
   activities: any = [];
   selectedIds: any = [];
   notifications: any[] = [];
+  selectNotificationFirst: string = '';
+  confirmDeleteinformation: string = '';
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   idsToDelete: any = [];
 
   constructor(public dialog: MatDialog, public webPages: WebPages, private talentService: TalentService, private translateService: TranslateService, private scoutService: ScoutService, private socketService: SocketService) {
+    this.updateTranslation();
     translateService.onLangChange.subscribe(() => {
       this.fetchNotifications()
+      this.updateTranslation();
     });
   }
 
@@ -52,11 +56,11 @@ export class NotificationsLogComponent {
     this.fetchNotifications();
   }
 
-  checkRole(){
-    if(!this.loggedInUser.isRepresentator){
+  checkRole() {
+    if (!this.loggedInUser.isRepresentator) {
       return true;
     }
-    if(this.loggedInUser.permission === 'admin.view' || this.loggedInUser.permission === 'admin.edit'){
+    if (this.loggedInUser.permission === 'admin.view' || this.loggedInUser.permission === 'admin.edit') {
       return false;
     }
     return true;
@@ -138,15 +142,15 @@ export class NotificationsLogComponent {
   }
 
   confirmDeletion(): any {
-    if(!this.checkRole()){
+    if (!this.checkRole()) {
       return;
     }
     if (this.selectedIds.length == 0) {
-      this.showMessage('Select notifications(s) first.');
+      this.showMessage(this.selectNotificationFirst);
       return false;
     }
     this.idsToDelete = this.selectedIds;
-    this.showMatDialog("Are you sure you want to delete this Notification?", "delete-confirmation");
+    this.showMatDialog(this.confirmDeleteinformation, "delete-confirmation");
   }
 
   deleteActivity(): any {
@@ -192,11 +196,11 @@ export class NotificationsLogComponent {
     });
   }
 
-  isResponded : boolean = false;
+  isResponded: boolean = false;
 
-  responseToScoutInvite(myResponse: string, scoutId: any, notification : any) {
+  responseToScoutInvite(myResponse: string, scoutId: any, notification: any) {
     let jsonData = localStorage.getItem("userData");
-    let userId : any;
+    let userId: any;
     if (jsonData) {
       let userData = JSON.parse(jsonData);
       userId = userData.id;
@@ -211,12 +215,12 @@ export class NotificationsLogComponent {
     // formData.append('player_id', userId);
     // formData.append('scout_id', scoutId);
 
-    this.talentService.UpdateScoutRequest(scoutId, formData, langId).subscribe((response)=>{
+    this.talentService.UpdateScoutRequest(scoutId, formData, langId).subscribe((response) => {
       if (response && response.status) {
-        if(myResponse === 'accepted'){
+        if (myResponse === 'accepted') {
           this.socketService.emit("acceptScoutRequest", { senderId: userId, receiverId: scoutId })
         }
-        else{
+        else {
           this.socketService.emit("rejectScoutRequest", { senderId: userId, receiverId: scoutId })
         }
         this.showMessage(response.message);
@@ -229,10 +233,10 @@ export class NotificationsLogComponent {
     });
   }
 
-  updateSightingInviteResponse(status: string, eventId: any, clubId: any, notification : any){
+  updateSightingInviteResponse(status: string, eventId: any, clubId: any, notification: any) {
 
     let jsonData = localStorage.getItem("userData");
-    let userId : any;
+    let userId: any;
     if (jsonData) {
       let userData = JSON.parse(jsonData);
       userId = userData.id;
@@ -242,12 +246,12 @@ export class NotificationsLogComponent {
     }
     let langId = localStorage.getItem('lang_id');
 
-    this.talentService.updateSightingInviteResponse(status, eventId, langId).subscribe((response)=>{
+    this.talentService.updateSightingInviteResponse(status, eventId, langId).subscribe((response) => {
       if (response && response.status) {
-        if(status === 'accepted'){
+        if (status === 'accepted') {
           this.socketService.emit("acceptClubInvite", { senderId: userId, receiverId: clubId })
         }
-        else{
+        else {
           this.socketService.emit("rejectClubInvite", { senderId: userId, receiverId: clubId })
         }
         this.showMessage(response.message);
@@ -261,14 +265,24 @@ export class NotificationsLogComponent {
   }
 
   confirmSingleDeletion(id: any) {
-    if(!this.checkRole()){
+    if (!this.checkRole()) {
       return;
     }
     this.idsToDelete = [id];
-    this.showMatDialog("Are you sure you want to delete this Activity?", "delete-confirmation");
+    this.showMatDialog(this.confirmDeleteinformation, "delete-confirmation");
   }
-  
+
   convertTime(dateTime: any) {
     return this.talentService.convertTalentDateTime(dateTime);
+  }
+
+  updateTranslation() {
+    this.translateService.get(['selectNotificationFirst', 'confirmDeleteinformation']).subscribe((res: any) => {
+      // this.deleteProfiletranslatedText = res['deleteProfileConfirm'];
+      // this.deleteTxt = res['delete'].toUpperCase();
+      // this.errorMsg = res['pleaseConfirmSpellings'];
+      this.selectNotificationFirst = res['selectNotificationFirst'];
+      this.confirmDeleteinformation = res['confirmDeleteinformation'];
+    });
   }
 }

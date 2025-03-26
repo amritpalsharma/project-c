@@ -4,7 +4,7 @@
     <app-loader *ngIf="isLoading"></app-loader>
     <div *ngIf="teams.length == '0' && !isLoading">{{ 'NoTeamsAvailable' | translate }}</div>
     <div *ngFor="let team of teams" (click)="getTeamPlayers(team.id, team.team_name) " class="box-square position-relative">
-        <div class="team-types">{{team.team_name}}</div> 
+        <div class="team-types">{{team.team_type}}</div> 
     </div>
 </div>
 

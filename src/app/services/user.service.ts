@@ -433,7 +433,7 @@ export class UserService {
       'Authorization': `Bearer ${this.userToken}`
     });
     let lang_id = localStorage.getItem('lang_id');
-    return this.http.post<any>(`${this.apiUrl2}/update-representator-role/${lang_id}/${id}`, params, { headers });
+    return this.http.post<any>(`${this.apiUrl2}/update-representator-role/${id}/${lang_id}`, params, { headers });
   }
 
   updateRepresentator(id: any, params: any): Observable<any> {

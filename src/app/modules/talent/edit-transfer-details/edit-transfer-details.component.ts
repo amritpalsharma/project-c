@@ -2,11 +2,13 @@ import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TalentService } from '../../../services/talent.service';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
-import {FormControl, NgForm } from '@angular/forms';
+import { FormControl, NgForm } from '@angular/forms';
 import * as _moment from 'moment';
 // tslint:disable-next-line:no-duplicate-imports
-import {default as _rollupMoment} from 'moment';
+import { default as _rollupMoment } from 'moment';
 import { ToastrService } from 'ngx-toastr';
+import { WebPages } from '../../../services/webpages.service';
+import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 
 const moment = _rollupMoment || _moment;
 
@@ -28,13 +30,19 @@ export class EditTransferDetailsComponent {
   isLoading: boolean = false;
   readonly date = new FormControl(moment());
   date_of_transfer: FormControl = new FormControl(null);
+  pleaseWait: string = '';
+  Processing: string = '';
+  successTxt: string = '';
+  requiredFieldsMessage: string = '';
 
   constructor(
     private toastr: ToastrService,
     public dialogRef: MatDialogRef<EditTransferDetailsComponent>,
     private talentService: TalentService,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private translateService: TranslateService,
+    public webPages: WebPages,
+  ) { }
 
   ngOnInit(): void {
     // You might want to load your teams from a service here
@@ -44,38 +52,47 @@ export class EditTransferDetailsComponent {
       this.transfer.date_of_transfer ? new Date(this.transfer.date_of_transfer) : null
     );
     this.date_of_transfer.setValue(this.transfer.date_of_transfer ? new Date(this.transfer.date_of_transfer) : null);
-    console.log('transfer',this.transfer)
-    this.teamTo = this.transfer.team_name_to ; // Set the selected team's name to the input
-    this.teamFrom =  this.transfer.team_name_from ; // Set the selected team's name to the input
+    console.log('transfer', this.transfer)
+    this.teamTo = this.transfer.team_name_to; // Set the selected team's name to the input
+    this.teamFrom = this.transfer.team_name_from; // Set the selected team's name to the input
 
     this.teamToId = this.transfer.team_to;
     this.teamFromId = this.transfer.team_from;
+    this.getJsonTranslations();
+    this.webPages.languageId$.subscribe((data) => {
+      this.getJsonTranslations();
+    });
   }
 
   onCancel(): void {
     this.dialogRef.close(); // Close dialog without saving
   }
-  
+
   onSubmit(myForm: NgForm): void {
     if (myForm.valid) {
       this.isLoading = true; // Start loading indicator
-      this.toastr.info('Updating transfer information...', 'Please wait', { disableTimeOut: true });
-
+      this.toastr.info(this.Processing, this.pleaseWait, { disableTimeOut: true });
+      let lang_id = localStorage.getItem('lang_id')+'';
       // Prepare formData with additional properties
       const formData = {
         ...myForm.value,
         team_to: this.teamToId,
         team_from: this.teamFromId,
         date_of_transfer: this.date_of_transfer.value // Convert date to string if necessary
-        ? moment(this.date_of_transfer.value).format('YYYY-MM-DD') 
-        : null,
+          ? moment(this.date_of_transfer.value).format('YYYY-MM-DD')
+          : null,
+          lang:lang_id
       };
 
       this.talentService.updateTransfer(this.transfer.id, formData).subscribe(
         (response: any) => {
           if (response?.status) {
             this.toastr.clear();
-            this.toastr.success('Transfer information updated successfully!', 'Success');
+            if (response.message != '' && response.message != undefined) {
+              this.toastr.success(response.message, this.successTxt);
+            } else {
+              this.toastr.success('Transfer information updated successfully!', 'Success');
+            }
             this.dialogRef.close(response.data); // Close dialog and pass data
           } else {
             this.toastr.clear();
@@ -85,7 +102,7 @@ export class EditTransferDetailsComponent {
           this.isLoading = false; // Stop loading indicator
         },
         (error: any) => {
-            this.toastr.clear();
+          this.toastr.clear();
           this.toastr.error('Error updating transfer. Please try again later.', 'Error');
           console.error('Error submitting the form:', error);
           this.isLoading = false; // Stop loading indicator
@@ -93,7 +110,7 @@ export class EditTransferDetailsComponent {
       );
     } else {
       this.toastr.clear();
-      this.toastr.warning('Please complete all required fields before submitting.', 'Warning');
+      this.toastr.warning(this.requiredFieldsMessage, 'Warning');
     }
   }
 
@@ -110,8 +127,8 @@ export class EditTransferDetailsComponent {
       (response: any) => {
         if (response && response.data && response.data.teams) {
           this.filterTeams = response.data.teams; // Update the list of filtered clubs based on search
-          console.log('Filtered teams:', this.filterTeams,response.data.teams);
-        }else{
+          console.log('Filtered teams:', this.filterTeams, response.data.teams);
+        } else {
           this.filterTeams = [];
         }
       },
@@ -145,15 +162,28 @@ export class EditTransferDetailsComponent {
 
   // Function to handle the selection of a club
   onSelectTeamTo(team: any): void {
-    this.teamTo = team.team_name +'-' +team.team_type; // Set the selected team's name to the input
+    this.teamTo = team.team_name + '-' + team.team_type; // Set the selected team's name to the input
     this.teamToId = team.id;
     this.filterTeams = []; // Clear the suggestion list
   }
 
   // Function to handle the selection of a club
   onSelectTeamFrom(team: any): void {
-    this.teamFrom = team.team_name +'-' +team.team_type; // Set the selected team's name to the input
+    this.teamFrom = team.team_name + '-' + team.team_type; // Set the selected team's name to the input
     this.teamFromId = team.id;
     this.filterTeamsFrom = []; // Clear the suggestion list
   }
+
+  getJsonTranslations() {
+    this.translateService.get(['pleaseWait', 'Processing', 'success!','requiredFieldsMessage']).subscribe((translations) => {
+      this.pleaseWait = translations['pleaseWait'];
+      this.Processing = translations['Processing'];
+      this.successTxt = translations['success!'];
+      this.requiredFieldsMessage = translations['requiredFieldsMessage'];
+      // this.titleService.setTitle(this.pageTitle);
+      console.log('Title fetch Function Fired');
+    })
+  }
+
+
 }

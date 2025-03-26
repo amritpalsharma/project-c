@@ -62,11 +62,11 @@ export class AppSettingComponent {
     );
   }
 
-  checkRole(){
-    if(!this.loggedInUser.isRepresentator){
+  checkRole() {
+    if (!this.loggedInUser.isRepresentator) {
       return true;
     }
-    if(this.loggedInUser.permission === 'admin.view' || this.loggedInUser.permission === 'admin.edit' || this.loggedInUser.permission === 'admin.access'){
+    if (this.loggedInUser.permission === 'admin.view' || this.loggedInUser.permission === 'admin.edit' || this.loggedInUser.permission === 'admin.access') {
       return false;
     }
     return true;
