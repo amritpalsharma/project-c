@@ -199,8 +199,8 @@
                                                 {{ user.created_at | date:'dd.MM.yyyy' }}
                                             </h6>
                                         </td>
-                                        <td>
-                                            <div class="main-template">
+                                        <td (click)="naviGateToProfile(user.role_id,user.id)">
+                                            <div class="main-template" >
                                                 <svg width="25" height="25" viewBox="0 0 25 25" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg" class="pointer">
                                                     <path

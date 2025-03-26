@@ -3,6 +3,8 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
 import { TalentService } from '../../../../services/talent.service';
 import { UploadPopupComponent } from '../../upload-popup/upload-popup.component';
 import { ToastrService } from 'ngx-toastr';
+import { TranslateService } from '@ngx-translate/core';
+import { WebPages } from '../../../../services/webpages.service';
 
 @Component({
   selector: 'app-edit-highlights',
@@ -18,19 +20,25 @@ export class EditHighlightsComponent {
   selectedImageIds: number[] = [];
   selectedVideoIds: number[] = [];
   totalSelected: number = 0; // Track total selected files
-  loggedInUser:any = localStorage.getItem('userData');
-  userId:any;
+  loggedInUser: any = localStorage.getItem('userData');
+  userId: any;
   isLoading: boolean = false;
+  successTxt: string = '';
+  errorTxt: string = '';
+  Processing: string = '';
+  pleaseWait: string = '';
 
   constructor(
     private toastr: ToastrService,
     public dialogRef: MatDialogRef<EditHighlightsComponent>,
     private talentService: TalentService,
-    @Inject(MAT_DIALOG_DATA) public data: any, public dialog: MatDialog
-  ) {}
+    @Inject(MAT_DIALOG_DATA) public data: any, public dialog: MatDialog,
+    private translateService: TranslateService,
+    public webPages: WebPages,
+  ) { }
 
   ngOnInit(): void {
-    
+
     this.loggedInUser = JSON.parse(this.loggedInUser);
     this.userId = this.loggedInUser.id;
     this.images = this.data.images || [];
@@ -52,23 +60,28 @@ export class EditHighlightsComponent {
         this.totalSelected++; // Increment total selected count
       }
     });
+
+    this.getJsonTranslations();
+    this.webPages.languageId$.subscribe((data) => {
+      this.getJsonTranslations();
+    });
   }
 
   getGalleryData() {
     try {
       this.talentService.getGalleryData().subscribe((response) => {
-        if (response && response.status && response.data) {          
+        if (response && response.status && response.data) {
           this.images = response.data.images;
           this.videos = response.data.videos;
           this.url = response.data.file_path;
         } else {
           console.error('Invalid API response structure:', response);
         }
-        
+
       });
     } catch (error) {
       console.error('Error fetching users:', error);
-      
+
     }
   }
 
@@ -116,19 +129,23 @@ export class EditHighlightsComponent {
     const selectedData = [...this.selectedImageIds, ...this.selectedVideoIds];
 
     let unset_all: any = false;
-    
-    if(selectedData.length == 0){
+
+    if (selectedData.length == 0) {
       unset_all = true;
     }
 
     // Show loading notification
-    const loadingToast = this.toastr.info('Saving selected files...', 'Please wait', { disableTimeOut: true });
+    const loadingToast = this.toastr.info(this.Processing, this.pleaseWait, { disableTimeOut: true });
 
     // Send the selected IDs to your API or handle them as needed
     this.talentService.toggleFeaturedFiles(selectedData, unset_all).subscribe({
       next: (response) => {
         this.toastr.clear(loadingToast.toastId); // Clear loading notification
-        this.toastr.success('Files saved successfully!', 'Success'); // Show success notification
+        if(response.message != '' && response.message != undefined){
+          this.toastr.success(response.message, this.successTxt); // Show success notification
+        }else{
+          this.toastr.success('Files saved successfully!', 'Success'); // Show success notification
+        }
         this.dialogRef.close(); // Close the dialog if needed
       },
       error: (error) => {
@@ -169,15 +186,15 @@ export class EditHighlightsComponent {
         reader.readAsDataURL(file);
       });
 
-      this.toastr.success(`${files.length} file(s) added successfully.`, 'Files Uploaded');
+      //this.toastr.success(`${files.length} file(s) added successfully.`, 'Files Uploaded');
     }
   }
-  
-  addPhotosPopup(){
-    const messageDialog = this.dialog.open(UploadPopupComponent,{
+
+  addPhotosPopup() {
+    const messageDialog = this.dialog.open(UploadPopupComponent, {
       width: '500px',
       position: {
-        top:'150px'
+        top: '150px'
       },
       data: {
         userId: this.userId
@@ -186,11 +203,23 @@ export class EditHighlightsComponent {
 
     messageDialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
-        if(result.files.length){          
+        if (result.files.length) {
           this.getGalleryData()
         }
       }
     });
   }
-  
+
+  getJsonTranslations() {
+    this.translateService.get(['success!', 'error', 'nationalityRequired', 'dobRequired', 'dominantFootRequired', 'Processing', 'pleaseWait']).subscribe((translations) => {
+      this.successTxt = translations['success!'];
+      this.errorTxt = translations['error'];
+      // this.nationalityRequired = translations['nationalityRequired'];
+      // this.dobRequired = translations['dobRequired'];
+      // this.dominantFootRequired = translations['dominantFootRequired'];
+      this.Processing = translations['Processing'];
+      this.pleaseWait = translations['pleaseWait'];
+      console.log('Title fetch Function Fired');
+    })
+  }
 }

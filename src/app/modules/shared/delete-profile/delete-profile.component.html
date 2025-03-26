@@ -12,7 +12,7 @@
         <div class="popup-delete-btn d-flex align-items-end justify-content-between flex-wrap">
             <div class="confirm_del_wrap">
                 <label>{{ 'deletingText' | translate }}</label>
-                <input type="" class="del_input" [(ngModel)]="deleteAccount" />
+                <input type="" class="del_input" [(ngModel)]="deleteAccount" placeholder="{{deleteTxt}}" />
                
             </div>
             <div (click)="deleteProfileConfirmed()" class="delet_acnt_btn">{{ 'deleteAccount' | translate }}</div>

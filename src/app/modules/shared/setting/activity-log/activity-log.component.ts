@@ -27,6 +27,7 @@ export class ActivityLogComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   idsToDelete: any = [];
+  selectActivityFirst:string='';
 
   constructor(
     private activityService: ActivityService,
@@ -40,9 +41,10 @@ export class ActivityLogComponent {
     this.loggedInUser = JSON.parse(this.loggedInUser);
 
     this.getActivity();
-
+    this.getJsonTranslations();
     this.webPages.languageId$.subscribe((data) => {
       this.getActivity();
+      this.getJsonTranslations();
       this.translate.get('areYouSuretoDeleteActivity').subscribe((res: string) => {
         this.areYouSuretoDeleteActivity = res;
       });
@@ -119,7 +121,7 @@ export class ActivityLogComponent {
       return;
     }
     if (this.selectedIds.length == 0) {
-      this.showMessage('Select activity(s) first.');
+      this.showMessage(this.selectActivityFirst);
       return false;
     }
 
@@ -180,5 +182,12 @@ export class ActivityLogComponent {
 
   convertTime(dateTime: any) {
     return this.talentService.convertTalentDateTime(dateTime);
+  }
+
+  getJsonTranslations() {
+    this.translate.get(['selectActivityFirst']).subscribe((translations) => {
+      this.selectActivityFirst = translations['selectActivityFirst'];
+      console.log('Title fetch Function Fired');
+    })
   }
 }

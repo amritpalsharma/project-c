@@ -5,6 +5,8 @@ import { FormControl, NgForm } from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { catchError, Observable, of, tap, fromEvent } from 'rxjs';
 import { AuthService } from '../../../services/auth.service';
+import { TranslateService } from '@ngx-translate/core';
+import { WebPages } from '../../../services/webpages.service';
 // Depending on whether rollup is used, moment needs to be imported differently.
 // Since Moment.js doesn't have a default export, we normally need to import using the `* as`
 // syntax. However, rollup creates a synthetic default module and we thus need to import it using
@@ -64,13 +66,22 @@ export class EditPersonalDetailsComponent implements OnInit {
   dateOfBirth: FormControl = new FormControl(null);  // Initialize with null or the correct date format
   contractStart: FormControl = new FormControl(null);
   contractEnd: FormControl = new FormControl(null);
+  successTxt: string = '';
+  errorTxt: string = '';
+  nationalityRequired: string = '';
+  dobRequired: string = '';
+  dominantFootRequired: string = '';
+  Processing: string = '';
+  pleaseWait: string = '';
   // selectedLeagueId:number=16;
 
   constructor(
     public dialogRef: MatDialogRef<EditPersonalDetailsComponent>,
     private talentService: TalentService,
     private toastr: ToastrService,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private translateService: TranslateService,
+    public webPages: WebPages,
   ) { }
 
   countriesLoaded: boolean = false;
@@ -136,6 +147,10 @@ export class EditPersonalDetailsComponent implements OnInit {
       //   this.currentClubId = this.user.meta.pre_club_id;
       // }
     }
+    this.getJsonTranslations();
+    this.webPages.languageId$.subscribe((data) => {
+      this.getJsonTranslations();
+    });
 
   }
 
@@ -246,7 +261,7 @@ export class EditPersonalDetailsComponent implements OnInit {
         }
         if (this.user.meta && this.user.meta.league_level) {
           this.leagueLevel = this.user.meta.league_level;
-          console.warn('this.leagueLevel ',this.leagueLevel);
+          console.warn('this.leagueLevel ', this.leagueLevel);
         }
       }
     } else {
@@ -259,22 +274,22 @@ export class EditPersonalDetailsComponent implements OnInit {
 
     // Manually validate only the required fields
     if (!this.dateOfBirth.value) {
-      this.toastr.warning('Date of Birth is required.', 'Form Incomplete');
+      this.toastr.warning(this.dobRequired, this.errorTxt);
       return;
     }
 
     if (!this.nationality || this.nationality.length === 0) {
-      this.toastr.warning('Nationality is required.', 'Form Incomplete');
+      this.toastr.warning(this.nationalityRequired, this.errorTxt);
       return;
     }
 
     if (!this.dominantFoot) {
-      this.toastr.warning('Dominant Foot is required.', 'Form Incomplete');
+      this.toastr.warning(this.dominantFootRequired, this.errorTxt);
       return;
     }
 
     // Enable loading state and notify user
-    this.toastr.info('Submitting your profile...', 'Please wait', { disableTimeOut: true });
+    this.toastr.info(this.Processing, this.pleaseWait, { disableTimeOut: true });
 
     const formData = new FormData();
 
@@ -314,19 +329,23 @@ export class EditPersonalDetailsComponent implements OnInit {
     if (this.firstName) formData.append('user[first_name]', this.firstName);
     if (this.lastName) formData.append('user[last_name]', this.lastName);
     if (this.birthCountry) formData.append('user[birth_country]', this.birthCountry);
-
-    formData.append('lang', 'en');
+    let lang = localStorage.getItem('lang_id') + '';
+    formData.append('lang', lang);
 
     // API call for submitting form data
     this.talentService.updateUserProfile(formData).subscribe(
       (response: any) => {
         if (response?.status) {
           this.toastr.clear();
-          this.toastr.success('Profile updated successfully!', 'Success');
+          if (response?.message != '' && response?.message != undefined) {
+            this.toastr.success(response?.message, this.successTxt);
+          } else {
+            this.toastr.success('Profile updated successfully!', 'Success');
+          }
           this.dialogRef.close(response.data);
         } else {
           this.toastr.clear();
-          this.toastr.error('Unexpected error occurred. Please try again.', 'Submission Failed');
+          this.toastr.error('Unexpected error occurred. Please try again.', this.errorTxt);
           console.error('API response error:', response);
         }
       },
@@ -361,10 +380,23 @@ export class EditPersonalDetailsComponent implements OnInit {
   trackById(index: number, club: any): number {
     return club.id;
   }
-  setSeletedValue(){
+  setSeletedValue() {
     setTimeout(() => {
       // this.selectedLeagueId = this.user.meta.league_level || 1;
       alert('done')
     }, 500);
+  }
+
+  getJsonTranslations() {
+    this.translateService.get(['success!', 'error', 'nationalityRequired', 'dobRequired', 'dominantFootRequired','Processing','pleaseWait']).subscribe((translations) => {
+      this.successTxt = translations['success!'];
+      this.errorTxt = translations['error'];
+      this.nationalityRequired = translations['nationalityRequired'];
+      this.dobRequired = translations['dobRequired'];
+      this.dominantFootRequired = translations['dominantFootRequired'];
+      this.Processing = translations['Processing'];
+      this.pleaseWait = translations['pleaseWait'];
+      console.log('Title fetch Function Fired');
+    })
   }
 }

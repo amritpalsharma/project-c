@@ -426,7 +426,8 @@ export class UsersComponent implements OnInit {
     if (this.customFilters['location']) {
       params = { ...params, "whereClause[user_domain]": this.customFilters['location'] };
     }
-
+    let lang_id = localStorage.getItem('lang_id');
+    params = { ...params, "lang":  lang_id};
 
     // this.showMessage("Call api");
     // 

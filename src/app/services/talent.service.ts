@@ -85,7 +85,7 @@ export class TalentService {
 
   getProfileData(params: any = {}): Observable<any> {
     const headers = this.headers();
-    let lang_id =  localStorage.getItem('lang_id');
+    let lang_id = localStorage.getItem('lang_id');
     return this.http.get<{ status: boolean, message: string, data: { userData: User[] } }>(
       `${this.apiUrl}profile/${lang_id}`,
       { headers, params }
@@ -469,6 +469,8 @@ export class TalentService {
     if (unset_all) {
       params = params.append('unset_all', true);
     }
+    let lang_id = localStorage.getItem('lang_id');
+    params = params.append('lang', lang_id + '');
 
     return this.http.post(`${this.apiUrl}user/set-featured-file`, params, { headers });
   }
@@ -733,7 +735,7 @@ export class TalentService {
       headers // Specify response type for downloading files
     });
   }
-  
+
   updateSightingInviteResponse(status: string, eventId: any, langId: any): Observable<any> {
 
     const headers = this.headers();
@@ -747,7 +749,7 @@ export class TalentService {
       headers // Specify response type for downloading files
     });
   }
-  
+
   // talent.service.ts
   subscribeToPlan(subscriptionData: { paymentMethodId: string; planId: number; }): Observable<any> {
     const headers = this.headers();

@@ -13,11 +13,14 @@
 
   ngOnInit() {
     this.loggedInUser = JSON.parse(this.loggedInUser);
+   
     if(this.isNum == 1 && window.innerWidth >= 992){
       document.body.classList.remove('compact-sidebar');
       document.body.classList.add('mobile-sidebar-active');
       this.isNum = 0;
     }
+    console.log('shared sidebar');
+    console.info('this.loggedInUser',this.loggedInUser);
   }
 
   toggleState() {

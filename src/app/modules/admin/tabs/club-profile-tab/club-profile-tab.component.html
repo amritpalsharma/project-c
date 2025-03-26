@@ -218,7 +218,7 @@
                         <td>
                             <select class="custom-select custom-select-wrapper"
                                 (change)="updateRepresentatorRole($event, representator.id)">
-                                <!-- <option value="admin.access"
+                                <option value="admin.access"
                                     *ngIf="representator.permission != null && representator.permission != 'admin.access'">
                                     {{ 'admin' | translate }}</option>
                                 <option value="admin.access"
@@ -243,8 +243,8 @@
                                     {{ 'transferOwnership' | translate }}</option>
                                 <option value="transfer.ownership"
                                     *ngIf="representator.permission == 'transfer.ownership'" selected>{{
-                                    'transferOwnership' | translate }}</option> -->
-                                <option value="admin-access"
+                                    'transferOwnership' | translate }}</option>
+                                <!-- <option value="admin-access"
                                     *ngIf="representator.permission != null && representator.permission != 'admin-access'">
                                     {{ 'admin' | translate }}</option>
                                 <option value="admin-access"
@@ -266,7 +266,7 @@
                                     translate }}</option>
                                 <option value="transfer-ownership"
                                     *ngIf="representator.permission == 'transfer-ownership'" selected>{{
-                                    'transferOwnership' | translate }}</option>
+                                    'transferOwnership' | translate }}</option> -->
 
                             </select>
                         </td>
