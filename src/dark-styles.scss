@@ -1629,17 +1629,6 @@ input:checked+.slider:before {
     border-radius: 4px !important;
   }
 
-  .compact-sidebar .logo_img1 {
-    width: 110px;
-    display: flex !important;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .compact-sidebar .page-sidebar {
-    top: 50px;
-  }
-
   .sidebar_menu a {
     padding: 6px 10px;
   }
@@ -2865,6 +2854,12 @@ mat-datepicker-toggle {
 .mobile_search {
   .nav-link img {
     filter: brightness(0) invert(1)
+}
+}
+.coupon_alert_popup {
+  color: #fff !important;
+  button.btn-close {
+    filter: brightness(0) invert(1);
 }
 }
 }

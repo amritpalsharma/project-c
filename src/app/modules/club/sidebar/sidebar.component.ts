@@ -23,7 +23,7 @@ export class SidebarComponent {
     this.sidebarOpen = !this.sidebarOpen;
 
     // Toggle classes on body element
-    if (this.sidebarOpen) {
+    if (!this.sidebarOpen) {
       document.body.classList.remove('compact-sidebar');
       document.body.classList.add('mobile-sidebar-active');
     } else {

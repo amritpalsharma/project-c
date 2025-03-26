@@ -86,6 +86,7 @@
                               d="M0.25 0.75H13.75V18L7 12.9375L0.25 18V0.75ZM1.75 2.25V15L7 11.0625L12.25 15V2.25H1.75Z"
                               fill="#000" />
                           </svg>
+                          <span>Bookmark</span>
                         </button>
                       </span>
                     </div>
@@ -185,7 +186,7 @@
                           <h6 class="title_2">{{ 'height' | translate }}</h6>
                           <h5 *ngIf="user.meta && user.meta.height" class="title-1">{{user.meta.height}}
                             {{user.meta.height_unit}}</h5>
-                          <h5 *ngIf="!user.meta || !user.meta.height">NA</h5>
+                          <h5 *ngIf="!user.meta || !user.meta.height" class="title-1">NA</h5>
                         </div>
                       </div>
                     </div>
@@ -205,7 +206,7 @@
                           <h6 class="title_2">{{ 'weight' | translate }}</h6>
                           <h5 *ngIf="user.meta && user.meta.weight" class="title-1">{{user.meta.weight}}
                             {{user.meta.weight_unit}}</h5>
-                          <h5 *ngIf="!user.meta || !user.meta.weight">NA</h5>
+                          <h5 *ngIf="!user.meta || !user.meta.weight" class="title-1">NA</h5>
                         </div>
                       </div>
                     </div>

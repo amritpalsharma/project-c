@@ -414,9 +414,6 @@
   .title-1{
     font-size: 14px;
   }
-  // .team-badge_content{
-  //   margin-left: 10px;
-  // }
   .elton-box{
     row-gap: 20px;
     padding: 12px 1.5rem 28px 1.5rem;
@@ -1005,9 +1002,7 @@
   .title-1{
     font-size: 14px;
   }
-  // .team-badge_content{
-  //   margin-left: 10px;
-  // }
+
   .elton-box{
     row-gap: 20px;
     padding: 12px 1.5rem 28px 1.5rem;
@@ -1217,7 +1212,7 @@
   width: 40px !important;
 }
 .elton-box.dashboard-icons .team-badge_content {
-  padding: 0 0 0 5px !important;
+  padding: 0 5px !important;
   width: calc(100% - 40px) !important;
 }
 

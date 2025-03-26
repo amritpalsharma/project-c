@@ -197,6 +197,7 @@
     }
     .forms_details .form-boxs{
         flex-direction: column !important;
+        align-items: flex-start !important;
     }
 
   }
@@ -417,9 +418,6 @@
   .title-1{
     font-size: 14px;
   }
-  // .team-badge_content{
-  //   margin-left: 10px;
-  // }
   .elton-box{
     row-gap: 20px;
     padding: 12px 1.5rem 28px 1.5rem;
@@ -476,7 +474,6 @@
   }
   .position-boxs {
     gap: 20px;
-    border-right: 1px solid #e7e7e7;
   }
   .social_icons .facebook{
     width: 12px;
@@ -749,6 +746,12 @@
   100% { transform: rotate(360deg); }
 }
 
+@media (min-width:992px) {
+.position-boxs {
+  border-right: 1px solid #e7e7e7;
+}
+}
+
 
 @media (max-width:1024px) and (min-width:769px) {
   .col-lg-3.responsive-edit_btn{
@@ -793,7 +796,7 @@
   width: 35px !important;
 }
 .elton-box.dashboard-icons .team-badge_content {
-  padding: 0 0 0 5px;
+  padding: 0 5px !important;
   width: calc(100% - 35px) !important;
 }
 
@@ -1111,7 +1114,6 @@
 }
 .position-boxs {
   gap: 20px;
-  border-right: 1px solid #e7e7e7;
 }
 .social_icons .facebook{
   width: 12px;
@@ -1472,8 +1474,8 @@ width:  100% !important;
   background: transparent !important;
   margin-left: -1px;
   width: calc(100% + 2px);
-  padding-left: 1px !important;
-  padding-right: 1px !important;
+  // padding-left: 1px !important;
+  // padding-right: 1px !important;
 }
 }
 
@@ -1562,7 +1564,7 @@ width:  100% !important;
 }
 .user-info .edit_button.responsive-edit_btn {
   text-align: right;
-  padding-right: 8px;
+  padding-right: 8px !important;
 }
 }
 
