@@ -23,7 +23,7 @@
   "lastName": "Efternavn",
   "selectUnit": "Vælg enhed",
   "cancel": "Annuller",
-  "save": "Gemme",
+  "save": "Gem",
   "inTheTeamSince": "På holdet siden",
   "marketValue": "Nuværende markedsværdi",
   "lastChange": "Sidste ændring",
@@ -1149,13 +1149,13 @@
   "verifyEmail": "BEKRÆFT DIN E-MAIL",
   "sentConfirmationLink": "Vi har sendt et bekræftelseslink til din e-mail.",
   "completeVerificationProcess": "Klik på linket i din indbakke for at fuldføre bekræftelsesprocessen.",
-  "cookiePopupText": "Vi værdsætter dit privatliv. Vi og vores partnere bruger trackere til at måle målgruppen på vores hjemmeside og til at give dig tilbud og forbedre vores egen SoccerYou-markedsføring.",
-  "cookiePopupText2": "Mere info om cookies og udbydere, vi bruger.",
-  "cookiePopupText3": "Du kan til enhver tid trække dit samtykke tilbage i dine indstillinger.",
-  "PersonalizeMyChoices": "Personliggør mine valg",
-  "iAccept": "Jeg accepterer",
-  "iDecline": "Jeg afviser",
-  "manageConsentPreferences": "Administrer præferencer for samtykke",
+  "cookiePopupText": "Denne hjemmeside bruger cookies for at sikre, at du får den bedste oplevelse. Læs mere i vores",
+  "PersonalizeMyChoices": "Administrer cookies",
+  "cookiePopupText1": "for at tilpasse dine indstillinger.",
+  "clickOn": "Klik på",
+  "iAccept": "Accepter alle",
+  "iDecline": "Afvis",
+  "manageConsentPreferences": "Cookieindstillinger",
   "allowAll": "Tillad alle",
   "refuseAll": "Afvis alle",
   "deleteAccountDesc": "Dette vil slette din konto permanent fra vores database.",
@@ -1203,5 +1203,23 @@
   "accepted": "Accepteret",
   "category": "Kategori",
   "selectActivityFirst": "Vælg først en aktivitet.",
-  "selectNotificationFirst": "Vælg først notifikation(er)."
+  "selectNotificationFirst": "Vælg først notifikation(er).",
+
+  "permissions": {
+    "allowAdvertising": {
+      "name": "Tillad annonceringscookies",
+      "description": "Jeg tillader annonceringscookies. Nye annonceringscookies aktiveres som standard."
+    },
+    "strictlyNecessary": {
+      "name": "Strengt nødvendige cookies",
+      "description": "Disse cookies er nødvendige for, at appen fungerer korrekt, og kan ikke deaktiveres.",
+      "readOnly": true
+    },
+    "googleAnalytics": {
+      "name": "Google Analytics",
+      "description": "Jeg tillader brugen af analysecookies. Nye analysecookies aktiveres som standard."
+    }
+  },
+  "acceptAll": "Accepter alle",
+  "pleaseConfirmSpellings": "Værdierne stemmer ikke overens, bekræft venligst din stavning."
 }

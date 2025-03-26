@@ -42,7 +42,7 @@
   "firstName": "Vorname",
   "lastName": "Nachname",
   "cancel": "Abbrechen",
-  "save": "Speichern",
+  "save": "Sichern",
   "coverPhoto": "Titelfoto",
   "inTheTeamSince": "Im Team seit",
   "topSpeed": "Geschwindigkeit",
@@ -195,6 +195,7 @@
   "uploadFiles": "Upload Dateien",
   "nameOfTheScout": "[Name des Scouts] möchte Sie in sein Portfolio aufnehmen.",
   "accept": "Akzeptieren",
+  "acceptAll": "Alle annehmen",
   "reject": "Ablehnen",
   "passwordChanged": "Du hast dein Passwort geändert.",
   "subscribedToMultiCountryPlan": "Du hast ein Multi-Länder Abo gelöst.",
@@ -1250,13 +1251,13 @@
   "verifyEmail": "BESTÄTIGE DEINE E-MAIL",
   "sentConfirmationLink": "Wir haben einen Bestätigungslink an deine E-Mail gesendet.",
   "completeVerificationProcess": "Klicke auf den Link in deinem Posteingang, um den Bestätigungsvorgang abzuschließen.",
-  "cookiePopupText": "Wir schätzen deine Privatsphäre. Wir und unsere Partner verwenden Tracker, um die Besucherzahlen unserer Website zu messen, Ihnen Angebote zu unterbreiten und unsere eigenen SoccerYou-Marketingaktivitäten zu verbessern.",
-  "cookiePopupText2": "Mehr Infos zu Cookies und Anbietern, die wir verwenden.",
-  "cookiePopupText3": "Du kannst deine Zustimmung jederzeit in deinen Einstellungen widerrufen.",
-  "PersonalizeMyChoices": "Personalisiere meine Auswahl",
-  "iAccept": "Ich akzeptiere",
-  "iDecline": "Ich lehne ab",
-  "manageConsentPreferences": "Präferenzen für die Zustimmung verwalten",
+  "cookiePopupText": "Diese Website verwendet Cookies, um sicherzustellen, dass du die beste Erfahrung auf unserer Website erhältst. Weitere Informationen findest du in der",
+  "PersonalizeMyChoices": "Cookies einstellen",
+  "clickOn": "Klicke auf",
+  "cookiePopupText1": "um die Einstellungen deiner Cookies anzupassen.",
+  "iAccept": "Alle akzeptieren",
+  "iDecline": "Ablehnen",
+  "manageConsentPreferences": "Cookie-Einstellungen",
   "allowAll": "Alle zulassen",
   "refuseAll": "Alle verweigern",
   "couponDeactivatedSuccess": "Der Coupon wurde erfolgreich deaktiviert.",
@@ -1343,5 +1344,23 @@
   "selectCouponFirst": "Coupon zuerst auswählen.",
   "category": "Kategorie",
   "selectActivityFirst": "Wähle zuerst eine Aktivität aus.",
-  "selectNotificationFirst" : "Wähle zuerst die Benachrichtigung(en) aus."
+  "selectNotificationFirst" : "Wähle zuerst die Benachrichtigung(en) aus.",
+
+  "permissions": {
+    "allowAdvertising": {
+      "name": "Werbe-Cookies erlauben",
+      "description": "Ich erlaube die Verwendung von Werbe-Cookies. Neue Werbe-Cookies werden standardmäßig aktiviert."
+    },
+    "strictlyNecessary": {
+      "name": "Unbedingt erforderliche Cookies",
+      "description": "Diese Cookies sind für den Betrieb der App zwingend erforderlich und können nicht deaktiviert werden.",
+      "readOnly": true
+    },
+    "googleAnalytics": {
+      "name": "Google Analytics",
+      "description": "Ich erlaube die Verwendung von Analyse-Cookies. Neue Analyse-Cookies werden standardmäßig aktiviert."
+    }
+  },
+   "pleaseConfirmSpellings": "Werte stimmen nicht überein, bitte überprüfe deine Rechtschreibung."
+
 }

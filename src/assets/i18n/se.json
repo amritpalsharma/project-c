@@ -1295,13 +1295,12 @@
   "verifyEmail": "VERIFIERA DIN E-POST",
   "sentConfirmationLink": "Vi har skickat en bekräftelselänk till din e-post.",
   "completeVerificationProcess": "Klicka på länken i din inkorg för att slutföra verifieringsprocessen.",
-  "cookiePopupText": "Vi värdesätter din integritet. Vi och våra partners använder spårare för att mäta målgruppen på vår webbplats och för att ge dig erbjudanden och förbättra vår egen SoccerYou-marknadsföring.",
-  "cookiePopupText2": "Mer information om cookies och leverantörer som vi använder.",
-  "cookiePopupText3": "Du kan återkalla ditt samtycke när som helst i dina inställningar.",
-  "PersonalizeMyChoices": "Personifiera mina val",
-  "iAccept": "Jag accepterar",
-  "iDecline": "I decline",
-  "manageConsentPreferences": "Manage Consent Preferences",
+  "cookiePopupText": "Vi värdesätter din integritet. Vi och våra partners använder spårare för att mäta målgruppen på vår webbplats och för att ge dig erbjudanden och förbättra vår egen SoccerYou-marknadsföring. Mer information om cookies och leverantörer som vi använder.",
+  "PersonalizeMyChoices": "Hantera cookies",
+  "iAccept": "Acceptera alla",
+  "clickOn": "Klicka på",
+  "iDecline": "Neka",
+  "manageConsentPreferences": "Cookieinställningar",
   "allowAll": "Allow All",
   "refuseAll": "Refuse All",
   "deleteProfileConfirm": "Detta raderar ditt konto permanent från vår databas. Detta kan inte ångras.",
@@ -1341,5 +1340,23 @@
   "accepted": "Accepterad",
   "category": "Kategori",
   "selectActivityFirst": "Välj först en aktivitet.",
-  "selectNotificationFirst" : "Välj först avisering(ar)."
+  "selectNotificationFirst" : "Välj först avisering(ar).",
+
+  "permissions": {
+    "allowAdvertising": {
+      "name": "Allow Advertising Permissions",
+      "description": "I allow advertising permissions. New advertising permissions will be enabled by default."
+    },
+    "strictlyNecessary": {
+      "name": "Strictly Necessary Permissions",
+      "description": "These permissions are strictly necessary for the operation of the app and cannot be deactivated.",
+      "readOnly": true
+    },
+    "googleAnalytics": {
+      "name": "Google Analytics",
+      "description": "I allow analytics permissions. New analytics permissions will be enabled by default."
+    }
+  },
+  "acceptAll": "Acceptera alla",
+  "pleaseConfirmSpellings": "Värdena matchar inte, vänligen bekräfta din stavning."
 }

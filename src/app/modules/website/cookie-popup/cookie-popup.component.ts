@@ -11,22 +11,23 @@ export class CookiePopupComponent implements OnInit {
 
   permissions = [
     { 
-      name: 'Allow Advertising Permissions', 
-      description: 'I am allowing Advertising Permissions. New Advertising Permissions will be enabled by default.', 
+      name: 'permissions.allowAdvertising.name', 
+      description: 'permissions.allowAdvertising.description', 
       enabled: false 
     },
     { 
-      name: 'Strictly Necessary Permissions', 
-      description: 'These tools are necessary for the app to function and thus You cannot switch this off.',
+      name: 'permissions.strictlyNecessary.name', 
+      description: 'permissions.strictlyNecessary.description',
       enabled: true,
       readOnly: true // Marking it as read-only
     },
     { 
-      name: 'Google Analytics', 
-      description: 'I am allowing Analytics Permissions. New Analytics Permissions will be enabled by default.',
+      name: 'permissions.googleAnalytics.name', 
+      description: 'permissions.googleAnalytics.description',
       enabled: false 
     },
   ];
+  
 
   ngOnInit() {
     this.checkCookieConsent(); // Check if cookie consent is already given
