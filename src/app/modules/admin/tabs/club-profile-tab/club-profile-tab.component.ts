@@ -79,7 +79,7 @@ export class ClubProfileTabComponent {
           this.dataEmitter.emit('updated');
           if (result.message != '' && result.message != undefined) {
             this.showMatDialog(result.message, 'display');
-          }else{
+          } else {
             this.showMatDialog("Club updated successfully.", 'display');
           }
         }
@@ -167,7 +167,11 @@ export class ClubProfileTabComponent {
       if (result !== undefined) {
         if (result.action == "updated") {
           this.getRepresentators();
-          this.showMatDialog("Representator updated successfully.", 'display');
+          if (result.message != '' && result.message != undefined) {
+            this.showMatDialog(result.message, 'display');
+          } else {
+            this.showMatDialog("Representator updated successfully.", 'display');
+          }
         }
         //  console.log('Dialog result:', result);
       }
@@ -186,7 +190,11 @@ export class ClubProfileTabComponent {
       response => {
         if (response.status) {
           this.getRepresentators();
-          this.showMatDialog('Representator removed successfully!.', 'display');
+          if (response.message != '' && response.message != undefined) {
+            this.showMatDialog(response.message, 'display');
+          } else {
+            this.showMatDialog('Representator removed successfully!.', 'display');
+          }
         } else {
           this.showMatDialog('Error in removing Representator. Please try again.', 'display');
         }

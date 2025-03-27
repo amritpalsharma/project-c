@@ -31,6 +31,7 @@ export class ClubDetailComponent implements OnInit {
   coverImage: any = "";
   paginationData: any = {};
   pageTitle: string = '';
+  userDeleteConfirm: string = '';
 
   ngOnInit(): void {
     this.getJsonTranslations();
@@ -118,7 +119,7 @@ export class ClubDetailComponent implements OnInit {
   }
 
   confirmDeletion() {
-    this.showMatDialog("", "delete-confirmation");
+    this.showMatDialog(this.userDeleteConfirm, "delete-confirmation");
   }
 
 
@@ -239,8 +240,9 @@ export class ClubDetailComponent implements OnInit {
   }
 
   getJsonTranslations() {
-    this.translateService.get(['dashboard']).subscribe((translations) => {
+    this.translateService.get(['dashboard', 'confirmDeleteinformation']).subscribe((translations) => {
       this.pageTitle = translations['dashboard'];
+      this.userDeleteConfirm = translations['confirmDeleteinformation'];
       this.titleService.setTitle(this.pageTitle);
       console.log('Title fetch Function Fired');
     })

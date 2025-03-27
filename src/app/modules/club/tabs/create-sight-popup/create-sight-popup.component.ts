@@ -64,7 +64,12 @@ export class CreateSightPopupComponent implements AfterViewInit {
     }
   }
 
+  @ViewChild('numInput', { static: false }) numInput!: ElementRef;
+
   ngAfterViewInit() {
+    this.numInput.nativeElement.addEventListener('wheel', (event: WheelEvent) => {
+      event.preventDefault();
+    });
   }
 
   ngOnInit(): void {
@@ -217,6 +222,10 @@ export class CreateSightPopupComponent implements AfterViewInit {
     formData.append('city', this.city);
     formData.append('about_event', this.about);
     formData.append('banner', this.bannerFile);
+
+    let langId: any = localStorage.getItem('lang_id');
+
+    formData.append('lang', langId);
 
     this.attachmentRows.map(function (attachment: any, index: any) {
       formData.append('attachments[' + index + '][title]', attachment.title);

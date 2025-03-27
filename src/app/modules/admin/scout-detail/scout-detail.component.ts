@@ -34,11 +34,14 @@ export class ScoutDetailComponent implements OnInit {
   coverImage: any = "";
   paginationData: any = {};
   pageTitle: string = '';
+  userDeleteConfirm: string = '';
 
   ngOnInit(): void {
     this.getJsonTranslations();
     this.sharedservice.data$.subscribe((data: any) => {
-      if (data.action == 'lang_updated') { }
+      if (data.action == 'lang_updated') {
+        this.getJsonTranslations();
+      }
     });
     this.route.params.subscribe((params: any) => {
       console.log(params.id)
@@ -118,7 +121,7 @@ export class ScoutDetailComponent implements OnInit {
   }
 
   confirmDeletion() {
-    this.showMatDialog("", "delete-confirmation");
+    this.showMatDialog(this.userDeleteConfirm, "delete-confirmation");
   }
 
 
@@ -273,8 +276,9 @@ export class ScoutDetailComponent implements OnInit {
   }
 
   getJsonTranslations() {
-    this.translateService.get(['dashboard']).subscribe((translations) => {
+    this.translateService.get(['dashboard', 'confirmDeleteinformation']).subscribe((translations) => {
       this.pageTitle = translations['dashboard'];
+      this.userDeleteConfirm = translations['confirmDeleteinformation'];
       this.titleService.setTitle(this.pageTitle);
       console.log('Title fetch Function Fired');
     })

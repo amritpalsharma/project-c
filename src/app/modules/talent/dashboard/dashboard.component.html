@@ -18,7 +18,7 @@
   
                 <div class="edit-photo d-flex align-items-center tour-cover-photo" matTooltip="{{'editCoverImage' | translate}}"
                   matTooltipPosition="right">
-                  <div class="edit_image-2 ">
+                  <div class="edit_image-2">
                     <label for="file-upload" class="cursor-pointer ">
                       <svg class="edit_image" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                         <path
@@ -27,7 +27,7 @@
                       <span>{{'uploadYourCoverPhoto' | translate}}</span>
                     </label>
                   </div>
-                  <input id="file-upload" (change)="onCoverFileChange($event)" accept="image/*" type="file"
+                  <input id="file-upload2" (change)="onCoverFileChange($event)" accept="image/*" type="file"
                     class="d-none" />
                   <svg *ngIf="coverImage" class="delete_image cursor-pointer " (click)="openDeleteDialog()"
                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -516,7 +516,7 @@
 
               <div class="edit-photo d-flex align-items-center tour-cover-photo" matTooltip="{{'editCoverImage' | translate}}"
                 matTooltipPosition="right">
-                <div class="edit_image-2 ">
+                <div class="edit_image-2 edit_image-tour">
                   <label for="file-upload" class="cursor-pointer ">
                     <svg class="edit_image" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                       <path

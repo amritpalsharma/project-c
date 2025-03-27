@@ -52,7 +52,7 @@ export class TemplatesComponent {
       let lang_id = localStorage.getItem('lang_id');
       if (lang_id == '2') {
         this.langs = environment.langs_de;
-      }else{
+      } else {
         this.langs = environment.langs;
       }
       if (data.action == 'lang_updated') {
@@ -126,7 +126,11 @@ export class TemplatesComponent {
     dialogRef.afterClosed().subscribe(result => {
       if (result !== undefined) {
         if (result.action == "templateAdded") {
-          this.showMessage('Email template created successfully!');
+          if (result.message != '' && result.message != undefined) {
+            this.showMessage(result.message);
+          } else {
+            this.showMessage('Email template created successfully!');
+          }
           this.getTemplates();
         }
       }
@@ -179,7 +183,14 @@ export class TemplatesComponent {
 
   confirmDeletion(): any {
     if (this.selectedIds.length == 0) {
-      this.showMessage('Select template(s) first.');
+      let lang_id = localStorage.getItem('lang_id');
+      let msg;
+      if (lang_id == '2') {
+        msg = 'Vorlage zuerst auswählen.';
+      } else {
+        msg = 'Select template(s) first.';
+      }
+      this.showMessage(msg);
       return false;
     }
     this.idsToDelete = this.selectedIds;
@@ -192,15 +203,19 @@ export class TemplatesComponent {
 
 
   deleteTemplates(): any {
-
-    let params = { id: this.idsToDelete };
+    let lang_id = localStorage.getItem('lang_id');
+    let params = { id: this.idsToDelete, lang: lang_id };
     this.tempalateApi.deleteEmailTemplate(params).subscribe(
       (response: any) => {
         this.getTemplates();
         this.selectedIds = [];
         this.allSelected = false;
+        if (response.message != '' && response.message != undefined) {
+          this.showMessage(response.message);
+        } else {
+          this.showMessage('Template(s) deleted successfully!');
+        }
         // console.log('Popups deleted successfully:', response);
-        this.showMessage('Template(s) deleted successfully!');
       },
       (error: any) => {
         console.error('Error deleting template:', error);
@@ -247,7 +262,11 @@ export class TemplatesComponent {
     updateDialogRef.afterClosed().subscribe(result => {
       if (result !== undefined) {
         if (result.action == "templateUpdated") {
-          this.showMessage('Email template updated successfully!');
+          if (result.message != '' && result.message != undefined) {
+            this.showMessage(result.message);
+          } else {
+            this.showMessage('Email template updated successfully!');
+          }
           this.getTemplates();
         }
       }

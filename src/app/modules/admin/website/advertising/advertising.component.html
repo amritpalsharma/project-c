@@ -18,8 +18,8 @@
                   stroke-linecap="round" stroke-linejoin="round"></path>
               </g>
             </svg>
-          </span><input type="text" placeholder="{{'searchAds' | translate}}" (keyup)="applyFilter($event)" aria-label="Username"
-            aria-describedby="basic-addon1" class="form-control ps-0" />
+          </span><input type="text" placeholder="{{'searchAds' | translate}}" (keyup)="applyFilter($event)"
+            aria-label="Username" aria-describedby="basic-addon1" class="form-control ps-0" />
         </div>
         <div class="d-flex align-items-center pe-2 border-start ps-3 cursor-pointer filter-svg"
           (click)="showFilterPopup()">
@@ -110,7 +110,7 @@
       <ng-container matColumnDef="Type">
         <th mat-header-cell *matHeaderCellDef> {{ 'type' | translate }} </th>
         <td mat-cell *matCellDef="let element">
-          {{ element.type }}
+          {{ removeTextAfterDash(element.type) }}
         </td>
       </ng-container>
 
@@ -129,7 +129,8 @@
 
           <ng-template #secondCondition>
             <div *ngIf="element.valid_from && !element.valid_to; else defaultCondition">
-              {{ element.valid_from === '0000-00-00' ? '31.12.2099' : (element.valid_from | date:'dd.MM.yyyy')  }} {{ 'Onwards' | translate}}
+              {{ element.valid_from === '0000-00-00' ? '31.12.2099' : (element.valid_from | date:'dd.MM.yyyy') }} {{
+              'Onwards' | translate}}
             </div>
           </ng-template>
           <ng-template #defaultCondition>
@@ -138,7 +139,7 @@
               <!-- {{ element.valid_from | date:'dd.MM.yyyy' }} -  -->
               {{ element.valid_from === '0000-00-00' ? '31.12.2099' : (element.valid_from | date:'dd.MM.yyyy') }} -
               {{ element.valid_to === '0000-00-00' ? '31.12.2099' : (element.valid_to | date:'dd.MM.yyyy') }}
-            </div>            
+            </div>
           </ng-template>
         </td>
       </ng-container>

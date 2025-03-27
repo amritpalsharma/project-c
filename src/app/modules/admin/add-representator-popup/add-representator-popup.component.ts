@@ -218,7 +218,8 @@ export class AddRepresentatorPopupComponent {
     this.userService.updateRepresentator(this.idToUpdate, formdata).subscribe((response) => {
       if (response && response.status) {
         this.dialogRef.close({
-          action: 'updated'
+          action: 'updated',
+          message: response.message
         });
       } else {
 
