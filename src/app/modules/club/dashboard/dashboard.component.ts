@@ -65,6 +65,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   activeDomains: any;
   countries: any;
   isPremium: any = false;
+  isHighlightClick: boolean = true;
   @Output() dataEmitter = new EventEmitter<string>();
   private routeSubscription: Subscription | null = null; // Initialize with null
   private introInstance: any; // Reference to the Intro.js instance
@@ -434,6 +435,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   openHighlight() {
+    this.isHighlightClick = false;
     this.getGalleryData();
     setTimeout(() => {
       const dialogRef = this.dialog.open(EditHighlightsComponent, {
@@ -446,7 +448,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
       });
 
       dialogRef.afterClosed().subscribe(result => {
-        this.getHighlightsData()
+        this.getHighlightsData();
+        this.isHighlightClick = true;
       });
     }, 1500);
 

@@ -20,7 +20,7 @@ import { TitleService } from '../../../title.service';
 
 export class FavoritesComponent {
   userId: any = '';
-  displayedColumns: string[] = ['#', 'Name', 'User Type', 'Location', 'Joined Date - Time', 'View Profile', 'Remove'];
+  displayedColumns: string[] = ['#', 'Name', 'User Type', 'Location', 'Joined Date', 'View Profile', 'Remove'];
   userFavorites: any = [];
   customFilters: any = [];
   totalFavorites: any = '';
