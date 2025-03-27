@@ -31,7 +31,10 @@ export class ResetPasswordComponent {
     private translateService: TranslateService
   ) { }
 
+  theme : any = localStorage.getItem('theme');
+
   ngOnInit(): void {
+    this.theme = localStorage.getItem('theme');
     this.getToasterMsg();
     this.webPages.languageId$.subscribe((data: any) => {
       this.getToasterMsg();

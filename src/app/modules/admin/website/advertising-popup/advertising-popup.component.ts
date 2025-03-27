@@ -392,7 +392,7 @@ export class AdvertisingPopupComponent {
   }
 
   getToasterMsg() {
-    this.translateService.get(['nameRequired', 'typeRequired', 'pageRequired', 'imageRequired', 'endDateRequired', 'maxViewsRequired', 'maxClicksRequired', 'redirectrequired']).subscribe((translations) => {
+    this.translateService.get(['nameRequired', 'typeRequired', 'pageRequired', 'imageRequired', 'endDateRequired', 'maxViewsRequired', 'maxClicksRequired', 'redirectrequired2']).subscribe((translations) => {
       this.nameRequired = translations['nameRequired'];
       this.typeRequired = translations['typeRequired'];
       this.pageRequired = translations['pageRequired'];
@@ -400,7 +400,7 @@ export class AdvertisingPopupComponent {
       this.endDateRequired = translations['endDateRequired'];
       this.maxViewsRequired = translations['maxViewsRequired'];
       this.maxClicksRequired = translations['maxClicksRequired'];
-      this.redirectrequired = translations['redirectrequired'];
+      this.redirectrequired = translations['redirectrequired2'];
     });
   }
 

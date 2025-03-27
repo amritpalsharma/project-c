@@ -43,8 +43,11 @@ export class EditTransferDetailsComponent {
     private translateService: TranslateService,
     public webPages: WebPages,
   ) { }
+  
+  theme : any = localStorage.getItem('theme');
 
   ngOnInit(): void {
+    this.theme = localStorage.getItem('theme');
     // You might want to load your teams from a service here
     this.teams = this.data.teams;
     this.transfer = this.data.transfer;

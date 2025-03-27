@@ -87,7 +87,10 @@ export class EditPersonalDetailsComponent implements OnInit {
   countriesLoaded: boolean = false;
   profileLoaded: boolean = false;
 
+  theme : any = localStorage.getItem('theme');
+
   ngOnInit(): void {
+    this.theme = localStorage.getItem('theme');
     this.userData = this.user = { ...this.data.user };
 
     this.countries = this.data.countries;

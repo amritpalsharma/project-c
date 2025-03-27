@@ -88,7 +88,10 @@ export class EditPersonalDetailsComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
+  theme : any = localStorage.getItem('theme');
+
   ngOnInit(): void {
+    this.theme = localStorage.getItem('theme');
     this.user = JSON.parse(this.user);
     this.loggedInUser = JSON.parse(this.loggedInUser);
     this.userId = this.loggedInUser.id;

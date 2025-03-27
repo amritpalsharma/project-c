@@ -19,7 +19,7 @@ export class AddBoosterComponent {
   talent: string = '';
   scout: string = '';
   club: string = '';
-  // @Input() audiences = [
+  // @Input() 
   audiences = [
     { role: this.club, id: 2 },
     { role: this.scout, id: 3 },
@@ -30,6 +30,7 @@ export class AddBoosterComponent {
   loggedInUser: any = localStorage.getItem('userInfo');
 
   theme : any = localStorage.getItem('theme');
+  userNationality : string = '';
 
   pleaseWait: string = '';
   Processing: string = '';
@@ -49,6 +50,9 @@ export class AddBoosterComponent {
     this.theme = localStorage.getItem('theme');
 
     this.loggedInUser = JSON.parse(this.loggedInUser);
+    let userNationalities = JSON.parse(this.loggedInUser?.user_nationalities);
+    this.userNationality = userNationalities[0]?.flag_path ? userNationalities[0]?.flag_path : '';
+
     this.id = this.data.id || [];
     this.stripe = await this.paymentService.getStripe();
 

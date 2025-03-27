@@ -11,7 +11,7 @@
                     fill="#787878" />
             </svg>
 
-            {{ 'Edit' | translate}}</a>
+            {{ 'edit' | translate}}</a>
         <a class="btn btn-outline-white main-template" *ngIf="isEditable && checkRole()" (click)="updateHistory()">
             <svg id="users-icon" class="me-1" width="24" height="25" viewBox="0 0 24 25" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
@@ -20,7 +20,7 @@
                     fill="#787878" />
             </svg>
 
-            {{ 'Update' | translate}}
+            {{ 'update' | translate}}
         </a>
     </div>
 
@@ -31,7 +31,7 @@
         <div *ngIf="isEditable && !isLoading">
             <!-- <textarea class="historyTextarea" #historyTextarea>{{history}}</textarea>             -->
             <div class="col-12 NgxEditor__Wrapper  mt-3">
-                <ngx-editor-menu [editor]="editor" [colorPresets]="colorPresets"> </ngx-editor-menu>
+                <ngx-editor-menu [editor]="editor" [toolbar]="toolbar" [colorPresets]="colorPresets"> </ngx-editor-menu>
                 <ngx-editor [editor]="editor" class="editor-width" [(ngModel)]="history" [disabled]="false"
                     [placeholder]="'editors.placeholder' | translate"></ngx-editor>
                 <!-- <div *ngIf="errorMsg.content" class="error-msg" style="padding-left:20px;">{{errorMsg.content}}</div> -->

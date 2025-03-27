@@ -37,7 +37,11 @@ export class EditHighlightsComponent {
     public webPages: WebPages,
   ) { }
 
+  theme : any = localStorage.getItem('theme');
+
   ngOnInit(): void {
+
+    this.theme = localStorage.getItem('theme');
 
     this.loggedInUser = JSON.parse(this.loggedInUser);
     this.userId = this.loggedInUser.id;

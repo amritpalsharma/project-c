@@ -17,10 +17,11 @@ import { WebPages } from '../../../../services/webpages.service';
 export class AddBoosterComponent {
   isLoadingCheckout: boolean = false;
   stripe: any;
-  talent: string = 'g';
-  scout: string = 'g';
-  club: string = 'g';
-  @Input() audiences = [
+  talent: string = 'test';
+  scout: string = '';
+  club: string = '';
+  // @Input() 
+  audiences : any[] = [
     { role: this.club, id: 2 },
     { role: this.scout, id: 3 },
     { role: this.talent, id: 4 },
@@ -28,7 +29,8 @@ export class AddBoosterComponent {
   selectedAudienceIds: number[] = []; // Store only audience IDs
   id: any;
   loggedInUser: any = localStorage.getItem('userInfo');
-  theme : any = localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light';
+  theme : any = localStorage.getItem('theme');
+  userNationality : string = '';
 
   pleaseWait: string = '';
   Processing: string = '';
@@ -46,10 +48,15 @@ export class AddBoosterComponent {
 
   async ngOnInit() {
     this.loggedInUser = JSON.parse(this.loggedInUser);
+    let userNationalities = JSON.parse(this.loggedInUser?.user_nationalities);
+    
+    if(userNationalities){
+      this.userNationality = userNationalities[0]?.flag_path ? userNationalities[0]?.flag_path : '';
+    }
     this.id = this.data.id || [];
     this.stripe = await this.paymentService.getStripe();
 
-    this.theme = localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light';
+    this.theme = localStorage.getItem('theme');
 
     this.getToasterMsg();
     this.webPages.languageId$.subscribe((data: any) => {

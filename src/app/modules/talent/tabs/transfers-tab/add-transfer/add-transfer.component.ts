@@ -34,6 +34,8 @@ export class AddTransferComponent {
   successTxt: string = '';
   Processing: string = '';
   pleaseWait: string = '';
+  theme : any = localStorage.getItem('theme');
+
   constructor(
     private toastr: ToastrService,
     public dialogRef: MatDialogRef<AddTransferComponent>,
@@ -44,6 +46,7 @@ export class AddTransferComponent {
   ) { }
 
   ngOnInit(): void {
+    this.theme = localStorage.getItem('theme');
     this.getJsonTranslations();
     // You might want to load your teams from a service here
     this.teams = this.data.teams;

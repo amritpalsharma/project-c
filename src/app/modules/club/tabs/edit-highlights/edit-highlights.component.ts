@@ -38,7 +38,10 @@ export class EditHighlightsComponent {
     @Inject(MAT_DIALOG_DATA) public data: any, public dialog: MatDialog
   ) {}
 
+  theme : any = localStorage.getItem('theme');
+
   ngOnInit(): void {
+    this.theme = localStorage.getItem('theme');
 
     this.loggedInUser = JSON.parse(this.loggedInUser);
     this.userId = this.loggedInUser.id;

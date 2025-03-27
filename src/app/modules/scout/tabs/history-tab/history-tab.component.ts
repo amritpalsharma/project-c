@@ -2,7 +2,7 @@ import { Component, Input, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { ScoutService } from '../../../../services/scout.service';
-import { Editor } from 'ngx-editor';
+import { Editor, Toolbar } from 'ngx-editor';
 import { environment } from '../../../../../environments/environment';
 
 @Component({
@@ -12,6 +12,16 @@ import { environment } from '../../../../../environments/environment';
 })
 export class HistoryTabComponent {
   editor!: Editor;
+  
+  toolbar: Toolbar = [
+    ['bold', 'italic'],
+    ['underline', 'strike'],
+    ['link', 'image'],
+    // ['ordered_list', 'bullet_list'],
+    // ['text_color', 'background_color'],
+    // ['align_left', 'align_center', 'align_right', 'align_justify'],
+  ];
+
   isLoading: boolean = false;
   userId: any = "";
   history: any = "";

@@ -95,7 +95,8 @@
           <div class="col-lg-4 my-2 ">
             <div class="subscription-switch mb-2">
               <label class="switch_off cursor-pointer">{{'billedMonthly' | translate}}</label>
-              <input type="checkbox" class="cursor-pointer">
+              <input type="checkbox" (change)="toggleBillingPlan(countryPlans, (selectedPlan?.isYearly), country)"
+                class="cursor-pointer">
               <label class="switch_on cursor-pointer">{{'billedYearly' | translate}}</label>
             </div>
 
@@ -123,7 +124,13 @@
                   </div>
                 </div>
                 <div class="premium-currency">
-                  <h6>{{ selectedPlan?.price }}<sub class="premium-month_title">.-{{ selectedPlan?.currency }} / {{ selectedPlan?.isYearly ? ('year' | translate) :
+                  <!-- <h6>{{ selectedPlan?.price }}<sub class="premium-month_title">.-{{ selectedPlan?.currency }} / {{ selectedPlan?.isYearly ? ('year' | translate) :
+                      ('month' | translate) }}</sub>
+                  </h6> -->
+
+                  <h6>
+                    {{ selectedPlan.isYearly ?  countryYearlyArr?.price : countryMonthlyArr?.price }}<sub class="premium-month_title">.-{{ selectedPlan?.currency }} / {{ selectedPlan?.interval=='yearly' ? ('year'
+                      | translate) :
                       ('month' | translate) }}</sub>
                   </h6>
                 </div>
@@ -177,7 +184,8 @@
             <div class="premium-plan_box">
               <div class="plan_box">
                 <div class="d-flex align-items-center justify-content-between gap-2">
-                  <h3>{{ boostedPlans.package_name }}</h3>
+                  <!-- <h3>{{ boostedPlans.package_name }}</h3> -->
+                  <h3>{{ 'boostProfile' | translate }}</h3>
                   <div class="premium_button py-1 px-3 " *ngIf="booster">
                     <span class="px-1">
                       <svg width="22" height="23" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
@@ -207,7 +215,7 @@
                 <div class="row">
                   <div class="col-lg-12">
                     <button class="choose-plan-btn" [disabled]="(boostedPlans?.is_package_active=='active') "
-                      (click)="addBoostPopup(boostedPlans.isYearly==true ? boostedPlans.year_package_id : boostedPlans.month_package_id )">{{'Choose Plan' | translate}}</button>
+                      (click)="addBoostPopup(boostedPlans.isYearly==true ? boostedPlans.year_package_id : boostedPlans.month_package_id )">{{'choosePlan' | translate}}</button>
                   </div>
                 </div>
               </div>

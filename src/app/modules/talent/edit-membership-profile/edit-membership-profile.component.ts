@@ -39,13 +39,20 @@ export class EditMembershipProfileComponent {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private router: Router
   ) { }
+  
+  theme : any = localStorage.getItem('theme');
+  userNationality : string = '';
 
-  async ngOnInit() {
+  ngOnInit(): void {
+    this.theme = localStorage.getItem('theme');
     this.stats = this.data.stats;
 
     // this.selectedAudiences = this.stats?.booster_audience;
 
     this.loggedInUser = JSON.parse(this.loggedInUser);
+    let userNationalities = JSON.parse(this.loggedInUser?.user_nationalities);
+    this.userNationality = userNationalities[0]?.flag_path ? userNationalities[0]?.flag_path : '';
+    
     this.id = this.data.id || [];
 
     this.getRoles();

@@ -3,9 +3,17 @@
     <div class="dialog-header m-auto">
       <h2>{{ 'editPersonalDetails' | translate }}</h2>
     </div>
-    <div class="close_buttons">
-      <button class="close-btn" (click)="onCancel()">X</button>
-    </div>
+    <div class="close_buttons" *ngIf='theme!="dark"'>
+        <button class="close-btn border-0 padding-0" aria-label="Close" (click)="onCancel()">
+          <img src="../../../../assets/images/carbon_close-outline-light.svg" alt="">
+        </button>
+      </div>
+      <div class="close_buttons" *ngIf='theme=="dark"'>
+        <button class="close-btn border-0 padding-0" aria-label="Close" (click)="onCancel()">
+          <!-- <img src="../../../../../assets/images/carbon_close-outline.svg" alt=""> -->
+          <img src="../../../../assets/images/carbon_close-outline.svg" alt="">
+        </button>
+      </div>
   </div>
   <hr>
 

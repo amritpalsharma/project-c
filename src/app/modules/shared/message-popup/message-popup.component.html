@@ -1,10 +1,15 @@
 <!-- message-popup.component.html -->
 <div class="msg-popup-dialog p-3">
     <div class="msg-popup-close">
-        <img *ngIf="data.action === 'delete-account-close'" src="../../../assets/images/close-icon-circle.png" alt=""
+        <img *ngIf="data.action === 'delete-account-close' && theme!='dark'" src="../../../assets/images/carbon_close-outline-light.svg" alt=""
             (click)="closeAccount()" />
-        <img *ngIf="data.action != 'delete-account-close'" src="../../../assets/images/close-icon-circle.png" alt=""
+        <img *ngIf="data.action != 'delete-account-close' && theme!='dark'" src="../../../assets/images/carbon_close-outline-light.svg" alt=""
             (click)="close()" />
+            
+            <img *ngIf="data.action === 'delete-account-close' && theme=='dark'" src="../../../assets/images/carbon_close-outline.svg" alt=""
+                (click)="closeAccount()" />
+            <img *ngIf="data.action != 'delete-account-close' && theme=='dark'" src="../../../assets/images/carbon_close-outline.svg" alt=""
+                (click)="close()" />
     </div>
     <div class="msg-popup-content p-3 pt-1">
         <div class="display-message">

@@ -20,6 +20,8 @@ const moment = _rollupMoment || _moment;
 })
 export class EditGeneralDetailsComponent {
 
+  theme : any = localStorage.getItem('theme');
+
   positions: any[] = [];
   readonly date = new FormControl(moment());
 
@@ -71,6 +73,7 @@ export class EditGeneralDetailsComponent {
   ) { }
 
   ngOnInit(): void {
+    this.theme = localStorage.getItem('theme');
     // Initialize user data from passed-in data
     this.user = JSON.parse(this.user);
 

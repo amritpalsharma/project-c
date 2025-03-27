@@ -1,11 +1,13 @@
 import { Component, Inject } from '@angular/core';
 import {
-  MatDialogRef, MAT_DIALOG_DATA
+  MatDialogRef, MAT_DIALOG_DATA,
+  MatDialog
 } from '@angular/material/dialog';
 import { UserService } from '../../../services/user.service';
 import { TalentService } from '../../../services/talent.service';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
+import { MessagePopupComponent } from '../message-popup/message-popup.component';
 
 @Component({
   selector: 'talent-upload-popup',
@@ -21,13 +23,21 @@ export class UploadPopupComponent {
   pleaseWait: string = '';
   uploadingPhotos: string = '';
 
-  constructor(private userService: TalentService, public dialogRef: MatDialogRef<UploadPopupComponent>, private toastr: ToastrService, private translateService: TranslateService,
+  isLoading : boolean = false;
+
+  constructor(private userService: TalentService,public dialog: MatDialog, public dialogRef: MatDialogRef<UploadPopupComponent>, private toastr: ToastrService, private translateService: TranslateService,
     @Inject(MAT_DIALOG_DATA) public data: any) {
     this.userId = data.userId;
     this.file = data.file ? data.file : 'all';
   }
 
   files: File[] = [];
+
+  theme : any = localStorage.getItem('theme');
+
+  ngOnInit(): void {
+    this.theme = localStorage.getItem('theme');
+  }
 
   // Handles when dragging files over the drop zone
   onDragOver(event: DragEvent) {
@@ -75,8 +85,31 @@ export class UploadPopupComponent {
     this.uploadImages(this.files);
   }
 
+  showMatDialog(message: string, action: string, name: any = '') {
+    const messageDialog = this.dialog.open(MessagePopupComponent, {
+      width: '500px',
+      position: {
+        top: '150px'
+      },
+      data: {
+        message: message,
+        action: action,
+        name: name
+      }
+    })
+
+    messageDialog.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        if (result.action == "delete-confirmed") {
+          // this.deleteScoutPlayer();
+        }
+        //  console.log('Dialog result:', result);
+      }
+    });
+  }
 
   uploadImages(files: any) {
+    this.isLoading = true;
     // let loadingToast = [];
     this.translateService.get([
       'pleaseWait',
@@ -94,10 +127,11 @@ export class UploadPopupComponent {
 
       this.userService.uploadGalleryImages(formdata).subscribe((response) => {
         console.log(response);
+        
         response.forEach((row: any) => {
           console.log('row', row);
           // Add both message and status to uploadResponse array
-          this.uploadResponse.push({ message: row.message, status: row.status });
+          // this.uploadResponse.push({ message: row.message, status: row.status });
 
           if (row.status) {
             this.toastr.clear(loadingToast.toastId);
@@ -107,6 +141,14 @@ export class UploadPopupComponent {
             this.toastr.error(row.message, 'Error');
           }
         });
+
+        if(response[0].status){
+          this.isLoading = false;
+          this.showMatDialog(response[0].message, 'display');
+          this.dialogRef.close({
+            files: this.uploadedFiles
+          });
+        }
       });
     });
   }

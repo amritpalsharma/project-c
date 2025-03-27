@@ -152,7 +152,7 @@
                             <div class="d-flex align-items-center gap-2 mb-1 " *ngFor="let nation of userNationalities">
                               <div class="team-badge_image">
                                 <img *ngIf="nation.flag_path" [src]="nation.flag_path" alt="">
-                                <img *ngIf="!nation.flag_path" src="../../../../assets/images/team-flag.png" alt="">
+                                <!-- <img *ngIf="!nation.flag_path" src="../../../../assets/images/team-flag.png" alt=""> -->
                               </div>
                               <h5 class="title-1">{{nation.country_name | translate }} </h5>
                             </div>

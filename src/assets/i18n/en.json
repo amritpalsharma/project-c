@@ -1280,6 +1280,7 @@
   "enterYourCompanyName": "Enter your company name",
   "typeRequired": "Type is required",
   "redirectrequired": "Redirect URL is required",
+  "redirectrequired2": "Redirect URL is required and should start with https://",
   "pageRequired": "Page is required",
   "imageRequired": "Image is required",
   "endDateRequired": "Enter the end date or check the box",

@@ -68,7 +68,7 @@
       <img src="{{imageBaseUrl}}{{image.file_name}}" alt="" srcset="" class="img-fluid">
 
       <div class="wc_floatingMenu" [ngClass]="{ 'active': openedMenuId == image.id}">
-        <div class="wc_menuItem pointer font-14" (click)="openDeleteDialog(image.id)">
+        <div class="wc_menuItem pointer font-14" (click)="openDeleteDialog(image.id, 'image')">
           <span>
             <svg class="del-icon-margin" width="14" height="16" viewBox="0 0 14 16" fill="none"
               xmlns="http://www.w3.org/2000/svg">
@@ -129,7 +129,7 @@
 
 
       <div class="wc_floatingMenu" [ngClass]="{ 'active': openedMenuId == image.id}">
-        <div class="wc_menuItem pointer font-14" (click)="deleteImage(image.id)">
+        <div class="wc_menuItem pointer font-14" (click)="openDeleteDialog(image.id, 'video')">
           <span>
             <svg class="del-icon-margin" width="14" height="16" viewBox="0 0 14 16" fill="none"
               xmlns="http://www.w3.org/2000/svg">

@@ -30,10 +30,12 @@ export class AddCountryComponent {
   country: any;
   stripe: any;
   countryPlans: any;
+  theme : any = localStorage.getItem('theme');
 
   stripePromise = loadStripe(environment.stripePublishableKey);
 
   async ngOnInit() {
+    this.theme = localStorage.getItem('theme');
     // If this.data.plans is an array, assign it directly
     this.country = this.data.country;
     console.log(this.country)

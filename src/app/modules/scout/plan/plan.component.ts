@@ -33,6 +33,22 @@ interface Plan {
   is_package_active: any;
 }
 
+interface PackageObject {
+  id: string;
+  package_id: string;
+  interval: string;
+  created_at: string;
+  currency: string;
+  domain_id: string;
+  package_description: string;
+  package_interval: string;
+  package_name: string;
+  price: any;
+  status: string;
+  stripe_plan_id: string;
+  updated_at: string;
+}
+
 @Component({
   selector: 'app-plan',
   templateUrl: './plan.component.html',
@@ -75,6 +91,10 @@ export class PlanComponent implements OnInit, OnDestroy {
   private plansSubscription: Subscription = new Subscription();
   stripePromise = loadStripe(environment.stripePublishableKey);
   pageTitle: string = '';
+
+  countryMonthlyArr: PackageObject | null = null;  // Store a single object, not an array
+  countryYearlyArr: PackageObject | null = null;
+  countryPlanPrice: any;
 
   langSubscription!: Subscription;
 
@@ -181,6 +201,14 @@ export class PlanComponent implements OnInit, OnDestroy {
     if (this.langSubscription) {
       this.langSubscription.unsubscribe();
     }
+  }
+
+  setCountryPlans(plansArr: any) {
+    this.countryMonthlyArr = plansArr.find((obj: any) => obj.interval === "monthly");
+    this.countryYearlyArr = plansArr.find((obj: any) => obj.interval === "yearly");
+
+    console.warn('Monthly', this.countryMonthlyArr);
+    console.warn('Yearly', this.countryYearlyArr);
   }
 
   fetchPlans() {
@@ -294,7 +322,11 @@ export class PlanComponent implements OnInit, OnDestroy {
               this.demoPlans.includes = ["The complete talent profile with all stages of his career and performance data.", "Export data in excel and pdf formats.", "Create your favorite list.", "Highlight your best photos and videos on your profile."];;
             }
           });
-          console.log('jgfdkhg', this.countryPlans)
+          // console.log('jgfdkhg', this.countryPlans)
+
+          if (this.countryPlans.plans != '') {
+            this.setCountryPlans(this.countryPlans.plans);
+          }
 
           if (this.countryPlans.plans != '' && this.countryPlans.plans.length > 0) {
             this.filterActivePlans();
@@ -302,6 +334,7 @@ export class PlanComponent implements OnInit, OnDestroy {
 
           // Set the default selected plan (first country plan or null if none exist)
           this.selectedPlan = this.countryPlans.plans[0] || null;
+          this.selectedPlan.isYearly = this.selectedPlan.active_interval == 'yearly';
 
           // Fetch user cards
           // this.getUserCards();
@@ -435,16 +468,52 @@ export class PlanComponent implements OnInit, OnDestroy {
 
 
   toggleBillingPlan(plan: any, isYearly: boolean, subscribeId: any): void {
+
+    // this.animate = (!this.animate);
+
+    // console.log('toggleBillingPlan', plan, isYearly, subscribeId, this.selectedPlan);
     const originalIsYearly = plan.isYearly;
 
-    if (plan.isYearly != isYearly) {
-      this.toastr.info(`You're already subscribed to the ${isYearly ? 'yearly' : 'monthly'} plan.`);
-      return;
+    if (isYearly && plan.active_interval == 'yearly') {
+      // this.toastr.info(`You're already subscribed to the ${isYearly ? 'yearly' : 'monthly'} plan.`);
+      // return;
+    }
+
+    if (!isYearly && plan.active_interval == 'monthly') {
+      // this.toastr.info(`You're already subscribed to the ${isYearly ? 'yearly' : 'monthly'} plan.`);
+      // return;
+    }
+
+    console.log(plan, isYearly)
+
+
+    if (plan.type === "multi") {
+      // console.log(isYearly)
+      if (isYearly === true) {
+        this.selectedPlan.isYearly = false;
+      } else if (isYearly === false) {
+        this.selectedPlan.isYearly = true;
+      }
     }
 
     plan.isYearly = originalIsYearly;
+
+    // this.onSelectPlan()
     return;
   }
+
+
+  // toggleBillingPlan(plan: any, isYearly: boolean, subscribeId: any): void {
+  //   const originalIsYearly = plan.isYearly;
+
+  //   if (plan.isYearly != isYearly) {
+  //     this.toastr.info(`You're already subscribed to the ${isYearly ? 'yearly' : 'monthly'} plan.`);
+  //     return;
+  //   }
+
+  //   plan.isYearly = originalIsYearly;
+  //   return;
+  // }
 
   updatePlan(plan: any, isYearly: boolean, subscribeId: any) {
     const originalIsYearly = plan.isYearly;

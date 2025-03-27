@@ -10,7 +10,7 @@
 }
 .dialog-header h2 {
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 700;
 }
 .personal_edit {
     display: flex;
@@ -64,4 +64,9 @@
     .country-information {
         padding: 28px 40px 28px 40px;
     }
+}
+
+button:focus-visible{
+    border: 0 !important;
+    outline: 0 !important;
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ClubService } from '../../../../services/club.service';
-import { Editor } from 'ngx-editor';
+import { Editor, Toolbar } from 'ngx-editor';
 import { environment } from '../../../../../environments/environment';
 
 @Component({
@@ -11,6 +11,15 @@ import { environment } from '../../../../../environments/environment';
 })
 export class HistoryTabComponent implements OnInit {
   editor!: Editor;
+  toolbar: Toolbar = [
+    ['bold', 'italic'],
+    ['underline', 'strike'],
+    ['link', 'image'],
+    // ['ordered_list', 'bullet_list'],
+    // ['text_color', 'background_color'],
+    // ['align_left', 'align_center', 'align_right', 'align_justify'],
+  ];
+
   isLoading: boolean = false;
   userId: any = "";
   history: any = "";
@@ -18,9 +27,9 @@ export class HistoryTabComponent implements OnInit {
   @Input() role: any;
   @ViewChild('historyTextarea', { static: false }) textarea!: ElementRef;
 
-  constructor(private route: ActivatedRoute, private clubService: ClubService) {}
+  constructor(private route: ActivatedRoute, private clubService: ClubService) { }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
     this.getClubHistory();
     this.editor = new Editor();
   }
@@ -54,11 +63,11 @@ export class HistoryTabComponent implements OnInit {
     return html.replace(/<p>\s*<\/p>/g, "<br>");
   }
 
-  editHistory(){
+  editHistory() {
     this.isEditable = true;
   }
 
-  updateHistory(){
+  updateHistory() {
     this.updateClubHistory();
   }
 
@@ -69,13 +78,13 @@ export class HistoryTabComponent implements OnInit {
     //   return false;
     // }
 
-    if(history === ""){
+    if (history === "") {
       return false;
     }
 
     try {
       this.isLoading = true;
-      this.clubService.updateClubHistory(history).subscribe((response)=>{
+      this.clubService.updateClubHistory(history).subscribe((response) => {
         if (response && response.status && response.data) {
           this.history = history;
           this.isEditable = false;

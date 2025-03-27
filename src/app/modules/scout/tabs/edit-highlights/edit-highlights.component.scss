@@ -142,3 +142,8 @@
     height: 200px !important;
     object-fit: cover;
 }
+
+
+button:focus-visible{
+    outline: 0 !important;
+}

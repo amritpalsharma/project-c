@@ -152,7 +152,7 @@ export class GalleryTabComponent {
     this.openedMenuId = this.openedMenuId === imageId ? null : imageId;
   }
 
-  deleteImage(id: any) {
+  deleteImage(id: any, type: string) {
     try {
       let lang_id = localStorage.getItem('lang_id');
       const loadingToast = this.toastr.info(this.Processing, this.pleaseWait, { disableTimeOut: true });
@@ -162,8 +162,14 @@ export class GalleryTabComponent {
         next: (response) => {
           this.toastr.clear(loadingToast.toastId);
           if (response && response.status) {
-            const index = this.userImages.findIndex((x: any) => x.id === id);
-            this.userImages.splice(index, 1);
+            if(type==='image'){
+              const index = this.userImages.findIndex((x: any) => x.id === id);
+              this.userImages.splice(index, 1);
+            }
+            else{
+              const index = this.userVideos.findIndex((x: any) => x.id === id);
+              this.userVideos.splice(index, 1);
+            }
             if (response.message != '' && response.message != undefined) {
               this.toastr.success(response.message, this.successTxt);
             } else {
@@ -186,7 +192,7 @@ export class GalleryTabComponent {
     }
   }
 
-  openDeleteDialog(id: any): void {
+  openDeleteDialog(id: any, type: string): void {
     // Close the floating menu when opening the dialog
     this.openedMenuId = null;
 
@@ -197,7 +203,7 @@ export class GalleryTabComponent {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         // Proceed with deletion if the user confirms
-        this.deleteImage(id);
+        this.deleteImage(id, type);
       } else {
         console.log('User canceled the delete');
       }

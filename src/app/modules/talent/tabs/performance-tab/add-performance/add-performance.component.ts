@@ -36,6 +36,8 @@ export class AddPerformanceComponent {
   from_date: FormControl = new FormControl(null);
   to_date: FormControl = new FormControl(null);
 
+  theme : any = localStorage.getItem('theme');
+
   constructor(
     private toastr: ToastrService,
     public dialogRef: MatDialogRef<AddPerformanceComponent>,
@@ -45,6 +47,8 @@ export class AddPerformanceComponent {
   ) { }
 
   ngOnInit(): void {
+    this.theme = localStorage.getItem('theme');
+    
     this.performance = { ...this.data.performance };
     this.teams = { ...this.data.teams };
     this.matches = this.performance.matches;

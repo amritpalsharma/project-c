@@ -17,6 +17,8 @@ export class AddPerfomanceReportComponent {
   enterDocumentTitle: string = '';
   isLoading: boolean = false;
 
+  theme : any = localStorage.getItem('theme');
+
   constructor(
     private toastr: ToastrService,
     public dialogRef: MatDialogRef<AddPerfomanceReportComponent>,
@@ -28,6 +30,7 @@ export class AddPerfomanceReportComponent {
   ) { }
 
   ngOnInit(): void {
+    this.theme = localStorage.getItem('theme');
     this.getToasterMsg();
     this.translate.onLangChange.subscribe((event) => {
       this.getToasterMsg();
