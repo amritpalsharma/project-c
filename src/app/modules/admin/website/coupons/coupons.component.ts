@@ -17,7 +17,8 @@ import { SharedService } from '../../../../services/shared.service';
 export class CouponsComponent {
 
   coupons: any = [];
-  displayedColumns: string[] = ['#', 'Name', 'Discount', 'Type', 'Code', 'Uses', 'Status', 'Deactivate', 'Edit', 'Remove'];
+  // displayedColumns: string[] = ['#', 'Name', 'Discount', 'Type', 'Code', 'Uses', 'Status', 'Deactivate', 'Edit', 'Remove'];
+  displayedColumns: string[] = ['#', 'Name', 'Discount', 'Type', 'Code', 'Uses', 'Status', 'Edit', 'Remove'];
 
   checkboxIds: string[] = [];
   allSelected: boolean = false;

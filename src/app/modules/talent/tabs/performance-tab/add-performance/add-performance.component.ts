@@ -25,6 +25,8 @@ export class AddPerformanceComponent {
   goals: any;
 
   currentTeam: string = ''; // Initialize as empty string to avoid undefined issues
+  formAllFieldsRequired: string = ''; // Initialize as empty string to avoid undefined issues
+  errorTxt: string = ''; // Initialize as empty string to avoid undefined issues
   successTxt: string = ''; // Initialize as empty string to avoid undefined issues
   pleaseWait: string = ''; // Initialize as empty string to avoid undefined issues
   submittingPerformanceData: string = ''; // Initialize as empty string to avoid undefined issues
@@ -126,7 +128,7 @@ export class AddPerformanceComponent {
         }
       });
     } else {
-      this.toastr.warning('Please complete the form correctly before submitting.', 'Form Incomplete');
+      this.toastr.warning(this.formAllFieldsRequired, this.errorTxt);
     }
   }
 
@@ -159,10 +161,12 @@ export class AddPerformanceComponent {
   }
 
   getToasterMsg() {
-    this.translate.get(['success!', 'submittingPerformanceData', 'pleaseWait']).subscribe((res: any) => {
+    this.translate.get(['success!', 'submittingPerformanceData', 'pleaseWait','formAllFieldsRequired','error']).subscribe((res: any) => {
       this.successTxt = res['success!'];
       this.submittingPerformanceData = res['submittingPerformanceData'];
       this.pleaseWait = res['pleaseWait'];
+      this.formAllFieldsRequired = res['formAllFieldsRequired'];
+      this.errorTxt = res['error'];
       // this.downloading = res['downloading'];
     });
   }
