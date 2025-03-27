@@ -10,6 +10,9 @@ p {
     font-weight: 700;
     color: #111418;
 }
+table th, table td {
+    padding: 0.938rem 15px !important;
+}
 
 .gallery-pic-upload {
     color: #023A4A;
@@ -155,8 +158,13 @@ button.add_potos-btn {
 
 .verified-icon {
     position: absolute;
-    bottom: 0;
-    right: -18px;
+    bottom: -3px;
+    right: -7px;
+    .status_icon_size {
+        width: 25px;
+        height: 25px;
+        object-fit: contain;
+    }
 }
 
 .portfolio_row {
@@ -213,6 +221,23 @@ th {
 .add_talent-popup .modal-content .modal-header {
     border-bottom: none;
 }
+
+.icon_text_icon {
+img.club_logo_icn {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    margin-right: 10px;
+}
+img.flag_country {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+}
+
 
 @media (max-width:768px) {
     .ten-columns>.col-lg-2 {

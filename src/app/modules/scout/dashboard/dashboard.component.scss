@@ -149,6 +149,7 @@
   }
   
   }
+
   
   @media(max-width: 425px){
     .btn-outline-white {
@@ -770,6 +771,11 @@
     margin-right: 16px;
 }
 
+}
+
+
+.main-wrapper .card_box-1 .image-gallery .image_gallery-box {
+  justify-content: flex-start !important;
 }
 
 @media(max-width: 425px){
@@ -1421,6 +1427,10 @@ min-width: 15px;
 .cover_pic_mobile, .mobile_profile_buttons {
   display: none !important;
 }
+.user-info .edit_button.responsive-edit_btn {
+  text-align: right;
+  padding-right: 8px !important;
+}
 }
 
 
@@ -1585,10 +1595,6 @@ min-width: 15px;
 }
 .user-info button .tour-personal-details {
   max-width: 135px !important;
-}
-.user-info .edit_button.responsive-edit_btn {
-  text-align: right;
-  padding-right: 8px !important;
 }
 }
 

@@ -181,3 +181,8 @@
 .mb-0 {
   margin-bottom: 0;
 }
+
+
+.dark-theme .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  border: 0 !important;
+}
