@@ -148,4 +148,8 @@ export class AddBoosterComponent {
       this.club = translations['club'];
     });
   }
+
+  close(){
+    this.dialogRef.close();
+  }
 }
