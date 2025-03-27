@@ -29,22 +29,19 @@ export class DeleteProfileComponent {
     });
   }
   updateTranslation() {
-    this.translate.get(['deleteProfileConfirm', 'delete']).subscribe((res: any) => {
+    this.translate.get(['deleteProfileConfirm', 'delete', 'pleaseConfirmSpellings']).subscribe((res: any) => {
       this.deleteProfiletranslatedText = res['deleteProfileConfirm'];
       this.deleteTxt = res['delete'].toUpperCase();
       this.errorMsg = res['pleaseConfirmSpellings'];
     });
   }
   deleteProfileConfirmed() {
-    console.warn('Your Spellings ' + this.deleteAccount + ' and match with ' + this.deleteTxt)
     if (this.deleteAccount == this.deleteTxt) {
       this.isShowErrorMsg = false;
-      // console.warn('Match success')
-      // alert('delete success')
-
       this.dialogRef.close({ action: 'delete-profile-confirmed' });
     } else {
       this.isShowErrorMsg = true;
+      // alert(this.errorMsg)
     }
   }
   newsletterConfirmed() {

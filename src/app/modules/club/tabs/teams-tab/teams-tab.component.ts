@@ -112,7 +112,9 @@ export class TeamsTabComponent {
 
     messageDialog.afterClosed().subscribe(result => {
       console.log('result', result);
-      this.getTeamPlayers(this.selectedTeamId, this.selectedTeam);
+      setTimeout(() => {
+        this.getTeamPlayers(this.selectedTeamId, this.selectedTeam);
+      }, 1500);
       if (result.message != '') {
         this.toaster.info(result.message);
       }
@@ -132,7 +134,9 @@ export class TeamsTabComponent {
     })
 
     messageDialog.afterClosed().subscribe(result => {
-      this.getTeamPlayers(this.selectedTeamId, this.selectedTeam);
+      setTimeout(() => {
+        this.getTeamPlayers(this.selectedTeamId, this.selectedTeam);
+      }, 1500);
       if (result.message != '') {
         this.toaster.info(result.message);
       }
