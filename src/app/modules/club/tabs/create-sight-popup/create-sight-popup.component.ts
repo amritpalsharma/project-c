@@ -211,7 +211,7 @@ export class CreateSightPopupComponent implements AfterViewInit {
   createSight() {
     const formData = new FormData();
     let { date, time } = this.getDateTimeFormat(this.dateTime);
-    let receiverIds : any[] = [];
+    let receiverIds: any[] = [];
 
     formData.append('event_name', this.eventName);
     formData.append('manager_name', this.managerName);
@@ -244,7 +244,8 @@ export class CreateSightPopupComponent implements AfterViewInit {
         console.log(this.clubId)
         if (response && response.status) {
           this.dialogRef.close({
-            action: 'added'
+            action: 'added',
+            message: response.message
           })
 
           let jsonData = localStorage.getItem("userData");
@@ -256,13 +257,13 @@ export class CreateSightPopupComponent implements AfterViewInit {
           else {
             console.log("No data found in localStorage.");
           }
-          this.socketService.emit('inviteTalent', {senderId: myUserId, receiverIds: receiverIds});
+          this.socketService.emit('inviteTalent', { senderId: myUserId, receiverIds: receiverIds });
         } else {
-          console.error('Invalid API response structure:', response);
+          this.userService.apiToasterError();
         }
       });
     } catch (error) {
-      console.error('Error:', error);
+     this.userService.apiToasterError();
     }
   }
 
@@ -285,21 +286,24 @@ export class CreateSightPopupComponent implements AfterViewInit {
     this.users.map(function (user: any) {
       formData.append('invites[]', user.id);
     });
+    let langId: any = localStorage.getItem('lang_id');
 
+    formData.append('lang', langId);
     try {
       this.clubService.updateSight(this.idToBeUpdate, formData).subscribe((response) => {
         console.log(response)
         if (response && response.status) {
           this.dialogRef.close({
             action: 'updated',
-            id: this.idToBeUpdate
+            id: this.idToBeUpdate,
+            message: response.message
           })
         } else {
-          console.error('Invalid API response structure:', response);
+          this.userService.apiToastError(response.message);
         }
       });
     } catch (error) {
-      console.error('Error:', error);
+      this.userService.apiToasterError();
     }
   }
 }

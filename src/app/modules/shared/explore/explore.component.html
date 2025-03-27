@@ -126,8 +126,11 @@
           <div *ngFor="let filter of getSelectedFilters()">
             <div class="chip" *ngIf="!empty(filter.label)"> <!-- Check if label is not empty -->
               <span>
-                {{ filter.label }}:
-                <strong>{{ getNameById(filter.label, filter.value) }}</strong>
+                <span [translate]="filter.label"></span>
+                <strong *ngIf="getNameById(filter.label, filter.value) == 'left'">: {{ 'left' | translate}}</strong>
+                <strong *ngIf="getNameById(filter.label, filter.value) == 'right'">: {{ 'right' | translate}}</strong>
+                <strong *ngIf="getNameById(filter.label, filter.value) == 'both'">: {{ 'both' | translate }}</strong>
+                <strong *ngIf="filter.value != 'left' && filter.value != 'right' && filter.value != 'both'">: {{getNameById(filter.label, filter.value)}}</strong>
               </span>
               <span>
                 <button class="explore-chip_cut" (click)="removeFilter(filter.label)">

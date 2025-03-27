@@ -21,6 +21,7 @@ export class TeamsTabComponent {
   displayedColumns: string[] = ['Player Name', 'Joining Date', 'Exit Date', 'Location', 'Edit'];
   isLoading: boolean = false;
   selectedTeam: any = "";
+  selectTeamName: string = '';
   selectedTeamId: any;
   @Input() userData: any;
 
@@ -63,8 +64,11 @@ export class TeamsTabComponent {
   }
 
   getTeamPlayers(teamId: any, teamName: any) {
+    console.log('Teams', this.teams)
     this.selectedTeam = teamName;
     this.selectedTeamId = teamId;
+    this.selectTeamName = this.getTeamTypeById(teamId);
+    console.log('selected team is ', this.selectTeamName)
     this.view = 'player';
     this.isLoading = true;
     try {
@@ -135,5 +139,8 @@ export class TeamsTabComponent {
     });
 
   }
-
+  getTeamTypeById(id: number) {
+    const team = this.teams.find((team: any) => team.id === id);
+    return team ? team.team_type : null; // Return `null` if not found
+  }
 }

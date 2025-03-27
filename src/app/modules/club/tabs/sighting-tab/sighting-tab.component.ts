@@ -176,7 +176,7 @@ export class SightingTabComponent {
           this.allSelected = false;
           if (response.message) {
             this.showMatDialog(response.message, 'display');
-          }else{
+          } else {
             this.showMatDialog('Sighting(s) deleted successfully!.', 'display');
           }
           this.getSightings();
@@ -212,7 +212,11 @@ export class SightingTabComponent {
       if (result !== undefined) {
         if (result.action == "added") {
           this.getSightings();
-          this.showMatDialog("Sighting added successfully", 'display');
+          if (result.message != '' && result.message != undefined) {
+            this.showMatDialog(result.message, 'display');
+          } else {
+            this.showMatDialog("Sighting added successfully", 'display');
+          }
         }
         console.log('Dialog result:', result);
       }
@@ -236,7 +240,11 @@ export class SightingTabComponent {
       if (result !== undefined) {
         if (result.action == "updated") {
           this.viewSight(result.id);
-          this.showMatDialog("Sighting updated successfully", 'display');
+          if (result.message != '' && result.message != undefined) {
+            this.showMatDialog(result.message, 'display');
+          } else {
+            this.showMatDialog("Sighting updated successfully", 'display');
+          }
         }
         console.log('Dialog result:', result);
       }
@@ -258,7 +266,11 @@ export class SightingTabComponent {
       if (result !== undefined) {
         if (result.action == "added") {
           this.viewSight(result.id);
-          this.showMatDialog("Attachment(s) added successfully", 'display');
+          if (result.message != '' && result.message != undefined) {
+            this.showMatDialog(result.message, 'display');
+          } else {
+            this.showMatDialog("Attachment(s) added successfully", 'display');
+          }
         }
         //  console.log('Dialog result:', result);
       }
@@ -302,7 +314,11 @@ export class SightingTabComponent {
         console.log(result)
         if (result.action == "added") {
           this.viewSight(result.id);
-          this.showMatDialog("Players invited successfully", 'display')
+          if (result.message != '' && result.message != undefined) {
+            this.showMatDialog(result.message, 'display');
+          } else {
+            this.showMatDialog("Players invited successfully", 'display')
+          }
         }
         console.log('Dialog result:', result);
       }
@@ -389,7 +405,8 @@ export class SightingTabComponent {
   }
   confirmDeleteAttachment(id: any) {
     this.singleIdToDelete = id;
-    this.showMatDialogV2("", "delete-attachment-confirmation");
+    console.warn(this.deleteRepresentorConfirmation)
+    this.showMatDialogV2(this.deleteRepresentorConfirmation, "delete-attachment-confirmation");
   }
 
   deleteAttachment(): any {
@@ -402,7 +419,11 @@ export class SightingTabComponent {
           let temp = this.attachments;
           temp.splice(index, 1);
           this.attachments = temp;
+          if (response.message != '' && response.message != undefined) {
+            this.showMatDialog(response.message, 'display');
+          } else { 
           this.showMatDialog('Attachment removed successfully!.', 'display');
+          }
         } else {
           this.showMatDialog('Error in removing attachment. Please try again.', 'display');
         }

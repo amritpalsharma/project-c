@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import {
-  MatDialogRef,MAT_DIALOG_DATA
+  MatDialogRef, MAT_DIALOG_DATA
 } from '@angular/material/dialog';
 import { UserService } from '../../../../services/user.service';
 
@@ -10,74 +10,77 @@ import { UserService } from '../../../../services/user.service';
   styleUrl: './upload-attachment.component.scss'
 })
 export class UploadAttachmentComponent {
-  idToBeUpdated:any = "";
-  attachmentRows:any = [{
+  idToBeUpdated: any = "";
+  attachmentRows: any = [{
     title: "",
     file: ""
   }];
 
-  constructor(public dialogRef : MatDialogRef<UploadAttachmentComponent>, public userService: UserService,
+  constructor(public dialogRef: MatDialogRef<UploadAttachmentComponent>, public userService: UserService,
     @Inject(MAT_DIALOG_DATA) public data: any) {
-      this.idToBeUpdated = data.id;
+    this.idToBeUpdated = data.id;
 
-      console.log(this.idToBeUpdated)
-    }
-  
-  close(){
+    console.log(this.idToBeUpdated)
+  }
+
+  close() {
     this.dialogRef.close();
   }
 
-  titleUpdate(event: any, index:any){
+  titleUpdate(event: any, index: any) {
     let value = event.target.value;
     this.attachmentRows[index].title = value;
   }
 
-  addNewRow(){
+  addNewRow() {
     this.attachmentRows.push({
       title: "",
       file: ""
     });
   }
 
-  removeRow(index:any):any {
+  removeRow(index: any): any {
 
-    if(this.attachmentRows.length == 1){
+    if (this.attachmentRows.length == 1) {
       return false;
     }
     let temp = this.attachmentRows;
-    temp.splice(index,1);
+    temp.splice(index, 1);
     this.attachmentRows = temp;
   }
 
-  onAttachmentFileChange(event: Event, index:any): void {
+  onAttachmentFileChange(event: Event, index: any): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       this.attachmentRows[index].file = input.files[0];
     }
   }
 
-  upload(){
+  upload() {
     const formData = new FormData();
 
-    this.attachmentRows.map(function(attachment:any, index:any) {
-      formData.append('attachments['+index+'][title]', attachment.title);
-      formData.append('attachments['+index+'][file]', attachment.file);
+    this.attachmentRows.map(function (attachment: any, index: any) {
+      formData.append('attachments[' + index + '][title]', attachment.title);
+      formData.append('attachments[' + index + '][file]', attachment.file);
     });
-    
+    let langId: any = localStorage.getItem('lang_id');
+
+    formData.append('lang', langId);
     try {
-      this.userService.uploadSightAttachment(this.idToBeUpdated, formData).subscribe((response)=>{
-       if (response && response.status) {
-         this.dialogRef.close({
-          id: this.idToBeUpdated,
-          action: 'added'
-         })
-       } else {
-         console.error('Invalid API response structure:', response); 
-       }
-     });     
-   } catch (error) {
-     console.error('Error:', error);
-   }
+      this.userService.uploadSightAttachment(this.idToBeUpdated, formData).subscribe((response) => {
+        if (response && response.status) {
+          this.dialogRef.close({
+            id: this.idToBeUpdated,
+            action: 'added',
+            message: response.message
+          })
+        } else {
+          console.error('Invalid API response structure:', response);
+        }
+      });
+    } catch (error) {
+      console.error('Error:', error);
+    }
   }
-    
+
 }

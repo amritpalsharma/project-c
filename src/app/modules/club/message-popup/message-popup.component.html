@@ -41,5 +41,11 @@
                 <span (click)="deleteConfirmed()">{{'confirm' | translate}}</span>
             </div>
         </div>
+        <div class="display-message" *ngIf="data.action == 'delete-attachment-confirmation'">
+            {{data.message}}
+            <div class="popup-delete-btn">
+                <span (click)="deleteConfirmed()">{{'confirm' | translate}}</span>
+            </div>
+        </div>
     </div>
 </div>

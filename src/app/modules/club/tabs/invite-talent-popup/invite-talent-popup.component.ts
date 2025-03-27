@@ -79,7 +79,8 @@ export class InviteTalentPopupComponent {
       if (response && response.status) {
         this.dialogRef.close({
           action: 'added',
-          id: this.sightId
+          id: this.sightId,
+          message:response.message
         });
 
         let jsonData = localStorage.getItem("userData");

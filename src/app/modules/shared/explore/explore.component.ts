@@ -251,7 +251,7 @@ export class ExploreComponent implements OnInit {
     if (slug == 'club representator') {
       slug = 'club';
     }
-   
+
     if (slug == 'vereinsvertreter') {
       slug = 'club';
     }
@@ -480,24 +480,25 @@ export class ExploreComponent implements OnInit {
 
     const filters = [];
     if (this.selectedRole) {
-      filters.push({ label: 'Category', value: this.selectedRole });
+      filters.push({ label: 'category', value: this.selectedRole });
     }
     if (this.selectedCountry) {
       let getCountryById = this.countries.find((val: any) => {
         return val.id == this.selectedCountry;
       });
-      filters.push({ label: 'Country', value: getCountryById.location });
+      filters.push({ label: 'country', value: getCountryById.location });
     }
     if (this.selectedPositions) {
-      let positionLabel = (this.selectedPositions.length > 0) ? 'Pos' : '';
+      let positionLabel = (this.selectedPositions.length > 0) ? 'position' : '';
       filters.push({ label: positionLabel, value: this.selectedPositions.join(', ') });
+      // console.warn(this.selectedPositions)
     }
     if (this.selectedAge) {
-      let ageLabel = (this.selectedAge.length > 0) ? 'Age' : '';
+      let ageLabel = (this.selectedAge.length > 0) ? 'age' : '';
       filters.push({ label: ageLabel, value: this.selectedAge.join(', ') });
     }
     if (this.selectedFoot) {
-      let footLabel = (this.selectedFoot.length > 0) ? 'Foot' : '';
+      let footLabel = (this.selectedFoot.length > 0) ? 'foot' : '';
       filters.push({ label: footLabel, value: this.selectedFoot.join(', ') });
     }
     if (this.selectedTopSpeed) {
@@ -508,13 +509,13 @@ export class ExploreComponent implements OnInit {
         '30': '30-35 Km/hr',
         '35': '35-40 Km/hr',
       }
-      filters.push({ label: 'Top Speed', value: selectedTopSpeed[this.selectedTopSpeed] });
+      filters.push({ label: 'topSpeed', value: selectedTopSpeed[this.selectedTopSpeed] });
     }
     if (this.selectedLeague) {
-      filters.push({ label: 'League', value: this.selectedLeague });
+      filters.push({ label: 'league', value: this.selectedLeague });
     }
     if (this.selectedClub) {
-      filters.push({ label: 'Club', value: this.selectedClub });
+      filters.push({ label: 'club', value: this.selectedClub });
     }
     // Repeat for other filters
     return filters;
@@ -524,28 +525,28 @@ export class ExploreComponent implements OnInit {
   removeFilter(label: string) {
     // Logic to remove the selected filter and update the filter array
     switch (label) {
-      case 'Category':
+      case 'category':
         this.selectedRole = null;
         break;
-      case 'Country':
+      case 'country':
         this.selectedCountry = null;
         break;
-      case 'Pos':
+      case 'position':
         this.selectedPositions = null;
         break;
-      case 'Age':
+      case 'age':
         this.selectedAge = null;
         break;
-      case 'Foot':
+      case 'foot':
         this.selectedFoot = null;
         break;
-      case 'Top Speed':
+      case 'topSpeed':
         this.selectedTopSpeed = null;
         break;
-      case 'League':
+      case 'league':
         this.selectedLeague = null;
         break;
-      case 'Club':
+      case 'club':
         this.selectedClub = null;
         break;
     }
@@ -556,16 +557,17 @@ export class ExploreComponent implements OnInit {
 
   // Generic method to get names by ID
   getNameById(label: string, id: string): string {
+    console.warn('label is ' + label + ' id is ' + id)
     switch (label) {
-      case 'Country':
+      case 'country':
         const country = this.countries.find((count: any) => count.id === id);
         return country ? country.country_name : id;
 
-      case 'Category':
+      case 'category':
         const role = this.roles.find((pos: any) => pos.id === id);
         return role ? role.role : id;
 
-      case 'Pos':
+      case 'position':
         // Handle multiple position IDs
         const positionIds = id.split(",").map(position => position.trim());
         const positionNames = positionIds
@@ -575,11 +577,11 @@ export class ExploreComponent implements OnInit {
           });
         return positionNames.join(", "); // Return a comma-separated string of positions
 
-      case 'League':
+      case 'league':
         const league = this.leagues.find((pos: any) => pos.id === id);
         return league ? league.league_name : id;
 
-      case 'Club':
+      case 'club':
         const club = this.clubs.find((pos: any) => pos.id === id);
         return club ? club.club_name : id;
 

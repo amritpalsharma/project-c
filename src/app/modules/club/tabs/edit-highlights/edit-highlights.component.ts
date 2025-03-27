@@ -127,7 +127,7 @@ export class EditHighlightsComponent {
 
   // Called when the save button is clicked
   onSubmit(): void {
-    const selectedData = [...this.selectedImageIds, ...this.selectedVideoIds];
+    const selectedData = [...this.selectedImageIds, ...this.selectedVideoIds,];
 
     let unset_all: any = false;
     

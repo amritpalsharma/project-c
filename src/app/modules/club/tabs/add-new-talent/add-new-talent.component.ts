@@ -60,6 +60,7 @@ export class AddNewTalentComponent implements OnInit {
       this.clubService.getAllPlayers().subscribe((response) => {
         if (response && response.status && response.data && response.data.userData) {
           this.allUsers = response.data.userData.users;
+          console.info(this.allUsers)
         } else {
           console.error('Invalid API response structure:', response);
         }

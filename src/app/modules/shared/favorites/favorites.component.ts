@@ -256,8 +256,21 @@ export class FavoritesComponent {
   }
 
   openViewProfile(user: any) {
-
-    this.exploreUser(user.role_name, user.favorite_id);
+    // console.info(user)
+    let role_id = user.role;
+    let role = '';
+    if (role_id == '2') {
+      role = 'club';
+    } else if (role_id == '3') {
+      role = 'scout';
+    } else if (role_id == '4') {
+      role = 'talent';
+    } else if (role_id == '6') {
+      role = 'club';
+    } else if (role_id == '7') {
+      role = 'scout';
+    }
+    this.exploreUser(role, user.favorite_id);
     // const dialogRef = this.dialog.open(PlayerProfileComponent, {
     //   width: '800px',
     //   data: { user :  user }

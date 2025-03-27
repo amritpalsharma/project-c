@@ -30,8 +30,8 @@ export class ClubService {
   public teams: any[] = [];
   private messageSource = new Subject<string>();
   message$ = this.messageSource.asObservable();
-  public lang:any; // You can dynamically set this if needed
-  languages:any = environment.langs;
+  public lang: any; // You can dynamically set this if needed
+  languages: any = environment.langs;
   private apiUrl3 = "https://alerts.socceryou.ch/";
 
   constructor(private http: HttpClient) {
@@ -41,7 +41,7 @@ export class ClubService {
 
     // Find the corresponding language ID from the langs array
     const lang = this.languages.find(
-      (lang:any) => lang.slug === selectedLanguageSlug
+      (lang: any) => lang.slug === selectedLanguageSlug
     );
 
     // Default to a specific language ID if none is found (e.g., English)
@@ -88,8 +88,8 @@ export class ClubService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
-    return this.http.get<{ status: boolean, message: string, data: { } }>(
-      `${this.apiUrl2}club/get-representators`, {headers}
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
+      `${this.apiUrl2}club/get-representators`, { headers }
     );
   }
 
@@ -104,17 +104,17 @@ export class ClubService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
-    return this.http.get<{ status: boolean, message: string, data: { } }>(
-      `${this.apiUrl2}club/get-club-history`, {headers}
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
+      `${this.apiUrl2}club/get-club-history`, { headers }
     );
   }
 
-  updateClubHistory(history:any): Observable<any> {
+  updateClubHistory(history: any): Observable<any> {
     const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
-    return this.http.post<any>(`${this.apiUrl2}club/edit-club-history`, {club_history: history}, { headers });
+    return this.http.post<any>(`${this.apiUrl2}club/edit-club-history`, { club_history: history }, { headers });
   }
 
   updatePicOnHeader(pic: string) {
@@ -122,7 +122,7 @@ export class ClubService {
   }
 
   getNotifications(userId: any = 1): Observable<any> {
-    return this.http.get<{ status: boolean, notifications: Notification[], unseen_count: number, total_count:number }>(
+    return this.http.get<{ status: boolean, notifications: Notification[], unseen_count: number, total_count: number }>(
       `${this.apiUrl3}notifications?userId=${userId}`,
     );
   }
@@ -146,7 +146,7 @@ export class ClubService {
 
   getBoosterData(): Observable<any> {
     const headers = this.headers();
-    return this.http.get<{ status: boolean, message: string, data: { } }>(
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl}user/get-booster-stats`,
       { headers }
     );
@@ -164,16 +164,16 @@ export class ClubService {
 
   getClubsForPlayer(): Observable<any> {
     const headers = this.headers();
-    return this.http.get<{ status: boolean, message: string, data: { } }>(
-      `${this.apiUrl}get-clubs-list`, {headers}
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
+      `${this.apiUrl}get-clubs-list`, { headers }
     );
   }
 
 
-  getViewTransferData(id:any): Observable<any> {
+  getViewTransferData(id: any): Observable<any> {
     const headers = this.headers();
 
-    return this.http.get<{ status: boolean, message: string, data: { } }>(
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl}get-transfer-detail/${id}`, { headers }
     );
   }
@@ -182,7 +182,7 @@ export class ClubService {
   getUserDomains(): Observable<any> {
     const headers = this.headers();
 
-    return this.http.get<{ status: boolean, message: string, data: { } }>(
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl}user/get-active-domains`, { headers }
     );
   }
@@ -192,7 +192,7 @@ export class ClubService {
     const headers = this.headers();
 
     return this.http.get<{ status: boolean, message: string, data: any }>(
-      `${this.apiUrl}user/export-purchase-history`, { headers }    );
+      `${this.apiUrl}user/export-purchase-history`, { headers });
   }
 
   getUserPlans(): Observable<any> {
@@ -215,18 +215,18 @@ export class ClubService {
     const headers = this.headers();
 
     let params = new HttpParams();
-      params = params.append('user_id', user_id);
-      params = params.append('action',  action);
-      profileId.forEach(id => {
-        params = params.append('profile_viewed[]', id);  // Append each ID to the 'ids[]' query param
-      });
+    params = params.append('user_id', user_id);
+    params = params.append('action', action);
+    profileId.forEach(id => {
+      params = params.append('profile_viewed[]', id);  // Append each ID to the 'ids[]' query param
+    });
 
     // Send POST request with payload in body
     return this.http.post<any>(`${this.apiUrl}user/track-booster-profile`, params, { headers });
   }
 
 
-  getPerformanceReportsData(id:any): Observable<any> {
+  getPerformanceReportsData(id: any): Observable<any> {
     const headers = this.headers();
 
     return this.http.get<any>(
@@ -235,7 +235,7 @@ export class ClubService {
     );
   }
 
-  getPerformanceList(id:any): Observable<any> {
+  getPerformanceList(id: any): Observable<any> {
     const headers = this.headers();
 
     return this.http.get<any>(
@@ -245,19 +245,19 @@ export class ClubService {
   }
 
 
-  getGalleryFiles(id:any): Observable<any> {
+  getGalleryFiles(id: any): Observable<any> {
     const headers = this.headers();
 
-    return this.http.get<{ status: boolean, message: string, data: { } }>(
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl}get-gallery/${id}`, { headers }
     );
   }
 
 
-  getHighlightsFiles(id:any): Observable<any> {
+  getHighlightsFiles(id: any): Observable<any> {
     const headers = this.headers();
 
-    return this.http.get<{ status: boolean, message: string, data: { } }>(
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl}get-gallery-highlights/${id}`, { headers }
     );
   }
@@ -272,7 +272,7 @@ export class ClubService {
     });
 
     // Send POST request with payload in body
-    return this.http.post(`${this.apiUrl}user/update-booster-audience`, params , {headers});
+    return this.http.post(`${this.apiUrl}user/update-booster-audience`, params, { headers });
   }
 
 
@@ -280,9 +280,9 @@ export class ClubService {
     const headers = this.headers();
 
     let params = new HttpParams();
-      params = params.append('coupon_code', couponCode);
+    params = params.append('coupon_code', couponCode);
 
-    return this.http.post(`${this.apiUrl}user/validate-coupon`, params , {headers});
+    return this.http.post(`${this.apiUrl}user/validate-coupon`, params, { headers });
   }
 
 
@@ -290,14 +290,14 @@ export class ClubService {
     const headers = this.headers();
 
     let params = new HttpParams();
-      params = params.append('user[show_tour]', showTour);
+    params = params.append('user[show_tour]', showTour);
 
     // Send POST request with payload in body
-    return this.http.post(`${this.apiUrl}club/update-general-info`, params , {headers});
+    return this.http.post(`${this.apiUrl}club/update-general-info`, params, { headers });
   }
 
   // Fetch teams and store globally and in localStorage
-  searchTeams(team:string): Observable<any> {
+  searchTeams(team: string): Observable<any> {
 
     const headers = this.headers();
 
@@ -327,12 +327,12 @@ export class ClubService {
 
     return this.http.get<{ status: boolean, message: string, data: any }>(
       `${this.apiUrl}user/get-purchase-history`, {
-        params: {
-          page: pageNumber.toString(),
-          // limit: pageSize.toString()
-        }
-        ,headers
+      params: {
+        page: pageNumber.toString(),
+        // limit: pageSize.toString()
       }
+      , headers
+    }
     );
   }
 
@@ -347,7 +347,7 @@ export class ClubService {
       .set('search', params.search || '');
 
     return this.http.get<{ status: boolean, message: string, data: {} }>(
-      `${this.apiUrl}get-favorites`, { params: queryParams , headers }
+      `${this.apiUrl}get-favorites`, { params: queryParams, headers }
     );
   }
 
@@ -373,7 +373,7 @@ export class ClubService {
   getCountries(): Observable<any> {
     const headers = this.headers();
 
-    return this.http.get<{ status: boolean, message: string, data: { } }>(
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl}get-countries`, { headers }
     );
 
@@ -382,7 +382,7 @@ export class ClubService {
   getDomains(): Observable<any> {
     const headers = this.headers();
 
-    return this.http.get<{ status: boolean, message: string, data: { } }>(
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl}get-domains`, { headers }
     );
   }
@@ -397,7 +397,7 @@ export class ClubService {
 
   getLeagues(): Observable<any> {
     const headers = this.headers();
-    return this.http.get(`${this.apiUrl}get-leagues`, {headers});
+    return this.http.get(`${this.apiUrl}get-leagues`, { headers });
   }
 
   getGalleryData(): Observable<any> {
@@ -444,7 +444,7 @@ export class ClubService {
     const headers = this.headers();
 
     return this.http.get<{ status: boolean, message: string, data: { userData: User[] } }>(
-      `${this.apiUrl}user/get-cover-image`, {headers}
+      `${this.apiUrl}user/get-cover-image`, { headers }
     );
   }
 
@@ -485,8 +485,8 @@ export class ClubService {
   deleteCoverImage(): Observable<any> {
     const headers = this.headers();
 
-    return this.http.get<{ status: boolean, message: string, data: { } }>(
-      `${this.apiUrl}user/delete-cover-image/`, {headers}
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
+      `${this.apiUrl}user/delete-cover-image/`, { headers }
     );
   }
 
@@ -498,10 +498,10 @@ export class ClubService {
 
   uploadGalleryImages(formdata: any): Observable<any> {
     const headers = this.headers();
-    return this.http.post<any>(`${this.apiUrl}user/upload-gallery-image/?lang=`+localStorage.getItem('lang_id'), formdata, { headers });
+    return this.http.post<any>(`${this.apiUrl}user/upload-gallery-image/?lang=` + localStorage.getItem('lang_id'), formdata, { headers });
   }
 
-  deleteGalleryImage(params:any): Observable<any> {
+  deleteGalleryImage(params: any): Observable<any> {
     const headers = this.headers();
 
     return this.http.post<any>(`${this.apiUrl}user/delete-gallery-file`, params, { headers });
@@ -534,7 +534,7 @@ export class ClubService {
     return this.http.post<any>(`${this.apiUrl}change-password`, formData, { headers });
   }
 
-  
+
 
   getPositions(): Observable<any> {
     const headers = this.headers();
@@ -553,7 +553,7 @@ export class ClubService {
       params = params.append('id[]', id);  // Append each ID to the 'ids[]' query param
     });
 
-    return this.http.post(`${this.apiUrl}user/set-featured-file`, params , {headers});
+    return this.http.post(`${this.apiUrl}user/set-featured-file`, params, { headers });
   }
 
 
@@ -648,22 +648,22 @@ export class ClubService {
     }
   }
 
-  getSightings(id:any, params:any): Observable<any> {
+  getSightings(id: any, params: any): Observable<any> {
     const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
-    return this.http.get<{ status: boolean, message: string, data: { } }>(
-      `${this.apiUrl2}club/get-sightings`, {params}
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
+      `${this.apiUrl2}club/get-sightings`, { params }
     );
   }
 
-  getSingleSighting(id:any): Observable<any> {
+  getSingleSighting(id: any): Observable<any> {
     const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
-    return this.http.get<{ status: boolean, message: string, data: { } }>(
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl2}club/get-sighting/${id}`);
   }
 
@@ -677,44 +677,45 @@ export class ClubService {
     return this.http.post<any>(`${this.apiUrl2}club/delete-sighting`, params, { headers });
   }
 
-  deleteAttachment(id:any): Observable<any> {
+  deleteAttachment(id: any): Observable<any> {
     const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
-    return this.http.get<{ status: boolean, message: string, data: { } }>(
-      `${this.apiUrl2}club/delete-sighting-attachment/${id}`, {headers}
+    let lang = localStorage.getItem('lang_id');
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
+      `${this.apiUrl2}club/delete-sighting-attachment/${id}/${lang}`, { headers }
     );
   }
 
 
-  getClubTeamPlayers(teamId:any): Observable<any> {
+  getClubTeamPlayers(teamId: any): Observable<any> {
     const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
     let lang_id = localStorage.getItem('lang_id');
-    return this.http.get<{ status: boolean, message: string, data: { } }>(
-      `${this.apiUrl}club/get-club-players/${teamId}/${lang_id}`, {headers}
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
+      `${this.apiUrl}club/get-club-players/${teamId}/${lang_id}`, { headers }
     );
   }
 
 
   getAllPlayers(): Observable<any> {
     const params = new HttpParams()
-      .set('whereClause[role]',4)
+      .set('whereClause[role]', 4)
       .set('noLimit', true)
       .set('orderBy', 'id')
       .set('order', 'desc');
 
-    return this.http.get<{ status: boolean, message: string, data: { userData: User[],totalCount:number } }>(
+    return this.http.get<{ status: boolean, message: string, data: { userData: User[], totalCount: number } }>(
       `${this.apiUrl}users-frontend-with-login`,
       { params }
     );
   }
 
 
-  addSight(id:any, params: any): Observable<any> {
+  addSight(id: any, params: any): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -722,7 +723,7 @@ export class ClubService {
     return this.http.post<any>(`${this.apiUrl}club/add-sighting`, params, { headers });
   }
 
-  updateSight(id:any, params: any): Observable<any> {
+  updateSight(id: any, params: any): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -730,7 +731,7 @@ export class ClubService {
     return this.http.post<any>(`${this.apiUrl}club/edit-sighting-detail/${id}`, params, { headers });
   }
 
-  uploadSightAttachment(id:any, params: any): Observable<any> {
+  uploadSightAttachment(id: any, params: any): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -738,7 +739,7 @@ export class ClubService {
     return this.http.post<any>(`${this.apiUrl}club/add-sighting-attachments/${id}`, params, { headers });
   }
 
-  sendSightingInvite(id:any, params: any): Observable<any> {
+  sendSightingInvite(id: any, params: any): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -754,7 +755,7 @@ export class ClubService {
     return this.http.post<any>(`${this.apiUrl}club/add-club-player`, params, { headers });
   }
 
-  updateTeamPlayer(id:any,params: any): Observable<any> {
+  updateTeamPlayer(id: any, params: any): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -763,7 +764,7 @@ export class ClubService {
   }
 
 
-  sendScoutPortfolioInvite(id:any, params: any): Observable<any> {
+  sendScoutPortfolioInvite(id: any, params: any): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -772,14 +773,14 @@ export class ClubService {
   }
 
 
-  sendInviteToRepresentator(userId:any, params:any): Observable<any> {
+  sendInviteToRepresentator(userId: any, params: any): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
     return this.http.post<any>(`${this.apiUrl}club/add-representator`, params, { headers });
   }
 
-  updateRepresentatorRole(id:any, params:any): Observable<any> {
+  updateRepresentatorRole(id: any, params: any): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -787,7 +788,7 @@ export class ClubService {
     return this.http.post<any>(`${this.apiUrl}club/update-representator-role/${id}/${lang_id}`, params, { headers });
   }
 
-  updateRepresentator(id:any, params:any): Observable<any> {
+  updateRepresentator(id: any, params: any): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
@@ -797,14 +798,14 @@ export class ClubService {
   }
 
 
-  deleteRepresentator(id:any): Observable<any> {
+  deleteRepresentator(id: any): Observable<any> {
     const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
     let lang_id = localStorage.getItem('lang_id');
-    return this.http.get<{ status: boolean, message: string, data: { } }>(
-      `${this.apiUrl}club/delete-representator/${id}/${lang_id}`, {headers}
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
+      `${this.apiUrl}club/delete-representator/${id}/${lang_id}`, { headers }
     );
   }
 
