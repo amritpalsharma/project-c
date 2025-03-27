@@ -1266,5 +1266,7 @@
   "acceptAll": "Accepter alle",
   "pleaseConfirmSpellings": "Værdierne stemmer ikke overens, bekræft venligst din stavning.",
   "formAllFieldsRequired": "Udfyld venligst formularen korrekt, før du sender det.",
-  "selectPerformanceFirst": "Vælg performance først."
+  "selectPerformanceFirst": "Vælg performance først.",
+  "removeSection": "Fjern sektion",
+  "addMore": "Tilføj mere"
 }

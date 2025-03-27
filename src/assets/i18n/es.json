@@ -1348,5 +1348,7 @@
   "acceptAll": "Aceptar todas",
   "pleaseConfirmSpellings": "Los valores no coinciden, por favor verifica tu ortografía.",
   "formAllFieldsRequired": "Por favor, completa el formulario correctamente antes de enviarlo.",
-  "selectPerformanceFirst": "Seleccione primero el rendimiento."
+  "selectPerformanceFirst": "Seleccione primero el rendimiento.",
+  "removeSection": "Eliminar sección",
+  "addMore": "Añadir más"
 }

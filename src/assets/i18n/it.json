@@ -1399,5 +1399,7 @@
   "acceptAll": "Accetta tutti",
   "pleaseConfirmSpellings": "I valori non corrispondono, per favore conferma la tua ortografia.",
   "formAllFieldsRequired": "Per favore, compila correttamente il modulo prima di inviarlo.",
-  "selectPerformanceFirst": "Selezionare prima le prestazioni."
+  "selectPerformanceFirst": "Selezionare prima le prestazioni.",
+  "removeSection": "Rimuovi sezione",
+  "addMore": "Aggiungi altro"
 }

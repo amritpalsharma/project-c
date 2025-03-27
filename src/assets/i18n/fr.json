@@ -1416,5 +1416,7 @@
   "acceptAll": "Tout accepter",
   "pleaseConfirmSpellings": "Les valeurs ne correspondent pas, veuillez vérifier votre orthographe.",
   "formAllFieldsRequired": "Veuillez remplir correctement le formulaire avant de l’envoyer.",
-  "selectPerformanceFirst": "Sélectionnez d'abord la performance."
+  "selectPerformanceFirst": "Sélectionnez d'abord la performance.",
+  "removeSection": "Supprimer la section",
+  "addMore": "Ajouter plus"
 }

@@ -1034,12 +1034,8 @@
   "laura": "Laura",
   "schneider": "Schneider",
   "emailid": "lauraschneider@socceryou.ch",
-<<<<<<< HEAD
-  "error": "ERROR!",
-=======
   "error": "FEHLER",
   "all": "alle",
->>>>>>> 82f6ab93832292554f8b12021881d449c0011605
   "youVerifiedAndApproved": "Du hast das Profil von (Name of the Role) geprüft und freigegeben.",
   "youGeneratedReports": "Du hast ein Reporting erstellt, um deine Verkaufszahlen zu analysieren und deinen Fortschritt mit deinen Zielen abzugleichen.",
   "searchPages": "Seiten suchen",
@@ -1410,6 +1406,8 @@
   },
    "pleaseConfirmSpellings": "Werte stimmen nicht überein, bitte überprüfe deine Rechtschreibung.",
    "formAllFieldsRequired": "Bitte fülle das Formular korrekt aus, bevor du es absendest.",
-   "selectPerformanceFirst": "Wählen Sie zuerst Leistung."
+   "selectPerformanceFirst": "Wählen Sie zuerst Leistung.",
+   "removeSection": "Abschnitt entfernen",
+  "addMore": "Mehr hinzufügen"
 
 }

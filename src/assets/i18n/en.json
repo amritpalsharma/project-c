@@ -1315,5 +1315,7 @@
   },
   "pleaseConfirmSpellings": "Values do not match, please confirm your spelling.",
   "formAllFieldsRequired": "Please fill out the form correctly before submitting.",
-  "selectPerformanceFirst": "Select performance(s) first."
+  "selectPerformanceFirst": "Select performance(s) first.",
+  "removeSection": "Remove Section",
+  "addMore": "Add More"
 }

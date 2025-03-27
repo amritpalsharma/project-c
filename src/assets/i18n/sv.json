@@ -1403,5 +1403,7 @@
   "acceptAll": "Acceptera alla",
    "pleaseConfirmSpellings": "Värdena matchar inte, vänligen bekräfta din stavning.",
    "formAllFieldsRequired": "Vänligen fyll i formuläret korrekt innan du skickar in det.",
-   "selectPerformanceFirst": "Välj prestanda först."
+   "selectPerformanceFirst": "Välj prestanda först.",
+   "removeSection": "Ta bort sektion",
+  "addMore": "Lägg till mer"
 }
