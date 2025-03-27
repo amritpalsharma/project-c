@@ -286,9 +286,9 @@ export class PerformanceAnalysisTabComponent implements OnInit {
   }
 
   translateMsg() {
-    this.translateService.get(['deletePerformanceConfirm', 'selectNotificationFirst']).subscribe((translations) => {
+    this.translateService.get(['deletePerformanceConfirm', 'selectPerformanceFirst']).subscribe((translations) => {
       this.deletePerformanceConfirm = translations['deletePerformanceConfirm'];
-      this.selectPerformanceFirst = translations['selectNotificationFirst'];
+      this.selectPerformanceFirst = translations['selectPerformanceFirst'];
     })
   }
 

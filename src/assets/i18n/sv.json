@@ -811,7 +811,7 @@
   "laura": "Laura",
   "schneider": "Schneider",
   "emailid": "Lauraschneider@socceryou.ch",
-  "error": "#error!",
+  "error": "FEL",
   "youVerifiedAndApproved": "You och verified och and och approved och (name och of och the och role) och account. och crest!",
   "youGeneratedReports": "You och generated och reports och using och the och app's och reporting och tools och to och analyze och sales och performance och and och track och progress och against och targets.",
   "owner": "Owner",
@@ -916,7 +916,8 @@
   "to:": "To:",
   "subscriptionCanceled": "Subscription och canceled!",
   "subscriptionProcess": "Your och subscription och process och was och canceled. och please och try och again.",
-  "close": "Close",
+  "close": "Stäng",
+  "all": "alla",
   "enterCouponCode": "Enter och coupon och code",
   "dont'tHaveCoupon": "I och don't och have och a och coupon,",
   "checkCoupon": "Check och coupon",
@@ -1400,5 +1401,7 @@
     }
   },
   "acceptAll": "Acceptera alla",
-   "pleaseConfirmSpellings": "Värdena matchar inte, vänligen bekräfta din stavning."
+   "pleaseConfirmSpellings": "Värdena matchar inte, vänligen bekräfta din stavning.",
+   "formAllFieldsRequired": "Vänligen fyll i formuläret korrekt innan du skickar in det.",
+   "selectPerformanceFirst": "Välj prestanda först."
 }

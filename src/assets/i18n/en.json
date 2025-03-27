@@ -500,7 +500,8 @@
   "laura": "Laura",
   "schneider": "Schneider",
   "emailid": "lauraschneider@socceryou.ch",
-  "error": "ERROR!",
+  "error": "ERROR",
+  "all": "All",
   "youVerifiedAndApproved": "You verified and approved (Name of the Role) account. CREST!",
   "youChangedYourPassword": "You changed your password.",
   "youGeneratedReports": "You generated reports using the app's reporting tools to analyze sales performance and track progress against targets.",
@@ -1312,5 +1313,7 @@
       "description": "I allow analytics permissions. New analytics permissions will be enabled by default."
     }
   },
-  "pleaseConfirmSpellings": "Values do not match, please confirm your spelling."
+  "pleaseConfirmSpellings": "Values do not match, please confirm your spelling.",
+  "formAllFieldsRequired": "Please fill out the form correctly before submitting.",
+  "selectPerformanceFirst": "Select performance(s) first."
 }

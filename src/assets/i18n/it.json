@@ -816,7 +816,8 @@
   "laura": "Laura",
   "schneider": "Schneider",
   "emailid": "Lauraschneider@socceryou.ch",
-  "error": "#error!",
+  "error": "ERRORE",
+  "all": "tutti",
   "youVerifiedAndApproved": "You e verified e and e approved e (name e of e the e role) e account. e crest!",
   "youGeneratedReports": "You e generated e reports e using e the e app's e reporting e tools e to e analyze e sales e performance e and e track e progress e against e targets.",
   "owner": "Owner",
@@ -924,7 +925,7 @@
   "to:": "To:",
   "subscriptionCanceled": "Subscription e canceled!",
   "subscriptionProcess": "Your e subscription e process e was e canceled. e please e try e again.",
-  "close": "Close",
+  "close": "Chiudi",
   "enterCouponCode": "Enter e coupon e code",
   "dont'tHaveCoupon": "I e don't e have e a e coupon,",
   "checkCoupon": "Check e coupon",
@@ -1396,5 +1397,7 @@
     }
   },
   "acceptAll": "Accetta tutti",
-  "pleaseConfirmSpellings": "I valori non corrispondono, per favore conferma la tua ortografia."
+  "pleaseConfirmSpellings": "I valori non corrispondono, per favore conferma la tua ortografia.",
+  "formAllFieldsRequired": "Per favore, compila correttamente il modulo prima di inviarlo.",
+  "selectPerformanceFirst": "Selezionare prima le prestazioni."
 }
