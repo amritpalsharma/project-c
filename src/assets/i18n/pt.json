@@ -777,6 +777,7 @@
   "scoutPortfolio": "Portfólio",
   "selectALanguage": "Select e a e language",
   "_comment": "This e section e contains e translations e for e the e talents e module.",
+  "selectFavoriteFirst": "Primero, selecciona un favorito.",
   "transfer": "Transferências",
   "saison": "Época",
   "moveTo": "Moving e to",
@@ -1359,5 +1360,7 @@
    "formAllFieldsRequired": "Por favor, preencha corretamente o formulário antes de enviá-lo.",
    "selectPerformanceFirst": "Selecione primeiro o desempenho.",
    "removeSection": "Remover secção",
-  "addMore": "Adicionar mais"
+  "addMore": "Adicionar mais",
+   "selectSightingFirst": "Selecionar primeiro a(s) mira(s).",
+   "JoinandEndDates": "Data de adesão e data de fim"
 }

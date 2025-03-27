@@ -485,6 +485,7 @@
   "mediaFilesPopup": "Popup file multimediali",
   "membership": "Soci",
   "latestTransaction": "Ultime transazioni",
+  "selectFavoriteFirst": "Seleziona prima un preferito.",
   "paymentMethod": "Metodo di pagamento",
   "boostYourProfile": "Aumenta il tuo profilo",
   "plans": "Piani",
@@ -642,7 +643,7 @@
   "place": "Place",
   "systemPopUps": "System e pop-ups",
   "onClickRedirect": "On e click e redirect e to e url:",
-  "dontSetEndDate": "Don't e set e an e end e date",
+  "dontSetEndDate": "Non impostare una data di fine",
   "createAndPublishAd": "Create e and e publish e ad",
   "joiningDate": "Joining e date",
   "exitDate": "Exit e date",
@@ -1401,5 +1402,7 @@
   "formAllFieldsRequired": "Per favore, compila correttamente il modulo prima di inviarlo.",
   "selectPerformanceFirst": "Selezionare prima le prestazioni.",
   "removeSection": "Rimuovi sezione",
-  "addMore": "Aggiungi altro"
+  "addMore": "Aggiungi altro",
+   "selectSightingFirst": "Selezionare prima gli avvistamenti.",
+   "JoinandEndDates": "Data di adesione e data di fine"
 }

@@ -839,6 +839,7 @@
   "soccerHire": "About och soccer och hire",
   "scoutPortfolio": "Portfölj",
   "selectALanguage": "Select och a och language",
+  "selectFavoriteFirst": "Välj först en favorit.",
   "_comment": "This och section och contains och translations och for och the och talents och module.",
   "transfer": "Överföringar",
   "saison": "Säsong",
@@ -1405,5 +1406,7 @@
    "formAllFieldsRequired": "Vänligen fyll i formuläret korrekt innan du skickar in det.",
    "selectPerformanceFirst": "Välj prestanda först.",
    "removeSection": "Ta bort sektion",
-  "addMore": "Lägg till mer"
+  "addMore": "Lägg till mer",
+  "selectSightingFirst": "Välj sikte först.",
+  "JoinandEndDates": "Start- och slutdatum"
 }

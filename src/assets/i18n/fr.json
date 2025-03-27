@@ -103,6 +103,7 @@
   "messages": "Messages",
   "chat": "Chat",
   "inbox": "Boîte de réception",
+  "selectFavoriteFirst": "Sélectionnez d'abord un favori.",
   "newMessage": "Nouveau message",
   "files": "Dossiers",
   "favorites": "Favoris",
@@ -1418,5 +1419,7 @@
   "formAllFieldsRequired": "Veuillez remplir correctement le formulaire avant de l’envoyer.",
   "selectPerformanceFirst": "Sélectionnez d'abord la performance.",
   "removeSection": "Supprimer la section",
-  "addMore": "Ajouter plus"
+  "addMore": "Ajouter plus",
+   "selectSightingFirst": "Sélectionner d'abord la (les) visée(s).",
+   "JoinandEndDates": "Date de début et de fin"
 }

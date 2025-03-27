@@ -1194,7 +1194,7 @@
     "sweden": "Sweden",
     "switzerland": "Switzerland"
   },
-  "selectFavoriteFirst": "Favorit zuerst auswählen.",
+  "selectFavoriteFirst": "Wähle zuerst einen Favorit aus.",
   "removeFavoriteConfirm": "Bist du sicher, dass du den Favorit entfernen möchtest? ",
   "userPurchasesNotFound": "Keine Käufe gefunden.",
   "premiumPlanDesc": {
@@ -1408,6 +1408,8 @@
    "formAllFieldsRequired": "Bitte fülle das Formular korrekt aus, bevor du es absendest.",
    "selectPerformanceFirst": "Wählen Sie zuerst Leistung.",
    "removeSection": "Abschnitt entfernen",
-  "addMore": "Mehr hinzufügen"
+  "addMore": "Mehr hinzufügen",
+   "selectSightingFirst": "Wähle zuerst die Sichtung aus.",
+   "JoinandEndDates": "Beitritts- und Enddatum"
 
 }

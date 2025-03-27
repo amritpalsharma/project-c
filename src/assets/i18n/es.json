@@ -472,6 +472,7 @@
   "explore": "Explorar ahora",
   "membership": "Afiliación",
   "latestTransaction": "Últimas transacciones",
+  "selectFavoriteFirst": "Primero, selecciona un favorito.",
   "paymentMethod": "Forma de pago",
   "boostYourProfile": "Impulse su perfil",
   "plans": "Planes",
@@ -1350,5 +1351,7 @@
   "formAllFieldsRequired": "Por favor, completa el formulario correctamente antes de enviarlo.",
   "selectPerformanceFirst": "Seleccione primero el rendimiento.",
   "removeSection": "Eliminar sección",
-  "addMore": "Añadir más"
+  "addMore": "Añadir más",
+   "selectSightingFirst": "Seleccione primero los avistamientos.",
+   "JoinandEndDates": "Fecha de entrada y salida"
 }
