@@ -500,7 +500,8 @@
   "laura": "Laura",
   "schneider": "Schneider",
   "emailid": "lauraschneider@socceryou.ch",
-  "error": "ERROR!",
+  "error": "FEHLER",
+  
   "youVerifiedAndApproved": "You verified and approved (Name of the Role) account. CREST!",
   "youChangedYourPassword": "You changed your password.",
   "youGeneratedReports": "You generated reports using the app's reporting tools to analyze sales performance and track progress against targets.",
