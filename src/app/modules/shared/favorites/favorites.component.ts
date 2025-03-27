@@ -486,6 +486,8 @@ export class FavoritesComponent {
     // });
   }
 
+  test:any;
+
   getJsonTranslations() {
     this.translateService.get(['favorites']).subscribe((translations) => {
       this.pageTitle = translations['favorites'];
