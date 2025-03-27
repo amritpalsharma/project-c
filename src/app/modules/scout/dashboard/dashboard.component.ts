@@ -68,6 +68,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   isPremium: any = true;
   StartTour: boolean = true;
   dontShowAgainTourTxt: string = 'profile';
+
+  pleaseWait: string = '';
+
   @Output() dataEmitter = new EventEmitter<string>();
   private routeSubscription: Subscription | null = null; // Initialize with null
   private introInstance: any; // Reference to the Intro.js instance
@@ -95,7 +98,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     await this.getAllTeams();
     this.webPages.languageId$.subscribe((data: any) => {
-      // this.getToasterMsg();
+      this.getToasterMsg();
       this.getJsonTranslations();
     });
 
@@ -564,7 +567,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.selectedFile = input.files[0];
 
       // Set loading state and display info toast
-      this.toastr.info('Uploading profile image...', 'Please wait', { disableTimeOut: true });
+      this.toastr.info('', this.pleaseWait, { disableTimeOut: true });
 
       try {
         const formData = new FormData();
@@ -606,7 +609,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.scoutService.updatePicOnHeader(this.profileImage);
   }
 
-  onclick(event: Event){
+  onclick(event: Event) {
     const input = event.target as HTMLInputElement;
     console.log(this.selectedFile, input, input.files)
   }
@@ -617,7 +620,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.selectedFile = input.files[0];
 
       // Set loading state and display info toast
-      this.toastr.info('Uploading cover image...', 'Please wait', { disableTimeOut: true });
+      this.toastr.info('', this.pleaseWait, { disableTimeOut: true });
 
       try {
         const formData = new FormData();
@@ -646,7 +649,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
             // this.selectedFile = null;
           }
 
-          
+
         );
       } catch (error) {
         this.toastr.clear();
@@ -658,7 +661,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   deleteCoverImage(): void {
     // Set loading state and display info toast
-    this.toastr.info('Deleting cover image...', 'Please wait', { disableTimeOut: true });
+    this.toastr.info('', this.pleaseWait, { disableTimeOut: true });
 
     try {
       this.scoutService.deleteCoverImage().subscribe(
@@ -780,6 +783,18 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.titleService.setTitle(this.pageTitle);
       console.log('Title fetch Function Fired');
     })
+  }
+
+  getToasterMsg() {
+    this.translateService.get(['pleaseWait']).subscribe((translations) => {
+      this.pleaseWait = translations['pleaseWait'];
+      // this.uploadingPhotos = translations['uploadingPhotos'];
+      // this.successTxt = translations['successTxt'];
+      // this.errorTxt = translations['errorTxt'];
+      // this.deletingCoverImage = translations['deletingCoverImage'];
+      // this.coverImageDeletionCanceled = translations['coverImageDeletionCanceled'];
+      // this.Canceled = translations['Canceled'];
+    });
   }
 
 }

@@ -28,6 +28,7 @@ export class AddBoosterComponent {
   selectedAudienceIds: number[] = []; // Store only audience IDs
   id: any;
   loggedInUser: any = localStorage.getItem('userInfo');
+  theme : any = localStorage.getItem('theme');
 
   constructor(
     public dialogRef: MatDialogRef<AddBoosterComponent>,
@@ -44,6 +45,8 @@ export class AddBoosterComponent {
     this.loggedInUser = JSON.parse(this.loggedInUser);
     this.id = this.data.id || [];
     this.stripe = await this.paymentService.getStripe();
+
+    this.theme = localStorage.getItem('theme');
 
     this.getToasterMsg();
     this.webPages.languageId$.subscribe((data: any) => {
@@ -94,7 +97,10 @@ export class AddBoosterComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        let coupon = result;
+        let coupon = null;
+        if(result !== 'proceed_to_checkout_without_coupon'){
+          coupon = result;
+        }
         this.toastr.info('Applying coupon code...', 'Processing');
         this.redirectToCheckout(this.id, this.selectedAudienceIds, coupon);
       } else if (result === null) {
