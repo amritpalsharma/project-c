@@ -3,8 +3,15 @@
         <div class="dialog-header m-auto">
             <h2 class="text-center">{{ 'boostProfile' | translate }}</h2>
         </div>
-        <div class="close_buttons">
-            <button class="close-btn" (click)="close()">X</button>
+        <div class="close_buttons" *ngIf='theme=="light"'>
+            <button class="close-btn border-0 padding-0" aria-label="Close" (click)="pauseBoost()">
+                <img src="../../../../assets/images/carbon_close-outline-light.svg" alt="">
+            </button>
+        </div>
+        <div class="close_buttons" *ngIf='theme=="dark"'>
+            <button class="close-btn border-0 padding-0" aria-label="Close" (click)="pauseBoost()">
+                <img src="../../../../assets/images/carbon_close-outline.svg" alt="">
+            </button>
         </div>
     </div>
     <hr>
@@ -98,8 +105,8 @@
                 <div class="target-audience mb-4">
                     <div class="form-group col-lg-8">
                         <mat-label>{{ 'selectTargetAudience' | translate }}</mat-label>
-                        <mat-select ngClass="mat-options" [(ngModel)]="selectedAudienceIds" (selectionChange)="applyFilter()" multiple
-                            placeholder="{{ 'select' | translate }}">
+                        <mat-select ngClass="mat-options" [(ngModel)]="selectedAudienceIds"
+                            (selectionChange)="applyFilter()" multiple placeholder="{{ 'select' | translate }}">
                             <mat-option *ngFor="let audience of audiences" [value]="audience.id">
                                 {{ audience.role }}
                             </mat-option>

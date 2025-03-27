@@ -29,6 +29,8 @@ export class AddBoosterComponent {
   id: any;
   loggedInUser: any = localStorage.getItem('userInfo');
 
+  theme : any = localStorage.getItem('theme');
+
   constructor(
     public dialogRef: MatDialogRef<AddBoosterComponent>,
     public talentService: TalentService,
@@ -41,6 +43,8 @@ export class AddBoosterComponent {
   ) { }
 
   async ngOnInit() {
+    this.theme = localStorage.getItem('theme');
+
     this.loggedInUser = JSON.parse(this.loggedInUser);
     this.id = this.data.id || [];
     this.stripe = await this.paymentService.getStripe();

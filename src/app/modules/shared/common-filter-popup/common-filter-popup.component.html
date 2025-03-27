@@ -1,5 +1,5 @@
-<div class="p-1" *ngIf="page == 'marketing'">
-  <div class="shadow-sm p-1 mb-1 bg-body rounded">
+<div class="py-3 px-2" *ngIf="page == 'marketing'">
+  <div class="py-2 mb-1 bg-body">
     <h5 class="filter-text mb-1">{{ 'userType' | translate }}</h5>
     <label class="btn btn-light filter-button" [class.activefilter]="userFilters['role']">
       <select [(ngModel)]="selectedRoleId" class="location-filter" [class.activefilter]="userFilters['role']"
@@ -11,7 +11,7 @@
     </label>
   </div>
 
-  <div class="shadow-sm p-1 mb-1 bg-body rounded">
+  <div class="p-1 mb-1 bg-body rounded">
     <h5 class="filter-text mb-1">{{ 'language' | translate }}</h5>
     <label class="btn btn-light filter-button" [class.activefilter]="userFilters['language']">
       <select [(ngModel)]="selectedLanguageId" class="location-filter" [class.activefilter]="userFilters['language']"
@@ -23,7 +23,7 @@
     </label>
   </div>
 
-  <div class="shadow-sm p-1 mb-1 bg-body rounded">
+  <div class="p-1 mb-1 bg-body rounded">
     <h5 class="filter-text mb-1">{{ 'displayFreq' | translate }}</h5>
     <label class="btn btn-light filter-button" [class.activefilter]="userFilters['frequency']">
       <select [(ngModel)]="selectedFrequency" class="location-filter" [class.activefilter]="userFilters['frequency']"
@@ -35,7 +35,7 @@
     </label>
   </div>
 
-  <div class="shadow-sm p-1 mb-1 bg-body rounded">
+  <div class="p-1 mb-1 bg-body rounded">
     <h5 class="filter-text mb-1">{{ 'displayLocation' | translate }}</h5>
     <label class="btn btn-light filter-button" [class.activefilter]="userFilters['location']">
       <!-- <input type="radio" name="location" value="Type to search" hidden> Type to search -->
@@ -49,7 +49,7 @@
     </label>
   </div>
 
-  <div class="shadow-sm p-1 mb-1 bg-body rounded">
+  <div class="p-1 mb-1 bg-body rounded">
     <h5 class="filter-text mb-1">{{ 'status' | translate }}</h5>
     <div class="d-flex gap-3">
       <label class="btn btn-light filter-button" [class.activefilter]="userFilters['status'] == 'active'">
@@ -72,7 +72,7 @@
 
 
 <div class="p-1" *ngIf="page == 'template'">
-  <div class="shadow-sm p-1 mb-1 bg-body rounded">
+  <div class="p-1 mb-1 bg-body rounded">
     <h5 class="filter-text mb-1">{{ 'userType' | translate }}</h5>
     <label class="btn btn-light filter-button" [class.activefilter]="userFilters['role']">
       <select [(ngModel)]="selectedRoleId" class="location-filter" [class.activefilter]="userFilters['role']"
@@ -84,7 +84,7 @@
     </label>
   </div>
 
-  <div class="shadow-sm p-1 mb-1 bg-body rounded">
+  <div class="p-1 mb-1 bg-body rounded">
     <h5 class="filter-text mb-1">{{ 'Language' | translate }}</h5>
     <label class="btn btn-light filter-button" [class.activefilter]="userFilters['language']">
       <select [(ngModel)]="selectedLanguageId" class="location-filter" [class.activefilter]="userFilters['language']"
@@ -107,7 +107,7 @@
 
 <div class="p-1" *ngIf="page == 'coupon'">
 
-  <div class="shadow-sm p-1 mb-1 bg-body rounded">
+  <div class="p-1 mb-1 bg-body rounded">
     <h5 class="filter-text mb-1">{{ 'discountType' | translate }}</h5>
     <div class="d-flex gap-3">
       <label class="btn btn-light filter-button" [class.activefilter]="userFilters['discount_type'] == 'amount_off'">
@@ -121,7 +121,7 @@
     </div>
   </div>
 
-  <div class="shadow-sm p-1 mb-1 bg-body rounded">
+  <div class="p-1 mb-1 bg-body rounded">
     <h5 class="filter-text mb-1">{{ 'status' | translate }}</h5>
     <div class="d-flex gap-3">
       <label class="btn btn-light filter-button" [class.activefilter]="userFilters['status'] == 'published'">
@@ -149,7 +149,7 @@
 
 <div class="p-1" *ngIf="page == 'advertisement'">
 
-  <div class="shadow-sm p-1 mb-1 bg-body rounded">
+  <div class="p-1 mb-1 bg-body rounded">
     <h5 class="filter-text mb-1">{{ 'page' | translate }}</h5>
     <label class="btn btn-light filter-button w-100" [class.activefilter]="userFilters['page_name']">
       <select [(ngModel)]="selectedPage" class="location-filter " [class.activefilter]="userFilters['page_name']"
@@ -161,7 +161,7 @@
     </label>
   </div>
 
-  <div class="shadow-sm p-1 mb-1 bg-body rounded">
+  <div class="p-1 mb-1 bg-body rounded">
     <h5 class="filter-text mb-1">{{ 'type' | translate }}</h5>
     <label class="btn btn-light filter-button" style="width:215px;" [class.activefilter]="userFilters['type']">
       <select [(ngModel)]="selectedtype" class="location-filter" [class.activefilter]="userFilters['type']"
@@ -172,7 +172,7 @@
     </label>
   </div>
 
-  <div class="shadow-sm p-1 mb-1 bg-body rounded">
+  <div class="p-1 mb-1 bg-body rounded">
     <h5 class="filter-text mb-1">{{ 'status' | translate }}</h5>
     <div class="d-flex gap-3">
       <label class="btn btn-light filter-button" [class.activefilter]="userFilters['status'] == 'published'">
@@ -200,7 +200,7 @@
 
 <div class="p-2 mt-3" *ngIf="page == 'webpages' || page == 'blog'">
 
-  <div class="shadow-sm p-1 mb-1 bg-body rounded">
+  <div class="p-1 mb-1 bg-body rounded">
     <h5 class="filter-text mb-1">{{ 'language' | translate }}</h5>
     <label class="btn btn-light filter-button w-100" [class.activefilter]="userFilters['language']">
       <select [(ngModel)]="selectedLanguage" class="location-filter " [class.activefilter]="userFilters['language']"
@@ -212,7 +212,7 @@
     </label>
   </div>
 
-  <div class="shadow-sm p-1 mb-3 bg-body rounded">
+  <div class="p-1 mb-3 bg-body rounded">
     <h5 class="filter-text mb-1">{{ 'status' | translate }}</h5>
     <div class="d-flex gap-3">
       <label class="btn btn-light filter-button" [class.activefilter]="userFilters['status'] == 'published'">
@@ -237,8 +237,8 @@
     </div>
   </div>
 </div>
-<div class="p-1" *ngIf="page == 'favoritesPage'">
-  <div class="shadow-sm p-1 mb-1 bg-body rounded">
+<div class="py-3 px-2" *ngIf="page == 'favoritesPage'">
+  <div class="py-2 mb-1 bg-body">
     <h5 class="filter-text mb-1">{{ 'userType' | translate }}</h5>
     <label class="btn btn-light filter-button" [class.activefilter]="userFilters['role']">
       <select [(ngModel)]="selectedRoleId" class="location-filter" [class.activefilter]="userFilters['role']"
@@ -250,7 +250,7 @@
     </label>
   </div>
 
-  <div class="shadow-sm p-1 mb-1 bg-body rounded">
+  <div class="py-2 mb-1 bg-body">
     <h5 class="filter-text mb-1">{{ 'location' | translate }}</h5>
     <!-- <h1>{{locations}}</h1> -->
     <label class="btn btn-light filter-button" [class.activefilter]="userFilters['location']">
@@ -262,7 +262,7 @@
       </select>
     </label>
   </div>
-  <!-- <div class="shadow-sm p-1 mb-1 bg-body rounded">
+  <!-- <div class="p-1 mb-1 bg-body rounded">
     <h5 class="filter-text mb-1">{{ 'status' | translate }}</h5>
     <div class="d-flex gap-3">
       <label class="btn btn-light filter-button" [class.activefilter]="userFilters['status'] == 'active'">
