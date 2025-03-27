@@ -3,6 +3,8 @@ import { NgForm } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TalentService } from '../../../services/talent.service';
 import { ToastrService } from 'ngx-toastr';
+import { WebPages } from '../../../services/webpages.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'reset-password',
@@ -12,6 +14,9 @@ import { ToastrService } from 'ngx-toastr';
 export class ResetPasswordComponent {
   password: string = '';
   confirm_password: string = '';
+  formAllFieldsRequired: string = '';
+  errorTxt: string = '';
+  successTxt: string = '';
 
   // Variables to control password visibility
   passwordVisible: boolean = false;
@@ -19,12 +24,18 @@ export class ResetPasswordComponent {
 
   constructor(
     public dialogRef: MatDialogRef<ResetPasswordComponent>,
-    public talentService : TalentService,
+    public talentService: TalentService,
     private toastr: ToastrService,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public webPages: WebPages,
+    private translateService: TranslateService
+  ) { }
 
   ngOnInit(): void {
+    this.getToasterMsg();
+    this.webPages.languageId$.subscribe((data: any) => {
+      this.getToasterMsg();
+    });
     // Initialize user object if needed
   }
 
@@ -35,7 +46,7 @@ export class ResetPasswordComponent {
   onSave(form: NgForm): void {
     // Check if the form is invalid
     if (form.invalid) {
-      this.toastr.error('Please complete all required fields before submitting.', 'Form Incomplete');
+      this.toastr.error(this.formAllFieldsRequired, this.errorTxt);
       return;
     }
 
@@ -57,11 +68,11 @@ export class ResetPasswordComponent {
         this.toastr.clear();
 
         // Show success message
-        if(response.status){
-          this.toastr.success(response.message);
+        if (response.status) {
+          this.toastr.success(response.message, this.successTxt);
           this.dialogRef.close({ password: this.password });
         }
-        else{
+        else {
           this.toastr.error(response.error.new_con_password);
         }
 
@@ -92,5 +103,16 @@ export class ResetPasswordComponent {
     } else if (inputId === 'confirm-password') {
       this.confirmPasswordVisible = !this.confirmPasswordVisible;
     }
+  }
+  getToasterMsg() {
+    this.translateService.get([
+      'formAllFieldsRequired',
+      'error!',
+      'success!'
+    ]).subscribe((translations) => {
+      this.errorTxt = translations['error!'];
+      this.successTxt = translations['success!'];
+      this.formAllFieldsRequired = translations['formAllFieldsRequired'];
+    });
   }
 }

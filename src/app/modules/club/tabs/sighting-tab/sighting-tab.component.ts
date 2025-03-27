@@ -38,6 +38,7 @@ export class SightingTabComponent {
   playersInvited: any = [];
   playersInvitedFirstFour: any = [];
   deleteRepresentorConfirmation: string = '';
+  selectSightingFirst: string = '';
 
   attachments: any = [];
   viewSightId: any = "";
@@ -130,7 +131,7 @@ export class SightingTabComponent {
 
   confirmDeletion(): any {
     if (this.selectedIds.length == 0) {
-      this.showMatDialog('Select sighting(s) first.', 'display');
+      this.showMatDialog(this.selectSightingFirst, 'display');
       return false;
     }
     this.idsToDelete = this.selectedIds;
@@ -445,8 +446,10 @@ export class SightingTabComponent {
   getToasterMsg() {
     this.translateService.get([
       'confirmDeleteinformation',
+      'selectSightingFirst'
     ]).subscribe((translations) => {
       this.deleteRepresentorConfirmation = translations['confirmDeleteinformation'];
+      this.selectSightingFirst = translations['selectSightingFirst'];
     });
   }
 }
