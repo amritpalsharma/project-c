@@ -6,6 +6,8 @@ import { catchError } from 'rxjs/operators';
 import { User } from '../modules/admin/users/user.model';
 import { environment } from '../../environments/environment';
 import { BehaviorSubject } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
   providedIn: 'root'
@@ -18,10 +20,16 @@ export class UserService {
 
   private adminImageUrlSource = new BehaviorSubject<string>('default');
   adminImageUrl = this.adminImageUrlSource.asObservable();
-
-  constructor(private http: HttpClient) {
+  errorTxt: string = '';
+  errorMsgTxt: string = '';
+  constructor(
+    private http: HttpClient,
+    private toaster: ToastrService,
+    private translateService: TranslateService
+  ) {
     this.apiUrl = environment?.apiUrl;
     this.userToken = localStorage.getItem('authToken');
+
   }
 
   changeImageUrl(newUrl: string) {
@@ -495,8 +503,9 @@ export class UserService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
+    let lang_id = localStorage.getItem('lang_id');
     return this.http.get<any>(
-      `${this.apiUrl}export-single-user/${userId}`, { headers }
+      `${this.apiUrl}export-single-user/${userId}/${lang_id}`, { headers }
     );
   }
 
@@ -618,6 +627,18 @@ export class UserService {
   getRoles() {
     let lang_id = localStorage.getItem('lang_id');
     return this.http.get<any>(`${this.apiUrl}get-roles/${lang_id}`);
+  }
+
+  apiToasterError() {
+    this.translateService.get(['error', 'forgotPassword.generalError']).subscribe((translations) => {
+      this.errorTxt = translations['error'];
+      this.errorMsgTxt = translations['forgotPassword.generalError'];
+      this.toaster.error(this.errorMsgTxt, this.errorTxt);
+    });
+  }
+
+  apiToastError(message: string) {
+    this.toaster.error(message);
   }
 
 }

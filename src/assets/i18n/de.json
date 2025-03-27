@@ -1034,7 +1034,7 @@
   "laura": "Laura",
   "schneider": "Schneider",
   "emailid": "lauraschneider@socceryou.ch",
-  "error": "#ERROR!",
+  "error": "ERROR!",
   "youVerifiedAndApproved": "Du hast das Profil von (Name of the Role) geprüft und freigegeben.",
   "youGeneratedReports": "Du hast ein Reporting erstellt, um deine Verkaufszahlen zu analysieren und deinen Fortschritt mit deinen Zielen abzugleichen.",
   "searchPages": "Seiten suchen",

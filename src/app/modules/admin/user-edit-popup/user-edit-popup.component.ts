@@ -254,7 +254,7 @@ export class UserEditPopupComponent {
             message: response.message
           });
         } else {
-
+          this.userService.apiToastError(response.message);
         }
       },
       error => {
@@ -295,11 +295,12 @@ export class UserEditPopupComponent {
             message: response.message
           });
         } else {
-
+          this.userService.apiToastError(response.message);
         }
       },
       error => {
-        console.error('Error publishing advertisement:', error);
+        this.userService.apiToasterError();
+        // console.error('Error publishing advertisement:', error);
       }
     );
   }
@@ -341,10 +342,12 @@ export class UserEditPopupComponent {
             message: response.message
           });
         } else {
-          alert(response.message);
+          // alert(response.message);
+          this.userService.apiToastError(response.message);
         }
       },
       error => {
+        this.userService.apiToasterError();
         console.error('Error publishing advertisement:', error);
       }
     );
@@ -387,10 +390,12 @@ export class UserEditPopupComponent {
             message: response.message
           });
         } else {
-          alert(response.message);
+          // alert(response.message);
+          this.userService.apiToastError(response.message);
         }
       },
       error => {
+        this.userService.apiToasterError();
         console.error('Error publishing advertisement:', error);
       }
     );

@@ -54,6 +54,8 @@ export class AddPerfomanceReportComponent {
       const formData = new FormData();
       formData.append('report', this.selectedFile);
       formData.append('document_title', this.documentTitle);
+      let lang_id = localStorage.getItem('lang_id');
+      formData.append('lang', lang_id + '');
 
       // Using talentService to upload the file with progress tracking
       this.talentService.uploadReport(formData).subscribe(event => {
@@ -66,7 +68,7 @@ export class AddPerfomanceReportComponent {
         } else if (event.type === HttpEventType.Response) {
           // Handle successful upload response
           console.log('Upload complete', event.body);
-          this.dialogRef.close(true); // Close dialog on success
+          this.dialogRef.close({ uploaded: true, message: event.body.message }); // Close dialog on success
         }
       }, error => {
         console.error('Error uploading report:', error);

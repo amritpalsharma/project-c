@@ -33,6 +33,7 @@ export class PerformanceAnalysisTabComponent implements OnInit {
   path: any;
   @Input() isPremium: any;
   deletePerformanceConfirm: string = '';
+  selectPerformanceFirst: string = '';
   langSubscription!: Subscription;
 
   constructor(private talentService: TalentService, public dialog: MatDialog, private translateService: TranslateService,) { }
@@ -113,7 +114,15 @@ export class PerformanceAnalysisTabComponent implements OnInit {
   downloadSelectedReports() {
     const selectedReports = this.reports.filter(report => report.selected);
     let selectedIds: any[] = []; // Initialize as an array
-
+    if (this.selectedIds.length <= 0) {
+      this.dialog.open(MessagePopupComponent, {
+        width: '500px',
+        data: {
+          message: this.selectPerformanceFirst,
+          action: 'no-performance-selected'
+        }
+      })
+    }
     if (selectedReports.length > 0) {
       // Collect all selected report IDs
       for (const report of selectedReports) {
@@ -145,6 +154,16 @@ export class PerformanceAnalysisTabComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      console.log(result)
+      if (result.uploaded === true && result.message != undefined) {
+        this.dialog.open(MessagePopupComponent, {
+          width: '500px',
+          data: {
+            message: result.message,
+            action: 'no-performance-selected'
+          }
+        })
+      }
       if (result) {
         this.loadReports(); // Reload reports after a new one is added
       }
@@ -180,6 +199,13 @@ export class PerformanceAnalysisTabComponent implements OnInit {
 
   deleteReports() {
     if (this.selectedIds.length <= 0) {
+      this.dialog.open(MessagePopupComponent, {
+        width: '500px',
+        data: {
+          message: this.selectPerformanceFirst,
+          action: 'no-performance-selected'
+        }
+      })
       return
     }
     let params: any = { id: this.selectedIds };
@@ -260,8 +286,9 @@ export class PerformanceAnalysisTabComponent implements OnInit {
   }
 
   translateMsg() {
-    this.translateService.get(['deletePerformanceConfirm']).subscribe((translations) => {
+    this.translateService.get(['deletePerformanceConfirm', 'selectNotificationFirst']).subscribe((translations) => {
       this.deletePerformanceConfirm = translations['deletePerformanceConfirm'];
+      this.selectPerformanceFirst = translations['selectNotificationFirst'];
     })
   }
 

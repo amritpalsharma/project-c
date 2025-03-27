@@ -56,6 +56,7 @@ export class TransfersTabComponent {
           this.userTransfers = response.data.transferDetail;
           // this.isLoading = false;
         } else {
+          this.userTransfers = [];
           // this.isLoading = false;
           console.error('Invalid API response structure:', response);
         }

@@ -147,6 +147,7 @@ export class ClubProfileTabComponent {
           this.showMatDialog("Role updated successfully.", 'display');
         }
       } else {
+        this.userService.apiToasterError();
         console.error('Invalid API response structure:', response);
       }
     });

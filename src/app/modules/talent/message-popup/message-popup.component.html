@@ -45,5 +45,9 @@
                 <div (click)="close()">{{ 'cancelRemoveFavBtn' | translate }}</div>
             </div>
         </div>
+
+        <div class="display-message" *ngIf="data.action === 'no-performance-selected'">
+            {{data.message}}
+        </div>
     </div>
 </div>

@@ -7,6 +7,7 @@ import { environment } from '../../../../environments/environment';
 import { TranslateService } from '@ngx-translate/core';
 import { TitleService } from '../../../title.service';
 import { SharedService } from '../../../services/shared.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-club-detail',
@@ -23,6 +24,7 @@ export class ClubDetailComponent implements OnInit {
     private translateService: TranslateService,
     private titleService: TitleService,
     private sharedservice: SharedService,
+    private toaster: ToastrService
   ) { }
   activeTab: string = 'profile';
   userId: any = {};
@@ -186,9 +188,9 @@ export class ClubDetailComponent implements OnInit {
       if (response && response.status) {
         let fileUrl = response.data.file_path;
         let fileName = response.data.file_name;
-        this.download(fileUrl, fileName);
+        this.toaster.success(response.message);
       } else {
-
+        this.userService.apiToasterError();
       }
     });
   }

@@ -6,6 +6,7 @@ import { MessagePopupComponent } from '../message-popup/message-popup.component'
 import { environment } from '../../../../environments/environment';
 import { Subscription } from 'rxjs';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-player-detail',
@@ -14,7 +15,14 @@ import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 })
 export class PlayerDetailComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private userService: UserService, public dialog: MatDialog, private router: Router, private translate: TranslateService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private userService: UserService,
+    public dialog: MatDialog,
+    private router: Router,
+    private translate: TranslateService,
+    private toaster: ToastrService
+  ) { }
   activeTab: string = 'profile';
   userId: any = {};
   user: any = {};
@@ -175,8 +183,9 @@ export class PlayerDetailComponent implements OnInit {
         let fileUrl = response.data.file_path;
         let fileName = response.data.file_name;
         this.download(fileUrl, fileName);
+        this.toaster.success(response.message);
       } else {
-
+        this.userService.apiToasterError();
       }
     });
   }
