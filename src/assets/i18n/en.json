@@ -140,7 +140,7 @@
   "removeFavorite": "Remove Favorite",
   "userType": "User  Type",
   "location": "Location",
-  "joinedDateTime": "Joined Date - Time",
+  "joinedDateTime": "Joined Date",
   "viewProfile": "View Profile",
   "subscriptionPlans": "Subscription Plans",
   "managePayments": "Manage Payments",
@@ -1097,7 +1097,7 @@
   "createAccountDescription": "Enter your details below to get started.",
   "activeMultiCountryPlan": " 2 active Multi-Country Plan",
   "youHaveActiveBoostPlan": "You have active boost plan",
-  "selectFavoriteFirst": "Select favorite user(s) first.",
+  "selectFavoriteFirst": "First, select a favorite.",
   "removeFavoriteConfirm": "Are to sure to remove favorite?",
   "userPurchasesNotFound": "No purchases found.",
   
@@ -1317,5 +1317,7 @@
   "formAllFieldsRequired": "Please fill out the form correctly before submitting.",
   "selectPerformanceFirst": "Select performance(s) first.",
   "removeSection": "Remove Section",
-  "addMore": "Add More"
+  "addMore": "Add More",
+  "selectSightingFirst": "Select sighting(s) first.",
+  "JoinandEndDates": "Join and End Date"
 }

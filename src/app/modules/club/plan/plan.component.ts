@@ -69,6 +69,9 @@ export class PlanComponent implements OnInit, OnDestroy {
   langSubscription!: Subscription;
   stripePromise = loadStripe(environment.stripePublishableKey);
   pageTitle: string = '';
+  pleaseWait: string = '';
+  Processing: string = '';
+  successTxt: string = '';
   constructor(
     private ScoutService: ScoutService,
     private paymentService: PaymentService,
@@ -105,7 +108,7 @@ export class PlanComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(result => {
       if (result == 'proceed_to_checkout_without_coupon') {
         this.redirectToCheckout(planId);
-      }else if (result && result != null) {
+      } else if (result && result != null) {
         this.isCouponApplied = true; // Show that the coupon has been applied
         this.couponCode = result; // Store the coupon code entered by the user
         this.redirectToCheckout(planId);
@@ -116,7 +119,7 @@ export class PlanComponent implements OnInit, OnDestroy {
   // Redirect to Stripe Checkout with coupon code logic
   async redirectToCheckout(planId: string) {
     this.isLoadingCheckout = true;
-    this.toastr.info('Redirecting to payment...', 'Loading', { disableTimeOut: true });
+    this.toastr.info(this.Processing, this.pleaseWait, { disableTimeOut: true });
 
     try {
       const response = await this.paymentService.createCheckoutSession(planId, '', this.couponCode).toPromise();
@@ -125,7 +128,7 @@ export class PlanComponent implements OnInit, OnDestroy {
         this.toastr.clear();
 
         // Show success message after redirection attempt
-        this.toastr.success('Redirected to Stripe Checkout successfully.', 'Success');
+        this.toastr.success(this.Processing, this.successTxt);
 
         const stripe = await this.stripe;
         await stripe?.redirectToCheckout({ sessionId: response.data.payment_intent.id });
@@ -392,7 +395,7 @@ export class PlanComponent implements OnInit, OnDestroy {
     const originalIsYearly = plan.isYearly;
 
     if (plan.isYearly != isYearly) {
-      this.toastr.info(`You're already subscribed to the ${isYearly ? 'yearly' : 'monthly'} plan.`);
+      // this.toastr.info(`You're already subscribed to the ${isYearly ? 'yearly' : 'monthly'} plan.`);
       return;
     }
 
@@ -420,7 +423,7 @@ export class PlanComponent implements OnInit, OnDestroy {
 
   updateSubscription(oldId: any, newId: any) {
 
-    this.toastr.info('Updating Plan, Please wait...', 'Loading', { disableTimeOut: true });
+    this.toastr.info(this.Processing, this.pleaseWait, { disableTimeOut: true });
 
     this.getUserPlans();
 
@@ -429,7 +432,11 @@ export class PlanComponent implements OnInit, OnDestroy {
         if (response && response.status) {
 
           this.toastr.clear();
-          this.toastr.success('Plan has been updated successfully.');
+          if (response.message != '' && response.message != undefined) {
+            this.toastr.success(response.message);
+          } else {
+            this.toastr.success('Plan has been updated successfully.');
+          }
           this.getUserPlans();
         } else {
           this.toastr.clear();
@@ -561,7 +568,7 @@ export class PlanComponent implements OnInit, OnDestroy {
   loadFeatures() {
     this.translate.get('ClubPremiumPlanDesc.features').subscribe((data: string[]) => {
       this.premiumFeatures = data;
-      console.warn('this.premiumFeatures ',this.premiumFeatures)
+      console.warn('this.premiumFeatures ', this.premiumFeatures)
     });
     this.translate.get('clubMultiCountryPlanDesc.features').subscribe((data: string[]) => {
       this.multiCountryPlanDesc = data;
@@ -573,8 +580,11 @@ export class PlanComponent implements OnInit, OnDestroy {
   }
 
   getJsonTranslations() {
-    this.translate.get(['plans']).subscribe((translations) => {
+    this.translate.get(['plans', 'pleaseWait', 'Processing', 'success!']).subscribe((translations) => {
       this.pageTitle = translations['plans'];
+      this.pleaseWait = translations['pleaseWait'];
+      this.Processing = translations['Processing'];
+      this.successTxt = translations['success!'];
       this.titleService.setTitle(this.pageTitle);
       console.log('Title fetch Function Fired');
     })
