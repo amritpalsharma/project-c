@@ -278,7 +278,7 @@
                                 <div class="password_field_wrap">
                                     <input id="exampleFormControlInput2" [type]="isViewPassword2 ? 'text' : 'password'"
                                         [ngClass]="{'empty-field': isPasswordError, 'form-control': true}"
-                                        placeholder="**************" [(ngModel)]="password" name="password" required />
+                                        placeholder="" [(ngModel)]="password" name="password" required />
                                     <span (click)="togglePassword2()" class="password-toggle">
                                         <span *ngIf="!isViewPassword2">
                                             <img src="./assets/images/password-hidden.svg">

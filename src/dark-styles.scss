@@ -2862,4 +2862,45 @@ mat-datepicker-toggle {
     filter: brightness(0) invert(1);
 }
 }
+
+select#scout_profile {
+  background: #244965 !important;
+  color: #fff;
+}
+#club_team {
+  color: #fff !important;
+}
+#club_team .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  border: 0 !important;
+}
+.dark_mode_sighting-bg {
+  background: #0c3453 !important;
+  color: #fff;
+  svg path {
+    fill: #fff;
+}
+}
+.attach_delete_club {
+.attachment_box{
+  svg path {
+    fill: #fff;
+}
+ span {
+  color: #fff !important;
+}
+}
+.download_delete svg path {
+  stroke: #fff !important;
+  fill: none !important;
+}
+}
+.club_sight_search {
+  border: 1px solid #fff;
+  padding: 5px !important;
+}
+.club_attacment_column .upload-btn {
+  color: #072944;
+  background: #bde34f;
+  border-color: #bde34f;
+}
 }

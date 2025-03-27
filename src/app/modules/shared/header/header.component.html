@@ -307,7 +307,7 @@
     </div>
   </nav>
   <div ng-class="{'mobile_search_container': !isSearchVisible}" *ngIf="isSearchVisible">
-    <div class="search-container w-100">
+    <div class="search-container w-100 mobile_search_wrap_er">
       <!-- <mat-form-field class="w-100"> -->
       <input matInput placeholder="{{ 'search' | translate }}" [formControl]="searchControl" [matAutocomplete]="auto"
         class="form-control w-100" />

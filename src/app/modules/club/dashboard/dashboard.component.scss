@@ -180,11 +180,10 @@
   }
 
   @media (max-width:1200px) and (min-width:769px) {
-    .user-info {
-      flex-direction: column !important;
-      row-gap: 10px;
-    }
-
+    .edit_button.responsive-edit_btn {
+      text-align: right;
+      padding-right: 10px !important;
+  }
     span.active_btn {
       margin: 0px 32px 0px 8px !important;
     }
@@ -198,7 +197,7 @@
 
   }
 
-
+ 
 
   @media(max-width: 425px) {
     .btn-outline-white {
@@ -310,6 +309,7 @@
     bottom: 16px;
     left: 16px;
     background: #fcc704;
+    color: #000;
     padding: 4px 30px;
     display: flex;
     gap: 8px;
@@ -879,12 +879,6 @@
   }
 }
 
-@media (max-width:1440px) {
-  // .user-info h6{
-  //   font-size: 20px !important;
-  // }
-}
-
 @media (max-width:1024px) and (min-width:769px) {
   .col-lg-3.responsive-edit_btn {
     width: 100% !important;
@@ -913,11 +907,10 @@
 }
 
 @media (max-width:1200px) and (min-width:769px) {
-  .user-info {
-    flex-direction: column !important;
-    row-gap: 10px;
-  }
-
+  .edit_button.responsive-edit_btn {
+    text-align: right;
+    padding-right: 10px !important;
+}
   span.active_btn {
     margin: 0px 32px 0px 8px !important;
   }
@@ -927,6 +920,10 @@
   .boost_profile {
     margin-right: 16px;
   }
+}
+
+.main-wrapper .card_box-1 .image-gallery .image_gallery-box {
+  justify-content: flex-start !important;
 }
 
 @media(max-width: 425px) {
@@ -1038,6 +1035,7 @@
   top: 16px;
   left: 16px;
   background: #fcc704;
+  color: #000;
   padding: 4px 8px;
   display: flex;
   gap: 8px;
@@ -1676,6 +1674,10 @@ span.active_btn {
 .cover_pic_mobile, .mobile_profile_buttons {
   display: none !important;
 }
+.user-info .edit_button.responsive-edit_btn {
+  text-align: right;
+  padding-right: 8px !important;
+}
 }
 
 
@@ -1840,10 +1842,6 @@ span.active_btn {
 }
 .user-info button .tour-personal-details {
   max-width: 135px !important;
-}
-.user-info .edit_button.responsive-edit_btn {
-  text-align: right;
-  padding-right: 8px !important;
 }
 }
 

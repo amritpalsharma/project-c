@@ -1,3 +1,9 @@
+.all-page-content .page-container > .outlet_outer {
+    min-height: calc(100vh - 150px);
+}
+.all-page-content .page-container > .outlet_outer + shared-footer {
+    padding-top: 30px;
+}
 
 @media (min-width: 992px) {
     .mobile-sidebar-active .sidebar .bottom_box {
@@ -287,7 +293,10 @@ td.cdk-column-Remove.mat-column-Remove svg {
     background-size: 26px !important;
 }
 .all-page-content .page-container > .outlet_outer {
-    min-height: calc(100vh - 200px);
+    min-height: calc(100vh - 2000px) !important;
+}
+.all-page-content .page-container > .outlet_outer + shared-footer {
+    padding-top: 0 !important;
 }
 }
 

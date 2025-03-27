@@ -132,7 +132,7 @@
     <hr>
 
     <div class="table-responsive ">
-        <table class="table table-scout-profile table-hover bg-072944 ">
+        <table class="table table-scout-profile table-hover bg-072944 table-striped">
             <thead class="border-table-thead">
                 <tr>
                     <th>{{ 'companyRepresentators' | translate }} &nbsp; &nbsp;<button
@@ -157,7 +157,7 @@
                         </div>
                     </td>
                     <td>
-                        <select class="custom-select custom-select-wrapper"
+                        <select id="scout_profile" class="custom-select custom-select-wrapper"
                             (change)="updateRepresentatorRole($event, representator.id)">
 
                             <option value="admin.access"
