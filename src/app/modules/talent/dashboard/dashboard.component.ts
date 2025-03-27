@@ -53,6 +53,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   coverImage: any;
   profileImage: any;
   selectedFile: any;
+  isHighlightClick: boolean = true;
   teams: any;
   highlights: any;
   userImages: any = [];
@@ -502,7 +503,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   //   });
 
   // }
-  openHighlight() {
+  openHighligh1t() {
     this.getGalleryData(); // Call function as usual
 
     const checkDataLoaded = () => {
@@ -530,6 +531,27 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.getHighlightsData();
       });
     });
+  }
+
+  openHighlight() {
+    this.isHighlightClick = false;
+    this.getGalleryData();
+    setTimeout(() => {
+      const dialogRef = this.dialog.open(EditHighlightsComponent, {
+        width: '800px',
+        data: {
+          images: this.userImages,
+          videos: this.userVideos,
+          url: this.imageBaseUrl
+        }
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        this.getHighlightsData();
+        this.isHighlightClick = true;
+      });
+    }, 1500);
+
   }
 
 

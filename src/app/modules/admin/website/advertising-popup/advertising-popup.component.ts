@@ -203,204 +203,208 @@ export class AdvertisingPopupComponent {
   }
 
 
-  isValidURL(url : string) {
-  const pattern = new RegExp(
-    "^(https?:\\/\\/)" + // Protocol (http or https)
-    "((([a-zA-Z\\d]([a-zA-Z\\d-]*[a-zA-Z\\d])*)\\.)+[a-zA-Z]{2,}|" + // Domain name
-    "localhost|" + // Allow localhost
-    "\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}|" + // IP address
-    "\\[?[a-fA-F\\d:]+\\]?)" + // IPv6
-    "(\\:\\d+)?" + // Port
-    "(\\/[-a-zA-Z\\d%@_.~+&:]*)*" + // Path
-    "(\\?[;&a-zA-Z\\d%@_.,~+&:=-]*)?" + // Query string
-    "(\\#[-a-zA-Z\\d_]*)?$", // Fragment/hash
-    "i"
-  );
+  isValidURL(url: string) {
+    const pattern = new RegExp(
+      "^(https?:\\/\\/)" + // Protocol (http or https)
+      "((([a-zA-Z\\d]([a-zA-Z\\d-]*[a-zA-Z\\d])*)\\.)+[a-zA-Z]{2,}|" + // Domain name
+      "localhost|" + // Allow localhost
+      "\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}|" + // IP address
+      "\\[?[a-fA-F\\d:]+\\]?)" + // IPv6
+      "(\\:\\d+)?" + // Port
+      "(\\/[-a-zA-Z\\d%@_.~+&:]*)*" + // Path
+      "(\\?[;&a-zA-Z\\d%@_.,~+&:=-]*)?" + // Query string
+      "(\\#[-a-zA-Z\\d_]*)?$", // Fragment/hash
+      "i"
+    );
 
-  return pattern.test(url);
-}
-
-
-validateAdvertisementForm(){
-
-  this.error = false;
-  this.errorMsg = {};
-
-  if (this.name == "") {
-    this.error = true;
-    // this.errorMsg.name = "Name is required";
-    this.errorMsg.name = this.nameRequired;
-  }
-  if (this.redirect == "" || !this.isValidURL(this.redirect)) {
-    this.error = true;
-    this.errorMsg.redirect = this.redirectrequired;
+    return pattern.test(url);
   }
 
-  if (this.type == "") {
-    this.error = true;
-    // this.errorMsg.type = "Type is required";
-    this.errorMsg.type = this.typeRequired;
-  }
 
-  if (this.page == "") {
-    this.error = true;
-    // this.errorMsg.page = "Page is required";
-    this.errorMsg.page = this.pageRequired;
-  }
+  validateAdvertisementForm() {
 
-  if (this.imageToUpload == "" && !this.imagePreview) {
-    this.error = true;
-    // this.errorMsg.image = "image is required";
-    this.errorMsg.image = this.imageRequired;
-  }
+    this.error = false;
+    this.errorMsg = {};
 
-  if ((this.endDate == "0000-00-00" || !this.endDate) && !this.disableEndDate) {
-    this.error = true;
-    // this.errorMsg.endDate = "enter the end date or check the box";
-    this.errorMsg.endDate = this.endDateRequired;
-  }
-
-  if (this.maxViews == "") {
-    this.error = true;
-    // this.errorMsg.maxViews = "Max views is required";
-    this.errorMsg.maxViews = this.maxViewsRequired;
-  }
-
-  if (this.maxClicks == "") {
-    this.error = true;
-    // this.errorMsg.maxClicks = "Max clicks is required";
-    this.errorMsg.maxClicks = this.maxClicksRequired;
-  }
-  return this.error;
-
-}
-
-createAd():any {
-
-  let validForm: any = this.validateAdvertisementForm();
-  if (validForm) {
-    return false;
-  }
-  let formdata = new FormData();
-  if (this.imageToUpload != "") {
-    formdata.append("featured_image", this.imageToUpload);
-  }
-  formdata.append("title", this.name);
-  formdata.append("redirect_url", this.redirect);
-  formdata.append("type", this.type);
-  formdata.append("page_id", this.page);
-  formdata.append("valid_from", this.startDate);
-
-  if (this.noEndDate) {
-    formdata.append("no_validity", '1');
-  } else {
-    formdata.append("valid_to", this.endDate);
-  }
-  formdata.append("status", '2');
-  formdata.append("views", this.maxViews);
-  formdata.append("clicks", this.maxClicks);
-
-  this.advertisementService.createAd(formdata).subscribe(
-    response => {
-      if (response.status) {
-        this.dialogRef.close({
-          action: 'added',
-          message: response.message
-        });
-      } else if (response.data?.error) {
-        this.errorMsg = response.data.error
-      } else {
-        this.toastr.error(response.message, 'Ad Not Created');
-      }
-    },
-    error => {
-      console.error('Error publishing coupon:', error);
+    if (this.name == "") {
+      this.error = true;
+      // this.errorMsg.name = "Name is required";
+      this.errorMsg.name = this.nameRequired;
     }
-  );
-}
-
-updateAd():any {
-
-  // if(this.imageToUpload == '' && this.imageUrl){
-  //   this.dialogRef.close();
-  //   return;
-  // }
-
-
-  let validForm: any = this.validateAdvertisementForm();
-  if (validForm) {
-    return false;
-  }
-  let formdata = new FormData();
-  if (this.imageToUpload != "") {
-    formdata.append("featured_image", this.imageToUpload);
-  }
-  formdata.append("title", this.name);
-  formdata.append("redirect_url", this.redirect);
-  formdata.append("type", this.type);
-  formdata.append("page_id", this.page);
-  formdata.append("valid_from", this.startDate);
-
-  if (this.noEndDate) {
-    formdata.append("no_validity", '1');
-  } else {
-    formdata.append("valid_to", this.endDate);
-  }
-  formdata.append("status", '2');
-  formdata.append("views", this.maxViews);
-  formdata.append("clicks", this.maxClicks);
-
-  this.advertisementService.updateAd(this.idToEdit, formdata).subscribe(
-    response => {
-      if (response.status) {
-        console.log(response.message);
-        this.toastr.success(response.message, 'Ad Updated');
-        this.dialogRef.close({
-          action: 'updated',
-          message: response.message
-        });
-      } else {
-        this.errorMsg = response.message
-        this.toastr.error(response.message, 'Error');
-      }
-    },
-    error => {
-      console.error('Error publishing ad:', error);
-      this.toastr.error(error, 'Error');
+    if (this.redirect == "" || !this.isValidURL(this.redirect)) {
+      this.error = true;
+      this.errorMsg.redirect = this.redirectrequired;
     }
-  );
-}
 
-onChange(){
-  // if(this.page && this.selectedLanguage){
-  if (this.page) {
-    console.log("updated page", this.page, this.typeOptions);
-    this.advertisementService.getAdvertisementType(this.page).subscribe((response) => {
-      let adsTypes = response.data.ad_types;
-      if (adsTypes) {
-        this.typeOptions = adsTypes;
-      } else {
-        this.typeOptions = [];
+    if (this.type == "") {
+      this.error = true;
+      // this.errorMsg.type = "Type is required";
+      this.errorMsg.type = this.typeRequired;
+    }
+
+    if (this.page == "") {
+      this.error = true;
+      // this.errorMsg.page = "Page is required";
+      this.errorMsg.page = this.pageRequired;
+    }
+
+    if (this.imageToUpload == "" && !this.imagePreview) {
+      this.error = true;
+      // this.errorMsg.image = "image is required";
+      this.errorMsg.image = this.imageRequired;
+    }
+
+    if ((this.endDate == "0000-00-00" || !this.endDate) && !this.disableEndDate) {
+      this.error = true;
+      // this.errorMsg.endDate = "enter the end date or check the box";
+      this.errorMsg.endDate = this.endDateRequired;
+    }
+
+    if (this.maxViews == "") {
+      this.error = true;
+      // this.errorMsg.maxViews = "Max views is required";
+      this.errorMsg.maxViews = this.maxViewsRequired;
+    }
+
+    if (this.maxClicks == "") {
+      this.error = true;
+      // this.errorMsg.maxClicks = "Max clicks is required";
+      this.errorMsg.maxClicks = this.maxClicksRequired;
+    }
+    return this.error;
+
+  }
+
+  createAd(): any {
+
+    let validForm: any = this.validateAdvertisementForm();
+    if (validForm) {
+      return false;
+    }
+    let formdata = new FormData();
+    if (this.imageToUpload != "") {
+      formdata.append("featured_image", this.imageToUpload);
+    }
+    formdata.append("title", this.name);
+    formdata.append("redirect_url", this.redirect);
+    formdata.append("type", this.type);
+    formdata.append("page_id", this.page);
+    formdata.append("valid_from", this.startDate);
+
+    if (this.noEndDate) {
+      formdata.append("no_validity", '1');
+    } else {
+      formdata.append("valid_to", this.endDate);
+    }
+    formdata.append("status", '2');
+    formdata.append("views", this.maxViews);
+    formdata.append("clicks", this.maxClicks);
+
+    this.advertisementService.createAd(formdata).subscribe(
+      response => {
+        if (response.status) {
+          this.dialogRef.close({
+            action: 'added',
+            message: response.message
+          });
+        } else if (response.data?.error) {
+          this.errorMsg = response.data.error
+        } else {
+          this.toastr.error(response.message, 'Ad Not Created');
+        }
+      },
+      error => {
+        console.error('Error publishing coupon:', error);
       }
+    );
+  }
+
+  updateAd(): any {
+
+    // if(this.imageToUpload == '' && this.imageUrl){
+    //   this.dialogRef.close();
+    //   return;
+    // }
+
+
+    let validForm: any = this.validateAdvertisementForm();
+    if (validForm) {
+      return false;
+    }
+    let formdata = new FormData();
+    if (this.imageToUpload != "") {
+      formdata.append("featured_image", this.imageToUpload);
+    }
+    formdata.append("title", this.name);
+    formdata.append("redirect_url", this.redirect);
+    formdata.append("type", this.type);
+    formdata.append("page_id", this.page);
+    formdata.append("valid_from", this.startDate);
+
+    if (this.noEndDate) {
+      formdata.append("no_validity", '1');
+    } else {
+      formdata.append("valid_to", this.endDate);
+    }
+    formdata.append("status", '2');
+    formdata.append("views", this.maxViews);
+    formdata.append("clicks", this.maxClicks);
+
+    this.advertisementService.updateAd(this.idToEdit, formdata).subscribe(
+      response => {
+        if (response.status) {
+          console.log(response.message);
+          this.toastr.success(response.message, 'Ad Updated');
+          this.dialogRef.close({
+            action: 'updated',
+            message: response.message
+          });
+        } else {
+          this.errorMsg = response.message
+          this.toastr.error(response.message, 'Error');
+        }
+      },
+      error => {
+        console.error('Error publishing ad:', error);
+        this.toastr.error(error, 'Error');
+      }
+    );
+  }
+
+  onChange() {
+    // if(this.page && this.selectedLanguage){
+    if (this.page) {
+      console.log("updated page", this.page, this.typeOptions);
+      this.advertisementService.getAdvertisementType(this.page).subscribe((response) => {
+        let adsTypes = response.data.ad_types;
+        if (adsTypes) {
+          this.typeOptions = adsTypes;
+        } else {
+          this.typeOptions = [];
+        }
+      });
+    }
+    else {
+      this.typeOptions = [];
+    }
+  }
+
+  getToasterMsg() {
+    this.translateService.get(['nameRequired', 'typeRequired', 'pageRequired', 'imageRequired', 'endDateRequired', 'maxViewsRequired', 'maxClicksRequired', 'redirectrequired']).subscribe((translations) => {
+      this.nameRequired = translations['nameRequired'];
+      this.typeRequired = translations['typeRequired'];
+      this.pageRequired = translations['pageRequired'];
+      this.imageRequired = translations['imageRequired'];
+      this.endDateRequired = translations['endDateRequired'];
+      this.maxViewsRequired = translations['maxViewsRequired'];
+      this.maxClicksRequired = translations['maxClicksRequired'];
+      this.redirectrequired = translations['redirectrequired'];
     });
   }
-  else {
-    this.typeOptions = [];
-  }
-}
 
-getToasterMsg() {
-  this.translateService.get(['nameRequired', 'typeRequired', 'pageRequired', 'imageRequired', 'endDateRequired', 'maxViewsRequired', 'maxClicksRequired', 'redirectrequired']).subscribe((translations) => {
-    this.nameRequired = translations['nameRequired'];
-    this.typeRequired = translations['typeRequired'];
-    this.pageRequired = translations['pageRequired'];
-    this.imageRequired = translations['imageRequired'];
-    this.endDateRequired = translations['endDateRequired'];
-    this.maxViewsRequired = translations['maxViewsRequired'];
-    this.maxClicksRequired = translations['maxClicksRequired'];
-    this.redirectrequired = translations['redirectrequired'];
-  });
-}
+  removeTextAfterDash(str: string) {
+    return str.split(" - ")[0]; // Splits at " - " and returns only the first part
+  }
 }
 
 

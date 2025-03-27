@@ -28,7 +28,7 @@ export class AddBoosterComponent {
   selectedAudienceIds: number[] = []; // Store only audience IDs
   id: any;
   loggedInUser: any = localStorage.getItem('userInfo');
-  theme : any = localStorage.getItem('theme');
+  theme : any = localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light';
 
   constructor(
     public dialogRef: MatDialogRef<AddBoosterComponent>,
@@ -46,7 +46,7 @@ export class AddBoosterComponent {
     this.id = this.data.id || [];
     this.stripe = await this.paymentService.getStripe();
 
-    this.theme = localStorage.getItem('theme');
+    this.theme = localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light';
 
     this.getToasterMsg();
     this.webPages.languageId$.subscribe((data: any) => {
