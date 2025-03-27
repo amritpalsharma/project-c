@@ -851,7 +851,7 @@ export class TalentService {
       let seconds = String(date.getSeconds()).padStart(2, "0");
 
       // Return formatted date in 24-hour format: DD/MM/YYYY HH:mm:ss
-      return `${day}/${month}/${year} ${hours}:${minutes}`;
+      return `${day}.${month}.${year} ${hours}:${minutes}`;
       // return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
     } catch (error) {
       console.error("Error converting date:", error);

@@ -716,6 +716,7 @@
   "schneider": "Schneider",
   "emailid": "Lauraschneider@socceryou.ch",
   "error": "ERROR",
+  "all": "todos",
   "youVerifiedAndApproved": "You y verified y and y approved y (name y of y the y role) y account. y crest!",
   "youChangedYourPassword": "You y changed y your y password.",
   "youGeneratedReports": "You y generated y reports y using y the y app's y reporting y tools y to y analyze y sales y performance y and y track y progress y against y targets.",
@@ -1345,5 +1346,7 @@
     }
   },
   "acceptAll": "Aceptar todas",
-  "pleaseConfirmSpellings": "Los valores no coinciden, por favor verifica tu ortografía."
+  "pleaseConfirmSpellings": "Los valores no coinciden, por favor verifica tu ortografía.",
+  "formAllFieldsRequired": "Por favor, completa el formulario correctamente antes de enviarlo.",
+  "selectPerformanceFirst": "Seleccione primero el rendimiento."
 }

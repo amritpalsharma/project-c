@@ -34,8 +34,10 @@
                         <div class="player-team-logo">
                             <div class="team-logo-bg"></div>
 
-                            <img *ngIf="loggedInUser?.pre_current_club_logo_path" alt="team-logo" src="{{loggedInUser?.pre_current_club_logo_path}}">
-                            <img *ngIf="!loggedInUser?.pre_current_club_logo_path" alt="team-logo" src="assets\images\team-logo.png">
+                            <img *ngIf="loggedInUser?.pre_current_club_logo_path" alt="team-logo"
+                                src="{{loggedInUser?.pre_current_club_logo_path}}">
+                            <img *ngIf="!loggedInUser?.pre_current_club_logo_path" alt="team-logo"
+                                src="assets\images\team-logo.png">
                         </div>
                         <div class="flag_box"><img src="https://api.socceryou.ch/uploads/logos/Afghanistan.svg">
                             <hr><span><svg width="16" viewBox="0 0 30 30" fill="none"
@@ -76,8 +78,10 @@
                         <div class="player-team-logo">
                             <div class="team-logo-bg"></div>
                             <!-- <img alt="team-logo" src="assets\images\team-logo.png"> -->
-                            <img *ngIf="loggedInUser?.pre_current_club_logo_path" alt="team-logo" src="{{loggedInUser?.pre_current_club_logo_path}}">
-                            <img *ngIf="!loggedInUser?.pre_current_club_logo_path" alt="team-logo" src="assets\images\team-logo.png">
+                            <img *ngIf="loggedInUser?.pre_current_club_logo_path" alt="team-logo"
+                                src="{{loggedInUser?.pre_current_club_logo_path}}">
+                            <img *ngIf="!loggedInUser?.pre_current_club_logo_path" alt="team-logo"
+                                src="assets\images\team-logo.png">
                         </div>
                         <div class="flag_box">
                             <img src="https://api.socceryou.ch/uploads/logos/Afghanistan.svg">
@@ -103,41 +107,30 @@
 
                 <div class="target-audience mb-4">
                     <div class="form-group col-lg-8">
-                      <mat-label>{{ 'selectTargetAudience' | translate }}</mat-label>
-                      <mat-select
-                        ngClass="mat-options"
-                        [(ngModel)]="selectedAudienceIds"
-                        (selectionChange)="updateSelectedAudiences()"
-                        multiple
-                        placeholder="{{'select' | translate}}"
-                      >
-                        <mat-option *ngFor="let audience of audiences" [value]="audience.target_role">
-                          {{ audience.role_name }}
-                        </mat-option>
-                      </mat-select>
+                        <mat-label>{{ 'selectTargetAudience' | translate }}</mat-label>
+                        <mat-select ngClass="mat-options" [(ngModel)]="selectedAudienceIds"
+                            (selectionChange)="updateSelectedAudiences()" multiple
+                            placeholder="{{'select' | translate}}">
+                            <mat-option *ngFor="let audience of audiences" [value]="audience.target_role">
+                                {{ audience.role_name }}
+                            </mat-option>
+                        </mat-select>
                     </div>
 
                     <!-- Display selected audiences in .explore-chip -->
                     <div class="explore-chip mt-4 d-flex align-items-center">
-                      <div class="chip" *ngFor="let audience of selectedAudiences">
-                        <span>{{ audience.role_name }}</span>
-                        <span>
-                          <button
-                            class="explore-chip_cut"
-                            (click)="removeAudience(audience.target_role)"
-                          >
-                            <svg
-                              width="13px"
-                              xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 0 384 512"
-                            >
-                              <path
-                                d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"
-                              ></path>
-                            </svg>
-                          </button>
-                        </span>
-                      </div>
+                        <div class="chip" *ngFor="let audience of selectedAudiences">
+                            <span>{{ audience.role_name }}</span>
+                            <span>
+                                <button class="explore-chip_cut" (click)="removeAudience(audience.target_role)">
+                                    <svg width="13px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                        <path
+                                            d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z">
+                                        </path>
+                                    </svg>
+                                </button>
+                            </span>
+                        </div>
                     </div>
                 </div>
 
@@ -187,8 +180,11 @@
                                         <td>
                                             <div class="d-flex align-items-center">
                                                 <span class="position-relative">
-                                                    <img *ngIf="user.profile_image" src="{{stats.profile_path+user.profile_image}}" alt="" class="table_img ng-star-inserted">
-                                                    <img  *ngIf="!user.profile_image" src="../../../../assets/images/default/talent-profile-default.png"
+                                                    <img *ngIf="user.profile_image"
+                                                        src="{{stats.profile_path+user.profile_image}}" alt=""
+                                                        class="table_img ng-star-inserted">
+                                                    <img *ngIf="!user.profile_image"
+                                                        src="../../../../assets/images/default/talent-profile-default.png"
                                                         alt="" class="table_img ng-star-inserted">
                                                 </span>
                                                 <span class="main-template">{{user.first_name}} </span>
@@ -199,8 +195,8 @@
                                                 {{ user.created_at | date:'dd.MM.yyyy' }}
                                             </h6>
                                         </td>
-                                        <td (click)="naviGateToProfile(user.role_id,user.id)">
-                                            <div class="main-template" >
+                                        <td (click)="naviGateToProfile(user.role_id,user.user_id)">
+                                            <div class="main-template">
                                                 <svg width="25" height="25" viewBox="0 0 25 25" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg" class="pointer">
                                                     <path

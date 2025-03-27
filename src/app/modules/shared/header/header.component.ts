@@ -89,6 +89,7 @@ export class HeaderComponent {
 
   notificationSeen: boolean = false;
   pageTitle: string = '';
+  isSearchVisible: boolean = false;
 
   ngOnInit() {
     this.getPageTitle();
@@ -628,4 +629,8 @@ export class HeaderComponent {
       this.pageTitle = updatedTitle;
     });
   }
+
+  toggleSearch(){
+    this.isSearchVisible = !this.isSearchVisible;
+ }
 }

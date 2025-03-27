@@ -917,6 +917,7 @@
   "subscriptionCanceled": "Subscription och canceled!",
   "subscriptionProcess": "Your och subscription och process och was och canceled. och please och try och again.",
   "close": "Stäng",
+  "all": "alla",
   "enterCouponCode": "Enter och coupon och code",
   "dont'tHaveCoupon": "I och don't och have och a och coupon,",
   "checkCoupon": "Check och coupon",
@@ -1400,5 +1401,7 @@
     }
   },
   "acceptAll": "Acceptera alla",
-   "pleaseConfirmSpellings": "Värdena matchar inte, vänligen bekräfta din stavning."
+   "pleaseConfirmSpellings": "Värdena matchar inte, vänligen bekräfta din stavning.",
+   "formAllFieldsRequired": "Vänligen fyll i formuläret korrekt innan du skickar in det.",
+   "selectPerformanceFirst": "Välj prestanda först."
 }

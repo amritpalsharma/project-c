@@ -1034,7 +1034,8 @@
   "laura": "Laura",
   "schneider": "Schneider",
   "emailid": "lauraschneider@socceryou.ch",
-  "error": "#ERROR!",
+  "error": "FEHLER",
+  "all": "alle",
   "youVerifiedAndApproved": "Du hast das Profil von (Name of the Role) geprüft und freigegeben.",
   "youGeneratedReports": "Du hast ein Reporting erstellt, um deine Verkaufszahlen zu analysieren und deinen Fortschritt mit deinen Zielen abzugleichen.",
   "searchPages": "Seiten suchen",
@@ -1403,6 +1404,8 @@
       "description": "Ich erlaube die Verwendung von Analyse-Cookies. Neue Analyse-Cookies werden standardmäßig aktiviert."
     }
   },
-   "pleaseConfirmSpellings": "Werte stimmen nicht überein, bitte überprüfe deine Rechtschreibung."
+   "pleaseConfirmSpellings": "Werte stimmen nicht überein, bitte überprüfe deine Rechtschreibung.",
+   "formAllFieldsRequired": "Bitte fülle das Formular korrekt aus, bevor du es absendest.",
+   "selectPerformanceFirst": "Wählen Sie zuerst Leistung."
 
 }

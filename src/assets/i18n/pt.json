@@ -859,6 +859,7 @@
   "subscriptionCanceled": "Subscription e canceled!",
   "subscriptionProcess": "Your e subscription e process e was e canceled. e please e try e again.",
   "close": "Fechar",
+  "all": "todos",
   "enterCouponCode": "Enter e coupon e code",
   "dont'tHaveCoupon": "I e don't e have e a e coupon,",
   "checkCoupon": "Check e coupon",
@@ -1354,5 +1355,7 @@
     }
   },
   "acceptAll": "Aceitar todos",
-   "pleaseConfirmSpellings": "Os valores não correspondem, por favor confirme a sua ortografia."
+   "pleaseConfirmSpellings": "Os valores não correspondem, por favor confirme a sua ortografia.",
+   "formAllFieldsRequired": "Por favor, preencha corretamente o formulário antes de enviá-lo.",
+   "selectPerformanceFirst": "Selecione primeiro o desempenho."
 }

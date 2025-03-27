@@ -107,7 +107,7 @@ export class AddPerformanceComponent {
           this.toastr.clear(loadingToast.toastId);
 
           // Show success message
-          if (response.status == true && response.message != '') {
+          if (response.message != '' && response.message != undefined) {
             this.toastr.success(response.message, this.successTxt);
           } else {
             this.toastr.success('Performance data submitted successfully!', 'Success');

@@ -768,6 +768,7 @@
   "subscriptionCanceled": "Subscription og canceled!",
   "subscriptionProcess": "Your og subscription og process og was og canceled. og please og try og again.",
   "close": "Luk",
+  "all": "alle",
   "enterCouponCode": "Enter og coupon og code",
   "dont'tHaveCoupon": "I og don't og have og a og coupon,",
   "checkCoupon": "Check og coupon",
@@ -1263,5 +1264,7 @@
     }
   },
   "acceptAll": "Accepter alle",
-  "pleaseConfirmSpellings": "Værdierne stemmer ikke overens, bekræft venligst din stavning."
+  "pleaseConfirmSpellings": "Værdierne stemmer ikke overens, bekræft venligst din stavning.",
+  "formAllFieldsRequired": "Udfyld venligst formularen korrekt, før du sender det.",
+  "selectPerformanceFirst": "Vælg performance først."
 }

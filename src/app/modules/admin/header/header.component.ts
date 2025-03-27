@@ -90,6 +90,7 @@ export class HeaderComponent {
   pageTitle: string = '';
 
   notificationSeen: boolean = false;
+  isSearchVisible: boolean = false;
 
   ngOnInit() {
     // Component's Title
@@ -588,6 +589,10 @@ export class HeaderComponent {
 
   ngAfterViewInit() {
     this.cdRef.detectChanges();
+  }
+
+  toggleSearch(){
+     this.isSearchVisible = !this.isSearchVisible;
   }
 }
 
