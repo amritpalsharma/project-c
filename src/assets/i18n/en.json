@@ -361,7 +361,7 @@
   "scout": "Scout",
   "rejected": "Rejected",
   "kadinSeptimus": "Kadin Septimus",
-  "tenMinsAgo": "10 Mins Ago",
+  "tenMinsAgo": "Mins Ago",
   "copyrightNotice": "2025 Succer You Sports AG, All Rights Reserved. Privacy | Terms | FAQ | Press Room",
   "alphabetically": "Alphabetically",
   "membership": "Membership",
@@ -575,7 +575,7 @@
   "blog": "Blog",
   "feature": "Feature",
   "name-text": "Kadin Septimus",
-  "time": "10 mins ago",
+  "time": "mins ago",
   "talent": "Talent",
   "dateTime08": "08.04.2024 - 12.53 PM",
   "setPassword": "Reset your password",
@@ -1098,7 +1098,7 @@
   "activeMultiCountryPlan": " 2 active Multi-Country Plan",
   "youHaveActiveBoostPlan": "You have active boost plan",
   "selectFavoriteFirst": "Select favorite user(s) first.",
-  "removeFavoriteConfirm": "Are you sure you want to remove this favorite from your list?",
+  "removeFavoriteConfirm": "Are to sure to remove favorite?",
   "userPurchasesNotFound": "No purchases found.",
   
   "premiumPlanDesc": {
@@ -1315,5 +1315,7 @@
   },
   "pleaseConfirmSpellings": "Values do not match, please confirm your spelling.",
   "formAllFieldsRequired": "Please fill out the form correctly before submitting.",
-  "selectPerformanceFirst": "Select performance(s) first."
+  "selectPerformanceFirst": "Select performance(s) first.",
+  "removeSection": "Remove Section",
+  "addMore": "Add More"
 }

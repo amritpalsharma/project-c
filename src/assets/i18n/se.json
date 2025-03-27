@@ -1358,5 +1358,7 @@
     }
   },
   "acceptAll": "Acceptera alla",
-  "pleaseConfirmSpellings": "Värdena matchar inte, vänligen bekräfta din stavning."
+  "pleaseConfirmSpellings": "Värdena matchar inte, vänligen bekräfta din stavning.",
+  "removeSection": "Ta bort sektion",
+  "addMore": "Lägg till mer"
 }
