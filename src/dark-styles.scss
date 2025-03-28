@@ -2032,39 +2032,27 @@ input:checked+.slider:before {
   color: rgb(255 255 255 / 87%);
 }
 
-.dark-theme .dark-form-select-bg {
-  background-color: #0C3453;
-}
-
-.dark-theme .dropdown-icon path {
+.dark-theme .dropdown-icon path, .dark-theme .search-icon-favourites {
   stroke: #ffffff !important;
 }
-
-.dark-theme .search-icon-favourites {
-  stroke: #ffffff !important;
-}
-
 .dark-theme .td-icon-favourites {
   fill: #fff;
 }
 
-.dark-theme .bg-0C3453 {
+.dark-theme .bg-0C3453, .dark-theme .bg-072944 {
   background-color: #072944;
+  color: #fff;
 }
-
-.dark-theme .bg-072944 {
-  background-color: #072944;
-}
-
-.dark-theme .bg-custom {
+.dark-theme .bg-custom, .dark-theme .dark-form-select-bg {
   background-color: #0C3453;
+  color: #fff;
 }
 
 .dark-theme .search-icon-purchase {
   stroke: #ffffff !important;
 }
 
-.dark-theme .td-icon-purchase {
+.dark-theme .td-icon-purchase, .dark-theme .upload-box svg path, .dark-theme .upload-img svg path {
   stroke: #fff;
 }
 
@@ -2072,19 +2060,9 @@ input:checked+.slider:before {
   fill: #ffffff;
 }
 
-.dark-theme .gallery-h6 {
+.dark-theme .gallery-h6, .dark-theme .gallery-p, .dark-theme hr {
   color: #ffffff;
 }
-
-.dark-theme .gallery-p {
-  color: #ffffff;
-
-}
-
-.dark-theme .upload-box svg path {
-  stroke: #ffffff;
-}
-
 .dark-theme .gallery-upload-button {
   color: #2C2C2C;
 }
@@ -2092,15 +2070,6 @@ input:checked+.slider:before {
 .dark-theme .upload-btn {
   color: #2C2C2C;
 }
-
-.dark-theme .upload-img svg path {
-  stroke: #ffffff;
-}
-
-.dark-theme hr {
-  color: #fff;
-}
-
 
 .dark-theme .gallery-photo {
   color: #ffffff;
@@ -2851,6 +2820,7 @@ mat-datepicker-toggle {
   }
 }
 
+
 .mobile_search {
   .nav-link img {
     filter: brightness(0) invert(1)
@@ -2902,5 +2872,59 @@ select#scout_profile {
   color: #072944;
   background: #bde34f;
   border-color: #bde34f;
+}
+
+input[type="datetime-local"]::-webkit-inner-spin-button,
+input[type="datetime-local"]::-webkit-calendar-picker-indicator,
+input#startDate::-webkit-inner-spin-button,
+input#startDate::-webkit-calendar-picker-indicator,
+input#endDate::-webkit-inner-spin-button,
+input#endDate::-webkit-calendar-picker-indicator {
+    filter: brightness(0) invert(1);
+}
+
+.create-sight {
+  label {
+    color: #fff;
+  }
+.user_chip_wrapper {
+  .user-chip span {
+    color: #fff !important;
+  }
+}
+.choose-file-box span {
+  color: #fff !important;
+}
+.choose-file-box svg {
+  fill: #fff !important;
+}
+.choose-file-box svg path {
+  fill: #fff !important;
+}
+}
+.dashboard_footer {
+  .footer_main_inner p:not(:last-child) {
+    &::after {
+      background: #fff !important;
+    }
+    }
+}
+.adv_modal .Launch{
+  background-color: #BDE34F !important;
+  color: #0c3453 !important;
+}
+
+.mat-mdc-autocomplete-panel.mdc-menu-surface.mdc-menu-surface--open.suggestion-list {
+  background: #072944;
+}
+.mat-mdc-autocomplete-panel.mdc-menu-surface.mdc-menu-surface--open.listBox {
+  background: #072944 !important;
+}
+.coupon-dateRange .view_add_dates {
+  color: #fff !important;
+  border: 1px solid #fff !important;
+  svg path{
+    fill: #fff !important;
+  }
 }
 }

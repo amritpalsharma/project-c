@@ -75,6 +75,8 @@ button.premium-subscription_btn {
   color: #FD5454;
   font-weight: 500;
   border-radius: 8px;
+  position: relative;
+  z-index: 1;
 }
 button.premium-edit_btn,a.premium-edit_btn {
   border: none;

@@ -59,7 +59,6 @@
   cursor: pointer;
   margin-right: 12px;
   margin-top: 1px;
-  color: #ffffff;
   padding: 0px 5px;
   letter-spacing: .3px;
 }
@@ -80,6 +79,10 @@
   padding: 0 !important;
 }
 
+.back-and-add-container {
+  margin-bottom: 10px;
+}
+
 
 @media (max-width: 1199px) {
   .box-square {
@@ -96,6 +99,5 @@
 }
 
 .selected_team_name{
-  color: black;
   font-size: 18px;
 }

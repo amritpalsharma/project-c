@@ -196,14 +196,6 @@ border-radius: 5px;
 padding: 8px 15px;
 margin-top: 20px;
 }
-.space-box{
-  padding: 0px 11px;
-}
-// .container {
-//   background-color: #f0f0f0;
-//   padding: 30px;
-//   border-radius: 10px;
-// }
 
 .btn-primary {
   background-color: #007bff; /* Blue */
@@ -327,6 +319,39 @@ margin-top: 20px;
 .card-search {
   max-width: 344px;
   width: 100%;
+}
+
+.col_padding {
+  padding: 30px;
+}
+.edit_padding {
+  padding: 10px 30px 30px;
+}
+.inquire-btn {
+  width: 170px !important;
+}
+
+@media (min-width: 768px) {
+.green_bar_sec {
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  .text-size, .butn_div {
+    width: max-content;
+    max-width: 100%;
+  }
+}
+}
+
+@media (max-width: 767px) {
+.col_padding {
+  padding: 20px 5px;
+}
+.edit_padding {
+  padding: 10px 5px 20px;
+}
+.green_bar_sec {
+  padding: 20px 0 !important;
+}
 }
 
 @media (max-width: 600px) {

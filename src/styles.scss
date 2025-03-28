@@ -1580,7 +1580,17 @@ table {
   box-shadow: inherit !important;
   background-color: #FAFAFA !important;
   border-bottom: 1px solid #EBEBEB;
-
+}
+.listBox span.mdc-list-item__primary-text img {
+  object-fit: cover;
+  object-position: top;
+  padding-top: 3px;
+  border-radius: 50%;
+}
+.listBox .mat-mdc-option.mdc-list-item {
+  padding: 8px;
+  border-bottom: 1px solid #dbdbdb;
+  margin: 0 !important;
 }
 
 .listBox::-webkit-scrollbar {
@@ -1918,6 +1928,9 @@ nav.navbar .country_dropdown h6.border-bottom {
 }
 .date_field input {
   text-indent: 30px !important;
+}
+.date_field input.mat-datepicker-input {
+  // text-indent: 0 !important;
 }
 
 .upgrade_unlock .unlock_btn {
@@ -2331,4 +2344,13 @@ img.join-btn.check-image-dark {
 .NgxEditor__Content {
   background: #FCFCFC !important;
 }
+}
+
+
+.admin_adv_popup {
+  max-width: 900px !important;
+}
+.scout_add_new_talent_popup .example-chip-list.inbox-wrapper .mat-mdc-text-field-wrapper.mdc-text-field {
+  border: 0 !important;
+  padding: 10px !important;
 }

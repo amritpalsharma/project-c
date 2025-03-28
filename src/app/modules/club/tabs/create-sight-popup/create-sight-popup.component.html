@@ -22,25 +22,24 @@
       </div>
     </div>
 
-    <div class="row mb-4 mt-4 name-details">
-      <div class="col-lg-4 px-2">
+    <div class="row mt-4 name-details">
+      <div class="col-lg-4 px-2 mb-4">
         <label for="event-name" class="code-text">{{ 'eventName' | translate }}</label>
         <input type="text" id="event-name" class="cupen-btn code-text w-100" [(ngModel)]="eventName">
       </div>
-      <div class="col-lg-4 px-2">
+      <div class="col-lg-4 px-2 mb-4">
         <label for="manager-name" class="code-text"> {{ 'managerName' | translate }}</label>
         <input type="text" id="manager-name" class="cupen-btn w-100" [(ngModel)]="managerName">
       </div>
-      <div class="col-lg-4 px-2">
+      <div class="col-lg-4 px-2 mb-4">
         <label for="date-select" class="code-text">{{ 'date' | translate }}</label><br>
 
         <input class="form-control cupen-btn sighting-cal" style="min-width: 170px;" type="datetime-local" id="date-select"  [(ngModel)]="dateTime" placeholder="{{ 'selectDateTime' | translate }}">
       </div>
     </div>
 
-    <div class="row">
-
-      <div class="form-group col-lg-8">
+    <div class="row mt-4">
+      <div class="form-group col-lg-12 mb-4">
         <label for="talent" class="code-text">{{ 'inviteTalent' | translate }}</label>
         <div class="select-talent">
           <input type="text" id="talent" class="cupen-btn d-flex justify-content-between code-text w-100" placeholder="{{ 'selectFromFavorites' | translate }}" readonly (click)="toggleInviteeOverlay()">
@@ -98,50 +97,43 @@
           </div>
         </div>
       </div>
-
-    </div>
-    <div class="user-chip mb-4" *ngFor="let user of users">
-      <span class="user-chip_image">
-        <img src=" assets/images/1.png" *ngIf="!user.meta.profile_image_path" alt="usre-image">
-        <img src="{{user.meta.profile_image_path}}" *ngIf="user.meta.profile_image_path" alt="usre-image">
-      </span>
-      <span>{{user.first_name}}</span>
-      <span>
-        <button>
-          <svg (click)="remove(user)" width="11" height="11" viewBox="0 0 11 11" fill="none"
-            xmlns="http://www.w3.org/2000/svg">
-            <path d="M9.74286 11L5.5 6.75714L1.25714 11L0 9.74286L4.24286 5.5L0 1.25714L1.25714 0L5.5 4.24286L9.74286 0L11 1.25714L6.75714 5.5L11 9.74286L9.74286 11Z" fill="#627C97" />
-          </svg>
-        </button>
-      </span>
-    </div>
-
-    <div class="row mb-4 mt-4">
-      <label for="enter-address" class="code-text">{{ 'address' | translate }}</label><br>
-      <div class="col-lg-8">
+      <div class="col-lg-12 mb-4 user_chip_wrapper">
+      <div class="user-chip" *ngFor="let user of users">
+        <span class="user-chip_image">
+          <img src=" assets/images/1.png" *ngIf="!user.meta.profile_image_path" alt="usre-image">
+          <img src="{{user.meta.profile_image_path}}" *ngIf="user.meta.profile_image_path" alt="usre-image">
+        </span>
+        <span>{{user.first_name}}</span>
+        <span>
+          <button>
+            <svg (click)="remove(user)" width="11" height="11" viewBox="0 0 11 11" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path d="M9.74286 11L5.5 6.75714L1.25714 11L0 9.74286L4.24286 5.5L0 1.25714L1.25714 0L5.5 4.24286L9.74286 0L11 1.25714L6.75714 5.5L11 9.74286L9.74286 11Z" fill="#627C97" />
+            </svg>
+          </button>
+        </span>
+      </div>
+      </div>
+      <div class="col-lg-12 mb-4">
+        <label for="enter-address" class="code-text">{{ 'address' | translate }}</label><br>
         <input type="text" id="enter-address" class="cupen-btn  code-text w-100" [(ngModel)]="address">
       </div>
-    </div>
-    <div class="row mb-4">
-      <div class="col-lg-8  gap-3 input-box d-flex">
-        <div class="zipcode-input  col-lg-6">
-          <label for="zipcode" class="code-text"> {{ 'zipcode' | translate }}</label> <br>
-          <input type="number" #numInput id="zipcode" class="cupen-btn  code-text w-100" [(ngModel)]="zipcode">
-        </div>
-        <div class="city-input col-lg-6">
-          <label for="city" class="code-text">{{ 'city' | translate }}</label><br>
-          <input type="text" id="city" class="cupen-btn w-100" [(ngModel)]="city">
-        </div>
+      <div class="zipcode-input col-lg-6 mb-4">
+        <label for="zipcode" class="code-text"> {{ 'zipcode' | translate }}</label> <br>
+        <input type="number" #numInput id="zipcode" class="cupen-btn  code-text w-100" [(ngModel)]="zipcode">
+      </div>
+      <div class="city-input col-lg-6 mb-4">
+        <label for="city" class="code-text">{{ 'city' | translate }}</label><br>
+        <input type="text" id="city" class="cupen-btn w-100" [(ngModel)]="city">
       </div>
     </div>
 
-    <div class="row mb-4" *ngFor="let row of attachmentRows; let i = index">
-      <div class="col-lg-12  gap-3 d-flex input-box">
-        <div class="document-input  col-lg-5">
+    <div class="row" *ngFor="let row of attachmentRows; let i = index">
+        <div class="document-input col-lg-5 mb-4">
           <label for="document" class="code-text">{{ 'documentTitle' | translate }}</label> <br>
           <input type="text" id="document" class="cupen-btn  code-text w-100" (keyup)="titleUpdate($event, i)">
         </div>
-        <div class="city-input col-lg-5">
+        <div class="city-input col-lg-5 mb-4">
           <div class="choose-file-box d-flex align-items-center justify-content-between" *ngIf="row.file != ''">
             <span class="w-100">
               <svg width="18" height="24" viewBox="0 0 18 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -172,16 +164,15 @@
             <input id="file-upload-{{i}}" (change)="onAttachmentFileChange($event, i)" type="file" class="d-none" />
           </div>
         </div>
-
-        <div class="col-lg-2 mt-4">
-          <svg (click)="addNewRow()" style="transform: rotate(45deg);" *ngIf="attachmentRows.length == i+1" width="13px"
+        <div class="col-lg-2 mb-4 mt-4">
+          <div (click)="addNewRow()" class="add_row_btn" *ngIf="attachmentRows.length == i+1">
+          <svg style="transform: rotate(45deg);" width="13px"
             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
             <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z">
             </path>
           </svg>
         </div>
-
-      </div>
+        </div>
     </div>
     <div class="about-event">
       <label for="about-text" class="code-text">{{ 'aboutEvent' | translate }}</label><br>

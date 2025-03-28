@@ -1,7 +1,7 @@
 .code-parent{
     position: relative;
 }
-.discount-btn, .create-new_btn {
+.create-new_btn {
   justify-content: space-between !important;
   display: flex;
   flex-wrap: wrap;
@@ -9,7 +9,7 @@
     width: 100%;
   }
 }
-.create-new_btn .w-50, .coupon-dateRange, .coupon-dateRange .code-text {
+.create-new_btn .w-50,  .coupon-dateRange .code-text {
   width: 49% !important;
 }
 .d-flex.coupon-dateRange > div {
@@ -24,7 +24,9 @@
     cursor: pointer;
     background: none;
     font-size: 14px;
-  width: 49% !important;
+  width: max-content !important;
+  max-width: 50%;
+  margin-right: 15px;
     }
   
 .custom-button:hover {
@@ -134,6 +136,9 @@
     max-height: 54vh;
     overflow: auto;
   }
+  .cupen-btn-date.date_field, .cupen-btn-date-1.date_field {
+    border: 0;
+}
 
   @media (max-width: 991px) {
   .coupon-dateRange, .coupon-dateRange .code-text {
