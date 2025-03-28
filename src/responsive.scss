@@ -130,6 +130,9 @@
     height: calc(100% - 40px);
     z-index: 2;
 }
+.mobile-sidebar-active .page-sidebar {
+    transition: all .4s;
+}
 .compact-sidebar .page-sidebar:before {
     position: fixed;
     height: calc(100% - 40px);

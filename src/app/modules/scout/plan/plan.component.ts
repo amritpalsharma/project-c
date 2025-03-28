@@ -61,6 +61,9 @@ export class PlanComponent implements OnInit, OnDestroy {
   couponCode: string = '';
   isCouponApplied: boolean = false;
 
+  pleaseWait: string = '';
+  Processing: string = '';
+
   premiumFeatures: string[] = []; // Store the fetched feature list
   multiCountryPlanDesc: string[] = []; // Store the fetched feature list
   bostProfileDesc: string[] = [];
@@ -93,10 +96,7 @@ export class PlanComponent implements OnInit, OnDestroy {
     this.stripe = await this.paymentService.getStripe();
     this.loggedInUser = JSON.parse(this.loggedInUser || '{}');
     this.getBoosterData()
-    this.getJsonTranslations();
-    this.webpages.languageId$.subscribe((data) => {
-      this.getJsonTranslations();
-    })
+    
     this.getBoosterData();
 
     this.loadFeatures();
@@ -105,6 +105,13 @@ export class PlanComponent implements OnInit, OnDestroy {
       this.fetchPlans(); // Reload features when the language changes
       this.getJsonTranslations();
     });
+
+    this.getJsonTranslations();
+    this.getToasterMsg();
+    this.webpages.languageId$.subscribe((data) => {
+      this.getToasterMsg();
+      this.getJsonTranslations();
+    })
   }
 
   // Open coupon dialog
@@ -130,7 +137,8 @@ export class PlanComponent implements OnInit, OnDestroy {
   // Redirect to Stripe Checkout with coupon code logic
   async redirectToCheckout(planId: string) {
     this.isLoadingCheckout = true;
-    this.toastr.info('Redirecting to payment...', 'Loading', { disableTimeOut: true });
+    // this.toastr.info('Redirecting to payment...', 'Loading', { disableTimeOut: true });
+    this.toastr.info(this.pleaseWait, this.Processing, { disableTimeOut: true });
 
     try {
       const response = await this.paymentService.createCheckoutSession(planId, '', this.couponCode).toPromise();
@@ -139,7 +147,7 @@ export class PlanComponent implements OnInit, OnDestroy {
         this.toastr.clear();
 
         // Show success message after redirection attempt
-        this.toastr.success('Redirected to Stripe Checkout successfully.', 'Success');
+        // this.toastr.success('Redirected to Stripe Checkout successfully.', 'Success');
 
         const stripe = await this.stripe;
         await stripe?.redirectToCheckout({ sessionId: response.data.payment_intent.id });
@@ -458,7 +466,8 @@ export class PlanComponent implements OnInit, OnDestroy {
 
   updateSubscription(oldId: any, newId: any) {
 
-    this.toastr.info('Updating Plan, Please wait...', 'Loading', { disableTimeOut: true });
+    // this.toastr.info('Updating Plan, Please wait...', 'Loading', { disableTimeOut: true });
+    this.toastr.info(this.pleaseWait, this.Processing, { disableTimeOut: true });
 
     this.getUserPlans();
 
@@ -467,7 +476,7 @@ export class PlanComponent implements OnInit, OnDestroy {
         if (response && response.status) {
 
           this.toastr.clear();
-          this.toastr.success('Plan has been updated successfully.');
+          // this.toastr.success('Plan has been updated successfully.');
           this.getUserPlans();
         } else {
           this.toastr.clear();
@@ -605,6 +614,13 @@ export class PlanComponent implements OnInit, OnDestroy {
     } catch (error) {
       console.error('Error creating Stripe Checkout session:', error);
     }
+  }
+
+  getToasterMsg() {
+    this.translateService.get(['pleaseWait', 'Processing']).subscribe((translations) => {
+      this.pleaseWait = translations['pleaseWait'];
+      this.Processing = translations['Processing'];
+    });
   }
 
   getJsonTranslations() {

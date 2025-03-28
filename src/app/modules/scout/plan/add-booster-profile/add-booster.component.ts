@@ -30,6 +30,9 @@ export class AddBoosterComponent {
   loggedInUser: any = localStorage.getItem('userInfo');
   theme : any = localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light';
 
+  pleaseWait: string = '';
+  Processing: string = '';
+
   constructor(
     public dialogRef: MatDialogRef<AddBoosterComponent>,
     public scoutService: ScoutService,
@@ -101,10 +104,8 @@ export class AddBoosterComponent {
         if(result !== 'proceed_to_checkout_without_coupon'){
           coupon = result;
         }
-        this.toastr.info('Applying coupon code...', 'Processing');
         this.redirectToCheckout(this.id, this.selectedAudienceIds, coupon);
       } else if (result === null) {
-        this.toastr.info('Proceeding without coupon...', 'Processing');
         this.redirectToCheckout(this.id, this.selectedAudienceIds);
       }
     });
@@ -112,7 +113,7 @@ export class AddBoosterComponent {
 
   async redirectToCheckout(planId: string, booster_audience: number[] = [], coupon: any = '') {
     this.isLoadingCheckout = true;
-    this.toastr.info('Redirecting to checkout...', 'Processing');
+    this.toastr.info(this.pleaseWait, this.Processing);
 
     try {
       const response = await this.paymentService.createCheckoutSession(planId, booster_audience.join(','), coupon).toPromise();
@@ -148,10 +149,12 @@ export class AddBoosterComponent {
   }
 
   getToasterMsg() {
-    this.translateService.get(['talent', 'scout', 'club']).subscribe((translations) => {
+    this.translateService.get(['talent', 'scout', 'club', 'pleaseWait', 'Processing']).subscribe((translations) => {
       this.talent = translations['talent'];
       this.scout = translations['scout'];
       this.club = translations['club'];
+      this.pleaseWait = translations['pleaseWait'];
+      this.Processing = translations['Processing'];
     });
   }
 

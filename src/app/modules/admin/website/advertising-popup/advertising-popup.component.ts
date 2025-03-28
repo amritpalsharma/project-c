@@ -294,6 +294,7 @@ export class AdvertisingPopupComponent {
     if (this.noEndDate) {
       formdata.append("no_validity", '1');
     } else {
+      formdata.append("no_validity", '0');
       formdata.append("valid_to", this.endDate);
     }
     formdata.append("status", '2');
@@ -310,7 +311,7 @@ export class AdvertisingPopupComponent {
         } else if (response.data?.error) {
           this.errorMsg = response.data.error
         } else {
-          this.toastr.error(response.message, 'Ad Not Created');
+          this.toastr.error(response.message);
         }
       },
       error => {
@@ -344,6 +345,7 @@ export class AdvertisingPopupComponent {
     if (this.noEndDate) {
       formdata.append("no_validity", '1');
     } else {
+      formdata.append("no_validity", '0');
       formdata.append("valid_to", this.endDate);
     }
     formdata.append("status", '2');
@@ -354,7 +356,7 @@ export class AdvertisingPopupComponent {
       response => {
         if (response.status) {
           console.log(response.message);
-          this.toastr.success(response.message, 'Ad Updated');
+          this.toastr.success(response.message);
           this.dialogRef.close({
             action: 'updated',
             message: response.message

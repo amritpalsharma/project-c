@@ -124,6 +124,60 @@ export class EditHighlightsComponent {
   }
 
 
+  videoDuration: string = '';
+  videoThumbnail: string = '';
+
+  // setDuration(duration: number) {
+  //   this.videoDuration = this.formatDuration(duration);
+  // }
+
+  setDurationAndThumbnail(videoElement: HTMLVideoElement) {
+    videoElement.crossOrigin = 'anonymous';
+    // Set Duration
+    this.videoDuration = this.formatDuration(videoElement.duration);
+
+    // Capture Thumbnail
+    this.captureThumbnail(videoElement);
+  }
+
+  captureThumbnail(videoElement: HTMLVideoElement) {
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+
+    if (ctx) {
+      // Set canvas size to video size
+      canvas.width = videoElement.videoWidth;
+      canvas.height = videoElement.videoHeight;
+
+      // Seek to the 1st second (or middle of the video)
+      videoElement.currentTime = Math.min(1, videoElement.duration / 2);
+
+      videoElement.onseeked = () => {
+        // Draw video frame on canvas
+        ctx.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+
+        // Convert to Data URL (Base64)
+        this.videoThumbnail = canvas.toDataURL('image/png');
+      };
+    }
+  }
+
+
+
+  formatDuration(duration: number): string {
+    const hours = Math.floor(duration / 3600);
+    const minutes = Math.floor((duration % 3600) / 60);
+    const seconds = Math.floor(duration % 60);
+
+    if (hours > 0) {
+      return `${hours}.${String(minutes).padStart(2, '0')}.${String(seconds).padStart(2, '0')}`;
+    } else {
+      return `${minutes}.${String(seconds).padStart(2, '0')}`;
+    }
+  }
+
+
+
   // Called when the save button is clicked
   onSubmit(): void {
     const selectedData = [...this.selectedImageIds, ...this.selectedVideoIds];
