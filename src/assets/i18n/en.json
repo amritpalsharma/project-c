@@ -612,6 +612,7 @@
   "newChatLightPopup": "New Chat Light Popup",
   "resetPasswordPopup": "Reset Password Popup",
   "performance": "Performance",
+  "PerformaceProfile": "Performance Profile",
   "addNewPerformancePopup": "Add New Statistic",
   "editStatistic": "Edit statistic",
   "performanceAnalysis": "Performance Analysis",
@@ -1319,5 +1320,9 @@
   "removeSection": "Remove Section",
   "addMore": "Add More",
   "selectSightingFirst": "Select sighting(s) first.",
-  "JoinandEndDates": "Join and End Date"
+  "JoinandEndDates": "Join and End Date",
+  "sightingInformation": "Sighting Information",
+  "freePlanText": "2 months free on yearly plan",
+  "forClubsandScouts": "For Clubs and Scouts",
+  "subscriptionCanceledSuccessfully": "Subscription canceled successfully."
 }

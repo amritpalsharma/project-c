@@ -11,24 +11,24 @@
             {{ data.message }}
         </div>
         <div *ngIf="data.action === 'delete-confirmation'"
-            class="popup-delete-btn d-flex align-items-center flex-wrap justify-content-between">
-            <div (click)="deleteConfirmed()" class="btn_confirmm">{{ 'confirm' | translate }}</div>
-            <div (click)="close()" class="btn_cancell">{{ 'close' | translate }}</div>
+            class="popup-delete-btn d-flex align-items-center flex-wrap justify-content-between mx-5 py-2">
+            <div (click)="deleteConfirmed()" class="btn btn-success me-3 bg-light-btn btn_confirmm">{{ 'confirm' | translate }}</div>
+            <div (click)="close()" class="btn btn-danger bg-dark-btn btn_cancell">{{ 'close' | translate }}</div>
         </div>
         <div *ngIf="data.action === 'newsletter-confirmation'"
-            class="popup-delete-btn d-flex align-items-center flex-wrap justify-content-between">
-            <div (click)="newsletterConfirmed()" class="btn_confirmm">{{ 'confirm' | translate }}</div>
-            <div (click)="close()" class="btn_cancell">{{ 'close' | translate }}</div>
+            class="popup-delete-btn d-flex align-items-center flex-wrap justify-content-between mx-5 py-2">
+            <div (click)="newsletterConfirmed()" class="btn btn-success me-3 bg-light-btn btn_confirmm">{{ 'confirm' | translate }}</div>
+            <div (click)="close()" class="btn btn-danger bg-dark-btn btn_cancell">{{ 'close' | translate }}</div>
         </div>
         <div *ngIf="data.action === 'activity-confirmation'"
-            class="popup-delete-btn d-flex align-items-center flex-wrap justify-content-between">
-            <div (click)="activityConfirmed()" class="btn_confirmm">{{ 'confirm' | translate }}</div>
-            <div (click)="close()" class="btn_cancell">{{ 'close' | translate }}</div>
+            class="popup-delete-btn d-flex align-items-center flex-wrap justify-content-between mx-5 py-2">
+            <div (click)="activityConfirmed()" class="btn btn-success me-3 bg-light-btn btn_confirmm">{{ 'confirm' | translate }}</div>
+            <div (click)="close()" class="btn btn-danger bg-dark-btn btn_cancell">{{ 'close' | translate }}</div>
         </div>
         <div *ngIf="data.action === 'remove-fav-confirmation'"
-            class="popup-delete-btn d-flex align-items-center flex-wrap justify-content-between">
-            <div (click)="deleteConfirmed()" class="btn_confirmm">{{ 'removeFavbtn' | translate }}</div>
-            <div (click)="close()" class="btn_cancell">{{ 'cancelRemoveFavBtn' | translate }}</div>
+            class="popup-delete-btn d-flex align-items-center flex-wrap justify-content-between mx-5 py-2">
+            <div (click)="deleteConfirmed()" class="btn btn-success me-3 bg-light-btn btn_confirmm">{{ 'removeFavbtn' | translate }}</div>
+            <div (click)="close()" class="btn btn-danger bg-dark-btn btn_cancell">{{ 'cancelRemoveFavBtn' | translate }}</div>
         </div>
         <!-- <div *ngIf="data.action === 'delete-account-close'"
             class="popup-delete-btn d-flex align-items-center mx-5 px-5 py-2">

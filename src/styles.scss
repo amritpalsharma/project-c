@@ -90,6 +90,7 @@ img.admin-logo {
   margin-right: 10px !important;
   flex-shrink: 0;
 }
+
 .mat-date-range-input-mirror {
   display: none !important;
 }
@@ -185,12 +186,14 @@ mat-datepicker-toggle {
   left: 0;
   top: 0px;
   margin-left: 0 !important;
+
   button {
     border-radius: 0 !important;
     background-image: url(./assets/images/calendar-icon.svg) !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
     background-size: 23px !important;
+
     svg {
       display: none;
     }
@@ -223,6 +226,7 @@ input#contractEnd {
   padding: 4px 8px !important;
   border-radius: 4px !important;
 }
+
 .custom-size-calendar .mdc-text-field--filled {
   background: none !important;
   border: 1px solid #111418;
@@ -271,7 +275,9 @@ input#contractEnd {
 .custom-size-calendar .mat-mdc-form-field-subscript-wrapper {
   display: none;
 }
-.light-theme .website-code .dropdown-item:focus, .light-theme .dropdown-item:hover {
+
+.light-theme .website-code .dropdown-item:focus,
+.light-theme .dropdown-item:hover {
   background: #b9e5b0;
 }
 
@@ -426,6 +432,7 @@ input#contractEnd {
   background: #d1d1d1;
   padding-top: 5px;
 }
+
 .form-check-input[type="checkbox"] {
   border-radius: 0px;
 }
@@ -462,6 +469,7 @@ input#contractEnd {
     padding: 6px 18px;
   }
 }
+
 .card {
   padding: 15px 0px;
 
@@ -596,6 +604,7 @@ input#contractEnd {
   border-radius: 50%;
   cursor: pointer;
 }
+
 .sidebar_menu li {
   margin: 3px 10px;
 }
@@ -632,16 +641,20 @@ html {
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
 }
+
 .sidebar_menu a:hover {
   background: #023A4A;
 }
+
 .compact-sidebar .page-sidebar .sidebar_menu a .sidebar_menu_span {
   display: none;
 }
+
 .sidebar_menu a.active {
   background: #023A4A;
 
 }
+
 .sidebar_menu a svg {
   min-width: 32px;
   padding-left: 7px;
@@ -1207,19 +1220,22 @@ input:checked+.slider:before {
 .table-responsive {
   padding: 2px;
 }
+
 table.mat-mdc-table.table-users td.d-flex:first-child {
   display: table-cell !important;
 }
+
 table {
   tbody {
     tr td:first-child {
       border-top-left-radius: 10px;
       border-bottom-left-radius: 10px;
     }
-      tr td:last-child {
-        border-top-right-radius: 10px;
-        border-bottom-right-radius: 10px;
-      }
+
+    tr td:last-child {
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
   }
 }
 
@@ -1229,8 +1245,9 @@ table {
 
 .light-theme {
   .table {
-      border-collapse: separate;
+    border-collapse: separate;
   }
+
   .table tbody tr:hover {
     background: #edffe9;
     border-collapse: separate;
@@ -1238,27 +1255,30 @@ table {
     outline: 2px solid #236115;
     border-radius: 10px;
   }
+}
+
+.dark-theme {
+  .table {
+    border-collapse: separate;
   }
-  
-  .dark-theme {
-    .table {
-        border-collapse: separate;
-    }
-      .table-striped tbody tr:nth-child(odd) {
-        background: #0c3453;
-    }
-    .table tbody tr:hover {
-      background: #072944;
-      border-collapse: separate;
-      border: none !important;
-      outline: 2px solid #236115;
-      border-radius: 10px;
-    }
+
+  .table-striped tbody tr:nth-child(odd) {
+    background: #0c3453;
+  }
+
+  .table tbody tr:hover {
+    background: #072944;
+    border-collapse: separate;
+    border: none !important;
+    outline: 2px solid #236115;
+    border-radius: 10px;
+  }
 }
 
 .table.no_hover_tr tbody tr:hover {
   outline: none !important;
 }
+
 // ------------------marketing popup
 
 
@@ -1581,12 +1601,14 @@ table {
   background-color: #FAFAFA !important;
   border-bottom: 1px solid #EBEBEB;
 }
+
 .listBox span.mdc-list-item__primary-text img {
   object-fit: cover;
   object-position: top;
   padding-top: 3px;
   border-radius: 50%;
 }
+
 .listBox .mat-mdc-option.mdc-list-item {
   padding: 8px;
   border-bottom: 1px solid #dbdbdb;
@@ -1646,9 +1668,11 @@ table {
 .mat-mdc-paginator-page-size {
   display: none !important;
 }
+
 .mdc-dialog__container .btn-group {
   width: 100% !important;
 }
+
 .main-popup-div .mat-mdc-select-trigger {
   display: inline-flex;
   align-items: center;
@@ -1696,6 +1720,7 @@ table {
   padding-left: 0;
   padding-right: 0;
 }
+
 .explore-all_input .mat-mdc-form-field-subscript-wrapper {
   display: none !important;
 }
@@ -1923,12 +1948,15 @@ nav.navbar .country_dropdown h6.border-bottom {
   position: relative;
   z-index: 1;
 }
+
 .date_field {
   position: relative;
 }
+
 .date_field input {
   text-indent: 30px !important;
 }
+
 .date_field input.mat-datepicker-input {
   // text-indent: 0 !important;
 }
@@ -2030,15 +2058,19 @@ nav.navbar .country_dropdown h6.border-bottom {
   // select.location-filter option {
   //   color: #000 !important;
   // }
-  label.btn.filter-button, .filter-button-2 {
+  label.btn.filter-button,
+  .filter-button-2 {
     border-color: #072944 !important;
     background: #0c3453 !important;
     color: #fff;
+
     select {
-    color: #fff !important;
+      color: #fff !important;
     }
   }
-  label.filter-button.activefilter, .filter-button-2.activefilter {
+
+  label.filter-button.activefilter,
+  .filter-button-2.activefilter {
     background: #6fb95d !important;
     color: #fff !important;
   }
@@ -2069,6 +2101,7 @@ nav.navbar .country_dropdown h6.border-bottom {
 .club.light_theme_iclub {
   display: block;
 }
+
 .club.dark_theme_iclub {
   display: none;
 }
@@ -2078,36 +2111,44 @@ nav.navbar .country_dropdown h6.border-bottom {
     background: #0c3453 !important;
     border-radius: 0 !important;
     border: 0 !important;
-}
-.chat_popup_srch_color .mdc-text-field.mdc-text-field--filled mat-chip-grid.mat-mdc-chip-set.mat-mdc-chip-grid.mdc-evolution-chip-set.messanger-selector {
-  background: #0c3453 !important;
-}
-.chat_popup_srch_color .mat-mdc-autocomplete-panel {
-  background: #072944 !important;
-}
-.club.light_theme_iclub {
-  display: none;
-}
-.club.dark_theme_iclub {
-  display: block;
-}
-.filter-bottom-button .Launch {
+  }
+
+  .chat_popup_srch_color .mdc-text-field.mdc-text-field--filled mat-chip-grid.mat-mdc-chip-set.mat-mdc-chip-grid.mdc-evolution-chip-set.messanger-selector {
+    background: #0c3453 !important;
+  }
+
+  .chat_popup_srch_color .mat-mdc-autocomplete-panel {
+    background: #072944 !important;
+  }
+
+  .club.light_theme_iclub {
+    display: none;
+  }
+
+  .club.dark_theme_iclub {
+    display: block;
+  }
+
+  .filter-bottom-button .Launch {
     color: #0C3453 !important;
-}
+  }
 }
 
 
 .club-banner .title_text_p {
   max-width: 600px;
+
   h3 {
     font-size: 32px;
   }
+
   p {
     font-size: 22px;
-  strong {
-    font-weight: 600;
+
+    strong {
+      font-weight: 600;
+    }
   }
-}
 }
 
 
@@ -2116,11 +2157,13 @@ nav.navbar .country_dropdown h6.border-bottom {
 .advirtismnt_2 {
   display: flex;
   justify-content: center;
+
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
+
   .ad-close-button {
     position: absolute;
     right: 0;
@@ -2129,12 +2172,14 @@ nav.navbar .country_dropdown h6.border-bottom {
     color: white;
     border: none;
   }
+
   .advirtismnt_2_large {
     width: 728px;
     height: 90px;
     background-color: rgba(207, 207, 207, 1);
     position: relative;
   }
+
   .advirtismnt_2_small {
     width: 468px;
     height: 60px;
@@ -2147,22 +2192,26 @@ nav.navbar .country_dropdown h6.border-bottom {
   display: flex;
   justify-content: space-between;
   margin-top: 30px;
+
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
+
   .ad-close-button {
     position: absolute;
     right: 0;
     top: 0;
   }
+
   .leaderboard-club-image {
     width: 728px;
     height: 90px;
     background-color: rgba(207, 207, 207, 1);
     position: relative;
   }
+
   .small-sqaure-image {
     width: 200px;
     height: 200px;
@@ -2177,16 +2226,19 @@ nav.navbar .country_dropdown h6.border-bottom {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
+
   .ad-close-button {
     position: absolute;
     right: 0;
     top: 0;
   }
+
   .leaderboard-club-image {
     width: 468px;
     height: 60px;
@@ -2194,6 +2246,7 @@ nav.navbar .country_dropdown h6.border-bottom {
     position: relative;
     margin-left: auto;
   }
+
   .small-sqaure-image {
     width: 200px;
     height: 200px;
@@ -2209,16 +2262,19 @@ nav.navbar .country_dropdown h6.border-bottom {
   align-items: flex-end;
   position: relative;
   height: 250px;
+
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
+
   .ad-close-button {
     position: absolute;
     right: 0;
     top: 0;
   }
+
   .large-rectangle {
     background-color: rgba(207, 207, 207, 1);
     position: absolute;
@@ -2227,6 +2283,7 @@ nav.navbar .country_dropdown h6.border-bottom {
     left: 0;
     bottom: 0;
   }
+
   .inline-rectangle {
     background-color: rgba(207, 207, 207, 1);
     position: absolute;
@@ -2236,6 +2293,7 @@ nav.navbar .country_dropdown h6.border-bottom {
     transform: translateX(-50%);
     bottom: 0;
   }
+
   .square {
     background-color: rgba(207, 207, 207, 1);
     position: absolute;
@@ -2245,6 +2303,7 @@ nav.navbar .country_dropdown h6.border-bottom {
     bottom: 0;
   }
 }
+
 /*---- Advertisement Styling ----*/
 
 
@@ -2308,7 +2367,7 @@ td.col_checkbox {
 
 .light-theme .table_title select {
   padding-right: 30px;
-  background: #fff url(./assets/images/select-arrow-black.svg) no-repeat right 8px center; 
+  background: #fff url(./assets/images/select-arrow-black.svg) no-repeat right 8px center;
   background-size: 15px;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -2316,18 +2375,20 @@ td.col_checkbox {
 }
 
 .dark-theme {
-img.join-btn.check-image-light {
-  display: none;
-}
-img.join-btn.check-image-dark {
-  display: block;
-}
+  img.join-btn.check-image-light {
+    display: none;
+  }
+
+  img.join-btn.check-image-dark {
+    display: block;
+  }
 }
 
 .light-theme {
   img.join-btn.check-image-light {
     display: block;
   }
+
   img.join-btn.check-image-dark {
     display: none;
   }
@@ -2337,20 +2398,47 @@ img.join-btn.check-image-dark {
 .club_history .history-text p:not(:last-child) {
   margin-bottom: 15px !important;
 }
+
 .light-theme {
-.NgxEditor__Wrapper {
-  background: #FCFCFC;
-}
-.NgxEditor__Content {
-  background: #FCFCFC !important;
-}
+  .NgxEditor__Wrapper {
+    background: #FCFCFC;
+  }
+
+  .NgxEditor__Content {
+    background: #FCFCFC !important;
+  }
 }
 
 
 .admin_adv_popup {
   max-width: 900px !important;
 }
+
 .scout_add_new_talent_popup .example-chip-list.inbox-wrapper .mat-mdc-text-field-wrapper.mdc-text-field {
   border: 0 !important;
   padding: 10px !important;
+
+  .light-theme .bg-light-btn {
+    color: white;
+    background-color: #6FB95D;
+    border: none;
+  }
+
+  .light-theme .bg-dark-btn {
+    color: white;
+    background-color: #E05263;
+    border: none;
+  }
+
+  .dark-theme .bg-light-btn {
+    color: #072944;
+    background-color: #BDE34E;
+    border: none;
+  }
+
+  .dark-theme .bg-dark-btn {
+    color: white;
+    background-color: #E05263;
+    border: none;
+  }
 }
