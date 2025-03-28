@@ -50,6 +50,10 @@ export class HistoryTabComponent implements OnInit {
     }
   }
 
+  replaceEmptyParagraphs(html: string) {
+    return html.replace(/<p>\s*<\/p>/g, "<br>");
+  }
+
   editHistory(){
     this.isEditable = true;
   }

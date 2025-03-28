@@ -28,6 +28,8 @@ export class EditPlanComponent implements OnInit {
   activePlans: any[] = [];
   allPlans: any[] = [];
   selectedInterval: any;
+
+  theme : any = localStorage.getItem('theme');
   // selectedCountries: any[] = []; // Stores full country objects
 
 
@@ -45,6 +47,7 @@ export class EditPlanComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
+    this.theme = localStorage.getItem('theme');
     // If this.data.plans is an array, assign it directly
     this.selectedPlan = this.data.selectedPlan;
     this.activePlans = this.data.activePlans;

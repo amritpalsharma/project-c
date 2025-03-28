@@ -266,8 +266,7 @@
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">{{'emailLabel' |
                                     translate}}</label>
-                                <input [(ngModel)]="email" type="email" placeholder="{{'emailExample' |
-                                translate}}" name="password" required
+                                <input [(ngModel)]="email" type="email" placeholder="" name="password" required
                                     [ngClass]="{'empty-field': isEmailError, 'form-control': true}" />
                             </div>
                             <div class="mb-3">
@@ -279,7 +278,7 @@
                                 <div class="password_field_wrap">
                                     <input id="exampleFormControlInput2" [type]="isViewPassword2 ? 'text' : 'password'"
                                         [ngClass]="{'empty-field': isPasswordError, 'form-control': true}"
-                                        placeholder="**************" [(ngModel)]="password" name="password" required />
+                                        placeholder="" [(ngModel)]="password" name="password" required />
                                     <span (click)="togglePassword2()" class="password-toggle">
                                         <span *ngIf="!isViewPassword2">
                                             <img src="./assets/images/password-hidden.svg">
@@ -360,8 +359,8 @@
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">{{ 'emailLabel' | translate
                                     }}</label>
-                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="{{'emailExample' |
-                                    translate}}" [(ngModel)]="forgotPasswordEmail" />
+                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="
+                                " [(ngModel)]="forgotPasswordEmail" />
 
                                 <div *ngIf="forgotPasswordMessage; else requiredMsg" class="text-danger mt-2">
                                     {{ forgotPasswordMessage }}
@@ -423,7 +422,7 @@
                     <div class="col-6">
                         <div class="mb-3">
                             <label class="form-label">{{ 'passwordLabel' | translate }}</label>
-                            <input type="password" class="form-control" placeholder="{{ 'passwordPlaceholder' | translate }}" name="password"
+                            <input type="password" class="form-control" placeholder="" name="password"
                                 required />
                             <div class="text-danger">
                                 {{ 'passwordLabel' | translate }}
@@ -433,7 +432,7 @@
                     <div class="col-6">
                         <div class="mb-3">
                             <label class="form-label">{{ 'confirmPasswordLabel' | translate }}</label>
-                            <input type="password" class="form-control" placeholder="{{ 'confirmPasswordPlaceholder' | translate }}"
+                            <input type="password" class="form-control" placeholder=""
                                 name="confirmPassword" required />
                         </div>
                     </div>
@@ -475,7 +474,7 @@
                                     <div class="mb-3">
                                         <label class="form-label">{{ 'firstNameLabel' | translate }}</label>
                                         <input type="text" class="form-control"
-                                            placeholder="{{ 'firstNameLabel' | translate }}" [(ngModel)]="firstName"
+                                            placeholder="" [(ngModel)]="firstName"
                                             name="firstName" required />
                                         <div *ngIf="registerForm.controls['firstName']?.errors?.['required'] && (registerForm.controls['firstName']?.dirty || registerForm.controls['firstName']?.touched)"
                                             class="text-danger">
@@ -487,7 +486,7 @@
                                     <div class="mb-3">
                                         <label class="form-label">{{ 'lastNameLabel' | translate }}</label>
                                         <input type="text" class="form-control"
-                                            placeholder="{{ 'lastNameLabel' | translate }}" [(ngModel)]="lastName"
+                                            placeholder="" [(ngModel)]="lastName"
                                             name="lastName" required />
                                         <div *ngIf="registerForm.controls['lastName']?.errors?.['required'] && (registerForm.controls['lastName']?.dirty || registerForm.controls['lastName']?.touched)"
                                             class="text-danger">
@@ -499,7 +498,7 @@
                                     <div class="mb-3">
                                         <label class="form-label">{{ 'usernameLabel' | translate }}</label>
                                         <input type="text" class="form-control"
-                                            placeholder="{{ 'usernameLabel' | translate }}" [(ngModel)]="username"
+                                            placeholder="" [(ngModel)]="username"
                                             name="username" required />
                                         <div *ngIf="registerForm.controls['username']?.errors?.['required'] && (registerForm.controls['username']?.dirty || registerForm.controls['username']?.touched)"
                                             class="text-danger">
@@ -613,7 +612,7 @@
                                             }}</label>
                                         <input type="text" id="companyName" class="form-control"
                                             [(ngModel)]="companyName" (input)="onCompanyNameChange($event)"
-                                            placeholder="{{ 'enterYourCompanyName' | translate }}" required />
+                                            placeholder="" required />
                                     </div>
                                 </div>
 
@@ -625,8 +624,7 @@
                                 <div class="col-lg-12">
                                     <div class="mb-3">
                                         <label class="form-label">{{ 'Email' | translate }}</label>
-                                        <input type="email" class="form-control" placeholder="{{'emailExample' |
-                                            translate}}" [(ngModel)]="email" name="email" required />
+                                        <input type="email" class="form-control" placeholder="" [(ngModel)]="email" name="email" required />
                                         <div *ngIf="registerForm.controls['email']?.errors?.['required'] && (registerForm.controls['email']?.dirty || registerForm.controls['email']?.touched)"
                                             class="text-danger">
                                             {{ 'emailRequiredError' | translate }}
@@ -687,7 +685,7 @@
                                         <label class="form-label">{{ 'passwordLabel' | translate }}</label>
                                         <div class="password_field_wrap">
                                             <input [type]="isViewPassword ? 'text' : 'password'" class="form-control"
-                                                placeholder="{{ 'passwordPlaceholder' | translate }}"
+                                                placeholder=""
                                                 [(ngModel)]="password" name="password" required />
                                             <span (click)="togglePassword()" class="password-toggle">
                                                 <span *ngIf="!isViewPassword">
@@ -712,7 +710,7 @@
                                         <div class="password_field_wrap">
                                             <input [type]="isViewPassword1 ? 'text' : 'password'" id="confirmPassword"
                                                 class="form-control"
-                                                placeholder="{{ 'confirmPasswordPlaceholder' | translate }}"
+                                                placeholder=""
                                                 [(ngModel)]="confirmPassword" name="confirmPassword"
                                                 #confirmPasswordControl="ngModel" required />
                                             <span (click)="togglePassword1()" class="password-toggle">

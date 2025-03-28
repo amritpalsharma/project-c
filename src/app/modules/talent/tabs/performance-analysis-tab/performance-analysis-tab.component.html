@@ -11,13 +11,12 @@
             <th mat-header-cell *matHeaderCellDef> {{ 'title' | translate }} </th>
             <td mat-cell *matCellDef="let element">
               <div class="d-flex align-items-center">
-                <span class="main-template" style="padding-left: 15px">
+                <span class="main-template">
                   --
                 </span>
               </div>
             </td>
           </ng-container>
-
           <!-- Joined Date Column -->
           <ng-container matColumnDef="joinedDate">
             <th mat-header-cell *matHeaderCellDef> {{ 'transferDate' | translate }} </th>
@@ -112,7 +111,7 @@
           <th mat-header-cell *matHeaderCellDef> {{ 'title' | translate }} </th>
           <td mat-cell *matCellDef="let element">
             <div class="d-flex align-items-center">
-              <span class="main-template" style="padding-left: 15px">{{ element.document_title }}</span>
+              <span class="main-template">{{ element.document_title }}</span>
             </div>
           </td>
         </ng-container>

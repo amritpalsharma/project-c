@@ -20,11 +20,11 @@
                   <img src="{{element.profile_image_path}}" alt="" class="table_img"
                     *ngIf="element.profile_image_path" />
                   <span class="position-absolute verified-icon">
-                    <img src="../../../assets/images/pending.png" alt="" class="user-pending-icon"
+                    <img src="../../../assets/images/pending.png" alt="" class="user-pending-icon status_icon_size"
                       *ngIf="element.user_status === '1'" />
-                    <img src="../../../assets/images/approved.png" alt="" class="user-approved-icon"
+                    <img src="../../../assets/images/approved.png" alt="" class="user-approved-icon status_icon_size"
                       *ngIf="element.user_status === '2'" />
-                    <img src="../../../assets/images/rejected.png" alt="" class="user-rejected-icon"
+                    <img src="../../../assets/images/rejected.png" alt="" class="user-rejected-icon status_icon_size"
                       *ngIf="element.user_status === '3'" />
                   </span>
                 </span>
@@ -44,9 +44,11 @@
           <ng-container matColumnDef="Club">
             <th mat-header-cell *matHeaderCellDef> {{ 'club' | translate }} </th>
             <td mat-cell *matCellDef="let element">
-              <img src="{{uploadsPath + element.club_logo}}" *ngIf="element.club_logo" style="max-width: 50px;">
-              {{ element.club_name }}
-              <img src="{{logoPath + element.country_flag}}" *ngIf="element.country_flag">
+              <div class="d-flex icon_text_icon">
+                <img src="{{uploadsPath + element.club_logo}}" *ngIf="element.club_logo" class="club_logo_icn">
+                {{ element.club_name }}
+                <img src="{{logoPath + element.country_flag}}" *ngIf="element.country_flag" class="flag_country">
+              </div>
             </td>
           </ng-container>
 

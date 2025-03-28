@@ -47,6 +47,8 @@ export class PlanComponent implements OnInit, OnDestroy {
   countryPlans: any;
   demoPlans: any;
   selectedPlan: any | null = null;
+  activePlans: any[] = [];
+  allCountryPlans: any[] = [];
   userCards: any[] = [];
   defaultCard: any = null;
   stripe: any;
@@ -100,7 +102,8 @@ export class PlanComponent implements OnInit, OnDestroy {
     this.loadFeatures();
     this.langSubscription = this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
       this.loadFeatures(); // Reload features when the language changes
-      // this.fetchPlans(); // Reload features when the language changes
+      this.fetchPlans(); // Reload features when the language changes
+      this.getJsonTranslations();
     });
   }
 
@@ -229,6 +232,8 @@ export class PlanComponent implements OnInit, OnDestroy {
 
               const plans = res[key]?.plans || {};
 
+              this.allCountryPlans = plans;
+
               Object.keys(plans).forEach((planKey) => {
                 const plan = plans[planKey];
 
@@ -282,6 +287,10 @@ export class PlanComponent implements OnInit, OnDestroy {
             }
           });
           console.log('jgfdkhg', this.countryPlans)
+
+          if (this.countryPlans.plans != '' && this.countryPlans.plans.length > 0) {
+            this.filterActivePlans();
+          }
 
           // Set the default selected plan (first country plan or null if none exist)
           this.selectedPlan = this.countryPlans.plans[0] || null;
@@ -510,8 +519,11 @@ export class PlanComponent implements OnInit, OnDestroy {
       data: {
         plans: plans.data,
         selectedPlan: this.selectedPlan,
+        activePlans: this.activePlans,
+        allPlans: this.allCountryPlans,
         defaultCard: this.defaultCard,
         country: country,
+        selectedInterval: this.selectedPlan.isYearly
       }
     });
   }
@@ -529,6 +541,14 @@ export class PlanComponent implements OnInit, OnDestroy {
         console.log('Selected Audience IDs received:', result);
       }
     });
+  }
+
+  filterActivePlans() {
+    this.countryPlans.plans.forEach((plan: any) => {
+      if (plan.is_package_active) {
+        this.activePlans.push(plan); // Push only if is_package_active is true
+      }
+    })
   }
 
   onPlanSelect(event: Event) {
@@ -589,7 +609,7 @@ export class PlanComponent implements OnInit, OnDestroy {
 
   getJsonTranslations() {
     this.translateService.get(['plans']).subscribe((translations) => {
-      this.pageTitle = translations['plans']; 
+      this.pageTitle = translations['plans'];
       this.titleService.setTitle(this.pageTitle);
       console.log('Title fetch Function Fired');
     })

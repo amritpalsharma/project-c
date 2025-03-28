@@ -19,7 +19,7 @@ export class EditMembershipProfileComponent {
   //   { role_name: "Player", id: 4 },
   // ];     // List of all audiences
 
-  audiences : any[] = [
+  audiences: any[] = [
     { role_name: "Club", target_role: 2 },
     { role_name: "Scout", target_role: 3 },
     { role_name: "Talent", target_role: 4 },
@@ -29,17 +29,17 @@ export class EditMembershipProfileComponent {
   id: any;
   loggedInUser: any = localStorage.getItem('userInfo');
   stats: any;
-  selectedAudiences:any;
-  isLoading : boolean = false;
+  selectedAudiences: any;
+  isLoading: boolean = false;
 
   constructor(
     public dialogRef: MatDialogRef<EditMembershipProfileComponent>,
     public scoutService: ScoutService,
     public dialog: MatDialog,
     private toastr: ToastrService,
-    private userServices : UserService,
+    private userServices: UserService,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+  ) { }
 
   async ngOnInit() {
     this.stats = this.data.stats;
@@ -48,7 +48,7 @@ export class EditMembershipProfileComponent {
 
     this.loggedInUser = JSON.parse(this.loggedInUser);
     this.id = this.data.id || [];
-    
+
     this.getRoles();
 
     // Populate pre-selected audiences from input data
@@ -64,14 +64,14 @@ export class EditMembershipProfileComponent {
 
   }
 
-  getRoles(){
+  getRoles() {
     this.userServices.getRoles().subscribe(
       (response) => {
         if (response?.status) {
           // this.audiences = [];
-          response.data.roles.forEach((element : any) => {
-            if(element.id == '2' || element.id == '3' || element.id == '4'){
-              let obj = {role_name: '', target_role: 0};
+          response.data.roles.forEach((element: any) => {
+            if (element.id == '2' || element.id == '3' || element.id == '4') {
+              let obj = { role_name: '', target_role: 0 };
               obj.role_name = element.role_name;
               obj.target_role = Number(element.id);
               this.audiences.push(obj);
@@ -133,14 +133,14 @@ export class EditMembershipProfileComponent {
 
   // Get selected audience roles by matching the selected IDs
   getSelectedAudienceRoles() {
-    return this.selectedAudiences.filter((audience:any) => this.selectedAudienceIds.includes(audience.id));
+    return this.selectedAudiences.filter((audience: any) => this.selectedAudienceIds.includes(audience.id));
   }
 
 
   saveBoost(): void {
     this.isLoading = true; // Set loading state
 
-    let langId : any = localStorage.getItem('lang_id');
+    let langId: any = localStorage.getItem('lang_id');
 
 
     try {
@@ -188,5 +188,7 @@ export class EditMembershipProfileComponent {
 
     return age;
   }
-
+  closeBtn() {
+    this.dialogRef.close(true);
+  }
 }

@@ -12,19 +12,19 @@ import { environment } from '../../../../../environments/environment';
 })
 export class HistoryTabComponent {
   editor!: Editor;
-  isLoading:boolean = false;
-  userId:any = "";
+  isLoading: boolean = false;
+  userId: any = "";
   history: any = "";
   isEditable: boolean = false;
-  loggedInUser:any = localStorage.getItem('userData');
+  loggedInUser: any = localStorage.getItem('userData');
   @Input() role: any;
   @ViewChild('historyTextarea', { static: false }) textarea!: ElementRef;
-  
-  constructor(private route: ActivatedRoute, private scoutService: ScoutService){
+
+  constructor(private route: ActivatedRoute, private scoutService: ScoutService) {
 
   }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
     this.loggedInUser = JSON.parse(this.loggedInUser);
     this.getScoutHistory();
     this.editor = new Editor();
@@ -36,12 +36,12 @@ export class HistoryTabComponent {
 
   colorPresets: any = environment.colors;
 
-  getScoutHistory(){
+  getScoutHistory() {
     this.isLoading = true;
     try {
-      this.scoutService.getScoutHistory().subscribe((response)=>{
+      this.scoutService.getScoutHistory().subscribe((response) => {
         if (response && response.status && response.data) {
-          this.history = response.data.company_history.meta_value; 
+          this.history = response.data.company_history.meta_value;
           // this.history = '<h1>dsdf</h1>';
           this.isLoading = false;
         } else {
@@ -55,25 +55,29 @@ export class HistoryTabComponent {
     }
   }
 
-  checkRole(){
-    if(!this.loggedInUser.isRepresentator){
+  replaceEmptyParagraphs(html: string) {
+    return html.replace(/<p>\s*<\/p>/g, "<br>");
+  }
+
+  checkRole() {
+    if (!this.loggedInUser.isRepresentator) {
       return true;
     }
-    if(this.loggedInUser.permission === 'admin.view'){
+    if (this.loggedInUser.permission === 'admin.view') {
       return false;
     }
-    if(this.loggedInUser.permission === 'admin.edit'){
+    if (this.loggedInUser.permission === 'admin.edit') {
       return true;
     }
     return true;
   }
 
 
-  editHistory(){
+  editHistory() {
     this.isEditable = true;
   }
 
-  updateHistory(){
+  updateHistory() {
     this.updateScoutHistory();
   }
 
@@ -85,14 +89,14 @@ export class HistoryTabComponent {
     // }
 
     console.log(this.history)
-    
-    if(this.history === ""){
+
+    if (this.history === "") {
       return false;
     }
 
     try {
       this.isLoading = true;
-      this.scoutService.updateScoutHistory(this.history).subscribe((response)=>{
+      this.scoutService.updateScoutHistory(this.history).subscribe((response) => {
         if (response && response.status && response.data) {
           // this.history = history; 
           this.isEditable = false;
