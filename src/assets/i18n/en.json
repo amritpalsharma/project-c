@@ -1319,5 +1319,8 @@
   "removeSection": "Remove Section",
   "addMore": "Add More",
   "selectSightingFirst": "Select sighting(s) first.",
-  "JoinandEndDates": "Join and End Date"
+  "JoinandEndDates": "Join and End Date",
+  "sightingInformation": "Sighting Information",
+  "freePlanText": "2 months free on yearly plan",
+  "forClubsandScouts": "For Clubs and Scouts"
 }
