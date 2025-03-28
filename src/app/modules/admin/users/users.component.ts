@@ -86,7 +86,7 @@ export class UsersComponent implements OnInit {
     params.offset = page;
     params.search = this.filterValue;
     params.limit = pageSize;
-
+    console.warn(filterApplied);
     if (filterApplied) {
       params.offset = 0;
       this.paginator.firstPage(); // to reset the page if user applied filter on any page except the first one
@@ -145,8 +145,8 @@ export class UsersComponent implements OnInit {
 
   applyFilter(filterValue: any) {
     this.filterValue = filterValue.target?.value.trim().toLowerCase();
-    if (this.filterValue.length >= 3) {
-      this.fetchUsers();
+    if (this.filterValue.length >= 1) { //3
+      this.fetchUsers(true);
     } else if (this.filterValue.length == 0) {
       this.fetchUsers();
     }

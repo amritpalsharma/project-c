@@ -130,8 +130,9 @@ export class AddRepresentatorPopupComponent {
       } else {
         // console.error('Invalid API response structure:', response);
         let apiErrors = response.message;
+        console.log(apiErrors);
         this.errorMsg = {}; // Reset errors before mapping new ones
-        if (apiErrors.email) {
+        if (apiErrors.email != '' && apiErrors.email != undefined) {
           this.errorMsg.email = apiErrors.email; // Assuming API sends an array of errors
         }
         if (apiErrors.site_role) {

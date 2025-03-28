@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { WebPages } from '../../../services/webpages.service';
+import { Router, ActivatedRoute } from '@angular/router';
+
 @Component({
   selector: 'app-detail-pages',
   templateUrl: './detail-pages.component.html',
@@ -12,7 +13,7 @@ export class DetailPagesComponent {
   moreNews: any = [];
   adVisible: boolean[] = [true, true, true, true, true, true]; // Array to manage ad visibility
   baseUrl: string = 'https://api.socceryou.ch/uploads/';
-  constructor(private route: ActivatedRoute, private webPages: WebPages) { }
+  constructor(private route: ActivatedRoute, private router: Router, private webPages: WebPages) { }
 
   ngOnInit() {
     // Initially, all ads are visible
@@ -40,6 +41,10 @@ export class DetailPagesComponent {
     this.adVisible[index] = false; // Set the specific ad to not visible based on index
   }
 
-
+  navigateNews(slug: any) {
+    if (slug != '' && slug != undefined) {
+      this.router.navigate(['/news', slug]);
+    }
+  }
 
 }

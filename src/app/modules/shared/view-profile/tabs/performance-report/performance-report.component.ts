@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TalentService } from '../../../../../services/talent.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'view-user-performance-report',
@@ -18,7 +18,12 @@ export class PerformanceReportComponent  implements OnInit {
   path: any ;
   @Input() isPremium: any;
 
-  constructor(private talentService: TalentService, public dialog: MatDialog,private route: ActivatedRoute ) {}
+  constructor(
+    private talentService: TalentService,
+     public dialog: MatDialog,
+     private route: ActivatedRoute,
+    private router:Router
+   ) {}
 
   ngOnInit() {
     
@@ -43,6 +48,18 @@ export class PerformanceReportComponent  implements OnInit {
         this.errorMessage = 'Error fetching reports: ' + error.message;
       }
     );
+  }
+
+  navigateToPlans() {
+    const pathname = window.location.pathname;
+    const regex = /^\/view\/(talent|scout|club)\/(\d+)$/;
+    const match = pathname.match(regex);
+    if (match) {
+      const role = match[1];
+      if (['talent', 'scout', 'club'].includes(role)) {
+        this.router.navigate([`/${role}/plans`]);
+      }
+    }
   }
   
 }

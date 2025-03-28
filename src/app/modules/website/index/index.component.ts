@@ -325,7 +325,7 @@ export class IndexComponent {
       this.chnageHerosectionBgImg();
     });
     let selectedLang = localStorage.getItem('lang');
-    console.warn('In Index component LocalStorage Language selected = ' + selectedLang)
+    // console.warn('In Index component LocalStorage Language selected = ' + selectedLang)
   }
 
   closeAd(object: any) {

@@ -42,6 +42,8 @@ export class MembershipComponent {
   iscountry: any = false;
   isbooster: any = false;
   isdemo: any = false;
+  cancelConfirmationMsg:string='';
+  subscriptionCanceledSuccessfully:string='';
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   pageTitle: string = '';
 
@@ -312,7 +314,7 @@ export class MembershipComponent {
       width: '600px',
       data: {
         action: 'delete-confirmation',
-        message: 'Are you sure you want to cancel this subscription? This action cannot be undone.'
+        message: this.cancelConfirmationMsg
       }
     });
 
@@ -332,7 +334,7 @@ export class MembershipComponent {
             width: '600px',
             data: {
               action: 'display',
-              message: 'Subscription canceled successfully.'
+              message: this.subscriptionCanceledSuccessfully
             }
           });
           console.log('Subscription canceled successfully:', response);
@@ -394,10 +396,12 @@ export class MembershipComponent {
     });
   }
   getJsonTranslations() {
-    this.translateService.get(['membership']).subscribe((translations) => {
+    this.translateService.get(['membership','cancelConfirmationMsg','subscriptionCanceledSuccessfully']).subscribe((translations) => {
       this.pageTitle = translations['membership'];
+      this.cancelConfirmationMsg = translations['cancelConfirmationMsg'];
+      this.subscriptionCanceledSuccessfully = translations['subscriptionCanceledSuccessfully'];
       this.titleService.setTitle(this.pageTitle);
-      console.log('Title fetch Function Fired');
+      // console.log('Title fetch Function Fired');
     })
   }
 }

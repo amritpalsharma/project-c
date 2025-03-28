@@ -65,7 +65,7 @@ export class PortfolioTabComponent {
   }
 
   confirmDeletion(id: any, firstName: any, lastName: any) {
-    this.idToBeDeleted = 110; //id;
+    this.idToBeDeleted = id; //id;
     let name = firstName + " " + lastName;
     console.log(id, firstName, lastName);
     this.showMatDialog("", "delete-scout-player-confirmation", name);

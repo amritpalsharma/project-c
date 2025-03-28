@@ -87,6 +87,18 @@ export class TransferDetailsComponent {
     const day = String(date.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`;
   }
+
+  navigateToPlans() {
+    const pathname = window.location.pathname;
+    const regex = /^\/view\/(talent|scout|club)\/(\d+)$/;
+    const match = pathname.match(regex);
+    if (match) {
+      const role = match[1];
+      if (['talent', 'scout', 'club'].includes(role)) {
+        this.router.navigate([`/${role}/plans`]);
+      }
+    }
+  }
 }
 
 

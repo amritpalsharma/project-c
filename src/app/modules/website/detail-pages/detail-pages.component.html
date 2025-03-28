@@ -80,7 +80,7 @@
             <h4>{{'more_news' | translate}}</h4>
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-4" *ngFor="let new of moreNews">
-                    <div [routerLink]="['/news', news.slug]" class="news-box">
+                    <div (click)="navigateNews(new.slug)" class="news-box">
                         <div class="news_img_thumb_wrap">
                         <img src="{{baseUrl + new.featured_image}}">
                     </div>

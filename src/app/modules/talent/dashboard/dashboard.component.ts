@@ -31,7 +31,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   mainImage: { src: string } = { src: '' }; // Current main image source
   album: any[] = []; // Array for album images
   loggedInUser: any = localStorage.getItem('userData');
-  countryFlagUrl: any;
+  countryFlagUrl: string = './assets/images/city-icon-light.png';
   pageTitle: string = '';
 
   constructor(
@@ -347,7 +347,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
           this.userNationalities = JSON.parse(this.user.user_nationalities);
           this.StartTour = this.user?.show_tour == 1 ? true : false;
           if (this.user?.meta && this.user?.meta?.birth_country_flag != '') {
-            this.countryFlagUrl = this.user?.meta?.birth_country_flag;
+            // this.countryFlagUrl = this.user?.meta?.birth_country_flag;
           }
           this.isPremium = this.user?.active_subscriptions?.premium.length > 0 ? true : false;
           // this.isPremium = true;

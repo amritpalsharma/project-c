@@ -37,14 +37,15 @@ export class NewsComponent implements OnInit, OnDestroy {
   advertisemnet_base_url: string = '';
   base_url: string = 'https://api.socceryou.ch/uploads/';
   adVisible: boolean[] = [true, true, true, true, true];
+  DataFound: boolean = false;
 
-  isLoading : boolean = true;
-  btnLoading : boolean = true;
+  isLoading: boolean = true;
+  btnLoading: boolean = true;
   countdown: number = 10;
 
 
   images: SliderImage[] = [
-   
+
   ];
 
   constructor(private webPages: WebPages) { }
@@ -58,9 +59,9 @@ export class NewsComponent implements OnInit, OnDestroy {
     });
   }
 
-  advertisementList: any ;
+  advertisementList: any;
 
-  isActive : any ={
+  isActive: any = {
     skyscraper: true,
     wide_skyscraper: true,
     leaderboard: true,
@@ -117,30 +118,40 @@ export class NewsComponent implements OnInit, OnDestroy {
   getPageData(languageId: any) {
     this.webPages.getDynamicContentPage('news', languageId).subscribe((res) => {
       if (res.status) {
-        this.advertisementData = res.data.advertisementData;
-        this.advertisementData = [];
+        if (res.data.advertisementData != '' && res.data.advertisementData != undefined) {
+          this.advertisementData = res.data.advertisementData;
+        } else {
+          this.advertisementData = [];
+        }
 
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
-        this.slider_title = res.data.pageData.slider_title;
-        this.banner_title = res.data.pageData.banner_title;
+        if (res.data.pageData != '' && res.data.pageData != undefined) {
+          this.slider_title = res.data.pageData.slider_title;
+          this.banner_title = res.data.pageData.banner_title;
+          this.news_title = res.data.pageData.news_title;
+          this.slider_btn_txt = res.data.pageData.slider_btn_txt;
+          this.slider_date = res.data.pageData.slider_date;
+        }
 
-        this.news_title = res.data.pageData.news_title;
-        this.latestNewsData = res.data.newsSliderData;
+        if (res.data.newsSliderData != '' && res.data.newsSliderData != undefined) {
+          this.latestNewsData = res.data.newsSliderData;
+          this.addThreeElements(this.latestNewsData);
+          this.startCountdown();
+          this.DataFound = true;
+        } else {
+          this.DataFound = false;
+        }
         console.log(this.latestNewsData);
         this.news_img_path = res.data.news_img_path;
-        this.slider_btn_txt = res.data.pageData.slider_btn_txt;
-        this.slider_date = res.data.pageData.slider_date;
-
-        
         // this.images = res.data.newsSliderData || this.images;
         // this.base_url = res.data.base_url;
-        this.addThreeElements(this.latestNewsData);
+
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
         this.advertisementData = res?.data?.advertisementData;
         this.advertisementList = res?.data?.allAdsList;
-        
+
         this.isLoading = false;
-        this.startCountdown();
+
       }
     }, error => {
       console.error('Error fetching dynamic page data', error);
@@ -307,7 +318,7 @@ export class NewsComponent implements OnInit, OnDestroy {
     return this.advertisementData && this.advertisementData[key] && 'featured_image' in this.advertisementData[key];
   }
 
-  addThreeElements(originalArray:any) {
+  addThreeElements(originalArray: any) {
     let selectedItems = originalArray.slice(0, 3); // Get first 3 elements
     this.images.push(...selectedItems); // Push to target array
     console.warn(this.images)

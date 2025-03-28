@@ -111,7 +111,8 @@ export class TeamMembersComponent {
 
   confirmSingleDeletion(id: any) {
     this.idsToDelete = id;
-    this.showMatDialog(this.confirmDeleteinformation, "delete-representator-confirmation");
+    this.showMatDialog('', "delete-representator-confirmation");
+    // this.showMatDialog(this.confirmDeleteinformation, "delete-representator-confirmation");
   }
 
 

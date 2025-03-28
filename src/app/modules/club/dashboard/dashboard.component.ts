@@ -31,7 +31,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   mainImage: { src: string } = { src: '' }; // Current main image source
   album: any[] = []; // Array for album images
   loggedInUser: any = localStorage.getItem('userData');
-  countryFlagUrl: any;
+  // countryFlagUrl: any;
+    countryFlagUrl: string = './assets/images/city-icon-light.png';
   currentYear: string = '2025';
 
   constructor(
@@ -167,6 +168,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
             tooltipClass: 'custom-tooltip',
           },
           {
+            // element: '.tour-highlights',
             element: '.unlock_page',
             intro: `<div><h6>${translations['highlights']}</h6>${translations['uploadPhotosAndVideos']}.</div>`,
             tooltipClass: 'custom-tooltip',
@@ -311,7 +313,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
           this.userNationalities = JSON.parse(this.user.user_nationalities);
           this.StartTour = this.user?.show_tour == 1 ? true : false;
 
-          this.isPremium = this.user?.active_subscriptions?.premium.length > 0 ? true : true;
+          this.isPremium = this.user?.active_subscriptions?.premium.length > 0 ? true : false;
           this.premium = this.user.active_subscriptions?.premium?.length > 0 ? true : false;
           this.booster = this.user.active_subscriptions?.booster?.length > 0 ? true : false;
           this.activeDomains = this.user.active_subscriptions?.country?.length > 0 ? true : false;

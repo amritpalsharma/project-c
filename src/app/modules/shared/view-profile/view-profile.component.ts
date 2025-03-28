@@ -11,6 +11,7 @@ import { TalentModule } from '../../talent/talent.module';
 import { TalentTooltipService } from '../../../services/talent-tooltip.service';
 import { Subscription } from 'rxjs';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
+import { TitleService } from '../../../title.service';
 
 @Component({
   selector: 'app-view-profile',
@@ -20,6 +21,7 @@ import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 export class ViewProfileComponent implements OnInit {
   loggedInUser: any = localStorage.getItem('userInfo');
   activeTab: string = 'profile';
+  pageTitle: string = '';
   userId: any;
   user: any = {};
   userNationalities: any = [];
@@ -35,7 +37,7 @@ export class ViewProfileComponent implements OnInit {
   isFavorite: boolean = false; // Added to track favorite status
   downloadPath: any = '';
   isPremium: any = false;
-  countryFlagUrl: any;
+  countryFlagUrl: string = './assets/images/city-icon-light.png';
   personalDetailsTooltip: string = '';
   highlightsTooltip: string = '';
   profilePhotoTooltip: string = '';
@@ -59,7 +61,8 @@ export class ViewProfileComponent implements OnInit {
     private socketService: SocketService,
     private webPages: WebPages,
     private tooltipService: TalentTooltipService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private titleService: TitleService,
   ) { }
 
   ngOnInit(): void {
@@ -187,7 +190,7 @@ export class ViewProfileComponent implements OnInit {
   }
 
   calculateAge(dob: string | Date): number {
-    console.info('BirthDate is ',dob);
+    console.info('BirthDate is ', dob);
     const birthDate = new Date(dob);
     const today = new Date();
 
@@ -340,7 +343,7 @@ export class ViewProfileComponent implements OnInit {
     const flagUrl = `https://flagcdn.com/w320/${countryCode.toLowerCase()}.png`;
 
     // Set the URL to an <img> element in your template or save it in a variable
-    this.countryFlagUrl = flagUrl;
+    // this.countryFlagUrl = flagUrl;
   }
 
 
@@ -424,6 +427,10 @@ export class ViewProfileComponent implements OnInit {
     }
   }
 
+  navigateToPlans() {
+    const role = this.loggedInUser.role_name.toLowerCase();
+    this.router.navigate([`/${role}/plans`]);
+  }
 
   ngOnDestroy() {
     // ✅ Unsubscribe to prevent memory leaks
@@ -433,9 +440,11 @@ export class ViewProfileComponent implements OnInit {
   }
 
   getToasterMsg() {
-    this.translate.get(['pleaseWait', 'downloading']).subscribe((res: any) => {
+    this.translate.get(['pleaseWait', 'downloading', 'explore']).subscribe((res: any) => {
       this.pleaseWaitTxt = res['pleaseWait'];
       this.downloading = res['downloading'];
+      this.pageTitle = res['explore'];
+      this.titleService.setTitle(this.pageTitle);
     });
   }
 

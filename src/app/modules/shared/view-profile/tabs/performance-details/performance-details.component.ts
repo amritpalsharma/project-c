@@ -12,11 +12,11 @@ import { MatDialog } from '@angular/material/dialog';
 export class PerformanceDetailsComponent {
 
   isEditing: boolean = false;
-  userId:any = 71;
-  performances:any = [];
+  userId: any = 71;
+  performances: any = [];
   editableId: string = "";
-  teams:any = [];
-  dataTOBeUpdated:any = {
+  teams: any = [];
+  dataTOBeUpdated: any = {
     coach: "",
     team_id: "",
     matches: "",
@@ -24,32 +24,37 @@ export class PerformanceDetailsComponent {
     session: "",
     player_age: ""
   }
-  loggedInUser:any = localStorage.getItem('userData');
+  loggedInUser: any = localStorage.getItem('userData');
   @Input() isPremium: any;
 
-  constructor(private route: ActivatedRoute, private userService: UserService,private talentService: TalentService, public dialog: MatDialog) { }
-  
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private userService: UserService,
+    private talentService: TalentService,
+    public dialog: MatDialog) { }
+
   ngOnInit(): void {
-    this.route.params.subscribe((params:any) => {
+    this.route.params.subscribe((params: any) => {
       this.userId = params.id;
-      if(this.isPremium){
+      if (this.isPremium) {
         this.getUserPerformance(this.userId);
       }
     });
-  } 
-  
-  getUserPerformance(userId:any){
+  }
+
+  getUserPerformance(userId: any) {
     try {
-      this.talentService.getPerformanceList(userId).subscribe((response)=>{
+      this.talentService.getPerformanceList(userId).subscribe((response) => {
         if (response && response.status && response.data && response.data.performanceDetail) {
           this.editableId = "";
-          this.performances = response.data.performanceDetail; 
+          this.performances = response.data.performanceDetail;
           // this.isLoading = false;
         } else {
           // this.isLoading = false;
           console.error('Invalid API response structure:', response);
         }
-      });     
+      });
     } catch (error) {
       // this.isLoading = false;
       console.error('Error fetching users:', error);
@@ -58,57 +63,69 @@ export class PerformanceDetailsComponent {
 
   onSelectChange(event: Event): void {
     const selectElement = event.target as HTMLSelectElement;
-    this.updateRow('team_id',Number(selectElement.value));
+    this.updateRow('team_id', Number(selectElement.value));
   }
 
-  onInputChange(event: Event, key:string): void {
+  onInputChange(event: Event, key: string): void {
     let inputElement = event.target as HTMLInputElement;
-    this.updateRow(key,inputElement.value);
+    this.updateRow(key, inputElement.value);
   }
 
-  updateRow(key:any, value:any){
+  updateRow(key: any, value: any) {
     this.dataTOBeUpdated[key] = value;
   }
-  
+
   calculateDateRange(performance_detail: any): string {
     const fromDate = new Date(performance_detail.from_date);
     const toDate = performance_detail.to_date === '0000-00-00'
       ? new Date() // Current date for "Present"
       : new Date(performance_detail.to_date);
-  
+
     // Check if fromDate or toDate is invalid
     if (isNaN(fromDate.getTime()) || isNaN(toDate.getTime())) {
       return '-'; // Return '-' if either date is invalid
     }
-  
+
     let years = toDate.getFullYear() - fromDate.getFullYear();
     let months = toDate.getMonth() - fromDate.getMonth();
-  
+
     // Adjust if the month difference is negative
     if (months < 0) {
       years--;
       months += 12;
     }
-  
+
     const displayYears = years;
     const displayMonths = months;
-  
+
     // Format the date strings
     let langSlug = localStorage.getItem('lang') + '';
     const fromDateString = fromDate.toLocaleString(langSlug, { month: 'long', year: 'numeric' });
-    const toDateString = performance_detail.to_date === '0000-00-00' 
-      ? 'Present' 
+    const toDateString = performance_detail.to_date === '0000-00-00'
+      ? 'Present'
       : toDate.toLocaleString(langSlug, { month: 'long', year: 'numeric' });
-  
+
     let dateRange = `${fromDateString} - ${toDateString}`;
-  
+
     if (displayYears > 0 || displayMonths > 0) {
       dateRange += ` (${displayYears} yr ${displayMonths} mos)`;
     }
-  
+
     return dateRange;
   }
-  
+
+  navigateToPlans() {
+    const pathname = window.location.pathname;
+    const regex = /^\/view\/(talent|scout|club)\/(\d+)$/;
+    const match = pathname.match(regex);
+    if (match) {
+      const role = match[1];
+      if (['talent', 'scout', 'club'].includes(role)) {
+        this.router.navigate([`/${role}/plans`]);
+      }
+    }
+  }
+
 }
 
 

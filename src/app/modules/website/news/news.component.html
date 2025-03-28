@@ -8,6 +8,9 @@
           <div class="about">
             <h2 class="cookie-text">{{banner_title}}</h2>
           </div>
+
+          <!-- When No Data Found -->
+          <!-- When No Data Found -->
         </div>
       </div>
       <div *ngIf="checkActive('skyscraper')  && !isLoading" class="skyscraper-left">
@@ -31,17 +34,17 @@
     </div>
 
     <div class="news-slider py_0">
-
-      <div class="container">
+      <div class="container noDataFound mt-2" *ngIf="!DataFound">
+        <h3 class="cookie112 text-white" style="font-size: 40px;">{{'noDataFoundText' | translate}}</h3>
+      </div>
+      <div class="container" *ngIf="DataFound">
         <div class="image-slider">
-          <div class="image-wrapper" 
-               (touchstart)="onTouchStart($event)" 
-               (touchmove)="onTouchMove($event)"
-               (touchend)="onTouchEnd($event)">
+          <div class="image-wrapper" (touchstart)="onTouchStart($event)" (touchmove)="onTouchMove($event)"
+            (touchend)="onTouchEnd($event)">
             <!-- Dynamic Image -->
-             <!-- <h1>{{images | json}}</h1> -->
-            <img [src]="base_url + currentImage" [alt]="images[currentImageIndex].title" />
-            <div class="image-text">
+            <!-- <h1>{{images | json}}</h1> -->
+            <img *ngIf="images.length > 0" [src]="base_url + currentImage" [alt]="images[currentImageIndex].title" />
+            <div class="image-text" *ngIf="images.length > 0">
               <!-- Dynamic Content for Each Slide -->
               <p class="p-text">{{images[currentImageIndex].date}}</p>
               <h3 class="text-heading" [innerHTML]="images[currentImageIndex].title"></h3>
@@ -55,19 +58,14 @@
           <div class="container">
             <div class="thumbnail-scroll">
               <div class="slider-image">
-                <img 
-                  *ngFor="let image of images; let i = index" 
-                  [src]="news_img_path + image.featured_image" 
-                  [alt]="image.title"
-                  (click)="changeImage(image.featured_image, i)" 
-                  [class.active]="i === currentImageIndex"
-                  class="thumbnail" />
+                <img *ngFor="let image of images; let i = index" [src]="news_img_path + image.featured_image"
+                  [alt]="image.title" (click)="changeImage(image.featured_image, i)"
+                  [class.active]="i === currentImageIndex" class="thumbnail" />
               </div>
             </div>
           </div>
         </div>
       </div>
-
       <div class="advertisment">
         <div class="container">
           <div *ngIf="checkActive('leaderboard') || checkActive('banner')" class="advertisment advirtismnt_2">
@@ -93,7 +91,7 @@
         </div>
       </div>
 
-      <div class="latest-news py_0">
+      <div class="latest-news py_0" *ngIf="DataFound">
         <div class="container">
           <h4>{{news_title}}</h4>
           <div class="row">
