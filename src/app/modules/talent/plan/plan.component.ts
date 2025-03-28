@@ -78,6 +78,9 @@ export class PlanComponent implements OnInit, OnDestroy {
   couponCode: string = '';
   isCouponApplied: boolean = false;
 
+  pleaseWait: string = '';
+  Processing: string = '';
+
   isLoadingPlans: boolean = false;
   isLoadingCheckout: boolean = false;
   isLoadingCards: boolean = false;
@@ -107,7 +110,7 @@ export class PlanComponent implements OnInit, OnDestroy {
     public webPages: WebPages,
     private translate: TranslateService,
     private titleService: TitleService,
-    private router: Router
+    private router: Router,
   ) { }
 
   async ngOnInit() {
@@ -123,6 +126,11 @@ export class PlanComponent implements OnInit, OnDestroy {
       this.loadFeatures(); // Reload features when the language changes
       this.fetchPlans(); // Reload features when the language changes
       this.getJsonTranslations();
+    });
+
+    this.getToasterMsg();
+    this.webPages.languageId$.subscribe((data: any) => {
+      this.getToasterMsg();
     });
   }
 
@@ -152,7 +160,8 @@ export class PlanComponent implements OnInit, OnDestroy {
   // Redirect to Stripe Checkout with coupon code logic
   async redirectToCheckout(planId: string) {
     this.isLoadingCheckout = true;
-    this.toastr.info('Redirecting to payment...', 'Loading', { disableTimeOut: true });
+    // this.toastr.info('Redirecting to payment...', 'Loading', { disableTimeOut: true });
+    this.toastr.info(this.pleaseWait, this.Processing, { disableTimeOut: true });
 
     try {
       const response = await this.paymentService.createCheckoutSession(planId, '', this.couponCode).toPromise();
@@ -161,7 +170,7 @@ export class PlanComponent implements OnInit, OnDestroy {
         this.toastr.clear();
 
         // Show success message after redirection attempt
-        this.toastr.success('Redirected to Stripe Checkout successfully.', 'Success');
+        // this.toastr.success('Redirected to Stripe Checkout successfully.', 'Success');
 
         const stripe = await this.stripe;
         await stripe?.redirectToCheckout({ sessionId: response.data.payment_intent.id });
@@ -497,7 +506,8 @@ export class PlanComponent implements OnInit, OnDestroy {
 
   updateSubscription(oldId: any, newId: any) {
 
-    this.toastr.info('Updating Plan, Please wait...', 'Loading', { disableTimeOut: true });
+    // this.toastr.info('Updating Plan, Please wait...', 'Loading', { disableTimeOut: true });
+    this.toastr.info(this.pleaseWait, this.Processing, { disableTimeOut: true });
 
     this.getUserPlans();
 
@@ -506,7 +516,7 @@ export class PlanComponent implements OnInit, OnDestroy {
         if (response && response.status) {
 
           this.toastr.clear();
-          this.toastr.success('Plan has been updated successfully.');
+          // this.toastr.success('Plan has been updated successfully.');
           this.getUserPlans();
         } else {
           this.toastr.clear();
@@ -690,6 +700,14 @@ export class PlanComponent implements OnInit, OnDestroy {
       }
     })
   }
+
+  getToasterMsg() {
+    this.translate.get(['pleaseWait', 'Processing']).subscribe((translations) => {
+      this.pleaseWait = translations['pleaseWait'];
+      this.Processing = translations['Processing'];
+    });
+  }
+
   getJsonTranslations() {
     this.translate.get(['plans']).subscribe((translations) => {
       this.pageTitle = translations['plans'];

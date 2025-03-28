@@ -31,6 +31,9 @@ export class AddBoosterComponent {
 
   theme : any = localStorage.getItem('theme');
 
+  pleaseWait: string = '';
+  Processing: string = '';
+
   constructor(
     public dialogRef: MatDialogRef<AddBoosterComponent>,
     public talentService: TalentService,
@@ -48,8 +51,6 @@ export class AddBoosterComponent {
     this.loggedInUser = JSON.parse(this.loggedInUser);
     this.id = this.data.id || [];
     this.stripe = await this.paymentService.getStripe();
-
-    this.getToasterMsg();
 
     this.getToasterMsg();
     this.webPages.languageId$.subscribe((data: any) => {
@@ -100,10 +101,8 @@ export class AddBoosterComponent {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         let coupon = result;
-        this.toastr.info('Applying coupon code...', 'Processing');
         this.redirectToCheckout(this.id, this.selectedAudienceIds, coupon);
       } else if (result === null) {
-        this.toastr.info('Proceeding without coupon...', 'Processing');
         this.redirectToCheckout(this.id, this.selectedAudienceIds);
       }
     });
@@ -114,7 +113,7 @@ export class AddBoosterComponent {
       coupon = null;
     }
     this.isLoadingCheckout = true;
-    this.toastr.info('Redirecting to checkout...', 'Processing');
+    this.toastr.info(this.pleaseWait, this.Processing);
 
     try {
       const response = await this.paymentService.createCheckoutSession(planId, booster_audience.join(','), coupon).toPromise();
@@ -122,7 +121,7 @@ export class AddBoosterComponent {
       if (response?.data?.payment_intent?.id) {
         const stripe = await this.stripe;
         await stripe?.redirectToCheckout({ sessionId: response.data.payment_intent.id });
-        this.toastr.success('Redirecting to Stripe checkout.', 'Success');
+        // this.toastr.success('Redirecting to Stripe checkout.', 'Success');
       } else {
         this.toastr.error('Failed to create checkout session.', 'Error');
         console.error('Failed to create checkout session', response);
@@ -151,10 +150,12 @@ export class AddBoosterComponent {
 
 
   getToasterMsg() {
-    this.translateService.get(['talent', 'scout', 'club']).subscribe((translations) => {
+    this.translateService.get(['talent', 'scout', 'club', 'pleaseWait', 'Processing']).subscribe((translations) => {
       this.talent = translations['talent'];
       this.scout = translations['scout'];
       this.club = translations['club'];
+      this.pleaseWait = translations['pleaseWait'];
+      this.Processing = translations['Processing'];
     });
   }
 }
