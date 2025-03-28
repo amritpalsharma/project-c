@@ -112,7 +112,7 @@ export class HeaderComponent {
       console.log("No data found in localStorage.");
     }
     let domainLang = this.globalSettings.getLanguage();
-    if (domainLang != '' && localStorage.getItem('lang') == '') {
+    if (domainLang != '' && localStorage.getItem('lang') == '' || localStorage.getItem('lang') == undefined) {
       localStorage.setItem('lang', domainLang);
     } else {
       // alert(localStorage.getItem('lang'));

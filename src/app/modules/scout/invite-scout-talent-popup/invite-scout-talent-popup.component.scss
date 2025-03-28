@@ -52,36 +52,23 @@
     cursor: pointer;
   }
   
-  // .messanger-selector{
-  //   border-top: 2px solid black;
-  //   border-bottom: 2px solid black;
-  // }
-  
   .bg-white{
     background-color:white;
-    // height: 90% !important;
   }
-  
+
   .body-background{
     border-top:  1px solid #D9D9D9 !important;
     border-bottom:  1px solid #D9D9D9 !important;
   
   }
-  
   .listBox  ::-webkit-scrollbar {
     width: 0px !important;
   }
-  
   .position-absolute{
      top: 25rem;
      bottom:0;
   
   }
-  
-  // .position-absolute .btn{
-  //   width: 33.2rem !important;
-  // }
-  
   .check-user-list {
     position: relative;
   }
@@ -149,7 +136,6 @@
   .messanger-selector-name ::ng-deep input::placeholder {
     color: rgb(0, 0, 0) ;
   }
-  
 
   .blur{
     opacity: .4;

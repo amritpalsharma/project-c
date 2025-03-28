@@ -237,7 +237,7 @@
                   </div>
                 </div>
               </div>
-              <div class="px-4">
+              <div class="edit_padding">
               <div class="col-md-12 pb-3">
                 <h4 class="mb-0">{{sightingData?.event_name}}</h4>
               </div>
@@ -288,8 +288,7 @@
                
             </div>
         </div>
-        <div class="row  bg-236115">          
-          <div class="d-flex justify-content-between align-items-center p-3">
+        <div class="row d-flex gap-2 p-3 bg-236115 justify-content-between align-items-center green_bar_sec">          
               <div class="mb-0 text-white text-size">{{ 'manager:' | translate }} {{ sightingData.manager_name }}</div>
               <div class="mb-0 text-white text-size">
                 <svg width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -298,15 +297,14 @@
                 </svg>
                 {{ sightingData?.address }}, {{ sightingData?.city }}, {{ sightingData?.zipcode }}
               </div>
-              <div class="mb-0 "> 
+              <div class="mb-0 butn_div"> 
                 <button class="btn btn-success btn-sm web-create-bg mx-2 w-100 inquire-btn"  type="button">{{ 'inquire' | translate }}</button>
               </div>
-          </div>
         </div>
 
         <div class="row justify-content-between space-box">
-            <div class="sighting-bg col-md-6 row p-4 pb-5 dark_mode_sighting-bg">
-               
+            <div class="sighting-bg col-md-6 dark_mode_sighting-bg">
+               <div class="col_padding">
                 <!-- <a href="#" class="btn btn-outline-white main-template justify-content-center"><i class="fas fa-edit"></i> Edit</a> -->
                 <div class="d-flex align-items-center gap-3 p-0 edit_button mb-4">
                   <h4 class=" text-size">{{ 'aboutEvent' | translate }}</h4> 
@@ -318,8 +316,10 @@
                   </button>
                 </div>
                 <p class="event-text p-0">{{sightingData?.about_event}}</p>
+              </div>
             </div>
-            <div class="col-md-6 p-4 club_attacment_column">
+            <div class="col-md-6 club_attacment_column">
+              <div class="col_padding">
                 <h3 class="mb-3 text-size">{{ 'attachments' | translate }}</h3>
                 <div class="d-flex attach_delete_club mb-3 align-items-center" *ngFor="let item of attachments">
                     <div class="attachment_box">
@@ -343,7 +343,6 @@
                         </a>
                     </div>
                 </div>
-                  
                 <div class="mt-5">
                     <button class="btn upload-btn" (click)="uploadAttachment()">  
                   <svg width="19" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -365,6 +364,7 @@
                     </svg>
                       {{ 'upload' | translate }}
                     </button>
+                </div>
                 </div>
             </div>
         </div>

@@ -230,7 +230,7 @@ export class FavoritesComponent {
 
   showFilterPopup(): void {
     const filterDialog = this.dialog.open(CommonFilterPopupComponent, {
-      height: '210px',
+      height: '230px',
       width: '300px',
       position: {
         right: '30px',

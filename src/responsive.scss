@@ -121,6 +121,7 @@
     margin: 20px 0 20px 20px;
     position: static !important;
     height: calc(100% - 40px);
+    transition: all 0.4s;
 }
 .compact-sidebar .page-sidebar {
     width: 80px;
@@ -293,7 +294,7 @@ td.cdk-column-Remove.mat-column-Remove svg {
     background-size: 26px !important;
 }
 .all-page-content .page-container > .outlet_outer {
-    min-height: calc(100vh - 2000px) !important;
+    min-height: calc(100vh - 200px) !important;
 }
 .all-page-content .page-container > .outlet_outer + shared-footer {
     padding-top: 0 !important;
@@ -567,6 +568,20 @@ table.table  th {
     p {
       font-size: 18px;
   }
+  }
+  .mat-mdc-paginator-range-actions {
+    flex-wrap: wrap;
+    margin-top: 1rem;
+    justify-content: center;
+    .mat-mdc-paginator-range-label {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+  }
+  .dashboard_footer .footer_main_inner {
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }
 

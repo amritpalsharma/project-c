@@ -159,6 +159,14 @@ width: 350px !important;
   margin-left: 12px;
   margin-right: 12px;
 }
+.cupen-btn-date, .cupen-btn-date-1 {
+  border: 0;
+}
+.coupon-dateRange .view_add_dates {
+  justify-content: flex-start;
+  color: inherit;
+  border: 1px solid;
+}
 
 @media (max-width: 600px) {
   .add-banners{

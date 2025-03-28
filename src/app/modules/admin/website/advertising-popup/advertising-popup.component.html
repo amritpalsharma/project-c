@@ -288,7 +288,7 @@
     <hr class="m-0">
 
     <div class="p-3 create-new_popup">
-      <div class="d-flex mb-3">
+      <div class="d-flex mb-3 add-banners">
         <div>
           <p class="code-text">
             {{ 'name' | translate }}
@@ -307,7 +307,7 @@
         </div>
       </div>
 
-      <div class="d-flex mb-3">
+      <div class="d-flex mb-3 add-banners">
         <div>
           <p class="code-text">
             {{ 'page' | translate }}
@@ -366,12 +366,12 @@
         <p class="code-text">
           {{ 'displayDuration' | translate }}
         </p>
-        <div class="d-flex">
+        <div class="d-flex calender-inputs-box">
 
           <div class="d-flex coupon-dateRange">
 
             <div>
-              <div class="cupen-btn-date display-duration">
+              <div class="cupen-btn-date display-duration view_add_dates">
 
                 <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <g clip-path="url(#clip0_2457_3571)">
@@ -412,7 +412,7 @@
             </div>
 
             <div>
-              <div class="cupen-btn-date-1 display-duration" [ngClass]="{'disable-end-date': disableEndDate}">
+              <div class="cupen-btn-date-1 display-duration view_add_dates" [ngClass]="{'disable-end-date': disableEndDate}">
 
                 <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <g clip-path="url(#clip0_2457_3571)">
@@ -465,7 +465,7 @@
 
       </div>
 
-      <div class="d-flex mb-3">
+      <div class="d-flex mb-3 add-banners">
         <div>
           <p class="code-text">
             Max Views
