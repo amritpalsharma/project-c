@@ -1424,5 +1424,7 @@
    "selectSightingFirst": "Sélectionner d'abord la (les) visée(s).",
    "JoinandEndDates": "Date de début et de fin",
     "freePlanText": "2 mois gratuits sur le plan annuel",
-  "forClubsandScouts": "Pour les clubs et les scouts"
+  "forClubsandScouts": "Pour les clubs et les scouts",
+  "PerformaceProfile": "Profil de performance",
+  "subscriptionCanceledSuccessfully": "L'abonnement a été annulé avec succès."
 }

@@ -1269,8 +1269,8 @@
   "noNotification": "Keine Benachrichtigung gefunden!",
   "dontShowAgain": "Nicht mehr anzeigen",
   "cancelConfirmationMsg": "Bist du sicher, dass du diese Mitgliedschaft kündigen möchtest? Dies kann nicht rückgängig gemacht werden.",
-  "youHaveAnActivePremiumPlan": "Du hast ein aktives Premium Plan",
-  "youHaveAnActivemultiCountryPlan": "Du hast ein aktives Multi-Länder Plan",
+  "youHaveAnActivePremiumPlan": "Du hast ein aktives Premium-Abo",
+  "youHaveAnActivemultiCountryPlan": "Du hast ein aktives Multi-Länder-Abo",
   "youHaveAnActiveBoostPlan": "Du hast ein aktives Boost-Abo",
   "pleaseWait": "Bitte warten...",
   "uploadingPhotos": "Fotos hochladen",
@@ -1412,6 +1412,8 @@
    "selectSightingFirst": "Wähle zuerst die Sichtung aus.",
    "JoinandEndDates": "Beitritts- und Enddatum",
    "freePlanText": "2 Monate kostenlos im Jahrestarif",
-  "forClubsandScouts": "Für Vereine und Pfadfinder"
+  "forClubsandScouts": "Für Vereine und Pfadfinder",
+  "PerformaceProfile": "Leistungsprofil",
+   "subscriptionCanceledSuccessfully": "Das Abonnement wurde erfolgreich gekündigt."
 
 }

@@ -1274,5 +1274,7 @@
    "selectSightingFirst": "Vælg observation(er) først.",
    "JoinandEndDates": "Tiltrædelses- og slutdato",
     "freePlanText": "2 måneder gratis på årsplan",
-  "forClubsandScouts": "For klubber og spejdere"
+  "forClubsandScouts": "For klubber og spejdere",
+  "PerformaceProfile": "Ydelsesprofil",
+  "subscriptionCanceledSuccessfully": "Abonnementet er annulleret med succes."
 }

@@ -1365,5 +1365,7 @@
    "selectSightingFirst": "Selecionar primeiro a(s) mira(s).",
    "JoinandEndDates": "Data de adesão e data de fim",
     "freePlanText": "2 meses grátis no plano anual",
-  "forClubsandScouts": "Para clubes e escuteiros"
+  "forClubsandScouts": "Para clubes e escuteiros",
+   "PerformaceProfile": "Perfil de desempenho",
+   "subscriptionCanceledSuccessfully": "A subscrição foi cancelada com sucesso."
 }

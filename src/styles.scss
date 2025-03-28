@@ -2332,3 +2332,24 @@ img.join-btn.check-image-dark {
   background: #FCFCFC !important;
 }
 }
+
+.light-theme .bg-light-btn{
+  color: white;
+  background-color: #6FB95D;
+  border: none;
+}
+ .light-theme .bg-dark-btn{
+  color: white;
+  background-color: #E05263;
+  border: none;
+}
+.dark-theme .bg-light-btn{
+  color: #072944;
+  background-color: #BDE34E;
+  border: none;
+}
+ .dark-theme .bg-dark-btn{
+  color: white;
+  background-color: #E05263;
+  border: none;
+}
