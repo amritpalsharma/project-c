@@ -169,7 +169,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
           },
           {
             // element: '.tour-highlights',
-            element: '.unlock_page',
+            element: '.featureWrap',
             intro: `<div><h6>${translations['highlights']}</h6>${translations['uploadPhotosAndVideos']}.</div>`,
             tooltipClass: 'custom-tooltip',
           },
