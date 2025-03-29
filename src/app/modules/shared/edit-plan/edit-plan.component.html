@@ -1,6 +1,6 @@
-<div class="edit-multi-country-plan container border rounded p-0">
-  <div class="personal_edit">
-    <div class="dialog-header m-auto">
+<div class="edit-multi-country-plan container border-0 rounded p-0">
+  <div class="personal_edit p-4">
+    <div class="dialog-header m-auto ">
       <h2>{{ 'editMulti-countryPlan' | translate }}</h2>
     </div>
     <div class="close_buttons" *ngIf='theme=="light"'>
@@ -14,9 +14,9 @@
       </button>
     </div>
   </div>
-  <hr>
+  <!-- <hr> -->
 
-  <div class="country-plan">
+  <div class="country-plan" style="background-color: #072944;">
     <div class="country-selection mb-4">
       <!-- <h2>{{selectedPlan/ | json}}</h2> -->
       <div class="form-group col-lg-4">
@@ -70,7 +70,7 @@
     </div>
   </div>
 
-  <div class="country-plan-2">
+  <div class="country-plan-2 pt-4">
     <!-- <p class="prorata-explanation mb-4">
       {{ 'editPlan-text' | translate }}
     </p> -->

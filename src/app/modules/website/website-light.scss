@@ -416,6 +416,10 @@
   background: linear-gradient(45deg, #6FB95D, #236115);
   border: none;
 }
+.light-theme .website-code .btn.btn-primary.d-block:hover {
+  background: linear-gradient(45deg, #236115, #6FB95D);
+  border: none;
+}
 
 .light-theme .website-code span.dark-text {
   display: none;
@@ -425,6 +429,12 @@
   background: linear-gradient(45deg, #6FB95D, #236115);
   color: white;
 }
+
+.light-theme .website-code .create-account.d-block:hover {
+  background: linear-gradient(45deg, #236115, #6FB95D);
+  color: white;
+}
+
 
 .dark-theme span.light-text {
   display: none;

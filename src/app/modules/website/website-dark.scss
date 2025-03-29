@@ -365,7 +365,7 @@ button.faq-scout-button {
 // }
 
 .dark-theme .website-code a.login-btn:hover,
-.dark-theme .website-code .banner-btn a.btn-primary:hover,
+.dark-theme .website-code a.btn-primary:hover,
 .dark-theme .website-code .btn.btn-register:hover {
   background: linear-gradient(45deg, #EFFFC1, #BDE34F) !important;
 }
@@ -883,8 +883,14 @@ button.faq-scout-button {
   border-radius: 50%;
 }
 
-.dark-theme .website-code .modal-footer a.btn-primary {
-  background: linear-gradient(to bottom, #EFFFC1, #BDE34F);
+
+.dark-theme .website-code a.btn-primary {
+  background: rgb(189, 227, 79) !important;
+  color: black;
+}
+
+.dark-theme .website-code a.btn-primary:hover {
+  background: linear-gradient(to bottom, #EFFFC1, #BDE34F) !important;
   color: black;
 }
 
@@ -1643,11 +1649,16 @@ button.faq-scout-button {
 }
 
 .dark-theme .website-code .create-account.d-block {
-  background: linear-gradient(to bottom, #EFFFC1, #BDE34F);
+  // background: linear-gradient(to bottom, #EFFFC1, #BDE34F);
+  background: #BDE34F ;
   color: #072944;
   font-weight: 700;
 }
 
+.dark-theme .website-code .create-account.d-block:hover {
+  background: linear-gradient(to bottom, #EFFFC1, #BDE34F);
+  color: #072944;
+}
 // .dark-theme .website-code button:hover {
 //   background: linear-gradient(to bottom, #EFFFC1, #BDE34F);
 //   // color: #072944;
