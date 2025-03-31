@@ -1,6 +1,7 @@
 <div class="delete-confirmation-modal bg-color">  
-    <div class="close_buttons text-end">
-        <button class="close-btn" (click)="cancel()">X</button>
+    <div class="text-end">
+        <!-- <button class="close-btn" (click)="cancel()">X</button> -->
+        <a (click)="cancel()" class="cross-btn-close"></a>
     </div>
 
     <h2 class="delete-confirmation">{{ 'confirmDeleteinformation3' | translate }}</h2>   
