@@ -13,8 +13,8 @@
   "activityLog": "Activity Log",
   "addDiscount": "Add Discount",
   "addNew": "Add New",
-  "addNewPerformance": "Add New Statistic",
-  "addNewTransfer": "Add New Transfer",
+  "addNewPerformance": "Add new statistic",
+  "addNewTransfer": "Add new transfer",
   "addPhotos": "Add Photos",
   "addVideo": "Add Video",
   "age": "Age",
@@ -582,8 +582,8 @@
   "transfers": "Transfers",
   "purchases": "Purchases",
   "kosovo": "Kosovo",
-  "verifyUsers": "Verify Users",
-  "deleteUsers": "Delete Users",
+  "verifyUsers": "Verify User",
+  "deleteUsers": "Delete User",
   "userAlreadyVerified": "This user is already verified.",
   "published": "Published",
   "lastModified": "Last Modified",
@@ -1101,7 +1101,6 @@
   "selectFavoriteFirst": "First, select a favorite.",
   "removeFavoriteConfirm": "Are to sure to remove favorite?",
   "userPurchasesNotFound": "No purchases found.",
-  
   "premiumPlanDesc": {
     "features": [
       "Talent profiles with detailed statistics, performance data, achievements, and transfers visible",
@@ -1171,7 +1170,6 @@
       "Tell your club story."
     ]
   },
-
   "dontShowAgain": "Don't show it again",
   "cancelConfirmationMsg": "Are you sure you want to cancel this subscription? This cannot be undone.",
   "youHaveAnActivePremiumPlan": "You have an active Premium Plan",
@@ -1226,7 +1224,7 @@
   "removeFavbtn": "Yes, delete",
   "cancelRemoveFavBtn": "No, don't delete",
   "addCountryText": "If you add another country, your profile will be displayed in that country. Your profile will then also be visible to all talents, clubs, and scouts in that country.",
-  "deleteProfileConfirm": "This will delete your account permanently from our database. This cannot be undone.",
+  "deleteProfileConfirm": "This will delete Talent's account permanently.",
   "downloading": "Downloading...",
   "submittingPerformanceData": "Submitting performance data...",
   "enterDocumentTitle": "Enter document title",
@@ -1325,5 +1323,6 @@
   "sightingInformation": "Sighting Information",
   "freePlanText": "2 months free on yearly plan",
   "forClubsandScouts": "For Clubs and Scouts",
-  "subscriptionCanceledSuccessfully": "Subscription canceled successfully."
+  "subscriptionCanceledSuccessfully": "Subscription canceled successfully.",
+  "editBoostProfile": "Edit boost profile"
 }

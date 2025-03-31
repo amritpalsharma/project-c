@@ -17,7 +17,7 @@
             {{data.message}}
 
             <div class="popup-delete-btn">
-                <span (click)="deleteConfirmed()">{{'delete' | translate}}</span>
+                <span (click)="deleteConfirmed()" class="btn btn-danger bg-dark-btn">{{'delete' | translate}}</span>
             </div>
         </div>
 
@@ -32,7 +32,7 @@
         <div class="display-message" *ngIf="data.action == 'delete-favorite-confirmation'">
             {{'areToSure' | translate}}
             <div class="popup-delete-btn">
-                <span (click)="deleteConfirmed()">{{'remove' | translate}}</span>
+                <span (click)="deleteConfirmed()" class="btn btn-danger bg-dark-btn">{{'remove' | translate}}</span>
             </div>
         </div>
 
@@ -40,9 +40,9 @@
             {{data.message}}
 
             <div
-                class="popup-delete-btn popup-delete-btn d-flex align-items-center justify-content-between mx-5 px-5 py-2">
-                <span (click)="performanceDeleteConfirmed()" style="color: green;">{{'removeFavbtn' | translate}}</span>
-                <div (click)="close()">{{ 'cancelRemoveFavBtn' | translate }}</div>
+                class="popup-delete-btn popup-delete-btn d-flex align-items-center justify-content-center py-2">
+                <span (click)="performanceDeleteConfirmed()" class="btn btn-success me-3 bg-light-btn btn_confirmm">{{'removeFavbtn' | translate}}</span>
+                <div (click)="close()" class="btn btn-danger bg-dark-btn btn_cancell">{{ 'cancelRemoveFavBtn' | translate }}</div>
             </div>
         </div>
 

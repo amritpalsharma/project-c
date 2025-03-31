@@ -68,8 +68,8 @@
             </div>
         </div>
         <div *ngIf="data.action === 'delete-confirmation'"
-            class="popup-delete-btn d-flex align-items-center justify-content-between mx-5 px-5 py-2">
-            <div (click)="deleteConfirmed()" class="bg-light-btn">{{ 'removeFavbtn' | translate }}</div>
+            class="popup-delete-btn d-flex align-items-center justify-content-center py-2">
+            <div (click)="deleteConfirmed()" class="btn btn-success me-3 bg-light-btn">{{ 'removeFavbtn' | translate }}</div>
             <div class="btn btn-danger bg-dark-btn" (click)="close()">{{ 'cancelRemoveFavBtn' | translate }}</div>
         </div>
     </div>

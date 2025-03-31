@@ -1426,5 +1426,6 @@
     "freePlanText": "2 mois gratuits sur le plan annuel",
   "forClubsandScouts": "Pour les clubs et les scouts",
   "PerformaceProfile": "Profil de performance",
-  "subscriptionCanceledSuccessfully": "L'abonnement a été annulé avec succès."
+  "subscriptionCanceledSuccessfully": "L'abonnement a été annulé avec succès.",
+   "editBoostProfile": "Modifier le profil de stimulation"
 }
