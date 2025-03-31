@@ -1340,7 +1340,6 @@
   "category": "Categoria",
   "selectActivityFirst": "Selecione uma atividade primeiro.",
   "selectNotificationFirst": "Selecione primeiro a(s) notificação(ões).",
-
   "permissions": {
     "allowAdvertising": {
       "name": "Permitir cookies de publicidade",
@@ -1357,16 +1356,17 @@
     }
   },
   "acceptAll": "Aceitar todos",
-   "pleaseConfirmSpellings": "Os valores não correspondem, por favor confirme a sua ortografia.",
-   "formAllFieldsRequired": "Por favor, preencha corretamente o formulário antes de enviá-lo.",
-   "selectPerformanceFirst": "Selecione primeiro o desempenho.",
-   "removeSection": "Remover secção",
+  "pleaseConfirmSpellings": "Os valores não correspondem, por favor confirme a sua ortografia.",
+  "formAllFieldsRequired": "Por favor, preencha corretamente o formulário antes de enviá-lo.",
+  "selectPerformanceFirst": "Selecione primeiro o desempenho.",
+  "removeSection": "Remover secção",
   "addMore": "Adicionar mais",
-   "selectSightingFirst": "Selecionar primeiro a(s) mira(s).",
-   "JoinandEndDates": "Data de adesão e data de fim",
-    "freePlanText": "2 meses grátis no plano anual",
+  "selectSightingFirst": "Selecionar primeiro a(s) mira(s).",
+  "JoinandEndDates": "Data de adesão e data de fim",
+  "freePlanText": "2 meses grátis no plano anual",
   "forClubsandScouts": "Para clubes e escuteiros",
-   "PerformaceProfile": "Perfil de desempenho",
-   "subscriptionCanceledSuccessfully": "A subscrição foi cancelada com sucesso.",
-    "editBoostProfile": "Editar perfil do boost"
+  "PerformaceProfile": "Perfil de desempenho",
+  "subscriptionCanceledSuccessfully": "A subscrição foi cancelada com sucesso.",
+  "editBoostProfile": "Editar perfil do boost",
+  "uploadHighlightPhotosAndVideos": "Carregar fotografias e vídeos"
 }

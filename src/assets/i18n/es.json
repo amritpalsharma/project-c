@@ -1330,8 +1330,7 @@
   "accepted": "Aceptado",
   "category": "Categoría",
   "selectActivityFirst": "Selecciona primero una actividad.",
-  "selectNotificationFirst" : "Selecciona primero la(s) notificación(es).",
-
+  "selectNotificationFirst": "Selecciona primero la(s) notificación(es).",
   "permissions": {
     "allowAdvertising": {
       "name": "Permitir cookies publicitarias",
@@ -1353,11 +1352,12 @@
   "selectPerformanceFirst": "Seleccione primero el rendimiento.",
   "removeSection": "Eliminar sección",
   "addMore": "Añadir más",
-   "selectSightingFirst": "Seleccione primero los avistamientos.",
-   "JoinandEndDates": "Fecha de entrada y salida",
-    "freePlanText": "2 meses gratis en plan anual",
+  "selectSightingFirst": "Seleccione primero los avistamientos.",
+  "JoinandEndDates": "Fecha de entrada y salida",
+  "freePlanText": "2 meses gratis en plan anual",
   "forClubsandScouts": "Para clubes y scouts",
   "PerformaceProfile": "Perfil de rendimiento",
   "subscriptionCanceledSuccessfully": "Suscripción cancelada con éxito.",
-   "editBoostProfile": "Editar el perfil de impulso"
+  "editBoostProfile": "Editar el perfil de impulso",
+  "uploadHighlightPhotosAndVideos": "Cargar fotos y vídeos"
 }

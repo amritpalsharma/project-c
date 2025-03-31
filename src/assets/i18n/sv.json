@@ -1386,8 +1386,7 @@
   "category": "Kategori",
   "selectActivityFirst": "Välj först en aktivitet.",
   "selectNotificationFirst": "Välj först avisering(ar).",
-
-   "permissions": {
+  "permissions": {
     "allowAdvertising": {
       "name": "Tillåt annonseringscookies",
       "description": "Jag tillåter annonseringscookies. Nya annonseringscookies kommer att aktiveras som standard."
@@ -1403,16 +1402,17 @@
     }
   },
   "acceptAll": "Acceptera alla",
-   "pleaseConfirmSpellings": "Värdena matchar inte, vänligen bekräfta din stavning.",
-   "formAllFieldsRequired": "Vänligen fyll i formuläret korrekt innan du skickar in det.",
-   "selectPerformanceFirst": "Välj prestanda först.",
-   "removeSection": "Ta bort sektion",
+  "pleaseConfirmSpellings": "Värdena matchar inte, vänligen bekräfta din stavning.",
+  "formAllFieldsRequired": "Vänligen fyll i formuläret korrekt innan du skickar in det.",
+  "selectPerformanceFirst": "Välj prestanda först.",
+  "removeSection": "Ta bort sektion",
   "addMore": "Lägg till mer",
   "selectSightingFirst": "Välj sikte först.",
   "JoinandEndDates": "Start- och slutdatum",
-   "freePlanText": "2 månader gratis på årsplan",
+  "freePlanText": "2 månader gratis på årsplan",
   "forClubsandScouts": "För klubbar och scouter",
   "PerformaceProfile": "Prestandaprofil",
   "subscriptionCanceledSuccessfully": "Prenumerationen avbröts framgångsrikt.",
-   "editBoostProfile": "Redigera boost-profil"
+  "editBoostProfile": "Redigera boost-profil",
+  "uploadHighlightPhotosAndVideos": "Ladda upp foton och videor"
 }
