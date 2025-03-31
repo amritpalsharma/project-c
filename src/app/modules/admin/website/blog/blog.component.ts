@@ -31,6 +31,7 @@ export class BlogComponent {
   selectedIds: any = [];
   customFilters: any = [];
   languages: any;
+  count : number = 0;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -211,7 +212,8 @@ export class BlogComponent {
       },
       data: {
         message: message,
-        action: action
+        action: action,
+        
       }
     });
     messageDialog.afterClosed().subscribe(result => {
@@ -309,6 +311,7 @@ export class BlogComponent {
         page: 'blog',
         appliedfilters: this.customFilters,
         languages: this.languages,
+        count: this.count,
       }
     })
 
@@ -316,6 +319,8 @@ export class BlogComponent {
       if (result !== undefined) {
         this.applyUserFilter(result);
         console.log('Dialog result:', result);
+        this.applyUserFilter(result.userFilters);
+        this.count = result.filterCount;
       } else {
         console.log('Dialog closed without result');
       }
