@@ -18,6 +18,7 @@ import { CommonDataService } from '../../../services/common-data.service';
 import { TranslateService } from '@ngx-translate/core';
 import { WebPages } from '../../../services/webpages.service';
 import { TitleService } from '../../../title.service';
+import { GlobalSettingsService } from '../../../services/global-settings.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -29,6 +30,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   mainImage: { src: string } = { src: '' }; // Current main image source
   album: any[] = []; // Array for album images
   loggedInUser: any = localStorage.getItem('userData');
+  currentThemeMode: any = localStorage.getItem('theme');
   // isRepresentator : boolean = false;
 
   countryFlagUrl: string = './assets/images/city-icon-light.png';
@@ -44,7 +46,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     private commonDataService: CommonDataService,
     private translateService: TranslateService,
     public webPages: WebPages,
-    private titleService: TitleService
+    private titleService: TitleService,
+    private globalSettings: GlobalSettingsService
   ) { }
   activeTab: string = 'profile';
   userId: any;
@@ -79,6 +82,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   pageTitle: string = '';
   async ngOnInit() {
     this.getJsonTranslations();
+    this.themeChanged();
     this.introInstance = introJs();
 
 
@@ -100,6 +104,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.webPages.languageId$.subscribe((data: any) => {
       this.getToasterMsg();
       this.getJsonTranslations();
+    });
+    //  on change
+    this.globalSettings.indexFunctionCall$.subscribe(() => {
+      this.themeChanged(); // Call the function when event is received
     });
 
   }
@@ -796,5 +804,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
       // this.Canceled = translations['Canceled'];
     });
   }
-
+  themeChanged() {
+    let currentTheme = localStorage.getItem('theme');
+    this.currentThemeMode = currentTheme;
+    if(this.currentThemeMode == null || this.currentThemeMode == undefined){
+      this.currentThemeMode = 'light';
+    }
+  }
 }

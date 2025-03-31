@@ -12,6 +12,7 @@ import { TalentTooltipService } from '../../../services/talent-tooltip.service';
 import { Subscription } from 'rxjs';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { TitleService } from '../../../title.service';
+import { GlobalSettingsService } from '../../../services/global-settings.service';
 
 @Component({
   selector: 'app-view-profile',
@@ -47,6 +48,7 @@ export class ViewProfileComponent implements OnInit {
   startConversation: string = '';
   pleaseWaitTxt: string = '';
   downloading: string = '';
+  currentThemeMode: any = localStorage.getItem('theme');
   private tooltipSubscription!: Subscription; // ✅ Subscription for tooltips
 
   @Output() dataEmitter = new EventEmitter<string>();
@@ -63,9 +65,12 @@ export class ViewProfileComponent implements OnInit {
     private tooltipService: TalentTooltipService,
     private translate: TranslateService,
     private titleService: TitleService,
+    private globalSettings: GlobalSettingsService
   ) { }
 
   ngOnInit(): void {
+    this.themeChanged();
+    
     this.loggedInUser = JSON.parse(this.loggedInUser);
     this.route.params.subscribe((params: any) => {
       this.userId = params.id;
@@ -96,6 +101,10 @@ export class ViewProfileComponent implements OnInit {
     this.webPages.languageId$.subscribe((data) => {
       this.getToasterMsg();
       this.getUser(this.userId);
+    });
+
+    this.globalSettings.indexFunctionCall$.subscribe(() => {
+      this.themeChanged(); // Call the function when event is received
     });
   }
 
@@ -446,6 +455,14 @@ export class ViewProfileComponent implements OnInit {
       this.pageTitle = res['explore'];
       this.titleService.setTitle(this.pageTitle);
     });
+  }
+
+  themeChanged() {
+    let currentTheme = localStorage.getItem('theme');
+    this.currentThemeMode = currentTheme;
+    if(this.currentThemeMode == null || this.currentThemeMode == undefined){
+      this.currentThemeMode = 'light';
+    }
   }
 
 }

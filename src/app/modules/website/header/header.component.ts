@@ -707,9 +707,10 @@ export class HeaderComponent implements OnInit {
       lang: selectedLanguageId,
       domain: domain,
       club_id: this.selectedClub,
-      verification_link: verification_link
+      verification_link: verification_link,
+      company_name: this.companyName
     };
-    if (this.privacyPolicy === false) { 
+    if (this.privacyPolicy === false) {
       this.toastr.error(this.requiredFieldsMessage);
       return;
     }

@@ -152,6 +152,7 @@
     border: none;
     outline: none;
   }
+  
 
   .lm-5 .single_platform{
     margin-left:5%;
@@ -192,4 +193,9 @@
   padding: 4px 9px 2px;
   border: 2px solid #849aa2;
 }
+}
+
+.platform_input input{
+  display: block;
+  color: white;
 }

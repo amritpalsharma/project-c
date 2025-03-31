@@ -38,7 +38,8 @@ export class ChatComponent {
   async ngOnInit() {
     this.getJsonTranslations();
     const userDataString = localStorage.getItem('userData');
-
+    // alert(userDataString)
+    console.warn('userDataString',userDataString)
     if (userDataString) {
       this.userData = JSON.parse(userDataString);
       this.user = {
@@ -81,6 +82,7 @@ export class ChatComponent {
 
   // Start a one-on-one chat
   startOneOnOneChat(user: any) {
+    console.warn('Recived User is ',user);
     this.talkService.createOneOnOneConversation(user.id, user.name, user.email, user.photoUrl)
       .then(() => {
         this.talkService.mountChat('talkjs-container');
@@ -114,8 +116,13 @@ export class ChatComponent {
       width: '760px',
     })
       .afterClosed().subscribe(users => {
-
+        console.warn(users.data)
         for (let user of users.data) {
+          if (user.profile_image_path != '' && user.profile_image_path != undefined) {
+
+          } else if (user.profile_image != '' && user.profile_image != undefined) {
+            user.profile_image_path = 'https://api.socceryou.ch/uploads/' + user.profile_image;
+          }
           this.users.push({
             id: user.id,
             name: user.first_name,

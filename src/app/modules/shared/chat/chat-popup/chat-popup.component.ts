@@ -53,6 +53,7 @@ export class ChatPopupComponent {
   }
 
   startChat(){
+    console.warn(this.users)
     this.dialogRef.close({ data: this.users });
   }
 

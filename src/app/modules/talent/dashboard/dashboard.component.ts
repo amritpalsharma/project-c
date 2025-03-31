@@ -19,6 +19,7 @@ import { environment } from '../../../../environments/environment';
 import { CommonDataService } from '../../../services/common-data.service';
 import { WebPages } from '../../../services/webpages.service';
 import { TitleService } from '../../../title.service';
+import { GlobalSettingsService } from '../../../services/global-settings.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -44,7 +45,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     private translateService: TranslateService,
     private commonDataService: CommonDataService,
     public webPages: WebPages,
-    private titleService: TitleService
+    private titleService: TitleService,
+    private globalSettings: GlobalSettingsService
   ) { }
   activeTab: string = 'profile';
   userId: any;
@@ -81,9 +83,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
   deletingCoverImage: string = '';
   Canceled: string = '';
   coverImageDeletionCanceled: string = '';
+  currentThemeMode: any = localStorage.getItem('theme');
 
   async ngOnInit() {
     this.getJsonTranslations();
+    this.themeChanged();
     this.introInstance = introJs();
 
     this.loggedInUser = JSON.parse(this.loggedInUser);
@@ -123,6 +127,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.webPages.languageId$.subscribe((data: any) => {
       this.getToasterMsg();
     });
+    this.globalSettings.indexFunctionCall$.subscribe(() => {
+      this.themeChanged(); // Call the function when event is received
+    });
+    // this.themeChanged();
   }
 
   getClubsForPlayer() {
@@ -866,5 +874,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
       console.log('Title fetch Function Fired');
     })
   }
-
+  themeChanged() {
+    let currentTheme = localStorage.getItem('theme');
+    this.currentThemeMode = currentTheme;
+    if (this.currentThemeMode == null || this.currentThemeMode == undefined) {
+      this.currentThemeMode = 'light';
+    }
+  }
 }
