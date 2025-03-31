@@ -2417,6 +2417,7 @@ td.col_checkbox {
 .scout_add_new_talent_popup .example-chip-list.inbox-wrapper .mat-mdc-text-field-wrapper.mdc-text-field {
   border: 0 !important;
   padding: 10px !important;
+}
 
   .light-theme .bg-light-btn {
     color: white;
@@ -2429,19 +2430,6 @@ td.col_checkbox {
     background-color: #E05263;
     border: none;
   }
-
-  .dark-theme .bg-light-btn {
-    color: #072944;
-    background-color: #BDE34E;
-    border: none;
-  }
-
-  .dark-theme .bg-dark-btn {
-    color: white;
-    background-color: #E05263;
-    border: none;
-  }
-}
 
 .cross-btn-close {
   background-image: url("/assets/images/carbon_close-outline.png");

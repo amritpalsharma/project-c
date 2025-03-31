@@ -865,7 +865,7 @@ input:checked+.slider:before {
 }
 
 .dark-theme .card-header a {
-  color: #ffffff !important;
+  color: #ffffff ;
 }
 
 .dark-theme .card-header h4 {
@@ -2688,6 +2688,17 @@ input:checked+.slider:before {
 
 .dark-theme .bg-light {
   background: #072944 !important;
+}
+.dark-theme .bg-light-btn {
+  color: #072944 !important;
+  background-color: #BDE34E;
+  border: none;
+}
+
+.dark-theme .bg-dark-btn {
+  color: white;
+  background-color: #E05263;
+  border: none;
 }
 
 .dark-theme .settings svg path {
