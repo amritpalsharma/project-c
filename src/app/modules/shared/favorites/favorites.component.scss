@@ -142,3 +142,10 @@ border-color: #D9D9D9 !important;
 // th{
 //   text-align: center;
 // }
+
+.filter-applied{
+  color: rgba(0, 112, 242, 1);
+  svg path{
+    fill: rgba(0, 112, 242, 1);
+  }
+}

@@ -2442,3 +2442,10 @@ td.col_checkbox {
     border: none;
   }
 }
+
+.filter-applied{
+  color: rgba(0, 112, 242, 1);
+  svg path{
+    fill: rgba(0, 112, 242, 1);
+  }
+}

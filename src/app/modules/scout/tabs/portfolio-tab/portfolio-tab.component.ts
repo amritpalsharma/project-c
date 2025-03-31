@@ -32,7 +32,7 @@ export class PortfolioTabComponent {
   userId: any = '';
   user: any;
   scoutPlayers: any = [];
-  displayedColumns: string[] = ['Name', 'Language', 'Club', 'Contract Starts', 'Contract Expires', 'Status', 'View', 'Delete'];
+  displayedColumns: string[] = ['Name', 'Language', 'Club', 'Status', 'View', 'Delete'];
   isLoading = false;
   uploadsPath: string = '';
   loggedInUser: any = localStorage.getItem('userData');
