@@ -623,7 +623,7 @@
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="mb-3">
-                                        <label class="form-label">{{ 'Email' | translate }}</label>
+                                        <label class="form-label">{{ 'email' | translate }}</label>
                                         <input type="email" class="form-control" placeholder="" [(ngModel)]="email" name="email" required />
                                         <div *ngIf="registerForm.controls['email']?.errors?.['required'] && (registerForm.controls['email']?.dirty || registerForm.controls['email']?.touched)"
                                             class="text-danger">
