@@ -602,6 +602,29 @@ export class DashboardComponent implements OnInit, OnDestroy {
     });
   }
 
+
+  openVideo(index: number): void {
+    // Prepare album
+    let videosArr = this.userVideos.map((image: any) => ({
+      src: this.highlights.file_path + image.file_name,
+    }));
+    // alert(index)
+    // console.warn(this.userVideos)
+    // console.warn(this.userVideos[index])
+    console.warn(videosArr)
+
+    // Open dialog with the selected image
+    this.dialog.open(LightboxDialogComponent, {
+      width: '80%',
+      height: '85%',
+      data: {
+        videos: videosArr,
+        mainVideo: { src: 'https://api.socceryou.ch/uploads/'+this.userVideos[index].file_name },
+      },
+      panelClass: 'lightbox-dialog'
+    });
+  }
+
   navigateImage(direction: 'prev' | 'next'): void {
     // Get current image index
     const currentIndex = this.album.findIndex(image => image.src === this.mainImage.src);
@@ -880,5 +903,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
     if (this.currentThemeMode == null || this.currentThemeMode == undefined) {
       this.currentThemeMode = 'light';
     }
+  }
+
+  getDuration(event: Event, video: any) {
+    const videoElement = event.target as HTMLVideoElement;
+    video.duration = videoElement.duration; // Store duration in the video object
   }
 }

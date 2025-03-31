@@ -11,23 +11,37 @@ import { CommonModule } from '@angular/common';
 export class LightboxDialogComponent {
   lightboxIsOpen: boolean = false; // Track the state of the lightbox
   mainImage: { src: string } = { src: '' }; // Current main image source
+  mainVideo: { src: string } = { src: '' }; // Current main image source
   album: any[] = []; // Array for album images
-  loggedInUser:any = localStorage.getItem('userData');
-  countryFlagUrl : any;
+  videos: any[] = []; // Array for album images
+  loggedInUser: any = localStorage.getItem('userData');
+  countryFlagUrl: any;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any, // Receive data from parent
     private dialogRef: MatDialogRef<LightboxDialogComponent>
-  ) {}
+  ) { }
   ngOnInit(): void {
     console.log('Data passed to LightboxDialog:', this.data);
-  
+
     if (this.data) {
-      this.album = this.data.album;
-      this.mainImage = this.data.mainImage;
+      if (this.data.album) {
+        this.album = this.data.album;
+      }
+      if (this.mainImage) {
+        this.mainImage = this.data.mainImage;
+      }
+
+      if (this.data.videos) {
+        this.videos = this.data.videos;
+      }
+
+      if (this.mainVideo) {
+        this.mainVideo = this.data.mainVideo;
+      }
     }
   }
-  
+
   navigateImage(direction: string): void {
     const currentIndex = this.data.album.findIndex(
       (image: any) => image.src === this.data.mainImage.src
@@ -54,10 +68,10 @@ export class LightboxDialogComponent {
   //   this.album = this.highlights.images.map((image: any) => ({
   //     src: this.highlights.file_path + image.file_name,
   //   }));
-  
+
   //   // Set the main image to be the one clicked
   //   this.mainImage = { src: this.album[index].src };
-  
+
   //   // Open the lightbox
   //   this.lightboxIsOpen = true;
   // }

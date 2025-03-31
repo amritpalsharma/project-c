@@ -1,7 +1,8 @@
-.unlock_page{
+.unlock_page {
     position: relative;
     height: 30vh;
-    .unlock_btn{
+
+    .unlock_btn {
         background: #6FB95D;
         padding: 10px 24px;
         font-size: 12px;
@@ -9,8 +10,9 @@
         color: #fff;
         border-radius: 10px;
         border: none;
-      }
-      .upgrade_unlock{
+    }
+
+    .upgrade_unlock {
         height: 100%;
         background: rgb(255 255 255 / 65%);
         position: absolute;
@@ -20,11 +22,12 @@
         display: flex;
         align-items: center;
         justify-content: center;
-      }
-    .main-template{
+    }
+
+    .main-template {
         color: black;
     }
-    
+
     .Performance-btn {
         border-radius: 7px;
         padding: 2px 15px;
@@ -32,56 +35,62 @@
         border: 1px solid black;
         font-weight: 400;
     }
+
     .Performance-btn:hover {
-       background-color: transparent ;
+        background-color: transparent;
     }
+
     .table tbody tr:hover td {
-        border-top: none !important; 
-        border-bottom: none !important; 
+        border-top: none !important;
+        border-bottom: none !important;
     }
+
     // .testing{
     //     background-image: url('../../../../../assets/images/players-2.jpg');
     //     height: 200px;
     // }
-    
-    .pointer{
+
+    .pointer {
         cursor: pointer;
     }
-    
-    .form-control{
-        width:80px;
+
+    .form-control {
+        width: 80px;
     }
-    
-    select.form-control{
-        min-width:190px;
+
+    select.form-control {
+        min-width: 190px;
         width: 80%;
-    
+
     }
-    .coach-debt-input{
+
+    .coach-debt-input {
         min-width: 150px;
         width: 80%;
     }
-    .year-input{
+
+    .year-input {
         max-width: 120px;
-        width: 100px; 
+        width: 100px;
     }
-    
+
     .select-wrapper {
-    position: relative;
-    display: inline-block;
+        position: relative;
+        display: inline-block;
     }
-    
+
     .dropdown-icon {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    pointer-events: none; 
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        pointer-events: none;
     }
-    
-    .w-10{
-        width:10%;
+
+    .w-10 {
+        width: 10%;
     }
+
     .new_performance button {
         background: none;
         border: 1px solid #E7E7E7;
@@ -93,15 +102,17 @@
         gap: 6px;
         margin-left: auto;
     }
-    
+
     .new_performance button svg {
         width: 16px;
         fill: #a7a7a7;
     }
+
     .edit_icon {
         width: 20px;
         fill: #6d6d6d;
     }
+
     .edit_button-2 {
         border: 1px solid #918f8f;
         background: no-repeat;
@@ -110,55 +121,66 @@
         display: flex;
         align-items: center;
     }
+
     .edit_button-2 span {
         font-size: 16px;
         color: #918f8f;
         padding-left: 10px;
-       
+
     }
+
     .details_2 {
         font-size: 16px;
         color: #a9a9a9;
         font-weight: 400;
         margin-bottom: 6px;
-      }
-      .details-1 {
+    }
+
+    .details-1 {
         font-size: 16px;
         font-weight: 400;
         margin-bottom: 10px;
-      }
-      .team-logo-img img {
+    }
+
+    .team-logo-img img {
         width: 72px;
     }
-    .team-logos{
+
+    .team-logos {
         gap: 20px;
     }
-    .edit-gap{
+
+    .edit-gap {
         gap: 10px;
     }
-    .country-details{
+
+    .country-details {
         gap: 10px;
     }
-    .table-striped > tbody > tr:nth-of-type(odd) > *{
+
+    .table-striped>tbody>tr:nth-of-type(odd)>* {
         --bs-table-bg-type: none !important;
     }
-    .table tbody tr:hover{
+
+    .table tbody tr:hover {
         border-top: none !important;
         border-left: none !important;
         border-right: none !important;
         border-bottom: 3.3px solid #e6e6e6 !important;
         background: none;
     }
+
     tr.table_underline {
-        border-bottom: 3.3px solid #e6e6e6 ;
+        border-bottom: 3.3px solid #e6e6e6;
     }
-    .underline_gap{
+
+    .underline_gap {
         margin-bottom: 18px;
     }
-    
+
 }
 
-.main-template{
+.main-template {
     color: black;
 }
 
@@ -169,58 +191,66 @@
     border: 1px solid black;
     font-weight: 400;
 }
+
 .Performance-btn:hover {
-   background-color: transparent ;
+    background-color: transparent;
 }
+
 .table tbody tr:hover td {
-    border-top: none !important; 
-    border-bottom: none !important; 
+    border-top: none !important;
+    border-bottom: none !important;
 }
-.testing{
+
+.testing {
     background-image: url('../../../../../assets/images/players-2.jpg');
     height: 200px;
 }
-.main-performance_card{
+
+.main-performance_card {
     overflow: auto;
 }
-.pointer{
+
+.pointer {
     cursor: pointer;
 }
 
-.form-control{
-    width:80px;
+.form-control {
+    width: 80px;
 }
 
-select.form-control{
-    min-width:190px;
+select.form-control {
+    min-width: 190px;
     width: 80%;
 
 }
-.coach-debt-input{
+
+.coach-debt-input {
     min-width: 150px;
     width: 80%;
 }
-.year-input{
+
+.year-input {
     max-width: 120px;
-    width: 100px; 
+    width: 100px;
 }
 
 .select-wrapper {
-position: relative;
-display: inline-block;
+    position: relative;
+    display: inline-block;
 }
 
 .dropdown-icon {
-position: absolute;
-top: 50%;
-right: 10px;
-transform: translateY(-50%);
-pointer-events: none; 
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
 }
 
-.w-10{
-    width:10%;
+.w-10 {
+    width: 10%;
 }
+
 .new_performance button {
     background: none;
     border: 1px solid #E7E7E7;
@@ -237,10 +267,12 @@ pointer-events: none;
     width: 16px;
     fill: #a7a7a7;
 }
+
 .edit_icon {
     width: 20px;
     fill: #6d6d6d;
 }
+
 .edit_button-2 {
     border: 1px solid #918f8f;
     background: no-repeat;
@@ -249,76 +281,95 @@ pointer-events: none;
     display: flex;
     align-items: center;
 }
+
 .edit_button-2 span {
     font-size: 16px;
     color: #918f8f;
     padding-left: 10px;
-   
+
 }
+
 .details_2 {
     font-size: 16px;
     color: #a9a9a9;
     font-weight: 400;
     margin-bottom: 6px;
-  }
-  .details-1 {
+}
+
+.details-1 {
     font-size: 16px;
     font-weight: 400;
     margin-bottom: 10px;
-  }
-  .team-logo-img img {
+}
+
+.team-logo-img img {
     width: 72px;
 }
-.team-logos{
+
+.team-logos {
     gap: 20px;
 }
-.edit-gap{
+
+.edit-gap {
     gap: 10px;
 }
-.country-details{
+
+.country-details {
     gap: 10px;
 }
-.table-striped > tbody > tr:nth-of-type(odd) > *{
+
+.table-striped>tbody>tr:nth-of-type(odd)>* {
     --bs-table-bg-type: none !important;
 }
-.table tbody tr:hover{
+
+.table tbody tr:hover {
     border-top: none !important;
     border-left: none !important;
     border-right: none !important;
     border-bottom: 3.3px solid #e6e6e6 !important;
     background: none;
 }
+
 .team_logo {
     padding: 8px 0 !important;
 }
+
 tr.table_underline {
-    border-bottom: 3.3px solid #e6e6e6 ;
+    border-bottom: 3.3px solid #e6e6e6;
 }
-.underline_gap{
+
+.underline_gap {
     margin-bottom: 18px;
 }
-.add_new-btn{
+
+.add_new-btn {
     background: #6FB95D;
     border-color: #6FB95D;
 }
 
 
 @media (max-width: 767px) {
-.performance_card_hedr .btn-outline-white {
-    font-size: 0 !important;
-}
-.performance_card_hedr .btn-outline-white svg {
-    padding-right: 0 !important;
-    margin-right: 0 !important;
-}
+    .performance_card_hedr .btn-outline-white {
+        font-size: 0 !important;
+    }
+
+    .performance_card_hedr .btn-outline-white svg {
+        padding-right: 0 !important;
+        margin-right: 0 !important;
+    }
 }
 
 @media (max-width: 420px) {
-.performance_card_hedr {
-    flex-wrap: wrap;
+    .performance_card_hedr {
+        flex-wrap: wrap;
+    }
+
+    .performance_card_hedr .add_new-btn {
+        margin: 10px 0 !important;
+        padding: 12px !important;
+    }
 }
-.performance_card_hedr .add_new-btn {
-    margin: 10px 0 !important;
-    padding: 12px !important;
-}
+
+.dark-theme .add_new-btn {
+    color: #BDE34F;
 }

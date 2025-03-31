@@ -171,11 +171,31 @@ export class PerformanceAnalysisTabComponent implements OnInit {
   }
 
   onCheckboxChange(report: any) {
-    const index = this.selectedIds.indexOf(report.id);
+    // const index = this.selectedIds.indexOf(report.id);
+    // if (index === -1) {
+    //   // this.selectedIds.push(Number(report.id));
+    //   if (!this.selectedIds.includes(Number(report.id))) {
+    //     this.selectedIds.push(Number(report.id));
+    //   }
+    // } else {
+    //   this.selectedIds.splice(index, 1);
+    // }
+    const id = Number(report.id); // Ensure consistent type
+    const index = this.selectedIds.indexOf(id);
+
     if (index === -1) {
-      this.selectedIds.push(Number(report.id));
+      this.selectedIds.push(id); // Add if not found
     } else {
-      this.selectedIds.splice(index, 1);
+      this.selectedIds.splice(index, 1); // Remove if found
+    }
+
+    // console.log(this.selectedIds)
+    if (this.selectedIds.length === this.reports.length) {
+      this.allSelected = true;
+      // console.warn('All selected');
+    } else {
+      this.allSelected = false;
+      // console.warn('Total Reports ' + this.reports.length + 'and selected is ' + this.selectedIds.length)
     }
   }
 
