@@ -564,8 +564,8 @@ export class ExploreComponent implements OnInit {
         return country ? country.country_name : id;
 
       case 'category':
-        const role = this.roles.find((pos: any) => pos.id === id);
-        return role ? role.role : id;
+        const role = this.roles.find((role: any) => role.id === id);
+        return role ? role.role_name : id;
 
       case 'position':
         // Handle multiple position IDs

@@ -520,7 +520,7 @@
   "files-supported": "Unterstützte Dateien: JPG, PNG, MP4",
   "anywhere": "Zurich, Switzerland",
   "renewsOn": "Erneuert am",
-  "editPlan": "Plan bearbeiten",
+  "editPlan": "Mitgliedschaft anzeigen",
   "cancelSubscription": "Abo kündigen",
   "renewSubscription": "Abonnement erneuern",
   "2_countries": "2 Länder ausgewählt",
@@ -1388,8 +1388,7 @@
   "selectCouponFirst": "Coupon zuerst auswählen.",
   "category": "Kategorie",
   "selectActivityFirst": "Wähle zuerst eine Aktivität aus.",
-  "selectNotificationFirst" : "Wähle zuerst die Benachrichtigung(en) aus.",
-
+  "selectNotificationFirst": "Wähle zuerst die Benachrichtigung(en) aus.",
   "permissions": {
     "allowAdvertising": {
       "name": "Werbe-Cookies erlauben",
@@ -1405,16 +1404,16 @@
       "description": "Ich erlaube die Verwendung von Analyse-Cookies. Neue Analyse-Cookies werden standardmäßig aktiviert."
     }
   },
-   "pleaseConfirmSpellings": "Werte stimmen nicht überein, bitte überprüfe deine Rechtschreibung.",
-   "formAllFieldsRequired": "Bitte fülle das Formular korrekt aus, bevor du es absendest.",
-   "selectPerformanceFirst": "Wählen Sie zuerst Leistung.",
-   "removeSection": "Abschnitt entfernen",
+  "pleaseConfirmSpellings": "Werte stimmen nicht überein, bitte überprüfe deine Rechtschreibung.",
+  "formAllFieldsRequired": "Bitte fülle das Formular korrekt aus, bevor du es absendest.",
+  "selectPerformanceFirst": "Wählen Sie zuerst Leistung.",
+  "removeSection": "Abschnitt entfernen",
   "addMore": "Mehr hinzufügen",
-   "selectSightingFirst": "Wähle zuerst die Sichtung aus.",
-   "JoinandEndDates": "Beitritts- und Enddatum",
-   "freePlanText": "2 Monate kostenlos im Jahrestarif",
+  "selectSightingFirst": "Wähle zuerst die Sichtung aus.",
+  "JoinandEndDates": "Beitritts- und Enddatum",
+  "freePlanText": "2 Monate kostenlos im Jahrestarif",
   "forClubsandScouts": "Für Vereine und Pfadfinder",
   "PerformaceProfile": "Leistungsprofil",
-   "subscriptionCanceledSuccessfully": "Das Abonnement wurde erfolgreich gekündigt."
-
+  "subscriptionCanceledSuccessfully": "Das Abonnement wurde erfolgreich gekündigt.",
+  "subscriptionPlans": "Abonnement-Pläne"
 }

@@ -7,12 +7,13 @@
             <thead>
               <tr class="explore-inputs">
                 <!-- Talent Filter -->
+                 <!-- <pre>{{roles | json}}</pre> -->
                 <th>
                   <div class="form-group explore-all_input">
                     <mat-form-field appearance="fill">
                       <mat-label>{{ 'talents' | translate }}</mat-label>
                       <mat-select [(ngModel)]="selectedRole" (selectionChange)="applyFilter()" id="roles" name="role">
-                        <mat-option *ngFor="let role of roles" [value]="role.role_id">{{role.role_name}}</mat-option>
+                        <mat-option *ngFor="let role of roles" [value]="role.id">{{role.role_name}}</mat-option>
                       </mat-select>
                     </mat-form-field>
                   </div>
