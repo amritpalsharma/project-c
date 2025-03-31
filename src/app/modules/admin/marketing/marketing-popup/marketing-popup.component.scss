@@ -81,6 +81,14 @@ ngx-editor {
 .NgxEditor__Wrapper{
     border: 0 !important;
 }
+
+
+.NgxEditor__Wrapper .NgxEditor{
+    height: 100% !important;
+}
+.NgxEditor__Content{
+    height: 100% !important;
+}
  
 .mat-mdc-select-arrow-wrapper{
     display: none !important;
@@ -94,4 +102,3 @@ ngx-editor {
     pointer-events: none;
   }
   
-

@@ -41,6 +41,7 @@ export class WebPagesComponent {
   pages:any = [];
   lang_id: any = localStorage.getItem('lang_id');
   isLoading:boolean = false;
+  count : number = 0;
 
   customFilters:any = [];
   languages:any;
@@ -130,6 +131,7 @@ export class WebPagesComponent {
         page: 'webpages',
         appliedfilters:this.customFilters,
         languages: this.languages,
+        count: this.count,
       }
     })
 
@@ -137,6 +139,8 @@ export class WebPagesComponent {
       if (result !== undefined) {
         this.applyUserFilter(result);
         console.log('Dialog result:', result);
+        this.applyUserFilter(result.userFilters);
+        this.count = result.filterCount;
       }else{
         console.log('Dialog closed without result');
       }

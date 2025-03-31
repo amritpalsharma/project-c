@@ -31,6 +31,8 @@ export class CouponsComponent {
   idsToProceed: any = [];
   selectedIds: any = [];
   customFilters: any = [];
+  count : number = 0;
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -299,7 +301,8 @@ export class CouponsComponent {
       },
       data: {
         page: 'coupon',
-        appliedfilters: this.customFilters
+        appliedfilters: this.customFilters,
+        count: this.count,
       }
     })
 
@@ -307,6 +310,8 @@ export class CouponsComponent {
       if (result !== undefined) {
         this.applyUserFilter(result);
         console.log('Dialog result:', result);
+        this.applyUserFilter(result.userFilters);
+        this.count = result.filterCount;
       } else {
         console.log('Dialog closed without result');
       }

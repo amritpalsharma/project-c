@@ -1320,7 +1320,7 @@
   "MyAccount": "al Dashboard",
   "boostProfiles": "Profilo di spinta",
   "changeNewsletterStatus": "Sei sicuro di voler cambiare lo stato della newsletter?",
-  "areYouSuretoDeleteActivity": "Sei sicuro di voler eliminare l'attività?",
+  "areYouSuretoDeleteActivity": "Sei sicuro di voler eliminare questa attività? ",
   "subsciptionCancelSuccess": "L'abbonamento è stato annullato con successo.",
   "deleteAccountDesc": "In questo modo il vostro account verrà eliminato definitivamente dal nostro database.",
   "deleteMyAccount": "Cancellare il mio account",
@@ -1409,5 +1409,8 @@
     "freePlanText": "2 mesi gratuiti con il piano annuale",
   "forClubsandScouts": "Per i club e gli scout",
   "PerformaceProfile": "Profilo di rendimento",
-  "subscriptionCanceledSuccessfully": "L'abbonamento è stato annullato con successo."
+  "subscriptionCanceledSuccessfully": "L'abbonamento è stato annullato con successo.",
+   "editBoostProfile": "Modifica del profilo boost",
+    "uploadHighlightPhotosAndVideos": "Caricare foto e video",
+    "areYouSuretoDeleteNotification": "Sei sicuro di voler eliminare questa notifica?"
 }

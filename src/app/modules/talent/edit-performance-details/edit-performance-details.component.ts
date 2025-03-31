@@ -26,12 +26,13 @@ export class EditPerformanceDetailsComponent implements OnInit {
   matches: any;
   goals: any;
   currentTeam: string = ''; // Initialize as empty string to avoid undefined issues
+  currentTeamLogo: string = ''; // Initialize as empty string to avoid undefined issues
   currentTeamId: any;
   filterTeams: any[] = []; // Initialize as empty array to avoid undefined issues
   isLoading: boolean = false;
   from_date: FormControl = new FormControl(null);
   to_date: FormControl = new FormControl(null);
-  theme : any = localStorage.getItem('theme');
+  theme: any = localStorage.getItem('theme');
 
   constructor(
     public dialogRef: MatDialogRef<EditPerformanceDetailsComponent>,
@@ -43,7 +44,7 @@ export class EditPerformanceDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.theme = localStorage.getItem('theme');
-    
+
     this.performance = { ...this.data.performance };
     this.teams = [...this.data.teams];
     this.matches = this.performance.matches;
@@ -56,6 +57,7 @@ export class EditPerformanceDetailsComponent implements OnInit {
     );
     this.currentTeam = this.performance.team_name; // Set the selected team's name to the input
     this.currentTeamId = this.performance.team_id;
+    this.currentTeamLogo = this.performance.team_club_logo_path;
 
     this.from_date.setValue(this.performance.from_date ? new Date(this.performance.from_date) : null);
     this.to_date.setValue(this.performance.to_date ? new Date(this.performance.to_date) : null);
@@ -141,6 +143,7 @@ export class EditPerformanceDetailsComponent implements OnInit {
 
   // Function to handle the selection of a club
   onSelectTeam(team: any): void {
+    this.currentTeamLogo = team.team_club_logo_path;
     this.currentTeam = team.team_name + '-' + team.team_type; // Set the selected team's name to the input
     this.currentTeamId = team.id;
     this.filterTeams = []; // Clear the suggestion list

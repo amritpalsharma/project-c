@@ -1340,8 +1340,7 @@
   "accepted": "Accepterad",
   "category": "Kategori",
   "selectActivityFirst": "Välj först en aktivitet.",
-  "selectNotificationFirst" : "Välj först avisering(ar).",
-
+  "selectNotificationFirst": "Välj först avisering(ar).",
   "permissions": {
     "allowAdvertising": {
       "name": "Allow Advertising Permissions",

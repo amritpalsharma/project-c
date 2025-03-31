@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddPerformanceComponent } from './add-performance/add-performance.component';
 import { DeletePopupComponent } from '../../delete-popup/delete-popup.component';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
+import { GlobalSettingsService } from '../../../../services/global-settings.service';
 
 @Component({
   selector: 'talent-performance-tab',
@@ -31,10 +32,19 @@ export class PerformanceTabComponent {
   }
   loggedInUser: any = localStorage.getItem('userData');
   @Input() isPremium: any;
+  currentThemeMode: any = localStorage.getItem('theme');
 
   // from_date:2021-01-01
   // to_date:2022-01-01
-  constructor(private route: ActivatedRoute, private userService: UserService, private talentService: TalentService, public dialog: MatDialog, private router: Router, private translate: TranslateService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private userService: UserService,
+    private talentService: TalentService,
+    public dialog: MatDialog,
+    private router: Router,
+    private translate: TranslateService,
+    private globalSettings: GlobalSettingsService
+  ) { }
 
   async ngOnInit() {
     this.route.params.subscribe((params: any) => {
@@ -47,6 +57,11 @@ export class PerformanceTabComponent {
     this.translate.onLangChange.subscribe((event) => {
       this.getToasterMsg();
       // alert(`Language changed to: ${event.lang}`);
+    });
+    this.themeChanged();
+
+    this.globalSettings.indexFunctionCall$.subscribe(() => {
+      this.themeChanged(); // Call the function when event is received
     });
   }
 
@@ -250,5 +265,12 @@ export class PerformanceTabComponent {
     });
   }
 
+  themeChanged() {
+    let currentTheme = localStorage.getItem('theme');
+    this.currentThemeMode = currentTheme;
+    if (this.currentThemeMode == null || this.currentThemeMode == undefined) {
+      this.currentThemeMode = 'light';
+    }
+  }
 }
 

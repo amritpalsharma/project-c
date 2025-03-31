@@ -35,6 +35,7 @@ export class AddPerformanceComponent {
   isLoading: boolean = false;
   from_date: FormControl = new FormControl(null);
   to_date: FormControl = new FormControl(null);
+  currentTeamLogo: string = '';
 
   theme : any = localStorage.getItem('theme');
 
@@ -68,6 +69,7 @@ export class AddPerformanceComponent {
       this.getToasterMsg();
       // alert(`Language changed to: ${event.lang}`);
     });
+    this.currentTeamLogo = this.performance.team_club_logo_path;
   }
 
   onCancel(): void {
@@ -162,6 +164,7 @@ export class AddPerformanceComponent {
     this.currentTeam = team.team_name + '-' + team.team_type; // Set the selected team's name to the input
     this.currentTeamId = team.id;
     this.filterTeams = []; // Clear the suggestion list
+    this.currentTeamLogo = team.team_club_logo_path;
   }
 
   getToasterMsg() {

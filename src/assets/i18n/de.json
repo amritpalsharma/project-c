@@ -526,7 +526,7 @@
   "2_countries": "2 Länder ausgewählt",
   "expireOn": "Läuft ab am",
   "viewMyProfile": "Mein Profil ansehen",
-  "signOut": "ausloggen",
+  "signOut": "Ausloggen",
   "interval": "Intervall",
   "default": "Standard",
   "demo": "Demo",
@@ -549,8 +549,8 @@
   "weightIsRequired": "Gewicht ist erforderlich.",
   "contractStartDate": "Datum des Vertragsbeginns",
   "contractEndDate": "Datum des Vertragsendes",
-  "dominantFoot": " Dominanter Fuß",
-  "dominantFootRequired": "Dominanter Fuß ist erforderlich",
+  "dominantFoot": " Dominanter Fuss",
+  "dominantFootRequired": "Dominanter Fuss ist erforderlich",
   "playerAge": "Spieler Alter",
   "form-upto": "Von - Bis",
   "totalViews": "Gesamtansicht",
@@ -1285,7 +1285,7 @@
   "editCoverImage": "Titelbild bearbeiten",
   "MyAccount": "zum Dashboard",
   "boostProfiles": "Profil verstärken",
-  "areYouSuretoDeleteActivity": "Sind Sie sicher, dass Sie die Aktivität löschen wollen?",
+  "areYouSuretoDeleteActivity": "Bist du sicher, dass du diese Aktivität löschen möchtest? ",
   "subsciptionCancelSuccess": "Ihr Abonnement wurde erfolgreich gekündigt.",
   "changeNewsletterStatus": "Bist du sicher, dass du den Newsletter-Status ändern möchtest?",
   "representators": "Team-Mitglied",
@@ -1415,5 +1415,8 @@
   "forClubsandScouts": "Für Vereine und Pfadfinder",
   "PerformaceProfile": "Leistungsprofil",
   "subscriptionCanceledSuccessfully": "Das Abonnement wurde erfolgreich gekündigt.",
-  "subscriptionPlans": "Abonnement-Pläne"
+  "subscriptionPlans": "Abonnement-Pläne",
+  "editBoostProfile": "Boost-Profil bearbeiten",
+  "uploadHighlightPhotosAndVideos": "Fotos und Videos hochladen",
+  "areYouSuretoDeleteNotification": "Bist du sicher, dass du diese Benachrichtigung löschen möchtest?"
 }

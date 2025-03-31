@@ -16,9 +16,11 @@ export class FilterPopupComponrnt {
   condition: any = 1;
   locations: any = []
   selectedLocation: any = "";
+  filterCount : any;
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
     this.userFilters = data.filters;
     this.locations = data.locations;
+    this.filterCount = data.count;
 
     if (this.userFilters['location']) {
       this.selectedLocation = this.userFilters['location'];
@@ -26,10 +28,13 @@ export class FilterPopupComponrnt {
   }
 
   close() {
-    this.dialogRef.close(this.userFilters);
+    this.dialogRef.close({userFilters: this.userFilters, filterCount : this.filterCount});
   }
 
   setFilter(type: any, value: any) {
+    if (!(type in this.userFilters)) {
+      this.filterCount++; // Increment only if the type is not already in userFilters
+    }
     this.userFilters[type] = value;
     if (type == "activity") {
       delete this.userFilters['alphabetically'];
@@ -44,6 +49,7 @@ export class FilterPopupComponrnt {
 
   resetUserFilter() {
     this.userFilters = [];
+    this.filterCount = 0;
     this.close();
   }
 
@@ -51,6 +57,7 @@ export class FilterPopupComponrnt {
     this.selectedLocation = (event.target as HTMLSelectElement).value;
     if (this.selectedLocation == "") {
       delete this.userFilters['location'];
+      this.filterCount = this.filterCount--;
     } else {
       this.setFilter('location', this.selectedLocation)
     }

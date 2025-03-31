@@ -27,6 +27,7 @@ export class AdvertisingComponent {
   idsToProceed: any = [];
   selectedIds: any = [];
   customFilters: any = [];
+  count : number = 0;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -345,7 +346,8 @@ export class AdvertisingComponent {
         page: 'advertisement',
         appliedfilters: this.customFilters,
         pages: this.pageOptions,
-        types: this.typeOptions
+        types: this.typeOptions,
+        count: this.count,
       }
     })
 
@@ -353,6 +355,8 @@ export class AdvertisingComponent {
       if (result !== undefined) {
         this.applyUserFilter(result);
         console.log('Dialog result:', result);
+        this.applyUserFilter(result.userFilters);
+        this.count = result.filterCount;
       } else {
         console.log('Dialog closed without result');
       }

@@ -36,6 +36,7 @@ export class TemplatesComponent {
   roles: any = [];
   langs: any = environment.langs;
   pageTitle: string = '';
+  count : number = 0;
 
   constructor(
     public dialog: MatDialog,
@@ -295,7 +296,8 @@ export class TemplatesComponent {
         page: 'template',
         appliedfilters: this.customFilters,
         roles: this.roles,
-        languages: this.langs
+        languages: this.langs,
+        count: this.count,
       }
     })
 
@@ -303,6 +305,8 @@ export class TemplatesComponent {
       if (result !== undefined) {
         this.applyUserFilter(result);
         console.log('Dialog result:', result);
+        this.applyUserFilter(result.userFilters);
+        this.count = result.filterCount;
       } else {
         console.log('Dialog closed without result');
       }

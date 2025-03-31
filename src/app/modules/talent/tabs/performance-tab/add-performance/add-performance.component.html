@@ -1,59 +1,54 @@
 <div class="container">
-    <div class="row">
-      <!-- Right column: Form for editing player details -->
-      <div class="col-md-12 p-0">
-        <div  class="personal_edit">
-          <div class="dialog-header m-auto">
-            <h2>{{'addNewPerformance' | translate}}</h2>
-          </div>
-          
-          <!-- <div class="close_buttons">
+  <div class="row">
+    <!-- Right column: Form for editing player details -->
+    <div class="col-md-12 p-0">
+      <div class="personal_edit">
+        <div class="dialog-header m-auto">
+          <h2>{{'addNewPerformance' | translate}}</h2>
+        </div>
+
+        <!-- <div class="close_buttons">
             <button class="close-btn" (click)="onCancel()">X</button>
             </div> -->
 
-            <div class="close_buttons" *ngIf='theme!="dark"'>
-              <button class="close-btn border-0 padding-0" aria-label="Close" (click)="onCancel()">
-                <img src="../../../../../assets/images/carbon_close-outline-light.svg" alt="">
-              </button>
-            </div>
-            <div class="close_buttons" *ngIf='theme=="dark"'>
-              <button class="close-btn border-0 padding-0" aria-label="Close" (click)="onCancel()">
-                <!-- <img src="../../../../../assets/images/carbon_close-outline.svg" alt=""> -->
-                <img src="../../../../../assets/images/carbon_close-outline.svg" alt="">
-              </button>
-            </div>
-
+        <div class="close_buttons" *ngIf='theme!="dark"'>
+          <button class="close-btn border-0 padding-0" aria-label="Close" (click)="onCancel()">
+            <img src="../../../../../assets/images/carbon_close-outline-light.svg" alt="">
+          </button>
         </div>
-        <hr>
-        <form class="general_form" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">  
-          <div class="overflow-card">        
+        <div class="close_buttons" *ngIf='theme=="dark"'>
+          <button class="close-btn border-0 padding-0" aria-label="Close" (click)="onCancel()">
+            <!-- <img src="../../../../../assets/images/carbon_close-outline.svg" alt=""> -->
+            <img src="../../../../../assets/images/carbon_close-outline.svg" alt="">
+          </button>
+        </div>
+
+      </div>
+      <hr>
+      <form class="general_form" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
+        <div class="overflow-card">
           <div class="row">
             <div class="form-group col-lg-6">
               <label for="team" class="form-label">{{'team' | translate}}</label>
               <!-- <input type="number" id="team" name="team_id" [(ngModel)]="performance.team_id" required> -->
-  
+
               <!-- <select id="team" name="team" [(ngModel)]="performance.team" required>
                 <option *ngFor="let team of teams" [value]="team.id">
                   {{ team.team_name }}
                 </option>
               </select> -->
-              
-              <input
-                type="text"
-                id="currentTeam"
-                name="currentTeam"
-                placeholder="{{'typeToSearch' | translate}}"
-                [(ngModel)]="currentTeam"
-                #currentTeamsField="ngModel"
-                (input)="onSearchTeams()"
-                autocomplete="off"
-                required
-              />
-              
+
+              <input type="text" id="currentTeam" name="currentTeam" placeholder="{{'typeToSearch' | translate}}"
+                [(ngModel)]="currentTeam" #currentTeamsField="ngModel" (input)="onSearchTeams()" autocomplete="off"
+                required style="padding-left: 30px;"/>
+                <img class="me-2" [src]="currentTeamLogo" class="performance-image">
+
               <!-- Club suggestions -->
               <ul *ngIf="filterTeams.length > 0 && currentTeam.length >= 2" class="suggestions-list">
                 <li *ngFor="let team of filterTeams" (click)="onSelectTeam(team)">
-                  {{ team.team_name }} - {{ team.team_type }}
+                  <!-- {{ team.team_name }} - {{ team.team_type }} -->
+                  <img class="me-2" [src]="team.team_club_logo_path" class="me-3" style="max-width: 25px;"> {{
+                  team.team_name }} - {{ team.team_type }}
                 </li>
               </ul>
             </div>
@@ -62,7 +57,7 @@
               <input type="number" id="matches" name="matches" [(ngModel)]="performance.matches" required>
             </div>
           </div>
-          
+
           <div class="row">
             <div class="form-group col-lg-6">
               <label for="goals" class="form-label">{{'goal' | translate}}</label>
@@ -73,7 +68,7 @@
               <input type="text" id="Coach" name="coach" [(ngModel)]="performance.coach" required>
             </div>
           </div>
-  
+
           <div class="row">
             <div class="form-group col-lg-6">
               <label for="session" class="form-label">{{'saison' | translate}}</label>
@@ -84,37 +79,21 @@
               <input type="text" id="player_age" name="player_age" [(ngModel)]="performance.player_age" required>
             </div>
           </div>
-  
+
           <div class="row mb-5">
             <div class="form-group col-lg-10">
               <div class="col-lg-9 p-0">
                 <label for="form-date" class="form-label">{{'form-upto' | translate}}</label>
                 <div class="date-imputs d-flex align-items-center">
                   <div class="d-flex align-items-center justify-content-center date_field">
-                    <input
-                    class="upto-date"
-                      matInput
-                      id="from_date"
-                      name="from_date"
-                      [matDatepicker]="from_datepicker"
-                      [formControl]="from_date"
-                      placeholder="DD.MM.YYYY"
-                      required
-                    />
+                    <input class="upto-date" matInput id="from_date" name="from_date" [matDatepicker]="from_datepicker"
+                      [formControl]="from_date" placeholder="DD.MM.YYYY" required />
                     <mat-datepicker-toggle matSuffix [for]="from_datepicker"></mat-datepicker-toggle>
                     <mat-datepicker #from_datepicker></mat-datepicker>
                   </div>
                   <div class="d-flex align-items-center justify-content-center date_field">
-                    <input
-                    class="upto-date-2"
-                      matInput
-                      id="to_date"
-                      name="to_date"
-                      [matDatepicker]="to_datepicker"
-                      [formControl]="to_date"
-                      placeholder="DD.MM.YYYY"
-                      required
-                    />
+                    <input class="upto-date-2" matInput id="to_date" name="to_date" [matDatepicker]="to_datepicker"
+                      [formControl]="to_date" placeholder="DD.MM.YYYY" required />
                     <mat-datepicker-toggle matSuffix [for]="to_datepicker"></mat-datepicker-toggle>
                     <mat-datepicker #to_datepicker></mat-datepicker>
                   </div>
@@ -127,12 +106,12 @@
             </div>
           </div>
         </div>
-          <div class="dialog-actions align-items-center d-flex justify-content-between">
-            <button class="cancel-btn" type="button" (click)="onCancel()">{{'cancel' | translate}}</button>
-            <button class="save-btn" type="submit">{{'save' | translate}}</button>
-          </div>
-          
-        </form>
-      </div>
+        <div class="dialog-actions align-items-center d-flex justify-content-between">
+          <button class="cancel-btn" type="button" (click)="onCancel()">{{'cancel' | translate}}</button>
+          <button class="save-btn" type="submit">{{'save' | translate}}</button>
+        </div>
+
+      </form>
     </div>
   </div>
+</div>

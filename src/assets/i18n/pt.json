@@ -1278,7 +1278,7 @@
   "MyAccount": "para Painel",
   "boostProfiles": "Impulsionar o perfil",
   "changeNewsletterStatus": "Tem certeza de que deseja alterar o status da newsletter?",
-  "areYouSuretoDeleteActivity": "Tem a certeza de que pretende eliminar a atividade?",
+  "areYouSuretoDeleteActivity": "Tem certeza de que deseja excluir esta atividade?",
   "subsciptionCancelSuccess": "A sua subscrição foi cancelada com sucesso.",
   "deleteAccountDesc": "Esta ação elimina permanentemente a sua conta da nossa base de dados.",
   "deleteMyAccount": "Eliminar a minha conta",
@@ -1340,7 +1340,6 @@
   "category": "Categoria",
   "selectActivityFirst": "Selecione uma atividade primeiro.",
   "selectNotificationFirst": "Selecione primeiro a(s) notificação(ões).",
-
   "permissions": {
     "allowAdvertising": {
       "name": "Permitir cookies de publicidade",
@@ -1357,15 +1356,18 @@
     }
   },
   "acceptAll": "Aceitar todos",
-   "pleaseConfirmSpellings": "Os valores não correspondem, por favor confirme a sua ortografia.",
-   "formAllFieldsRequired": "Por favor, preencha corretamente o formulário antes de enviá-lo.",
-   "selectPerformanceFirst": "Selecione primeiro o desempenho.",
-   "removeSection": "Remover secção",
+  "pleaseConfirmSpellings": "Os valores não correspondem, por favor confirme a sua ortografia.",
+  "formAllFieldsRequired": "Por favor, preencha corretamente o formulário antes de enviá-lo.",
+  "selectPerformanceFirst": "Selecione primeiro o desempenho.",
+  "removeSection": "Remover secção",
   "addMore": "Adicionar mais",
-   "selectSightingFirst": "Selecionar primeiro a(s) mira(s).",
-   "JoinandEndDates": "Data de adesão e data de fim",
-    "freePlanText": "2 meses grátis no plano anual",
+  "selectSightingFirst": "Selecionar primeiro a(s) mira(s).",
+  "JoinandEndDates": "Data de adesão e data de fim",
+  "freePlanText": "2 meses grátis no plano anual",
   "forClubsandScouts": "Para clubes e escuteiros",
-   "PerformaceProfile": "Perfil de desempenho",
-   "subscriptionCanceledSuccessfully": "A subscrição foi cancelada com sucesso."
+  "PerformaceProfile": "Perfil de desempenho",
+  "subscriptionCanceledSuccessfully": "A subscrição foi cancelada com sucesso.",
+  "editBoostProfile": "Editar perfil do boost",
+  "uploadHighlightPhotosAndVideos": "Carregar fotografias e vídeos",
+  "areYouSuretoDeleteNotification": "Tem certeza de que deseja excluir esta notificação?"
 }

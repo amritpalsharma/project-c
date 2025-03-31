@@ -42,6 +42,8 @@ export class FavoritesComponent {
   isLoading: boolean = true;
   pageTitle: string = '';
 
+  count : number = 0;
+
   loggedInUser: any = localStorage.getItem('userData');
 
   // Filters and UI variables (other code omitted for brevity)
@@ -239,6 +241,7 @@ export class FavoritesComponent {
       data: {
         page: 'favoritesPage',
         appliedfilters: this.customFilters,
+        count: this.count,
         locations: this.dynamicLocations,
         roles: this.roles,
       }
@@ -247,8 +250,9 @@ export class FavoritesComponent {
     filterDialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
         // this.getUserFavorites();
-        this.applyUserFilter(result);
         console.log('Dialog result:', result);
+        this.applyUserFilter(result.userFilters);
+        this.count = result.filterCount;
       } else {
         console.log('Dialog closed without result');
       }

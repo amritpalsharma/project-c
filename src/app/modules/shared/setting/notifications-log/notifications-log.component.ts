@@ -277,12 +277,12 @@ export class NotificationsLogComponent {
   }
 
   updateTranslation() {
-    this.translateService.get(['selectNotificationFirst', 'confirmDeleteinformation']).subscribe((res: any) => {
+    this.translateService.get(['selectNotificationFirst', 'areYouSuretoDeleteNotification']).subscribe((res: any) => {
       // this.deleteProfiletranslatedText = res['deleteProfileConfirm'];
       // this.deleteTxt = res['delete'].toUpperCase();
       // this.errorMsg = res['pleaseConfirmSpellings'];
       this.selectNotificationFirst = res['selectNotificationFirst'];
-      this.confirmDeleteinformation = res['confirmDeleteinformation'];
+      this.confirmDeleteinformation = res['areYouSuretoDeleteNotification'];
     });
   }
 }
