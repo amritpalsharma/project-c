@@ -11,134 +11,145 @@ import {
 export class CommonFilterPopupComponent {
   readonly dialogRef = inject(MatDialogRef<CommonFilterPopupComponent>);
   userFilters: any = [];
-  condition:any = 1;
-  
-  
-  page:any = "";
+  condition: any = 1;
 
-  roles:any = [];
-  languages:any = [];
-  frequencies:any = [];
+
+  page: any = "";
+
+  roles: any = [];
+  languages: any = [];
+  frequencies: any = [];
   locations: any = [];
-  pages:any = [];
-  types:any = [];
+  pages: any = [];
+  types: any = [];
 
-  selectedRoleId:any = "";
-  selectedLanguageId:any = "";
-  selectedLanguage:any = "";
-  selectedFrequency:any = "";
+  selectedRoleId: any = "";
+  selectedLanguageId: any = "";
+  selectedLanguage: any = "";
+  selectedFrequency: any = "";
   selectedLocation: any = "";
-  selectedPage:any = "";
-  selectedtype:any = "";
+  selectedPage: any = "";
+  selectedtype: any = "";
+
+  filterCount: any;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
 
+    this.filterCount = data.count;
     this.page = data.page;
     this.userFilters = data.appliedfilters;
     console.log(data);
     console.log(this.userFilters);
-    if(this.page == "marketing"){
+    if (this.page == "marketing") {
 
-      
+
       this.roles = data.roles;
       this.languages = data.languages;
       this.frequencies = data.frequency;
       this.locations = data.locations;
 
-      if(this.userFilters['role']){
+      if (this.userFilters['role']) {
         this.selectedRoleId = this.userFilters['role'];
       }
-      if(this.userFilters['language']){
+      if (this.userFilters['language']) {
         this.selectedLanguageId = this.userFilters['language'];
       }
-      if(this.userFilters['frequency']){
+      if (this.userFilters['frequency']) {
         this.selectedFrequency = this.userFilters['frequency'];
       }
-      if(this.userFilters['location']){
+      if (this.userFilters['location']) {
         this.selectedLocation = this.userFilters['location'];
       }
     }
 
-    if(this.page == "template"){
+    if (this.page == "template") {
       this.roles = data.roles;
       this.languages = data.languages;
 
-      if(this.userFilters['role']){
+      if (this.userFilters['role']) {
         this.selectedRoleId = this.userFilters['role'];
       }
-      if(this.userFilters['language']){
+      if (this.userFilters['language']) {
         this.selectedLanguageId = this.userFilters['language'];
       }
 
     }
 
 
-    if(this.page == "advertisement"){
+    if (this.page == "advertisement") {
       this.pages = data.pages;
       this.types = data.types;
 
-      if(this.userFilters['page_name']){
+      if (this.userFilters['page_name']) {
         this.selectedPage = this.userFilters['page_name'];
       }
-      if(this.userFilters['type']){
+      if (this.userFilters['type']) {
         this.selectedtype = this.userFilters['type'];
       }
     }
 
-    if(this.page == "webpages" || this.page == "blog"){
+    if (this.page == "webpages" || this.page == "blog") {
       this.languages = data.languages;
       this.types = data.types;
 
-      if(this.userFilters['language']){
+      if (this.userFilters['language']) {
         this.selectedLanguage = this.userFilters['language'];
       }
     }
 
-    if(this.page == "favoritesPage"){
+    if (this.page == "favoritesPage") {
       this.locations = data.locations;
       this.roles = data.roles;
-      if(this.userFilters['role']){
+      if (this.userFilters['role']) {
         this.selectedRoleId = this.userFilters['role'];
       }
-      if(this.userFilters['location']){
+      if (this.userFilters['location']) {
         this.selectedLocation = this.userFilters['location'];
       }
     }
   }
-  
-  close(){
-    this.dialogRef.close(this.userFilters);
+
+  close() {
+    this.dialogRef.close({userFilters: this.userFilters, filterCount: this.filterCount});
   }
 
-  setFilter(type:any, value:any){
+  setFilter(type: any, value: any) {
+    if (!(type in this.userFilters)) {
+      this.filterCount++; // Increment only if the type is not already in userFilters
+    }
     this.userFilters[type] = value;
+
     console.log(this.userFilters)
   }
 
-  applyUserFilter(){
-    this.close();
-  }
-  
-  resetUserFilter(){
-    this.userFilters = [];
+  applyUserFilter() {
     this.close();
   }
 
-  onLocationChange(event:any){
+  resetUserFilter() {
+    this.userFilters = [];
+    this.filterCount = 0;
+    this.close();
+  }
+
+  onLocationChange(event: any) {
     this.selectedLocation = (event.target as HTMLSelectElement).value;
-    if(this.selectedLocation == ""){
+    if (this.selectedLocation == "") {
       delete this.userFilters['location'];
-    }else{
+    } else {
       this.setFilter('location', this.selectedLocation)
     }
   }
 
-  onChange(event:any, key:any){
+  onChange(event: any, key: any) {
     let value = (event.target as HTMLSelectElement).value;
     console.log(value, key);
-    if(value == ""){
+    if (value == "") {
       delete this.userFilters[key];
-    }else{
+      if(this.filterCount > 0){
+        this.filterCount = this.filterCount - 1;
+      }
+    } else {
       this.setFilter(key, value)
     }
   }

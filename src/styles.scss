@@ -1957,9 +1957,9 @@ nav.navbar .country_dropdown h6.border-bottom {
   text-indent: 30px !important;
 }
 
-.date_field input.mat-datepicker-input {
+//.date_field input.mat-datepicker-input {
   // text-indent: 0 !important;
-}
+//}
 
 .upgrade_unlock .unlock_btn {
   padding: 12px 25px 10px !important;
@@ -2462,4 +2462,10 @@ td.col_checkbox {
 .light-theme .save-btn {
   background: #58bc5c;
   color: white;
+}
+.filter-applied{
+  color: rgba(0, 112, 242, 1);
+  svg path{
+    fill: rgba(0, 112, 242, 1);
+  }
 }

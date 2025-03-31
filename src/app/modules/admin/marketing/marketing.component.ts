@@ -36,6 +36,7 @@ export class MarketingComponent {
   rolesForFilter: any = [];
   langs: any = environment.langs;
   locations: any = environment.domains;
+  count : number = 0;
   frequency: any = ['Once a day', 'Once a week', 'Once 2 Hrs', 'Twice a day', 'Once a month', 'One time only'];
   pageTitle: string = '';
   constructor(
@@ -330,6 +331,7 @@ export class MarketingComponent {
       data: {
         page: 'marketing',
         appliedfilters: this.customFilters,
+        count: this.count,
         roles: this.rolesForFilter,
         languages: this.langs,
         frequency: this.frequency,
@@ -339,7 +341,8 @@ export class MarketingComponent {
 
     filterDialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
-        this.applyUserFilter(result);
+        this.applyUserFilter(result.userFilters);
+        this.count = result.filterCount;
         console.log('Dialog result:', result);
       } else {
         console.log('Dialog closed without result');

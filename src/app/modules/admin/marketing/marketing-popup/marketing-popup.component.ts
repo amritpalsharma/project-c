@@ -1,7 +1,7 @@
 import { Component, Inject, inject, signal } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
-import { Editor } from 'ngx-editor';
+import { Editor, Toolbar } from 'ngx-editor';
 import { environment } from '../../../../../environments/environment';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MarketingService } from '../../../../services/marketing.service';
@@ -16,6 +16,15 @@ export class MarketingPopupComponent {
   private readonly _locale = signal(inject<unknown>(MAT_DATE_LOCALE));
 
   editor!: Editor;
+  toolbar: Toolbar = [
+    ['undo', 'redo'],  // Undo and Redo
+    ['bold', 'italic', 'underline', 'strike'],  // Heading and text styles
+    ['ordered_list', 'bullet_list'],  // Lists
+    ['link', 'image'],  // Media
+    ['text_color', 'background_color'],  // Colors
+    ['align_left', 'align_center', 'align_right', 'align_justify'],  // Alignment
+    ['blockquote', 'horizontal_rule'],  // Additional tools
+  ];
   html = '';
   // selectedRole:number = 2;
 

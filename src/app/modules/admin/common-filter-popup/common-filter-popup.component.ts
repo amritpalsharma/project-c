@@ -31,8 +31,11 @@ export class CommonFilterPopupComponent {
   selectedPage: any = "";
   selectedtype: any = "";
 
+  filterCount: any;
+
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
 
+    this.filterCount = data.count;
     this.page = data.page;
     this.userFilters = data.appliedfilters;
     console.log(data);
@@ -110,10 +113,13 @@ export class CommonFilterPopupComponent {
   }
 
   close() {
-    this.dialogRef.close(this.userFilters);
+    this.dialogRef.close({userFilters: this.userFilters, filterCount: this.filterCount});
   }
 
   setFilter(type: any, value: any) {
+    if (!(type in this.userFilters)) {
+      this.filterCount++; // Increment only if the type is not already in userFilters
+    }
     this.userFilters[type] = value;
     // if(type == "activity"){
     //   delete this.userFilters['alphabetically'];
@@ -130,6 +136,7 @@ export class CommonFilterPopupComponent {
 
   resetUserFilter() {
     this.userFilters = [];
+    this.filterCount = 0;
     this.close();
   }
 
@@ -147,6 +154,9 @@ export class CommonFilterPopupComponent {
     console.log(value, key);
     if (value == "") {
       delete this.userFilters[key];
+      if(this.filterCount > 0){
+        this.filterCount = this.filterCount - 1;
+      }
     } else {
       this.setFilter(key, value)
     }

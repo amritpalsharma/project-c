@@ -30,7 +30,8 @@ export class UsersComponent implements OnInit {
   isLoading = false;
   filterValue: string = '';
   lang_id: string = '';
-  filterDialogRef: any = ""
+  filterDialogRef: any = "";
+  count : number = 0;
 
   customFilters: any = [];
   locations: any = [];
@@ -234,16 +235,17 @@ export class UsersComponent implements OnInit {
       },
       data: {
         filters: this.customFilters,
-        locations: this.locations
+        locations: this.locations,
+        count: this.count,
       }
     })
 
     filterDialog.afterClosed().subscribe(result => {
+      // console.log()
       if (result !== undefined) {
-        this.applyUserFilter(result);
-        //  console.log('Dialog result:', result);
-      } else {
-        console.log('Dialog closed without result');
+        this.applyUserFilter(result.userFilters);
+        this.count = result.filterCount;
+        console.log('Dialog result:', result);
       }
     });
   }
