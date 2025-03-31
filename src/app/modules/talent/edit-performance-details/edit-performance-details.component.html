@@ -2,13 +2,8 @@
   <div class="row">
     <!-- Right column: Form for editing player details -->
     <div class="col-md-12 p-0">
-<<<<<<< HEAD
-      <div class="personal_edit">
+      <div class="personal_edit popup_header p-3">
         <div class="dialog-header m-auto">
-=======
-      <div  class="personal_edit popup_header p-3">
-        <div  class="dialog-header m-auto">
->>>>>>> d78e2764545fbb3bcdde84f02290ea3ffcb30dd3
           <h2>{{'editStatistic' | translate}}</h2>
         </div>
 
@@ -28,60 +23,23 @@
           </button>
         </div>
       </div>
-     
+
       <form class="popup__body general_form pt-3" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
-        <div class="overflow-card">        
-        <div class="row">
-          <div class="form-group col-lg-6">
-            <label for="team" class="form-label">{{'team' | translate}}</label>
-            
-            <input
-              type="text"
-              id="currentTeam"
-              name="currentTeam"
-              placeholder="{{ 'typeToSearch' | translate }}"
-              [(ngModel)]="currentTeam"
-              #currentTeamsField="ngModel"
-              (input)="onSearchTeams()"
-              autocomplete="off"
-              required
-            />
-            
-            <!-- Club suggestions -->
-            <ul *ngIf="filterTeams.length > 0 && currentTeam.length >= 2" class="suggestions-list">
-              <li *ngFor="let team of filterTeams" (click)="onSelectTeam(team)">
-                {{ team.team_name }} - {{ team.team_type }}
-              </li>
-            </ul>
-          </div>
-          <div class="form-group col-lg-6">
-            <label for="matches" class="form-label">{{'matches' | translate}}</label>
-            <input type="number" id="matches" name="matches" [(ngModel)]="performance.matches" required>
-          </div>        
-        </div>
-        
-        <div class="row">
-          <div class="form-group col-lg-6">
-            <label for="goals" class="form-label">{{'goal' | translate}}</label>
-            <input type="number" id="goals" name="goals" [(ngModel)]="performance.goals" required>
-          </div>
-          <div class="form-group col-lg-6">
-            <label for="Coach" class="form-label">{{'coachDuringDebut' | translate}}</label>
-            <input type="text" id="Coach" name="coach" [(ngModel)]="performance.coach" required>
-          </div>
-        </div>
+        <div class="overflow-card">
+          <div class="row">
+            <div class="form-group col-lg-6">
+              <label for="team" class="form-label">{{'team' | translate}}</label>
 
               <div style="position: relative;">
-              <input type="text" id="currentTeam" name="currentTeam" placeholder="{{ 'typeToSearch' | translate }}"
-                [(ngModel)]="currentTeam" #currentTeamsField="ngModel" (input)="onSearchTeams()" autocomplete="off"
-                required style="padding-left: 45px;"/>
-                <img class="me-2" [src]="currentTeamLogo" class="performance-image">
+                <input type="text" id="currentTeam" name="currentTeam" placeholder="{{ 'typeToSearch' | translate }}"
+                  [(ngModel)]="currentTeam" #currentTeamsField="ngModel" (input)="onSearchTeams()" autocomplete="off"
+                  required />
               </div>
 
               <!-- Club suggestions -->
               <ul *ngIf="filterTeams.length > 0 && currentTeam.length >= 2" class="suggestions-list">
                 <li *ngFor="let team of filterTeams" (click)="onSelectTeam(team)">
-                  <img class="me-2" [src]="team.team_club_logo_path" class="me-3" style="max-width: 25px;"> {{ team.team_name }} - {{ team.team_type }}
+                  {{ team.team_name }} - {{ team.team_type }}
                 </li>
               </ul>
             </div>
@@ -101,6 +59,7 @@
               <input type="text" id="Coach" name="coach" [(ngModel)]="performance.coach" required>
             </div>
           </div>
+
 
           <div class="row">
             <div class="form-group col-lg-6">
