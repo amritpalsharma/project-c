@@ -140,33 +140,7 @@ export class EditHighlightsComponent {
     // Set Duration
     this.videoDuration = this.formatDuration(videoElement.duration);
 
-    // Capture Thumbnail
-    this.captureThumbnail(videoElement);
   }
-
-  captureThumbnail(videoElement: HTMLVideoElement) {
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-
-    if (ctx) {
-      // Set canvas size to video size
-      canvas.width = videoElement.videoWidth;
-      canvas.height = videoElement.videoHeight;
-
-      // Seek to the 1st second (or middle of the video)
-      videoElement.currentTime = Math.min(1, videoElement.duration / 2);
-
-      videoElement.onseeked = () => {
-        // Draw video frame on canvas
-        ctx.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
-
-        // Convert to Data URL (Base64)
-        this.videoThumbnail = canvas.toDataURL('image/png');
-      };
-    }
-  }
-
-
 
   formatDuration(duration: number): string {
     const hours = Math.floor(duration / 3600);
@@ -180,7 +154,11 @@ export class EditHighlightsComponent {
     }
   }
 
-
+  close(){
+    this.dialogRef.close({
+      videoDuration : this.videoDuration
+    })
+  }
 
   // Called when the save button is clicked
   onSubmit(): void {
@@ -204,7 +182,7 @@ export class EditHighlightsComponent {
         }else{
           this.toastr.success('Files saved successfully!', 'Success'); // Show success notification
         }
-        this.dialogRef.close(); // Close the dialog if needed
+        this.close(); // Close the dialog if needed
       },
       error: (error) => {
         this.toastr.clear(loadingToast.toastId); // Clear loading notification

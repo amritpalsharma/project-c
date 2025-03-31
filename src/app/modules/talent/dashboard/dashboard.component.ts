@@ -70,6 +70,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   isTourFirstTime: boolean = true;
   StartTour: boolean = true;
   dontShowAgainTourTxt: string = 'profile';
+  duration: any;
   @Output() dataEmitter = new EventEmitter<string>();
   private routeSubscription: Subscription | null = null; // Initialize with null
   private introInstance: any; // Reference to the Intro.js instance
@@ -541,9 +542,30 @@ export class DashboardComponent implements OnInit, OnDestroy {
     });
   }
 
+  setDurationAndThumbnail(videoElement: HTMLVideoElement) {
+    videoElement.crossOrigin = 'anonymous';
+    // Set Duration
+    this.duration = this.formatDuration(videoElement.duration);
+
+    // Capture Thumbnail
+    // this.captureThumbnail(videoElement);
+  }
+
+  formatDuration(duration: number): string {
+    const hours = Math.floor(duration / 3600);
+    const minutes = Math.floor((duration % 3600) / 60);
+    const seconds = Math.floor(duration % 60);
+
+    if (hours > 0) {
+      return `${hours}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    } else {
+      return `${minutes}:${String(seconds).padStart(2, '0')}`;
+    }
+  }
+
   openHighlight() {
     this.isHighlightClick = false;
-    this.getGalleryData();
+    // this.getGalleryData();
     setTimeout(() => {
       const dialogRef = this.dialog.open(EditHighlightsComponent, {
         width: '800px',
@@ -555,10 +577,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
       });
 
       dialogRef.afterClosed().subscribe(result => {
+        // this.duration = result.videoDuration,
         this.getHighlightsData();
         this.isHighlightClick = true;
       });
-    }, 1500);
+    }, 0);
 
   }
 
@@ -586,8 +609,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   openImage(index: number): void {
     // Prepare album
-    this.album = this.highlights.images.map((image: any) => ({
-      src: this.highlights.file_path + image.file_name,
+    let gallery = [];
+    gallery.push(this.highlights.images);
+    gallery.push(this.highlights.videos);
+
+    this.album = gallery.map((file: any) => ({
+      src: this.highlights.file_path + file.file_name,
     }));
 
     // Open dialog with the selected image
