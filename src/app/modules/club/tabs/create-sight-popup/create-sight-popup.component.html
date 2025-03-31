@@ -1,13 +1,10 @@
 <div class="create-sight bg-0C3453">
-  <div class="p-3 d-flex align-items-center ">
+  <div class="p-3 d-flex align-items-center popup_header">
     <h4 class="text-center title-text m-auto">{{ 'sighting' | translate }}</h4>
     <div class="close-img" (click)="close()">
     </div>
   </div>
-
-  <hr class="m-0">
-
-  <div class="overflow-card">
+  <div class="overflow-card popup__body py-3">
     <div class="row align-items-center mb-4 mt-4">
       <div class="col-lg-5">
         <label for="upload-banner">{{ 'uploadBanner' | translate }}</label>
@@ -181,7 +178,7 @@
     </textarea>
     </div>
   </div>
-  <div class="dialog-actions align-items-center d-flex justify-content-between mt-5">
+  <div class="dialog-actions align-items-center d-flex justify-content-between mt-0 popup_footer p-3">
     <button type="button" class="cancel-btn" (click)="close()">{{ 'cancel' | translate }}</button>
     <button type="submit" class="create-btn" *ngIf="!data.sightData" (click)="createSight()">{{ 'createSighting' | translate }}</button>
     <button type="submit" class="create-btn" *ngIf="data.sightData" (click)="updateSight()">{{ 'save' | translate }}</button>

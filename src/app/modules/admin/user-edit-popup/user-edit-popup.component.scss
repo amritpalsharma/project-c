@@ -1,6 +1,9 @@
 .code-parent{
     position: relative;
 }
+.popup_header h6 {
+  font-size: 18px !important;
+}
 .cupen-btn{
   color: black;
   border: none;
@@ -56,12 +59,11 @@
   cursor: pointer;
   font-size: 13px;
   background: none;
-  width: 130px;
+  width: 100%;
 }
 .form-select:focus{
   box-shadow: none;
 }
-
 .Launch{
     background-color: #6FB95D;
     color: #ffffff;
@@ -76,7 +78,7 @@
     padding: 0px;
     position: absolute;
     right: 17px;
-    top: 15px;
+    top: 11px;
     z-index: 2;
     opacity: 1;
     cursor: pointer;

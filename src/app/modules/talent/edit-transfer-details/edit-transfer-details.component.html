@@ -1,5 +1,5 @@
 <div class="dialog-content transfer_details">
-  <div class="personal_edit">
+  <div class="personal_edit popup_header p-3">
     <div class="dialog-header m-auto">
       <h2>{{'editTransferDetails' | translate}}</h2>
     </div>
@@ -20,10 +20,8 @@
     </div>
 
   </div>
-  <hr>
   
-    
-  <form class="transfer_box" (ngSubmit)="onSubmit(transferForm)" #transferForm="ngForm">
+  <form class="transfer_box popup__body pt-3" (ngSubmit)="onSubmit(transferForm)" #transferForm="ngForm">
     <div class="overflow-card">
      <div class="row mb-4">
       <div class="form-group moving_select col-lg-6">

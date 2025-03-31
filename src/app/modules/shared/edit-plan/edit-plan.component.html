@@ -1,5 +1,5 @@
 <div class="edit-multi-country-plan container border-0 rounded p-0">
-  <div class="personal_edit p-4">
+  <div class="personal_edit p-3 popup_header">
     <div class="dialog-header m-auto ">
       <h2>{{ 'editMulti-countryPlan' | translate }}</h2>
     </div>
@@ -16,7 +16,7 @@
   </div>
   <!-- <hr> -->
 
-  <div class="country-plan">
+  <div class="country-plan popup__body">
     <div class="country-selection mb-4">
       <!-- <h2>{{selectedPlan/ | json}}</h2> -->
       <div class="form-group col-lg-4">
@@ -70,7 +70,7 @@
     </div>
   </div>
 
-  <div class="country-plan-2 pt-4">
+  <div class="country-plan-2 p-3 popup_footer">
     <!-- <p class="prorata-explanation mb-4">
       {{ 'editPlan-text' | translate }}
     </p> -->
@@ -86,7 +86,7 @@
           </h4>
           <p>{{'total' | translate}}</p>
         </div>
-        {{'buyNow' | translate}}
+        <span>{{'buyNow' | translate}} <i class="fa-solid fa-angle-right"></i></span>
       </button>
 
     </div>

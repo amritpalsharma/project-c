@@ -23,38 +23,7 @@ i.fa-solid.fa-chevron-left {
 .user-text{
     color: #111418;
 }
-// .user-media{
-//     position: relative;
-//     // width: 187px;
-//     margin: auto;
-//     height:191px;
-//     margin-bottom: 15px;
-//     margin-top: 15px;
-//     img{
-//         width: 156px;
-//         height:191px;
-//         object-fit: contain;
-//     }
-//     .user-edit{
-//         width: 59px;
-//         height: 56px;
-//         border-radius: 30px;
-//         background-color: #fff;
-//         display: inline-block;
-//         text-align: center;
-//         line-height: 56px;
-//         position: absolute;
-//         bottom: 5px;
-//         right: 5px;
-//         img{
-//             width: 30px;
-//             height: 30px;
-//             object-fit: cover;
-//         }
 
-//     }
-
-// }
 .user-info{
     text-align: center;
     h6{
@@ -191,14 +160,6 @@ i.fa-solid.fa-chevron-left {
     margin-left: 10px;
   }
 
-//   .edit-profile{
-//     position: absolute;
-//     bottom: 161px;
-//     right: 6px;
-//     cursor: pointer;
-//   }
-
-
 //   new csss
 .user-media {
     position: relative;
@@ -267,3 +228,7 @@ i.fa-solid.fa-chevron-left {
     border-top:  1px solid #e7e7e7;
 }
 // new css end 
+
+.nav-tabs .nav-link {
+    background-color: transparent !important;
+}

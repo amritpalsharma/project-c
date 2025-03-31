@@ -1,13 +1,13 @@
 <div class="container">
-  <div class="row">
-    <!-- Right column: Form for editing player details -->
-    <div class="col-md-12 p-0">
-      <div class="personal_edit">
-        <div class="dialog-header m-auto">
-          <h2>{{'addNewPerformance' | translate}}</h2>
-        </div>
-
-        <!-- <div class="close_buttons">
+    <div class="row">
+      <!-- Right column: Form for editing player details -->
+      <div class="col-md-12 p-0">
+        <div  class="personal_edit popup_header p-3">
+          <div class="dialog-header mx-auto">
+            <h2>{{'addNewPerformance' | translate}}</h2>
+          </div>
+          
+          <!-- <div class="close_buttons">
             <button class="close-btn" (click)="onCancel()">X</button>
             </div> -->
 
@@ -16,17 +16,8 @@
             <img src="../../../../../assets/images/carbon_close-outline-light.svg" alt="">
           </button>
         </div>
-        <div class="close_buttons" *ngIf='theme=="dark"'>
-          <button class="close-btn border-0 padding-0" aria-label="Close" (click)="onCancel()">
-            <!-- <img src="../../../../../assets/images/carbon_close-outline.svg" alt=""> -->
-            <img src="../../../../../assets/images/carbon_close-outline.svg" alt="">
-          </button>
-        </div>
-
-      </div>
-      <hr>
-      <form class="general_form" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
-        <div class="overflow-card">
+        <form class="general_form popup__body pt-3" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">  
+          <div class="overflow-card">        
           <div class="row">
             <div class="form-group col-lg-6">
               <label for="team" class="form-label">{{'team' | translate}}</label>

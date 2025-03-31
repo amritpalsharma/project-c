@@ -2521,3 +2521,9 @@ select.form-select.custom-select1 {
     width: 85px;
 }
 }
+
+
+
+input.form-check-input[ng-reflect-required] {
+    border: 2px solid red;
+}
