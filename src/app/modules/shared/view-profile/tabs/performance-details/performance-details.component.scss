@@ -165,11 +165,7 @@
 .underline_gap .country_name * {
     font-size: 14px;
 }
-.underline_gap .main-template img, .underline_gap .main-template svg {
-    width: 22px;
-    height: 22px;
-    object-fit: contain;
-}
+
 .team_logo .team-logos {
     align-items: center;
 }
@@ -360,6 +356,11 @@ tr.table_underline {
 
 
 @media (max-width: 575px) {
+    .underline_gap .main-template img, .underline_gap .main-template svg {
+        width: 22px;
+        height: 22px;
+        object-fit: contain;
+    }
     .underline_gap td {
         display: block !important;
         width: 50%;

@@ -50,6 +50,7 @@ import { CancelCountryPlanComponent } from './membership/cancel-country-plan/can
 import { AddBoosterComponent } from './plan/add-booster-profile/add-booster.component';
 import { AddRepresentatorPopupComponent } from './add-representator-popup/add-representator-popup.component';
 import { InviteScoutTalentPopupComponent } from './invite-scout-talent-popup/invite-scout-talent-popup.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 // import { NgxStripeModule } from 'ngx-stripe';
 
 @NgModule({
@@ -100,6 +101,7 @@ import { InviteScoutTalentPopupComponent } from './invite-scout-talent-popup/inv
     MatFormFieldModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatTooltipModule,
     MatInputModule,
     ReactiveFormsModule,
     MatTabsModule,
