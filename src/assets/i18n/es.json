@@ -1265,7 +1265,7 @@
       "Cuenta la historia de tu club."
     ]
   },
-  "areYouSuretoDeleteActivity": "Está seguro de eliminar la actividad ?",
+  "areYouSuretoDeleteActivity": "¿Estás seguro de que quieres eliminar esta actividad? ",
   "subsciptionCancelSuccess": "Su suscripción ha sido cancelada con éxito.",
   "MyAccount": "al Panel",
   "boostProfiles": "Perfil Boost",
@@ -1359,5 +1359,6 @@
   "PerformaceProfile": "Perfil de rendimiento",
   "subscriptionCanceledSuccessfully": "Suscripción cancelada con éxito.",
   "editBoostProfile": "Editar el perfil de impulso",
-  "uploadHighlightPhotosAndVideos": "Cargar fotos y vídeos"
+  "uploadHighlightPhotosAndVideos": "Cargar fotos y vídeos",
+  "areYouSuretoDeleteNotification": "¿Estás seguro de que deseas eliminar esta notificación?"
 }

@@ -1322,7 +1322,7 @@
       "Berätta historien om din klubb."
     ]
   },
-  "areYouSuretoDeleteActivity": "Är du säker på att du vill ta bort aktiviteten?",
+  "areYouSuretoDeleteActivity": "Är du säker på att du vill ta bort denna aktivitet? ",
   "subsciptionCancelSuccess": "Din prenumeration har framgångsrikt avslutats.",
   "deleteAccountDesc": "Detta kommer att radera ditt konto permanent från vår databas.",
   "deleteMyAccount": "Ta bort mitt konto",
@@ -1414,5 +1414,6 @@
   "PerformaceProfile": "Prestandaprofil",
   "subscriptionCanceledSuccessfully": "Prenumerationen avbröts framgångsrikt.",
   "editBoostProfile": "Redigera boost-profil",
-  "uploadHighlightPhotosAndVideos": "Ladda upp foton och videor"
+  "uploadHighlightPhotosAndVideos": "Ladda upp foton och videor",
+  "areYouSuretoDeleteNotification": "Är du säker på att du vill radera denna avisering? "
 }

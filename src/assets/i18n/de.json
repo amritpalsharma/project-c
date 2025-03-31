@@ -1285,7 +1285,7 @@
   "editCoverImage": "Titelbild bearbeiten",
   "MyAccount": "zum Dashboard",
   "boostProfiles": "Profil verstärken",
-  "areYouSuretoDeleteActivity": "Sind Sie sicher, dass Sie die Aktivität löschen wollen?",
+  "areYouSuretoDeleteActivity": "Bist du sicher, dass du diese Aktivität löschen möchtest? ",
   "subsciptionCancelSuccess": "Ihr Abonnement wurde erfolgreich gekündigt.",
   "changeNewsletterStatus": "Bist du sicher, dass du den Newsletter-Status ändern möchtest?",
   "representators": "Team-Mitglied",
@@ -1417,5 +1417,6 @@
   "subscriptionCanceledSuccessfully": "Das Abonnement wurde erfolgreich gekündigt.",
   "subscriptionPlans": "Abonnement-Pläne",
   "editBoostProfile": "Boost-Profil bearbeiten",
-  "uploadHighlightPhotosAndVideos": "Fotos und Videos hochladen"
+  "uploadHighlightPhotosAndVideos": "Fotos und Videos hochladen",
+  "areYouSuretoDeleteNotification": "Bist du sicher, dass du diese Benachrichtigung löschen möchtest?"
 }

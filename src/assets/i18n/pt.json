@@ -1278,7 +1278,7 @@
   "MyAccount": "para Painel",
   "boostProfiles": "Impulsionar o perfil",
   "changeNewsletterStatus": "Tem certeza de que deseja alterar o status da newsletter?",
-  "areYouSuretoDeleteActivity": "Tem a certeza de que pretende eliminar a atividade?",
+  "areYouSuretoDeleteActivity": "Tem certeza de que deseja excluir esta atividade?",
   "subsciptionCancelSuccess": "A sua subscrição foi cancelada com sucesso.",
   "deleteAccountDesc": "Esta ação elimina permanentemente a sua conta da nossa base de dados.",
   "deleteMyAccount": "Eliminar a minha conta",
@@ -1368,5 +1368,6 @@
   "PerformaceProfile": "Perfil de desempenho",
   "subscriptionCanceledSuccessfully": "A subscrição foi cancelada com sucesso.",
   "editBoostProfile": "Editar perfil do boost",
-  "uploadHighlightPhotosAndVideos": "Carregar fotografias e vídeos"
+  "uploadHighlightPhotosAndVideos": "Carregar fotografias e vídeos",
+  "areYouSuretoDeleteNotification": "Tem certeza de que deseja excluir esta notificação?"
 }

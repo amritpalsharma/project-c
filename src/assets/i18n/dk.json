@@ -1186,7 +1186,7 @@
   "MyAccount": "til Dashboard",
   "boostProfiles": "Boost-profil",
   "changeNewsletterStatus": "Er du sikker på, at du vil ændre nyhedsbrevets status?",
-  "areYouSuretoDeleteActivity": "Er du sikker på, at du vil slette aktiviteten?",
+  "areYouSuretoDeleteActivity": "Er du sikker på, at du vil slette denne aktivitet?",
   "subsciptionCancelSuccess": "Dit abonnement er blevet opsagt med succes.",
   "representators": "Medlem af teamet",
   "representators:": "Medlem af teamet:",
@@ -1278,5 +1278,6 @@
   "PerformaceProfile": "Ydelsesprofil",
   "subscriptionCanceledSuccessfully": "Abonnementet er annulleret med succes.",
    "editBoostProfile": "Rediger boost-profil",
-    "uploadHighlightPhotosAndVideos": ""
+    "uploadHighlightPhotosAndVideos": "Upload fotos og videoer",
+    "areYouSuretoDeleteNotification": "Er du sikker på, at du vil slette denne notifikation?"
 }

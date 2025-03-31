@@ -1334,7 +1334,7 @@
       "Raconter l'histoire du club."
     ]
   },
-  "areYouSuretoDeleteActivity": "Êtes-vous sûr de vouloir supprimer l'activité ?",
+  "areYouSuretoDeleteActivity": "Êtes-vous sûr de vouloir supprimer cette activité ?",
   "subsciptionCancelSuccess": "Votre abonnement a été annulé avec succès.",
   "deleteAccountDesc": "Cela supprimera définitivement votre compte de notre base de données.",
   "deleteMyAccount": "Supprimer mon compte",
@@ -1428,5 +1428,6 @@
   "PerformaceProfile": "Profil de performance",
   "subscriptionCanceledSuccessfully": "L'abonnement a été annulé avec succès.",
    "editBoostProfile": "Modifier le profil de stimulation",
-    "uploadHighlightPhotosAndVideos": "Télécharger des photos et des vidéos"
+    "uploadHighlightPhotosAndVideos": "Télécharger des photos et des vidéos",
+    "areYouSuretoDeleteNotification": "Êtes-vous sûr de vouloir supprimer cette notification?"
 }
