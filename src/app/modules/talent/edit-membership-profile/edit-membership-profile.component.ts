@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 export class EditMembershipProfileComponent {
 
   isLoadingCheckout: boolean = false;
+  isValidBirthDate: boolean = false;
   stripe: any;
   // @Input() audiences = [
   //   { role_name: "Clubs", id: 2 },
@@ -29,6 +30,7 @@ export class EditMembershipProfileComponent {
   stats: any;
   selectedAudiences: any;
   isLoading: boolean = false;
+  date_of_birth: any = '';
 
   constructor(
     public dialogRef: MatDialogRef<EditMembershipProfileComponent>,
@@ -39,9 +41,9 @@ export class EditMembershipProfileComponent {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private router: Router
   ) { }
-  
-  theme : any = localStorage.getItem('theme');
-  userNationality : string = '';
+
+  theme: any = localStorage.getItem('theme');
+  userNationality: string = '';
 
   ngOnInit(): void {
     this.theme = localStorage.getItem('theme');
@@ -50,9 +52,19 @@ export class EditMembershipProfileComponent {
     // this.selectedAudiences = this.stats?.booster_audience;
 
     this.loggedInUser = JSON.parse(this.loggedInUser);
+    if (this.loggedInUser.meta && this.loggedInUser.meta.date_of_birth != '') {
+      //  console.warn(this.loggedInUser)
+     
+      this.date_of_birth = this.calculateAge(this.loggedInUser.meta.date_of_birth);
+
+      if(this.date_of_birth > 0 && this.date_of_birth != 'invalid date'){
+        this.isValidBirthDate = true;
+      }
+    }
+    // 
     let userNationalities = JSON.parse(this.loggedInUser?.user_nationalities);
     this.userNationality = userNationalities[0]?.flag_path ? userNationalities[0]?.flag_path : '';
-    
+
     this.id = this.data.id || [];
 
     this.getRoles();
@@ -207,7 +219,7 @@ export class EditMembershipProfileComponent {
     }
 
     if (role != '' && user_id != '') {
-      this.dialogRef.close({ action: 'redirect', redirect_path: '/view/' + role, user_id: user_id});
+      this.dialogRef.close({ action: 'redirect', redirect_path: '/view/' + role, user_id: user_id });
     }
     // console.warn('ROle is '+role_id+' Id is '+user_id)
   }

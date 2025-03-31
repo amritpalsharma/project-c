@@ -9,6 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { TitleService } from '../../../title.service';
 import { SharedService } from '../../../services/shared.service';
 import { ToastrService } from 'ngx-toastr';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -27,7 +28,8 @@ export class ScoutDetailComponent implements OnInit {
     private translateService: TranslateService,
     private titleService: TitleService,
     private sharedservice: SharedService,
-    private toaster: ToastrService
+    private toaster: ToastrService,
+    private location: Location
   ) { }
   activeTab: string = 'profile';
   userId: any = {};
@@ -284,5 +286,9 @@ export class ScoutDetailComponent implements OnInit {
       this.titleService.setTitle(this.pageTitle);
       console.log('Title fetch Function Fired');
     })
+  }
+
+  goToBack() {
+    this.location.back();
   }
 }

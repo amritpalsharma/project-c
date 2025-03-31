@@ -9,13 +9,12 @@
     </a>
 
 
-    <a class="sidebar-close" (click)="closeSidebar(false)">
-      <svg *ngIf="sidebarOpen" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Replace with the content of your previous arrow SVG -->
+    <a class="sidebar-close cross-btn-close filter-cross" (click)="closeSidebar(false)">
+      <!-- <svg *ngIf="sidebarOpen" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M15.5 19L8 12L15.5 5" stroke="#95A3B8" stroke-width="2" stroke-linecap="round"
           stroke-linejoin="round" />
       </svg>
-      X
+      X -->
     </a>
     <a (click)="toggleState()" class="sidebar_state">
       <svg *ngIf="!sidebarOpen" width="8" height="11" viewBox="0 0 8 11" fill="none" xmlns="http://www.w3.org/2000/svg">

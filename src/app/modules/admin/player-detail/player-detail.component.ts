@@ -7,6 +7,7 @@ import { environment } from '../../../../environments/environment';
 import { Subscription } from 'rxjs';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-player-detail',
@@ -21,7 +22,8 @@ export class PlayerDetailComponent implements OnInit {
     public dialog: MatDialog,
     private router: Router,
     private translate: TranslateService,
-    private toaster: ToastrService
+    private toaster: ToastrService,
+    private location: Location
   ) { }
   activeTab: string = 'profile';
   userId: any = {};
@@ -234,5 +236,9 @@ export class PlayerDetailComponent implements OnInit {
     } else if (roleId == "4") {
       return 'player';
     }
+  }
+
+  goToBack() {
+    this.location.back();
   }
 }
