@@ -2,7 +2,7 @@
   <div class="row">
     <!-- Right column: Form for editing player details -->
     <div class="col-md-12 p-0">
-      <div class="personal_edit">
+      <div class="personal_edit popup_header p-3">
         <div class="dialog-header m-auto">
           <h2>{{'editGeneralDetails' | translate}}</h2>
         </div>
@@ -24,9 +24,8 @@
           </div>
 
       </div>
-      <hr>
-      
-        <form class="general_form edit_genrl_details" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
+
+        <form class="pt-3 general_form edit_genrl_details popup__body" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
           <div class="overflow-card">
           <!-- In the team since -->
           <div class="row">

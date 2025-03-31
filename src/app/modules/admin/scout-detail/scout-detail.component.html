@@ -1,6 +1,6 @@
-<div class="page-content">
+<div class="page-content common_profile_page">
   <div class="main-wrapper">
-    <div class="card pb-0">
+    <div class="card py-0">
       <div class="card-header border-bottom-card">
         <div class="d-flex align-items-center justify-content-between">
           <div class="d-flex align-items-center">
@@ -12,7 +12,7 @@
           </div>
         </div>
         <div class="d-flex align-items-center justify-content-between mt-3">
-          <div class="d-flex align-items-center">
+          <div class="d-flex align-items-center profile_users_btn">
             <span class="btn btn-outline-white profile-tab-content" (click)="changeUserStatus(user.status)">
               <svg id="users-icon" width="22" height="19" viewBox="0 0 18 19" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
@@ -52,7 +52,7 @@
               style="color:#ffffff;" (click)="inviteTalent()">
               {{ 'addNewTalent' | translate }}</a>
           </div>
-          <div class="d-flex align-items-center">
+          <div class="d-flex align-items-center profile_count_next_btn">
             <div class="paging-data" style="margin-right: 10px;">
               {{paginationData.current}} of {{paginationData.total}}
             </div>
@@ -70,9 +70,9 @@
           </div>
         </div>
       </div>
-      <div class="card-body py-0 ">
+      <div class="card-body pb-0">
         <div class="row">
-          <div class="col-lg-2 border-end">
+          <div class="col-md-4 col-lg-2 border-end">
             <div class="user-details-left">
               <div class="user-media ">
                 <img src="{{user.meta.profile_image_path}}" alt="" *ngIf="user.meta && user.meta.profile_image_path"
@@ -168,11 +168,11 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-10 px-0">
+          <div class="col-md-8 col-lg-10 px-0" id="dashboard_tabs_dark">
             <ul class="nav nav-tabs user-tabs" id="myTab" role="tablist">
               <li class="nav-item" role="presentation">
                 <button class="nav-link" (click)="switchTab('profile')" [ngClass]="{'active': activeTab == 'profile'}"
-                  id="home-tab manage-button" id="manage-button" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
+                  id="home-tab manage-button"  data-bs-toggle="tab" data-bs-target="#home-tab-pane"
                   type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">
                   <svg id="users-icon" width="24" height="23" viewBox="0 0 24 23" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
@@ -185,7 +185,7 @@
               </li>
               <li class="nav-item" role="presentation">
                 <button class="nav-link" (click)="switchTab('history')" [ngClass]="{'active': activeTab == 'history'}"
-                  id="profile-tab" data-bs-toggle="tab" id="manage-button" data-bs-target="#profile-tab-pane"
+                  id="profile-tab" data-bs-toggle="tab"  data-bs-target="#profile-tab-pane"
                   type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">
                   <svg id="users-icon" width="24" height="21" viewBox="0 0 24 21" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
@@ -196,7 +196,7 @@
                   {{ 'scoutHistory' | translate }}</button>
               </li>
               <li class="nav-item" role="presentation">
-                <button class="nav-link transfer" (click)="switchTab('portfolio')"
+                <button class=" nav-link" (click)="switchTab('portfolio')"
                   [ngClass]="{'active': activeTab == 'portfolio'}" id="contact-tab" data-bs-toggle="tab"
                   data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane"
                   aria-selected="false">
@@ -210,7 +210,7 @@
               </li>
               <li class="nav-item" role="presentation">
                 <button class="nav-link" (click)="switchTab('gallery')" [ngClass]="{'active': activeTab == 'gallery'}"
-                  id="contact-tab-1" id="manage-button" data-bs-toggle="tab" data-bs-target="#contact-tab-pane-1"
+                  id="contact-tab-1"  data-bs-toggle="tab" data-bs-target="#contact-tab-pane-1"
                   type="button" role="tab" aria-controls="contact-tab-pane-1" aria-selected="false">
                   <svg id="users-icon" width="26" height="21" viewBox="0 0 26 21" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
@@ -222,7 +222,7 @@
               </li>
               <li class="nav-item" role="presentation">
                 <button class="nav-link" (click)="switchTab('favorites')"
-                  [ngClass]="{'active': activeTab == 'favorites'}" id="contact-tab-2" id="manage-button"
+                  [ngClass]="{'active': activeTab == 'favorites'}" id="contact-tab-2" 
                   data-bs-toggle="tab" data-bs-target="#contact-tab-pane-2" type="button" role="tab"
                   aria-controls="contact-tab-pane-2" aria-selected="true">
                   <svg id="users-icon" width="16" height="21" viewBox="0 0 16 21" fill="none"
@@ -237,7 +237,7 @@
               <li class="nav-item" role="presentation">
                 <button class="nav-link" (click)="switchTab('purchases')"
                   [ngClass]="{'active': activeTab == 'purchases'}" id="contact-tab-3" data-bs-toggle="tab"
-                  data-bs-target="#contact-tab-pane-3" type="button" role="tab" id="manage-button"
+                  data-bs-target="#contact-tab-pane-3" type="button" role="tab" 
                   aria-controls="contact-tab-pane-3" aria-selected="false">
                   <svg id="users-icon" width="24" height="20" viewBox="0 0 24 20" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
@@ -250,7 +250,7 @@
               <li class="nav-item" role="presentation">
                 <button class="nav-link" (click)="switchTab('chat')" [ngClass]="{'active': activeTab == 'chat'}"
                   id="contact-tab-4" data-bs-toggle="tab" data-bs-target="#contact-tab-pane-4" type="button" role="tab"
-                  id="manage-button" aria-controls="contact-tab-pane-4" aria-selected="false">
+                   aria-controls="contact-tab-pane-4" aria-selected="false">
                   <svg id="users-icon" width="26" height="23" viewBox="0 0 26 23" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path

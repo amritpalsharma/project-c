@@ -10,8 +10,8 @@
             {{ 'edit' | translate}}</a>
     </div>
     <div class="row">
-        <div class="col-lg-3">
-        <div class="team-details">
+        <div class="col-lg-3 td_col">
+        <div class="team-details style-1">
             <p>{{ 'currentClub' | translate}}</p>
             <h6>
                 <img *ngIf="userData.pre_current_club_logo_path" src="{{userData.pre_current_club_logo_path}}" class="fc-club-img" alt=""> 
@@ -19,15 +19,15 @@
                 <img *ngIf="userData.pre_current_club_country_path" src="{{userData.pre_current_club_country_path}}" class="fc-img  style-1" alt=""></h6>
         </div>
         </div>
-        <div class="col-lg-3">
-        <div class="team-details">
+        <div class="col-lg-3 td_col">
+        <div class="team-details style-1">
             <p> {{ 'leagueLevel' | translate }}</p>
             <h6 *ngIf="userData.league_name">{{ userData.league_name | translate }}</h6>
             <h6 *ngIf="!userData.league_name">NA</h6>
         </div>
         </div>
-        <div class="col-lg-3">
-        <div class="team-details">
+        <div class="col-lg-3 td_col">
+        <div class="team-details style-1">
             <p> {{ 'nationality' | translate }}</p>
             <div class="d-flex align-items-center mb-2" *ngFor="let nation of userNationalities">
             <img src="{{nation.flag_path}}" alt="">
@@ -35,14 +35,14 @@
             </div>
         </div>
         </div>
-        <div class="col-lg-3">
-        <div class="team-details">
+        <div class="col-lg-3 td_col">
+        <div class="team-details style-1">
             <p> {{ 'position' | translate}}</p>
             <h6 *ngIf="userData.positions">{{ getPosition(userData.positions) }}</h6>
             <h6 *ngIf="!userData.positions">NA</h6>
         </div>
         </div>
-        <div class="col-lg-3 mt-3">
+        <div class="col-lg-3 td_col">
         <div class="team-details">
             <p> {{ 'internationalPlayer' | translate}}</p>
             <div class="d-flex align-items-center">
@@ -65,37 +65,37 @@
             {{ 'edit' | translate}}</a>
     </div>
     <div class="row">
-        <div class="col-lg-3">
+        <div class="col-lg-3 td_col">
             <div class="team-details style-1">
                 <p> {{ 'fullName' | translate}}</p>
                 <h6>{{userData.first_name}} {{userData.last_name}}</h6>
             </div>
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-3 td_col">
             <div class="team-details style-1">
                 <p> {{ 'dateOfBirth' | translate}}</p>
                 <h6>{{userData?.meta?.date_of_birth | date:'MMM d, y' }}</h6>
             </div>
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-3 td_col">
             <div class="team-details style-1">
                 <p> {{ 'foot'  | translate}}</p>
                 <h6>{{userData?.meta?.foot}}</h6>
             </div>
         </div>
-        <div class="col-lg-3 mt-3">
+        <div class="col-lg-3 td_col">
             <div class="team-details style-1">
                 <p>{{ 'inTheTeamSince' | translate}}</p>
                 <h6>{{userData?.meta?.in_team_since | date:'MMM d, y' }}</h6>
             </div>
         </div>
-        <div class="col-lg-3 mt-3">
+        <div class="col-lg-3 td_col mt-3">
             <div class="team-details style-1">
                 <p>{{ 'age' | translate}}</p>
                 <h6>{{calculateAge(userData?.meta?.date_of_birth)}}</h6>
             </div>
         </div>
-        <div class="col-lg-3 mt-3 ">
+        <div class="col-lg-3 td_col mt-3 ">
             <div class="team-details style-1">
                 <p> {{"placeOfBirth" | translate }}</p>
                 <div class="d-flex align-items-center gap-1">
@@ -106,35 +106,35 @@
             </div>
             </div>
         </div>
-        <div class="col-lg-3 mt-3">
+        <div class="col-lg-3 td_col mt-3">
             <div class="team-details style-1">
                 <p>{{ 'contractUntil' | translate}}</p>
                 <h6 *ngIf="userData.meta && userData.meta.contract_end">{{userData.meta.contract_end | date:'MMM d, y' }}</h6>
                 <h6 *ngIf="!userData.meta || !userData.meta.contract_end">NA</h6> 
             </div>
         </div>
-        <div class="col-lg-3 mt-3">
+        <div class="col-lg-3 td_col mt-3">
             <div class="team-details style-1">
                 <p> {{ 'topSpeed' | translate}}</p>
                 <h6 *ngIf="userData.meta && userData.meta.top_speed">{{userData.meta.top_speed}} {{userData.meta.top_speed_unit}}</h6>
                 <h6 *ngIf="!userData.meta || !userData.meta.top_speed">NA</h6>
             </div>
         </div>
-        <div class="col-lg-3 mt-3">
+        <div class="col-lg-3 td_col mt-3">
             <div class="team-details style-1">
                 <p> {{ 'height' | translate }}</p>
                 <h6 *ngIf="userData.meta && userData.meta.height">{{userData.meta.height}} {{userData.meta.height_unit}}</h6>
                 <h6 *ngIf="!userData.meta || !userData.meta.height">NA</h6>
             </div>
         </div>
-        <div class="col-lg-3 mt-3">
+        <div class="col-lg-3 td_col mt-3">
             <div class="team-details style-1">
                 <p> {{ 'otherPositions' | translate }}</p>
                 <h6 *ngIf="userData.meta && userData.meta.other_position">{{userData.meta.other_position}}</h6>
                 <h6 *ngIf="!userData.meta || !userData.meta.other_position">NA</h6>
             </div>
         </div>
-        <div class="col-lg-4 mt-3">
+        <div class="col-lg-4 td_col mt-3">
             <div class="team-details style-1">
                 <p> {{'socialMedia' | translate }}</p>
                 <div class="d-flex align-items-center team-details-sub" *ngIf="userData.meta && userData.meta.sm_x">
@@ -205,13 +205,13 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-3 td_col">
             <div class="team-details">
                 <p> {{ 'email' | translate }}</p>
                 <h6>{{userData.email}}</h6>
             </div>
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-3 td_col">
             <div class="team-details">
                 <p> {{ 'password' | translate }}</p>
                 <h6>***************</h6>

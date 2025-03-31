@@ -1,5 +1,5 @@
 <div class="dialog-content add-perfomance">
-    <div class="personal_edit">
+    <div class="personal_edit popup_header p-3">
         <div class="dialog-header m-auto">
             <h2>Upload Performance Report</h2>
         </div>
@@ -7,8 +7,7 @@
             <button class="close-btn">X</button>
         </div>
     </div>
-    <hr>
-    <div class="overflow-card perfomance-report">
+    <div class="overflow-card perfomance-report popup__bodyp py-3">
 
         <label class="choose-file d-block cursor-pointer" for="reportUpload"
             (dragover)="onDragOver($event)" (drop)="onDrop($event)">
@@ -60,7 +59,7 @@
         </div>
       
     </div>
-    <div class="dialog-actions align-items-center d-flex justify-content-between perfomance-report-btn">            
+    <div class="dialog-actions align-items-center d-flex justify-content-between perfomance-report-btn popup_footer p-3">            
         <button class="cancel-btn" (click)="dialogRef.close()">Cancel</button>
         <button class="upload-btn" (click)="uploadFile()">Upload</button>
     </div>

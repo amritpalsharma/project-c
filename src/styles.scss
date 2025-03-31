@@ -2037,6 +2037,26 @@ nav.navbar .country_dropdown h6.border-bottom {
   }
 }
 
+.light-theme {
+  .filter-button, .filter-button-2 {
+    border-color: #6E7176 !important;
+    background-color: #ECEFF2 !important;
+    color: #6E7176;
+    &.activefilter {
+      border-color: #6fb95d !important;
+      background-color: #6fb95d !important;
+      color: #023A4A !important;
+  }
+  }
+}
+
+.mdc-dialog__container .shadow-sm.bg-body.rounded {
+  box-shadow: none !important;
+  border-bottom: 1px solid #EBEBEB;
+  border-radius: 0 !important;
+  padding: 11px 8px !important;
+}
+
 .dark-theme {
   span.toggle-password svg path {
     stroke: #fff !important;
@@ -2048,22 +2068,11 @@ nav.navbar .country_dropdown h6.border-bottom {
     color: #fff !important;
   }
 
-  // label.btn.filter-button,
-  // select.location-filter {
-  //   background: #fff !important;
-  //   color: #000 !important;
-  // }
-
-  // select.location-filter.activefilter,
-  // select.location-filter option {
-  //   color: #000 !important;
-  // }
   label.btn.filter-button,
   .filter-button-2 {
     border-color: #072944 !important;
     background: #0c3453 !important;
     color: #fff;
-
     select {
       color: #fff !important;
     }
@@ -2073,6 +2082,10 @@ nav.navbar .country_dropdown h6.border-bottom {
   .filter-button-2.activefilter {
     background: #6fb95d !important;
     color: #fff !important;
+  }
+
+  .mdc-dialog__container .shadow-sm.bg-body.rounded {
+    border-bottom: 1px solid #0c3453 !important;
   }
 
   #notification-box-id {
@@ -2441,4 +2454,32 @@ td.col_checkbox {
     background-color: #E05263;
     border: none;
   }
+}
+
+.popup__body {
+  border-top: 1px solid #EBEBEB;
+}
+
+.mdc-list-item__primary-text img {
+  object-fit: cover;
+  object-position: top center;
+}
+
+.common_profile_page {
+  .user-media img.user-img {
+    object-position: top center;
+  }
+  .edit-profile {
+    right: 10px;
+  }
+}
+
+#player-countryy.main-popup-div .mat-mdc-select-trigger {
+  width: 100% !important;
+  margin: 0 !important;
+  font-size: 14px;
+}
+
+.common_profile_modal .mat-mdc-text-field-wrapper {
+  border: 0 !important;
 }

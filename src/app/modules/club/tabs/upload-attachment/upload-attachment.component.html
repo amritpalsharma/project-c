@@ -1,15 +1,12 @@
-<div class="create-sight bg-0C3453">
-    <div class="p-3 d-flex align-items-center ">
+<div class="create-sight bg-0C3453 p-0">
+    <div class="p-3 d-flex align-items-center popup_header">
   
       <h4 class="text-center title-text m-auto">{{ 'addAttachment' | translate}}</h4>
   
       <div class="close-img" (click)="close()">
       </div>
-    </div>
-  
-    <hr class="m-0">
-  
-    <div class="overflow-card mt-3">
+    </div>  
+    <div class="overflow-card mt-3 popup__body p-3">
         
       <div class="row mb-4" *ngFor="let row of attachmentRows; let i = index">
         <div class="col-lg-12  gap-3 d-flex input-box">
@@ -103,7 +100,7 @@
 
       </div>
     </div>
-    <div class="dialog-actions align-items-center d-flex justify-content-between mt-5">
+    <div class="dialog-actions align-items-center d-flex justify-content-between mt-5 popup_footer p-3">
       <button type="button" class="cancel-btn" (click)="close()">{{'cancel' | translate}}</button>
       <button type="submit" class="create-btn" (click)="upload()">{{'upload' | translate}}</button>
     </div>

@@ -1,5 +1,5 @@
 <div class="dialog-container">
-    <div class="personal_edit">
+    <div class="personal_edit popup_header p-3">
         <div class="dialog-header d-flex align-items-center gap-4">
             <h2>{{ 'editHighlights' | translate}}</h2>
             <p>{{ 'featureUpTo6PhotosVideos' | translate}}</p>
@@ -19,8 +19,8 @@
             </button>
           </div>
     </div>
-    <hr>
-    <div class="upload-photos">
+
+    <div class="upload-photos popup__body pt-3">
         <button class="upload-btn" *ngIf="checkRole()" (click)="addPhotosPopup()" >{{ 'uploadPhotos' | translate}}</button>
         <hr>
         <div class="overflow-card">

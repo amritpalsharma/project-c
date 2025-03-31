@@ -216,6 +216,8 @@
 
 .slider-toggle {
     margin-left: auto;
+    width: 60px;
+    padding-left: 10px;
 }
 
 .switch input {
@@ -228,7 +230,7 @@
     position: absolute;
     cursor: pointer;
     top: 7px;
-    left: -20px;
+    left: 0;
     right: 0;
     bottom: 0;
     // background-color: white;
@@ -276,6 +278,9 @@ input:checked+.slider:before {
 p {
     font-size: 16px;
 }
+.cookie-button button, .modal-footer button {
+    padding: 7px 25px;
+}
 
 @media (min-width: 1441px) {
     .slider:before {
@@ -296,13 +301,7 @@ p {
         font-size: 16px;
         margin-bottom: 10px;
     }
-
-    .choice {
-        font-size: 14px;
-    }
-
-    .accept,
-    .decline {
+    .choice, .accept, .decline {
         font-size: 14px;
     }
 }
@@ -310,84 +309,83 @@ p {
 @media (max-width: 991px) {
     .personalization-box {
         position: fixed;
-        top: 45%;
+        top: 50%;
         left: 50%;
-        width: 600px;
+        transform: translate(-50%, -50%);
+        width: 550px;
     }
-
     .model-heading {
         height: 40px;
         font-size: 14px;
         padding-top: 12px;
     }
-
     .modal-text-h6 {
-        font-size: 11px;
+        font-size: 12px;
     }
-
     p {
+        font-size: 12px;
+    }
+    .choice, .accept, .decline {
         font-size: 11px;
     }
-
     .model-text {
         padding: 15px;
-        // height: 65px;
     }
-
     .modal-footer {
         margin-top: 20px;
     }
-
     .slider {
         top: 0;
         height: 25px;
         width: 40px;
     }
-
     .slider:before {
         height: 23.3px;
         width: 23px;
     }
-
     .accept {
         margin-left: 0px;
     }
-
     input:checked+.slider:before {
         transform: translateX(15px);
     }
 }
 
-@media (max-width: 767px) {}
-
 @media (max-width: 575px) {
-    .choice {
-        font-size: 12px;
+    .choice, .accept, .decline {
+        font-size: 10px;
     }
-
-    .accept {
-        font-size: 12px;
+    p {
+        font-size: 11px;
     }
-
-    .decline {
-        font-size: 12px;
-    }
-
     .personalization-box {
         width: 420px;
     }
-
-    p {
-        margin-right: 35px;
-    }
-
     .model-text {
         padding: 15px;
-        // height: 70px;
     }
-
-    .slider {
-        top: 5px;
+    .cookie-button button {
+        width: 100%;
+    }
+    .accept\&decline {
+        flex-direction: column;
+        gap: 10px;
+        margin-left: 0;
+    }
+    .cookie-button {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .cookie-popup .container {
+        padding: 0;
+    }
+    .modal-footer button {
+        padding: 7px 10px !important;
+        margin-right: 7px !important;
+    }
+    .personalization-box {
+        top: 55%;
+        width: 310px;
     }
 }
 
@@ -395,9 +393,6 @@ p {
     .cookie-popup .accept {
         margin-right: 10px;
     }
-}
-
-@media (max-width: 415px) {
     .personalization-box {
         width: 400px;
     }
@@ -407,52 +402,12 @@ p {
     .personalization-box {
         width: 370px;
     }
-
 }
 
 @media (max-width: 376px) {
-
-    .choice {
-        font-size: 10px;
-    }
-
-    .accept {
-        font-size: 10px;
-        margin-right: 5px;
-    }
-
-    .decline {
-        font-size: 10px;
-    }
-
-    .cookie-text {
-        font-size: 10px;
-    }
-
-    .slider {
-        left: -10px;
-    }
-
-    p {
-        margin-right: 25px;
-    }
-
-    .accept {
-        margin-right: 20px;
-    }
-
     .personalization-box {
         width: 350px;
     }
-
-    p {
-        font-size: 10px;
-    }
-
-    .modal-text-h6 {
-        font-size: 10px;
-    }
-
     .model-heading {
         height: 35px;
         font-size: 12px;
@@ -465,55 +420,15 @@ p {
     .personalization-box {
         width: 320px;
     }
-
-    p {
-        margin-right: 20px;
-    }
-
-    .slider {
-        left: 0px;
-    }
 }
 
 @media (max-width: 321px) {
     .personalization-box {
         width: 310px;
     }
-
     .slider:before {
         height: 23px;
         bottom: 0;
         width: 23px;
-    }
-}
-
-
-.cookie-button button,
-.modal-footer button {
-    padding: 7px 25px;
-}
-
-@media (max-width: 575px) {
-    .cookie-button {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .accept\&decline {
-        margin-left: 0;
-    }
-
-    .cookie-popup .container {
-        padding: 0;
-    }
-
-    .modal-footer button {
-        padding: 7px 10px !important;
-        margin-right: 7px !important;
-    }
-
-    .personalization-box[_ngcontent-ng-c761848636] {
-        top: 55%;
-        width: 310px;
     }
 }

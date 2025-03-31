@@ -1,6 +1,6 @@
 <div class="dialog-container">
-  <div class="personal_edit">
-    <div class="dialog-header m-auto">
+  <div class="personal_edit popup_header p-3">
+    <div class="dialog-header mx-auto">
       <h2>{{ 'editPersonalDetails' | translate }}</h2>
     </div>
     <!-- <div class="close_buttons">
@@ -20,9 +20,8 @@
     </div>
 
   </div>
-  <hr>
 
-  <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
+  <form class="popup__body pt-3" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
     <div class="overflow-card">
       <div class="row">
         <!-- Club Name -->
