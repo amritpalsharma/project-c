@@ -628,7 +628,7 @@
                                             <option value="" disabled selected>{{ 'team' | translate
                                                 }}</option>
                                             <option *ngFor="let teamArr of teamsArr" [value]="teamArr.id">{{
-                                                teamArr.league_name }}</option>
+                                                teamArr.team_name }} - {{teamArr.team_type}}</option>
                                         </select>
                                     </div>
                                 </div>

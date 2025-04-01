@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, NgForm } from '@angular/forms';
 import { ScoutService } from '../../../services/scout.service';
 import { ToastrService } from 'ngx-toastr';
+import { TalentService } from '../../../services/talent.service';
 
 import * as _moment from 'moment';
 import { default as _rollupMoment } from 'moment';
@@ -80,12 +81,14 @@ export class EditPersonalDetailsComponent implements OnInit {
   designation: any;
   profile_image: any;
   profile_image_path: any;
+  teamsArr: any;
 
   constructor(
     public dialogRef: MatDialogRef<EditPersonalDetailsComponent>,
     private scoutService: ScoutService,
     private toastr: ToastrService,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private talentService: TalentService,
   ) { }
 
   theme : any = localStorage.getItem('theme');
@@ -229,5 +232,29 @@ export class EditPersonalDetailsComponent implements OnInit {
     return `${day}.${month}.${year}`;
   }
 
+  onValueChange() {
+    // console.log('Selected Value:', event.value);
+    console.info('selected country is ',this.nationality)
+    this.loadTeamsForCountry(this.nationality);
+    // Your logic here
+  }
+
+  loadTeamsForCountry(club_id: any): void {
+
+
+    this.talentService.getClubTeams(club_id).subscribe(
+      (response: any) => {
+        if (response.status) {
+          this.teamsArr = response.data.teams;
+        } else {
+          this.teamsArr = [];
+          // console.error('No data found');
+        }
+      },
+      (error: any) => {
+        console.error('Error fetching leagues:', error);
+      }
+    );
+  }
 
 }

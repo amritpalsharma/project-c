@@ -16,7 +16,7 @@
                     d="M45.5625 8.85938H8.4375C7.65428 8.85938 6.90314 9.17051 6.34933 9.72433C5.79551 10.2781 5.48438 11.0293 5.48438 11.8125V42.1875C5.48438 42.9707 5.79551 43.7219 6.34933 44.2757C6.90314 44.8295 7.65428 45.1406 8.4375 45.1406H45.5625C46.3457 45.1406 47.0969 44.8295 47.6507 44.2757C48.2045 43.7219 48.5156 42.9707 48.5156 42.1875V11.8125C48.5156 11.0293 48.2045 10.2781 47.6507 9.72433C47.0969 9.17051 46.3457 8.85938 45.5625 8.85938ZM8.4375 11.3906H45.5625C45.6744 11.3906 45.7817 11.4351 45.8608 11.5142C45.9399 11.5933 45.9844 11.7006 45.9844 11.8125V34.503L39.768 28.2867C39.4938 28.0125 39.1683 27.7949 38.8099 27.6465C38.4516 27.4981 38.0676 27.4217 37.6798 27.4217C37.2919 27.4217 36.9079 27.4981 36.5496 27.6465C36.1913 27.7949 35.8657 28.0125 35.5915 28.2867L31.0732 32.805L21.4945 23.2242C21.2203 22.95 20.8947 22.7324 20.5364 22.584C20.1781 22.4356 19.7941 22.3592 19.4062 22.3592C19.0184 22.3592 18.6344 22.4356 18.2761 22.584C17.9178 22.7324 17.5922 22.95 17.318 23.2242L8.01562 32.5266V11.8125C8.01562 11.7006 8.06007 11.5933 8.13919 11.5142C8.21831 11.4351 8.32561 11.3906 8.4375 11.3906ZM8.01562 42.1875V36.1062L19.1067 25.0151C19.1459 24.9755 19.1926 24.9442 19.244 24.9227C19.2954 24.9013 19.3506 24.8903 19.4062 24.8903C19.4619 24.8903 19.5171 24.9013 19.5685 24.9227C19.6199 24.9442 19.6666 24.9755 19.7058 25.0151L37.3001 42.6094H8.4375C8.32561 42.6094 8.21831 42.5649 8.13919 42.4858C8.06007 42.4067 8.01562 42.2994 8.01562 42.1875ZM45.5625 42.6094H40.8797L32.8641 34.5938L37.3802 30.0755C37.4194 30.0362 37.4659 30.0051 37.5172 29.9839C37.5684 29.9627 37.6233 29.9517 37.6787 29.9517C37.7342 29.9517 37.7891 29.9627 37.8403 29.9839C37.8915 30.0051 37.938 30.0362 37.9772 30.0755L45.9928 38.0911V42.1875C45.9928 42.2436 45.9816 42.2992 45.9599 42.3509C45.9382 42.4027 45.9064 42.4495 45.8663 42.4888C45.8262 42.5281 45.7787 42.559 45.7265 42.5797C45.6744 42.6004 45.6186 42.6105 45.5625 42.6094ZM30.7969 21.0938C30.7969 20.6766 30.9206 20.2687 31.1524 19.9218C31.3841 19.575 31.7136 19.3046 32.099 19.1449C32.4845 18.9853 32.9086 18.9435 33.3178 19.0249C33.7269 19.1063 34.1028 19.3072 34.3978 19.6022C34.6928 19.8972 34.8937 20.2731 34.9751 20.6822C35.0565 21.0914 35.0147 21.5155 34.8551 21.901C34.6954 22.2864 34.425 22.6159 34.0782 22.8476C33.7313 23.0794 33.3234 23.2031 32.9062 23.2031C32.3468 23.2031 31.8103 22.9809 31.4147 22.5853C31.0191 22.1897 30.7969 21.6532 30.7969 21.0938Z"
                     fill="#9F9F9F" />
                 </svg>
-  
+
                 <div class="edit-photo d-flex align-items-center tour-cover-photo"
                   matTooltip="{{'editCoverImage' | translate}}" matTooltipPosition="right">
                   <div class="edit_image-2 ">
@@ -40,12 +40,15 @@
               <div>
                 <div class="user-media text-center ">
                   <img *ngIf="profileImage" [src]="profileImage" class="" alt="" />
-                  <img *ngIf="!profileImage" src="../../../../assets/images/default/talent-profile-default.png" class=""
+                  <img *ngIf="!profileImage && user.club_logo_path != '' && user.status == '2'" src="{{user.club_logo_path}}" class=""
+                  alt="" />
+                  <img *ngIf="!profileImage && !user.club_logo_path" src="../../../../assets/images/default/talent-profile-default.png" class=""
                     alt="" />
+                  
 
                   <div class="user-edit ">
                     <label for="profile-upload" class="">
-                      <div class="edit-profile cursor-pointer" matTooltip="{{'uploadNewProfileImage' | translate}}"
+                      <div class="edit-profile cursor-pointer" matTooltip="{{'uploadNewProfileImage' | translate}} {{'mx_size' | translate}}"
                         matTooltipPosition="right">
 
                         <svg width="21" height="19" viewBox="0 0 21 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -84,7 +87,7 @@
                   <div class="user-info pt-3 row align-items-center justify-content-between p-3 responsive-name">
                     <div class="col-md-8 d-flex align-items-center player-name-box">
                       <h6 class="user-info-name">
-                        {{user?.meta?.club_name |translate }}
+                        {{user?.current_club_name | translate }}
                       </h6>
                       <div class="name_icon">
                         <img src="../../../assets/images/pending.png" alt="" class="user-pending-icon"
@@ -114,37 +117,37 @@
                     <div class="col-sm-6 team-logos">
                       <div class="row align-items-center">
                         <div class="team-badge_image col-sm-3">
-                          <img *ngIf="!user.pre_current_club_logo_path"
-                            src="../../../../assets/images/default/Club-logo-default.png" class="fc-club-img" alt="">
+                          <!-- <img *ngIf="!user.club_logo_path"
+                            src="../../../../assets/images/default/Club-logo-default.png" class="fc-club-img" alt=""> -->
 
-                          <img *ngIf="user.pre_current_club_logo_path" src="{{user.pre_current_club_logo_path}}"
+                          <img *ngIf="user.club_logo_path" src="{{user.club_logo_path}}"
                             class="fc-club-img" alt="">
                         </div>
                         <div class="team-badge_content col-sm-9 p-0">
                           <h6 class="title_2 mb-1">{{ 'clubName' | translate}}</h6>
-                          <h5 class="title-1">{{user?.meta?.club_name |translate }} </h5>
+                          <h5 class="title-1">{{user?.current_club_name |translate }} </h5>
                         </div>
                       </div>
                     </div>
                     <div class="col-sm-6 team-logos">
                       <div class="row">
                         <div class="col-sm-12 p-0">
-                        <h6 class="title_2 mb-1">{{ 'country' | translate }}</h6>
-                        <div class="d-flex align-items-center gap-2 mb-1 " *ngFor="let nation of userNationalities">
-                          <div class="team-badge_image">
-                            <img *ngIf="nation.flag_path" [src]="nation.flag_path" alt="">
-                            <img *ngIf="!nation.flag_path" src="../../../../assets/images/team-flag.png" alt="">
+                          <h6 class="title_2 mb-1">{{ 'country' | translate }}</h6>
+                          <div class="d-flex align-items-center gap-2 mb-1 " *ngFor="let nation of userNationalities">
+                            <div class="team-badge_image">
+                              <img *ngIf="nation.flag_path" [src]="nation.flag_path" alt="">
+                              <img *ngIf="!nation.flag_path" src="../../../../assets/images/team-flag.png" alt="">
+                            </div>
+                            <h5 class="title-1">{{nation.country_name | translate }} </h5>
                           </div>
-                          <h5 class="title-1">{{nation.country_name | translate }} </h5>
                         </div>
-                        </div>
-                        </div>
+                      </div>
                     </div>
                     <div class="col-sm-6 team-logos">
                       <div class="row align-items-center">
                         <div class="col-sm-3 team-badge_image">
 
-                          <svg id="users-icon" width="27" height="27" viewBox="0 0 27 27" fill="none"
+                          <!-- <svg id="users-icon" width="27" height="27" viewBox="0 0 27 27" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_4190_13098)">
                               <path
@@ -163,7 +166,52 @@
                                   transform="matrix(-1 -8.74228e-08 -8.74228e-08 1 27 0)" />
                               </clipPath>
                             </defs>
+                          </svg> -->
+                          <svg *ngIf="currentThemeMode == 'light'"  width="100%" height="36px" viewBox="0 0 27 27" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_2961_4755811)">
+                              <path class="blue-bg"
+                                d="M21.0938 -5.16341e-07C20.87 -5.35904e-07 20.6554 0.0888943 20.4971 0.247128C20.3389 0.405362 20.25 0.619973 20.25 0.843749L20.25 1.6875L6.75 1.6875L6.75 0.843748C6.75 0.619972 6.66111 0.405361 6.50287 0.247127C6.34464 0.088893 6.13003 -1.82451e-06 5.90625 -1.84407e-06C5.68247 -1.86364e-06 5.46786 0.088893 5.30963 0.247127C5.1514 0.405361 5.0625 0.619972 5.0625 0.843748L5.0625 1.6875L3.375 1.6875C2.4799 1.6875 1.62145 2.04308 0.988518 2.67601C0.355581 3.30895 1.54302e-06 4.16739 1.46477e-06 5.0625L-1.58015e-07 23.625C-2.36267e-07 24.5201 0.355579 25.3785 0.988515 26.0115C1.62145 26.6444 2.47989 27 3.375 27L23.625 27C24.5201 27 25.3785 26.6444 26.0115 26.0115C26.6444 25.3786 27 24.5201 27 23.625L27 5.0625C27 4.16739 26.6444 3.30895 26.0115 2.67601C25.3785 2.04308 24.5201 1.6875 23.625 1.6875L21.9375 1.6875L21.9375 0.84375C21.9375 0.619973 21.8486 0.405362 21.6904 0.247128C21.5321 0.0888944 21.3175 -4.96778e-07 21.0938 -5.16341e-07ZM25.3125 6.75L25.3125 23.625C25.3125 24.0726 25.1347 24.5018 24.8182 24.8182C24.5018 25.1347 24.0726 25.3125 23.625 25.3125L3.375 25.3125C2.92745 25.3125 2.49822 25.1347 2.18176 24.8182C1.86529 24.5018 1.6875 24.0726 1.6875 23.625L1.6875 6.75L25.3125 6.75Z"
+                                fill="#023A4A" />
+                              <rect class="green-bg" x="5.625" y="10.125" width="3.375" height="3.375" fill="#6FB95D" />
+                              <rect class="green-bg" x="12.375" y="10.125" width="3.375" height="3.375"
+                                fill="#6FB95D" />
+                              <rect class="green-bg" x="19.125" y="10.125" width="3.375" height="3.375"
+                                fill="#6FB95D" />
+                              <rect class="green-bg" x="5.625" y="18" width="3.375" height="3.375" fill="#6FB95D" />
+                              <rect class="green-bg" x="12.375" y="18" width="3.375" height="3.375" fill="#6FB95D" />
+                              <rect class="green-bg" x="19.125" y="18" width="3.375" height="3.375" fill="#6FB95D" />
+                            </g>
+                            <defs>
+                              <clipPath id="clip0_2961_4755811">
+                                <rect width="27" height="27" fill="white"
+                                  transform="matrix(-1 -8.74228e-08 -8.74228e-08 1 27 0)" />
+                              </clipPath>
+                            </defs>
                           </svg>
+
+
+                          <svg *ngIf="currentThemeMode == 'dark'" width="100%" height="36px"  viewBox="0 0 28 27" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_7009_42001)">
+                              <path
+                                d="M21.8418 -5.16341e-07C21.618 -5.35904e-07 21.4034 0.0888943 21.2452 0.247128C21.0869 0.405362 20.998 0.619973 20.998 0.843749L20.998 1.6875L7.49805 1.6875L7.49805 0.843748C7.49805 0.619972 7.40915 0.405361 7.25092 0.247127C7.09269 0.088893 6.87807 -1.82451e-06 6.6543 -1.84407e-06C6.43052 -1.86364e-06 6.21591 0.088893 6.05768 0.247127C5.89944 0.405361 5.81055 0.619972 5.81055 0.843748L5.81055 1.6875L4.12305 1.6875C3.22794 1.6875 2.3695 2.04308 1.73656 2.67601C1.10363 3.30895 0.748048 4.16739 0.748048 5.0625L0.748047 23.625C0.748047 24.5201 1.10363 25.3785 1.73656 26.0115C2.3695 26.6444 3.22794 27 4.12305 27L24.373 27C25.2682 27 26.1266 26.6444 26.7595 26.0115C27.3925 25.3786 27.748 24.5201 27.748 23.625L27.748 5.0625C27.748 4.16739 27.3925 3.30895 26.7595 2.67601C26.1266 2.04308 25.2682 1.6875 24.373 1.6875L22.6855 1.6875L22.6855 0.84375C22.6855 0.619973 22.5967 0.405362 22.4384 0.247128C22.2802 0.0888944 22.0656 -4.96778e-07 21.8418 -5.16341e-07ZM26.0605 6.75L26.0605 23.625C26.0605 24.0726 25.8828 24.5018 25.5663 24.8182C25.2498 25.1347 24.8206 25.3125 24.373 25.3125L4.12305 25.3125C3.67549 25.3125 3.24627 25.1347 2.9298 24.8182C2.61334 24.5018 2.43555 24.0726 2.43555 23.625L2.43555 6.75L26.0605 6.75Z"
+                                fill="#1F4360" />
+                              <rect x="6.37305" y="10.125" width="3.375" height="3.375" fill="#BDE34F" />
+                              <rect x="13.123" y="10.125" width="3.375" height="3.375" fill="#BDE34F" />
+                              <rect x="19.873" y="10.125" width="3.375" height="3.375" fill="#BDE34F" />
+                              <rect x="6.37305" y="18" width="3.375" height="3.375" fill="#BDE34F" />
+                              <rect x="13.123" y="18" width="3.375" height="3.375" fill="#BDE34F" />
+                              <rect x="19.873" y="18" width="3.375" height="3.375" fill="#BDE34F" />
+                            </g>
+                            <defs>
+                              <clipPath id="clip0_7009_42001">
+                                <rect width="27" height="27" fill="white"
+                                  transform="matrix(-1 -8.74228e-08 -8.74228e-08 1 27.748 0)" />
+                              </clipPath>
+                            </defs>
+                          </svg>
+
                         </div>
                         <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'since' | translate}}</h6>
@@ -174,7 +222,32 @@
                     <div class="col-sm-6 team-logos">
                       <div class="row align-items-center">
                         <div class="col-sm-3 team-badge_image">
-                          <img [src]="countryFlagUrl" alt="" />
+                          <!-- <img [src]="countryFlagUrl" alt="" /> -->
+                          <svg *ngIf="currentThemeMode == 'dark'" width="27" height="28" viewBox="0 0 27 28" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                              d="M13.806 22.6274C13.806 22.6274 19.0595 16.8221 21.6328 11.5819C21.6328 11.5819 23.7328 8.53796 21.6328 4.48088C19.5327 0.423808 15.7229 0 13.806 0C11.8891 0 8.08151 0.4216 5.97926 4.48088C3.877 8.54016 5.97926 11.5819 5.97926 11.5819C8.55474 16.8221 13.806 22.6274 13.806 22.6274Z"
+                              fill="#1F4360" />
+                            <path
+                              d="M13.806 13.9212C16.8302 13.9212 19.2819 11.4396 19.2819 8.37855C19.2819 5.31745 16.8302 2.83594 13.806 2.83594C10.7817 2.83594 8.33008 5.31745 8.33008 8.37855C8.33008 11.4396 10.7817 13.9212 13.806 13.9212Z"
+                              fill="#BDE34F" />
+                            <path
+                              d="M13.296 27.9457L0.532001 23.0454C-0.170204 22.7761 -0.181108 21.7762 0.514555 21.4892L7.94223 18.4343C8.26062 18.304 8.6248 18.3857 8.85815 18.6396L13.2502 23.4251C13.586 23.7915 14.1618 23.7782 14.4823 23.4008L18.3161 18.8757C18.5473 18.6042 18.9224 18.5115 19.2517 18.644L26.4852 21.5996C27.1831 21.8843 27.17 22.8887 26.4656 23.1558L13.8783 27.9457C13.6907 28.0185 13.4835 28.0185 13.296 27.9457Z"
+                              fill="#BDE34F" />
+                          </svg>
+
+                          <svg *ngIf="currentThemeMode == 'light'" width="27" height="28" viewBox="0 0 27 28"
+                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                              d="M13.806 22.6274C13.806 22.6274 19.0595 16.8221 21.6328 11.5819C21.6328 11.5819 23.7328 8.53796 21.6328 4.48088C19.5327 0.423808 15.7229 0 13.806 0C11.8891 0 8.08151 0.4216 5.97926 4.48088C3.877 8.54016 5.97926 11.5819 5.97926 11.5819C8.55474 16.8221 13.806 22.6274 13.806 22.6274Z"
+                              fill="#023A4A" />
+                            <path
+                              d="M13.806 13.9212C16.8302 13.9212 19.2819 11.4396 19.2819 8.37855C19.2819 5.31745 16.8302 2.83594 13.806 2.83594C10.7817 2.83594 8.33008 5.31745 8.33008 8.37855C8.33008 11.4396 10.7817 13.9212 13.806 13.9212Z"
+                              fill="#6FB95D" />
+                            <path
+                              d="M13.295 27.9457L0.531024 23.0454C-0.171181 22.7761 -0.182085 21.7762 0.513578 21.4892L7.94125 18.4343C8.25964 18.304 8.62383 18.3857 8.85717 18.6396L13.2492 23.4251C13.5851 23.7915 14.1608 23.7782 14.4814 23.4008L18.3151 18.8757C18.5463 18.6042 18.9214 18.5115 19.2507 18.644L26.4843 21.5996C27.1821 21.8843 27.169 22.8887 26.4646 23.1558L13.8773 27.9457C13.6897 28.0185 13.4826 28.0185 13.295 27.9457Z"
+                              fill="#6FB95D" />
+                          </svg>
                         </div>
                         <div class=" col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2"> {{"city" | translate }}</h6>
@@ -185,17 +258,32 @@
                     <div class="col-sm-6 team-logos">
                       <div class="row align-items-center">
                         <div class="col-sm-3 team-badge_image">
-
-                          <svg id="users-icon" width="20" height="32" viewBox="0 0 20 32" fill="none"
+                          <svg *ngIf="currentThemeMode == 'dark'" width="20" height="32" viewBox="0 0 21 32" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_4218_8673)">
+                            <g clip-path="url(#clip0_10817_31652)">
+                              <path
+                                d="M17.0586 0H3.05859C1.40234 0 0.0585938 1.34375 0.0585938 3V29C0.0585938 30.6562 1.40234 32 3.05859 32H17.0586C18.7148 32 20.0586 30.6562 20.0586 29V3C20.0586 1.34375 18.7148 0 17.0586 0ZM10.0586 30C8.95234 30 8.05859 29.1063 8.05859 28C8.05859 26.8937 8.95234 26 10.0586 26C11.1648 26 12.0586 26.8937 12.0586 28C12.0586 29.1063 11.1648 30 10.0586 30Z"
+                                fill="#1F4360" />
+                              <circle cx="10.0586" cy="28" r="2" fill="#BDE34F" />
+                            </g>
+                            <defs>
+                              <clipPath id="clip0_10817_31652">
+                                <rect width="20" height="32" fill="white" transform="translate(0.0585938)" />
+                              </clipPath>
+                            </defs>
+                          </svg>
+
+
+                          <svg *ngIf="currentThemeMode == 'light'" width="20" height="32" viewBox="0 0 20 32"
+                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_5197_10489)">
                               <path
                                 d="M17 0H3C1.34375 0 0 1.34375 0 3V29C0 30.6562 1.34375 32 3 32H17C18.6562 32 20 30.6562 20 29V3C20 1.34375 18.6562 0 17 0ZM10 30C8.89375 30 8 29.1063 8 28C8 26.8937 8.89375 26 10 26C11.1062 26 12 26.8937 12 28C12 29.1063 11.1062 30 10 30Z"
                                 fill="#023A4A" />
                               <circle cx="10" cy="28" r="2" fill="#6FB95D" />
                             </g>
                             <defs>
-                              <clipPath id="clip0_4218_8673">
+                              <clipPath id="clip0_5197_10489">
                                 <rect width="20" height="32" fill="white" />
                               </clipPath>
                             </defs>
@@ -213,14 +301,23 @@
                     <div class="col-sm-6 team-logos">
                       <div class="row align-items-center">
                         <div class="col-sm-3 team-badge_image">
-
-                          <svg id="users-icon" width="32" height="32" viewBox="0 0 32 32" fill="none"
+                          <svg *ngIf="currentThemeMode == 'dark'" width="34" height="34" viewBox="0 0 33 32" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
-                              d="M15.3709 9.47446L19.9989 4.84579C21.7849 3.06046 25.0249 3.40446 26.8103 5.19046C28.5956 6.97646 28.9403 10.2158 27.1549 12.0018L20.2996 18.8571C18.5136 20.6425 15.2743 20.2985 13.4883 18.5125"
+                              d="M15.4286 9.47397L20.0566 4.84531C21.8426 3.05997 25.0826 3.40397 26.8679 5.18997C28.6532 6.97597 28.9979 10.2153 27.2126 12.0013L20.3572 18.8566C18.5712 20.642 15.3319 20.298 13.5459 18.512"
+                              stroke="#1F4360" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                            <path
+                              d="M16.6887 22.5255L12.0607 27.1535C10.2747 28.9388 7.03465 28.5948 5.24932 26.8088C3.46399 25.0228 3.11932 21.7835 4.90465 19.9975L11.76 13.1422C13.546 11.3568 16.786 11.7008 18.5713 13.4868"
+                              stroke="#BDE34F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                          </svg>
+
+                          <svg *ngIf="currentThemeMode == 'light'" width="34" height="34" viewBox="0 0 32 32"
+                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                              d="M15.3709 9.47397L19.9989 4.84531C21.7849 3.05997 25.0249 3.40397 26.8103 5.18997C28.5956 6.97597 28.9403 10.2153 27.1549 12.0013L20.2996 18.8566C18.5136 20.642 15.2743 20.298 13.4883 18.512"
                               stroke="#023A4A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
                             <path
-                              d="M16.6291 22.526L12.0011 27.154C10.2151 28.9393 6.97508 28.5953 5.18975 26.8093C3.40442 25.0233 3.05975 21.784 4.84508 19.998L11.7004 13.1427C13.4864 11.3573 16.7264 11.7013 18.5117 13.4873"
+                              d="M16.6291 22.5255L12.0011 27.1535C10.2151 28.9388 6.97508 28.5948 5.18975 26.8088C3.40442 25.0228 3.05975 21.7835 4.84508 19.9975L11.7004 13.1422C13.4864 11.3568 16.7264 11.7008 18.5117 13.4868"
                               stroke="#6FB95D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
                           </svg>
                         </div>
@@ -234,12 +331,21 @@
                     <div class="col-sm-6 team-logos ">
                       <div class="row align-items-center">
                         <div class="col-sm-3 team-badge_image">
-                          <svg id="users-icon" width="22" height="32" viewBox="0 0 22 32" fill="none"
+                          <svg *ngIf="currentThemeMode == 'dark'" width="22" height="32" viewBox="0 0 23 32" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
-                              d="M11.0645 0.884277C6.0873 0.884277 2.19922 4.83791 2.19922 9.71581V30.632H5.60922V23.7906H16.5212V30.632H19.9312V9.71581C19.9312 4.83791 16.0438 0.884277 11.0645 0.884277Z"
+                              d="M11.1241 0.884766C6.14687 0.884766 2.25879 4.8384 2.25879 9.7163V30.6325H5.66879V23.7911H16.5808V30.6325H19.9908V9.7163C19.9908 4.8384 16.1034 0.884766 11.1241 0.884766Z"
+                              fill="#1F4360" />
+                            <path d="M4.45898 9.93164H17.659V13.242H4.45898V9.93164Z" fill="#BDE34F" />
+                          </svg>
+
+
+                          <svg *ngIf="currentThemeMode == 'light'" width="22" height="32" viewBox="0 0 22 32"
+                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                              d="M11.0645 0.884766C6.0873 0.884766 2.19922 4.8384 2.19922 9.7163V30.6325H5.60922V23.7911H16.5212V30.6325H19.9312V9.7163C19.9312 4.8384 16.0438 0.884766 11.0645 0.884766Z"
                               fill="#023A4A" />
-                            <path d="M4.40039 9.93115H17.6004V13.2415H4.40039V9.93115Z" fill="#6FB95D" />
+                            <path d="M4.40039 9.93164H17.6004V13.242H4.40039V9.93164Z" fill="#6FB95D" />
                           </svg>
                         </div>
                         <div class="col-sm-9 p-0 team-badge_content">
@@ -388,22 +494,36 @@
                     <div class="col-sm-6 team-logos">
                       <div class="row align-items-center">
                         <div class="col-sm-3 team-badge_image">
-
-                          <svg id="users-icon" width="22" height="30" viewBox="0 0 22 30" fill="none"
+                          <svg *ngIf="currentThemeMode == 'dark'" width="22" height="30" viewBox="0 0 23 30" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_4222_8682)">
+                            <g clip-path="url(#clip0_10817_31683)">
+                              <path
+                                d="M22.0586 11.25C22.0586 16.3711 15.3555 25.4883 12.4164 29.25C11.7117 30.1465 10.4055 30.1465 9.70078 29.25C6.76172 25.4883 0.0585938 16.3711 0.0585938 11.25C0.0585938 5.03906 4.98568 0 11.0586 0C17.1315 0 22.0586 5.03906 22.0586 11.25Z"
+                                fill="#1F4360" />
+                              <circle cx="11.5586" cy="10.5" r="4.5" fill="#BDE34F" />
+                            </g>
+                            <defs>
+                              <clipPath id="clip0_10817_31683">
+                                <rect width="22" height="30" fill="white" transform="translate(0.0585938)" />
+                              </clipPath>
+                            </defs>
+                          </svg>
+
+
+                          <svg *ngIf="currentThemeMode == 'light'" width="22" height="30" viewBox="0 0 22 30"
+                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_5197_10528)">
                               <path
                                 d="M22 11.25C22 16.3711 15.2969 25.4883 12.3578 29.25C11.6531 30.1465 10.3469 30.1465 9.64219 29.25C6.70313 25.4883 0 16.3711 0 11.25C0 5.03906 4.92708 0 11 0C17.0729 0 22 5.03906 22 11.25Z"
                                 fill="#023A4A" />
                               <circle cx="11.5" cy="10.5" r="4.5" fill="#6FB95D" />
                             </g>
                             <defs>
-                              <clipPath id="clip0_4222_8682">
+                              <clipPath id="clip0_5197_10528">
                                 <rect width="22" height="30" fill="white" />
                               </clipPath>
                             </defs>
                           </svg>
-
                         </div>
                         <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'address' | translate}}</h6>
@@ -471,7 +591,8 @@
                     <h2 class="text-uppercase">{{'highlights' | translate}}</h2>
                     <p>{{'featuredPhotosAndVideos' | translate}}</p>
                   </div>
-                  <div class="settings cursor-pointer setting_heighlight" (click)="isHighlightClick ? openHighlight() : null">
+                  <div class="settings cursor-pointer setting_heighlight"
+                    (click)="isHighlightClick ? openHighlight() : null">
 
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path
@@ -561,13 +682,6 @@
                     [ngClass]="{ active: activeTab == 'club_history' }" id="contact-tab-1" id="manage-button"
                     data-bs-toggle="tab" data-bs-target="#contact-tab-pane-1" type="button" role="tab"
                     aria-controls="contact-tab-pane-1" aria-selected="false">
-                    <!-- <svg id="users-icon" width="26" height="21" viewBox="0 0 26 21" fill="none"
-                      xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        d="M0.75 0.875H25.25V20.125H0.75V0.875ZM2.5 2.625V13.8906L8.625 7.76562L14.2852 13.4805L18.25 9.51562L23.5 14.793V2.625H2.5ZM20 4.375C20.4922 4.375 20.9023 4.54818 21.2305 4.89453C21.5768 5.22266 21.75 5.63281 21.75 6.125C21.75 6.61719 21.5768 7.03646 21.2305 7.38281C20.9023 7.71094 20.4922 7.875 20 7.875C19.5078 7.875 19.0885 7.71094 18.7422 7.38281C18.4141 7.03646 18.25 6.61719 18.25 6.125C18.25 5.63281 18.4141 5.22266 18.7422 4.89453C19.0885 4.54818 19.5078 4.375 20 4.375ZM8.625 10.2539L2.5 16.3789V18.375H16.6641L8.625 10.2539ZM18.25 12.0039L15.5156 14.7109L19.1523 18.375H23.5V17.2539L18.25 12.0039Z"
-                        fill="#023A4A" />
-                    </svg> -->
-
                     <svg id="users-icon" width="26" height="21" viewBox="0 0 22 21" fill="none"
                       xmlns="http://www.w3.org/2000/svg">
                       <path

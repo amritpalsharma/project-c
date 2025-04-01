@@ -858,4 +858,17 @@ export class TalentService {
       return "Invalid Date";
     }
   }
+
+  getClubTeams(club_id: any): Observable<any> {
+    const headers = this.headers();
+    return this.http.get<any>(`${this.apiUrl}get-teams?club_id=${club_id}`, { headers }).pipe(
+      tap((response: any) => {
+        if (response && response.status) {
+          this.teams = response.data.teams; // Store teams globally
+          //  localStorage.setItem('teams', JSON.stringify(this.teams)); // Cache in localStorage
+        }
+      }),
+      catchError(this.handleError<any>('getTeams', [])) // Handle errors gracefully
+    );
+  }
 }

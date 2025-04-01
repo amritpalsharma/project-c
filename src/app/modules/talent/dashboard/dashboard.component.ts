@@ -480,6 +480,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   openEditDialog() {
+    console.info('Data passed ',this.user)
     const dialogRef = this.dialog.open(EditPersonalDetailsComponent, {
       width: '800px',
       data: { user: this.user, countries: this.countries }

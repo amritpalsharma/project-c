@@ -41,7 +41,7 @@
         <div class="form-group col-lg-6 position_inputs">
           <label for="currentClub">{{'currentClub' | translate}}:</label>
 
-          <mat-select [(ngModel)]="currentClubId" class="form-select" id="currentClub" name="currentClub">
+          <mat-select [(ngModel)]="currentClubId" class="form-select" id="currentClub" name="currentClub" (selectionChange)="clubUpdated()">
             <mat-option *ngFor="let club of playerClubsListing" [value]="club.id">
               {{ club.club_name }}
             </mat-option>
@@ -50,6 +50,26 @@
 
         </div>
 
+        <!-- Team According to club -->
+        <div class="form-group col-lg-6 position_inputs">
+          <label for="team_id" class="form-label">{{'team' | translate}}:</label>
+          <mat-select [(ngModel)]="team_id" class="form-select" id="team_id" name="team_id"
+            #nationalityField="ngModel" required>
+            <mat-option *ngFor="let teamArr of teamsArr" [value]="teamArr.id">
+              {{teamArr.team_name }} - {{teamArr.team_type}}
+            </mat-option>
+          </mat-select>
+          <!-- Validation message -->
+          <!-- <div *ngIf="nationalityField.invalid && (nationalityField.touched || myForm.submitted)"
+            class="alert text-danger my-0 px-0">
+            {{'nationalityRequired' | translate}}
+          </div> -->
+        </div>
+
+      </div>
+
+
+      <div class="row">
         <!-- Nationality (Updated for multiple selection) -->
         <div class="form-group col-lg-6 position_inputs">
           <label for="nationality" class="form-label">{{'nationality' | translate}}:</label>
@@ -64,28 +84,6 @@
             class="alert text-danger my-0 px-0">
             {{'nationalityRequired' | translate}}
           </div>
-        </div>
-
-      </div>
-
-
-      <div class="row">
-        <!-- Date of Birth -->
-        <div class="form-group col-lg-6">
-          <label for="dateOfBirth">{{ 'dateOfBirth' | translate }}:</label>
-          <div class="d-flex align-items-center justify-content-center dob1">
-            <input class="dob" matInput id="dateOfBirth" name="dateOfBirth" [matDatepicker]="dp"
-              [formControl]="dateOfBirth" placeholder="DD.MM.YYYY" required />
-            <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
-            <mat-datepicker #dp panelClass="custom-datepicker"></mat-datepicker>
-          </div>
-
-          <!-- Validation message -->
-          <div *ngIf="dateOfBirth.invalid && (dateOfBirth.touched || myForm.submitted)"
-            class="alert text-danger my-0 px-0">
-            {{'dobRequired' | translate}}
-          </div>
-
         </div>
 
         <!-- Place of Birth -->
@@ -160,6 +158,23 @@
             class="alert text-danger my-0 px-0">
             {{'dominantFootRequired' | translate}}.
           </div>
+        </div>
+        <!-- Date of birth -->
+        <div class="form-group col-lg-6">
+          <label for="dateOfBirth">{{ 'dateOfBirth' | translate }}:</label>
+          <div class="d-flex align-items-center justify-content-center dob1">
+            <input class="dob" matInput id="dateOfBirth" name="dateOfBirth" [matDatepicker]="dp"
+              [formControl]="dateOfBirth" placeholder="DD.MM.YYYY" required />
+            <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+            <mat-datepicker #dp panelClass="custom-datepicker"></mat-datepicker>
+          </div>
+
+          <!-- Validation message -->
+          <div *ngIf="dateOfBirth.invalid && (dateOfBirth.touched || myForm.submitted)"
+            class="alert text-danger my-0 px-0">
+            {{'dobRequired' | translate}}
+          </div>
+
         </div>
       </div>
 

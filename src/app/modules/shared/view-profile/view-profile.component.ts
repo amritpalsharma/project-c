@@ -49,6 +49,7 @@ export class ViewProfileComponent implements OnInit {
   pleaseWaitTxt: string = '';
   downloading: string = '';
   currentThemeMode: any = localStorage.getItem('theme');
+  currentUserRole: string = '';
   private tooltipSubscription!: Subscription; // ✅ Subscription for tooltips
 
   @Output() dataEmitter = new EventEmitter<string>();
@@ -70,7 +71,7 @@ export class ViewProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.themeChanged();
-    
+
     this.loggedInUser = JSON.parse(this.loggedInUser);
     this.route.params.subscribe((params: any) => {
       this.userId = params.id;
@@ -106,6 +107,13 @@ export class ViewProfileComponent implements OnInit {
     this.globalSettings.indexFunctionCall$.subscribe(() => {
       this.themeChanged(); // Call the function when event is received
     });
+
+
+    const role = history.state.role;
+    if (role != '' && role != undefined) {
+      this.currentUserRole = role;
+    }
+    // console.info('current role is ',role);
   }
 
   getUser(userId: any) {
@@ -216,6 +224,7 @@ export class ViewProfileComponent implements OnInit {
 
   switchTab(tab: string) {
     this.activeTab = tab;
+    console.warn('Active tab is ',this.activeTab,' and role is ',this.currentUserRole)
   }
 
   handleCoverImageData(data: string) {
@@ -460,7 +469,7 @@ export class ViewProfileComponent implements OnInit {
   themeChanged() {
     let currentTheme = localStorage.getItem('theme');
     this.currentThemeMode = currentTheme;
-    if(this.currentThemeMode == null || this.currentThemeMode == undefined){
+    if (this.currentThemeMode == null || this.currentThemeMode == undefined) {
       this.currentThemeMode = 'light';
     }
   }

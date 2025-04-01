@@ -140,7 +140,7 @@ export class ExploreComponent implements OnInit {
 
     this.loadPositions();
     // this.loadLeagues();
-    this.loadClubs();
+    // this.loadClubs();
     this.loadCountries();
     this.getUsers();
 
@@ -152,7 +152,7 @@ export class ExploreComponent implements OnInit {
     this.webPages.languageId$.subscribe((data) => {
       this.loadPositions();
       // this.loadLeagues();
-      this.loadClubs();
+      // this.loadClubs();
       this.loadCountries();
       this.getUsers();
     });
@@ -269,7 +269,7 @@ export class ExploreComponent implements OnInit {
     }
     const pageRoute = 'view/' + slug.toLowerCase();
     //console.log(pageRoute);
-    this.router.navigate([pageRoute, id]);
+    this.router.navigate([pageRoute, id], { state: { role: slug } });
 
     let jsonData = localStorage.getItem("userData");
     let userId;
@@ -390,7 +390,7 @@ export class ExploreComponent implements OnInit {
     this.getUsers();
     if (this.selectedCountry != 0 && this.selectedCountry != undefined) {
       this.loadLeagues();
-      this.loadClubs();
+      // this.loadClubs();
     }
   }
 
@@ -467,6 +467,9 @@ export class ExploreComponent implements OnInit {
     );
   }
 
+  leagueFilter() {
+    this.loadClubs();
+  }
   loadClubs(): void {
     // Prepare query parameters
     let params: any = {
@@ -481,7 +484,7 @@ export class ExploreComponent implements OnInit {
         params = {
           lang: localStorage.getItem('lang_id'),
           country: getCountryById.country_id,
-          is_taken:'no'
+          is_taken: 'no'
         }
       }
     }
@@ -490,6 +493,7 @@ export class ExploreComponent implements OnInit {
         if (response.status) {
           this.clubs = response.data.clubs;
         } else {
+          this.clubs = [];
           console.error('No data found');
         }
       },
@@ -580,6 +584,10 @@ export class ExploreComponent implements OnInit {
         break;
     }
 
+    if(label == 'country' || label == 'league'){
+      this.countryAndLeauge(label);
+    }
+
     // Refresh data after removing filter
     this.getUsers();
   }
@@ -630,6 +638,23 @@ export class ExploreComponent implements OnInit {
       this.titleService.setTitle(this.pageTitle);
       console.log('Title fetch Function Fired');
     })
+  }
+
+  countryAndLeauge(input_type: any) {
+
+    if (input_type == 'country') { 
+      this.leagues = [];
+      this.clubs = [];
+      this.selectedLeague = null;
+      // this.selectedCountry = null;
+    } else if (input_type == 'league') {
+      this.clubs = [];
+      this.selectedClub = null;
+      this.loadClubs();
+    }
+
+
+    // 
   }
 
 }

@@ -81,7 +81,7 @@
                   <div class="form-group explore-all_input">
                     <mat-form-field appearance="fill">
                       <mat-label>{{ 'country' | translate }}</mat-label>
-                      <mat-select [(ngModel)]="selectedCountry" (selectionChange)="applyFilter()" id="country"
+                      <mat-select [(ngModel)]="selectedCountry" (selectionChange)="applyFilter(); countryAndLeauge('country');" id="country"
                         name="country">
                         <mat-option *ngFor="let country of countries"
                           [value]="country.id">{{country.location}}</mat-option>
@@ -94,8 +94,8 @@
                   <div class="form-group explore-all_input">
                     <mat-form-field appearance="fill">
                       <mat-label>{{'league' | translate}}</mat-label>
-                      <mat-select [(ngModel)]="selectedLeague" (selectionChange)="applyFilter()" id="league"
-                        name="league">
+                      <mat-select [(ngModel)]="selectedLeague" (selectionChange)="applyFilter(); countryAndLeauge('league');" id="league"
+                        name="league" [disabled]="!leagues || leagues.length === 0">
                         <mat-option *ngFor="let league of leagues"
                           [value]="league.id">{{league.league_name}}</mat-option>
                       </mat-select>
@@ -108,7 +108,7 @@
                   <div class="form-group explore-all_input">
                     <mat-form-field appearance="fill">
                       <mat-label>{{'clubRole' | translate}}</mat-label>
-                      <mat-select [(ngModel)]="selectedClub" (selectionChange)="applyFilter()" id="club" name="club">
+                      <mat-select [(ngModel)]="selectedClub" (selectionChange)="applyFilter()" id="club" name="club" [disabled]="!clubs || clubs.length === 0">
                         <mat-option *ngFor="let club of clubs" [value]="club.id">{{club.club_name}}</mat-option>
                       </mat-select>
                     </mat-form-field>

@@ -27,7 +27,7 @@
         <!-- Club Name -->
         <div class="form-group col-lg-6">
           <label for="club_name">{{ 'club' | translate }}:</label>
-          <input type="text" id="club_name" name="club_name" [(ngModel)]="club_name" required>
+          <input type="text" id="club_name" name="club_name" [(ngModel)]="club_name"readonly disabled>
         </div>
 
         <!-- Formation Date -->
@@ -44,7 +44,7 @@
         <!-- Nationality (Updated for multiple selection) -->
         <div class="form-group col-lg-6 position_inputs">
           <h6 class="title_2 mb-1">{{ 'country' | translate }}:</h6>
-          <select class="cupen-btn-1 form-select" aria-label="Default select example" [(ngModel)]="nationality" name="nationality">
+          <select class="cupen-btn-1 form-select" aria-label="Default select example" [(ngModel)]="nationality" name="nationality" disabled>
             <option value="">{{ 'select' | translate }}</option>
             <option *ngFor="let option of countries" 
                     [value]="option.id" 

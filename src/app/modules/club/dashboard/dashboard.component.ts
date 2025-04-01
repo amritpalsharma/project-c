@@ -19,6 +19,7 @@ import { CommonDataService } from '../../../services/common-data.service';
 import { TranslateService } from '@ngx-translate/core';
 import { WebPages } from '../../../services/webpages.service';
 import { TitleService } from '../../../title.service';
+import { GlobalSettingsService } from '../../../services/global-settings.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -32,7 +33,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   album: any[] = []; // Array for album images
   loggedInUser: any = localStorage.getItem('userData');
   // countryFlagUrl: any;
-    countryFlagUrl: string = './assets/images/city-icon-light.png';
+  countryFlagUrl: string = './assets/images/city-icon-light.png';
   currentYear: string = '2025';
 
   constructor(
@@ -46,7 +47,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     private commonDataService: CommonDataService,
     private translateService: TranslateService,
     public webPages: WebPages,
-    private titleService: TitleService
+    private titleService: TitleService,
+    private globalSettings: GlobalSettingsService
   ) { }
   activeTab: string = 'profile';
   userId: any;
@@ -88,8 +90,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
   dontShowAgainTourTxt: string = 'profile';
   pageTitle: string = '';
 
+  currentThemeMode: any = localStorage.getItem('theme');
+
   async ngOnInit() {
     this.introInstance = introJs();
+    this.themeChanged();
 
     this.loggedInUser = JSON.parse(this.loggedInUser);
     this.userId = this.loggedInUser.id;
@@ -112,6 +117,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
     });
 
     await this.getAllTeams();
+
+    this.globalSettings.indexFunctionCall$.subscribe(() => {
+      this.themeChanged(); // Call the function when event is received
+    });
 
   }
 
@@ -326,6 +335,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
             this.coverImage = this.user.meta.cover_image_path;
           }
 
+
+
           if (this.StartTour && this.isTourFirstTime) {
             setTimeout(() => {
               this.isTourFirstTime = false;
@@ -354,6 +365,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
               } else {
                 this.startIntroTour(dblang);  // Start the tour after a slight delay
               }
+
+              // if (!this.user?.meta?.profile_image_path && this.user.club_logo_path != '' && this.user.club_logo_path != undefined) { 
+              //   this.user.meta.profile_image_path =  this.user.club_logo_path;
+              // }
             }, 0);
           }
 
@@ -775,5 +790,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.titleService.setTitle(this.pageTitle);
       console.log('Title fetch Function Fired');
     })
+  }
+
+  themeChanged() {
+    let currentTheme = localStorage.getItem('theme');
+    this.currentThemeMode = currentTheme;
+    if (this.currentThemeMode == null || this.currentThemeMode == undefined) {
+      this.currentThemeMode = 'light';
+    }
   }
 }

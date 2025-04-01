@@ -36,6 +36,7 @@ export class EditPersonalDetailsComponent implements OnInit {
   readonly date = new FormControl(moment());
 
   countries: any;
+  teamsArr: any;
   leagueLevels: any[] = [];
   filteredClubs: any[] = [];  // To store filtered clubs based on search
   selectedClub: string = '';
@@ -44,6 +45,7 @@ export class EditPersonalDetailsComponent implements OnInit {
   userId: any;
   userNationalities: any;
   playerClub: any = "";
+  team_id: any = "";
 
   // Declare individual properties for binding
   height: number = 0;
@@ -87,7 +89,7 @@ export class EditPersonalDetailsComponent implements OnInit {
   countriesLoaded: boolean = false;
   profileLoaded: boolean = false;
 
-  theme : any = localStorage.getItem('theme');
+  theme: any = localStorage.getItem('theme');
 
   ngOnInit(): void {
     this.theme = localStorage.getItem('theme');
@@ -254,6 +256,9 @@ export class EditPersonalDetailsComponent implements OnInit {
         this.firstName = this.user.first_name || '';
         this.lastName = this.user.last_name || '';
         this.userNationalities = JSON.parse(this.user.user_nationalities) || [];
+        if(this.user.meta.team_id && this.user.meta.team_id != '' && this.user.meta.team_id != undefined){
+          this.team_id = this.user.meta.team_id;
+        }
 
         // Ensure userNationalities is parsed correctly as an array of IDs only
         this.userNationalities = JSON.parse(this.user.user_nationalities || '[]');
@@ -261,7 +266,9 @@ export class EditPersonalDetailsComponent implements OnInit {
 
         if (this.user.meta && this.user.meta.pre_club_id) {
           this.currentClubId = this.user.meta.pre_club_id;
+
         }
+        this.loadTeams(this.currentClubId);
         if (this.user.meta && this.user.meta.league_level) {
           this.leagueLevel = this.user.meta.league_level;
           console.warn('this.leagueLevel ', this.leagueLevel);
@@ -310,6 +317,7 @@ export class EditPersonalDetailsComponent implements OnInit {
     const formattedDateOfBirth = moment(this.dateOfBirth.value).format('YYYY-MM-DD');
     formData.append('user[date_of_birth]', formattedDateOfBirth);
     formData.append('user[foot]', this.dominantFoot);
+    formData.append('user[current_team]', this.team_id);
 
     // Append Nationality array
     this.nationality.forEach((nation: any) => {
@@ -391,7 +399,7 @@ export class EditPersonalDetailsComponent implements OnInit {
   }
 
   getJsonTranslations() {
-    this.translateService.get(['success!', 'error', 'nationalityRequired', 'dobRequired', 'dominantFootRequired','Processing','pleaseWait']).subscribe((translations) => {
+    this.translateService.get(['success!', 'error', 'nationalityRequired', 'dobRequired', 'dominantFootRequired', 'Processing', 'pleaseWait']).subscribe((translations) => {
       this.successTxt = translations['success!'];
       this.errorTxt = translations['error'];
       this.nationalityRequired = translations['nationalityRequired'];
@@ -401,5 +409,27 @@ export class EditPersonalDetailsComponent implements OnInit {
       this.pleaseWait = translations['pleaseWait'];
       console.log('Title fetch Function Fired');
     })
+  }
+  clubUpdated() {
+    console.warn('Function called');
+    this.loadTeams(this.currentClubId)
+  }
+
+  loadTeams(club_id: any): void {
+
+
+    this.talentService.getClubTeams(club_id).subscribe(
+      (response: any) => {
+        if (response.status) {
+          this.teamsArr = response.data.teams;
+        } else {
+          this.teamsArr = [];
+          console.error('No data found');
+        }
+      },
+      (error: any) => {
+        console.error('Error fetching leagues:', error);
+      }
+    );
   }
 }

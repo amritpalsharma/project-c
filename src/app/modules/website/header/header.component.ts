@@ -723,7 +723,8 @@ export class HeaderComponent implements OnInit {
       club_id: this.selectedClub,
       verification_link: verification_link,
       company_name: this.companyName,
-      team_id: this.team_id
+      team_id: this.team_id,
+      country: this.selectedCountry
     };
     if (this.privacyPolicy === false) {
       this.toastr.error(this.requiredFieldsMessage);
@@ -951,8 +952,6 @@ export class HeaderComponent implements OnInit {
     const selectElement = event.target as HTMLSelectElement;
     this.selectedCountry = selectElement.value;
     // let clubs = this.getClugById(this.selectedCountry);
-    this.loadLeagues(this.selectedCountry);
-
     this.loadClubs(this.selectedCountry);
   }
 
@@ -960,7 +959,7 @@ export class HeaderComponent implements OnInit {
     const selectElement = event.target as HTMLSelectElement;
     this.selectedClub = +selectElement.value; // Convert to number
     console.log('Selected Club ID:', this.selectedClub);
-    // this.loadLeagues(this.selectedClub);
+    this.loadLeagues(this.selectedClub);
   }
 
   onTeamChange(event: Event): void {
@@ -1073,22 +1072,11 @@ export class HeaderComponent implements OnInit {
 
   loadLeagues(country_id: any): void {
 
-    // Prepare query parameters
-    let params: any = {
-      lang: localStorage.getItem('lang_id'),
-    };
 
-    if (country_id && country_id != '' && country_id != undefined) {
-      params = {
-        lang: localStorage.getItem('lang_id'),
-        country_id: country_id,
-      }
-    }
-
-    this.talentService.getLeagues(params).subscribe(
+    this.talentService.getClubTeams(country_id).subscribe(
       (response: any) => {
         if (response.status) {
-          this.teamsArr = response.data.leagues;
+          this.teamsArr = response.data.teams;
         } else {
           this.teamsArr = [];
           console.error('No data found');
@@ -1113,11 +1101,11 @@ export class HeaderComponent implements OnInit {
       // });
       // console.info(getCountryById) 
       // if (getCountryById && getCountryById.country_id != '' && getCountryById.country_id != undefined) {
-        params = {
-          lang: localStorage.getItem('lang_id'),
-          country: this.selectedCountry,
-          is_taken: 'no'
-        }
+      params = {
+        lang: localStorage.getItem('lang_id'),
+        country: this.selectedCountry,
+        is_taken: 'no'
+      }
       // }
     }
     this.talentService.getClubs(params).subscribe(
