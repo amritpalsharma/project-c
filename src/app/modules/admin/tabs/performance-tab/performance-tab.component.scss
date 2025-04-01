@@ -24,9 +24,15 @@
 .pointer{
     cursor: pointer;
 }
-
+table th {
+    white-space: nowrap;
+}
 .form-control{
     width:80px;
+    min-width: 60px;
+    padding: 6px;
+    outline: none !important;
+    box-shadow: none !important;
 }
 
 select.form-control{
@@ -60,7 +66,11 @@ pointer-events: none;
     width:10%;
 }
 
-  
+td img {
+    object-fit: contain;
+    margin: 0 2px;
+    vertical-align: bottom;
+  }
 
 
 
@@ -96,4 +106,7 @@ pointer-events: none;
 .suggestion-wrap div img{
     margin-right:10px;
     width:20px
+}
+table td {
+    white-space: nowrap;
 }

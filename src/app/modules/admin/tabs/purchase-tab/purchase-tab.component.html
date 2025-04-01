@@ -1,10 +1,10 @@
 <div class="purchase-parent bg-0C3453">
-  <div class="d-flex align-items-center justify-content-between mb-2">
+  <div class="d-flex align-items-center justify-content-between mb-2 wrap_for_mobile">
     <div class="d-flex align-items-center ">
       <h2 class="card-title mb-0 me-3 ">{{'purchaseHistory' | translate}}</h2>
     </div>
 
-    <div class="card-search bg-072944 p-1">
+    <div class="card-search p-1">
       <div class="input-group d-flex align-items-center ">
         <span class="input-group-text"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"
             xmlns="http://www.w3.org/2000/svg">
@@ -37,7 +37,7 @@
       </div> -->
     </div>
   </div>
-  <div class="d-flex align-items-center mb-2">
+  <div class="d-flex align-items-center mb-2 wrap_for_mobile_pagination">
     <div class="dropdown dropdown-purchase">
       <button class="btn btn-secondary dropdown-toggle toggle-padding  dropdown-toggle-checkbox purchase-main-checkbox"
         type="button" data-bs-toggle="dropdown" aria-expanded="false" (click)="selectAllCheckboxes()">
@@ -282,7 +282,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let purchase of userPurchases">
-          <td class="main-table" style="width: 50px">
+          <td class="main-table col_checkbox">
             <span class="form-check align-self-center me-2">
               <input type="checkbox" value="" id="defaultCheck1" class="form-check-input"
                 [checked]="selectedIds.includes(purchase.id)" (change)="onCheckboxChange(purchase)" />
@@ -291,7 +291,7 @@
           </td>
           <td>
             <div class="d-flex align-items-center">
-              <span class="main-template" style="padding-left: 15px">{{purchase.id}}</span>
+              <span class="main-template">{{purchase.id}}</span>
             </div>
           </td>
           <!-- <td>{{ purchase.plan_period_start | date:'MM.dd.yyyy - hh.mm a' }}</td> -->

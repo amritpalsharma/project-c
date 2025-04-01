@@ -1,13 +1,11 @@
 <ng-container>
     <div class="p-0 code-parent">
-        <div class="bg-0C3453 p-4">
+        <div class="popup_header p-3">
             <h6 class=" code-text text-left" *ngIf="data.action == 'add'">{{ 'addTeamMember' | translate }}</h6>
             <h6 class=" code-text text-left" *ngIf="data.action == 'edit'">{{ 'editTeamMember' | translate }}</h6>
             <div (click)="close()" class="close-img mb-1"></div>
         </div>
-        <hr class="m-0">
-
-
+        <div class="popup__body p-3">
         <div class="p-3" *ngIf="data.action == 'add'">
             <div class="d-flex1 mb-3">
                 <div>
@@ -53,7 +51,6 @@
                 </div>
             </div>
         </div>
-
 
         <div class="p-3" *ngIf="data.action == 'edit'">
             <div class="d-flex1 mb-3">
@@ -109,12 +106,9 @@
                 </div>
             </div>
         </div>
+    </div>
 
-
-
-        <hr class="m-0">
-
-        <div class=" d-flex justify-content-around bg-0C3453 p-3">
+        <div class=" d-flex justify-content-around popup_footer p-3 dialog-actions">
             <div>
                 <a class="btn btn-delete text-danger" (click)="close()">{{ 'cancel' | translate }}</a>
             </div>

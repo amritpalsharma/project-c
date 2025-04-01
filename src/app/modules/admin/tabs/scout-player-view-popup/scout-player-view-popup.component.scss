@@ -47,6 +47,8 @@ hr{
     .fc-club-img{
         width: 38px;
         height: 36px;
+        object-fit: contain;
+        object-position: top left;
     }
     .fc-img{
         width: 24px;
@@ -60,12 +62,12 @@ hr{
     }
     .team-details{
         &.style-1{
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
         p{
             color: #787878;
-            opacity: 0.8;
-            margin-bottom: 10px;
+            font-size: 16px;
+            margin-bottom: 7px;
         }
         h6{
             color: #111418;

@@ -4,16 +4,12 @@
     </div> -->
 
 
-<div class="py-3 parent-popup">
-    <h4 class="text-center mb-3 title-text">{{ 'uploadFiles' | translate }}</h4>
-
-    <div class="close-img" (click)="close()">
+<div class="upload_admin_popup">
+    <div class="popup_header p-3">
+        <h4 class="text-center mb-0 title-text">{{ 'uploadFiles' | translate }}</h4>
+        <div class="close-img" (click)="close()"></div>
     </div>
-
-    <hr>
-
-    <div class="msg-popup-content px-3 py-2">
-
+    <div class="msg-popup-content popup__body p-3">
         <div class="upload-box" (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)"
             (drop)="onFileDropped($event)">
             <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">

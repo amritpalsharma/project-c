@@ -1461,12 +1461,14 @@ table {
   .dialog-actions {
     flex-direction: column;
     gap: 20px;
-
+    justify-content: center !important;
+    .btn {
+        width: 100%;
+    }
   }
 
   .dialog-actions button {
     width: 100% !important;
-
   }
 }
 
@@ -1883,7 +1885,7 @@ table {
 .custom-size-calendar.player-popup-field .mat-mdc-text-field-wrapper {
   height: 21.5px;
   padding: 0px 0px 0px 0px !important;
-  border: none;
+  border: none !important;
   background-color: #fff;
   margin-top: -2px;
 }
@@ -1923,6 +1925,7 @@ table {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  object-position: top center;
 }
 
 .full-width-dialog .mat-mdc-dialog-container {
@@ -2509,13 +2512,26 @@ td.col_checkbox {
     }
   }
 
-  #player-countryy.main-popup-div .mat-mdc-select-trigger {
-    width: 100% !important;
-    margin: 0 !important;
-    font-size: 14px;
-  }
-
   .common_profile_modal .mat-mdc-text-field-wrapper {
     border: 0 !important;
   }
+}
+
+#player-countryy.main-popup-div .mat-mdc-select-trigger {
+  width: 100% !important;
+  margin: 0 !important;
+  font-size: 14px;
+}
+
+.popup__body  {
+  border-top: 1px solid #E7E7E7;
+}
+
+.admin_profile_chatbox .body-background {
+  border-top: 0 !important;
+}
+
+
+.light-theme .user-right-content {
+  border-top: 1px solid #E7E7E7;
 }

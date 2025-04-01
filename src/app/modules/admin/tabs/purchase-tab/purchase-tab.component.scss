@@ -9,6 +9,10 @@
      padding: 20px 15px;
  }
 
+ table th, table td {
+  white-space: nowrap;
+ }
+
  @media(max-width: 425px){
   .btn-outline-white {
     padding: 5px;

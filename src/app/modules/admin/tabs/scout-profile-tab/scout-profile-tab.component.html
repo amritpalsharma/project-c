@@ -14,29 +14,27 @@
     </div>
     <div class="row">
         <div class="col-lg-3">
-            <div class="scout-team">
+            <div class="scout-team style-1">
                 <p>{{ 'fullName' | translate}}</p>
-                <h6>
-                    {{userData.first_name}} {{userData.last_name}}
-                </h6>
+                <h6>{{userData.first_name}} {{userData.last_name}}</h6>
             </div>
         </div>
         <div class="col-lg-3">
-            <div class="scout-team">
+            <div class="scout-team style-1">
                 <p> {{ 'designation' | translate }}</p>
                 <h6>{{userData?.meta?.designation | translate}}</h6>
                 <h6 *ngIf="!userData.meta || !userData.meta.designation">NA</h6>
             </div>
         </div>
         <div class="col-lg-3">
-            <div class="scout-team">
+            <div class="scout-team style-1">
                 <p> {{ 'Company Name' | translate }}</p>
                 <h6>{{userData?.meta?.company_name | translate}}</h6>
                 <h6 *ngIf="!userData.meta || !userData.meta.company_name">NA</h6>
             </div>
         </div>
         <div class="col-lg-3">
-            <div class="scout-team">
+            <div class="scout-team style-1">
                 <p> {{ 'contactNumber' | translate }}</p>
                 <h6>{{userData?.meta?.contact_number | translate}}</h6>
                 <h6 *ngIf="!userData.meta || !userData.meta.contact_number">NA</h6>
@@ -47,28 +45,28 @@
             </div>
         </div>
         <div class="col-lg-3">
-            <div class="scout-team">
+            <div class="scout-team style-1">
                 <p> {{ 'address' | translate}}</p>
                 <h6> {{userData?.meta?.address | translate}}</h6>
                 <h6 *ngIf="!userData.meta || !userData.meta.address">NA</h6>
             </div>
         </div>
-        <div class="col-lg-3 mt-3">
-            <div class="scout-team">
+        <div class="col-lg-3">
+            <div class="scout-team style-1">
                 <p> {{ 'zipcode' | translate}}</p>
                 <h6> {{userData?.meta?.zipcode | translate}}</h6>
                 <h6 *ngIf="!userData.meta || !userData.meta.zipcode">NA</h6>
             </div>
         </div>
-        <div class="col-lg-3 mt-3">
-            <div class="scout-team">
+        <div class="col-lg-3">
+            <div class="scout-team style-1">
                 <p> {{ 'city' | translate}}</p>
                 <h6> {{userData?.meta?.city | translate}}</h6>
                 <h6 *ngIf="!userData.meta || !userData.meta.city">NA</h6>
             </div>
         </div>
-        <div class="col-lg-3 mt-3">
-            <div class="scout-team">
+        <div class="col-lg-3">
+            <div class="scout-team style-1">
                 <p> {{ 'country' | translate}}</p>
                 <div class="d-flex align-items-center mb-2" *ngFor="let nation of userNationalities">
                     <img src="{{nation.flag_path}}" alt="">
@@ -77,15 +75,15 @@
                 <h6 *ngIf="userNationalities.length == 0">NA</h6>
             </div>
         </div>
-        <div class="col-lg-3 mt-3">
-            <div class="scout-team">
+        <div class="col-lg-3">
+            <div class="scout-team style-1">
                 <p> {{ 'website' | translate}}</p>
                 <h6>{{userData?.meta?.website}}</h6>
                 <h6 *ngIf="!userData.meta || !userData.meta.website">NA</h6>
             </div>
         </div>
-        <div class="col-lg-5 mt-3">
-            <div class="scout-team style-1">
+        <div class="col-lg-7">
+            <div class="scout-team style-1 admin_social_profile">
                 <p> {{'socialMedia' | translate }}</p>
                 <div class="d-flex align-items-center team-details-sub" *ngIf="userData.meta && userData.meta.sm_x">
                     <h6 class="mb-0">
@@ -179,22 +177,22 @@
 
     <div class="row">
         <div class="col-lg-3">
-            <div class="team-details">
+            <div class="team-details style-1">
                 <p> {{ 'email' | translate }}</p>
                 <h6>{{userData.email}}</h6>
             </div>
         </div>
         <div class="col-lg-3">
-            <div class="team-details">
+            <div class="team-details style-1">
                 <p> {{ 'password' | translate }}</p>
                 <h6>***************</h6>
             </div>
         </div>
     </div>
 
-    <div class="row">
-        <div class="table-responsive ">
-            <table class="table table-scout-profile table-hover bg-072944 ">
+    
+        <div class="table-responsive">
+            <table class="table table-scout-profile table-striped ">
                 <thead class="border-table-thead">
                     <tr>
                         <th>{{ 'representators:' | translate }} &nbsp; &nbsp;<button
@@ -296,5 +294,4 @@
                 </tbody>
             </table>
         </div>
-    </div>
 </div>

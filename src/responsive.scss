@@ -357,6 +357,14 @@ td.cdk-column-Remove.mat-column-Remove svg {
 }
 
 
+@media (min-width: 768px) and (max-width: 1199px) {
+.user_card_header .slide-table .btn-outline-white, .setting_card_hdr_mobil .btn-outline-white,
+.membership_mobile .wrap_flex .btn-outline-white, .favorite_card_hdr .btn-outline-white {
+    font-size: 11px !important;
+}
+}
+
+
 @media (max-width: 991px) {
 .page-sidebar-inner {
     overflow-x: hidden;
@@ -512,18 +520,17 @@ body.compact-sidebar.dark-theme .sidebar-menu svg path {
         margin-bottom: 15px;
     }
     .mobile_popup_responsive {
-    .mobile_wrap_fields {
-        flex-direction: column;
-        gap: 10px;
-        .template-name-input input.template-name-inputField {
-            width: 100% !important;
-        }
-        .my_mobile {
-            margin: 15px 0;
+        .mobile_wrap_fields {
+            flex-direction: column;
+            gap: 10px;
+            .template-name-input input.template-name-inputField {
+                width: 100% !important;
+            }
+            .my_mobile {
+                margin: 15px 0;
+            }
         }
     }
-    }
-
     .marketing-header-bar {
         flex-direction: column !important;
         align-items: flex-start !important;
@@ -538,6 +545,7 @@ body.compact-sidebar.dark-theme .sidebar-menu svg path {
         width: 30px;
         height: 30px;
         justify-content: center;
+        padding: 5px;
         svg {
             margin-right: 0 !important;
         }
@@ -557,19 +565,56 @@ body.compact-sidebar.dark-theme .sidebar-menu svg path {
     .user-details-left .list-view h6, .user-details-left .list-view p {
         font-size: 14px !important;
     }
-    .user-right-content .team-details.style-1 {
-        margin-bottom: 20px;
+    .user-right-content .team-details.style-1, .user-right-content .scout-team.style-1 {
+        margin-bottom: 0 !important;
+    }
+    .user-right-content .team-details.style-1 h6, .user-right-content .team-details.style-1 .d-flex,
+    .user-right-content .scout-team.style-1 h6, .user-right-content .scout-team.style-1 .d-flex,
+    .user-right-content .admin_social_profile {
+        margin-bottom: 20px !important;
         padding-bottom: 20px;
         border-bottom: 1px solid #99999961;
+    }
+    .user-right-content .team-details.style-1 .d-flex h6, .user-right-content .scout-team.style-1 .d-flex h6 {
+        margin-bottom: 0 !important;
+        padding-bottom: 0;
+        border-bottom: 0;
     }
     .td_col.mt-3 {
         margin-top: 0 !important;
     }
+    #dashboard_tabs_dark .nav-tabs {
+        border-bottom: 0 !important;
+        margin-bottom: 15px !important;
+    }
+
+    .card-search {
+        max-width: 100% !important;
+    }
+    .wrap_for_mobile {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 20px;
+        .pop-up-button {
+            font-size: 13px;
+            padding: 9px 7px !important;
+        }
+    }
+    .wrap_for_mobile_pagination {
+        .mat-mdc-paginator-container {
+            padding-right: 0 !important;
+        }
+        .mat-mdc-paginator-range-actions {
+            flex-wrap: nowrap;
+            .mat-mdc-paginator-range-label {
+                margin-bottom: 0 !important;
+            }
+        }
+        .btn-outline-white {
+            font-size: 0 !important;
+        }
     }
 }
-
-
-@media (max-width: 620px) {
 .user_card_header .slide-table .btn-outline-white, .setting_card_hdr_mobil .btn-outline-white,
 .membership_mobile .wrap_flex .btn-outline-white, .favorite_card_hdr .btn-outline-white {
     font-size: 0 !important;
@@ -649,6 +694,11 @@ table.table  th {
     flex-wrap: wrap;
     justify-content: center;
   }
+
+  .popup__body {
+    max-height: 350px;
+    overflow: auto;
+  }
 }
 
 @media (max-width: 480px) {
@@ -662,6 +712,9 @@ table.table  th {
     flex-direction: column;
     margin-top: 15px !important;
     align-items: flex-start !important;
+}
+.user_card_header .slide-table .mat-mdc-paginator-range-actions {
+    flex-wrap: nowrap;
 }
 .user_card_header .mobile_wrap {
     flex-direction: column;

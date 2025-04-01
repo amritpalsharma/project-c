@@ -1,15 +1,12 @@
-<div class=" px-3 bg-0C3453" style="width: 100%;">
-  <table class=" table table-striped w-100 ">
+<div class="p-3 bg-0C3453 admin_performace_table w-100">
+  <div class="table-responsive">
+  <table class="table table-striped w-100">
       <thead>
         <tr>
           <th scope="col" >{{'team' | translate}}</th>
-          <th scope="col" class="text-center w-10 " >{{'saison' | translate}}</th>
-          <th scope="col" class="text-center w-10 " >{{'matches' | translate}}</th>
-          <th scope="col" class="text-center w-10 " >{{'goal' | translate}}
-            <!-- <svg id="users-icon" width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M1.15341 8.43701H7.84716C8.44903 8.43701 8.74997 9.1958 8.32528 9.63818L4.97841 13.1245C4.71404 13.3999 4.28654 13.3999 4.02497 13.1245L0.675285 9.63818C0.250597 9.1958 0.551535 8.43701 1.15341 8.43701ZM8.32528 5.36084L4.97841 1.87451C4.71404 1.59912 4.28654 1.59912 4.02497 1.87451L0.675285 5.36084C0.250597 5.80322 0.551535 6.56201 1.15341 6.56201H7.84716C8.44903 6.56201 8.74997 5.80322 8.32528 5.36084Z" fill="#111418"/>
-            </svg> -->
-          </th>
+          <th scope="col" class="text-center w-10">{{'saison' | translate}}</th>
+          <th scope="col" class="text-center w-10">{{'matches' | translate}}</th>
+          <th scope="col" class="text-center w-10">{{'goal' | translate}}</th>
           <th scope="col">{{'coachDuringDebut' | translate}}</th>
           <th scope="col">{{'ageOfThePlayer' | translate}}</th>
           <th scope="col" class="text-center">{{'edit' | translate}}</th>
@@ -60,15 +57,15 @@
               
            
           </td>
-          <td>
+          <td class="text-center" style="white-space: nowrap;">
             <span *ngIf="editableId != performance.id"  class="d-flex justify-content-center" >{{performance.session}}</span>
             <input *ngIf="editableId == performance.id" type="text" value="{{performance.session}}" (input)="onInputChange($event, 'session')" class="form-control performance-dark-bg w-100 text-center">
           </td>
-          <td>
+          <td class="text-center">
             <span *ngIf="editableId != performance.id" class="d-flex justify-content-center">{{performance.matches}}</span>
             <input *ngIf="editableId == performance.id" type="text" value="{{performance.matches}}" class="form-control w-100 performance-dark-bg text-center" (input)="onInputChange($event, 'matches')">
           </td>
-          <td>
+          <td class="text-center">
             <span *ngIf="editableId != performance.id"  class="d-flex justify-content-center">{{performance.goals}}</span>
             <input *ngIf="editableId == performance.id" type="text" value="{{performance.goals}}" class="form-control w-100 performance-dark-bg text-center" (input)="onInputChange($event, 'goals')">
           </td>
@@ -111,4 +108,5 @@
         </tr>
       </tbody>
   </table>
+</div>
 </div>

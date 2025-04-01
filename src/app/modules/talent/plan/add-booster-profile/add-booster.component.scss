@@ -50,11 +50,11 @@
 }
 .player_img img {
   width: 100%;
+  height: 260px;
   padding: 30px;
   padding-bottom: 0;
-  // width: 260px;
-  height: 260px;
   object-fit: cover;
+  object-position: top center;
 }
 .player-names {
   background: #429130;

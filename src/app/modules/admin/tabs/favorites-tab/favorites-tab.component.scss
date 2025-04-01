@@ -1,9 +1,12 @@
 .table tbody tr:hover td.main-table-2 {
      border-right:none !important;
 }
-
+table th {
+  white-space: nowrap;
+}
 .main-template{
      color: black;
+     white-space: nowrap;
  }
 .Favorite-parent{
      padding: 15px 20px ;
