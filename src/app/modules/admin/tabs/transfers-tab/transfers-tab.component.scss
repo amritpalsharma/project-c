@@ -38,11 +38,15 @@
     
     select{
       width: 200px;
+      padding: 8px 28px 8px 8px !important;
     }
     
     .form-control {
+      min-width: 60px;
       appearance: none;
-      padding-right: 20px;
+      padding: 6px;
+      outline: none !important;
+      box-shadow: none !important;
     }
     .dropdown-icon {
     position: absolute;
@@ -64,4 +68,16 @@
       -moz-appearance: none; 
       background-image: none; 
     }
-    
+
+    td img {
+      object-fit: contain;
+      margin: 0 2px;
+      vertical-align: bottom;
+    }
+    .custom-size-calendar .mat-mdc-text-field-wrapper {
+      height: 38px;
+      padding: 8px !important;
+  }
+    table td {
+      white-space: nowrap;
+    }

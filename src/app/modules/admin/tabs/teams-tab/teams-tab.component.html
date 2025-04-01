@@ -12,12 +12,13 @@
     <div class="container"> 
       <div class="row">
         <span class="p-3 team-type" style="display: flex; align-items: center;">
-          <span class="back-link" (click)="backToTeamView();">{{ 'back' | translate }}</span> 
+          <!-- <span class="back-link team_back" (click)="backToTeamView();"> {{ 'back' | translate }}</span>  -->
+          <span class="team_back cursor-pointer" (click)="backToTeamView();"><i class="fa-solid fa-long-arrow-left"></i></span>&nbsp;&nbsp;
           {{selectedTeam}}
         </span>
-        <div class="col pl-5">
+        <div class="col">
           <div class="table-responsive">
-            <table mat-table [dataSource]="players" class="table table-hover table-striped table-users ">
+            <table mat-table [dataSource]="players" class="table table-striped table-users">
              
               <!-- Name Column -->
               <ng-container matColumnDef="Player Name">

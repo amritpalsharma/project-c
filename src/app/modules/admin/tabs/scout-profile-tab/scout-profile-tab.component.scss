@@ -5,7 +5,6 @@
     padding: 28px 19px;
     h6{
         color: #111418;
-        opacity: 0.8;
         font-weight: 400;
         font-size: 16px;
         margin-bottom: 32px;
@@ -14,10 +13,14 @@
     .fc-club-img{
         width: 38px;
         height: 36px;
+        object-fit: contain;
+        object-position: top left;
     }
     .fc-img{
         width: 24px;
         height: 26px;
+        object-fit: contain;
+        object-position: top left;
         margin-right: 3px;
         &.style-1{
             margin-right: 0;
@@ -27,12 +30,13 @@
     }
     .team-details{
         &.style-1{
-            margin-bottom: 47px;
+            margin-bottom: 40px;
         }
         p{
             color: #787878;
-            opacity: 0.8;
-            margin-bottom: 10px;
+            font-size: 16px;
+            font-weight: 300;
+            margin-bottom: 5px;
         }
         h6{
             color: #111418;
@@ -46,41 +50,29 @@
     }
 }
 
-
 .team-details-sub{
     margin-bottom: 19px;
 }
 
-    td{
-        font-size: 14px;
+td{
+    font-size: 14px;
+}
+
+.table thead  {
+    border-radius: 10px ; 
+    overflow: hidden;
     }
 
-
-
-  .table thead  {
-    border-radius: 10px ;
-    overflow: hidden;
-  }
-
-  .border-table-thead thead{
+    .border-table-thead thead{
     border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    border-top-right-radius: 10px; 
 
-  }
+    }
 
-  .table-scout-profile{
+    .table-scout-profile{
     border-radius:10px ;
     border: 1px solid #E5E5E5;
-  }
-
-  tbody tr:first-child {
-    border-top: 2px solid #e5e5e5; /* Adjust color and thickness as needed */
-  }
-  
-  tbody {
-    border-top: 2px solid #e5e5e5; /* Adjust color and thickness as needed */
-  }
-
+    }
 
 
 .custom-select {
@@ -123,6 +115,10 @@
     border-radius: 50%;
 }
 
+
 .pointer{
     cursor: pointer;
+}
+table td, table th {
+    white-space: nowrap;
 }

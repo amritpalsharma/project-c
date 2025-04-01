@@ -1,27 +1,24 @@
-<div class="overflow-auto bg-0C3453 p-4">
-    <div>
-        <div class="d-flex align-items-center">
-            <span class="scout-player-name">{{ 'player:' | translate }}</span>
-            <span class="d-flex align-items-center border-player scout-player-detail">
-                <img src="{{player.meta.profile_image_path}}" *ngIf="player.meta && player.meta.profile_image_path"
-                    height="26" width="24" class="fc-club-img mx-1" alt="">
-                <img src="../../../../assets/images/1.png" *ngIf="!player.meta || !player.meta.profile_image_path"
-                    height="26" width="24" class="fc-club-img mx-1" alt="">
-                <span class="mx-1"> {{player.first_name}} {{player.last_name}} </span>
-                <img src="../../../../assets/images/cross-icon.png" class="fc-img mx-1 style-1" alt="">
-            </span>
-            <div class="close-img" (click)="close()">
-            </div>
+<div class="overflow-auto scout_admin_view_portfoli p-4">
+    <div class="d-flex align-items-center mb-3">
+        <span class="scout-player-name">{{ 'player:' | translate }}</span>
+        <span class="d-flex align-items-center border-player scout-player-detail">
+            <img src="{{player.meta.profile_image_path}}" *ngIf="player.meta && player.meta.profile_image_path"
+                height="26" width="24" class="fc-club-img mx-1" alt="">
+            <img src="../../../../assets/images/1.png" *ngIf="!player.meta || !player.meta.profile_image_path"
+                height="26" width="24" class="fc-club-img mx-1" alt="">
+            <span class="mx-1"> {{player.first_name}} {{player.last_name}} </span>
+            <img src="../../../../assets/images/cross-icon.png" class="fc-img mx-1 style-1" alt="">
+        </span>
+        <div class="close-img" (click)="close()">
         </div>
     </div>
-    <hr class="m-0 mt-2">
-    <div class="user-right-content py-4">
+    <div class="user-right-content py-4 pb-0">
         <div class="d-flex align-items-center mb-4">
             <h6 class="mb-0 me-2 main-template"> {{ 'generalDetails' | translate}} </h6>
         </div>
         <div class="row mb-4">
             <div class="col-lg-3">
-                <div class="team-details">
+                <div class="team-details style-1">
                     <p>{{ 'currentClub' | translate}}</p>
                     <h6>
                         <img src="{{player.club_logo_path}}" class="fc-club-img" alt="">
@@ -31,13 +28,13 @@
                 </div>
             </div>
             <div class="col-lg-3">
-                <div class="team-details">
+                <div class="team-details style-1">
                     <p> {{ 'leagueLevel' | translate }}</p>
                     <h6>{{ player?.league_name | translate }}</h6>
                 </div>
             </div>
             <div class="col-lg-3">
-                <div class="team-details">
+                <div class="team-details style-1">
                     <p> {{ 'nationality' | translate }}</p>
                     <div class="d-flex align-items-center mb-2" *ngFor="let nation of userNationalities">
                         <img src="{{nation.flag_path}}" alt="">
@@ -46,13 +43,13 @@
                 </div>
             </div>
             <div class="col-lg-3">
-                <div class="team-details">
+                <div class="team-details style-1">
                     <p> {{ 'position' | translate}}</p>
                     <h6>{{player?.meta?.main_position | translate}}</h6>
                 </div>
             </div>
-            <div class="col-lg-3 mt-3">
-                <div class="team-details">
+            <div class="col-lg-3">
+                <div class="team-details style-1">
                     <p> {{ 'internationalPlayer' | translate}}</p>
                     <div class="d-flex align-items-center">
                         <img *ngIf="player.int_player_country_logo_path" src="{{player.int_player_country_logo_path}}"
@@ -63,7 +60,6 @@
             </div>
         </div>
     </div>
-
     <div class="user-right-content py-4">
         <div class="d-flex align-items-center mb-4">
             <h6 class="mb-0 me-2 main-template"> {{ 'personalDetails' | translate}}</h6>
@@ -87,33 +83,33 @@
                     <h6>{{player?.meta?.foot}}</h6>
                 </div>
             </div>
-            <div class="col-lg-3 mt-3">
+            <div class="col-lg-3">
                 <div class="team-details style-1">
                     <p>{{ 'inTheTeamSince' | translate}}</p>
                     <h6>{{player?.meta?.in_team_since | date:'MMM d, y' }}</h6>
                 </div>
             </div>
-            <div class="col-lg-3 mt-3">
+            <div class="col-lg-3">
                 <div class="team-details style-1">
                     <p>{{ 'age' | translate}}</p>
                     <h6>{{calculateAge(player?.meta?.date_of_birth)}}</h6>
                 </div>
             </div>
-            <div class="col-lg-3 mt-3 ">
+            <div class="col-lg-3">
                 <div class="team-details style-1">
                     <p> {{'placeOfBirth' | translate }}</p>
                     <h6>{{player?.meta?.place_of_birth}}, <img src="../../../../assets/images/flag.svg"
                             alt="">Switzerland</h6>
                 </div>
             </div>
-            <div class="col-lg-3 mt-3">
+            <div class="col-lg-3">
                 <div class="team-details style-1">
                     <p>{{ 'contractUntil' | translate}}</p>
                     <h6 *ngIf="player.plan_period_end">{{player.plan_period_end | date:'MMM d, y' }}</h6>
                     <h6 *ngIf="!player.plan_period_end">NA</h6>
                 </div>
             </div>
-            <div class="col-lg-3 mt-3">
+            <div class="col-lg-3">
                 <div class="team-details style-1">
                     <p> {{ 'topSpeed' | translate}}</p>
                     <h6 *ngIf="player.meta && player.meta.top_speed">{{player.meta.top_speed}}
@@ -121,7 +117,7 @@
                     <h6 *ngIf="!player.meta || !player.meta.top_speed">NA</h6>
                 </div>
             </div>
-            <div class="col-lg-3 mt-3">
+            <div class="col-lg-3">
                 <div class="team-details style-1">
                     <p> {{ 'height' | translate }}</p>
                     <h6 *ngIf="player.meta && player.meta.height">{{player.meta.height}} {{player.meta.height_unit}}
@@ -129,14 +125,14 @@
                     <h6 *ngIf="!player.meta || !player.meta.height">NA</h6>
                 </div>
             </div>
-            <div class="col-lg-3 mt-3">
+            <div class="col-lg-3">
                 <div class="team-details style-1">
                     <p> {{ 'otherPositions' | translate }}</p>
                     <h6 *ngIf="player.meta && player.meta.other_position">{{player.meta.other_position}}</h6>
                     <h6 *ngIf="!player.meta || !player.meta.other_position">NA</h6>
                 </div>
             </div>
-            <div class="col-lg-4 mt-3">
+            <div class="col-lg-6">
                 <div class="team-details style-1">
                     <p> {{'socialMedia' | translate }}</p>
                     <div class="d-flex align-items-center team-details-sub my-3"
@@ -231,13 +227,13 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-6">
                 <div class="team-details">
                     <p> {{ 'email' | translate }}</p>
                     <h6>{{player.email}}</h6>
                 </div>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-6">
                 <div class="team-details">
                     <p> {{ 'password' | translate }}</p>
                     <h6>***************</h6>

@@ -40,12 +40,14 @@
 .start_bate{
   border-radius: 10px 0px 0px 10px !important;
   border: 1px solid #bbb7b7;
+  font-weight: 300;
 }
 
 .end_bate{
   border-radius: 0px 10px 10px 0px !important;
   border-left: none !important;
   border: 1px solid #bbb7b7;
+  font-weight: 300;
 }
 
 .form-group input, .form-group select , .form-group textarea {
@@ -53,11 +55,13 @@
   padding: 14px;
   line-height: normal;
   border: 1px solid #bbb7b7;
+  font-weight: 300;
   border-radius: 10px;
 }
 
 .date_inputs input{
   width: 48%;
+  font-weight: 300;
 }
 
 .dialog-actions {

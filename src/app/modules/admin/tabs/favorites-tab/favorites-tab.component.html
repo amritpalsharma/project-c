@@ -1,12 +1,12 @@
 <div class="tab-content-2 Favorite-parent bg-0C3453" id="myTabContent-2">
   <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
 
-    <div class="d-flex align-items-center justify-content-between">
+    <div class="d-flex align-items-center justify-content-between wrap_for_mobile">
       <div class="d-flex align-items-center">
         <h2 class="card-title mb-0 me-3">{{'favorites' | translate}} <span
             *ngIf="!isLoading">({{totalFavorites}})</span></h2>
       </div>
-      <div class="card-search bg-072944 p-1">
+      <div class="card-search p-1">
         <div class="input-group d-flex align-items-center ">
           <span class="input-group-text "><svg width="16" height="16" viewBox="0 0 16 16" fill="none"
               xmlns="http://www.w3.org/2000/svg">
@@ -39,7 +39,7 @@
         </div> -->
       </div>
     </div>
-    <div class="d-flex align-items-center justify-content-between ">
+    <div class="d-flex align-items-center justify-content-between wrap_for_mobile_pagination">
       <div class="d-flex align-items-center">
         <div class="dropdown dropdown-favourites">
           <button
@@ -84,7 +84,7 @@
         <!-- Position Column -->
         <ng-container matColumnDef="#">
           <th mat-header-cell *matHeaderCellDef> </th>
-          <td mat-cell *matCellDef="let element">
+          <td class="col_checkbox" mat-cell *matCellDef="let element">
             <span class="form-check align-self-center ">
               <input type="checkbox" class="form-check-input " [checked]="selectedIds.includes(element.id)"
                 (change)="onCheckboxChange(element)" />

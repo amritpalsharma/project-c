@@ -1,9 +1,9 @@
-<div class="msg-popup-dialog">
+<div class="msg-popup-dialog delete_portfolio_profile_popup">
     <div class="msg-popup-close">
         <img src="../../../assets/images/close-icon-circle.png" alt="" class="" (click)="close()" />
     </div>
 
-    <div class="msg-popup-content">
+    <div class="msg-popup-content px-3">
         <div class="display-message">{{data.message}}</div>
         <div class="display-message" *ngIf="data.action == 'delete-favorite-confirmation'">
             {{'areToSure' | translate}}
