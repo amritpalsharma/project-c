@@ -85,6 +85,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   Canceled: string = '';
   coverImageDeletionCanceled: string = '';
   currentThemeMode: any = localStorage.getItem('theme');
+  generalError:string='';
 
   async ngOnInit() {
     this.getJsonTranslations();
@@ -757,19 +758,19 @@ export class DashboardComponent implements OnInit, OnDestroy {
               }
             } else {
               this.toastr.clear();
-              this.toastr.error('Failed to upload cover image. Please try again.', 'Upload Failed');
+              this.toastr.error(this.generalError, this.errorTxt);
               console.error('Invalid API response structure:', response);
             }
           },
           (error) => {
             this.toastr.clear();
-            this.toastr.error('An error occurred during upload. Please try again.', 'Upload Error');
+            this.toastr.error(this.generalError, this.errorTxt);
             console.error('Error uploading cover image:', error);
           },
         );
       } catch (error) {
         this.toastr.clear();
-        this.toastr.error('An unexpected error occurred. Please try again.', 'Upload Error');
+        this.toastr.error(this.generalError, this.errorTxt);
         console.error('Error during cover image upload:', error);
       }
     }
@@ -800,21 +801,21 @@ export class DashboardComponent implements OnInit, OnDestroy {
               this.toastr.error(response.message, this.errorTxt);
             } else {
               // this.toastr.success('Cover image deleted successfully.', 'Success');
-              this.toastr.error('Failed to delete cover image. Please try again.', 'Delete Failed');
+              this.toastr.error(this.generalError, this.errorTxt);
             }
             console.error('Invalid API response structure:', response);
           }
         },
         (error) => {
           this.toastr.clear();
-          this.toastr.error('An error occurred during deletion. Please try again.', 'Delete Error');
+          this.toastr.error(this.generalError,this.errorTxt);
           console.error('Error deleting cover image:', error);
         },
       );
     } catch (error) {
       this.toastr.clear();
-      this.toastr.error('An unexpected error occurred. Please try again.', 'Delete Error');
-      console.error('Error during cover image deletion:', error);
+      this.toastr.error(this.generalError, this.errorTxt);
+      // console.error('Error during cover image deletion:', error);
     }
   }
 
@@ -829,7 +830,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.deleteCoverImage();
       } else {
         this.toastr.info(this.coverImageDeletionCanceled, this.Canceled);
-        console.log('User canceled the delete');
+        // console.log('User canceled the delete');
       }
     });
   }
@@ -890,12 +891,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
     let langId = localStorage.getItem('lang_id');
     this.userService.deleteUser([this.userId], langId).subscribe(
       response => {
-        this.showMatDialog('User deleted successfully!', 'display');
+        this.showMatDialog(response.message, 'display');
         this.router.navigate(['/talent/dashboard']);
       },
       error => {
         console.error('Error deleting user:', error);
-        this.showMatDialog('Error deleting user. Please try again.', 'display');
+        this.showMatDialog(this.generalError, 'display');
       }
     );
   }
@@ -918,8 +919,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   getJsonTranslations() {
-    this.translateService.get(['dashboard']).subscribe((translations) => {
+    this.translateService.get(['dashboard','forgotPassword.generalError']).subscribe((translations) => {
       this.pageTitle = translations['dashboard'];
+      this.generalError = translations['forgotPassword.generalError'];
       this.titleService.setTitle(this.pageTitle);
       console.log('Title fetch Function Fired');
     })
