@@ -575,7 +575,7 @@
                                                 [disabled]="!selectedCountry">
                                                 <option value="" disabled selected>{{ 'clubRole' | translate }}
                                                 </option>
-                                                <option *ngFor="let club of clubs" [value]="club.id">{{ club.name }}
+                                                <option *ngFor="let club of clubs" [value]="club.id">{{ club.club_name }}
                                                 </option>
                                             </select>
                                         </div>
@@ -599,7 +599,7 @@
                                             <select class="form-select" (change)="onClubChange($event)">
                                                 <option value="" disabled selected>{{ 'clubRole' | translate }}
                                                 </option>
-                                                <option *ngFor="let club of clubs" [value]="club.id">{{ club.name }}
+                                                <option *ngFor="let club of clubs" [value]="club.id">{{ club.club_name	 }}
                                                 </option>
                                             </select>
                                         </div>
@@ -620,6 +620,17 @@
                                 <div *ngIf="registerForm.controls['role']?.errors?.['required'] && (registerForm.controls['role']?.dirty || registerForm.controls['role']?.touched)"
                                     class="text-danger">
                                     {{ 'moreInformation' | translate }}
+                                </div>
+                                <div class="col-lg-12 {{isThisPlayer}}">
+                                    <div class="mb-3">
+                                        <label class="form-label">{{ 'team' | translate }}</label>
+                                        <select class="form-select" (change)="onTeamChange($event)" [(ngModel)]="team_id" name="team_id">
+                                            <option value="" disabled selected>{{ 'team' | translate
+                                                }}</option>
+                                            <option *ngFor="let teamArr of teamsArr" [value]="teamArr.id">{{
+                                                teamArr.league_name }}</option>
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="mb-3">

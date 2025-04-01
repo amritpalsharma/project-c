@@ -18,6 +18,7 @@ import { WebPages } from '../../../services/webpages.service';
 import { SocketService } from '../../../services/socket.service';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { TalentService } from '../../../services/talent.service';
 
 @Component({
   selector: 'app-header',
@@ -30,6 +31,7 @@ export class HeaderComponent implements OnInit {
 
   //default language
   slug: string = 'en';
+  isThisPlayer: string = 'en';
   lang_id: any = 1;
   isUserLoggedIn: boolean = false;
   LoggedInUserDashboardLink: string = '';
@@ -42,6 +44,8 @@ export class HeaderComponent implements OnInit {
   firstName: string = '';
   lastName: string = '';
   email: string = '';
+  team_id: any = '';
+  teamsArr: any = '';
   language: string = '1';
   newsletter: boolean = false;
   userDomain: string = '1';
@@ -71,8 +75,8 @@ export class HeaderComponent implements OnInit {
 
 
   //this is get by the domain
-  countries: Array<{ code: string; name: string }> = [];
-  clubs: Array<{ id: number; name: string }> = [];
+  countries: Array<{ code: string; name: string, country_id: any }> = [];
+  clubs: Array<{ id: number; club_name: string }> = [];
   langs: any = environment.langs;
   pleaseWait: string = '';
   registrationInProcess: string = '';
@@ -252,7 +256,8 @@ export class HeaderComponent implements OnInit {
     private webpage: WebPages,
     private socketService: SocketService,
     private globalSettings: GlobalSettingsService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private talentService: TalentService,
   ) {
     this.language = translateService.currentLang || 'en';  // Get current language
     this.loadCountries();  // Load countries based on selected language
@@ -421,6 +426,15 @@ export class HeaderComponent implements OnInit {
   setActive(index: number): void {
     this.activeIndex = index; // Set the active index
     this.role = index === 1 ? 4 : index === 2 ? 2 : 3; // Update role based on activeIndex
+    if (this.role == 4 || this.role == 2) {
+      this.clubs = [];
+    }
+    if (this.role == 4) {
+      this.isThisPlayer = 'player';
+    } else {
+      this.isThisPlayer = 'd-none';
+    }
+    console.warn('Selected role is ', this.activeIndex)
   }
 
   toggleNavbar() {
@@ -708,7 +722,8 @@ export class HeaderComponent implements OnInit {
       domain: domain,
       club_id: this.selectedClub,
       verification_link: verification_link,
-      company_name: this.companyName
+      company_name: this.companyName,
+      team_id: this.team_id
     };
     if (this.privacyPolicy === false) {
       this.toastr.error(this.requiredFieldsMessage);
@@ -935,13 +950,17 @@ export class HeaderComponent implements OnInit {
   onCountryChange(event: Event): void {
     const selectElement = event.target as HTMLSelectElement;
     this.selectedCountry = selectElement.value;
-    let clubs = this.getClugById(this.selectedCountry);
+    // let clubs = this.getClugById(this.selectedCountry);
+    this.loadLeagues(this.selectedCountry);
+
+    this.loadClubs(this.selectedCountry);
   }
 
   onClubChange(event: Event): void {
     const selectElement = event.target as HTMLSelectElement;
     this.selectedClub = +selectElement.value; // Convert to number
     console.log('Selected Club ID:', this.selectedClub);
+    // this.loadLeagues(this.selectedClub);
   }
 
   onTeamChange(event: Event): void {
@@ -977,6 +996,7 @@ export class HeaderComponent implements OnInit {
 
   getClugById(id: any) {
     if (id) {
+      // this.loadLeagues(id);
       this.commonDataService.getAllClubsbyId(id).subscribe((resp) => {
         this.clubs = resp.data.clubs.map((club: any) => ({
           id: club.id || '',
@@ -985,6 +1005,7 @@ export class HeaderComponent implements OnInit {
         return this.clubs;
         console.log(resp, 'club-resp');
       });
+
     }
   }
   getAllClubs() {
@@ -1049,4 +1070,70 @@ export class HeaderComponent implements OnInit {
   togglePassword2() {
     this.isViewPassword2 = !this.isViewPassword2;
   }
+
+  loadLeagues(country_id: any): void {
+
+    // Prepare query parameters
+    let params: any = {
+      lang: localStorage.getItem('lang_id'),
+    };
+
+    if (country_id && country_id != '' && country_id != undefined) {
+      params = {
+        lang: localStorage.getItem('lang_id'),
+        country_id: country_id,
+      }
+    }
+
+    this.talentService.getLeagues(params).subscribe(
+      (response: any) => {
+        if (response.status) {
+          this.teamsArr = response.data.leagues;
+        } else {
+          this.teamsArr = [];
+          console.error('No data found');
+        }
+      },
+      (error: any) => {
+        console.error('Error fetching leagues:', error);
+      }
+    );
+  }
+
+  loadClubs(test: any): void {
+    // Prepare query parameters
+    let params: any = {
+      lang: localStorage.getItem('lang_id'),
+    };
+
+    if (this.selectedCountry != '' && this.selectedCountry != undefined) {
+      //alert(this.selectedCountry)
+      // let getCountryById = this.countries.find((val: any) => {
+      //   return val.id == this.selectedCountry;
+      // });
+      // console.info(getCountryById) 
+      // if (getCountryById && getCountryById.country_id != '' && getCountryById.country_id != undefined) {
+        params = {
+          lang: localStorage.getItem('lang_id'),
+          country: this.selectedCountry,
+          is_taken: 'no'
+        }
+      // }
+    }
+    this.talentService.getClubs(params).subscribe(
+      (response: any) => {
+        if (response.status) {
+          this.clubs = response.data.clubs;
+          console.info(this.clubs)
+        } else {
+          console.error('No data found');
+        }
+      },
+      (error: any) => {
+        console.error('Error fetching clubs:', error);
+      }
+    );
+  }
+
+
 }

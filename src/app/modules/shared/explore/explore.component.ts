@@ -139,7 +139,7 @@ export class ExploreComponent implements OnInit {
     this.loggedInUser = JSON.parse(this.loggedInUser);
 
     this.loadPositions();
-    this.loadLeagues();
+    // this.loadLeagues();
     this.loadClubs();
     this.loadCountries();
     this.getUsers();
@@ -151,7 +151,7 @@ export class ExploreComponent implements OnInit {
 
     this.webPages.languageId$.subscribe((data) => {
       this.loadPositions();
-      this.loadLeagues();
+      // this.loadLeagues();
       this.loadClubs();
       this.loadCountries();
       this.getUsers();
@@ -388,6 +388,10 @@ export class ExploreComponent implements OnInit {
   applyFilter() {
     this.currentPage = 0; // Reset to first page when applying new filters
     this.getUsers();
+    if (this.selectedCountry != 0 && this.selectedCountry != undefined) {
+      this.loadLeagues();
+      this.loadClubs();
+    }
   }
 
   loadCountries(): void {
@@ -435,12 +439,25 @@ export class ExploreComponent implements OnInit {
     let params: any = {
       lang: localStorage.getItem('lang_id'),
     };
+    if (this.selectedCountry != 0 && this.selectedCountry != undefined) {
+
+      let getCountryById = this.countries.find((val: any) => {
+        return val.id == this.selectedCountry;
+      });
+      if (getCountryById && getCountryById.country_id != '' && getCountryById.country_id != undefined) {
+        params = {
+          lang: localStorage.getItem('lang_id'),
+          country_id: getCountryById.country_id,
+        }
+      }
+    }
 
     this.talentService.getLeagues(params).subscribe(
       (response: any) => {
         if (response.status) {
           this.leagues = response.data.leagues;
         } else {
+          this.leagues = [];
           console.error('No data found');
         }
       },
@@ -456,6 +473,18 @@ export class ExploreComponent implements OnInit {
       lang: localStorage.getItem('lang_id'),
     };
 
+    if (this.selectedCountry != 0 && this.selectedCountry != undefined) {
+      let getCountryById = this.countries.find((val: any) => {
+        return val.id == this.selectedCountry;
+      });
+      if (getCountryById && getCountryById.country_id != '' && getCountryById.country_id != undefined) {
+        params = {
+          lang: localStorage.getItem('lang_id'),
+          country: getCountryById.country_id,
+          is_taken:'no'
+        }
+      }
+    }
     this.talentService.getClubs(params).subscribe(
       (response: any) => {
         if (response.status) {

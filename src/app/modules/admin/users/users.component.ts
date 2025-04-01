@@ -483,8 +483,8 @@ export class UsersComponent implements OnInit {
   }
 
   getJsonTranslations() {
-    this.translateService.get(['userManagement','selectUserFirst','confirmDeleteinformation3']).subscribe((translations) => {
-      this.pageTitle = translations['userManagement'];
+    this.translateService.get(['managerUsers','selectUserFirst','confirmDeleteinformation3']).subscribe((translations) => {
+      this.pageTitle = translations['managerUsers'];
       this.selectUserFirst = translations['selectUserFirst'];
       this.confirmDeleteinformation3 = translations['confirmDeleteinformation3'];
       this.titleService.setTitle(this.pageTitle);

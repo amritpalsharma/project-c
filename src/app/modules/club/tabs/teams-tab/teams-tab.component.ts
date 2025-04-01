@@ -41,6 +41,7 @@ export class TeamsTabComponent {
   }
 
   ngOnInit() {
+    console.log(this.userData)
     this.userId = this.userData.id;
     this.getClubTeams(this.userId)
   }

@@ -18,21 +18,6 @@
                     </mat-form-field>
                   </div>
                 </th>
-
-                <!-- Country Filter -->
-                <th>
-                  <div class="form-group explore-all_input">
-                    <mat-form-field appearance="fill">
-                      <mat-label>{{ 'country' | translate }}</mat-label>
-                      <mat-select [(ngModel)]="selectedCountry" (selectionChange)="applyFilter()" id="country"
-                        name="country">
-                        <mat-option *ngFor="let country of countries"
-                          [value]="country.id">{{country.location}}</mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
-                </th>
-
                 <!-- Position Filter -->
                 <th>
                   <div class="form-group explore-all_input">
@@ -91,7 +76,19 @@
                     </mat-form-field>
                   </div>
                 </th>
-
+                <!-- Country Filter -->
+                <th>
+                  <div class="form-group explore-all_input">
+                    <mat-form-field appearance="fill">
+                      <mat-label>{{ 'country' | translate }}</mat-label>
+                      <mat-select [(ngModel)]="selectedCountry" (selectionChange)="applyFilter()" id="country"
+                        name="country">
+                        <mat-option *ngFor="let country of countries"
+                          [value]="country.id">{{country.location}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </th>
                 <!-- League Filter -->
                 <th>
                   <div class="form-group explore-all_input">
