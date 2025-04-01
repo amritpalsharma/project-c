@@ -166,11 +166,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.dontShowAgainTourTxt = translations['dontShowAgain'];
       this.introInstance.setOptions({
         steps: [
-          {
-            element: '.edit-profile',
-            intro: `<div><h6>${translations['profilePhoto']}</h6>${translations['uploadYourBestHeadshot']}.</div>`,
-            tooltipClass: 'custom-tooltip',
-          },
+          // {
+          //   element: '.edit-profile',
+          //   intro: `<div><h6>${translations['profilePhoto']}</h6>${translations['uploadYourBestHeadshot']}.</div>`,
+          //   tooltipClass: 'custom-tooltip',
+          // },
           {
             element: '.tour-personal-details',
             intro: `<div><h6>${translations['personalDetails']}</h6>${translations['addYourPersonalDetails']}.</div>`,
