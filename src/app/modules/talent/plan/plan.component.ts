@@ -91,6 +91,7 @@ export class PlanComponent implements OnInit, OnDestroy {
   multiCountryPlanDesc: string[] = []; // Store the fetched feature list
   bostProfileDesc: string[] = []; // Store the fetched feature list
   langSubscription!: Subscription;
+  boostProfileTxt:string='';
 
   // countryMonthlyArr : PackageObject[] = [];
   // countryYearlyArr : PackageObject[] = [];
@@ -479,6 +480,14 @@ export class PlanComponent implements OnInit, OnDestroy {
         this.selectedPlan.isYearly = true;
       }
     }
+  //  Boost Profile Array
+   if(this.boostProfileTxt == plan.package_name){
+      if (isYearly === true) {
+        this.boostedPlans.isYearly = false;
+      } else if (isYearly === false) {
+        this.boostedPlans.isYearly = true;
+      }
+   }
 
     plan.isYearly = originalIsYearly;
 
@@ -709,8 +718,9 @@ export class PlanComponent implements OnInit, OnDestroy {
   }
 
   getJsonTranslations() {
-    this.translate.get(['plans']).subscribe((translations) => {
+    this.translate.get(['plans','boostProfile']).subscribe((translations) => {
       this.pageTitle = translations['plans'];
+      this.boostProfileTxt = translations['boostProfile'];
       this.titleService.setTitle(this.pageTitle);
       console.log('Title fetch Function Fired');
     })

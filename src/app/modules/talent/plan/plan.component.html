@@ -291,7 +291,7 @@
                   </div>
                 </div>
                 <div class="premium-currency">
-                  <h6>{{ boostedPlans.isYearly || (booster && booster.interval == 'yearly') ? boostedPlans.priceYearly :
+                  <h6>{{ boostedPlans.isYearly ? boostedPlans.priceYearly :
                     boostedPlans.priceMonthly }}<sub class="premium-month_title">.-{{ boostedPlans.currency }} / {{
                       boostedPlans.isYearly || (booster && booster.interval == 'yearly') ? ('year' | translate) :
                       ('month' | translate) }}</sub>
