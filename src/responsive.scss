@@ -332,6 +332,56 @@ td.cdk-column-Remove.mat-column-Remove svg {
 .all-page-content .page-container > .outlet_outer + shared-footer {
     padding-top: 0 !important;
 }
+
+.common_profile_page {
+    #dashboard_tabs_dark .nav-link {
+        font-size: 20px !important;
+    }
+    .user-details-left {
+        .list-view p, .list-view h6, .user-info h6 {
+            font-size: 20px !important;
+        }
+        .user-info small {
+            font-size: 16px !important;
+        }
+    }
+    .user-right-content {
+        .team-details p, .team-details h6, .scout-team p, .scout-team h6 {
+            font-size: 20px !important;
+        }
+    }
+    h6.main-template, .gallery-h5, p.gallery-photo, p.gallery-pic-upload,
+    .player-view-container .club-team {
+        font-size: 22px !important;
+    }
+    .gallery-parent {
+        .img-fluid, video {
+            height: 180px;
+        }
+    }
+}
+
+.admin_common_sight {
+    .upload-label {
+        height: 53px !important;
+    }
+    .ms-lg-3.mt-4 {
+        margin-top: 33px !important;
+    }
+    .add_row_btn {
+        margin-top: 13px;
+    }
+    .add_row_btn svg {
+        position: relative;
+        top: -2px;
+    }
+}
+.common_profile_modal  {
+    span.platform_url {
+        font-size: 17px;
+        line-height: 2;
+    }
+}
 }
 
 

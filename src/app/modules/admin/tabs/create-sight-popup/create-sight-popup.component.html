@@ -1,18 +1,18 @@
-<div class="create-sight">
+<div class="create-sight admin_common_sight">
   <div class="p-3 d-flex align-items-center popup_header">
     <h4 class="text-center title-text m-auto">{{ 'sighting' | translate }}</h4>
     <div class="close-img" (click)="close()"></div>
   </div>
   <div class="overflow-card  popup__body py-3">
-    <div class="row align-items-center mb-4 mt-4">
-      <div class="col-lg-5">
+    <div class="row align-items-center mb-4">
+      <div class="col-lg-6">
         <label for="upload-banner">{{ 'uploadBanner' | translate }}</label>
         <div class="cupen-btn  code-text">
           <input type="file" class="upload-input " id="upload-banner" (change)="onBannerFileChange($event)"
             accept="image/*">
         </div>
       </div>
-      <div class="col-lg-5 mt-4 d-flex align-items-center gap-2">
+      <div class="col-lg-6 mt-4 d-flex align-items-center gap-2">
         <div class="">
           <small class="form-text text-muted code-text">{{ 'filesSupported' | translate }} <br> {{
             'maximumSize5MB' | translate }}</small>
@@ -23,11 +23,11 @@
     <div class="row mb-4 mt-4 name-details">
       <div class="col-lg-4 px-2">
         <label for="event-name" class="code-text">{{ 'eventName' | translate }}</label>
-        <input type="text" id="event-name" class="cupen-btn code-text w-100" [(ngModel)]="eventName">
+        <input type="text" id="event-name" class="cupen-btn form-control code-text w-100" [(ngModel)]="eventName">
       </div>
       <div class="col-lg-4 px-2">
         <label for="manager-name" class="code-text"> {{ 'managerName' | translate }}</label>
-        <input type="text" id="manager-name" class="cupen-btn w-100" [(ngModel)]="managerName">
+        <input type="text" id="manager-name" class="form-control cupen-btn w-100" [(ngModel)]="managerName">
       </div>
       <div class="col-lg-4 px-2">
         <label for="date-select" class="code-text">{{ 'date' | translate }}</label>
@@ -44,7 +44,7 @@
       <div class="form-group col-lg-8">
         <label for="talent" class="code-text">{{ 'inviteTalent' | translate }}</label>
         <div class="select-talent">
-          <input type="text" id="talent" class="cupen-btn d-flex justify-content-between code-text w-100"
+          <input type="text" id="talent" class="form-control cupen-btn d-flex justify-content-between code-text w-100"
             placeholder="{{'selectFromFavorites' | translate}}" readonly (click)="toggleInviteeOverlay()">
           <!-- <select name="invite-talent" id="talent" class=""
             style="font-size: 14px;">
@@ -144,18 +144,18 @@
     <div class="row mb-4 mt-4">
       <label for="enter-address" class="code-text">{{ 'address' | translate }}</label><br>
       <div class="col-lg-8">
-        <input type="text" id="enter-address" class="cupen-btn  code-text w-100" [(ngModel)]="address">
+        <input type="text" id="enter-address" class="cupen-btn form-control code-text w-100" [(ngModel)]="address">
       </div>
     </div>
     <div class="row mb-4">
       <div class="col-lg-8  gap-3 input-box d-flex">
         <div class="zipcode-input  col-lg-6">
           <label for="zipcode" class="code-text"> {{ 'zipcode' | translate }}</label> <br>
-          <input type="text" id="zipcode" class="cupen-btn  code-text w-100" [(ngModel)]="zipcode">
+          <input type="text" id="zipcode" class="cupen-btn form-control code-text w-100" [(ngModel)]="zipcode">
         </div>
         <div class="city-input col-lg-6">
           <label for="city" class="code-text">{{ 'city' | translate }}</label><br>
-          <input type="text" id="city" class="cupen-btn w-100" [(ngModel)]="city">
+          <input type="text" id="city" class="form-control cupen-btn w-100" [(ngModel)]="city">
         </div>
       </div>
     </div>
@@ -191,7 +191,7 @@
       <div class="col-lg-12  gap-3 d-flex input-box">
         <div class="document-input  col-lg-5">
           <label for="document" class="code-text">{{ 'documentTitle' | translate }}</label> <br>
-          <input type="text" id="document" class="cupen-btn  code-text w-100" (keyup)="titleUpdate($event, i)">
+          <input type="text" id="document" class="cupen-btn form-control code-text w-100" (keyup)="titleUpdate($event, i)">
         </div>
         <div class="city-input col-lg-5">
           <div class="choose-file-box d-flex align-items-center justify-content-between" *ngIf="row.file != ''">
@@ -242,7 +242,7 @@
     </div>
     <div class="about-event">
       <label for="about-text" class="code-text">{{ 'aboutEvent' | translate }}</label><br>
-      <textarea name="about" id="about-text" rows="4" cols="50" class="w-100 " [(ngModel)]="about">
+      <textarea name="about" id="about-text" rows="4" cols="50" class="form-control w-100 " [(ngModel)]="about">
       Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
     </textarea>
     </div>

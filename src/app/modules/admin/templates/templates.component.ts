@@ -286,11 +286,12 @@ export class TemplatesComponent {
 
   showFilterPopup(): void {
     const filterDialog = this.dialog.open(CommonFilterPopupComponent, {
-      height: '200px',
+      height: '230px',
       width: '320px',
+      panelClass: 'filter_modal_popup',
       position: {
         right: '30px',
-        top: '150px'
+        top: '180px'
       },
       data: {
         page: 'template',

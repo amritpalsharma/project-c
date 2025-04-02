@@ -324,9 +324,10 @@ export class MarketingComponent {
     const filterDialog = this.dialog.open(CommonFilterPopupComponent, {
       height: '390px',
       width: '320px',
+      panelClass: 'filter_modal_popup',
       position: {
-        right: '30px',
-        top: '150px'
+        right: '30px', 
+        top: '180px'
       },
       data: {
         page: 'marketing',

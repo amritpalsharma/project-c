@@ -213,9 +213,10 @@ export class UsersComponent implements OnInit {
     const filterDialog = this.dialog.open(FilterPopupComponrnt, {
       height: '450px',
       width: '300px',
+      panelClass: 'filter_modal_popup',
       position: {
         right: '30px',
-        top: '150px'
+        top: '180px'
       },
       data: {
         filters: this.customFilters,

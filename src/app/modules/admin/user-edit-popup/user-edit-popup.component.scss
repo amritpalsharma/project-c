@@ -159,15 +159,13 @@
   margin-left: 12px;
   margin-right: 12px;
 }
-.platform_wrapper {
-    width: 100%;
-}
 .single_platform{
-    width: 95%;
+    width: 100%;
     border: 1px solid #999999;
     border-radius: 10px;
     padding: 8px 8px;
     display: inline-flex;
+    overflow: hidden;
 }
 
 span.platform_input input {

@@ -2176,7 +2176,7 @@ input:checked+.slider:before {
 
 .dark-theme span.platform_input input {
   background: none;
-  display: none;
+  color: #fff;
 }
 
 .dark-theme .form-group option {
@@ -2970,5 +2970,10 @@ input:checked+.slider:before {
 .dark-theme {
   .loader-container p {
     color: #fff;
+  }
+  .filter_modal_popup {
+    .mat-mdc-dialog-container:after {
+        border-bottom: 10px solid #0c3453;
+    }
   }
 }
