@@ -301,11 +301,12 @@ export class BlogComponent {
 
   showFilterPopup(): void {
     const filterDialog = this.dialog.open(CommonFilterPopupComponent, {
-      height: '235px',
+      height: '255px',
       width: '310px',
+      panelClass: 'filter_modal_popup',
       position: {
         right: '30px',
-        top: '150px'
+        top: '180px'
       },
       data: {
         page: 'blog',

@@ -2535,3 +2535,24 @@ td.col_checkbox {
 .light-theme .user-right-content {
   border-top: 1px solid #E7E7E7;
 }
+
+
+.light-theme .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  border: 1px solid #c1c1c1;
+}
+
+.filter_modal_popup {
+	.mat-mdc-dialog-container {
+	    position: relative;
+	}
+	.mat-mdc-dialog-container:after {
+	    content: " ";
+	    position: absolute;
+	    right: 30px;
+	    top: -10px;
+	    border-top: none;
+	    border-right: 10px solid transparent;
+	    border-left: 10px solid transparent;
+	    border-bottom: 10px solid #ffffff;
+	}
+}

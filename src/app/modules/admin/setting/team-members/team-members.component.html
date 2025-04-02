@@ -9,8 +9,8 @@
 <div class="card">
   <div class="card-header d-flex align-items-center justify-content-between">
     <h4 class="card-title">{{ 'team' | translate }}</h4>
-    <a><small><i class="fa-solid fa-plus plus-color me-1 "></i></small> <span class="Addmember"
-        (click)="addRepresentator()">{{ 'addMember' | translate }}</span></a>
+    <a (click)="addRepresentator()"  class="cursor-pointer"><small><i class="fa-solid fa-plus plus-color me-1 "></i></small> <span class="Addmember"
+        >{{ 'addMember' | translate }}</span></a>
   </div>
   <div class="card-body px-3 py-2 overflow-auto">
     <table class="table">

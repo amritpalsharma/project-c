@@ -16,7 +16,7 @@
           <p class="code-text">
             {{ 'name' | translate }}
           </p>
-          <input class="cupen-btn-1 code-text" [(ngModel)]="name">
+          <input class="cupen-btn-1" [(ngModel)]="name">
           <div *ngIf="errorMsg.name" class="error-msg">{{errorMsg.name}}</div>
         </div>
         <div class="ms-5">
@@ -233,14 +233,14 @@
           <p class="code-text">
             {{ 'maxViews' | translate }}
           </p>
-          <input class="cupen-btn-1 code-text" [(ngModel)]="maxViews">
+          <input class="cupen-btn-1" [(ngModel)]="maxViews">
           <div *ngIf="errorMsg.maxViews" class="error-msg">{{errorMsg.maxViews}}</div>
         </div>
         <div class="ms-3">
           <p class="code-text">
             {{ 'maxClicks' | translate }}
           </p>
-          <input class="cupen-btn-1 code-text" [(ngModel)]="maxClicks">
+          <input class="cupen-btn-1" [(ngModel)]="maxClicks">
           <div *ngIf="errorMsg.maxClicks" class="error-msg">{{errorMsg.maxClicks}}</div>
         </div>
 
@@ -293,7 +293,7 @@
           <p class="code-text">
             {{ 'name' | translate }}
           </p>
-          <div class="cupen-btn-1 code-text" style="cursor: no-drop !important;">
+          <div class="cupen-btn-1" style="cursor: no-drop !important;">
             {{name}}
           </div>
         </div>
@@ -301,7 +301,7 @@
           <p class="code-text">
             {{ 'clickDirectUrl' | translate }}
           </p>
-          <div class="cupen-btn-1 code-text" style="cursor: no-drop !important;">
+          <div class="cupen-btn-1" style="cursor: no-drop !important;">
             {{redirect}}
           </div>
         </div>
@@ -470,7 +470,7 @@
           <p class="code-text">
             Max Views
           </p>
-          <div class="cupen-btn-1  code-text">
+          <div class="cupen-btn-1">
             {{maxViews}}
           </div>
         </div>
@@ -478,7 +478,7 @@
           <p class="code-text">
             {{ 'maxClicks' | translate }}
           </p>
-          <div class="cupen-btn-1  code-text">
+          <div class="cupen-btn-1">
             {{maxClicks}}
           </div>
         </div>
