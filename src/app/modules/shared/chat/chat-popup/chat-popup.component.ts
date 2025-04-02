@@ -68,9 +68,21 @@ export class ChatPopupComponent {
     }
 
     const searchText = userInput.value.toLowerCase().trim();
-    this.filteredUsers = this.allUsers.filter((user: any) =>
-      user.first_name && user.first_name.toLowerCase().includes(searchText)
-    );
+    // this.filteredUsers = this.allUsers.filter((user: any) =>
+    //   user.first_name && user.first_name.toLowerCase().includes(searchText)
+    // );
+
+    // 2 April 2025
+    this.filteredUsers = this.allUsers.filter((user: any) => {
+      // Ensure both first and last name exist
+      const fullName = `${user.first_name} ${user.last_name}`;
+      const searchTextLower = searchText.toLowerCase();
+    
+      // Check if the full name starts with the search text (case insensitive)
+      return (user.first_name && user.first_name.toLowerCase().startsWith(searchTextLower)) || 
+             (user.last_name && user.last_name.toLowerCase().startsWith(searchTextLower)) ||
+             fullName.toLowerCase().startsWith(searchTextLower);
+    });    
   }
 
 

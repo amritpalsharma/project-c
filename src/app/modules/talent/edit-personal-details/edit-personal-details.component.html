@@ -53,19 +53,17 @@
         <!-- Team According to club -->
         <div class="form-group col-lg-6 position_inputs">
           <label for="team_id" class="form-label">{{'team' | translate}}:</label>
-          <mat-select [(ngModel)]="team_id" class="form-select" id="team_id" name="team_id"
-            #nationalityField="ngModel" required>
+          <!-- <pre>{{teamsArr | json}}</pre> -->
+           <!-- <h3>Selected {{CurrentTeamId}}</h3> -->
+           
+          <mat-select [(ngModel)]="CurrentTeamId" class="form-select" id="team_id" name="team_id"
+            required>
+            <mat-option selected disabled [value]="0">{{'select' | translate}}</mat-option>
             <mat-option *ngFor="let teamArr of teamsArr" [value]="teamArr.id">
               {{teamArr.team_name }} - {{teamArr.team_type}}
             </mat-option>
           </mat-select>
-          <!-- Validation message -->
-          <!-- <div *ngIf="nationalityField.invalid && (nationalityField.touched || myForm.submitted)"
-            class="alert text-danger my-0 px-0">
-            {{'nationalityRequired' | translate}}
-          </div> -->
         </div>
-
       </div>
 
 

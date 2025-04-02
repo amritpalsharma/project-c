@@ -1,4 +1,4 @@
-import { Component, ElementRef, Inject, OnInit, ViewChild, AfterViewInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, ViewChild, AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TalentService } from '../../../services/talent.service';
 import { FormControl, NgForm } from '@angular/forms';
@@ -7,6 +7,7 @@ import { catchError, Observable, of, tap, fromEvent } from 'rxjs';
 import { AuthService } from '../../../services/auth.service';
 import { TranslateService } from '@ngx-translate/core';
 import { WebPages } from '../../../services/webpages.service';
+
 // Depending on whether rollup is used, moment needs to be imported differently.
 // Since Moment.js doesn't have a default export, we normally need to import using the `* as`
 // syntax. However, rollup creates a synthetic default module and we thus need to import it using
@@ -36,7 +37,7 @@ export class EditPersonalDetailsComponent implements OnInit {
   readonly date = new FormControl(moment());
 
   countries: any;
-  teamsArr: any;
+  teamsArr: any[] = [];
   leagueLevels: any[] = [];
   filteredClubs: any[] = [];  // To store filtered clubs based on search
   selectedClub: string = '';
@@ -45,7 +46,8 @@ export class EditPersonalDetailsComponent implements OnInit {
   userId: any;
   userNationalities: any;
   playerClub: any = "";
-  team_id: any = "";
+  // team_id: any = 0;
+  team_id: number = 0;
 
   // Declare individual properties for binding
   height: number = 0;
@@ -64,11 +66,14 @@ export class EditPersonalDetailsComponent implements OnInit {
   userData: any
   playerClubsListing: any;
   takenBy: any;
+  CurrentTeamId:any;
+  FirstTimeSelectedTeam:any;
 
   dateOfBirth: FormControl = new FormControl(null);  // Initialize with null or the correct date format
   contractStart: FormControl = new FormControl(null);
   contractEnd: FormControl = new FormControl(null);
   successTxt: string = '';
+  teamControl = new FormControl(null);
   errorTxt: string = '';
   nationalityRequired: string = '';
   dobRequired: string = '';
@@ -84,6 +89,7 @@ export class EditPersonalDetailsComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private translateService: TranslateService,
     public webPages: WebPages,
+    private cdr: ChangeDetectorRef
   ) { }
 
   countriesLoaded: boolean = false;
@@ -121,7 +127,24 @@ export class EditPersonalDetailsComponent implements OnInit {
       this.contractEnd = new FormControl(
         this.user?.meta?.contract_end ? new Date(this.user.meta.contract_end) : null
       );
-
+      this.currentClubId = this.user.meta.pre_club_id || '';
+      // this.loadTeams(this.currentClubId);
+      console.info('Function to get times is called');
+      // this.talentService.getClubTeams(this.currentClubId).subscribe((response) => {
+      //   if(response.status && response.data.teams != '' && response.data.teams != undefined){
+      //     this.teamsArr = response.data.teams;
+      //   }
+      //   console.info('Recived Teams ',this.teamsArr);
+      // });
+      this.talentService.getClubTeams(this.currentClubId).subscribe((response) => {
+        if (response.status && Array.isArray(response.data.teams) && response.data.teams.length > 0) {
+          this.teamsArr = [...response.data.teams]; // Ensure a new reference for change detection
+        } else {
+          this.teamsArr = []; // Clear teamsArr if no teams are available
+        }
+        console.info('Received Teams:', this.teamsArr);
+        this.cdr.detectChanges();
+      });      
       console.log('user', this.contractStart)
       this.height = this.user.meta.height || 0;
       this.heightUnit = this.user.meta.height_unit || 'cm';
@@ -133,7 +156,7 @@ export class EditPersonalDetailsComponent implements OnInit {
       this.currentClub = this.user.pre_current_club_name || '';
       this.firstName = this.user.first_name || '';
       this.lastName = this.user.last_name || '';
-      this.currentClubId = this.user.meta.pre_club_id || '';
+
       this.dateOfBirth.setValue(this.user.meta.date_of_birth ? new Date(this.user.meta.date_of_birth) : null);
       this.contractStart.setValue(this.user.meta.contract_start ? new Date(this.user.meta.contract_start) : null);
       this.contractEnd.setValue(this.user.meta.contract_end ? new Date(this.user.meta.contract_end) : null);
@@ -240,8 +263,9 @@ export class EditPersonalDetailsComponent implements OnInit {
   getUserProfile(userId: any) {
     if (this.userData) {
       this.user = this.userData;
-
+      // console.info('this.user',this.user)
       if (this.user.meta) {
+        // console.info('this.user.meta',this.user.meta)
         this.dateOfBirth = this.user.meta.date_of_birth || '';
         this.height = this.user.meta.height || 0;
         this.heightUnit = this.user.meta.height_unit || 'cm';
@@ -256,19 +280,24 @@ export class EditPersonalDetailsComponent implements OnInit {
         this.firstName = this.user.first_name || '';
         this.lastName = this.user.last_name || '';
         this.userNationalities = JSON.parse(this.user.user_nationalities) || [];
-        if(this.user.meta.team_id && this.user.meta.team_id != '' && this.user.meta.team_id != undefined){
-          this.team_id = this.user.meta.team_id;
-        }
-
-        // Ensure userNationalities is parsed correctly as an array of IDs only
-        this.userNationalities = JSON.parse(this.user.user_nationalities || '[]');
-        this.nationality = Array.isArray(this.userNationalities) ? this.userNationalities.map((nation: any) => nation.country_id) : [];
-
         if (this.user.meta && this.user.meta.pre_club_id) {
           this.currentClubId = this.user.meta.pre_club_id;
 
         }
-        this.loadTeams(this.currentClubId);
+        
+        if (this.user.team_id && this.user.team_id != '' && this.user.team_id != undefined) {
+          this.team_id = this.user.team_id;
+          // this.teamControl.setValue(this.user.team_id);
+          // this.FirstTimeSelectedTeam = this.team_id;
+          this.CurrentTeamId = this.team_id;
+        }
+        // alert('this.team_id ' + this.team_id)
+        // console.info(this.team_id)
+        // Ensure userNationalities is parsed correctly as an array of IDs only
+        this.userNationalities = JSON.parse(this.user.user_nationalities || '[]');
+        this.nationality = Array.isArray(this.userNationalities) ? this.userNationalities.map((nation: any) => nation.country_id) : [];
+
+
         if (this.user.meta && this.user.meta.league_level) {
           this.leagueLevel = this.user.meta.league_level;
           console.warn('this.leagueLevel ', this.leagueLevel);
@@ -317,7 +346,7 @@ export class EditPersonalDetailsComponent implements OnInit {
     const formattedDateOfBirth = moment(this.dateOfBirth.value).format('YYYY-MM-DD');
     formData.append('user[date_of_birth]', formattedDateOfBirth);
     formData.append('user[foot]', this.dominantFoot);
-    formData.append('user[current_team]', this.team_id);
+    formData.append('user[current_team]', this.CurrentTeamId);
 
     // Append Nationality array
     this.nationality.forEach((nation: any) => {
@@ -417,11 +446,12 @@ export class EditPersonalDetailsComponent implements OnInit {
 
   loadTeams(club_id: any): void {
 
-
     this.talentService.getClubTeams(club_id).subscribe(
       (response: any) => {
         if (response.status) {
           this.teamsArr = response.data.teams;
+          this.CurrentTeamId = 0;
+          // this.CurrentTeamId = this.FirstTimeSelectedTeam;
         } else {
           this.teamsArr = [];
           console.error('No data found');

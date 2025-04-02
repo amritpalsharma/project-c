@@ -16,7 +16,7 @@
               @for (user of users; track $index) {
                 <mat-chip-row (removed)="remove(user)">
                   <img width="20" height="20" class="img-list" src="{{user?.meta?.profile_image_path ? user?.meta?.profile_image_path :'../../../../../assets/images/default/talent-profile-default.png'}}">
-                  {{user?.first_name}}
+                  {{user?.first_name+' '+user?.last_name}}
                   <span  matChipRemove [attr.aria-label]="'remove ' + user" class="cancel-icon" > </span>
                 </mat-chip-row>
               }
@@ -35,7 +35,7 @@
                 @for (user of filteredUsers; track user) {
                   <mat-option [value]="user" class="mb-4 select-user-name">
                     <img width="50" height="50" class="img-list " src="{{user?.meta?.profile_image_path ? user?.meta?.profile_image_path :'../../../../../assets/images/default/talent-profile-default.png'}}">
-                    {{user.first_name}}
+                    {{user?.first_name+' '+user?.last_name}}
                   </mat-option>
                 }
               </mat-autocomplete>
