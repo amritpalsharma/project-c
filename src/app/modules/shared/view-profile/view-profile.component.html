@@ -109,12 +109,16 @@
                   <div class="col-sm-6 team-logos">
                     <div class="row align-items-center">
                       <div class="team-badge_image col-sm-3">
-                        <img *ngIf="user?.pre_current_club_logo_path" src="{{user?.pre_current_club_logo_path}}"
-                          class="fc-club-img" alt="">
+                        <!-- <img *ngIf="user?.pre_current_club_logo_path" src="{{user?.pre_current_club_logo_path}}"
+                          class="fc-club-img" alt=""> -->
+                          <img *ngIf="!user.club_logo_path"
+                            src="../../../../assets/images/default/Club-logo-default.png" class="fc-club-img" alt="">
+                          <img *ngIf="user.club_logo_path" src="{{user.club_logo_path}}" class="fc-club-img" alt="">
                       </div>
                       <div class="team-badge_content col-sm-9 p-0">
                         <h6 class="title_2 mb-1">{{ 'currentClub' | translate}}</h6>
-                        <h5 class="title-1">{{user?.pre_current_club_name |translate }} </h5>
+                        <!-- <h5 class="title-1">{{user?.pre_current_club_name |translate }} </h5> -->
+                        <h5 class="title-1">{{user?.current_club_name }}</h5>
                       </div>
                     </div>
                   </div>
@@ -716,7 +720,6 @@
             </div>
           </div>
         </div>
-        <!-- <shared-footer></shared-footer> -->
       </div>
     </div>
   </div>

@@ -25,6 +25,7 @@ export class HistoryTabComponent implements OnInit {
   history: any = "";
   isEditable: boolean = false;
   @Input() role: any;
+  @Input() isPremium: any;
   @ViewChild('historyTextarea', { static: false }) textarea!: ElementRef;
 
   constructor(private route: ActivatedRoute, private clubService: ClubService) { }

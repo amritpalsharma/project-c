@@ -1,5 +1,5 @@
 <!-- unlock page  -->
-<div class="unlock_page" *ngIf="!isPremium">
+<div class="unlock_page general_details_tab" *ngIf="!isPremium">
     <div class="general_titels d-flex align-items-center">
         <h2>{{ 'generalDetails' | translate}}</h2>
         <div class="edit_button">
@@ -98,7 +98,7 @@
     </div>    
 </div>
 
-<ng-container *ngIf="isPremium">
+<ng-container *ngIf="isPremium" class="general_details_tab">
     <div class="general_titels d-flex align-items-center mb-2">
         <h2>{{ 'generalDetails' | translate}}</h2>
     </div>

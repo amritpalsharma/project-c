@@ -1221,8 +1221,8 @@ span.active_btn {
   // top: -60px !important;
 }
 ::ng-deep a.introjs-skipbutton {
-  top: 20px;
-  right: -30px;
+  top: -46px;
+  right: 0px;
   color: #fff;
   font-size: 31px;
   border: 3px solid #fff;
@@ -1233,6 +1233,16 @@ span.active_btn {
 }
 ::ng-deep .introjs-tooltip-header {
   z-index: 99999 !important;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+  min-height: 0;
+  position: absolute;
+  right: 0;
+  top: -20px;
+}
+::ng-deep .introjs-tooltip-title {
+  display: none;
 }
 ::ng-deep a.introjs-skipbutton:hover {
   color: #fff;
@@ -1240,11 +1250,26 @@ span.active_btn {
 ::ng-deep .custom-tooltip .introjs-arrow {
   border-color: #ffc107 transparent transparent transparent !important;
 }
-
+::ng-deep .introjs-tooltip {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+::ng-deep .introjs-arrow.top {
+  border-bottom-color: #ffc107;
+}
+::ng-deep .introjs-arrow.left {
+  border-right-color: #ffc107;
+}
+::ng-deep .introjs-arrow.right {
+  border-left-color: #ffc107;
+}
+::ng-deep .introjs-arrow.bottom {
+  border-top-color: #ffc107;
+}
 ::ng-deep .introjs-tooltiptext{
   background-color: #ffc107 !important;
   border-radius: 5px !important;
-  margin-top: 15px;
+  margin-top: 0;
   font-size: 15px;
   padding: 16px 20px;
 }

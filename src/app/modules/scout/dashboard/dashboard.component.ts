@@ -154,29 +154,34 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.introInstance.setOptions({
         steps: [
           {
-            element: '.edit-profile',
+            element: '#FirstStep',
             intro: `<div><h6>${translations['profilePhoto']}</h6>${translations['uploadYourBestHeadshot']}.</div>`,
-            tooltipClass: 'custom-tooltip',
+            // tooltipClass: 'custom-tooltip',
+            position: 'right'
           },
           {
             element: '.tour-personal-details',
             intro: `<div><h6>${translations['personalDetails']}</h6>${translations['addYourPersonalDetails']}.</div>`,
-            tooltipClass: 'custom-tooltip',
+            // tooltipClass: 'custom-tooltip',
+            position: 'right'
           },
           {
-            element: '.tour-highlights',
+            element: '#highlightIntro',
             intro: `<div><h6>${translations['highlights']}</h6>${translations['uploadPhotosAndVideos']}.</div>`,
-            tooltipClass: 'custom-tooltip',
+            // tooltipClass: 'custom-tooltip',
+            position: 'right'
           },
           {
             element: '.edit_image-tour',
             intro: `<div><h6>${translations['coverPhoto']}</h6>${translations['uploadCoverPhoto']}.</div>`,
-            tooltipClass: 'custom-tooltip',
+            // tooltipClass: 'custom-tooltip',
+            position: 'left'
           },
           {
-            element: '.general_details',
+            element: '.general_details_tab',
             intro: `<div><h6>${translations['generalDetails']}</h6>${translations['editGeneralDetails']}.</div>`,
-            tooltipClass: 'custom-tooltip',
+            // tooltipClass: 'custom-tooltip',
+            position: 'left'
           },
         ],
         showBullets: false,
@@ -807,7 +812,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   themeChanged() {
     let currentTheme = localStorage.getItem('theme');
     this.currentThemeMode = currentTheme;
-    if(this.currentThemeMode == null || this.currentThemeMode == undefined){
+    if (this.currentThemeMode == null || this.currentThemeMode == undefined) {
       this.currentThemeMode = 'light';
     }
   }
