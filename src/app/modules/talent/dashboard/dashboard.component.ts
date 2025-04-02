@@ -85,7 +85,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   Canceled: string = '';
   coverImageDeletionCanceled: string = '';
   currentThemeMode: any = localStorage.getItem('theme');
-  generalError:string='';
+  generalError: string = '';
 
   async ngOnInit() {
     this.getJsonTranslations();
@@ -196,29 +196,34 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.introInstance.setOptions({
         steps: [
           {
-            element: '.edit-profile',
+            element: '#upload_profilePhoto',
             intro: `<div><h6>${translations['profilePhoto']}</h6>${translations['uploadYourBestHeadshot']}.</div>`,
-            tooltipClass: 'custom-tooltip',
+            // tooltipClass: 'custom-tooltip',
+            position: 'right'
           },
           {
-            element: '.tour-personal-details',
+            element: '#editPersonalDetails',
             intro: `<div><h6>${translations['personalDetails']}</h6>${translations['addYourPersonalDetails']}.</div>`,
-            tooltipClass: 'custom-tooltip',
+            // tooltipClass: 'custom-tooltip',
+            position: 'right'
           },
           {
             element: '.highlights-tour',
             intro: `<div><h6>${translations['highlights']}</h6>${translations['uploadPhotosAndVideos']}.</div>`,
-            tooltipClass: 'custom-tooltip',
+            // tooltipClass: 'custom-tooltip',
+            position: 'right'
           },
           {
-            element: '.edit_image-tour',
+            element: '#uploadCoverImage',
             intro: `<div><h6>${translations['coverPhoto']}</h6>${translations['uploadCoverPhoto']}.</div>`,
-            tooltipClass: 'custom-tooltip',
+            // tooltipClass: 'custom-tooltip',
+            position: 'left'
           },
           {
-            element: '.general_details',
+            element: '#generalDetailsBtn',
             intro: `<div><h6>${translations['generalDetails']}</h6>${translations['editGeneralDetails']}.</div>`,
-            tooltipClass: 'custom-tooltip',
+            // tooltipClass: 'custom-tooltip',
+            position: 'left'
           },
         ],
         showBullets: false,
@@ -480,7 +485,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   openEditDialog() {
-    console.info('Data passed ',this.user)
+    console.info('Data passed ', this.user)
     const dialogRef = this.dialog.open(EditPersonalDetailsComponent, {
       width: '800px',
       data: { user: this.user, countries: this.countries }
@@ -648,7 +653,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       height: '85%',
       data: {
         videos: videosArr,
-        mainVideo: { src: 'https://api.socceryou.ch/uploads/'+this.userVideos[index].file_name },
+        mainVideo: { src: 'https://api.socceryou.ch/uploads/' + this.userVideos[index].file_name },
       },
       panelClass: 'lightbox-dialog'
     });
@@ -809,7 +814,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         },
         (error) => {
           this.toastr.clear();
-          this.toastr.error(this.generalError,this.errorTxt);
+          this.toastr.error(this.generalError, this.errorTxt);
           console.error('Error deleting cover image:', error);
         },
       );
@@ -920,7 +925,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   getJsonTranslations() {
-    this.translateService.get(['dashboard','forgotPassword.generalError']).subscribe((translations) => {
+    this.translateService.get(['dashboard', 'forgotPassword.generalError']).subscribe((translations) => {
       this.pageTitle = translations['dashboard'];
       this.generalError = translations['forgotPassword.generalError'];
       this.titleService.setTitle(this.pageTitle);

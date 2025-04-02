@@ -22,6 +22,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class UsersComponent implements OnInit {
   displayedColumns: string[] = ['#', 'Name', 'User Type', 'Language', 'Location', 'Joined Date - Time', 'Email', 'Membership', 'Status', 'Edit'];
   users: User[] = [];
+  totalRows: number = 0;
 
   checkboxIds: string[] = [];
   allSelected: boolean = false;
@@ -31,7 +32,7 @@ export class UsersComponent implements OnInit {
   filterValue: string = '';
   lang_id: string = '';
   filterDialogRef: any = "";
-  count : number = 0;
+  count: number = 0;
 
   customFilters: any = [];
   locations: any = [];
@@ -132,8 +133,11 @@ export class UsersComponent implements OnInit {
         if (response && response.status && response.data && response.data.userData) {
           this.users = response.data.userData;
           this.paginator.length = response.data.totalCount;
+          this.totalRows = response.data.totalCount;
           this.isLoading = false;
         } else {
+          this.users = [];
+          this.totalRows = 0;
           this.isLoading = false;
           console.error('Invalid API response structure:', response);
         }
@@ -153,18 +157,39 @@ export class UsersComponent implements OnInit {
     }
   }
 
+  sortData(filed_name: string) {
+
+  }
+
   onPageChange() {
     this.fetchUsers();
   }
   selectedUserIds: number[] = [];
 
   onCheckboxChange(user: any) {
-    const index = this.selectedUserIds.indexOf(user.id);
-    if (index === -1) {
+    // const index = this.selectedUserIds.indexOf(user.id);
+    // if (index === -1) {
+    //   this.selectedUserIds.push(user.id);
+    // } else {
+    //   this.selectedUserIds.splice(index, 1);
+    // }
+
+    if (!this.selectedUserIds.includes(user.id)) {
       this.selectedUserIds.push(user.id);
     } else {
-      this.selectedUserIds.splice(index, 1);
+      this.selectedUserIds = this.selectedUserIds.filter(id => id !== user.id);
     }
+
+    if (this.users.length === this.selectedUserIds.length) {
+      this.allSelected = true;
+    } else {
+      this.allSelected = false;
+    }
+    // console.warn('total records ',this.users.length);
+    // console.warn('current selected rows ',this.selectedUserIds);
+    // console.warn('-----------------------------------');
+    // console.warn('From total ('+this.users.length+')'+' selected is ('+this.selectedUserIds.length+')')
+
   }
 
   selectAllUsers() {
@@ -430,7 +455,7 @@ export class UsersComponent implements OnInit {
       params = { ...params, "whereClause[user_domain]": this.customFilters['location'] };
     }
     let lang_id = localStorage.getItem('lang_id');
-    params = { ...params, "lang":  lang_id};
+    params = { ...params, "lang": lang_id };
 
     // this.showMessage("Call api");
     // 
@@ -484,7 +509,7 @@ export class UsersComponent implements OnInit {
   }
 
   getJsonTranslations() {
-    this.translateService.get(['managerUsers','selectUserFirst','confirmDeleteinformation3']).subscribe((translations) => {
+    this.translateService.get(['managerUsers', 'selectUserFirst', 'confirmDeleteinformation3']).subscribe((translations) => {
       this.pageTitle = translations['managerUsers'];
       this.selectUserFirst = translations['selectUserFirst'];
       this.confirmDeleteinformation3 = translations['confirmDeleteinformation3'];

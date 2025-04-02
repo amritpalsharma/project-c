@@ -12,6 +12,7 @@ import { environment } from '../../../../environments/environment';
 
 export class ContactComponent implements OnInit {
   apiUrl:any = environment.url;
+  disableSentButton:boolean=false;
   base_url: string = '';
   address: string = '';
   semail: string = '';
@@ -57,7 +58,13 @@ export class ContactComponent implements OnInit {
     this.contactForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required]], // Adjust pattern as needed
+      // phone: ['', [Validators.required]], // Adjust pattern as needed
+      // phone: ['', [Validators.required, Validators.pattern(/^\+?(41|49|39|33|44|34|351|32|45|46)\d{6,12}$/)]],
+      // phone: ['', [Validators.required, Validators.pattern(/^\+?(41|49|39|33|44|34|351|32|45|46)\d{7,10}$/)]],
+      phone: ['', [
+        Validators.required,
+        Validators.pattern(/^\+?(41|49|39|33|44|34|351|32|45|46)\d{7,10}$/)
+      ]],
       message: ['', Validators.required],
       domain : window.location.hostname,
       lang : localStorage.getItem('lang_id'),
@@ -242,6 +249,7 @@ export class ContactComponent implements OnInit {
       this.contactForm.markAllAsTouched();
     }
      if (this.contactForm.valid && this.captchaResolved && this.recaptchaToken) {
+
       const formData = { ...this.contactForm.value, captchaToken: this.recaptchaToken };
       const result = {};
       // Send the form data and captcha token to the server
@@ -254,8 +262,9 @@ export class ContactComponent implements OnInit {
           console.error('Error submitting form:', error);
         }
       );
-
+      this.disableSentButton = true;
       const ContactformData = { ...this.contactForm.value, captchaToken: this.recaptchaToken, role: role };
+      
       this.http.post<any>(this.apiUrl+'/frontend/save-contact-form', ContactformData).subscribe(
         (response) => {
           // console.log('Form submitted successfully:', response);
@@ -265,6 +274,7 @@ export class ContactComponent implements OnInit {
           }else{
             console.log('something went wrong');
           }
+          this.disableSentButton = false;
         },
         (error) => {
           console.error('Error submitting form:', error);
@@ -329,5 +339,18 @@ export class ContactComponent implements OnInit {
   isFeaturedImageExists(key: any): boolean {
     return this.advertisementData && this.advertisementData[key] && 'featured_image' in this.advertisementData[key];
   }
-
+  
+  allowOnlyNumbers(event: KeyboardEvent) {
+    const charCode = event.which ? event.which : event.keyCode;
+    if (charCode < 48 || charCode > 57) {
+      event.preventDefault(); // Block non-numeric input
+    }
+  }
+  
+  preventTextPaste(event: ClipboardEvent) {
+    const pasteData = event.clipboardData?.getData('text');
+    if (!pasteData || !/^\d+$/.test(pasteData)) {
+      event.preventDefault(); // Block paste if it contains non-numeric characters
+    }
+  }
 }

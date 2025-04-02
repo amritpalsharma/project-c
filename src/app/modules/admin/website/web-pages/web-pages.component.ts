@@ -123,9 +123,10 @@ export class WebPagesComponent {
     const filterDialog = this.dialog.open(CommonFilterPopupComponent,{
       height: '180px',
       width: '310px',
+      panelClass:'filter_modal_popup',
       position: {
         right: '30px',
-        top:'150px'
+        top:'180px'
       },
       data: {
         page: 'webpages',

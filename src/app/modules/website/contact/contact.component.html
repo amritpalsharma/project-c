@@ -79,12 +79,13 @@
 
               <div>
                 <input id="phone" type="tel" formControlName="phone" [placeholder]="phone_placeholder"
-                  ng-model="contactForm.phone" />
-                <!-- <div *ngIf="phone?.invalid && (phone?.dirty || phone?.touched)" class="error"> -->
-                  <!-- <div *ngIf="phone?.errors?.['required']">{{'phoneRequired' | translate}}</div> -->
+                  ng-model="contactForm.phone" (keypress)="allowOnlyNumbers($event)"
+                  (paste)="preventTextPaste($event)"/>
+                <div *ngIf="phone?.invalid && (phone?.dirty || phone?.touched)" class="error">
+                  <div *ngIf="phone?.errors?.['required']">{{'phoneRequired' | translate}}</div>
                   <!-- <div *ngIf="phone?.errors?.['pattern']">{{'phoneRequired' | translate}}</div> -->
                   <!-- <div *ngIf="phone?.errors?.['pattern']">Invalid phone number.</div> -->
-                <!-- </div> -->
+                </div>
               </div>
 
               <div>

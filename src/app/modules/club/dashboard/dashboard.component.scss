@@ -1439,82 +1439,82 @@ span.active_btn {
 
 // new code
 /* Scoped styles for Intro.js in component.scss */
-::ng-deep .custom-tooltip {
-  background-color: unset !important;
-  color: #000 !important;
-  border-radius: 10px !important;
-  box-shadow: none !important;
-  // top: -60px !important;
-}
+// ::ng-deep .custom-tooltip {
+//   background-color: unset !important;
+//   color: #000 !important;
+//   border-radius: 10px !important;
+//   box-shadow: none !important;
+//   // top: -60px !important;
+// }
 
-::ng-deep a.introjs-skipbutton {
-  top: 20px;
-  right: -30px;
-  color: #fff;
-  font-size: 31px;
-  border: 3px solid #fff;
-  border-radius: 50%;
-  line-height: 36px;
-  width: 40px;
-  height: 40px;
-}
+// ::ng-deep a.introjs-skipbutton {
+//   top: 20px;
+//   right: -30px;
+//   color: #fff;
+//   font-size: 31px;
+//   border: 3px solid #fff;
+//   border-radius: 50%;
+//   line-height: 36px;
+//   width: 40px;
+//   height: 40px;
+// }
 
-::ng-deep .introjs-tooltip-header {
-  z-index: 99999 !important;
-}
+// ::ng-deep .introjs-tooltip-header {
+//   z-index: 99999 !important;
+// }
 
-::ng-deep a.introjs-skipbutton:hover {
-  color: #fff;
-}
+// ::ng-deep a.introjs-skipbutton:hover {
+//   color: #fff;
+// }
 
-::ng-deep .custom-tooltip .introjs-arrow {
-  border-color: #ffc107 transparent transparent transparent !important;
-}
+// ::ng-deep .custom-tooltip .introjs-arrow {
+//   border-color: #ffc107 transparent transparent transparent !important;
+// }
 
-::ng-deep .introjs-tooltiptext {
-  background-color: #ffc107 !important;
-  border-radius: 5px !important;
-  margin-top: 15px;
-  font-size: 15px;
-  padding: 16px 20px;
-}
+// ::ng-deep .introjs-tooltiptext {
+//   background-color: #ffc107 !important;
+//   border-radius: 5px !important;
+//   margin-top: 15px;
+//   font-size: 15px;
+//   padding: 16px 20px;
+// }
 
-::ng-deep .introjs-tooltiptext h6 {
-  font-size: 15px;
-  font-weight: 600;
-}
+// ::ng-deep .introjs-tooltiptext h6 {
+//   font-size: 15px;
+//   font-weight: 600;
+// }
 
-::ng-deep .introjs-button {
-  border-color: #ffffffbd !important;
-  background-color: unset !important;
-  color: #ffffffbd !important;
-  text-shadow: none;
-  border-radius: 5px;
-  margin: 0px 10px;
+// ::ng-deep .introjs-button {
+//   border-color: #ffffffbd !important;
+//   background-color: unset !important;
+//   color: #ffffffbd !important;
+//   text-shadow: none;
+//   border-radius: 5px;
+//   margin: 0px 10px;
 
-}
+// }
 
 
-::ng-deep .introjs-tooltipbuttons {
-  border-color: #ffffffbd !important;
-  background-color: unset !important;
-  color: #ffffffbd !important;
-  text-shadow: none;
-  display: flex;
-  justify-content: right;
-  border-top: unset !important;
-  margin-top: 0px;
-  padding-right: 0px;
-}
+// ::ng-deep .introjs-tooltipbuttons {
+//   border-color: #ffffffbd !important;
+//   background-color: unset !important;
+//   color: #ffffffbd !important;
+//   text-shadow: none;
+//   display: flex;
+//   justify-content: right;
+//   border-top: unset !important;
+//   margin-top: 0px;
+//   padding-right: 0px;
+// }
 
-::ng-deep .introjs-helperLayer {
-  box-shadow: rgb(33 33 33 / 0%) 0px 0px 1px 2px, rgba(33, 33, 33, 0.5) 0px 0px 0px 5000px !important;
-}
+// ::ng-deep .introjs-helperLayer {
+//   box-shadow: rgb(33 33 33 / 0%) 0px 0px 1px 2px, rgba(33, 33, 33, 0.5) 0px 0px 0px 5000px !important;
+// }
 
-::ng-deep .introjs-dontShowAgain label {
-  background: unset !important;
-  color: #fff !important;
-}
+// ::ng-deep .introjs-dontShowAgain label {
+//   background: unset !important;
+//   color: #fff !important;
+// }
 
 
 .lightbox {
@@ -1849,4 +1849,113 @@ span.active_btn {
   width: 30px;
   height: 30px;
   margin-top: -15px;
+}
+
+::ng-deep .custom-tooltip {
+  background-color: unset !important;
+  color: #000 !important;
+  border-radius: 10px !important;
+  box-shadow: none !important;
+  // top: -60px !important;
+}
+
+::ng-deep a.introjs-skipbutton {
+  top: -46px;
+  right: 0px;
+  color: #fff;
+  font-size: 31px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  line-height: 36px;
+  width: 40px;
+  height: 40px;
+}
+
+::ng-deep .introjs-tooltip-header {
+  z-index: 99999 !important;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+  min-height: 0;
+  position: absolute;
+  right: 0;
+  top: -20px;
+}
+
+::ng-deep .introjs-tooltip-title {
+  display: none;
+}
+
+::ng-deep a.introjs-skipbutton:hover {
+  color: #fff;
+}
+
+::ng-deep .custom-tooltip .introjs-arrow {
+  border-color: #ffc107 transparent transparent transparent !important;
+}
+
+::ng-deep .introjs-tooltip {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+::ng-deep .introjs-arrow.top {
+  border-bottom-color: #ffc107;
+}
+
+::ng-deep .introjs-arrow.left {
+  border-right-color: #ffc107;
+}
+
+::ng-deep .introjs-arrow.right {
+  border-left-color: #ffc107;
+}
+
+::ng-deep .introjs-arrow.bottom {
+  border-top-color: #ffc107;
+}
+
+::ng-deep .introjs-tooltiptext {
+  background-color: #ffc107 !important;
+  border-radius: 5px !important;
+  margin-top: 0;
+  font-size: 15px;
+  padding: 16px 20px;
+}
+
+::ng-deep .introjs-tooltiptext h6 {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+::ng-deep .introjs-button {
+  border-color: #ffffffbd !important;
+  background-color: unset !important;
+  color: #ffffffbd !important;
+  text-shadow: none;
+  border-radius: 5px;
+  margin: 0px 10px;
+
+}
+
+
+::ng-deep .introjs-tooltipbuttons {
+  border-color: #ffffffbd !important;
+  background-color: unset !important;
+  color: #ffffffbd !important;
+  text-shadow: none;
+  display: flex;
+  justify-content: right;
+  border-top: unset !important;
+  margin-top: 0px;
+  padding-right: 0px;
+}
+
+::ng-deep .introjs-helperLayer {
+  box-shadow: rgb(33 33 33 / 0%) 0px 0px 1px 2px, rgba(33, 33, 33, 0.5) 0px 0px 0px 5000px !important;
+}
+
+::ng-deep .introjs-dontShowAgain label {
+  background: unset !important;
+  color: #fff !important;
 }

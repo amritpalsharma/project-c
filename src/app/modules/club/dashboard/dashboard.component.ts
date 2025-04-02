@@ -172,25 +172,30 @@ export class DashboardComponent implements OnInit, OnDestroy {
           //   tooltipClass: 'custom-tooltip',
           // },
           {
-            element: '.tour-personal-details',
+            element: '#TourPersonalDetails',
             intro: `<div><h6>${translations['personalDetails']}</h6>${translations['addYourPersonalDetails']}.</div>`,
-            tooltipClass: 'custom-tooltip',
+            // tooltipClass: 'custom-tooltip',
+             position: 'right'
+
           },
           {
             // element: '.tour-highlights',
-            element: '.featureWrap',
+            element: '.highlights_intro_tour',
             intro: `<div><h6>${translations['highlights']}</h6>${translations['uploadPhotosAndVideos']}.</div>`,
-            tooltipClass: 'custom-tooltip',
+            // tooltipClass: 'custom-tooltip',
+             position: 'right'
           },
           {
-            element: '.edit_image-tour',
+            element: '#coverImageTour',
             intro: `<div><h6>${translations['coverPhoto']}</h6>${translations['uploadCoverPhoto']}.</div>`,
-            tooltipClass: 'custom-tooltip',
+            // tooltipClass: 'custom-tooltip',
+             position: 'left'
           },
           {
-            element: '.general_details',
+            element: '.general_details_club_intro',
             intro: `<div><h6>${translations['generalDetails']}</h6>${translations['editGeneralDetails']}.</div>`,
-            tooltipClass: 'custom-tooltip',
+            // tooltipClass: 'custom-tooltip',
+             position: 'left'
           },
         ],
         showBullets: false,

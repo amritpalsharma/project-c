@@ -51,7 +51,7 @@
 
                   <div class="user-edit ">
                     <label for="profile-upload" class="">
-                      <div class="edit-profile cursor-pointer"
+                      <div class="edit-profile cursor-pointer" id="upload_profilePhoto"
                         matTooltip="{{'uploadNewProfileImage' | translate}} {{'mx_size' | translate}}"
                         matTooltipPosition="right">
 
@@ -111,7 +111,7 @@
                     </div>
                     <div class="col-md-4 p-0 edit_button responsive-edit_btn ">
                       <button (click)="openEditDialog()" class="" matTooltip="{{'editPersonalDetails' | translate}}"
-                        matTooltipPosition="right">
+                        matTooltipPosition="right" id="editPersonalDetails">
                         <div class="tour-personal-details px-1">
                           <svg class="" width="22" height="23" viewBox="0 0 24 25" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
@@ -809,7 +809,7 @@
 
               <div class="edit-photo d-flex align-items-center tour-cover-photo"
                 matTooltip="{{'editCoverImage' | translate}}" matTooltipPosition="right">
-                <div class="edit_image-2 edit_image-tour">
+                <div class="edit_image-2 edit_image-tour" id="uploadCoverImage">
                   <label for="file-upload" class="cursor-pointer ">
                     <svg class="edit_image" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                       <path
