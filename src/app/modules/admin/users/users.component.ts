@@ -23,6 +23,8 @@ export class UsersComponent implements OnInit {
   displayedColumns: string[] = ['#', 'Name', 'User Type', 'Language', 'Location', 'Joined Date - Time', 'Email', 'Membership', 'Status', 'Edit'];
   users: User[] = [];
   totalRows: number = 0;
+  sortDirection: 'asc' | 'desc' = 'asc';
+  sortField: string = '';
 
   checkboxIds: string[] = [];
   allSelected: boolean = false;
@@ -127,6 +129,14 @@ export class UsersComponent implements OnInit {
       params = { ...params, "whereClause[user_domain]": this.customFilters['location'] };
     }
 
+    if (this.customFilters['sort_field'] && this.customFilters['sort_direction']) {
+      params.orderBy = this.customFilters['sort_field'];
+      params.order = this.customFilters['sort_direction'];
+      this.customFilters['sort_direction'] = null;
+      this.customFilters['sort_field'] = null;
+
+    }
+
     try {
       //  this.userService.getUsers(page, pageSize,this.filterValue).subscribe((response)=>{
       this.userService.getUsers(params).subscribe((response) => {
@@ -158,7 +168,17 @@ export class UsersComponent implements OnInit {
   }
 
   sortData(filed_name: string) {
-
+    if (this.sortField === filed_name) {
+      // Toggle direction if same field is clicked
+      this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+    } else {
+      this.sortField = filed_name;
+      this.sortDirection = 'asc';
+    }
+    this.customFilters['sort_field'] = this.sortField;
+    this.customFilters['sort_direction'] = this.sortDirection;
+    this.isLoading = true;
+    this.fetchUsers(true);
   }
 
   onPageChange() {

@@ -67,7 +67,8 @@
                                     '--')}}</span>
                             </div> -->
                             <div *ngIf="isValidBirthDate" div class="age_box">
-                                <hr>
+                                <hr  *ngIf='theme=="dark"' style="color: #000;">
+                                <hr  *ngIf='theme != "dark"'>
                                 <span>
                                     <svg width="16" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -115,7 +116,8 @@
                         <div class="flag_box">
                             <img [src]="userNationality">
                             <div *ngIf="isValidBirthDate">
-                                <hr>
+                                <hr  *ngIf='theme=="dark"' style="color: #000;">
+                                <hr  *ngIf='theme != "dark"'>
                                 <span>
                                     <svg width="16" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path

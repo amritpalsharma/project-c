@@ -24,6 +24,7 @@ export class TeamsTabComponent {
   selectTeamName: string = '';
   selectedTeamId: any;
   @Input() userData: any;
+  @Input() isPremium: any;
 
   constructor(
     private route: ActivatedRoute,

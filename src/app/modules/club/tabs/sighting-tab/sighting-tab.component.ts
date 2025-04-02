@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { UserService } from '../../../../services/user.service';
@@ -22,6 +22,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 export class SightingTabComponent {
   userId: any = '';
+  @Input() isPremium: any;
   displayedColumns: string[] = ['#', 'Event', 'Manager Name', 'Place', 'Date', 'Time', 'View', 'Remove'];
   sightings: any = [];
   sightingData: any = {};
