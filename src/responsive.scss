@@ -246,20 +246,16 @@ body {
 .es .website-code nav.navbar li.nav-item .nav-link, .pt .website-code nav.navbar li.nav-item .nav-link,
 .dk .website-code nav.navbar li.nav-item .nav-link, .se .website-code nav.navbar li.nav-item .nav-link,
 .de .website-code nav.navbar li.nav-item .nav-link, .en .website-code nav.navbar li.nav-item .nav-link {
-    font-size: 22px !important;
+    font-size: 24px !important;
+}
+.website_main_pages.navbar li.nav-item .nav-link {
+    font-size: 24px !important;
 }
 .website-code nav.navbar .login-btn {
     width: 220px !important;
     font-size: 20px !important;
+    margin-left: 20px;
 }
-// .es .website-code .login-btn, .de .website-code .login-btn {
-//     font-size: 20px !important;
-//     width: 220px !important;
-// }
-// .en .website-code nav.navbar .login-btn {
-//     width: 200px !important;
-//     font-size: 19px !important;
-// }
 .table th, .table td, .table td span {
     font-size: 20px !important;
 }
@@ -308,7 +304,7 @@ td.cdk-column-Remove.mat-column-Remove svg {
     height: 24px !important;
 }
 .form-control, .table td span.bg_pending, .card-tabs .nav-tabs .nav-item .nav-link, .card-tabs .mesaage-content h6 {
-    font-size: 17px !important;
+    font-size: 19px !important;
 }
 .card-tabs .mesaage-content small {
     font-size: 15px !important;
@@ -381,6 +377,130 @@ td.cdk-column-Remove.mat-column-Remove svg {
         font-size: 17px;
         line-height: 2;
     }
+}
+
+
+
+.website_main_pages.navbar .extra-nav {
+    .custom-select, .dropdown-menu a.dropdown-item {
+      font-size: 24px !important;
+    }
+}
+
+.website_main_pages {
+    .container {
+        max-width: 1600px !important;
+    }
+    .works h3, .joined-text h3 {
+        font-size: 40px !important;
+    }
+    .works-btn button.btn {
+        font-size: 26px !important;
+        padding: 15px 40px !important;
+        p {
+          font-size: 26px !important;
+        }
+    }
+    .btn {
+        font-size: 20px !important;
+    }
+    .joined-btn button.btn, .club-heading4 {
+        height: 50px !important;
+    }
+    .club-banner .title_text_p h3, .price-heading3, .club-banner .club_players h3 {
+      font-size: 45px !important;
+    }
+    .footer-top h4, p, .banner-btn .btn, .premium-heading3 span, .common_static_page .content_page ul li,
+    .price_mat_wrapper .feature-data ul li, .learn-banner .back-button {
+      font-size: 24px !important;
+    }
+    .footer-top .footer-links ul li a, .footer-top p, .red_text_plan, .footer-bottom p {
+      font-size: 20px !important;
+    }
+    .progress_btn a {
+      font-size: 28px !important;
+    }
+    .player-carousel::after {
+      bottom: 49px !important;
+    }
+    .recently-joined .flag-image {
+      bottom: 60px !important;
+    }
+    .club-text1 {
+      margin-top: 30px !important;
+    }
+    .club-scout .club_text {
+      padding: 40px;
+    }
+    h2.accordion-header, .price_mat_wrapper .feature-heading, .price_mat_wrapper .feature-data h4.free-heading {
+      font-size: 26px !important;
+    }
+    .premium-heading5, .join-text p {
+      font-size: 30px !important;
+    }
+    .premium-text img {
+      height: 32px !important;
+      width: 32px !important;
+      margin-right: 18px !important;
+    }
+    .club-buttons {
+      .button-border {
+        width: 350px !important;
+        height: 72px !important;
+        .join-text {
+          width: 100%;
+          height: 101%;
+          p {
+            line-height: 60px !important;
+          }
+        }
+        img.join-btn {
+          margin: 22px !important;
+        }
+      }
+    }
+    .common_static_page .content_page h4 {
+      font-size: 30px !important;
+    }
+    .price_mat_wrapper .feature-data button.btn.btn-join, .news-slider button.learn-more {
+      height: auto !important;
+      padding: 15px !important;
+      font-size: 24px !important;
+    }
+    .news-box .news_img_thumb_wrap {
+      height: 400px !important;
+    }
+    .news_share_icons a {
+      font-size: 27px !important;
+      margin-right: 20px !important;
+    }
+  }
+  .filter_modal_popup {
+    margin-top: 200px !important;
+    min-width: 350px !important;
+    min-height: 250px !important;
+    .filter-button {
+        padding: 9px 6px !important;
+    }
+    .filter-text, .filter-button select {
+        font-size: 16px !important;
+    }
+    .btn-delete, .Launch {
+        font-size: 15px !important;
+    }
+    
+}
+.position_inputs mat-select, .date_field input, .form-select {
+    font-size: 19px !important;
+}
+.social_form-box span.social_heading, .social_form-box span.note_titles {
+    font-size: inherit !important;
+}
+.forms_details .email_box, .main-position .social_icons {
+    font-size: 16px;
+}
+.dialog-header h2 {
+    font-size: 26px !important;
 }
 }
 

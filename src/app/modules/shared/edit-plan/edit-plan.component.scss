@@ -117,6 +117,7 @@
 }
  .radio-custom-label {
     position: relative;
+    font-size: 16px;
 }
 
  .radio-custom + .radio-custom-label:before {
@@ -146,6 +147,10 @@
     background: #148DE4;
     align-items: center;
     display: inline-flex;
+}
+.radio-custom + .radio-custom-label:before, .radio-custom:checked + .radio-custom-label:before {
+    position: relative;
+    top: -4px;
 }
 @media (max-width:768px) {
     .country-plan {
