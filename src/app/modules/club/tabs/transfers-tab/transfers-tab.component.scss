@@ -117,3 +117,73 @@
 .transfer_underline{
   margin: 40px 0px;
 }
+.transfer_box:not(:last-child) {
+  border-bottom: 1px solid #dadada;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+}
+
+
+@media (max-width: 1300px) {
+  .details-1 {
+    font-size: 14px;
+  }
+  .details_2 {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 991px) {
+  .moving_box {
+    padding: 0;
+  }
+  .transfer_box.row {
+    flex-wrap: wrap-reverse;
+}
+.transfer_box .box-transfer {
+  border-right: 0;
+}
+}
+
+@media (max-width: 991px) and (min-width: 576px) {
+.transfer_box .box-transfer {
+  display: flex;
+  flex-direction: row;
+  padding: 0 .75rem;
+  margin-bottom: 20px;
+}
+.transfer_box .box-transfer .col-lg-12:last-child {
+  margin-left: -20px;
+}
+}
+
+
+@media (max-width: 575px){
+.moving_box_inner .moving-team-logo img {
+  width: 30px;
+  height: 30px;
+}
+.moving_box .btn_column .edit_button span {
+    display: none;
+}
+.moving_box .btn_column .edit_button svg {
+  left: 0;
+}
+.moving_box .moving_box_inner {
+  margin-top: -120px;
+}
+}
+
+
+
+@media (min-width: 2000px){
+	.moving_box_inner h2 {
+		font-size: 22px !important;
+	}
+	.details_2, .edit_button-2 span, .btn_column .edit_button span {
+      font-size: 18px !important;
+    }
+    .details-1 {
+        font-size: 20px !important;
+    }
+}

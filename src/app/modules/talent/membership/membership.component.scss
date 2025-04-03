@@ -333,24 +333,18 @@ a.premium-edit_btn {
     font-size: 22px !important;
   }
 
-  button.premium-edit_btn,
-  a.premium-edit_btn {
-    font-size: 18px !important;
-  }
-
   .premium-card h5 {
-    font-size: 30px !important;
-  }
-
-  .premium-card h6 {
-    font-size: 30px !important;
-  }
-
-  sub.premium-month_title,
-  .premium-card p,
-  button.premium-subscription_btn {
-    font-size: 17px !important;
-  }
+    font-size: 32px !important;
+}
+.premium-card h6 {
+    font-size: 38px !important;
+}
+sub.premium-month_title, .premium-card p, button.premium-subscription_btn {
+    font-size: 18px !important;
+}
+button.premium-edit_btn, a.premium-edit_btn {
+  font-size: 19px !important;
+}
 }
 
 .dark-theme .table-striped thead th {

@@ -44,78 +44,80 @@
 
     </div>
     <div class="card-body p-0">
-        <table mat-table [dataSource]="notifications" class="table table-hover table-striped table-users ">
+        <div class="table-responsive">
+            <table mat-table [dataSource]="notifications" class="table table-striped table-users notification_table">
 
-            <!-- Position Column -->
-            <ng-container matColumnDef="#">
-                <th mat-header-cell *matHeaderCellDef> </th>
-                <td mat-cell *matCellDef="let element">
-                    <span class="form-check align-self-center me-2">
-                        <input type="checkbox" class="form-check-input" [checked]="selectedIds.includes(element.id)"
-                            (change)="onCheckboxChange(element)" />
-                        <label for="defaultCheck1" class="form-check-label"></label>
-                    </span>
-                </td>
-            </ng-container>
+                <!-- Position Column -->
+                <ng-container matColumnDef="#">
+                    <th mat-header-cell *matHeaderCellDef> </th>
+                    <td mat-cell *matCellDef="let element" class="col_checkbox">
+                        <span class="form-check align-self-center me-2">
+                            <input type="checkbox" class="form-check-input" [checked]="selectedIds.includes(element.id)"
+                                (change)="onCheckboxChange(element)" />
+                            <label for="defaultCheck1" class="form-check-label"></label>
+                        </span>
+                    </td>
+                </ng-container>
 
-            <ng-container matColumnDef="Name">
-                <th mat-header-cell *matHeaderCellDef> {{'name' | translate}}
-                    <!-- <small><i class="fas fa-sort"></i> </small>   -->
-                </th>
-                <td mat-cell *matCellDef="let element">
-                    {{ element.message }} <br>
-                    <button *ngIf="element.event == 'scoutAddPlayer' && !element.seen" type="button"
-                        (click)="responseToScoutInvite('accepted', element.senderId, element)"
-                        class="btn btn-success px-md-5 py-2 me-3">{{'accept' | translate}}</button>
-                    <button *ngIf="element.event == 'scoutAddPlayer' && !element.seen" type="button"
-                        (click)="responseToScoutInvite('rejected', element.senderId, element)"
-                        class="btn btn-danger px-5 py-2">{{'reject' | translate}}</button>
+                <ng-container matColumnDef="Name">
+                    <th mat-header-cell *matHeaderCellDef> {{'name' | translate}}
+                        <!-- <small><i class="fas fa-sort"></i> </small>   -->
+                    </th>
+                    <td mat-cell *matCellDef="let element">
+                        {{ element.message }} <br /><br />
+                        <button *ngIf="element.event == 'scoutAddPlayer' && !element.seen" type="button"
+                            (click)="responseToScoutInvite('accepted', element.senderId, element)"
+                            class="btn btn-success px-md-5 py-2 me-3">{{'accept' | translate}}</button>
+                        <button *ngIf="element.event == 'scoutAddPlayer' && !element.seen" type="button"
+                            (click)="responseToScoutInvite('rejected', element.senderId, element)"
+                            class="btn btn-danger px-5 py-2">{{'reject' | translate}}</button>
 
-                    <button *ngIf="element.event == 'inviteTalent' && !element.seen" type="button"
-                        (click)="updateSightingInviteResponse('accepted',element.eventId, element.senderId, element)"
-                        class="btn btn-success px-md-5 py-2 me-3">{{'accept' | translate}}</button>
-                    <button *ngIf="element.event == 'inviteTalent' && !element.seen" type="button"
-                        (click)="updateSightingInviteResponse('rejected',element.eventId, element.senderId, element)"
-                        class="btn btn-danger px-5 py-2">{{'reject' | translate}}</button>
-                </td>
-            </ng-container>
+                        <button *ngIf="element.event == 'inviteTalent' && !element.seen" type="button"
+                            (click)="updateSightingInviteResponse('accepted',element.eventId, element.senderId, element)"
+                            class="btn btn-success px-md-5 py-2 me-3">{{'accept' | translate}}</button>
+                        <button *ngIf="element.event == 'inviteTalent' && !element.seen" type="button"
+                            (click)="updateSightingInviteResponse('rejected',element.eventId, element.senderId, element)"
+                            class="btn btn-danger px-5 py-2">{{'reject' | translate}}</button>
+                    </td>
+                </ng-container>
 
-            <ng-container matColumnDef="Date - Time">
-                <th mat-header-cell *matHeaderCellDef> {{'dateTime' | translate}}
-                    <!-- <small><i class="fas fa-sort"></i> </small>   -->
-                </th>
-                <td mat-cell *matCellDef="let element"> {{ convertTime(element.time) }}</td>
-                <!-- <td mat-cell *matCellDef="let element"> {{ element.time | date: 'dd.MM.yyyy hh:mm a' }}</td> -->
-            </ng-container>
-
-
-            <ng-container matColumnDef="Remove">
-                <th mat-header-cell *matHeaderCellDef class="text-center"> {{'remove' | translate}} </th>
-                <td mat-cell *matCellDef="let element" class="text-center cursor-pointer">
-                    <svg (click)="confirmSingleDeletion(element.id)" width="22" height="22" viewBox="0 0 22 22"
-                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M5.49967 17.0589C5.49967 18.0112 6.32467 18.7904 7.33301 18.7904H14.6663C15.6747 18.7904 16.4997 18.0112 16.4997 17.0589V6.66999H5.49967V17.0589ZM17.4163 4.07277H14.208L13.2913 3.20703H8.70801L7.79134 4.07277H4.58301V5.80425H17.4163V4.07277Z"
-                            fill="#787878" />
-                    </svg>
-                </td>
-            </ng-container>
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-            <tr class="mat-row user-empty-tr" *matNoDataRow>
-                <td [attr.colspan]="displayedColumns.length" class="user-empty-td">
-                    <div *ngIf="isLoading" class="loader-container d-flex flex-column py-5 align-items-center">
-                        <div class="loader"></div>
-                        <p>{{'loading' | translate}}</p>
-                    </div>
-                    <div *ngIf="notifications.length == 0 && !isLoading" style="text-align: center;">
-                        {{ 'noRecordFound' | translate}}
-                    </div>
-                </td>
-            </tr>
+                <ng-container matColumnDef="Date - Time">
+                    <th mat-header-cell *matHeaderCellDef> {{'dateTime' | translate}}
+                        <!-- <small><i class="fas fa-sort"></i> </small>   -->
+                    </th>
+                    <td mat-cell *matCellDef="let element"> {{ convertTime(element.time) }}</td>
+                    <!-- <td mat-cell *matCellDef="let element"> {{ element.time | date: 'dd.MM.yyyy hh:mm a' }}</td> -->
+                </ng-container>
 
 
-        </table>
+                <ng-container matColumnDef="Remove">
+                    <th mat-header-cell *matHeaderCellDef class="text-center"> {{'remove' | translate}} </th>
+                    <td mat-cell *matCellDef="let element" class="text-center cursor-pointer">
+                        <svg (click)="confirmSingleDeletion(element.id)" width="22" height="22" viewBox="0 0 22 22"
+                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M5.49967 17.0589C5.49967 18.0112 6.32467 18.7904 7.33301 18.7904H14.6663C15.6747 18.7904 16.4997 18.0112 16.4997 17.0589V6.66999H5.49967V17.0589ZM17.4163 4.07277H14.208L13.2913 3.20703H8.70801L7.79134 4.07277H4.58301V5.80425H17.4163V4.07277Z"
+                                fill="#787878" />
+                        </svg>
+                    </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                <tr class="mat-row user-empty-tr" *matNoDataRow>
+                    <td [attr.colspan]="displayedColumns.length" class="user-empty-td">
+                        <div *ngIf="isLoading" class="loader-container d-flex flex-column py-5 align-items-center">
+                            <div class="loader"></div>
+                            <p>{{'loading' | translate}}</p>
+                        </div>
+                        <div *ngIf="notifications.length == 0 && !isLoading" style="text-align: center;">
+                            {{ 'noRecordFound' | translate}}
+                        </div>
+                    </td>
+                </tr>
+
+
+            </table>
+        </div>
     </div>
 </div>

@@ -304,11 +304,12 @@ h5{
         font-weight: 600;
         padding: 10px 10px;
     }
-    .img-fluid {
-        height: 200px;
-        width: 100%;
-        object-fit: cover;
-      }
+    .img-fluid, video {
+      height: 200px;
+      width: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
      .edit-cover{
         position: absolute;
         top: 5px;
@@ -470,4 +471,11 @@ button.add_potos-btn {
 
 .image-upload-container .image:hover {
   background-color:lightgray;
+}
+
+
+@media (min-width: 2000px){
+  .gallery-parent p {
+    font-size: 18px !important;
+  }
 }

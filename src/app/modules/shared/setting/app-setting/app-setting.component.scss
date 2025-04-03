@@ -68,3 +68,10 @@ input:checked + .slider:before {
     color: #111418;
     font-family: "Libre Franklin", sans-serif;
   }
+
+
+@media (min-width: 2000px){
+    .card-header p {
+      font-size: 18px !important;
+    }
+}

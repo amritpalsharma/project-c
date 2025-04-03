@@ -147,3 +147,13 @@
 button:focus-visible{
     outline: 0 !important;
 }
+
+
+@media (min-width: 2000px) {
+    .dialog-header p {
+        font-size: 16px !important;
+    }
+    .upload-titel {
+        font-size: 20px !important;
+    }
+}

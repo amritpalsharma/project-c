@@ -142,3 +142,13 @@
     height: 200px !important;
     object-fit: cover;
 }
+
+
+@media (min-width: 2000px) {
+    .dialog-header p {
+        font-size: 16px !important;
+    }
+    .upload-titel {
+        font-size: 20px !important;
+    }
+}

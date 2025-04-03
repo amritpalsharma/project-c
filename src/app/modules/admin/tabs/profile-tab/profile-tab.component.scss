@@ -59,3 +59,18 @@
         min-width: 20px;
     }
 }
+
+
+
+@media (min-width: 2000px){
+    .general_titels h2, .general_details .details_1, .position-boxs .details_1, .main-position .details_1 {
+      font-size: 20px !important;
+    }
+    .forms_details .email_box, .forms_details .email_box label, .password_box label, .password_box input, 
+    .general_details .details_2, .position-boxs .details_2, .main-position .details_2, .edit_button span {
+      font-size: 18px !important;
+    }
+    .general_details .details_2, .position-boxs .details_2, .main-position .details_2 {
+      padding-bottom: 5px;
+    }
+}

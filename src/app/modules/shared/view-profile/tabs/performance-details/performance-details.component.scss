@@ -315,6 +315,9 @@ tr.table_underline {
 .underline_gap{
     margin-bottom: 18px;
 }
+table td {
+    padding-right: 6px;
+}
 
 @media (max-width: 991px) {
 .underline_gap td {
@@ -379,4 +382,15 @@ tr.table_underline {
         width: 30px;
     }
 }
+}
+
+
+
+@media (min-width: 2000px){
+    .details_2, .edit_button-2 span {
+      font-size: 18px !important;
+    }
+    .details-1 {
+        font-size: 20px !important;
+    }
 }

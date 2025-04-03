@@ -386,3 +386,14 @@
       width: 100%;
     }
   }
+
+
+  @media (min-width: 2000px){
+    .card-header p, .Addmember {
+      font-size: 18px !important;
+    }
+    .card-header svg#users-icon {
+      width: 25px;
+      height: 25px;
+    }
+  }
