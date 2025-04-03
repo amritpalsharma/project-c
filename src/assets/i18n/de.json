@@ -562,7 +562,7 @@
   "galleryText": "Ihr Browser unterstützt das Video-Tag nicht.",
   "deleteVideo": "Video löschen",
   "generalPermissions": "Allgemeine Berechtigungen",
-  "appSettingText": "Erhalten Sie unseren monatlichen Newsletter mit Neuigkeiten aus der Branche.",
+  "appSettingText": "Monatliche News von SoccerYou erhalten.",
   "reviewActivities": "Überprüfe deine Aktivitäten",
   "newsLetter": "Newsletter",
   "proceed": "Weiter",
@@ -1277,7 +1277,7 @@
   "TOOLTIPS": {
     "profilePhoto": "Laden Sie Ihr bestes Porträtfoto hoch, um einen großartigen ersten Eindruck zu hinterlassen.",
     "removeFavorite": "Aus den Favoriten entfernen",
-    "addFavorite": "Deiner Favoritenliste hinzufügen",
+    "addFavorite": "Zur Favoritenliste hinzufügen",
     "downloadPdf": "Spieler-PDF herunterladen",
     "startConversation": "Nachricht senden"
   },
@@ -1418,5 +1418,13 @@
   "subscriptionPlans": "Abonnement-Pläne",
   "editBoostProfile": "Boost-Profil bearbeiten",
   "uploadHighlightPhotosAndVideos": "Fotos und Videos hochladen",
-  "areYouSuretoDeleteNotification": "Bist du sicher, dass du diese Benachrichtigung löschen möchtest?"
+  "areYouSuretoDeleteNotification": "Bist du sicher, dass du diese Benachrichtigung löschen möchtest?",
+  "invalidPhoneNumber": "Bitte geben Sie eine gültige Telefonnummer ein.",
+  "profileTxt": "Profil",
+  "selectProfileType": "Profiltyp wählen",
+  "countryTxt": "Land",
+  "selectCountryTxt": "Land wählen",
+  "deleteBtnTxt": "Löschen",
+  "showResultBtnTxt": "Resultate zeigen",
+  "renews":"Wird erneuert am:"
 }

@@ -28,7 +28,7 @@
                 <h6> {{ premium.price}}<sub class="premium-month_title">.-{{premium.currency}}/{{ premium.interval ==
                     'monthly' ? ('month' | translate) : ('year' | translate) }}</sub></h6>
               </div>
-              <p *ngIf="premium.stripe_cancel_at == null">{{ 'renewsOn' | translate }} {{ premium.plan_period_end |
+              <p *ngIf="premium.stripe_cancel_at == null">{{ 'renews' | translate }} {{ premium.plan_period_end |
                 date: 'dd.MM.yyyy' }}</p>
               <p *ngIf="premium.stripe_cancel_at != null">{{ 'expireOn' | translate }} {{ premium.stripe_cancel_at |
                 date: 'dd.MM.yyyy' }}</p>
@@ -88,7 +88,7 @@
                 <h6> {{ country[0].price }}<sub class="premium-month_title">.-{{country[0].currency}}/{{ country.interval
                     == 'monthly' ? ('month' | translate) : ('year' | translate) }}</sub></h6>
               </div>
-              <p>{{ 'renewsOn' | translate }} {{ premium.plan_period_end |
+              <p>{{ 'renews' | translate }} {{ premium.plan_period_end |
                 date: 'dd.MM.yyyy' }}</p>
               <div class="d-flex align-items-center justify-content-between mt-4 mob_wrap">
                 <a class="premium-edit_btn text-white" href="/talent/plans">{{ 'editPlan' | translate }}</a>
@@ -113,7 +113,7 @@
                   </sub>
                 </h6>
               </div>
-              <p *ngIf="booster.stripe_cancel_at == null">{{ 'renewsOn' | translate }} {{ booster.plan_period_end |
+              <p *ngIf="booster.stripe_cancel_at == null">{{ 'renews' | translate }} {{ booster.plan_period_end |
                 date: 'dd.MM.yyyy' }}</p>
               <p *ngIf="booster.stripe_cancel_at != null" routerLink="/talent/plans">{{ 'renewSubscription' | translate }} {{
                 booster.stripe_cancel_at | date: 'dd.MM.yyyy' }}</p>

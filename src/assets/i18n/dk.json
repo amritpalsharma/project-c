@@ -759,9 +759,9 @@
   "addVideos": "Tilføj video",
   "galleryText": "Your og browser og does og not og support og the og video og tag.",
   "generalPermissions": "General og permissions",
-  "appSettingText": "Receive og our og monthly og newsletter og for og industry og updates.",
+  "appSettingText": "Modtag månedlige nyheder fra SoccerYou.",
   "reviewActivities": "Review og your og activities",
-  "newsLetter": "Newsletter",
+  "newsLetter": "Nyhedsbrev",
   "proceed": "Proceed",
   "areToSure": "Are og to og sure og to og remove?",
   "chooseYourPreferredPayment": "Choose og your og preferred og payment og method og for og making og future og payments.",
@@ -1110,9 +1110,9 @@
   "noNotification": "Ingen notifikationer fundet!",
   "TOOLTIPS": {
     "removeFavorite": "Fjern fra favoritter",
-    "addFavorite": "Tilføj til favoritter",
-    "downloadPdf": "Download profil PDF",
-    "startConversation": "Start en samtale"
+    "addFavorite": "Føj til favoritter",
+    "downloadPdf": "Download spillerens PDF",
+    "startConversation": "Send besked"
   },
   "premiumPlanDesc": {
     "features": [
@@ -1249,7 +1249,6 @@
   "category": "Kategori",
   "selectActivityFirst": "Vælg først en aktivitet.",
   "selectNotificationFirst": "Vælg først notifikation(er).",
-
   "permissions": {
     "allowAdvertising": {
       "name": "Tillad annonceringscookies",
@@ -1271,13 +1270,21 @@
   "selectPerformanceFirst": "Vælg performance først.",
   "removeSection": "Fjern sektion",
   "addMore": "Tilføj mere",
-   "selectSightingFirst": "Vælg observation(er) først.",
-   "JoinandEndDates": "Tiltrædelses- og slutdato",
-    "freePlanText": "2 måneder gratis på årsplan",
+  "selectSightingFirst": "Vælg observation(er) først.",
+  "JoinandEndDates": "Tiltrædelses- og slutdato",
+  "freePlanText": "2 måneder gratis på årsplan",
   "forClubsandScouts": "For klubber og spejdere",
   "PerformaceProfile": "Ydelsesprofil",
   "subscriptionCanceledSuccessfully": "Abonnementet er annulleret med succes.",
-   "editBoostProfile": "Rediger boost-profil",
-    "uploadHighlightPhotosAndVideos": "Upload fotos og videoer",
-    "areYouSuretoDeleteNotification": "Er du sikker på, at du vil slette denne notifikation?"
+  "editBoostProfile": "Rediger boost-profil",
+  "uploadHighlightPhotosAndVideos": "Upload fotos og videoer",
+  "areYouSuretoDeleteNotification": "Er du sikker på, at du vil slette denne notifikation?",
+  "invalidPhoneNumber": "Angiv venligst et gyldigt telefonnummer.",
+  "profileTxt": "Profil",
+  "selectProfileType": "Vælg profiltype",
+  "countryTxt": "Land",
+  "selectCountryTxt": "Vælg land",
+  "deleteBtnTxt": "Slet",
+  "showResultBtnTxt": "Vis resultater",
+  "renews": "Fornyes den:"
 }

@@ -713,7 +713,7 @@
   "galleryText": "Your browser does not support the video tag.",
   "deleteVideo": "Delete Video",
   "generalPermissions": "General Permissions",
-  "appSettingText": "Receive our monthly newsletter for industry updates.",
+  "appSettingText": "Receive monthly news from SoccerYou.",
   "reviewActivities": "Review your activities",
   "newsLetter": "Newsletter",
   "deleteAccount": "Delete Account",
@@ -1184,9 +1184,9 @@
   "TOOLTIPS": {
     "profilePhoto": "Upload your best headshot to make a great first impression.",
     "removeFavorite": "Remove from favorites",
-    "addFavorite": "Add in favorites",
-    "downloadPdf": "Download Profile Pdf",
-    "startConversation": "Start a conversation"
+    "addFavorite": "Add to favorites",
+    "downloadPdf": "Download player PDF",
+    "startConversation": "Send message"
   },
   "MyAccount": "go To Dashboard",
   "boostProfiles": "Boost Profile",
@@ -1326,5 +1326,12 @@
   "forClubsandScouts": "For Clubs and Scouts",
   "subscriptionCanceledSuccessfully": "Subscription canceled successfully.",
   "editBoostProfile": "Edit boost profile",
-  "uploadHighlightPhotosAndVideos": "Upload Photos and Videos"
+  "uploadHighlightPhotosAndVideos": "Upload Photos and Videos",
+  "invalidPhoneNumber": "Please provide a valid phone number.",
+  "countryTxt":"Country",
+  "selectCountryTxt":"Select country",
+  "showResultBtnTxt":"Show results",
+  "profileTxt":"Profile",
+  "selectProfileType":"Select profile type",
+  "deleteBtnTxt":"Delete"
 }

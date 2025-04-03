@@ -907,9 +907,9 @@
   "addTransferDetails": "Lägg till övergångsdetaljer",
   "galleryText": "Your och browser och does och not och support och the och video och tag.",
   "generalPermissions": "General och permissions",
-  "appSettingText": "Receive och our och monthly och newsletter och for och industry och updates.",
+  "appSettingText": "Få nyheter från SoccerYou varje månad.",
   "reviewActivities": "Review och your och activities",
-  "newsLetter": "Newsletter",
+  "newsLetter": "Nyhetsbrev",
   "deleteAccount": "Delete och account",
   "proceed": "Proceed",
   "areToSure": "Are och to och sure och to och remove?",
@@ -1247,8 +1247,8 @@
   "TOOLTIPS": {
     "removeFavorite": "Ta bort från favoriter",
     "addFavorite": "Lägg till i favoriter",
-    "downloadPdf": "Ladda ner profil PDF",
-    "startConversation": "Starta en konversation"
+    "downloadPdf": "Ladda ner spelarens PDF",
+    "startConversation": "Skicka meddelande"
   },
   "premiumPlanDesc": {
     "features": [
@@ -1359,5 +1359,13 @@
   "acceptAll": "Acceptera alla",
   "pleaseConfirmSpellings": "Värdena matchar inte, vänligen bekräfta din stavning.",
   "removeSection": "Ta bort sektion",
-  "addMore": "Lägg till mer"
+  "addMore": "Lägg till mer",
+  "invalidPhoneNumber": "Vänligen ange ett giltigt telefonnummer.",
+  "profileTxt": "Profil",
+  "selectProfileType": "Välj profiltyp",
+  "countryTxt": "Land",
+  "selectCountryTxt": "Välj land",
+  "deleteBtnTxt": "Radera",
+  "showResultBtnTxt": "Visa resultat",
+  "renews": "Förnyas den:"  
 }

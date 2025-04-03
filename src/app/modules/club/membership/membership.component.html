@@ -19,7 +19,7 @@
                         <h5>{{ 'premium' | translate }}</h5>
                           <h6> {{ premium.price}}<sub class="premium-month_title">.-{{premium.currency}}/{{ premium.interval == 'yearly' ? ('year' | translate) : ('month' | translate) }}</sub></h6>
                       </div>
-                      <p *ngIf="premium.stripe_cancel_at == null">{{ 'renewsOn' | translate }} {{ premium.plan_period_end | date: 'dd.MM.yyyy' }}</p>
+                      <p *ngIf="premium.stripe_cancel_at == null">{{ 'renews' | translate }} {{ premium.plan_period_end | date: 'dd.MM.yyyy' }}</p>
                       <p *ngIf="premium.stripe_cancel_at != null">{{ 'expireOn' | translate }} {{ premium.stripe_cancel_at | date: 'dd.MM.yyyy' }}</p>
                       <div class="d-flex align-items-center justify-content-between mt-4">
                           <a class="premium-edit_btn text-white"  href="/club/plans">{{'editPlan' | translate}}</a>
@@ -90,7 +90,7 @@
                         <h5>{{ 'boostProfile' | translate }}</h5>
                           <h6> {{ booster.price}}<sub class="premium-month_title">{{booster.currency}}/{{booster.interval == 'monthly' ? ('month' | translate) : ('year' | translate) }}</sub></h6>
                       </div>
-                      <p *ngIf="booster.stripe_cancel_at == null">{{ 'renewsOn' | translate }} {{ booster.plan_period_end | date: 'dd.MM.yyyy' }}</p>
+                      <p *ngIf="booster.stripe_cancel_at == null">{{ 'renews' | translate }} {{ booster.plan_period_end | date: 'dd.MM.yyyy' }}</p>
                       <p *ngIf="booster.stripe_cancel_at != null">{{ 'renewSubscription' | translate }} {{ booster.stripe_cancel_at | date: 'dd.MM.yyyy' }}</p>
                       <div class="d-flex align-items-center justify-content-between mt-4">
                           <a class="premium-edit_btn text-white cursor-pointer"  (click)="editBooster(booster)">{{'editPlan' | translate}}</a>

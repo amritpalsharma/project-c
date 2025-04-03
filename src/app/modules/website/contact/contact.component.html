@@ -90,7 +90,7 @@
 
               <div>
                 <textarea id="message" formControlName="message" [placeholder]="message_placeholder"
-                  ng-model="contactForm.message"></textarea>
+                  [(ngModel)]="messageText"></textarea>
                 <div *ngIf="message?.invalid && (message?.dirty || message?.touched)" class="error">
                   <div *ngIf="message?.errors?.['required']">{{'messageRequired' | translate}}</div>
                 </div>

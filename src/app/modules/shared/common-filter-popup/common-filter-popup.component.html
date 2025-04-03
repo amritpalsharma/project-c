@@ -239,11 +239,11 @@
 </div>
 <div class="py-3 px-2" *ngIf="page == 'favoritesPage'">
   <div class="py-2 mb-1 bg-body">
-    <h5 class="filter-text mb-1">{{ 'userType' | translate }}</h5>
+    <h5 class="filter-text mb-1">{{ 'profileTxt' | translate }}</h5>
     <label class="btn btn-light filter-button favorite_filter" [class.activefilter]="userFilters['role']">
       <select [(ngModel)]="selectedRoleId" class="location-filter" [class.activefilter]="userFilters['role']"
         (change)="onChange($event, 'role')">
-        <option value="">{{ 'selectUserType' | translate }}</option>
+        <option value="">{{ 'selectProfileType' | translate }}</option>
         <option *ngFor="let role of roles" [value]="role.id" [selected]="role.id == selectedRoleId">{{role.role}}
         </option>
       </select>
@@ -251,34 +251,21 @@
   </div>
 
   <div class="py-2 mb-1 bg-body">
-    <h5 class="filter-text mb-1">{{ 'location' | translate }}</h5>
+    <h5 class="filter-text mb-1">{{ 'countryTxt' | translate }}</h5>
     <!-- <h1>{{locations}}</h1> -->
     <label class="btn btn-light filter-button favorite_filter" [class.activefilter]="userFilters['location']">
       <select [(ngModel)]="selectedLocation" class="location-filter" [class.activefilter]="userFilters['locations']"
         (change)="onChange($event, 'location')">
-        <option value="">{{ 'selectLocation' | translate }}</option>
+        <option value="">{{ 'selectCountryTxt' | translate }}</option>
         <option *ngFor="let location of locations" [value]="location.id" [selected]="location.id == selectedLocation">{{
           location.location }}</option>
       </select>
     </label>
   </div>
-  <!-- <div class="p-1 mb-1 bg-body rounded">
-    <h5 class="filter-text mb-1">{{ 'status' | translate }}</h5>
-    <div class="d-flex gap-3">
-      <label class="btn btn-light filter-button" [class.activefilter]="userFilters['status'] == 'active'">
-        <input type="radio" name="userStatus" value="Active" hidden (click)="setFilter('status', 'active')">{{ 'active'
-        | translate }}
-      </label>
-      <label class="btn btn-light filter-button" [class.activefilter]="userFilters['status'] == 'inactive'">
-        <input type="radio" name="userStatus" value="Inactive" hidden (click)="setFilter('status', 'inactive')"> {{
-        'inactive' | translate }}
-      </label>
-    </div>
-  </div> -->
   <div class="filter-bottom-button">
     <div class="filetr-child-button">
-      <button type="button" class="btn btn-delete" (click)="resetUserFilter()">{{ 'reset' | translate }}</button>
-      <button type="button" class="btn Launch" (click)="applyUserFilter()">{{ 'showResults' | translate }}</button>
+      <button type="button" class="btn btn-delete" (click)="resetUserFilter()">{{ 'deleteBtnTxt' | translate }}</button>
+      <button type="button" class="btn Launch" (click)="applyUserFilter()">{{ 'showResultBtnTxt' | translate }}</button>
     </div>
   </div>
 </div>

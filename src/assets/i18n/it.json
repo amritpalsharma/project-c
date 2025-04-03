@@ -916,7 +916,7 @@
   "addVideos": "Aggiungi video",
   "galleryText": "Your e browser e does e not e support e the e video e tag.",
   "generalPermissions": "General e permissions",
-  "appSettingText": "Receive e our e monthly e newsletter e for e industry e updates.",
+  "appSettingText": "Ricevete le notizie mensili di SoccerYou.",
   "reviewActivities": "Review e your e activities",
   "newsLetter": "Newsletter",
   "deleteAccount": "Elimina account",
@@ -1245,8 +1245,8 @@
   "TOOLTIPS": {
     "removeFavorite": "Rimuovi dai preferiti",
     "addFavorite": "Aggiungi ai preferiti",
-    "downloadPdf": "Scarica il PDF del profilo",
-    "startConversation": "Inizia una conversazione"
+    "downloadPdf": "Scarica il PDF del giocatore",
+    "startConversation": "Invia messaggio"
   },
   "premiumPlanDesc": {
     "features": [
@@ -1379,11 +1379,10 @@
   "enterYourCompanyName": "Inserisci il nome della tua azienda",
   "deletePerformanceConfirm": "Sei sicuro di voler eliminare i report selezionati?",
   "accepted": "Accettato",
-   "category": "Categoria",
-   "selectActivityFirst": "Seleziona prima un'attività.",
-   "selectNotificationFirst" : "Seleziona prima la/le notifica(e).",
-
-   "permissions": {
+  "category": "Categoria",
+  "selectActivityFirst": "Seleziona prima un'attività.",
+  "selectNotificationFirst": "Seleziona prima la/le notifica(e).",
+  "permissions": {
     "allowAdvertising": {
       "name": "Consenti i cookie pubblicitari",
       "description": "Autorizzo l’uso dei cookie pubblicitari. I nuovi cookie pubblicitari saranno attivati per impostazione predefinita."
@@ -1404,13 +1403,21 @@
   "selectPerformanceFirst": "Selezionare prima le prestazioni.",
   "removeSection": "Rimuovi sezione",
   "addMore": "Aggiungi altro",
-   "selectSightingFirst": "Selezionare prima gli avvistamenti.",
-   "JoinandEndDates": "Data di adesione e data di fine",
-    "freePlanText": "2 mesi gratuiti con il piano annuale",
+  "selectSightingFirst": "Selezionare prima gli avvistamenti.",
+  "JoinandEndDates": "Data di adesione e data di fine",
+  "freePlanText": "2 mesi gratuiti con il piano annuale",
   "forClubsandScouts": "Per i club e gli scout",
   "PerformaceProfile": "Profilo di rendimento",
   "subscriptionCanceledSuccessfully": "L'abbonamento è stato annullato con successo.",
-   "editBoostProfile": "Modifica del profilo boost",
-    "uploadHighlightPhotosAndVideos": "Caricare foto e video",
-    "areYouSuretoDeleteNotification": "Sei sicuro di voler eliminare questa notifica?"
+  "editBoostProfile": "Modifica del profilo boost",
+  "uploadHighlightPhotosAndVideos": "Caricare foto e video",
+  "areYouSuretoDeleteNotification": "Sei sicuro di voler eliminare questa notifica?",
+  "invalidPhoneNumber": "Si prega di fornire un numero di telefono valido.",
+  "profileTxt": "Profilo",
+  "selectProfileType": "Seleziona tipo di profilo",
+  "countryTxt": "Paese",
+  "selectCountryTxt": "Seleziona un paese",
+  "deleteBtnTxt": "Elimina",
+  "showResultBtnTxt": "Mostra risultati",
+  "renews": "Rinnovo il:"
 }

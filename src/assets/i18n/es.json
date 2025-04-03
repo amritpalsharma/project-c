@@ -840,9 +840,9 @@
   "addVideos": "Añadir vídeo",
   "galleryText": "Your y browser y does y not y support y the y video y tag.",
   "generalPermissions": "General y permissions",
-  "appSettingText": "Receive y our y monthly y newsletter y for y industry y updates.",
+  "appSettingText": "Noticias mensuales de SoccerYou.",
   "reviewActivities": "Review y your y activities",
-  "newsLetter": "Newsletter",
+  "newsLetter": "Boletín",
   "deleteAccount": "Eliminar cuenta",
   "proceed": "Proceed",
   "areToSure": "Are y to y sure y to y remove?",
@@ -1192,9 +1192,9 @@
   "noNotification": "¡No se encontraron notificaciones!",
   "TOOLTIPS": {
     "removeFavorite": "Eliminar de favoritos",
-    "addFavorite": "Agregar a favoritos",
-    "downloadPdf": "Descargar el PDF del perfil",
-    "startConversation": "Iniciar una conversación"
+    "addFavorite": "Añadir a favoritos",
+    "downloadPdf": "Descargar PDF del jugador",
+    "startConversation": "Enviar mensaje"
   },
   "premiumPlanDesc": {
     "features": [
@@ -1360,5 +1360,13 @@
   "subscriptionCanceledSuccessfully": "Suscripción cancelada con éxito.",
   "editBoostProfile": "Editar el perfil de impulso",
   "uploadHighlightPhotosAndVideos": "Cargar fotos y vídeos",
-  "areYouSuretoDeleteNotification": "¿Estás seguro de que deseas eliminar esta notificación?"
+  "areYouSuretoDeleteNotification": "¿Estás seguro de que deseas eliminar esta notificación?",
+  "invalidPhoneNumber": "Por favor, proporcione un número de teléfono válido.",
+  "profileTxt": "Perfil",
+  "selectProfileType": "Seleccionar tipo de perfil",
+  "countryTxt": "País",
+  "selectCountryTxt": "Seleccionar país",
+  "deleteBtnTxt": "Eliminar",
+  "showResultBtnTxt": "Mostrar resultados",
+  "renews": "Se renueva el:"
 }

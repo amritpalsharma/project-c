@@ -921,9 +921,9 @@
   "addTransferDetails": "Ajouter des détails du transfert",
   "galleryText": "Your et browser et does et not et support et the et video et tag.",
   "generalPermissions": "General et permissions",
-  "appSettingText": "Receive et our et monthly et newsletter et for et industry et updates.",
+  "appSettingText": "Recevoir les news mensuelles de SoccerYou",
   "reviewActivities": "Review et your et activities",
-  "newsLetter": "Newsletter",
+  "newsLetter": "Bulletin d'information",
   "deleteAccount": "Supprimer le compte",
   "proceed": "Proceed",
   "areToSure": "Are et to et sure et to et remove?",
@@ -1261,9 +1261,9 @@
   "noNotification": "Aucune notification trouvée !",
   "TOOLTIPS": {
     "removeFavorite": "Eliminar de favoritos",
-    "addFavorite": "Agregar a favoritos",
-    "downloadPdf": "Descargar el PDF del perfil",
-    "startConversation": "Iniciar una conversación"
+    "addFavorite": "Ajouter à la liste de favoris",
+    "downloadPdf": "Télécharger le PDF du joueur",
+    "startConversation": "Envoyer un message"
   },
   "premiumPlanDesc": {
     "features": [
@@ -1396,11 +1396,10 @@
   "enterYourCompanyName": "Entrez le nom de votre entreprise",
   "deletePerformanceConfirm": "Êtes-vous sûr de vouloir supprimer les rapports sélectionnés ?",
   "accepted": "Accepté",
-   "category": "Catégorie",
-   "selectActivityFirst": "Sélectionnez d'abord une activité.",
-   "selectNotificationFirst" : "Sélectionnez d'abord la/les notification(s).",
-
-   "permissions": {
+  "category": "Catégorie",
+  "selectActivityFirst": "Sélectionnez d'abord une activité.",
+  "selectNotificationFirst": "Sélectionnez d'abord la/les notification(s).",
+  "permissions": {
     "allowAdvertising": {
       "name": "Autoriser les cookies publicitaires",
       "description": "J’autorise l’utilisation des cookies publicitaires. Les nouveaux cookies publicitaires seront activés par défaut."
@@ -1421,13 +1420,21 @@
   "selectPerformanceFirst": "Sélectionnez d'abord la performance.",
   "removeSection": "Supprimer la section",
   "addMore": "Ajouter plus",
-   "selectSightingFirst": "Sélectionner d'abord la (les) visée(s).",
-   "JoinandEndDates": "Date de début et de fin",
-    "freePlanText": "2 mois gratuits sur le plan annuel",
+  "selectSightingFirst": "Sélectionner d'abord la (les) visée(s).",
+  "JoinandEndDates": "Date de début et de fin",
+  "freePlanText": "2 mois gratuits sur le plan annuel",
   "forClubsandScouts": "Pour les clubs et les scouts",
   "PerformaceProfile": "Profil de performance",
   "subscriptionCanceledSuccessfully": "L'abonnement a été annulé avec succès.",
-   "editBoostProfile": "Modifier le profil de stimulation",
-    "uploadHighlightPhotosAndVideos": "Télécharger des photos et des vidéos",
-    "areYouSuretoDeleteNotification": "Êtes-vous sûr de vouloir supprimer cette notification?"
+  "editBoostProfile": "Modifier le profil de stimulation",
+  "uploadHighlightPhotosAndVideos": "Télécharger des photos et des vidéos",
+  "areYouSuretoDeleteNotification": "Êtes-vous sûr de vouloir supprimer cette notification?",
+  "invalidPhoneNumber": "Veuillez fournir un numéro de téléphone valide.",
+  "profileTxt": "Profil",
+  "selectProfileType": "Choisir le type de profil",
+  "countryTxt": "Pays",
+  "selectCountryTxt": "Choisir un pays",
+  "deleteBtnTxt": "Supprimer",
+  "showResultBtnTxt": "Afficher les résultats",
+  "renews": "Renouvelé le :"
 }
