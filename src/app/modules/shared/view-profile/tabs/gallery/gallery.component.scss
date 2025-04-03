@@ -514,6 +514,12 @@
 .edit_button {
     margin-left: 14px;
 }
+.img-fluid, video {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
 
 .gallery-parent {
   padding: 0 !important;
@@ -543,4 +549,11 @@
 .gallery-parent .img-fluid {
   height: 140px;
 }
+}
+
+
+@media (min-width: 2000px){
+  .gallery-parent p {
+    font-size: 18px !important;
+  }
 }

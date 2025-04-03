@@ -12,7 +12,8 @@
     <a (click)="addRepresentator()"  class="cursor-pointer"><small><i class="fa-solid fa-plus plus-color me-1 "></i></small> <span class="Addmember"
         >{{ 'addMember' | translate }}</span></a>
   </div>
-  <div class="card-body px-3 py-2 overflow-auto">
+  <div class="card-body px-3 py-2">
+    <div class="table-responsive">
     <table class="table">
       <tbody>
         <tr *ngFor="let representator of representators">
@@ -95,5 +96,6 @@
         </tr>
       </tbody>
     </table>
+    </div>
   </div>
 </div>

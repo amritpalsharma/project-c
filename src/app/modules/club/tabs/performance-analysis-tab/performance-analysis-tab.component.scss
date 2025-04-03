@@ -135,3 +135,13 @@ tr.table_underline {
 .underline_gap{
     margin-bottom: 18px;
 }
+table td {
+    padding-right: 6px;
+}
+
+
+@media (min-width: 2000px){
+    .performance_card_hedr .btn {
+        font-size: 18px !important;
+    }
+}

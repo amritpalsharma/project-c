@@ -328,6 +328,15 @@ td.cdk-column-Remove.mat-column-Remove svg {
 .all-page-content .page-container > .outlet_outer + shared-footer {
     padding-top: 0 !important;
 }
+.table_title select, .right-sidebar .card .card-header a {
+    font-size: 20px !important;
+}
+.dashboard_footer .footer-text, .dashboard_footer .footer_main_inner, label.form-label, .popup__body p.code-text, input.cupen-btn-1 {
+    font-size: 18px !important;
+}
+.popup_header h6 {
+    font-size: 24px !important;
+}
 
 .common_profile_page {
     #dashboard_tabs_dark .nav-link {
@@ -479,10 +488,10 @@ td.cdk-column-Remove.mat-column-Remove svg {
     margin-top: 200px !important;
     min-width: 350px !important;
     min-height: 250px !important;
-    .filter-button {
+    .filter-button, .filter-button-2 {
         padding: 9px 6px !important;
     }
-    .filter-text, .filter-button select {
+    .filter-text, .filter-button select, .filter-button-2, .filter-button {
         font-size: 16px !important;
     }
     .btn-delete, .Launch {

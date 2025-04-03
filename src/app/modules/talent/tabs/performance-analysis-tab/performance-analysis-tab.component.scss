@@ -373,3 +373,10 @@ tr.table_underline {
 .dark-theme .add_new-btn {
     color: #BDE34F;
 }
+
+
+@media (min-width: 2000px){
+    .performance_card_hedr .btn {
+        font-size: 18px !important;
+    }
+}

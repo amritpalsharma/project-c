@@ -284,6 +284,11 @@
   border: 1px solid #BDE34F;
   background-color: white;
 }
+.dark-theme .website-code .joined-btn button.btn:hover {
+  background: #BDE34F !important;
+  border: 1px solid #BDE34F;
+  color: #072944 !important;
+}
 .dark-theme .website-code a.dropdown-item.ai-icon.selected {
   background: linear-gradient(45deg, #EFFFC1, #BDE34F) !important;  /* Set the background color to pink */
   color: #072944 !important;  /* Optional: Change the text color to white for better contrast */

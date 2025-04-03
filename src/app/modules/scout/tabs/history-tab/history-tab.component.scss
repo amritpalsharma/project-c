@@ -26,3 +26,15 @@
     background-color: #fff;  
     box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
 }
+
+
+@media (min-width: 2000px){
+	.company_history {
+		h6.main-template {
+		    font-size: 20px;
+		}
+		.btn-outline-white, .history-text {
+		    font-size: 18px !important;
+		}
+	}
+}

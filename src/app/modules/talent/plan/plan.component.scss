@@ -377,22 +377,19 @@ sub.premium-month_title {
 }
 
 @media (min-width:2000px) {
-.subscription-switch label {
-    font-size: 18px;
-}
 .premium_list label .checkmark:after {
     left: 8px;
 }
+.subscription-plan h2, .premium-plan-list h3, .premium-plan_box h3 {
+    font-size: 24px !important;
+}
+.subscription-switch label, sub.premium-month_title {
+    font-size: 18px !important;
+}
 .premium_button span {
-    font-size: 14px;
+    font-size: 14px !important;	
 }
 .premium-currency h6 {
-    font-size: 36px;
-}
-sub.premium-month_title {
-    font-size: 18px;
-}
-.premium-plan_box h3 {
-    font-size: 28px;
+    font-size: 38px !important;
 }
 }

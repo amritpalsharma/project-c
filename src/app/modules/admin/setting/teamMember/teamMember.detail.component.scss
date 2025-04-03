@@ -31,3 +31,14 @@
   .btn-delete{
       color: #FD5454;
   }
+
+  table td, table th {
+    white-space: nowrap;
+  }
+
+
+  @media (min-width: 2000px){
+    .card-header p {
+      font-size: 18px !important;
+    }
+  }

@@ -109,4 +109,16 @@ td img {
 }
 table td {
     white-space: nowrap;
+    padding-right: 6px;
+}
+
+
+
+@media (min-width: 2000px){
+    .details_2, .edit_button-2 span {
+      font-size: 18px !important;
+    }
+    .details-1 {
+        font-size: 20px !important;
+    }
 }

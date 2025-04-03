@@ -300,6 +300,11 @@
   object-fit: contain;
 }
 
+.transfer_box:not(:last-child) {
+  border-bottom: 1px solid #dadada;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+}
 
 @media (max-width: 1300px) {
   .details-1 {
@@ -346,4 +351,17 @@
 .moving_box .moving_box_inner {
   margin-top: -120px;
 }
+}
+
+
+@media (min-width: 2000px){
+	.moving_box_inner h2 {
+		font-size: 22px !important;
+	}
+	.details_2, .edit_button-2 span, .btn_column .edit_button span {
+      font-size: 18px !important;
+    }
+    .details-1 {
+        font-size: 20px !important;
+    }
 }

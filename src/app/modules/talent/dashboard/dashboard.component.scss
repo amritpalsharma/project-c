@@ -500,7 +500,7 @@
   .gallery_images img,
   .gallery_images video {
     width: 100%;
-    height: 116px !important;
+    height: 200px !important;
     object-fit: cover !important;
     object-position: top center !important;
   }
@@ -1247,7 +1247,7 @@
 .gallery_images img,
 .gallery_images video {
   width: 100%;
-  height: 116px !important;
+  height: 200px !important;
   object-fit: cover !important;
   object-position: top center;
 }
@@ -1799,13 +1799,19 @@ span.active_btn {
   .nav-tabs.user-tabs .nav-item .nav-link {
     font-size: 18px;
   }
+  .boost_profile span, .premium_button span {
+    font-size: 18px !important;
+  }
+  .premium_button svg {
+    width: 22px !important;
+}
 
   .title_2 {
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .title-1 {
-    font-size: 16px;
+    font-size: 18px;
   }
 
   .details_2,
@@ -1816,6 +1822,9 @@ span.active_btn {
   .user-info button .tour-personal-details {
     max-width: 135px !important;
   }
+  .edit_button span {
+  font-size: 18px !important;
+}
 }
 
 .setting_heighlight svg {

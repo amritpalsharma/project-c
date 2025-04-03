@@ -284,11 +284,12 @@
   background-color: white;
 }
 
-// .light-theme .website-code .club button {
-//   background-image: linear-gradient(180deg, #6FB95D, #236115);
-//   // border: 5px solid #cdaa15;
-//   color: white;
-// }
+.light-theme .website-code .joined-btn button.btn:hover {
+  background: #E05263 !important;
+  border: 1px solid #E05263;
+  color: #fff !important;
+}
+
 .light-theme .website-code .learn-more {
   border: 1px solid #175B07;
   color: white;
