@@ -32,7 +32,8 @@ export class PricingComponent {
 
   countryPrice: string = '';
   countryYearlyPrice: string = '';
-  pricing_banner_img: string = '../../../../assets/images/Pricing-banner.png';
+  pricing_banner_img: string = '../../../../assets/images/pricing-banner-image-light.png';
+  // pricing_banner_img_dark: string = '../../../../assets/images/pricing-banner-image-light.png';
 
   // adVisible: boolean[] = [true, true, true, true, true, true, true]; // Array to manage ad visibility
   adVisible: boolean[] = [false, false, false, false, false, false, false];
@@ -144,13 +145,8 @@ export class PricingComponent {
         this.advertisementData = res?.data?.advertisementData;
         this.advertisementList = res?.data?.allAdsList;
 
-        this.pricing_banner_img = this.pageData.pricing_banner_img;
-        this.base_url = res.data.base_url;
-        if (this.pricing_banner_img != '') {
-          this.pricing_banner_img = this.base_url + this.pricing_banner_img;
-          
-        }
-        
+        // this.pricing_banner_img = this.pageData.pricing_banner_img;
+        this.base_url = res.data.base_url; 
         this.isLoading = false;
         this.startCountdown();
       }

@@ -29,7 +29,7 @@ export class EditPlanComponent implements OnInit {
   allPlans: any[] = [];
   selectedInterval: any;
 
-  theme : any = localStorage.getItem('theme');
+  theme: any = localStorage.getItem('theme');
   // selectedCountries: any[] = []; // Stores full country objects
 
 
@@ -60,6 +60,7 @@ export class EditPlanComponent implements OnInit {
     this.stripe = await this.stripeService.getStripe();
     this.selectedInterval = this.data.selectedInterval;
     console.log("data here", this.data)
+    console.info('activePlans', this.data.activePlans);
     this.toggleBillingPlan(this.selectedInterval);
   }
 
@@ -78,7 +79,7 @@ export class EditPlanComponent implements OnInit {
     // Transform the 'plans' object into an array
     this.countries = Object.keys(this.data.plans).map(key => {
       const plan = this.data.plans[key];
-      console.info('Single Plan ', plan)
+      // console.info('Single Plan ', plan)
       return {
         id: plan.id,
         package_name: plan.package_name,
@@ -156,7 +157,7 @@ export class EditPlanComponent implements OnInit {
     // console.warn(this.selectedPlan)
     if (this.selectedPlan) {
       const planId = this.isYearly ? this.selectedPlan.yearly : this.selectedPlan.monthly;
-      console.info('planId',planId);
+      console.info('planId', planId);
       if (this.isYearly) {
         if (this.selectedPlan?.monthly?.is_package_active === 'active') {
           this.updatePlan(planId, this.isYearly, oldPlan);

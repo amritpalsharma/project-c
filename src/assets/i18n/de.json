@@ -1426,5 +1426,6 @@
   "selectCountryTxt": "Land wählen",
   "deleteBtnTxt": "Löschen",
   "showResultBtnTxt": "Resultate zeigen",
-  "renews":"Wird erneuert am:"
+  "renews":"Wird erneuert am:",
+  "alreadyPurchased":"Bereits gekauft"
 }

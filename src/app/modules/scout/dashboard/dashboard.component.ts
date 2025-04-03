@@ -597,7 +597,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
               this.toastr.success(response.message);
             } else {
               this.toastr.clear();
-              this.toastr.error('Failed to upload profile image. Please try again.', 'Upload Failed');
+              if(response.data.errors.profile_image != '' && response.data.errors.profile_image != undefined){
+                this.toastr.error(response.data.errors.profile_image);
+              }else{
+                this.toastr.error('Failed to upload profile image. Please try again.', 'Upload Failed');
+              }
               console.error('Invalid API response structure:', response);
             }
             this.selectedFile = null;

@@ -52,6 +52,8 @@ export class EditMembershipProfileComponent {
     // this.selectedAudiences = this.stats?.booster_audience;
 
     this.loggedInUser = JSON.parse(this.loggedInUser);
+
+    console.info('Details ',this.loggedInUser)
     if (this.loggedInUser.meta && this.loggedInUser.meta.date_of_birth != '') {
       //  console.warn(this.loggedInUser)
      

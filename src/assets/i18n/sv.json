@@ -1423,5 +1423,6 @@
   "selectCountryTxt": "Välj land",
   "deleteBtnTxt": "Radera",
   "showResultBtnTxt": "Visa resultat",
-  "renews": "Förnyas den:"
+  "renews": "Förnyas den:",
+  "alreadyPurchased": "Redan köpt"
 }

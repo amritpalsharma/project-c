@@ -1368,5 +1368,6 @@
   "selectCountryTxt": "Seleccionar país",
   "deleteBtnTxt": "Eliminar",
   "showResultBtnTxt": "Mostrar resultados",
-  "renews": "Se renueva el:"
+  "renews": "Se renueva el:",
+  "alreadyPurchased": "Ya comprado"
 }

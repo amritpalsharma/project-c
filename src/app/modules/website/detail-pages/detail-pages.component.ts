@@ -13,6 +13,7 @@ export class DetailPagesComponent {
   moreNews: any = [];
   adVisible: boolean[] = [true, true, true, true, true, true]; // Array to manage ad visibility
   baseUrl: string = 'https://api.socceryou.ch/uploads/';
+  currentLang: any = localStorage.getItem('lang_id');
   constructor(private route: ActivatedRoute, private router: Router, private webPages: WebPages) { }
 
   ngOnInit() {
@@ -23,6 +24,7 @@ export class DetailPagesComponent {
       this.id = params['slug'];
       //this.getPageData(1);
     });
+    this.getPageData(this.currentLang);
     this.webPages.languageId$.subscribe((data) => {
       this.getPageData(data)
     });

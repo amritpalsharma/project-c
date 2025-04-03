@@ -1333,5 +1333,6 @@
   "showResultBtnTxt":"Show results",
   "profileTxt":"Profile",
   "selectProfileType":"Select profile type",
-  "deleteBtnTxt":"Delete"
+  "deleteBtnTxt":"Delete",
+  "alreadyPurchased":"Already purchased"
 }

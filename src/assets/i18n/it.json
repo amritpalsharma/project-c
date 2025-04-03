@@ -1419,5 +1419,6 @@
   "selectCountryTxt": "Seleziona un paese",
   "deleteBtnTxt": "Elimina",
   "showResultBtnTxt": "Mostra risultati",
-  "renews": "Rinnovo il:"
+  "renews": "Rinnovo il:",
+  "alreadyPurchased": "Già acquistato"
 }

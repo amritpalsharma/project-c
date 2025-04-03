@@ -193,10 +193,22 @@ export class FavoritesComponent {
 
   onCheckboxChange(user: any) {
     const index = this.selectedIds.indexOf(user.id);
-    if (index === -1) {
+    // if (index === -1) {
+    //   this.selectedIds.push(user.id);
+    // } else {
+    //   this.selectedIds.splice(index, 1);
+    // }
+
+    if (!this.selectedIds.includes(user.id)) {
       this.selectedIds.push(user.id);
     } else {
-      this.selectedIds.splice(index, 1);
+      this.selectedIds = this.selectedIds.filter(id => id !== user.id);
+    }
+
+    if (this.userFavorites.length === this.selectedIds.length) {
+      this.allSelected = true;
+    } else {
+      this.allSelected = false;
     }
   }
 

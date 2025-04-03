@@ -1286,5 +1286,6 @@
   "selectCountryTxt": "Vælg land",
   "deleteBtnTxt": "Slet",
   "showResultBtnTxt": "Vis resultater",
-  "renews": "Fornyes den:"
+  "renews": "Fornyes den:",
+  "alreadyPurchased": "Allerede købt"
 }

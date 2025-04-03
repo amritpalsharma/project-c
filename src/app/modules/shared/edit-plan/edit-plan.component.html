@@ -31,7 +31,7 @@
       </div>
 
       <div class="explore-chip d-flex align-items-center mt-2">
-        <!-- <pre>{{activePlans | json}}</pre> -->
+        <!-- <h3 *ngIf="activePlans.length > 0">{{'alreadyPurchased' | translate}}</h3> -->
         <div *ngFor="let item of activePlans">
           <div class="chip p-2">
             <!-- Check if label is not empty -->

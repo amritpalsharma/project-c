@@ -703,8 +703,10 @@ export class PlanComponent implements OnInit, OnDestroy {
   }
 
   filterActivePlans() {
+    console.info('this.countryPlans',this.countryPlans);
+    this.activePlans = [];
     this.countryPlans.plans.forEach((plan: any) => {
-      if (plan.is_package_active) {
+      if (plan.is_package_active == 'active') {
         this.activePlans.push(plan); // Push only if is_package_active is true
       }
     })
