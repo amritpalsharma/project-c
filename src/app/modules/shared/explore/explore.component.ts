@@ -635,8 +635,9 @@ export class ExploreComponent implements OnInit {
   getJsonTranslations() {
     this.translateService.get(['explore']).subscribe((translations) => {
       this.pageTitle = translations['explore'];
-      this.titleService.setTitle(this.pageTitle);
-      console.log('Title fetch Function Fired');
+      setTimeout(() => {
+        this.titleService.setTitle(this.pageTitle);
+      }, 500);
     })
   }
 

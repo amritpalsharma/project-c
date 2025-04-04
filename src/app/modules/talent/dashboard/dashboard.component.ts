@@ -88,6 +88,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   generalError: string = '';
 
   async ngOnInit() {
+
     this.getJsonTranslations();
     this.themeChanged();
     this.introInstance = introJs();
@@ -393,7 +394,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
               if (dontShowAgain == 'true') {
                 //  don't show again
               } else {
-                this.startIntroTour(dblang);  // Start the tour after a slight delay
+                if (this.globalSettings.getDeviceType() == 'desktop') {
+                  this.startIntroTour(dblang);  // Start the tour after a slight delay
+                } else {
+                  console.info('Tour Not working in mobile now');
+                }
+
               }
             }, 0);
           }
@@ -717,10 +723,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
               }
             } else {
               this.toastr.clear();
-              
-              if(response.data.errors.profile_image != '' && response.data.errors.profile_image != undefined){
+
+              if (response.data.errors.profile_image != '' && response.data.errors.profile_image != undefined) {
                 this.toastr.error(response.data.errors.profile_image);
-              }else{
+              } else {
                 this.toastr.error('Failed to upload profile image. Please try again.', 'Upload Failed');
               }
               console.error('Invalid API response structure:', response);

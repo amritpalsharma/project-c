@@ -58,7 +58,9 @@
                 <!-- Choose Plan Button -->
                 <div class="row">
                   <div class="col-lg-12">
-                    <button class="choose-plan-btn" [disabled]="( premiumPlans?.package_name == premium?.package_name )"
+                    <!-- Old -->
+                    <!-- [disabled]="( premiumPlans?.package_name == premium?.package_name )" -->
+                    <button class="choose-plan-btn" [disabled]="((premiumPlans?.active_interval=='monthly' && !premiumPlans.isYearly) || premiumPlans?.active_interval=='yearly' && premiumPlans.isYearly)"
                       (click)="openCouponDialog(premiumPlans.isYearly ? premiumPlans.year_package_id : premiumPlans.month_package_id)">
                       {{'choosePlan' | translate}}
                     </button>
@@ -214,7 +216,9 @@
                 </div>
                 <div class="row">
                   <div class="col-lg-12">
-                    <button class="choose-plan-btn" [disabled]="(boostedPlans?.is_package_active=='active') "
+                    <!-- Old -->
+                     <!-- [disabled]="(boostedPlans?.is_package_active=='active') " -->
+                    <button class="choose-plan-btn" [disabled]="((boostedPlans?.active_interval=='monthly' && !boostedPlans.isYearly) || boostedPlans?.active_interval=='yearly' && boostedPlans.isYearly)"
                       (click)="addBoostPopup(boostedPlans.isYearly==true ? boostedPlans.year_package_id : boostedPlans.month_package_id )">{{'choosePlan' | translate}}</button>
                   </div>
                 </div>

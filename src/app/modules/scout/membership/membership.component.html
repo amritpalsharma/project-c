@@ -17,7 +17,7 @@
                     <div class="premium-card ">
                       <div class="d-flex align-items-end justify-content-between">
                         <h5>{{ 'premium' | translate }}</h5>
-                          <h6> {{ premium.price}}<sub class="premium-month_title">{{premium.currency}}/{{ premium.interval == 'monthly' ? ('month' | translate) : ('year' | translate) }}</sub></h6>
+                          <h6> {{ premium.price}}<sub class="premium-month_title">.-{{premium.currency}} / {{ premium.interval == 'monthly' ? ('month' | translate) : ('year' | translate) }}</sub></h6>
                       </div>
                       <p *ngIf="premium.stripe_cancel_at == null">{{ 'renews' | translate }} {{ premium.plan_period_end | date: 'dd.MM.yyyy' }}</p>
                       <p *ngIf="premium.stripe_cancel_at != null">{{ 'expiresOn' | translate }} {{ premium.stripe_cancel_at | date: 'dd.MM.yyyy' }}</p>
@@ -43,7 +43,7 @@
                     <div class="premium-card ">
                       <div class="d-flex align-items-end justify-content-between">
                         <h5>{{ 'multiCountry' | translate }}</h5>
-                          <h6> {{ demo.price}}<sub class="premium-month_title">{{demo.currency}}/{{ demo.interval == 'monthly' ? ('month' | translate) : ('year' | translate) }}</sub></h6>
+                          <h6> {{ demo.price}}<sub class="premium-month_title">.-{{demo.currency}} / {{ demo.interval == 'monthly' ? ('month' | translate) : ('year' | translate) }}</sub></h6>
                       </div>
                       <p *ngIf="demo.stripe_cancel_at == null">{{ '2_countries' | translate }} {{ demo.plan_period_end | date: 'dd.MM.yyyy' }}</p>
                       <p *ngIf="demo.stripe_cancel_at != null">{{ 'expiresOn' | translate }} {{ demo.stripe_cancel_at | date: 'dd.MM.yyyy' }}</p>
@@ -69,7 +69,7 @@
                     <div class="premium-card">
                       <div class="d-flex align-items-end justify-content-between">
                         <h5>{{ 'boostProfiles' | translate }}</h5>
-                        <h6> {{ country[0].price }}<sub class="premium-month_title">{{country[0].currency}}/{{ country.interval == 'monthly' ? ('month' | translate) : ('year' | translate) }}</sub></h6>
+                        <h6> {{ country[0].price }}<sub class="premium-month_title">.- {{country[0].currency}} / {{ country.interval == 'monthly' ? ('month' | translate) : ('year' | translate) }}</sub></h6>
                       </div>
                       <p>{{ country.length }} {{ 'countriesSelected' | translate }}</p>
                       <div class="d-flex align-items-center justify-content-between mt-4">
@@ -89,7 +89,7 @@
                     <div class="premium-card ">
                       <div class="d-flex align-items-end justify-content-between">
                         <h5>{{ 'boostProfile' | translate }}</h5>
-                          <h6> {{ booster.price}}<sub class="premium-month_title">{{booster.currency}}/{{booster.interval == 'monthly' ? ('month' | translate) : ('year' | translate) }}</sub></h6>
+                          <h6> {{ booster.price}}<sub class="premium-month_title">.-{{booster.currency}} / {{booster.interval == 'monthly' ? ('month' | translate) : ('year' | translate) }}</sub></h6>
                       </div>
                       <p *ngIf="booster.stripe_cancel_at == null">{{ 'renews' | translate }} {{ booster.plan_period_end | date: 'dd.MM.yyyy' }}</p>
                       <p *ngIf="booster.stripe_cancel_at != null">{{ 'renewSubscription' | translate }} {{ booster.stripe_cancel_at | date: 'dd.MM.yyyy' }}</p>
@@ -168,7 +168,7 @@
                             <span *ngIf="!purchase.coupon_used">-</span>
                           </td>
                           <td>
-                            <span *ngIf="purchase.amount_paid">{{purchase.amount_paid}} {{purchase.amount_paid_currency}}</span>
+                            <span *ngIf="purchase.amount_paid">{{purchase.amount_paid}} {{purchase.amount_paid_currency.toUpperCase()}}</span>
                             <span *ngIf="!purchase.amount_paid">-</span>
                           </td>
 

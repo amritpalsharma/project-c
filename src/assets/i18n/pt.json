@@ -829,7 +829,7 @@
   "yearly": "Yearly",
   "editPlan-text": "You e will e be e charged e a e percentage e of e a e subscriptions e cost e to e reflect e partial e use e on e the e basis e of e prorata.",
   "total": "Total",
-  "buyNow": "Buy e now",
+  "buyNow": "Comprar agora",
   "editUserPersonalDetails": "Edit e user e personal e details",
   "clubnameRequired": "Current e club e is e required.",
   "nationalityRequired": "Nationality e is e required.",
@@ -1378,5 +1378,8 @@
   "deleteBtnTxt": "Eliminar",
   "showResultBtnTxt": "Mostrar resultados",
   "renews": "Renova em:",
-  "alreadyPurchased": "Já comprado"
+  "alreadyPurchased": "Já comprado",
+  "portfolioDeleteConfirmation": "Tem certeza de que deseja remover este talento do seu portfólio?",
+  "portfolioDeletebtn": "Excluir",
+  "portfolioCloseBtn": "Fechar"
 }

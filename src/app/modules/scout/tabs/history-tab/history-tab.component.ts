@@ -16,7 +16,7 @@ export class HistoryTabComponent {
   toolbar: Toolbar = [
     ['bold', 'italic'],
     ['underline', 'strike'],
-    ['link', 'image'],
+    // ['link', 'image'],
     // ['ordered_list', 'bullet_list'],
     // ['text_color', 'background_color'],
     // ['align_left', 'align_center', 'align_right', 'align_justify'],

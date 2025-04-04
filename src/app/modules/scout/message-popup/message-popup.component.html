@@ -35,5 +35,13 @@
                 <span (click)="deleteConfirmed()">{{'remove' | translate}}</span>
             </div>
         </div>
+        <div class="display-message" *ngIf="data.action == 'portfolio-delete-confirmation' && data.message != ''">{{'portfolioDeleteConfirmation' | translate}}</div>
+        <div *ngIf="data.action === 'portfolio-delete-confirmation'"
+            class="popup-delete-btn d-flex align-items-center flex-wrap justify-content-center py-2">
+            <div (click)="deleteConfirmed()" class="btn btn-success me-3 bg-light-btn btn_confirmm">{{ 'portfolioDeletebtn' |
+                translate }}</div>
+            <div (click)="close()" class="btn btn-danger bg-dark-btn btn_cancell">{{ 'portfolioCloseBtn' | translate }}
+            </div>
+        </div>
     </div>
 </div>

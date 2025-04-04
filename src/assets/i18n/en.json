@@ -1328,11 +1328,14 @@
   "editBoostProfile": "Edit boost profile",
   "uploadHighlightPhotosAndVideos": "Upload Photos and Videos",
   "invalidPhoneNumber": "Please provide a valid phone number.",
-  "countryTxt":"Country",
-  "selectCountryTxt":"Select country",
-  "showResultBtnTxt":"Show results",
-  "profileTxt":"Profile",
-  "selectProfileType":"Select profile type",
-  "deleteBtnTxt":"Delete",
-  "alreadyPurchased":"Already purchased"
+  "countryTxt": "Country",
+  "selectCountryTxt": "Select country",
+  "showResultBtnTxt": "Show results",
+  "profileTxt": "Profile",
+  "selectProfileType": "Select profile type",
+  "deleteBtnTxt": "Delete",
+  "alreadyPurchased": "Already purchased",
+  "portfolioDeleteConfirmation": "Are you sure you want to remove this Talent from your portfolio?",
+  "portfolioDeletebtn": "Delete",
+  "portfolioCloseBtn": "Close"
 }

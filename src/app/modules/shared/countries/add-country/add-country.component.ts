@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { PaymentService } from '../../../../services/payment.service';
 import { loadStripe } from '@stripe/stripe-js';
 import { environment } from '../../../../../environments/environment';
+import { ScoutService } from '../../../../services/scout.service';
 
 @Component({
   selector: 'shared-add-country',
@@ -24,13 +25,15 @@ export class AddCountryComponent {
     private toastr: ToastrService,
     private stripeService: PaymentService,
     private paymentService: PaymentService,
+    private ScoutService: ScoutService,
   ) { }
   otherPlans: any;
   selectedPlan: any;
   country: any;
   stripe: any;
   countryPlans: any;
-  theme : any = localStorage.getItem('theme');
+  theme: any = localStorage.getItem('theme');
+  isYearly: boolean = false;
 
   stripePromise = loadStripe(environment.stripePublishableKey);
 
@@ -56,11 +59,20 @@ export class AddCountryComponent {
 
   // Method to handle the confirm button click
   onConfirm() {
-    // Assuming you need to navigate to '/packages' and pass the selected country info
-    // this.router.navigate(['/talent/plans'], { queryParams: { countryId: this.country.id } });
     this.dialogRef.close(); // Close the dialog after confirming 
-    const selected = this.countryPlans.find((plan: any) => plan.id === this.country.id);
-    // alert('Current Selected '+selected)
+
+    // const selected = this.countryPlans.find((plan: any) => plan.id === this.country.id);
+
+    let interval;
+    if (this.isYearly === true) {
+      interval = 'yearly';
+    } else {
+      interval = 'monthly';
+    }
+    console.info('this.country', this.country);
+    const selected = this.countryPlans.find(
+      (plan: any) => plan.package_name === this.country.package_name && plan.interval === interval
+    );
     if (selected.id != '') {
       console.warn(selected)
       this.redirectToCheckout(selected.id);
@@ -96,16 +108,27 @@ export class AddCountryComponent {
       (response: any) => {
         if (response && response.status) {
           this.countryPlans = response.data.domains;
-          // this.flag_path = response.data.logo_path;
-
-          // Filter the countries where is_package_active == 'active'
-          // this.filteredCountries = this.countries.filter((country:any) => country.is_package_active == 'active');
-
         }
       },
       (error: any) => {
         console.error('Error fetching teams:', error);
       }
     );
+
+    this.ScoutService.getPackages().subscribe({
+      next: (response: any) => {
+        if (response && response.status) {
+          if (response.data.country && response.data.country.plans != undefined) {
+            this.countryPlans = response.data.country.plans;
+          }
+        }
+        // console.info('All Country Plans');
+        // console.info(response);
+      }
+    })
+  }
+
+  toggleBillingPlan(isYearly: boolean) {
+    this.isYearly = isYearly; // Toggle between monthly and yearly
   }
 }

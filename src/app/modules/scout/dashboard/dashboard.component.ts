@@ -387,7 +387,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
               if (dontShowAgain == 'true') {
                 //  don't show again
               } else {
-                this.startIntroTour(dblang);  // Start the tour after a slight delay
+                if (this.globalSettings.getDeviceType() == 'desktop') {
+                  this.startIntroTour(dblang);  // Start the tour after a slight delay
+                } else {
+                  console.info('Tour Not working in mobile now');
+                }
               }
               // this.startIntroTour(dblang);  // Start the tour after a slight delay
             }, 0);
@@ -805,12 +809,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   getToasterMsg() {
     this.translateService.get(['pleaseWait']).subscribe((translations) => {
       this.pleaseWait = translations['pleaseWait'];
-      // this.uploadingPhotos = translations['uploadingPhotos'];
-      // this.successTxt = translations['successTxt'];
-      // this.errorTxt = translations['errorTxt'];
-      // this.deletingCoverImage = translations['deletingCoverImage'];
-      // this.coverImageDeletionCanceled = translations['coverImageDeletionCanceled'];
-      // this.Canceled = translations['Canceled'];
     });
   }
   themeChanged() {

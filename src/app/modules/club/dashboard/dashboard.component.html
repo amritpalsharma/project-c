@@ -753,11 +753,11 @@
             <div class="general_details mt-4 p-4 bg-color ">
               <club-profile-tab *ngIf="activeTab == 'profile'" [userData]="user"
                 [isPremium]="isPremium"></club-profile-tab>
-              <club-history-tab *ngIf="activeTab == 'club_history'" role="club"></club-history-tab>
-              <club-teams-tab *ngIf="activeTab == 'teams'" [userData]="user"></club-teams-tab>
-              <club-gallery-tab *ngIf="activeTab == 'gallery'" [coverImage]="coverImage"
+              <club-history-tab *ngIf="activeTab == 'club_history'" role="club" [isPremium]="isPremium"></club-history-tab>
+              <club-teams-tab *ngIf="activeTab == 'teams'" [userData]="user" [isPremium]="isPremium"></club-teams-tab>
+              <club-gallery-tab *ngIf="activeTab == 'gallery'"  [coverImage]="coverImage"
                 (dataEmitter)="handleCoverImageData($event)" [isPremium]="isPremium"></club-gallery-tab>
-              <club-sighting-tab *ngIf="activeTab == 'sighting'"></club-sighting-tab>
+              <club-sighting-tab *ngIf="activeTab == 'sighting'" [isPremium]="isPremium"></club-sighting-tab>
             </div>
           </div>
         </div>

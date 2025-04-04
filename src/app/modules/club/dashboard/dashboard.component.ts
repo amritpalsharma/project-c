@@ -368,7 +368,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
               if (dontShowAgain == 'true') {
                 //  don't show again
               } else {
-                this.startIntroTour(dblang);  // Start the tour after a slight delay
+                if (this.globalSettings.getDeviceType() == 'desktop') {
+                  this.startIntroTour(dblang);  // Start the tour after a slight delay
+                } else {
+                  console.info('Tour Not working in mobile now');
+                }
               }
 
               // if (!this.user?.meta?.profile_image_path && this.user.club_logo_path != '' && this.user.club_logo_path != undefined) { 

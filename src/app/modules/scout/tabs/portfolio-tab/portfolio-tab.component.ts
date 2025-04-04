@@ -23,10 +23,11 @@ export class PortfolioTabComponent {
   readonly animal = signal('');
   readonly name = model('');
 
-  constructor(private route: ActivatedRoute, private scoutservice: ScoutService, private scoutService: ScoutService, public dialog: MatDialog, private router: Router, translateService: TranslateService) {
+  constructor(private route: ActivatedRoute, private scoutservice: ScoutService, private scoutService: ScoutService, public dialog: MatDialog, private router: Router, public translateService: TranslateService) {
     translateService.onLangChange.subscribe(() => {
       this.getScoutPlayers();
     });
+
   }
 
   userId: any = '';
@@ -40,12 +41,21 @@ export class PortfolioTabComponent {
   idToBeDeleted: any = '';
   langId: any = localStorage.getItem('lang_id');
   @Input() userData: any;
+  portfolioDeleteConfirmation:string='';
+  portfolioDeletebtn:string='';
+  portfolioCloseBtn:string='';
 
   ngOnInit(): void {
     this.loggedInUser = JSON.parse(this.loggedInUser);
     this.user = this.userData;
     this.userId = this.user.id;
     this.getScoutPlayers();
+
+    this.translateService.get(['portfolioDeleteConfirmation','portfolioDeletebtn','portfolioCloseBtn']).subscribe((translations) => {
+        this.portfolioDeleteConfirmation = translations['portfolioDeleteConfirmation'];
+        this.portfolioDeletebtn = translations['portfolioDeletebtn'];
+        this.portfolioCloseBtn = translations['portfolioCloseBtn'];
+    })
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -61,29 +71,7 @@ export class PortfolioTabComponent {
     return status === 'accepted' ? 'status-accepted' : 'status-rejected';
   }
 
-  // addNewTalet() {
-  //   if(!this.checkRole()){
-  //     return;
-  //   }
-  //   const dialogRef = this.dialog.open(AddNewTalentComponent, {
-  //     width: '600px',
-  //     height:'450px',
-  //     position: {
-  //       top:'70px'
-  //     },
-  //     data: {
-  //       scoutId: this.user.id
-  //     }
-  //   });
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log('The dialog was closed', result);
-  //     if (result !== undefined) {
-  //       this.animal.set(result);
-  //     }
-  //   });
-  // }
-
+ 
 
   inviteTalent() {
     if (!this.checkRole()) {
@@ -182,7 +170,7 @@ export class PortfolioTabComponent {
     this.idToBeDeleted = id; //id;
     let name = firstName + " " + lastName;
     console.log(id, firstName, lastName);
-    this.showMatDialog("", "delete-confirmation", name);
+    this.showMatDialog(this.portfolioDeleteConfirmation, "portfolio-delete-confirmation", name);
   }
 
   showMatDialog(message: string, action: string, name: any = '') {
@@ -194,7 +182,7 @@ export class PortfolioTabComponent {
       data: {
         message: message,
         action: action,
-        name: name
+        name: name,
       }
     })
 

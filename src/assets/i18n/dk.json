@@ -739,7 +739,7 @@
   "yearly": "Yearly",
   "editPlan-text": "You og will og be og charged og a og percentage og of og a og subscriptions og cost og to og reflect og partial og use og on og the og basis og of og prorata.",
   "total": "Total",
-  "buyNow": "Buy og now",
+  "buyNow": "Køb nu",
   "editUserPersonalDetails": "Edit og user og personal og details",
   "clubnameRequired": "Current og club og is og required.",
   "nationalityRequired": "Nationality og is og required.",
@@ -1287,5 +1287,8 @@
   "deleteBtnTxt": "Slet",
   "showResultBtnTxt": "Vis resultater",
   "renews": "Fornyes den:",
-  "alreadyPurchased": "Allerede købt"
+  "alreadyPurchased": "Allerede købt",
+  "portfolioDeleteConfirmation": "Er du sikker på, at du vil fjerne dette talent fra din portefølje?",
+  "portfolioDeletebtn": "Slet ",
+  "portfolioCloseBtn": "Luk"
 }

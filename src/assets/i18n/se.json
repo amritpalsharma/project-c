@@ -887,7 +887,7 @@
   "yearly": "Yearly",
   "editPlan-text": "You och will och be och charged och a och percentage och of och a och subscriptions och cost och to och reflect och partial och use och on och the och basis och of och prorata.",
   "total": "Totalt",
-  "buyNow": "Buy och now",
+  "buyNow": "Köp nu",
   "includeVAT": "",
   "editUserPersonalDetails": "Edit och user och personal och details",
   "clubnameRequired": "Current och club och is och required.",
@@ -1368,5 +1368,8 @@
   "deleteBtnTxt": "Radera",
   "showResultBtnTxt": "Visa resultat",
   "renews": "Förnyas den:",
-  "alreadyPurchased": "Redan köpt"
+  "alreadyPurchased": "Redan köpt",
+  "portfolioDeleteConfirmation": "Är du säker på att du vill ta bort denna talang från din portfölj?",
+  "portfolioDeletebtn": "Ta bort",
+  "portfolioCloseBtn": "Stäng"
 }

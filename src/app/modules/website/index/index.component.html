@@ -96,7 +96,7 @@
             <!-- {{sliderDetail?.users | json}} -->
             @for (slider of sliderDetail?.users; track $index) {
             <ng-template carouselSlide>
-              <div *ngIf="slider.role_name != 'Club'" class="player-carousel">
+              <div *ngIf="slider.role_name != 'Club'" class="player-carousel" data-bs-toggle="modal" data-bs-target="#exampleModal1">
                 <div class="player-border">
                   <div class="player-img">
                     <img src="{{slider.meta.profile_image_path}}" (error)="handleImageError($event)"
@@ -132,7 +132,7 @@
                 </div>
               </div>
 
-              <div *ngIf="slider.role_name == 'Club'" class="player-carousel-club">
+              <div *ngIf="slider.role_name == 'Club'" class="player-carousel-club" data-bs-toggle="modal" data-bs-target="#exampleModal1">
                 <div class="player-border">
                   <div class="player-img">
                     <img src="{{slider.meta.profile_image_path}}" (error)="handleImageError($event)"

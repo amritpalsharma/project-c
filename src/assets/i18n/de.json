@@ -1427,5 +1427,9 @@
   "deleteBtnTxt": "Löschen",
   "showResultBtnTxt": "Resultate zeigen",
   "renews":"Wird erneuert am:",
-  "alreadyPurchased":"Bereits gekauft"
+  "alreadyPurchased":"Bereits gekauft",
+  "portfolioDeleteConfirmation": "Bist du sicher, dass du dieses Talent aus deinem Portfolio entfernen möchtest?",
+  "portfolioDeletebtn": "Löschen",
+  "portfolioCloseBtn": "Schliessen",
+    "countryBuyNow": "Buy now"
 }

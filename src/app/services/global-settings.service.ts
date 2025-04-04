@@ -132,4 +132,16 @@ export class GlobalSettingsService {
   callIndexComponentFunction() {
     this.indexFunctionCallSubject.next(); // Notify listeners (IndexComponent)
   }
+
+  getDeviceType() {
+    const ua = navigator.userAgent;
+  
+    if (/tablet|ipad|playbook|silk/i.test(ua)) {
+      return "tablet";
+    }
+    if (/Mobile|iPhone|Android|BlackBerry|IEMobile|Opera Mini/i.test(ua)) {
+      return "mobile";
+    }
+    return "desktop";
+  }
 }

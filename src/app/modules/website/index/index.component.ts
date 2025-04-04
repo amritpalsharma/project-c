@@ -7,6 +7,7 @@ import { SharedService } from '../../../services/shared.service';
 import { AuthService } from '../../../services/auth.service';
 import { ThemeService } from '../../../services/theme.service';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
+declare var bootstrap: any; // Declare bootstrap
 
 export interface ClubMember {
   name: string;
@@ -428,6 +429,13 @@ export class IndexComponent {
 
   isFeaturedImageExists(key: any): boolean {
     return this.advertisementData && this.advertisementData[key] && 'featured_image' in this.advertisementData[key];
+  }
+  showRegisterModal() {
+    const registerModal = bootstrap.Modal.getInstance(document.getElementById('exampleModal1'));
+    console.info('registerModal',registerModal);
+    if (registerModal) {
+      registerModal.toggle();
+    }
   }
 
   indexFunction() {
