@@ -4,8 +4,8 @@
     </div>
 
     <div class="msg-popup-content">
-        <div class="display-message" *ngIf="data.action == 'display'">{{data.message}}</div>
-        <div class="display-message" *ngIf="data.action == 'delete-confirmation'">
+        <div class="display-message p-3" *ngIf="data.action == 'display'">{{data.message}}</div>
+        <div class="display-message p-3" *ngIf="data.action == 'delete-confirmation'">
             {{'confirmDeleteUser' | translate}} <br> {{'confirmDeleteUser1' | translate}}
 
             <div class="popup-delete-btn">
@@ -13,7 +13,7 @@
             </div>
         </div>
 
-        <div class="display-message" *ngIf="data.action == 'delete-activity-confirmation'">
+        <div class="display-message p-3" *ngIf="data.action == 'delete-activity-confirmation'">
             {{data.message}}
 
             <div class="popup-delete-btn">
@@ -21,7 +21,7 @@
             </div>
         </div>
 
-        <div class="display-message" *ngIf="data.action == 'newsletter-confirmation'">
+        <div class="display-message p-3" *ngIf="data.action == 'newsletter-confirmation'">
             {{data.message}}
 
             <div class="popup-delete-btn">
@@ -29,13 +29,13 @@
             </div>
         </div>
 
-        <div class="display-message" *ngIf="data.action == 'delete-favorite-confirmation'">
+        <div class="display-message p-3" *ngIf="data.action == 'delete-favorite-confirmation'">
             {{'areToSure' | translate}}
             <div class="popup-delete-btn">
                 <span (click)="deleteConfirmed()">{{'remove' | translate}}</span>
             </div>
         </div>
-        <div class="display-message" *ngIf="data.action == 'portfolio-delete-confirmation' && data.message != ''">{{'portfolioDeleteConfirmation' | translate}}</div>
+        <div class="display-message p-3" *ngIf="data.action == 'portfolio-delete-confirmation' && data.message != ''">{{'portfolioDeleteConfirmation' | translate}}</div>
         <div *ngIf="data.action === 'portfolio-delete-confirmation'"
             class="popup-delete-btn d-flex align-items-center flex-wrap justify-content-center py-2">
             <div (click)="deleteConfirmed()" class="btn btn-success me-3 bg-light-btn btn_confirmm">{{ 'portfolioDeletebtn' |
