@@ -478,8 +478,8 @@
   .gallery_images img,
   .gallery_images video {
     width: 100%;
-    height: 200px !important;
-    object-fit: cover !important;
+    height: 200px;
+    object-fit: cover;
     object-position: top center;
   }
 
@@ -1198,8 +1198,8 @@
 .gallery_images img,
 .gallery_images video {
   width: 100%;
-  height: 200px !important;
-  object-fit: cover !important;
+  height: 200px;
+  object-fit: cover;
   object-position: top center;
 }
 
@@ -1408,12 +1408,16 @@ span.active_btn {
   top: -46px;
   right: 0px;
   color: #fff;
-  font-size: 31px;
+  font-size: 26px;
+  font-weight: 400;
   border: 3px solid #fff;
   border-radius: 50%;
-  line-height: 36px;
+  line-height: 0;
   width: 40px;
   height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 ::ng-deep .introjs-tooltip-header {
@@ -1446,18 +1450,22 @@ span.active_btn {
 
 ::ng-deep .introjs-arrow.top {
   border-bottom-color: #ffc107;
+  top: -9px;
 }
 
 ::ng-deep .introjs-arrow.left {
   border-right-color: #ffc107;
+  left: -9px;
 }
 
 ::ng-deep .introjs-arrow.right {
   border-left-color: #ffc107;
+  right: -9px;
 }
 
 ::ng-deep .introjs-arrow.bottom {
   border-top-color: #ffc107;
+  bottom: -9px;
 }
 
 ::ng-deep .introjs-tooltiptext {
@@ -1848,6 +1856,13 @@ span.active_btn {
     padding: 6px 10px;
     font-size: 12px;
     margin-bottom: 8px;
+  }
+}
+
+
+@media (min-width: 1200px) and (max-width: 1599px) {
+  .gallery_images img, .gallery_images video {
+      height: 120px !important;
   }
 }
 

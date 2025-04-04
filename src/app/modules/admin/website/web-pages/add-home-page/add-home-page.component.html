@@ -1,5 +1,5 @@
 @if(!showTabForm){
-<div class="container mt-3">
+<div class="container mt-3 webpages_popup">
   <h2 class="mb-3">{{ 'homePage' | translate }}</h2>
 
   <form [formGroup]="addHomePageForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
@@ -173,7 +173,7 @@
 </div>
 }@else{
 
-<div class="container mt-3">
+<div class="container mt-3 webpages_popup">
   <h2 class="mb-3">{{ 'tabSection' | translate }}</h2>
 
   <form (ngSubmit)="onTabFormSubmit()" #myForm="ngForm" enctype="multipart/form-data">

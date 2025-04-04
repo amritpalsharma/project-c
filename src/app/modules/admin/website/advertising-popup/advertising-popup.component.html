@@ -1,42 +1,33 @@
 <ng-container *ngIf="data.action != 'view'">
   <div class="p-0 code-parent adv_modal mobile_popup_responsive">
-    <div class="bg-0C3453 p-4">
+    <div class="popup_header p-3">
       <h6 class="main_heading_title code-text text-center ">
         {{ 'advertising' | translate }}
       </h6>
       <div (click)="close()" class="close-img mb-1"> </div>
 
     </div>
-    <hr class="m-0">
 
-    <div class="p-3 create-new_popup">
 
-      <div class="d-flex mb-3 add-banners">
-        <div>
-          <p class="code-text">
-            {{ 'name' | translate }}
-          </p>
-          <input class="cupen-btn-1" [(ngModel)]="name">
+    <div class="popup__body p-3 create-new_popup">
+
+      <div class="row add-banners">
+        <div class="form-group col-sm-6 col-lg-5">
+          <label class="code-text">{{ 'name' | translate }}</label>
+          <input class="form-control" [(ngModel)]="name">
           <div *ngIf="errorMsg.name" class="error-msg">{{errorMsg.name}}</div>
         </div>
-        <div class="ms-5">
-          <p class="code-text">
-            {{ 'clickDirectUrl' | translate }}
-          </p>
-          <input class="cupen-btn-1" [(ngModel)]="redirect">
+        <div class="form-group col-sm-6 col-lg-5">
+          <label class="code-text">{{ 'clickDirectUrl' | translate }}</label>
+          <input class="form-control" [(ngModel)]="redirect">
           <div *ngIf="errorMsg.redirect" class="error-msg">{{errorMsg.redirect}}</div>
         </div>
       </div>
-
-
-      <div class="d-flex mb-3 add-banners">
-        <div>
-          <p class="code-text">
-            {{ 'page' | translate }}
-          </p>
-
+      <div class="row add-banners">
+        <div class="form-group col-sm-6 col-lg-5">
+          <label class="code-text">{{ 'page' | translate }}</label>
           <div class="btn-group">
-            <select class="cupen-btn-1 form-select" style="cursor: pointer !important;"
+            <select class="form-control" style="cursor: pointer !important;"
               aria-label="Default select example" [(ngModel)]="page" (change)="onChange()">
               <option value="">{{ 'select' | translate }}</option>
               <option *ngFor="let option of pageOptions" [value]="option.id">{{option.page}}</option>
@@ -51,32 +42,10 @@
           <div *ngIf="errorMsg.page" class="error-msg">{{errorMsg.page}}</div>
         </div>
 
-
-        <!-- <div class="ms-5">
-          <p class="code-text">
-            {{ 'language' | translate }}
-          </p>
+        <div class="form-group col-sm-6 col-lg-5">
+          <label class="code-text">{{ 'type' | translate }}</label>
           <div class="btn-group">
-            <select class="cupen-btn-1 form-select" style="cursor: pointer !important;" aria-label="Default select example" [(ngModel)]="selectedLanguage" (change)="onChange($event)">
-              <option value="">{{ 'select' | translate }}</option>
-              <option *ngFor="let language of languages" value="{{language.id}}">{{language.language}}</option>
-            </select>
-            <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none"
-              xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M4.08333 3.25838L0.995812 0.170854C0.768006 -0.0569515 0.39866 -0.0569515 0.170854 0.170854C-0.0569515 0.39866 -0.0569515 0.768006 0.170854 0.995812L3.67085 4.49581C3.89866 4.72362 4.26801 4.72362 4.49581 4.49581L7.99581 0.995812C8.22362 0.768006 8.22362 0.39866 7.99581 0.170854C7.76801 -0.0569515 7.39866 -0.0569515 7.17085 0.170854L4.08333 3.25838Z"
-                fill="#646464" />
-            </svg>
-          </div>
-          <div *ngIf="errorMsg.type" class="error-msg">{{errorMsg.type}}</div>
-        </div> -->
-
-        <div class="ms-5">
-          <p class="code-text">
-            {{ 'type' | translate }}
-          </p>
-          <div class="btn-group">
-            <select class="cupen-btn-1 form-select" style="cursor: pointer !important;"
+            <select class="form-control" style="cursor: pointer !important;"
               aria-label="Default select example" [(ngModel)]="type">
               <option value="">{{ 'select' | translate }}</option>
               <option *ngFor="let option of typeOptions" value="{{option}}">{{removeTextAfterDash(option)}}</option>
@@ -91,6 +60,7 @@
           <div *ngIf="errorMsg.type" class="error-msg">{{errorMsg.type}}</div>
         </div>
       </div>
+
       <div class="upload-img mb-3" *ngIf="!imagePreview && !imageUrl">
         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -128,20 +98,10 @@
         <button (click)="closeImage()" class="ad-close-button d-block"><i class="fa-solid fa-xmark"></i></button>
       </div>
 
-
-
-      <!-- "https://api.socceryou.ch/uploads/" -->
-
-      <!-- fjghkdhfg -->
-
       <div class="mb-3">
-        <p class="code-text">
-          {{ 'validBetween' | translate }}
-        </p>
+        <label class="code-text"> {{ 'validBetween' | translate }}</label>
         <div class="d-flex calender-inputs-box">
-
           <div class="d-flex coupon-dateRange">
-
             <div>
               <div class="cupen-btn-date">
                 <mat-form-field class="meta-date">
@@ -176,92 +136,28 @@
               </label>
             </span> {{ 'dontsetAnEnd' | translate }}
           </div>
-
         </div>
-
         <div *ngIf="errorMsg.endDate" class="error-msg">{{errorMsg.endDate}}</div>
-
       </div>
-      <!-- skdjfhkjs -->
-      <!-- <div class="mb-2">
-      <p  class="code-text">
-        Display Duration
-      </p>
-      <div class="d-flex">
 
-        <div>
-
-          <div class="cupen-btn">
-            <mat-form-field class="meta-date">
-              <mat-label>Choose a date</mat-label>
-              <input matInput [matDatepicker]="picker1">
-              <mat-hint>MM/DD/YYYY</mat-hint>
-              <mat-datepicker-toggle matIconPrefix [for]="picker1"></mat-datepicker-toggle>
-              <mat-datepicker #picker1></mat-datepicker>
-            </mat-form-field>
-          </div>
-        </div>
-        <div class="ms-2">
-
-            <div class="cupen-btn">
-              <mat-form-field class="meta-date">
-                <mat-label>Choose a date</mat-label>
-                <input matInput [matDatepicker]="picker2">
-                <mat-hint>MM/DD/YYYY</mat-hint>
-                <mat-datepicker-toggle matIconPrefix [for]="picker2"></mat-datepicker-toggle>
-                <mat-datepicker #picker2></mat-datepicker>
-              </mat-form-field>
-            </div>
-        </div>
-        <div class="d-flex align-items-center ms-2 code-text">
-          <span class="form-check align-self-center ">
-            <input
-              type="checkbox"
-              value=""
-              id="defaultCheck1"
-              class="form-check-input"
-            /> <label for="defaultCheck1" class="form-check-label"> </label>
-          </span> Don't set an end date
-        </div>
-
-       </div>
-
-     </div> -->
-
-      <div class="d-flex mb-3 add-banners ">
-        <div>
-          <p class="code-text">
-            {{ 'maxViews' | translate }}
-          </p>
-          <input class="cupen-btn-1" [(ngModel)]="maxViews">
+      <div class="row add-banners ">
+        <div class="form-group col-sm-6 col-lg-5">
+          <label class="code-text"> {{ 'maxViews' | translate }}</label>
+          <input class="form-control" [(ngModel)]="maxViews">
           <div *ngIf="errorMsg.maxViews" class="error-msg">{{errorMsg.maxViews}}</div>
         </div>
-        <div class="ms-3">
-          <p class="code-text">
-            {{ 'maxClicks' | translate }}
-          </p>
-          <input class="cupen-btn-1" [(ngModel)]="maxClicks">
+        <div class="form-group col-sm-6 col-lg-5">
+          <label class="code-text">{{ 'maxClicks' | translate }}</label>
+          <input class="form-control" [(ngModel)]="maxClicks">
           <div *ngIf="errorMsg.maxClicks" class="error-msg">{{errorMsg.maxClicks}}</div>
         </div>
 
       </div>
     </div>
 
-    <hr class="m-0">
-
-    <!--  <div>
-    <div class="upload"> -->
-    <!-- <div class="marketing-button-child"> -->
-    <!-- <div style=" margin-left: 52px;">
-      <a class="btn btn-delete text-danger code-text">Delete</a>
-     </div>
-      <div>
-      <a class="btn Launch" >Create and Launch</a>
-     </div>
-  </div> -->
 
     <div class="popup_buttons_mobile">
-      <div class=" d-flex justify-content-between bg-0C3453 p-3">
+      <div class="dialog-actions d-flex justify-content-between popup_footer p-3">
         <div>
           <a class="btn btn-delete text-danger" (click)="close()">{{ 'cancel' | translate }}</a>
         </div>
@@ -278,16 +174,15 @@
 
 <ng-container *ngIf="data.action == 'view'">
   <div class="p-0 code-parent adv_modal mobile_popup_responsive">
-    <div class="bg-0C3453 p-4">
+    <div class="popup_header p-3">
       <h6 class="main_heading_title code-text text-center ">
         {{ 'advertising' | translate }}
       </h6>
       <div (click)="close()" class="close-img mb-1"></div>
 
     </div>
-    <hr class="m-0">
 
-    <div class="p-3 create-new_popup">
+    <div class="popup__body p-3 create-new_popup">
       <div class="d-flex mb-3 add-banners">
         <div>
           <p class="code-text">
@@ -313,7 +208,7 @@
             {{ 'page' | translate }}
           </p>
           <div class="btn-group">
-            <select disabled class="cupen-btn-1 form-select" style="cursor: no-drop !important;"
+            <select disabled class="form-control" style="cursor: no-drop !important;"
               aria-label="Default select example" [(ngModel)]="page" (change)="onChange()">
               <option value="">{{ 'select' | translate }}</option>
               <option *ngFor="let option of pageOptions" [value]="option.id">{{option.page}}</option>
@@ -331,7 +226,7 @@
             {{ 'type' | translate }}
           </p>
           <div class="btn-group">
-            <select disabled class="cupen-btn-1 form-select" style="cursor: no-drop !important;"
+            <select disabled class="form-control" style="cursor: no-drop !important;"
               aria-label="Default select example" [(ngModel)]="type">
               <option value="">{{ 'select' | translate }}</option>
               <option *ngFor="let option of typeOptions" value="{{option}}">{{option}}</option>
@@ -347,9 +242,6 @@
 
 
       </div>
-      <!-- <div class="upload-img mb-3">
-        <img src="{{imageUrl}}" style="max-height:80px;">
-      </div> -->
 
       <div *ngIf="imagePreview || imageUrl" class="preview-image-container position-relative">
         <img *ngIf="imagePreview" [src]="imagePreview" alt="Preview" class="image-preview" />
@@ -465,22 +357,14 @@
 
       </div>
 
-      <div class="d-flex mb-3 add-banners">
-        <div>
-          <p class="code-text">
-            Max Views
-          </p>
-          <div class="cupen-btn-1">
-            {{maxViews}}
-          </div>
+      <div class="row add-banners">
+        <div class="form-group col-sm-6 col-lg-5">
+          <label class="code-text"> Max Views</label>
+          <div class="cupen-btn-1">{{maxViews}}</div>
         </div>
-        <div class="ms-3">
-          <p class="code-text">
-            {{ 'maxClicks' | translate }}
-          </p>
-          <div class="cupen-btn-1">
-            {{maxClicks}}
-          </div>
+        <div class="form-group col-sm-6 col-lg-5">
+          <label class="code-text">{{ 'maxClicks' | translate }}</label>
+          <div class="cupen-btn-1">{{maxClicks}}</div>
         </div>
 
       </div>

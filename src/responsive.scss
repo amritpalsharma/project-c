@@ -199,6 +199,13 @@
         width: 76% !important;
     }
 }
+.page-content .dashboard_page_only {
+    display: flex;
+    flex-direction: column;
+    .box_height_eqaul {
+        height: 100%;
+    }
+}
 }
 
 @media (min-width: 992px) and (max-width: 2000px) {
@@ -211,6 +218,9 @@
 .website-code nav.navbar .login-btn {
     width: 175px !important;
     font-size: 14px !important;
+}
+.home_galery img.img-fluid, .home_galery video {
+    height: 140px !important;
 }
 }
 
@@ -359,11 +369,6 @@ td.cdk-column-Remove.mat-column-Remove svg {
     .player-view-container .club-team {
         font-size: 22px !important;
     }
-    .gallery-parent {
-        .img-fluid, video {
-            height: 180px;
-        }
-    }
 }
 
 .admin_common_sight {
@@ -511,15 +516,6 @@ td.cdk-column-Remove.mat-column-Remove svg {
 .dialog-header h2 {
     font-size: 26px !important;
 }
-}
-
-
-@media (min-width: 1441px) {
-.home_galery {
-    img.img-fluid {
-      height: 200px !important;
-  }
-  }
 }
 
 @media (max-width:1300px) and (min-width:992px) {

@@ -1,14 +1,10 @@
-<div appClickOutside (clickOutside)="onClickOutside()" class="p-0 parent-popup marketing_modal mobile_popup_responsive">
-  <div class="p-3 bg-0C3453">
-
+<div appClickOutside (clickOutside)="onClickOutside()" class="p-0 marketing_modal mobile_popup_responsive">
+  <div class="p-3 popup_header">
     <h4 class="text-center" *ngIf="!data">{{ 'createNewPopUp' | translate }}</h4>
     <h4 class="text-center" *ngIf="data">{{ 'editPopUp' | translate }}</h4>
-
-    <div class="close-img" (click)="close()">
-    </div>
+    <div class="close-img" (click)="close()"></div>
   </div>
-  <hr class="m-0">
-<div class="template_body_form">
+<div class="popup__body template_body_form">
   <div class="d-flex align-items-baseline py-2 bg-0C3453">
     <h4 class="text-size">Name: &nbsp;</h4>
     <input type="text" class="template-name-inputField" [(ngModel)]="title"
@@ -21,16 +17,6 @@
   <div class="row main-popup-div py-2 bg-0C3453">
     <div class="col-12 col-sm-6 col-lg-4 d-flex align-items-baseline mt-3">
       <h4 class="text-size">{{ 'for:' | translate }}</h4>
-      <!-- <div class="btn-group">
-            <mat-select [(ngModel)]="selectedRole">
-                <mat-option [value]="0">All</mat-option>
-                @for (role of roles; track role) {
-                  <mat-option [value]="role.id" *ngIf="role.id !=1">{{role.role}}</mat-option>
-                }
-            </mat-select>
-
-          </div> -->
-
       <div class="btn-group" style="position: relative; display: inline-block;">
 
         <mat-select multiple class="mat-select-div" [(ngModel)]="selectedRole"
@@ -41,14 +27,6 @@
             {{option.payment_type}}</mat-option>
           }
         </mat-select>
-
-        <!-- <mat-select [(ngModel)]="selectedRole" class="mat-select-div">
-              <mat-option [value]="0">All</mat-option>
-            
-              <ng-container *ngFor="let role of roles">
-                <mat-option *ngIf="role.id != 1" [value]="role.id">{{ role.role }}</mat-option>
-              </ng-container>
-            </mat-select> -->
 
         <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none"
           xmlns="http://www.w3.org/2000/svg">
@@ -95,8 +73,9 @@
   </div>
   <hr class="m-0  mt-3 mb-2">
 
-  <div class="main-popup-div row bg-0C3453 py-2">
-    <div class="d-flex align-items-center col-12 col-md-6  mb-3 mb-md-0">
+  <div class="main-popup-div row py-2">
+    <div class="d-flex align-items-center col-12 col-md-6  mb-3 mb-md-0 ">
+      <div class="coupon-dateRange">
       <mat-form-field class="marketing-calender-field">
         <mat-date-range-picker #picker></mat-date-range-picker>
         <mat-label class="label-enter-date-range">{{ 'enterADateRange' | translate }}</mat-label>
@@ -108,6 +87,7 @@
         </mat-date-range-input>
         <mat-datepicker-toggle matIconPrefix [for]="picker"></mat-datepicker-toggle>
       </mat-form-field>
+    </div>
       <div *ngIf="errorMsg.dateRange" class="error-msg" style="padding-left:15px;margin-bottom: 10px;">
         {{'enterADateRange' | translate}}</div>
       <!-- <p class="text-size">01-04-2024  to  30-04-2024</p> -->
@@ -143,11 +123,8 @@
   </div>
   </div>
   <div class="popup_buttons_mobile">
-    <div class=" d-flex justify-content-around bg-0C3453 p-3">
-
-      <div>
-        <a class="btn btn-delete text-danger" (click)="close()">{{ 'cancel' | translate }}</a>
-      </div>
+    <div class="d-flex justify-content-around popup_footer dialog-actions p-3">
+      <div><a class="btn btn-delete text-danger" (click)="close()">{{ 'cancel' | translate }}</a></div>
       <div>
         <a class="btn Launch px-5" (click)="createPopup()" *ngIf="!data">{{ 'createAndLaunch' | translate }}</a>
         <a class="btn Launch px-5" (click)="updatePopup()" *ngIf="data">{{ 'update' | translate }}</a>

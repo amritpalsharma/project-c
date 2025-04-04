@@ -622,7 +622,7 @@
             </div>
 
           </div>
-          <div class="col-lg-9 card_box--2 padding_mobile_0">
+          <div class="col-lg-9 card_box--2 padding_mobile_0 dashboard_page_only">
 
             <div class="players_image d-flex align-items-center justify-content-center cover_pic_desktop">
               <img [src]="coverImage" *ngIf="coverImage" alt="Cover Image" />
@@ -706,7 +706,7 @@
                 </li>
               </ul>
             </div>
-            <div class="general_details mt-4 p-4 bg-color justify_mobile">
+            <div class="general_details mt-4 p-4 bg-color justify_mobile box_height_eqaul">
               <view-user-general-details *ngIf="activeTab == 'profile'" [userData]="user"
                 [isPremium]="isPremium"></view-user-general-details>
               <view-user-performance-details *ngIf="activeTab == 'performance'"

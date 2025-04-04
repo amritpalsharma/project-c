@@ -1,5 +1,5 @@
 @if(!pageDetail){
-<div class="container mt-5">
+<div class="container mt-5 webpages_popup">
   <!-- <h2 class="mb-4">Add Page</h2> -->
   <div (click)="close()" class="close-img mb-1"></div>
   <form (ngSubmit)="onSubmit()" #myForm="ngForm" enctype="multipart/form-data">
@@ -88,7 +88,7 @@
   </form>
 </div>
 }@else {
-<!-- <div class="container mt-5">
+<!-- <div class="container mt-5 webpages_popup">
   <h2 class="mb-4">View Page</h2>
   <form>
     <div class="row mb-3">

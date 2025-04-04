@@ -72,8 +72,6 @@
   .cupen-btn-1{
     color: black;
     border: none;
-    border: 1px solid #999999;
-    border-radius: 10px;
     padding: 8px 8px;
     // cursor: pointer;
     font-size: 13px;
@@ -109,8 +107,8 @@
    color: #000;
 }
 .form-check-input:checked {
-    background-color: #e05263;
-    border-color: #e05263;
+    background-color: #e05263 !important;
+    border-color: #e05263 !important;
   }
 
   .form-check-input:checked + label .custom-button{
