@@ -1,96 +1,39 @@
 
-<div class="p-0 parent-popup mobile_popup_responsive">
-  <div class="p-3 bg-0C3453">
-    
+<div class="p-0 email_temp_popup mobile_popup_responsive">
+  <div class="p-3 popup_header">
     <h4 class="text-center mb-0">{{ 'emailTemplate' | translate }}</h4>
         <img src="../../../assets/images/close-icon-circle.png" alt="" class="close-img" (click)="close()" />
   </div>
-  <hr class="m-0">
-<div class="template_body_form">
+
+<div class="popup__body template_body_form">
   <div class="row">
-    <div class="col-12 col-sm-6 col-lg-4">
-    <div class="d-flex align-items-baseline py-2 bg-0C3453 template-name-input">
-      <h4 class="text-size" style="margin-right: 5px;">{{ 'name' | translate }}:</h4>
-      <input type="text" class="template-name-inputField" [(ngModel)]="title" >
-
+    <div class="col-12 col-sm-4">
+      <div class="form-group template-name-input">
+        <label class="text-size">{{ 'name' | translate }}:</label>
+        <input type="text" class="form-control" [(ngModel)]="title" >
+        <div *ngIf="errorMsg.title" class="error-msg" style="padding-left:60px;">{{errorMsg.title}}</div>
+      </div>
     </div>
-    <div *ngIf="errorMsg.title" class="error-msg" style="padding-left:60px;">{{errorMsg.title}}</div>
+    <div class="col-12 col-sm-4">
+      <div class="form-group template-name-input">
+        <label class="text-size">{{ 'type' | translate }}:</label>
+        <input type="text" class="form-control" [(ngModel)]="type" >
+        <div *ngIf="errorMsg.type" class="error-msg" style="padding-left:60px;">{{errorMsg.type}}</div>
+      </div>
   </div>
-  <div class="col-12 col-sm-6 col-lg-4">
-    <div class="d-flex align-items-baseline py-2 bg-0C3453 template-name-input">
-      <h4 class="text-size" style="margin-right: 5px;">{{ 'type' | translate }}:</h4>
-      <input type="text" class="template-name-inputField" [(ngModel)]="type" >
-      
+  <div class="col-12 col-sm-4">
+    <div class="form-group template-name-input">
+      <label class="text-size">{{ 'subject' | translate }}:</label>
+      <input type="text" class="template-name-inputField form-control" [(ngModel)]="subject" >
+      <div *ngIf="errorMsg.subject" class="error-msg" style="padding-left:60px;">{{errorMsg.subject}}</div>
     </div>
-    <div *ngIf="errorMsg.type" class="error-msg" style="padding-left:60px;">{{errorMsg.type}}</div>
   </div>
-    
-
-  <div class="col-12 col-sm-6 col-lg-4">
-  <div class="d-flex align-items-baseline py-2 bg-0C3453 template-name-input">
-    <h4 class="text-size" style="margin-right: 5px;">{{ 'subject' | translate }}:</h4>
-    <input type="text" class="template-name-inputField add_custom_width" [(ngModel)]="subject" >
-  </div>
-  <div *ngIf="errorMsg.subject" class="error-msg" style="padding-left:60px;">{{errorMsg.subject}}</div>
 </div>
-</div>
-
-  
-  <hr class="m-0 mt-3 mb-3">
-
-  <!-- <div class="d-flex  main-popup-div ">
-    <div class="d-flex align-items-baseline mb-3">
-      <h4 class="text-size fw-bold">For:</h4>
-      <div class="btn-group">
-        <mat-select [(ngModel)]="selectedRole" class="template-option-dropdown">
-          <mat-option [value]="0">All</mat-option>
-          @for (role of roles; track role) {
-            <mat-option [value]="role.id" *ngIf="role.id !=1">{{role.role}}</mat-option>
-          }
-          <i class="fas fa-chevron-down text-white"></i>
-        </mat-select>
-
-      </div>
-              
-    </div>
-    <div  class="d-flex align-items-baseline" >
-      <h4 class="text-size fw-bold">Language:</h4>
-      <div class="btn-group">
-        <mat-select [(ngModel)]="selectedLang" class="template-option-dropdown">
-          @for (lang of langs; track lang) {
-            <mat-option [value]="lang.id">{{lang.language}}</mat-option>
-          }
-        </mat-select>
-
-      </div>
-    </div>
-    <div  class="d-flex align-items-baseline">
-      <h4 class="text-size fw-bold">Location:</h4>
-      <div class="btn-group">
-        <mat-select [(ngModel)]="selectedLocation" class="template-option-dropdown">
-          @for (location of locations; track location) {
-            <mat-option [value]="location.id">{{location.name}}</mat-option>
-          }
-        </mat-select>
-
-
-
-      </div>
-    </div>
-  </div> -->
+  <hr class="m-0 mb-3">
 
   <div class="row main-popup-div py-2 bg-0C3453">
     <div class="col-12 col-md-6 col-lg-4 mt-3 d-flex align-items-baseline ">
       <h4 class="text-size">{{ 'for' | translate }}</h4>
-      <!-- <div class="btn-group">
-        <mat-select [(ngModel)]="selectedRole">
-            <mat-option [value]="0">All</mat-option>
-            @for (role of roles; track role) {
-              <mat-option [value]="role.id" *ngIf="role.id !=1">{{role.role}}</mat-option>
-            }
-        </mat-select>
-
-      </div> -->
 
       <div class="btn-group" style="position: relative; display: inline-block;">
         <!-- {{roles | json}} -->
@@ -146,17 +89,15 @@
         <ngx-editor [editor]="editor" class="editor-width" [(ngModel)]="content" [disabled]="false" [placeholder]="'typeHere' | translate"></ngx-editor>
         <div *ngIf="errorMsg.content" class="error-msg" style="padding-left:20px;">{{errorMsg.content}}</div>
       </div>
-      </div>
+</div>
 
-        <div class=" d-flex justify-content-around bg-0C3453 p-3 popup_buttons_mobile">
+<div class="d-flex justify-content-around popup_footer dialog-actions p-3 popup_buttons_mobile">
 
-         <div>
-           <a class="btn btn-delete text-danger" (click)="close()">{{ 'cancel' | translate }}</a>
-         </div>
-         <div>
-           <a class="btn Launch px-5" *ngIf="!template" (click)="createTemplate()">{{ 'createAndLaunch' | translate }}</a>
-           <a class="btn Launch px-5" *ngIf="template" (click)="updateTemplate()">{{ 'update' | translate }}</a>
-         </div>
-      
-        </div>
+<div><a class="btn btn-delete text-danger" (click)="close()">{{ 'cancel' | translate }}</a></div>
+<div>
+  <a class="btn Launch px-5" *ngIf="!template" (click)="createTemplate()">{{ 'createAndLaunch' | translate }}</a>
+  <a class="btn Launch px-5" *ngIf="template" (click)="updateTemplate()">{{ 'update' | translate }}</a>
+</div>
+
+</div>
 </div>

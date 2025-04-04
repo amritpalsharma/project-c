@@ -48,7 +48,7 @@
   <div class="d-flex">
     <!-- <p class="gallery-photo" *ngIf="userImages.length>0">{{'photos' | translate }}</p> -->
     <p class="gallery-photo me-3">{{'photos' | translate }}</p>
-    <p class="gallery-pic-upload pointer" *ngIf="checkRole()" (click)="addPhotosPopup()">{{'addPhotos' | translate}}</p>
+    <p class="gallery-pic-upload pointer" *ngIf="checkRole()" (click)="addPhotosPopup()">+ {{'addPhotos' | translate}}</p>
   </div>
 
   <div class="row mt-3">
@@ -107,7 +107,7 @@
   <div class="d-flex mt-4">
     <!-- <p class="gallery-photo" *ngIf="userVideos.length>0">{{'videos' | translate }} </p> -->
     <p class="gallery-photo me-3">{{'videos' | translate }} </p>
-    <p class="gallery-pic-upload pointer" *ngIf="checkRole()" (click)="addPhotosPopup('video')">{{'addVideos' | translate}}</p>
+    <p class="gallery-pic-upload pointer" *ngIf="checkRole()" (click)="addPhotosPopup('video')">+ {{'addVideos' | translate}}</p>
   </div>
 
   <div class="row mt-3">

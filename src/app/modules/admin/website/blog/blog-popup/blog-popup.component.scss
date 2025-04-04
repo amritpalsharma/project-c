@@ -47,31 +47,17 @@ font-size: 13px;
     display: flex;
     column-gap: 94px;
 }
-
-// .marketing-button-child{
-//     display: flex;
-//     justify-content: space-between;
-
-// }
 .text-size{
-    font-size: 14px;
+    font-size: inherit;
 }
 .title-text{
     font-size: 16px;
-}
-.template-name-input input{
-  border-top: 0 !important;
-  border-left: 0 !important;
-  border-right: 0 !important;
 }
 
 .template-name-input input:focus-visible {
  outline: 0px !important;
 }
 
-.template-name-input input[type=text]:disabled {
-  border: none !important;
-}
 ngx-editor {
     height: 35vh; /* Set the height you want */
     display: block; /* Ensure it behaves like a block element */

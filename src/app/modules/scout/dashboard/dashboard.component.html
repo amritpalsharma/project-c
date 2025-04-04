@@ -650,7 +650,7 @@
 
           </div>
 
-          <div class="col-lg-9 card_box--2 padding_mobile_0">
+          <div class="col-lg-9 card_box--2 padding_mobile_0 dashboard_page_only">
             <div class="players_image d-flex align-items-center justify-content-center cover_pic_desktop">
               <img *ngIf="coverImage" [src]="coverImage" alt="Cover Image" />
               <svg *ngIf="!coverImage" width="54" height="54" viewBox="0 0 54 54" fill="none"
@@ -782,7 +782,7 @@
                 </li>
               </ul>
             </div>
-            <div class="general_details mt-4 p-4 bg-color ">
+            <div class="general_details mt-4 p-4 bg-color box_height_eqaul">
               <scout-profile-tab *ngIf="activeTab == 'profile' && !loading" [userData]="user" [isPremium]="isPremium"
                 [logInUser]="loggedInUser"></scout-profile-tab>
               <scout-app-history-tab *ngIf="activeTab == 'company_history'" role="Scout"></scout-app-history-tab>

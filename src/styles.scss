@@ -374,7 +374,7 @@ input#contractEnd {
 .table td,
 .table td span {
   color: #111418;
-  font-size: 16px;
+  font-size: inherit;
   font-weight: 400;
 }
 
@@ -2009,7 +2009,7 @@ nav.navbar .country_dropdown h6.border-bottom {
 
 .home_galery {
   img.img-fluid {
-    height: 130px;
+    // height: 130px;
     background: rgb(240 240 240 / 42%);
     object-fit: contain;
   }
@@ -2076,7 +2076,7 @@ nav.navbar .country_dropdown h6.border-bottom {
 
   label.btn.filter-button,
   .filter-button-2 {
-    border-color: #072944 !important;
+    border-color: #1F4360 !important;
     background: #0c3453 !important;
     color: #fff;
 
@@ -2525,6 +2525,9 @@ td.col_checkbox {
 
 .popup__body  {
   border-top: 1px solid #E7E7E7;
+    .form-group {
+      margin-bottom: 20px;
+    }
 }
 
 .admin_profile_chatbox .body-background {
@@ -2555,4 +2558,14 @@ td.col_checkbox {
 	    border-left: 10px solid transparent;
 	    border-bottom: 10px solid #ffffff;
 	}
+}
+
+.coupon-dateRange {
+  border: 1px solid #dee2e6;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.coupon-dateRange .mdc-text-field.mdc-text-field--filled {
+  border: 0 !important;
+  border-radius: 0 !important;
 }

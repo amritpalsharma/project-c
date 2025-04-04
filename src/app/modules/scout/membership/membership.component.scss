@@ -11,14 +11,14 @@
     color: rgb(126, 126, 126);
   }
   button.payments-btn {
-    padding: 14px 46px;
+    padding: 12px 30px;
     background: #75bb63;
     color: #fff;
     border: none;
     font-weight: 600;
     border-radius: 10px;
-    font-size: 18px;
-}
+    font-size: inherit;
+  }
 .slider-arrows mat-paginator {
   background: none !important;
 }

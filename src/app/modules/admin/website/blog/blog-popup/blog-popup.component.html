@@ -1,142 +1,90 @@
 <div class="p-0 parent-popup">
-  <div class="p-3 bg-0C3453">
-    <h4 class="mb-0">{{ 'news' | translate }}</h4>
+  <div class="p-3 popup_header">
+    <h4 class="code-text mb-0 text-center">{{ 'news' | translate }}</h4>
     <img src="../../../assets/images/close-icon-circle.png" alt="" class="close-img" (click)="close()" />
   </div>
-  <hr class="m-0">
-  <div class="news_content_form_popup">
-  <div class="row">
-    <div class="col-12 col-sm-6">
-      <div class="d-flex align-items-baseline py-2 bg-0C3453 template-name-input">
-        <h4 class="text-size" style="margin-right: 5px;">{{ 'name' | translate }}:</h4>
-        <input type="text" class="template-name-inputField" [(ngModel)]="title">
-
+  <div class="popup__body news_content_form_popup p-3">
+    <div class="row">
+      <div class="col-12 col-sm-6 col-lg-5">
+        <div class="form-group template-name-input">
+          <label class="text-size">{{ 'name' | translate }}:</label>
+          <input type="text" class="form-control template-name-inputField" [(ngModel)]="title">
+          <div *ngIf="errorMsg.title" class="error-msg">{{errorMsg.title}}</div>
+        </div>
       </div>
-      <div *ngIf="errorMsg.title" class="error-msg" style="padding-left:60px;">{{errorMsg.title}}</div>
-    </div>
-    <div class="col-12 col-sm-6">
-      <div class="d-flex align-items-baseline py-2 bg-0C3453  template-name-input">
-        <h4 class="text-size" style="margin-right: 5px;">{{ 'metaTitle' | translate }}:</h4>
-        <input type="text" class="template-name-inputField" [(ngModel)]="meta_title">
-
+      <div class="col-12 col-sm-6 col-lg-5">
+        <div class="form-group template-name-input">
+          <label class="text-size" style="margin-right: 5px;">{{ 'metaTitle' | translate }}:</label>
+          <input type="text" class="form-control template-name-inputField" [(ngModel)]="meta_title">
+          <div *ngIf="errorMsg.meta_title" class="error-msg">{{errorMsg.meta_title}}</div>
+        </div>
       </div>
-      <div *ngIf="errorMsg.meta_title" class="error-msg" style="padding-left:60px;">{{errorMsg.meta_title}}</div>
-    </div>
-
-    <div class="col-12 col-sm-6">
-      <div class="d-flex align-items-baseline py-2 bg-0C3453  template-name-input">
-        <h4 class="text-size" style="margin-right: 5px;">{{ 'slug' | translate }}:</h4>
-        <input type="text" class="template-name-inputField" [(ngModel)]="slug">
-
+      <div class="col-12 col-sm-6 col-lg-5">
+        <div class="form-group template-name-input">
+          <label class="text-size">{{ 'slug' | translate }}:</label>
+          <input type="text" class="form-control template-name-inputField" [(ngModel)]="slug">
+          <div *ngIf="errorMsg.slug" class="error-msg" style="padding-left:60px;">{{errorMsg.slug}}</div>
+        </div>
       </div>
-      <div *ngIf="errorMsg.slug" class="error-msg" style="padding-left:60px;">{{errorMsg.slug}}</div>
+      <div class="col-12 col-sm-6 col-lg-5">
+        <div class="form-group template-name-input">
+          <label class="text-size">{{ 'metaDescription' | translate }}:</label>
+          <input type="text" class="form-control template-name-inputField add_custom_width" [(ngModel)]="meta_description">
+          <div *ngIf="errorMsg.meta_description" class="error-msg" style="padding-left:60px;">{{errorMsg.meta_description}}</div>
+        </div>
+      </div>
     </div>
-
-  <div class="col-12 col-sm-6">
-  <div class="d-flex align-items-baseline py-2 bg-0C3453 template-name-input">
-    <h4 class="text-size" style="margin-right: 5px;">{{ 'metaDescription' | translate }}:</h4>
-    <input type="text" class="template-name-inputField add_custom_width" [(ngModel)]="meta_description">
-  </div>
-  <div *ngIf="errorMsg.meta_description" class="error-msg" style="padding-left:60px;">{{errorMsg.meta_description}}</div>
-  </div>
-
-  <hr class="m-0">
-
-  <!-- <div class="d-flex  main-popup-div ">
-    <div class="d-flex align-items-baseline mb-3">
-      <h4 class="text-size fw-bold">For:</h4>
+    <div class="col-12 col-sm-6 col-lg-5">
+      <div class="form-group">
+        <label class="text-size">{{ 'language' | translate }}</label>
+        <div class="btn-group">
+          <mat-select [(ngModel)]="selectedLang" class="mat-select-div form-control ">
+            @for (lang of langs; track lang) {
+            <mat-option [value]="lang.id" *ngIf="selectedLang == lang.id" selected>{{lang.language}}</mat-option>
+            <mat-option [value]="lang.id" *ngIf="selectedLang != lang.id">{{lang.language}}</mat-option>
+            }
+          </mat-select>
+          <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M4.08333 3.25838L0.995812 0.170854C0.768006 -0.0569515 0.39866 -0.0569515 0.170854 0.170854C-0.0569515 0.39866 -0.0569515 0.768006 0.170854 0.995812L3.67085 4.49581C3.89866 4.72362 4.26801 4.72362 4.49581 4.49581L7.99581 0.995812C8.22362 0.768006 8.22362 0.39866 7.99581 0.170854C7.76801 -0.0569515 7.39866 -0.0569515 7.17085 0.170854L4.08333 3.25838Z"
+              fill="#646464" />
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-lg-5">
+      <div class="form-group">
+      <label class="text-size">{{ 'status' | translate }}:</label>
       <div class="btn-group">
-        <mat-select [(ngModel)]="selectedRole" class="template-option-dropdown">
-          <mat-option [value]="0">All</mat-option>
-          @for (role of roles; track role) {
-            <mat-option [value]="role.id" *ngIf="role.id !=1">{{role.role}}</mat-option>
-          }
-          <i class="fas fa-chevron-down text-white"></i>
-        </mat-select>
-
-      </div>
-              
-    </div>
-    <div  class="d-flex align-items-baseline" >
-      <h4 class="text-size fw-bold">Language:</h4>
-      <div class="btn-group">
-        <mat-select [(ngModel)]="selectedLang" class="template-option-dropdown">
-          @for (lang of langs; track lang) {
-            <mat-option [value]="lang.id">{{lang.language}}</mat-option>
-          }
-        </mat-select>
-
-      </div>
-    </div>
-    <div  class="d-flex align-items-baseline">
-      <h4 class="text-size fw-bold">Location:</h4>
-      <div class="btn-group">
-        <mat-select [(ngModel)]="selectedLocation" class="template-option-dropdown">
-          @for (location of locations; track location) {
-            <mat-option [value]="location.id">{{location.name}}</mat-option>
-          }
-        </mat-select>
-
-
-
-      </div>
-    </div>
-  </div> -->
-  </div>
-
-  <div class="row main-popup-div bg-0C3453">
-    <div class=" col-12 col-md-6 d-flex align-items-baseline  mt-3">
-      <h4 class="text-size fw-bold">{{ 'language' | translate }}:</h4>
-      <div class="btn-group">
-        <mat-select [(ngModel)]="selectedLang" class="mat-select-div">
-          @for (lang of langs; track lang) {
-          <mat-option [value]="lang.id" *ngIf="selectedLang == lang.id" selected>{{lang.language}}</mat-option>
-          <mat-option [value]="lang.id" *ngIf="selectedLang != lang.id">{{lang.language}}</mat-option>
-          }
-        </mat-select>
-        <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none"
-          xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M4.08333 3.25838L0.995812 0.170854C0.768006 -0.0569515 0.39866 -0.0569515 0.170854 0.170854C-0.0569515 0.39866 -0.0569515 0.768006 0.170854 0.995812L3.67085 4.49581C3.89866 4.72362 4.26801 4.72362 4.49581 4.49581L7.99581 0.995812C8.22362 0.768006 8.22362 0.39866 7.99581 0.170854C7.76801 -0.0569515 7.39866 -0.0569515 7.17085 0.170854L4.08333 3.25838Z"
-            fill="#646464" />
-        </svg>
-
-      </div>
-    </div>
-
-    <!-- Status Selection -->
-    <div class="col-12 col-md-6 d-flex align-items-baseline mt-3">
-      <h4 class="text-size fw-bold">{{ 'status' | translate }}:</h4>
-      <div class="btn-group">
-        <mat-select [(ngModel)]="status" class="mat-select-div">
+        <mat-select [(ngModel)]="status" class="mat-select-div form-control ">
           <mat-option [value]="'published'">{{ 'publish' | translate }}</mat-option>
           <mat-option [value]="'draft'">{{ 'draft' | translate }}</mat-option>
         </mat-select>
       </div>
     </div>
-    
-    <div class="col-12 d-flex align-items-baseline mt-3">
-      <h4 class="text-size fw-bold">{{ 'featuredImage' | translate }}: </h4>
-      <div class="btn-group">
-        <input type="file" class="form-control" (change)="onImageChange($event)" accept="image/*" />
+    </div>
+    <div class="col-12">
+      <div class="form-group">
+        <label class="text-size">{{ 'featuredImage' | translate }}: </label>
+        <div class="btn-group">
+          <input type="file" class="form-control" (change)="onImageChange($event)" accept="image/*" />
+        </div>
       </div>
     </div>
-
-  <hr class="m-0  mt-3 mb-3">
-
-
-  <div class="col-12 NgxEditor__Wrapper  mt-3">
-    <ngx-editor-menu [editor]="editor" [colorPresets]="colorPresets"> </ngx-editor-menu>
-    <ngx-editor [editor]="editor" class="editor-width" [(ngModel)]="content" [disabled]="false"
-      [placeholder]="'editors.placeholder' | translate"></ngx-editor>
-    <div *ngIf="errorMsg.content" class="error-msg" style="padding-left:20px;">{{errorMsg.content}}</div>
+    <div class="col-12">
+      <div class="form-group">
+        <div class="NgxEditor__Wrapper">
+          <ngx-editor-menu [editor]="editor" [colorPresets]="colorPresets"> </ngx-editor-menu>
+          <ngx-editor [editor]="editor" class="editor-width" [(ngModel)]="content" [disabled]="false"
+            [placeholder]="'editors.placeholder' | translate"></ngx-editor>
+          <div *ngIf="errorMsg.content" class="error-msg" style="padding-left:20px;">{{errorMsg.content}}</div>
+        </div>
+      </div>
+    </div>
   </div>
-  </div>
-  </div>
 
-  <div>
-    <div class=" d-flex justify-content-between bg-0C3453 p-3 mobile_btn_wrap">
-
+    <div class="dialog-actions d-flex justify-content-between popup_footer p-3 mobile_btn_wrap">
       <div>
         <a class="btn btn-delete text-danger" (click)="close()">{{ 'cancel' | translate }}</a>
       </div>
@@ -144,7 +92,5 @@
         <a class="btn Launch px-5" *ngIf="!blog" (click)="createBlog()">{{ 'createAndLaunch' | translate }}</a>
         <a class="btn Launch px-5" *ngIf="blog" (click)="updateBlog()">{{ 'update' | translate }}</a>
       </div>
-
-    </div>
   </div>
 </div>

@@ -1,92 +1,85 @@
-<div class="p-0 code-parent">
-  <div class="bg-0C3453 p-4">
+<div class="p-0 code-parent admin_coupon_popup">
+  <div class="popup_header p-3">
     <h6 class="code-text text-center" *ngIf="this.data.action == 'create'">{{ 'newCoupon' | translate }}</h6>
     <h6 class="code-text text-center" *ngIf="this.data.action == 'update'">{{ 'editCoupon' | translate }}</h6>
-    <div (click)="close()" class="close-img mb-1">
-    </div>
+    <div (click)="close()" class="close-img mb-1"></div>
   </div>
 
-  <hr class="m-0">
-
-  <div class="p-3 create-new_popup coupon_popup_admin">
-
-    <div class="mb-3 discount-btn">
-      <p class="code-text">
-        {{ 'typeOfCoupon' | translate }}:
-      </p>
-      <button class="custom-button">
-        <label>
-          <input class="form-check-input" type="radio" name="options" [(ngModel)]="type" value="amount"
-            (change)="resetDiscountInputs()">
-          {{ '$Discount' | translate }}
-        </label>
-      </button>
-      <button class="custom-button">
-        <label>
-          <input class="form-check-input" type="radio" name="options" [(ngModel)]="type" value="percent"
-            (change)="resetDiscountInputs()">
-          {{ '%Discount' | translate }}
-        </label>
-      </button>
-      <div *ngIf="errorMsg.type" class="error-msg">{{ errorMsg.type }}</div>
-    </div>
-
-    <div class="mb-3 create-new_btn">
-      <div class="w-50 coupon_name">
-        <p class="code-text">
-          {{ 'couponName' | translate }}
-        </p>
-        <input type="text" class="cupen-btn  code-text w-100" [(ngModel)]="name" />
-        <div *ngIf="errorMsg.name" class="error-msg">{{errorMsg.name}}</div>
-      </div>
-      <div class="w-50 coupon_code">
-        <p class="code-text">
-          {{ 'couponCode' | translate }}
-        </p>
-        <input type="text" class="cupen-btn w-100" [(ngModel)]="code">
-        <div *ngIf="errorMsg.code" class="error-msg">{{errorMsg.code}}</div>
-      </div>
-
-    </div>
-
-    <!-- Conditional Inputs Based on Selected Type -->
-    <div *ngIf="type === 'percent'" class="mb-3">
-      <p class="code-text">{{ 'discount' | translate }} (%)</p>
-      <input type="text" class="cupen-btn-1" [(ngModel)]="discount" />
-      <div *ngIf="errorMsg.discount" class="error-msg">{{ errorMsg.discount }}</div>
-    </div>
-
-    <div *ngIf="type === 'amount'" class="mb-3">
-      <p class="code-text">{{ 'discount' | translate }} ($)</p>
-
-      <div class="row mb-3" *ngFor="let discount of discountInputs; let i = index">
-        <div class="col-md-4">
-          <input type="number" class="cupen-btn-1 w-100" [(ngModel)]="discount.discount"
-            placeholder="{{ 'enterDiscountValue' | translate }}">
-        </div>
-        <div class="col-md-4">
-          <select class="cupen-btn-1 w-100" [(ngModel)]="discount.currency" (change)="validateCurrencySelection(i)">
-            <option *ngFor="let currency of currencies" [value]="currency">
-              {{ currency }}
-            </option>
-          </select>
-        </div>
-        <div class="col-md-4 text-end">
-          <button class="btn btn-danger btn-sm" [disabled]="discountInputs.length === 1"
-            (click)="removeDiscountInput(i)">
-            {{ 'remove' | translate }} 
+  <div class="popup__body p-3 create-new_popup coupon_popup_admin">
+    <div class="row">
+      <div class="col-12">
+        <div class="mb-3 discount-btn">
+          <label class="code-text d-block">{{ 'typeOfCoupon' | translate }}:</label>
+          <button class="custom-button">
+            <label>
+              <input class="form-check-input" type="radio" name="options" [(ngModel)]="type" value="amount"
+                (change)="resetDiscountInputs()">
+              {{ '$Discount' | translate }}
+            </label>
           </button>
+          <button class="custom-button">
+            <label>
+              <input class="form-check-input" type="radio" name="options" [(ngModel)]="type" value="percent"
+                (change)="resetDiscountInputs()">
+              {{ '%Discount' | translate }}
+            </label>
+          </button>
+          <div *ngIf="errorMsg.type" class="error-msg">{{ errorMsg.type }}</div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-5">
+        <div class="form-group coupon_name">
+          <label class="code-text">{{ 'couponName' | translate }}</label>
+          <input type="text" class="form-control" [(ngModel)]="name" />
+          <div *ngIf="errorMsg.name" class="error-msg">{{errorMsg.name}}</div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-5">
+        <div class="form-group coupon_code">
+          <label class="code-text">{{ 'couponCode' | translate }}</label>
+          <input type="text" class="form-control" [(ngModel)]="code">
+          <div *ngIf="errorMsg.code" class="error-msg">{{errorMsg.code}}</div>
+        </div>
+      </div>
+    <div class="col-12 col-sm-6 col-lg-5">
+      <div *ngIf="type === 'percent'" class="form-group">
+        <label class="code-text">{{ 'discount' | translate }} (%)</label>
+        <input type="text" class="form-control cupen-btn-1" [(ngModel)]="discount" />
+        <div *ngIf="errorMsg.discount" class="error-msg">{{ errorMsg.discount }}</div>
+      </div>
+    </div>
+    
+
+
+    <div *ngIf="type === 'amount'" class="col-12">
+      <label class="code-text">{{ 'discount' | translate }} ($)</label>
+      <div class="row" *ngFor="let discount of discountInputs; let i = index">
+        <div class="col-sm-6 col-md-4 col-lg-5">
+          <div class="form-group">
+            <input type="number" class="form-control" [(ngModel)]="discount.discount"
+              placeholder="{{ 'enterDiscountValue' | translate }}">
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4 col-lg-5">
+          <div class="form-group">
+            <select class="form-control" [(ngModel)]="discount.currency" (change)="validateCurrencySelection(i)">
+              <option *ngFor="let currency of currencies" [value]="currency">
+                {{ currency }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-4 col-lg-2 text-end">
+          <div class="form-group">
+            <button class="btn btn-danger btn-sm" [disabled]="discountInputs.length === 1" (click)="removeDiscountInput(i)">{{ 'remove' | translate }} </button>
+          </div>
         </div>
       </div>
       <div *ngIf="errorMsg.discountInputs" class="error-msg">{{errorMsg.discountInputs}}</div>
-
-      <div class="row">
-        <div class="col">
+        <div class="form-group">
           <button class="btn btn-primary" (click)="addDiscountInput()">{{ 'addDiscount' | translate }} </button>
+          <div *ngIf="errorMsg.duplicateCurrency" class="text-danger">{{ errorMsg.duplicateCurrency }}</div>
         </div>
-      </div>
-      <div *ngIf="errorMsg.duplicateCurrency" class="text-danger mt-2">
-        {{ errorMsg.duplicateCurrency }}
       </div>
     </div>
 
@@ -140,8 +133,8 @@
       </div>
     </div>
 
-    <div>
-      <div class="d-flex align-items-center code-text">
+    <div class="row">
+      <div class="col-12 d-flex align-items-center code-text">
         <span class="form-check align-self-center code-text ">
           <label for="defaultCheck2" class="form-check-label">
             <input type="checkbox" value="1" id="defaultCheck2" class="form-check-input" [(ngModel)]="isLimitedUse" />
@@ -149,9 +142,11 @@
           </label>
         </span>
       </div>
-      <input type="text" class="cupen-btn-1" [(ngModel)]="limit">
-      <div *ngIf="errorMsg.limit" class="error-msg">{{errorMsg.limit}}</div>
-      <div class="d-flex align-items-center code-text mt-2">
+      <div class="col-sm-6 col-lg-5 form-group mb-2 mt-2">
+        <input type="text" class="form-control" [(ngModel)]="limit">
+      </div>
+      <div *ngIf="errorMsg.limit" class="col-12 error-msg">{{errorMsg.limit}}</div>
+      <div class="col-12 d-flex align-items-center code-text mt-2">
         <span class="form-check align-self-center">
           <label for="defaultCheck3" class="form-check-label">
             <input type="checkbox" value="" id="defaultCheck3" class="form-check-input"
@@ -164,10 +159,8 @@
 
   </div>
 
-  <hr class="m-0">
 
-  <div>
-    <div class=" d-flex justify-content-between bg-0C3453 p-3 mobile_btnns">
+    <div class="dialog-actions d-flex justify-content-between popup_footer p-3 mobile_btnns">
       <div>
         <a class="btn btn-delete text-danger" (click)="close()">{{ 'cancel' | translate }}</a>
       </div>
@@ -175,4 +168,3 @@
         <a class="btn Launch px-5" (click)="createCoupon()">{{ 'createCoupon' | translate }}</a>
       </div>
     </div>
-  </div>

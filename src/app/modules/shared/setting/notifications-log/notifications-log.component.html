@@ -64,20 +64,21 @@
                         <!-- <small><i class="fas fa-sort"></i> </small>   -->
                     </th>
                     <td mat-cell *matCellDef="let element">
-                        {{ element.message }} <br /><br />
-                        <button *ngIf="element.event == 'scoutAddPlayer' && !element.seen" type="button"
-                            (click)="responseToScoutInvite('accepted', element.senderId, element)"
-                            class="btn btn-success px-md-5 py-2 me-3">{{'accept' | translate}}</button>
-                        <button *ngIf="element.event == 'scoutAddPlayer' && !element.seen" type="button"
-                            (click)="responseToScoutInvite('rejected', element.senderId, element)"
-                            class="btn btn-danger px-5 py-2">{{'reject' | translate}}</button>
-
-                        <button *ngIf="element.event == 'inviteTalent' && !element.seen" type="button"
-                            (click)="updateSightingInviteResponse('accepted',element.eventId, element.senderId, element)"
-                            class="btn btn-success px-md-5 py-2 me-3">{{'accept' | translate}}</button>
-                        <button *ngIf="element.event == 'inviteTalent' && !element.seen" type="button"
-                            (click)="updateSightingInviteResponse('rejected',element.eventId, element.senderId, element)"
-                            class="btn btn-danger px-5 py-2">{{'reject' | translate}}</button>
+                        {{ element.message }} 
+                        <div>
+                            <button *ngIf="element.event == 'scoutAddPlayer' && !element.seen" type="button"
+                                (click)="responseToScoutInvite('accepted', element.senderId, element)"
+                                class="btn btn-success px-md-5 py-2 me-3 mt-3">{{'accept' | translate}}</button>
+                            <button *ngIf="element.event == 'scoutAddPlayer' && !element.seen" type="button"
+                                (click)="responseToScoutInvite('rejected', element.senderId, element)"
+                                class="btn btn-danger px-5 py-2 mt-3">{{'reject' | translate}}</button>
+                            <button *ngIf="element.event == 'inviteTalent' && !element.seen" type="button"
+                                (click)="updateSightingInviteResponse('accepted',element.eventId, element.senderId, element)"
+                                class="btn btn-success px-md-5 py-2 me-3 mt-3">{{'accept' | translate}}</button>
+                            <button *ngIf="element.event == 'inviteTalent' && !element.seen" type="button"
+                                (click)="updateSightingInviteResponse('rejected',element.eventId, element.senderId, element)"
+                                class="btn btn-danger px-5 py-2 mt-3">{{'reject' | translate}}</button>
+                        </div>
                     </td>
                 </ng-container>
 

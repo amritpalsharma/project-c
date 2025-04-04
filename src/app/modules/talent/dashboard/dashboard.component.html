@@ -796,7 +796,7 @@
             </div>
 
           </div>
-          <div class="col-lg-9 card_box--2 padding_mobile_0">
+          <div class="col-lg-9 card_box--2 padding_mobile_0 dashboard_page_only">
             <div class="players_image d-flex align-items-center justify-content-center cover_pic_desktop">
               <img [src]="coverImage" *ngIf="coverImage" alt="Cover Image" />
               <svg *ngIf="!coverImage" width="54" height="54" viewBox="0 0 54 54" fill="none"
@@ -907,7 +907,7 @@
                 </li>
               </ul>
             </div>
-            <div class="general_details mt-4 p-4 bg-color justify_mobile">
+            <div class="general_details mt-4 p-4 bg-color justify_mobile box_height_eqaul">
               <talent-profile-tab *ngIf="activeTab == 'profile'" [userData]="user"
                 [isPremium]="isPremium"></talent-profile-tab>
               <talent-performance-tab *ngIf="activeTab == 'performance'"

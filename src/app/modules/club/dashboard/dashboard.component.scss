@@ -510,8 +510,8 @@
   .gallery_images img,
   .gallery_images video {
     width: 100%;
-    height: 200px !important;
-    object-fit: cover !important;
+    height: 200px;
+    object-fit: cover;
     object-position: top center;
   }
 
@@ -1226,8 +1226,8 @@
 .gallery_images img,
 .gallery_images video {
   width: 100%;
-  height: 200px !important;
-  object-fit: cover !important;
+  height: 200px;
+  object-fit: cover;
   object-position: top center;
 }
 
@@ -1428,86 +1428,6 @@ span.active_btn {
     font-size: 18px;
   }
 }
-
-// new code
-/* Scoped styles for Intro.js in component.scss */
-// ::ng-deep .custom-tooltip {
-//   background-color: unset !important;
-//   color: #000 !important;
-//   border-radius: 10px !important;
-//   box-shadow: none !important;
-//   // top: -60px !important;
-// }
-
-// ::ng-deep a.introjs-skipbutton {
-//   top: 20px;
-//   right: -30px;
-//   color: #fff;
-//   font-size: 31px;
-//   border: 3px solid #fff;
-//   border-radius: 50%;
-//   line-height: 36px;
-//   width: 40px;
-//   height: 40px;
-// }
-
-// ::ng-deep .introjs-tooltip-header {
-//   z-index: 99999 !important;
-// }
-
-// ::ng-deep a.introjs-skipbutton:hover {
-//   color: #fff;
-// }
-
-// ::ng-deep .custom-tooltip .introjs-arrow {
-//   border-color: #ffc107 transparent transparent transparent !important;
-// }
-
-// ::ng-deep .introjs-tooltiptext {
-//   background-color: #ffc107 !important;
-//   border-radius: 5px !important;
-//   margin-top: 15px;
-//   font-size: 15px;
-//   padding: 16px 20px;
-// }
-
-// ::ng-deep .introjs-tooltiptext h6 {
-//   font-size: 15px;
-//   font-weight: 600;
-// }
-
-// ::ng-deep .introjs-button {
-//   border-color: #ffffffbd !important;
-//   background-color: unset !important;
-//   color: #ffffffbd !important;
-//   text-shadow: none;
-//   border-radius: 5px;
-//   margin: 0px 10px;
-
-// }
-
-
-// ::ng-deep .introjs-tooltipbuttons {
-//   border-color: #ffffffbd !important;
-//   background-color: unset !important;
-//   color: #ffffffbd !important;
-//   text-shadow: none;
-//   display: flex;
-//   justify-content: right;
-//   border-top: unset !important;
-//   margin-top: 0px;
-//   padding-right: 0px;
-// }
-
-// ::ng-deep .introjs-helperLayer {
-//   box-shadow: rgb(33 33 33 / 0%) 0px 0px 1px 2px, rgba(33, 33, 33, 0.5) 0px 0px 0px 5000px !important;
-// }
-
-// ::ng-deep .introjs-dontShowAgain label {
-//   background: unset !important;
-//   color: #fff !important;
-// }
-
 
 .lightbox {
   background-color: rgba(0, 0, 0, 0.9);
@@ -1819,6 +1739,13 @@ span.active_btn {
 }
 }
 
+
+@media (min-width: 1200px) and (max-width: 1599px) {
+  .gallery_images img, .gallery_images video {
+      height: 120px !important;
+  }
+}
+
 @media (min-width: 2000px) {
   .nav-tabs.user-tabs .nav-item .nav-link {
     font-size: 18px;
@@ -1864,12 +1791,16 @@ span.active_btn {
   top: -46px;
   right: 0px;
   color: #fff;
-  font-size: 31px;
+  font-size: 26px;
+  font-weight: 400;
   border: 3px solid #fff;
   border-radius: 50%;
-  line-height: 36px;
+  line-height: 0;
   width: 40px;
   height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 ::ng-deep .introjs-tooltip-header {
@@ -1902,18 +1833,22 @@ span.active_btn {
 
 ::ng-deep .introjs-arrow.top {
   border-bottom-color: #ffc107;
+  top: -9px;
 }
 
 ::ng-deep .introjs-arrow.left {
   border-right-color: #ffc107;
+  left: -9px;
 }
 
 ::ng-deep .introjs-arrow.right {
   border-left-color: #ffc107;
+  right: -9px;
 }
 
 ::ng-deep .introjs-arrow.bottom {
   border-top-color: #ffc107;
+  bottom: -9px;
 }
 
 ::ng-deep .introjs-tooltiptext {
