@@ -61,15 +61,6 @@ export class ChatComponent {
         // chatbox.mount(document.getElementById('talkjs-container'));
       }, 500);
     }
-
-
-
-    const theme = localStorage.getItem('theme');
-
-    if (theme == 'dark') {
-      this.talkService.toggleTheme(true);
-    }
-
     setTimeout(() => {
       this.checkAndRemoveOpenChat();
     }, 1000);
@@ -209,6 +200,12 @@ export class ChatComponent {
       // window.location.reload();
       this.startOneOnOneChat(otherUser);
     }
+    setTimeout(() => {
+      const theme = localStorage.getItem('theme');
+      if (theme == 'dark') {
+        this.talkService.toggleTheme(true);
+      }
+    }, 1500);
 
   }
 

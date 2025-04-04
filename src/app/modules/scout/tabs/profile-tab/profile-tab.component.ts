@@ -73,6 +73,7 @@ export class ProfileTabComponent {
         this.representators = response.data.representators;
         this.baseUrl = response.data.uploads_path
       } else {
+        this.representators = [];
         console.error('Invalid API response structure:', response);
       }
     });

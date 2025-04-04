@@ -66,8 +66,8 @@ export class EditPersonalDetailsComponent implements OnInit {
   userData: any
   playerClubsListing: any;
   takenBy: any;
-  CurrentTeamId:any;
-  FirstTimeSelectedTeam:any;
+  CurrentTeamId: any = 0;
+  FirstTimeSelectedTeam: any;
 
   dateOfBirth: FormControl = new FormControl(null);  // Initialize with null or the correct date format
   contractStart: FormControl = new FormControl(null);
@@ -144,7 +144,7 @@ export class EditPersonalDetailsComponent implements OnInit {
         }
         console.info('Received Teams:', this.teamsArr);
         this.cdr.detectChanges();
-      });      
+      });
       console.log('user', this.contractStart)
       this.height = this.user.meta.height || 0;
       this.heightUnit = this.user.meta.height_unit || 'cm';
@@ -284,13 +284,14 @@ export class EditPersonalDetailsComponent implements OnInit {
           this.currentClubId = this.user.meta.pre_club_id;
 
         }
-        
+
         if (this.user.team_id && this.user.team_id != '' && this.user.team_id != undefined) {
           this.team_id = this.user.team_id;
           // this.teamControl.setValue(this.user.team_id);
           // this.FirstTimeSelectedTeam = this.team_id;
           this.CurrentTeamId = this.team_id;
         }
+
         // alert('this.team_id ' + this.team_id)
         // console.info(this.team_id)
         // Ensure userNationalities is parsed correctly as an array of IDs only

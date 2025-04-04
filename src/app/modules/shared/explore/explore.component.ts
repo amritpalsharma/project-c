@@ -637,7 +637,7 @@ export class ExploreComponent implements OnInit {
       this.pageTitle = translations['explore'];
       setTimeout(() => {
         this.titleService.setTitle(this.pageTitle);
-      }, 500);
+      }, 100);
     })
   }
 
