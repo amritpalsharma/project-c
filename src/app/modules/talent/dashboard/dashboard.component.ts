@@ -34,6 +34,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   loggedInUser: any = localStorage.getItem('userData');
   countryFlagUrl: string = './assets/images/city-icon-light.png';
   pageTitle: string = '';
+  
 
   constructor(
     private route: ActivatedRoute,
