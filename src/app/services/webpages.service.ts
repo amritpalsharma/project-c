@@ -26,7 +26,7 @@ export class WebPages {
     updateData(data: string) {
         this.languageId.next(data); // Update the shared data
     }
-
+ 
 
 
     getAllPages(lang_id: any = 1, params: any): Observable<any> {

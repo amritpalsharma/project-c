@@ -18,6 +18,14 @@ import { TranslateService } from '@ngx-translate/core';
 export class BlogPopupComponent implements OnInit, OnDestroy {
   // id = 0;
   editor!: Editor;
+  editorEn!: Editor;
+  editorDe!: Editor;
+  editorIt!: Editor;
+  editorFr!: Editor;
+  editorEs!: Editor;
+  editorPt!: Editor;
+  editorDk!: Editor;
+  editorSv!: Editor;
   title: string = "";
   status: string = "";
   selectedRole: any = 0;
@@ -28,6 +36,7 @@ export class BlogPopupComponent implements OnInit, OnDestroy {
   locations: any = [];
   blogIdToEdit: any = '';
   featured_image: any = "";
+  featuredImages: { [key: string]: File } = {};
   toolbar: Toolbar = [
     ['bold', 'italic'],
     ['underline', 'strike'],
@@ -41,6 +50,7 @@ export class BlogPopupComponent implements OnInit, OnDestroy {
 
 
   content: string = '';
+  allContent: any = { en: '', de: '', it: '', fr: '', es: '', pt: '', dk: '', sv: '', }
   isLoading: boolean = false
   error: boolean = false
   errorMsg: any = {}
@@ -48,12 +58,12 @@ export class BlogPopupComponent implements OnInit, OnDestroy {
   meta_description: string = "";
   meta_title: string = "";
 
-  titleRequired : string = '';
-  contentRequired : string = '';
-  slugRequired : string = '';
-  metaTitleReruired : string = '';
-  descriptionRequired : string = '';
-  invalidSlug : string = '';
+  titleRequired: string = '';
+  contentRequired: string = '';
+  slugRequired: string = '';
+  metaTitleReruired: string = '';
+  descriptionRequired: string = '';
+  invalidSlug: string = '';
 
 
   constructor(
@@ -76,7 +86,15 @@ export class BlogPopupComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.editor = new Editor();
-
+    this.editorEn = new Editor();
+    this.editorDe = new Editor();
+    this.editorIt = new Editor();
+    this.editorFr = new Editor();
+    this.editorEs = new Editor();
+    this.editorPt = new Editor();
+    this.editorDk = new Editor();
+    this.editorSv = new Editor();
+    
     this.getToasterMsg();
     this.webpages.languageId$.subscribe((data: any) => {
       this.getToasterMsg();
@@ -84,7 +102,9 @@ export class BlogPopupComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.editor.destroy();
+    // this.editor.destroy();
+    this.editorEn.destroy;
+    this.editorDe.destroy;
   }
 
   close(): void {
@@ -107,12 +127,13 @@ export class BlogPopupComponent implements OnInit, OnDestroy {
   //   }
   // }
 
-  onImageChange(event: Event): void {
+  onImageChange(event: Event, key: string): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       let fileToUpload = input.files[0];
       this.featured_image = fileToUpload;
-      console.log("fileToUpload", fileToUpload)
+      this.featuredImages[key] = fileToUpload;
+      console.log("fileToUpload", this.featuredImages);
 
       const reader = new FileReader();
       reader.onload = () => {
@@ -151,10 +172,10 @@ export class BlogPopupComponent implements OnInit, OnDestroy {
       this.error = true;
       this.errorMsg.title = this.titleRequired;
     }
-    if (this.content == "" || this.content == "<p></p>") {
-      this.error = true;
-      this.errorMsg.content = this.contentRequired;
-    }
+    // if (this.content == "" || this.content == "<p></p>") {
+    //   this.error = true;
+    //   this.errorMsg.content = this.contentRequired;
+    // }
     if (this.slug == "") {
       this.error = true;
       this.errorMsg.slug = this.slugRequired;
@@ -224,9 +245,19 @@ export class BlogPopupComponent implements OnInit, OnDestroy {
     // params.status = 1; // 1 for active, 2 for inactive    
     let formData = new FormData();
     formData.append("title", this.title);
-    formData.append("content", this.content);
+
+    // formData.append("content", this.content);
+    Object.entries(this.allContent).forEach(([key, value]) => {
+      formData.append(`content_${key}`, value as string);
+    });
+
     formData.append("language", this.selectedLang);
     formData.append("featured_image", this.featured_image); // Ensure this is a File object
+
+    Object.entries(this.featuredImages).forEach(([key, value]) => {
+      formData.append(`featured_image_${key}`, value);
+    });
+
     formData.append("slug", this.slug);
     formData.append("meta_title", this.meta_title);
     formData.append("meta_description", this.meta_description);
@@ -287,7 +318,7 @@ export class BlogPopupComponent implements OnInit, OnDestroy {
   }
 
   getToasterMsg() {
-    this.translateService.get(['titleRequired', 'contentRequired','slugRequired', 'invalidSlug','metaTitleReruired', 'descriptionRequired']).subscribe((translations) => {
+    this.translateService.get(['titleRequired', 'contentRequired', 'slugRequired', 'invalidSlug', 'metaTitleReruired', 'descriptionRequired']).subscribe((translations) => {
       this.contentRequired = translations['contentRequired'];
       this.titleRequired = translations['titleRequired'];
       this.slugRequired = translations['slugRequired'];
