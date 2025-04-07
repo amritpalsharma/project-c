@@ -6,7 +6,7 @@ import { NgxEditorModule } from 'ngx-editor';
 import { AuthInterceptor } from './auth.interceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MaterialModule } from '../app/modules/material/material.module'
 import { MatDialogModule } from '@angular/material/dialog';
@@ -17,6 +17,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { LightboxDialogComponent } from './modules/talent/lightbox-dialog/lightbox-dialog.component';
 import { WebsiteModule } from './modules/website/website.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatPaginatorIntl } from '@angular/material/paginator';
+import { getPaginatorIntl } from './modules/shared/paginator/custom-paginator-intl';
 // import '../../style.scss';
 
 
@@ -59,6 +61,11 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    {
+      provide: MatPaginatorIntl,
+      useFactory: getPaginatorIntl,
+      deps: [TranslateService] // or TranslateService if used directly in factory
+    }
   ],
   bootstrap: [AppComponent]
 })

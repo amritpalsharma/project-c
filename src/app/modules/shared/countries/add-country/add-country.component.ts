@@ -8,6 +8,8 @@ import { PaymentService } from '../../../../services/payment.service';
 import { loadStripe } from '@stripe/stripe-js';
 import { environment } from '../../../../../environments/environment';
 import { ScoutService } from '../../../../services/scout.service';
+import { TranslateService } from '@ngx-translate/core';
+import { WebPages } from '../../../../services/webpages.service';
 
 @Component({
   selector: 'shared-add-country',
@@ -26,6 +28,8 @@ export class AddCountryComponent {
     private stripeService: PaymentService,
     private paymentService: PaymentService,
     private ScoutService: ScoutService,
+    private translateService: TranslateService,
+    public webPages: WebPages,
   ) { }
   otherPlans: any;
   selectedPlan: any;
@@ -34,6 +38,11 @@ export class AddCountryComponent {
   countryPlans: any;
   theme: any = localStorage.getItem('theme');
   isYearly: boolean = false;
+
+  Processing: string = '';
+  pleaseWait: string = '';
+  errorTxt: string = '';
+  generalError: string = '';
 
   stripePromise = loadStripe(environment.stripePublishableKey);
 
@@ -44,6 +53,11 @@ export class AddCountryComponent {
     console.log(this.country)
     this.stripe = await this.stripeService.getStripe();
     this.loadCountries();
+    this.getJsonTranslations();
+    this.webPages.languageId$.subscribe((data) => {
+      this.loadCountries();
+      this.getJsonTranslations();
+    });
   }
 
   editPlanPopup() {
@@ -80,7 +94,7 @@ export class AddCountryComponent {
   }
 
   async redirectToCheckout(planId: string, coupon: any = '') {
-    this.toastr.info('Redirecting to checkout, please wait...', 'Processing', { timeOut: 2000 });
+    this.toastr.info(this.Processing, this.pleaseWait, { timeOut: 2000 });
 
     try {
       const response = await this.stripeService.createCheckoutSession(planId, '', coupon).toPromise();
@@ -88,13 +102,13 @@ export class AddCountryComponent {
       if (response && response.data.payment_intent.id) {
         const stripe = await this.stripe;
         await stripe?.redirectToCheckout({ sessionId: response.data.payment_intent.id });
-        this.toastr.success('Redirecting to Stripe Checkout', 'Success');
+        // this.toastr.success('Redirecting to Stripe Checkout', 'Success');
       } else {
-        this.toastr.error('Failed to create checkout session. Please try again.', 'Error');
+        this.toastr.error(this.generalError, this.errorTxt);
         console.error('Failed to create checkout session', response);
       }
     } catch (error) {
-      this.toastr.error('Error creating Stripe Checkout session. Please try again later.', 'Error');
+      this.toastr.error(this.generalError, this.errorTxt);
       console.error('Error creating Stripe Checkout session:', error);
     }
   }
@@ -130,5 +144,13 @@ export class AddCountryComponent {
 
   toggleBillingPlan(isYearly: boolean) {
     this.isYearly = isYearly; // Toggle between monthly and yearly
+  }
+  getJsonTranslations() {
+    this.translateService.get(['pleaseWait', 'Processing', 'error', 'forgotPassword.generalError']).subscribe((translations) => {
+      this.pleaseWait = translations['pleaseWait'];
+      this.Processing = translations['Processing'];
+      this.errorTxt = translations['error'];
+      this.generalError = translations['generalError'];
+    })
   }
 }

@@ -771,10 +771,10 @@
   "subscriptionProcess": "Your og subscription og process og was og canceled. og please og try og again.",
   "close": "Luk",
   "all": "alle",
-  "enterCouponCode": "Enter og coupon og code",
-  "dont'tHaveCoupon": "I og don't og have og a og coupon,",
-  "checkCoupon": "Check og coupon",
-  "proceedToCheckout": "Proceed og to og checkout",
+  "enterCouponCode": "Indtast rabatkode",
+  "dont'tHaveCoupon": "Jeg har ikke en rabatkode",
+  "checkCoupon": "Tjek kode",
+  "proceedToCheckout": "Fortsæt til kassen…",
   "noResultFound": "No og results og found.",
   "ceO": "Ceo",
   "mx_size": "Maksimal størrelse: 5 MB",
@@ -1242,7 +1242,7 @@
   "enterCountryName": "Indtast land",
   "enterYourEmail": "Indtast din e-mail",
   "enterYourName": "Indtast dit navn",
-  "enterYourCouponCode": "Indtast din rabatkode",
+  "enterYourCouponCode": "Indtast din rabatkode her…",
   "enterYourCompanyName": "Indtast dit firmanavn",
   "deletePerformanceConfirm": "Er du sikker på, at du vil slette de valgte rapporter?",
   "accepted": "Accepteret",
@@ -1290,5 +1290,13 @@
   "alreadyPurchased": "Allerede købt",
   "portfolioDeleteConfirmation": "Er du sikker på, at du vil fjerne dette talent fra din portefølje?",
   "portfolioDeletebtn": "Slet ",
-  "portfolioCloseBtn": "Luk"
+  "portfolioCloseBtn": "Luk",
+  "PAGINATOR": {
+    "ITEMS_PER_PAGE": "Elementer per side",
+    "NEXT_PAGE": "Næste side",
+    "PREVIOUS_PAGE": "Forrige side",
+    "FIRST_PAGE": "Første side",
+    "LAST_PAGE": "Sidste side",
+    "OF": "af"
+  }
 }

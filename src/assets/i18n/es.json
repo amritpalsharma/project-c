@@ -852,10 +852,10 @@
   "subscriptionCanceled": "Subscription y canceled!",
   "subscriptionProcess": "Your y subscription y process y was y canceled. y please y try y again.",
   "close": "Cerrar",
-  "enterCouponCode": "Enter y coupon y code",
-  "dont'tHaveCoupon": "I y don't y have y a y coupon,",
-  "checkCoupon": "Check y coupon",
-  "proceedToCheckout": "Proceed y to y checkout",
+  "enterCouponCode": "Introduce aquí tu código de cupón…",
+  "dont'tHaveCoupon": "No tengo un código de cupón,",
+  "checkCoupon": "Comprobar código",
+  "proceedToCheckout": "Continuar con el pago…",
   "noResultFound": "No y results y found.",
   "ceO": "Ceo",
   "mx_size": "Tamaño máximo: 5 MB",
@@ -1324,7 +1324,7 @@
   "enterCountryName": "Ingrese el país",
   "enterYourEmail": "Ingrese su correo electrónico",
   "enterYourName": "Ingrese su nombre",
-  "enterYourCouponCode": "Ingrese su código de cupón",
+  "enterYourCouponCode": "Introduce aquí tu código de cupón…",
   "enterYourCompanyName": "Ingrese el nombre de su empresa",
   "deletePerformanceConfirm": "¿Estás seguro de que quieres eliminar los informes seleccionados?",
   "accepted": "Aceptado",
@@ -1372,5 +1372,13 @@
   "alreadyPurchased": "Ya comprado",
   "portfolioDeleteConfirmation": "¿Estás seguro de que quieres eliminar este talento de tu portafolio?",
   "portfolioDeletebtn": "Eliminar",
-  "portfolioCloseBtn": "Cerrar"
+  "portfolioCloseBtn": "Cerrar",
+  "PAGINATOR": {
+    "ITEMS_PER_PAGE": "Artículos por página",
+    "NEXT_PAGE": "Siguiente página",
+    "PREVIOUS_PAGE": "Página anterior",
+    "FIRST_PAGE": "Primera página",
+    "LAST_PAGE": "Última página",
+    "OF": "de"
+  }
 }

@@ -919,10 +919,10 @@
   "subscriptionCanceled": "Subscription och canceled!",
   "subscriptionProcess": "Your och subscription och process och was och canceled. och please och try och again.",
   "close": "Stäng",
-  "enterCouponCode": "Enter och coupon och code",
-  "dont'tHaveCoupon": "I och don't och have och a och coupon,",
-  "checkCoupon": "Check och coupon",
-  "proceedToCheckout": "Proceed och to och checkout",
+  "enterCouponCode": "Ange rabattkod",
+  "dont'tHaveCoupon": "Jag har ingen rabattkod",
+  "checkCoupon": "Kontrollera kod",
+  "proceedToCheckout": "Fortsätt till kassan…",
   "noResultFound": "No och results och found.",
   "ceO": "Ceo",
   "mx_size": "Maximum och size: och 5mb",
@@ -1334,7 +1334,7 @@
   "enterCountryName": "Ange land",
   "enterYourEmail": "Ange din e-post",
   "enterYourName": "Ange ditt namn",
-  "enterYourCouponCode": "Ange din rabattkod",
+  "enterYourCouponCode": "Ange din rabattkod här…",
   "enterYourCompanyName": "Ange ditt företagsnamn",
   "deletePerformanceConfirm": "Är du säker på att du vill ta bort de valda rapporterna?",
   "accepted": "Accepterad",
@@ -1371,5 +1371,13 @@
   "alreadyPurchased": "Redan köpt",
   "portfolioDeleteConfirmation": "Är du säker på att du vill ta bort denna talang från din portfölj?",
   "portfolioDeletebtn": "Ta bort",
-  "portfolioCloseBtn": "Stäng"
+  "portfolioCloseBtn": "Stäng",
+  "PAGINATOR": {
+    "ITEMS_PER_PAGE": "Objekt per sida",
+    "NEXT_PAGE": "Nästa sida",
+    "PREVIOUS_PAGE": "Föregående sida",
+    "FIRST_PAGE": "Första sidan",
+    "LAST_PAGE": "Sista sidan",
+    "OF": "av"
+  }
 }

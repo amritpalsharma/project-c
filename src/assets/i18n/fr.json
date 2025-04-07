@@ -933,10 +933,10 @@
   "subscriptionCanceled": "Subscription et canceled!",
   "subscriptionProcess": "Your et subscription et process et was et canceled. et please et try et again.",
   "close": "Fermer",
-  "enterCouponCode": "Enter et coupon et code",
-  "dont'tHaveCoupon": "I et don't et have et a et coupon,",
-  "checkCoupon": "Check et coupon",
-  "proceedToCheckout": "Proceed et to et checkout",
+  "enterCouponCode": "Saisir le code promo",
+  "dont'tHaveCoupon": "Je n’ai pas de code promo",
+  "checkCoupon": "Vérifier le code",
+  "proceedToCheckout": "Passer à la caisse…",
   "noResultFound": "No et results et found.",
   "ceO": "Ceo",
   "mx_size": "Taille maximale : 5 Mo",
@@ -1440,5 +1440,13 @@
   "alreadyPurchased":"Déjà acheté",
   "portfolioDeleteConfirmation": "Êtes-vous sûr de vouloir supprimer ce talent de votre portfolio ?",
   "portfolioDeletebtn": "Supprimer",
-  "portfolioCloseBtn": "Fermer"
+  "portfolioCloseBtn": "Fermer",
+  "PAGINATOR": {
+    "ITEMS_PER_PAGE": "Articles par page",
+    "NEXT_PAGE": "Page suivante",
+    "PREVIOUS_PAGE": "Page précédente",
+    "FIRST_PAGE": "Première page",
+    "LAST_PAGE": "Dernière page",
+    "OF": "de"
+  }
 }

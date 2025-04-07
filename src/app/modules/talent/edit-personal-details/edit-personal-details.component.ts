@@ -39,7 +39,7 @@ export class EditPersonalDetailsComponent implements OnInit {
   countries: any;
   teamsArr: any[] = [];
   leagueLevels: any[] = [];
-  filteredClubs: any[] = [];  // To store filtered clubs based on search
+  // filteredClubs: any[] = [];  // To store filtered clubs based on search
   selectedClub: string = '';
   user: any = localStorage.getItem('userData');
   loggedInUser: any = localStorage.getItem('userData');
@@ -62,7 +62,7 @@ export class EditPersonalDetailsComponent implements OnInit {
   lastName: string = '';
   nationality: any[] = [];  // Ensure nationality is initialized as an array
   birthCountry: any;
-  currentClubId: any;
+  // currentClubId: any;
   userData: any
   playerClubsListing: any;
   takenBy: any;
@@ -81,6 +81,17 @@ export class EditPersonalDetailsComponent implements OnInit {
   Processing: string = '';
   pleaseWait: string = '';
   // selectedLeagueId:number=16;
+
+  clubSearch: string = '';
+  filteredClubs: any[] = [];
+
+  // playerClubsListing = [
+  //   { id: 1, club_name: 'Club A' },
+  //   { id: 2, club_name: 'Club B' },
+  //   // other clubs
+  // ];
+  currentClubId: any;
+  searchedClubs: any = [];
 
   constructor(
     public dialogRef: MatDialogRef<EditPersonalDetailsComponent>,
@@ -179,7 +190,7 @@ export class EditPersonalDetailsComponent implements OnInit {
     this.webPages.languageId$.subscribe((data) => {
       this.getJsonTranslations();
     });
-
+    this.filteredClubs = [...this.playerClubsListing];
   }
 
   ngAfterViewInit(): void {
@@ -461,6 +472,17 @@ export class EditPersonalDetailsComponent implements OnInit {
       (error: any) => {
         console.error('Error fetching leagues:', error);
       }
+    );
+  }
+  onDropdownOpen() {
+    this.clubSearch = '';
+    this.searchedClubs = [...this.playerClubsListing];
+  }
+
+  filterClubs() {
+    const searchTerm = this.clubSearch.toLowerCase();
+    this.searchedClubs = this.playerClubsListing.filter((club: any) =>
+      club.club_name.toLowerCase().startsWith(searchTerm)
     );
   }
 }

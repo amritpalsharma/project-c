@@ -112,7 +112,7 @@ export class WebPages {
         let currentDomain = this.globalSettings.getdomainId();
         let random = Math.floor(Math.random() * (10000 - 100 + 1)) + 100;
         return this.http.get<{ status: boolean, message: string, data: {} }>(
-            `${this.frontendApiUrl}get-page-by-slug?page_type=home&lang_id=${langId}&domain=${currentDomain}&num=${random}`
+            `${this.frontendApiUrl}get-page-by-slug?page_type=home&whereClause[role]=4&lang_id=${langId}&domain=${currentDomain}&num=${random}`
         );
     }
 

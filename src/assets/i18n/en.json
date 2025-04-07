@@ -725,10 +725,10 @@
   "subscriptionCanceled": "Subscription Canceled!",
   "subscriptionProcess": "Your subscription process was canceled. Please try again.",
   "close": "Close",
-  "enterCouponCode": "Enter Coupon Code",
-  "dont'tHaveCoupon": "I don't have a coupon,",
-  "checkCoupon": "Check Coupon",
-  "proceedToCheckout": "Proceed to Checkout.",
+  "enterCouponCode": "Enter voucher code",
+  "dont'tHaveCoupon": "I don’t have a voucher code",
+  "checkCoupon": "Check code",
+  "proceedToCheckout": "Continue to checkout…",
   "noResultFound": "No results found.",
   "companyHistory": "Company History",
   "portfolio": "Portfolio",
@@ -1275,7 +1275,7 @@
   "enterCountryName": "Enter Country Name",
   "enterYourEmail": "Enter your email",
   "enterYourName": "Enter your name",
-  "enterYourCouponCode": "Enter your coupon code",
+  "enterYourCouponCode": "Enter your voucher code here…",
   "enterYourCompanyName": "Enter your company name",
   "typeRequired": "Type is required",
   "redirectrequired": "Redirect URL is required",
@@ -1337,5 +1337,13 @@
   "alreadyPurchased": "Already purchased",
   "portfolioDeleteConfirmation": "Are you sure you want to remove this Talent from your portfolio?",
   "portfolioDeletebtn": "Delete",
-  "portfolioCloseBtn": "Close"
+  "portfolioCloseBtn": "Close",
+  "PAGINATOR": {
+    "ITEMS_PER_PAGE": "Items per page",
+    "NEXT_PAGE": "Next page",
+    "PREVIOUS_PAGE": "Previous page",
+    "FIRST_PAGE": "First page",
+    "LAST_PAGE": "Last page",
+    "OF": "of"
+  }
 }

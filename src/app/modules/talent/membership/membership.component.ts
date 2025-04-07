@@ -373,6 +373,7 @@ export class MembershipComponent {
   }
 
   confirmCountryPlanCancellation(country: any) {
+    console.info('country',country)
     const dialogRef = this.dialog.open(CancelCountryPlanComponent, {
       width: '600px',
       data: {
