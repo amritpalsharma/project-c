@@ -64,24 +64,180 @@
       </div>
     </div>
     </div>
-    <div class="col-12">
-      <div class="form-group">
-        <label class="text-size">{{ 'featuredImage' | translate }}: </label>
-        <div class="btn-group">
-          <input type="file" class="form-control" (change)="onImageChange($event)" accept="image/*" />
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="form-group">
+          <label class="text-size">{{ 'featuredImage' | translate }}(en): </label>
+          <div class="btn-group">
+            <input type="file" class="form-control" (change)="onImageChange($event, 'en')" accept="image/*" />
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-lg-6">
+        <div class="form-group">
+          <label class="text-size">{{ 'featuredImage' | translate }}(de): </label>
+          <div class="btn-group">
+            <input type="file" class="form-control" (change)="onImageChange($event, 'de')" accept="image/*" />
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-lg-6">
+        <div class="form-group">
+          <label class="text-size">{{ 'featuredImage' | translate }}(it): </label>
+          <div class="btn-group">
+            <input type="file" class="form-control" (change)="onImageChange($event, 'it')" accept="image/*" />
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-lg-6">
+        <div class="form-group">
+          <label class="text-size">{{ 'featuredImage' | translate }}(fr): </label>
+          <div class="btn-group">
+            <input type="file" class="form-control" (change)="onImageChange($event, 'fr')" accept="image/*" />
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="form-group">
+          <label class="text-size">{{ 'featuredImage' | translate }}(es): </label>
+          <div class="btn-group">
+            <input type="file" class="form-control" (change)="onImageChange($event, 'es')" accept="image/*" />
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="form-group">
+          <label class="text-size">{{ 'featuredImage' | translate }}(pt): </label>
+          <div class="btn-group">
+            <input type="file" class="form-control" (change)="onImageChange($event, 'pt')" accept="image/*" />
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="form-group">
+          <label class="text-size">{{ 'featuredImage' | translate }}(dk): </label>
+          <div class="btn-group">
+            <input type="file" class="form-control" (change)="onImageChange($event, 'dk')" accept="image/*" />
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="form-group">
+          <label class="text-size">{{ 'featuredImage' | translate }}(sv): </label>
+          <div class="btn-group">
+            <input type="file" class="form-control" (change)="onImageChange($event, 'sv')" accept="image/*" />
+          </div>
         </div>
       </div>
     </div>
+    
+    
+    
     <div class="col-12">
       <div class="form-group">
+        <label class="text-size">{{ 'contentFor' | translate }}(en): </label>
         <div class="NgxEditor__Wrapper">
-          <ngx-editor-menu [editor]="editor" [colorPresets]="colorPresets"> </ngx-editor-menu>
-          <ngx-editor [editor]="editor" class="editor-width" [(ngModel)]="content" [disabled]="false"
+          <ngx-editor-menu [editor]="editorEn" [colorPresets]="colorPresets"> </ngx-editor-menu>
+          <ngx-editor [editor]="editorEn" class="editor-width" [(ngModel)]="allContent.en" [disabled]="false"
             [placeholder]="'editors.placeholder' | translate"></ngx-editor>
           <div *ngIf="errorMsg.content" class="error-msg" style="padding-left:20px;">{{errorMsg.content}}</div>
         </div>
       </div>
     </div>
+
+    <div class="col-12">
+      <div class="form-group">
+        <label class="text-size">{{ 'contentFor' | translate }}(de): </label>
+        <div class="NgxEditor__Wrapper">
+          <ngx-editor-menu [editor]="editorDe" [colorPresets]="colorPresets"> </ngx-editor-menu>
+          <ngx-editor [editor]="editorDe" class="editor-width" [(ngModel)]="allContent.de" [disabled]="false"
+            [placeholder]="'editors.placeholder' | translate"></ngx-editor>
+          <div *ngIf="errorMsg.content" class="error-msg" style="padding-left:20px;">{{errorMsg.content}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="form-group">
+        <label class="text-size">{{ 'contentFor' | translate }}(it): </label>
+        <div class="NgxEditor__Wrapper">
+          <ngx-editor-menu [editor]="editorIt" [colorPresets]="colorPresets"> </ngx-editor-menu>
+          <ngx-editor [editor]="editorIt" class="editor-width" [(ngModel)]="allContent.it" [disabled]="false"
+            [placeholder]="'editors.placeholder' | translate"></ngx-editor>
+          <div *ngIf="errorMsg.content" class="error-msg" style="padding-left:20px;">{{errorMsg.content}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="form-group">
+        <label class="text-size">{{ 'contentFor' | translate }}(fr): </label>
+        <div class="NgxEditor__Wrapper">
+          <ngx-editor-menu [editor]="editorFr" [colorPresets]="colorPresets"> </ngx-editor-menu>
+          <ngx-editor [editor]="editorFr" class="editor-width" [(ngModel)]="allContent.fr" [disabled]="false"
+            [placeholder]="'editors.placeholder' | translate"></ngx-editor>
+          <div *ngIf="errorMsg.content" class="error-msg" style="padding-left:20px;">{{errorMsg.content}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="form-group">
+        <label class="text-size">{{ 'contentFor' | translate }}(es): </label>
+        <div class="NgxEditor__Wrapper">
+          <ngx-editor-menu [editor]="editorEs" [colorPresets]="colorPresets"> </ngx-editor-menu>
+          <ngx-editor [editor]="editorEs" class="editor-width" [(ngModel)]="allContent.es" [disabled]="false"
+            [placeholder]="'editors.placeholder' | translate"></ngx-editor>
+          <div *ngIf="errorMsg.content" class="error-msg" style="padding-left:20px;">{{errorMsg.content}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="form-group">
+        <label class="text-size">{{ 'contentFor' | translate }}(pt): </label>
+        <div class="NgxEditor__Wrapper">
+          <ngx-editor-menu [editor]="editorPt" [colorPresets]="colorPresets"> </ngx-editor-menu>
+          <ngx-editor [editor]="editorPt" class="editor-width" [(ngModel)]="allContent.pt" [disabled]="false"
+            [placeholder]="'editors.placeholder' | translate"></ngx-editor>
+          <div *ngIf="errorMsg.content" class="error-msg" style="padding-left:20px;">{{errorMsg.content}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="form-group">
+        <label class="text-size">{{ 'contentFor' | translate }}(dk): </label>
+        <div class="NgxEditor__Wrapper">
+          <ngx-editor-menu [editor]="editorDk" [colorPresets]="colorPresets"> </ngx-editor-menu>
+          <ngx-editor [editor]="editorDk" class="editor-width" [(ngModel)]="allContent.dk" [disabled]="false"
+            [placeholder]="'editors.placeholder' | translate"></ngx-editor>
+          <div *ngIf="errorMsg.content" class="error-msg" style="padding-left:20px;">{{errorMsg.content}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="form-group">
+        <label class="text-size">{{ 'contentFor' | translate }}(sv): </label>
+        <div class="NgxEditor__Wrapper">
+          <ngx-editor-menu [editor]="editorSv" [colorPresets]="colorPresets"> </ngx-editor-menu>
+          <ngx-editor [editor]="editorSv" class="editor-width" [(ngModel)]="allContent.sv" [disabled]="false"
+            [placeholder]="'editors.placeholder' | translate"></ngx-editor>
+          <div *ngIf="errorMsg.content" class="error-msg" style="padding-left:20px;">{{errorMsg.content}}</div>
+        </div>
+      </div>
+    </div>
+
+
+
   </div>
 
     <div class="dialog-actions d-flex justify-content-between popup_footer p-3 mobile_btn_wrap">
