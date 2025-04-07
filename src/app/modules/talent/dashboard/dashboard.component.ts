@@ -34,7 +34,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   loggedInUser: any = localStorage.getItem('userData');
   countryFlagUrl: string = './assets/images/city-icon-light.png';
   pageTitle: string = '';
-  
+
 
   constructor(
     private route: ActivatedRoute,
@@ -621,15 +621,46 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
   }
 
-  openImage(index: number): void {
+  openImage(index: any): void {
     // Prepare album
-    let gallery = [];
-    gallery.push(this.highlights.images);
-    gallery.push(this.highlights.videos);
+    // let gallery = [];
+    // gallery.push(this.highlights.images);
+    // gallery.push(this.highlights.videos);
 
-    this.album = gallery.map((file: any) => ({
-      src: this.highlights.file_path + file.file_name,
+    // this.album = gallery.map((file: any) => ({
+    //   src: this.highlights.file_path + file.file_name,
+    // }));
+    // this.album = this.highlights.images.map((image: any) => ({
+    //   src: this.highlights.file_path + image.file_name,
+    // }));
+    let lighboxObject = {};
+    let imagesArr = this.highlights.images.map((image: any) => ({
+      src: this.highlights.file_path + image.file_name,
     }));
+    let videosArr = this.highlights.videos.map((video: any) => ({
+      src: this.highlights.file_path + video.file_name,
+    }));
+    if (String(index).includes("video_")) {
+      index = index.replace("video_", "");
+      console.info('videosArr', videosArr, 'Index', index);
+      lighboxObject = { src: videosArr[index].src, type: 'video' };
+    } else {
+      lighboxObject = { src: imagesArr[index].src, type: 'image' };
+      console.info('imagesArr', imagesArr, 'Index', index);
+    }
+    console.info('lighboxObject', lighboxObject);
+    this.album = [
+      ...this.highlights.images.map((image: any) => ({
+        src: this.highlights.file_path + image.file_name,
+        type: 'image'
+      })),
+      // ...this.highlights.videos.map((video: any) => ({
+      //   src: this.highlights.file_path + video.file_name,
+      //   type: 'video'
+      // }))
+    ];
+
+    console.warn('index is ' + index, 'Album ', this.album, 'Main ', 'Source ' + this.album[index].src, 'Type ' + this.album[index].type)
 
     // Open dialog with the selected image
     this.dialog.open(LightboxDialogComponent, {
@@ -637,7 +668,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       height: '85%',
       data: {
         album: this.album,
-        mainImage: { src: this.album[index].src },
+        mainImage: lighboxObject,
       },
       panelClass: 'lightbox-dialog'
     });

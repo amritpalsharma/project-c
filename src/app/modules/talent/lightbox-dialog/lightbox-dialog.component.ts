@@ -22,7 +22,6 @@ export class LightboxDialogComponent {
     private dialogRef: MatDialogRef<LightboxDialogComponent>
   ) { }
   ngOnInit(): void {
-    console.log('Data passed to LightboxDialog:', this.data);
 
     if (this.data) {
       if (this.data.album) {

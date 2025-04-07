@@ -2413,7 +2413,7 @@ select.form-select.custom-select1 {
 }
 
 .empty-field {
-    border: 1px solid red;
+    border: 5px solid red;
 }
 
 .form-check label.form-check-label.text-light {
@@ -2527,3 +2527,17 @@ select.form-select.custom-select1 {
 input.form-check-input[ng-reflect-required] {
     border: 2px solid red;
 }
+
+.custom-toast {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #dc3545;
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 13px;
+    margin-top: 4px;
+    z-index: 10;
+  }
+  

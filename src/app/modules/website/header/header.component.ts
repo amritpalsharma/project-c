@@ -55,6 +55,7 @@ export class HeaderComponent implements OnInit {
   invalidCred: string = '';
   registerFormSubmitted: boolean = false;
   registerError: string = '';
+  errorTxt: string = '';
   forgotPasswordEmail: string = '';
   forgotPasswordMessage: string = '';
   requiredMessage: string = '';
@@ -85,7 +86,15 @@ export class HeaderComponent implements OnInit {
   Processing: string = '';
   EmailVerified: string = '';
   duplicateCreditionals: boolean = false;
+  isShowErrors: boolean = false;
   duplicateCreditionalsError: any = '';
+
+  firstNameRequired: string = '';
+  lastNameRequired: string = '';
+  usernameRequired: string = '';
+  emailRequiredError: string = '';
+  passwordRequiredError: string = '';
+  confirmPasswordError: string = '';
 
   allLanguage = [];
   selectedLanguageId = null;
@@ -676,19 +685,45 @@ export class HeaderComponent implements OnInit {
     return emailPattern.test(email);
   }
 
+  isValidated() {
+    const firstNameValid = /^[a-zA-Z\s]{2,50}$/.test(this.firstName);
+    const lastNameValid = /^[a-zA-Z\s]{2,50}$/.test(this.lastName);
+    const usernameValid = /^[a-zA-Z0-9._-]{3,20}$/.test(this.username);
+    const emailValid = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(this.email);
+    const passwordValid = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/.test(this.password);
+    const confirmPasswordValid = this.password === this.confirmPassword;
+
+    // Checking for errors
+
+    if (!firstNameValid) return this.firstNameRequired;
+    if (!lastNameValid) return this.lastNameRequired;
+    if (!usernameValid) return this.usernameRequired;
+    if (!emailValid) return this.emailRequiredError;
+    if (!passwordValid) return this.passwordRequiredError;
+    if (!confirmPasswordValid) return this.confirmPasswordError;
+
+    return true;
+  }
+
   register() {
     this.serverBusy = true;
     this.registerFormSubmitted = true;
 
     if (!this.isFormValid()) {
       this.serverBusy = false;
-      this.toastr.warning('Please fill in all required fields.', 'Validation Error');
+      this.toastr.warning(this.requiredFieldsMessage, this.errorTxt);
       return;
     } else {
       this.duplicateCreditionals = false;
     }
 
-
+    if (this.isValidated() === true) {
+      this.isShowErrors = false;
+      this.toastr.error(this.isValidated() + '', this.errorTxt);
+      return;
+    } else {
+      this.isShowErrors = true;
+    }
 
     const selectedLanguage = localStorage.getItem('lang') || '';
     const domain = this.globalSettings.getdomainExtension();
@@ -706,7 +741,7 @@ export class HeaderComponent implements OnInit {
     // Default to a specific language ID if none is found (e.g., English)
     const selectedLanguageId = selectedLanguageObj ? selectedLanguageObj.id : 1;
     let verification_link = window.location.origin + '/home';
-
+    // Custom Validation By Amrit
     const registrationData = {
       first_name: this.firstName,
       last_name: this.lastName,
@@ -855,25 +890,7 @@ export class HeaderComponent implements OnInit {
       this.userDomain.trim() !== ''; // Assuming userDomain is a string
   }
 
-  // forgotPassword() {
-  //   if (!this.forgotPasswordEmail.trim()) {
-  //     this.forgotPasswordMessage = 'Please provide a valid email address.';
-  //     return;
-  //   }
 
-  //   this.authService.forgotPassword(this.forgotPasswordEmail).subscribe(
-  //     response => {
-  //       if (response.status) {
-  //         this.forgotPasswordMessage = response.message;
-  //       } else {
-  //         this.forgotPasswordMessage = response.message;
-  //       }
-  //     },
-  //     () => {
-  //       this.forgotPasswordMessage = 'An error occurred. Please try again later.';
-  //     }
-  //   );
-  // }
 
   forgotPassword() {
     if (!this.forgotPasswordEmail?.trim()) {
@@ -1029,15 +1046,26 @@ export class HeaderComponent implements OnInit {
   }
 
   loadToasterMsg() {
-    this.translateService.get(['pleaseWait', 'registrationInProcess', 'success!', 'registrationFailed', 'Processing', 'EmailVerified', 'requiredFieldsMessage']).subscribe((translations) => {
+    this.translateService.get(['pleaseWait', 'registrationInProcess', 'success!', 'registrationFailed', 'error', 'Processing', 'EmailVerified', 'requiredFieldsMessage']).subscribe((translations) => {
       this.pleaseWait = translations['pleaseWait'];
       this.registrationInProcess = translations['registrationInProcess'];
       this.successTxt = translations['success!'];
+      this.errorTxt = translations['error'];
       this.registrationFailed = translations['registrationFailed'];
       this.Processing = translations['Processing'];
       this.EmailVerified = translations['EmailVerified'];
       this.requiredFieldsMessage = translations['requiredFieldsMessage'];
+    });
+
+    this.translateService.get(['firstNameRequired', 'lastNameRequired', 'usernameRequired', 'emailRequiredError', 'passwordRequiredError', 'confirmPasswordError']).subscribe((translations) => {
+      this.firstNameRequired = translations['firstNameRequired'];
+      this.lastNameRequired = translations['lastNameRequired'];
+      this.usernameRequired = translations['usernameRequired'];
+      this.emailRequiredError = translations['emailRequiredError'];
+      this.passwordRequiredError = translations['passwordRequiredError'];
+      this.confirmPasswordError = translations['confirmPasswordError'];
     })
+
   }
 
   updateInputClass(inputName: string): void {
@@ -1122,6 +1150,4 @@ export class HeaderComponent implements OnInit {
       }
     );
   }
-
-
 }

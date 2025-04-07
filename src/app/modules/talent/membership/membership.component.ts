@@ -137,7 +137,7 @@ export class MembershipComponent {
         this.userPlans = response.data.packages;
         this.premium = this.userPlans.premium[0];
         this.booster = this.userPlans.booster[0];
-        this.demo = this.userPlans.demo[0];
+        // this.demo = this.userPlans.demo[0];
         this.country = this.userPlans.country;
 
         this.ispremium = this.premium ? true : false;
@@ -190,6 +190,7 @@ export class MembershipComponent {
 
   viewMembership(id: any) {
     const userPurchase = this.getSubscriptionById(id);
+
     console.info('userPurchase', userPurchase);
     const dialogRef = this.dialog.open(ViewMembershipPopupComponent, {
       width: '800px',
@@ -205,7 +206,8 @@ export class MembershipComponent {
         currency: userPurchase.amount_paid_currency,
         download_path: userPurchase.invoice_file_path,
         tax_percentage: userPurchase.tax_percentage,
-        tax: userPurchase.tax_amount
+        tax: userPurchase.tax_amount,
+        created_at: userPurchase.created_at,
       }
     });
   }

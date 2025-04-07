@@ -24,4 +24,13 @@ export class ViewMembershipPopupComponent {
     console.log("Popup closed");
     this.dialogRef.close();  
   }
+
+  strUpperCase(str: string) {
+    let upperStr = str.toUpperCase();
+    return upperStr;
+  }
+  capitalizeFirstLetter(str: string) {
+    if (str.length === 0) return str;  // Handle empty string case
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
 }

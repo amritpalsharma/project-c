@@ -24,7 +24,7 @@ export class ViewMembershipPopupComponent {
     this.todayDate = this.datePipe.transform(currentDate, 'dd.MM.yyyy'); // 'dd.MM.yyyy' is the format you can adjust as needed
 
     this.plan = { ...this.data };
-    console.log(this.plan)
+    console.log('Plan',this.plan)
   }
 
   onCancel(): void {

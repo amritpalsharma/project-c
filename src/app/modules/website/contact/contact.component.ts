@@ -70,10 +70,10 @@ export class ContactComponent implements OnInit {
     this.contactForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phone: ['', [
-        Validators.required,
+      // phone: ['', [
+        // Validators.required,
         // Validators.pattern(/^\+?(41|49|39|33|44|34|351|32|45|46)\d{7,}$/)
-      ]],
+      // ]],
       // message: ['', Validators.required],
       domain: window.location.hostname,
       lang: localStorage.getItem('lang_id'),

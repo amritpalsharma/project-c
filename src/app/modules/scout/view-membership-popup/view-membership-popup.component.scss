@@ -140,3 +140,8 @@ a.pdf-download_btn {
     height: 20px !important;
 }
 }
+
+.close-btn:focus, .close-btn:focus-visible{
+    border: 0;
+    outline: 0;
+}

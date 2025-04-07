@@ -40,6 +40,7 @@
     "chart.js": "^4.4.3",
     "dotenv": "^16.4.5",
     "intro.js": "^7.2.0",
+    "lightgallery": "^2.8.3",
     "moment": "^2.30.1",
     "ng-gallery": "^12.0.0",
     "ng-image-slider": "^7.0.1",

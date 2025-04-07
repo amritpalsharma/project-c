@@ -4,9 +4,9 @@
     cursor: pointer;
     font-weight: 600;
     padding: 2px 9px;
-    color: #849aa2;
-    border: 4px solid #849aa2;
-    border-radius: 50%;
+    // color: #849aa2;
+    // border: 4px solid #849aa2;
+    // border-radius: 50%;
 }
 .personal_edit {
     display: flex;
@@ -139,4 +139,8 @@ a.pdf-download_btn {
     width: 20px !important;
     height: 20px !important;
 }
+}
+.close-btn:focus, .close-btn:focus-visible{
+    border: 0;
+    outline: 0;
 }

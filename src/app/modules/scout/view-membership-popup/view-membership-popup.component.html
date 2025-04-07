@@ -4,7 +4,13 @@
       <h2>{{ 'viewMembership' | translate }}</h2>
     </div>
     <div class="close_buttons">
-      <button class="close-btn" (click)="onCancel()">X</button>
+      <!-- <button class="close-btn" (click)="onCancel()">X</button> -->
+      <button class="close-btn border-0" (click)="onCancel()">
+        <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20.9375 3C10.9437 3 3 10.9437 3 20.9375C3 30.9312 10.9437 38.875 20.9375 38.875C30.9312 38.875 38.875 30.9312 38.875 20.9375C38.875 10.9437 30.9312 3 20.9375 3ZM20.9375 36.3125C12.4812 36.3125 5.5625 29.3937 5.5625 20.9375C5.5625 12.4812 12.4812 5.5625 20.9375 5.5625C29.3937 5.5625 36.3125 12.4812 36.3125 20.9375C36.3125 29.3937 29.3937 36.3125 20.9375 36.3125Z" fill="#627C97"/>
+          <path d="M28.0039 30.0977L20.9375 23.0313L13.8711 30.0977L11.7773 28.0039L18.8437 20.9375L11.7773 13.8711L13.8711 11.7773L20.9375 18.8437L28.0039 11.7773L30.0977 13.8711L23.0313 20.9375L30.0977 28.0039L28.0039 30.0977Z" fill="#627C97"/>
+          </svg>          
+      </button>
     </div>
   </div>
 <div class="overflow-card-2 popup__body p-4">
@@ -23,7 +29,7 @@
            </tr>
            <tr>
              <td>#{{ plan.invoice_number }}</td>
-             <td>{{ '23.09.2024' | translate }}</td>
+             <td>{{ plan.created_at | date: 'dd.MM.YYYY' }}</td>
            </tr>
          </thead>
  
@@ -33,18 +39,23 @@
      <table class="table table-bordered membership-data">
        <thead class="table-light">
          <tr>
-           <th>{{ 'category' | translate }}</th>
+           <!-- <th>{{ 'category' | translate }}</th>
             <th>{{ 'plans' | translate }}</th>
+           <th>{{ 'duration' | translate }}</th>
+           <th>{{ 'validUntil' | translate }}</th> -->
+           <th>{{ 'pos' | translate }}</th>
+           <th>{{ 'plan' | translate }}</th>
            <th>{{ 'duration' | translate }}</th>
            <th>{{ 'validUntil' | translate }}</th>
            <th class="text-end">{{ 'price' | translate }}</th>
          </tr>
          <tr class="bordered-bottom">
-            <td>{{ plan.category }}</td>
-            <td>{{ plan.currency }}</td>
-            <td>{{ plan.duration }}</td>
+          <td>1</td>
+          <td>{{ plan.plan }}</td>
+            <!-- <td>{{ plan.duration }}</td> -->
+            <td>{{ capitalizeFirstLetter(plan.duration) }}</td>
             <td>{{ plan.valid_until }}</td>
-            <td class="text-end" >{{ plan.price }} CHF</td>
+            <td class="text-end" >{{ plan.price }} {{strUpperCase(plan.currency)}}</td>
          </tr>
        </thead>
        
@@ -54,9 +65,17 @@
 </div>
 
   <div class="bottom-details">
-    <p><strong>{{ 'subtotal' | translate }}:</strong> {{ plan.subtotal }} CHF</p>
+    <!-- <p><strong>{{ 'subtotal' | translate }}:</strong> {{ plan.subtotal }} CHF</p>
     <p><strong>Incl. VAT 8.1%:</strong> 1.78 CHF</p>
-    <p><strong>{{ 'total' | translate }}:</strong> {{ plan.total }} CHF</p>
+    <p><strong>{{ 'total' | translate }}:</strong> {{ plan.total }} CHF</p> -->
+    <p><strong>{{ 'subTotal' | translate }}:</strong> {{ plan.subtotal }} {{strUpperCase(plan.currency)}}</p>
+    <p *ngIf="plan.tax_percentage>0">
+      <strong *ngIf="'includeVAT' | translate as translatedText">{{ 'includeVAT' | translate }}
+        {{plan.tax_percentage}}%:</strong>
+
+      <span *ngIf="'includeVAT' | translate as translatedText">{{plan.tax}}</span>
+      <span *ngIf="'includeVAT' | translate as translatedText">{{strUpperCase(plan.currency)}}</span>
+    </p>
 
     <div class="download-btn mt-4">
       <a href="{{ plan.download_path }}" class=" pdf-download_btn ">
