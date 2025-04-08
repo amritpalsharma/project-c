@@ -148,52 +148,25 @@ li {
     color: white;
 }
 
-.talent-content {
+.talent-content, .club-content {
     position: relative;
 }
 
-.talent-content::after {
+.talent-content::after, .club-content::after, .scout-content::after {
+    content: "";
     position: absolute;
     background-color: white;
+    bottom: 0;
     opacity: 10%;
     width: 100%;
-    content: "";
-    z-index: 1;
     height: 1px;
-    bottom: 0;
-    margin-top: 20px;
-}
-
-.club-content {
-    position: relative;
-    padding-bottom: 0;
-}
-
-.club-content::after {
-    position: absolute;
-    background-color: #2B4A24;
-    width: 100%;
-    content: "";
     z-index: 1;
-    height: 1px;
-    bottom: 0;
     margin-top: 20px;
 }
 
 .scout-content {
     position: relative;
     padding-bottom: 0;
-}
-
-.scout-content::after {
-    position: absolute;
-    background-color: #2B4A24;
-    width: 100%;
-    content: "";
-    z-index: 1;
-    height: 1px;
-    bottom: 0;
-    margin-top: 20px;
 }
 
 .header h3 {

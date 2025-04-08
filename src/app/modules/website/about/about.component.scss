@@ -251,22 +251,8 @@ img.vector-img {
 }
 
 .club {
-  // background-image: url("../../../../assets/images/player-6.jpeg");
-  /* Adjust the path based on your project structure */
-  background-size: cover;
-  background-position: center;
-  /* Center the background image */
-  height: 800px;
+  width: 100%;
   position: relative;
-  // opacity: 80%;
-}
-
-.club_players {
-  color: white;
-  position: absolute;
-  content: "";
-  top: 32%;
-  left: 2%;
 }
 
 .club-buttons {
@@ -410,14 +396,6 @@ img.join-btn {
 }
 
 @media (min-width: 2560px) {
-  .club_players {
-    top: 25%;
-    left: 2%;
-  }
-
-  // .advertisement1 {
-  //   height: 330px;
-  // }
 
   .map{
     height: 1100px;
@@ -449,17 +427,6 @@ img.join-btn {
 @media (max-width: 1024px) {
   .main-bnr {
     height: 300px;
-  }
-
-  // .advertisement1 {
-  //   position: relative;
-  //   height: 200px;
-  //   margin-bottom: 20px;
-  // }
-
-  .club_players {
-    top: 22%;
-    left: 2%;
   }
 
   .content-image img {
@@ -577,21 +544,8 @@ img.join-btn {
     margin: 14px;
   }
 
-  // .club-buttons {
-  //   margin-top: 40px;
-  // }
-
-  .club {
-    height: 450px;
-  }
 }
 
-@media (max-width: 885px) {
-  .club_players {
-    top: 16%;
-    left: 2%;
-  }
-}
 
 @media (max-width: 767px) {
   .content-image img {
@@ -629,15 +583,6 @@ img.join-btn {
   .main-bnr {
     height: 200px;
     padding-top: 70px;
-  }
-
-  // .club-buttons img {
-  //   width: 170px;
-  //   height: 40px;
-  // }
-  .club_players {
-    position: static;
-    padding: 3rem 0;
   }
 
   .club-banner {
@@ -680,23 +625,6 @@ img.join-btn {
     font-size: 26px;
   }
 
-  // .club_players {
-  //   margin-top: 13%;
-  //   margin-right: 20%;
-  // }
-
-  .club {
-    height: 350px;
-  }
-
-  // .club-buttons {
-  //   margin-top: 10px;
-  // }
-
-  // .light-button img {
-  //   height: 50px;
-  //   width: 200px;
-  // }
 }
 
 @media (max-width: 400px) {
@@ -734,12 +662,6 @@ img.join-btn {
     height: 150px;
     padding-top: 50px;
   }
-
-  .club_players {
-    position: static;
-    padding: 4rem 0;
-  }
-
   .website-code {
     overflow: hidden;
   }
@@ -751,12 +673,6 @@ img.join-btn {
   .countries.py_0 {
     padding-bottom: 0;
   }
-
-  // .club_players {
-  //   margin-top: 13%;
-  //   margin-right: 10%;
-  // }
-
   h3 {
     font-size: 25px;
   }
@@ -793,4 +709,72 @@ img.join-btn {
 .mat-mdc-list-item-unscoped-content {
   color: white !important;
   font-size: 20px !important;
+}
+
+
+
+.light-theme .dark-talant-img {
+  display: none;
+}
+
+.dark-theme .light-talant-img {
+  display: none;
+}
+.text_undefined{
+  display: none;
+}
+
+
+.club_players {
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 20px;
+  .data_wrapper {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .text_side_wrapper {
+      padding: 30px;
+      padding-left: 50px;
+      width: 50%;
+      align-self: center;
+  }
+  .img_side_wrapper {
+    width: 50%;
+    align-self: flex-end;
+    img {
+      width: 100%;
+      margin-top: -100px;
+    }
+  }
+}
+
+.club .club_player_light {
+h3, .text_side_wrapper p {
+  color: white;
+}
+}
+
+
+.club .club_player_dark {
+h3, .text_side_wrapper p {
+  color: #072944 !important;
+}
+}
+
+@media (max-width: 991px) {
+.club_players .text_side_wrapper, .club_players .img_side_wrapper {
+  width: 100% !important;
+}
+.club_players .text_side_wrapper {
+  padding: 20px 15px 15px;
+}
+.club_players .img_side_wrapper img {
+  margin-top: 0;
+}
+.club_players .text_side_wrapper .join-text p {
+  font-size: 16px !important;
+}
 }

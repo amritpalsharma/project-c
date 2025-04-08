@@ -4,9 +4,6 @@
     cursor: pointer;
     font-weight: 600;
     padding: 2px 9px;
-    // color: #849aa2;
-    // border: 4px solid #849aa2;
-    // border-radius: 50%;
 }
 .personal_edit {
     display: flex;
@@ -32,7 +29,7 @@ font-weight: 500;
 }
 h2.rechnung-titel {
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 700;
 }
 .rechnung-headdings {
     tr {
@@ -94,6 +91,25 @@ a.pdf-download_btn {
 }
 thead.table-light th:first-child, thead.table-light td:first-child {
     padding-left: 0;
+}
+
+
+@media (min-width: 1600px) and (max-width: 1999px) {
+    .dialog-header h2 {
+        font-size: 24px !important;
+    }
+    h2.rechnung-titel, .bottom-details p, .bottom-details p strong {
+        font-size: 18px !important;
+    }
+}
+    
+@media (min-width: 2000px)  {
+    .dialog-header h2 {
+        font-size: 24px !important;
+    }
+    h2.rechnung-titel, .bottom-details p, .bottom-details p strong {
+        font-size: 20px !important;
+    }
 }
 
 

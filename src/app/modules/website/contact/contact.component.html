@@ -61,14 +61,14 @@
             <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
               <input type="hidden" name="domain" ng-model="contactForm.domain" />
               <div>
-                <input id="name" formControlName="name" [placeholder]="name_placeholder" ng-model="contactForm.name" />
+                <input id="name" class="form-control" formControlName="name" [placeholder]="name_placeholder" ng-model="contactForm.name" />
                 <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="error">
                   <div *ngIf="name?.errors?.['required']">{{'nameRequired' | translate}}</div> 
                 </div>
               </div>
 
               <div>
-                <input id="email" type="email" formControlName="email" [placeholder]="email_placeholder"
+                <input id="email" class="form-control" type="email" formControlName="email" [placeholder]="email_placeholder"
                   ng-model="contactForm.email" />
                 <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="error">
                   <div *ngIf="email?.errors?.['required']">{{'emailRequired' | translate}}</div>
@@ -78,7 +78,7 @@
               </div>
 
               <div>
-                <input id="phone" type="tel" formControlName="phone" [placeholder]="phone_placeholder"
+                <input id="phone" class="form-control" type="tel" formControlName="phone" [placeholder]="phone_placeholder"
                   ng-model="contactForm.phone" (keypress)="allowOnlyNumbers($event)"
                   (paste)="preventTextPaste($event)"/>
                 <div *ngIf="phone?.invalid && (phone?.dirty || phone?.touched)" class="error">
@@ -89,7 +89,7 @@
               </div>
 
               <div>
-                <textarea id="message" formControlName="message" [placeholder]="message_placeholder"
+                <textarea id="message" class="form-control" formControlName="message" [placeholder]="message_placeholder"
                   [(ngModel)]="messageText"></textarea>
                 <div *ngIf="message?.invalid && (message?.dirty || message?.touched)" class="error">
                   <div *ngIf="message?.errors?.['required']">{{'messageRequired' | translate}}</div>

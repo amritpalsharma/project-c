@@ -4,35 +4,24 @@
 h1 {
     font-size: 45px;
 }
-
 h2 {
     font-size: 40px;
 }
-
 h3 {
     font-size: 35px;
 }
-
 h4 {
     font-size: 22px;
 }
-
 h5 {
     font-size: 20px;
 }
-
 p {
     font-size: 18px;
 }
-
 .features1 {
     display: none;
 }
-
-// .main {
-//     background-color: #236115;
-// }
-
 .py_0 {
     padding-top: 50px;
     padding-bottom: 50px;
@@ -62,7 +51,6 @@ P {
 
 .banner {
     position: relative;
-    // background: url(../../../../assets/images/club-banner.png), #236115;
     background-position: top;
     background-repeat: no-repeat;
     background-size: cover;
@@ -127,10 +115,7 @@ a.btn.btn-register {
     right: 30%;
     width: 297px;
     height: 231px;
-    // opacity: 0.4;
 }
-
-/* Add a gradient background */
 .banner-image2::before {
     content: "";
     position: absolute;
@@ -138,11 +123,8 @@ a.btn.btn-register {
     left: 0;
     right: 0;
     bottom: 0;
-    // background: linear-gradient(to bottom, #092E01, transparent);
     z-index: 0;
-    /* Ensure this is behind the image */
     border-radius: 10px;
-    /* Match the border-radius of the image */
 }
 
 .banner-image3 img {
@@ -167,12 +149,8 @@ a.btn.btn-register {
     right: 0;
     height: 407px;
     width: 415px;
-    // opacity: 0.4;
-    /* Use a value between 0 and 1 */
     border-radius: 10px;
 }
-
-/* Add a gradient background */
 .banner-image4::before {
     content: "";
     position: absolute;
@@ -180,39 +158,10 @@ a.btn.btn-register {
     left: 0;
     right: 0;
     bottom: 0;
-    // background: linear-gradient(to bottom, #092E01, transparent);
     z-index: 0;
-    /* Ensure this is behind the image */
     border-radius: 10px;
-    /* Match the border-radius of the image */
 }
 
-
-
-
-// .banner-image4 img {
-//     content: "";
-//     z-index: 1;
-//     position: absolute;
-//     object-fit: cover;
-//     top: 350px;
-//     right: -70px;
-//     height: 407px;
-//     width: 430px;
-//     opacity: 70%;
-//     border-radius: 10px;
-// }
-
-/*--------------------------------------------------------------
-#  banner
---------------------------------------------------------------*/
-
-/*--------------------------------------------------------------
-#  Club & scouts
---------------------------------------------------------------*/
-// .club-scout {
-//     background-color: #092E01;
-// }
 
 .club-heading4 {
     color: white;
@@ -225,6 +174,12 @@ a.btn.btn-register {
     padding: 25px;
     border-radius: 10px;
     height: 100%;
+    img {
+        width: 55px;
+        height: 55px;
+        object-fit: contain;
+        margin-bottom: 15px;
+    }
 }
 
 .club-text1 {
@@ -871,6 +826,7 @@ img.bg-image {
     position: absolute;
     content: "";
     z-index: 1;
+    width: 40%;
     top: 0;
     left: 0;
     height: 100%;
@@ -881,7 +837,7 @@ img.bg-image {
     min-height: 338px;
     /* Ensures it starts with a base size */
     border-radius: 10px;
-    padding: 50px 20px 90px 40px;
+    padding: 50px 20px 40px 40px;
     position: relative;
     box-sizing: border-box;
 }

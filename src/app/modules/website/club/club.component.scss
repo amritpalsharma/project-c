@@ -1,7 +1,24 @@
 /*--------------------------------------------------------------
 #  Banner
 --------------------------------------------------------------*/
-
+h1 {
+    font-size: 45px;
+}
+h2 {
+    font-size: 40px;
+}
+h3 {
+    font-size: 35px;
+}
+h4 {
+    font-size: 22px;
+}
+h5 {
+    font-size: 20px;
+}
+p {
+    font-size: 18px;
+}
 .py_0 {
     padding-top: 50px;
     padding-bottom: 50px;
@@ -765,10 +782,9 @@ img.birthday-img {
 }
 
 .club_text {
-    padding: 25px 50px 25px 30px;
+    padding: 25px;
     border-radius: 10px;
-    height: calc(100% - 100px);
-    margin-top: 100px;
+    height: 100%;
     img {
         width: 62px;
         height: 62px;
