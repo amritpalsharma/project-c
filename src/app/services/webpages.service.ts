@@ -116,9 +116,10 @@ export class WebPages {
         );
     }
 
-    getDynamicContentPage(content: any, langId: any): Observable<any> {
+    getDynamicContentPage(content: any, langId: any): Observable<any> { 
+        let random = Math.floor(Math.random() * (10000 - 100 + 1)) + 100;
         return this.http.get<{ status: boolean, message: string, data: {} }>(
-            `${this.frontendApiUrl}get-page-by-slug?page_type=${content}&lang_id=${langId}`
+            `${this.frontendApiUrl}get-page-by-slug?page_type=${content}&lang_id=${langId}&mum=${random}`
         );
     }
 

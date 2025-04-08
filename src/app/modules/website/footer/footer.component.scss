@@ -450,7 +450,9 @@ input:checked+.slider:before {
 // }
 
 
-
+#footer .footer-logo img {
+  filter: brightness(0) invert(1) !important;
+}
 #footer .footer-top .footer-contact p {
   font-size: 18px;
   line-height: 28px;
@@ -1452,5 +1454,24 @@ option.countary {
     font-size: 12px;
     line-height: 20px;
     font-weight: 400;
+  }
+}
+
+#footer {
+  position: relative;
+  padding-top: 150px;
+  img.web_footer_bg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    object-fit: cover;
+    object-position: top;
+    z-index: 0;
+  }
+  .footer-top, .footer-bottom {
+    position: relative;
+    z-index: 1;
   }
 }

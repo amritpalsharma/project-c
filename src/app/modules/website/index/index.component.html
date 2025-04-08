@@ -581,58 +581,57 @@
     <!-- How It Works-->
 
     <!-- Club-->
-    <div class="club py_0 light_theme_iclub" style="background-image: url('{{hero_bg_img}}');">
-
-      <div class="club-overlay"></div>
-
-      <div class="container club-banner">
-
-        <div class="club_players">
-          <div class="title_text_p">
-            <h3 *ngIf="pageDetail?.hero_heading && pageDetail.hero_heading && pageDetail.hero_heading.trim().length > 0" class="mb-3 text_{{ pageDetail.hero_heading }}">
-              {{ pageDetail.hero_heading }}
-            </h3>
-            
-            <!-- <p><strong>SoccerYou is the platform for the decisive advantage in the game for talents, clubs and scouts.</strong></p> -->
-            <p><strong>{{pageDetail?.hero_heading_txt}}</strong></p>
-          </div>
-          <div class="club-buttons">
-            <div data-bs-toggle="modal" data-bs-target="#exampleModal1">
-              <div class="button-border">
-                <div class="join-text">
-                  <p> {{pageDetail?.hero_btn_txt}}</p>
-                  <img class="join-btn check-image-dark" src="./assets/images/dark-join-now.png">
-                  <img class="join-btn check-image-light" src="./assets/images/light-join-now.png">
+    <div class="club py_0 club_player_sec">
+      <div class="container">
+        <div class="club_players club_player_light" style="background-image: url('{{hero_bg_img}}');">
+          <div class="data_wrapper">
+            <div class="text_side_wrapper">
+              <div class="title_text_p">
+                <h3 *ngIf="pageDetail?.hero_heading && pageDetail.hero_heading && pageDetail.hero_heading.trim().length > 0" class="mb-3 text_{{ pageDetail.hero_heading }}">
+                  {{ pageDetail.hero_heading }}</h3>
+                <p><strong>{{pageDetail?.hero_heading_txt}}</strong></p>
+              </div>
+              <div class="club-buttons">
+                <div data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                  <div class="button-border">
+                    <div class="join-text">
+                      <p> {{pageDetail?.hero_btn_txt}}</p>
+                      <img class="join-btn check-image-dark" src="./assets/images/dark-join-now.png">
+                      <img class="join-btn check-image-light" src="./assets/images/light-join-now.png">
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
+            <div class="img_side_wrapper">
+              <img src="./assets/images/join-player-img.png" />
+            </div>
           </div>
-
         </div>
-      </div>
-    </div>
-    <div class="club py_0 dark_theme_iclub" style="background-image: url('{{hero_bg_img_dark_mode}}');">
-
-      <div class="club-overlay"></div>
-
-      <div class="container club-banner">
-        <div class="club_players">
-          <div class="title_text_p">
-            <h3 *ngIf="pageDetail?.hero_heading" class="mb-3">{{pageDetail?.hero_heading}}</h3>
-            <p><strong>{{pageDetail?.hero_heading_txt}}</strong></p>
-          </div>
-            <div class="club-buttons">
-            <div data-bs-toggle="modal" data-bs-target="#exampleModal1">
-              <div class="button-border">
-                <div class="join-text">
-                  <p> {{pageDetail?.hero_btn_txt}}</p>
-                  <img class="join-btn check-image-dark" src="./assets/images/dark-join-now.png">
-                  <!-- <img class="join-btn check-image-light" src="./assets/images/light-join-now.png"> -->
+        <div class="club_players club_player_dark" style="background-image: url('{{hero_bg_img_dark_mode}}');">
+          <div class="data_wrapper">
+            <div class="text_side_wrapper">
+              <div class="title_text_p">
+                <h3 *ngIf="pageDetail?.hero_heading && pageDetail.hero_heading && pageDetail.hero_heading.trim().length > 0" class="mb-3 text_{{ pageDetail.hero_heading }}">
+                  {{ pageDetail.hero_heading }}</h3>
+                <p><strong>{{pageDetail?.hero_heading_txt}}</strong></p>
+              </div>
+              <div class="club-buttons">
+                <div data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                  <div class="button-border">
+                    <div class="join-text">
+                      <p> {{pageDetail?.hero_btn_txt}}</p>
+                      <img class="join-btn check-image-dark" src="./assets/images/dark-join-now.png">
+                      <img class="join-btn check-image-light" src="./assets/images/light-join-now.png">
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
+            <div class="img_side_wrapper">
+              <img src="./assets/images/join-player-img.png" />
+            </div>
           </div>
-
         </div>
       </div>
     </div>

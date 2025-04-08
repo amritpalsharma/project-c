@@ -924,7 +924,7 @@ p.club-p {
   }
 
   button.btn.active-btn {
-    color: #092E01;
+    color: #fff;
   }
 
   button.btn p {
@@ -1032,9 +1032,9 @@ p.club-p {
   border-radius: 50%;
   text-align: center;
   padding-top: 3px;
-  opacity: 75%;
+  opacity: 30%;
   font-weight: 700;
-  color: #092E01;
+  color: #fff;
   margin-left: 20px;
 }
 
@@ -1232,15 +1232,10 @@ img.vector-img {
   height: 30px;
 }
 
-.club h3 {
-  color: white;
-}
-
 .club {
-  background-size: cover;
-  background-position: center;
-  height: 800px;
+  width: 100%;
   position: relative;
+  margin-top: 70px;
 }
 
 .club-overlay {
@@ -1253,15 +1248,6 @@ img.vector-img {
 
 .players-div {
   position: relative;
-}
-
-.club_players {
-  color: white;
-  position: absolute;
-  content: "";
-  top: 28%;
-  left: 2%;
-  width: 96%;
 }
 
 .club-banner {
@@ -1916,7 +1902,7 @@ img.join-btn {
 }
 
 .club-buttons {
-  margin-top: 50px;
+  margin-top: 20px;
   cursor: pointer;
 }
 
@@ -2346,13 +2332,6 @@ img.success-image {
     height: 560px;
   }
 
-  .club_players {
-    top: 20%;
-    left: 2%;
-  }
-
-
-
   .network3,
   .network5 {
     right: 8%;
@@ -2775,11 +2754,6 @@ img.success-image {
     height: 155px;
     object-fit: contain;
   }
-
-  .club_players {
-    top: 17%;
-  }
-
   .works h3 {
     font-size: 28px;
   }
@@ -2805,10 +2779,6 @@ img.success-image {
   .progress_btn p {
     margin-top: 10px;
     font-size: 18px;
-  }
-
-  .club {
-    height: 600px;
   }
 
   .club h3 {
@@ -3236,10 +3206,6 @@ img.success-image {
   .club h4 {
     margin-left: 40px;
     font-size: 30px;
-  }
-
-  .club {
-    height: 500px;
   }
 
   .joined {
@@ -3829,12 +3795,6 @@ img.success-image {
     width: 120px;
   }
 
-  .club_players {
-    position: static;
-    padding: 3rem 0;
-    width: 100%;
-  }
-
   .club-banner {
     height: 0;
   }
@@ -4181,37 +4141,24 @@ img.success-image {
   .ziddane-image {
     height: 21px;
   }
-
   .Ronaldinho-image {
     height: 19px;
   }
-
   .fc-image {
     height: 21px;
   }
-
   .sc-image {
     height: 23px;
   }
-
-  .club {
-    width: 100%;
-    height: 400px;
-    background-position-y: center;
-  }
-
   .club h3 {
     font-size: 35px;
   }
-
   .club-buttons {
     margin-top: 15px;
   }
-
   h4 {
     font-size: 22px;
   }
-
   .club .border-btn {
     height: 55px;
     width: 250px;
@@ -4805,12 +4752,6 @@ img.success-image {
     margin: 13px;
   }
 
-  .club_players {
-    position: static;
-    padding: 4rem 0;
-  }
-
-
   .player-img {
     height: 224px;
   }
@@ -5082,4 +5023,62 @@ img.success-image {
 }
 .text_undefined{
   display: none;
+}
+
+
+.club_players {
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 20px;
+  .data_wrapper {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .text_side_wrapper {
+      padding: 30px;
+      padding-left: 50px;
+      width: 50%;
+      align-self: center;
+  }
+  .img_side_wrapper {
+    width: 50%;
+    align-self: flex-end;
+    img {
+      width: 100%;
+      margin-top: -100px;
+    }
+  }
+}
+
+.club .club_player_light {
+h3, .text_side_wrapper p {
+  color: white;
+}
+}
+
+
+.club .club_player_dark {
+h3, .text_side_wrapper p {
+  color: #072944 !important;
+}
+}
+
+@media (max-width: 991px) {
+  .club {
+    margin-top: 0;
+  }
+.club_players .text_side_wrapper, .club_players .img_side_wrapper {
+  width: 100% !important;
+}
+.club_players .text_side_wrapper {
+  padding: 20px 15px 15px;
+}
+.club_players .img_side_wrapper img {
+  margin-top: 0;
+}
+.club_players .text_side_wrapper .join-text p {
+  font-size: 16px !important;
+}
 }

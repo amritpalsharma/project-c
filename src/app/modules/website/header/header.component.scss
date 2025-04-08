@@ -185,21 +185,20 @@ body {
     width: 120px;
     /* Image width */
 }
+.register .form-label, .register .mt-3.dont-account {
+    color: #000;
+}
+
 
 .register .form-label {
-    color: white;
     font-size: 18px;
     font-weight: 400;
     margin-bottom: 10px;
 }
-
 .register .mt-3.dont-account {
-    color: white;
     font-size: 16px;
 }
-
 .register .register {
-    color: #e05263;
     font-weight: 600;
     font-size: 18px;
     margin-left: 10px;
@@ -266,13 +265,12 @@ ul {
 }
 
 .text-light {
-    color: #a2acbb !important;
+    color: #000;
+}
+.phone, .email {
+    color: #000;
 }
 
-.phone,
-.email {
-    color: #fff;
-}
 
 .register .modal {
     --bs-modal-zindex: 1055;
@@ -2524,7 +2522,7 @@ select.form-select.custom-select1 {
 
 
 
-input.form-check-input[ng-reflect-required] {
+input[type="checkbox"].form-check-input[ng-reflect-required] {
     border: 2px solid red;
 }
 
@@ -2541,3 +2539,9 @@ input.form-check-input[ng-reflect-required] {
     z-index: 10;
   }
   
+
+  .dark-theme {
+    .text-light, .phone, .email {
+        color: #fff;
+    }
+}
