@@ -1,0 +1,12 @@
+AuthUserFile /home/pofepave/.htpasswds/htpasswd.c570ee57-b0d9-4499-b94f-2c557d5622ef
+
+AddHandler application/x-httpd-php83 .php
+
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.html [L]
+
+#@__HCP_END__@#
+# Anything after the comment above is left alone
