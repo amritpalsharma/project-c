@@ -42,8 +42,9 @@ export class BlogService {
 
     // Method to delete a record by IDs
     deleteBlog(params: any): Observable<any> {
+        let random = Math.floor(Math.random() * (10000 - 100 + 1)) + 100;
         let currentLang = localStorage.getItem('lang_id');
-        return this.http.post<any>(`${this.apiUrl}admin/delete-blog/${currentLang}`, params);
+        return this.http.post<any>(`${this.apiUrl}admin/delete-blog/${currentLang}?num=${random}`, params);
     }
 
     publishBlogs(params: any): Observable<any> {

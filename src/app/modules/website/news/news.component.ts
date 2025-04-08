@@ -33,11 +33,11 @@ export class NewsComponent implements OnInit, OnDestroy {
   latestNewsData: NewsData[] = [];
   intervalId: any;
   touchStartX: number = 0;
-  bannerImg : string ='';
+  bannerImg: string = '';
   // advertisementData: any;
   advertisemnet_base_url: string = '';
   base_url: string = 'https://api.socceryou.ch/uploads/';
-  base_url2 : string = '';
+  base_url2: string = '';
   adVisible: boolean[] = [true, true, true, true, true];
   DataFound: boolean = false;
 
@@ -118,7 +118,8 @@ export class NewsComponent implements OnInit, OnDestroy {
   }
 
   getPageData(languageId: any) {
-    this.webPages.getDynamicContentPage('news', languageId).subscribe((res) => {
+    // this.webPages.getDynamicContentPage('news', languageId).subscribe((res) => {
+    this.webPages.getDynamicNewsPage(languageId).subscribe((res) => {
       if (res.status) {
         if (res.data.advertisementData != '' && res.data.advertisementData != undefined) {
           this.advertisementData = res.data.advertisementData;
@@ -148,9 +149,9 @@ export class NewsComponent implements OnInit, OnDestroy {
         this.slider_btn_txt = res.data.pageData.slider_btn_txt;
         this.slider_date = res.data.pageData.slider_date;
 
-        this.bannerImg =  res.data.pageData.banner_bg_img;
+        this.bannerImg = res.data.pageData.banner_bg_img;
 
-        
+
         // this.images = res.data.newsSliderData || this.images;
         this.base_url2 = res.data.base_url;
         this.addThreeElements(this.latestNewsData);

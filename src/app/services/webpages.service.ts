@@ -26,7 +26,7 @@ export class WebPages {
     updateData(data: string) {
         this.languageId.next(data); // Update the shared data
     }
- 
+
 
 
     getAllPages(lang_id: any = 1, params: any): Observable<any> {
@@ -119,6 +119,13 @@ export class WebPages {
     getDynamicContentPage(content: any, langId: any): Observable<any> {
         return this.http.get<{ status: boolean, message: string, data: {} }>(
             `${this.frontendApiUrl}get-page-by-slug?page_type=${content}&lang_id=${langId}`
+        );
+    }
+
+    getDynamicNewsPage(langID: any): Observable<any>{
+        let random = Math.floor(Math.random() * (10000 - 100 + 1)) + 100;
+        return this.http.get<{ status: boolean, message: string, data: {} }>(
+            `${this.frontendApiUrl}get-news-page/${langID}?page_type=news&random=${random}`
         );
     }
 

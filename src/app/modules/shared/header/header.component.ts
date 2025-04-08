@@ -148,12 +148,7 @@ export class HeaderComponent {
     });
 
     this.lang = localStorage.getItem('lang') || 'en';
-    const selectedLanguage = this.domains.find((lang: any) => lang.slug === this.lang);
-    if (selectedLanguage) {
-      this.language = selectedLanguage;
-    } else {
-      this.language = this.domains[0];
-    }
+
 
     this.socketService.on('notification').subscribe((data) => {
       // Fetch all notifications to update this.allNotifications with the latest data
@@ -282,9 +277,9 @@ export class HeaderComponent {
             searchResults = searchResults.filter((user: any) => {
               const fullName = `${user.first_name} ${user.last_name}`.toLowerCase();
               const search = searchText.toLowerCase();
-              
+
               return (
-                user.first_name.toLowerCase().startsWith(search) || 
+                user.first_name.toLowerCase().startsWith(search) ||
                 user.last_name.toLowerCase().startsWith(search) ||
                 fullName.startsWith(search)
               );
@@ -305,6 +300,22 @@ export class HeaderComponent {
       this.searchControl.setValue('', { emitEvent: false }); // Clear search input
       this.filteredUsers = []; // Reset search results
     });
+
+    const selectedLanguage = this.domains.find((lang: any) => lang.slug === this.lang);
+    if (selectedLanguage) {
+      this.language = selectedLanguage;
+    } else {
+      this.language = this.domains[0];
+    }
+    this.lang = this.lang.replaceAll(' ', '');
+
+    if (this.lang == 'se') {
+      this.lang = 'sv';
+    }
+    const selectedLanguageArr = this.domains.find((lang: any) => lang.slug === this.lang);
+    if(selectedLanguageArr == undefined || selectedLanguageArr != ''){
+      this.language = selectedLanguageArr;
+    }
   }
 
   isUserOnline(senderId: number): boolean {
@@ -420,6 +431,10 @@ export class HeaderComponent {
     // Change the TalkJS locale by passing the locale string (e.g., 'en-US')
     this.talkService.changeLocale(locale);
     this.getPageTitle();
+
+    if(this.lang == 'se'){
+      this.lang = 'sv';
+    }
   }
 
   logout() {

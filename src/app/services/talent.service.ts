@@ -288,8 +288,9 @@ export class TalentService {
   }
 
   getUserPlans(params: any = {}): Observable<any> {
+    let lang = localStorage.getItem('lang_id');
     return this.http.get<{ status: boolean, message: string, data: any }>(
-      `${this.apiUrl}user/get-active-packages`, { params }
+      `${this.apiUrl}user/get-active-packages/${lang}`, { params }
     );
   }
 

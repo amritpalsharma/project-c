@@ -1,12 +1,23 @@
-<div class="delete-confirmation-modal bg-color">  
-    <div class="text-end">
-        <!-- <button class="close-btn" (click)="cancel()">X</button> -->
-        <a (click)="cancel()" class="cross-btn-close"></a>
-    </div>
-    <h2 class="delete-confirmation">{{'confirmDeleteinformation' | translate}}</h2>
+<div class="delete-confirmation-modal bg-color">
+  <div class="text-end">
+    <!-- <button class="close-btn" (click)="cancel()">X</button> -->
+    <!-- <a (click)="cancel()" class="cross-btn-close"></a> -->
+    <div class="msg-popup-close">
+      <img src="../../../assets/images/close-icon-circle.png" alt="" class="" (click)="cancel()" />
+  </div>
+  </div>
+  <!-- <h2 class="delete-confirmation">{{'confirmDeleteinformation' | translate}}</h2>
     
     <div class="dialog-actions">
       <button class="confirmation_delete-button" (click)="confirmDelete()">{{'delete' | translate}}</button>
-    </div> 
+    </div>  -->
+  <div class="display-message" class="delete-confirmation">
+    {{'confirmDeleteinformation' | translate}}
+
+    <div class="popup-delete-btn popup-delete-btn d-flex align-items-center justify-content-center py-2">
+      <span (click)="confirmDelete()" class="btn btn-success me-3 bg-light-btn btn_confirmm">{{'removeFavbtn' |
+        translate}}</span>
+      <div (click)="cancel()" class="btn btn-danger bg-dark-btn btn_cancell">{{ 'cancelRemoveFavBtn' | translate }}</div>
+    </div>
+  </div>
 </div>
-  
