@@ -1345,5 +1345,6 @@
     "FIRST_PAGE": "First page",
     "LAST_PAGE": "Last page",
     "OF": "of"
-  }
+  },
+  "highlightTooltip":"Edit highlights"
 }

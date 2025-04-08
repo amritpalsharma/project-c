@@ -612,7 +612,7 @@
                     <h2 class="text-uppercase">{{'highlights' | translate}}</h2>
                     <p>{{'featuredPhotosAndVideos' | translate}}</p>
                   </div>
-                  <div class="settings cursor-pointer setting_heighlight" *ngIf="checkRole()" (click)="openHighlight()">
+                  <div class="settings cursor-pointer setting_heighlight" *ngIf="checkRole()" (click)="openHighlight()" matTooltip="{{'highlightTooltip' | translate}}" matTooltipPosition="right">
 
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path

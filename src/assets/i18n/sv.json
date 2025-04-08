@@ -1432,5 +1432,6 @@
     "FIRST_PAGE": "Första sidan",
     "LAST_PAGE": "Sista sidan",
     "OF": "av"
-  }
+  },
+  "highlightTooltip": "Redigera höjdpunkter"
 }

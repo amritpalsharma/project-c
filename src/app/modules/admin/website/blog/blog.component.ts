@@ -31,7 +31,7 @@ export class BlogComponent {
   selectedIds: any = [];
   customFilters: any = [];
   languages: any;
-  count : number = 0;
+  count: number = 0;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -213,7 +213,7 @@ export class BlogComponent {
       data: {
         message: message,
         action: action,
-        
+
       }
     });
     messageDialog.afterClosed().subscribe(result => {
@@ -256,11 +256,23 @@ export class BlogComponent {
   }
 
   onCheckboxChange(item: any) {
-    const index = this.selectedIds.indexOf(item.id);
-    if (index === -1) {
+    // const index = this.selectedIds.indexOf(item.id);
+    // if (index === -1) {
+    //   this.selectedIds.push(item.id);
+    // } else {
+    //   this.selectedIds.splice(index, 1);
+    // }
+
+    if (!this.selectedIds.includes(item.id)) {
       this.selectedIds.push(item.id);
     } else {
-      this.selectedIds.splice(index, 1);
+      this.selectedIds = this.selectedIds.filter((id: any) => id !== item.id);
+    }
+
+    if (this.blogs.length === this.selectedIds.length) {
+      this.allSelected = true;
+    } else {
+      this.allSelected = false;
     }
   }
 

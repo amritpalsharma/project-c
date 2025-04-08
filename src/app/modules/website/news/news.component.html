@@ -35,7 +35,7 @@
     </div>
 
     <div class="news-slider py_0">
-      <div class="container noDataFound mt-2" *ngIf="!DataFound">
+      <div class="container noDataFound mt-2 text-center" *ngIf="!DataFound">
         <h3 class="cookie112 text-white" style="font-size: 40px;">{{'noDataFoundText' | translate}}</h3>
       </div>
       <div class="container" *ngIf="DataFound">
@@ -43,10 +43,8 @@
           <div class="image-wrapper" (touchstart)="onTouchStart($event)" (touchmove)="onTouchMove($event)"
             (touchend)="onTouchEnd($event)">
             <!-- Dynamic Image -->
-            <!-- <h1>{{images | json}}</h1> -->
             <img *ngIf="images.length > 0" [src]="base_url + currentImage" [alt]="images[currentImageIndex].title" />
             <div class="image-text" *ngIf="images.length > 0">
-              <!-- Dynamic Content for Each Slide -->
               <p class="p-text">{{images[currentImageIndex].date}}</p>
               <h3 class="text-heading" [innerHTML]="images[currentImageIndex].title"></h3>
               <button class="learn-more" [routerLink]="getRouterLink(images[currentImageIndex].slug)">

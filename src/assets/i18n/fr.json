@@ -1437,7 +1437,7 @@
   "deleteBtnTxt": "Supprimer",
   "showResultBtnTxt": "Afficher les résultats",
   "renews": "Renouvelé le :",
-  "alreadyPurchased":"Déjà acheté",
+  "alreadyPurchased": "Déjà acheté",
   "portfolioDeleteConfirmation": "Êtes-vous sûr de vouloir supprimer ce talent de votre portfolio ?",
   "portfolioDeletebtn": "Supprimer",
   "portfolioCloseBtn": "Fermer",
@@ -1448,5 +1448,6 @@
     "FIRST_PAGE": "Première page",
     "LAST_PAGE": "Dernière page",
     "OF": "de"
-  }
+  },
+  "highlightTooltip": "Modifier les faits saillants"
 }
