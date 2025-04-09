@@ -26,8 +26,9 @@ export class BlogService {
           );
     }
     getBlogById(id:any){
+        let random = Math.floor(Math.random() * (10000 - 100 + 1)) + 100;
         return this.http.get<{ status: boolean, message: string, data: any }>(
-            `${this.apiUrl}admin/get-blog?id=${id}`
+            `${this.apiUrl}admin/get-blog?id=${id}&num=${random}`
           );
     }
     addBlog(record: any): Observable<any> {
@@ -36,8 +37,9 @@ export class BlogService {
     }
     // Method to update an existing record
     updateBlog(id: number, record: any): Observable<any> {
+        let random = Math.floor(Math.random() * (10000 - 100 + 1)) + 100;
         let currentLang = localStorage.getItem('lang_id');
-        return this.http.post<any>(`${this.apiUrl}admin/edit-blog/${id}/${currentLang}`, record);
+        return this.http.post<any>(`${this.apiUrl}admin/edit-blog/${id}/${currentLang}?num=${random}`, record);
     }
 
     // Method to delete a record by IDs

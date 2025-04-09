@@ -2,7 +2,7 @@
   <!-- <app-header></app-header> -->
   <div class="main">
     <!-- <div class="main-bnr"> -->
-      <div class="main-bnr" [ngStyle]="{'background-image': 'url(' + base_url2 + bannerImg + ')'}">
+    <div class="main-bnr" [ngStyle]="{'background-image': 'url(' + base_url2 + bannerImg + ')'}">
       <div class="overlay"></div>
       <div class="banner-inner py_0">
         <div class="container">
@@ -38,12 +38,14 @@
       <div class="container noDataFound mt-2 text-center" *ngIf="!DataFound">
         <h3 class="cookie112 text-white" style="font-size: 40px;">{{'noDataFoundText' | translate}}</h3>
       </div>
-      <div class="container" *ngIf="DataFound">
+      <!-- <div class="container" *ngIf="DataFound">
         <div class="image-slider">
           <div class="image-wrapper" (touchstart)="onTouchStart($event)" (touchmove)="onTouchMove($event)"
             (touchend)="onTouchEnd($event)">
-            <!-- Dynamic Image -->
-            <img *ngIf="images.length > 0" [src]="base_url + currentImage" [alt]="images[currentImageIndex].title" />
+
+            <img *ngIf="images.length > 0" [src]="base_url + images[currentImageIndex].featured_image"
+              [alt]="images[currentImageIndex].title" />
+
             <div class="image-text" *ngIf="images.length > 0">
               <p class="p-text">{{images[currentImageIndex].date}}</p>
               <h3 class="text-heading" [innerHTML]="images[currentImageIndex].title"></h3>
@@ -53,7 +55,6 @@
             </div>
           </div>
 
-          <!-- Thumbnails for Navigation -->
           <div class="container">
             <div class="thumbnail-scroll">
               <div class="slider-image">
@@ -63,8 +64,57 @@
               </div>
             </div>
           </div>
+
+        </div>
+      </div> -->
+
+      <div id="carouselExampleIndicators" class="carousel slide news-slider py_0" *ngIf="DataFound">
+        <div class="container" *ngIf="DataFound">
+          <div class="image-slider">
+            <!-- Carousel Indicators -->
+            <div class="carousel-indicators">
+              <div class="thumbnail-scroll">
+                <div class="slider-image">
+                  <button *ngFor="let slide of images; let i = index" class="thumbnail" type="button"
+                    data-bs-target="#carouselExampleIndicators" [attr.data-bs-slide-to]="i" [class.active]="i === 0"
+                    [attr.aria-current]="i === 0 ? 'true' : null" [attr.aria-label]="'Slide ' + (i + 1)">
+                  </button>
+                </div>
+              </div>
+            </div>
+  
+            <!-- Carousel Items -->
+            <div class="carousel-inner image-wrapper">
+              <div *ngFor="let slide of images; let i = index" class="carousel-item" [class.active]="i === 0">
+                <img [src]="base_url + slide.featured_image" class="d-block w-100" [alt]="slide.title || 'Slide Image'">
+
+                <div class="image-text" *ngIf="images.length > 0" >
+                  <p class="p-text">{{slide.date}}</p>
+                  <h3 class="text-heading" [innerHTML]="slide.title"></h3>
+                  <button class="learn-more" [routerLink]="getRouterLink(slide.slug)">
+                    {{'learnMore' | translate}}
+                  </button>
+                </div>
+              </div>
+  
+            </div>
+  
+            <!-- Controls -->
+            <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+              data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+              data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button> -->
+  
+          </div>
         </div>
       </div>
+
       <div class="advertisment">
         <div class="container">
           <div *ngIf="checkActive('leaderboard') || checkActive('banner')" class="advertisment advirtismnt_2">
@@ -89,7 +139,7 @@
           </div>
         </div>
       </div>
-       
+
       <div class="latest-news py_0" *ngIf="DataFound">
         <div class="container">
           <!-- <pre style="background: aliceblue;">{{latestNewsData | json}}</pre> -->

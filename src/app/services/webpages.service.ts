@@ -131,8 +131,9 @@ export class WebPages {
     }
 
     getNewsContentPage(id: any, langId: any): Observable<any> {
+        let random = Math.floor(Math.random() * (10000 - 100 + 1)) + 100;
         return this.http.get<{ status: boolean, message: string, data: {} }>(
-            `${this.frontendApiUrl}get-single-news/${id}`
+            `${this.frontendApiUrl}get-single-news/${id}/${langId}?random=${random}`
         );
     }
 

@@ -53,7 +53,7 @@ export class NewsComponent implements OnInit, OnDestroy {
   constructor(private webPages: WebPages) { }
 
   ngOnInit() {
-    this.startAutoplay();
+    // this.startAutoplay();
     this.webPages.languageId$.subscribe((data) => {
       this.getPageData(data);
     }, error => {
@@ -137,13 +137,15 @@ export class NewsComponent implements OnInit, OnDestroy {
         }
 
         if (res.data.newsSliderData != '' && res.data.newsSliderData != undefined) {
-          this.latestNewsData = res.data.newsSliderData;
-          this.addThreeElements(this.latestNewsData);
+          // this.latestNewsData = res.data.newsSliderData;
+          // this.addThreeElements(this.latestNewsData);
+          this.addThreeElements(res.data.newsSliderData);
           this.startCountdown();
           this.DataFound = true;
         } else {
           this.DataFound = false;
         }
+        this.latestNewsData = res.data.latestNewsData;
         console.log(this.latestNewsData);
         this.news_img_path = res.data.news_img_path;
         this.slider_btn_txt = res.data.pageData.slider_btn_txt;
@@ -154,7 +156,7 @@ export class NewsComponent implements OnInit, OnDestroy {
 
         // this.images = res.data.newsSliderData || this.images;
         this.base_url2 = res.data.base_url;
-        this.addThreeElements(this.latestNewsData);
+        // this.addThreeElements(this.latestNewsData);
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
         this.advertisementData = res?.data?.advertisementData;
         this.advertisementList = res?.data?.allAdsList;
@@ -202,8 +204,8 @@ export class NewsComponent implements OnInit, OnDestroy {
   }
 
   resetAutoplay() {
-    this.stopAutoplay();
-    this.startAutoplay();
+    // this.stopAutoplay();
+    // this.startAutoplay();
   }
 
   @HostListener('touchstart', ['$event'])
@@ -263,7 +265,7 @@ export class NewsComponent implements OnInit, OnDestroy {
 
   // }
 
-  get currentImage() {
+  getcurrentImage() {
     return this.images[this.currentImageIndex].featured_image;
   }
 
@@ -327,10 +329,28 @@ export class NewsComponent implements OnInit, OnDestroy {
     return this.advertisementData && this.advertisementData[key] && 'featured_image' in this.advertisementData[key];
   }
 
+  // addThreeElements(originalArray: any) {
+  //   let selectedItems = originalArray.slice(0, 3); // Get first 3 elements
+  //   this.images.push(...selectedItems); // Push to target array
+  //   console.warn(this.images, originalArray, selectedItems)
+  // }
+
   addThreeElements(originalArray: any) {
-    let selectedItems = originalArray.slice(0, 3); // Get first 3 elements
-    this.images.push(...selectedItems); // Push to target array
-    console.warn(this.images)
+    let selectedItems = originalArray.slice(0, 3).map((item: any) => {
+      const dateObj = new Date(item.created_at);
+      const day = String(dateObj.getDate()).padStart(2, '0');
+      const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+      const year = String(dateObj.getFullYear()).slice(-2); // Get last 2 digits
+  
+      return {
+        ...item,
+        date: `${day}.${month}.${year}`
+      };
+    });
+  
+    this.images.push(...selectedItems);
+    console.warn(this.images, originalArray, selectedItems);
   }
+  
 
 }
