@@ -41,9 +41,9 @@
 
                         <div class="col-lg-8 col-md-12 col-12">
                             <div class="banner_image_combo">
-                                <img *ngIf="pageData?.banner_img != '' && currentTheme == 'light'"
+                                <img *ngIf="pageData?.banner_img != '' && currentTheme == 'light' && !isLoading"
                                     src="{{baseUrl + pageData?.banner_img}}" />
-                                <img *ngIf="pageData?.banner_img_dark_mode != '' && currentTheme == 'dark'"
+                                <img *ngIf="pageData?.banner_img_dark_mode != '' && currentTheme == 'dark' && !isLoading"
                                     src="{{baseUrl + pageData?.banner_img_dark_mode}}" />
                             </div>
                         </div>
