@@ -49,7 +49,7 @@
                                     <img *ngIf="userNationality" [src]="userNationality">
 
                                     <hr *ngIf="userNationality && loggedInUser?.meta?.date_of_birth">
-                                    <div class="age_box">
+                                    <div class="age_box" *ngIf="!hide">
                                         <span>
                                             <svg width="16" viewBox="0 0 30 30" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
@@ -101,7 +101,7 @@
                                     <img *ngIf="userNationality" [src]="userNationality">
 
                                     <hr *ngIf="userNationality && loggedInUser?.meta?.date_of_birth">
-                                    <div class="age_box">
+                                    <div class="age_box" *ngIf="!hide">
                                         <span>
                                             <svg width="16" viewBox="0 0 30 30" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">

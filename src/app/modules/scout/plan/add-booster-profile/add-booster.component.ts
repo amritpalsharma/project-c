@@ -35,6 +35,8 @@ export class AddBoosterComponent {
   pleaseWait: string = '';
   Processing: string = '';
 
+  hide : boolean = true;
+
   constructor(
     public dialogRef: MatDialogRef<AddBoosterComponent>,
     public scoutService: ScoutService,
