@@ -595,7 +595,7 @@
   "screenshot3817": "Screenshot-3817.png",
   "png4mb": "Png og 4mb",
   "sharefileDocx": "Sharefile.docx",
-  "clubName": "Club og name",
+  "clubName": "Klubnavn",
   "germanFootball": "German og football",
   "viewOnly": "Kun for visning",
   "admin": "Admin",
@@ -753,7 +753,7 @@
   "dominantFootRequired": "Dominant og foot og is og required",
   "playerAge": "Player og age",
   "form-upto": "Fra - Op til",
-  "session": "Session",
+  "session": "Sæson",
   "addNewTransfer": " Tilføj ny transfer",
   "addTransferDetails": "Tilføj transferdetaljer",
   "addVideos": "Tilføj video",
@@ -1299,5 +1299,6 @@
     "LAST_PAGE": "Sidste side",
     "OF": "af"
   },
-  "highlightTooltip": "Rediger højdepunkter"
+  "highlightTooltip": "Rediger højdepunkter",
+  "homeBannerTxt":"Den, der møder op, bliver set. SoccerYou - Fordi talent alene ikke er nok."
 }

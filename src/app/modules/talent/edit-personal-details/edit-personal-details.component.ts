@@ -83,6 +83,7 @@ export class EditPersonalDetailsComponent implements OnInit {
   // selectedLeagueId:number=16;
 
   clubSearch: string = '';
+  nationSearch: string = '';
   filteredClubs: any[] = [];
 
   // playerClubsListing = [
@@ -92,6 +93,8 @@ export class EditPersonalDetailsComponent implements OnInit {
   // ];
   currentClubId: any;
   searchedClubs: any = [];
+  filterCountriesArr: any = [];
+  displayedCountries: any[] = [];
 
   constructor(
     public dialogRef: MatDialogRef<EditPersonalDetailsComponent>,
@@ -191,6 +194,7 @@ export class EditPersonalDetailsComponent implements OnInit {
       this.getJsonTranslations();
     });
     this.filteredClubs = [...this.playerClubsListing];
+    this.displayedCountries = [...this.countries];
   }
 
   ngAfterViewInit(): void {
@@ -479,10 +483,75 @@ export class EditPersonalDetailsComponent implements OnInit {
     this.searchedClubs = [...this.playerClubsListing];
   }
 
-  filterClubs() {
+  filterClubs(event: any) {
     const searchTerm = this.clubSearch.toLowerCase();
     this.searchedClubs = this.playerClubsListing.filter((club: any) =>
       club.club_name.toLowerCase().startsWith(searchTerm)
     );
+  }
+
+  filterCountriesOld(event: any) {
+    const keyword = event.target.value.toLowerCase();
+    this.nationSearch = keyword;
+
+    if (keyword === '') {
+      this.displayedCountries = [...this.countries];
+    } else {
+      const matched = this.countries.filter((c:any) =>
+        c.country_name.toLowerCase().includes(keyword)
+      );
+
+      // 👇 Ensure already selected countries stay in the list
+      const selected = this.countries.filter((c: any) => this.nationality.includes(c.id));
+
+      // 👇 Merge and remove duplicates
+      const combined = [...matched, ...selected];
+      const unique = combined.filter((value, index, self) =>
+        index === self.findIndex((t) => t.id === value.id)
+      );
+
+      this.displayedCountries = unique;
+    }
+  }
+
+  filterCountries(event: any) {
+    const keyword = event.target.value.toLowerCase();
+    this.nationSearch = keyword;
+  
+    if (keyword === '') {
+      this.displayedCountries = [...this.countries];
+    } else {
+      // First, get countries that start with the keyword
+      const startsWith = this.countries.filter((c: any) =>
+        c.country_name.toLowerCase().startsWith(keyword)
+      );
+  
+      // Then, get countries that contain the keyword but not start with it
+      const contains = this.countries.filter((c: any) =>
+        !c.country_name.toLowerCase().startsWith(keyword) &&
+        c.country_name.toLowerCase().includes(keyword)
+      );
+  
+      // Combine them: startsWith first, then contains
+      const matched = [...startsWith, ...contains];
+  
+      // Always keep already selected countries in the list
+      const selected = this.countries.filter((c: any) =>
+        this.nationality.includes(c.id)
+      );
+  
+      // Merge matched + selected and remove duplicates
+      const combined = [...matched, ...selected];
+      const unique = combined.filter((value, index, self) =>
+        index === self.findIndex((t) => t.id === value.id)
+      );
+  
+      this.displayedCountries = unique;
+    }
+  }
+  
+
+  trackByCountryId(index: number, country: any): number {
+    return country.id;
   }
 }

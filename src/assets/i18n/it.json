@@ -29,7 +29,7 @@
   "firstName": "Nome",
   "lastName": "Cognome",
   "selectUnit": "Selezionare l'unità",
-  "cancel": "Annullamento",
+  "cancel": "Annulla",
   "save": "Salva",
   "coverPhoto": "Foto di copertina",
   "inTheTeamSince": "In squadra da",
@@ -300,7 +300,7 @@
   "emailPlaceholder": "esempio@email.it",
   "passwordLabel": "Password",
   "passwordPlaceholder": "12345688",
-  "requiredFieldsMessage": "Si prega di compilare tutti i campi obbligatori.",
+  "requiredFieldsMessage": "Per favore, compila tutti i campi obbligatori.",
   "forgotPasswordLink": "Password dimenticata?",
   "loginButton": "Accedi",
   "orText": "o",
@@ -697,7 +697,7 @@
   "eltonPrinceTalent": "Talent",
   "english": "English",
   "approved": "Approved",
-  "pending": "Pending",
+  "pending": "In sospeso",
   "davidSchmidt": "David e schmidt",
   "rejected": "Rejected",
   "kadinSeptimus": "Kadin e septimus",
@@ -737,7 +737,7 @@
   "screenshot3817": "Screenshot-3817.png",
   "png4mb": "Png e 4mb",
   "sharefileDocx": "Sharefile.docx",
-  "clubName": "Club e name",
+  "clubName": "Nome del club",
   "germanFootball": "German e football",
   "viewOnly": "Solo per gli utenti",
   "transferOwnership": "Transfer e ownership",
@@ -910,7 +910,7 @@
   "dominantFootRequired": "Dominant e foot e is e required",
   "playerAge": "Player e age",
   "form-upto": "Da - Fino a",
-  "session": "Session",
+  "session": "Stagione",
   "addNewTransfer": "Aggiungere un nuovo trasferimento",
   "addTransferDetails": "Aggiungere dettagli del trasferimento",
   "addVideos": "Aggiungi video",
@@ -1432,5 +1432,6 @@
     "LAST_PAGE": "Ultima pagina",
     "OF": "di"
   },
-  "highlightTooltip": "Modifica i momenti salienti"
+  "highlightTooltip": "Modifica i momenti salienti",
+  "homeBannerTxt": "Chi si presenta, viene visto. SoccerYou - Perché il talento da solo non basta."
 }

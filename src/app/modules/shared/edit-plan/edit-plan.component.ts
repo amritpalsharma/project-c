@@ -9,6 +9,8 @@ import { ActivatedRoute } from '@angular/router';
 import { CouponCodeAlertComponent } from '../../shared/coupon-code-alert/coupon-code-alert.component';
 import { ToastrService } from 'ngx-toastr';
 import { UpdateConfirmationPlanComponent } from '../update-confirmation-plan/update-confirmation-plan.component';
+import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'shared-edit-plan',
@@ -30,11 +32,15 @@ export class EditPlanComponent implements OnInit {
   selectedInterval: any;
 
   theme: any = localStorage.getItem('theme');
+  subscriptionCanceledSuccessfully:string='';
+  successTxt:string='';
+  pleaseWait:string='';
+  Processing:string='';
   // selectedCountries: any[] = []; // Stores full country objects
 
 
   @Output() buys: EventEmitter<any> = new EventEmitter();
-
+  langSubscription!: Subscription;
   constructor(
     public dialogRef: MatDialogRef<EditPlanComponent>,
     public talentService: TalentService,
@@ -43,7 +49,8 @@ export class EditPlanComponent implements OnInit {
     public dialog: MatDialog,
     private route: ActivatedRoute,
     private toastr: ToastrService,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private translate: TranslateService
   ) { }
 
   async ngOnInit() {
@@ -62,6 +69,11 @@ export class EditPlanComponent implements OnInit {
     console.log("data here", this.data)
     console.info('activePlans', this.data.activePlans);
     this.toggleBillingPlan(this.selectedInterval);
+
+    this.updateTranslation();
+    this.langSubscription = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      this.updateTranslation();
+    });
   }
 
   populateCountries() {
@@ -74,7 +86,7 @@ export class EditPlanComponent implements OnInit {
       return;
     }
 
-    console.warn('Data Recived in EditPlanCOmponent ', this.data.plans);
+    // console.warn('Data Recived in EditPlanCOmponent ', this.data.plans);
 
     // Transform the 'plans' object into an array
     this.countries = Object.keys(this.data.plans).map(key => {
@@ -101,7 +113,7 @@ export class EditPlanComponent implements OnInit {
 
 
   async redirectToCheckout(planId: string, coupon: any = '') {
-    this.toastr.info('Redirecting to checkout, please wait...', 'Processing', { timeOut: 2000 });
+    this.toastr.info(this.pleaseWait, this.Processing, { timeOut: 2000 });
 
     try {
       const response = await this.stripeService.createCheckoutSession(planId, '', coupon).toPromise();
@@ -109,13 +121,13 @@ export class EditPlanComponent implements OnInit {
       if (response && response.data.payment_intent.id) {
         const stripe = await this.stripe;
         await stripe?.redirectToCheckout({ sessionId: response.data.payment_intent.id });
-        this.toastr.success('Redirecting to Stripe Checkout', 'Success');
+        this.toastr.success(this.Processing, this.successTxt);
       } else {
-        this.toastr.error('Failed to create checkout session. Please try again.', 'Error');
+        // this.toastr.error('Failed to create checkout session. Please try again.', 'Error');
         console.error('Failed to create checkout session', response);
       }
     } catch (error) {
-      this.toastr.error('Error creating Stripe Checkout session. Please try again later.', 'Error');
+      // this.toastr.error('Error creating Stripe Checkout session. Please try again later.', 'Error');
       console.error('Error creating Stripe Checkout session:', error);
     }
   }
@@ -131,7 +143,7 @@ export class EditPlanComponent implements OnInit {
           coupon = '';
         }
 
-        this.toastr.info('Applying coupon, please wait...', 'Processing');
+        this.toastr.info(this.pleaseWait, this.Processing);
         this.redirectToCheckout(planId, coupon);
       } else if (result === null) {
         this.redirectToCheckout(planId);
@@ -179,12 +191,12 @@ export class EditPlanComponent implements OnInit {
 
   updatePlan(plan: any, isYearly: boolean, subscribeId: any): void {
     if (plan?.is_package_active === 'active') {
-      this.toastr.warning('This plan has already been subscribed.', 'Warning');
+      // this.toastr.warning('This plan has already been subscribed.', 'Warning');
       return;
     }
 
     if (plan.isYearly === isYearly) {
-      this.toastr.info(`You're already subscribed to the ${isYearly ? 'yearly' : 'monthly'} plan.`, 'Info');
+      // this.toastr.info(`You're already subscribed to the ${isYearly ? 'yearly' : 'monthly'} plan.`, 'Info');
       return;
     }
 
@@ -196,13 +208,13 @@ export class EditPlanComponent implements OnInit {
       if (result) {
         this.updateSubscription(subscribeId.id, plan.id);
         console.log(plan);
-        console.log(`Plan toggled to ${isYearly ? 'yearly' : 'monthly'}`);
+        // console.log(`Plan toggled to ${isYearly ? 'yearly' : 'monthly'}`);
       }
     });
   }
 
   updateSubscription(oldSubscriptionId: any, newPlanId: any): void {
-    this.toastr.info('Updating subscription, please wait...', 'Updating');
+    // this.toastr.info('Updating subscription, '+this.pleaseWait, 'Updating');
 
     // Call the backend service to update the subscription
     this.paymentService.upgradeSubscription(oldSubscriptionId, newPlanId).subscribe(
@@ -272,7 +284,7 @@ export class EditPlanComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.action === 'delete-confirmed') {
-        this.toastr.info('Cancelling subscription, please wait...', 'Processing');
+        this.toastr.info('Cancelling subscription, please wait...', this.pleaseWait);
         this.cancelSubscription(subscriptionId);
       }
     });
@@ -282,7 +294,7 @@ export class EditPlanComponent implements OnInit {
     this.paymentService.cancelSubscription(subscriptionId).subscribe(
       (response: any) => {
         if (response && response.status) {
-          this.toastr.success('Subscription canceled successfully.', 'Success');
+          this.toastr.success(this.subscriptionCanceledSuccessfully, this.successTxt);
           this.dialog.open(MessagePopupComponent, {
             width: '600px',
             data: {
@@ -387,5 +399,14 @@ export class EditPlanComponent implements OnInit {
       let parts = countryName.split(' - ');
       return parts.length > 1 ? parts[1].trim() : '';
     }
+  }
+
+  updateTranslation() {
+    this.translate.get(['subscriptionCanceledSuccessfully', 'success!', 'pleaseWait','Processing']).subscribe((res: any) => {
+      this.subscriptionCanceledSuccessfully = res['subscriptionCanceledSuccessfully'];
+      this.successTxt = res['success!'].toUpperCase();
+      this.pleaseWait = res['pleaseWait'];
+      this.Processing = res['Processing'];
+    });
   }
 }

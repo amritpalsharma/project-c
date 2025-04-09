@@ -243,29 +243,19 @@ export class ExploreComponent implements OnInit {
 
   exploreUser(slug: string, id: number): void {
     this.trackProfileClick(id); // Track the click before navigation
-    // alert(slug);
-    // if(slug == 'Talent'){
-    //   slug = 'club'; // update by amrit talent page is not open
-    // }
+
     slug = slug.toLowerCase();
-    if (slug == 'club representator') {
-      slug = 'club';
-    }
 
-    if (slug == 'vereinsvertreter') {
-      slug = 'club';
-    }
-    if (slug == 'scout representator') {
-      slug = 'scout';
-    }
-    if (slug == 'spähervertreter') {
+    if (slug == 'späher' || slug == 'spähervertreter' || slug == 'scout representator' || slug == 'Rappresentante Scout' || slug == 'Représentant Éclaireur' || slug == 'Representante de Explorador' || slug == 'Representante do Escoteiro' || slug == 'Spejderrepræsentant' || slug == 'Scoutrepresentant') {
       slug = 'scout';
     }
 
-    if (slug == 'späher') {
-      slug = 'scout';
-    } else if (slug == 'verein') {
+    if (slug == 'vereinsvertreter' || slug == 'Rappresentante del Club' || slug == 'Représentant du Club' || slug == 'Representante del Club' || slug == 'verein' || slug == 'Klub' || slug == 'Klubb' || slug == 'vereinsvertreter' || slug == 'club representator') {
       slug = 'club';
+    }
+
+    if(slug == 'talento' || slug ==  'Talang'){
+      slug = 'talent';
     }
     const pageRoute = 'view/' + slug.toLowerCase();
     //console.log(pageRoute);

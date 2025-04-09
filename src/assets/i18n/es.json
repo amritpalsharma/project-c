@@ -50,7 +50,7 @@
   "newPassword": "Nueva contraseña",
   "confirmNewPassword": "Confirmar nueva contraseña",
   "addNewPerformance": "Editar estadística",
-  "editStatistic": "Rediger statistik",
+  "editStatistic": "Editar estadística",
   "team": "Equipo",
   "fcThun": "FC Thun",
   "april2023Present": "Abril 2023 Presente 1 año 1 mes",
@@ -298,7 +298,7 @@
   "emailPlaceholder": "ejemplo@email.es",
   "passwordLabel": "Contraseña",
   "passwordPlaceholder": "12345688",
-  "requiredFieldsMessage": "Por favor complete todos los campos obligatorios.",
+  "requiredFieldsMessage": "Por favor, completa todos los campos obligatorios.",
   "forgotPasswordLink": "¿Olvidó su contraseña?",
   "loginButton": "Iniciar sesión",
   "orText": "o",
@@ -587,7 +587,7 @@
   "eltonPrinceTalent": "Talent",
   "english": "English",
   "approved": "Approved",
-  "pending": "Pending",
+  "pending": "Pendiente",
   "davidSchmidt": "David y schmidt",
   "rejected": "Rejected",
   "kadinSeptimus": "Kadin y septimus",
@@ -627,7 +627,7 @@
   "screenshot3817": "Screenshot-3817.png",
   "png4mb": "Png y 4mb",
   "sharefileDocx": "Sharefile.docx",
-  "clubName": "Club y name",
+  "clubName": "Nombre del club",
   "germanFootball": "German y football",
   "viewOnly": "Ver sólo",
   "admin": "Admin",
@@ -834,7 +834,7 @@
   "dominantFootRequired": "Dominant y foot y is y required",
   "playerAge": "Player y age",
   "form-upto": "Desde - Hasta",
-  "session": "Session",
+  "session": "Temporada",
   "addNewTransfer": " Agregar nuevo traspaso",
   "addTransferDetails": "Agregar detalles del traspaso",
   "addVideos": "Añadir vídeo",
@@ -1381,5 +1381,6 @@
     "LAST_PAGE": "Última página",
     "OF": "de"
   },
-  "highlightTooltip": "Editar destacados"
+  "highlightTooltip": "Editar destacados",
+  "homeBannerTxt": "A quien se presenta, se le ve. SoccerYou - Porque el talento por sí solo no basta."
 }

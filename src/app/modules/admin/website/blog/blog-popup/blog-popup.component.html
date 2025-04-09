@@ -74,7 +74,7 @@
       </div> -->
 
       <mat-tab-group [(selectedIndex)]="selectedLang">
-        <mat-tab *ngFor="let lang of langs; let i = index" [label]="lang.language">
+        <mat-tab *ngFor="let lang of langs; let i = index" [label]="lang.language" [ngClass]="'text-size'">
           <ng-template matTabContent>
             <div class="container">
               

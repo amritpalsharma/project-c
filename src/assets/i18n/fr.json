@@ -702,7 +702,7 @@
   "eltonPrinceTalent": "Talent",
   "english": "English",
   "approved": "Approved",
-  "pending": "Pending",
+  "pending": "En attente",
   "davidSchmidt": "David et schmidt",
   "rejected": "Rejected",
   "kadinSeptimus": "Kadin et septimus",
@@ -742,7 +742,8 @@
   "screenshot3817": "Screenshot-3817.png",
   "png4mb": "Png et 4mb",
   "sharefileDocx": "Sharefile.docx",
-  "clubName": "Club et name",
+  "clubName": "Nom du club",
+  "editStatistic": "Modifier la statistique",
   "germanFootball": "German et football",
   "viewOnly": "Voir seulement",
   "admin": "Administrateur",
@@ -916,7 +917,7 @@
   "dominantFootRequired": "Dominant et foot et is et required",
   "playerAge": "Player et age",
   "form-upto": "De - Jusqu'à",
-  "session": "Session",
+  "session": "Saison",
   "addNewTransfer": "Ajouter un nouveau transfert",
   "addTransferDetails": "Ajouter des détails du transfert",
   "galleryText": "Your et browser et does et not et support et the et video et tag.",
@@ -1449,5 +1450,6 @@
     "LAST_PAGE": "Dernière page",
     "OF": "de"
   },
-  "highlightTooltip": "Modifier les faits saillants"
+  "highlightTooltip": "Modifier les faits saillants",
+  "homeBannerTxt": "Qui se présente est vu. SoccerYou - Parce que le talent seul ne suffit pas."
 }

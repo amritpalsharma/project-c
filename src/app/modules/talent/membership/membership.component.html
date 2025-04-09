@@ -88,8 +88,9 @@
                 <!-- <h5>{{ 'boostProfiles' | translate }}</h5> -->
                 <h5>{{'multiCountry' | translate}}</h5>
                 <h6> {{ country[0].price }}<sub class="premium-month_title">.-{{country[0].currency}}/{{
-                    country.interval
-                    == 'monthly' ? ('month' | translate) : ('year' | translate) }}</sub></h6>
+                    country[0].interval
+                    == 'month' || country[0].interval
+                    == 'monthly'  ? ('month' | translate) : ('year' | translate) }}</sub></h6>
               </div>
               <p>{{ 'renews' | translate }} {{ premium.plan_period_end |
                 date: 'dd.MM.yyyy' }}</p>

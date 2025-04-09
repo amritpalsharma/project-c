@@ -534,7 +534,7 @@
   "registerNow": "Register Now",
   "passwordRecovery": "Password Recovery",
   "passwordRecoveryDescription": "Enter the email you used to create your SoccerYou profile, and we'll send you a link to reset your password.",
-  "requiredFieldsMessage": "Please fill in all required fields.",
+  "requiredFieldsMessage": "Please fill out all required fields.",
   "fillCaptcha": "Please fill captcha",
   "orText": "or",
   "signInWithGoogle": "Sign In with Google",
@@ -1346,5 +1346,6 @@
     "LAST_PAGE": "Last page",
     "OF": "of"
   },
-  "highlightTooltip":"Edit highlights"
+  "highlightTooltip":"Edit highlights",
+  "homeBannerTxt":"Who shows up, gets seen. SoccerYou – Because talent alone isn’t enough."
 }

@@ -140,6 +140,8 @@ export class MembershipComponent {
         // this.demo = this.userPlans.demo[0];
         this.country = this.userPlans.country;
 
+        console.log('Country',this.country);
+
         this.ispremium = this.premium ? true : false;
         this.iscountry = this.country ? true : false;
         this.isbooster = this.booster ? true : false;

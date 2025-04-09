@@ -1,10 +1,10 @@
-
-.main-popup-div{
+.main-popup-div {
     display: flex;
     justify-content: space-between;
 }
-.close-img{
-   // background-image: url(../../../../../assets/images/carbon_close-outline.png);
+
+.close-img {
+    // background-image: url(../../../../../assets/images/carbon_close-outline.png);
     background-size: cover;
     width: 35px;
     height: 35px;
@@ -18,87 +18,97 @@
     cursor: pointer;
 }
 
-.button-text{
+.button-text {
     color: black;
     padding: 5px;
     font-size: 14px;
     margin-left: 10px;
     background: none;
 }
-.text-name{
-font-size: 13px;
+
+.text-name {
+    font-size: 13px;
 }
-.Launch{
+
+.Launch {
     background-color: #6FB95D;
     color: #ffffff;
 }
-.btn-delete{
+
+.btn-delete {
     color: #FD5454;
 }
+
 .button-text:hover {
     background: none;
 }
+
 .button-text:active {
     background: none !important;
 }
-.marketing-button{
+
+.marketing-button {
     position: absolute;
     bottom: 20px;
     display: flex;
     column-gap: 94px;
 }
-.text-size{
+
+.text-size {
     font-size: inherit;
 }
-.title-text{
+
+.title-text {
     font-size: 16px;
 }
 
 .template-name-input input:focus-visible {
- outline: 0px !important;
+    outline: 0px !important;
 }
 
 ngx-editor {
-    height: 35vh; /* Set the height you want */
-    display: block; /* Ensure it behaves like a block element */
+    height: 35vh;
+    /* Set the height you want */
+    display: block;
+    /* Ensure it behaves like a block element */
 }
 
-::ng-deep .mat-mdc-select-panel{
+::ng-deep .mat-mdc-select-panel {
     min-width: 110px !important;
     scrollbar-width: none !important;
 }
 
-.Launch{
+.Launch {
     padding: 0.5rem 3rem;
 }
 
-.NgxEditor__Wrapper{
+.NgxEditor__Wrapper {
     border: 0 !important;
 }
- 
-.mat-mdc-select-arrow-wrapper{
-    display: none !important;
-  }
 
-  .dropdown-icon {
+.mat-mdc-select-arrow-wrapper {
+    display: none !important;
+}
+
+.dropdown-icon {
     position: absolute;
-    right: 5px; 
+    right: 5px;
     top: 50%;
     transform: translateY(-50%);
     pointer-events: none;
-  }
-  
+}
 
-  .add_custom_width{
+
+.add_custom_width {
     width: 80% !important;
-  }
+}
 
-  .editor-width{
+.editor-width {
     height: 275px;
     overflow: auto;
-  }
+}
 
-  .news_content_form_popup {
+.news_content_form_popup {
     padding: 10px 20px;
     max-height: 60vh;
     overflow: auto;
@@ -112,25 +122,33 @@ input.template-name-inputField {
 
 
 @media (max-width: 575px) {
-.mobile_btn_wrap {
-    flex-wrap: wrap;
-    align-items: center !important;
-    justify-content: center !important;
-}
+    .mobile_btn_wrap {
+        flex-wrap: wrap;
+        align-items: center !important;
+        justify-content: center !important;
+    }
 }
 
 @media (max-width: 767px) {
-    .news_content_form_popup .template-name-input, .main-popup-div .d-flex.align-items-baseline {
+
+    .news_content_form_popup .template-name-input,
+    .main-popup-div .d-flex.align-items-baseline {
         flex-direction: column;
         margin: 10px 0;
     }
+
     .main-popup-div .d-flex.align-items-baseline .btn-group {
         width: 100%;
     }
+
     .main-popup-div .mat-mdc-select-trigger {
         width: 100% !important;
         margin-left: 0;
         margin-top: 10px;
         min-width: 100%;
     }
-    }
+}
+
+.mat-mdc-tab .mdc-tab__text-label {
+    color: white !important;
+}

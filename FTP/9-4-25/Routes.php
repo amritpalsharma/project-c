@@ -629,7 +629,7 @@ $routes->group('frontend', ['namespace' => 'App\Controllers\Frontend'], function
    $routes->post('save-content-page', 'PageMetaController::addContentPage', ['filter' => 'loginAuth']);
    $routes->post('save-contact-form', 'PageMetaController::contactFormSubmit');
    $routes->get('get-frontend-pages',        'PageMetaController::getFrontendPages');
-   $routes->get('get-single-news/(:any)',    'PageMetaController::getSingleNews/$1');
+   $routes->get('get-single-news/(:any)/(:num)',    'PageMetaController::getSingleNews/$1/$2');
    $routes->get('get-single-news/(:num)',    'PageMetaController::getSingleNews/$1');
    $routes->get('get-news-page/(:num)',    'PageMetaController::getNewsPage/$1');
 

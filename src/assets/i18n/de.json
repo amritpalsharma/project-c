@@ -337,7 +337,7 @@
   "emailPlaceholder": "beispiel@email.de",
   "passwordLabel": "Passwort",
   "passwordPlaceholder": "12345688",
-  "requiredFieldsMessage": "Bitte füllen Sie alle erforderlichen Felder aus.",
+  "requiredFieldsMessage": "Bitte fülle alle erforderlichen Felder aus.",
   "forgotPasswordLink": "Passwort vergessen?",
   "loginButton": "Anmelden",
   "orText": "oder",
@@ -790,7 +790,7 @@
   "two": "Zwei",
   "three": "Drei",
   "managerUsers": "Manage Benutzer",
-  "clubName": "Club Namede",
+  "clubName": "Club Name",
   "eventName": "Veranstaltung",
   "addCoverPhoto": "Titelfoto hinzufügen",
   "browserDoesNotSupportHtml": "Ihr Browser unterstützt kein HTML-Video.",
@@ -1440,5 +1440,6 @@
     "LAST_PAGE": "Letzte Seite",
     "OF": "von"
   },
-  "highlightTooltip": "Highlights bearbeiten"
+  "highlightTooltip": "Highlights bearbeiten",
+  "homeBannerTxt":"Wer auftaucht, wird gesehen. SoccerYou - Weil Talent allein nicht reicht."
 }

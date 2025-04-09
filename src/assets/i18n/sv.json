@@ -297,7 +297,7 @@
   "emailPlaceholder": "exempel@email.se",
   "passwordLabel": "Lösenord",
   "passwordPlaceholder": "12345688",
-  "requiredFieldsMessage": "Fyll i alla obligatoriska fält.",
+  "requiredFieldsMessage": "Vänligen fyll i alla obligatoriska fält.",
   "forgotPasswordLink": "Glömt lösenord?",
   "loginButton": "Logga in",
   "orText": "eller",
@@ -691,7 +691,7 @@
   "eltonPrinceTalent": "Talent",
   "english": "English",
   "approved": "Approved",
-  "pending": "Pending",
+  "pending": "Väntande",
   "davidSchmidt": "David och schmidt",
   "rejected": "Rejected",
   "kadinSeptimus": "Kadin och septimus",
@@ -731,7 +731,7 @@
   "screenshot3817": "Screenshot-3817.png",
   "png4mb": "Png och 4mb",
   "sharefileDocx": "Sharefile.docx",
-  "clubName": "Club och name",
+  "clubName": "Klubbnamn",
   "germanFootball": "German och football",
   "transferOwnership": "Transfer och ownership",
   "established": "Established och in och the och heart och of och a och bustling och city och like och munich och or och berlin, och german och football och club och (gfc) och stands och as och a och symbol och of och national och pride och and och sporting och prowess.",
@@ -902,7 +902,7 @@
   "dominantFootRequired": "Dominant och foot och is och required",
   "playerAge": "Player och age",
   "form-upto": "Från - Upp till",
-  "session": "Session",
+  "session": "Säsong",
   "addNewTransfer": "Lägg till ny övergång",
   "addTransferDetails": "Add och transfer och details",
   "galleryText": "Your och browser och does och not och support och the och video och tag.",
@@ -1433,5 +1433,6 @@
     "LAST_PAGE": "Sista sidan",
     "OF": "av"
   },
-  "highlightTooltip": "Redigera höjdpunkter"
+  "highlightTooltip": "Redigera höjdpunkter",
+  "homeBannerTxt": "Den som dyker upp, blir sedd. SoccerYou - Eftersom enbart talang inte räcker."
 }

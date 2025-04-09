@@ -34,6 +34,7 @@ export class HeaderComponent implements OnInit {
   isThisPlayer: string = 'en';
   lang_id: any = 1;
   isUserLoggedIn: boolean = false;
+  showRequiredErrors: boolean = false;
   LoggedInUserDashboardLink: string = '';
   isNavbarExpanded = false;
   isDarkMode: boolean = false;
@@ -708,6 +709,7 @@ export class HeaderComponent implements OnInit {
   register() {
     this.serverBusy = true;
     this.registerFormSubmitted = true;
+    this.showRequiredErrors = true;
 
     if (!this.isFormValid()) {
       this.serverBusy = false;
