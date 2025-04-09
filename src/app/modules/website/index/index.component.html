@@ -3,10 +3,17 @@
 
     <!-- <app-header></app-header> -->
 
-    <div class="main-bnr" style="background-image: url('{{banner_bg_img}}');">
-      <div class="overlay">
+    <!-- <div class="main-bnr" style="background-image: url('{{banner_bg_img}}');">    -->
+    <div class="main-bnr home_banner">
+      <div class="banner_video_wrapper">
+        <video class="video_for_male" autoplay="" muted="" loop="" playsinline="" poster="./assets/images/video-thumbnail-poster.png">
+            <source src="./assets/images/header-video.mp4" type="video/mp4">
+        </video>
+        <!-- <video class="video_for_female" autoplay="" muted="" loop="" playsinline="" poster="./assets/images/video-thumbnail-poster.png">
+            <source src="./assets/images/header-video.mp4" type="video/mp4">
+        </video> -->
       </div>
-
+      <div class="overlay"></div>
       <div *ngIf="checkActive('skyscraper') && !isLoading" class="skyscraper-left">
         <a href="{{advertisementData?.skyscraper?.redirect_url}}" target="_blank">
           <img [src]="advertisemnet_base_url + advertisementData?.skyscraper?.featured_image">
@@ -14,7 +21,6 @@
         <button *ngIf="!btnLoading" (click)="closeAd('skyscraper')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
         <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
       </div>
-
       <div *ngIf="checkActive('wide_skyscraper') && !isLoading" class="skyscraper-right">
         <a href="{{advertisementData?.wide_skyscraper?.redirect_url}}" target="_blank">
           <img [src]="advertisemnet_base_url + advertisementData?.wide_skyscraper?.featured_image">
@@ -26,22 +32,17 @@
       <div class="banner-inner">
         <div class="container">
           <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-9">
               <div class="banner-content" routerLink="/admin">
-                <img class="home-banner-image" src="{{banner_img}}" *ngIf="currentTheme == 'light'">
-                <img class="home-banner-image" src="{{banner_img}}" *ngIf="currentTheme == 'dark'">
+                <!-- <img class="home-banner-image" src="{{banner_img}}" *ngIf="currentTheme == 'light'">
+                <img class="home-banner-image" src="{{banner_img}}" *ngIf="currentTheme == 'dark'"> -->
+                <h1 class="text-uppercase">Who shows up, gets seen. SoccerYou – Because talent alone isn’t enough.</h1>
               </div>
-              <div class="banner-btn text-center mt-5">
-                <a href="javascript:void(0)" class="btn btn-primary" data-bs-toggle="modal"
-                  data-bs-target="#exampleModal1"> {{ pageDetail?.banner_btn_txt }}
-                </a>
-                <!-- {{ 'registerNow' | translate }} -->
-
-                <a *ngIf="!isUserLoggedIn" href="javascript:void(0);" class="login-btn" data-bs-toggle="modal"
-                  data-bs-target="#exampleModal-login">{{ 'login' | translate }}<svg class="ms-2" width="8" height="12"
-                    viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1.34766 1.5L6.34766 6L1.34766 10.5" stroke="white" stroke-width="2"
-                      stroke-linecap="round" />
+              <div class="banner-btn mt-5">
+                <a href="javascript:void(0)" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1"> {{ pageDetail?.banner_btn_txt }} </a>
+                <a *ngIf="!isUserLoggedIn" href="javascript:void(0);" class="btn login-btn" data-bs-toggle="modal" data-bs-target="#exampleModal-login">{{ 'login' | translate }}
+                  <svg class="ms-2" width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.34766 1.5L6.34766 6L1.34766 10.5" stroke="white" stroke-width="2" stroke-linecap="round" />
                   </svg>
                 </a>
               </div>
