@@ -54,8 +54,7 @@
                 <div class="premium-currency">
                   <h6>
                     {{ premiumPlans.isYearly ? premiumPlans.priceYearly : premiumPlans.priceMonthly }}<sub
-                      class="premium-month_title">.-{{ premiumPlans.currency }} / {{ premiumPlans.isYearly || (premium
-                      && premium.interval == 'yearly') ? ('year' | translate) : ('month' | translate) }}</sub>
+                      class="premium-month_title">.-{{ premiumPlans.currency }} / {{ premiumPlans.isYearly && premium.interval == 'yearly' ? ('year' | translate) : ('month' | translate) }}</sub>
                   </h6>
                 </div>
 
@@ -217,8 +216,10 @@
                   </div>
                 </div>
                 <div class="premium-currency">
+                  <!-- <pre>{{selectedPlan | json}}</pre> -->
                   <h6>
-                    {{ selectedPlan.isYearly ?  countryYearlyArr?.price : countryMonthlyArr?.price }}<sub class="premium-month_title">.-{{ selectedPlan?.currency }} / {{ selectedPlan?.interval=='yearly' ? ('year'
+                    {{ selectedPlan.isYearly ?  countryYearlyArr?.price : countryMonthlyArr?.price }}<sub class="premium-month_title">.-{{ selectedPlan?.currency }} / 
+                      {{ selectedPlan.isYearly || selectedPlan?.interval=='yearly' ? ('year'
                       | translate) :
                       ('month' | translate) }}</sub>
                   </h6>
