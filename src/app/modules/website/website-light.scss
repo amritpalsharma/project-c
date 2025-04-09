@@ -261,14 +261,6 @@
   background-color: #175B07;
 }
 
-.light-theme .website-code .latest-news {
-  background-color: #092E01;
-}
-
-.light-theme .website-code .learn {
-  background-color: #092E01;
-}
-
 .light-theme .website-code .check-resister {
   border: 1px solid #D7D7D7;
 }
@@ -316,10 +308,6 @@
 
 .light-theme .website-code .form-select {
   border: 1px solid #D7D7D7;
-}
-
-.light-theme .website-code .news-slider {
-  background-color: #092E01;
 }
 
 .light-theme .website-code .modal-content {
@@ -1308,15 +1296,17 @@ a {
   .recently-joined  .joined-text h3, .works h3, .club-scout .club-heading4, .features .feature-heading3,
   .price-heading3, .premium-heading2, .premium-col-right .premium-heading5, .premium-heading3,
   .countries h2.country-available, .contact-form .form-heading, h2.accordion-header, .work-text .progress_btn a,
-  .common_static_page .content_page h4, .faq h3, .faq .header h4,
-  .pricing .price_mat_wrapper .feature-box h4.free-heading {
+  .common_static_page .content_page h4, .faq h3, .faq .header h4, .pricing .price_mat_wrapper .feature-box h4.free-heading,
+  .latest-news h4, .news_detail_text_container h3, .learn-banner h1 {
     color: #357525 !important;
   }
   .premium-col-right .premium-text p, .billed_wrapp .inactive-text, .billed_wrapp .active-text,
   .website-code .club_text p, .accordion-body p, .about-content .content-text, .work-text .progress_btn p,
   .contact-form .contact-text *, .contact-form .radio-group *, .common_static_page address, 
   .common_static_page .content_page p, .common_static_page .content_page a, .common_static_page .content_page ul li,
-  .faq .faq-content, .pricing .feature-data li, .pricing .feature-data p {
+  .faq .faq-content, .pricing .feature-data li, .pricing .feature-data p, .latest-news .news-box p, .news_detail_text_container p,
+  .news_detail_text_container ul li, .news_detail_text_container .social-icons.news_share_icons h5, .news_detail_text_container .social-icons.news_share_icons a,
+  .learn-banner .back-button {
     color: #000 !important;
   }
   .premium-text img {
@@ -1366,6 +1356,18 @@ a {
   }
   .club .club_player_dark {
     display: none;
+  }
+  .latest-news .news-box p.p-text {
+    color: #7A7A7A !important;
+  }
+  .news_detail_text_container .social-icons.news_share_icons {
+      border-color: #000;
+  }
+  .news_detail_text_container .social-icons.news_share_icons a:hover {
+    color: #E05263 !important;
+  }
+  .learn-banner .back-button img {
+    filter: brightness(0) invert(0);
   }
 }
 
