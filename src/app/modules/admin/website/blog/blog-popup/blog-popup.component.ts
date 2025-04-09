@@ -331,23 +331,23 @@ export class BlogPopupComponent implements OnInit, OnDestroy {
     formData.append("status", "1");
 
     Object.entries(this.titles).forEach(([key, value]) => {
-      formData.append(`titles[${key}]`, value as string);
+      formData.append(`title[${key}]`, value as string);
     });
 
     Object.entries(this.meta_titles).forEach(([key, value]) => {
-      formData.append(`meta_titles[${key}]`, value as string);
+      formData.append(`meta_title[${key}]`, value as string);
     });
     
     Object.entries(this.meta_descriptions).forEach(([key, value]) => {
-      formData.append(`meta_descriptions[${key}]`, value as string);
+      formData.append(`meta_description[${key}]`, value as string);
     });
 
     Object.entries(this.featuredImages).forEach(([key, value]) => {
-      formData.append(`featured_images[${key}]`, value);
+      formData.append(`featured_image[${key}]`, value);
     });
 
     Object.entries(this.allContent).forEach(([key, value]) => {
-      formData.append(`contents[${key}]`, value as string);
+      formData.append(`content[${key}]`, value as string);
     });
 
     this.blogApi.updateBlog(this.blogIdToEdit, formData).subscribe((response) => {

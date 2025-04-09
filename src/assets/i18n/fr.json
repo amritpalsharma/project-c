@@ -743,7 +743,7 @@
   "png4mb": "Png et 4mb",
   "sharefileDocx": "Sharefile.docx",
   "clubName": "Nom du club",
-  "editStatistic":"Modifier la statistique",
+  "editStatistic": "Modifier la statistique",
   "germanFootball": "German et football",
   "viewOnly": "Voir seulement",
   "admin": "Administrateur",
@@ -1450,5 +1450,6 @@
     "LAST_PAGE": "Dernière page",
     "OF": "de"
   },
-  "highlightTooltip": "Modifier les faits saillants"
+  "highlightTooltip": "Modifier les faits saillants",
+  "homeBannerTxt": "Qui se présente est vu. SoccerYou - Parce que le talent seul ne suffit pas."
 }

@@ -118,6 +118,7 @@ export class NewsComponent implements OnInit, OnDestroy {
   }
 
   getPageData(languageId: any) {
+    this.DataFound = false;
     // this.webPages.getDynamicContentPage('news', languageId).subscribe((res) => {
     this.webPages.getDynamicNewsPage(languageId).subscribe((res) => {
       if (res.status) {
@@ -126,7 +127,7 @@ export class NewsComponent implements OnInit, OnDestroy {
         } else {
           this.advertisementData = [];
         }
-
+        this.DataFound = true;
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
         if (res.data.pageData != '' && res.data.pageData != undefined) {
           this.slider_title = res.data.pageData.slider_title;
@@ -336,6 +337,7 @@ export class NewsComponent implements OnInit, OnDestroy {
   // }
 
   addThreeElements(originalArray: any) {
+    this.images = [];
     let selectedItems = originalArray.slice(0, 3).map((item: any) => {
       const dateObj = new Date(item.created_at);
       const day = String(dateObj.getDate()).padStart(2, '0');

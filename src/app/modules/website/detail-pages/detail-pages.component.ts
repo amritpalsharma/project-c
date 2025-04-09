@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { WebPages } from '../../../services/webpages.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-detail-pages',
   templateUrl: './detail-pages.component.html',
-  styleUrl: './detail-pages.component.scss'
+  styleUrls: ['./detail-pages.component.scss'],
+  // encapsulation: ViewEncapsulation.None
 })
 export class DetailPagesComponent {
   id!: string;
@@ -36,6 +37,9 @@ export class DetailPagesComponent {
         this.news = res.data.news;
         this.moreNews = res.data.moreNews;
         this.news.featured_image = res.data.news_img_path + res.data.news.featured_image;
+      } else {
+        this.moreNews = [];
+        this.news = [];
       }
     });
   }
