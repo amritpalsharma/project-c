@@ -2188,12 +2188,6 @@ button.faq-scout-button {
   .sidebar_menu a {
     padding: 6px 10px;
   }
-
-  .navbar-expand .navbar-nav .notification-box {
-    position: absolute !important;
-    top: 54px !important;
-    right: -77px !important;
-  }
 }
 
 @media(max-width: 450px) {
@@ -2203,24 +2197,7 @@ button.faq-scout-button {
 
 }
 
-@media(max-width: 376px) {
-
-  .navbar-expand .navbar-nav .notification-box {
-    position: absolute !important;
-    top: 54px !important;
-    right: -104px !important;
-  }
-}
-
 @media(max-width: 321px) {
-
-
-  .navbar-expand .navbar-nav .notification-box {
-    position: absolute !important;
-    top: 54px !important;
-    right: -100px !important;
-  }
-
   .dark-vector-img img {
     height: 16px;
     width: 16px;
