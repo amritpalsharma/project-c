@@ -26,8 +26,9 @@ export class BlogService {
           );
     }
     getBlogById(id:any){
+        let random = Math.floor(Math.random() * (10000 - 100 + 1)) + 100;
         return this.http.get<{ status: boolean, message: string, data: any }>(
-            `${this.apiUrl}admin/get-blog?id=${id}`
+            `${this.apiUrl}admin/get-blog?id=${id}&num=${random}`
           );
     }
     addBlog(record: any): Observable<any> {
