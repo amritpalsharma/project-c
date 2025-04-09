@@ -479,7 +479,7 @@ export class EditPersonalDetailsComponent implements OnInit {
     this.searchedClubs = [...this.playerClubsListing];
   }
 
-  filterClubs() {
+  filterClubs(event: any) {
     const searchTerm = this.clubSearch.toLowerCase();
     this.searchedClubs = this.playerClubsListing.filter((club: any) =>
       club.club_name.toLowerCase().startsWith(searchTerm)

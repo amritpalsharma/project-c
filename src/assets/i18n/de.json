@@ -337,7 +337,7 @@
   "emailPlaceholder": "beispiel@email.de",
   "passwordLabel": "Passwort",
   "passwordPlaceholder": "12345688",
-  "requiredFieldsMessage": "Bitte füllen Sie alle erforderlichen Felder aus.",
+  "requiredFieldsMessage": "Bitte fülle alle erforderlichen Felder aus.",
   "forgotPasswordLink": "Passwort vergessen?",
   "loginButton": "Anmelden",
   "orText": "oder",

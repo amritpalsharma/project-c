@@ -1,44 +1,47 @@
 .delete-confirmation-modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 20px;
-    border: 1px solid #ccc;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    text-align: center;
-  }
-  
-  .delete-confirmation-modal h2 {
-    margin-bottom: 10px;
-  }
-  
-  .delete-confirmation-modal p {
-    margin-bottom: 20px;
-  }
-  
-  .delete-button, .cancel-button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  .delete-confirmation-modal {  
-    max-width: 600px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  text-align: center;
 }
-  .confirmation_delete-button {
-    font-size: 16px;
-    color: #FD5454;
-    border: none;
-    background: none;
-  }
-  
-  .cancel-button {
-    background-color: #ccc;
-  }
-  
+
+.delete-confirmation-modal h2 {
+  margin-bottom: 10px;
+}
+
+.delete-confirmation-modal p {
+  margin-bottom: 20px;
+}
+
+.delete-button,
+.cancel-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.delete-confirmation-modal {
+  max-width: 600px;
+}
+
+.confirmation_delete-button {
+  font-size: 16px;
+  color: #FD5454;
+  border: none;
+  background: none;
+}
+
+.cancel-button {
+  background-color: #ccc;
+}
+
 .close-btn {
   background: none;
   font-size: 19px;
@@ -49,6 +52,7 @@
   border: 4px solid #849aa2;
   border-radius: 50%;
 }
+
 .delete-confirmation {
   color: #111418;
   font-size: 16px;
@@ -57,18 +61,42 @@
   max-width: 436px;
   margin: auto;
 }
+
 @media (max-width:768px) {
   .delete-confirmation {
-    padding: 20px ;
+    padding: 20px;
   }
 }
+
 @media (max-width:768px) {
   .delete-confirmation {
     padding: 20px 0px !important;
-    
+
 
   }
-  .delete-confirmation-modal {  
+
+  .delete-confirmation-modal {
     min-width: 300px;
+  }
 }
+
+
+.msg-popup-close {
+  text-align: right;
+}
+
+.msg-popup-dialog {
+  padding: 10px 15px 35px;
+  text-align: center;
+}
+
+.msg-popup-close img {
+  max-width: 40px;
+  cursor: pointer;
+}
+
+.popup-delete-btn {
+  color: #FD5454;
+  margin-top: 20px;
+  cursor: pointer;
 }

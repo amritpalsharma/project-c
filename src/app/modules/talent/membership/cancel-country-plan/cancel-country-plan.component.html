@@ -11,8 +11,10 @@
                     <input type="radio" name="country" [value]="country.id" [(ngModel)]="selectedCountryId"
                         [disabled]="country.stripe_cancel_at != null" class="country-radio" />
                     <span class="country-info">
-                        {{ country.package_name }} - {{ country.price }} {{country.currency}}/{{ country.interval ===
-                        'monthly' ? 'month' : 'year' }} {{country.stripe_cancel_at != null ? ' - Cancelled' : ''}}
+                        {{ country.package_name }} - {{ country.price }} {{country.currency}}/
+                        <span>{{ (country.interval === 'monthly' ? 'month' : 'year') | translate }}
+                            {{country.stripe_cancel_at != null ? ' - Cancelled'
+                            : ''}}</span>
                     </span>
                 </label>
             </div>

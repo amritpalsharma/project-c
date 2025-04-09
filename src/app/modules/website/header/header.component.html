@@ -469,7 +469,7 @@
                             <h6>{{ 'createAccount' | translate }}</h6>
                             <p>{{ 'createAccountDescription' | translate }}</p>
                         </div>
-                        <form (submit)="register()" #registerForm="ngForm">
+                        <form (submit)="register()" #registerForm="ngForm" [ngClass]="{'ng-show-errors': showRequiredErrors}" class="register_form" style="border: none !important;">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="mb-3">
@@ -500,7 +500,8 @@
                                         <label class="form-label">{{ 'usernameLabel' | translate }}</label>
                                         <input type="text" class="form-control"
                                             placeholder="" [(ngModel)]="username"
-                                            name="username" required />
+                                            name="username" required #usernameField="ngModel"
+                                            [ngClass]="{'input-error': usernameField.invalid && usernameField.touched}" />
                                         <div *ngIf="registerForm.controls['username']?.errors?.['required'] && (registerForm.controls['username']?.dirty || registerForm.controls['username']?.touched)"
                                             class="text-danger">
                                             {{ 'usernameRequired' | translate }}

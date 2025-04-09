@@ -2545,3 +2545,7 @@ input[type="checkbox"].form-check-input[ng-reflect-required] {
         color: #fff;
     }
 }
+
+#exampleModal1 .ng-show-errors .ng-invalid{
+    border: 1px solid red;
+}
