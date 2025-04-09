@@ -490,7 +490,7 @@ export class EditPersonalDetailsComponent implements OnInit {
     );
   }
 
-  filterCountries(event: any) {
+  filterCountriesOld(event: any) {
     const keyword = event.target.value.toLowerCase();
     this.nationSearch = keyword;
 
@@ -514,8 +514,42 @@ export class EditPersonalDetailsComponent implements OnInit {
     }
   }
 
-
-
+  filterCountries(event: any) {
+    const keyword = event.target.value.toLowerCase();
+    this.nationSearch = keyword;
+  
+    if (keyword === '') {
+      this.displayedCountries = [...this.countries];
+    } else {
+      // First, get countries that start with the keyword
+      const startsWith = this.countries.filter((c: any) =>
+        c.country_name.toLowerCase().startsWith(keyword)
+      );
+  
+      // Then, get countries that contain the keyword but not start with it
+      const contains = this.countries.filter((c: any) =>
+        !c.country_name.toLowerCase().startsWith(keyword) &&
+        c.country_name.toLowerCase().includes(keyword)
+      );
+  
+      // Combine them: startsWith first, then contains
+      const matched = [...startsWith, ...contains];
+  
+      // Always keep already selected countries in the list
+      const selected = this.countries.filter((c: any) =>
+        this.nationality.includes(c.id)
+      );
+  
+      // Merge matched + selected and remove duplicates
+      const combined = [...matched, ...selected];
+      const unique = combined.filter((value, index, self) =>
+        index === self.findIndex((t) => t.id === value.id)
+      );
+  
+      this.displayedCountries = unique;
+    }
+  }
+  
 
   trackByCountryId(index: number, country: any): number {
     return country.id;
