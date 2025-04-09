@@ -1,12 +1,21 @@
-AuthUserFile /home/pofepave/.htpasswds/htpasswd.c570ee57-b0d9-4499-b94f-2c557d5622ef
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
 
-AddHandler application/x-httpd-php83 .php
+  # Don't rewrite existing files or directories
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
 
+  # Redirect everything else to index.html
+  RewriteRule ^ index.html [L]
+</IfModule>
 
-RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^ index.html [L]
-
-#@__HCP_END__@#
-# Anything after the comment above is left alone
+# Optional: Improve caching for performance
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType image/* "access plus 1 year"
+  ExpiresByType font/* "access plus 1 year"
+</IfModule>

@@ -39,7 +39,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-lg-4" *ngIf="isdemo">
+                  <div class="col-lg-4" *ngIf="isdemo" style="display: none;">
                     <div class="premium-card ">
                       <div class="d-flex align-items-end justify-content-between">
                         <h5>{{ 'multiCountry' | translate }}</h5>
@@ -68,7 +68,7 @@
                   <div class="col-lg-4" *ngIf="country.count > 0 && !iscountry">
                     <div class="premium-card">
                       <div class="d-flex align-items-end justify-content-between">
-                        <h5>{{ 'boostProfiles' | translate }}</h5>
+                        <h5>{{ 'multiCountry' | translate }}</h5>
                         <h6> {{ country[0].price }}<sub class="premium-month_title">.- {{country[0].currency}} / {{ country.interval == 'monthly' ? ('month' | translate) : ('year' | translate) }}</sub></h6>
                       </div>
                       <p>{{ country.length }} {{ 'countriesSelected' | translate }}</p>

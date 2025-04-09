@@ -19,6 +19,7 @@ import { WebsiteModule } from './modules/website/website.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { getPaginatorIntl } from './modules/shared/paginator/custom-paginator-intl';
+// import { UnverifiedUserComponent } from './modules/shared/unverified-user/unverified-user.component';
 // import '../../style.scss';
 
 
@@ -30,6 +31,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     AppComponent,
     LightboxDialogComponent,
+    // UnverifiedUserComponent,
   ],
   imports: [
     BrowserModule,

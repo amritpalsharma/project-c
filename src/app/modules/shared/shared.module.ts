@@ -51,6 +51,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { LoaderComponent } from './loader/loader.component';
 import { NotificationsLogComponent } from './setting/notifications-log/notifications-log.component';
 import { DeleteProfileComponent } from './delete-profile/delete-profile.component';
+import { UnverifiedUserComponent } from './unverified-user/unverified-user.component';
 
 
 @NgModule({
@@ -88,7 +89,8 @@ import { DeleteProfileComponent } from './delete-profile/delete-profile.componen
     CommonFilterPopupComponent,
     LoaderComponent,
     NotificationsLogComponent,
-    DeleteProfileComponent
+    DeleteProfileComponent,
+    UnverifiedUserComponent
   ],
   imports: [
     CommonModule,
