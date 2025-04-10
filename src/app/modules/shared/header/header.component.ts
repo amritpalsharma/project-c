@@ -18,6 +18,8 @@ import { CommonDataService } from '../../../services/common-data.service';
 import { WebPages } from '../../../services/webpages.service';
 import { TalkService } from '../../../services/talkjs.service';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
+import { MatDialog } from '@angular/material/dialog';
+import { UnverifiedUserComponent } from '../unverified-user/unverified-user.component';
 
 interface Notification {
   id: number;
@@ -58,6 +60,7 @@ export class HeaderComponent {
     private globalSettings: GlobalSettingsService,
     private cdRef: ChangeDetectorRef,
     private titleService: TitleService,
+    public dialog: MatDialog
   ) { }
 
   loggedInUser: any = localStorage.getItem('userInfo');
@@ -90,6 +93,7 @@ export class HeaderComponent {
   notificationSeen: boolean = false;
   pageTitle: string = '';
   isSearchVisible: boolean = false;
+  isUserVerified: boolean = false;
 
   ngOnInit() {
     this.getPageTitle();
@@ -142,6 +146,15 @@ export class HeaderComponent {
     let langId = localStorage.getItem('lang_id');
     this.fetchNotifications(userId, langId);
     this.loggedInUser = JSON.parse(this.loggedInUser);
+
+    // console.warn(this.loggedInUser.status)
+    if (this.loggedInUser && this.loggedInUser.status != '' && this.loggedInUser.status != undefined) {
+      if (this.loggedInUser.status == 2) {
+        this.isUserVerified = true;
+      } else {
+        this.isUserVerified = false;
+      }
+    }
 
     this.commonDataService.profilePic$.subscribe(url => {
       this.profileImgUrl = url;
@@ -313,7 +326,7 @@ export class HeaderComponent {
       this.lang = 'sv';
     }
     const selectedLanguageArr = this.domains.find((lang: any) => lang.slug === this.lang);
-    if(selectedLanguageArr == undefined || selectedLanguageArr != ''){
+    if (selectedLanguageArr == undefined || selectedLanguageArr != '') {
       this.language = selectedLanguageArr;
     }
   }
@@ -432,7 +445,7 @@ export class HeaderComponent {
     this.talkService.changeLocale(locale);
     this.getPageTitle();
 
-    if(this.lang == 'se'){
+    if (this.lang == 'se') {
       this.lang = 'sv';
     }
   }
@@ -660,5 +673,25 @@ export class HeaderComponent {
 
   toggleSearch() {
     this.isSearchVisible = !this.isSearchVisible;
+  }
+
+  showVerificationPopup(isVerified: boolean) {
+    if (isVerified) {
+      return;
+    }
+    const messageDialog = this.dialog.open(UnverifiedUserComponent, {
+      width: '500px',
+      position: {
+        top: '150px'
+      }
+    })
+
+    messageDialog.afterClosed().subscribe((result: any) => {
+      if (result !== undefined) {
+        if (result.action == "delete-confirmed") {
+          // this.deleteUser();
+        }
+      }
+    });
   }
 }

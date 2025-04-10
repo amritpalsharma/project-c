@@ -42,7 +42,8 @@
       <div class="search-container w-75 ms-2">
         <!-- <mat-form-field class="w-100"> -->
         <input matInput placeholder="{{ 'search' | translate }}" [formControl]="searchControl" [matAutocomplete]="auto"
-          class="form-control w-100" />
+          class="form-control w-100" [class.disabled]="!isUserVerified" 
+          (click)="isUserVerified ? showVerificationPopup(true) : showVerificationPopup(false)" [readonly]="!isUserVerified"/>
         <mat-autocomplete class="suggestion-list" #auto="matAutocomplete"
           (optionSelected)="selectUser($event.option.value)">
           <!-- Show loader while loading -->

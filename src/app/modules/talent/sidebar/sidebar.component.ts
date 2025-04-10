@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SocketService } from '../../../services/socket.service';
+import { MatDialog } from '@angular/material/dialog';
+import { UnverifiedUserComponent } from '../../shared/unverified-user/unverified-user.component';
 
 @Component({
   selector: 'talent-sidebar',
@@ -9,7 +11,9 @@ import { SocketService } from '../../../services/socket.service';
 export class SidebarComponent implements OnInit {
   sidebarOpen: boolean = true; // Initial state of the sidebar
   isNum: Number = 1;
-  constructor(private socketService: SocketService) { }
+  isUserVerified: boolean = false;
+  loggedInUser: any = localStorage.getItem('userInfo');
+  constructor(private socketService: SocketService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     // Add any initialization logic if needed
@@ -17,6 +21,16 @@ export class SidebarComponent implements OnInit {
       document.body.classList.remove('compact-sidebar');
       document.body.classList.add('mobile-sidebar-active');
       this.isNum = 0;
+    }
+
+    this.loggedInUser = JSON.parse(this.loggedInUser);
+    console.warn(this.loggedInUser.status)
+    if (this.loggedInUser && this.loggedInUser.status != '' && this.loggedInUser.status != undefined) {
+      if (this.loggedInUser.status == 2) {
+        this.isUserVerified = true;
+      } else {
+        this.isUserVerified = false;
+      }
     }
   }
 
@@ -49,6 +63,23 @@ export class SidebarComponent implements OnInit {
         document.body.classList.add('compact-sidebar');
       }
     }
+  }
+
+  showVerificationPopup() {
+    const messageDialog = this.dialog.open(UnverifiedUserComponent, {
+      width: '500px',
+      position: {
+        top: '150px'
+      }
+    })
+
+    messageDialog.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        if (result.action == "delete-confirmed") {
+          // this.deleteUser();
+        }
+      }
+    });
   }
 
   // openSidebar(): void {

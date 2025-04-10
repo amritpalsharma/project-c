@@ -330,6 +330,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.scoutService.getProfileData(userId).subscribe((response) => {
         if (response && response.status && response.data && response.data.user_data) {
           localStorage.setItem('userInfo', JSON.stringify(response.data.user_data));
+          localStorage.setItem('userData', JSON.stringify(response.data.user_data));
           if (response.data.representator_data) {
             this.loggedInUser = response.data.representator_data;
             this.loggedInUser.isRepresentator = true;

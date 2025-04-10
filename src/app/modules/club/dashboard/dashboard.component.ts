@@ -322,7 +322,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.talentService.getProfileData(userId).subscribe((response) => {
         if (response && response.status && response.data && response.data.user_data) {
           localStorage.setItem('userInfo', JSON.stringify(response.data.user_data));
-
+          localStorage.setItem('userData', JSON.stringify(response.data.user_data));
           this.user = response.data.user_data;
           this.userNationalities = JSON.parse(this.user.user_nationalities);
           this.StartTour = this.user?.show_tour == 1 ? true : false;
