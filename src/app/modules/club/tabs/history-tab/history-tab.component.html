@@ -22,7 +22,7 @@
 <div class="p-3 club_history" *ngIf="isPremium">
     <div class="d-flex align-items-center">
 
-        <h6 class="mb-0 me-2 main-template"> {{ 'soccerHire' | translate}} </h6>
+        <h6 class="mb-0 me-2 main-template" [translate]="'soccerHire'"></h6>
 
         <a class="btn btn-outline-white main-template" *ngIf="!isEditable" (click)="editHistory()">
             <svg id="users-icon" class="me-1" width="24" height="25" viewBox="0 0 24 25" fill="none"
@@ -53,7 +53,7 @@
             <!-- <textarea class="historyTextarea" #historyTextarea>{{history}}</textarea>             -->
             <div class="col-12 NgxEditor__Wrapper  mt-3">
                 <ngx-editor-menu [editor]="editor" [toolbar]="toolbar" [colorPresets]="colorPresets"> </ngx-editor-menu>
-                <ngx-editor [editor]="editor" class="editor-width" [(ngModel)]="history" [disabled]="false"
+                <ngx-editor [editor]="editor" class="editor-width " [(ngModel)]="history" [disabled]="false"
                     [placeholder]="'editors.placeholder' | translate"></ngx-editor>
                 <!-- <div *ngIf="errorMsg.content" class="error-msg" style="padding-left:20px;">{{errorMsg.content}}</div> -->
             </div>

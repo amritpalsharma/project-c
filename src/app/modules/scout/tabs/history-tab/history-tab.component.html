@@ -1,7 +1,8 @@
 <div class="company_history">
     <div class="d-flex align-items-center justify-content-between">
         <!-- <span>About {{role}}</span> -->
-        <h6 class="mb-0 me-2 main-template"> {{ 'SoccerHire' | translate}} </h6>
+        <!-- <h6 class="mb-0 me-2 main-template"> {{ 'SoccerHire' | translate}} </h6> -->
+        <h6 class="mb-0 me-2 main-template" [translate]="'soccerHire'"> </h6>
         <!-- <button *ngIf="!isEditable" (click)="editHistory()">Edit</button> -->
         <a class="btn btn-outline-white main-template" *ngIf="!isEditable && checkRole()" (click)="editHistory()">
             <svg id="users-icon" class="me-1" width="24" height="25" viewBox="0 0 24 25" fill="none"

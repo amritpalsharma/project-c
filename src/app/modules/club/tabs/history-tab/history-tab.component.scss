@@ -50,13 +50,31 @@
 }
 
 
-@media (min-width: 2000px){
-	.company_history {
-		h6.main-template {
-		    font-size: 20px;
-		}
-		.btn-outline-white, .history-text {
-		    font-size: 18px !important;
-		}
-	}
+@media (min-width: 2000px) {
+    .company_history {
+        h6.main-template {
+            font-size: 20px;
+        }
+
+        .btn-outline-white,
+        .history-text {
+            font-size: 18px !important;
+        }
+    }
+}
+
+.NgxEditor-Default-height {
+    min-height: 400px !important;
+}
+
+::ng-deep {
+    /* to penetrate <ngx-editor> CSS styling */
+
+    .NgxEditor {
+        height: 400px !important;
+        overflow-y: scroll;
+    }
+    .NgxEditor__Placeholder::before{
+        color: black !important;
+    }
 }
