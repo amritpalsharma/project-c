@@ -23,16 +23,19 @@ export class DetailPagesComponent {
     this.adVisible = [false, false, false, false, false, false];
     this.route.params.subscribe((params) => {
       this.id = params['slug'];
-      //this.getPageData(1);
+      this.getPageData(this.currentLang);
     });
     this.getPageData(this.currentLang);
     this.webPages.languageId$.subscribe((data) => {
+      this.currentLang = data;
       this.getPageData(data)
     });
 
   }
   getPageData(languageId: any): void {
-    this.webPages.getNewsContentPage(this.id, languageId).subscribe((res) => {
+    let str = this.id;
+    let noSpace = str.replace(/\s+/g, '');
+    this.webPages.getNewsContentPage(noSpace, languageId).subscribe((res) => {
       if (res.status) {
         this.news = res.data.news;
         this.moreNews = res.data.moreNews;

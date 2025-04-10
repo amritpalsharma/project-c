@@ -39,7 +39,7 @@
 
         <!-- Current Club -->
         <div class="form-group col-lg-6 position_inputs">
-          <label for="currentClub">{{'currentClub' | translate}}:</label>
+          <label for="currentClub">{{'currentClub' | translate}}: {{currentClubId}}</label>
 
           <mat-select [(ngModel)]="currentClubId" class="form-select" id="currentClub" name="currentClub"
             (selectionChange)="clubUpdated()">
