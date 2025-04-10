@@ -7,7 +7,7 @@
             <thead>
               <tr class="explore-inputs">
                 <!-- Talent Filter -->
-                 <!-- <pre>{{roles | json}}</pre> -->
+                <!-- <pre>{{roles | json}}</pre> -->
                 <th>
                   <div class="form-group explore-all_input">
                     <mat-form-field appearance="fill">
@@ -81,8 +81,8 @@
                   <div class="form-group explore-all_input">
                     <mat-form-field appearance="fill">
                       <mat-label>{{ 'country' | translate }}</mat-label>
-                      <mat-select [(ngModel)]="selectedCountry" (selectionChange)="applyFilter(); countryAndLeauge('country');" id="country"
-                        name="country">
+                      <mat-select [(ngModel)]="selectedCountry"
+                        (selectionChange)="applyFilter(); countryAndLeauge('country');" id="country" name="country">
                         <mat-option *ngFor="let country of countries"
                           [value]="country.id">{{country.location}}</mat-option>
                       </mat-select>
@@ -94,8 +94,9 @@
                   <div class="form-group explore-all_input">
                     <mat-form-field appearance="fill">
                       <mat-label>{{'league' | translate}}</mat-label>
-                      <mat-select [(ngModel)]="selectedLeague" (selectionChange)="applyFilter(); countryAndLeauge('league');" id="league"
-                        name="league" [disabled]="!leagues || leagues.length === 0">
+                      <mat-select [(ngModel)]="selectedLeague"
+                        (selectionChange)="applyFilter(); countryAndLeauge('league');" id="league" name="league"
+                        [disabled]="!leagues || leagues.length === 0">
                         <mat-option *ngFor="let league of leagues"
                           [value]="league.id">{{league.league_name}}</mat-option>
                       </mat-select>
@@ -108,7 +109,8 @@
                   <div class="form-group explore-all_input">
                     <mat-form-field appearance="fill">
                       <mat-label>{{'clubRole' | translate}}</mat-label>
-                      <mat-select [(ngModel)]="selectedClub" (selectionChange)="applyFilter()" id="club" name="club" [disabled]="!clubs || clubs.length === 0">
+                      <mat-select [(ngModel)]="selectedClub" (selectionChange)="applyFilter()" id="club" name="club"
+                        [disabled]="!clubs || clubs.length === 0">
                         <mat-option *ngFor="let club of clubs" [value]="club.id">{{club.club_name}}</mat-option>
                       </mat-select>
                     </mat-form-field>
@@ -128,7 +130,8 @@
                 <strong *ngIf="getNameById(filter.label, filter.value) == 'left'">: {{ 'left' | translate}}</strong>
                 <strong *ngIf="getNameById(filter.label, filter.value) == 'right'">: {{ 'right' | translate}}</strong>
                 <strong *ngIf="getNameById(filter.label, filter.value) == 'both'">: {{ 'both' | translate }}</strong>
-                <strong *ngIf="filter.value != 'left' && filter.value != 'right' && filter.value != 'both'">: {{getNameById(filter.label, filter.value)}}</strong>
+                <strong *ngIf="filter.value != 'left' && filter.value != 'right' && filter.value != 'both'">:
+                  {{getNameById(filter.label, filter.value)}}</strong>
               </span>
               <span>
                 <button class="explore-chip_cut" (click)="removeFilter(filter.label)">
@@ -216,11 +219,32 @@
             </div>
           </div>
         </div>
-
-        <div *ngIf="players.length>0" class="result-page-slider">
+        <h1>total record is {{totalItems}} Current Page is {{currentPage}} itemsPerPage {{itemsPerPage}}</h1>
+        <div *ngIf="players.length >= 0" class="result-page-slider">
           <div class="paginator-container">
-            <mat-paginator [length]="totalItems" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25, 100]"
-              (page)="onPageChange($event)" aria-label="Select page" showFirstLastButtons></mat-paginator>
+            <select name="" id="" [(ngModel)]="itemsPerPage" (change)="changeItemsPerPage()">
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+            </select>
+            <button (click)="nextPrevious('previous')" [disabled]="currentPage == 0 || currentPage == 1">{{'PAGINATOR.PREVIOUS_PAGE' |
+              translate}}</button>
+            <!-- <mat-paginator [length]="totalItems" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25, 100]"
+              (page)="onPageChange($event)" aria-label="Select page" showFirstLastButtons>
+            </mat-paginator> -->
+            <ng-container *ngFor="let page of pagesToShow()">
+              <button class="page-active" (click)="goToPage(page)" 
+                [class.currentPage]="currentPage === page"
+                >
+                {{ page }}
+              </button>
+            </ng-container>
+            
+            <button (click)="nextPrevious('next')" 
+              [disabled]="currentPage === lastPage">
+              {{ 'PAGINATOR.NEXT_PAGE' | translate }}
+            </button>
           </div>
         </div>
       </div>

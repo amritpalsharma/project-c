@@ -46,7 +46,7 @@ export class ExploreComponent implements OnInit {
   players: any[] = [];
   pageSize = 15; // Default page size
   totalItems: number = 0;
-  currentPage: number = 0;
+  currentPage: number = 1;
   pageSizeOptions: number[] = [5, 10, 15, 20]; // Added page size options
   userNationalities: any = [];
   nation: any = [];
@@ -133,6 +133,9 @@ export class ExploreComponent implements OnInit {
   //   { role: 'Talang', id: 4 },
   //   { role: 'Liga', id: 5 }
   // ];
+
+  totalPagesCount: number = 1;
+  itemsPerPage: number = 15;
 
   ngOnInit(): void {
 
@@ -254,7 +257,7 @@ export class ExploreComponent implements OnInit {
       slug = 'club';
     }
 
-    if(slug == 'talento' || slug ==  'Talang'){
+    if (slug == 'talento' || slug == 'Talang') {
       slug = 'talent';
     }
     const pageRoute = 'view/' + slug.toLowerCase();
@@ -281,11 +284,16 @@ export class ExploreComponent implements OnInit {
     this.isLoading = true; // Start loading
 
     const pageIndex = this.currentPage;
-    const pageSize = this.pageSize;
-
+    // const pageSize = this.pageSize;
+    const pageSize = this.itemsPerPage;
+    let offset = (this.currentPage - 1) * this.itemsPerPage;
+    if (offset < 5) {
+      offset = 0; // when first time API HIT
+    }
     // Construct the params object with complex whereClause and metaQuery logic
     let params: any = {
-      offset: pageIndex * pageSize,
+      // offset: pageIndex * pageSize,
+      offset: offset,
       limit: pageSize,
       whereClause: {
         role: this.selectedRole,
@@ -340,11 +348,13 @@ export class ExploreComponent implements OnInit {
 
 
     // Call service to fetch filtered data
+    this.noUsersFound = true;
     this.talentService.getExploresData(params).subscribe({
       next: (response) => {
         if (response?.status && response?.data) {
           this.players = response.data.userData.users;
           this.totalItems = response.data.userData.totalCount;
+          this.totalPagesCount = Math.ceil(response.data.userData.totalCount / this.itemsPerPage);
           this.noUsersFound = false;
           if (this.totalItems < 0 || this.totalItems == 0) {
             this.noUsersFound = true;
@@ -574,7 +584,7 @@ export class ExploreComponent implements OnInit {
         break;
     }
 
-    if(label == 'country' || label == 'league'){
+    if (label == 'country' || label == 'league') {
       this.countryAndLeauge(label);
     }
 
@@ -633,7 +643,7 @@ export class ExploreComponent implements OnInit {
 
   countryAndLeauge(input_type: any) {
 
-    if (input_type == 'country') { 
+    if (input_type == 'country') {
       this.leagues = [];
       this.clubs = [];
       this.selectedLeague = null;
@@ -646,6 +656,59 @@ export class ExploreComponent implements OnInit {
 
 
     // 
+  }
+
+
+  pagesToShow(): number[] {
+    const totalPages = Math.ceil(this.totalItems / this.itemsPerPage); // 👈 Fix here
+    const pages: number[] = [];
+    const maxPagesToShow = 5;
+
+    let startPage = Math.max(1, this.currentPage - 2);
+    let endPage = Math.min(totalPages, startPage + maxPagesToShow - 1);
+
+    if (endPage - startPage < maxPagesToShow - 1) {
+      startPage = Math.max(1, endPage - maxPagesToShow + 1);
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+      pages.push(i);
+    }
+
+    return pages;
+  }
+
+
+  goToPage(page: number) {
+    if (page >= 1 && page <= this.totalItems) {
+      this.currentPage = page;
+    }
+    this.getUsers();
+    // this.fetchData(this.selectedTab);
+  }
+
+  nextPrevious(event: string) {
+    // alert(this.currentPage);
+    if (this.currentPage == 0 && event == 'next') {
+      this.currentPage = 1;
+    }else if(event == 'next'){
+      this.currentPage = this.currentPage + 1;
+    }else if(event == 'previous'){
+      this.currentPage = this.currentPage - 1;
+    }
+    // console.info('event is ', event);
+    this.getUsers();
+  }
+   
+  changeItemsPerPage(){
+    this.itemsPerPage = this.itemsPerPage;
+    this.currentPage = 1;
+    this.getUsers();
+  }
+
+
+  get lastPage(): number {
+    return this.pagesToShow().length;  // Assuming last page is the length of the pagesToShow array
   }
 
 }
