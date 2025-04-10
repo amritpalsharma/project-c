@@ -31,7 +31,7 @@
       </div>
 
       <div class="explore-chip d-flex align-items-center mt-2">
-        <label *ngIf="activePlans.length > 0" class="font-weight-bold">{{ 'alreadyPurchased' | translate }}: </label>
+        <label *ngIf="activePlans.length > 0" class="font-weight-bold me-2">{{ 'alreadyPurchased' | translate }}: </label>
         <!-- <h6 *ngIf="activePlans.length > 0" class="font-weight-bold">{{'alreadyPurchased' | translate}}: </h6> -->
         <div *ngFor="let item of activePlans; let isLast = last">
           <div class="chip p-2">

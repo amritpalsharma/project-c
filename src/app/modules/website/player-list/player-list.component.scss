@@ -64,21 +64,19 @@ h1 {
 .image-container {
     margin: 10px;
     width: calc(25% - 20px);
-    /* Adjust this for the number of images per row */
     text-align: center;
-    /* Center-align the content */
 }
 
 button.faq-club-button,
 button.faq-talent-button {
     background-color: transparent;
     border: none;
-    color: white;
     font-size: 20px;
-    font-weight: 200;
+    font-weight: 600;
     opacity: 75%;
-    height: 40px;
     width: 126px;
+    padding: 10px 30px;
+    border-radius: 8px;
 }
 
 select:focus-visible {
@@ -87,12 +85,6 @@ select:focus-visible {
 
 button.faq-talent-button.active,
 button.faq-club-button.active {
-    height: 40px;
-    width: 126px;
-    border-radius: 8px;
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 20px;
     opacity: 1;
 }
 
@@ -336,87 +328,6 @@ button.page-active {
     border: 1px solid #E9E9E9;
 }
 
-// advertisement
-
-// .skyscraper-left {
-//     height: 600px;
-//     width: 120px;
-//     content: "";
-//     z-index: 2;
-//     position: absolute;
-//     left: 0;
-//     top: 10%;
-// }
-
-// .skyscraper-left img {
-//     height: 600px;
-//     width: 120px;
-// }
-
-// .skyscraper-right {
-//     height: 600px;
-//     width: 120px;
-//     content: "";
-//     z-index: 2;
-//     position: absolute;
-//     right: 0;
-//     top: 10%;
-// }
-
-// .skyscraper-right img {
-//     height: 600px;
-//     width: 120px;
-// }
-
-// .large-rectangle {
-//     position: absolute;
-//     left: 0;
-//     bottom: 0;
-//     content: "";
-//     height: 280px;
-//     width: 336px;
-// }
-
-// .large-rectangle img {
-//     height: 280px;
-//     width: 336px;
-// }
-
-// .inline-rectangle {
-//     position: absolute;
-//     left: 50%;
-//     bottom: 0;
-//     transform: translateX(-50%);
-//     content: "";
-//     width: 300px;
-//     height: 250px;
-// }
-
-// .inline-rectangle img {
-//     width: 300px;
-//     height: 250px;
-// }
-
-// .square {
-//     position: absolute;
-//     right: 0;
-//     bottom: 0;
-//     content: "";
-//     width: 250px;
-//     height: 250px;
-//     display: flex;
-// }
-
-// .square img {
-//     width: 250px;
-//     height: 250px;
-// }
-
-// .advertisement {
-//     position: relative;
-//     height: 350px;
-// }
-
 @media (max-width: 1199px) {
     .player-list {
         padding-top: 100px;
@@ -427,23 +338,6 @@ button.page-active {
         margin-bottom: 30px;
         padding-top: 30px;
     }
-}
-
-@media (max-width: 991px) {
-
-    // .leaderboard-club-image img,
-    // .small-sqaure-image img,
-    // .skyscraper-image img,
-    // .skyscraper-image img,
-    // .wide-skyscraper-image img,
-    // .leaderboard-image img,
-    // .banner-image img,
-    // .advertisement,
-    // .advertisement1,
-    // .skyscraper-left img,
-    // .skyscraper-right img {
-    //     display: none;
-    // }
 }
 
 @media (max-width: 767px) {
@@ -513,14 +407,6 @@ button.page-active {
         font-size: 25px;
     }
 
-    button.faq-talent-button.active,
-    button.faq-club-button.active {
-        height: 37px;
-        width: 110px;
-        font-size: 18px;
-        line-height: 15px;
-    }
-
     button.faq-club-button,
     button.faq-talent-button {
         font-size: 18px;
@@ -535,14 +421,6 @@ button.page-active {
 
     p.d-o-b {
         font-size: 10px;
-    }
-
-    button.faq-talent-button.active,
-    button.faq-club-button.active {
-        height: 35px;
-        width: 90px;
-        font-size: 15px;
-        line-height: 15px;
     }
 
     button.faq-club-button,
@@ -611,8 +489,8 @@ button.page-active {
             img {
                 width: 100% !important;
                 height: 100% !important;
-                object-fit: cover;
-                object-position: top center;
+                object-fit: contain;
+                // object-position: top center;
                 padding-top: 20px;
             }
         }

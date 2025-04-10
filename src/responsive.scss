@@ -519,6 +519,15 @@ td.cdk-column-Remove.mat-column-Remove svg {
 .dialog-header h2 {
     font-size: 26px !important;
 }
+.paginator-container {
+    button {
+        height: 50px;
+    }
+    button.page-active {
+        width: 50px;
+    }
+}
+
 }
 
 @media (max-width:1300px) and (min-width:992px) {
@@ -686,6 +695,27 @@ body.compact-sidebar.dark-theme .sidebar-menu svg path {
     justify-content: flex-start;
     flex-direction: row;
 }
+}
+
+@media (max-width: 850px) {
+    .paginator-container {
+        justify-content: center;
+        label, select#pagePerItem {
+            font-size: 13px;
+        }
+        .pagination_btnss {
+            width: 100%;
+            text-align: center;
+        }
+        button {
+            font-size: 13px;
+            height: 34px;
+            padding: 4px 8px;
+        }
+        button.page-active {
+            width: 34px;
+        }
+    }
 }
     
 @media (max-width: 767px) {
