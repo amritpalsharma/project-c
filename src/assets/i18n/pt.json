@@ -1392,5 +1392,5 @@
   },
   "highlightTooltip": "Editar destaques",
   "homeBannerTxt": "Quem aparece, é visto. SoccerYou - Porque só o talento não chega.",
-    "notVerify":"A sua conta ainda não foi verificada."
+  "accountVerificationPending": "A sua conta ainda não foi verificada."
 }

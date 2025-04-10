@@ -1382,5 +1382,5 @@
   },
   "highlightTooltip": "Redigera höjdpunkter",
   "homeBannerTxt": "Den som dyker upp, blir sedd. SoccerYou - Eftersom enbart talang inte räcker.",
-   "notVerify": "Ditt konto är ännu inte verifierat."
+  "accountVerificationPending": "Ditt konto är ännu inte verifierat."
 }
