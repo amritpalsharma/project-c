@@ -2561,6 +2561,12 @@ td.col_checkbox {
 	}
 }
 
+.light-theme {
+  .d-flex.flex-row.main_flex {
+      background: #f0f0f0;
+  }
+}
+
 .coupon-dateRange {
   border: 1px solid #dee2e6;
   border-radius: 10px;
@@ -2569,4 +2575,9 @@ td.col_checkbox {
 .coupon-dateRange .mdc-text-field.mdc-text-field--filled {
   border: 0 !important;
   border-radius: 0 !important;
+}
+.ng-trigger.mat-mdc-select-panel input.mat-mdc-input-element {
+  width: calc(100% - 30px);
+  margin-left: 15px;
+  margin-top: 7px;
 }
