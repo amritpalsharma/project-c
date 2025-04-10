@@ -959,8 +959,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.translateService.get(['pleaseWait', 'uploadingPhotos', 'success!', 'error', 'deletingCoverImage', 'coverImageDeletionCanceled', 'Canceled']).subscribe((translations) => {
       this.pleaseWait = translations['pleaseWait'];
       this.uploadingPhotos = translations['uploadingPhotos'];
-      this.successTxt = translations['successTxt'];
-      this.errorTxt = translations['errorTxt'];
+      this.successTxt = translations['success!'];
+      this.errorTxt = translations['error'];
       this.deletingCoverImage = translations['deletingCoverImage'];
       this.coverImageDeletionCanceled = translations['coverImageDeletionCanceled'];
       this.Canceled = translations['Canceled'];

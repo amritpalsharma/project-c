@@ -1451,5 +1451,6 @@
     "OF": "de"
   },
   "highlightTooltip": "Modifier les faits saillants",
-  "homeBannerTxt": "Qui se présente est vu. SoccerYou - Parce que le talent seul ne suffit pas."
+  "homeBannerTxt": "Qui se présente est vu. SoccerYou - Parce que le talent seul ne suffit pas.",
+  "accountVerificationPending": "Votre compte n'est pas encore vérifié."
 }
