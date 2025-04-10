@@ -29,9 +29,12 @@
     background: #023A4A;
     color: #fff;
     font-size: 13px;
-    padding: 4px 10px;
+    padding: 6px 16px 3px !important;
     border-radius: 20px;
-    margin: 0px 5px;
+    margin: 0px 5px 5px 0;
+    span:last-child {
+        display: none !important;
+    }
 }
 .explore-chip_cut {
     background: inherit;
@@ -47,7 +50,6 @@
     margin-bottom: 10px;
 }
 .subscription-type h2{
-    font-size: 16px;
     font-weight: 700;
 }
 .buy-button h4, .buy-button p {
@@ -112,7 +114,7 @@
  .radio-custom, .radio-custom-label {
     display: inline-block;
     vertical-align: middle;
-    margin: 5px;
+    margin: 5px 0;
     cursor: pointer;
 }
  .radio-custom-label {
@@ -150,8 +152,24 @@
 }
 .radio-custom + .radio-custom-label:before, .radio-custom:checked + .radio-custom-label:before {
     position: relative;
-    top: -4px;
+    top: -2px;
 }
+
+
+.dark-theme .country-plan{
+    background-color: #072944;
+}
+.font-weight-bold{
+    font-weight: bold;
+}
+
+.edit-multi-country-plan .country-plan .country-selection label, .subscription-type h2 {
+    font-size: 18px;
+}
+.country-plan.popup__body label.form-check-label.radio-custom-label {
+    text-transform: lowercase;
+}
+
 @media (max-width:768px) {
     .country-plan {
         padding: 20px 10px;
@@ -177,10 +195,3 @@
     }
 }
 
-.dark-theme .country-plan{
-    background-color: #072944;
-}
-.font-weight-bold{
-    font: bold;
-    font-size: 25px;
-}
