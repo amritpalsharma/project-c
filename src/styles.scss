@@ -2581,3 +2581,63 @@ td.col_checkbox {
   margin-left: 15px;
   margin-top: 7px;
 }
+
+
+/*-- dashboard common pagination style --*/
+.paginator-container {
+  color: #000;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 1rem;
+  select#pagePerItem {
+    outline: none;
+    box-shadow: none;
+    padding: 8px 10px;
+    margin-left: 8px;
+    margin-right: 8px;
+    text-align: left;
+    border: 1px solid #E9E9E9;
+    border-radius: 8px;
+    background: transparent;
+    color: inherit;
+  }
+  button {
+    border: 1px solid #E9E9E9;
+    margin: 5px;
+    border-radius: 4px;
+    background: transparent;
+    color: inherit;
+    height: 40px;
+    padding: 5px 12px;
+}
+button.page-active {
+  width: 40px;
+  padding: 5px;
+}
+button.currentPage  {
+  background-color: #023A4A;
+  color: #fff;
+  border-width: 1px;
+  border-color: #023A4A;
+}
+}
+
+
+.dark-theme {
+  .paginator-container {
+    color: #fff;
+    select#pagePerItem {
+      border: 1px solid #1F4360;
+    }
+    button {
+      border: 1px solid #1F4360;
+  }
+  button.currentPage  {
+    background-color: #bde34e;
+    color: #023A4A;
+    border: 1px solid #bde34e;
+  }
+  }
+}

@@ -219,15 +219,17 @@
             </div>
           </div>
         </div>
-        <h1>total record is {{totalItems}} Current Page is {{currentPage}} itemsPerPage {{itemsPerPage}}</h1>
+        <!-- <h1>total record is {{totalItems}} Current Page is {{currentPage}} itemsPerPage {{itemsPerPage}}</h1> -->
         <div *ngIf="players.length >= 0" class="result-page-slider">
           <div class="paginator-container">
-            <select name="" id="" [(ngModel)]="itemsPerPage" (change)="changeItemsPerPage()">
+            <label for="pagePerItem">{{'PAGINATOR.ITEMS_PER_PAGE' | translate}}</label>
+            <select name="" id="pagePerItem" [(ngModel)]="itemsPerPage" (change)="changeItemsPerPage()">
               <option value="5">5</option>
               <option value="10">10</option>
               <option value="15">15</option>
               <option value="20">20</option>
             </select>
+            <div class="pagination_btnss">
             <button (click)="nextPrevious('previous')" [disabled]="currentPage == 0 || currentPage == 1">{{'PAGINATOR.PREVIOUS_PAGE' |
               translate}}</button>
             <!-- <mat-paginator [length]="totalItems" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25, 100]"
@@ -245,6 +247,7 @@
               [disabled]="currentPage === lastPage">
               {{ 'PAGINATOR.NEXT_PAGE' | translate }}
             </button>
+          </div>
           </div>
         </div>
       </div>
