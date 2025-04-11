@@ -52,7 +52,7 @@ import { LoaderComponent } from './loader/loader.component';
 import { NotificationsLogComponent } from './setting/notifications-log/notifications-log.component';
 import { DeleteProfileComponent } from './delete-profile/delete-profile.component';
 import { UnverifiedUserComponent } from './unverified-user/unverified-user.component';
-import { ImageCropperDialogComponent } from './image-cropper-dialog/image-cropper-dialog.component';
+// import { ImageCropperDialogComponent } from './image-cropper-dialog/image-cropper-dialog.component';
 
 
 @NgModule({
@@ -91,8 +91,8 @@ import { ImageCropperDialogComponent } from './image-cropper-dialog/image-croppe
     LoaderComponent,
     NotificationsLogComponent,
     DeleteProfileComponent,
-    UnverifiedUserComponent,
-    ImageCropperDialogComponent
+    UnverifiedUserComponent
+    // ImageCropperDialogComponent
   ],
   imports: [
     CommonModule,

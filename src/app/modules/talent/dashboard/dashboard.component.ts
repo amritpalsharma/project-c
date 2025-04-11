@@ -778,7 +778,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
   }
 
-    onProfileFileChangeBckp(event: Event): void {
+    onProfileFileChangeBckp(event: Event): void { 
     const input = event.target as HTMLInputElement;
   
     // Check if files exist and that there is at least one file selected
