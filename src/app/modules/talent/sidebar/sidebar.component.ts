@@ -22,8 +22,13 @@ export class SidebarComponent implements OnInit {
       document.body.classList.add('mobile-sidebar-active');
       this.isNum = 0;
     }
-
-    this.loggedInUser = JSON.parse(this.loggedInUser);
+    if (typeof this.loggedInUser !== 'undefined' && this.loggedInUser !== null && this.loggedInUser !== '') {
+      // Do something
+      this.loggedInUser = JSON.parse(this.loggedInUser);
+    }else{
+      window.location.reload();
+    }
+    
     console.warn(this.loggedInUser.status)
     if (this.loggedInUser && this.loggedInUser.status != '' && this.loggedInUser.status != undefined) {
       if (this.loggedInUser.status == 2) {

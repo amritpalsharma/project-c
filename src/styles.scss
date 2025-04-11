@@ -189,7 +189,7 @@ mat-datepicker-toggle {
 
   button {
     border-radius: 0 !important;
-    background-image: url(./assets/images/calendar-icon.svg) !important;
+    // background-image: url(./assets/images/calendar-icon.svg) !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
     background-size: 23px !important;
@@ -2388,7 +2388,7 @@ td.col_checkbox {
 
 .light-theme .table_title select {
   padding-right: 30px;
-  background: #fff url(./assets/images/select-arrow-black.svg) no-repeat right 8px center;
+  // background: #fff url(./assets/images/select-arrow-black.svg) no-repeat right 8px center;
   background-size: 15px;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -2465,7 +2465,7 @@ td.col_checkbox {
 }
 
 .cross-btn-close {
-  background-image: url("/assets/images/carbon_close-outline.png");
+  // background-image: url("/assets/images/carbon_close-outline.png");
   background-size: cover;
   width: 41px;
   height: 41px;
