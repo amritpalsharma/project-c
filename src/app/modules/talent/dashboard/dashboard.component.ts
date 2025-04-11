@@ -778,6 +778,50 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
   }
 
+    onProfileFileChangeBckp(event: Event): void {
+    const input = event.target as HTMLInputElement;
+  
+    // Check if files exist and that there is at least one file selected
+    if (input.files && input.files.length > 0) {
+      this.selectedFile = input.files[0];
+  
+      // Check if the file is an image before proceeding
+      if (!this.selectedFile.type.startsWith('image/')) {
+        // Display an error if the file is not an image
+        console.error('Selected file is not an image');
+        return;
+      }
+  
+      const reader = new FileReader();
+  
+      // Set loading state and display info toast (add your loading logic here if needed)
+      reader.onload = () => {
+        const imageData = reader.result as string;
+  
+        // Open image cropper dialog with the loaded image
+        // const dialogRef = this.dialog.open(ImageCropperDialogComponent, {
+        //   width: '500px',
+        //   data: { imageUrl: imageData }
+        // });
+  
+        // dialogRef.afterClosed().subscribe(croppedImage => {
+        //   if (croppedImage) {
+        //     console.log('Cropped Image:', croppedImage);
+  
+        //     this.uploadProfileImage();
+        //   } else {
+        //     console.log('No cropped image returned');
+        //   }
+        // });
+      };
+  
+      // Read the file as a Data URL for image preview
+      reader.readAsDataURL(this.selectedFile);
+    } else {
+      console.error('No file selected');
+    }
+  }
+
   sendMessage() {
     this.talentService.updatePicOnHeader(this.profileImage);
   }
