@@ -1,0 +1,16 @@
+<div class="image-cropper-container">
+  <h1>Welcome to the Image Cropper App!</h1>
+  <p>Select an image to crop:</p>
+  <input type="file" (change)="onFileChange($event)" />
+  <image-cropper 
+    [image]="image" 
+    [maintainAspectRatio]="true" 
+    [aspectRatio]="4 / 3" 
+    (imageCropped)="onImageCropped($event)">
+  </image-cropper>
+  <button (click)="cropImage()">Crop Image</button>
+  <div *ngIf="croppedImage">
+    <h2>Cropped Image:</h2>
+    <img [src]="croppedImage" />
+  </div>
+</div>

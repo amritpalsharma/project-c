@@ -1,0 +1,48 @@
+.crop-container {
+    width: 90%;
+    max-width: 20rem;
+    height: auto;
+    position: relative;
+    // border: 1px solid #ccc;
+    overflow: hidden;
+    user-select: none;
+    margin: 1rem auto;
+}
+
+.draggable-image {
+    // position: absolute;
+    // top: 0;
+    // left: 0;
+    // cursor: grab;
+    width: 100%;
+}
+
+// .crop-box {
+//     width: 200px;
+//     height: 200px;
+//     border: 2px solid red;
+//     position: absolute;
+//     top: 100px;
+//     left: 100px;
+//     pointer-events: none;
+//     box-sizing: border-box;
+// }
+
+.crop-box {
+    position: absolute;
+    border: 2px dashed red;
+    box-sizing: border-box;
+    user-select: none;
+    cursor: move;
+  }
+  
+  .resize-handle {
+    width: 15px;
+    height: 15px;
+    background: red;
+    position: absolute;
+    right: -7px;
+    bottom: -7px;
+    cursor: nwse-resize;
+  }
+  

@@ -1,45 +1,38 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HttpClient,HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgxEditorModule } from 'ngx-editor';
-import { AuthInterceptor } from './auth.interceptor';
+import { AuthInterceptor } from './services/auth.interceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { MaterialModule } from '../app/modules/material/material.module'
+import { MaterialModule } from './modules/material/material.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { SharedModule } from './modules/shared/shared.module';
 import { ToastrModule } from 'ngx-toastr';
-import { LightboxDialogComponent } from './modules/talent/lightbox-dialog/lightbox-dialog.component';
 import { WebsiteModule } from './modules/website/website.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { getPaginatorIntl } from './modules/shared/paginator/custom-paginator-intl';
-// import { UnverifiedUserComponent } from './modules/shared/unverified-user/unverified-user.component';
-// import '../../style.scss';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
-// import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
+
 @NgModule({
   declarations: [
     AppComponent,
-    LightboxDialogComponent,
-    // UnverifiedUserComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    MatTooltipModule,
     HttpClientModule,
     MaterialModule,
-    MatTooltipModule,
     MatDialogModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
@@ -48,7 +41,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       preventDuplicates: true,
     }),
     WebsiteModule,
-    BrowserAnimationsModule,
+    SharedModule,
     TranslateModule.forRoot({
       defaultLanguage: 'en',
       loader: {
@@ -65,7 +58,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     {
       provide: MatPaginatorIntl,
       useFactory: getPaginatorIntl,
-      deps: [TranslateService] // or TranslateService if used directly in factory
+      deps: [TranslateService]
     }
   ],
   bootstrap: [AppComponent]
