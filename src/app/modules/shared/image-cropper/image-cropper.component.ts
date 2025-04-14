@@ -32,6 +32,13 @@ export class ImageCropperComponent2 {
     this.imageUrl = data.imageUrl;
   }
 
+  ngAfterViewChecked() {
+    const container = this.container.nativeElement;
+    container.style.setProperty('--crop-x', `${this.pos.x + this.size / 2}px`);
+    container.style.setProperty('--crop-y', `${this.pos.y + this.size / 2}px`);
+    container.style.setProperty('--crop-size', `${this.size}px`);
+  }
+  
   startDrag(event: MouseEvent) {
     this.isDragging = true;
     this.offset = {

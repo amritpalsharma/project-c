@@ -1419,7 +1419,7 @@ input:checked+.slider:before {
 
 @media(max-width: 375px) {
   .navbar-expand .navbar-nav .notification-box {
-    padding: 20px 0px !important;
+    padding: 0px 0px !important;
     width: 280px !important;
     right: -100px !important;
   }
@@ -2786,5 +2786,11 @@ input:checked+.slider:before {
   }
   .coupon-dateRange, .webpages_popup fieldset {
     border-color: rgb(31, 67, 96) !important;
+  }
+  .cropper_popup {
+    .save_button{
+        background: #BDE34F !important;
+        color: #023A4A !important;
+    }
   }
 }

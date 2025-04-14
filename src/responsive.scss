@@ -527,7 +527,11 @@ td.cdk-column-Remove.mat-column-Remove svg {
         width: 50px;
     }
 }
-
+.cropper_popup {
+    .btn {
+        font-size: 20px !important;
+    }
+}
 }
 
 @media (max-width:1300px) and (min-width:992px) {

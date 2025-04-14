@@ -588,10 +588,30 @@ export class DashboardComponent implements OnInit, OnDestroy {
     
       // Show a loading toast
       // this.toastr.info(this.uploadingPhotos, this.pleaseWait, { disableTimeOut: true });
-      this.toastr.info("this.uploadingPhotos", this.pleaseWait, { disableTimeOut: true });
+      this.toastr.info("", this.pleaseWait, { disableTimeOut: true });
     
       this.scoutService.uploadProfileImage(formData).subscribe(
+        
         (response) => {
+
+          // if (response && response.status) {
+          //   this.profileImage = `${environment.url}uploads/${response.data.uploaded_fileinfo}`;
+          //   this.dataEmitter.emit(this.profileImage);  // Emit updated profile image
+          //   this.toastr.clear();
+          //   this.commonDataService.updateProfilePic(this.profileImage);
+
+          //   this.toastr.success(response.message);
+          // } else {
+          //   this.toastr.clear();
+          //   if(response.data.errors.profile_image != '' && response.data.errors.profile_image != undefined){
+          //     this.toastr.error(response.data.errors.profile_image);
+          //   }else{
+          //     this.toastr.error('Failed to upload profile image. Please try again.', 'Upload Failed');
+          //   }
+          //   console.error('Invalid API response structure:', response);
+          // }
+          // this.selectedFile = null;
+
           this.toastr.clear();
           if (response && response.status) {
             this.profileImage = `${environment.url}uploads/${response.data.uploaded_fileinfo}`;
@@ -656,57 +676,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
         reader.readAsDataURL(selectedFile);
       } else {
         console.error('No file selected');
-      }
-    }
-    
-  
-    onProfileFileChange2(event: Event): void {
-      const input = event.target as HTMLInputElement;
-      if (input.files && input.files.length > 0) {
-        this.selectedFile = input.files[0];
-  
-        // Set loading state and display info toast
-        // this.toastr.info(this.uploadingPhotos, this.pleaseWait, { disableTimeOut: true });
-        this.toastr.info("this.uploadingPhotos", this.pleaseWait, { disableTimeOut: true });
-  
-        try {
-          const formData = new FormData();
-          formData.append("profile_image", this.selectedFile);
-  
-          this.scoutService.uploadProfileImage(formData).subscribe(
-            (response) => {
-              if (response && response.status) {
-                this.profileImage = `${environment.url}uploads/${response.data.uploaded_fileinfo}`;
-                this.dataEmitter.emit(this.profileImage);  // Emit updated profile image
-                this.toastr.clear();
-                this.commonDataService.updateProfilePic(this.profileImage);
-                if (response.message != '') {
-                  this.toastr.success(response.message);
-                } else {
-                  this.toastr.success('Profile image uploaded successfully!', 'Success');
-                }
-              } else {
-                this.toastr.clear();
-  
-                if (response.data.errors.profile_image != '' && response.data.errors.profile_image != undefined) {
-                  this.toastr.error(response.data.errors.profile_image);
-                } else {
-                  this.toastr.error('Failed to upload profile image. Please try again.', 'Upload Failed');
-                }
-                console.error('Invalid API response structure:', response);
-              }
-            },
-            (error) => {
-              this.toastr.clear();
-              this.toastr.error('An error occurred during upload. Please try again.', 'Upload Error');
-              console.error('Error uploading profile image:', error);
-            },
-          );
-        } catch (error) {
-          this.toastr.clear();
-          this.toastr.error('An unexpected error occurred. Please try again.', 'Upload Error');
-          console.error('Error during file upload:', error);
-        }
       }
     }
 
@@ -855,7 +824,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         // If the user confirms, proceed with deletion
         this.deleteCoverImage();
       } else {
-        this.toastr.info('Cover image deletion canceled.', 'Canceled');
+        // this.toastr.info('Cover image deletion canceled.', 'Canceled');
         console.log('User canceled the delete');
       }
     });
