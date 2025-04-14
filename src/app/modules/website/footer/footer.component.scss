@@ -806,6 +806,7 @@ img.ng-star-inserted {
   margin-bottom: 20px;
   width: 218px;
   height: 96px;
+  object-fit: contain;
 }
 
 
@@ -988,7 +989,7 @@ img.vector-img {
 }
 
 p.country {
-  font-size: 14px;
+  font-size: 18px;
   text-align: left;
   font-weight: 700;
   
@@ -1473,5 +1474,15 @@ option.countary {
   .footer-top, .footer-bottom {
     position: relative;
     z-index: 1;
+  }
+}
+
+
+@media (min-width: 1600px) and (max-width: 1999px) {
+  #footer .footer-top h4 {
+    font-size: 22px !important;
+  }
+  p, #footer .footer-top .footer-links ul li a {
+    font-size: 20px !important;
   }
 }

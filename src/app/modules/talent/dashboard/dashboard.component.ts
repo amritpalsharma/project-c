@@ -20,6 +20,7 @@ import { CommonDataService } from '../../../services/common-data.service';
 import { WebPages } from '../../../services/webpages.service';
 import { TitleService } from '../../../title.service';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
+import { ImageCropperComponent2 } from '../../shared/image-cropper/image-cropper.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -729,7 +730,86 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
   }
 
+  uploadCroppedImage(croppedImage: string): void {
+    // Convert the base64 cropped image to a Blob
+    const blob = this.dataURItoBlob(croppedImage);
+    const formData = new FormData();
+    formData.append('profile_image', blob, 'cropped-image.png');
+  
+    // Show a loading toast
+    this.toastr.info(this.uploadingPhotos, this.pleaseWait, { disableTimeOut: true });
+  
+    this.talentService.uploadProfileImage(formData).subscribe(
+      (response) => {
+        this.toastr.clear();
+        if (response && response.status) {
+          this.profileImage = `${environment.url}uploads/${response.data.uploaded_fileinfo}`;
+          this.dataEmitter.emit(this.profileImage); // Emit updated profile image
+          this.toastr.success(response.message || 'Profile image uploaded successfully!', 'Success');
+        } else {
+          this.toastr.error('Failed to upload profile image. Please try again.', 'Upload Failed');
+        }
+      },
+      (error) => {
+        this.toastr.clear();
+        this.toastr.error('An error occurred during upload. Please try again.', 'Upload Error');
+        console.error('Error uploading profile image:', error);
+      }
+    );
+  }
+  
+  // Helper function to convert base64 to Blob
+  dataURItoBlob(dataURI: string): Blob {
+    const byteString = atob(dataURI.split(',')[1]);
+    const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+    const ab = new ArrayBuffer(byteString.length);
+    const ia = new Uint8Array(ab);
+    for (let i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+    return new Blob([ab], { type: mimeString });
+  }
+
   onProfileFileChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+  
+    if (input.files && input.files.length > 0) {
+      const selectedFile = input.files[0];
+  
+      if (!selectedFile.type.startsWith('image/')) {
+        this.toastr.error('Please select a valid image file.', 'Invalid File');
+        return;
+      }
+  
+      const reader = new FileReader();
+  
+      reader.onload = () => {
+        const imageData = reader.result as string;
+  
+        const dialogRef = this.dialog.open(ImageCropperComponent2, {
+          width: '500px',
+          data: { imageUrl: imageData },
+          disableClose: true
+        });
+  
+        dialogRef.afterClosed().subscribe((croppedImage) => {
+          if (croppedImage) {
+            console.log('Cropped Image:', croppedImage);
+            this.uploadCroppedImage(croppedImage);
+          } else {
+            console.log('No cropped image returned');
+          }
+        });
+      };
+  
+      reader.readAsDataURL(selectedFile);
+    } else {
+      console.error('No file selected');
+    }
+  }
+  
+
+  onProfileFileChange1(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       this.selectedFile = input.files[0];
@@ -775,6 +855,50 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.toastr.error('An unexpected error occurred. Please try again.', 'Upload Error');
         console.error('Error during file upload:', error);
       }
+    }
+  }
+
+  onProfileFileChangeBckp(event: Event): void {
+    const input = event.target as HTMLInputElement;
+
+    // Check if files exist and that there is at least one file selected
+    if (input.files && input.files.length > 0) {
+      this.selectedFile = input.files[0];
+
+      // Check if the file is an image before proceeding
+      if (!this.selectedFile.type.startsWith('image/')) {
+        // Display an error if the file is not an image
+        console.error('Selected file is not an image');
+        return;
+      }
+
+      const reader = new FileReader();
+
+      // Set loading state and display info toast (add your loading logic here if needed)
+      reader.onload = () => {
+        const imageData = reader.result as string;
+
+        // Open image cropper dialog with the loaded image
+        // const dialogRef = this.dialog.open(ImageCropperDialogComponent, {
+        //   width: '500px',
+        //   data: { imageUrl: imageData }
+        // });
+
+        // dialogRef.afterClosed().subscribe(croppedImage => {
+        //   if (croppedImage) {
+        //     console.log('Cropped Image:', croppedImage);
+
+        //     this.uploadProfileImage();
+        //   } else {
+        //     console.log('No cropped image returned');
+        //   }
+        // });
+      };
+
+      // Read the file as a Data URL for image preview
+      reader.readAsDataURL(this.selectedFile);
+    } else {
+      console.error('No file selected');
     }
   }
 
