@@ -53,6 +53,7 @@ export class ViewProfileComponent implements OnInit {
   currentThemeMode: any = localStorage.getItem('theme');
   currentUserRole: string = '';
   private tooltipSubscription!: Subscription; // ✅ Subscription for tooltips
+  baseUrl:string='';
   videoDuration: number = 0;
   @Output() dataEmitter = new EventEmitter<string>();
   @ViewChild('videoPlayer2') videoElementRef!: ElementRef<HTMLVideoElement>;
@@ -146,13 +147,15 @@ export class ViewProfileComponent implements OnInit {
         if (response && response.status && response.data && response.data.user_data) {
           this.user = response.data.user_data;
           let baseUrl = response.data.imagePath;
+          this.baseUrl = baseUrl;
           this.isPremium = this.loggedInUser?.active_subscriptions?.premium.length > 0 ? true : false;
           // console.error('Is User Has Premium ',this.isPremium);
           // this.isPremium = true;
           if (this.user.user_nationalities != undefined && this.user.user_nationalities != '') {
             this.userNationalities = JSON.parse(this.user.user_nationalities);
           }
-          this.profileImage = this.user.meta.profile_image_path || this.profileImage;
+          this.profileImage = baseUrl + this.user.meta.profile_image || this.profileImage;
+          // this.profileImage = this.user.meta.profile_image_path || this.profileImage;
           this.coverImage = baseUrl + this.user.meta.cover_image || this.coverImage;
           // console.info(this.user);
           // if(this.user?.meta?.place_of_birth){

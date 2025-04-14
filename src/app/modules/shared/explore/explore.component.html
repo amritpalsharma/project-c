@@ -165,9 +165,9 @@
                   (click)="exploreUser(player.role_name, player.id)">
                   <div class="image_box2">
                     <div class="player_img">
-                      <img *ngIf="player.meta.profile_image_path" [src]="player.meta.profile_image_path"
+                      <img *ngIf="player.meta.profile_image" [src]="baseUrl + player.meta.profile_image"
                         alt="player-image" class="w-100">
-                      <img *ngIf="!player.meta.profile_image_path"
+                      <img *ngIf="!player.meta.profile_image"
                         src="../../../../assets/images/default/talent-profile-default.png" class="w-100"
                         alt="player-image">
                     </div>

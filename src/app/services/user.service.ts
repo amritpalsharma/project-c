@@ -640,5 +640,15 @@ export class UserService {
   apiToastError(message: string) {
     this.toaster.error(message);
   }
-
+  
+  userGetScoutPlayers(userId: any): Observable<any> {
+    const userToken = localStorage.getItem('authToken');
+    let lang_id = localStorage.getItem('lang_id');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.userToken}`
+    });
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
+      `${this.apiUrl}/user/get-scout-players/${lang_id}/${userId}`, { headers }
+    );
+  }
 }

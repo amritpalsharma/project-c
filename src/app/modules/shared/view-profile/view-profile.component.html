@@ -18,16 +18,14 @@
             <div class="user-details-left col-lg-12">
               <div class="user-media text-center">
                 <!-- <pre>{{user.meta | json}}</pre> -->
-                <img [src]="profileImage" alt="{{currentUserRole}} Profile 1"
-                  *ngIf="user.meta && user.meta.profile_image_path && currentUserRole =='talent'"
-                  class=" mt-1" />
-                  <img [src]="user.meta.profile_image_path" alt="{{currentUserRole}} Profile 2"
-                  *ngIf="user.meta && user.meta.profile_image_path && currentUserRole =='scout'"
-                  class=" mt-1" />
+                <img [src]="profileImage" alt="{{currentUserRole }} {{'profile' | translate}}"
+                  *ngIf="user.meta && user.meta.profile_image_path && currentUserRole =='talent'" class=" mt-1" />
+                <img [src]="baseUrl + user.meta.profile_image" alt="{{currentUserRole}} Profile 2"
+                  *ngIf="user.meta && user.meta.profile_image && currentUserRole =='scout'" class=" mt-1" />
                 <img [src]="user.club_logo_path" alt="{{currentUserRole}} Profile"
                   *ngIf="user.club_logo_path && user.club_logo_path && currentUserRole =='club'" class=" mt-1" />
                 <img src="../../../../assets/images/default/talent-profile-default.png" alt=""
-                  *ngIf="!user.meta || !user.meta.profile_image_path" class="" />
+                  *ngIf="!user.meta || !user.meta.profile_image" class="" />
                 <div class="d-flex align-items-center justify-content-between">
                   <div class="premium_icons">
                     <span class="icon-bg" *ngIf="isPremium && currentUserRole != 'scout'">
@@ -1579,6 +1577,21 @@
                     </button>
                   </li>
                   <!-- Club Histroy  -->
+                  <!-- Club Teams -->
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link" (click)="switchTab('teams')" [ngClass]="{ active: activeTab == 'teams' }"
+                      id="contact-tab-1" id="manage-button" data-bs-toggle="tab" data-bs-target="#contact-tab-pane-1"
+                      type="button" role="tab" aria-controls="contact-tab-pane-1" aria-selected="false">
+                      <svg id="users-icon" width="26" height="21" viewBox="0 0 22 23" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M11 0.125C11.6198 0.125 12.4401 0.279948 13.4609 0.589844C13.8984 0.717448 14.3268 0.872396 14.7461 1.05469L18 2.12109V2.20312C19.0208 2.71354 19.8503 3.47005 20.4883 4.47266C20.707 4.81901 20.8802 5.23828 21.0078 5.73047C21.0807 6.02214 21.1719 6.46875 21.2812 7.07031V7.15234C21.3359 7.53516 21.3906 7.91797 21.4453 8.30078L21.5 8.79297V10.625H18V22.875H4V10.625H0.5V8.84766L0.554688 8.16406C0.609375 7.59896 0.691406 7.05208 0.800781 6.52344C0.964844 5.77604 1.18359 5.11979 1.45703 4.55469C1.96745 3.46094 2.8151 2.65885 4 2.14844V2.12109L4.27344 2.03906L7.19922 1.05469H7.25391C7.67318 0.872396 8.10156 0.717448 8.53906 0.589844C9.5599 0.279948 10.3802 0.125 11 0.125ZM11 1.875C10.6172 1.875 9.97005 2.01172 9.05859 2.28516L8.73047 2.39453L8.89453 2.64062C9.13151 2.95052 9.39583 3.17839 9.6875 3.32422C10.0521 3.52474 10.4896 3.625 11 3.625C11.5104 3.625 11.9479 3.52474 12.3125 3.32422C12.6042 3.17839 12.8685 2.95052 13.1055 2.64062L13.2695 2.39453L12.9414 2.28516C12.0299 2.01172 11.3828 1.875 11 1.875ZM7.00781 2.94141L5.75 3.37891V21.125H16.25V3.37891L14.9922 2.94141C14.8464 3.21484 14.6732 3.47917 14.4727 3.73438C14.0898 4.20833 13.6432 4.58203 13.1328 4.85547C12.4766 5.20182 11.7656 5.375 11 5.375C10.2344 5.375 9.52344 5.20182 8.86719 4.85547C8.35677 4.58203 7.91016 4.20833 7.52734 3.73438C7.32682 3.47917 7.15365 3.21484 7.00781 2.94141ZM4 4.11719C3.59896 4.42708 3.27995 4.82812 3.04297 5.32031C2.76953 5.88542 2.5599 6.63281 2.41406 7.5625C2.34115 8.03646 2.28646 8.47396 2.25 8.875H4V4.11719ZM18 4.25391V8.875H19.75C19.6953 8.40104 19.6315 7.91797 19.5586 7.42578C19.4857 7.02474 19.3945 6.61458 19.2852 6.19531C19.1758 5.77604 19.0846 5.51172 19.0117 5.40234C18.7383 4.98307 18.401 4.60026 18 4.25391Z"
+                          fill="#023A4A" />
+                      </svg>
+                      {{ "teams" | translate }}
+                    </button>
+                  </li>
+                  <!-- End Club Teams -->
                   <!-- Club Gallery  -->
                   <li class="nav-item" role="presentation">
                     <button class="nav-link" (click)="switchTab('gallery')"
@@ -1628,6 +1641,23 @@
                     </button>
                   </li>
                   <!-- Scout Histroy  -->
+                  <!-- Scout Portfolio -->
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link" (click)="switchTab('scout_portfolio')"
+                      [ngClass]="{ active: activeTab == 'scout_portfolio' }" id="contact-tab-1" id="manage-button"
+                      data-bs-toggle="tab" data-bs-target="#contact-tab-pane-1" type="button" role="tab"
+                      aria-controls="contact-tab-pane-1" aria-selected="false">
+                      <svg id="users-icon" width="23" height="21" viewBox="0 0 23 21" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M11.5 0.125C12.3021 0.125 13.013 0.371094 13.6328 0.863281C14.2526 1.35547 14.6628 1.98438 14.8633 2.75H22.875V20.25H0.125V2.75H8.13672C8.33724 1.98438 8.7474 1.35547 9.36719 0.863281C9.98698 0.371094 10.6979 0.125 11.5 0.125ZM11.5 1.875C11.1536 1.875 10.8438 1.95703 10.5703 2.12109C10.3151 2.26693 10.1146 2.47656 9.96875 2.75H13.0312C12.8854 2.47656 12.6758 2.26693 12.4023 2.12109C12.1471 1.95703 11.8464 1.875 11.5 1.875ZM1.875 4.5V12.375H21.125V4.5H1.875ZM11.5 9.75C11.737 9.75 11.9375 9.84115 12.1016 10.0234C12.2839 10.1875 12.375 10.388 12.375 10.625C12.375 10.862 12.2839 11.0716 12.1016 11.2539C11.9375 11.418 11.737 11.5 11.5 11.5C11.263 11.5 11.0534 11.418 10.8711 11.2539C10.707 11.0716 10.625 10.862 10.625 10.625C10.625 10.388 10.707 10.1875 10.8711 10.0234C11.0534 9.84115 11.263 9.75 11.5 9.75ZM1.875 14.125V18.5H21.125V14.125H1.875Z"
+                          fill="#023A4A" />
+                      </svg>
+
+                      {{ "portfolio" | translate }}
+                    </button>
+                  </li>
+                  <!-- End Scout Portfolio -->
                   <!-- Scout Gallery  -->
                   <li class="nav-item" role="presentation">
                     <button class="nav-link" (click)="switchTab('gallery')"
@@ -1668,25 +1698,33 @@
               <app-club-history *ngIf="activeTab == 'club_history' && currentUserRole == 'club'" role="club"
                 [isPremium]="isPremium" [clubHistory]="user?.meta?.club_history"></app-club-history>
               <!-- End Club History -->
+              <!-- Club Teams -->
+              <app-teams *ngIf="activeTab == 'teams' && currentUserRole == 'club'" role="club"
+              [isPremium]="isPremium" [currentClubId]="user.id"></app-teams> 
+              <!-- End Club Teams -->
               <!-- Club Gallery Same for Other Roles -->
               <view-user-gallery *ngIf="activeTab == 'gallery' && currentUserRole == 'club'" [coverImage]="coverImage"
                 (dataEmitter)="handleCoverImageData($event)" [isPremium]="isPremium"></view-user-gallery>
               <!-- End Club Gallery Same for Other Roles -->
               <!-- End Club Details -->
-               <!-- Scout Tabs -->
-                <!-- Scout Profile -->
-                <app-scout-profile *ngIf="activeTab == 'profile' && currentUserRole == 'scout'" [userData]="user"
+              <!-- Scout Tabs -->
+              <!-- Scout Profile -->
+              <app-scout-profile *ngIf="activeTab == 'profile' && currentUserRole == 'scout'" [userData]="user"
                 [isPremium]="isPremium"></app-scout-profile>
-                <!-- End Scout Profile -->
-                 <!-- Scout History -->
-                 <app-scout-history *ngIf="activeTab == 'scout_history' && currentUserRole == 'scout'" role="club"
-                 [isPremium]="isPremium" [scoutHistory]="user?.meta?.company_history"></app-scout-history>
-                 <!-- End Scout History -->
-                  <!-- Scout Gallery -->
-                  <view-user-gallery *ngIf="activeTab == 'gallery' && currentUserRole == 'scout'" [coverImage]="coverImage"
-                  (dataEmitter)="handleCoverImageData($event)" [isPremium]="isPremium"></view-user-gallery>
-                  <!-- End Scout Gallery -->
-               <!-- Scout Tabs -->
+              <!-- End Scout Profile -->
+              <!-- Scout History -->
+              <app-scout-history *ngIf="activeTab == 'scout_history' && currentUserRole == 'scout'" role="scout" [currentScoutId]="user.id"
+                [isPremium]="isPremium" [scoutHistory]="user?.meta?.company_history"></app-scout-history>
+              <!-- End Scout History -->
+              <!-- Scout Portfolio -->
+              <app-scout-portfolio *ngIf="activeTab == 'scout_portfolio' && currentUserRole == 'scout'" role="scout"
+                [isPremium]="isPremium" [scoutHistory]="user?.meta?.company_history" [currentScoutId]="user.id"></app-scout-portfolio>
+              <!-- End Scout Portfolio -->
+              <!-- Scout Gallery -->
+              <view-user-gallery *ngIf="activeTab == 'gallery' && currentUserRole == 'scout'" [coverImage]="coverImage"
+                (dataEmitter)="handleCoverImageData($event)" [isPremium]="isPremium"></view-user-gallery>
+              <!-- End Scout Gallery -->
+              <!-- Scout Tabs -->
             </div>
           </div>
         </div>

@@ -357,7 +357,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
           this.activeDomains = this.user.active_subscriptions?.country?.length > 0 ? true : false;
 
           if (this.user?.meta?.profile_image_path) {
-            this.profileImage = this.user.meta.profile_image_path;
+            let baseUrl = response.data.imagePath;
+            this.profileImage = baseUrl + this.user.meta.profile_image;
             this.commonDataService.updateProfilePic(this.profileImage);
             this.sendMessage();
           }

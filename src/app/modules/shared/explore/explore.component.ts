@@ -137,6 +137,8 @@ export class ExploreComponent implements OnInit {
   totalPagesCount: number = 1;
   itemsPerPage: number = 15;
 
+  baseUrl:string='';
+
   ngOnInit(): void {
 
     this.loggedInUser = JSON.parse(this.loggedInUser);
@@ -356,6 +358,7 @@ export class ExploreComponent implements OnInit {
           this.totalItems = response.data.userData.totalCount;
           this.totalPagesCount = Math.ceil(response.data.userData.totalCount / this.itemsPerPage);
           this.noUsersFound = false;
+          this.baseUrl = response.data.userData.imagePath;
           if (this.totalItems < 0 || this.totalItems == 0) {
             this.noUsersFound = true;
           }

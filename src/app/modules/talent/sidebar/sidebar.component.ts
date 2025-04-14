@@ -26,7 +26,7 @@ export class SidebarComponent implements OnInit {
       // Do something
       this.loggedInUser = JSON.parse(this.loggedInUser);
     }else{
-      window.location.reload();
+      // window.location.reload();
     }
     
     console.warn(this.loggedInUser.status)

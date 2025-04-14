@@ -1,0 +1,116 @@
+.user-pending-icon{
+    max-width: 22px;
+    position: absolute;
+    margin-top: 25px;
+    margin-left: -15px;
+  }
+
+  .user-approved-icon{
+    max-width: 26px;
+    position: absolute;
+    margin-top: 23px;
+    margin-left: -15px;
+  }
+
+  .user-rejected-icon{
+    max-width: 22px;
+    position: absolute;
+    margin-top: 25px;
+    margin-left: -15px;
+  }
+
+.box-square{ 
+  width:150px;
+  height:150px;
+  margin-right:10px;
+  display:inline-block;
+  color: #FFFFFF;
+  background:#6FB95D;
+  text-align: center;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.team-types{
+  position: absolute  ;
+  top: 50%;
+  transform: translateY(-50%);
+  left:25px;
+}
+
+.pl-5{
+  padding-left: 3rem;
+}
+
+.team-type{
+  font-family: Libre Franklin, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.club-team{
+  font-family: Libre Franklin, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.back-link{
+  font-size: 12px;
+  cursor: pointer;
+  margin-right: 12px;
+  margin-top: 1px;
+  padding: 0px 5px;
+  letter-spacing: .3px;
+}
+
+.back-and-add-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+
+.add-player-link {
+  margin-left: auto; /* This will push the add button to the right */
+}
+
+.player-view-container {
+  padding: 0 !important;
+}
+
+.back-and-add-container {
+  margin-bottom: 10px;
+}
+
+
+@media (max-width: 1199px) {
+  .box-square {
+    width: 140px;
+    height: 140px;
+  }
+}
+@media (max-width: 767px) {
+  .box-square {
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+  }
+}
+
+.selected_team_name{
+  font-size: 18px;
+}
+
+.upgrade_unlock .unlock_btn {
+  padding: 12px 25px 10px !important;
+  font-size: 17px !important;
+  background: #6FB95D;
+  // padding: ;
+  font-weight: 700;
+  color: #fff;
+  border-radius: 10px;
+  border: none;
+  display: inline-block;
+  margin-top: 1rem;
+}
