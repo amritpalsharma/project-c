@@ -1331,6 +1331,10 @@ select.form-select.custom-select1 {
         height: 32px;
         margin-right: 10px;
     }
+    .toggle-slot:before, .toggle-slot:after {
+        width: 14px !important;
+        height: 14px !important;
+    }
 
     li.nav-item {
         margin-left: 5px;
@@ -1443,6 +1447,12 @@ select.form-select.custom-select1 {
         height: 30px;
         margin-right: 0;
         margin-left: 220px;
+    }
+    .toggle-slot:before {
+        left: 5px !important;
+    }
+    .toggle-slot:after {
+        right: 5px !important;
     }
 
     .d-flex {
@@ -2370,7 +2380,6 @@ select.form-select.custom-select1 {
     height: 0;
     width: 0;
 }
-
 .toggle-slot {
     position: relative;
     height: 100%;
@@ -2381,13 +2390,28 @@ select.form-select.custom-select1 {
     transition: background-color 250ms;
     cursor: pointer;
 }
-
 .toggle-checkbox:checked~.toggle-slot {
-    background-color: #BDE34E;
-    // border-color: #404040de;
+    background-color: #072944;
 }
-
-
+.toggle-slot:before, .toggle-slot:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.toggle-slot:before {
+    background-image: url('../../../../assets/images/sun-icon-1.svg');
+    left: 8px;
+}
+.toggle-slot:after {
+    background-image: url('../../../../assets/images/moon-icon-1.svg');
+    right: 8px;
+}
 .toggle-button {
     position: absolute;
     height: 85%;
@@ -2397,17 +2421,17 @@ select.form-select.custom-select1 {
     border-radius: 50%;
     background-color: #ffbb52;
     background-image: url('../../../../assets/images/sun-icon-removebg-preview-34IM7KGZ.png');
-    background-size: 80%;
+    background-size: 70%;
     background-position: center;
     background-repeat: no-repeat;
     transition: background-color 250ms, border-color 250ms, transform 500ms cubic-bezier(0.26, 2, 0.46, 0.71);
+    z-index: 1;
 }
-
 .toggle-checkbox:checked~.toggle-slot .toggle-button {
-    background-color: #072944;
+    background-color: #fff;
     transform: translate(110%, -50%) rotate(360deg);
-    background-image: url('../../../../assets/images/images-moon-removebg-preview-A5CDJ5QQ.png');
-    background-size: 80%;
+    background-image: url('../../../../assets/images/moon-icon-white.svg');
+    background-size: 70%;
 }
 
 .empty-field {
