@@ -132,7 +132,7 @@ export const MY_FORMATS = {
     MatTooltipModule,
     LightboxModule,
     GuidedTourModule,
-    SharedModule,
+    SharedModule
   ]
 })
 

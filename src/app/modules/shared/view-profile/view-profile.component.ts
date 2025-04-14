@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, ViewChild, ElementRef, AfterViewInit, OnInit, Output } from '@angular/core';
+// import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../../services/user.service';
 import { TalentService } from '../../../services/talent.service';
@@ -20,6 +21,7 @@ import { GlobalSettingsService } from '../../../services/global-settings.service
   styleUrl: './view-profile.component.scss'
 })
 export class ViewProfileComponent implements OnInit {
+  duration: any;
   loggedInUser: any = localStorage.getItem('userInfo');
   activeTab: string = 'profile';
   pageTitle: string = '';
@@ -53,7 +55,7 @@ export class ViewProfileComponent implements OnInit {
   private tooltipSubscription!: Subscription; // ✅ Subscription for tooltips
 
   @Output() dataEmitter = new EventEmitter<string>();
-
+  @ViewChild('videoPlayer') videoElementRef!: ElementRef<HTMLVideoElement>;
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
@@ -68,7 +70,7 @@ export class ViewProfileComponent implements OnInit {
     private titleService: TitleService,
     private globalSettings: GlobalSettingsService
   ) { }
-
+ 
   ngOnInit(): void {
     this.themeChanged();
 
@@ -116,6 +118,11 @@ export class ViewProfileComponent implements OnInit {
     // console.info('current role is ',role);
   }
 
+  ngAfterViewInit() {
+    const videoEl = this.videoElementRef.nativeElement;
+    videoEl.autoplay = false;
+  }
+
   getUser(userId: any) {
     try {
       let params: any = {};
@@ -126,7 +133,7 @@ export class ViewProfileComponent implements OnInit {
           this.isPremium = this.loggedInUser?.active_subscriptions?.premium.length > 0 ? true : false;
           // console.error('Is User Has Premium ',this.isPremium);
           // this.isPremium = true;
-          if(this.user.user_nationalities != undefined && this.user.user_nationalities != ''){
+          if (this.user.user_nationalities != undefined && this.user.user_nationalities != '') {
             this.userNationalities = JSON.parse(this.user.user_nationalities);
           }
           this.profileImage = this.user.meta.profile_image_path || this.profileImage;
@@ -227,7 +234,7 @@ export class ViewProfileComponent implements OnInit {
 
   switchTab(tab: string) {
     this.activeTab = tab;
-    console.warn('Active tab is ',this.activeTab,' and role is ',this.currentUserRole)
+    console.warn('Active tab is ', this.activeTab, ' and role is ', this.currentUserRole)
   }
 
   handleCoverImageData(data: string) {
@@ -477,19 +484,27 @@ export class ViewProfileComponent implements OnInit {
     }
   }
 
+  setDurationAndThumbnail(videoElement: HTMLVideoElement) {
+    videoElement.crossOrigin = 'anonymous';
+    // Set Duration
+    this.duration = this.formatDuration(videoElement.duration);
+    console.info('this.duration is ',this.duration)
+    // Capture Thumbnail
+    // this.captureThumbnail(videoElement);
+  }
+
+  formatDuration(duration: number): string {
+    const hours = Math.floor(duration / 3600);
+    const minutes = Math.floor((duration % 3600) / 60);
+    const seconds = Math.floor(duration % 60);
+
+    if (hours > 0) {
+      return `${hours}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    } else {
+      return `${minutes}:${String(seconds).padStart(2, '0')}`;
+    }
+  }
+
+
 }
 
-
-// this.route.queryParams.subscribe(params => {
-//   if (params['userData']) {
-//     try {
-//       const userDataString = decodeURIComponent(params['userData']); // Decode
-//       console.log("Updated userData:", userDataString);
-
-//       const userData = JSON.parse(userDataString); // Convert string back to object
-//       this.startNewChat(userData);
-//     } catch (error) {
-//       console.error('Invalid userData format:', error);
-//     }
-//   }
-// });

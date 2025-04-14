@@ -8,7 +8,8 @@
                     {{'back_to_news' | translate}}</button>
                 <h1>{{news.title}}</h1>
                 <p class="p-text">{{news.created_at | date:'dd.MM.yy'}}</p>
-                <img class="banner-image" src="{{news.featured_image}}">
+                <!-- <img class="banner-image" src="{{news.featured_image}}"> -->
+                <img class="banner-image" [src]="news.featured_image" (error)="handleImageError($event)">
             </div>
 
             <div *ngIf="adVisible[0]" class="skyscraper-left">
@@ -82,7 +83,7 @@
                 <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-4" *ngFor="let new of moreNews">
                     <div (click)="navigateNews(new.slug)" class="news-box">
                         <div class="news_img_thumb_wrap">
-                        <img src="{{baseUrl + new.featured_image}}">
+                        <img src="{{baseUrl + new.featured_image}}" (error)="handleImageError($event)">
                     </div>
                         <p class="p-text">{{new.created_at | date:'dd.MM.yy'}}</p>
                         <p [innerHTML]="new.title"></p>
