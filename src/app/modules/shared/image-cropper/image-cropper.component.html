@@ -1,0 +1,30 @@
+<div class="crop-container" #container >
+    <!-- <img
+    #imageElement
+    [src]="imageUrl"
+    [style.transform]="'translate(' + pos.x + 'px,' + pos.y + 'px)'"
+    class="draggable-image"
+    draggable="false"
+  /> -->
+
+    <img #imageElement [src]="imageUrl" class="draggable-image" draggable="false" />
+
+    <!-- <div class="crop-box" [style.transform]="'translate(' + pos.x + 'px,' + pos.y + 'px) scale(' + scale + ')'" #cropBox></div> -->
+
+    <div class="crop-box" #cropBox
+        [ngStyle]="{ top: pos.y + 'px', left: pos.x + 'px', width: size + 'px', height: size + 'px', cursor: isDragging? 'move' : 'auto' }"
+        (mousedown)="startDrag($event)">
+        <div class="resize-handle bottom-right" (mousedown)="startResize($event)"></div>
+        <div class="resize-handle bottom-right2" (mousedown)="startResize($event)"></div>
+    </div>
+</div>
+
+<!-- <div style="text-align: center; margin: 10px 0;">
+    <button (click)="zoomIn()">Zoom In</button>
+    <button (click)="zoomOut()">Zoom Out</button>
+</div> -->
+
+<div style="text-align: center; margin-top: 20px;">
+    <button (click)="cropImage()">{{'upload' | translate}}</button>
+    <button (click)="cancel()">{{'cancel' | translate}}</button>
+</div>

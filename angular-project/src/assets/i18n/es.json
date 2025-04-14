@@ -1,0 +1,18 @@
+{
+  "greeting": "Hola",
+  "farewell": "Adiós",
+  "welcome": "Bienvenido a nuestra aplicación",
+  "error": {
+    "not_found": "No se encontró la página",
+    "server": "Error del servidor, por favor intente más tarde"
+  },
+  "user": {
+    "login": "Iniciar sesión",
+    "logout": "Cerrar sesión",
+    "register": "Registrarse"
+  },
+  "profile": {
+    "edit": "Editar perfil",
+    "view": "Ver perfil"
+  }
+}

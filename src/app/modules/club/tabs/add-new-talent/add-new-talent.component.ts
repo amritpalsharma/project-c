@@ -6,6 +6,7 @@ import { inject } from '@angular/core';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { UserService } from '../../../../services/user.service';
 import { ClubService } from '../../../../services/club.service';
+import { SocketService } from '../../../../services/socket.service';
 
 @Component({
   selector: 'add-new-talent',
@@ -30,15 +31,18 @@ export class AddNewTalentComponent implements OnInit {
   teamId: any;
   player: any;
   edit: boolean = false;
+  teamName : string = '';
 
   constructor(
     private clubService: ClubService,
     public dialogRef: MatDialogRef<AddNewTalentComponent>,
+    private socketService : SocketService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.teamId = data.teamId;
     this.player = data.player;
     this.edit = data.edit;
+    this.teamName = data.teamName;
   }
 
   ngOnInit(): void {
@@ -74,19 +78,25 @@ export class AddNewTalentComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  receiverIds : any[] = [];
+
   sendInvite() {
     const formData = new FormData();
     let i = 0;
     let lang_id = localStorage.getItem('lang_id');
     formData.append(`lang`, lang_id + '');
+    console.log(this.users);
+    // return
     this.users.map((user: any) => {
       if (this.edit) {
+        this.receiverIds.push(user.player_id);
         formData.append(`player_id`, user.id);
         formData.append(`team_id`, this.teamId);
         formData.append(`join_date`, this.startDate || '');
         formData.append(`end_date`, this.noEndDate ? '' : this.endDate || '');
         formData.append(`no_end_date`, this.noEndDate ? '1' : '0');
       } else {
+        this.receiverIds.push(user.id);
         formData.append(`players[${i}][player_id]`, user.id);
         formData.append(`players[${i}][team_id]`, this.teamId);
         formData.append(`players[${i}][join_date]`, this.startDate || '');
@@ -107,11 +117,30 @@ export class AddNewTalentComponent implements OnInit {
   addPlayer(formData: FormData) {
     this.clubService.addTeamPlayer(formData).subscribe((response) => {
       if (response && response.status) {
+        let jsonData = localStorage.getItem("userData");
+        let myUserId: any;
+        if (jsonData) {
+          let userData = JSON.parse(jsonData);
+          myUserId = userData.id;
+        }
+        else {
+          console.log("No data found in localStorage.");
+        }
+        console.log("working", this.receiverIds)
+        
+        this.receiverIds.forEach((receiverId:any)=>{
+          console.log("working", receiverId)
+          this.socketService.emit('ClubAddPlayer', { senderIds: {senderId: myUserId, teamName: this.teamName}, receiverId: receiverId });
+        })
+        this.receiverIds = [];
+        
         this.dialogRef.close({
           action: 'added',
           id: this.sightId,
           message:response.message
         });
+
+        
       } else {
         console.error('Invalid API response structure:', response);
       }
@@ -121,6 +150,23 @@ export class AddNewTalentComponent implements OnInit {
   updatePlayer(formData: FormData) {
     this.clubService.updateTeamPlayer(this.player.id, formData).subscribe((response) => {
       if (response && response.status) {
+        let jsonData = localStorage.getItem("userData");
+        let myUserId: any;
+        if (jsonData) {
+          let userData = JSON.parse(jsonData);
+          myUserId = userData.id;
+        }
+        else {
+          console.log("No data found in localStorage.");
+        }
+        console.log("working", this.receiverIds)
+        
+        this.receiverIds.forEach((receiverId:any)=>{
+          console.log("working", receiverId, myUserId)
+          this.socketService.emit('ClubAddPlayer', { senderIds: {senderId: myUserId, teamName: this.teamName}, receiverId: receiverId });
+        })
+        this.receiverIds = [];
+        
         this.dialogRef.close({
           action: 'updated',
           id: this.player.id,
