@@ -1,55 +1,233 @@
+.cropper_popup {
+  padding: 1rem;
+
+  .btn {
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 10px;
+    padding: 8px 20px;
+    border: 0 !important;
+  }
+
+  .puse-btn {
+    color: #FD5454;
+  }
+
+  .save_button {
+    background: #6FB95D;
+    color: #fff;
+  }
+}
+
 .crop-container {
-    width: 90%;
-    max-width: 20rem;
-    height: auto;
-    position: relative;
-    // border: 1px solid #ccc;
-    overflow: hidden;
-    user-select: none;
-    margin: 1rem auto;
-}
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+  overflow: auto;
+  -webkit-user-select: none;
+  user-select: none;
 
-.draggable-image {
-    // position: absolute;
-    // top: 0;
-    // left: 0;
-    // cursor: grab;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
     width: 100%;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.6);
+    pointer-events: none;
+
+    /* This creates a transparent square over the crop box */
+    mask:
+      linear-gradient(
+        to bottom,
+        black calc(var(--crop-y, 50%) - var(--crop-size, 200px) / 2),
+        transparent calc(var(--crop-y, 50%) - var(--crop-size, 200px) / 2),
+        transparent calc(var(--crop-y, 50%) + var(--crop-size, 200px) / 2),
+        black calc(var(--crop-y, 50%) + var(--crop-size, 200px) / 2)
+      ),
+      linear-gradient(
+        to right,
+        black calc(var(--crop-x, 50%) - var(--crop-size, 200px) / 2),
+        transparent calc(var(--crop-x, 50%) - var(--crop-size, 200px) / 2),
+        transparent calc(var(--crop-x, 50%) + var(--crop-size, 200px) / 2),
+        black calc(var(--crop-x, 50%) + var(--crop-size, 200px) / 2)
+      );
+    -webkit-mask:
+      linear-gradient(
+        to bottom,
+        black calc(var(--crop-y, 50%) - var(--crop-size, 200px) / 2),
+        transparent calc(var(--crop-y, 50%) - var(--crop-size, 200px) / 2),
+        transparent calc(var(--crop-y, 50%) + var(--crop-size, 200px) / 2),
+        black calc(var(--crop-y, 50%) + var(--crop-size, 200px) / 2)
+      ),
+      linear-gradient(
+        to right,
+        black calc(var(--crop-x, 50%) - var(--crop-size, 200px) / 2),
+        transparent calc(var(--crop-x, 50%) - var(--crop-size, 200px) / 2),
+        transparent calc(var(--crop-x, 50%) + var(--crop-size, 200px) / 2),
+        black calc(var(--crop-x, 50%) + var(--crop-size, 200px) / 2)
+      );
+    
+    mask-composite: unset;
+    -webkit-mask-composite: unset;
+  // }
+
+
+    //   mask:
+    //   linear-gradient(
+    //     to bottom,
+    //     transparent calc(var(--crop-y, 50%) - var(--crop-size, 200px) / 2),
+    //     black calc(var(--crop-y, 50%) - var(--crop-size, 200px) / 2),
+    //     black calc(var(--crop-y, 50%) + var(--crop-size, 200px) / 2),
+    //     transparent calc(var(--crop-y, 50%) + var(--crop-size, 200px) / 2)
+    //   ),
+    //   linear-gradient(
+    //     to right,
+    //     transparent calc(var(--crop-x, 50%) - var(--crop-size, 200px) / 2),
+    //     black calc(var(--crop-x, 50%) - var(--crop-size, 200px) / 2),
+    //     black calc(var(--crop-x, 50%) + var(--crop-size, 200px) / 2),
+    //     transparent calc(var(--crop-x, 50%) + var(--crop-size, 200px) / 2)
+    //   );
+    // -webkit-mask:
+    //   linear-gradient(
+    //     to bottom,
+    //     transparent calc(var(--crop-y, 50%) - var(--crop-size, 200px) / 2),
+    //     black calc(var(--crop-y, 50%) - var(--crop-size, 200px) / 2),
+    //     black calc(var(--crop-y, 50%) + var(--crop-size, 200px) / 2),
+    //     transparent calc(var(--crop-y, 50%) + var(--crop-size, 200px) / 2)
+    //   ),
+    //   linear-gradient(
+    //     to right,
+    //     transparent calc(var(--crop-x, 50%) - var(--crop-size, 200px) / 2),
+    //     black calc(var(--crop-x, 50%) - var(--crop-size, 200px) / 2),
+    //     black calc(var(--crop-x, 50%) + var(--crop-size, 200px) / 2),
+    //     transparent calc(var(--crop-x, 50%) + var(--crop-size, 200px) / 2)
+    //   );
+    
+    // mask-composite: intersect;
+    // -webkit-mask-composite: destination-in;
+    
+  }
 }
 
-// .crop-box {
-//     width: 200px;
-//     height: 200px;
-//     border: 2px solid red;
-//     position: absolute;
-//     top: 100px;
-//     left: 100px;
-//     pointer-events: none;
-//     box-sizing: border-box;
+// .crop-container:before {
+//   content: '';
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   height: 100%;
+//   width: 100%;
+//   background: #00000066;
+//   z-index: 1;
 // }
 
-.crop-box {
-    position: absolute;
-    border: 2px dashed white;
-    box-sizing: border-box;
-    user-select: none;
-    cursor: move;
-  }
-  
-  .resize-handle {
-    width: 4px;
-    height: 12px;
-    background: white;
-    position: absolute;
-    right: -3px;
-    bottom: 0;
-    cursor: nwse-resize;
-  }
-
-  .resize-handle.bottom-right2 {
-    width: 15px;
-    height: 4px;
-    bottom: -3px;
-    right: -3px;
+.draggable-image {
+  width: 100%;
 }
-  
+
+.crop-box {
+  position: absolute;
+  border: 2px solid white;
+  box-sizing: border-box;
+  user-select: none;
+  cursor: move;
+  z-index: 2;
+}
+
+
+// .crop-box {
+//   position: absolute;
+//   border: 2px dashed white;
+//   box-sizing: border-box;
+//   z-index: 2;
+//   pointer-events: auto;
+// }
+
+.crop-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  z-index: 1;
+}
+
+.crop-grid .line {
+  position: absolute;
+  background-color: white;
+  opacity: 0.6;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.crop-grid .v-line {
+  width: 1px;
+  height: 100%;
+  border-left: 1px dotted white;
+}
+
+.crop-grid .h-line {
+  height: 1px;
+  width: 100%;
+  border-top: 1px dotted white;
+}
+
+.crop-grid::before,
+.crop-grid::after {
+  content: '';
+  position: absolute;
+  background-image: repeating-linear-gradient(
+    to right,
+    transparent,
+    transparent calc(33.33% - 1px),
+    white 0,
+    transparent 1px
+  ), repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent calc(33.33% - 1px),
+    white 0,
+    transparent 1px
+  );
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.crop-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  z-index: 2;
+  pointer-events: none;
+}
+
+
+.resize-handle {
+  width: 4px;
+  height: 12px;
+  background: white;
+  position: absolute;
+  right: -3px;
+  bottom: 0;
+  cursor: nwse-resize;
+}
+
+.resize-handle.bottom-right2 {
+  width: 15px;
+  height: 4px;
+  bottom: -3px;
+  right: -3px;
+}
