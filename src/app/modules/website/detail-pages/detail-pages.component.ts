@@ -56,4 +56,10 @@ export class DetailPagesComponent {
     }
   }
 
+
+  handleImageError(event: Event) {
+    const target = event.target as HTMLImageElement;
+    target.src = 'assets/images/no_cover_img1.png'; // or wherever your fallback image is
+  }
+
 }
