@@ -71,6 +71,8 @@ export class TalentComponent {
 
   isActivePlan: { [key: number]: boolean } = {}; // Keeps track of toggle states for each pricing plan
 
+  selectedLangSlug : string = localStorage.getItem('lang') || "en";
+
   ngOnInit() {
     // Retrieve the states from local storage
     const savedState1 = localStorage.getItem('toggleState1');
@@ -87,6 +89,8 @@ export class TalentComponent {
       this.getPageData(data)
       this.getCurrencyPrice('monthly');
       this.getCurrencyPrice('yearly');
+
+      this.selectedLangSlug = localStorage.getItem('lang') || "en";
     });
 
     this.globalSettings.indexFunctionCall$.subscribe(() => {
@@ -335,8 +339,11 @@ export class TalentComponent {
     this.getArrayItemByIndex(this.accordinCurrentIndex, 'image');
   }
 
+  custIndex : any = 1;
+
   getArrayItemByIndex(index: number, field: keyof FeatureSection) {
     let theme = localStorage.getItem('theme');
+    this.custIndex = index+1;
     // alert(index);
     if (index >= 0 && index < this.feature_sctn.length) {
       this.accordinCurrentIndex = index;
