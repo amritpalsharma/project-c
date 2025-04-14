@@ -55,7 +55,7 @@ P {
     top: 120%;
     left: 0;
     z-index: 2;
-    margin-right: 22%;
+    margin-right: 20%;
 
 }
 
@@ -63,6 +63,7 @@ P {
     color: white;
     font-size: 45px;
     text-transform: uppercase;
+    font-weight: 700;
 }
 
 .banner-heading5 {
@@ -779,6 +780,8 @@ img.birthday-img {
     text-align: center;
     font-size: 35px;
     text-transform: uppercase;
+    font-weight: 700;
+    height: unset !important;
 }
 
 .club_text {
@@ -826,6 +829,7 @@ img.birthday-img {
     font-size: 35px;
     margin-bottom: 20px;
     text-transform: uppercase;
+    font-weight: 700;
 }
 
 .accordion-item:first-of-type {
@@ -1388,6 +1392,7 @@ img.bg-image {
     color: white;
     text-transform: uppercase;
     width: 100%;
+    font-weight: 700;
 }
 
 .price-heading3 {
@@ -1407,11 +1412,13 @@ img.bg-image {
     font-size: 40px;
     color: white;
     margin-bottom: 20px;
+    font-weight: 700;
 }
 
 .premium-heading3 {
     font-size: 60px;
     color: white;
+    font-weight: 700;
 }
 
 span {
@@ -5928,4 +5935,16 @@ span {
 .banner_image_combo img {
     width: calc(100% + .75rem);
 }
+}
+
+
+.buy_now_btn_front_price .btn.fill_btn {
+    background-color: #BDE34E;
+    color: #072944;
+    border-radius: 80px;
+    margin-top: 20px;
+    min-width: 200px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
 }

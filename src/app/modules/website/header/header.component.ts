@@ -413,7 +413,7 @@ export class HeaderComponent implements OnInit {
     this.themeService.isDarkTheme.subscribe((isDarkTheme: boolean) => {
       this.isDarkMode = isDarkTheme;
     });
-    this.applyTheme();
+    // this.applyTheme();
 
     // Initialize Google Sign-In if available
     if (typeof google !== 'undefined' && google.accounts) {

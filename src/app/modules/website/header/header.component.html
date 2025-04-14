@@ -10,7 +10,19 @@
         </a>
 
         <div class="switch1">
-            <label class="switch">
+
+            <div class="new_mode_btn">
+                <input type="checkbox" id="darkmode-toggle" (change)="toggleTheme($event)" [checked]="isDarkMode">
+                <label for="darkmode-toggle">
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="25" viewBox="0 0 24 25">
+                        <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAZCAYAAAArK+5dAAAAAXNSR0IArs4c6QAAApZJREFUSEvN1k1onGUQB/Df7LIRc/BiVapeWrAVBCuipIF+gVAEL6IgIha8xe6uQcWDF7EoCPWgtsmuBvTiBwripdYPRGqVgg2WgHpTQaveclARW5ru7th93Y1J2KQbQehzfJ+Z+c8z85//vGEdJ6ddqaIVE/4Y1i2GNezaZcOnQiuq7hzWb70AX6EdNdsvTYBseAjPKdsdD/t+ZZbZ8IE0H/XCbtnJpq3SF3g8at7qXy4rUTZtlmbRUrZrJUgedj3mY9K5pdF7wY8jdIzHI34cCFA0csqNSj7HX1Gzufg2bUzYLd2mpK1jTscnMenr3v1pYWRQUgOb3APZ7ryPjHhH2oMz6Da5e27HqHDUOftU3IMTUffdytKtyqKcMarlFLYIT2l5NSbNFxm/5BojJqQDmDVvZxzQGsSs1QEaDmFS2BdVbw5yzmmPCi8KT0bVwaEB8gWXG/F7twRRc+9anM+mE9KmqLluIEAedoVwa3FZllpOCuNKPlNyR+x37CIAD0pvKNvijF9VjC3al5yKCxR7W7p/SZBne808ImyLqm/WBPiHYSelvcJePLHE/rXIGRst2LrsBRXbdMxKd0Xdh2sCNAoGvaftFqN+cdbNi/ZpbjBNZ7qa6TcciZoHLlKi96UdrrIh7tMenqZNz0uPSWNRNzeQRc1i+I4LT0fVM0OzqOD6v3NwbZeuF6b69X6ATOFldemg9K2KHTHh/NAAxSSXjVnwsYp3sVP6WSxqzE3Y8J8meaAWTdkjVIWre1melg71S5fThtOinLJJyZfoYFfU/LD02autzHzFDdqFVFMyHvv91PdbLtf9fTAgeNGXhqNdKY+au1fWe6h9sBYdewCX+Moc4gXHhIX/76+iuzIv8+d6/ov+BpMY+4ktckpfAAAAAElFTkSuQmCC" x="0" y="0" width="24" height="25"/>
+                    </svg>
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="21" viewBox="0 0 20 21">
+                        <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAVCAYAAABG1c6oAAAAAXNSR0IArs4c6QAAA39JREFUOE+VVF1oHGUUPXeSbTZKSluCRHc22ULQuplNF0PFgNXiX7OzbRK16UvBnzftm9CoVQqxUIT4YJVi8UlR0YeIP5GdYVvFKP4WSiU7UxUWrcxM06hdaGua3ezOd+237tbtdrbQebz33DP33u/cQ2jxRbXUQwDtYlB3WSnvXJw/stQK2xinZlDf4Pb1vvDfAnAvgAsAuohpzLEzs9dN2KvpDwpgBkCZmfYQeAMIz7PCUW/edK+LMJLYNkwsvgTjWDtj56mTxpmoljouoFz0rMzmlqsZTG8WgmOeZbwrMdWR+/tTq4thyjNjqbPEG/N583w8PrHqvLJUupSfci3jpSDCyEb9VvLxDYC1DBr3rEymSqhq+jSAScF892nb/FbGehPptYK5QODdjmUeDiJUhyc6ceHiIYJIKr7Y9sfP2QUaGhoKLZZ6CmD+wrWN8XphLK73VBQsMPPjnm2+00gYietJ76Txk4zJ+kIpsu53a3axOnLtIY4w84Rnmx/+XzilqNqxf8B4zbWNvfV4rfMTIH7azZlmc+ekavokgOlVHStrfjv++blGgKrpcwAXXcsckfFa11I+m6QSiLG/o8Svy53X6yThQQCPuZaxrvlvEU3fS8ABQW3x07nPflEH9BEQpEZ7qljGp+W2yq5G0ZOa0A+Bsd21jL5mwlhyfE2lsuIBnHUt8xGZl/sjBV+DcNjNGc9dNXI0kdrHTC+4ltEZ+JJa6hWA9jDhKS9nvFkl1dJpr3spi7m5ShDhODN9TAolnPmM1Qzo7091FMMktXYHET/q5MxPrnUx1H3baFc4VCkQaNqxMi8Ggftu33pzRWn7jggxBt4g9ve5drYQhK0JO/0ewA9XQhw7c8L8Kwgo5eJDvE1MowAqTGwooK8EyCGIP8PL+CGfN0tVwt6BVFwQ2Qwc9aw7L0lkSrQaK5rQx5ixA8CYdKLLOMKPbs6467J91R5nPxEfdHLmM9faUy1H67XRm1bIv4eYPwCQdy1jwxV+qCbSM2DeAYYZovYn6+fUgpyiA/puJrwM4FSb72+t3vIV4C1b2tWzNxwA41kARUhvZLwP+PlwSXGWb6Q++EgSeBNADwBIAvioWG5/4u9fZ6UZ/2dfV13I4Mj9JGgSoPsAhAIgAuCjxMqrjp3JNuYDCesA6ZOlDmUYCt8iGD0KYQFC2Ly6y3K/n1kOauZfG8SFJbs2ajUAAAAASUVORK5CYII=" x="0" y="0" width="20" height="21"/>
+                    </svg>
+                </label>
+            </div>
+            <!-- <label class="switch">
                 <input class='toggle-checkbox' type='checkbox' (change)="toggleTheme($event)" id="themeToggle"
                     [checked]="isDarkMode" />
                 <div class='toggle-slot'>
@@ -23,7 +35,7 @@
                         </div>
                     </div>
                 </div>
-            </label>
+            </label> -->
         </div>
 
 
@@ -175,8 +187,18 @@
                 <div class="extra-nav d-flex align-items-center">
                     <div class="theme_btn d-flex align-items-center">
                         <div class="d-flex">
-
-                            <label class="switch">
+                            <div class="new_mode_btn">
+                                <input type="checkbox" id="darkmode-toggle" (change)="toggleTheme($event)" [checked]="isDarkMode">
+                                <label for="darkmode-toggle">
+                                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="25" viewBox="0 0 24 25">
+                                        <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAZCAYAAAArK+5dAAAAAXNSR0IArs4c6QAAApZJREFUSEvN1k1onGUQB/Df7LIRc/BiVapeWrAVBCuipIF+gVAEL6IgIha8xe6uQcWDF7EoCPWgtsmuBvTiBwripdYPRGqVgg2WgHpTQaveclARW5ru7th93Y1J2KQbQehzfJ+Z+c8z85//vGEdJ6ddqaIVE/4Y1i2GNezaZcOnQiuq7hzWb70AX6EdNdsvTYBseAjPKdsdD/t+ZZbZ8IE0H/XCbtnJpq3SF3g8at7qXy4rUTZtlmbRUrZrJUgedj3mY9K5pdF7wY8jdIzHI34cCFA0csqNSj7HX1Gzufg2bUzYLd2mpK1jTscnMenr3v1pYWRQUgOb3APZ7ryPjHhH2oMz6Da5e27HqHDUOftU3IMTUffdytKtyqKcMarlFLYIT2l5NSbNFxm/5BojJqQDmDVvZxzQGsSs1QEaDmFS2BdVbw5yzmmPCi8KT0bVwaEB8gWXG/F7twRRc+9anM+mE9KmqLluIEAedoVwa3FZllpOCuNKPlNyR+x37CIAD0pvKNvijF9VjC3al5yKCxR7W7p/SZBne808ImyLqm/WBPiHYSelvcJePLHE/rXIGRst2LrsBRXbdMxKd0Xdh2sCNAoGvaftFqN+cdbNi/ZpbjBNZ7qa6TcciZoHLlKi96UdrrIh7tMenqZNz0uPSWNRNzeQRc1i+I4LT0fVM0OzqOD6v3NwbZeuF6b69X6ATOFldemg9K2KHTHh/NAAxSSXjVnwsYp3sVP6WSxqzE3Y8J8meaAWTdkjVIWre1melg71S5fThtOinLJJyZfoYFfU/LD02autzHzFDdqFVFMyHvv91PdbLtf9fTAgeNGXhqNdKY+au1fWe6h9sBYdewCX+Moc4gXHhIX/76+iuzIv8+d6/ov+BpMY+4ktckpfAAAAAElFTkSuQmCC" x="0" y="0" width="24" height="25"/>
+                                    </svg>
+                                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="21" viewBox="0 0 20 21">
+                                        <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAVCAYAAABG1c6oAAAAAXNSR0IArs4c6QAAA39JREFUOE+VVF1oHGUUPXeSbTZKSluCRHc22ULQuplNF0PFgNXiX7OzbRK16UvBnzftm9CoVQqxUIT4YJVi8UlR0YeIP5GdYVvFKP4WSiU7UxUWrcxM06hdaGua3ezOd+237tbtdrbQebz33DP33u/cQ2jxRbXUQwDtYlB3WSnvXJw/stQK2xinZlDf4Pb1vvDfAnAvgAsAuohpzLEzs9dN2KvpDwpgBkCZmfYQeAMIz7PCUW/edK+LMJLYNkwsvgTjWDtj56mTxpmoljouoFz0rMzmlqsZTG8WgmOeZbwrMdWR+/tTq4thyjNjqbPEG/N583w8PrHqvLJUupSfci3jpSDCyEb9VvLxDYC1DBr3rEymSqhq+jSAScF892nb/FbGehPptYK5QODdjmUeDiJUhyc6ceHiIYJIKr7Y9sfP2QUaGhoKLZZ6CmD+wrWN8XphLK73VBQsMPPjnm2+00gYietJ76Txk4zJ+kIpsu53a3axOnLtIY4w84Rnmx/+XzilqNqxf8B4zbWNvfV4rfMTIH7azZlmc+ekavokgOlVHStrfjv++blGgKrpcwAXXcsckfFa11I+m6QSiLG/o8Svy53X6yThQQCPuZaxrvlvEU3fS8ABQW3x07nPflEH9BEQpEZ7qljGp+W2yq5G0ZOa0A+Bsd21jL5mwlhyfE2lsuIBnHUt8xGZl/sjBV+DcNjNGc9dNXI0kdrHTC+4ltEZ+JJa6hWA9jDhKS9nvFkl1dJpr3spi7m5ShDhODN9TAolnPmM1Qzo7091FMMktXYHET/q5MxPrnUx1H3baFc4VCkQaNqxMi8Ggftu33pzRWn7jggxBt4g9ve5drYQhK0JO/0ewA9XQhw7c8L8Kwgo5eJDvE1MowAqTGwooK8EyCGIP8PL+CGfN0tVwt6BVFwQ2Qwc9aw7L0lkSrQaK5rQx5ixA8CYdKLLOMKPbs6467J91R5nPxEfdHLmM9faUy1H67XRm1bIv4eYPwCQdy1jwxV+qCbSM2DeAYYZovYn6+fUgpyiA/puJrwM4FSb72+t3vIV4C1b2tWzNxwA41kARUhvZLwP+PlwSXGWb6Q++EgSeBNADwBIAvioWG5/4u9fZ6UZ/2dfV13I4Mj9JGgSoPsAhAIgAuCjxMqrjp3JNuYDCesA6ZOlDmUYCt8iGD0KYQFC2Ly6y3K/n1kOauZfG8SFJbs2ajUAAAAASUVORK5CYII=" x="0" y="0" width="20" height="21"/>
+                                    </svg>
+                                </label>
+                            </div>
+                            <!-- <label class="switch">
                                 <input class='toggle-checkbox' type='checkbox' (change)="toggleTheme($event)"
                                     id="themeToggle" [checked]="isDarkMode" />
                                 <div class='toggle-slot'>
@@ -189,7 +211,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </label>
+                            </label> -->
                         </div>
                     </div>
 
