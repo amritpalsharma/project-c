@@ -745,7 +745,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
         if (response && response.status) {
           this.profileImage = `${environment.url}uploads/${response.data.uploaded_fileinfo}`;
           this.dataEmitter.emit(this.profileImage); // Emit updated profile image
-          this.toastr.success(response.message || 'Profile image uploaded successfully!', 'Success');
+          this.commonDataService.updateProfilePic(this.profileImage);
+          if (response.message != '') {
+            this.toastr.success(response.message, this.successTxt);
+          } else {
+            this.toastr.success('Profile image uploaded successfully!', 'Success');
+          }
         } else {
           this.toastr.error('Failed to upload profile image. Please try again.', 'Upload Failed');
         }
