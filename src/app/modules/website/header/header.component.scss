@@ -102,7 +102,7 @@ body {
 
 .login .logo h6 {
     font-size: 28px;
-    font-weight: 500;
+    font-weight: 700;
     margin-bottom: 10px;
 }
 
@@ -138,6 +138,7 @@ body {
 .forget-password h6 {
     font-size: 28px;
     margin-bottom: 10px;
+    font-weight: 700;
 }
 
 .forget-password {
@@ -155,7 +156,7 @@ body {
 .register h6 {
     color: white;
     font-size: 28px;
-    font-weight: 500;
+    font-weight: 700;
     margin-bottom: 10px;
 }
 
@@ -184,6 +185,7 @@ body {
     /* Image height */
     width: 120px;
     /* Image width */
+    object-fit: contain;
 }
 .register .form-label, .register .mt-3.dont-account {
     color: #000;
@@ -409,7 +411,7 @@ li.nav-item {
 .nav-link {
     text-transform: uppercase;
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 600;
     color: #fff;
     position: relative;
 }
@@ -1796,8 +1798,8 @@ select.form-select.custom-select1 {
 
 @media (max-width: 575px) {
     .coustom-select1 {
-        margin-left: 1.5rem;
-        margin-right: 10px;
+        margin-left: 0;
+        margin-right: 0;
     }
 
     .logo-image img {
@@ -2537,10 +2539,11 @@ select.form-select.custom-select1 {
     margin-left: 0;
 }
 .coustom-select1 {
-    margin-left: 10px;
+    margin-left: 0;
+    margin-right: 10px;
 }
 .navbar-brand img {
-    width: 85px;
+    width: 65px;
 }
 }
 
@@ -2572,4 +2575,87 @@ input[type="checkbox"].form-check-input[ng-reflect-required] {
 
 #exampleModal1 .ng-show-errors .ng-invalid{
     border: 1px solid red;
+}
+
+
+.new_mode_btn {
+    height: 45px;
+    display: flex;
+    align-items: center;
+    input {
+        width: 0;
+        height: 0;
+        visibility: hidden;
+    }
+    label {
+        width: 73px;
+        height: 34px;
+        margin-right: 15px;
+        position: relative;
+        display: block;
+        background: #D0D4DD;
+        border-radius: 100px;
+        box-shadow: inset 0 0 10px 0 rgb(0 0 0 / 25%);
+        cursor: pointer;
+        transition: 0.4s;
+        border: 2px solid #eeeff1;
+    }
+    input:checked + label {
+        background: #1C2C4A;
+    }
+    label svg {
+        position: absolute;
+        width: 23px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 100;
+    }
+    label svg.sun {
+        left: 6px;
+        fill: #FF9500;
+        transition: 0.3s;
+        image {
+            filter: none;
+            opacity: 1;
+        }
+    }
+    label svg.moon {
+        left: 44px;
+        fill: #1C2C4A;
+        transition: 0.4s;
+        width: 18px;
+        image {
+            opacity: 0.5;
+        }
+    }
+    label:after {
+        content: "";
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        top: -5.5px;
+        left: -2px;
+        background: #fff;
+        border-radius: 180px;
+        box-shadow: inset 0 0 15px 0 rgb(0 0 0 / 25%);
+        transition: 0.4s;
+    }
+    input:checked + label:after {
+        left: 32px;
+        // background: linear-gradient(180deg, #777, #3a3a3a);
+    }
+    input:checked + label svg.moon {
+        // fill: #1C2C4A;
+        image {
+            filter: none;
+            opacity: 1;
+        }
+    }
+    input:checked + label svg.sun {
+        // fill: #C1C6CF;
+        image {
+            filter: brightness(0) invert(1);
+            opacity: 0.5;
+        }
+    }
 }

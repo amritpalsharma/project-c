@@ -128,10 +128,9 @@ body {
 .premium-img {
     background-image: url(../../../../assets/images/feature-image.svg);
     background-repeat: no-repeat;
-    height: 250px;
-    width: 330px;
-    padding-top: 30px;
-    padding-left: 30px;
+    height: 100%;
+    width: 100%;
+    padding: 30px;
 }
 
 .premium {
@@ -151,6 +150,8 @@ body {
     color: white;
     text-transform: uppercase;
     width: 100%;
+    font-size: 38px;
+    font-weight: 700;
 }
 
 .premium-heading5 {
@@ -160,9 +161,10 @@ body {
 }
 
 .premium-heading2 {
-    font-size: 40px;
+    font-size: 36px;
     color: white;
     margin-bottom: 20px;
+    font-weight: 700;
 }
 
 .premium-heading3 {
@@ -187,13 +189,20 @@ span {
     // background-color: #092E01;
     margin-right: 10px;
 }
-
+.billed__infor {
+    margin-top: 50px;
+    small {
+        display: inline-block;
+        width: 100%;
+        text-align: right;
+        color: #BDE34E;
+    }
+}
 .billed {
     display: flex;
     justify-content: right;
     margin-bottom: 10px;
-    margin-top: 50px;
-    margin-right: 40px;
+    margin-top: 15px;
 }
 
 .billed-monthly {
@@ -249,6 +258,12 @@ span {
     color: white;
     /* Color for inactive text */
 }
+.btn.fill_btn {
+    background-color: #BDE34E;
+    color: #072944;
+    margin-top: 20px;
+    border-radius: 80px;
+}
 
 /*--------------------------------------------------------------
 #  pricing
@@ -274,9 +289,7 @@ span {
 
 .btn {
     border-radius: 8px;
-    height: 42px;
     width: 100%;
-
 }
 
 h4.free-heading {
@@ -457,7 +470,8 @@ li::before {
     p {
         font-size: 13px;
     }
-    .premium-heading2 {
+    
+    .premium-heading2, .price-heading3  {
         font-size: 25px;
     }
     .premium-heading3 {
@@ -469,15 +483,13 @@ li::before {
         width: 100%;
     }
 
-    .billed {
+    .billed__infor {
         margin-right: 0;
     }
 
     .premium-img {
-        height: 175px;
         width: 100%;
-        padding-top: 15px;
-        padding-left: 15px;
+        padding: 15px;
     }
 
     .feature-heading {
@@ -538,9 +550,6 @@ li::before {
         height: 200px;
     }
 
-    .premium-img {
-        height: 200px;
-    }
     .feature-height {
         height: 300px;
     }
@@ -596,7 +605,7 @@ li::before {
 @media (max-width: 767px) {}
 
 @media (max-width: 575px) {
-    .billed {
+    .billed__infor {
         margin-top: 30px;
     }
 
@@ -611,10 +620,6 @@ li::before {
     }
 
     .premium {
-        height: 210px;
-    }
-
-    .premium-img {
         height: 210px;
     }
     button.btn.btn-join {
@@ -647,11 +652,8 @@ li::before {
 }
 
 @media (max-width: 321px) {
-    .premium-img {
-        width: 300px;
-    }
 
-    .premium-heading2 {
+    .premium-heading2, .price-heading3  {
         font-size: 30px;
         margin-bottom: 10px;
     }

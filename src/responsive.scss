@@ -534,6 +534,158 @@ td.cdk-column-Remove.mat-column-Remove svg {
 }
 }
 
+
+@media (min-width: 3000px) {
+    .website_main_pages .container {
+        max-width: 2000px !important;
+    }
+    .it .website-code .frontend_pages_larger_size nav.navbar li.nav-item .nav-link, 
+    .fr .website-code .frontend_pages_larger_size nav.navbar li.nav-item .nav-link, 
+    .es .website-code .frontend_pages_larger_size nav.navbar li.nav-item .nav-link, 
+    .pt .website-code .frontend_pages_larger_size nav.navbar li.nav-item .nav-link, 
+    .dk .website-code .frontend_pages_larger_size nav.navbar li.nav-item .nav-link, 
+    .se .website-code .frontend_pages_larger_size nav.navbar li.nav-item .nav-link, 
+    .de .website-code .frontend_pages_larger_size nav.navbar li.nav-item .nav-link, 
+    .en .website-code .frontend_pages_larger_size nav.navbar li.nav-item .nav-link {
+        font-size: 30px !important;
+    }
+    .website-code .frontend_pages_larger_size nav.navbar li.nav-item {
+        margin-left: 30px !important;
+    }
+    .frontend_pages_larger_size {
+        font-size: 30px !important;
+        .website_main_pages .footer-top h4, .website_main_pages p, .website_main_pages .banner-btn .btn, .website_main_pages .premium-heading3 span, .website_main_pages .common_static_page .content_page ul li, .website_main_pages .price_mat_wrapper .feature-data ul li, .website_main_pages .learn-banner .back-button {
+            font-size: 30px !important;
+        }
+    }
+    .website_main_pages .progress_btn a {
+        font-size: 38px !important;
+        font-weight: 700 !important;
+    }
+    .work-text .number p {
+        height: 51px !important;
+        width: 51px !important;
+    }
+    .club .club_player_light h3, .country-available {
+        font-size: 45px !important;
+    }
+    .website_main_pages .premium-heading5, .website_main_pages .join-text p {
+        font-size: 40px !important;
+    }
+    .feature-heading3, .club-heading4, .website_main_pages .club-banner .title_text_p h3, .website_main_pages .price-heading3, .website_main_pages .club-banner .club_players h3 {
+        font-size: 55px !important;
+    }
+    .club_text img {
+        width: 80px !important;
+        height: 80px !important;
+    }
+    .website_main_pages h2.accordion-header, .website_main_pages .price_mat_wrapper .feature-heading, .website_main_pages .price_mat_wrapper .feature-data h4.free-heading {
+        font-size: 34px !important;
+    }
+    .banner-left {
+        margin-right: 35%;
+        .banner-heading {
+            font-size: 55px !important;
+        }
+        .banner-heading5 p {
+            font-size: 34px !important;
+        }
+        a.btn.btn-register {
+            height: unset !important;
+        }
+    }
+    .website_main_pages .premium-text img {
+        top: 4px;
+        position: relative;
+    }
+    .website_main_pages .btn {
+        font-size: 26px !important;
+    }
+    .website_main_pages .footer-top .footer-links ul li a, .website_main_pages .footer-top p, .website_main_pages .red_text_plan, .website_main_pages .footer-bottom p {
+        font-size: 28px !important;
+    }
+    .banner-inner .about h2{
+        font-size: 60px !important;
+    }
+    .website_main_pages .common_static_page .content_page h4 {
+        font-size: 40px !important;
+    }
+    .website_main_pages .club-buttons .button-border {
+        width: 450px !important;
+        height: 82px !important;
+    }
+    .website_main_pages .club-buttons .button-border .join-text p {
+        line-height: 68px !important;
+    }
+    .country-name {
+        font-size: 30px !important;
+    }
+    .countries {
+        .custom-list-item::before {
+            font-size: 30px;
+            margin-right: 20px;
+            line-height: 2;
+        }
+    }
+    .faq h3 {
+        font-size: 45px !important;
+    }
+    .talent-content .header {
+        .toggle-icon {
+            width: 40px;
+            font-size: 50px;
+        }
+    }
+    .faq .header h4, button.faq-club-button, button.faq-talent-button, button.faq-scout-button {
+        font-size: 30px !important;
+    }
+    button.faq-club-button, button.faq-talent-button, button.faq-scout-button {
+        padding: 10px !important;
+    }
+    .tabs button.active {
+        width: auto !important;
+        min-width: 180px !important;
+        height: auto !important;
+    }
+    .premium-heading2 {
+        font-size: 55px !important;
+    }
+    .premium-heading3 {
+        font-size: 80px !important;
+    }
+    .joined-btn button.btn {
+        border-radius: 80px !important;
+        height: 71px !important;
+        width: 450px !important;
+    }
+    .website_main_pages .works-btn button.btn p {
+        font-size: 36px !important;
+    }
+    .website-code nav.navbar .login-btn {
+        width: 260px !important;
+        font-size: 26px !important;
+        svg {
+            width: 40px !important;
+            height: 25px;
+        }
+    }
+    .price_mat_wrapper .plan_price_box .premium {
+        height: 350px !important;
+    }
+    .buy_now_btn_front_price .btn.fill_btn {
+        height: auto !important;
+    }
+    .plan_price_box .billed .toggle-button {
+        top: 21px;
+    }
+    .price_mat_wrapper .feature-height {
+        li:before {
+            top: 19px;
+        }
+    }
+
+}
+
 @media (max-width:1300px) and (min-width:992px) {
 .mobile-sidebar-active .plan_box .d-flex.gap-2 {
     flex-direction: column;
