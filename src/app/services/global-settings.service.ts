@@ -144,4 +144,5 @@ export class GlobalSettingsService {
     }
     return "desktop";
   }
+  
 }

@@ -53,9 +53,9 @@ export class ViewProfileComponent implements OnInit {
   currentThemeMode: any = localStorage.getItem('theme');
   currentUserRole: string = '';
   private tooltipSubscription!: Subscription; // ✅ Subscription for tooltips
-
+  videoDuration: number = 0;
   @Output() dataEmitter = new EventEmitter<string>();
-  @ViewChild('videoPlayer') videoElementRef!: ElementRef<HTMLVideoElement>;
+  @ViewChild('videoPlayer2') videoElementRef!: ElementRef<HTMLVideoElement>;
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
@@ -70,7 +70,7 @@ export class ViewProfileComponent implements OnInit {
     private titleService: TitleService,
     private globalSettings: GlobalSettingsService
   ) { }
- 
+
   ngOnInit(): void {
     this.themeChanged();
 
@@ -80,21 +80,7 @@ export class ViewProfileComponent implements OnInit {
       this.getUser(this.userId);
       this.activeTab = 'profile';
       // code by amrit
-      this.tooltipSubscription = this.tooltipService.getTooltip('profilePhoto').subscribe(tooltip => {
-        this.profilePhotoTooltip = tooltip;
-      });
-      this.tooltipSubscription = this.tooltipService.getTooltip('addFavorite').subscribe(tooltip => {
-        this.addFavorite = tooltip;
-      });
-      this.tooltipSubscription = this.tooltipService.getTooltip('removeFavorite').subscribe(tooltip => {
-        this.removeFavorite = tooltip;
-      });
-      this.tooltipSubscription = this.tooltipService.getTooltip('downloadPdf').subscribe(tooltip => {
-        this.downloadPdf = tooltip;
-      });
-      this.tooltipSubscription = this.tooltipService.getTooltip('startConversation').subscribe(tooltip => {
-        this.startConversation = tooltip;
-      });
+      this.getToolTips();
       // code by amrit
     });
 
@@ -104,6 +90,7 @@ export class ViewProfileComponent implements OnInit {
     this.webPages.languageId$.subscribe((data) => {
       this.getToasterMsg();
       this.getUser(this.userId);
+      this.getToolTips();
     });
 
     this.globalSettings.indexFunctionCall$.subscribe(() => {
@@ -111,16 +98,44 @@ export class ViewProfileComponent implements OnInit {
     });
 
 
-    const role = history.state.role;
+    let role = history.state.role;
+    // alert('role is ' + role)
+    // alert(typeof role)
     if (role != '' && role != undefined) {
       this.currentUserRole = role;
+    }else{
+      const url = this.router.url; 
+      const segments = url.split('/');
+      role = segments[2]?.toLowerCase();
+      if (role != '' && role != undefined) { 
+        this.currentUserRole = role;
+      }else{
+        console.info('role is '+role)
+      }
     }
-    // console.info('current role is ',role);
   }
 
   ngAfterViewInit() {
     const videoEl = this.videoElementRef.nativeElement;
     videoEl.autoplay = false;
+  }
+
+  getToolTips() {
+    this.tooltipSubscription = this.tooltipService.getTooltip('profilePhoto').subscribe(tooltip => {
+      this.profilePhotoTooltip = tooltip;
+    });
+    this.tooltipSubscription = this.tooltipService.getTooltip('addFavorite').subscribe(tooltip => {
+      this.addFavorite = tooltip;
+    });
+    this.tooltipSubscription = this.tooltipService.getTooltip('removeFavorite').subscribe(tooltip => {
+      this.removeFavorite = tooltip;
+    });
+    this.tooltipSubscription = this.tooltipService.getTooltip('downloadPdf').subscribe(tooltip => {
+      this.downloadPdf = tooltip;
+    });
+    this.tooltipSubscription = this.tooltipService.getTooltip('startConversation').subscribe(tooltip => {
+      this.startConversation = tooltip;
+    });
   }
 
   getUser(userId: any) {
@@ -130,6 +145,7 @@ export class ViewProfileComponent implements OnInit {
       this.talentService.getUser(userId, params).subscribe((response) => {
         if (response && response.status && response.data && response.data.user_data) {
           this.user = response.data.user_data;
+          let baseUrl = response.data.imagePath;
           this.isPremium = this.loggedInUser?.active_subscriptions?.premium.length > 0 ? true : false;
           // console.error('Is User Has Premium ',this.isPremium);
           // this.isPremium = true;
@@ -137,8 +153,8 @@ export class ViewProfileComponent implements OnInit {
             this.userNationalities = JSON.parse(this.user.user_nationalities);
           }
           this.profileImage = this.user.meta.profile_image_path || this.profileImage;
-          this.coverImage = this.user.meta.cover_image_path || this.coverImage;
-          console.info(this.user);
+          this.coverImage = baseUrl + this.user.meta.cover_image || this.coverImage;
+          // console.info(this.user);
           // if(this.user?.meta?.place_of_birth){
           //   this.getCountryFromPlaceOfBirth(this.user?.meta?.place_of_birth);
           // }
@@ -217,7 +233,7 @@ export class ViewProfileComponent implements OnInit {
   }
 
   calculateAge(dob: string | Date): number {
-    console.info('BirthDate is ', dob);
+    // console.info('BirthDate is ', dob);
     const birthDate = new Date(dob);
     const today = new Date();
 
@@ -484,11 +500,12 @@ export class ViewProfileComponent implements OnInit {
     }
   }
 
+
   setDurationAndThumbnail(videoElement: HTMLVideoElement) {
     videoElement.crossOrigin = 'anonymous';
     // Set Duration
     this.duration = this.formatDuration(videoElement.duration);
-    console.info('this.duration is ',this.duration)
+
     // Capture Thumbnail
     // this.captureThumbnail(videoElement);
   }

@@ -53,6 +53,10 @@ import { NotificationsLogComponent } from './setting/notifications-log/notificat
 import { DeleteProfileComponent } from './delete-profile/delete-profile.component';
 import { UnverifiedUserComponent } from './unverified-user/unverified-user.component';
 import { ImageCropperComponent2 } from './image-cropper/image-cropper.component';
+import { ClubProfileComponent } from './view-profile/tabs/club-profile/club-profile.component';
+import { ClubHistoryComponent } from './view-profile/tabs/club-history/club-history.component';
+import { ScoutProfileComponent } from './view-profile/tabs/scout-profile/scout-profile.component';
+import { ScoutHistoryComponent } from './view-profile/tabs/scout-history/scout-history.component';
 // import { ImageCropperDialogComponent } from './image-cropper-dialog/image-cropper-dialog.component';
 
 
@@ -95,6 +99,10 @@ import { ImageCropperComponent2 } from './image-cropper/image-cropper.component'
     DeleteProfileComponent,
     UnverifiedUserComponent,
     ImageCropperComponent2,
+    ClubProfileComponent,
+    ClubHistoryComponent,
+    ScoutProfileComponent,
+    ScoutHistoryComponent,
     // ImageCropperDialogComponent
   ],
   imports: [

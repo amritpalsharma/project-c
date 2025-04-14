@@ -1,0 +1,27 @@
+import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ClubService } from '../../../../../services/club.service';
+import { Editor, Toolbar } from 'ngx-editor';
+import { environment } from '../../../../../../environments/environment';
+
+@Component({
+  selector: 'app-scout-history',
+  templateUrl: './scout-history.component.html',
+  styleUrl: './scout-history.component.scss'
+})
+export class ScoutHistoryComponent {
+
+  isLoading: boolean = false;
+  userId: any = "";
+  history: any = "";
+  isEditable: boolean = false;
+  @Input() role: any;
+  @Input() isPremium: any;
+  @Input() scoutHistory: any;
+  @ViewChild('historyTextarea', { static: false }) textarea!: ElementRef;
+  constructor(private route: ActivatedRoute, private clubService: ClubService) { }
+
+  replaceEmptyParagraphs(html: string) {
+    return html.replace(/<p>\s*<\/p>/g, "<br>");
+  }
+}
