@@ -109,6 +109,7 @@ export class TeamsTabComponent {
         teamId: this.selectedTeamId,
         player: [],
         edit: false,
+        teamName: this.selectTeamName
       }
     })
 
@@ -132,6 +133,7 @@ export class TeamsTabComponent {
         teamId: this.selectedTeamId,
         player: player,
         edit: true,
+        teamName: this.selectTeamName
       }
     })
 
