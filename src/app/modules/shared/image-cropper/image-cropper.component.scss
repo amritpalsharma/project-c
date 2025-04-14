@@ -1,12 +1,29 @@
+.cropper_popup {
+  padding: 1rem;
+  .btn {
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 10px;
+    padding: 8px 20px;
+    border: 0 !important;
+  }
+  .puse-btn {
+    color: #FD5454;
+}
+.save_button{
+    background: #6FB95D;
+    color: #fff;
+}
+}
+
 .crop-container {
-    width: 90%;
-    max-width: 20rem;
+    width: 100%;
     height: auto;
+    max-height: 400px;
     position: relative;
-    // border: 1px solid #ccc;
-    overflow: hidden;
+    overflow: auto;
+    -webkit-user-select: none;
     user-select: none;
-    margin: 1rem auto;
 }
 
 .draggable-image {
@@ -34,9 +51,8 @@
     box-sizing: border-box;
     user-select: none;
     cursor: move;
-  }
-  
-  .resize-handle {
+}
+.resize-handle {
     width: 4px;
     height: 12px;
     background: white;
@@ -44,9 +60,8 @@
     right: -3px;
     bottom: 0;
     cursor: nwse-resize;
-  }
-
-  .resize-handle.bottom-right2 {
+}
+.resize-handle.bottom-right2 {
     width: 15px;
     height: 4px;
     bottom: -3px;

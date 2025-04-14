@@ -2787,4 +2787,10 @@ input:checked+.slider:before {
   .coupon-dateRange, .webpages_popup fieldset {
     border-color: rgb(31, 67, 96) !important;
   }
+  .cropper_popup {
+    .save_button{
+        background: #BDE34F !important;
+        color: #023A4A !important;
+    }
+  }
 }
