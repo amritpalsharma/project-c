@@ -488,7 +488,7 @@ export class ViewProfileComponent implements OnInit {
     videoElement.crossOrigin = 'anonymous';
     // Set Duration
     this.duration = this.formatDuration(videoElement.duration);
-
+    console.info('this.duration is ',this.duration)
     // Capture Thumbnail
     // this.captureThumbnail(videoElement);
   }

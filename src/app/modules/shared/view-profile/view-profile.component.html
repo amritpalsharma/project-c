@@ -573,7 +573,7 @@
                     <div class="col-lg-4 gallery_images " *ngFor="let video of highlights?.videos">
                       <!-- <video [src]="highlights.file_path + video.file_name" autoplay></video> -->
                       <video [src]="highlights.file_path + video.file_name" #videoPlayer
-                      (loadeddata)="setDurationAndThumbnail(videoPlayer)" [attr.autoplay]="null"></video>
+                      (loadeddata)="setDurationAndThumbnail(videoPlayer)" [attr.autoplay]="false"></video>
                     <span class="duration">{{duration}}</span>
                     </div>
                   </div>
