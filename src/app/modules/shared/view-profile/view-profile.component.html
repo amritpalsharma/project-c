@@ -1691,8 +1691,8 @@
                 [isPremium]="isPremium"></view-user-gallery>
               <!-- Club Details -->
               <!-- Club Profile -->
-              <app-club-profile *ngIf="activeTab == 'profile' && currentUserRole == 'club'" [userData]="user"
-                [isPremium]="isPremium"></app-club-profile>
+              <app-club-profile *ngIf="activeTab == 'profile' && currentUserRole == 'club' && user?.id" [userData]="user"
+                [isPremium]="isPremium" [currentUserId]="user.id"></app-club-profile>
               <!-- End Club Profile -->
               <!-- Club History -->
               <app-club-history *ngIf="activeTab == 'club_history' && currentUserRole == 'club'" role="club"
@@ -1709,8 +1709,8 @@
               <!-- End Club Details -->
               <!-- Scout Tabs -->
               <!-- Scout Profile -->
-              <app-scout-profile *ngIf="activeTab == 'profile' && currentUserRole == 'scout'" [userData]="user"
-                [isPremium]="isPremium"></app-scout-profile>
+              <app-scout-profile *ngIf="activeTab == 'profile' && currentUserRole == 'scout' && user?.id" [userData]="user"
+                [isPremium]="isPremium" [currentUserId]="user.id"></app-scout-profile>
               <!-- End Scout Profile -->
               <!-- Scout History -->
               <app-scout-history *ngIf="activeTab == 'scout_history' && currentUserRole == 'scout'" role="scout" [currentScoutId]="user.id"

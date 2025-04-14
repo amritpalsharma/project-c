@@ -651,4 +651,14 @@ export class UserService {
       `${this.apiUrl}/user/get-scout-players/${lang_id}/${userId}`, { headers }
     );
   }
+
+  userGetRepresentators(userId: any): Observable<any> {
+    const userToken = localStorage.getItem('authToken');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.userToken}`
+    });
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
+      `${this.apiUrl}user/get-representators/${userId}`, { headers }
+    );
+  }
 }

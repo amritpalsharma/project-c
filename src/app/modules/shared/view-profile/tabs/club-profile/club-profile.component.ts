@@ -27,7 +27,10 @@ export class ClubProfileComponent {
   baseUrl: any;
   @Input() userData: any;
   @Input() isPremium: any;
+  @Input() currentUserId: any;
+
   userId: any = "";
+  currentExploreuserId: any;
   idsToDelete: any = "";
   deleteRepresentorConfirmation: string = '';
 
@@ -37,11 +40,16 @@ export class ClubProfileComponent {
 
   ngOnInit(): void {
     this.user = this.userData;
+    this.currentExploreuserId = this.user.id;
+    this.currentExploreuserId = this.currentUserId;
     this.getToasterMsg();
     this.webPages.languageId$.subscribe((data: any) => {
       this.getToasterMsg();
+      this.getRepresentators();
     });
-    // this.getRepresentators();
+    setTimeout(() => {
+      this.getRepresentators();
+    }, 1500);
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -65,28 +73,24 @@ export class ClubProfileComponent {
       }
 
     }
-    // if (changes['mainPosition']) {
-    //   // Update the mainPosition object with the latest mainPositionData
-    //   this.mainPosition = changes['mainPosition'].currentValue;
-    // }
-
-    // this.getMainPosition();
-    // this.getOtherPositions();
   }
 
 
-  // getRepresentators() {
-  //   this.scoutService.getRepresentators().subscribe((response) => {
-  //     if (response && response.status && response.data) {
-  //       this.representators = response.data.representators;
-  //       this.baseUrl = response.data.uploads_path
-  //     }else if(response.data == ''){
-  //       this.representators = [];
-  //     } else {
-  //       console.error('Invalid API response structure:', response);
-  //     }
-  //   });
-  // }
+  getRepresentators() {
+    // alert(this.currentExploreuserId)
+    // console.log(this.userData)
+   
+    this.userService.userGetRepresentators(this.currentExploreuserId).subscribe((response) => {
+      if (response && response.status && response.data) {
+        this.representators = response.data.representators;
+        this.baseUrl = response.data.uploads_path
+      } else if (response.data == '') {
+        this.representators = [];
+      } else {
+        console.error('Invalid API response structure:', response);
+      }
+    });
+  }
 
   calculateAge(dob: string | Date): number {
     // Convert the input date to a Date object if it's a string
@@ -132,204 +136,25 @@ export class ClubProfileComponent {
     }
   }
 
-  // openEditGeneralDialog() {
-
-  //   const dialogRef = this.dialog.open(EditGeneralDetailsComponent, {
-  //     width: '870px',
-  //     data: { user: this.user }  // Corrected data passing
-  //   });
-
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     this.getUserProfile()
-  //   });
-  // }
-
-  // openResetDialog() {
-
-  //   const dialogRef = this.dialog.open(ResetPasswordComponent, {
-  //     width: '600px',
-  //     data: {
-  //     }
-  //   });
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     if (result) {
-  //       console.log('User saved:', this.userData);
-  //     } else {
-  //       console.log('User canceled the edit');
-  //     }
-  //   });
-  // }
-
-  // Function to get the main position from the array
-  // getMainPosition() {
-  //   // Check if positions exist and are valid JSON before parsing
-  //   if (this.userData?.positions) {
-  //     try {
-  //       // Parse the JSON string only if it's defined
-  //       this.positions = JSON.parse(this.userData.positions);
-  //       // Find the main position object with main_position set to 1
-  //       this.mainPosition = this.positions?.find((pos: any) => pos.main_position == 1)?.position_name;
-  //     } catch (error) {
-  //       console.error("Error parsing positions JSON:", error);
-  //       this.positions = []; // Set to an empty array if parsing fails
-  //       this.mainPosition = undefined; // Reset main position if parsing fails
-  //     }
-  //   } else {
-  //     // Handle case when positions is undefined or empty
-  //     this.positions = [];
-  //     this.mainPosition = undefined;
-  //   }
-  // }
-
-
-  // Function to get other positions from the array
-  // getOtherPositions() {
-  //   this.otherPositions = this.positions
-  //     .filter((pos: any) => pos.main_position == null)
-  //     .map((pos: any) => pos.position_name)
-  //     .join('/');
-  // }
-
-
-  // addRepresentator() {
-  //   const dialog = this.dialog.open(AddRepresentatorPopupComponent, {
-  //     height: '400',
-  //     width: '400px',
-  //     data: {
-  //       action: 'add',
-  //       userId: this.userId
-  //     }
-  //   });
-
-  //   dialog.afterClosed().subscribe(result => {
-  //     if (result !== undefined) {
-  //       if (result.action == "added") {
-  //         this.getRepresentators();
-  //         if (result.message != '') {
-  //           this.showMatDialog(result.message, 'display');
-  //         } else {
-  //           this.showMatDialog("Invite sent successfully.", 'display');
-  //         }
-  //       }
-  //       //  console.log('Dialog result:', result);
-  //     }
-  //   });
-  // }
-
-  // updateRepresentatorRole(event: Event, id: any) {
-  //   const target = event.target as HTMLSelectElement;
-  //   let newRole = target.value;
-
-  //   this.scoutService.updateRepresentatorRole(id, { site_role: newRole }).subscribe((response) => {
-  //     if (response && response.status) {
-  //       if (response.message != '') {
-  //         this.showMatDialog(response.message, 'display');
-  //       } else {
-  //         this.showMatDialog("Role updated successfully.", 'display');
-  //       }
-  //     } else {
-  //       console.error('Invalid API response structure:', response);
-  //     }
-  //   });
-  // }
-
-  // editRepresentator(representator: any) {
-  //   console.log(representator)
-  //   const editDialog = this.dialog.open(AddRepresentatorPopupComponent, {
-  //     height: '400',
-  //     width: '400px',
-  //     data: {
-  //       action: 'edit',
-  //       userId: "",
-  //       representator: representator
-  //     }
-  //   });
-
-  //   editDialog.afterClosed().subscribe(result => {
-  //     if (result !== undefined) {
-  //       if (result.action == "updated") {
-  //         this.getRepresentators();
-  //         if (result.message != '') {
-  //           this.showMatDialog(result.message, 'display');
-  //         } else {
-  //           this.showMatDialog("Representator updated successfully.", 'display');
-  //         }
-  //       }
-  //       //  console.log('Dialog result:', result);
-  //     }
-  //   });
-  // }
-
-  // confirmSingleDeletion(id: any) {
-  //   this.idsToDelete = id;
-  //   console.warn(this.deleteRepresentorConfirmation)
-  //   this.showMatDialog(this.deleteRepresentorConfirmation, "delete-representator-confirmation");
-  // }
-
-  // deleteRepresentator(): any {
-
-  //   this.scoutService.deleteRepresentator(this.idsToDelete).subscribe(
-  //     response => {
-  //       if (response.status) {
-  //         this.getRepresentators();
-  //         if (response.message) {
-  //           this.showMatDialog(response.message, 'display');
-  //         }else{
-  //           this.showMatDialog('Representator removed successfully!.', 'display');
-  //         }
-  //       } else {
-  //         this.showMatDialog('Error in removing Representator. Please try again.', 'display');
-  //       }
-  //     },
-  //     error => {
-  //       console.error('Error deleting user:', error);
-
-  //     }
-  //   );
-  // }
-
-  // showMatDialog(message: string, action: string) {
-  //   const messageDialog = this.dialog.open(MessagePopupComponent, {
-  //     width: '500px',
-  //     position: {
-  //       top: '150px'
-  //     },
-  //     data: {
-  //       message: message,
-  //       action: action
-  //     }
-  //   })
-
-  //   messageDialog.afterClosed().subscribe(result => {
-  //     if (result !== undefined) {
-  //       if (result.action == "delete-confirmed") {
-  //         this.deleteRepresentator();
-  //       }
-  //       //  console.log('Dialog result:', result);
-  //     }
-  //   });
-  // }
-
-
-  // getMetaValue(stringifyData: any, key: any): any {
-  //   if (stringifyData) {
-  //     stringifyData = JSON.parse(stringifyData);
-  //     if (stringifyData[key]) {
-  //       return stringifyData[key];
-  //     } else {
-  //       return "NA";
-  //     }
-  //   } else {
-  //     return "NA";
-  //   }
-  // }
+  
   getToasterMsg() {
     this.translateService.get([
       'deleteRepresentorConfirmation',
     ]).subscribe((translations) => {
       this.deleteRepresentorConfirmation = translations['deleteRepresentorConfirmation'];
     });
+  }
+
+  getMetaValue(stringifyData: any, key: any): any {
+    if (stringifyData) {
+      stringifyData = JSON.parse(stringifyData);
+      if (stringifyData[key]) {
+        return stringifyData[key];
+      } else {
+        return "NA";
+      }
+    } else {
+      return "NA";
+    }
   }
 }

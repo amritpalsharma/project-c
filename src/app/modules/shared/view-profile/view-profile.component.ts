@@ -156,7 +156,9 @@ export class ViewProfileComponent implements OnInit {
           }
           this.profileImage = baseUrl + this.user.meta.profile_image || this.profileImage;
           // this.profileImage = this.user.meta.profile_image_path || this.profileImage;
-          this.coverImage = baseUrl + this.user.meta.cover_image || this.coverImage;
+          if(this.user.meta.cover_image && this.user.meta.cover_image != '' && this.user.meta.cover_image != undefined){
+            this.coverImage = baseUrl + this.user.meta.cover_image || this.coverImage;
+          }
           // console.info(this.user);
           // if(this.user?.meta?.place_of_birth){
           //   this.getCountryFromPlaceOfBirth(this.user?.meta?.place_of_birth);

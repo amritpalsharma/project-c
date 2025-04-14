@@ -165,8 +165,10 @@ export class EditMembershipProfileComponent {
     let langId: any = localStorage.getItem('lang_id');
 
     try {
+      // this.selectedAudiences
       // Make API call to save the booster audience
-      this.talentService.updateBoosterAudience(this.selectedAudienceIds, langId).subscribe(
+      // this.talentService.updateBoosterAudience(this.selectedAudienceIds, langId).subscribe(
+      this.talentService.updateBoosterAudience(this.selectedAudiences, langId).subscribe(
         (response) => {
           if (response?.status) {
             // Success: Notify the user and close the dialog

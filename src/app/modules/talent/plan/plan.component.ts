@@ -599,6 +599,8 @@ export class PlanComponent implements OnInit, OnDestroy {
   }
 
   addBoostPopup(planId: any) {
+    // alert(planId);
+    // return;
     const dialogRef = this.dialog.open(AddBoosterComponent, {
       width: '850px',
       data: {

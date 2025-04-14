@@ -51,8 +51,10 @@ export class AddBoosterComponent {
 
     this.loggedInUser = JSON.parse(this.loggedInUser);
     let userNationalities = JSON.parse(this.loggedInUser?.user_nationalities);
-    this.userNationality = userNationalities[0]?.flag_path ? userNationalities[0]?.flag_path : '';
-
+    if(userNationalities && typeof userNationalities != undefined){
+      this.userNationality = userNationalities[0]?.flag_path ? userNationalities[0]?.flag_path : '';
+    }
+    console.warn('this.data',this.data);
     this.id = this.data.id || [];
     this.stripe = await this.paymentService.getStripe();
 

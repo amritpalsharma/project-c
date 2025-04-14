@@ -99,10 +99,10 @@
 </div>
 
 <ng-container *ngIf="isPremium" class="general_details_tab">
-    <div class="general_titels d-flex align-items-center mb-2">
+    <div class="general_titels d-flex align-items-center mb-2 d-none">
         <h2>{{ 'generalDetails' | translate}}</h2>
     </div>
-    <div class="forms_details mb-2">
+    <div class="forms_details mb-2 d-none">
         <form class="d-flex align-items-center form-boxs">
             <div class="email_box">
                 <label for="email">{{ 'email' | translate}}</label><br>
@@ -146,10 +146,7 @@
                     </td>
                     <td>
                         <select  class="custom-select custom-select-wrapper"
-                            >
-
-                            
-                                
+                            disabled>
                                 <option value="admin.access"
                                     *ngIf="representator.permission != null && representator.permission != 'admin.access'">
                                     {{ 'admin' | translate }}</option>
