@@ -329,25 +329,26 @@
 
     <div class="pricing py_0">
         <div class="container">
-            <h3 class="price-heading3">{{'pricing' | translate}}</h3>
-
             <div *ngFor="let plan of pageData.pricing_tab; let i = index">
-                <div class="billed_wrapp">
-                    <div class="red_text_plan">{{'freePlanText' | translate}}</div>
-                    <div class="billed">
-                        <p [ngClass]="{ 'active-text': isActivePlan[i], 'inactive-text': !isActivePlan[i] }"
-                            class="billed-monthly">
-                            <!-- {{'billedMonthly' | translate}} -->
-                            {{plan.monthly_label}}
-                        </p>
-                        <div class="toggle-button"
-                            [ngClass]="{ 'active': isActivePlan[i], 'inactive': !isActivePlan[i] }"
-                            (click)="togglePlan(i)">
+                <div class="billed_wrapp " [ngClass]="{ 'first_plan_with_title': i === 0 }">
+                    <h3 *ngIf="i === 0" class="price-heading3">{{'pricing' | translate}}</h3>
+                    <div class="plan_btn_and_text">
+                        <div class="red_text_plan">{{'freePlanText' | translate}}</div>
+                        <div class="billed">
+                            <p [ngClass]="{ 'active-text': isActivePlan[i], 'inactive-text': !isActivePlan[i] }"
+                                class="billed-monthly">
+                                <!-- {{'billedMonthly' | translate}} -->
+                                {{plan.monthly_label}}
+                            </p>
+                            <div class="toggle-button"
+                                [ngClass]="{ 'active': isActivePlan[i], 'inactive': !isActivePlan[i] }"
+                                (click)="togglePlan(i)">
+                            </div>
+                            <p [ngClass]="{ 'active-text': !isActivePlan[i], 'inactive-text': isActivePlan[i] }">
+                                <!-- {{'billedYearly' | translate}} -->
+                                {{plan.yearly_label}}
+                            </p>
                         </div>
-                        <p [ngClass]="{ 'active-text': !isActivePlan[i], 'inactive-text': isActivePlan[i] }">
-                            <!-- {{'billedYearly' | translate}} -->
-                            {{plan.yearly_label}}
-                        </p>
                     </div>
                 </div>
 
