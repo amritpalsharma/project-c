@@ -365,5 +365,8 @@ export class TalentComponent {
     }
     // return null;
   }
+  ngAfterViewInit() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 
 }

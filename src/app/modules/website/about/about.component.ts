@@ -189,4 +189,8 @@ export class AboutComponent {
     // this.getArrayItemByIndex(this.accordinCurrentIndex, 'image');
     this.currentTheme = localStorage.getItem('theme') + '';
   }
+  
+  ngAfterViewInit() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 }

@@ -249,4 +249,7 @@ export class PricingComponent {
       }
     })
   }
+  ngAfterViewInit() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 }

@@ -32,6 +32,8 @@ export class FooterComponent implements OnInit {
   countrie: any[] = [];
   selectedCountry: string = '';
 
+  // currentPage = 
+
   // English Country Names
   countrie_en = [
     { name: 'Switzerland', slug: "ch", id: 1, flag: "Switzerland.svg", url: 'https://www.socceryou.ch' },
@@ -645,7 +647,7 @@ export class FooterComponent implements OnInit {
     this.currentDomainExtension = this.currentDomainExtension.replaceAll('.', '');
     if (this.currentDomainExtension == 'couk') {
       this.currentDomainExtension = 'en';
-    }else if(this.currentDomainExtension == ''){
+    } else if (this.currentDomainExtension == '') {
       this.currentDomainExtension = 'ch';
     }
 
@@ -654,4 +656,12 @@ export class FooterComponent implements OnInit {
     this.name = selectedLang?.name || '';
     this.selectedcountry = selectedLang?.id || '';
   }
+
+  navigateAndScroll(path: string) {
+    setTimeout(() => {
+      // window.scrollTo({ top: 0, behavior: 'smooth' });
+      this.router.navigate([path]);
+      }, 100);
+  }
+
 }

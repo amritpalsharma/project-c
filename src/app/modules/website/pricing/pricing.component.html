@@ -38,7 +38,7 @@
             <div class="price_mat_wrapper">
               <mat-card class="plan_price_box">
                 <div class="billed__infor">
-                  <small>2 months free on yearly plan</small>
+                  <small>{{'freePlanText' | translate}}</small>
                 <div class="billed">
                   <p [ngClass]="{ 'active-text': isActive1, 'inactive-text': !isActive1 }" class="billed-monthly">
                     {{ pageData?.first_tab_monthly_label }}
@@ -88,7 +88,8 @@
             <div class="price_mat_wrapper">
               <mat-card class="plan_price_box">
                 <div class="billed__infor">
-                  <small>2 months free on yearly plan</small>
+                  <!-- <small>2 months free on yearly plan</small> -->
+                  <small>{{'freePlanText' | translate}}</small>
                 <div class="billed">
                   <p [ngClass]="{ 'active-text': isActive2, 'inactive-text': !isActive2 }">{{
                     pageData?.sec_tab_monthly_label }}</p>
@@ -136,7 +137,8 @@
             <div class="price_mat_wrapper">
               <mat-card class="plan_price_box">
                 <div class="billed__infor">
-                  <small>2 months free on yearly plan</small>
+                  <!-- <small>2 months free on yearly plan</small> -->
+                  <small>{{'freePlanText' | translate}}</small>
                 <div class="billed">
                   <p [ngClass]="{ 'active-text': isActive3, 'inactive-text': !isActive3 }">{{
                     pageData?.third_tab_monthly_label }}</p>
