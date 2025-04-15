@@ -38,7 +38,7 @@
             <div class="price_mat_wrapper">
               <mat-card class="plan_price_box">
                 <div class="billed__infor">
-                  <small>2 months free on yearly plan</small>
+                  <small>{{'freePlanText' | translate}}</small>
                 <div class="billed">
                   <p [ngClass]="{ 'active-text': isActive1, 'inactive-text': !isActive1 }" class="billed-monthly">
                     {{ pageData?.first_tab_monthly_label }}
@@ -60,7 +60,7 @@
                       <!-- {{isActive1 ? pageData?.first_tab_yearly_price: pageData?.first_tab_monthly_price}}<span>.- CHF / {{ isActive1 ? ('year' | translate) : ('month' | translate) }}</span> -->
                     </h3>
                     <div class="buy_now_btn_front_price">
-                      <a href="" class="btn w-100 fill_btn">Buy Now</a>
+                      <a href="" class="btn w-100 fill_btn">{{ 'buyNow' | translate }}</a>
                     </div>
                   </div>
                 </div>
@@ -88,7 +88,7 @@
             <div class="price_mat_wrapper">
               <mat-card class="plan_price_box">
                 <div class="billed__infor">
-                  <small>2 months free on yearly plan</small>
+                  <small>{{'freePlanText' | translate}}</small>
                 <div class="billed">
                   <p [ngClass]="{ 'active-text': isActive2, 'inactive-text': !isActive2 }">{{
                     pageData?.sec_tab_monthly_label }}</p>
@@ -108,7 +108,7 @@
                       <!-- {{ isActive2 ? pageData?.sec_tab_yearly_price : pageData?.sec_tab_monthly_price }}<span>.- CHF / {{ isActive2 ? ('year' | translate) : ('month' | translate) }}</span> -->
                     </h3>
                     <div class="buy_now_btn_front_price">
-                      <a href="" class="btn w-100 fill_btn">Buy Now</a>
+                      <a href="" class="btn w-100 fill_btn">{{ 'buyNow' | translate }}</a>
                     </div>
                   </div>
                 </div>
@@ -136,7 +136,7 @@
             <div class="price_mat_wrapper">
               <mat-card class="plan_price_box">
                 <div class="billed__infor">
-                  <small>2 months free on yearly plan</small>
+                  <small>{{'freePlanText' | translate}}</small>
                 <div class="billed">
                   <p [ngClass]="{ 'active-text': isActive3, 'inactive-text': !isActive3 }">{{
                     pageData?.third_tab_monthly_label }}</p>
@@ -157,7 +157,7 @@
                           pageData?.third_tab_monthly_label}}</span>
                     </h3>
                     <div class="buy_now_btn_front_price">
-                      <a href="" class="btn w-100 fill_btn">Buy Now</a>
+                      <a href="" class="btn w-100 fill_btn">{{ 'buyNow' | translate }}</a>
                     </div>
                   </div>
                 </div>

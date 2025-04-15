@@ -11,6 +11,7 @@ import { Component } from '@angular/core';
 import { WebPages } from '../../../services/webpages.service';
 import { provideNetlifyLoader } from '@angular/common';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
+import { AuthService } from '../../../services/auth.service';
 
 
 @Component({
@@ -41,7 +42,7 @@ export class TalentComponent {
     pricing_sctn_title: '',
     pricing_tab: [],
   }];
-  currentTheme: string = localStorage.getItem('theme') + '';
+  currentTheme: string = 'light';
   activeAccordionIndex = 0;
   // advertisementData:any=null;
   advertisemnet_base_url: string = '';
@@ -67,12 +68,17 @@ export class TalentComponent {
     this.activeAccordionIndex = index;
   }
 
-  constructor(private webPages: WebPages, private globalSettings: GlobalSettingsService) { }
+  constructor(
+    private webPages: WebPages,
+    private globalSettings: GlobalSettingsService,
+    private authService: AuthService
+  ) { }
 
   isActivePlan: { [key: number]: boolean } = {}; // Keeps track of toggle states for each pricing plan
 
-  selectedLangSlug : string = localStorage.getItem('lang') || "en";
-
+  selectedLangSlug: string = this.globalSettings.getLanguage();
+  isUserLoggedIn: boolean = false;
+  LoggedInUserPlansLink: string = '';
   ngOnInit() {
     // Retrieve the states from local storage
     const savedState1 = localStorage.getItem('toggleState1');
@@ -92,10 +98,14 @@ export class TalentComponent {
 
       this.selectedLangSlug = localStorage.getItem('lang') || "en";
     });
-
+    this.ThemeUpdated();
     this.globalSettings.indexFunctionCall$.subscribe(() => {
       this.ThemeUpdated(); // Call the function when event is received
     });
+
+    this.isUserLoggedIn = this.authService.isLoggedIn();
+    this.LoggedInUserPlansLink = this.authService.getPlansPageLink();
+
   }
 
   advertisementList: any = null;
@@ -176,6 +186,13 @@ export class TalentComponent {
         } else {
           this.pageData.banner_bg_img = this.pageData.banner_bg_img_dark_mode;
         }
+        //  alert('this.currentTheme is '+this.currentTheme)
+        if (this.currentTheme == 'dark' || this.currentTheme == 'light' && this.currentTheme) {
+        } else {
+          this.currentTheme = 'light'; // default value is light for theme
+        }
+
+
 
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
         // Initialize toggle states for pricing plans with Monthly active (false)
@@ -339,11 +356,11 @@ export class TalentComponent {
     this.getArrayItemByIndex(this.accordinCurrentIndex, 'image');
   }
 
-  custIndex : any = 1;
+  custIndex: any = 1;
 
   getArrayItemByIndex(index: number, field: keyof FeatureSection) {
     let theme = localStorage.getItem('theme');
-    this.custIndex = index+1;
+    this.custIndex = index + 1;
     // alert(index);
     if (index >= 0 && index < this.feature_sctn.length) {
       this.accordinCurrentIndex = index;

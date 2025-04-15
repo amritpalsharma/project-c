@@ -124,4 +124,22 @@ export class AuthService {
         return '/home';  // Default page if no role found
     }
   }
+
+  getPlansPageLink(): string {
+    // const role = this.getUserRole();
+    const role =  localStorage.getItem('userRole');
+    // console.log('current role is : '+role);
+    switch (role) {
+      case '1':
+        return '';
+      case '2':
+        return '/club/plans';
+      case '3':
+        return '/scout/plans';
+      case '4':
+        return '/talent/plans';
+      default:
+        return '/home';  // Default page if no role found
+    }
+  }
 }

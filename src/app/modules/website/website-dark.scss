@@ -265,7 +265,8 @@
 }
 
 .dark-theme .website-code .banner {
-  background: url(/assets/images/club-banner.png);
+  // background: url(/assets/images/club-banner.png);
+  background: url('/assets/images/talent_page/talent-page-banner.png'), #236115 !important;
 }
 
 .dark-theme .website-code .joined-btn button.btn {

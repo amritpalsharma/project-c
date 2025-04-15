@@ -3,7 +3,6 @@
     <div class="main talent_page">
 
         <!-- <app-header></app-header> -->
-
         <div class="banner py-0">
             <!-- [style.background-image]="'url(' + baseUrl + (currentTheme === 'dark' ? pageData?.banner_bg_img_dark_mode : pageData?.banner_bg_img) + ')'"> -->
             <!-- <div class="banner py-0" style="background-image: url('{{baseUrl + pageData?.banner_bg_img}}');"> -->
@@ -42,15 +41,17 @@
 
                         <div class="col-lg-6 col-lg-8 col-12">
                             <div class="banner_image_combo">
+                                <!-- <h1>currentTheme {{currentTheme}}</h1> -->
                                 <!-- <img src="./assets/images/How-it-works.png" /> -->
                                 <!-- <img *ngIf="pageData?.banner_img && currentTheme == 'light'"
                                     src="{{baseUrl + pageData?.banner_img}}" /> -->
-                                <img *ngIf="pageData?.banner_img && currentTheme == 'light'"
-                                    [src]="'../../../../assets/images/talent page/talent_banner_img_' + selectedLangSlug + '.png'" />
+                                    <!-- <h1>currentTheme = {{currentTheme}}</h1> -->
+                                <img *ngIf="currentTheme == 'light'"
+                                    [src]="'../../../../assets/images/talent_page/talent_banner_img_' + selectedLangSlug + '.png'"  loading="lazy"/>
                                 <!-- <img *ngIf="pageData?.banner_img_dark_mode && currentTheme == 'dark'"
                                     src="{{baseUrl + pageData?.banner_img_dark_mode}}" /> -->
-                                <img *ngIf="pageData?.banner_img_dark_mode && currentTheme == 'dark'"
-                                    [src]="'../../../../assets/images/talent page/talent_banner_img_dark_' + selectedLangSlug + '.png'" />
+                                <img *ngIf="currentTheme == 'dark'"
+                                    [src]="'../../../../assets/images/talent_page/talent_banner_img_dark_' + selectedLangSlug + '.png'" />
                             </div>
                         </div>
                     </div>
@@ -161,9 +162,9 @@
     
                                     <img class="single_tab_img dark-images" src="{{currentFeatureImage}}"> -->
 
-                                    <img class="single_tab_img light-images" [src]="'../../../../assets/images/talent page/talent_featured_img_' + selectedLangSlug + '_' + custIndex + '.png'">
+                                    <img class="single_tab_img light-images" [src]="'../../../../assets/images/talent_page/talent_featured_img_' + selectedLangSlug + '_' + custIndex + '.png'">
     
-                                    <img class="single_tab_img dark-images" [src]="'../../../../assets/images/talent page/talent_featured_img_dark_' + selectedLangSlug + '_' + custIndex + '.png'">
+                                    <img class="single_tab_img dark-images" [src]="'../../../../assets/images/talent_page/talent_featured_img_dark_' + selectedLangSlug + '_' + custIndex + '.png'">
 
                                     <!-- <h1>{{i}}</h1> -->
                                     <!-- <img class="single_tab_img dark-images" src="./assets/images/foto-talent-dark-1.png"> -->
@@ -333,7 +334,7 @@
 
             <div *ngFor="let plan of pageData.pricing_tab; let i = index">
                 <div class="billed_wrapp">
-                    <div class="red_text_plan">2 months free on yearly plan</div>
+                    <div class="red_text_plan">{{'freePlanText' | translate}}</div>
                     <div class="billed">
                         <p [ngClass]="{ 'active-text': isActivePlan[i], 'inactive-text': !isActivePlan[i] }"
                             class="billed-monthly">
@@ -386,7 +387,7 @@
                                 </h3>
                                 
                                 <div class="buy_now_btn_front_price">
-                                    <a href="" class="btn fill_btn">Buy Now</a>
+                                    <a class="btn fill_btn">{{ 'buyNow' | translate }}</a>
                                 </div>
                             </div>
                         </div>
