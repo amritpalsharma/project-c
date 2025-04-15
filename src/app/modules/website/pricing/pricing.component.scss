@@ -263,6 +263,7 @@ span {
     color: #072944;
     margin-top: 20px;
     border-radius: 80px;
+    height: unset;
 }
 
 /*--------------------------------------------------------------
@@ -479,8 +480,11 @@ li::before {
     }
 
     .premium{
-        height: 175px;
+        height: 215px;
         width: 100%;
+    }
+    .feature-box li {
+        padding-left: 1.25rem;
     }
 
     .billed__infor {
@@ -704,13 +708,17 @@ li::before {
 @media (min-width: 1200px) {
 .price_mat_wrapper {
     height: 100%;
- .plan_price_box {
-    margin-bottom: 40px;
-}
-.feature-box {
-    height: calc(100% - 360px) !important;
+    .plan_price_box {
+        margin-bottom: 40px;
+    }
 }
 }
+
+@media (min-width: 1200px) and (max-width: 2999px) {
+    .feature-box {
+        height: calc(100% - 420px) !important;
+        padding: 0;
+    }
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
@@ -720,7 +728,8 @@ li::before {
         margin-bottom: 40px;
     }
     .feature-box {
-        height: calc(100% - 300px) !important;
+        height: calc(100% - 340px) !important;
+        padding: 0;
     }
 }
 }
