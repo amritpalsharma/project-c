@@ -2654,6 +2654,10 @@ span {
     .premium {
         height: unset;
     }
+    .premium-img {
+        height: unset;
+        padding-left: 0;
+    }
 
     // .premium-img {
     //     height: 200px;
@@ -3891,3 +3895,8 @@ span {
     position: relative;
     z-index: 1;
 }
+@media (max-width: 400px) {
+    .premium-heading2 .red_text_plan {
+        display: block;
+    }
+    }
