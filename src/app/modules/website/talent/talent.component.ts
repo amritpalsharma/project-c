@@ -362,10 +362,6 @@ export class TalentComponent {
         this.currentFeatureImage = this.baseUrl + this.currentFeatureImage;
       }
       console.warn('Index is ' + index + ' Image is ' + this.currentFeatureImage)
-      // console.warn(this.feature_sctn[index]) 
-      // alert(this.currentFeatureImage)
-      // this.currentFeatureImage = this.feature_sctn[index][field]; // ✅ TypeScript now recognizes 'field' as valid
-      //return this.feature_sctn[index][field]; // ✅ TypeScript now recognizes 'field' as valid
     }
     // return null;
   }
