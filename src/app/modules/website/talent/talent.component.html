@@ -45,12 +45,12 @@
                                 <!-- <img src="./assets/images/How-it-works.png" /> -->
                                 <!-- <img *ngIf="pageData?.banner_img && currentTheme == 'light'"
                                     src="{{baseUrl + pageData?.banner_img}}" /> -->
-                                <img *ngIf="pageData?.banner_img && currentTheme == 'light'"
-                                    [src]="'../../../../assets/images/talent page/talent_banner_img_' + selectedLangSlug + '.png'" />
+                                <img *ngIf="currentTheme == 'light'"
+                                    [src]="'../../../../assets/images/talent_page/talent_banner_img_' + selectedLangSlug + '.png'" />
                                 <!-- <img *ngIf="pageData?.banner_img_dark_mode && currentTheme == 'dark'"
                                     src="{{baseUrl + pageData?.banner_img_dark_mode}}" /> -->
-                                <img *ngIf="pageData?.banner_img_dark_mode && currentTheme == 'dark'"
-                                    [src]="'../../../../assets/images/talent page/talent_banner_img_dark_' + selectedLangSlug + '.png'" />
+                                <img *ngIf="currentTheme == 'dark'"
+                                    [src]="'../../../../assets/images/talent_page/talent_banner_img_dark_' + selectedLangSlug + '.png'" />
                             </div>
                         </div>
                     </div>
@@ -161,9 +161,9 @@
     
                                     <img class="single_tab_img dark-images" src="{{currentFeatureImage}}"> -->
 
-                                    <img class="single_tab_img light-images" [src]="'../../../../assets/images/talent page/talent_featured_img_' + selectedLangSlug + '_' + custIndex + '.png'">
+                                    <img class="single_tab_img light-images" [src]="'../../../../assets/images/talent_page/talent_featured_img_' + selectedLangSlug + '_' + custIndex + '.png'">
     
-                                    <img class="single_tab_img dark-images" [src]="'../../../../assets/images/talent page/talent_featured_img_dark_' + selectedLangSlug + '_' + custIndex + '.png'">
+                                    <img class="single_tab_img dark-images" [src]="'../../../../assets/images/talent_page/talent_featured_img_dark_' + selectedLangSlug + '_' + custIndex + '.png'">
 
                                     <!-- <h1>{{i}}</h1> -->
                                     <!-- <img class="single_tab_img dark-images" src="./assets/images/foto-talent-dark-1.png"> -->
@@ -386,7 +386,7 @@
                                 </h3>
                                 
                                 <div class="buy_now_btn_front_price">
-                                    <a href="" class="btn fill_btn">Buy Now</a>
+                                    <a href="" class="btn fill_btn">{{ 'buyNow' | translate }}</a>
                                 </div>
                             </div>
                         </div>

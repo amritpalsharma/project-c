@@ -177,6 +177,12 @@ export class TalentComponent {
           this.pageData.banner_bg_img = this.pageData.banner_bg_img_dark_mode;
         }
 
+        if (this.currentTheme == 'dark' || this.currentTheme == 'light' && this.currentTheme != null) {
+
+        }else{
+          this.currentTheme = 'light';
+        }
+
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
         // Initialize toggle states for pricing plans with Monthly active (false)
         this.pageData.pricing_tab.forEach((_: any, index: number) => {
