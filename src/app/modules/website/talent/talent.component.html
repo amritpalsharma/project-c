@@ -45,11 +45,11 @@
                                 <!-- <img src="./assets/images/How-it-works.png" /> -->
                                 <!-- <img *ngIf="pageData?.banner_img && currentTheme == 'light'"
                                     src="{{baseUrl + pageData?.banner_img}}" /> -->
-                                <img *ngIf="pageData?.banner_img && currentTheme == 'light'"
+                                <img *ngIf="currentTheme == 'light'"
                                     [src]="'../../../../assets/images/talent page/talent_banner_img_' + selectedLangSlug + '.png'" />
                                 <!-- <img *ngIf="pageData?.banner_img_dark_mode && currentTheme == 'dark'"
                                     src="{{baseUrl + pageData?.banner_img_dark_mode}}" /> -->
-                                <img *ngIf="pageData?.banner_img_dark_mode && currentTheme == 'dark'"
+                                <img *ngIf="currentTheme == 'dark'"
                                     [src]="'../../../../assets/images/talent page/talent_banner_img_dark_' + selectedLangSlug + '.png'" />
                             </div>
                         </div>
