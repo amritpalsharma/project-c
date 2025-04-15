@@ -333,7 +333,7 @@
 
             <div *ngFor="let plan of pageData.pricing_tab; let i = index">
                 <div class="billed_wrapp">
-                    <div class="red_text_plan">2 months free on yearly plan</div>
+                    <div class="red_text_plan">{{'freePlanText' | translate}}</div>
                     <div class="billed">
                         <p [ngClass]="{ 'active-text': isActivePlan[i], 'inactive-text': !isActivePlan[i] }"
                             class="billed-monthly">
