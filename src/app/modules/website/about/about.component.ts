@@ -11,6 +11,7 @@ export class AboutComponent {
   adVisible = [true, true, true, true, true, true, true]; // Array to control ad visibility
   about_banner_title: string = '';
   about_banner_desc: string = '';
+  currentTheme: string = localStorage.getItem('theme') + '';
   countries = [
     { name: 'Switzerland', url: 'https://www.socceryou.ch' },
     { name: 'Germany', url: 'https://www.socceryou.de' },
@@ -27,7 +28,7 @@ export class AboutComponent {
   country_section_title: string = '';
   about_hero_btn_txt: string = '';
   about_hero_btn_link: string = '';
-  about_banner_bg_img: string = '';
+  about_banner_bg_img: string = '/assets/images/about_page/banner_bg_img.png'; 
   about_banner_img: string = '';
   country_section_banner_img: string = '';
   country_section_banner_img_dark_mode: string = '';
@@ -96,11 +97,15 @@ export class AboutComponent {
 
   constructor(
     private webPages: WebPages,
+    private globalSettings: GlobalSettingsService
     ) { }
     ngOnInit(): void {
       // Initialize form with validation rules
       this.webPages.languageId$.subscribe((data) => {
         this.getPageData(data)
+      });
+      this.globalSettings.indexFunctionCall$.subscribe(() => {
+        this.ThemeUpdated(); // Call the function when event is received
       });
     }
 
@@ -115,7 +120,7 @@ export class AboutComponent {
           this.about_hero_heading_txt = res.data.pageData.about_hero_heading_txt;
           this.about_hero_btn_txt = res.data.pageData.about_hero_btn_txt;
           this.about_hero_btn_link = res.data.pageData.about_hero_btn_link;
-          this.about_banner_bg_img = res.data.base_url+res.data.pageData.about_banner_bg_img;
+          // this.about_banner_bg_img = res.data.base_url+res.data.pageData.about_banner_bg_img;
           this.about_banner_img =  res.data.base_url+res.data.pageData.about_banner_img;
           this.country_section_banner_img=  res.data.base_url+res.data.pageData.country_section_banner_img;
          
@@ -179,5 +184,9 @@ export class AboutComponent {
 
   isFeaturedImageExists(key: any): boolean {
     return this.advertisementData && this.advertisementData[key] && 'featured_image' in this.advertisementData[key];
+  }
+  ThemeUpdated() {
+    // this.getArrayItemByIndex(this.accordinCurrentIndex, 'image');
+    this.currentTheme = localStorage.getItem('theme') + '';
   }
 }

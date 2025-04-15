@@ -1,8 +1,8 @@
 <section class="website-code">
     <div class="main">
         <!-- <app-header></app-header> -->
-        <div class="banner py-0"
-            [style.background-image]="'url(' + baseUrl + (currentTheme === 'dark' ? pageData?.banner_bg_img_dark_mode : pageData?.banner_bg_img) + ')'">
+        <!-- <div class="banner py-0" [style.background-image]="'url(' + baseUrl + (currentTheme === 'dark' ? pageData?.banner_bg_img_dark_mode : pageData?.banner_bg_img) + ')'"> -->
+        <div class="banner py-0" style="background-image: url('/assets/images/club_page/banner-image.png')">
             <!-- <div class="banner py-0" style="background-image: url('{{baseUrl + pageData?.banner_bg_img}}');"> -->
             <div class="overlay1"></div>
 
@@ -41,10 +41,10 @@
 
                         <div class="col-lg-8 col-md-12 col-12">
                             <div class="banner_image_combo">
-                                <img *ngIf="pageData?.banner_img != '' && currentTheme == 'light' && !isLoading"
-                                    src="{{baseUrl + pageData?.banner_img}}" />
-                                <img *ngIf="pageData?.banner_img_dark_mode != '' && currentTheme == 'dark' && !isLoading"
-                                    src="{{baseUrl + pageData?.banner_img_dark_mode}}" />
+                                <img *ngIf="currentTheme == 'light' && !isLoading"
+                                    src="/assets/images/club_page/banner_light_img.png" />
+                                <img *ngIf="currentTheme == 'dark' && !isLoading"
+                                    src="/assets/images/club_page/banner_dark_img.png" />
                             </div>
                         </div>
                     </div>
