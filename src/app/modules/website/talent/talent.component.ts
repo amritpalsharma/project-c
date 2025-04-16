@@ -194,6 +194,12 @@ export class TalentComponent {
 
 
 
+        if (this.currentTheme == 'dark' || this.currentTheme == 'light' && this.currentTheme != null) {
+
+        }else{
+          this.currentTheme = 'light';
+        }
+
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
         // Initialize toggle states for pricing plans with Monthly active (false)
         this.pageData.pricing_tab.forEach((_: any, index: number) => {
@@ -373,12 +379,11 @@ export class TalentComponent {
         this.currentFeatureImage = this.baseUrl + this.currentFeatureImage;
       }
       console.warn('Index is ' + index + ' Image is ' + this.currentFeatureImage)
-      // console.warn(this.feature_sctn[index]) 
-      // alert(this.currentFeatureImage)
-      // this.currentFeatureImage = this.feature_sctn[index][field]; // ✅ TypeScript now recognizes 'field' as valid
-      //return this.feature_sctn[index][field]; // ✅ TypeScript now recognizes 'field' as valid
     }
     // return null;
+  }
+  ngAfterViewInit() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
 }

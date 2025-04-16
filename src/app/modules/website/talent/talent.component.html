@@ -45,9 +45,14 @@
                                 <!-- <img src="./assets/images/How-it-works.png" /> --> 
                                 <!-- <img *ngIf="pageData?.banner_img && currentTheme == 'light'"
                                     src="{{baseUrl + pageData?.banner_img}}" /> -->
+<<<<<<< HEAD
                                     <!-- <h1>currentTheme = {{currentTheme}}</h1> -->
                                 <img *ngIf="currentTheme == 'light'"
                                     [src]="'../../../../assets/images/talent_page/talent_banner_img_' + selectedLangSlug + '.png'"  loading="lazy"/>
+=======
+                                <img *ngIf="currentTheme == 'light'"
+                                    [src]="'../../../../assets/images/talent_page/talent_banner_img_' + selectedLangSlug + '.png'" />
+>>>>>>> 4a35e8933f7d272629c7515bc6fc997136234e9b
                                 <!-- <img *ngIf="pageData?.banner_img_dark_mode && currentTheme == 'dark'"
                                     src="{{baseUrl + pageData?.banner_img_dark_mode}}" /> -->
                                 <img *ngIf="currentTheme == 'dark'"
@@ -330,25 +335,26 @@
 
     <div class="pricing py_0">
         <div class="container">
-            <h3 class="price-heading3">{{'pricing' | translate}}</h3>
-
             <div *ngFor="let plan of pageData.pricing_tab; let i = index">
-                <div class="billed_wrapp">
-                    <div class="red_text_plan">{{'freePlanText' | translate}}</div>
-                    <div class="billed">
-                        <p [ngClass]="{ 'active-text': isActivePlan[i], 'inactive-text': !isActivePlan[i] }"
-                            class="billed-monthly">
-                            <!-- {{'billedMonthly' | translate}} -->
-                            {{plan.monthly_label}}
-                        </p>
-                        <div class="toggle-button"
-                            [ngClass]="{ 'active': isActivePlan[i], 'inactive': !isActivePlan[i] }"
-                            (click)="togglePlan(i)">
+                <div class="billed_wrapp " [ngClass]="{ 'first_plan_with_title': i === 0 }">
+                    <h3 *ngIf="i === 0" class="price-heading3">{{'pricing' | translate}}</h3>
+                    <div class="plan_btn_and_text">
+                        <div class="red_text_plan">{{'freePlanText' | translate}}</div>
+                        <div class="billed">
+                            <p [ngClass]="{ 'active-text': isActivePlan[i], 'inactive-text': !isActivePlan[i] }"
+                                class="billed-monthly">
+                                <!-- {{'billedMonthly' | translate}} -->
+                                {{plan.monthly_label}}
+                            </p>
+                            <div class="toggle-button"
+                                [ngClass]="{ 'active': isActivePlan[i], 'inactive': !isActivePlan[i] }"
+                                (click)="togglePlan(i)">
+                            </div>
+                            <p [ngClass]="{ 'active-text': !isActivePlan[i], 'inactive-text': isActivePlan[i] }">
+                                <!-- {{'billedYearly' | translate}} -->
+                                {{plan.yearly_label}}
+                            </p>
                         </div>
-                        <p [ngClass]="{ 'active-text': !isActivePlan[i], 'inactive-text': isActivePlan[i] }">
-                            <!-- {{'billedYearly' | translate}} -->
-                            {{plan.yearly_label}}
-                        </p>
                     </div>
                 </div>
 
@@ -387,7 +393,7 @@
                                 </h3>
                                 
                                 <div class="buy_now_btn_front_price">
-                                    <a class="btn fill_btn">{{ 'buyNow' | translate }}</a>
+                                    <a href="" class="btn fill_btn">{{ 'buyNow' | translate }}</a>
                                 </div>
                             </div>
                         </div>

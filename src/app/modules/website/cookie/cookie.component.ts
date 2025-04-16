@@ -161,5 +161,8 @@ export class CookieComponent implements OnInit {
   isFeaturedImageExists(key: any): boolean {
     return this.advertisementData && this.advertisementData[key] && 'featured_image' in this.advertisementData[key];
   }
-
+  
+  ngAfterViewInit() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 }

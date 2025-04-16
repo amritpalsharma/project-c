@@ -276,8 +276,12 @@ export class HeaderComponent implements OnInit {
       this.loadCountries();
       this.loadToasterMsg();
     });
+    
   }
 
+  ngAfterViewInit() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
   loadCountries() {
     if (this.language === 'en') {
       this.countrie = this.countrie_en;

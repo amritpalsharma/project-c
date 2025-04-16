@@ -368,4 +368,8 @@ export class ContactComponent implements OnInit {
       this.errorTxt = translations['errorTxt'];
     });
   }
+
+  ngAfterViewInit() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 }

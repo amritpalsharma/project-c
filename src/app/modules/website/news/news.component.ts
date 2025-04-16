@@ -354,5 +354,8 @@ export class NewsComponent implements OnInit, OnDestroy {
     console.warn(this.images, originalArray, selectedItems);
   }
   
+  ngAfterViewInit() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 
 }

@@ -87,9 +87,10 @@ export class IndexComponent {
   heroSectionBgImage: string = '';
 
 
-  isLoading : boolean = true;
-  btnLoading : boolean = true;
+  isLoading: boolean = true;
+  btnLoading: boolean = true;
   countdown: number = 10;
+  talentBtnImage: string = 'assets/images/home/talent/1_light.png';
 
 
   players = [
@@ -114,7 +115,7 @@ export class IndexComponent {
     inline_rectangle: true,
   }
 
-  advertisementData:any = {
+  advertisementData: any = {
     skyscraper: {
       id: '1',
       featured_image: "leaderboard.png"
@@ -261,10 +262,6 @@ export class IndexComponent {
     this.isNavbarExpanded = !this.isNavbarExpanded;
   }
 
-  // // Method to set the selected content
-  // showContent(content: string): void {
-  //   this.selectedContent = content;
-  // }
 
   // Method to check if content is active
   isActive2(content: string): boolean {
@@ -275,6 +272,7 @@ export class IndexComponent {
   showCategory(category: string): void {
     this.selectedCategory = category;
     this.resetContentForCategory(category);
+    this.showContent(this.selectedContent);
   }
 
   // Reset content based on selected category
@@ -305,7 +303,39 @@ export class IndexComponent {
 
 
   showContent(content: string): void {
+    console.log(content)
     this.selectedContent = content;
+    let selected_btn = this.selectedCategory.toLowerCase();
+    let folder_slug;
+    let currentNumber = 0;
+
+    if (content == 'Sign-up & Profile Creation') {
+      currentNumber = 1;
+    } else if (content == 'Networking & Opportunity') {
+      currentNumber = 2;
+    } else if (content == 'Success & Progression') {
+      currentNumber = 3;
+    }
+    // let slug = currentNumber + '';
+    if (selected_btn == 'talent') {
+      folder_slug = 'talent';
+    } else {
+      folder_slug = 'club';
+    }
+    if (currentNumber == 1 && folder_slug == 'talent') {
+      let slug = localStorage.getItem('lang');
+      this.talentBtnImage = '/assets/images/home/' + folder_slug + '/' + slug + '_' + this.currentTheme + '.png';
+    } else if (currentNumber == 2 && folder_slug == 'club') {
+      this.talentBtnImage = '/assets/images/home/' + folder_slug + '/' + currentNumber + '_' + this.currentTheme + '.png';
+    } else {
+      let slug = localStorage.getItem('lang');
+      if(folder_slug == 'talent') {
+        this.talentBtnImage = '/assets/images/home/' + folder_slug + '/' + currentNumber + '_' + this.currentTheme + '.png';
+      }else{
+        this.talentBtnImage = '/assets/images/home/' + folder_slug + '/'+ slug +'_'+ currentNumber + '_' + this.currentTheme + '.png';
+      }
+      console.info(this.talentBtnImage)
+    } 
   }
 
   adVisible: boolean[] = [true, true, true, true, true]; // Array to manage ad visibility
@@ -320,10 +350,11 @@ export class IndexComponent {
     // alert(localStorage.getItem('lang'));
     this.webPages.languageId$.subscribe((data) => {
       this.getPageDynamicData(data);
+      this.showContent(this.selectedContent);
     });
 
-    this.themeService.theme$.subscribe(() => {
-      this.chnageHerosectionBgImg();
+    this.globalSettings.indexFunctionCall$.subscribe(() => {
+      this.showContent(this.selectedContent);
     });
     let selectedLang = localStorage.getItem('lang');
     // console.warn('In Index component LocalStorage Language selected = ' + selectedLang)
@@ -425,14 +456,14 @@ export class IndexComponent {
 
   isExists(key: any): boolean {
     return (this.advertisementData && key in this.advertisementData) || this.advertisementList.includes(key);
-  } 
+  }
 
   isFeaturedImageExists(key: any): boolean {
     return this.advertisementData && this.advertisementData[key] && 'featured_image' in this.advertisementData[key];
   }
   showRegisterModal() {
     const registerModal = bootstrap.Modal.getInstance(document.getElementById('exampleModal1'));
-    console.info('registerModal',registerModal);
+    console.info('registerModal', registerModal);
     if (registerModal) {
       registerModal.toggle();
     }
@@ -440,5 +471,13 @@ export class IndexComponent {
 
   indexFunction() {
     this.currentTheme = localStorage.getItem('theme') + '';
+  }
+
+  showImage(clicked: any) {
+
+  }
+
+  ngAfterViewInit() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }

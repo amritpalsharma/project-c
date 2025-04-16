@@ -32,7 +32,7 @@ export class PricingComponent {
 
   countryPrice: string = '';
   countryYearlyPrice: string = '';
-  pricing_banner_img: string = '../../../../assets/images/pricing-banner-image-light.png';
+  pricing_banner_img: string = '/assets/images/banner_images/pricing_banner_img.png';
   // pricing_banner_img_dark: string = '../../../../assets/images/pricing-banner-image-light.png';
 
   // adVisible: boolean[] = [true, true, true, true, true, true, true]; // Array to manage ad visibility
@@ -248,5 +248,8 @@ export class PricingComponent {
         }
       }
     })
+  }
+  ngAfterViewInit() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }

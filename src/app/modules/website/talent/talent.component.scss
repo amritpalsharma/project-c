@@ -849,10 +849,8 @@ img.bg-image {
 
 
 .price-heading3 {
-    height: 35px;
     color: white;
     text-transform: uppercase;
-    width: 100%;
     font-weight: bold;
 }
 
@@ -2654,13 +2652,16 @@ span {
     }
 
     .premium {
-        height: 450px;
-
+        height: unset;
     }
-
     .premium-img {
-        height: 200px;
+        height: unset;
+        padding-left: 0;
     }
+
+    // .premium-img {
+    //     height: 200px;
+    // }
 }
 
 @media (max-width: 575px) {
@@ -2871,7 +2872,7 @@ span {
     .premium-img {
         padding-top: 10px;
         padding-left: 0;
-        height: 180px;
+        height: auto;
     }
 
     // .premium-col-right {
@@ -3800,7 +3801,12 @@ span {
     text-align: right;
     font-size: 14px;
 }
-
+.billed_wrapp.first_plan_with_title {
+    margin-top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
 
 @media (min-width: 992px) {
@@ -3846,6 +3852,12 @@ span {
     }
 }
 
+@media (max-width: 767px) {
+.buy_now_btn_front_price .btn.fill_btn{
+    margin-bottom: 30px;
+}
+}
+
 @media (max-width: 575px) {
     .club_text {
       height: auto !important;
@@ -3863,6 +3875,14 @@ span {
   .accordion-body {
     padding-top: 0 !important;
   }
+  .billed_wrapp.first_plan_with_title {
+    flex-direction: column;
+    align-items: flex-start;
+    .plan_btn_and_text {
+        margin-left: auto;
+        margin-top: 1rem;
+    }
+}
   }
 
   .buy_now_btn_front_price .btn.fill_btn {
@@ -3875,8 +3895,16 @@ span {
     position: relative;
     z-index: 1;
 }
+<<<<<<< HEAD
 
 .light-theme .website-code .banner{
     // border: 5px solid red;
     background: url('/assets/images/talent_page/talent-page-banner.png'), #236115 !important;
 }
+=======
+@media (max-width: 400px) {
+    .premium-heading2 .red_text_plan {
+        display: block;
+    }
+    }
+>>>>>>> 4a35e8933f7d272629c7515bc6fc997136234e9b

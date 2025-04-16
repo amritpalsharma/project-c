@@ -167,7 +167,7 @@ export class ClubComponent {
         });
         if (this.pageData.feature_sctn && typeof this.pageData.feature_sctn != undefined) {
           this.feature_sctn = this.pageData.feature_sctn;
-
+          this.accordinCurrentIndex = 0;
           setTimeout(() => {
             this.getArrayItemByIndex(this.accordinCurrentIndex, 'image');
           }, 1000);
@@ -383,21 +383,16 @@ export class ClubComponent {
   getArrayItemByIndex(index: number, field: keyof FeatureSection) {
     // alert('button clicked')
     let theme = localStorage.getItem('theme');
-    console.info(this.feature_sctn);
+    // console.info(this.feature_sctn);
+    let lang = localStorage.getItem('lang');
+    let image_index = index + 1;
     if (index >= 0 && index < this.feature_sctn.length) {
       this.accordinCurrentIndex = index;
-      if (theme == 'dark') {
-        this.currentFeatureImage = this.feature_sctn[index]['dark_image'];
-      } else {
-        this.currentFeatureImage = this.feature_sctn[index]['image'];
-      }
+      this.currentFeatureImage = '/assets/images/club_page/features/'+image_index+'_'+lang+'_'+theme+'.png';
       if (this.currentFeatureImage != '') {
-        this.currentFeatureImage = this.baseUrl + this.currentFeatureImage;
+        this.currentFeatureImage = this.currentFeatureImage;
       }
-      // alert(this.currentFeatureImage)
-      console.warn('Index is ' + index + ' Image is ' + this.currentFeatureImage)
     }
-    console.warn('Index is ' + index + ' Image is ' + this.currentFeatureImage)
   }
   ThemeUpdated() {
     this.getArrayItemByIndex(this.accordinCurrentIndex, 'image');
@@ -412,5 +407,8 @@ export class ClubComponent {
       // Open the clicked tab
       this.activeIndex = index;
     }
+  }
+  ngAfterViewInit() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }

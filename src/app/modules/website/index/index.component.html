@@ -268,20 +268,16 @@
           <div class=" col-lg-6 col-md-6 col-12">
 
             <div class="talent-scroll" *ngIf="selectedCategory === 'Talent'">
-              <div class="player1" *ngIf="selectedContent === 'Sign-up & Profile Creation'" @slideIn>
+              <div class="player1" @slideIn>
                 <div class="row">
-
                   <div class="player-list-image">
-                    <img *ngIf="currentTheme == 'light'"
-                      src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[0]?.images}}" >
-                    <img *ngIf="currentTheme == 'dark'"
-                      src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[0]?.darkImages}}" >
+                    <img [src]="talentBtnImage" alt="">
                   </div>
                 </div>
               </div>
             </div>
 
-            <div class="talent-scroll" *ngIf="selectedCategory === 'Talent'">
+            <!-- <div class="talent-scroll" *ngIf="selectedCategory === 'Talent'">
               <div class="player2" *ngIf="selectedContent === 'Networking & Opportunity'" @slideIn>
                 <div class="row">
                   <div class="football-club player-list-image">
@@ -292,10 +288,10 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
 
 
-            <div class="talent-scroll" *ngIf="selectedCategory === 'Talent'">
+            <!-- <div class="talent-scroll" *ngIf="selectedCategory === 'Talent'">
               <div class="player3" *ngIf="selectedContent === 'Success & Progression'" @slideIn>
                 <div class="message-panels player-list-image">
                   <img *ngIf="currentTheme == 'light'"
@@ -304,23 +300,24 @@
                     src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[2]?.darkImages}}" >
                 </div>
               </div>
-            </div>
+            </div> -->
 
 
             <div class="talent-scroll" *ngIf="selectedCategory === 'Clubs & Scouts'">
-              <div class="player1" *ngIf="selectedContent === 'Sign-up & Profile Creation'" @slideIn>
+              <div class="player1" @slideIn>
                 <div class="row">
                   <div class="player-list-images">
-                    <img *ngIf="currentTheme == 'light'"
+                    <!-- <img *ngIf="currentTheme == 'light'"
                       src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[0]?.images}}" >
                     <img *ngIf="currentTheme == 'dark'"
-                      src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[0]?.darkImages}}" >
+                      src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[0]?.darkImages}}" > -->
+                      <img [src]="talentBtnImage" alt="">
                   </div>
                 </div>
               </div>
             </div>
 
-            <div class="talent-scroll" *ngIf="selectedCategory === 'Clubs & Scouts'">
+            <!-- <div class="talent-scroll" *ngIf="selectedCategory === 'Clubs & Scouts'">
               <div class="player2" *ngIf="selectedContent === 'Networking & Opportunity'" @slideIn>
                 <div class="row">
                   <div class="player-list-image">
@@ -342,7 +339,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

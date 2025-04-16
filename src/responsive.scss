@@ -23,7 +23,7 @@
     .es .website-code nav.navbar li.nav-item .nav-link, .pt .website-code nav.navbar li.nav-item .nav-link,
     .dk .website-code nav.navbar li.nav-item .nav-link, .se .website-code nav.navbar li.nav-item .nav-link,
     .de .website-code nav.navbar li.nav-item .nav-link {
-        font-size: 16px;
+        font-size: 15px;
     }
     .works {
     .player-list-image img, .player-list-images img {
@@ -596,7 +596,7 @@ td.cdk-column-Remove.mat-column-Remove svg {
                 line-height: 2;
             }
         }
-        .faq h3, h3.form-heading {
+        .faq h3, h3.form-heading, .latest-news h4 {
             font-size: 48px !important;
         }
         .talent-content .header {
@@ -715,6 +715,27 @@ td.cdk-column-Remove.mat-column-Remove svg {
             li a i {
                 font-size: 40px !important;
             }
+        }
+    }
+    .frontend_pages_larger_size {
+        .website_main_pages .price_mat_wrapper .feature-data button.btn.btn-join, .website_main_pages .news-slider button.learn-more {
+            height: auto !important;
+            padding: 15px 30px !important;
+            font-size: 32px !important;
+            width: auto !important;
+        }
+        h5.share {
+            font-size: 30px;
+        }
+        .website_main_pages .news_share_icons a {
+            font-size: 37px !important;
+            margin-right: 30px !important;
+            width: 40px;
+            height: 40px;
+            margin-top: 5px;
+        }
+        .learn-banner h1 {
+            font-size: 55px;
         }
     }
 }

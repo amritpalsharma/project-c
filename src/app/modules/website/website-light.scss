@@ -614,8 +614,14 @@ body {
 }
 
 .light-theme .website-code .banner {
+<<<<<<< HEAD
   // background: url(/assets/images/club-banner.png), #236115
   background: url('/assets/images/talent_page/talent-page-banner.png'), #236115 !important;
+=======
+  background: url(/assets/images/talent_page/talent-page-banner.png), #236115;
+  background-repeat: no-repeat;
+  background-size: cover;
+>>>>>>> 4a35e8933f7d272629c7515bc6fc997136234e9b
 }
 
 .light-theme .website-code .join-text:hover {
@@ -1295,7 +1301,7 @@ a {
   .price-heading3, .premium-heading2, .premium-col-right .premium-heading5, .premium-heading3,
   .countries h2.country-available, .contact-form .form-heading, h2.accordion-header, .work-text .progress_btn a,
   .common_static_page .content_page h4, .faq h3, .faq .header h4, .pricing .price_mat_wrapper .feature-box h4.free-heading,
-  .latest-news h4, .news_detail_text_container h3, .learn-banner h1, .player-list-code .player-list h1 {
+  .latest-news h4, .news_detail_text_container h3, .learn-banner h1, .player-list-code .player-list h1, .features1.py_0 .feature-heading3 {
     color: #357525 !important;
   }
   .premium-col-right .premium-text p, .billed_wrapp .inactive-text, .billed_wrapp .active-text,
@@ -1310,7 +1316,7 @@ a {
   .premium-text img {
     background-color: #E05263 !important;
   }
-  .features.py_0 {
+  .features.py_0, .features1.py_0 {
     background-color: #F5F5F5;
   }
   #footer img.web_footer_light {
