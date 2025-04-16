@@ -124,7 +124,7 @@ mat-card.mat-mdc-card.mdc-card {
   color: white;
   font-size: 16px;
   font-weight: 400;
-  padding: 80px 95px 0 80px;
+  padding: 20px 20px 0 20px;
 }
 
 /*--------------------------------------------------------------
@@ -192,7 +192,7 @@ mat-list-item {
 
 .country-name {
   color: white !important;
-  font-size: 20px !important;
+  font-size: 20px;
   margin-left: 32px;
   margin-bottom: 0;
 }
@@ -761,6 +761,12 @@ h3, .text_side_wrapper p {
 .club .club_player_dark {
 h3, .text_side_wrapper p {
   color: #072944 !important;
+}
+}
+
+@media (min-width: 2000px) {
+.content-image img {
+  height: auto !important;
 }
 }
 

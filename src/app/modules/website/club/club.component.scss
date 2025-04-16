@@ -83,6 +83,7 @@ a.btn.btn-register {
     font-weight: 700;
     height: 41px;
     width: 278px;
+    border: 0 !important;
 }
 
 .player-cols {
@@ -891,6 +892,7 @@ img.birthday-img {
 h2.accordion-header {
     font-size: 20px;
     width: 100%;
+    font-weight: 700;
 }
 
 button.btn.btn-danger {
@@ -2137,10 +2139,6 @@ span {
     .player-img3 img {
         width: 300px;
         height: 185px;
-    }
-
-    .features {
-        height: 830px;
     }
 
     .banner-image1 img {

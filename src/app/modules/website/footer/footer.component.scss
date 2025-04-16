@@ -441,15 +441,6 @@ input:checked+.slider:before {
   padding: 70px 0 30px 0;
 }
 
-// .footer-contact img {
-//   margin-bottom: 20px;
-// }
-
-// #footer .footer-top {
-//   padding: 0;
-// }
-
-
 #footer .footer-logo img {
   filter: brightness(0) invert(1) !important;
 }
@@ -493,7 +484,7 @@ input:checked+.slider:before {
   // color: #000;
   color: white;
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 500;
   margin-bottom: 10px;
 }
 
@@ -805,7 +796,7 @@ img.ng-star-inserted {
 .footer-contact img {
   margin-bottom: 20px;
   width: 218px;
-  height: 96px;
+  height: auto;
   object-fit: contain;
 }
 
@@ -1485,4 +1476,11 @@ option.countary {
   p, #footer .footer-top .footer-links ul li a {
     font-size: 20px !important;
   }
+}
+
+
+@media (min-width: 3000px) {
+.footer-contact img {
+  width: 320px;
+}
 }
