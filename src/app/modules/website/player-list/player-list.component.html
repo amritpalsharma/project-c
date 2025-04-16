@@ -27,7 +27,7 @@
             <div *ngIf="selectedTab === 'talent' && !isLoading">
               <div class="row">
                 <div class="col-lg-3 col-md-3 col-sm-4 col-6" *ngFor="let player of myTalents; let i = index">
-                  <div class="players player-card">
+                  <div class="players player-card" data-bs-toggle="modal" data-bs-target="#exampleModal1">
                     <div class="player1">
                       <div class="player-img">
                         <img [src]="player.meta.profile_image_path" alt="{{ player.first_name+' '+player.last_name }}"
@@ -103,7 +103,7 @@
               <div class="row">
                 <div class="col-lg-3 col-md-4 col-sm-4 col-6" *ngFor="let player of clubsArr; let i = index">
                   <div class="players player-card"
-                    [ngClass]="{ 'bg-red': player.name === 'Zidane', 'bg-green': player.name !== 'Zidane' }">
+                    [ngClass]="{ 'bg-red': player.name === 'Zidane', 'bg-green': player.name !== 'Zidane' }" data-bs-toggle="modal" data-bs-target="#exampleModal1">
                     <div class="player1">
                       <div class="player-img">
                         <img [src]="player.meta.profile_image_path" alt="{{ player.first_name + ' '+player.last_name }}"
@@ -190,7 +190,7 @@
             <div *ngIf="selectedTab === 'scouts' && !isLoading">
               <div class="row">
                 <div class="col-lg-3 col-md-4 col-sm-4 col-6" *ngFor="let player of ScoutPlayers; let i = index">
-                  <div class="players player-card">
+                  <div class="players player-card" data-bs-toggle="modal" data-bs-target="#exampleModal1">
                     <div class="player1">
                       <div class="player-img">
                         <img src="{{ player.meta.profile_image_path }}"
