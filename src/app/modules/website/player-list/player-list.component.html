@@ -46,10 +46,15 @@
                     </div>
                     <div class="flag">
                       <div class="flag-image7">
-                        <span
+                        <!-- <span
                           *ngIf="player.birth_country_flag && player.birth_country_flag != null && player.birth_country_flag != ''">
                           <img
                             [src]="player.birth_country_flag ? birthCountryFlags + player.birth_country_flag : './assets/images/default-flag.svg'"
+                            class="flag-img" />
+                        </span> -->
+                        <span *ngIf="player.user_nationalities && player.user_nationalities != ''">
+                          <img
+                            [src]="getFirstFlag(player.user_nationalities) ? getFirstFlag(player.user_nationalities) : './assets/images/default-flag.svg'"
                             class="flag-img" />
                         </span>
                         <div class="bottom-line"></div>
@@ -102,11 +107,12 @@
             <div *ngIf="selectedTab === 'club' && !isLoading">
               <div class="row">
                 <div class="col-lg-3 col-md-4 col-sm-4 col-6" *ngFor="let player of clubsArr; let i = index">
+                  <!-- <pre>{{player | json}}</pre> -->
                   <div class="players player-card"
                     [ngClass]="{ 'bg-red': player.name === 'Zidane', 'bg-green': player.name !== 'Zidane' }" data-bs-toggle="modal" data-bs-target="#exampleModal1">
-                    <div class="player1">
+                    <div class="player1 clubPlayers">
                       <div class="player-img">
-                        <img [src]="player.meta.profile_image_path" alt="{{ player.first_name + ' '+player.last_name }}"
+                        <img [src]="profileBaseUrl + player.current_club_logo" alt="{{ player.first_name + ' '+player.last_name }} ~ Club Log"
                           [ngClass]="{ 'bg-red': player.name === 'Zidane', 'bg-green': player.name !== 'Zidane' }"
                           (error)="setDefaultImage($event)" [ngClass]="{ 'default-img': isDefaultImage }">
                         <!-- <div *ngIf="player.name === 'Zidane'" class="image-text">{{'boosted' | translate}}</div> -->
@@ -136,7 +142,7 @@
                     </div> -->
                     <div class="flag">
                       <div class="flag-image7" *ngIf="getFlagPath(player.user_nationalities)">
-                        <img [src]="getFlagPath(player.user_nationalities)" class="flag-img" />
+                        <img [src]="flagPath + player.current_club_country" class="flag-img" />
                         <div class="bottom-line"></div>
                         <div class="flag-bottom">
                           <!-- <img src="./assets/images/birthday.svg" class="birthday-img" /> -->
@@ -191,7 +197,7 @@
               <div class="row">
                 <div class="col-lg-3 col-md-4 col-sm-4 col-6" *ngFor="let player of ScoutPlayers; let i = index">
                   <div class="players player-card" data-bs-toggle="modal" data-bs-target="#exampleModal1">
-                    <div class="player1">
+                    <div class="player1 scoutsArr">
                       <div class="player-img">
                         <img src="{{ player.meta.profile_image_path }}"
                           alt="{{ player.first_name + ' ' + player.last_name }}" (error)="setDefaultImage($event)" [ngClass]="{ 'default-img': isDefaultImage }">

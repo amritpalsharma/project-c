@@ -1441,7 +1441,7 @@
   "alreadyPurchased": "Déjà acheté",
   "portfolioDeleteConfirmation": "Êtes-vous sûr de vouloir supprimer ce talent de votre portfolio ?",
   "portfolioDeletebtn": "Supprimer",
-  "portfolioCloseBtn": "Fermer",
+  "portfolioCloseBtn": "Annuler",
   "PAGINATOR": {
     "ITEMS_PER_PAGE": "Articles par page",
     "NEXT_PAGE": "Page suivante",

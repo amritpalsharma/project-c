@@ -134,11 +134,13 @@ select#numberSelect {
     border-radius: 5px;
     background-image: linear-gradient(45deg, #C2A64A, #A77A2E);
 }
+
 .players.player-card .player1:hover {
     .player-img img {
         transform: scale(1.15);
     }
 }
+
 .tabs {
     margin-bottom: 40px;
     display: flex;
@@ -296,6 +298,7 @@ button.next-page {
     align-items: center;
     padding: 13px;
     font-size: 16px;
+
     p {
         font-size: inherit !important;
     }
@@ -501,6 +504,7 @@ button.page-active {
                 transition: .4s all;
             }
         }
+
         .image-text {
             height: 36px;
             width: 92px;
@@ -549,14 +553,17 @@ button.page-active {
         justify-content: center;
         align-items: center;
     }
+
     .players.player-card .flag-image7 {
         transform: scale(0.75);
         bottom: 35px;
         left: 8px;
     }
+
     .player-list .tabs {
         width: 100%;
     }
+
     .players.player-card .player1 .player-img:after {
         width: 60px;
         height: 55px;
@@ -627,10 +634,11 @@ button.page-active {
     position: relative;
 }
 
-.default-img{
+.default-img {
     padding-top: 0px !important;
     position: relative;
 }
+
 .make-loader-center {
     position: absolute;
     left: 50%;
@@ -640,29 +648,42 @@ button.page-active {
 }
 
 @media (min-width: 2000px) {
-.players.player-card .player1 .player-img:after {
-    bottom: 38px;
-}
-.players.player-card .flag-image7 {
-    bottom: 48px;
-}
-.players.player-card .player1 .image-text {
-    height: 46px;
-    width: 122px;
-    padding: 15px 5px;
-    font-size: 16px;
-}
-.pagination-controls label {
-    font-size: inherit;
-}
+    .players.player-card .player1 .player-img:after {
+        bottom: 38px;
+    }
+
+    .players.player-card .flag-image7 {
+        bottom: 48px;
+    }
+
+    .players.player-card .player1 .image-text {
+        height: 46px;
+        width: 122px;
+        padding: 15px 5px;
+        font-size: 16px;
+    }
+
+    .pagination-controls label {
+        font-size: inherit;
+    }
 }
 
 @media (min-width: 2560px) {
-.player1 {
-    height: 460px;
+    .player1 {
+        height: 460px;
+    }
+
+    img.birthday-img {
+        height: 38px !important;
+        width: 38px !important;
+    }
 }
-img.birthday-img {
-    height: 38px !important;
-    width: 38px !important;
+
+
+::ng-deep .clubPlayers .player-img::before {
+    width: 0 !important;
 }
+
+::ng-deep .scoutsArr .player-img::before {
+    width: 0 !important;
 }

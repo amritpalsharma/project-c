@@ -21,7 +21,7 @@ export class ClubComponent {
   currentFeatureImage: string = '';
   accordinCurrentIndex: number = 0;
   feature_sctn: any = [];
-  currentTheme: string = localStorage.getItem('theme') + '';
+  currentTheme: string = localStorage.getItem('theme') || 'light';
   pageData: any = [{
     banner_title: '',
     banner_desc: '',
@@ -383,6 +383,9 @@ export class ClubComponent {
   getArrayItemByIndex(index: number, field: keyof FeatureSection) {
     // alert('button clicked')
     let theme = localStorage.getItem('theme');
+    if (typeof theme === 'undefined' || theme == null) {
+      theme = 'light';
+    }
     // console.info(this.feature_sctn);
     let lang = localStorage.getItem('lang');
     let image_index = index + 1;

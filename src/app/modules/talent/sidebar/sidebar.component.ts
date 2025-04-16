@@ -25,19 +25,31 @@ export class SidebarComponent implements OnInit {
     if (typeof this.loggedInUser !== 'undefined' && this.loggedInUser !== null && this.loggedInUser !== '') {
       // Do something
       this.loggedInUser = JSON.parse(this.loggedInUser);
-    }else{
+    } else {
       // window.location.reload();
     }
-    
-    console.warn(this.loggedInUser.status)
-    if (this.loggedInUser && this.loggedInUser.status != '' && this.loggedInUser.status != undefined) {
-      if (this.loggedInUser.status == 2) {
+
+    // console.warn(this.loggedInUser.status)
+    // if (this.loggedInUser && this.loggedInUser.status != '' && this.loggedInUser.status != undefined) {
+    //   if (this.loggedInUser.status == 2) {
+    //     this.isUserVerified = true;
+    //   } else {
+    this.isUserVerified = false;
+    //   }
+    // }
+    this.getUserStatus();
+  }
+
+  getUserStatus() {
+    this.socketService.getLoggedInUserStatus().then((result) => {
+      if (result == 2) {
         this.isUserVerified = true;
       } else {
         this.isUserVerified = false;
       }
-    }
+    });
   }
+  
 
   toggleState(): void {
     this.sidebarOpen = !this.sidebarOpen; // Toggles the sidebar state

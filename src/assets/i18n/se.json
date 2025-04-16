@@ -1371,7 +1371,7 @@
   "alreadyPurchased": "Redan köpt",
   "portfolioDeleteConfirmation": "Är du säker på att du vill ta bort denna talang från din portfölj?",
   "portfolioDeletebtn": "Ta bort",
-  "portfolioCloseBtn": "Stäng",
+  "portfolioCloseBtn": "Avbryt",
   "PAGINATOR": {
     "ITEMS_PER_PAGE": "Objekt per sida",
     "NEXT_PAGE": "Nästa sida",
