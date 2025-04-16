@@ -4,21 +4,27 @@
 h1 {
     font-size: 45px;
 }
+
 h2 {
     font-size: 40px;
 }
+
 h3 {
     font-size: 35px;
 }
+
 h4 {
     font-size: 22px;
 }
+
 h5 {
     font-size: 20px;
 }
+
 p {
     font-size: 18px;
 }
+
 .py_0 {
     padding-top: 50px;
     padding-bottom: 50px;
@@ -788,6 +794,7 @@ img.birthday-img {
     padding: 25px;
     border-radius: 10px;
     height: 100%;
+
     img {
         width: 62px;
         height: 62px;
@@ -1433,6 +1440,7 @@ span {
 .billed_wrapp {
     margin-top: 50px;
 }
+
 .billed {
     display: flex;
     justify-content: right;
@@ -1512,6 +1520,7 @@ span {
     color: white;
     /* Color for inactive text */
 }
+
 .billed_wrapp.first_plan_with_title {
     margin-top: 0;
     display: flex;
@@ -2736,6 +2745,7 @@ span {
         height: 480px;
 
     }
+
     .accodian-image3 img {
         height: 170px;
         width: 200px;
@@ -2765,91 +2775,115 @@ span {
     .player-col-2 .player-name1 {
         width: 192px;
     }
+
     .player10 {
         height: 210px;
         width: 105px;
     }
+
     .player10 .player-img img {
         height: 200px;
         width: 100px;
     }
-    .player-name10, .player-name11 {
+
+    .player-name10,
+    .player-name11 {
         width: 100px;
         padding-left: 80px;
     }
+
     .banner-left {
         margin-right: 10%;
     }
+
     .player3 {
         height: 125px;
         width: 200px;
     }
+
     .player-img3 img {
         width: 192px;
         border-radius: 5px 5px 0px 0px;
     }
+
     .player2 {
         height: 200px;
         width: 200px;
     }
+
     .banner .player2 .player-img img {
         height: 192px;
         width: 192px;
     }
-    .player-member2{
+
+    .player-member2 {
         top: 49%;
         right: 46%;
     }
-    .player-member3{
+
+    .player-member3 {
         top: 72%;
         right: 46%;
     }
-    .player-member4{
+
+    .player-member4 {
         top: 18%;
         right: 28%;
     }
-    .player-member5{
+
+    .player-member5 {
         top: 41%;
         right: 28%;
     }
-    .player-member6{
+
+    .player-member6 {
         top: 64%;
         right: 28%;
     }
-    .player-member8{
+
+    .player-member8 {
         top: 42%;
         right: 10%;
     }
-    .player-member9{
+
+    .player-member9 {
         top: 65%;
         right: 10%;
     }
-    .player-member12{
+
+    .player-member12 {
         top: 49%;
     }
+
     .button4 {
         right: 25px;
         top: 8%;
     }
+
     .button1 {
         top: 81%;
     }
-    .feature-player2{
+
+    .feature-player2 {
         right: 174px;
     }
+
     .club-offers3 img {
         bottom: 10%;
         width: 440px;
         height: 300px;
     }
+
     .accodian-image2 img {
         width: 240px;
         height: 200px;
     }
+
     .accodian-image3 img {
         height: 165px;
         width: 195px;
     }
+
     .networking-images1 img {
         left: 7%;
     }
@@ -3845,64 +3879,80 @@ span {
     }
 
 }
+
 @media (max-width: 821px) {
     .feature-player2 {
         right: 46%;
     }
+
     .feature-player3 {
         top: 13%;
         right: 19%;
     }
+
     .button1 {
         left: 5%;
     }
+
     .button3 {
         top: 62%;
         right: 175px;
     }
+
     .button4 {
         top: 5%;
         right: 32%;
     }
+
     .club-offers1 img {
         top: 2%;
         right: 0;
         left: 6%;
     }
+
     .accodian-image2 img {
         left: 17%;
     }
+
     .accodian-image1 img {
         top: 17%;
         right: 28%;
     }
+
     .accodian-image3 img {
         right: 18%;
     }
+
     .networking-images2 img {
         right: 16%;
         top: 20%;
     }
 
 }
-@media (max-width: 769px){
+
+@media (max-width: 769px) {
     .feature-player2 {
         top: 41%;
         right: 42%;
         height: 228px;
         width: 228px;
     }
+
     .feature-player3 {
         top: 13%;
         right: 13%;
         height: 228px;
         width: 228px;
     }
+
     .button4 {
         top: 5%;
         right: 27%;
     }
-    .feature-player3 .flag-image7, .feature-player2 .flag-image4, .feature-player1 .flag-image{
+
+    .feature-player3 .flag-image7,
+    .feature-player2 .flag-image4,
+    .feature-player1 .flag-image {
         top: 125px;
         right: 118px;
     }
@@ -4800,10 +4850,11 @@ span {
 
 
 }
+
 @media (max-width: 394px) {
-.btn {
-    padding: 8px 10px;
-}
+    .btn {
+        padding: 8px 10px;
+    }
 }
 
 @media (max-width: 391px) {
@@ -5733,6 +5784,7 @@ span {
     text-align: right;
     font-size: 14px;
 }
+
 .premium-heading2 {
     .red_text_plan {
         font-size: 14px;
@@ -5742,79 +5794,89 @@ span {
 
 
 @media (min-width: 992px) {
-.banner_image_combo img {
-    width: 55%;
-    height: calc(100% - 130px);
-    position: absolute;
-    right: 0;
-    top: 130px;
-    object-fit: cover;
-    object-position: top left;
-}
-.talent_tab_image img.single_tab_img {
-    width: 48%;
-    max-height: 100%;
-    position: absolute;
-    right: 0;
-    top: 0;
-    object-fit: contain;
-}
+    .banner_image_combo img {
+        width: 55%;
+        height: calc(100% - 130px);
+        position: absolute;
+        right: 0;
+        top: 130px;
+        object-fit: cover;
+        object-position: top left;
+    }
+
+    .talent_tab_image img.single_tab_img {
+        width: 48%;
+        max-height: 100%;
+        position: absolute;
+        right: 0;
+        top: 0;
+        object-fit: contain;
+    }
 }
 
 @media (max-width: 991px) {
-.banner {
-    height: auto;
-}
-.banner-data1 {
-    position: relative;
-    z-index: 2;
-    padding-top: 150px;
-}
-.banner-left {
-    position: unset;
-    margin-right: 0;
-}
-.banner_image_combo img {
-    width: calc(100% + .75rem);
-    margin-top: 1.5rem;
-}
-.talent_tab_image img.single_tab_img {
-    width: 100%;
-    object-fit: contain;
-}
+    .banner {
+        height: auto;
+    }
+
+    .banner-data1 {
+        position: relative;
+        z-index: 2;
+        padding-top: 150px;
+    }
+
+    .banner-left {
+        position: unset;
+        margin-right: 0;
+    }
+
+    .banner_image_combo img {
+        width: calc(100% + .75rem);
+        margin-top: 1.5rem;
+    }
+
+    .talent_tab_image img.single_tab_img {
+        width: 100%;
+        object-fit: contain;
+    }
 }
 
 @media (max-width: 767px) {
-    .buy_now_btn_front_price .btn.fill_btn{
+    .buy_now_btn_front_price .btn.fill_btn {
         margin-bottom: 30px;
     }
 }
 
 @media (max-width: 575px) {
-  .club_text {
-    height: auto !important;
-    padding: 20px;
-}
-.accordion-flex img {
-    margin-right: 10px;
-    width: 30px !important;
-    height: 36px;
-    min-width: 30px !important;
-}
-.feature-text {
-    margin-left: 18px !important;
-}
-.banner_image_combo img {
-    width: calc(100% + .75rem);
-}
-.billed_wrapp.first_plan_with_title {
-    flex-direction: column;
-    align-items: flex-start;
-    .plan_btn_and_text {
-        margin-left: auto;
-        margin-top: 1rem;
+    .club_text {
+        height: auto !important;
+        padding: 20px;
     }
-}
+
+    .accordion-flex img {
+        margin-right: 10px;
+        width: 30px !important;
+        height: 36px;
+        min-width: 30px !important;
+    }
+
+    .feature-text {
+        margin-left: 18px !important;
+    }
+
+    .banner_image_combo img {
+        width: calc(100% + .75rem);
+    }
+
+    .billed_wrapp.first_plan_with_title {
+        flex-direction: column;
+        align-items: flex-start;
+
+        .plan_btn_and_text {
+            margin-left: auto;
+            margin-top: 1rem;
+        }
+    }
 }
 
 
@@ -5830,7 +5892,15 @@ span {
 }
 
 @media (max-width: 400px) {
-.premium-heading2 .red_text_plan {
-    display: block;
+    .premium-heading2 .red_text_plan {
+        display: block;
+    }
 }
+
+.club_page_accordion .feature-players {
+    display: none;
+}
+
+.club_page_accordion .active {
+    display: block;
 }
