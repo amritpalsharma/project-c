@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { AuthService } from '../services/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class GlobalSettingsService {
   private defaultDomainId: number = 1;
   private indexFunctionCallSubject = new Subject<void>();
   indexFunctionCall$ = this.indexFunctionCallSubject.asObservable();
-  constructor() {
+  constructor(private authService: AuthService) {
     this.setDefaultLanguage();
   }
 
@@ -135,7 +136,7 @@ export class GlobalSettingsService {
 
   getDeviceType() {
     const ua = navigator.userAgent;
-  
+
     if (/tablet|ipad|playbook|silk/i.test(ua)) {
       return "tablet";
     }
@@ -144,5 +145,9 @@ export class GlobalSettingsService {
     }
     return "desktop";
   }
-  
+
+  getPlansLink() {
+    return this.authService.getPlansPageLink();
+  }
+
 }

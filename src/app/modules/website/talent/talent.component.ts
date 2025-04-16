@@ -63,15 +63,18 @@ export class TalentComponent {
   countryPrice: number = 0;
   countryYearlyPrice: number = 0;
 
+
+
   setActiveAccordion(index: number): void {
     this.activeAccordionIndex = index;
   }
 
   constructor(private webPages: WebPages, private globalSettings: GlobalSettingsService) { }
 
+  plansPageLink: any = this.globalSettings.getPlansLink();
   isActivePlan: { [key: number]: boolean } = {}; // Keeps track of toggle states for each pricing plan
 
-  selectedLangSlug : string = localStorage.getItem('lang') || "en";
+  selectedLangSlug: string = localStorage.getItem('lang') || "en";
 
   ngOnInit() {
     // Retrieve the states from local storage
@@ -179,7 +182,7 @@ export class TalentComponent {
 
         if (this.currentTheme == 'dark' || this.currentTheme == 'light' && this.currentTheme != null) {
 
-        }else{
+        } else {
           this.currentTheme = 'light';
         }
 
@@ -345,11 +348,11 @@ export class TalentComponent {
     this.getArrayItemByIndex(this.accordinCurrentIndex, 'image');
   }
 
-  custIndex : any = 1;
+  custIndex: any = 1;
 
   getArrayItemByIndex(index: number, field: keyof FeatureSection) {
     let theme = localStorage.getItem('theme');
-    this.custIndex = index+1;
+    this.custIndex = index + 1;
     // alert(index);
     if (index >= 0 && index < this.feature_sctn.length) {
       this.accordinCurrentIndex = index;

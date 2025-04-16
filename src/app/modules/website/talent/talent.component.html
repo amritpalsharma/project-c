@@ -387,7 +387,8 @@
                                 </h3>
                                 
                                 <div class="buy_now_btn_front_price">
-                                    <a href="" class="btn fill_btn">{{ 'buyNow' | translate }}</a>
+                                    <a *ngIf="plansPageLink && plansPageLink.length > 0" [routerLink]="plansPageLink" class="btn fill_btn">{{ 'buyNow' | translate }}</a>
+                                    <a *ngIf="!plansPageLink" data-bs-toggle="modal" data-bs-target="#exampleModal1" class="btn fill_btn">{{ 'buyNow' | translate }}</a>
                                 </div>
                             </div>
                         </div>

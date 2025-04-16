@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { WebPages } from '../../../services/webpages.service';
+import { GlobalSettingsService } from '../../../services/global-settings.service';
 
 @Component({
   selector: 'app-pricing',
@@ -11,9 +12,9 @@ export class PricingComponent {
   isActive2 = true; // Multi-Country Plan
   isActive3 = true; // Boost Profile Plan
   pageData: any; // To hold the API response data
-  advertisemnet_base_url:string= '';
-  isLoading : boolean = true;
-  btnLoading : boolean = true;
+  advertisemnet_base_url: string = '';
+  isLoading: boolean = true;
+  btnLoading: boolean = true;
   countdown: number = 10;
   // advertisemnet_base_url: string = '';
   base_url: string = '';
@@ -38,8 +39,10 @@ export class PricingComponent {
   // adVisible: boolean[] = [true, true, true, true, true, true, true]; // Array to manage ad visibility
   adVisible: boolean[] = [false, false, false, false, false, false, false];
 
-  constructor(private webPages: WebPages) { }
-
+  constructor(private webPages: WebPages,
+    private globalSettings: GlobalSettingsService
+  ) { }
+  plansPageLink: any = this.globalSettings.getPlansLink();
   ngOnInit() {
     // Retrieve the states from local storage
     const savedState1 = localStorage.getItem('toggleState1');
@@ -60,8 +63,8 @@ export class PricingComponent {
     });
   }
 
-  
-  advertisementList: any =null;
+
+  advertisementList: any = null;
 
 
   isActive: any = {
@@ -146,7 +149,7 @@ export class PricingComponent {
         this.advertisementList = res?.data?.allAdsList;
 
         // this.pricing_banner_img = this.pageData.pricing_banner_img;
-        this.base_url = res.data.base_url; 
+        this.base_url = res.data.base_url;
         this.isLoading = false;
         this.startCountdown();
       }

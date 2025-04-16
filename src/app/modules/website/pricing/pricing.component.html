@@ -60,7 +60,9 @@
                       <!-- {{isActive1 ? pageData?.first_tab_yearly_price: pageData?.first_tab_monthly_price}}<span>.- CHF / {{ isActive1 ? ('year' | translate) : ('month' | translate) }}</span> -->
                     </h3>
                     <div class="buy_now_btn_front_price">
-                      <a href="" class="btn w-100 fill_btn">{{ 'buyNow' | translate }}</a>
+                      <!-- <a href="" class="btn w-100 fill_btn">{{ 'buyNow' | translate }}</a> -->
+                      <a *ngIf="plansPageLink" [routerLink]="plansPageLink" class="btn fill_btn">{{ 'buyNow' | translate }}</a>
+                      <a *ngIf="!plansPageLink" data-bs-toggle="modal" data-bs-target="#exampleModal1" class="btn fill_btn">{{ 'buyNow' | translate }}</a>
                     </div>
                   </div>
                 </div>
@@ -109,7 +111,9 @@
                       <!-- {{ isActive2 ? pageData?.sec_tab_yearly_price : pageData?.sec_tab_monthly_price }}<span>.- CHF / {{ isActive2 ? ('year' | translate) : ('month' | translate) }}</span> -->
                     </h3>
                     <div class="buy_now_btn_front_price">
-                      <a href="" class="btn w-100 fill_btn">{{ 'buyNow' | translate }}</a>
+                      <!-- <a href="" class="btn w-100 fill_btn">{{ 'buyNow' | translate }}</a> -->
+                      <a *ngIf="plansPageLink" [routerLink]="plansPageLink" class="btn fill_btn">{{ 'buyNow' | translate }}</a>
+                      <a *ngIf="!plansPageLink" data-bs-toggle="modal" data-bs-target="#exampleModal1" class="btn fill_btn">{{ 'buyNow' | translate }}</a>
                     </div>
                   </div>
                 </div>
@@ -159,7 +163,9 @@
                           pageData?.third_tab_monthly_label}}</span>
                     </h3>
                     <div class="buy_now_btn_front_price">
-                      <a href="" class="btn w-100 fill_btn">{{ 'buyNow' | translate }}</a>
+                      <!-- <a href="" class="btn w-100 fill_btn">{{ 'buyNow' | translate }}</a> -->
+                      <a *ngIf="plansPageLink" [routerLink]="plansPageLink" class="btn fill_btn">{{ 'buyNow' | translate }}</a>
+                      <a *ngIf="!plansPageLink" data-bs-toggle="modal" data-bs-target="#exampleModal1" class="btn fill_btn">{{ 'buyNow' | translate }}</a>
                     </div>
                   </div>
                 </div>

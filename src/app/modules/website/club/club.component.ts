@@ -66,7 +66,7 @@ export class ClubComponent {
   constructor(private webPages: WebPages, private globalSettings: GlobalSettingsService) {
 
   }
-
+  plansPageLink: any = this.globalSettings.getPlansLink();
   setActiveAccordion(index: number): void {
     this.activeAccordionIndex = index;
   }
