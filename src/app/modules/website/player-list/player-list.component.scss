@@ -1,6 +1,6 @@
 h1 {
     font-size: 45px;
-    font-weight: 600;
+    font-weight: 700;
     color: white;
     margin-bottom: 50px;
     padding-top: 50px;
@@ -17,6 +17,7 @@ h1 {
 // boosted
 .player-img {
     position: relative;
+    overflow: hidden;
 }
 
 .image-wrapper {
@@ -99,7 +100,7 @@ button.faq-club-button.active {
 
 label {
     display: inline-block;
-    font-size: 14px;
+    font-size: 16px;
     color: white;
     font-weight: 400;
 }
@@ -127,12 +128,17 @@ select#numberSelect {
 }
 
 .player1 {
-    height: 290px;
+    overflow: hidden;
+    height: 310px;
     object-fit: cover;
     border-radius: 5px;
     background-image: linear-gradient(45deg, #C2A64A, #A77A2E);
 }
-
+.players.player-card .player1:hover {
+    .player-img img {
+        transform: scale(1.15);
+    }
+}
 .tabs {
     margin-bottom: 40px;
     display: flex;
@@ -170,20 +176,22 @@ select#numberSelect {
 }
 
 .player-name7 {
-    background: linear-gradient(145deg, #6FB95D, #236115);
+    background: linear-gradient(to bottom, #6FB95D, #236115);
     color: white;
+    height: auto !important;
     bottom: 5px;
-    height: 30px;
-    font-size: 15px;
+    font-size: 14px;
     position: absolute;
+    width: calc(100% - 10px) !important;
     text-align: center;
-    line-height: 30px;
+    line-height: 1.45;
     margin-right: 5px;
     margin-left: 5px;
     border-radius: 0px 0px 5px 5px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    padding: 5px;
 }
 
 .player-img::before {
@@ -236,6 +244,7 @@ p.d-o-b {
 
 .flag-bottom {
     display: flex;
+    align-items: center;
 }
 
 .bottom-line {
@@ -249,12 +258,12 @@ p.d-o-b {
 img.flag-img {
     width: 56px;
     height: 45px;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 img.birthday-img {
-    height: 20px;
-    width: 20px;
+    height: 28px;
+    width: 28px;
 }
 
 button.prev-page {
@@ -276,7 +285,6 @@ button.prev-page {
 }
 
 button.next-page {
-    width: 77px;
     height: 36px;
     border-radius: 4px;
     background-color: white;
@@ -287,6 +295,10 @@ button.next-page {
     text-align: center;
     align-items: center;
     padding: 13px;
+    font-size: 16px;
+    p {
+        font-size: inherit !important;
+    }
 }
 
 p {
@@ -305,27 +317,23 @@ i.fa-solid.fa-angle-right {
 
 button.page-active.active {
     color: white;
-    height: 36px;
-    width: 33px;
-    padding: 0;
-    margin: 0;
-    font-size: 14px;
-    border-radius: 4px;
-    border: none;
-    margin-left: 10px;
 }
 
 button.page-active {
-    width: 33px;
+    width: 36px;
     height: 36px;
     background-color: white;
     color: #313131;
-    font-size: 14px;
+    font-size: 16px;
+    line-height: 0;
     padding: 0;
     margin: 0;
     border-radius: 4px;
     margin-left: 10px;
     border: 1px solid #E9E9E9;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 @media (max-width: 1199px) {
@@ -344,7 +352,6 @@ button.page-active {
     img.flag-img {
         width: 38px;
         height: 30px;
-        object-fit: cover;
     }
 
     img.birthday-img {
@@ -435,7 +442,6 @@ button.page-active {
     }
 
     button.next-page {
-        width: 60px;
         height: 30px;
         padding: 7px;
         margin-left: 5px;
@@ -492,13 +498,9 @@ button.page-active {
                 object-fit: contain;
                 // object-position: top center;
                 padding-top: 20px;
+                transition: .4s all;
             }
         }
-
-        p.player-name7 {
-            width: calc(100% - 10px) !important;
-        }
-
         .image-text {
             height: 36px;
             width: 92px;
@@ -635,4 +637,32 @@ button.page-active {
     top: 50%;
     transform: translate(-50%, -50%);
     margin-top: 0 !important;
+}
+
+@media (min-width: 2000px) {
+.players.player-card .player1 .player-img:after {
+    bottom: 38px;
+}
+.players.player-card .flag-image7 {
+    bottom: 48px;
+}
+.players.player-card .player1 .image-text {
+    height: 46px;
+    width: 122px;
+    padding: 15px 5px;
+    font-size: 16px;
+}
+.pagination-controls label {
+    font-size: inherit;
+}
+}
+
+@media (min-width: 2560px) {
+.player1 {
+    height: 460px;
+}
+img.birthday-img {
+    height: 38px !important;
+    width: 38px !important;
+}
 }

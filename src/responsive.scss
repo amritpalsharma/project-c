@@ -532,6 +532,13 @@ td.cdk-column-Remove.mat-column-Remove svg {
         font-size: 20px !important;
     }
 }
+
+.player-list-code {
+    button.faq-club-button, button.faq-talent-button {
+        width: auto !important;
+        font-size: 26px !important;
+    }
+}
 }
 
 
@@ -734,7 +741,7 @@ td.cdk-column-Remove.mat-column-Remove svg {
             height: 40px;
             margin-top: 5px;
         }
-        .learn-banner h1 {
+        .learn-banner h1, .player-list-code .player-list h1{
             font-size: 55px;
         }
     }
@@ -1221,5 +1228,17 @@ table.table  th {
 }
 .mobile_search .nav-link img {
     width: 25px;
+}
+}
+
+@media (max-width: 350px) {
+.page-header .theme_dropdown {
+    margin-left: -5px;
+}
+.page-header .notification_dropdown {
+    .nav-link.nav-action {
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+    }
 }
 }
