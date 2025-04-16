@@ -118,8 +118,8 @@
                                         <div class="accordion-flex" data-bs-toggle="collapse"
                                             [attr.data-bs-target]="'#collapse' + (i + 1)" aria-expanded="false"
                                             [attr.aria-controls]="'collapse' + (i + 1)">
-                                            <img class="light-feature1" src="{{baseUrl + feature.icon}}">
-                                            <img class="dark-feature1" src="{{baseUrl + feature.dark_icon}}">
+                                            <img class="light-feature1" src="/assets/images/club_page/icons/{{i}}_light.svg">
+                                            <img class="dark-feature1" src="/assets/images/club_page/icons/{{i}}_dark.svg">
                                             <!-- <h2 class="accordion-header" (click)="getArrayItemByIndex(i,'dark_image')">
                                                 {{feature.title}}
                                             </h2> -->
@@ -207,150 +207,6 @@
                         <div class="left-accordion">
                             <h3 class="feature-heading3">{{pageData?.feature_sctn_title}}</h3>
                             <div class="accordion" id="accordionExample">
-                                <!-- <ng-container *ngFor="let feature of pageData.feature_sctn; let i = index">
-                                    <div class="accordion-item" (click)="setActiveAccordion(1)">
-                                        <div class="accordion-item" (click)="setActiveAccordion(i+1)">
-                                            <div class="accordion-flex" data-bs-toggle="collapse"
-                                                [attr.data-bs-target]="'#collapseOne' + i" aria-expanded="false"
-                                                [attr.aria-controls]="'collapseOne' + i">
-                                                <img class="light-feature1" src="{{baseUrl + feature.icon}}">
-                                                <img class="dark-feature1" src="{{baseUrl + feature.dark_icon}}">
-                                                <h2 class="accordion-header">
-                                                    {{feature.title}}
-                                                </h2>
-                                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                                    [attr.data-bs-target]="'#collapseOne' + i" aria-expanded="false"
-                                                    [attr.aria-controls]="'collapseOne' + i">
-                                                </button>
-                                            </div>
-                                            <div [id]="'collapseOne' + i" class="accordion-collapse collapse"
-                                                data-bs-parent="#accordionExample">
-                                                <div class="accordion-body">
-                                                    <p class="feature-text">{{feature.desc}}
-                                                    </p>
-                                                    <div class="talent_tab_image">
-                                                        <img class="single_tab_img light-images"
-                                                            src="{{baseUrl + feature.image}}">
-                                                        <img class="single_tab_img dark-images"
-                                                            src="{{baseUrl + feature.dark_image	}}">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </ng-container> -->
-                                <!-- <div class="accordion-item" (click)="setActiveAccordion(1)">
-                                    <div class="accordion-flex" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-                                        aria-expanded="true" aria-controls="collapseOne">
-                                        <img class="light-feature1" src="./assets/images/talent-feature-icon.svg">
-                                        <img class="dark-feature1" src="./assets/images/talent-dark-f1.svg">
-                                        <h2 class="accordion-header">
-                                            Access to Talent Database
-                                        </h2>
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#collapseOne" aria-expanded="true"
-                                            aria-controls="collapseOne">
-                                        </button>
-                                    </div>
-                                    <div id="collapseOne" class="accordion-collapse collapse show"
-                                        data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                            <p class="feature-text">Browse a comprehensive database of football talents
-                                                with detailed profiles and filtering options.</p>
-                                            <div class="talent_tab_image">
-                                                <img class="single_tab_img light-images"
-                                                    src="./assets/images/foto-club-dark-1.png">
-                                                <img class="single_tab_img dark-images"
-                                                    src="./assets/images/foto-club-dark-1.png">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="accordion-item" (click)="setActiveAccordion(2)">
-                                    <div class="accordion-flex" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-                                        aria-expanded="false" aria-controls="collapseTwo">
-                                        <img class="light-feature2" src="./assets/images/talent-feature-icon2.svg">
-                                        <img class="dark-feature2" src="./assets/images/talent-dark-f2.svg">
-                                        <h2 class="accordion-header">Detailed Player Profiles</h2>
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-                                            aria-expanded="false" aria-controls="collapseTwo">
-                                        </button>
-                                    </div>
-                                    <div id="collapseTwo" class="accordion-collapse collapse"
-                                        data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                            <p class="feature-text"> View in-depth profiles of players, including
-                                                statistics, achievements, and personal information.</p>
-                                            <div class="talent_tab_image">
-                                                <img class="single_tab_img light-images"
-                                                    src="./assets/images/foto-club-dark-2.png">
-                                                <img class="single_tab_img dark-images"
-                                                    src="./assets/images/foto-club-dark-2.png">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="accordion-item" (click)="setActiveAccordion(3)">
-                                    <div class="accordion-flex" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseThree" aria-expanded="false"
-                                        aria-controls="collapseThree">
-                                        <img class="light-feature3" src="./assets/images/talent-feature-icon3.svg">
-                                        <img class="dark-feature3" src="./assets/images/talent-dark-f3.svg">
-                                        <h2 class="accordion-header">
-                                            Highlight Videos and Match Reports
-                                        </h2>
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#collapseThree"
-                                            aria-expanded="false" aria-controls="collapseThree">
-                                        </button>
-                                    </div>
-                                    <div id="collapseThree" class="accordion-collapse collapse"
-                                        data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                            <p class="feature-text">Access highlight videos and match reports to stay
-                                                updated on player performances.</p>
-                                            <div class="talent_tab_image">
-                                                <img class="single_tab_img light-images"
-                                                    src="./assets/images/foto-club-dark-3.png">
-                                                <img class="single_tab_img dark-images"
-                                                    src="./assets/images/foto-club-dark-3.png">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="accordion-item" (click)="setActiveAccordion(4)">
-                                    <div class="accordion-flex" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-                                        aria-expanded="true" aria-controls="collapseOne">
-                                        <img class="light-feature4" src="./assets/images/talent-feature-icon4.svg">
-                                        <img class="dark-feature4" src="./assets/images/talent-dark-f4.svg">
-                                        <h2 class="accordion-header" data-bs-toggle="collapse"
-                                            data-bs-target="#collapseFour" aria-expanded="false"
-                                            aria-controls="collapseFour">
-                                            Global Networking Opportunities
-                                        </h2>
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#collapseFour"
-                                            aria-expanded="false" aria-controls="collapseFour">
-                                        </button>
-                                    </div>
-                                    <div id="collapseFour" class="accordion-collapse collapse"
-                                        data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                            <p class="feature-text">Connect with clubs, scouts, and players from around
-                                                the world for unique networking opportunities.</p>
-                                            <div class="talent_tab_image">
-                                                <img class="single_tab_img light-images"
-                                                    src="./assets/images/foto-club-dark-4.png">
-                                                <img class="single_tab_img dark-images"
-                                                    src="./assets/images/foto-club-dark-4.png">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> -->
                                 <!-- New Code By amrit -->
                                 <ng-container *ngFor="let feature of pageData.feature_sctn; let i = index">
                                     <div class="accordion-item">
@@ -358,8 +214,8 @@
                                         <div (click)="setActiveAccordionNew(i)" class="accordion-flex"
                                             data-bs-toggle="collapse" [attr.data-bs-target]="'#collapseOne' + i"
                                             aria-expanded="false" [attr.aria-controls]="'collapseOne' + i">
-                                            <img class="light-feature1" src="{{ baseUrl + feature.icon }}">
-                                            <img class="dark-feature1" src="{{ baseUrl + feature.dark_icon }}">
+                                            <img class="light-feature1" src="/assets/images/club_page/icons/{{i}}_light.svg">
+                                            <img class="dark-feature1" src="/assets/images/club_page/icons/{{i}}_dark.svg">
                                             <h2 class="accordion-header">
                                                 {{ feature.title }}
                                             </h2>
