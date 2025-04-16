@@ -656,12 +656,16 @@ export class FooterComponent implements OnInit {
     this.name = selectedLang?.name || '';
     this.selectedcountry = selectedLang?.id || '';
   }
-
+  scrollToTop() {
+   
+  }
   navigateAndScroll(path: string) {
+    // this.scrollToTop();
     setTimeout(() => {
-      // window.scrollTo({ top: 0, behavior: 'smooth' });
-      this.router.navigate([path]);
-      }, 100);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 100);
+
+    this.router.navigate([path]);
   }
 
 }
