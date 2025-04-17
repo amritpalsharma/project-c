@@ -338,8 +338,12 @@
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="premium-img">
                                     <img class="bg-image" src="./assets/images/feature-image.svg">
-                                    <h2 class="premium-heading2">{{ plan.plan_name }} <span
-                                            class="red_text_plan">{{'forClubsandScouts' | translate}}</span></h2>
+                                    <h2 class="premium-heading2">
+                                        {{ plan.plan_name }} 
+                                        <span class="red_text_plan" *ngIf="i === 0">{{'premiunPlanFor' | translate}}</span>
+                                        <span class="red_text_plan" *ngIf="i === 1">{{'multiCountryFor' | translate}}</span>
+                                        <span class="red_text_plan" *ngIf="i === 2">{{'boostProfileFor' | translate}}</span>
+                                    </h2>
                                     <h3 class="premium-heading3">
                                         <!-- {{ !isActivePlan[i] ? plan.monthly_plan_price : plan.yearly_plan_price
                                         }}<span>.- {{ !isActivePlan[i] ? plan.monthly_plan_price_currency :
