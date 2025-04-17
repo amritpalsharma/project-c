@@ -1434,5 +1434,8 @@
   },
   "highlightTooltip": "Modifica i momenti salienti",
   "homeBannerTxt": "Chi cerca, trova. Chi si mostra, viene visto. SoccerYou – Perché il talento da solo non basta.",
-  "accountVerificationPending": "La verifica del profilo non è ancora stata completata. La preghiamo di pazientare ancora un po'. Grazie mille."
+  "accountVerificationPending": "La verifica del profilo non è ancora stata completata. La preghiamo di pazientare ancora un po'. Grazie mille.",
+  "downloadPDFCommunityGuidelines":"Scarica il PDF delle linee guida della community",
+  "downloadPDFTermsAndConditions":"Scarica il PDF dei Termini e Condizioni",
+  "downloadPDFPrivacyPolicy":"Scarica il PDF dell’Informativa sulla privacy"
 }

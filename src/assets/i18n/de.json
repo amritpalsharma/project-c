@@ -1442,5 +1442,8 @@
   },
   "highlightTooltip": "Highlights bearbeiten",
   "homeBannerTxt": "Wer sucht, wird hier fündig. Wer zeigt, wird gesehen. SoccerYou – Weil Talent alleine nicht reicht.",
-  "accountVerificationPending": "Deine Profilüberprüfung ist noch nicht abgeschlossen. Bitte hab noch ein bisschen Geduld. Vielen Dank." 
+  "accountVerificationPending": "Deine Profilüberprüfung ist noch nicht abgeschlossen. Bitte hab noch ein bisschen Geduld. Vielen Dank." ,
+  "downloadPDFCommunityGuidelines":"PDF Community-Richtlinien herunterladen",
+  "downloadPDFTermsAndConditions":"PDF AGB herunterladen",
+  "downloadPDFPrivacyPolicy":"PDF Datenschutz herunterladen"
 }

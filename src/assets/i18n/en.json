@@ -1348,5 +1348,8 @@
   },
   "highlightTooltip":"Edit highlights",
   "homeBannerTxt":"Who searches, finds. Who shows up, gets seen. SoccerYou – Because talent alone isn’t enough.",
-  "accountVerificationPending":"Your profile verification has not yet been completed. Please be patient a little longer. Thank you very much."
+  "accountVerificationPending":"Your profile verification has not yet been completed. Please be patient a little longer. Thank you very much.",
+  "downloadPDFCommunityGuidelines":"Download PDF Community Guidelines",
+  "downloadPDFTermsAndConditions":"Download PDF Terms & Conditions",
+  "downloadPDFPrivacyPolicy":"Download PDF Privacy Policy"
 }

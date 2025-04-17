@@ -1452,5 +1452,8 @@
   },
   "highlightTooltip": "Modifier les faits saillants",
   "homeBannerTxt": "Qui cherche, trouve. Qui se montre, se fait remarquer. SoccerYou – Parce que le talent ne suffit pas.",
-  "accountVerificationPending": "La vérification de ton profil n'est pas encore terminée. Merci de patienter encore un peu. Merci beaucoup."
+  "accountVerificationPending": "La vérification de ton profil n'est pas encore terminée. Merci de patienter encore un peu. Merci beaucoup.",
+  "downloadPDFCommunityGuidelines":"Télécharger le PDF des règles communautaires",
+  "downloadPDFTermsAndConditions":"Télécharger le PDF des CGU",
+  "downloadPDFPrivacyPolicy":"Télécharger le PDF de la politique de confidentialité"
 }
