@@ -3961,15 +3961,23 @@ span {
     z-index: 1;
 }
 
+.light-theme .website-code .banner {
+    // border: 5px solid red;
+    background: url('/assets/images/talent_page/talent-page-banner.png'), #236115 !important;
+}
+
+
 @media (max-width: 400px) {
     .premium-heading2 .red_text_plan {
         display: block;
     }
+
 }
 
 .club-offer .talent_tab_image {
     display: none;
 }
-.club-offer .active{
+
+.club-offer .active {
     display: block;
 }
