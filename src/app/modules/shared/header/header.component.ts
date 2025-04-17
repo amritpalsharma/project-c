@@ -31,6 +31,8 @@ interface Notification {
   senderId: number;
   shouldAnimate: boolean;
   relativeTime: string;
+  senderRole : string;
+
 }
 
 @Component({
@@ -189,6 +191,7 @@ export class HeaderComponent {
         senderId: data.senderId,
         shouldAnimate: true,
         relativeTime: 'just now',
+        senderRole: 'talent'
       };
 
       // Add the notification to the array and show the notification box
@@ -553,14 +556,17 @@ export class HeaderComponent {
             senderId: notif.senderId,
             shouldAnimate: false,
             relativeTime: notif.relativeTime,
+            senderRole: notif.senderRole
           }));
 
           this.loadMoreNotifications(); // Load the initial set of notifications
         } else {
+          this.totalNotification = false;
           console.warn('No notifications found in the response.');
         }
       },
       error: (err) => {
+        this.totalNotification = false;
         console.error('Error fetching notifications:', err);
       },
     });
@@ -690,6 +696,16 @@ export class HeaderComponent {
 
   toggleSearch() {
     this.isSearchVisible = !this.isSearchVisible;
+  }
+
+  handleNotiificationClick(notification: any){
+    if(!this.isUserVerified){
+      this.showVerificationPopup(false);
+    }
+    else{
+      let role = (notification.senderRole || '').toString().toLowerCase();
+      this.router.navigate([`/view/${role}`, notification.senderId]);
+    }
   }
 
   showVerificationPopup(isVerified: boolean) {

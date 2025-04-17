@@ -12,6 +12,12 @@ export class MessagePopupComponent {
     @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
+  theme: any =localStorage.getItem('theme');
+
+  ngOnIt(){
+    this.theme = localStorage.getItem('theme');
+  }
+
   deleteConfirmed(){
     this.dialogRef.close({
       action: "delete-confirmed"

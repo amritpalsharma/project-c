@@ -41,7 +41,10 @@ export class InviteScoutTalentPopupComponent {
     this.scoutId = data.scoutId;
   }
 
+  theme : any = localStorage.getItem('theme');
+  
   ngOnInit(): void {
+    this.theme = localStorage.getItem('theme');
     this.fetchPlayers();
     this.getToasterMsg();
   }

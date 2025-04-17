@@ -1,6 +1,13 @@
 <div class="msg-popup-dialog">
-    <div class="msg-popup-close">
+    <!-- <div class="msg-popup-close">
         <img src="../../../assets/images/close-icon-circle.png" alt="" class="" (click)="close()" />
+    </div> -->
+
+    <div class="msg-popup-close" *ngIf='theme!="dark"'>
+        <img src="../../../assets/images/carbon_close-outline-light.svg" alt="" class="" (click)="close()" />
+    </div>
+    <div class="msg-popup-close" *ngIf='theme=="dark"'>
+        <img src="../../../assets/images/carbon_close-outline.svg" alt="" class="" (click)="close()" />
     </div>
 
     <div class="msg-popup-content">
@@ -35,10 +42,12 @@
                 <span (click)="deleteConfirmed()">{{'remove' | translate}}</span>
             </div>
         </div>
-        <div class="display-message p-3" *ngIf="data.action == 'portfolio-delete-confirmation' && data.message != ''">{{'portfolioDeleteConfirmation' | translate}}</div>
+        <div class="display-message p-3" *ngIf="data.action == 'portfolio-delete-confirmation' && data.message != ''">
+            {{'portfolioDeleteConfirmation' | translate}}</div>
         <div *ngIf="data.action === 'portfolio-delete-confirmation'"
             class="popup-delete-btn d-flex align-items-center flex-wrap justify-content-center py-2">
-            <div (click)="deleteConfirmed()" class="btn btn-success me-3 bg-light-btn btn_confirmm">{{ 'portfolioDeletebtn' |
+            <div (click)="deleteConfirmed()" class="btn btn-success me-3 bg-light-btn btn_confirmm">{{
+                'portfolioDeletebtn' |
                 translate }}</div>
             <div (click)="close()" class="btn btn-danger bg-dark-btn btn_cancell">{{ 'portfolioCloseBtn' | translate }}
             </div>

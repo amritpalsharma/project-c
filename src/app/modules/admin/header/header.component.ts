@@ -28,6 +28,7 @@ interface Notification {
   senderId: number;
   shouldAnimate: boolean;
   relativeTime: string;
+  senderRole: string
 }
 
 @Component({
@@ -59,6 +60,7 @@ export class HeaderComponent {
   langs: any = environment.langs;
   envLang: any = environment.adminLangs;
   isDarkMode: boolean = false;
+  totalNotification: boolean = true;
   role: any;
   roles: any = environment.roles;
 
@@ -152,6 +154,7 @@ export class HeaderComponent {
         senderId: data.senderId,
         shouldAnimate: true,
         relativeTime: 'just now',
+        senderRole: 'talent'
       };
 
       // Add the notification to the array and show the notification box
@@ -511,6 +514,9 @@ export class HeaderComponent {
         console.log('Fetched notifications response:', response);
 
         if (response.status && response.notifications) {
+          if (response.total_count == '0') {
+            this.totalNotification = false;
+          }
           this.unseenCount = response.unseen_count;
           // Clear existing notifications to avoid stale data
           this.allNotifications = [];
@@ -532,14 +538,17 @@ export class HeaderComponent {
             senderId: notif.senderId,
             shouldAnimate: false,
             relativeTime: notif.relativeTime,
+            senderRole: notif.senderRole
           }));
 
           this.loadMoreNotifications(); // Load the initial set of notifications
         } else {
+          this.totalNotification = false;
           console.warn('No notifications found in the response.');
         }
       },
       error: (err) => {
+        this.totalNotification = false;
         console.error('Error fetching notifications:', err);
       },
     });

@@ -77,8 +77,8 @@ export class MarketingComponent {
     params.offset = page;
     params.search = this.filterValue;
     params.limit = pageSize;
-    params.orderBy = "id";
-    params.order = "desc";
+    // params.orderBy = "id";
+    // params.order = "desc";
 
     if (filterApplied) {
       params.offset = 0;

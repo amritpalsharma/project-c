@@ -23,6 +23,9 @@ export class MarketingService {
             }
         }
 
+        params = params.set('orderBy[column]', 'id');
+        params = params.set('orderBy[order]', 'desc');
+
         return this.http.get<{ status: boolean, message: string, data: any }>(
             `${this.apiUrl}admin/get-system-popups/${currentLang}`, {params}
         );

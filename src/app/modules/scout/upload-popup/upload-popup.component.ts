@@ -15,6 +15,7 @@ import { MessagePopupComponent } from '../message-popup/message-popup.component'
 export class UploadPopupComponent {
 
   isLoading: boolean = false;
+  theme : any = localStorage.getItem('theme');
 
   userId: any = '';
   uploadedFiles: any = [];
@@ -27,6 +28,10 @@ export class UploadPopupComponent {
   }
 
   files: File[] = [];
+
+  ngOnIt(){
+    this.theme = localStorage.getItem('theme')
+  }
 
   // Handles when dragging files over the drop zone
   onDragOver(event: DragEvent) {

@@ -2,9 +2,17 @@
   <div class="text-end">
     <!-- <button class="close-btn" (click)="cancel()">X</button> -->
     <!-- <a (click)="cancel()" class="cross-btn-close"></a> -->
-    <div class="msg-popup-close">
+    <!-- <div class="msg-popup-close">
       <img src="../../../assets/images/close-icon-circle.png" alt="" class="" (click)="cancel()" />
-  </div>
+  </div> -->
+
+    <div class="msg-popup-close" *ngIf='theme!="dark"'>
+      <img src="../../../assets/images/carbon_close-outline-light.svg" alt="" class="" (click)="cancel()" />
+    </div>
+    <div class="msg-popup-close" *ngIf='theme=="dark"'>
+      <img src="../../../assets/images/carbon_close-outline.svg" alt="" class="" (click)="cancel()" />
+    </div>
+
   </div>
   <!-- <h2 class="delete-confirmation">{{'confirmDeleteinformation' | translate}}</h2>
     
@@ -17,9 +25,16 @@
     </div>
 
     <div class="popup-delete-btn popup-delete-btn d-flex align-items-center justify-content-center py-2">
+<<<<<<< HEAD
       <div (click)="confirmDelete()" class="btn btn-success me-3 bg-light-btn btn_confirmm">{{'removeFavbtn' |
         translate}}</div>
       <div (click)="cancel()" class="btn btn-danger bg-dark-btn btn_cancell">{{ 'cancelRemoveFavBtn' | translate }}</div>
+=======
+      <span (click)="confirmDelete()" class="btn btn-success me-3 bg-light-btn btn_confirmm">{{'removeFavbtn' |
+        translate}}</span>
+      <div (click)="cancel()" class="btn btn-danger bg-dark-btn btn_cancell">{{ 'cancelRemoveFavBtn' | translate }}
+      </div>
+>>>>>>> 42ccca0673f740cd993496aa3cf2289cdc5f0f3a
     </div>
   </div>
 </div>

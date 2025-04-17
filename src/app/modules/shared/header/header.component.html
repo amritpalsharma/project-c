@@ -158,15 +158,16 @@
                 <div class="row bg-light p-3 justify-content-between border-bottom"
                   [ngClass]="{'my-animate' : notification.shouldAnimate}" *ngFor="let notification of notifications">
                   <div class="col-2">
-                    <div [routerLink]="['/view/talent', notification.senderId]" class="cursor-pointer">
+                    <!-- <div [routerLink]="['/view/talent', notification.senderId]" class="cursor-pointer"> -->
+                    <div (click)="handleNotiificationClick(notification)" class="cursor-pointer">
                       <img [src]="notification.image" class="avatar me-2" width="40" height="40" class="rounded-circle"
                         alt="">
                     </div>
                   </div>
 
                   <!-- <div class="col-9" (click)="notificationClicked(notification.id, notification.seen, notification)"
-                    style="cursor: pointer;"> -->
-                  <div class="col-9" [routerLink]="['/view/talent', notification.senderId]" style="cursor: pointer;">
+                    style="cursor: pointer;"> --> 
+                  <div class="col-9" (click)="handleNotiificationClick(notification)" style="cursor: pointer;">
                     <!-- <h6 [ngStyle]="{'font-weight': notification.seen == 0 ? 'bold' : 'normal'}">
                       {{ notification.title }}
                     </h6>
@@ -226,7 +227,7 @@
                     <img [src]="notification.image" class="avatar me-2" width="40" height="40" class="rounded-circle"
                       alt="">
                   </div>
-                  <div class="col-9" [routerLink]="['/view/talent', notification.senderId]" style="cursor: pointer;">
+                  <div class="col-9">
                     <h6>{{ notification.title }}</h6>
                     <p>{{ notification.content }}</p>
                     <small>{{ 'justNow' | translate }}</small>

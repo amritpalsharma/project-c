@@ -57,7 +57,10 @@ export class MarketingPopupComponent {
 
   }
 
+  theme: any = localStorage.getItem('theme');
+  
   ngOnInit(): void {
+    this.theme = localStorage.getItem('theme');
 
     this._locale.set('fr');
     this._adapter.setLocale(this._locale());
