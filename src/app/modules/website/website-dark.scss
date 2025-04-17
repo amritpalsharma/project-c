@@ -377,9 +377,16 @@ button.faq-scout-button {
   font-weight: 700;
   background-color: #BDE34F;
 }
+.dark-theme .website-code .login-btn svg {
+  filter: none !important;
+}
+.dark-theme .website-code .login-btn svg path {
+  stroke: #072944;
+}
 
 .dark-theme .website-code .login-btn {
   color: #072944;
+  border-color: #BDE34F;
 }
 
 .dark-theme .website-code .ms-2 {

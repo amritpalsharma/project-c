@@ -135,7 +135,7 @@ body {
 
 .premium {
     width: 100%;
-    height: 250px;
+    height: 300px;
     border-radius: 10px;
     // background: radial-gradient(circle at 100% 0%, #2B4A25, transparent);
 }
@@ -716,7 +716,7 @@ li::before {
 
 @media (min-width: 1200px) and (max-width: 2999px) {
     .feature-box {
-        height: calc(100% - 420px) !important;
+        height: calc(100% - 450px) !important;
         padding: 0;
     }
 }
@@ -728,7 +728,7 @@ li::before {
         margin-bottom: 40px;
     }
     .feature-box {
-        height: calc(100% - 340px) !important;
+        height: calc(100% - 380px) !important;
         padding: 0;
     }
 }

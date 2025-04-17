@@ -27,21 +27,21 @@
           <div *ngIf="errorMsg.type" class="error-msg">{{ errorMsg.type }}</div>
         </div>
       </div>
-      <div class="col-12 col-sm-6 col-lg-5">
+      <div class="col-12 col-sm-6 col-lg-6">
         <div class="form-group coupon_name">
           <label class="code-text">{{ 'couponName' | translate }}</label>
           <input type="text" class="form-control" [(ngModel)]="name" />
           <div *ngIf="errorMsg.name" class="error-msg">{{errorMsg.name}}</div>
         </div>
       </div>
-      <div class="col-12 col-sm-6 col-lg-5">
+      <div class="col-12 col-sm-6 col-lg-6">
         <div class="form-group coupon_code">
           <label class="code-text">{{ 'couponCode' | translate }}</label>
           <input type="text" class="form-control" [(ngModel)]="code">
           <div *ngIf="errorMsg.code" class="error-msg">{{errorMsg.code}}</div>
         </div>
       </div>
-    <div class="col-12 col-sm-6 col-lg-5">
+    <div class="col-12 col-sm-6 col-lg-6">
       <div *ngIf="type === 'percent'" class="form-group">
         <label class="code-text">{{ 'discount' | translate }} (%)</label>
         <input type="text" class="form-control cupen-btn-1" [(ngModel)]="discount" />
@@ -142,7 +142,7 @@
           </label>
         </span>
       </div>
-      <div class="col-sm-6 col-lg-5 form-group mb-2 mt-2">
+      <div class="col-sm-6 col-lg-6 form-group mb-2 mt-2">
         <input type="text" class="form-control" [(ngModel)]="limit">
       </div>
       <div *ngIf="errorMsg.limit" class="col-12 error-msg">{{errorMsg.limit}}</div>

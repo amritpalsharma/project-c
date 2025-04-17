@@ -1998,6 +1998,7 @@ nav.navbar .country_dropdown h6.border-bottom {
 
 .filter-button select {
   width: 100%;
+  padding: 0 6px !important;
 }
 
 #notifications {
@@ -2431,8 +2432,8 @@ td.col_checkbox {
 }
 
 
-.admin_adv_popup {
-  max-width: 900px !important;
+.admin_adv_popup, .admin_coupon {
+  max-width: 800px !important;
 }
 
 .scout_add_new_talent_popup .example-chip-list.inbox-wrapper .mat-mdc-text-field-wrapper.mdc-text-field {

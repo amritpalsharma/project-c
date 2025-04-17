@@ -1511,7 +1511,7 @@ select.form-select.custom-select1 {
         margin-right: auto;
         justify-content: center;
         top: 5px;
-        width: calc(100% - 80px);
+        width: calc(100% - 60px);
     }
 
     .logo1::after,
@@ -1797,6 +1797,9 @@ select.form-select.custom-select1 {
 }
 
 @media (max-width: 575px) {
+    .navbar-toggler {
+        top: 27px !important;
+    }
     .coustom-select1 {
         margin-left: 0;
         margin-right: 0;
@@ -2507,6 +2510,10 @@ select.form-select.custom-select1 {
                 height: 18px;
             }
         }
+    }
+    .navbar-toggler {
+        right: 9px;
+        top: 40px;
     }
 }
 

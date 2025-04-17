@@ -119,7 +119,15 @@ input.template-name-inputField {
 }
 
 
-
+::ng-deep .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
+    color: #fff !important;
+}
+::ng-deep .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs>.mat-mdc-tab-header .mat-mdc-tab.mdc-tab--active {
+    background: #6fb95d!important;
+}
+::ng-deep .mat-mdc-tab .mdc-tab-indicator__content--underline {
+    border-color: #6fb95d!important;
+}
 
 @media (max-width: 575px) {
     .mobile_btn_wrap {
