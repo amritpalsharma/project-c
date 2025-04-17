@@ -1445,5 +1445,8 @@
   "accountVerificationPending": "Deine Profilüberprüfung ist noch nicht abgeschlossen. Bitte hab noch ein bisschen Geduld. Vielen Dank." ,
   "downloadPDFCommunityGuidelines":"PDF Community-Richtlinien herunterladen",
   "downloadPDFTermsAndConditions":"PDF AGB herunterladen",
-  "downloadPDFPrivacyPolicy":"PDF Datenschutz herunterladen"
+  "downloadPDFPrivacyPolicy":"PDF Datenschutz herunterladen",
+  "premiunPlanFor": "Für Clubs und Scouts",
+  "multiCountryFor": "Für Scouts",
+  "boostProfileFor": "Für Scouts"
 }

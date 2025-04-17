@@ -605,7 +605,10 @@ export class HeaderComponent implements OnInit {
             this.invalidCred = response.message.email;
 
           }
-          if (response.data.error != '' && response.data.error != undefined) {
+          if (response.message != '' && response.message != undefined) {
+            this.toastr.error(response.message);
+          }
+          else if (response.data.error != '' && response.data.error != undefined) {
             this.toastr.error(response.data.error);
           }
 

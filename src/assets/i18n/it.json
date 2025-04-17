@@ -1437,5 +1437,8 @@
   "accountVerificationPending": "La verifica del profilo non è ancora stata completata. La preghiamo di pazientare ancora un po'. Grazie mille.",
   "downloadPDFCommunityGuidelines":"Scarica il PDF delle linee guida della community",
   "downloadPDFTermsAndConditions":"Scarica il PDF dei Termini e Condizioni",
-  "downloadPDFPrivacyPolicy":"Scarica il PDF dell’Informativa sulla privacy"
+  "downloadPDFPrivacyPolicy":"Scarica il PDF dell’Informativa sulla privacy",
+  "premiunPlanFor": "Für Clubs und Scouts",
+  "multiCountryFor": "Für Scouts",
+  "boostProfileFor": "Für Scouts"
 }
