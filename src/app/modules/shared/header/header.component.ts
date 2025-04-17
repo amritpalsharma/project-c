@@ -692,6 +692,15 @@ export class HeaderComponent {
     this.isSearchVisible = !this.isSearchVisible;
   }
 
+  handleNotiificationClick(notification: any){
+    if(!this.isUserVerified){
+      this.showVerificationPopup(false);
+    }
+    else{
+      this.router.navigate(['/view/talent', notification.senderId]);
+    }
+  }
+
   showVerificationPopup(isVerified: boolean) {
     if (isVerified) {
       return;
