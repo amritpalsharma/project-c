@@ -143,7 +143,7 @@ export class CouponsComponent {
     const createCouponDialog = this.dialog.open(CoupenPopupComponent, {
       height: '80vh',
       width: '80vw',
-      panelClass: 'cutam-cupen',
+      panelClass: ['cutam-cupen', 'admin_coupon'],
       data: {
         action: 'create'
       }

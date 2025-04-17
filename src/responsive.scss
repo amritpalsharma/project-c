@@ -250,6 +250,9 @@
 }
 
 @media (min-width: 2000px) {
+.admin_adv_popup, .admin_coupon {
+    max-width: 900px !important;
+}
 body {
     font-size: 22px !important;
 }
