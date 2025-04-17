@@ -887,6 +887,23 @@ img.birthday-img {
     filter: brightness(0) invert(1);
 }
 
+.accordion-flex button.accordion-button::after {
+    background-image: url(/assets/images/light-arrow-down.svg) !important;
+}
+.accordion-flex button.accordion-button.collapsed::after {
+    background-image: url(/assets/images/light-arrow-down.svg) !important;
+}
+
+
+.dark-theme {
+.accordion-flex button.accordion-button::after {
+    background-image: url(/assets/images/dark-arrow-down.svg) !important;
+}
+.accordion-flex button.accordion-button.collapsed::after {
+    background-image: url(/assets/images/dark-arrow-down.svg) !important;
+}
+}
+
 .accordion {
     --bs-accordion-border-color: transparent;
 }
