@@ -6,8 +6,9 @@
     <!-- <div class="main-bnr" style="background-image: url('{{banner_bg_img}}');">    -->
     <div class="main-bnr home_banner">
       <div class="banner_video_wrapper">
-        <video class="video_for_male" autoplay="" muted="" loop="" playsinline="" poster="./assets/images/video-thumbnail-poster.png">
-            <source src="./assets/images/header-video.mp4" type="video/mp4">
+        <video class="video_for_male" autoplay="" muted="" loop="" playsinline=""
+          poster="./assets/images/video-thumbnail-poster.png">
+          <source src="./assets/images/header-video.mp4" type="video/mp4">
         </video>
         <!-- <video class="video_for_female" autoplay="" muted="" loop="" playsinline="" poster="./assets/images/video-thumbnail-poster.png">
             <source src="./assets/images/header-video.mp4" type="video/mp4">
@@ -18,14 +19,16 @@
         <a href="{{advertisementData?.skyscraper?.redirect_url}}" target="_blank">
           <img [src]="advertisemnet_base_url + advertisementData?.skyscraper?.featured_image">
         </a>
-        <button *ngIf="!btnLoading" (click)="closeAd('skyscraper')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+        <button *ngIf="!btnLoading" (click)="closeAd('skyscraper')" class="ad-close-button"><i
+            class="fa-solid fa-xmark"></i></button>
         <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
       </div>
       <div *ngIf="checkActive('wide_skyscraper') && !isLoading" class="skyscraper-right">
         <a href="{{advertisementData?.wide_skyscraper?.redirect_url}}" target="_blank">
           <img [src]="advertisemnet_base_url + advertisementData?.wide_skyscraper?.featured_image">
         </a>
-        <button *ngIf="!btnLoading" (click)="closeAd('wide_skyscraper')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+        <button *ngIf="!btnLoading" (click)="closeAd('wide_skyscraper')" class="ad-close-button"><i
+            class="fa-solid fa-xmark"></i></button>
         <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
       </div>
 
@@ -39,10 +42,14 @@
                 <h1 class="text-uppercase">{{'homeBannerTxt' | translate}}</h1>
               </div>
               <div class="banner-btn mt-5">
-                <a href="javascript:void(0)" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1"> {{ pageDetail?.banner_btn_txt }} </a>
-                <a *ngIf="!isUserLoggedIn" href="javascript:void(0);" class="btn login-btn" data-bs-toggle="modal" data-bs-target="#exampleModal-login">{{ 'login' | translate }}
-                  <svg class="ms-2" width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1.34766 1.5L6.34766 6L1.34766 10.5" stroke="white" stroke-width="2" stroke-linecap="round" />
+                <a href="javascript:void(0)" class="btn btn-primary" data-bs-toggle="modal"
+                  data-bs-target="#exampleModal1"> {{ pageDetail?.banner_btn_txt }} </a>
+                <a *ngIf="!isUserLoggedIn" href="javascript:void(0);" class="btn login-btn" data-bs-toggle="modal"
+                  data-bs-target="#exampleModal-login">{{ 'login' | translate }}
+                  <svg class="ms-2" width="8" height="12" viewBox="0 0 8 12" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.34766 1.5L6.34766 6L1.34766 10.5" stroke="white" stroke-width="2"
+                      stroke-linecap="round" />
                   </svg>
                 </a>
               </div>
@@ -55,18 +62,22 @@
 
     <div class="container">
       <div *ngIf="checkActive('leaderboard') || checkActive('banner')" class="advertisment advirtismnt_2">
-        <div *ngIf="isExists('leaderboard') && checkActive('leaderboard')  && !isLoading" class="leaderboard-club-image advirtismnt_2_large">
+        <div *ngIf="isExists('leaderboard') && checkActive('leaderboard')  && !isLoading"
+          class="leaderboard-club-image advirtismnt_2_large">
           <a href="{{advertisementData?.leaderboard?.redirect_url}}" target="_blank">
             <img [src]="advertisemnet_base_url + advertisementData?.leaderboard?.featured_image">
           </a>
-          <button *ngIf="!btnLoading" (click)="closeAd('leaderboard')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+          <button *ngIf="!btnLoading" (click)="closeAd('leaderboard')" class="ad-close-button"><i
+              class="fa-solid fa-xmark"></i></button>
           <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
         </div>
-        <div *ngIf="!isExists('leaderboard') && checkActive('banner') && !isLoading" class="leaderboard-club-image advirtismnt_2_small">
+        <div *ngIf="!isExists('leaderboard') && checkActive('banner') && !isLoading"
+          class="leaderboard-club-image advirtismnt_2_small">
           <a href="{{advertisementData?.banner?.redirect_url}}" target="_blank">
             <img [src]="advertisemnet_base_url + advertisementData?.banner?.featured_image">
           </a>
-          <button *ngIf="!btnLoading" (click)="closeAd('banner')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+          <button *ngIf="!btnLoading" (click)="closeAd('banner')" class="ad-close-button"><i
+              class="fa-solid fa-xmark"></i></button>
           <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
         </div>
       </div>
@@ -97,7 +108,8 @@
             <!-- {{sliderDetail?.users | json}} -->
             @for (slider of sliderDetail?.users; track $index) {
             <ng-template carouselSlide>
-              <div *ngIf="slider.role_name != 'Club'" class="player-carousel" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+              <div *ngIf="slider.role_name != 'Club'" class="player-carousel" data-bs-toggle="modal"
+                data-bs-target="#exampleModal1">
                 <div class="player-border">
                   <div class="player-img">
                     <img src="{{slider.meta.profile_image_path}}" (error)="handleImageError($event)"
@@ -133,7 +145,8 @@
                 </div>
               </div>
 
-              <div *ngIf="slider.role_name == 'Club'" class="player-carousel-club" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+              <div *ngIf="slider.role_name == 'Club'" class="player-carousel-club" data-bs-toggle="modal"
+                data-bs-target="#exampleModal1">
                 <div class="player-border">
                   <div class="player-img">
                     <img src="{{slider.meta.profile_image_path}}" (error)="handleImageError($event)"
@@ -165,6 +178,7 @@
       <div class="container">
 
         <h3>{{pageDetail?.tabs_data?.title}}</h3>
+        <h3>Theme is {{currentTheme}}</h3>
         <div class="row">
           <div class="col-lg-6 col-md-6 col-12">
             <div class="work-banner">
@@ -267,79 +281,70 @@
 
           <div class=" col-lg-6 col-md-6 col-12">
 
-            <div class="talent-scroll" *ngIf="selectedCategory === 'Talent'">
-              <div class="player1" @slideIn>
+            <div class="talent-scroll" *ngIf="selectedCategory === 'Talent' && currentSelected === 1">
+              <div class="player1">
                 <div class="row">
                   <div class="player-list-image">
-                    <img [src]="talentBtnImage" alt="">
+                    <img src="/assets/images/home/talent/{{currentLang}}_{{currentTheme}}.png"
+                      alt="Language {{currentLang}} And Theme {{currentTheme}}">
                   </div>
                 </div>
               </div>
             </div>
 
-            <!-- <div class="talent-scroll" *ngIf="selectedCategory === 'Talent'">
-              <div class="player2" *ngIf="selectedContent === 'Networking & Opportunity'" @slideIn>
+            <div class="talent-scroll" *ngIf="selectedCategory === 'Talent' && currentSelected === 2">
+              <div class="player2">
                 <div class="row">
                   <div class="football-club player-list-image">
-                    <img *ngIf="currentTheme == 'light'"
-                      src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[1]?.images}}" >
-                    <img *ngIf="currentTheme == 'dark'"
-                      src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[1]?.darkImages}}" >
+                    <img src="/assets/images/home/talent/2_{{currentTheme}}.png" alt="Language {{currentLang}} And Theme {{currentTheme}}">
                   </div>
                 </div>
               </div>
-            </div> -->
+            </div>
 
 
-            <!-- <div class="talent-scroll" *ngIf="selectedCategory === 'Talent'">
-              <div class="player3" *ngIf="selectedContent === 'Success & Progression'" @slideIn>
+            <div class="talent-scroll" *ngIf="selectedCategory === 'Talent' && currentSelected === 3">
+              <div class="player3">
                 <div class="message-panels player-list-image">
-                  <img *ngIf="currentTheme == 'light'"
-                    src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[2]?.images}}" >
-                  <img *ngIf="currentTheme == 'dark'"
-                    src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[2]?.darkImages}}" >
+                  <img src="/assets/images/home/talent/3_{{currentTheme}}.png" alt="Language {{currentLang}} And Theme {{currentTheme}}">
                 </div>
               </div>
-            </div> -->
+            </div>
 
 
-            <div class="talent-scroll" *ngIf="selectedCategory === 'Clubs & Scouts'">
+            <div class="talent-scroll" *ngIf="selectedCategory === 'Clubs & Scouts' && currentSelected === 1">
               <div class="player1" @slideIn>
                 <div class="row">
                   <div class="player-list-images">
-                    <!-- <img *ngIf="currentTheme == 'light'"
-                      src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[0]?.images}}" >
-                    <img *ngIf="currentTheme == 'dark'"
-                      src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[0]?.darkImages}}" > -->
-                      <img [src]="talentBtnImage" alt="">
+                    <img src="/assets/images/home/club/{{currentLang}}_{{currentSelected}}_{{currentTheme}}.png"
+                      alt="Language {{currentLang}} And Theme {{currentTheme}}">
                   </div>
                 </div>
               </div>
             </div>
 
-            <!-- <div class="talent-scroll" *ngIf="selectedCategory === 'Clubs & Scouts'">
-              <div class="player2" *ngIf="selectedContent === 'Networking & Opportunity'" @slideIn>
+            <div class="talent-scroll" *ngIf="selectedCategory === 'Clubs & Scouts' && currentSelected === 2">
+              <div class="player2" >
                 <div class="row">
                   <div class="player-list-image">
-                    <img *ngIf="currentTheme == 'light'" src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[1]?.images}}" >
-                    <img *ngIf="currentTheme == 'dark'" src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[1]?.darkImages}}" >
+                    <img src="/assets/images/home/club/2_{{currentTheme}}.png"
+                    alt="Language {{currentLang}} And Theme {{currentTheme}}">
                   </div>
                 </div>
               </div>
             </div>
 
-
-            <div class="talent-scroll" *ngIf="selectedCategory === 'Clubs & Scouts'">
-              <div class="club-scouts" *ngIf="selectedContent === 'Success & Progression'" @slideIn>
+            
+            <div class="talent-scroll" *ngIf="selectedCategory === 'Clubs & Scouts' && currentSelected === 3">
+              <div class="club-scouts">
                 <div class="row">
-
                   <div class="player-list-image">
-                    <img *ngIf="currentTheme == 'light'" src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[2]?.images}}" >
-                    <img *ngIf="currentTheme == 'dark'" src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[2]?.darkImages}}" >
+                    <img src="/assets/images/home/club/{{currentLang}}_{{currentSelected}}_{{currentTheme}}.png"
+                    alt="Language {{currentLang}} And Theme {{currentTheme}}">
                   </div>
                 </div>
               </div>
-            </div> -->
+            </div> 
           </div>
         </div>
       </div>
@@ -387,17 +392,17 @@
               <div class="talent-scroll" *ngIf="selectedCategory === 'Talent'">
                 <div class="player1" *ngIf="selectedContent === 'Sign-up & Profile Creation'" @slideIn>
                   <div class="row">
-  
+
                     <div class="player-list-image">
                       <img *ngIf="currentTheme == 'light'"
-                        src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[0]?.images}}" >
+                        src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[0]?.images}}">
                       <img *ngIf="currentTheme == 'dark'"
-                        src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[0]?.darkImages}}" >
+                        src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[0]?.darkImages}}">
                     </div>
                   </div>
                 </div>
               </div>
-  
+
 
               <div class="work-text" (click)="showContent('Networking & Opportunity')"
                 [class.active]="isActive2('Networking & Opportunity')" *ngIf="selectedCategory === 'Talent'">
@@ -417,9 +422,9 @@
                   <div class="row">
                     <div class="football-club player-list-image">
                       <img *ngIf="currentTheme == 'light'"
-                        src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[1]?.images}}" >
+                        src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[1]?.images}}">
                       <img *ngIf="currentTheme == 'dark'"
-                        src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[1]?.darkImages}}" >
+                        src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[1]?.darkImages}}">
                     </div>
                   </div>
                 </div>
@@ -442,9 +447,9 @@
                 <div class="player3" *ngIf="selectedContent === 'Success & Progression'" @slideIn>
                   <div class="message-panels player-list-image">
                     <img *ngIf="currentTheme == 'light'"
-                      src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[2]?.images}}" >
+                      src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[2]?.images}}">
                     <img *ngIf="currentTheme == 'dark'"
-                      src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[2]?.darkImages}}" >
+                      src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[2]?.darkImages}}">
                   </div>
                 </div>
               </div>
@@ -467,9 +472,9 @@
                   <div class="row">
                     <div class="player-list-images">
                       <img *ngIf="currentTheme == 'light'"
-                        src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[0]?.images}}" >
+                        src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[0]?.images}}">
                       <img *ngIf="currentTheme == 'dark'"
-                        src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[0]?.darkImages}}" >
+                        src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[0]?.darkImages}}">
                     </div>
                   </div>
                 </div>
@@ -492,13 +497,15 @@
                 <div class="player2" *ngIf="selectedContent === 'Networking & Opportunity'" @slideIn>
                   <div class="row">
                     <div class="player-list-image">
-                      <img *ngIf="currentTheme == 'light'" src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[1]?.images}}" >
-                      <img *ngIf="currentTheme == 'dark'" src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[1]?.darkImages}}" >
+                      <img *ngIf="currentTheme == 'light'"
+                        src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[1]?.images}}">
+                      <img *ngIf="currentTheme == 'dark'"
+                        src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[1]?.darkImages}}">
                     </div>
                   </div>
                 </div>
               </div>
-  
+
 
               <div class="work-text" (click)="showContent('Success & Progression')"
                 [class.active]="isActive2('Success & Progression')" *ngIf="selectedCategory === 'Clubs & Scouts'">
@@ -516,10 +523,12 @@
               <div class="talent-scroll" *ngIf="selectedCategory === 'Clubs & Scouts'">
                 <div class="club-scouts" *ngIf="selectedContent === 'Success & Progression'" @slideIn>
                   <div class="row">
-  
+
                     <div class="player-list-image">
-                      <img *ngIf="currentTheme == 'light'" src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[2]?.images}}" >
-                      <img *ngIf="currentTheme == 'dark'" src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[2]?.darkImages}}" >
+                      <img *ngIf="currentTheme == 'light'"
+                        src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[2]?.images}}">
+                      <img *ngIf="currentTheme == 'dark'"
+                        src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[2]?.darkImages}}">
                     </div>
                   </div>
                 </div>
@@ -540,15 +549,16 @@
             </a>
             <button *ngIf="!btnLoading" (click)="closeAd('large_leaderboard')" class="ad-close-button"><i
                 class="fa-solid fa-xmark"></i></button>
-                <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
-                <h1>{{advertisementData?.large_leaderboard?.featured_image}}</h1>
+            <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+            <h1>{{advertisementData?.large_leaderboard?.featured_image}}</h1>
           </div>
 
           <div *ngIf="checkActive('small_square') && !isLoading" class="small-sqaure-image">
             <a href="{{advertisementData?.small_square?.redirect_url}}" target="_blank">
               <img [src]="advertisemnet_base_url + advertisementData?.small_square?.featured_image">
             </a>
-            <button *ngIf="!btnLoading" (click)="closeAd('small_square')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+            <button *ngIf="!btnLoading" (click)="closeAd('small_square')" class="ad-close-button"><i
+                class="fa-solid fa-xmark"></i></button>
             <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
           </div>
 
@@ -559,14 +569,16 @@
             <a href="{{advertisementData?.small_square?.redirect_url}}" target="_blank">
               <img [src]="advertisemnet_base_url + advertisementData?.small_square?.featured_image">
             </a>
-            <button *ngIf="!btnLoading" (click)="closeAd('small_square')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+            <button *ngIf="!btnLoading" (click)="closeAd('small_square')" class="ad-close-button"><i
+                class="fa-solid fa-xmark"></i></button>
             <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
           </div>
           <div *ngIf="checkActive('banner') && !isLoading" class="leaderboard-club-image">
             <a href="{{advertisementData?.banner?.redirect_url}}" target="_blank">
               <img [src]="advertisemnet_base_url + advertisementData?.banner?.featured_image">
             </a>
-            <button *ngIf="!btnLoading" (click)="closeAd('banner')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+            <button *ngIf="!btnLoading" (click)="closeAd('banner')" class="ad-close-button"><i
+                class="fa-solid fa-xmark"></i></button>
             <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
           </div>
 
@@ -585,7 +597,9 @@
           <div class="data_wrapper">
             <div class="text_side_wrapper">
               <div class="title_text_p">
-                <h3 *ngIf="pageDetail?.hero_heading && pageDetail.hero_heading && pageDetail.hero_heading.trim().length > 0" class="mb-3 text_{{ pageDetail.hero_heading }}">
+                <h3
+                  *ngIf="pageDetail?.hero_heading && pageDetail.hero_heading && pageDetail.hero_heading.trim().length > 0"
+                  class="mb-3 text_{{ pageDetail.hero_heading }}">
                   {{ pageDetail.hero_heading }}</h3>
                 <p><strong>{{pageDetail?.hero_heading_txt}}</strong></p>
               </div>
@@ -610,7 +624,9 @@
           <div class="data_wrapper">
             <div class="text_side_wrapper">
               <div class="title_text_p">
-                <h3 *ngIf="pageDetail?.hero_heading && pageDetail.hero_heading && pageDetail.hero_heading.trim().length > 0" class="mb-3 text_{{ pageDetail.hero_heading }}">
+                <h3
+                  *ngIf="pageDetail?.hero_heading && pageDetail.hero_heading && pageDetail.hero_heading.trim().length > 0"
+                  class="mb-3 text_{{ pageDetail.hero_heading }}">
                   {{ pageDetail.hero_heading }}</h3>
                 <p><strong>{{pageDetail?.hero_heading_txt}}</strong></p>
               </div>
