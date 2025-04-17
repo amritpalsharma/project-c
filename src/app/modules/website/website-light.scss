@@ -185,20 +185,16 @@
   color: #E05263;
 }
 
-.light-theme .website-code .main .overlay {
+.light-theme .website-code .main .overlay, .light-theme .all-page-content .website-code .main .overlay {
   // background: linear-gradient(to top, #092E01 10%, transparent 100%);
   background: linear-gradient(to top, rgb(255 255 255) 0, transparent 20%);
-}
-
-.light-theme .all-page-content .website-code .main .overlay {
-  background: linear-gradient(to top, #236115 10%, transparent 100%);
 }
 .light-theme .all-page-content .website-code .main1 .overlay {
   background: unset !important;
 }
 .light-theme .website-code .overlay1 {
   // background: linear-gradient(to top, #092E01 0%, transparent 100%);
-  background: linear-gradient(to top, #ffffff 10%, transparent 50%);
+  background: linear-gradient(to top, rgb(255 255 255) 0, transparent 20%);
 }
 .light-theme .website-code .club-overlay {
   background: linear-gradient(to top, transparent 80%, #092E01 100%), linear-gradient(to bottom, transparent 80%, #092E01 100%);
@@ -232,7 +228,9 @@
   background-color: #ccc;
   // border: 2px solid #ccc;
 }
-
+.light-theme .custom-list-item.country-name:hover {
+  color: #E05263 !important;
+}
 .light-theme .website-code button.btn.btn-success.active-btn {
   background-image: linear-gradient(180deg, #6FB95D, #236115);
   border: 1px solid #175B07;
@@ -436,11 +434,6 @@
 
 .light-theme .website-code .social-link li a svg path:hover {
   fill: #E05263;
-}
-
-.light-theme .website-code li.insta-icon i:hover,
-.light-theme .website-code li.linkedin-icon i:hover {
-  color: #e05263;
 }
 
 .light-theme .website-code .register .form-select {

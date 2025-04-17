@@ -101,12 +101,18 @@
 .dark-theme .website-code .light-images {
   display: none;
 }
-
-.dark-theme .website-code li.insta-icon i:hover,
-.dark-theme .website-code li.linkedin-icon i:hover {
-  color: #bde34f;
-}
-
+.dark-theme {
+  #footer .social-link li {
+    a {
+      background-color: #bde34e !important;
+      color: rgb(7, 41, 68) !important;
+      &:hover {
+        background: linear-gradient(45deg,#EFFFC1,#BDE34F) !important;
+        color: rgb(7, 41, 68) !important;
+      }
+    }
+  }
+  }
 .dark-theme .website-code .form-control {
   background-color: transparent;
   border: 1px solid white !important;

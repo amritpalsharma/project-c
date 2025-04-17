@@ -15,9 +15,6 @@ h3 {
   font-size: 35px;
   color: white;
 }
-i.fa-brands.fa-instagram, i.fa-brands.fa-linkedin-in {
-  color: white;
-}
 
 h4 {
   font-size: 30px;
@@ -111,12 +108,6 @@ ul {
   margin-right: 10px;
   cursor: pointer;
 }
-
-.social-media ul li a:hover {
-  color: #e05263;
-}
-
-
 .form-check-input[type="checkbox"] {
   border-radius: 3px;
 }
@@ -144,7 +135,6 @@ ul {
 
 .btn {
   border-radius: 10px;
-  // padding: 10px 20px;
   font-size: 16px;
 }
 
@@ -153,20 +143,6 @@ a.btn-primary {
   border: #E05263;
 }
 
-
-// .light-theme .btn-primary {
-//   background-color: #e05263 !important;
-//   border-color: #e05263 !important;
-// }
-
-// .btn-primary:hover {
-//   background-color: #e05263;
-//   border-color: #e05263;
-// }
-// .btn-primary:hover:active {
-//   background-color: #e05263;
-//   border-color: #e05263;
-// }
 .nav-header {
   display: flex;
   align-items: center;
@@ -248,9 +224,6 @@ a.btn-primary {
   padding-top: 91px;
 }
 
-// .nav-link.active{
-//     color:#E05263;
-// }
 .nav-link:hover {
   color: #e05263;
 }
@@ -407,10 +380,6 @@ input:checked+.slider:before {
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.06);
   text-align: left;
 }
-
-// #footer{
-//   background-color: #ffffff;
-// }
 #footer .footer-newsletter form input[type="email"] {
   border: 0;
   padding: 4px 8px;
@@ -484,7 +453,7 @@ input:checked+.slider:before {
   // color: #000;
   color: white;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
   margin-bottom: 10px;
 }
 
@@ -500,7 +469,8 @@ li.linkedin-icon i {
 }
 
 .social-link {
-  margin-top: 40px;
+  margin-top: 30px;
+  margin-bottom: 20px;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -508,7 +478,22 @@ li.linkedin-icon i {
 
 
 .social-link li {
-  margin-right: 35px;
+  margin-right: 20px;
+  a {
+    width: 50px;
+    height: 50px;
+    background-color: #e05263;
+    color: #fff;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 3px;
+    &:hover {
+      background: linear-gradient(to bottom right, #6FB95D,#236115);
+      color: #fff !important;
+    }
+  }
 }
 
 .bgprimary {
@@ -733,17 +718,6 @@ img.ng-star-inserted {
 .player-carousel {
   background-color: linear-gradient(45deg, #FFFFFF, #ABABAB);
 }
-
-
-// p.ng-star-inserted {
-//   background-color: green;
-//   font-size: 14px;
-//   color: white;
-//   text-align: center;
-//   font-weight: 500;
-//   padding: 7px;
-// }
-
 
 /*--------------------------------------------------------------
 # Recently Joined
@@ -992,11 +966,6 @@ option.countary {
   color: white;
   background-color: #6FB95D;
 }
-
-// .footer-links {
-//   text-transform: capitalize;
-// }
-
 
 /* Responsive Design for Mobile */
 
@@ -1476,6 +1445,15 @@ option.countary {
   p, #footer .footer-top .footer-links ul li a {
     font-size: 20px !important;
   }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+#footer .footer-top h4 {
+  font-size: 28px !important;
+}
+#footer .footer-top .footer-links ul li a, p.country  {
+  font-size: 25px !important;
+}
 }
 
 
