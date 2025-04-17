@@ -238,16 +238,14 @@
     width: 210px;
     font-size: 17.5px;
 }
-// .es .website-code .login-btn, .de .website-code .login-btn {
-//     font-size: 17.5px;
-//     width: 210px;
-// }
-// .en .website-code nav.navbar .login-btn {
-//     width: 190px;
-//     font-size: 16.5px;
-// }
 .table th, .table td {
     font-size: 18px !important;
+}
+.dashboard_page_only {
+    .general_details td.cdk-column-Download.mat-column-Download svg {
+        width: 37px !important;
+        height: 37px !important;
+    }
 }
 }
 
@@ -334,6 +332,17 @@ td.cdk-column-Remove.mat-column-Remove svg {
   mat-datepicker-toggle button {
     background-position: top 16px center !important;
     background-size: 26px !important;
+}
+.website_main_pages {
+    .work-banner .work-text .number p {
+        height: 40px !important;
+        width: 40px !important;
+    }
+    .left-accordion .accordion-item button.accordion-button:after {
+        width: 30px;
+        height: 30px;
+        background-size: 30px;
+    }
 }
 .all-page-content .page-container > .outlet_outer {
     min-height: calc(100vh - 200px) !important;
@@ -532,6 +541,13 @@ td.cdk-column-Remove.mat-column-Remove svg {
         font-size: 20px !important;
     }
 }
+
+.player-list-code {
+    button.faq-club-button, button.faq-talent-button {
+        width: auto !important;
+        font-size: 26px !important;
+    }
+}
 }
 
 
@@ -555,26 +571,29 @@ td.cdk-column-Remove.mat-column-Remove svg {
     .frontend_pages_larger_size {
         font-size: 30px !important;
         .website_main_pages .footer-top h4, .website_main_pages p, .website_main_pages .banner-btn .btn, .website_main_pages .premium-heading3 span, .website_main_pages .common_static_page .content_page ul li, .website_main_pages .price_mat_wrapper .feature-data ul li, .website_main_pages .learn-banner .back-button {
-            font-size: 30px !important;
+            font-size: 40px !important;
+        }
+        .contact-form a.location-text {
+            font-size: 45px !important;
         }
         .work-text .number p {
-            height: 51px !important;
-            width: 51px !important;
+            height: 61px !important;
+            width: 61px !important;
         }
         .country-available {
-            font-size: 45px !important;
+            font-size:  70px !important;
         }
         .club .club_player_light h3 {
             font-size: 55px !important;
         }
         .club_text img {
-            width: 80px !important;
-            height: 80px !important;
+            width: 100px !important;
+            height: 100px !important;
         }
         .banner-left {
             margin-right: 35%;
             .banner-heading {
-                font-size: 55px !important;
+                font-size: 70px !important;
             }
             .banner-heading5 p {
                 font-size: 34px !important;
@@ -582,9 +601,6 @@ td.cdk-column-Remove.mat-column-Remove svg {
             a.btn.btn-register {
                 height: unset !important;
             }
-        }
-        .banner-inner .about h2{
-            font-size: 60px !important;
         }
         .country-name {
             font-size: 30px !important;
@@ -596,8 +612,8 @@ td.cdk-column-Remove.mat-column-Remove svg {
                 line-height: 2;
             }
         }
-        .faq h3, h3.form-heading, .latest-news h4 {
-            font-size: 48px !important;
+        .faq h3, h3.form-heading, .latest-news h4, .banner-inner .about h2 {
+            font-size: 70px !important;
         }
         .talent-content .header {
             .toggle-icon {
@@ -634,11 +650,11 @@ td.cdk-column-Remove.mat-column-Remove svg {
             height: auto !important;
         }
         .price_mat_wrapper .toggle-button, .billed_wrapp .toggle-button {
-            top: 21px;
+            top: 28px;
         }
         .price_mat_wrapper .feature-height {
             li:before {
-                top: 19px;
+                top: 24px;
             } 
         }
         .main-bnr h1 {
@@ -647,10 +663,21 @@ td.cdk-column-Remove.mat-column-Remove svg {
         } 
         .contact-form {
             .location-image img {
-                width: 40px;
+                width: 60px;
+                top: 5px;
+                position: relative;
+                margin-right: 13px;
             }
             .radio-group label {
-                font-size: 30px !important;
+                font-size: 38px !important;
+            }
+            .custom-radio .radio-button {
+                width: 34px !important;
+                height: 34px !important;
+            }
+            .custom-radio input[type=radio]:checked + .radio-button::before {
+                width: 17px !important;
+                height: 17px !important;
             }
             form button {
                 height: unset !important;
@@ -664,7 +691,7 @@ td.cdk-column-Remove.mat-column-Remove svg {
         padding: 0;
     }
     .website_main_pages .works h3, .website_main_pages .joined-text h3 {
-        font-size: 55px !important;
+        font-size: 70px !important;
     }
     .website_main_pages .progress_btn a {
         font-size: 38px !important;
@@ -674,20 +701,31 @@ td.cdk-column-Remove.mat-column-Remove svg {
         font-size: 40px !important;
     }
     .feature-heading3, .club-heading4, .website_main_pages .club-banner .title_text_p h3, .website_main_pages .price-heading3, .website_main_pages .club-banner .club_players h3 {
-        font-size: 55px !important;
+        font-size: 70px !important;
     }
     .website_main_pages h2.accordion-header, .website_main_pages .price_mat_wrapper .feature-heading, .website_main_pages .price_mat_wrapper .feature-data h4.free-heading {
-        font-size: 34px !important;
+        font-size: 40px !important;
+    }
+    .website_main_pages .left-accordion .accordion-item button.accordion-button:after {
+        width: 40px;
+        height: 40px;
+        background-size: 40px;
     }
     .website_main_pages .premium-text img {
         top: 4px;
         position: relative;
     }
     .website_main_pages .btn {
-        font-size: 26px !important;
-    }
-    .website_main_pages .footer-top .footer-links ul li a, .website_main_pages .footer-top p, .website_main_pages .red_text_plan, .website_main_pages .footer-bottom p {
         font-size: 28px !important;
+    }
+    .talent_page .banner-data {
+        padding-top: 250px !important;
+    }
+    .website_main_pages .footer-top .footer-links ul li a, .website_main_pages .footer-top p, .website_main_pages .red_text_plan {
+        font-size: 35px !important;
+    }
+    .website_main_pages .footer-bottom p {
+        font-size: 30px !important;
     }
     .website_main_pages .common_static_page .content_page h4 {
         font-size: 40px !important;
@@ -718,6 +756,11 @@ td.cdk-column-Remove.mat-column-Remove svg {
         }
     }
     .frontend_pages_larger_size {
+        .work-banner {
+            .work-text.active::before {
+                width: 4px !important;
+            }
+        }
         .website_main_pages .price_mat_wrapper .feature-data button.btn.btn-join, .website_main_pages .news-slider button.learn-more {
             height: auto !important;
             padding: 15px 30px !important;
@@ -734,7 +777,7 @@ td.cdk-column-Remove.mat-column-Remove svg {
             height: 40px;
             margin-top: 5px;
         }
-        .learn-banner h1 {
+        .learn-banner h1, .player-list-code .player-list h1{
             font-size: 55px;
         }
     }
@@ -1221,5 +1264,17 @@ table.table  th {
 }
 .mobile_search .nav-link img {
     width: 25px;
+}
+}
+
+@media (max-width: 350px) {
+.page-header .theme_dropdown {
+    margin-left: -5px;
+}
+.page-header .notification_dropdown {
+    .nav-link.nav-action {
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+    }
 }
 }

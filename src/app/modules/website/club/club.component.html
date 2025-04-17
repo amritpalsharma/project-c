@@ -8,19 +8,21 @@
 
             <div *ngIf="checkActive('skyscraper')  && !isLoading" class="skyscraper-left">
                 <a href="{{advertisementData?.skyscraper?.redirect_url}}" target="_blank">
-                <img [src]="advertisemnet_base_url + advertisementData?.skyscraper?.featured_image">
+                    <img [src]="advertisemnet_base_url + advertisementData?.skyscraper?.featured_image">
                 </a>
-                <button *ngIf="!btnLoading" (click)="closeAd('skyscraper')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+                <button *ngIf="!btnLoading" (click)="closeAd('skyscraper')" class="ad-close-button"><i
+                        class="fa-solid fa-xmark"></i></button>
                 <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
-              </div>
-        
-              <div *ngIf="checkActive('wide_skyscraper')  && !isLoading" class="skyscraper-right">
+            </div>
+
+            <div *ngIf="checkActive('wide_skyscraper')  && !isLoading" class="skyscraper-right">
                 <a href="{{advertisementData?.wide_skyscraper?.redirect_url}}" target="_blank">
-                <img [src]="advertisemnet_base_url + advertisementData?.wide_skyscraper?.featured_image">
+                    <img [src]="advertisemnet_base_url + advertisementData?.wide_skyscraper?.featured_image">
                 </a>
-                <button *ngIf="!btnLoading" (click)="closeAd('wide_skyscraper')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+                <button *ngIf="!btnLoading" (click)="closeAd('wide_skyscraper')" class="ad-close-button"><i
+                        class="fa-solid fa-xmark"></i></button>
                 <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
-              </div>
+            </div>
 
 
 
@@ -52,24 +54,28 @@
             </div>
         </div>
 
-         <div class="container">
-      <div *ngIf="checkActive('leaderboard') || checkActive('banner')" class="advertisment advirtismnt_2">
-        <div *ngIf="isExists('leaderboard') && checkActive('leaderboard')  && !isLoading" class="leaderboard-club-image advirtismnt_2_large">
-            <a href="{{advertisementData?.leaderboard?.redirect_url}}" target="_blank">
-            <img [src]="advertisemnet_base_url + advertisementData?.leaderboard?.featured_image">
-          </a>
-            <button *ngIf="!btnLoading" (click)="closeAd('leaderboard')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
-            <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+        <div class="container">
+            <div *ngIf="checkActive('leaderboard') || checkActive('banner')" class="advertisment advirtismnt_2">
+                <div *ngIf="isExists('leaderboard') && checkActive('leaderboard')  && !isLoading"
+                    class="leaderboard-club-image advirtismnt_2_large">
+                    <a href="{{advertisementData?.leaderboard?.redirect_url}}" target="_blank">
+                        <img [src]="advertisemnet_base_url + advertisementData?.leaderboard?.featured_image">
+                    </a>
+                    <button *ngIf="!btnLoading" (click)="closeAd('leaderboard')" class="ad-close-button"><i
+                            class="fa-solid fa-xmark"></i></button>
+                    <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+                </div>
+                <div *ngIf="!isExists('leaderboard') && checkActive('banner')  && !isLoading"
+                    class="leaderboard-club-image advirtismnt_2_small">
+                    <a href="{{advertisementData?.banner?.redirect_url}}" target="_blank">
+                        <img [src]="advertisemnet_base_url + advertisementData?.banner?.featured_image">
+                    </a>
+                    <button *ngIf="!btnLoading" (click)="closeAd('banner')" class="ad-close-button"><i
+                            class="fa-solid fa-xmark"></i></button>
+                    <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+                </div>
+            </div>
         </div>
-        <div *ngIf="!isExists('leaderboard') && checkActive('banner')  && !isLoading" class="leaderboard-club-image advirtismnt_2_small">
-            <a href="{{advertisementData?.banner?.redirect_url}}" target="_blank">
-            <img [src]="advertisemnet_base_url + advertisementData?.banner?.featured_image">
-          </a>
-            <button *ngIf="!btnLoading" (click)="closeAd('banner')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
-            <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
-        </div>
-      </div>
-    </div>
 
         <div class="club-scout py_0">
             <div class="container">
@@ -112,8 +118,8 @@
                                         <div class="accordion-flex" data-bs-toggle="collapse"
                                             [attr.data-bs-target]="'#collapse' + (i + 1)" aria-expanded="false"
                                             [attr.aria-controls]="'collapse' + (i + 1)">
-                                            <img class="light-feature1" src="{{baseUrl + feature.icon}}">
-                                            <img class="dark-feature1" src="{{baseUrl + feature.dark_icon}}">
+                                            <img class="light-feature1" src="/assets/images/club_page/icons/{{i}}_light.svg">
+                                            <img class="dark-feature1" src="/assets/images/club_page/icons/{{i}}_dark.svg">
                                             <!-- <h2 class="accordion-header" (click)="getArrayItemByIndex(i,'dark_image')">
                                                 {{feature.title}}
                                             </h2> -->
@@ -143,36 +149,50 @@
 
                     <div class="col-lg-6 col-md-12 col-12">
                         <div class="club_page_accordion">
-                            <div class="feature-players">
+                            <div class="feature-players" [ngClass]="{'active':accordinCurrentIndex === 0}">
                                 <div class="talent_tab_image">
-                                    <img class="single_tab_img light-images" src="{{currentFeatureImage}}">
-                                    <img class="single_tab_img dark-images" src="{{currentFeatureImage}}">
+                                    <img class="single_tab_img light-images"
+                                        src="/assets/images/club_page/features/1_{{currentLang}}_light.png">
+                                    <img class="single_tab_img dark-images"
+                                        src="/assets/images/club_page/features/1_{{currentLang}}_dark.png">
                                 </div>
                             </div>
-                            <!-- <div class="feature-players" *ngIf="activeAccordionIndex === 1">
+                            <!-- 2 -->
+                            <div class="feature-players" [ngClass]="{'active':accordinCurrentIndex === 1}">
                                 <div class="talent_tab_image">
-                                    <img class="single_tab_img light-images" src="./assets/images/foto-club-dark-1.png">
-                                    <img class="single_tab_img dark-images" src="./assets/images/foto-club-dark-1.png">
+                                    <img class="single_tab_img light-images"
+                                        src="/assets/images/club_page/features/2_{{currentLang}}_light.png">
+                                    <img class="single_tab_img dark-images"
+                                        src="/assets/images/club_page/features/2_{{currentLang}}_dark.png">
                                 </div>
                             </div>
-                            <div class="club-offer" *ngIf="activeAccordionIndex === 2">
+                            <!-- 3 -->
+                            <div class="feature-players" [ngClass]="{'active':accordinCurrentIndex === 2}">
                                 <div class="talent_tab_image">
-                                    <img class="single_tab_img light-images" src="./assets/images/foto-club-dark-2.png">
-                                    <img class="single_tab_img dark-images" src="./assets/images/foto-club-dark-2.png">
+                                    <img class="single_tab_img light-images"
+                                        src="/assets/images/club_page/features/3_{{currentLang}}_light.png">
+                                    <img class="single_tab_img dark-images"
+                                        src="/assets/images/club_page/features/3_{{currentLang}}_dark.png">
                                 </div>
                             </div>
-                            <div *ngIf="activeAccordionIndex === 3">
+                            <!-- 4 -->
+                            <div class="feature-players" [ngClass]="{'active':accordinCurrentIndex === 3}">
                                 <div class="talent_tab_image">
-                                    <img class="single_tab_img light-images" src="./assets/images/foto-club-dark-3.png">
-                                    <img class="single_tab_img dark-images" src="./assets/images/foto-club-dark-3.png">
+                                    <img class="single_tab_img light-images"
+                                        src="/assets/images/club_page/features/4_{{currentLang}}_light.png">
+                                    <img class="single_tab_img dark-images"
+                                        src="/assets/images/club_page/features/4_{{currentLang}}_dark.png">
                                 </div>
                             </div>
-                            <div *ngIf="activeAccordionIndex === 4">
+                            <!-- 5 -->
+                            <div class="feature-players" [ngClass]="{'active':accordinCurrentIndex === 4}">
                                 <div class="talent_tab_image">
-                                    <img class="single_tab_img light-images" src="./assets/images/foto-club-dark-4.png">
-                                    <img class="single_tab_img dark-images" src="./assets/images/foto-club-dark-4.png">
+                                    <img class="single_tab_img light-images"
+                                        src="/assets/images/club_page/features/5_{{currentLang}}_light.png">
+                                    <img class="single_tab_img dark-images"
+                                        src="/assets/images/club_page/features/5_{{currentLang}}_dark.png">
                                 </div>
-                            </div> -->
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -187,150 +207,6 @@
                         <div class="left-accordion">
                             <h3 class="feature-heading3">{{pageData?.feature_sctn_title}}</h3>
                             <div class="accordion" id="accordionExample">
-                                <!-- <ng-container *ngFor="let feature of pageData.feature_sctn; let i = index">
-                                    <div class="accordion-item" (click)="setActiveAccordion(1)">
-                                        <div class="accordion-item" (click)="setActiveAccordion(i+1)">
-                                            <div class="accordion-flex" data-bs-toggle="collapse"
-                                                [attr.data-bs-target]="'#collapseOne' + i" aria-expanded="false"
-                                                [attr.aria-controls]="'collapseOne' + i">
-                                                <img class="light-feature1" src="{{baseUrl + feature.icon}}">
-                                                <img class="dark-feature1" src="{{baseUrl + feature.dark_icon}}">
-                                                <h2 class="accordion-header">
-                                                    {{feature.title}}
-                                                </h2>
-                                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                                    [attr.data-bs-target]="'#collapseOne' + i" aria-expanded="false"
-                                                    [attr.aria-controls]="'collapseOne' + i">
-                                                </button>
-                                            </div>
-                                            <div [id]="'collapseOne' + i" class="accordion-collapse collapse"
-                                                data-bs-parent="#accordionExample">
-                                                <div class="accordion-body">
-                                                    <p class="feature-text">{{feature.desc}}
-                                                    </p>
-                                                    <div class="talent_tab_image">
-                                                        <img class="single_tab_img light-images"
-                                                            src="{{baseUrl + feature.image}}">
-                                                        <img class="single_tab_img dark-images"
-                                                            src="{{baseUrl + feature.dark_image	}}">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </ng-container> -->
-                                <!-- <div class="accordion-item" (click)="setActiveAccordion(1)">
-                                    <div class="accordion-flex" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-                                        aria-expanded="true" aria-controls="collapseOne">
-                                        <img class="light-feature1" src="./assets/images/talent-feature-icon.svg">
-                                        <img class="dark-feature1" src="./assets/images/talent-dark-f1.svg">
-                                        <h2 class="accordion-header">
-                                            Access to Talent Database
-                                        </h2>
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#collapseOne" aria-expanded="true"
-                                            aria-controls="collapseOne">
-                                        </button>
-                                    </div>
-                                    <div id="collapseOne" class="accordion-collapse collapse show"
-                                        data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                            <p class="feature-text">Browse a comprehensive database of football talents
-                                                with detailed profiles and filtering options.</p>
-                                            <div class="talent_tab_image">
-                                                <img class="single_tab_img light-images"
-                                                    src="./assets/images/foto-club-dark-1.png">
-                                                <img class="single_tab_img dark-images"
-                                                    src="./assets/images/foto-club-dark-1.png">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="accordion-item" (click)="setActiveAccordion(2)">
-                                    <div class="accordion-flex" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-                                        aria-expanded="false" aria-controls="collapseTwo">
-                                        <img class="light-feature2" src="./assets/images/talent-feature-icon2.svg">
-                                        <img class="dark-feature2" src="./assets/images/talent-dark-f2.svg">
-                                        <h2 class="accordion-header">Detailed Player Profiles</h2>
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-                                            aria-expanded="false" aria-controls="collapseTwo">
-                                        </button>
-                                    </div>
-                                    <div id="collapseTwo" class="accordion-collapse collapse"
-                                        data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                            <p class="feature-text"> View in-depth profiles of players, including
-                                                statistics, achievements, and personal information.</p>
-                                            <div class="talent_tab_image">
-                                                <img class="single_tab_img light-images"
-                                                    src="./assets/images/foto-club-dark-2.png">
-                                                <img class="single_tab_img dark-images"
-                                                    src="./assets/images/foto-club-dark-2.png">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="accordion-item" (click)="setActiveAccordion(3)">
-                                    <div class="accordion-flex" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseThree" aria-expanded="false"
-                                        aria-controls="collapseThree">
-                                        <img class="light-feature3" src="./assets/images/talent-feature-icon3.svg">
-                                        <img class="dark-feature3" src="./assets/images/talent-dark-f3.svg">
-                                        <h2 class="accordion-header">
-                                            Highlight Videos and Match Reports
-                                        </h2>
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#collapseThree"
-                                            aria-expanded="false" aria-controls="collapseThree">
-                                        </button>
-                                    </div>
-                                    <div id="collapseThree" class="accordion-collapse collapse"
-                                        data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                            <p class="feature-text">Access highlight videos and match reports to stay
-                                                updated on player performances.</p>
-                                            <div class="talent_tab_image">
-                                                <img class="single_tab_img light-images"
-                                                    src="./assets/images/foto-club-dark-3.png">
-                                                <img class="single_tab_img dark-images"
-                                                    src="./assets/images/foto-club-dark-3.png">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="accordion-item" (click)="setActiveAccordion(4)">
-                                    <div class="accordion-flex" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-                                        aria-expanded="true" aria-controls="collapseOne">
-                                        <img class="light-feature4" src="./assets/images/talent-feature-icon4.svg">
-                                        <img class="dark-feature4" src="./assets/images/talent-dark-f4.svg">
-                                        <h2 class="accordion-header" data-bs-toggle="collapse"
-                                            data-bs-target="#collapseFour" aria-expanded="false"
-                                            aria-controls="collapseFour">
-                                            Global Networking Opportunities
-                                        </h2>
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#collapseFour"
-                                            aria-expanded="false" aria-controls="collapseFour">
-                                        </button>
-                                    </div>
-                                    <div id="collapseFour" class="accordion-collapse collapse"
-                                        data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                            <p class="feature-text">Connect with clubs, scouts, and players from around
-                                                the world for unique networking opportunities.</p>
-                                            <div class="talent_tab_image">
-                                                <img class="single_tab_img light-images"
-                                                    src="./assets/images/foto-club-dark-4.png">
-                                                <img class="single_tab_img dark-images"
-                                                    src="./assets/images/foto-club-dark-4.png">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> -->
                                 <!-- New Code By amrit -->
                                 <ng-container *ngFor="let feature of pageData.feature_sctn; let i = index">
                                     <div class="accordion-item">
@@ -338,8 +214,8 @@
                                         <div (click)="setActiveAccordionNew(i)" class="accordion-flex"
                                             data-bs-toggle="collapse" [attr.data-bs-target]="'#collapseOne' + i"
                                             aria-expanded="false" [attr.aria-controls]="'collapseOne' + i">
-                                            <img class="light-feature1" src="{{ baseUrl + feature.icon }}">
-                                            <img class="dark-feature1" src="{{ baseUrl + feature.dark_icon }}">
+                                            <img class="light-feature1" src="/assets/images/club_page/icons/{{i}}_light.svg">
+                                            <img class="dark-feature1" src="/assets/images/club_page/icons/{{i}}_dark.svg">
                                             <h2 class="accordion-header">
                                                 {{ feature.title }}
                                             </h2>
@@ -379,46 +255,49 @@
 
         <div class="advertismnt_container">
             <div class="container">
-              <div *ngIf="isExists('large_leaderboard')" class="advertisment advertisement_two_top">
-      
-                <div *ngIf="checkActive('large_leaderboard')  && !isLoading" class="leaderboard-club-image">
-                    <a href="{{advertisementData?.large_leaderboard?.redirect_url}}" target="_blank">
-                  <img [src]="advertisemnet_base_url + advertisementData?.large_leaderboard?.featured_image">
-                  </a>
-                  <button *ngIf="!btnLoading" (click)="closeAd('large_leaderboard')" class="ad-close-button"><i
-                      class="fa-solid fa-xmark"></i></button>
-                      <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+                <div *ngIf="isExists('large_leaderboard')" class="advertisment advertisement_two_top">
+
+                    <div *ngIf="checkActive('large_leaderboard')  && !isLoading" class="leaderboard-club-image">
+                        <a href="{{advertisementData?.large_leaderboard?.redirect_url}}" target="_blank">
+                            <img [src]="advertisemnet_base_url + advertisementData?.large_leaderboard?.featured_image">
+                        </a>
+                        <button *ngIf="!btnLoading" (click)="closeAd('large_leaderboard')" class="ad-close-button"><i
+                                class="fa-solid fa-xmark"></i></button>
+                        <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+                    </div>
+
+                    <div *ngIf="checkActive('small_square')  && !isLoading" class="small-sqaure-image">
+                        <a href="{{advertisementData?.small_square?.redirect_url}}" target="_blank">
+                            <img [src]="advertisemnet_base_url + advertisementData?.small_square?.featured_image">
+                        </a>
+                        <button *ngIf="!btnLoading" (click)="closeAd('small_square')" class="ad-close-button"><i
+                                class="fa-solid fa-xmark"></i></button>
+                        <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+                    </div>
+
                 </div>
-      
-                <div *ngIf="checkActive('small_square')  && !isLoading" class="small-sqaure-image">
-                    <a href="{{advertisementData?.small_square?.redirect_url}}" target="_blank">
-                  <img [src]="advertisemnet_base_url + advertisementData?.small_square?.featured_image">
-                  </a>
-                  <button *ngIf="!btnLoading" (click)="closeAd('small_square')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
-                  <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+
+                <div *ngIf="!isExists('large_leaderboard')" class="advertisment advertisement_two_bottom">
+
+                    <div *ngIf="checkActive('small_square')  && !isLoading" class="small-sqaure-image">
+                        <a href="{{advertisementData?.small_square?.redirect_url}}" target="_blank">
+                            <img [src]="advertisemnet_base_url + advertisementData?.small_square?.featured_image">
+                        </a>
+                        <button *ngIf="!btnLoading" (click)="closeAd('small_square')" class="ad-close-button"><i
+                                class="fa-solid fa-xmark"></i></button>
+                        <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+                    </div>
+                    <div *ngIf="checkActive('banner')  && !isLoading" class="leaderboard-club-image">
+                        <a href="{{advertisementData?.banner?.redirect_url}}" target="_blank">
+                            <img [src]="advertisemnet_base_url + advertisementData?.banner?.featured_image">
+                        </a>
+                        <button *ngIf="!btnLoading" (click)="closeAd('banner')" class="ad-close-button"><i
+                                class="fa-solid fa-xmark"></i></button>
+                        <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+                    </div>
+
+
                 </div>
-      
-              </div>
-      
-              <div *ngIf="!isExists('large_leaderboard')" class="advertisment advertisement_two_bottom">
-      
-                <div *ngIf="checkActive('small_square')  && !isLoading" class="small-sqaure-image">
-                    <a href="{{advertisementData?.small_square?.redirect_url}}" target="_blank">
-                  <img [src]="advertisemnet_base_url + advertisementData?.small_square?.featured_image">
-                  </a>
-                  <button *ngIf="!btnLoading" (click)="closeAd('small_square')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
-                  <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
-                </div>
-                <div *ngIf="checkActive('banner')  && !isLoading" class="leaderboard-club-image">
-                    <a href="{{advertisementData?.banner?.redirect_url}}" target="_blank">
-                  <img [src]="advertisemnet_base_url + advertisementData?.banner?.featured_image">
-                  </a>
-                  <button *ngIf="!btnLoading" (click)="closeAd('banner')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
-                  <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
-                </div>
-      
-      
-              </div>
             </div>
         </div>
 
@@ -454,7 +333,8 @@
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="premium-img">
                                     <img class="bg-image" src="./assets/images/feature-image.svg">
-                                    <h2 class="premium-heading2">{{ plan.plan_name }} <span class="red_text_plan">{{'forClubsandScouts' | translate}}</span></h2>
+                                    <h2 class="premium-heading2">{{ plan.plan_name }} <span
+                                            class="red_text_plan">{{'forClubsandScouts' | translate}}</span></h2>
                                     <h3 class="premium-heading3">
                                         <!-- {{ !isActivePlan[i] ? plan.monthly_plan_price : plan.yearly_plan_price
                                         }}<span>.- {{ !isActivePlan[i] ? plan.monthly_plan_price_currency :
@@ -474,7 +354,10 @@
 
                                     </h3>
                                     <div class="buy_now_btn_front_price">
-                                        <a href="" class="btn fill_btn">{{ 'buyNow' | translate }}</a>
+                                        <a *ngIf="plansPageLink" [routerLink]="plansPageLink" class="btn fill_btn">{{
+                                            'buyNow' | translate }}</a>
+                                        <a *ngIf="!plansPageLink" data-bs-toggle="modal" data-bs-target="#exampleModal1"
+                                            class="btn fill_btn">{{ 'buyNow' | translate }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -497,36 +380,37 @@
 
         <div class="">
             <div class="container">
-              <div class="advertisment advertisement1 advertisement_three_block"
-                *ngIf="checkActive('large_rectangle') || checkActive('inline_rectangle') || checkActive('square')">
-      
-                <div *ngIf="checkActive('large_rectangle')  && !isLoading" class="large-rectangle">
-                    <a href="{{advertisementData?.large_rectangle?.redirect_url}}" target="_blank">
-                  <img [src]="advertisemnet_base_url + advertisementData?.large_rectangle?.featured_image">
-                  </a>
-                  <button *ngIf="!btnLoading" (click)="closeAd('large_rectangle')" class="ad-close-button"><i
-                      class="fa-solid fa-xmark"></i></button>
-                      <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+                <div class="advertisment advertisement1 advertisement_three_block"
+                    *ngIf="checkActive('large_rectangle') || checkActive('inline_rectangle') || checkActive('square')">
+
+                    <div *ngIf="checkActive('large_rectangle')  && !isLoading" class="large-rectangle">
+                        <a href="{{advertisementData?.large_rectangle?.redirect_url}}" target="_blank">
+                            <img [src]="advertisemnet_base_url + advertisementData?.large_rectangle?.featured_image">
+                        </a>
+                        <button *ngIf="!btnLoading" (click)="closeAd('large_rectangle')" class="ad-close-button"><i
+                                class="fa-solid fa-xmark"></i></button>
+                        <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+                    </div>
+
+                    <div *ngIf="checkActive('inline_rectangle')  && !isLoading" class="inline-rectangle">
+                        <a href="{{advertisementData?.inline_rectangle?.redirect_url}}" target="_blank">
+                            <img [src]="advertisemnet_base_url + advertisementData?.inline_rectangle?.featured_image">
+                        </a>
+                        <button *ngIf="!btnLoading" (click)="closeAd('inline_rectangle')" class="ad-close-button"><i
+                                class="fa-solid fa-xmark"></i></button>
+                        <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+                    </div>
+
+                    <div *ngIf="checkActive('square')  && !isLoading" class="square">
+                        <a href="{{advertisementData?.square?.redirect_url}}" target="_blank">
+                            <img [src]="advertisemnet_base_url + advertisementData?.square?.featured_image">
+                        </a>
+                        <button *ngIf="!btnLoading" (click)="closeAd('square')" class="ad-close-button"><i
+                                class="fa-solid fa-xmark"></i></button>
+                        <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+                    </div>
+
                 </div>
-      
-                <div *ngIf="checkActive('inline_rectangle')  && !isLoading" class="inline-rectangle">
-                    <a href="{{advertisementData?.inline_rectangle?.redirect_url}}" target="_blank">
-                  <img [src]="advertisemnet_base_url + advertisementData?.inline_rectangle?.featured_image">
-                  </a>
-                  <button *ngIf="!btnLoading" (click)="closeAd('inline_rectangle')" class="ad-close-button"><i
-                      class="fa-solid fa-xmark"></i></button>
-                      <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
-                </div>
-      
-                <div *ngIf="checkActive('square')  && !isLoading" class="square">
-                    <a href="{{advertisementData?.square?.redirect_url}}" target="_blank">
-                  <img [src]="advertisemnet_base_url + advertisementData?.square?.featured_image">
-                  </a>
-                  <button *ngIf="!btnLoading" (click)="closeAd('square')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
-                  <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
-                </div>
-      
-              </div>
             </div>
         </div>
 

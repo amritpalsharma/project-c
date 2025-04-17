@@ -125,15 +125,15 @@
             <div class="row">
                 <div class="col-lg-6 col-md-12 col-12">
                     <div class="left-accordion">
-                        <h3 class="feature-heading3">{{pageData?.feature_sctn_title}}</h3>
+                        <h3 class="feature-heading3">{{pageData?.feature_sctn_title}} </h3>
                         <div class="accordion" id="accordionExample">
                             <ng-container *ngFor="let feature of pageData.feature_sctn; let i = index">
                                 <div class="accordion-item" (click)="getArrayItemByIndex(i,'dark_icon')">
                                     <div class="accordion-flex" data-bs-toggle="collapse"
                                         [attr.data-bs-target]="'#collapse' + i" aria-expanded="false"
                                         [attr.aria-controls]="'collapse' + i">
-                                        <img class="light-feature1" src="{{baseUrl + feature.icon}}">
-                                        <img class="dark-feature1" src="{{baseUrl + feature.dark_icon}}">
+                                        <img class="light-feature1" src="/assets/images/talent_page/icons/{{i}}_light.svg">
+                                        <img class="dark-feature1" src="/assets/images/talent_page/icons/{{i}}_dark.svg">
                                         <h2 class="accordion-header" (click)="getArrayItemByIndex(i,'dark_icon')">
                                             {{feature.title}}
                                         </h2>
@@ -158,44 +158,34 @@
                 <div class="col-lg-6 col-md-12 col-12">
                     <div class="talent_page_accordion">
                         <div class="club-offer">
-
-                            <!-- <ng-container *ngFor="let feature of pageData.feature_sctn; let i = index"> -->
-                                <div class="talent_tab_image">
-                                    <!-- <h1>{{currentFeatureImage}}</h1> -->
-                                    <!-- <img class="single_tab_img light-images" src="./assets/images/foto-talent-dark-1.png"> -->
-                                    <!-- <img class="single_tab_img light-images" src="{{currentFeatureImage}}">
-    
-                                    <img class="single_tab_img dark-images" src="{{currentFeatureImage}}"> -->
-
-                                    <img class="single_tab_img light-images" [src]="'../../../../assets/images/talent_page/talent_featured_img_' + selectedLangSlug + '_' + custIndex + '.png'">
-    
-                                    <img class="single_tab_img dark-images" [src]="'../../../../assets/images/talent_page/talent_featured_img_dark_' + selectedLangSlug + '_' + custIndex + '.png'">
-
-                                    <!-- <h1>{{i}}</h1> -->
-                                    <!-- <img class="single_tab_img dark-images" src="./assets/images/foto-talent-dark-1.png"> -->
-                                    <!-- getArrayItemByIndex(); -->
-                                </div>
-                            <!-- </ng-container> -->
-                            <!-- <div class="club-offer" *ngIf="activeAccordionIndex === 1"> -->
-                        </div>
-                        <!-- <div *ngIf="activeAccordionIndex === 2">
-                            <div class="talent_tab_image">
-                                <img class="single_tab_img light-images" src="./assets/images/foto-talent-dark-2.png">
-                                <img class="single_tab_img dark-images" src="./assets/images/foto-talent-dark-2.png">
+                            <div class="talent_tab_image" [ngClass]="{ 'active': custIndex === 1 }">
+                                <img class="single_tab_img light-images"
+                                    [src]="'../../../../assets/images/talent_page/talent_featured_img_' + selectedLangSlug + '_' +'1.png'">
+                                <img class="single_tab_img dark-images"
+                                    [src]="'../../../../assets/images/talent_page/talent_featured_img_dark_' + selectedLangSlug + '_' + '1.png'">
+                            </div>
+                            <!-- 2 -->
+                            <div class="talent_tab_image" [ngClass]="{ 'active': custIndex === 2 }">
+                                <img class="single_tab_img light-images"
+                                    [src]="'../../../../assets/images/talent_page/talent_featured_img_' + selectedLangSlug + '_'  + '2.png'">
+                                <img class="single_tab_img dark-images"
+                                    [src]="'../../../../assets/images/talent_page/talent_featured_img_dark_' + selectedLangSlug + '_'  + '2.png'">
+                            </div>
+                            <!-- 3 -->
+                            <div class="talent_tab_image" [ngClass]="{ 'active': custIndex === 3 }">
+                                <img class="single_tab_img light-images"
+                                    [src]="'../../../../assets/images/talent_page/talent_featured_img_' + selectedLangSlug + '_'  + '3.png'">
+                                <img class="single_tab_img dark-images"
+                                    [src]="'../../../../assets/images/talent_page/talent_featured_img_dark_' + selectedLangSlug + '_'  + '3.png'">
+                            </div>
+                            <!-- 4 -->
+                            <div class="talent_tab_image" [ngClass]="{ 'active': custIndex === 4 }">
+                                <img class="single_tab_img light-images"
+                                    [src]="'../../../../assets/images/talent_page/talent_featured_img_' + selectedLangSlug + '_'  + '4.png'">
+                                <img class="single_tab_img dark-images"
+                                    [src]="'../../../../assets/images/talent_page/talent_featured_img_dark_' + selectedLangSlug + '_' + '4.png'">
                             </div>
                         </div>
-                        <div *ngIf="activeAccordionIndex === 3">
-                            <div class="talent_tab_image">
-                                <img class="single_tab_img light-images" src="./assets/images/foto-talent-dark-3.png">
-                                <img class="single_tab_img dark-images" src="./assets/images/foto-talent-dark-3.png">
-                            </div>
-                        </div>
-                        <div *ngIf="activeAccordionIndex === 4">
-                            <div class="talent_tab_image">
-                                <img class="single_tab_img light-images" src="./assets/images/foto-talent-dark-4.png">
-                                <img class="single_tab_img dark-images" src="./assets/images/foto-talent-dark-4.png">
-                            </div>
-                        </div> -->
                     </div>
                 </div>
             </div>
@@ -391,9 +381,12 @@
                                         <span *ngIf="isActivePlan[i]">{{plan.yearly_label}}</span>
                                     </span>
                                 </h3>
-                                
+
                                 <div class="buy_now_btn_front_price">
-                                    <a href="" class="btn fill_btn">{{ 'buyNow' | translate }}</a>
+                                    <a *ngIf="plansPageLink && plansPageLink.length > 0" [routerLink]="plansPageLink"
+                                        class="btn fill_btn">{{ 'buyNow' | translate }}</a>
+                                    <a *ngIf="!plansPageLink" data-bs-toggle="modal" data-bs-target="#exampleModal1"
+                                        class="btn fill_btn">{{ 'buyNow' | translate }}</a>
                                 </div>
                             </div>
                         </div>

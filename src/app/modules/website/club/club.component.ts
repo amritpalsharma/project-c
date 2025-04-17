@@ -21,7 +21,8 @@ export class ClubComponent {
   currentFeatureImage: string = '';
   accordinCurrentIndex: number = 0;
   feature_sctn: any = [];
-  currentTheme: string = localStorage.getItem('theme') + '';
+  currentTheme: string = localStorage.getItem('theme') || 'light';
+  currentLang: any = localStorage.getItem('lang') || 'en';
   pageData: any = [{
     banner_title: '',
     banner_desc: '',
@@ -66,7 +67,7 @@ export class ClubComponent {
   constructor(private webPages: WebPages, private globalSettings: GlobalSettingsService) {
 
   }
-
+  plansPageLink: any = this.globalSettings.getPlansLink();
   setActiveAccordion(index: number): void {
     this.activeAccordionIndex = index;
   }
@@ -89,6 +90,7 @@ export class ClubComponent {
 
     this.webPages.languageId$.subscribe((data) => {
       this.getPageData(data);
+      this.currentLang = this.getLangslugByID(data);
       this.getCurrencyPrice('monthly');
       this.getCurrencyPrice('yearly');
     });
@@ -380,20 +382,50 @@ export class ClubComponent {
     return index; // Tracks items by index to prevent re-rendering
   }
 
-  getArrayItemByIndex(index: number, field: keyof FeatureSection) {
+  getArrayItemByIndex12(index: number, field: keyof FeatureSection) {
     // alert('button clicked')
     let theme = localStorage.getItem('theme');
+    if (typeof theme === 'undefined' || theme == null) {
+      theme = 'light';
+    }
     // console.info(this.feature_sctn);
     let lang = localStorage.getItem('lang');
     let image_index = index + 1;
     if (index >= 0 && index < this.feature_sctn.length) {
       this.accordinCurrentIndex = index;
-      this.currentFeatureImage = '/assets/images/club_page/features/'+image_index+'_'+lang+'_'+theme+'.png';
+      this.currentFeatureImage = '/assets/images/club_page/features/' + image_index + '_' + lang + '_' + theme + '.png';
       if (this.currentFeatureImage != '') {
         this.currentFeatureImage = this.currentFeatureImage;
       }
     }
   }
+  getArrayItemByIndex(index: number, field: keyof FeatureSection) {
+    let theme = localStorage.getItem('theme') || 'light';
+    let lang = localStorage.getItem('lang');
+    let image_index = index + 1;
+
+    // Check if the index is within bounds
+    if (index >= 0 && index < this.feature_sctn.length) {
+      this.accordinCurrentIndex = index;
+
+      // Construct the image URL
+      const newImageSrc = `/assets/images/club_page/features/${image_index}_${lang}_${theme}.png`;
+
+      // Only update if the image source has changed
+      if (this.currentFeatureImage !== newImageSrc) {
+        this.currentFeatureImage = newImageSrc;
+
+        // Preload the image asynchronously
+        const image = new Image();
+        image.src = newImageSrc;
+        image.onload = () => {
+          // Update DOM or trigger necessary changes once the image has loaded
+          this.currentFeatureImage = image.src;
+        };
+      }
+    }
+  }
+
   ThemeUpdated() {
     this.getArrayItemByIndex(this.accordinCurrentIndex, 'image');
     this.currentTheme = localStorage.getItem('theme') + '';
@@ -410,5 +442,27 @@ export class ClubComponent {
   }
   ngAfterViewInit() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  getLangslugByID(langID: any) {
+    let slug = 'en';
+    if (langID == 1) {
+      slug = 'en';
+    } else if (langID == 2) {
+      slug = 'de';
+    } else if (langID == 3) {
+      slug = 'it';
+    } else if (langID == 4) {
+      slug = 'fr';
+    } else if (langID == 5) {
+      slug = 'es';
+    } else if (langID == 6) {
+      slug = 'pt';
+    } else if (langID == 7) {
+      slug = 'dk';
+    } else if (langID == 8) {
+      slug = 'sv';
+    }
+    return slug;
   }
 }

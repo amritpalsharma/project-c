@@ -17,7 +17,7 @@ interface Player {
 })
 export class PlayerListComponent implements OnInit {
   selectedTab: 'talent' | 'club' | 'scouts' = 'talent';
-  isLoading:boolean=true;
+  isLoading: boolean = true;
   currentPage: number = 1;
   itemsPerPage: number = 8;
   number: number = 12;
@@ -30,7 +30,8 @@ export class PlayerListComponent implements OnInit {
   profileBaseUrl: string = 'https://api.socceryou.ch/uploads/';
   birthCountryFlags: string = 'https://api.socceryou.ch/uploads/logos/';
   apiDefaultImage: string = 'https://api.socceryou.ch/uploads/not_a_valid_image.jpg';
-  isDefaultImage:string='default_img';
+  flagPath:string='https://api.socceryou.ch/uploads/logos/';
+  isDefaultImage: string = 'default_img';
   constructor(private http: HttpClient) { }
 
   players: Player[] = [ /* ... existing player data ... */];
@@ -185,4 +186,8 @@ export class PlayerListComponent implements OnInit {
     event.target.src = this.apiDefaultImage;
   }
 
+  getFirstFlag(userNationalities: any): string | null {
+    const parsedNationalities = JSON.parse(userNationalities);
+    return parsedNationalities.length > 0 ? parsedNationalities[0].flag_path : '';
+  }
 }

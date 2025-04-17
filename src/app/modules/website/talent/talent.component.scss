@@ -4,24 +4,31 @@
 h1 {
     font-size: 45px;
 }
+
 h2 {
     font-size: 40px;
 }
+
 h3 {
     font-size: 35px;
 }
+
 h4 {
     font-size: 22px;
 }
+
 h5 {
     font-size: 20px;
 }
+
 p {
     font-size: 18px;
 }
+
 .features1 {
     display: none;
 }
+
 .py_0 {
     padding-top: 50px;
     padding-bottom: 50px;
@@ -58,6 +65,7 @@ P {
     padding-top: 100px;
     height: 1000px;
 }
+
 .banner-data {
     padding-top: 130px;
 }
@@ -118,6 +126,7 @@ a.btn.btn-register {
     width: 297px;
     height: 231px;
 }
+
 .banner-image2::before {
     content: "";
     position: absolute;
@@ -153,6 +162,7 @@ a.btn.btn-register {
     width: 415px;
     border-radius: 10px;
 }
+
 .banner-image4::before {
     content: "";
     position: absolute;
@@ -178,6 +188,7 @@ a.btn.btn-register {
     padding: 25px;
     border-radius: 10px;
     height: 100%;
+
     img {
         width: 55px;
         height: 55px;
@@ -280,6 +291,7 @@ a.btn.btn-register {
 h2.accordion-header {
     font-size: 20px;
     width: 100%;
+    font-weight: 700;
 }
 
 button.btn.btn-danger {
@@ -891,9 +903,11 @@ span {
     // background-color: #092E01;
     margin-right: 10px;
 }
+
 .billed_wrapp {
     margin-top: 50px;
 }
+
 .billed {
     display: flex;
     justify-content: right;
@@ -1106,23 +1120,26 @@ span {
 /*--------------------------------------------------------------
 #  pricing
 --------------------------------------------------------------*/
-@media (min-width: 1440px){
+@media (min-width: 1440px) {
     .club-offers2 img {
         right: 0;
         top: 16%;
         width: 280px;
         height: 275px;
     }
+
     .club-offers1 img {
         right: 51%;
         height: 245px;
         width: 285px;
-    }    
+    }
+
     .accodian-image2 img {
         left: 7%;
     }
+
     .banner-left {
-  
+
         margin-right: 42%;
     }
 }
@@ -1139,6 +1156,7 @@ span {
     .banner {
         height: 1100px;
     }
+
     .banner-left {
         margin-right: 45%;
     }
@@ -1501,6 +1519,7 @@ span {
         // height: 185px;
         // margin-top: 100px;
     }
+
     .banner-left {
         top: 72%;
         margin-right: 33%;
@@ -1641,7 +1660,8 @@ span {
         right: 71%;
     }
 }
-@media (max-width: 1200px){
+
+@media (max-width: 1200px) {
     .banner-image2 img {
         width: 285px;
         height: 220px;
@@ -1652,54 +1672,66 @@ span {
         width: 290px;
         height: 505px;
     }
+
     .banner-image3 img {
         width: 395px;
         height: 270px;
     }
+
     .banner-image4 img {
         top: 47%;
         right: 0;
         height: 380px;
         width: 395px;
     }
+
     .banner-left {
         margin-right: 31%;
     }
+
     .club-offers2 img {
         width: 240px;
         height: 240px;
     }
+
     .club-offers1 img {
         height: 210px;
         width: 250px;
     }
+
     .club-offers3 img {
         right: 27%;
         bottom: 5%;
         width: 340px;
         height: 270px;
     }
+
     .accodian-image3 img {
         height: 160px;
         width: 195px;
     }
+
     .accodian-image2 img {
         height: 190px;
         width: 240px;
         top: 44.5%;
     }
+
     .networking-images1 img {
         left: 15%;
     }
+
     .button1 {
         top: 90%;
         right: 64%;
     }
+
     .button4 {
         top: 4%;
         right: 30px;
     }
-    .feature-player2{
+
+    .feature-player2 {
         right: 180px;
     }
 
@@ -1846,7 +1878,7 @@ span {
         font-size: 15px;
     }
 
-    .club_text{
+    .club_text {
         padding: 20px;
         // height: 170px;
         // margin-top: 50px;
@@ -2394,91 +2426,112 @@ span {
         width: 255px;
         height: 175px;
     }
+
     .banner-image4 img {
         height: 225px;
         width: 255px;
         border-radius: 10px;
     }
+
     .club-offers2 img {
         right: 10%;
         top: 19%;
     }
+
     .club-offers1 img {
         top: 5%;
         right: 50%;
     }
+
     .accodian-image2 img {
         left: 20%;
     }
+
     .accodian-image1 img {
         top: 8%;
         right: 28%;
     }
+
     .accodian-image3 img {
         right: 18%;
     }
+
     .networking-images2 img {
         right: 18%;
     }
+
     .networking-images3 img {
         left: 8%;
     }
+
     .feature-player2 {
         top: 46%;
         right: 47%;
     }
+
     .feature-player3 {
         top: 16%;
         right: 18%;
     }
+
     .button1 {
         top: 59%;
         right: 78%;
         left: 1%;
     }
+
     .button3 {
         top: 65%;
         right: 23%;
     }
+
     .button4 {
         top: 7%;
         right: 32%;
     }
 }
-@media (max-width: 769px){
+
+@media (max-width: 769px) {
     .club-offers2 img {
         height: 260px;
         width: 280px;
         right: 8%;
         top: 19%;
     }
+
     .club-offers1 img {
         width: 288px;
         height: 235px;
         top: 8%;
         right: 51%;
     }
+
     .accodian-image2 img {
         height: 200px;
         width: 253px;
     }
+
     .feature-player2 {
         top: 46%;
         right: 43%;
     }
-    .feature-player3{
+
+    .feature-player3 {
         top: 16%;
         right: 12%;
     }
-    .button1{
+
+    .button1 {
         top: 59%;
         right: 76%;
         left: 0;
     }
-    .button4{
+
+    .button4 {
         top: 7%;
         right: 27%;
     }
+
     .networking-images2 img {
         width: 230px;
         height: 68px;
@@ -2654,6 +2707,7 @@ span {
     .premium {
         height: unset;
     }
+
     .premium-img {
         height: unset;
         padding-left: 0;
@@ -3493,19 +3547,19 @@ span {
         height: 150px;
         width: 160px;
         top: 23%;
-    
+
     }
 
     .club-offers1 img {
         width: 165px;
         height: 135px;
         top: 8%;
-     
+
     }
 
     .accodian-image3 img {
         top: 50.5%;
-     
+
         width: 145px;
         height: 115px;
     }
@@ -3515,7 +3569,7 @@ span {
         top: 50.5%;
         height: 135px;
         width: 160px;
-     
+
     }
 }
 
@@ -3801,6 +3855,7 @@ span {
     text-align: right;
     font-size: 14px;
 }
+
 .billed_wrapp.first_plan_with_title {
     margin-top: 0;
     display: flex;
@@ -3819,6 +3874,7 @@ span {
         object-fit: cover;
         object-position: top left;
     }
+
     .talent_tab_image img.single_tab_img {
         width: 48%;
         max-height: 100%;
@@ -3833,19 +3889,23 @@ span {
     .banner {
         height: auto;
     }
+
     .banner-data {
         position: relative;
         z-index: 2;
         padding-top: 150px;
     }
+
     .banner-left {
         position: unset;
         margin-right: 0;
     }
+
     .banner_image_combo img {
         width: 100%;
         margin-top: 1.5rem;
     }
+
     .talent_tab_image img.single_tab_img {
         width: 100%;
         object-fit: contain;
@@ -3853,48 +3913,54 @@ span {
 }
 
 @media (max-width: 767px) {
-.buy_now_btn_front_price .btn.fill_btn{
-    margin-bottom: 30px;
-}
+    .buy_now_btn_front_price .btn.fill_btn {
+        margin-bottom: 30px;
+    }
 }
 
 @media (max-width: 575px) {
     .club_text {
-      height: auto !important;
-      padding: 20px;
-  }
-  .accordion-flex img {
-      margin-right: 10px;
-      width: 30px !important;
-      height: 36px;
-      min-width: 30px !important;
-  }
-  .feature-text {
-      margin-left: 18px !important;
-  }
-  .accordion-body {
-    padding-top: 0 !important;
-  }
-  .billed_wrapp.first_plan_with_title {
-    flex-direction: column;
-    align-items: flex-start;
-    .plan_btn_and_text {
-        margin-left: auto;
-        margin-top: 1rem;
+        height: auto !important;
+        padding: 20px;
+    }
+
+    .accordion-flex img {
+        margin-right: 10px;
+        width: 30px !important;
+        height: 36px;
+        min-width: 30px !important;
+    }
+
+    .feature-text {
+        margin-left: 18px !important;
+    }
+
+    .accordion-body {
+        padding-top: 0 !important;
+    }
+
+    .billed_wrapp.first_plan_with_title {
+        flex-direction: column;
+        align-items: flex-start;
+
+        .plan_btn_and_text {
+            margin-left: auto;
+            margin-top: 1rem;
+        }
     }
 }
-  }
 
-  .buy_now_btn_front_price .btn.fill_btn {
+.buy_now_btn_front_price .btn.fill_btn {
     background-color: #BDE34E;
     color: #072944;
     border-radius: 80px;
     margin-top: 20px;
     min-width: 200px;
-    text-align: center;    
+    text-align: center;
     position: relative;
     z-index: 1;
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 .light-theme .website-code .banner{
@@ -3902,9 +3968,23 @@ span {
     background: url('/assets/images/talent_page/talent-page-banner.png'), #236115 !important;
 }
 =======
+=======
+
+>>>>>>> 038d10c3f5d9aeb9517fbb8524d83123374dcb1f
 @media (max-width: 400px) {
     .premium-heading2 .red_text_plan {
         display: block;
     }
+<<<<<<< HEAD
     }
 >>>>>>> 4a35e8933f7d272629c7515bc6fc997136234e9b
+=======
+}
+
+.club-offer .talent_tab_image {
+    display: none;
+}
+.club-offer .active{
+    display: block;
+}
+>>>>>>> 038d10c3f5d9aeb9517fbb8524d83123374dcb1f

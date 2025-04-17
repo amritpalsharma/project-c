@@ -875,7 +875,7 @@
   "2_countries": "2 och countries och selected",
   "expireOn": "Expires och on",
   "removeFromFavorite": "Remove och from och favorite",
-  "interval": "Interval",
+  "interval": "intervall",
   "startExploring": "Start och exploring",
   "demo": "Demo",
   "addCountryText": "Om du lägger till ett ytterligare land kommer din profil att visas i det landet. Din profil blir då även synlig för alla talanger, klubbar och scouter i det landet.",
@@ -1371,7 +1371,7 @@
   "alreadyPurchased": "Redan köpt",
   "portfolioDeleteConfirmation": "Är du säker på att du vill ta bort denna talang från din portfölj?",
   "portfolioDeletebtn": "Ta bort",
-  "portfolioCloseBtn": "Stäng",
+  "portfolioCloseBtn": "Avbryt",
   "PAGINATOR": {
     "ITEMS_PER_PAGE": "Objekt per sida",
     "NEXT_PAGE": "Nästa sida",

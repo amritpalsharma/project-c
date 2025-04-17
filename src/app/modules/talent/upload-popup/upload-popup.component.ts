@@ -148,6 +148,8 @@ export class UploadPopupComponent {
           this.dialogRef.close({
             files: this.uploadedFiles
           });
+        }else{
+          this.isLoading = false;
         }
       });
     });

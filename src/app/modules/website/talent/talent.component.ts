@@ -22,6 +22,8 @@ import { AuthService } from '../../../services/auth.service';
 
 export class TalentComponent {
 
+  custIndex: number = 1;
+
   isActive1 = true; // Premium Plan
   isActive2 = true; // Multi-Country Plan
   isActive3 = true; // Multi-Country Plan
@@ -63,6 +65,9 @@ export class TalentComponent {
 
   countryPrice: number = 0;
   countryYearlyPrice: number = 0;
+  isUserLoggedIn:any;
+  LoggedInUserPlansLink:any;
+
 
   setActiveAccordion(index: number): void {
     this.activeAccordionIndex = index;
@@ -74,11 +79,11 @@ export class TalentComponent {
     private authService: AuthService
   ) { }
 
+  plansPageLink: any = this.globalSettings.getPlansLink();
   isActivePlan: { [key: number]: boolean } = {}; // Keeps track of toggle states for each pricing plan
 
-  selectedLangSlug: string = this.globalSettings.getLanguage();
-  isUserLoggedIn: boolean = false;
-  LoggedInUserPlansLink: string = '';
+  selectedLangSlug: string = localStorage.getItem('lang') || "en";
+
   ngOnInit() {
     // Retrieve the states from local storage
     const savedState1 = localStorage.getItem('toggleState1');
@@ -95,7 +100,7 @@ export class TalentComponent {
       this.getPageData(data)
       this.getCurrencyPrice('monthly');
       this.getCurrencyPrice('yearly');
-
+      this.custIndex = 1;
       this.selectedLangSlug = localStorage.getItem('lang') || "en";
     });
     this.ThemeUpdated();
@@ -162,13 +167,14 @@ export class TalentComponent {
   }
 
   getPageData(languageId: any) {
+   
     this.webPages.getDynamicContentPage('talent', languageId).subscribe((res) => {
+      
       if (res.status) {
         this.pageData = res.data.pageData;
         this.baseUrl = res.data.base_url;
         this.advertisementData = res.data.advertisementData;
         this.advertisementList = res.data.allAdsList;
-
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
         // Initialize toggle states for pricing plans with Monthly active (false)
         this.pageData.pricing_tab.forEach((_: any, index: number) => {
@@ -196,7 +202,7 @@ export class TalentComponent {
 
         if (this.currentTheme == 'dark' || this.currentTheme == 'light' && this.currentTheme != null) {
 
-        }else{
+        } else {
           this.currentTheme = 'light';
         }
 
@@ -205,7 +211,7 @@ export class TalentComponent {
         this.pageData.pricing_tab.forEach((_: any, index: number) => {
           this.isActivePlan[index] = false; // Default to "Monthly"
         });
-        this.getArrayItemByIndex(this.accordinCurrentIndex, 'image');
+        // this.getArrayItemByIndex(this.accordinCurrentIndex, 'image');
       }
     });
   }
@@ -359,10 +365,10 @@ export class TalentComponent {
 
   ThemeUpdated() {
     this.currentTheme = localStorage.getItem('theme') + '';
-    this.getArrayItemByIndex(this.accordinCurrentIndex, 'image');
+
+    // this.getArrayItemByIndex(this.accordinCurrentIndex, 'image');
   }
 
-  custIndex: any = 1;
 
   getArrayItemByIndex(index: number, field: keyof FeatureSection) {
     let theme = localStorage.getItem('theme');

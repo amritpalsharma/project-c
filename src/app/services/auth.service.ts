@@ -11,17 +11,17 @@ import { environment } from '../../environments/environment';
 export class AuthService {
 
   private apiUrl = environment?.apiUrl;
-  languages:any = environment.langs;
-  public lang:any;
+  languages: any = environment.langs;
+  public lang: any;
 
   constructor(private http: HttpClient, private router: Router) {
 
-      // Retrieve the selected language code from localStorage
-      const selectedLanguageSlug = localStorage.getItem('lang_id') || '';
+    // Retrieve the selected language code from localStorage
+    const selectedLanguageSlug = localStorage.getItem('lang_id') || '';
 
-      // Default to a specific language ID if none is found (e.g., English)
-      this.lang = selectedLanguageSlug ? selectedLanguageSlug : 1;
-     // this.getDashboardLink();
+    // Default to a specific language ID if none is found (e.g., English)
+    this.lang = selectedLanguageSlug ? selectedLanguageSlug : 1;
+    // this.getDashboardLink();
   }
 
   login(loginData: any): Observable<any> {
@@ -34,7 +34,7 @@ export class AuthService {
       new_password: newPassword,
       new_con_password: confirmPassword,
     };
-    return this.http.post(this.apiUrl+'/reset-password', data, {
+    return this.http.post(this.apiUrl + '/reset-password', data, {
       headers: {
         Authorization: `Bearer ${token}`, // Replace with actual token or fetch dynamically
       },
@@ -58,7 +58,7 @@ export class AuthService {
     localStorage.removeItem('userRole');
     localStorage.removeItem('userData');
     localStorage.removeItem('notificationSeen');
-    
+
     // localStorage.setItem('logoutMessage', 'true');
     this.router.navigate(['/']); // Redirect to the login or home page
   }
@@ -70,8 +70,8 @@ export class AuthService {
   }
 
   forgotPassword(email: string): Observable<any> {
-    let confirmation_link = window.location.origin+'/home?confirm-token=';
-    return this.http.post(`${this.apiUrl}/forgot-password`, { email , confirmation_link});
+    let confirmation_link = window.location.origin + '/home?confirm-token=';
+    return this.http.post(`${this.apiUrl}/forgot-password`, { email, confirmation_link });
   }
 
   loginWithMagic(magic_link_url: string): Observable<any> {
@@ -93,7 +93,7 @@ export class AuthService {
   googleLogin(loginData: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/google-signin`, loginData);
   }
-  
+
 
   getProfileData(): Observable<any> {
     return this.http.get<{ status: boolean, message: string, data: { userData: any } }>(
@@ -109,7 +109,7 @@ export class AuthService {
 
   getDashboardLink(): string {
     // const role = this.getUserRole();
-    const role =  localStorage.getItem('userRole');
+    const role = localStorage.getItem('userRole');
     // console.log('current role is : '+role);
     switch (role) {
       case '1':
@@ -125,6 +125,7 @@ export class AuthService {
     }
   }
 
+<<<<<<< HEAD
   getPlansPageLink(): string {
     // const role = this.getUserRole();
     const role =  localStorage.getItem('userRole');
@@ -140,6 +141,25 @@ export class AuthService {
         return '/talent/plans';
       default:
         return '/home';  // Default page if no role found
+=======
+  getPlansPageLink() {
+    if (this.isLoggedIn()) {
+      const role = localStorage.getItem('userRole');
+      switch (role) {
+        case '1':
+          return false;
+        case '2':
+          return '/club/plans';
+        case '3':
+          return '/scout/plans';
+        case '4':
+          return '/talent/plans';
+        default:
+          return false;  // Default page if no role found
+      }
+    } else {
+      return false;
+>>>>>>> 038d10c3f5d9aeb9517fbb8524d83123374dcb1f
     }
   }
 }

@@ -1,9 +1,9 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { EditGeneralDetailsComponent } from '../../edit-general-details/edit-general-details.component';
-import { TalentService } from '../../../../services/talent.service';
-import { ScoutService } from '../../../../services/scout.service';
-import { UserService } from '../../../../services/user.service';
+// import { TalentService } from '../../../../services/talent.service';
+// import { ScoutService } from '../../../../services/scout.service';
+// import { UserService } from '../../../../services/user.service';
 import { MessagePopupComponent } from '../../message-popup/message-popup.component';
 import { AddRepresentatorPopupComponent } from '../../add-representator-popup/add-representator-popup.component';
 import { ClubService } from '../../../../services/club.service';
@@ -31,7 +31,7 @@ export class ProfileTabComponent {
   idsToDelete: any = "";
   deleteRepresentorConfirmation: string = '';
 
-  constructor(public dialog: MatDialog, private scoutService: ClubService, private userService: UserService, public webPages: WebPages, private translateService: TranslateService,) {
+  constructor(public dialog: MatDialog, private clubService: ClubService, public webPages: WebPages, private translateService: TranslateService,) {
     // If you want to load the user data from localStorage during initialization
   }
 
@@ -76,7 +76,7 @@ export class ProfileTabComponent {
 
 
   getRepresentators() {
-    this.scoutService.getRepresentators().subscribe((response) => {
+    this.clubService.getRepresentators().subscribe((response) => {
       if (response && response.status && response.data) {
         this.representators = response.data.representators;
         this.baseUrl = response.data.uploads_path
@@ -109,7 +109,7 @@ export class ProfileTabComponent {
 
   getUserProfile() {
     try {
-      this.scoutService.getProfileData().subscribe((response) => {
+      this.clubService.getProfileData().subscribe((response) => {
         if (response && response.status && response.data && response.data.user_data) {
 
           localStorage.setItem('userInfo', JSON.stringify(response.data.user_data));
@@ -222,7 +222,7 @@ export class ProfileTabComponent {
     const target = event.target as HTMLSelectElement;
     let newRole = target.value;
 
-    this.scoutService.updateRepresentatorRole(id, { site_role: newRole }).subscribe((response) => {
+    this.clubService.updateRepresentatorRole(id, { site_role: newRole }).subscribe((response) => {
       if (response && response.status) {
         if (response.message != '') {
           this.showMatDialog(response.message, 'display');
@@ -270,7 +270,7 @@ export class ProfileTabComponent {
 
   deleteRepresentator(): any {
 
-    this.scoutService.deleteRepresentator(this.idsToDelete).subscribe(
+    this.clubService.deleteRepresentator(this.idsToDelete).subscribe(
       response => {
         if (response.status) {
           this.getRepresentators();

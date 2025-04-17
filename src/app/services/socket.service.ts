@@ -3,18 +3,32 @@ import { Injectable } from '@angular/core';
 import { io, Socket } from 'socket.io-client';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { HttpClient, HttpParams, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+
+interface UserData {
+  status: string;  // Define the exact type for 'status'
+}
+interface ApiResponse {
+  status: boolean;
+  message: string;
+  data: {
+    userData: UserData;
+    // Add other properties of 'data' if needed
+  };
+}
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class SocketService {
   private socket: Socket;
   // private readonly socketUrl: string = 'https://alerts.socceryou.ch/'; // Replace with your backend URL
   private readonly socketUrl: string = environment.socketUrl; // Replace with your backend URL
 
   public onlineUsers: { [userId: string]: string } = {};
-
-  constructor() {
+  userToken: any;
+  constructor(private http: HttpClient) {
     // Initialize the socket connection
     this.socket = io(this.socketUrl);
 
@@ -22,32 +36,32 @@ export class SocketService {
     let langId = localStorage.getItem("lang_id");
     let userId;
     if (jsonData && langId) {
-        let userData = JSON.parse(jsonData);
-        userId = userData.id;
-        this.connectUser({userId: userData.id, langId });
+      let userData = JSON.parse(jsonData);
+      userId = userData.id;
+      this.connectUser({ userId: userData.id, langId });
     }
-    else{
-      console.log("No data found in localStorage."); 
+    else {
+      console.log("No data found in localStorage.");
     }
-
+    this.userToken = localStorage.getItem('authToken');
     this.socket.on('updateOnlineUsers', (data: { onlineUsers: { [userId: string]: string } }) => {
       this.onlineUsers = data.onlineUsers;
-      console.log('Updated online users:', this.onlineUsers); 
+      console.log('Updated online users:', this.onlineUsers);
     });
   }
 
   // Method to emit 'connectUser' event
   connectUser({ userId, langId }: { userId: string; langId: string }) {
-    if(userId=='1'){
-      if(langId !== "1" && langId !== "2"){
+    if (userId == '1') {
+      if (langId !== "1" && langId !== "2") {
         langId = "1";
       }
     }
-    console.log(typeof(userId), userId, langId);
+    console.log(typeof (userId), userId, langId);
     this.socket.emit('connectUser', { userId, langId });
   }
 
-  disconnectUser(userId : string) {
+  disconnectUser(userId: string) {
     console.log("angular disconnectUser", userId);
     this.socket.emit('disconnectUser', userId);
   }
@@ -72,4 +86,30 @@ export class SocketService {
   disconnect(): void {
     this.socket.disconnect();
   }
+
+
+  getLoggedInUserStatus(): Promise<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.userToken}`
+    });
+
+    const apiUrl = 'https://api.socceryou.ch/';
+
+    return this.http.get<ApiResponse>(`${apiUrl}api/check-user-status`, { headers })
+      .toPromise()
+      .then((response: any) => {
+        if (response.status === true && response.data.userData.status !== '' && response.data.userData.status !== undefined) {
+          return response.data.userData.status;
+        } else {
+          return false;
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        return false;
+      });
+  }
+
+
+
 }

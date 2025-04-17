@@ -148,13 +148,14 @@ export class HeaderComponent {
     this.loggedInUser = JSON.parse(this.loggedInUser);
 
     // console.warn(this.loggedInUser.status)
-    if (this.loggedInUser && this.loggedInUser.status != '' && this.loggedInUser.status != undefined) {
-      if (this.loggedInUser.status == 2) {
-        this.isUserVerified = true;
-      } else {
-        this.isUserVerified = false;
-      }
-    }
+    // if (this.loggedInUser && this.loggedInUser.status != '' && this.loggedInUser.status != undefined) {
+    //   if (this.loggedInUser.status == 2) {
+    //     this.isUserVerified = true;
+    //   } else {
+    //     this.isUserVerified = false;
+    //   }
+    // }
+    this.getUserStatus();
 
     this.commonDataService.profilePic$.subscribe(url => {
       this.profileImgUrl = url;
@@ -206,6 +207,10 @@ export class HeaderComponent {
         obj.shouldAnimate = false;
       }, 5000); // 5000 ms = 5 seconds
     });
+
+
+    
+    
 
     //   this.router.events
     //   .pipe(
@@ -330,6 +335,18 @@ export class HeaderComponent {
       this.language = selectedLanguageArr;
     }
   }
+  
+
+  getUserStatus() {
+    this.socketService.getLoggedInUserStatus().then((result) => {
+      if (result == 2) {
+        this.isUserVerified = true;
+      } else {
+        this.isUserVerified = false;
+      }
+    });
+  }
+
 
   isUserOnline(senderId: number): boolean {
     if (!this.socketService.onlineUsers) {
