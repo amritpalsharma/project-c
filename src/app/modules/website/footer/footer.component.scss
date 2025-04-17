@@ -1447,10 +1447,18 @@ option.countary {
   }
 }
 
+@media (min-width: 768px) and (max-width: 1199px) {
+#footer .footer-top h4 {
+  font-size: 28px !important;
+}
+#footer .footer-top .footer-links ul li a, p.country  {
+  font-size: 25px !important;
+}
+}
+
 
 @media (min-width: 3000px) {
 .footer-contact img {
   width: 320px;
 }
 }
-
