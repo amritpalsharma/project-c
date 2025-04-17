@@ -1304,5 +1304,8 @@
   "accountVerificationPending": "Din profilbekræftelse er endnu ikke afsluttet. Hav venligst lidt mere tålmodighed. Mange tak skal du have.",
   "downloadPDFCommunityGuidelines":"Download PDF med fællesskabsregler",
   "downloadPDFTermsAndConditions":"Download PDF med vilkår og betingelser",
-  "downloadPDFPrivacyPolicy":"Download PDF med privatlivspolitik"
+  "downloadPDFPrivacyPolicy":"Download PDF med privatlivspolitik",
+  "premiunPlanFor": "For Klubber og Scouts",
+  "multiCountryFor": "For Scouts",
+  "boostProfileFor": "For Scouts"
 }

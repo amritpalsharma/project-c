@@ -1455,5 +1455,8 @@
   "accountVerificationPending": "La vérification de ton profil n'est pas encore terminée. Merci de patienter encore un peu. Merci beaucoup.",
   "downloadPDFCommunityGuidelines":"Télécharger le PDF des règles communautaires",
   "downloadPDFTermsAndConditions":"Télécharger le PDF des CGU",
-  "downloadPDFPrivacyPolicy":"Télécharger le PDF de la politique de confidentialité"
+  "downloadPDFPrivacyPolicy":"Télécharger le PDF de la politique de confidentialité",
+  "premiunPlanFor": "Pour Clubs et Scouts",
+  "multiCountryFor": "Pour Scouts",
+  "boostProfileFor": "Pour Scouts"
 }
