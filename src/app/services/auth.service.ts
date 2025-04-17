@@ -132,11 +132,14 @@ export class AuthService {
         case '1':
           return false;
         case '2':
-          return '/club/plans';
+          // return '/club/plans';
+          return '/club/dashboard';
         case '3':
-          return '/scout/plans';
+          // return '/scout/plans';
+          return '/scout/dashboard';
         case '4':
-          return '/talent/plans';
+          // return '/talent/plans';
+          return '/talent/dashboard';
         default:
           return false;  // Default page if no role found
       }

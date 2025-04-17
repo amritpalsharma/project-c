@@ -15,6 +15,9 @@ export class DeleteProfileComponent {
   errorMsg: string = 'Please confirm your spellings.';
   langSubscription!: Subscription;
   deleteTxt: string = '';
+
+  theme = localStorage.getItem('theme');
+
   constructor(
     public dialogRef: MatDialogRef<DeleteProfileComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -23,6 +26,7 @@ export class DeleteProfileComponent {
   ngOnInit() {
     // Parse user data from localStorage
     // this.loggedInUser = JSON.parse(this.loggedInUser);
+    this.theme = localStorage.getItem('theme');
     this.updateTranslation();
     this.langSubscription = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
       this.updateTranslation();

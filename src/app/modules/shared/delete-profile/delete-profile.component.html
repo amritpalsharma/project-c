@@ -2,7 +2,10 @@
 <div class="delete-popup-dialog">
     <div class="del-popup-close d-flex align-items-center justify-content-between p-3">
         <h3>{{ 'deletingAccount' | translate }}</h3>
-        <img src="../../../assets/images/close-icon-circle.png" alt="" (click)="close()" />
+        <!-- <img src="../../../assets/images/close-icon-circle.png" alt="" (click)="close()" /> -->
+
+        <img *ngIf='theme!="dark"' src="../../../assets/images/carbon_close-outline-light.svg" alt="" class="" (click)="close()" />
+        <img *ngIf='theme=="dark"' src="../../../assets/images/carbon_close-outline.svg" alt="" class="" (click)="close()" />
     </div>
     <div class="del-popup-content">
         <div class="display-message">

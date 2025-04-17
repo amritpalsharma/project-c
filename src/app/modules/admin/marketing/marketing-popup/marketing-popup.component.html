@@ -1,8 +1,14 @@
 <div appClickOutside (clickOutside)="onClickOutside()" class="p-0 marketing_modal mobile_popup_responsive">
-  <div class="p-3 popup_header">
-    <h4 class="text-center" *ngIf="!data">{{ 'createNewPopUp' | translate }}</h4>
-    <h4 class="text-center" *ngIf="data">{{ 'editPopUp' | translate }}</h4>
-    <div class="close-img" (click)="close()"></div>
+  <div class="p-3 popup_header d-flex justify-content-between align-items-center">
+    <h4 class="text-center w-100" *ngIf="!data">{{ 'createNewPopUp' | translate }}</h4>
+    <h4 class="text-center w-100" *ngIf="data">{{ 'editPopUp' | translate }}</h4>
+    <!-- <div class="close-img" (click)="close()"></div> -->
+    <div class="msg-popup-close" *ngIf='theme!="dark"'>
+      <img src="../../../assets/images/carbon_close-outline-light.svg" alt="" class="" (click)="close()" />
+  </div>
+  <div class="msg-popup-close" *ngIf='theme=="dark"'>
+      <img src="../../../assets/images/carbon_close-outline.svg" alt="" class="" (click)="close()" />
+  </div>
   </div>
 <div class="popup__body template_body_form">
   <div class="d-flex align-items-baseline py-2 bg-0C3453">

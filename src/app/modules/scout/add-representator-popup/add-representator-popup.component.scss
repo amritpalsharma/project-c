@@ -67,11 +67,13 @@
     color: #ffffff;
 }
 
+.popup_header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .close-img{
-    background-image: url(../../../../assets/images/carbon_close-outline.png);
-    background-size: cover;
-    width: 33px;
-    height: 33px;
     border: none;
     padding: 0px;
     position: absolute;

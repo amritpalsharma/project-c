@@ -69,7 +69,10 @@ export class TemplatePopupComponent implements OnInit, OnDestroy {
     this.locations = environment.domains;
   }
 
+  theme: any = localStorage.getItem('theme');
+
   ngOnInit(): void {
+    this.theme = localStorage.getItem('theme');
     this.editor = new Editor();
 
     this.getToasterMsg();

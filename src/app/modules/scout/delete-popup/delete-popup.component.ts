@@ -7,8 +7,13 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./delete-popup.component.scss']
 })
 export class DeletePopupComponent {
+  theme : any = localStorage.getItem('theme');
 
   constructor(public dialogRef: MatDialogRef<DeletePopupComponent>) {}
+
+  ngOnInit(): void {
+    this.theme = localStorage.getItem('theme');
+  }
 
   confirmDelete(): void {
     // Close the dialog and return true (confirm deletion)

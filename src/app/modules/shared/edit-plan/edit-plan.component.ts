@@ -54,7 +54,7 @@ export class EditPlanComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    this.theme = localStorage.getItem('theme');
+    this.theme = localStorage.getItem('theme') || "light";
     // If this.data.plans is an array, assign it directly
     this.selectedPlan = this.data.selectedPlan;
     this.activePlans = this.data.activePlans;

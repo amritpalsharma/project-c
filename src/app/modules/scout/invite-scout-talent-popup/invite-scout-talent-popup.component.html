@@ -1,13 +1,19 @@
 <div class="add-chat w-100" *ngIf="action != 'showInvitedUsers'">
 
   <div class="chat_box scout_add_new_talent_popup">
-    <div class="p-3 w-100">
+    <div class="p-3 w-100 d-flex align-items-center justify-content-between">
       <div>
         <h4 class="mb-0 title-text">{{ 'addNewTalent' | translate }}</h4>
       </div>
 
-      <div class="close-img" (click)="close()">
-      </div>
+      <!-- <div class="close-img" (click)="close()"></div> -->
+      <!-- <div class="msg-popup-close" *ngIf='theme!="dark"'> -->
+        <img *ngIf='theme!="dark"' src="../../../../assets/images/carbon_close-outline-light.svg" alt="" class="" (click)="close()" />
+      <!-- </div> -->
+      <!-- <div class="msg-popup-close" *ngIf='theme=="dark"'> -->
+        <img *ngIf='theme=="dark"' src="../../../../assets/images/carbon_close-outline.svg" alt="" class="" (click)="close()" />
+      <!-- </div> -->
+
     </div>
 
     <div class="inbox-body">
@@ -41,7 +47,7 @@
                 *ngIf="!user.meta.profile_image_path" src="../../../../../assets/images/1.png">
               <img width="50" height="50" class="img-list " *ngIf="user.meta.profile_image_path"
                 src="{{user.meta.profile_image_path}}">
-                {{user?.first_name}} {{user?.last_name}}
+              {{user?.first_name}} {{user?.last_name}}
             </mat-option>
             }
           </mat-autocomplete>
@@ -62,7 +68,8 @@
         </div> -->
   </div>
   <div class="chat-btn">
-    <button class="btn btn-success btn-sm web-create-bg w-100" (click)="sendInvite()" type="button">{{ 'add' | translate }}</button>
+    <button class="btn btn-success btn-sm web-create-bg w-100" (click)="sendInvite()" type="button">{{ 'add' | translate
+      }}</button>
   </div>
 
 </div>

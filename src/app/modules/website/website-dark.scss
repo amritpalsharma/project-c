@@ -2262,3 +2262,9 @@ button.faq-scout-button {
     display: block;
   }
 }
+.dark-theme .website-code .empty-field {
+  border: 1px solid red !important;
+}
+.dark-theme #exampleModal1 .ng-invalid{
+  border: 1px solid red !important;
+}

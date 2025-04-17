@@ -37,6 +37,8 @@ export class AddRepresentatorPopupComponent {
   firstNameRequired: string = '';
   lastNameRequired: string = '';
 
+  theme : any = localStorage.getItem('theme');
+
   constructor(
     private scoutService: ScoutService,
     private route: ActivatedRoute,
@@ -61,6 +63,7 @@ export class AddRepresentatorPopupComponent {
   }
 
   async ngOnInit() {
+    this.theme = localStorage.getItem('theme');
     this.getToasterMsg();
     this.webPages.languageId$.subscribe((data: any) => {
       this.getToasterMsg();

@@ -252,7 +252,7 @@
                 <div class="row bg-light p-3 justify-content-between border-bottom"
                   [ngClass]="{'my-animate' : notification.shouldAnimate}" *ngFor="let notification of notifications">
                   <div class="col-2">
-                    <div [routerLink]="['/admin/talent', notification.senderId]" class="cursor-pointer">
+                    <div [routerLink]="['/admin/' + (notification.senderRole || '').toString().toLowerCase(), notification.senderId]" class="cursor-pointer">
                       <img [src]="notification.image" class="avatar me-2" width="40" height="40" class="rounded-circle"
                         alt="">
                     </div>
@@ -264,7 +264,7 @@
                   </div> -->
                   <!-- <div class="col-9" (click)="notificationClicked(notification.id, notification.seen, notification)"
                     style="cursor: pointer;"> -->
-                  <div class="col-9" [routerLink]="['/admin/talent', notification.senderId]" style="cursor: pointer;">
+                  <div class="col-9" [routerLink]="['/admin/' + (notification.senderRole || '').toString().toLowerCase(), notification.senderId]" style="cursor: pointer;">
                     <!-- <h6 [ngStyle]="{'font-weight': notification.seen == 0 ? 'bold' : 'normal'}">
                       {{ notification.title }}
                     </h6>
@@ -292,6 +292,10 @@
                       </circle>
                     </svg>
                   </div>
+                </div>
+
+                <div *ngIf="!totalNotification" style="text-align: center;margin:10px 0;">
+                  <span>{{'noNotification' | translate}}</span>
                 </div>
 
                 <div *ngIf="notifications.length<=0 || something" style="text-align: center;margin:10px 0;">

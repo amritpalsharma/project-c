@@ -8,8 +8,15 @@ import {
   styleUrl: './message-popup.component.scss'
 })
 export class MessagePopupComponent {
+
+  theme : any = localStorage.getItem('theme');
+
   constructor(public dialogRef : MatDialogRef<MessagePopupComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
+  }
+
+  ngOnInit(): void {
+    this.theme = localStorage.getItem('theme');
   }
 
   deleteConfirmed(){

@@ -7,6 +7,7 @@ import { SharedService } from '../../../services/shared.service';
 import { AuthService } from '../../../services/auth.service';
 import { ThemeService } from '../../../services/theme.service';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
+import { isNumber } from 'util';
 declare var bootstrap: any; // Declare bootstrap
 
 export interface ClubMember {
@@ -69,6 +70,7 @@ export class IndexComponent {
   @ViewChild('owlCarousel') owlCarousel!: ElementRef;
   fallbackImage: string = 'assets/images/1.png'; // Path to your fallback image
   currentTheme: string = 'light';
+  currentHomeTheme: string = 'light';
   selectedLangId: any = null;
   pageDetail: any = null;
   sliderDetail: any = null;
@@ -85,6 +87,8 @@ export class IndexComponent {
   club_logo_path: string = '';
   pre_club_logo_path: string = '';
   heroSectionBgImage: string = '';
+
+  currentSelected: number = 1;
 
 
   isLoading: boolean = true;
@@ -303,10 +307,7 @@ export class IndexComponent {
 
 
   showContent(content: string): void {
-    console.log(content)
     this.selectedContent = content;
-    let selected_btn = this.selectedCategory.toLowerCase();
-    let folder_slug;
     let currentNumber = 0;
 
     if (content == 'Sign-up & Profile Creation') {
@@ -316,32 +317,16 @@ export class IndexComponent {
     } else if (content == 'Success & Progression') {
       currentNumber = 3;
     }
-    // let slug = currentNumber + '';
-    if (selected_btn == 'talent') {
-      folder_slug = 'talent';
-    } else {
-      folder_slug = 'club';
-    }
-    if (currentNumber == 1 && folder_slug == 'talent') {
-      let slug = localStorage.getItem('lang');
-      this.talentBtnImage = '/assets/images/home/' + folder_slug + '/' + slug + '_' + this.currentTheme + '.png';
-    } else if (currentNumber == 2 && folder_slug == 'club') {
-      this.talentBtnImage = '/assets/images/home/' + folder_slug + '/' + currentNumber + '_' + this.currentTheme + '.png';
-    } else {
-      let slug = localStorage.getItem('lang');
-      if(folder_slug == 'talent') {
-        this.talentBtnImage = '/assets/images/home/' + folder_slug + '/' + currentNumber + '_' + this.currentTheme + '.png';
-      }else{
-        this.talentBtnImage = '/assets/images/home/' + folder_slug + '/'+ slug +'_'+ currentNumber + '_' + this.currentTheme + '.png';
-      }
-      console.info(this.talentBtnImage)
-    } 
+
+    this.currentSelected = currentNumber;
   }
 
   adVisible: boolean[] = [true, true, true, true, true]; // Array to manage ad visibility
+  currentLang: string = localStorage.getItem('lang') || this.globalSettings.getLanguage();
 
   ngOnInit() {
-    this.globalSettings.indexFunctionCall$.subscribe(() => {
+    this.getLangslugByID(this.currentLang);
+    this.globalSettings.indexFunctionCall$.subscribe((data) => {
       this.indexFunction(); // Call the function when event is received
     });
     // Initially, all ads are visible
@@ -349,8 +334,10 @@ export class IndexComponent {
     this.adVisible = [true, true, true, true, true];
     // alert(localStorage.getItem('lang'));
     this.webPages.languageId$.subscribe((data) => {
+      // if(confirm('theme is '+this.currentTheme)){
       this.getPageDynamicData(data);
-      this.showContent(this.selectedContent);
+      this.getLangslugByID(data);
+      // this.showContent(this.selectedContent);
     });
 
     this.globalSettings.indexFunctionCall$.subscribe(() => {
@@ -470,7 +457,8 @@ export class IndexComponent {
   }
 
   indexFunction() {
-    this.currentTheme = localStorage.getItem('theme') + '';
+    this.currentTheme = localStorage.getItem('theme') || 'light';
+    // this.currentHomeTheme = localStorage.getItem('theme') + '';
   }
 
   showImage(clicked: any) {
@@ -479,5 +467,30 @@ export class IndexComponent {
 
   ngAfterViewInit() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  getLangslugByID(langID: any) {
+    let slug = 'en';
+    if (langID == 1) {
+      slug = 'en';
+    } else if (langID == 2) {
+      slug = 'de';
+    } else if (langID == 3) {
+      slug = 'it';
+    } else if (langID == 4) {
+      slug = 'fr';
+    } else if (langID == 5) {
+      slug = 'es';
+    } else if (langID == 6) {
+      slug = 'pt';
+    } else if (langID == 7) {
+      slug = 'dk';
+    } else if (langID == 8) {
+      slug = 'sv';
+    }
+    if (!isNaN(Number(langID))) {
+      this.currentLang = slug;
+    }
+    return slug;
   }
 }
