@@ -16,6 +16,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class TemplatePopupComponent implements OnInit, OnDestroy {
   // id = 0;
+  currentTheme: string = localStorage.getItem('theme') || 'light';
   editor!: Editor;
   title: string = "";
   selectedRole: any = 0;

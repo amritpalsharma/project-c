@@ -2,7 +2,8 @@
 <div class="p-0 email_temp_popup mobile_popup_responsive">
   <div class="p-3 popup_header">
     <h4 class="text-center mb-0">{{ 'emailTemplate' | translate }}</h4>
-        <img src="../../../assets/images/close-icon-circle.png" alt="" class="close-img" (click)="close()" />
+        <img *ngIf="currentTheme != 'dark'" src="../../../assets/images/close-icon-circle.png" alt="" class="close-img" (click)="close()" />
+        <img *ngIf="currentTheme != 'light'" src="../../../assets/images/close-icon-circle.png" alt="" class="close-img" (click)="close()" />
   </div>
 
 <div class="popup__body template_body_form">

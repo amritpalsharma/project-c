@@ -12,7 +12,7 @@ import { environment } from '../../../../../environments/environment';
 })
 export class HistoryTabComponent {
   editor!: Editor;
-  
+
   toolbar: Toolbar = [
     ['bold', 'italic'],
     ['underline', 'strike'],
@@ -28,6 +28,7 @@ export class HistoryTabComponent {
   isEditable: boolean = false;
   loggedInUser: any = localStorage.getItem('userData');
   @Input() role: any;
+  @Input() isPremium: any;
   @ViewChild('historyTextarea', { static: false }) textarea!: ElementRef;
 
   constructor(private route: ActivatedRoute, private scoutService: ScoutService) {

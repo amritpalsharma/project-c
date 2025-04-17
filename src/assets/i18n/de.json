@@ -574,9 +574,9 @@
   "subscriptionProcess": "Ihr Anmeldevorgang wurde abgebrochen. Bitte versuchen Sie es erneut.",
   "close": "Schliessen",
   "enterCouponCode": "Gutschein-Code eingeben",
-  "dont'tHaveCoupon": "No tengo un código de cupón",
-  "checkCoupon": "Comprobar código",
-  "proceedToCheckout": "Continuar con el pago…",
+  "dont'tHaveCoupon": "Ich habe keinen Gutschein-Code",
+  "checkCoupon": "Code prüfen",
+  "proceedToCheckout": "Weiter zur Kasse…",
   "noResultFound": "Keine Ergebnisse gefunden.",
   "viewAllNotifications": "Alle Benachrichtigungen anzeigen",
   "companyHistory": "Über uns",
@@ -1442,5 +1442,5 @@
   },
   "highlightTooltip": "Highlights bearbeiten",
   "homeBannerTxt": "Wer sucht, wird hier fündig. Wer zeigt, wird gesehen. SoccerYou – Weil Talent alleine nicht reicht.",
-  "accountVerificationPending": "Ihr Konto ist noch nicht verifiziert." 
+  "accountVerificationPending": "Deine Profilüberprüfung ist noch nicht abgeschlossen. Bitte hab noch ein bisschen Geduld. Vielen Dank." 
 }

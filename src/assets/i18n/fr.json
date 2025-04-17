@@ -1393,7 +1393,7 @@
   "enterCountryName": "Entrez le pays",
   "enterYourEmail": "Entrez votre e-mail",
   "enterYourName": "Entrez votre nom",
-  "enterYourCouponCode": "Entrez votre code promo",
+  "enterYourCouponCode": "Saisis ton code promo ici…",
   "enterYourCompanyName": "Entrez le nom de votre entreprise",
   "deletePerformanceConfirm": "Êtes-vous sûr de vouloir supprimer les rapports sélectionnés ?",
   "accepted": "Accepté",
@@ -1452,5 +1452,5 @@
   },
   "highlightTooltip": "Modifier les faits saillants",
   "homeBannerTxt": "Qui cherche, trouve. Qui se montre, se fait remarquer. SoccerYou – Parce que le talent ne suffit pas.",
-  "accountVerificationPending": "Votre compte n'est pas encore vérifié."
+  "accountVerificationPending": "La vérification de ton profil n'est pas encore terminée. Merci de patienter encore un peu. Merci beaucoup."
 }

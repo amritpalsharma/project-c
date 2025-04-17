@@ -50,3 +50,30 @@
         color: black !important;
     }
 }
+
+.upgrade_unlock .unlock_btn {
+    padding: 12px 25px 10px !important;
+    font-size: 17px !important;
+    background: #6FB95D;
+    // padding: ;
+    font-weight: 700;
+    color: #fff;
+    border-radius: 10px;
+    border: none;
+    display: inline-block;
+    margin-top: 1rem;
+}
+
+
+@media (min-width: 2000px) {
+    .company_history {
+        h6.main-template {
+            font-size: 20px;
+        }
+
+        .btn-outline-white,
+        .history-text {
+            font-size: 18px !important;
+        }
+    }
+}

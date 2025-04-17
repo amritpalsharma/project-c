@@ -707,7 +707,7 @@
   "dominantFootRequired": "Dominant Foot is required",
   "playerAge": "Player Age",
   "form-upto": "Form-Upto",
-  "session": "Session",
+  "session": "Season",
   "addTransferDetails": "Add Transfer Details",
   "addVideos": "Add Videos",
   "galleryText": "Your browser does not support the video tag.",
@@ -1348,5 +1348,5 @@
   },
   "highlightTooltip":"Edit highlights",
   "homeBannerTxt":"Who searches, finds. Who shows up, gets seen. SoccerYou – Because talent alone isn’t enough.",
-  "accountVerificationPending":"Your account is not yet verified."
+  "accountVerificationPending":"Your profile verification has not yet been completed. Please be patient a little longer. Thank you very much."
 }
