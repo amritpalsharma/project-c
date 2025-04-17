@@ -105,75 +105,82 @@ export const environment = {
   ],
 
 
+  // colors: [
+  //   // Reds and Pinks
+  //   '#FF0000', // Red
+  //   '#FFCDD2', // Light Red
+  //   '#DC143C', // Crimson
+  //   '#FF4500', // Orange Red
+  //   '#FF69B4', // Hot Pink
+  //   '#FFC0CB', // Pink
+  //   '#FF1493', // Deep Pink
+  //   '#F8BBD0', // Light Pink
+
+  //   // Oranges and Yellows
+  //   '#FFA500', // Orange
+  //   '#FFE0B2', // Light Orange
+  //   '#FFD700', // Gold
+  //   '#FFECB3', // Light Amber
+  //   '#FFF9C4', // Light Yellow
+  //   '#F0E68C', // Khaki
+  //   '#FFDAB9', // Peach
+
+  //   // Greens
+  //   '#00FF00', // Lime Green
+  //   '#C8E6C9', // Light Green
+  //   '#008000', // Dark Green
+  //   '#ADFF2F', // Green Yellow
+  //   '#7CFC00', // Lawn Green
+  //   '#3CB371', // Medium Sea Green
+  //   '#B2DFDB', // Light Teal
+
+  //   // Blues and Cyans
+  //   '#0000FF', // Blue
+  //   '#BBDEFB', // Light Blue
+  //   '#1E90FF', // Dodger Blue
+  //   '#4169E1', // Royal Blue
+  //   '#00FFFF', // Cyan
+  //   '#B2EBF2', // Light Cyan
+  //   '#40E0D0', // Turquoise
+  //   '#7FFFD4', // Aquamarine
+
+  //   // Purples and Violets
+  //   '#800080', // Purple
+  //   '#E1BEE7', // Light Purple
+  //   '#8A2BE2', // Blue Violet
+  //   '#9370DB', // Medium Purple
+  //   '#DA70D6', // Orchid
+  //   '#EE82EE', // Violet
+  //   '#DDA0DD', // Plum
+
+  //   // Browns and Neutrals
+  //   '#A52A2A', // Brown
+  //   '#D7CCC8', // Light Brown
+  //   '#CD853F', // Peru
+  //   '#D2691E', // Chocolate
+  //   '#F5F5F5', // Light Grey
+  //   '#808080', // Gray
+  //   '#C0C0C0', // Silver
+  //   '#FFFFFF', // White
+  //   '#000000', // Black
+
+  //   // Additional Colors
+  //   '#4B0082', // Indigo
+  //   '#6A5ACD', // Slate Blue
+  //   '#FF00FF', // Magenta
+  //   '#E6E6FA', // Lavender
+  //   '#FA8072', // Salmon
+  //   '#CD5C5C', // Indian Red
+  //   '#008080', // Teal
+  //   '#000080', // Navy
+  //   '#808000', // Olive
+  // ],
   colors: [
     // Reds and Pinks
     '#FF0000', // Red
-    '#FFCDD2', // Light Red
-    '#DC143C', // Crimson
-    '#FF4500', // Orange Red
-    '#FF69B4', // Hot Pink
-    '#FFC0CB', // Pink
-    '#FF1493', // Deep Pink
-    '#F8BBD0', // Light Pink
-
-    // Oranges and Yellows
-    '#FFA500', // Orange
-    '#FFE0B2', // Light Orange
-    '#FFD700', // Gold
-    '#FFECB3', // Light Amber
-    '#FFF9C4', // Light Yellow
-    '#F0E68C', // Khaki
-    '#FFDAB9', // Peach
-
-    // Greens
-    '#00FF00', // Lime Green
-    '#C8E6C9', // Light Green
-    '#008000', // Dark Green
-    '#ADFF2F', // Green Yellow
-    '#7CFC00', // Lawn Green
-    '#3CB371', // Medium Sea Green
-    '#B2DFDB', // Light Teal
-
-    // Blues and Cyans
-    '#0000FF', // Blue
-    '#BBDEFB', // Light Blue
-    '#1E90FF', // Dodger Blue
-    '#4169E1', // Royal Blue
-    '#00FFFF', // Cyan
-    '#B2EBF2', // Light Cyan
-    '#40E0D0', // Turquoise
-    '#7FFFD4', // Aquamarine
-
-    // Purples and Violets
-    '#800080', // Purple
-    '#E1BEE7', // Light Purple
-    '#8A2BE2', // Blue Violet
-    '#9370DB', // Medium Purple
-    '#DA70D6', // Orchid
-    '#EE82EE', // Violet
-    '#DDA0DD', // Plum
-
-    // Browns and Neutrals
-    '#A52A2A', // Brown
-    '#D7CCC8', // Light Brown
-    '#CD853F', // Peru
-    '#D2691E', // Chocolate
-    '#F5F5F5', // Light Grey
-    '#808080', // Gray
-    '#C0C0C0', // Silver
-    '#FFFFFF', // White
-    '#000000', // Black
-
-    // Additional Colors
-    '#4B0082', // Indigo
-    '#6A5ACD', // Slate Blue
-    '#FF00FF', // Magenta
-    '#E6E6FA', // Lavender
-    '#FA8072', // Salmon
-    '#CD5C5C', // Indian Red
-    '#008080', // Teal
-    '#000080', // Navy
-    '#808000', // Olive
+    '#e05263', // Light Mode red
+    '#357525', // Light Mode Green
+    '#bde34e' // Dark Mode Green
   ],
 
   pages: [

@@ -13,8 +13,10 @@
                     <span class="country-info">
                         {{ country.package_name }} - {{ country.price }} {{country.currency}}/
                         <span>{{ (country.interval === 'monthly' ? 'month' : 'year') | translate }}
-                            {{country.stripe_cancel_at != null ? ' - Cancelled'
-                            : ''}}</span>
+                            <!-- {{country.stripe_cancel_at != null ? ' - Cancelled'
+                            : ''}} -->
+                            <span *ngIf="country.stripe_cancel_at != null"> - {{'cancel' | translate}}</span>
+                            </span>
                     </span>
                 </label>
             </div>

@@ -786,8 +786,9 @@
               <scout-profile-tab *ngIf="activeTab == 'profile' && !loading" [userData]="user" [isPremium]="isPremium"
                 [logInUser]="loggedInUser"></scout-profile-tab>
               <scout-app-history-tab *ngIf="activeTab == 'company_history'" role="Scout" [isPremium]="isPremium"></scout-app-history-tab>
-              <scout-portfolio-tab *ngIf="activeTab == 'portfolio'" [userData]="user"
-                role="Scout"></scout-portfolio-tab>
+              <scout-portfolio-tab *ngIf="activeTab == 'portfolio'" [userData]="user" 
+              [isPremium]="isPremium"
+                role="Scout" ></scout-portfolio-tab>
               <scout-gallery-tab *ngIf="activeTab == 'gallery'" [coverImage]="coverImage"
                 (dataEmitter)="handleCoverImageData($event)" [isPremium]="isPremium"></scout-gallery-tab>
             </div>

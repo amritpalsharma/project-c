@@ -41,6 +41,7 @@ export class PortfolioTabComponent {
   idToBeDeleted: any = '';
   langId: any = localStorage.getItem('lang_id');
   @Input() userData: any;
+  @Input() isPremium:any;
   portfolioDeleteConfirmation:string='';
   portfolioDeletebtn:string='';
   portfolioCloseBtn:string='';

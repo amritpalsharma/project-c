@@ -62,7 +62,7 @@
     <div class="mb-3">
       <label for="page_content" class="form-label">{{ 'description' | translate }}</label>
       <div class="NgxEditor__Wrapper">
-        <ngx-editor-menu [editor]="editor" [colorPresets]="colorPresets"> </ngx-editor-menu>
+        <ngx-editor-menu [editor]="editor" [toolbar]="toolbar" [colorPresets]="colorPresets"> </ngx-editor-menu>
         <ngx-editor [editor]="editor" class="editor-width" name="page_content" [(ngModel)]="formData.page_content"
           [disabled]="false" [placeholder]="'typeHere' | translate"></ngx-editor>
       </div>
