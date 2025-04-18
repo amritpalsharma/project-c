@@ -479,3 +479,10 @@ button.learn-more {
     transform: translateY(-50%);
     position: absolute;
 }
+
+
+@media (min-width: 1600px) and (max-width: 1999px) {
+    .latest-news h4 {
+      font-size: 45px;
+  }
+}

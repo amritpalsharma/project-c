@@ -354,3 +354,13 @@
     border: 0;
     font-size: inherit;
 }
+
+
+@media (min-width: 1600px) and (max-width: 1999px) {
+    .common_static_page h4 {
+      font-size: 28px;
+  }
+  .common_static_page p, .common_static_page address, .common_static_page li {
+    font-size: 22px;
+  }
+}

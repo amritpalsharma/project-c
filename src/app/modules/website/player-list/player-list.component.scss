@@ -693,3 +693,7 @@ button.page-active {
 .players.player-card  .player-img img {
     object-position: bottom;
 }
+
+.player1.scoutsArr .player-img:after, .player1.scoutsArr + .flag {
+    display: none !important;
+}
