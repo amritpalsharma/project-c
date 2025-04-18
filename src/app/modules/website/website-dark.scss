@@ -549,8 +549,18 @@ button.faq-scout-button {
 
 .dark-theme .website-code .club_text {
   background: radial-gradient(circle at 13% 0%, transparent, #0c3453);
+  transition: .4s all;
 }
-
+.dark-theme .website-code .club_text:hover {
+  background: #BDE34F;
+  border-color: #BDE34F;
+  p {
+    color: #0c3453;
+  }
+  img {
+    filter: brightness(0) invert(0.25);
+  }
+}
 .dark-theme .website-code .accordion-item:first-of-type {
   background-color: #072944;
 }
@@ -2280,4 +2290,11 @@ button.faq-scout-button {
 }
 .dark-theme #exampleModal1 .ng-invalid{
   border: 1px solid red !important;
+}
+
+.dark-theme {
+  footer.website_main_pages .select-country {
+    background-color: #fff;
+    border: 1px solid #fff !important;
+  }
 }

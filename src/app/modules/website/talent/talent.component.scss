@@ -1764,24 +1764,15 @@ span {
     .banner {
         height: 820px;
     }
-
-    // .premium-col-right {
-    //     padding-top: 50px;
-    //     padding-right: 50px;
-    // }
-
     h1 {
         font-size: 35px;
     }
-
     h2 {
         font-size: 30px;
     }
-
     h3 {
         font-size: 35px;
     }
-
     h4 {
         font-size: 22px;
     }
@@ -1789,11 +1780,9 @@ span {
     h5 {
         font-size: 20px;
     }
-
     p {
         font-size: 18px;
     }
-
     .banner-left {
         top: 60%;
         left: 0;
@@ -1885,7 +1874,7 @@ span {
     }
 
     .banner-heading5 {
-        font-size: 16px;
+        font-size: 20px;
     }
 
     a.btn.btn-register {
@@ -1911,12 +1900,6 @@ span {
         margin-top: 20px;
         margin-top: 10px;
     }
-
-    h2.accordion-header {
-        font-size: 16px;
-        width: 100%;
-    }
-
     .club-offers2 img {
         width: 210px;
         height: 200px;
@@ -1976,12 +1959,6 @@ span {
         top: 57%;
         left: 4%;
     }
-
-    // .networking-images3 {
-    //     top: 52%;
-    //     left: 56%;
-    // }
-
     .player-img img {
         height: 170px;
         width: 170px;
@@ -2054,7 +2031,7 @@ span {
     }
 
     .feature-text {
-        font-size: 14px;
+        font-size: 16px;
     }
 
     button.btn.btn-danger {
@@ -2088,26 +2065,9 @@ span {
     .accordion-collapse {
         transition: height 0.5s ease-in-out;
     }
-
-    // .leaderboard-club-image img,
-    // .small-sqaure-image img,
-    // .skyscraper-image img,
-    // .skyscraper-image img,
-    // .wide-skyscraper-image img,
-    // .leaderboard-image img,
-    // .banner-image img,
-    // .advertisement,
-    // .advertisement1 {
-    //     display: none;
-    // }
-
-    // .skyscraper-image,
-    // .wide-skyscraper-image,
-    // .leaderboard-club-image,
-    // .leaderboard-image,
-    // .small-sqaure-image {
-    //     display: none;
-    // }
+    h2.accordion-header {
+        font-size: 17px;
+    }
 
     .banner-left {
         top: 50%;
@@ -2138,7 +2098,7 @@ span {
     }
 
     .banner-heading5 {
-        font-size: 15px;
+        font-size: 20px;
     }
 
     a.btn.btn-register {
@@ -3999,3 +3959,7 @@ span {
 .club-offer .active {
     display: block;
 }
+
+
+
+/*--- box-hover-effect ------*/

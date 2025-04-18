@@ -418,8 +418,18 @@
 .light-theme .website-code .club_text {
   background:#fff;
   border: 1px solid #DEDEDE;
+  transition: .4s all;
 }
-
+.light-theme .website-code .club_text:hover {
+  background: #357525;
+  border-color: #357525;
+  p {
+    color: #fff !important;
+  }
+  img {
+    filter: brightness(0) invert(1);
+  }
+}
 .light-theme .website-code .cookie-popup, .light-theme .website-code .personalization-box {
   background: #fff;
 }
@@ -1726,5 +1736,11 @@ a {
   .buy_now_btn_front_price .btn.fill_btn {
       background-color: #E05263 !important;
       color: #fff !important;
+  }
+}
+
+.light-theme {
+  .adv-player-list .pagination-controls label {
+      color: #000 !important;
   }
 }
