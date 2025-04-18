@@ -138,6 +138,11 @@ export class MembershipComponent {
         this.premium = this.userPlans.premium[0];
         if (this.userPlans.booster[0] && this.userPlans.booster[0] != undefined) {
           this.booster = this.userPlans.booster[0];
+          this.isbooster = this.booster ? true : false;
+        }
+        if (this.userPlans.booster[1] && this.userPlans.booster[1] != undefined) {
+          this.booster = this.userPlans.booster[1];
+          this.isbooster = this.booster ? true : false;
         }
         // this.demo = this.userPlans.demo[0];
         this.country = this.userPlans.country;
@@ -146,8 +151,8 @@ export class MembershipComponent {
 
         this.ispremium = this.premium ? true : false;
         this.iscountry = this.country ? true : false;
-        this.isbooster = this.booster ? true : false;
-        this.isdemo = this.demo ? true : false;
+      
+        this.isdemo = this.demo ? false : false;
         this.country.count = this.userPlans.country.length;
         this.premium.count = this.userPlans.premium.length;
         this.booster.count = this.userPlans.booster.length;

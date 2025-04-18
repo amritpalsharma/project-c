@@ -27,6 +27,7 @@ export class ChatComponent {
   chatSession: any;
   isLoading: boolean = true;
   pageTitle: string = '';
+  baseUrl: string = 'https://api.socceryou.ch/uploads/';
   constructor(
     private talkService: TalkService,
     private route: ActivatedRoute,
@@ -73,7 +74,7 @@ export class ChatComponent {
 
   // Start a one-on-one chat
   startOneOnOneChat(user: any) {
-    console.warn('Recived User is ',user);
+    console.info('Recived User is ',user);
     this.talkService.createOneOnOneConversation(user.id, user.name, user.email, user.photoUrl)
       .then(() => {
         this.talkService.mountChat('talkjs-container');
@@ -107,18 +108,20 @@ export class ChatComponent {
       width: '760px',
     })
       .afterClosed().subscribe(users => {
-        console.warn(users.data)
+        console.info(users.data)
         for (let user of users.data) {
-          if (user.profile_image_path != '' && user.profile_image_path != undefined) {
+          console.info('User is ',user)
+          // if (user.profile_image_path != '' && user.profile_image_path != undefined) {
 
-          } else if (user.profile_image != '' && user.profile_image != undefined) {
-            user.profile_image_path = 'https://api.socceryou.ch/uploads/' + user.profile_image;
-          }
+          // } else
+          //  if (user.profile_image != '' && user.profile_image != undefined) {
+          //   user.profile_image = 'https://api.socceryou.ch/uploads/' + user.profile_image;
+          // }
           this.users.push({
             id: user.id,
             name: user.first_name,
             email: user.username,
-            photoUrl: user.profile_image_path,
+            photoUrl: this.baseUrl + user.meta.profile_image,
           })
         }
         if (this.users.length == 1) {
@@ -146,7 +149,7 @@ export class ChatComponent {
     } else if (users.length > 1) {
       this.startGroupChat();
     }
-    console.log('last users', users);
+    console.info('last users', users);
   }
 
   ngOnDestroy() {
@@ -196,9 +199,9 @@ export class ChatComponent {
 
     if (otherUserData) {
       const otherUser = JSON.parse(otherUserData);
-      console.log("Starting chat with:", otherUser);
+      // console.info("Starting chat with:", otherUser);
       // window.location.reload();
-      this.startOneOnOneChat(otherUser);
+      // this.startOneOnOneChat(otherUser);
     }
     setTimeout(() => {
       const theme = localStorage.getItem('theme');

@@ -387,7 +387,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
                 dblang = 'se';
               }
               let dontShowAgain = localStorage.getItem('dontShowIntroTour');
-              if (dontShowAgain == 'true') {
+              if (dontShowAgain == 'true' || this.StartTour === false) {
                 //  don't show again
               } else {
                 if (this.globalSettings.getDeviceType() == 'desktop') {

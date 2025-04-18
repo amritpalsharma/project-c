@@ -108,7 +108,7 @@ export class TalkService {
 
       // Add the current user
       conversation.setParticipant(this.user);
-
+      console.info('Users Recived in TalkJs.Service', userList);
       // Add all other users to the conversation
       userList.forEach(user => {
         const participant = new Talk.User({

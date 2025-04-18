@@ -29,7 +29,7 @@ export class PlayerListComponent implements OnInit {
   ScoutPlayers: any = [];
   profileBaseUrl: string = 'https://api.socceryou.ch/uploads/';
   birthCountryFlags: string = 'https://api.socceryou.ch/uploads/logos/';
-  apiDefaultImage: string = 'https://api.socceryou.ch/uploads/not_a_valid_image.jpg';
+  apiDefaultImage: string = '/assets/images/default/dummy-image-soccer.png';
   flagPath:string='https://api.socceryou.ch/uploads/logos/';
   isDefaultImage: string = 'default_img';
   constructor(private http: HttpClient) { }

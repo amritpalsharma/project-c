@@ -1,4 +1,4 @@
-.history-text{
+.history-text {
     font-family: Libre Franklin, sans-serif;
     font-size: 16px;
     font-weight: 400;
@@ -7,36 +7,38 @@
 }
 
 .historyTextarea {
-    width: 100%;               
-    height: 700px;             
-    padding: 10px;            
+    width: 100%;
+    height: 700px;
+    padding: 10px;
     font-family: Libre Franklin, sans-serif;
-    font-size: 16px;           
-    color: #333;               
-    background-color: #f9f9f9; 
-    border: 1px solid #ccc;   
-    border-radius: 8px;        
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); 
-    resize: vertical;        
-    outline: none;          
+    font-size: 16px;
+    color: #333;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    resize: vertical;
+    outline: none;
 }
 
 .historyTextarea:focus {
-    border-color: #4A90E2;   
-    background-color: #fff;  
+    border-color: #4A90E2;
+    background-color: #fff;
     box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
 }
 
 
-@media (min-width: 2000px){
-	.company_history {
-		h6.main-template {
-		    font-size: 20px;
-		}
-		.btn-outline-white, .history-text {
-		    font-size: 18px !important;
-		}
-	}
+@media (min-width: 2000px) {
+    .company_history {
+        h6.main-template {
+            font-size: 20px;
+        }
+
+        .btn-outline-white,
+        .history-text {
+            font-size: 18px !important;
+        }
+    }
 }
 
 ::ng-deep {
@@ -46,8 +48,14 @@
         height: 400px !important;
         overflow-y: scroll;
     }
-    .NgxEditor__Placeholder::before{
+
+    .NgxEditor__Placeholder::before {
         color: black !important;
+    }
+
+    .NgxEditor__Content {
+        width: 100%;
+        height: 100%;
     }
 }
 

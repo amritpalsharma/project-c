@@ -2,6 +2,8 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, NgForm } from '@angular/forms';
 import { ScoutService } from '../../../services/scout.service';
+import { TranslateService } from '@ngx-translate/core';
+import { WebPages } from '../../../services/webpages.service';
 
 import * as _moment from 'moment';
 // tslint:disable-next-line:no-duplicate-imports
@@ -81,10 +83,22 @@ export class EditPersonalDetailsComponent implements OnInit {
   profile_image :any ;
   profile_image_path :any ;
 
+  // Json KeyWords
+  successTxt: string = '';
+  errorTxt: string = '';
+  enterYourCompanyName: string = '';
+  dobRequired: string = '';
+  dominantFootRequired: string = '';
+  Processing: string = '';
+  pleaseWait: string = '';
+  requiredFieldsMessage:string='';
   constructor(
     public dialogRef: MatDialogRef<EditPersonalDetailsComponent>,
     private scoutService: ScoutService,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+     private translateService: TranslateService,
+     public webPages: WebPages,
+     private toastr: ToastrService,
   ) {}
 
   theme : any = localStorage.getItem('theme');
@@ -97,6 +111,11 @@ export class EditPersonalDetailsComponent implements OnInit {
     this.loadTeams();
     this.loadCountries();
     this.getUserProfile(this.userId);
+
+    this.getJsonTranslations();
+    this.webPages.languageId$.subscribe((data) => {
+      this.getJsonTranslations();
+    });
   }
 
   onCancel(): void {
@@ -163,6 +182,14 @@ export class EditPersonalDetailsComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
+    if (!this.company_name) {
+      this.toastr.warning(this.enterYourCompanyName, this.errorTxt);
+      return;
+    }
+    if (!this.city || !this.designation || !this.contact_number || !this.website || !this.zipcode) {
+      this.toastr.error(this.requiredFieldsMessage, this.errorTxt);
+      return;
+    }
     if (form.valid) {
 
       console.log('Form Data:', form.value);
@@ -173,11 +200,11 @@ export class EditPersonalDetailsComponent implements OnInit {
       formData.append('user[city]' , this.city);
       formData.append('user[company_name]' , this.company_name);
       formData.append('user[contact_number]' , this.contact_number);
-      formData.append('user[cover_image]' , this.cover_image);
-      formData.append('user[cover_image_path]' , this.cover_image_path);
+      // formData.append('user[cover_image]' , this.cover_image);
+      // formData.append('user[cover_image_path]' , this.cover_image_path);
       formData.append('user[designation]' , this.designation);
-      formData.append('user[profile_image]' , this.profile_image);
-      formData.append('user[profile_image_path]' , this.profile_image_path);
+      // formData.append('user[profile_image]' , this.profile_image);
+      // formData.append('user[profile_image_path]' , this.profile_image_path);
       formData.append('user[sm_facebook]' , this.sm_facebook);
       formData.append('user[sm_instagram]' , this.sm_instagram);
       formData.append('user[sm_tiktok]' , this.sm_tiktok);
@@ -198,6 +225,20 @@ export class EditPersonalDetailsComponent implements OnInit {
       );
     }
   }
+  
 
+  getJsonTranslations() {
+    this.translateService.get(['success!', 'error', 'enterYourCompanyName', 'dobRequired', 'dominantFootRequired', 'Processing', 'pleaseWait','requiredFieldsMessage']).subscribe((translations) => {
+      this.successTxt = translations['success!'];
+      this.errorTxt = translations['error'];
+      this.enterYourCompanyName = translations['enterYourCompanyName'];
+      this.dobRequired = translations['dobRequired'];
+      this.dominantFootRequired = translations['dominantFootRequired'];
+      this.Processing = translations['Processing'];
+      this.pleaseWait = translations['pleaseWait'];
+      this.requiredFieldsMessage = translations['requiredFieldsMessage'];
+      console.log('Title fetch Function Fired');
+    })
+  }
 
 }
