@@ -48,6 +48,7 @@ import { PasswordResetLinkComponent } from './password-reset-link/password-reset
 import { AuthService } from '../../services/auth.service';
 import { ThemeService } from '../../services/theme.service';
 import { HomeComponent } from './home/home.component';
+import { LinebreaksPipe } from './linebreaks.pipe';
 
 
 
@@ -81,7 +82,8 @@ import { HomeComponent } from './home/home.component';
     ThankuComponent,
     ErrorComponent,
     LoaderComponent,
-    HomeComponent
+    HomeComponent,
+    LinebreaksPipe
   ],
   imports: [
     CommonModule,

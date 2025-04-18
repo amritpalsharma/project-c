@@ -88,7 +88,7 @@
             <!-- Carousel Items -->
             <div class="carousel-inner image-wrapper">
               <div *ngFor="let slide of images; let i = index" class="carousel-item" [class.active]="i === 0">
-                <img [src]="base_url + slide.featured_image" class="d-block w-100" [alt]="slide.title || 'Slide Image'">
+                <img [src]="base_url + slide.featured_image" class="d-block w-100" [alt]="slide.title || 'Slide Image'" (error)="handleImageError($event)">
 
                 <div class="image-text" *ngIf="images.length > 0" >
                   <p class="p-text">{{slide.date}}</p>
@@ -152,7 +152,7 @@
               <!-- {{newsData | json}} -->
               <div routerLink="{{'/news/' + newsData.slug}}" class="news-box">
                 <div class="news_img_thumb_wrap">
-                  <img [src]="news_img_path + newsData.featured_image" />
+                  <img [src]="news_img_path + newsData.featured_image" (error)="handleImageError($event)"/>
                 </div>
                 <p class="p-text">{{newsData.created_at | date: 'dd.MM.yy'}}</p>
                 <p>{{newsData.title}}</p>

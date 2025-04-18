@@ -353,6 +353,12 @@ export class NewsComponent implements OnInit, OnDestroy {
     this.images.push(...selectedItems);
     console.warn(this.images, originalArray, selectedItems);
   }
+
+  handleImageError(event: Event) {
+    const target = event.target as HTMLImageElement;
+    target.src = 'assets/images/no_cover_img1.png'; // or wherever your fallback image is
+  }
+
   
   ngAfterViewInit() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
