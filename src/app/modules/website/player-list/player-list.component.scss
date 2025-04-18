@@ -532,13 +532,12 @@ button.page-active {
 @media (max-width: 991px) {
     .players.player-card {
         .player1 {
-            height: 250px;
-
-            .player-img {
-                img {
-                    height: 210px !important;
-                }
-            }
+            height: 230px;
+            // .player-img {
+            //     img {
+            //         height: 210px !important;
+            //     }
+            // }
         }
     }
 }
