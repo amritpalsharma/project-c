@@ -109,7 +109,7 @@
                     <td [attr.colspan]="displayedColumns.length" class="user-empty-td">
                         <div *ngIf="isLoading" class="loader-container d-flex flex-column py-5 align-items-center">
                             <div class="loader"></div>
-                            <p>{{'loading' | translate}}</p>
+                            <!-- <p>{{'loading' | translate}}</p> -->
                         </div>
                         <div *ngIf="notifications.length == 0 && !isLoading" style="text-align: center;">
                             {{ 'noRecordFound' | translate}}

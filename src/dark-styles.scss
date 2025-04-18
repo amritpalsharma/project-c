@@ -2795,6 +2795,12 @@ input:checked+.slider:before {
   }
 }
 
+.dark-theme{
+  .social_icons a{
+    color: #fff !important;
+  }
+}
+
 
 // ::ng-deep .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
 //   color: #fff !important;
