@@ -2614,7 +2614,7 @@ img.success-image {
   }
 
   .joined-text h3 {
-    font-size: 28px;
+    font-size: 30px;
   }
 
   .home-banner-image {
@@ -2661,7 +2661,7 @@ img.success-image {
 
   .btn {
     // padding: 10px 30px;
-    font-size: 15px;
+    font-size: 20px;
   }
 
   .switch {
@@ -2763,13 +2763,13 @@ img.success-image {
   .number p {
     height: 35px;
     width: 35px;
-    line-height: 35px;
+    line-height: 28px;
   }
 
   .work-text.active .number p {
     height: 35px;
     width: 35px;
-    line-height: 35px;
+    line-height: 28px;
   }
 
   .player2 img.birthday-img {
@@ -3070,8 +3070,9 @@ img.success-image {
   }
 
   .joined {
-    padding-left: 5%;
-    padding-right: 5%;
+    h3 {
+      font-size: 30px;
+    }
   }
 
   .works h3 {
@@ -4047,7 +4048,7 @@ img.success-image {
   }
 
   .joined-text h3 {
-    font-size: 22px;
+    font-size: 28px;
   }
 
   .corner-image.top-right {
@@ -4692,7 +4693,7 @@ img.success-image {
     height: 465px;
   }
   .joined-text h3 {
-    font-size: 18px;
+    font-size: 22px;
   }
 
   .works-1 h3 {
@@ -4705,6 +4706,9 @@ img.success-image {
 
   p {
     font-size: 14px;
+  }
+  .work-text .number p {
+    font-size: 20px;
   }
 
   .banner-content svg {

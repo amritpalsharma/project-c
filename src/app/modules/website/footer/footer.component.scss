@@ -1313,7 +1313,6 @@ option.countary {
 
   #footer .footer-top h4 {
     margin-bottom: 0;
-    font-size: 16px;
   }
 
   .footer-contact img {
@@ -1343,14 +1342,6 @@ option.countary {
   .social-link {
     margin-top: 40px;
     margin-left: 70px;
-  }
-
-  .form-select {
-    font-size: 12px;
-  }
-
-  #footer .footer-top .footer-links ul li a {
-    font-size: 12px;
   }
 
   #footer .footer-top .footer-links ul {
@@ -1449,10 +1440,10 @@ option.countary {
 
 @media (min-width: 768px) and (max-width: 1199px) {
 #footer .footer-top h4 {
-  font-size: 28px !important;
+  font-size: 25px !important;
 }
 #footer .footer-top .footer-links ul li a, p.country  {
-  font-size: 25px !important;
+  font-size: 20px !important;
 }
 }
 
