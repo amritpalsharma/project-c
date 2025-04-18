@@ -367,13 +367,26 @@ export class ClubComponent {
 
     const lowerPlanName = planName.toLowerCase();
 
+    // if (lowerPlanName.includes('premium')) {
+    //   return !isMonthly ? this.premiumPrice : this.premiumYearlyPrice;
+    // }
+    // if (lowerPlanName.includes('country') || lowerPlanName.includes('multi') || lowerPlanName.includes('flera')) {
+    //   return !isMonthly ? this.countryPrice : this.countryYearlyPrice;
+    // }
+    // if (lowerPlanName.includes('boost')) {
+    //   return !isMonthly ? this.boostPrice : this.boostYearlyPrice;
+    // }
+    // if (lowerPlanName.includes('perfil')) { // For PT Language
+    //   return !isMonthly ? this.boostPrice : this.boostYearlyPrice;
+    // }
     if (lowerPlanName.includes('premium')) {
       return !isMonthly ? this.premiumPrice : this.premiumYearlyPrice;
     }
     if (lowerPlanName.includes('country') || lowerPlanName.includes('multi') || lowerPlanName.includes('flera')) {
       return !isMonthly ? this.countryPrice : this.countryYearlyPrice;
     }
-    if (lowerPlanName.includes('boost')) {
+    if (lowerPlanName.includes('boost') || lowerPlanName.includes('perfil')) {
+      //
       return !isMonthly ? this.boostPrice : this.boostYearlyPrice;
     }
     return 0; // Default price if no match
