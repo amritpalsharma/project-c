@@ -398,3 +398,14 @@ button.submit_btn {
     margin-left: 0 !important;
 }
 }
+
+
+
+@media (min-width: 1600px) and (max-width: 1999px) {
+  .form-heading {
+    font-size: 45px;
+  }
+  .contact-text p, .location-text {
+    font-size: 20px;
+}
+}

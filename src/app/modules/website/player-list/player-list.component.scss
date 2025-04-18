@@ -686,3 +686,8 @@ button.page-active {
 ::ng-deep .scoutsArr .player-img::before {
     width: 0 !important;
 }
+
+
+.player1.scoutsArr .player-img:after, .player1.scoutsArr + .flag {
+    display: none !important;
+}

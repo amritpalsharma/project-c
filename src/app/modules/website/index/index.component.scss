@@ -1831,7 +1831,7 @@ img.success-image {
 
 @media (min-width: 1536px) {
   .main-bnr {
-    height: 800px;
+    height: 900px;
   }
   .work-text {
     margin-bottom: 80px;
@@ -4850,7 +4850,7 @@ img.success-image {
   font-size: 20px;
 }
 .banner-btn {
-  margin-top: 6rem !important;
+  margin-top: 3rem !important;
 }
 .home-banner-image {
   width: 660px;
@@ -4937,6 +4937,25 @@ h3, .text_side_wrapper p {
 .club_players .text_side_wrapper .join-text p {
   font-size: 16px !important;
 }
+}
+
+
+@media (min-width: 1600px) and (max-width: 1999px) {
+  .banner-inner {
+    padding-top: 180px;
+  }
+  h3, .works h3 {
+    font-size: 45px;
+  }
+}
+
+@media (min-width: 2000px) and (max-width: 2999px) {
+  .main-bnr {
+    height: 1400px;
+  }
+  .banner-inner {
+    padding-top: 400px;
+  }
 }
 
 @media (min-width: 3000px) {

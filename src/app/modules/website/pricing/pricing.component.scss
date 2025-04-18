@@ -729,3 +729,19 @@ li::before {
     }
 }
 }
+
+
+@media (min-width: 1600px) and (max-width: 1999px) {
+    .price-heading3 {
+        font-size: 45px;
+    }
+    .billed__infor small {
+        font-size: 19px;
+    }
+    .free-heading, .feature-heading {
+        font-size: 25px;
+    }
+    .feature-height li {
+        font-size: 20px;
+    }
+}

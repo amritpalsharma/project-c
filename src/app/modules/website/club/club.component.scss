@@ -5887,4 +5887,37 @@ span {
 
 
 
-/*--- box-hover-effect ------*/
+@media (min-width: 1600px) and (max-width: 1999px) {
+    .banner-data1 {
+        padding-top: 70px;
+    }
+    .banner-heading {
+        font-size: 55px;
+    }
+    h3, .feature-heading3, .club-heading4 {
+      font-size: 45px;
+    }
+    .club_text img {
+        width: 85px;
+        height: 85px;
+    }
+    .club-text1 {
+        font-size: 22px;
+    }
+    h2.accordion-header, .premium-heading5 {
+        font-size: 25px;
+    }
+    .accordion-body .feature-text {
+        font-size: 22px;
+    }
+    .red_text_plan {
+        font-size: 18px;
+    }
+    .premium-text p {
+        font-size: 22px;
+    }
+    .premium-text img {
+        position: relative;
+        top: 2px;
+    }
+}
