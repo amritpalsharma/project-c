@@ -29,12 +29,12 @@
       <div class="form-check p-0">
         <input id="radio-1" class="form-check-input radio-custom" type="radio" name="isYearly" [value]="false"
           [(ngModel)]="isYearly" (change)="toggleBillingPlan(false)">
-        <label for="radio-1" class="form-check-label radio-custom-label">{{'monthly' | translate}}</label>
+        <label for="radio-1" class="form-check-label radio-custom-label text-lowercase">{{'monthly' | translate}}</label>
       </div>
       <div class="form-check p-0">
         <input id="radio-2" class="form-check-input radio-custom" type="radio" name="isYearly" [value]="true"
           [(ngModel)]="isYearly" (change)="toggleBillingPlan(true)">
-        <label for="radio-2" class="form-check-label radio-custom-label">{{'yearly' | translate}}</label>
+        <label for="radio-2" class="form-check-label radio-custom-label text-lowercase">{{'yearly' | translate}}</label>
       </div>
     </div>
     <!-- <h2>{{'Do you want to add “' + country.package_name + '” to your profile?' | translate}}</h2> Use the country name dynamically -->

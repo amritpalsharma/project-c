@@ -687,3 +687,10 @@ button.page-active {
 ::ng-deep .scoutsArr .player-img::before {
     width: 0 !important;
 }
+// ::ng-deep .no-birth-nationality::after{
+//     content: none !important;
+//     display: none;
+// }
+.players.player-card  .player-img img {
+    object-position: bottom;
+}
