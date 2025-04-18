@@ -435,8 +435,6 @@ mat-datepicker-toggle button {
     }
 }
 
-
-
 .website_main_pages.navbar .extra-nav {
     .custom-select, .dropdown-menu a.dropdown-item {
       font-size: 24px !important;
@@ -447,8 +445,8 @@ mat-datepicker-toggle button {
     .container {
         max-width: 1600px !important;
     }
-    .works h3, .joined-text h3 {
-        font-size: 60px !important;
+    .works h3, .joined-text h3, .learn-banner h1, .player-list-code .player-list h1 {
+        font-size: 55px !important;
     }
     .works-btn button.btn {
         font-size: 26px !important;
@@ -903,8 +901,41 @@ mat-datepicker-toggle button {
             margin-top: 5px;
         }
         .learn-banner h1, .player-list-code .player-list h1{
-            font-size: 55px;
+            font-size: 70px;
         }
+        .players.player-card .player1 .player-img:after,
+        .players.player-card .flag-image7 {
+            bottom: 67px !important;
+        }
+        .players.player-card .player1 .image-text {
+            height: 56px !important;
+            width: 162px !important;
+            padding: 19px 5px 7px !important;
+            font-size: 23px !important;
+        }
+        .player-card .player1 {
+            height: 560px !important;
+        }
+        .adv-player-list {
+            .pagination-controls {
+                .pages button {
+                    width: 70px;
+                    height: 70px !important;
+                    font-size: 35px !important;
+                    i {
+                        font-size: 30px;
+                    }
+                }
+                button.next-page {
+                    width: auto;
+                }
+            }
+            select#numberSelect{
+                width: 114px !important;
+                height: 66px !important;
+            }
+        }
+
     }
 }
 
