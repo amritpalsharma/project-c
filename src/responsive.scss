@@ -352,7 +352,11 @@ mat-datepicker-toggle button {
 }
 .website-code .feature-heading3, .website-code .club-heading4, .club-banner .title_text_p h3, .price-heading3, .club-banner .club_players h3,
 .website-code .faq h3 {
-    font-size: 50px !important;
+    font-size: 55px !important;
+}
+.club_text img {
+    width: 90px !important;
+    height: 90px !important;
 }
 .faq .header h4 {
     font-size: 25px;
@@ -621,13 +625,42 @@ mat-datepicker-toggle button {
     .se .website-code .frontend_pages_larger_size nav.navbar li.nav-item .nav-link, 
     .de .website-code .frontend_pages_larger_size nav.navbar li.nav-item .nav-link, 
     .en .website-code .frontend_pages_larger_size nav.navbar li.nav-item .nav-link {
-        font-size: 30px !important;
+        font-size: 45px !important;
     }
     .website-code .frontend_pages_larger_size nav.navbar li.nav-item {
-        margin-left: 30px !important;
+        margin-left: 70px !important;
+    }
+    .website_main_pages.navbar .navbar-brand img {
+        width: 420px !important;
+        height: 216px !important;
+        object-fit: contain !important;
+    }
+    .website_main_pages.navbar {
+        .new_mode_btn label {
+            width: 120px !important;
+            height: 60px !important;
+            margin-right: 30px !important;
+            svg.moon {
+                left: 68px !important;
+                width: 30px !important;
+            }
+            svg.sun {
+                width: 33px !important;
+                left: 9px !important;
+            }
+        }
+        .new_mode_btn label:after {
+            width: 70px !important;
+            height: 70px !important;
+            top: -9px !important;
+            left: -10px !important;
+        }
+        .new_mode_btn input:checked + label:after {
+            left: 49px !important;
+        }
     }
     .frontend_pages_larger_size {
-        font-size: 30px !important;
+        font-size: 35px !important;
         .website_main_pages .player-carousel::after {
             bottom: 69px !important;
         }
@@ -657,7 +690,7 @@ mat-datepicker-toggle button {
         .website_main_pages .footer-top h4 {
             font-size: 48px !important;
         }
-        .website_main_pages footer .dropdown-menu .dropdown-item {
+        footer.website_main_pages .dropdown-menu .dropdown-item {
             font-size: 30px;
         }
         .website_main_pages.navbar .extra-nav .custom-select, 
@@ -689,8 +722,8 @@ mat-datepicker-toggle button {
             font-size: 70px !important;
         }
         .club_text img {
-            width: 100px !important;
-            height: 100px !important;
+            width: 120px !important;
+            height: 120px !important;
         }
         .banner-inner .about h3 {
             font-size: 90px !important;
@@ -701,7 +734,7 @@ mat-datepicker-toggle button {
                 font-size: 90px !important;
             }
             .banner-heading5 p {
-                font-size: 38px !important;
+                font-size: 48px !important;
             }
             a.btn.btn-register {
                 height: unset !important;
@@ -804,6 +837,15 @@ mat-datepicker-toggle button {
             }
         }
     }
+    .website_main_pages .main-bnr, .website_main_pages .main1, .website_main_pages .contact_banner {
+        min-height: 800px;
+    }
+    .website_main_pages .banner.py-0 {
+        height: 1700px;
+    }
+    .website_main_pages .home_banner {
+        min-height: 1700px;
+    }
     .website_main_pages .price_mat_wrapper .feature-box {
         height: calc(100% - 590px) !important;
         padding: 0;
@@ -841,8 +883,19 @@ mat-datepicker-toggle button {
     .website_main_pages .btn {
         font-size: 33px !important;
     }
-    .talent_page .banner-data {
-        padding-top: 250px !important;
+    .website_main_pages .banner-left .btn {
+        font-size: 40px !important;
+        padding: 15px 50px !important;
+        width: auto !important;
+    }
+    .website_main_pages .talent_page .banner-data {
+        padding-top: 450px !important;
+    }
+    .website_main_pages .club_page .banner-data1 {
+        padding-top: 150px;
+    }
+    .website_main_pages .home_banner .banner-inner {
+        padding-top: 350px;
     }
     .website_main_pages .footer-top .footer-links ul li a, .website_main_pages .footer-top p, .website_main_pages .red_text_plan {
         font-size: 40px !important;
@@ -854,18 +907,21 @@ mat-datepicker-toggle button {
         font-size: 50px !important;
     }
     .website_main_pages .club-buttons .button-border {
-        width: 450px !important;
-        height: 82px !important;
+        width: 520px !important;
+        height: 92px !important;
     }
     .website_main_pages .club-buttons .button-border .join-text p {
-        line-height: 68px !important;
+        line-height: 78px !important;
+    }
+    .website_main_pages .club-buttons .button-border img.join-btn {
+        margin: 28px 15px !important;
     }
     .website_main_pages .works-btn button.btn p {
         font-size: 36px !important;
     }
     .website-code nav.navbar .login-btn {
-        width: 260px !important;
-        font-size: 26px !important;
+        width: 300px !important;
+        font-size: 32px !important;
         svg {
             width: 40px !important;
             height: 25px;

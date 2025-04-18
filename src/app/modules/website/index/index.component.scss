@@ -845,7 +845,7 @@ p.club-p {
   button.btn p {
     opacity: 0.75;
     font-weight: 400;
-    text-transform: lowercase;
+    // text-transform: lowercase;
     font-size: inherit;
   }
 
@@ -4936,5 +4936,11 @@ h3, .text_side_wrapper p {
 }
 .club_players .text_side_wrapper .join-text p {
   font-size: 16px !important;
+}
+}
+
+@media (min-width: 3000px) {
+.banner-btn .btn {
+  padding: 17px 40px !important;
 }
 }
