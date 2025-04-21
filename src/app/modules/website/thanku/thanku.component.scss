@@ -27,10 +27,12 @@ body {
     z-index: 1;
     /* Ensure overlay is above background */
 }
+
 .thankyou_text {
     display: grid;
     gap: 30px;
 }
+
 .thankyou_secc {
     padding: 200px 0 150px;
     position: relative;
@@ -41,7 +43,8 @@ body {
 .thankyou_text * {
     color: #fff;
 }
- h1 {
+
+h1 {
     font-size: 50px;
     line-height: 1;
 }
@@ -55,6 +58,7 @@ a.btn.btn-register {
     color: #072944;
     background-color: #BDE34F;
 }
+
 .thnkyou_img {
     max-width: 350px;
     padding: 20px;
@@ -65,24 +69,35 @@ a.btn.btn-register {
 
 
 @media (max-width: 767px) {
-h1 {
-    font-size: 40px;
-    line-height: 1;
+    h1 {
+        font-size: 40px;
+        line-height: 1;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+    .thankyou_secc .row {
+        flex-wrap: wrap-reverse;
+        text-align: center;
+    }
+
+    .thankyou_secc {
+        padding: 70px 0;
+    }
+
+    .thnkyou_img {
+        max-width: 250px;
+    }
+
+    a.btn.btn-register {
+        margin: 0 auto;
+    }
 }
-h3 {
-    font-size: 20px;
+::ng-deep .dark-theme .check-image-light{
+    display: none;
 }
-.thankyou_secc .row {
-    flex-wrap: wrap-reverse;
-    text-align: center;
-}
-.thankyou_secc {
-    padding: 70px 0;
-}
-.thnkyou_img {
-    max-width: 250px;
-}
-a.btn.btn-register {
-    margin: 0 auto;
-}
+::ng-deep .light-theme .check-image-dark{
+    display: none;
 }

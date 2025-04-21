@@ -361,6 +361,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         if (response && response.status && response.data && response.data.user_data) {
           localStorage.setItem('userInfo', JSON.stringify(response.data.user_data));
           localStorage.setItem('userData', JSON.stringify(response.data.user_data));
+          console.info('UserDataArr',response.data.user_data);
           this.user = response.data.user_data;
           this.userNationalities = JSON.parse(this.user.user_nationalities);
           this.StartTour = this.user?.show_tour == 1 ? true : false;
@@ -527,35 +528,35 @@ export class DashboardComponent implements OnInit, OnDestroy {
   //   });
 
   // }
-  openHighligh1t() {
-    this.getGalleryData(); // Call function as usual
+  // openHighligh1t() {
+  //   this.getGalleryData(); // Call function as usual
 
-    const checkDataLoaded = () => {
-      return new Promise<void>((resolve) => {
-        const interval = setInterval(() => {
-          if (this.userImages && this.userImages.length > 0) {
-            clearInterval(interval);
-            resolve(); // Data is loaded
-          }
-        }, 300); // Check every 300ms
-      });
-    };
+  //   const checkDataLoaded = () => {
+  //     return new Promise<void>((resolve) => {
+  //       const interval = setInterval(() => {
+  //         if (this.userImages && this.userImages.length > 0) {
+  //           clearInterval(interval);
+  //           resolve(); // Data is loaded
+  //         }
+  //       }, 300); // Check every 300ms
+  //     });
+  //   };
 
-    checkDataLoaded().then(() => {
-      const dialogRef = this.dialog.open(EditHighlightsComponent, {
-        width: '800px',
-        data: {
-          images: this.userImages,
-          videos: this.userVideos,
-          url: this.imageBaseUrl
-        }
-      });
+  //   checkDataLoaded().then(() => {
+  //     const dialogRef = this.dialog.open(EditHighlightsComponent, {
+  //       width: '800px',
+  //       data: {
+  //         images: this.userImages,
+  //         videos: this.userVideos,
+  //         url: this.imageBaseUrl
+  //       }
+  //     });
 
-      dialogRef.afterClosed().subscribe(() => {
-        this.getHighlightsData();
-      });
-    });
-  }
+  //     dialogRef.afterClosed().subscribe(() => {
+  //       this.getHighlightsData();
+  //     });
+  //   });
+  // }
 
   setDurationAndThumbnail(videoElement: HTMLVideoElement) {
     videoElement.crossOrigin = 'anonymous';
@@ -580,23 +581,22 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   openHighlight() {
     this.isHighlightClick = false;
-    // this.getGalleryData();
-    setTimeout(() => {
-      const dialogRef = this.dialog.open(EditHighlightsComponent, {
-        width: '800px',
-        data: {
-          images: this.userImages,
-          videos: this.userVideos,
-          url: this.imageBaseUrl
-        }
-      });
+    const dialogRef = this.dialog.open(EditHighlightsComponent, {
+      width: '800px',
+      data: {
+        // images: this.userImages,
+        // videos: this.userVideos,
+        // url: this.imageBaseUrl
+      }
+    });
 
-      dialogRef.afterClosed().subscribe(result => {
-        // this.duration = result.videoDuration,
+    dialogRef.afterClosed().subscribe(result => {
+      // this.duration = result.videoDuration,
+      setTimeout(() => {
         this.getHighlightsData();
-        this.isHighlightClick = true;
-      });
-    }, 0);
+      }, 1500);
+      this.isHighlightClick = true;
+    });
 
   }
 
@@ -610,8 +610,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.talentService.getHighlightsData(params).subscribe((response) => {
         if (response && response.status && response.data && response.data.images) {
           this.highlights = response.data;
+          console.info('this.highlights',this.highlights)
           // this.isLoading = false;
         } else {
+          this.highlights = [];
           // this.isLoading = false;
           console.error('Invalid API response structure:', response);
         }

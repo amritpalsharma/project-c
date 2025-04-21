@@ -1890,3 +1890,7 @@ span.active_btn {
   background: unset !important;
   color: #fff !important;
 }
+::ng-deep .dark-theme .social_icons svg path{
+  color: white !important; 
+  fill: white;
+}

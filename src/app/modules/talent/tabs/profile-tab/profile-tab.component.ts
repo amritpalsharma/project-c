@@ -19,6 +19,7 @@ export class ProfileTabComponent {
 
   @Input() userData: any;
   @Input() isPremium: any;
+  isMainPositionFound:boolean=false;
 
   constructor( public dialog: MatDialog,private talentService: TalentService) { 
     // If you want to load the user data from localStorage during initialization    
@@ -86,12 +87,13 @@ export class ProfileTabComponent {
           localStorage.setItem('userInfo', JSON.stringify(response.data.user_data));
 
           this.user = response.data.user_data;
-      
+          if(this.user.positions != undefined && this.user.positions != ''){
+            this.userData.positions = this.user.positions;
+          }
           // Check if user_nationalities exist and parse it
           if (this.user && this.user.user_nationalities) {
             this.userNationalities = JSON.parse(this.user.user_nationalities);
           }
-
 
           this.getMainPosition();
           this.getOtherPositions();
@@ -113,7 +115,9 @@ export class ProfileTabComponent {
 
     
     dialogRef.afterClosed().subscribe(result => {
-        this.getUserProfile()
+        setTimeout(() => {
+          this.getUserProfile();
+        }, 1500);
     });
   }
 
@@ -136,22 +140,27 @@ export class ProfileTabComponent {
 
   // Function to get the main position from the array
   getMainPosition() {
+    
     // Check if positions exist and are valid JSON before parsing
     if (this.userData?.positions) {
         try {
             // Parse the JSON string only if it's defined
             this.positions = JSON.parse(this.userData.positions);
+            console.log(this.positions)
             // Find the main position object with main_position set to 1
             this.mainPosition = this.positions?.find((pos: any) => pos.main_position == 1)?.position_name;
+            this.isMainPositionFound = true;
         } catch (error) {
             console.error("Error parsing positions JSON:", error);
             this.positions = []; // Set to an empty array if parsing fails
             this.mainPosition = undefined; // Reset main position if parsing fails
+            this.isMainPositionFound = false;
         }
     } else {
         // Handle case when positions is undefined or empty
         this.positions = [];
         this.mainPosition = undefined;
+        this.isMainPositionFound = false;
     }
   }
 

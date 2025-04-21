@@ -1261,7 +1261,7 @@
   "uploadingPhotos": "Téléchargement de photos",
   "noNotification": "Aucune notification trouvée !",
   "TOOLTIPS": {
-    "removeFavorite": "Eliminar de favoritos",
+    "removeFavorite": "Supprimer des favoris",
     "addFavorite": "Ajouter à la liste de favoris",
     "downloadPdf": "Télécharger le PDF du joueur",
     "startConversation": "Envoyer un message"

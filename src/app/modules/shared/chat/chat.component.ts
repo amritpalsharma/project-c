@@ -64,7 +64,7 @@ export class ChatComponent {
     }
     setTimeout(() => {
       this.checkAndRemoveOpenChat();
-    }, 1000);
+    }, 3000);
     this.webPages.languageId$.subscribe((data) => {
       this.getJsonTranslations();
     });
@@ -179,39 +179,7 @@ export class ChatComponent {
     this.userData = null;
   }
 
-  checkAndRemoveOpenChat() {
-    // Get the current URL
-    let url = new URL(window.location.href);
-
-    // Check if 'open_chat' param exists and is set to 'true'
-    if (url.searchParams.get("open_chat") === "true") {
-      // Remove the 'open_chat' param from the URL
-      url.searchParams.delete("open_chat");
-
-      // Reload the page with the updated URL (without 'open_chat')
-      window.location.replace(url.toString());
-    } else {
-      setTimeout(() => {
-        this.isLoading = false;
-      }, 1000);
-    }
-    const otherUserData = localStorage.getItem('otherUserData');
-
-    if (otherUserData) {
-      const otherUser = JSON.parse(otherUserData);
-      // console.info("Starting chat with:", otherUser);
-      // window.location.reload();
-      // this.startOneOnOneChat(otherUser);
-    }
-    setTimeout(() => {
-      const theme = localStorage.getItem('theme');
-      if (theme == 'dark') {
-        this.talkService.toggleTheme(true);
-      }
-    }, 1500);
-
-  }
-
+  
   getJsonTranslations() {
     this.translateService.get(['chat']).subscribe((translations) => {
       this.pageTitle = translations['chat'];
@@ -219,4 +187,29 @@ export class ChatComponent {
       console.log('Title fetch Function Fired');
     })
   }
+
+  checkAndRemoveOpenChat() {
+    let url = new URL(window.location.href);
+  
+    if (url.searchParams.get("open_chat") === "true") {
+      url.searchParams.delete("open_chat");
+      window.history.replaceState({}, document.title, url.toString()); // ✅ no reload
+    }
+  
+    const otherUserData = localStorage.getItem('otherUserData');
+  
+    if (otherUserData) {
+      const otherUser = JSON.parse(otherUserData);
+      this.startOneOnOneChat(otherUser);
+    }
+  
+    setTimeout(() => {
+      this.isLoading = false;
+      const theme = localStorage.getItem('theme');
+      if (theme === 'dark') {
+        this.talkService.toggleTheme(true);
+      }
+    }, 1500);
+  }
+  
 }
