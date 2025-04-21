@@ -53,9 +53,12 @@ a.btn.btn-register {
     border-radius: 20px;
     font-size: 18px;
     font-weight: 700;
-    width: 278px;
+    width: max-content;
+    max-width: 100%;
     z-index: 1;
     color: #072944;
+    border: 0 !important;
+    padding: 13px 30px;
     background-color: #BDE34F;
 }
 
@@ -100,4 +103,10 @@ a.btn.btn-register {
 }
 ::ng-deep .light-theme .check-image-dark{
     display: none;
+}
+
+
+.thanku-bnr {
+    margin-bottom: -40px;
+    z-index: 1;
 }

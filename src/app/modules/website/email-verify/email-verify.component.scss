@@ -351,14 +351,15 @@ a.btn.btn-register {
     border-radius: 20px;
     font-size: 18px;
     font-weight: 500;
-    height: 41px;
-    width: 354px;
+    height: auto;
+    width: max-content;
+    max-width: 100%;
     background: #BDE34F;
     color: #072944;
 }
 a.btn.btn-register:hover{
-  background: linear-gradient(0deg, #BDE34F, #EFFFC1);
-  color: #072944;
+  background: linear-gradient(to bottom right,#6FB95D,#236115);
+  color: #ffffff;
 }
 .coming-email {
     text-align: center;
@@ -454,12 +455,6 @@ p.coming-text {
   font-size: 14px;
   margin-bottom: 20px;
 }
-// button.email-btn.mdc-button.mat-mdc-button.ng-tns-c1132357239-0.mat-unthemed.mat-mdc-button-base {
-//   width: 100%;
-//   font-size: 16px;
-//   position: static;
-//   margin-top: 20px;
-// }
 .coming-soon-banner {
   width: 360px;
   height: 160px;
@@ -524,9 +519,6 @@ p.coming-text {
 h4.comming-heading4 {
   margin-bottom: 40px;
 }
-// button.email-btn.mdc-button.mat-mdc-button.ng-tns-c1132357239-0.mat-unthemed.mat-mdc-button-base {
-//   margin-top: 15px;
-// }
 }
 
 @media (max-width: 345px){
@@ -548,9 +540,6 @@ h4.comming-heading4 {
   width: 200px;
   height: 160px;
 }
-// button.email-btn.mdc-button.mat-mdc-button.ng-tns-c1132357239-0.mat-unthemed.mat-mdc-button-base{
-//   margin-top: 10px;
-// }
 h2.coming-heading {
   font-size: 40px;
 }
@@ -566,3 +555,7 @@ h4.comming-heading4 {
 }
 
 
+.email-verify-bnr {
+  margin-bottom: -40px;
+  z-index: 1;
+}

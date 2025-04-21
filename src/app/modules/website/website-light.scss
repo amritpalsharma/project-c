@@ -187,14 +187,16 @@
 
 .light-theme .website-code .main .overlay, .light-theme .all-page-content .website-code .main .overlay {
   // background: linear-gradient(to top, #092E01 10%, transparent 100%);
-  background: linear-gradient(to top, rgb(255 255 255) 0, transparent 20%);
+  // background: linear-gradient(to top, rgb(255 255 255) 0, transparent 20%);
+  background: linear-gradient(to top, rgb(255, 255, 255) 0%, transparent 6%);
 }
 .light-theme .all-page-content .website-code .main1 .overlay {
   background: unset !important;
 }
 .light-theme .website-code .overlay1 {
   // background: linear-gradient(to top, #092E01 0%, transparent 100%);
-  background: linear-gradient(to top, rgb(255 255 255) 0, transparent 20%);
+  // background: linear-gradient(to top, rgb(255 255 255) 0, transparent 20%);
+  background: linear-gradient(to top, rgb(255, 255, 255) 0%, transparent 6%);
 }
 .light-theme .website-code .club-overlay {
   background: linear-gradient(to top, transparent 80%, #092E01 100%), linear-gradient(to bottom, transparent 80%, #092E01 100%);
@@ -235,7 +237,9 @@
   background-image: linear-gradient(180deg, #6FB95D, #236115);
   border: 1px solid #175B07;
 }
-
+.light-theme .thanku-bnr .overlay, .light-theme .email-verify-bnr .overlay {
+  background: linear-gradient(to top, #092E01 10%, transparent 100%) !important;
+}
 .light-theme .website-code .club .border-btn {
   background-image: linear-gradient(45deg, #C2A64A, #A77A2E);
 }
