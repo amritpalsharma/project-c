@@ -1,0 +1,20 @@
+<div class="lightbox-container">
+    <div class="media-wrapper">
+      <ng-container [ngSwitch]="currentItem.type">
+        <img *ngSwitchCase="'image'" [src]="currentItem.src" alt="Image" />
+        <video *ngSwitchCase="'video'" controls [src]="currentItem.src"></video>
+      </ng-container>
+    </div>
+  
+    <div class="navigation">
+      <!-- <button  class="btn btn-primary">Prev</button>
+      <button  class="btn btn-primary">Next</button> -->
+      <button class="next-btn" (click)="next()">
+        <svg _ngcontent-ng-c3489371954="" width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path _ngcontent-ng-c3489371954="" d="M18.666 5.33398L45.3327 32.0006L18.666 58.6673" stroke="white" stroke-width="2"></path></svg>
+      </button>
+      <button class="prev-btn" (click)="prev()">
+        <svg _ngcontent-ng-c3489371954="" width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path _ngcontent-ng-c3489371954="" d="M45.334 58.666L18.6673 31.9993L45.334 5.33269" stroke="white" stroke-width="2"></path></svg>
+      </button>
+    </div>
+  </div>
+  

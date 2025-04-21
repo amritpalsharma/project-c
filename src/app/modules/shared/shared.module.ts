@@ -59,6 +59,7 @@ import { ScoutProfileComponent } from './view-profile/tabs/scout-profile/scout-p
 import { ScoutHistoryComponent } from './view-profile/tabs/scout-history/scout-history.component';
 import { ScoutPortfolioComponent } from './view-profile/tabs/scout-portfolio/scout-portfolio.component';
 import { TeamsComponent } from './view-profile/tabs/teams/teams.component';
+import { LightboxDialogComponent } from './lightbox-dialog/lightbox-dialog.component';
 // import { ImageCropperDialogComponent } from './image-cropper-dialog/image-cropper-dialog.component';
 
 
@@ -107,6 +108,7 @@ import { TeamsComponent } from './view-profile/tabs/teams/teams.component';
     ScoutHistoryComponent,
     ScoutPortfolioComponent,
     TeamsComponent,
+    LightboxDialogComponent,
     // ImageCropperDialogComponent
   ],
   imports: [
