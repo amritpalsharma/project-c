@@ -1,0 +1,64 @@
+.lightbox-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    // background-color: #000;
+
+    .media-wrapper {
+        height: 100%;
+        max-width: 100%;
+        max-height: 80vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img,
+        video {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 8px;
+        }
+    }
+
+    .navigation {
+        padding: 1rem 0;
+
+        button {
+            border: none;
+            margin: 0 8px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+
+            position: absolute;
+            top: 50%;
+            background: transparent;
+        }
+
+        .next-btn{
+            right: 0;
+        }
+        .prev-btn{
+            left: 0;
+        }
+
+        button:focus-visible {
+            color: unset !important;
+            background-color: unset !important;
+            border-color: unset !important;
+            outline: 0;
+            box-shadow: unset !important;
+        }
+    }
+}
+
+
+
+
+::ng-deep .mat-mdc-dialog-surface.mdc-dialog__surface{
+    background-color: transparent;
+    box-shadow: none;
+}
