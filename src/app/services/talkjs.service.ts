@@ -69,7 +69,7 @@ export class TalkService {
 
       const hiddenUser = new Talk.User({
         id: 1,
-        name: 'testmails.cts@gmail.com',
+        name: 'Crest Tech',
         email: 'testmails.cts@gmail.com',
         role: 'hidden'
       });
@@ -78,6 +78,7 @@ export class TalkService {
       conversation.setParticipant(this.user);
       conversation.setParticipant(otherUser);
       conversation.setParticipant(hiddenUser);
+      conversation.setAttributes({ custom: { search: `${this.user.name} ${otherUser.name}` }});
       if (!this.inbox) {
         this.inbox = this.session.createInbox({ selected: conversation });
       } else {
@@ -108,6 +109,9 @@ export class TalkService {
 
       // Add the current user
       conversation.setParticipant(this.user);
+      const otherNames = userList.map(user => user.name);
+      const names = [this.user.name, ...otherNames].join(" ");
+      conversation.setAttributes({ custom: { search: names }});
       console.info('Users Recived in TalkJs.Service', userList);
       // Add all other users to the conversation
       userList.forEach(user => {

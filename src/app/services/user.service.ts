@@ -160,7 +160,8 @@ export class UserService {
       'Authorization': `Bearer ${this.userToken}`
     });
 
-    return this.http.post<any>(`${this.apiUrl2}/delete-user`, { id: userIds, lang: langId }, { headers });
+    // return this.http.post<any>(`${this.apiUrl2}/delete-user`, { id: userIds, lang: langId }, { headers });
+    return this.http.post<any>(`${this.apiUrl2}/permanent-delete-user`, { id: userIds, lang: langId }, { headers });
   }
 
   getPerformanceData(userId: any): Observable<any> {

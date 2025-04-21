@@ -40,14 +40,14 @@ export class ChatComponent {
     this.getJsonTranslations();
     const userDataString = localStorage.getItem('userData');
     // alert(userDataString)
-    console.warn('userDataString',userDataString)
+    console.warn('userDataString', userDataString)
     if (userDataString) {
       this.userData = JSON.parse(userDataString);
       this.user = {
         id: this.userData.id,
         name: this.userData.first_name,
         email: this.userData.username,
-        photoUrl: this.userData.profile_image_path,
+        photoUrl: this.userData.profile_image,
         welcomeMessage: null,
         role: (this.userData.role == '1') ? "hidden" : "default"
       };
@@ -67,6 +67,13 @@ export class ChatComponent {
     }, 3000);
     this.webPages.languageId$.subscribe((data) => {
       this.getJsonTranslations();
+      let theme = localStorage.getItem('theme');
+      if (theme == 'dark') {
+        setTimeout(() => {
+          this.talkService.toggleTheme(true);
+        }, 2000);
+      }
+      console.info('currentTheme is '+theme)
     });
   }
 
@@ -74,7 +81,7 @@ export class ChatComponent {
 
   // Start a one-on-one chat
   startOneOnOneChat(user: any) {
-    console.info('Recived User is ',user);
+    // console.info('Recived User is ',user);
     this.talkService.createOneOnOneConversation(user.id, user.name, user.email, user.photoUrl)
       .then(() => {
         this.talkService.mountChat('talkjs-container');
@@ -110,7 +117,7 @@ export class ChatComponent {
       .afterClosed().subscribe(users => {
         console.info(users.data)
         for (let user of users.data) {
-          console.info('User is ',user)
+          console.info('User is ', user)
           // if (user.profile_image_path != '' && user.profile_image_path != undefined) {
 
           // } else
@@ -119,7 +126,7 @@ export class ChatComponent {
           // }
           this.users.push({
             id: user.id,
-            name: user.first_name,
+            name: user.first_name, // The opened chat options Here
             email: user.username,
             photoUrl: this.baseUrl + user.meta.profile_image,
           })
@@ -179,7 +186,7 @@ export class ChatComponent {
     this.userData = null;
   }
 
-  
+
   getJsonTranslations() {
     this.translateService.get(['chat']).subscribe((translations) => {
       this.pageTitle = translations['chat'];
@@ -190,19 +197,19 @@ export class ChatComponent {
 
   checkAndRemoveOpenChat() {
     let url = new URL(window.location.href);
-  
+
     if (url.searchParams.get("open_chat") === "true") {
       url.searchParams.delete("open_chat");
       window.history.replaceState({}, document.title, url.toString()); // ✅ no reload
     }
-  
+
     const otherUserData = localStorage.getItem('otherUserData');
-  
+
     if (otherUserData) {
       const otherUser = JSON.parse(otherUserData);
       this.startOneOnOneChat(otherUser);
     }
-  
+
     setTimeout(() => {
       this.isLoading = false;
       const theme = localStorage.getItem('theme');
@@ -211,5 +218,5 @@ export class ChatComponent {
       }
     }, 1500);
   }
-  
+
 }

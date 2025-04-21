@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-12 col-md-6 form-group mb-3">
                     <p  class="code-text">{{ 'clubName' | translate }}</p>
-                    <input class="cupen-btn-1 code-text" [(ngModel)]="clubName">
+                    <input class="cupen-btn-1 code-text" [(ngModel)]="clubName" readonly [disabled]="true">
                 </div>
                 <div class="col-12 col-md-6 form-group mb-3">
                     <p  class="code-text">{{ 'contactNumber' | translate }}:</p>
