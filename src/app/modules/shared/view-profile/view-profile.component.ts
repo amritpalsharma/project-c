@@ -14,6 +14,7 @@ import { Subscription } from 'rxjs';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { TitleService } from '../../../title.service';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
+import { MessagePopupComponent } from '../message-popup/message-popup.component';
 
 @Component({
   selector: 'app-view-profile',
@@ -52,8 +53,9 @@ export class ViewProfileComponent implements OnInit {
   downloading: string = '';
   currentThemeMode: any = localStorage.getItem('theme');
   currentUserRole: string = '';
+  translatedText: string = '';
   private tooltipSubscription!: Subscription; // ✅ Subscription for tooltips
-  baseUrl:string='';
+  baseUrl: string = '';
   videoDuration: number = 0;
   @Output() dataEmitter = new EventEmitter<string>();
   @ViewChild('videoPlayer2') videoElementRef!: ElementRef<HTMLVideoElement>;
@@ -104,14 +106,14 @@ export class ViewProfileComponent implements OnInit {
     // alert(typeof role)
     if (role != '' && role != undefined) {
       this.currentUserRole = role;
-    }else{
-      const url = this.router.url; 
+    } else {
+      const url = this.router.url;
       const segments = url.split('/');
       role = segments[2]?.toLowerCase();
-      if (role != '' && role != undefined) { 
+      if (role != '' && role != undefined) {
         this.currentUserRole = role;
-      }else{
-        console.info('role is '+role)
+      } else {
+        console.info('role is ' + role)
       }
     }
   }
@@ -131,6 +133,9 @@ export class ViewProfileComponent implements OnInit {
     this.tooltipSubscription = this.tooltipService.getTooltip('removeFavorite').subscribe(tooltip => {
       this.removeFavorite = tooltip;
     });
+    // this.tooltipSubscription = this.tooltipService.getTooltip('removeFavoriteConfirm').subscribe(tooltip => {
+    //   this.translatedText = tooltip;
+    // });
     this.tooltipSubscription = this.tooltipService.getTooltip('downloadPdf').subscribe(tooltip => {
       this.downloadPdf = tooltip;
     });
@@ -156,7 +161,7 @@ export class ViewProfileComponent implements OnInit {
           }
           this.profileImage = baseUrl + this.user.meta.profile_image || this.profileImage;
           // this.profileImage = this.user.meta.profile_image_path || this.profileImage;
-          if(this.user.meta.cover_image && this.user.meta.cover_image != '' && this.user.meta.cover_image != undefined){
+          if (this.user.meta.cover_image && this.user.meta.cover_image != '' && this.user.meta.cover_image != undefined) {
             this.coverImage = baseUrl + this.user.meta.cover_image || this.coverImage;
           }
           // console.info(this.user);
@@ -305,21 +310,7 @@ export class ViewProfileComponent implements OnInit {
   }
 
   removeFromFavorites(userId: number) {
-    // alert(userId)
-    let idsToDelete = [userId];
-    let params = { id: userId };
-    try {
-      this.userService.removeSingleFavorite(userId).subscribe((response) => {
-        if (response && response.status && response.data) {
-          this.isFavorite = false; // Mark as not favorite
-          this.getUser(userId);
-        } else {
-          console.error('Invalid API response structure:', response);
-        }
-      });
-    } catch (error) {
-      console.error('Error removing from favorites:', error);
-    }
+    this.showMatDialog(this.translatedText, "remove-fav-confirmation", userId);
   }
 
   exportSingleUser(userId: number) {
@@ -434,14 +425,6 @@ export class ViewProfileComponent implements OnInit {
       .catch(error => console.error("Error fetching geocoding data:", error));
   }
 
-  // navigateToChat() {
-  //   if (this.user) {
-  //     const encodedUserData = encodeURIComponent(JSON.stringify(this.user)); // Convert object to string and encode
-  //     this.router.navigate(['/talent/chat'], { queryParams: { userData: encodedUserData } });
-  //   } else {
-  //     console.warn('No userData available');
-  //   }
-  // }
 
   navigateToChat() {
     localStorage.setItem('otherUserData', '');
@@ -489,10 +472,11 @@ export class ViewProfileComponent implements OnInit {
   }
 
   getToasterMsg() {
-    this.translate.get(['pleaseWait', 'downloading', 'explore']).subscribe((res: any) => {
+    this.translate.get(['pleaseWait', 'downloading', 'explore', 'removeFavoriteConfirm']).subscribe((res: any) => {
       this.pleaseWaitTxt = res['pleaseWait'];
       this.downloading = res['downloading'];
       this.pageTitle = res['explore'];
+      this.translatedText = res['removeFavoriteConfirm'];
       this.titleService.setTitle(this.pageTitle);
     });
   }
@@ -525,6 +509,44 @@ export class ViewProfileComponent implements OnInit {
     } else {
       return `${minutes}:${String(seconds).padStart(2, '0')}`;
     }
+  }
+
+  showDeleteConfirmation(userId: any) {
+    let idsToDelete = [userId];
+    let params = { id: userId };
+    try {
+      this.userService.removeSingleFavorite(userId).subscribe((response) => {
+        if (response && response.status && response.data) {
+          this.isFavorite = false; // Mark as not favorite
+          this.getUser(userId);
+        } else {
+          console.error('Invalid API response structure:', response);
+        }
+      });
+    } catch (error) {
+      console.error('Error removing from favorites:', error);
+    }
+  }
+
+  showMatDialog(message: string, action: string, userId: any) {
+    const messageDialog = this.dialog.open(MessagePopupComponent, {
+      width: '500px',
+      position: {
+        top: '150px'
+      },
+      data: {
+        message: message,
+        action: action
+      }
+    })
+
+    messageDialog.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        if (result.action == "delete-confirmed") {
+          this.showDeleteConfirmation(userId);
+        }
+      }
+    });
   }
 
 

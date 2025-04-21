@@ -523,3 +523,10 @@
     padding-bottom: 5px;
   }
 }
+.social_icons a{
+  color: #111418 ;
+}
+::ng-deep .dark-theme .social_icons svg path{
+  color: white !important; 
+  fill: white;
+}

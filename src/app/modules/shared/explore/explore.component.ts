@@ -42,6 +42,8 @@ export class ExploreComponent implements OnInit {
     });
   }
   pageTitle: string = '';
+  generalError: string = '';
+  errorText: string = '';
   userDomain: number = this.globalSettings.getdomainId();
   players: any[] = [];
   pageSize = 15; // Default page size
@@ -368,12 +370,12 @@ export class ExploreComponent implements OnInit {
           }
           setTimeout(() => this.cdr.detectChanges(), 0);
         } else {
-          this.toastr.error('Failed to retrieve data. Please try again.', 'Error');
+          this.toastr.error(this.generalError, this.errorText);
         }
       },
       error: (error) => {
         console.error('Error fetching users:', error);
-        this.toastr.error('An error occurred while fetching data.', 'Error');
+        this.toastr.error(this.generalError, this.errorText);
       },
       complete: () => {
         this.isLoading = false; // End loading
@@ -636,8 +638,10 @@ export class ExploreComponent implements OnInit {
   }
 
   getJsonTranslations() {
-    this.translateService.get(['explore']).subscribe((translations) => {
+    this.translateService.get(['explore','forgotPassword.generalError','error']).subscribe((translations) => {
       this.pageTitle = translations['explore'];
+      this.errorText = translations['error'];
+      this.generalError = translations['forgotPassword.generalError'];
       setTimeout(() => {
         this.titleService.setTitle(this.pageTitle);
       }, 100);

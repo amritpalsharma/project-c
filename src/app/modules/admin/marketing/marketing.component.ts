@@ -39,6 +39,9 @@ export class MarketingComponent {
   count : number = 0;
   frequency: any = ['Once a day', 'Once a week', 'Once 2 Hrs', 'Twice a day', 'Once a month', 'One time only'];
   pageTitle: string = '';
+
+  sortDirection: 'asc' | 'desc' = 'asc';
+  sortField: string = '';
   constructor(
     public dialog: MatDialog,
     private marketingApi: MarketingService,
@@ -106,7 +109,14 @@ export class MarketingComponent {
     if (this.customFilters['status']) {
       params = { ...params, "whereClause[status]": this.customFilters['status'] };
     }
-
+    // Sorting
+    if (this.customFilters['orderBy[column]']) {
+      params = { ...params, "orderBy[column]": this.customFilters['orderBy[column]'] };
+    }
+    if (this.customFilters['orderBy[order]']) {
+      params = { ...params, "orderBy[order]": this.customFilters['orderBy[order]'] };
+    }
+    this.popups = [];
     try {
       this.isLoading = true;
       this.marketingApi.getSystemPopups(params).subscribe((response) => {
@@ -153,6 +163,20 @@ export class MarketingComponent {
     } else if (this.filterValue.length == 0) {
       this.getSystemPopups();
     }
+  }
+
+  sortData(filed_name: string) {
+    if (this.sortField === filed_name) {
+      // Toggle direction if same field is clicked
+      this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+    } else {
+      this.sortField = filed_name;
+      this.sortDirection = 'asc';
+    }
+    this.customFilters['orderBy[column]'] = this.sortField;
+    this.customFilters['orderBy[order]'] = this.sortDirection;
+    this.isLoading = true;
+    this.getSystemPopups(true);
   }
 
   showFiltersPopup() {

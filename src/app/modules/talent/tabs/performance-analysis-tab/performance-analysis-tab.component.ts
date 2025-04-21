@@ -57,6 +57,7 @@ export class PerformanceAnalysisTabComponent implements OnInit {
             selected: false // Initialize selected state as false
           }));
         } else {
+          this.reports = [];
           this.errorMessage = response.message;
         }
       },
@@ -195,7 +196,7 @@ export class PerformanceAnalysisTabComponent implements OnInit {
       // console.warn('All selected');
     } else {
       this.allSelected = false;
-      // console.warn('Total Reports ' + this.reports.length + 'and selected is ' + this.selectedIds.length)
+      console.warn('Total Reports ' + this.reports.length + 'and selected is ' + this.selectedIds.length)
     }
   }
 
@@ -228,7 +229,8 @@ export class PerformanceAnalysisTabComponent implements OnInit {
       })
       return
     }
-    let params: any = { id: this.selectedIds };
+    let lang_id = localStorage.getItem('lang_id');
+    let params: any = { id: this.selectedIds, lang:lang_id };
     const messageDialog = this.dialog.open(MessagePopupComponent, {
       width: '500px',
       position: {

@@ -212,7 +212,7 @@
             <div class="col-lg-6 d-flex flex-column justify-content-between">
                 <div class="main-position">
                     <h6 class="details_2"> {{ 'mainPosition' | translate}}</h6>
-                    <h5 class="details-1">{{mainPosition}}</h5>
+                    <h5 class="details-1" *ngIf="isMainPositionFound">{{mainPosition}}</h5>
                 </div>
                 <div class="main-position">
                     <h6 class="details_2"> {{ 'otherPositions' | translate}}</h6>

@@ -91,7 +91,7 @@ export class PlanComponent implements OnInit, OnDestroy {
   multiCountryPlanDesc: string[] = []; // Store the fetched feature list
   bostProfileDesc: string[] = []; // Store the fetched feature list
   langSubscription!: Subscription;
-  boostProfileTxt:string='';
+  boostProfileTxt: string = '';
 
   // countryMonthlyArr : PackageObject[] = [];
   // countryYearlyArr : PackageObject[] = [];
@@ -138,6 +138,7 @@ export class PlanComponent implements OnInit, OnDestroy {
   // Open coupon dialog
   openCouponDialog(planId: any): void {
     console.log(planId)
+    // alert('Dailog Open');
 
     const dialogRef = this.dialog.open(CouponCodeAlertComponent, {
       width: '500px'
@@ -458,7 +459,7 @@ export class PlanComponent implements OnInit, OnDestroy {
 
     // this.animate = (!this.animate);
 
-    // console.log('toggleBillingPlan', plan, isYearly, subscribeId, this.selectedPlan);
+    console.log('toggleBillingPlan', plan, isYearly, subscribeId, this.selectedPlan);
     const originalIsYearly = plan.isYearly;
 
     if (isYearly && plan.active_interval == 'yearly') {
@@ -471,6 +472,13 @@ export class PlanComponent implements OnInit, OnDestroy {
       // return;
     }
 
+    if (plan.package_name && plan.package_name.includes('prem')) {
+      if (this.premiumPlans.isYearly === true) {
+        this.premiumPlans.isYearly = false;
+      } else {
+        this.premiumPlans.isYearly = true;
+      }
+    }
 
     if (plan.type === "multi") {
       // console.log(isYearly)
@@ -480,14 +488,14 @@ export class PlanComponent implements OnInit, OnDestroy {
         this.selectedPlan.isYearly = true;
       }
     }
-  //  Boost Profile Array
-   if(this.boostProfileTxt == plan.package_name){
+    //  Boost Profile Array
+    if (this.boostProfileTxt == plan.package_name) {
       if (isYearly === true) {
         this.boostedPlans.isYearly = false;
       } else if (isYearly === false) {
         this.boostedPlans.isYearly = true;
       }
-   }
+    }
 
     plan.isYearly = originalIsYearly;
 
@@ -705,7 +713,7 @@ export class PlanComponent implements OnInit, OnDestroy {
   }
 
   filterActivePlans() {
-    console.info('this.countryPlans',this.countryPlans);
+    console.info('this.countryPlans', this.countryPlans);
     this.activePlans = [];
     this.countryPlans.plans.forEach((plan: any) => {
       if (plan.is_package_active == 'active') {
@@ -722,7 +730,7 @@ export class PlanComponent implements OnInit, OnDestroy {
   }
 
   getJsonTranslations() {
-    this.translate.get(['plans','boostProfile']).subscribe((translations) => {
+    this.translate.get(['plans', 'boostProfile']).subscribe((translations) => {
       this.pageTitle = translations['plans'];
       this.boostProfileTxt = translations['boostProfile'];
       this.titleService.setTitle(this.pageTitle);

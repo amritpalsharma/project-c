@@ -141,9 +141,9 @@ export class EditPersonalDetailsComponent implements OnInit {
       this.contractEnd = new FormControl(
         this.user?.meta?.contract_end ? new Date(this.user.meta.contract_end) : null
       );
-      this.currentClubId = this.user.meta.pre_club_id || '';
+      // this.currentClubId = this.user.meta.pre_club_id || '';
       // this.loadTeams(this.currentClubId);
-      console.info('Function to get times is called');
+      // console.info('Function to get times is called');
       // this.talentService.getClubTeams(this.currentClubId).subscribe((response) => {
       //   if(response.status && response.data.teams != '' && response.data.teams != undefined){
       //     this.teamsArr = response.data.teams;
@@ -278,7 +278,7 @@ export class EditPersonalDetailsComponent implements OnInit {
   getUserProfile(userId: any) {
     if (this.userData) {
       this.user = this.userData;
-      // console.info('this.user',this.user)
+      console.info('this.user',this.user)
       if (this.user.meta) {
         // console.info('this.user.meta',this.user.meta)
         this.dateOfBirth = this.user.meta.date_of_birth || '';
@@ -295,9 +295,8 @@ export class EditPersonalDetailsComponent implements OnInit {
         this.firstName = this.user.first_name || '';
         this.lastName = this.user.last_name || '';
         this.userNationalities = JSON.parse(this.user.user_nationalities) || [];
-        if (this.user.meta && this.user.meta.pre_club_id) {
-          this.currentClubId = this.user.meta.pre_club_id;
-
+        if (this.user.current_club_id && this.user.current_club_id != undefined && this.user.current_club_id != '') {
+          this.currentClubId = this.user.current_club_id;
         }
 
         if (this.user.team_id && this.user.team_id != '' && this.user.team_id != undefined) {

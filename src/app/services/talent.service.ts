@@ -473,7 +473,7 @@ export class TalentService {
     let lang_id = localStorage.getItem('lang_id');
     params = params.append('lang', lang_id + '');
 
-    return this.http.post(`${this.apiUrl}user/set-featured-file`, params, { headers });
+    return this.http.post(`${this.apiUrl}user/set-featured-file/${lang_id}`, params, { headers });
   }
 
 

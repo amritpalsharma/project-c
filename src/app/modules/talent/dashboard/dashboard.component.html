@@ -806,7 +806,7 @@
                     <img [src]="highlights.file_path + image.file_name" alt="" (click)="openImage(i)">
                   </div>
 
-                  <div *ngIf="!highlights" class="w-100 image-icon my-5">
+                  <div *ngIf="!highlights || highlights.length === 0" class="w-100 image-icon my-5">
 
                     <svg width="44" height="38" viewBox="0 0 44 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path

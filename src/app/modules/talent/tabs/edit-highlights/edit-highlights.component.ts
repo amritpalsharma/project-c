@@ -37,7 +37,7 @@ export class EditHighlightsComponent {
     public webPages: WebPages,
   ) { }
 
-  theme : any = localStorage.getItem('theme');
+  theme: any = localStorage.getItem('theme');
 
   ngOnInit(): void {
 
@@ -49,6 +49,33 @@ export class EditHighlightsComponent {
     this.videos = this.data.videos || [];
     this.url = this.data.url || '';
 
+    this.getGalleryData();
+    this.getJsonTranslations();
+    this.webPages.languageId$.subscribe((data) => {
+      this.getJsonTranslations();
+    });
+  }
+
+  getGalleryData() {
+    try {
+      this.talentService.getGalleryData().subscribe((response) => {
+        if (response && response.status && response.data) {
+          this.images = response.data.images;
+          this.videos = response.data.videos;
+          this.url = response.data.file_path;
+          this.setFeaturedData();
+        } else {
+          console.error('Invalid API response structure:', response);
+        }
+
+      });
+    } catch (error) {
+      console.error('Error fetching users:', error);
+
+    }
+  }
+
+  setFeaturedData() {
     // Preselect images that are already featured
     this.images.forEach((image: any) => {
       if (image.is_featured != 0) {
@@ -64,29 +91,6 @@ export class EditHighlightsComponent {
         this.totalSelected++; // Increment total selected count
       }
     });
-
-    this.getJsonTranslations();
-    this.webPages.languageId$.subscribe((data) => {
-      this.getJsonTranslations();
-    });
-  }
-
-  getGalleryData() {
-    try {
-      this.talentService.getGalleryData().subscribe((response) => {
-        if (response && response.status && response.data) {
-          this.images = response.data.images;
-          this.videos = response.data.videos;
-          this.url = response.data.file_path;
-        } else {
-          console.error('Invalid API response structure:', response);
-        }
-
-      });
-    } catch (error) {
-      console.error('Error fetching users:', error);
-
-    }
   }
 
   // Called when an image checkbox is toggled
@@ -154,9 +158,9 @@ export class EditHighlightsComponent {
     }
   }
 
-  close(){
+  close() {
     this.dialogRef.close({
-      videoDuration : this.videoDuration
+      videoDuration: this.videoDuration
     })
   }
 
@@ -177,9 +181,9 @@ export class EditHighlightsComponent {
     this.talentService.toggleFeaturedFiles(selectedData, unset_all).subscribe({
       next: (response) => {
         this.toastr.clear(loadingToast.toastId); // Clear loading notification
-        if(response.message != '' && response.message != undefined){
+        if (response.message != '' && response.message != undefined) {
           this.toastr.success(response.message, this.successTxt); // Show success notification
-        }else{
+        } else {
           this.toastr.success('Files saved successfully!', 'Success'); // Show success notification
         }
         this.close(); // Close the dialog if needed

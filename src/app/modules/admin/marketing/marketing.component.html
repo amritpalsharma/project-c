@@ -22,10 +22,11 @@
                     <path d="M10.8408 10.8398L15.0062 15.0058" class="custom-search" stroke="black" stroke-width="1.2"
                       stroke-linecap="round" stroke-linejoin="round"></path>
                   </g>
-                </svg></span><input type="text" placeholder="{{ 'search' | translate }}" aria-label="Username" (keyup)="applyFilter($event)"
-                aria-describedby="basic-addon1" class="form-control ps-0" />
+                </svg></span><input type="text" placeholder="{{ 'search' | translate }}" aria-label="Username"
+                (keyup)="applyFilter($event)" aria-describedby="basic-addon1" class="form-control ps-0" />
             </div>
-            <div [ngClass]="count>0 ? 'filter-applied' : ''" class="d-flex align-items-center pe-2 border-start ps-3 cursor-pointer filter-svg"
+            <div [ngClass]="count>0 ? 'filter-applied' : ''"
+              class="d-flex align-items-center pe-2 border-start ps-3 cursor-pointer filter-svg"
               (click)="showFilterPopup()">
               <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg"
                 class="me-2">
@@ -89,32 +90,95 @@
               <td mat-cell *matCellDef="let element"> {{ element.title }}</td>
             </ng-container>
             <ng-container matColumnDef="For">
-              <th mat-header-cell *matHeaderCellDef> {{ 'for' | translate }} </th>
+              <th mat-header-cell *matHeaderCellDef (click)="sortData('popupfor')" class="cursor-pointer">
+                {{ 'for' | translate }}
+                <span class="sort-icon">
+                  <svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M1.15341 8.43701H7.84716C8.44903 8.43701 8.74997 9.1958 8.32528 9.63818L4.97841 13.1245C4.71404 13.3999 4.28654 13.3999 4.02497 13.1245L0.675285 9.63818C0.250597 9.1958 0.551535 8.43701 1.15341 8.43701ZM8.32528 5.36084L4.97841 1.87451C4.71404 1.59912 4.28654 1.59912 4.02497 1.87451L0.675285 5.36084C0.250597 5.80322 0.551535 6.56201 1.15341 6.56201H7.84716C8.44903 6.56201 8.74997 5.80322 8.32528 5.36084Z"
+                      fill="#111418" />
+                  </svg>
+                </span>
+              </th>
               <td mat-cell *matCellDef="let element"> {{ getRoleTypes(element.popupfor) }}</td>
             </ng-container>
             <ng-container matColumnDef="Language">
-              <th mat-header-cell *matHeaderCellDef> {{ 'language' | translate }} </th>
+              <th mat-header-cell *matHeaderCellDef (click)="sortData('language')" class="cursor-pointer">
+                {{ 'language' | translate }}
+                <span class="sort-icon">
+                  <svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M1.15341 8.43701H7.84716C8.44903 8.43701 8.74997 9.1958 8.32528 9.63818L4.97841 13.1245C4.71404 13.3999 4.28654 13.3999 4.02497 13.1245L0.675285 9.63818C0.250597 9.1958 0.551535 8.43701 1.15341 8.43701ZM8.32528 5.36084L4.97841 1.87451C4.71404 1.59912 4.28654 1.59912 4.02497 1.87451L0.675285 5.36084C0.250597 5.80322 0.551535 6.56201 1.15341 6.56201H7.84716C8.44903 6.56201 8.74997 5.80322 8.32528 5.36084Z"
+                      fill="#111418" />
+                  </svg>
+                </span>
+              </th>
               <td mat-cell *matCellDef="let element"> {{ element.popup_language }}</td>
             </ng-container>
             <ng-container matColumnDef="Display Freq">
-              <th mat-header-cell *matHeaderCellDef> {{ 'displayFreq' | translate }} </th>
+              <th mat-header-cell *matHeaderCellDef (click)="sortData('frequency')" class="cursor-pointer">
+                {{ 'displayFreq' | translate }}
+                <span class="sort-icon">
+                  <svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M1.15341 8.43701H7.84716C8.44903 8.43701 8.74997 9.1958 8.32528 9.63818L4.97841 13.1245C4.71404 13.3999 4.28654 13.3999 4.02497 13.1245L0.675285 9.63818C0.250597 9.1958 0.551535 8.43701 1.15341 8.43701ZM8.32528 5.36084L4.97841 1.87451C4.71404 1.59912 4.28654 1.59912 4.02497 1.87451L0.675285 5.36084C0.250597 5.80322 0.551535 6.56201 1.15341 6.56201H7.84716C8.44903 6.56201 8.74997 5.80322 8.32528 5.36084Z"
+                      fill="#111418" />
+                  </svg>
+                </span>
+              </th>
               <td mat-cell *matCellDef="let element"> {{ (element.frequency_translated) }}</td>
               <!-- <td mat-cell *matCellDef="let element"> {{ element.frequency }}</td> -->
             </ng-container>
             <ng-container matColumnDef="Display Location">
-              <th mat-header-cell *matHeaderCellDef> {{ 'displayLocation' | translate }}</th>
+              <th mat-header-cell *matHeaderCellDef (click)="sortData('location')" class="cursor-pointer">
+                {{ 'displayLocation' | translate }}
+                <span class="sort-icon">
+                  <svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M1.15341 8.43701H7.84716C8.44903 8.43701 8.74997 9.1958 8.32528 9.63818L4.97841 13.1245C4.71404 13.3999 4.28654 13.3999 4.02497 13.1245L0.675285 9.63818C0.250597 9.1958 0.551535 8.43701 1.15341 8.43701ZM8.32528 5.36084L4.97841 1.87451C4.71404 1.59912 4.28654 1.59912 4.02497 1.87451L0.675285 5.36084C0.250597 5.80322 0.551535 6.56201 1.15341 6.56201H7.84716C8.44903 6.56201 8.74997 5.80322 8.32528 5.36084Z"
+                      fill="#111418" />
+                  </svg>
+                </span>
+              </th>
               <td mat-cell *matCellDef="let element"> {{ element.popup_location }}</td>
             </ng-container>
             <ng-container matColumnDef="Start Date">
-              <th mat-header-cell *matHeaderCellDef> {{ 'startDate' | translate }} </th>
+              <th mat-header-cell *matHeaderCellDef (click)="sortData('start_date')" class="cursor-pointer">
+                {{ 'startDate' | translate }}
+                <span class="sort-icon">
+                  <svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M1.15341 8.43701H7.84716C8.44903 8.43701 8.74997 9.1958 8.32528 9.63818L4.97841 13.1245C4.71404 13.3999 4.28654 13.3999 4.02497 13.1245L0.675285 9.63818C0.250597 9.1958 0.551535 8.43701 1.15341 8.43701ZM8.32528 5.36084L4.97841 1.87451C4.71404 1.59912 4.28654 1.59912 4.02497 1.87451L0.675285 5.36084C0.250597 5.80322 0.551535 6.56201 1.15341 6.56201H7.84716C8.44903 6.56201 8.74997 5.80322 8.32528 5.36084Z"
+                      fill="#111418" />
+                  </svg>
+                </span>
+              </th>
               <td mat-cell *matCellDef="let element">{{ element.start_date | date:'dd.MM.yyyy' }}</td>
             </ng-container>
-            <ng-container matColumnDef="End Date">
-              <th mat-header-cell *matHeaderCellDef> {{ 'endDate' | translate }} </th>
+            <ng-container matColumnDef="End Date" >
+              <th mat-header-cell *matHeaderCellDef (click)="sortData('end_date')" class="cursor-pointer">
+                {{ 'endDate' | translate }}
+                <span class="sort-icon">
+                  <svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M1.15341 8.43701H7.84716C8.44903 8.43701 8.74997 9.1958 8.32528 9.63818L4.97841 13.1245C4.71404 13.3999 4.28654 13.3999 4.02497 13.1245L0.675285 9.63818C0.250597 9.1958 0.551535 8.43701 1.15341 8.43701ZM8.32528 5.36084L4.97841 1.87451C4.71404 1.59912 4.28654 1.59912 4.02497 1.87451L0.675285 5.36084C0.250597 5.80322 0.551535 6.56201 1.15341 6.56201H7.84716C8.44903 6.56201 8.74997 5.80322 8.32528 5.36084Z"
+                      fill="#111418" />
+                  </svg>
+                </span>
+              </th>
               <td mat-cell *matCellDef="let element">{{ element.end_date | date:'dd.MM.yyyy' }}</td>
             </ng-container>
-            <ng-container matColumnDef="Status">
-              <th mat-header-cell *matHeaderCellDef>{{ 'status' | translate }}</th>
+            <ng-container matColumnDef="Status" >
+              <th mat-header-cell *matHeaderCellDef (click)="sortData('status')" class="cursor-pointer">
+                {{ 'status' | translate }}
+                <span class="sort-icon">
+                  <svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M1.15341 8.43701H7.84716C8.44903 8.43701 8.74997 9.1958 8.32528 9.63818L4.97841 13.1245C4.71404 13.3999 4.28654 13.3999 4.02497 13.1245L0.675285 9.63818C0.250597 9.1958 0.551535 8.43701 1.15341 8.43701ZM8.32528 5.36084L4.97841 1.87451C4.71404 1.59912 4.28654 1.59912 4.02497 1.87451L0.675285 5.36084C0.250597 5.80322 0.551535 6.56201 1.15341 6.56201H7.84716C8.44903 6.56201 8.74997 5.80322 8.32528 5.36084Z"
+                      fill="#111418" />
+                  </svg>
+                </span>
+              </th>
               <td mat-cell *matCellDef="let element">
                 <span class="bg_success" *ngIf="element.status == 'active'">{{ 'active' | translate }}</span>
                 <span class="bg_reject" *ngIf="element.status == 'inactive'">{{ 'inactive' | translate }}</span>
