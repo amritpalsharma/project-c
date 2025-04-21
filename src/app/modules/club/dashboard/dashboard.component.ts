@@ -11,7 +11,8 @@ import { ToastrService } from 'ngx-toastr';
 import introJs from 'intro.js';
 import 'intro.js/introjs.css'; // Import the styles for Intro.js
 import { Lightbox } from 'ngx-lightbox';
-import { LightboxDialogComponent } from '../lightbox-dialog/lightbox-dialog.component';
+// import { LightboxDialogComponent } from '../lightbox-dialog/lightbox-dialog.component';
+import { LightboxDialogComponent } from '../../shared/lightbox-dialog/lightbox-dialog.component';
 import { Subscription } from 'rxjs';
 import { ScoutService } from '../../../services/scout.service';
 import { environment } from '../../../../environments/environment';
@@ -498,7 +499,33 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
   }
 
-  openImage(index: number): void {
+  openImage(index: any): void {
+      const filePath = this.highlights.file_path;
+    
+      const images = this.highlights.images.map((img: any) => ({
+        src: filePath + img.file_name,
+        type: 'image',
+      }));
+      const videos = this.highlights.videos.map((vid: any) => ({
+        src: filePath + vid.file_name,
+        type: 'video',
+      }));
+    
+      const album = [...images, ...videos];
+    
+      const mainImage = String(index).includes('video_')
+        ? videos[+index.replace('video_', '')]
+        : images[index];
+    
+      this.dialog.open(LightboxDialogComponent, {
+        width: '80%',
+        height: '85%',
+        data: { album, mainImage },
+        panelClass: 'lightbox-dialog'
+      });
+    }
+
+  openImage2(index: number): void {
     // Prepare album
     this.album = this.highlights.images.map((image: any) => ({
       src: this.highlights.file_path + image.file_name,

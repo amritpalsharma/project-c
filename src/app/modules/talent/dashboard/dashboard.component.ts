@@ -11,7 +11,8 @@ import { ToastrService } from 'ngx-toastr';
 import introJs from 'intro.js';
 import 'intro.js/introjs.css'; // Import the styles for Intro.js
 import { Lightbox } from 'ngx-lightbox';
-import { LightboxDialogComponent } from '../lightbox-dialog/lightbox-dialog.component';
+// import { LightboxDialogComponent } from '../lightbox-dialog/lightbox-dialog.component';
+import { LightboxDialogComponent } from '../../shared/lightbox-dialog/lightbox-dialog.component';
 import { NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
@@ -625,17 +626,32 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   openImage(index: any): void {
-    // Prepare album
-    // let gallery = [];
-    // gallery.push(this.highlights.images);
-    // gallery.push(this.highlights.videos);
+    const filePath = this.highlights.file_path;
+  
+    const images = this.highlights.images.map((img: any) => ({
+      src: filePath + img.file_name,
+      type: 'image',
+    }));
+    const videos = this.highlights.videos.map((vid: any) => ({
+      src: filePath + vid.file_name,
+      type: 'video',
+    }));
+  
+    const album = [...images, ...videos];
+  
+    const mainImage = String(index).includes('video_')
+      ? videos[+index.replace('video_', '')]
+      : images[index];
+  
+    this.dialog.open(LightboxDialogComponent, {
+      width: '80%',
+      height: '85%',
+      data: { album, mainImage },
+      panelClass: 'lightbox-dialog'
+    });
+  }
 
-    // this.album = gallery.map((file: any) => ({
-    //   src: this.highlights.file_path + file.file_name,
-    // }));
-    // this.album = this.highlights.images.map((image: any) => ({
-    //   src: this.highlights.file_path + image.file_name,
-    // }));
+  openImage2(index: any): void {
     let lighboxObject = {};
     let imagesArr = this.highlights.images.map((image: any) => ({
       src: this.highlights.file_path + image.file_name,
@@ -657,10 +673,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
         src: this.highlights.file_path + image.file_name,
         type: 'image'
       })),
-      // ...this.highlights.videos.map((video: any) => ({
-      //   src: this.highlights.file_path + video.file_name,
-      //   type: 'video'
-      // }))
     ];
 
     console.warn('index is ' + index, 'Album ', this.album, 'Main ', 'Source ' + this.album[index].src, 'Type ' + this.album[index].type)
