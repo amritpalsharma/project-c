@@ -320,9 +320,206 @@
         </div>
     </div>
 
-    <div class="pricing py_0">
+    <div class="pricing py_0 pb-0">
         <div class="container">
-            <div *ngFor="let plan of pageData.pricing_tab; let i = index">
+            <div class="sec_title text-center">
+                <h2 class="text-uppercase price-heading3">{{'pricing' | translate}}: {{'freePlanText' | translate}}</h2>
+            </div>
+            <div class="pricing_tabs_container">
+                <ul class="nav nav-tabs justify-content-center border-0" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" data-bs-toggle="tab" href="#Tab1" role="tab" aria-selected="true"  (click)="setActiveTab('monthly')">Monthly</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" data-bs-toggle="tab" href="#Tab2" role="tab" aria-selected="false" (click)="setActiveTab('yearly')">Yearly</a>
+                    </li>
+                </ul>
+                <div class="tab_data_wrapper">
+                    <div class="tab-pane active" id="Tab1" role="tabpanel" *ngIf="selectedTab == 'monthly'">
+                        <div class="shadow_container">
+                            <div class="row">
+                                <div class="col-md-4 item_column">
+                                    <div class="item_card">
+                                        <div class="header_card">
+                                            <h2 class="premium-heading3">10<span>.- GBP / <span>Monthly</span></span></h2>
+                                            <h3 class="premium-heading2"> Boost profile </h3>
+                                        </div>
+                                        <div class="body_card">
+                                            <h5 class="premium-heading5">Multi-Country</h5>
+                                            <div class="text_List_wrap">
+                                                <div class="premium-text">
+                                                    <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                                                    <p>Record your performance data, statistics, transfers, and achievements</p>
+                                                </div>
+                                                <div class="premium-text">
+                                                    <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                                                    <p>Upload highlights in the form of photos and videos</p>
+                                                </div>
+                                                <div class="premium-text">
+                                                    <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                                                    <p>Download your player profile with your data as a PDF</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="footer_card buy_now_btn_front_price">
+                                            <a *ngIf="plansPageLink && plansPageLink.length > 0" [routerLink]="plansPageLink"
+                                                class="btn fill_btn w-100">{{ 'buyNow' | translate }}</a>
+                                            <a *ngIf="!plansPageLink" data-bs-toggle="modal" data-bs-target="#exampleModal1"
+                                                class="btn fill_btn w-100">{{ 'buyNow' | translate }}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 item_column">
+                                    <div class="item_card">
+                                        <div class="header_card">
+                                            <h2 class="premium-heading3">42<span>.- GBP / <span>Monthly</span></span></h2>
+                                            <h3 class="premium-heading2">Premium</h3>
+                                        </div>
+                                        <div class="body_card">
+                                            <h5 class="premium-heading5">Multi-Country</h5>
+                                            <div class="text_List_wrap">
+                                                <div class="premium-text">
+                                                    <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                                                    <p>Have your profile displayed in other countries of your choice and increase your visibility – internationally</p>
+                                                </div>
+                                                <div class="premium-text">
+                                                    <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                                                    <p>Build an international network</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="footer_card buy_now_btn_front_price">
+                                            <a *ngIf="plansPageLink && plansPageLink.length > 0" [routerLink]="plansPageLink"
+                                                class="btn fill_btn w-100">{{ 'buyNow' | translate }}</a>
+                                            <a *ngIf="!plansPageLink" data-bs-toggle="modal" data-bs-target="#exampleModal1"
+                                                class="btn fill_btn w-100">{{ 'buyNow' | translate }}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 item_column">
+                                    <div class="item_card">
+                                        <div class="header_card">
+                                            <h2 class="premium-heading3">10<span>.- GBP / <span>Monthly</span></span></h2>
+                                            <h3 class="premium-heading2"> Boost profile </h3>
+                                        </div>
+                                        <div class="body_card">
+                                            <h5 class="premium-heading5">Multi-Country</h5>
+                                            <div class="text_List_wrap">
+                                                <div class="premium-text">
+                                                    <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                                                    <p>Your profile picture will have a special and highlighted background</p>
+                                                </div>
+                                                <div class="premium-text">
+                                                    <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                                                    <p>Boost your career!</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="footer_card buy_now_btn_front_price">
+                                            <a *ngIf="plansPageLink && plansPageLink.length > 0" [routerLink]="plansPageLink"
+                                                class="btn fill_btn w-100">{{ 'buyNow' | translate }}</a>
+                                            <a *ngIf="!plansPageLink" data-bs-toggle="modal" data-bs-target="#exampleModal1"
+                                                class="btn fill_btn w-100">{{ 'buyNow' | translate }}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="Tab2" role="tabpanel" *ngIf="selectedTab == 'yearly'">
+                        <div class="shadow_container">
+                            <div class="row">
+                                <div class="col-md-4 item_column">
+                                    <div class="item_card">
+                                        <div class="header_card">
+                                            <h2 class="premium-heading3">10<span>.- GBP / <span>Yearly</span></span></h2>
+                                            <h3 class="premium-heading2"> Boost profile </h3>
+                                        </div>
+                                        <div class="body_card">
+                                            <h5 class="premium-heading5">Multi-Country</h5>
+                                            <div class="text_List_wrap">
+                                                <div class="premium-text">
+                                                    <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                                                    <p>Record your performance data, statistics, transfers, and achievements</p>
+                                                </div>
+                                                <div class="premium-text">
+                                                    <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                                                    <p>Upload highlights in the form of photos and videos</p>
+                                                </div>
+                                                <div class="premium-text">
+                                                    <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                                                    <p>Download your player profile with your data as a PDF</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="footer_card buy_now_btn_front_price">
+                                            <a *ngIf="plansPageLink && plansPageLink.length > 0" [routerLink]="plansPageLink"
+                                                class="btn fill_btn w-100">{{ 'buyNow' | translate }}</a>
+                                            <a *ngIf="!plansPageLink" data-bs-toggle="modal" data-bs-target="#exampleModal1"
+                                                class="btn fill_btn w-100">{{ 'buyNow' | translate }}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 item_column">
+                                    <div class="item_card">
+                                        <div class="header_card">
+                                            <h2 class="premium-heading3">42<span>.- GBP / <span>Yearly</span></span></h2>
+                                            <h3 class="premium-heading2">Premium</h3>
+                                        </div>
+                                        <div class="body_card">
+                                            <h5 class="premium-heading5">Multi-Country</h5>
+                                            <div class="text_List_wrap">
+                                                <div class="premium-text">
+                                                    <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                                                    <p>Have your profile displayed in other countries of your choice and increase your visibility – internationally</p>
+                                                </div>
+                                                <div class="premium-text">
+                                                    <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                                                    <p>Build an international network</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="footer_card buy_now_btn_front_price">
+                                            <a *ngIf="plansPageLink && plansPageLink.length > 0" [routerLink]="plansPageLink"
+                                                class="btn fill_btn w-100">{{ 'buyNow' | translate }}</a>
+                                            <a *ngIf="!plansPageLink" data-bs-toggle="modal" data-bs-target="#exampleModal1"
+                                                class="btn fill_btn w-100">{{ 'buyNow' | translate }}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 item_column">
+                                    <div class="item_card">
+                                        <div class="header_card">
+                                            <h2 class="premium-heading3">10<span>.- GBP / <span>Yearly</span></span></h2>
+                                            <h3 class="premium-heading2"> Boost profile </h3>
+                                        </div>
+                                        <div class="body_card">
+                                            <h5 class="premium-heading5">Multi-Country</h5>
+                                            <div class="text_List_wrap">
+                                                <div class="premium-text">
+                                                    <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                                                    <p>Your profile picture will have a special and highlighted background</p>
+                                                </div>
+                                                <div class="premium-text">
+                                                    <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                                                    <p>Boost your career!</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="footer_card buy_now_btn_front_price">
+                                            <a *ngIf="plansPageLink && plansPageLink.length > 0" [routerLink]="plansPageLink"
+                                                class="btn fill_btn w-100">{{ 'buyNow' | translate }}</a>
+                                            <a *ngIf="!plansPageLink" data-bs-toggle="modal" data-bs-target="#exampleModal1"
+                                                class="btn fill_btn w-100">{{ 'buyNow' | translate }}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="display: none;" *ngFor="let plan of pageData.pricing_tab; let i = index">
                 <div class="billed_wrapp " [ngClass]="{ 'first_plan_with_title': i === 0 }">
                     <h3 *ngIf="i === 0" class="price-heading3">{{'pricing' | translate}}</h3>
                     <div class="plan_btn_and_text">

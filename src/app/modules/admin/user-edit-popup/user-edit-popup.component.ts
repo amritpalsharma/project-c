@@ -77,19 +77,20 @@ export class UserEditPopupComponent {
     this.getPositions();
 
     this.idToUpdate = this.data.id;
-    this.clubName = this.data?.meta?.club_name;
-    this.contact = this.data?.meta?.contact_number
-    this.website = this.data?.meta?.website
-    this.address = this.data?.meta?.address
-    this.zipcode = this.data?.meta?.zipcode
-    this.city = this.data?.meta?.city
-    this.firstName = this.data?.first_name
-    this.lastName = this.data?.last_name
-    this.companyName = this.data?.meta?.company_name
-    this.designation = this.data?.meta?.designation
-    this.dob = this.data?.meta?.date_of_birth;
-    this.foot = this.data?.meta?.foot;
-    this.sinceInTeam = this.data?.meta?.in_team_since;
+    // this.clubName = this.data?.meta?.club_name;
+    this.clubName = this.data?.current_club_name;
+    this.contact = this.data?.meta?.contact_number || '';
+    this.website = this.data?.meta?.website || '';
+    this.address = this.data?.meta?.address || '';
+    this.zipcode = this.data?.meta?.zipcode || '';
+    this.city = this.data?.meta?.city || '';
+    this.firstName = this.data?.first_name || '';
+    this.lastName = this.data?.last_name || '';
+    this.companyName = this.data?.meta?.company_name || '';
+    this.designation = this.data?.meta?.designation || '';
+    this.dob = this.data?.meta?.date_of_birth || '';
+    this.foot = this.data?.meta?.foot || '';
+    this.sinceInTeam = this.data?.meta?.in_team_since || '';
     if (this.sinceInTeam != "") {
       this.sinceInTeam = this.sinceInTeam.split(' ')[0];
     }
@@ -258,7 +259,7 @@ export class UserEditPopupComponent {
         }
       },
       error => {
-        console.error('Error publishing advertisement:', error);
+        this.userService.apiToasterError();
       }
     );
   }

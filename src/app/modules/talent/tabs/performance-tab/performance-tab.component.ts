@@ -251,7 +251,7 @@ export class PerformanceTabComponent {
     let dateRange = `${fromDateString ?? '-'} - ${toDateString ?? '-'}`;
 
     if (displayYears > 0 || displayMonths > 0) {
-      dateRange += ` (${displayYears} yr ${displayMonths} mos)`;
+      // dateRange += ` (${displayYears} yr ${displayMonths} mos)`;
     }
 
     return dateRange;

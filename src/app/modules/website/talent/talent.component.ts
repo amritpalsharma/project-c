@@ -22,7 +22,7 @@ import { GlobalSettingsService } from '../../../services/global-settings.service
 export class TalentComponent {
 
   custIndex: number = 1;
-
+  selectedTab:string='monthly';
   isActive1 = true; // Premium Plan
   isActive2 = true; // Multi-Country Plan
   isActive3 = true; // Multi-Country Plan
@@ -374,6 +374,10 @@ export class TalentComponent {
   }
   ngAfterViewInit() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  setActiveTab(currentTab:any){
+    this.selectedTab = currentTab;
   }
 
 }

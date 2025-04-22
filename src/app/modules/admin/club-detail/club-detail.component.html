@@ -6,7 +6,8 @@
           <div class="d-flex align-items-center">
             <h2 class="card-title mb-0 ">
               {{ 'userManagement' | translate}} \
-              <span class="user-text" style="font-weight: 400;">{{user.first_name}} {{user.last_name}}</span>
+              <!-- <span class="user-text" style="font-weight: 400;">{{user.first_name}} {{user.last_name}}</span> -->
+              <span class="user-text" style="font-weight: 400;">{{user.current_club_name}} </span>
               <span style="margin-left: 10px;" class="bg_pending">{{user.role_name}}</span>
             </h2>
           </div>
@@ -75,20 +76,21 @@
           <div class="col-md-4 col-lg-2 border-end">
             <div class="user-details-left">
               <div class="user-media ">
-                <img src="{{user.meta.profile_image_path}}" alt="" *ngIf="user.meta && user.meta.profile_image_path"
+                <img src="{{user.club_logo_path}}" alt="" *ngIf="user.club_logo_path"
                   class="user-img mt-1">
-                <img src="../../../../assets/images/1.png" alt="" *ngIf="!user.meta || !user.meta.profile_image_path"
+                <img src="../../../../assets/images/1.png" alt="" *ngIf="!user.club_logo_path"
                   class="user-img">
                 <div class="user-edit">
 
-                  <label for="file-upload"><img src="../../../../assets/images/edit-icon.png"
-                      class="edit-profile cursor-pointer" alt=""></label>
+                  <!-- <label for="file-upload">
+                    <img src="../../../../assets/images/edit-icon.png" class="edit-profile cursor-pointer" alt="">
+                  </label> -->
                   <input id="file-upload" (change)="onProfileImageChange($event)" accept="image/*" type="file"
                     class="d-none" />
                   <!-- <img *ngIf="user.club_logo_path" src="{{user.club_logo_path}}" class="club-icon-round" alt=""> -->
                   <div class="club-icon" *ngIf="user.club_logo_path">
-                    <img *ngIf="user.club_logo_path" src="{{user.club_logo_path}}"
-                      class="club-icon-round cursor-pointer" alt="">
+                    <!-- <img *ngIf="user.club_logo_path" src="{{user.club_logo_path}}"
+                      class="club-icon-round cursor-pointer" alt=""> -->
                     <!-- <img *ngIf="user.club_logo_path" src="../../../assets/images/team-badge.png" class="club-icon-round"  alt=""> -->
                   </div>
 
@@ -106,7 +108,8 @@
                   </div>
                 </div> -->
               <div class="user-info mt-3">
-                <h6><span class="user-info-name">{{user.first_name}} {{user.last_name}}</span>
+                <!-- <h6><span class="user-info-name">{{user.first_name}} {{user.last_name}}</span> -->
+                <h6><span class="user-info-name">{{user.current_club_name}}</span>
                   <img src="../../../assets/images/pending.png" alt="" class="user-pending-icon"
                     *ngIf="user.status == '1'" />
                   <img src="../../../assets/images/approved.png" alt="" class="user-approved-icon"
@@ -124,8 +127,8 @@
               </div>
               <div class="list-view">
                 <h6 class="mb-1">{{'registrationDate' | translate }} :</h6>
-                <h6 class="mb-0 font-w400">{{ user.created_at | date:'MM.dd.yyyy' }} - {{ user.created_at | date:'hh.mm
-                  a' }}</h6>
+                <h6 class="mb-0 font-w400">
+                  {{ user.created_at | date:'MM.dd.yyyy' }} - {{ user.created_at | date:'hh.mma' }}</h6>
               </div>
               <div class="list-view">
                 <h6 class="mb-1">{{'nextPaymentDue' | translate }} :</h6>
@@ -173,8 +176,8 @@
             <ul class="nav nav-tabs user-tabs" id="myTab" role="tablist">
               <li class="nav-item" role="presentation">
                 <button class="nav-link" (click)="switchTab('profile')" [ngClass]="{'active': activeTab == 'profile'}"
-                  id="home-tab manage-button"  data-bs-toggle="tab" data-bs-target="#home-tab-pane"
-                  type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">
+                  id="home-tab manage-button" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button"
+                  role="tab" aria-controls="home-tab-pane" aria-selected="true">
                   <svg id="users-icon" width="24" height="23" viewBox="0 0 24 23" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -186,8 +189,8 @@
               </li>
               <li class="nav-item" role="presentation">
                 <button class="nav-link" (click)="switchTab('history')" [ngClass]="{'active': activeTab == 'history'}"
-                  id="profile-tab" data-bs-toggle="tab"  data-bs-target="#profile-tab-pane"
-                  type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">
+                  id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab"
+                  aria-controls="profile-tab-pane" aria-selected="false">
                   <svg id="users-icon" width="24" height="21" viewBox="0 0 24 21" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -197,10 +200,9 @@
                   {{ 'clubHistory' | translate }}</button>
               </li>
               <li class="nav-item" role="presentation">
-                <button class=" nav-link" (click)="switchTab('teams')"
-                  [ngClass]="{'active': activeTab == 'teams'}" id="contact-tab" data-bs-toggle="tab"
-                  data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane"
-                  aria-selected="false">
+                <button class=" nav-link" (click)="switchTab('teams')" [ngClass]="{'active': activeTab == 'teams'}"
+                  id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab"
+                  aria-controls="contact-tab-pane" aria-selected="false">
                   <svg id="users-icon" width="24" height="25" viewBox="0 0 24 25" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -211,8 +213,8 @@
               </li>
               <li class="nav-item" role="presentation">
                 <button class="nav-link" (click)="switchTab('gallery')" [ngClass]="{'active': activeTab == 'gallery'}"
-                  id="contact-tab-1"  data-bs-toggle="tab" data-bs-target="#contact-tab-pane-1"
-                  type="button" role="tab" aria-controls="contact-tab-pane-1" aria-selected="false">
+                  id="contact-tab-1" data-bs-toggle="tab" data-bs-target="#contact-tab-pane-1" type="button" role="tab"
+                  aria-controls="contact-tab-pane-1" aria-selected="false">
                   <svg id="users-icon" width="26" height="21" viewBox="0 0 26 21" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -223,9 +225,9 @@
               </li>
               <li class="nav-item" role="presentation">
                 <button class="nav-link" (click)="switchTab('favorites')"
-                  [ngClass]="{'active': activeTab == 'favorites'}" id="contact-tab-2" 
-                  data-bs-toggle="tab" data-bs-target="#contact-tab-pane-2" type="button" role="tab"
-                  aria-controls="contact-tab-pane-2" aria-selected="true">
+                  [ngClass]="{'active': activeTab == 'favorites'}" id="contact-tab-2" data-bs-toggle="tab"
+                  data-bs-target="#contact-tab-pane-2" type="button" role="tab" aria-controls="contact-tab-pane-2"
+                  aria-selected="true">
                   <svg id="users-icon" width="16" height="21" viewBox="0 0 16 21" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -238,8 +240,8 @@
               <li class="nav-item" role="presentation">
                 <button class="nav-link" (click)="switchTab('purchases')"
                   [ngClass]="{'active': activeTab == 'purchases'}" id="contact-tab-3" data-bs-toggle="tab"
-                  data-bs-target="#contact-tab-pane-3" type="button" role="tab" 
-                  aria-controls="contact-tab-pane-3" aria-selected="false">
+                  data-bs-target="#contact-tab-pane-3" type="button" role="tab" aria-controls="contact-tab-pane-3"
+                  aria-selected="false">
                   <svg id="users-icon" width="24" height="20" viewBox="0 0 24 20" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -263,7 +265,7 @@
               <li class="nav-item" role="presentation">
                 <button class="nav-link" (click)="switchTab('sighting')" [ngClass]="{'active': activeTab == 'sighting'}"
                   id="contact-tab-5" data-bs-toggle="tab" data-bs-target="#contact-tab-pane-5" type="button" role="tab"
-                   aria-controls="contact-tab-pane-4" aria-selected="false">
+                  aria-controls="contact-tab-pane-4" aria-selected="false">
                   <!-- <svg id="users-icon" width="26" height="23" viewBox="0 0 26 23" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
