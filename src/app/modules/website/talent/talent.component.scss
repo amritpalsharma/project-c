@@ -95,7 +95,8 @@ P {
 a.btn.btn-register {
     border-radius: 20px;
     padding: 10px 20px;
-    min-width: 250px;
+    width: auto;
+    max-width: 100%;
     text-align: center;
     font-size: 18px;
     margin-top: 20px;
@@ -1787,7 +1788,7 @@ span {
         top: 60%;
         left: 0;
         z-index: 2;
-        margin-right: 43%;
+        margin-right: 25%;
     }
 
     .banner-heading {
@@ -2056,7 +2057,10 @@ span {
     .premium-heading3 {
         font-size: 50px;
     }
-
+    .accordion-button {
+        padding-bottom: 0;
+        padding-top: 0;
+    }
 
 }
 
@@ -2136,111 +2140,77 @@ span {
         width: 235px;
         border-radius: 10px;
     }
-
-    .accordion-flex {
-        margin-top: 0;
-    }
-
     .club_text {
         margin-top: 0px;
-        // margin-bottom: 25px;
     }
-
     .club-heading4 {
         margin-bottom: 30px;
     }
-
     .accordion-item::after {
         width: 100%;
     }
-
     .club-scout.py_0 {
         padding-top: 30px;
     }
-
     .club-scouts {
         height: 520px;
     }
-
     .premium-img {
         padding-top: 30px;
         padding-left: 30px;
         height: 300px;
     }
-
-    // .premium-col-right {
-    //     padding-top: 30px;
-    //     padding-right: 30px;
-    // }
     .premium {
         width: 100%;
         min-height: 270px;
         padding: 30px 20px 20px 10px;
     }
-
     .premium-img {
         padding-top: 0;
         padding-left: 10px;
         height: 260px;
     }
-
-
     .premium-text p {
         font-size: 14px;
     }
-
     .features.py_0 {
         padding-top: 0;
     }
-
     .left-accodian {
         padding-right: 0;
     }
-
     .player-img img {
         height: 220px;
         width: 220px;
     }
-
-    .feature-player1,
-    .feature-player2,
-    .feature-player3 {
+    .feature-player1, .feature-player2, .feature-player3 {
         height: 228px;
         width: 228px;
     }
-
-    .feature-player1 .player1,
-    .feature-player2 .player2,
-    .feature-player3 .player3 {
+    .feature-player1 .player1, .feature-player2 .player2, .feature-player3 .player3 {
         height: 228px;
         width: 228px;
     }
-
     .feature-player1 .player-name1 {
         top: 195px;
         width: 220px;
     }
-
     .feature-player2 .player-name2 {
         top: 195px;
         width: 220px;
     }
-
     .feature-player3 .player-name3 {
         bottom: 4px;
         width: 220px;
     }
-
     .feature-player3 {
         top: 24%;
         right: 9%;
     }
-
     .feature-player2 {
         top: 51%;
         right: 38%;
     }
-
     .button1 {
         top: 64%;
         left: 8%;
@@ -2556,10 +2526,6 @@ span {
         height: 250px;
     }
 
-    .banner-data {
-        position: relative;
-        height: 750px;
-    }
 
     .banner-image1 img {
         width: 185px;
@@ -2914,6 +2880,8 @@ span {
 
     .club-heading4 {
         font-size: 25px;
+        padding-bottom: 0 !important;
+        padding-top: 1rem;
     }
 
     .feature-heading3 {
@@ -3236,10 +3204,6 @@ span {
         height: 150px;
     }
 
-    h2.accordion-header {
-        font-size: 15px;
-    }
-
     .premium-heading2 {
         font-size: 25px;
     }
@@ -3247,18 +3211,6 @@ span {
     .premium-heading3 {
         font-size: 35px;
     }
-
-    // .premium-img {
-    //     padding-top: 30px;
-    //     padding-left: 10px;
-    // }
-
-    // .premium-col-right {
-    //     padding-top: 20px;
-    //     padding-right: 0;
-    //     padding-left: 10px;
-    // }
-
     p {
         font-size: 14px;
     }
@@ -3624,37 +3576,17 @@ span {
         height: 85px;
         top: 67%;
     }
-
     h3 {
         font-size: 22px;
     }
-
     .feature-heading3 {
         font-size: 22px;
         margin-bottom: 10px;
     }
-
-    .club-heading4 {
-        font-size: 22px;
-        margin-bottom: 20px;
-    }
-
-    .premium-text p {
-        font-size: 12px;
-    }
-
-    .club-scouts {
-        height: 240px;
-    }
-
     /*----------------------------------- accodian ------------------------------- */
-
-
     .features {
         height: 700px;
     }
-
-
     .player-img img {
         height: 110px;
         width: 110px;
@@ -3871,10 +3803,16 @@ span {
         height: auto;
     }
 
+    h2.price-heading3 {
+        font-size: 30px;
+    }
+    
     .banner-data {
         position: relative;
-        z-index: 2;
+        height: auto;
+        padding-bottom: 30px;
         padding-top: 150px;
+        z-index: 2;
     }
 
     .banner-left {
@@ -4183,5 +4121,51 @@ span {
 @media (max-width: 575px) {
 .shadow_container .item_card {
     padding: 1.25rem;
+}
+}
+
+
+@media (min-width: 992px) and (max-width: 1599px) {
+  .banner-inner {
+    padding-top: 300px;
+  }
+  .banner-heading {
+    font-size: 52px;
+  }
+  .club-heading4, .feature-heading3 {
+    font-size: 45px;
+  }
+  .banner-heading5 {
+    font-size: 30px;
+  }
+  a.btn.btn-register {
+    font-size: 20px;
+  }
+.club-text1, .feature-text {
+    font-size: 22px;
+}
+h2.accordion-header {
+    font-size: 25px;
+}
+.club_text img {
+    width: 70px;
+    height: 70px;
+}
+}
+
+
+@media (min-width: 576px) and (max-width: 991px) {
+.club-heading4 {
+    font-size: 35px;
+    padding-bottom: 0;
+}
+.banner-heading {
+    font-size: 40px;
+}
+h2.accordion-header {
+    font-size: 20px;
+}
+.club-text1 {
+    font-size: 18px;
 }
 }

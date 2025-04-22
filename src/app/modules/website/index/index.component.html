@@ -41,7 +41,7 @@
                 <img class="home-banner-image" src="{{banner_img}}" *ngIf="currentTheme == 'dark'"> -->
                 <h1 class="text-uppercase">{{'homeBannerTxt' | translate | linebreaks}}</h1>
               </div>
-              <div class="banner-btn mt-5">
+              <div class="banner-btn mt-4">
                 <a href="javascript:void(0)" class="btn btn-primary" data-bs-toggle="modal"
                   data-bs-target="#exampleModal1"> {{ pageDetail?.banner_btn_txt }} </a>
                 <a *ngIf="!isUserLoggedIn" href="javascript:void(0);" class="btn login-btn" data-bs-toggle="modal"

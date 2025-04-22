@@ -1759,5 +1759,8 @@ a {
     .header_card *, .premium-heading2, .premium-heading3 {
         color: #fff !important;
     }
-}
+  }
+  .website_main_pages  .nav-link.active::before { 
+      background: #357525 !important;
+  }
 }

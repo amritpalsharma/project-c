@@ -251,37 +251,43 @@
 @media (max-width: 767px) {}
 
 @media (max-width: 575px) {
-    .main1 {
+    .content_page li::before {
+        top: 13px;
+        font-size: 50px;
+    }
+    .main-bnr {
         height: 250px;
         background-position: bottom;
     }
-
-    .information {
+    .content_page .information{
         margin-top: 20px;
         margin-bottom: 20px;
     }
-
-    .address {
+    .content_page .address{
         margin-top: 20px;
         margin-bottom: 20px;
     }
-
     .content_page .py_0 {
         padding-top: 20px;
         padding-bottom: 20px;
     }
-
-    h4 {
-        font-size: 16px;
+    .content_page h4{
+        font-size: 18px;
         margin-bottom: 10px;
     }
-
-    p {
+    .content_page p {
         font-size: 14px;
     }
-
-    li::marker {
+    .content_page .info-text {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .content_page li::marker {
         font-size: 19px;
+    }
+    .privacy-text {
+        font-size: 30px;
+        padding-top: 3rem;
     }
 }
 
@@ -301,33 +307,9 @@
 }
 
 @media (max-width: 321px) {
-    h4 {
-        font-size: 14px;
-    }
-
-    p {
-        font-size: 12px;
-    }
-
-    li {
-        font-size: 12px;
-        margin-top: 10px;
-    }
-
-    li {
-        font-size: 12px;
-        margin-top: 10px;
-    }
-
-    li::before {
-        top: 11px;
-        font-size: 35px;
-    }
-
     li {
         padding-left: 20px;
     }
-
     p.list-text {
         padding-left: 20px;
     }
@@ -356,11 +338,26 @@
 }
 
 
-@media (min-width: 1600px) and (max-width: 1999px) {
+@media (min-width: 992px) and (max-width: 1999px) {
     .common_static_page h4 {
-      font-size: 28px;
-  }
-  .common_static_page p, .common_static_page address, .common_static_page li {
-    font-size: 22px;
-  }
+        font-size: 30px;
+    }
+    .common_static_page p, .common_static_page address, .common_static_page li {
+        font-size: 24px;
+    }
+    .content_page li::before {
+        top: 19px;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 991px) {
+    .common_static_page h4 {
+        font-size: 25px;
+    }
+    .common_static_page p, .common_static_page address, .common_static_page li {
+        font-size: 20px;
+    }
+    .content_page li::before {
+        top: 15px;
+    }
 }

@@ -560,7 +560,7 @@ img.join-btn {
   }
 
   .map img {
-    top: 45%;
+    top: 48%;
     height: 500px;
     width: 620px;
   }
@@ -786,4 +786,30 @@ h3, .text_side_wrapper p {
 .content-text p {
     font-size: 22px;
 }
+}
+
+@media (min-width: 992px) and (max-width: 1599px) {
+  .content-text {
+    font-size: 20px;
+  }
+  .about-text {
+    font-size: 55px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 991px) {
+  h3.about-text {
+    font-size: 45px;
+    padding-top: 2rem;
+}
+  .content-text {
+    font-size: 18px;
+    padding: 1rem 0 0;
+  }
+  .country-available {
+    font-size: 35px;
+  }
+  .country-name {
+    font-size: 20px !important;
+  }
 }
