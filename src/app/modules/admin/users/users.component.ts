@@ -35,6 +35,7 @@ export class UsersComponent implements OnInit {
   lang_id: string = '';
   filterDialogRef: any = "";
   count: number = 0;
+  baseUrl:string='https://api.socceryou.ch/uploads/';
 
   customFilters: any = [];
   locations: any = [];
@@ -524,7 +525,8 @@ export class UsersComponent implements OnInit {
 
   formatDateTime(datetime: string) {
     // convertAdminDateTime
-    let formattedDate = this.adminHelper.convertAdminDateTime(datetime, 'users');
+    // let formattedDate = this.adminHelper.convertAdminDateTime(datetime, 'users');
+    let formattedDate = this.adminHelper.getSwitzerlandTime(datetime);
     return formattedDate;
   }
 

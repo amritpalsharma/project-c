@@ -5,11 +5,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { MessagePopupComponent } from '../message-popup/message-popup.component';
 import { InviteScoutTalentPopupComponent } from '../tabs/invite-scout-talent-popup/invite-scout-talent-popup.component';
 import { environment } from '../../../../environments/environment';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { TitleService } from '../../../title.service';
 import { SharedService } from '../../../services/shared.service';
 import { ToastrService } from 'ngx-toastr';
 import { Location } from '@angular/common';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -39,7 +40,8 @@ export class ScoutDetailComponent implements OnInit {
   paginationData: any = {};
   pageTitle: string = '';
   userDeleteConfirm: string = '';
-
+  langSubscription!: Subscription;
+  currentLangId: any = localStorage.getItem('lang_id');
   ngOnInit(): void {
     this.getJsonTranslations();
     this.sharedservice.data$.subscribe((data: any) => {
@@ -53,11 +55,21 @@ export class ScoutDetailComponent implements OnInit {
       this.getUserProfile(this.userId);
       this.activeTab = 'profile';
     });
+
+    this.langSubscription = this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
+      // console.info(event);
+      if (event.lang == 'en') {
+        this.currentLangId = 1;
+      } else if (event.lang == 'de') {
+        this.currentLangId = 2;
+      }
+      this.getUserProfile(this.userId);
+    });
   }
 
   getUserProfile(userId: any) {
     try {
-      this.userService.getProfileData(userId).subscribe((response) => {
+      this.userService.getProfileDataAdmin(userId, this.currentLangId).subscribe((response) => {
         if (response && response.status && response.data && response.data.user_data) {
           this.user = response.data.user_data;
           this.paginationData = response.data.pagination;

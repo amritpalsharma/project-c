@@ -4,6 +4,8 @@ import { UserService } from '../../../../services/user.service';
 import { MessagePopupComponent } from '../../message-popup/message-popup.component';
 import { ScoutPlayerViewPopupComponent } from '../scout-player-view-popup/scout-player-view-popup.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
+import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-portfolio-tab',
@@ -17,11 +19,29 @@ export class PortfolioTabComponent {
   displayedColumns: string[] = ['Name', 'Language', 'Club', 'Contract Starts', 'Contract Expires', 'View', 'Delete'];
   isLoading = false;
   idToBeDeleted: any = '';
-  constructor(private route: ActivatedRoute, private userService: UserService, public dialog: MatDialog) { }
+
+  langSubscription!: Subscription;
+  currentLangId: any = localStorage.getItem('lang_id');
+  constructor(
+    private route: ActivatedRoute, 
+    private userService: UserService, 
+    public dialog: MatDialog,
+    private translateService: TranslateService
+  ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: any) => {
       this.userId = params.id;
+      this.getScoutPlayers();
+    })
+    this.langSubscription = this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
+      // this.getUserProfile(this.userId);
+      // alert('lang update to '+event.lang)
+      if(event.lang == 'de'){
+        this.currentLangId = 2;
+      }else if(event.lang == 'en'){
+        this.currentLangId = 1;
+      }
       this.getScoutPlayers();
     })
   }
@@ -29,7 +49,7 @@ export class PortfolioTabComponent {
   getScoutPlayers() {
     this.isLoading = true;
     try {
-      this.userService.getScoutPlayers(this.userId).subscribe((response) => {
+      this.userService.getScoutPlayersAdmin(this.userId, this.currentLangId).subscribe((response) => {
         if (response && response.status && response.data) {
           this.scoutPlayers = response.data.scoutPlayers;
           this.isLoading = false;

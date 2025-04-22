@@ -42,7 +42,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   @ViewChild('canvas2') canvas2!: ElementRef<HTMLCanvasElement>;
   @ViewChild('canvas3') canvas3!: ElementRef<HTMLCanvasElement>;
   // @ViewChild('canvas4') canvas4!: ElementRef<HTMLCanvasElement>;
-
+  baseUrl:string='https://api.socceryou.ch/uploads/';
   lang: string = '';
   chart1!: Chart;
   chart2!: Chart;
@@ -943,7 +943,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   formatDateTime(datetime: string) {
     // convertAdminDateTime
-    let formattedDate = this.adminHelper.convertAdminDateTime(datetime, 'users');
+    let formattedDate = this.adminHelper.getSwitzerlandTime(datetime);
     return formattedDate;
   }
   getJsonTranslations() {

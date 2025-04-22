@@ -22,6 +22,8 @@ import { WebPages } from '../../../services/webpages.service';
 import { TitleService } from '../../../title.service';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
 import { ImageCropperComponent2 } from '../../shared/image-cropper/image-cropper.component';
+import { SocketService } from '../../../services/socket.service';
+import { UnverifiedUserComponent } from '../../shared/unverified-user/unverified-user.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -49,7 +51,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     private commonDataService: CommonDataService,
     public webPages: WebPages,
     private titleService: TitleService,
-    private globalSettings: GlobalSettingsService
+    private globalSettings: GlobalSettingsService,
+    private socketService: SocketService
   ) { }
   activeTab: string = 'profile';
   userId: any;
@@ -90,6 +93,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   currentThemeMode: any = localStorage.getItem('theme');
   generalError: string = '';
 
+  isUserVerified: boolean = false;
+
   async ngOnInit() {
 
     this.getJsonTranslations();
@@ -109,7 +114,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.getCoverImg();
       this.activeTab = 'profile';
     });
-
+    this.isUserVerified = false;
     this.webPages.languageId$.subscribe((data) => {
       this.getUserProfile(this.userId);
       this.getHighlightsData();
@@ -136,9 +141,20 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.globalSettings.indexFunctionCall$.subscribe(() => {
       this.themeChanged(); // Call the function when event is received
     });
+
+    this.getUserStatus();
     // this.themeChanged();
   }
 
+  getUserStatus() {
+    this.socketService.getLoggedInUserStatus().then((result) => {
+      if (result == 2) {
+        this.isUserVerified = true;
+      } else {
+        this.isUserVerified = false;
+      }
+    });
+  }
   getClubsForPlayer() {
     this.talentService.getClubsForPlayer().subscribe(
       response => {
@@ -1130,4 +1146,25 @@ export class DashboardComponent implements OnInit, OnDestroy {
     const videoElement = event.target as HTMLVideoElement;
     video.duration = videoElement.duration; // Store duration in the video object
   }
+
+  navigatePlans(){
+    this.router.navigate(['/talent/plans']);
+  }
+
+  showVerificationPopup() {
+      const messageDialog = this.dialog.open(UnverifiedUserComponent, {
+        width: '500px',
+        position: {
+          top: '150px'
+        }
+      })
+  
+      messageDialog.afterClosed().subscribe(result => {
+        if (result !== undefined) {
+          if (result.action == "delete-confirmed") {
+            // this.deleteUser();
+          }
+        }
+      });
+    }
 }

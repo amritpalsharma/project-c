@@ -5,6 +5,8 @@ import { AddPerfomanceReportComponent } from './add-perfomance-report/add-perfom
 import { MessagePopupComponent } from '../../message-popup/message-popup.component';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { UnverifiedUserComponent } from '../../../shared/unverified-user/unverified-user.component';
+import { Router } from '@angular/router';
 
 interface Report {
   id: string;
@@ -35,8 +37,13 @@ export class PerformanceAnalysisTabComponent implements OnInit {
   deletePerformanceConfirm: string = '';
   selectPerformanceFirst: string = '';
   langSubscription!: Subscription;
+  @Input() isUserVerified: any;
 
-  constructor(private talentService: TalentService, public dialog: MatDialog, private translateService: TranslateService,) { }
+  constructor(
+    private talentService: TalentService,
+    public dialog: MatDialog,
+    private translateService: TranslateService,
+    public router: Router) { }
 
   ngOnInit() {
     this.loadReports();
@@ -230,7 +237,7 @@ export class PerformanceAnalysisTabComponent implements OnInit {
       return
     }
     let lang_id = localStorage.getItem('lang_id');
-    let params: any = { id: this.selectedIds, lang:lang_id };
+    let params: any = { id: this.selectedIds, lang: lang_id };
     const messageDialog = this.dialog.open(MessagePopupComponent, {
       width: '500px',
       position: {
@@ -316,5 +323,26 @@ export class PerformanceAnalysisTabComponent implements OnInit {
 
   formatDateTime(dateTime: any) {
     return this.talentService.convertTalentDateTime(dateTime);
+  }
+
+  navigatePlans() {
+    this.router.navigate(['/talent/plans']);
+  }
+
+  showVerificationPopup() {
+    const messageDialog = this.dialog.open(UnverifiedUserComponent, {
+      width: '500px',
+      position: {
+        top: '150px'
+      }
+    })
+
+    messageDialog.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        if (result.action == "delete-confirmed") {
+          // this.deleteUser();
+        }
+      }
+    });
   }
 }

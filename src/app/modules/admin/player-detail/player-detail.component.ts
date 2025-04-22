@@ -33,9 +33,13 @@ export class PlayerDetailComponent implements OnInit {
   paginationData: any = {};
   userCountryFlag: string = '';
   deleteProfileConfirm: string = '';
+  baseUrl:string = '';
   langSubscription!: Subscription;
 
+  currentLangId:any;
+
   ngOnInit(): void {
+    this.currentLangId = localStorage.getItem('lang_id');
     this.route.params.subscribe((params: any) => {
       console.log(params.id)
       this.userId = params.id;
@@ -44,7 +48,14 @@ export class PlayerDetailComponent implements OnInit {
     });
     this.updateTranslation();
     this.langSubscription = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      // console.info(event);
+      if(event.lang == 'en'){
+        this.currentLangId = 1;
+      }else if(event.lang == 'de'){
+        this.currentLangId = 2;
+      }
       this.updateTranslation();
+      this.getUserProfile(this.userId);
     });
   }
 
@@ -55,9 +66,10 @@ export class PlayerDetailComponent implements OnInit {
   }
   getUserProfile(userId: any) {
     try {
-      this.userService.getProfileData(userId).subscribe((response) => {
+      this.userService.getProfileDataAdmin(userId, this.currentLangId).subscribe((response) => {
         if (response && response.status && response.data && response.data.user_data) {
           this.user = response.data.user_data;
+          this.baseUrl = response.data.imagePath;
           this.userCountryFlag = JSON.parse(this.user.user_nationalities)[0].flag_path;
           this.paginationData = response.data.pagination;
           // this.userNationalities = JSON.parse(this.user.user_nationalities);

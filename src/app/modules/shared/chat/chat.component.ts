@@ -207,7 +207,8 @@ export class ChatComponent {
 
     if (otherUserData) {
       const otherUser = JSON.parse(otherUserData);
-      this.startOneOnOneChat(otherUser);
+      // this.startOneOnOneChat(otherUser);
+      this.talkService.startChatWithUser(otherUser);
     }
 
     setTimeout(() => {

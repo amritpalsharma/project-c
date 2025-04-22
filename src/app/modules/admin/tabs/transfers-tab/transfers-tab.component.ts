@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../../../../services/user.service';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-transfers-tab',
@@ -10,25 +11,32 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
   styleUrl: './transfers-tab.component.scss',
 })
 export class TransfersTabComponent {
-  isLoading:boolean = false;
+  isLoading: boolean = false;
   defaultDate: Date = new Date(2023, 4, 21); // May 21, 2023
   userId: any = '';
   userTransfers: any = [];
   editableId: string = "";
-  teams:any = [];
-  dataTOBeUpdated:any = {
+  teams: any = [];
+  dataTOBeUpdated: any = {
     team_from: "",
     team_to: "",
     session: "",
     date_of_transfer: ""
   }
-  seasons:any = [];
-  constructor(private route: ActivatedRoute, private userService: UserService, private router: Router) { }
-  
+  seasons: any = [];
+  constructor(
+    private route: ActivatedRoute,
+    private userService: UserService,
+    private router: Router,
+    private translate: TranslateService) { }
+
   ngOnInit(): void {
-    this.route.params.subscribe((params:any) => {
+    this.route.params.subscribe((params: any) => {
       console.log(params.id)
       this.userId = params.id;
+      this.getUserTransfers(this.userId);
+    });
+    this.translate.onLangChange.subscribe((event) => {
       this.getUserTransfers(this.userId);
     });
     this.getSeasonsOptions();
@@ -44,10 +52,10 @@ export class TransfersTabComponent {
       this.seasons.push(year);
     }
   }
-  getUserTransfers(userId:any){
+  getUserTransfers(userId: any) {
     this.isLoading = true;
     try {
-      this.userService.getTransferData(userId).subscribe((response)=>{
+      this.userService.getTransferData(userId).subscribe((response) => {
         if (response && response.status && response.data) {
           this.userTransfers = response.data.transferDetail;
           this.isLoading = false;
@@ -58,12 +66,12 @@ export class TransfersTabComponent {
       });
     } catch (error) {
       this.isLoading = false;
-      console.error('Error fetching users:', error); 
+      console.error('Error fetching users:', error);
     }
   }
 
-  getAllTeams(){
-    this.userService.getAllTeams().subscribe((response)=>{
+  getAllTeams() {
+    this.userService.getAllTeams().subscribe((response) => {
       if (response && response.status && response.data && response.data.teams) {
         this.teams = response.data.teams;
         console.log(this.teams)
@@ -71,9 +79,9 @@ export class TransfersTabComponent {
     });
   }
 
-  editPerformance(performanceId:any){
+  editPerformance(performanceId: any) {
     this.editableId = performanceId;
-    let index = this.userTransfers.findIndex((x:any) => x.id == performanceId);
+    let index = this.userTransfers.findIndex((x: any) => x.id == performanceId);
     let currentRow = this.userTransfers[index];
     this.defaultDate = currentRow.date_of_transfer;
     this.dataTOBeUpdated = {
@@ -86,39 +94,39 @@ export class TransfersTabComponent {
     console.log(this.dataTOBeUpdated);
   }
 
-  updateTransfer(transferId:any){
-    this.userService.updateTransfer(transferId, this.dataTOBeUpdated).subscribe((response)=>{
+  updateTransfer(transferId: any) {
+    this.userService.updateTransfer(transferId, this.dataTOBeUpdated).subscribe((response) => {
       // console.log(response)
       this.editableId = "";
-      if(response.status){
+      if (response.status) {
         this.getUserTransfers(this.userId);
       }
-    }); 
+    });
   }
 
-  onSelectChange(event: Event, key:string): void {
+  onSelectChange(event: Event, key: string): void {
     const selectElement = event.target as HTMLSelectElement;
-    this.updateRow(key,Number(selectElement.value));
+    this.updateRow(key, Number(selectElement.value));
   }
 
   onDateChange(event: MatDatepickerInputEvent<Date>): void {
     const selectedDate = event.value;
     let date = this.formatDate(selectedDate);
-    this.updateRow('date_of_transfer',date);
+    this.updateRow('date_of_transfer', date);
   }
 
-  onInputChange(event: Event, key:string): void {
+  onInputChange(event: Event, key: string): void {
     let inputElement = event.target as HTMLInputElement;
-    this.updateRow(key,inputElement.value);
+    this.updateRow(key, inputElement.value);
   }
 
-  updateRow(key:any, value:any){
+  updateRow(key: any, value: any) {
     this.dataTOBeUpdated[key] = value;
 
     console.log(this.dataTOBeUpdated);
   }
 
-  formatDate(date:any) {
+  formatDate(date: any) {
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
     const day = String(date.getDate()).padStart(2, '0');

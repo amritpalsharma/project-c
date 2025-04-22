@@ -40,7 +40,11 @@ export class FavoritesTabComponent {
     this.sharedservice.data$.subscribe((data: any) => {
       if (data.action == 'lang_updated') {
         this.getTranslationMsg();
+        this.getUserFavorites();
       }
+    });
+    this.translateService.onLangChange.subscribe((event) => {
+      this.getUserFavorites();
     });
     this.route.params.subscribe((params: any) => {
       console.log(params.id)
@@ -60,6 +64,7 @@ export class FavoritesTabComponent {
       params.offset = page;
       params.search = this.keyword;
       params.limit = pageSize;
+      params.lang = localStorage.getItem('lang_id');
 
       this.userService.getFavoritesData(this.userId, params).subscribe((response) => {
         console.log(response, 'get-user-favorite');

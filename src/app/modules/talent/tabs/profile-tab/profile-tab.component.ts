@@ -3,6 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { EditGeneralDetailsComponent } from '../../edit-general-details/edit-general-details.component';
 import { TalentService } from '../../../../services/talent.service';
 import { ResetPasswordComponent } from '../../../shared/reset-password/reset-password.component';
+import { UnverifiedUserComponent } from '../../../shared/unverified-user/unverified-user.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'talent-profile-tab',
@@ -10,45 +12,46 @@ import { ResetPasswordComponent } from '../../../shared/reset-password/reset-pas
   styleUrl: './profile-tab.component.scss'
 })
 export class ProfileTabComponent {
-  user:any = {}
-  userNationalities:any = [];
-  positions:any = [];
-  position:any;
-  mainPosition : any;
-  otherPositions : any;
+  user: any = {}
+  userNationalities: any = [];
+  positions: any = [];
+  position: any;
+  mainPosition: any;
+  otherPositions: any;
 
   @Input() userData: any;
   @Input() isPremium: any;
-  isMainPositionFound:boolean=false;
+  @Input() isUserVerified: any;
+  isMainPositionFound: boolean = false;
 
-  constructor( public dialog: MatDialog,private talentService: TalentService) { 
+  constructor(public dialog: MatDialog, private talentService: TalentService, private router: Router) {
     // If you want to load the user data from localStorage during initialization    
   }
 
   ngOnInit(): void {
     this.user = this.userData;
   }
-  
+
   ngOnChanges(changes: SimpleChanges) {
     if (changes['userData']) {
       // Update the user object with the latest userData
       this.user = changes['userData'].currentValue;
-  
+
       // Check if user_nationalities exist and parse it
       if (this.user && this.user.user_nationalities) {
         this.userNationalities = JSON.parse(this.user.user_nationalities);
       }
-      
+
     }
     if (changes['user']) {
       // Update the user object with the latest userData
       this.user = changes['user'].currentValue;
-  
+
       // Check if user_nationalities exist and parse it
       if (this.user && this.user.user_nationalities) {
         this.userNationalities = JSON.parse(this.user.user_nationalities);
       }
-      
+
     }
     // if (changes['mainPosition']) {
     //   // Update the mainPosition object with the latest mainPositionData
@@ -58,7 +61,7 @@ export class ProfileTabComponent {
     this.getMainPosition();
     this.getOtherPositions();
   }
- 
+
 
   calculateAge(dob: string | Date): number {
     // Convert the input date to a Date object if it's a string
@@ -71,7 +74,7 @@ export class ProfileTabComponent {
     // Adjust the age if the current date is before the birthday
     const monthDifference = today.getMonth() - birthDate.getMonth();
     const dayDifference = today.getDate() - birthDate.getDate();
-    
+
     if (monthDifference < 0 || (monthDifference === 0 && dayDifference < 0)) {
       age--;
     }
@@ -83,11 +86,11 @@ export class ProfileTabComponent {
     try {
       this.talentService.getProfileData().subscribe((response) => {
         if (response && response.status && response.data && response.data.user_data) {
-          
+
           localStorage.setItem('userInfo', JSON.stringify(response.data.user_data));
 
           this.user = response.data.user_data;
-          if(this.user.positions != undefined && this.user.positions != ''){
+          if (this.user.positions != undefined && this.user.positions != '') {
             this.userData.positions = this.user.positions;
           }
           // Check if user_nationalities exist and parse it
@@ -105,7 +108,7 @@ export class ProfileTabComponent {
       console.error('Error fetching users:', error);
     }
   }
-  
+
   openEditGeneralDialog() {
 
     const dialogRef = this.dialog.open(EditGeneralDetailsComponent, {
@@ -113,11 +116,11 @@ export class ProfileTabComponent {
       data: { user: this.user }  // Corrected data passing      
     });
 
-    
+
     dialogRef.afterClosed().subscribe(result => {
-        setTimeout(() => {
-          this.getUserProfile();
-        }, 1500);
+      setTimeout(() => {
+        this.getUserProfile();
+      }, 1500);
     });
   }
 
@@ -140,27 +143,27 @@ export class ProfileTabComponent {
 
   // Function to get the main position from the array
   getMainPosition() {
-    
+
     // Check if positions exist and are valid JSON before parsing
     if (this.userData?.positions) {
-        try {
-            // Parse the JSON string only if it's defined
-            this.positions = JSON.parse(this.userData.positions);
-            console.log(this.positions)
-            // Find the main position object with main_position set to 1
-            this.mainPosition = this.positions?.find((pos: any) => pos.main_position == 1)?.position_name;
-            this.isMainPositionFound = true;
-        } catch (error) {
-            console.error("Error parsing positions JSON:", error);
-            this.positions = []; // Set to an empty array if parsing fails
-            this.mainPosition = undefined; // Reset main position if parsing fails
-            this.isMainPositionFound = false;
-        }
-    } else {
-        // Handle case when positions is undefined or empty
-        this.positions = [];
-        this.mainPosition = undefined;
+      try {
+        // Parse the JSON string only if it's defined
+        this.positions = JSON.parse(this.userData.positions);
+        console.log(this.positions)
+        // Find the main position object with main_position set to 1
+        this.mainPosition = this.positions?.find((pos: any) => pos.main_position == 1)?.position_name;
+        this.isMainPositionFound = true;
+      } catch (error) {
+        console.error("Error parsing positions JSON:", error);
+        this.positions = []; // Set to an empty array if parsing fails
+        this.mainPosition = undefined; // Reset main position if parsing fails
         this.isMainPositionFound = false;
+      }
+    } else {
+      // Handle case when positions is undefined or empty
+      this.positions = [];
+      this.mainPosition = undefined;
+      this.isMainPositionFound = false;
     }
   }
 
@@ -168,8 +171,31 @@ export class ProfileTabComponent {
   // Function to get other positions from the array
   getOtherPositions() {
     this.otherPositions = this.positions
-      .filter((pos : any) => pos.main_position == null)
-      .map((pos : any) => pos.position_name)
+      .filter((pos: any) => pos.main_position == null)
+      .map((pos: any) => pos.position_name)
       .join('/');
+  }
+
+
+
+  navigatePlans() {
+    this.router.navigate(['/talent/plans']);
+  }
+
+  showVerificationPopup() {
+    const messageDialog = this.dialog.open(UnverifiedUserComponent, {
+      width: '500px',
+      position: {
+        top: '150px'
+      }
+    })
+
+    messageDialog.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        if (result.action == "delete-confirmed") {
+          // this.deleteUser();
+        }
+      }
+    });
   }
 }

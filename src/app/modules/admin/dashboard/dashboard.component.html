@@ -12,7 +12,8 @@
         <span class="ms-auto">
           <div>
             <select name="" id="" [(ngModel)]="selectedYear" (change)='yearChange($event)'>
-              <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+              <!-- <option *ngFor="let year of years" [value]="year">{{ year }}</option> -->
+              <option [value]="2025">2025</option>
             </select>
           </div>
         </span>
@@ -170,12 +171,16 @@
             <td> {{ user.user_location }}</td>
             <td> {{ formatDateTime(user.created_at) }}</td>
             <!-- <td> {{ user.created_at  | date:'MM.dd.yyyy - hh.mm a' }}</td> -->
+            <!-- <td> {{ user.created_at }}</td> -->
             <td class="main-table-2">
               <span *ngIf="user.status==1" class="bg_pending">{{ 'pending' | translate }} </span>
               <span *ngIf="user.status==2" class="bg_success approved"> {{ 'approved' | translate }}</span>
               <span *ngIf="user.status==3" class="bg_reject"> {{ 'rejected' | translate }} </span>
 
             </td>
+          </tr>
+          <tr *ngIf="newRegistrations.length == 0">
+            <td colspan="6" class="text-center">{{ 'noRecordFound' | translate }}</td>
           </tr>
         </tbody>
       </table>
@@ -224,20 +229,27 @@
               <!-- <small>{{getDaysAgo(player.created_at)}}</small> -->
             </div>
           </div>
+          <div *ngIf="newRegistrationPlayers.length == 0" class="card-tabs-content">
+            <span class="text-center">{{ 'noRecordFound' | translate }}</span>
+          </div>
         </div>
 
         <div class="tab-pane fade" id="profile-tab-pane-1" role="tabpanel" aria-labelledby="profile-tab-1" tabindex="0">
           <div *ngFor="let club of newRegistrationClubs" class="card-tabs-content"
             [routerLink]="['/admin/club', club.id]">
-            <img src="{{club.meta.profile_image_path}}" class="message-media me-3" alt=""
-              *ngIf="club.meta && club.meta.profile_image_path">
+            <!-- <pre>{{club | json}}</pre> -->
+            <img src="{{baseUrl + club.pre_current_club_logo}}" class="message-media me-3" alt=""
+              *ngIf="club.pre_current_club_logo && club.pre_current_club_logo != ''">
             <img src="../../../assets/images/1.png" class="message-media me-3" alt=""
-              *ngIf="!club.meta || !club.meta.profile_image_path">
+              *ngIf="!club.pre_current_club_logo || !club.pre_current_club_logo">
             <div class="mesaage-content">
               <h6 class="mb-0">{{club.first_name}} {{club.last_name}}</h6>
               <small>{{club.registration_time}}</small>
               <!-- <small>{{getDaysAgo(club.created_at)}}</small> -->
             </div>
+          </div>
+          <div *ngIf="newRegistrationClubs.length == 0" class="card-tabs-content">
+            <span class="text-center">{{ 'noRecordFound' | translate }}</span>
           </div>
         </div>
         <div class="tab-pane fade" id="contact-tab-pane-1" role="tabpanel" aria-labelledby="contact-tab-1" tabindex="0">
@@ -253,6 +265,9 @@
               <small>{{scout.registration_time}}</small>
               <!-- <small>{{getDaysAgo(scout.created_at)}}</small> -->
             </div>
+          </div>
+          <div *ngIf="newRegistrationScouts.length == 0" class="card-tabs-content">
+            <span class="text-center">{{ 'noRecordFound' | translate }}</span>
           </div>
         </div>
       </div>
