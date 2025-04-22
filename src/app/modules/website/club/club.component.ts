@@ -61,7 +61,7 @@ export class ClubComponent {
 
   countryPrice: number = 0;
   countryYearlyPrice: number = 0;
-
+  selectedTab:string='monthly';
   // 
 
   constructor(private webPages: WebPages, private globalSettings: GlobalSettingsService) {
@@ -477,5 +477,9 @@ export class ClubComponent {
       slug = 'sv';
     }
     return slug;
+  }
+
+  setActiveTab(currentTab:any){
+    this.selectedTab = currentTab;
   }
 }

@@ -1755,4 +1755,9 @@ a {
     border: 1px solid #E05263 !important;
     border-radius: 10px;
   }
+  .item_column:nth-child(2) {
+    .header_card *, .premium-heading2, .premium-heading3 {
+        color: #fff !important;
+    }
+}
 }
