@@ -624,7 +624,7 @@
                 </div>
                 <div class="d-flex w-100 m-auto image_gallery-box mt-2">
                   <div class="col-lg-4 gallery_images" *ngFor="let image of highlights?.images let i = index">
-                    <img [src]="highlights.file_path + image.file_name" alt="" (click)="openImage(i)">
+                    <img [src]="highlights.file_path + image.file_name" alt="" (click)="openImage(i, 'image')">
                   </div>
 
                   <div *ngIf="!highlights" class="w-100 image-icon my-5">
@@ -640,8 +640,8 @@
 
 
                 <div class="d-flex w-100 m-auto image_gallery-box mt-2">
-                  <div class="col-lg-4 gallery_images " *ngFor="let video of highlights?.videos">
-                    <video [src]="highlights.file_path + video.file_name" autoplay></video>
+                  <div class="col-lg-4 gallery_images " *ngFor="let video of highlights?.videos let j = index">
+                    <video [src]="highlights.file_path + video.file_name" (click)="openImage(j, 'video')" autoplay></video>
                   </div>
                 </div>
               </div>
