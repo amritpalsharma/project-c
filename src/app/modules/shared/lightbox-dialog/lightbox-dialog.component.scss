@@ -56,6 +56,13 @@
 }
 
 
+.cross-icon{
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
+}
+
 
 
 ::ng-deep .mat-mdc-dialog-surface.mdc-dialog__surface{

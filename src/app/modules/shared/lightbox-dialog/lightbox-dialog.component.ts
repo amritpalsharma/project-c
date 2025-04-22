@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef  } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-lightbox-dialog',
@@ -9,7 +9,8 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class LightboxDialogComponent {
   currentIndex = 0;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: { album: any[], mainImage: any }) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { album: any[], mainImage: any },
+  private dialogRef: MatDialogRef<LightboxDialogComponent>) {
     this.currentIndex = data.album.findIndex(item => item.src === data.mainImage.src);
   }
 
@@ -23,5 +24,9 @@ export class LightboxDialogComponent {
 
   get currentItem() {
     return this.data.album[this.currentIndex];
+  }
+
+  close() {
+    this.dialogRef.close();
   }
 }

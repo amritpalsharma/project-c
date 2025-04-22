@@ -531,7 +531,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
   }
 
-  openImage(index: any): void {
+  openImage(index: any, type: string): void {
       const filePath = this.highlights.file_path;
     
       const images = this.highlights.images.map((img: any) => ({
@@ -542,12 +542,21 @@ export class DashboardComponent implements OnInit, OnDestroy {
         src: filePath + vid.file_name,
         type: 'video',
       }));
+  
+      if(type==='video'){
+        index += this.highlights.images.length;
+      }
+      
     
       const album = [...images, ...videos];
     
-      const mainImage = String(index).includes('video_')
-        ? videos[+index.replace('video_', '')]
-        : images[index];
+      // const mainImage = String(index).includes('video_')
+      //   ? videos[+index.replace('video_', '')]
+      //   : images[index];
+  
+      const mainImage = album[index]
+  
+      console.log(mainImage, "img,,,,", index);
     
       this.dialog.open(LightboxDialogComponent, {
         width: '80%',
