@@ -437,7 +437,7 @@ export class ViewProfileComponent implements OnInit {
       };
 
       console.log(userData, this.user);
-      let tempUser = JSON.stringify(userData);
+      let tempUser = JSON.stringify(userData); 
 
       localStorage.setItem('otherUserData', tempUser);
 
