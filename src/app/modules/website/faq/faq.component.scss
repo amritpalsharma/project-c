@@ -110,10 +110,10 @@ li {
 
 .cookie-text {
     font-size: 45px;
-    font-weight: 600;
+    font-weight: 700;
     color: white;
     text-align: center;
-    filter: brightness(0) invert(1);
+    // filter: brightness(0) invert(1);
     text-transform: uppercase;
 
 }
@@ -492,3 +492,12 @@ button.faq-scout-button {
         font-size: 22px;
     }
 }
+
+@media (min-width: 992px) and (max-width: 1599px) {
+    .cookie-text {
+      font-size: 55px;
+    }
+    h3{
+      font-size: 45px;
+    }
+  }
