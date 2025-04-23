@@ -42,7 +42,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   @ViewChild('canvas2') canvas2!: ElementRef<HTMLCanvasElement>;
   @ViewChild('canvas3') canvas3!: ElementRef<HTMLCanvasElement>;
   // @ViewChild('canvas4') canvas4!: ElementRef<HTMLCanvasElement>;
-
+  baseUrl: string = 'https://api.socceryou.ch/uploads/';
   lang: string = '';
   chart1!: Chart;
   chart2!: Chart;
@@ -62,7 +62,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   yearOfstarting: any = 2024;
   currentMonth: any = '';
   currentYear: any = '';
-  currentMonthNow:any='';
+  currentMonthNow: any = '';
 
   selectedYear: any = new Date().getFullYear();
   // selectedYear: any = new Date().getFullYear() - 1;
@@ -461,27 +461,56 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     gradientStroke.addColorStop(0.5, '#236115');
     gradientStroke.addColorStop(1, '#7BDA66');
 
+    let style = {
+      data: values,
+      borderWidth: 6,
+      borderColor: gradientStroke,
+      pointBorderWidth: 3,
+      pointBackgroundColor: '#BDE34F',
+      pointBorderColor: '#FFFFFF',
+      pointRadius: 10,
+      weight: 700,
+
+
+      fill: {
+        target: 'origin',
+        above: 'rgba(11, 149, 100, 0.08)',
+      },
+    }
+
+    const screenSize = window.innerWidth;
+
+    if(screenSize<=480){
+      style = {
+        data: values,
+        borderWidth: 4,
+        borderColor: gradientStroke,
+        pointBorderWidth: 1,
+        pointBackgroundColor: '#BDE34F',
+        pointBorderColor: '#FFFFFF',
+        pointRadius: 5,
+        weight: 700,
+  
+  
+        fill: {
+          target: 'origin',
+          above: 'rgba(11, 149, 100, 0.08)',
+        },
+      }
+    }
+
     const data = {
       labels: labels,
       datasets: [
-        {
-          data: values,
-          borderWidth: 6,
-          borderColor: gradientStroke,
-          pointBorderWidth: 3,
-          pointBackgroundColor: '#BDE34F',
-          pointBorderColor: '#FFFFFF',
-          pointRadius: 10,
-          weight: 700,
-
-
-          fill: {
-            target: 'origin',
-            above: 'rgba(11, 149, 100, 0.08)',
-          },
-        } as ChartDataset<'line'>,
+        style as ChartDataset<'line'>,
       ],
     };
+
+    let color = '#878787';
+
+    if(localStorage.getItem('theme') != 'light'){
+      color = '#fff';
+    }
 
     // Create and store new chart instance
     const newChart = new Chart(ctx, {
@@ -492,15 +521,19 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         responsive: true,
         scales: {
           y: {
+            
             stacked: false,
             beginAtZero: true,
             grid: { display: false },
-            ticks: { display: false },
+            ticks: { display: false,
+              // color: color
+             },
             border: { display: false },
           },
           x: {
             grid: { display: false },
             ticks: {
+              // color: color,
               display: true,
               font: { size: 20, family: 'poppins,sans-serif', weight: 700 },
             },
@@ -629,13 +662,20 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         if (chart.options.scales['x'] && chart.options.scales['x'].grid) {
           chart.options.scales['x'].grid.color = isDarkMode ? '#333' : '#E0E0E0';
         }
+        if (chart.options.scales['x'] && chart.options.scales['x'].ticks) {
+          chart.options.scales['x'].ticks.color = isDarkMode ? '#fff' : '#878787';
+        }
         if (chart.options.scales['y'] && chart.options.scales['y'].grid) {
           chart.options.scales['y'].grid.color = isDarkMode ? '#333' : '#E0E0E0';
+        }
+        if (chart.options.scales['y'] && chart.options.scales['y'].ticks) {
+          chart.options.scales['y'].ticks.color = isDarkMode ? '#fff' : '#878787';
         }
         if (chart.options.plugins.tooltip) {
           chart.options.plugins.tooltip.backgroundColor = isDarkMode ? '#BDE34F' : '#E05263';
         }
-        chart.options.backgroundColor = isDarkMode ? '#BDE34F' : '#FFFFFF';
+        // chart.options.backgroundColor = isDarkMode ? '#BDE34F' : '#FFFFFF';
+        chart.options.backgroundColor = isDarkMode ? '#BDE34F' : 'red';
         chart.update();
       }
 
@@ -943,7 +983,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   formatDateTime(datetime: string) {
     // convertAdminDateTime
-    let formattedDate = this.adminHelper.convertAdminDateTime(datetime, 'users');
+    let formattedDate = this.adminHelper.getSwitzerlandTime(datetime);
     return formattedDate;
   }
   getJsonTranslations() {

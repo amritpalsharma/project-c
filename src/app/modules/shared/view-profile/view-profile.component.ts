@@ -431,13 +431,13 @@ export class ViewProfileComponent implements OnInit {
     if (this.user) {
       const userData = {
         id: this.user.id,
-        name: this.user.first_name,
-        email: this.user.username,
-        photoUrl: this.user.meta.profile_image_path
+        name: this.user.first_name+ ''+this.user.last_name,
+        email: this.user.email,
+        photoUrl: this.baseUrl + this.user.meta.profile_image
       };
 
       console.log(userData, this.user);
-      let tempUser = JSON.stringify(userData);
+      let tempUser = JSON.stringify(userData); 
 
       localStorage.setItem('otherUserData', tempUser);
 

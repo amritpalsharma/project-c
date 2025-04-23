@@ -66,6 +66,7 @@ export class CommonFilterPopupComponent {
       let lang_id = localStorage.getItem('lang_id');
       if (lang_id == '2') {
         this.roles = [
+          { role: "All", name: "All", slug: "all", id: 0 },
           { role: "Admin", name: "Admin", slug: "admin", id: 1 },
           { role: "Club", name: "Club", slug: "club", id: 2 },
           { role: "Scout", name: "Scout", slug: "scout", id: 3 },

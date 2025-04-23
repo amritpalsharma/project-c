@@ -135,12 +135,17 @@
                   <ng-container matColumnDef="Name">
                     <th mat-header-cell *matHeaderCellDef> {{ 'name' | translate }} </th>
                     <td mat-cell *matCellDef="let element">
-
+                      <!-- <pre>{{element | json}}</pre> -->
                       <div class="d-flex align-items-center pic-with-name">
                         <span class="position-relative">
-                          <img src="{{element.meta.profile_image_path}}"
+                          <img *ngIf="element.role_name"
+                            [src]="element.role_name?.toLowerCase() === 'club' ? baseUrl + element.pre_current_club_logo : baseUrl + element.meta.profile_image"
                             class="dashboard_users_profile_images table_img"
                             onerror="this.onerror=null; this.src='../../../assets/images/1.png';">
+
+                          <!-- <img *ngIf="role_name" src="{{element.meta.profile_image_path}}"
+                            class="dashboard_users_profile_images table_img"
+                            onerror="this.onerror=null; this.src='../../../assets/images/1.png';"> -->
                           <span class="position-absolute verified-icon">
                             <img src="../../../assets/images/pending.png" alt="" class="user-pending-icon"
                               *ngIf="element.status === '1'" />
@@ -159,7 +164,8 @@
                   </ng-container>
 
                   <ng-container matColumnDef="User Type">
-                    <th mat-header-cell *matHeaderCellDef (click)="sortData('role_name')" class="cursor-pointer"> {{ 'userType' | translate }}
+                    <th mat-header-cell *matHeaderCellDef (click)="sortData('role_name')" class="cursor-pointer"> {{
+                      'userType' | translate }}
                       <span class="sort-icon">
                         <svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path
@@ -173,7 +179,8 @@
                   </ng-container>
 
                   <ng-container matColumnDef="Language">
-                    <th mat-header-cell *matHeaderCellDef (click)="sortData('language')" class="cursor-pointer"> {{ 'language' | translate }}
+                    <th mat-header-cell *matHeaderCellDef (click)="sortData('language')" class="cursor-pointer"> {{
+                      'language' | translate }}
                       <span class="sort-icon">
                         <svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path
@@ -186,7 +193,8 @@
                   </ng-container>
 
                   <ng-container matColumnDef="Location">
-                    <th mat-header-cell *matHeaderCellDef (click)="sortData('user_location')" class="cursor-pointer">{{ 'location' | translate
+                    <th mat-header-cell *matHeaderCellDef (click)="sortData('user_location')" class="cursor-pointer">{{
+                      'location' | translate
                       }}
                       <span class="sort-icon">
                         <svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -199,7 +207,8 @@
                     <td mat-cell *matCellDef="let element"> {{ element.user_location }}</td>
                   </ng-container>
                   <ng-container matColumnDef="Joined Date - Time">
-                    <th mat-header-cell *matHeaderCellDef (click)="sortData('updated_at')" class="cursor-pointer"> {{ 'joinedDateTime' |
+                    <th mat-header-cell *matHeaderCellDef (click)="sortData('updated_at')" class="cursor-pointer"> {{
+                      'joinedDateTime' |
                       translate }}
                       <!-- <small><i class="fas fa-sort"></i> </small>   -->
                       <span class="sort-icon">
@@ -228,15 +237,15 @@
                   </ng-container>
                   <ng-container matColumnDef="Status">
                     <th mat-header-cell *matHeaderCellDef class="cursor-pointer" (click)="sortData('status')">
-                       {{ 'status' | translate }} 
-                       <span class="sort-icon">
+                      {{ 'status' | translate }}
+                      <span class="sort-icon">
                         <svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path
                             d="M1.15341 8.43701H7.84716C8.44903 8.43701 8.74997 9.1958 8.32528 9.63818L4.97841 13.1245C4.71404 13.3999 4.28654 13.3999 4.02497 13.1245L0.675285 9.63818C0.250597 9.1958 0.551535 8.43701 1.15341 8.43701ZM8.32528 5.36084L4.97841 1.87451C4.71404 1.59912 4.28654 1.59912 4.02497 1.87451L0.675285 5.36084C0.250597 5.80322 0.551535 6.56201 1.15341 6.56201H7.84716C8.44903 6.56201 8.74997 5.80322 8.32528 5.36084Z"
                             fill="#111418" />
                         </svg>
                       </span>
-                      </th>
+                    </th>
                     <td mat-cell *matCellDef="let element">
                       <span *ngIf="element.status === '1'" class="bg_pending">{{ 'pending' | translate }}</span>
                       <span *ngIf="element.status === '2'" class="bg_success">{{ 'approved' | translate }}</span>
@@ -261,8 +270,9 @@
 
                   <tr class="mat-row user-empty-tr" *matNoDataRow>
                     <td [attr.colspan]="displayedColumns.length" class="user-empty-td">
-                      <!-- <emplty-table *ngIf="isLoading"></emplty-table> -->
-
+                      <div *ngIf="totalRows == 0 && !isLoading" style="text-align: center;">{{ 'noRecordFound' |
+                        translate
+                        }}</div>
                     </td>
                   </tr>
                 </table>

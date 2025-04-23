@@ -211,17 +211,17 @@ export class TalentService {
 
   getPerformanceData(): Observable<any> {
     const headers = this.headers();
-
+    let lang_id  = localStorage.getItem('lang_id');
     return this.http.get<{ status: boolean, message: string, data: {} }>(
-      `${this.apiUrl}player/get-performance-detail`, { headers }
+      `${this.apiUrl}player/get-performance-detail/${lang_id}`, { headers }
     );
   }
 
   getTransferData(): Observable<any> {
     const headers = this.headers();
-
+    let lang_id  = localStorage.getItem('lang_id');
     return this.http.get<{ status: boolean, message: string, data: {} }>(
-      `${this.apiUrl}player/get-transfer-detail`, { headers }
+      `${this.apiUrl}player/get-transfer-detail/${lang_id}`, { headers }
     );
   }
 
@@ -237,7 +237,7 @@ export class TalentService {
     const headers = this.headers();
 
     return this.http.get<{ status: boolean, message: string, data: {} }>(
-      `${this.apiUrl}get-countries`, { headers, params }
+      `${this.apiUrl}get-countries/${params.lang}`, { headers, params }
     );
 
   }

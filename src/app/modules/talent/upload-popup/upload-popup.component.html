@@ -36,7 +36,10 @@
 
         </div>
 
-        <div *ngIf="isLoading" class="upload-box">
+        <!-- <div *ngIf="!isLoading" class="upload-box please-wait-box" [ngClass]="theme=='dark' ? 'please-wait-box' : ''">
+            {{'pleaseWait' | translate}}
+        </div> -->
+        <div *ngIf="!isLoading" class="upload-box please-wait-box">
             {{'pleaseWait' | translate}}
         </div>
 

@@ -409,3 +409,29 @@ button.submit_btn {
     font-size: 20px;
 }
 }
+
+
+@media (min-width: 992px) and (max-width: 1599px) {
+  .form-heading {
+    font-size: 45px;
+    margin-top: 2rem;
+  }
+  .cookie-text {
+    font-size: 55px;
+  }
+}
+
+
+@media (min-width: 576px) and (max-width: 991px) {
+  .form-heading {
+      font-size: 35px;
+      margin-bottom: 1rem;
+      margin-top: 1rem;
+  }
+  .submit_btn {
+      margin-left: 0 !important;
+  }
+  .cookie-text {
+    font-size: 40px;
+  }
+}

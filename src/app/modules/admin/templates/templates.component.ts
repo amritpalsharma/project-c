@@ -304,8 +304,8 @@ export class TemplatesComponent {
 
     filterDialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
-        this.applyUserFilter(result);
-        console.log('Dialog result:', result);
+        // this.applyUserFilter(result);
+        // console.log('Dialog result:', result);
         this.applyUserFilter(result.userFilters);
         this.count = result.filterCount;
       } else {

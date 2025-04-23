@@ -440,7 +440,6 @@ input:checked+.slider:before {
   padding-right: 2px;
   color: #e05263;
   font-size: 18px;
-
   line-height: 1;
 }
 
@@ -1012,6 +1011,13 @@ option.countary {
   }
 }
 
+
+@media (min-width: 992px) {
+.mobile_scl {
+  display: none;
+}
+}
+
 @media (max-width: 991px) {
   .navbar-collapse {
     background-color: #f2f2f2;
@@ -1040,11 +1046,17 @@ option.countary {
     padding-top: 20px;
     padding-bottom: 20px;
   }
+  .footer-contact .social-link {
+    display: none !important;
+  }
 }
 
 @media (max-width: 767px) {
   .footer-logo {
     margin-left: 119px;
+  }
+  .footer-contact img {
+    width: 100%;
   }
 
   #footer .footer-top h4 {
@@ -1087,8 +1099,8 @@ option.countary {
   }
 
   .footer-logo {
-    height: 87px;
-    width: 190px;
+    height: 97px;
+    width: 220px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -1306,52 +1318,36 @@ option.countary {
 }
 
 @media (max-width: 321px) {
-  #footer .footer-top .footer-links ul li a {
-    font-size: 14px;
-  }
-
-  #footer .footer-top h4 {
-    margin-bottom: 0;
-  }
-
   .footer-contact img {
     margin-bottom: 20px;
     width: 180px;
     height: 82px;
   }
-
   p {
     font-size: 12px;
   }
-
   .footer-logo {
     width: 160px;
     margin-bottom: 10px;
   }
-
   #footer .footer-top h4 {
     margin-left: 70px;
     margin-top: 0;
   }
-
   .select-country,  p.country {
     margin-left: 70px;
   }
-
   .social-link {
     margin-top: 40px;
     margin-left: 70px;
   }
-
   #footer .footer-top .footer-links ul {
     margin-left: 70px;
     margin-bottom: 20px;
   }
-
   .c-name {
     font-size: 12px;
   }
-
   .form-select {
     width: 135px;
     line-height: 20px;
@@ -1428,21 +1424,21 @@ option.countary {
 }
 
 
-@media (min-width: 1600px) and (max-width: 1999px) {
+@media (min-width: 992px) and (max-width: 1999px) {
   #footer .footer-top h4 {
-    font-size: 22px !important;
+    font-size: 22px;
   }
-  p, #footer .footer-top .footer-links ul li a {
-    font-size: 20px !important;
+  #footer .footer-top .footer-links ul li a {
+    font-size: 20px;
   }
 }
 
 @media (min-width: 768px) and (max-width: 1199px) {
 #footer .footer-top h4 {
-  font-size: 25px !important;
+  font-size: 25px;
 }
 #footer .footer-top .footer-links ul li a, p.country  {
-  font-size: 20px !important;
+  font-size: 20px;
 }
 }
 
@@ -1450,5 +1446,25 @@ option.countary {
 @media (min-width: 3000px) {
 .footer-contact img {
   width: 320px;
+}
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  #footer .footer-top h4 {
+        font-size: 27px;
+        padding-bottom: 5px;
+  }
+  #footer .footer-top .footer-links ul li a {
+    font-size: 20px;
+  }
+}
+
+
+@media (max-width: 575px) {
+#footer .footer-top h4 {
+    font-size: 22px;
+}
+#footer .footer-top .footer-links ul li a {
+  font-size: 17px;
 }
 }

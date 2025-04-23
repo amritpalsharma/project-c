@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UploadPopupComponent } from '../../upload-popup/upload-popup.component';
 import { MatDialog } from '@angular/material/dialog';
 import { TalentService } from '../../../../services/talent.service';
@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { environment } from '../../../../../environments/environment';
 import { WebPages } from '../../../../services/webpages.service';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
+import { UnverifiedUserComponent } from '../../../shared/unverified-user/unverified-user.component';
 
 @Component({
   selector: 'talent-gallery-tab',
@@ -26,6 +27,7 @@ export class GalleryTabComponent {
   @Input() coverImage: string = '';  // Define an input property
   @Output() dataEmitter = new EventEmitter<string>();
   @Input() isPremium: any;
+  @Input() isUserVerified: any;
   pleaseWait: string = '';
   Processing: string = '';
   successTxt: string = '';
@@ -41,6 +43,7 @@ export class GalleryTabComponent {
     private talentService: TalentService,
     private translateService: TranslateService,
     public webPages: WebPages,
+    public router: Router,
     public dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -162,11 +165,11 @@ export class GalleryTabComponent {
         next: (response) => {
           this.toastr.clear(loadingToast.toastId);
           if (response && response.status) {
-            if(type==='image'){
+            if (type === 'image') {
               const index = this.userImages.findIndex((x: any) => x.id === id);
               this.userImages.splice(index, 1);
             }
-            else{
+            else {
               const index = this.userVideos.findIndex((x: any) => x.id === id);
               this.userVideos.splice(index, 1);
             }
@@ -236,7 +239,7 @@ export class GalleryTabComponent {
   }
 
   getJsonTranslations() {
-    this.translateService.get(['pleaseWait', 'Processing', 'success!', 'requiredFieldsMessage', 'forgotPassword.generalError','error!']).subscribe((translations) => {
+    this.translateService.get(['pleaseWait', 'Processing', 'success!', 'requiredFieldsMessage', 'forgotPassword.generalError', 'error!']).subscribe((translations) => {
       this.pleaseWait = translations['pleaseWait'];
       this.Processing = translations['Processing'];
       this.successTxt = translations['success!'];
@@ -246,6 +249,27 @@ export class GalleryTabComponent {
       // this.titleService.setTitle(this.pageTitle);
       console.log('Title fetch Function Fired');
     })
+  }
+
+  navigatePlans() {
+    this.router.navigate(['/talent/plans']);
+  }
+
+  showVerificationPopup() {
+    const messageDialog = this.dialog.open(UnverifiedUserComponent, {
+      width: '500px',
+      position: {
+        top: '150px'
+      }
+    })
+
+    messageDialog.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        if (result.action == "delete-confirmed") {
+          // this.deleteUser();
+        }
+      }
+    });
   }
 
 }

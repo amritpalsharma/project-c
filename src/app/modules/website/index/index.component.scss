@@ -225,7 +225,7 @@ a {
   position: relative;
 }
 .main-bnr h1 {
-  font-size: 40px;
+  font-size: 50px;
   font-weight: 700;
 }
 .header-transparent {
@@ -626,7 +626,7 @@ li {
 .joined-btn button.btn {
   // color: #E05263;
   border-radius: 20px;
-  height: 41px;
+  height: auto;
   width: 230px;
   font-weight: bold;
 }
@@ -4939,10 +4939,25 @@ h3, .text_side_wrapper p {
 }
 }
 
+@media (min-width: 992px) and (max-width: 1599px) {
+  .banner-inner {
+    padding-top: 300px;
+  }
+  h3, .works h3, .joined-text h3 {
+    font-size: 45px;
+  }
+  .works-btn button.btn, .banner-btn .btn {
+    font-size: 20px;
+  }
+  .progress_btn a {
+    font-size: 24px;
+}
+}
+
 
 @media (min-width: 1600px) and (max-width: 1999px) {
   .banner-inner {
-    padding-top: 180px;
+    padding-top: 280px;
   }
   h3, .works h3 {
     font-size: 45px;
@@ -4951,7 +4966,7 @@ h3, .text_side_wrapper p {
 
 @media (min-width: 2000px) and (max-width: 2999px) {
   .main-bnr {
-    height: 1400px;
+    height: 1100px;
   }
   .banner-inner {
     padding-top: 400px;

@@ -241,7 +241,7 @@ body {
         padding-bottom: 20px;
     }
     .content_page h4{
-        font-size: 16px;
+        font-size: 18px;
         margin-bottom: 10px;
     }
     .content_page p {
@@ -253,6 +253,10 @@ body {
     }
     .content_page li::marker {
         font-size: 19px;
+    }
+    .cookie-text {
+        font-size: 30px;
+        padding-top: 3rem;
     }
 }
 @media (max-width: 400px) {
@@ -268,20 +272,6 @@ body {
     }
 }
 @media (max-width: 321px) {
-    .content_page h4{
-        font-size: 14px;
-    }
-    .content_page p {
-        font-size: 12px;
-    }
-    .content_page li {
-        font-size: 12px;
-        margin-top: 10px;
-    }
-    .content_page li::before {
-        top: 11px;
-        font-size: 35px;
-    }
     .content_page li {
         padding-left: 20px;
     }
@@ -291,11 +281,27 @@ body {
 }
 
 
-@media (min-width: 1600px) and (max-width: 1999px) {
+@media (min-width: 992px) and (max-width: 1999px) {
     .common_static_page h4 {
-      font-size: 28px;
-  }
-  .common_static_page p, .common_static_page address, .common_static_page li {
-    font-size: 22px;
-  }
+        font-size: 30px;
+    }
+    .common_static_page p, .common_static_page address, .common_static_page li {
+        font-size: 24px;
+    }
+    .content_page li::before {
+        top: 19px;
+    }
+}
+
+
+@media (min-width: 576px) and (max-width: 991px) {
+    .common_static_page h4 {
+        font-size: 25px;
+    }
+    .common_static_page p, .common_static_page address, .common_static_page li {
+        font-size: 20px;
+    }
+    .content_page li::before {
+        top: 15px;
+    }
 }

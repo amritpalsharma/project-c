@@ -8,6 +8,7 @@ import { AddPerformanceComponent } from './add-performance/add-performance.compo
 import { DeletePopupComponent } from '../../delete-popup/delete-popup.component';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { GlobalSettingsService } from '../../../../services/global-settings.service';
+import { UnverifiedUserComponent } from '../../../shared/unverified-user/unverified-user.component';
 
 @Component({
   selector: 'talent-performance-tab',
@@ -32,6 +33,7 @@ export class PerformanceTabComponent {
   }
   loggedInUser: any = localStorage.getItem('userData');
   @Input() isPremium: any;
+  @Input() isUserVerified: any;
   currentThemeMode: any = localStorage.getItem('theme');
 
   // from_date:2021-01-01
@@ -56,6 +58,7 @@ export class PerformanceTabComponent {
     this.getToasterMsg();
     this.translate.onLangChange.subscribe((event) => {
       this.getToasterMsg();
+      this.getUserPerformance(this.userId);
       // alert(`Language changed to: ${event.lang}`);
     });
     this.themeChanged();
@@ -271,6 +274,27 @@ export class PerformanceTabComponent {
     if (this.currentThemeMode == null || this.currentThemeMode == undefined) {
       this.currentThemeMode = 'light';
     }
+  }
+
+  navigatePlans() {
+    this.router.navigate(['/talent/plans']);
+  }
+
+  showVerificationPopup() {
+    const messageDialog = this.dialog.open(UnverifiedUserComponent, {
+      width: '500px',
+      position: {
+        top: '150px'
+      }
+    })
+
+    messageDialog.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        if (result.action == "delete-confirmed") {
+          // this.deleteUser();
+        }
+      }
+    });
   }
 }
 

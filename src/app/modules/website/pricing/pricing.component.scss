@@ -745,3 +745,9 @@ li::before {
         font-size: 20px;
     }
 }
+
+@media (min-width: 992px) and (max-width: 1599px) {
+    .price-heading3 {
+      font-size: 45px;
+    }
+}

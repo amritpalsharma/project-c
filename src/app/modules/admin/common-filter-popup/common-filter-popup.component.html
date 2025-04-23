@@ -224,7 +224,7 @@
         <input type="radio" name="status" value="draft" hidden (click)="setFilter('status', 'draft')"> {{ 'draft' |
         translate }}
       </label>
-      <label class="btn btn-light filter-button" [class.activefilter]="userFilters['status'] == 'expired'">
+      <label class="btn btn-light filter-button" [class.activefilter]="userFilters['status'] == 'expired'" [ngClass]="{'d-none': page == 'blog'}">
         <input type="radio" name="status" value="expired" hidden (click)="setFilter('status', 'expired')"> {{ 'expired'
         | translate }}
       </label>

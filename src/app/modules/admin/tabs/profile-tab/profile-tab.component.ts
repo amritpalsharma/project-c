@@ -12,6 +12,7 @@ export class ProfileTabComponent {
   user: any = {}
   userNationalities: any = [];
   countryFlagUrl: any;
+  baseUrl:string = 'https://api.socceryou.ch/uploads/';
 
   @Input() userData: any;
   @Input() userCountryFlag: any;

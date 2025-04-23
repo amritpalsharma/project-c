@@ -78,7 +78,7 @@ export class TalkService {
       conversation.setParticipant(this.user);
       conversation.setParticipant(otherUser);
       conversation.setParticipant(hiddenUser);
-      conversation.setAttributes({ custom: { search: `${this.user.name} ${otherUser.name}` }});
+      conversation.setAttributes({ custom: { search: `${this.user.name} ${otherUser.name}` } });
       if (!this.inbox) {
         this.inbox = this.session.createInbox({ selected: conversation });
       } else {
@@ -111,7 +111,7 @@ export class TalkService {
       conversation.setParticipant(this.user);
       const otherNames = userList.map(user => user.name);
       const names = [this.user.name, ...otherNames].join(" ");
-      conversation.setAttributes({ custom: { search: names }});
+      conversation.setAttributes({ custom: { search: names } });
       console.info('Users Recived in TalkJs.Service', userList);
       // Add all other users to the conversation
       userList.forEach(user => {
@@ -207,6 +207,65 @@ export class TalkService {
     this.inbox = this.session.createInbox();
     this.inbox.mount(document.getElementById('talkjs-container') as HTMLElement);
   }
+
+
+  startChatWithUser22425(otherUserData: any) {
+    const userDataString = localStorage.getItem('userData');
+    if (userDataString) {
+      let userData = JSON.parse(userDataString);
+      let userArr = {
+        id: userData.id,
+        name: userData.first_name,
+        email: userData.username,
+        photoUrl: userData.profile_image,
+        welcomeMessage: null,
+        role: (userData.role == '1') ? "hidden" : "default"
+      };
+      const currentUser = new Talk.User(userArr);
+      const otherUser = new Talk.User(otherUserData);
+
+      const session = new Talk.Session({ appId: 'tmI75KXB', me: currentUser });
+
+      const conversation = session.getOrCreateConversation(Talk.oneOnOneId(currentUser, otherUser));
+      conversation.setParticipant(currentUser);
+      conversation.setParticipant(otherUser);
+
+      const chatbox = session.createChatbox();
+      chatbox.select(conversation);
+      chatbox.mount(document.getElementById('talkjs-container'));
+    }
+  }
+
+  startChatWithUser(otherUserData: any) {
+    const userDataString = localStorage.getItem('userData');
+    console.info('your chat is starts with ',otherUserData);
+    if (userDataString) {
+      let userData = JSON.parse(userDataString);
+      let userArr = {
+        id: userData.id,
+        name: userData.first_name,
+        email: userData.username,
+        photoUrl: userData.profile_image,
+        welcomeMessage: null,
+        role: (userData.role == '1') ? "hidden" : "default"
+      };
+  
+      const currentUser = new Talk.User(userArr);
+      const otherUser = new Talk.User(otherUserData);
+  
+      const session = new Talk.Session({ appId: 'tmI75KXB', me: currentUser });
+  
+      const conversation = session.getOrCreateConversation(Talk.oneOnOneId(currentUser, otherUser));
+      conversation.setParticipant(currentUser);
+      conversation.setParticipant(otherUser);
+  
+      const inbox = session.createInbox();
+      inbox.select(conversation); // optional: opens the specific chat
+      inbox.mount(document.getElementById('talkjs-container'));
+    }
+  }
+  
+
 
 
 }
