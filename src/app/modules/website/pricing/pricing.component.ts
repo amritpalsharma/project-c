@@ -11,6 +11,7 @@ export class PricingComponent {
   isActive1 = true; // Premium Plan
   isActive2 = true; // Multi-Country Plan
   isActive3 = true; // Boost Profile Plan
+  selectedTab:string='monthly';
   pageData: any; // To hold the API response data
   advertisemnet_base_url: string = '';
   isLoading: boolean = true;
@@ -254,5 +255,9 @@ export class PricingComponent {
   }
   ngAfterViewInit() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  setActiveTab(currentTab:any){
+    this.selectedTab = currentTab;
   }
 }

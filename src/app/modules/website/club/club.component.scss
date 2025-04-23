@@ -5969,6 +5969,7 @@ span {
     .body_card {
         height: 300px;
         overflow: auto;
+        padding-right: 5px;
     }
     .item_column:nth-child(odd) {
         .premium-text p {
@@ -6224,3 +6225,16 @@ h2.accordion-header {
     font-size: 18px;
 }
 }
+
+
+.shadow_container .body_card::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px #b7c5b5;
+    background-color: #b7c5b5;
+}
+.shadow_container .body_card::-webkit-scrollbar {
+    width: 4px;
+    background-color: #b7c5b5;
+}
+.shadow_container .body_card::-webkit-scrollbar-thumb {
+    background-color: #E05263;
+} 

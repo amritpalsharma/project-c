@@ -32,8 +32,274 @@
 
     <div class="pricing py_0">
       <div class="container">
-        <h3 class="price-heading3 text-uppercase">{{ pageData?.pricing_tabs_title }}</h3> <!-- Dynamic Subtitle -->
-        <div class="row">
+        <div class="sec_title text-center">
+          <h3 class="price-heading3 text-uppercase">Pricing : 2 months free on yearly plan </h3>
+      </div>
+      <div class="pricing_tabs_container">
+          <ul class="nav nav-tabs justify-content-center border-0" role="tablist">
+              <li class="nav-item" role="presentation">
+                  <a class="nav-link active" data-bs-toggle="tab" href="#Tab1" role="tab" aria-selected="true"  (click)="setActiveTab('monthly')">Monthly</a>
+              </li>
+              <li class="nav-item" role="presentation">
+                  <a class="nav-link" data-bs-toggle="tab" href="#Tab2" role="tab" aria-selected="false" (click)="setActiveTab('yearly')">Yearly</a>
+              </li>
+          </ul>
+          <div class="tab_data_wrapper">
+              <div class="tab-pane active" id="Tab1" role="tabpanel" *ngIf="selectedTab == 'monthly'">
+                  <div class="shadow_container">
+                      <div class="row">
+                          <div class="col-md-4 item_column">
+                            <div class="item_card">
+                                <div class="header_card">
+                                    <h2 class="premium-heading3">47<span>.- CHF / <span>Monthly</span></span></h2>
+                                    <h3 class="premium-heading2">Premium</h3>
+                                    <h5 class="premium-heading5">For Talents, Clubs & Scouts</h5>
+                                </div>
+                                <div class="body_card">
+                                    <h5 class="premium-heading5">Premium Features:</h5>
+                                    <div class="text_List_wrap">
+                                        <div class="premium-text">
+                                            <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                                            <p>Talent profiles with detailed statistics, performance data, achievements, and transfers visible.</p>
+                                        </div>
+                                        <div class="premium-text">
+                                            <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                                            <p>Club and scout profiles with all contents visible</p>
+                                        </div>
+                                        <div class="premium-text">
+                                            <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                                            <p>Download talent profile as PDF</p>
+                                        </div>
+                                        <div class="premium-text">
+                                            <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                                            <p>Create your own favorites lists with talents, scouts, or clubs</p>
+                                        </div>
+                                        <div class="premium-text">
+                                            <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                                            <p>Upload highlight photos and videos and view them on other profiles</p>
+                                        </div>
+                                        <div class="premium-text">
+                                            <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                                            <p>Provide and link social media channels and website in your profile</p>
+                                        </div>
+                                        <div class="premium-text">
+                                            <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                                            <p>For scouts: Create a portfolio and invite talents to join it</p>
+                                        </div>
+                                        <div class="premium-text">
+                                            <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                                            <p>For clubs: Organize scouting sessions and invite registered talents to join</p>
+                                        </div>
+                                        <div class="premium-text">
+                                            <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                                            <p>For clubs: Manage your own club players directly in the teams on SoccerYou</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="footer_card buy_now_btn_front_price">
+                                    <a *ngIf="plansPageLink && plansPageLink.length > 0" [routerLink]="plansPageLink"
+                                        class="btn fill_btn w-100">{{ 'buyNow' | translate }}</a>
+                                    <a *ngIf="!plansPageLink" data-bs-toggle="modal" data-bs-target="#exampleModal1"
+                                        class="btn fill_btn w-100">{{ 'buyNow' | translate }}</a>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="col-md-4 item_column">
+                              <div class="item_card">
+                                  <div class="header_card">
+                                      <h2 class="premium-heading3">11<span>.- CHF / <span>Monthly</span></span></h2>
+                                      <h3 class="premium-heading2"> Multi-Country </h3>
+                                      <h5 class="premium-heading5">For Talents and Scouts</h5>
+                                  </div>
+                                  <div class="body_card">
+                                      <h5 class="premium-heading5">Multi-Country Features:</h5>
+                                      <div class="text_List_wrap">
+                                          <div class="premium-text">
+                                              <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                                              <p>Make your profile visible in other countries of your choice</p>
+                                          </div>
+                                          <div class="premium-text">
+                                              <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                                              <p>Increase your visibility – internationally</p>
+                                          </div>
+                                          <div class="premium-text">
+                                              <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                                              <p>Build an international network</p>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="footer_card buy_now_btn_front_price">
+                                      <a *ngIf="plansPageLink && plansPageLink.length > 0" [routerLink]="plansPageLink"
+                                          class="btn fill_btn w-100">{{ 'buyNow' | translate }}</a>
+                                      <a *ngIf="!plansPageLink" data-bs-toggle="modal" data-bs-target="#exampleModal1"
+                                          class="btn fill_btn w-100">{{ 'buyNow' | translate }}</a>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-md-4 item_column">
+                              <div class="item_card">
+                                  <div class="header_card">
+                                      <h2 class="premium-heading3">11<span>.- CHF / <span>Monthly</span></span></h2>
+                                      <h3 class="premium-heading2"> Boost Profile</h3>
+                                      <h5 class="premium-heading5">For Talents and Scouts</h5>
+                                  </div>
+                                  <div class="body_card">
+                                      <h5 class="premium-heading5">Boost Features:</h5>
+                                      <div class="text_List_wrap">
+                                          <div class="premium-text">
+                                              <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                                              <p>Your profile picture will have a special and highlighted background</p>
+                                          </div>
+                                          <div class="premium-text">
+                                              <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                                              <p>Your profile will appear at the top of the search results when your characteristics are searched for</p>
+                                          </div>
+                                          <div class="premium-text">
+                                              <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                                              <p>More visibility - higher chances of being discovered</p>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="footer_card buy_now_btn_front_price">
+                                      <a *ngIf="plansPageLink && plansPageLink.length > 0" [routerLink]="plansPageLink"
+                                          class="btn fill_btn w-100">{{ 'buyNow' | translate }}</a>
+                                      <a *ngIf="!plansPageLink" data-bs-toggle="modal" data-bs-target="#exampleModal1"
+                                          class="btn fill_btn w-100">{{ 'buyNow' | translate }}</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="tab-pane" id="Tab2" role="tabpanel" *ngIf="selectedTab == 'yearly'">
+                  <div class="shadow_container">
+                      <div class="row">
+                        <div class="col-md-4 item_column">
+                          <div class="item_card">
+                              <div class="header_card">
+                                  <h2 class="premium-heading3">470<span>.- CHF / <span>Monthly</span></span></h2>
+                                  <h3 class="premium-heading2">Premium</h3>
+                                  <h5 class="premium-heading5">For Talents, Club & Scouts</h5>
+                              </div>
+                              <div class="body_card">
+                                  <h5 class="premium-heading5">Premium Features:</h5>
+                                  <div class="text_List_wrap">
+                                      <div class="premium-text">
+                                          <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                                          <p>Talent profiles with detailed statistics, performance data, achievements, and transfers visible.</p>
+                                      </div>
+                                      <div class="premium-text">
+                                          <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                                          <p>Club and scout profiles with all contents visible</p>
+                                      </div>
+                                      <div class="premium-text">
+                                          <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                                          <p>Download talent profile as PDF</p>
+                                      </div>
+                                      <div class="premium-text">
+                                          <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                                          <p>Create your own favorites lists with talents, scouts, or clubs</p>
+                                      </div>
+                                      <div class="premium-text">
+                                          <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                                          <p>Upload highlight photos and videos and view them on other profiles</p>
+                                      </div>
+                                      <div class="premium-text">
+                                          <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                                          <p>Provide and link social media channels and website in your profile</p>
+                                      </div>
+                                      <div class="premium-text">
+                                          <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                                          <p>For scouts: Create a portfolio and invite talents to join it</p>
+                                      </div>
+                                      <div class="premium-text">
+                                          <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                                          <p>For clubs: Organize scouting sessions and invite registered talents to join</p>
+                                      </div>
+                                      <div class="premium-text">
+                                          <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                                          <p>For clubs: Manage your own club players directly in the teams on SoccerYou</p>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="footer_card buy_now_btn_front_price">
+                                  <a *ngIf="plansPageLink && plansPageLink.length > 0" [routerLink]="plansPageLink"
+                                      class="btn fill_btn w-100">{{ 'buyNow' | translate }}</a>
+                                  <a *ngIf="!plansPageLink" data-bs-toggle="modal" data-bs-target="#exampleModal1"
+                                      class="btn fill_btn w-100">{{ 'buyNow' | translate }}</a>
+                              </div>
+                          </div>
+                        </div>
+                        <div class="col-md-4 item_column">
+                            <div class="item_card">
+                                <div class="header_card">
+                                    <h2 class="premium-heading3">110<span>.- CHF / <span>Monthly</span></span></h2>
+                                    <h3 class="premium-heading2"> Multi-Country </h3>
+                                    <h5 class="premium-heading5">For Talents and Scouts</h5>
+                                </div>
+                                <div class="body_card">
+                                    <h5 class="premium-heading5">Multi-Country Features:</h5>
+                                    <div class="text_List_wrap">
+                                        <div class="premium-text">
+                                            <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                                            <p>Make your profile visible in other countries of your choice</p>
+                                        </div>
+                                        <div class="premium-text">
+                                            <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                                            <p>Increase your visibility – internationally</p>
+                                        </div>
+                                        <div class="premium-text">
+                                            <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                                            <p>Build an international network</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="footer_card buy_now_btn_front_price">
+                                    <a *ngIf="plansPageLink && plansPageLink.length > 0" [routerLink]="plansPageLink"
+                                        class="btn fill_btn w-100">{{ 'buyNow' | translate }}</a>
+                                    <a *ngIf="!plansPageLink" data-bs-toggle="modal" data-bs-target="#exampleModal1"
+                                        class="btn fill_btn w-100">{{ 'buyNow' | translate }}</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 item_column">
+                            <div class="item_card">
+                                <div class="header_card">
+                                    <h2 class="premium-heading3">110<span>.- CHF / <span>Monthly</span></span></h2>
+                                    <h3 class="premium-heading2"> Boost Profile</h3>
+                                    <h5 class="premium-heading5">For Talents and Scouts</h5>
+                                </div>
+                                <div class="body_card">
+                                    <h5 class="premium-heading5">Boost Features:</h5>
+                                    <div class="text_List_wrap">
+                                        <div class="premium-text">
+                                            <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                                            <p>Your profile picture will have a special and highlighted background</p>
+                                        </div>
+                                        <div class="premium-text">
+                                            <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                                            <p>Your profile will appear at the top of the search results when your characteristics are searched for</p>
+                                        </div>
+                                        <div class="premium-text">
+                                            <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
+                                            <p>More visibility - higher chances of being discovered</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="footer_card buy_now_btn_front_price">
+                                    <a *ngIf="plansPageLink && plansPageLink.length > 0" [routerLink]="plansPageLink"
+                                        class="btn fill_btn w-100">{{ 'buyNow' | translate }}</a>
+                                    <a *ngIf="!plansPageLink" data-bs-toggle="modal" data-bs-target="#exampleModal1"
+                                        class="btn fill_btn w-100">{{ 'buyNow' | translate }}</a>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+        <div class="row d-none">
           <div class="col-lg-4 col-md-12 col-12">
             <div class="price_mat_wrapper">
               <mat-card class="plan_price_box">
