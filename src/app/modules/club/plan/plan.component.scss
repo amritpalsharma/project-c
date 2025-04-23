@@ -373,20 +373,49 @@ sub.premium-month_title {
 
 
 
-@media (min-width:2000px) {
-    .premium_list label .checkmark:after {
-        left: 8px;
-    }
-    .subscription-plan h2, .premium-plan-list h3, .premium-plan_box h3 {
-        font-size: 24px !important;
-    }
-    .subscription-switch label, sub.premium-month_title {
-        font-size: 18px !important;
-    }
-    .premium_button span {
-        font-size: 14px !important;	
-    }
-    .premium-currency h6 {
-        font-size: 38px !important;
-    }
+@media (min-width: 1600px) and (max-width: 2999px) {
+	.premium_list label .checkmark:after {
+	    left: 8px;
+	}
+	.subscription-plan h2, .premium-plan-list h3, .premium-plan_box h3 {
+	    font-size: 24px !important;
+	}
+	.subscription-switch label, sub.premium-month_title {
+	    font-size: 18px !important;
+	}
+	.premium_button span {
+	    font-size: 14px !important;	
+	}
+	.premium-currency h6 {
+	    font-size: 38px !important;
+	}
+	.premium_list label {
+	    font-size: 20px;
+	}
+}
+
+
+@media (min-width:3000px) {
+	.premium_list label .checkmark:after {
+	    left: 8px;
+	}
+	.subscription-plan h2, .premium-plan-list h3, .premium-plan_box h3 {
+	    font-size: 30px !important;
+	}
+	.subscription-switch label, sub.premium-month_title {
+	    font-size: 24px !important;
+	}
+	.premium_button span {
+	    font-size: 18px !important;	
+	}
+	.premium-currency h6 {
+	    font-size: 45px !important;
+	}
+	.premium_list label {
+	    font-size: 25px;
+	}
+	.premium_list label .checkmark {
+	    height: 30px;
+	    width: 30px;
+	}
 }

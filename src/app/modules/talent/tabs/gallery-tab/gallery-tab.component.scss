@@ -307,7 +307,7 @@ h5{
     .img-fluid, video {
       height: 200px;
       width: 100%;
-      object-fit: cover;
+      object-fit: cover !important;
       object-position: top center;
     }
      .edit-cover{
@@ -470,9 +470,20 @@ button.add_potos-btn {
   background-color:lightgray;
 }
 
-
-@media (min-width: 2000px){
+@media (min-width: 1600px) and (max-width: 2999px) {
   .gallery-parent p {
-    font-size: 18px !important;
+    font-size: 22px !important;
   }
+  .img-fluid, video {
+    height: 300px !important;
+  }
+}
+
+@media (min-width: 3000px){
+  .gallery-parent p {
+    font-size: 28px !important;
+  }
+  .w-20[_ngcontent-ng-c4267319654] {
+    width: 10% !important;
+}
 }

@@ -381,9 +381,27 @@
 
 
 
-@media (min-width: 2000px){
+@media (min-width: 1600px) and (max-width: 2999px){
   .setting-title {
-    font-size: 24px !important;
-    margin-bottom: 10px;
+    font-size: 28px !important;
+    margin-bottom: 15px;
+  }
+  .nav-link svg {
+    width: 40px !important;
+    height: 40px !important;
+    margin-right: 15px !important;
+  }
+}
+
+
+@media (min-width: 3000px){
+  .setting-title {
+    font-size: 35px !important;
+    margin-bottom: 20px !important;
+  }
+  .nav-link svg {
+    width: 45px !important;
+    height: 45px !important;
+    margin-right: 20px !important;
   }
 }

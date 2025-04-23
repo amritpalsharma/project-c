@@ -149,3 +149,12 @@ border-color: #D9D9D9 !important;
     fill: rgba(0, 112, 242, 1);
   }
 }
+
+
+
+@media (min-width: 2000px) {
+  td svg.pointer {
+    width: 40px;
+    height: 40px;
+}
+}
