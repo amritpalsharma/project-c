@@ -93,7 +93,7 @@
                     <div class="club_text">
                         <img class="light-images" src="./assets/images/talent_page/icons/icon-1.svg">
                         <img class="dark-images" src="./assets/images/talent_page/icons/icon-dark-1.svg">
-                        <!-- <img class="dark-images" src="./assets/images/dark-talent-icon1.svg"> --> 
+                        <!-- <img class="dark-images" src="./assets/images/dark-talent-icon1.svg"> -->
                         <p class="club-text1">{{pageData?.talent_section?.first_tab?.txt}}</p>
                     </div>
                 </div>
@@ -129,8 +129,10 @@
                                     <div class="accordion-flex" data-bs-toggle="collapse"
                                         [attr.data-bs-target]="'#collapse' + i" aria-expanded="false"
                                         [attr.aria-controls]="'collapse' + i">
-                                        <img class="light-feature1" src="/assets/images/talent_page/icons/{{i}}_light.svg">
-                                        <img class="dark-feature1" src="/assets/images/talent_page/icons/{{i}}_dark.svg">
+                                        <img class="light-feature1"
+                                            src="/assets/images/talent_page/icons/{{i}}_light.svg">
+                                        <img class="dark-feature1"
+                                            src="/assets/images/talent_page/icons/{{i}}_dark.svg">
                                         <h2 class="accordion-header" (click)="getArrayItemByIndex(i,'dark_icon')">
                                             {{feature.title}}
                                         </h2>
@@ -234,8 +236,12 @@
                                         [attr.aria-expanded]="activeAccordionIndex === i ? 'true' : 'false'"
                                         [attr.aria-controls]="'collapseOne' + i">
 
-                                        <img class="light-feature1" src="{{baseUrl + feature.icon}}">
-                                        <img class="dark-feature1" src="{{baseUrl + feature.dark_icon}}">
+                                        <!-- <img class="light-feature1" src="{{baseUrl + feature.icon}}"> -->
+                                        <!-- <img class="dark-feature1" src="{{baseUrl + feature.dark_icon}}"> -->
+                                        <img class="light-feature1"
+                                            src="/assets/images/talent_page/icons/{{i}}_light.svg">
+                                        <img class="dark-feature1"
+                                            src="/assets/images/talent_page/icons/{{i}}_dark.svg">
 
                                         <h2 class="accordion-header">
                                             {{feature.title}}
@@ -254,10 +260,17 @@
                                         <div class="accordion-body">
                                             <p class="feature-text">{{feature.desc}}</p>
                                             <div class="talent_tab_image">
+                                                <!-- <img class="single_tab_img light-images"
+                                                    src="{{baseUrl + feature.image}}"> -->
+                                                <!-- <img class="single_tab_img dark-images"
+                                                    src="{{baseUrl + feature.dark_image}}"> -->
+                                                <!-- 
+                                                    <img class="single_tab_img light-images"
+                                                    [src]="'../../../../assets/images/talent_page/talent_featured_img_' + selectedLangSlug + '_'  + activeAccordionIndex + 1 +'.png'"> -->
                                                 <img class="single_tab_img light-images"
-                                                    src="{{baseUrl + feature.image}}">
+                                                    [src]="'../../../../assets/images/talent_page/talent_featured_img_' + selectedLangSlug + '_' + (activeAccordionIndex + 1) + '.png'">
                                                 <img class="single_tab_img dark-images"
-                                                    src="{{baseUrl + feature.dark_image}}">
+                                                    [src]="'../../../../assets/images/talent_page/talent_featured_img_dark_' + selectedLangSlug + '_' +  (activeAccordionIndex + 1) + '.png'">
                                             </div>
                                         </div>
                                     </div>
@@ -328,20 +341,23 @@
             <div class="pricing_tabs_container">
                 <ul class="nav nav-tabs justify-content-center border-0" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link active" data-bs-toggle="tab" href="#Tab1" role="tab" aria-selected="true"  (click)="setActiveTab('monthly')">Monthly</a>
+                        <a class="nav-link active" data-bs-toggle="tab" href="#Tab1" role="tab" aria-selected="true"
+                            (click)="setActiveTab('monthly')">Monthly</a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link" data-bs-toggle="tab" href="#Tab2" role="tab" aria-selected="false" (click)="setActiveTab('yearly')">Yearly</a>
+                        <a class="nav-link" data-bs-toggle="tab" href="#Tab2" role="tab" aria-selected="false"
+                            (click)="setActiveTab('yearly')">Yearly</a>
                     </li>
                 </ul>
                 <div class="tab_data_wrapper">
-                    <div class="tab-pane active" id="Tab1" role="tabpanel" *ngIf="selectedTab == 'monthly'">
+                    <!-- <div class="tab-pane active" id="Tab1" role="tabpanel" *ngIf="selectedTab == 'monthly'">
                         <div class="shadow_container">
                             <div class="row">
                                 <div class="col-md-4 item_column">
                                     <div class="item_card">
                                         <div class="header_card">
-                                            <h2 class="premium-heading3">10<span>.- GBP / <span>Monthly</span></span></h2>
+                                            <h2 class="premium-heading3">10<span>.- GBP / <span>Monthly</span></span>
+                                            </h2>
                                             <h3 class="premium-heading2"> Boost profile </h3>
                                         </div>
                                         <div class="body_card">
@@ -349,7 +365,8 @@
                                             <div class="text_List_wrap">
                                                 <div class="premium-text">
                                                     <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
-                                                    <p>Record your performance data, statistics, transfers, and achievements</p>
+                                                    <p>Record your performance data, statistics, transfers, and
+                                                        achievements</p>
                                                 </div>
                                                 <div class="premium-text">
                                                     <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
@@ -362,17 +379,20 @@
                                             </div>
                                         </div>
                                         <div class="footer_card buy_now_btn_front_price">
-                                            <a *ngIf="plansPageLink && plansPageLink.length > 0" [routerLink]="plansPageLink"
-                                                class="btn fill_btn w-100">{{ 'buyNow' | translate }}</a>
-                                            <a *ngIf="!plansPageLink" data-bs-toggle="modal" data-bs-target="#exampleModal1"
-                                                class="btn fill_btn w-100">{{ 'buyNow' | translate }}</a>
+                                            <a *ngIf="plansPageLink && plansPageLink.length > 0"
+                                                [routerLink]="plansPageLink" class="btn fill_btn w-100">{{ 'buyNow' |
+                                                translate }}</a>
+                                            <a *ngIf="!plansPageLink" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal1" class="btn fill_btn w-100">{{ 'buyNow' |
+                                                translate }}</a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4 item_column">
                                     <div class="item_card">
                                         <div class="header_card">
-                                            <h2 class="premium-heading3">42<span>.- GBP / <span>Monthly</span></span></h2>
+                                            <h2 class="premium-heading3">42<span>.- GBP / <span>Monthly</span></span>
+                                            </h2>
                                             <h3 class="premium-heading2">Premium</h3>
                                         </div>
                                         <div class="body_card">
@@ -380,7 +400,8 @@
                                             <div class="text_List_wrap">
                                                 <div class="premium-text">
                                                     <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
-                                                    <p>Have your profile displayed in other countries of your choice and increase your visibility – internationally</p>
+                                                    <p>Have your profile displayed in other countries of your choice and
+                                                        increase your visibility – internationally</p>
                                                 </div>
                                                 <div class="premium-text">
                                                     <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
@@ -389,17 +410,20 @@
                                             </div>
                                         </div>
                                         <div class="footer_card buy_now_btn_front_price">
-                                            <a *ngIf="plansPageLink && plansPageLink.length > 0" [routerLink]="plansPageLink"
-                                                class="btn fill_btn w-100">{{ 'buyNow' | translate }}</a>
-                                            <a *ngIf="!plansPageLink" data-bs-toggle="modal" data-bs-target="#exampleModal1"
-                                                class="btn fill_btn w-100">{{ 'buyNow' | translate }}</a>
+                                            <a *ngIf="plansPageLink && plansPageLink.length > 0"
+                                                [routerLink]="plansPageLink" class="btn fill_btn w-100">{{ 'buyNow' |
+                                                translate }}</a>
+                                            <a *ngIf="!plansPageLink" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal1" class="btn fill_btn w-100">{{ 'buyNow' |
+                                                translate }}</a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4 item_column">
                                     <div class="item_card">
                                         <div class="header_card">
-                                            <h2 class="premium-heading3">10<span>.- GBP / <span>Monthly</span></span></h2>
+                                            <h2 class="premium-heading3">10<span>.- GBP / <span>Monthly</span></span>
+                                            </h2>
                                             <h3 class="premium-heading2"> Boost profile </h3>
                                         </div>
                                         <div class="body_card">
@@ -407,7 +431,8 @@
                                             <div class="text_List_wrap">
                                                 <div class="premium-text">
                                                     <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
-                                                    <p>Your profile picture will have a special and highlighted background</p>
+                                                    <p>Your profile picture will have a special and highlighted
+                                                        background</p>
                                                 </div>
                                                 <div class="premium-text">
                                                     <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
@@ -416,101 +441,119 @@
                                             </div>
                                         </div>
                                         <div class="footer_card buy_now_btn_front_price">
-                                            <a *ngIf="plansPageLink && plansPageLink.length > 0" [routerLink]="plansPageLink"
-                                                class="btn fill_btn w-100">{{ 'buyNow' | translate }}</a>
-                                            <a *ngIf="!plansPageLink" data-bs-toggle="modal" data-bs-target="#exampleModal1"
-                                                class="btn fill_btn w-100">{{ 'buyNow' | translate }}</a>
+                                            <a *ngIf="plansPageLink && plansPageLink.length > 0"
+                                                [routerLink]="plansPageLink" class="btn fill_btn w-100">{{ 'buyNow' |
+                                                translate }}</a>
+                                            <a *ngIf="!plansPageLink" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal1" class="btn fill_btn w-100">{{ 'buyNow' |
+                                                translate }}</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="tab-pane" id="Tab2" role="tabpanel" *ngIf="selectedTab == 'yearly'">
+                    </div> -->
+                    <div class="tab-pane" id="Tab2" role="tabpanel">
                         <div class="shadow_container">
                             <div class="row">
                                 <div class="col-md-4 item_column">
                                     <div class="item_card">
                                         <div class="header_card">
-                                            <h2 class="premium-heading3">10<span>.- GBP / <span>Yearly</span></span></h2>
-                                            <h3 class="premium-heading2"> Boost profile </h3>
+                                            <h2 class="premium-heading3">
+                                                {{ getPlanPriceByName('boost')}}<span>.-{{Currency}} /
+                                                    <span
+                                                        *ngIf="selectedTab == 'yearly'">{{priceArr[0].yearly_label}}</span>
+                                                    <span
+                                                        *ngIf="selectedTab != 'yearly'">{{priceArr[0].monthly_label}}</span>
+                                                </span>
+                                            </h2>
+                                            <h3 class="premium-heading2"> {{getDynamicPlanName('boost')}} </h3>
                                         </div>
                                         <div class="body_card">
-                                            <h5 class="premium-heading5">Multi-Country</h5>
+                                            <h5 class="premium-heading5">{{getDynamicPlanName('boost')}}</h5>
                                             <div class="text_List_wrap">
-                                                <div class="premium-text">
+                                                <div class="premium-text"
+                                                    *ngFor="let desc of getDescByPlanName('boost');">
                                                     <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
-                                                    <p>Record your performance data, statistics, transfers, and achievements</p>
-                                                </div>
-                                                <div class="premium-text">
-                                                    <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
-                                                    <p>Upload highlights in the form of photos and videos</p>
-                                                </div>
-                                                <div class="premium-text">
-                                                    <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
-                                                    <p>Download your player profile with your data as a PDF</p>
+                                                    <p>{{desc}}</p>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="footer_card buy_now_btn_front_price">
-                                            <a *ngIf="plansPageLink && plansPageLink.length > 0" [routerLink]="plansPageLink"
-                                                class="btn fill_btn w-100">{{ 'buyNow' | translate }}</a>
-                                            <a *ngIf="!plansPageLink" data-bs-toggle="modal" data-bs-target="#exampleModal1"
-                                                class="btn fill_btn w-100">{{ 'buyNow' | translate }}</a>
+                                            <a *ngIf="plansPageLink && plansPageLink.length > 0"
+                                                [routerLink]="plansPageLink" class="btn fill_btn w-100">{{ 'buyNow' |
+                                                translate }}</a>
+                                            <a *ngIf="!plansPageLink" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal1" class="btn fill_btn w-100">{{ 'buyNow' |
+                                                translate }}</a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4 item_column">
                                     <div class="item_card">
                                         <div class="header_card">
-                                            <h2 class="premium-heading3">42<span>.- GBP / <span>Yearly</span></span></h2>
-                                            <h3 class="premium-heading2">Premium</h3>
+                                            <h2 class="premium-heading3">
+                                                <!-- 42<span>.- GBP / <span>Yearly</span></span> -->
+                                                {{ getPlanPriceByName('premium')}}<span>.-{{Currency}} /
+                                                    <span
+                                                        *ngIf="selectedTab == 'yearly'">{{priceArr[1].yearly_label}}</span>
+                                                    <span
+                                                        *ngIf="selectedTab != 'yearly'">{{priceArr[1].monthly_label}}</span>
+                                                </span>
+                                            </h2>
+                                            <h3 class="premium-heading2">{{getDynamicPlanName('premium')}}</h3>
                                         </div>
                                         <div class="body_card">
-                                            <h5 class="premium-heading5">Multi-Country</h5>
+                                            <h5 class="premium-heading5">{{getDynamicPlanName('premium')}}</h5>
                                             <div class="text_List_wrap">
-                                                <div class="premium-text">
+                                                <div class="premium-text"
+                                                    *ngFor="let desc of getDescByPlanName('premium');">
                                                     <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
-                                                    <p>Have your profile displayed in other countries of your choice and increase your visibility – internationally</p>
-                                                </div>
-                                                <div class="premium-text">
-                                                    <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
-                                                    <p>Build an international network</p>
+                                                    <p>{{desc}}</p>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="footer_card buy_now_btn_front_price">
-                                            <a *ngIf="plansPageLink && plansPageLink.length > 0" [routerLink]="plansPageLink"
-                                                class="btn fill_btn w-100">{{ 'buyNow' | translate }}</a>
-                                            <a *ngIf="!plansPageLink" data-bs-toggle="modal" data-bs-target="#exampleModal1"
-                                                class="btn fill_btn w-100">{{ 'buyNow' | translate }}</a>
+                                            <a *ngIf="plansPageLink && plansPageLink.length > 0"
+                                                [routerLink]="plansPageLink" class="btn fill_btn w-100">{{ 'buyNow' |
+                                                translate }}</a>
+                                            <a *ngIf="!plansPageLink" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal1" class="btn fill_btn w-100">{{ 'buyNow' |
+                                                translate }}</a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4 item_column">
                                     <div class="item_card">
                                         <div class="header_card">
-                                            <h2 class="premium-heading3">10<span>.- GBP / <span>Yearly</span></span></h2>
-                                            <h3 class="premium-heading2"> Boost profile </h3>
+                                            <h2 class="premium-heading3">
+                                                <!-- 10<span>.- GBP / <span>Yearly</span></span> -->
+                                                {{ getPlanPriceByName('country')}}<span>.-{{Currency}} /
+                                                    <span
+                                                        *ngIf="selectedTab == 'yearly'">{{priceArr[2].yearly_label}}</span>
+                                                    <span
+                                                        *ngIf="selectedTab != 'yearly'">{{priceArr[2].monthly_label}}</span>
+                                                </span>
+                                            </h2>
+                                            <h3 class="premium-heading2"> {{getDynamicPlanName('country')}} </h3>
                                         </div>
                                         <div class="body_card">
-                                            <h5 class="premium-heading5">Multi-Country</h5>
+                                            <h5 class="premium-heading5">{{getDynamicPlanName('country')}}</h5>
                                             <div class="text_List_wrap">
-                                                <div class="premium-text">
+                                                <div class="premium-text"
+                                                    *ngFor="let desc of getDescByPlanName('country');">
                                                     <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
-                                                    <p>Your profile picture will have a special and highlighted background</p>
-                                                </div>
-                                                <div class="premium-text">
-                                                    <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
-                                                    <p>Boost your career!</p>
+                                                    <p>{{desc}}</p>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="footer_card buy_now_btn_front_price">
-                                            <a *ngIf="plansPageLink && plansPageLink.length > 0" [routerLink]="plansPageLink"
-                                                class="btn fill_btn w-100">{{ 'buyNow' | translate }}</a>
-                                            <a *ngIf="!plansPageLink" data-bs-toggle="modal" data-bs-target="#exampleModal1"
-                                                class="btn fill_btn w-100">{{ 'buyNow' | translate }}</a>
+                                            <a *ngIf="plansPageLink && plansPageLink.length > 0"
+                                                [routerLink]="plansPageLink" class="btn fill_btn w-100">{{ 'buyNow' |
+                                                translate }}</a>
+                                            <a *ngIf="!plansPageLink" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal1" class="btn fill_btn w-100">{{ 'buyNow' |
+                                                translate }}</a>
                                         </div>
                                     </div>
                                 </div>

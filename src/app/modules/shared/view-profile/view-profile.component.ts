@@ -435,7 +435,7 @@ export class ViewProfileComponent implements OnInit {
         email: this.user.email,
         photoUrl: this.baseUrl + this.user.meta.profile_image
       };
-
+ 
       console.log(userData, this.user);
       let tempUser = JSON.stringify(userData); 
 

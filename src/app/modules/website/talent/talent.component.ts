@@ -22,7 +22,7 @@ import { GlobalSettingsService } from '../../../services/global-settings.service
 export class TalentComponent {
 
   custIndex: number = 1;
-  selectedTab:string='monthly';
+  selectedTab: string = 'monthly';
   isActive1 = true; // Premium Plan
   isActive2 = true; // Multi-Country Plan
   isActive3 = true; // Multi-Country Plan
@@ -77,6 +77,8 @@ export class TalentComponent {
   isActivePlan: { [key: number]: boolean } = {}; // Keeps track of toggle states for each pricing plan
 
   selectedLangSlug: string = localStorage.getItem('lang') || "en";
+
+  priceArr: any;
 
   ngOnInit() {
     // Retrieve the states from local storage
@@ -157,15 +159,17 @@ export class TalentComponent {
   }
 
   getPageData(languageId: any) {
-   
+
     this.webPages.getDynamicContentPage('talent', languageId).subscribe((res) => {
-      
+
       if (res.status) {
         this.pageData = res.data.pageData;
         this.baseUrl = res.data.base_url;
         this.advertisementData = res.data.advertisementData;
         this.advertisementList = res.data.allAdsList;
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
+        this.priceArr = this.pageData.pricing_tab;
+        console.info('priceArr', this.priceArr);
         // Initialize toggle states for pricing plans with Monthly active (false)
         this.pageData.pricing_tab.forEach((_: any, index: number) => {
           this.isActivePlan[index] = false; // Default to "Monthly"
@@ -323,6 +327,52 @@ export class TalentComponent {
     })
   }
 
+  getDynamicPlanName(planName: string) {
+    const lowerPlanName = planName.toLowerCase();
+    if (lowerPlanName.includes('premium')) {
+      return this.priceArr[0].plan_name;
+    }
+    if (lowerPlanName.includes('country')) {
+      return this.priceArr[1].plan_name;
+    }
+    if (lowerPlanName.includes('boost')) {
+      return this.priceArr[2].plan_name;
+    }
+  }
+  getDescByPlanName(planName: string) {
+    const lowerPlanName = planName.toLowerCase();
+    if (lowerPlanName.includes('premium')) {
+      return this.priceArr[0].plan_feature_desc;
+    }
+    if (lowerPlanName.includes('country')) {
+      return this.priceArr[1].plan_feature_desc;
+    }
+    if (lowerPlanName.includes('boost')) {
+      return this.priceArr[2].plan_feature_desc;
+    }
+  }
+  getPlanPriceByName(planName: string): number {
+    if (!planName) return 0;
+    let isMonthly;
+    if (this.selectedTab == 'yearly') {
+      isMonthly = true;
+    } else {
+      isMonthly = false;
+    }
+
+    const lowerPlanName = planName.toLowerCase();
+
+    if (lowerPlanName.includes('premium')) {
+      return !isMonthly ? this.premiumPrice : this.premiumYearlyPrice;
+    }
+    if (lowerPlanName.includes('country') || lowerPlanName.includes('multi') || lowerPlanName.includes('flera')) {
+      return !isMonthly ? this.countryPrice : this.countryYearlyPrice;
+    }
+    if (lowerPlanName.includes('boost') || lowerPlanName.includes('perfil')) {
+      return !isMonthly ? this.boostPrice : this.boostYearlyPrice;
+    }
+    return 0;
+  }
   getPlanPrice(planName: string, isMonthly: boolean): number {
     if (!planName) return 0;
 
@@ -335,7 +385,6 @@ export class TalentComponent {
       return !isMonthly ? this.countryPrice : this.countryYearlyPrice;
     }
     if (lowerPlanName.includes('boost') || lowerPlanName.includes('perfil')) {
-      //
       return !isMonthly ? this.boostPrice : this.boostYearlyPrice;
     }
 
@@ -376,7 +425,7 @@ export class TalentComponent {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  setActiveTab(currentTab:any){
+  setActiveTab(currentTab: any) {
     this.selectedTab = currentTab;
   }
 

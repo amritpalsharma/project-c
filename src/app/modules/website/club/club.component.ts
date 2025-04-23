@@ -34,6 +34,7 @@ export class ClubComponent {
     pricing_sctn_title: '',
     pricing_tab: [],
   }];
+  priceArr:any;
   // advertisementData:any=null;
   activeIndex: number = 0;
 
@@ -167,6 +168,7 @@ export class ClubComponent {
         this.pageData.pricing_tab.forEach((_: any, index: number) => {
           this.isActivePlan[index] = false; // Default to "Monthly"
         });
+        this.priceArr = this.pageData.pricing_tab;
         if (this.pageData.feature_sctn && typeof this.pageData.feature_sctn != undefined) {
           this.feature_sctn = this.pageData.feature_sctn;
           this.accordinCurrentIndex = 0;
@@ -191,37 +193,6 @@ export class ClubComponent {
     }, 1000);
   }
 
-  // closeAd(object: any) {
-
-  //   switch(object){
-  //     case 'skyscraper':
-  //         this.advertisementData.skyscraper = [];
-  //         break;
-  //     case 'small_square':
-  //         this.advertisementData.small_square = [];
-  //         break;
-  //     case 'leaderboard':
-  //         this.advertisementData.leaderboard = [];
-  //         break;
-  //     case 'large_leaderboard':
-  //         this.advertisementData.large_leaderboard = [];
-  //         break;
-  //     case 'large_rectangle':
-  //         this.advertisementData.large_rectangle = [];
-  //         break;
-
-  //     case 'inline_rectangle':
-  //         this.advertisementData.inline_rectangle = [];
-  //         break;
-  //     case 'square':
-  //         this.advertisementData.square = [];
-  //         break;
-  //     default:
-  //         //when no case is matched, this block will be executed;
-  //         break;  //optional
-  //     }
-
-  // }
 
   togglePlan(index: number) {
     this.isActivePlan[index] = !this.isActivePlan[index];
@@ -343,42 +314,58 @@ export class ClubComponent {
     })
   }
 
-  // getPlanPrice(planName: string, isMonthly: boolean): number {
-  //   if (!planName) return 0;
+  getDynamicPlanName(planName: string) {
+    const lowerPlanName = planName.toLowerCase();
+    if (lowerPlanName.includes('premium')) {
+      return this.priceArr[0].plan_name;
+    }
+    if (lowerPlanName.includes('country')) {
+      return this.priceArr[1].plan_name;
+    }
+    if (lowerPlanName.includes('boost')) {
+      return this.priceArr[2].plan_name;
+    }
+  }
+  getDescByPlanName(planName: string) {
+    const lowerPlanName = planName.toLowerCase();
+    if (lowerPlanName.includes('premium')) {
+      return this.priceArr[0].plan_feature_desc;
+    }
+    if (lowerPlanName.includes('country')) {
+      return this.priceArr[1].plan_feature_desc;
+    }
+    if (lowerPlanName.includes('boost')) {
+      return this.priceArr[2].plan_feature_desc;
+    }
+  }
+  getPlanPriceByName(planName: string): number {
+    if (!planName) return 0;
+    let isMonthly;
+    if (this.selectedTab == 'yearly') {
+      isMonthly = true;
+    } else {
+      isMonthly = false;
+    }
 
-  //   const lowerPlanName = planName.toLowerCase();
+    const lowerPlanName = planName.toLowerCase();
 
-  //   if (lowerPlanName.includes('premium')) {
-  //     return isMonthly ? this.premiumPrice : this.premiumYearlyPrice;
-  //   }
-  //   if (lowerPlanName.includes('country') || lowerPlanName.includes('multi') || lowerPlanName.includes('flera')) {
-  //     return isMonthly ? this.countryPrice : this.countryYearlyPrice;
-  //   }
-  //   if (lowerPlanName.includes('boost') || lowerPlanName.includes('perfil')) {
-  //     //
-  //     return isMonthly ? this.boostPrice : this.boostYearlyPrice;
-  //   }
+    if (lowerPlanName.includes('premium')) {
+      return !isMonthly ? this.premiumPrice : this.premiumYearlyPrice;
+    }
+    if (lowerPlanName.includes('country') || lowerPlanName.includes('multi') || lowerPlanName.includes('flera')) {
+      return !isMonthly ? this.countryPrice : this.countryYearlyPrice;
+    }
+    if (lowerPlanName.includes('boost') || lowerPlanName.includes('perfil')) {
+      return !isMonthly ? this.boostPrice : this.boostYearlyPrice;
+    }
+    return 0;
+  }
 
-  //   console.warn(lowerPlanName);
-  //   return 0; // Default price if no match
-  // }
   getPlanPrice(planName: string, isMonthly: boolean): number {
     if (!planName) return 0;
 
     const lowerPlanName = planName.toLowerCase();
 
-    // if (lowerPlanName.includes('premium')) {
-    //   return !isMonthly ? this.premiumPrice : this.premiumYearlyPrice;
-    // }
-    // if (lowerPlanName.includes('country') || lowerPlanName.includes('multi') || lowerPlanName.includes('flera')) {
-    //   return !isMonthly ? this.countryPrice : this.countryYearlyPrice;
-    // }
-    // if (lowerPlanName.includes('boost')) {
-    //   return !isMonthly ? this.boostPrice : this.boostYearlyPrice;
-    // }
-    // if (lowerPlanName.includes('perfil')) { // For PT Language
-    //   return !isMonthly ? this.boostPrice : this.boostYearlyPrice;
-    // }
     if (lowerPlanName.includes('premium')) {
       return !isMonthly ? this.premiumPrice : this.premiumYearlyPrice;
     }
