@@ -1202,7 +1202,7 @@
   "completeVerificationProcess": "Click the link in your inbox to complete the verification process.",
   "cookiePopupText": "This website uses cookies to ensure you get the best experience on our website. For more information, please see our",
   "PersonalizeMyChoices": "Manage cookies",
-  "clickOn": "Click On",
+  "clickOn": "Click on",
   "cookiePopupText1": "to adjust your cookie settings.",
   "iAccept": "Accept all",
   "iDecline": "Decline",
@@ -1354,5 +1354,6 @@
   "downloadPDFPrivacyPolicy": "Download PDF Privacy Policy",
   "premiunPlanFor": "For Clubs and Scouts",
   "multiCountryFor": "For Scouts",
-  "boostProfileFor": "For Scouts"
+  "boostProfileFor": "For Scouts",
+  "weUseCookies": "We use cookies"
 }
