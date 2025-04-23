@@ -6,10 +6,13 @@
         <!-- <p [innerHTML]="'cookiePopupText' | translate" class="cookie-text"> -->
         <!-- </p> -->
 
+        <strong class="mb-3 d-block cookie_text_main">{{ 'weUseCookies' | translate }}</strong>
+
         <p class="mb-3 cookie_text_main">
           {{ 'cookiePopupText' | translate }}
           <a href='/privacy' target='_blank'>{{ 'privacyPolicy' | translate }}</a>. {{ 'clickOn' | translate }}
-          <a (click)="personalizeChoices()">{{ 'PersonalizeMyChoices' | translate}}</a>,  {{ 'cookiePopupText1' | translate }}
+          <a (click)="personalizeChoices()">{{ 'PersonalizeMyChoices' | translate}}</a>, {{ 'cookiePopupText1' |
+          translate }}
         </p>
 
         <div class="cookie-button" *ngIf="showPopup">

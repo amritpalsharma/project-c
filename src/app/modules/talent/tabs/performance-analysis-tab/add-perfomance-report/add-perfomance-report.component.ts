@@ -17,7 +17,7 @@ export class AddPerfomanceReportComponent {
   enterDocumentTitle: string = '';
   isLoading: boolean = false;
 
-  theme : any = localStorage.getItem('theme');
+  theme: any = localStorage.getItem('theme');
 
   constructor(
     private toastr: ToastrService,
@@ -39,6 +39,14 @@ export class AddPerfomanceReportComponent {
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
+    console.log(this.selectedFile, 'file')
+  }
+
+  deleteFile() {
+    this.selectedFile = null;
+    // document.getElementById('reportUpload').value
+    let test = document.getElementById('reportUpload') as HTMLInputElement;
+    test.value = '';
   }
 
   onDragOver(event: DragEvent) {

@@ -593,7 +593,7 @@ export class PlanComponent implements OnInit, OnDestroy {
 
     console.info(plans);
     const dialogRef = this.dialog.open(EditPlanComponent, {
-      width: '800px',
+      width: 'unset',
       data: {
         plans: plans.data,
         selectedPlan: this.selectedPlan,

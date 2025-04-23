@@ -1308,5 +1308,6 @@
   "premiunPlanFor": "For Klubber og Scouts",
   "multiCountryFor": "For Scouts",
   "boostProfileFor": "For Scouts",
-  "deleteFromGalleryConfirmation": "Er du sikker på, at du vil slette {{type}} fra dit galleri?"
+  "deleteFromGalleryConfirmation": "Er du sikker på, at du vil slette {{type}} fra dit galleri?",
+  "weUseCookies": "Vi bruger cookies"
 }

@@ -401,8 +401,8 @@ button.faq-scout-button {
 }
 
 .dark-theme .website-code input:checked+.slider {
-  background-color: #BDE34F;
-  border: 1px solid #BDE34E;
+  background: #BDE34F !important;
+  border: 1px solid #BDE34E !important;
 }
 
 .dark-theme .website-code .personalization-box.ng-star-inserted .accept,
@@ -427,14 +427,14 @@ button.faq-scout-button {
   border-color: #bde34f;
 }
 
-.dark-theme .website-code .slider {
-  background-color: #bde34f;
-  border: 1px solid #bde34f;
-}
+// .dark-theme .website-code .slider {
+//   background-color: #bde34f;
+//   border: 1px solid #bde34f;
+// }
 
-.dark-theme .website-code .slider:before {
-  background-color: white;
-}
+// .dark-theme .website-code .slider:before {
+//   background-color: white;
+// }
 
 .dark-theme .website-code .check-resister.active input#ManualInput {
   /* border-color: pink; */
@@ -668,6 +668,7 @@ button.faq-scout-button {
   background-color: #bde34f;
   /* Inner color when selected */
 }
+
 
 .dark-theme .website-code .ad-close-button {
   background-color: #bde34f;

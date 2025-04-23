@@ -1399,5 +1399,6 @@
   "premiunPlanFor": "Para Clubes e Scouts",
   "multiCountryFor": "Para Scouts",
   "boostProfileFor": "Para Scouts",
-  "deleteFromGalleryConfirmation": "Tem certeza de que deseja excluir a {{type}} da sua galeria?"
+  "deleteFromGalleryConfirmation": "Tem certeza de que deseja excluir a {{type}} da sua galeria?",
+  "weUseCookies" : "Utilizamos cookies"
 }

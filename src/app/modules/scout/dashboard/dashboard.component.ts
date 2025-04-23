@@ -76,6 +76,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   isPremium: any = true;
   StartTour: boolean = true;
   dontShowAgainTourTxt: string = 'profile';
+  duration: any;
 
   pleaseWait: string = '';
 
@@ -543,6 +544,27 @@ export class DashboardComponent implements OnInit, OnDestroy {
     } catch (error) {
       // this.isLoading = false;
       console.error('Error fetching users:', error);
+    }
+  }
+  
+  setDurationAndThumbnail(videoElement: HTMLVideoElement) {
+    videoElement.crossOrigin = 'anonymous';
+    // Set Duration
+    this.duration = this.formatDuration(videoElement.duration);
+
+    // Capture Thumbnail
+    // this.captureThumbnail(videoElement);
+  }
+
+  formatDuration(duration: number): string {
+    const hours = Math.floor(duration / 3600);
+    const minutes = Math.floor((duration % 3600) / 60);
+    const seconds = Math.floor(duration % 60);
+
+    if (hours > 0) {
+      return `${hours}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    } else {
+      return `${minutes}:${String(seconds).padStart(2, '0')}`;
     }
   }
 

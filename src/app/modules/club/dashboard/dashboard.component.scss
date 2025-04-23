@@ -1944,3 +1944,12 @@ span.active_btn {
   background: unset !important;
   color: #fff !important;
 }
+
+.duration {
+  position: absolute;
+  bottom: 7px;
+  right: 2px;
+  background: #0000007a;
+  color: #fff;
+  padding: 0 4px;
+}

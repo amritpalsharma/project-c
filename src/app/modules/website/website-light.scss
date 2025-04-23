@@ -374,7 +374,17 @@
 .light-theme .website-code .choice,
 .light-theme .website-code .accept {
   color: white;
+
+  &:hover{
+    background: linear-gradient(0deg,#065f06,#4a8c37);
+  }
 }
+
+// .light-theme .website-code .personalization-box.ng-star-inserted .accept:hover,
+// .light-theme .website-code .choice::before,
+// .light-theme .website-code .accept::before{
+//   background: linear-gradient(0deg,#065f06,#4a8c37);
+// }
 
 /*---------------------------------------------------------------------------------------------------------
    # light mode
@@ -661,6 +671,10 @@ a {
 .light-theme .website-code .decline {
   background: linear-gradient(180deg, #FF93A0, #E05263);
   border: 1px solid #DB4343;
+
+  &:hover{
+    background: linear-gradient(0deg, #FF93A0, #E05263);
+  }
 }
 
 .page-header {
