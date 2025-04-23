@@ -11,6 +11,7 @@ export class PricingComponent {
   isActive1 = true; // Premium Plan
   isActive2 = true; // Multi-Country Plan
   isActive3 = true; // Boost Profile Plan
+  selectedTab:string='monthly';
   pageData: any; // To hold the API response data
   advertisemnet_base_url: string = '';
   isLoading: boolean = true;
@@ -23,7 +24,7 @@ export class PricingComponent {
   premiumMonthlyPrice: string = '';
   Currency: string = '';
   premiumPackageName: string = '';
-
+  priceArr:any;
   premiumPrice: string = '';
   premiumYearlyPrice: string = '';
 
@@ -147,7 +148,8 @@ export class PricingComponent {
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
         this.advertisementData = res?.data?.advertisementData;
         this.advertisementList = res?.data?.allAdsList;
-
+        this.priceArr = this.pageData.pricing_tab;
+        console.info('pageData',this.pageData);
         // this.pricing_banner_img = this.pageData.pricing_banner_img;
         this.base_url = res.data.base_url;
         this.isLoading = false;
@@ -204,35 +206,7 @@ export class PricingComponent {
     return this.advertisementData && this.advertisementData[key] && 'featured_image' in this.advertisementData[key];
   }
 
-  getCurrencyandMonthlyPrice(tab_and_interval: string) {
-    let interval = 'monthly';
-    this.webPages.getPriceAndCurrency(interval).subscribe((res) => {
-      if (res.status) {
-        if (res.status && res.data?.premium?.plans?.length > 0) {
-          this.Currency = res.data.premium.plans[0].currency;
-          this.premiumPrice = parseInt(res.data.premium.plans[0].price, 10) + '';
-          this.boostPrice = parseInt(res.data.booster.plans[0].price, 10) + '';
-          this.countryPrice = parseInt(res.data.country.plans[0].price, 10) + '';
-        }
-      }
-    })
-  }
-
-  getCurrencyandYearlyPrice(tab_and_interval: string) {
-    let interval = 'yearly';
-    this.webPages.getPriceAndCurrency(interval).subscribe((res) => {
-      if (res.status) {
-        if (res.status && res.data?.premium?.plans?.length > 0) {
-          this.Currency = res.data.premium.plans[0].currency;
-          this.premiumYearlyPrice = parseInt(res.data.premium.plans[0].price, 10) + '';
-          this.boostYearlyPrice = parseInt(res.data.booster.plans[0].price, 10) + '';
-          this.countryYearlyPrice = parseInt(res.data.country.plans[0].price, 10) + '';
-        }
-      }
-    })
-  }
-
-
+ 
   getCurrencyPrice(interval: string) {
     this.webPages.getPriceAndCurrency(interval).subscribe((res) => {
       if (res.status) {
@@ -255,4 +229,57 @@ export class PricingComponent {
   ngAfterViewInit() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+
+  setActiveTab(currentTab:any){
+    this.selectedTab = currentTab;
+  }
+
+  getDynamicPlanName(planName: string) {
+    const lowerPlanName = planName.toLowerCase();
+    if (lowerPlanName.includes('premium')) {
+      return this.priceArr[0].plan_name;
+    }
+    if (lowerPlanName.includes('country')) {
+      return this.priceArr[1].plan_name;
+    }
+    if (lowerPlanName.includes('boost')) {
+      return this.priceArr[2].plan_name;
+    }
+  }
+  getDescByPlanName(planName: string) {
+    const lowerPlanName = planName.toLowerCase();
+    if (lowerPlanName.includes('premium')) {
+      return this.priceArr[0].plan_feature_desc;
+    }
+    if (lowerPlanName.includes('country')) {
+      return this.priceArr[1].plan_feature_desc;
+    }
+    if (lowerPlanName.includes('boost')) {
+      return this.priceArr[2].plan_feature_desc;
+    }
+  }
+  getPlanPriceByName(planName: string) {
+    if (!planName) return 0;
+    let isMonthly;
+    if (this.selectedTab == 'yearly') {
+      isMonthly = true;
+    } else {
+      isMonthly = false;
+    }
+
+    const lowerPlanName = planName.toLowerCase();
+
+    if (lowerPlanName.includes('premium')) {
+      return !isMonthly ? this.premiumPrice : this.premiumYearlyPrice;
+    }
+    if (lowerPlanName.includes('country') || lowerPlanName.includes('multi') || lowerPlanName.includes('flera')) {
+      return !isMonthly ? this.countryPrice : this.countryYearlyPrice;
+    }
+    if (lowerPlanName.includes('boost') || lowerPlanName.includes('perfil')) {
+      return !isMonthly ? this.boostPrice : this.boostYearlyPrice;
+    }
+    return 0;
+  }
+
+  
 }

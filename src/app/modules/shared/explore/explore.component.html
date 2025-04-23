@@ -11,8 +11,10 @@
                 <th>
                   <div class="form-group explore-all_input">
                     <mat-form-field appearance="fill">
+                      <!-- <mat-label>{{ 'all' | translate }}</mat-label> -->
                       <mat-label>{{ 'talents' | translate }}</mat-label>
                       <mat-select [(ngModel)]="selectedRole" (selectionChange)="applyFilter()" id="roles" name="role">
+                        <mat-option [value]="null" [selected]="!selectedRole">{{'all' | translate}}</mat-option>
                         <mat-option *ngFor="let role of roles" [value]="role.id">{{role.role_name}}</mat-option>
                       </mat-select>
                     </mat-form-field>
@@ -159,15 +161,18 @@
 
           <div class="row player-image-list ">
             <div class="col-lg-2" *ngFor="let player of players">
+              <pre>{{player | json}}</pre>
               <ng-container *ngIf="player.id != loggedInUser && !isLoading">
 
                 <div class="image_box cursor-pointer" [ngClass]="{'booster_box': player?.package_name == 'Booster'}"
                   (click)="exploreUser(player.role_name, player.id)">
                   <div class="image_box2">
                     <div class="player_img">
-                      <img *ngIf="player.meta.profile_image" [src]="baseUrl + player.meta.profile_image"
+                      <img *ngIf="player.meta.profile_image && player.role_name != 'Club'" [src]="baseUrl + player.meta.profile_image"
                         alt="player-image" class="w-100">
-                      <img *ngIf="!player.meta.profile_image"
+                      <img *ngIf="player.current_club_logo && player.role_name == 'Club'" [src]="baseUrl + player.current_club_logo"
+                        alt="player-image" class="w-100"> 
+                      <img *ngIf="!player.meta.profile_image && player.role_name != 'Club'"
                         src="../../../../assets/images/default/talent-profile-default.png" class="w-100"
                         alt="player-image">
                     </div>

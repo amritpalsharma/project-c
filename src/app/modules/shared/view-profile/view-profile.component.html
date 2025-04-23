@@ -1547,7 +1547,7 @@
                   </li>
                 </ng-container>
                 <ng-container *ngIf="currentUserRole == 'club'">
-                  <li class="nav-item" role="presentation">
+                  <!-- <li class="nav-item" role="presentation">
                     <button class="nav-link" (click)="switchTab('profile')"
                       [ngClass]="{ active: activeTab == 'profile' }" id="home-tab manage-button" id="manage-button"
                       data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab"
@@ -1560,7 +1560,7 @@
                       </svg>
                       {{ "profile" | translate }}
                     </button>
-                  </li>
+                  </li> -->
                   <!-- Club Histroy  -->
                   <li class="nav-item" role="presentation">
                     <button class="nav-link" (click)="switchTab('club_history')"
@@ -1611,7 +1611,7 @@
                   <!-- End Club Gallery  -->
                 </ng-container>
                 <ng-container *ngIf="currentUserRole == 'scout'">
-                  <li class="nav-item" role="presentation">
+                  <!-- <li class="nav-item" role="presentation">
                     <button class="nav-link" (click)="switchTab('profile')"
                       [ngClass]="{ active: activeTab == 'profile' }" id="home-tab manage-button" id="manage-button"
                       data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab"
@@ -1624,7 +1624,7 @@
                       </svg>
                       {{ "profile" | translate }}
                     </button>
-                  </li>
+                  </li> -->
                   <!-- Scout Histroy  -->
                   <li class="nav-item" role="presentation">
                     <button class="nav-link" (click)="switchTab('scout_history')"
@@ -1692,8 +1692,8 @@
                 [isPremium]="isPremium"></view-user-gallery>
               <!-- Club Details -->
               <!-- Club Profile -->
-              <app-club-profile *ngIf="activeTab == 'profile' && currentUserRole == 'club' && user?.id" [userData]="user"
-                [isPremium]="isPremium" [currentUserId]="user.id"></app-club-profile>
+              <!-- <app-club-profile *ngIf="activeTab == 'profile' && currentUserRole == 'club' && user?.id" [userData]="user"
+                [isPremium]="isPremium" [currentUserId]="user.id"></app-club-profile> -->
               <!-- End Club Profile -->
               <!-- Club History -->
               <app-club-history *ngIf="activeTab == 'club_history' && currentUserRole == 'club'" role="club"
@@ -1710,8 +1710,8 @@
               <!-- End Club Details -->
               <!-- Scout Tabs -->
               <!-- Scout Profile -->
-              <app-scout-profile *ngIf="activeTab == 'profile' && currentUserRole == 'scout' && user?.id" [userData]="user"
-                [isPremium]="isPremium" [currentUserId]="user.id"></app-scout-profile>
+              <!-- <app-scout-profile *ngIf="activeTab == 'profile' && currentUserRole == 'scout' && user?.id" [userData]="user"
+                [isPremium]="isPremium" [currentUserId]="user.id"></app-scout-profile> -->
               <!-- End Scout Profile -->
               <!-- Scout History -->
               <app-scout-history *ngIf="activeTab == 'scout_history' && currentUserRole == 'scout'" role="scout" [currentScoutId]="user.id"

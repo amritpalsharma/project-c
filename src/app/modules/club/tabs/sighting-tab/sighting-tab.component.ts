@@ -11,6 +11,7 @@ import { ClubService } from '../../../../services/club.service';
 import { environment } from '../../../../../environments/environment';
 import { WebPages } from '../../../../services/webpages.service';
 import { TranslateService } from '@ngx-translate/core';
+import { UnverifiedUserComponent } from '../../../shared/unverified-user/unverified-user.component';
 
 
 @Component({
@@ -23,6 +24,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class SightingTabComponent {
   userId: any = '';
   @Input() isPremium: any;
+  @Input() isUserVerified: any;
   displayedColumns: string[] = ['#', 'Event', 'Manager Name', 'Place', 'Date', 'Time', 'View', 'Remove'];
   sightings: any = [];
   sightingData: any = {};
@@ -451,6 +453,27 @@ export class SightingTabComponent {
     ]).subscribe((translations) => {
       this.deleteRepresentorConfirmation = translations['confirmDeleteinformation'];
       this.selectSightingFirst = translations['selectSightingFirst'];
+    });
+  }
+  
+  navigatePlans() {
+    this.router.navigate(['/club/plans']);
+  }
+  
+  showVerificationPopup() {
+    const messageDialog = this.dialog.open(UnverifiedUserComponent, {
+      width: '500px',
+      position: {
+        top: '150px'
+      }
+    })
+  
+    messageDialog.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        if (result.action == "delete-confirmed") {
+          // this.deleteUser();
+        }
+      }
     });
   }
 }

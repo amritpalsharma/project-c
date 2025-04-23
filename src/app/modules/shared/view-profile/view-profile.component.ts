@@ -112,9 +112,13 @@ export class ViewProfileComponent implements OnInit {
       role = segments[2]?.toLowerCase();
       if (role != '' && role != undefined) {
         this.currentUserRole = role;
-      } else {
-        console.info('role is ' + role)
       }
+    }
+
+    if(this.currentUserRole == 'club'){
+      this.activeTab = 'club_history';
+    }else if(this.currentUserRole == 'scout'){
+      this.activeTab = 'scout_history';
     }
   }
 
@@ -428,12 +432,17 @@ export class ViewProfileComponent implements OnInit {
 
   navigateToChat() {
     localStorage.setItem('otherUserData', '');
+    // console.log('User',this.user)
+    let userImage = '';
+    if(this.user.meta.profile_image != '' && this.user.meta.profile_image != undefined){
+      userImage = this.baseUrl + this.user.meta.profile_image;
+    }
     if (this.user) {
       const userData = {
         id: this.user.id,
-        name: this.user.first_name+ ''+this.user.last_name,
+        name: this.user.first_name+' '+this.user.last_name,
         email: this.user.email,
-        photoUrl: this.baseUrl + this.user.meta.profile_image
+        photoUrl: userImage
       };
  
       console.log(userData, this.user);
@@ -450,10 +459,6 @@ export class ViewProfileComponent implements OnInit {
       this.router.navigate([`/${role}/chat`], {
         queryParams: { open_chat: 'true' }
       });
-
-      // setInterval(() => {
-      //   // window.location.href = '/' + role + '/chat';
-      // }, 500);
     } else {
       console.warn('No userData available');
     }

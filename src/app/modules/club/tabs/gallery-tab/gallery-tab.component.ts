@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UploadPopupComponent } from '../../upload-popup/upload-popup.component';
 import { MatDialog } from '@angular/material/dialog';
 import { TalentService } from '../../../../services/talent.service';
@@ -9,6 +9,7 @@ import { ScoutService } from '../../../../services/scout.service';
 import { environment } from '../../../../../environments/environment';
 import { TranslateService } from '@ngx-translate/core';
 import { WebPages } from '../../../../services/webpages.service';
+import { UnverifiedUserComponent } from '../../../shared/unverified-user/unverified-user.component';
 
 @Component({
   selector: 'club-gallery-tab',
@@ -27,6 +28,7 @@ export class GalleryTabComponent {
   @Input() coverImage: string = '';  // Define an input property
   @Output() dataEmitter = new EventEmitter<string>();
   @Input() isPremium: any;
+  @Input() isUserVerified: any;
 
   isLoading: boolean = false;
 
@@ -36,6 +38,7 @@ export class GalleryTabComponent {
     private scoutService: ScoutService,
     private translateService: TranslateService,
     public webPages: WebPages,
+    public router:Router, 
     public dialog: MatDialog) { }
 
 
@@ -165,11 +168,11 @@ export class GalleryTabComponent {
         next: (response) => {
           this.toastr.clear(loadingToast.toastId);
           if (response && response.status) {
-            if(type==='image'){
+            if (type === 'image') {
               const index = this.userImages.findIndex((x: any) => x.id === id);
               this.userImages.splice(index, 1);
             }
-            else{
+            else {
               const index = this.userVideos.findIndex((x: any) => x.id === id);
               this.userVideos.splice(index, 1);
             }
@@ -248,4 +251,26 @@ export class GalleryTabComponent {
       this.Canceled = translations['Canceled'];
     });
   }
+
+  navigatePlans() {
+    this.router.navigate(['/club/plans']);
+  }
+
+  showVerificationPopup() {
+    const messageDialog = this.dialog.open(UnverifiedUserComponent, {
+      width: '500px',
+      position: {
+        top: '150px'
+      }
+    })
+
+    messageDialog.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        if (result.action == "delete-confirmed") {
+          // this.deleteUser();
+        }
+      }
+    });
+  }
 }
+

@@ -169,7 +169,7 @@ export class TalentComponent {
         this.advertisementList = res.data.allAdsList;
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
         this.priceArr = this.pageData.pricing_tab;
-        console.info('priceArr', this.priceArr);
+        // console.info('priceArr', this.priceArr);
         // Initialize toggle states for pricing plans with Monthly active (false)
         this.pageData.pricing_tab.forEach((_: any, index: number) => {
           this.isActivePlan[index] = false; // Default to "Monthly"

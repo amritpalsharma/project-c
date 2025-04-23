@@ -73,11 +73,13 @@ button.faq-talent-button {
     background-color: transparent;
     border: none;
     font-size: 20px;
-    font-weight: 600;
+    font-weight: 700;
     opacity: 75%;
-    width: 126px;
-    padding: 10px 30px;
+    width: auto;
+    max-width: 100%;
+    padding: 10px 40px;
     border-radius: 8px;
+    text-transform: uppercase;
 }
 
 select:focus-visible {
@@ -696,4 +698,16 @@ button.page-active {
 
 .player1.scoutsArr .player-img:after, .player1.scoutsArr + .flag {
     display: none !important;
+}
+
+@media (min-width: 3000px) {
+.player-list {
+    padding-top: 280px;
+}
+.player-list h1 {
+    font-size: 80px !important;
+}
+button.faq-club-button, button.faq-talent-button {
+    padding:  21px 40px 18px!important;
+}
 }

@@ -21,6 +21,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { WebPages } from '../../../services/webpages.service';
 import { TitleService } from '../../../title.service';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
+import { SocketService } from '../../../services/socket.service';
+import { UnverifiedUserComponent } from '../../shared/unverified-user/unverified-user.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -36,7 +38,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   // countryFlagUrl: any;
   countryFlagUrl: string = './assets/images/city-icon-light.png';
   currentYear: string = '2025';
-
+  isUserVerified: boolean = false;
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
@@ -49,7 +51,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     private translateService: TranslateService,
     public webPages: WebPages,
     private titleService: TitleService,
-    private globalSettings: GlobalSettingsService
+    private globalSettings: GlobalSettingsService,
+    private socketService:SocketService
   ) { }
   activeTab: string = 'profile';
   userId: any;
@@ -122,7 +125,17 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.globalSettings.indexFunctionCall$.subscribe(() => {
       this.themeChanged(); // Call the function when event is received
     });
+    this.getUserStatus();
+  }
 
+  getUserStatus() {
+    this.socketService.getLoggedInUserStatus().then((result) => {
+      if (result == 2) {
+        this.isUserVerified = true;
+      } else {
+        this.isUserVerified = false;
+      }
+    });
   }
 
   ngAfterViewInit() {
@@ -844,4 +857,25 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.currentThemeMode = 'light';
     }
   }
+
+    navigatePlans() {
+      this.router.navigate(['/club/plans']);
+    }
+  
+    showVerificationPopup() {
+      const messageDialog = this.dialog.open(UnverifiedUserComponent, {
+        width: '500px',
+        position: {
+          top: '150px'
+        }
+      })
+  
+      messageDialog.afterClosed().subscribe(result => {
+        if (result !== undefined) {
+          if (result.action == "delete-confirmed") {
+            // this.deleteUser();
+          }
+        }
+      });
+    }
 }
