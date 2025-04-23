@@ -286,12 +286,13 @@ body {
 }
 .table th, .table td, .table td span {
     font-size: 22px !important;
+    line-height: 30px;
 }
 .card-title {
     font-size: 26px !important;
 }
 .dashboard-title {
-    font-size: 30px;
+    font-size: 30px !important;
 }
 .sidebar_menu a {
     font-size: 20px !important;
@@ -321,7 +322,7 @@ body {
     width: 60px !important;
 }
 .btn-outline-white {
-    font-size: 19px !important;
+    font-size: 21px !important;
     svg {
     height: 30px !important;
     width: 30px !important;
@@ -335,7 +336,7 @@ td.cdk-column-Remove.mat-column-Remove svg {
     height: 24px !important;
 }
 .form-control, .table td span.bg_pending, .card-tabs .nav-tabs .nav-item .nav-link, .card-tabs .mesaage-content h6 {
-    font-size: 19px !important;
+    font-size: 20px !important;
 }
 .card-tabs .mesaage-content small {
     font-size: 18px !important;
@@ -569,7 +570,7 @@ mat-datepicker-toggle button {
     font-size: inherit !important;
 }
 .forms_details .email_box, .main-position .social_icons {
-    font-size: 16px;
+    font-size: 20px;
 }
 .dialog-header h2 {
     font-size: 28px !important;
@@ -1009,6 +1010,39 @@ mat-datepicker-toggle button {
             }
         }
 
+    }
+    .sidebar_menu a {
+        font-size: 23px !important;
+        padding: 19px 10px !important;
+    }
+    .table th, .table td, .table td span {
+        font-size: 30px !important;
+        line-height: 40px !important;
+    }
+    .btn-outline-white {
+        svg {
+        height: 40px !important;
+        width: 40px !important;
+        margin-right: 10px !important;
+    }}
+    .card-title {
+        font-size: 35px !important;
+    }
+    .dashboard-title {
+        font-size: 40px !important;
+    }
+    .btn-outline-white {
+        font-size: 25px !important;
+    }
+    .paginator-container label {
+        font-size: 30px !important;
+    }
+    .paginator-container button {
+        font-size: 30px !important;
+        height: 60px !important;
+    }
+    .form-control, .table td span.bg_pending, .card-tabs .nav-tabs .nav-item .nav-link, .card-tabs .mesaage-content h6 {
+        font-size: 28px !important;
     }
 }
 

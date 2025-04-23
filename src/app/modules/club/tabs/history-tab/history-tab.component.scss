@@ -51,13 +51,11 @@
 
 
 @media (min-width: 2000px) {
+    h6.main-template {
+        font-size: 24px;
+    }
     .company_history {
-        h6.main-template {
-            font-size: 20px;
-        }
-
-        .btn-outline-white,
-        .history-text {
+        .btn-outline-white, .history-text {
             font-size: 18px !important;
         }
     }

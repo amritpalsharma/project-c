@@ -537,15 +537,35 @@
       box-shadow: none;
   }
   
-  @media (min-width: 2000px){
-    .general_titels h2, .general_details .details_1, .position-boxs .details_1, .main-position .details_1 {
+  @media (min-width: 1600px) and (max-width: 2999px) {
+    .general_titels h2, .general_details .details_1, .position-boxs .details_1, .main-position .details_1,
+    .forms_details .email_box {
       font-size: 20px !important;
     }
-    .forms_details .email_box, .forms_details .email_box label, .password_box label, .password_box input, 
-    .general_details .details_2, .position-boxs .details_2, .main-position .details_2, .edit_button span {
+    .forms_details .email_box label, .password_box label, .password_box input, 
+    .general_details .details_2, .position-boxs .details_2, .main-position .details_2, .edit_button span, .main-position .social_icons {
       font-size: 18px !important;
     }
     .general_details .details_2, .position-boxs .details_2, .main-position .details_2 {
       padding-bottom: 5px;
+    }
+    .details-1 {
+      font-size: 20px;
+    }
+  }
+  
+  @media (min-width: 3000px) {
+    .general_titels h2, .general_details .details_1, .position-boxs .details_1, .main-position .details_1, .forms_details .email_box {
+      font-size: 28px !important;
+    }
+    .forms_details .email_box label, .password_box label, .password_box input, 
+    .general_details .details_2, .position-boxs .details_2, .main-position .details_2, .edit_button span, .main-position .social_icons {
+      font-size: 25px !important;
+    }
+    .general_details .details_2, .position-boxs .details_2, .main-position .details_2 {
+      padding-bottom: 5px;
+    }
+    .details-1 {
+      font-size: 28px;
     }
   }

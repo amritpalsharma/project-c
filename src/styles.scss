@@ -426,7 +426,7 @@ input#contractEnd {
 .table_img {
   width: 50px;
   height: 50px;
-  object-fit: cover;
+  object-fit: contain;
   object-position: top;
   border-radius: 50%;
   background: #d1d1d1;
@@ -833,12 +833,12 @@ input:checked+.slider:before {
 
 .profile img {
   height: 40px;
-  object-fit: cover;
-  object-position: top;
-  border-radius: 100%;
   width: 40px;
+  object-fit: contain;
+  object-position: bottom;
+  border-radius: 100%;
   background: rgba(130, 128, 255, 1);
-  padding-top: 5px;
+  // padding-top: 5px;
 }
 
 .dropdown-menu[data-bs-popper] {

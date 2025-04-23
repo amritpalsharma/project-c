@@ -307,3 +307,22 @@
 .currentPage{
     border: 5px solid blue;
 }
+
+
+@media (min-width: 2000px) {
+.booster_box, .image_box {
+    height: 400px !important;
+}
+.player-names a {
+    font-size: 24px !important;
+}
+.explore-chip .chip {
+    font-size: 20px !important;
+}
+::ng-deep .explore-all_input .mat-mdc-select-value {
+    font-size: 22px !important;
+}
+::ng-deep .explore-all_input mat-label {
+    font-size: 20px !important;
+}
+}

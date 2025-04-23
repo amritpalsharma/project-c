@@ -352,3 +352,21 @@ button:focus-visible{
 		background-position: 0% 50%;
 	}
 }
+
+@media (min-width: 851px) {
+  .edit_boost_footer {
+    width: calc(100% + 70px);
+    margin-left: -30px;
+    padding: 10px;
+    margin-bottom: -30px !important;
+  }
+}
+
+@media (max-width: 850px) {
+  .edit_boost_footer {
+    width: calc(100% + 20px);
+    margin-left: -10px;
+    padding: 10px;
+    margin-bottom: -20px !important;
+  }
+}
