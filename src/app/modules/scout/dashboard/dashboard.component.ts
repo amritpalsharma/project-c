@@ -21,6 +21,8 @@ import { WebPages } from '../../../services/webpages.service';
 import { TitleService } from '../../../title.service';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
 import { ImageCropperComponent2 } from '../../shared/image-cropper/image-cropper.component';
+import { UnverifiedUserComponent } from '../../shared/unverified-user/unverified-user.component';
+import { SocketService } from '../../../services/socket.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -49,7 +51,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     private translateService: TranslateService,
     public webPages: WebPages,
     private titleService: TitleService,
-    private globalSettings: GlobalSettingsService
+    private globalSettings: GlobalSettingsService,
+    private socketService: SocketService
   ) { }
   activeTab: string = 'profile';
   userId: any;
@@ -82,6 +85,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   loading: boolean = true;  // Add this line to track loading state
   pageTitle: string = '';
+
+  isUserVerified: boolean = false;
   async ngOnInit() {
     this.getJsonTranslations();
     this.themeChanged();
@@ -111,7 +116,17 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.globalSettings.indexFunctionCall$.subscribe(() => {
       this.themeChanged(); // Call the function when event is received
     });
+    this.getUserStatus();
+  }
 
+  getUserStatus() {
+    this.socketService.getLoggedInUserStatus().then((result) => {
+      if (result == 2) {
+        this.isUserVerified = true;
+      } else {
+        this.isUserVerified = false;
+      }
+    });
   }
 
   ngAfterViewInit() {
@@ -532,39 +547,39 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   openImage(index: any, type: string): void {
-      const filePath = this.highlights.file_path;
-    
-      const images = this.highlights.images.map((img: any) => ({
-        src: filePath + img.file_name,
-        type: 'image',
-      }));
-      const videos = this.highlights.videos.map((vid: any) => ({
-        src: filePath + vid.file_name,
-        type: 'video',
-      }));
-  
-      if(type==='video'){
-        index += this.highlights.images.length;
-      }
-      
-    
-      const album = [...images, ...videos];
-    
-      // const mainImage = String(index).includes('video_')
-      //   ? videos[+index.replace('video_', '')]
-      //   : images[index];
-  
-      const mainImage = album[index]
-  
-      console.log(mainImage, "img,,,,", index);
-    
-      this.dialog.open(LightboxDialogComponent, {
-        width: '80%',
-        height: '85%',
-        data: { album, mainImage },
-        panelClass: 'lightbox-dialog'
-      });
+    const filePath = this.highlights.file_path;
+
+    const images = this.highlights.images.map((img: any) => ({
+      src: filePath + img.file_name,
+      type: 'image',
+    }));
+    const videos = this.highlights.videos.map((vid: any) => ({
+      src: filePath + vid.file_name,
+      type: 'video',
+    }));
+
+    if (type === 'video') {
+      index += this.highlights.images.length;
     }
+
+
+    const album = [...images, ...videos];
+
+    // const mainImage = String(index).includes('video_')
+    //   ? videos[+index.replace('video_', '')]
+    //   : images[index];
+
+    const mainImage = album[index]
+
+    console.log(mainImage, "img,,,,", index);
+
+    this.dialog.open(LightboxDialogComponent, {
+      width: '80%',
+      height: '85%',
+      data: { album, mainImage },
+      panelClass: 'lightbox-dialog'
+    });
+  }
 
   openImage2(index: number): void {
     // Prepare album
@@ -618,108 +633,108 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   uploadCroppedImage(croppedImage: string): void {
-      // Convert the base64 cropped image to a Blob
-      const blob = this.dataURItoBlob(croppedImage);
-      const formData = new FormData();
-      formData.append('profile_image', blob, 'cropped-image.png');
-    
-      // Show a loading toast
-      // this.toastr.info(this.uploadingPhotos, this.pleaseWait, { disableTimeOut: true });
-      this.toastr.info("", this.pleaseWait, { disableTimeOut: true });
-    
-      this.scoutService.uploadProfileImage(formData).subscribe(
-        
-        (response) => {
+    // Convert the base64 cropped image to a Blob
+    const blob = this.dataURItoBlob(croppedImage);
+    const formData = new FormData();
+    formData.append('profile_image', blob, 'cropped-image.png');
 
-          // if (response && response.status) {
-          //   this.profileImage = `${environment.url}uploads/${response.data.uploaded_fileinfo}`;
-          //   this.dataEmitter.emit(this.profileImage);  // Emit updated profile image
-          //   this.toastr.clear();
-          //   this.commonDataService.updateProfilePic(this.profileImage);
+    // Show a loading toast
+    // this.toastr.info(this.uploadingPhotos, this.pleaseWait, { disableTimeOut: true });
+    this.toastr.info("", this.pleaseWait, { disableTimeOut: true });
 
-          //   this.toastr.success(response.message);
-          // } else {
-          //   this.toastr.clear();
-          //   if(response.data.errors.profile_image != '' && response.data.errors.profile_image != undefined){
-          //     this.toastr.error(response.data.errors.profile_image);
-          //   }else{
-          //     this.toastr.error('Failed to upload profile image. Please try again.', 'Upload Failed');
-          //   }
-          //   console.error('Invalid API response structure:', response);
-          // }
-          // this.selectedFile = null;
+    this.scoutService.uploadProfileImage(formData).subscribe(
 
-          this.toastr.clear();
-          if (response && response.status) {
-            this.profileImage = `${environment.url}uploads/${response.data.uploaded_fileinfo}`;
-            this.dataEmitter.emit(this.profileImage); // Emit updated profile image
-            this.commonDataService.updateProfilePic(this.profileImage);
-            if (response.message != '') {
-              this.toastr.success(response.message);
-            } else {
-              this.toastr.success('Profile image uploaded successfully!', 'Success');
-            }
+      (response) => {
+
+        // if (response && response.status) {
+        //   this.profileImage = `${environment.url}uploads/${response.data.uploaded_fileinfo}`;
+        //   this.dataEmitter.emit(this.profileImage);  // Emit updated profile image
+        //   this.toastr.clear();
+        //   this.commonDataService.updateProfilePic(this.profileImage);
+
+        //   this.toastr.success(response.message);
+        // } else {
+        //   this.toastr.clear();
+        //   if(response.data.errors.profile_image != '' && response.data.errors.profile_image != undefined){
+        //     this.toastr.error(response.data.errors.profile_image);
+        //   }else{
+        //     this.toastr.error('Failed to upload profile image. Please try again.', 'Upload Failed');
+        //   }
+        //   console.error('Invalid API response structure:', response);
+        // }
+        // this.selectedFile = null;
+
+        this.toastr.clear();
+        if (response && response.status) {
+          this.profileImage = `${environment.url}uploads/${response.data.uploaded_fileinfo}`;
+          this.dataEmitter.emit(this.profileImage); // Emit updated profile image
+          this.commonDataService.updateProfilePic(this.profileImage);
+          if (response.message != '') {
+            this.toastr.success(response.message);
           } else {
-            this.toastr.error('Failed to upload profile image. Please try again.', 'Upload Failed');
+            this.toastr.success('Profile image uploaded successfully!', 'Success');
           }
-        },
-        (error) => {
-          this.toastr.clear();
-          this.toastr.error('An error occurred during upload. Please try again.', 'Upload Error');
-          console.error('Error uploading profile image:', error);
+        } else {
+          this.toastr.error('Failed to upload profile image. Please try again.', 'Upload Failed');
         }
-      );
-    }
-    
-    // Helper function to convert base64 to Blob
-    dataURItoBlob(dataURI: string): Blob {
-      const byteString = atob(dataURI.split(',')[1]);
-      const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-      const ab = new ArrayBuffer(byteString.length);
-      const ia = new Uint8Array(ab);
-      for (let i = 0; i < byteString.length; i++) {
-        ia[i] = byteString.charCodeAt(i);
+      },
+      (error) => {
+        this.toastr.clear();
+        this.toastr.error('An error occurred during upload. Please try again.', 'Upload Error');
+        console.error('Error uploading profile image:', error);
       }
-      return new Blob([ab], { type: mimeString });
+    );
+  }
+
+  // Helper function to convert base64 to Blob
+  dataURItoBlob(dataURI: string): Blob {
+    const byteString = atob(dataURI.split(',')[1]);
+    const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+    const ab = new ArrayBuffer(byteString.length);
+    const ia = new Uint8Array(ab);
+    for (let i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
     }
-  
-    onProfileFileChange(event: Event): void {
-      const input = event.target as HTMLInputElement;
-    
-      if (input.files && input.files.length > 0) {
-        const selectedFile = input.files[0];
-    
-        if (!selectedFile.type.startsWith('image/')) {
-          this.toastr.error('Please select a valid image file.', 'Invalid File');
-          return;
-        }
-    
-        const reader = new FileReader();
-    
-        reader.onload = () => {
-          const imageData = reader.result as string;
-    
-          const dialogRef = this.dialog.open(ImageCropperComponent2, {
-            width: '500px',
-            data: { imageUrl: imageData },
-            disableClose: true
-          });
-    
-          dialogRef.afterClosed().subscribe((croppedImage) => {
-            if (croppedImage) {
-              console.log('Cropped Image:', croppedImage);
-              this.uploadCroppedImage(croppedImage);
-            } else {
-              console.log('No cropped image returned');
-            }
-          });
-        };
-    
-        reader.readAsDataURL(selectedFile);
-      } else {
-        console.error('No file selected');
+    return new Blob([ab], { type: mimeString });
+  }
+
+  onProfileFileChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+
+    if (input.files && input.files.length > 0) {
+      const selectedFile = input.files[0];
+
+      if (!selectedFile.type.startsWith('image/')) {
+        this.toastr.error('Please select a valid image file.', 'Invalid File');
+        return;
       }
+
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        const imageData = reader.result as string;
+
+        const dialogRef = this.dialog.open(ImageCropperComponent2, {
+          width: '500px',
+          data: { imageUrl: imageData },
+          disableClose: true
+        });
+
+        dialogRef.afterClosed().subscribe((croppedImage) => {
+          if (croppedImage) {
+            console.log('Cropped Image:', croppedImage);
+            this.uploadCroppedImage(croppedImage);
+          } else {
+            console.log('No cropped image returned');
+          }
+        });
+      };
+
+      reader.readAsDataURL(selectedFile);
+    } else {
+      console.error('No file selected');
     }
+  }
 
   onProfileFileChange1(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -744,9 +759,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
               this.toastr.success(response.message);
             } else {
               this.toastr.clear();
-              if(response.data.errors.profile_image != '' && response.data.errors.profile_image != undefined){
+              if (response.data.errors.profile_image != '' && response.data.errors.profile_image != undefined) {
                 this.toastr.error(response.data.errors.profile_image);
-              }else{
+              } else {
                 this.toastr.error('Failed to upload profile image. Please try again.', 'Upload Failed');
               }
               console.error('Invalid API response structure:', response);
@@ -960,5 +975,26 @@ export class DashboardComponent implements OnInit, OnDestroy {
     if (this.currentThemeMode == null || this.currentThemeMode == undefined) {
       this.currentThemeMode = 'light';
     }
+  }
+
+  navigatePlans() {
+    this.router.navigate(['/talent/plans']);
+  }
+
+  showVerificationPopup() {
+    const messageDialog = this.dialog.open(UnverifiedUserComponent, {
+      width: '500px',
+      position: {
+        top: '150px'
+      }
+    })
+
+    messageDialog.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        if (result.action == "delete-confirmed") {
+          // this.deleteUser();
+        }
+      }
+    });
   }
 }
