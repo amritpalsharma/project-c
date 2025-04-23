@@ -770,7 +770,8 @@ export class HeaderComponent implements OnInit {
       verification_link: verification_link,
       company_name: this.companyName,
       team_id: this.team_id,
-      country: this.selectedCountry
+      country: this.selectedCountry,
+      // company_name:this.selectedCountry
     };
     if (this.privacyPolicy === false) {
       this.toastr.error(this.requiredFieldsMessage);

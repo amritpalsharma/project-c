@@ -69,7 +69,7 @@ export class CommonDataService {
     );
   }
   getAllClubsbyId(id=0): Observable<any> {
-    console.log(" >>>>>>>>>>>>>>>>>>>> getAllClubsbyId id>> ", id);
+    // console.log(" >>>>>>>>>>>>>>>>>>>> getAllClubsbyId id>> ", id);
     return this.http.get(
       `${this.apiUrl}get-clubs-list?country=${id}`
     );

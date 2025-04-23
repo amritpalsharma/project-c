@@ -105,3 +105,9 @@ app-loader {
   pointer-events: none;
   /* Prevents interaction while loading */
 }
+::ng-deep .Input .field.transparent{
+  display: none !important;
+}
+::ng-deep #hub-search-field{
+  display: none !important;
+}

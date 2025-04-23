@@ -1393,10 +1393,11 @@
   "highlightTooltip": "Editar destaques",
   "homeBannerTxt": "SoccerYou – Porque talento sozinho não basta.",
   "accountVerificationPending": "A verificação do seu perfil ainda não está concluída. Por favor, tenha um pouco mais de paciência. Muito obrigado.",
-  "downloadPDFCommunityGuidelines":"Baixar PDF das diretrizes da comunidade",
-  "downloadPDFTermsAndConditions":"Baixar PDF dos Termos e Condições",
-  "downloadPDFPrivacyPolicy":"Baixar PDF da Política de Privacidade",
+  "downloadPDFCommunityGuidelines": "Baixar PDF das diretrizes da comunidade",
+  "downloadPDFTermsAndConditions": "Baixar PDF dos Termos e Condições",
+  "downloadPDFPrivacyPolicy": "Baixar PDF da Política de Privacidade",
   "premiunPlanFor": "Para Clubes e Scouts",
   "multiCountryFor": "Para Scouts",
-  "boostProfileFor": "Para Scouts"
+  "boostProfileFor": "Para Scouts",
+  "deleteFromGalleryConfirmation": "Tem certeza de que deseja excluir a {{type}} da sua galeria?"
 }

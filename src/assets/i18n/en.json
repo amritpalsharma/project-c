@@ -1354,5 +1354,6 @@
   "downloadPDFPrivacyPolicy": "Download PDF Privacy Policy",
   "premiunPlanFor": "For Clubs and Scouts",
   "multiCountryFor": "For Scouts",
-  "boostProfileFor": "For Scouts"
+  "boostProfileFor": "For Scouts",
+  "deleteFromGalleryConfirmation":"Are you sure you want to delete the {{type}} from your gallery?"
 }

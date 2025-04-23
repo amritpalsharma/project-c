@@ -12,9 +12,9 @@
                 <div class="d-flex align-items-center pic-with-name">
                   <span class="position-relative">
                     <img src="../../../assets/images/1.png" alt="" class="table_img"
-                      *ngIf="!element.profile_image_path" />
-                    <img src="{{element.profile_image_path}}" alt="" class="table_img"
-                      *ngIf="element.profile_image_path" />
+                      *ngIf="!element.profile_image" />
+                    <img src="{{baseUrl + element.profile_image}}" alt="" class="table_img"
+                      *ngIf="element.profile_image" />
                     <span class="position-absolute verified-icon">
                       <img src="../../../assets/images/pending.png" alt="" class="user-pending-icon status_icon_size"
                         *ngIf="element.user_status === '1'" />

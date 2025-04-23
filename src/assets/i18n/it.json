@@ -1440,5 +1440,6 @@
   "downloadPDFPrivacyPolicy":"Scarica il PDF dell’Informativa sulla privacy",
   "premiunPlanFor": "Per Club e Scout",
   "multiCountryFor": "Per Scout",
-  "boostProfileFor": "Per Scout"
+  "boostProfileFor": "Per Scout",
+  "deleteFromGalleryConfirmation":"Sei sicuro di voler eliminare {{type}} dalla tua galleria?"
 }

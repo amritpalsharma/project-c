@@ -21,7 +21,14 @@ export class ScoutHistoryComponent {
   @ViewChild('historyTextarea', { static: false }) textarea!: ElementRef;
   constructor(private route: ActivatedRoute, private clubService: ClubService) { }
 
+  // replaceEmptyParagraphs(html: string) {
+  //   return html.replace(/<p>\s*<\/p>/g, "<br>");
+  // }
   replaceEmptyParagraphs(html: string) {
-    return html.replace(/<p>\s*<\/p>/g, "<br>");
+    if(typeof html === undefined || html == ''){
+        return '';
+    }else{
+      return html.replace(/<p>\s*<\/p>/g, "<br>");
+    }
   }
 }

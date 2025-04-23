@@ -1302,10 +1302,11 @@
   "highlightTooltip": "Rediger højdepunkter",
   "homeBannerTxt": "SoccerYou – For talent er ikke nok i sig selv.",
   "accountVerificationPending": "Din profilbekræftelse er endnu ikke afsluttet. Hav venligst lidt mere tålmodighed. Mange tak skal du have.",
-  "downloadPDFCommunityGuidelines":"Download PDF med fællesskabsregler",
-  "downloadPDFTermsAndConditions":"Download PDF med vilkår og betingelser",
-  "downloadPDFPrivacyPolicy":"Download PDF med privatlivspolitik",
+  "downloadPDFCommunityGuidelines": "Download PDF med fællesskabsregler",
+  "downloadPDFTermsAndConditions": "Download PDF med vilkår og betingelser",
+  "downloadPDFPrivacyPolicy": "Download PDF med privatlivspolitik",
   "premiunPlanFor": "For Klubber og Scouts",
   "multiCountryFor": "For Scouts",
-  "boostProfileFor": "For Scouts"
+  "boostProfileFor": "For Scouts",
+  "deleteFromGalleryConfirmation": "Er du sikker på, at du vil slette {{type}} fra dit galleri?"
 }

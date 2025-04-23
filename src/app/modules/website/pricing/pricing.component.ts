@@ -237,13 +237,13 @@ export class PricingComponent {
   getDynamicPlanName(planName: string) {
     const lowerPlanName = planName.toLowerCase();
     if (lowerPlanName.includes('premium')) {
-      return this.priceArr[0].plan_name;
+      // return this.priceArr[0].plan_name;
     }
     if (lowerPlanName.includes('country')) {
-      return this.priceArr[1].plan_name;
+      // return this.priceArr[1].plan_name;
     }
     if (lowerPlanName.includes('boost')) {
-      return this.priceArr[2].plan_name;
+      // return this.priceArr[2].plan_name;
     }
   }
   getDescByPlanName(planName: string) {

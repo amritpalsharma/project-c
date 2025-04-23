@@ -178,25 +178,26 @@
             <div class="tab-pane" id="Tab2" role="tabpanel">
               <div class="shadow_container">
                 <div class="row">
+                  <!-- boost Profile -->
                   <div class="col-md-4 item_column">
                     <div class="item_card">
                       <div class="header_card">
                         <h2 class="premium-heading3">
-                          {{ getPlanPriceByName('boost')}}<span>.-{{Currency}} /
-                            <span *ngIf="selectedTab == 'yearly'">{{priceArr[0].yearly_label}}</span>
-                            <span *ngIf="selectedTab != 'yearly'">{{priceArr[0].monthly_label}}</span>
+                          {{ selectedTab != 'yearly' ? boostPrice : boostYearlyPrice }}<span>.-{{Currency}} /
+                            <span *ngIf="selectedTab == 'yearly'">{{pageData?.first_tab_yearly_label}}</span>
+                            <span *ngIf="selectedTab != 'yearly'">{{pageData?.first_tab_monthly_label}}</span>
                           </span>
                         </h2>
-                        <h3 class="premium-heading2">{{ getDynamicPlanName('boost') }}</h3>
-                        <h5 class="premium-heading5">For Talents, Club & Scouts</h5>
+                        <h3 class="premium-heading2">{{ pageData?.third_tab_plan_name }}</h3>
+                        <h5 class="premium-heading5">{{pageData?.third_tab_free_features_title }}</h5>
                       </div>
                       <div class="body_card">
                         <h5 class="premium-heading5" *ngIf="pageData?.first_tab_free_features_sub_title">
                           {{pageData?.first_tab_free_features_sub_title}}</h5>
                         <div class="text_List_wrap">
-                          <div class="premium-text" *ngFor="let desc of getDescByPlanName('boost');">
+                          <div class="premium-text" *ngFor="let feature of pageData?.third_tab_free_features_desc">
                             <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
-                            <p>{{desc}}</p>
+                            <p>{{feature}}</p>
                           </div>
                         </div>
                       </div>
@@ -208,27 +209,25 @@
                       </div>
                     </div>
                   </div>
+                  <!-- Premium -->
                   <div class="col-md-4 item_column">
                     <div class="item_card">
                       <div class="header_card">
-                        <h2 class="premium-heading3">110<span>.- CHF / <span>Monthly</span></span></h2>
-                        <h3 class="premium-heading2"> Multi-Country </h3>
-                        <h5 class="premium-heading5">For Talents and Scouts</h5>
+                        <h2 class="premium-heading3">
+                          {{ selectedTab != 'yearly' ? premiumPrice : premiumYearlyPrice }}<span>.-{{Currency}} /
+                            <span *ngIf="selectedTab == 'yearly'">{{pageData?.first_tab_yearly_label}}</span>
+                            <span *ngIf="selectedTab != 'yearly'">{{pageData?.first_tab_monthly_label}}</span>
+                          </span>
+                        </h2>
+                        <h3 class="premium-heading2"> {{ pageData?.first_tab_plan_name }} </h3>
+                        <h5 class="premium-heading5">{{pageData?.first_tab_free_features_title}}</h5>
                       </div>
                       <div class="body_card">
-                        <h5 class="premium-heading5">Multi-Country Features:</h5>
+                        <h5 class="premium-heading5">{{pageData?.first_tab_free_features_title}}</h5>
                         <div class="text_List_wrap">
-                          <div class="premium-text">
+                          <div class="premium-text" *ngFor="let feature of pageData?.first_tab_free_features_desc">
                             <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
-                            <p>Make your profile visible in other countries of your choice</p>
-                          </div>
-                          <div class="premium-text">
-                            <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
-                            <p>Increase your visibility – internationally</p>
-                          </div>
-                          <div class="premium-text">
-                            <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
-                            <p>Build an international network</p>
+                            <p>{{feature}}</p>
                           </div>
                         </div>
                       </div>
@@ -240,28 +239,25 @@
                       </div>
                     </div>
                   </div>
+                  <!-- Country -->
                   <div class="col-md-4 item_column">
                     <div class="item_card">
                       <div class="header_card">
-                        <h2 class="premium-heading3">110<span>.- CHF / <span>Monthly</span></span></h2>
-                        <h3 class="premium-heading2"> Boost Profile</h3>
-                        <h5 class="premium-heading5">For Talents and Scouts</h5>
+                        <h2 class="premium-heading3">
+                          {{ selectedTab != 'yearly' ? countryPrice : countryYearlyPrice }}<span>.-{{Currency}} /
+                            <span *ngIf="selectedTab == 'yearly'">{{pageData?.first_tab_yearly_label}}</span>
+                            <span *ngIf="selectedTab != 'yearly'">{{pageData?.first_tab_monthly_label}}</span>
+                          </span>
+                        </h2>
+                        <h3 class="premium-heading2"> {{pageData?.sec_tab_plan_name}}</h3>
+                        <h5 class="premium-heading5">{{pageData?.sec_tab_free_features_title}}</h5>
                       </div>
                       <div class="body_card">
-                        <h5 class="premium-heading5">Boost Features:</h5>
+                        <h5 class="premium-heading5">{{pageData?.sec_tab_free_features_title}}:</h5>
                         <div class="text_List_wrap">
-                          <div class="premium-text">
+                          <div class="premium-text" *ngFor="let feature of pageData?.sec_tab_free_features_desc">
                             <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
-                            <p>Your profile picture will have a special and highlighted background</p>
-                          </div>
-                          <div class="premium-text">
-                            <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
-                            <p>Your profile will appear at the top of the search results when your characteristics are
-                              searched for</p>
-                          </div>
-                          <div class="premium-text">
-                            <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
-                            <p>More visibility - higher chances of being discovered</p>
+                            <p>{{feature}}</p>
                           </div>
                         </div>
                       </div>

@@ -161,7 +161,7 @@
 
           <div class="row player-image-list ">
             <div class="col-lg-2" *ngFor="let player of players">
-              <pre>{{player | json}}</pre>
+              <!-- <pre>{{player | json}}</pre> -->
               <ng-container *ngIf="player.id != loggedInUser && !isLoading">
 
                 <div class="image_box cursor-pointer" [ngClass]="{'booster_box': player?.package_name == 'Booster'}"
