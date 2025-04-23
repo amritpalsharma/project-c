@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UploadPopupComponent } from '../../upload-popup/upload-popup.component';
 import { MatDialog } from '@angular/material/dialog';
 import { TalentService } from '../../../../services/talent.service';
@@ -9,6 +9,7 @@ import { ScoutService } from '../../../../services/scout.service';
 import { environment } from '../../../../../environments/environment';
 import { WebPages } from '../../../../services/webpages.service';
 import { TranslateService } from '@ngx-translate/core';
+import { UnverifiedUserComponent } from '../../../shared/unverified-user/unverified-user.component';
 
 @Component({
   selector: 'scout-gallery-tab',
@@ -24,38 +25,40 @@ export class GalleryTabComponent {
   deletingCoverImage: string = '';
   Canceled: string = '';
   coverImageDeletionCanceled: string = '';
-  
+
   userId: any = '';
   userImages: any = [];
   userVideos: any = [];
   imageBaseUrl: any = "";
   selectedFile: any = '';
-  defaultCoverImage:any = "./media/palyers.png";
-  openedMenuId:any = '';
-  loggedInUser:any = localStorage.getItem('userData');
+  defaultCoverImage: any = "./media/palyers.png";
+  openedMenuId: any = '';
+  loggedInUser: any = localStorage.getItem('userData');
   @Input() coverImage: string = '';  // Define an input property
   @Output() dataEmitter = new EventEmitter<string>();
   @Input() isPremium: any;
+  @Input() isUserVerified: any;
 
   isLoading: boolean = false;
 
   constructor(
     private toastr: ToastrService,
     private route: ActivatedRoute,
+    private router: Router,
     public webPages: WebPages,
     private translateService: TranslateService,
     private scoutService: ScoutService,
     public dialog: MatDialog) { }
-  
+
   ngOnInit(): void {
     this.loggedInUser = JSON.parse(this.loggedInUser);
-    this.route.params.subscribe((params:any) => {
+    this.route.params.subscribe((params: any) => {
       // console.log(params.id)
       this.userId = params.id;
       this.getGalleryData()
     });
-    
-    if(this.coverImage == ""){
+
+    if (this.coverImage == "") {
       this.coverImage = this.defaultCoverImage;
     }
 
@@ -65,12 +68,12 @@ export class GalleryTabComponent {
     });
   }
 
-  getGalleryData(){
+  getGalleryData() {
     try {
-      this.scoutService.getGalleryData().subscribe((response)=>{
+      this.scoutService.getGalleryData().subscribe((response) => {
         if (response && response.status && response.data) {
-          this.userImages = response.data.images; 
-          this.userVideos = response.data.videos; 
+          this.userImages = response.data.images;
+          this.userVideos = response.data.videos;
           this.imageBaseUrl = response.data.file_path;
         } else {
           console.error('Invalid API response structure:', response);
@@ -93,9 +96,9 @@ export class GalleryTabComponent {
         const formdata = new FormData();
         formdata.append("cover_image", this.selectedFile);
 
-        this.scoutService.uploadCoverImage(formdata).subscribe((response)=>{
+        this.scoutService.uploadCoverImage(formdata).subscribe((response) => {
           if (response && response.status) {
-            this.coverImage = environment.url+"uploads/"+response.data.uploaded_fileinfo;
+            this.coverImage = environment.url + "uploads/" + response.data.uploaded_fileinfo;
             this.dataEmitter.emit(this.coverImage); // Emitting the data
             // this.isLoading = false;
           } else {
@@ -105,14 +108,14 @@ export class GalleryTabComponent {
         });
       } catch (error) {
         // this.isLoading = false;
-        console.error('Error fetching users:', error); 
+        console.error('Error fetching users:', error);
       }
     }
   }
 
-  deleteCoverImage(){
+  deleteCoverImage() {
     try {
-      this.scoutService.deleteCoverImage().subscribe((response)=>{
+      this.scoutService.deleteCoverImage().subscribe((response) => {
         if (response && response.status) {
           setTimeout(() => {
             this.coverImage = './media/palyers.png';
@@ -126,38 +129,38 @@ export class GalleryTabComponent {
       });
     } catch (error) {
       // this.isLoading = false;
-      console.error('Error fetching users:', error); 
+      console.error('Error fetching users:', error);
     }
   }
 
-  checkRole(){
-    if(!this.loggedInUser.isRepresentator){
+  checkRole() {
+    if (!this.loggedInUser.isRepresentator) {
       return true;
     }
-    if(this.loggedInUser.permission === 'admin.view' || this.loggedInUser.permission === 'admin.edit'){
+    if (this.loggedInUser.permission === 'admin.view' || this.loggedInUser.permission === 'admin.edit') {
       return false;
     }
     return true;
   }
 
-  addPhotosPopup(type:string='all'){
-    if(!this.checkRole()){
+  addPhotosPopup(type: string = 'all') {
+    if (!this.checkRole()) {
       return;
     }
-    const messageDialog = this.dialog.open(UploadPopupComponent,{
+    const messageDialog = this.dialog.open(UploadPopupComponent, {
       width: '715px',
       position: {
-        top:'150px',
+        top: '150px',
       },
       data: {
         userId: this.userId,
-        file:type
+        file: type
       }
     })
 
     messageDialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
-        if(result.files.length){
+        if (result.files.length) {
           console.log(result.files)
           this.getGalleryData()
         }
@@ -174,16 +177,16 @@ export class GalleryTabComponent {
     try {
       const loadingToast = this.toastr.info(this.deletingCoverImage, this.pleaseWait, { disableTimeOut: true });
       let params = { id: [id] };
-  
+
       this.scoutService.deleteGalleryImage(params).subscribe({
         next: (response) => {
           this.toastr.clear(loadingToast.toastId);
           if (response && response.status) {
-            if(type==='image'){
+            if (type === 'image') {
               const index = this.userImages.findIndex((x: any) => x.id === id);
               this.userImages.splice(index, 1);
             }
-            else{
+            else {
               const index = this.userVideos.findIndex((x: any) => x.id === id);
               this.userVideos.splice(index, 1);
             }
@@ -210,11 +213,11 @@ export class GalleryTabComponent {
   openDeleteDialog(id: any, type: string): void {
     // Close the floating menu when opening the dialog
     this.openedMenuId = null;
-  
+
     const dialogRef = this.dialog.open(DeletePopupComponent, {
       width: '600px',
     });
-  
+
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         // Proceed with deletion if the user confirms
@@ -224,18 +227,18 @@ export class GalleryTabComponent {
       }
     });
   }
-  
-  downloadImage(baseUrl:any, image:any){
 
-    fetch(baseUrl+image)
-     .then(response => {
-       if (!response.ok) {
-         throw new Error('Network response was not ok');
-       }
-       return response.blob(); // Convert the response to a Blob object
-     })
-     .then(blob => {
-      this.openedMenuId = '';
+  downloadImage(baseUrl: any, image: any) {
+
+    fetch(baseUrl + image)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.blob(); // Convert the response to a Blob object
+      })
+      .then(blob => {
+        this.openedMenuId = '';
         const url = window.URL.createObjectURL(blob);
         const anchor = document.createElement('a');
         anchor.href = url;
@@ -244,11 +247,11 @@ export class GalleryTabComponent {
         anchor.click();
         window.URL.revokeObjectURL(url);
         document.body.removeChild(anchor);
-     })
-     .catch(error => {
-       console.error('There was an error downloading the file:', error);
-     });
-  } 
+      })
+      .catch(error => {
+        console.error('There was an error downloading the file:', error);
+      });
+  }
 
 
   getToasterMsg() {
@@ -262,5 +265,26 @@ export class GalleryTabComponent {
       this.Canceled = translations['Canceled'];
     });
   }
+
+    navigatePlans() {
+      this.router.navigate(['/scout/plans']);
+    }
+  
+    showVerificationPopup() {
+      const messageDialog = this.dialog.open(UnverifiedUserComponent, {
+        width: '500px',
+        position: {
+          top: '150px'
+        }
+      })
+  
+      messageDialog.afterClosed().subscribe(result => {
+        if (result !== undefined) {
+          if (result.action == "delete-confirmed") {
+            // this.deleteUser();
+          }
+        }
+      });
+    }
 
 }

@@ -978,7 +978,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   navigatePlans() {
-    this.router.navigate(['/talent/plans']);
+    this.router.navigate(['/scout/plans']);
   }
 
   showVerificationPopup() {
