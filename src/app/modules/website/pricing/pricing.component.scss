@@ -23,9 +23,7 @@ p {
     margin-top: 50px;
     margin-bottom: 50px;
 }
-// .advertisment{
-//     min-height: 300px;
-// }
+
 li {
     font-size: 17px;
     color: white;
@@ -533,7 +531,93 @@ li::before {
         margin-top: 6rem;
     }
 }
+@media (min-width: 1600px) and (max-width: 1999px) {
+    .pricing_tabs_container {
+        .nav-link {
+            font-size: 25px !important;
+            padding: 15px 30px;
+        }
+    }
+    .shadow_container {
+        .body_card {
+            height: 400px;
+            width: calc(100% + 20px);
+            padding-right: 20px;
+        }
+        .item_column:nth-child(2) {
+            margin-top: -4rem;
+            .body_card {
+                height: calc(400px + 4rem);
+            }
+        }
+    }
+}
 
+@media (min-width: 2000px) and (max-width: 2999px) {
+    .pricing_tabs_container {
+        .nav-link {
+            font-size: 30px !important;
+            padding: 15px 40px;
+        }
+    }
+    .shadow_container {
+        margin-top: 7rem !important;
+        .header_card {
+            margin-bottom: 2rem;
+        }
+        .body_card {
+            height: 500px;
+            width: calc(100% + 20px);
+            padding-right: 20px;
+        }
+        .item_column:nth-child(2) {
+            margin-top: -5rem;
+            .body_card {
+                height: calc(500px + 5rem);
+            }
+        }
+    }
+    
+    .shadow_container .body_card::-webkit-scrollbar {
+        width: 8px !important;
+    }
+}
+
+@media (min-width: 3000px) {
+    .shadow_container {
+        margin-top: 9rem !important;
+        .header_card {
+            margin-bottom: 2rem;
+        }
+        .body_card {
+            height: 600px;
+            width: calc(100% + 25px);
+            padding-right: 25px;
+        }
+        .item_card {
+            padding: 4rem;
+        }
+        .item_column:nth-child(2) {
+            margin-top: -5rem;
+            .body_card {
+                height: calc(600px + 5rem);
+            }
+        }
+    }
+    .pricing_tabs_container {
+        ul.nav.nav-tabs{
+            margin: 4rem 0;
+            .nav-link {
+                font-size: 50px;
+                padding: 15px 40px;
+            }
+        }
+    }
+    
+    .shadow_container .body_card::-webkit-scrollbar {
+        width: 13px !important;
+    }
+}
 
 @media (max-width: 1023px) {
     .shadow_container {
