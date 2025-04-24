@@ -10,6 +10,8 @@ import { TalentService } from '../../../../services/talent.service';
 import { TranslateService } from '@ngx-translate/core';
 import { ScoutService } from '../../../../services/scout.service';
 import { SocketService } from '../../../../services/socket.service';
+import { Router } from '@angular/router';
+import { UnverifiedUserComponent } from '../../unverified-user/unverified-user.component';
 
 interface Notification {
   id: number;
@@ -39,11 +41,12 @@ export class NotificationsLogComponent {
   notifications: any[] = [];
   selectNotificationFirst: string = '';
   confirmDeleteinformation: string = '';
+  isUserVerified: boolean = false;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   idsToDelete: any = [];
 
-  constructor(public dialog: MatDialog, public webPages: WebPages, private talentService: TalentService, private translateService: TranslateService, private scoutService: ScoutService, private socketService: SocketService) {
+  constructor(public dialog: MatDialog, public webPages: WebPages, private talentService: TalentService, private translateService: TranslateService, private scoutService: ScoutService, private socketService: SocketService, private router: Router) {
     this.updateTranslation();
     translateService.onLangChange.subscribe(() => {
       this.fetchNotifications()
@@ -53,6 +56,7 @@ export class NotificationsLogComponent {
 
   ngOnInit() {
     this.loggedInUser = JSON.parse(this.loggedInUser);
+    this.getUserStatus();
     this.fetchNotifications();
   }
 
@@ -274,6 +278,56 @@ export class NotificationsLogComponent {
 
   convertTime(dateTime: any) {
     return this.talentService.convertTalentDateTime(dateTime);
+  }
+
+  getUserStatus() {
+    this.socketService.getLoggedInUserStatus().then((result) => {
+      if (result == 2) {
+        this.isUserVerified = true;
+      } else {
+        this.isUserVerified = false;
+      }
+    });
+  }
+
+  handleNotiificationClick(notification: any) {
+    if (!this.isUserVerified) {
+      this.showVerificationPopup(false);
+    }
+    else {
+      let role = (notification.senderRole || '').toString().toLowerCase();
+      console.log('notification', notification)
+      if(role==='scout representator'){
+        role = 'scout';
+      }
+      else if(role==='admin representator'){
+        role = 'admin';
+      }
+      else{
+        role = 'club';
+      }
+      this.router.navigate([`/view/${role}`, notification.senderId]);
+    }
+  }
+
+  showVerificationPopup(isVerified: boolean) {
+    if (isVerified) {
+      return;
+    }
+    const messageDialog = this.dialog.open(UnverifiedUserComponent, {
+      width: '500px',
+      position: {
+        top: '150px'
+      }
+    })
+
+    messageDialog.afterClosed().subscribe((result: any) => {
+      if (result !== undefined) {
+        if (result.action == "delete-confirmed") {
+          // this.deleteUser();
+        }
+      }
+    });
   }
 
   updateTranslation() {
