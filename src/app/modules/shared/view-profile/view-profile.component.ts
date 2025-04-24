@@ -433,16 +433,16 @@ export class ViewProfileComponent implements OnInit {
   navigateToChat() {
     localStorage.setItem('otherUserData', '');
     // console.log('User',this.user)
-    let userImage = '';
     if(this.user.meta.profile_image != '' && this.user.meta.profile_image != undefined){
-      userImage = this.baseUrl + this.user.meta.profile_image;
+      this.user.meta.profile_image = this.baseUrl + this.user.meta.profile_image;
     }
     if (this.user) {
+      
       const userData = {
         id: this.user.id,
-        name: this.user.first_name+' '+this.user.last_name,
+        name: this.user.first_name+ ''+this.user.last_name,
         email: this.user.email,
-        photoUrl: userImage
+        photoUrl: this.baseUrl + this.user.meta.profile_image
       };
  
       console.log(userData, this.user);

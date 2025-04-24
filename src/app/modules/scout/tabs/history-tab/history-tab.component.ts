@@ -74,9 +74,20 @@ export class HistoryTabComponent {
     }
   }
 
-  replaceEmptyParagraphs(html: string) {
-    return html.replace(/<p>\s*<\/p>/g, "<br>");
+  // replaceEmptyParagraphs(html: string) {
+  //   return html.replace(/<p>\s*<\/p>/g, "<br>");
+  // }
+
+  replaceEmptyParagraphs(html?: string): string {
+    if (typeof html !== 'string' || !html.trim()) {
+      return '';
+    }
+
+    // Replace truly empty or whitespace-only <p> tags
+    return html.replace(/<p>(\s|&nbsp;|<br\s*\/?>)*<\/p>/gi, '<br>');
   }
+
+
 
   checkRole() {
     if (!this.loggedInUser.isRepresentator) {

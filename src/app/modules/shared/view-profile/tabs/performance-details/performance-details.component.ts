@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../../../../services/user.service';
 import { TalentService } from '../../../../../services/talent.service';
 import { MatDialog } from '@angular/material/dialog';
+import { WebPages } from '../../../../../services/webpages.service';
 
 @Component({
   selector: 'view-user-performance-details',
@@ -25,6 +26,7 @@ export class PerformanceDetailsComponent {
     player_age: ""
   }
   loggedInUser: any = localStorage.getItem('userData');
+  isLoading: boolean = true;
   @Input() isPremium: any;
 
   constructor(
@@ -32,7 +34,9 @@ export class PerformanceDetailsComponent {
     private router: Router,
     private userService: UserService,
     private talentService: TalentService,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    public webPages: WebPages
+  ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: any) => {
@@ -41,22 +45,29 @@ export class PerformanceDetailsComponent {
         this.getUserPerformance(this.userId);
       }
     });
+
+    this.webPages.languageId$.subscribe((data: any) => {
+      if (this.isPremium) {
+        this.getUserPerformance(this.userId);
+      }
+    });
   }
 
   getUserPerformance(userId: any) {
+    this.isLoading = true;
     try {
-      this.talentService.getPerformanceList(userId).subscribe((response) => {
+      this.talentService.getPerformancesList(userId).subscribe((response) => {
         if (response && response.status && response.data && response.data.performanceDetail) {
           this.editableId = "";
           this.performances = response.data.performanceDetail;
-          // this.isLoading = false;
+          this.isLoading = false;
         } else {
-          // this.isLoading = false;
+          this.isLoading = false;
           console.error('Invalid API response structure:', response);
         }
       });
     } catch (error) {
-      // this.isLoading = false;
+      this.isLoading = false;
       console.error('Error fetching users:', error);
     }
   }

@@ -211,7 +211,7 @@ export class TalentService {
 
   getPerformanceData(): Observable<any> {
     const headers = this.headers();
-    let lang_id  = localStorage.getItem('lang_id');
+    let lang_id = localStorage.getItem('lang_id');
     return this.http.get<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl}player/get-performance-detail/${lang_id}`, { headers }
     );
@@ -219,7 +219,7 @@ export class TalentService {
 
   getTransferData(): Observable<any> {
     const headers = this.headers();
-    let lang_id  = localStorage.getItem('lang_id');
+    let lang_id = localStorage.getItem('lang_id');
     return this.http.get<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl}player/get-transfer-detail/${lang_id}`, { headers }
     );
@@ -230,6 +230,14 @@ export class TalentService {
 
     return this.http.get<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl}get-transfer-detail/${id}`, { headers }
+    );
+  }
+
+  getViewTransfersData(id: any): Observable<any> {
+    const headers = this.headers();
+    let lang_id = localStorage.getItem('lang_id');
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
+      `${this.apiUrl}get-transfer-detail/${lang_id}/${id}`, { headers }
     );
   }
 
@@ -491,6 +499,15 @@ export class TalentService {
 
     return this.http.get<any>(
       `${this.apiUrl}get-performance-detail/${id}`,
+      { headers }
+    );
+  }
+
+  getPerformancesList(id: any): Observable<any> {
+    const headers = this.headers();
+    let lang_id = localStorage.getItem('lang_id');
+    return this.http.get<any>(
+      `${this.apiUrl}get-performance-detail/${lang_id}/${id}`,
       { headers }
     );
   }
