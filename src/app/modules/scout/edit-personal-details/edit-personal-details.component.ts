@@ -79,7 +79,7 @@ export class EditPersonalDetailsComponent implements OnInit {
   contact_number :any ;
   cover_image :any ;
   cover_image_path :any ;
-  designation :any ;
+  country :any ;
   profile_image :any ;
   profile_image_path :any ;
 
@@ -164,7 +164,7 @@ export class EditPersonalDetailsComponent implements OnInit {
           this.contact_number = this.user.meta.contact_number;
           this.cover_image = this.user.meta.cover_image;
           this.cover_image_path = this.user.meta.cover_image_path;
-          this.designation = this.user.meta.designation;
+          this.country = this.user.meta.country;
           this.profile_image = this.user.meta.profile_image;
           this.profile_image_path = this.user.meta.profile_image_path;
           this.sm_facebook = this.user.meta.sm_facebook;
@@ -203,7 +203,7 @@ export class EditPersonalDetailsComponent implements OnInit {
       formData.append('user[contact_number]' , this.contact_number);
       // formData.append('user[cover_image]' , this.cover_image);
       // formData.append('user[cover_image_path]' , this.cover_image_path);
-      formData.append('user[designation]' , this.designation);
+      formData.append('user[user_nationalities]' , this.country);
       // formData.append('user[profile_image]' , this.profile_image);
       // formData.append('user[profile_image_path]' , this.profile_image_path);
       formData.append('user[sm_facebook]' , this.sm_facebook);

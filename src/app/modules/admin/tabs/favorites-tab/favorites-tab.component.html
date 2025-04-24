@@ -100,9 +100,12 @@
 
             <div class="d-flex align-items-center">
               <span class="position-relative">
-                <img *ngIf="!element.profile_image_path" src="../../../assets/images/1.png" alt="" class="table_img" />
+                <!-- <img *ngIf="!element.profile_image_path" src="../../../assets/images/1.png" alt="" class="table_img" />
+                <img *ngIf="element.profile_image_path" src="{{element.profile_image_path}}" alt="" class="table_img" /> -->
+                <img *ngIf="!element.profile_image_path && element.role_name.toLowerCase() != 'club'" src="../../../assets/images/1.png" alt="" class="table_img" />
+                <img *ngIf="element.profile_image_path && element.role_name.toLowerCase() != 'club'" src="{{element.profile_image_path}}" alt="" class="table_img" />
+                <img *ngIf="element.club_logo	&& element.role_name.toLowerCase() == 'club'" src="{{imageBaseUrl + element.club_logo}}" alt="" class="table_img" />
 
-                <img *ngIf="element.profile_image_path" src="{{element.profile_image_path}}" alt="" class="table_img" />
                 <span class="position-absolute verified-icon">
                   <img src="../../../assets/images/pending.png" alt="" class="user-pending-icon"
                     *ngIf="element.user_status === '1'" />

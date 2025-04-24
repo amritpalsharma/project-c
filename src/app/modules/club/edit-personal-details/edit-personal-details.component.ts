@@ -139,12 +139,14 @@ export class EditPersonalDetailsComponent implements OnInit {
     this.scoutService.getProfileData(userId).subscribe((response: any) => {
       if (response && response.status && response.data && response.data.user_data) {
         this.user = response.data.user_data;
+        // console.info('this.user',this.user);
 
         // Update component properties with user data
         if (this.user?.meta) {
           this.address = this.user.meta.address;
           this.since = this.user.meta.since;
-          this.club_name = this.user?.meta?.club_name;
+          // this.club_name = this.user?.meta?.club_name;
+          this.club_name = this.user.current_club_name;
           this.contact_number = this.user.meta.contact_number;
           this.cover_image = this.user.meta.cover_image;
           this.cover_image_path = this.user.meta.cover_image_path;
@@ -162,11 +164,13 @@ export class EditPersonalDetailsComponent implements OnInit {
           this.zipcode = this.user.meta.zipcode;
           // this.nationality = this.user.meta.nationality;
           this.userNationalities = JSON.parse(this.user.user_nationalities);
-          console.info(this.userNationalities)
-          if (this.userNationalities[0].country_id != '') {
-            this.nationality = this.userNationalities[0].country_id;
-          }
-
+          // console.info(this.userNationalities)
+          // if (this.userNationalities[0].country_id != '') {
+          //   this.nationality = this.userNationalities[0].country_id;
+          // }
+        if(this.user.current_club_country && this.user.current_club_country != ''){
+          this.nationality = this.getCountryIdByName(this.user.current_club_country);
+        }
           this.formation_date = new FormControl(
             this.user?.meta?.formation_date
               ? this.formatDate(this.user.meta.formation_date)
@@ -179,6 +183,18 @@ export class EditPersonalDetailsComponent implements OnInit {
       }
     });
   }
+
+  getCountryIdByName(countryName: string): string | null {
+    let countries = this.countries;
+    if (!countryName || !Array.isArray(countries)) return null;
+  
+    const match = countries.find(
+      country => country.country_name?.toLowerCase().trim() === countryName.toLowerCase().trim()
+    );
+  
+    return match ? match.id : null;
+  }
+  
 
   onSubmit(form: NgForm) {
     if (form.valid) {

@@ -133,12 +133,12 @@
                       <div class="row">
                         <div class="col-sm-12 p-0">
                           <h6 class="title_2 mb-1">{{ 'country' | translate }}</h6>
-                          <div class="d-flex align-items-center gap-2 mb-1 " *ngFor="let nation of userNationalities">
+                          <div class="d-flex align-items-center gap-2 mb-1 ">
                             <div class="team-badge_image">
-                              <img *ngIf="nation.flag_path" [src]="nation.flag_path" alt="">
-                              <img *ngIf="!nation.flag_path" src="../../../../assets/images/team-flag.png" alt="">
+                              <img *ngIf="user?.current_club_country_path" [src]="user?.current_club_country_path" alt="">
+                              <!-- <img *ngIf="!nation.flag_path" src="../../../../assets/images/team-flag.png" alt=""> -->
                             </div>
-                            <h5 class="title-1">{{nation.country_name | translate }} </h5>
+                            <h5 class="title-1" *ngIf="user?.current_club_country">{{user?.current_club_country}} </h5>
                           </div>
                         </div>
                       </div>

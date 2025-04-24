@@ -52,7 +52,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     public webPages: WebPages,
     private titleService: TitleService,
     private globalSettings: GlobalSettingsService,
-    private socketService:SocketService
+    private socketService: SocketService
   ) { }
   activeTab: string = 'profile';
   userId: any;
@@ -190,7 +190,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
             element: '#TourPersonalDetails',
             intro: `<div><h6>${translations['personalDetails']}</h6>${translations['addYourPersonalDetails']}.</div>`,
             // tooltipClass: 'custom-tooltip',
-             position: 'right'
+            position: 'right'
 
           },
           {
@@ -198,19 +198,19 @@ export class DashboardComponent implements OnInit, OnDestroy {
             element: '.highlights_intro_tour',
             intro: `<div><h6>${translations['highlights']}</h6>${translations['uploadPhotosAndVideos']}.</div>`,
             // tooltipClass: 'custom-tooltip',
-             position: 'right'
+            position: 'right'
           },
           {
             element: '#coverImageTour',
             intro: `<div><h6>${translations['coverPhoto']}</h6>${translations['uploadCoverPhoto']}.</div>`,
             // tooltipClass: 'custom-tooltip',
-             position: 'left'
+            position: 'left'
           },
           {
             element: '.general_details_club_intro',
             intro: `<div><h6>${translations['generalDetails']}</h6>${translations['editGeneralDetails']}.</div>`,
             // tooltipClass: 'custom-tooltip',
-             position: 'left'
+            position: 'left'
           },
         ],
         showBullets: false,
@@ -355,6 +355,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
             this.coverImage = this.user.meta.cover_image_path;
           }
 
+          if(this.user.current_club_country && this.user.current_club_country != ''){
+            // this.nationality = this.getCountryIdByName(this.user.current_club_country);
+          }
 
 
           if (this.StartTour && this.isTourFirstTime) {
@@ -535,39 +538,39 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   openImage(index: any, type: string): void {
-      const filePath = this.highlights.file_path;
-    
-      const images = this.highlights.images.map((img: any) => ({
-        src: filePath + img.file_name,
-        type: 'image',
-      }));
-      const videos = this.highlights.videos.map((vid: any) => ({
-        src: filePath + vid.file_name,
-        type: 'video',
-      }));
-  
-      if(type==='video'){
-        index += this.highlights.images.length;
-      }
-      
-    
-      const album = [...images, ...videos];
-    
-      // const mainImage = String(index).includes('video_')
-      //   ? videos[+index.replace('video_', '')]
-      //   : images[index];
-  
-      const mainImage = album[index]
-  
-      console.log(mainImage, "img,,,,", index);
-    
-      this.dialog.open(LightboxDialogComponent, {
-        width: '80%',
-        height: '85%',
-        data: { album, mainImage },
-        panelClass: 'lightbox-dialog'
-      });
+    const filePath = this.highlights.file_path;
+
+    const images = this.highlights.images.map((img: any) => ({
+      src: filePath + img.file_name,
+      type: 'image',
+    }));
+    const videos = this.highlights.videos.map((vid: any) => ({
+      src: filePath + vid.file_name,
+      type: 'video',
+    }));
+
+    if (type === 'video') {
+      index += this.highlights.images.length;
     }
+
+
+    const album = [...images, ...videos];
+
+    // const mainImage = String(index).includes('video_')
+    //   ? videos[+index.replace('video_', '')]
+    //   : images[index];
+
+    const mainImage = album[index]
+
+    console.log(mainImage, "img,,,,", index);
+
+    this.dialog.open(LightboxDialogComponent, {
+      width: '80%',
+      height: '85%',
+      data: { album, mainImage },
+      panelClass: 'lightbox-dialog'
+    });
+  }
 
   openImage2(index: number): void {
     // Prepare album
@@ -880,24 +883,35 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
   }
 
-    navigatePlans() {
-      this.router.navigate(['/club/plans']);
-    }
-  
-    showVerificationPopup() {
-      const messageDialog = this.dialog.open(UnverifiedUserComponent, {
-        width: '500px',
-        position: {
-          top: '150px'
+  navigatePlans() {
+    this.router.navigate(['/club/plans']);
+  }
+
+  showVerificationPopup() {
+    const messageDialog = this.dialog.open(UnverifiedUserComponent, {
+      width: '500px',
+      position: {
+        top: '150px'
+      }
+    })
+
+    messageDialog.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        if (result.action == "delete-confirmed") {
+          // this.deleteUser();
         }
-      })
-  
-      messageDialog.afterClosed().subscribe(result => {
-        if (result !== undefined) {
-          if (result.action == "delete-confirmed") {
-            // this.deleteUser();
-          }
-        }
-      });
-    }
+      }
+    });
+  }
+
+  getCountryIdByName(countryName: string): string | null {
+    let countries = this.countries;
+    if (!countryName || !Array.isArray(countries)) return null;
+
+    const match = countries.find(
+      country => country.country_name?.toLowerCase().trim() === countryName.toLowerCase().trim()
+    );
+
+    return match ? match.id : null;
+  }
 }
