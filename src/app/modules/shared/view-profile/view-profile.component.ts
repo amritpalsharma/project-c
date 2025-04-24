@@ -90,6 +90,7 @@ export class ViewProfileComponent implements OnInit {
     if (this.coverImage == '') {
       this.coverImage = this.defaultCoverImage;
     }
+    this.getToasterMsg();
     this.webPages.languageId$.subscribe((data) => {
       this.getToasterMsg();
       this.getUser(this.userId);

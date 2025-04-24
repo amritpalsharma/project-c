@@ -24,11 +24,20 @@ export class ScoutHistoryComponent {
   // replaceEmptyParagraphs(html: string) {
   //   return html.replace(/<p>\s*<\/p>/g, "<br>");
   // }
-  replaceEmptyParagraphs(html: string) {
-    if(typeof html === undefined || html == ''){
-        return '';
-    }else{
-      return html.replace(/<p>\s*<\/p>/g, "<br>");
+  // replaceEmptyParagraphs(html: string) {
+  //   if(typeof html === undefined || html == ''){
+  //       return '';
+  //   }else{
+  //     return html.replace(/<p>\s*<\/p>/g, "<br>");
+  //   }
+  // }
+  replaceEmptyParagraphs(html: string): string {
+    if (typeof html !== 'string' || !html.trim()) {
+      return '';
     }
+  
+    // Replace empty or whitespace-only <p> tags with <br>
+    return html.replace(/<p>(\s|&nbsp;|<br\s*\/?>)*<\/p>/gi, '<br>');
   }
+  
 }
