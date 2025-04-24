@@ -1382,7 +1382,11 @@
                 <div class="unlock-view">
                   <div class="d-flex w-100 m-auto image_gallery-box mt-2">
                     <div class="col-lg-4 gallery_images" *ngFor="let image of highlights?.images">
-                      <img [src]="highlights.file_path + image.file_name" alt="">
+                      <a [href]="imageBaseUrl + image.file_name" data-fancybox="gallery1" [attr.data-caption]="">
+                        <!-- <img [src]="imageBaseUrl + image.file_name" alt="" srcset="" class="img-fluid"> -->
+                        <img [src]="highlights.file_path + image.file_name" alt="">
+                      </a>
+                      <!-- <img [src]="highlights.file_path + image.file_name" alt=""> -->
                     </div>
 
                   </div>
@@ -1390,8 +1394,16 @@
                     <div class="col-lg-4 gallery_images " *ngFor="let video of highlights?.videos">
                       <!-- <video [src]="highlights.file_path + video.file_name" autoplay></video> -->
                       <div class="position-absolute">
-                        <video [src]="highlights.file_path + video.file_name" #videoPlayer
+                        <a [href]="highlights.file_path + video.file_name" data-fancybox="gallery1" [attr.data-caption]="">
+                          <!-- <video class="img-fluid">
+                            <source [src]="highlights.file_path + video.file_name" type="video/mp4">
+                            {{ 'galleryText' | translate }}
+                          </video> -->
+                          <video [src]="highlights.file_path + video.file_name" #videoPlayer
                           (loadeddata)="setDurationAndThumbnail(videoPlayer)" [attr.autoplay]="false"></video>
+                        </a>
+                        <!-- <video [src]="highlights.file_path + video.file_name" #videoPlayer
+                          (loadeddata)="setDurationAndThumbnail(videoPlayer)" [attr.autoplay]="false"></video> -->
                         <span class="duration">{{duration}}</span>
                       </div>
                     </div>
@@ -1701,8 +1713,8 @@
                 [isPremium]="isPremium" [clubHistory]="user?.meta?.club_history"></app-club-history>
               <!-- End Club History -->
               <!-- Club Teams -->
-              <app-teams *ngIf="activeTab == 'teams' && currentUserRole == 'club'" role="club"
-              [isPremium]="isPremium" [currentClubId]="user.id"></app-teams> 
+              <app-teams *ngIf="activeTab == 'teams' && currentUserRole == 'club'" role="club" [isPremium]="isPremium"
+                [currentClubId]="user.id"></app-teams>
               <!-- End Club Teams -->
               <!-- Club Gallery Same for Other Roles -->
               <view-user-gallery *ngIf="activeTab == 'gallery' && currentUserRole == 'club'" [coverImage]="coverImage"
@@ -1715,12 +1727,14 @@
                 [isPremium]="isPremium" [currentUserId]="user.id"></app-scout-profile> -->
               <!-- End Scout Profile -->
               <!-- Scout History -->
-              <app-scout-history *ngIf="activeTab == 'scout_history' && currentUserRole == 'scout'" role="scout" [currentScoutId]="user.id"
-                [isPremium]="isPremium" [scoutHistory]="user?.meta?.company_history"></app-scout-history>
+              <app-scout-history *ngIf="activeTab == 'scout_history' && currentUserRole == 'scout'" role="scout"
+                [currentScoutId]="user.id" [isPremium]="isPremium"
+                [scoutHistory]="user?.meta?.company_history"></app-scout-history>
               <!-- End Scout History -->
               <!-- Scout Portfolio -->
               <app-scout-portfolio *ngIf="activeTab == 'scout_portfolio' && currentUserRole == 'scout'" role="scout"
-                [isPremium]="isPremium" [scoutHistory]="user?.meta?.company_history" [currentScoutId]="user.id"></app-scout-portfolio>
+                [isPremium]="isPremium" [scoutHistory]="user?.meta?.company_history"
+                [currentScoutId]="user.id"></app-scout-portfolio>
               <!-- End Scout Portfolio -->
               <!-- Scout Gallery -->
               <view-user-gallery *ngIf="activeTab == 'gallery' && currentUserRole == 'scout'" [coverImage]="coverImage"

@@ -172,6 +172,7 @@ export class HeaderComponent {
       // if (userId) {
       //   this.fetchNotifications(userId);
       // }
+      console.log('working')
 
       console.log(this.showNotification);
 
