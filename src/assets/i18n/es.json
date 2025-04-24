@@ -1391,5 +1391,6 @@
   "multiCountryFor": "Para Scouts",
   "boostProfileFor": "Para Scouts",
   "deleteFromGalleryConfirmation": "¿Estás seguro de que quieres eliminar la {{type}} de tu galería?",
-  "weUseCookies": "Usamos cookies"
+  "weUseCookies": "Usamos cookies",
+  "scoutHistoryTxt": "Sobre nosotros"
 }

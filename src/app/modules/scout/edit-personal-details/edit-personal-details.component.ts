@@ -183,14 +183,14 @@ export class EditPersonalDetailsComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    if (!this.company_name) {
-      this.toastr.error(this.enterYourCompanyName, this.errorTxt);
-      return;
-    }
-    if (!this.contact_number) {
-      this.toastr.error(this.phoneRequired, this.errorTxt);
-      return;
-    }
+    // if (!this.company_name) {
+    //   this.toastr.error(this.enterYourCompanyName, this.errorTxt);
+    //   return;
+    // }
+    // if (!this.contact_number) {
+    //   this.toastr.error(this.phoneRequired, this.errorTxt);
+    //   return;
+    // }
     // if (form.valid) {
 
       console.log('Form Data:', form.value);
@@ -218,7 +218,8 @@ export class EditPersonalDetailsComponent implements OnInit {
       this.scoutService.updateUserProfile(formData).subscribe(
         (response: any) => {
           console.log('Form submitted successfully:', response);
-          this.dialogRef.close(response.data);
+          this.dialogRef.close(response);
+          // this.dialogRef.close(response.data);
         },
         (error: any) => {
           console.error('Error submitting the form:', error);

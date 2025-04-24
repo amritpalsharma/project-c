@@ -1443,5 +1443,6 @@
   "multiCountryFor": "För Scouts",
   "boostProfileFor": "För Scouts",
   "deleteFromGalleryConfirmation": "Är du säker på att du vill ta bort {{type}} från ditt galleri?",
-  "weUseCookies": "Vi använder cookies"
+  "weUseCookies": "Vi använder cookies",
+  "scoutHistoryTxt": "Om oss"
 }
