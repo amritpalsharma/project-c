@@ -647,7 +647,7 @@
                         </div>
                         <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'since' | translate}}</h6>
-                          <h5 class="title-1">2025</h5>
+                          <h5 class="title-1">{{user?.meta?.since}}</h5>
                         </div>
                       </div>
                     </div>
@@ -721,7 +721,8 @@
                           </svg>
                         </div>
                         <div class="col-sm-9 p-0 team-badge_content">
-                          <h6 class="title_2">{{ 'contactNumber' | translate }}</h6>
+                          <h6 class="title_2" *ngIf="currentUserRole != 'club'">{{ 'contactNumber' | translate }}</h6>
+                          <h6 class="title_2" *ngIf="currentUserRole == 'club'">{{ 'phone' | translate }}</h6>
                           <h5 *ngIf="user.meta && user.meta.contact_number" class="title-1">{{user.meta.contact_number}}
                           </h5>
                           <!-- <h5 class="title-1" *ngIf="!user.meta || !user.meta.contact_number">NA</h5> -->
