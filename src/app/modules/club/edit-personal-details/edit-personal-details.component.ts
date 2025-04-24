@@ -21,7 +21,7 @@ export class EditPersonalDetailsComponent implements OnInit {
   readonly date = new FormControl(moment());
   formation_date: FormControl = new FormControl(null);  // Initialize with null or the correct date format
 
-  city: string = '';
+  since: string = '';
   contactNumber: string = '';
   website: string = '';
   zipcode: string = '';
@@ -139,12 +139,14 @@ export class EditPersonalDetailsComponent implements OnInit {
     this.scoutService.getProfileData(userId).subscribe((response: any) => {
       if (response && response.status && response.data && response.data.user_data) {
         this.user = response.data.user_data;
+        // console.info('this.user',this.user);
 
         // Update component properties with user data
         if (this.user?.meta) {
           this.address = this.user.meta.address;
-          this.city = this.user.meta.city;
-          this.club_name = this.user?.meta?.club_name;
+          this.since = this.user.meta.since;
+          // this.club_name = this.user?.meta?.club_name;
+          this.club_name = this.user.current_club_name;
           this.contact_number = this.user.meta.contact_number;
           this.cover_image = this.user.meta.cover_image;
           this.cover_image_path = this.user.meta.cover_image_path;
@@ -162,11 +164,13 @@ export class EditPersonalDetailsComponent implements OnInit {
           this.zipcode = this.user.meta.zipcode;
           // this.nationality = this.user.meta.nationality;
           this.userNationalities = JSON.parse(this.user.user_nationalities);
-          console.info(this.userNationalities)
-          if (this.userNationalities[0].country_id != '') {
-            this.nationality = this.userNationalities[0].country_id;
-          }
-
+          // console.info(this.userNationalities)
+          // if (this.userNationalities[0].country_id != '') {
+          //   this.nationality = this.userNationalities[0].country_id;
+          // }
+        if(this.user.current_club_country && this.user.current_club_country != ''){
+          this.nationality = this.getCountryIdByName(this.user.current_club_country);
+        }
           this.formation_date = new FormControl(
             this.user?.meta?.formation_date
               ? this.formatDate(this.user.meta.formation_date)
@@ -180,6 +184,18 @@ export class EditPersonalDetailsComponent implements OnInit {
     });
   }
 
+  getCountryIdByName(countryName: string): string | null {
+    let countries = this.countries;
+    if (!countryName || !Array.isArray(countries)) return null;
+  
+    const match = countries.find(
+      country => country.country_name?.toLowerCase().trim() === countryName.toLowerCase().trim()
+    );
+  
+    return match ? match.id : null;
+  }
+  
+
   onSubmit(form: NgForm) {
     if (form.valid) {
       let lang_id = localStorage.getItem('lang_id');
@@ -190,7 +206,7 @@ export class EditPersonalDetailsComponent implements OnInit {
       const formattedFormationDate = moment(this.formation_date.value).format('YYYY-MM-DD');
       console.log('Date After Convert ', this.formation_date);
       formData.append('user[address]', this.address);
-      formData.append('user[city]', this.city);
+      formData.append('user[since]', this.since);
       formData.append('user[club_name]', this.club_name);
       formData.append('user[contact_number]', this.contact_number);
       formData.append('user[formation_date]', formattedFormationDate);

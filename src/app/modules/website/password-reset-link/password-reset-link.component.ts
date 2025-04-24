@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrl: './password-reset-link.component.scss'
 })
 export class PasswordResetLinkComponent {
-
+  
+  ngOnInit() {
+    document.body.classList.add('static-common-banner');
+  }
+  
+  ngOnDestroy() {
+    document.body.classList.remove('static-common-banner');
+  }
 }
