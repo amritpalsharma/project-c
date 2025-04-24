@@ -38,3 +38,43 @@
        padding: 0.938rem 0.8rem;
     }
 }
+
+
+@media (min-width: 1600px) and (max-width: 2999px){
+  .items-count {
+    font-size: 18px !important;
+  }
+  table td.cursor-pointer svg {
+      width: 32px !important;
+      height: 32px !important;
+  }
+  table td .bg_pending, table td .bg_reject, table td .bg_success {
+      width: 170px !important;
+      font-size: 18px !important;
+      padding: 8px 8px 5px !important;
+      display: inline-block;
+    }
+    a.btn.web-create-bg {
+      font-size: 22px !important;
+  }
+}
+
+
+@media (min-width: 3000px){
+  .items-count {
+    font-size: 26px !important;
+  }
+  table td.cursor-pointer svg {
+      width: 40px !important;
+      height: 40px !important;
+  }
+  table td .bg_pending, table td .bg_reject, table td .bg_success {
+      width: 200px !important;
+      font-size: 26px !important;
+      padding: 9px 8px 5px !important;
+      display: inline-block;
+  }
+  a.btn.web-create-bg {
+    font-size: 28px !important;
+}
+}

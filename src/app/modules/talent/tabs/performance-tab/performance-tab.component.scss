@@ -409,11 +409,19 @@ tr.table_underline {
     height: 42px;
     object-fit: contain;
 }
+.edit_button-2 svg, .new_performance button svg {
+    width: 32px !important;
+    height: 32px !important;
+}
 }
 
 @media (min-width: 3000px) {
 .details_2, .edit_button-2 span {
     font-size: 25px !important;
+}
+.edit_button-2 svg, .new_performance button svg {
+    width: 38px !important;
+    height: 38px !important;
 }
 .details-1 {
     font-size: 28px !important;

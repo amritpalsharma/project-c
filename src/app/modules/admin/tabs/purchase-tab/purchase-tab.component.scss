@@ -114,3 +114,18 @@
 .dropdown-purchase .btn:hover{
   border-color: #D9D9D9 !important;
 }
+
+
+@media (min-width: 1600px) and (max-width: 2999px) {
+  td svg.pointer {
+    width: 32px !important;
+    height: 32px !important;
+  }
+}
+
+@media (min-width: 3000px){
+  td svg.pointer {
+    width: 40px !important;
+    height: 40px !important;
+  }
+}
