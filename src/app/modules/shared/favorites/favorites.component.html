@@ -92,13 +92,14 @@
             <ng-container matColumnDef="Name">
               <th mat-header-cell *matHeaderCellDef> {{'name' | translate}} </th>
               <td class="text-center" mat-cell *matCellDef="let element">
-
+                <!-- <pre>{{element | json}}</pre> -->
                 <div class="d-flex align-items-center">
                   <span class="position-relative">
-                    <img *ngIf="!element.profile_image_path"
+                    <img *ngIf="!element.profile_image && element.role != 2"
                       src="../../../../assets/images/default/talent-profile-default.png" alt="" class="table_img" />
 
-                    <img *ngIf="element.profile_image_path" src="{{element.profile_image_path}}" alt=""
+                    <img *ngIf="element.profile_image && element.role != 2" src="{{imageBaseUrl + element.profile_image}}" alt=""class="table_img" />
+                    <img *ngIf="element.club_logo && element.role == 2" src="{{imageBaseUrl + element.club_logo}}" alt=""
                       class="table_img" />
                     <span class="position-absolute verified-icon">
                       <img src="../../../assets/images/pending.png" alt="" class="user-pending-icon"

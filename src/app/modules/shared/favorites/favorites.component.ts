@@ -35,7 +35,7 @@ export class FavoritesComponent {
   dynamicLocations: any = [];
   translatedText: string = '';
   selectFavoriteFirst: string = '';
-  // imageBaseUrl: any = "";
+  imageBaseUrl: any = "https://api.socceryou.ch/uploads/";
   selectedIds: number[] = [];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   keyword: any = "";

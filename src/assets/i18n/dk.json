@@ -1309,5 +1309,6 @@
   "multiCountryFor": "For Scouts",
   "boostProfileFor": "For Scouts",
   "deleteFromGalleryConfirmation": "Er du sikker på, at du vil slette {{type}} fra dit galleri?",
-  "weUseCookies": "Vi bruger cookies"
+  "weUseCookies": "Vi bruger cookies",
+  "scoutHistoryTxt": "Om os"
 }

@@ -30,17 +30,6 @@
           <input type="text" id="club_name" name="club_name" [(ngModel)]="club_name"readonly [disabled]="club_name">
         </div>
 
-        <!-- Formation Date -->
-        <!-- <div class="form-group col-lg-6">
-          <label for="formation_date">{{ 'Formation' | translate }}:</label>
-
-          <div class="d-flex align-items-center justify-content-center date_field">
-            <input matInput id="formation_date" name="formation_date" [matDatepicker]="dp" [(ngModel)]="formation_date" [formControl]="formation_date"
-              placeholder="DD.MM.YYYY" required />
-            <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
-            <mat-datepicker #dp></mat-datepicker>
-          </div>
-        </div> -->
         <!-- Nationality (Updated for multiple selection) -->
         <div class="form-group col-lg-6 position_inputs">
           <!-- <h6 class="title_2 mb-1">{{ 'country' | translate }}:</h6> -->
@@ -59,8 +48,8 @@
       <div class="row">
         <!-- City -->
         <div class="form-group col-lg-6">
-          <label for="city">{{'city' | translate}}:</label>
-          <input type="text" id="city" name="city" [(ngModel)]="city">
+          <label for="city">{{'since' | translate}}:</label>
+          <input type="text" id="since" name="since" [(ngModel)]="since">
         </div>
 
         <!-- Contact Number -->

@@ -506,6 +506,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        //  console.log(result);
+        // if(result.stats == true && result.message != ''){
+        //   this.toastr.success(result.message);
+        // }else if(result.message != ''){
+        //   console.log('result is',result)
+        //   this.toastr.error(result.message);
+        // }
         this.getUserProfile(this.userId);
       } else {
         console.log('User canceled the edit');

@@ -27,8 +27,11 @@
 
         <!-- Formation Date -->
         <div class="form-group col-lg-6">
-          <label for="designation">{{ 'designation' | translate }}: </label>
-          <input type="text" id="designation" name="designation" [(ngModel)]="designation" required>
+          <label for="country">{{ 'country' | translate }}: </label>
+          <select name="user_nationalities" [(ngModel)]="country" id="" class="cupen-btn-1 form-select">
+            <option value="null" [selected]="!country">{{'select' | translate}}</option>
+            <option [value]="scout_country.id" *ngFor="let scout_country of this.countries">{{scout_country.country_name}}</option>
+          </select>
         </div>
       </div>
 

@@ -90,6 +90,7 @@ export class ViewProfileComponent implements OnInit {
     if (this.coverImage == '') {
       this.coverImage = this.defaultCoverImage;
     }
+    this.getToasterMsg();
     this.webPages.languageId$.subscribe((data) => {
       this.getToasterMsg();
       this.getUser(this.userId);
@@ -434,7 +435,12 @@ export class ViewProfileComponent implements OnInit {
     localStorage.setItem('otherUserData', '');
     // console.log('User',this.user)
     if(this.user.meta.profile_image != '' && this.user.meta.profile_image != undefined){
-      this.user.meta.profile_image = this.baseUrl + this.user.meta.profile_image;
+      this.user.meta.profile_image = this.user.meta.profile_image;
+    }
+    const role = this.loggedInUser.role_name.toLowerCase();
+    // console.info('role is ',role);
+    if(this.currentUserRole == 'club' || this.currentUserRole == 'klubb' || this.currentUserRole == 'klub' || this.currentUserRole == 'Clube' && this.user.club_logo != '' && this.user.club_logo != undefined){
+      this.user.meta.profile_image =  this.user.club_logo;
     }
     if (this.user) {
       
@@ -454,7 +460,7 @@ export class ViewProfileComponent implements OnInit {
       // this.router.navigate(['/talent/chat'], { queryParams: { userData: encodedUserData } });
 
       localStorage.setItem('otherUserData', tempUser);
-      const role = this.loggedInUser.role_name.toLowerCase();
+
       // this.router.navigate([`/${role}/chat?open_chat=true`]);
       this.router.navigate([`/${role}/chat`], {
         queryParams: { open_chat: 'true' }
