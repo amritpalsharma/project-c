@@ -17,6 +17,9 @@ export class TransfersTabComponent {
   userTransfers: any = [];
   editableId: string = "";
   teams: any = [];
+
+  filterTeams: any[] = []; // Initialize as empty array to avoid undefined issues
+  filterTeamsFrom: any[] = [];
   dataTOBeUpdated: any = {
     team_from: "",
     team_to: "",
@@ -69,6 +72,49 @@ export class TransfersTabComponent {
       console.error('Error fetching users:', error);
     }
   }
+
+  // onSearchTeams(): void {
+
+  //   if (this.teamTo.length < 2) {
+  //     // Don't search until the user has typed at least 2 characters
+  //     this.filterTeams = [];
+  //     return;
+  //   }
+
+  //   this.talentService.searchTeams(this.teamTo).subscribe(
+  //     (response: any) => {
+  //       if (response && response.data) {
+  //         this.filterTeams = response.data.teams; // Update the list of filtered clubs based on search
+  //         console.log('Filtered teams:', this.filterTeams);
+  //       }
+  //     },
+  //     (error: any) => {
+  //       console.error('Error fetching teams:', error);
+  //     }
+  //   );
+  // }
+
+  // // Function to handle dynamic fetching of clubs based on search input
+  // onSearchTeamsFrom(): void {
+
+  //   if (this.teamFrom.length < 2) {
+  //     // Don't search until the user has typed at least 2 characters
+  //     this.filterTeamsFrom = [];
+  //     return;
+  //   }
+
+  //   this.talentService.searchTeams(this.teamFrom).subscribe(
+  //     (response: any) => {
+  //       if (response && response.data) {
+  //         this.filterTeamsFrom = response.data.teams; // Update the list of filtered clubs based on search
+  //         console.log('Filtered teams:', this.filterTeamsFrom);
+  //       }
+  //     },
+  //     (error: any) => {
+  //       console.error('Error fetching teams:', error);
+  //     }
+  //   );
+  // }
 
   getAllTeams() {
     this.userService.getAllTeams().subscribe((response) => {
