@@ -1802,3 +1802,12 @@ footer img.web_footer_bg {
   display: none !important;
 }
 }
+
+
+.light-theme {
+  .common_static_page .content_page {
+    p a, li a {
+      color: #e05263 !important;
+    }
+  }
+}
