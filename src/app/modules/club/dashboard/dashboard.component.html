@@ -215,7 +215,7 @@
                         </div>
                         <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'since' | translate}}</h6>
-                          <h5 class="title-1">{{ currentYear }}</h5>
+                          <h5 class="title-1">{{user?.meta?.since}}</h5>
                         </div>
                       </div>
                     </div>
@@ -293,7 +293,7 @@
                           <h6 class="title_2">{{ 'phone' | translate }}</h6>
                           <h5 *ngIf="user.meta && user.meta.contact_number" class="title-1">{{user.meta.contact_number}}
                           </h5>
-                          <h5 class="title-1" *ngIf="!user.meta || !user.meta.contact_number">NA</h5>
+                          <!-- <h5 class="title-1" *ngIf="!user.meta || !user.meta.contact_number">NA</h5> -->
                         </div>
                       </div>
                     </div>
@@ -324,7 +324,7 @@
                         <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'website' | translate }}</h6>
                           <h5 *ngIf="user.meta && user.meta.website" class="title-1">{{user.meta.website}}</h5>
-                          <h5 class="title-1" *ngIf="!user.meta || !user.meta.website">NA</h5>
+                          <!-- <h5 class="title-1" *ngIf="!user.meta || !user.meta.website">NA</h5> -->
                         </div>
                       </div>
                     </div>
@@ -351,7 +351,7 @@
                         <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'zipcode' | translate}}</h6>
                           <h5 class="title-1" *ngIf="user?.meta?.zipcode">{{user?.meta?.zipcode}}</h5>
-                          <h5 class="title-1" *ngIf="!user?.meta?.zipcode">NA</h5>
+                          <!-- <h5 class="title-1" *ngIf="!user?.meta?.zipcode">NA</h5> -->
                         </div>
                       </div>
                     </div>
@@ -528,7 +528,7 @@
                         <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'address' | translate}}</h6>
                           <h5 class="title-1" *ngIf="user?.meta?.address">{{user?.meta?.address}}</h5>
-                          <h5 class="title-1" *ngIf="!user?.meta?.address">NA</h5>
+                          <!-- <h5 class="title-1" *ngIf="!user?.meta?.address">NA</h5> -->
                         </div>
                       </div>
                     </div>

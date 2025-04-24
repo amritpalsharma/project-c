@@ -21,7 +21,7 @@ export class EditPersonalDetailsComponent implements OnInit {
   readonly date = new FormControl(moment());
   formation_date: FormControl = new FormControl(null);  // Initialize with null or the correct date format
 
-  city: string = '';
+  since: string = '';
   contactNumber: string = '';
   website: string = '';
   zipcode: string = '';
@@ -143,7 +143,7 @@ export class EditPersonalDetailsComponent implements OnInit {
         // Update component properties with user data
         if (this.user?.meta) {
           this.address = this.user.meta.address;
-          this.city = this.user.meta.city;
+          this.since = this.user.meta.since;
           this.club_name = this.user?.meta?.club_name;
           this.contact_number = this.user.meta.contact_number;
           this.cover_image = this.user.meta.cover_image;
@@ -190,7 +190,7 @@ export class EditPersonalDetailsComponent implements OnInit {
       const formattedFormationDate = moment(this.formation_date.value).format('YYYY-MM-DD');
       console.log('Date After Convert ', this.formation_date);
       formData.append('user[address]', this.address);
-      formData.append('user[city]', this.city);
+      formData.append('user[since]', this.since);
       formData.append('user[club_name]', this.club_name);
       formData.append('user[contact_number]', this.contact_number);
       formData.append('user[formation_date]', formattedFormationDate);
