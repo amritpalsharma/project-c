@@ -35,6 +35,7 @@ export class PerformanceTabComponent {
   @Input() isPremium: any;
   @Input() isUserVerified: any;
   currentThemeMode: any = localStorage.getItem('theme');
+  isLoading:boolean=true;
 
   // from_date:2021-01-01
   // to_date:2022-01-01
@@ -144,6 +145,7 @@ export class PerformanceTabComponent {
   }
 
   getUserPerformance(userId: any) {
+    this.isLoading = true;
     try {
       this.talentService.getPerformanceData().subscribe((response) => {
         if (response && response.status && response.data && response.data.performanceDetail) {
@@ -151,10 +153,10 @@ export class PerformanceTabComponent {
           this.performances = response.data.performanceDetail;
 
           console.log(this.performances)
-          // this.isLoading = false;
+          this.isLoading = false;
         } else {
           this.performances = [];
-          // this.isLoading = false;
+          this.isLoading = false;
           // console.error('Invalid API response structure:', response);
         }
       });

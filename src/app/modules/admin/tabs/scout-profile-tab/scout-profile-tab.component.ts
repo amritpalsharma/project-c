@@ -52,10 +52,10 @@ export class ScoutProfileTabComponent {
       if (stringifyData[key]) {
         return stringifyData[key];
       } else {
-        return "NA";
+        return "";
       }
     } else {
-      return "NA";
+      return "";
     }
   }
 

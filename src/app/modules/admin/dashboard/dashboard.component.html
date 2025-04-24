@@ -146,6 +146,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let user of newRegistrations" (click)="redirectUser(user.role_name, user.id)" class="pointer">
+            <!-- <pre>{{user | json}}</pre> -->
             <td class="main-table ">
               <div class="d-flex align-items-center">
                 <!-- <span>
@@ -173,10 +174,9 @@
             <!-- <td> {{ user.created_at  | date:'MM.dd.yyyy - hh.mm a' }}</td> -->
             <!-- <td> {{ user.created_at }}</td> -->
             <td class="main-table-2">
-              <span *ngIf="user.status==1" class="bg_pending">{{ 'pending' | translate }} </span>
-              <span *ngIf="user.status==2" class="bg_success approved"> {{ 'approved' | translate }}</span>
-              <span *ngIf="user.status==3" class="bg_reject"> {{ 'rejected' | translate }} </span>
-
+              <span *ngIf="user.status==1 && userRoleIn(user.role_name)" class="bg_pending">{{ 'pending' | translate }} </span>
+              <span *ngIf="user.status==2 && userRoleIn(user.role_name)" class="bg_success approved"> {{ 'approved' | translate }}</span>
+              <span *ngIf="user.status==3 && userRoleIn(user.role_name)" class="bg_reject"> {{ 'rejected' | translate }} </span>
             </td>
           </tr>
           <tr *ngIf="newRegistrations.length == 0">

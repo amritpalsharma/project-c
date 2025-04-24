@@ -97,9 +97,12 @@
     </a>
   </div>
 </div>
-
-
-<div class="table-responsive bg-0C3453" style="width: 100%;" *ngIf="isPremium ">
+<div *ngIf="isPremium && isLoading" class="loader-container py-5">
+  <div class="loader"></div>
+  <p>{{'loading' | translate}}</p>
+</div>
+<!-- <app-loader *ngIf="isPremium && isLoading"></app-loader> -->
+<div class="table-responsive bg-0C3453" style="width: 100%;" *ngIf="isPremium && !isLoading">
   <div class="new_performance">
     <button (click)="openAddDialog()">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -114,6 +117,7 @@
   <table class="table w-100 no_hover_tr">
     <tbody>
       <tr class="table_underline" *ngFor="let performance of performances">
+        <!-- <pre>{{performance | json}}</pre> -->
         <div class="team_logo row justify-content-between">
           <div class="col-8 d-flex team-logos">
             <div class="team-logo-img">
@@ -121,7 +125,7 @@
             </div>
             <div class="team-names">
               <h6 class="details_2">{{'team' | translate}}</h6>
-              <h5 class="details-1">{{performance.team_name}}</h5>
+              <h5 class="details-1">{{performance.team_name}} {{performance.team_type}}</h5>
               <h6 class="details_2">{{calculateDateRange(performance)}}</h6>
             </div>
           </div>

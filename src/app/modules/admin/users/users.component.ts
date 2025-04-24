@@ -538,4 +538,18 @@ export class UsersComponent implements OnInit {
       this.titleService.setTitle(this.pageTitle);
     })
   }
+
+  userRoleIn(userRole: string): boolean {
+    const allowedRoles = [
+      'Club',
+      'Clube',
+      'Klub',
+      'Klubb',
+      'Talang',
+      'Talent',
+      'Talento'
+    ];
+  
+    return allowedRoles.includes(userRole);
+  }
 }

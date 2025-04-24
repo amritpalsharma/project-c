@@ -35,6 +35,9 @@ export class ScoutPortfolioComponent {
         if (response && response.status && response.data) {
           if (response.data.scoutPlayers) {
             this.scoutPlayers = response.data.scoutPlayers;
+            // console.info('this.scoutPlayers',this.scoutPlayers)
+            let acceptedPlayers = this.scoutPlayers.filter((player:any) => player.is_accepted === 'accepted');
+            this.scoutPlayers = acceptedPlayers;
           }
           else {
             this.scoutPlayers = []

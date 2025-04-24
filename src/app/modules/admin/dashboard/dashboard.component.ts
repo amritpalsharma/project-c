@@ -993,6 +993,21 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       console.log('Title fetch Function Fired');
     })
   }
+  
+  userRoleIn(userRole: string): boolean {
+    const allowedRoles = [
+      'Club',
+      'Clube',
+      'Klub',
+      'Klubb',
+      'Talang',
+      'Talent',
+      'Talento'
+    ];
+  
+    return allowedRoles.includes(userRole);
+  }
+  
 }
 
 // @Component({

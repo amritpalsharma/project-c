@@ -389,9 +389,9 @@ export class HeaderComponent implements OnInit {
 
     if (localStorage.getItem('lang') != null || localStorage.getItem('lang') != undefined) {
       this.slug = '' + localStorage.getItem('lang');
-      console.warn('Selected Lang in LocalStoroage ' + localStorage.getItem('lang'));
+      // console.warn('Selected Lang in LocalStoroage ' + localStorage.getItem('lang'));
     } else {
-      console.warn('No Selected Lang in LocalStoroage');
+      // console.warn('No Selected Lang in LocalStoroage');
       this.slug = this.lang;
     }
     // Set default language to English if not set
@@ -562,6 +562,9 @@ export class HeaderComponent implements OnInit {
 
   login() {
     console.log("login clicked")
+    if(this.loginButtonClicked){
+      return;
+    }
     this.loginButtonClicked = true;
 
     // isEmailError = false;

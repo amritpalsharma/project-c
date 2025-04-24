@@ -107,7 +107,10 @@
     </a>
   </div>
 </div>
-
+<div *ngIf="isPremium && isLoading" class="loader-container py-5">
+  <div class="loader"></div>
+  <p>{{'loading' | translate}}</p>
+</div>
 <div class="table-responsive px-lg-3 bg-0C3453" *ngIf="isPremium">
   <div class="new_performance">
     <button (click)="openAddDialog()">

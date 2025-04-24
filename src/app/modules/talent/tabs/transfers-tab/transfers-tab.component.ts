@@ -30,6 +30,7 @@ export class TransfersTabComponent {
   seasons: any = [];
   @Input() isPremium: any;
   @Input() isUserVerified: any;
+  isLoading:boolean=true;
 
   constructor(
     private route: ActivatedRoute,
@@ -62,19 +63,20 @@ export class TransfersTabComponent {
   }
 
   getUserTransfers() {
+    this.isLoading = true;
     try {
       this.talentService.getTransferData().subscribe((response) => {
         if (response && response.status && response.data) {
           this.userTransfers = response.data.transferDetail;
-          // this.isLoading = false;
+          this.isLoading = false;
         } else {
           this.userTransfers = [];
-          // this.isLoading = false;
+          this.isLoading = false;
           console.error('Invalid API response structure:', response);
         }
       });
     } catch (error) {
-      // this.isLoading = false;
+      this.isLoading = false;
       console.error('Error fetching users:', error);
     }
   }

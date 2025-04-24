@@ -139,7 +139,7 @@ export class ExploreComponent implements OnInit {
   totalPagesCount: number = 1;
   itemsPerPage: number = 15;
 
-  baseUrl:string='';
+  baseUrl: string = '';
 
   ngOnInit(): void {
 
@@ -479,6 +479,7 @@ export class ExploreComponent implements OnInit {
     // Prepare query parameters
     let params: any = {
       lang: localStorage.getItem('lang_id'),
+      league_id: this.selectedLeague
     };
 
     if (this.selectedCountry != 0 && this.selectedCountry != undefined) {
@@ -489,7 +490,8 @@ export class ExploreComponent implements OnInit {
         params = {
           lang: localStorage.getItem('lang_id'),
           country: getCountryById.country_id,
-          is_taken: 'no'
+          // is_taken: 'no',
+          league_id: this.selectedLeague
         }
       }
     }
@@ -638,7 +640,7 @@ export class ExploreComponent implements OnInit {
   }
 
   getJsonTranslations() {
-    this.translateService.get(['explore','forgotPassword.generalError','error']).subscribe((translations) => {
+    this.translateService.get(['explore', 'forgotPassword.generalError', 'error']).subscribe((translations) => {
       this.pageTitle = translations['explore'];
       this.errorText = translations['error'];
       this.generalError = translations['forgotPassword.generalError'];
@@ -698,16 +700,16 @@ export class ExploreComponent implements OnInit {
     // alert(this.currentPage);
     if (this.currentPage == 0 && event == 'next') {
       this.currentPage = 1;
-    }else if(event == 'next'){
+    } else if (event == 'next') {
       this.currentPage = this.currentPage + 1;
-    }else if(event == 'previous'){
+    } else if (event == 'previous') {
       this.currentPage = this.currentPage - 1;
     }
     // console.info('event is ', event);
     this.getUsers();
   }
-   
-  changeItemsPerPage(){
+
+  changeItemsPerPage() {
     this.itemsPerPage = this.itemsPerPage;
     this.currentPage = 1;
     this.getUsers();

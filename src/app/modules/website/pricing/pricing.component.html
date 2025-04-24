@@ -35,17 +35,18 @@
     <div class="pricing py_0">
       <div class="container">
         <div class="sec_title text-center">
-          <h3 class="price-heading3 text-uppercase">Pricing : 2 months free on yearly plan </h3>
+          <!-- <h3 class="price-heading3 text-uppercase">Pricing : 2 months free on yearly plan </h3> -->
+          <h3 class="price-heading3 text-uppercase">{{'pricing' | translate}}: {{'freePlanText' | translate}}</h3>
         </div>
         <div class="pricing_tabs_container">
           <ul class="nav nav-tabs justify-content-center border-0" role="tablist">
             <li class="nav-item" role="presentation">
               <a class="nav-link active" data-bs-toggle="tab" href="#Tab1" role="tab" aria-selected="true"
-                (click)="setActiveTab('monthly')">Monthly</a>
+                (click)="setActiveTab('monthly')">{{'billedMonthly' | translate}}</a>
             </li>
             <li class="nav-item" role="presentation">
               <a class="nav-link" data-bs-toggle="tab" href="#Tab2" role="tab" aria-selected="false"
-                (click)="setActiveTab('yearly')">Yearly</a>
+                (click)="setActiveTab('yearly')">{{'billedYearly' | translate}}</a>
             </li>
           </ul>
           <div class="tab_data_wrapper">
@@ -192,8 +193,8 @@
                         <h5 class="premium-heading5">{{pageData?.third_tab_free_features_title }}</h5>
                       </div>
                       <div class="body_card">
-                        <h5 class="premium-heading5" *ngIf="pageData?.first_tab_free_features_sub_title">
-                          {{pageData?.first_tab_free_features_sub_title}}</h5>
+                        <h5 class="premium-heading5" *ngIf="pageData?.third_tab_free_features_sub_title">
+                          {{pageData?.third_tab_free_features_sub_title}}</h5>
                         <div class="text_List_wrap">
                           <div class="premium-text" *ngFor="let feature of pageData?.third_tab_free_features_desc">
                             <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
@@ -223,7 +224,7 @@
                         <h5 class="premium-heading5">{{pageData?.first_tab_free_features_title}}</h5>
                       </div>
                       <div class="body_card">
-                        <h5 class="premium-heading5">{{pageData?.first_tab_free_features_title}}</h5>
+                        <h5 class="premium-heading5">{{pageData?.first_tab_free_features_sub_title}}</h5>
                         <div class="text_List_wrap">
                           <div class="premium-text" *ngFor="let feature of pageData?.first_tab_free_features_desc">
                             <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
@@ -253,7 +254,7 @@
                         <h5 class="premium-heading5">{{pageData?.sec_tab_free_features_title}}</h5>
                       </div>
                       <div class="body_card">
-                        <h5 class="premium-heading5">{{pageData?.sec_tab_free_features_title}}:</h5>
+                        <h5 class="premium-heading5">{{pageData?.sec_tab_free_features_sub_title}}:</h5>
                         <div class="text_List_wrap">
                           <div class="premium-text" *ngFor="let feature of pageData?.sec_tab_free_features_desc">
                             <img src="./assets/images/mdi_tick.svg" alt="Checkmark">
@@ -274,7 +275,8 @@
             </div>
           </div>
         </div>
-        <div class="row d-none">
+        <!-- Old Style -->
+        <div class="row d-none" style="display: none;">
           <div class="col-lg-4 col-md-12 col-12">
             <div class="price_mat_wrapper">
               <mat-card class="plan_price_box">

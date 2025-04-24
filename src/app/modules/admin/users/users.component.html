@@ -148,11 +148,11 @@
                             onerror="this.onerror=null; this.src='../../../assets/images/1.png';"> -->
                           <span class="position-absolute verified-icon">
                             <img src="../../../assets/images/pending.png" alt="" class="user-pending-icon"
-                              *ngIf="element.status === '1'" />
+                              *ngIf="element.status === '1' && userRoleIn(element.role_name)" />
                             <img src="../../../assets/images/approved.png" alt="" class="user-approved-icon"
-                              *ngIf="element.status === '2'" />
+                              *ngIf="element.status === '2' && userRoleIn(element.role_name)" />
                             <img src="../../../assets/images/rejected.png" alt="" class="user-rejected-icon"
-                              *ngIf="element.status === '3'" />
+                              *ngIf="element.status === '3' && userRoleIn(element.role_name)" />
                           </span>
                         </span>
                         <span class="main-template" style="padding-left: 15px">
@@ -247,10 +247,9 @@
                       </span>
                     </th>
                     <td mat-cell *matCellDef="let element">
-                      <span *ngIf="element.status === '1'" class="bg_pending">{{ 'pending' | translate }}</span>
-                      <span *ngIf="element.status === '2'" class="bg_success">{{ 'approved' | translate }}</span>
-                      <span *ngIf="element.status === '3'" class="bg_reject">{{ 'rejected' | translate }}</span>
-
+                      <span *ngIf="element.status === '1' && userRoleIn(element.role_name)" class="bg_pending">{{ 'pending' | translate }}</span>
+                      <span *ngIf="element.status === '2' && userRoleIn(element.role_name)" class="bg_success">{{ 'approved' | translate }}</span>
+                      <span *ngIf="element.status === '3' && userRoleIn(element.role_name)" class="bg_reject">{{ 'rejected' | translate }}</span>
                     </td>
                   </ng-container>
                   <ng-container matColumnDef="Edit">
