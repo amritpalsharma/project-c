@@ -7,7 +7,7 @@
             <h2 class="card-title mb-0 ">
               {{ 'userManagement' | translate}} \
               <span class="user-text" style="font-weight: 400;">{{user.first_name}} {{user.last_name}}</span>
-              <span style="margin-left: 10px;" class="bg_pending">{{user.role_name}}</span>
+              <span style="margin-left: 10px;" class="bg_pending" *ngIf="user.role_name">{{user.role_name}}</span>
             </h2>
           </div>
           <a class="btn btn-success web-create-bg" (click)="goToBack()">
@@ -134,20 +134,20 @@
                 <h6 class="mb-2 font-w400" *ngIf="user.plan_period_end">
                   {{user.plan_period_end | date:'MMM d, y' }} / {{user.plan_interval}} cycle
                 </h6>
-                <h6 class="mb-2 font-w400" *ngIf="!user.plan_period_end">NA</h6>
+                <!-- <h6 class="mb-2 font-w400" *ngIf="!user.plan_period_end">NA</h6> -->
                 <p class="font-w400"> {{ 'viewPaymentDetails' | translate }}</p>
               </div>
               <div class="list-view">
                 <h6 class="mb-1">{{ 'lastPayment' | translate }} :</h6>
                 <h6 class="mb-2 font-w400" *ngIf="user.plan_period_start">{{user.plan_period_start | date:'MMM d, y' }}
                 </h6>
-                <h6 class="mb-2 font-w400" *ngIf="!user.plan_period_start">NA</h6>
+                <!-- <h6 class="mb-2 font-w400" *ngIf="!user.plan_period_start">NA</h6> -->
                 <p class=" font-w400">{{ 'viewInvoice' | translate }}</p>
               </div>
               <div class="list-view">
                 <h6 class="mb-1">{{ 'voucherApplied' | translate }} :</h6>
                 <h6 class="mb-0 font-w400" *ngIf="user.coupon_used">{{user.coupon_used}}</h6>
-                <h6 class="mb-0 font-w400" *ngIf="!user.coupon_used">NA</h6>
+                <!-- <h6 class="mb-0 font-w400" *ngIf="!user.coupon_used">NA</h6> -->
               </div>
               <div class="list-view border-0">
                 <h6 class="mb-2">{{ 'paymentMethod' | translate }} :</h6>
@@ -166,7 +166,7 @@
                     </defs>
                   </svg>
                   <h6 class="mb-2 font-w400" *ngIf="user.last4">••••••••{{user.last4}}</h6>
-                  <h6 class="mb-2 ml-2 font-w400" *ngIf="!user.last4"> NA</h6>
+                  <!-- <h6 class="mb-2 ml-2 font-w400" *ngIf="!user.last4"> NA</h6> -->
                 </div>
               </div>
             </div>

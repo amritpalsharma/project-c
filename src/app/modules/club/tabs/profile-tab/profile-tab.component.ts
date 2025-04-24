@@ -10,6 +10,8 @@ import { ClubService } from '../../../../services/club.service';
 import { ResetPasswordComponent } from '../../../shared/reset-password/reset-password.component';
 import { WebPages } from '../../../../services/webpages.service';
 import { TranslateService } from '@ngx-translate/core';
+import { UnverifiedUserComponent } from '../../../shared/unverified-user/unverified-user.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'club-profile-tab',
@@ -27,11 +29,17 @@ export class ProfileTabComponent {
   baseUrl: any;
   @Input() userData: any;
   @Input() isPremium: any;
+  @Input() isUserVerified: any;
   userId: any = "";
   idsToDelete: any = "";
   deleteRepresentorConfirmation: string = '';
 
-  constructor(public dialog: MatDialog, private clubService: ClubService, public webPages: WebPages, private translateService: TranslateService,) {
+  constructor(
+    public dialog: MatDialog,
+    private clubService: ClubService,
+    public webPages: WebPages,
+    private translateService: TranslateService,
+    private router: Router) {
     // If you want to load the user data from localStorage during initialization
   }
 
@@ -80,7 +88,7 @@ export class ProfileTabComponent {
       if (response && response.status && response.data) {
         this.representators = response.data.representators;
         this.baseUrl = response.data.uploads_path
-      }else if(response.data == ''){
+      } else if (response.data == '') {
         this.representators = [];
       } else {
         console.error('Invalid API response structure:', response);
@@ -276,7 +284,7 @@ export class ProfileTabComponent {
           this.getRepresentators();
           if (response.message) {
             this.showMatDialog(response.message, 'display');
-          }else{
+          } else {
             this.showMatDialog('Representator removed successfully!.', 'display');
           }
         } else {
@@ -330,6 +338,27 @@ export class ProfileTabComponent {
       'deleteRepresentorConfirmation',
     ]).subscribe((translations) => {
       this.deleteRepresentorConfirmation = translations['deleteRepresentorConfirmation'];
+    });
+  }
+
+  navigatePlans() {
+    this.router.navigate(['/club/plans']);
+  }
+
+  showVerificationPopup() {
+    const messageDialog = this.dialog.open(UnverifiedUserComponent, {
+      width: '500px',
+      position: {
+        top: '150px'
+      }
+    })
+
+    messageDialog.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        if (result.action == "delete-confirmed") {
+          // this.deleteUser();
+        }
+      }
     });
   }
 }

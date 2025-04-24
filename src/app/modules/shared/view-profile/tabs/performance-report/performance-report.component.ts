@@ -39,6 +39,7 @@ export class PerformanceReportComponent  implements OnInit {
     this.talentService.getPerformanceReportsData(id).subscribe(
       response => {
         if (response.status) {
+          this.path = response.data.uploads_path;
           this.reports = response.data.reports;
         } else {
           this.errorMessage = response.message;
@@ -61,5 +62,27 @@ export class PerformanceReportComponent  implements OnInit {
       }
     }
   }
+
+
+    // Download a single report
+    async downloadInvoice(id: any, src: any, type: any) {
+      try {
+        const response = await fetch(src);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const blob = await response.blob(); // Convert the response to a Blob object
+        const url = window.URL.createObjectURL(blob);
+        const anchor = document.createElement('a');
+        anchor.href = url;
+        anchor.download = `report-${id}.${type}`; // Set the filename for download
+        document.body.appendChild(anchor);
+        anchor.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(anchor);
+      } catch (error) {
+        console.error('There was an error downloading the file:', error);
+      }
+    }
   
 }

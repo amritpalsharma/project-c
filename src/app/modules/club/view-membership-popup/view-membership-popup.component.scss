@@ -140,3 +140,30 @@ a.pdf-download_btn {
     height: 20px !important;
 }
 }
+
+
+
+@media (min-width: 1600px) and (max-width: 2999px) {
+    .dialog-header h2 {
+        font-size: 24px !important;
+    }
+    h2.rechnung-titel, .bottom-details p, .bottom-details p strong {
+        font-size: 22px !important;
+    }
+    a.pdf-download_btn {
+        font-size: 24px !important;
+    }
+}
+
+
+@media (min-width: 3000px)  {
+    .dialog-header h2 {
+        font-size: 35px !important;
+    }
+    h2.rechnung-titel, .bottom-details p, .bottom-details p strong {
+        font-size: 30px !important;
+    }
+    a.pdf-download_btn {
+        font-size: 28px !important;
+    }
+}

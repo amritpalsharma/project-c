@@ -92,6 +92,7 @@ export class EditPersonalDetailsComponent implements OnInit {
   Processing: string = '';
   pleaseWait: string = '';
   requiredFieldsMessage:string='';
+  phoneRequired:string='';
   constructor(
     public dialogRef: MatDialogRef<EditPersonalDetailsComponent>,
     private scoutService: ScoutService,
@@ -182,15 +183,15 @@ export class EditPersonalDetailsComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    if (!this.company_name) {
-      this.toastr.warning(this.enterYourCompanyName, this.errorTxt);
-      return;
-    }
-    if (!this.city || !this.designation || !this.contact_number || !this.website || !this.zipcode) {
-      this.toastr.error(this.requiredFieldsMessage, this.errorTxt);
-      return;
-    }
-    if (form.valid) {
+    // if (!this.company_name) {
+    //   this.toastr.error(this.enterYourCompanyName, this.errorTxt);
+    //   return;
+    // }
+    // if (!this.contact_number) {
+    //   this.toastr.error(this.phoneRequired, this.errorTxt);
+    //   return;
+    // }
+    // if (form.valid) {
 
       console.log('Form Data:', form.value);
       this.dialogRef.close(form.value);
@@ -217,18 +218,19 @@ export class EditPersonalDetailsComponent implements OnInit {
       this.scoutService.updateUserProfile(formData).subscribe(
         (response: any) => {
           console.log('Form submitted successfully:', response);
-          this.dialogRef.close(response.data);
+          this.dialogRef.close(response);
+          // this.dialogRef.close(response.data);
         },
         (error: any) => {
           console.error('Error submitting the form:', error);
         }
       );
-    }
+    // }
   }
   
 
   getJsonTranslations() {
-    this.translateService.get(['success!', 'error', 'enterYourCompanyName', 'dobRequired', 'dominantFootRequired', 'Processing', 'pleaseWait','requiredFieldsMessage']).subscribe((translations) => {
+    this.translateService.get(['success!', 'error', 'enterYourCompanyName', 'dobRequired', 'dominantFootRequired', 'Processing', 'pleaseWait','requiredFieldsMessage','phoneRequired']).subscribe((translations) => {
       this.successTxt = translations['success!'];
       this.errorTxt = translations['error'];
       this.enterYourCompanyName = translations['enterYourCompanyName'];
@@ -237,6 +239,7 @@ export class EditPersonalDetailsComponent implements OnInit {
       this.Processing = translations['Processing'];
       this.pleaseWait = translations['pleaseWait'];
       this.requiredFieldsMessage = translations['requiredFieldsMessage'];
+      this.phoneRequired = translations['phoneRequired'];
       console.log('Title fetch Function Fired');
     })
   }

@@ -1,5 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { UserService } from '../../../../../services/user.service';
+import { TranslateService } from '@ngx-translate/core';
+import { WebPages } from '../../../../../services/webpages.service';
+
 @Component({
   selector: 'app-scout-portfolio',
   templateUrl: './scout-portfolio.component.html',
@@ -7,7 +10,7 @@ import { UserService } from '../../../../../services/user.service';
 })
 export class ScoutPortfolioComponent {
 
-  constructor(public userService: UserService) { }
+  constructor(public userService: UserService, public webPages: WebPages) { }
   isLoading: boolean = true;
   scoutPlayers: any;
   uploadsPath: string = '';
@@ -15,10 +18,15 @@ export class ScoutPortfolioComponent {
   @Input() isPremium: any;
   @Input() currentScoutId: any;
   displayedColumns: string[] = ['Name', 'Language', 'Club', 'Status'];
+  baseUrl:string ='https://api.socceryou.ch/uploads/';
   // displayedColumns: string[] = ['Name', 'Language', 'Club', 'Status', 'View'];
 
   ngOnInit(): void {
     this.getScoutPlayers();
+
+    this.webPages.languageId$.subscribe((data: any) => {
+      this.getScoutPlayers();
+    });
   }
   getScoutPlayers() {
     this.isLoading = true;

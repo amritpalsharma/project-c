@@ -204,6 +204,14 @@
 .light-theme .website-code .player-img img, .light-theme .website-code .player-img3 img {
   background-color: #DBDBDB;
 }
+.light-theme {
+.thanku-bnr {
+  .overlay {
+      height: 4%;
+      background: linear-gradient(to top, #ffffff -4%, #ffffff00 100%) !important;
+  }
+}
+}
 .light-theme .website-code .joined-btn button.btn {
   color: #E05263;
   border: 1px solid #E05263;

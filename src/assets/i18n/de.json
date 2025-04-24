@@ -482,7 +482,7 @@
   "moveTo": "Transfer zu",
   "moveFrom": "Transfer von",
   "transferDate": "Datum",
-  "customizeExperience": "Erlebnis anpassen",
+  "customizeExperience": "Einstellungen anpassen",
   "joined": "Beigetreten",
   "addCountry": "Möchtest du [Land Name] zu deinem Profil hinzufügen?",
   "switzerlandKosovo": "Schweiz Kosovo",
@@ -1312,7 +1312,7 @@
   "startDateEr": "Startdatum ist erforderlich",
   "limitEr": "Grenze ist erforderlich",
   "discountPercent": "Rabatt ist erforderlich",
-  "deleteAccountDesc": "Dadurch wird Ihr Konto dauerhaft aus unserer Datenbank gelöscht.",
+  "deleteAccountDesc": "Damit wird dein Konto dauerhaft aus unserer Datenbank gelöscht.",
   "deleteMyAccount": "Mein Konto löschen",
   "learnMore": "Mehr erfahren",
   "removeFavbtn": "Ja, löschen",
@@ -1449,5 +1449,7 @@
   "premiunPlanFor": "Für Clubs und Scouts",
   "multiCountryFor": "Für Scouts",
   "boostProfileFor": "Für Scouts",
-  "weUseCookies": "Wir verwenden Cookies"
+  "deleteFromGalleryConfirmation":"Bist du sicher, dass du {{type}} aus deiner Galerie löschen möchtest?",
+  "weUseCookies": "Wir verwenden Cookies",
+  "scoutHistoryTxt":"Über uns"
 }

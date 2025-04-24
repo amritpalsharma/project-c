@@ -112,9 +112,13 @@ export class ViewProfileComponent implements OnInit {
       role = segments[2]?.toLowerCase();
       if (role != '' && role != undefined) {
         this.currentUserRole = role;
-      } else {
-        console.info('role is ' + role)
       }
+    }
+
+    if(this.currentUserRole == 'club'){
+      this.activeTab = 'club_history';
+    }else if(this.currentUserRole == 'scout'){
+      this.activeTab = 'scout_history';
     }
   }
 
@@ -428,14 +432,24 @@ export class ViewProfileComponent implements OnInit {
 
   navigateToChat() {
     localStorage.setItem('otherUserData', '');
+    // console.log('User',this.user)
+    if(this.user.meta.profile_image != '' && this.user.meta.profile_image != undefined){
+      this.user.meta.profile_image = this.user.meta.profile_image;
+    }
+    const role = this.loggedInUser.role_name.toLowerCase();
+    // console.info('role is ',role);
+    if(this.currentUserRole == 'club' || this.currentUserRole == 'klubb' || this.currentUserRole == 'klub' || this.currentUserRole == 'Clube' && this.user.club_logo != '' && this.user.club_logo != undefined){
+      this.user.meta.profile_image =  this.user.club_logo;
+    }
     if (this.user) {
+      
       const userData = {
         id: this.user.id,
         name: this.user.first_name+ ''+this.user.last_name,
         email: this.user.email,
         photoUrl: this.baseUrl + this.user.meta.profile_image
       };
-
+ 
       console.log(userData, this.user);
       let tempUser = JSON.stringify(userData); 
 
@@ -445,15 +459,11 @@ export class ViewProfileComponent implements OnInit {
       // this.router.navigate(['/talent/chat'], { queryParams: { userData: encodedUserData } });
 
       localStorage.setItem('otherUserData', tempUser);
-      const role = this.loggedInUser.role_name.toLowerCase();
+
       // this.router.navigate([`/${role}/chat?open_chat=true`]);
       this.router.navigate([`/${role}/chat`], {
         queryParams: { open_chat: 'true' }
       });
-
-      // setInterval(() => {
-      //   // window.location.href = '/' + role + '/chat';
-      // }, 500);
     } else {
       console.warn('No userData available');
     }

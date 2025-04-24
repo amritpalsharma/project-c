@@ -57,8 +57,13 @@
             <!-- International player -->
             <div class=" form-group col-lg-4">
               <label for="internationalPlayer" class="form-label">{{'internationalPlayer' | translate}}</label>
-              <select class="form-select" id="internationalPlayer" name="international_player" [(ngModel)]="international_player">              
-                <option *ngFor="let country of countries" [value]="country.id" [selected]="user?.meta?.international_player==country.id">{{ country.country_name }}</option>
+              <select class="form-select" id="internationalPlayer" name="international_player" [(ngModel)]="international_player"> 
+                <option value="" [ngValue]="null">{{'select' | translate}}</option>
+                <option *ngFor="let country of countries" [ngValue]="country.id">
+                  {{ country.country_name }}
+                </option>
+                <!-- <option value="" [selected]="!international_player || !user?.meta?.international_player">{{'select' | translate}}</option>      
+                <option *ngFor="let country of countries" [value]="country.id" [selected]="user?.meta?.international_player==country.id">{{ country.country_name }}</option> -->
               </select>
             </div>
           </div>

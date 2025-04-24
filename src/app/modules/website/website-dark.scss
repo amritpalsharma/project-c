@@ -2320,7 +2320,12 @@ button.faq-scout-button {
     .item_column:nth-child(odd) {
         .premium-text p, .premium-heading5 {
             color: #fff !important;
-        }
+      }
+      .header_card {
+        .premium-heading5 {
+            color: #BDE34E !important;
+          }
+      }
     }
 }
 .common_static_page .content_page h4 {

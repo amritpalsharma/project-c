@@ -114,3 +114,26 @@
   display: inline-block;
   margin-top: 1rem;
 }
+
+
+@media (min-width: 1600px) and (max-width: 2999px) {
+  .club-team, .back-and-add-container span.selected_team_name {
+    font-size: 22px !important;
+  }
+  .player-view-container table td svg, .back-and-add-container svg.pointer {
+    width: 33px;
+      height: 33px;
+      margin-right: 4px;
+}
+}
+
+@media (min-width: 3000px) {
+.club-team, .back-and-add-container span.selected_team_name {
+  font-size: 28px !important;
+}
+.player-view-container table td svg, .back-and-add-container svg.pointer {
+    width: 40px;
+      height: 40px;
+      margin-right: 4px;
+}
+}

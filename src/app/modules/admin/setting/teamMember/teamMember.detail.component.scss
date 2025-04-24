@@ -37,8 +37,22 @@
   }
 
 
-  @media (min-width: 2000px){
+  @media (min-width: 1600px) and (max-width: 2999px){
     .card-header p {
-      font-size: 18px !important;
+      font-size: 20px !important;
+    }
+    td svg {
+      width: 32px !important;
+      height: 32px !important;
+    }
+  }
+  
+  @media (min-width: 3000px){
+    .card-header p {
+      font-size: 26px !important;
+    }
+    td svg {
+      width: 40px !important;
+      height: 40px !important;
     }
   }

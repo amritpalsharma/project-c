@@ -281,7 +281,7 @@
                           <h6 class="title_2">{{ 'height' | translate }}</h6>
                           <h5 *ngIf="user.meta && user.meta.height" class="title-1">{{user.meta.height}}
                             {{user.meta.height_unit}}</h5>
-                          <h5 *ngIf="!user.meta || !user.meta.height" class="title-1">NA</h5>
+                          <!-- <h5 *ngIf="!user.meta || !user.meta.height" class="title-1">NA</h5> -->
                         </div>
                       </div>
                     </div>
@@ -320,7 +320,7 @@
                           <h6 class="title_2">{{ 'weight' | translate }}</h6>
                           <h5 *ngIf="user.meta && user.meta.weight" class="title-1">{{user.meta.weight}}
                             {{user.meta.weight_unit}}</h5>
-                          <h5 *ngIf="!user.meta || !user.meta.weight" class="title-1">NA</h5>
+                          <!-- <h5 *ngIf="!user.meta || !user.meta.weight" class="title-1">NA</h5> -->
                         </div>
                       </div>
                     </div>
@@ -380,7 +380,7 @@
                           <h6 class="title_2">{{ 'contract' | translate}}</h6>
                           <h5 class="title-1" *ngIf="user?.meta?.contract_start">{{user?.meta?.contract_start | date:'y'
                             }} - {{user?.meta?.contract_end | date:'y' }}</h5>
-                          <h5 class="title-1" *ngIf="!user?.meta?.contract_start">NA</h5>
+                          <!-- <h5 class="title-1" *ngIf="!user?.meta?.contract_start">NA</h5> -->
                         </div>
                       </div>
                     </div>
@@ -425,7 +425,7 @@
                         <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'leagueLevel' | translate}}</h6>
                           <h5 class="title-1" *ngIf="user.league_name">{{user.league_name}}</h5>
-                          <h5 class="title-1" *ngIf="!user.league_name">NA</h5>
+                          <!-- <h5 class="title-1" *ngIf="!user.league_name">NA</h5> -->
                         </div>
                       </div>
                     </div>
@@ -724,7 +724,7 @@
                           <h6 class="title_2">{{ 'contactNumber' | translate }}</h6>
                           <h5 *ngIf="user.meta && user.meta.contact_number" class="title-1">{{user.meta.contact_number}}
                           </h5>
-                          <h5 class="title-1" *ngIf="!user.meta || !user.meta.contact_number">NA</h5>
+                          <!-- <h5 class="title-1" *ngIf="!user.meta || !user.meta.contact_number">NA</h5> -->
                         </div>
                       </div>
                     </div>
@@ -755,7 +755,7 @@
                         <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'website' | translate }}</h6>
                           <h5 *ngIf="user.meta && user.meta.website" class="title-1">{{user.meta.website}}</h5>
-                          <h5 class="title-1" *ngIf="!user.meta || !user.meta.website">NA</h5>
+                          <!-- <h5 class="title-1" *ngIf="!user.meta || !user.meta.website">NA</h5> -->
                         </div>
                       </div>
                     </div>
@@ -782,7 +782,7 @@
                         <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'zipcode' | translate}}</h6>
                           <h5 class="title-1" *ngIf="user?.meta?.zipcode">{{user?.meta?.zipcode}}</h5>
-                          <h5 class="title-1" *ngIf="!user?.meta?.zipcode">NA</h5>
+                          <!-- <h5 class="title-1" *ngIf="!user?.meta?.zipcode">NA</h5> -->
                         </div>
                       </div>
                     </div>
@@ -959,7 +959,7 @@
                         <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'address' | translate}}</h6>
                           <h5 class="title-1" *ngIf="user?.meta?.address">{{user?.meta?.address}}</h5>
-                          <h5 class="title-1" *ngIf="!user?.meta?.address">NA</h5>
+                          <!-- <h5 class="title-1" *ngIf="!user?.meta?.address">NA</h5> -->
                         </div>
                       </div>
                     </div>
@@ -1123,7 +1123,7 @@
                           <h6 class="title_2">{{ 'phone' | translate }}</h6>
                           <h5 *ngIf="user.meta && user.meta.contact_number" class="title-1">{{user.meta.contact_number}}
                           </h5>
-                          <h5 *ngIf="!user.meta || !user.meta.contact_number" class="title-1">NA</h5>
+                          <!-- <h5 *ngIf="!user.meta || !user.meta.contact_number" class="title-1">NA</h5> -->
                         </div>
                       </div>
                     </div>
@@ -1154,7 +1154,7 @@
                         <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'website' | translate }}</h6>
                           <h5 *ngIf="user.meta && user.meta.website" class="title-1">{{user.meta.website}}</h5>
-                          <h5 *ngIf="!user.meta || !user.meta.website" class="title-1">NA</h5>
+                          <!-- <h5 *ngIf="!user.meta || !user.meta.website" class="title-1">NA</h5> -->
                         </div>
                       </div>
                     </div>
@@ -1182,7 +1182,7 @@
                         <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'zipCode' | translate}}</h6>
                           <h5 class="title-1" *ngIf="user?.meta?.zipcode">{{user?.meta?.zipcode}}</h5>
-                          <h5 class="title-1" *ngIf="!user?.meta?.zipcode">NA</h5>
+                          <!-- <h5 class="title-1" *ngIf="!user?.meta?.zipcode">NA</h5> -->
                         </div>
                       </div>
                     </div>
@@ -1360,7 +1360,7 @@
                         <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'address' | translate}}</h6>
                           <h5 class="title-1" *ngIf="user?.meta?.address">{{user?.meta?.address}}</h5>
-                          <h5 class="title-1" *ngIf="!user?.meta?.address">NA</h5>
+                          <!-- <h5 class="title-1" *ngIf="!user?.meta?.address">NA</h5> -->
                         </div>
                       </div>
                     </div>
@@ -1559,7 +1559,7 @@
                   </li>
                 </ng-container>
                 <ng-container *ngIf="currentUserRole == 'club'">
-                  <li class="nav-item" role="presentation">
+                  <!-- <li class="nav-item" role="presentation">
                     <button class="nav-link" (click)="switchTab('profile')"
                       [ngClass]="{ active: activeTab == 'profile' }" id="home-tab manage-button" id="manage-button"
                       data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab"
@@ -1572,7 +1572,7 @@
                       </svg>
                       {{ "profile" | translate }}
                     </button>
-                  </li>
+                  </li> -->
                   <!-- Club Histroy  -->
                   <li class="nav-item" role="presentation">
                     <button class="nav-link" (click)="switchTab('club_history')"
@@ -1623,7 +1623,7 @@
                   <!-- End Club Gallery  -->
                 </ng-container>
                 <ng-container *ngIf="currentUserRole == 'scout'">
-                  <li class="nav-item" role="presentation">
+                  <!-- <li class="nav-item" role="presentation">
                     <button class="nav-link" (click)="switchTab('profile')"
                       [ngClass]="{ active: activeTab == 'profile' }" id="home-tab manage-button" id="manage-button"
                       data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab"
@@ -1636,7 +1636,7 @@
                       </svg>
                       {{ "profile" | translate }}
                     </button>
-                  </li>
+                  </li> -->
                   <!-- Scout Histroy  -->
                   <li class="nav-item" role="presentation">
                     <button class="nav-link" (click)="switchTab('scout_history')"
@@ -1650,7 +1650,7 @@
                           fill="#023A4A" />
                       </svg>
 
-                      {{ "companyHistory" | translate }}
+                      {{ "scoutHistoryTxt" | translate }}
                     </button>
                   </li>
                   <!-- Scout Histroy  -->
@@ -1704,8 +1704,13 @@
                 [isPremium]="isPremium"></view-user-gallery>
               <!-- Club Details -->
               <!-- Club Profile -->
+<<<<<<< HEAD
               <app-club-profile *ngIf="activeTab == 'profile' && currentUserRole == 'club' && user?.id"
                 [userData]="user" [isPremium]="isPremium" [currentUserId]="user.id"></app-club-profile>
+=======
+              <!-- <app-club-profile *ngIf="activeTab == 'profile' && currentUserRole == 'club' && user?.id" [userData]="user"
+                [isPremium]="isPremium" [currentUserId]="user.id"></app-club-profile> -->
+>>>>>>> 724fadf2ef260eed9e1a8ff047a95834217b5afc
               <!-- End Club Profile -->
               <!-- Club History -->
               <app-club-history *ngIf="activeTab == 'club_history' && currentUserRole == 'club'" role="club"
@@ -1722,8 +1727,8 @@
               <!-- End Club Details -->
               <!-- Scout Tabs -->
               <!-- Scout Profile -->
-              <app-scout-profile *ngIf="activeTab == 'profile' && currentUserRole == 'scout' && user?.id"
-                [userData]="user" [isPremium]="isPremium" [currentUserId]="user.id"></app-scout-profile>
+              <!-- <app-scout-profile *ngIf="activeTab == 'profile' && currentUserRole == 'scout' && user?.id" [userData]="user"
+                [isPremium]="isPremium" [currentUserId]="user.id"></app-scout-profile> -->
               <!-- End Scout Profile -->
               <!-- Scout History -->
               <app-scout-history *ngIf="activeTab == 'scout_history' && currentUserRole == 'scout'" role="scout"

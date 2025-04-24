@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../../../../services/user.service';
 import { ClubService } from '../../../../../services/club.service';
+import { WebPages } from '../../../../../services/webpages.service';
 
 @Component({
   selector: 'app-teams',
@@ -15,7 +16,7 @@ export class TeamsComponent {
   teams: any = [];
   players: any = [];
   view: string = "team";
-  displayedColumns: string[] = ['Player Name', 'Joining Date', 'Exit Date', 'Location', 'Edit'];
+  displayedColumns: string[] = ['Player Name', 'Joining Date', 'Exit Date', 'Location'];
   isLoading: boolean = false;
   selectedTeam: any = "";
   selectTeamName: string = '';
@@ -27,13 +28,23 @@ export class TeamsComponent {
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
-    private clubService: ClubService
+    private clubService: ClubService,
+    private webPages:WebPages
   ) {
     // this.getClubTeams(this.currentClubId);
   }
 
   ngOnInit(): void {
     this.getClubTeams(this.currentClubId);
+
+    this.webPages.languageId$.subscribe((data) => { 
+      // 
+      if(this.view == 'player'){
+        this.getTeamPlayers(this.selectedTeamId,this.selectedTeam);
+      }else{
+        this.getClubTeams(this.currentClubId);
+      }
+    });
   }
 
   getClubTeams(userId: any) {
@@ -63,7 +74,7 @@ export class TeamsComponent {
     this.view = 'player';
     this.isLoading = true;
     try {
-      this.clubService.getClubTeamPlayers(teamId).subscribe((response) => {
+      this.clubService.getClubPlayers(teamId).subscribe((response) => {
         if (response && response.status && response.data) {
           this.players = response.data.players;
           console.log(this.players)

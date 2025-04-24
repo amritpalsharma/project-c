@@ -108,8 +108,8 @@
     </button>
   </div>
 </div>
-
-<div class="table-responsive bg-0C3453" *ngIf="isPremium">
+<app-loader *ngIf="isLoading && isPremium" style="width: 100%;"></app-loader>
+<div class="table-responsive bg-0C3453" *ngIf="isPremium && !isLoading">
   <div class="transfer_box row " *ngFor="let transfer of userTransfers">
     <div class="col-lg-3 box-transfer">
       <div class="col-lg-12 col-md-6 col-sm-6 col-12 d-flex align-items-center gap-3">

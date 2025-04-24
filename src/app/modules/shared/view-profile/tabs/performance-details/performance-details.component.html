@@ -98,9 +98,9 @@
   </div> 
 </div>
 
-
+<app-loader *ngIf="isLoading && isPremium" style="width: 100%;"></app-loader>
 <div class="table-responsive bg-0C3453" style="width: 100%;" *ngIf="isPremium">
-   <table class="table w-100 no_hover_tr">
+   <table class="table w-100 no_hover_tr" *ngIf="!isLoading">
     <tbody>
       <tr class="table_underline" *ngFor="let performance of performances">
         <div class="team_logo row justify-content-between align-items-center">

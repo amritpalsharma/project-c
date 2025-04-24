@@ -120,6 +120,12 @@ export class AuthService {
         return '/scout/dashboard';
       case '4':
         return '/talent/dashboard';
+      case '5':
+        return '/admin/dashboard';
+      case '6':
+        return '/club/dashboard';
+      case '7':
+        return '/scout/dashboard';
       default:
         return '/home';  // Default page if no role found
     }

@@ -1746,31 +1746,80 @@ span.active_btn {
   }
 }
 
-@media (min-width: 2000px) {
-  .nav-tabs.user-tabs .nav-item .nav-link {
-    font-size: 18px;
+@media (min-width: 1600px) and (max-width: 2999px) {
+  .nav-tabs.user-tabs .nav-item .nav-link svg {
+    width: 32px;
+    height: 32px;
   }
-  .boost_profile span, .premium_button span {
-    font-size: 18px !important;
+  .nav-tabs.user-tabs .nav-item .nav-link {
+    font-size: 22px;
+  }
+  .boost_profile span, .premium_button span, .title-1, .edit_button span, .details-1 {
+    font-size: 20px;
   }
   .premium_button svg {
-    width: 22px !important;
+    width: 24px !important;
+  }
+  .title_2 {
+    font-size: 18px;
+  }
+  .details_2 {
+    font-size: 21px !important;
+  }
+  .user-info button .tour-personal-details {
+    max-width: 145px !important;
+  }
+  .user-details-left .user-info-name {
+    font-size: 28px;
+  }
+  .Feature_images h2 {
+    font-size: 30px;
+  }
+  .Feature_images p {
+    font-size: 24px;
+  }
+  .user-details-left .user-info button .tour-personal-details svg {
+    width: 30px !important;
+  }
 }
-  .title_2{
-    font-size: 16px;
-}
-.title-1{
-  font-size: 18px;
-}
-.details_2, .details-1 {
-  font-size: 19px !important;
-}
-.user-info button .tour-personal-details {
-  max-width: 135px !important;
-}
-.edit_button span {
-  font-size: 18px !important;
-}
+
+@media (min-width: 3000px) {
+  .nav-tabs.user-tabs .nav-item .nav-link svg {
+    width: 40px;
+    height: 40px;
+  }
+  .nav-tabs.user-tabs .nav-item .nav-link {
+    font-size: 30px;
+  }
+  .boost_profile span, .premium_button span, .edit_button span, .details-1 {
+    font-size: 24px;
+  }
+  .premium_button svg {
+    width: 30px !important;
+  }
+  .title_2 {
+    font-size: 25px;
+  }
+  .details_2, .title-1 {
+    font-size: 28px !important;
+  }
+  .user-info button .tour-personal-details {
+    max-width: 185px !important;
+  }
+  .user-details-left .user-info-name {
+    font-size: 32px;
+  }
+  
+  .Feature_images h2 {
+    font-size: 40px;
+  }
+  .Feature_images p {
+    font-size: 28px;
+  }
+  
+  .user-details-left .user-info button .tour-personal-details svg {
+    width: 35px !important;
+  }
 }
 
 .setting_heighlight svg {

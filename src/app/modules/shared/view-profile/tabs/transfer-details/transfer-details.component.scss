@@ -354,14 +354,47 @@
 }
 
 
-@media (min-width: 2000px){
+@media (min-width: 1600px) and (max-width: 2999px) {
 	.moving_box_inner h2 {
 		font-size: 22px !important;
 	}
-	.details_2, .edit_button-2 span, .btn_column .edit_button span {
+	.details_2, .edit_button-2 span {
       font-size: 18px !important;
     }
-    .details-1 {
+    .details-1, .btn_column .edit_button span {
         font-size: 20px !important;
     }
+    .new_performance button {
+      font-size: 24px;
+  }
+}
+
+@media (min-width: 3000px){
+	.moving_box_inner h2 {
+		font-size: 28px !important;
+	}
+	.details_2, .edit_button-2 span, .btn_column .edit_button span {
+      font-size: 25px !important;
+    }
+    .details-1 {
+        font-size: 28px !important;
+    }
+    .btn_column .edit_button svg {
+      width: 38px;
+      height: 38px;
+      margin-right: 4px;
+    }
+    .transfer_box .box-transfer .sasion_logos svg {
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+  }
+  .moving_box_inner .moving_country .moving-team-logo img {
+    width: 40px !important;
+    height: 40px !important;
+    margin-right: 10px;
+  }
+  .new_performance button {
+    font-size: 28px;
+}
 }

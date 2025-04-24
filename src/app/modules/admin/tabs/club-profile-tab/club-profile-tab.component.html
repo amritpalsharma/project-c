@@ -19,7 +19,7 @@
                 <!-- <pre>{{userData | json}}</pre> -->
                 <h6 *ngIf="userData.first_name">{{userData.first_name}} {{userData.last_name}}</h6>
                 <!-- <h6 *ngIf="userData.meta && userData.meta.club_name">{{userData.meta.club_name}}</h6> -->
-                <h6 *ngIf="!userData.first_name">NA</h6>
+                <!-- <h6 *ngIf="!userData.first_name">NA</h6> -->
             </div>
         </div>
         <div class="col-lg-3">
@@ -40,7 +40,7 @@
             <div class="team-details style-1">
                 <p> {{ 'contactNumber' | translate }}</p>
                 <h6>{{userData?.meta?.contact_number | translate}}</h6>
-                <h6 *ngIf="!userData.meta || !userData.meta.contact_number">NA</h6>
+                <!-- <h6 *ngIf="!userData.meta || !userData.meta.contact_number">NA</h6> -->
                 <!-- <div class="d-flex align-items-center mb-2" *ngFor="let nation of userNationalities">
                 <img src="{{nation.flag_path}}" alt="">
                 <h6> {{nation.country_name | translate }} </h6>
@@ -51,21 +51,21 @@
             <div class="team-details style-1">
                 <p> {{ 'address' | translate}}</p>
                 <h6> {{userData?.meta?.address | translate}}</h6>
-                <h6 *ngIf="!userData.meta || !userData.meta.address">NA</h6>
+                <!-- <h6 *ngIf="!userData.meta || !userData.meta.address">NA</h6> -->
             </div>
         </div>
         <div class="col-lg-3">
             <div class="team-details style-1">
                 <p> {{ 'zipcode' | translate}}</p>
                 <h6> {{userData?.meta?.zipcode | translate}}</h6>
-                <h6 *ngIf="!userData.meta || !userData.meta.zipcode">NA</h6>
+                <!-- <h6 *ngIf="!userData.meta || !userData.meta.zipcode">NA</h6> -->
             </div>
         </div>
         <div class="col-lg-3">
             <div class="team-details style-1">
                 <p> {{ 'city' | translate}}</p>
                 <h6> {{userData?.meta?.city | translate}}</h6>
-                <h6 *ngIf="!userData.meta || !userData.meta.city">NA</h6>
+                <!-- <h6 *ngIf="!userData.meta || !userData.meta.city">NA</h6> -->
             </div>
         </div>
         <div class="col-lg-3">
@@ -75,14 +75,14 @@
                     <img src="{{nation.flag_path}}" alt="">
                     <h6> {{nation.country_name | translate }} </h6>
                 </div>
-                <h6 *ngIf="userNationalities.length == 0">NA</h6>
+                <!-- <h6 *ngIf="userNationalities.length == 0">NA</h6> -->
             </div>
         </div>
         <div class="col-lg-3">
             <div class="team-details style-1">
                 <p> {{ 'website' | translate}}</p>
                 <h6>{{userData?.meta?.website}}</h6>
-                <h6 *ngIf="!userData.meta || !userData.meta.website">NA</h6>
+                <!-- <h6 *ngIf="!userData.meta || !userData.meta.website">NA</h6> -->
             </div>
         </div>
         <div class="col-lg-7">

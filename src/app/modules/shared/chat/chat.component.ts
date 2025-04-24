@@ -47,7 +47,7 @@ export class ChatComponent {
         id: this.userData.id,
         name: this.userData.first_name,
         email: this.userData.username,
-        photoUrl: this.userData.profile_image,
+        photoUrl: this.userData.profile_image_path,
         welcomeMessage: null,
         role: (this.userData.role == '1') ? "hidden" : "default"
       };

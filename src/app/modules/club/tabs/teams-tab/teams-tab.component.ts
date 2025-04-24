@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddNewTalentComponent } from '../add-new-talent/add-new-talent.component';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
+import { UnverifiedUserComponent } from '../../../shared/unverified-user/unverified-user.component';
 
 @Component({
   selector: 'club-teams-tab',
@@ -25,6 +26,7 @@ export class TeamsTabComponent {
   selectedTeamId: any;
   @Input() userData: any;
   @Input() isPremium: any;
+  @Input() isUserVerified: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -150,5 +152,26 @@ export class TeamsTabComponent {
   getTeamTypeById(id: number) {
     const team = this.teams.find((team: any) => team.id === id);
     return team ? team.team_type : null; // Return `null` if not found
+  }
+
+  navigatePlans() {
+    this.router.navigate(['/club/plans']);
+  }
+
+  showVerificationPopup() {
+    const messageDialog = this.dialog.open(UnverifiedUserComponent, {
+      width: '500px',
+      position: {
+        top: '150px'
+      }
+    })
+
+    messageDialog.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        if (result.action == "delete-confirmed") {
+          // this.deleteUser();
+        }
+      }
+    });
   }
 }

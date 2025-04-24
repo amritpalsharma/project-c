@@ -1453,11 +1453,13 @@
   "highlightTooltip": "Modifier les faits saillants",
   "homeBannerTxt": "SoccerYou – Parce que le talent ne suffit pas.",
   "accountVerificationPending": "La vérification de ton profil n'est pas encore terminée. Merci de patienter encore un peu. Merci beaucoup.",
-  "downloadPDFCommunityGuidelines":"Télécharger le PDF des règles communautaires",
-  "downloadPDFTermsAndConditions":"Télécharger le PDF des CGU",
-  "downloadPDFPrivacyPolicy":"Télécharger le PDF de la politique de confidentialité",
+  "downloadPDFCommunityGuidelines": "Télécharger le PDF des règles communautaires",
+  "downloadPDFTermsAndConditions": "Télécharger le PDF des CGU",
+  "downloadPDFPrivacyPolicy": "Télécharger le PDF de la politique de confidentialité",
   "premiunPlanFor": "Pour Clubs et Scouts",
   "multiCountryFor": "Pour Scouts",
   "boostProfileFor": "Pour Scouts",
-  "weUseCookies": "Nous utilisons des cookies"
+  "weUseCookies": "Nous utilisons des cookies",
+  "deleteFromGalleryConfirmation": "¿Estás seguro de que quieres eliminar la {{type}} de tu galería?",
+  "scoutHistoryTxt": "À propos de nous"
 }

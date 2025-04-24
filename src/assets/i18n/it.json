@@ -1435,11 +1435,13 @@
   "highlightTooltip": "Modifica i momenti salienti",
   "homeBannerTxt": "SoccerYou – Perché il talento da solo non basta.",
   "accountVerificationPending": "La verifica del profilo non è ancora stata completata. La preghiamo di pazientare ancora un po'. Grazie mille.",
-  "downloadPDFCommunityGuidelines":"Scarica il PDF delle linee guida della community",
-  "downloadPDFTermsAndConditions":"Scarica il PDF dei Termini e Condizioni",
-  "downloadPDFPrivacyPolicy":"Scarica il PDF dell’Informativa sulla privacy",
+  "downloadPDFCommunityGuidelines": "Scarica il PDF delle linee guida della community",
+  "downloadPDFTermsAndConditions": "Scarica il PDF dei Termini e Condizioni",
+  "downloadPDFPrivacyPolicy": "Scarica il PDF dell’Informativa sulla privacy",
   "premiunPlanFor": "Per Club e Scout",
   "multiCountryFor": "Per Scout",
   "boostProfileFor": "Per Scout",
-  "weUseCookies": "Utilizziamo i cookie"
+  "deleteFromGalleryConfirmation": "Sei sicuro di voler eliminare {{type}} dalla tua galleria?",
+  "weUseCookies": "Utilizziamo i cookie",
+  "scoutHistoryTxt": "Chi siamo"
 }

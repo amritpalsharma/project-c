@@ -27,6 +27,10 @@ export class ClubHistoryComponent {
   }
   
   replaceEmptyParagraphs(html: string) {
-    return html.replace(/<p>\s*<\/p>/g, "<br>");
+    if(typeof html === undefined || html == ''){
+        return '';
+    }else{
+      return html.replace(/<p>\s*<\/p>/g, "<br>");
+    }
   }
 }

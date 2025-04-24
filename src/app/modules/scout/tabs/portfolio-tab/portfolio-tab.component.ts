@@ -10,6 +10,8 @@ import { ScoutPlayerViewPopupComponent } from '../../../admin/tabs/scout-player-
 import { MessagePopupComponent } from '../../message-popup/message-popup.component';
 import { InviteScoutTalentPopupComponent } from '../../invite-scout-talent-popup/invite-scout-talent-popup.component';
 import { TranslateService } from '@ngx-translate/core';
+import { UnverifiedUserComponent } from '../../../shared/unverified-user/unverified-user.component';
+
 export interface DialogData {
   animal: string;
   name: string;
@@ -23,7 +25,14 @@ export class PortfolioTabComponent {
   readonly animal = signal('');
   readonly name = model('');
 
-  constructor(private route: ActivatedRoute, private scoutservice: ScoutService, private scoutService: ScoutService, public dialog: MatDialog, private router: Router, public translateService: TranslateService) {
+  constructor(
+    private route: ActivatedRoute,
+    // private router: Router,
+    private scoutservice: ScoutService,
+    // private scoutService: ScoutService,
+    public dialog: MatDialog,
+    private router: Router,
+    public translateService: TranslateService) {
     translateService.onLangChange.subscribe(() => {
       this.getScoutPlayers();
     });
@@ -41,10 +50,11 @@ export class PortfolioTabComponent {
   idToBeDeleted: any = '';
   langId: any = localStorage.getItem('lang_id');
   @Input() userData: any;
-  @Input() isPremium:any;
-  portfolioDeleteConfirmation:string='';
-  portfolioDeletebtn:string='';
-  portfolioCloseBtn:string='';
+  @Input() isPremium: any;
+  @Input() isUserVerified: any;
+  portfolioDeleteConfirmation: string = '';
+  portfolioDeletebtn: string = '';
+  portfolioCloseBtn: string = '';
 
   ngOnInit(): void {
     this.loggedInUser = JSON.parse(this.loggedInUser);
@@ -52,10 +62,10 @@ export class PortfolioTabComponent {
     this.userId = this.user.id;
     this.getScoutPlayers();
 
-    this.translateService.get(['portfolioDeleteConfirmation','portfolioDeletebtn','portfolioCloseBtn']).subscribe((translations) => {
-        this.portfolioDeleteConfirmation = translations['portfolioDeleteConfirmation'];
-        this.portfolioDeletebtn = translations['portfolioDeletebtn'];
-        this.portfolioCloseBtn = translations['portfolioCloseBtn'];
+    this.translateService.get(['portfolioDeleteConfirmation', 'portfolioDeletebtn', 'portfolioCloseBtn']).subscribe((translations) => {
+      this.portfolioDeleteConfirmation = translations['portfolioDeleteConfirmation'];
+      this.portfolioDeletebtn = translations['portfolioDeletebtn'];
+      this.portfolioCloseBtn = translations['portfolioCloseBtn'];
     })
   }
 
@@ -72,7 +82,7 @@ export class PortfolioTabComponent {
     return status === 'accepted' ? 'status-accepted' : 'status-rejected';
   }
 
- 
+
 
   inviteTalent() {
     if (!this.checkRole()) {
@@ -214,5 +224,26 @@ export class PortfolioTabComponent {
         this.showMatDialog('Error deleting user. Please try again.', 'display');
       }
     );
+  }
+
+  navigatePlans() {
+    this.router.navigate(['/scout/plans']);
+  }
+
+  showVerificationPopup() {
+    const messageDialog = this.dialog.open(UnverifiedUserComponent, {
+      width: '500px',
+      position: {
+        top: '150px'
+      }
+    })
+
+    messageDialog.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        if (result.action == "delete-confirmed") {
+          // this.deleteUser();
+        }
+      }
+    });
   }
 }

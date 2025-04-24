@@ -3,6 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { ClubService } from '../../../../services/club.service';
 import { Editor, Toolbar } from 'ngx-editor';
 import { environment } from '../../../../../environments/environment';
+import { UnverifiedUserComponent } from '../../../shared/unverified-user/unverified-user.component';
+import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'club-history-tab',
@@ -24,11 +27,17 @@ export class HistoryTabComponent implements OnInit {
   userId: any = "";
   history: any = "";
   isEditable: boolean = false;
+  @Input() isUserVerified: any;
   @Input() role: any;
   @Input() isPremium: any;
   @ViewChild('historyTextarea', { static: false }) textarea!: ElementRef;
 
-  constructor(private route: ActivatedRoute, private clubService: ClubService) { }
+  constructor(
+    public dialog: MatDialog,
+    private route: ActivatedRoute,
+    private clubService: ClubService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.getClubHistory();
@@ -99,5 +108,26 @@ export class HistoryTabComponent implements OnInit {
       // this.isLoading = false;
       console.error('Error fetching users:', error);
     }
+  }
+
+  navigatePlans() {
+    this.router.navigate(['/club/plans']);
+  }
+
+  showVerificationPopup() {
+    const messageDialog = this.dialog.open(UnverifiedUserComponent, {
+      width: '500px',
+      position: {
+        top: '150px'
+      }
+    })
+
+    messageDialog.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        if (result.action == "delete-confirmed") {
+          // this.deleteUser();
+        }
+      }
+    });
   }
 }

@@ -700,6 +700,18 @@ export class ClubService {
     );
   }
 
+  
+  getClubPlayers(teamId: any): Observable<any> {
+    const userToken = localStorage.getItem('authToken');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.userToken}`
+    });
+    let lang_id = localStorage.getItem('lang_id');
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
+      `${this.apiUrl}/get-club-players/${teamId}/${lang_id}`, { headers }
+    );
+  }
+
 
   getAllPlayers(): Observable<any> {
     const params = new HttpParams()

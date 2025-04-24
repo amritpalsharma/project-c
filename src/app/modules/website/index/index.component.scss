@@ -4954,13 +4954,18 @@ h3, .text_side_wrapper p {
 }
 }
 
-
 @media (min-width: 1600px) and (max-width: 1999px) {
   .banner-inner {
     padding-top: 280px;
   }
   h3, .works h3 {
     font-size: 45px;
+  }
+}
+
+@media (min-width: 2000px) {
+  .work-banner {
+    margin-right: 0;
   }
 }
 
@@ -4976,5 +4981,18 @@ h3, .text_side_wrapper p {
 @media (min-width: 3000px) {
 .banner-btn .btn {
   padding: 17px 40px !important;
+}
+.works .player-list-image img, .works .player-list-images img {
+  height: 140%;
+  top: 0;
+  transform: none;
+  object-position: top right;
+}
+.works .player2 .player-list-image img {
+  height: 104%;
+}
+.works {
+  height: auto !important;
+  padding-bottom: 22%;
 }
 }

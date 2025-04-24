@@ -43,3 +43,14 @@
         cursor: pointer;
     }
 }
+
+
+@media (min-width: 2000px) {
+    .del-popup-close h3 {
+        font-size: 28px !important;
+    }
+    .delet_acnt_btn {
+        font-size: 20px !important;
+        height: auto !important;
+    }
+}

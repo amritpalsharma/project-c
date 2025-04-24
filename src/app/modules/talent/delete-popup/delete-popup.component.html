@@ -1,34 +1,12 @@
 <div class="msg-popup-dialog p-3 delete-confirmation-modal">
   <div class="text-end">
-    <!-- <button class="close-btn" (click)="cancel()">X</button> -->
-    <!-- <a (click)="cancel()" class="cross-btn-close"></a> -->
-    <!-- <div class="msg-popup-close">
-      <img src="../../../assets/images/close-icon-circle.png" alt="" class="" (click)="cancel()" />
-    </div> -->
     <div class="msg-popup-close" *ngIf='theme!="dark"'>
       <img src="../../../assets/images/carbon_close-outline-light.svg" alt="" class="" (click)="cancel()" />
     </div>
     <div class="msg-popup-close" *ngIf='theme=="dark"'>
       <img src="../../../assets/images/carbon_close-outline.svg" alt="" class="" (click)="cancel()" />
     </div>
-
-    <!-- <div class="close_buttons" *ngIf='theme!="dark"'>
-      <button class="close-btn border-0 padding-0" aria-label="Close" (click)="onCancel()">
-        <img src="../../../../assets/images/carbon_close-outline-light.svg" alt="">
-      </button>
-    </div>
-    <div class="close_buttons" *ngIf='theme=="dark"'>
-      <button class="close-btn border-0 padding-0" aria-label="Close" (click)="onCancel()">
-        <img src="../../../../assets/images/carbon_close-outline.svg" alt="">
-      </button>
-    </div> -->
-
   </div>
-  <!-- <h2 class="delete-confirmation">{{'confirmDeleteinformation' | translate}}</h2>
-    
-    <div class="dialog-actions">
-      <button class="confirmation_delete-button" (click)="confirmDelete()">{{'delete' | translate}}</button>
-    </div>  -->
     <div class="msg-popup-content p-3 pt-1">
       <div class="display-message delete-confirmation">
         {{'confirmDeleteinformation' | translate}}

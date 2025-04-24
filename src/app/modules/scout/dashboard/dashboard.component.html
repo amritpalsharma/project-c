@@ -207,7 +207,10 @@
                         </div>
                         <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'designation' | translate}}</h6>
-                          <h5 class="title-1">{{user?.meta?.designation }}</h5>
+                          <!-- <h5 class="title-1" *ngIf="user?.meta?.designation !== undefined">{{user?.meta?.designation }}</h5> -->
+                          <h5 class="title-1" *ngIf="user?.meta?.designation && user?.meta?.designation !== 'undefined'">
+                            {{ user.meta.designation }}
+                          </h5>                          
                         </div>
                       </div>
                     </div>
@@ -245,7 +248,7 @@
                         </div>
                         <div class=" col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2"> {{'city' | translate }}</h6>
-                          <h5 class="title-1">{{user?.meta?.city}}</h5>
+                          <h5 class="title-1" *ngIf="user?.meta?.city && user?.meta?.city !== 'undefined'">{{user?.meta?.city}}</h5>
                         </div>
                       </div>
                     </div>
@@ -303,9 +306,9 @@
                         </div>
                         <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'phone' | translate }}</h6>
-                          <h5 *ngIf="user.meta && user.meta.contact_number" class="title-1">{{user.meta.contact_number}}
+                          <h5 *ngIf="user?.meta?.contact_number && user?.meta?.contact_number !== 'undefined'" class="title-1">{{user.meta.contact_number}}
                           </h5>
-                          <h5 *ngIf="!user.meta || !user.meta.contact_number" class="title-1">NA</h5>
+                          <!-- <h5 *ngIf="!user.meta || !user.meta.contact_number" class="title-1">NA</h5> -->
                         </div>
                       </div>
                     </div>
@@ -338,8 +341,8 @@
                         </div>
                         <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'website' | translate }}</h6>
-                          <h5 *ngIf="user.meta && user.meta.website" class="title-1">{{user.meta.website}}</h5>
-                          <h5 *ngIf="!user.meta || !user.meta.website" class="title-1">NA</h5>
+                          <h5 *ngIf="user?.meta?.website && user?.meta?.website !== 'undefined'" class="title-1">{{user.meta.website}}</h5>
+                          <!-- <h5 *ngIf="!user.meta || !user.meta.website" class="title-1">NA</h5> -->
                         </div>
                       </div>
                     </div>
@@ -367,8 +370,8 @@
                         </div>
                         <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'zipCode' | translate}}</h6>
-                          <h5 class="title-1" *ngIf="user?.meta?.zipcode">{{user?.meta?.zipcode}}</h5>
-                          <h5 class="title-1" *ngIf="!user?.meta?.zipcode">NA</h5>
+                          <h5 class="title-1" *ngIf="user?.meta?.zipcode && user?.meta?.zipcode !== 'undefined'">{{user?.meta?.zipcode}}</h5>
+                          <!-- <h5 class="title-1" *ngIf="!user?.meta?.zipcode">NA</h5> -->
                         </div>
                       </div>
                     </div>
@@ -379,7 +382,7 @@
                             *ngIf="user?.meta?.sm_x || user?.meta?.sm_facebook || user?.meta?.sm_instagram || user?.meta?.sm_tiktok || user?.meta?.sm_youtube || user?.meta?.sm_vimeo">
                             {{ 'socialMedia' | translate}}</h6>
 
-                          <a class="platform_image px-1" *ngIf="user?.meta?.sm_x"
+                          <a class="platform_image px-1" *ngIf="user?.meta?.sm_x && user?.meta?.sm_x !== 'undefined'"
                             [href]="'https://www.x.com/' + user.meta.sm_x">
                             <svg width="17" height="17" viewBox="0 0 17 17" fill="none"
                               xmlns="http://www.w3.org/2000/svg">
@@ -395,7 +398,7 @@
                               </defs>
                             </svg>
                           </a>
-                          <a class="platform_image px-1" *ngIf="user?.meta?.sm_facebook"
+                          <a class="platform_image px-1" *ngIf="user?.meta?.sm_facebook && user?.meta?.sm_facebook !== 'undefined'"
                             [href]="'https://www.facebook.com/' + user.meta.sm_facebook">
                             <svg width="19" height="19" viewBox="0 0 19 19" fill="none"
                               xmlns="http://www.w3.org/2000/svg">
@@ -414,7 +417,7 @@
                               </defs>
                             </svg>
                           </a>
-                          <a class="platform_image px-1" *ngIf="user?.meta?.sm_instagram"
+                          <a class="platform_image px-1" *ngIf="user?.meta?.sm_instagram && user?.meta?.sm_instagram !== 'undefined'"
                             [href]="'https://www.instagram.com/' + user.meta.sm_instagram">
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                               xmlns="http://www.w3.org/2000/svg">
@@ -451,7 +454,7 @@
                               </defs>
                             </svg>
                           </a>
-                          <a class="platform_image px-1" *ngIf="user?.meta?.sm_tiktok"
+                          <a class="platform_image px-1" *ngIf="user?.meta?.sm_tiktok && user?.meta?.sm_tiktok !== 'undefined'"
                             [href]="'https://www.tiktok.com/@' + user.meta.sm_tiktok">
                             <svg width="16" height="18" viewBox="0 0 16 18" fill="none"
                               xmlns="http://www.w3.org/2000/svg">
@@ -473,7 +476,7 @@
                               </defs>
                             </svg>
                           </a>
-                          <a class="platform_image px-1" *ngIf="user?.meta?.sm_youtube"
+                          <a class="platform_image px-1" *ngIf="user?.meta?.sm_youtube && user?.meta?.sm_youtube !== 'undefined'"
                             [href]="'https://www.youtube.com/c/' + user.meta.sm_youtube">
                             <svg width="22" height="15" viewBox="0 0 22 15" fill="none"
                               xmlns="http://www.w3.org/2000/svg">
@@ -490,7 +493,7 @@
                               </defs>
                             </svg>
                           </a>
-                          <a class="platform_image px-1" *ngIf="user?.meta?.sm_vimeo"
+                          <a class="platform_image px-1" *ngIf="user?.meta?.sm_vimeo && user?.meta?.sm_vimeo !== 'undefined'"
                             [href]="'https://www.vimeo.com/' + user.meta.sm_vimeo">
                             <svg width="19" height="16" viewBox="0 0 19 16" fill="none"
                               xmlns="http://www.w3.org/2000/svg">
@@ -547,8 +550,8 @@
                         </div>
                         <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'address' | translate}}</h6>
-                          <h5 class="title-1" *ngIf="user?.meta?.address">{{user?.meta?.address}}</h5>
-                          <h5 class="title-1" *ngIf="!user?.meta?.address">NA</h5>
+                          <h5 class="title-1" *ngIf="user?.meta?.address && user?.meta?.address !== 'undefined'">{{user?.meta?.address}}</h5>
+                          <!-- <h5 class="title-1" *ngIf="!user?.meta?.address">NA</h5> -->
                         </div>
                       </div>
                     </div>
@@ -577,7 +580,7 @@
                   </div>
                 </div>
                 <div class="upgrade_unlock">
-                  <a class="unlock_btn" href="/scout/plans">
+                  <a class="unlock_btn" (click)="isUserVerified ? navigatePlans() : showVerificationPopup()">
                     <svg width="15" height="19" viewBox="0 0 15 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <g clip-path="url(#clip0_7084_24851)">
                         <path
@@ -716,7 +719,7 @@
                         d="M10.5 0C12.3958 0 14.1641 0.483073 15.8047 1.44922C17.3906 2.36068 18.6484 3.60938 19.5781 5.19531C20.526 6.83594 21 8.60417 21 10.5C21 12.3958 20.526 14.1641 19.5781 15.8047C18.6484 17.3906 17.3906 18.6484 15.8047 19.5781C14.1641 20.526 12.3958 21 10.5 21C8.60417 21 6.83594 20.526 5.19531 19.5781C3.60938 18.6484 2.36068 17.3906 1.44922 15.8047C0.483073 14.1641 0 12.3958 0 10.5H1.75C1.75 12.0859 2.15104 13.5625 2.95312 14.9297C3.71875 16.2422 4.75781 17.2812 6.07031 18.0469C7.4375 18.849 8.91406 19.25 10.5 19.25C12.0859 19.25 13.5625 18.849 14.9297 18.0469C16.2422 17.2812 17.2812 16.2422 18.0469 14.9297C18.849 13.5625 19.25 12.0859 19.25 10.5C19.25 8.91406 18.849 7.4375 18.0469 6.07031C17.2812 4.75781 16.2422 3.71875 14.9297 2.95312C13.5625 2.15104 12.0859 1.75 10.5 1.75C8.91406 1.75 7.4375 2.15104 6.07031 2.95312C4.75781 3.73698 3.71875 4.79427 2.95312 6.125H6.125V7.875H0V1.75H1.75V4.67578C2.71615 3.23568 3.95573 2.10547 5.46875 1.28516C7.03646 0.428385 8.71354 0 10.5 0ZM9.625 3.5H11.375V9.625H15.75V11.375H9.625V3.5Z"
                         fill="#023A4A" />
                     </svg>
-                    {{ 'companyHistory' | translate }}
+                    {{ 'scoutHistoryTxt' | translate }}
                   </button>
                 </li>
                 <li class="nav-item" role="presentation">
@@ -787,18 +790,19 @@
                     </svg>
                     {{ 'gallery' | translate }}
                   </button>
-                </li>
+                </li> 
               </ul>
             </div>
             <div class="general_details mt-4 p-4 bg-color box_height_eqaul">
-              <scout-profile-tab *ngIf="activeTab == 'profile' && !loading" [userData]="user" [isPremium]="isPremium"
+              <scout-profile-tab *ngIf="activeTab == 'profile' && !loading" [userData]="user" [isPremium]="isPremium" [isUserVerified]="isUserVerified"
                 [logInUser]="loggedInUser"></scout-profile-tab>
-              <scout-app-history-tab *ngIf="activeTab == 'company_history'" role="Scout" [isPremium]="isPremium"></scout-app-history-tab>
+              <scout-app-history-tab *ngIf="activeTab == 'company_history'" role="Scout" [isPremium]="isPremium" [isUserVerified]="isUserVerified"></scout-app-history-tab>
               <scout-portfolio-tab *ngIf="activeTab == 'portfolio'" [userData]="user" 
-              [isPremium]="isPremium"
+              [isPremium]="isPremium" [isUserVerified]="isUserVerified"
                 role="Scout" ></scout-portfolio-tab>
               <scout-gallery-tab *ngIf="activeTab == 'gallery'" [coverImage]="coverImage"
-                (dataEmitter)="handleCoverImageData($event)" [isPremium]="isPremium"></scout-gallery-tab>
+                (dataEmitter)="handleCoverImageData($event)" [isPremium]="isPremium"
+                [isUserVerified]="isUserVerified"></scout-gallery-tab>
             </div>
           </div>
         </div>
