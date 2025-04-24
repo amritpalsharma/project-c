@@ -473,6 +473,28 @@ tr.table_underline {
         height: 42px;
         object-fit: contain;
     }
+
+    .details_2,
+    .edit_button-2 span {
+        font-size: 18px !important;
+    }
+
+    .details-1 {
+        font-size: 20px !important;
+    }
+
+    .underline_gap svg,
+    .underline_gap img {
+        width: 42px;
+        height: 42px;
+        object-fit: contain;
+    }
+
+    .edit_button-2 svg,
+    .new_performance button svg {
+        width: 32px !important;
+        height: 32px !important;
+    }
 }
 
 @media (min-width: 3000px) {
@@ -500,6 +522,16 @@ tr.table_underline {
     align-items: center;
     justify-content: center;
     min-height: 200px;
+}
+
+.edit_button-2 svg,
+.new_performance button svg {
+    width: 38px !important;
+    height: 38px !important;
+}
+
+.details-1 {
+    font-size: 28px !important;
 }
 
 .loader {

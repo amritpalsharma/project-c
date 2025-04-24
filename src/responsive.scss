@@ -243,8 +243,8 @@
 }
 .dashboard_page_only {
     .general_details td.cdk-column-Download.mat-column-Download svg {
-        width: 37px !important;
-        height: 37px !important;
+        width: 35px !important;
+        height: 35px !important;
     }
 }
 }
@@ -322,7 +322,7 @@ body {
     width: 60px !important;
 }
 .btn-outline-white {
-    font-size: 21px !important;
+    font-size: 22px !important;
     svg {
     height: 30px !important;
     width: 30px !important;
@@ -390,7 +390,7 @@ mat-datepicker-toggle button {
     padding-top: 0 !important;
 }
 .table_title select, .right-sidebar .card .card-header a {
-    font-size: 20px !important;
+    font-size: 22px !important;
 }
 .dashboard_footer .footer-text, .dashboard_footer .footer_main_inner, label.form-label, .popup__body p.code-text, input.cupen-btn-1 {
     font-size: 18px !important;
@@ -402,6 +402,10 @@ mat-datepicker-toggle button {
 .common_profile_page {
     #dashboard_tabs_dark .nav-link {
         font-size: 22px !important;
+        svg {
+            width: 32px !important;
+            height: 32px !important;
+        }
     }
     .user-details-left {
         .list-view p, .list-view h6, .user-info h6 {
@@ -1011,6 +1015,9 @@ mat-datepicker-toggle button {
         }
 
     }
+    .table_title select, .right-sidebar .card .card-header a {
+        font-size: 25px !important;
+    }
     .sidebar_menu a {
         font-size: 23px !important;
         padding: 19px 10px !important;
@@ -1032,7 +1039,7 @@ mat-datepicker-toggle button {
         font-size: 40px !important;
     }
     .btn-outline-white {
-        font-size: 25px !important;
+        font-size: 28px !important;
     }
     .paginator-container label {
         font-size: 30px !important;
@@ -1043,6 +1050,41 @@ mat-datepicker-toggle button {
     }
     .form-control, .table td span.bg_pending, .card-tabs .nav-tabs .nav-item .nav-link, .card-tabs .mesaage-content h6 {
         font-size: 28px !important;
+    }
+    .dashboard_footer .footer-text, .dashboard_footer .footer_main_inner, label.form-label, .popup__body p.code-text, input.cupen-btn-1 {
+        font-size: 26px !important;
+    }
+    .common_profile_page {
+        #dashboard_tabs_dark .nav-link {
+            font-size: 30px !important;
+            svg {
+                width: 40px !important;
+                height: 40px !important;
+            }
+        }
+        .user-details-left {
+            .list-view p, .list-view h6, .user-info h6 {
+                font-size: 28px !important;
+            }
+            .user-info small {
+                font-size: 24px !important;
+            }
+        }
+        .user-right-content {
+            .team-details p, .team-details h6, .scout-team p, .scout-team h6 {
+                font-size: 28px !important;
+            }
+        }
+        h6.main-template, .gallery-h5, p.gallery-photo, p.gallery-pic-upload,
+        .player-view-container .club-team {
+            font-size: 30px !important;
+        }
+    }
+    .dashboard_page_only {
+        .general_details td.cdk-column-Download.mat-column-Download svg {
+            width: 40px !important;
+            height: 40px !important;
+        }
     }
 }
 

@@ -2294,6 +2294,8 @@ button.faq-scout-button {
 }
 
 
+
+
 .dark-theme {
   footer.website_main_pages .select-country {
     background-color: #fff;
@@ -2331,7 +2333,32 @@ button.faq-scout-button {
 .common_static_page .content_page h4 {
   color: #bde34e !important;
 }
+.common_static_page .content_page {
+  p a, li a {
+    color: #bde34e;
+  }
 }
+}
+
+
+
+body.dark-theme.static-common-banner {
+  background: url(/assets/images/common-full-banner-image-dark.png) no-repeat center;
+  background-size: cover;
+  .website-code, #footer {
+    background: none !important;
+  }
+.thanku-bnr, .main-bnr {
+  background: none !important;
+  .overlay {
+    display: none !important;
+  }
+}
+footer img.web_footer_bg {
+  display: none !important;
+}
+}
+
 
 @media (min-width: 1024px) {
 .dark-theme {

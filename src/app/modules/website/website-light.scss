@@ -1786,3 +1786,28 @@ a {
       background: #357525 !important;
   }
 }
+
+
+
+body.light-theme.static-common-banner {
+  background: url(/assets/images/common-full-banner-image.png) no-repeat center;
+  background-size: cover;
+.thanku-bnr, .main-bnr {
+  background: none !important;
+  .overlay {
+    display: none !important;
+  }
+}
+footer img.web_footer_bg {
+  display: none !important;
+}
+}
+
+
+.light-theme {
+  .common_static_page .content_page {
+    p a, li a {
+      color: #e05263 !important;
+    }
+  }
+}

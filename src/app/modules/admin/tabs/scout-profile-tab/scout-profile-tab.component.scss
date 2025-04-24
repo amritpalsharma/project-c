@@ -122,3 +122,32 @@ td{
 table td, table th {
     white-space: nowrap;
 }
+
+
+@media (min-width: 1600px) and (max-width: 2999px) {
+    .btn.web-create-bg {
+        font-size: 22px !important;
+        margin-bottom: 10px !important;
+    }
+    td svg.pointer {
+        width: 32px !important;
+        height: 32px !important;
+    }
+    td .custom-select {
+        height: 36px !important;
+    }
+}
+
+@media (min-width: 3000px) {
+.btn.web-create-bg {
+    font-size: 28px !important;
+    margin-bottom: 10px !important;
+}
+td svg.pointer {
+    width: 40px !important;
+    height: 40px !important;
+}
+td .custom-select {
+    height: 46px !important;
+}
+}

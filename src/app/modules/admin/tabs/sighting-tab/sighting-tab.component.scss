@@ -317,3 +317,28 @@ margin-top: 20px;
 table td, table th {
   white-space: nowrap;
 }
+
+
+
+@media (min-width: 1600px) and (max-width: 2999px) {
+	a.btn.web-create-bg {
+    font-size: 22px !important;
+  }
+  td.cursor-pointer svg {
+    width: 32px !important;
+    height: 32px !important;
+  }
+}
+
+
+
+@media (min-width: 3000px) {
+a.btn.web-create-bg {
+  font-size: 28px !important;
+  margin-bottom: 10px !important;
+}
+td.cursor-pointer svg {
+  width: 40px !important;
+  height: 40px !important;
+}
+}

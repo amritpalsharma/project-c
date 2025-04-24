@@ -280,6 +280,9 @@ img.flag_country {
         width: 35px;
         height: 35px;
     }
+    .btn.web-create-bg {
+        font-size: 22px !important;
+      }
 }
 
 @media (min-width: 3000px){
@@ -292,4 +295,7 @@ table td svg {
     width: 45px;
     height: 45px;
 }
+.btn.web-create-bg {
+    font-size: 28px !important;
+  }
 }

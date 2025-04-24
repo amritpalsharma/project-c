@@ -229,3 +229,35 @@ th {
         padding: 0px !important;
     }
 }
+
+
+
+@media (min-width: 1600px) and (max-width: 2999px){
+    table td svg {
+        width: 33px;
+        height: 33px;
+        margin-right: 4px;
+    }
+    .icon_text_icon img.flag_country {
+        width: 35px;
+        height: 35px;
+    }
+    .btn.web-create-bg {
+        font-size: 22px !important;
+      }
+}
+
+@media (min-width: 3000px){
+table td svg {
+    width: 40px;
+    height: 40px;
+    margin-right: 4px;
+}
+.icon_text_icon img.flag_country {
+    width: 45px;
+    height: 45px;
+}
+.btn.web-create-bg {
+    font-size: 28px !important;
+  }
+}

@@ -114,11 +114,30 @@ table td {
 
 
 
-@media (min-width: 2000px){
-    .details_2, .edit_button-2 span {
-      font-size: 18px !important;
-    }
-    .details-1 {
-        font-size: 20px !important;
-    }
+@media (min-width: 1600px) and (max-width: 2999px) {
+	.details_2, .edit_button-2 span {
+	    font-size: 18px !important;
+	}
+	.details-1 {
+	    font-size: 20px !important;
+	}
+	.underline_gap svg, .underline_gap img {
+	    width: 42px;
+	    height: 42px;
+	    object-fit: contain;
+	}
+}
+
+@media (min-width: 3000px) {
+	.details_2, .edit_button-2 span {
+	    font-size: 25px !important;
+	}
+	.details-1 {
+	    font-size: 28px !important;
+	}
+	.underline_gap svg, .underline_gap img {
+	    width: 50px;
+	    height: 50px;
+	    object-fit: contain;
+	}
 }

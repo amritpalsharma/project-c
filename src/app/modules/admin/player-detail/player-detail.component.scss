@@ -227,3 +227,18 @@
 .nav-tabs .nav-link {
     background-color: transparent !important;
 }
+
+
+
+
+@media (min-width: 1600px) and (max-width: 2999px) {
+    .btn.btn-success.web-create-bg, span.bg_pending, span.bg_success {
+        font-size: 22px !important;
+    } 
+}
+
+@media (min-width: 3000px) {
+    .btn.btn-success.web-create-bg, span.bg_pending, span.bg_success {
+        font-size: 28px !important;
+    }
+}
