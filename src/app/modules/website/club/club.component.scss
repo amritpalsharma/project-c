@@ -6079,6 +6079,9 @@ span {
             }
         }
     }
+    .shadow_container .body_card::-webkit-scrollbar {
+        width: 8px !important;
+    }
 }
 
 @media (min-width: 2000px) and (max-width: 2999px) {
@@ -6107,7 +6110,7 @@ span {
     }
     
     .shadow_container .body_card::-webkit-scrollbar {
-        width: 8px !important;
+        width: 10px !important;
     }
 }
 
@@ -6143,7 +6146,7 @@ span {
     }
     
     .shadow_container .body_card::-webkit-scrollbar {
-        width: 13px !important;
+        width: 15px !important;
     }
 }
 
@@ -6246,9 +6249,13 @@ h2.accordion-header {
     background-color: #b7c5b5;
 }
 .shadow_container .body_card::-webkit-scrollbar {
-    width: 4px;
+    width: 5px;
     background-color: #b7c5b5;
 }
 .shadow_container .body_card::-webkit-scrollbar-thumb {
     background-color: #E05263;
 } 
+.shadow_container .body_card {
+    scrollbar-width: thin;
+    scrollbar-color: #E05263 #b7c5b5;
+}
