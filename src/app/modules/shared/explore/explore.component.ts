@@ -304,7 +304,10 @@ export class ExploreComponent implements OnInit {
         location: this.selectedCountry,
         age: this.selectedAge,
         position: this.selectedPositions,
-        user_domain: this.userDomain
+        user_domain: this.userDomain,
+        league_id: this.selectedLeague,
+        
+        // club_id:this.selectedClub
       },
       metaQuery: [],
       lang: localStorage.getItem('lang_id')
@@ -328,19 +331,19 @@ export class ExploreComponent implements OnInit {
     }
 
     if (this.selectedLeague) {
-      params.metaQuery.push({
-        meta_key: 'league',
-        meta_value: this.selectedLeague,
-        operator: '='
-      });
+      // params.metaQuery.push({
+      //   meta_key: 'league',
+      //   meta_value: this.selectedLeague,
+      //   operator: '='
+      // });
     }
 
     if (this.selectedClub) {
-      params.metaQuery.push({
-        meta_key: 'club',
-        meta_value: this.selectedClub,
-        operator: '='
-      });
+      // params.metaQuery.push({
+      //   meta_key: 'club',
+      //   meta_value: this.selectedClub,
+      //   operator: '='
+      // });
     }
 
     // Clean null or empty filters from whereClause

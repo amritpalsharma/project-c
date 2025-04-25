@@ -561,10 +561,10 @@ export class HeaderComponent implements OnInit {
 
 
   login() {
-    console.log("login clicked")
-    if(this.loginButtonClicked){
-      return;
-    }
+    // console.log("login clicked")
+    // if(this.loginButtonClicked){
+    //   return;
+    // }
     this.loginButtonClicked = true;
 
     // isEmailError = false;
