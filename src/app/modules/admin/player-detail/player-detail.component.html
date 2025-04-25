@@ -49,7 +49,6 @@
                   d="M4.79102 10.125L7.66602 12.875M7.66602 10.125L4.79102 12.875M1.91602 7.375H10.541V15.625H1.91602V7.375Z"
                   stroke="#787878" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
-
               {{ 'exportPDF' | translate }}</a>
           </div>
           <div class="d-flex align-items-center profile_count_next_btn" *ngIf="paginationData.total">
@@ -86,7 +85,7 @@
                   <input id="file-upload" (change)="onProfileImageChange($event)" accept="image/*" type="file"
                     class="d-none" />
                   <!-- <img *ngIf="user.club_logo_path" src="{{user.club_logo_path}}" class="club-icon-round" alt=""> -->
-                  <div class="club-icon">
+                  <div class="club-icon" *ngIf="user.club_logo_path">
                     <img *ngIf="user.club_logo_path" src="{{user.club_logo_path}}"
                       class="club-icon-round cursor-pointer" alt="">
                     <!-- <img *ngIf="user.club_logo_path" src="../../../assets/images/team-badge.png" class="club-icon-round"  alt=""> -->

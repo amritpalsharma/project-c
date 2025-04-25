@@ -113,7 +113,41 @@ export class EditHighlightsComponent {
     const isChecked = (event.target as HTMLInputElement).checked;
 
     if (isChecked && this.totalSelected >= this.maxUploads) {
-      alert(`You can only select a maximum of ${this.maxUploads} files.`);
+      // alert(`You can only select a maximum of ${this.maxUploads} files.`);
+      let lang_id = localStorage.getItem('lang_id');
+      let message = '';
+
+      if (lang_id == '1') {
+        // English
+        message = `You can only select a maximum of ${this.maxUploads} files.`;
+      } else if (lang_id == '2') {
+        // German (Deutsch)
+        message = `Sie können maximal ${this.maxUploads} Dateien auswählen.`;
+      } else if (lang_id == '3') {
+        // Italian (Italiano)
+        message = `Puoi selezionare al massimo ${this.maxUploads} file.`;
+      } else if (lang_id == '4') {
+        // French (Français)
+        message = `Vous ne pouvez sélectionner que ${this.maxUploads} fichiers au maximum.`;
+      } else if (lang_id == '5') {
+        // Spanish (Español)
+        message = `Solo puedes seleccionar un máximo de ${this.maxUploads} archivos.`;
+      } else if (lang_id == '6') {
+        // Portuguese (Português)
+        message = `Você só pode selecionar no máximo ${this.maxUploads} arquivos.`;
+      } else if (lang_id == '7') {
+        // Danish (Dansk)
+        message = `Du kan kun vælge maksimalt ${this.maxUploads} filer.`;
+      } else if (lang_id == '8') {
+        // Swedish (Svenska)
+        message = `Du kan bara välja maximalt ${this.maxUploads} filer.`;
+      } else {
+        // Default fallback (English)
+        message = `You can only select a maximum of ${this.maxUploads} files.`;
+      }
+      if(message != ''){
+        alert(message);
+      }
       (event.target as HTMLInputElement).checked = false; // Deselect the checkbox
       return;
     }
@@ -132,7 +166,41 @@ export class EditHighlightsComponent {
     const isChecked = (event.target as HTMLInputElement).checked;
 
     if (isChecked && this.totalSelected >= this.maxUploads) {
-      alert(`You can only select a maximum of ${this.maxUploads} files.`);
+      // alert(`You can only select a maximum of ${this.maxUploads} files.`);
+      let lang_id = localStorage.getItem('lang_id');
+      let message = '';
+
+      if (lang_id == '1') {
+        // English
+        message = `You can only select a maximum of ${this.maxUploads} files.`;
+      } else if (lang_id == '2') {
+        // German (Deutsch)
+        message = `Sie können maximal ${this.maxUploads} Dateien auswählen.`;
+      } else if (lang_id == '3') {
+        // Italian (Italiano)
+        message = `Puoi selezionare al massimo ${this.maxUploads} file.`;
+      } else if (lang_id == '4') {
+        // French (Français)
+        message = `Vous ne pouvez sélectionner que ${this.maxUploads} fichiers au maximum.`;
+      } else if (lang_id == '5') {
+        // Spanish (Español)
+        message = `Solo puedes seleccionar un máximo de ${this.maxUploads} archivos.`;
+      } else if (lang_id == '6') {
+        // Portuguese (Português)
+        message = `Você só pode selecionar no máximo ${this.maxUploads} arquivos.`;
+      } else if (lang_id == '7') {
+        // Danish (Dansk)
+        message = `Du kan kun vælge maksimalt ${this.maxUploads} filer.`;
+      } else if (lang_id == '8') {
+        // Swedish (Svenska)
+        message = `Du kan bara välja maximalt ${this.maxUploads} filer.`;
+      } else {
+        // Default fallback (English)
+        message = `You can only select a maximum of ${this.maxUploads} files.`;
+      }
+      if(message != ''){
+        alert(message);
+      }
       (event.target as HTMLInputElement).checked = false; // Deselect the checkbox
       return;
     }
@@ -186,7 +254,41 @@ export class EditHighlightsComponent {
       const files = Array.from(input.files);
 
       if (this.totalSelected + files.length > this.maxUploads) {
-        this.toastr.warning(`You can only upload a maximum of ${this.maxUploads} files.`, 'Upload Limit Exceeded');
+        // this.toastr.warning(`You can only upload a maximum of ${this.maxUploads} files.`, 'Upload Limit Exceeded');
+        let lang_id = localStorage.getItem('lang_id');
+      let message = '';
+
+      if (lang_id == '1') {
+        // English
+        message = `You can only select a maximum of ${this.maxUploads} files.`;
+      } else if (lang_id == '2') {
+        // German (Deutsch)
+        message = `Sie können maximal ${this.maxUploads} Dateien auswählen.`;
+      } else if (lang_id == '3') {
+        // Italian (Italiano)
+        message = `Puoi selezionare al massimo ${this.maxUploads} file.`;
+      } else if (lang_id == '4') {
+        // French (Français)
+        message = `Vous ne pouvez sélectionner que ${this.maxUploads} fichiers au maximum.`;
+      } else if (lang_id == '5') {
+        // Spanish (Español)
+        message = `Solo puedes seleccionar un máximo de ${this.maxUploads} archivos.`;
+      } else if (lang_id == '6') {
+        // Portuguese (Português)
+        message = `Você só pode selecionar no máximo ${this.maxUploads} arquivos.`;
+      } else if (lang_id == '7') {
+        // Danish (Dansk)
+        message = `Du kan kun vælge maksimalt ${this.maxUploads} filer.`;
+      } else if (lang_id == '8') {
+        // Swedish (Svenska)
+        message = `Du kan bara välja maximalt ${this.maxUploads} filer.`;
+      } else {
+        // Default fallback (English)
+        message = `You can only select a maximum of ${this.maxUploads} files.`;
+      }
+      if(message != ''){
+        alert(message);
+      }
         return;
       }
 
@@ -209,7 +311,7 @@ export class EditHighlightsComponent {
         reader.readAsDataURL(file);
       });
 
-      this.toastr.success(`${files.length} file(s) added successfully.`, 'Files Uploaded');
+      //this.toastr.success(`${files.length} file(s) added successfully.`, 'Files Uploaded');
     }
   }
 

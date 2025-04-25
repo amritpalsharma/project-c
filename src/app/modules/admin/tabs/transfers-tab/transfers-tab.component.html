@@ -78,11 +78,13 @@
               (change)="onSelectChange($event, 'team_from')">
               <ng-container *ngFor="let team of teams">
                 <option *ngIf="team.id == transfer.team_from" selected [value]="team.id">
-                  {{team.team_name}}, {{team.country_name}}
+                  <!-- {{team.team_name}}, {{team.country_name}} -->
+                  {{team.team_name}}, {{team.team_type}}
                 </option>
 
                 <option *ngIf="team.id != transfer.team_from" [value]="team.id">
-                  {{team.team_name}}, {{team.country_name}}
+                  <!-- {{team.team_name}}, {{team.country_name}} -->
+                  {{team.team_name}}, {{team.team_type}}
                 </option>
               </ng-container>
             </select>
@@ -117,11 +119,13 @@
               (change)="onSelectChange($event, 'team_to')">
               <ng-container *ngFor="let team of teams">
                 <option *ngIf="team.id == transfer.team_to" selected [value]="team.id">
-                  {{team.team_name}}, {{team.country_name}}
+                  <!-- {{team.team_name}}, {{team.country_name}} -->
+                  {{team.team_name}}, {{team.team_type}}
                 </option>
 
                 <option *ngIf="team.id != transfer.team_to" [value]="team.id">
-                  {{team.team_name}}, {{team.country_name}}
+                  <!-- {{team.team_name}}, {{team.country_name}} -->
+                  {{team.team_name}}, {{team.team_type}}
                 </option>
               </ng-container>
             </select>

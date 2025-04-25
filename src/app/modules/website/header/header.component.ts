@@ -30,6 +30,7 @@ export class HeaderComponent implements OnInit {
   @ViewChild('registerForm') registerForm!: NgForm;
 
   //default language
+  isHideClubSection:boolean=false;
   slug: string = 'en';
   isThisPlayer: string = 'en';
   lang_id: any = 1;
@@ -49,6 +50,7 @@ export class HeaderComponent implements OnInit {
   teamsArr: any = '';
   language: string = '1';
   newsletter: boolean = false;
+  noClub: boolean = false;
   userDomain: string = '1';
   confirmPassword: string = '';
   privacyPolicy: boolean = false;
@@ -716,6 +718,11 @@ export class HeaderComponent implements OnInit {
     if (!confirmPasswordValid) return this.confirmPasswordError;
 
     return true;
+  }
+
+  onNoClubChange(value: boolean) {
+    // alert(value); // true if checked, false if unchecked
+    this.isHideClubSection = value;
   }
 
   register() {
