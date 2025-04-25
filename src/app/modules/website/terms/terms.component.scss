@@ -103,72 +103,22 @@
 
 .content_page li {
   position: relative;
-  padding-left: 2rem; /* Space for the custom marker */
+  padding-left: 2rem;
 }
 
 .content_page li::before {
-  content: '•'; /* Custom marker */
+  content: '•';
   position: absolute;
   font-size: 60px;
-  // color: #E05263; /* Customize marker color */
   top: 15px;
   left: 0;
   transform: translateY(-50%);
 }
 .content_page .contact-text{
     margin-bottom: 20px;
+
 }
-// .privacy{
-//     background-color: #092E01;
-// }
 
-// advertisement
-
-// .skyscraper-left{
-//     height: 600px;
-//     width: 120px;
-//     content: "";
-//     z-index: 1;
-//     position: absolute;
-//     left: 1%;
-//     top: 43%;
-// }
-// .skyscraper-left img{
-//     height: 600px;
-//     width: 120px;
-// }
-// .skyscraper-right{
-//     height: 600px;
-//     width: 120px;
-//     content: "";
-//     z-index: 1;
-//     position: absolute;
-//     right: 1%;
-//     top: 43%;
-// }
-// .skyscraper-right img{
-//     height: 600px;
-//     width: 120px;
-// }
-// .leaderboard-image img {
-//     height: 90px;
-//     width: 728px;
-//   }
-// .leaderboard-image{
-//     position: relative;
-//     height: 90px;
-//     width: 728px;
-//     left: 50%;
-//     transform: translateX(-50%);
-// }
-
-
-  // advertisement
-
-
-
-
-@media (max-width: 1441px) {}
 @media (max-width: 1199px) {
     .main-bnr {
         height: 270px;
@@ -204,19 +154,6 @@
     .content_page li::marker {
         font-size: 18px;
     }
-    // .leaderboard-club-image img,
-    // .small-sqaure-image img,
-    // .skyscraper-image img,
-    // .skyscraper-image img,
-    // .wide-skyscraper-image img,
-    // .leaderboard-image img,
-    // .banner-image img,
-    // .advertisement,
-    // .advertisement1, 
-    // .skyscraper-left img,
-    // .skyscraper-right img{
-    //   display: none;
-    // }
 
 }
 @media (max-width: 767px) {}
@@ -309,6 +246,18 @@
     padding: 12px 25px;
     border: 0;
     font-size: inherit;
+}
+
+@media (min-width: 2000px) {
+.content_page li::before {
+    top: 21px;
+}
+}
+
+@media (min-width: 3000px) {
+    .content_page li::before {
+        top: 26px;
+    }
 }
 
 
