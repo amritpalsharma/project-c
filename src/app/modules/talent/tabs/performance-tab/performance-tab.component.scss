@@ -455,67 +455,6 @@ tr.table_underline {
     }
 }
 
-
-@media (min-width: 1600px) and (max-width: 2999px) {
-
-    .details_2,
-    .edit_button-2 span {
-        font-size: 18px !important;
-    }
-
-    .details-1 {
-        font-size: 20px !important;
-    }
-
-    .underline_gap svg,
-    .underline_gap img {
-        width: 42px;
-        height: 42px;
-        object-fit: contain;
-    }
-
-    .details_2,
-    .edit_button-2 span {
-        font-size: 18px !important;
-    }
-
-    .details-1 {
-        font-size: 20px !important;
-    }
-
-    .underline_gap svg,
-    .underline_gap img {
-        width: 42px;
-        height: 42px;
-        object-fit: contain;
-    }
-
-    .edit_button-2 svg,
-    .new_performance button svg {
-        width: 32px !important;
-        height: 32px !important;
-    }
-}
-
-@media (min-width: 3000px) {
-
-    .details_2,
-    .edit_button-2 span {
-        font-size: 25px !important;
-    }
-
-    .details-1 {
-        font-size: 28px !important;
-    }
-
-    .underline_gap svg,
-    .underline_gap img {
-        width: 50px;
-        height: 50px;
-        object-fit: contain;
-    }
-}
-
 .loader-container {
     display: flex;
     flex-direction: column;
@@ -523,17 +462,6 @@ tr.table_underline {
     justify-content: center;
     min-height: 200px;
 }
-
-.edit_button-2 svg,
-.new_performance button svg {
-    width: 38px !important;
-    height: 38px !important;
-}
-
-.details-1 {
-    font-size: 28px !important;
-}
-
 .loader {
     border: 6px solid #f3f3f3;
     border-radius: 50%;
@@ -550,5 +478,44 @@ tr.table_underline {
 
     100% {
         transform: rotate(360deg);
+    }
+}
+
+
+
+
+@media (min-width: 1600px) and (max-width: 2999px) {
+    .details_2, .edit_button-2 span {
+	    font-size: 18px !important;
+	}
+	.details-1 {
+	    font-size: 20px !important;
+	}
+	.underline_gap svg, .underline_gap img {
+	    width: 42px;
+	    height: 42px;
+	    object-fit: contain;
+	}
+    .edit_button-2 svg, .new_performance button svg {
+        width: 30px !important;
+        height: 30px !important;
+    }
+}
+
+@media (min-width: 3000px) {
+    .details_2, .edit_button-2 span {
+	    font-size: 25px !important;
+	}
+	.details-1 {
+	    font-size: 28px !important;
+	}
+	.underline_gap svg, .underline_gap img {
+	    width: 50px;
+	    height: 50px;
+	    object-fit: contain;
+	}
+    .edit_button-2 svg, .new_performance button svg {
+        width: 38px !important;
+        height: 38px !important;
     }
 }
