@@ -372,6 +372,10 @@
     .new_performance button {
       font-size: 24px;
   }
+  .edit_button svg {
+    width: 30px !important;
+    height: 30px !important;
+  }
 }
 
 @media (min-width: 3000px){
@@ -401,6 +405,10 @@
   }
   .new_performance button {
     font-size: 28px;
+}
+.edit_button svg {
+  width: 38px !important;
+  height: 38px !important;
 }
 }
 .loader-container {
