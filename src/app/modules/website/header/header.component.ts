@@ -606,8 +606,8 @@ export class HeaderComponent implements OnInit {
       password: this.password,
       lang: selectedLanguage,
       domain: domain,
-      // user_domain:this.globalSettings.getdomainId()
-      user_domain:8
+      user_domain:this.globalSettings.getdomainId()
+      // user_domain:8
     };
 
     this.authService.login(loginData).subscribe(
