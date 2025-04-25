@@ -4836,6 +4836,13 @@ img.success-image {
 }
 
 
+.club_player_sec{
+  margin-bottom: -6rem;
+  position: relative;
+  z-index: 1;
+  padding-bottom: 0 !important;
+}
+
 @media (min-width: 1200px) {
   .works-btn {
     width: calc(100% + 15%);

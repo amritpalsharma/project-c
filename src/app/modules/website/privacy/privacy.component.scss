@@ -26,14 +26,6 @@
     padding-bottom: 50px;
 }
 
-// body {
-//     background-color: #fff;
-// }
-
-// .main{
-//     background: linear-gradient(180deg,#236115 0%,#6fb95d 100%);
-// }
-
 .main-bnr {
     position: relative;
     z-index: 1;
@@ -359,5 +351,18 @@
     }
     .content_page li::before {
         top: 15px;
+    }
+}
+
+
+@media (min-width: 2000px) {
+    .content_page li::before {
+        top: 21px;
+    }
+}
+    
+@media (min-width: 3000px) {
+    .content_page li::before {
+        top: 26px;
     }
 }

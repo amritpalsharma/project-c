@@ -317,45 +317,12 @@ img.join-btn {
 
 }
 
-
-/*--------------------------------------------------------------
-#  Club
---------------------------------------------------------------*/
-
-// advertisement
-
-// .skyscraper-left {
-//   height: 600px;
-//   width: 120px;
-//   content: "";
-//   z-index: 1;
-//   position: absolute;
-//   left: 1%;
-//   top: 43%;
-// }
-
-// .skyscraper-left img {
-//   height: 600px;
-//   width: 120px;
-// }
-
-// .skyscraper-right {
-//   height: 600px;
-//   width: 120px;
-//   content: "";
-//   z-index: 1;
-//   position: absolute;
-//   right: 1%;
-//   top: 43%;
-// }
-
-// .skyscraper-right img {
-//   height: 600px;
-//   width: 120px;
-// }
-
-// advertisement
-
+.club_player_sec{
+  margin-bottom: -6rem;
+  position: relative;
+  z-index: 1;
+  padding-bottom: 0 !important;
+}
 
 @media (min-width: 1441px) {
   .map img {
@@ -365,20 +332,7 @@ img.join-btn {
   }
 }
 
-// @media (min-width: 1536px) {
-
-//   .skyscraper-left,
-//   .skyscraper-right {
-//     top: 46%;
-//   }
-// }
-
 @media (min-width: 1920px) {
-
-  // .skyscraper-left,
-  // .skyscraper-right {
-  //   top: 40%;
-  // }
 
   .map {
     height: 850px;
@@ -822,6 +776,9 @@ h3, .text_side_wrapper p {
       height: 1000px;
       width: 1100px;
     }
+  }
+  .content-text {
+    font-size: 20px;
   }
 }
 
