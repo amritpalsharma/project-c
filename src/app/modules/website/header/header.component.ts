@@ -53,6 +53,7 @@ export class HeaderComponent implements OnInit {
   confirmPassword: string = '';
   privacyPolicy: boolean = false;
   loginButtonClicked: boolean = false;
+  isLoading: boolean = false;
   invalidCred: string = '';
   registerFormSubmitted: boolean = false;
   registerError: string = '';
@@ -566,23 +567,27 @@ export class HeaderComponent implements OnInit {
     //   return;
     // }
     this.loginButtonClicked = true;
+    this.isLoading = true;
 
     // isEmailError = false;
     // isPasswordError = false;
     if (!this.email) {
       this.isEmailError = true;
+      this.isLoading = false;
     } else {
       this.isEmailError = false;
     }
-
+    
     if (!this.password) {
       this.isPasswordError = true;
+      this.isLoading = false;
     } else {
       this.isPasswordError = false;
     }
-
+    
     if (!this.email || !this.password) {
       console.error('Please fill in all required fields.');
+      this.isLoading = false;
       return;
     }
 
@@ -599,7 +604,8 @@ export class HeaderComponent implements OnInit {
       password: this.password,
       lang: selectedLanguage,
       domain: domain,
-      user_domain:this.globalSettings.getdomainId()
+      // user_domain:this.globalSettings.getdomainId()
+      user_domain:8
     };
 
     this.authService.login(loginData).subscribe(
@@ -618,6 +624,7 @@ export class HeaderComponent implements OnInit {
           }
 
           this.showInvalidCredMessage();
+          this.isLoading = false;
         } else {
           const token = response.data.token;
           const userData = response.data.user_data;
@@ -662,6 +669,7 @@ export class HeaderComponent implements OnInit {
           if (modal) {
             modal.hide();
           }
+          this.isLoading = false;
           this.router.navigate([navigationRoute]);
         }
       },

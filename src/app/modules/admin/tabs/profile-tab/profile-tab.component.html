@@ -84,7 +84,7 @@
         <div class="col-lg-3 td_col">
             <div class="team-details style-1">
                 <p> {{ 'dateOfBirth' | translate}}</p>
-                <h6>{{userData?.meta?.date_of_birth | date:'MMM d, y' }}</h6>
+                <h6>{{userData?.meta?.date_of_birth | date:'dd.MM.yyyy' }}</h6>
             </div>
         </div>
         <div class="col-lg-3 td_col">
@@ -96,7 +96,7 @@
         <div class="col-lg-3 td_col">
             <div class="team-details style-1">
                 <p>{{ 'inTheTeamSince' | translate}}</p>
-                <h6>{{userData?.meta?.in_team_since | date:'MMM d, y' }}</h6>
+                <h6>{{userData?.meta?.in_team_since | date:'dd.MM.yyyy' }}</h6>
             </div>
         </div>
         <div class="col-lg-3 td_col mt-3">
@@ -119,8 +119,12 @@
         <div class="col-lg-3 td_col mt-3">
             <div class="team-details style-1">
                 <p>{{ 'contractUntil' | translate}}</p>
-                <h6 *ngIf="userData.meta && userData.meta.contract_end">{{userData.meta.contract_end | date:'MMM d, y'
+                <!-- <h6 *ngIf="userData.meta && userData.meta.contract_end">{{userData.meta.contract_end | date:'MMM d, y'
+                    }}</h6> -->
+                <h6 *ngIf="userData.meta && userData.meta.contract_end">{{userData.meta.contract_end | date:'dd.MM.yyyy'
                     }}</h6>
+
+                    <!-- {{user?.meta?.date_of_birth | date:'dd.MM.yyyy' }} -->
                 <!-- <h6 *ngIf="!userData.meta || !userData.meta.contract_end">NA</h6> -->
             </div>
         </div>

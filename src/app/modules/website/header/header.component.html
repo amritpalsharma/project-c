@@ -289,7 +289,7 @@
                                 <div class="mb-3">
                                     <label for="exampleFormControlInput1" class="form-label">{{'emailLabel' |
                                         translate}}</label>
-                                    <input [(ngModel)]="email" type="email" placeholder="" name="password" required
+                                    <input [disabled]="isLoading" [(ngModel)]="email" type="email" placeholder="" name="password" required
                                         [ngClass]="{'empty-field': isEmailError, 'form-control': true}" />
                                 </div>
                                 <div class="mb-3">
@@ -299,7 +299,7 @@
                                         [ngClass]="{'empty-field': isPasswordError, 'form-control': true}"
                                         id="exampleFormControlInput2" placeholder="**************" /> -->
                                     <div class="password_field_wrap">
-                                        <input id="exampleFormControlInput2" [type]="isViewPassword2 ? 'text' : 'password'"
+                                        <input [disabled]="isLoading" id="exampleFormControlInput2" [type]="isViewPassword2 ? 'text' : 'password'"
                                             [ngClass]="{'empty-field': isPasswordError, 'form-control': true}"
                                             placeholder="" [(ngModel)]="password" name="password" required />
                                         <span (click)="togglePassword2()" class="password-toggle">
@@ -328,9 +328,19 @@
                                     <!-- <a href="javascript:void(0)" type="submit" (click)="login()" class="btn btn-primary d-block">{{'loginButton' |
                                         translate}}</a> -->
 
-                                    <button type="submit" (click)="login()" class="btn btn-primary d-block">
+                                    <!-- <button type="submit" (click)="login()" class="btn btn-primary d-block">
                                         {{'loginButton' | translate}}
-                                    </button>
+                                    </button> -->
+
+                                    <button type="submit" (click)="login()" class="btn btn-primary d-block" [disabled]="isLoading">
+                                        <ng-container *ngIf="isLoading; else loginText">
+                                          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                          <span class="sr-only">Loading...</span>
+                                        </ng-container>
+                                        <ng-template #loginText>
+                                          {{ 'loginButton' | translate }}
+                                        </ng-template>
+                                      </button>
 
                                         <!-- <button type="submit" class="create-account d-block">{{ 'createAccount' |
                                             translate
