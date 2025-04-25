@@ -171,16 +171,15 @@ export class AddRepresentatorPopupComponent {
     }
 
     let params: any = {}
-    if (this.firstName != "") {
-      params.first_name = this.firstName;
-    }
-    if (this.lastName != "") {
-      params.last_name = this.lastName;
-    }
+    let verification_link = window.location.origin + '/home';
+
+    params.first_name = this.firstName;
+    params.last_name = this.lastName;
     params.email = this.email;
     params.site_role = this.role;
-    let lang_id = localStorage.getItem('lang_id');
-    params.lang = lang_id;
+    params.lang = localStorage.getItem('lang_id');
+    params.verification_link = verification_link;
+    
     this.userService.sendInviteToRepresentator(this.userId, params).subscribe((response) => {
       if (response && response.status) {
         this.dialogRef.close({

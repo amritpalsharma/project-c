@@ -193,7 +193,8 @@
                         </div>
                         <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'dateOfBirth' | translate}}</h6>
-                          <h5 class="title-1">{{user?.meta?.date_of_birth | date:'MMM d, y' }}</h5>
+                          <!-- <h5 class="title-1">{{user?.meta?.date_of_birth | date:'MMM d, y' }}</h5> -->
+                          <h5 class="title-1">{{user?.meta?.date_of_birth | date:'dd.MM.yyyy' }}</h5>
                         </div>
                       </div>
                     </div>
@@ -512,7 +513,7 @@
                         </div>
                         <div class="col-sm-9 p-0  team-badge_content">
                           <h6 class="title_2">{{ 'foot' | translate}}</h6>
-                          <h5 class="title-1">{{user?.meta?.foot}}</h5>
+                          <h5 class="title-1" [translate]="user?.meta?.foot ? user.meta.foot.toLowerCase() : ''"></h5>
                         </div>
                       </div>
                     </div>

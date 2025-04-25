@@ -53,6 +53,10 @@ export class ProfileTabComponent {
       age--;
     }
 
+    if(isNaN(age)){
+      age = 0;
+    }
+
     return age;
   }
 
