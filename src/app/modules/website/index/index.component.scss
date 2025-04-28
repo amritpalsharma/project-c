@@ -4872,7 +4872,7 @@ img.success-image {
   .works-btn {
     button.btn {
       font-size: 15px;
-      padding: 10px 20px;
+      padding: 10px;
     }
   }
 }
@@ -4928,6 +4928,21 @@ h3, .text_side_wrapper p {
 }
 }
 
+
+@media (min-width: 576px) {
+  .join_btn_mobile {
+    display: none;
+  }
+}
+@media (max-width: 575px) {
+  .join_btn_dektop {
+    display: none;
+  }
+  .join_btn_mobile {
+    margin-top: 1rem;
+  }
+}
+
 @media (max-width: 991px) {
   .club {
     margin-top: 0;
@@ -4951,13 +4966,13 @@ h3, .text_side_wrapper p {
     padding-top: 300px;
   }
   h3, .works h3, .joined-text h3 {
-    font-size: 45px;
+    font-size: 40px;
   }
   .works-btn button.btn, .banner-btn .btn {
     font-size: 20px;
   }
   .progress_btn a {
-    font-size: 24px;
+    font-size: 22px;
 }
 }
 

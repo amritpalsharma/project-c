@@ -1325,8 +1325,7 @@ a {
   }
   .recently-joined  .joined-text h3, .works h3, .club-scout .club-heading4, .features .feature-heading3,
   .price-heading3, .premium-heading2, .premium-col-right .premium-heading5, .premium-heading3,
-  .countries h2.country-available, .contact-form .form-heading, h2.accordion-header, .work-text .progress_btn a,
-  .common_static_page .content_page h4, .faq h3, .faq .header h4, .pricing .price_mat_wrapper .feature-box h4.free-heading,
+  .countries h2.country-available, .contact-form .form-heading, h2.accordion-header, .work-text .progress_btn a, .faq h3, .faq .header h4, .pricing .price_mat_wrapper .feature-box h4.free-heading,
   .latest-news h4, .news_detail_text_container h3, .learn-banner h1, .player-list-code .player-list h1, .features1.py_0 .feature-heading3 {
     color: #357525 !important;
   }
@@ -1338,6 +1337,10 @@ a {
   .news_detail_text_container ul li, .news_detail_text_container .social-icons.news_share_icons h5, .news_detail_text_container .social-icons.news_share_icons a,
   .learn-banner .back-button {
     color: #000 !important;
+  }
+  .common_static_page .content_page h4, .common_static_page .content_page h4 *, 
+  .common_static_page .content_page p strong, .common_static_page .content_page p strong * {
+    color: #357525 !important;
   }
   .premium-text img {
     background-color: #E05263 !important;

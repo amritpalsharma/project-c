@@ -397,7 +397,8 @@ sub.premium-month_title {
 
 @media (min-width:3000px) {
 	.premium_list label .checkmark:after {
-	    left: 8px;
+        left: 9px;
+        top: 6px;
 	}
 	.subscription-plan h2, .premium-plan-list h3, .premium-plan_box h3 {
 	    font-size: 30px !important;

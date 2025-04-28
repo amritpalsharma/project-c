@@ -710,6 +710,12 @@ mat-datepicker-toggle button {
         .website_main_pages p, .website_main_pages .banner-btn .btn, .website_main_pages .premium-heading3 span, .website_main_pages .common_static_page .content_page ul li, .website_main_pages .price_mat_wrapper .feature-data ul li, .website_main_pages .learn-banner .back-button, .website_main_pages .thankyou_secc .thankyou_text h3 {
             font-size: 40px !important;
         }
+        .thankyou_secc .thankyou_text h4 {
+            font-size: 34px !important;
+        }
+        .thankyou_secc .thankyou_text h1 {
+            padding-right: 0 !important;
+        }
         .website_main_pages .footer-top h4, .email-verify-bnr h4.comming-heading4 {
             font-size: 48px !important;
         }
@@ -1468,6 +1474,9 @@ table.table  th {
   .popup__body {
     max-height: 350px;
     overflow: auto;
+  }
+  input:not[type="submit"], textarea, select {
+    font-size: 16px;
   }
 }
 

@@ -25,7 +25,7 @@
 
             <!-- Talent Tab Content -->
             <div *ngIf="selectedTab === 'talent' && !isLoading">
-              <div class="row">
+              <div class="row talent_tabb_content">
                 <div class="col-lg-3 col-md-3 col-sm-4 col-6" *ngFor="let player of myTalents; let i = index">
                   <div class="players player-card" data-bs-toggle="modal" data-bs-target="#exampleModal1">
                     <div class="player1">
@@ -105,7 +105,7 @@
 
             <!-- Club Tab Content -->
             <div *ngIf="selectedTab === 'club' && !isLoading">
-              <div class="row">
+              <div class="row club_tabb_content">
                 <div class="col-lg-3 col-md-4 col-sm-4 col-6" *ngFor="let player of clubsArr; let i = index">
                   <!-- <pre>{{player | json}}</pre> -->
                   <div class="players player-card"
@@ -194,7 +194,7 @@
             <!-- Scouts Tab Content -->
             <!-- {{scoutProfiles | json}} -->
             <div *ngIf="selectedTab === 'scouts' && !isLoading">
-              <div class="row">
+              <div class="row scout_tabb_content">
                 <div class="col-lg-3 col-md-4 col-sm-4 col-6" *ngFor="let player of ScoutPlayers; let i = index">
                   <div class="players player-card" data-bs-toggle="modal" data-bs-target="#exampleModal1">
                     <div class="player1 scoutsArr">

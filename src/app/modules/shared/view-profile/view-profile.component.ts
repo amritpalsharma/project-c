@@ -158,7 +158,7 @@ export class ViewProfileComponent implements OnInit {
           this.user = response.data.user_data;
           let baseUrl = response.data.imagePath;
           this.baseUrl = baseUrl;
-          this.isPremium = this.loggedInUser?.active_subscriptions?.premium.length > 0 ? true : false;
+          this.isPremium = this.loggedInUser?.active_subscriptions?.premium.length > 0 ? false : false;
           // console.error('Is User Has Premium ',this.isPremium);
           // this.isPremium = true;
           if (this.user.user_nationalities != undefined && this.user.user_nationalities != '') {

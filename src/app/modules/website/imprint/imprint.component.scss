@@ -26,10 +26,6 @@
     font-weight: 400;
     margin-top: 20px;
 }
-// .list-text{
-//     margin-left: 20px;
-// }
-
 .content_page .py_0 {
   padding-top: 50px;
   padding-bottom: 50px;
@@ -246,22 +242,8 @@ body {
     .content_page li::marker {
         font-size: 18px;
     }
-    // .leaderboard-club-image img,
-    // .small-sqaure-image img,
-    // .skyscraper-image img,
-    // .skyscraper-image img,
-    // .wide-skyscraper-image img,
-    // .leaderboard-image img,
-    // .banner-image img,
-    // .advertisement,
-    // .advertisement1, 
-    // .skyscraper-left img,
-    // .skyscraper-right img{
-    //   display: none;
-    // }
-
 }
-@media (max-width: 767px) {}
+
 @media (max-width: 575px) {
     .content_page li::before {
         top: 13px;
@@ -347,5 +329,18 @@ body {
     }
     .content_page li::before {
         top: 15px;
+    }
+}
+
+
+@media (min-width: 2000px) {
+    .content_page li::before {
+        top: 19px;
+    }
+}
+    
+@media (min-width: 3000px) {
+    .content_page li::before {
+        top: 28px;
     }
 }

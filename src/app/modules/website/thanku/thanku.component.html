@@ -1,20 +1,11 @@
 <div class="main">
     <div class="thanku-bnr">
-        <div class="overlay"></div>
         <div class="thankyou_secc">
             <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 col-md-6 col-12">
-                        <div class="thankyou_text">
-                            <h1>{{'thanksMessage' | translate}}</h1>
-                            <h3>{{'thanksMessage2' | translate}}</h3>
-                            <a class="btn btn-register" [routerLink]="''">{{'backToHome' | translate}}</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-12">
-                        <img class="thnkyou_img check-image-light" src="./assets/images/check-light.svg">
-                        <img class="thnkyou_img check-image-dark" src="./assets/images/check-dark.svg">
-                    </div>
+                <div class="thankyou_text">
+                    <h1 class="text-uppercase">{{'thanksMessage' | translate}}</h1>
+                    <h3 class="my-4">{{'thanksMessage2' | translate}}</h3>
+                    <a class="btn btn-register" [routerLink]="''">{{'backToHome' | translate}}</a>
                 </div>
             </div>
         </div>
