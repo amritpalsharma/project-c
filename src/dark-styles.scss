@@ -2817,4 +2817,9 @@ input:checked+.slider:before {
   .edit_boost_footer {
     background: #0c3453 !important;
   }
+  .cancel_country_plan_popup {
+    .popup-title, .country-option, .country-label {
+      color: #fff !important;
+    }
+  }
 }

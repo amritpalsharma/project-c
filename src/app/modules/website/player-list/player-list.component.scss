@@ -263,6 +263,7 @@ img.flag-img {
     width: 56px;
     height: 45px;
     object-fit: contain;
+    margin-bottom: 10px;
 }
 
 img.birthday-img {
@@ -430,40 +431,32 @@ button.page-active {
         height: 13px;
         width: 15px;
     }
-
     p.d-o-b {
         font-size: 10px;
     }
-
-    button.faq-club-button,
-    button.faq-talent-button {
+    button.faq-club-button, button.faq-talent-button {
         font-size: 15px;
     }
-
     button.prev-page {
         width: 60px;
         height: 30px;
         padding: 7px;
     }
-
     button.next-page {
         height: 30px;
         padding: 7px;
         margin-left: 5px;
     }
-
     button {
         margin: 0;
         padding: 0;
     }
-
     button.page-active {
         width: 34px;
         height: 30px;
         font-size: 12px;
         margin-left: 5px;
     }
-
     button.page-active.active {
         height: 30px;
         width: 34px;
@@ -471,42 +464,33 @@ button.page-active {
         border-radius: 4px;
         margin-left: 7px;
     }
-
 }
-
 
 /*--- new css ---*/
 .players.player-card {
     width: 100% !important;
-
     .player1 {
         width: 100%;
-
         .player-img:before {
             width: 70px;
             height: 70px;
         }
-
         .player-img:after {
             width: 80px;
             height: 65px;
             bottom: 28px;
         }
-
         .player-img {
             height: 100% !important;
             width: 100%;
-
             img {
                 width: 100% !important;
                 height: 100% !important;
                 object-fit: contain;
-                // object-position: top center;
                 padding-top: 20px;
                 transition: .4s all;
             }
         }
-
         .image-text {
             height: 36px;
             width: 92px;
@@ -514,13 +498,11 @@ button.page-active {
             font-size: 11px;
         }
     }
-
     .flag-image7 {
         transform: scale(0.75);
         bottom: 35px;
         left: 6px;
     }
-
     .corner-image7 {
         img {
             height: 40px;
@@ -535,11 +517,6 @@ button.page-active {
     .players.player-card {
         .player1 {
             height: 230px;
-            // .player-img {
-            //     img {
-            //         height: 210px !important;
-            //     }
-            // }
         }
     }
 }
@@ -548,27 +525,26 @@ button.page-active {
     .pagination-controls .pages {
         justify-content: center;
     }
-
     .pagination-controls .input-number {
         display: flex;
         justify-content: center;
         align-items: center;
     }
-
     .players.player-card .flag-image7 {
         transform: scale(0.75);
         bottom: 35px;
         left: 8px;
     }
-
     .player-list .tabs {
         width: 100%;
     }
-
     .players.player-card .player1 .player-img:after {
         width: 60px;
         height: 55px;
         bottom: 28px;
+    }
+    .faq-club-button {
+        padding: 10px 12px !important;
     }
 }
 
@@ -582,14 +558,12 @@ button.page-active {
                     height: 180px !important;
                 }
             }
-
             .player-name7 {
                 font-size: 13px;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
             }
-
             .image-text {
                 height: 29px;
                 width: 72px;
@@ -599,7 +573,6 @@ button.page-active {
         }
     }
 }
-
 
 @media (max-width: 360px) {
     .players.player-card {
@@ -614,16 +587,10 @@ button.page-active {
         }
     }
 }
-
 .player-list-loader {
-    // position: absolute;
-    // top: 50%;
-    // left: 50%;
-    // transform: translate(-50%, -50%);
     font-size: 24px;
     color: rgb(0, 255, 34);
 }
-
 .loader123 {
     border: 0;
     border-radius: 50%;
@@ -634,12 +601,10 @@ button.page-active {
     animation: spin 1s linear infinite;
     position: relative;
 }
-
 .default-img {
     padding-top: 0px !important;
     position: relative;
 }
-
 .make-loader-center {
     position: absolute;
     left: 50%;
@@ -647,57 +612,43 @@ button.page-active {
     transform: translate(-50%, -50%);
     margin-top: 0 !important;
 }
-
 @media (min-width: 2000px) {
     .players.player-card .player1 .player-img:after {
-        bottom: 38px;
+        bottom: 46px;
     }
-
     .players.player-card .flag-image7 {
-        bottom: 48px;
+        bottom: 55px;
     }
-
     .players.player-card .player1 .image-text {
         height: 46px;
         width: 122px;
         padding: 15px 5px;
         font-size: 16px;
     }
-
     .pagination-controls label {
         font-size: inherit;
     }
 }
-
-@media (min-width: 2560px) {
-    .player1 {
-        height: 460px;
-    }
-
-    img.birthday-img {
-        height: 38px !important;
-        width: 38px !important;
-    }
-}
-
-
 ::ng-deep .clubPlayers .player-img::before {
     width: 0 !important;
 }
-
 ::ng-deep .scoutsArr .player-img::before {
     width: 0 !important;
 }
-// ::ng-deep .no-birth-nationality::after{
-//     content: none !important;
-//     display: none;
-// }
 .players.player-card  .player-img img {
     object-position: bottom;
 }
 
 .player1.scoutsArr .player-img:after, .player1.scoutsArr + .flag {
     display: none !important;
+}
+.club_tabb_content {
+    .player1 img.default-img {
+        padding: 20px 40px 60px !important;
+    }
+    .player1 .player-img:after {
+        display: none !important;
+    }
 }
 
 @media (min-width: 3000px) {
@@ -709,5 +660,18 @@ button.page-active {
 }
 button.faq-club-button, button.faq-talent-button {
     padding:  21px 40px 18px!important;
+}
+.players.player-card .flag-image7 {
+    bottom: 77px !important;
+}
+.players.player-card .corner-image7 img {
+    height: 50px !important;
+    width: 40px !important;
+    top: 10px !important;
+    right: 10px !important;
+}
+.players.player-card .player1 .player-img:before {
+    width: 90px !important;
+    height: 90px !important;
 }
 }

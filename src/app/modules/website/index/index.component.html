@@ -93,10 +93,8 @@
             <!-- <h3>Recently Joined</h3> -->
             <h3>{{pageDetail?.slider_heading}}</h3>
           </div>
-          <div class="joined-btn">
-            <button type="button" [routerLink]="'/player-list'"
-              class="btn btn-light">{{pageDetail?.slider_btn_txt}}</button>
-            <!-- <a href="{{pageDetail.slider_btn_link}}" type="button" class="btn btn-light">{{pageDetail.slider_btn_txt}}</a> -->
+          <div class="joined-btn join_btn_dektop">
+            <button type="button" [routerLink]="'/player-list'" class="btn btn-light">{{pageDetail?.slider_btn_txt}}</button>
           </div>
         </div>
       </div>
@@ -168,6 +166,9 @@
             }
 
           </owl-carousel-o>
+        </div>
+        <div class="joined-btn join_btn_mobile">
+          <button type="button" [routerLink]="'/player-list'" class="btn btn-light">{{pageDetail?.slider_btn_txt}}</button>
         </div>
       </div>
     </div>

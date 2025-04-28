@@ -8,7 +8,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 })
 export class CancelCountryPlanComponent {
   selectedCountryId: string | null = null;
-
+  theme: any = localStorage.getItem('theme') || 'light';
   constructor(
     public dialogRef: MatDialogRef<CancelCountryPlanComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any

@@ -1,8 +1,11 @@
-<div class="msg-popup-dialog">
-    <div class="msg-popup-close">
-        <img src="../../../assets/images/close-icon-circle.png" alt="Close" (click)="close()" />
+<div class="msg-popup-dialog p-3 cancel_country_plan_popup">
+    <div class="msg-popup-close" *ngIf='theme!="dark"'>
+        <img src="../../../assets/images/close-icon-circle.png" alt="" class="" (click)="close()" />
     </div>
-    <div class="msg-popup-content p-4">
+    <div class="msg-popup-close" *ngIf='theme=="dark"'>
+        <img src="../../../assets/images/carbon_close-outline.svg" alt="" class="" (click)="close()" />
+    </div>
+    <div class="msg-popup-content p-3 pt-1">
         <h5 class="popup-title">{{'countryPlanCancel' | translate}}</h5>
         <div *ngIf="data.countries && data.countries.length > 0">
             <div class="country-option" *ngFor="let country of data.countries">
