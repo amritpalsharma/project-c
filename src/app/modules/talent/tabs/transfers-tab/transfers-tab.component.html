@@ -111,7 +111,7 @@
   <div class="loader"></div>
   <p>{{'loading' | translate}}</p>
 </div>
-<div class="table-responsive px-lg-3 bg-0C3453" *ngIf="isPremium">
+<div class="table-responsive px-lg-3 bg-0C3453" *ngIf="isPremium && !isLoading">  
   <div class="new_performance">
     <button (click)="openAddDialog()">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">

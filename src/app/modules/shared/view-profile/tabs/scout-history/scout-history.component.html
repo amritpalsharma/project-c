@@ -26,7 +26,8 @@
 
     <div class="mt-3">
         <app-loader *ngIf="isLoading"></app-loader>
-        <div *ngIf="scoutHistory == '' && !isLoading">{{'noHistoryAvailable' | translate}}</div>
+        <!-- <div *ngIf="scoutHistory == '' && !isLoading">{{'noHistoryAvailable' | translate}}</div> -->
+        <div *ngIf="!scoutHistory || scoutHistory == '' && !isLoading">{{'noTextTabs' | translate}}</div>
         <div *ngIf="!isEditable && !isLoading" class="history-text" [innerHTML]="replaceEmptyParagraphs(scoutHistory)"></div>
     </div>
 </div>

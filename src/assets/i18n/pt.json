@@ -1404,5 +1404,8 @@
   "weUseCookies": "Utilizamos cookies",
   "scoutHistoryTxt": "Sobre nós",
   "timeZoneTxt": "Fuso horário Inverno UTC +1 / Verão UTC +2",
-  "noTextTabs":"Nenhum conteúdo carregado pelo utilizador."
+  "noTextTabs":"Nenhum conteúdo carregado pelo utilizador.",
+  "downloadProfileBtn":"Baixar",
+  "chatBtntxt":"Chat",
+  "favoriteBtnTxt":"Favorito"
 }

@@ -43,6 +43,7 @@ export class AddCountryComponent {
   pleaseWait: string = '';
   errorTxt: string = '';
   generalError: string = '';
+  countryPlanPrice: string = '';
 
   stripePromise = loadStripe(environment.stripePublishableKey);
 
@@ -58,6 +59,7 @@ export class AddCountryComponent {
       this.loadCountries();
       this.getJsonTranslations();
     });
+    
   }
 
   editPlanPopup() {
@@ -93,6 +95,26 @@ export class AddCountryComponent {
     }
   }
 
+  getPriceFirstTime() {
+    let interval;
+    if (this.isYearly === true) {
+      interval = 'yearly';
+    } else {
+      interval = 'monthly';
+    }
+
+    const selected = this.countryPlans.find(
+      (plan: any) => plan.package_name === this.country.package_name && plan.interval === interval
+    );
+
+    if (selected.price != '' && selected.price != undefined) {
+      this.countryPlanPrice = selected.price;
+    } else {
+      this.countryPlanPrice = '';
+    }
+
+    // console.log('selectedPlan',selected)
+  }
   async redirectToCheckout(planId: string, coupon: any = '') {
     this.toastr.info(this.Processing, this.pleaseWait, { timeOut: 2000 });
 
@@ -134,6 +156,7 @@ export class AddCountryComponent {
         if (response && response.status) {
           if (response.data.country && response.data.country.plans != undefined) {
             this.countryPlans = response.data.country.plans;
+            this.getPriceFirstTime();
           }
         }
         // console.info('All Country Plans');
@@ -143,7 +166,23 @@ export class AddCountryComponent {
   }
 
   toggleBillingPlan(isYearly: boolean) {
-    this.isYearly = isYearly; // Toggle between monthly and yearly
+    this.isYearly = isYearly; // Toggle between monthly and yearly 
+    let interval;
+    if (this.isYearly === true) {
+      interval = 'yearly';
+    } else {
+      interval = 'monthly';
+    }
+    // console.info('this.country', this.country);
+    const selected = this.countryPlans.find(
+      (plan: any) => plan.package_name === this.country.package_name && plan.interval === interval
+    );
+    if (selected.price != '' && selected.price != undefined) {
+      this.countryPlanPrice = selected.price;
+    } else {
+      this.countryPlanPrice = '';
+    }
+
   }
   getJsonTranslations() {
     this.translateService.get(['pleaseWait', 'Processing', 'error', 'forgotPassword.generalError']).subscribe((translations) => {

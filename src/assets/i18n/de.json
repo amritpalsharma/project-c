@@ -1454,5 +1454,8 @@
   "weUseCookies": "Wir verwenden Cookies",
   "scoutHistoryTxt": "Über uns",
   "timeZoneTxt": "Zeitzone Winter UTC +1 / Sommer UTC +2",
-  "noTextTabs":"Keine Inhalte vom User hochgeladen."
+  "noTextTabs":"Keine Inhalte vom User hochgeladen.",
+  "downloadProfileBtn":"Download",
+  "chatBtntxt":"Chat",
+  "favoriteBtnTxt":"Favorit"
 }

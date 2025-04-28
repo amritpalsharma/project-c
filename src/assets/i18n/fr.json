@@ -1464,5 +1464,8 @@
   "deleteFromGalleryConfirmation": "¿Estás seguro de que quieres eliminar la {{type}} de tu galería?",
   "scoutHistoryTxt": "À propos de nous",
   "timeZoneTxt": "Fuseau horaire Hiver UTC +1 / Été UTC +2",
-  "noTextTabs":"Aucun contenu téléchargé par l’utilisateur."
+  "noTextTabs":"Aucun contenu téléchargé par l’utilisateur.",
+  "downloadProfileBtn":"Télécharger",
+  "chatBtntxt":"Chat",
+  "favoriteBtnTxt":"Favori"
 }

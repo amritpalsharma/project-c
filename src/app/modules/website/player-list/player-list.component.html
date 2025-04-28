@@ -39,9 +39,9 @@
                       <p class="player-name7">{{ player.first_name+' '+player.last_name }}</p>
                       <!-- <p *ngIf="player.class">Class: {{ player.class }}</p> -->
                     </div>
-                    <div class="corner-image7">
+                    <div class="corner-image7" *ngIf="player.current_club_logo && player.current_club_logo != ''">
                       <img
-                        [src]="player.current_club_logo ? profileBaseUrl +  player.current_club_logo : (player.pre_current_club_logo ? profileBaseUrl +  player.pre_current_club_logo : './assets/images/default-corner.png')" />
+                        [src]="player.current_club_logo ? profileBaseUrl +  player.current_club_logo : (player.current_club_logo ? profileBaseUrl +  player.current_club_logo : './assets/images/default-corner.png')" />
                       <!-- <img [src]="player.cornerImage || './assets/images/default-corner.png'" /> -->
                     </div>
                     <div class="flag">

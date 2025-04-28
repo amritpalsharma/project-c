@@ -1447,5 +1447,8 @@
   "weUseCookies": "Vi använder cookies",
   "scoutHistoryTxt": "Om oss",
   "timeZoneTxt": "Tidszon Vinter UTC +1 / Sommar UTC +2",
-  "noTextTabs": "Inget innehåll har laddats upp av användaren."
+  "noTextTabs": "Inget innehåll har laddats upp av användaren.",
+  "downloadProfileBtn":"Ladda",
+  "chatBtntxt":"Chatt",
+  "favoriteBtnTxt":"Favorit"
 }

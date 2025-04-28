@@ -56,9 +56,15 @@
           <!-- Show user list -->
           <mat-option *ngFor="let user of filteredUsers" [value]="user">
             <!-- <pre>{{user | json}}</pre> -->
-            <img width="20" height="20" class="img-list me-2" src="{{
+            <img *ngIf="user.role != 2" width="20" height="20" class="img-list me-2" src="{{
                   user?.profile_image
                     ? user?.profile_image
+                    : '../../../../assets/images/default/talent-profile-default.png'
+                }}" />
+                <!-- for Club -->
+                <img *ngIf="user.role == 2" width="20" height="20" class="img-list me-2" src="{{
+                  user?.club_logo
+                    ? 'https://api.socceryou.ch/uploads/' + user?.club_logo
                     : '../../../../assets/images/default/talent-profile-default.png'
                 }}" />
             <span>

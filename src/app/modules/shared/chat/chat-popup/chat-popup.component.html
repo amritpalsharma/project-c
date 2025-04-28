@@ -15,7 +15,9 @@
               <p class="main_to_label">{{'to' | translate}}</p>
               @for (user of users; track $index) {
                 <mat-chip-row (removed)="remove(user)">
-                  <img width="20" height="20" class="img-list" src="{{user?.meta?.profile_image_path ? user?.meta?.profile_image_path :'../../../../../assets/images/default/talent-profile-default.png'}}">
+               
+                  <img *ngIf="!isThisClub(user.role_name)" width="50" height="50" class="img-list " src="{{user?.meta?.profile_image_path ? user?.meta?.profile_image_path :'../../../../../assets/images/default/talent-profile-default.png'}}">
+                  <img *ngIf="isThisClub(user.role_name)" width="50" height="50" class="img-list " src="{{user?.current_club_logo ? 'https://api.socceryou.ch/uploads/' + user?.current_club_logo :'../../../../../assets/images/default/talent-profile-default.png'}}">
                   {{user?.first_name+' '+user?.last_name}}
                   <span  matChipRemove [attr.aria-label]="'remove ' + user" class="cancel-icon" > </span>
                 </mat-chip-row>
@@ -34,8 +36,9 @@
               <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)" class="listBox w-100 users-name-list">
                 @for (user of filteredUsers; track user) {
                   <mat-option [value]="user" class="mb-4 select-user-name">
-                    <img width="50" height="50" class="img-list " src="{{user?.meta?.profile_image_path ? user?.meta?.profile_image_path :'../../../../../assets/images/default/talent-profile-default.png'}}">
-                    {{user?.first_name+' '+user?.last_name}}
+                    <img *ngIf="!isThisClub(user.role_name)" width="50" height="50" class="img-list " src="{{user?.meta?.profile_image_path ? user?.meta?.profile_image_path :'../../../../../assets/images/default/talent-profile-default.png'}}">
+                    <img *ngIf="isThisClub(user.role_name)" width="50" height="50" class="img-list " src="{{user?.current_club_logo ? 'https://api.socceryou.ch/uploads/' + user?.current_club_logo :'../../../../../assets/images/default/talent-profile-default.png'}}">
+                    {{user?.first_name+' '+user?.last_name}} test is {{isThisClub(user.role_name)}}
                   </mat-option>
                 }
               </mat-autocomplete>

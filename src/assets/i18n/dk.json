@@ -1313,5 +1313,8 @@
   "weUseCookies": "Vi bruger cookies",
   "scoutHistoryTxt": "Om os",
   "timeZoneTxt": "Tidszone Vinter UTC +1 / Sommer UTC +2",
-  "noTextTabs": "Intet indhold uploadet af brugeren."
+  "noTextTabs": "Intet indhold uploadet af brugeren.",
+  "downloadProfileBtn":"Download",
+  "chatBtntxt":"Chat",
+  "favoriteBtnTxt":"Favorit"
 }

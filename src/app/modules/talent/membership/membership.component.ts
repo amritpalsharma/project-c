@@ -135,7 +135,14 @@ export class MembershipComponent {
     this.talentService.getUserPlans(params).subscribe(response => {
       if (response && response.status && response.data) {
         this.userPlans = response.data.packages;
-        this.premium = this.userPlans.premium[0];
+        if (this.userPlans.premium[0] && this.userPlans.premium[0] != undefined) { 
+          this.premium = this.userPlans.premium[0];
+          this.ispremium = this.premium ? true : false;
+        }
+        if (this.userPlans.premium[1] && this.userPlans.premium[1] != undefined) { 
+          this.premium = this.userPlans.premium[1];
+          this.ispremium = this.premium ? true : false;
+        }
         if (this.userPlans.booster[0] && this.userPlans.booster[0] != undefined) {
           this.booster = this.userPlans.booster[0];
           this.isbooster = this.booster ? true : false;
@@ -149,7 +156,7 @@ export class MembershipComponent {
 
         console.log('Country', this.country);
 
-        this.ispremium = this.premium ? true : false;
+
         this.iscountry = this.country ? true : false;
       
         this.isdemo = this.demo ? false : false;

@@ -1361,5 +1361,8 @@
   "scoutHistoryTxt":"About Us",
   "noClubTxt":"I don't have a club.",
   "timeZoneTxt":"Time zone Winter UTC +1 / Summer UTC +2",
-  "noTextTabs":"No content uploaded by the user."
+  "noTextTabs":"No content uploaded by the user.",
+  "downloadProfileBtn":"Download",
+  "chatBtntxt":"Chat",
+  "favoriteBtnTxt":"Favorite"
 }

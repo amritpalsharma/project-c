@@ -85,11 +85,25 @@ export class TemplatePopupComponent implements OnInit, OnDestroy {
           { role: "Admin", name: "Admin", slug: "admin", id: 1 },
           { role: "Club", name: "Club", slug: "club", id: 2 },
           { role: "Scout", name: "Scout", slug: "scout", id: 3 },
-          { role: "Talente", name: "Talente", slug: "talent", id: 4 }
+          { role: "Talente", name: "Talente", slug: "talent", id: 4 },
+          { role: "Super-Admin-Vertreter", name: "Super-Admin-Vertreter", slug: "admin", id: 5 },
+          { role: "Vereinsvertreter", name: "Vereinsvertreter", slug: "club", id: 6 },
+          { role: "Spähervertreter", name: "Spähervertreter", slug: "scout", id: 7 },
         ];
         // this.roles = this.roles.push({ role: "All", name: "All", slug: "all", id: 0 })
         this.langs = environment.langs_de;
         this.locations = environment.domains_de;
+      }else{
+        this.roles = [
+          { role: "All", name: "All", slug: "all", id: 0 },
+          { role: "Admin", name: "Admin", slug: "admin", id: 1 },
+          { role: "Club", name: "Club", slug: "club", id: 2 },
+          { role: "Scout", name: "Scout", slug: "scout", id: 3 },
+          { role: "Talent", name: "Talente", slug: "talent", id: 4 },
+          { role: "Super Admin Representator", name: "Super Admin Representator", slug: "admin", id: 5 },
+          { role: "Club Representator", name: "Club Representator", slug: "club", id: 6 },
+          { role: "Scout Representator", name: "Scout Representator", slug: "scout", id: 7 },
+        ];
       }
       this.getToasterMsg();
     });
