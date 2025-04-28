@@ -38,26 +38,166 @@ export class ImageCropperComponent2 {
     container.style.setProperty('--crop-y', `${this.pos.y + this.size / 2}px`);
     container.style.setProperty('--crop-size', `${this.size}px`);
   }
-  
-  startDrag(event: MouseEvent) {
-    this.isDragging = true;
-    this.offset = {
-      x: event.clientX - this.pos.x,
-      y: event.clientY - this.pos.y,
-    };
+
+  startDrag(event: MouseEvent | TouchEvent) {
+    event.preventDefault();
     event.stopPropagation();
+    this.isDragging = true;
+
+    const point = this.getEventPoint(event);
+    this.offset = {
+      x: point.x - this.pos.x,
+      y: point.y - this.pos.y,
+    };
+
+    document.addEventListener('mousemove', this.onMoveDrag);
+    document.addEventListener('touchmove', this.onMoveDrag, { passive: false });
+    document.addEventListener('mouseup', this.stopAction);
+    document.addEventListener('touchend', this.stopAction);
   }
 
-  startResize(event: MouseEvent) {
+  startResize(event: MouseEvent | TouchEvent) {
+    event.preventDefault();
+    event.stopPropagation();
     this.isResizing = true;
+
+    const point = this.getEventPoint(event);
     this.offset = {
-      x: event.clientX,
-      y: event.clientY,
+      x: point.x,
+      y: point.y,
     };
     this.initialSize = this.size;
-    event.stopPropagation();
-    event.preventDefault();
+
+    document.addEventListener('mousemove', this.onMoveResize);
+    document.addEventListener('touchmove', this.onMoveResize, { passive: false });
+    document.addEventListener('mouseup', this.stopAction);
+    document.addEventListener('touchend', this.stopAction);
   }
+
+  onMoveDrag = (event: MouseEvent | TouchEvent) => {
+    if (!this.isDragging) return;
+
+    event.preventDefault();
+
+    const point = this.getEventPoint(event);
+
+    const containerRect = this.container.nativeElement.getBoundingClientRect();
+    const cropBoxRect = this.cropBox.nativeElement.getBoundingClientRect();
+
+    const newX = point.x - this.offset.x;
+    const newY = point.y - this.offset.y;
+
+    // Make sure the box stays inside container
+    const maxX = containerRect.width - cropBoxRect.width;
+    const maxY = containerRect.height - cropBoxRect.height;
+
+    this.pos.x = Math.max(0, Math.min(newX, maxX));
+    this.pos.y = Math.max(0, Math.min(newY, maxY));
+  };
+
+  onMoveResize = (event: MouseEvent | TouchEvent) => {
+    if (!this.isResizing) return;
+
+    event.preventDefault();
+
+    const point = this.getEventPoint(event);
+    const delta = {
+      x: point.x - this.offset.x,
+      y: point.y - this.offset.y,
+    };
+
+    let newSize = this.initialSize + Math.max(delta.x, delta.y);
+
+    const containerRect = this.container.nativeElement.getBoundingClientRect();
+
+    // Prevent the box from resizing outside container
+    const maxWidth = containerRect.width - this.pos.x;
+    const maxHeight = containerRect.height - this.pos.y;
+    const maxSize = Math.min(maxWidth, maxHeight);
+
+    this.size = Math.max(50, Math.min(newSize, maxSize)); // minimum 50px
+  };
+
+  stopAction = (event: MouseEvent | TouchEvent) => {
+    event.preventDefault();
+    this.isDragging = false;
+    this.isResizing = false;
+
+    document.removeEventListener('mousemove', this.onMoveDrag);
+    document.removeEventListener('touchmove', this.onMoveDrag);
+    document.removeEventListener('mousemove', this.onMoveResize);
+    document.removeEventListener('touchmove', this.onMoveResize);
+    document.removeEventListener('mouseup', this.stopAction);
+    document.removeEventListener('touchend', this.stopAction);
+  };
+
+  private getEventPoint(event: MouseEvent | TouchEvent): { x: number; y: number } {
+    if (event instanceof MouseEvent) {
+      return { x: event.clientX, y: event.clientY };
+    } else {
+      const touch = event.touches[0] || event.changedTouches[0];
+      return { x: touch.clientX, y: touch.clientY };
+    }
+  }
+
+  onTouchStartDrag(event: TouchEvent) {
+    event.preventDefault();
+    this.startDrag(event);
+  }
+
+  onTouchStartResize(event: TouchEvent) {
+    event.preventDefault();
+    this.startResize(event);
+  }
+
+
+  // startDrag(event: MouseEvent | TouchEvent) {
+  //   this.isDragging = true;
+  //   if (event instanceof MouseEvent) {
+  //     this.offset = {
+  //       x: event.clientX - this.pos.x,
+  //       y: event.clientY - this.pos.y,
+  //     };
+  //   } else if (event instanceof TouchEvent) {
+  //     // clientX = event.touches[0].clientX;
+  //     // clientY = event.touches[0].clientY;
+
+  //     this.offset = {
+  //       x: event.touches[0].clientX - this.pos.x,
+  //       y: event.touches[0].clientY - this.pos.y,
+  //     };
+  //   }
+  //   // this.offset = {
+  //   //   x: event.clientX - this.pos.x,
+  //   //   y: event.clientY - this.pos.y,
+  //   // };
+  //   event.stopPropagation();
+  // }
+
+  // startResize(event: MouseEvent | TouchEvent) {
+  //   this.isResizing = true;
+  //   if (event instanceof MouseEvent) {
+  //     this.offset = {
+  //       x: event.clientX - this.pos.x,
+  //       y: event.clientY - this.pos.y,
+  //     };
+  //   } else if (event instanceof TouchEvent) {
+  //     // clientX = event.touches[0].clientX;
+  //     // clientY = event.touches[0].clientY;
+
+  //     this.offset = {
+  //       x: event.touches[0].clientX - this.pos.x,
+  //       y: event.touches[0].clientY - this.pos.y,
+  //     };
+  //   }
+  //   // this.offset = {
+  //   //   x: event.clientX,
+  //   //   y: event.clientY,
+  //   // };
+  //   this.initialSize = this.size;
+  //   event.stopPropagation();
+  //   event.preventDefault();
+  // }
 
   @HostListener('document:mouseup')
   endDrag() {
