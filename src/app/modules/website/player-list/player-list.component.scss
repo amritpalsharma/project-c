@@ -272,7 +272,6 @@ img.birthday-img {
 }
 
 button.prev-page {
-    width: 77px;
     height: 36px;
     border-radius: 4px;
     background-color: white;
@@ -282,7 +281,10 @@ button.prev-page {
     display: flex;
     text-align: center;
     align-items: center;
-    padding: 13px;
+    padding: 10px;
+    p {
+        font-size: inherit !important;
+    }
 }
 
 .pages {
@@ -438,7 +440,6 @@ button.page-active {
         font-size: 15px;
     }
     button.prev-page {
-        width: 60px;
         height: 30px;
         padding: 7px;
     }
@@ -512,6 +513,12 @@ button.page-active {
     }
 }
 
+
+@media (min-width: 992px) and (max-width: 1199px) {
+.player1 {
+    height: 250px;
+}
+}
 
 @media (max-width: 991px) {
     .players.player-card {

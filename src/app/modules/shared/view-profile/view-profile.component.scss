@@ -1282,8 +1282,8 @@
         height: 120px;
         border-radius: 50%;
         background: #F6F6F6;
-        object-fit: cover;
-        object-position: top;
+        object-fit: contain;
+        object-position:bottom;
     }
     .premium_button {
         padding: 6px 10px;
