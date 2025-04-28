@@ -1804,7 +1804,6 @@ span.active_btn {
 
 .dark-theme talent-transfers-tab {
   border-bottom: none;
-
 }
 
 .duration {
@@ -1814,6 +1813,14 @@ span.active_btn {
   background: #0000007a;
   color: #fff;
   padding: 0 4px;
+}
+
+@media (max-width: 400px) {
+.ground-image {
+  svg {
+    width: 210px;
+  }
+}
 }
 
 ::ng-deep .custom-tooltip {

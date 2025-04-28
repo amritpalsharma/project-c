@@ -1,3 +1,6 @@
+.page-header .mobile-logo {
+    display: none;
+}
 .all-page-content .page-container > .outlet_outer {
     min-height: calc(100vh - 150px);
 }
@@ -143,9 +146,6 @@
     box-shadow: 0 0 1.25rem #1f2d3d0a;
     z-index: -1;
 }
-.page-header .mobile-logo {
-    display: none;
-}
 .parent-popup.mobile_popup_responsive {
     height: 100%;
     display: flex;
@@ -208,6 +208,14 @@
     .box_height_eqaul {
         height: 100%;
     }
+}
+.mobile_popup_responsive {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.mobile_popup_responsive .popup_buttons_mobile {
+    margin-top: auto;
 }
 }
 
@@ -1165,6 +1173,14 @@ mat-datepicker-toggle button {
 .compact-sidebar .page-sidebar .sidebar_menu a:hover {
     width: 100%;
 }
+.page-sidebar .sidebar_menu a {
+    font-size: 18px;
+    line-height: 28px;
+}
+.page-sidebar .sidebar_menu a svg {
+    min-width: 42px;
+    padding-left: 0;
+}
 .compact-sidebar .page-container {
     padding: 0 10px !important;
 }
@@ -1245,7 +1261,10 @@ body.compact-sidebar.dark-theme .sidebar-menu svg path {
     p {
       font-size: 18px;
   }
-  }
+}
+.dashboard_footer.footer_main {
+    position: unset !important;
+}
 }
 
 
