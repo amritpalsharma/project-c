@@ -55,6 +55,7 @@
 
           <!-- Show user list -->
           <mat-option *ngFor="let user of filteredUsers" [value]="user">
+            <!-- <pre>{{user | json}}</pre> -->
             <img width="20" height="20" class="img-list me-2" src="{{
                   user?.profile_image
                     ? user?.profile_image

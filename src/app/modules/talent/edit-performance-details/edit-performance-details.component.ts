@@ -33,6 +33,7 @@ export class EditPerformanceDetailsComponent implements OnInit {
   from_date: FormControl = new FormControl(null);
   to_date: FormControl = new FormControl(null);
   theme: any = localStorage.getItem('theme');
+  isrequiredField:boolean=false;
 
   constructor(
     public dialogRef: MatDialogRef<EditPerformanceDetailsComponent>,
@@ -73,7 +74,20 @@ export class EditPerformanceDetailsComponent implements OnInit {
 
 
   onSubmit(myForm: NgForm): void {
-    if (myForm.valid) {
+
+    if (!this.currentTeamId) {
+      this.isrequiredField = true;
+      // this.toastr.warning(this.formAllFieldsRequired, this.errorTxt);
+      return;
+    }
+    if (!myForm.value.session) {
+      this.isrequiredField = true;
+      // this.toastr.warning(this.formAllFieldsRequired, this.errorTxt);
+      return;
+    }
+
+    this.isrequiredField = false;
+    // if (myForm.valid) {
       this.isLoading = true; // Start loading indicator
       this.toastr.info(this.submittingPerformanceData, this.pleaseWait, { disableTimeOut: true });
 
@@ -113,10 +127,10 @@ export class EditPerformanceDetailsComponent implements OnInit {
           this.isLoading = false; // Stop loading indicator
         }
       );
-    } else {
-      this.toastr.clear();
-      this.toastr.warning('Please fill out all required fields before submitting.', 'Warning');
-    }
+    // } else {
+     // this.toastr.clear();
+   //   this.toastr.warning('Please fill out all required fields before submitting.', 'Warning');
+    // }
   }
 
 

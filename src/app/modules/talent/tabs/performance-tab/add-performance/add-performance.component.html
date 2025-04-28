@@ -38,7 +38,7 @@
 
               <input type="text" id="currentTeam" name="currentTeam" placeholder="{{'typeToSearch' | translate}}"
                 [(ngModel)]="currentTeam" #currentTeamsField="ngModel" (input)="onSearchTeams()" autocomplete="off"
-                required style="padding-left: 30px;"/>
+                required style="padding-left: 30px;" [ngClass]="{'isrequiredField': isrequiredField}"/>
                 <img class="me-2" [src]="currentTeamLogo" class="performance-image">
 
               <!-- Club suggestions -->
@@ -52,29 +52,29 @@
             </div>
             <div class="form-group col-lg-6">
               <label for="matches" class="form-label">{{'matches' | translate}}</label>
-              <input type="number" id="matches" name="matches" [(ngModel)]="performance.matches" required>
+              <input type="number" id="matches" name="matches" [(ngModel)]="performance.matches">
             </div>
           </div>
 
           <div class="row">
             <div class="form-group col-lg-6">
               <label for="goals" class="form-label">{{'goal' | translate}}</label>
-              <input type="number" id="goals" name="goals" [(ngModel)]="performance.goals" required>
+              <input type="number" id="goals" name="goals" [(ngModel)]="performance.goals">
             </div>
             <div class="form-group col-lg-6">
               <label for="Coach" class="form-label">{{'coachDuringDebut' | translate}}</label>
-              <input type="text" id="Coach" name="coach" [(ngModel)]="performance.coach" required>
+              <input type="text" id="Coach" name="coach" [(ngModel)]="performance.coach">
             </div>
           </div>
 
           <div class="row">
             <div class="form-group col-lg-6">
               <label for="session" class="form-label">{{'saison' | translate}}</label>
-              <input type="text" id="session" name="session" [(ngModel)]="performance.session" required>
+              <input type="text" id="session" name="session" [(ngModel)]="performance.session" [ngClass]="{'isrequiredField': isrequiredField}">
             </div>
             <div class="form-group col-lg-6">
               <label for="player_age" class="form-label">{{'playerAge' | translate}}</label>
-              <input type="text" id="player_age" name="player_age" [(ngModel)]="performance.player_age" required>
+              <input type="text" id="player_age" name="player_age" [(ngModel)]="performance.player_age">
             </div>
           </div>
 

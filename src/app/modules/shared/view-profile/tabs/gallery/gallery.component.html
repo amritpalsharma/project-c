@@ -8,7 +8,7 @@
     <div class="row mt-3">
       <div class="col-md-2 position-relative w-20 my-2" *ngFor="let image of userImages">
         <a [href]="imageBaseUrl + image.file_name" data-fancybox="gallery1" [attr.data-caption]="">
-          <img [src]="imageBaseUrl + image.file_name" alt="" srcset="" class="img-fluid">
+          <img [src]="" alt="" srcset="" class="img-fluid">
         </a>
         <!-- <img src="{{imageBaseUrl}}{{image.file_name}}" alt="" srcset="" class="img-fluid"> -->
       </div>
@@ -22,7 +22,7 @@
       <div class="col-md-2 position-relative w-20" *ngFor="let image of userVideos">
         <a [href]="imageBaseUrl + image.file_name" data-fancybox="gallery1" [attr.data-caption]="">
           <video class="img-fluid">
-            <source [src]="imageBaseUrl + image.file_name" type="video/mp4">
+            <source [src]="" type="video/mp4">
             {{ 'galleryText' | translate }}
           </video>
         </a>
@@ -70,7 +70,11 @@
   <div class="d-flex justify-content-between mt-4">
     <p class="gallery-photo">{{'videos' | translate }} </p>
   </div>
-
+  <div class="row mt-3">
+    <div class="col-md-2 position-relative w-20" *ngIf="userVideos.length < 0 && userImages.length < 0">
+      {{'noTextTabs' | translate}}
+    </div>
+  </div>
   <div class="row mt-3">
     <div class="col-md-2 position-relative w-20" *ngFor="let image of userVideos">
       <a [href]="imageBaseUrl + image.file_name" data-fancybox="gallery1" [attr.data-caption]="">

@@ -26,7 +26,7 @@
 
     <div class="mt-3">
         <app-loader *ngIf="isLoading"></app-loader>
-        <div *ngIf="clubHistory == '' && !isLoading">{{'noHistoryAvailable' | translate}}</div>
+        <div *ngIf="clubHistory == '' && !isLoading">{{'noTextTabs' | translate}}</div>
         <div *ngIf="!isEditable && !isLoading" class="history-text" [innerHTML]="replaceEmptyParagraphs(clubHistory)"></div>
     </div>
 </div>

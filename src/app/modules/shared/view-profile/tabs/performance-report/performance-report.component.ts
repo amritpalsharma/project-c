@@ -13,6 +13,7 @@ export class PerformanceReportComponent  implements OnInit {
   reports: Report[] = [];
   errorMessage: string | null = null;
   allSelected: boolean = false;
+  noTextTabs: boolean = true;
   selectedIds: number[] = [];
   userId: any = [];
   path: any ;
@@ -41,11 +42,15 @@ export class PerformanceReportComponent  implements OnInit {
         if (response.status) {
           this.path = response.data.uploads_path;
           this.reports = response.data.reports;
+          this.noTextTabs = false;
         } else {
+          this.reports = [];
+          this.noTextTabs = true;
           this.errorMessage = response.message;
         }
       },
       error => {
+        this.noTextTabs = true;
         this.errorMessage = 'Error fetching reports: ' + error.message;
       }
     );

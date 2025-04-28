@@ -222,16 +222,11 @@ export class PerformanceTabComponent {
     this.dataTOBeUpdated[key] = value;
   }
 
-  calculateDateRange(performance_detail: any): string {
+  calculateDateRange280425(performance_detail: any): string {
     const fromDate = new Date(performance_detail.from_date);
     const toDate = performance_detail.to_date === '0000-00-00'
       ? new Date() // Current date for "Present"
       : new Date(performance_detail.to_date);
-
-    // Check if fromDate or toDate is invalid
-    // if (isNaN(fromDate.getTime()) || isNaN(toDate.getTime())) {
-    //   return '-'; // Return '-' if either date is invalid
-    // }
 
     let years = toDate.getFullYear() - fromDate.getFullYear();
     let months = toDate.getMonth() - fromDate.getMonth();
@@ -255,12 +250,66 @@ export class PerformanceTabComponent {
 
     let dateRange = `${fromDateString ?? '-'} - ${toDateString ?? '-'}`;
 
-    if (displayYears > 0 || displayMonths > 0) {
-      // dateRange += ` (${displayYears} yr ${displayMonths} mos)`;
+    if(performance_detail.to_date == '0000-00-00' && performance_detail.from_date == '0000-00-00'){
+      return '';
     }
 
     return dateRange;
   }
+
+  calculateDateRange(performance_detail: any): string {
+    const fromDate = new Date(performance_detail.from_date);
+    const isPresent = performance_detail.to_date === '0000-00-00';
+    const toDate = isPresent ? new Date() : new Date(performance_detail.to_date);
+  
+    let years = toDate.getFullYear() - fromDate.getFullYear();
+    let months = toDate.getMonth() - fromDate.getMonth();
+  
+    // Adjust if the month difference is negative
+    if (months < 0) {
+      years--;
+      months += 12;
+    }
+  
+    let langSlug = localStorage.getItem('lang') + '';
+  
+    const fromDateString = fromDate.toLocaleString(langSlug, { month: 'long', year: 'numeric' });
+    const toDateString = isPresent
+      ? this.getPresentText(langSlug)
+      : toDate.toLocaleString(langSlug, { month: 'long', year: 'numeric' });
+  
+    let dateRange = `${fromDateString ?? '-'} - ${toDateString ?? '-'}`;
+  
+    // If both from and to dates are '0000-00-00', return empty
+    if (performance_detail.to_date === '0000-00-00' && performance_detail.from_date === '0000-00-00') {
+      return '';
+    }
+  
+    return dateRange;
+  }
+  
+  getPresentText(lang: string): string {
+    switch (lang) {
+      case 'de': // German
+        return 'Gegenwart';
+      case 'it': // Italian
+        return 'Presente';
+      case 'fr': // French
+        return 'Présent';
+      case 'es': // Spanish
+        return 'Presente';
+      case 'pt': // Portuguese
+        return 'Presente';
+      case 'da': // Danish
+        return 'Nuværende';
+      case 'sv': // Swedish
+        return 'Nuvarande';
+      case 'en': // English
+      default:
+        return 'Present';
+    }
+  }
+  
   getToasterMsg() {
     this.translate.get(['success!', 'submittingPerformanceData', 'pleaseWait']).subscribe((res: any) => {
       this.successTxt = res['success!'];

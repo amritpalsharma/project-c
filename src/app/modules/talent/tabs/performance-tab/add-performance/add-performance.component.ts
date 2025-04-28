@@ -23,6 +23,7 @@ export class AddPerformanceComponent {
   teams: any[] = [];
   matches: any;
   goals: any;
+  isrequiredField: boolean = false;
 
   currentTeam: string = ''; // Initialize as empty string to avoid undefined issues
   formAllFieldsRequired: string = ''; // Initialize as empty string to avoid undefined issues
@@ -37,7 +38,7 @@ export class AddPerformanceComponent {
   to_date: FormControl = new FormControl(null);
   currentTeamLogo: string = '';
 
-  theme : any = localStorage.getItem('theme');
+  theme: any = localStorage.getItem('theme');
 
   constructor(
     private toastr: ToastrService,
@@ -49,7 +50,7 @@ export class AddPerformanceComponent {
 
   ngOnInit(): void {
     this.theme = localStorage.getItem('theme');
-    
+
     this.performance = { ...this.data.performance };
     this.teams = { ...this.data.teams };
     this.matches = this.performance.matches;
@@ -91,7 +92,19 @@ export class AddPerformanceComponent {
 
 
   onSubmit(myForm: NgForm): void {
-    if (myForm.valid) {
+    if (!this.currentTeamId) {
+      this.isrequiredField = true;
+      this.toastr.warning(this.formAllFieldsRequired, this.errorTxt);
+      return;
+    }
+    if (!myForm.value.session) {
+      this.isrequiredField = true;
+      this.toastr.warning(this.formAllFieldsRequired, this.errorTxt);
+      return;
+    }
+
+    this.isrequiredField = false;
+    // if (myForm.valid) {
 
       // Show loading message
       const loadingToast = this.toastr.info(this.submittingPerformanceData, this.pleaseWait, { disableTimeOut: true });
@@ -133,9 +146,9 @@ export class AddPerformanceComponent {
           console.error('Error submitting the form:', error);
         }
       });
-    } else {
-      this.toastr.warning(this.formAllFieldsRequired, this.errorTxt);
-    }
+    // } else {
+      // this.toastr.warning(this.formAllFieldsRequired, this.errorTxt);
+    // }
   }
 
   // Function to handle dynamic fetching of clubs based on search input
@@ -168,7 +181,7 @@ export class AddPerformanceComponent {
   }
 
   getToasterMsg() {
-    this.translate.get(['success!', 'submittingPerformanceData', 'pleaseWait','formAllFieldsRequired','error']).subscribe((res: any) => {
+    this.translate.get(['success!', 'submittingPerformanceData', 'pleaseWait', 'formAllFieldsRequired', 'error']).subscribe((res: any) => {
       this.successTxt = res['success!'];
       this.submittingPerformanceData = res['submittingPerformanceData'];
       this.pleaseWait = res['pleaseWait'];

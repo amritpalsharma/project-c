@@ -174,3 +174,6 @@ mat-datepicker-toggle{
   padding: 0 15px !important;
 }
 }
+::ng-deep .isrequiredField{
+  border: 1px solid red !important;
+}

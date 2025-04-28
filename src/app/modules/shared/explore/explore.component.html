@@ -184,9 +184,9 @@
                   <div class="card-shape" [class]="{'d-none':!getNationality(player.user_nationalities)}">
                   </div>
                   <div class="player-team-logo">
-                    <div *ngIf="player.pre_current_club_logo_path" class="team-logo-bg">
+                    <div *ngIf="player.current_club_logo" class="team-logo-bg">
                     </div>
-                    <img *ngIf="player.pre_current_club_logo_path" src="{{player.pre_current_club_logo_path}}"
+                    <img *ngIf="player.current_club_logo" src="{{baseUrl + player.current_club_logo}}"
                       alt="team-logo">
                   </div>
                   @if (getNationality(player.user_nationalities) ||player?.meta?.formation_date) {

@@ -198,4 +198,5 @@ export class ImprintComponent implements OnInit {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+
 }

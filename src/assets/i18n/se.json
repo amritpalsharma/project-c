@@ -59,7 +59,7 @@
   "season": "Säsong",
   "matches": "Spel",
   "goal": "Målen",
-  "coachDuringDebut": "Coach under debut",
+  "coachDuringDebut": "Tränare",
   "editPerformanceDetails": "Redigera prestationsdetaljer",
   "goals": "Målsättningar",
   "fromUpto": "Från - Upp till",
@@ -857,7 +857,7 @@
   "challengeLeague": "Challenge och league",
   "right20": "Right och 20",
   "goalkeeperCenterBack": "Goalkeeper, och center och back",
-  "loading": "Loading och , och please och wait...",
+  "loading": "Laddar, vänligen vänta…",
   "deafultProfilePreview": "Default och profile och preview",
   "confirmDeleteinformation": "Once och information och is och deleted, och it och can\u2019t och be och undone.",
   "confirmDeleteinformation1": "Do och you och want och to och delete?",
@@ -901,8 +901,8 @@
   "contractEndDate": "Contract och end och date",
   "dominantFoot": "Dominant och foot",
   "dominantFootRequired": "Dominant och foot och is och required",
-  "playerAge": "Player och age",
-  "form-upto": "Från - Upp till",
+  "playerAge": "Ålder",
+  "form-upto": "från – till",
   "session": "Säsong",
   "addNewTransfer": "Lägg till ny övergång",
   "addTransferDetails": "Lägg till övergångsdetaljer",
@@ -1392,5 +1392,8 @@
   "boostProfileFor": "För Scouts",
   "deleteFromGalleryConfirmation": "Är du säker på att du vill ta bort {{type}} från ditt galleri?",
   "weUseCookies": "Vi använder cookies",
-  "scoutHistoryTxt": "Om oss"
+  "scoutHistoryTxt": "Om oss",
+  "PerformaceProfile": "Matchstatistik",
+  "timeZoneTxt": "Tidszon Vinter UTC +1 / Sommar UTC +2",
+  "noTextTabs": "Inget innehåll har laddats upp av användaren."
 }

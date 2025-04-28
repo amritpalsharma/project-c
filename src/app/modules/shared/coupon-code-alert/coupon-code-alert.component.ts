@@ -43,7 +43,12 @@ export class CouponCodeAlertComponent implements OnInit {
           this.couponError = '';
           this.couponApplied = true;
         } else {
-          this.couponError = 'Invalid Coupon Code. Please try again.';
+          // this.couponError = 'Invalid Coupon Code. Please try again.';
+          if (response.message != '' && response.message != undefined) {
+            this.couponError = response.message;
+          } else {
+            this.couponError = 'Invalid Coupon Code. Please try again.';
+          }
           this.couponSuccess = '';
           this.couponApplied = false;
         }
@@ -63,7 +68,7 @@ export class CouponCodeAlertComponent implements OnInit {
 
   // Proceed to checkout without coupon or after applying it
   proceedToCheckout(): void {
-    console.warn(this.couponCode +' ...Is applied '+this.couponApplied)
+    console.warn(this.couponCode + ' ...Is applied ' + this.couponApplied)
     // alert('Here')
     if (this.couponCode != '' && this.couponApplied) {
       this.dialogRef.close(this.couponCode); // Pass coupon code (if applied) or null
@@ -79,7 +84,7 @@ export class CouponCodeAlertComponent implements OnInit {
     } else {
       this.dialogRef.close('proceed_to_checkout_without_coupon'); // Pass coupon code (if applied) or null
     }
-   // this.dialogRef.close('proceed_to_checkout_without_coupon'); // Close without coupon
+    // this.dialogRef.close('proceed_to_checkout_without_coupon'); // Close without coupon
   }
 
   // Close the dialog

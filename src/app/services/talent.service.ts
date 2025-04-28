@@ -551,6 +551,7 @@ export class TalentService {
 
     let params = new HttpParams();
     params = params.append('coupon_code', couponCode);
+    params = params.append('lang', localStorage.getItem('lang_id') + '');
 
     return this.http.post(`${this.apiUrl}user/validate-coupon`, params, { headers });
   }
