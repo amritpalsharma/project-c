@@ -7,7 +7,7 @@ import { WebPages } from '../../../services/webpages.service';
 
 import * as _moment from 'moment';
 // tslint:disable-next-line:no-duplicate-imports
-import {default as _rollupMoment} from 'moment';
+import { default as _rollupMoment } from 'moment';
 import { ToastrService } from 'ngx-toastr';
 
 const moment = _rollupMoment || _moment;
@@ -35,12 +35,12 @@ export class EditPersonalDetailsComponent implements OnInit {
   social_x: string = ''; // assuming this is for Twitter (X)
   social_youtube: string = '';
 
-  sm_x:any = "";
-  sm_facebook:any = "";
-  sm_instagram:any = "";
-  sm_tiktok:any = "";
-  sm_youtube:any = "";
-  sm_vimeo:any = "";
+  sm_x: any = "";
+  sm_facebook: any = "";
+  sm_instagram: any = "";
+  sm_tiktok: any = "";
+  sm_youtube: any = "";
+  sm_vimeo: any = "";
 
   socialMediaPlatforms = [
     { id: 'x', name: 'X (Twitter)', placeholder: 'x.com/' },
@@ -52,14 +52,14 @@ export class EditPersonalDetailsComponent implements OnInit {
   ];
 
   cities: string[] = ['City1', 'City2', 'City3']; // Example cities
-  countries: any ;
+  countries: any;
   leagueLevels: string[] = ['Amateur', 'Professional', 'Semi-Pro'];
   teams: any[] = [];
   selectedClub: string = '';
   user: any = localStorage.getItem('userData');
   loggedInUser: any = localStorage.getItem('userData');
   userId: any;
-  userNationalities : any;
+  userNationalities: any;
   // Declare individual properties for binding
   dateOfBirth: string = '';
   height: number = 0;
@@ -75,13 +75,13 @@ export class EditPersonalDetailsComponent implements OnInit {
   firstName: string = '';
   lastName: string = '';
   nationality: string = '';
-  company_name :any ;
-  contact_number :any ;
-  cover_image :any ;
-  cover_image_path :any ;
-  country :any ;
-  profile_image :any ;
-  profile_image_path :any ;
+  company_name: any;
+  contact_number: any;
+  cover_image: any;
+  cover_image_path: any;
+  country: any;
+  profile_image: any;
+  profile_image_path: any;
 
   // Json KeyWords
   successTxt: string = '';
@@ -91,21 +91,26 @@ export class EditPersonalDetailsComponent implements OnInit {
   dominantFootRequired: string = '';
   Processing: string = '';
   pleaseWait: string = '';
-  requiredFieldsMessage:string='';
-  phoneRequired:string='';
-  designation :any ;
+  requiredFieldsMessage: string = '';
+  phoneRequired: string = '';
+  designation: any;
+  isPremium: boolean = false;
   constructor(
     public dialogRef: MatDialogRef<EditPersonalDetailsComponent>,
     private scoutService: ScoutService,
     @Inject(MAT_DIALOG_DATA) public data: any,
-     private translateService: TranslateService,
-     public webPages: WebPages,
-     private toastr: ToastrService,
-  ) {}
+    private translateService: TranslateService,
+    public webPages: WebPages,
+    private toastr: ToastrService,
+  ) { }
 
-  theme : any = localStorage.getItem('theme');
+  theme: any = localStorage.getItem('theme');
 
   ngOnInit(): void {
+
+    if (this.data != '' && this.data.isPremium != '') {
+      this.isPremium = this.data.isPremium;
+    }
     this.theme = localStorage.getItem('theme');
     this.user = JSON.parse(this.user);
     this.loggedInUser = JSON.parse(this.loggedInUser);
@@ -143,7 +148,7 @@ export class EditPersonalDetailsComponent implements OnInit {
       (response: any) => {
         if (response && response.status) {
           this.countries = response.data.countries;
-          console.log('countries',this.countries)
+          console.log('countries', this.countries)
         }
       },
       (error: any) => {
@@ -195,45 +200,45 @@ export class EditPersonalDetailsComponent implements OnInit {
     // }
     // if (form.valid) {
 
-      console.log('Form Data:', form.value);
-      this.dialogRef.close(form.value);
-      const formData = new FormData();
+    console.log('Form Data:', form.value);
+    this.dialogRef.close(form.value);
+    const formData = new FormData();
 
-      formData.append('user[address]' , this.address);
-      formData.append('user[city]' , this.city);
-      formData.append('user[company_name]' , this.company_name);
-      formData.append('user[contact_number]' , this.contact_number);
-      // formData.append('user[cover_image]' , this.cover_image);
-      // formData.append('user[cover_image_path]' , this.cover_image_path);
-      formData.append('user[designation]' , this.designation);
-      formData.append('user[user_nationalities]' , this.country);
-      // formData.append('user[profile_image]' , this.profile_image);
-      // formData.append('user[profile_image_path]' , this.profile_image_path);
-      formData.append('user[sm_facebook]' , this.sm_facebook);
-      formData.append('user[sm_instagram]' , this.sm_instagram);
-      formData.append('user[sm_tiktok]' , this.sm_tiktok);
-      formData.append('user[sm_vimeo]' , this.sm_vimeo);
-      formData.append('user[sm_x]' , this.sm_x);
-      formData.append('user[sm_youtube]' , this.sm_youtube);
-      formData.append('user[website]' , this.website);
-      formData.append('user[zipcode]' , this.zipcode);
+    formData.append('user[address]', this.address);
+    formData.append('user[city]', this.city);
+    formData.append('user[company_name]', this.company_name);
+    formData.append('user[contact_number]', this.contact_number);
+    // formData.append('user[cover_image]' , this.cover_image);
+    // formData.append('user[cover_image_path]' , this.cover_image_path);
+    formData.append('user[designation]', this.designation);
+    formData.append('user[user_nationalities]', this.country);
+    // formData.append('user[profile_image]' , this.profile_image);
+    // formData.append('user[profile_image_path]' , this.profile_image_path);
+    formData.append('user[sm_facebook]', this.sm_facebook);
+    formData.append('user[sm_instagram]', this.sm_instagram);
+    formData.append('user[sm_tiktok]', this.sm_tiktok);
+    formData.append('user[sm_vimeo]', this.sm_vimeo);
+    formData.append('user[sm_x]', this.sm_x);
+    formData.append('user[sm_youtube]', this.sm_youtube);
+    formData.append('user[website]', this.website);
+    formData.append('user[zipcode]', this.zipcode);
 
-      this.scoutService.updateUserProfile(formData).subscribe(
-        (response: any) => {
-          console.log('Form submitted successfully:', response);
-          this.dialogRef.close(response);
-          // this.dialogRef.close(response.data);
-        },
-        (error: any) => {
-          console.error('Error submitting the form:', error);
-        }
-      );
+    this.scoutService.updateUserProfile(formData).subscribe(
+      (response: any) => {
+        console.log('Form submitted successfully:', response);
+        this.dialogRef.close(response);
+        // this.dialogRef.close(response.data);
+      },
+      (error: any) => {
+        console.error('Error submitting the form:', error);
+      }
+    );
     // }
   }
-  
+
 
   getJsonTranslations() {
-    this.translateService.get(['success!', 'error', 'enterYourCompanyName', 'dobRequired', 'dominantFootRequired', 'Processing', 'pleaseWait','requiredFieldsMessage','phoneRequired']).subscribe((translations) => {
+    this.translateService.get(['success!', 'error', 'enterYourCompanyName', 'dobRequired', 'dominantFootRequired', 'Processing', 'pleaseWait', 'requiredFieldsMessage', 'phoneRequired']).subscribe((translations) => {
       this.successTxt = translations['success!'];
       this.errorTxt = translations['error'];
       this.enterYourCompanyName = translations['enterYourCompanyName'];

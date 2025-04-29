@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { WebPages } from '../../../../../services/webpages.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Editor, Toolbar } from 'ngx-editor';
+import { environment } from '../../../../../../environments/environment';
 
 interface Language {
   id: string;
@@ -35,6 +36,7 @@ export class AddFaqPageComponent implements OnInit {
     ['align_left', 'align_center', 'align_right', 'align_justify'],
   ];
   content: string = '';
+  colorPresets :any = environment.colors;
   bannerImagePreview: string | ArrayBuffer | null = null;
   formData: any = {
     meta_title: '',
@@ -171,4 +173,9 @@ export class AddFaqPageComponent implements OnInit {
     this.bannerImagePreview = null;
     // this.imageLoaded = false;
   }
+
+  trackByFn(index: number, item: any): any {
+    return item.id;  // or any unique property of your items
+  }
+  
 }

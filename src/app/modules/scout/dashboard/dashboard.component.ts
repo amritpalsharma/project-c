@@ -501,7 +501,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   openEditDialog() {
     const dialogRef = this.dialog.open(EditPersonalDetailsComponent, {
       width: '800px',
-      data: { user: this.user, countries: this.countries }
+      data: { user: this.user, countries: this.countries, isPremium: this.isPremium }
     });
 
     dialogRef.afterClosed().subscribe(result => {

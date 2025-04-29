@@ -80,13 +80,13 @@
         </div>
       </div>
 
-      <!-- Social media usernames -->
-      <div class="row" *ngIf="!isPremium">
+      <!-- Social media Lock View -->
+      <div class="row upgrade_unlock position-relative" *ngIf="!isPremium">
         <div class="social_form-box my-3 col-lg-12 px-4">
           <span class="social_heddig pe-2">Social Media</span>
           <span class="note_titles">{{'note' | translate}}</span>
         </div>
-        <div class="col-lg-12 px-4 upgrade_unlock">
+        <div class="col-lg-12 px-4 ">
           <div class="social-media-section">
             <div class="d-flex mb-3">
               <div class="platform_wrapper">
@@ -109,7 +109,7 @@
                     x.com/
                   </span>
                   <span class="platform_input">
-                    <input type="text" [(ngModel)]="sm_x" id="sm_x" name="sm_x">
+                    <input type="text"  id="sm_x" name="sm_x">
                   </span>
                 </div>
               </div>
@@ -136,7 +136,7 @@
                     facebook.com/
                   </span>
                   <span class="platform_input">
-                    <input type="text" [(ngModel)]="sm_facebook" id="sm_facebook" name="sm_facebook">
+                    <input type="text" id="sm_facebook" name="sm_facebook">
                   </span>
                 </div>
               </div>

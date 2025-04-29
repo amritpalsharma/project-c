@@ -277,4 +277,6 @@ export class EditPersonalDetailsComponent implements OnInit {
     );
   }
 
+  
+
 }
