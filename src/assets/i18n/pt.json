@@ -1404,8 +1404,9 @@
   "weUseCookies": "Utilizamos cookies",
   "scoutHistoryTxt": "Sobre nós",
   "timeZoneTxt": "Fuso horário Inverno UTC +1 / Verão UTC +2",
-  "noTextTabs":"Nenhum conteúdo carregado pelo utilizador.",
-  "downloadProfileBtn":"Baixar",
-  "chatBtntxt":"Chat",
-  "favoriteBtnTxt":"Favorito"
+  "noTextTabs": "Nenhum conteúdo carregado pelo utilizador.",
+  "downloadProfileBtn": "Baixar",
+  "chatBtntxt": "Chat",
+  "favoriteBtnTxt": "Favorito",
+  "noClubTxt": "Atualmente sem clube e motivado para dar um novo impulso à minha carreira!"
 }

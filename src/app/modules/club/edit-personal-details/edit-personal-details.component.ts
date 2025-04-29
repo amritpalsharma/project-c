@@ -82,7 +82,7 @@ export class EditPersonalDetailsComponent implements OnInit {
   profile_image: any;
   profile_image_path: any;
   teamsArr: any;
-
+  isPremium: boolean = false;
   constructor(
     public dialogRef: MatDialogRef<EditPersonalDetailsComponent>,
     private scoutService: ScoutService,
@@ -91,9 +91,13 @@ export class EditPersonalDetailsComponent implements OnInit {
     private talentService: TalentService,
   ) { }
 
-  theme : any = localStorage.getItem('theme');
+  theme: any = localStorage.getItem('theme');
 
   ngOnInit(): void {
+    if(this.data != '' && this.data.isPremium != ''){
+      this.isPremium = this.data.isPremium;
+    }
+    console.info('dataArr',this.data)
     this.theme = localStorage.getItem('theme');
     this.user = JSON.parse(this.user);
     this.loggedInUser = JSON.parse(this.loggedInUser);
@@ -168,9 +172,9 @@ export class EditPersonalDetailsComponent implements OnInit {
           // if (this.userNationalities[0].country_id != '') {
           //   this.nationality = this.userNationalities[0].country_id;
           // }
-        if(this.user.current_club_country && this.user.current_club_country != ''){
-          this.nationality = this.getCountryIdByName(this.user.current_club_country);
-        }
+          if (this.user.current_club_country && this.user.current_club_country != '') {
+            this.nationality = this.getCountryIdByName(this.user.current_club_country);
+          }
           this.formation_date = new FormControl(
             this.user?.meta?.formation_date
               ? this.formatDate(this.user.meta.formation_date)
@@ -187,14 +191,14 @@ export class EditPersonalDetailsComponent implements OnInit {
   getCountryIdByName(countryName: string): string | null {
     let countries = this.countries;
     if (!countryName || !Array.isArray(countries)) return null;
-  
+
     const match = countries.find(
       country => country.country_name?.toLowerCase().trim() === countryName.toLowerCase().trim()
     );
-  
+
     return match ? match.id : null;
   }
-  
+
 
   onSubmit(form: NgForm) {
     if (form.valid) {
@@ -250,7 +254,7 @@ export class EditPersonalDetailsComponent implements OnInit {
 
   onValueChange() {
     // console.log('Selected Value:', event.value);
-    console.info('selected country is ',this.nationality)
+    console.info('selected country is ', this.nationality)
     this.loadTeamsForCountry(this.nationality);
     // Your logic here
   }

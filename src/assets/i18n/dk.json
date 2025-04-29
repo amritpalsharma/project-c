@@ -1316,5 +1316,6 @@
   "noTextTabs": "Intet indhold uploadet af brugeren.",
   "downloadProfileBtn":"Download",
   "chatBtntxt":"Chat",
-  "favoriteBtnTxt":"Favorit"
+  "favoriteBtnTxt":"Favorit",
+  "noClubTxt": "Aktuelt uden klub og motiveret til at tage det næste skridt!"
 }
