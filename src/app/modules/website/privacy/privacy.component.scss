@@ -1,6 +1,11 @@
 /*--------------------------------------------------------------
    banner
 --------------------------------------------------------------*/
+.py_0 {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+  
 .content_page h4 {
     font-size: 20px;
     color: white;
@@ -70,7 +75,7 @@
     justify-content: center;
     position: relative;
     height: auto;
-    min-height: 400px;
+    min-height: 375px;
     background-color: #092e01;
 }
 
@@ -91,8 +96,6 @@
     text-align: center;
     filter: brightness(0) invert(1);
     text-transform: uppercase;
-    margin-top: 60px;
-
 }
 
 /*--------------------------------------------------------------
