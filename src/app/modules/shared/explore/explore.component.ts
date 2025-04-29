@@ -12,6 +12,7 @@ import { GlobalSettingsService } from '../../../services/global-settings.service
 import { TitleService } from '../../../title.service';
 import { UserService } from '../../../services/user.service';
 
+
 @Component({
   selector: 'shared-explore',
   templateUrl: './explore.component.html',
@@ -72,6 +73,8 @@ export class ExploreComponent implements OnInit {
   selectedClub: number | null = null;
   loggedInUser: any = localStorage.getItem('userData');
   language: string;
+  deviceType: string = this.globalSettings.getDeviceType();
+  isHideFilter: boolean = false;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -163,7 +166,9 @@ export class ExploreComponent implements OnInit {
       this.loadCountries();
       this.getUsers();
     });
-
+    if (this.deviceType == 'mobile') {
+      this.isHideFilter = true;
+    }
   }
 
   private loadTrackedViews() {
@@ -306,7 +311,7 @@ export class ExploreComponent implements OnInit {
         position: this.selectedPositions,
         user_domain: this.userDomain,
         league_id: this.selectedLeague,
-        
+
         // club_id:this.selectedClub
       },
       metaQuery: [],
@@ -721,6 +726,10 @@ export class ExploreComponent implements OnInit {
 
   get lastPage(): number {
     return this.pagesToShow().length;  // Assuming last page is the length of the pagesToShow array
+  }
+
+  toggleFilterMobile() {
+    this.isHideFilter = !this.isHideFilter;
   }
 
 }

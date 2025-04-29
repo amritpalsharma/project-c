@@ -1,9 +1,10 @@
 <div class="page-content">
   <div class="main-wrapper">
     <div class="card bg-color">
+      <button (click)="toggleFilterMobile()" *ngIf="deviceType == 'mobile'">{{'filter' | translate}}</button>
       <div class="card-header border-0 py-0">
         <div class="table-responsive">
-          <table class="table table-striped explore-table">
+          <table class="table table-striped explore-table" [ngClass]="{'d-none': isHideFilter}">
             <thead>
               <tr class="explore-inputs">
                 <!-- Talent Filter -->
@@ -168,10 +169,10 @@
                   (click)="exploreUser(player.role_name, player.id)">
                   <div class="image_box2">
                     <div class="player_img">
-                      <img *ngIf="player.meta.profile_image && player.role_name != 'Club'" [src]="baseUrl + player.meta.profile_image"
-                        alt="player-image" class="w-100">
-                      <img *ngIf="player.current_club_logo && player.role_name == 'Club'" [src]="baseUrl + player.current_club_logo"
-                        alt="player-image" class="w-100"> 
+                      <img *ngIf="player.meta.profile_image && player.role_name != 'Club'"
+                        [src]="baseUrl + player.meta.profile_image" alt="player-image" class="w-100">
+                      <img *ngIf="player.current_club_logo && player.role_name == 'Club'"
+                        [src]="baseUrl + player.current_club_logo" alt="player-image" class="w-100">
                       <img *ngIf="!player.meta.profile_image && player.role_name != 'Club'"
                         src="../../../../assets/images/default/talent-profile-default.png" class="w-100"
                         alt="player-image">
@@ -186,8 +187,7 @@
                   <div class="player-team-logo">
                     <div *ngIf="player.current_club_logo" class="team-logo-bg">
                     </div>
-                    <img *ngIf="player.current_club_logo" src="{{baseUrl + player.current_club_logo}}"
-                      alt="team-logo">
+                    <img *ngIf="player.current_club_logo" src="{{baseUrl + player.current_club_logo}}" alt="team-logo">
                   </div>
                   @if (getNationality(player.user_nationalities) ||player?.meta?.formation_date) {
                   <div class="flag_box" [class]="{'d-none':!getNationality(player.user_nationalities)}">
@@ -235,24 +235,22 @@
               <option value="20">20</option>
             </select>
             <div class="pagination_btnss">
-            <button (click)="nextPrevious('previous')" [disabled]="currentPage == 0 || currentPage == 1">{{'PAGINATOR.PREVIOUS_PAGE' |
-              translate}}</button>
-            <!-- <mat-paginator [length]="totalItems" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25, 100]"
+              <button (click)="nextPrevious('previous')"
+                [disabled]="currentPage == 0 || currentPage == 1">{{'PAGINATOR.PREVIOUS_PAGE' |
+                translate}}</button>
+              <!-- <mat-paginator [length]="totalItems" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25, 100]"
               (page)="onPageChange($event)" aria-label="Select page" showFirstLastButtons>
             </mat-paginator> -->
-            <ng-container *ngFor="let page of pagesToShow()">
-              <button class="page-active" (click)="goToPage(page)" 
-                [class.currentPage]="currentPage === page"
-                >
-                {{ page }}
+              <ng-container *ngFor="let page of pagesToShow()">
+                <button class="page-active" (click)="goToPage(page)" [class.currentPage]="currentPage === page">
+                  {{ page }}
+                </button>
+              </ng-container>
+
+              <button (click)="nextPrevious('next')" [disabled]="currentPage === lastPage">
+                {{ 'PAGINATOR.NEXT_PAGE' | translate }}
               </button>
-            </ng-container>
-            
-            <button (click)="nextPrevious('next')" 
-              [disabled]="currentPage === lastPage">
-              {{ 'PAGINATOR.NEXT_PAGE' | translate }}
-            </button>
-          </div>
+            </div>
           </div>
         </div>
       </div>
