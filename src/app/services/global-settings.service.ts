@@ -11,10 +11,12 @@ export class GlobalSettingsService {
   private defaultLanguage = 'en'; // Default language
   private defaultLangId: number = 1;
   private defaultDomainId: number = 1;
+  private domainCurrency: string = 'GBP';
   private indexFunctionCallSubject = new Subject<void>();
   indexFunctionCall$ = this.indexFunctionCallSubject.asObservable();
   constructor(private authService: AuthService) {
     this.setDefaultLanguage();
+    this.setDomainCurrency();
   }
 
   private getDomainExtension(): string {
@@ -150,4 +152,25 @@ export class GlobalSettingsService {
     return this.authService.getPlansPageLink();
   }
 
+  setDomainCurrency() {
+    let currency = 'GBP';
+    if (this.defaultDomainId == 1) {
+      currency = 'CHF';
+    } else if (this.defaultDomainId == 2 || this.defaultDomainId == 3 || this.defaultDomainId == 4) {
+      currency = 'EUR';
+    } else if (this.defaultDomainId == 5) {
+      currency = 'GBP';
+    } else if (this.defaultDomainId == 6 || this.defaultDomainId == 7 || this.defaultDomainId == 8) {
+      currency = 'EUR';
+    } else if (this.defaultDomainId == 9) {
+      currency = 'DKK';
+    } else if (this.defaultDomainId == 10) {
+      currency = 'SEK';
+    }
+    this.domainCurrency = currency;
+  }
+
+  getDomainCurrency() {
+    return this.domainCurrency;
+  }
 }

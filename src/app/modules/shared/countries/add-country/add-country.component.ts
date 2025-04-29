@@ -10,6 +10,7 @@ import { environment } from '../../../../../environments/environment';
 import { ScoutService } from '../../../../services/scout.service';
 import { TranslateService } from '@ngx-translate/core';
 import { WebPages } from '../../../../services/webpages.service';
+import { GlobalSettingsService } from '../../../../services/global-settings.service';
 
 @Component({
   selector: 'shared-add-country',
@@ -30,6 +31,7 @@ export class AddCountryComponent {
     private ScoutService: ScoutService,
     private translateService: TranslateService,
     public webPages: WebPages,
+    public global: GlobalSettingsService
   ) { }
   otherPlans: any;
   selectedPlan: any;
@@ -46,6 +48,7 @@ export class AddCountryComponent {
   countryPlanPrice: string = '';
 
   stripePromise = loadStripe(environment.stripePublishableKey);
+  currency: string = '';
 
   async ngOnInit() {
     this.theme = localStorage.getItem('theme');
@@ -59,7 +62,7 @@ export class AddCountryComponent {
       this.loadCountries();
       this.getJsonTranslations();
     });
-    
+    this.currency = this.global.getDomainCurrency();
   }
 
   editPlanPopup() {

@@ -132,7 +132,7 @@ export class CountriesComponent {
     this.translateService.get(['countries']).subscribe((translations) => {
       this.pageTitle = translations['countries'];
       this.titleService.setTitle(this.pageTitle);
-      console.log('Title fetch Function Fired');
+      // console.log('Title fetch Function Fired');
     })
   }
 }

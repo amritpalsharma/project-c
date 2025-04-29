@@ -40,13 +40,13 @@
     </div>
     <!-- <h2>{{'Do you want to add “' + country.package_name + '” to your profile?' | translate}}</h2> Use the country name dynamically -->
     <!-- <h2>{{ 'addCountry' | translate: { package_name: country.package_name } }}</h2> -->
-    <div class="d-flex country-btn justify-content-between">
+    <div class="d-flex country-btn p-0 justify-content-between">
       <button class="cancel-button" (click)="dialogRef.close()">{{'cancel' | translate}}</button>
       <!-- <button class="confirm-button" (click)="onConfirm()">
         {{'buyNow' | translate}}
         <span *ngIf="countryPlanPrice && countryPlanPrice != ''">{{countryPlanPrice}}</span>
       </button>  -->
-      <button class="btn buy-btn d-flex align-items-center gap-5 buy-button-wrapper" (click)="onConfirm()">
+      <!-- <button class="btn buy-btn d-flex align-items-center gap-5 buy-button-wrapper" (click)="onConfirm()">
         <div class="buy-button">
           <h4>
             {{ countryPlanPrice }}
@@ -55,6 +55,16 @@
           <p>{{'total' | translate}}</p>
           <span>{{'buyNow' | translate}} <i class="fa-solid fa-angle-right"></i></span>
         </div>
+      </button> -->
+      <button class="btn buy-btn d-flex align-items-center gap-5" (click)="onConfirm()">
+        <div class="buy-button">
+          <h4>
+            {{ countryPlanPrice }}
+            -{{ currency }}/{{ isYearly ? ('year' | translate ) : ('month' | translate) }}
+          </h4>
+          <p>{{'total' | translate}}</p>
+        </div>
+        <span>{{'buyNow' | translate}} <i class="fa-solid fa-angle-right"></i></span>
       </button>
 
     </div>
