@@ -38,7 +38,12 @@ interface Plan {
   styleUrls: ['./plan.component.scss']
 })
 export class PlanComponent implements OnInit, OnDestroy {
-
+  // Code By Amrit
+  isPremiumPurchased: string = '';
+  // premiumMonthlyPackageId: number = 0;
+  // premiumYearlyPackageId: number = 0;
+  premiumPurchased:any=0;
+  // End Code By Amrit
   premiumFeatures: any;
   multiCountryPlanDesc: any;
   bostProfileDesc: any;
@@ -100,7 +105,18 @@ export class PlanComponent implements OnInit, OnDestroy {
 
   // Open coupon dialog
   openCouponDialog(planId: any): void {
-
+    if (this.isPremiumPurchased == 'monthly' || this.isPremiumPurchased == 'yearly') {
+      console.info('Already Premium ' + this.isPremiumPurchased + ' Plan is Purchased');
+      if (this.isPremiumPurchased == 'monthly' && this.premiumPlans.isYearly) {
+        // console.info('user need to upgrade plan from montly to yearly');
+        this.updatePlan(this.premiumPlans, true, this.premiumPurchased);
+        return;
+      } else if (this.isPremiumPurchased == 'yearly' && !this.premiumPlans.isYearly) {
+        // console.info('user need to downgraded plan from yearly to monthly');
+        this.updatePlan(this.premiumPlans, false, this.premiumPurchased);
+        return;
+      }
+    }
     const dialogRef = this.dialog.open(CouponCodeAlertComponent, {
       width: '500px'
     });
@@ -380,6 +396,17 @@ export class PlanComponent implements OnInit, OnDestroy {
           console.log('userPlans', userPlans);
           this.fetchPlans();
 
+          if (userPlans.premium[0] != undefined && userPlans.premium[0] != '' && userPlans.premium[0].status == 'active') {
+            this.isPremiumPurchased = 'monthly';
+            // this.premiumMonthlyPackageId = userPlans.premium[0].package_id;
+            this.premiumPurchased = userPlans.premium[0];
+          } else if (userPlans.premium[1] != undefined && userPlans.premium[1] != '' && userPlans.premium[1].status == 'active') {
+            this.isPremiumPurchased = 'yearly';
+            this.premiumPurchased = userPlans.premium[1];
+            // this.premiumYearlyPackageId = userPlans.premium[1].package_id;
+          } else {
+            this.isPremiumPurchased = 'noPlan';
+          }
         } else {
           console.error('Invalid API response:', response);
         }
