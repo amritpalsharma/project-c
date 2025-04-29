@@ -18,7 +18,8 @@ import { AdminHelperService } from '../../../../services/admin-helper.service';
 })
 export class BlogComponent {
   blogs: any = [];
-  displayedColumns: string[] = ['#', 'Name', 'Language', 'Published', 'Last Modified', 'Status', 'View all', 'Edit', 'Remove'];
+  displayedColumns: string[] = ['#', 'Name', 'Published', 'Last Modified', 'Status', 'View all', 'Edit', 'Remove'];
+  // displayedColumns: string[] = ['#', 'Name', 'Language', 'Published', 'Last Modified', 'Status', 'View all', 'Edit', 'Remove'];
   checkboxIds: string[] = [];
   lang_id: string = '';
   allSelected: boolean = false;

@@ -44,7 +44,7 @@
               <td>{{ plan.currency }}</td>
               <td [translate]="plan.duration"></td>
               <td>{{ plan.valid_until }}</td>
-              <td class="text-end">{{ plan.price }} CHF</td>
+              <td class="text-end">{{ plan.price }} {{ plan.currency }}</td>
             </tr>
           </thead>
 
@@ -54,9 +54,9 @@
     </div>
 
     <div class="bottom-details">
-      <p><strong>{{ 'subTotal' | translate }}:</strong> {{ plan.subtotal }} CHF</p>
-      <p><strong>Incl. VAT 8.1%:</strong> 1.78 CHF</p>
-      <p><strong>{{ 'total' | translate }}:</strong> {{ plan.total }} CHF</p>
+      <p><strong>{{ 'subTotal' | translate }}:</strong> {{ plan.subtotal }} {{ plan.currency }}</p>
+      <p *ngIf="plan.currency == 'CHF'"><strong>Incl. VAT 8.1%:</strong> 1.78 {{ plan.currency }}</p>
+      <p><strong>{{ 'total' | translate }}:</strong> {{ plan.total }} {{ plan.currency }}</p>
       <div class="download-btn mt-4">
         <a href="{{ plan.download_path }}" class=" pdf-download_btn ">
           <span>

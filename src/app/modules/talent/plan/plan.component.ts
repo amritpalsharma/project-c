@@ -173,14 +173,19 @@ export class PlanComponent implements OnInit, OnDestroy {
 
         // Show success message after redirection attempt
         // this.toastr.success('Redirected to Stripe Checkout successfully.', 'Success');
-
+        if(response?.data?.error && response?.data?.error != undefined){
+          this.toastr.error(response?.data?.error);
+        }
         const stripe = await this.stripe;
         await stripe?.redirectToCheckout({ sessionId: response.data.payment_intent.id });
 
       } else {
-        this.toastr.clear();
 
-        this.toastr.error('Failed to create checkout session. Please try again.', 'Error');
+        this.toastr.clear();
+         if(response?.data?.error && response?.data?.error != undefined){
+          this.toastr.error(response?.data?.error);
+         }
+        //this.toastr.error('Failed to create checkout session. Please try again.', 'Error');
         console.error('Failed to create checkout session', response);
       }
     } catch (error) {

@@ -147,7 +147,7 @@ export class TemplatesComponent {
     }
   }
 
-  showFiltersPopup() {
+  showFiltersPopup() { 
     alert('show filters popup')
     //   this.dialog.open(FilterPopupComponrnt,{
     //     height: '450px',

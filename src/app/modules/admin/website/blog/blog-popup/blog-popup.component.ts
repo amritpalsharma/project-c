@@ -55,7 +55,7 @@ export class BlogPopupComponent implements OnInit, OnDestroy {
 
 
   content: string = '';
-  allContent: any = { en: '', de: '', it: '', fr: '', es: '', pt: '', dk: '', sv: '', }
+  allContent: any = { en: '', de: '', it: '', fr: '', es: '', pt: '', da: '', sv: '', }
   isLoading: boolean = false
   error: boolean = false
   errorMsg: any = {}
@@ -109,7 +109,7 @@ export class BlogPopupComponent implements OnInit, OnDestroy {
       fr: this.editorFr,
       es: this.editorEs,
       pt: this.editorPt,
-      dk: this.editorDk,
+      da: this.editorDk,
       sv: this.editorSv
     };
 
