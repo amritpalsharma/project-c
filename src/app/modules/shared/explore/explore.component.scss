@@ -198,6 +198,19 @@
 .explore-all_input mat-select{
     color: #111418;
 }
+
+button#explore_filter_mobile {
+    background: #6FB95D;
+    padding: 10px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #fff;
+    border-radius: 10px;
+    border: none;
+    width: calc(100% - 30px);
+    margin-left: 15px;
+}
 @media (max-width:1024px) {
     .explore-table{
         width: 100%;

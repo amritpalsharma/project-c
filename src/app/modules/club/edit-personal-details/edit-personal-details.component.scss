@@ -184,6 +184,26 @@ mat-datepicker-toggle {
 }
 
 
+.upgrade_unlock .upgrade_unlock {
+  height: 100%;
+  background: rgba(255, 255, 255, 0.65);
+  position: absolute;
+  width: 100%;
+  top: 0px;
+  left: 0;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .unlock_btn {
+    background: #6FB95D;
+    font-weight: 700;
+    color: #fff;
+    border-radius: 10px;
+    border: none;
+}
+}
+
 
 @media(max-width:768px) {
   .mobile-input {
