@@ -54,6 +54,9 @@ export class AddRepresentatorPopupComponent {
       if (data.representator.last_name) {
         this.lastName = data.representator.last_name;
       }
+      // if (data.representator.designation) {
+      //   this.designation = data.representator.designation;
+      // }
       this.designation = this.getMetaValue(data.representator?.meta, 'designation');
     }
   }
@@ -178,7 +181,7 @@ export class AddRepresentatorPopupComponent {
     formdata.append("lang", lang + '');
     formdata.append("first_name", this.firstName);
     formdata.append("last_name", this.lastName);
-    // formdata.append("user[designation]", this.designation);
+    formdata.append("designation", this.designation);
 
     this.clubService.updateRepresentator(this.idToUpdate, formdata).subscribe((response) => {
       if (response && response.status) {

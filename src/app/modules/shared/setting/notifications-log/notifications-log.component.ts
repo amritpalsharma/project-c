@@ -297,13 +297,13 @@ export class NotificationsLogComponent {
     else {
       let role = (notification.senderRole || '').toString().toLowerCase();
       console.log('notification', notification)
-      if(role==='scout representator'){
+      if (role === 'scout representator') {
         role = 'scout';
       }
-      else if(role==='admin representator'){
+      if (role === 'admin representator') {
         role = 'admin';
       }
-      else{
+      if (role === 'club representator') {
         role = 'club';
       }
       this.router.navigate([`/view/${role}`, notification.senderId]);

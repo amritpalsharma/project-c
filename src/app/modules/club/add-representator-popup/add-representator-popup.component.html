@@ -23,7 +23,7 @@
             </div>
             <div class="d-flex1 mb-3">
                 <div>
-                    <p class="code-text">{{ 'designation' | translate }}</p>
+                    <p class="code-text">{{ 'function' | translate }}</p>
                     <input class="cupen-btn-1 code-text" style="width:100%;" [(ngModel)]="designation">
                 </div>
             </div>
@@ -44,7 +44,7 @@
                             <option value="admin.access">{{ 'admin' | translate }}</option>
                             <option value="admin.view">{{ 'viewOnly' | translate }}</option>
                             <option value="admin.edit">{{ 'editor' | translate }}</option>
-                            <option value="transfer.ownership">{{ 'transferOwnership' | translate }}</option>
+                            <!-- <option value="transfer.ownership">{{ 'transferOwnership' | translate }}</option> -->
                         </select>
                         <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
@@ -74,6 +74,13 @@
                     <div *ngIf="errorMsg.lastName" class="error-msg">{{errorMsg.lastName}}</div>
                 </div>
             </div>
+            <div class="d-flex1 mb-3">
+                <div>
+                    <p class="code-text">{{ 'function' | translate }}</p>
+                    <input class="cupen-btn-1 code-text" style="width:100%;" [(ngModel)]="designation">
+                    <div *ngIf="errorMsg.lastName" class="error-msg">{{errorMsg.lastName}}</div>
+                </div>
+            </div>
             <!-- <div class="d-flex1 mb-3">
                 <div>
                     <p class="code-text">{{ 'designation' | translate }}</p>
@@ -100,7 +107,7 @@
                             <option value="admin.access">{{ 'admin' | translate }}</option>
                             <option value="admin.view">{{ 'viewOnly' | translate }}</option>
                             <option value="admin.edit">{{ 'editor' | translate }}</option>
-                            <option value="transfer.ownership">{{ 'transferOwnership' | translate }}</option>
+                            <!-- <option value="transfer.ownership">{{ 'transferOwnership' | translate }}</option> -->
                         </select>
                         <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none"
                             xmlns="http://www.w3.org/2000/svg">

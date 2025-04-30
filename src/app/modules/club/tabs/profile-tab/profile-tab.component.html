@@ -128,18 +128,18 @@
                 </div>
             </form>
         </div> -->
-    
+
         <hr>
-    
+
         <div class="table-responsive ">
             <table class="table table-scout-profile table-hover bg-072944 ">
                 <thead class="border-table-thead">
                     <tr>
                         <th>{{ 'companyRepresentators' | translate }}: &nbsp; &nbsp;<button
-                                class="btn btn-success btn-sm web-create-bg" >{{ 'addNew' |
+                                class="btn btn-success btn-sm web-create-bg">{{ 'addNew' |
                                 translate }}</button></th>
                         <th>{{ 'roles' | translate }}</th>
-                        <th>{{ 'designation' | translate }}</th>
+                        <th>{{ 'function' | translate }}</th>
                         <th class="text-center">{{ 'edit' | translate }}</th>
                         <th class="text-center">{{ 'delete' | translate }}</th>
                     </tr>
@@ -200,7 +200,7 @@
                             class="btn btn-success btn-sm web-create-bg" (click)="addRepresentator()">{{ 'addNew' |
                             translate }}</button></th>
                     <th>{{ 'roles' | translate }}</th>
-                    <th>{{ 'designation' | translate }}</th>
+                    <th>{{ 'function' | translate }}</th>
                     <th class="text-center">{{ 'edit' | translate }}</th>
                     <th class="text-center">{{ 'delete' | translate }}</th>
                 </tr>
@@ -233,9 +233,14 @@
                             <option value="admin.view" *ngIf="representator.permission == 'admin.view'" selected>
                                 {{'viewOnly' | translate }}</option>
 
-                            <option value="admin.edit" *ngIf="representator.permission != 'admin.edit'">{{ 'editor' | translate
+                            <option value="admin.edit" *ngIf="representator.permission != 'admin.edit'">{{ 'editor' |
+                                translate
                                 }}</option>
-                            <option value="admin.edit" *ngIf="representator.permission == 'admin.edit'" selected>{{ 'editor' |
+                            <option value="admin.edit" *ngIf="representator.permission == 'admin.edit'" selected>{{
+                                'editor' |
+                                translate }}</option>
+                            <option value="transfer.ownership" *ngIf="representator.permission == 'transfer.ownership'"
+                                selected>{{ 'transferOwnership' |
                                 translate }}</option>
 
                             <!-- <option value="transfer.ownership" *ngIf="representator.permission != 'transfer.ownership'">
@@ -246,6 +251,7 @@
                         </select>
                     </td>
                     <td>{{ getMetaValue(representator.meta, 'designation') }}</td>
+                    <!-- <td>{{ representator.designation }}</td> -->
                     <td class="text-center">
                         <svg class="pointer" (click)="editRepresentator(representator)" width="24" height="24"
                             viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
