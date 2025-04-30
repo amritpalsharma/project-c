@@ -120,8 +120,8 @@
 
 
       <div class="container common_download_btns_page" *ngIf="!isLoading"> 
-        <a type="button" class="btn fill_btn donlod_btn_style"><i class="fa fa-download"></i> {{'downloadPDFTermsAndConditions' | translate}}</a> 
-        <a type="button" class="btn fill_btn donlod_btn_style"><i class="fa fa-download"></i> {{'downloadPDFCommunityGuidelines' | translate}}</a>
+        <a type="button" class="btn fill_btn donlod_btn_style" (click)="downloadPDf('terms')"><i class="fa fa-download"></i> {{'downloadPDFTermsAndConditions' | translate}}</a> 
+        <a type="button" class="btn fill_btn donlod_btn_style" (click)="downloadPDf('coummunity')"><i class="fa fa-download"></i> {{'downloadPDFCommunityGuidelines' | translate}}</a>
       </div>
     </div>
 

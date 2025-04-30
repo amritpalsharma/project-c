@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation  } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { WebPages } from '../../../services/webpages.service';
 @Component({
@@ -9,18 +9,18 @@ import { WebPages } from '../../../services/webpages.service';
 })
 export class PrivacyComponent implements OnInit {
   adVisible: boolean[] = [true, true, true]; // Array to manage ad visibility
-  banner_title:any = null;
-  page_content:any=null;
-  banner_img:any=null;
-  base_url:any=null;
-  advertisemnet_base_url:string = '';
+  banner_title: any = null;
+  page_content: any = null;
+  banner_img: any = null;
+  base_url: any = null;
+  advertisemnet_base_url: string = '';
 
-  isLoading : boolean = true;
-  btnLoading : boolean = true;
+  isLoading: boolean = true;
+  btnLoading: boolean = true;
   countdown: number = 10;
 
 
-  constructor( private webPages: WebPages,private sanitizer: DomSanitizer){
+  constructor(private webPages: WebPages, private sanitizer: DomSanitizer) {
 
   }
   ngOnInit() {
@@ -32,20 +32,20 @@ export class PrivacyComponent implements OnInit {
     });
   }
 
-  advertisementList : any =null;
+  advertisementList: any = null;
 
-  isActive : any ={
+  isActive: any = {
     skyscraper: true,
     wide_skyscraper: true,
     leaderboard: true,
-    large_leaderboard:true,
+    large_leaderboard: true,
     banner: true,
-    square:true,
+    square: true,
     small_square: true,
     large_rectangle: true,
     inline_rectangle: true,
   }
-  advertisementData:any = {
+  advertisementData: any = {
     skyscraper: {
       id: '1',
       featured_image: "leaderboard.png"
@@ -84,25 +84,25 @@ export class PrivacyComponent implements OnInit {
     },
   }
 
-  getPageData(languageId: any){ 
+  getPageData(languageId: any) {
     // languageId = 1;
-    this.webPages.getDynamicContentPage('privacy_policy',languageId).subscribe((res) => {
-      if(res.status){
-          this.banner_title = res.data.pageData.banner_title;
-          this.page_content = this.sanitizer.bypassSecurityTrustHtml(res.data.pageData.page_content);
-          this.banner_img = res.data.pageData.banner_img;
-          this.base_url =  res.data.base_url;
+    this.webPages.getDynamicContentPage('privacy_policy', languageId).subscribe((res) => {
+      if (res.status) {
+        this.banner_title = res.data.pageData.banner_title;
+        this.page_content = this.sanitizer.bypassSecurityTrustHtml(res.data.pageData.page_content);
+        this.banner_img = res.data.pageData.banner_img;
+        this.base_url = res.data.base_url;
 
-          
-          this.advertisemnet_base_url = res.data.advertisemnet_base_url;
-          this.advertisementData = res?.data?.advertisementData;
-          this.advertisementList = res?.data?.allAdsList;
 
-          
-          this.isLoading = false;
-          this.startCountdown();
+        this.advertisemnet_base_url = res.data.advertisemnet_base_url;
+        this.advertisementData = res?.data?.advertisementData;
+        this.advertisementList = res?.data?.allAdsList;
 
-        }
+
+        this.isLoading = false;
+        this.startCountdown();
+
+      }
     });
   }
 
@@ -123,10 +123,10 @@ export class PrivacyComponent implements OnInit {
 
   }
 
-  
 
-  isEmptyObject(obj:any) {
-    if(typeof obj != 'undefined'){
+
+  isEmptyObject(obj: any) {
+    if (typeof obj != 'undefined') {
       return (obj && (Object.keys(obj).length === 0));
     }
     return true;
@@ -156,6 +156,44 @@ export class PrivacyComponent implements OnInit {
   }
   ngAfterViewInit() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  async downloadPDf(type: string) {
+    let src = '../assets/pdf/'
+    let name;
+    let key;
+    if (type == 'terms') {
+      src += 'terms/';
+      name = 'Terms & Conditions';
+      key = 'Terms_Conditions';
+    } else if (type == 'coummunity') {
+      src += 'community_guidelines/';
+      name = 'Community Guidelines';
+      key = 'Community_Guidelines_2025';
+    } else if (type == 'privacy_policy') {
+      src += 'privacy_policy/';
+      name = 'Privacy Policy';
+      key = 'Privacy_Policy';
+    }
+    try {
+      let lang = localStorage.getItem('lang');
+      src += lang + '_' + key + '.pdf';
+      const response = await fetch(src);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const blob = await response.blob(); // Convert the response to a Blob object
+      const url = window.URL.createObjectURL(blob);
+      const anchor = document.createElement('a');
+      anchor.href = url;
+      anchor.download = name + `.pdf`; // Set the filename for download
+      document.body.appendChild(anchor);
+      anchor.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(anchor);
+    } catch (error) {
+      console.error('There was an error downloading the file:', error);
+    }
   }
 
 }
