@@ -327,10 +327,10 @@ export class ProfileTabComponent {
       if (stringifyData[key]) {
         return stringifyData[key];
       } else {
-        return "NA";
+        return "";
       }
     } else {
-      return "NA";
+      return "";
     }
   }
   getToasterMsg() {

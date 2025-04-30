@@ -10,6 +10,7 @@ import { TalentService } from '../../../../services/talent.service';
 import { TranslateService } from '@ngx-translate/core';
 import { AdminHelperService } from '../../../../services/admin-helper.service';
 import { SharedService } from '../../../../services/shared.service';
+import { Router } from '@angular/router';
 
 interface Notification {
   id: number;
@@ -48,7 +49,8 @@ export class NotificationsLogComponent {
     private talentService: TalentService,
     private translateService: TranslateService,
     public adminHelper: AdminHelperService,
-    private sharedservice: SharedService,) {
+    private sharedservice: SharedService,
+    private router: Router) {
     translateService.onLangChange.subscribe(() => {
       let langId;
       if (translateService.currentLang == 'en') {
@@ -101,6 +103,22 @@ export class NotificationsLogComponent {
     });
   }
 
+
+  handleNotiificationClick(notification: any) {
+    let role = (notification.senderRole || '').toString().toLowerCase();
+    console.log('notification', notification)
+    if (role === 'scout representator') {
+      role = 'scout';
+    }
+    if (role === 'admin representator') {
+      role = 'admin';
+    }
+    if (role === 'club representator') {
+      role = 'club';
+    }
+    this.router.navigate([`/admin/${role}`, notification.senderId]);
+
+  }
 
   onPageChange() {
     let langId = localStorage.getItem('lang_id');
@@ -191,7 +209,7 @@ export class NotificationsLogComponent {
   }
 
   getJsonTranslations() {
-    this.translateService.get(['confirmDeleteinformation3','selectNotificationFirst']).subscribe((translations) => {
+    this.translateService.get(['confirmDeleteinformation3', 'selectNotificationFirst']).subscribe((translations) => {
       this.deleteConfirmation3 = translations['confirmDeleteinformation3'];
       this.selectNotificationFirst = translations['selectNotificationFirst'];
       console.warn(this.selectNotificationFirst);

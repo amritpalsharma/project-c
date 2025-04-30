@@ -24,7 +24,7 @@ export class BlogPopupComponent implements OnInit, OnDestroy {
   editorFr!: Editor;
   editorEs!: Editor;
   editorPt!: Editor;
-  editorDk!: Editor;
+  editorDa!: Editor;
   editorSv!: Editor;
   title: string = "";
 
@@ -55,7 +55,7 @@ export class BlogPopupComponent implements OnInit, OnDestroy {
 
 
   content: string = '';
-  allContent: any = { en: '', de: '', it: '', fr: '', es: '', pt: '', dk: '', sv: '', }
+  allContent: any = { en: '', de: '', it: '', fr: '', es: '', pt: '', da: '', sv: '', }
   isLoading: boolean = false
   error: boolean = false
   errorMsg: any = {}
@@ -88,6 +88,7 @@ export class BlogPopupComponent implements OnInit, OnDestroy {
     this.roles = envRoles;
     // this.langs = environment.langs;
     this.langs = this.getAllLanguages();
+    console.log('languages', this.langs)
     this.locations = environment.domains;
   }
 
@@ -99,7 +100,7 @@ export class BlogPopupComponent implements OnInit, OnDestroy {
     this.editorFr = new Editor();
     this.editorEs = new Editor();
     this.editorPt = new Editor();
-    this.editorDk = new Editor();
+    this.editorDa = new Editor();
     this.editorSv = new Editor();
 
     this.editors = {
@@ -109,7 +110,7 @@ export class BlogPopupComponent implements OnInit, OnDestroy {
       fr: this.editorFr,
       es: this.editorEs,
       pt: this.editorPt,
-      da: this.editorDk,
+      da: this.editorDa,
       sv: this.editorSv
     };
 
@@ -180,6 +181,8 @@ export class BlogPopupComponent implements OnInit, OnDestroy {
               slug: value.slug
             }
           });
+
+          console.log("lang", this.langs)
       }
     });
   }
@@ -255,7 +258,7 @@ export class BlogPopupComponent implements OnInit, OnDestroy {
     if (validForm) {
       return false;
     }
-  
+
     let formData = new FormData();
 
     // formData.append("language", this.selectedLang+1);
@@ -269,7 +272,7 @@ export class BlogPopupComponent implements OnInit, OnDestroy {
     Object.entries(this.meta_titles).forEach(([key, value]) => {
       formData.append(`meta_title[${key}]`, value as string);
     });
-    
+
     Object.entries(this.meta_descriptions).forEach(([key, value]) => {
       formData.append(`meta_description[${key}]`, value as string);
     });
@@ -326,7 +329,7 @@ export class BlogPopupComponent implements OnInit, OnDestroy {
 
     let formData = new FormData();
 
-    formData.append("language", this.selectedLang+1);
+    formData.append("language", this.selectedLang + 1);
     formData.append("slug", this.slug);
     formData.append("status", "1");
 
@@ -337,7 +340,7 @@ export class BlogPopupComponent implements OnInit, OnDestroy {
     Object.entries(this.meta_titles).forEach(([key, value]) => {
       formData.append(`meta_title[${key}]`, value as string);
     });
-    
+
     Object.entries(this.meta_descriptions).forEach(([key, value]) => {
       formData.append(`meta_description[${key}]`, value as string);
     });
