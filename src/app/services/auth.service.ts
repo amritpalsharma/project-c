@@ -25,7 +25,8 @@ export class AuthService {
   }
 
   login(loginData: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/login`, loginData);
+    return this.http.post<any>(`https://apitest.socceryou.ch/api/login`, loginData);
+    // return this.http.post<any>(`${this.apiUrl}/login`, loginData);
   }
 
   resetPassword(newPassword: string, confirmPassword: string): Observable<any> {

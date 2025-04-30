@@ -1,7 +1,8 @@
 <div class="page-content">
   <div class="main-wrapper">
     <div class="card bg-color">
-      <button id="explore_filter_mobile" (click)="toggleFilterMobile()" *ngIf="deviceType == 'mobile'">{{'filter' | translate}}</button>
+      <button id="explore_filter_mobile" (click)="toggleFilterMobile()" *ngIf="deviceType == 'mobile'">{{'filter' |
+        translate}}</button>
       <div class="card-header border-0 py-0">
         <div class="table-responsive">
           <table class="table table-striped explore-table" [ngClass]="{'d-none': isHideFilter}">
@@ -185,9 +186,9 @@
                   <div class="card-shape" [class]="{'d-none':!getNationality(player.user_nationalities)}">
                   </div>
                   <div class="player-team-logo">
-                    <div *ngIf="player.current_club_logo" class="team-logo-bg">
+                    <div *ngIf="player.current_club_logo && player.role_name != 'Club'" class="team-logo-bg">
                     </div>
-                    <img *ngIf="player.current_club_logo" src="{{baseUrl + player.current_club_logo}}" alt="team-logo">
+                    <img *ngIf="player.current_club_logo && player.role_name != 'Club'" src="{{baseUrl + player.current_club_logo}}" alt="team-logo">
                   </div>
                   @if (getNationality(player.user_nationalities) ||player?.meta?.formation_date) {
                   <div class="flag_box" [class]="{'d-none':!getNationality(player.user_nationalities)}">

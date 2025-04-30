@@ -55,7 +55,7 @@ export class BlogPopupComponent implements OnInit, OnDestroy {
 
 
   content: string = '';
-  allContent: any = { en: '', de: '', it: '', fr: '', es: '', pt: '', da: '', sv: '', }
+  allContent: any = { en: '', de: '', it: '', fr: '', es: '', pt: '', dk: '', sv: '', }
   isLoading: boolean = false
   error: boolean = false
   errorMsg: any = {}

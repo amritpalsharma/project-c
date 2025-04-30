@@ -42,7 +42,7 @@
 
       <div *ngIf="bannerImagePreview" class="position-relative mt-2">
         <div class="image_cut">
-          <img [src]="bannerImagePreview" alt="Preview" class="img-thumbnail p-0" style="max-width: 150px;"/>
+          <img [src]="bannerImagePreview" alt="Preview" class="img-thumbnail p-0" style="max-width: 150px;" />
           <div class="close_image" *ngIf="bannerImagePreview" (click)="removeImage('banner_img')">
             <!-- <svg width="26px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
               <path
@@ -177,44 +177,44 @@
       <div *ngFor="let feature of formData.faq_first_btn_content; let i = index" class="card mb-3 p-3">
         <div class="row g-3">
           <div class="col-md-6">
-            <input 
-              type="text" 
-              [(ngModel)]="feature.title" 
-              class="form-control" 
-              [name]="'title_' + i + '_first'" 
-              placeholder="{{ 'title' | translate }}" 
-              required 
-            />
+            <input type="text" [(ngModel)]="feature.title" class="form-control" [name]="'title_' + i + '_first'"
+              placeholder="{{ 'title' | translate }}" required />
           </div>
           <div class="col-md-9">
-            <textarea 
+            <!-- <textarea 
               [(ngModel)]="feature.desc" 
               class="form-control" 
               [name]="'desc_' + i + '_first'" 
               placeholder="{{ 'description' | translate }}" 
               required
-            ></textarea>
+            ></textarea> -->
+            <!-- <div class="NgxEditor__Wrapper">
+              <ngx-editor-menu [editor]="editorFirst[i]" [toolbar]="toolbar" [colorPresets]="colorPresets"> </ngx-editor-menu>
+              <ngx-editor [editor]="editorFirst[i]" class="editor-width" name="page_content_{{i}}" [(ngModel)]="feature.desc"
+                [disabled]="false" [placeholder]="'description' | translate"></ngx-editor>
+            </div> -->
+            <ng-container *ngIf="editorFirst[i]">
+              <div class="NgxEditor__Wrapper">
+                <ngx-editor-menu [editor]="editorFirst[i]" [toolbar]="toolbar" [colorPresets]="colorPresets">
+                </ngx-editor-menu>
+                <ngx-editor [editor]="editorFirst[i]" class="editor-width" name="editorFirst{{i}}"
+                  [(ngModel)]="feature.desc" [placeholder]="'description' | translate">
+                </ngx-editor>
+              </div>
+            </ng-container>
           </div>
           <div class="col-md-3">
-            <button 
-              type="button" 
-              (click)="removeFirstButtonContent(i)" 
-              class="next_btn btn-danger btn-sm"
-            >
+            <button type="button" (click)="removeFirstButtonContent(i)" class="next_btn btn-danger btn-sm">
               {{ 'remove' | translate }}
             </button>
           </div>
         </div>
       </div>
-      <button 
-        type="button" 
-        (click)="addFirstButtonContent()" 
-        class="next_btn btn-sm mt-2"
-      >
+      <button type="button" (click)="addFirstButtonContent()" class="next_btn btn-sm mt-2">
         {{ 'addFirstButtonContent' | translate }}
       </button>
     </fieldset>
-    
+
 
     <!-- FAQ Second Button Content Section -->
     <fieldset class="border p-3 mb-4">
@@ -224,10 +224,19 @@
             <input type="text" [(ngModel)]="feature.title" class="form-control" name="title_{{ i }}_second"
               placeholder="{{ 'title' | translate }}" required />
           </div>
-          <div class="col-md-9">
+          <!-- <div class="col-md-9">
             <textarea [(ngModel)]="feature.desc" class="form-control" name="desc_{{ i }}_second"
               placeholder="{{ 'description' | translate }}" required></textarea>
-          </div>
+          </div> -->
+          <ng-container *ngIf="editorSecond[i]">
+            <div class="NgxEditor__Wrapper">
+              <ngx-editor-menu [editor]="editorSecond[i]" [toolbar]="toolbar" [colorPresets]="colorPresets">
+              </ngx-editor-menu>
+              <ngx-editor [editor]="editorSecond[i]" class="editor-width" name="editorSecond{{i}}"
+                [(ngModel)]="feature.desc" [placeholder]="'description' | translate">
+              </ngx-editor>
+            </div>
+          </ng-container>
           <div class="col-md-3">
             <button type="button" (click)="removeSecondButtonContent(i)" class="next_btn btn-danger btn-sm">
               {{ 'remove' | translate }}
@@ -249,8 +258,17 @@
               placeholder="{{ 'title' | translate }}" required />
           </div>
           <div class="col-md-9">
-            <textarea [(ngModel)]="feature.desc" class="form-control" name="desc_{{ i }}_third"
-              placeholder="{{ 'description' | translate }}" required></textarea>
+            <!-- <textarea [(ngModel)]="feature.desc" class="form-control" name="desc_{{ i }}_third"
+              placeholder="{{ 'description' | translate }}" required></textarea> -->
+            <ng-container *ngIf="editorThird[i]">
+              <div class="NgxEditor__Wrapper">
+                <ngx-editor-menu [editor]="editorThird[i]" [toolbar]="toolbar" [colorPresets]="colorPresets">
+                </ngx-editor-menu>
+                <ngx-editor [editor]="editorThird[i]" class="editor-width" name="editorThird{{i}}"
+                  [(ngModel)]="feature.desc" [placeholder]="'description' | translate">
+                </ngx-editor>
+              </div>
+            </ng-container>
           </div>
           <div class="col-md-3">
             <button type="button" (click)="removeThirdButtonContent(i)" class="next_btn btn-danger btn-sm">

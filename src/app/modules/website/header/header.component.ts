@@ -676,6 +676,7 @@ export class HeaderComponent implements OnInit {
         }
       },
       error => {
+        this.isLoading = false;
         console.error('An error occurred while logging in:', error);
       }
     );

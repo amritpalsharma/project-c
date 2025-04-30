@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { WebPages } from '../../../../../services/webpages.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Editor, Toolbar } from 'ngx-editor';
+import { environment } from '../../../../../../environments/environment';
 
 interface Language {
   id: string;
@@ -32,8 +33,9 @@ export class AddFaqPageComponent implements OnInit {
     ['ordered_list', 'bullet_list'],
     ['link', 'image'],
     ['text_color', 'background_color'],
-    ['align_left', 'align_center', 'align_right', 'align_justify'],
+    ['align_left', 'align_center', 'align_right', 'align_justify']
   ];
+  colorPresets :any = environment.colors;
   content: string = '';
   bannerImagePreview: string | ArrayBuffer | null = null;
   formData: any = {
@@ -55,7 +57,9 @@ export class AddFaqPageComponent implements OnInit {
     language: localStorage.getItem('lang'),
     lang_id: localStorage.getItem('lang_id'),
   };
-
+  editorFirst: Editor[] = [];
+  editorSecond: Editor[] = [];
+  editorThird: Editor[] = [];
   constructor(private webpages: WebPages, public dialogRef: MatDialogRef<AddFaqPageComponent>) { }
 
   ngOnInit(): void {
@@ -67,10 +71,14 @@ export class AddFaqPageComponent implements OnInit {
       this.formData.page_id = this.pageId;
       this.getPageById(this.pageId);
     }
+
   }
 
   ngOnDestroy(): void {
     this.editor.destroy();
+    this.editorFirst.forEach(editor => editor.destroy());
+    this.editorSecond.forEach(editor => editor.destroy());
+    this.editorThird.forEach(editor => editor.destroy());
   }
 
 
@@ -122,6 +130,19 @@ export class AddFaqPageComponent implements OnInit {
         this.formData.meta_title = response.data.meta_title;
         this.formData.meta_description = response.data.meta_description;
         this.bannerImagePreview = response.data?.pageData?.banner_img ? response.data.base_url + response.data.pageData.banner_img : null;
+
+        this.formData.faq_first_btn_content.forEach((item : any, index: any) => {
+          this.editorFirst[index] = new Editor();
+        });
+
+        this.formData.faq_sec_btn_content.forEach((item : any, index: any) => {
+          this.editorSecond[index] = new Editor();
+        });
+
+        this.formData.faq_third_btn_content.forEach((item : any, index: any) => {
+          this.editorThird[index] = new Editor();
+        });
+
       }
     });
   }
