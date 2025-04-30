@@ -93,6 +93,9 @@ import { AddClubnScoutPageComponent } from './website/web-pages/add-clubnscout-p
 import { AddFaqPageComponent } from './website/web-pages/add-faq-page/add-faq-page.component';
 import { AddPricingPageComponent } from './website/web-pages/add-pricing-page/add-pricing-page.component';
 import { NotificationsLogComponent } from './setting/notifications-log/notifications-log.component';
+import { EditorModule } from '@tinymce/tinymce-angular';
+
+
 export const MY_FORMATS = {
   parse: {
     dateInput: 'DD.MM.YYYY', // Parse input in DD.MM.YYYY format
@@ -197,7 +200,8 @@ export const MY_FORMATS = {
     NgxEditorModule,
     MatProgressSpinnerModule,
     NgxDatepickerModule,
-    CKEditorModule
+    CKEditorModule,
+    EditorModule
   ],
   providers: [
     UserService,

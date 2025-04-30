@@ -6,6 +6,12 @@ import { WebPages } from '../../../../../services/webpages.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Editor, Toolbar } from 'ngx-editor';
 import { environment } from '../../../../../../environments/environment';
+import { EditorConfigService } from '../../../../../services/editor-config.service';
+
+// import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+// import { CKEditor5 } from '@ckeditor/ckeditor5-angular';
+// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic'; // Use `* as` to avoid type mismatch
 
 interface Language {
   id: string;
@@ -23,6 +29,23 @@ interface Language {
   styleUrls: ['./add-faq-page.component.scss']
 })
 export class AddFaqPageComponent implements OnInit {
+
+
+  public editorData: string = '<p>Hello from CKEditor 5!</p>';
+  // getConfig
+  editorConfig:any;
+  // editorConfig = {
+  //   // base_url: '/assets/tinymce', // path to tinymce folder
+  //   // suffix: '.min',
+  //   apikey:'vtw0pppfq7efn33a7j0kgks14gccdq6g9dqbigz3vnj26ejy',
+  //   language: 'de', // 'en' or 'de'
+  //   language_url: '/assets/tinymce/langs/de.js',
+  //   plugins: 'lists link image table code',
+  //   toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | bullist numlist | link image table code',
+  //   skin_url: '/assets/tinymce/skins/ui/oxide',
+  //   content_css: '/assets/tinymce/skins/content/default/content.css',
+  // };
+
   @Input() pageId: any;
   @Input() pageType: any;
   @Input() languages: Language[] = [];
@@ -35,7 +58,7 @@ export class AddFaqPageComponent implements OnInit {
     ['text_color', 'background_color'],
     ['align_left', 'align_center', 'align_right', 'align_justify']
   ];
-  colorPresets :any = environment.colors;
+  colorPresets: any = environment.colors;
   content: string = '';
   bannerImagePreview: string | ArrayBuffer | null = null;
   formData: any = {
@@ -60,7 +83,18 @@ export class AddFaqPageComponent implements OnInit {
   editorFirst: Editor[] = [];
   editorSecond: Editor[] = [];
   editorThird: Editor[] = [];
-  constructor(private webpages: WebPages, public dialogRef: MatDialogRef<AddFaqPageComponent>) { }
+
+  editorContent = '';
+  lang = 'de'; // or dynamically based on user selection
+  config: any;
+
+  constructor(
+    private configService: EditorConfigService,
+    private webpages: WebPages,
+    public dialogRef: MatDialogRef<AddFaqPageComponent>
+  ) {
+    this.editorConfig = this.configService.getConfig(this.lang);
+  }
 
   ngOnInit(): void {
     this.editor = new Editor();
@@ -110,7 +144,7 @@ export class AddFaqPageComponent implements OnInit {
   removeFirstButtonContent(i: number): void {
     this.formData.faq_first_btn_content.splice(i, 1);
   }
-  removeSecondButtonContent(i: number): void {
+  removeSecondButtonContent(i: number): void { 
     this.formData.faq_sec_btn_content.splice(i, 1);
   }
   removeThirdButtonContent(i: number): void {
@@ -131,15 +165,15 @@ export class AddFaqPageComponent implements OnInit {
         this.formData.meta_description = response.data.meta_description;
         this.bannerImagePreview = response.data?.pageData?.banner_img ? response.data.base_url + response.data.pageData.banner_img : null;
 
-        this.formData.faq_first_btn_content.forEach((item : any, index: any) => {
+        this.formData.faq_first_btn_content.forEach((item: any, index: any) => {
           this.editorFirst[index] = new Editor();
         });
 
-        this.formData.faq_sec_btn_content.forEach((item : any, index: any) => {
+        this.formData.faq_sec_btn_content.forEach((item: any, index: any) => {
           this.editorSecond[index] = new Editor();
         });
 
-        this.formData.faq_third_btn_content.forEach((item : any, index: any) => {
+        this.formData.faq_third_btn_content.forEach((item: any, index: any) => {
           this.editorThird[index] = new Editor();
         });
 
@@ -165,8 +199,8 @@ export class AddFaqPageComponent implements OnInit {
         //   //   formData.append(`${key}[${index}]`, item);
         //   // });
         // } else {
-        
-          formData.append(key, this.formData[key]);
+
+        formData.append(key, this.formData[key]);
         // }
       }
 
@@ -175,7 +209,7 @@ export class AddFaqPageComponent implements OnInit {
     // Append lang_id to FormData
     formData.append('lang', String(localStorage.getItem('lang_id')));
 
-      console.log(formData);
+    console.log(formData);
     // Append specific club_nd_scout_section values (if they exist)
 
     this.webpages.addFaqPage(formData).subscribe(response => {

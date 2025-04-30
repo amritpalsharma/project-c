@@ -56,8 +56,8 @@
                             {{ isOpen[selectedTab][i] ? '-' : '+' }}
                         </span>
                     </div>
-                    <p class="faq-content" [ngClass]="{'faq-content-open': isOpen[selectedTab][i]}">
-                        {{ section.desc }}
+                    <p class="faq-content" [ngClass]="{'faq-content-open': isOpen[selectedTab][i]}" [innerHTML]="section.desc">
+                        
                     </p>
 
                 </div>
@@ -74,8 +74,8 @@
                             {{ isOpen[selectedTab][i] ? '-' : '+' }}
                         </span>
                     </div>
-                    <p class="faq-content" [ngClass]="{'faq-content-open': isOpen[selectedTab][i]}">
-                        {{ section.desc }}
+                    <p class="faq-content" [ngClass]="{'faq-content-open': isOpen[selectedTab][i]}" [innerHTML]="section.desc">
+                       
                     </p>
 
                 </div>
@@ -90,8 +90,8 @@
                             {{ isOpen[selectedTab][i] ? '-' : '+' }}
                         </span>
                     </div>
-                    <p class="faq-content" [ngClass]="{'faq-content-open': isOpen[selectedTab][i]}">
-                        {{ section.desc }}
+                    <p class="faq-content" [ngClass]="{'faq-content-open': isOpen[selectedTab][i]}" [innerHTML]="section.desc">
+                        <!-- {{ section.desc }} -->
                     </p>
 
                 </div>

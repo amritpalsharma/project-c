@@ -70,19 +70,19 @@
     <div class="list-view">
       <h6 class="mb-2">{{ 'nextPaymentDue' | translate }}:</h6>
       <h6 class="mb-2 font-w400" *ngIf="user.plan_period_end">{{user.plan_period_end | date:'MMM d, y' }} / {{user.plan_interval}} cycle</h6>
-      <h6 class="mb-2 font-w400" *ngIf="!user.plan_period_end">NA</h6>
+      <!-- <h6 class="mb-2 font-w400" *ngIf="!user.plan_period_end">NA</h6> -->
       <h6 class="text-light font-w400">{{'viewPaymentDetails' | translate}}</h6>
     </div>
     <div class="list-view">
       <h6 class="mb-2">{{ 'lastPayment' | translate }}:</h6>
       <h6 class="mb-2 font-w400" *ngIf="user.plan_period_start">{{user.plan_period_start | date:'MMM d, y' }}</h6>
-      <h6 class="mb-2 font-w400" *ngIf="!user.plan_period_start">NA</h6>
+      <!-- <h6 class="mb-2 font-w400" *ngIf="!user.plan_period_start">NA</h6> -->
       <h6 class="text-light font-w400">{{'viewInvoice' | translate}}</h6>
     </div>
     <div class="list-view">
       <h6 class="mb-2">{{ 'voucherApplied' | translate }}:</h6>
       <h6 class="mb-2 font-w400" *ngIf="user.coupon_used">{{user.coupon_used}}</h6>
-      <h6 class="mb-2 font-w400" *ngIf="!user.coupon_used">NA</h6>
+      <!-- <h6 class="mb-2 font-w400" *ngIf="!user.coupon_used">NA</h6> -->
     </div>
     <div class="list-view">
       <h6 class="mb-2">{{ 'paymentMethod' | translate }}:</h6>
@@ -107,7 +107,7 @@
           </defs>
         </svg>
         <h6 class="mb-2 font-w400" *ngIf="user.last4">••••••••{{user.last4}}</h6>
-        <h6 class="mb-2 font-w400" *ngIf="!user.last4">NA</h6>
+        <!-- <h6 class="mb-2 font-w400" *ngIf="!user.last4">NA</h6> -->
       </div>
     </div>
 

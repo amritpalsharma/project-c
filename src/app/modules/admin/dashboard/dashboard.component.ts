@@ -480,7 +480,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
     const screenSize = window.innerWidth;
 
-    if(screenSize<=480){
+    if (screenSize <= 480) {
       style = {
         data: values,
         borderWidth: 4,
@@ -490,8 +490,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         pointBorderColor: '#FFFFFF',
         pointRadius: 5,
         weight: 700,
-  
-  
+
+
         fill: {
           target: 'origin',
           above: 'rgba(11, 149, 100, 0.08)',
@@ -508,7 +508,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
     let color = '#878787';
 
-    if(localStorage.getItem('theme') != 'light'){
+    if (localStorage.getItem('theme') != 'light') {
       color = '#fff';
     }
 
@@ -521,13 +521,14 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         responsive: true,
         scales: {
           y: {
-            
+
             stacked: false,
             beginAtZero: true,
             grid: { display: false },
-            ticks: { display: false,
+            ticks: {
+              display: false,
               // color: color
-             },
+            },
             border: { display: false },
           },
           x: {
@@ -993,7 +994,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       console.log('Title fetch Function Fired');
     })
   }
-  
+
   userRoleIn(userRole: string): boolean {
     const allowedRoles = [
       'Club',
@@ -1004,10 +1005,22 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       'Talent',
       'Talento'
     ];
-  
+
     return allowedRoles.includes(userRole);
   }
-  
+
+  userRoleClubOrClubRep(userRole: string): boolean {
+    const allowedRoles = [
+      'Club',
+      'Clube',
+      'Klub',
+      'Klubb',
+      'Club Representator',
+      'Vereinsvertreter',
+    ];
+    return allowedRoles.includes(userRole);
+  }
+
 }
 
 // @Component({

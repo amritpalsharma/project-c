@@ -19,11 +19,14 @@
                 </div>
             </div>
             <div class="card-body p-0">
-                <div class="chat_row d-flex h-100" style="min-height: 68vh;" >
-                    <div class="col-lg-12 border-end px-0 " id="talkjs-container" [ngClass]="{ 'invisible': isLoading }">
+                <div class="chat_row d-flex h-100" style="min-height: 68vh;">
+                    <div class="col-lg-12 border-end px-0 " id="talkjs-container"
+                        [ngClass]="{ 'invisible': isLoading }">
                     </div>
-                    <div *ngIf="isLoading">
-                        <app-loader></app-loader>
+                    <div class="col-sm-12">
+                        <div *ngIf="isLoading">
+                            <app-loader></app-loader>
+                        </div>
                     </div>
                 </div>
             </div>
