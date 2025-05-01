@@ -745,7 +745,7 @@ input:checked+.slider:before {
   margin-left: 15px;
   padding: 5px 15px;
   padding-right: 30px;
-  border: 0.7px solid #e5e5e5;
+  border: 0.7px solid rgb(12 52 83);
   color: #ffffff;
   // border-color: transparent;
   background: #0C3453 url(./assets/images/select-arrow-white.svg) no-repeat right 8px center;
@@ -753,6 +753,12 @@ input:checked+.slider:before {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+}
+
+.dark-theme .table-main-header.mobile_no_scroll {
+select {
+  background: rgb(7, 41, 68) url(./assets/images/select-arrow-white.svg) no-repeat right 8px center;
+}
 }
 
 .table_title span {

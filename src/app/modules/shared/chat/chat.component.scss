@@ -8,7 +8,9 @@
   width: 700px;
   height: 600px;
 }
-
+.Hub {
+  margin-left: 0 !important;
+}
 
 .header {
   background-color: #4CAF50 !important;
@@ -44,10 +46,16 @@
     height: 20px;
     width: 20px;
   }
-
+  a.btn.btn-success.btn-sm.web-create-bg {
+    padding: 8px;
+    font-size: 14px;
+}
 }
 
 @media(max-width: 360px) {
+  .card .card-header {
+    padding: 0 9px 10px;
+}
   .btn-outline-white {
     padding: 3px;
     border: 1px solid #D9D9D9;

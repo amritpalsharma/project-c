@@ -61,6 +61,8 @@
   margin-top: 1px;
   padding: 0px 5px;
   letter-spacing: .3px;
+  display: inline-flex;
+  align-items: center;
 }
 
 .back-and-add-container {
@@ -125,6 +127,10 @@
       height: 33px;
       margin-right: 4px;
 }
+.btn.web-create-bg {
+  font-size: 22px !important;
+  margin-bottom: 10px !important;
+}
 }
 
 @media (min-width: 3000px) {
@@ -135,5 +141,9 @@
     width: 40px;
       height: 40px;
       margin-right: 4px;
+}
+.btn.web-create-bg {
+  font-size: 28px !important;
+  margin-bottom: 10px !important;
 }
 }
