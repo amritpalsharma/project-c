@@ -7,6 +7,7 @@ import { CouponCodeAlertComponent } from '../../../shared/coupon-code-alert/coup
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
 import { WebPages } from '../../../../services/webpages.service';
+import { UpdateConfirmationPlanComponent } from '../../../shared/update-confirmation-plan/update-confirmation-plan.component';
 
 @Component({
   selector: 'add-booster',
@@ -29,11 +30,14 @@ export class AddBoosterComponent {
   id: any;
   loggedInUser: any = localStorage.getItem('userInfo');
 
-  theme : any = localStorage.getItem('theme');
-  userNationality : string = '';
+  theme: any = localStorage.getItem('theme');
+  userNationality: string = '';
 
   pleaseWait: string = '';
   Processing: string = '';
+
+  plan: any;
+  boostedPlans: any;
 
   constructor(
     public dialogRef: MatDialogRef<AddBoosterComponent>,
@@ -51,11 +55,13 @@ export class AddBoosterComponent {
 
     this.loggedInUser = JSON.parse(this.loggedInUser);
     let userNationalities = JSON.parse(this.loggedInUser?.user_nationalities);
-    if(userNationalities && typeof userNationalities != undefined){
+    if (userNationalities && typeof userNationalities != undefined) {
       this.userNationality = userNationalities[0]?.flag_path ? userNationalities[0]?.flag_path : '';
     }
-    console.warn('this.data',this.data);
+    console.warn('this.data', this.data);
     this.id = this.data.id || [];
+    this.plan = this.data.plan;
+    this.boostedPlans = this.data.boostedPlans;
     this.stripe = await this.paymentService.getStripe();
 
     this.getToasterMsg();
@@ -95,9 +101,67 @@ export class AddBoosterComponent {
   }
 
   saveBoost() {
+    if (this.plan.interval == 'monthly' && this.boostedPlans.isYearly) {
+      // console.info('user need to upgrade plan from montly to yearly');
+      this.updatePlan(this.boostedPlans, true, this.plan);
+      return;
+    } else if (this.plan.interval == 'yearly' && !this.boostedPlans.isYearly) {
+      // console.info('user need to downgraded plan from yearly to monthly');
+      this.updatePlan(this.boostedPlans, false, this.plan);
+      return;
+    }
     this.openCouponDialog()
   }
 
+  updatePlan(plan: any, isYearly: boolean, subscribeId: any) {
+    const originalIsYearly = plan.isYearly;
+
+    const newPlanId = isYearly ? plan.yearly : plan.monthly;
+
+    const dialogRef = this.dialog.open(UpdateConfirmationPlanComponent, {
+      data: { plan, isYearly }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.updateSubscription(subscribeId.id, newPlanId.id);
+      } else {
+        plan.isYearly = originalIsYearly;
+      }
+    });
+  }
+
+
+  updateSubscription(oldId: any, newId: any) {
+
+    this.toastr.info(this.Processing, this.pleaseWait, { disableTimeOut: true });
+
+    // this.getUserPlans();
+
+    this.paymentService.upgradeSubscription(oldId, newId).subscribe(
+      response => {
+        if (response && response.status) {
+
+          this.toastr.clear();
+          if (response.message != '' && response.message != undefined) {
+            this.toastr.success(response.message);
+          } else {
+            this.toastr.success('Plan has been updated successfully.');
+          }
+          // this.getUserPlans();
+        } else {
+          this.toastr.clear();
+          this.toastr.error('Failed to update subscription. Please try again.');
+          console.error('Failed to update subscription', response);
+        }
+      },
+      error => {
+        this.toastr.clear();
+        this.toastr.error('Error updating subscription. Please try again later.');
+        console.error('Error updating subscription:', error);
+      }
+    );
+  }
   // Open coupon dialog
   openCouponDialog(): void {
     const dialogRef = this.dialog.open(CouponCodeAlertComponent, {

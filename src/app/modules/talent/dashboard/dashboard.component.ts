@@ -24,6 +24,7 @@ import { GlobalSettingsService } from '../../../services/global-settings.service
 import { ImageCropperComponent2 } from '../../shared/image-cropper/image-cropper.component';
 import { SocketService } from '../../../services/socket.service';
 import { UnverifiedUserComponent } from '../../shared/unverified-user/unverified-user.component';
+import { PopupComponent } from '../../shared/popup/popup.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -144,6 +145,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     this.getUserStatus();
     // this.themeChanged();
+    this.openPopup();
   }
 
   getUserStatus() {
@@ -509,6 +511,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
           this.countries = response.data.countries;
         }
       });
+  }
+
+  openPopup() {
+    this.dialog.open(PopupComponent, {
+      width: '500px',
+      position: {
+        top: '150px'
+      },
+    })
   }
 
   openEditDialog() {

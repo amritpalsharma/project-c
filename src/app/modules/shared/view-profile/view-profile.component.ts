@@ -442,11 +442,17 @@ export class ViewProfileComponent implements OnInit {
     if(this.currentUserRole == 'club' || this.currentUserRole == 'klubb' || this.currentUserRole == 'klub' || this.currentUserRole == 'Clube' && this.user.club_logo != '' && this.user.club_logo != undefined){
       this.user.meta.profile_image =  this.user.club_logo;
     }
+
+    if(typeof this.user.meta.profile_image === undefined){
+      this.user.meta.profile_image = 'no_img.png';
+    }
+    // console.log('this.user.this.user',this.user);
+    // return;
     if (this.user) {
       
       const userData = {
         id: this.user.id,
-        name: this.user.first_name+ ''+this.user.last_name,
+        name: this.user.first_name+' '+this.user.last_name,
         email: this.user.email,
         photoUrl: this.baseUrl + this.user.meta.profile_image
       };
@@ -466,7 +472,7 @@ export class ViewProfileComponent implements OnInit {
         queryParams: { open_chat: 'true' }
       });
     } else {
-      console.warn('No userData available');
+      console.warn('No userData available and this.user is ',this.user);
     }
   }
 

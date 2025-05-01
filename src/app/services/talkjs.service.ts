@@ -9,7 +9,8 @@ export class TalkService {
   private session: Talk.Session | null = null;
   private user: Talk.User | undefined;
   private inbox: Talk.Inbox | undefined;
-
+  // selectedConversationId: string | null = null;
+  selectedConversationId: string | null = null;
   constructor() { }
 
   // Generate a unique ID using Date and Math.random
@@ -157,7 +158,7 @@ export class TalkService {
     }
   }
 
-  toggleTheme(isDarkModeEnabled: boolean): void {
+  toggleTheme30042025(isDarkModeEnabled: boolean): void {
     if (!this.session) {
       console.error('TalkJS session not initialized');
       return;
@@ -172,6 +173,40 @@ export class TalkService {
     // Optionally re-mount immediately or allow the component to handle mounting
     this.inbox.mount(document.getElementById('talkjs-container') as HTMLElement);
   }
+
+  toggleTheme(isDarkModeEnabled: boolean): void {
+    if (!this.session) {
+      console.error('TalkJS session not initialized');
+      return;
+    }
+
+    // Get current conversation ID before destroying the inbox
+    // const selectedConversationId = this.inbox?.getSelectedConversation()?.id;
+
+    // Destroy old inbox
+    if (this.inbox) {
+      this.inbox.destroy();
+    }
+
+    // Create new inbox with the new theme
+    this.inbox = this.session.createInbox({
+      theme: isDarkModeEnabled ? 'dark_custom' : 'default'
+    });
+    if (this.selectedConversationId) {
+      const conversation = this.session.getOrCreateConversation(this.selectedConversationId);
+      this.inbox.select(conversation);
+    }
+
+    // Mount the new inbox
+    this.inbox.mount(document.getElementById('talkjs-container') as HTMLElement);
+
+    // Restore the selected conversation (if available)
+    // if (selectedConversationId) {
+    //   this.inbox.select(selectedConversationId);
+    // }
+
+  }
+
 
   public changeLocale(newLocale: string): void {
     if (!this.session || !this.user) {
@@ -238,8 +273,8 @@ export class TalkService {
 
   startChatWithUser(otherUserData: any) {
     const userDataString = localStorage.getItem('userData');
-    console.info('your chat is starts with ',otherUserData);
-    if (userDataString) {
+
+    if (userDataString && otherUserData) {
       let userData = JSON.parse(userDataString);
       let userArr = {
         id: userData.id,
@@ -249,22 +284,37 @@ export class TalkService {
         welcomeMessage: null,
         role: (userData.role == '1') ? "hidden" : "default"
       };
-  
+
       const currentUser = new Talk.User(userArr);
       const otherUser = new Talk.User(otherUserData);
-  
+
       const session = new Talk.Session({ appId: 'tmI75KXB', me: currentUser });
-  
+
       const conversation = session.getOrCreateConversation(Talk.oneOnOneId(currentUser, otherUser));
+
       conversation.setParticipant(currentUser);
       conversation.setParticipant(otherUser);
-  
-      const inbox = session.createInbox();
+      // this.selectedConversationId = conversation.id;
+      const conversationId = Talk.oneOnOneId(currentUser, otherUser);
+      // session.updateUser(otherUser);
+      this.selectedConversationId = conversationId;
+
+      let inbox;
+      const theme = localStorage.getItem('theme');
+      if (theme === 'dark') {
+        inbox = session.createInbox({ theme: 'dark_custom' });
+      } else {
+        inbox = session.createInbox();
+      }
       inbox.select(conversation); // optional: opens the specific chat
       inbox.mount(document.getElementById('talkjs-container'));
+
+      // if (conversation?.id) {
+      //   this.selectedConversationId = conversation.id;
+      // }
     }
   }
-  
+
 
 
 

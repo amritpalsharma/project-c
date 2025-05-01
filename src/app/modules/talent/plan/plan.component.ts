@@ -557,8 +557,7 @@ export class PlanComponent implements OnInit, OnDestroy {
 
   updateSubscription(oldId: any, newId: any) {
 
-    // this.toastr.info('Updating Plan, Please wait...', 'Loading', { disableTimeOut: true });
-    this.toastr.info(this.pleaseWait, this.Processing, { disableTimeOut: true });
+    this.toastr.info(this.Processing, this.pleaseWait, { disableTimeOut: true });
 
     this.getUserPlans();
 
@@ -567,7 +566,11 @@ export class PlanComponent implements OnInit, OnDestroy {
         if (response && response.status) {
 
           this.toastr.clear();
-          // this.toastr.success('Plan has been updated successfully.');
+          if (response.message != '' && response.message != undefined) {
+            this.toastr.success(response.message);
+          } else {
+            this.toastr.success('Plan has been updated successfully.');
+          }
           this.getUserPlans();
         } else {
           this.toastr.clear();
@@ -647,6 +650,8 @@ export class PlanComponent implements OnInit, OnDestroy {
       width: '850px',
       data: {
         id: planId,
+        plan: this.booster,
+        boostedPlans: this.boostedPlans
       }
     });
 

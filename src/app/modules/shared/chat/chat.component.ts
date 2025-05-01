@@ -209,14 +209,15 @@ export class ChatComponent {
       const otherUser = JSON.parse(otherUserData);
       // this.startOneOnOneChat(otherUser);
       this.talkService.startChatWithUser(otherUser);
+      // localStorage.setItem('otherUserData','');
     }
 
     setTimeout(() => {
       this.isLoading = false;
-      const theme = localStorage.getItem('theme');
-      if (theme === 'dark') {
-        this.talkService.toggleTheme(true);
-      }
+      // const theme = localStorage.getItem('theme');
+      // if (theme === 'dark') {
+      //   this.talkService.toggleTheme(true);
+      // }
     }, 1500);
   }
 
