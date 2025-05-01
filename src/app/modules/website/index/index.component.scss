@@ -5017,6 +5017,11 @@ h3, .text_side_wrapper p {
   h3, .works h3 {
     font-size: 45px;
   }
+  .work-text:not(:last-child).active::after {
+    left: -100px;
+    font-size: 40px;
+    width: 35px;
+  }
 }
 
 @media (min-width: 2000px) {
@@ -5031,6 +5036,11 @@ h3, .text_side_wrapper p {
   }
   .banner-inner {
     padding-top: 400px;
+  }
+  .work-text:not(:last-child).active::after {
+    left: -100px;
+    font-size: 50px;
+    width: 45px;
   }
 }
 
@@ -5050,5 +5060,10 @@ h3, .text_side_wrapper p {
 .works {
   height: auto !important;
   padding-bottom: 22%;
+}
+.work-text:not(:last-child).active::after {
+  left: -30px;
+  width: 45px;
+  font-size: 50px;
 }
 }
