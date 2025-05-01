@@ -37,14 +37,11 @@
                 </div>
               </div>
               <!-- Add a loader in your template -->
-              <div *ngIf="loading" class="loader-container py-5">
-                <div class="loader"></div>
-                <p>{{'loading' | translate}}</p>
-              </div>
+
 
               <!-- The rest of your content goes here -->
-              <div *ngIf="!loading">
-                <div class="user-media text-center ">
+              <div >
+                <div class="user-media text-center " *ngIf="!photoLoading">
                   <img *ngIf="profileImage" [src]="profileImage" alt="" class="" />
                   <img *ngIf="!profileImage" src="../../../../assets/images/default/talent-profile-default.png" class=""
                     alt="" />
@@ -93,8 +90,11 @@
                     </a>
                   </div>
                 </div>
-
-                <div class="bg-color card-bg">
+                <div *ngIf="loading" class="loader-container py-5">
+                  <div class="loader"></div>
+                  <p>{{'loading' | translate}}</p>
+                </div>
+                <div class="bg-color card-bg" *ngIf="!loading">
                   <div class="user-info pt-3 row align-items-center justify-content-between p-3 responsive-name">
                     <div class="col-md-8 d-flex align-items-center player-name-box">
                       <h6 class="user-info-name">

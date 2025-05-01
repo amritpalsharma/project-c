@@ -38,6 +38,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   loggedInUser: any = localStorage.getItem('userData');
   countryFlagUrl: string = './assets/images/city-icon-light.png';
   pageTitle: string = '';
+  photoLoading:boolean=true;
 
 
   constructor(
@@ -117,9 +118,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.isUserVerified = false;
     this.webPages.languageId$.subscribe((data) => {
       this.getUserProfile(this.userId);
-      this.getHighlightsData();
+      // this.getHighlightsData();
       this.loadCountries();
-      this.getGalleryData();
+      // this.getGalleryData();
       this.getJsonTranslations();
     });
 
@@ -386,6 +387,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
             // this.countryFlagUrl = this.user?.meta?.birth_country_flag;
           }
           this.isPremium = this.user?.active_subscriptions?.premium.length > 0 ? true : false;
+          this.photoLoading = false;
           // this.isPremium = true;
           // if (this.StartTour && this.isTourFirstTime) {
           if (true) {
