@@ -129,6 +129,20 @@ input.template-name-inputField {
     border-color: #6fb95d!important;
 }
 
+
+::ng-deep .dark-theme .mat-mdc-tab .mdc-tab__text-label {
+    color: #fff !important;
+}
+::ng-deep .dark-theme .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
+    color: #072944 !important;
+}
+::ng-deep .dark-theme .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs>.mat-mdc-tab-header .mat-mdc-tab.mdc-tab--active {
+    background: #BDE34F!important;
+}
+::ng-deep .dark-theme .mat-mdc-tab .mdc-tab-indicator__content--underline {
+    border-color: #BDE34F!important;
+}
+
 @media (max-width: 575px) {
     .mobile_btn_wrap {
         flex-wrap: wrap;

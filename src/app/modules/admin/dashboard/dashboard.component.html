@@ -99,7 +99,7 @@
     </div>
 
     <div class="dashboard_table-2 mt-2 mt-lg-4">
-      <div class="table_title table-main-header">
+      <div class="table_title table-main-header mobile_no_scroll">
         <div class="d-flex align-items-center">
           <div>
             <p>{{ 'newRegistrations' | translate }}</p>
@@ -130,9 +130,9 @@
         <div class="view-all text-end ">
           <a href="admin/users">{{ 'view' | translate }} </a>
         </div>
-
       </div>
-      <table class="table user-dash-table overflow-auto ">
+      <div class="table-responsive">
+      <table class="table user-dash-table">
         <thead class="dashboard-table-2-table-head">
           <tr>
 
@@ -191,6 +191,7 @@
           </tr>
         </tbody>
       </table>
+    </div>
     </div>
     <!-- <app-footer></app-footer> -->
   </div>

@@ -928,6 +928,37 @@ p.club-p {
   height: 100%;
   background-color: #6FB95D;
 }
+.work-text:not(:last-child).active::after {
+  content: "🡣";
+  position: absolute;
+	margin: 0 auto;
+	left: 0; 
+  right: 0;
+  width: 25px;
+  height: 35px;
+  font-size: 30px;
+  color: #6FB95D;
+  animation: arrow-pulse-down 1000ms linear infinite;
+}
+@keyframes arrow-pulse-down {
+  0% {
+    bottom: -20px;
+    opacity: 0;
+  }
+  25% {
+    opacity: .25;
+  }
+  50% {
+    opacity: .5;
+  }
+  75% {
+    opacity: .75;
+  }
+  100% {
+    bottom: -50px;
+    opacity: 1;
+  }
+}
 
 .work-text .progress_btn a.active {
   color: white;
@@ -4959,6 +4990,9 @@ h3, .text_side_wrapper p {
 .club_players .text_side_wrapper .join-text p {
   font-size: 16px !important;
 }
+.work-text:not(:last-child).active::after {
+  display: none;
+}
 }
 
 @media (min-width: 992px) and (max-width: 1599px) {
@@ -4983,6 +5017,11 @@ h3, .text_side_wrapper p {
   h3, .works h3 {
     font-size: 45px;
   }
+  .work-text:not(:last-child).active::after {
+    left: -100px;
+    font-size: 40px;
+    width: 35px;
+  }
 }
 
 @media (min-width: 2000px) {
@@ -4997,6 +5036,11 @@ h3, .text_side_wrapper p {
   }
   .banner-inner {
     padding-top: 400px;
+  }
+  .work-text:not(:last-child).active::after {
+    left: -100px;
+    font-size: 50px;
+    width: 45px;
   }
 }
 
@@ -5016,5 +5060,10 @@ h3, .text_side_wrapper p {
 .works {
   height: auto !important;
   padding-bottom: 22%;
+}
+.work-text:not(:last-child).active::after {
+  left: -30px;
+  width: 45px;
+  font-size: 50px;
 }
 }

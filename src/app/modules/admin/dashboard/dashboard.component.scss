@@ -65,7 +65,9 @@
 .dashboard_table .nav-tabs .nav-item {
   width: 33.3%;
 }
-
+.dashboard_table-2 {
+  overflow: unset;
+}
 
 
 
@@ -166,9 +168,9 @@ tr td:last-child {
   .search-area {
     width: 9.063rem;
   }
-
-  .table-main-header {
-    min-width: 560px;
+  
+  .table_title.mobile_no_scroll {
+    min-width: 100%;
   }
   table.table.user-dash-table tr:not(:last-child) {
     border-bottom: 1px solid #8080801f;
@@ -225,7 +227,14 @@ tr td:last-child {
     // padding: 5px 10px !important;
 }
   }
-
+  .table_title.mobile_no_scroll .d-flex.align-items-center {
+    align-items: flex-start !important;
+    flex-direction: column;
+    select {
+      margin-left: 0;
+      margin-top: 10px;;
+    }
+  }
 }
 
 @media(max-width: 360px) {

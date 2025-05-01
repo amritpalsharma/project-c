@@ -5,7 +5,6 @@
   </div>
   <div class="popup__body news_content_form_popup px-0">
     <div class="container">
-
       <div class="row">
         <!-- <div class="col-12 col-sm-6 col-lg-5">
           <div class="form-group template-name-input">
@@ -38,8 +37,6 @@
           </div>
         </div> -->
       </div>
-
-
       <!-- <div class="col-12 col-sm-6 col-lg-5">
         <div class="form-group">
           <label class="text-size">{{ 'language' | translate }}</label>
@@ -59,8 +56,6 @@
           </div>
         </div>
       </div> -->
-
-
       <!-- <div class="col-12 col-sm-6 col-lg-5">
         <div class="form-group">
           <label class="text-size">{{ 'status' | translate }}:</label>
@@ -72,14 +67,11 @@
           </div>
         </div>
       </div> -->
-
       <mat-tab-group [(selectedIndex)]="selectedLang">
         <mat-tab *ngFor="let lang of langs; let i = index" [label]="lang.language" [ngClass]="'text-size'">
           <ng-template matTabContent>
-            <div class="container mt-4">
-              
+            <div class="mt-4">
               <div class="row">
-  
                 <!-- Name -->
                 <div class="col-lg-6">
                   <div class="form-group template-name-input">
@@ -141,9 +133,6 @@
           </ng-template>
         </mat-tab>
       </mat-tab-group>
-
-
-
     </div>
   </div>
 

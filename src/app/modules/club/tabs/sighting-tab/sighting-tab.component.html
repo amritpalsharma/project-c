@@ -211,7 +211,7 @@
 <div *ngIf="view == 'detail' && isPremium" class="tab-content-2 Favorite-parent bg-0C3453" id="myTabContent-2">
     <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
       
-      <div class="d-flex align-items-center justify-content-between" >
+      <div class="d-flex align-items-center justify-content-between view_back_sight" >
         <div class="d-flex align-items-center">
           <h2 class="card-title mb-0 me-3">
             <span class="back-link">
@@ -222,19 +222,20 @@
             {{'sighting' | translate}}
           </h2>
           <button class="invite-talent-btn" (click)="inviteTalentsPopup(sightingData?.event_name)">{{ 'inviteTalents' | translate }}</button>
-          <div  *ngIf="!isLoading" class="invited-image d-flex align-items-center">
-            <h2>{{ 'invited' | translate }}</h2>
-            <div class="invited-image_box pointer" (click)="viewInvitees(playersInvited)">
-              <img *ngFor="let item of playersInvitedFirstFour; let i = index" src="{{getImageUrl(item.profile_image_path)}}" class="invited-img-{{i + 1}}">
-            </div>
-
+          
+        </div>
+        <div  *ngIf="!isLoading" class="invited-image d-flex align-items-center">
+          <h2>{{ 'invited' | translate }}</h2>
+          <div class="invited-image_box pointer" (click)="viewInvitees(playersInvited)">
+            <img *ngFor="let item of playersInvitedFirstFour; let i = index" src="{{getImageUrl(item.profile_image_path)}}" class="invited-img-{{i + 1}}">
           </div>
+
         </div>
       </div>
       
       <app-loader *ngIf="isLoading"></app-loader>
 
-      <div class="container" *ngIf="!isLoading">
+      <div class="container-fluid" *ngIf="!isLoading">
         <div class="row sighting-bg mt-3 dark_mode_sighting-bg">
             <div class="col-md-6 px-0">
                     <img *ngIf="sightingData.banner" src="{{imageBaseUrl}}{{sightingData.banner}}" alt="Sighting Image" class="img-fluid" style="max-height:170px;">

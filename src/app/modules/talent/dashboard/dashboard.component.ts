@@ -146,7 +146,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     this.getUserStatus();
     // this.themeChanged();
-    this.openPopup();
+    // this.openPopup();
   }
 
   getUserStatus() {
