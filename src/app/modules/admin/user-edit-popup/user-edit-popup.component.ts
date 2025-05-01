@@ -46,7 +46,7 @@ export class UserEditPopupComponent {
   contractUntil: any = "";
   speed: any = "";
   height: any = "";
-  otherPosition: any = "";
+  otherPosition: any = [];
   playerClubsListing: any = [];
   playerClub: any = "";
   playerCountries: any = [];
@@ -68,7 +68,7 @@ export class UserEditPopupComponent {
         this.getClubsForPlayer();
       }
     }
-    console.log(this.data)
+    console.info('user',this.data)
   }
 
   ngOnInit() {
@@ -98,7 +98,21 @@ export class UserEditPopupComponent {
     this.contractUntil = this.data?.meta?.contract_end;
     this.speed = this.data?.meta?.top_speed;
     this.height = this.data?.meta?.height;
-    this.otherPosition = this.data?.meta?.other_position;
+    // this.otherPosition = this.data?.meta?.other_position;
+
+    let otherPositions = this.data.positions;
+    if (otherPositions) {
+      otherPositions = JSON.parse(otherPositions);
+      console.info('otherPositions',otherPositions);
+      for (let n of otherPositions) {
+        if(n.main_position == 1){
+            console.info('position id '+n.position_id+' and position name '+n.position_name+ ' is skip from otherPosition')
+        }else{
+          console.info('position id '+n.position_id+' and position name '+n.position_name+ ' is added in otherPosition')
+          this.otherPosition.push(String(n.position_id))
+        }
+      }
+    }
 
     this.sm_x = this.data?.meta?.sm_x
     this.sm_facebook = this.data?.meta?.sm_facebook
@@ -322,7 +336,10 @@ export class UserEditPopupComponent {
     formdata.append('user[top_speed_unit]', 'KM/h');
     formdata.append('user[height]', this.height);
     formdata.append('user[height_unit]', 'cm');
-    formdata.append('user[other_position][]', this.otherPosition);
+    // formdata.append('user[other_position][]', this.otherPosition);
+    this.otherPosition.map(function (position: any, index: any) {
+      formdata.append('user[other_position][]', position);
+    });
 
     formdata.append('user[sm_x]', this.sm_x);
     formdata.append('user[sm_facebook]', this.sm_facebook);

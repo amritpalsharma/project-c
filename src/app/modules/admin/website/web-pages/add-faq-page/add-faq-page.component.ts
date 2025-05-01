@@ -7,6 +7,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { Editor, Toolbar } from 'ngx-editor';
 import { environment } from '../../../../../../environments/environment';
 import { EditorConfigService } from '../../../../../services/editor-config.service';
+import tinymce from 'tinymce';
 
 // import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 // import { CKEditor5 } from '@ckeditor/ckeditor5-angular';
@@ -33,7 +34,7 @@ export class AddFaqPageComponent implements OnInit {
 
   public editorData: string = '<p>Hello from CKEditor 5!</p>';
   // getConfig
-  editorConfig:any;
+  editorConfig: any;
   // editorConfig = {
   //   // base_url: '/assets/tinymce', // path to tinymce folder
   //   // suffix: '.min',
@@ -144,7 +145,7 @@ export class AddFaqPageComponent implements OnInit {
   removeFirstButtonContent(i: number): void {
     this.formData.faq_first_btn_content.splice(i, 1);
   }
-  removeSecondButtonContent(i: number): void { 
+  removeSecondButtonContent(i: number): void {
     this.formData.faq_sec_btn_content.splice(i, 1);
   }
   removeThirdButtonContent(i: number): void {
@@ -165,17 +166,26 @@ export class AddFaqPageComponent implements OnInit {
         this.formData.meta_description = response.data.meta_description;
         this.bannerImagePreview = response.data?.pageData?.banner_img ? response.data.base_url + response.data.pageData.banner_img : null;
 
-        this.formData.faq_first_btn_content.forEach((item: any, index: any) => {
-          this.editorFirst[index] = new Editor();
-        });
+        setTimeout(() => {
+          this.formData.faq_first_btn_content.forEach((item: any, index: any) => {
+            // this.editorFirst[index] = new Editor();
+            this.setEditorContentById('editorFirst' + index, item.desc);
+          });
 
-        this.formData.faq_sec_btn_content.forEach((item: any, index: any) => {
-          this.editorSecond[index] = new Editor();
-        });
 
-        this.formData.faq_third_btn_content.forEach((item: any, index: any) => {
-          this.editorThird[index] = new Editor();
-        });
+          this.formData.faq_sec_btn_content.forEach((item: any, index: any) => {
+            // this.editorSecond[index] = new Editor();
+            this.setEditorContentById('editorSecond' + index, item.desc);
+          });
+
+          this.formData.faq_third_btn_content.forEach((item: any, index: any) => {
+            // this.editorThird[index] = new Editor();
+            this.setEditorContentById('editorThird' + index, item.desc);
+          });
+        }, 1000);
+
+
+        
 
       }
     });
@@ -225,5 +235,16 @@ export class AddFaqPageComponent implements OnInit {
     this.formData[fieldName] = 'remove_image';
     this.bannerImagePreview = null;
     // this.imageLoaded = false;
+  }
+
+  handleEditorChange(content: any, index: number) {
+    this.editorFirst[index] = content;
+  }
+
+  setEditorContentById(id: string, value: string): void {
+    const editor = tinymce.get(id);
+    if (editor) {
+      editor.setContent(value);
+    }
   }
 }

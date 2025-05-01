@@ -8,6 +8,8 @@ import { TemplateService } from '../../../../services/template.service';
 import { TranslateService } from '@ngx-translate/core';
 import { WebPages } from '../../../../services/webpages.service';
 import { ToastrService } from 'ngx-toastr';
+import { EditorConfigService } from '../../../../services/editor-config.service';
+import tinymce from 'tinymce';
 
 @Component({
   selector: 'app-templates',
@@ -48,8 +50,10 @@ export class TemplatePopupComponent implements OnInit, OnDestroy {
   typeRequired: string = '';
   contentRequired: string = '';
   subjectRequired: string = '';
-
+  editorConfig: any;
+  lang: any = localStorage.getItem('lang') || 'de';
   constructor(
+    private configService: EditorConfigService,
     public dialogRef: MatDialogRef<TemplatePopupComponent>, private tempalateApi: TemplateService,
     private toastr: ToastrService,
     private translateService: TranslateService,
@@ -68,6 +72,7 @@ export class TemplatePopupComponent implements OnInit, OnDestroy {
 
     this.langs = environment.langs;
     this.locations = environment.domains;
+    this.editorConfig = this.configService.getConfig(this.lang);
   }
 
   theme: any = localStorage.getItem('theme');
@@ -93,7 +98,7 @@ export class TemplatePopupComponent implements OnInit, OnDestroy {
         // this.roles = this.roles.push({ role: "All", name: "All", slug: "all", id: 0 })
         this.langs = environment.langs_de;
         this.locations = environment.domains_de;
-      }else{
+      } else {
         this.roles = [
           { role: "All", name: "All", slug: "all", id: 0 },
           { role: "Admin", name: "Admin", slug: "admin", id: 1 },

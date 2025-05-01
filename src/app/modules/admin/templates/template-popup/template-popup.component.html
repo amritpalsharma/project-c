@@ -1,105 +1,119 @@
-
 <div class="p-0 email_temp_popup mobile_popup_responsive">
   <div class="p-3 popup_header d-flex justify-content-between align-items-center">
     <h4 class="text-center mb-0 w-100">{{ 'emailTemplate' | translate }}</h4>
     <!-- <img src="../../../assets/images/close-icon-circle.png" alt="" class="close-img" (click)="close()" /> -->
-    <img *ngIf='theme!="dark"' src="../../../assets/images/carbon_close-outline-light.svg" alt="" class="" (click)="close()" />
-    <img *ngIf='theme=="dark"' src="../../../assets/images/carbon_close-outline.svg" alt="" class="" (click)="close()" />
+    <img *ngIf='theme!="dark"' src="../../../assets/images/carbon_close-outline-light.svg" alt="" class="cursor-pointer"
+      (click)="close()" />
+    <img *ngIf='theme=="dark"' src="../../../assets/images/carbon_close-outline.svg" alt="" class="cursor-pointer"
+      (click)="close()" />
   </div>
 
-<div class="popup__body template_body_form">
-  <div class="row">
-    <div class="col-12 col-sm-4">
-      <div class="form-group template-name-input">
-        <label class="text-size">{{ 'name' | translate }}:</label>
-        <input type="text" class="form-control" [(ngModel)]="title" >
-        <div *ngIf="errorMsg.title" class="error-msg" style="padding-left:60px;">{{errorMsg.title}}</div>
+  <div class="popup__body template_body_form">
+    <div class="row">
+      <div class="col-12 col-sm-4">
+        <div class="form-group template-name-input">
+          <label class="text-size">{{ 'name' | translate }}:</label>
+          <input type="text" class="form-control" [(ngModel)]="title">
+          <div *ngIf="errorMsg.title" class="error-msg" style="padding-left:60px;">{{errorMsg.title}}</div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-4">
+        <div class="form-group template-name-input">
+          <label class="text-size">{{ 'type' | translate }}:</label>
+          <input type="text" class="form-control" [(ngModel)]="type">
+          <div *ngIf="errorMsg.type" class="error-msg" style="padding-left:60px;">{{errorMsg.type}}</div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-4">
+        <div class="form-group template-name-input">
+          <label class="text-size">{{ 'subject' | translate }}:</label>
+          <input type="text" class="template-name-inputField form-control" [(ngModel)]="subject">
+          <div *ngIf="errorMsg.subject" class="error-msg" style="padding-left:60px;">{{errorMsg.subject}}</div>
+        </div>
       </div>
     </div>
-    <div class="col-12 col-sm-4">
-      <div class="form-group template-name-input">
-        <label class="text-size">{{ 'type' | translate }}:</label>
-        <input type="text" class="form-control" [(ngModel)]="type" >
-        <div *ngIf="errorMsg.type" class="error-msg" style="padding-left:60px;">{{errorMsg.type}}</div>
-      </div>
-  </div>
-  <div class="col-12 col-sm-4">
-    <div class="form-group template-name-input">
-      <label class="text-size">{{ 'subject' | translate }}:</label>
-      <input type="text" class="template-name-inputField form-control" [(ngModel)]="subject" >
-      <div *ngIf="errorMsg.subject" class="error-msg" style="padding-left:60px;">{{errorMsg.subject}}</div>
-    </div>
-  </div>
-</div>
-  <hr class="m-0 mb-3">
+    <hr class="m-0 mb-3">
 
-  <div class="row main-popup-div py-2 bg-0C3453">
-    <div class="col-12 col-md-6 col-lg-4 mt-3 d-flex align-items-baseline ">
-      <h4 class="text-size">{{ 'for' | translate }}</h4>
+    <div class="row main-popup-div py-2 bg-0C3453">
+      <div class="col-12 col-md-6 col-lg-4 mt-3 d-flex align-items-baseline ">
+        <h4 class="text-size">{{ 'for' | translate }}</h4>
 
-      <div class="btn-group" style="position: relative; display: inline-block;">
-        <!-- {{roles | json}} -->
-        <mat-select [(ngModel)]="selectedRole" class="mat-select-div">
-          <ng-container *ngFor="let role of roles">
-            <mat-option [value]="role.id" *ngIf="selectedRole == role.id" selected>{{ role.role }}</mat-option>
-            <mat-option [value]="role.id" *ngIf="selectedRole != role.id">{{ role.role }}</mat-option>
-          </ng-container>
-        </mat-select>
-      
-        <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M4.08333 3.25838L0.995812 0.170854C0.768006 -0.0569515 0.39866 -0.0569515 0.170854 0.170854C-0.0569515 0.39866 -0.0569515 0.768006 0.170854 0.995812L3.67085 4.49581C3.89866 4.72362 4.26801 4.72362 4.49581 4.49581L7.99581 0.995812C8.22362 0.768006 8.22362 0.39866 7.99581 0.170854C7.76801 -0.0569515 7.39866 -0.0569515 7.17085 0.170854L4.08333 3.25838Z" fill="#646464"/>
-        </svg>
+        <div class="btn-group" style="position: relative; display: inline-block;">
+          <!-- {{roles | json}} -->
+          <mat-select [(ngModel)]="selectedRole" class="mat-select-div">
+            <ng-container *ngFor="let role of roles">
+              <mat-option [value]="role.id" *ngIf="selectedRole == role.id" selected>{{ role.role }}</mat-option>
+              <mat-option [value]="role.id" *ngIf="selectedRole != role.id">{{ role.role }}</mat-option>
+            </ng-container>
+          </mat-select>
+
+          <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M4.08333 3.25838L0.995812 0.170854C0.768006 -0.0569515 0.39866 -0.0569515 0.170854 0.170854C-0.0569515 0.39866 -0.0569515 0.768006 0.170854 0.995812L3.67085 4.49581C3.89866 4.72362 4.26801 4.72362 4.49581 4.49581L7.99581 0.995812C8.22362 0.768006 8.22362 0.39866 7.99581 0.170854C7.76801 -0.0569515 7.39866 -0.0569515 7.17085 0.170854L4.08333 3.25838Z"
+              fill="#646464" />
+          </svg>
+        </div>
+
       </div>
-      
-    </div>
-    <div  class="col-12 col-md-6 col-lg-4 mt-3 d-flex align-items-baseline" >
-     <h4 class="text-size">{{ 'language' | translate }}</h4>
-     <div class="btn-group">
-        <mat-select [(ngModel)]="selectedLang" class="mat-select-div">
+      <div class="col-12 col-md-6 col-lg-4 mt-3 d-flex align-items-baseline">
+        <h4 class="text-size">{{ 'language' | translate }}</h4>
+        <div class="btn-group">
+          <mat-select [(ngModel)]="selectedLang" class="mat-select-div">
             @for (lang of langs; track lang) {
-              <mat-option [value]="lang.id" *ngIf="selectedLang == lang.id" selected>{{lang.language}}</mat-option>
-              <mat-option [value]="lang.id" *ngIf="selectedLang != lang.id">{{lang.language}}</mat-option>
+            <mat-option [value]="lang.id" *ngIf="selectedLang == lang.id" selected>{{lang.language}}</mat-option>
+            <mat-option [value]="lang.id" *ngIf="selectedLang != lang.id">{{lang.language}}</mat-option>
             }
           </mat-select>
-          <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4.08333 3.25838L0.995812 0.170854C0.768006 -0.0569515 0.39866 -0.0569515 0.170854 0.170854C-0.0569515 0.39866 -0.0569515 0.768006 0.170854 0.995812L3.67085 4.49581C3.89866 4.72362 4.26801 4.72362 4.49581 4.49581L7.99581 0.995812C8.22362 0.768006 8.22362 0.39866 7.99581 0.170854C7.76801 -0.0569515 7.39866 -0.0569515 7.17085 0.170854L4.08333 3.25838Z" fill="#646464"/>
+          <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M4.08333 3.25838L0.995812 0.170854C0.768006 -0.0569515 0.39866 -0.0569515 0.170854 0.170854C-0.0569515 0.39866 -0.0569515 0.768006 0.170854 0.995812L3.67085 4.49581C3.89866 4.72362 4.26801 4.72362 4.49581 4.49581L7.99581 0.995812C8.22362 0.768006 8.22362 0.39866 7.99581 0.170854C7.76801 -0.0569515 7.39866 -0.0569515 7.17085 0.170854L4.08333 3.25838Z"
+              fill="#646464" />
           </svg>
 
+        </div>
       </div>
-    </div>
-    <div  class="col-12 col-md-6 col-lg-4 mt-3 d-flex align-items-baseline">
-      <h4 class="text-size">{{ 'location' | translate }}:</h4>
-      <div class="btn-group">
+      <div class="col-12 col-md-6 col-lg-4 mt-3 d-flex align-items-baseline">
+        <h4 class="text-size">{{ 'location' | translate }}:</h4>
+        <div class="btn-group">
           <mat-select [(ngModel)]="selectedLocation" class="mat-select-div">
-              @for (location of locations; track location) {
-                <mat-option [value]="location.id" *ngIf="selectedLocation == location.id" selected>{{location.name}}</mat-option>
-                <mat-option [value]="location.id" *ngIf="selectedLocation != location.id">{{location.name}}</mat-option>
-              }
-            </mat-select>
-            <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M4.08333 3.25838L0.995812 0.170854C0.768006 -0.0569515 0.39866 -0.0569515 0.170854 0.170854C-0.0569515 0.39866 -0.0569515 0.768006 0.170854 0.995812L3.67085 4.49581C3.89866 4.72362 4.26801 4.72362 4.49581 4.49581L7.99581 0.995812C8.22362 0.768006 8.22362 0.39866 7.99581 0.170854C7.76801 -0.0569515 7.39866 -0.0569515 7.17085 0.170854L4.08333 3.25838Z" fill="#646464"/>
-            </svg>
+            @for (location of locations; track location) {
+            <mat-option [value]="location.id" *ngIf="selectedLocation == location.id"
+              selected>{{location.name}}</mat-option>
+            <mat-option [value]="location.id" *ngIf="selectedLocation != location.id">{{location.name}}</mat-option>
+            }
+          </mat-select>
+          <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M4.08333 3.25838L0.995812 0.170854C0.768006 -0.0569515 0.39866 -0.0569515 0.170854 0.170854C-0.0569515 0.39866 -0.0569515 0.768006 0.170854 0.995812L3.67085 4.49581C3.89866 4.72362 4.26801 4.72362 4.49581 4.49581L7.99581 0.995812C8.22362 0.768006 8.22362 0.39866 7.99581 0.170854C7.76801 -0.0569515 7.39866 -0.0569515 7.17085 0.170854L4.08333 3.25838Z"
+              fill="#646464" />
+          </svg>
 
+        </div>
       </div>
     </div>
-</div>
-<hr class="m-0 mt-3 mb-3">
+    <hr class="m-0 mt-3 mb-3">
 
 
-      <div class="NgxEditor__Wrapper">
-        <ngx-editor-menu [editor]="editor" [toolbar]="toolbar" [colorPresets]="colorPresets" > </ngx-editor-menu>
-        <ngx-editor [editor]="editor" class="editor-width" [(ngModel)]="content" [disabled]="false" [placeholder]="'typeHere' | translate"></ngx-editor>
-        <div *ngIf="errorMsg.content" class="error-msg" style="padding-left:20px;">{{errorMsg.content}}</div>
-      </div>
-</div>
+    <div class="NgxEditor__Wrapper">
+      <editor [(ngModel)]="content" [init]="editorConfig"
+        [id]="'editorThird'" class="editor-width">
+      </editor>
+      <!-- <ngx-editor-menu [editor]="editor" [toolbar]="toolbar" [colorPresets]="colorPresets" > </ngx-editor-menu> -->
+      <!-- <ngx-editor [editor]="editor" class="editor-width" [(ngModel)]="content" [disabled]="false" [placeholder]="'typeHere' | translate"></ngx-editor> -->
+      <div *ngIf="errorMsg.content" class="error-msg" style="padding-left:20px;">{{errorMsg.content}}</div>
+    </div>
+  </div>
 
-<div class="d-flex justify-content-around popup_footer dialog-actions p-3 popup_buttons_mobile">
+  <div class="d-flex justify-content-around popup_footer dialog-actions p-3 popup_buttons_mobile">
 
-<div><a class="btn btn-delete text-danger" (click)="close()">{{ 'cancel' | translate }}</a></div>
-<div>
-  <a class="btn Launch px-5" *ngIf="!template" (click)="createTemplate()">{{ 'createAndLaunch' | translate }}</a>
-  <a class="btn Launch px-5" *ngIf="template" (click)="updateTemplate()">{{ 'update' | translate }}</a>
-</div>
+    <div><a class="btn btn-delete text-danger" (click)="close()">{{ 'cancel' | translate }}</a></div>
+    <div>
+      <a class="btn Launch px-5" *ngIf="!template" (click)="createTemplate()">{{ 'createAndLaunch' | translate }}</a>
+      <a class="btn Launch px-5" *ngIf="template" (click)="updateTemplate()">{{ 'update' | translate }}</a>
+    </div>
 
-</div>
+  </div>
 </div>

@@ -1,9 +1,9 @@
-
-.main-popup-div{
+.main-popup-div {
     display: flex;
     justify-content: space-between;
 }
-.close-img{
+
+.close-img {
     background-image: url(../../../../../assets/images/carbon_close-outline.png);
     background-size: cover;
     width: 35px;
@@ -18,92 +18,102 @@
     cursor: pointer;
 }
 
-.button-text{
+.button-text {
     color: black;
     padding: 5px;
     font-size: 14px;
     margin-left: 10px;
     background: none;
 }
-.text-name{
-font-size: 13px;
+
+.text-name {
+    font-size: 13px;
 }
-.Launch{
+
+.Launch {
     background-color: #6FB95D;
     color: #ffffff;
 }
-.btn-delete{
+
+.btn-delete {
     color: #FD5454;
 }
+
 .button-text:hover {
     background: none;
 }
+
 .button-text:active {
     background: none !important;
 }
-.marketing-button{
+
+.marketing-button {
     position: absolute;
     bottom: 20px;
     display: flex;
     column-gap: 94px;
 }
-.text-size{
+
+.text-size {
     font-size: 14px;
 }
-.title-text{
+
+.title-text {
     font-size: 16px;
 }
 
 .template-name-input input:focus-visible {
- outline: 0px !important;
+    outline: 0px !important;
 }
 
 .template-name-input input[type=text]:disabled {
-  border: none !important;
+    border: none !important;
 }
+
 ngx-editor {
     height: 35vh;
     display: block;
 }
 
-::ng-deep .mat-mdc-select-panel{
+::ng-deep .mat-mdc-select-panel {
     min-width: 110px !important;
     scrollbar-width: none !important;
 }
 
-.Launch{
+.Launch {
     padding: 0.5rem 3rem;
 }
 
-.NgxEditor__Wrapper{
+.NgxEditor__Wrapper {
     border: 0 !important;
 }
- 
-.mat-mdc-select-arrow-wrapper{
-    display: none !important;
-  }
 
-  .dropdown-icon {
+.mat-mdc-select-arrow-wrapper {
+    display: none !important;
+}
+
+.dropdown-icon {
     position: absolute;
-    right: 5px; 
+    right: 5px;
     top: 50%;
     transform: translateY(-50%);
     pointer-events: none;
-  }
-  
+}
 
-  .add_custom_width{
+
+.add_custom_width {
     width: 80% !important;
-  }
+}
 
-  .editor-width{
+.editor-width {
     height: 275px;
-    overflow: auto;
+    // overflow: auto;
+    // overflow: hidden;
     // background: #FCFCFC;
-  }
+}
 
-  
-  .template_body_form {
+
+.template_body_form {
     // max-height: 60vh;
     padding: 15px;
     overflow: auto;
@@ -114,26 +124,54 @@ input.template-name-inputField {
     width: 100% !important;
 }
 
-  @media (max-width: 575px) {
+@media (max-width: 575px) {
     .popup_buttons_mobile {
         flex-wrap: wrap;
         align-items: center !important;
         justify-content: center !important;
     }
+}
+
+@media (max-width: 767px) {
+
+    .template_body_form .template-name-input,
+    .main-popup-div .d-flex.align-items-baseline {
+        flex-direction: column;
+        margin: 10px 0;
     }
 
-    @media (max-width: 767px) {
-        .template_body_form .template-name-input, .main-popup-div .d-flex.align-items-baseline {
-            flex-direction: column;
-            margin: 10px 0;
-        }
-        .main-popup-div .d-flex.align-items-baseline .btn-group {
-            width: 100%;
-        }
-        .main-popup-div .mat-mdc-select-trigger {
-            width: 100% !important;
-            margin-left: 0;
-            margin-top: 10px;
-            min-width: 100%;
-        }
+    .main-popup-div .d-flex.align-items-baseline .btn-group {
+        width: 100%;
     }
+
+    .main-popup-div .mat-mdc-select-trigger {
+        width: 100% !important;
+        margin-left: 0;
+        margin-top: 10px;
+        min-width: 100%;
+    }
+}
+
+::ng-deep .tox-promotion {
+    display: none !important;
+}
+
+::ng-deep .dark-theme .tox-menubar {
+    background-color: #072944 !important;
+}
+
+::ng-deep .dark-theme .tox-toolbar__primary {
+    background-color: #072944 !important;
+}
+::ng-deep .dark-theme .tox-tinymce{
+    border: 2px solid #072944 !important;
+}
+::ng-deep .tox-statusbar{
+    display: none !important;
+}
+::ng-deep .dark-theme .tox:not(.tox-tinymce-inline) .tox-editor-header{
+    background-color: #072944 !important;
+}
+::ng-deep .dark-theme.tox .tox-toolbar-overlord{
+    background-color: #072944 !important;
+}

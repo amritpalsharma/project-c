@@ -3,17 +3,35 @@ import { Injectable } from '@angular/core';
 @Injectable({ providedIn: 'root' })
 export class EditorConfigService {
   getConfig(language: string) {
+    const currentTheme = localStorage.getItem('theme'); // 'dark' or 'light'
+    const isDarkMode = currentTheme === 'dark';
+
     return {
-      // base_url: '/tinymce',
-      // suffix: '.min',
-      apiKey:'vtw0pppfq7efn33a7j0kgks14gccdq6g9dqbigz3vnj26ejy',
-      readonly:false,
+      apiKey: 'vtw0pppfq7efn33a7j0kgks14gccdq6g9dqbigz3vnj26ejy',
+      readonly: false,
       language: language,
-      // language_url: `/assets/tinymce/langs/${language}.js`,
-      language_url: `https://cdn.tiny.cloud/1/vtw0pppfq7efn33a7j0kgks14gccdq6g9dqbigz3vnj26ejy/tinymce/6/langs/de.js`, // German language file
+      language_url: `https://cdn.tiny.cloud/1/vtw0pppfq7efn33a7j0kgks14gccdq6g9dqbigz3vnj26ejy/tinymce/6/langs/${language}.js`,
       height: 400,
       plugins: 'lists link image table code',
-      toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | bullist numlist | code'
+      toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | bullist numlist | code',
+      skin: isDarkMode ? 'oxide-dark' : 'oxide',
+      content_css: isDarkMode ? 'dark' : 'default',
+      content_style: isDarkMode ? `
+        body {
+          background-color: #072944 !important;
+          color: #e0e0e0 !important;
+        }
+        .tox:not(.tox-tinymce-inline) .tox-editor-header{
+           background-color: #072944 !important;
+        }
+        .tox-promotion{display:none}
+        .tox .tox-menubar{background-color: #072944 !important;}
+        .tox .tox-toolbar__primary{background-color: #072944 !important;}
+        a { color: #80cbc4 !important; }
+        p, h1, h2, h3, h4, h5, h6 {
+          color: #e0e0e0 !important;
+        }
+      ` : ''
     };
   }
 }

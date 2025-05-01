@@ -206,13 +206,20 @@
               <ngx-editor [editor]="editorFirst[i]" class="editor-width" name="page_content_{{i}}" [(ngModel)]="feature.desc"
                 [disabled]="false" [placeholder]="'description' | translate"></ngx-editor>
             </div> -->
-            <ng-container *ngIf="editorFirst[i]">
+            <ng-container *ngIf="editorConfig">
               <div class="NgxEditor__Wrapper">
-                <ngx-editor-menu [editor]="editorFirst[i]" [toolbar]="toolbar" [colorPresets]="colorPresets">
+                <!-- <editor [(ngModel)]="editorFirst[i]" name="editorFirst{{i}}" [init]="editorConfig" [ngModelOptions]="{standalone: true}"></editor> -->
+                <editor
+                [(ngModel)]="editorFirst[i]" 
+                (onEditorChange)="handleEditorChange($event, i)"
+                [init]="editorConfig"
+                [id]="'editorFirst' + i">
+              </editor>
+                <!-- <ngx-editor-menu [editor]="editorFirst[i]" [toolbar]="toolbar" [colorPresets]="colorPresets">
                 </ngx-editor-menu>
                 <ngx-editor [editor]="editorFirst[i]" class="editor-width" name="editorFirst{{i}}"
                   [(ngModel)]="feature.desc" [placeholder]="'description' | translate">
-                </ngx-editor>
+                </ngx-editor> -->
               </div>
             </ng-container>
           </div>
@@ -241,13 +248,19 @@
             <textarea [(ngModel)]="feature.desc" class="form-control" name="desc_{{ i }}_second"
               placeholder="{{ 'description' | translate }}" required></textarea>
           </div> -->
-          <ng-container *ngIf="editorSecond[i]">
+          <ng-container *ngIf="editorConfig">
             <div class="NgxEditor__Wrapper">
-              <ngx-editor-menu [editor]="editorSecond[i]" [toolbar]="toolbar" [colorPresets]="colorPresets">
+              <!-- <ngx-editor-menu [editor]="editorSecond[i]" [toolbar]="toolbar" [colorPresets]="colorPresets">
               </ngx-editor-menu>
               <ngx-editor [editor]="editorSecond[i]" class="editor-width" name="editorSecond{{i}}"
                 [(ngModel)]="feature.desc" [placeholder]="'description' | translate">
-              </ngx-editor>
+              </ngx-editor> -->
+              <editor
+              [(ngModel)]="editorSecond[i]" 
+              (onEditorChange)="handleEditorChange($event, i)"
+              [init]="editorConfig"
+              [id]="'editorSecond' + i">
+            </editor>
             </div>
           </ng-container>
           <div class="col-md-3">
@@ -273,13 +286,19 @@
           <div class="col-md-9">
             <!-- <textarea [(ngModel)]="feature.desc" class="form-control" name="desc_{{ i }}_third"
               placeholder="{{ 'description' | translate }}" required></textarea> -->
-            <ng-container *ngIf="editorThird[i]">
+            <ng-container *ngIf="editorConfig">
               <div class="NgxEditor__Wrapper">
-                <ngx-editor-menu [editor]="editorThird[i]" [toolbar]="toolbar" [colorPresets]="colorPresets">
+                <editor
+                [(ngModel)]="editorThird[i]" 
+                (onEditorChange)="handleEditorChange($event, i)"
+                [init]="editorConfig"
+                [id]="'editorThird' + i">
+              </editor>
+                <!-- <ngx-editor-menu [editor]="editorThird[i]" [toolbar]="toolbar" [colorPresets]="colorPresets">
                 </ngx-editor-menu>
                 <ngx-editor [editor]="editorThird[i]" class="editor-width" name="editorThird{{i}}"
                   [(ngModel)]="feature.desc" [placeholder]="'description' | translate">
-                </ngx-editor>
+                </ngx-editor> -->
               </div>
             </ng-container>
           </div>

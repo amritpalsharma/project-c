@@ -18,7 +18,7 @@ export class ProfileTabComponent {
   @Input() userCountryFlag: any;
   @Output() dataEmitter = new EventEmitter<string>();
   constructor(public dialog: MatDialog) {
-    console.log('coming this data', this.userData);
+
 
   }
   ngAfterViewInit() {
@@ -27,6 +27,7 @@ export class ProfileTabComponent {
   ngOnInit(): void {
     this.user = localStorage.getItem('userData');
     this.user = JSON.parse(this.user);
+    console.info('coming this data', this.user);
   }
 
   ngOnChanges(changes: SimpleChanges) {

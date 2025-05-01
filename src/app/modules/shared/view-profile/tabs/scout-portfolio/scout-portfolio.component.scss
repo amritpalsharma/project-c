@@ -254,3 +254,31 @@ img.flag_country {
         padding: 0px !important;
     }
 }
+
+.upgrade_unlock .unlock_btn {
+    padding: 12px 25px 10px !important;
+    font-size: 17px !important;
+    background: #6FB95D;
+    // padding: ;
+    font-weight: 700;
+    color: #fff;
+    border-radius: 10px;
+    border: none;
+    display: inline-block;
+    margin-top: 1rem;
+}
+
+
+
+@media (min-width: 1600px) and (max-width: 2999px) {
+    h6.main-template {
+        font-size: 22px;
+    }
+}
+
+
+@media (min-width: 3000px) {
+    h6.main-template {
+        font-size: 28px;
+    }
+}
