@@ -38,7 +38,7 @@
                   <mat-option [value]="user" class="mb-4 select-user-name">
                     <img *ngIf="!isThisClub(user.role_name)" width="50" height="50" class="img-list " src="{{user?.meta?.profile_image_path ? user?.meta?.profile_image_path :'../../../../../assets/images/default/talent-profile-default.png'}}">
                     <img *ngIf="isThisClub(user.role_name)" width="50" height="50" class="img-list " src="{{user?.current_club_logo ? 'https://api.socceryou.ch/uploads/' + user?.current_club_logo :'../../../../../assets/images/default/talent-profile-default.png'}}">
-                    {{user?.first_name+' '+user?.last_name}} test is {{isThisClub(user.role_name)}}
+                    {{user?.first_name+' '+user?.last_name}}
                   </mat-option>
                 }
               </mat-autocomplete>

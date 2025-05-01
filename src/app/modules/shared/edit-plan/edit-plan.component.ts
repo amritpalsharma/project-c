@@ -32,10 +32,12 @@ export class EditPlanComponent implements OnInit {
   selectedInterval: any;
 
   theme: any = localStorage.getItem('theme');
-  subscriptionCanceledSuccessfully:string='';
-  successTxt:string='';
-  pleaseWait:string='';
-  Processing:string='';
+  subscriptionCanceledSuccessfully: string = '';
+  successTxt: string = '';
+  pleaseWait: string = '';
+  Processing: string = '';
+  isCountrySelected: boolean = false;
+  selectedPlanID: number = 0;
   // selectedCountries: any[] = []; // Stores full country objects
 
 
@@ -58,6 +60,8 @@ export class EditPlanComponent implements OnInit {
     // If this.data.plans is an array, assign it directly
     this.selectedPlan = this.data.selectedPlan;
     this.activePlans = this.data.activePlans;
+    // console.info('this.activePlans', this.activePlans)
+    // checkPlanExistance
     if (this.data.allPlans && typeof this.data.allPlans != undefined) {
       this.allPlans = this.data.allPlans.filter((plan: any) => plan.interval === 'monthly');
     }
@@ -153,6 +157,7 @@ export class EditPlanComponent implements OnInit {
 
   buyNow() {
 
+
     if (this.isPlanAlreadySelected()) {
       this.toastr.warning('You already have a subscription for this plan with a different interval.', 'Warning');
       this.dialog.open(MessagePopupComponent, {
@@ -174,15 +179,27 @@ export class EditPlanComponent implements OnInit {
         if (this.selectedPlan?.monthly?.is_package_active === 'active') {
           this.updatePlan(planId, this.isYearly, oldPlan);
         } else {
-          this.openCouponDialog(planId.id);
+          if (this.selectedCountryIds != undefined && this.selectedCountryIds.length > 0) {
+            this.isCountrySelected = true;
+            this.openCouponDialog(planId.id);
+          } else {
+            this.isCountrySelected = false;
+          }
         }
       } else {
         if (this.selectedPlan?.yearly?.is_package_active === 'active') {
           this.updatePlan(planId, this.isYearly, oldPlan);
         } else {
-          this.openCouponDialog(planId.id);
+          //  this.openCouponDialog(planId.id);
+          if (this.selectedCountryIds != undefined && this.selectedCountryIds.length > 0) {
+            this.openCouponDialog(planId.id);
+            this.isCountrySelected = true;
+          } else {
+            this.isCountrySelected = false;
+          }
         }
       }
+      console.info('isCountrySelected', this.isCountrySelected)
     } else {
       this.toastr.error('No country plan selected', 'Error');
       console.error('No country plan selected');
@@ -248,6 +265,10 @@ export class EditPlanComponent implements OnInit {
 
   toggleBillingPlan(isYearly: boolean) {
     this.isYearly = isYearly; // Toggle between monthly and yearly
+    if (this.selectedCountryIds.length > 0) {
+      // console.log(this.selectedCountryIds);
+      this.checkPlanExistance(this.selectedPlanID);
+    }
   }
 
   cancelPlan(item: any): void { }
@@ -353,32 +374,24 @@ export class EditPlanComponent implements OnInit {
   alreadySelected: boolean = false;
 
   onCountrySelect(event: any) {
-    console.log(event.value);
+    // console.log(event.value);
     // this.selectedPlan = event.value; // Update selected IDs
     this.selectedCountryIds = event.value;
-
+    let currentPlanID = event.value;
+    this.selectedPlanID = currentPlanID;
+    if (this.selectedCountryIds.length > 0 && this.selectedCountryIds != null) {
+      this.isCountrySelected = true;
+    }
     this.selectedPlan = this.countries.find(country => country.id === this.selectedCountryIds);
+    this.checkPlanExistance(currentPlanID);
 
-    // Find and store the selected country objects
-    // this.selectedCountries = this.allPlans.filter(country => this.selectedCountryIds.includes(country.id));
+    // If a matching plan is found, return true, otherwise return false
+    // return plan !== undefined;
+    // console.log(plan);
 
-    // const selectedCountry = this.selectedCountries[0];
-
-    // console.log('Selected Countries:', this.selectedCountries);
-    // console.log('Selected Locations:', selectedCountry);
-
-    // if (selectedCountry) {
-    //   console.log('Selected Country:', selectedCountry);
-    //   if(this.alreadySelected){
-    //     this.activePlans = this.activePlans.slice(1);
-    //   }
-    //   this.activePlans.unshift(selectedCountry);
-    //   this.alreadySelected = true;
+    // else{
+    //   this.isCountrySelected = true;
     // }
-
-    // console.log(this.activePlans)
-
-
   }
 
   // Function to return custom selected display text (showing locations)
@@ -402,11 +415,28 @@ export class EditPlanComponent implements OnInit {
   }
 
   updateTranslation() {
-    this.translate.get(['subscriptionCanceledSuccessfully', 'success!', 'pleaseWait','Processing']).subscribe((res: any) => {
+    this.translate.get(['subscriptionCanceledSuccessfully', 'success!', 'pleaseWait', 'Processing']).subscribe((res: any) => {
       this.subscriptionCanceledSuccessfully = res['subscriptionCanceledSuccessfully'];
       this.successTxt = res['success!'].toUpperCase();
       this.pleaseWait = res['pleaseWait'];
       this.Processing = res['Processing'];
     });
+  }
+
+  checkPlanExistance(currentPlanID: number) {
+    let planInterval;
+    if (this.isYearly) {
+      planInterval = 'yearly';
+    } else {
+      planInterval = 'monthly';
+    }
+    const plan = this.activePlans.find(plan => plan.id === currentPlanID && plan.interval === planInterval);
+    console.log('planplanplanplanplanplan', plan)
+    if (plan && typeof plan !== undefined) {
+      this.isCountrySelected = true;
+      console.log('This Plan is already Purchased');
+    } else {
+      console.log('This Plan Not Purchased');
+    }
   }
 }

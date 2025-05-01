@@ -7,11 +7,12 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrl: './update-confirmation-plan.component.scss'
 })
 export class UpdateConfirmationPlanComponent {
+  theme:string=localStorage.getItem('theme') || 'light';
   constructor(
     public dialogRef: MatDialogRef<UpdateConfirmationPlanComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { message: string }
   ) {}
-
+  
   onConfirm(): void {
     this.dialogRef.close(true);
   }

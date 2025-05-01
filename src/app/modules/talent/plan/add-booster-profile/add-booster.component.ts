@@ -101,11 +101,12 @@ export class AddBoosterComponent {
   }
 
   saveBoost() {
-    if (this.plan.interval == 'monthly' && this.boostedPlans.isYearly) {
+    // if()
+    if (this.plan && this.plan.interval == 'monthly' && this.boostedPlans.isYearly) {
       // console.info('user need to upgrade plan from montly to yearly');
       this.updatePlan(this.boostedPlans, true, this.plan);
       return;
-    } else if (this.plan.interval == 'yearly' && !this.boostedPlans.isYearly) {
+    } else if (this.plan && this.plan.interval == 'yearly' && !this.boostedPlans.isYearly) {
       // console.info('user need to downgraded plan from yearly to monthly');
       this.updatePlan(this.boostedPlans, false, this.plan);
       return;

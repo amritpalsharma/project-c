@@ -229,7 +229,8 @@
 
                 <div class="row  multi-country-select ">
                   <div class="col-lg-12 plan-2">
-                    <button class="choose-plan-btn" (click)="editPlanPopup(countryPlans,country)">{{'choosePlan' |
+                    <!-- [disabled]="countryHasYearlyPlan && selectedPlan.isYearly" -->
+                    <button  class="choose-plan-btn" (click)="editPlanPopup(countryPlans,country)">{{'choosePlan' |
                       translate}}</button>
                   </div>
                 </div>

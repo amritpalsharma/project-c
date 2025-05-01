@@ -210,3 +210,6 @@
 .smaller-letters{
     text-transform: lowercase;
 }
+::ng-deep .has_error{
+    border: 2px solid red;
+}

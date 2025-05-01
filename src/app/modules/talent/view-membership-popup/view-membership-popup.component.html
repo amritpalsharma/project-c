@@ -52,7 +52,7 @@
               <td>{{ plan.plan }}</td>
               <td>{{ capitalizeFirstLetter(plan.duration) }}</td>
               <td>{{ plan.valid_until | date: 'dd.MM.YYYY'}}</td>
-              <td class="text-end">{{ plan.price }} {{strUpperCase(plan.currency)}}</td>
+              <td class="text-end">{{ plan.package_price }} {{strUpperCase(plan.currency)}}</td>
             </tr>
           </thead>
 

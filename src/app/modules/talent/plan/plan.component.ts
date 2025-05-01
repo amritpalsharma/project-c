@@ -105,7 +105,7 @@ export class PlanComponent implements OnInit, OnDestroy {
   countryPlanPrice: any;
   pageTitle: string = '';
 
-
+  countryHasYearlyPlan:boolean=false;
   constructor(
     private talentService: TalentService,
     private paymentService: PaymentService,
@@ -464,7 +464,10 @@ export class PlanComponent implements OnInit, OnDestroy {
           this.country = userPlans?.country || '';
           console.log('userPlans', userPlans);
           this.fetchPlans();
-
+          if(this.country && this.country != undefined){
+            this.checkCountryYearlyPlan(this.country);
+          }
+          
           if (userPlans.premium[0] != undefined && userPlans.premium[0] != '' && userPlans.premium[0].status == 'active') {
             this.isPremiumPurchased = 'monthly';
             // this.premiumMonthlyPackageId = userPlans.premium[0].package_id;
@@ -616,6 +619,7 @@ export class PlanComponent implements OnInit, OnDestroy {
   }
 
   editPlanPopup(plans: any, country: any) {
+    console.info('Country',country);
     // this.fetchPlans();
 
     // console.warn(plans)
@@ -629,7 +633,7 @@ export class PlanComponent implements OnInit, OnDestroy {
     }
 
     console.info(plans);
-    const dialogRef = this.dialog.open(EditPlanComponent, {
+    const dialogRef = this.dialog.open(EditPlanComponent, { 
       width: 'unset',
       data: {
         plans: plans.data,
@@ -775,5 +779,15 @@ export class PlanComponent implements OnInit, OnDestroy {
       this.titleService.setTitle(this.pageTitle);
       console.log('Title fetch Function Fired');
     })
+  }
+
+  checkCountryYearlyPlan(countryPlanPurchasedArr:any){
+    let subscriptions = countryPlanPurchasedArr;
+    const hasYearlyPlan = subscriptions.some((subscription:any) => subscription.interval === 'yearly');
+    if(hasYearlyPlan){
+      this.countryHasYearlyPlan = true;
+    }else{
+      this.countryHasYearlyPlan = false;
+    }
   }
 }
