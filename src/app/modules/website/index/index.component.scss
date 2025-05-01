@@ -928,6 +928,37 @@ p.club-p {
   height: 100%;
   background-color: #6FB95D;
 }
+.work-text:not(:last-child).active::after {
+  content: "🡣";
+  position: absolute;
+	margin: 0 auto;
+	left: 0; 
+  right: 0;
+  width: 25px;
+  height: 35px;
+  font-size: 30px;
+  color: #6FB95D;
+  animation: arrow-pulse-down 1000ms linear infinite;
+}
+@keyframes arrow-pulse-down {
+  0% {
+    bottom: -20px;
+    opacity: 0;
+  }
+  25% {
+    opacity: .25;
+  }
+  50% {
+    opacity: .5;
+  }
+  75% {
+    opacity: .75;
+  }
+  100% {
+    bottom: -50px;
+    opacity: 1;
+  }
+}
 
 .work-text .progress_btn a.active {
   color: white;
@@ -4958,6 +4989,9 @@ h3, .text_side_wrapper p {
 }
 .club_players .text_side_wrapper .join-text p {
   font-size: 16px !important;
+}
+.work-text:not(:last-child).active::after {
+  display: none;
 }
 }
 
