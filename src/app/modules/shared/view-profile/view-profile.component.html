@@ -566,7 +566,7 @@
                         </div>
                         <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'age' | translate}}</h6>
-                          <h5 class="title-1">{{calculateAge(user?.meta?.date_of_birth)}}</h5>
+                          <h5 class="title-1" *ngIf="calculateAge(user?.meta?.date_of_birth) > 0">{{calculateAge(user?.meta?.date_of_birth)}}</h5>
                         </div>
                       </div>
                     </div>

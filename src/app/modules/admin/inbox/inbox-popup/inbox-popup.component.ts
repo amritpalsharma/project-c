@@ -20,6 +20,7 @@ export class InboxPopupComponent {
   filteredUsers: any = [];
   users: any = [];
   allUsers: any = [];
+  theme: any = localStorage.getItem('theme');
   @ViewChild("userInput") userInput!: ElementRef;
 
   constructor(
@@ -37,7 +38,7 @@ export class InboxPopupComponent {
     this.fetchUsers();
   }
   ngOnInit(): void {
-
+    this.theme = localStorage.getItem('theme');
   }
 
   async fetchUsers(): Promise<void> {

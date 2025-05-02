@@ -72,7 +72,7 @@ export class BlogPopupComponent implements OnInit, OnDestroy {
 
   editors: any;
 
-
+  theme: any = localStorage.getItem('theme');
   constructor(
     public dialogRef: MatDialogRef<BlogPopupComponent>, private blogApi: BlogService,
     private webpages: WebPages,
@@ -90,6 +90,7 @@ export class BlogPopupComponent implements OnInit, OnDestroy {
     this.langs = this.getAllLanguages();
     console.log('languages', this.langs)
     this.locations = environment.domains;
+    this.theme = localStorage.getItem('theme');
   }
 
   ngOnInit(): void {

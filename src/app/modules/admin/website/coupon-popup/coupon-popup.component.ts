@@ -39,6 +39,7 @@ export class CoupenPopupComponent   {
   startDateEr: any = "";
   limitEr: any = "";
   discountPercent: any = "";
+  theme: any = localStorage.getItem('theme');
   
 
   private readonly _adapter = inject<DateAdapter<unknown, unknown>>(DateAdapter);
@@ -89,6 +90,7 @@ export class CoupenPopupComponent   {
         // this.userPurchasesNotFound = translations['userPurchasesNotFound'];
         // this.subsciptionCancelSuccess = translations['subsciptionCancelSuccess'];
     });
+    this.theme = localStorage.getItem('theme');
   }
 
   getCurrencies(){

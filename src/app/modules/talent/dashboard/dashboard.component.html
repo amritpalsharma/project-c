@@ -4,7 +4,6 @@
       <div class="card-body py-0">
         <div class="row">
           <div class="col-lg-3 border-end p-lg-0 card_box-1">
-
             <div class="user-details-left col-lg-12 dashboard_mobile_design">
               <div class="players_image d-flex align-items-center justify-content-center cover_pic_mobile">
                 <img [src]="coverImage" *ngIf="coverImage" alt="Cover Image" />
@@ -36,12 +35,14 @@
                   </svg>
                 </div>
               </div>
-              <!-- Add a loader in your template -->
 
-
+              <div *ngIf="loading && photoLoading" class="loader-container py-5">
+                <div class="loader"></div>
+                <p>{{'loading' | translate}}</p>
+              </div>
               <!-- The rest of your content goes here -->
-              <div >
-                <div class="user-media text-center " *ngIf="!photoLoading">
+              <div *ngIf="!photoLoading">
+                <div class="user-media text-center ">
                   <img *ngIf="profileImage" [src]="profileImage" alt="" class="" />
                   <img *ngIf="!profileImage" src="../../../../assets/images/default/talent-profile-default.png" class=""
                     alt="" />
@@ -90,11 +91,12 @@
                     </a>
                   </div>
                 </div>
+                <!-- Add a loader in your template -->
                 <div *ngIf="loading" class="loader-container py-5">
                   <div class="loader"></div>
                   <p>{{'loading' | translate}}</p>
                 </div>
-                <div class="bg-color card-bg" *ngIf="!loading">
+                <div class="bg-color card-bg"  *ngIf="!loading">
                   <div class="user-info pt-3 row align-items-center justify-content-between p-3 responsive-name">
                     <div class="col-md-8 d-flex align-items-center player-name-box">
                       <h6 class="user-info-name">
@@ -329,7 +331,7 @@
                           <h6 class="title_2">{{ 'height' | translate }}</h6>
                           <h5 *ngIf="user.meta && user.meta.height" class="title-1">{{user.meta.height}}
                             {{user.meta.height_unit}}</h5>
-                          <!-- <h5 class="title-1" *ngIf="!user.meta || !user.meta.height">NA</h5> -->
+                          <h5 class="title-1" *ngIf="!user.meta || !user.meta.height">NA</h5>
                         </div>
                       </div>
                     </div>
@@ -378,7 +380,7 @@
                           <h6 class="title_2">{{ 'weight' | translate }}</h6>
                           <h5 *ngIf="user.meta && user.meta.weight" class="title-1">{{user.meta.weight}}
                             {{user.meta.weight_unit}}</h5>
-                          <!-- <h5 class="title-1" *ngIf="!user.meta || !user.meta.weight">NA</h5> -->
+                          <h5 class="title-1" *ngIf="!user.meta || !user.meta.weight">NA</h5>
                         </div>
                       </div>
                     </div>
@@ -458,7 +460,7 @@
                           <h6 class="title_2">{{ 'contract' | translate}}</h6>
                           <h5 class="title-1" *ngIf="user?.meta?.contract_start">{{user?.meta?.contract_start | date:'y'
                             }} - {{user?.meta?.contract_end | date:'y' }}</h5>
-                          <!-- <h5 class="title-1" *ngIf="!user?.meta?.contract_start">NA</h5> -->
+                          <h5 class="title-1" *ngIf="!user?.meta?.contract_start">NA</h5>
                         </div>
                       </div>
                     </div>
@@ -516,7 +518,7 @@
                         <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'leagueLevel' | translate}}</h6>
                           <h5 class="title-1" *ngIf="user?.league_name">{{user?.league_name}}</h5>
-                          <!-- <h5 class="title-1" *ngIf="!user?.league_name">NA</h5> -->
+                          <h5 class="title-1" *ngIf="!user?.league_name">NA</h5>
                         </div>
                       </div>
                     </div>

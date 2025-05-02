@@ -54,6 +54,7 @@ export class AdvertisingPopupComponent {
   typeForView: any = "";
   pageName: any = "";
   imageUrl: any = null;
+  theme: any = localStorage.getItem('theme');
   constructor(
     public dialogRef: MatDialogRef<AdvertisingPopupComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -114,6 +115,7 @@ export class AdvertisingPopupComponent {
     this.webPages.languageId$.subscribe((data: any) => {
       this.getToasterMsg();
     });
+    this.theme = localStorage.getItem('theme');
   }
 
   close(): void {

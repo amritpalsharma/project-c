@@ -102,7 +102,7 @@
         <div class="col-lg-3 td_col mt-3">
             <div class="team-details style-1">
                 <p>{{ 'age' | translate}}</p>
-                <h6>{{calculateAge(userData?.meta?.date_of_birth)}}</h6>
+                <h6 *ngIf="calculateAge(userData?.meta?.date_of_birth) > 0">{{calculateAge(userData?.meta?.date_of_birth)}}</h6>
             </div>
         </div>
         <div class="col-lg-3 td_col mt-3 ">

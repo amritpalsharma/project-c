@@ -379,6 +379,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.talentService.getProfileData(params).subscribe((response) => {
 
         if (response && response.status && response.data && response.data.user_data) {
+
           localStorage.setItem('userInfo', JSON.stringify(response.data.user_data));
           localStorage.setItem('userData', JSON.stringify(response.data.user_data));
           console.info('UserDataArr',response.data.user_data);
@@ -427,6 +428,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
               }
               
             }, 0);
+            
           }
 
 
@@ -452,7 +454,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
           //     this.getCountry(nat.flag_path, index);
           //   });
           // }
-
         }
 
         this.loading = false;  // Set loading to false once data is loaded

@@ -2,7 +2,13 @@
   <div class="popup_header p-3">
     <h6 class="code-text text-center" *ngIf="this.data.action == 'create'">{{ 'newCoupon' | translate }}</h6>
     <h6 class="code-text text-center" *ngIf="this.data.action == 'update'">{{ 'editCoupon' | translate }}</h6>
-    <div (click)="close()" class="close-img mb-1"></div>
+    <!-- <div (click)="close()" class="close-img mb-1"></div> -->
+    <div class="close-img mb-1" *ngIf='theme!="dark"'>
+      <img src="../../../assets/images/carbon_close-outline-light.svg" alt="" class="" (click)="close()" />
+    </div>
+    <div class="close-img mb-1" *ngIf='theme=="dark"'>
+      <img src="../../../assets/images/carbon_close-outline.svg" alt="" class="" (click)="close()" />
+    </div>
   </div>
 
   <div class="popup__body p-3 create-new_popup coupon_popup_admin">

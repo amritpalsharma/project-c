@@ -1,7 +1,13 @@
 <div class="p-0 parent-popup">
   <div class="p-3 popup_header">
     <h4 class="code-text mb-0 text-center">{{ 'news' | translate }}</h4>
-    <img src="../../../assets/images/close-icon-circle.png" alt="" class="close-img" (click)="remove()" />
+    <!-- <img src="../../../assets/images/close-icon-circle.png" alt="" class="close-img" (click)="remove()" /> -->
+    <div class="close-img" *ngIf='theme!="dark"'>
+      <img src="../../../assets/images/carbon_close-outline-light.svg" alt="" class="" (click)="remove()" />
+    </div>
+    <div class="close-img" *ngIf='theme=="dark"'>
+      <img src="../../../assets/images/carbon_close-outline.svg" alt="" class="" (click)="remove()" />
+    </div>
   </div>
   <div class="popup__body news_content_form_popup px-0">
     <div class="container">
