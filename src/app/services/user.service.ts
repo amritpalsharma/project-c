@@ -674,6 +674,80 @@ export class UserService {
       `${this.apiUrl}/user/get-scout-players/${lang_id}/${userId}`, { headers }
     );
   }
+  
+  getUserPopups(data: any = {}): Observable<any> {
+    let lang_id = localStorage.getItem('lang_id');
+    let params = new HttpParams();
+
+    for (const key in data) {
+      if (data.hasOwnProperty(key)) {
+        params = params.set(`whereClause[${key}]`, data[key]);
+      }
+    }
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.userToken}`
+    });
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
+      `${this.apiUrl}/user/get-system-popups/${lang_id}`, { headers, params }
+      // https://api.socceryou.ch/api/user/get-system-popups/1
+    );
+    // return this.http.post<any>(`${this.apiUrl2}/edit-performance-detail/${performanceId}`, params, { headers });
+  }
+
+  getPopupSeen(data: any): Observable<any> {
+    let lang_id = localStorage.getItem('lang_id');
+    let params = new HttpParams();
+
+    for (const key in data) {
+      if (data.hasOwnProperty(key)) {
+        params = params.set(`whereClause[${key}]`, data[key]);
+      }
+    }
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.userToken}`
+    });
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
+      `${this.apiUrl}user/get-popup-seens/${lang_id}`, { headers, params }
+    );
+  }
+  
+  addPopupSeen(data: any): Observable<any> {
+    let lang_id = localStorage.getItem('lang_id');
+
+    let formData = new FormData();
+
+    for (const key in data) {
+      if (data.hasOwnProperty(key)) {
+        formData.append(`${key}`, data[key]);
+      }
+    }
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.userToken}`
+    });
+    return this.http.post<any>(
+      `${this.apiUrl}user/add-popup-seen/${lang_id}`, formData, { headers }
+    );
+  }
+
+  editPopupSeen(id: any, data: any): Observable<any> {
+    let lang_id = localStorage.getItem('lang_id');
+
+    let formData = new FormData();
+
+    for (const key in data) {
+      if (data.hasOwnProperty(key)) {
+        formData.append(`${key}`, data[key]);
+      }
+    }
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.userToken}`
+    });
+    return this.http.post<any>(
+      `${this.apiUrl}user/edit-popup-seen/${id}/${lang_id}`, formData, { headers }
+    );
+  }
 
   userGetRepresentators(userId: any): Observable<any> {
     const userToken = localStorage.getItem('authToken');

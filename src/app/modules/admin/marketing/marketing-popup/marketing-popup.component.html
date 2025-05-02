@@ -105,7 +105,7 @@
       <div class="btn-group">
         <mat-select [(ngModel)]="selectedFrequency" class="mat-select-div">
           @for (freq of frequency; track freq) {
-          <mat-option [value]="freq">{{translateFrequency(freq)}}</mat-option>
+          <mat-option [value]="freq">{{translateFrequency(freq.freq)}}</mat-option>
           }
         </mat-select>
         <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none"

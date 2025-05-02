@@ -1,16 +1,16 @@
 <!-- message-popup.component.html -->
 <div class="msg-popup-dialog p-3">
-    <div class="msg-popup-close">
+    <div class="msg-popup-close d-flex">
+        <div class="title">
+            <h2>{{ title }}</h2>
+        </div>
         <!-- close-icon-circle.png -->
         <img *ngIf="theme !='dark'"
             src="../../../assets/images/carbon_close-outline-light.svg" alt="" (click)="close()" />
         <img *ngIf="theme=='dark'"
             src="../../../assets/images/carbon_close-outline.svg" alt="" (click)="close()" />
     </div>
-    <div class="msg-popup-content p-3 pt-1">
-        <div class="display-message">
-            <!-- {{ data.message }} -->
-              test
-        </div>
+    <div class="msg-popup-content py-3">
+        <div class="display-message" [innerHTML]="description"></div>
     </div>
 </div>
