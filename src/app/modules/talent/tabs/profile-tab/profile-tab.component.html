@@ -22,7 +22,7 @@
             </div>
             <div class="general_details">
                 <h6 class="details_2"> {{ 'topSpeed' | translate}}</h6>
-                <h5 class="details-1">NA</h5>
+                <!-- <h5 class="details-1">NA</h5> -->
             </div>
             <div class="general_details">
                 <h6 class="details_2">{{ 'internationalPlayer' | translate}}</h6>
@@ -30,7 +30,7 @@
             </div>
             <div class="general_details">
                 <h6 class="details_2"> {{ 'marketValue' | translate}}</h6>
-                <h5 class="details-1">NA</h5>
+                <!-- <h5 class="details-1">NA</h5> -->
             </div>
             <div class="general_details">
                 <h6 class="details_2"> {{ 'lastChange' | translate}}</h6>
@@ -133,7 +133,7 @@
             <h6 class="details_2"> {{ 'topSpeed' | translate}}</h6>
             <h5 class="details-1" *ngIf="user.meta && user.meta.top_speed">{{user.meta.top_speed}}
                 {{user.meta.top_speed_unit}}</h5>
-            <h5 class="details-1" *ngIf="!user.meta || !user.meta.top_speed">NA</h5>
+            <!-- <h5 class="details-1" *ngIf="!user.meta || !user.meta.top_speed">NA</h5> -->
         </div>
         <div class="general_details">
             <h6 class="details_2">{{ 'internationalPlayer' | translate}}</h6>
@@ -143,13 +143,13 @@
         <div class="general_details">
             <h6 class="details_2"> {{ 'marketValue' | translate}}</h6>
             <h5 class="details-1" *ngIf="user.meta && user.meta.market_value">€{{user.meta.market_value}} </h5>
-            <h5 class="details-1" *ngIf="!user.meta || !user.meta.market_value">NA</h5>
+            <!-- <h5 class="details-1" *ngIf="!user.meta || !user.meta.market_value">NA</h5> -->
         </div>
         <div class="general_details">
             <h6 class="details_2"> {{ 'lastChange' | translate}}</h6>
             <h5 class="details-1" *ngIf="user.meta && user.meta?.last_change">{{user.meta?.last_change
                 |date:'dd.MM.yyyy'}} </h5>
-            <h5 class="details-1" *ngIf="!user.meta || !user.meta?.last_change">NA</h5>
+            <!-- <h5 class="details-1" *ngIf="!user.meta || !user.meta?.last_change">NA</h5> -->
         </div>
     </div>
     <div class="row mt-4">

@@ -5,6 +5,9 @@ import { Editor, Toolbar } from 'ngx-editor';
 import { environment } from '../../../../../environments/environment';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MarketingService } from '../../../../services/marketing.service';
+import { EditorConfigService } from '../../../../services/editor-config.service';
+import tinymce from 'tinymce';
+
 @Component({
   selector: 'app-marketing-popup',
   templateUrl: './marketing-popup.component.html',
@@ -50,11 +53,14 @@ export class MarketingPopupComponent {
   error: boolean = false;
   status: any = "";
   errorMsg: any = {}
+  editorConfig: any;
+  lang: any = localStorage.getItem('lang') || 'de';
   constructor(
+    private configService: EditorConfigService,
     public dialogRef: MatDialogRef<MarketingPopupComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, private marketingApi: MarketingService
   ) {
-
+    this.editorConfig = this.configService.getConfig(this.lang);
   }
 
   theme: any = localStorage.getItem('theme');

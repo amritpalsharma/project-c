@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { ClubService } from '../../../../../services/club.service';
 import { Editor, Toolbar } from 'ngx-editor';
 import { environment } from '../../../../../../environments/environment';
+import { EditorConfigService } from '../../../../../services/editor-config.service';
+import tinymce from 'tinymce';
 
 @Component({
   selector: 'app-club-history',
@@ -18,8 +20,16 @@ export class ClubHistoryComponent {
   @Input() role: any;
   @Input() isPremium: any;
   @Input() clubHistory: any;
+  editorConfig: any;
+  lang: any = localStorage.getItem('lang') || 'de';
+
   @ViewChild('historyTextarea', { static: false }) textarea!: ElementRef;
-  constructor(private route: ActivatedRoute, private clubService: ClubService) { }
+  constructor(
+    private configService: EditorConfigService,
+    private route: ActivatedRoute, 
+    private clubService: ClubService) { 
+      this.editorConfig = this.configService.getConfig(this.lang);
+    }
 
   ngOnInit(): void {
     // this.getClubHistory();

@@ -6,6 +6,8 @@ import { environment } from '../../../../../environments/environment';
 import { UnverifiedUserComponent } from '../../../shared/unverified-user/unverified-user.component';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import { EditorConfigService } from '../../../../services/editor-config.service';
+import tinymce from 'tinymce';
 
 @Component({
   selector: 'club-history-tab',
@@ -27,6 +29,8 @@ export class HistoryTabComponent implements OnInit {
   userId: any = "";
   history: any = "";
   isEditable: boolean = false;
+  editorConfig: any;
+  lang: any = localStorage.getItem('lang') || 'de';
   @Input() isUserVerified: any;
   @Input() role: any;
   @Input() isPremium: any;
@@ -36,8 +40,11 @@ export class HistoryTabComponent implements OnInit {
     public dialog: MatDialog,
     private route: ActivatedRoute,
     private clubService: ClubService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private configService: EditorConfigService,
+  ) {
+    this.editorConfig = this.configService.getConfig(this.lang);
+   }
 
   ngOnInit(): void {
     this.getClubHistory();
