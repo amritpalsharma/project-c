@@ -126,6 +126,12 @@ export class EditPersonalDetailsComponent implements OnInit {
     let clubsString = localStorage.getItem('clubs');
     if (clubsString) {
       this.playerClubsListing = JSON.parse(clubsString);
+      // console.info('this.playerClubsListing',this.playerClubsListing)
+      if (Array.isArray(this.playerClubsListing) && this.playerClubsListing.length > 0) {
+        this.playerClubsListing.sort((a, b) =>
+          a.club_name.localeCompare(b.club_name)
+        );
+      }
     } else {
       this.playerClubsListing = [];  // Default to empty array if no clubs in localStorage
     }
@@ -194,7 +200,15 @@ export class EditPersonalDetailsComponent implements OnInit {
       this.getJsonTranslations();
     });
     this.filteredClubs = [...this.playerClubsListing];
+
+    if (Array.isArray(this.countries) && this.countries.length > 0) {
+      this.countries.sort((a, b) =>
+        a.country_name.localeCompare(b.country_name)
+      );
+    }
+
     this.displayedCountries = [...this.countries];
+    console.info('this.displayedCountries', this.displayedCountries)
   }
 
   ngAfterViewInit(): void {
@@ -278,7 +292,7 @@ export class EditPersonalDetailsComponent implements OnInit {
   getUserProfile(userId: any) {
     if (this.userData) {
       this.user = this.userData;
-      console.info('this.user',this.user)
+      console.info('this.user', this.user)
       if (this.user.meta) {
         // console.info('this.user.meta',this.user.meta)
         this.dateOfBirth = this.user.meta.date_of_birth || '';
@@ -487,6 +501,12 @@ export class EditPersonalDetailsComponent implements OnInit {
     this.searchedClubs = this.playerClubsListing.filter((club: any) =>
       club.club_name.toLowerCase().startsWith(searchTerm)
     );
+
+    if (Array.isArray(this.searchedClubs) && this.searchedClubs.length > 0) {
+      this.searchedClubs.sort((a, b) =>
+        a.club_name.localeCompare(b.club_name)
+      );
+    }
   }
 
   filterCountriesOld(event: any) {
@@ -496,7 +516,7 @@ export class EditPersonalDetailsComponent implements OnInit {
     if (keyword === '') {
       this.displayedCountries = [...this.countries];
     } else {
-      const matched = this.countries.filter((c:any) =>
+      const matched = this.countries.filter((c: any) =>
         c.country_name.toLowerCase().includes(keyword)
       );
 
@@ -516,7 +536,7 @@ export class EditPersonalDetailsComponent implements OnInit {
   filterCountries(event: any) {
     const keyword = event.target.value.toLowerCase();
     this.nationSearch = keyword;
-  
+
     if (keyword === '') {
       this.displayedCountries = [...this.countries];
     } else {
@@ -524,31 +544,31 @@ export class EditPersonalDetailsComponent implements OnInit {
       const startsWith = this.countries.filter((c: any) =>
         c.country_name.toLowerCase().startsWith(keyword)
       );
-  
+
       // Then, get countries that contain the keyword but not start with it
       const contains = this.countries.filter((c: any) =>
         !c.country_name.toLowerCase().startsWith(keyword) &&
         c.country_name.toLowerCase().includes(keyword)
       );
-  
+
       // Combine them: startsWith first, then contains
       const matched = [...startsWith, ...contains];
-  
+
       // Always keep already selected countries in the list
       const selected = this.countries.filter((c: any) =>
         this.nationality.includes(c.id)
       );
-  
+
       // Merge matched + selected and remove duplicates
       const combined = [...matched, ...selected];
       const unique = combined.filter((value, index, self) =>
         index === self.findIndex((t) => t.id === value.id)
       );
-  
+
       this.displayedCountries = unique;
     }
   }
-  
+
 
   trackByCountryId(index: number, country: any): number {
     return country.id;

@@ -19,6 +19,7 @@ export class ChatPopupComponent {
   users: any = [];
   allUsers: any = [];
   @ViewChild("userInput") userInput!: ElementRef;
+  theme:string=localStorage.getItem('theme') || 'light';
 
   constructor(
     private userService: UserService,
@@ -29,6 +30,7 @@ export class ChatPopupComponent {
 
   ngOnInit(): void {
     this.fetchUsers();
+    this.theme = localStorage.getItem('theme')+'';
   }
 
   async fetchUsers(): Promise<void> {

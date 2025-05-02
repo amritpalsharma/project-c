@@ -213,6 +213,7 @@
                 [(ngModel)]="editorFirst[i]" 
                 (onEditorChange)="handleEditorChange($event, i)"
                 [init]="editorConfig"
+                (onBlur)="onEditorInit($event, i)"
                 [id]="'editorFirst' + i">
               </editor>
                 <!-- <ngx-editor-menu [editor]="editorFirst[i]" [toolbar]="toolbar" [colorPresets]="colorPresets">
@@ -257,7 +258,7 @@
               </ngx-editor> -->
               <editor
               [(ngModel)]="editorSecond[i]" 
-              (onEditorChange)="handleEditorChange($event, i)"
+              (onEditorChange)="handleEditorChange2($event, i)"
               [init]="editorConfig"
               [id]="'editorSecond' + i">
             </editor>
@@ -290,7 +291,7 @@
               <div class="NgxEditor__Wrapper">
                 <editor
                 [(ngModel)]="editorThird[i]" 
-                (onEditorChange)="handleEditorChange($event, i)"
+                (onEditorChange)="handleEditorChange3($event, i)"
                 [init]="editorConfig"
                 [id]="'editorThird' + i">
               </editor>

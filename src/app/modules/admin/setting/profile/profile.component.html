@@ -123,7 +123,7 @@
             </div>
           </div>
           <div class="setting-btn">
-            <a href="javascript:void(0);" class="btn btn-primary" (click)="updateAdminProfile()">{{ 'save' | translate
+            <a *ngIf="!isReadonly" href="javascript:void(0);" class="btn btn-primary" (click)="updateAdminProfile()">{{ 'save' | translate
               }}</a>
           </div>
         </div>

@@ -12,7 +12,7 @@ export class EditorConfigService {
       language: language,
       language_url: `https://cdn.tiny.cloud/1/vtw0pppfq7efn33a7j0kgks14gccdq6g9dqbigz3vnj26ejy/tinymce/6/langs/${language}.js`,
       height: 400,
-      plugins: 'lists link image table code',
+      plugins: 'lists link image table code textcolor',
       toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | bullist numlist | code',
       skin: isDarkMode ? 'oxide-dark' : 'oxide',
       content_css: isDarkMode ? 'dark' : 'default',
@@ -31,7 +31,14 @@ export class EditorConfigService {
         p, h1, h2, h3, h4, h5, h6 {
           color: #e0e0e0 !important;
         }
-      ` : ''
+      ` : '',
+      color_map: [
+        '#FF0000', // Red
+        '#e05263', // Light Mode red
+        '#357525', // Light Mode Green
+        '#bde34e' // Dark Mode Green
+      ],
+      color_cols: 5
     };
   }
 }

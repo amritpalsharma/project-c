@@ -18,7 +18,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./edit-plan.component.scss']
 })
 export class EditPlanComponent implements OnInit {
-
+  action: string = 'buy';
   countries: any[] = []; // Array to hold country plans
   selectedCountries: any[] = []; // Holds the selected countries
   selectedPlan: any = {}; // Selected country plan details
@@ -29,6 +29,7 @@ export class EditPlanComponent implements OnInit {
   selectedCountryIds: string[] = [];
   activePlans: any[] = [];
   allPlans: any[] = [];
+  countryAllPlans: any[] = [];
   selectedInterval: any;
 
   theme: any = localStorage.getItem('theme');
@@ -38,11 +39,14 @@ export class EditPlanComponent implements OnInit {
   Processing: string = '';
   isCountrySelected: boolean = false;
   selectedPlanID: number = 0;
+  oldCountryPlanId: any = 0;
+  newCountryPlanID: any = 0;
   // selectedCountries: any[] = []; // Stores full country objects
 
 
   @Output() buys: EventEmitter<any> = new EventEmitter();
   langSubscription!: Subscription;
+  isShowBuyButton: boolean = true;
   constructor(
     public dialogRef: MatDialogRef<EditPlanComponent>,
     public talentService: TalentService,
@@ -64,6 +68,9 @@ export class EditPlanComponent implements OnInit {
     // checkPlanExistance
     if (this.data.allPlans && typeof this.data.allPlans != undefined) {
       this.allPlans = this.data.allPlans.filter((plan: any) => plan.interval === 'monthly');
+    }
+    if (this.data.allPlans && typeof this.data.allPlans != undefined) {
+      this.countryAllPlans = this.data.allPlans;
     }
     this.populateCountries();
     this.defaultCard = this.data.defaultCard;
@@ -431,12 +438,73 @@ export class EditPlanComponent implements OnInit {
       planInterval = 'monthly';
     }
     const plan = this.activePlans.find(plan => plan.id === currentPlanID && plan.interval === planInterval);
-    console.log('planplanplanplanplanplan', plan)
+    // console.log('planplanplanplanplanplan', plan)
     if (plan && typeof plan !== undefined) {
       this.isCountrySelected = true;
-      console.log('This Plan is already Purchased');
+      this.action = 'upgrade';
+      const Newplan = this.countryAllPlans.find(newPlan => newPlan.package_id === plan.package_id && newPlan.interval != plan.interval);
+      this.oldCountryPlanId = plan.stripe_plan_id;
+      this.newCountryPlanID = Newplan.stripe_plan_id;
+      console.info('this.countries', this.countryAllPlans);
+      this.isShowBuyButton = false;
     } else {
+      this.action = 'buy';
       console.log('This Plan Not Purchased');
     }
+
+    // console.log(`You need to upgrade to: ${newPlan.package_name} (${newPlan.interval}), ID: ${newPlan.id}`);
+    // console.log(`Current plan: ${currentPlan.package_name} (${currentPlan.interval}), ID: ${currentPlan.id}`);
   }
+
+  handlePayment() {
+    if (this.action == 'buy') {
+      this.buyNow();
+    } else if (this.action == 'upgrade') {
+      let isBothIDCorrect = false;
+      if(this.oldCountryPlanId != '' && this.oldCountryPlanId != undefined){
+        isBothIDCorrect = true;
+      }else{
+        isBothIDCorrect = false;
+        console.log('old country plan id is not found');
+      }
+      if(this.newCountryPlanID != '' && this.newCountryPlanID != undefined){
+        isBothIDCorrect = true;
+      }else{
+        isBothIDCorrect = false;
+        console.log('new country plan id is not found');
+      }
+      if(isBothIDCorrect === true){
+        console.log('both ids found you need to upgrade '+this.oldCountryPlanId+' From '+this.newCountryPlanID);
+        this.updateSubscription(this.oldCountryPlanId,this.newCountryPlanID)
+      }
+    }
+  }
+
+  // checkPlanExistance(currentPlanID: number) {
+  //   const currentInterval = this.isYearly ? 'yearly' : 'monthly';
+  //   const oppositeInterval = this.isYearly ? 'monthly' : 'yearly';
+
+  //   const currentPlan = this.activePlans.find(
+  //     plan => plan.id === currentPlanID && plan.interval === currentInterval
+  //   );
+
+  //   if (currentPlan) {
+  //     this.isCountrySelected = true;
+  //     this.action = 'upgrade';
+
+  //     const newPlan = this.countries.find(
+  //       p => p.package_name === currentPlan.package_name && p.interval === oppositeInterval
+  //     );
+
+  //     if (newPlan) {
+
+  //     } else {
+  //       console.warn('No upgrade plan found.');
+  //     }
+  //   } else {
+  //     this.action = 'buy';
+  //     console.log('This plan not purchased yet.');
+  //   }
+  // }
+
 }

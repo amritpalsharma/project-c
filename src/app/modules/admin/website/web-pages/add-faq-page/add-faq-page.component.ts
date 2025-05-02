@@ -86,7 +86,7 @@ export class AddFaqPageComponent implements OnInit {
   editorThird: Editor[] = [];
 
   editorContent = '';
-  lang = 'de'; // or dynamically based on user selection
+  lang = localStorage.getItem('lang') || 'de'; // or dynamically based on user selection
   config: any;
 
   constructor(
@@ -185,7 +185,7 @@ export class AddFaqPageComponent implements OnInit {
         }, 1000);
 
 
-        
+
 
       }
     });
@@ -195,13 +195,23 @@ export class AddFaqPageComponent implements OnInit {
     for (const key in this.formData) {
       // console.log(key);
       // console.log(this.formData);
-      // return false;
+      // console.log(this.getEditorContentById('editorFirst0')); //
+      // return;
       if (key == 'faq_first_btn_content') {
-        console.log(JSON.stringify(this.formData[key]));
+        // console.log((this.formData[key]));
+        this.formData[key].forEach((item: any, index: number) => {
+          item.desc = this.getEditorContentById('editorFirst' + index);
+        });
         formData.append(key, JSON.stringify(this.formData[key]));
       } else if (key == 'faq_sec_btn_content') {
+        this.formData[key].forEach((item: any, index: number) => {
+          item.desc = this.getEditorContentById('editorSecond' + index);
+        });
         formData.append(key, JSON.stringify(this.formData[key]));
       } else if (key == 'faq_third_btn_content') {
+        this.formData[key].forEach((item: any, index: number) => {
+          item.desc = this.getEditorContentById('editorThird' + index);
+        });
         formData.append(key, JSON.stringify(this.formData[key]));
       } else {
         // if (Array.isArray(this.formData[key])) {
@@ -239,6 +249,14 @@ export class AddFaqPageComponent implements OnInit {
 
   handleEditorChange(content: any, index: number) {
     this.editorFirst[index] = content;
+    this.formData.faq_first_btn_content[index].desc = content;
+    console.log('content is ', content)
+  }
+  handleEditorChange2(content: any, index: number) {
+    this.editorSecond[index] = content;
+  }
+  handleEditorChange3(content: any, index: number) {
+    this.editorThird[index] = content;
   }
 
   setEditorContentById(id: string, value: string): void {
@@ -246,5 +264,33 @@ export class AddFaqPageComponent implements OnInit {
     if (editor) {
       editor.setContent(value);
     }
+  }
+
+  getEditorContentById(id: string): string | undefined {
+    const editor = tinymce.get(id);
+    if (editor) {
+      // Optionally, use the 'value' for something else, like logging or updating a model
+      //   console.log('Value passed:', value);
+      return editor.getContent();
+    }
+    return undefined;  // Return undefined if the editor is not found
+  }
+
+
+  onEditorInit(editorInstance: any, index: number) {
+    //const content = editorInstance.getContent();
+    // Set up a listener for the `blur` event
+    // editorInstance.on('blur', () => {
+    //   this.onBlur(editorInstance, index);  // Call custom blur handler
+    // });
+  }
+
+  onBlur(editorInstance: any, index: number) {
+    // Get the content of the editor when it loses focus
+    const content = editorInstance.getContent();  // Get current content of the editor
+    console.log('Editor blurred. Current content:', content);
+
+    // Manually update the model (if needed)
+    this.editorFirst[index] = content;
   }
 }

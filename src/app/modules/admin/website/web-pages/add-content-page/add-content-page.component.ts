@@ -6,6 +6,8 @@ import { WebPages } from '../../../../../services/webpages.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Editor, Toolbar } from 'ngx-editor';
 import { environment } from '../../../../../../environments/environment';
+import { EditorConfigService } from '../../../../../services/editor-config.service';
+import tinymce from 'tinymce';
 
 interface Language {
   id: string;
@@ -35,8 +37,9 @@ export class AddContentPageComponent implements OnInit {
     ['text_color', 'background_color'],
     ['align_left', 'align_center', 'align_right', 'align_justify']
   ];
-  colorPresets :any = environment.colors;
-
+  colorPresets: any = environment.colors;
+  lang: string = localStorage.getItem('lang') || 'de';
+  editorConfig: any;
   content: string = '';
   formData: any = {
     slug: '',
@@ -55,7 +58,10 @@ export class AddContentPageComponent implements OnInit {
 
   bannerImagePreview: string | ArrayBuffer | null = null;
 
-  constructor(private webpages: WebPages, public dialogRef: MatDialogRef<AddContentPageComponent>) {}
+  constructor(
+    private configService: EditorConfigService,
+    private webpages: WebPages,
+    public dialogRef: MatDialogRef<AddContentPageComponent>) { }
 
   ngOnInit(): void {
     this.editor = new Editor();
@@ -66,6 +72,7 @@ export class AddContentPageComponent implements OnInit {
       this.formData.page_id = this.pageId;
       this.getPagebyId(this.pageId);
     }
+    this.editorConfig = this.configService.getConfig(this.lang);
   }
 
   ngOnDestroy(): void {
@@ -95,6 +102,10 @@ export class AddContentPageComponent implements OnInit {
 
   submitForm(): void {
     const formData = new FormData();
+    const editor = tinymce.get('editorFirstForCOntet');
+    if (editor) {
+      this.formData.page_content = editor.getContent();
+    }
     for (const key in this.formData) {
       if (Array.isArray(this.formData[key])) {
         this.formData[key].forEach((item: string, index: number) => {
@@ -104,6 +115,7 @@ export class AddContentPageComponent implements OnInit {
         formData.append(key, this.formData[key]);
       }
     }
+
 
     // Append lang_id to FormData
     formData.append('lang', String(localStorage.getItem('lang_id')));
@@ -123,6 +135,12 @@ export class AddContentPageComponent implements OnInit {
       if (response.status) {
         this.formData.banner_title = response.data.pageData.banner_title;
         this.formData.page_content = response.data.pageData.page_content;
+        const editor = tinymce.get('editorFirstForCOntet');
+        if (editor) {
+         setTimeout(() => {
+          editor.setContent(this.formData.page_content);
+         }, 1500);
+        }
         this.formData.meta_title = response.data.meta_title;
         this.formData.meta_description = response.data.meta_description;
         this.bannerImagePreview = response.data?.pageData?.banner_img ? response.data.base_url + response.data.pageData.banner_img : null;

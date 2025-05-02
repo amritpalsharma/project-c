@@ -331,7 +331,7 @@
                           <h6 class="title_2">{{ 'height' | translate }}</h6>
                           <h5 *ngIf="user.meta && user.meta.height" class="title-1">{{user.meta.height}}
                             {{user.meta.height_unit}}</h5>
-                          <h5 class="title-1" *ngIf="!user.meta || !user.meta.height">NA</h5>
+                          <!-- <h5 class="title-1" *ngIf="!user.meta || !user.meta.height">NA</h5> -->
                         </div>
                       </div>
                     </div>
@@ -380,7 +380,7 @@
                           <h6 class="title_2">{{ 'weight' | translate }}</h6>
                           <h5 *ngIf="user.meta && user.meta.weight" class="title-1">{{user.meta.weight}}
                             {{user.meta.weight_unit}}</h5>
-                          <h5 class="title-1" *ngIf="!user.meta || !user.meta.weight">NA</h5>
+                          <!-- <h5 class="title-1" *ngIf="!user.meta || !user.meta.weight">NA</h5> -->
                         </div>
                       </div>
                     </div>
@@ -460,7 +460,7 @@
                           <h6 class="title_2">{{ 'contract' | translate}}</h6>
                           <h5 class="title-1" *ngIf="user?.meta?.contract_start">{{user?.meta?.contract_start | date:'y'
                             }} - {{user?.meta?.contract_end | date:'y' }}</h5>
-                          <h5 class="title-1" *ngIf="!user?.meta?.contract_start">NA</h5>
+                          <!-- <h5 class="title-1" *ngIf="!user?.meta?.contract_start">NA</h5> -->
                         </div>
                       </div>
                     </div>
@@ -518,7 +518,7 @@
                         <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'leagueLevel' | translate}}</h6>
                           <h5 class="title-1" *ngIf="user?.league_name">{{user?.league_name}}</h5>
-                          <h5 class="title-1" *ngIf="!user?.league_name">NA</h5>
+                          <!-- <h5 class="title-1" *ngIf="!user?.league_name">NA</h5> -->
                         </div>
                       </div>
                     </div>
@@ -724,7 +724,7 @@
                         </div>
                         <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'age' | translate}}</h6>
-                          <h5 class="title-1">{{calculateAge(user?.meta?.date_of_birth)}}</h5>
+                          <h5 class="title-1"*ngIf="calculateAge(user?.meta?.date_of_birth) > 0">{{calculateAge(user?.meta?.date_of_birth)}}</h5>
                         </div>
                       </div>
                     </div>
