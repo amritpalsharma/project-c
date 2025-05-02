@@ -2339,6 +2339,18 @@ footer img.web_footer_bg {
 
 @media (min-width: 1024px) {
 .dark-theme {
+  .shadow_container { 
+    .item_column:first-child, .item_column:last-child {
+      .body_card {
+        img.theme_white_icon {
+            display: none;
+        }
+        img.dark_theme_blue {
+          display: block !important;
+      }
+      }
+    }
+  }
   .shadow_container {
       .item_column:nth-child(2) {
           background: #BDE34F !important;

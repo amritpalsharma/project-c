@@ -490,6 +490,9 @@ li::before {
         height: 300px;
         overflow: auto;
         padding-right: 5px;
+        img.dark_theme_blue {
+            display: none;
+        }
     }
     .item_column:nth-child(odd) {
         .premium-text p {

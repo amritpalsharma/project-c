@@ -160,6 +160,13 @@ tr td:last-child {
   color: #000 !important;
 }
 
+
+@media (min-width: 1200px) {
+.dashboard_table-2 {
+  margin-top: 12px !important;
+}
+}
+
 @media (max-width: 1024px) {
   .table_title {
     min-width: 100%;
