@@ -46,19 +46,19 @@ export class MarketingPopupComponent {
   frequency: any[] = [
     { freq: 'Once a day', value: 'days', count: 1 },
     { freq: 'Once a week', value: 'weeks', count: 1 },
-    { freq: 'Once 2 Hrs', value: 'hours', count: 1 },
-    { freq: 'Twice a day', value: 'days', count: 2 },
+    // { freq: 'Once 2 Hrs', value: 'hours', count: 1 },
+    // { freq: 'Twice a day', value: 'days', count: 2 },
     { freq: 'Once a month', value: 'months', count: 1 },
     { freq: 'One time only', value: 'once', count: 1 }
   ];
   frequency_de: any[] = [
-  { freq: 'Einmal am Tag', value: 'days', count: 1 },
-  { freq: 'Einmal pro Woche', value: 'weeks', count: 1 },
-  { freq: 'Einmal alle 2 Stunden', value: 'hours', count: 1 },
-  { freq: 'Zweimal am Tag', value: 'days', count: 2 },
-  { freq: 'Einmal im Monat', value: 'months', count: 1 },
-  { freq: 'Nur einmal', value: 'once', count: 1 }
-];
+    { freq: 'Einmal am Tag', value: 'days', count: 1 },
+    { freq: 'Einmal pro Woche', value: 'weeks', count: 1 },
+    // { freq: 'Einmal alle 2 Stunden', value: 'hours', count: 1 },
+    // { freq: 'Zweimal am Tag', value: 'days', count: 2 },
+    { freq: 'Einmal im Monat', value: 'months', count: 1 },
+    { freq: 'Nur einmal', value: 'once', count: 1 }
+  ];
   startDate: any = "";
   endDate: any = "";
   error: boolean = false;
@@ -72,12 +72,14 @@ export class MarketingPopupComponent {
   }
 
   theme: any = localStorage.getItem('theme');
-  
+
   ngOnInit(): void {
     this.theme = localStorage.getItem('theme');
 
     this._locale.set('fr');
     this._adapter.setLocale(this._locale());
+
+    this.selectedFrequency = this.frequency.find(f => f.value === 'days' && f.count === 1);
 
     this.editor = new Editor();
     let selectedLang = localStorage.getItem('lang');
@@ -109,8 +111,7 @@ export class MarketingPopupComponent {
       this.selectedLang = parseInt(this.data.language)
       this.selectedLocation = parseInt(this.data.location)
       // this.selectedFrequency = this.data.frequency;
-      this.selectedFrequency = this.frequency.find(f => f.value === this.data.frequency_value);
-      console.warn('DB selectedFrequency ', this.selectedFrequency);
+      this.selectedFrequency = this.frequency.find(f => f.value === this.data.frequency_value && f.count == this.data.frequency_count);
       let selectedLang = localStorage.getItem('lang');
       if (selectedLang == 'de') {
         // this.selectedFrequency = 'Einmal am Tag';

@@ -102,7 +102,22 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   isUserVerified: boolean = false;
 
+  today: any = new Date().toLocaleDateString();
+  savedDate: any;
+  loginCount: any = localStorage.getItem('popupLoginCount') || 0;
+
   async ngOnInit() {
+
+    this.savedDate = localStorage.getItem('popupLoginDate');
+
+    if (this.savedDate !== this.today) {
+      // Reset for a new day
+      this.loginCount = 0;
+      localStorage.setItem('popupLoginDate', this.today);
+    }
+    
+    this.loginCount++;
+    localStorage.setItem('popupLoginCount', this.loginCount.toString());
 
     this.getJsonTranslations();
     this.themeChanged();
@@ -520,26 +535,37 @@ export class DashboardComponent implements OnInit, OnDestroy {
       });
   }
 
-  openPopup(dataFound: boolean) {
+  freq: any = ['once', 'days', 'weeks', 'months'];
+
+  openPopup(dataFound: boolean, index: any = 0) {
+    if(index>=3){
+      return;
+    }
     if (!dataFound) {
+      // let gotData: boolean = false;
       this.popupData.forEach((data: any) => {
-        console.log(dataFound, "datafound")
-        this.dialog.open(PopupComponent, {
-          width: '500px',
-          position: {
-            top: '150px'
-          },
-          data: {
-            title: data.title,
-            description: data.description
-          }
-        })
+        if(data.frequency_value==this.freq[index]){
+          // gotData = true;
+          this.dialog.open(PopupComponent, {
+            width: '500px',
+            position: {
+              top: '150px'
+            },
+            data: {
+              title: data.title,
+              description: data.description
+            }
+          })
+        }else{
+          // alert('no');
+          console.log("index>>>>>>>>>", index, data.frequency_value, this.freq[index]);
+          this.openPopup(false, index++);
+        }
       })
 
       return;
     }
 
-    console.log(dataFound, "datafound")
     this.popupData.forEach((data: any) => {
       let getId: boolean = false;
       let popup: any = {};
@@ -551,7 +577,31 @@ export class DashboardComponent implements OnInit, OnDestroy {
       });
       if (getId) {
         // console.log('data.frequency_value', data.frequency_value, popup[data.frequency_value], popup)
-        if (popup[data.frequency_value] > 0) {
+        if(data.frequency_value == this.freq[index]){
+          if (popup[data.frequency_value] > 0) {
+            this.dialog.open(PopupComponent, {
+              width: '500px',
+              position: {
+                top: '150px'
+              },
+              data: {
+                title: data.title,
+                description: data.description
+              }
+            })
+  
+            this.editPopupSeen(popup, data.frequency_value);
+          }
+        }
+        else{
+          this.openPopup(true, index++);
+        }
+      }
+      else {
+        console.log('pending popups', data, popup.popup_id, data.id);
+        this.addPopupSeen(data);
+
+        if(data.frequency_value == this.freq[index]){
           this.dialog.open(PopupComponent, {
             width: '500px',
             position: {
@@ -562,24 +612,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
               description: data.description
             }
           })
-
-          this.editPopupSeen(popup, data.frequency_value);
         }
-      }
-      else {
-        console.log('pending popups', data, popup.popup_id, data.id);
-        this.addPopupSeen(data);
-
-        this.dialog.open(PopupComponent, {
-          width: '500px',
-          position: {
-            top: '150px'
-          },
-          data: {
-            title: data.title,
-            description: data.description
-          }
-        })
+        else{
+          this.openPopup(false, index++);
+        }
       }
 
     });
@@ -591,12 +627,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
         role: '2',
         payment_type: this.isPremium ? 'paid' : 'free',
         status: 'active'
-      }
+      } 
       this.userService.getUserPopups(data).subscribe((response) => {
         if (response && response.status) {
           console.info('this.popups', response.data);
           this.popupData = response.data.popups;
-          this.getPopupSeen();
+          // this.getPopupSeen();
         } else {
           // this.highlights = [];
           // this.isLoading = false;
@@ -619,10 +655,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
         if (response && response.status) {
           console.info('this.popupSeen data: ', response.data);
           this.popupSeen = response.data.popupSeens;
-          this.openPopup(true);
+          this.openPopup(true, 0);
         } else {
           console.error('no data for popup-seen:', response);
-          this.openPopup(false);
+          this.openPopup(false, 0);
           this.popupData.forEach((data: any) => {
             this.addPopupSeen(data);
           });
