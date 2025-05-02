@@ -3925,6 +3925,9 @@ span {
         height: 300px;
         padding-right: 5px;
         overflow: auto;
+        img.dark_theme_blue {
+            display: none;
+        }
     }
     .item_column:nth-child(odd) {
         .premium-text p {
