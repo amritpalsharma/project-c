@@ -13,7 +13,8 @@ export class EditorConfigService {
       language_url: `https://cdn.tiny.cloud/1/vtw0pppfq7efn33a7j0kgks14gccdq6g9dqbigz3vnj26ejy/tinymce/6/langs/${language}.js`,
       height: 400,
       plugins: 'lists link image table code textcolor',
-      toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | bullist numlist | code',
+      toolbar: 'undo redo | bold italic forecolor backcolor | alignleft aligncenter alignright | bullist numlist | code',
+      // toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | bullist numlist | code',
       skin: isDarkMode ? 'oxide-dark' : 'oxide',
       content_css: isDarkMode ? 'dark' : 'default',
       content_style: isDarkMode ? `

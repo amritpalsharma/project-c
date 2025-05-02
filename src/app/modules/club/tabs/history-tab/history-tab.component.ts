@@ -29,8 +29,6 @@ export class HistoryTabComponent implements OnInit {
   userId: any = "";
   history: any = "";
   isEditable: boolean = false;
-  editorConfig: any;
-  lang: any = localStorage.getItem('lang') || 'de';
   @Input() isUserVerified: any;
   @Input() role: any;
   @Input() isPremium: any;
@@ -40,11 +38,8 @@ export class HistoryTabComponent implements OnInit {
     public dialog: MatDialog,
     private route: ActivatedRoute,
     private clubService: ClubService,
-    private router: Router,
-    private configService: EditorConfigService,
-  ) {
-    this.editorConfig = this.configService.getConfig(this.lang);
-   }
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.getClubHistory();

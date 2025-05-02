@@ -129,9 +129,15 @@
     <div class="mb-3">
       <label for="banner_desc" class="form-label">{{ 'bannerDescription' | translate }}</label>
       <div class="NgxEditor__Wrapper">
-        <ngx-editor-menu [editor]="editor" [colorPresets]="colorPresets"> </ngx-editor-menu>
+        <!-- <ngx-editor-menu [editor]="editor" [colorPresets]="colorPresets"> </ngx-editor-menu>
         <ngx-editor [editor]="editor" class="editor-width" name="banner_desc" [(ngModel)]="formData.banner_desc"
-          [disabled]="false" [placeholder]="'typeHere' | translate"></ngx-editor>
+          [disabled]="false" [placeholder]="'typeHere' | translate"></ngx-editor> -->
+          <editor
+          [(ngModel)]="formData.banner_desc" 
+          class="editor-width"
+          [init]="editorConfig"
+          [id]="'TalentPageDescription'">
+        </editor>
       </div>
     </div>
 

@@ -27,6 +27,7 @@ interface Language {
   styleUrl: './add-page.component.scss'
 })
 export class AddPageComponent {
+  theme: any = localStorage.getItem('theme');
   languages: any = localStorage.getItem('languages');
   lang_id: any = localStorage.getItem('lang_id');
   lang: any = localStorage.getItem('lang');
@@ -69,6 +70,7 @@ export class AddPageComponent {
       this.selectedLanguage = this.lang_id;
      // this.title = this.pageDetail.title;
     }
+    this.theme = localStorage.getItem('theme');
    // this.getAllPages();
   }
 

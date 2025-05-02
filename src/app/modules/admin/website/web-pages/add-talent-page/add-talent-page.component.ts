@@ -6,6 +6,9 @@ import { WebPages } from '../../../../../services/webpages.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Editor, Toolbar } from 'ngx-editor';
 import { environment } from '../../../../../../environments/environment';
+import { EditorConfigService } from '../../../../../services/editor-config.service';
+import tinymce from 'tinymce';
+
 
 interface Language {
   id: string;
@@ -91,8 +94,13 @@ export class AddTalentPageComponent implements OnInit {
   bannerImagesPreviews: string | ArrayBuffer | null = null;
   // bannerImagesPreviewsDarkMode: string[] = [];
   bannerImagePreview: string | ArrayBuffer | null = null;
-
-  constructor(private webpages: WebPages, public dialogRef: MatDialogRef<AddTalentPageComponent>, private cdr: ChangeDetectorRef) { }
+  lang: string = localStorage.getItem('lang') || 'de';
+  editorConfig: any;
+  constructor(
+    private configService: EditorConfigService,
+    private webpages: WebPages,
+    public dialogRef: MatDialogRef<AddTalentPageComponent>,
+    private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.editor = new Editor();
@@ -106,6 +114,7 @@ export class AddTalentPageComponent implements OnInit {
     // feature_sctn: this.fb.array(this.formData.feature_sctn.map(item => this.createFeatureItem(item))),
     //   feature_sctn_imgs: [this.formData.feature_sctn_imgs],
     //   feature_sctn_title: [this.formData.feature_sctn_title],
+    this.editorConfig = this.configService.getConfig(this.lang);
   }
 
   ngOnDestroy(): void {
@@ -205,7 +214,10 @@ export class AddTalentPageComponent implements OnInit {
 
   submitForm(): void {
     const formData = new FormData();
-
+    const editor = tinymce.get('TalentPageDescription');
+    if (editor) {
+      this.formData.banner_desc = editor.getContent();
+    }
     // Helper function to append nested objects to FormData
     const appendNestedObject = (prefix: string, obj: any) => {
       for (const key in obj) {
@@ -332,7 +344,10 @@ export class AddTalentPageComponent implements OnInit {
         this.bannerBgImagePreviewDarkMode = response.data.base_url + pageData.banner_bg_img_dark_mode;
         this.bannerImagePreview = response.data.base_url + pageData.banner_img;
         this.bannerImagesPreviewsDarkMode = response.data.base_url + pageData.banner_img_dark_mode;
-
+        const editor = tinymce.get('TalentPageDescription');
+        if (editor && this.formData.banner_desc) {
+          this.formData.banner_desc = editor.setContent(this.formData.banner_desc);
+        }
         // Map banner images if any
         if (pageData.banner_img) {
           // this.formData.banner_img = pageData.banner_img;
@@ -362,7 +377,7 @@ export class AddTalentPageComponent implements OnInit {
             iconPreview: response.data.base_url + feature.icon,
             DarkiconPreview: response.data.base_url + feature.dark_icon,
             imgPreview: response.data.base_url + feature.image,
-            darkimgPreview: response.data.base_url + feature.dark_image,  
+            darkimgPreview: response.data.base_url + feature.dark_image,
           }));
         }
 

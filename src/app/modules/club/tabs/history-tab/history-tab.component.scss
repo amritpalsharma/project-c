@@ -60,9 +60,11 @@
         height: 400px !important;
         overflow-y: scroll;
     }
-    .NgxEditor__Placeholder::before{
+
+    .NgxEditor__Placeholder::before {
         color: black !important;
     }
+
     .NgxEditor__Content {
         width: 100%;
         height: 100%;
@@ -76,7 +78,9 @@
         h6.main-template {
             font-size: 22px;
         }
-        .btn-outline-white, .history-text {
+
+        .btn-outline-white,
+        .history-text {
             font-size: 18px !important;
         }
     }
@@ -88,8 +92,38 @@
         h6.main-template {
             font-size: 28px;
         }
-        .btn-outline-white, .history-text {
+
+        .btn-outline-white,
+        .history-text {
             font-size: 24px !important;
         }
     }
+}
+
+::ng-deep .tox-promotion {
+    display: none !important;
+}
+
+::ng-deep .dark-theme .tox-menubar {
+    background-color: #072944 !important;
+}
+
+::ng-deep .dark-theme .tox-toolbar__primary {
+    background-color: #072944 !important;
+}
+
+::ng-deep .dark-theme .tox-tinymce {
+    border: 2px solid #072944 !important;
+}
+
+::ng-deep .tox-statusbar {
+    display: none !important;
+}
+
+::ng-deep .dark-theme .tox:not(.tox-tinymce-inline) .tox-editor-header {
+    background-color: #072944 !important;
+}
+
+::ng-deep .dark-theme.tox .tox-toolbar-overlord {
+    background-color: #072944 !important;
 }

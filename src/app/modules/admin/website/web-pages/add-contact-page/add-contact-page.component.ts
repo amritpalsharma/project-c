@@ -7,6 +7,8 @@ import {
 } from '@angular/material/dialog';
 import { Editor, Toolbar } from 'ngx-editor';
 import { environment } from '../../../../../../environments/environment';
+import { EditorConfigService } from '../../../../../services/editor-config.service';
+import tinymce from 'tinymce';
 
 interface Language {
   id: string;
@@ -37,15 +39,15 @@ export class AddContactPageComponent {
     ['align_left', 'align_center', 'align_right', 'align_justify']
   ];
 
-  colorPresets :any = environment.colors;
-  bannerImagePreview:any;
+  colorPresets: any = environment.colors;
+  bannerImagePreview: any;
   imageLoaded: boolean = false;
 
   formData: any = {
     page_id: '',
     lang_id: '',
-    meta_title:'',
-    meta_description:'',
+    meta_title: '',
+    meta_description: '',
     banner_bg_img: null,
     banner_title: '',
     form_title: '',
@@ -57,13 +59,21 @@ export class AddContactPageComponent {
     address: '',
     email: '',
   };
-  constructor(private webpages: WebPages, public dialogRef : MatDialogRef<AddContactPageComponent>) {}
+
+  editorConfig: any;
+  lang: string = localStorage.getItem('lang') || 'de';
+  constructor(
+    private configService: EditorConfigService,
+    private webpages: WebPages,
+    public dialogRef: MatDialogRef<AddContactPageComponent>) { }
   ngOnInit() {
     this.editor = new Editor();
-    if(this.pageId){
+    if (this.pageId) {
       this.formData.page_id = this.pageId;
       this.getPagebyId(this.pageId);
     }
+
+    this.editorConfig = this.configService.getConfig(this.lang);
   }
 
   ngOnDestroy(): void {
@@ -84,10 +94,15 @@ export class AddContactPageComponent {
         this.formData.submit_btn_txt = response.data.pageData.submit_btn_txt;
         this.formData.address = response.data.pageData.address;
         this.formData.email = response.data.pageData.email;
-        if(response.data?.pageData?.banner_bg_img != ''){
+        if (response.data?.pageData?.banner_bg_img != '') {
           this.bannerImagePreview = response.data.base_url + response.data.pageData.banner_bg_img;
-        }else{
+        } else {
           this.imageLoaded = false;
+        }
+
+        const editor = tinymce.get('contactPageEditor');
+        if (editor && this.formData.address) {
+          editor.setContent(this.formData.address);
         }
       }
     });
@@ -115,6 +130,10 @@ export class AddContactPageComponent {
 
   submitForm(): void {
     const formData = new FormData();
+    const editor = tinymce.get('contactPageEditor');
+    if (editor && this.formData.address) {
+      this.formData.address = editor.getContent();
+    }
     for (const key in this.formData) {
       formData.append(key, this.formData[key]);
     }

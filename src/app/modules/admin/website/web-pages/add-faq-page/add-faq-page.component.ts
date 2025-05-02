@@ -110,10 +110,10 @@ export class AddFaqPageComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    this.editor.destroy();
-    this.editorFirst.forEach(editor => editor.destroy());
-    this.editorSecond.forEach(editor => editor.destroy());
-    this.editorThird.forEach(editor => editor.destroy());
+    // this.editor.destroy();
+    // this.editorFirst.forEach(editor => editor.destroy());
+    // this.editorSecond.forEach(editor => editor.destroy());
+    // this.editorThird.forEach(editor => editor.destroy());
   }
 
 

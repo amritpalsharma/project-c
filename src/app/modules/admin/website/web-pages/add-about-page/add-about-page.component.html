@@ -195,10 +195,16 @@
     <div class="mb-3">
       <label for="about_banner_desc" class="form-label">{{ 'aboutBannerDescription' | translate }}</label>
       <div class="NgxEditor__Wrapper">
-        <ngx-editor-menu [editor]="editor" [colorPresets]="colorPresets"> </ngx-editor-menu>
+        <!-- <ngx-editor-menu [editor]="editor" [colorPresets]="colorPresets"> </ngx-editor-menu>
 
         <ngx-editor [editor]="editor" class="editor-width" name="address" [(ngModel)]="formData.about_banner_desc"
-          [disabled]="false" [placeholder]="'typeHere' | translate"></ngx-editor>
+          [disabled]="false" [placeholder]="'typeHere' | translate"></ngx-editor> -->
+          <editor
+          [(ngModel)]="formData.about_banner_desc" 
+          class="editor-width" name="about_banner_desc" 
+          [init]="editorConfig"
+          [id]="'aboutPageEditor'">
+        </editor>
       </div>
 
     </div>

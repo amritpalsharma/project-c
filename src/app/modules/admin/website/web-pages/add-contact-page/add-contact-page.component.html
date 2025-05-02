@@ -125,9 +125,16 @@
                 <div class="form-group">
                     <label for="address">{{ 'address' | translate }}</label>
                     <div class="NgxEditor__Wrapper">
-                        <ngx-editor-menu [editor]="editor" [colorPresets]="colorPresets"> </ngx-editor-menu>
+                        <!-- <ngx-editor-menu [editor]="editor" [colorPresets]="colorPresets"> </ngx-editor-menu>
                         <ngx-editor [editor]="editor" class="editor-width" name="address" [(ngModel)]="formData.address"
-                            [disabled]="false" [placeholder]="'typeHere' | translate" ></ngx-editor>
+                            [disabled]="false" [placeholder]="'typeHere' | translate" ></ngx-editor> -->
+
+                            <editor
+                            [(ngModel)]="formData.address" 
+                            class="editor-width" name="address" 
+                            [init]="editorConfig"
+                            [id]="'contactPageEditor'">
+                          </editor>
                     </div>
                 </div>
             </div>

@@ -66,6 +66,7 @@ import { InviteTalentPopupComponent } from './tabs/invite-talent-popup/invite-ta
 import { CreateSightPopupComponent } from './tabs/create-sight-popup/create-sight-popup.component';
 import { AddNewTalentComponent } from './tabs/add-new-talent/add-new-talent.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { EditorModule } from '@tinymce/tinymce-angular';
 // import { NgxStripeModule } from 'ngx-stripe';
 
 @NgModule({
@@ -161,6 +162,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     NgxEditorModule,
     MatProgressSpinnerModule,
     MatTooltipModule,
+    EditorModule
   ]
 })
 

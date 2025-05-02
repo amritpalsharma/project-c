@@ -4,23 +4,58 @@
     position: absolute;
     right: -5px;
     cursor: pointer;
-}
-.image_cut{
+  }
+
+  .image_cut {
     position: relative;
     width: fit-content;
-}
-.close_image svg{
+  }
+
+  .close_image svg {
     background: red;
     padding: 4px 6PX;
     border-radius: 50%;
     fill: #fff;
-}
-::ng-deep { /* to penetrate <ngx-editor> CSS styling */
+  }
+
+  ::ng-deep {
+
+    /* to penetrate <ngx-editor> CSS styling */
     .NgxEditor {
       height: 200px;
       overflow-y: scroll;
     }
+
     .NgxEditor__Content {
-      min-height: 400px; /* make all of the editor area clickable */
+      min-height: 400px;
+      /* make all of the editor area clickable */
     }
+  }
+
+  ::ng-deep .tox-promotion {
+    display: none !important;
+  }
+
+  ::ng-deep .dark-theme .tox-menubar {
+    background-color: #072944 !important;
+  }
+
+  ::ng-deep .dark-theme .tox-toolbar__primary {
+    background-color: #072944 !important;
+  }
+
+  ::ng-deep .dark-theme .tox-tinymce {
+    border: 2px solid #072944 !important;
+  }
+
+  ::ng-deep .tox-statusbar {
+    display: none !important;
+  }
+
+  ::ng-deep .dark-theme .tox:not(.tox-tinymce-inline) .tox-editor-header {
+    background-color: #072944 !important;
+  }
+
+  ::ng-deep .dark-theme.tox .tox-toolbar-overlord {
+    background-color: #072944 !important;
   }

@@ -6,6 +6,8 @@ import { WebPages } from '../../../../../services/webpages.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Editor, Toolbar } from 'ngx-editor';
 import { environment } from '../../../../../../environments/environment';
+import { EditorConfigService } from '../../../../../services/editor-config.service';
+import tinymce from 'tinymce';
 
 interface Language {
   id: string;
@@ -38,7 +40,8 @@ export class AddClubnScoutPageComponent implements OnInit {
   ];
   content: string = '';
   colorPresets: any = environment.colors;
-
+  editorConfig: any;
+  lang: string = localStorage.getItem('lang') || 'de';
   imageLoaded: boolean = false;
 
   formData: any = {
@@ -80,7 +83,11 @@ export class AddClubnScoutPageComponent implements OnInit {
   bannerImagesPreviewsDark: string | ArrayBuffer | null = null;
   bannerImagePreview: string | ArrayBuffer | null = null;
 
-  constructor(private webpages: WebPages, public dialogRef: MatDialogRef<AddClubnScoutPageComponent>, private cdr: ChangeDetectorRef) { }
+  constructor(
+    private configService: EditorConfigService,
+    private webpages: WebPages,
+    public dialogRef: MatDialogRef<AddClubnScoutPageComponent>,
+    private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.editor = new Editor();
@@ -91,6 +98,7 @@ export class AddClubnScoutPageComponent implements OnInit {
       this.formData.page_id = this.pageId;
       this.getPageById(this.pageId);
     }
+    this.editorConfig = this.configService.getConfig(this.lang);
   }
 
   ngOnDestroy(): void {
@@ -130,7 +138,7 @@ export class AddClubnScoutPageComponent implements OnInit {
 
   onFileChange(event: any, field: string): void {
     const file = event.target.files[0]; // Get the first file
-  
+
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
@@ -144,13 +152,16 @@ export class AddClubnScoutPageComponent implements OnInit {
       this.formData[field] = file;
     }
   }
-  
+
 
 
 
   submitForm(): void {
     const formData = new FormData();
-
+    const editor = tinymce.get('clubNdScoutPageEditor');
+    if (editor) {
+      this.formData.banner_desc = editor.getContent();
+    }
     // Helper function to append nested objects to FormData
     const appendNestedObject = (prefix: string, obj: any) => {
       for (const key in obj) {
@@ -348,7 +359,11 @@ export class AddClubnScoutPageComponent implements OnInit {
         this.formData.club_nd_scout_section_title = pageData.club_nd_scout_section_title || '';
         this.formData.feature_sctn_title = pageData.feature_sctn_title || '';
         this.formData.pricing_sctn_title = pageData.pricing_sctn_title || '';
-
+        const formData = new FormData();
+        const editor = tinymce.get('clubNdScoutPageEditor');
+        if (editor && this.formData.banner_desc) {
+          editor.setContent(this.formData.banner_desc);
+        }
         // Trigger change detection after assigning data
         this.cdr.detectChanges();
       }

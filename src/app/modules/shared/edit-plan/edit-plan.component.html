@@ -25,8 +25,9 @@
         <mat-select [(ngModel)]="selectedCountryIds" (selectionChange)="onCountrySelect($event)"
           placeholder="{{ 'select' | translate }}">
           <!-- Custom display for selected options -->
-          <mat-option *ngFor="let country of countries" [value]="country.id">
-            {{ extractTextAfterDash(country.package_name) }}
+          <!-- <mat-option *ngFor="let country of countries" [value]="country.id" onselect=""> -->
+          <mat-option *ngFor="let country of countries" [value]="country" onselect="">
+            {{ extractTextAfterDash(country.package_name)  }}
           </mat-option>
         </mat-select>
       </div>

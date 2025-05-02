@@ -6,6 +6,9 @@ import { WebPages } from '../../../../../services/webpages.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Editor, Toolbar } from 'ngx-editor';
 import { environment } from '../../../../../../environments/environment';
+import { EditorConfigService } from '../../../../../services/editor-config.service';
+import tinymce from 'tinymce';
+
 interface Language {
   id: string;
   description: string;
@@ -70,8 +73,13 @@ export class AddAboutPageComponent implements OnInit {
   };
 
   countries: string[] = ['Switzerland', 'France', 'Germany', 'Italy', 'Portugal'];
+  editorConfig: any;
+  lang: string = localStorage.getItem('lang') || 'de';
 
-  constructor(private webpages: WebPages, public dialogRef: MatDialogRef<AddAboutPageComponent>) { }
+  constructor(
+    private configService: EditorConfigService,
+    private webpages: WebPages,
+     public dialogRef: MatDialogRef<AddAboutPageComponent>) { }
 
   ngOnInit(): void {
     this.editor = new Editor();
@@ -80,6 +88,8 @@ export class AddAboutPageComponent implements OnInit {
       this.formData.page_id = this.pageId;
       this.getPagebyId(this.pageId);
     }
+
+    this.editorConfig = this.configService.getConfig(this.lang);
   }
   ngOnDestroy(): void {
     this.editor.destroy();
@@ -127,7 +137,10 @@ export class AddAboutPageComponent implements OnInit {
           this.country_section_banner_img_dark = response.data.base_url + response.data.pageData.country_section_banner_img_dark;
           this.aboutCountryBannerImagePreviewDark = true;
         }
-
+        const editor = tinymce.get('aboutPageEditor');
+        if (editor && this.formData.about_banner_desc) {
+          editor.setContent(this.formData.about_banner_desc);
+        }
       }
     });
   }
@@ -188,7 +201,12 @@ export class AddAboutPageComponent implements OnInit {
   }
 
   submitForm(): void {
+    // const formData = new FormData();
     const formData = new FormData();
+    const editor = tinymce.get('aboutPageEditor');
+    if (editor) {
+      this.formData.about_banner_desc = editor.getContent();
+    }
     for (const key in this.formData) {
       if (Array.isArray(this.formData[key])) {
         this.formData[key].forEach((item: string, index: number) => {
