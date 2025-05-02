@@ -40,14 +40,28 @@ export class MarketingPopupComponent {
   selectedRole: any = [];
   selectedLang: any = 1;
   selectedLocation: any = 1;
-  selectedFrequency: any = 'Once a day';
+  selectedFrequency: any = { freq: 'Once a day', value: 'days', count: 1 };
   selectedRange: { start: Date | null; end: Date | null } = { start: null, end: null };
   popupIdToEdit: any = '';
   options: any[] = [];
   langs: any = environment.langs;
   locations: any = environment.domains;
-  frequency: any = ['Once a day', 'Once a week', 'Once 2 Hrs', 'Twice a day', 'Once a month', 'One time only'];
-  frequency_de: any = ['Einmal am Tag', 'Einmal pro Woche', 'Einmal alle 2 Stunden', 'Zweimal am Tag', 'Einmal im Monat', 'Nur einmal'];
+  frequency: any[] = [
+    { freq: 'Once a day', value: 'days', count: 1 },
+    { freq: 'Once a week', value: 'weeks', count: 1 },
+    // { freq: 'Once 2 Hrs', value: 'hours', count: 1 },
+    // { freq: 'Twice a day', value: 'days', count: 2 },
+    { freq: 'Once a month', value: 'months', count: 1 },
+    { freq: 'One time only', value: 'once', count: 1 }
+  ];
+  frequency_de: any[] = [
+    { freq: 'Einmal am Tag', value: 'days', count: 1 },
+    { freq: 'Einmal pro Woche', value: 'weeks', count: 1 },
+    // { freq: 'Einmal alle 2 Stunden', value: 'hours', count: 1 },
+    // { freq: 'Zweimal am Tag', value: 'days', count: 2 },
+    { freq: 'Einmal im Monat', value: 'months', count: 1 },
+    { freq: 'Nur einmal', value: 'once', count: 1 }
+  ];
   startDate: any = "";
   endDate: any = "";
   error: boolean = false;
@@ -64,12 +78,14 @@ export class MarketingPopupComponent {
   }
 
   theme: any = localStorage.getItem('theme');
-  
+
   ngOnInit(): void {
     this.theme = localStorage.getItem('theme');
 
     this._locale.set('fr');
     this._adapter.setLocale(this._locale());
+
+    this.selectedFrequency = this.frequency.find(f => f.value === 'days' && f.count === 1);
 
     this.editor = new Editor();
     let selectedLang = localStorage.getItem('lang');
@@ -100,8 +116,8 @@ export class MarketingPopupComponent {
       this.html = this.data.description
       this.selectedLang = parseInt(this.data.language)
       this.selectedLocation = parseInt(this.data.location)
-      this.selectedFrequency = this.data.frequency;
-      console.warn('DB selectedFrequency ', this.selectedFrequency);
+      // this.selectedFrequency = this.data.frequency;
+      this.selectedFrequency = this.frequency.find(f => f.value === this.data.frequency_value && f.count == this.data.frequency_count);
       let selectedLang = localStorage.getItem('lang');
       if (selectedLang == 'de') {
         // this.selectedFrequency = 'Einmal am Tag';
@@ -185,16 +201,25 @@ export class MarketingPopupComponent {
 
     let params: any = {}
 
+    console.log("selected freq", this.selectedFrequency)
+
     params.title = this.title;
     params.description = this.html;
     params.popup_for = this.selectedRole;
     params.language = this.selectedLang;
     params.location = this.selectedLocation;
-    params.frequency = this.selectedFrequency;
+    params.frequency = this.selectedFrequency.freq;
+    params.frequency_value = this.selectedFrequency.value;
+    params.frequency_count = this.selectedFrequency.count;
     params.start_date = this.startDate;
     params.end_date = this.endDate;
     params.status = 1; // 1 for active, 2 for inactive
     // params.status  = this.status; // 1 for active, 2 for inactive
+
+
+
+    console.log("popup data", params)
+
 
 
     this.marketingApi.addPopups(params).subscribe((response) => {
@@ -223,15 +248,21 @@ export class MarketingPopupComponent {
 
     let params: any = {}
 
+    console.log("selected freq", this.selectedFrequency)
+
     params.title = this.title;
     params.description = this.html;
     params.popup_for = this.selectedRole;
     params.language = this.selectedLang;
     params.location = this.selectedLocation;
-    params.frequency = this.selectedFrequency;
+    params.frequency = this.selectedFrequency.freq;
+    params.frequency_value = this.selectedFrequency.value;
+    params.frequency_count = this.selectedFrequency.count;
     params.start_date = this.startDate;
     params.end_date = this.endDate;
     params.status = this.status; // 1 for active, 2 for inactive
+
+    console.log("popup data", params)
 
     this.marketingApi.updatePopups(this.popupIdToEdit, params).subscribe((response) => {
       if (response && response.status) {

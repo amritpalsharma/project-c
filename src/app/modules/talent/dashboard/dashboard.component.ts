@@ -25,6 +25,7 @@ import { ImageCropperComponent2 } from '../../shared/image-cropper/image-cropper
 import { SocketService } from '../../../services/socket.service';
 import { UnverifiedUserComponent } from '../../shared/unverified-user/unverified-user.component';
 import { PopupComponent } from '../../shared/popup/popup.component';
+import { descriptors } from 'chart.js/dist/core/core.defaults';
 
 @Component({
   selector: 'app-dashboard',
@@ -84,6 +85,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
   private introInstance: any; // Reference to the Intro.js instance
   loading: boolean = true;  // Add this line to track loading state
 
+  popupData: any;
+  // popupSeen: any = [{id: 1, user_id: '123', popup_id: '54', days: 2 }, {id: 2, user_id: '124', popup_id: '53', days: 1 }];
+
+  popupSeen: any;
+
   // Toaster Msg For Takent
   pleaseWait: string = '';
   uploadingPhotos: string = '';
@@ -97,7 +103,22 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   isUserVerified: boolean = false;
 
+  today: any = new Date().toLocaleDateString();
+  savedDate: any;
+  loginCount: any = localStorage.getItem('popupLoginCount') || 0;
+
   async ngOnInit() {
+
+    this.savedDate = localStorage.getItem('popupLoginDate');
+
+    if (this.savedDate !== this.today) {
+      // Reset for a new day
+      this.loginCount = 0;
+      localStorage.setItem('popupLoginDate', this.today);
+    }
+    
+    this.loginCount++;
+    localStorage.setItem('popupLoginCount', this.loginCount.toString());
 
     this.getJsonTranslations();
     this.themeChanged();
@@ -382,7 +403,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
           localStorage.setItem('userInfo', JSON.stringify(response.data.user_data));
           localStorage.setItem('userData', JSON.stringify(response.data.user_data));
-          console.info('UserDataArr',response.data.user_data);
+          console.info('UserDataArr', response.data.user_data);
           this.user = response.data.user_data;
           this.userNationalities = JSON.parse(this.user.user_nationalities);
           this.StartTour = this.user?.show_tour == 1 ? true : false;
@@ -426,7 +447,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
                 }
 
               }
-              
+
             }, 0);
             
           }
@@ -516,13 +537,184 @@ export class DashboardComponent implements OnInit, OnDestroy {
       });
   }
 
-  openPopup() {
-    this.dialog.open(PopupComponent, {
-      width: '500px',
-      position: {
-        top: '150px'
-      },
-    })
+  freq: any = ['once', 'days', 'weeks', 'months'];
+
+  openPopup(dataFound: boolean, index: any = 0) {
+    if(index>=3){
+      return;
+    }
+    if (!dataFound) {
+      // let gotData: boolean = false;
+      this.popupData.forEach((data: any) => {
+        if(data.frequency_value==this.freq[index]){
+          // gotData = true;
+          this.dialog.open(PopupComponent, {
+            width: '500px',
+            position: {
+              top: '150px'
+            },
+            data: {
+              title: data.title,
+              description: data.description
+            }
+          })
+        }else{
+          // alert('no');
+          console.log("index>>>>>>>>>", index, data.frequency_value, this.freq[index]);
+          this.openPopup(false, index++);
+        }
+      })
+
+      return;
+    }
+
+    this.popupData.forEach((data: any) => {
+      let getId: boolean = false;
+      let popup: any = {};
+      this.popupSeen.forEach((seenData: any) => {
+        if (seenData.popup_id === data.id) {
+          getId = true;
+          popup = seenData;
+        }
+      });
+      if (getId) {
+        // console.log('data.frequency_value', data.frequency_value, popup[data.frequency_value], popup)
+        if(data.frequency_value == this.freq[index]){
+          if (popup[data.frequency_value] > 0) {
+            this.dialog.open(PopupComponent, {
+              width: '500px',
+              position: {
+                top: '150px'
+              },
+              data: {
+                title: data.title,
+                description: data.description
+              }
+            })
+  
+            this.editPopupSeen(popup, data.frequency_value);
+          }
+        }
+        else{
+          this.openPopup(true, index++);
+        }
+      }
+      else {
+        console.log('pending popups', data, popup.popup_id, data.id);
+        this.addPopupSeen(data);
+
+        if(data.frequency_value == this.freq[index]){
+          this.dialog.open(PopupComponent, {
+            width: '500px',
+            position: {
+              top: '150px'
+            },
+            data: {
+              title: data.title,
+              description: data.description
+            }
+          })
+        }
+        else{
+          this.openPopup(false, index++);
+        }
+      }
+
+    });
+  }
+
+  getUserPopups() {
+    try {
+      let data = {
+        role: '2',
+        payment_type: this.isPremium ? 'paid' : 'free',
+        status: 'active'
+      } 
+      this.userService.getUserPopups(data).subscribe((response) => {
+        if (response && response.status) {
+          console.info('this.popups', response.data);
+          this.popupData = response.data.popups;
+          // this.getPopupSeen();
+        } else {
+          // this.highlights = [];
+          // this.isLoading = false;
+          console.error('Invalid API response structure:', response);
+        }
+      });
+    } catch (error) {
+      // this.isLoading = false;
+      console.error('Error fetching users:', error);
+    }
+  }
+
+  getPopupSeen() {
+    // 
+    let data = {
+      user_id: this.userId
+    }
+    try {
+      this.userService.getPopupSeen(data).subscribe((response) => {
+        if (response && response.status) {
+          console.info('this.popupSeen data: ', response.data);
+          this.popupSeen = response.data.popupSeens;
+          this.openPopup(true, 0);
+        } else {
+          console.error('no data for popup-seen:', response);
+          this.openPopup(false, 0);
+          this.popupData.forEach((data: any) => {
+            this.addPopupSeen(data);
+          });
+        }
+      });
+    } catch (error) {
+      // this.isLoading = false;
+      console.error('Error fetching users:', error);
+    }
+  }
+
+  addPopupSeen(data: any) {
+    let formData: any = {};
+    formData.popup_id = data.id;
+    if (data.frequency_value) {
+      formData[data.frequency_value] = data.frequency_count - 1;
+    }
+    else {
+      return
+    }
+
+    console.log('formdata for adding popup seen', formData)
+    try {
+      this.userService.addPopupSeen(formData).subscribe((response) => {
+        if (response && response.status) {
+          console.info('this.popupSeen data: ', response.data);
+        } else {
+          console.error('no data for popup-seen:', response);
+        }
+      });
+    } catch (error) {
+      // this.isLoading = false;
+      console.error('Error fetching users:', error);
+    }
+  }
+
+  editPopupSeen(data: any, column: any) {
+    let formData: any = {};
+
+    formData[column] = data[column] - 1;
+    formData.popup_id = data.popup_id;
+
+    try {
+      this.userService.editPopupSeen(data.id, formData).subscribe((response) => {
+        if (response && response.status) {
+          console.info('this.popupSeen data: ', response.data);
+        } else {
+          console.error('no data for popup-seen:', response);
+        }
+      });
+    } catch (error) {
+      // this.isLoading = false;
+      console.error('Error fetching users:', error);
+    }
   }
 
   openEditDialog() {
@@ -642,7 +834,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.talentService.getHighlightsData(params).subscribe((response) => {
         if (response && response.status && response.data && response.data.images) {
           this.highlights = response.data;
-          console.info('this.highlights',this.highlights)
+          console.info('this.highlights', this.highlights)
           // this.isLoading = false;
         } else {
           this.highlights = [];
@@ -658,7 +850,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   openImage(index: any, type: string): void {
     const filePath = this.highlights.file_path;
-  
+
     const images = this.highlights.images.map((img: any) => ({
       src: filePath + img.file_name,
       type: 'image',
@@ -668,13 +860,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
       type: 'video',
     }));
 
-    if(type==='video'){
+    if (type === 'video') {
       index += this.highlights.images.length;
     }
-    
-  
+
+
     const album = [...images, ...videos];
-  
+
     // const mainImage = String(index).includes('video_')
     //   ? videos[+index.replace('video_', '')]
     //   : images[index];
@@ -682,7 +874,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     const mainImage = album[index]
 
     console.log(mainImage, "img,,,,", index);
-  
+
     this.dialog.open(LightboxDialogComponent, {
       width: '80%',
       height: '85%',
@@ -789,10 +981,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
     const blob = this.dataURItoBlob(croppedImage);
     const formData = new FormData();
     formData.append('profile_image', blob, 'cropped-image.png');
-  
+
     // Show a loading toast
     this.toastr.info(this.uploadingPhotos, this.pleaseWait, { disableTimeOut: true });
-  
+
     this.talentService.uploadProfileImage(formData).subscribe(
       (response) => {
         this.toastr.clear();
@@ -816,7 +1008,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       }
     );
   }
-  
+
   // Helper function to convert base64 to Blob
   dataURItoBlob(dataURI: string): Blob {
     const byteString = atob(dataURI.split(',')[1]);
@@ -831,26 +1023,26 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   onProfileFileChange(event: Event): void {
     const input = event.target as HTMLInputElement;
-  
+
     if (input.files && input.files.length > 0) {
       const selectedFile = input.files[0];
-  
+
       if (!selectedFile.type.startsWith('image/')) {
         this.toastr.error('Please select a valid image file.', 'Invalid File');
         return;
       }
-  
+
       const reader = new FileReader();
-  
+
       reader.onload = () => {
         const imageData = reader.result as string;
-  
+
         const dialogRef = this.dialog.open(ImageCropperComponent2, {
           width: '500px',
           data: { imageUrl: imageData },
           disableClose: true
         });
-  
+
         dialogRef.afterClosed().subscribe((croppedImage) => {
           if (croppedImage) {
             console.log('Cropped Image:', croppedImage);
@@ -860,13 +1052,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
           }
         });
       };
-  
+
       reader.readAsDataURL(selectedFile);
     } else {
       console.error('No file selected');
     }
   }
-  
+
 
   onProfileFileChange1(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -1173,24 +1365,24 @@ export class DashboardComponent implements OnInit, OnDestroy {
     video.duration = videoElement.duration; // Store duration in the video object
   }
 
-  navigatePlans(){
+  navigatePlans() {
     this.router.navigate(['/talent/plans']);
   }
 
   showVerificationPopup() {
-      const messageDialog = this.dialog.open(UnverifiedUserComponent, {
-        width: '500px',
-        position: {
-          top: '150px'
+    const messageDialog = this.dialog.open(UnverifiedUserComponent, {
+      width: '500px',
+      position: {
+        top: '150px'
+      }
+    })
+
+    messageDialog.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        if (result.action == "delete-confirmed") {
+          // this.deleteUser();
         }
-      })
-  
-      messageDialog.afterClosed().subscribe(result => {
-        if (result !== undefined) {
-          if (result.action == "delete-confirmed") {
-            // this.deleteUser();
-          }
-        }
-      });
+      }
+    });
   }
 }
