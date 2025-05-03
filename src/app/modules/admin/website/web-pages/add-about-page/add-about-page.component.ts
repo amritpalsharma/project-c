@@ -75,7 +75,7 @@ export class AddAboutPageComponent implements OnInit {
   countries: string[] = ['Switzerland', 'France', 'Germany', 'Italy', 'Portugal'];
   editorConfig: any;
   lang: string = localStorage.getItem('lang') || 'de';
-
+  isLoading:boolean=false;
   constructor(
     private configService: EditorConfigService,
     private webpages: WebPages,
@@ -200,7 +200,9 @@ export class AddAboutPageComponent implements OnInit {
     }
   }
 
-  submitForm(): void {
+  submitForm(): void { 
+    this.isLoading = true;
+    // return ;
     // const formData = new FormData();
     const formData = new FormData();
     const editor = tinymce.get('aboutPageEditor');
@@ -221,11 +223,13 @@ export class AddAboutPageComponent implements OnInit {
 
     console.log(this.formData, 'submit-form');
     this.webpages.addAboutPage(formData).subscribe(response => {
+      this.isLoading = false;
       this.dialogRef.close({
         action: 'page-added-successfully',
         message: response.message
       });
     });
+    this.isLoading = false;
   }
 
   // convertToArray(inputString: any) {

@@ -57,7 +57,7 @@ export class AddContentPageComponent implements OnInit {
   imageLoaded: boolean = false;
 
   bannerImagePreview: string | ArrayBuffer | null = null;
-
+  isLoading:boolean=true;
   constructor(
     private configService: EditorConfigService,
     private webpages: WebPages,
@@ -100,7 +100,8 @@ export class AddContentPageComponent implements OnInit {
   }
 
 
-  submitForm(): void {
+  submitForm(): void { 
+    this.isLoading = true;
     const formData = new FormData();
     const editor = tinymce.get('editorFirstForCOntet');
     if (editor) {
@@ -122,12 +123,14 @@ export class AddContentPageComponent implements OnInit {
 
     console.log('content', this.content);
     console.log(this.formData, 'submit-form');
-    this.webpages.addContentPage(formData).subscribe(response => {
+    this.webpages.addContentPage(formData).subscribe(response => { 
+      this.isLoading = false;
       this.dialogRef.close({
         action: 'page-added-successfully',
         message: response.message
       });
     });
+    this.isLoading = false;
   }
 
   getPagebyId(id: number): void {

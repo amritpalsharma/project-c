@@ -96,6 +96,7 @@ export class AddTalentPageComponent implements OnInit {
   bannerImagePreview: string | ArrayBuffer | null = null;
   lang: string = localStorage.getItem('lang') || 'de';
   editorConfig: any;
+  isLoading:boolean=false;
   constructor(
     private configService: EditorConfigService,
     private webpages: WebPages,
@@ -213,6 +214,7 @@ export class AddTalentPageComponent implements OnInit {
   }
 
   submitForm(): void {
+    this.isLoading = true;
     const formData = new FormData();
     const editor = tinymce.get('TalentPageDescription');
     if (editor) {
@@ -312,14 +314,16 @@ export class AddTalentPageComponent implements OnInit {
     console.log(formData)
     // Send the formData
     this.webpages.addTalentPage(formData).subscribe(
-      response => {
+      response => { 
+        this.isLoading = false;
         console.log('Page added successfully:', response);
         this.dialogRef.close({
           action: 'page-added-successfully',
           message: response.message
         });
       },
-      error => {
+      error => { 
+        this.isLoading = false;
         console.error('Error adding page:', error);
         // Optional: Show an error message to the user
       }
@@ -346,7 +350,9 @@ export class AddTalentPageComponent implements OnInit {
         this.bannerImagesPreviewsDarkMode = response.data.base_url + pageData.banner_img_dark_mode;
         const editor = tinymce.get('TalentPageDescription');
         if (editor && this.formData.banner_desc) {
-          this.formData.banner_desc = editor.setContent(this.formData.banner_desc);
+           setTimeout(() => {
+            editor.setContent(this.formData.banner_desc);
+           }, 1000);
         }
         // Map banner images if any
         if (pageData.banner_img) {

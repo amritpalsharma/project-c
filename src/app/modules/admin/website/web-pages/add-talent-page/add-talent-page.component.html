@@ -19,7 +19,7 @@
       </div>
     </fieldset>
 
-    <fieldset class="border p-3 mb-4">
+    <fieldset class="border p-3 mb-4 d-none">
       <div class="row">
         <div class="mb-3 col-md-6">
           <label for="metaTitle" class="form-label">{{ 'metaTitle' | translate }}</label>
@@ -40,7 +40,7 @@
     </div>
     <div class="row">
       <!-- Banner Image Light Mode -->
-      <div class="mb-3 col-md-6">
+      <div class="mb-3 col-md-6 d-none">
         <label for="bannerBgImg" class="form-label">{{ 'bannerBackgroundImage' | translate }}</label>
         <input type="file" class="form-control" id="bannerBgImg" (change)="handleFileInput($event, 'banner_bg_img')" />
 
@@ -59,7 +59,7 @@
       </div>
 
       <!-- Banner Image Dark Mode -->
-      <div class="mb-3 col-md-6">
+      <div class="mb-3 col-md-6 d-none">
         <label for="bannerBgImgDark" class="form-label">{{ 'bannerBackgroundImageDark' | translate }}</label>
         <input type="file" class="form-control" id="bannerBgImgDark"
           (change)="handleFileInput($event, 'banner_bg_img_dark_mode')" />
@@ -81,7 +81,7 @@
     </div>
     <div class="row">
       <!-- Banner Image -->
-      <div class="mb-3 col-sm-6">
+      <div class="mb-3 col-sm-6 d-none">
         <label for="bannerImgs" class="form-label">{{ 'bannerImages' | translate }}</label>
         <input type="file" id="bannerImgs" class="form-control" (change)="uploadBannerImages($event, 'banner_img')" />
         <!-- <input type="file" id="bannerImgs" class="form-control" (change)="onFileChange($event)" /> -->
@@ -103,7 +103,7 @@
       </div>
 
       <!-- Banner Image Dark Mode -->
-      <div class="mb-3 col-sm-6">
+      <div class="mb-3 col-sm-6 d-none">
         <label for="bannerImgsDarkMode" class="form-label">{{ 'bannerImagesDarkMode' | translate }}</label>
         <input type="file" id="bannerImgsDarkMode" class="form-control"
           (change)="uploadBannerImages($event,'banner_img_dark_mode')" />
@@ -132,10 +132,7 @@
         <!-- <ngx-editor-menu [editor]="editor" [colorPresets]="colorPresets"> </ngx-editor-menu>
         <ngx-editor [editor]="editor" class="editor-width" name="banner_desc" [(ngModel)]="formData.banner_desc"
           [disabled]="false" [placeholder]="'typeHere' | translate"></ngx-editor> -->
-          <editor
-          [(ngModel)]="formData.banner_desc" 
-          class="editor-width"
-          [init]="editorConfig"
+        <editor [(ngModel)]="formData.banner_desc" class="editor-width" [init]="editorConfig"
           [id]="'TalentPageDescription'">
         </editor>
       </div>
@@ -316,7 +313,7 @@
               placeholder="{{ 'featureTitle' | translate }}" required />
           </div>
 
-          <div class="col-md-6">
+          <div class="col-md-6 d-none">
             <label for="featureIcon_{{ i }}" class="form-label">{{ 'featureIcon' | translate }}</label>
             <input type="file" class="form-control" id="featureIcon_{{ i }}"
               (change)="onFeatureIconFileChange($event, i)" accept="image/*" />
@@ -333,7 +330,7 @@
             </div>
           </div>
           <!-- Dark Icon -->
-          <div class="col-md-6">
+          <div class="col-md-6 d-none">
             <label for="featureDarkIcon_{{ i }}" class="form-label">Dark feature Icon</label>
             <!-- <label for="featureDarkIcon_{{ i }}" class="form-label">{{ 'featureIcon' | translate }}</label> -->
             <input type="file" class="form-control" id="featureDarkIcon_{{ i }}"
@@ -363,7 +360,7 @@
           </div>
 
           <!-- Add file input for images -->
-          <div class="col-md-6">
+          <div class="col-md-6 d-none">
             <label for="featureImg_{{ i }}" class="form-label">{{ 'featureImage' | translate }}</label>
             <input type="file" class="form-control" id="featureImg_{{ i }}" (change)="onFeatureFileChange($event, i)"
               accept="image/*" />
@@ -380,7 +377,7 @@
             </div>
           </div>
           <!-- dark Image -->
-          <div class="col-md-6">
+          <div class="col-md-6 d-none">
             <label for="featuredarkImg_{{ i }}" class="form-label">Dark Feature Image</label>
             <!-- <label for="featuredarkImg_{{ i }}" class="form-label">{{ 'featureImage' | translate }}</label> -->
             <input type="file" class="form-control" id="featuredarkImg_{{ i }}"
@@ -465,9 +462,8 @@
         </div>
         <div class="col-md-6">
           <label for="yearly_plan_featureTitle_{{ i }}" class="form-label">{{ 'planFeaturesTitle' | translate }}</label>
-          <input type="text" [(ngModel)]="plan.plan_feature_title" class="form-control"
-            name="plan_feature_title{{ i }}" id="yearly_plan_featureTitle_{{ i }}"
-            placeholder="{{ 'planFeaturesTitle' | translate }}" required />
+          <input type="text" [(ngModel)]="plan.plan_feature_title" class="form-control" name="plan_feature_title{{ i }}"
+            id="yearly_plan_featureTitle_{{ i }}" placeholder="{{ 'planFeaturesTitle' | translate }}" required />
         </div>
         <!-- Plan Features -->
         <div class="mt-3">
@@ -488,18 +484,25 @@
         </div>
 
         <!-- Remove Plan Button -->
-        <button type="button" (click)="removePricingPlan(i)" class="next_btn btn-danger btn-sm mt-3 w-25">
+        <!-- <button type="button" (click)="removePricingPlan(i)" class="next_btn btn-danger btn-sm mt-3 w-25">
           {{ 'removePlan' | translate }}
-        </button>
+        </button> -->
       </div>
 
       <!-- Add Pricing Plan Button -->
-      <button type="button" (click)="addPricingPlan()" class="next_btn btn-primary btn-sm mb-3">
+      <!-- <button type="button" (click)="addPricingPlan()" class="next_btn btn-primary btn-sm mb-3">
         {{ 'addPricingPlan' | translate }}
-      </button>
+      </button> -->
     </div>
+    <button type="submit" class="next_btn mb-3 float-end">
+      <ng-container *ngIf="isLoading; else loginText">
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        <span class="sr-only">Loading...</span>
+      </ng-container>
+      <ng-template #loginText>
+        {{ 'submit' | translate }}
+      </ng-template>
+    </button>
 
-
-    <button type="submit" class="next_btn mb-3 float-end">{{ 'submit' | translate }}</button>
   </form>
 </div>

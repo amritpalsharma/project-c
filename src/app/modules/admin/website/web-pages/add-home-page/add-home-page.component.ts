@@ -26,7 +26,7 @@ export class AddHomePageComponent {
   @Input() languages: Language[] = [];
   addHomePageForm: FormGroup;
   selectedLanguage: string = '0';
-  showTabForm: boolean = true;
+  showTabForm: boolean = false;
   filesData: any = {
     banner_bg_img: null,
     banner_img: null,

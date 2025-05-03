@@ -32,6 +32,7 @@ export class AddPricingPageComponent implements OnInit, OnDestroy {
     ['text_color', 'background_color'],
     ['align_left', 'align_center', 'align_right', 'align_justify']
   ];
+  isLoading:boolean=false;
   content: string = '';
   pricing_banner_img: any = [];
   bannerBgImagePreview: any = [];
@@ -143,7 +144,8 @@ export class AddPricingPageComponent implements OnInit, OnDestroy {
     this.imageLoaded = false;
   }
 
-  submitForm(): void {
+  submitForm(): void { 
+    this.isLoading = true;
     const formData = new FormData();
     console.log(this.formData);  // Log the data to check its structure
 
@@ -182,11 +184,14 @@ export class AddPricingPageComponent implements OnInit, OnDestroy {
 
     // Submit the form data
     this.webpages.addPricingPage(formData).subscribe((response) => {
+      this.isLoading = false;
       this.dialogRef.close({
         action: "page-added-successfully",
         message: response.message
       });
     });
+
+    this.isLoading = false;
   }
 
 

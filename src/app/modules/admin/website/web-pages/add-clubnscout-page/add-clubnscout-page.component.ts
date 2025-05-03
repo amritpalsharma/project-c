@@ -83,6 +83,8 @@ export class AddClubnScoutPageComponent implements OnInit {
   bannerImagesPreviewsDark: string | ArrayBuffer | null = null;
   bannerImagePreview: string | ArrayBuffer | null = null;
 
+  isLoading:boolean=false;
+
   constructor(
     private configService: EditorConfigService,
     private webpages: WebPages,
@@ -157,6 +159,7 @@ export class AddClubnScoutPageComponent implements OnInit {
 
 
   submitForm(): void {
+    this.isLoading = true;
     const formData = new FormData();
     const editor = tinymce.get('clubNdScoutPageEditor');
     if (editor) {
@@ -255,6 +258,7 @@ export class AddClubnScoutPageComponent implements OnInit {
     // Send the formData
     this.webpages.addClubnScoutPage(formData).subscribe(
       response => {
+        this.isLoading = false;
         console.log('Page added successfully:', response);
         this.dialogRef.close({
           action: 'page-added-successfully',
@@ -262,6 +266,7 @@ export class AddClubnScoutPageComponent implements OnInit {
         });
       },
       error => {
+        this.isLoading = false;
         console.error('Error adding page:', error);
         // Optional: Show an error message to the user
       }

@@ -315,7 +315,22 @@
       </button>
     </fieldset>
     <!-- Submit Button -->
-    <button type="submit" class="next_btn mb-3 float-end mb-3 float-end">{{ 'submit' | translate }}</button>
+     
+    <!-- <ng-container *ngIf="isLoading; else loginText">
+      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      <span class="sr-only">Loading...</span>
+    </ng-container>
+    <button #loginText type="submit" class="next_btn mb-3 float-end mb-3 float-end">{{ 'submit' | translate }}</button> -->
+    
+    <ng-container *ngIf="isLoading; else loginText">
+      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      <span class="sr-only">Loading...</span>
+    </ng-container>
+    
+    <ng-template #loginText>
+      <button type="submit" class="next_btn mb-3 float-end">{{ 'submit' | translate }}</button>
+    </ng-template>
+    
   </form>
 
 </div>

@@ -76,6 +76,15 @@
       </div>
     </div>
 
-    <button type="submit" class="next_btn mb-3 float-end mb-2 mt-2">{{ 'submit' | translate }}</button>
+    <!-- <button type="submit" class="next_btn mb-3 float-end mb-2 mt-2">{{ 'submit' | translate }}</button> -->
+    <button type="submit" class="next_btn mb-3 float-end mb-2 mt-2">
+      <ng-container *ngIf="isLoading; else loginText">
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        <span class="sr-only">Loading...</span>
+      </ng-container>
+      <ng-template #loginText>
+        {{ 'submit' | translate }}
+      </ng-template>
+    </button>
   </form>
 </div>

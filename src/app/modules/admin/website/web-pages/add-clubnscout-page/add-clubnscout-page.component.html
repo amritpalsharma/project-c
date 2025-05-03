@@ -19,7 +19,7 @@
       </div>
     </fieldset>
 
-    <fieldset class="border p-3 mb-4">
+    <fieldset class="border p-3 mb-4 d-none">
       <div class="row">
         <div class="mb-3 col-md-6">
           <label for="metaTitle" class="form-label">{{ 'metaTitle' | translate }}</label>
@@ -40,7 +40,7 @@
     </div>
     <!-- Banner Background Images -->
     <div class="row">
-      <div class="mb-3 col-md-6">
+      <div class="mb-3 col-md-6 d-none">
         <label for="bannerBgImg" class="form-label">{{ 'aboutBannerBackgroundImage' | translate }}</label>
         <input type="file" class="form-control" id="bannerBgImg" (change)="handleFileInput($event, 'banner_bg_img')" />
 
@@ -57,7 +57,7 @@
           </div>
         </div>
       </div>
-      <div class="mb-3 col-md-6">
+      <div class="mb-3 col-md-6 d-none">
         <label for="bannerBgImgDark" class="form-label">{{ 'aboutBannerBackgroundImage' | translate }}</label>
         <input type="file" class="form-control" id="bannerBgImgDark"
           (change)="handleFileInput($event, 'banner_bg_img_dark_mode')" />
@@ -76,7 +76,7 @@
         </div>
       </div>
       <!-- Banner Image -->
-      <div class="mb-3 col-6">
+      <div class="mb-3 col-6 d-none">
         <label for="bannerImgs" class="form-label">{{ 'bannerImages' | translate }}</label>
         <input type="file" id="bannerImgs" class="form-control" multiple (change)="onFileChange($event, 'banner_img')" />
         <div class="d-flex flex-wrap mt-2">
@@ -96,7 +96,7 @@
 
       </div>
       <!-- Dark Mode -->
-      <div class="mb-3 col-6">
+      <div class="mb-3 col-6 d-none">
         <label for="bannerImgsDark" class="form-label">{{ 'bannerImages' | translate }}</label>
         <input type="file" id="bannerImgsDark" class="form-control" multiple (change)="onFileChange($event, 'banner_img_dark_mode')" />
         <div class="d-flex flex-wrap mt-2">
@@ -313,7 +313,7 @@
               placeholder="{{ 'featureTitle' | translate }}" required />
           </div>
 
-          <div class="col-md-6">
+          <div class="col-md-6 d-none">
             <label for="featureIcon_{{ i }}" class="form-label">{{ 'featureIcon' | translate }}</label>
             <input type="file" class="form-control" id="featureIcon_{{ i }}"
               (change)="onFeatureIconFileChange($event, i)" accept="image/*" />
@@ -330,7 +330,7 @@
             </div>
           </div>
           <!-- Dark Icon -->
-          <div class="col-md-6">
+          <div class="col-md-6 d-none">
             <label for="featureDarkIcon_{{ i }}" class="form-label">Dark feature Icon</label>
             <!-- <label for="featureDarkIcon_{{ i }}" class="form-label">{{ 'featureIcon' | translate }}</label> -->
             <input type="file" class="form-control" id="featureDarkIcon_{{ i }}"
@@ -360,7 +360,7 @@
           </div>
 
           <!-- Add file input for images -->
-          <div class="col-md-6">
+          <div class="col-md-6 d-none">
             <label for="featureImg_{{ i }}" class="form-label">{{ 'featureImage' | translate }}</label>
             <input type="file" class="form-control" id="featureImg_{{ i }}" (change)="onFeatureFileChange($event, i)"
               accept="image/*" />
@@ -377,7 +377,7 @@
             </div>
           </div>
           <!-- dark Image -->
-          <div class="col-md-6">
+          <div class="col-md-6 d-none">
             <label for="featuredarkImg_{{ i }}" class="form-label">Dark Feature Image</label>
             <!-- <label for="featuredarkImg_{{ i }}" class="form-label">{{ 'featureImage' | translate }}</label> -->
             <input type="file" class="form-control" id="featuredarkImg_{{ i }}"
@@ -396,9 +396,9 @@
           </div>
         </div>
       </div>
-      <button type="button" (click)="addFeature()" class="next_btn btn-primary btn-sm mt-2">
+      <!-- <button type="button" (click)="addFeature()" class="next_btn btn-primary btn-sm mt-2">
         {{ 'addFeature' | translate }}
-      </button>
+      </button> -->
     </div>
     <!-- Pricing Section -->
     <div class="form-group mt-4">
@@ -414,7 +414,7 @@
 
 
           <!-- Monthly Price -->
-          <div class="col-md-6">
+          <div class="col-md-6 d-none">
             <label for="monthly_plan_label_{{ i }}" class="form-label">{{ 'monthlyLabel' | translate }}</label>
             <input type="text" [(ngModel)]="plan.monthly_plan_label" class="form-control"
               name="monthly_plan_label_{{ i }}" id="monthly_plan_label_{{ i }}"
@@ -425,7 +425,7 @@
           </div>
 
           <!-- Yearly label -->
-          <div class="col-md-6">
+          <div class="col-md-6 d-none">
             <label for="yearly_plan_label_{{ i }}" class="form-label">{{ 'yearlyLabel' | translate }}</label>
             <input type="text" [(ngModel)]="plan.yearly_plan_label" class="form-control"
               name="yearly_plan_label_{{ i }}" id="yearly_plan_label_{{ i }}"
@@ -475,24 +475,35 @@
               {{ 'remove' | translate }}
             </button>
           </div>
+          
+        </div>
+
+        <!-- Remove Plan Button -->
+        <!-- <button type="button" (click)="removePricingPlan(i)" class="next_btn btn-danger btn-sm mt-3 w-25">
+          {{ 'removePlan' | translate }}
+        </button> -->
+        <div class="col-sm-4">
           <button type="button" (click)="addPricingFeature(i)" class="next_btn btn-sm ms-2">
             {{ 'addFeature' | translate }}
           </button>
         </div>
-
-        <!-- Remove Plan Button -->
-        <button type="button" (click)="removePricingPlan(i)" class="next_btn btn-danger btn-sm mt-3 w-25">
-          {{ 'removePlan' | translate }}
-        </button>
       </div>
 
       <!-- Add Pricing Plan Button -->
-      <button type="button" (click)="addPricingPlan()" class="next_btn btn-sm mb-3">
+      <!-- <button type="button" (click)="addPricingPlan()" class="next_btn btn-sm mb-3">
         {{ 'addPricingPlan' | translate }}
-      </button>
+      </button> -->
     </div>
 
 
-    <button type="submit" class="next_btn mb-3 float-end">{{ 'submit' | translate }}</button>
+    <button type="submit" class="next_btn mb-3 float-end">
+      <ng-container *ngIf="isLoading; else loginText">
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        <span class="sr-only">Loading...</span>
+      </ng-container>
+      <ng-template #loginText>
+        {{ 'submit' | translate }}
+      </ng-template>
+    </button>
   </form>
 </div>

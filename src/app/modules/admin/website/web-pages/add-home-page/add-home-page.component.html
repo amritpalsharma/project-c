@@ -22,7 +22,7 @@
       </div>
     </fieldset>
 
-    <fieldset class="border p-3 mb-4">
+    <fieldset class="border p-3 mb-4 d-none">
       <legend class="w-auto px-2">{{ 'seoInformation' | translate }}</legend>
       <div class="row">
         <div class="mb-3 col-md-6">
@@ -41,7 +41,7 @@
       <legend class="w-auto px-2">{{ 'bannerSection' | translate }}</legend>
       <div class="row">
 
-        <div class="mb-3 col-md-6">
+        <div class="mb-3 col-md-6 d-none">
           <label for="bannerBgImg" class="form-label">{{ 'bannerBackgroundImage' | translate }}</label>
           <input type="file" class="form-control" id="bannerBgImg" (change)="handleFileInput($event, 'banner_bg_img')"
             formControlName="banner_bg_img" />
@@ -59,7 +59,7 @@
           </div>
         </div>
 
-        <div class="mb-3 col-md-6">
+        <div class="mb-3 col-md-6 d-none">
           <label for="bannerImg" class="form-label">{{ 'bannerImages' | translate }}</label>
           <input type="file" id="banner_img" class="form-control" (change)="handleFileInput($event, 'banner_img')"
             required />
@@ -82,7 +82,7 @@
           <label for="bannerBtnTxt" class="form-label">{{ 'bannerButtonText' | translate }}</label>
           <input type="text" class="form-control" id="bannerBtnTxt" formControlName="banner_btn_txt" />
         </div>
-        <div class="mb-3 col-md-6">
+        <div class="mb-3 col-md-6 d-none">
           <label for="bannerBtnLink" class="form-label">{{ 'bannerButtonLink' | translate }}</label>
           <input type="text" class="form-control" id="bannerBtnLink" formControlName="banner_btn_link" />
         </div>
@@ -101,7 +101,7 @@
           <label for="sliderBtnTxt" class="form-label">{{ 'sliderButtonText' | translate }}</label>
           <input type="text" class="form-control" id="sliderBtnTxt" formControlName="slider_btn_txt" />
         </div>
-        <div class="mb-3 col-md-6">
+        <div class="mb-3 col-md-6 d-none">
           <label for="sliderBtnLink" class="form-label">{{ 'sliderButtonLink' | translate }}</label>
           <input type="text" class="form-control" id="sliderBtnLink" formControlName="slider_btn_link" />
         </div>
@@ -112,7 +112,7 @@
     <fieldset class="border p-3 mb-4">
       <legend class="w-auto px-2">{{ 'heroSection' | translate }}</legend>
       <div class="row">
-        <div class="mb-3 col-md-6">
+        <div class="mb-3 col-md-6 d-none">
           <label for="heroBgImg" class="form-label">{{ 'heroBackgroundImage' | translate }}</label>
           <input type="file" class="form-control" id="heroBgImg" (change)="handleFileInput($event, 'hero_bg_img')"
             formControlName="hero_bg_img" />
@@ -130,7 +130,7 @@
           </div>
         </div>
         <!-- Dark Mode -->
-        <div class="mb-3 col-md-6">
+        <div class="mb-3 col-md-6 d-none">
           <label for="heroBgImg" class="form-label">{{ 'heroBackgroundImage' | translate }} Dark Mode</label>
           <input type="file" class="form-control" id="heroBgImg"
             (change)="handleFileInput($event, 'hero_bg_img_dark_mode')" formControlName="hero_bg_img_dark_mode" />
@@ -160,7 +160,7 @@
           <label for="heroBtnTxt" class="form-label">{{ 'heroButtonText' | translate }}</label>
           <input type="text" class="form-control" id="heroBtnTxt" formControlName="hero_btn_txt" />
         </div>
-        <div class="mb-3 col-md-6">
+        <div class="mb-3 col-md-6 d-none">
           <label for="heroBtnLink" class="form-label">{{ 'heroButtonLink' | translate }}</label>
           <input type="text" class="form-control" id="heroBtnLink" formControlName="hero_btn_link" />
         </div>
@@ -215,7 +215,7 @@
           <input type="text" class="form-control" [(ngModel)]="firstTab.desc" [name]="'first_tab_desc_' + firstIndex" />
         </div>
 
-        <div class="mb-3 col-md-6">
+        <div class="mb-3 col-md-6 d-none">
           <label class="form-label">{{ 'images' | translate }}</label>
           <input type="file" class="form-control" (change)="handleTabFilesInput($event, firstIndex, 'first_tab')"
             multiple />
@@ -236,7 +236,7 @@
         </div>
 
         <!-- Dark Images Input -->
-        <div class="mb-3 col-md-6">
+        <div class="mb-3 col-md-6 d-none">
           <label class="form-label">{{ 'darkImages' | translate }}</label>
           <input type="file" class="form-control"
             (change)="handleTabFilesInput($event, firstIndex, 'first_tab', 'darkImages')" multiple />
@@ -255,10 +255,10 @@
             </div>
           </div>
         </div>
-        <button type="button" class="removee_button" (click)="removeSection(firstIndex)">Remove Section</button>
+        <!-- <button type="button" class="removee_button" (click)="removeSection(firstIndex)">Remove Section</button> -->
         <hr>
       </div>
-      <button type="button" class="addd_button" (click)="addFirstTab()">Add More</button>
+      <!-- <button type="button" class="addd_button" (click)="addFirstTab()">Add More</button> -->
     </fieldset>
 
     <!-- Second Tab Section -->
@@ -276,7 +276,7 @@
             [name]="'second_tab_desc_' + secondIndex" />
         </div>
         <!-- Images -->
-        <div class="mb-3 col-md-6">
+        <div class="mb-3 col-md-6 d-none">
           <label class="form-label">{{ 'images' | translate }}</label>
           <input type="file" class="form-control" (change)="handleTabFilesInput($event, secondIndex, 'second_tab')"
             multiple />
@@ -297,7 +297,7 @@
         </div>
 
         <!-- Dark Images Input -->
-        <div class="mb-3 col-md-6">
+        <div class="mb-3 col-md-6 d-none">
           <label class="form-label">{{ 'darkImages' | translate }}</label>
           <input type="file" class="form-control"
             (change)="handleTabFilesInput($event, secondIndex, 'second_tab', 'darkImages')" multiple />
@@ -316,10 +316,10 @@
             </div>
           </div>
         </div>
-        <button type="button" class="removee_button" (click)="remove2TabSection(secondIndex)">Remove Section</button>
+        <!-- <button type="button" class="removee_button" (click)="remove2TabSection(secondIndex)">Remove Section</button> -->
         <hr>
       </div>
-      <button type="button" class="addd_button" (click)="addSecondTab()">Add More</button>
+      <!-- <button type="button" class="addd_button" (click)="addSecondTab()">Add More</button> -->
     </fieldset>
 
     <!-- Submit Button -->

@@ -4,8 +4,8 @@
 
 
 
-    <fieldset class="border p-3 mb-4">
-      <div class="row">
+    <fieldset class="border p-3 mb-4 d-none">
+      <div class="row ">
         <div class="mb-3 col-md-6">
           <label for="metaTitle" class="form-label">{{ 'metaTitle' | translate }}</label>
           <input type="text" class="form-control" id="metaTitle" name="meta_title" [(ngModel)]="formData.meta_title" />
@@ -27,7 +27,7 @@
 
 
     <!-- About Banner Background Image -->
-    <div class="mb-3">
+    <div class="mb-3 d-none">
       <label for="about_banner_bg_img" class="form-label">{{ 'aboutBannerBackgroundImage' | translate }}</label>
       <input type="file" id="about_banner_bg_img" class="form-control"
         (change)="onFileChange($event, 'about_banner_bg_img')" required />
@@ -48,7 +48,7 @@
     </div>
 
     <!-- About Banner Image -->
-    <div class="mb-3">
+    <div class="mb-3 d-none">
       <label for="about_banner_img" class="form-label">{{ 'aboutBannerImage' | translate }}</label>
       <input type="file" id="about_banner_img" class="form-control" (change)="onFileChange($event, 'about_banner_img')"
         required />
@@ -107,7 +107,7 @@
 
     <!-- Country Section Banner Image -->
     <div class="row">
-      <div class="mb-3 col-6">
+      <div class="mb-3 col-6 d-none">
         <label for="country_section_banner_img" class="form-label">{{ 'countrySectionBannerImage' | translate }}</label>
         <input type="file" id="country_section_banner_img" class="form-control"
           (change)="onFileChange($event, 'country_section_banner_img')" required />
@@ -127,7 +127,7 @@
         </div>
       </div>
       <!-- Dark Theme -->
-      <div class="mb-3 col-6">
+      <div class="mb-3 col-6 d-none">
         <label for="country_section_banner_img_dark" class="form-label">{{ 'countrySectionBannerImageDark' | translate
           }}</label>
         <input type="file" id="country_section_banner_img_dark" class="form-control"
@@ -150,7 +150,7 @@
     </div>
 
     <!-- Dark Theme Banner Image -->
-    <div class="mb-3">
+    <div class="mb-3 d-none">
       <label for="dark_theme_banner_img" class="form-label">{{ 'darkThemeBannerImage' | translate }}</label>
       <input type="file" id="dark_theme_banner_img" class="form-control"
         (change)="onFileChange($event, 'dark_theme_banner_img')" required />
@@ -185,7 +185,7 @@
     </div>
 
     <!-- Hero Button Link -->
-    <div class="mb-3">
+    <div class="mb-3 d-none">
       <label for="about_hero_btn_link" class="form-label">{{ 'heroButtonLink' | translate }}</label>
       <input type="text" id="about_hero_btn_link" class="form-control" name="about_hero_btn_link"
         [(ngModel)]="formData.about_hero_btn_link" required />
@@ -210,7 +210,15 @@
     </div>
 
     <!-- Submit Button -->
-    <button type="submit" class="next_btn mb-3 float-end">{{ 'submit' | translate }}</button>
+    <button type="submit" class="next_btn mb-3 float-end">
+      <ng-container *ngIf="isLoading; else loginText">
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        <span class="sr-only">Loading...</span>
+      </ng-container>
+      <ng-template #loginText>
+        {{ 'submit' | translate }}
+      </ng-template>
+    </button>
   </form>
 
 </div>

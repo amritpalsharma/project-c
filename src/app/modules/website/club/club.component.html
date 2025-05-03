@@ -339,9 +339,9 @@
                                                 <h2 class="premium-heading3">
                                                     {{ getPlanPriceByName('boost')}}<span>.-{{Currency}} /
                                                         <span
-                                                            *ngIf="selectedTab == 'yearly'">{{priceArr[0].yearly_label}}</span>
+                                                            *ngIf="selectedTab == 'yearly'">{{'yearly' | translate}}</span>
                                                         <span
-                                                            *ngIf="selectedTab != 'yearly'">{{priceArr[0].monthly_label}}</span>
+                                                            *ngIf="selectedTab != 'yearly'">{{'monthly' | translate}}</span>
                                                     </span>
                                                 </h2>
                                                 <h3 class="premium-heading2"> {{getDynamicPlanName('boost')}} </h3>
@@ -373,9 +373,9 @@
                                                 <h2 class="premium-heading3">
                                                     {{ getPlanPriceByName('premium')}}<span>.-{{Currency}} /
                                                         <span
-                                                            *ngIf="selectedTab == 'yearly'">{{priceArr[1].yearly_label}}</span>
+                                                            *ngIf="selectedTab == 'yearly'">{{'yearly' | translate}}</span>
                                                         <span
-                                                            *ngIf="selectedTab != 'yearly'">{{priceArr[1].monthly_label}}</span>
+                                                            *ngIf="selectedTab != 'yearly'">{{'monthly' | translate}}</span>
                                                     </span>
                                                 </h2>
                                                 <h3 class="premium-heading2">{{getDynamicPlanName('premium')}}</h3>
@@ -406,9 +406,9 @@
                                                 <h2 class="premium-heading3">
                                                     {{ getPlanPriceByName('country')}}<span>.-{{Currency}} /
                                                         <span
-                                                            *ngIf="selectedTab == 'yearly'">{{priceArr[2].yearly_label}}</span>
+                                                            *ngIf="selectedTab == 'yearly'">{{'yearly' | translate}}</span>
                                                         <span
-                                                            *ngIf="selectedTab != 'yearly'">{{priceArr[2].monthly_label}}</span>
+                                                            *ngIf="selectedTab != 'yearly'">{{'monthly' | translate}}</span>
                                                     </span>
                                                 </h2>
                                                 <h3 class="premium-heading2"> {{getDynamicPlanName('country')}} </h3>

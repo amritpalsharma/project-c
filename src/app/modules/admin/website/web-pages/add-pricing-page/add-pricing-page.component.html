@@ -19,7 +19,7 @@
       </div>
     </fieldset>
 
-    <fieldset class="border p-3 mb-4">
+    <fieldset class="border p-3 mb-4 d-none">
       <div class="row">
         <div class="mb-3 col-md-6">
           <label for="metaTitle" class="form-label">{{ 'metaTitle' | translate }}</label>
@@ -39,7 +39,7 @@
         required />
     </div>
 
-    <div class="mb-3">
+    <div class="mb-3 d-none">
       <label for="bannerBgImg" class="form-label">{{ 'bannerBackgroundImage' | translate }}</label>
       <input type="file" class="form-control" id="bannerBgImg" (change)="handleFileInput($event, 'pricing_banner_img')"
         formControlName="pricing_banner_img" />
@@ -427,6 +427,14 @@
       </div>
     </div>
 
-    <button type="submit" class="next_btn mb-2 float-end">{{ 'save' | translate }}</button>
+    <button type="submit" class="next_btn mb-2 float-end">
+      <ng-container *ngIf="isLoading; else loginText">
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        <span class="sr-only">Loading...</span>
+      </ng-container>
+      <ng-template #loginText>
+        {{ 'submit' | translate }}
+      </ng-template>
+    </button>
   </form>
 </div>

@@ -190,7 +190,9 @@ export class AddFaqPageComponent implements OnInit {
       }
     });
   }
+  isLoading: boolean = false;
   submitForm(): void {
+    this.isLoading = true;
     const formData = new FormData();
     for (const key in this.formData) {
       // console.log(key);
@@ -238,6 +240,8 @@ export class AddFaqPageComponent implements OnInit {
         message: response.message
       });
     });
+
+    this.isLoading = false;
   }
 
   // To remove Image
