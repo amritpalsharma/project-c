@@ -26,7 +26,7 @@
                   *ngIf="user.club_logo_path && user.club_logo_path && currentUserRole =='club'" class=" mt-1" />
                 <img src="../../../../assets/images/default/talent-profile-default.png" alt=""
                   *ngIf="!user.meta || !user.meta.profile_image && currentUserRole !='club'" class="" />
-                <div class="d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center justify-content-between bg_btn_mobile">
                   <div class="premium_icons">
                     <span class="icon-bg" *ngIf="isPremium && currentUserRole != 'scout' && currentUserRole != 'club'">
                       <button (click)="exportSingleUser(user.id)" mat-raised-button [matTooltip]="downloadPdf">

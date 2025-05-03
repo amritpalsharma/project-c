@@ -1267,14 +1267,23 @@
       }
       .user-details-left .user-media {
         border: 0;
-        width: calc(100% - 15px);
+        width: 100%;
         height: unset;
         min-width: unset;
-        margin-left: 15px;
+        // margin-left: 15px;
         background: transparent !important;
         text-align: left !important;
         margin-top: -70px;
-        margin-bottom: 15px;
+        // margin-bottom: 15px;
+    }
+    .bg_btn_mobile {
+      background: #fff;
+      padding: 0 10px;
+      border: 1px solid #E7E7E7;
+      border-bottom: 0;
+      position: relative;
+      z-index: 1;
+      margin-top: 10px;
     }
     .user-media img {
         border: 1px solid #E7E7E7;
@@ -1283,7 +1292,8 @@
         border-radius: 50%;
         background: #F6F6F6;
         object-fit: contain;
-        object-position:bottom;
+        object-position:top;
+        margin-left: 15px;
     }
     .premium_button {
         padding: 6px 10px;
@@ -1309,7 +1319,7 @@
     .premium_icons {
       position: unset;
       display: flex;
-      flex-wrap: wrap;
+      // flex-wrap: wrap;
       margin-left: 0;
       width: 100%;
       button {
@@ -1320,6 +1330,10 @@
         font-size: 13px;
         margin: 10px 8px 0 0 !important;
         border: 0;
+        width: calc(100% - 8px);
+      }
+      span {
+        width: 100%;
       }
       svg {
         display: none;
@@ -1328,7 +1342,8 @@
         display: block;
       }
     }
-    }
+  }
+
     
     @media (max-width: 991px) {
       .card_box-1, .card_box--2 {
