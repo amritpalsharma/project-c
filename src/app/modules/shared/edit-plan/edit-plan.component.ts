@@ -124,17 +124,21 @@ export class EditPlanComponent implements OnInit {
 
 
   async redirectToCheckout(planId: string, coupon: any = '') {
+    // this.toastr.error('redirectToCheckout');
     this.toastr.info(this.pleaseWait, this.Processing, { timeOut: 2000 });
 
     try {
       const response = await this.stripeService.createCheckoutSession(planId, '', coupon).toPromise();
-
+      console.info('response is ', response);
+      if (!response.status && response.data.error != '') {
+        this.toastr.error(response.data.error, response.message);
+      }
       if (response && response.data.payment_intent.id) {
         const stripe = await this.stripe;
         await stripe?.redirectToCheckout({ sessionId: response.data.payment_intent.id });
         this.toastr.success(this.Processing, this.successTxt);
       } else {
-        // this.toastr.error('Failed to create checkout session. Please try again.', 'Error');
+
         console.error('Failed to create checkout session', response);
       }
     } catch (error) {
@@ -166,22 +170,22 @@ export class EditPlanComponent implements OnInit {
 
 
     if (this.isPlanAlreadySelected()) {
-      this.toastr.warning('You already have a subscription for this plan with a different interval.', 'Warning');
-      this.dialog.open(MessagePopupComponent, {
-        width: '600px',
-        data: {
-          action: 'display',
-          message: 'You already have a subscription for this plan with a different interval. Please cancel it before selecting a new interval.'
-        }
-      });
+      this.toastr.warning('You already have a subscription for this plan with this interval.', 'Warning');
+      // this.dialog.open(MessagePopupComponent, {
+      //   width: '600px',
+      //   data: {
+      //     action: 'display',
+      //     message: 'You already have a subscription for this plan with a different interval. Please cancel it before selecting a new interval.'
+      //   }
+      // });
       return;
     }
 
     const oldPlan = this.selectedCountries.find(c => c.package_name === this.selectedPlan.package_name) || null;
-    // console.warn(this.selectedPlan)
+    console.warn(this.selectedPlan)
     if (this.selectedPlan) {
       const planId = this.isYearly ? this.selectedPlan.yearly : this.selectedPlan.monthly;
-      console.info('planId', planId);
+      console.info('planId', planId, this.isYearly);
       if (this.isYearly) {
         if (this.selectedPlan?.monthly?.is_package_active === 'active') {
           this.updatePlan(planId, this.isYearly, oldPlan);
@@ -274,7 +278,7 @@ export class EditPlanComponent implements OnInit {
     this.isYearly = isYearly; // Toggle between monthly and yearly
     if (this.selectedCountryIds.length > 0) {
       // console.log(this.selectedCountryIds);
-      this.checkPlanExistance(this.selectedPlanID);
+     // this.checkPlanExistance(this.selectedPlanID);
     }
   }
 
@@ -381,16 +385,18 @@ export class EditPlanComponent implements OnInit {
   alreadySelected: boolean = false;
 
   onCountrySelect(event: any) {
-    // console.log(event.value);
-    // this.selectedPlan = event.value; // Update selected IDs
+    console.log(event.value);
+    this.selectedPlan = event.value; // Update selected IDs
     this.selectedCountryIds = event.value.id;
-    let currentPlanID = event.value;
+    console.info('selected country id is '+this.selectedCountryIds);
+    let currentPlanID = event.value.id;
+    // let currentPlanID = event.value;
     this.selectedPlanID = currentPlanID;
     if (this.selectedCountryIds.length > 0 && this.selectedCountryIds != null) {
       this.isCountrySelected = true;
     }
     this.selectedPlan = this.countries.find(country => country.id === this.selectedCountryIds);
-    this.checkPlanExistance(currentPlanID);
+    // this.checkPlanExistance(currentPlanID);
 
     // If a matching plan is found, return true, otherwise return false
     // return plan !== undefined;
@@ -437,7 +443,9 @@ export class EditPlanComponent implements OnInit {
     } else {
       planInterval = 'monthly';
     }
+    console.log('Selected  Id is ' + currentPlanID + ' interval selected ' + planInterval)
     const plan = this.activePlans.find(plan => plan.id === currentPlanID && plan.interval === planInterval);
+    // const plan = this.countryAllPlans.find(plan => plan.id === currentPlanID && plan.interval === planInterval);
     // console.log('planplanplanplanplanplan', plan)
     // console.log('CurrentActivePlan',plan);
     if (plan && typeof plan !== undefined) {
@@ -455,8 +463,17 @@ export class EditPlanComponent implements OnInit {
         console.warn('user has already yearly plan you can noy buy monthly plan');
       }
     } else {
+      const planError = this.countryAllPlans.find(plan => plan.id === currentPlanID && plan.interval === planInterval);
       this.action = 'buy';
-      console.log('you need to buy a plan');
+      if (planError != undefined && planError.id != '') {
+        this.openCouponDialog(planError.id);
+      }else if(typeof currentPlanID != undefined && currentPlanID != 0){
+        this.openCouponDialog(currentPlanID);
+      }
+
+      // currentPlanID
+      //console.log('you need to upgrade a plan you have already ' + planError.package_name + '  ' + planError.interval + ' why do you need to purchse monthly you have already Yearly Plan');
+      // console.log('you need to buy a plan');
     }
 
   }

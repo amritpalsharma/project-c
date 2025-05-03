@@ -94,11 +94,15 @@ export class HeaderComponent {
 
   notificationSeen: boolean = false;
   pageTitle: string = '';
+  UserName:string = '';
+  UserRole:string = '';
   isSearchVisible: boolean = false;
   isUserVerified: boolean = false;
 
   ngOnInit() {
     this.getPageTitle();
+    this.getUserName();
+    this.getUserRole();
     let isFrontendDarkMode = localStorage.getItem('theme');
     if (isFrontendDarkMode != '' && isFrontendDarkMode == 'dark') {
       this.isDarkMode = true;
@@ -141,10 +145,12 @@ export class HeaderComponent {
       console.log("No data found in localStorage.");
     }
 
-    let userRole = localStorage.getItem("userRole");
+    // let userRole = localStorage.getItem("userRole");
 
     // Find the role based on the id
-    this.role = this.roles.find((role: any) => role.id == userRole);
+
+
+    // this.role = this.roles.find((role: any) => role.id == userRole);
     let langId = localStorage.getItem('lang_id');
     this.fetchNotifications(userId, langId);
     this.loggedInUser = JSON.parse(this.loggedInUser);
@@ -693,6 +699,20 @@ export class HeaderComponent {
     this.titleService.currentTitle.subscribe(updatedTitle => {
       this.pageTitle = updatedTitle;
     });
+  }
+
+  getUserName() {
+    this.titleService.loggedInName.subscribe(CurrentName => {
+      this.UserName = CurrentName;
+    });
+  }
+
+  getUserRole() {
+    this.titleService.loggedInRole.subscribe(CurrentRole => {
+      this.UserRole = CurrentRole;
+      // this.role = CurrentRole;
+    });
+     
   }
 
   toggleSearch() {

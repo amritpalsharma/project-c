@@ -134,7 +134,7 @@
                               stroke="#6FB95D" stroke-width="0.3" stroke-miterlimit="10" />
                           </svg>
 
-                          <svg  *ngIf="currentThemeMode == 'dark'" width="25" height="25" viewBox="0 0 25 25" fill="none"
+                          <svg *ngIf="currentThemeMode == 'dark'" width="25" height="25" viewBox="0 0 25 25" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
                               d="M21.531 8.554C21.67 6.901 22.1685 5.3835 23.046 3.992L19.679 0.75C18.6155 1.6315 17.4035 2.12 16.0315 2.206C14.7735 2.3155 13.5815 2.0855 12.4595 1.5145C11.3065 2.0665 10.119 2.298 8.88153 2.206C7.62197 2.10541 6.41745 1.64671 5.41003 0.884L2.03453 4.125C2.86503 5.536 3.32753 7.0125 3.41803 8.554C3.46103 9.2635 3.25103 10.2415 2.77853 11.504C2.56408 12.1002 2.37672 12.7058 2.21703 13.319C2.09903 13.8235 2.02553 14.2325 2.00053 14.54C1.98353 15.8855 2.37553 17.1005 3.17953 18.181C3.80803 18.9695 4.84453 19.8405 6.28353 20.793C7.85753 21.5645 9.07603 22.065 9.92953 22.2785L10.6375 22.596C10.86 22.698 11.0985 22.7985 11.347 22.9075C11.8845 23.2175 12.261 23.553 12.4595 23.8995C12.7035 23.524 13.089 23.1975 13.601 22.9075C13.908 22.7807 14.2124 22.6479 14.514 22.509L15.0485 22.279C15.231 22.1925 15.4695 22.0925 15.7595 21.982C16.1184 21.8452 16.4791 21.7134 16.8415 21.5865C17.673 21.3035 18.2785 21.035 18.663 20.793C20.059 19.841 21.0795 18.9835 21.729 18.218C22.5615 17.134 22.9665 15.913 22.948 14.541C22.8985 13.926 22.628 12.943 22.137 11.6035C21.67 10.298 21.4635 9.285 21.531 8.554Z"
@@ -157,14 +157,14 @@
                     <div class="col-sm-6 team-logos">
                       <div class="row">
                         <div class="col-sm-12 p-0">
-                          <h6 class="title_2 mb-1">{{ 'country' | translate }}</h6>
-                          <div class="d-flex align-items-center gap-2 mb-1 " *ngFor="let nation of userNationalities">
-                            <div class="team-badge_image">
-                              <img *ngIf="nation.flag_path" [src]="nation.flag_path" alt="">
-                              <img *ngIf="!nation.flag_path" src="../../../../assets/images/team-flag.png" alt="">
-                            </div>
-                            <h5 class="title-1">{{nation.country_name | translate }} </h5>
-                          </div>
+                          <!-- <h6 class="title_2 mb-1">{{ 'country' | translate }}</h6> -->
+                          <!-- <div class="d-flex align-items-center gap-2 mb-1 " *ngFor="let nation of userNationalities"> -->
+                          <!-- <div class="team-badge_image"> -->
+                          <!-- <img *ngIf="nation.flag_path" [src]="nation.flag_path" alt=""> -->
+                          <!-- <img *ngIf="!nation.flag_path" src="../../../../assets/images/team-flag.png" alt=""> -->
+                          <!-- </div> -->
+                          <!-- <h5 class="title-1">{{nation.country_name | translate }} </h5> -->
+                          <!-- </div> -->
                         </div>
                       </div>
                     </div>
@@ -208,9 +208,10 @@
                         <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'function' | translate}}</h6>
                           <!-- <h5 class="title-1" *ngIf="user?.meta?.designation !== undefined">{{user?.meta?.designation }}</h5> -->
-                          <h5 class="title-1" *ngIf="user?.meta?.designation && user?.meta?.designation !== 'undefined'">
+                          <h5 class="title-1"
+                            *ngIf="user?.meta?.designation && user?.meta?.designation !== 'undefined'">
                             {{ user.meta.designation }}
-                          </h5>                          
+                          </h5>
                         </div>
                       </div>
                     </div>
@@ -248,7 +249,8 @@
                         </div>
                         <div class=" col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2"> {{'city' | translate }}</h6>
-                          <h5 class="title-1" *ngIf="user?.meta?.city && user?.meta?.city !== 'undefined'">{{user?.meta?.city}}</h5>
+                          <h5 class="title-1" *ngIf="user?.meta?.city && user?.meta?.city !== 'undefined'">
+                            {{user?.meta?.city}}</h5>
                         </div>
                       </div>
                     </div>
@@ -306,7 +308,8 @@
                         </div>
                         <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'phone' | translate }}</h6>
-                          <h5 *ngIf="user?.meta?.contact_number && user?.meta?.contact_number !== 'undefined'" class="title-1">{{user.meta.contact_number}}
+                          <h5 *ngIf="user?.meta?.contact_number && user?.meta?.contact_number !== 'undefined'"
+                            class="title-1">{{user.meta.contact_number}}
                           </h5>
                           <!-- <h5 *ngIf="!user.meta || !user.meta.contact_number" class="title-1">NA</h5> -->
                         </div>
@@ -341,7 +344,8 @@
                         </div>
                         <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'website' | translate }}</h6>
-                          <h5 *ngIf="user?.meta?.website && user?.meta?.website !== 'undefined'" class="title-1">{{user.meta.website}}</h5>
+                          <h5 *ngIf="user?.meta?.website && user?.meta?.website !== 'undefined'" class="title-1">
+                            {{user.meta.website}}</h5>
                           <!-- <h5 *ngIf="!user.meta || !user.meta.website" class="title-1">NA</h5> -->
                         </div>
                       </div>
@@ -370,7 +374,8 @@
                         </div>
                         <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'zipCode' | translate}}</h6>
-                          <h5 class="title-1" *ngIf="user?.meta?.zipcode && user?.meta?.zipcode !== 'undefined'">{{user?.meta?.zipcode}}</h5>
+                          <h5 class="title-1" *ngIf="user?.meta?.zipcode && user?.meta?.zipcode !== 'undefined'">
+                            {{user?.meta?.zipcode}}</h5>
                           <!-- <h5 class="title-1" *ngIf="!user?.meta?.zipcode">NA</h5> -->
                         </div>
                       </div>
@@ -398,7 +403,8 @@
                               </defs>
                             </svg>
                           </a>
-                          <a class="platform_image px-1" *ngIf="user?.meta?.sm_facebook && user?.meta?.sm_facebook !== 'undefined'"
+                          <a class="platform_image px-1"
+                            *ngIf="user?.meta?.sm_facebook && user?.meta?.sm_facebook !== 'undefined'"
                             [href]="'https://www.facebook.com/' + user.meta.sm_facebook">
                             <svg width="19" height="19" viewBox="0 0 19 19" fill="none"
                               xmlns="http://www.w3.org/2000/svg">
@@ -417,7 +423,8 @@
                               </defs>
                             </svg>
                           </a>
-                          <a class="platform_image px-1" *ngIf="user?.meta?.sm_instagram && user?.meta?.sm_instagram !== 'undefined'"
+                          <a class="platform_image px-1"
+                            *ngIf="user?.meta?.sm_instagram && user?.meta?.sm_instagram !== 'undefined'"
                             [href]="'https://www.instagram.com/' + user.meta.sm_instagram">
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                               xmlns="http://www.w3.org/2000/svg">
@@ -454,7 +461,8 @@
                               </defs>
                             </svg>
                           </a>
-                          <a class="platform_image px-1" *ngIf="user?.meta?.sm_tiktok && user?.meta?.sm_tiktok !== 'undefined'"
+                          <a class="platform_image px-1"
+                            *ngIf="user?.meta?.sm_tiktok && user?.meta?.sm_tiktok !== 'undefined'"
                             [href]="'https://www.tiktok.com/@' + user.meta.sm_tiktok">
                             <svg width="16" height="18" viewBox="0 0 16 18" fill="none"
                               xmlns="http://www.w3.org/2000/svg">
@@ -476,7 +484,8 @@
                               </defs>
                             </svg>
                           </a>
-                          <a class="platform_image px-1" *ngIf="user?.meta?.sm_youtube && user?.meta?.sm_youtube !== 'undefined'"
+                          <a class="platform_image px-1"
+                            *ngIf="user?.meta?.sm_youtube && user?.meta?.sm_youtube !== 'undefined'"
                             [href]="'https://www.youtube.com/c/' + user.meta.sm_youtube">
                             <svg width="22" height="15" viewBox="0 0 22 15" fill="none"
                               xmlns="http://www.w3.org/2000/svg">
@@ -493,7 +502,8 @@
                               </defs>
                             </svg>
                           </a>
-                          <a class="platform_image px-1" *ngIf="user?.meta?.sm_vimeo && user?.meta?.sm_vimeo !== 'undefined'"
+                          <a class="platform_image px-1"
+                            *ngIf="user?.meta?.sm_vimeo && user?.meta?.sm_vimeo !== 'undefined'"
                             [href]="'https://www.vimeo.com/' + user.meta.sm_vimeo">
                             <svg width="19" height="16" viewBox="0 0 19 16" fill="none"
                               xmlns="http://www.w3.org/2000/svg">
@@ -550,7 +560,8 @@
                         </div>
                         <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'address' | translate}}</h6>
-                          <h5 class="title-1" *ngIf="user?.meta?.address && user?.meta?.address !== 'undefined'">{{user?.meta?.address}}</h5>
+                          <h5 class="title-1" *ngIf="user?.meta?.address && user?.meta?.address !== 'undefined'">
+                            {{user?.meta?.address}}</h5>
                           <!-- <h5 class="title-1" *ngIf="!user?.meta?.address">NA</h5> -->
                         </div>
                       </div>
@@ -615,7 +626,8 @@
                     <h2 class="text-uppercase">{{'highlights' | translate}}</h2>
                     <p>{{'featuredPhotosAndVideos' | translate}}</p>
                   </div>
-                  <div class="settings cursor-pointer setting_heighlight" *ngIf="checkRole()" (click)="openHighlight()" matTooltip="{{'highlightTooltip' | translate}}" matTooltipPosition="right">
+                  <div class="settings cursor-pointer setting_heighlight" *ngIf="checkRole()" (click)="openHighlight()"
+                    matTooltip="{{'highlightTooltip' | translate}}" matTooltipPosition="right">
 
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path
@@ -646,10 +658,11 @@
 
 
                 <div class="d-flex w-100 m-auto image_gallery-box mt-2">
-                  <div class="col-lg-4 gallery_images position-relative" *ngFor="let video of highlights?.videos let j = index">
+                  <div class="col-lg-4 gallery_images position-relative"
+                    *ngFor="let video of highlights?.videos let j = index">
                     <a [href]="highlights.file_path + video.file_name" data-fancybox="gallery" [attr.data-caption]="">
                       <video [src]="highlights.file_path + video.file_name" #videoPlayer
-                      (loadeddata)="setDurationAndThumbnail(videoPlayer)" alt="Video Gallery"></video>
+                        (loadeddata)="setDurationAndThumbnail(videoPlayer)" alt="Video Gallery"></video>
                     </a>
                     <span class="duration">{{duration}}</span>
                     <!-- <video [src]="highlights.file_path + video.file_name" (click)="openImage(j, 'video')" autoplay></video> -->
@@ -790,16 +803,16 @@
                     </svg>
                     {{ 'gallery' | translate }}
                   </button>
-                </li> 
+                </li>
               </ul>
             </div>
             <div class="general_details mt-4 p-4 bg-color box_height_eqaul">
-              <scout-profile-tab *ngIf="activeTab == 'profile' && !loading" [userData]="user" [isPremium]="isPremium" [isUserVerified]="isUserVerified"
-                [logInUser]="loggedInUser"></scout-profile-tab>
-              <scout-app-history-tab *ngIf="activeTab == 'company_history'" role="Scout" [isPremium]="isPremium" [isUserVerified]="isUserVerified"></scout-app-history-tab>
-              <scout-portfolio-tab *ngIf="activeTab == 'portfolio'" [userData]="user" 
-              [isPremium]="isPremium" [isUserVerified]="isUserVerified"
-                role="Scout" ></scout-portfolio-tab>
+              <scout-profile-tab *ngIf="activeTab == 'profile' && !loading" [userData]="user" [isPremium]="isPremium"
+                [isUserVerified]="isUserVerified" [logInUser]="loggedInUser"></scout-profile-tab>
+              <scout-app-history-tab *ngIf="activeTab == 'company_history'" role="Scout" [isPremium]="isPremium"
+                [isUserVerified]="isUserVerified"></scout-app-history-tab>
+              <scout-portfolio-tab *ngIf="activeTab == 'portfolio'" [userData]="user" [isPremium]="isPremium"
+                [isUserVerified]="isUserVerified" role="Scout"></scout-portfolio-tab>
               <scout-gallery-tab *ngIf="activeTab == 'gallery'" [coverImage]="coverImage"
                 (dataEmitter)="handleCoverImageData($event)" [isPremium]="isPremium"
                 [isUserVerified]="isUserVerified"></scout-gallery-tab>

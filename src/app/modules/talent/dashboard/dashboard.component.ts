@@ -40,6 +40,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   loggedInUser: any = localStorage.getItem('userData');
   countryFlagUrl: string = './assets/images/city-icon-light.png';
   pageTitle: string = '';
+  UserName: string = '';
   photoLoading:boolean=true;
 
 
@@ -407,6 +408,17 @@ export class DashboardComponent implements OnInit, OnDestroy {
           this.user = response.data.user_data;
           this.userNationalities = JSON.parse(this.user.user_nationalities);
           this.StartTour = this.user?.show_tour == 1 ? true : false;
+          // userData.first_name+' '+userData.last_name
+          console.info('User',this.user);
+          if(this.user?.first_name || this.user?.last_name){
+            this.UserName = this.user?.first_name+' '+this.user?.last_name;
+            this.titleService.setName(this.UserName);
+            this.titleService.setRole(this.user?.role_name);
+            console.info('userName Set Condition true',this.UserName);
+          }else{
+            console.info('userName Does Not Set Condition False',this.user);
+          }
+          
           if (this.user?.meta && this.user?.meta?.birth_country_flag != '') {
             // this.countryFlagUrl = this.user?.meta?.birth_country_flag;
           }

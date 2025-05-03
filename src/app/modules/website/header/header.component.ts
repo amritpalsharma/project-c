@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit {
   @ViewChild('registerForm') registerForm!: NgForm;
 
   //default language
-  isHideClubSection:boolean=false;
+  isHideClubSection: boolean = false;
   slug: string = 'en';
   isThisPlayer: string = 'en';
   lang_id: any = 1;
@@ -279,7 +279,7 @@ export class HeaderComponent implements OnInit {
       this.loadCountries();
       this.loadToasterMsg();
     });
-    
+
   }
 
   ngAfterViewInit() {
@@ -564,10 +564,6 @@ export class HeaderComponent implements OnInit {
 
 
   login() {
-    // console.log("login clicked")
-    // if(this.loginButtonClicked){
-    //   return;
-    // }
     this.loginButtonClicked = true;
     this.isLoading = true;
 
@@ -579,14 +575,14 @@ export class HeaderComponent implements OnInit {
     } else {
       this.isEmailError = false;
     }
-    
+
     if (!this.password) {
       this.isPasswordError = true;
       this.isLoading = false;
     } else {
       this.isPasswordError = false;
     }
-    
+
     if (!this.email || !this.password) {
       console.error('Please fill in all required fields.');
       this.isLoading = false;
@@ -594,7 +590,7 @@ export class HeaderComponent implements OnInit {
     }
 
     let selectedLanguage = localStorage.getItem('lang') || environment.targetDomain?.default_lang;
-    const domain = environment.targetDomain?.domain || 'ch';
+    const domain = environment.targetDomain?.domain || this.globalSettings.getdomainId();
 
     let localStorageLang = localStorage.getItem('lang_id');
     if (localStorageLang != '' && localStorageLang != undefined) {
@@ -606,7 +602,7 @@ export class HeaderComponent implements OnInit {
       password: this.password,
       lang: selectedLanguage,
       domain: domain,
-      user_domain:this.globalSettings.getdomainId()
+      user_domain: this.globalSettings.getdomainId()
       // user_domain:8
     };
 
@@ -633,8 +629,8 @@ export class HeaderComponent implements OnInit {
 
           let langId = localStorage.getItem("lang_id") || '1';
           console.log("socket connected with user: ", response.data.user_data.id)
-          this.socketService.connectUser({ userId: response.data.user_data.id, langId });
-
+          // this.socketService.connectUser({ userId: response.data.user_data.id, langId });
+          // code by  amrit
           const userRole = userData.role;
           let navigationRoute = '';
           switch (userRole) {
@@ -663,14 +659,22 @@ export class HeaderComponent implements OnInit {
               navigationRoute = '';
               break;
           }
-          localStorage.setItem('authToken', token);
-          localStorage.setItem('userRole', userRole);
-          localStorage.setItem('userData', JSON.stringify(userData));
 
           let modal = bootstrap.Modal.getInstance(document.getElementById('exampleModal-login'));
           if (modal) {
             modal.hide();
           }
+          
+          localStorage.setItem('authToken', token);
+          localStorage.setItem('userRole', userRole);
+          localStorage.setItem('userData', JSON.stringify(userData));
+          this.router.navigate([navigationRoute]).then(() => {
+            // Delay non-essential operations (WebSocket, etc.)
+            setTimeout(() => {
+              this.socketService.connectUser({ userId: response.data.user_data.id, langId });
+            }, 0);
+          });
+          
           this.isLoading = false;
           this.router.navigate([navigationRoute]);
         }

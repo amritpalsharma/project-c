@@ -67,9 +67,10 @@
                     ? 'https://api.socceryou.ch/uploads/' + user?.club_logo
                     : '../../../../assets/images/default/talent-profile-default.png'
                 }}" />
-            <span>
+            <span *ngIf="!UserName">
               {{ user.first_name }} {{ user.last_name }}
             </span>
+            <span *ngIf="UserName">{{UserName}}</span>
           </mat-option>
 
           <!-- Show "No results found" if no users are available -->
@@ -269,8 +270,10 @@
             <img *ngIf="profileImgUrl" [src]="profileImgUrl" width="56" alt="">
           </a>
           <div class="dropdown-menu dropdown-menu-end">
-            <h6>{{loggedInUser?.first_name}} {{loggedInUser?.last_name}}</h6>
-            <span class="badgewarning">{{loggedInUser?.role_name}}</span>
+            <h6 *ngIf="!UserName">{{loggedInUser?.first_name}} {{loggedInUser?.last_name}}</h6>
+            <h6 *ngIf="UserName" class="{{UserName}}">{{UserName}}</h6>
+            <span class="badgewarning" *ngIf="loggedInUser?.role_name && !UserRole">{{loggedInUser?.role_name}}</span>
+            <span class="badgewarning" *ngIf="UserRole">{{UserRole}}</span>
             <br>
             <a routerLink="/talent/dashboard" class="header-view-profile"> {{ 'viewMyProfile' | translate }}</a>
 
