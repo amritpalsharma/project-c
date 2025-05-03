@@ -1442,6 +1442,12 @@ option.countary {
 }
 }
 
+@media (min-width: 1600px) {
+.footer-links:nth-child(3) {
+  margin-left: 40px;
+  width: calc(25% - 40px);
+}  
+}
 
 @media (min-width: 3000px) {
 .footer-contact img {

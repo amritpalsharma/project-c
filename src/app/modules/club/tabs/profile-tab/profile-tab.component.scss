@@ -513,6 +513,25 @@
 }
 
 
+@media(min-width: 992px){ 
+.visible_mobile_only {
+  display: none;
+}
+}
+
+@media(max-width: 991px){
+.club_profile_table_wrapper {
+.table-scout-profile {
+  thead th:first-child {
+    button {
+      display: none !important;
+    }
+  }
+}
+}
+}
+
+
 @media(max-width: 575px){
   .details_info {
     border-bottom: 1px solid #c7c8c9;

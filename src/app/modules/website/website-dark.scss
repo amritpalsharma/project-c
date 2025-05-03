@@ -2315,6 +2315,15 @@
     color: #bde34e;
   }
 }
+
+
+
+.work-text:last-child.active::before, .work-text:not(:last-child).active::before {
+  background-color: #bde34e !important;
+}
+.work-text:not(:last-child).active::after {
+  border-top-color: #bde34e !important;
+}
 }
 
 
