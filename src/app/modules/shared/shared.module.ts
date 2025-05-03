@@ -61,6 +61,7 @@ import { ScoutPortfolioComponent } from './view-profile/tabs/scout-portfolio/sco
 import { TeamsComponent } from './view-profile/tabs/teams/teams.component';
 import { LightboxDialogComponent } from './lightbox-dialog/lightbox-dialog.component';
 import { PopupComponent } from './popup/popup.component';
+// import { TinymceWrapperComponent } from './tinymce-wrapper/tinymce-wrapper.component';
 // import { ImageCropperDialogComponent } from './image-cropper-dialog/image-cropper-dialog.component';
 
 
@@ -111,6 +112,7 @@ import { PopupComponent } from './popup/popup.component';
     TeamsComponent,
     LightboxDialogComponent,
     PopupComponent,
+    // TinymceWrapperComponent,
     // ImageCropperDialogComponent
   ],
   imports: [

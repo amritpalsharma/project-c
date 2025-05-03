@@ -93,6 +93,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   notificationsPerPage = 3;
   unseenCount = 0;
   isClosed: boolean = false;
+  isGraphLoading: boolean = true;
 
   domainsList: any[] = [];
   selectedDomain: string = ''; // Store selected domain
@@ -279,6 +280,13 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       }
     });
 
+    setTimeout(() => {
+      let lang_id = localStorage.getItem('lang_id');
+      this.updateChartData(this.selectedYear, this.selectedDomain, lang_id); 
+      this.isGraphLoading = false; 
+      // this.selectedYear = e.target.value;
+    }, 3500); // show graph after 3.5 seconds
+
   }
 
   // ngAfterViewInit() {}
@@ -401,6 +409,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       this.dashboardApi.getChartData(year, domain_id, lang_id).subscribe((response) => {
         if (response && response.status && response.data) {
           this.chartData = response.data;
+
           setTimeout(() => {
             this.chart1 = this.createChart(this.canvas1.nativeElement, 'canvas1', response.data.users.labels, response.data.users.values)!;
             this.chart2 = this.createChart(this.canvas2.nativeElement, 'canvas2', response.data.sales.labels, response.data.sales.values)!;
@@ -409,7 +418,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             this.updateChartBackgroundColor();
 
           }, 1000);
-
         } else {
           console.error('Invalid API response structure:', response);
         }
@@ -576,83 +584,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     }, 300);
     return newChart;
 
-    /* return new Chart(ctx, {
-      type: 'line',
-      data,
-      options: {
-        layout: {
-          padding: 0,
-        },
-        responsive: true,
-        scales: {
-          y: {
-            stacked: false,
-            beginAtZero: true,
-            grid: {
-              display: false,
-            },
-            ticks: {
-              display: false,
-            },
-            border: {
-              display: false,
-            },
-
-          },
-          x: {
-            grid: {
-              display: false,
-            },
-            ticks: {
-              display: true,
-              font: {
-                size: 20,
-                family: 'poppins,sans-serif',
-                weight: 700,
-              },
-            },
-            border: {
-              display: false,
-            },
-          },
-        },
-        elements: {
-          line: {
-            tension: 0.5,
-          },
-        },
-        plugins: {
-          legend: {
-            display: false,
-          },
-          tooltip: {
-            enabled: true,
-            mode: 'index',
-            intersect: false,
-            backgroundColor: '#E05263',
-            titleColor: '#fff',
-
-            titleFont: {
-              family: 'Poppins',
-              size: 20,
-              weight: 800,
-            },
-
-            callbacks: {
-              label: (tooltipItem: any) => {
-                return this.translateService.instant('tooltip.totalUsers', { count: tooltipItem.raw });
-              }
-            },
-
-            displayColors: false,
-          },
-        },
-      },
-    }); */
-
   }
 
   updateChartBackgroundColor() {
+
     let isDarkMode: any;
     this.themeService.isDarkTheme.subscribe((isDarkTheme: boolean) => {
       isDarkMode = isDarkTheme;

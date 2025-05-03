@@ -7,7 +7,8 @@
 
       <div class="table_title p-3">
         <div class="d-flex align-items-center">
-          <p>{{ 'overview' | translate }}</p>
+          <p>{{ 'overview' | translate }} </p>
+          <!-- {{isGraphLoading}} -->
         </div>
         <span class="ms-auto">
           <div>
@@ -26,9 +27,11 @@
             </select>
           </div>
         </span>
-
       </div>
-      <div class="tab-content" id="myTabContent">
+      <div class="tab-content" *ngIf="isGraphLoading" [ngClass]="{'invisible-element': !isGraphLoading}">
+        <app-loader></app-loader>
+      </div>
+      <div class="tab-content" id="myTabContent" [ngClass]="{'invisible-element': isGraphLoading}">
         <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
           tabindex="0">
           <canvas id="canvas1" class="canvas" #canvas1></canvas>
@@ -39,17 +42,8 @@
         <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
           <canvas id="canvas3" class="canvas" #canvas3></canvas>
         </div>
-        <!--  <div
-              class="tab-pane fade"
-              id="disabled-tab-pane"
-              role="tabpanel"
-              aria-labelledby="disabled-tab"
-              tabindex="0"
-            >
-              <canvas id="canvas4" class="canvas"  #canvas4></canvas>
-            </div> -->
       </div>
-      <ul class="nav nav-tabs " id="myTab" role="tablist">
+      <ul class="nav nav-tabs " id="myTab" role="tablist" [ngClass]="{'invisible-element': isGraphLoading}">
         <li class="nav-item" role="presentation">
           <button class="nav-link trans-color w-100 active" id="home-tab" data-bs-toggle="tab"
             data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true"
@@ -132,66 +126,68 @@
         </div>
       </div>
       <div class="table-responsive">
-      <table class="table user-dash-table">
-        <thead class="dashboard-table-2-table-head">
-          <tr>
+        <table class="table user-dash-table">
+          <thead class="dashboard-table-2-table-head">
+            <tr>
 
-            <th scope="col-2">{{ 'name' | translate }}</th>
-            <th scope="col">{{ 'userType' | translate }}</th>
-            <th scope="col">{{ 'language' | translate }}</th>
-            <th scope="col">{{ 'location' | translate }}</th>
-            <th scope="col">{{ 'dateTime' | translate }}</th>
-            <th scope="col">{{ 'status' | translate }}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let user of newRegistrations" (click)="redirectUser(user.role_name, user.id)" class="pointer">
-            <!-- <pre>{{user | json}}</pre> -->
-            <td class="main-table ">
-              <div class="d-flex align-items-center">
-                <!-- <span>
+              <th scope="col-2">{{ 'name' | translate }}</th>
+              <th scope="col">{{ 'userType' | translate }}</th>
+              <th scope="col">{{ 'language' | translate }}</th>
+              <th scope="col">{{ 'location' | translate }}</th>
+              <th scope="col">{{ 'dateTime' | translate }}</th>
+              <th scope="col">{{ 'status' | translate }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of newRegistrations" (click)="redirectUser(user.role_name, user.id)" class="pointer">
+              <!-- <pre>{{user | json}}</pre> -->
+              <td class="main-table ">
+                <div class="d-flex align-items-center">
+                  <!-- <span>
                   <img src="../../../assets/images/1.png" alt="" class="table_img" />
                 </span> -->
-                <!-- <img *ngIf="user.meta && user.meta.profile_image_path != ''" src="{{user.meta.profile_image_path}}" class="table_img" alt="">
+                  <!-- <img *ngIf="user.meta && user.meta.profile_image_path != ''" src="{{user.meta.profile_image_path}}" class="table_img" alt="">
                 <img  src="../../../assets/images/1.png" class="table_img" alt=""> -->
-                <!-- <img *ngIf="user.meta && user.meta.profile_image_path; else defaultImage" 
+                  <!-- <img *ngIf="user.meta && user.meta.profile_image_path; else defaultImage" 
                   [src]="user.meta.profile_image_path" 
                   class="table_img dashboard_users_profile_images" alt=""> -->
-                <img *ngIf="!userRoleClubOrClubRep(user.role_name)"
-                  src="{{user.meta.profile_image_path}}" class="dashboard_users_profile_images table_img"
-                  onerror="this.onerror=null; this.src='../../../assets/images/1.png';">
-                <img *ngIf="userRoleClubOrClubRep(user.role_name)"
-                  src="{{baseUrl + user.pre_current_club_logo}}" class="dashboard_users_profile_images table_img"
-                  onerror="this.onerror=null; this.src='../../../assets/images/1.png';">
+                  <img *ngIf="!userRoleClubOrClubRep(user.role_name)" src="{{user.meta.profile_image_path}}"
+                    class="dashboard_users_profile_images table_img"
+                    onerror="this.onerror=null; this.src='../../../assets/images/1.png';">
+                  <img *ngIf="userRoleClubOrClubRep(user.role_name)" src="{{baseUrl + user.pre_current_club_logo}}"
+                    class="dashboard_users_profile_images table_img"
+                    onerror="this.onerror=null; this.src='../../../assets/images/1.png';">
 
-                <!-- <ng-template #defaultImage>
+                  <!-- <ng-template #defaultImage>
                       <img src="../../../assets/images/1.png" class="table_img" alt="">
                   </ng-template> -->
 
-                <span>{{user.first_name +' '+user.last_name }}</span>
-              </div>
-            </td>
-            <td>{{user.role_name}}</td>
-            <td>{{ user.language }}</td>
-            <td> {{ user.user_location }}</td>
-            <td> {{ formatDateTime(user.created_at) }}</td>
-            <!-- <td> {{ user.created_at  | date:'MM.dd.yyyy - hh.mm a' }}</td> -->
-            <!-- <td> {{ user.created_at }}</td> -->
-            <td class="main-table-2">
-              <span *ngIf="user.status==1 && userRoleIn(user.role_name)" class="bg_pending">{{ 'pending' | translate }}
-              </span>
-              <span *ngIf="user.status==2 && userRoleIn(user.role_name)" class="bg_success approved"> {{ 'approved' |
-                translate }}</span>
-              <span *ngIf="user.status==3 && userRoleIn(user.role_name)" class="bg_reject"> {{ 'rejected' | translate }}
-              </span>
-            </td>
-          </tr>
-          <tr *ngIf="newRegistrations.length == 0">
-            <td colspan="6" class="text-center">{{ 'noRecordFound' | translate }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+                  <span>{{user.first_name +' '+user.last_name }}</span>
+                </div>
+              </td>
+              <td>{{user.role_name}}</td>
+              <td>{{ user.language }}</td>
+              <td> {{ user.user_location }}</td>
+              <td> {{ formatDateTime(user.created_at) }}</td>
+              <!-- <td> {{ user.created_at  | date:'MM.dd.yyyy - hh.mm a' }}</td> -->
+              <!-- <td> {{ user.created_at }}</td> -->
+              <td class="main-table-2">
+                <span *ngIf="user.status==1 && userRoleIn(user.role_name)" class="bg_pending">{{ 'pending' | translate
+                  }}
+                </span>
+                <span *ngIf="user.status==2 && userRoleIn(user.role_name)" class="bg_success approved"> {{ 'approved' |
+                  translate }}</span>
+                <span *ngIf="user.status==3 && userRoleIn(user.role_name)" class="bg_reject"> {{ 'rejected' | translate
+                  }}
+                </span>
+              </td>
+            </tr>
+            <tr *ngIf="newRegistrations.length == 0">
+              <td colspan="6" class="text-center">{{ 'noRecordFound' | translate }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
     <!-- <app-footer></app-footer> -->
   </div>

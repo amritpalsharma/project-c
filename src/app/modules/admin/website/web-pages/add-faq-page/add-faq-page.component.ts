@@ -1,5 +1,5 @@
 // Angular Component
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectorRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { WebPages } from '../../../../../services/webpages.service';
@@ -90,11 +90,14 @@ export class AddFaqPageComponent implements OnInit {
   config: any;
 
   constructor(
+    private cdr: ChangeDetectorRef,
     private configService: EditorConfigService,
     private webpages: WebPages,
     public dialogRef: MatDialogRef<AddFaqPageComponent>
   ) {
     this.editorConfig = this.configService.getConfig(this.lang);
+
+
   }
 
   ngOnInit(): void {
@@ -116,6 +119,11 @@ export class AddFaqPageComponent implements OnInit {
     // this.editorThird.forEach(editor => editor.destroy());
   }
 
+  handleEditorChange(event: any, i: number) {
+    this.editorFirst[i] = event.target.getContent();
+    this.cdr.detectChanges(); // Manually trigger change detection
+  }
+
 
   // onFileChange(event: any, fieldName: string): void {
   //   this.formData[fieldName] = event.target.files[0];
@@ -133,13 +141,95 @@ export class AddFaqPageComponent implements OnInit {
     }
   }
   addFirstButtonContent() {
-    this.formData.faq_first_btn_content.push({ title: '', desc: '' });
+
+    this.formData.faq_first_btn_content.forEach((item: any, index: number) => {
+      item.desc = this.getEditorContentById('editorFirst' + index);
+    });
+    this.formData.faq_sec_btn_content.forEach((item: any, index: number) => {
+      item.desc = this.getEditorContentById('editorSecond' + index);
+    });
+    this.formData.faq_third_btn_content.forEach((item: any, index: number) => {
+      item.desc = this.getEditorContentById('editorThird' + index);
+    });
+    // console.info('Before Add Data');
+    this.formData.faq_first_btn_content.forEach((item: any, index: any) => {
+      this.setEditorContentById('editorFirst' + index, item.desc);
+    });
+
+    this.formData.faq_sec_btn_content.forEach((item: any, index: any) => {
+      this.setEditorContentById('editorSecond' + index, item.desc);
+    });
+
+    this.formData.faq_third_btn_content.forEach((item: any, index: any) => {
+      this.setEditorContentById('editorThird' + index, item.desc);
+    });
+
+    console.info(this.formData.faq_first_btn_content);
+    setTimeout(() => {
+      this.formData.faq_first_btn_content.push({ title: '', desc: '' });
+    }, 500);
+    console.info(this.formData.faq_first_btn_content);
+    // 
   }
   addSecondButtonContent() {
-    this.formData.faq_sec_btn_content.push({ title: '', desc: '' });
+
+    this.formData.faq_first_btn_content.forEach((item: any, index: number) => {
+      item.desc = this.getEditorContentById('editorFirst' + index);
+    });
+    this.formData.faq_sec_btn_content.forEach((item: any, index: number) => {
+      item.desc = this.getEditorContentById('editorSecond' + index);
+    });
+    this.formData.faq_third_btn_content.forEach((item: any, index: number) => {
+      item.desc = this.getEditorContentById('editorThird' + index);
+    });
+    // console.info('Before Add Data');
+    this.formData.faq_first_btn_content.forEach((item: any, index: any) => {
+      this.setEditorContentById('editorFirst' + index, item.desc);
+    });
+
+    this.formData.faq_sec_btn_content.forEach((item: any, index: any) => {
+      this.setEditorContentById('editorSecond' + index, item.desc);
+    });
+
+    this.formData.faq_third_btn_content.forEach((item: any, index: any) => {
+      this.setEditorContentById('editorThird' + index, item.desc);
+    });
+
+    console.info(this.formData.faq_sec_btn_content);
+    setTimeout(() => {
+      this.formData.faq_sec_btn_content.push({ title: '', desc: '' });
+    }, 500);
+    console.info(this.formData.faq_sec_btn_content);
   }
   addThirdButtonContent() {
-    this.formData.faq_third_btn_content.push({ title: '', desc: '' });
+
+    this.formData.faq_first_btn_content.forEach((item: any, index: number) => {
+      item.desc = this.getEditorContentById('editorFirst' + index);
+    });
+    this.formData.faq_sec_btn_content.forEach((item: any, index: number) => {
+      item.desc = this.getEditorContentById('editorSecond' + index);
+    });
+    this.formData.faq_third_btn_content.forEach((item: any, index: number) => {
+      item.desc = this.getEditorContentById('editorThird' + index);
+    });
+    // console.info('Before Add Data');
+    this.formData.faq_first_btn_content.forEach((item: any, index: any) => {
+      this.setEditorContentById('editorFirst' + index, item.desc);
+    });
+
+    this.formData.faq_sec_btn_content.forEach((item: any, index: any) => {
+      this.setEditorContentById('editorSecond' + index, item.desc);
+    });
+
+    this.formData.faq_third_btn_content.forEach((item: any, index: any) => {
+      this.setEditorContentById('editorThird' + index, item.desc);
+    });
+
+    console.info(this.formData.faq_third_btn_content);
+    setTimeout(() => {
+      this.formData.faq_third_btn_content.push({ title: '', desc: '' });
+    }, 500);
+    console.info(this.formData.faq_third_btn_content);
   }
 
   removeFirstButtonContent(i: number): void {
@@ -251,11 +341,11 @@ export class AddFaqPageComponent implements OnInit {
     // this.imageLoaded = false;
   }
 
-  handleEditorChange(content: any, index: number) {
-    this.editorFirst[index] = content;
-    this.formData.faq_first_btn_content[index].desc = content;
-    console.log('content is ', content)
-  }
+  // handleEditorChange(content: any, index: number) {
+  //   this.editorFirst[index] = content;
+  //   this.formData.faq_first_btn_content[index].desc = content;
+  //   console.log('content is ', content)
+  // }
   handleEditorChange2(content: any, index: number) {
     this.editorSecond[index] = content;
   }

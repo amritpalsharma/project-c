@@ -94,6 +94,7 @@ import { AddFaqPageComponent } from './website/web-pages/add-faq-page/add-faq-pa
 import { AddPricingPageComponent } from './website/web-pages/add-pricing-page/add-pricing-page.component';
 import { NotificationsLogComponent } from './setting/notifications-log/notifications-log.component';
 import { EditorModule } from '@tinymce/tinymce-angular';
+import { SharedModule } from '../shared/shared.module'; // path depends on your folder structure
 
 
 export const MY_FORMATS = {
@@ -201,7 +202,8 @@ export const MY_FORMATS = {
     MatProgressSpinnerModule,
     NgxDatepickerModule,
     CKEditorModule,
-    EditorModule
+    EditorModule,
+    SharedModule
   ],
   providers: [
     UserService,
