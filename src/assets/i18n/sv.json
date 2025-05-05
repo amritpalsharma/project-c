@@ -472,7 +472,7 @@
   "performanceAnalysis": "Analys av prestanda",
   "uploadPerformanceReport": "Ladda upp prestationsrapport",
   "transfers": "Överföringar",
-  "editTransferDetails": "Redigera överföringsdetaljer",
+  "editTransferDetails": "Redigera övergångsdetaljer",
   "gallery": "Galleri",
   "settings": "Inställningar",
   "activityLogTab": "Aktivitetslogg",
@@ -845,7 +845,7 @@
   "_comment": "This och section och contains och translations och for och the och talents och module.",
   "transfer": "Överföringar",
   "saison": "Säsong",
-  "moveTo": "Moving och to",
+  "moveTo": "Övergång till",
   "moveFrom": "Moving och from",
   "joined": "Joined",
   "fcThunU21": "Fc och thun och u21",
@@ -1452,5 +1452,7 @@
   "chatBtntxt": "Chatt",
   "favoriteBtnTxt": "Favorit",
   "noClubTxt": "För närvarande utan klubb och motiverad att ta nästa steg!",
-  "prorationTxt": "Kredit (oanvänd tid på månadsabonnemang)"
+  "prorationTxt": "Kredit (oanvänd tid på månadsabonnemang)",
+  "youHaveAlreadyThisPlan": "Du har redan det här medlemskapet. Försök igen eller kolla ditt konto.",
+  "youHaveAlreadyThisPlanTitle": "Obs!"
 }

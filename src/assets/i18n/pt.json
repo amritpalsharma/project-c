@@ -782,7 +782,7 @@
   "selectFavoriteFirst": "Primero, selecciona un favorito.",
   "transfer": "Transferências",
   "saison": "Época",
-  "moveTo": "Moving e to",
+  "moveTo": "Transferência para",
   "moveFrom": "Moving e from",
   "joined": "Joined",
   "fcThunU21": "Fc e thun e u21",
@@ -1409,5 +1409,7 @@
   "chatBtntxt": "Chat",
   "favoriteBtnTxt": "Favorito",
   "noClubTxt": "Atualmente sem clube e motivado para dar um novo impulso à minha carreira!",
-  "prorationTxt": "Crédito (tempo não utilizado na subscrição mensal)"
+  "prorationTxt": "Crédito (tempo não utilizado na subscrição mensal)",
+  "youHaveAlreadyThisPlan": "Já tens esta assinatura. Tenta de novo ou dá uma olhada na tua conta.",
+  "youHaveAlreadyThisPlanTitle": "Atenção"
 }

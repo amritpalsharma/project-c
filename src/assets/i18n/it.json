@@ -477,7 +477,7 @@
   "performanceAnalysis": "Analisi delle prestazioni",
   "uploadPerformanceReport": "Caricare il rapporto sulle prestazioni",
   "transfers": "Trasferimenti",
-  "editTransferDetails": "Modifica dei dettagli del trasferimento",
+  "editTransferDetails": "Modificare i dettagli del trasferimento",
   "gallery": "Galleria",
   "settings": "Impostazioni",
   "activityLogTab": "Registro delle attività",
@@ -851,7 +851,7 @@
   "_comment": "This e section e contains e translations e for e the e talents e module.",
   "transfer": "Trasferimenti",
   "saison": "Stagione",
-  "moveTo": "Moving e to",
+  "moveTo": "Trasferimento a",
   "moveFrom": "Moving e from",
   "joined": "Joined",
   "fcThunU21": "Fc e thun e u21",
@@ -1451,5 +1451,7 @@
   "chatBtntxt": "Chat",
   "favoriteBtnTxt": "Preferito",
   "noClubTxt": "Attualmente senza club e motivato a rilanciare la mia carriera!",
-  "prorationTxt": "Credito (tempo inutilizzato abbonamento mensile)"
+  "prorationTxt": "Credito (tempo inutilizzato abbonamento mensile)",
+  "youHaveAlreadyThisPlan": "Hai già questo abbonamento. Riprova o dai un’occhiata al tuo profilo.",
+  "youHaveAlreadyThisPlanTitle": "Attenzione"
 }

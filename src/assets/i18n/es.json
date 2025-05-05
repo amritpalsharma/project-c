@@ -467,7 +467,7 @@
   "performanceAnalysis": "Análisis del rendimiento",
   "uploadPerformanceReport": "Cargar informe de resultados",
   "transfers": "Transferencias",
-  "editTransferDetails": "Editar detalles de la transferencia",
+  "editTransferDetails": "Editar detalles del traspaso",
   "gallery": "Galería",
   "settings": "Ajustes",
   "explore": "Explore",
@@ -1400,5 +1400,7 @@
   "chatBtntxt": "Chat",
   "favoriteBtnTxt": "Favorito",
   "noClubTxt": "Actualmente sin club y motivado para despegar mi carrera.",
-  "prorationTxt": "Crédito (tiempo no utilizado suscripción mensual)"
+  "prorationTxt": "Crédito (tiempo no utilizado suscripción mensual)",
+  "youHaveAlreadyThisPlan": "Ya tienes esta membresía. Inténtalo de nuevo o revisa tu cuenta.",
+  "youHaveAlreadyThisPlanTitle": "Atención"
 }

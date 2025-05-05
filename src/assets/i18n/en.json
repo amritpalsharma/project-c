@@ -630,7 +630,7 @@
   "countrySelectionConfirmation": "Country Selection Confirmation",
   "saison": "Season",
   "ageAtDebut": "Age",
-  "moveTo": "Moving To",
+  "moveTo": "Transfer to",
   "moveFrom": "Moving From",
   "transferDate": "Date",
   "customizeExperience": "Customize your experience",
@@ -1365,5 +1365,7 @@
   "downloadProfileBtn":"Download",
   "chatBtntxt":"Chat",
   "favoriteBtnTxt":"Favorite",  
-  "prorationTxt":"Credit (unused time monthly subscription)"
+  "prorationTxt":"Credit (unused time monthly subscription)",
+  "youHaveAlreadyThisPlan":"You’ve already got this membership. Just try again – or take a quick look at your account.",
+  "youHaveAlreadyThisPlanTitle":"Heads up"
 }

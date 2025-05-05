@@ -23,12 +23,15 @@
         <label for="select-countries">{{ 'selectCountries' | translate }}</label>
         <!-- <pre style="overflow-y: scroll;">{{countries | json}}</pre> -->
         <mat-select [(ngModel)]="selectedCountryIds" (selectionChange)="onCountrySelect($event)"
-        [placeholder]="!selectedCountryIds || !selectedCountryIds.length ? ('select' | translate) : extractTextAfterDash(selectedPlan.package_name)"
-        >
+          [placeholder]="!selectedCountryIds || !selectedCountryIds.length ? ('select' | translate) : extractTextAfterDash(selectedPlan.package_name)">
           <!-- Custom display for selected options -->
-          <mat-option *ngFor="let country of countries" [value]="country"
+          <!-- <mat-option *ngFor="let country of countries" [value]="country"
             [selected]="selectedCountryIds.includes(country.id)">
-            <!-- <mat-option *ngFor="let country of countries" [value]="country" onselect=""> -->
+            {{ extractTextAfterDash(country.package_name) }}
+          </mat-option> -->
+
+          <mat-option *ngFor="let country of getUniqueCountries(countries)" [value]="country"
+            [selected]="selectedCountryIds.includes(country.id)">
             {{ extractTextAfterDash(country.package_name) }}
           </mat-option>
         </mat-select>

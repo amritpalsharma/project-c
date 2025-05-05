@@ -41,6 +41,8 @@ export class EditPlanComponent implements OnInit {
   selectedPlanID: number = 0;
   oldCountryPlanId: any = 0;
   newCountryPlanID: any = 0;
+  youHaveAlreadyThisPlan:string='';
+  youHaveAlreadyThisPlanTitle:string='';
   // selectedCountries: any[] = []; // Stores full country objects
 
 
@@ -171,7 +173,7 @@ export class EditPlanComponent implements OnInit {
 
 
     if (this.isPlanAlreadySelected()) {
-      this.toastr.warning('You already have a subscription for this plan with this interval.', 'Warning');
+      this.toastr.warning(this.youHaveAlreadyThisPlan, this.youHaveAlreadyThisPlanTitle);
       // this.dialog.open(MessagePopupComponent, {
       //   width: '600px',
       //   data: {
@@ -420,7 +422,8 @@ export class EditPlanComponent implements OnInit {
     this.selectedCountries = this.selectedCountries.filter(c => c.id !== country.id);
   }
 
-  extractTextAfterDash(countryName: any) {
+  extractTextAfterDash(countryName: any) { 
+
     if (countryName == undefined || countryName == '' || countryName == 'undefined') {
       // return countryName;
     } else {
@@ -429,12 +432,28 @@ export class EditPlanComponent implements OnInit {
     }
   }
 
+  getUniqueCountries(countriesArr: any[]) {
+    const uniqueCountries = [];
+    const packageNames = new Set(); // To track unique package names
+    // let countriesArr = this.activePlans;
+    for (const country of countriesArr) {
+      if (!packageNames.has(country.package_name)) {
+        packageNames.add(country.package_name);
+        uniqueCountries.push(country);
+      }
+    }
+    
+    return uniqueCountries;
+  }
+
   updateTranslation() {
     this.translate.get(['subscriptionCanceledSuccessfully', 'success!', 'pleaseWait', 'Processing']).subscribe((res: any) => {
       this.subscriptionCanceledSuccessfully = res['subscriptionCanceledSuccessfully'];
       this.successTxt = res['success!'].toUpperCase();
       this.pleaseWait = res['pleaseWait'];
       this.Processing = res['Processing'];
+      this.youHaveAlreadyThisPlan = res['youHaveAlreadyThisPlan'];
+      this.youHaveAlreadyThisPlanTitle = res['youHaveAlreadyThisPlanTitle'];
     });
   }
 

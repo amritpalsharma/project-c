@@ -56,8 +56,8 @@ export class EditTransferDetailsComponent {
     );
     this.date_of_transfer.setValue(this.transfer.date_of_transfer ? new Date(this.transfer.date_of_transfer) : null);
     console.log('transfer', this.transfer)
-    this.teamTo = this.transfer.team_name_to; // Set the selected team's name to the input
-    this.teamFrom = this.transfer.team_name_from; // Set the selected team's name to the input
+    this.teamTo = this.transfer.team_name_to+' - '+this.transfer.team_type_to; // Set the selected team's name to the input
+    this.teamFrom = this.transfer.team_name_from+' - '+this.transfer.team_type_from; // Set the selected team's name to the input
 
     this.teamToId = this.transfer.team_to;
     this.teamFromId = this.transfer.team_from;
