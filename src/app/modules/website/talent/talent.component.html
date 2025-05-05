@@ -145,7 +145,8 @@
                                     <div [id]="'collapse' + i" class="accordion-collapse collapse"
                                         data-bs-parent="#accordionExample" [class.show]="activeAccordionIndex === i">
                                         <div class="accordion-body">
-                                            <p class="feature-text">{{feature.desc}}
+                                            <p class="feature-text" [innerHTML]="feature.desc">
+                                                <!-- {{feature.desc}} -->
                                             </p>
                                         </div>
                                     </div>
@@ -258,7 +259,7 @@
                                     <div [id]="'collapseOne' + i" class="accordion-collapse collapse"
                                         [class.show]="activeAccordionIndex === i" data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
-                                            <p class="feature-text">{{feature.desc}}</p>
+                                            <p class="feature-text" [innerHTML]="feature.desc"></p>
                                             <div class="talent_tab_image">
                                                 <!-- <img class="single_tab_img light-images"
                                                     src="{{baseUrl + feature.image}}"> -->
@@ -497,9 +498,9 @@
                                                 <!-- 42<span>.- GBP / <span>Yearly</span></span> -->
                                                 {{ getPlanPriceByName('premium')}}<span>.-{{Currency}} /
                                                     <span
-                                                        *ngIf="selectedTab == 'yearly'">{{priceArr[1].yearly_label}}</span>
+                                                        *ngIf="selectedTab == 'yearly'">{{priceArr[0].yearly_label}}</span>
                                                     <span
-                                                        *ngIf="selectedTab != 'yearly'">{{priceArr[1].monthly_label}}</span>
+                                                        *ngIf="selectedTab != 'yearly'">{{priceArr[0].monthly_label}}</span>
                                                 </span>
                                             </h2>
                                             <h3 class="premium-heading2">{{getDynamicPlanName('premium')}}</h3>
@@ -531,9 +532,9 @@
                                                 <!-- 10<span>.- GBP / <span>Yearly</span></span> -->
                                                 {{ getPlanPriceByName('country')}}<span>.-{{Currency}} /
                                                     <span
-                                                        *ngIf="selectedTab == 'yearly'">{{priceArr[2].yearly_label}}</span>
+                                                        *ngIf="selectedTab == 'yearly'">{{priceArr[0].yearly_label}}</span>
                                                     <span
-                                                        *ngIf="selectedTab != 'yearly'">{{priceArr[2].monthly_label}}</span>
+                                                        *ngIf="selectedTab != 'yearly'">{{priceArr[0].monthly_label}}</span>
                                                 </span>
                                             </h2>
                                             <h3 class="premium-heading2"> {{getDynamicPlanName('country')}} </h3>

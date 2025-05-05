@@ -349,9 +349,12 @@
             </div>
           </div>
           <!-- End Dark Icon -->
-          <div class="col-md-9">
-            <textarea [(ngModel)]="feature.desc" class="form-control" name="feature_desc_{{ i }}"
-              placeholder="{{ 'enterFeature' | translate }}" required></textarea>
+          <div class="col-md-9" *ngIf="editorConfig">
+            <!-- <textarea [(ngModel)]="feature.desc" class="form-control" 
+              placeholder="{{ 'enterFeature' | translate }}" required></textarea> -->
+              <editor [(ngModel)]="feature.desc" name="feature_desc_{{ i }}" class="editor-width" [init]="editorConfig"
+              [id]="'TalentPageFeature'+i">
+            </editor>
           </div>
           <div class="col-md-3">
             <button type="button" (click)="removeFeature(i)" class="next_btn btn-danger btn-sm ">
@@ -415,14 +418,14 @@
 
 
           <!-- Monthly Price -->
-          <div class="col-md-6">
+          <div class="col-md-6" *ngIf="i === 0">
             <label for="monthly_plan_label_{{ i }}" class="form-label">{{ 'monthlyLabel' | translate }}</label>
             <input type="text" [(ngModel)]="plan.monthly_label" class="form-control" name="monthly_plan_label_{{ i }}"
               id="monthly_plan_label_{{ i }}" placeholder="{{ 'monthlyLabel' | translate }}" required />
           </div>
 
           <!-- Yearly label -->
-          <div class="col-md-6">
+          <div class="col-md-6" *ngIf="i === 0">
             <label for="yearly_plan_label_{{ i }}" class="form-label">{{ 'yearlyLabel' | translate }}</label>
             <input type="text" [(ngModel)]="plan.yearly_label" class="form-control" name="yearly_plan_label_{{ i }}"
               id="yearly_plan_label_{{ i }}" placeholder="{{ 'yearlyLabel' | translate }}" required />

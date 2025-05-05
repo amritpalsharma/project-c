@@ -22,6 +22,7 @@ export class IndexComponent implements OnInit{
         this.path = event.url;
         console.log('shared-index',this.path);
       }
+      
     });
   }
 

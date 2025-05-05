@@ -96,7 +96,10 @@ export class AddTalentPageComponent implements OnInit {
   bannerImagePreview: string | ArrayBuffer | null = null;
   lang: string = localStorage.getItem('lang') || 'de';
   editorConfig: any;
-  isLoading:boolean=false;
+  isLoading: boolean = false;
+
+  editorFirst: Editor[] = [];
+  private initializedEditors = new Set(); // Track initialized editors
   constructor(
     private configService: EditorConfigService,
     private webpages: WebPages,
@@ -314,7 +317,7 @@ export class AddTalentPageComponent implements OnInit {
     console.log(formData)
     // Send the formData
     this.webpages.addTalentPage(formData).subscribe(
-      response => { 
+      response => {
         this.isLoading = false;
         console.log('Page added successfully:', response);
         this.dialogRef.close({
@@ -322,7 +325,7 @@ export class AddTalentPageComponent implements OnInit {
           message: response.message
         });
       },
-      error => { 
+      error => {
         this.isLoading = false;
         console.error('Error adding page:', error);
         // Optional: Show an error message to the user
@@ -350,9 +353,9 @@ export class AddTalentPageComponent implements OnInit {
         this.bannerImagesPreviewsDarkMode = response.data.base_url + pageData.banner_img_dark_mode;
         const editor = tinymce.get('TalentPageDescription');
         if (editor && this.formData.banner_desc) {
-           setTimeout(() => {
+          setTimeout(() => {
             editor.setContent(this.formData.banner_desc);
-           }, 1000);
+          }, 1000);
         }
         // Map banner images if any
         if (pageData.banner_img) {
@@ -379,12 +382,36 @@ export class AddTalentPageComponent implements OnInit {
           this.formData.feature_sctn = pageData.feature_sctn.map((feature: any) => ({
             id: feature.id,
             title: feature.title,
+            // desc: feature.desc,
             desc: feature.desc,
             iconPreview: response.data.base_url + feature.icon,
             DarkiconPreview: response.data.base_url + feature.dark_icon,
             imgPreview: response.data.base_url + feature.image,
             darkimgPreview: response.data.base_url + feature.dark_image,
           }));
+
+          pageData.feature_sctn.forEach((feature: any, i: number) => {
+            // Generate dynamic ID for each TinyMCE editor
+            const featureId = `TalentPageFeature${i}`;
+
+            const featureData = {
+              id: feature.id,
+              title: feature.title,
+              desc: feature.desc,
+              iconPreview: response.data.base_url + feature.icon,
+              DarkiconPreview: response.data.base_url + feature.dark_icon,
+              imgPreview: response.data.base_url + feature.image,
+              darkimgPreview: response.data.base_url + feature.dark_image,
+            };
+
+            // Dynamically set content for TinyMCE editor for each feature
+            let editor = tinymce.get(featureId); // Get the editor by dynamic ID
+            if (editor && feature.desc) {
+              setTimeout(() => {
+                editor.setContent(feature.desc); // Set the desc value in the editor
+              }, 1000); // Delay to ensure editor is initialized
+            }
+          });
         }
 
         // Map pricing_tab
@@ -558,4 +585,21 @@ export class AddTalentPageComponent implements OnInit {
   trackByFn(index: number, item: any): number {
     return index; // Tracks items by index to prevent re-rendering
   }
+
+  ngAfterViewInit() {
+    // Ensure TinyMCE is initialized after the view is fully rendered
+    setTimeout(() => {
+      this.formData.feature_sctn.forEach((feature: any, i: any) => {
+        const editorId = `TalentPageFeature${i}`;
+        if (!this.initializedEditors.has(editorId)) {
+          const editor = tinymce.get(editorId); // Get the TinyMCE instance for the editor
+          if (editor) {
+            editor.setContent(feature.desc); // Set the content if it's not initialized
+            this.initializedEditors.add(editorId); // Mark the editor as initialized
+          }
+        }
+      });
+    }, 0); // Use a timeout to ensure the DOM is fully rendered
+  }
+
 }
