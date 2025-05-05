@@ -63,6 +63,7 @@ export class EditPlanComponent implements OnInit {
     this.theme = localStorage.getItem('theme') || "light";
     // If this.data.plans is an array, assign it directly
     this.selectedPlan = this.data.selectedPlan;
+    console.info('this.selectedPlan',this.selectedPlan)
     this.activePlans = this.data.activePlans;
     // console.info('this.activePlans', this.activePlans)
     // checkPlanExistance
@@ -210,7 +211,8 @@ export class EditPlanComponent implements OnInit {
           }
         }
       }
-      console.info('isCountrySelected', this.isCountrySelected)
+      // console.info('isCountrySelected', this.isCountrySelected)
+      // console.log('You Have Already Yearly Plan You can')
     } else {
       this.toastr.error('No country plan selected', 'Error');
       console.error('No country plan selected');
@@ -278,7 +280,7 @@ export class EditPlanComponent implements OnInit {
     this.isYearly = isYearly; // Toggle between monthly and yearly
     if (this.selectedCountryIds.length > 0) {
       // console.log(this.selectedCountryIds);
-     // this.checkPlanExistance(this.selectedPlanID);
+    //  this.checkPlanExistance(this.selectedPlanID);
     }
   }
 

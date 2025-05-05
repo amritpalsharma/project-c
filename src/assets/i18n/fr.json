@@ -1467,5 +1467,6 @@
   "noTextTabs":"Aucun contenu téléchargé par l’utilisateur.",
   "downloadProfileBtn":"Télécharger",
   "chatBtntxt":"Chat",
-  "favoriteBtnTxt":"Favori"
+  "favoriteBtnTxt":"Favori",
+  "prorationTxt": "Crédit (temps non utilisé abonnement mensuel)"
 }

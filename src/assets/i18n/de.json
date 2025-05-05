@@ -1454,9 +1454,10 @@
   "weUseCookies": "Wir verwenden Cookies",
   "scoutHistoryTxt": "Über uns",
   "timeZoneTxt": "Zeitzone Winter UTC +1 / Sommer UTC +2",
-  "noTextTabs":"Keine Inhalte vom User hochgeladen.",
-  "downloadProfileBtn":"Download",
-  "chatBtntxt":"Chat",
-  "favoriteBtnTxt":"Favorit",
-  "noClubTxt":"Aktuell vereinslos und motiviert, durchzustarten!"
+  "noTextTabs": "Keine Inhalte vom User hochgeladen.",
+  "downloadProfileBtn": "Download",
+  "chatBtntxt": "Chat",
+  "favoriteBtnTxt": "Favorit",
+  "noClubTxt": "Aktuell vereinslos und motiviert, durchzustarten!",
+  "prorationTxt": "Gutschrift (ungenutze Zeit Monatsabo)"
 }

@@ -7,23 +7,25 @@
         <div class="about">
           <h2 class="cookie-text">{{banner_title}}</h2>
         </div>
-      </div> 
+      </div>
     </div>
 
-   
+
     <div *ngIf="checkActive('skyscraper')  && !isLoading" class="skyscraper-left">
       <a href="{{advertisementData?.skyscraper?.redirect_url}}" target="_blank">
         <img [src]="advertisemnet_base_url + advertisementData?.skyscraper?.featured_image">
       </a>
-      <button *ngIf="!btnLoading" (click)="closeAd('skyscraper')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+      <button *ngIf="!btnLoading" (click)="closeAd('skyscraper')" class="ad-close-button"><i
+          class="fa-solid fa-xmark"></i></button>
       <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
     </div>
 
     <div *ngIf="checkActive('wide_skyscraper')  && !isLoading" class="skyscraper-right">
       <a href="{{advertisementData?.wide_skyscraper?.redirect_url}}" target="_blank">
-      <img [src]="advertisemnet_base_url + advertisementData?.wide_skyscraper?.featured_image">
+        <img [src]="advertisemnet_base_url + advertisementData?.wide_skyscraper?.featured_image">
       </a>
-      <button *ngIf="!btnLoading" (click)="closeAd('wide_skyscraper')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+      <button *ngIf="!btnLoading" (click)="closeAd('wide_skyscraper')" class="ad-close-button"><i
+          class="fa-solid fa-xmark"></i></button>
       <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
     </div>
 
@@ -61,15 +63,16 @@
             <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
               <input type="hidden" name="domain" ng-model="contactForm.domain" />
               <div>
-                <input id="name" class="form-control" formControlName="name" [placeholder]="name_placeholder" ng-model="contactForm.name" />
+                <input id="name" class="form-control" formControlName="name" [placeholder]="name_placeholder"
+                  ng-model="contactForm.name" />
                 <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="error">
-                  <div *ngIf="name?.errors?.['required']">{{'nameRequired' | translate}}</div> 
+                  <div *ngIf="name?.errors?.['required']">{{'nameRequired' | translate}}</div>
                 </div>
               </div>
 
               <div>
-                <input id="email" class="form-control" type="email" formControlName="email" [placeholder]="email_placeholder"
-                  ng-model="contactForm.email" />
+                <input id="email" class="form-control" type="email" formControlName="email"
+                  [placeholder]="email_placeholder" ng-model="contactForm.email" />
                 <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="error">
                   <div *ngIf="email?.errors?.['required']">{{'emailRequired' | translate}}</div>
                   <!-- <div *ngIf="email?.errors?.['email']">{{'emailRequired' | translate}}</div> -->
@@ -78,9 +81,9 @@
               </div>
 
               <div>
-                <input id="phone" class="form-control" type="tel" formControlName="phone" [placeholder]="phone_placeholder"
-                  ng-model="contactForm.phone" (keypress)="allowOnlyNumbers($event)"
-                  (paste)="preventTextPaste($event)"/>
+                <input id="phone" class="form-control" type="tel" formControlName="phone"
+                  [placeholder]="phone_placeholder" ng-model="contactForm.phone" (keypress)="allowOnlyNumbers($event)"
+                  (paste)="preventTextPaste($event)" />
                 <div *ngIf="phone?.invalid && (phone?.dirty || phone?.touched)" class="error">
                   <div *ngIf="phone?.errors?.['required']">{{'phoneRequired' | translate}}</div>
                   <!-- <div *ngIf="phone?.errors?.['pattern']">{{'phoneRequired' | translate}}</div> -->
@@ -89,9 +92,13 @@
               </div>
 
               <div>
-                <textarea id="message" class="form-control" formControlName="message" [placeholder]="message_placeholder"
-                  [(ngModel)]="messageText"></textarea>
+                <!-- <textarea id="message" class="form-control" formControlName="message" [placeholder]="message_placeholder"
+                ng-model="messageText" (onblur)="onBlur($event)"></textarea> -->
+                <textarea id="message" class="form-control" [(ngModel)]="messageText"
+                  [placeholder]="message_placeholder" (blur)="onBlur($event)"></textarea>
+
                 <div *ngIf="message?.invalid && (message?.dirty || message?.touched)" class="error">
+
                   <div *ngIf="message?.errors?.['required']">{{'messageRequired' | translate}}</div>
                 </div>
               </div>
@@ -151,44 +158,47 @@
       <div class="advertismnt_container">
         <div class="container">
           <div *ngIf="isExists('large_leaderboard')" class="advertisment advertisement_two_top">
-  
+
             <div *ngIf="checkActive('large_leaderboard')  && !isLoading" class="leaderboard-club-image">
               <a href="{{advertisementData?.large_leaderboard?.redirect_url}}" target="_blank">
-              <img [src]="advertisemnet_base_url + advertisementData?.large_leaderboard?.featured_image">
+                <img [src]="advertisemnet_base_url + advertisementData?.large_leaderboard?.featured_image">
               </a>
               <button *ngIf="!btnLoading" (click)="closeAd('large_leaderboard')" class="ad-close-button"><i
                   class="fa-solid fa-xmark"></i></button>
-                  <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
-            </div>
-  
-            <div *ngIf="checkActive('small_square')  && !isLoading" class="small-sqaure-image">
-              <a href="{{advertisementData?.small_square?.redirect_url}}" target="_blank">
-              <img [src]="advertisemnet_base_url + advertisementData?.small_square?.featured_image">
-              </a>
-              <button *ngIf="!btnLoading" (click)="closeAd('small_square')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
               <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
             </div>
-  
-          </div>
-  
-          <div *ngIf="!isExists('large_leaderboard')" class="advertisment advertisement_two_bottom">
-  
+
             <div *ngIf="checkActive('small_square')  && !isLoading" class="small-sqaure-image">
               <a href="{{advertisementData?.small_square?.redirect_url}}" target="_blank">
-              <img [src]="advertisemnet_base_url + advertisementData?.small_square?.featured_image">
+                <img [src]="advertisemnet_base_url + advertisementData?.small_square?.featured_image">
               </a>
-              <button *ngIf="!btnLoading" (click)="closeAd('small_square')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+              <button *ngIf="!btnLoading" (click)="closeAd('small_square')" class="ad-close-button"><i
+                  class="fa-solid fa-xmark"></i></button>
+              <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+            </div>
+
+          </div>
+
+          <div *ngIf="!isExists('large_leaderboard')" class="advertisment advertisement_two_bottom">
+
+            <div *ngIf="checkActive('small_square')  && !isLoading" class="small-sqaure-image">
+              <a href="{{advertisementData?.small_square?.redirect_url}}" target="_blank">
+                <img [src]="advertisemnet_base_url + advertisementData?.small_square?.featured_image">
+              </a>
+              <button *ngIf="!btnLoading" (click)="closeAd('small_square')" class="ad-close-button"><i
+                  class="fa-solid fa-xmark"></i></button>
               <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
             </div>
             <div *ngIf="checkActive('banner')  && !isLoading" class="leaderboard-club-image">
               <a href="{{advertisementData?.banner?.redirect_url}}" target="_blank">
-              <img [src]="advertisemnet_base_url + advertisementData?.banner?.featured_image">
+                <img [src]="advertisemnet_base_url + advertisementData?.banner?.featured_image">
               </a>
-              <button *ngIf="!btnLoading" (click)="closeAd('banner')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+              <button *ngIf="!btnLoading" (click)="closeAd('banner')" class="ad-close-button"><i
+                  class="fa-solid fa-xmark"></i></button>
               <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
             </div>
-  
-  
+
+
           </div>
         </div>
       </div>

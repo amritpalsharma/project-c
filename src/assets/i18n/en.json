@@ -1364,5 +1364,6 @@
   "noTextTabs":"No content uploaded by the user.",
   "downloadProfileBtn":"Download",
   "chatBtntxt":"Chat",
-  "favoriteBtnTxt":"Favorite"
+  "favoriteBtnTxt":"Favorite",  
+  "prorationTxt":"Credit (unused time monthly subscription)"
 }

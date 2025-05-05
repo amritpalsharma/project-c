@@ -1314,8 +1314,9 @@
   "scoutHistoryTxt": "Om os",
   "timeZoneTxt": "Tidszone Vinter UTC +1 / Sommer UTC +2",
   "noTextTabs": "Intet indhold uploadet af brugeren.",
-  "downloadProfileBtn":"Download",
-  "chatBtntxt":"Chat",
-  "favoriteBtnTxt":"Favorit",
-  "noClubTxt": "Aktuelt uden klub og motiveret til at tage det næste skridt!"
+  "downloadProfileBtn": "Download",
+  "chatBtntxt": "Chat",
+  "favoriteBtnTxt": "Favorit",
+  "noClubTxt": "Aktuelt uden klub og motiveret til at tage det næste skridt!",
+  "prorationTxt": "Kredit (ubrugt tid på månedligt abonnement)"
 }

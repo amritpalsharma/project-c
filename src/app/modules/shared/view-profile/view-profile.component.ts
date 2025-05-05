@@ -327,6 +327,7 @@ export class ViewProfileComponent implements OnInit {
 
       this.userService.exportSingleUser(userId).subscribe((response) => {
         if (response && response.status && response.data) {
+          console.info('response',response.data);
           this.toastr.clear();
 
           this.downloadPath = response.data.file_path;

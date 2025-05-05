@@ -194,6 +194,12 @@ export class ContactComponent implements OnInit {
     return this.contactForm.get('message');
   }
 
+  onBlur(event: FocusEvent) {
+    // Access the value of the textarea and set it if needed
+    const textarea = event.target as HTMLTextAreaElement;
+    this.messageText = textarea.value; // This is optional since it's already bound via ngModel
+  }
+
   // Handle captcha resolution
   resolved(captchaResponse: string | null): void {
     if (captchaResponse) {
@@ -267,7 +273,7 @@ export class ContactComponent implements OnInit {
         }
       );
       this.disableSentButton = true;
-      const ContactformData = { ...this.contactForm.value, captchaToken: this.recaptchaToken, role: role, message:'this.messageText' };
+      const ContactformData = { ...this.contactForm.value, captchaToken: this.recaptchaToken, role: role, message:this.messageText };
 
       this.http.post<any>(this.apiUrl + '/frontend/save-contact-form', ContactformData).subscribe(
         (response) => {

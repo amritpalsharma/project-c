@@ -68,6 +68,8 @@
           {{plan.tax_percentage}}%:</strong>
         <span *ngIf="'includeVAT' | translate as translatedText">{{plan.tax}} {{strUpperCase(plan.currency)}}</span>
       </p>
+      <p *ngIf="plan.coupon_used != undefined && plan.coupon_used != null && plan.discount_amount > 0"><strong>{{'couponUsedTxt' | translate}} :</strong> {{ plan.discount_amount }} {{strUpperCase(plan.currency)}}</p>
+      <p *ngIf="plan.proration_amount != undefined && plan.proration_amount != null"><strong>{{'prorationTxt' | translate}} :</strong> {{ plan.proration_amount }} {{strUpperCase(plan.currency)}}</p>
       <p><strong>{{ 'total' | translate }}:</strong> {{ plan.total }} {{strUpperCase(plan.currency)}}</p>
 
       <div class="download-btn mt-4" *ngIf="plan.download_path">
