@@ -423,7 +423,7 @@ export class HeaderComponent {
     }
   }
 
-  navigateToTab(tab: string) {
+  navigateToTab(tab: string, userRole:string) {
     let fragment = 'activity'; // Default fragment
 
     if (tab === 'setting') {
@@ -431,12 +431,14 @@ export class HeaderComponent {
     } else if (tab === 'notifications') {
       fragment = 'notifications';
     }
-
-    console.log(this.UserRole)
-
-    let role = this.UserRole.toLowerCase();
-
-    this.router.navigate([`/${role}/setting`], { fragment });
+    let userArr = localStorage.getItem('userData');
+    // let test = userArr.JSON(); 
+    // let role = localStorage.getItem('role');
+    
+    // console.log(role)
+    const url = this.router.url;
+    const role = url.split('/')[1];
+    this.router.navigate([`${role}/setting`], { fragment });
   }
 
 
@@ -714,6 +716,7 @@ export class HeaderComponent {
   getUserRole() {
     this.titleService.loggedInRole.subscribe(CurrentRole => {
       this.UserRole = CurrentRole;
+      // alert(this.UserRole)
       // this.role = CurrentRole;
     });
      
