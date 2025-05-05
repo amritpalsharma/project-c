@@ -298,7 +298,7 @@
                   <span>{{'noNotification' | translate}}</span>
                 </div>
 
-                <div *ngIf="notifications.length<=0 || something" style="text-align: center;margin:10px 0;">
+                <div *ngIf="notifications.length<=0 && something" style="text-align: center;margin:10px 0;">
                   <span class="loader"></span>
                 </div>
               </div>
