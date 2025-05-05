@@ -432,7 +432,11 @@ export class HeaderComponent {
       fragment = 'notifications';
     }
 
-    this.router.navigate([`/${this.role.slug}/setting`], { fragment });
+    console.log(this.UserRole)
+
+    let role = this.UserRole.toLowerCase();
+
+    this.router.navigate([`/${role}/setting`], { fragment });
   }
 
 
