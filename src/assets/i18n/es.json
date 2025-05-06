@@ -467,7 +467,7 @@
   "performanceAnalysis": "Análisis del rendimiento",
   "uploadPerformanceReport": "Cargar informe de resultados",
   "transfers": "Transferencias",
-  "editTransferDetails": "Editar detalles de la transferencia",
+  "editTransferDetails": "Editar detalles del traspaso",
   "gallery": "Galería",
   "settings": "Ajustes",
   "explore": "Explore",
@@ -786,7 +786,7 @@
   "inTheTalentOverviewYouWillAppearInTheFirstPositionsForMatchingSearchParameters": "In y the y talent y overview, y you y will y appear y in y the y first y positions y for y matching y search y parameters",
   "higherChancesOfBeingDiscoveredByAScoutOrClub": "Higher y chances y of y being y discovered y by y a y scout y or y club",
   "loading": "Cargando, por favor espera…",
-  "deafultProfilePreview": "Default y profile y preview",
+  "deafultProfilePreview": "Vista previa de perfil estándar",
   "choosePlan": "Elegir plan",
   "confirmDeleteinformation": "Una vez eliminada la información, no se puede deshacer.",
   "confirmDeleteinformation1": " ¿Desea borrarla?",
@@ -1399,5 +1399,8 @@
   "downloadProfileBtn": "Descargar",
   "chatBtntxt": "Chat",
   "favoriteBtnTxt": "Favorito",
-  "noClubTxt": "Actualmente sin club y motivado para despegar mi carrera."
+  "noClubTxt": "Actualmente sin club y motivado para despegar mi carrera.",
+  "prorationTxt": "Crédito (tiempo no utilizado suscripción mensual)",
+  "youHaveAlreadyThisPlan": "Ya tienes esta membresía. Inténtalo de nuevo o revisa tu cuenta.",
+  "youHaveAlreadyThisPlanTitle": "Atención"
 }

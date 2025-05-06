@@ -696,7 +696,7 @@
   "_comment": "This og section og contains og translations og for og the og talents og module.",
   "transfer": "Overførsler",
   "saison": "Sæson",
-  "moveTo": "Moving og to",
+  "moveTo": "Transfer til",
   "moveFrom": "Moving og from",
   "joined": "Joined",
   "switzerlandKosovo": "Switzerland og kosovo",
@@ -707,7 +707,7 @@
   "right20": "Right og 20",
   "goalkeeperCenterBack": "Goalkeeper, og center og back",
   "loading": "Indlæser, vent venligst…",
-  "deafultProfilePreview": "Default og profile og preview",
+  "deafultProfilePreview": "Standard profilvisning",
   "choosePlan": "Vælg plan",
   "confirmDeleteinformation": "Når oplysninger er slettet, kan det ikke gøres om.",
   "confirmDeleteinformation1": "Ønsker du at slette?",
@@ -1314,8 +1314,11 @@
   "scoutHistoryTxt": "Om os",
   "timeZoneTxt": "Tidszone Vinter UTC +1 / Sommer UTC +2",
   "noTextTabs": "Intet indhold uploadet af brugeren.",
-  "downloadProfileBtn":"Download",
-  "chatBtntxt":"Chat",
-  "favoriteBtnTxt":"Favorit",
-  "noClubTxt": "Aktuelt uden klub og motiveret til at tage det næste skridt!"
+  "downloadProfileBtn": "Download",
+  "chatBtntxt": "Chat",
+  "favoriteBtnTxt": "Favorit",
+  "noClubTxt": "Aktuelt uden klub og motiveret til at tage det næste skridt!",
+  "prorationTxt": "Kredit (ubrugt tid på månedligt abonnement)",
+  "youHaveAlreadyThisPlan": "Du har allerede det her medlemskab. Prøv igen – eller tjek din konto.",
+  "youHaveAlreadyThisPlanTitle": "Obs!"
 }

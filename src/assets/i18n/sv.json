@@ -472,7 +472,7 @@
   "performanceAnalysis": "Analys av prestanda",
   "uploadPerformanceReport": "Ladda upp prestationsrapport",
   "transfers": "Överföringar",
-  "editTransferDetails": "Redigera överföringsdetaljer",
+  "editTransferDetails": "Redigera övergångsdetaljer",
   "gallery": "Galleri",
   "settings": "Inställningar",
   "activityLogTab": "Aktivitetslogg",
@@ -845,7 +845,7 @@
   "_comment": "This och section och contains och translations och for och the och talents och module.",
   "transfer": "Överföringar",
   "saison": "Säsong",
-  "moveTo": "Moving och to",
+  "moveTo": "Övergång till",
   "moveFrom": "Moving och from",
   "joined": "Joined",
   "fcThunU21": "Fc och thun och u21",
@@ -858,7 +858,7 @@
   "right20": "Right och 20",
   "goalkeeperCenterBack": "Goalkeeper, och center och back",
   "loading": "Laddar, vänligen vänta…",
-  "deafultProfilePreview": "Default och profile och preview",
+  "deafultProfilePreview": "Standardprofilförhandsvisning",
   "confirmDeleteinformation": "När information har raderats kan det inte göras ogjort.",
   "confirmDeleteinformation1": "Vill du radera?",
   "confirmDeleteinformation3": "När information har raderats kan det inte göras ogjort. Vill du radera?",
@@ -1451,5 +1451,8 @@
   "downloadProfileBtn": "Ladda",
   "chatBtntxt": "Chatt",
   "favoriteBtnTxt": "Favorit",
-  "noClubTxt": "För närvarande utan klubb och motiverad att ta nästa steg!"
+  "noClubTxt": "För närvarande utan klubb och motiverad att ta nästa steg!",
+  "prorationTxt": "Kredit (oanvänd tid på månadsabonnemang)",
+  "youHaveAlreadyThisPlan": "Du har redan det här medlemskapet. Försök igen eller kolla ditt konto.",
+  "youHaveAlreadyThisPlanTitle": "Obs!"
 }

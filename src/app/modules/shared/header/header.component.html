@@ -218,7 +218,7 @@
                 <!-- *ngIf="currentIndex < allNotifications.length && !something && notifications.length>0"> -->
                 <!-- <span (click)="loadMoreNotifications()" style="cursor: pointer;">{{ 'viewAllNotifications' | translate
                   }}</span> -->
-                <span (click)="navigateToTab('notifications')" class="cursor-pointer">
+                <span (click)="navigateToTab('notifications', UserRole)" class="cursor-pointer">
                   {{ 'viewAllNotifications' | translate }}
                 </span>
               </div>
@@ -277,7 +277,7 @@
             <br>
             <a routerLink="/talent/dashboard" class="header-view-profile"> {{ 'viewMyProfile' | translate }}</a>
 
-            <a (click)="navigateToTab('activity')"
+            <a (click)="navigateToTab('activity',UserRole)"
               class="cursor-pointer dropdown-item ai-icon px-0 py-2 border-bottom ">
               <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16px"
                 height="16px" viewBox="0 0 24 24" version="1.1" class="svg-main-icon">
@@ -290,7 +290,7 @@
               </svg>
               <span class="ms-1 fs-15">{{ 'activityLog' | translate }}</span>
             </a>
-            <a (click)="navigateToTab('setting')" class="cursor-pointer dropdown-item ai-icon px-0 py-2">
+            <a (click)="navigateToTab('setting', UserRole)" class="cursor-pointer dropdown-item ai-icon px-0 py-2">
               <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16px"
                 height="16px" viewBox="0 0 24 24" version="1.1" class="svg-main-icon">
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">

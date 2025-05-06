@@ -78,7 +78,8 @@
       <!-- Banner Image -->
       <div class="mb-3 col-6 d-none">
         <label for="bannerImgs" class="form-label">{{ 'bannerImages' | translate }}</label>
-        <input type="file" id="bannerImgs" class="form-control" multiple (change)="onFileChange($event, 'banner_img')" />
+        <input type="file" id="bannerImgs" class="form-control" multiple
+          (change)="onFileChange($event, 'banner_img')" />
         <div class="d-flex flex-wrap mt-2">
           <div class="position-relative me-2 mb-2" *ngIf="bannerImagesPreviews">
             <div class="image_cut">
@@ -98,7 +99,8 @@
       <!-- Dark Mode -->
       <div class="mb-3 col-6 d-none">
         <label for="bannerImgsDark" class="form-label">{{ 'bannerImages' | translate }}</label>
-        <input type="file" id="bannerImgsDark" class="form-control" multiple (change)="onFileChange($event, 'banner_img_dark_mode')" />
+        <input type="file" id="bannerImgsDark" class="form-control" multiple
+          (change)="onFileChange($event, 'banner_img_dark_mode')" />
         <div class="d-flex flex-wrap mt-2">
           <div class="position-relative me-2 mb-2" *ngIf="bannerImagesPreviewsDark">
             <div class="image_cut">
@@ -125,10 +127,7 @@
         <!-- <ngx-editor-menu [editor]="editor" [colorPresets]="colorPresets"> </ngx-editor-menu>
         <ngx-editor [editor]="editor" class="editor-width" name="banner_desc" [(ngModel)]="formData.banner_desc"
           [disabled]="false" [placeholder]="'typeHere' | translate"></ngx-editor> -->
-          <editor
-          [(ngModel)]="formData.banner_desc" 
-          class="editor-width" name="banner_desc" 
-          [init]="editorConfig"
+        <editor [(ngModel)]="formData.banner_desc" class="editor-width" name="banner_desc" [init]="editorConfig"
           [id]="'clubNdScoutPageEditor'">
         </editor>
       </div>
@@ -349,9 +348,12 @@
             </div>
           </div>
           <!-- End Dark Icon -->
-          <div class="col-md-9">
-            <textarea [(ngModel)]="feature.desc" class="form-control" name="feature_desc_{{ i }}"
-              placeholder="{{ 'enterFeature' | translate }}" required></textarea>
+          <div class="col-md-9" *ngIf="editorConfig">
+            <!-- <textarea [(ngModel)]="feature.desc" class="form-control" name="feature_desc_{{ i }}"
+              placeholder="{{ 'enterFeature' | translate }}" required></textarea> -->
+            <editor [(ngModel)]="feature.desc" class="editor-width" name="feature_desc_{{ i }}" [init]="editorConfig"
+              [id]="'clunAndScoutPageFeature'+i">
+            </editor>
           </div>
           <div class="col-md-3">
             <button type="button" (click)="removeFeature(i)" class="next_btn btn-danger btn-sm ">
@@ -475,7 +477,7 @@
               {{ 'remove' | translate }}
             </button>
           </div>
-          
+
         </div>
 
         <!-- Remove Plan Button -->

@@ -224,6 +224,11 @@ export class MembershipComponent {
         tax_percentage: userPurchase.tax_percentage,
         tax: userPurchase.tax_amount,
         created_at: userPurchase.created_at,
+        package_price:userPurchase.package_price,
+        proration_amount:userPurchase.proration_amount,
+        coupon_used:userPurchase.coupon_used,
+        coupon_discount:userPurchase.coupon_discount,
+        discount_amount:userPurchase.discount_amount,
       }
     });
   }

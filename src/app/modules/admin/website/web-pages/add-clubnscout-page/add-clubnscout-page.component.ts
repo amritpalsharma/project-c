@@ -28,7 +28,7 @@ export class AddClubnScoutPageComponent implements OnInit {
   @Input() pageId: any;
   @Input() pageType: any;
   @Input() languages: Language[] = [];
-
+  private initializedEditors = new Set(); // Track initialized editors
   editor!: Editor;
   toolbar: Toolbar = [
     ['bold', 'italic'],
@@ -485,4 +485,20 @@ export class AddClubnScoutPageComponent implements OnInit {
   trackByFn(index: number, item: any): number {
     return index; // Tracks items by index to prevent re-rendering
   }
+
+    ngAfterViewInit() {
+      // Ensure TinyMCE is initialized after the view is fully rendered
+      setTimeout(() => {
+        this.formData.feature_sctn.forEach((feature: any, i: any) => {
+          const editorId = `clunAndScoutPageFeature${i}`;
+          if (!this.initializedEditors.has(editorId)) {
+            const editor = tinymce.get(editorId); // Get the TinyMCE instance for the editor
+            if (editor) {
+              editor.setContent(feature.desc); // Set the content if it's not initialized
+              this.initializedEditors.add(editorId); // Mark the editor as initialized
+            }
+          }
+        });
+      }, 0); // Use a timeout to ensure the DOM is fully rendered
+    }
 }

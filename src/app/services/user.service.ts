@@ -527,8 +527,9 @@ export class UserService {
       'Authorization': `Bearer ${this.userToken}`
     });
     let lang_id = localStorage.getItem('lang_id');
+    let random = Math.random() * 10;
     return this.http.get<any>(
-      `${this.apiUrl}export-single-user/${userId}/${lang_id}`, { headers }
+      `${this.apiUrl}export-single-user/${userId}/${lang_id}?num=${random}`, { headers }
     );
   }
 

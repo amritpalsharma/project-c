@@ -6,8 +6,8 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class TitleService {
   private title = new BehaviorSubject<string>('Dashboard');
-  private loggedInUserName = new BehaviorSubject<string>('Guest');
-  private loggedInUserRole = new BehaviorSubject<string>('Guest');
+  private loggedInUserName = new BehaviorSubject<string>('');
+  private loggedInUserRole = new BehaviorSubject<string>('');
   currentTitle = this.title.asObservable();
 
   loggedInName = this.loggedInUserName.asObservable();

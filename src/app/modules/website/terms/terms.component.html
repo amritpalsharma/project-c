@@ -125,9 +125,9 @@
       </div>
     </div>
 
-    <div class="advertisment py_0">
+    <div class="advertisment py_0" *ngIf="checkActive('leaderboard') || checkActive('banner')">
       <div class="container py_0">
-        <div *ngIf="checkActive('leaderboard') || checkActive('banner')" class="advertisment advirtismnt_2">
+        <div  class="advertisment advirtismnt_2">
           <div *ngIf="isExists('leaderboard') && checkActive('leaderboard')  && !isLoading"
             class="leaderboard-club-image advirtismnt_2_large">
             <a href="{{advertisementData?.leaderboard?.redirect_url}}" target="_blank"></a>

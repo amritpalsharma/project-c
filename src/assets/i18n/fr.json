@@ -861,7 +861,7 @@
   "_comment": "This et section et contains et translations et for et the et talents et module.",
   "transfer": "Transferts",
   "saison": "Saison",
-  "moveTo": "Moving et to",
+  "moveTo": "Transfert vers",
   "moveFrom": "Moving et from",
   "joined": "Joined",
   "fcThunU21": "Fc et thun et u21",
@@ -874,7 +874,7 @@
   "right20": "Right et 20",
   "goalkeeperCenterBack": "Goalkeeper, et center et back",
   "loading": "Chargement en cours, veuillez patienter…",
-  "deafultProfilePreview": "Default et profile et preview",
+  "deafultProfilePreview": "Aperçu du profil standard",
   "choosePlan": "Choisir un plan",
   "confirmDeleteinformation": "Une fois les informations supprimées, il est impossible de revenir en arrière.",
   "confirmDeleteinformation1": "Voulez-vous effacer?",
@@ -1464,8 +1464,11 @@
   "deleteFromGalleryConfirmation": "¿Estás seguro de que quieres eliminar la {{type}} de tu galería?",
   "scoutHistoryTxt": "À propos de nous",
   "timeZoneTxt": "Fuseau horaire Hiver UTC +1 / Été UTC +2",
-  "noTextTabs":"Aucun contenu téléchargé par l’utilisateur.",
-  "downloadProfileBtn":"Télécharger",
-  "chatBtntxt":"Chat",
-  "favoriteBtnTxt":"Favori"
+  "noTextTabs": "Aucun contenu téléchargé par l’utilisateur.",
+  "downloadProfileBtn": "Télécharger",
+  "chatBtntxt": "Chat",
+  "favoriteBtnTxt": "Favori",
+  "prorationTxt": "Crédit (temps non utilisé abonnement mensuel)",
+  "youHaveAlreadyThisPlan": "Tu as déjà cet abonnement. Réessaie ou jette un œil à ton compte.",
+  "youHaveAlreadyThisPlanTitle": "Attention"
 }
