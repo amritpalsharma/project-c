@@ -917,14 +917,14 @@ img.birthday-img {
 h2.accordion-header {
     font-size: 20px;
     width: 100%;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 button.btn.btn-danger {
-    background-color: white;
-    color: #E05263;
+// background-color: white;
+    // color: #E05263;
     font-weight: 700;
-    border: 1px solid #E05263;
+    // border: 1px solid #E05263;
     border-radius: 20px;
     width: 203px;
     height: 41px;
@@ -2402,122 +2402,9 @@ span {
         left: 0;
     }
 
-    // .club-offers3 img {
-    //     right: 11%;
-    //     bottom: 17%;
-    //     width: 370px;
-    //     height: 270px;
-    // }
-
-    // .club-offers2 img {
-    //     right: 0;
-    //     top: 24%;
-    //     width: 260px;
-    //     height: 260px;
-    // }
-
-    // .club-offers1 img {
-    //     top: 13%;
-    //     right: 22%;
-    //     height: 230px;
-    //     width: 280px;
-    // }
-
-    // .accodian-image1 img {
-    //     top: 8%;
-    //     right: 6%;
-    //     height: 300px;
-    //     width: 400px;
-    // }
-
-    // .accodian-image2 img {
-    //     right: 22%;
-    //     top: 37%;
-    //     height: 200px;
-    //     width: 240px;
-    // }
-
-    // .accodian-image3 img {
-    //     top: 36%;
-    //     right: 0;
-    //     height: 180px;
-    //     width: 215px;
-    // }
-
-    // .feature-players .player-img img {
-    //     height: 220px;
-    //     width: 220px;
-    // }
-
-    // .feature-player3 .player3,
-    // .feature-player2 .player2,
-    // .feature-player1 .player1 {
-    //     height: 228px;
-    //     width: 228px;
-    // }
-
-    // .feature-player3 {
-    //     width: 228px;
-    //     height: 230px;
-    //     top: 21%;
-    // }
-
-    // .feature-player3 .player-name3 {
-    //     width: 220px;
-    // }
-
-    // .feature-player2 {
-    //     width: 228px;
-    //     height: 230px;
-    //     top: 43%;
-    //     right: 200px;
-    // }
-
-    // .feature-player2 .player-name2 {
-    //     top: 194px;
-    //     width: 220px;
-    // }
-
-    // .feature-player1 {
-    //     height: 230px;
-    //     width: 229px;
-    //     top: 10%;
-    //     right: 26%;
-    // }
-
-    // .feature-player1 .player-name1 {
-    //     top: 194px;
-    //     width: 220px;
-    //     height: 30px;
-    // }
-
-    // .feature-player2 .player2 .player-img::after {
-    //     bottom: 27px;
-    // }
-
-    // .networking-images1 img {
-    //     height: 450px;
-    //     width: 380px;
-    // }
-
-    // .networking-images2 img {
-    //     height: 75px;
-    //     width: 220px;
-    // }
-
-    // .networking-images2 {
-    //     top: 20%;
-    // }
-
-    // .networking-images3 img {
-    //     height: 75px;
-    //     width: 250px;
-    // }
-
-    // .networking-images3 {
-    //     top: 56%;
-    //     left: 57%;
-    // }
+    .feature-text {
+        font-size: 18px;
+    }
 
 }
 
@@ -5752,6 +5639,12 @@ span {
     .premium-text img {
         top: 1px !important;
     }
+    h2.accordion-header {
+        font-size: 18px !important;
+    }
+    .feature-text {
+        font-size: 13px !important;
+    }
 }
 
 
@@ -5839,7 +5732,9 @@ span {
         height: 36px;
         min-width: 30px !important;
     }
-
+    h2.accordion-header {
+        font-size: 22px;
+    }
     .feature-text {
         margin-left: 18px !important;
     }
@@ -6049,11 +5944,14 @@ span {
     .club-text1 {
         font-size: 22px;
     }
-    h2.accordion-header, .premium-heading5 {
+    .premium-heading5 {
         font-size: 25px;
     }
-    .accordion-body .feature-text {
+    h2.accordion-header {
         font-size: 22px;
+    }
+    .accordion-body .feature-text {
+        font-size: 20px;
     }
     .red_text_plan {
         font-size: 18px;
@@ -6120,6 +6018,15 @@ span {
     .shadow_container .body_card::-webkit-scrollbar {
         width: 10px !important;
     }
+    .accordion-flex img {
+        margin-right: 20px;
+        height: 50px;
+        width: 50px;
+        min-width: 50px;
+    }
+    .feature-text {
+        margin-left: 50px;
+    }
 }
 
 @media (min-width: 3000px) {
@@ -6155,6 +6062,15 @@ span {
     
     .shadow_container .body_card::-webkit-scrollbar {
         width: 15px !important;
+    }
+    .accordion-flex img {
+        margin-right: 20px;
+        height: 55px;
+        width: 55px;
+        min-width: 55px;
+    }
+    .feature-text {
+        margin-left: 50px;
     }
 }
 
@@ -6196,7 +6112,11 @@ span {
 }
 }
 
-
+@media (max-width: 361px) {
+h2.accordion-header {
+    font-size: 20px;
+}
+}
 
 @media (min-width: 992px) and (max-width: 1599px) {
     .banner-inner {
@@ -6214,11 +6134,14 @@ span {
     a.btn.btn-register {
       font-size: 20px;
     }
-  .club-text1, .feature-text {
+  .club-text1 {
       font-size: 22px;
   }
+  .feature-text {
+    font-size: 18px;
+}
   h2.accordion-header {
-      font-size: 25px;
+      font-size: 22px;
   }
   .club_text img {
       width: 70px;
@@ -6244,7 +6167,7 @@ span {
     font-size: 40px;
 }
 h2.accordion-header {
-    font-size: 20px;
+    font-size: 22px;
 }
 .club-text1 {
     font-size: 18px;
