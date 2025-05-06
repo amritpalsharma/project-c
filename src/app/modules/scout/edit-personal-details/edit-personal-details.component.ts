@@ -171,7 +171,7 @@ export class EditPersonalDetailsComponent implements OnInit {
           this.cover_image = this.user.meta.cover_image;
           this.cover_image_path = this.user.meta.cover_image_path;
           this.designation = this.user.meta.designation;
-          this.country = this.user.meta.country;
+          this.country = this.user.meta.user_nationalities;
           this.profile_image = this.user.meta.profile_image;
           this.profile_image_path = this.user.meta.profile_image_path;
           this.sm_facebook = this.user.meta.sm_facebook;

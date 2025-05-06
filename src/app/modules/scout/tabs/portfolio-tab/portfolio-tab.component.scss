@@ -14,6 +14,13 @@ table th, table td {
     padding: 0.938rem 15px !important;
 }
 
+.bg_success, .bg_reject, .bg_pending{
+    width: 100%;
+    display: inline-block;
+    max-width: 150px;
+    border-radius: 60px;
+}
+
 .gallery-pic-upload {
     color: #023A4A;
 }
@@ -298,4 +305,8 @@ table td svg {
 .btn.web-create-bg {
     font-size: 28px !important;
   }
+
+  .bg_success, .bg_reject, .bg_pending{
+    max-width: 240px;
+}
 }

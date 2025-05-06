@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { TitleService } from '../../../title.service';
 import { WebPages } from '../../../services/webpages.service';
+import { Location } from '@angular/common';
 
 import {
   MatDialogRef,
@@ -31,6 +32,7 @@ export class SettingComponent implements OnInit {
     private translateService: TranslateService,
     private titleService: TitleService,
     public webPages: WebPages,
+    private location: Location
   ) { }
 
   userData: any;
@@ -65,16 +67,21 @@ export class SettingComponent implements OnInit {
     }
 
     // Listen for hash changes in the route
-    this.route.fragment.subscribe((fragment) => {
-      if (fragment === 'app-settings') {
-        this.tab = 'setting'; // Switch to the App Settings tab
-      } else if (fragment === 'activity') {
-        this.tab = 'activity'; // Switch to Activity Log tab
-      }
-      else if (fragment === 'notifications') {
-        this.tab = 'notifications'; // Switch to Activity Log tab
+    this.route.fragment.subscribe(fragment => {
+      if (fragment) {
+        this.tab = fragment;
       }
     });
+    // this.route.fragment.subscribe((fragment) => {
+    //   if (fragment === 'app-settings') {
+    //     this.tab = 'setting'; // Switch to the App Settings tab
+    //   } else if (fragment === 'activity') {
+    //     this.tab = 'activity'; // Switch to Activity Log tab
+    //   }
+    //   else if (fragment === 'notifications') {
+    //     this.tab = 'notifications'; // Switch to Activity Log tab
+    //   }
+    // });
     this.webPages.languageId$.subscribe((data) => { 
       this.getJsonTranslations();
     })
@@ -84,6 +91,7 @@ export class SettingComponent implements OnInit {
 
   switchTab(tab: any) {
     this.tab = tab;
+    this.router.navigate([], { fragment: tab });
   }
 
   getJsonTranslations() {
