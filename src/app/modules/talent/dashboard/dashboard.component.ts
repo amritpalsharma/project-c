@@ -268,7 +268,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
             element: '#generalDetailsBtn',
             intro: `<div><h6>${translations['generalDetails']}</h6>${translations['editGeneralDetails']}.</div>`,
             // tooltipClass: 'custom-tooltip',
-            position: 'right'
+            position: 'left'
           },
         ],
         showBullets: false,
