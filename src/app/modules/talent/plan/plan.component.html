@@ -4,9 +4,9 @@
     <!-- Loader for Plans -->
     <div *ngIf="isLoadingPlans" class="loader-container py-5">
       <div class="loader"></div>
-      <p>{{'loading' | translate}}</p>
+      <!-- <p>{{'loading' | translate}}</p> -->
     </div>
-
+    <!-- <app-loader *ngIf="isLoadingPlans"></app-loader> -->
     <!-- If not loading, show the plans -->
     <div *ngIf="!isLoadingPlans">
       <div class="card subscription-plan">

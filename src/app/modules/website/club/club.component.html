@@ -340,11 +340,11 @@
                                         <div class="item_card">
                                             <div class="header_card">
                                                 <h2 class="premium-heading3">
-                                                    {{ getPlanPriceByName('boost')}}<span>.-{{Currency}} /
-                                                        <span
-                                                            *ngIf="selectedTab == 'yearly'">{{'yearly' | translate}}</span>
-                                                        <span
-                                                            *ngIf="selectedTab != 'yearly'">{{'monthly' | translate}}</span>
+                                                    {{ getPlanPriceByName('boost')}}<span>.- {{Currency}} /
+                                                        <span class="text-uppercase"
+                                                            *ngIf="selectedTab == 'yearly'">{{'year' | translate}}</span>
+                                                        <span class="text-uppercase"
+                                                            *ngIf="selectedTab != 'yearly'">{{'month' | translate}}</span>
                                                     </span>
                                                 </h2>
                                                 <h3 class="premium-heading2"> {{getDynamicPlanName('boost')}} </h3>
@@ -375,11 +375,11 @@
                                         <div class="item_card">
                                             <div class="header_card">
                                                 <h2 class="premium-heading3">
-                                                    {{ getPlanPriceByName('premium')}}<span>.-{{Currency}} /
-                                                        <span
-                                                            *ngIf="selectedTab == 'yearly'">{{'yearly' | translate}}</span>
-                                                        <span
-                                                            *ngIf="selectedTab != 'yearly'">{{'monthly' | translate}}</span>
+                                                    {{ getPlanPriceByName('premium')}}<span>.- {{Currency}} /
+                                                        <span class="text-uppercase"
+                                                            *ngIf="selectedTab == 'yearly'">{{'year' | translate}}</span>
+                                                        <span class="text-uppercase"
+                                                            *ngIf="selectedTab != 'yearly'">{{'month' | translate}}</span>
                                                     </span>
                                                 </h2>
                                                 <h3 class="premium-heading2">{{getDynamicPlanName('premium')}}</h3>
@@ -409,11 +409,11 @@
                                         <div class="item_card">
                                             <div class="header_card">
                                                 <h2 class="premium-heading3">
-                                                    {{ getPlanPriceByName('country')}}<span>.-{{Currency}} /
-                                                        <span
-                                                            *ngIf="selectedTab == 'yearly'">{{'yearly' | translate}}</span>
-                                                        <span
-                                                            *ngIf="selectedTab != 'yearly'">{{'monthly' | translate}}</span>
+                                                    {{ getPlanPriceByName('country')}}<span>.- {{Currency}} /
+                                                        <span class="text-uppercase"
+                                                            *ngIf="selectedTab == 'yearly'">{{'year' | translate}}</span>
+                                                        <span class="text-uppercase"
+                                                            *ngIf="selectedTab != 'yearly'">{{'month' | translate}}</span>
                                                     </span>
                                                 </h2>
                                                 <h3 class="premium-heading2"> {{getDynamicPlanName('country')}} </h3>

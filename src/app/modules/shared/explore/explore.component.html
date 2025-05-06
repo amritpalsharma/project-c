@@ -152,9 +152,11 @@
 
         <div class="explore-box_images mt-3">
 
-          <div *ngIf="isLoading" class="loader-container py-5">
-            <div class="loader"></div>
-            <p>{{'loading' | translate}}</p>
+          <div *ngIf="isLoading">
+            <app-loader></app-loader>
+            <!-- <div class="loader"></div> -->
+
+            <!-- <p>{{'loading' | translate}}</p> -->
           </div>
 
           <div class="noUserFound text-center py-1" *ngIf="noUsersFound && !isLoading">

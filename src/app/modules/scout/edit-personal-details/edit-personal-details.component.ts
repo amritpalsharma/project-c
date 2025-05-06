@@ -211,7 +211,7 @@ export class EditPersonalDetailsComponent implements OnInit {
     // formData.append('user[cover_image]' , this.cover_image);
     // formData.append('user[cover_image_path]' , this.cover_image_path);
     formData.append('user[designation]', this.designation);
-    formData.append('user[user_nationalities]', this.country);
+    formData.append('user[nationalitiy][]', this.country);
     // formData.append('user[profile_image]' , this.profile_image);
     // formData.append('user[profile_image_path]' , this.profile_image_path);
     formData.append('user[sm_facebook]', this.sm_facebook);
@@ -226,6 +226,9 @@ export class EditPersonalDetailsComponent implements OnInit {
     this.scoutService.updateUserProfile(formData).subscribe(
       (response: any) => {
         console.log('Form submitted successfully:', response);
+        if(response.stats == true && response.message != ''){
+          this.toastr.success(response.message);
+        }
         this.dialogRef.close(response);
         // this.dialogRef.close(response.data);
       },

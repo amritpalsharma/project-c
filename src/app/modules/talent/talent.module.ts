@@ -53,6 +53,7 @@ import { EditMembershipProfileComponent } from './edit-membership-profile/edit-m
 import { GuidedTourModule, GuidedTourService } from 'ngx-guided-tour';
 import { LightboxModule } from 'ngx-lightbox';
 import { SharedModule } from '../shared/shared.module';
+// import { LoaderComponent } from '../shared/loader/loader.component';
 // import { AngularCropperjsModule } from 'angular-cropperjs';
 // See the Moment.js docs for the meaning of these formats:
 // https://momentjs.com/docs/#/displaying/format/
@@ -104,6 +105,7 @@ export const MY_FORMATS = {
     UpdateCountryPlanComponent,
     CancelCountryPlanComponent,
     AddBoosterComponent,
+    // LoaderComponent
   ],
   imports: [
     CommonModule,

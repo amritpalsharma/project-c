@@ -17,6 +17,7 @@ import { WebPages } from '../../../services/webpages.service';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { TitleService } from '../../../title.service';
 import { Router } from '@angular/router';
+// import { LoaderComponent } from '../../shared/loader/loader.component';
 
 
 

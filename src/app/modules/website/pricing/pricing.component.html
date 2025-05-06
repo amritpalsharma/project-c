@@ -184,7 +184,7 @@
                     <div class="item_card">
                       <div class="header_card">
                         <h2 class="premium-heading3">
-                          {{ selectedTab != 'yearly' ? boostPrice : boostYearlyPrice }}<span>.-{{Currency}} /
+                          {{ selectedTab != 'yearly' ? boostPrice : boostYearlyPrice }}<span>.- {{Currency}} /
                             <span *ngIf="selectedTab == 'yearly'">{{pageData?.first_tab_yearly_label}}</span>
                             <span *ngIf="selectedTab != 'yearly'">{{pageData?.first_tab_monthly_label}}</span>
                           </span>
@@ -216,7 +216,7 @@
                     <div class="item_card">
                       <div class="header_card">
                         <h2 class="premium-heading3">
-                          {{ selectedTab != 'yearly' ? premiumPrice : premiumYearlyPrice }}<span>.-{{Currency}} /
+                          {{ selectedTab != 'yearly' ? premiumPrice : premiumYearlyPrice }}<span>.- {{Currency}} /
                             <span *ngIf="selectedTab == 'yearly'">{{pageData?.first_tab_yearly_label}}</span>
                             <span *ngIf="selectedTab != 'yearly'">{{pageData?.first_tab_monthly_label}}</span>
                           </span>
@@ -246,7 +246,7 @@
                     <div class="item_card">
                       <div class="header_card">
                         <h2 class="premium-heading3">
-                          {{ selectedTab != 'yearly' ? countryPrice : countryYearlyPrice }}<span>.-{{Currency}} /
+                          {{ selectedTab != 'yearly' ? countryPrice : countryYearlyPrice }}<span>.- {{Currency}} /
                             <span *ngIf="selectedTab == 'yearly'">{{pageData?.first_tab_yearly_label}}</span>
                             <span *ngIf="selectedTab != 'yearly'">{{pageData?.first_tab_monthly_label}}</span>
                           </span>
@@ -300,7 +300,7 @@
                   <div class="premium-img">
                     <h2 class="premium-heading2">{{ pageData?.first_tab_plan_name }}</h2>
                     <h3 class="premium-heading3">
-                      {{isActive1 ? premiumYearlyPrice : premiumPrice}}<span>.-{{Currency}} / {{isActive1 ?
+                      {{isActive1 ? premiumYearlyPrice : premiumPrice}}<span>.- {{Currency}} / {{isActive1 ?
                         pageData?.first_tab_yearly_label :
                         pageData?.first_tab_monthly_label}}</span>
                       <!-- {{isActive1 ? pageData?.first_tab_yearly_price: pageData?.first_tab_monthly_price}}<span>.- CHF / {{ isActive1 ? ('year' | translate) : ('month' | translate) }}</span> -->
