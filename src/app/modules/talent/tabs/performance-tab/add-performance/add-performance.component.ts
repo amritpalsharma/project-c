@@ -37,6 +37,7 @@ export class AddPerformanceComponent {
   from_date: FormControl = new FormControl(null);
   to_date: FormControl = new FormControl(null);
   currentTeamLogo: string = '';
+  generalError: string = '';
 
   theme: any = localStorage.getItem('theme');
 
@@ -141,7 +142,7 @@ export class AddPerformanceComponent {
           this.toastr.clear(loadingToast.toastId);
 
           // Show error message
-          this.toastr.error('Failed to submit performance data. Please try again.', 'Error');
+          this.toastr.error(this.generalError, this.errorTxt);
 
           console.error('Error submitting the form:', error);
         }
@@ -181,12 +182,13 @@ export class AddPerformanceComponent {
   }
 
   getToasterMsg() {
-    this.translate.get(['success!', 'submittingPerformanceData', 'pleaseWait', 'formAllFieldsRequired', 'error']).subscribe((res: any) => {
+    this.translate.get(['success!', 'submittingPerformanceData', 'pleaseWait', 'formAllFieldsRequired', 'error','forgotPassword.generalError']).subscribe((res: any) => {
       this.successTxt = res['success!'];
       this.submittingPerformanceData = res['submittingPerformanceData'];
       this.pleaseWait = res['pleaseWait'];
       this.formAllFieldsRequired = res['formAllFieldsRequired'];
       this.errorTxt = res['error'];
+      this.generalError = res['forgotPassword.generalError'];
       // this.downloading = res['downloading'];
     });
   }
