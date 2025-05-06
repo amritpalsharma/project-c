@@ -324,10 +324,10 @@
                 <div class="pricing_tabs_container">
                     <ul class="nav nav-tabs justify-content-center border-0" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link active" data-bs-toggle="tab" href="#Tab1" role="tab" aria-selected="true"
+                            <a class="nav-link active uppercase-letters" data-bs-toggle="tab" href="#Tab1" role="tab" aria-selected="true"
                                 (click)="setActiveTab('monthly')">{{'billedMonthly'| translate}}</a>
                         </li>
-                        <li class="nav-item" role="presentation">
+                        <li class="nav-item uppercase-letters" role="presentation">
                             <a class="nav-link" data-bs-toggle="tab" href="#Tab2" role="tab" aria-selected="false"
                                 (click)="setActiveTab('yearly')">{{'billedYearly'| translate}}</a>
                         </li>
@@ -348,6 +348,7 @@
                                                     </span>
                                                 </h2>
                                                 <h3 class="premium-heading2"> {{getDynamicPlanName('boost')}} </h3>
+                                                <h5 class="premium-heading5"> {{'boostProfileFor' | translate}} </h5>
                                             </div>
                                             <div class="body_card">
                                                 <h5 class="premium-heading5">{{getDynamicPlanName('boost')}}</h5>
@@ -382,6 +383,7 @@
                                                     </span>
                                                 </h2>
                                                 <h3 class="premium-heading2">{{getDynamicPlanName('premium')}}</h3>
+                                                <h5 class="premium-heading5"> {{'premiunPlanFor' | translate}} </h5>
                                             </div>
                                             <div class="body_card">
                                                 <h5 class="premium-heading5">{{getDynamicPlanName('premium')}}</h5>
@@ -415,6 +417,7 @@
                                                     </span>
                                                 </h2>
                                                 <h3 class="premium-heading2"> {{getDynamicPlanName('country')}} </h3>
+                                                <h5 class="premium-heading5"> {{'multiCountryFor' | translate}} </h5>
                                             </div>
                                             <div class="body_card">
                                                 <h5 class="premium-heading5">{{getDynamicPlanName('country')}}</h5>

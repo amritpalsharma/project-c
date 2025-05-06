@@ -21,8 +21,8 @@
               }}</button>
           </div>
           <div class="accept&decline">
-            <button type="button" class="accept" (click)="acceptCookies()">{{ 'iAccept' | translate }}</button>
-            <button type="button" class="decline" (click)="declineCookies()">{{ 'iDecline' | translate }}</button>
+            <button type="button" class="accept" (click)="acceptCookies()" [disabled]="disableButton == 'acceptCookies'">{{ 'iAccept' | translate }}</button>
+            <button type="button" class="decline" (click)="declineCookies()" [disabled]="disableButton == 'declineCookies'">{{ 'iDecline' | translate }}</button>
           </div>
         </div>
       </div>

@@ -5965,6 +5965,9 @@ span {
     .header_card {
         border-bottom: 1px solid #DFDFDF;
         margin-bottom: 1rem;
+        .premium-heading5 {
+            color: #e05263;
+        }
     }
     .body_card {
         height: 300px;
@@ -5978,14 +5981,16 @@ span {
         .premium-text p {
             color: #000;
         }
-        .premium-heading5 {
-            color: #357525;
+        .body_card {
+            .premium-heading5 {
+                color: #357525;
+            }
         }
-    }
+    } 
     .item_column:nth-child(2) {
         .body_card {
             height: calc(300px + 3rem);
-        }
+        } 
         .header_card * {
             color: #fff;
         }
@@ -6261,4 +6266,7 @@ h2.accordion-header {
 .shadow_container .body_card {
     scrollbar-width: thin;
     scrollbar-color: #E05263 #b7c5b5;
+}
+.uppercase-letters{
+    text-transform: uppercase;
 }

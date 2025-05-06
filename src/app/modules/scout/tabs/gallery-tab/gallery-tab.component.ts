@@ -216,6 +216,10 @@ export class GalleryTabComponent {
 
     const dialogRef = this.dialog.open(DeletePopupComponent, {
       width: '600px',
+      data:{
+        from_page:'gallery',
+        type: type
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {

@@ -30,7 +30,7 @@
             {{ extractTextAfterDash(country.package_name) }}
           </mat-option> -->
 
-          <mat-option *ngFor="let country of getUniqueCountries(countries)" [value]="country"
+          <mat-option *ngFor="let country of countries" [value]="country"
             [selected]="selectedCountryIds.includes(country.id)">
             {{ extractTextAfterDash(country.package_name) }}
           </mat-option>
@@ -45,7 +45,7 @@
         </label>
         <!-- <pre>{{activePlans | json}}</pre> -->
         <!-- <h6 *ngIf="activePlans.length > 0" class="font-weight-bold">{{'alreadyPurchased' | translate}}: </h6> -->
-        <div *ngFor="let item of activePlans; let isLast = last">
+        <div *ngFor="let item of uniqueActivePlans; let isLast = last">
           <div class="chip p-2">
             <!-- Check if label is not empty -->
             <span class="">

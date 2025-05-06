@@ -27,6 +27,8 @@ export class CookiePopupComponent implements OnInit {
       enabled: false 
     },
   ];
+
+  disableButton:string='declineCookies';
   
 
   ngOnInit() {
@@ -52,12 +54,14 @@ export class CookiePopupComponent implements OnInit {
   }
 
   acceptCookies() {
+    this.disableButton = 'acceptCookies';
     localStorage.setItem('cookieConsent', 'accepted'); // Save consent as accepted
     localStorage.setItem('cookieConsentTimestamp', new Date().getTime().toString()); // Save timestamp
     this.showPopup = false; // Hide the popup
   }
 
   declineCookies() {
+    this.disableButton = 'declineCookies';
     localStorage.setItem('cookieConsent', 'declined'); // Save consent as declined
     localStorage.setItem('cookieConsentTimestamp', new Date().getTime().toString()); // Save timestamp
     this.showPopup = false; // Hide the popup

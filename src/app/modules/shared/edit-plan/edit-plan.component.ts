@@ -432,22 +432,34 @@ export class EditPlanComponent implements OnInit {
     }
   }
 
-  getUniqueCountries(countriesArr: any[]) {
-    const uniqueCountries = [];
-    const packageNames = new Set(); // To track unique package names
-    // let countriesArr = this.activePlans;
-    for (const country of countriesArr) {
-      if (!packageNames.has(country.package_name)) {
-        packageNames.add(country.package_name);
-        uniqueCountries.push(country);
-      }
-    }
+  // getUniqueCountries(countriesArr: any[]) {
+  //   const uniqueCountries = [];
+  //   const packageNames = new Set(); // To track unique package names
+  //   // let countriesArr = this.activePlans;
+  //   for (const country of countriesArr) {
+  //     if (!packageNames.has(country.package_name)) {
+  //       packageNames.add(country.package_name);
+  //       uniqueCountries.push(country);
+  //     }else{
+  //       console.log(country.package_name+' is already exist in list')
+  //     }
+  //   }
     
-    return uniqueCountries;
+  //   return uniqueCountries;
+  // }
+  get uniqueActivePlans() {
+    const seen = new Set();
+    return this.activePlans.filter(country => {
+      if (seen.has(country.location)) {
+        return false;
+      }
+      seen.add(country.location);
+      return true;
+    });
   }
 
   updateTranslation() {
-    this.translate.get(['subscriptionCanceledSuccessfully', 'success!', 'pleaseWait', 'Processing']).subscribe((res: any) => {
+    this.translate.get(['subscriptionCanceledSuccessfully', 'success!', 'pleaseWait', 'Processing','youHaveAlreadyThisPlan','youHaveAlreadyThisPlanTitle']).subscribe((res: any) => {
       this.subscriptionCanceledSuccessfully = res['subscriptionCanceledSuccessfully'];
       this.successTxt = res['success!'].toUpperCase();
       this.pleaseWait = res['pleaseWait'];
