@@ -77,9 +77,9 @@ export class TalentService {
     });
   }
 
-  updateNotificationSeen(id: number, seen: number): Observable<any> {
+  updateNotificationSeen(id: number, seen: number, is_accepted: boolean = false): Observable<any> {
     return this.http.get<{ status: boolean, message: string }>(
-      `${this.apiUrl3}updateNotificationSeen?id=${id}&seen=${seen}`,
+      `${this.apiUrl3}updateNotificationSeen?id=${id}&seen=${seen}&isAccepted=${is_accepted}`,
     );
   }
 
