@@ -664,7 +664,7 @@ export class HeaderComponent implements OnInit {
           if (modal) {
             modal.hide();
           }
-          
+
           localStorage.setItem('authToken', token);
           localStorage.setItem('userRole', userRole);
           localStorage.setItem('userData', JSON.stringify(userData));
@@ -674,7 +674,7 @@ export class HeaderComponent implements OnInit {
               this.socketService.connectUser({ userId: response.data.user_data.id, langId });
             }, 0);
           });
-          
+
           this.isLoading = false;
           this.router.navigate([navigationRoute]);
         }
@@ -739,6 +739,21 @@ export class HeaderComponent implements OnInit {
   }
 
   register() {
+
+    // console.log(this.role);
+    if (this.role === 4) {
+      if (this.isHideClubSection === true) {
+
+      } else {
+        if (!this.selectedClub) {
+          this.toastr.warning(this.requiredFieldsMessage, this.errorTxt);
+          return;
+        } else if (!this.team_id) {
+          this.toastr.warning(this.requiredFieldsMessage, this.errorTxt);
+          return;
+        }
+      }
+    }
     this.serverBusy = true;
     this.registerFormSubmitted = true;
     this.showRequiredErrors = true;

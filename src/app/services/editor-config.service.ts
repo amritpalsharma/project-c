@@ -34,7 +34,7 @@ export class EditorConfigService {
         }
       ` : '',
       color_map: [
-        '#FF0000', // Red
+        // '#FF0000', // Red
         '#e05263', // Light Mode red
         '#357525', // Light Mode Green
         '#bde34e' // Dark Mode Green

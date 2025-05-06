@@ -310,7 +310,7 @@ a.btn.btn-register {
 h2.accordion-header {
     font-size: 20px;
     width: 100%;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 button.btn.btn-danger {
@@ -1435,6 +1435,7 @@ span {
 }
 
 @media (max-width: 1404px) {
+
     .banner-image1 img {
         top: 12%;
         right: 32%;
@@ -1527,6 +1528,9 @@ span {
     .button3 {
         top: 68%;
         right: 50px;
+    }
+    .feature-text {
+        font-size: 18px;
     }
 
 }
@@ -3501,6 +3505,9 @@ span {
         width: 160px;
 
     }
+    h2.accordion-header {
+        font-size: 20px;
+    }
 }
 
 @media (max-width: 345px) {
@@ -3760,6 +3767,12 @@ span {
     .premium-text img {
         top: 1px !important;
     }
+    h2.accordion-header {
+        font-size: 18px !important;
+    }
+    .feature-text {
+        font-size: 13px !important;
+    }
 
 }
 
@@ -3843,7 +3856,9 @@ span {
         height: 36px;
         min-width: 30px !important;
     }
-
+    h2.accordion-header {
+        font-size: 22px;
+    }
     .feature-text {
         margin-left: 18px !important;
     }
@@ -3998,11 +4013,14 @@ span {
     .club-text1 {
         font-size: 22px;
     }
-    h2.accordion-header, .premium-heading5 {
+    .premium-heading5 {
         font-size: 25px;
     }
-    .accordion-body .feature-text {
+    h2.accordion-header {
         font-size: 22px;
+    }
+    .accordion-body .feature-text {
+        font-size: 20px;
     }
     .red_text_plan {
         font-size: 18px;
@@ -4068,6 +4086,15 @@ span {
     .shadow_container .body_card::-webkit-scrollbar {
         width: 10px !important;
     }
+    .accordion-flex img {
+        margin-right: 20px;
+        height: 50px;
+        width: 50px;
+        min-width: 50px;
+    }
+    .feature-text {
+        margin-left: 50px;
+    }
 }
 
 @media (min-width: 3000px) {
@@ -4103,6 +4130,16 @@ span {
     
     .shadow_container .body_card::-webkit-scrollbar {
         width: 15px !important;
+    }
+    
+    .accordion-flex img {
+        margin-right: 20px;
+        height: 55px;
+        width: 55px;
+        min-width: 55px;
+    }
+    .feature-text {
+        margin-left: 50px;
     }
 }
 
@@ -4164,8 +4201,11 @@ span {
 .club-text1, .feature-text {
     font-size: 22px;
 }
+.feature-text {
+    font-size: 18px;
+}
 h2.accordion-header {
-    font-size: 25px;
+    font-size: 22px;
 }
 .club_text img {
     width: 70px;
@@ -4183,7 +4223,7 @@ h2.accordion-header {
     font-size: 40px;
 }
 h2.accordion-header {
-    font-size: 20px;
+    font-size: 22px;
 }
 .club-text1 {
     font-size: 18px;
