@@ -99,13 +99,15 @@ export class NotificationsLogComponent {
     });
   }
 
-  notificationClicked(id: number, seen: number, notification: any) {
+  notificationClicked(id: number, seen: number, notification: any, is_accepted: boolean = false) {
     if (!notification.seen) {
-      this.talentService.updateNotificationSeen(notification.id, 1).subscribe({
+      this.talentService.updateNotificationSeen(notification.id, 1, is_accepted).subscribe({
         next: (response) => {
           if (response.status) {
             notification.seen = 1;
             console.log('Message from API:', response.message);
+
+            this.fetchNotifications();
           }
           else {
             console.log("something went wrong");
@@ -222,14 +224,15 @@ export class NotificationsLogComponent {
     this.talentService.UpdateScoutRequest(scoutId, formData, langId).subscribe((response) => {
       if (response && response.status) {
         if (myResponse === 'accepted') {
-          this.socketService.emit("acceptScoutRequest", { senderId: userId, receiverId: scoutId })
+          this.socketService.emit("acceptScoutRequest", { senderId: userId, receiverId: scoutId });
+          this.notificationClicked(notification.id, notification.seen, notification, true);
         }
         else {
-          this.socketService.emit("rejectScoutRequest", { senderId: userId, receiverId: scoutId })
+          this.socketService.emit("rejectScoutRequest", { senderId: userId, receiverId: scoutId });
+          this.notificationClicked(notification.id, notification.seen, notification, false);
         }
         this.showMessage(response.message);
         // this.isResponded = true;
-        this.notificationClicked(notification.id, notification.seen, notification)
       } else {
         console.error('Invalid API response structure:', response);
         this.showMessage(response.message);
