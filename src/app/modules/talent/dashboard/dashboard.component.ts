@@ -1048,6 +1048,25 @@ export class DashboardComponent implements OnInit, OnDestroy {
     return new Blob([ab], { type: mimeString });
   }
 
+  deleteProfileImage(){
+    this.userService.deleteProfileImage().subscribe(
+      response => {
+        if(response.status){
+          this.profileImage = null;
+          this.commonDataService.updateProfilePic(this.profileImage);
+          this.toastr.success(response.message, this.successTxt);
+        }
+        else{
+          this.toastr.error(response.error, this.errorTxt);
+        }
+      },
+      error => {
+        console.error('Error deleting user:', error);
+        this.toastr.error(this.generalError, this.errorTxt);
+      }
+    );
+  }
+
   onProfileFileChange(event: Event): void {
     const input = event.target as HTMLInputElement;
 
@@ -1272,7 +1291,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
   }
 
-  openDeleteDialog(): void {
+  openDeleteDialog(type: string): void {
     const dialogRef = this.dialog.open(DeletePopupComponent, {
       width: '600px',
     });
@@ -1280,7 +1299,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         // If the user confirms, proceed with deletion
-        this.deleteCoverImage();
+        if(type==='cover'){
+          this.deleteCoverImage();
+        }
+        if(type==='profile'){
+          this.deleteProfileImage();
+        }
       } else {
         this.toastr.info(this.coverImageDeletionCanceled, this.Canceled);
         // console.log('User canceled the delete');

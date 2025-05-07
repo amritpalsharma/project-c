@@ -28,7 +28,7 @@
                   </div>
                   <input id="file-upload2" (change)="onCoverFileChange($event)" accept="image/*" type="file"
                     class="d-none" />
-                  <svg *ngIf="coverImage" class="delete_image cursor-pointer " (click)="openDeleteDialog()"
+                  <svg *ngIf="coverImage" class="delete_image cursor-pointer " (click)="openDeleteDialog('cover')"
                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                     <path
                       d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.7 23.7 0 0 0 -21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0 -16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z" />
@@ -47,7 +47,7 @@
                   <img *ngIf="!profileImage" src="../../../../assets/images/default/talent-profile-default.png" class=""
                     alt="" />
 
-                  <div class="user-edit ">
+                  <div class="user-edit" *ngIf="!profileImage">
                     <label for="profile-upload" class="">
                       <div class="edit-profile cursor-pointer" id="upload_profilePhoto"
                         matTooltip="{{'uploadNewProfileImage' | translate}} {{'mx_size' | translate}}"
@@ -63,14 +63,21 @@
                     </label>
                     <input id="profile-upload" (change)="onProfileFileChange($event)" accept="image/*" type="file"
                       class="d-none" />
-                    <!-- <div class="club-icon">
-                      <img *ngIf="!user.pre_current_club_logo_path"
-                        src="../../../../assets/images/default/Club-logo-default.png"
-                        class="club-icon-round cursor-pointer" alt="" />
-                      <img *ngIf="user.pre_current_club_logo_path" src="{{user.pre_current_club_logo_path}}"
-                        class="club-icon-round cursor-pointer" alt="" />
-                    </div> -->
+                  </div>
+                  <div class="user-edit" *ngIf="profileImage">
+                    <label for="profile-upload" class="">
+                      <div class="edit-profile cursor-pointer" id="upload_profilePhoto"
+                        matTooltip="{{'uploadNewProfileImage' | translate}} {{'mx_size' | translate}}"
+                        matTooltipPosition="right" (click)="openDeleteDialog('profile')">
 
+                        <svg class="cursor-pointer" style="padding: 2px;"
+                          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                          <path
+                            d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.7 23.7 0 0 0 -21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0 -16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z" />
+                        </svg>
+
+                      </div>
+                    </label>
                   </div>
                   <div class="premium_button " *ngIf="premium">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
@@ -96,7 +103,7 @@
                   <div class="loader"></div>
                   <p>{{'loading' | translate}}</p>
                 </div>
-                <div class="bg-color card-bg"  *ngIf="!loading">
+                <div class="bg-color card-bg" *ngIf="!loading">
                   <div class="user-info pt-3 row align-items-center justify-content-between p-3 responsive-name">
                     <div class="col-md-8 d-flex align-items-center player-name-box">
                       <h6 class="user-info-name">
@@ -724,7 +731,8 @@
                         </div>
                         <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'age' | translate}}</h6>
-                          <h5 class="title-1"*ngIf="calculateAge(user?.meta?.date_of_birth) > 0">{{calculateAge(user?.meta?.date_of_birth)}}</h5>
+                          <h5 class="title-1" *ngIf="calculateAge(user?.meta?.date_of_birth) > 0">
+                            {{calculateAge(user?.meta?.date_of_birth)}}</h5>
                         </div>
                       </div>
                     </div>
@@ -735,7 +743,7 @@
 
 
             <!-- unlock page  -->
-            <div class="unlock_page highlights-tour" *ngIf="!isPremium" >
+            <div class="unlock_page highlights-tour" *ngIf="!isPremium">
               <div class="col-lg-12 image-gallery mt-4 bg-color p-3 favourite_images">
                 <div class="d-flex align-items-center justify-content-between">
                   <div class="Feature_images">
@@ -755,7 +763,8 @@
 
                 </div>
                 <div class="upgrade_unlock">
-                  <a class="unlock_btn cursor-pointer" (click)="isUserVerified ? navigatePlans() : showVerificationPopup()">
+                  <a class="unlock_btn cursor-pointer"
+                    (click)="isUserVerified ? navigatePlans() : showVerificationPopup()">
                     <svg width="22" height="26" viewBox="0 0 22 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <g clip-path="url(#clip0_7084_24851)">
                         <path
@@ -809,7 +818,7 @@
                     </a>
                     <!-- <img [src]="highlights.file_path + image.file_name" alt="" (click)="openImage(i, 'image')"> -->
                   </div>
-                  
+
                   <!-- <div class="card-image">
                     <a href="https://bit.ly/2Nv9zHh" data-fancybox="gallery" data-caption="Caption Images 1">
                       <img src="https://bit.ly/2Nv9zHh" alt="Image Gallery">
@@ -833,7 +842,7 @@
                     *ngFor="let video of highlights?.videos let j = index">
                     <a [href]="highlights.file_path + video.file_name" data-fancybox="gallery" [attr.data-caption]="">
                       <video [src]="highlights.file_path + video.file_name" #videoPlayer
-                      (loadeddata)="setDurationAndThumbnail(videoPlayer)" alt="Video Gallery"></video>
+                        (loadeddata)="setDurationAndThumbnail(videoPlayer)" alt="Video Gallery"></video>
                     </a>
                     <span class="duration">{{duration}}</span>
                     <!-- <video [src]="highlights.file_path + video.file_name" #videoPlayer
@@ -870,7 +879,7 @@
                 </div>
                 <input id="file-upload" (change)="onCoverFileChange($event)" accept="image/*" type="file"
                   class="d-none" />
-                <svg *ngIf="coverImage" class="delete_image cursor-pointer " (click)="openDeleteDialog()"
+                <svg *ngIf="coverImage" class="delete_image cursor-pointer " (click)="openDeleteDialog('cover')"
                   xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                   <path
                     d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.7 23.7 0 0 0 -21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0 -16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z" />
@@ -958,15 +967,16 @@
               </ul>
             </div>
             <div class="general_details mt-4 p-4 bg-color justify_mobile box_height_eqaul">
-              <talent-profile-tab *ngIf="activeTab == 'profile'" [userData]="user"
-                [isPremium]="isPremium" [isUserVerified]="isUserVerified"></talent-profile-tab>
-              <talent-performance-tab *ngIf="activeTab == 'performance'"
-                [isPremium]="isPremium" [isUserVerified]="isUserVerified"></talent-performance-tab>
-              <talent-performance-analysis *ngIf="activeTab == 'performance-analysis'"
-                [isPremium]="isPremium" [isUserVerified]="isUserVerified"></talent-performance-analysis>
-              <talent-transfers-tab *ngIf="activeTab == 'transfers'" [isPremium]="isPremium" [isUserVerified]="isUserVerified"></talent-transfers-tab>
-              <talent-gallery-tab *ngIf="activeTab == 'gallery'" [isPremium]="isPremium" [coverImage]="coverImage" [isUserVerified]="isUserVerified"
-                (dataEmitter)="handleCoverImageData($event)"></talent-gallery-tab>
+              <talent-profile-tab *ngIf="activeTab == 'profile'" [userData]="user" [isPremium]="isPremium"
+                [isUserVerified]="isUserVerified"></talent-profile-tab>
+              <talent-performance-tab *ngIf="activeTab == 'performance'" [isPremium]="isPremium"
+                [isUserVerified]="isUserVerified"></talent-performance-tab>
+              <talent-performance-analysis *ngIf="activeTab == 'performance-analysis'" [isPremium]="isPremium"
+                [isUserVerified]="isUserVerified"></talent-performance-analysis>
+              <talent-transfers-tab *ngIf="activeTab == 'transfers'" [isPremium]="isPremium"
+                [isUserVerified]="isUserVerified"></talent-transfers-tab>
+              <talent-gallery-tab *ngIf="activeTab == 'gallery'" [isPremium]="isPremium" [coverImage]="coverImage"
+                [isUserVerified]="isUserVerified" (dataEmitter)="handleCoverImageData($event)"></talent-gallery-tab>
             </div>
           </div>
         </div>

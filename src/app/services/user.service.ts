@@ -759,4 +759,13 @@ export class UserService {
       `${this.apiUrl}user/get-representators/${userId}`, { headers }
     );
   }
+
+  deleteProfileImage(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.userToken}`
+    });
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
+      `${this.apiUrl}user/delete-profile-image`, { headers }
+    );
+  }
 }
