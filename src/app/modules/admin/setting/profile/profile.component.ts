@@ -102,6 +102,7 @@ export class ProfileComponent {
     formdata.append("user[city]", this.city);
     formdata.append("user[zipcode]", this.zipcode);
     formdata.append("user[state]", this.state);
+    formdata.append("user[password]", this.password);
     let lang_id = localStorage.getItem('lang_id') + '';
     formdata.append("lang", lang_id);
     if (this.imageToUpload != "") {

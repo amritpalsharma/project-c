@@ -26,6 +26,7 @@ import { SocketService } from '../../../services/socket.service';
 import { UnverifiedUserComponent } from '../../shared/unverified-user/unverified-user.component';
 import { PopupComponent } from '../../shared/popup/popup.component';
 import { descriptors } from 'chart.js/dist/core/core.defaults';
+import { TalentLoaderComponent } from '../talent-loader/talent-loader.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -489,7 +490,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
           // }
         }
 
-        this.loading = false;  // Set loading to false once data is loaded
+     //   this.loading = false;  // Set loading to false once data is loaded
       });
     } catch (error) {
       console.error('Error fetching users:', error);

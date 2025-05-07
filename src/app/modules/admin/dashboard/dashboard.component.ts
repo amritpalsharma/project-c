@@ -514,7 +514,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       ],
     };
 
-    let color = '#878787';
+    // let color = '#878787';
+    let color = '#4F7A9D';
 
     if (localStorage.getItem('theme') != 'light') {
       color = '#fff';
