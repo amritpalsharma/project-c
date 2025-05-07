@@ -481,7 +481,11 @@ tr.table_underline {
     }
 }
 
-
+@media (min-width: 1300px) {
+    .table-responsive {
+        overflow-x: unset !important;
+    }
+}
 
 
 @media (min-width: 1600px) and (max-width: 2999px) {

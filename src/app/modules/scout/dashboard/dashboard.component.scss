@@ -1791,6 +1791,19 @@ span.active_btn {
 
 
 @media (max-width: 575px) {
+  .user-media img {
+    width: 100px;
+    height: 100px;
+  }
+  .user-details-left .user-media {
+    margin-top: -50px;
+  }
+  .edit-profile {
+    width: 32px !important;
+    top: 1px !important;
+    right: 30px !important;
+    height: 32px !important;
+  }
   .team-logos:not(:last-child) {
     border-bottom: 1px solid #E5E5E5;
     padding-bottom: 20px;

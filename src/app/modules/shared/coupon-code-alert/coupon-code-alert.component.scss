@@ -61,3 +61,23 @@ input#couponCode {
   outline: none !important;
   box-shadow: none !important;
 }
+
+
+@media (max-width: 575px) {
+.container.p-4 {
+  padding: 10px !important;
+}
+.inner_container {
+  padding: 1rem !important;
+}
+.coupon-btn {
+  width: 100%;
+  padding: 8px;
+  position: unset;
+  transform: none;
+  margin-top: 10px;
+}
+input#couponCode {
+  padding: 10px !important;
+}
+}

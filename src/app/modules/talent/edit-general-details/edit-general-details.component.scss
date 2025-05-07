@@ -187,3 +187,16 @@ span.social_heading {
   padding-right: 15px !important;
 }
 }
+
+@media(max-width:575px){
+.social_network {
+  padding: 10px 14px !important;
+}
+}
+
+
+@media(max-width:480px){
+.ground-image svg {
+    width: 100% !important;
+}
+}

@@ -367,18 +367,23 @@
   }
   .card-tabs {
     border-radius: 10px;
-    overflow: hidden; /* Ensures the border-radius cuts off any content overflow */
+    overflow: hidden; 
   }
 
   .plus-color{
     color: #148DE4;
   }
 
-@media (max-width: 575px) {
-  .setting_card_wrap {
-    flex-direction: column;
-    align-items: flex-start !important;
+
+@media (max-width: 767px) {
+    .card .card-header {
+      flex-direction: column;
+      align-items: flex-start !important;
+      gap: 10px;
+  }
 }
+
+@media (max-width: 575px) {
 .mat-mdc-paginator-container {
   justify-content: flex-start !important;
   margin-left: -20px;
