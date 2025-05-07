@@ -3764,9 +3764,6 @@ span {
         right: 2%;
 
     }
-    .premium-text img {
-        top: 1px !important;
-    }
     h2.accordion-header {
         font-size: 18px !important;
     }
@@ -4168,10 +4165,10 @@ span {
 
 @media (max-width: 991px) {
 .premium-text img {
-    height: 15px;
-    width: 15px;
+    height: 20px;
+    width: 20px;
     position: relative;
-    top: 3px;
+    top: 0;
 }
 }
 

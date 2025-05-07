@@ -661,9 +661,12 @@ li::before {
         height: 38px;
     }
     p {
-        font-size: 13px;
+        font-size: 14px;
     }
-    
+    .premium-text img {
+        height: 20px;
+        width: 20px;
+    }
     .premium-heading2, .price-heading3  {
         font-size: 30px;
     }
@@ -732,56 +735,46 @@ li::before {
 }
 
 @media (max-width: 991px) {
-
     .py_0 {
         padding-top: 20px;
         padding-bottom: 20px;
     }
-
+    p {
+        font-size: 16px;
+    }
     .premium {
         height: 200px;
     }
-
     .feature-height {
         height: 300px;
     }
-
     .btn {
         width: 100%;
     }
-
     .premium-feature {
         padding-top: 20px;
         padding-bottom: 20px;
     }
-
     h4 {
         margin-bottom: 10px;
     }
-
     li::before {
         position: absolute;
         font-size: 45px;
         top: 10px;
     }
-
-    li {
-        padding-left: 20px;
-        width: 100%;
-    }
-
     .feature-box {
         width: 100%;
         margin-top: 50px;
     }
-
     .feature-data {
         margin-left: 0px;
         padding: 20px;
     }
+    .feature-box {
+        height: auto !important;
+     }
 }
-
-@media (max-width: 767px) {}
 
 @media (max-width: 575px) {
     .billed__infor {
@@ -804,81 +797,60 @@ li::before {
     button.btn.btn-join {
         margin-bottom: 10px;
     }
+    .shadow_container .item_card {
+        padding: 1.5rem;
+    }
 }
 
 @media (max-width: 376px) {
     .feature-heading {
         margin-bottom: 10px;
-        // font-size: 22px;
     }
     .feature-height {
         height: 350px;
     }
-
     .feature-box {
         margin-top: 20px;
     }
-
     .imprint-text {
         font-size: 40px;
     }
-
     .main-bnr {
         height: 340px;
     }
-
-
 }
 
 @media (max-width: 321px) {
-
     .premium-heading2, .price-heading3  {
         font-size: 30px;
         margin-bottom: 10px;
     }
-
     .premium-heading3 {
         font-size: 45px;
     }
-
     .imprint-text {
         font-size: 35px;
     }
-
     .main-bnr {
         height: 300px;
     }
-
     p {
         font-size: 17px;
     }
-
     .billed {
         display: flex;
         justify-content: space-between;
     }
-
     .premium {
         height: 180px;
     }
-
     .premium-img {
         height: 180px;
     }
     button.btn.btn-join {
         margin-bottom: 0;
     }
-
 }
-
-
-@media (max-width: 991px) {
- .feature-box {
-    height: auto !important;
- }
-  }
-
-
 
 @media (min-width: 1200px) {
 .price_mat_wrapper {
