@@ -2679,3 +2679,15 @@ input[type="checkbox"].form-check-input[ng-reflect-required] {
         margin-left: 40px !important;
     }
 }
+
+@media (min-width: 2500px) {
+.reg-model {
+    height: 98%;
+}
+.reg-model .modal-dialog.modal-dialog-centered {
+    max-width: 800px !important;
+    .form-control {
+        font-size: 20px !important;
+    }
+}
+}
