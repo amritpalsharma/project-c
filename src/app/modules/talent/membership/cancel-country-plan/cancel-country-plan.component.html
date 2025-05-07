@@ -8,8 +8,9 @@
     <div class="msg-popup-content p-3 pt-1">
         <h5 class="popup-title">{{'countryPlanCancel' | translate}}</h5>
 
-        <div *ngIf="data.countries && data.countries.length > 0">
-            <div class="country-option" *ngFor="let country of data.countries">
+        <div *ngIf="uniqueCountries && uniqueCountries.length > 0">
+            <!-- {{data.countries | json}} -->
+            <div class="country-option" *ngFor="let country of uniqueCountries">
                 <label class="country-label">
                     <input type="radio" name="country" [value]="country.id" [(ngModel)]="selectedCountryId"
                         [disabled]="country.stripe_cancel_at != null" class="country-radio" />

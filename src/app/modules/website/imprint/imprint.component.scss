@@ -1,256 +1,145 @@
-/*--------------------------------------------------------------
-   banner
---------------------------------------------------------------*/
 .py_0 {
     padding-top: 50px;
     padding-bottom: 50px;
-  }
-  
-.content_page h4{
-    font-size: 20px;
-    // color: white;
+}
+h2, h3, h4 {
     font-weight: 700;
-    margin-bottom: 30px;
 }
-.content_page p{
+.content_page h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+.content_page h3 {
+    font-size: 21px;
+    margin-bottom: 5px;
+}
+.content_page p, .content_page li {
     font-size: 18px;
-    // color: white;
     font-weight: 400;
 }
-.content_page .information{
-    margin-top: 50px;
-    margin-bottom: 50px;
-}
-.content_page .address{
-    margin-top: 50px;
-    margin-bottom: 50px;
-}
-.content_page li{
-    font-size: 18px;
-    // color: white;
-    font-weight: 400;
+.content_page li {
     margin-top: 20px;
 }
 .content_page .py_0 {
-  padding-top: 50px;
-  padding-bottom: 50px;
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
-
-body {
-  background-color: #fff;
-}
-
-
 .main-bnr {
-  position: relative;
-  z-index: 1;
+    position: relative;
+    z-index: 1;
 }
-
 .bnr-media {
-  position: relative;
+    position: relative;
 }
-
 .bnr-media img {
-  width: 100%;
+    width: 100%;
 }
-
 .form-select:focus {
-  border-color: none;
-  outline: 0;
-  box-shadow: none;
+    border-color: none;
+    outline: 0;
+    box-shadow: none;
 }
-
 .overlay {
-  position: absolute;
-  height: auto;
-  // background-color: #000;
+    position: absolute;
+    height: auto;
 }
-
 .overlay {
-  position: absolute;
-  height: 100%;
-  right: 0;
-  left: 0;
-  top: 0;
+    position: absolute;
+    height: 100%;
+    right: 0;
+    left: 0;
+    top: 0;
 }
-
-.main-bnr{
-  background-image: url("../../../../assets/images/Imprint-banner.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 100%;
-  height: 375px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
+.main1 {
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: auto;
+    min-height: 375px;
+    background-color: #092e01;
 }
-
+.light-theme .all-page-content .website-code .main1 {
+    background-color: unset;
+}
 .header-transparent {
-  position: absolute;
-  z-index: 2;
-  width: 100%;
+    position: absolute;
+    z-index: 2;
+    width: 100%;
 }
- .imprint-text{
+.privacy-text {
     font-size: 45px;
     font-weight: 700;
-    color: white;
     text-align: center;
     filter: brightness(0) invert(1);
     text-transform: uppercase;
 }
-
-/*--------------------------------------------------------------
-#  Banner
---------------------------------------------------------------*/
 .content_page ul {
-    list-style-type: none; /* Remove default markers */
+    list-style-type: none;
     padding: 0;
     margin: 0;
-    text-align: left; /* Center the list items */
+    display: grid;
+    text-align: left;
 }
-
 .content_page li {
     display: inline-block;
     position: relative;
-    padding-left: 2rem; /* Space for the custom marker */
+    padding-left: 2rem;
 }
-
 .content_page li::before {
-    content: '•'; /* Custom marker */
+    content: '•';
     position: absolute;
     font-size: 60px;
-    // color: #E05263; /* Customize marker color */
     top: 15px;
     left: 0;
     transform: translateY(-50%);
 }
-
-.content_page li::marker {
-    // color: #E05263;
-    font-size: 22px;
-}
-.content_page ul {
-    padding-left: 0;
-}
-.content_page .contact-text{
+.contact-text {
     margin-bottom: 20px;
 }
-.content_page .info-text{
-    margin-top: 30px;
-    margin-bottom: 30px;
-}
-.content_page .company-heading{
-    margin-bottom: 0;
-}
-.content_page .imprint-cols::after {
-    content: "";
-    height: 1px;
-    width: 100%;
-    z-index: 1;
-    position: absolute;
-    background-color: #929292;
-}
-.content_page .imprint-cols{
-    position: relative;
-}
-.content_page .e-mail{
-    text-decoration: underline;
-    color: white;
-}
-.content_page p.list-text {
-    margin-top: 10px;
-    padding-left: 2rem;
-}
-.content_page a{
-    color: white;
-}
 
-// advertisement
-
-// .skyscraper-left{
-//     height: 600px;
-//     width: 120px;
-//     content: "";
-//     z-index: 1;
-//     position: absolute;
-//     left: 1%;
-//     top: 43%;
-// }
-// .skyscraper-left img{
-//     height: 600px;
-//     width: 120px;
-// }
-// .skyscraper-right{
-//     height: 600px;
-//     width: 120px;
-//     content: "";
-//     z-index: 1;
-//     position: absolute;
-//     right: 1%;
-//     top: 43%;
-// }
-// .skyscraper-right img{
-//     height: 600px;
-//     width: 120px;
-// }
-// .leaderboard-image img {
-//     height: 90px;
-//     width: 728px;
-//   }
-//   .leaderboard-image{
-//     position: relative;
-//     height: 90px;
-//     width: 728px;
-//     left: 50%;
-//     transform: translateX(-50%);
-// }
-
-
-  // advertisement
-
-@media (max-width: 1441px) {}
 @media (max-width: 1199px) {
-    .main-bnr {
+    .main1 {
         height: 270px;
     }
-    .imprint-text {
+    .privacy-text {
         font-size: 35px;
     }
-    .content_page h4{
+    h4 {
         font-size: 18px;
         margin-bottom: 20px;
     }
-    .content_page p{
+    li {
         font-size: 16px;
     }
-    .content_page li{
-        font-size: 16px;
-    }
-    .content_page .py_0{
+    .content_page .py_0 {
         padding-top: 40px;
         padding-bottom: 40px;
     }
 }
+
 @media (max-width: 991px) {
-    .content_page li::before {
-        top: 14px;
-    }
-    .main-bnr {
+    .main1 {
         height: 200px;
     }
-    .imprint-text {
+    .privacy-text {
         font-size: 28px;
     }
-    .content_page li::marker {
+    li::marker {
         font-size: 18px;
     }
 }
 
 @media (max-width: 575px) {
+    .content_page li {
+        padding-left: 20px;
+    }
     .content_page li::before {
-        top: 13px;
-        font-size: 50px;
+        top: 12px;
+        font-size: 35px;
     }
     .main-bnr {
         height: 250px;
@@ -268,67 +157,99 @@ body {
         padding-top: 20px;
         padding-bottom: 20px;
     }
-    .content_page h4{
-        font-size: 18px;
+    .content_page h2 {
+        font-size: 24px;
         margin-bottom: 10px;
     }
-    .content_page p {
-        font-size: 14px;
+    .content_page h3 {
+        font-size: 20px;
+    }
+    .content_page p, .content_page li {
+        font-size: 16px;
     }
     .content_page .info-text {
         margin-top: 20px;
         margin-bottom: 20px;
     }
-    .content_page li::marker {
-        font-size: 19px;
-    }
-    .imprint-text {
+    .privacy-text {
         font-size: 30px;
         padding-top: 3rem;
     }
 }
+
 @media (max-width: 400px) {
-    .content_page li::before {
+    li::before {
         top: 13px;
         font-size: 45px;
     }
-    .content_page li {
+    li {
         padding-left: 25px;
     }
-    .content_page p.list-text {
+    p.list-text {
         padding-left: 25px;
     }
 }
+
 @media (max-width: 321px) {
-    .content_page li {
+    li {
         padding-left: 20px;
     }
-    .content_page p.list-text {
+    p.list-text {
         padding-left: 20px;
     }
 }
 
+.light-theme {
+    .btn.donlod_btn_style {
+        background-color: #E05263 !important;
+        color: #fff !important;
+        &:hover {
+            background: linear-gradient(to bottom right, #6FB95D, #236115);
+            color: #fff !important;
+        }
+    }
+}
+.btn.donlod_btn_style {
+    background-color: #BDE34E;
+    color: #072944;
+    margin-top: 20px;
+    border-radius: 80px;
+    height: unset;
+    margin-right: 10px;
+    padding: 12px 25px;
+    border: 0;
+    font-size: inherit;
+}
 
 
 @media (min-width: 992px) and (max-width: 1999px) {
-    .common_static_page h4 {
-        font-size: 30px;
-    }
-    .common_static_page p, .common_static_page address, .common_static_page li {
-        font-size: 24px;
+    .common_static_page {
+        h2 {
+            font-size: 35px;
+        }
+        h3 {
+            font-size: 30px;
+        }
+        p, address, li {
+            font-size: 24px;
+        }
     }
     .content_page li::before {
         top: 19px;
     }
 }
 
-
 @media (min-width: 576px) and (max-width: 991px) {
-    .common_static_page h4 {
-        font-size: 25px;
-    }
-    .common_static_page p, .common_static_page address, .common_static_page li {
-        font-size: 20px;
+    .common_static_page {
+        h2 {
+            font-size: 28px;
+        }
+        h3 {
+            font-size: 24px;
+        }
+        p, address, li {
+            font-size: 20px;
+        }
     }
     .content_page li::before {
         top: 15px;
@@ -337,13 +258,35 @@ body {
 
 
 @media (min-width: 2000px) {
+    .common_static_page {
+        h2 {
+            font-size: 38px;
+        }
+        h3 {
+            font-size: 32px;
+        }
+        p, address, li {
+            font-size: 26px;
+        }
+    }
     .content_page li::before {
         top: 19px;
     }
 }
     
 @media (min-width: 3000px) {
+    .common_static_page {
+        h2 {
+            font-size: 50px;
+        }
+        h3 {
+            font-size: 45px;
+        }
+        p, address, li {
+            font-size: 40px;
+        }
+    }
     .content_page li::before {
-        top: 28px;
+        top: 30px;
     }
 }
