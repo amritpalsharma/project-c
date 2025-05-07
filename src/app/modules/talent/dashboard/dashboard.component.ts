@@ -268,7 +268,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
             element: '#generalDetailsBtn',
             intro: `<div><h6>${translations['generalDetails']}</h6>${translations['editGeneralDetails']}.</div>`,
             // tooltipClass: 'custom-tooltip',
-            position: 'left'
+            position: 'right'
           },
         ],
         showBullets: false,
@@ -424,9 +424,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
           }
           this.isPremium = this.user?.active_subscriptions?.premium.length > 0 ? true : false;
           this.photoLoading = false;
-          // this.isPremium = true;
-          // if (this.StartTour && this.isTourFirstTime) {
-          if (true) {
+          // this.isPremium = false;
+          if (this.StartTour && this.isTourFirstTime) {
+          // if (true) {
             setTimeout(() => {
               this.isTourFirstTime = false;
               // alert('Found lang in Db : '+response.data.user_data.lang)

@@ -210,9 +210,10 @@ export class GalleryTabComponent {
       if (result) {
         // Proceed with deletion if the user confirms
         this.deleteImage(id, type);
-      } else {
-        this.toastr.info(this.coverImageDeletionCanceled, this.Canceled);
       }
+      // else {
+      //   this.toastr.info(this.coverImageDeletionCanceled, this.Canceled);
+      // }
     });
   }
 
