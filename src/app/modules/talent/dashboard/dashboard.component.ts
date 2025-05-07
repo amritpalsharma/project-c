@@ -26,7 +26,6 @@ import { SocketService } from '../../../services/socket.service';
 import { UnverifiedUserComponent } from '../../shared/unverified-user/unverified-user.component';
 import { PopupComponent } from '../../shared/popup/popup.component';
 import { descriptors } from 'chart.js/dist/core/core.defaults';
-import { TalentLoaderComponent } from '../talent-loader/talent-loader.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -269,7 +268,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
             element: '#generalDetailsBtn',
             intro: `<div><h6>${translations['generalDetails']}</h6>${translations['editGeneralDetails']}.</div>`,
             // tooltipClass: 'custom-tooltip',
-            position: 'left'
+            position: 'right'
           },
         ],
         showBullets: false,
@@ -423,11 +422,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
           if (this.user?.meta && this.user?.meta?.birth_country_flag != '') {
             // this.countryFlagUrl = this.user?.meta?.birth_country_flag;
           }
-          this.isPremium = this.user?.active_subscriptions?.premium.length > 0 ? false : false;
+          this.isPremium = this.user?.active_subscriptions?.premium.length > 0 ? true : false;
           this.photoLoading = false;
-          // this.isPremium = true;
-          // if (this.StartTour && this.isTourFirstTime) {
-          if (true) {
+          // this.isPremium = false;
+          if (this.StartTour && this.isTourFirstTime) {
+          // if (true) {
             setTimeout(() => {
               this.isTourFirstTime = false;
               // alert('Found lang in Db : '+response.data.user_data.lang)
@@ -490,7 +489,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
           // }
         }
 
-       this.loading = false;  // Set loading to false once data is loaded
+        this.loading = false;  // Set loading to false once data is loaded
       });
     } catch (error) {
       console.error('Error fetching users:', error);
@@ -546,7 +545,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       (response) => {
         if (response && response.status) {
           this.countries = response.data.countries;
-        } 
+        }
       });
   }
 
@@ -835,7 +834,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.isHighlightClick = false;
     const dialogRef = this.dialog.open(EditHighlightsComponent, {
       width: '800px',
-      panelClass: 'edit_highlights_popup',
       data: {
         // images: this.userImages,
         // videos: this.userVideos,
@@ -1048,6 +1046,25 @@ export class DashboardComponent implements OnInit, OnDestroy {
       ia[i] = byteString.charCodeAt(i);
     }
     return new Blob([ab], { type: mimeString });
+  }
+
+  deleteProfileImage(){
+    this.userService.deleteProfileImage().subscribe(
+      response => {
+        if(response.status){
+          this.profileImage = null;
+          this.commonDataService.updateProfilePic(this.profileImage);
+          this.toastr.success(response.message, this.successTxt);
+        }
+        else{
+          this.toastr.error(response.error, this.errorTxt);
+        }
+      },
+      error => {
+        console.error('Error deleting user:', error);
+        this.toastr.error(this.generalError, this.errorTxt);
+      }
+    );
   }
 
   onProfileFileChange(event: Event): void {
@@ -1274,7 +1291,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
   }
 
-  openDeleteDialog(type:string): void {
+  openDeleteDialog(type: string): void {
     const dialogRef = this.dialog.open(DeletePopupComponent, {
       width: '600px',
     });
@@ -1282,7 +1299,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         // If the user confirms, proceed with deletion
-        this.deleteCoverImage();
+        if(type==='cover'){
+          this.deleteCoverImage();
+        }
+        if(type==='profile'){
+          this.deleteProfileImage();
+        }
       } else {
         this.toastr.info(this.coverImageDeletionCanceled, this.Canceled);
         // console.log('User canceled the delete');
