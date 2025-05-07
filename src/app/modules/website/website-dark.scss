@@ -2360,23 +2360,6 @@
     }
   }
 
-  .common_static_page .content_page h4,
-  .common_static_page .content_page h4 *,
-  .common_static_page .content_page p strong,
-  .common_static_page .content_page p strong * {
-    color: #bde34e !important;
-  }
-
-  .common_static_page .content_page {
-
-    p a,
-    li a {
-      color: #bde34e;
-    }
-  }
-
-
-
   .work-text:last-child.active::before,
   .work-text:not(:last-child).active::before {
     background-color: #bde34e !important;
@@ -2485,6 +2468,23 @@ body.dark-theme.static-common-banner {
           background-color: #072944;
         }
       }
+    }
+  }
+}
+
+
+
+
+.dark-theme {
+  .common_static_page  {
+    h2, h3, h4 {
+      color: #bde34e;
+    }
+    p, li {
+      color: #fff;
+    }
+    p a, li a, p strong, li strong {
+        color: #bde34e;
     }
   }
 }

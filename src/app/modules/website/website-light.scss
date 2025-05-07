@@ -1331,17 +1331,12 @@ a {
   }
   .premium-col-right .premium-text p, .billed_wrapp .inactive-text, .billed_wrapp .active-text,
   .website-code .club_text p, .accordion-body p, .about-content .content-text, .work-text .progress_btn p,
-  .contact-form .contact-text *, .contact-form .radio-group *, .common_static_page address, 
-  .common_static_page .content_page p, .common_static_page .content_page a, .common_static_page .content_page ul li,
-  .faq .faq-content, .pricing .feature-data li, .pricing .feature-data p, .latest-news .news-box p, .news_detail_text_container p,
+  .contact-form .contact-text *, .contact-form .radio-group *, .faq .faq-content, .pricing .feature-data li, .pricing .feature-data p, .latest-news .news-box p, .news_detail_text_container p,
   .news_detail_text_container ul li, .news_detail_text_container .social-icons.news_share_icons h5, .news_detail_text_container .social-icons.news_share_icons a,
   .learn-banner .back-button {
     color: #000 !important;
   }
-  .common_static_page .content_page h4, .common_static_page .content_page h4 *, 
-  .common_static_page .content_page p strong, .common_static_page .content_page p strong * {
-    // color: #357525 !important;
-  }
+  
   .premium-text img {
     background-color: #E05263 !important;
   }
@@ -1808,11 +1803,18 @@ footer img.web_footer_bg {
 
 
 .light-theme {
-  .common_static_page .content_page {
-    p a, li a {
-      color: #e05263 !important;
+  .common_static_page  {
+    h2, h3, h4, p strong, li strong {
+      color: #357525;
+    }
+    p, li {
+      color: #000;
+    }
+    p a, li a, a strong {
+        color: #e05263;
     }
   }
+   
   .website-code .faq-club-button, .website-code button.faq-talent-button, .website-code button.faq-scout-button {
     color: #357525;
   }
