@@ -30,7 +30,7 @@
                   </div>
                   <input id="file-upload" (change)="onCoverFileChange($event)" accept="image/*" type="file"
                     class="d-none" />
-                  <svg *ngIf="coverImage" class="delete_image cursor-pointer " (click)="openDeleteDialog()"
+                  <svg *ngIf="coverImage" class="delete_image cursor-pointer " (click)="openDeleteDialog('cover')"
                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                     <path
                       d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.7 23.7 0 0 0 -21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0 -16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z" />
@@ -60,6 +60,21 @@
                     <input id="profile-upload" (change)="onProfileFileChange($event)" accept="image/*" type="file"
                       class="d-none" />
 
+                  </div>
+                  <div class="user-edit" *ngIf="profileImage">
+                    <label for="profile-upload" class="">
+                      <div class="edit-profile cursor-pointer" id="upload_profilePhoto"
+                        matTooltip="{{'uploadNewProfileImage' | translate}} {{'mx_size' | translate}}"
+                        matTooltipPosition="right" (click)="openDeleteDialog('profile')">
+
+                        <svg class="cursor-pointer" style="padding: 2px;"
+                          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                          <path
+                            d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.7 23.7 0 0 0 -21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0 -16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z" />
+                        </svg>
+
+                      </div>
+                    </label>
                   </div>
                   <div class="premium_button " *ngIf="premium">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
@@ -698,7 +713,7 @@
                 </div>
                 <input id="file-upload2" (change)="onCoverFileChange($event)" (click)="onclick($event)" accept="image/*"
                   type="file" class="d-none" />
-                <svg *ngIf="coverImage" class="delete_image cursor-pointer " (click)="openDeleteDialog()"
+                <svg *ngIf="coverImage" class="delete_image cursor-pointer " (click)="openDeleteDialog('cover')"
                   xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                   <path
                     d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.7 23.7 0 0 0 -21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0 -16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z" />

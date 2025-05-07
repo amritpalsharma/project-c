@@ -4,6 +4,10 @@ import { FormControl, NgForm } from '@angular/forms';
 import { ScoutService } from '../../../services/scout.service';
 import { ToastrService } from 'ngx-toastr';
 import { TalentService } from '../../../services/talent.service';
+import { SocketService } from '../../../services/socket.service';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { UnverifiedUserComponent } from '../../shared/unverified-user/unverified-user.component';
+import { MatDialog } from '@angular/material/dialog';
 
 import * as _moment from 'moment';
 import { default as _rollupMoment } from 'moment';
@@ -16,7 +20,7 @@ const moment = _rollupMoment || _moment;
   styleUrls: ['./edit-personal-details.component.scss'],
 })
 export class EditPersonalDetailsComponent implements OnInit {
-
+  isUserVerified: boolean = false;
   club_name: any;
   readonly date = new FormControl(moment());
   formation_date: FormControl = new FormControl(null);  // Initialize with null or the correct date format
@@ -89,15 +93,18 @@ export class EditPersonalDetailsComponent implements OnInit {
     private toastr: ToastrService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private talentService: TalentService,
+    private socketService: SocketService,
+    private router: Router,
+    public dialog: MatDialog
   ) { }
 
   theme: any = localStorage.getItem('theme');
 
   ngOnInit(): void {
-    if(this.data != '' && this.data.isPremium != ''){
+    if (this.data != '' && this.data.isPremium != '') {
       this.isPremium = this.data.isPremium;
     }
-    console.info('dataArr',this.data)
+    console.info('dataArr', this.data)
     this.theme = localStorage.getItem('theme');
     this.user = JSON.parse(this.user);
     this.loggedInUser = JSON.parse(this.loggedInUser);
@@ -105,6 +112,7 @@ export class EditPersonalDetailsComponent implements OnInit {
     this.loadTeams();
     this.loadCountries();
     this.getUserProfile(this.userId);
+    this.getUserStatus();
   }
 
   onCancel(): void {
@@ -277,6 +285,35 @@ export class EditPersonalDetailsComponent implements OnInit {
     );
   }
 
-  
+  getUserStatus() {
+    this.socketService.getLoggedInUserStatus().then((result) => {
+      if (result == 2) {
+        this.isUserVerified = true;
+      } else {
+        this.isUserVerified = false;
+      }
+    });
+  }
+
+  navigatePlans() {
+    this.router.navigate(['/club/plans']);
+  }
+
+  showVerificationPopup() {
+    const messageDialog = this.dialog.open(UnverifiedUserComponent, {
+      width: '500px',
+      position: {
+        top: '150px'
+      }
+    })
+
+    messageDialog.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        if (result.action == "delete-confirmed") {
+          // this.deleteUser();
+        }
+      }
+    });
+  }
 
 }
