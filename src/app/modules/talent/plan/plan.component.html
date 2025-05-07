@@ -3,7 +3,10 @@
 
     <!-- Loader for Plans -->
     <div *ngIf="isLoadingPlans" class="loader-container py-5">
-      <div class="loader"></div>
+      <!-- <div class="loader"></div> -->
+      <!-- <div *ngIf="loading && photoLoading" class="loader-container py-5"> -->
+        <app-talent-loader [width]="'80px'" [height]="'80px'" [border]="'5px'"></app-talent-loader>
+      <!-- </div> -->
       <!-- <p>{{'loading' | translate}}</p> -->
     </div>
     <!-- <app-loader *ngIf="isLoadingPlans"></app-loader> -->

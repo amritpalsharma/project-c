@@ -490,7 +490,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
           // }
         }
 
-     //   this.loading = false;  // Set loading to false once data is loaded
+       this.loading = false;  // Set loading to false once data is loaded
       });
     } catch (error) {
       console.error('Error fetching users:', error);
