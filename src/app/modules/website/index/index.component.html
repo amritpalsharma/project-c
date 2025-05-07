@@ -374,8 +374,8 @@
                 </div>
               </div>
 
-              <div class="work-text" (click)="showContent('Sign-up & Profile Creation')"
-                [class.active]="isActive2('Sign-up & Profile Creation')" *ngIf="selectedCategory === 'Talent'">
+              <div class="work-text active" (click)="showContent('Sign-up & Profile Creation')"
+                 *ngIf="selectedCategory === 'Talent'">
                 <div class="number">
                   <p>1</p>
                 </div>
@@ -389,15 +389,10 @@
                 </div>
               </div>
 
-              <div class="talent-scroll" *ngIf="selectedCategory === 'Talent' && currentSelected === 1">
+              <div class="talent-scroll" *ngIf="selectedCategory === 'Talent'">
                 <div class="player1">
                   <div class="row">
-                    <!-- <div class="player-list-image">
-                      <img *ngIf="currentTheme == 'light'"
-                        src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[0]?.images}}">
-                      <img *ngIf="currentTheme == 'dark'"
-                        src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[0]?.darkImages}}">
-                    </div> -->
+
                     <div class="player-list-image" >
                       <img src="/assets/images/home/talent/{{currentLang}}_{{currentTheme}}.png"
                         alt="Language {{currentLang}} And Theme {{currentTheme}}">
@@ -407,8 +402,8 @@
               </div>
 
 
-              <div class="work-text" (click)="showContent('Networking & Opportunity')"
-                [class.active]="isActive2('Networking & Opportunity')" *ngIf="selectedCategory === 'Talent'">
+              <div class="work-text active" (click)="showContent('Networking & Opportunity')"
+                *ngIf="selectedCategory === 'Talent'">
                 <div class="number">
                   <p>2</p>
                 </div>
@@ -420,22 +415,19 @@
                 </div>
               </div>
 
-              <div class="talent-scroll" *ngIf="selectedCategory === 'Talent' && currentSelected === 2">
+              <div class="talent-scroll" *ngIf="selectedCategory === 'Talent'">
                 <div class="player2">
                   <div class="row">
                     <div class="football-club player-list-image">
                       <img src="/assets/images/home/talent/2_{{currentTheme}}.png" alt="Language {{currentLang}} And Theme {{currentTheme}}">
-                      <!-- <img *ngIf="currentTheme == 'light'"
-                        src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[1]?.images}}">
-                      <img *ngIf="currentTheme == 'dark'"
-                        src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[1]?.darkImages}}"> -->
+       
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div class="work-text" (click)="showContent('Success & Progression')"
-                [class.active]="isActive2('Success & Progression')" *ngIf="selectedCategory === 'Talent'">
+              <div class="work-text active" (click)="showContent('Success & Progression')"
+                 *ngIf="selectedCategory === 'Talent'">
                 <div class="number">
                   <p>3</p>
                 </div>
@@ -447,20 +439,16 @@
                 </div>
               </div>
 
-              <div class="talent-scroll" *ngIf="selectedCategory === 'Talent' && currentSelected === 3">
+              <div class="talent-scroll" *ngIf="selectedCategory === 'Talent'">
                 <div class="player3">
                   <div class="message-panels player-list-image">
                     <img src="/assets/images/home/talent/3_{{currentTheme}}.png" alt="Language {{currentLang}} And Theme {{currentTheme}}">
-                    <!-- <img *ngIf="currentTheme == 'light'"
-                      src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[2]?.images}}">
-                    <img *ngIf="currentTheme == 'dark'"
-                      src="{{imageBaseUrl + pageDetail?.tabs_data?.first_tab[2]?.darkImages}}"> -->
                   </div>
                 </div>
               </div>
 
-              <div class="work-text" (click)="showContent('Sign-up & Profile Creation')"
-                [class.active]="isActive2('Sign-up & Profile Creation')" *ngIf="selectedCategory === 'Clubs & Scouts'">
+              <div class="work-text active" (click)="showContent('Sign-up & Profile Creation')"
+                 *ngIf="selectedCategory === 'Clubs & Scouts'">
                 <div class="number">
                   <p>1</p>
                 </div>
@@ -472,23 +460,19 @@
                 </div>
               </div>
 
-              <div class="talent-scroll" *ngIf="selectedCategory === 'Clubs & Scouts' && currentSelected === 1">
+              <div class="talent-scroll" *ngIf="selectedCategory === 'Clubs & Scouts'">
                 <div class="player1">
                   <div class="row">
                     <div class="player-list-images">
                       <img src="/assets/images/home/club/{{currentLang}}_{{currentSelected}}_{{currentTheme}}.png"
                       alt="Language {{currentLang}} And Theme {{currentTheme}}">
-                      <!-- <img *ngIf="currentTheme == 'light'"
-                        src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[0]?.images}}">
-                      <img *ngIf="currentTheme == 'dark'"
-                        src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[0]?.darkImages}}"> -->
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div class="work-text" (click)="showContent('Networking & Opportunity')"
-                [class.active]="isActive2('Networking & Opportunity')" *ngIf="selectedCategory === 'Clubs & Scouts'">
+              <div class="work-text active" (click)="showContent('Networking & Opportunity')"
+                 *ngIf="selectedCategory === 'Clubs & Scouts'">
                 <div class="number">
                   <p>2</p>
                 </div>
@@ -500,24 +484,20 @@
                 </div>
               </div>
 
-              <div class="talent-scroll" *ngIf="selectedCategory === 'Clubs & Scouts' && currentSelected === 2">
+              <div class="talent-scroll" *ngIf="selectedCategory === 'Clubs & Scouts'">
                 <div class="player2">
                   <div class="row">
                     <div class="player-list-image">
                       <img src="/assets/images/home/club/2_{{currentTheme}}.png"
                       alt="Language {{currentLang}} And Theme {{currentTheme}}">
-                      <!-- <img *ngIf="currentTheme == 'light'"
-                        src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[1]?.images}}">
-                      <img *ngIf="currentTheme == 'dark'"
-                        src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[1]?.darkImages}}"> -->
                     </div>
                   </div>
                 </div>
               </div>
 
 
-              <div class="work-text" (click)="showContent('Success & Progression')"
-                [class.active]="isActive2('Success & Progression')" *ngIf="selectedCategory === 'Clubs & Scouts'">
+              <div class="work-text active" (click)="showContent('Success & Progression')"
+                 *ngIf="selectedCategory === 'Clubs & Scouts'">
                 <div class="number">
                   <p>3</p>
                 </div>
@@ -529,14 +509,10 @@
                 </div>
               </div>
 
-              <div class="talent-scroll" *ngIf="selectedCategory === 'Clubs & Scouts' && currentSelected === 3">
+              <div class="talent-scroll" *ngIf="selectedCategory === 'Clubs & Scouts'">
                 <div class="club-scouts">
                   <div class="row">
                     <div class="player-list-image">
-                      <!-- <img *ngIf="currentTheme == 'light'"
-                        src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[2]?.images}}">
-                      <img *ngIf="currentTheme == 'dark'"
-                        src="{{imageBaseUrl + pageDetail?.tabs_data?.second_tab[2]?.darkImages}}"> -->
                         <img src="/assets/images/home/club/{{currentLang}}_{{currentSelected}}_{{currentTheme}}.png"
                         alt="Language {{currentLang}} And Theme {{currentTheme}}">
                     </div>

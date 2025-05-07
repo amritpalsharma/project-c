@@ -275,7 +275,7 @@
             <span class="badgewarning" *ngIf="loggedInUser?.role_name && !UserRole">{{loggedInUser?.role_name}}</span>
             <span class="badgewarning" *ngIf="UserRole">{{UserRole}}</span>
             <br>
-            <a routerLink="/talent/dashboard" class="header-view-profile"> {{ 'viewMyProfile' | translate }}</a>
+            <a *ngIf="UserRole" [routerLink]="['/' + currentRole + '/dashboard']" class="header-view-profile"> {{ 'viewMyProfile' | translate }}</a>
 
             <a (click)="navigateToTab('activity',UserRole)"
               class="cursor-pointer dropdown-item ai-icon px-0 py-2 border-bottom ">

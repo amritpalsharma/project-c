@@ -211,7 +211,8 @@ export class EditPersonalDetailsComponent implements OnInit {
     // formData.append('user[cover_image]' , this.cover_image);
     // formData.append('user[cover_image_path]' , this.cover_image_path);
     formData.append('user[designation]', this.designation);
-    formData.append('user[nationalitiy][]', this.country);
+    formData.append('user[nationality][]', this.country);
+    // user[nationality][]
     // formData.append('user[profile_image]' , this.profile_image);
     // formData.append('user[profile_image_path]' , this.profile_image_path);
     formData.append('user[sm_facebook]', this.sm_facebook);

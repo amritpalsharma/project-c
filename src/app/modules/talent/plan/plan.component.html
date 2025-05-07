@@ -57,7 +57,7 @@
                 <div class="premium-currency">
                   <h6>
                     {{ premiumPlans.isYearly ? premiumPlans.priceYearly : premiumPlans.priceMonthly }}<sub
-                      class="premium-month_title">.-{{ premiumPlans.currency }} / 
+                      class="premium-month_title">.- {{ premiumPlans.currency }} / 
                       {{ premiumPlans.isYearly ? ('year' | translate) : ('month' | translate) }}
                     </sub>
                   </h6>
@@ -134,7 +134,7 @@
                 <div class="premium-currency">
                   <h6>
                     {{ demoPlans.isYearly ? demoPlans.priceYearly : demoPlans.priceMonthly }}<sub
-                      class="premium-month_title">.-{{ demoPlans.currency }} / {{ demoPlans.isYearly || (premium &&
+                      class="premium-month_title">.- {{ demoPlans.currency }} / {{ demoPlans.isYearly || (premium &&
                       premium.interval == 'yearly') ? ('year' | translate) : ('month' | translate) }}</sub>
                   </h6>
                 </div>
@@ -223,7 +223,7 @@
                 <div class="premium-currency">
                   <!-- <pre>{{selectedPlan | json}}</pre> -->
                   <h6>
-                    {{ selectedPlan.isYearly ?  countryYearlyArr?.price : countryMonthlyArr?.price }}<sub class="premium-month_title">.-{{ selectedPlan?.currency }} / 
+                    {{ selectedPlan.isYearly ?  countryYearlyArr?.price : countryMonthlyArr?.price }}<sub class="premium-month_title">.- {{ selectedPlan?.currency }} / 
                       {{ selectedPlan.isYearly || selectedPlan?.interval=='yearly' ? ('year'
                       | translate) :
                       ('month' | translate) }}</sub>
@@ -299,7 +299,7 @@
                 </div>
                 <div class="premium-currency">
                   <h6>{{ boostedPlans.isYearly ? boostedPlans.priceYearly :
-                    boostedPlans.priceMonthly }}<sub class="premium-month_title">.-{{ boostedPlans.currency }} / {{
+                    boostedPlans.priceMonthly }}<sub class="premium-month_title">.- {{ boostedPlans.currency }} / {{
                       boostedPlans.isYearly || (booster && booster.interval == 'yearly') ? ('year' | translate) :
                       ('month' | translate) }}</sub>
                   </h6>

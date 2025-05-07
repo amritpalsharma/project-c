@@ -95,11 +95,16 @@ export class HeaderComponent {
   notificationSeen: boolean = false;
   pageTitle: string = '';
   UserName:string = '';
-  UserRole:string = '';
   isSearchVisible: boolean = false;
+  UserRole:string = '';
+  currentRole:string = '';
   isUserVerified: boolean = false;
 
   ngOnInit() {
+    const url = this.router.url;
+    const role = url.split('/')[1];
+
+    this.currentRole = role;
     this.getPageTitle();
     this.getUserName();
     this.getUserRole();

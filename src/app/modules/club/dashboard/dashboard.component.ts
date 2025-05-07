@@ -339,6 +339,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
           localStorage.setItem('userInfo', JSON.stringify(response.data.user_data));
           localStorage.setItem('userData', JSON.stringify(response.data.user_data));
           this.user = response.data.user_data;
+
+          if(this.user?.first_name || this.user?.last_name){
+            let userName = this.user?.first_name+' '+this.user?.last_name;
+            this.titleService.setName(userName);
+            this.titleService.setRole(this.user?.role_name);
+            console.info('userName Set Condition true',userName);
+          }else{
+            console.info('userName Does Not Set Condition False',this.user);
+          }
           this.userNationalities = JSON.parse(this.user.user_nationalities);
           this.StartTour = this.user?.show_tour == 1 ? true : false;
 
