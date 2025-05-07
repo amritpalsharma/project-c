@@ -18,6 +18,7 @@ export class GalleryComponent {
   selectedFile: any = '';
   defaultCoverImage: any = ".";
   openedMenuId: any = '';
+  showNotxtTab:boolean=false;
   @Input() coverImage: string = '';  // Define an input property
   @Input() isPremium: any;
   @Output() dataEmitter = new EventEmitter<string>();
@@ -49,7 +50,16 @@ export class GalleryComponent {
           this.userImages = response.data.images;
           this.userVideos = response.data.videos;
           this.imageBaseUrl = response.data.file_path;
+          this.showNotxtTab = false;
+          if(this.userImages.length === 0){
+            this.showNotxtTab = true;
+          }
+          if(this.userVideos.length === 0){
+            this.showNotxtTab = true;
+          }
+
         } else {
+          this.showNotxtTab = true;
           console.error('Invalid API response structure:', response);
         }
       });

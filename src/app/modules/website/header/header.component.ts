@@ -46,7 +46,7 @@ export class HeaderComponent implements OnInit {
   firstName: string = '';
   lastName: string = '';
   email: string = '';
-  team_id: any = '';
+  team_id: string = '';
   teamsArr: any = '';
   language: string = '1';
   newsletter: boolean = false;
@@ -610,10 +610,9 @@ export class HeaderComponent implements OnInit {
       response => {
         if (response.status === false) {
           this.invalidCred = response.message;
-          if (response.message.email != '') {
-            this.invalidCred = response.message.email;
-
-          }
+          // if (response.message.email != '') {
+          //   this.toastr.error(response.message.email);
+          // }
           if (response.message != '' && response.message != undefined) {
             this.toastr.error(response.message);
           }

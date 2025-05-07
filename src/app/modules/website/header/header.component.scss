@@ -187,7 +187,9 @@ body {
     /* Image width */
     object-fit: contain;
 }
-.register .form-label, .register .mt-3.dont-account {
+
+.register .form-label,
+.register .mt-3.dont-account {
     color: #000;
 }
 
@@ -197,9 +199,11 @@ body {
     font-weight: 400;
     margin-bottom: 10px;
 }
+
 .register .mt-3.dont-account {
     font-size: 16px;
 }
+
 .register .register {
     font-weight: 600;
     font-size: 18px;
@@ -269,7 +273,9 @@ ul {
 .text-light {
     color: #000;
 }
-.phone, .email {
+
+.phone,
+.email {
     color: #000;
 }
 
@@ -1333,7 +1339,9 @@ select.form-select.custom-select1 {
         height: 32px;
         margin-right: 10px;
     }
-    .toggle-slot:before, .toggle-slot:after {
+
+    .toggle-slot:before,
+    .toggle-slot:after {
         width: 14px !important;
         height: 14px !important;
     }
@@ -1446,9 +1454,11 @@ select.form-select.custom-select1 {
         margin-right: 0;
         margin-left: 220px;
     }
+
     .toggle-slot:before {
         left: 5px !important;
     }
+
     .toggle-slot:after {
         right: 5px !important;
     }
@@ -1796,6 +1806,7 @@ select.form-select.custom-select1 {
     .navbar-toggler {
         top: 27px !important;
     }
+
     .coustom-select1 {
         margin-left: 0;
         margin-right: 0;
@@ -1846,6 +1857,7 @@ select.form-select.custom-select1 {
     .register .form-label {
         font-size: 14px;
     }
+
     .register .ng-untouched.ng-pristine.ng-invalid {
         margin-top: 5px;
         margin-bottom: 5px;
@@ -1917,7 +1929,9 @@ select.form-select.custom-select1 {
         display: none;
     }
 
-    .navbar-logo, .navbar-list, .footer-links {
+    .navbar-logo,
+    .navbar-list,
+    .footer-links {
         display: flex;
         margin-top: 20px;
     }
@@ -1951,10 +1965,12 @@ select.form-select.custom-select1 {
         position: relative;
         line-height: 40px;
     }
-    .navbar-toggler{
+
+    .navbar-toggler {
         width: 40px !important;
         margin-left: 1rem;
     }
+
     .footer-links {
         position: relative;
     }
@@ -1968,6 +1984,7 @@ select.form-select.custom-select1 {
         position: absolute;
         transform: translateY(-50%);
     }
+
     .icon-hamburger::before {
         content: "☰";
         font-size: 21px;
@@ -2249,9 +2266,11 @@ select.form-select.custom-select1 {
     .fs-14 {
         font-size: 9px;
     }
+
     .form-check label.form-check-label.text-light {
         padding-left: 23px !important;
     }
+
     button.create-account.d-block {
         height: 30px;
         font-size: 14px;
@@ -2276,9 +2295,11 @@ select.form-select.custom-select1 {
     .register .form-check .form-check-input {
         margin-top: 0;
     }
+
     .footer-bottom p {
         font-size: 11px;
     }
+
     .btn-close {
         width: 25px;
         height: 25px;
@@ -2381,6 +2402,7 @@ select.form-select.custom-select1 {
     height: 0;
     width: 0;
 }
+
 .toggle-slot {
     position: relative;
     height: 100%;
@@ -2391,10 +2413,13 @@ select.form-select.custom-select1 {
     transition: background-color 250ms;
     cursor: pointer;
 }
+
 .toggle-checkbox:checked~.toggle-slot {
     background-color: #072944;
 }
-.toggle-slot:before, .toggle-slot:after {
+
+.toggle-slot:before,
+.toggle-slot:after {
     content: '';
     position: absolute;
     top: 50%;
@@ -2405,14 +2430,17 @@ select.form-select.custom-select1 {
     background-position: center;
     background-repeat: no-repeat;
 }
+
 .toggle-slot:before {
     background-image: url('../../../../assets/images/sun-icon-1.svg');
     left: 8px;
 }
+
 .toggle-slot:after {
     background-image: url('../../../../assets/images/moon-icon-1.svg');
     right: 8px;
 }
+
 .toggle-button {
     position: absolute;
     height: 85%;
@@ -2428,6 +2456,7 @@ select.form-select.custom-select1 {
     transition: background-color 250ms, border-color 250ms, transform 500ms cubic-bezier(0.26, 2, 0.46, 0.71);
     z-index: 1;
 }
+
 .toggle-checkbox:checked~.toggle-slot .toggle-button {
     background-color: #fff;
     transform: translate(110%, -50%) rotate(360deg);
@@ -2447,6 +2476,7 @@ select.form-select.custom-select1 {
 
 .password_field_wrap {
     position: relative;
+
     .password-toggle {
         position: absolute;
         right: 2px;
@@ -2459,6 +2489,7 @@ select.form-select.custom-select1 {
         display: flex;
         align-items: center;
         justify-content: center;
+
         img {
             width: 22px;
             height: 22px;
@@ -2496,17 +2527,20 @@ select.form-select.custom-select1 {
     .social-links li {
         margin-bottom: 20px;
     }
+
     .password_field_wrap {
         .password-toggle {
             padding: 8px;
             width: 40px;
             height: 38px;
+
             img {
                 width: 18px;
                 height: 18px;
             }
         }
     }
+
     .navbar-toggler {
         right: 9px;
         top: 40px;
@@ -2518,6 +2552,7 @@ select.form-select.custom-select1 {
         position: relative;
         top: -27px;
     }
+
     .password_field_wrap .password-toggle {
         width: 36px;
         height: 34px;
@@ -2534,20 +2569,23 @@ select.form-select.custom-select1 {
 }
 
 @media (max-width: 374px) {
-.form-select {
-    font-size: 12px;
-  }
-  .navbar-toggler{
-    width: 32px;
-    margin-left: 0;
-}
-.coustom-select1 {
-    margin-left: 0;
-    margin-right: 10px;
-}
-.navbar-brand img {
-    width: 65px;
-}
+    .form-select {
+        font-size: 12px;
+    }
+
+    .navbar-toggler {
+        width: 32px;
+        margin-left: 0;
+    }
+
+    .coustom-select1 {
+        margin-left: 0;
+        margin-right: 10px;
+    }
+
+    .navbar-brand img {
+        width: 65px;
+    }
 }
 
 
@@ -2567,16 +2605,19 @@ input[type="checkbox"].form-check-input[ng-reflect-required] {
     font-size: 13px;
     margin-top: 4px;
     z-index: 10;
-  }
-  
+}
 
-  .dark-theme {
-    .text-light, .phone, .email {
+
+.dark-theme {
+
+    .text-light,
+    .phone,
+    .email {
         color: #fff;
     }
 }
 
-#exampleModal1 .ng-show-errors .ng-invalid{
+#exampleModal1 .ng-show-errors .ng-invalid {
     border: 1px solid red;
 }
 
@@ -2585,11 +2626,13 @@ input[type="checkbox"].form-check-input[ng-reflect-required] {
     height: 45px;
     display: flex;
     align-items: center;
+
     input {
         width: 0;
         height: 0;
         visibility: hidden;
     }
+
     label {
         width: 73px;
         height: 34px;
@@ -2603,9 +2646,11 @@ input[type="checkbox"].form-check-input[ng-reflect-required] {
         transition: 0.4s;
         border: 2px solid #eeeff1;
     }
-    input:checked + label {
+
+    input:checked+label {
         background: #1C2C4A;
     }
+
     label svg {
         position: absolute;
         width: 23px;
@@ -2613,24 +2658,29 @@ input[type="checkbox"].form-check-input[ng-reflect-required] {
         transform: translateY(-50%);
         z-index: 100;
     }
+
     label svg.sun {
         left: 6px;
         fill: #FF9500;
         transition: 0.3s;
+
         image {
             filter: none;
             opacity: 1;
         }
     }
+
     label svg.moon {
         left: 44px;
         fill: #1C2C4A;
         transition: 0.4s;
         width: 18px;
+
         image {
             opacity: 0.5;
         }
     }
+
     label:after {
         content: "";
         width: 40px;
@@ -2643,18 +2693,23 @@ input[type="checkbox"].form-check-input[ng-reflect-required] {
         box-shadow: inset 0 0 15px 0 rgb(0 0 0 / 25%);
         transition: 0.4s;
     }
-    input:checked + label:after {
+
+    input:checked+label:after {
         left: 32px;
         // background: linear-gradient(180deg, #777, #3a3a3a);
     }
-    input:checked + label svg.moon {
+
+    input:checked+label svg.moon {
+
         // fill: #1C2C4A;
         image {
             filter: none;
             opacity: 1;
         }
     }
-    input:checked + label svg.sun {
+
+    input:checked+label svg.sun {
+
         // fill: #C1C6CF;
         image {
             filter: brightness(0) invert(1);
@@ -2662,6 +2717,7 @@ input[type="checkbox"].form-check-input[ng-reflect-required] {
         }
     }
 }
+
 .dark-theme .website-code .empty-field {
     border: 1px solid red !important;
 }
@@ -2678,4 +2734,9 @@ input[type="checkbox"].form-check-input[ng-reflect-required] {
     li.nav-item {
         margin-left: 40px !important;
     }
+}
+
+
+#exampleModal1 .register_form .ng-invalid {
+    border: 1px solid red !important;
 }

@@ -57,7 +57,7 @@ export class AddContentPageComponent implements OnInit {
   imageLoaded: boolean = false;
 
   bannerImagePreview: string | ArrayBuffer | null = null;
-  isLoading:boolean=true;
+  isLoading:boolean=false;
   constructor(
     private configService: EditorConfigService,
     private webpages: WebPages,
