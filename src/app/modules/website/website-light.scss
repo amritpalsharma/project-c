@@ -982,21 +982,6 @@ a {
   }
 }
 
-// a.dropdown-item.ai-icon.selected {
-//   background: #0d6efd !important;
-// }
-
-// ------------------------- sidebar start ------------------
-.logo-box {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0px 20px;
-  border-bottom: 1px solid rgb(229 229 229 / 70%);
-  height: 11%;
-  min-height: 80px;
-}
 
 .sidebar_state {
   position: absolute;
@@ -1814,6 +1799,7 @@ footer img.web_footer_bg {
         color: #e05263;
     }
   }
+   
   .shadow_container .header_card .premium-heading5 {
     color: #e05263 !important;
   }

@@ -4705,17 +4705,8 @@ span {
         right: -5%;
         top: 20%;
     }
-
-
-
-
 }
 
-@media (max-width: 394px) {
-    .btn {
-        padding: 8px 10px;
-    }
-}
 
 @media (max-width: 391px) {
 
@@ -5487,11 +5478,6 @@ span {
         height: 17px;
         line-height: 19px;
     }
-
-    // .premium-img {
-    //     width: 290px;
-    // }
-
     .button1 {
         top: 75%;
         left: 0;
@@ -5635,9 +5621,6 @@ span {
         width: 125px;
         right: -7%;
         top: 24%;
-    }
-    .premium-text img {
-        top: 1px !important;
     }
     h2.accordion-header {
         font-size: 18px !important;
@@ -6099,10 +6082,10 @@ span {
 
 @media (max-width: 991px) {
 .premium-text img {
-    height: 15px;
-    width: 15px;
+    height: 20px;
+    width: 20px;
     position: relative;
-    top: 3px;
+    top: 0;
 }
 }
 
