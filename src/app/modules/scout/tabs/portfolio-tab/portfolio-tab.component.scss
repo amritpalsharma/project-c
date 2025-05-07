@@ -290,6 +290,9 @@ img.flag_country {
     .btn.web-create-bg {
         font-size: 22px !important;
       }
+      .bg_success, .bg_reject, .bg_pending{
+        max-width: 220px;
+    }
 }
 
 @media (min-width: 3000px){
@@ -307,6 +310,6 @@ table td svg {
   }
 
   .bg_success, .bg_reject, .bg_pending{
-    max-width: 240px;
+    max-width: 260px;
 }
 }

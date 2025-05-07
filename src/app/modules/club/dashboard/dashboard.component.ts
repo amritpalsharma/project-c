@@ -484,6 +484,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       const dialogRef = this.dialog.open(EditHighlightsComponent, {
         width: '800px',
+        panelClass: 'edit_highlights_popup',
         data: {
           images: this.userImages,
           videos: this.userVideos,

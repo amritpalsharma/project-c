@@ -1485,34 +1485,9 @@ table {
     transition: 0.4s;
   }
 
-  .bg_pending {
-    background: #fcbe2d;
+  .bg_pending, .bg_reject, .bg_sucess {
     padding: 3px 10px;
-    color: #fff !important;
-    text-align: center;
     font-size: 12px !important;
-    font-weight: 600 !important;
-    border-radius: 15px;
-  }
-
-  .bg_sucess {
-    background: #236115;
-    padding: 3px 10px;
-    color: #fff !important;
-    text-align: center;
-    font-size: 12px !important;
-    font-weight: 600 !important;
-    border-radius: 15px;
-  }
-
-  .bg_reject {
-    background: #fd5454;
-    padding: 3px 10px;
-    color: #fff !important;
-    text-align: center;
-    font-size: 12px !important;
-    font-weight: 600 !important;
-    border-radius: 15px;
   }
 }
 
