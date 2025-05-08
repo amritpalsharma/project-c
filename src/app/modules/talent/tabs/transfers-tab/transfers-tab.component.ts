@@ -68,10 +68,10 @@ export class TransfersTabComponent {
       this.talentService.getTransferData().subscribe((response) => {
         if (response && response.status && response.data) {
           this.userTransfers = response.data.transferDetail;
-          this.isLoading = false;
+          // this.isLoading = false;
         } else {
           this.userTransfers = [];
-          this.isLoading = false;
+          // this.isLoading = false;
           console.error('Invalid API response structure:', response);
         }
       });
