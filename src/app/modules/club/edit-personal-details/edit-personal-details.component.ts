@@ -296,7 +296,10 @@ export class EditPersonalDetailsComponent implements OnInit {
   }
 
   navigatePlans() {
-    this.router.navigate(['/club/plans']);
+    this.dialogRef.close();
+    setTimeout(() => {
+      this.router.navigate(['/club/plans']);
+    }, 500);
   }
 
   showVerificationPopup() {

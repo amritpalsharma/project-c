@@ -502,7 +502,7 @@
                             <p>{{ 'createAccountDescription' | translate }}</p>
                         </div>
                         <form (submit)="register()" #registerForm="ngForm"
-                            [ngClass]="{'ng-show-errors': showRequiredErrors}" class="register_form"
+                            [ngClass]="{'form-errors': registerButtonClicked}" class="register_form"
                             style="border: none !important;">
                             <div class="row">
                                 <div class="col-lg-6">

@@ -1367,5 +1367,7 @@
   "favoriteBtnTxt":"Favorite",  
   "prorationTxt":"Credit (unused time monthly subscription)",
   "youHaveAlreadyThisPlan":"You’ve already got this membership. Just try again – or take a quick look at your account.",
-  "youHaveAlreadyThisPlanTitle":"Heads up"
+  "youHaveAlreadyThisPlanTitle":"Heads up",
+  "pricingLabel":"Pricing",
+  "deleteProfilePhoto":"Are you sure you want to delete your profile picture?"
 }

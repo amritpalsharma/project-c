@@ -38,3 +38,27 @@
 		}
 	}
 }
+
+::ng-deep .tox-promotion {
+    display: none !important;
+  }
+  
+  ::ng-deep .dark-theme .tox-menubar {
+    background-color: #072944 !important;
+  }
+  
+  ::ng-deep .dark-theme .tox-toolbar__primary {
+    background-color: #072944 !important;
+  }
+  ::ng-deep .dark-theme .tox-tinymce{
+    border: 2px solid #072944 !important;
+  }
+  ::ng-deep .tox-statusbar{
+    display: none !important;
+  }
+  ::ng-deep .dark-theme .tox:not(.tox-tinymce-inline) .tox-editor-header{
+    background-color: #072944 !important;
+  }
+  ::ng-deep .dark-theme.tox .tox-toolbar-overlord{
+    background-color: #072944 !important;
+  }

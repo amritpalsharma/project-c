@@ -1411,5 +1411,7 @@
   "noClubTxt": "Atualmente sem clube e motivado para dar um novo impulso à minha carreira!",
   "prorationTxt": "Crédito (tempo não utilizado na subscrição mensal)",
   "youHaveAlreadyThisPlan": "Já tens esta assinatura. Tenta de novo ou dá uma olhada na tua conta.",
-  "youHaveAlreadyThisPlanTitle": "Atenção"
+  "youHaveAlreadyThisPlanTitle": "Atenção",
+  "pricingLabel": "Preços",
+  "deleteProfilePhoto": "Tens a certeza de que queres apagar a tua foto de perfil?"
 }

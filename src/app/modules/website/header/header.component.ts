@@ -55,6 +55,7 @@ export class HeaderComponent implements OnInit {
   confirmPassword: string = '';
   privacyPolicy: boolean = false;
   loginButtonClicked: boolean = false;
+  registerButtonClicked: boolean = false;
   isLoading: boolean = false;
   invalidCred: string = '';
   registerFormSubmitted: boolean = false;
@@ -738,7 +739,7 @@ export class HeaderComponent implements OnInit {
   }
 
   register() {
-
+    this.registerButtonClicked = true;
     // console.log(this.role);
     if (this.role === 4) {
       if (this.isHideClubSection === true) {

@@ -57,12 +57,12 @@
         </div>
       </button> -->
       <button class="btn buy-btn d-flex align-items-center gap-5" (click)="onConfirm()">
-        <div class="buy-button">
+        <div class="buy-button" >
           <h4>
             {{ countryPlanPrice }}
-            .- {{ currency }}/{{ isYearly ? ('year' | translate ) : ('month' | translate) }}
+            .- {{ currency }} / {{ isYearly ? ('year' | translate ) : ('month' | translate) }}
           </h4>
-          <p>{{'total' | translate}}</p>
+          <!-- <p>{{'total' | translate}}</p> -->
         </div>
         <span>{{'buyNow' | translate}} <i class="fa-solid fa-angle-right"></i></span>
       </button>

@@ -2310,9 +2310,7 @@
   border: 1px solid red !important;
 }
 
-.dark-theme #exampleModal1 .ng-invalid {
-  border: 1px solid red !important;
-}
+
 
 
 
@@ -2485,6 +2483,11 @@ body.dark-theme.static-common-banner {
     }
     p a, li a, p strong, li strong {
         color: #bde34e;
+    }
+  }
+  .faq .faq-content {
+    p strong {
+      color: #bde34e;
     }
   }
   .bottom_box {

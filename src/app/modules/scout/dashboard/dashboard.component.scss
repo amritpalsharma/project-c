@@ -1967,3 +1967,24 @@ span.active_btn {
   color: #fff;
   padding: 0 4px;
 }
+
+.highlight-loader {
+  width: 40px;
+  height: 40px;
+  border: 5px solid #3d7f2e;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+      transform: rotate(0deg);
+  }
+
+  100% {
+      transform: rotate(360deg);
+  }
+}

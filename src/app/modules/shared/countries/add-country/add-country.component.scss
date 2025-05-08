@@ -145,7 +145,9 @@ button:focus-visible {
 }
 
 .buy-button {
-    width: 130px;
+    // width: 130px;
+    width: 200px;
+    flex: 1;
 }
 
 .buy-button h4,
@@ -170,7 +172,8 @@ button:focus-visible {
     color: #fff;
     font-size: 16px;
 }
-.buy-btn{
+
+.buy-btn {
     background: #6FB95D;
     padding: 10px 14px;
     border-radius: 10px;

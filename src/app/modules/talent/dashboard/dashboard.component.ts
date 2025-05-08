@@ -41,7 +41,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   countryFlagUrl: string = './assets/images/city-icon-light.png';
   pageTitle: string = '';
   UserName: string = '';
-  photoLoading:boolean=true;
+  photoLoading: boolean = true;
 
 
   constructor(
@@ -117,7 +117,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.loginCount = 0;
       localStorage.setItem('popupLoginDate', this.today);
     }
-    
+
     this.loginCount++;
     localStorage.setItem('popupLoginCount', this.loginCount.toString());
 
@@ -409,16 +409,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
           this.userNationalities = JSON.parse(this.user.user_nationalities);
           this.StartTour = this.user?.show_tour == 1 ? true : false;
           // userData.first_name+' '+userData.last_name
-          console.info('User',this.user);
-          if(this.user?.first_name || this.user?.last_name){
-            this.UserName = this.user?.first_name+' '+this.user?.last_name;
+          console.info('User', this.user);
+          if (this.user?.first_name || this.user?.last_name) {
+            this.UserName = this.user?.first_name + ' ' + this.user?.last_name;
             this.titleService.setName(this.UserName);
             this.titleService.setRole(this.user?.role_name);
-            console.info('userName Set Condition true',this.UserName);
-          }else{
-            console.info('userName Does Not Set Condition False',this.user);
+            console.info('userName Set Condition true', this.UserName);
+          } else {
+            console.info('userName Does Not Set Condition False', this.user);
           }
-          
+
           if (this.user?.meta && this.user?.meta?.birth_country_flag != '') {
             // this.countryFlagUrl = this.user?.meta?.birth_country_flag;
           }
@@ -426,7 +426,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
           this.photoLoading = false;
           // this.isPremium = false;
           if (this.StartTour && this.isTourFirstTime) {
-          // if (true) {
+            // if (true) {
             setTimeout(() => {
               this.isTourFirstTime = false;
               // alert('Found lang in Db : '+response.data.user_data.lang)
@@ -461,7 +461,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
               }
 
             }, 0);
-            
+
           }
 
 
@@ -552,7 +552,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   freq: any = ['once', 'days', 'weeks', 'months'];
 
   openPopup(dataFound: boolean, index: any = 0) {
-    if(index>=3){
+    if (index >= 3) {
       return;
     }
     // let gotData = false
@@ -560,7 +560,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       console.log('working with ', index)
       let gotData: boolean = false;
       this.popupData.forEach((data: any) => {
-        if(data.frequency_value==this.freq[index]){
+        if (data.frequency_value == this.freq[index]) {
           gotData = true;
           this.dialog.open(PopupComponent, {
             width: '500px',
@@ -577,7 +577,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         }
       })
 
-      if(!gotData){
+      if (!gotData) {
         index += 1;
         this.openPopup(false, index);
       }
@@ -590,7 +590,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       console.log('indexxxxxxxxxxx', index)
       let getId: boolean = false;
       let popup: any = {};
-      if(data.frequency_value==this.freq[index]){
+      if (data.frequency_value == this.freq[index]) {
         console.log(this.freq[index], index, data.frequency_value, 'here freq')
         this.popupSeen.forEach((seenData: any) => {
           if (seenData.popup_id === data.id) {
@@ -602,27 +602,27 @@ export class DashboardComponent implements OnInit, OnDestroy {
         if (getId) {
           console.log('got id', popup)
           // if(data.frequency_value == this.freq[index]){
-            if (popup[data.frequency_value] > 0) {
-              this.dialog.open(PopupComponent, {
-                width: '500px',
-                position: {
-                  top: '150px'
-                },
-                data: {
-                  title: data.title,
-                  description: data.description
-                }
-              })
-    
-              this.editPopupSeen(popup, data.frequency_value);
-            }
+          if (popup[data.frequency_value] > 0) {
+            this.dialog.open(PopupComponent, {
+              width: '500px',
+              position: {
+                top: '150px'
+              },
+              data: {
+                title: data.title,
+                description: data.description
+              }
+            })
+
+            this.editPopupSeen(popup, data.frequency_value);
+          }
           // }
         }
         else {
           console.log('pending popups', data, popup.popup_id, data.id);
           this.addPopupSeen(data);
-  
-          if(data.frequency_value == this.freq[index]){
+
+          if (data.frequency_value == this.freq[index]) {
             this.dialog.open(PopupComponent, {
               width: '500px',
               position: {
@@ -640,11 +640,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
         gotData = true;
       }
 
-      
+
 
     });
 
-    if(!gotData){
+    if (!gotData) {
       index += 1;
       this.openPopup(true, index);
     }
@@ -656,7 +656,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         role: '2',
         payment_type: this.isPremium ? 'paid' : 'free',
         status: 'active'
-      } 
+      }
       this.userService.getUserPopups(data).subscribe((response) => {
         if (response && response.status) {
           console.info('this.popups', response.data);
@@ -1048,15 +1048,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
     return new Blob([ab], { type: mimeString });
   }
 
-  deleteProfileImage(){
+  deleteProfileImage() {
     this.userService.deleteProfileImage().subscribe(
       response => {
-        if(response.status){
+        if (response.status) {
           this.profileImage = null;
           this.commonDataService.updateProfilePic(this.profileImage);
           this.toastr.success(response.message, this.successTxt);
         }
-        else{
+        else {
           this.toastr.error(response.error, this.errorTxt);
         }
       },
@@ -1294,19 +1294,22 @@ export class DashboardComponent implements OnInit, OnDestroy {
   openDeleteDialog(type: string): void {
     const dialogRef = this.dialog.open(DeletePopupComponent, {
       width: '600px',
+      data: {
+        type2: type
+      }
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         // If the user confirms, proceed with deletion
-        if(type==='cover'){
+        if (type === 'cover') {
           this.deleteCoverImage();
         }
-        if(type==='profile'){
+        if (type === 'profile') {
           this.deleteProfileImage();
         }
       } else {
-        this.toastr.info(this.coverImageDeletionCanceled, this.Canceled);
+        // this.toastr.info(this.coverImageDeletionCanceled, this.Canceled);
         // console.log('User canceled the delete');
       }
     });

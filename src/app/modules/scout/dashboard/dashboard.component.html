@@ -43,7 +43,7 @@
                   <img *ngIf="!profileImage" src="../../../../assets/images/default/talent-profile-default.png" class=""
                     alt="" />
 
-                  <div class="user-edit ">
+                  <div class="user-edit " *ngIf="!profileImage">
                     <label for="profile-upload" class="">
                       <div class="edit-profile cursor-pointer" *ngIf="checkRole()"
                         matTooltip="{{'uploadNewProfileImage' | translate}} {{'mx_size' | translate}}"
@@ -630,8 +630,7 @@
 
               <!-- Add a loader in your template -->
               <div *ngIf="loading" class="loader-container py-5">
-                <div class="loader"></div>
-                <p>{{'loading' | translate}}</p>
+                <div class="highlight-loader"></div>
               </div>
 
               <!-- The rest of your content goes here -->

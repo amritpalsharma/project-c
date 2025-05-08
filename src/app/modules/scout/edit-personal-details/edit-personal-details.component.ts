@@ -4,6 +4,10 @@ import { FormControl, NgForm } from '@angular/forms';
 import { ScoutService } from '../../../services/scout.service';
 import { TranslateService } from '@ngx-translate/core';
 import { WebPages } from '../../../services/webpages.service';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { UnverifiedUserComponent } from '../../shared/unverified-user/unverified-user.component';
+import { MatDialog } from '@angular/material/dialog';
+import { SocketService } from '../../../services/socket.service';
 
 import * as _moment from 'moment';
 // tslint:disable-next-line:no-duplicate-imports
@@ -41,7 +45,7 @@ export class EditPersonalDetailsComponent implements OnInit {
   sm_tiktok: any = "";
   sm_youtube: any = "";
   sm_vimeo: any = "";
-
+  scoutNation: number = 0;
   socialMediaPlatforms = [
     { id: 'x', name: 'X (Twitter)', placeholder: 'x.com/' },
     { id: 'facebook', name: 'Facebook', placeholder: 'facebook.com/' },
@@ -95,6 +99,7 @@ export class EditPersonalDetailsComponent implements OnInit {
   phoneRequired: string = '';
   designation: any;
   isPremium: boolean = false;
+  isUserVerified: boolean = false;
   constructor(
     public dialogRef: MatDialogRef<EditPersonalDetailsComponent>,
     private scoutService: ScoutService,
@@ -102,6 +107,9 @@ export class EditPersonalDetailsComponent implements OnInit {
     private translateService: TranslateService,
     public webPages: WebPages,
     private toastr: ToastrService,
+    private router: Router,
+    private dialog: MatDialog,
+    private socketService: SocketService,
   ) { }
 
   theme: any = localStorage.getItem('theme');
@@ -123,8 +131,17 @@ export class EditPersonalDetailsComponent implements OnInit {
     this.webPages.languageId$.subscribe((data) => {
       this.getJsonTranslations();
     });
+    this.getUserStatus();
   }
-
+  getUserStatus() {
+    this.socketService.getLoggedInUserStatus().then((result) => {
+      if (result == 2) {
+        this.isUserVerified = true;
+      } else {
+        this.isUserVerified = false;
+      }
+    });
+  }
   onCancel(): void {
     this.dialogRef.close();
   }
@@ -182,6 +199,8 @@ export class EditPersonalDetailsComponent implements OnInit {
           this.sm_youtube = this.user.meta.sm_youtube;
           this.website = this.user.meta.website;
           this.zipcode = this.user.meta.zipcode;
+
+          // scoutNation
         }
       } else {
         console.error('Invalid API response structure:', response);
@@ -227,7 +246,7 @@ export class EditPersonalDetailsComponent implements OnInit {
     this.scoutService.updateUserProfile(formData).subscribe(
       (response: any) => {
         console.log('Form submitted successfully:', response);
-        if(response.stats == true && response.message != ''){
+        if (response.stats == true && response.message != '') {
           this.toastr.success(response.message);
         }
         this.dialogRef.close(response);
@@ -254,6 +273,30 @@ export class EditPersonalDetailsComponent implements OnInit {
       this.phoneRequired = translations['phoneRequired'];
       console.log('Title fetch Function Fired');
     })
+  }
+
+  navigatePlans() {
+    this.dialogRef.close();
+    setTimeout(() => {
+      this.router.navigate(['/scout/plans']);
+    }, 500);
+  }
+
+  showVerificationPopup() {
+    const messageDialog = this.dialog.open(UnverifiedUserComponent, {
+      width: '500px',
+      position: {
+        top: '150px'
+      }
+    })
+
+    messageDialog.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        if (result.action == "delete-confirmed") {
+          // this.deleteUser();
+        }
+      }
+    });
   }
 
 }

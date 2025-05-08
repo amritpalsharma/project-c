@@ -1,6 +1,8 @@
 import { Component, Input, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../../../services/user.service';
+import { EditorConfigService } from '../../../../services/editor-config.service';
+import tinymce from 'tinymce';
 
 @Component({
   selector: 'app-history-tab',
@@ -12,10 +14,15 @@ export class HistoryTabComponent {
   userId:any = "";
   history: any = "";
   isEditable: boolean = false;
+  lang:string=localStorage.getItem('lang') || 'de';
   @Input() role: any;
   @ViewChild('historyTextarea', { static: false }) textarea!: ElementRef;
+  editorConfig: any;
   
-  constructor(private route: ActivatedRoute, private userService: UserService){
+  constructor(
+    private configService: EditorConfigService,
+    private route: ActivatedRoute, 
+    private userService: UserService){
 
   }
 
@@ -28,7 +35,7 @@ export class HistoryTabComponent {
       }else if(this.role == "Club"){
         this.getClubHistory(this.userId);
       }
-      
+      this.editorConfig = this.configService.getConfig(this.lang);
     })
   }
 
@@ -82,7 +89,14 @@ export class HistoryTabComponent {
   }
 
   updateScoutHistory(): any {
-    const history = this.textarea.nativeElement.value;
+    this.isLoading = true;
+    const formData = new FormData();
+    const editor = tinymce.get('historyTextarea');
+    let history = '';
+    if (editor) {
+      history = editor.getContent();
+    }
+    // const history = this.textarea.nativeElement.value;
 
     if(history.trim() == ""){
       return false;
@@ -106,7 +120,13 @@ export class HistoryTabComponent {
   }
 
   updateClubHistory(): any {
-    const history = this.textarea.nativeElement.value;
+    // const history = this.textarea.nativeElement.value;
+    const editor = tinymce.get('historyTextarea');
+    let history = '';
+    if (editor) {
+      history = editor.getContent();
+    }
+    console.log(history);
 
     if(history.trim() == ""){
       return false;

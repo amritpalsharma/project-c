@@ -1470,5 +1470,7 @@
   "favoriteBtnTxt": "Favori",
   "prorationTxt": "Crédit (temps non utilisé abonnement mensuel)",
   "youHaveAlreadyThisPlan": "Tu as déjà cet abonnement. Réessaie ou jette un œil à ton compte.",
-  "youHaveAlreadyThisPlanTitle": "Attention"
+  "youHaveAlreadyThisPlanTitle": "Attention",
+  "pricingLabel": "Produit",
+  "deleteProfilePhoto": "Es-tu sûr de vouloir supprimer ta photo de profil ?"
 }

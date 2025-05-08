@@ -2749,6 +2749,11 @@ input[type="checkbox"].form-check-input[ng-reflect-required] {
         }
     }
 }
-#exampleModal1 .register_form .ng-invalid {
-    border: 1px solid red !important; 
+
+#exampleModal1 .form-errors .ng-invalid {
+    border: 1px solid red !important;
+}
+
+.dark-theme #exampleModal1 .form-errors .ng-invalid {
+    border: 1px solid red !important;
 }

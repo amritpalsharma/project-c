@@ -360,15 +360,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
           this.user = response.data.user_data;
           this.userNationalities = JSON.parse(this.user.user_nationalities);
           this.StartTour = this.user?.show_tour == 1 ? true : false;
-          if(this.user?.first_name || this.user?.last_name){
+          if (this.user?.first_name || this.user?.last_name) {
             let userName = '';
-            userName = this.user?.first_name+' '+this.user?.last_name;
+            userName = this.user?.first_name + ' ' + this.user?.last_name;
             // this.UserName = this.user?.first_name+' '+this.user?.last_name;
             this.titleService.setName(userName);
             this.titleService.setRole(this.user?.role_name);
-            console.info('userName Set Condition true',userName);
-          }else{
-            console.info('userName Does Not Set Condition False',this.user);
+            console.info('userName Set Condition true', userName);
+          } else {
+            console.info('userName Does Not Set Condition False', this.user);
           }
           // if(this.StartTour) {
           //   setTimeout(() => {
@@ -563,7 +563,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       console.error('Error fetching users:', error);
     }
   }
-  
+
   setDurationAndThumbnail(videoElement: HTMLVideoElement) {
     videoElement.crossOrigin = 'anonymous';
     // Set Duration
@@ -737,15 +737,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
     return new Blob([ab], { type: mimeString });
   }
 
-  deleteProfileImage(){
+  deleteProfileImage() {
     this.userService.deleteProfileImage().subscribe(
       response => {
-        if(response.status){
+        if (response.status) {
           this.profileImage = null;
           this.commonDataService.updateProfilePic(this.profileImage);
           this.toastr.success(response.message);
         }
-        else{
+        else {
           this.toastr.error(response.error);
         }
       },
@@ -932,15 +932,18 @@ export class DashboardComponent implements OnInit, OnDestroy {
   openDeleteDialog(type: string): void {
     const dialogRef = this.dialog.open(DeletePopupComponent, {
       width: '600px',
+      data: {
+        type2: type, 
+      }
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         // If the user confirms, proceed with deletion
-        if(type==='cover'){
+        if (type === 'cover') {
           this.deleteCoverImage();
         }
-        if(type==='profile'){
+        if (type === 'profile') {
           this.deleteProfileImage();
         }
       } else {

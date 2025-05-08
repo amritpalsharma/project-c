@@ -1453,5 +1453,7 @@
   "noClubTxt": "Attualmente senza club e motivato a rilanciare la mia carriera!",
   "prorationTxt": "Credito (tempo inutilizzato abbonamento mensile)",
   "youHaveAlreadyThisPlan": "Hai già questo abbonamento. Riprova o dai un’occhiata al tuo profilo.",
-  "youHaveAlreadyThisPlanTitle": "Attenzione"
+  "youHaveAlreadyThisPlanTitle": "Attenzione",
+  "pricingLabel": "Prezzi",
+  "deleteProfilePhoto": "Sei sicuro di voler eliminare la tua immagine del profilo?"
 }

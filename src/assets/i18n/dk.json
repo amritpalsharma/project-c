@@ -1320,5 +1320,7 @@
   "noClubTxt": "Aktuelt uden klub og motiveret til at tage det næste skridt!",
   "prorationTxt": "Kredit (ubrugt tid på månedligt abonnement)",
   "youHaveAlreadyThisPlan": "Du har allerede det her medlemskab. Prøv igen – eller tjek din konto.",
-  "youHaveAlreadyThisPlanTitle": "Obs!"
+  "youHaveAlreadyThisPlanTitle": "Obs!",
+  "pricingLabel": "Priser",
+  "deleteProfilePhoto": "Er du sikker på, at du vil slette dit profilbillede?"
 }

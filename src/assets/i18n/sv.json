@@ -1454,5 +1454,7 @@
   "noClubTxt": "För närvarande utan klubb och motiverad att ta nästa steg!",
   "prorationTxt": "Kredit (oanvänd tid på månadsabonnemang)",
   "youHaveAlreadyThisPlan": "Du har redan det här medlemskapet. Försök igen eller kolla ditt konto.",
-  "youHaveAlreadyThisPlanTitle": "Obs!"
+  "youHaveAlreadyThisPlanTitle": "Obs!",
+  "pricingLabel": "Prissättning",
+  "deleteProfilePhoto": "Är du säker på att du vill ta bort din profilbild?"
 }

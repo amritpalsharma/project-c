@@ -16,6 +16,7 @@ export class DeletePopupComponent {
   
     fromPage : string = '';
     type : string = '';
+    type2 : string = '';
     galleryText : string = '';
     mainText : string = '';
 
@@ -23,6 +24,7 @@ export class DeletePopupComponent {
     this.theme = localStorage.getItem('theme');
     this.fromPage = this.data.from_page;
     this.type = this.data.type==='video' ? 'video' : 'photo';
+    this.type2 = this.data.type2==='profile' ? 'profile' : '';
     this.webPages.languageId$.subscribe((data) => {
       this.mainText = this.getJsonTranslations();
     });
