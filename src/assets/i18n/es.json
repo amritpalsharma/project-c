@@ -1404,5 +1404,8 @@
   "youHaveAlreadyThisPlan": "Ya tienes esta membresía. Inténtalo de nuevo o revisa tu cuenta.",
   "youHaveAlreadyThisPlanTitle": "Atención",
   "pricingLabel": "Precios",
-  "deleteProfilePhoto": "¿Estás seguro de que quieres eliminar tu foto de perfil?"
+  "deleteProfilePhoto": "¿Estás seguro de que quieres eliminar tu foto de perfil?",
+  "noTeamAndClub": "¿Tu club no aparece? Marca la casilla e introdúcelo manualmente en Equipo.",
+  "noTeamAndClubPlaceHolder": "Ingresar aquí",
+  "enterAndSearch":"Ingresar y buscar."
 }

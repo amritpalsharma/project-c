@@ -116,9 +116,9 @@ export class ViewProfileComponent implements OnInit {
       }
     }
 
-    if(this.currentUserRole == 'club'){
+    if (this.currentUserRole == 'club') {
       this.activeTab = 'club_history';
-    }else if(this.currentUserRole == 'scout'){
+    } else if (this.currentUserRole == 'scout') {
       this.activeTab = 'scout_history';
     }
   }
@@ -327,12 +327,13 @@ export class ViewProfileComponent implements OnInit {
 
       this.userService.exportSingleUser(userId).subscribe((response) => {
         if (response && response.status && response.data) {
-          console.info('response',response.data);
+          console.info('response', response.data);
           this.toastr.clear();
 
           this.downloadPath = response.data.file_path;
           // Open the file in a new tab
-          window.open(response.data.file_path);
+          // window.open(response.data.file_path);
+          window.open(response.data.file_path, '_blank', 'noopener,noreferrer');
 
         } else {
           this.toastr.clear();
@@ -435,31 +436,31 @@ export class ViewProfileComponent implements OnInit {
   navigateToChat() {
     localStorage.setItem('otherUserData', '');
     // console.log('User',this.user)
-    if(this.user.meta.profile_image != '' && this.user.meta.profile_image != undefined){
+    if (this.user.meta.profile_image != '' && this.user.meta.profile_image != undefined) {
       this.user.meta.profile_image = this.user.meta.profile_image;
     }
     const role = this.loggedInUser.role_name.toLowerCase();
     // console.info('role is ',role);
-    if(this.currentUserRole == 'club' || this.currentUserRole == 'klubb' || this.currentUserRole == 'klub' || this.currentUserRole == 'Clube' && this.user.club_logo != '' && this.user.club_logo != undefined){
-      this.user.meta.profile_image =  this.user.club_logo;
+    if (this.currentUserRole == 'club' || this.currentUserRole == 'klubb' || this.currentUserRole == 'klub' || this.currentUserRole == 'Clube' && this.user.club_logo != '' && this.user.club_logo != undefined) {
+      this.user.meta.profile_image = this.user.club_logo;
     }
 
-    if(typeof this.user.meta.profile_image === undefined){
+    if (typeof this.user.meta.profile_image === undefined) {
       this.user.meta.profile_image = 'no_img.png';
     }
     // console.log('this.user.this.user',this.user);
     // return;
     if (this.user) {
-      
+
       const userData = {
         id: this.user.id,
-        name: this.user.first_name+' '+this.user.last_name,
+        name: this.user.first_name + ' ' + this.user.last_name,
         email: this.user.email,
         photoUrl: this.baseUrl + this.user.meta.profile_image
       };
- 
+
       console.log(userData, this.user);
-      let tempUser = JSON.stringify(userData); 
+      let tempUser = JSON.stringify(userData);
 
       localStorage.setItem('otherUserData', tempUser);
 
@@ -473,7 +474,7 @@ export class ViewProfileComponent implements OnInit {
         queryParams: { open_chat: 'true' }
       });
     } else {
-      console.warn('No userData available and this.user is ',this.user);
+      console.warn('No userData available and this.user is ', this.user);
     }
   }
 
@@ -508,14 +509,40 @@ export class ViewProfileComponent implements OnInit {
   }
 
 
-  setDurationAndThumbnail(videoElement: HTMLVideoElement) {
+  setDurationAndThumbnailOld(videoElement: HTMLVideoElement) {
     videoElement.crossOrigin = 'anonymous';
     // Set Duration
     this.duration = this.formatDuration(videoElement.duration);
-
+    // return this.duration;
     // Capture Thumbnail
     // this.captureThumbnail(videoElement);
   }
+  videoDurations: string[] = [];
+  setDurationAndThumbnail(videoElement: HTMLVideoElement, index: number) {
+    videoElement.crossOrigin = 'anonymous';
+
+    // Wait for metadata to load
+    videoElement.addEventListener('loadedmetadata', () => {
+      // Set duration
+      const duration = videoElement.duration;
+      this.duration = this.formatDuration(duration);
+      // return this.duration;
+      this.highlights.videos[index].duration = this.duration;
+      this.videoDurations[index] = this.duration;
+      // Optional: Capture thumbnail after video is loaded
+      // this.captureThumbnail(videoElement);
+    });
+  }
+
+  getVideoDuration(videoElement: HTMLVideoElement) {
+    videoElement.crossOrigin = 'anonymous';
+    let number = this.formatDuration(videoElement.duration); // output like this 0:54
+    // if (typeof number === 'number' && !isNaN(number)) {
+      return number;
+    // }
+    // return '';
+  }
+
 
   formatDuration(duration: number): string {
     const hours = Math.floor(duration / 3600);
@@ -545,6 +572,8 @@ export class ViewProfileComponent implements OnInit {
       console.error('Error removing from favorites:', error);
     }
   }
+
+  // 
 
   showMatDialog(message: string, action: string, userId: any) {
     const messageDialog = this.dialog.open(MessagePopupComponent, {

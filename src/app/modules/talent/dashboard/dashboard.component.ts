@@ -1419,6 +1419,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
     video.duration = videoElement.duration; // Store duration in the video object
   }
 
+  getVideoDuration(videoElement: HTMLVideoElement) {
+    videoElement.crossOrigin = 'anonymous';
+    let number = this.formatDuration(videoElement.duration); // output like this 0:54
+    // if (typeof number === 'number' && !isNaN(number)) {
+    return number;
+    // }
+    // return '';
+  }
+
   navigatePlans() {
     this.router.navigate(['/talent/plans']);
   }

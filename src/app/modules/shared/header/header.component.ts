@@ -31,7 +31,7 @@ interface Notification {
   senderId: number;
   shouldAnimate: boolean;
   relativeTime: string;
-  senderRole : string;
+  senderRole: string;
 
 }
 
@@ -94,10 +94,10 @@ export class HeaderComponent {
 
   notificationSeen: boolean = false;
   pageTitle: string = '';
-  UserName:string = '';
+  UserName: string = '';
   isSearchVisible: boolean = false;
-  UserRole:string = '';
-  currentRole:string = '';
+  UserRole: string = '';
+  currentRole: string = '';
   isUserVerified: boolean = false;
 
   ngOnInit() {
@@ -224,8 +224,8 @@ export class HeaderComponent {
     });
 
 
-    
-    
+
+
 
     //   this.router.events
     //   .pipe(
@@ -282,7 +282,7 @@ export class HeaderComponent {
     //     }
     //   );
 
-    // code update by amrit 13 march 2025
+    // code update by amrit 13 march 2025z
     this.searchControl.valueChanges
       .pipe(
         map((value) => (typeof value === 'string' ? value.trim() : '')), // Ensure value is a trimmed string
@@ -304,24 +304,32 @@ export class HeaderComponent {
       )
       .subscribe(
         (response: any) => {
-          if (response?.status && response.data?.userData) {
-            let searchText = response.data.searchText;
-            let searchResults = response.data.userData;
-            searchResults = searchResults.filter((user: any) => {
-              const fullName = `${user.first_name} ${user.last_name}`.toLowerCase();
-              const search = searchText.toLowerCase();
+          // commented on 13 may 2025
+          // if (response?.status && response.data?.userData) {
+          //   let searchText = response.data.searchText;
+          //   let searchResults = response.data.userData;
+          //   searchResults = searchResults.filter((user: any) => {
+          //     const fullName = `${user.first_name} ${user.last_name}`.toLowerCase();
+          //     const search = searchText.toLowerCase();
 
-              return (
-                user.first_name.toLowerCase().startsWith(search) ||
-                user.last_name.toLowerCase().startsWith(search) ||
-                fullName.startsWith(search)
-              );
-            });
-            this.filteredUsers = searchResults;
+          //     return (
+          //       user.first_name.toLowerCase().startsWith(search) ||
+          //       user.last_name.toLowerCase().startsWith(search) ||
+          //       fullName.startsWith(search)
+          //     );
+          //   });
+          //   this.filteredUsers = searchResults;
+          // } else {
+          //   console.error("Invalid API response structure:", response);
+          //   this.filteredUsers = [];
+          // }
+
+          if (response?.status && Array.isArray(response.data?.userData)) {
+            this.filteredUsers = response.data.userData;
           } else {
-            console.error("Invalid API response structure:", response);
             this.filteredUsers = [];
           }
+
         },
         (error) => {
           console.error("Error fetching users:", error);
@@ -350,7 +358,11 @@ export class HeaderComponent {
       this.language = selectedLanguageArr;
     }
   }
-  
+  displayUserFn(user: any): string {
+    // return user ? `${user.first_name} ${user.last_name}` : '';
+    return user && user.first_name ? `${user.first_name} ${user.last_name}` : '';
+  }
+
 
   getUserStatus() {
     this.socketService.getLoggedInUserStatus().then((result) => {
@@ -428,7 +440,7 @@ export class HeaderComponent {
     }
   }
 
-  navigateToTab(tab: string, userRole:string) {
+  navigateToTab(tab: string, userRole: string) {
     let fragment = 'activity'; // Default fragment
 
     if (tab === 'setting') {
@@ -439,7 +451,7 @@ export class HeaderComponent {
     let userArr = localStorage.getItem('userData');
     // let test = userArr.JSON(); 
     // let role = localStorage.getItem('role');
-    
+
     // console.log(role)
     const url = this.router.url;
     const role = url.split('/')[1];
@@ -630,10 +642,10 @@ export class HeaderComponent {
 
   selectUser(user: any): void {
 
-    this.searchControl.setValue(`${user.first_name} ${user.last_name}`, {
-      emitEvent: false,
-    });
-
+    // this.searchControl.setValue(`${user.first_name} ${user.last_name}`, {
+    //   emitEvent: false,
+    // });
+    this.searchControl.setValue(user); // Not string!
     this.filteredUsers = [];
     // Navigate or perform actions with the selected user
     this.exploreUser(user.role_name, user.id);
@@ -724,18 +736,18 @@ export class HeaderComponent {
       // alert(this.UserRole)
       // this.role = CurrentRole;
     });
-     
+
   }
 
   toggleSearch() {
     this.isSearchVisible = !this.isSearchVisible;
   }
 
-  handleNotiificationClick(notification: any){
-    if(!this.isUserVerified){
+  handleNotiificationClick(notification: any) {
+    if (!this.isUserVerified) {
       this.showVerificationPopup(false);
     }
-    else{
+    else {
       let role = (notification.senderRole || '').toString().toLowerCase();
       this.router.navigate([`/view/${role}`, notification.senderId]);
     }

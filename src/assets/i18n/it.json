@@ -1455,5 +1455,8 @@
   "youHaveAlreadyThisPlan": "Hai già questo abbonamento. Riprova o dai un’occhiata al tuo profilo.",
   "youHaveAlreadyThisPlanTitle": "Attenzione",
   "pricingLabel": "Prezzi",
-  "deleteProfilePhoto": "Sei sicuro di voler eliminare la tua immagine del profilo?"
+  "deleteProfilePhoto": "Sei sicuro di voler eliminare la tua immagine del profilo?",
+  "noTeamAndClub": "Il tuo club non è nella lista? Seleziona la casella e inseriscilo manualmente sotto Squadra.",
+  "noTeamAndClubPlaceHolder": "Inserisci qui",
+  "enterAndSearch":"Inserisci e cerca."
 }

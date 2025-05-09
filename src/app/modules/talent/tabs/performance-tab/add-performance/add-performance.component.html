@@ -29,7 +29,7 @@
                   <input class="form-check-input mt-0 checkbox" type="checkbox" value="" id="flexCheckDefault995"
                     [(ngModel)]="noClub" name="noClub" (ngModelChange)="onNoClubChange($event)" />
                   <label class="form-check-label fs-14 font-w400 text-light" for="flexCheckDefault995">
-                    {{ 'noClubTxt' | translate }}
+                    {{ 'noTeamAndClub' | translate }}
                   </label>
                 </div>
               </div>
@@ -50,7 +50,7 @@
               <label for="team" class="form-label">{{'team' | translate}}</label>
 
 
-              <input type="text" id="currentTeam" name="currentTeam" placeholder="{{'typeToSearch' | translate}}"
+              <input type="text" id="currentTeam" name="currentTeam" placeholder="{{'enterAndSearch' | translate}}"
                 [(ngModel)]="currentTeam" #currentTeamsField="ngModel" (input)="onSearchTeams()" autocomplete="off"
                 required style="padding-left: 30px;" [ngClass]="{'isrequiredField': isrequiredField}" />
               <img class="me-2" [src]="currentTeamLogo" class="performance-image">
@@ -68,7 +68,7 @@
               <label for="team" class="form-label">{{'team' | translate}}</label>
 
 
-              <input type="text" id="teamName" name="teamName" placeholder="{{'editors.placeholder' | translate}}"
+              <input type="text" id="teamName" name="teamName" placeholder="{{'noTeamAndClubPlaceHolder' | translate}}"
                 [(ngModel)]="teamName" required style="padding-left: 30px;"
                 [ngClass]="{'isrequiredField': isrequiredField}" />
 

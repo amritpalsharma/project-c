@@ -98,7 +98,7 @@ export class PerformanceDetailsComponent {
     this.dataTOBeUpdated[key] = value;
   }
 
-  calculateDateRange(performance_detail: any): string {
+  calculateDateRangeOld(performance_detail: any): string {
     const fromDate = new Date(performance_detail.from_date);
     const toDate = performance_detail.to_date === '0000-00-00'
       ? new Date() // Current date for "Present"
@@ -137,6 +137,37 @@ export class PerformanceDetailsComponent {
     return dateRange;
   }
 
+  calculateDateRange(performance_detail: any): string {
+    const fromDate = new Date(performance_detail.from_date);
+    const isPresent = performance_detail.to_date === '0000-00-00';
+    const toDate = isPresent ? new Date() : new Date(performance_detail.to_date);
+
+    let years = toDate.getFullYear() - fromDate.getFullYear();
+    let months = toDate.getMonth() - fromDate.getMonth();
+
+    // Adjust if the month difference is negative
+    if (months < 0) {
+      years--;
+      months += 12;
+    }
+
+    let langSlug = localStorage.getItem('lang') + '';
+
+    const fromDateString = fromDate.toLocaleString(langSlug, { month: 'long', year: 'numeric' });
+    const toDateString = isPresent
+      ? this.getPresentText(langSlug)
+      : toDate.toLocaleString(langSlug, { month: 'long', year: 'numeric' });
+
+    let dateRange = `${fromDateString ?? '-'} - ${toDateString ?? '-'}`;
+
+    // If both from and to dates are '0000-00-00', return empty
+    if (performance_detail.to_date === '0000-00-00' && performance_detail.from_date === '0000-00-00') {
+      return '';
+    }
+
+    return dateRange;
+  }
+
   navigateToPlans() {
     const pathname = window.location.pathname;
     const regex = /^\/view\/(talent|scout|club)\/(\d+)$/;
@@ -149,6 +180,29 @@ export class PerformanceDetailsComponent {
     }
   }
 
+  getPresentText(lang: string): string {
+    switch (lang) {
+      case 'de': // German
+        return 'Gegenwart';
+      case 'it': // Italian
+        return 'Presente';
+      case 'fr': // French
+        return 'Présent';
+      case 'es': // Spanish
+        return 'Presente';
+      case 'pt': // Portuguese
+        return 'Presente';
+      case 'da': // Danish
+        return 'Nuværende';
+      case 'sv': // Swedish
+        return 'Nuvarande';
+      case 'en': // English
+      default:
+        return 'Present';
+    }
+  }
+
+  
   themeChanged() {
     let currentTheme = localStorage.getItem('theme');
     this.currentThemeMode = currentTheme;
