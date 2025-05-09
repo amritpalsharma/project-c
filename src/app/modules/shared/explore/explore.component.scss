@@ -132,7 +132,8 @@
     font-weight: 500;
 }
 .team-logo-bg{
-    background: #E2001A;
+    // background: #E2001A;
+    background: #fff;
     width: 180px;
     height: 160px;
     position: absolute;
@@ -168,6 +169,7 @@
 }
 .image_box {
     border-radius: 16px !important;
+    border: 2px solid #ad8434;
 }
 .boosted-box {
     background: #023A4A;

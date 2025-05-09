@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TalentService } from '../../../../../services/talent.service';
 import { MatDialog } from '@angular/material/dialog';
 import { WebPages } from '../../../../../services/webpages.service';
+import { GlobalSettingsService } from '../../../../../services/global-settings.service';
 
 @Component({
   selector: 'view-user-transfer-details',
@@ -11,7 +12,8 @@ import { WebPages } from '../../../../../services/webpages.service';
   styleUrl: './transfer-details.component.scss'
 })
 export class TransferDetailsComponent {
-
+  baseUrl:string='https://api.socceryou.ch/uploads/logos/';
+  theme: string = localStorage.getItem('theme') || 'light';
   defaultDate: Date = new Date(2023, 4, 21); // May 21, 2023
   userId: any = '';
   userTransfers: any = [];
@@ -24,12 +26,13 @@ export class TransferDetailsComponent {
     date_of_transfer: ""
   }
   seasons: any = [];
-  isLoading:boolean=true;
+  isLoading: boolean = true;
   constructor(
     private route: ActivatedRoute,
     private talentService: TalentService,
     private router: Router,
     public dialog: MatDialog,
+    public globalSettings:GlobalSettingsService,
     public webPages: WebPages) { }
   @Input() isPremium: any;
 
@@ -46,6 +49,12 @@ export class TransferDetailsComponent {
       if (this.isPremium) {
         this.getUserTransfers(this.userId);
       }
+    });
+
+    this.themeChanged();
+
+    this.globalSettings.indexFunctionCall$.subscribe(() => {
+      this.themeChanged(); // Call the function when event is received
     });
   }
 
@@ -111,6 +120,14 @@ export class TransferDetailsComponent {
       if (['talent', 'scout', 'club'].includes(role)) {
         this.router.navigate([`/${role}/plans`]);
       }
+    }
+  }
+
+  themeChanged() {
+    let currentTheme = localStorage.getItem('theme') || 'light';
+    this.theme = currentTheme;
+    if (this.theme == null || this.theme == undefined) {
+      this.theme = 'light';
     }
   }
 }

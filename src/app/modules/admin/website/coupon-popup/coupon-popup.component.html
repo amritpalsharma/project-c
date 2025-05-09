@@ -50,7 +50,8 @@
     <div class="col-12 col-sm-6 col-lg-6">
       <div *ngIf="type === 'percent'" class="form-group">
         <label class="code-text">{{ 'discount' | translate }} (%)</label>
-        <input type="text" class="form-control cupen-btn-1" [(ngModel)]="discount" />
+        <!-- <input type="text" class="form-control cupen-btn-1" [(ngModel)]="discount" /> -->
+        <input type="text" class="form-control" [(ngModel)]="discount" />
         <div *ngIf="errorMsg.discount" class="error-msg">{{ errorMsg.discount }}</div>
       </div>
     </div>

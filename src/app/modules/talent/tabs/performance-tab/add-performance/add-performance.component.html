@@ -1,45 +1,59 @@
 <div class="container">
-    <div class="row">
-      <!-- Right column: Form for editing player details -->
-      <div class="col-md-12 p-0">
-        <div  class="personal_edit popup_header p-3">
-          <div class="dialog-header mx-auto">
-            <h2>{{'addNewPerformance' | translate}}</h2>
-          </div>
-          
-          <!-- <div class="close_buttons">
-            <button class="close-btn" (click)="onCancel()">X</button>
-            </div> -->
-
-            <div class="close_buttons" *ngIf='theme!="dark"'>
-              <button class="close-btn border-0 padding-0" aria-label="Close" (click)="onCancel()">
-                <img src="../../../../assets/images/carbon_close-outline-light.svg" alt="">
-              </button>
-            </div>
-            <div class="close_buttons" *ngIf='theme=="dark"'>
-              <button class="close-btn border-0 padding-0" aria-label="Close" (click)="onCancel()">
-                <!-- <img src="../../../../../assets/images/carbon_close-outline.svg" alt=""> -->
-                <img src="../../../../assets/images/carbon_close-outline.svg" alt="">
-              </button>
-            </div>
+  <div class="row">
+    <!-- Right column: Form for editing player details -->
+    <div class="col-md-12 p-0">
+      <div class="personal_edit popup_header p-3">
+        <div class="dialog-header mx-auto">
+          <h2>{{'addNewPerformance' | translate}}</h2>
         </div>
-        <form class="general_form popup__body pt-3" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">  
-          <div class="overflow-card">        
+        <div class="close_buttons" *ngIf='theme!="dark"'>
+          <button class="close-btn border-0 padding-0" aria-label="Close" (click)="onCancel()">
+            <img src="../../../../assets/images/carbon_close-outline-light.svg" alt="">
+          </button>
+        </div>
+        <div class="close_buttons" *ngIf='theme=="dark"'>
+          <button class="close-btn border-0 padding-0" aria-label="Close" (click)="onCancel()">
+            <!-- <img src="../../../../../assets/images/carbon_close-outline.svg" alt=""> -->
+            <img src="../../../../assets/images/carbon_close-outline.svg" alt="">
+          </button>
+        </div>
+      </div>
+      <form class="general_form popup__body pt-3" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
+        <div class="overflow-card">
           <div class="row">
-            <div class="form-group col-lg-6">
-              <label for="team" class="form-label">{{'team' | translate}}</label>
-              <!-- <input type="number" id="team" name="team_id" [(ngModel)]="performance.team_id" required> -->
+            <!-- <p>isHideTeamSection {{isHideTeamSection}}</p> -->
+            <!-- [ngClass]="{'col-sm-6':isHideTeamSection,'col-sm-12':!isHideTeamSection}" -->
+            <div >
+              <div class="checkbox-wrap">
+                <div class="form-check checkbox mb-3">
+                  <input class="form-check-input mt-0 checkbox" type="checkbox" value="" id="flexCheckDefault995"
+                    [(ngModel)]="noClub" name="noClub" (ngModelChange)="onNoClubChange($event)" />
+                  <label class="form-check-label fs-14 font-w400 text-light" for="flexCheckDefault995">
+                    {{ 'noClubTxt' | translate }}
+                  </label>
+                </div>
+              </div>
 
-              <!-- <select id="team" name="team" [(ngModel)]="performance.team" required>
-                <option *ngFor="let team of teams" [value]="team.id">
-                  {{ team.team_name }}
+            </div>
+            <div class="form-group col-sm-6" *ngIf="isHideTeamSection">
+              <label class="form-check-label fs-14 font-w400 text-light" for="team_country_id">
+                {{ 'country' | translate }}
+              </label>
+              <select class="form-select" id="team_country_id" name="team_country_id" [(ngModel)]="team_country_id">
+                <option value="" [ngValue]="null">{{'select' | translate}}</option>
+                <option *ngFor="let country of countries" [ngValue]="country.id">
+                  {{ country.country_name }}
                 </option>
-              </select> -->
+              </select>
+            </div>
+            <div class="form-group col-lg-6" *ngIf="!isHideTeamSection">
+              <label for="team" class="form-label">{{'team' | translate}}</label>
+
 
               <input type="text" id="currentTeam" name="currentTeam" placeholder="{{'typeToSearch' | translate}}"
                 [(ngModel)]="currentTeam" #currentTeamsField="ngModel" (input)="onSearchTeams()" autocomplete="off"
-                required style="padding-left: 30px;" [ngClass]="{'isrequiredField': isrequiredField}"/>
-                <img class="me-2" [src]="currentTeamLogo" class="performance-image">
+                required style="padding-left: 30px;" [ngClass]="{'isrequiredField': isrequiredField}" />
+              <img class="me-2" [src]="currentTeamLogo" class="performance-image">
 
               <!-- Club suggestions -->
               <ul *ngIf="filterTeams.length > 0 && currentTeam.length >= 2" class="suggestions-list">
@@ -50,7 +64,16 @@
                 </li>
               </ul>
             </div>
-            <div class="form-group col-lg-6">
+            <div class="form-group col-lg-6" *ngIf="isHideTeamSection">
+              <label for="team" class="form-label">{{'team' | translate}}</label>
+
+
+              <input type="text" id="teamName" name="teamName" placeholder="{{'editors.placeholder' | translate}}"
+                [(ngModel)]="teamName" required style="padding-left: 30px;"
+                [ngClass]="{'isrequiredField': isrequiredField}" />
+
+            </div>
+            <div class="form-group col-lg-6" *ngIf="!isHideTeamSection">
               <label for="matches" class="form-label">{{'matches' | translate}}</label>
               <input type="number" id="matches" name="matches" [(ngModel)]="performance.matches">
             </div>
@@ -70,7 +93,8 @@
           <div class="row">
             <div class="form-group col-lg-6">
               <label for="session" class="form-label">{{'saison' | translate}}</label>
-              <input type="text" id="session" name="session" [(ngModel)]="performance.session" [ngClass]="{'isrequiredField': isrequiredField}">
+              <input type="text" id="session" name="session" [(ngModel)]="performance.session"
+                [ngClass]="{'isrequiredField': isrequiredField}">
             </div>
             <div class="form-group col-lg-6">
               <label for="player_age" class="form-label">{{'playerAge' | translate}}</label>
@@ -79,8 +103,12 @@
           </div>
 
           <div class="row mb-5">
-            <div class="form-group col-lg-10">
-              <div class="col-lg-9 p-0">
+            <div class="form-group col-lg-6" *ngIf="isHideTeamSection">
+              <label for="matches" class="form-label">{{'matches' | translate}}</label>
+              <input type="number" id="matches" name="matches" [(ngModel)]="performance.matches">
+            </div>
+            <div class="form-group col-lg-6">
+              <div class="col-lg-12 p-0">
                 <label for="form-date" class="form-label">{{'form-upto' | translate}}</label>
                 <div class="date-imputs d-flex align-items-center">
                   <div class="d-flex align-items-center justify-content-center date_field">
@@ -108,7 +136,6 @@
           <button class="cancel-btn" type="button" (click)="onCancel()">{{'cancel' | translate}}</button>
           <button class="save-btn" type="submit">{{'save' | translate}}</button>
         </div>
-
       </form>
     </div>
   </div>

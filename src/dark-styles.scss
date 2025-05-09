@@ -190,7 +190,7 @@ a {
   padding: 5px 15px;
   color: #fff !important;
   text-align: center;
-  font-size: 14px !important;
+  // font-size: 14px !important;
   font-weight: 600 !important;
   border-radius: 15px;
 }
@@ -200,7 +200,7 @@ a {
   padding: 5px 15px;
   color: #fff !important;
   text-align: center;
-  font-size: 14px !important;
+  // font-size: 14px !important;
   font-weight: 600 !important;
   border-radius: 15px;
 }
@@ -210,7 +210,7 @@ a {
   padding: 5px 15px;
   color: #fff !important;
   text-align: center;
-  font-size: 14px !important;
+  // font-size: 14px !important;
   font-weight: 600 !important;
   border-radius: 15px;
 }
@@ -1346,7 +1346,7 @@ select {
     padding: 3px 10px;
     color: #fff !important;
     text-align: center;
-    font-size: 12px !important;
+    // font-size: 12px !important;
     font-weight: 600 !important;
     border-radius: 15px;
   }
@@ -2844,4 +2844,8 @@ select {
     background: #BDE34F !important;;
     color: #072944 !important;
   }
+}
+.dark-theme .form-group .isrequiredField {
+  border: 1px solid red !important;
+  border-color: red !important;
 }

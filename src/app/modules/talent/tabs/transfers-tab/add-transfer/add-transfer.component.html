@@ -1,106 +1,139 @@
 <div class="dialog-content">
-    <div class="personal_edit popup_header p-3">
-      <div class="dialog-header mx-auto">
-        <h2>{{'addNewTransfer' | translate}}</h2>
-      </div>
-      <!-- <div class="close_buttons">
-        <button class="close-btn" (click)="onCancel()">X</button>
-      </div> -->
-
-      <div class="close_buttons" *ngIf='theme!="dark"'>
-        <button class="close-btn border-0 padding-0" aria-label="Close" (click)="onCancel()">
-          <img src="../../../../../assets/images/carbon_close-outline-light.svg" alt="">
-        </button>
-      </div>
-      <div class="close_buttons" *ngIf='theme=="dark"'>
-        <button class="close-btn border-0 padding-0" aria-label="Close" (click)="onCancel()">
-          <!-- <img src="../../../../../assets/images/carbon_close-outline.svg" alt=""> -->
-          <img src="../../../../../assets/images/carbon_close-outline.svg" alt="">
-        </button>
-      </div>
-
+  <div class="personal_edit popup_header p-3">
+    <div class="dialog-header mx-auto">
+      <h2>{{'addNewTransfer' | translate}}</h2>
     </div>
-    <form class="transfer_box popup__body p-3" (ngSubmit)="onSubmit(transferForm)" #transferForm="ngForm">
-      <div class="row mb-4">
-        <div class="form-group moving_select col-lg-6">
-          <h2>{{'movingTo' | translate}}</h2>
-          <label for="team_to" class="form-label">{{'team' | translate}}</label>
-          <!-- <select id="team_to" name="team_to" class="form-select" [(ngModel)]="data.team_to" required>
-            <option *ngFor="let team of teams" [value]="team.id">
-              {{ team.team_name }}
-            </option>
-          </select> -->
-          <input
-            type="text"
-            id="team_to"
-            name="team_to"
-            placeholder="{{'typeToSearch' | translate}}"
-            [(ngModel)]="teamTo"
-            #teamTosField="ngModel"
-            (input)="onSearchTeams()"
-            autocomplete="off"
-            required
-          />
-          
-          <!-- Club suggestions -->
-          <ul *ngIf="filterTeams.length > 0 && teamTo.length >= 2" class="suggestions-list">
-            <li *ngFor="let team of filterTeams" (click)="onSelectTeamTo(team)">
-              {{ team.team_name }} - {{ team.team_type }}
-            </li>
-          </ul>
+
+    <div class="close_buttons" *ngIf='theme!="dark"'>
+      <button class="close-btn border-0 padding-0" aria-label="Close" (click)="onCancel()">
+        <img src="../../../../../assets/images/carbon_close-outline-light.svg" alt="">
+      </button>
+    </div>
+    <div class="close_buttons" *ngIf='theme=="dark"'>
+      <button class="close-btn border-0 padding-0" aria-label="Close" (click)="onCancel()">
+        <!-- <img src="../../../../../assets/images/carbon_close-outline.svg" alt=""> -->
+        <img src="../../../../../assets/images/carbon_close-outline.svg" alt="">
+      </button>
+    </div>
+
+  </div>
+  <form class="transfer_box popup__body p-3" (ngSubmit)="onSubmit(transferForm)" #transferForm="ngForm">
+    <div class="row mb-4">
+      <div class=" moving_select" [ngClass]="{'col-sm-12': noMoveToTeam, 'col-sm-6': !noMoveToTeam}">
+        <h2>{{'movingTo' | translate}}</h2>
+        <!-- <div class="form-group"> -->
+        <div class="checkbox-wrapper">
+          <div class="form-check checkbox mb-3">
+            <label class="form-check-label form-label" for="flexCheckDefault995">
+              {{ 'noClubTxt' | translate }}
+            </label>
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault995" [(ngModel)]="noMoveToTeam"
+              name="noClub" (ngModelChange)="onNoMoveToTeam($event)" />
+          </div>
         </div>
-        <div class="form-group moving_select col-lg-6">
-          <h2>{{'movingFrom' | translate}}</h2>
-          <label for="team_from" class="form-label">{{'team' | translate}}</label>
-          
-            <input
-              type="text"
-              id="team_from"
-              name="team_from"
-              placeholder="{{'typeToSearch' | translate}}"
-              [(ngModel)]="teamFrom"
-              #teamFromsField="ngModel"
-              (input)="onSearchTeamsFrom()"
-              autocomplete="off"
-              required
-            />
-            
+        <!-- </div> -->
+        <div class="form-group">
+          <label *ngIf="!noMoveToTeam" for="team_to" class="form-label">{{'team' | translate}}</label>
+          <div class="default-func" *ngIf="!noMoveToTeam">
+            <input type="text" id="team_to" name="team_to" placeholder="{{'typeToSearch' | translate}}"
+              [(ngModel)]="teamTo" #teamTosField="ngModel" (input)="onSearchTeams()" autocomplete="off" required />
+            <!-- Club suggestions -->
+            <ul *ngIf="filterTeams.length > 0 && teamTo.length >= 2" class="suggestions-list">
+              <li *ngFor="let team of filterTeams" (click)="onSelectTeamTo(team)">
+                {{ team.team_name }} - {{ team.team_type }}
+              </li>
+            </ul>
+          </div>
+          <div class="row" *ngIf="noMoveToTeam">
+            <div class="col-sm-6">
+              <label for="team_to" class="form-label">{{'team' | translate}}</label>
+              <input type="text" id="team_to" name="team_to_manual" placeholder="{{'typeToSearch' | translate}}"
+                [(ngModel)]="team_to_manual" required />
+            </div>
+
+            <div class="col-sm-6">
+              <label for="team_country_id" class="form-label">{{'country' | translate}}</label>
+              <select class="form-select" id="team_country_id" name="team_country_id"
+                [(ngModel)]="team_to_m_country_id">
+                <option value="" [ngValue]="null">{{'select' | translate}}</option>
+                <option *ngFor="let country of countries" [ngValue]="country.id">
+                  {{ country.country_name }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="moving_select " [ngClass]="{'col-sm-12': noMoveFromTeam, 'col-sm-6': !noMoveFromTeam}">
+        <h2>{{'movingFrom' | translate}}</h2>
+
+        <div class="form-check checkbox mb-3">
+          <input class="form-check-input" type="checkbox" value="" id="onNoMoveFromTeam" [(ngModel)]="noMoveFromTeam" name="noClub"
+            (ngModelChange)="onNoMoveFromTeam($event)" />
+          <label class="form-check-label" for="onNoMoveFromTeam">
+            {{ 'noClubTxt' | translate }}
+          </label>
+        </div>
+        <div class="form-group">
+          <label *ngIf="!noMoveFromTeam" for="team_from" class="form-label">{{'team' | translate}}</label>
+
+          <div class="old-func" *ngIf="!noMoveFromTeam">
+            <input type="text" id="team_from" name="team_from" placeholder="{{'typeToSearch' | translate}}"
+              [(ngModel)]="teamFrom" #teamFromsField="ngModel" (input)="onSearchTeamsFrom()" autocomplete="off"
+              required />
+
             <!-- Club suggestions -->
             <ul *ngIf="filterTeamsFrom.length > 0 && teamFrom.length >= 2" class="suggestions-list">
               <li *ngFor="let team of filterTeamsFrom" (click)="onSelectTeamFrom(team)">
                 {{ team.team_name }} - {{ team.team_type }}
               </li>
             </ul>
-        </div>
-      </div>
-      <hr>
-      <div class="row mt-5 mb-4">
-        <div class="form-group moving_select col-lg-6">        
-          <label for="session" class="form-label">{{'session' | translate}}</label>
-          <input type="text" id="session" name="session" [(ngModel)]="data.session" required>
-        </div>
-        <div class="form-group moving_select col-lg-6">
-          <label for="date_of_transfer" class="form-label">{{'date' | translate}}</label>
-            <div class="d-flex align-items-center justify-content-center date_field">
-              <input
-                matInput
-                id="date_of_transfer"
-                name="date_of_transfer"
-                [matDatepicker]="date_of_transferpicker"
-                [formControl]="date_of_transfer"
-                placeholder="DD.MM.YYYY"
-                required
-              />
-              <mat-datepicker-toggle matSuffix [for]="date_of_transferpicker"></mat-datepicker-toggle>
-              <mat-datepicker #date_of_transferpicker></mat-datepicker>
+          </div>
+
+          <div class="row" *ngIf="noMoveFromTeam">
+            <div class="col-sm-6">
+              <label for="team_from" class="form-label">{{'team' | translate}}</label>
+              <input type="text" id="team_to" name="team_to_manual" placeholder="{{'typeToSearch' | translate}}"
+                [(ngModel)]="team_from_manual" required />
             </div>
-          <!-- <input type="date" id="date_of_transfer" name="date_of_transfer" [(ngModel)]="data.date_of_transfer" required>         -->
+
+            <div class="col-sm-6">
+              <label class="form-label fs-14 font-w400 text-light" for="team_country_id">
+                {{ 'country' | translate }}
+              </label>
+              <select class="form-select" id="team_country_id" name="team_country_id"
+                [(ngModel)]="team_from_m_country_id">
+                <option value="" [ngValue]="null">{{'select' | translate}}</option>
+                <option *ngFor="let country of countries" [ngValue]="country.id">
+                  {{ country.country_name }}
+                </option>
+              </select>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="dialog-actions align-items-center d-flex justify-content-between">
-        <button class="cancel-btn" type="button" (click)="onCancel()">{{'cancel' | translate}}</button>
-        <button class="save-btn" type="submit" [disabled]="!transferForm.valid">{{'save' | translate}}</button>
+    </div>
+    <hr>
+    <div class="row mt-5 mb-4">
+      <div class="form-group moving_select col-lg-6">
+        <label for="session" class="form-label">{{'session' | translate}}</label>
+        <input type="text" id="session" name="session" [(ngModel)]="data.session" required>
       </div>
-    </form>
-  </div>
-  
+      <div class="form-group moving_select col-lg-6">
+        <label for="date_of_transfer" class="form-label">{{'date' | translate}}</label>
+        <div class="d-flex align-items-center justify-content-center date_field">
+          <input matInput id="date_of_transfer" name="date_of_transfer" [matDatepicker]="date_of_transferpicker"
+            [formControl]="date_of_transfer" placeholder="DD.MM.YYYY" required />
+          <mat-datepicker-toggle matSuffix [for]="date_of_transferpicker"></mat-datepicker-toggle>
+          <mat-datepicker #date_of_transferpicker></mat-datepicker>
+        </div>
+        <!-- <input type="date" id="date_of_transfer" name="date_of_transfer" [(ngModel)]="data.date_of_transfer" required>         -->
+      </div>
+    </div>
+    <div class="dialog-actions align-items-center d-flex justify-content-between">
+      <button class="cancel-btn" type="button" (click)="onCancel()">{{'cancel' | translate}}</button>
+      <button class="save-btn" type="submit" [disabled]="!transferForm.valid">{{'save' | translate}}</button>
+    </div>
+  </form>
+</div>

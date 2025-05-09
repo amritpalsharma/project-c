@@ -44,6 +44,7 @@ export class MembershipComponent {
   isdemo: any = false;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   pageTitle: string = '';
+  cancelConfirmationMsg: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -216,6 +217,19 @@ export class MembershipComponent {
         // tax_percentage: userPurchase.tax_percentage,
         // tax: userPurchase.tax_amount,
         // created_at: userPurchase.created_at,
+        // invoice_number: userPurchase.invoice_number,
+        // category: userPurchase.payment_method,
+        // plan: userPurchase.package_name,
+        // duration: userPurchase.interval,
+        // valid_until: userPurchase.plan_period_end,
+        // price: userPurchase.plan_amount,
+        // subtotal: userPurchase.subtotal,
+        // total: userPurchase.total,
+        // currency: userPurchase.amount_paid_currency,
+        // download_path: userPurchase.invoice_file_path,
+        // tax_percentage: userPurchase.tax_percentage,
+        // tax: userPurchase.tax_amount,
+        // created_at: userPurchase.created_at,
         invoice_number: userPurchase.invoice_number,
         category: userPurchase.payment_method,
         plan: userPurchase.package_name,
@@ -229,6 +243,11 @@ export class MembershipComponent {
         tax_percentage: userPurchase.tax_percentage,
         tax: userPurchase.tax_amount,
         created_at: userPurchase.created_at,
+        package_price:userPurchase.package_price,
+        proration_amount:userPurchase.proration_amount,
+        coupon_used:userPurchase.coupon_used,
+        coupon_discount:userPurchase.coupon_discount,
+        discount_amount:userPurchase.discount_amount,
       }
     });
   }
@@ -346,7 +365,8 @@ export class MembershipComponent {
       width: '600px',
       data: {
         action: 'delete-confirmation',
-        message: 'Are you sure you want to cancel this subscription? This action cannot be undone.'
+        message: this.cancelConfirmationMsg
+        // message: 'Are you sure you want to cancel this subscription? This action cannot be undone.'
       }
     });
 
@@ -428,8 +448,9 @@ export class MembershipComponent {
     });
   }
   getJsonTranslations() {
-    this.translateService.get(['membership']).subscribe((translations) => {
+    this.translateService.get(['membership','cancelConfirmationMsg']).subscribe((translations) => {
       this.pageTitle = translations['membership'];
+      this.cancelConfirmationMsg = translations['cancelConfirmationMsg'];
       this.titleService.setTitle(this.pageTitle);
       console.log('Title fetch Function Fired');
     })

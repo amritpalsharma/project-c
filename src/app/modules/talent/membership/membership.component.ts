@@ -44,7 +44,7 @@ export class MembershipComponent {
   cancelConfirmationMsg: String = '';
   userPurchasesNotFound: String = '';
   subsciptionCancelSuccess: String = '';
-  isLoading: boolean = true;
+  isLoading: boolean = false;
   pageTitle: string = '';
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -95,6 +95,9 @@ export class MembershipComponent {
         this.totalItems = response.data.totalCount; // Assuming API returns the total number of purchases
         console.log(this.userPurchases)
       } else {
+        this.isLoading = false;
+        this.userPurchases = [];
+        // this.userPurchases.length
         console.error('Invalid API response:', response);
       }
     }, error => {

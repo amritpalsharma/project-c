@@ -33,7 +33,11 @@ export class EditPerformanceDetailsComponent implements OnInit {
   from_date: FormControl = new FormControl(null);
   to_date: FormControl = new FormControl(null);
   theme: any = localStorage.getItem('theme');
-  isrequiredField:boolean=false;
+  isrequiredField: boolean = false;
+  isManual: boolean = false;
+  team_country_id: number = 0;
+  teamName: string = '';
+  countries: any = [];
 
   constructor(
     public dialogRef: MatDialogRef<EditPerformanceDetailsComponent>,
@@ -41,12 +45,15 @@ export class EditPerformanceDetailsComponent implements OnInit {
     private toastr: ToastrService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private translate: TranslateService
-  ) { }
+  ) {
+    this.loadCountries();
+   }
 
   ngOnInit(): void {
     this.theme = localStorage.getItem('theme');
 
     this.performance = { ...this.data.performance };
+    console.log(this.performance)
     this.teams = [...this.data.teams];
     this.matches = this.performance.matches;
     this.goals = this.performance.goals;
@@ -57,6 +64,8 @@ export class EditPerformanceDetailsComponent implements OnInit {
       this.performance.to_date ? new Date(this.performance.to_date) : null
     );
     this.currentTeam = this.performance.team_name; // Set the selected team's name to the input
+    this.teamName = this.performance.team_name; // Set the selected team's name to the input
+    this.team_country_id = this.performance.team_country_id ?? 0; // Set the selected team's name to the input
     this.currentTeamId = this.performance.team_id;
     this.currentTeamLogo = this.performance.team_club_logo_path;
 
@@ -66,6 +75,8 @@ export class EditPerformanceDetailsComponent implements OnInit {
     this.translate.onLangChange.subscribe((event) => {
       this.getToasterMsg();
     });
+
+    this.isManual = this.data.isManualEntery;
   }
 
   onCancel(): void {
@@ -75,11 +86,7 @@ export class EditPerformanceDetailsComponent implements OnInit {
 
   onSubmit(myForm: NgForm): void {
 
-    if (!this.currentTeamId) {
-      this.isrequiredField = true;
-      // this.toastr.warning(this.formAllFieldsRequired, this.errorTxt);
-      return;
-    }
+
     if (!myForm.value.session) {
       this.isrequiredField = true;
       // this.toastr.warning(this.formAllFieldsRequired, this.errorTxt);
@@ -87,50 +94,108 @@ export class EditPerformanceDetailsComponent implements OnInit {
     }
 
     this.isrequiredField = false;
+    if (this.isManual === true) {
+      this.updateManualPerformance(myForm); 
+    } else {
+      if (!this.currentTeamId) {
+        this.isrequiredField = true;
+        // this.toastr.warning(this.formAllFieldsRequired, this.errorTxt);
+        return;
+      }
+      this.updatePerformance(myForm);
+    }
+
     // if (myForm.valid) {
-      this.isLoading = true; // Start loading indicator
-      this.toastr.info(this.submittingPerformanceData, this.pleaseWait, { disableTimeOut: true });
 
-      // Prepare form data
-      const formData = {
-        ...myForm.value, // Include all form values
-        team_id: this.currentTeamId, // Append the selected team ID
-        from_date: this.from_date.value // Convert FormControl value to string (if necessary)
-          ? moment(this.from_date.value).format('YYYY-MM-DD')
-          : null,
-        to_date: this.to_date.value // Convert FormControl value to string (if necessary)
-          ? moment(this.to_date.value).format('YYYY-MM-DD')
-          : null,
-      };
-
-      // API call to update performance
-      this.talentService.updatePerformance(this.performance.id, formData).subscribe(
-        (response: any) => {
-          this.toastr.clear();
-          if (response?.status) {
-            if (response.message != '') {
-              this.toastr.success(response.message, this.successTxt);
-            } else {
-              this.toastr.success('Performance updated successfully!', 'Success');
-            }
-            this.dialogRef.close(response.data); // Close dialog with updated data
-          } else {
-            this.toastr.error('Failed to update performance. Please try again.', 'Error');
-            console.error('Unexpected API response:', response);
-          }
-          this.isLoading = false; // Stop loading indicator
-        },
-        (error: any) => {
-          this.toastr.clear();
-          this.toastr.error('Error updating performance. Please try again later.', 'Error');
-          console.error('Error submitting the form:', error);
-          this.isLoading = false; // Stop loading indicator
-        }
-      );
     // } else {
-     // this.toastr.clear();
-   //   this.toastr.warning('Please fill out all required fields before submitting.', 'Warning');
+    // this.toastr.clear();
+    //   this.toastr.warning('Please fill out all required fields before submitting.', 'Warning');
     // }
+  }
+
+  updatePerformance(myForm: NgForm) {
+    this.isLoading = true; // Start loading indicator
+    this.toastr.info(this.submittingPerformanceData, this.pleaseWait, { disableTimeOut: true });
+
+    // Prepare form data
+    const formData = {
+      ...myForm.value, // Include all form values
+      team_id: this.currentTeamId, // Append the selected team ID
+      from_date: this.from_date.value // Convert FormControl value to string (if necessary)
+        ? moment(this.from_date.value).format('YYYY-MM-DD')
+        : null,
+      to_date: this.to_date.value // Convert FormControl value to string (if necessary)
+        ? moment(this.to_date.value).format('YYYY-MM-DD')
+        : null,
+    };
+
+    // API call to update performance
+    this.talentService.updatePerformance(this.performance.id, formData).subscribe(
+      (response: any) => {
+        this.toastr.clear();
+        if (response?.status) {
+          if (response.message != '') {
+            this.toastr.success(response.message, this.successTxt);
+          } else {
+            this.toastr.success('Performance updated successfully!', 'Success');
+          }
+          this.dialogRef.close(response.data); // Close dialog with updated data
+        } else {
+          this.toastr.error('Failed to update performance. Please try again.', 'Error');
+          console.error('Unexpected API response:', response);
+        }
+        this.isLoading = false; // Stop loading indicator
+      },
+      (error: any) => {
+        this.toastr.clear();
+        this.toastr.error('Error updating performance. Please try again later.', 'Error');
+        console.error('Error submitting the form:', error);
+        this.isLoading = false; // Stop loading indicator
+      }
+    );
+  }
+
+  updateManualPerformance(myForm: NgForm) {
+    this.isLoading = true; // Start loading indicator
+    this.toastr.info(this.submittingPerformanceData, this.pleaseWait, { disableTimeOut: true });
+
+    // Prepare form data
+    const formData = {
+      ...myForm.value, // Include all form values
+      team_name: this.teamName, // Append the selected team ID
+      team_country_id: this.team_country_id, // Append the selected team ID
+      from_date: this.from_date.value // Convert FormControl value to string (if necessary)
+        ? moment(this.from_date.value).format('YYYY-MM-DD')
+        : null,
+      to_date: this.to_date.value // Convert FormControl value to string (if necessary)
+        ? moment(this.to_date.value).format('YYYY-MM-DD')
+        : null,
+    };
+
+    // API call to update performance
+    this.talentService.updatePerformanceManual(this.performance.id, formData).subscribe(
+      (response: any) => {
+        this.toastr.clear();
+        if (response?.status) {
+          if (response.message != '') {
+            this.toastr.success(response.message, this.successTxt);
+          } else {
+            this.toastr.success('Performance updated successfully!', 'Success');
+          }
+          this.dialogRef.close(response.data); // Close dialog with updated data
+        } else {
+          this.toastr.error('Failed to update performance. Please try again.', 'Error');
+          console.error('Unexpected API response:', response);
+        }
+        this.isLoading = false; // Stop loading indicator
+      },
+      (error: any) => {
+        this.toastr.clear();
+        this.toastr.error('Error updating performance. Please try again later.', 'Error');
+        console.error('Error submitting the form:', error);
+        this.isLoading = false; // Stop loading indicator
+      }
+    );
   }
 
 
@@ -170,5 +235,22 @@ export class EditPerformanceDetailsComponent implements OnInit {
       this.pleaseWait = res['pleaseWait'];
       // this.downloading = res['downloading'];
     });
+  }
+
+  loadCountries(): void {
+
+    let params: any = {};
+    params.lang = localStorage.getItem('lang_id');
+
+    this.talentService.getCountries(params).subscribe(
+      (response: any) => {
+        if (response && response.status) {
+          this.countries = response.data.countries;
+        }
+      },
+      (error: any) => {
+        console.error('Error fetching countries:', error);
+      }
+    );
   }
 }

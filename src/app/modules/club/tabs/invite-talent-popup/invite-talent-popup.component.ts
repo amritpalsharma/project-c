@@ -93,7 +93,7 @@ export class InviteTalentPopupComponent {
           console.log("No data found in localStorage.");
         }
         console.log("datatat", myUserId, receiverIds);
-        this.socketService.emit('inviteTalent', { senderId: myUserId, receiverIds: receiverIds, eventId: this.sightId});
+        this.socketService.emit('inviteTalent', { senderId: myUserId, receiverIds: response.data.inviteAdded, eventId: this.sightId});
 
       } else {
         console.error('Invalid API response structure:', response);

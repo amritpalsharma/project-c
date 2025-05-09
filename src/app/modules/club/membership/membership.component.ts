@@ -182,6 +182,7 @@ export class MembershipComponent {
 
   viewMembership(id: any) {
     const userPurchase = this.getSubscriptionById(id);
+    console.log('userPurchase',userPurchase)
     const dialogRef = this.dialog.open(ViewMembershipPopupComponent, {
       width: '800px',
       data: {

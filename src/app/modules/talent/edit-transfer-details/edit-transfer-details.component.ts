@@ -42,22 +42,42 @@ export class EditTransferDetailsComponent {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private translateService: TranslateService,
     public webPages: WebPages,
-  ) { }
-  
-  theme : any = localStorage.getItem('theme');
+  ) {
+    this.loadCountries();
+   }
+
+  theme: any = localStorage.getItem('theme');
+  countries: any = [];
+  is_team_to_manual: boolean = false;
+  is_team_from_manual: boolean = false;
+  team_to_manual: string = '';
+  team_from_manual: string = '';
+  team_to_m_country_id: number = 0;
+  team_from_m_country_id: number = 0;
 
   ngOnInit(): void {
     this.theme = localStorage.getItem('theme');
     // You might want to load your teams from a service here
     this.teams = this.data.teams;
     this.transfer = this.data.transfer;
+    if (this.transfer.team_to_manual != '' && !this.transfer.team_to) {
+      this.is_team_to_manual = true;
+      this.team_to_manual = this.transfer.team_to_manual;
+      this.team_to_m_country_id = this.transfer.team_to_m_country_id;
+    }
+
+    if (this.transfer.team_from_manual != '' && !this.transfer.team_from) {
+      this.is_team_from_manual = true;
+      this.team_from_manual = this.transfer.team_from_manual;
+      this.team_from_m_country_id = this.transfer.team_from_m_country_id;
+    }
     this.date_of_transfer = new FormControl(
       this.transfer.date_of_transfer ? new Date(this.transfer.date_of_transfer) : null
     );
     this.date_of_transfer.setValue(this.transfer.date_of_transfer ? new Date(this.transfer.date_of_transfer) : null);
     console.log('transfer', this.transfer)
-    this.teamTo = this.transfer.team_name_to+' - '+this.transfer.team_type_to; // Set the selected team's name to the input
-    this.teamFrom = this.transfer.team_name_from+' - '+this.transfer.team_type_from; // Set the selected team's name to the input
+    this.teamTo = this.transfer.team_name_to + ' - ' + this.transfer.team_type_to; // Set the selected team's name to the input
+    this.teamFrom = this.transfer.team_name_from + ' - ' + this.transfer.team_type_from; // Set the selected team's name to the input
 
     this.teamToId = this.transfer.team_to;
     this.teamFromId = this.transfer.team_from;
@@ -75,7 +95,7 @@ export class EditTransferDetailsComponent {
     if (myForm.valid) {
       this.isLoading = true; // Start loading indicator
       this.toastr.info(this.Processing, this.pleaseWait, { disableTimeOut: true });
-      let lang_id = localStorage.getItem('lang_id')+'';
+      let lang_id = localStorage.getItem('lang_id') + '';
       // Prepare formData with additional properties
       const formData = {
         ...myForm.value,
@@ -84,7 +104,7 @@ export class EditTransferDetailsComponent {
         date_of_transfer: this.date_of_transfer.value // Convert date to string if necessary
           ? moment(this.date_of_transfer.value).format('YYYY-MM-DD')
           : null,
-          lang:lang_id
+        lang: lang_id
       };
 
       this.talentService.updateTransfer(this.transfer.id, formData).subscribe(
@@ -178,7 +198,7 @@ export class EditTransferDetailsComponent {
   }
 
   getJsonTranslations() {
-    this.translateService.get(['pleaseWait', 'Processing', 'success!','requiredFieldsMessage']).subscribe((translations) => {
+    this.translateService.get(['pleaseWait', 'Processing', 'success!', 'requiredFieldsMessage']).subscribe((translations) => {
       this.pleaseWait = translations['pleaseWait'];
       this.Processing = translations['Processing'];
       this.successTxt = translations['success!'];
@@ -186,6 +206,23 @@ export class EditTransferDetailsComponent {
       // this.titleService.setTitle(this.pageTitle);
       console.log('Title fetch Function Fired');
     })
+  }
+
+  loadCountries(): void {
+
+    let params: any = {};
+    params.lang = localStorage.getItem('lang_id');
+
+    this.talentService.getCountries(params).subscribe(
+      (response: any) => {
+        if (response && response.status) {
+          this.countries = response.data.countries;
+        }
+      },
+      (error: any) => {
+        console.error('Error fetching countries:', error);
+      }
+    );
   }
 
 

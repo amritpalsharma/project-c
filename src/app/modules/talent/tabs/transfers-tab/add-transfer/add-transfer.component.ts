@@ -22,7 +22,7 @@ export class AddTransferComponent {
   readonly date = new FormControl(moment());
   teams: any;  // Assume you get this data from a service
   transfer: any;  // Assume you get this data from a service
-  errorTxt:string='';
+  errorTxt: string = '';
 
   teamTo: string = ''; // Initialize as empty string to avoid undefined issues
   teamToId: any;
@@ -35,7 +35,14 @@ export class AddTransferComponent {
   successTxt: string = '';
   Processing: string = '';
   pleaseWait: string = '';
-  theme : any = localStorage.getItem('theme');
+  theme: any = localStorage.getItem('theme');
+  noMoveToTeam: boolean = false;
+  team_to_manual: string = '';
+  team_to_m_country_id: number = 0;
+  noMoveFromTeam: boolean = false;
+  team_from_manual: string = '';
+  countries: any = [];
+  team_from_m_country_id: number = 0;
 
   constructor(
     private toastr: ToastrService,
@@ -44,7 +51,9 @@ export class AddTransferComponent {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private translateService: TranslateService,
     public webPages: WebPages,
-  ) { }
+  ) {
+    this.loadCountries();
+  }
 
   ngOnInit(): void {
     this.theme = localStorage.getItem('theme');
@@ -72,7 +81,7 @@ export class AddTransferComponent {
 
     if (myForm.valid) {
       let lang_id = localStorage.getItem('lang_id');
-      const formData = {
+      let formData = {
         ...myForm.value,
         team_to: this.teamToId,
         team_from: this.teamFromId,
@@ -82,6 +91,25 @@ export class AddTransferComponent {
         lang: lang_id
       };
 
+      if (this.noMoveToTeam) {
+        formData = {
+          ...formData, // Spread the existing formData
+          team_to_manual: this.team_to_manual, // Replace team_to with team_to_manual
+          team_to_m_country_id: this.team_to_m_country_id, // Replace team_to with team_to_manual
+         // team_to: undefined, // Remove the old team_to key if needed
+          have_no_club_to:true
+        };
+      }
+
+      if (this.noMoveFromTeam) {
+        formData = {
+          ...formData, // Spread the existing formData
+          team_from_manual: this.team_from_manual, // Replace team_to with team_to_manual
+          team_from_m_country_id: this.team_from_m_country_id, // Replace team_to with team_to_manual
+        //  team_to: undefined, // Remove the old team_to key if needed
+          have_no_club_from:true
+        };
+      }
       // Show loading notification
       const loadingToast = this.toastr.info(this.Processing, this.pleaseWait, { disableTimeOut: true });
 
@@ -90,9 +118,9 @@ export class AddTransferComponent {
           this.toastr.clear(loadingToast.toastId); // Clear loading notification
           if (response.status == true && response.message != '' && response.message != undefined) {
             this.toastr.success(response.message, this.successTxt); // Show success notification
-          } else if(response.message != '' && response.message != undefined){
+          } else if (response.message != '' && response.message != undefined) {
             this.toastr.success(response.message, this.errorTxt); // Show success notification
-          }else {
+          } else {
             this.toastr.success('Transfer added successfully!', 'Success'); // Show success notification
           }
           console.log('Form submitted successfully:', response);
@@ -166,12 +194,39 @@ export class AddTransferComponent {
   }
 
   getJsonTranslations() {
-    this.translateService.get(['success!', 'Processing','pleaseWait','error!']).subscribe((translations) => {
+    this.translateService.get(['success!', 'Processing', 'pleaseWait', 'error!']).subscribe((translations) => {
       this.successTxt = translations['success!'];
       this.Processing = translations['Processing'];
       this.pleaseWait = translations['pleaseWait'];
       this.errorTxt = translations['error!'];
       console.log('Title fetch Function Fired');
     })
+  }
+
+  onNoMoveToTeam(value: boolean) {
+    console.log('onNoMoveToTeam',value);
+    this.noMoveToTeam = value;
+  }
+
+  onNoMoveFromTeam(value: boolean) {
+    console.log('onNoMoveFromTeam',value);
+    this.noMoveFromTeam = value;
+  }
+
+  loadCountries(): void {
+
+    let params: any = {};
+    params.lang = localStorage.getItem('lang_id');
+
+    this.talentService.getCountries(params).subscribe(
+      (response: any) => {
+        if (response && response.status) {
+          this.countries = response.data.countries;
+        }
+      },
+      (error: any) => {
+        console.error('Error fetching countries:', error);
+      }
+    );
   }
 }
