@@ -18,6 +18,7 @@ export class DeletePopupComponent {
   fromPage: string = '';
   type: string = '';
   galleryText: string = '';
+  theme:string=localStorage.getItem('theme') || 'light';
 
   ngOnInit(): void {
     // this.theme = localStorage.getItem('theme');

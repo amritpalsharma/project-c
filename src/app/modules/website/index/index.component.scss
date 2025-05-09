@@ -748,10 +748,19 @@ li {
   clip-path: polygon(0% 100%, 100% 100%, 0% 10%);
 }
 
+.recently-joined .flag-img {
+  width: 56px !important;
+  height: 30px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
 .recently-joined .flag-bottom {
   margin: 0;
   padding: 0 5px 3px;
   text-align: center;
+  display: flex;
+  align-items: center;
 
   p {
     margin: 0;
@@ -774,6 +783,7 @@ li {
   border-radius: 6px;
   background-color: white;
   z-index: 2;
+  padding: 5px;
 }
 
 .recently-joined .flag-image1 {
@@ -5260,6 +5270,28 @@ img.success-image {
     transform: translateY(-14px);
   }
 }
-.noClub::before{
+
+.noClubUser::before {
+  // z-index: 0 !important;
+}
+
+.noClubUser .preClubLogo {
+  // display: none;
+}
+
+.no-nation {
+  display: none;
+}
+
+.noWhiteBackground {
+  background: none;
+}
+
+::ng-deep .noNationOrBirth::after {
+  background: none !important;
+}
+.noClubLogo::before {
+  content: '';
+  position: absolute;
   z-index: 0 !important;
 }

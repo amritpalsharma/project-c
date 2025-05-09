@@ -99,8 +99,10 @@
     </button>
   </div>
 </div>
-
 <app-loader *ngIf="isLoading && isPremium" style="width: 100%;"></app-loader>
+<div class="text-center">
+  <h5 *ngIf="!performances || performances.length === 0 && !isLoading && isPremium">{{'noTextTabs' | translate}}</h5>
+</div>
 <div class="table-responsive bg-0C3453" style="width: 100%;" *ngIf="isPremium">
   <table class="table w-100 no_hover_tr" *ngIf="!isLoading">
     <tbody>
@@ -229,7 +231,8 @@
                   </defs>
                 </svg> -->
 
-                <svg id="users-icon" width="43" height="30" viewBox="0 0 43 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg id="users-icon" width="43" height="30" viewBox="0 0 43 30" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
                   <g clip-path="url(#clip0_15578_23697)">
                     <path d="M6.37532 24.4314L0.458984 29.0568V0.462891H42.5424V29.0568L36.2228 24.4314"
                       stroke="#023A4A" stroke-width="1.8" stroke-miterlimit="10" />
@@ -270,42 +273,42 @@
             <div class="d-flex country-details">
               <div class="main-template" *ngIf="editableId != performance.id">
                 <svg id="users-icon" width="26" height="26" viewBox="0 0 26 32" fill="none"
-                xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip0_15595_23713)">
-                  <path
-                    d="M6.40824 9.47406C6.40824 9.47406 7.75793 18.3372 12.7165 18.2022C12.7165 18.2022 18.2932 19.0509 19.5329 9.47406C20.7725 -0.102794 14.7815 0.392283 14.7815 0.392283C14.7815 0.392283 10.2372 -0.102794 8.33729 1.53996C6.68336 2.97054 5.47285 5.95387 6.40824 9.47406Z"
-                    stroke="#023A4A" stroke-width="1.5" stroke-miterlimit="10" />
-                  <path
-                    d="M9.57713 16.832C9.57713 16.832 9.21139 20.1497 5.486 20.5001C1.09387 20.9116 1.26218 23.7149 1.26218 23.7149L0.320312 31.17"
-                    stroke="#023A4A" stroke-width="1.5" stroke-miterlimit="10" />
-                  <path
-                    d="M16.4219 16.832C16.4219 16.832 16.7876 20.1497 20.513 20.5001C24.9051 20.9116 24.7368 23.7149 24.7368 23.7149L25.6787 31.17"
-                    stroke="#023A4A" stroke-width="1.5" stroke-miterlimit="10" />
-                  <path d="M8.56641 19.0215L13.2952 22.3616L17.6031 19.2079" stroke="#023A4A" stroke-width="1.5"
-                    stroke-miterlimit="10" />
-                  <path
-                    d="M19.5587 9.27091C12.2989 5.95003 6.4082 9.47344 6.4082 9.47344L7.9003 11.9553C7.9003 11.9553 8.35019 12.894 9.76137 12.3539C10.9427 11.9006 14.0143 11.1226 16.4224 12.3732C16.4224 12.3732 17.3222 12.9872 17.7138 12.1674L19.5587 9.27091Z"
-                    stroke="#023A4A" stroke-width="1.5" stroke-miterlimit="10" />
-                  <path
-                    d="M8.76172 8.50293C8.76172 8.50293 9.16306 0.321289 12.6748 0.321289C16.1866 0.321289 16.7886 8.29718 16.7886 8.29718"
-                    stroke="#023A4A" stroke-width="1.5" stroke-miterlimit="10" />
-                  <path
-                    d="M6.20069 8.50295C6.20069 8.50295 4.97076 7.94357 4.76362 9.01088C4.55647 10.0782 5.55983 11.3963 6.71532 10.9333"
-                    stroke="#023A4A" stroke-width="1.5" stroke-miterlimit="10" />
-                  <path
-                    d="M19.5856 8.50295C19.5856 8.50295 20.8155 7.94357 21.0227 9.01088C21.2298 10.0782 20.2297 11.393 19.0742 10.9301"
-                    stroke="#023A4A" stroke-width="1.5" stroke-miterlimit="10" />
-                  <path
-                    d="M11.8906 28.7823V31.6788H13.2694V30.1389H13.2889C14.0624 30.1389 14.6871 29.5152 14.6871 28.7501C14.6871 27.985 14.0592 27.3613 13.2889 27.3613C12.5185 27.3613 11.8906 27.985 11.8906 28.7501V28.7823Z"
-                    stroke="#023A4A" stroke-width="1.5" stroke-miterlimit="10" />
-                  <path d="M13.2891 27.3742V22.2627" stroke="#023A4A" stroke-width="1.5" stroke-miterlimit="10" />
-                </g>
-                <defs>
-                  <clipPath id="clip0_15595_23713">
-                    <rect width="26" height="32" fill="white" />
-                  </clipPath>
-                </defs>
-              </svg>
+                  xmlns="http://www.w3.org/2000/svg">
+                  <g clip-path="url(#clip0_15595_23713)">
+                    <path
+                      d="M6.40824 9.47406C6.40824 9.47406 7.75793 18.3372 12.7165 18.2022C12.7165 18.2022 18.2932 19.0509 19.5329 9.47406C20.7725 -0.102794 14.7815 0.392283 14.7815 0.392283C14.7815 0.392283 10.2372 -0.102794 8.33729 1.53996C6.68336 2.97054 5.47285 5.95387 6.40824 9.47406Z"
+                      stroke="#023A4A" stroke-width="1.5" stroke-miterlimit="10" />
+                    <path
+                      d="M9.57713 16.832C9.57713 16.832 9.21139 20.1497 5.486 20.5001C1.09387 20.9116 1.26218 23.7149 1.26218 23.7149L0.320312 31.17"
+                      stroke="#023A4A" stroke-width="1.5" stroke-miterlimit="10" />
+                    <path
+                      d="M16.4219 16.832C16.4219 16.832 16.7876 20.1497 20.513 20.5001C24.9051 20.9116 24.7368 23.7149 24.7368 23.7149L25.6787 31.17"
+                      stroke="#023A4A" stroke-width="1.5" stroke-miterlimit="10" />
+                    <path d="M8.56641 19.0215L13.2952 22.3616L17.6031 19.2079" stroke="#023A4A" stroke-width="1.5"
+                      stroke-miterlimit="10" />
+                    <path
+                      d="M19.5587 9.27091C12.2989 5.95003 6.4082 9.47344 6.4082 9.47344L7.9003 11.9553C7.9003 11.9553 8.35019 12.894 9.76137 12.3539C10.9427 11.9006 14.0143 11.1226 16.4224 12.3732C16.4224 12.3732 17.3222 12.9872 17.7138 12.1674L19.5587 9.27091Z"
+                      stroke="#023A4A" stroke-width="1.5" stroke-miterlimit="10" />
+                    <path
+                      d="M8.76172 8.50293C8.76172 8.50293 9.16306 0.321289 12.6748 0.321289C16.1866 0.321289 16.7886 8.29718 16.7886 8.29718"
+                      stroke="#023A4A" stroke-width="1.5" stroke-miterlimit="10" />
+                    <path
+                      d="M6.20069 8.50295C6.20069 8.50295 4.97076 7.94357 4.76362 9.01088C4.55647 10.0782 5.55983 11.3963 6.71532 10.9333"
+                      stroke="#023A4A" stroke-width="1.5" stroke-miterlimit="10" />
+                    <path
+                      d="M19.5856 8.50295C19.5856 8.50295 20.8155 7.94357 21.0227 9.01088C21.2298 10.0782 20.2297 11.393 19.0742 10.9301"
+                      stroke="#023A4A" stroke-width="1.5" stroke-miterlimit="10" />
+                    <path
+                      d="M11.8906 28.7823V31.6788H13.2694V30.1389H13.2889C14.0624 30.1389 14.6871 29.5152 14.6871 28.7501C14.6871 27.985 14.0592 27.3613 13.2889 27.3613C12.5185 27.3613 11.8906 27.985 11.8906 28.7501V28.7823Z"
+                      stroke="#023A4A" stroke-width="1.5" stroke-miterlimit="10" />
+                    <path d="M13.2891 27.3742V22.2627" stroke="#023A4A" stroke-width="1.5" stroke-miterlimit="10" />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_15595_23713">
+                      <rect width="26" height="32" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
                 <!-- <svg id="users-icon" width="26" height="26" viewBox="0 0 26 26" fill="none"
                   xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd" clip-rule="evenodd"
@@ -354,9 +357,6 @@
 
       </tr>
       <!-- <h1>{{performances | json}}</h1> -->
-      <tr *ngIf="true" class="text-center">
-        <h5 *ngIf="!performances || performances.length === 0">{{'noTextTabs' | translate}}</h5>
-      </tr>
     </tbody>
   </table>
 </div>

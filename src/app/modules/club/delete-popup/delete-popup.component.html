@@ -1,7 +1,13 @@
 <div class="msg-popup-dialog p-3 delete-confirmation-modal">
   <div class="text-end">
     <div class="msg-popup-close">
-      <img src="../../../assets/images/close-icon-circle.png" alt="" class="" (click)="cancel()" />
+      <div class="msg-popup-close" *ngIf='theme!="dark"'>
+        <img src="../../../assets/images/carbon_close-outline-light.svg" alt="" class="" (click)="cancel()" />
+      </div>
+      <div class="msg-popup-close" *ngIf='theme=="dark"'>
+        <img src="../../../assets/images/carbon_close-outline.svg" alt="" class="" (click)="cancel()" />
+      </div>
+      <!-- <img src="../../../assets/images/close-icon-circle.png" alt="" class="" (click)="cancel()" /> -->
   </div>
   </div>
   <div class="msg-popup-content p-3 pt-1">

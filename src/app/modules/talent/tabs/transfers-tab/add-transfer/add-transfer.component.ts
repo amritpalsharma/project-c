@@ -22,6 +22,7 @@ export class AddTransferComponent {
   readonly date = new FormControl(moment());
   teams: any;  // Assume you get this data from a service
   transfer: any;  // Assume you get this data from a service
+  errorTxt:string='';
 
   teamTo: string = ''; // Initialize as empty string to avoid undefined issues
   teamToId: any;
@@ -87,9 +88,11 @@ export class AddTransferComponent {
       this.talentService.addTransfer(formData).subscribe({
         next: (response: any) => {
           this.toastr.clear(loadingToast.toastId); // Clear loading notification
-          if (response.message != '' && response.message != undefined) {
+          if (response.status == true && response.message != '' && response.message != undefined) {
             this.toastr.success(response.message, this.successTxt); // Show success notification
-          } else {
+          } else if(response.message != '' && response.message != undefined){
+            this.toastr.success(response.message, this.errorTxt); // Show success notification
+          }else {
             this.toastr.success('Transfer added successfully!', 'Success'); // Show success notification
           }
           console.log('Form submitted successfully:', response);
@@ -163,10 +166,11 @@ export class AddTransferComponent {
   }
 
   getJsonTranslations() {
-    this.translateService.get(['success!', 'Processing','pleaseWait']).subscribe((translations) => {
+    this.translateService.get(['success!', 'Processing','pleaseWait','error!']).subscribe((translations) => {
       this.successTxt = translations['success!'];
       this.Processing = translations['Processing'];
       this.pleaseWait = translations['pleaseWait'];
+      this.errorTxt = translations['error!'];
       console.log('Title fetch Function Fired');
     })
   }

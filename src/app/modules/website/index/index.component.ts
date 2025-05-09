@@ -425,7 +425,7 @@ export class IndexComponent {
       const birthYear = new Date(date); // Convert to Date object
       return birthYear.getFullYear();
     }
-    return 'N/A';
+    return 0;
   }
 
   chnageHerosectionBgImg() {
@@ -491,5 +491,10 @@ export class IndexComponent {
       this.currentLang = slug;
     }
     return slug;
+  }
+
+  getFirstFlag(userNationalities: any): string | null {
+    const parsedNationalities = JSON.parse(userNationalities);
+    return parsedNationalities.length > 0 ? parsedNationalities[0].flag_path : null;
   }
 }

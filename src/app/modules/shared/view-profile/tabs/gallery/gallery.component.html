@@ -60,7 +60,7 @@
 
   <div class="row mt-3">
     <div class="no-txt" *ngIf="showNotxtTab && userImages.length === 0">
-      {{'noTextTabs' | translate}}
+      <h5>{{'noTextTabs' | translate}}</h5>
     </div>
     <div class="col-md-2 position-relative w-20 my-2" *ngFor="let image of userImages">
       <a [href]="imageBaseUrl + image.file_name" data-fancybox="gallery1" [attr.data-caption]="">
@@ -75,7 +75,7 @@
   </div>
   <div class="row mt-3">
     <div class="no-txt" *ngIf="showNotxtTab && userVideos.length === 0">
-      {{'noTextTabs' | translate}}
+      <h5>{{'noTextTabs' | translate}}</h5>
     </div>
   </div>
   <div class="row mt-3">

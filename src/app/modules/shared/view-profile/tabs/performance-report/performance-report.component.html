@@ -55,11 +55,17 @@
   </div>
 </div>
 
+<!-- NO DATA -->
+<!-- No data row -->
+<div *ngIf="noTextTabs && isPremium">
+  <h5 class="text-center">{{'noTextTabs' | translate}}</h5>
+</div>
+<!-- NO DATA -->
 
-<div class="card bg-color" *ngIf="isPremium">
+<div class="card bg-color" *ngIf="isPremium && !noTextTabs">
   <div class="card-header border-0">
     <div class="table-responsive">
-      <table mat-table [dataSource]="reports" class="table table-striped table-hover table-users" *ngIf="!noTextTabs">
+      <table mat-table [dataSource]="reports" class="table table-striped table-hover table-users">
 
         <!-- Name Column -->
         <ng-container matColumnDef="name">
@@ -104,10 +110,6 @@
 
 
       </table>
-      <!-- No data row -->
-      <div *ngIf="noTextTabs">
-        <h5 class="text-center">{{'noTextTabs' | translate}}</h5>
-      </div>
     </div>
   </div>
 </div>
