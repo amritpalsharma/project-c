@@ -600,7 +600,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
           chart.options.scales['x'].grid.color = isDarkMode ? '#333' : '#E0E0E0';
         }
         if (chart.options.scales['x'] && chart.options.scales['x'].ticks) {
-          chart.options.scales['x'].ticks.color = isDarkMode ? '#fff' : '#878787';
+          chart.options.scales['x'].ticks.color = isDarkMode ? '#A5AFBA' : '#878787';
+          // chart.options.scales['x'].ticks.color = isDarkMode ? '#fff' : '#878787';
         }
         if (chart.options.scales['y'] && chart.options.scales['y'].grid) {
           chart.options.scales['y'].grid.color = isDarkMode ? '#333' : '#E0E0E0';
@@ -614,8 +615,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         // chart.options.backgroundColor = isDarkMode ? '#BDE34F' : '#FFFFFF';
         chart.options.backgroundColor = isDarkMode ? '#BDE34F' : 'red';
         chart.update();
+        // this.updateChartBackgroundColor();
       }
-
     });
 
   }

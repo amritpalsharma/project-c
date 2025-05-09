@@ -1,17 +1,18 @@
 import { Component, Inject, inject, signal } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import {DateAdapter, MAT_DATE_LOCALE} from '@angular/material/core';
+import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { CouponService } from '../../../../services/coupon.service';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { CommonDataService } from '../../../../services/common-data.service';
 import { TranslateService } from '@ngx-translate/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-templates',
   templateUrl: './coupon-popup.component.html',
   styleUrl: './coupon-popup.component.scss'
 })
-export class CoupenPopupComponent   {
+export class CoupenPopupComponent {
 
   startDate: Date | null = null;
   endDate: Date | null = null;
@@ -25,9 +26,9 @@ export class CoupenPopupComponent   {
   isLimitedUse: boolean = false;
   limit: any = ""
   isSingleUsePerCustomer: boolean = false;
-  disableEndDate:boolean = false;
-  error:boolean = false
-  errorMsg:any = {}
+  disableEndDate: boolean = false;
+  error: boolean = false
+  errorMsg: any = {}
   discountInputs: Array<{ discount: string; currency: string }> = []; // For $ Discounts
   currencies: string[] = []; // Add more currencies as needed
 
@@ -40,33 +41,34 @@ export class CoupenPopupComponent   {
   limitEr: any = "";
   discountPercent: any = "";
   theme: any = localStorage.getItem('theme');
-  
+
 
   private readonly _adapter = inject<DateAdapter<unknown, unknown>>(DateAdapter);
-  private readonly _locale = signal(inject<unknown>(MAT_DATE_LOCALE)); 
+  private readonly _locale = signal(inject<unknown>(MAT_DATE_LOCALE));
 
   constructor(
+    public toaster: ToastrService,
     public dialogRef: MatDialogRef<CoupenPopupComponent>,
     private translateService: TranslateService,
-    @Inject(MAT_DIALOG_DATA) public data: any, private couponService: CouponService,private commonService:CommonDataService
-  ) {}
+    @Inject(MAT_DIALOG_DATA) public data: any, private couponService: CouponService, private commonService: CommonDataService
+  ) { }
 
   ngOnInit(): void {
     this.resetDiscountInputs(); // Initialize inputs
 
     this._locale.set('fr');
-    this._adapter.setLocale(this._locale()); 
+    this._adapter.setLocale(this._locale());
 
-    if(this.data.action == "update"){
+    if (this.data.action == "update") {
 
       let existingRecord = this.data.couponData;
-      if(existingRecord.discount_type == "amount_off"){
+      if (existingRecord.discount_type == "amount_off") {
         this.type = 'amount';
-      }else if(existingRecord.discount_type == "percent_off"){
+      } else if (existingRecord.discount_type == "percent_off") {
         this.type = 'percent';
       }
-      
-      this.name = existingRecord.title; 
+
+      this.name = existingRecord.title;
       this.code = existingRecord.coupon_code;
       this.discount = existingRecord.discount;
       // this.validBetween =
@@ -79,25 +81,25 @@ export class CoupenPopupComponent   {
     this.getCurrencies();
 
     this.translateService.get(['couponNameEr', 'couponCodeEr', 'typeOfCouponEr', 'discountInputsEr', 'startDateEr', 'limitEr', 'discountPercent']).subscribe((translations) => {
-        this.couponNameEr = translations['couponNameEr'];
-        this.couponCodeEr = translations['couponCodeEr'];
-        this.typeOfCouponEr = translations['typeOfCouponEr'];
-        this.discountInputsEr = translations['discountInputsEr'];
-        this.startDateEr = translations['startDateEr'];
-        this.limitEr = translations['limitEr'];
-        this.discountPercent = translations['discountPercent'];
-        
-        // this.userPurchasesNotFound = translations['userPurchasesNotFound'];
-        // this.subsciptionCancelSuccess = translations['subsciptionCancelSuccess'];
+      this.couponNameEr = translations['couponNameEr'];
+      this.couponCodeEr = translations['couponCodeEr'];
+      this.typeOfCouponEr = translations['typeOfCouponEr'];
+      this.discountInputsEr = translations['discountInputsEr'];
+      this.startDateEr = translations['startDateEr'];
+      this.limitEr = translations['limitEr'];
+      this.discountPercent = translations['discountPercent'];
+
+      // this.userPurchasesNotFound = translations['userPurchasesNotFound'];
+      // this.subsciptionCancelSuccess = translations['subsciptionCancelSuccess'];
     });
     this.theme = localStorage.getItem('theme');
   }
 
-  getCurrencies(){
+  getCurrencies() {
     this.commonService.getAllCurrencies().subscribe(
       response => {
         if (response.status) {
-          if(response.data?.currencies){
+          if (response.data?.currencies) {
             this.currencies = response.data?.currencies;
           }
         }
@@ -149,7 +151,7 @@ export class CoupenPopupComponent   {
         this.error = true;
         // this.errorMsg.discountInputs = "At least one $ Discount with currency is required";
         this.errorMsg.discountInputs = this.discountInputsEr;
-        
+
       }
     }
 
@@ -157,7 +159,7 @@ export class CoupenPopupComponent   {
       this.error = true;
       // this.errorMsg.name = "Name is required";
       this.errorMsg.name = this.couponNameEr;
-      
+
     }
 
     if (!this.code) {
@@ -259,7 +261,7 @@ export class CoupenPopupComponent   {
     formData.append('coupon_code', this.code);
     formData.append('discount', this.type === "percent" ? String(this.discount) : '');
     formData.append('discount_type', this.type === "amount" ? "amount_off" : "percent_off");
-    formData.append('valid_from', this.formatDate(this.startDate) || ''); 
+    formData.append('valid_from', this.formatDate(this.startDate) || '');
     formData.append('valid_to', this.noEndDate ? '' : (this.formatDate(this.endDate) || ''));
     formData.append('no_validity', this.noEndDate ? '1' : '0');
     formData.append('status', 'published');
@@ -268,27 +270,31 @@ export class CoupenPopupComponent   {
     formData.append('limit_per_user', this.isSingleUsePerCustomer ? '1' : '0');
     formData.append('duration', 'forever');
 
-    if(this.type === "amount" ){
+    if (this.type === "amount") {
       // Append amounts array properly
       this.discountInputs.forEach((input: any, index: number) => {
         formData.append(`amounts[${index}][currency]`, input.currency.toLowerCase());
         formData.append(`amounts[${index}][discount]`, String(input.discount));
       });
     }
-    
+
 
     this.couponService.addPopups(formData).subscribe(
       response => {
         if (response.status) {
-          this.dialogRef.close({ 
-            action: 'popupAdded', 
+          this.dialogRef.close({
+            action: 'popupAdded',
             message: response.message
           });
         } else {
+          //  toaster
+          if(response.status == false && typeof response.data.error != undefined){
+              this.toaster.error(response.data.error);
+          }
           this.errorMsg = response.error;
           this.errorMsg.discount = "Discount (%) is required";
           this.errorMsg.code = response.error.coupon_code;
-          
+
         }
       },
       error => {
@@ -317,7 +323,7 @@ export class CoupenPopupComponent   {
 
   //   this.error = false;
   //   this.errorMsg = {};
-    
+
   //   if(this.type == ""){
   //     this.error = true;
   //     this.errorMsg.type = "Type is required";
@@ -362,7 +368,7 @@ export class CoupenPopupComponent   {
   //     params.discount_type = 'percent_off';
   //   }
   //   params.discount = Number(this.discount);
-    
+
   //   params.valid_from = this.startDate;
 
   //   if(this.noEndDate){
@@ -371,7 +377,7 @@ export class CoupenPopupComponent   {
   //     params.valid_to = this.endDate;
   //   }
   //   params.status = 'published';
-    
+
   //   if(this.isLimitedUse){
   //     params.is_limit = 1;
   //     params.limit = this.limit;
@@ -382,7 +388,7 @@ export class CoupenPopupComponent   {
   //   }
 
   //   // console.log(params)
-    
+
   //   this.couponService.addPopups(params).subscribe(
   //     response => {
   //       if(response.status){
