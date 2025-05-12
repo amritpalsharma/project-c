@@ -19,10 +19,12 @@ export class PerformanceTabComponent {
   isEditing: boolean = false;
   userId: any = 71;
   performances: any = [];
+  performancesManual: any = [];
   editableId: string = "";
   pleaseWait: string = "";
   successTxt: string = "";
   teams: any = [];
+  flagPath: string = 'https://api.socceryou.ch/uploads/logos/';
   dataTOBeUpdated: any = {
     coach: "",
     team_id: "",
@@ -34,8 +36,8 @@ export class PerformanceTabComponent {
   loggedInUser: any = localStorage.getItem('userData');
   @Input() isPremium: any;
   @Input() isUserVerified: any;
-  currentThemeMode: any = localStorage.getItem('theme');
-  isLoading:boolean=true;
+  currentThemeMode: any = localStorage.getItem('theme') || 'light';
+  isLoading: boolean = true;
 
   // from_date:2021-01-01
   // to_date:2022-01-01
@@ -70,11 +72,11 @@ export class PerformanceTabComponent {
   }
 
 
-  openEditDialog(performance: any) {
+  openEditDialog(performance: any, isManualEntery: boolean = false) {
 
     const dialogRef = this.dialog.open(EditPerformanceDetailsComponent, {
       width: '800px',
-      data: { performance: performance, teams: this.teams }
+      data: { performance: performance, teams: this.teams, isManualEntery: isManualEntery }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -85,6 +87,10 @@ export class PerformanceTabComponent {
       }
     });
   }
+
+  // openEditDialogManual(performance: any){
+
+  // }
 
   openAddDialog() {
     console.log(this.teams)
@@ -129,6 +135,40 @@ export class PerformanceTabComponent {
     });
   }
 
+
+  openDeleteDialogManual(id: any) {
+    const dialogRef = this.dialog.open(DeletePopupComponent, {
+      width: '600px',
+      minWidth: '400px', // Add min-width here
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('openDeleteDialog', id)
+      if (result) {
+        // If result is true, proceed with deletion logic
+        this.deleteUserPerformanceManual(id);
+      } else {
+        console.log('User canceled the delete');
+      }
+    });
+  }
+
+  deleteUserPerformanceManual(id: string): void {
+
+    // Call your service to delete the user performance by ID
+    this.talentService.deletePerformanceManual(id).subscribe(
+      (response: any) => {
+        console.log('Performance deleted successfully');
+        // Optionally refresh the list or handle success
+        this.getUserPerformance(this.userId);
+      },
+      (error: any) => {
+        console.error('Error deleting performance:', error);
+      }
+    );
+  }
+
+
   deleteUserPerformance(id: string): void {
 
     // Call your service to delete the user performance by ID
@@ -151,11 +191,13 @@ export class PerformanceTabComponent {
         if (response && response.status && response.data && response.data.performanceDetail) {
           this.editableId = "";
           this.performances = response.data.performanceDetail;
+          this.performancesManual = response.data.performanceDetailManual;
 
           console.log(this.performances)
           this.isLoading = false;
         } else {
           this.performances = [];
+          this.performancesManual = [];
           this.isLoading = false;
           // console.error('Invalid API response structure:', response);
         }
@@ -250,7 +292,7 @@ export class PerformanceTabComponent {
 
     let dateRange = `${fromDateString ?? '-'} - ${toDateString ?? '-'}`;
 
-    if(performance_detail.to_date == '0000-00-00' && performance_detail.from_date == '0000-00-00'){
+    if (performance_detail.to_date == '0000-00-00' && performance_detail.from_date == '0000-00-00') {
       return '';
     }
 
@@ -261,33 +303,33 @@ export class PerformanceTabComponent {
     const fromDate = new Date(performance_detail.from_date);
     const isPresent = performance_detail.to_date === '0000-00-00';
     const toDate = isPresent ? new Date() : new Date(performance_detail.to_date);
-  
+
     let years = toDate.getFullYear() - fromDate.getFullYear();
     let months = toDate.getMonth() - fromDate.getMonth();
-  
+
     // Adjust if the month difference is negative
     if (months < 0) {
       years--;
       months += 12;
     }
-  
+
     let langSlug = localStorage.getItem('lang') + '';
-  
+
     const fromDateString = fromDate.toLocaleString(langSlug, { month: 'long', year: 'numeric' });
     const toDateString = isPresent
       ? this.getPresentText(langSlug)
       : toDate.toLocaleString(langSlug, { month: 'long', year: 'numeric' });
-  
+
     let dateRange = `${fromDateString ?? '-'} - ${toDateString ?? '-'}`;
-  
+
     // If both from and to dates are '0000-00-00', return empty
     if (performance_detail.to_date === '0000-00-00' && performance_detail.from_date === '0000-00-00') {
       return '';
     }
-  
+
     return dateRange;
   }
-  
+
   getPresentText(lang: string): string {
     switch (lang) {
       case 'de': // German
@@ -309,7 +351,7 @@ export class PerformanceTabComponent {
         return 'Present';
     }
   }
-  
+
   getToasterMsg() {
     this.translate.get(['success!', 'submittingPerformanceData', 'pleaseWait']).subscribe((res: any) => {
       this.successTxt = res['success!'];

@@ -108,6 +108,8 @@ export class EditPersonalDetailsComponent implements OnInit {
 
   countriesLoaded: boolean = false;
   profileLoaded: boolean = false;
+  isHideClubSection: boolean = false;
+
 
   theme: any = localStorage.getItem('theme');
 
@@ -371,6 +373,11 @@ export class EditPersonalDetailsComponent implements OnInit {
       formData.append('user[pre_club_id]', this.currentClubId);
     }
 
+    if (this.isHideClubSection === true) {
+      // formData.append('user[have_no_club]', '1');
+      formData.append('have_no_club', '1');
+    }
+
     // Format and append required fields
     const formattedDateOfBirth = moment(this.dateOfBirth.value).format('YYYY-MM-DD');
     formData.append('user[date_of_birth]', formattedDateOfBirth);
@@ -572,5 +579,10 @@ export class EditPersonalDetailsComponent implements OnInit {
 
   trackByCountryId(index: number, country: any): number {
     return country.id;
+  }
+
+  onNoClubChange(value: boolean) {
+    // alert(value); // true if checked, false if unchecked
+    this.isHideClubSection = value;
   }
 }

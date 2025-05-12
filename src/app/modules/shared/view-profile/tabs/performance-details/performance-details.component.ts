@@ -4,6 +4,7 @@ import { UserService } from '../../../../../services/user.service';
 import { TalentService } from '../../../../../services/talent.service';
 import { MatDialog } from '@angular/material/dialog';
 import { WebPages } from '../../../../../services/webpages.service';
+import { GlobalSettingsService } from '../../../../../services/global-settings.service';
 
 @Component({
   selector: 'view-user-performance-details',
@@ -11,10 +12,12 @@ import { WebPages } from '../../../../../services/webpages.service';
   styleUrl: './performance-details.component.scss'
 })
 export class PerformanceDetailsComponent {
-
+  flagPath: string = 'https://api.socceryou.ch/uploads/logos/';
+  currentThemeMode: any = localStorage.getItem('theme') || 'light';
   isEditing: boolean = false;
   userId: any = 71;
   performances: any = [];
+  performancesManual: any = [];
   editableId: string = "";
   teams: any = [];
   dataTOBeUpdated: any = {
@@ -35,7 +38,8 @@ export class PerformanceDetailsComponent {
     private userService: UserService,
     private talentService: TalentService,
     public dialog: MatDialog,
-    public webPages: WebPages
+    public webPages: WebPages,
+    public globalSettings: GlobalSettingsService
   ) { }
 
   ngOnInit(): void {
@@ -51,6 +55,12 @@ export class PerformanceDetailsComponent {
         this.getUserPerformance(this.userId);
       }
     });
+
+    this.themeChanged();
+
+    this.globalSettings.indexFunctionCall$.subscribe(() => {
+      this.themeChanged(); // Call the function when event is received
+    });
   }
 
   getUserPerformance(userId: any) {
@@ -60,9 +70,11 @@ export class PerformanceDetailsComponent {
         if (response && response.status && response.data && response.data.performanceDetail) {
           this.editableId = "";
           this.performances = response.data.performanceDetail;
+          this.performancesManual = response.data.performanceDetailManual;
           this.isLoading = false;
         } else {
           this.isLoading = false;
+          this.performancesManual = [];
           console.error('Invalid API response structure:', response);
         }
       });
@@ -94,7 +106,7 @@ export class PerformanceDetailsComponent {
 
     // Check if fromDate or toDate is invalid
     if (isNaN(fromDate.getTime()) || isNaN(toDate.getTime())) {
-      return '-'; // Return '-' if either date is invalid
+      return ''; // Return '-' if either date is invalid
     }
 
     let years = toDate.getFullYear() - fromDate.getFullYear();
@@ -134,6 +146,14 @@ export class PerformanceDetailsComponent {
       if (['talent', 'scout', 'club'].includes(role)) {
         this.router.navigate([`/${role}/plans`]);
       }
+    }
+  }
+
+  themeChanged() {
+    let currentTheme = localStorage.getItem('theme');
+    this.currentThemeMode = currentTheme;
+    if (this.currentThemeMode == null || this.currentThemeMode == undefined) {
+      this.currentThemeMode = 'light';
     }
   }
 

@@ -38,8 +38,12 @@ export class AddPerformanceComponent {
   to_date: FormControl = new FormControl(null);
   currentTeamLogo: string = '';
   generalError: string = '';
-
+  noClub: boolean = false;
+  isHideTeamSection: boolean = false;
+  teamName: string = '';
   theme: any = localStorage.getItem('theme');
+  team_country_id: number = 0;
+  countries: any = [];
 
   constructor(
     private toastr: ToastrService,
@@ -71,6 +75,7 @@ export class AddPerformanceComponent {
       this.getToasterMsg();
       // alert(`Language changed to: ${event.lang}`);
     });
+    this.loadCountries();
     this.currentTeamLogo = this.performance.team_club_logo_path;
   }
 
@@ -93,64 +98,130 @@ export class AddPerformanceComponent {
 
 
   onSubmit(myForm: NgForm): void {
+
+
+
+    this.isrequiredField = false;
+
+
+    if (this.isHideTeamSection === true) { 
+      if(!this.team_country_id){
+        console.log('Need to select country please');
+        return;
+      }
+      this.saveManuly(myForm);
+    } else {
+      this.saveDefault(myForm);
+    }
+  }
+
+  saveManuly(myForm: NgForm): void {
+    if (!myForm.value.session) {
+      this.isrequiredField = true;
+      this.toastr.warning(this.formAllFieldsRequired, this.errorTxt);
+      console.log('session is empty');
+      return;
+    }
+
+    
+
+    const loadingToast = this.toastr.info(this.submittingPerformanceData, this.pleaseWait, { disableTimeOut: true });
+    let lang_id = localStorage.getItem('lang_id');
+    // Add currentTeamId to the form values
+    const formData = {
+      ...myForm.value, // Include all form values
+      team_name: this.teamName, // Append the selected team ID
+      from_date: this.from_date.value // Convert FormControl value to string (if necessary)
+        ? moment(this.from_date.value).format('YYYY-MM-DD')
+        : null,
+      to_date: this.to_date.value // Convert FormControl value to string (if necessary)
+        ? moment(this.to_date.value).format('YYYY-MM-DD')
+        : null,
+      lang: lang_id
+    };
+
+    this.talentService.addPerformanceManual(formData).subscribe({
+      next: (response: any) => {
+        // Close loading message
+        this.toastr.clear(loadingToast.toastId);
+
+        // Show success message
+        if (response.message != '' && response.message != undefined) {
+          this.toastr.success(response.message, this.successTxt);
+        } else {
+          this.toastr.success('Performance data submitted successfully!', 'Success');
+        }
+
+        this.dialogRef.close(response.data); // Close the dialog with response data
+      },
+      error: (error: any) => {
+        // Close loading message
+        this.toastr.clear(loadingToast.toastId);
+
+        // Show error message
+        this.toastr.error(this.generalError, this.errorTxt);
+
+        console.error('Error submitting the form:', error);
+      }
+    });
+
+  }
+
+  saveDefault(myForm: NgForm): void {
+    if (!myForm.value.session) {
+      this.isrequiredField = true;
+      this.toastr.warning(this.formAllFieldsRequired, this.errorTxt);
+      console.log('session is empty in default functionality');
+      return;
+    }
     if (!this.currentTeamId) {
       this.isrequiredField = true;
       this.toastr.warning(this.formAllFieldsRequired, this.errorTxt);
       return;
     }
-    if (!myForm.value.session) {
-      this.isrequiredField = true;
-      this.toastr.warning(this.formAllFieldsRequired, this.errorTxt);
-      return;
-    }
+    const loadingToast = this.toastr.info(this.submittingPerformanceData, this.pleaseWait, { disableTimeOut: true });
+    let lang_id = localStorage.getItem('lang_id');
+    // Add currentTeamId to the form values
+    const formData = {
+      ...myForm.value, // Include all form values
+      team_id: this.currentTeamId, // Append the selected team ID
+      from_date: this.from_date.value // Convert FormControl value to string (if necessary)
+        ? moment(this.from_date.value).format('YYYY-MM-DD')
+        : null,
+      to_date: this.to_date.value // Convert FormControl value to string (if necessary)
+        ? moment(this.to_date.value).format('YYYY-MM-DD')
+        : null,
+      lang: lang_id
+    };
 
-    this.isrequiredField = false;
-    // if (myForm.valid) {
+    this.talentService.addPerformance(formData).subscribe({
+      next: (response: any) => {
+        // Close loading message
+        this.toastr.clear(loadingToast.toastId);
 
-      // Show loading message
-      const loadingToast = this.toastr.info(this.submittingPerformanceData, this.pleaseWait, { disableTimeOut: true });
-      let lang_id = localStorage.getItem('lang_id');
-      // Add currentTeamId to the form values
-      const formData = {
-        ...myForm.value, // Include all form values
-        team_id: this.currentTeamId, // Append the selected team ID
-        from_date: this.from_date.value // Convert FormControl value to string (if necessary)
-          ? moment(this.from_date.value).format('YYYY-MM-DD')
-          : null,
-        to_date: this.to_date.value // Convert FormControl value to string (if necessary)
-          ? moment(this.to_date.value).format('YYYY-MM-DD')
-          : null,
-        lang: lang_id
-      };
-
-      this.talentService.addPerformance(formData).subscribe({
-        next: (response: any) => {
-          // Close loading message
-          this.toastr.clear(loadingToast.toastId);
-
-          // Show success message
-          if (response.message != '' && response.message != undefined) {
-            this.toastr.success(response.message, this.successTxt);
-          } else {
-            this.toastr.success('Performance data submitted successfully!', 'Success');
-          }
-
-          this.dialogRef.close(response.data); // Close the dialog with response data
-        },
-        error: (error: any) => {
-          // Close loading message
-          this.toastr.clear(loadingToast.toastId);
-
-          // Show error message
-          this.toastr.error(this.generalError, this.errorTxt);
-
-          console.error('Error submitting the form:', error);
+        // Show success message
+        if (response.message != '' && response.message != undefined) {
+          this.toastr.success(response.message, this.successTxt);
+        } else {
+          this.toastr.success('Performance data submitted successfully!', 'Success');
         }
-      });
-    // } else {
-      // this.toastr.warning(this.formAllFieldsRequired, this.errorTxt);
-    // }
+
+        this.dialogRef.close(response.data); // Close the dialog with response data
+      },
+      error: (error: any) => {
+        // Close loading message
+        this.toastr.clear(loadingToast.toastId);
+
+        // Show error message
+        this.toastr.error(this.generalError, this.errorTxt);
+
+        console.error('Error submitting the form:', error);
+      }
+    });
+
   }
+
+
 
   // Function to handle dynamic fetching of clubs based on search input
   onSearchTeams(): void {
@@ -182,7 +253,7 @@ export class AddPerformanceComponent {
   }
 
   getToasterMsg() {
-    this.translate.get(['success!', 'submittingPerformanceData', 'pleaseWait', 'formAllFieldsRequired', 'error','forgotPassword.generalError']).subscribe((res: any) => {
+    this.translate.get(['success!', 'submittingPerformanceData', 'pleaseWait', 'formAllFieldsRequired', 'error', 'forgotPassword.generalError']).subscribe((res: any) => {
       this.successTxt = res['success!'];
       this.submittingPerformanceData = res['submittingPerformanceData'];
       this.pleaseWait = res['pleaseWait'];
@@ -192,4 +263,28 @@ export class AddPerformanceComponent {
       // this.downloading = res['downloading'];
     });
   }
+
+  onNoClubChange(value: boolean) {
+    // alert(value); // true if checked, false if unchecked
+    this.isHideTeamSection = value;
+  }
+
+  loadCountries(): void {
+
+    let params: any = {};
+    params.lang = localStorage.getItem('lang_id');
+
+    this.talentService.getCountries(params).subscribe(
+      (response: any) => {
+        if (response && response.status) {
+          this.countries = response.data.countries;
+        }
+      },
+      (error: any) => {
+        console.error('Error fetching countries:', error);
+      }
+    );
+  }
+
+
 }

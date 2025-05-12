@@ -940,7 +940,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       'Klubb',
       'Talang',
       'Talent',
-      'Talento'
+      'Talento',
+      'Scout'
     ];
 
     return allowedRoles.includes(userRole);

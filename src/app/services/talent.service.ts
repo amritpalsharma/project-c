@@ -374,6 +374,12 @@ export class TalentService {
     return this.http.post<any>(`${this.apiUrl}player/edit-performance-detail/${performanceId}/${lang_id}`, params, { headers });
   }
 
+  updatePerformanceManual(performanceId: any, params: any): Observable<any> {
+    const headers = this.headers();
+    let lang_id = localStorage.getItem('lang_id');
+    return this.http.post<any>(`${this.apiUrl}player/edit-performance-detail-manual/${performanceId}/${lang_id}`, params, { headers });
+  }
+
   // Update newsletter subscription
   updateNewsletter(params: any): Observable<any> {
     const headers = this.headers();
@@ -399,6 +405,12 @@ export class TalentService {
     return this.http.post<any>(`${this.apiUrl}player/add-performance-detail/${lang_id}`, params, { headers });
   }
 
+  addPerformanceManual(params: any): Observable<any> {
+    const headers = this.headers();
+    let lang_id = localStorage.getItem('lang_id');
+    return this.http.post<any>(`${this.apiUrl}player/add-performance-detail-manual/${lang_id}`, params, { headers });
+  }
+
   deletePerformanceReport(params: any): Observable<any> {
     const headers = this.headers();
     let lang_id = localStorage.getItem('lang_id');
@@ -409,6 +421,13 @@ export class TalentService {
     const headers = this.headers();
 
     return this.http.get<any>(`${this.apiUrl}player/delete-performance-detail/${params}`, { headers });
+  }
+
+  deletePerformanceManual(params: any): Observable<any> {
+    const headers = this.headers();
+    let lang_id = localStorage.getItem('lang_id');
+
+    return this.http.get<any>(`${this.apiUrl}player/delete-performance-detail-manual/${params}/${lang_id}`, { headers });
   }
 
   updateTransfer(transferId: any, params: any): Observable<any> {

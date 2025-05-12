@@ -547,7 +547,8 @@ export class UsersComponent implements OnInit {
       'Klubb',
       'Talang',
       'Talent',
-      'Talento'
+      'Talento',
+      'Scout'
     ];
   
     return allowedRoles.includes(userRole);
