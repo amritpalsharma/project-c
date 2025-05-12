@@ -44,6 +44,7 @@ export class MembershipComponent {
   isdemo: any = false;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   pageTitle: string = '';
+  cancelConfirmationMsg: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -364,7 +365,8 @@ export class MembershipComponent {
       width: '600px',
       data: {
         action: 'delete-confirmation',
-        message: 'Are you sure you want to cancel this subscription? This action cannot be undone.'
+        message: this.cancelConfirmationMsg
+        // message: 'Are you sure you want to cancel this subscription? This action cannot be undone.'
       }
     });
 
@@ -446,8 +448,9 @@ export class MembershipComponent {
     });
   }
   getJsonTranslations() {
-    this.translateService.get(['membership']).subscribe((translations) => {
+    this.translateService.get(['membership','cancelConfirmationMsg']).subscribe((translations) => {
       this.pageTitle = translations['membership'];
+      this.cancelConfirmationMsg = translations['cancelConfirmationMsg'];
       this.titleService.setTitle(this.pageTitle);
       console.log('Title fetch Function Fired');
     })

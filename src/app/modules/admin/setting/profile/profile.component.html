@@ -20,7 +20,7 @@
   </div>
   <div class="card-body">
     <div class="row">
-      <div class="col-lg-4">
+      <div class="col-lg-4" *ngIf="!imageUploaded">
         <div class="setting-media mb-lg-0 mb-4">
           <label for="file-upload" class="custom-file-upload">
             <img src="{{image}}" alt="" />
@@ -40,7 +40,7 @@
         </div>
       </div>
       
-      <!-- <div class="col-lg-4" *ngIf="!image">
+      <div class="col-lg-4" *ngIf="imageUploaded">
         <div class="setting-media mb-lg-0 mb-4">
           <label for="file-upload" class="custom-file-upload">
             <img src="{{image}}" alt="" />
@@ -48,17 +48,17 @@
               {{'delete' | translate}} <br>
               {{'photo' | translate}}
               <br>
-            </span> -->
+            </span>
             <!-- <span class="setting-edit" *ngIf="imageLoading">
               {{'uploading' | translate}} <br> 
               {{ 'image...' | translate }}
               <br>
             </span> -->
-          <!-- </label> -->
+          </label>
           <!-- <input id="file-upload" type="file" class="setting-media-2" style="display: none;"
             (change)="onProfileImageChange($event)" accept="image/*" /> -->
-        <!-- </div>
-      </div> -->
+        </div>
+      </div>
 
       <div class="col-lg-8">
         <div class="row">

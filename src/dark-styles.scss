@@ -2845,3 +2845,7 @@ select {
     color: #072944 !important;
   }
 }
+.dark-theme .form-group .isrequiredField {
+  border: 1px solid red !important;
+  border-color: red !important;
+}

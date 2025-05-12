@@ -30,6 +30,7 @@ export class ProfileComponent {
   error: string | null = null;
   inputFieldType: string = '';
   isReadonly: boolean = true;
+  imageUploaded : boolean = false;
 
   constructor(private userService: UserService, public dialog: MatDialog, private toastr: ToastrService) {
 
@@ -49,6 +50,12 @@ export class ProfileComponent {
         this.zipcode = this.userData.meta.zipcode || '';
         this.image = this.userData.meta.profile_image_path || '../../../assets/images/1.png';
         // this.isLoading = false;
+        if(this.image === '../../../assets/images/1.png' ){
+          this.imageUploaded = false;
+        }
+        else{
+          this.imageUploaded = true;
+        }
 
       } else {
         // this.isLoading = false;
@@ -75,6 +82,7 @@ export class ProfileComponent {
       this.userService.updateAdminImage(formdata).subscribe((response) => {
         if (response && response.status) {
           // this.isLoading = false;
+          this.imageUploaded = true;
           this.imageLoading = false;
           let newImageUrl = environment.url + "uploads/" + response.data.uploaded_fileinfo;
           let localData: any = localStorage.getItem('userData');
@@ -154,15 +162,16 @@ export class ProfileComponent {
     this.userService.deleteProfileImage().subscribe(
       response => {
         if (response.status) {
-          this.image = '';
+          this.image = '../../../assets/images/1.png';
+          this.imageUploaded = false ;
 
           let formdata = new FormData();
           formdata.append("profile_image", this.image);
-          this.imageLoading = true;
+          // this.imageLoading = true;
           this.userService.updateAdminImage(formdata).subscribe((response) => {
             if (response && response.status) {
               // this.isLoading = false;
-              this.imageLoading = false;
+              // this.imageLoading = false;
               let newImageUrl = environment.url + "uploads/" + response.data.uploaded_fileinfo;
               let localData: any = localStorage.getItem('userData');
               localData = JSON.parse(localData);
