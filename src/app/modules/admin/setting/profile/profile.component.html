@@ -20,17 +20,7 @@
   </div>
   <div class="card-body">
     <div class="row">
-      <div class="col-lg-4">
-        <!-- <div class="setting-media">
-              <img src="../../../assets/images/1.png" alt="" />
-              <span class="setting-edit">
-                <br>
-                Click to <br>
-                Change Photo
-                  <br>
-                <input type="file"  class="setting-media-2"/>
-              </span>
-            </div> -->
+      <div class="col-lg-4" *ngIf="!imageUploaded">
         <div class="setting-media mb-lg-0 mb-4">
           <label for="file-upload" class="custom-file-upload">
             <img src="{{image}}" alt="" />
@@ -40,7 +30,7 @@
               <br>
             </span>
             <span class="setting-edit" *ngIf="imageLoading">
-              {{'uploading' | translate}} <br>
+              {{'uploading' | translate}} <br> 
               {{ 'image...' | translate }}
               <br>
             </span>
@@ -49,6 +39,27 @@
             (change)="onProfileImageChange($event)" accept="image/*" />
         </div>
       </div>
+      
+      <div class="col-lg-4" *ngIf="imageUploaded">
+        <div class="setting-media mb-lg-0 mb-4">
+          <label for="file-upload" class="custom-file-upload">
+            <img src="{{image}}" alt="" />
+            <span class="setting-edit" *ngIf="!imageLoading" (click)="deleteProfile()">
+              {{'delete' | translate}} <br>
+              {{'photo' | translate}}
+              <br>
+            </span>
+            <!-- <span class="setting-edit" *ngIf="imageLoading">
+              {{'uploading' | translate}} <br> 
+              {{ 'image...' | translate }}
+              <br>
+            </span> -->
+          </label>
+          <!-- <input id="file-upload" type="file" class="setting-media-2" style="display: none;"
+            (change)="onProfileImageChange($event)" accept="image/*" /> -->
+        </div>
+      </div>
+
       <div class="col-lg-8">
         <div class="row">
           <div class="col-lg-6">

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { UserService } from '../../../services/user.service';
 import { User } from './user.model';
@@ -187,6 +187,19 @@ export class UsersComponent implements OnInit {
   }
   selectedUserIds: number[] = [];
 
+  @ViewChild('masterCheckbox', { static: false }) masterCheckbox!: ElementRef;
+
+  updateMasterCheckboxState() {
+    const masterCheckbox = this.masterCheckbox?.nativeElement;
+    if (!masterCheckbox) return;
+
+    const total = this.users.length;
+    const selected = this.selectedUserIds.length;
+
+    masterCheckbox.indeterminate = selected > 0 && selected < total;
+    masterCheckbox.checked = selected === total;
+  }
+
   onCheckboxChange(user: any) {
     // const index = this.selectedUserIds.indexOf(user.id);
     // if (index === -1) {
@@ -206,6 +219,8 @@ export class UsersComponent implements OnInit {
     } else {
       this.allSelected = false;
     }
+
+    this.updateMasterCheckboxState();
     // console.warn('total records ',this.users.length);
     // console.warn('current selected rows ',this.selectedUserIds);
     // console.warn('-----------------------------------');
