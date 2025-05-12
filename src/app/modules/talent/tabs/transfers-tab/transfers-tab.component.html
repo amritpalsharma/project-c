@@ -194,7 +194,7 @@
             </div>
             <div class="col-sm-6 moving_logo">
               <div class="moving-team-logo d-flex gap-2">
-                <img src="{{transfer.team_logo_path_to}}" alt="">
+                <img *ngIf="transfer.team_logo_path_to != 'null'" src="{{transfer.team_logo_path_to}}" alt="">
 
                 <div class="moving-team_name">
                   <h6 class="details_2">{{'team' | translate}}</h6>

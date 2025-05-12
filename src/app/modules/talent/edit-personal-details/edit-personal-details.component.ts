@@ -374,8 +374,8 @@ export class EditPersonalDetailsComponent implements OnInit {
     }
 
     if (this.isHideClubSection === true) {
-      // formData.append('user[have_no_club]', '1');
-      formData.append('have_no_club', '1');
+      formData.append('user[have_no_club]', '1');
+      // formData.append('have_no_club', '1');
     }
 
     // Format and append required fields
