@@ -9,6 +9,7 @@ import { DeletePopupComponent } from '../../delete-popup/delete-popup.component'
 import { AddTransferComponent } from './add-transfer/add-transfer.component';
 import { UnverifiedUserComponent } from '../../../shared/unverified-user/unverified-user.component';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
+import { GlobalSettingsService } from '../../../../services/global-settings.service';
 
 @Component({
   selector: 'talent-transfers-tab',
@@ -16,6 +17,7 @@ import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
   styleUrl: './transfers-tab.component.scss',
 })
 export class TransfersTabComponent {
+  baseUrl: string = 'https://api.socceryou.ch/uploads/logos/';
   defaultDate: Date = new Date(2023, 4, 21); // May 21, 2023
   userId: any = '';
   userTransfers: any = [];
@@ -27,17 +29,19 @@ export class TransfersTabComponent {
     session: "",
     date_of_transfer: ""
   }
+  theme: string = localStorage.getItem('theme') || 'light';
   seasons: any = [];
   @Input() isPremium: any;
   @Input() isUserVerified: any;
-  isLoading:boolean=true;
+  isLoading: boolean = true;
 
   constructor(
     private route: ActivatedRoute,
     private talentService: TalentService,
     private router: Router,
     public dialog: MatDialog,
-    private translate: TranslateService
+    private translate: TranslateService,
+    public globalSettings: GlobalSettingsService
   ) { }
 
   ngOnInit(): void {
@@ -50,6 +54,12 @@ export class TransfersTabComponent {
     });
     this.getSeasonsOptions();
     this.getAllTeams();
+
+    this.themeChanged();
+
+    this.globalSettings.indexFunctionCall$.subscribe(() => {
+      this.themeChanged(); // Call the function when event is received
+    });
   }
 
   getSeasonsOptions() {
@@ -226,5 +236,13 @@ export class TransfersTabComponent {
         }
       }
     });
+  }
+
+  themeChanged() {
+    let currentTheme = localStorage.getItem('theme') || 'light';
+    this.theme = currentTheme;
+    if (this.theme == null || this.theme == undefined) {
+      this.theme = 'light';
+    }
   }
 }

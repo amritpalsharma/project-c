@@ -96,7 +96,7 @@ export class AddTransferComponent {
           ...formData, // Spread the existing formData
           team_to_manual: this.team_to_manual, // Replace team_to with team_to_manual
           team_to_m_country_id: this.team_to_m_country_id, // Replace team_to with team_to_manual
-          team_to: undefined, // Remove the old team_to key if needed
+         // team_to: undefined, // Remove the old team_to key if needed
           have_no_club_to:true
         };
       }
@@ -106,7 +106,7 @@ export class AddTransferComponent {
           ...formData, // Spread the existing formData
           team_from_manual: this.team_from_manual, // Replace team_to with team_to_manual
           team_from_m_country_id: this.team_from_m_country_id, // Replace team_to with team_to_manual
-          team_to: undefined, // Remove the old team_to key if needed
+        //  team_to: undefined, // Remove the old team_to key if needed
           have_no_club_from:true
         };
       }
@@ -204,10 +204,12 @@ export class AddTransferComponent {
   }
 
   onNoMoveToTeam(value: boolean) {
+    console.log('onNoMoveToTeam',value);
     this.noMoveToTeam = value;
   }
 
   onNoMoveFromTeam(value: boolean) {
+    console.log('onNoMoveFromTeam',value);
     this.noMoveFromTeam = value;
   }
 
