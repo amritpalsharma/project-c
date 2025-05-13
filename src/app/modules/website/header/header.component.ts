@@ -716,7 +716,7 @@ export class HeaderComponent implements OnInit {
   isValidated() {
     const firstNameValid = /^[a-zA-Z\s]{2,50}$/.test(this.firstName);
     const lastNameValid = /^[a-zA-Z\s]{2,50}$/.test(this.lastName);
-    const usernameValid = /^[a-zA-Z0-9._-]{3,20}$/.test(this.username);
+    // const usernameValid = /^[a-zA-Z0-9._-]{3,20}$/.test(this.username);
     const emailValid = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(this.email);
     const passwordValid = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/.test(this.password);
     const confirmPasswordValid = this.password === this.confirmPassword;
@@ -725,7 +725,7 @@ export class HeaderComponent implements OnInit {
 
     if (!firstNameValid) return this.firstNameRequired;
     if (!lastNameValid) return this.lastNameRequired;
-    if (!usernameValid) return this.usernameRequired;
+    // if (!usernameValid) return this.usernameRequired;
     if (!emailValid) return this.emailRequiredError;
     if (!passwordValid) return this.passwordRequiredError;
     if (!confirmPasswordValid) return this.confirmPasswordError;
@@ -794,7 +794,7 @@ export class HeaderComponent implements OnInit {
     const registrationData = {
       first_name: this.firstName,
       last_name: this.lastName,
-      username: this.username,
+      // username: this.username,
       role: this.role,
       email: this.email,
       newsletter: this.newsletter,
@@ -869,11 +869,11 @@ export class HeaderComponent implements OnInit {
             errorMessage = response.message;
           }
           this.duplicateCreditionalsError = '';
-          if (response.message.username != '' && response.message.username != undefined) {
-            this.duplicateCreditionals = true;
-            this.toastr.error(response.message.username);
-            //this.duplicateCreditionalsError += response.message.username + '<br>';
-          }
+          // if (response.message.username != '' && response.message.username != undefined) {
+          //   this.duplicateCreditionals = true;
+          //   this.toastr.error(response.message.username);
+          //   //this.duplicateCreditionalsError += response.message.username + '<br>';
+          // }
           if (response.message.email != '' && response.message.email != undefined) {
             this.duplicateCreditionals = true;
             this.toastr.error(response.message.email);
@@ -891,9 +891,9 @@ export class HeaderComponent implements OnInit {
         let errorMessage = 'An error occurred during registration. Please try again.';
         if (error && error.status === 400 && error.error && error.error.data) {
           const errorData = error.error.data;
-          if (errorData.username) {
-            this.registerForm.controls['username'].setErrors({ usernameExists: true });
-          }
+          // if (errorData.username) {
+          //   this.registerForm.controls['username'].setErrors({ usernameExists: true });
+          // }
           if (errorData.email) {
             this.registerForm.controls['email'].setErrors({ emailExists: true });
           }
@@ -910,9 +910,9 @@ export class HeaderComponent implements OnInit {
     console.error('Registration failed:', error);
     if (error && error.status === 400 && error.error && error.error.data) {
       const errorData = error.error.data;
-      if (errorData.username) {
-        this.registerForm.controls['username'].setErrors({ usernameExists: true });
-      }
+      // if (errorData.username) {
+      //   this.registerForm.controls['username'].setErrors({ usernameExists: true });
+      // }
       if (errorData.email) {
         this.registerForm.controls['email'].setErrors({ emailExists: true });
       }
@@ -929,7 +929,7 @@ export class HeaderComponent implements OnInit {
     return [
       this.firstName,
       this.lastName,
-      this.username,
+      // this.username,
       this.email,
       this.password,
       this.confirmPassword,
