@@ -225,7 +225,8 @@
                 <img *ngIf="transfer.country_flag_to_namual" src="{{baseUrl + transfer.country_flag_to_namual}}">
                 <div class="moving-team_name">
                   <h6 class="details_2">{{'country' | translate}}</h6>
-                  <h5 class="details-1"> {{transfer.country_name_to}} </h5>
+                  <h5 class="details-1" *ngIf="transfer.country_name_to"> {{transfer.country_name_to}} </h5>
+                  <h5 class="details-1" *ngIf="transfer.country_name_to_manual"> {{transfer.country_name_to_manual}} </h5>
                 </div>
               </div>
             </div>
@@ -264,7 +265,8 @@
                 <img *ngIf="transfer.team_from_manual" src="{{baseUrl + transfer.country_flag_from_namual}}">
                 <div class="moving-team_name">
                   <h6 class="details_2">{{'country' | translate}}</h6>
-                  <h5 class="details-1"> {{transfer.country_name_from}} </h5>
+                  <h5 class="details-1" *ngIf="transfer.country_name_from"> {{transfer.country_name_from}} </h5>
+                  <h5 class="details-1" *ngIf="transfer.country_name_from_manual"> {{transfer.country_name_from_manual}} </h5>
                   <!-- <h5 class="details-1"> {{transfer.country_name_from}} </h5> -->
                 </div>
               </div>

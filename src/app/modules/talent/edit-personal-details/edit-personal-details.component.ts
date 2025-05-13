@@ -295,7 +295,10 @@ export class EditPersonalDetailsComponent implements OnInit {
     if (this.userData) {
       this.user = this.userData;
       console.info('this.user', this.user)
-      if (this.user.meta) {
+      if (this.user.meta) { 
+        if(this.user.meta.have_no_club == '1'){
+          this.isHideClubSection = true;
+        }
         // console.info('this.user.meta',this.user.meta)
         this.dateOfBirth = this.user.meta.date_of_birth || '';
         this.height = this.user.meta.height || 0;
@@ -373,10 +376,7 @@ export class EditPersonalDetailsComponent implements OnInit {
       formData.append('user[pre_club_id]', this.currentClubId);
     }
 
-    if (this.isHideClubSection === true) {
-      formData.append('user[have_no_club]', '1');
-      // formData.append('have_no_club', '1');
-    }
+    
 
     // Format and append required fields
     const formattedDateOfBirth = moment(this.dateOfBirth.value).format('YYYY-MM-DD');
@@ -407,6 +407,13 @@ export class EditPersonalDetailsComponent implements OnInit {
     if (this.birthCountry) formData.append('user[birth_country]', this.birthCountry);
     let lang = localStorage.getItem('lang_id') + '';
     formData.append('lang', lang);
+
+    if (this.isHideClubSection === true) {
+      formData.append('user[have_no_club]', '1');
+      formData.append('user[current_team]', '0');
+    }else{
+      formData.append('user[have_no_club]', '0');
+    }
 
     // API call for submitting form data
     this.talentService.updateUserProfile(formData).subscribe(

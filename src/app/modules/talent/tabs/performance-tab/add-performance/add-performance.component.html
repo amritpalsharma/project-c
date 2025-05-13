@@ -21,7 +21,9 @@
       <form class="general_form popup__body pt-3" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
         <div class="overflow-card">
           <div class="row">
-            <div [ngClass]="{'col-sm-6':isHideTeamSection,'col-sm-12':!isHideTeamSection}">
+            <!-- <p>isHideTeamSection {{isHideTeamSection}}</p> -->
+            <!-- [ngClass]="{'col-sm-6':isHideTeamSection,'col-sm-12':!isHideTeamSection}" -->
+            <div >
               <div class="checkbox-wrap">
                 <div class="form-check checkbox mb-3">
                   <input class="form-check-input mt-0 checkbox" type="checkbox" value="" id="flexCheckDefault995"
@@ -71,7 +73,7 @@
                 [ngClass]="{'isrequiredField': isrequiredField}" />
 
             </div>
-            <div class="form-group col-lg-6">
+            <div class="form-group col-lg-6" *ngIf="!isHideTeamSection">
               <label for="matches" class="form-label">{{'matches' | translate}}</label>
               <input type="number" id="matches" name="matches" [(ngModel)]="performance.matches">
             </div>
@@ -101,8 +103,12 @@
           </div>
 
           <div class="row mb-5">
-            <div class="form-group col-lg-10">
-              <div class="col-lg-9 p-0">
+            <div class="form-group col-lg-6" *ngIf="isHideTeamSection">
+              <label for="matches" class="form-label">{{'matches' | translate}}</label>
+              <input type="number" id="matches" name="matches" [(ngModel)]="performance.matches">
+            </div>
+            <div class="form-group col-lg-6">
+              <div class="col-lg-12 p-0">
                 <label for="form-date" class="form-label">{{'form-upto' | translate}}</label>
                 <div class="date-imputs d-flex align-items-center">
                   <div class="d-flex align-items-center justify-content-center date_field">

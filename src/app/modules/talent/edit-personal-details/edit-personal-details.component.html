@@ -21,6 +21,19 @@
   </div>
   <form class="popup__body pt-3" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
     <div class="overflow-card">
+      <!-- I DOn't Club Field -->
+       <div class="row">
+        <div class="col-sm-12">
+          <div class="form-check checkbox mb-3">
+            <input class="form-check-input mt-0" type="checkbox" value="" id="flexCheckDefault-5" [(ngModel)]="isHideClubSection"
+              name="noClub" (ngModelChange)="onNoClubChange($event)" />
+            <label class="form-check-label fs-14 font-w400 text-light" for="flexCheckDefault-5">
+              {{ 'noClubTxt' | translate }}
+            </label>
+          </div>
+        </div>
+      </div>
+      <!-- I DOn't Club Field -->
       <div class="row">
         <!-- First Name -->
         <div class="form-group col-lg-6">
@@ -34,17 +47,7 @@
           <input type="text" id="last_name" name="last_name" [(ngModel)]="lastName" #lastNameField="ngModel" />
         </div>
       </div>
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="form-check checkbox mb-3">
-            <input class="form-check-input mt-0" type="checkbox" value="" id="flexCheckDefault-5" [(ngModel)]="isHideClubSection"
-              name="noClub" (ngModelChange)="onNoClubChange($event)" />
-            <label class="form-check-label fs-14 font-w400 text-light" for="flexCheckDefault-5">
-              {{ 'noClubTxt' | translate }}
-            </label>
-          </div>
-        </div>
-      </div>
+      
       <div class="row" *ngIf="!isHideClubSection">
 
         <!-- Current Club -->
