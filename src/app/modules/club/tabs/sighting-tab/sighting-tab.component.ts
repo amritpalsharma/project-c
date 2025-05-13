@@ -25,7 +25,7 @@ export class SightingTabComponent {
   userId: any = '';
   @Input() isPremium: any;
   @Input() isUserVerified: any;
-  displayedColumns: string[] = ['#', 'Event', 'Manager Name', 'Place', 'Date', 'Time', 'View', 'Remove'];
+  displayedColumns: string[] = ['#', 'Event', 'Manager Name', 'Place', 'Date', 'Time', 'Status', 'View', 'Remove'];
   sightings: any = [];
   sightingData: any = {};
   totalSightings: any = '';
