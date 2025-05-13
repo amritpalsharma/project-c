@@ -838,6 +838,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
     return age;
   }
 
+  getVideoDuration(videoElement: HTMLVideoElement) {
+    videoElement.crossOrigin = 'anonymous';
+    let number = this.formatDuration(videoElement.duration); // output like this 0:54
+    // if (typeof number === 'number' && !isNaN(number)) {
+    return number;
+    // }
+    // return '';
+  }
+
   switchTab(tab: string) {
     if (!this.isPremium) {
       this.activeTab = 'profile';

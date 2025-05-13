@@ -566,7 +566,8 @@
                         </div>
                         <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'age' | translate}}</h6>
-                          <h5 class="title-1" *ngIf="calculateAge(user?.meta?.date_of_birth) > 0">{{calculateAge(user?.meta?.date_of_birth)}}</h5>
+                          <h5 class="title-1" *ngIf="calculateAge(user?.meta?.date_of_birth) > 0">
+                            {{calculateAge(user?.meta?.date_of_birth)}}</h5>
                         </div>
                       </div>
                     </div>
@@ -1392,20 +1393,22 @@
 
                   </div>
                   <div class="d-flex w-100 m-auto image_gallery-box mt-2">
-                    <div class="col-lg-4 gallery_images " *ngFor="let video of highlights?.videos">
+                    <div class="col-lg-4 gallery_images " *ngFor="let video of highlights?.videos; let i = index;">
                       <!-- <video [src]="highlights.file_path + video.file_name" autoplay></video> -->
                       <div class="position-absolute">
-                        <a [href]="highlights.file_path + video.file_name" data-fancybox="gallery1" [attr.data-caption]="">
+                        <a [href]="highlights.file_path + video.file_name" data-fancybox="gallery1"
+                          [attr.data-caption]="">
                           <!-- <video class="img-fluid">
                             <source [src]="highlights.file_path + video.file_name" type="video/mp4">
                             {{ 'galleryText' | translate }}
                           </video> -->
                           <video [src]="highlights.file_path + video.file_name" #videoPlayer
-                          (loadeddata)="setDurationAndThumbnail(videoPlayer)" [attr.autoplay]="false"></video>
+                            (loadeddata)="setDurationAndThumbnail(videoPlayer,i)" [attr.autoplay]="false"></video>
                         </a>
                         <!-- <video [src]="highlights.file_path + video.file_name" #videoPlayer
                           (loadeddata)="setDurationAndThumbnail(videoPlayer)" [attr.autoplay]="false"></video> -->
-                        <span class="duration">{{duration}}</span>
+                        <span class="duration" *ngIf="getVideoDuration(videoPlayer)">{{getVideoDuration(videoPlayer)
+                          }}</span>
                       </div>
                     </div>
                   </div>
@@ -1449,16 +1452,30 @@
               </div>
               <div class="d-flex w-100 m-auto image_gallery-box mt-2">
                 <div class="col-lg-4 gallery_images" *ngFor="let image of highlights?.images">
-                  <img [src]="highlights.file_path + image.file_name" alt="">
+                  <!-- <img [src]="highlights.file_path + image.file_name" alt=""> -->
+                  <a [href]="highlights.file_path + image.file_name" data-fancybox="gallery" [attr.data-caption]="">
+                     <img [src]="highlights.file_path + image.file_name" alt="">
+                    </a>
                 </div>
 
               </div>
               <div class="d-flex w-100 m-auto image_gallery-box mt-2">
-                <div class="col-lg-4 gallery_images position-relative" *ngFor="let video of highlights?.videos">
-                  <video [src]="highlights.file_path + video.file_name" #videoPlayer
-                    (loadeddata)="setDurationAndThumbnail(videoPlayer)"></video>
-                  <span class="duration">{{duration}}</span>
+                <div class="col-lg-4 gallery_images position-relative"
+                  *ngFor="let video of highlights?.videos; let j = index">
+                  <!-- <video [src]="highlights.file_path + video.file_name" #videoPlayer
+                    (loadeddata)="setDurationAndThumbnail(videoPlayer, j)"></video> -->
+
+                  <a [href]="highlights.file_path + video.file_name" data-fancybox="gallery" [attr.data-caption]="">
+                    <video [src]="highlights.file_path + video.file_name" #videoPlayer
+                      (loadeddata)="setDurationAndThumbnail(videoPlayer, j)" alt="Video Gallery"></video>
+                  </a>
+                  <span class="duration" *ngIf="getVideoDuration(videoPlayer) != 'NaN:NaN'">{{getVideoDuration(videoPlayer) }}</span>
+                  <!-- <span class="duration">{{duration}}</span> -->
                 </div>
+
+                <pre>
+                  <!-- {{videoDurations}} -->
+                </pre>
               </div>
               <div class="image-icon" *ngIf="!highlights?.videos || !highlights?.images">
 

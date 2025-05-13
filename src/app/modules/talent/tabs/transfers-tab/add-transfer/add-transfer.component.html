@@ -25,7 +25,7 @@
         <div class="checkbox-wrapper">
           <div class="form-check checkbox mb-3">
             <label class="form-check-label form-label" for="flexCheckDefault995">
-              {{ 'noClubTxt' | translate }}
+              {{ 'noTeamAndClub' | translate }}
             </label>
             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault995" [(ngModel)]="noMoveToTeam"
               name="noClub" (ngModelChange)="onNoMoveToTeam($event)" />
@@ -35,7 +35,7 @@
         <div class="form-group">
           <label *ngIf="!noMoveToTeam" for="team_to" class="form-label">{{'team' | translate}}</label>
           <div class="default-func" *ngIf="!noMoveToTeam">
-            <input type="text" id="team_to" name="team_to" placeholder="{{'typeToSearch' | translate}}"
+            <input type="text" id="team_to" name="team_to" placeholder="{{'enterAndSearch' | translate}}"
               [(ngModel)]="teamTo" #teamTosField="ngModel" (input)="onSearchTeams()" autocomplete="off" required />
             <!-- Club suggestions -->
             <ul *ngIf="filterTeams.length > 0 && teamTo.length >= 2" class="suggestions-list">
@@ -47,7 +47,7 @@
           <div class="row" *ngIf="noMoveToTeam">
             <div class="col-sm-6">
               <label for="team_to" class="form-label">{{'team' | translate}}</label>
-              <input type="text" id="team_to" name="team_to_manual" placeholder="{{'typeToSearch' | translate}}"
+              <input type="text" id="team_to" name="team_to_manual" placeholder="{{'noTeamAndClubPlaceHolder' | translate}}"
                 [(ngModel)]="team_to_manual" required />
             </div>
 
@@ -72,14 +72,14 @@
           <input class="form-check-input" type="checkbox" value="" id="onNoMoveFromTeam" [(ngModel)]="noMoveFromTeam" name="noClub"
             (ngModelChange)="onNoMoveFromTeam($event)" />
           <label class="form-check-label" for="onNoMoveFromTeam">
-            {{ 'noClubTxt' | translate }}
+            {{ 'noTeamAndClub' | translate }}
           </label>
         </div>
         <div class="form-group">
           <label *ngIf="!noMoveFromTeam" for="team_from" class="form-label">{{'team' | translate}}</label>
 
           <div class="old-func" *ngIf="!noMoveFromTeam">
-            <input type="text" id="team_from" name="team_from" placeholder="{{'typeToSearch' | translate}}"
+            <input type="text" id="team_from" name="team_from" placeholder="{{'enterAndSearch' | translate}}"
               [(ngModel)]="teamFrom" #teamFromsField="ngModel" (input)="onSearchTeamsFrom()" autocomplete="off"
               required />
 
@@ -94,7 +94,7 @@
           <div class="row" *ngIf="noMoveFromTeam">
             <div class="col-sm-6">
               <label for="team_from" class="form-label">{{'team' | translate}}</label>
-              <input type="text" id="team_to" name="team_to_manual" placeholder="{{'typeToSearch' | translate}}"
+              <input type="text" id="team_to" name="team_to_manual" placeholder="{{'noTeamAndClubPlaceHolder' | translate}}"
                 [(ngModel)]="team_from_manual" required />
             </div>
 

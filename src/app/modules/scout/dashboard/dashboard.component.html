@@ -678,7 +678,8 @@
                       <video [src]="highlights.file_path + video.file_name" #videoPlayer
                         (loadeddata)="setDurationAndThumbnail(videoPlayer)" alt="Video Gallery"></video>
                     </a>
-                    <span class="duration">{{duration}}</span>
+                    <!-- <span class="duration">{{duration}}</span> -->
+                     <span class="duration" *ngIf-="getVideoDuration(videoPlayer) != 'NaN:NaN'">{{getVideoDuration(videoPlayer)}}</span>
                     <!-- <video [src]="highlights.file_path + video.file_name" (click)="openImage(j, 'video')" autoplay></video> -->
                   </div>
                 </div>

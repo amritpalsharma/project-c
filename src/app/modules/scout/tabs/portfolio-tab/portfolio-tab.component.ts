@@ -24,6 +24,7 @@ export interface DialogData {
 export class PortfolioTabComponent {
   readonly animal = signal('');
   readonly name = model('');
+  baseUrl:string='https://api.socceryou.ch/uploads/';
 
   constructor(
     private route: ActivatedRoute,

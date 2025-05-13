@@ -933,7 +933,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(DeletePopupComponent, {
       width: '600px',
       data: {
-        type2: type, 
+        type2: type,
       }
     });
 
@@ -978,6 +978,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.scoutService.getTeams().subscribe((data) => {
       this.teams = data;
     });
+  }
+
+  getVideoDuration(videoElement: HTMLVideoElement) {
+    videoElement.crossOrigin = 'anonymous';
+    let number = this.formatDuration(videoElement.duration); // output like this 0:54
+    // if (typeof number === 'number' && !isNaN(number)) {
+    return number;
+    // }
+    // return '';
   }
 
   calculateAge(dob: string | Date): number {
