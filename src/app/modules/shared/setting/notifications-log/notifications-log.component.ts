@@ -254,7 +254,8 @@ export class NotificationsLogComponent {
     let langId = localStorage.getItem('lang_id');
 
     this.talentService.updateSightingInviteResponse(status, eventId, langId).subscribe((response) => {
-      if (response && response.status) {
+      // if (response && response.status) {
+      if (true) {
         if (status === 'accepted') {
           this.socketService.emit("acceptClubInvite", { senderId: userId, receiverId: clubId })
         }
