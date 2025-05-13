@@ -126,6 +126,7 @@
         font-size: 16px;
         font-weight: 400;
         margin-bottom: 10px;
+        word-break: break-word;
       }
       .team-logo-img img {
         width: 72px;
@@ -282,6 +283,7 @@ pointer-events: none;
     font-size: 16px;
     font-weight: 400;
     margin-bottom: 10px;
+    word-break: break-word;
   }
   .team-logo-img img {
     width: 70px;
@@ -317,6 +319,18 @@ tr.table_underline {
 }
 table td {
     padding-right: 6px;
+}
+
+@media (min-width: 992px) {
+    .underline_gap td {
+        width: calc(100% / 6);
+    }
+    .edit-gap {
+        padding-right: 0;
+    }
+    .details-1 {
+        padding-right: 8px;
+    }
 }
 
 @media (max-width: 991px) {
