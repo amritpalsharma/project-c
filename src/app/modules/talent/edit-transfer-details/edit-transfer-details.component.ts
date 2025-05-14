@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ChangeDetectorRef } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TalentService } from '../../../services/talent.service';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
@@ -34,9 +34,11 @@ export class EditTransferDetailsComponent {
   Processing: string = '';
   successTxt: string = '';
   requiredFieldsMessage: string = '';
+  isLoadingModel: boolean = true;
 
   constructor(
     private toastr: ToastrService,
+    private cdr: ChangeDetectorRef,
     public dialogRef: MatDialogRef<EditTransferDetailsComponent>,
     private talentService: TalentService,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -44,7 +46,7 @@ export class EditTransferDetailsComponent {
     public webPages: WebPages,
   ) {
     this.loadCountries();
-   }
+  }
 
   theme: any = localStorage.getItem('theme');
   countries: any = [];
@@ -76,8 +78,12 @@ export class EditTransferDetailsComponent {
     );
     this.date_of_transfer.setValue(this.transfer.date_of_transfer ? new Date(this.transfer.date_of_transfer) : null);
     console.log('transfer', this.transfer)
-    this.teamTo = this.transfer.team_name_to + ' - ' + this.transfer.team_type_to; // Set the selected team's name to the input
-    this.teamFrom = this.transfer.team_name_from + ' - ' + this.transfer.team_type_from; // Set the selected team's name to the input
+    if (this.transfer.team_name_to) {
+      this.teamTo = this.transfer.team_name_to + ' - ' + this.transfer.team_type_to; // Set the selected team's name to the input
+    }
+    if (this.transfer.team_name_from) {
+      this.teamFrom = this.transfer.team_name_from + ' - ' + this.transfer.team_type_from; // Set the selected team's name to the input
+    }
 
     this.teamToId = this.transfer.team_to;
     this.teamFromId = this.transfer.team_from;
@@ -85,6 +91,17 @@ export class EditTransferDetailsComponent {
     this.webPages.languageId$.subscribe((data) => {
       this.getJsonTranslations();
     });
+    // if (this.transfer.team_to_manual != '' && !this.transfer.team_to && this.transfer.team_from_manual != '' && !this.transfer.team_from) {
+    //   // this.is_team_to_manual = false;
+    //   this.onNoMoveFromTeam(true);
+    setTimeout(() => {
+      //     this.onNoMoveToTeam(true);
+      //     // this.is_team_to_manual = true;
+      //     // this.cdr.detectChanges();
+      this.isLoadingModel = false;
+    }, 1500);
+    // }
+
   }
 
   onCancel(): void {
@@ -223,6 +240,18 @@ export class EditTransferDetailsComponent {
         console.error('Error fetching countries:', error);
       }
     );
+  }
+
+  onNoMoveToTeam(value: boolean) {
+    this.is_team_to_manual = value;
+  }
+
+  onNoMoveFromTeam(value: boolean) {
+    this.is_team_from_manual = value;
+  }
+
+  ngAfterViewChecked() {
+    // this.cdr.detectChanges();
   }
 
 

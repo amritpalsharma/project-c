@@ -17,22 +17,42 @@
 
   </div>
 
-  <form class="transfer_box popup__body pt-3" (ngSubmit)="onSubmit(transferForm)" #transferForm="ngForm">
+  <form class="transfer_box popup__body pt-3" (ngSubmit)="onSubmit(transferForm)" #transferForm="ngForm" >
     <div class="overflow-card">
       <div class="row mb-4">
-        <div class="form-group moving_select" [ngClass]="{'col-lg-12':is_team_to_manual, 'col-lg-6':!is_team_to_manual}">
-          <h2>{{'moveTo' | translate}}</h2>
+        <div class="checkbox_and_label col-sm-12" [ngClass]="{'col-lg-12':!is_team_to_manual && !is_team_from_manual}">
+          <div class="label form-group moving_select">
+            <h2>{{'moveTo' | translate}}</h2>
+          </div>
+          <div class="form-check checkbox mb-3">
+            <input class="form-check-input" type="checkbox" value="" id="onNoMoveToTeam"
+              [(ngModel)]="is_team_to_manual" name="noClub" (ngModelChange)="onNoMoveToTeam($event)" />
+            <label class="form-check-label" for="onNoMoveToTeam">
+              {{ 'noTeamAndClub' | translate }}
+            </label>
+          </div>
+        </div>
+        <div class="form-group moving_select"
+          [ngClass]="{'col-lg-12':is_team_to_manual, 'col-lg-6':!is_team_to_manual}">
+          <!-- <h2>{{'moveTo' | translate}}</h2>
+          <div class="form-check checkbox mb-3">
+            <input class="form-check-input" type="checkbox" value="" id="onNoMoveFromTeam"
+              [(ngModel)]="is_team_to_manual" name="noClub" (ngModelChange)="onNoMoveToTeam($event)" />
+            <label class="form-check-label" for="onNoMoveFromTeam">
+              {{ 'noTeamAndClub' | translate }}
+            </label>
+          </div> -->
           <!-- New Functionality When Team Not Registred -->
           <div class="new-fun row" *ngIf="is_team_to_manual">
             <div class="col-sm-6">
-              <label for="team_to" class="form-label">{{'team' | translate}}</label>
-              <input type="text" id="team_to" name="team_to_manual" placeholder="{{'typeToSearch' | translate}}"
+              <label for="team_to_manual" class="form-label">{{'team' | translate}}</label>
+              <input type="text" id="team_to_manual" name="team_to_manual" placeholder="{{'typeToSearch' | translate}}"
                 [(ngModel)]="team_to_manual" required />
             </div>
 
             <div class="col-sm-6">
-              <label for="team_country_id" class="form-label">{{'country' | translate}}</label>
-              <select class="form-select" id="team_country_id" name="team_country_id"
+              <label for="team_to_m_country_id" class="form-label">{{'country' | translate}}</label>
+              <select class="form-select" id="team_to_m_country_id" name="team_to_m_country_id"
                 [(ngModel)]="team_to_m_country_id">
                 <option value="" [ngValue]="null">{{'select' | translate}}</option>
                 <option *ngFor="let country of countries" [ngValue]="country.id">
@@ -55,8 +75,21 @@
           </div>
 
         </div>
-        <div class="form-group moving_select " [ngClass]="{'col-lg-12':is_team_from_manual, 'col-lg-6':!is_team_from_manual}">
-          <h2>{{'movingFrom' | translate}}</h2>
+        <div class="checkbox_and_label col-sm-12">
+          <div class="label form-group moving_select">
+            <h2>{{'movingFrom' | translate}}</h2>
+          </div>
+          <div class="form-check checkbox mb-3">
+            <input class="form-check-input" type="checkbox" value="" id="onNoMoveFromTeam"
+              [(ngModel)]="is_team_from_manual" name="noClub" (ngModelChange)="onNoMoveFromTeam($event)" />
+            <label class="form-check-label" for="onNoMoveFromTeam">
+              {{ 'noTeamAndClub' | translate }}
+            </label>
+          </div>
+        </div>
+        <div class="form-group moving_select "
+          [ngClass]="{'col-lg-12':is_team_from_manual, 'col-lg-6':!is_team_from_manual}">
+
           <!-- old Functionality -->
           <div class="old-fun" *ngIf="!is_team_from_manual">
             <label for="team_from" class="form-label">{{'team' | translate}}</label>
@@ -74,16 +107,16 @@
           <!-- New Functionality -->
           <div class="new-fun row" *ngIf="is_team_from_manual">
             <div class="col-sm-6">
-              <label for="team_from" class="form-label">{{'team' | translate}}</label>
-              <input type="text" id="team_to" name="team_to_manual" placeholder="{{'typeToSearch' | translate}}"
+              <label for="team_from_manual" class="form-label">{{'team' | translate}}</label>
+              <input type="text" id="team_from_manual" name="team_from_manual" placeholder="{{'typeToSearch' | translate}}"
                 [(ngModel)]="team_from_manual" required />
             </div>
 
             <div class="col-sm-6">
-              <label class="form-label fs-14 font-w400 text-light" for="team_country_id">
+              <label class="form-label fs-14 font-w400 text-light" for="team_from_m_country_id">
                 {{ 'country' | translate }}
               </label>
-              <select class="form-select" id="team_country_id" name="team_country_id"
+              <select class="form-select" id="team_from_m_country_id" name="team_from_m_country_id"
                 [(ngModel)]="team_from_m_country_id">
                 <option value="" [ngValue]="null">{{'select' | translate}}</option>
                 <option *ngFor="let country of countries" [ngValue]="country.id">
