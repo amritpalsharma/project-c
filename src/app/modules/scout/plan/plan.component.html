@@ -59,7 +59,7 @@
                   <div class="col-lg-12">
                     <!-- Old -->
                     <!-- [disabled]="( premiumPlans?.package_name == premium?.package_name )" -->
-                    <button class="choose-plan-btn" [disabled]="((premiumPlans?.active_interval=='monthly' && !premiumPlans.isYearly) || premiumPlans?.active_interval=='yearly' && premiumPlans.isYearly)"
+                    <button class="choose-plan-btn" [disabled]="((premiumPlans?.active_interval=='monthly' && !premiumPlans.isYearly) || (premiumPlans?.active_interval=='yearly'))"
                       (click)="openCouponDialog(premiumPlans.isYearly ? premiumPlans.year_package_id : premiumPlans.month_package_id)">
                       {{'choosePlan' | translate}}
                     </button>

@@ -49,6 +49,8 @@ export class EditHighlightsComponent {
     this.videos = this.data.videos || [];
     this.url = this.data.url || '';
 
+    console.log(this.videos, this.data);
+
     // Preselect images that are already featured
     this.images.forEach((image: any) => {
       if (image.is_featured != 0) {

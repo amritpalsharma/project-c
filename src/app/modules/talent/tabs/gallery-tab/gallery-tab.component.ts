@@ -28,6 +28,8 @@ export class GalleryTabComponent {
   @Output() dataEmitter = new EventEmitter<string>();
   @Input() isPremium: any;
   @Input() isUserVerified: any;
+  @Output() imageDeleted = new EventEmitter<void>();
+  
   pleaseWait: string = '';
   Processing: string = '';
   successTxt: string = '';
@@ -182,6 +184,8 @@ export class GalleryTabComponent {
             this.toastr.error('Failed to delete image.', 'Delete Failed');
             console.error('Invalid API response structure:', response);
           }
+
+          this.imageDeleted.emit();
         },
         error: (error) => {
           this.toastr.clear(loadingToast.toastId);

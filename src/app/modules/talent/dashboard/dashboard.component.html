@@ -974,7 +974,7 @@
               <talent-transfers-tab *ngIf="activeTab == 'transfers'" [isPremium]="isPremium"
                 [isUserVerified]="isUserVerified"></talent-transfers-tab>
               <talent-gallery-tab *ngIf="activeTab == 'gallery'" [isPremium]="isPremium" [coverImage]="coverImage"
-                [isUserVerified]="isUserVerified" (dataEmitter)="handleCoverImageData($event)"></talent-gallery-tab>
+                [isUserVerified]="isUserVerified" (dataEmitter)="handleCoverImageData($event)" (imageDeleted)="onImageDeleted()"></talent-gallery-tab>
             </div>
           </div>
         </div>

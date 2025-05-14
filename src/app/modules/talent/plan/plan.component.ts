@@ -81,7 +81,7 @@ export class PlanComponent implements OnInit, OnDestroy {
 
   isPremiumPurchased: string = '';
 
-  premiumPurchased:any=0;
+  premiumPurchased: any = 0;
 
   pleaseWait: string = '';
   Processing: string = '';
@@ -106,7 +106,7 @@ export class PlanComponent implements OnInit, OnDestroy {
   countryPlanPrice: any;
   pageTitle: string = '';
 
-  countryHasYearlyPlan:boolean=false;
+  countryHasYearlyPlan: boolean = false;
   constructor(
     private talentService: TalentService,
     private paymentService: PaymentService,
@@ -191,7 +191,7 @@ export class PlanComponent implements OnInit, OnDestroy {
 
         // Show success message after redirection attempt
         // this.toastr.success('Redirected to Stripe Checkout successfully.', 'Success');
-        if(response?.data?.error && response?.data?.error != undefined){
+        if (response?.data?.error && response?.data?.error != undefined) {
           this.toastr.error(response?.data?.error);
         }
         const stripe = await this.stripe;
@@ -200,9 +200,9 @@ export class PlanComponent implements OnInit, OnDestroy {
       } else {
 
         this.toastr.clear();
-         if(response?.data?.error && response?.data?.error != undefined){
+        if (response?.data?.error && response?.data?.error != undefined) {
           this.toastr.error(response?.data?.error);
-         }
+        }
         //this.toastr.error('Failed to create checkout session. Please try again.', 'Error');
         console.error('Failed to create checkout session', response);
       }
@@ -465,10 +465,10 @@ export class PlanComponent implements OnInit, OnDestroy {
           this.country = userPlans?.country || '';
           console.log('userPlans', userPlans);
           this.fetchPlans();
-          if(this.country && this.country != undefined){
+          if (this.country && this.country != undefined) {
             this.checkCountryYearlyPlan(this.country);
           }
-          
+
           if (userPlans.premium[0] != undefined && userPlans.premium[0] != '' && userPlans.premium[0].status == 'active') {
             this.isPremiumPurchased = 'monthly';
             // this.premiumMonthlyPackageId = userPlans.premium[0].package_id;
@@ -576,6 +576,10 @@ export class PlanComponent implements OnInit, OnDestroy {
             this.toastr.success('Plan has been updated successfully.');
           }
           this.getUserPlans();
+          
+          const url = this.router.url;
+          const role = url.split('/')[1];
+          this.router.navigate([`${role}/success`]);
         } else {
           this.toastr.clear();
           this.toastr.error('Failed to update subscription. Please try again.');
@@ -620,7 +624,7 @@ export class PlanComponent implements OnInit, OnDestroy {
   }
 
   editPlanPopup(plans: any, country: any) {
-    console.info('Country',country);
+    console.info('Country', country);
     // this.fetchPlans();
 
     // console.warn(plans)
@@ -634,7 +638,7 @@ export class PlanComponent implements OnInit, OnDestroy {
     }
 
     console.info(plans);
-    const dialogRef = this.dialog.open(EditPlanComponent, { 
+    const dialogRef = this.dialog.open(EditPlanComponent, {
       width: 'unset',
       data: {
         plans: plans.data,
@@ -782,12 +786,12 @@ export class PlanComponent implements OnInit, OnDestroy {
     })
   }
 
-  checkCountryYearlyPlan(countryPlanPurchasedArr:any){
+  checkCountryYearlyPlan(countryPlanPurchasedArr: any) {
     let subscriptions = countryPlanPurchasedArr;
-    const hasYearlyPlan = subscriptions.some((subscription:any) => subscription.interval === 'yearly');
-    if(hasYearlyPlan){
+    const hasYearlyPlan = subscriptions.some((subscription: any) => subscription.interval === 'yearly');
+    if (hasYearlyPlan) {
       this.countryHasYearlyPlan = true;
-    }else{
+    } else {
       this.countryHasYearlyPlan = false;
     }
   }

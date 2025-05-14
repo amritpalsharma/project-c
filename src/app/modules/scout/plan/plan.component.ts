@@ -137,13 +137,25 @@ export class PlanComponent implements OnInit, OnDestroy {
   // Open coupon dialog
   openCouponDialog(planId: any): void {
 
+    // if (this.isPremiumPurchased == 'monthly' || this.isPremiumPurchased == 'yearly') {
+    //   console.info('Already Premium ' + this.isPremiumPurchased + ' Plan is Purchased');
+    //   if (this.isPremiumPurchased == 'monthly' && this.premiumPlans.isYearly) {
+    //     // console.info('user need to upgrade plan from montly to yearly');
+    //     this.updatePlan(this.premiumPlans, true, this.premiumPurchased);
+    //     return;
+    //   } else if (this.isPremiumPurchased == 'yearly' && !this.premiumPlans.isYearly) {
+    //     // console.info('user need to downgraded plan from yearly to monthly');
+    //     this.updatePlan(this.premiumPlans, false, this.premiumPurchased);
+    //     return;
+    //   }
+    // }
+
     const dialogRef = this.dialog.open(CouponCodeAlertComponent, {
       width: '500px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.warn(result);
-      // return false;
       if (result == 'proceed_to_checkout_without_coupon') {
         this.redirectToCheckout(planId);
       } else if (result && result != null) {
