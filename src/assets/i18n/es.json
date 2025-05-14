@@ -363,7 +363,7 @@
   "my-club": "Club",
   "scout": "Explorador",
   "name-text": "Kadin Septimus",
-  "time": "hace minutos",
+  "time": "Hora",
   "status": "Estado",
   "Date_Time": "Fecha - Hora",
   "usertType": "Tipo de usuario",
@@ -1408,5 +1408,7 @@
   "noTeamAndClub": "¿Tu club no aparece? Marca la casilla e introdúcelo manualmente en Equipo.",
   "noTeamAndClubPlaceHolder": "Ingresar aquí",
   "enterAndSearch":"Ingresar y buscar.",
-  "inviteSent":"Invitación enviada"
+  "inviteSent":"Invitación enviada",
+  "organizer":"Organizador",
+  "yearOfFoundation": "Año de fundación"
 }

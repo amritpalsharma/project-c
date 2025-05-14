@@ -320,7 +320,7 @@
   "my-club": "Klub",
   "scout": "Spejder",
   "name-text": "Kadin Septimus",
-  "time": "for minutter siden",
+  "time": "Tid",
   "name": "Navn",
   "status": "Status",
   "date_Time": "Dato - Tid",
@@ -1326,5 +1326,7 @@
   "noTeamAndClub": "Er din klub ikke på listen? Sæt kryds i boksen og indtast den manuelt under Hold.",
   "noTeamAndClubPlaceHolder": "Indtast her",
   "enterAndSearch":"Indtast og søg.",
-  "inviteSent":"Invitation sendt"
+  "inviteSent":"Invitation sendt",
+  "organizer":"Arrangør",
+  "yearOfFoundation": "Stiftelsesår"
 }
