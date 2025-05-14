@@ -26,6 +26,19 @@
 
       <form class="popup__body general_form pt-3" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
         <div class="overflow-card">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="checkbox-wrap">
+                <div class="form-check checkbox mb-3">
+                  <input class="form-check-input mt-0 checkbox" type="checkbox" value="" id="flexCheckDefault995"
+                    [(ngModel)]="isManual" name="noClub" (ngModelChange)="onNoClubChange($event)" />
+                  <label class="form-check-label fs-14 font-w400 text-light" for="flexCheckDefault995">
+                    {{ 'noTeamAndClub' | translate }}
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="row" *ngIf="isManual">
             <div class="form-group col-lg-12">
               <label for="teamName" class="form-label">{{'team' | translate}}</label>
@@ -36,7 +49,7 @@
               </div>
             </div>
 
-            
+
           </div>
           <div class="row">
 

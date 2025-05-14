@@ -87,6 +87,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   loading: boolean = true;  // Add this line to track loading state
 
   popupData: any;
+
+  pleaseWaitTxt: string = '';
+  downloading: string = '';
   // popupSeen: any = [{id: 1, user_id: '123', popup_id: '54', days: 2 }, {id: 2, user_id: '124', popup_id: '53', days: 1 }];
 
   popupSeen: any;
@@ -1399,9 +1402,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   getJsonTranslations() {
-    this.translateService.get(['dashboard', 'forgotPassword.generalError']).subscribe((translations) => {
+    this.translateService.get(['dashboard', 'forgotPassword.generalError','downloading','pleaseWait']).subscribe((translations) => {
       this.pageTitle = translations['dashboard'];
       this.generalError = translations['forgotPassword.generalError'];
+      this.downloading = translations['downloading'];
+      this.pleaseWaitTxt = translations['pleaseWait'];
       this.titleService.setTitle(this.pageTitle);
       console.log('Title fetch Function Fired');
     })
@@ -1447,5 +1452,36 @@ export class DashboardComponent implements OnInit, OnDestroy {
         }
       }
     });
+  }
+
+  exportSingleUser() {
+
+    try {
+      let userId = this.userId;
+      // Set loading state and display info toast
+      this.toastr.info(this.downloading, this.pleaseWaitTxt, { disableTimeOut: true });
+
+      this.userService.exportSingleUser(userId).subscribe((response) => {
+        if (response && response.status && response.data) {
+          console.info('response', response.data);
+          this.toastr.clear();
+
+          //this.downloadPath = response.data.file_path;
+          // Open the file in a new tab
+          // window.open(response.data.file_path);
+          window.open(response.data.file_path, '_blank', 'noopener,noreferrer');
+
+        } else {
+          this.toastr.clear();
+          this.toastr.error('Failed to download. Please try again.', 'Download Failed');
+
+          console.error('Invalid API response structure:', response);
+        }
+      });
+    } catch (error) {
+      this.toastr.clear();
+      console.error('Error adding to favorites:', error);
+    }
+
   }
 }

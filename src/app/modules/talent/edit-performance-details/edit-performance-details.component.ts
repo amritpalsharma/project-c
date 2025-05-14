@@ -47,7 +47,7 @@ export class EditPerformanceDetailsComponent implements OnInit {
     private translate: TranslateService
   ) {
     this.loadCountries();
-   }
+  }
 
   ngOnInit(): void {
     this.theme = localStorage.getItem('theme');
@@ -95,7 +95,7 @@ export class EditPerformanceDetailsComponent implements OnInit {
 
     this.isrequiredField = false;
     if (this.isManual === true) {
-      this.updateManualPerformance(myForm); 
+      this.updateManualPerformance(myForm);
     } else {
       if (!this.currentTeamId) {
         this.isrequiredField = true;
@@ -105,12 +105,23 @@ export class EditPerformanceDetailsComponent implements OnInit {
       this.updatePerformance(myForm);
     }
 
+
+
+
     // if (myForm.valid) {
 
     // } else {
     // this.toastr.clear();
     //   this.toastr.warning('Please fill out all required fields before submitting.', 'Warning');
     // }
+  }
+
+  onNoClubChange(value: boolean) {
+    // alert(value); // true if checked, false if unchecked
+    this.isManual = value;
+    if(this.isManual === false){
+      this.currentTeam = '';
+    }
   }
 
   updatePerformance(myForm: NgForm) {
