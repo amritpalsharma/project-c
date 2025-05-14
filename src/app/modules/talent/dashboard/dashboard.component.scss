@@ -1038,6 +1038,25 @@
   justify-content: center;
 }
 
+span.icon-bg.pdf_btn_icon button {
+    position: absolute;
+    width: 42px;
+    top: 65px;
+    right: 10px;
+    height: 42px;
+    margin-bottom: 5px;
+    background: #fff;
+    border: 1px solid;
+    border-radius: 50%;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    span {
+      display: none;
+    }
+}
+
 .premium_button svg {
   width: 14px;
 }
@@ -1631,6 +1650,14 @@ span.active_btn {
     // padding-left: 1px !important;
     // padding-right: 1px !important;
   }
+   span.icon-bg.pdf_btn_icon button {
+        width: 42px;
+        height: 42px;
+        top: 11px;
+        right: -40px;
+        margin-bottom: 5px;
+        padding: 8px;
+    }
 }
 
 @media (max-width: 991px) {
@@ -1661,6 +1688,14 @@ span.active_btn {
     right: 30px !important;
     height: 32px !important;
   }
+  span.icon-bg.pdf_btn_icon button {
+    width: 32px;
+    height: 32px;
+    top: 1px;
+    right: -10px;
+    margin-bottom: 5px;
+    padding: 9px;
+}
   .team-logos:not(:last-child) {
     border-bottom: 1px solid #E5E5E5;
     padding-bottom: 20px;
