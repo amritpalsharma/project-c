@@ -348,6 +348,16 @@ export class UserService {
     );
   }
 
+  getClubSightings(id: any, params: any): Observable<any> {
+    const userToken = localStorage.getItem('authToken');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.userToken}`
+    });
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
+      `${this.apiUrl}/user/get-sightings/${id}`, { params }
+    );
+  }
+
   getSingleSighting(id: any): Observable<any> {
     const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
