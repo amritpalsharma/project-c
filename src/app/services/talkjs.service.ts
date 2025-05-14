@@ -276,6 +276,11 @@ export class TalkService {
 
     if (userDataString && otherUserData) {
       let userData = JSON.parse(userDataString);
+
+      if (typeof userData.first_name === undefined || userData.first_name == '' && userData.name != '') {
+        userData.first_name = userData.name;
+      }
+
       let userArr = {
         id: userData.id,
         name: userData.first_name,
@@ -284,6 +289,11 @@ export class TalkService {
         welcomeMessage: null,
         role: (userData.role == '1') ? "hidden" : "default"
       };
+
+      if (typeof userArr.name === undefined || userArr.name == '') {
+        userArr.name = 'Talk User';
+      }
+
 
       const currentUser = new Talk.User(userArr);
       const otherUser = new Talk.User(otherUserData);

@@ -1641,7 +1641,7 @@
                   </li>
                   <!-- End Club Gallery  -->
                   <!-- Club Sight -->
-                  <li class="nav-item d-none" role="presentation">
+                  <li class="nav-item" role="presentation">
                     <button class="nav-link" (click)="switchTab('sighting')"
                       [ngClass]="{ active: activeTab == 'sighting' }" id="contact-tab-1" id="manage-button"
                       data-bs-toggle="tab" data-bs-target="#contact-tab-pane-1" type="button" role="tab"
@@ -1757,7 +1757,7 @@
 
               <!-- Sighting For Club -->
                <app-sighting *ngIf="activeTab == 'sighting' && currentUserRole == 'club'" role="club" [isPremium]="isPremium"
-                [currentClubId]="user.id"></app-sighting>
+                [currentClubId]="user.id" [clubArr]="user"></app-sighting>
               <!-- End Sighting For Club -->
               <!-- End Club Details -->
               <!-- Scout Tabs -->

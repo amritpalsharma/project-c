@@ -24,11 +24,13 @@ export class SightingComponent {
   @Input() userData: any;
   @Input() isPremium: any;
   @Input() currentClubId: any;
+  @Input() clubArr: any;
+  currentUserRole: string = '';
 
   userId: any = '';
   // @Input() isPremium: any;
   @Input() isUserVerified: any;
-  displayedColumns: string[] = ['#', 'Event', 'Manager Name', 'Place', 'Date', 'Time', 'Status', 'View', 'Remove'];
+  displayedColumns: string[] = ['#', 'Event', 'Manager Name', 'Place', 'Date', 'Time', 'Status', 'View'];
   sightings: any = [];
   sightingData: any = {};
   totalSightings: any = '';
@@ -38,6 +40,7 @@ export class SightingComponent {
   singleIdToDelete: any = "";
   isLoading: boolean = false;
   selectedIds: number[] = [];
+  baseUrl: string = 'https://api.socceryou.ch/uploads/';
   // @ViewChild(MatPaginator) paginator!: MatPaginator;
   keyword: any = "";
   view: any = "listing";
@@ -45,6 +48,8 @@ export class SightingComponent {
   playersInvitedFirstFour: any = [];
   deleteRepresentorConfirmation: string = '';
   selectSightingFirst: string = '';
+  user: any = [];
+  loggedInUser: any = localStorage.getItem('userInfo');
 
   attachments: any = [];
   viewSightId: any = "";
@@ -67,6 +72,7 @@ export class SightingComponent {
     this.webPages.languageId$.subscribe((data: any) => {
       this.getToasterMsg();
     });
+    this.user = this.clubArr;
   }
 
   getSightings() {
@@ -83,10 +89,11 @@ export class SightingComponent {
       this.userService.getClubSightings(this.userId, params).subscribe((response) => {
         if (response && response.status && response.data) {
           this.sightings = response.data.sightings;
-          // this.totalSightings = response.data.totalCount;
+          this.totalSightings = response.data.totalCount;
           // this.paginator.length = response.data.totalCount;
           this.isLoading = false;
         } else {
+          this.totalSightings = 0;
           this.isLoading = false;
           console.error('Invalid API response structure:', response);
         }
@@ -135,160 +142,12 @@ export class SightingComponent {
     }
   }
 
-  // confirmDeletion(): any {
-  //   if (this.selectedIds.length == 0) {
-  //     this.showMatDialog(this.selectSightingFirst, 'display');
-  //     return false;
-  //   }
-  //   this.idsToDelete = this.selectedIds;
-  //   this.showDeleteConfirmationPopup();
-  // }
-
-  // showDeleteConfirmationPopup() {
-  //   this.showMatDialog(this.deleteRepresentorConfirmation, "delete-sighting-confirmation");
-  // }
-
-  // showMatDialog(message: string, action: string) {
-  //   const messageDialog = this.dialog.open(MessagePopupComponent, {
-  //     width: '500px',
-  //     position: {
-  //       top: '150px'
-  //     },
-  //     data: {
-  //       message: message,
-  //       action: action
-  //     }
-  //   })
-
-  //   messageDialog.afterClosed().subscribe(result => {
-  //     if (result !== undefined) {
-  //       if (result.action == "delete-confirmed") {
-  //         this.deleteSightings();
-  //       }
-  //       //  console.log('Dialog result:', result);
-  //     }
-  //   });
-  // }
-
-  // deleteSightings(): any {
-  //   let lang_id = localStorage.getItem('lang_id');
-  //   let params = { id: this.idsToDelete, lang: lang_id };
-
-
-  //   this.clubService.deleteSightings(params).subscribe(
-  //     response => {
-  //       if (response.status) {
-  //         this.getSightings();
-  //         this.selectedIds = [];
-  //         this.allSelected = false;
-  //         if (response.message) {
-  //           this.showMatDialog(response.message, 'display');
-  //         } else {
-  //           this.showMatDialog('Sighting(s) deleted successfully!.', 'display');
-  //         }
-  //         this.getSightings();
-  //       } else {
-  //         this.showMatDialog('Error in deleting sighting. Please try again.', 'display');
-  //         this.getSightings();
-  //       }
-  //     },
-  //     error => {
-  //       console.error('Error deleting sighting:', error);
-
-  //     }
-  //   );
-  // }
-
-  // confirmSingleDeletion(id: any) {
-  //   this.idsToDelete = [id];
-  //   this.showMatDialog(this.deleteRepresentorConfirmation, "delete-sighting-confirmation");
-  // }
-
-  // createSightPopup() {
-  //   const messageDialog = this.dialog.open(CreateSightPopupComponent, {
-  //     width: '750px',
-  //     position: {
-  //       top: '70px'
-  //     },
-  //     data: {
-  //       clubId: this.userId
-  //     }
-  //   })
-
-  //   messageDialog.afterClosed().subscribe(result => {
-  //     if (result !== undefined) {
-  //       if (result.action == "added") {
-  //         this.getSightings();
-  //         if (result.message != '' && result.message != undefined) {
-  //           this.showMatDialog(result.message, 'display');
-  //         } else {
-  //           this.showMatDialog("Sighting added successfully", 'display');
-  //         }
-  //       }
-  //       console.log('Dialog result:', result);
-  //     }
-  //   });
-  // }
-
-  // editSight(sightData: any, playersInvited: any) {
-  //   const editDialog = this.dialog.open(CreateSightPopupComponent, {
-  //     width: '750px',
-  //     position: {
-  //       top: '70px'
-  //     },
-  //     data: {
-  //       clubId: this.userId,
-  //       sightData: sightData,
-  //       invitees: playersInvited
-  //     }
-  //   })
-
-  //   editDialog.afterClosed().subscribe(result => {
-  //     if (result !== undefined) {
-  //       if (result.action == "updated") {
-  //         this.viewSight(result.id);
-  //         if (result.message != '' && result.message != undefined) {
-  //           this.showMatDialog(result.message, 'display');
-  //         } else {
-  //           this.showMatDialog("Sighting updated successfully", 'display');
-  //         }
-  //       }
-  //       console.log('Dialog result:', result);
-  //     }
-  //   });
-  // }
-
-  // uploadAttachment() {
-  //   const uploadDialog = this.dialog.open(UploadAttachmentComponent, {
-  //     width: '650px',
-  //     position: {
-  //       top: '70px'
-  //     },
-  //     data: {
-  //       id: this.viewSightId
-  //     }
-  //   })
-
-  //   uploadDialog.afterClosed().subscribe(result => {
-  //     if (result !== undefined) {
-  //       if (result.action == "added") {
-  //         this.viewSight(result.id);
-  //         if (result.message != '' && result.message != undefined) {
-  //           this.showMatDialog(result.message, 'display');
-  //         } else {
-  //           this.showMatDialog("Attachment(s) added successfully", 'display');
-  //         }
-  //       }
-  //       //  console.log('Dialog result:', result);
-  //     }
-  //   });
-  // }
-
+  
   viewSight(id: any) {
     this.view = 'detail';
     this.isLoading = true;
     this.viewSightId = id;
-    this.userService.getSingleSighting(id).subscribe((response) => {
+    this.userService.getClubSingleSighting(id).subscribe((response) => {
       if (response && response.status && response.data) {
         this.sightingData = response.data.sighting;
         this.playersInvited = response.data.players_invited;
@@ -302,55 +161,6 @@ export class SightingComponent {
     });
   }
 
-  // inviteTalentsPopup(eventName: any) {
-  //   const inviteDialog = this.dialog.open(InviteTalentPopupComponent, {
-  //     width: '700px',
-  //     height: '530px',
-  //     position: {
-  //       top: '70px'
-  //     },
-  //     data: {
-  //       action: "inviteUsers",
-  //       data: eventName,
-  //       sightId: this.viewSightId
-  //     }
-  //   })
-
-  //   inviteDialog.afterClosed().subscribe(result => {
-  //     if (result !== undefined) {
-  //       console.log(result)
-  //       if (result.action == "added") {
-  //         this.viewSight(result.id);
-  //         if (result.message != '' && result.message != undefined) {
-  //           this.showMatDialog(result.message, 'display');
-  //         } else {
-  //           this.showMatDialog("Players invited successfully", 'display')
-  //         }
-  //       }
-  //       console.log('Dialog result:', result);
-  //     }
-  //   });
-  // }
-
-  // viewInvitees(players: any) {
-  //   const inviteesDialog = this.dialog.open(InviteTalentPopupComponent, {
-  //     width: '700px',
-  //     height: '530px',
-  //     position: {
-  //       top: '70px'
-  //     },
-  //     data: {
-  //       action: "showInvitedUsers",
-  //       data: players
-  //     }
-  //   })
-
-  //   inviteesDialog.afterClosed().subscribe(result => {
-  //     if (result !== undefined) {
-  //       console.log('Dialog result:', result);
-  //     }
-  //   });
-  // }
 
   backToSightings() {
     this.view = "listing";
@@ -380,66 +190,6 @@ export class SightingComponent {
       });
   }
 
-  /* confirmDeletion():any {
-    if(this.selectedIds.length == 0){
-      this.showMatDialog('Select favorite user(s) first.', 'display');
-      return false;
-    }
-    this.idsToDelete = this.selectedIds;
-    this.showDeleteConfirmationPopup();
-  } */
-
-  // showMatDialogV2(message: string, action: string) {
-  //   const messageDialog = this.dialog.open(MessagePopupComponent, {
-  //     width: '500px',
-  //     position: {
-  //       top: '150px'
-  //     },
-  //     data: {
-  //       message: message,
-  //       action: action
-  //     }
-  //   })
-
-  //   messageDialog.afterClosed().subscribe(result => {
-  //     if (result !== undefined) {
-  //       if (result.action == "delete-confirmed") {
-  //         this.deleteAttachment();
-  //       }
-  //       //  console.log('Dialog result:', result);
-  //     }
-  //   });
-  // }
-  // confirmDeleteAttachment(id: any) {
-  //   this.singleIdToDelete = id;
-  //   console.warn(this.deleteRepresentorConfirmation)
-  //   this.showMatDialogV2(this.deleteRepresentorConfirmation, "delete-attachment-confirmation");
-  // }
-
-  // deleteAttachment(): any {
-
-  //   this.clubService.deleteAttachment(this.singleIdToDelete).subscribe(
-  //     response => {
-  //       if (response.status) {
-  //         this.singleIdToDelete = "";
-  //         let index = this.attachments.findIndex((x: any) => x.id == this.singleIdToDelete);
-  //         let temp = this.attachments;
-  //         temp.splice(index, 1);
-  //         this.attachments = temp;
-  //         if (response.message != '' && response.message != undefined) {
-  //           this.showMatDialog(response.message, 'display');
-  //         } else {
-  //           this.showMatDialog('Attachment removed successfully!.', 'display');
-  //         }
-  //       } else {
-  //         this.showMatDialog('Error in removing attachment. Please try again.', 'display');
-  //       }
-  //     },
-  //     error => {
-  //       console.error('Error deleting attachment:', error);
-  //     }
-  //   );
-  // }
 
   getImageUrl(url: any) {
     if (url) {
@@ -477,6 +227,56 @@ export class SightingComponent {
           // this.deleteUser();
         }
       }
+
+
     });
+  }
+
+  navigateToChat() {
+    localStorage.setItem('otherUserData', '');
+    console.log('User',this.user)
+    // return;
+    if (this.user.meta.profile_image != '' && this.user.meta.profile_image != undefined) {
+      this.user.meta.profile_image = this.user.meta.profile_image;
+    }
+    this.loggedInUser = JSON.parse(this.loggedInUser);
+    const role = this.loggedInUser.role_name.toLowerCase();
+    // console.info('role is ',role);
+    if (this.currentUserRole == 'club' || this.currentUserRole == 'klubb' || this.currentUserRole == 'klub' || this.currentUserRole == 'Clube' && this.user.club_logo != '' && this.user.club_logo != undefined) {
+      this.user.meta.profile_image = this.user.club_logo;
+    }
+
+    if (typeof this.user.meta.profile_image === undefined) {
+      this.user.meta.profile_image = 'no_img.png';
+    }
+    // console.log('this.user.this.user',this.user);
+    // return;
+    if (this.user) {
+
+      const userData = {
+        id: this.user.id,
+        name: this.user.first_name + ' ' + this.user.last_name,
+        email: this.user.email,
+        photoUrl: this.baseUrl + this.user.club_logo,
+        message:'Message From Sight Event'
+      };
+
+      console.log('ChatUser',userData);
+      let tempUser = JSON.stringify(userData);
+
+      localStorage.setItem('otherUserData', tempUser);
+
+      const encodedUserData = encodeURIComponent(JSON.stringify(userData)); // Convert to JSON and encode
+      // this.router.navigate(['/talent/chat'], { queryParams: { userData: encodedUserData } });
+
+      localStorage.setItem('otherUserData', tempUser);
+
+      // this.router.navigate([`/${role}/chat?open_chat=true`]);
+      this.router.navigate([`/${role}/chat`], {
+        queryParams: { open_chat: 'true' }
+      });
+    } else {
+      console.warn('No userData available and this.user is ', this.user);
+    }
   }
 }
