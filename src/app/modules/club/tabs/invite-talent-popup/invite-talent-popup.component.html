@@ -89,7 +89,7 @@
           </span>
           <span class="user-name">
             {{invitee.first_name}} {{invitee.last_name}} <span class="ml-4"
-              [ngClass]="{'d-none': invitee.status != 'pending'}">(Invite Sent)</span>
+              [ngClass]="{'d-none': invitee.status != 'pending'}">({{'inviteSent' | translate}})</span>
           </span>
         </div>
         <div class="check-user-list">

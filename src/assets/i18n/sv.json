@@ -1459,5 +1459,6 @@
   "deleteProfilePhoto": "Är du säker på att du vill ta bort din profilbild?",
   "noTeamAndClub": "Hittar du inte din klubb? Kryssa i rutan och skriv in den manuellt under Lag.",
   "noTeamAndClubPlaceHolder": "Skriv här",
-  "enterAndSearch":"Skriv in och sök."
+  "enterAndSearch": "Skriv in och sök.",
+  "inviteSent": "Inbjudan skickad"
 }

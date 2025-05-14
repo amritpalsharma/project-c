@@ -1407,5 +1407,6 @@
   "deleteProfilePhoto": "¿Estás seguro de que quieres eliminar tu foto de perfil?",
   "noTeamAndClub": "¿Tu club no aparece? Marca la casilla e introdúcelo manualmente en Equipo.",
   "noTeamAndClubPlaceHolder": "Ingresar aquí",
-  "enterAndSearch":"Ingresar y buscar."
+  "enterAndSearch":"Ingresar y buscar.",
+  "inviteSent":"Invitación enviada"
 }
