@@ -444,7 +444,7 @@ export class HeaderComponent {
     let fragment = 'activity'; // Default fragment
 
     if (tab === 'setting') {
-      fragment = 'app-settings';
+      fragment = 'setting';
     } else if (tab === 'notifications') {
       fragment = 'notifications';
     }

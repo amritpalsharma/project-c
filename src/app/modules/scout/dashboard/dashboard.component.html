@@ -830,7 +830,7 @@
                 [isUserVerified]="isUserVerified" role="Scout"></scout-portfolio-tab>
               <scout-gallery-tab *ngIf="activeTab == 'gallery'" [coverImage]="coverImage"
                 (dataEmitter)="handleCoverImageData($event)" [isPremium]="isPremium"
-                [isUserVerified]="isUserVerified"></scout-gallery-tab>
+                [isUserVerified]="isUserVerified" (imageDeleted)="onImageDeleted()"></scout-gallery-tab>
             </div>
           </div>
         </div>

@@ -14,7 +14,7 @@ import { Lightbox } from 'ngx-lightbox';
 // import { LightboxDialogComponent } from '../lightbox-dialog/lightbox-dialog.component';
 import { LightboxDialogComponent } from '../../shared/lightbox-dialog/lightbox-dialog.component';
 import { NavigationEnd } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, timeout } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from '../../../../environments/environment';
 import { CommonDataService } from '../../../services/common-data.service';
@@ -371,6 +371,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
     );
   }
 
+  onImageDeleted() {
+    this.getGalleryData(); // Call your API fetching method
+    this.getHighlightsData();
+  }
+
   getGalleryData() {
     this.loading = true;  // Set loading to true before making the API call
     let params = {
@@ -383,6 +388,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
           this.userVideos = response.data.videos;
           this.imageBaseUrl = response.data.file_path;
         } else {
+          this.userImages = [];
+          this.userVideos = [];
           console.error('Invalid API response structure:', response);
         }
         this.loading = false;  // Set loading to false once data is loaded
@@ -835,22 +842,26 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   openHighlight() {
     this.isHighlightClick = false;
-    const dialogRef = this.dialog.open(EditHighlightsComponent, {
-      width: '800px',
-      data: {
-        // images: this.userImages,
-        // videos: this.userVideos,
-        // url: this.imageBaseUrl
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      // this.duration = result.videoDuration,
-      setTimeout(() => {
-        this.getHighlightsData();
-      }, 1500);
-      this.isHighlightClick = true;
-    });
+    this.getGalleryData();
+    
+    setTimeout(() => {
+      const dialogRef = this.dialog.open(EditHighlightsComponent, {
+        width: '800px',
+        data: {
+          // images: this.userImages,
+          // videos: this.userVideos,
+          // url: this.imageBaseUrl
+        }
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        // this.duration = result.videoDuration,
+        setTimeout(() => {
+          this.getHighlightsData();
+        }, 1500);
+        this.isHighlightClick = true;
+      });      
+    }, 1500);
 
   }
 
@@ -867,7 +878,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
           console.info('this.highlights', this.highlights)
           // this.isLoading = false;
         } else {
-          this.highlights = [];
+          this.highlights = {};
           // this.isLoading = false;
           console.error('Invalid API response structure:', response);
         }

@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
 import { WebPages } from '../../../../services/webpages.service';
 import { UpdateConfirmationPlanComponent } from '../../../shared/update-confirmation-plan/update-confirmation-plan.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'add-booster',
@@ -47,6 +48,7 @@ export class AddBoosterComponent {
     public dialog: MatDialog,
     private translateService: TranslateService,
     private webPages: WebPages,
+    private router: Router,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
@@ -150,6 +152,13 @@ export class AddBoosterComponent {
             this.toastr.success('Plan has been updated successfully.');
           }
           // this.getUserPlans();
+
+          const url = this.router.url;
+          const role = url.split('/')[1];
+          this.router.navigate([`${role}/success`]);
+
+          this.dialogRef.close();
+
         } else {
           this.toastr.clear();
           this.toastr.error('Failed to update subscription. Please try again.');

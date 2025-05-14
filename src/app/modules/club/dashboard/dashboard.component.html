@@ -765,7 +765,7 @@
               <club-history-tab *ngIf="activeTab == 'club_history'" role="club" [isPremium]="isPremium" [isUserVerified]="isUserVerified"></club-history-tab>
               <club-teams-tab *ngIf="activeTab == 'teams'" [userData]="user" [isPremium]="isPremium" [isUserVerified]="isUserVerified"></club-teams-tab>
               <club-gallery-tab *ngIf="activeTab == 'gallery'"  [coverImage]="coverImage"
-                (dataEmitter)="handleCoverImageData($event)" [isPremium]="isPremium" [isUserVerified]="isUserVerified"></club-gallery-tab>
+                (dataEmitter)="handleCoverImageData($event)" [isPremium]="isPremium" [isUserVerified]="isUserVerified" (imageDeleted)="onImageDeleted()"></club-gallery-tab>
               <club-sighting-tab *ngIf="activeTab == 'sighting'" [isPremium]="isPremium" [isUserVerified]="isUserVerified"></club-sighting-tab>
             </div>
           </div>

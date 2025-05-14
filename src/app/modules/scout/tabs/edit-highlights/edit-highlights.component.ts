@@ -50,7 +50,7 @@ export class EditHighlightsComponent {
     this.videos = this.data.videos || [];
     this.url = this.data.url || '';
 
-    
+    console.log(this.data);
 
     // Preselect images that are already featured
     this.images.forEach((image: any) => {

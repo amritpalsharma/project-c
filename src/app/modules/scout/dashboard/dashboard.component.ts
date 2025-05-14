@@ -322,6 +322,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
   //   );
   // }
 
+  onImageDeleted() {
+    this.getGalleryData(); // Call your API fetching method
+    this.getHighlightsData();
+  }
+
   getGalleryData() {
     this.loading = true;  // Set loading to true before making the API call
     try {
@@ -332,8 +337,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
           this.imageBaseUrl = response.data.file_path;
         } else {
           console.error('Invalid API response structure:', response);
+          this.userImages = [];
+          this.userVideos = [];
         }
         this.loading = false;  // Set loading to false once data is loaded
+        
       });
     } catch (error) {
       console.error('Error fetching users:', error);
@@ -530,21 +538,23 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   openHighlight() {
+    this.getGalleryData();
 
-    const dialogRef = this.dialog.open(EditHighlightsComponent, {
-      width: '800px',
-      panelClass: 'edit_highlights_popup',
-      data: {
-        images: this.userImages,
-        videos: this.userVideos,
-        url: this.imageBaseUrl
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      this.getHighlightsData()
-    });
-
+    setTimeout(() => {
+      const dialogRef = this.dialog.open(EditHighlightsComponent, {
+        width: '800px',
+        panelClass: 'edit_highlights_popup',
+        data: {
+          images: this.userImages,
+          videos: this.userVideos,
+          url: this.imageBaseUrl
+        }
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        this.getHighlightsData()
+      });
+    }, 1500);
   }
 
   getHighlightsData() {
@@ -555,6 +565,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
           // this.isLoading = false;
         } else {
           // this.isLoading = false;
+          this.highlights = {};
           console.error('Invalid API response structure:', response);
         }
       });
