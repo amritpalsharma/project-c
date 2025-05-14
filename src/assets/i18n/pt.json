@@ -364,7 +364,7 @@
   "my-club": "Clube",
   "scout": "Olheiro",
   "name-text": "Kadin Septimus",
-  "time": "há minutos",
+  "time": "Hora",
   "Name": "Nome",
   "status": "Status",
   "Date_Time": "Data - Hora",
@@ -1416,5 +1416,7 @@
   "deleteProfilePhoto": "Tens a certeza de que queres apagar a tua foto de perfil?",
   "noTeamAndClub": "O teu clube não está na lista? Marca a caixa e introduz manualmente em Equipa.",
   "noTeamAndClubPlaceHolder": "Inserir aqui",
-  "enterAndSearch":"Inserir e procurar."
+  "enterAndSearch":"Inserir e procurar.",
+  "organizer":"Organizador",
+  "yearOfFoundation": "Ano de fundação"
 }

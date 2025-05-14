@@ -398,7 +398,7 @@
   "my-club": "Club",
   "scout": "Scout",
   "name-text": "Kadin Septimus",
-  "time": "vor Minuten",
+  "time": "Zeit",
   "status": "Status",
   "language": "Sprache",
   "english": "Englisch",
@@ -1466,5 +1466,7 @@
   "deleteProfilePhoto": "Bist du sicher, dass du dein Profilbild löschen möchtest?",
   "noTeamAndClub":"Dein Club ist nicht dabei? Einfach Checkbox anklicken und manuell beim Team eintragen.",
   "noTeamAndClubPlaceHolder":"Hier eingeben",
-  "enterAndSearch":"Eingeben und suchen."
+  "enterAndSearch":"Eingeben und suchen.",
+  "organizer":"Organisator",
+  "yearOfFoundation": "Gründungsjahr"
 }

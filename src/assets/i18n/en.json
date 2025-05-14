@@ -576,7 +576,7 @@
   "blog": "Blog",
   "feature": "Feature",
   "name-text": "Kadin Septimus",
-  "time": "mins ago",
+  "time": "Time",
   "talent": "Talent",
   "dateTime08": "08.04.2024 - 12.53 PM",
   "setPassword": "Reset your password",
@@ -1372,6 +1372,8 @@
   "deleteProfilePhoto":"Are you sure you want to delete your profile picture?",
   "noTeamAndClub":"Can’t find your club? Just check the box and enter it manually under Team.",
   "noTeamAndClubPlaceHolder":"Enter here",
-  "enterAndSearch":"Enter and search."
+  "enterAndSearch":"Enter and search.",
+  "organizer":"Organizer",
+  "yearOfFoundation": "Year of foundation"
   
 }

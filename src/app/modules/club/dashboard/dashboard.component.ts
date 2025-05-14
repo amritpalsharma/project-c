@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output, OnDestroy } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { UserService } from '../../../services/user.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -23,6 +23,7 @@ import { TitleService } from '../../../title.service';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
 import { SocketService } from '../../../services/socket.service';
 import { UnverifiedUserComponent } from '../../shared/unverified-user/unverified-user.component';
+import { TeamsTabComponent } from '../tabs/teams-tab/teams-tab.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -31,6 +32,9 @@ import { UnverifiedUserComponent } from '../../shared/unverified-user/unverified
 })
 
 export class DashboardComponent implements OnInit, OnDestroy {
+  @ViewChild(TeamsTabComponent)
+  teamsTabComponent!: TeamsTabComponent;
+
   lightboxIsOpen: boolean = false; // Track the state of the lightbox
   mainImage: { src: string } = { src: '' }; // Current main image source
   album: any[] = []; // Array for album images
@@ -856,10 +860,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   switchTab(tab: string) {
-    if (!this.isPremium) {
-      this.activeTab = 'profile';
+    // if (!this.isPremium) {
+    //   this.activeTab = 'profile';
+    // }
+    if (this.activeTab === 'teams' && tab === 'teams') {
+      this.teamsTabComponent?.backToTeamView();
     }
-    this.activeTab = tab;
+    else{
+      this.activeTab = tab;
+    }
   }
 
   deleteUser() {

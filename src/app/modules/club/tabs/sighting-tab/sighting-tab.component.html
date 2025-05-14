@@ -111,9 +111,9 @@
   
           <a class="btn btn-outline-white ms-2 delete-text" id="users-icon" (click)="confirmDeletion()"
             >
-            <svg width="22" height="23" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 16.5L7 11.5L8.4 10.05L11 12.65V4.5H13V12.65L15.6 10.05L17 11.5L12 16.5ZM4 20.5V15.5H6V18.5H18V15.5H20V20.5H4Z" fill="#787878"  class="td-icon-purchase"/>
-            </svg> 
+            <svg class="me-2" width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1.50065 14.0589C1.50065 15.0112 2.32565 15.7904 3.33398 15.7904H10.6673C11.6757 15.7904 12.5007 15.0112 12.5007 14.0589V3.66999H1.50065V14.0589ZM13.4173 1.07277H10.209L9.29232 0.207031H4.70898L3.79232 1.07277H0.583984V2.80425H13.4173V1.07277Z" fill="#787878" class="td-icon-favourites"/>
+            </svg>
             {{'delete' | translate }}</a
           >
   
@@ -151,7 +151,7 @@
         </ng-container>
   
         <ng-container matColumnDef="Manager Name">
-          <th mat-header-cell *matHeaderCellDef > {{ 'managerName' | translate }} 123 </th>
+          <th mat-header-cell *matHeaderCellDef > {{ 'organizer' | translate }}</th>
           <td mat-cell *matCellDef="let element">  {{ element.manager_name }}</td>
         </ng-container>
   
@@ -176,7 +176,8 @@
           <ng-container matColumnDef="Status">
             <th mat-header-cell *matHeaderCellDef> {{ 'status' | translate }}</th>
             <td mat-cell *matCellDef="let element"> 
-                <span>{{ element.status }}</span>
+                <span *ngIf="element.status === 'active'">{{ 'active' | translate }}</span>
+                <span *ngIf="element.status !== 'active'">{{ 'inactive' | translate }}</span>
                 <!-- <span *ngIf="!element.event_time">-</span> -->
             </td>
           </ng-container>
@@ -193,7 +194,7 @@
         </ng-container>
 
         <ng-container matColumnDef="Remove">
-          <th mat-header-cell *matHeaderCellDef class="text-center"> {{ 'remove' | translate }}</th>
+          <th mat-header-cell *matHeaderCellDef class="text-center"> {{ 'delete' | translate }}</th>
           <td mat-cell *matCellDef="let element" class="text-center">  
             <svg (click)="confirmSingleDeletion(element.id)" class="pointer" width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M1.50065 14.0589C1.50065 15.0112 2.32565 15.7904 3.33398 15.7904H10.6673C11.6757 15.7904 12.5007 15.0112 12.5007 14.0589V3.66999H1.50065V14.0589ZM13.4173 1.07277H10.209L9.29232 0.207031H4.70898L3.79232 1.07277H0.583984V2.80425H13.4173V1.07277Z" fill="#787878" class="td-icon-favourites"/>
