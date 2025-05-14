@@ -795,6 +795,7 @@ export class HeaderComponent implements OnInit {
       first_name: this.firstName,
       last_name: this.lastName,
       // username: this.username,
+      username: this.email,
       role: this.role,
       email: this.email,
       newsletter: this.newsletter,
