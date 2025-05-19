@@ -41,8 +41,8 @@ export class EditPlanComponent implements OnInit {
   selectedPlanID: number = 0;
   oldCountryPlanId: any = 0;
   newCountryPlanID: any = 0;
-  youHaveAlreadyThisPlan:string='';
-  youHaveAlreadyThisPlanTitle:string='';
+  youHaveAlreadyThisPlan: string = '';
+  youHaveAlreadyThisPlanTitle: string = '';
   // selectedCountries: any[] = []; // Stores full country objects
 
 
@@ -65,7 +65,7 @@ export class EditPlanComponent implements OnInit {
     this.theme = localStorage.getItem('theme') || "light";
     // If this.data.plans is an array, assign it directly
     this.selectedPlan = this.data.selectedPlan;
-    console.info('this.selectedPlan',this.selectedPlan)
+    console.info('this.selectedPlan', this.selectedPlan)
     this.activePlans = this.data.activePlans;
     // console.info('this.activePlans', this.activePlans)
     // checkPlanExistance
@@ -174,13 +174,6 @@ export class EditPlanComponent implements OnInit {
 
     if (this.isPlanAlreadySelected()) {
       this.toastr.warning(this.youHaveAlreadyThisPlan, this.youHaveAlreadyThisPlanTitle);
-      // this.dialog.open(MessagePopupComponent, {
-      //   width: '600px',
-      //   data: {
-      //     action: 'display',
-      //     message: 'You already have a subscription for this plan with a different interval. Please cancel it before selecting a new interval.'
-      //   }
-      // });
       return;
     }
 
@@ -282,8 +275,13 @@ export class EditPlanComponent implements OnInit {
     this.isYearly = isYearly; // Toggle between monthly and yearly
     if (this.selectedCountryIds.length > 0) {
       // console.log(this.selectedCountryIds);
-    //  this.checkPlanExistance(this.selectedPlanID);
+      //  this.checkPlanExistance(this.selectedPlanID);
     }
+    console.log('selectedPlan', this.selectedPlan);
+    console.log('activePlans', this.activePlans);
+
+
+
   }
 
   cancelPlan(item: any): void { }
@@ -296,6 +294,14 @@ export class EditPlanComponent implements OnInit {
         (!this.isYearly && country.interval === 'monthly')
       )
     );
+  }
+
+  getSelectedPlanInterval(): 'monthly' | 'yearly' | null {
+    const matched = this.selectedCountries.find(country =>
+      country.package_name === this.selectedPlan?.package_name
+    );
+
+    return matched ? matched.interval as 'monthly' | 'yearly' : null;
   }
 
   deletePlan(id: any) {
@@ -392,7 +398,7 @@ export class EditPlanComponent implements OnInit {
     console.log(event.value);
     this.selectedPlan = event.value; // Update selected IDs
     this.selectedCountryIds = event.value.id;
-    console.info('selected country id is '+this.selectedCountryIds);
+    console.info('selected country id is ' + this.selectedCountryIds);
     let currentPlanID = event.value.id;
     // let currentPlanID = event.value;
     this.selectedPlanID = currentPlanID;
@@ -422,7 +428,7 @@ export class EditPlanComponent implements OnInit {
     this.selectedCountries = this.selectedCountries.filter(c => c.id !== country.id);
   }
 
-  extractTextAfterDash(countryName: any) { 
+  extractTextAfterDash(countryName: any) {
 
     if (countryName == undefined || countryName == '' || countryName == 'undefined') {
       // return countryName;
@@ -444,7 +450,7 @@ export class EditPlanComponent implements OnInit {
   //       console.log(country.package_name+' is already exist in list')
   //     }
   //   }
-    
+
   //   return uniqueCountries;
   // }
   get uniqueActivePlans() {
@@ -459,7 +465,7 @@ export class EditPlanComponent implements OnInit {
   }
 
   updateTranslation() {
-    this.translate.get(['subscriptionCanceledSuccessfully', 'success!', 'pleaseWait', 'Processing','youHaveAlreadyThisPlan','youHaveAlreadyThisPlanTitle']).subscribe((res: any) => {
+    this.translate.get(['subscriptionCanceledSuccessfully', 'success!', 'pleaseWait', 'Processing', 'youHaveAlreadyThisPlan', 'youHaveAlreadyThisPlanTitle']).subscribe((res: any) => {
       this.subscriptionCanceledSuccessfully = res['subscriptionCanceledSuccessfully'];
       this.successTxt = res['success!'].toUpperCase();
       this.pleaseWait = res['pleaseWait'];
@@ -500,7 +506,7 @@ export class EditPlanComponent implements OnInit {
       this.action = 'buy';
       if (planError != undefined && planError.id != '') {
         this.openCouponDialog(planError.id);
-      }else if(typeof currentPlanID != undefined && currentPlanID != 0){
+      } else if (typeof currentPlanID != undefined && currentPlanID != 0) {
         this.openCouponDialog(currentPlanID);
       }
 
@@ -512,6 +518,11 @@ export class EditPlanComponent implements OnInit {
   }
 
   handlePayment() {
+    let test = this.getSelectedPlanInterval();
+    if (test === 'yearly' && !this.isYearly) {
+      this.toastr.warning(this.youHaveAlreadyThisPlan, this.youHaveAlreadyThisPlanTitle);
+      return;
+    }
     if (this.action == 'buy') {
       this.buyNow();
     } else if (this.action == 'upgrade') {

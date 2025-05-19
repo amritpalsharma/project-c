@@ -42,14 +42,15 @@
                     </span>
                     <!-- <span>{{'youHaveAnActive' | translate}} {{ premiumPlans.package_name }}
                       {{'plan' | translate}}</span> -->
-                      <span>{{'youHaveAnActivePremiumPlan' | translate}}</span>
+                    <span>{{'youHaveAnActivePremiumPlan' | translate}}</span>
                   </div>
                 </div>
 
                 <!-- Plan price and frequency -->
                 <div class="premium-currency">
                   <h6>
-                    {{ premiumPlans.isYearly ? premiumPlans.priceYearly : premiumPlans.priceMonthly }}<sub class="premium-month_title">.- {{ premiumPlans.currency }} / {{ premiumPlans.isYearly || (premium
+                    {{ premiumPlans.isYearly ? premiumPlans.priceYearly : premiumPlans.priceMonthly }}<sub
+                      class="premium-month_title">.- {{ premiumPlans.currency }} / {{ premiumPlans.isYearly || (premium
                       && premium.interval == 'yearly') ? ('year' | translate) : ('month' | translate) }}</sub>
                   </h6>
                 </div>
@@ -59,7 +60,8 @@
                   <div class="col-lg-12">
                     <!-- Old -->
                     <!-- [disabled]="( premiumPlans?.package_name == premium?.package_name )" -->
-                    <button class="choose-plan-btn" [disabled]="((premiumPlans?.active_interval=='monthly' && !premiumPlans.isYearly) || (premiumPlans?.active_interval=='yearly'))"
+                    <button class="choose-plan-btn"
+                      [disabled]="((premiumPlans?.active_interval=='monthly' && !premiumPlans.isYearly) || (premiumPlans?.active_interval=='yearly'))"
                       (click)="openCouponDialog(premiumPlans.isYearly ? premiumPlans.year_package_id : premiumPlans.month_package_id)">
                       {{'choosePlan' | translate}}
                     </button>
@@ -130,7 +132,9 @@
                   </h6> -->
 
                   <h6>
-                    {{ selectedPlan.isYearly ?  countryYearlyArr?.price : countryMonthlyArr?.price }}<sub class="premium-month_title">.- {{ selectedPlan?.currency }} / {{ selectedPlan?.interval=='yearly' ? ('year'
+                    {{ selectedPlan.isYearly ? countryYearlyArr?.price : countryMonthlyArr?.price }}<sub
+                      class="premium-month_title">.- {{ selectedPlan?.currency }} / {{ selectedPlan?.interval=='yearly'
+                      ? ('year'
                       | translate) :
                       ('month' | translate) }}</sub>
                   </h6>
@@ -138,8 +142,7 @@
 
                 <div class="row  multi-country-select ">
                   <div class="col-lg-12 plan-2">
-                    <button class="choose-plan-btn"
-                      (click)="editPlanPopup(countryPlans,country)">{{'choosePlan' |
+                    <button class="choose-plan-btn" (click)="editPlanPopup(countryPlans,country)">{{'choosePlan' |
                       translate}}</button>
                   </div>
                 </div>
@@ -210,15 +213,24 @@
                 <div class="premium-currency">
                   <h6>{{ boostedPlans.isYearly || (booster && booster.interval == 'yearly') ? boostedPlans.priceYearly :
                     boostedPlans.priceMonthly }}<sub class="premium-month_title">.- {{ boostedPlans.currency }} / {{
-                      boostedPlans.isYearly || (booster && booster.interval == 'yearly') ? ('year' | translate) : ('month' | translate) }}</sub>
+                      boostedPlans.isYearly || (booster && booster.interval == 'yearly') ? ('year' | translate) :
+                      ('month' | translate) }}</sub>
                   </h6>
                 </div>
                 <div class="row">
                   <div class="col-lg-12">
                     <!-- Old -->
-                     <!-- [disabled]="(boostedPlans?.is_package_active=='active') " -->
-                    <button class="choose-plan-btn" [disabled]="((boostedPlans?.active_interval=='monthly' && !boostedPlans.isYearly) || boostedPlans?.active_interval=='yearly' && boostedPlans.isYearly)"
-                      (click)="addBoostPopup(boostedPlans.isYearly==true ? boostedPlans.year_package_id : boostedPlans.month_package_id )">{{'choosePlan' | translate}}</button>
+                    <!-- [disabled]="(boostedPlans?.is_package_active=='active') " -->
+                    <!-- <button class="choose-plan-btn"
+                      [disabled]="((boostedPlans?.active_interval=='monthly' && !boostedPlans.isYearly) || boostedPlans?.active_interval=='yearly' && boostedPlans.isYearly)"
+                      (click)="addBoostPopup(boostedPlans.isYearly==true ? boostedPlans.year_package_id : boostedPlans.month_package_id )">{{'choosePlan'
+                      | translate}}</button> -->
+
+
+                    <button class="choose-plan-btn"
+                      [disabled]="((boostedPlans?.active_interval=='monthly' && !boostedPlans.isYearly) || boostedPlans?.active_interval=='yearly')"
+                      (click)="addBoostPopup(boostedPlans.isYearly==true ? boostedPlans.year_package_id : boostedPlans.month_package_id )">{{'choosePlan'
+                      | translate}}</button>
                   </div>
                 </div>
               </div>

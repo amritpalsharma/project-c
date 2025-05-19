@@ -239,7 +239,7 @@ export class ImageCropperComponent2 {
     }
   }
 
-  cropImage() {
+  cropImageOld() {
     const img = this.imageElement.nativeElement;
     const containerRect = this.container.nativeElement.getBoundingClientRect();
     const imageRect = img.getBoundingClientRect();
@@ -269,6 +269,44 @@ export class ImageCropperComponent2 {
     );
 
     const croppedBase64 = canvas.toDataURL('image/png');
+    this.dialogRef.close(croppedBase64);
+  }
+
+  // By Amrit 16-5-25
+  cropImage() {
+    const img = this.imageElement.nativeElement;
+    const containerRect = this.container.nativeElement.getBoundingClientRect();
+    const imageRect = img.getBoundingClientRect();
+
+    const scaleX = img.naturalWidth / imageRect.width;
+    const scaleY = img.naturalHeight / imageRect.height;
+
+    const cropLeft = (this.pos.x - imageRect.left + containerRect.left) * scaleX;
+    const cropTop = (this.pos.y - imageRect.top + containerRect.top) * scaleY;
+    const cropSize = this.size * scaleX; // Assuming square crop
+
+    const canvas = document.createElement('canvas');
+    canvas.width = cropSize;
+    canvas.height = cropSize;
+
+    const ctx = canvas.getContext('2d')!;
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
+
+    ctx.drawImage(
+      img,
+      cropLeft,
+      cropTop,
+      cropSize,
+      cropSize,
+      0,
+      0,
+      cropSize,
+      cropSize
+    );
+
+    // Use 'image/jpeg' with quality or 'image/png' for lossless
+    const croppedBase64 = canvas.toDataURL('image/jpeg', 0.92);
     this.dialogRef.close(croppedBase64);
   }
 

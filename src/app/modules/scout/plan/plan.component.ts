@@ -31,6 +31,7 @@ interface Plan {
   yearly: any;
   monthly: any;
   is_package_active: any;
+  montly_plan_id: number
 }
 
 interface PackageObject {
@@ -56,6 +57,7 @@ interface PackageObject {
 })
 export class PlanComponent implements OnInit, OnDestroy {
 
+  premiumMonthlyPurchasedPlanID: number = NaN;
   plans: any;
   maxQuantity: number = 10;
   premiumPlans: any;
@@ -95,6 +97,7 @@ export class PlanComponent implements OnInit, OnDestroy {
   countryMonthlyArr: PackageObject | null = null;  // Store a single object, not an array
   countryYearlyArr: PackageObject | null = null;
   countryPlanPrice: any;
+  youHaveAlreadyThisPlan: string = '';
 
   langSubscription!: Subscription;
 
@@ -116,7 +119,7 @@ export class PlanComponent implements OnInit, OnDestroy {
     this.stripe = await this.paymentService.getStripe();
     this.loggedInUser = JSON.parse(this.loggedInUser || '{}');
     this.getBoosterData()
-    
+
     this.getBoosterData();
 
     this.loadFeatures();
@@ -137,18 +140,36 @@ export class PlanComponent implements OnInit, OnDestroy {
   // Open coupon dialog
   openCouponDialog(planId: any): void {
 
-    // if (this.isPremiumPurchased == 'monthly' || this.isPremiumPurchased == 'yearly') {
-    //   console.info('Already Premium ' + this.isPremiumPurchased + ' Plan is Purchased');
-    //   if (this.isPremiumPurchased == 'monthly' && this.premiumPlans.isYearly) {
-    //     // console.info('user need to upgrade plan from montly to yearly');
-    //     this.updatePlan(this.premiumPlans, true, this.premiumPurchased);
-    //     return;
-    //   } else if (this.isPremiumPurchased == 'yearly' && !this.premiumPlans.isYearly) {
-    //     // console.info('user need to downgraded plan from yearly to monthly');
-    //     this.updatePlan(this.premiumPlans, false, this.premiumPurchased);
-    //     return;
-    //   }
-    // }
+    // Code By Amrit 16-5-25
+    if (((this.premiumPlans?.active_interval == 'monthly') || (this.premiumPlans?.active_interval == 'yearly'))) {
+      if (this.premiumPlans?.active_interval == 'yearly') {
+        console.log('You Have Already Premium Yearly Plan');
+        this.toastr.warning(this.youHaveAlreadyThisPlan);
+        return;
+      } else if ((this.premiumPlans?.active_interval == 'monthly')) {
+        // console.log('You need To Updgrade Premium Monthly To Yearly');
+        // return;
+        console.log('Monthly Id is',
+          this.premiumPlans.monthly.id,
+          'MonthlyObject is',
+          this.premiumPlans.monthly,
+          'yearly id is ',
+          this.premiumPlans.yearly.id,
+          'YearlyObject',
+          this.premiumPlans.yearly
+        )
+        if (!isNaN(this.premiumMonthlyPurchasedPlanID) && Number.isInteger(Number(this.premiumMonthlyPurchasedPlanID)) && !isNaN(this.premiumPlans.yearly.id) && Number.isInteger(Number(this.premiumPlans.yearly.id))) {
+          // this.premiumMonthlyPurchasedPlanID
+          // this.premiumPlans.month_package_id = this.premiumMonthlyPurchasedPlanID;
+          this.updateSubscriptionConfirmation(this.premiumMonthlyPurchasedPlanID, this.premiumPlans.isYearly, this.premiumPlans.yearly)
+        }
+        console.log(this.premiumPlans)
+
+      }
+      // console.log('If is Not Working');
+      return
+    }
+    console.log('this.premiumPlans', this.premiumPlans);
 
     const dialogRef = this.dialog.open(CouponCodeAlertComponent, {
       width: '500px'
@@ -234,7 +255,7 @@ export class PlanComponent implements OnInit, OnDestroy {
           let country_plans: any = [];
           // Iterate over the keys in the response object (e.g., premium, booster, country, demo)
           Object.keys(res).forEach((key) => {
-
+            console.log('res[key]', res[key]);
             // Group plans by category
             if (key.toLowerCase().includes('premium')) {
               this.premiumPlans = res[key];
@@ -254,6 +275,11 @@ export class PlanComponent implements OnInit, OnDestroy {
               this.premiumPlans.month_price = this.premiumPlans['monthly'].price;
               this.premiumPlans.year_package_id = this.premiumPlans['yearly'].id;
               this.premiumPlans.year_price = this.premiumPlans['yearly'].price;
+              // console.log('!isNaN(res[key].id)',!isNaN(res[key].id));
+              // console.log('res[key].id',res[key].id);
+
+
+
 
             } else if (key.toLowerCase().includes('booster')) {
               this.boostedPlans = res[key];
@@ -466,6 +492,12 @@ export class PlanComponent implements OnInit, OnDestroy {
           this.booster = userPlans?.booster?.[0] || null;
           this.country = userPlans?.country || '';
           console.log('userPlans', userPlans);
+          console.log('this.premium', this.premium);
+
+          if (this.premium.interval == 'monthly' && !isNaN(this.premium.id) && Number(this.premium.id)) {
+            //this.premiumPlans.purchased_plan_id = this.premium.id;
+            this.premiumMonthlyPurchasedPlanID = this.premium.id;
+          }
           this.fetchPlans();
 
         } else {
@@ -545,6 +577,23 @@ export class PlanComponent implements OnInit, OnDestroy {
     });
   }
 
+  updateSubscriptionConfirmation(puchasedPlan: any, isYearly: boolean, updagredWith: any) {
+    // const originalIsYearly = plan.isYearly;
+    // const newPlanId = isYearly ? plan.yearly : plan.monthly;
+
+    const dialogRef = this.dialog.open(UpdateConfirmationPlanComponent, {
+      data: { puchasedPlan, isYearly }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.updateSubscription(puchasedPlan, updagredWith.id);
+      } else {
+        console.log(result);
+      }
+    });
+  }
+
   updateSubscription(oldId: any, newId: any) {
 
     // this.toastr.info('Updating Plan, Please wait...', 'Loading', { disableTimeOut: true });
@@ -557,7 +606,10 @@ export class PlanComponent implements OnInit, OnDestroy {
         if (response && response.status) {
 
           this.toastr.clear();
-          // this.toastr.success('Plan has been updated successfully.');
+          if (response && response.status && response.message != '' && typeof response.status != undefined) {
+            // this.toastr.success('Plan has been updated successfully.');
+            this.toastr.success(response.message);
+          }
           this.getUserPlans();
         } else {
           this.toastr.clear();
@@ -619,6 +671,8 @@ export class PlanComponent implements OnInit, OnDestroy {
   }
 
   addBoostPopup(planId: any) {
+    // ((boostedPlans?.active_interval=='monthly' && !boostedPlans.isYearly) || boostedPlans?.active_interval=='yearly')
+
     const dialogRef = this.dialog.open(AddBoosterComponent, {
       width: '850px',
       data: {
@@ -698,9 +752,10 @@ export class PlanComponent implements OnInit, OnDestroy {
   }
 
   getToasterMsg() {
-    this.translateService.get(['pleaseWait', 'Processing']).subscribe((translations) => {
+    this.translateService.get(['pleaseWait', 'Processing', 'youHaveAlreadyThisPlan']).subscribe((translations) => {
       this.pleaseWait = translations['pleaseWait'];
       this.Processing = translations['Processing'];
+      this.youHaveAlreadyThisPlan = translations['youHaveAlreadyThisPlan'];
     });
   }
 
