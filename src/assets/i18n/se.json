@@ -72,7 +72,7 @@
   "filesSupported": "Filer som stöds: JPG, PNG, MP4",
   "chooseFile": "Välj fil",
   "maximumSize": "Maximal storlek: 5MB",
-  "documentTitle": "Dokumentets titel",
+  "documentTitle": "Scoutinginformation",
   "upload": "Ladda upp",
   "movingTo": "Överföring från",
   "editCoverPhoto": "Redigera omslagsfoto",
@@ -1411,5 +1411,6 @@
   "inviteSent": "Inbjudan skickad",
   "organizer": "Arrangör",
   "yearOfFoundation": "Grundandeår",
-  "searchTalent": "Sök talang..."
+  "searchTalent": "Sök talang...",
+  "dateAndTime": "Datum / Tid"
 }

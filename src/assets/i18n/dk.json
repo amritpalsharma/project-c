@@ -53,7 +53,7 @@
   "filesSupported": "Understøttede filer: JPG, PNG, MP4",
   "chooseFile": "Vælg fil",
   "maximumSize": "Maksimal størrelse: 5 MB",
-  "documentTitle": "Dokumentets titel",
+  "documentTitle": "Scoutinginformationer",
   "upload": "Upload",
   "editCoverPhoto": "Rediger forsidebillede",
   "videos": "Videoer",
@@ -1329,5 +1329,7 @@
   "inviteSent": "Invitation sendt",
   "organizer": "Arrangør",
   "yearOfFoundation": "Stiftelsesår",
-  "searchTalent": "Search og Talent..."
+  "searchTalent": "Search og Talent...",
+  "eventCoverImage": "Forsidebillede – Begivenhed",
+  "dateAndTime": "Dato / Tid"
 }

@@ -86,7 +86,7 @@
   "filesSupported": "Unterstützte Dateien: JPG, PNG, MP4",
   "chooseFile": "Datei auswählen",
   "maximumSize": "Maximale Größe: 5MB",
-  "documentTitle": "Dokument Titel",
+  "documentTitle": "Sichtungs-Informationen",
   "upload": "Upload",
   "movingTo": "Transfer zu",
   "movingFrom": "Transfer von",
@@ -1464,11 +1464,13 @@
   "youHaveAlreadyThisPlanTitle": "Achtung",
   "pricingLabel": "Preise",
   "deleteProfilePhoto": "Bist du sicher, dass du dein Profilbild löschen möchtest?",
-  "noTeamAndClub":"Dein Club ist nicht dabei? Einfach Checkbox anklicken und manuell beim Team eintragen.",
-  "noTeamAndClubPlaceHolder":"Hier eingeben",
-  "enterAndSearch":"Eingeben und suchen.",
-  "inviteSent":"Einladung gesendet",
-  "organizer":"Organisator",
+  "noTeamAndClub": "Dein Club ist nicht dabei? Einfach Checkbox anklicken und manuell beim Team eintragen.",
+  "noTeamAndClubPlaceHolder": "Hier eingeben",
+  "enterAndSearch": "Eingeben und suchen.",
+  "inviteSent": "Einladung gesendet",
+  "organizer": "Organisator",
   "yearOfFoundation": "Gründungsjahr",
-  "searchTalent": "Talent suchen..."
+  "searchTalent": "Talent suchen...",
+  "eventCoverImage": "Titelbild Veranstaltung",
+  "dateAndTime": "Datum / Zeit"
 }

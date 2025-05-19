@@ -57,7 +57,7 @@
   "dateOfBirth": "Date of birth",
   "delete": "Delete",
   "description": "Description",
-  "documentTitle": "Document Title",
+  "documentTitle": "Scouting Information",
   "dontShowItAgain": "Don’t show it again",
   "downloadAll": "Download All",
   "downloadPerformanceReport": "Download Performance Report",
@@ -1376,5 +1376,7 @@
   "inviteSent": "Invite Sent",
   "organizer": "Organizer",
   "yearOfFoundation": "Year of foundation",
-  "searchTalent": "Search Talent..."
+  "searchTalent": "Search Talent...",
+  "eventCoverImage":"Event Cover Image",
+  "dateAndTime":"Date / Time"
 }

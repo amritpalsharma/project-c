@@ -72,7 +72,7 @@
   "filesSupported": "Understøttede filer: JPG, PNG, MP4",
   "chooseFile": "Välj fil",
   "maximumSize": "Maximal storlek: 5MB",
-  "documentTitle": "Dokumentets titel",
+  "documentTitle": "Scoutinginformation",
   "upload": "Ladda",
   "movingTo": "Överföring från",
   "editCoverPhoto": "Redigera omslagsfoto",
@@ -1463,5 +1463,7 @@
   "enterAndSearch": "Skriv in och sök.",
   "organizer": "Arrangör",
   "yearOfFoundation": "Grundandeår",
-  "searchTalent": "Sök talang..."
+  "searchTalent": "Sök talang...",
+  "eventCoverImage": "Forsidebillede – Begivenhed",
+  "dateAndTime": "Datum / Tid"
 }

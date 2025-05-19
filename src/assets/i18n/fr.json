@@ -71,7 +71,7 @@
   "filesSupported": "Fichiers pris en charge: JPG, PNG, MP4",
   "chooseFile": "Choisir un fichier",
   "maximumSize": "Taille maximale : 5MB",
-  "documentTitle": "Titre du document",
+  "documentTitle": "Informations sur la détection",
   "upload": "Télécharger",
   "movingTo": "Transfert de",
   "movingFrom": "Transfert à",
@@ -1479,5 +1479,7 @@
   "inviteSent": "Envoi de l'invitation",
   "organizer": "Organisateur",
   "yearOfFoundation": "Année de fondation",
-  "searchTalent": "Recherche de talents..."
+  "searchTalent": "Recherche de talents...",
+  "eventCoverImage": "Image de couverture – Événement",
+  "dateAndTime": "Date / Heure"
 }
