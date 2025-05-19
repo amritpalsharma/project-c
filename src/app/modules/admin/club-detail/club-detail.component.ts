@@ -9,6 +9,7 @@ import { TitleService } from '../../../title.service';
 import { SharedService } from '../../../services/shared.service';
 import { ToastrService } from 'ngx-toastr';
 import { Location } from '@angular/common';
+import { AdminHelperService } from '../../../services/admin-helper.service';
 @Component({
   selector: 'app-club-detail',
   templateUrl: './club-detail.component.html',
@@ -25,7 +26,8 @@ export class ClubDetailComponent implements OnInit {
     private titleService: TitleService,
     private sharedservice: SharedService,
     private toaster: ToastrService,
-    private location: Location
+    private location: Location,
+    private adminHelper: AdminHelperService
   ) { }
   activeTab: string = 'profile';
   userId: any = {};
@@ -254,4 +256,12 @@ export class ClubDetailComponent implements OnInit {
   goToBack() {
     this.location.back();
   }
+
+  formatDateTime(datetime: string) {
+    // convertAdminDateTime
+    // let formattedDate = this.adminHelper.convertAdminDateTime(datetime, 'users');
+    let formattedDate = this.adminHelper.getSwitzerlandTime(datetime);
+    return formattedDate;
+  }
+
 }

@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { Location } from '@angular/common';
+import { AdminHelperService } from '../../../services/admin-helper.service';
 
 @Component({
   selector: 'app-player-detail',
@@ -23,7 +24,8 @@ export class PlayerDetailComponent implements OnInit {
     private router: Router,
     private translate: TranslateService,
     private toaster: ToastrService,
-    private location: Location
+    private location: Location,
+    private adminHelper: AdminHelperService
   ) { }
   activeTab: string = 'profile';
   userId: any = {};
@@ -33,10 +35,10 @@ export class PlayerDetailComponent implements OnInit {
   paginationData: any = {};
   userCountryFlag: string = '';
   deleteProfileConfirm: string = '';
-  baseUrl:string = '';
+  baseUrl: string = '';
   langSubscription!: Subscription;
 
-  currentLangId:any;
+  currentLangId: any;
 
   ngOnInit(): void {
     this.currentLangId = localStorage.getItem('lang_id');
@@ -49,9 +51,9 @@ export class PlayerDetailComponent implements OnInit {
     this.updateTranslation();
     this.langSubscription = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
       // console.info(event);
-      if(event.lang == 'en'){
+      if (event.lang == 'en') {
         this.currentLangId = 1;
-      }else if(event.lang == 'de'){
+      } else if (event.lang == 'de') {
         this.currentLangId = 2;
       }
       this.updateTranslation();
@@ -252,5 +254,12 @@ export class PlayerDetailComponent implements OnInit {
 
   goToBack() {
     this.location.back();
+  }
+
+  formatDateTime(datetime: string) {
+    // convertAdminDateTime
+    // let formattedDate = this.adminHelper.convertAdminDateTime(datetime, 'users');
+    let formattedDate = this.adminHelper.getSwitzerlandTime(datetime);
+    return formattedDate;
   }
 }

@@ -19,7 +19,7 @@ export class TeamsTabComponent {
   teams: any = [];
   players: any = [];
   view: string = "team";
-  displayedColumns: string[] = ['Player Name', 'Joining Date', 'Exit Date', 'Location', 'Edit'];
+  displayedColumns: string[] = ['Player Name', 'Joining Date', 'Exit Date', 'Location', 'view', 'Edit'];
   isLoading: boolean = false;
   selectedTeam: any = "";
   selectTeamName: string = '';
@@ -102,7 +102,9 @@ export class TeamsTabComponent {
     this.router.navigate([pageRoute, playerId]);
   }
 
-
+  onNavigate(elementId: any): void {
+    this.router.navigate([`view/talent/${elementId}`]);
+  }
   addPlayer() {
 
     const messageDialog = this.dialog.open(AddNewTalentComponent, {

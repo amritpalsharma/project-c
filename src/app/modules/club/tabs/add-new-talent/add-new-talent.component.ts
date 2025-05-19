@@ -32,6 +32,8 @@ export class AddNewTalentComponent implements OnInit {
   player: any;
   edit: boolean = false;
   teamName : string = '';
+  baseUrl:string='https://api.socceryou.ch/uploads/';
+  theme:string=localStorage.getItem('theme') || 'light';
 
   constructor(
     private clubService: ClubService,

@@ -1458,8 +1458,9 @@
   "deleteProfilePhoto": "Sei sicuro di voler eliminare la tua immagine del profilo?",
   "noTeamAndClub": "Il tuo club non è nella lista? Seleziona la casella e inseriscilo manualmente sotto Squadra.",
   "noTeamAndClubPlaceHolder": "Inserisci qui",
-  "enterAndSearch":"Inserisci e cerca.",
-  "inviteSent":"Invito inviato",
-  "organizer":"Organizzatore",
-  "yearOfFoundation": "Anno di fondazione"
+  "enterAndSearch": "Inserisci e cerca.",
+  "inviteSent": "Invito inviato",
+  "organizer": "Organizzatore",
+  "yearOfFoundation": "Anno di fondazione",
+  "searchTalent": "Ricerca di Talento..."
 }

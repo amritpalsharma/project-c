@@ -11,6 +11,7 @@ import { SharedService } from '../../../services/shared.service';
 import { ToastrService } from 'ngx-toastr';
 import { Location } from '@angular/common';
 import { Subscription } from 'rxjs';
+import { AdminHelperService } from '../../../services/admin-helper.service';
 
 
 @Component({
@@ -30,7 +31,8 @@ export class ScoutDetailComponent implements OnInit {
     private titleService: TitleService,
     private sharedservice: SharedService,
     private toaster: ToastrService,
-    private location: Location
+    private location: Location,
+    private adminHelper:AdminHelperService
   ) { }
   activeTab: string = 'profile';
   userId: any = {};
@@ -302,5 +304,12 @@ export class ScoutDetailComponent implements OnInit {
 
   goToBack() {
     this.location.back();
+  }
+
+  formatDateTime(datetime: string) {
+    // convertAdminDateTime
+    // let formattedDate = this.adminHelper.convertAdminDateTime(datetime, 'users');
+    let formattedDate = this.adminHelper.getSwitzerlandTime(datetime);
+    return formattedDate;
   }
 }

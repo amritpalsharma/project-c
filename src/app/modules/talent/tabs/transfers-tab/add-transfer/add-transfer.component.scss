@@ -118,3 +118,6 @@ mat-datepicker-toggle {
     overflow-y: auto;
     overflow-x: hidden;
 }
+::ng-deep .form-red-border .red-border{
+    border: 2px solid red;
+}

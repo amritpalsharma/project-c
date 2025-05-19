@@ -1475,8 +1475,9 @@
   "deleteProfilePhoto": "Es-tu sûr de vouloir supprimer ta photo de profil ?",
   "noTeamAndClub": "Ton club n’apparaît pas ? Coche simplement la case et saisis-le manuellement sous Équipe.",
   "noTeamAndClubPlaceHolder": "Saisir ici",
-  "enterAndSearch":"Saisir et rechercher.",
-  "inviteSent":"Envoi de l'invitation",
-  "organizer":"Organisateur",
-  "yearOfFoundation": "Année de fondation"
+  "enterAndSearch": "Saisir et rechercher.",
+  "inviteSent": "Envoi de l'invitation",
+  "organizer": "Organisateur",
+  "yearOfFoundation": "Année de fondation",
+  "searchTalent": "Recherche de talents..."
 }

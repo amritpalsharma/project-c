@@ -105,7 +105,7 @@ export class AddPerformanceComponent {
 
 
     if (this.isHideTeamSection === true) { 
-      if(!this.team_country_id){
+      if(!this.team_country_id || this.team_country_id == 0){
         console.log('Need to select country please');
         return;
       }
@@ -267,6 +267,7 @@ export class AddPerformanceComponent {
   onNoClubChange(value: boolean) {
     // alert(value); // true if checked, false if unchecked
     this.isHideTeamSection = value;
+    this.team_country_id = 0;
   }
 
   loadCountries(): void {

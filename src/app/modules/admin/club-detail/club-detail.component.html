@@ -76,10 +76,8 @@
           <div class="col-md-4 col-lg-2 border-end">
             <div class="user-details-left">
               <div class="user-media ">
-                <img src="{{user.club_logo_path}}" alt="" *ngIf="user.club_logo_path"
-                  class="user-img mt-1">
-                <img src="../../../../assets/images/1.png" alt="" *ngIf="!user.club_logo_path"
-                  class="user-img">
+                <img src="{{user.club_logo_path}}" alt="" *ngIf="user.club_logo_path" class="user-img mt-1">
+                <img src="../../../../assets/images/1.png" alt="" *ngIf="!user.club_logo_path" class="user-img">
                 <div class="user-edit">
 
                   <!-- <label for="file-upload">
@@ -89,9 +87,9 @@
                     class="d-none" />
                   <!-- <img *ngIf="user.club_logo_path" src="{{user.club_logo_path}}" class="club-icon-round" alt=""> -->
                   <!-- <div class="club-icon" *ngIf="user.club_logo_path"> -->
-                    <!-- <img *ngIf="user.club_logo_path" src="{{user.club_logo_path}}"
+                  <!-- <img *ngIf="user.club_logo_path" src="{{user.club_logo_path}}"
                       class="club-icon-round cursor-pointer" alt=""> -->
-                    <!-- <img *ngIf="user.club_logo_path" src="../../../assets/images/team-badge.png" class="club-icon-round"  alt=""> -->
+                  <!-- <img *ngIf="user.club_logo_path" src="../../../assets/images/team-badge.png" class="club-icon-round"  alt=""> -->
                   <!-- </div> -->
 
                   <!-- <img src="path/to/edit-icon.png" alt="Edit Profile" class="edit-profile">
@@ -128,19 +126,24 @@
               <div class="list-view">
                 <h6 class="mb-1">{{'registrationDate' | translate }} :</h6>
                 <h6 class="mb-0 font-w400">
-                  {{ user.created_at | date:'MM.dd.yyyy' }} - {{ user.created_at | date:'hh.mma' }}</h6>
+                  {{formatDateTime(user.created_at)}}
+                  <!-- {{ user.created_at | date:'MM.dd.yyyy' }} - {{ user.created_at | date:'hh.mma' }} -->
+                </h6>
               </div>
               <div class="list-view">
                 <h6 class="mb-1">{{'nextPaymentDue' | translate }} :</h6>
                 <h6 class="mb-2 font-w400" *ngIf="user.plan_period_end">
-                  {{user.plan_period_end | date:'MMM d, y' }} / {{user.plan_interval}} cycle
+                  {{formatDateTime(user.plan_period_end)}} / <span [translate]="user.plan_interval"></span> cycle
+                  <!-- {{user.plan_period_end | date:'MMM d, y' }} / {{user.plan_interval}} cycle -->
                 </h6>
                 <!-- <h6 class="mb-2 font-w400" *ngIf="!user.plan_period_end">NA</h6> -->
                 <p class="font-w400"> {{ 'viewPaymentDetails' | translate }}</p>
               </div>
               <div class="list-view">
                 <h6 class="mb-1">{{ 'lastPayment' | translate }} :</h6>
-                <h6 class="mb-2 font-w400" *ngIf="user.plan_period_start">{{user.plan_period_start | date:'MMM d, y' }}
+                <h6 class="mb-2 font-w400" *ngIf="user.plan_period_start">
+                  {{formatDateTime(user.plan_period_start)}}
+                  <!-- {{user.plan_period_start | date:'MMM d, y' }} -->
                 </h6>
                 <!-- <h6 class="mb-2 font-w400" *ngIf="!user.plan_period_start">NA</h6> -->
                 <p class=" font-w400">{{ 'viewInvoice' | translate }}</p>

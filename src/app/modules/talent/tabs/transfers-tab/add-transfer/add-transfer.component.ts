@@ -23,6 +23,7 @@ export class AddTransferComponent {
   teams: any;  // Assume you get this data from a service
   transfer: any;  // Assume you get this data from a service
   errorTxt: string = '';
+  showFormErrors:boolean=false;
 
   teamTo: string = ''; // Initialize as empty string to avoid undefined issues
   teamToId: any;
@@ -78,7 +79,7 @@ export class AddTransferComponent {
   }
 
   onSubmit(myForm: NgForm): void {
-
+    this.showFormErrors = true;
     if (myForm.valid) {
       let lang_id = localStorage.getItem('lang_id');
       let formData = {

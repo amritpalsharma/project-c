@@ -138,11 +138,11 @@ export class MembershipComponent {
     this.talentService.getUserPlans(params).subscribe(response => {
       if (response && response.status && response.data) {
         this.userPlans = response.data.packages;
-        if (this.userPlans.premium[0] && this.userPlans.premium[0] != undefined) { 
+        if (this.userPlans.premium[0] && this.userPlans.premium[0] != undefined) {
           this.premium = this.userPlans.premium[0];
           this.ispremium = this.premium ? true : false;
         }
-        if (this.userPlans.premium[1] && this.userPlans.premium[1] != undefined) { 
+        if (this.userPlans.premium[1] && this.userPlans.premium[1] != undefined) {
           this.premium = this.userPlans.premium[1];
           this.ispremium = this.premium ? true : false;
         }
@@ -161,7 +161,7 @@ export class MembershipComponent {
 
 
         this.iscountry = this.country ? true : false;
-      
+
         this.isdemo = this.demo ? false : false;
         this.country.count = this.userPlans.country.length;
         this.premium.count = this.userPlans.premium.length;
@@ -212,7 +212,8 @@ export class MembershipComponent {
 
     console.info('userPurchase', userPurchase);
     const dialogRef = this.dialog.open(ViewMembershipPopupComponent, {
-      width: '800px',
+      // width: '800px',
+      width: '70vw',
       data: {
         invoice_number: userPurchase.invoice_number,
         category: userPurchase.payment_method,
@@ -227,11 +228,11 @@ export class MembershipComponent {
         tax_percentage: userPurchase.tax_percentage,
         tax: userPurchase.tax_amount,
         created_at: userPurchase.created_at,
-        package_price:userPurchase.package_price,
-        proration_amount:userPurchase.proration_amount,
-        coupon_used:userPurchase.coupon_used,
-        coupon_discount:userPurchase.coupon_discount,
-        discount_amount:userPurchase.discount_amount,
+        package_price: userPurchase.package_price,
+        proration_amount: userPurchase.proration_amount,
+        coupon_used: userPurchase.coupon_used,
+        coupon_discount: userPurchase.coupon_discount,
+        discount_amount: userPurchase.discount_amount,
       }
     });
   }

@@ -1325,8 +1325,9 @@
   "deleteProfilePhoto": "Er du sikker på, at du vil slette dit profilbillede?",
   "noTeamAndClub": "Er din klub ikke på listen? Sæt kryds i boksen og indtast den manuelt under Hold.",
   "noTeamAndClubPlaceHolder": "Indtast her",
-  "enterAndSearch":"Indtast og søg.",
-  "inviteSent":"Invitation sendt",
-  "organizer":"Arrangør",
-  "yearOfFoundation": "Stiftelsesår"
+  "enterAndSearch": "Indtast og søg.",
+  "inviteSent": "Invitation sendt",
+  "organizer": "Arrangør",
+  "yearOfFoundation": "Stiftelsesår",
+  "searchTalent": "Search og Talent..."
 }

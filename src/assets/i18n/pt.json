@@ -1416,8 +1416,9 @@
   "deleteProfilePhoto": "Tens a certeza de que queres apagar a tua foto de perfil?",
   "noTeamAndClub": "O teu clube não está na lista? Marca a caixa e introduz manualmente em Equipa.",
   "noTeamAndClubPlaceHolder": "Inserir aqui",
-  "enterAndSearch":"Inserir e procurar.",
-  "inviteSent":"Convite enviado",
-  "organizer":"Organizador",
-  "yearOfFoundation": "Ano de fundação"
+  "enterAndSearch": "Inserir e procurar.",
+  "inviteSent": "Convite enviado",
+  "organizer": "Organizador",
+  "yearOfFoundation": "Ano de fundação",
+  "searchTalent": "Procurar Talento..."
 }
