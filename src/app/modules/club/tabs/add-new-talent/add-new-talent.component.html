@@ -37,9 +37,12 @@
               {{user?.first_name}}
               <span matChipRemove [attr.aria-label]="'remove ' + user" class="cancel-icon"></span>
             </mat-chip-row>
-            <input placeholder="{{ 'search' | translate }} {{ 'talent' | translate }}" #userInput
+            <!-- <input placeholder="{{ 'search' | translate }} {{ 'talent' | translate }}" #userInput
               [matAutocomplete]="auto" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputFor]="chipGrid"
-              (focus)="callListApi(userInput)" (keyup)="onKeyPress($event)" />
+              (focus)="callListApi(userInput)" (keyup)="onKeyPress($event)" /> -->
+               <input placeholder="{{ 'searchTalent' | translate }}" #userInput
+              [matAutocomplete]="auto" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputFor]="chipGrid"
+              (focus)="callListApi(userInput)" (keyup)="onKeyPress($event)" /> 
           </mat-chip-grid>
 
           <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)"
