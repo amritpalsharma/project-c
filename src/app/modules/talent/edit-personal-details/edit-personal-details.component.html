@@ -79,7 +79,7 @@
           <!-- <pre>{{teamsArr | json}}</pre> -->
           <!-- <h3>Selected {{CurrentTeamId}}</h3> -->
 
-          <mat-select [(ngModel)]="CurrentTeamId" class="form-select" id="team_id" name="team_id" required>
+          <mat-select [(ngModel)]="CurrentTeamId" class="form-select" [ngClass]="{ 'error-border': isTeamSelectError }" id="team_id" name="team_id" required>
             <mat-option [value]="0" disabled>{{ 'select' | translate }}</mat-option>
             <mat-option *ngFor="let teamArr of teamsArr" [value]="teamArr.id">
               {{teamArr.team_name }} - {{teamArr.team_type}}

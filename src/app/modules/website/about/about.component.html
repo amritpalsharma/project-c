@@ -17,15 +17,17 @@
         <a href="{{advertisementData?.skyscraper?.redirect_url}}" target="_blank">
           <img [src]="advertisemnet_base_url + advertisementData?.skyscraper?.featured_image">
         </a>
-        <button *ngIf="!btnLoading" (click)="closeAd('skyscraper')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+        <button *ngIf="!btnLoading" (click)="closeAd('skyscraper')" class="ad-close-button"><i
+            class="fa-solid fa-xmark"></i></button>
         <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
       </div>
 
       <div *ngIf="checkActive('wide_skyscraper')  && !isLoading" class="skyscraper-right">
         <a href="{{advertisementData?.wide_skyscraper?.redirect_url}}" target="_blank">
-        <img [src]="advertisemnet_base_url + advertisementData?.wide_skyscraper?.featured_image">
+          <img [src]="advertisemnet_base_url + advertisementData?.wide_skyscraper?.featured_image">
         </a>
-        <button *ngIf="!btnLoading" (click)="closeAd('wide_skyscraper')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+        <button *ngIf="!btnLoading" (click)="closeAd('wide_skyscraper')" class="ad-close-button"><i
+            class="fa-solid fa-xmark"></i></button>
         <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
       </div>
 
@@ -36,9 +38,14 @@
         <div class="row">
           <div class="col-lg-6 col-md-6 col-12">
             <div class="content-image">
-              <img *ngIf="currentTheme != 'dark'" src="/assets/images/about_page/banner_img_light.png" alt="About Us" class="w-100">
-              <img *ngIf="currentTheme == 'dark'" src="/assets/images/about_page/banner_img_dark.png" alt="About Us" class="w-100">
+              <!-- <img *ngIf="currentTheme != 'dark'" src="/assets/images/about_page/banner_img_light.png" alt="About Us"
+                class="w-100">
+              <img *ngIf="currentTheme == 'dark'" src="/assets/images/about_page/banner_img_dark.png" alt="About Us"
+                class="w-100"> -->
+                <img src="/assets/images/about_page/banner_img.png" alt="{{about_banner_title}}" class="w-100">
             </div>
+
+            
           </div>
           <div class="col-lg-6 col-md-6 col-12">
             <div class="content-text" [innerHTML]="about_banner_desc">
@@ -53,16 +60,18 @@
 
         <div *ngIf="isExists('leaderboard')  && !isLoading" class="leaderboard-club-image advirtismnt_2_large">
           <a href="{{advertisementData?.leaderboard?.redirect_url}}" target="_blank">
-          <img [src]="advertisemnet_base_url + advertisementData?.leaderboard?.featured_image">
+            <img [src]="advertisemnet_base_url + advertisementData?.leaderboard?.featured_image">
           </a>
-          <button *ngIf="!btnLoading" (click)="closeAd('leaderboard')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+          <button *ngIf="!btnLoading" (click)="closeAd('leaderboard')" class="ad-close-button"><i
+              class="fa-solid fa-xmark"></i></button>
           <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
         </div>
         <div *ngIf="!isExists('leaderboard')  && !isLoading" class="leaderboard-club-image advirtismnt_2_small">
           <a href="{{advertisementData?.banner?.redirect_url}}" target="_blank">
-          <img [src]="advertisemnet_base_url + advertisementData?.banner?.featured_image">
+            <img [src]="advertisemnet_base_url + advertisementData?.banner?.featured_image">
           </a>
-          <button *ngIf="!btnLoading" (click)="closeAd('banner')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+          <button *ngIf="!btnLoading" (click)="closeAd('banner')" class="ad-close-button"><i
+              class="fa-solid fa-xmark"></i></button>
           <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
         </div>
       </div>
@@ -76,9 +85,12 @@
           <div class="col-xxl-4 col-lg-6 col-md-6 col-12">
 
             <mat-list>
-              <mat-list-item *ngFor="let country of countries" rel="noopener noreferrer">
+              <mat-list-item *ngFor="let country of countries; let i = index;" rel="noopener noreferrer">
                 <a class="custom-list-item country-name" target="_blank">
-                  <span class="flag_icon"><img src="/assets/images/flag-switzerland.svg"></span> 
+                  <span class="flag_icon">
+                    <!-- <img src="/assets/images/flag-switzerland.svg"> -->
+                    <img [src]="'/assets/images/flags/' + (i + 1) + '.svg'">
+                  </span>
                   {{country}}</a>
               </mat-list-item>
             </mat-list>
@@ -103,18 +115,19 @@
 
           <div *ngIf="checkActive('large_leaderboard')  && !isLoading" class="leaderboard-club-image">
             <a href="{{advertisementData?.large_leaderboard?.redirect_url}}" target="_blank">
-            <img [src]="advertisemnet_base_url + advertisementData?.large_leaderboard?.featured_image">
+              <img [src]="advertisemnet_base_url + advertisementData?.large_leaderboard?.featured_image">
             </a>
             <button *ngIf="!btnLoading" (click)="closeAd('large_leaderboard')" class="ad-close-button"><i
                 class="fa-solid fa-xmark"></i></button>
-                <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+            <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
           </div>
 
           <div *ngIf="checkActive('small_square')  && !isLoading" class="small-sqaure-image">
             <a href="{{advertisementData?.small_square?.redirect_url}}" target="_blank">
-            <img [src]="advertisemnet_base_url + advertisementData?.small_square?.featured_image">
+              <img [src]="advertisemnet_base_url + advertisementData?.small_square?.featured_image">
             </a>
-            <button *ngIf="!btnLoading" (click)="closeAd('small_square')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+            <button *ngIf="!btnLoading" (click)="closeAd('small_square')" class="ad-close-button"><i
+                class="fa-solid fa-xmark"></i></button>
             <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
           </div>
 
@@ -124,16 +137,18 @@
 
           <div *ngIf="checkActive('small_square')  && !isLoading" class="small-sqaure-image">
             <a href="{{advertisementData?.small_square?.redirect_url}}" target="_blank">
-            <img [src]="advertisemnet_base_url + advertisementData?.small_square?.featured_image">
+              <img [src]="advertisemnet_base_url + advertisementData?.small_square?.featured_image">
             </a>
-            <button *ngIf="!btnLoading" (click)="closeAd('small_square')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+            <button *ngIf="!btnLoading" (click)="closeAd('small_square')" class="ad-close-button"><i
+                class="fa-solid fa-xmark"></i></button>
             <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
           </div>
           <div *ngIf="checkActive('banner')  && !isLoading" class="leaderboard-club-image">
             <a href="{{advertisementData?.banner?.redirect_url}}" target="_blank">
-            <img [src]="advertisemnet_base_url + advertisementData?.banner?.featured_image">
+              <img [src]="advertisemnet_base_url + advertisementData?.banner?.featured_image">
             </a>
-            <button *ngIf="!btnLoading" (click)="closeAd('banner')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+            <button *ngIf="!btnLoading" (click)="closeAd('banner')" class="ad-close-button"><i
+                class="fa-solid fa-xmark"></i></button>
             <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
           </div>
         </div>
@@ -197,27 +212,28 @@
 
           <div *ngIf="checkActive('large_rectangle')  && !isLoading" class="large-rectangle">
             <a href="{{advertisementData?.large_rectangle?.redirect_url}}" target="_blank">
-            <img [src]="advertisemnet_base_url + advertisementData?.large_rectangle?.featured_image">
+              <img [src]="advertisemnet_base_url + advertisementData?.large_rectangle?.featured_image">
             </a>
             <button *ngIf="!btnLoading" (click)="closeAd('large_rectangle')" class="ad-close-button"><i
                 class="fa-solid fa-xmark"></i></button>
-                <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+            <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
           </div>
 
           <div *ngIf="checkActive('inline_rectangle')  && !isLoading" class="inline-rectangle">
             <a href="{{advertisementData?.inline_rectangle?.redirect_url}}" target="_blank">
-            <img [src]="advertisemnet_base_url + advertisementData?.inline_rectangle?.featured_image">
+              <img [src]="advertisemnet_base_url + advertisementData?.inline_rectangle?.featured_image">
             </a>
             <button *ngIf="!btnLoading" (click)="closeAd('inline_rectangle')" class="ad-close-button"><i
                 class="fa-solid fa-xmark"></i></button>
-                <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
+            <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
           </div>
 
           <div *ngIf="checkActive('square')  && !isLoading" class="square">
             <a href="{{advertisementData?.square?.redirect_url}}" target="_blank">
-            <img [src]="advertisemnet_base_url + advertisementData?.square?.featured_image">
+              <img [src]="advertisemnet_base_url + advertisementData?.square?.featured_image">
             </a>
-            <button *ngIf="!btnLoading" (click)="closeAd('square')" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
+            <button *ngIf="!btnLoading" (click)="closeAd('square')" class="ad-close-button"><i
+                class="fa-solid fa-xmark"></i></button>
             <div class="countdown" *ngIf="btnLoading">{{countdown}}</div>
           </div>
 

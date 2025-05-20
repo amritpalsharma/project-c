@@ -35,7 +35,7 @@ export class EditPersonalDetailsComponent implements OnInit {
   @ViewChild('placeOfBirthInput') placeOfBirthInput!: ElementRef;
   placeSuggestions: any[] = [];
   readonly date = new FormControl(moment());
-
+  isTeamSelectError:boolean=false;
   countries: any;
   teamsArr: any[] = [];
   leagueLevels: any[] = [];
@@ -351,6 +351,13 @@ export class EditPersonalDetailsComponent implements OnInit {
       return;
     }
 
+    if(!this.CurrentTeamId && this.currentClubId){
+      this.isTeamSelectError = true;
+      return;
+    }else{
+      this.isTeamSelectError = false;
+    }
+
     if (!this.nationality || this.nationality.length === 0) {
       this.toastr.warning(this.nationalityRequired, this.errorTxt);
       return;
@@ -485,6 +492,7 @@ export class EditPersonalDetailsComponent implements OnInit {
   clubUpdated() {
     console.warn('Function called');
     this.loadTeams(this.currentClubId)
+    this.CurrentTeamId = 0;
   }
 
   loadTeams(club_id: any): void {

@@ -188,3 +188,9 @@ mat-datepicker-toggle{
 .backgroundGray{
   // background-color: gray;
 }
+::ng-deep .error-border{
+  border: 2px solid red;
+  border-color: red !important;
+}
+
+
