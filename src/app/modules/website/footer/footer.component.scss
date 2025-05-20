@@ -260,6 +260,10 @@ a.btn-primary {
   color: #fff;
   margin-right: 10px;
   padding-right: 0;
+  font-family: var(--bs-avenir-regular);
+}
+.dropdown-menu .dropdown-item {
+  font-family: var(--bs-avenir-regular);
 }
 
 .switch {
@@ -427,6 +431,17 @@ input:checked+.slider:before {
   color: white;
   font-weight: 700;
   padding-bottom: 20px;
+  position: relative;
+  padding-top: 15px;
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 40px;
+    height: 4px;
+    background-color: #e05263;
+  }
 }
 
 #footer .footer-top .footer-links ul {
@@ -500,6 +515,9 @@ input:checked+.slider:before {
 
 .footer-bottom {
   padding: 12px 0;
+}
+.footer-bottom p {
+  font-family: var(--bs-avenir-regular);
 }
 
 .logo h6 {
@@ -923,6 +941,7 @@ img.vector-img {
 #footer .footer-top .footer-links ul li a {
   cursor: pointer;
   background: transparent !important;
+  font-family: var(--bs-avenir-semibold);
 }
 
 /*--------------------------------------------------------------
@@ -955,7 +974,7 @@ p.country {
   font-size: 18px;
   text-align: left;
   font-weight: 700;
-  
+  font-family: var(--bs-avenir-bold);
 }
 
 
@@ -1422,6 +1441,10 @@ option.countary {
   }
 }
 
+#footer .footer-top h4 {
+  font-family: var(--bs-avenir-bold);
+}
+
 
 @media (min-width: 992px) and (max-width: 1999px) {
   #footer .footer-top h4 {
@@ -1446,6 +1469,15 @@ option.countary {
   margin-left: 40px;
   width: calc(25% - 40px);
 }  
+}
+
+@media (min-width: 2000px) { 
+#footer .footer-top h4 {
+  &:before {
+    width: 60px;
+    height: 6px;
+  }
+}
 }
 
 @media (min-width: 3000px) {

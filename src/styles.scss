@@ -1,5 +1,34 @@
 @import './responsive.scss';
 
+@font-face {
+  font-family: "AvenirNextLTPro-Bold";
+  src: url('./assets/fonts/AvenirNextLTPro-Bold.woff') format('woff'),
+  url('./assets/fonts/AvenirNextLTPro-Bold.woff2') format('woff2'),
+  url('./assets/fonts/AvenirNextLTPro-Bold.eot'),
+  url('./assets/fonts/AvenirNextLTPro-Bold.eot?#iefix') format('embedded-opentype'),
+  url('./assets/fonts/AvenirNextLTPro-Bold.otf') format('truetype');
+}
+@font-face {
+  font-family: "AvenirNextLTPro-Demi";
+  src: url('./assets/fonts/AvenirNextLTPro-Demi.woff') format('woff'),
+  url('./assets/fonts/AvenirNextLTPro-Demi.woff2') format('woff2'),
+  url('./assets/fonts/AvenirNextLTPro-Demi.eot'),
+  url('./assets/fonts/AvenirNextLTPro-Demi.eot?#iefix') format('embedded-opentype'),
+  url('./assets/fonts/AvenirNextLTPro-Demi.otf') format('truetype');
+}
+@font-face {
+  font-family: "AvenirNextLTPro-Regular";
+  src: url('./assets/fonts/AvenirNextLTPro-Regular.woff') format('woff'),
+  url('./assets/fonts/AvenirNextLTPro-Regular.woff2') format('woff2'),
+  url('./assets/fonts/AvenirNextLTPro-Regular.eot'),
+  url('./assets/fonts/AvenirNextLTPro-Regular.eot?#iefix') format('embedded-opentype'),
+  url('./assets/fonts/AvenirNextLTPro-Regular.otf') format('truetype');
+}
+:root {
+  --bs-avenir-bold: "AvenirNextLTPro-Bold";
+  --bs-avenir-semibold: "AvenirNextLTPro-Demi";
+  --bs-avenir-regular: "AvenirNextLTPro-Regular";
+}
 body {
   font-family: "Libre Franklin", sans-serif;
   background: #f0f0f0;

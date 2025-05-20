@@ -2,10 +2,7 @@
   <div class="main">
     <div class="overlay" *ngIf="showPopup"></div>
     <div class="cookie-popup" *ngIf="showPopup">
-      <div class="container">
-        <!-- <p [innerHTML]="'cookiePopupText' | translate" class="cookie-text"> -->
-        <!-- </p> -->
-
+      <div class="container-fluid">
         <strong class="mb-3 d-block cookie_text_main">{{ 'weUseCookies' | translate }}</strong>
 
         <p class="mb-3 cookie_text_main">
@@ -16,14 +13,14 @@
         </p>
 
         <div class="cookie-button" *ngIf="showPopup">
-          <div class="choice-btn">
             <button type="button" class="choice" (click)="personalizeChoices()">{{ 'PersonalizeMyChoices' | translate
               }}</button>
-          </div>
-          <div class="accept&decline">
+             <button type="button" class="decline cursor-pointor" (click)="acceptCookies()">{{ 'iDecline' | translate }}</button> 
+             <button type="button" class="accept" (click)="acceptCookies()" [disabled]="disableButton == 'acceptCookies'">{{ 'iAccept' | translate }}</button>
+          <!-- <div class="accept&decline">
             <button type="button" class="accept" (click)="acceptCookies()" [disabled]="disableButton == 'acceptCookies'">{{ 'iAccept' | translate }}</button>
             <button type="button" class="decline cursor-pointor" (click)="acceptCookies()">{{ 'iDecline' | translate }}</button>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

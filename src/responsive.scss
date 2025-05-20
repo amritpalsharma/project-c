@@ -602,12 +602,15 @@ mat-datepicker-toggle button {
 .banner-inner .about h3, .country-available, h2.cookie-text {
     font-size: 60px !important;
 }
-.website_main_pages .website-code .mdc-list-item.mdc-list-item--with-one-line {
-    height: 50px !important;
-}
 .country-name {
-    font-size: 30px !important;
-    line-height: 2;
+font-size: 30px !important;
+min-height: 75px !important;
+padding-left: 85px !important;
+    .flag_icon {
+        width: 55px !important;
+        height: 55px !important;
+        left: 15px !important;
+    }
 }
 .banner-left {
     margin-right: 35%;
@@ -775,13 +778,16 @@ mat-datepicker-toggle button {
         }
         .country-name {
             font-size: 45px !important;
-            line-height: 2;
+            min-height: 100px !important;
+            padding-left: 110px !important;
+            .flag_icon {
+                width: 65px !important;
+                height: 65px !important;
+                left: 20px !important;
+            }
         }
         .club_player_sec .title_text_p h3 {
             font-size: 60px !important;
-        }
-        .website_main_pages .website-code .mdc-list-item.mdc-list-item--with-one-line {
-            height: 70px !important;
         }
         .countries {
             .custom-list-item::before {

@@ -1,3 +1,28 @@
+.cookie-popup {
+    font-family: var(--bs-avenir-regular);
+    strong.cookie_text_main {
+        font-family: var(--bs-avenir-bold);
+        font-size: 25px;
+        margin-bottom: 10px !important;
+    }
+    p.cookie_text_main {
+        font-family: var(--bs-avenir-regular);
+        font-size: 18px;
+    }
+}
+.personalization-box .model-heading  {
+    font-family: var(--bs-avenir-bold);
+    font-size: 25px;
+}
+.personalization-box h6 {
+    font-family: var(--bs-avenir-bold);
+}
+.personalization-box p {
+    font-family: var(--bs-avenir-regular);
+}
+.personalization-box p, .personalization-box h6 {
+    font-size: 18px;
+}
 .readonly-text {
     color: #aaa;
 }
@@ -28,51 +53,32 @@
     line-height: 26px;
 }
 
-.accept\&decline {
-    display: flex;
-    margin-left: auto;
-}
-
 .cookie-button {
     display: flex;
+    justify-content: space-between;
 }
 
-.choice {
-    border-radius: 8px;
-    font-size: 18px;
-    font-weight: 500;
-}
-
-.accept {
-    font-size: 18px;
-    font-weight: 500;
-    border-radius: 8px;
-    margin-right: 13px;
-}
-
-.decline {
-    font-size: 18px;
-    font-weight: 500;
-    border-radius: 8px;
-    margin-right: 13px;
-    color: white;
+.choice, .accept, .decline {
+    font-size: 14px;
+    border-radius: 50px;
+    padding: 11px 10px 10px;
+    font-family: var(--bs-avenir-bold);
+    text-transform: uppercase;
+    width: 32%;
 }
 
 .cookie-popup {
     position: fixed;
     bottom: 0;
     left: 0;
-    right: 0;
+    right: 20px;
+    max-width: 650px;
     width: 100%;
     padding: 20px;
     margin-left: auto;
-    margin-right: auto;
+    margin-bottom: 20px;
     z-index: 1000;
     animation: slideUp 2s ease-out forwards;
-
-    .container {
-        max-width: 860px;
-    }
 }
 
 @keyframes slideUp {
@@ -122,6 +128,10 @@
 
 .modal-footer {
     margin-top: 30px;
+    justify-content: space-around;
+    button {
+        width: 31%;
+    }
 }
 
 .model-heading {
@@ -205,27 +215,18 @@
     transition: .4s;
     border-radius: 50%;
 }
-
 input:checked+.slider {
     // background-color: #BDE34F;
     background: linear-gradient(180deg,#6FB95D,#236115);
 }
-
 input:checked+.slider:before {
     transform: translateX(20px);
 }
-
 input:checked+.slider:before {
     background-color: white;
 }
-
 p {
     font-size: 16px;
-}
-
-.cookie-button button,
-.modal-footer button {
-    padding: 7px 25px;
 }
 
 @media (min-width: 1441px) {
@@ -234,7 +235,6 @@ p {
         width: 28px;
     }
 }
-
 @media (max-width: 1281px) {
     .slider:before {
         height: 28px;
@@ -247,11 +247,17 @@ p {
         font-size: 16px;
         margin-bottom: 10px;
     }
-
-    .choice,
-    .accept,
-    .decline {
+    .choice, .accept, .decline {
         font-size: 14px;
+    }
+    .cookie-popup p.cookie_text_main {
+        font-size: 15px;
+    }
+    .cookie-popup strong.cookie_text_main {
+        font-size: 21px;
+    }
+    .cookie-popup {
+        max-width: 550px;
     }
 }
 
@@ -310,6 +316,15 @@ p {
     input:checked+.slider:before {
         transform: translateX(15px);
     }
+}
+
+@media (max-width: 650px) {
+.cookie-popup {
+    max-width: 100%;
+    margin-bottom: 0;
+    right: 0;
+    padding: 15px 6px;
+}
 }
 
 @media (max-width: 575px) {
@@ -410,4 +425,41 @@ p {
 }
 .cursor-pointor{
     cursor: pointer;
+}
+
+@media (min-width: 1600px) and (max-width: 2999px) {
+.cookie-popup {
+    max-width: 750px;
+    strong.cookie_text_main {
+        font-size: 28px;
+    }
+    p.cookie_text_main {
+        font-size: 22px;
+    }
+}
+.choice, .accept, .decline, .personalization-box p, .personalization-box h6 {
+    font-size: 18px;
+}
+.personalization-box .model-heading {
+    font-size: 28px;
+}
+}
+
+@media (min-width: 3000px) {
+.cookie-popup {
+    max-width: 900px;
+    padding: 30px;
+    strong.cookie_text_main {
+        font-size: 32px;
+    }
+    p.cookie_text_main {
+        font-size: 25px;
+    }
+}
+.choice, .accept, .decline, .personalization-box p, .personalization-box h6 {
+    font-size: 22px;
+}
+.personalization-box .model-heading {
+    font-size: 32px;
+}
 }

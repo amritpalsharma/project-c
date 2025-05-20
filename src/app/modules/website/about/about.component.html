@@ -33,16 +33,16 @@
 
     <div class="about-content py_0">
       <div class="container">
-        <div class="row align-items-center">
+        <div class="row">
           <div class="col-lg-6 col-md-6 col-12">
             <div class="content-image">
-              <img *ngIf="currentTheme != 'dark'" src="/assets/images/about_page/banner_img_light.png" alt="About Us">
-              <img *ngIf="currentTheme == 'dark'" src="/assets/images/about_page/banner_img_dark.png" alt="About Us">
+              <img *ngIf="currentTheme != 'dark'" src="/assets/images/about_page/banner_img_light.png" alt="About Us" class="w-100">
+              <img *ngIf="currentTheme == 'dark'" src="/assets/images/about_page/banner_img_dark.png" alt="About Us" class="w-100">
             </div>
           </div>
           <div class="col-lg-6 col-md-6 col-12">
-            <p class="content-text" [innerHTML]="about_banner_desc">
-            </p>
+            <div class="content-text" [innerHTML]="about_banner_desc">
+            </div>
           </div>
         </div>
       </div>
@@ -77,7 +77,9 @@
 
             <mat-list>
               <mat-list-item *ngFor="let country of countries" rel="noopener noreferrer">
-                <a class="custom-list-item country-name" target="_blank">{{country}}</a>
+                <a class="custom-list-item country-name" target="_blank">
+                  <span class="flag_icon"><img src="/assets/images/flag-switzerland.svg"></span> 
+                  {{country}}</a>
               </mat-list-item>
             </mat-list>
           </div>
