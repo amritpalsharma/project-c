@@ -1,6 +1,9 @@
 /*--------------------------------------------------------------
    banner
 --------------------------------------------------------------*/
+* {
+    font-family: var(--bs-avenir-regular);
+}
 h1, h2, h3.form-heading {
   font-family: var(--bs-avenir-bold);
 }
@@ -109,12 +112,12 @@ body {
 .grey_common_banner {
     margin-top: 140px;
     padding: 50px 0;
-    h2.cookie-text, .contact-text p, h3 {
+    h2.cookie-text,  h3 {
       color: #357525;
     }
     h3 {
       margin: 1rem 0;
-      font-size: 24px;
+      font-size: 30px;
     }
 }
 label {
@@ -266,25 +269,8 @@ input.ng-valid.ng-dirty.ng-touched {
   }
 }
 
-@media (max-width: 1200px) {
-
-  input#name,
-  input#email,
-  input#phone,
-  textarea#message {
-    width: 640px;
-  }
-}
-
 
 @media (max-width: 1024px) {
-
-  input#name,
-  input#email,
-  input#phone,
-  textarea#message {
-    width: 570px;
-  }
   .py_0 {
     padding-top: 20px;
     padding-bottom: 20px;
@@ -304,13 +290,6 @@ input.ng-valid.ng-dirty.ng-touched {
 @media (max-width: 991px) {
   form.ng-untouched.ng-pristine.ng-invalid {
     margin-right: 0;
-  }
-
-  input#name,
-  input#email,
-  input#phone,
-  textarea#message {
-    width: 100%;
   }
 
   .location {
@@ -348,6 +327,12 @@ input.ng-valid.ng-dirty.ng-touched {
   form button {
     margin-left: 0;
   }
+  
+    .grey_common_banner {
+        h3 {
+            font-size: 20px;
+        }
+    }
 }
 
 @media (max-width: 376px) {
@@ -416,6 +401,11 @@ button.submit_btn {
 }
 }
 
+@media (min-width: 992px) and (max-width: 1999px) {      
+  .contact-text * {
+      font-size: 24px;
+  }
+}
 
 @media (min-width: 992px) and (max-width: 1599px) {
   .form-heading {
@@ -440,16 +430,20 @@ button.submit_btn {
   .cookie-text {
     font-size: 40px;
   }
+  .grey_common_banner {
+      h3 {
+          font-size: 25px;
+      }
+      .contact-text {
+          font-size: 20px;
+      }
+  }
 }
 
 
 @media (min-width: 1600px) and (max-width: 2999px) {
 .grey_common_banner {
     padding: 80px 0;
-    h3 {
-      font-size: 45px !important;
-      margin: 1.25rem 0 !important;
-    }
     .location-image img {
     width: 40px !important;
     height: 40px !important;
@@ -461,6 +455,14 @@ input#name, input#email, input#phone {
 }
 }
 
+@media (min-width: 2000px) {
+.grey_common_banner {
+        h3 {
+        font-size: 45px !important;
+        margin: 1.25rem 0 !important;
+        }
+    }
+}
 
 @media (min-width: 3000px) {
 .grey_common_banner {

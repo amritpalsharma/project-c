@@ -1,8 +1,54 @@
 <section class="website-code">
   <!-- <app-header></app-header> -->
+   <div class="grey_common_banner">
+      <div class="container">
+        <h2 class="cookie-text">{{banner_title}}</h2>
+        <h3>Succer You Sports AG</h3>
+        <div class="row">
+          <div class="col-md-6 address_col">
+            <div class="contact-text">
+                <div class="location">
+                    <div class="location-image">
+                        <img class="dark-location" src="./assets/images/location logo.svg">
+                        <img class="light-location" src="./assets/images/location-light.svg">
+                    </div>
+                    <div class="location-text">
+                      <p>Succer You Sports AG</p>
+                      <p>Ida-Stäuli-Strasse 95</p>
+                      <p>CH-8404 Winterthur | Switzerland</p>
+                    </div>
+                </div>
+              </div>
+          </div>
+          <div class="col-md-6">
+            <div class="contact-text">
+                <div class="mail">
+                    <div class="location-image">
+                        <img class="dark-mail" src="./assets/images/website-dark.svg">
+                        <img class="light-mail" src="./assets/images/website-light.svg">
+                    </div>
+                    <div>
+                        <a class="location-text" href="https://www.socceryou.ch/">www.socceryou.ch</a>
+                    </div>
+                </div>
+                <div class="mail">
+                    <div class="location-image">
+                        <img class="dark-mail" src="./assets/images/mail logo.svg">
+                        <img class="light-mail" src="./assets/images/mail-light.svg">
+                    </div>
+                    <div>
+                      <a class="location-text" href="mailto:info&#64;socceryou.ch">info&#64;socceryou.ch</a>
+                        <!-- <a class="location-text" href="mailto:info@socceryou.ch">info@socceryou.ch</a> -->
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   <div class="main">
-    <div class="main1" style="background-image: url('/assets/images/banner_images/imprint_banner_image.png');">
-      <!-- <div class="main-bnr"  style="background-image: url('{{base_url+banner_img}}');"> -->
+    <!-- <div class="main1" style="background-image: url('/assets/images/banner_images/imprint_banner_image.png');">
       <div class="overlay"></div>
       <div class="banner-inner py_0">
         <div class="container">
@@ -11,7 +57,8 @@
           </div>
         </div>
       </div>
-
+      </div> -->
+    <div class="adsss">
       <div *ngIf="checkActive('skyscraper')  && !isLoading" class="skyscraper-left">
         <a href="{{advertisementData?.skyscraper?.redirect_url}}" target="_blank">
           <img [src]="advertisemnet_base_url + advertisementData?.skyscraper?.featured_image">
