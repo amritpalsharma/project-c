@@ -290,7 +290,7 @@ export class SightingTabComponent {
         this.sightingData = response.data.sighting;
         this.playersInvited = response.data.players_invited;
         this.playersInvitedFirstFour = response.data.players_invited.slice(0, 4);
-        this.attachments = response.data.attachments;;
+        this.attachments = response.data.attachments;
         this.isLoading = false;
       } else {
         this.isLoading = false;
