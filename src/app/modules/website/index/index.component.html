@@ -88,14 +88,18 @@
     <!-- Recently joined -->
     <div class="recently-joined py_0">
       <div class="container">
-        <div class="joined">
-          <div class="joined-text">
-            <!-- <h3>Recently Joined</h3> -->
-            <h3>{{pageDetail?.slider_heading}}</h3>
-          </div>
-          <div class="joined-btn join_btn_dektop">
-            <button type="button" [routerLink]="'/player-list'" class="btn btn-light">{{pageDetail?.slider_btn_txt}}</button>
-          </div>
+        <div class="joined row">
+          <div class="col-md-6">
+            <div class="joined-text">
+              <h3>{{pageDetail?.slider_heading}}</h3>
+            </div>
+            </div>
+          <div class="col-md-6">
+            <div class="joined-para">
+              <p>{{'homeSliderTxt' | translate}}</p>
+              <!-- <p>Only verified profiles – for real visibility. Discover the latest talents, scouts and clubs now.</p> -->
+            </div>
+            </div>
         </div>
       </div>
 
@@ -157,7 +161,7 @@
 
           </owl-carousel-o>
         </div>
-        <div class="joined-btn join_btn_mobile">
+        <div class="joined-btn d-flex justify-content-center mt-5">
           <button type="button" [routerLink]="'/player-list'" class="btn btn-light">{{pageDetail?.slider_btn_txt}}</button>
         </div>
       </div>

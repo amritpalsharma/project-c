@@ -1,16 +1,57 @@
 <section class="website-code">
   <!-- <app-header></app-header> -->
-  <div class="main contact_banner">
-    <div class="overlay"></div>
-    <div class="banner-inner py_0">
+   <div class="grey_common_banner">
       <div class="container">
-        <div class="about">
-          <h2 class="cookie-text">{{banner_title}}</h2>
+        <h2 class="cookie-text">{{banner_title}}</h2>
+        <h3>Succer You Sports AG</h3>
+        <div class="row">
+          <div class="col-md-6 address_col">
+            <div class="contact-text">
+                <div class="location">
+                    <div class="location-image">
+                        <img class="dark-location" src="./assets/images/location logo.svg">
+                        <img class="light-location" src="./assets/images/location-light.svg">
+                    </div>
+                    <div [innerHTML]="address" class="location-text"></div>
+                </div>
+              </div>
+          </div>
+          <div class="col-md-6">
+            <div class="contact-text">
+                <div class="mail">
+                    <div class="location-image">
+                        <img class="dark-mail" src="./assets/images/website-dark.svg">
+                        <img class="light-mail" src="./assets/images/website-light.svg">
+                    </div>
+                    <div>
+                        <a class="location-text" href="https://www.socceryou.ch/">www.socceryou.ch</a>
+                    </div>
+                </div>
+                <div class="mail">
+                    <div class="location-image">
+                        <img class="dark-mail" src="./assets/images/mail logo.svg">
+                        <img class="light-mail" src="./assets/images/mail-light.svg">
+                    </div>
+                    <div>
+                        <a class="location-text" href="mailto:info@socceryou.ch">{{semail}}</a>
+                    </div>
+                </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-
-
+   <!-- <div class="main contact_banner">
+   <div class="overlay"></div>
+    <div class="banner-inner py_0">
+      <div class="container">
+        <div class="about">
+          
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <div class="adsss">
     <div *ngIf="checkActive('skyscraper')  && !isLoading" class="skyscraper-left">
       <a href="{{advertisementData?.skyscraper?.redirect_url}}" target="_blank">
         <img [src]="advertisemnet_base_url + advertisementData?.skyscraper?.featured_image">
@@ -34,127 +75,95 @@
   <div class="contact-form py_0">
     <div class="container">
       <h3 class="form-heading text-uppercase">{{form_title}}</h3>
-      <div class="row justify-content-between">
-        <div class="col-lg-7 col-md-12 col-12">
+      <div class="form_wrapper">
+        <div class="radio-group">
+          <label>{{txt_before_radio_btn}}</label>
+          <label class="custom-radio">
+            <input type="radio" name="options" value="option1" [(ngModel)]="selectedOption" />
+            <span class="radio-button"></span>
+            {{talent_label_txt}}
+          </label>
 
-          <div class="radio-group">
-            <label>{{txt_before_radio_btn}}</label>
-            <label class="custom-radio">
-              <input type="radio" name="options" value="option1" [(ngModel)]="selectedOption" />
-              <span class="radio-button"></span>
-              {{talent_label_txt}}
-            </label>
+          <label class="custom-radio">
+            <input type="radio" name="options" value="option2" [(ngModel)]="selectedOption" />
+            <span class="radio-button"></span>
+            {{club_label_txt}}
+          </label>
 
-            <label class="custom-radio">
-              <input type="radio" name="options" value="option2" [(ngModel)]="selectedOption" />
-              <span class="radio-button"></span>
-              {{club_label_txt}}
-            </label>
-
-            <label class="custom-radio">
-              <input type="radio" name="options" value="option3" [(ngModel)]="selectedOption" />
-              <span class="radio-button"></span>
-              {{scout_label_txt}}
-            </label>
-          </div>
-
-
-          <div>
-            <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
-              <input type="hidden" name="domain" ng-model="contactForm.domain" />
-              <div>
-                <input id="name" class="form-control" formControlName="name" [placeholder]="name_placeholder"
-                  ng-model="contactForm.name" />
-                <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="error">
-                  <div *ngIf="name?.errors?.['required']">{{'nameRequired' | translate}}</div>
-                </div>
-              </div>
-
-              <div>
-                <input id="email" class="form-control" type="email" formControlName="email"
-                  [placeholder]="email_placeholder" ng-model="contactForm.email" />
-                <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="error">
-                  <div *ngIf="email?.errors?.['required']">{{'emailRequired' | translate}}</div>
-                  <!-- <div *ngIf="email?.errors?.['email']">{{'emailRequired' | translate}}</div> -->
-                  <!-- <div *ngIf="email?.errors?.['email']">Invalid email address.</div> -->
-                </div>
-              </div>
-
-              <div>
-                <input id="phone" class="form-control" type="tel" formControlName="phone"
-                  [placeholder]="phone_placeholder" ng-model="contactForm.phone" (keypress)="allowOnlyNumbers($event)"
-                  (paste)="preventTextPaste($event)" />
-                <div *ngIf="phone?.invalid && (phone?.dirty || phone?.touched)" class="error">
-                  <div *ngIf="phone?.errors?.['required']">{{'phoneRequired' | translate}}</div>
-                  <!-- <div *ngIf="phone?.errors?.['pattern']">{{'phoneRequired' | translate}}</div> -->
-                  <!-- <div *ngIf="phone?.errors?.['pattern']">Invalid phone number.</div> -->
-                </div>
-              </div>
-
-              <div>
-                <!-- <textarea id="message" class="form-control" formControlName="message" [placeholder]="message_placeholder"
-                ng-model="messageText" (onblur)="onBlur($event)"></textarea> -->
-                <textarea id="message" class="form-control" [(ngModel)]="messageText"
-                  [placeholder]="message_placeholder" (blur)="onBlur($event)"></textarea>
-
-                <div *ngIf="message?.invalid && (message?.dirty || message?.touched)" class="error">
-
-                  <div *ngIf="message?.errors?.['required']">{{'messageRequired' | translate}}</div>
-                </div>
-              </div>
-              <div class="row justify-content-between">
-                <div class="col-lg-6 col-md-6 col-12">
-
-                  <form class="recapthe-code" (ngSubmit)="onSubmit()">
-                    <!-- <re-captcha siteKey="6Ld7hb8qAAAAAKFcBW581ppk9_MZnGPIwgAQ3nWE" (resolved)="resolved($event)">
-                    </re-captcha> -->
-                    <re-captcha siteKey="{{captchaKey}}" (resolved)="resolved($event)">
-                    </re-captcha>
-                  </form>
-                  <div class="error">
-                    <div *ngIf="showcaptchaError">{{'fillCaptcha' | translate}}</div>
-                  </div>
-                </div>
-                <div class="col-lg-5 col-md-5 col-12">
-                  <button class="submit_btn" type="submit"> {{submit_btn_txt}}</button>
-                </div>
-              </div>
-
-
-            </form>
-
-          </div>
-
-
+          <label class="custom-radio">
+            <input type="radio" name="options" value="option3" [(ngModel)]="selectedOption" />
+            <span class="radio-button"></span>
+            {{scout_label_txt}}
+          </label>
         </div>
-        <div class="col-lg-4 col-md-12 col-12">
-          <div class="contact-text">
-            <div class="location">
-              <div class="location-image">
-                <img class="dark-location" src="./assets/images/location logo.svg">
-                <img class="light-location" src="./assets/images/location-light.svg">
-              </div>
-              <div [innerHTML]="address">
-                <!-- <p class="location-text">Succer You Sports AG</p>
-              <p class="location-text">Ida-Stäuli-Strasse 95</p>
-              <p class="location-text">CH-8404 Winterthur</p>
-              <p class="location-text">Switzerland</p> -->
+        <div>
+          <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+            <input type="hidden" name="domain" ng-model="contactForm.domain" />
+            <div class="row">
+            <div class="col-sm-6">
+              <input id="name" class="form-control" formControlName="name" [placeholder]="name_placeholder"
+                ng-model="contactForm.name" />
+              <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="error">
+                <div *ngIf="name?.errors?.['required']">{{'nameRequired' | translate}}</div>
               </div>
             </div>
 
-            <div class="mail">
-              <div class="location-image">
-                <img class="dark-mail" src="./assets/images/mail logo.svg">
-                <img class="light-mail" src="./assets/images/mail-light.svg">
-              </div>
-              <div>
-                <a class="location-text" href="mailto:info@socceryou.ch">{{semail}}</a>
+            <div class="col-sm-6">
+              <input id="email" class="form-control" type="email" formControlName="email"
+                [placeholder]="email_placeholder" ng-model="contactForm.email" />
+              <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="error">
+                <div *ngIf="email?.errors?.['required']">{{'emailRequired' | translate}}</div>
+                <!-- <div *ngIf="email?.errors?.['email']">{{'emailRequired' | translate}}</div> -->
+                <!-- <div *ngIf="email?.errors?.['email']">Invalid email address.</div> -->
               </div>
             </div>
-          </div>
+
+            <div class="col-12">
+              <input id="phone" class="form-control" type="tel" formControlName="phone"
+                [placeholder]="phone_placeholder" ng-model="contactForm.phone" (keypress)="allowOnlyNumbers($event)"
+                (paste)="preventTextPaste($event)" />
+              <div *ngIf="phone?.invalid && (phone?.dirty || phone?.touched)" class="error">
+                <div *ngIf="phone?.errors?.['required']">{{'phoneRequired' | translate}}</div>
+                <!-- <div *ngIf="phone?.errors?.['pattern']">{{'phoneRequired' | translate}}</div> -->
+                <!-- <div *ngIf="phone?.errors?.['pattern']">Invalid phone number.</div> -->
+              </div>
+            </div>
+
+            <div class="col-12">
+              <!-- <textarea id="message" class="form-control" formControlName="message" [placeholder]="message_placeholder"
+              ng-model="messageText" (onblur)="onBlur($event)"></textarea> -->
+              <textarea id="message" class="form-control" [(ngModel)]="messageText"
+                [placeholder]="message_placeholder" (blur)="onBlur($event)"></textarea>
+
+              <div *ngIf="message?.invalid && (message?.dirty || message?.touched)" class="error">
+
+                <div *ngIf="message?.errors?.['required']">{{'messageRequired' | translate}}</div>
+              </div>
+            </div>
+            </div>
+            <div class="row justify-content-between">
+              <div class="col-lg-6 col-md-6 col-12">
+
+                <form class="recapthe-code" (ngSubmit)="onSubmit()">
+                  <!-- <re-captcha siteKey="6Ld7hb8qAAAAAKFcBW581ppk9_MZnGPIwgAQ3nWE" (resolved)="resolved($event)">
+                  </re-captcha> -->
+                  <re-captcha siteKey="{{captchaKey}}" (resolved)="resolved($event)">
+                  </re-captcha>
+                </form>
+                <div class="error">
+                  <div *ngIf="showcaptchaError">{{'fillCaptcha' | translate}}</div>
+                </div>
+              </div>
+              <div class="col-lg-5 col-md-5 col-12">
+                <button class="submit_btn" type="submit"> {{submit_btn_txt}}</button>
+              </div>
+            </div>
+
+
+          </form>
+
         </div>
       </div>
-
       <div class="advertismnt_container">
         <div class="container">
           <div *ngIf="isExists('large_leaderboard')" class="advertisment advertisement_two_top">
@@ -202,10 +211,7 @@
           </div>
         </div>
       </div>
-
-
     </div>
-
   </div>
   <!-- <app-footer></app-footer> -->
 </section>

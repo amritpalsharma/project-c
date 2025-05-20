@@ -257,7 +257,7 @@ export class HeaderComponent implements OnInit {
   isViewPassword1 = false;
   isViewPassword2 = false;
 
-  headerRoutes: string[] = ['/contact', '/terms', '/imprint', '/player-list', '/news'];
+  headerRoutes: string[] = ['/contact', '/terms', '/imprint', '/player-list', '/news', '/privacy'];
   currentRoute: string = '';
   constructor(
     private sharedservice: SharedService,

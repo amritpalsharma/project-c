@@ -1,6 +1,15 @@
 /*--------------------------------------------------------------
    banner
 --------------------------------------------------------------*/
+h1, h2, h3.form-heading {
+  font-family: var(--bs-avenir-bold);
+}
+h3 {
+  font-family: var(--bs-avenir-semibold);
+}
+form {
+   font-family: var(--bs-avenir-regular);
+}
 h4 {
   font-size: 20px;
   color: white;
@@ -12,6 +21,7 @@ p {
   font-size: 18px;
   color: white;
   font-weight: 400;
+  font-family: var(--bs-avenir-regular);
 }
 
 li {
@@ -87,17 +97,26 @@ body {
   font-size: 45px;
   font-weight: 700;
   color: white;
-  text-align: center;
-  filter: brightness(0) invert(1);
   text-transform: uppercase;
-
+}
+.contact-text p {
+  color: #000;
 }
 
 /*--------------------------------------------------------------
 #  Banner
 --------------------------------------------------------------*/
-
-
+.grey_common_banner {
+    margin-top: 140px;
+    padding: 50px 0;
+    h2.cookie-text, .contact-text p, h3 {
+      color: #357525;
+    }
+    h3 {
+      margin: 1rem 0;
+      font-size: 24px;
+    }
+}
 label {
   font-size: 20px;
   color: white;
@@ -145,28 +164,19 @@ textarea#message:focus-visible {
   outline: none;
 }
 
-// form.ng-untouched.ng-pristine.ng-invalid {
-//   margin-right: 50px;
-// }
-
 form button {
-  // background-color: #E05263;
-  // color: white;
   width: 100%;
   height: 41px;
   border-radius: 20px;
   font-weight: 700;
   margin-top: 20px;
   border: none;
+  width: max-content !important;
+min-width: 250px;
+float: right;
+max-width: 100%;
 }
 
-// .recaptcha {
-//   background-color: white;
-//   height: 73px;
-//   width: 284px;
-//   border-radius: 5px;
-//   margin-top: 20px;
-// }
 .recapthe-code {
   margin-top: 10px;
 }
@@ -223,43 +233,37 @@ input.ng-valid.ng-dirty.ng-touched {
   margin-right: 8px;
   position: relative;
 }
-
-/* Style for the radio button when selected */
-// .custom-radio input[type="radio"]:checked + .radio-button {
-//   border-color: pink; /* Border color when selected */
-// }
-
-/* Inner circle for checked radio button */
 .custom-radio input[type="radio"]:checked+.radio-button::before {
   content: '';
   position: absolute;
   top: 50%;
   left: 50%;
   width: 14px;
-  /* Adjust size of inner circle as needed */
   height: 14px;
-  /* Adjust size of inner circle as needed */
   border-radius: 50%;
-  // background-color: #E05263; /* Inner color when selected */
   transform: translate(-50%, -50%);
 }
-
 .location {
   display: flex;
-  color: white;
 }
-
 .location-image {
   margin-right: 10px;
 }
-
+.address_col .location {
+  margin-bottom: 1rem;
+}
 .mail {
   display: flex;
-  margin-top: 30px;
-}
-
-.location-text {
-  color: white;
+  align-items: center;
+  margin-bottom: 1rem;
+  a {
+    color: inherit;
+  }
+  .location-image img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+  }
 }
 
 @media (max-width: 1200px) {
@@ -393,6 +397,8 @@ input.ng-valid.ng-dirty.ng-touched {
 button.submit_btn {
   cursor: pointer;
 }
+
+
 @media (max-width: 375px) {
   .radio-group label.custom-radio {
     margin-left: 0 !important;
@@ -434,4 +440,43 @@ button.submit_btn {
   .cookie-text {
     font-size: 40px;
   }
+}
+
+
+@media (min-width: 1600px) and (max-width: 2999px) {
+.grey_common_banner {
+    padding: 80px 0;
+    h3 {
+      font-size: 45px !important;
+      margin: 1.25rem 0 !important;
+    }
+    .location-image img {
+    width: 40px !important;
+    height: 40px !important;
+    object-fit: contain;
+  }
+}
+input#name, input#email, input#phone {
+  height: 60px;
+}
+}
+
+
+@media (min-width: 3000px) {
+.grey_common_banner {
+    margin-top: 240px;
+    padding: 80px 0;
+    h3 {
+      font-size: 55px !important;
+      margin: 1.5rem 0 !important;
+    }
+    .location-image img {
+    width: 50px !important;
+    height: 50px !important;
+    object-fit: contain;
+  }
+}
+input#name, input#email, input#phone {
+  height: 75px;
+}
 }

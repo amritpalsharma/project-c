@@ -6,16 +6,6 @@
   color: #BDE34E !important;
 }
 
-// .dark-theme .dropdown-item:focus, .dropdown-item:hover {
-//   color: #072944;
-//   background-color: var(--bs-dropdown-link-hover-bg);
-// }
-
-
-// a.dropdown-item.ai-icon.selected {
-//   background: var(--bs-dropdown-link-hover-bg) !important;
-// }
-
 .light-theme .check-image-dark {
   display: none;
 }
@@ -2486,6 +2476,17 @@ body.dark-theme.static-common-banner {
 background: #0c3453 !important;
 .flag_icon { 
 border-color: #bde34e !important;
+}
+}
+.grey_common_banner {
+background-color: #0C3453 !important;
+    h2.cookie-text, .contact-text p, h3 {
+      color: #fff !important;
+    }
+    .mail {
+  a {
+    color: #fff !important;
+  }
 }
 }
 }

@@ -2582,6 +2582,11 @@ td.col_checkbox {
   border: 0 !important;
   border-radius: 0 !important;
 }
+.ng-trigger.mat-mdc-select-panel > div {
+  position: sticky;
+    top: 0;
+    z-index: 1;
+}
 .ng-trigger.mat-mdc-select-panel input.mat-mdc-input-element {
   width: calc(100% - 30px);
   margin-left: 15px;

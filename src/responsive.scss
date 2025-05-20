@@ -489,7 +489,8 @@ mat-datepicker-toggle button {
     .club-banner .title_text_p h3, .price-heading3, .club-banner .club_players h3 {
       font-size: 45px !important;
     }
-    p, .banner-btn .btn, .premium-heading3 span, .price_mat_wrapper .feature-data ul li, .learn-banner .back-button {
+    p, .banner-btn .btn, .premium-heading3 span, .price_mat_wrapper .feature-data ul li, .learn-banner .back-button,
+    .contact-text .location-text {
       font-size: 26px !important;
     }
     .footer-top h4 {
@@ -602,6 +603,12 @@ mat-datepicker-toggle button {
 .banner-inner .about h3, .country-available, h2.cookie-text {
     font-size: 60px !important;
 }
+.grey_common_banner {
+    h3 {
+      margin: 1.25rem 0;
+      font-size: 30px;
+    }
+}
 .country-name {
 font-size: 30px !important;
 min-height: 75px !important;
@@ -713,7 +720,8 @@ padding-left: 85px !important;
         .website_main_pages .recently-joined .player-img {
             height: 570px !important;
         }
-        .website_main_pages p, .website_main_pages .banner-btn .btn, .website_main_pages .premium-heading3 span, .website_main_pages .price_mat_wrapper .feature-data ul li, .website_main_pages .learn-banner .back-button, .website_main_pages .thankyou_secc .thankyou_text h3 {
+        .website_main_pages p, .website_main_pages .banner-btn .btn, .website_main_pages .premium-heading3 span, .website_main_pages .price_mat_wrapper .feature-data ul li, .website_main_pages .learn-banner .back-button, .website_main_pages .thankyou_secc .thankyou_text h3,
+        .contact-text .location-text {
             font-size: 40px !important;
         }
         .thankyou_secc .thankyou_text h4 {
@@ -763,6 +771,12 @@ padding-left: 85px !important;
         }
         .banner-inner .about h3, h2.cookie-text {
             font-size: 90px !important;
+        }
+        .grey_common_banner {
+            h3 {
+            margin: 1.5rem 0;
+            font-size: 40px;
+            }
         }
         .banner-left {
             margin-right: 35%;
