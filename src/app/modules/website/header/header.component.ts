@@ -256,6 +256,9 @@ export class HeaderComponent implements OnInit {
   isViewPassword = false;
   isViewPassword1 = false;
   isViewPassword2 = false;
+
+  headerRoutes: string[] = ['/contact', '/terms', '/imprint', '/player-list', '/news'];
+  currentRoute: string = '';
   constructor(
     private sharedservice: SharedService,
     private themeService: ThemeService,
@@ -281,6 +284,13 @@ export class HeaderComponent implements OnInit {
       this.loadToasterMsg();
     });
 
+    this.router.events.subscribe(() => {
+      this.currentRoute = this.router.url; // Update current route
+    });
+  }
+
+  isActiveRoute(): boolean {
+    return this.headerRoutes.includes(this.currentRoute);
   }
 
   ngAfterViewInit() {

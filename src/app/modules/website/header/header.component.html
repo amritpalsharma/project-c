@@ -1,6 +1,6 @@
 <!---------------------- navbar -------------------------->
 
-<nav class="website_main_pages navbar navbar-expand-lg navbar-light sticky" [ngClass]="{'scrolled': isScrolled}">
+<nav class="website_main_pages navbar navbar-expand-lg navbar-light sticky"  [ngClass]="{'scrolled': isScrolled, 'transparent-header': isActiveRoute()}">
     <div class="container">
         <a class="navbar-brand" [routerLink]="''">
             <div class="logo">
@@ -54,7 +54,7 @@
             <img src="./assets/images/burger-menu.svg">
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" >
 
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
