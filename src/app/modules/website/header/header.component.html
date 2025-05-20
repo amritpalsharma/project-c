@@ -4,8 +4,10 @@
     <div class="container">
         <a class="navbar-brand" [routerLink]="''">
             <div class="logo">
-                <img width="197" height="79" src="./assets/images/light-logo.svg" class="nav_desktop_logo">
-                <img src="./assets/images/soccur-logo-short.svg" class="nav_mobile_logo">
+                <img width="197" height="79" src="./assets/images/light-logo.svg" class="nav_desktop_logo for_bnr_hdr">
+                <img width="197" height="79" src="./assets/images/green-logo.svg" class="nav_desktop_logo for_trnsprnt_hdr">
+                <img src="./assets/images/soccur-logo-short.svg" class="nav_mobile_logo for_bnr_mobile"> 
+                <img src="./assets/images/soccur-logo-short-green.svg" class="nav_mobile_logo for_trns_mobile"> 
             </div>
         </a>
 
@@ -51,7 +53,8 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" [attr.aria-expanded]="isNavbarExpanded.toString()"
             (click)="toggleNavbar()" aria-label="Toggle navigation">
-            <img src="./assets/images/burger-menu.svg">
+            <img src="./assets/images/burger-menu.svg" class="for_white_btn">
+            <img src="./assets/images/burger-menu-green.svg" class="for_green_btn">
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent" >

@@ -1638,24 +1638,15 @@ select.form-select.custom-select1 {
         margin-left: auto;
         text-align: right;
     }
-
-    // .social-links li {
-    //   margin-bottom: 40px;
-    // }
-
     .d-flex {
         display: none !important;
     }
-
     .footer-bottom p {
         font-size: 18px;
     }
-
     select.form-select.custom-select1.hidden {
         display: none;
-        /* Hide the element */
     }
-
     .follow-us {
         display: inline-block;
         transform: rotate(-90deg);
@@ -2515,9 +2506,8 @@ select.form-select.custom-select1 {
 
 @media (max-width: 991px) {
     .nav_desktop_logo {
-        display: none;
+        display: none !important;
     }
-
     .navbar-brand img {
         width: 100px;
         height: 100px;

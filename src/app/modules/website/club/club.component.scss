@@ -24,7 +24,17 @@ h5 {
 p {
     font-size: 18px;
 }
-
+* {
+    font-family: var(--bs-avenir-regular);
+}
+h1, h2, .btn.btn-register, .club-heading4, .feature-heading3, .accordion-header, .price-heading3,
+ul.nav-tabs .nav-link.active, .premium-heading3, .premium-heading2, .btn.fill_btn, strong,
+.premium-heading3 span {
+    font-family: var(--bs-avenir-bold);
+}
+.banner-heading5 p, ul.nav-tabs .nav-link, .premium-heading5  {
+    font-family: var(--bs-avenir-semibold);
+}
 .py_0 {
     padding-top: 50px;
     padding-bottom: 50px;
@@ -80,10 +90,7 @@ P {
 }
 
 a.btn.btn-register {
-    // color: white;
-    // background-color: #E05263;
-    border-radius: 20px;
-    /* padding: 10px 60px; */
+    border-radius: 50px;
     font-size: 18px;
     margin-top: 20px;
     font-weight: 700;

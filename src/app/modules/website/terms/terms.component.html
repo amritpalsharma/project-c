@@ -1,8 +1,54 @@
 <section class="website-code">
   <!-- <app-header></app-header> -->
+  <div class="grey_common_banner">
+    <div class="container">
+      <h2 class="cookie-text">{{banner_title}}</h2>
+      <h3>Succer You Sports AG</h3>
+      <div class="row">
+        <div class="col-md-6 address_col">
+          <div class="contact-text">
+            <div class="location">
+              <div class="location-image">
+                <img class="dark-location" src="./assets/images/location logo.svg">
+                <img class="light-location" src="./assets/images/location-light.svg">
+              </div>
+              <div class="location-text">
+                <p>Succer You Sports AG</p>
+                <p>Ida-Stäuli-Strasse 95</p>
+                <p>CH-8404 Winterthur | Switzerland</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="contact-text">
+            <div class="mail">
+              <div class="location-image">
+                <img class="dark-mail" src="./assets/images/website-dark.svg">
+                <img class="light-mail" src="./assets/images/website-light.svg">
+              </div>
+              <div>
+                <a class="location-text" href="https://www.socceryou.ch/">www.socceryou.ch</a>
+              </div>
+            </div>
+            <div class="mail">
+              <div class="location-image">
+                <img class="dark-mail" src="./assets/images/mail logo.svg">
+                <img class="light-mail" src="./assets/images/mail-light.svg">
+              </div>
+              <div>
+                <a class="location-text" href="mailto:info&#64;socceryou.ch">info&#64;socceryou.ch</a>
+                <!-- <a class="location-text" href="mailto:info@socceryou.ch">info@socceryou.ch</a> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="main main2">
-    <!-- <div class="main1" style="background-image: url('{{base_url+banner_img}}');"> -->
-    <div class="main1" style="background-image: url('/assets/images/banner_images/terms_and_conditions_banner_image.png');">
+    <!-- <div class="main1" style="background-image: url('/assets/images/banner_images/terms_and_conditions_banner_image.png');">
       <div class="overlay"></div>
       <div class="banner-inner py_0">
         <div class="container">
@@ -11,7 +57,8 @@
           </div>
         </div>
       </div>
-
+      </div> -->
+    <div class="adsss">
       <div *ngIf="checkActive('skyscraper')  && !isLoading" class="skyscraper-left">
         <a href="{{advertisementData?.skyscraper?.redirect_url}}" target="_blank">
           <img [src]="advertisemnet_base_url + advertisementData?.skyscraper?.featured_image">
@@ -33,84 +80,153 @@
     </div>
 
     <div class="terms common_static_page">
-      <div class="container content_page" [innerHTML]="page_content">
-
-        <div class="terms_text py_0">
-    <h4>Terms and Conditions</h4>
-    <p>Welcome to SoccerYou. By using our website and services, you agree to the following terms and conditions. Please read them carefully.</p>
-  </div>
-  
-  <div class="py_0">
-    <h4>1. Acceptance of Terms</h4>
-    <p>By accessing or using SoccerYou, you agree to comply with these Terms and Conditions and any applicable laws and regulations. If you do not agree with any part of these terms, you should not use our services.</p>
-  </div>
-  
-    <div class="py_0">
-        <h4>2. Use of Services</h4>
-        <p>You must be at least 13 years old to use SoccerYou. You agree to use our services only for lawful purposes and in accordance with these terms.</p>
-      </div>
-  
-      <div class="py_0">
-        <h4>3. User Accounts</h4>
-        <p>To access certain features, you may need to create an account. You are responsible for maintaining the confidentiality of your account information and for all activities that occur under your account. You agree to notify us immediately of any unauthorized use of your account.</p>
-      </div>
-  
-      <div class="py_0">
-        <h4>4. User Content</h4>
-        <p>You are solely responsible for the content you post on SoccerYou, including any text, images, or videos. You grant SoccerYou a non-exclusive, royalty-free, worldwide license to use, display, and distribute your content in connection with our services.</p>
-      </div>
-  
-      <div class="py_0">
-        <h4>5. Prohibited Activities</h4>
-        <p>You agree not to:</p>
-        <ul>
-            <li>Violate any laws or regulations.</li>
-            <li>Post or transmit any harmful, offensive, or inappropriate content.</li>
-            <li>Impersonate any person or entity or misrepresent your affiliation with any person or entity.</li>
-            <li>Interfere with or disrupt the security or functionality of our services.</li>  
-        </ul>
-      </div>
-  
-      <div class="py_0">
-        <h4>6. Intellectual Property</h4>
-        <p>All content on SoccerYou, including text, graphics, logos, and software, is the property of SoccerYou or its licensors and is protected by intellectual property laws. You may not use, reproduce, distribute, or create derivative works from any content without our express written permission.</p>
-      </div>
-  
-      <div class="py_0">
-        <h4>7. Termination</h4>
-        <p>We reserve the right to suspend or terminate your access to SoccerYou at any time, without notice, for conduct that we believe violates these terms or is harmful to other users of the platform.</p>
-      </div>
-  
-      <div class="py_0">
-        <h4>8. Disclaimers</h4>
-        <p>SoccerYou is provided on an "as is" and "as available" basis. We make no warranties, express or implied, about the reliability, accuracy, or suitability of our services for any purpose. Your use of SoccerYou is at your own risk.</p>
-      </div>
-  
-      <div class="py_0">
-        <h4>9. Limitation of Liability</h4>
-        <p>In no event shall SoccerYou or its affiliates be liable for any direct, indirect, incidental, special, or consequential damages arising out of or in connection with your use of the services.</p>
-      </div>
-  
-      <div class="py_0">
-        <h4>10. Governing Law</h4>
-        <p>These terms and conditions are governed by and construed in accordance with the laws of [Your Country/State], without regard to its conflict of law principles. You agree to submit to the exclusive jurisdiction of the courts located in [Your Country/State] for any disputes arising out of or related to your use of SoccerYou.</p>
-      </div>
-  
-      <div class="py_0">
-        <h4>11. Changes to Terms</h4>
-        <p>We may update these Terms and Conditions from time to time. Any changes will be posted on this page, and we will notify you of significant changes via email or through our website.</p>
-      </div>
-  
-      <div class="py_0">
-        <h4>12. Contact Us</h4>
-        <p class="contact-text">If you have any questions or concerns about these Terms and Conditions, please contact us at:</p>
-        <p> Address: </p>
-        <p>Succer You Sports AG</p>
-        <p>Ida-Stäuli-Strasse 95</p>
-        <p>CH-8404 Winterthur</p>
-        <p>Switzerland</p>
-      </div>
-
+      <!-- <div class="container content_page" [innerHTML]="page_content"> -->
+      <div class="container content_page">
+        <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
+          <div class="card">
+            <div class="card-header p-0" role="tab" id="accordionone">
+              <a data-bs-toggle="collapse" href="#accordion__one" role="button"
+                aria-controls="accordion__one">Terms and Conditions (T&C) Succer You Sports AG</a>
+            </div>
+            <div id="accordion__one" class="collapse show" role="tabpanel" aria-labelledby="accordionone"
+              data-bs-parent="#accordion">
+              <div class="card-body">
+                <p><strong>Version: 5/2025</strong></p>
+                <p>These Terms and Conditions (T&C) govern the relationship between Succer You Sports AG (hereinafter “SoccerYou”), a joint-stock company based in Switzerland, and the users and clients of its international web platform SoccerYou. The platform is intended for the promotion and international marketing of professional athletes, particularly in football. It addresses three user groups: Talents (players), Clubs, and Scouts. By using the services of SoccerYou, the user fully agrees to these T&C.</p>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header p-0" role="tab" id="accordiontwo">
+              <a class="collapsed" data-bs-toggle="collapse" href="#accordion__two" role="button" aria-expanded="false"
+                aria-controls="accordion__two">1. Scope of the Terms and Conditions</a>
+            </div>
+            <div id="accordion__two" class="collapse" role="tabpanel" aria-labelledby="accordiontwo"
+              data-bs-parent="#accordion">
+              <div class="card-body"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec metus erat,
+                vestibulum eget metus ac, sollicitudin imperdiet nibh. Nunc sapien risus, pharetra non diam eu, egestas
+                tempor erat. Phasellus lacinia, arcu sed ultrices dignissim, elit arcu facilisis neque, scelerisque
+                venenatis tellus risus non diam.</p></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header p-0" role="tab" id="accordionthree">
+              <a class="collapsed" data-bs-toggle="collapse" href="#accordion__three" role="button"
+                aria-expanded="false" aria-controls="accordion__three">2. Conclusion of Contract and Registration</a>
+            </div>
+            <div id="accordion__three" class="collapse" role="tabpanel" aria-labelledby="accordionthree"
+              data-bs-parent="#accordion">
+              <div class="card-body"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec metus erat,
+                vestibulum eget metus ac, sollicitudin imperdiet nibh. Nunc sapien risus, pharetra non diam eu, egestas
+                tempor erat. Phasellus lacinia, arcu sed ultrices dignissim, elit arcu facilisis neque, scelerisque
+                venenatis tellus risus non diam.</p></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header p-0" role="tab" id="accordionfour">
+              <a class="collapsed" data-bs-toggle="collapse" href="#accordion__four" role="button" aria-expanded="false"
+                aria-controls="accordion__four">3. Services and Memberships</a>
+            </div>
+            <div id="accordion__four" class="collapse" role="tabpanel" aria-labelledby="accordionfour"
+              data-bs-parent="#accordion">
+              <div class="card-body"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec metus erat,
+                vestibulum eget metus ac, sollicitudin imperdiet nibh. Nunc sapien risus, pharetra non diam eu, egestas
+                tempor erat. Phasellus lacinia, arcu sed ultrices dignissim, elit arcu facilisis neque, scelerisque
+                venenatis tellus risus non diam.</p></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header p-0" role="tab" id="accordionfive">
+              <a class="collapsed" data-bs-toggle="collapse" href="#accordion__five" role="button" aria-expanded="false"
+                aria-controls="accordion__five">4. Data Usage and Public Access:</a>
+            </div>
+            <div id="accordion__five" class="collapse" role="tabpanel" aria-labelledby="accordionfive"
+              data-bs-parent="#accordion">
+              <div class="card-body"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec metus erat,
+                vestibulum eget metus ac, sollicitudin imperdiet nibh. Nunc sapien risus, pharetra non diam eu, egestas
+                tempor erat. Phasellus lacinia, arcu sed ultrices dignissim, elit arcu facilisis neque, scelerisque
+                venenatis tellus risus non diam.</p></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header p-0" role="tab" id="accordionsix">
+              <a class="collapsed" data-bs-toggle="collapse" href="#accordion__six" role="button" aria-expanded="false"
+                aria-controls="accordion__six">5. Payment Terms</a>
+            </div>
+            <div id="accordion__six" class="collapse" role="tabpanel" aria-labelledby="accordionsix"
+              data-bs-parent="#accordion">
+              <div class="card-body"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec metus erat,
+                vestibulum eget metus ac, sollicitudin imperdiet nibh. Nunc sapien risus, pharetra non diam eu, egestas
+                tempor erat. Phasellus lacinia, arcu sed ultrices dignissim, elit arcu facilisis neque, scelerisque
+                venenatis tellus risus non diam.</p></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header p-0" role="tab" id="accordionseven">
+              <a class="collapsed" data-bs-toggle="collapse" href="#accordion__seven" role="button"
+                aria-expanded="false" aria-controls="accordion__seven">6. Liability</a>
+            </div>
+            <div id="accordion__seven" class="collapse" role="tabpanel" aria-labelledby="accordionseven"
+              data-bs-parent="#accordion">
+              <div class="card-body"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec metus erat,
+                vestibulum eget metus ac, sollicitudin imperdiet nibh. Nunc sapien risus, pharetra non diam eu, egestas
+                tempor erat. Phasellus lacinia, arcu sed ultrices dignissim, elit arcu facilisis neque, scelerisque
+                venenatis tellus risus non diam.</p></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header p-0" role="tab" id="accordioneight">
+              <a class="collapsed" data-bs-toggle="collapse" href="#accordion__eight" role="button"
+                aria-expanded="false" aria-controls="accordion__eight">7. Right of Withdrawal and Termination</a>
+            </div>
+            <div id="accordion__eight" class="collapse" role="tabpanel" aria-labelledby="accordioneight"
+              data-bs-parent="#accordion">
+              <div class="card-body"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec metus erat,
+                vestibulum eget metus ac, sollicitudin imperdiet nibh. Nunc sapien risus, pharetra non diam eu, egestas
+                tempor erat. Phasellus lacinia, arcu sed ultrices dignissim, elit arcu facilisis neque, scelerisque
+                venenatis tellus risus non diam.</p></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header p-0" role="tab" id="accordionnine">
+              <a class="collapsed" data-bs-toggle="collapse" href="#accordion__nine" role="button" aria-expanded="false"
+                aria-controls="accordion__nine">8. Rights and Obligations</a>
+            </div>
+            <div id="accordion__nine" class="collapse" role="tabpanel" aria-labelledby="accordionnine"
+              data-bs-parent="#accordion">
+              <div class="card-body"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec metus erat,
+                vestibulum eget metus ac, sollicitudin imperdiet nibh. Nunc sapien risus, pharetra non diam eu, egestas
+                tempor erat. Phasellus lacinia, arcu sed ultrices dignissim, elit arcu facilisis neque, scelerisque
+                venenatis tellus risus non diam.</p></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header p-0" role="tab" id="accordionten">
+              <a class="collapsed" data-bs-toggle="collapse" href="#accordion__ten" role="button" aria-expanded="false"
+                aria-controls="accordion__ten">9. Jurisdiction and Applicable Law</a>
+            </div>
+            <div id="accordion__ten" class="collapse" role="tabpanel" aria-labelledby="accordionten"
+              data-bs-parent="#accordion">
+              <div class="card-body"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec metus erat,
+                vestibulum eget metus ac, sollicitudin imperdiet nibh. Nunc sapien risus, pharetra non diam eu, egestas
+                tempor erat. Phasellus lacinia, arcu sed ultrices dignissim, elit arcu facilisis neque, scelerisque
+                venenatis tellus risus non diam.</p></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header p-0" role="tab" id="accordioneleven">
+              <a class="collapsed" data-bs-toggle="collapse" href="#accordion__eleven" role="button"
+                aria-expanded="false" aria-controls="accordion__eleven">10. Final Provisions</a>
+            </div>
+            <div id="accordion__eleven" class="collapse" role="tabpanel" aria-labelledby="accordioneleven"
+              data-bs-parent="#accordion">
+              <div class="card-body"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec metus erat,
+                vestibulum eget metus ac, sollicitudin imperdiet nibh. Nunc sapien risus, pharetra non diam eu, egestas
+                tempor erat. Phasellus lacinia, arcu sed ultrices dignissim, elit arcu facilisis neque, scelerisque
+                venenatis tellus risus non diam.</p></div>
+            </div>
+          </div>
+        </div>
         <!-- <div *ngIf="adVisible[2]" class="leaderboard-image">
         <img src="./assets/images/leaderboard - 728x90.png">
         <button (click)="closeAd(2)" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
@@ -118,15 +234,17 @@
       </div>
 
 
-      <div class="container common_download_btns_page" *ngIf="!isLoading"> 
-        <a type="button" class="btn fill_btn donlod_btn_style" (click)="downloadPDf('terms')"><i class="fa fa-download"></i> {{'downloadPDFTermsAndConditions' | translate}}</a> 
-        <a type="button" class="btn fill_btn donlod_btn_style" (click)="downloadPDf('coummunity')"><i class="fa fa-download"></i> {{'downloadPDFCommunityGuidelines' | translate}}</a>
+      <div class="container common_download_btns_page" *ngIf="!isLoading">
+        <a type="button" class="btn fill_btn donlod_btn_style" (click)="downloadPDf('terms')"><i
+            class="fa fa-download"></i> {{'downloadPDFTermsAndConditions' | translate}}</a>
+        <a type="button" class="btn fill_btn donlod_btn_style" (click)="downloadPDf('coummunity')"><i
+            class="fa fa-download"></i> {{'downloadPDFCommunityGuidelines' | translate}}</a>
       </div>
     </div>
 
     <div class="advertisment py_0" *ngIf="checkActive('leaderboard') || checkActive('banner')">
       <div class="container py_0">
-        <div  class="advertisment advirtismnt_2">
+        <div class="advertisment advirtismnt_2">
           <div *ngIf="isExists('leaderboard') && checkActive('leaderboard')  && !isLoading"
             class="leaderboard-club-image advirtismnt_2_large">
             <a href="{{advertisementData?.leaderboard?.redirect_url}}" target="_blank"></a>

@@ -1,6 +1,17 @@
 /*--------------------------------------------------------------
    banner
 --------------------------------------------------------------*/
+* {
+    font-family: var(--bs-avenir-regular);
+}
+h1, h2, .btn.btn-register, .club-heading4, .feature-heading3, .accordion-header, .price-heading3,
+ul.nav-tabs .nav-link.active, .premium-heading3, .premium-heading2, .btn.fill_btn, strong,
+.premium-heading3 span {
+    font-family: var(--bs-avenir-bold);
+}
+.banner-heading5 p, ul.nav-tabs .nav-link, .premium-heading5  {
+    font-family: var(--bs-avenir-semibold);
+}
 h4 {
     font-size: 20px;
     color: white;
@@ -85,11 +96,12 @@ body {
     width: 100%;
     height: 375px;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-end;
     position: relative;
 }
-
+.banner-inner {
+    width: 100%;
+}
 .header-transparent {
     position: absolute;
     z-index: 2;
@@ -100,25 +112,11 @@ body {
     font-size: 45px;
     font-weight: 700;
     color: white;
-    text-align: center;
-    filter: brightness(0) invert(1);
     text-transform: uppercase;
     margin-top: 60px;
 
 }
 
-/*--------------------------------------------------------------
-#  Banner
---------------------------------------------------------------*/
-
-
-/*--------------------------------------------------------------
-#  pricing
---------------------------------------------------------------*/
-
-// .pricing {
-//     background-color: #092E01;
-// }
 .features.py_0 {
     padding-bottom: 0;
 }
@@ -855,6 +853,12 @@ li::before {
     button.btn.btn-join {
         margin-bottom: 0;
     }
+}
+
+@media (min-width: 992px) {
+.pricing_tabs_container ul.nav-tabs {
+    justify-content: flex-end !important;
+}
 }
 
 @media (min-width: 1200px) {
