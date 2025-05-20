@@ -417,12 +417,6 @@
   border: 1px solid #BDE34E !important;
 }
 
-.dark-theme .website-code .personalization-box.ng-star-inserted .accept,
-.dark-theme .website-code .choice,
-.dark-theme .website-code .accept {
-  color: #0C3453;
-}
-
 .dark-theme .website-code :checked+.slider:before {
   transform: translateX(26px);
   background-color: white;
@@ -438,15 +432,6 @@
   background-color: #bde34f;
   border-color: #bde34f;
 }
-
-// .dark-theme .website-code .slider {
-//   background-color: #bde34f;
-//   border: 1px solid #bde34f;
-// }
-
-// .dark-theme .website-code .slider:before {
-//   background-color: white;
-// }
 
 .dark-theme .website-code .check-resister.active input#ManualInput {
   /* border-color: pink; */
@@ -515,9 +500,16 @@
   background: #072944;
 }
 
-.dark-theme .website-code .choice {
+.dark-theme .website-code .choice, 
+.dark-theme .website-code .decline {
+  background: #0C3453;
+  border: 1px solid #BDE34F;
+  color: #fff;
+}
+.dark-theme .website-code .accept {
   background: linear-gradient(180deg, #EFFFC1, #BDE34F);
-  border: 1px solid #0C3453;
+  border: 1px solid #BDE34F;
+  color: #0C3453;
 }
 
 .dark-theme .website-code .learn-more:hover {
@@ -527,17 +519,6 @@
 .dark-theme .website-code #footer a.login-btn {
   background-color: transparent;
 }
-
-.dark-theme .website-code .accept {
-  background: linear-gradient(180deg, #EFFFC1, #BDE34F);
-  border: 1px solid #0C3453;
-}
-
-.dark-theme .website-code .decline {
-  background: linear-gradient(180deg, #FF93A0, #E05263);
-  border: 1px solid #DB4343;
-}
-
 .dark-theme .website-code .privacy {
   background-color: #072944;
   color: white;
@@ -2496,4 +2477,15 @@ body.dark-theme.static-common-banner {
   .logo-box {
     border-bottom: 1px solid #4F7A9D;
   }
+  #footer .footer-top h4 {
+  &:before {
+    background: #bde34e !important;
+  }
+}
+.country-name {
+background: #0c3453 !important;
+.flag_icon { 
+border-color: #bde34e !important;
+}
+}
 }

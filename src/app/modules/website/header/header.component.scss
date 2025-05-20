@@ -83,7 +83,7 @@ body {
     border-radius: 10px;
     width: 135px;
     text-align: center;
-
+    font-family: var(--bs-avenir-regular);
 }
 
 /*--------------------------------------------------------------
@@ -420,6 +420,7 @@ li.nav-item {
     font-weight: 600;
     color: #fff;
     position: relative;
+    font-family: var(--bs-avenir-semibold);
 }
 
 .navbar-nav .nav-link.active {
@@ -828,8 +829,11 @@ input:checked+.slider:before {
     background-color: transparent;
     filter: brightness(14.5);
     border-radius: 10px;
+    font-family: var(--bs-avenir-regular);
 }
-
+.dropdown-menu .dropdown-item {
+    font-family: var(--bs-avenir-regular);
+}
 .custom-select option {
     color: #000;
 }
@@ -1470,6 +1474,10 @@ select.form-select.custom-select1 {
     .footer-bottom {
         margin-top: auto;
         padding-bottom: 20px;
+        font-family: var(--bs-avenir-regular);
+    }
+    .footer-links a {
+        font-family: var(--bs-avenir-regular);
     }
 
     span.slider.round.hidden {
@@ -1654,6 +1662,7 @@ select.form-select.custom-select1 {
         transform-origin: right bottom;
         white-space: nowrap;
         letter-spacing: 3px;
+        font-family: var(--bs-avenir-semibold);
     }
 
     .nav-link.active {

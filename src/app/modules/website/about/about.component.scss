@@ -10,9 +10,22 @@ h6 {
   font-weight: 600;
 }
 
+* {
+  font-family: var(--bs-avenir-regular);
+}
+h1, h2 {
+  font-family: var(--bs-avenir-bold);
+}
 h3 {
   font-size: 35px;
   color: white;
+  font-family: var(--bs-avenir-bold);
+}
+::ng-deep strong {
+  font-family: var(--bs-avenir-semibold);
+}
+strong {
+  font-family: var(--bs-avenir-semibold);
 }
 
 h4 {
@@ -41,7 +54,9 @@ body {
   position: relative;
   z-index: 1;
 }
-
+.banner-inner {
+  width: 100%;
+}
 .bnr-media {
   position: relative;
 }
@@ -77,8 +92,7 @@ body {
   width: 100%;
   height: 375px;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-end;
   position: relative;
 }
 
@@ -92,10 +106,9 @@ body {
   font-size: 45px;
   font-weight: 700;
   color: white;
-  text-align: center;
   filter: brightness(0) invert(1);
   text-transform: uppercase;
-
+  font-family: var(--bs-avenir-bold);
 }
 
 /*--------------------------------------------------------------
@@ -107,9 +120,6 @@ body {
 /*--------------------------------------------------------------
 #  about -content
 --------------------------------------------------------------*/
-// .about-content{
-//     background-color: #092E01;
-// }
 .content-image img {
   height: 343px;
   width: 100%;
@@ -126,77 +136,96 @@ mat-card.mat-mdc-card.mdc-card {
   font-weight: 400;
   padding: 20px 20px 0 20px;
 }
-
-/*--------------------------------------------------------------
-#  about-content
---------------------------------------------------------------*/
-
-
+::ng-deep .about-content h4 {
+    color: #357525;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    &:after {
+  content: '';
+  flex: 1;
+  margin-left: 1rem;
+  height: 1px;
+  background-color: #357525;
+    }
+  }
+  ::ng-deep .about-content h2 {
+    color: #357525;
+    font-size: 35px;
+    font-family: var(--bs-avenir-bold);
+    line-height: 1.05;
+    margin: 10px 0; 
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+::ng-deep .dark-theme .about-content h2, ::ng-deep .dark-theme .about-content h4 {
+  color: #fff !important;
+}
+::ng-deep .dark-theme .about-content h4:after {
+  background: #fff !important;
+}
 /*--------------------------------------------------------------
 #  Countries
 --------------------------------------------------------------*/
 .countries {
   position: relative;
 }
-
-// span.mat-mdc-list-item-unscoped-content.mdc-list-item__primary-text {
-//   color: white;
-//   font-size: 20px;
-// }
 .country-available {
   color: white;
   font-size: 35px;
   font-weight: 700;
   text-transform: uppercase;
 }
-
 mat-list-item {
   color: white;
   font-size: 20px;
 }
-
-.custom-list-item {
-  list-style-type: disc;
-  /* or use circle, square as needed */
-  padding-left: 20px;
-  /* Adjust spacing as needed */
-}
-
-.custom-list-item::before {
-  content: "•";
-  /* Adds the dot */
-  // color: #E05263; /* Set dot color */
-  font-size: 20px;
-  /* Adjust size as needed */
-  margin-right: 10px;
-  margin-top: 0;
-  /* Space between dot and text */
-  display: inline-block;
-  /* Ensures proper alignment */
-  vertical-align: middle;
-  /* Aligns the dot with the text */
-}
-
 .mat-mdc-list-base {
   display: block;
-  // background-color: #163E0D;
-  border-radius: 10px;
-  margin-top: 100px;
+  margin-top: 40px;
   width: 330px;
-  padding: 20px 0 20px 0;
+  background: transparent !important;
+  border: 0 !important;
 }
-
+.mdc-list-item.mdc-list-item--with-one-line {
+  height: auto !important;
+  padding: 0 !important;
+}
 .country-name {
-  color: white !important;
-  font-size: 20px;
-  margin-left: 32px;
-  margin-bottom: 0;
+   color: white !important;
+    font-size: 20px;
+    margin-bottom: 0;
+    font-family: var(--bs-avenir-semibold);
+    position: relative;
+    padding: 8px;
+    padding-left: 65px;
+    background: #F9F9F9;
+    width: 100%;
+    display: inline-flex;
+    margin: 5px 0;
+    min-height: 55px;
+    align-items: center;
+    border-radius: 50px;
+    letter-spacing: 0;
+    line-height: 1;
+  .flag_icon {
+    width: 42px;
+    height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #E05263;
+    border-radius: 50%;
+    padding: 7px;
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 }
-
 .map {
   height: 750px;
 }
-
 .map img {
   content: "";
   position: absolute;
@@ -206,19 +235,12 @@ mat-list-item {
   object-fit: cover;
   width: 801px;
 }
-
 .country-list {
   margin-top: 80px;
-  // background-color: #163E0D;
   width: 311px;
   padding: 20px;
   border-radius: 10px;
 }
-
-// ::marker {
-//     color: #E05263;
-// }
-
 /*--------------------------------------------------------------
 # countries
 --------------------------------------------------------------*/
@@ -292,6 +314,9 @@ img.vector-img {
   cursor: pointer;
   justify-content: center;
   box-shadow: inset 0px -4px 3px rgba(0, 0, 0, 0.28);
+  p {
+      font-family: var(--bs-avenir-semibold);
+  }
 }
 
 .join-text p {
@@ -363,7 +388,7 @@ img.join-btn {
 
 @media (max-width: 1200px) {
 .content-text {
-  padding: 50px 50px 0 50px;
+  padding: 0;
 }
 .map img {
   height: 600px;
@@ -386,7 +411,7 @@ img.join-btn {
   }
 
   .content-text {
-    padding: 20px;
+    padding: 0;
   }
 
   .country-list {
@@ -433,19 +458,17 @@ img.join-btn {
   }
 
   .content-text {
-    padding: 10px;
+    padding: 10px 0;
     font-size: 14px;
   }
 
-  .country-available {
+ .country-available {
     font-size: 25px;
   }
 
   .country-name {
     color: white !important;
     font-size: 16px !important;
-    margin-left: 32px;
-    margin-bottom: 0 !important;
   }
 
   .country-list {
@@ -496,6 +519,17 @@ img.join-btn {
 
 }
 
+ ::ng-deep .about-content h2 {
+  @media (max-width: 991px) {
+    font-size: 25px;
+  }
+ }
+ ::ng-deep .about-content h4 {
+   @media (max-width: 991px) {
+font-size: 14px;
+   }
+ }
+
 
 @media (max-width: 767px) {
   .content-image img {
@@ -509,22 +543,18 @@ img.join-btn {
   }
 
   .map {
-    height: 600px;
+    height: auto;
     width: 100%;
   }
 
   .map img {
-    top: 48%;
-    height: 500px;
-    width: 620px;
+    position: unset;
+    height: auto;
+    width: 100%;
   }
 }
 
 @media (max-width: 575px) {
-  .map img {
-    height: 412px;
-    width: 430px;
-  }
 
   .about-text {
     font-size: 30px;
@@ -544,7 +574,7 @@ img.join-btn {
   }
 
   .content-text {
-    padding: 20px 0px 20px 0px;
+    padding: 20px 0;
   }
 
   .about-content.py_0 {
@@ -557,17 +587,8 @@ img.join-btn {
     margin-top: 20px;
   }
 
-  .map {
-    height: 400px;
-  }
   .mat-mdc-list-base {
-    margin-bottom: 80px;
-    width: 100%;
-  }
-
-  .map img {
-    top: 55%;
-    height: 360px;
+    margin-bottom: 30px;
     width: 100%;
   }
 
@@ -587,14 +608,6 @@ img.join-btn {
     padding-top: 50px;
   }
 
-  .map img {
-    height: 315px;
-  }
-
-  .map {
-    height: 340px;
-  }
-
   .join-text {
     width: 220px;
     height: 46px;
@@ -608,10 +621,6 @@ img.join-btn {
 }
 
 @media (max-width: 321px) {
-  .main-bnr {
-    height: 150px;
-    padding-top: 50px;
-  }
   .website-code {
     overflow: hidden;
   }
@@ -655,6 +664,12 @@ img.join-btn {
   }
 
 }
+
+ ::ng-deep .about-content h2 {
+  @media (max-width: 321px) {
+    font-size: 20px;
+  }
+ }
 
 .mat-mdc-list-item-unscoped-content {
   color: white !important;
@@ -768,6 +783,12 @@ h3, .text_side_wrapper p {
   }
 }
 
+ ::ng-deep .about-content h2 {
+  @media (min-width: 576px) and (max-width: 991px) {
+    font-size: 35px;
+  }
+ }
+
 
 @media (min-width: 1441px) and (max-width: 1999px) {
   .map {
@@ -813,4 +834,19 @@ h3, .text_side_wrapper p {
       width: 2620px;
     }
   }
+}
+
+
+::ng-deep .about-content h2 {
+    @media (min-width: 2000px) {
+        font-size: 60px !important;
+        margin: 20px 0;
+    }
+}
+
+::ng-deep .about-content h2 {
+    @media (min-width: 3000px) {
+        font-size: 90px !important;
+        margin: 30px 0 !important;
+    }
 }
