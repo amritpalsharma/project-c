@@ -183,15 +183,12 @@
                             </svg>
                           </span>
                           <img *ngIf="user.club_logo_path" src="{{user.club_logo_path}}" class="fc-club-img" alt="">
-                          <!-- <img *ngIf="user.pre_current_club_logo_path && !user.current_club_logo_path"
-                            src="{{user.pre_current_club_logo_path}}" class="fc-club-img" alt=""> -->
                         </div>
                         <div class="team-badge_content col-sm-9 p-0">
                           <h6 class="title_2 mb-1">{{ 'currentClub' | translate}}</h6>
                           <h5 class="title-1">{{user?.current_club_name }}
                           </h5>
-                          <!-- <h5 class="title-1" *ngIf="user?.pre_current_club_name && !user?.current_club_name">
-                            {{user?.pre_current_club_name |translate }} </h5> -->
+
                         </div>
                       </div>
                     </div>
@@ -212,14 +209,7 @@
                     <div class="col-sm-6 team-logos">
                       <div class="row align-items-center">
                         <div class="col-sm-3 team-badge_image">
-                          <!-- <svg id="users-icon" width="100%" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path class=" blue-bg"
-                              d="M5 27.5C4.64583 27.5 4.34917 27.38 4.11 27.14C3.87083 26.9 3.75083 26.6033 3.75 26.25V21.25C3.75 20.5625 3.995 19.9742 4.485 19.485C4.975 18.9958 5.56333 18.7508 6.25 18.75H23.75C24.4375 18.75 25.0263 18.995 25.5163 19.485C26.0063 19.975 26.2508 20.5633 26.25 21.25V26.25C26.25 26.6042 26.13 26.9012 25.89 27.1412C25.65 27.3812 25.3533 27.5008 25 27.5H5ZM6.25 16.25V12.5C6.25 11.8125 6.495 11.2242 6.985 10.735C7.475 10.2458 8.06333 10.0008 8.75 10H13.75V8.1875C13.375 7.9375 13.0729 7.63542 12.8438 7.28125C12.6146 6.92708 12.5 6.5 12.5 6C12.5 5.6875 12.5625 5.38 12.6875 5.0775C12.8125 4.775 13 4.49917 13.25 4.25L15 2.5L16.75 4.25C17 4.5 17.1875 4.77583 17.3125 5.0775C17.4375 5.37917 17.5 5.68667 17.5 6C17.5 6.5 17.3854 6.92708 17.1562 7.28125C16.9271 7.63542 16.625 7.9375 16.25 8.1875V10H21.25C21.9375 10 22.5263 10.2446 23.0163 10.7337C23.5063 11.2229 23.7508 11.8117 23.75 12.5V16.25H6.25Z"
-                              fill="#023A4A" />
-                            <path class="green-bg"
-                              d="M6.25 16.25V12.5C6.25 11.8125 6.495 11.2242 6.985 10.735C7.475 10.2458 8.06333 10.0008 8.75 10H13.75V8.1875C13.375 7.9375 13.0729 7.63542 12.8438 7.28125C12.6146 6.92708 12.5 6.5 12.5 6C12.5 5.6875 12.5625 5.38 12.6875 5.0775C12.8125 4.775 13 4.49917 13.25 4.25L15 2.5L16.75 4.25C17 4.5 17.1875 4.77583 17.3125 5.0775C17.4375 5.37917 17.5 5.68667 17.5 6C17.5 6.5 17.3854 6.92708 17.1562 7.28125C16.9271 7.63542 16.625 7.9375 16.25 8.1875V10H21.25C21.9375 10 22.5263 10.2446 23.0163 10.7337C23.5063 11.2229 23.7508 11.8117 23.75 12.5V16.25H6.25Z"
-                              fill="#6FB95D" />
-                          </svg> -->
+                          
                           <svg *ngIf="currentThemeMode == 'light'" width="100%" viewBox="0 0 30 30" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -481,23 +471,9 @@
                     </div>
                     <div class="col-sm-6 team-logos">
                       <div class="row align-items-center">
-                        <div class="col-sm-3 team-badge_image">
+                        <div class="col-sm-3 team-badge_image"> 
 
-                          <!-- <svg id="users-icon" width="100%" height="36px" viewBox="0 0 32 25" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_2958_4755779)">
-                              <path class="blue-bg"
-                                d="M0.439453 4.6875L1.26953 4.29688L4.78516 11.2793L3.90625 11.7188C3.80859 11.7513 3.69466 11.7676 3.56445 11.7676C3.23893 11.7676 3.01107 11.6211 2.88086 11.3281L0.0976562 5.76172C0.0325521 5.66406 0 5.55013 0 5.41992C0 5.0944 0.146484 4.85026 0.439453 4.6875ZM22.8516 0.78125L28.5645 3.61328L25.0977 10.5957L24.5605 10.3516C24.4629 10.2865 24.349 10.2539 24.2188 10.2539C23.9909 10.2539 23.8037 10.3353 23.6572 10.498C23.5107 10.6608 23.4375 10.8398 23.4375 11.0352V23.4375C23.4375 23.8607 23.2829 24.2269 22.9736 24.5361C22.6644 24.8454 22.2982 25 21.875 25H9.375C8.95182 25 8.58561 24.8454 8.27637 24.5361C7.96712 24.2269 7.8125 23.8607 7.8125 23.4375V11.0352C7.8125 10.8398 7.73926 10.6608 7.59277 10.498C7.44629 10.3353 7.25911 10.2539 7.03125 10.2539C6.90104 10.2539 6.78711 10.2865 6.68945 10.3516L6.15234 10.5957L2.68555 3.61328L8.39844 0.78125C8.59375 1.00912 8.80534 1.2207 9.0332 1.41602C10.8561 3.04362 13.0534 3.85742 15.625 3.85742C18.1966 3.85742 20.3939 3.04362 22.2168 1.41602C22.4447 1.2207 22.6562 1.00912 22.8516 0.78125ZM30.8105 4.73633C31.1035 4.86654 31.25 5.0944 31.25 5.41992C31.25 5.55013 31.2174 5.66406 31.1523 5.76172L28.3691 11.3281C28.2389 11.6211 28.0111 11.7676 27.6855 11.7676C27.5553 11.7676 27.4414 11.7513 27.3438 11.7188H27.2949L26.4648 11.2793L29.9805 4.29688L30.8105 4.73633Z"
-                                fill="#023A4A" />
-                            </g>
-                            <defs>
-                              <clipPath id="clip0_2958_4755779">
-                                <rect width="31.25" height="25" fill="white" transform="matrix(1 0 0 -1 0 25)" />
-                              </clipPath>
-                            </defs>
-                          </svg> -->
-
-                          <svg *ngIf="currentThemeMode == 'light'" id="users-icon" width="100%" height="36"
+                          <svg *ngIf="currentThemeMode == 'light' && user?.team_type == 'A' || user?.team_type == 'B'" id="users-icon" width="100%" height="36"
                             viewBox="0 0 32 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_2958_4755779)">
                               <path
@@ -512,7 +488,7 @@
                           </svg>
 
 
-                          <svg *ngIf="currentThemeMode == 'dark'" width="100%" height="36" viewBox="0 0 32 25"
+                          <svg *ngIf="currentThemeMode == 'dark' && user?.team_type == 'A' || user?.team_type == 'B'" width="100%" height="36" viewBox="0 0 32 25"
                             fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                               d="M16.373 2.29492C17.61 2.29492 18.7412 2.08333 19.7666 1.66016C20.792 1.23698 21.5651 0.683594 22.0859 0L23.5996 0.78125C23.4043 1.00911 23.1927 1.2207 22.9648 1.41602C21.1419 3.04362 18.9447 3.85742 16.373 3.85742C13.8014 3.85742 11.6042 3.04362 9.78125 1.41602C9.55339 1.2207 9.3418 1.00911 9.14648 0.78125L10.709 0C11.0345 0.455729 11.474 0.854492 12.0273 1.19629C12.5807 1.53809 13.2399 1.80664 14.0049 2.00195C14.7699 2.19727 15.5592 2.29492 16.373 2.29492ZM2.01758 4.29688L3.43359 3.61328L6.90039 10.5957L5.5332 11.2793L2.01758 4.29688ZM29.3125 3.61328L30.7285 4.29688L27.2129 11.2793L25.8457 10.5957L29.3125 3.61328Z"
@@ -529,11 +505,13 @@
                             </defs>
                           </svg>
 
+                          <img *ngIf="user.club_logo_path && user?.team_type != 'A' && user?.team_type != 'B'" src="{{user.club_logo_path}}" class="fc-club-img" alt="">
                         </div>
                         <div class="col-sm-9 p-0 team-badge_content">
-                          <h6 class="title_2">{{ 'leagueLevel' | translate}}</h6>
-                          <h5 class="title-1" *ngIf="user?.league_name">{{user?.league_name}}</h5>
-                          <!-- <h5 class="title-1" *ngIf="!user?.league_name">NA</h5> -->
+                          <h6 class="title_2" *ngIf="user?.team_type != 'A' && user?.team_type != 'B'">{{ 'team' | translate}}</h6>
+                          <h6 class="title_2" *ngIf="user?.team_type == 'A' || user?.team_type == 'B'">{{ 'leagueLevel' | translate}}</h6>
+                          <h5 class="title-1" *ngIf="user?.league_name && user?.team_type == 'A' || user?.team_type == 'B'">{{user?.league_name}}</h5>
+                           <h5 class="title-1" *ngIf="user?.league_name && user?.team_type != 'A' && user?.team_type != 'B'">{{user?.current_club_name}} - {{user?.team_type}}</h5>
                         </div>
                       </div>
                     </div>

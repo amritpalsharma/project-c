@@ -15,7 +15,7 @@
                     <mat-form-field appearance="fill">
                       <!-- <mat-label>{{ 'all' | translate }}</mat-label> -->
                       <mat-label>{{ 'talents' | translate }}</mat-label>
-                      <mat-select [(ngModel)]="selectedRole" (selectionChange)="applyFilter()" id="roles" name="role">
+                      <mat-select  [(ngModel)]="selectedRole" (selectionChange)="applyFilter()" id="roles" name="role">
                         <mat-option [value]="null" [selected]="!selectedRole">{{'all' | translate}}</mat-option>
                         <mat-option *ngFor="let role of roles" [value]="role.id">{{role.role_name}}</mat-option>
                       </mat-select>
@@ -84,11 +84,15 @@
                 <th>
                   <div class="form-group explore-all_input">
                     <mat-form-field appearance="fill">
-                      <mat-label>{{ 'country' | translate }}</mat-label>
+                      <mat-label>{{ 'club' | translate }} {{ 'country' | translate }}</mat-label>
+                      <!-- <mat-label>{{ 'country' | translate }}</mat-label> -->
                       <mat-select [(ngModel)]="selectedCountry"
                         (selectionChange)="applyFilter(); countryAndLeauge('country');" id="country" name="country">
                         <mat-option *ngFor="let country of countries"
-                          [value]="country.id">{{country.location}}</mat-option>
+                          [value]="country.id">
+                          <!-- {{country.location}} -->
+                          {{country.country_name}}
+                        </mat-option>
                       </mat-select>
                     </mat-form-field>
                   </div>

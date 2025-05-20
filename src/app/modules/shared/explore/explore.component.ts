@@ -413,10 +413,11 @@ export class ExploreComponent implements OnInit {
     let lang = localStorage.getItem('lang_id');
     // old getDomains 
 
-    this.talentService.getExploreDomains(lang).subscribe(
+    this.talentService.getCountries({lang:lang}).subscribe(
       (response: any) => {
         if (response && response.status) {
-          this.countries = response.data.domains;
+          this.countries = response.data.countries;
+          // this.countries = response.data.domains;
         }
       },
       (error: any) => {
@@ -534,7 +535,9 @@ export class ExploreComponent implements OnInit {
       let getCountryById = this.countries.find((val: any) => {
         return val.id == this.selectedCountry;
       });
-      filters.push({ label: 'country', value: getCountryById.location });
+      // console.log('getCountryById',getCountryById)
+      // filters.push({ label: 'country', value: getCountryById.location });
+      filters.push({ label: 'country', value: getCountryById.country_name });
     }
     if (this.selectedPositions) {
       let positionLabel = (this.selectedPositions.length > 0) ? 'position' : '';
