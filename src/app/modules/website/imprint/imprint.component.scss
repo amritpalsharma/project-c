@@ -121,7 +121,7 @@ h1, h2, h3, strong {
 .content_page li::before {
     content: '•';
     position: absolute;
-    font-size: 60px;
+    font-size: 30px;
     top: 15px;
     left: 0;
     transform: translateY(-50%);
@@ -194,7 +194,7 @@ h1, h2, h3, strong {
     }
     .content_page li::before {
         top: 12px;
-        font-size: 35px;
+        font-size: 18px;
     }
     .main-bnr {
         height: 250px;
@@ -281,6 +281,12 @@ h1, h2, h3, strong {
     font-size: inherit;
 }
 
+@media (min-width: 992px) {
+.common_download_btns_page {
+    display: flex;
+    justify-content: space-between;
+}
+}
 
 @media (min-width: 992px) and (max-width: 1999px) {
     .common_static_page {
@@ -295,7 +301,7 @@ h1, h2, h3, strong {
         }
     }
     .content_page li::before {
-        top: 19px;
+        top: 18px;
     }
     .contact-text * {
       font-size: 24px;

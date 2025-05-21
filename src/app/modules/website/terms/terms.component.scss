@@ -121,7 +121,7 @@ h1, h2, h3, strong {
 .content_page li::before {
     content: '•';
     position: absolute;
-    font-size: 60px;
+    font-size:  30px;
     top: 15px;
     left: 0;
     transform: translateY(-50%);
@@ -192,7 +192,7 @@ h1, h2, h3, strong {
     }
     .content_page li::before {
         top: 12px;
-        font-size: 35px;
+        font-size: 18px;
     }
     .main-bnr {
         height: 250px;
@@ -307,7 +307,7 @@ h1, h2, h3, strong {
     content: ' ';
     position: absolute;
     right: 10px;
-    top: 20px;
+    top: 16px;
     width: 30px;
     height: 30px;
     background-image: url(../../../../assets/images/accordion-minus-light.svg);
@@ -335,14 +335,14 @@ h1, h2, h3, strong {
             font-size: 35px;
         }
         h3, .card-header a {
-            font-size: 24px;
+            font-size: 30px;
         }
         p, address, li, .card-body p, .card-body li {
-            font-size: 20px;
+            font-size: 24px;
         }
     }
     .content_page li::before {
-        top: 19px;
+        top: 18px;
     }
     .contact-text * {
       font-size: 24px;
@@ -400,10 +400,10 @@ h1, h2, h3, strong {
             font-size: 38px;
         }
         h3, .card-header a {
-            font-size: 24px;
+            font-size: 32px;
         }
         p, address, li, .card-body p, .card-body li {
-            font-size: 20px;
+            font-size: 26px;
         }
     }
     .content_page li::before {
@@ -423,26 +423,26 @@ h1, h2, h3, strong {
             font-size: 50px;
         }
         h3, .card-header a {
-            font-size: 24px;
+            font-size: 45px;
         }
         p, address, li, .card-body p, .card-body li {
-            font-size: 20px;
+            font-size: 40px;
         }
     }
     .content_page li::before {
         top: 30px;
     }
     .grey_common_banner {
-    margin-top: 240px;
-    padding: 80px 0;
-    h3 {
-      font-size: 55px !important;
-      margin: 1.5rem 0 !important;
+        margin-top: 240px;
+        padding: 80px 0;
+        h3 {
+            font-size: 55px !important;
+            margin: 1.5rem 0 !important;
+        }
+        .location-image img {
+            width: 50px !important;
+            height: 50px !important;
+            object-fit: contain;
+        }
     }
-    .location-image img {
-    width: 50px !important;
-    height: 50px !important;
-    object-fit: contain;
-  }
-}
 }
