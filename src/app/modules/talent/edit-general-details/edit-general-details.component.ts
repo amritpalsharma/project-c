@@ -39,12 +39,14 @@ export class EditGeneralDetailsComponent {
   social_vimeo: string = '';
   social_x: string = ''; // assuming this is for Twitter (X)
   social_youtube: string = '';
+  social_linkedin: string = '';
   speed_unit: string = 'km/h';
   top_speed: number = 0;
   sm_x: any = "";
   sm_facebook: any = "";
   sm_instagram: any = "";
   sm_youtube: any = "";
+  sm_linkedin: any = "";
   sm_tiktok: any = "";
   sm_vimeo: any = "";
   currencies = [
@@ -99,6 +101,7 @@ export class EditGeneralDetailsComponent {
     this.social_vimeo = this.user?.meta.sm_vimeo || '';
     this.social_x = this.user?.meta.sm_x || '';
     this.social_youtube = this.user?.meta.sm_youtube || '';
+    this.social_linkedin = this.user?.meta.sm_linkedin || '';
     this.speed_unit = this.user?.meta.top_speed_unit || '';
     this.top_speed = this.user?.meta.top_speed || 0;
 
@@ -215,6 +218,7 @@ export class EditGeneralDetailsComponent {
       formData.append('user[top_speed]', this.top_speed.toString());
       formData.append('user[top_speed_unit]', 'km/h');
       formData.append('user[sm_youtube]', this.social_youtube);
+      formData.append('user[sm_linkedin]', this.social_linkedin);
       formData.append('user[sm_x]', this.social_x);
       formData.append('user[sm_vimeo]', this.social_vimeo);
       formData.append('user[sm_tiktok]', this.social_tiktok);

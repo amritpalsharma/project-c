@@ -173,6 +173,24 @@
                         www.vimeo.com/{{userData.meta.sm_vimeo}}
                     </h6>
                 </div>
+
+                <div class="d-flex align-items-center team-details-sub" *ngIf="userData.meta && userData.meta.sm_linkedin">
+                    <h6>
+                        <svg id="users-icon" xmlns="http://www.w3.org/2000/svg" width="27" height="28" viewBox="0 0 27 28" fill="none">
+                            <g clip-path="url(#clip0_242_13596)">
+                                <path class="linkedin-innerside" fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M23.25 23.2603H19.2434V16.436C19.2434 14.565 18.5324 13.5195 17.0515 13.5195C15.4405 13.5195 14.5988 14.6075 14.5988 16.436V23.2603H10.7375V10.2603H14.5988V12.0114C14.5988 12.0114 15.7598 9.86308 18.5185 9.86308C21.2759 9.86308 23.25 11.5469 23.25 15.0295V23.2603ZM6.13101 8.55801C4.81577 8.55801 3.75 7.48388 3.75 6.15913C3.75 4.83439 4.81577 3.76025 6.13101 3.76025C7.44624 3.76025 8.51138 4.83439 8.51138 6.15913C8.51138 7.48388 7.44624 8.55801 6.13101 8.55801ZM4.13721 23.2603H8.16353V10.2603H4.13721V23.2603Z"
+                                    fill="#111418" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_242_13596">
+                                    <rect width="27" height="27" fill="white" transform="translate(0 0.0102539)" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                        www.linkedin.com/{{userData.meta.sm_linkedin}}
+                    </h6>
+                </div>
             </div>
         </div>
     </div>
