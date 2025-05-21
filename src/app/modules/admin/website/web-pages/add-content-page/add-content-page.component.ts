@@ -52,12 +52,13 @@ export class AddContentPageComponent implements OnInit {
     page_id: '',
     page_type: '',
     language: localStorage.getItem('lang'),
-    lang_id: localStorage.getItem('lang_id')
+    lang_id: localStorage.getItem('lang_id'),
+    accordionData: []
   };
   imageLoaded: boolean = false;
 
   bannerImagePreview: string | ArrayBuffer | null = null;
-  isLoading:boolean=false;
+  isLoading: boolean = false;
   constructor(
     private configService: EditorConfigService,
     private webpages: WebPages,
@@ -77,6 +78,14 @@ export class AddContentPageComponent implements OnInit {
 
   ngOnDestroy(): void {
     this.editor.destroy();
+  }
+
+  addAccordionItem(): void {
+    this.formData.accordionData.push({ title: '', description: '' });
+  }
+
+  removeAccordionItem(index: number): void {
+    this.formData.accordionData.splice(index, 1);
   }
 
   onFileChange(event: any, fieldName: string): void {
@@ -100,7 +109,7 @@ export class AddContentPageComponent implements OnInit {
   }
 
 
-  submitForm(): void { 
+  submitForm(): void {
     this.isLoading = true;
     const formData = new FormData();
     const editor = tinymce.get('editorFirstForCOntet');
@@ -109,9 +118,18 @@ export class AddContentPageComponent implements OnInit {
     }
     for (const key in this.formData) {
       if (Array.isArray(this.formData[key])) {
-        this.formData[key].forEach((item: string, index: number) => {
-          formData.append(`${key}[${index}]`, item);
-        });
+        if(key !== 'accordionData' ){
+          this.formData[key].forEach((item: string, index: number) => {
+            formData.append(`${key}[${index}]`, item);
+          });
+        }
+        else{
+          this.formData.accordionData.forEach((item: any, index: number) => {
+            formData.append(`accordionData[${index}][title]`, item.title);
+            formData.append(`accordionData[${index}][description]`, item.description);
+          });
+        }
+
       } else {
         formData.append(key, this.formData[key]);
       }
@@ -123,7 +141,7 @@ export class AddContentPageComponent implements OnInit {
 
     console.log('content', this.content);
     console.log(this.formData, 'submit-form');
-    this.webpages.addContentPage(formData).subscribe(response => { 
+    this.webpages.addContentPage(formData).subscribe(response => {
       this.isLoading = false;
       this.dialogRef.close({
         action: 'page-added-successfully',
@@ -140,9 +158,9 @@ export class AddContentPageComponent implements OnInit {
         this.formData.page_content = response.data.pageData.page_content;
         const editor = tinymce.get('editorFirstForCOntet');
         if (editor) {
-         setTimeout(() => {
-          editor.setContent(this.formData.page_content);
-         }, 1500);
+          setTimeout(() => {
+            editor.setContent(this.formData.page_content);
+          }, 1500);
         }
         this.formData.meta_title = response.data.meta_title;
         this.formData.meta_description = response.data.meta_description;

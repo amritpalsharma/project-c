@@ -42,6 +42,9 @@ export class ExploreComponent implements OnInit {
       this.getJsonTranslations();
     });
   }
+  teamTypesArr: any = ['A', 'B', 'U15', 'U16', 'U17', 'U18', 'U19', 'U20', 'U21', 'U22', 'U23'];
+  selectedTeam: string = '';
+  SelectedFilters: any = this.getSelectedFilters();
   pageTitle: string = '';
   generalError: string = '';
   errorText: string = '';
@@ -143,13 +146,15 @@ export class ExploreComponent implements OnInit {
   itemsPerPage: number = 15;
 
   baseUrl: string = '';
+  // isTalentFilter:boolean=true;
+
 
   ngOnInit(): void {
 
     this.loggedInUser = JSON.parse(this.loggedInUser);
 
     this.loadPositions();
-    // this.loadLeagues();
+    this.loadLeagues();
     // this.loadClubs();
     this.loadCountries();
     this.getUsers();
@@ -299,27 +304,49 @@ export class ExploreComponent implements OnInit {
     if (offset < 5) {
       offset = 0; // when first time API HIT
     }
+
+    let whereClause: any = {};
+
+    if (this.selectedRole) whereClause.role = this.selectedRole;
+    if (this.selectedAge && this.selectedRole == 4) whereClause.age = this.selectedAge;
+    if (this.selectedPositions && this.selectedRole == 4) whereClause.position = this.selectedPositions;
+    if (this.userDomain) whereClause.user_domain = this.userDomain;
+    if (this.selectedLeague && this.selectedRole == 4 || this.selectedRole == 2) whereClause.league_id = [this.selectedLeague];
+    if (this.selectedCountry && this.selectedRole == 4 || this.selectedRole == 2) whereClause.club_country = [this.selectedCountry];
+    if (this.selectedClub && this.selectedRole == 4 || this.selectedRole == 2) whereClause.club_id = [this.selectedClub];
+    if (this.selectedTeam && this.selectedRole == 4 || this.selectedRole == 2) whereClause.team_type = [this.selectedTeam];
     // Construct the params object with complex whereClause and metaQuery logic
+    // let params: any = {
+    //   // offset: pageIndex * pageSize,
+    //   offset: offset,
+    //   limit: pageSize,
+    //   whereClause: {
+    //     role: this.selectedRole,
+    //     // location: this.selectedCountry,
+    //     age: this.selectedAge,
+    //     position: this.selectedPositions,
+    //     user_domain: this.userDomain,
+    //     league_id: [this.selectedLeague],
+    //     // club_country[]: this.selectedCountry
+    //     club_country: [this.selectedCountry],
+    //     club_id: [this.selectedClub]
+    //   },
+    //   metaQuery: [],
+    //   lang: localStorage.getItem('lang_id')
+    // };
+
+
     let params: any = {
-      // offset: pageIndex * pageSize,
       offset: offset,
       limit: pageSize,
-      whereClause: {
-        role: this.selectedRole,
-        location: this.selectedCountry,
-        age: this.selectedAge,
-        position: this.selectedPositions,
-        user_domain: this.userDomain,
-        league_id: this.selectedLeague,
-
-        // club_id:this.selectedClub
-      },
+      whereClause: whereClause,
       metaQuery: [],
       lang: localStorage.getItem('lang_id')
     };
 
+
     // Add other filters if they are selected
-    if (this.selectedFoot) {
+    if (this.selectedFoot && this.selectedRole == 4) {
       params.metaQuery.push({
         meta_key: 'foot',
         meta_value: this.selectedFoot,
@@ -327,7 +354,7 @@ export class ExploreComponent implements OnInit {
       });
     }
 
-    if (this.selectedTopSpeed) {
+    if (this.selectedTopSpeed && this.selectedRole == 4) {
       params.metaQuery.push({
         meta_key: 'top_speed',
         meta_value: this.selectedTopSpeed,
@@ -400,11 +427,18 @@ export class ExploreComponent implements OnInit {
   // Apply filter function to refresh the data when filters change
   applyFilter() {
     this.currentPage = 0; // Reset to first page when applying new filters
+    // this.isTalentFilter = false;
+
     this.getUsers();
     if (this.selectedCountry != 0 && this.selectedCountry != undefined) {
       this.loadLeagues();
-      // this.loadClubs();
     }
+
+    if (this.selectedLeague != null && typeof this.selectedLeague != undefined) {
+      this.loadClubs();
+    }
+
+
   }
 
   loadCountries(): void {
@@ -413,11 +447,11 @@ export class ExploreComponent implements OnInit {
     let lang = localStorage.getItem('lang_id');
     // old getDomains 
 
-    this.talentService.getCountries({lang:lang}).subscribe(
+    this.talentService.getDomains(lang).subscribe(
       (response: any) => {
         if (response && response.status) {
-          this.countries = response.data.countries;
-          // this.countries = response.data.domains;
+          // this.countries = response.data.countries;
+          this.countries = response.data.domains;
         }
       },
       (error: any) => {
@@ -456,7 +490,8 @@ export class ExploreComponent implements OnInit {
     if (this.selectedCountry != 0 && this.selectedCountry != undefined) {
 
       let getCountryById = this.countries.find((val: any) => {
-        return val.id == this.selectedCountry;
+        // return val.id == this.selectedCountry;
+        return val.country_id == this.selectedCountry;
       });
       if (getCountryById && getCountryById.country_id != '' && getCountryById.country_id != undefined) {
         params = {
@@ -531,28 +566,29 @@ export class ExploreComponent implements OnInit {
     if (this.selectedRole) {
       filters.push({ label: 'category', value: this.selectedRole });
     }
-    if (this.selectedCountry) {
+    if (this.selectedCountry != null && this.selectedRole == 4 || this.selectedRole == 2) {
       let getCountryById = this.countries.find((val: any) => {
-        return val.id == this.selectedCountry;
+        // return val.id == this.selectedCountry;
+        return val.country_id == this.selectedCountry;
       });
-      // console.log('getCountryById',getCountryById)
-      // filters.push({ label: 'country', value: getCountryById.location });
-      filters.push({ label: 'country', value: getCountryById.country_name });
+      if (getCountryById && typeof getCountryById != undefined) {
+        filters.push({ label: 'country', value: getCountryById.location });
+      }
     }
-    if (this.selectedPositions) {
+    if (this.selectedPositions && this.selectedRole == 4) {
       let positionLabel = (this.selectedPositions.length > 0) ? 'position' : '';
       filters.push({ label: positionLabel, value: this.selectedPositions.join(', ') });
-      // console.warn(this.selectedPositions)
     }
-    if (this.selectedAge) {
+    if (this.selectedAge && this.selectedRole == 4) {
       let ageLabel = (this.selectedAge.length > 0) ? 'age' : '';
       filters.push({ label: ageLabel, value: this.selectedAge.join(', ') });
     }
-    if (this.selectedFoot) {
+    if (this.selectedFoot && this.selectedRole == 4) {
       let footLabel = (this.selectedFoot.length > 0) ? 'foot' : '';
-      filters.push({ label: footLabel, value: this.selectedFoot.join(', ') });
+      // filters.push({ label: footLabel, value: this.selectedFoot.join(', ') });
+      filters.push({ label: footLabel, value: this.selectedFoot });
     }
-    if (this.selectedTopSpeed) {
+    if (this.selectedTopSpeed && this.selectedRole == 4) {
       let selectedTopSpeed: any = {
         '15': '15-20 Km/hr',
         '20': '20-25 Km/hr',
@@ -562,12 +598,14 @@ export class ExploreComponent implements OnInit {
       }
       filters.push({ label: 'topSpeed', value: selectedTopSpeed[this.selectedTopSpeed] });
     }
-    if (this.selectedLeague) {
+    if (this.selectedLeague != null && this.selectedRole == 4 || this.selectedRole == 2) {
       filters.push({ label: 'league', value: this.selectedLeague });
     }
-    if (this.selectedClub) {
+    if (this.selectedClub && this.selectedRole == 4 || this.selectedRole == 2) {
       filters.push({ label: 'club', value: this.selectedClub });
     }
+
+
     // Repeat for other filters
     return filters;
   }
@@ -602,17 +640,19 @@ export class ExploreComponent implements OnInit {
         break;
     }
 
-    if (label == 'country' || label == 'league') {
-      this.countryAndLeauge(label);
-    }
+    // if (label == 'country' || label == 'league') {
+    //   this.countryAndLeauge(label);
+    // }
 
+    this.SelectedFilters = this.getSelectedFilters();
+    console.warn('this.SelectedFilters', this.SelectedFilters)
     // Refresh data after removing filter
     this.getUsers();
   }
 
   // Generic method to get names by ID
   getNameById(label: string, id: string): string {
-    console.warn('label is ' + label + ' id is ' + id)
+    // console.warn('label is ' + label + ' id is ' + id)
     switch (label) {
       case 'country':
         const country = this.countries.find((count: any) => count.id === id);
@@ -633,8 +673,12 @@ export class ExploreComponent implements OnInit {
         return positionNames.join(", "); // Return a comma-separated string of positions
 
       case 'league':
-        const league = this.leagues.find((pos: any) => pos.id === id);
-        return league ? league.league_name : id;
+        if (typeof id != undefined) {
+          const league = this.leagues.find((pos: any) => pos.id === id);
+          return league ? league.league_name : id;
+        } else {
+          return '';
+        }
 
       case 'club':
         const club = this.clubs.find((pos: any) => pos.id === id);
@@ -663,16 +707,16 @@ export class ExploreComponent implements OnInit {
 
   countryAndLeauge(input_type: any) {
 
-    if (input_type == 'country') {
-      this.leagues = [];
-      this.clubs = [];
-      this.selectedLeague = null;
-      // this.selectedCountry = null;
-    } else if (input_type == 'league') {
-      this.clubs = [];
-      this.selectedClub = null;
-      this.loadClubs();
-    }
+    // if (input_type == 'country') {
+    //   this.leagues = [];
+    //   this.clubs = [];
+    //   this.selectedLeague = null;
+    //   // this.selectedCountry = null;
+    // } else if (input_type == 'league') {
+    //   this.clubs = [];
+    //   this.selectedClub = null;
+    //   this.loadClubs();
+    // }
 
 
     // 

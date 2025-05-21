@@ -139,7 +139,9 @@ export class AdminHelperService {
     const [day, month, year, hour, minute, second] = formattedDate.match(/\d+/g) || [];
 
     // Return in the desired format: "YYYY-MM-DD HH:mm:ss"
-    return `${year}-${month}-${day} ${hour}:${minute}:${second}`;
+    // return `${year}-${month}-${day} ${hour}:${minute}:${second}`;
+
+    return `${day}-${month}-${year} ${hour}:${minute}:${second}`;
   }
 
 

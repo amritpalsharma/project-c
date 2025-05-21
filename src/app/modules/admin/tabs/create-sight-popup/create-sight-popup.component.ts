@@ -64,7 +64,10 @@ export class CreateSightPopupComponent implements AfterViewInit {
   //   this.fileInputElement.nativeElement.click();
   // } 
 
+  theme: any = localStorage.getItem('theme');
+
   ngOnInit(): void {
+    this.theme = localStorage.getItem('theme');
     try {
        this.userService.getAllPlayers().subscribe((response)=>{
         if (response && response.status && response.data && response.data.userData) {

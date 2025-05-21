@@ -39,48 +39,39 @@
         required />
     </div>
 
-    <div class="mb-3">
-      <label for="banner_img" class="form-label">{{ 'bannerImages' | translate }}</label>
-      <input type="file" id="banner_img" class="form-control" (change)="onFileChange($event, 'banner_img')" required />
-
-      <div *ngIf="bannerImagePreview" class="position-relative mt-2">
-        <div class="image_cut">
-          <img [src]="bannerImagePreview" alt="Preview" class="img-thumbnail p-0" style="max-width: 150px;"
-            (load)="imageLoaded = true" />
-          <div class="close_image" *ngIf="imageLoaded" (click)="removeImage('banner_img')">
-            <svg width="26px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-              <!-- SVG Content -->
-              <path
-                d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
-            </svg>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="mb-3">
+    <div class="mb-3" *ngIf="pageType == 'imprint'">
       <label for="page_content" class="form-label">{{ 'description' | translate }}</label>
       <div class="NgxEditor__Wrapper">
-        <!-- <ngx-editor-menu [editor]="editor" [toolbar]="toolbar" [colorPresets]="colorPresets"> </ngx-editor-menu>
-        <ngx-editor [editor]="editor" class="editor-width" name="page_content" [(ngModel)]="formData.page_content"
-          [disabled]="false" [placeholder]="'typeHere' | translate"></ngx-editor> -->
-          <editor
-          [(ngModel)]="formData.page_content" 
-         
-          [init]="editorConfig"
-          page_content
-         
-          [id]="'editorFirstForCOntet'">
+        <editor [(ngModel)]="formData.page_content" [init]="editorConfig" page_content [id]="'editorFirstForCOntet'">
         </editor>
       </div>
     </div>
 
-    <!-- <button type="submit" class="next_btn mb-3 float-end mb-2 mt-2">{{ 'submit' | translate }}</button> -->
+    <div class="mb-3" *ngIf="pageType == 'terms_and_conditions'">
+      <h1>Production Mode...</h1>
+
+      <div *ngFor="let item of formData.accordionData; let i = index" class="accordion-item mb-4">
+        <label>Title</label>
+        <input type="text" class="form-control mb-2" [(ngModel)]="item.title" name="title{{ i }}"
+          placeholder="Enter title" />
+
+        <label>Description</label>
+        <editor [(ngModel)]="item.description" [init]="editorConfig" [id]="'editor_' + i" name="description{{ i }}">
+        </editor>
+
+        <button class="btn btn-danger mt-2" (click)="removeAccordionItem(i)">Remove</button>
+        <hr />
+      </div>
+
+      <button class="btn btn-danger" type="button" (click)="addAccordionItem()">Add Section</button>
+    </div>
+
+
+
     <button type="submit" class="next_btn mb-3 float-end mb-2 mt-2">
       <ng-container *ngIf="isLoading; else loginText">
         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-        <span class="sr-only">Loading...</span>
+        <span class="sr-only">{{'loading' | translate}}</span>
       </ng-container>
       <ng-template #loginText>
         {{ 'submit' | translate }}

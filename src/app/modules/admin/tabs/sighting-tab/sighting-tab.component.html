@@ -208,7 +208,7 @@
           <div  *ngIf="!isLoading" class="invited-image d-flex align-items-center">
             <h2>{{ 'invited' | translate }}</h2>
             <div class="invited-image_box pointer" (click)="viewInvitees(playersInvited)">
-              <img *ngFor="let item of playersInvitedFirstFour; let i = index" src="{{getImageUrl(item.profile_image_path)}}" class="invited-img-{{i + 1}}">
+              <img *ngFor="let item of playersInvitedFirstFour; let i = index" src="{{getImageUrl(item.profile_image_path)}}" class="invited-img-{{i + 1}}" [style.opacity]="item.status !== 'accepted' ? 0.4 : 1">
             </div>
 
           </div>
