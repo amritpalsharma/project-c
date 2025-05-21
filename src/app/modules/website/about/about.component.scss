@@ -307,25 +307,21 @@ img.vector-img {
 }
 
 .join-text {
-  width: 273px;
+  width: 100%;
   height: 53px;
   border-radius: 60px;
-  // background: linear-gradient(0deg, #BDE34F, #EFFFC1);
+  padding: 0px 16px;
   display: flex;
   cursor: pointer;
   justify-content: center;
   box-shadow: inset 0px -4px 3px rgba(0, 0, 0, 0.28);
-  p {
-      font-family: var(--bs-avenir-semibold);
-  }
 }
 
 .join-text p {
-  // color: #072944;
   font-size: 30px;
   text-align: center;
   line-height: 50px;
-  font-weight: 500;
+  font-family: var(--bs-avenir-bold);
 }
 
 img.join-btn {
@@ -336,11 +332,11 @@ img.join-btn {
 
 .button-border {
   background: linear-gradient(to top, #A77A2E, #C2A64A);
-  width: 284px;
+  width: max-content;
+  min-width: 273px;
   height: 62px;
   border-radius: 60px;
   padding: 5px;
-
 }
 
 .club_player_sec{
@@ -503,12 +499,11 @@ img.join-btn {
   }
 
   .button-border {
-    width: 250px;
+
     height: 55px;
   }
 
   .join-text {
-    width: 240px;
     height: 46px;
   }
 
@@ -603,20 +598,16 @@ font-size: 14px;
   .about-text {
     font-size: 25px;
   }
-
   .main-bnr {
     height: 200px;
     padding-top: 50px;
   }
-
   .join-text {
-    width: 220px;
     height: 46px;
     padding-left: 10px;
   }
-
   .button-border {
-    width: 230px;
+    min-width: 230px;
     height: 55px;
   }
 }
@@ -640,16 +631,6 @@ font-size: 14px;
   .join-text p {
     font-size: 20px;
     line-height: 40px;
-  }
-
-  .join-text {
-    width: 205px;
-    height: 40px;
-  }
-
-  .button-border {
-    width: 216px;
-    height: 49px;
   }
 
   .club-buttons {

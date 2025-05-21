@@ -479,12 +479,14 @@ mat-datepicker-toggle button {
     .btn {
         font-size: 20px !important;
     }
-    .joined-btn button.btn, .club-heading4 {
+    .club-heading4 {
         height: 50px !important;
     }
     .joined-btn button.btn {
         width: auto !important;
         min-width: 230px;
+        font-size: 22px !important;
+        height: 60px !important;
     }
     .club-banner .title_text_p h3, .price-heading3, .club-banner .club_players h3 {
       font-size: 45px !important;
@@ -841,8 +843,9 @@ padding-left: 85px !important;
         }
         .website_main_pages .joined-btn button.btn {
             border-radius: 80px !important;
-            height: 71px !important;
-            width: 450px !important;
+            height: 90px !important;
+            width: 500px !important;
+            font-size: 35px !important;
         }
         .price_mat_wrapper .plan_price_box .premium {
             height: 370px !important;

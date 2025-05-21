@@ -1,6 +1,16 @@
+* {
+  font-family: var(--bs-avenir-regular);
+}
+h1, h2, b, strong {
+  font-family: var(--bs-avenir-bold);
+}
+::ng-deep strong {
+    font-family: var(--bs-avenir-bold);
+}
+
 h1 {
     font-size: 45px;
-    font-weight: 700;
+    font-family: var(--bs-avenir-bold);
     color: white;
     margin-bottom: 50px;
     padding-top: 50px;
@@ -73,22 +83,19 @@ button.faq-talent-button {
     background-color: transparent;
     border: none;
     font-size: 20px;
-    font-weight: 700;
-    opacity: 75%;
+    font-family: var(--bs-avenir-regular);
     width: auto;
     max-width: 100%;
     padding: 10px 40px;
     border-radius: 8px;
     text-transform: uppercase;
 }
-
+button.faq-club-button.active,
+button.faq-talent-button.active {
+    font-family: var(--bs-avenir-bold);
+}
 select:focus-visible {
     outline: unset;
-}
-
-button.faq-talent-button.active,
-button.faq-club-button.active {
-    opacity: 1;
 }
 
 .pagination-controls {
@@ -243,7 +250,7 @@ select#numberSelect {
 p.d-o-b {
     font-size: 15px;
     color: #559B44;
-    font-weight: 700;
+    font-family: var(--bs-avenir-bold);
 }
 
 .flag-bottom {

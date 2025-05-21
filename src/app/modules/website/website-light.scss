@@ -613,7 +613,11 @@ body {
 .website-code nav.navbar img.for_trnsprnt_hdr {
     display: none;
 }
-
+.light-theme button.faq-club-button,
+.light-theme button.faq-talent-button,
+.light-theme button.faq-scout-button {
+  color: #86AA7D;
+}
 .light-theme .website-code nav.navbar.navbar-expand-lg.navbar-light.sticky.transparent-header:not(.scrolled) {
   background: transparent !important;
   img.for_bnr_hdr {
@@ -627,7 +631,8 @@ body {
   }
   .form-select {
     border-color: #e05263 !important;
-        filter: none;
+    background-image: url(../../../assets/images/select-arrow-black.svg);
+    filter: none;
     span {
       color: #e05263 !important;
     }
