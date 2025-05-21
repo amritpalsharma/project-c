@@ -431,7 +431,7 @@
   }
   .gallery_images img ,.gallery_images video {
     width: 100%;
-    height: 116px !important;
+    height: 200px !important;
     object-fit: cover !important;
     object-position: top center;
   }
@@ -1017,7 +1017,7 @@
   }
   .gallery_images img ,.gallery_images video {
     width: 100%;
-    height: 116px !important;
+    height: 200px !important;
     object-fit: cover !important;
     object-position: top center;
   }
@@ -1516,4 +1516,10 @@
   background: #0000007a;
   color: #fff;
   padding: 0 4px;
+}
+
+@media (min-width: 1200px) and (max-width: 1599px) {
+  .gallery_images img, .gallery_images video {
+      height: 120px !important;
+  }
 }

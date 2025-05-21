@@ -4,7 +4,8 @@
         <h2>{{ 'generalDetails' | translate}}</h2>
         <div class="edit_button">
             <button class="tour-general-details" matTooltip="{{ 'editGeneralDetails' | translate }}"
-                matTooltipPosition="right" id="generalDetailsBtn" (click)="isUserVerified ? navigatePlans() : showVerificationPopup()">
+                matTooltipPosition="right" id="generalDetailsBtn"
+                (click)="isUserVerified ? navigatePlans() : showVerificationPopup()">
                 <svg width="22" height="23" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M3 17.7505V21.5005H6.75L17.81 10.4405L14.06 6.69049L3 17.7505ZM20.71 7.54049C20.8027 7.44798 20.8762 7.33809 20.9264 7.21712C20.9766 7.09614 21.0024 6.96646 21.0024 6.83549C21.0024 6.70452 20.9766 6.57484 20.9264 6.45387C20.8762 6.33289 20.8027 6.223 20.71 6.13049L18.37 3.79049C18.2775 3.69779 18.1676 3.62424 18.0466 3.57406C17.9257 3.52388 17.796 3.49805 17.665 3.49805C17.534 3.49805 17.4043 3.52388 17.2834 3.57406C17.1624 3.62424 17.0525 3.69779 16.96 3.79049L15.13 5.62049L18.88 9.37049L20.71 7.54049Z"
@@ -374,6 +375,29 @@
                     <span>
                         <a href="https://www.youtube.com/{{user?.meta?.sm_youtube}}" target="_blank">
                             www.youtube.com/{{user?.meta?.sm_youtube}}</a>
+                    </span>
+                </div>
+                <div *ngIf="user?.meta?.sm_linkedin" class="social_icons mb-1">
+                    <span class="me-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="27" height="28" viewBox="0 0 27 28" fill="none">
+                            <g clip-path="url(#clip0_242_13596)">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M3 27.0103H24C25.6569 27.0103 27 25.6671 27 24.0103V3.01025C27 1.3534 25.6569 0.0102539 24 0.0102539H3C1.34315 0.0102539 0 1.3534 0 3.01025V24.0103C0 25.6671 1.34315 27.0103 3 27.0103Z"
+                                    fill="#111418" />
+                                <path class="linkedin-innerside" fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M23.25 23.2603H19.2434V16.436C19.2434 14.565 18.5324 13.5195 17.0515 13.5195C15.4405 13.5195 14.5988 14.6075 14.5988 16.436V23.2603H10.7375V10.2603H14.5988V12.0114C14.5988 12.0114 15.7598 9.86308 18.5185 9.86308C21.2759 9.86308 23.25 11.5469 23.25 15.0295V23.2603ZM6.13101 8.55801C4.81577 8.55801 3.75 7.48388 3.75 6.15913C3.75 4.83439 4.81577 3.76025 6.13101 3.76025C7.44624 3.76025 8.51138 4.83439 8.51138 6.15913C8.51138 7.48388 7.44624 8.55801 6.13101 8.55801ZM4.13721 23.2603H8.16353V10.2603H4.13721V23.2603Z"
+                                    fill="white" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_242_13596">
+                                    <rect width="27" height="27" fill="white" transform="translate(0 0.0102539)" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                    </span>
+                    <span>
+                        <a href="https://www.linkedin.com/{{user?.meta?.sm_linkedin}}" target="_blank">
+                            www.linkedin.com/{{user?.meta?.sm_linkedin}}</a>
                     </span>
                 </div>
             </div>

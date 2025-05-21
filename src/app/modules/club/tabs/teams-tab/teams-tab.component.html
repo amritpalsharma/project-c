@@ -111,7 +111,7 @@
               <th mat-header-cell *matHeaderCellDef> {{ 'view' | translate }} </th>
               <td mat-cell *matCellDef="let element">
                 <!-- <pre>{{element | json}}</pre> -->
-                <a class="view-btn" (click)="onNavigate(element.player_id)">
+                <a class="view-btn cursor-pointer" (click)="onNavigate(element.player_id)">
                   <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"
                     class="pointer">
                     <path

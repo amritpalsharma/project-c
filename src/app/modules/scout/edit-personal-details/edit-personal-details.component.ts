@@ -36,6 +36,7 @@ export class EditPersonalDetailsComponent implements OnInit {
   social_instagram: string = '';
   social_tiktok: string = '';
   social_vimeo: string = '';
+  social_linkedin: string = '';
   social_x: string = ''; // assuming this is for Twitter (X)
   social_youtube: string = '';
 
@@ -45,6 +46,7 @@ export class EditPersonalDetailsComponent implements OnInit {
   sm_tiktok: any = "";
   sm_youtube: any = "";
   sm_vimeo: any = "";
+  sm_linkedin: any = "";
   scoutNation: number = 0;
   socialMediaPlatforms = [
     { id: 'x', name: 'X (Twitter)', placeholder: 'x.com/' },
@@ -53,6 +55,7 @@ export class EditPersonalDetailsComponent implements OnInit {
     { id: 'tiktok', name: 'TikTok', placeholder: 'tiktok.com/' },
     { id: 'youtube', name: 'YouTube', placeholder: 'youtube.com/' },
     { id: 'vimeo', name: 'Vimeo', placeholder: 'vimeo.com/' },
+    { id: 'linkedin', name: 'Linkedin', placeholder: 'linkedin.com/' },
   ];
 
   cities: string[] = ['City1', 'City2', 'City3']; // Example cities
@@ -195,6 +198,7 @@ export class EditPersonalDetailsComponent implements OnInit {
           this.sm_instagram = this.user.meta.sm_instagram;
           this.sm_tiktok = this.user.meta.sm_tiktok;
           this.sm_vimeo = this.user.meta.sm_vimeo;
+          this.sm_linkedin = this.user.meta.sm_linkedin;
           this.sm_x = this.user.meta.sm_x;
           this.sm_youtube = this.user.meta.sm_youtube;
           this.website = this.user.meta.website;
@@ -238,6 +242,7 @@ export class EditPersonalDetailsComponent implements OnInit {
     formData.append('user[sm_instagram]', this.sm_instagram);
     formData.append('user[sm_tiktok]', this.sm_tiktok);
     formData.append('user[sm_vimeo]', this.sm_vimeo);
+    formData.append('user[sm_linkedin]', this.sm_linkedin);
     formData.append('user[sm_x]', this.sm_x);
     formData.append('user[sm_youtube]', this.sm_youtube);
     formData.append('user[website]', this.website);

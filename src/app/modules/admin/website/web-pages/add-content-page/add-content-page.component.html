@@ -49,7 +49,23 @@
 
     <div class="mb-3" *ngIf="pageType == 'terms_and_conditions'">
       <h1>Production Mode...</h1>
+
+      <div *ngFor="let item of formData.accordionData; let i = index" class="accordion-item mb-4">
+        <label>Title</label>
+        <input type="text" class="form-control mb-2" [(ngModel)]="item.title" name="title{{ i }}"
+          placeholder="Enter title" />
+
+        <label>Description</label>
+        <editor [(ngModel)]="item.description" [init]="editorConfig" [id]="'editor_' + i" name="description{{ i }}">
+        </editor>
+
+        <button class="btn btn-danger mt-2" (click)="removeAccordionItem(i)">Remove</button>
+        <hr />
+      </div>
+
+      <button class="btn btn-danger" type="button" (click)="addAccordionItem()">Add Section</button>
     </div>
+
 
 
     <button type="submit" class="next_btn mb-3 float-end mb-2 mt-2">

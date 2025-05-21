@@ -29,6 +29,7 @@ export class UserEditPopupComponent {
   sm_tiktok: any = "";
   sm_youtube: any = "";
   sm_vimeo: any = "";
+  sm_linkedin: any = "";
   selectedCountry: any = "";
   countriesListing: any = [];
   positionsListing: any = [];
@@ -120,6 +121,7 @@ export class UserEditPopupComponent {
     this.sm_tiktok = this.data?.meta?.sm_tiktok
     this.sm_youtube = this.data?.meta?.sm_youtube
     this.sm_vimeo = this.data?.meta?.sm_vimeo
+    this.sm_linkedin = this.data?.meta?.sm_linkedin
     this.internationalCountry = this.data.int_player_country_id
 
     let playerNationality = this.data.user_nationalities;
@@ -257,6 +259,7 @@ export class UserEditPopupComponent {
     formdata.append('user[sm_tiktok]', this.sm_tiktok);
     formdata.append('user[sm_youtube]', this.sm_youtube);
     formdata.append('user[sm_vimeo]', this.sm_vimeo);
+    formdata.append('user[sm_linkedin]', this.sm_linkedin);
     formdata.append('user[nationality][]', this.selectedCountry);
     let lang_id = localStorage.getItem('lang_id');
     formdata.append('lang', lang_id + '');
@@ -296,6 +299,7 @@ export class UserEditPopupComponent {
     formdata.append('user[sm_tiktok]', this.sm_tiktok);
     formdata.append('user[sm_youtube]', this.sm_youtube);
     formdata.append('user[sm_vimeo]', this.sm_vimeo);
+    formdata.append('user[sm_linkedin]', this.sm_linkedin);
     formdata.append('user[nationality][]', this.selectedCountry);
     formdata.append('user[first_name]', this.firstName);
     formdata.append('user[last_name]', this.lastName);
@@ -347,6 +351,7 @@ export class UserEditPopupComponent {
     formdata.append('user[sm_tiktok]', this.sm_tiktok);
     formdata.append('user[sm_youtube]', this.sm_youtube);
     formdata.append('user[sm_vimeo]', this.sm_vimeo);
+    formdata.append('user[sm_linkedin]', this.sm_linkedin);
     formdata.append('user[nationality][]', this.selectedCountry);
     let lang_id = localStorage.getItem('lang_id');
     formdata.append('lang', lang_id + '');
