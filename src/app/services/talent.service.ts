@@ -600,7 +600,9 @@ export class TalentService {
         if (Array.isArray(value)) {
           // If the value is an array (like for position or age), append each value
           value.forEach(val => {
-            queryParams = queryParams.append(`whereClause[${key}][]`, val);
+            if (val != null) {
+              queryParams = queryParams.append(`whereClause[${key}][]`, val);
+            }
           });
         } else {
           queryParams = queryParams.set(`whereClause[${key}]`, value);

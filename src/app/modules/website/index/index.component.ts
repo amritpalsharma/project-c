@@ -378,7 +378,12 @@ export class IndexComponent {
         this.sliderDetail = sliderData;
         if (sliderData.totalCount < 6) {
           for (let i = sliderData.totalCount; i < 7; i++) {
-            this.sliderDetail.users.push({ isPlaceholder: true, role_name: 'talent', first_name: 'lorem', last_name: 'ipusam', meta: { profile_image_path: this.fallbackImage, date_of_birth: '04-01-2002' } });
+            this.sliderDetail.users.push(
+              {
+                isPlaceholder: true, role_name: 'talent', first_name: 'lorem', last_name: 'ipusam',
+                user_nationalities:[],
+                meta: { profile_image_path: this.fallbackImage, date_of_birth: '04-01-2002' }
+              });
           }
           console.warn('placeholders ', this.sliderDetail.users);
         } else {
@@ -494,7 +499,11 @@ export class IndexComponent {
   }
 
   getFirstFlag(userNationalities: any): string | null {
-    const parsedNationalities = JSON.parse(userNationalities);
-    return parsedNationalities.length > 0 ? parsedNationalities[0].flag_path : null;
+    if(userNationalities && userNationalities.length > 0){
+      const parsedNationalities = JSON.parse(userNationalities);
+      return parsedNationalities.length > 0 ? parsedNationalities[0].flag_path : null;
+    }else{
+      return null;
+    }
   }
 }
