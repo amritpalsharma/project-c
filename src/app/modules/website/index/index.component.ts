@@ -240,7 +240,7 @@ export class IndexComponent {
         items: 5
       },
       1400: {
-        items: 7
+        items: 6
       }
     }
   };

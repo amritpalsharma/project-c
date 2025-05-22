@@ -26,43 +26,23 @@
             <!-- Talent Tab Content -->
             <div *ngIf="selectedTab === 'talent' && !isLoading">
               <div class="row talent_tabb_content">
-                <div class="col-lg-3 col-md-3 col-sm-4 col-6" *ngFor="let player of myTalents; let i = index">
-                  <div class="players player-card" data-bs-toggle="modal" data-bs-target="#exampleModal1">
-                    <div class="player1">
-                      <div class="player-img" [ngClass]="{ 'no-birth-nationality': !getFirstFlag(player.user_nationalities) || getFirstFlag(player.user_nationalities) != ''}">
-                        <img [src]="player.meta.profile_image_path" alt="{{ player.first_name+' '+player.last_name }}"
-                          [ngClass]="{ 'bg-red': player.name === 'Zidane', 'bg-green': player.name !== 'Zidane' }"
-                          (error)="setDefaultImage($event)" [ngClass]="{ 'default-img': isDefaultImage }">
-                        <div *ngIf="player.package_name === 'Booster'" class="image-text">{{'boosted' | translate}}
+                <div class="col-lg-3 col-md-4 col-sm-4 col-6 mt-4" *ngFor="let player of myTalents; let i = index">
+                  <div class="player--item" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                    <div class="item--inner boosted--profile">
+                      <div class="player--bio-dtl">
+                        <div class="item--icons-list">
+                          <div class="item--club" *ngIf="player.current_club_logo && player.current_club_logo != ''">
+                            <img [src]="player.current_club_logo ? profileBaseUrl +  player.current_club_logo : (player.current_club_logo ? profileBaseUrl +  player.current_club_logo : './assets/images/default-corner.png')" />
+                          </div>
+                          <span class="player--flag" *ngIf="getFirstFlag(player.user_nationalities) && getFirstFlag(player.user_nationalities) != ''">
+                            <img [src]="getFirstFlag(player.user_nationalities) ? getFirstFlag(player.user_nationalities) : './assets/images/default/Club-logo-default.png'" class="flag-img" />
+                          </span>
+                          <div class="player--dob" *ngIf="getBirthYear(player.meta.date_of_birth) && getBirthYear(player.meta.date_of_birth) != 0">{{ getBirthYear(player.meta.date_of_birth) || 'N/A' }}</div>
                         </div>
+                        <img class="player_profile_img" [src]="player.meta.profile_image_path" alt="{{ player.first_name+' '+player.last_name }}" [ngClass]="{ 'bg-red': player.name === 'Zidane', 'bg-green': player.name !== 'Zidane' }" (error)="setDefaultImage($event)" [ngClass]="{ 'player_profile_img': isDefaultImage }">
+                        <div *ngIf="player.package_name === 'Booster'" class="booster_text">{{'boosted' | translate}}</div>
                       </div>
-                      <p class="player-name7">{{ player.first_name+' '+player.last_name }}</p>
-                      <!-- <p *ngIf="player.class">Class: {{ player.class }}</p> -->
-                    </div>
-                    <div class="corner-image7" *ngIf="player.current_club_logo && player.current_club_logo != ''">
-                      <img
-                        [src]="player.current_club_logo ? profileBaseUrl +  player.current_club_logo : (player.current_club_logo ? profileBaseUrl +  player.current_club_logo : './assets/images/default-corner.png')" />
-                      <!-- <img [src]="player.cornerImage || './assets/images/default-corner.png'" /> -->
-                    </div>
-                    <div class="flag">
-                      <div class="flag-image7" *ngIf="getFirstFlag(player.user_nationalities) || getBirthYear(player.meta.date_of_birth)">
-                        <!-- <span
-                          *ngIf="player.birth_country_flag && player.birth_country_flag != null && player.birth_country_flag != ''">
-                          <img
-                            [src]="player.birth_country_flag ? birthCountryFlags + player.birth_country_flag : './assets/images/default-flag.svg'"
-                            class="flag-img" />
-                        </span> -->
-                        <span *ngIf="getFirstFlag(player.user_nationalities) && getFirstFlag(player.user_nationalities) != ''">
-                          <img
-                            [src]="getFirstFlag(player.user_nationalities) ? getFirstFlag(player.user_nationalities) : './assets/images/default/Club-logo-default.png'"
-                            class="flag-img" />
-                        </span>
-                        <div class="bottom-line" *ngIf="getBirthYear(player.meta.date_of_birth) && getBirthYear(player.meta.date_of_birth) != 0"></div>
-                        <div class="flag-bottom" *ngIf="getBirthYear(player.meta.date_of_birth) && getBirthYear(player.meta.date_of_birth) != 0">
-                          <img src="./assets/images/birthday.svg" class="birthday-img" />
-                          <p class="d-o-b">{{ getBirthYear(player.meta.date_of_birth) || 'N/A' }}</p>
-                        </div>
-                      </div>
+                      <div class="player__name">{{ player.first_name+' '+player.last_name }}</div>
                     </div>
                   </div>
                 </div>
@@ -106,49 +86,22 @@
             <!-- Club Tab Content -->
             <div *ngIf="selectedTab === 'club' && !isLoading">
               <div class="row club_tabb_content">
-                <div class="col-lg-3 col-md-4 col-sm-4 col-6" *ngFor="let player of clubsArr; let i = index">
-                  <!-- <pre>{{player | json}}</pre> -->
-                  <div class="players player-card"
-                    [ngClass]="{ 'bg-red': player.name === 'Zidane', 'bg-green': player.name !== 'Zidane' }" data-bs-toggle="modal" data-bs-target="#exampleModal1">
-                    <div class="player1 clubPlayers">
-                      <div class="player-img">
-                        <img [src]="profileBaseUrl + player.current_club_logo" alt="{{ player.first_name + ' '+player.last_name }} ~ Club Log"
-                          [ngClass]="{ 'bg-red': player.name === 'Zidane', 'bg-green': player.name !== 'Zidane' }"
-                          (error)="setDefaultImage($event)" [ngClass]="{ 'default-img': isDefaultImage }">
-                        <!-- <div *ngIf="player.name === 'Zidane'" class="image-text">{{'boosted' | translate}}</div> -->
-                      </div>
-                      <!-- <p class="player-name7" *ngIf="player.current_club_name">{{ player.current_club_name }}</p>
-                      <p class="player-name7" *ngIf="player.pre_current_club_name">{{ player.pre_current_club_name }}</p>
-                      <p class="player-name7" *ngIf="player.first_name">{{ player.first_name }}</p> -->
-                      <p class="player-name7" *ngIf="player.current_club_name; else preClub">
-                        {{ player.current_club_name }}
-                      </p>
-
-                      <ng-template #preClub>
-                        <p class="player-name7" *ngIf="player.pre_current_club_name; else firstName">
-                          {{ player.pre_current_club_name }}
-                        </p>
-                      </ng-template>
-
-                      <ng-template #firstName>
-                        <p class="player-name7" *ngIf="player.first_name">
-                          {{ player.first_name }}
-                        </p>
-                      </ng-template>
-                      <!-- <p *ngIf="player.class">Class: {{ player.class }}</p> -->
-                    </div>
-                    <!-- <div class="corner-image7">
-                      <img [src]="player.cornerImage || './assets/images/default-corner.png'" />
-                    </div> -->
-                    <div class="flag">
-                      <div class="flag-image7" *ngIf="getFlagPath(player.user_nationalities)">
-                        <img [src]="flagPath + player.current_club_country" class="flag-img" />
-                        <div class="bottom-line"></div>
-                        <div class="flag-bottom">
-                          <!-- <img src="./assets/images/birthday.svg" class="birthday-img" /> -->
-                          <!-- <p class="d-o-b">{{ player.birthYear || 'N/A' }}</p> -->
+                <div class="col-lg-3 col-md-4 col-sm-4 col-6 mt-4" *ngFor="let player of clubsArr; let i = index">
+                  <div class="player--item" [ngClass]="{ 'bg-red': player.name === 'Zidane', 'bg-green': player.name !== 'Zidane' }" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                    <div class="item--inner clubPlayers">
+                      <div class="player--bio-dtl">
+                        <div class="item--icons-list">
+                          <img *ngIf="getFlagPath(player.user_nationalities)" [src]="flagPath + player.current_club_country" class="player--flag" />
                         </div>
+                        <img class="player_profile_img" [src]="profileBaseUrl + player.current_club_logo" alt="{{ player.first_name + ' '+player.last_name }} ~ Club Log" [ngClass]="{ 'bg-red': player.name === 'Zidane', 'bg-green': player.name !== 'Zidane' }" (error)="setDefaultImage($event)" [ngClass]="{ 'player_profile_img': isDefaultImage }">
                       </div>
+                      <div class="player__name" *ngIf="player.current_club_name; else preClub">{{ player.current_club_name }} </div>
+                      <ng-template #preClub>
+                        <div class="player__name" *ngIf="player.pre_current_club_name; else firstName"> {{ player.pre_current_club_name }} </div>
+                      </ng-template>
+                      <ng-template #firstName>
+                        <div class="player__name" *ngIf="player.first_name"> {{ player.first_name }} </div>
+                      </ng-template>
                     </div>
                   </div>
                 </div>
@@ -195,43 +148,23 @@
             <!-- {{scoutProfiles | json}} -->
             <div *ngIf="selectedTab === 'scouts' && !isLoading">
               <div class="row scout_tabb_content">
-                <div class="col-lg-3 col-md-4 col-sm-4 col-6" *ngFor="let player of ScoutPlayers; let i = index">
-                  <div class="players player-card" data-bs-toggle="modal" data-bs-target="#exampleModal1">
-                    <div class="player1 scoutsArr">
-                      <div class="player-img">
-                        <img src="{{ player.meta.profile_image_path }}"
-                          alt="{{ player.first_name + ' ' + player.last_name }}" (error)="setDefaultImage($event)" [ngClass]="{ 'default-img': isDefaultImage }">
-                        <!-- <img [src]="player.meta.profile_image_path" alt="{{ player.first_name+' '+player.last_name }}" -->
-                        <!-- [ngClass]="{ 'bg-red': player.name === 'Zidane', 'bg-green': player.name !== 'Zidane' }"> -->
-                        <div *ngIf="player.package_name === 'Booster'" class="image-text">{{'boosted' | translate}}
+                <div class="col-lg-3 col-md-4 col-sm-4 col-6 mt-4" *ngFor="let player of ScoutPlayers; let i = index">
+                  <div class="player--item" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                    <div class="item--inner scoutsArr">
+                      <div class="player--bio-dtl">
+                        <div class="item--icons-list">
+                          <span class="player--flag" *ngIf="player.birth_country_flag && player.birth_country_flag != null && player.birth_country_flag != ''">
+                            <img [src]="player.birth_country_flag ? birthCountryFlags + player.birth_country_flag : './assets/images/default-flag.svg'" />
+                          </span>
+                          <div class="player--dob">{{ getBirthYear(player.meta.date_of_birth) || 'N/A' }}</div>
                         </div>
-                        <!-- <img [src]="player.image" alt="{{ player.name }}"
-                          [ngClass]="{ 'bg-red': player.name === 'Zidane', 'bg-green': player.name !== 'Zidane' }">
-                        <div *ngIf="player.name === 'Zidane'" class="image-text">{{'boosted' | translate}}</div> -->
+                        <img src="{{ player.meta.profile_image_path }}" alt="{{ player.first_name + ' ' + player.last_name }}" (error)="setDefaultImage($event)" [ngClass]="{ 'player_profile_img': isDefaultImage }">
+                        <div *ngIf="player.package_name === 'Booster'" class="booster_text">{{'boosted' | translate}} </div>
                       </div>
-                      <p class="player-name7">{{ player.first_name+' '+player.last_name }}</p>
-                      <!-- <p *ngIf="player.class">Class: {{ player.class }}</p> -->
-                    </div>
-                    <!-- <div class="corner-image7">
-                      <img [src]="player.cornerImage || './assets/images/default-corner.png'" />
-                    </div> -->
-                    <div class="flag">
-                      <div class="flag-image7">
-                        <span
-                          *ngIf="player.birth_country_flag && player.birth_country_flag != null && player.birth_country_flag != ''">
-                          <img
-                            [src]="player.birth_country_flag ? birthCountryFlags + player.birth_country_flag : './assets/images/default-flag.svg'"
-                            class="flag-img" />
-                        </span>
-                        <!-- <img [src]="player.flagImage || './assets/images/default-flag.svg'" class="flag-img" /> -->
-                        <div class="bottom-line"></div>
-                        <div class="flag-bottom">
-                          <img src="./assets/images/birthday.svg" class="birthday-img" />
-                          <p class="d-o-b">{{ getBirthYear(player.meta.date_of_birth) || 'N/A' }}</p>
-                        </div>
-                      </div>
+                      <div class="player__name">{{ player.first_name+' '+player.last_name }}</div>
                     </div>
                   </div>
+
                 </div>
               </div>
 

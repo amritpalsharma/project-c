@@ -1846,3 +1846,16 @@ footer img.web_footer_bg {
   }
 }
 }
+
+.light-theme {
+  .player--item {
+    background: linear-gradient(to bottom, #41942C, #357525);
+    .player--dob {
+      color: #357525;
+    }
+    .player__name {
+      background-color: #E05263;
+      color: #fff;
+    }
+  }
+}

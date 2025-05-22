@@ -2490,3 +2490,24 @@ background-color: #0C3453 !important;
 }
 }
 }
+
+
+.dark-theme {
+  .joined-para p {
+    color: #fff;
+  }
+  .joined-btn .btn-light {
+    background: #BDE34F !important;
+      color: #072944 !important;
+  }
+  .player--item {
+    background: #0C3453;
+    .player--dob {
+      color: #072944;
+    }
+    .player__name {
+      background-color: #BDE34F;
+      color: #072944;
+    }
+  }
+}
