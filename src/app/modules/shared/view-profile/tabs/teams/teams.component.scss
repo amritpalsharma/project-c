@@ -114,3 +114,16 @@
   display: inline-block;
   margin-top: 1rem;
 }
+
+
+@media (min-width: 1600px) and (max-width: 2999px) {
+	.club-team {
+	    font-size: 22px !important;
+	}
+}
+
+@media (min-width: 3000px) {
+	.club-team {
+	    font-size: 28px !important;
+	}
+}

@@ -188,7 +188,7 @@ body {
 .attachment_box{
   border: 1px solid #EFEFEF;
   padding: 7px;
-  width: calc(100% - 110px);
+  width: 100%;
   margin-right: 15px;
 }
 .attachment_box span{
@@ -330,26 +330,52 @@ margin-top: 20px;
   max-width: 344px;
   width: 100%;
 }
-
 .col_padding {
   padding: 20px 10px;
 }
 .edit_padding {
   padding: 10px 10px 20px;
 }
-.inquire-btn {
-  width: 170px !important;
+
+@media (min-width: 1400px) {
+.green_bar_sec {
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  .text-size {
+    width: max-content;
+    max-width: 40%;
+  }
+  .butn_div {
+    width: max-content;
+    max-width: 20%;
+  }
+}
 }
 
-@media (min-width: 768px) {
+
+@media (min-width: 768px) and (max-width: 1399.98px) {
 .green_bar_sec {
   flex-wrap: nowrap;
   justify-content: space-between;
   .text-size, .butn_div {
     width: max-content;
-    max-width: 100%;
+    max-width: 33.33%;
   }
 }
+}
+
+@media (min-width: 768px) {
+.green_bar_sec {
+  .green_bar_location {
+    position: relative;
+    padding-left: 40px;
+    svg {
+        position: absolute;
+        left: 0;
+        top: 2px;
+    }
+  }
+} 
 }
 
 @media (max-width: 767px) {
@@ -440,10 +466,12 @@ table td svg, span.back-link svg {
 }
 .attachment_box {
   padding: 11px !important;
+  width: max-content !important;
+  max-width: calc(100% - 60px);
 }
-.attachment_box svg, .upload-btn svg {
-  width: 25px !important;
-  height: 25px !important;
+.attachment_box svg, .upload-btn svg, .edit_padding svg, .green_bar_sec svg, .download_delete svg {
+  width: 28px !important;
+  height: 28px !important;
 }
 }
 
@@ -467,17 +495,25 @@ table td svg, span.back-link svg {
   font-size: 32px !important;
 }
 .download_delete svg {
-  width: 32px !important;
-    height: 32px !important;
+  width: 40px !important;
+    height: 40px !important;
 }
 .event-text, .edit_padding .d-flex div {
   font-size: 28px !important;
 }
 .attachment_box {
   padding: 15px !important;
+  width: max-content !important;
+  max-width: calc(100% - 60px);
 }
-.attachment_box svg, .upload-btn svg {
-  width: 30px !important;
-  height: 30px !important;
+.attachment_box svg, .upload-btn svg, .edit_padding svg, .green_bar_sec svg {
+  width: 35px !important;
+  height: 35px !important;
+}
+.col_padding {
+  padding: 60px 20px 30px !important;
+}
+.edit_padding {
+  padding: 60px 40px 30px !important;
 }
 }

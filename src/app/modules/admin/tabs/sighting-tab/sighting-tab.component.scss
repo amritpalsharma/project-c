@@ -6,7 +6,7 @@
     color: black;
 }
 .Favorite-parent{
-    padding: 15px 20px ;
+    padding: 0;
 }
 .invite-talent-btn{
   background: #6FB95D;
@@ -17,6 +17,7 @@
   border-radius: 10px;
   font-weight: 700;
 }
+
 @media(max-width: 425px){
  .btn-outline-white {
    padding: 5px;
@@ -39,7 +40,10 @@
    height: 20px;
    width: 20px;
  }
-
+.card_sight_title {
+  flex-wrap: wrap !important;
+  gap: 10px;
+}
 }
 
 @media(max-width: 360px){
@@ -151,12 +155,22 @@ body {
 }
 .sighting-bg{
   background-color: #F8F8F8;
+  img.img-fluid {
+    object-fit: cover;
+    object-position: top;
+  }
+}
+.col_padding .edit_button {
+  justify-content: space-between;
 }
 .edit_button button {
   border: 1px solid #918f8f;
   background: no-repeat;
   padding: 5px 8px;
   border-radius: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .edit_button button svg{
   margin-right: 4px;
@@ -174,6 +188,8 @@ body {
 .attachment_box{
   border: 1px solid #EFEFEF;
   padding: 7px;
+  width: 100%;
+  margin-right: 15px;
 }
 .attachment_box span{
   font-size: 14px;
@@ -183,27 +199,19 @@ font-weight: 500;
 }
 .upload-btn{
 color: #787878;
-font-weight: 400;
+font-weight: 600;
 font-size: 14px;
 border: 1px solid #D9D9D9;
 border-radius: 5px;
-padding: 4px 8px;
+padding: 8px 15px;
 margin-top: 20px;
 }
-.space-box{
-  padding: 0px 11px;
-}
-// .container {
-//   background-color: #f0f0f0;
-//   padding: 30px;
-//   border-radius: 10px;
-// }
 
 .btn-primary {
   background-color: #007bff; /* Blue */
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 6px 18px;
+  border-radius: 10px;
   color: white;
   font-weight: bold;
 }
@@ -211,8 +219,8 @@ margin-top: 20px;
 .btn-secondary {
   background-color: #6c757d; /* Gray */
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 6px 18px;
+  border-radius: 10px;
   color: white;
   font-weight: bold;
 }
@@ -220,8 +228,8 @@ margin-top: 20px;
 .btn-success {
   background-color: #28a745; /* Green */
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 6px 18px;
+  border-radius: 10px;
   color: white;
   font-weight: bold;
 }
@@ -313,32 +321,202 @@ margin-top: 20px;
   padding: 0px 5px;
   letter-spacing: .3px;
 }
+.download_delete {
+    display: flex;
+    align-items: center;
+}
 
-table td, table th {
-  white-space: nowrap;
+.sighting_tab {
+  padding: 0 !important;
+}
+.card-search {
+  max-width: 344px;
+  width: 100%;
+}
+.col_padding {
+  padding: 20px 10px;
+}
+.edit_padding {
+  padding: 10px 10px 20px;
+}
+
+@media (min-width: 1400px) {
+.green_bar_sec {
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  .text-size {
+    width: max-content;
+    max-width: 40%;
+  }
+  .butn_div {
+    width: max-content;
+    max-width: 20%;
+  }
+}
 }
 
 
+@media (min-width: 768px) and (max-width: 1399.98px) {
+.green_bar_sec {
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  .text-size, .butn_div {
+    width: max-content;
+    max-width: 33.33%;
+  }
+}
+}
+
+@media (min-width: 768px) {
+.green_bar_sec {
+  .green_bar_location {
+    position: relative;
+    padding-left: 40px;
+    svg {
+        position: absolute;
+        left: 0;
+        top: 2px;
+    }
+  }
+} 
+}
+
+@media (max-width: 767px) {
+.col_padding {
+  padding: 20px 5px;
+}
+.edit_padding {
+  padding: 10px 5px 20px;
+}
+.green_bar_sec {
+  padding: 20px 0 !important;
+}
+.mobile_sight {
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start !important;
+}
+.card-search {
+  max-width: 100%;
+}
+}
+
+@media (max-width: 600px) {
+.card_sight_btns .btn-outline-white {
+  font-size: 0 !important;
+}
+.view_back_sight {
+  flex-direction: column;
+  align-items: flex-start !important;
+  .invited-image {
+    border-left: 0;
+    padding-left: 0;
+    margin-left: 0;
+  }
+  .invited-image:not(:last-child) {
+    border-right: 1px solid #E7E7E7;
+    padding-right: 6px;
+    margin-right: 10px;
+}
+  .invited-image {
+    margin-top: 10px;
+  }
+}
+.view_back_sight > .d-flex.align-items-center {
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.web-create-bg {
+  padding: 8px 10px !important;
+  font-size: 14px !important;
+}
+}
+
+.upgrade_unlock .unlock_btn {
+  padding: 12px 25px 10px !important;
+  font-size: 17px !important;
+  background: #6FB95D;
+  // padding: ;
+  font-weight: 700;
+  color: #fff;
+  border-radius: 10px;
+  border: none;
+  display: inline-block;
+  margin-top: 1rem;
+}
 
 @media (min-width: 1600px) and (max-width: 2999px) {
-	a.btn.web-create-bg {
-    font-size: 22px !important;
-  }
-  td.cursor-pointer svg {
-    width: 32px !important;
-    height: 32px !important;
-  }
+.sighting-bg img.img-fluid {
+  max-height: 600px !important;
+}
+.btn.web-create-bg, .invite-talent-btn {
+  font-size: 22px !important;
+  margin-bottom: 10px !important;
+}
+table td svg, span.back-link svg {
+  width: 30px !important;
+    height: 30px !important;
+    margin-right: 4px;
+}
+.btn.btn-outline-white.delete-text,.attachment_box span {
+  font-size: 18px !important;
+}
+.invited-image h2, .text-size, .edit_padding h4, .upload-btn {
+  font-size: 24px !important;
+}
+.event-text, .edit_padding .d-flex div {
+  font-size: 18px !important;
+}
+.attachment_box {
+  padding: 11px !important;
+  width: max-content !important;
+  max-width: calc(100% - 100px);
+}
+.attachment_box svg, .upload-btn svg, .edit_padding svg, .green_bar_sec svg, .download_delete svg {
+  width: 28px !important;
+  height: 28px !important;
+}
 }
 
-
-
 @media (min-width: 3000px) {
-a.btn.web-create-bg {
+.sighting-bg img.img-fluid {
+  max-height: unset !important;
+}
+.btn.web-create-bg, .invite-talent-btn {
   font-size: 28px !important;
   margin-bottom: 10px !important;
 }
-td.cursor-pointer svg {
+table td svg, span.back-link svg {
   width: 40px !important;
-  height: 40px !important;
+    height: 40px !important;
+    margin-right: 4px;
+}
+.btn.btn-outline-white.delete-text, .attachment_box span {
+  font-size: 26px !important;
+}
+.invited-image h2, .text-size, .edit_padding h4, .upload-btn {
+  font-size: 32px !important;
+}
+.download_delete svg {
+  width: 40px !important;
+    height: 40px !important;
+}
+.event-text, .edit_padding .d-flex div {
+  font-size: 28px !important;
+}
+.attachment_box {
+  padding: 15px !important;
+  width: max-content !important;
+  max-width: calc(100% - 100px);
+}
+.attachment_box svg, .upload-btn svg, .edit_padding svg, .green_bar_sec svg {
+  width: 35px !important;
+  height: 35px !important;
+}
+.col_padding {
+  padding: 60px 20px 30px !important;
+}
+.edit_padding {
+  padding: 60px 40px 30px !important;
 }
 }
