@@ -160,11 +160,17 @@ body {
     object-position: top;
   }
 }
+.col_padding .edit_button {
+  justify-content: space-between;
+}
 .edit_button button {
   border: 1px solid #918f8f;
   background: no-repeat;
   padding: 5px 8px;
   border-radius: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .edit_button button svg{
   margin-right: 4px;
@@ -204,8 +210,8 @@ margin-top: 20px;
 .btn-primary {
   background-color: #007bff; /* Blue */
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 6px 18px;
+  border-radius: 10px;
   color: white;
   font-weight: bold;
 }
@@ -213,8 +219,8 @@ margin-top: 20px;
 .btn-secondary {
   background-color: #6c757d; /* Gray */
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 6px 18px;
+  border-radius: 10px;
   color: white;
   font-weight: bold;
 }
@@ -222,8 +228,8 @@ margin-top: 20px;
 .btn-success {
   background-color: #28a745; /* Green */
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 6px 18px;
+  border-radius: 10px;
   color: white;
   font-weight: bold;
 }
@@ -326,10 +332,10 @@ margin-top: 20px;
 }
 
 .col_padding {
-  padding: 30px;
+  padding: 20px 10px;
 }
 .edit_padding {
-  padding: 10px 30px 30px;
+  padding: 10px 10px 20px;
 }
 .inquire-btn {
   width: 170px !important;
@@ -411,6 +417,9 @@ margin-top: 20px;
 }
 
 @media (min-width: 1600px) and (max-width: 2999px) {
+.sighting-bg img.img-fluid {
+  max-height: 600px !important;
+}
 .btn.web-create-bg, .invite-talent-btn {
   font-size: 22px !important;
   margin-bottom: 10px !important;
@@ -424,7 +433,7 @@ table td svg, span.back-link svg {
   font-size: 18px !important;
 }
 .invited-image h2, .text-size, .edit_padding h4, .upload-btn {
-  font-size: 22px !important;
+  font-size: 24px !important;
 }
 .event-text, .edit_padding .d-flex div {
   font-size: 18px !important;
@@ -439,6 +448,9 @@ table td svg, span.back-link svg {
 }
 
 @media (min-width: 3000px) {
+.sighting-bg img.img-fluid {
+  max-height: unset !important;
+}
 .btn.web-create-bg, .invite-talent-btn {
   font-size: 28px !important;
   margin-bottom: 10px !important;
@@ -449,17 +461,17 @@ table td svg, span.back-link svg {
     margin-right: 4px;
 }
 .btn.btn-outline-white.delete-text, .attachment_box span {
-  font-size: 25px !important;
+  font-size: 26px !important;
 }
 .invited-image h2, .text-size, .edit_padding h4, .upload-btn {
-  font-size: 28px !important;
+  font-size: 32px !important;
 }
 .download_delete svg {
   width: 32px !important;
     height: 32px !important;
 }
 .event-text, .edit_padding .d-flex div {
-  font-size: 26px !important;
+  font-size: 28px !important;
 }
 .attachment_box {
   padding: 15px !important;
