@@ -425,8 +425,8 @@ export class SightingTabComponent {
           this.attachments = temp;
           if (response.message != '' && response.message != undefined) {
             this.showMatDialog(response.message, 'display');
-          } else { 
-          this.showMatDialog('Attachment removed successfully!.', 'display');
+          } else {
+            this.showMatDialog('Attachment removed successfully!.', 'display');
           }
         } else {
           this.showMatDialog('Error in removing attachment. Please try again.', 'display');
@@ -455,11 +455,11 @@ export class SightingTabComponent {
       this.selectSightingFirst = translations['selectSightingFirst'];
     });
   }
-  
+
   navigatePlans() {
     this.router.navigate(['/club/plans']);
   }
-  
+
   showVerificationPopup() {
     const messageDialog = this.dialog.open(UnverifiedUserComponent, {
       width: '500px',
@@ -467,7 +467,7 @@ export class SightingTabComponent {
         top: '150px'
       }
     })
-  
+
     messageDialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
         if (result.action == "delete-confirmed") {
@@ -475,5 +475,10 @@ export class SightingTabComponent {
         }
       }
     });
+  }
+
+  getStatusClass(status: any): string {
+    if (status === null) return 'status-pending';
+    return status === 'active' ? 'status-accepted' : 'status-rejected';
   }
 }

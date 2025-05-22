@@ -11,6 +11,7 @@ import { lang } from 'moment';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
 import { TitleService } from '../../../title.service';
 import { UserService } from '../../../services/user.service';
+import { MatSelect ,MatSelectChange } from '@angular/material/select';
 
 
 @Component({
@@ -43,8 +44,8 @@ export class ExploreComponent implements OnInit {
     });
   }
   teamTypesArr: any = ['A', 'B', 'U15', 'U16', 'U17', 'U18', 'U19', 'U20', 'U21', 'U22', 'U23'];
-  selectedTeam: string = '';
-  SelectedFilters: any = this.getSelectedFilters();
+  selectedTeam: any = [];
+  // SelectedFilters: any = this.getSelectedFilters();
   pageTitle: string = '';
   generalError: string = '';
   errorText: string = '';
@@ -67,6 +68,7 @@ export class ExploreComponent implements OnInit {
 
   // Filters
   selectedRole: number | null = null;
+  // selectedRole: number = 4;
   selectedCountry: number | null = null;
   selectedPositions: any;
   selectedAge: any;
@@ -184,6 +186,7 @@ export class ExploreComponent implements OnInit {
   }
 
   loadRoles(lang: string) {
+    this.isLoading = true;
     const currentRole: { [key: string]: any } = {
       // en: this.roles_en,
       // de: this.roles_de,
@@ -208,6 +211,8 @@ export class ExploreComponent implements OnInit {
       updatedRoles = updatedRoles.filter((role: any) => role.id !== "6");
       updatedRoles = updatedRoles.filter((role: any) => role.id !== "7");
       this.roles = updatedRoles;
+
+      this.isLoading = true;
     });
   }
 
@@ -314,7 +319,8 @@ export class ExploreComponent implements OnInit {
     if (this.selectedLeague && this.selectedRole == 4 || this.selectedRole == 2) whereClause.league_id = [this.selectedLeague];
     if (this.selectedCountry && this.selectedRole == 4 || this.selectedRole == 2) whereClause.club_country = [this.selectedCountry];
     if (this.selectedClub && this.selectedRole == 4 || this.selectedRole == 2) whereClause.club_id = [this.selectedClub];
-    if (this.selectedTeam && this.selectedRole == 4 || this.selectedRole == 2) whereClause.team_type = [this.selectedTeam];
+    if (this.selectedTeam && this.selectedRole == 4 || this.selectedRole == 2) whereClause.team_type = this.selectedTeam;
+    // if (this.selectedTeam && this.selectedRole == 4 || this.selectedRole == 2) whereClause.team_type = [this.selectedTeam];
     // Construct the params object with complex whereClause and metaQuery logic
     // let params: any = {
     //   // offset: pageIndex * pageSize,
@@ -407,10 +413,12 @@ export class ExploreComponent implements OnInit {
         } else {
           this.toastr.error(this.generalError, this.errorText);
         }
+        this.isLoading = false;
       },
       error: (error) => {
         console.error('Error fetching users:', error);
         this.toastr.error(this.generalError, this.errorText);
+        this.isLoading = false;
       },
       complete: () => {
         this.isLoading = false; // End loading
@@ -528,7 +536,8 @@ export class ExploreComponent implements OnInit {
 
     if (this.selectedCountry != 0 && this.selectedCountry != undefined) {
       let getCountryById = this.countries.find((val: any) => {
-        return val.id == this.selectedCountry;
+        return val.country_id == this.selectedCountry;
+        // return val.id == this.selectedCountry;
       });
       if (getCountryById && getCountryById.country_id != '' && getCountryById.country_id != undefined) {
         params = {
@@ -601,10 +610,19 @@ export class ExploreComponent implements OnInit {
     if (this.selectedLeague != null && this.selectedRole == 4 || this.selectedRole == 2) {
       filters.push({ label: 'league', value: this.selectedLeague });
     }
+
+
     if (this.selectedClub && this.selectedRole == 4 || this.selectedRole == 2) {
       filters.push({ label: 'club', value: this.selectedClub });
     }
 
+    if (this.selectedTeam && this.selectedRole == 4 || this.selectedRole == 2) {
+      if (this.selectedTeam.length > 0) {
+        filters.push({ label: 'team', value: this.selectedTeam.join(', ') });
+      }
+    }
+
+    // selectedTeam
 
     // Repeat for other filters
     return filters;
@@ -618,7 +636,11 @@ export class ExploreComponent implements OnInit {
         this.selectedRole = null;
         break;
       case 'country':
+        this.leagues = [];
+        this.clubs = [];
         this.selectedCountry = null;
+        this.selectedLeague = null;
+        this.selectedClub = null;
         break;
       case 'position':
         this.selectedPositions = null;
@@ -638,14 +660,17 @@ export class ExploreComponent implements OnInit {
       case 'club':
         this.selectedClub = null;
         break;
+      case 'team':
+        this.selectedTeam = '';
+        break;
     }
 
     // if (label == 'country' || label == 'league') {
     //   this.countryAndLeauge(label);
     // }
 
-    this.SelectedFilters = this.getSelectedFilters();
-    console.warn('this.SelectedFilters', this.SelectedFilters)
+    // this.SelectedFilters = this.getSelectedFilters();
+    // console.warn('this.SelectedFilters', this.SelectedFilters)
     // Refresh data after removing filter
     this.getUsers();
   }
@@ -684,6 +709,8 @@ export class ExploreComponent implements OnInit {
         const club = this.clubs.find((pos: any) => pos.id === id);
         return club ? club.club_name : id;
 
+
+
       default:
         return id; // Return ID as fallback
     }
@@ -691,7 +718,12 @@ export class ExploreComponent implements OnInit {
 
   // Method to check if the label is empty
   empty(label: string): boolean {
-    return !label || label.trim() === '';
+    if (label && label != '') {
+      // return !label || label.trim() === '';
+      return !label || (typeof label === 'string' && label.trim() === '');
+    } else {
+      return false;
+    }
   }
 
   getJsonTranslations() {
@@ -778,5 +810,91 @@ export class ExploreComponent implements OnInit {
   toggleFilterMobile() {
     this.isHideFilter = !this.isHideFilter;
   }
+
+  onRoleChange(selectRef: MatSelect) {
+
+    selectRef.close();
+    // if (this.selectedRole === 4) {
+
+    // } else if (this.selectedRole === 2) {
+    //   this.selectedPositions = null;
+    //   this.selectedAge = null;
+    //   this.selectedFoot = null;
+    //   this.selectedTopSpeed = null;
+    //   this.selectedTeam = '';
+    // } else if (this.selectedRole === 3) {
+    //   this.selectedPositions = null;
+    //   this.selectedAge = null;
+    //   this.selectedFoot = null;
+    //   this.selectedTopSpeed = null;
+    //   this.selectedCountry = null;
+    //   this.selectedLeague = null;
+    //   this.selectedClub = null;
+    //   this.selectedTeam = '';
+    // }
+
+    this.selectedPositions = null;
+    this.selectedAge = null;
+    this.selectedFoot = null;
+    this.selectedTopSpeed = null;
+    this.selectedCountry = null;
+    this.selectedLeague = null;
+    this.selectedClub = null;
+    this.selectedTeam = '';
+
+    this.applyFilter();
+  }
+
+  onPositionChange(selectRef: MatSelect) {
+    this.applyFilter();      // your existing logic
+    setTimeout(() => {
+      selectRef.close();
+    }, 500);
+  }
+
+  onAgeChange(selectRef: MatSelect) {
+    this.applyFilter();      // your existing logic
+    selectRef.close();       // properly closes dropdown
+  }
+
+
+
+  onFootChange(selectRef: MatSelect) {
+    this.applyFilter();      // your existing logic
+    selectRef.close();       // properly closes dropdown
+  }
+
+  onTopSpeedChange(selectRef: MatSelect) {
+    this.applyFilter();      // your existing logic
+    selectRef.close();       // properly closes dropdown
+  }
+
+  onCountryChange(selectRef: MatSelect) {
+    this.applyFilter();      // your existing logic
+    selectRef.close();       // properly closes dropdown
+
+    this.selectedLeague = null;
+    this.selectedClub = null;
+  }
+
+  onLeaugeChange(selectRef: MatSelect) {
+    this.applyFilter();      // your existing logic
+    selectRef.close();       // properly closes dropdown
+  }
+
+  onClubChange(selectRef: MatSelect) {
+    this.applyFilter();      // your existing logic
+    selectRef.close();       // properly closes dropdown
+  }
+  // onTeamTypeChange
+  onTeamTypeChange(event: MatSelectChange, selectRef: MatSelect) {
+    this.applyFilter();      // your existing logic
+    //selectRef.close();       // properly closes dropdown
+
+    setTimeout(() => {
+      selectRef.close();
+    }, 100);
+  }
+
 
 }

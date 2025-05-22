@@ -141,7 +141,8 @@ export class AdminHelperService {
     // Return in the desired format: "YYYY-MM-DD HH:mm:ss"
     // return `${year}-${month}-${day} ${hour}:${minute}:${second}`;
 
-    return `${day}-${month}-${year} ${hour}:${minute}:${second}`;
+    // return `${day}-${month}-${year} ${hour}:${minute}:${second}`;
+    return `${day}.${month}.${year} ${hour}:${minute}:${second}`;
   }
 
 

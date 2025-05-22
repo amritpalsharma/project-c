@@ -119,10 +119,10 @@
                             <h3 class="feature-heading3">{{pageData?.feature_sctn_title}}</h3>
                             <div class="accordion" id="accordionExample">
                                 <ng-container *ngFor="let feature of pageData.feature_sctn; let i = index">
-                                    <div class="accordion-item" (click)="getArrayItemByIndex(i,'dark_image')">
+                                    <div class="accordion-item" >
                                         <div class="accordion-flex" data-bs-toggle="collapse"
                                             [attr.data-bs-target]="'#collapse' + (i + 1)" aria-expanded="false"
-                                            [attr.aria-controls]="'collapse' + (i + 1)">
+                                            [attr.aria-controls]="'collapse' + (i + 1)" (click)="getArrayItemByIndex(i,'dark_image')">
                                             <img class="light-feature1"
                                                 src="/assets/images/club_page/icons/{{i}}_light.svg">
                                             <img class="dark-feature1"

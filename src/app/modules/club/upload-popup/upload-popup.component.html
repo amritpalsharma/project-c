@@ -14,8 +14,6 @@
 
         <div *ngIf="!isLoading" class="upload-box" (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)"
             (drop)="onFileDropped($event)">
-            <!-- <p class="upload-file_name">{{'dragAndDropFiles' | translate}}</p> -->
-            <!-- <p class="upload-file_name">{{'fileSupported1' | translate}}</p> -->
             <p class="upload-file_name">{{'dragAndDropFilesHere' | translate}}</p>
             <p class="upload-file_name">{{'filesSupported' | translate}}</p>
             <input type="file" (change)="onFileSelect($event)" multiple hidden #fileInput />
@@ -25,11 +23,5 @@
         <div *ngIf="isLoading" class="upload-box">
             {{'pleaseWait' | translate}}
         </div>
-
-        <!-- <div class="file-list">
-            <div *ngFor="let result of uploadResponse">
-                <span>{{ result }}</span>
-            </div>
-        </div> -->
     </div>
 </div>

@@ -35,7 +35,7 @@ export class EditPersonalDetailsComponent implements OnInit {
   @ViewChild('placeOfBirthInput') placeOfBirthInput!: ElementRef;
   placeSuggestions: any[] = [];
   readonly date = new FormControl(moment());
-  isTeamSelectError:boolean=false;
+  isTeamSelectError: boolean = false;
   countries: any;
   teamsArr: any[] = [];
   leagueLevels: any[] = [];
@@ -295,8 +295,8 @@ export class EditPersonalDetailsComponent implements OnInit {
     if (this.userData) {
       this.user = this.userData;
       console.info('this.user', this.user)
-      if (this.user.meta) { 
-        if(this.user.meta.have_no_club == '1'){
+      if (this.user.meta) {
+        if (this.user.meta.have_no_club == '1') {
           this.isHideClubSection = true;
         }
         // console.info('this.user.meta',this.user.meta)
@@ -351,13 +351,16 @@ export class EditPersonalDetailsComponent implements OnInit {
       return;
     }
 
-    if(!this.CurrentTeamId && this.currentClubId){
+    if (!this.CurrentTeamId && this.currentClubId) {
       this.isTeamSelectError = true;
       return;
-    }else{
+    } else {
       this.isTeamSelectError = false;
     }
 
+    const team = this.teamsArr.find(team => team.id === this.CurrentTeamId);
+    // return team ? team.team_type : "Team ID not found.";
+    // console.log('Team',team.team_type)
     if (!this.nationality || this.nationality.length === 0) {
       this.toastr.warning(this.nationalityRequired, this.errorTxt);
       return;
@@ -383,7 +386,7 @@ export class EditPersonalDetailsComponent implements OnInit {
       formData.append('user[pre_club_id]', this.currentClubId);
     }
 
-    
+
 
     // Format and append required fields
     const formattedDateOfBirth = moment(this.dateOfBirth.value).format('YYYY-MM-DD');
@@ -418,9 +421,11 @@ export class EditPersonalDetailsComponent implements OnInit {
     if (this.isHideClubSection === true) {
       formData.append('user[have_no_club]', '1');
       formData.append('user[current_team]', '0');
-    }else{
+    } else {
       formData.append('user[have_no_club]', '0');
     }
+
+    console.log('Selected Team Id is',this.CurrentTeamId,' and Team Type is ',team.team_type);
 
     // API call for submitting form data
     this.talentService.updateUserProfile(formData).subscribe(

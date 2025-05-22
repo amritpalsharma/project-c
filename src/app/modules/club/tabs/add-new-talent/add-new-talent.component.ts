@@ -31,14 +31,15 @@ export class AddNewTalentComponent implements OnInit {
   teamId: any;
   player: any;
   edit: boolean = false;
-  teamName : string = '';
-  baseUrl:string='https://api.socceryou.ch/uploads/';
-  theme:string=localStorage.getItem('theme') || 'light';
+  teamName: string = '';
+  baseUrl: string = 'https://api.socceryou.ch/uploads/';
+  theme: string = localStorage.getItem('theme') || 'light';
+  submitClicked: boolean = false;
 
   constructor(
     private clubService: ClubService,
     public dialogRef: MatDialogRef<AddNewTalentComponent>,
-    private socketService : SocketService,
+    private socketService: SocketService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.teamId = data.teamId;
@@ -80,9 +81,10 @@ export class AddNewTalentComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  receiverIds : any[] = [];
+  receiverIds: any[] = [];
 
   sendInvite() {
+    this.submitClicked = true;
     const formData = new FormData();
     let i = 0;
     let lang_id = localStorage.getItem('lang_id');
@@ -129,20 +131,20 @@ export class AddNewTalentComponent implements OnInit {
           console.log("No data found in localStorage.");
         }
         console.log("working", this.receiverIds)
-        
-        this.receiverIds.forEach((receiverId:any)=>{
+
+        this.receiverIds.forEach((receiverId: any) => {
           console.log("working", receiverId)
-          this.socketService.emit('ClubAddPlayer', { senderIds: {senderId: myUserId, teamName: this.teamName}, receiverId: receiverId });
+          this.socketService.emit('ClubAddPlayer', { senderIds: { senderId: myUserId, teamName: this.teamName }, receiverId: receiverId });
         })
         this.receiverIds = [];
-        
+
         this.dialogRef.close({
           action: 'added',
           id: this.sightId,
-          message:response.message
+          message: response.message
         });
 
-        
+
       } else {
         console.error('Invalid API response structure:', response);
       }
@@ -162,17 +164,17 @@ export class AddNewTalentComponent implements OnInit {
           console.log("No data found in localStorage.");
         }
         console.log("working", this.receiverIds)
-        
-        this.receiverIds.forEach((receiverId:any)=>{
+
+        this.receiverIds.forEach((receiverId: any) => {
           console.log("working", receiverId, myUserId)
-          this.socketService.emit('ClubAddPlayer', { senderIds: {senderId: myUserId, teamName: this.teamName}, receiverId: receiverId });
+          this.socketService.emit('ClubAddPlayer', { senderIds: { senderId: myUserId, teamName: this.teamName }, receiverId: receiverId });
         })
         this.receiverIds = [];
-        
+
         this.dialogRef.close({
           action: 'updated',
           id: this.player.id,
-          message:response.message
+          message: response.message
         });
       } else {
         console.error('Invalid API response structure:', response);

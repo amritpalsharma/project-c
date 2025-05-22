@@ -263,7 +263,7 @@ export class CreateSightPopupComponent implements AfterViewInit {
         }
       });
     } catch (error) {
-     this.userService.apiToasterError();
+      this.userService.apiToasterError();
     }
   }
 
@@ -305,5 +305,12 @@ export class CreateSightPopupComponent implements AfterViewInit {
     } catch (error) {
       this.userService.apiToasterError();
     }
+  }
+
+  removeMP4(str: string) {
+    let textToRemove = 'MP4';
+    const regex = new RegExp(`,?\\s*${textToRemove}`, 'gi');
+    return str.replace(regex, '').trim();
+    // return str;
   }
 }

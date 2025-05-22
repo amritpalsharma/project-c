@@ -11,23 +11,24 @@
                 <!-- Talent Filter -->
                 <!-- <pre>{{roles | json}}</pre> -->
                 <th>
-                  <div class="form-group explore-all_input" [ngClass]="{'onlyScout':selectedRole == 3}">
+                  <div class="form-group explore-all_input" [ngClass]="{'onlyScout':selectedRole == 3 || !selectedRole}">
                     <mat-form-field appearance="fill">
                       <mat-label>{{ 'talents' | translate }}</mat-label>
-                      <mat-select [(ngModel)]="selectedRole" (selectionChange)="applyFilter()" id="roles" name="role">
-                        <mat-option [value]="null" [selected]="!selectedRole">{{'all' | translate}}</mat-option>
+                      <mat-select #roleSelect [(ngModel)]="selectedRole" (selectionChange)="onRoleChange(roleSelect)"
+                        id="roles" name="role">
+                        <!-- <mat-option [value]="null" [selected]="!selectedRole">{{'all' | translate}}</mat-option> -->
                         <mat-option *ngFor="let role of roles" [value]="role.id">{{role.role_name}}</mat-option>
                       </mat-select>
                     </mat-form-field>
                   </div>
                 </th>
                 <!-- Position Filter -->
-                <th *ngIf="selectedRole == 4 || !selectedRole">
+                <th *ngIf="selectedRole == 4" [ngClass]="{'d-none':!selectedRole}">
                   <div class="form-group explore-all_input">
                     <mat-form-field appearance="fill">
                       <mat-label>{{'position' | translate}}</mat-label>
-                      <mat-select [(ngModel)]="selectedPositions" (selectionChange)="applyFilter()" id="position"
-                        name="position" multiple>
+                      <mat-select #positionSelect [(ngModel)]="selectedPositions"
+                        (selectionChange)="onPositionChange(positionSelect)" id="position" name="position" multiple>
                         <mat-option *ngFor="let position of positions"
                           [value]="position.id">{{position.position}}</mat-option>
                       </mat-select>
@@ -36,12 +37,12 @@
                 </th>
 
                 <!-- Age Filter -->
-                <th *ngIf="selectedRole == 4 || !selectedRole">
+                <th *ngIf="selectedRole == 4" [ngClass]="{'d-none':!selectedRole}">
                   <div class="form-group explore-all_input">
                     <mat-form-field appearance="fill">
                       <mat-label>{{'age' | translate}}</mat-label>
-                      <mat-select [(ngModel)]="selectedAge" (selectionChange)="applyFilter()" id="age" name="age"
-                        multiple>
+                      <mat-select #ageSelector [(ngModel)]="selectedAge" (selectionChange)="onAgeChange(ageSelector)"
+                        id="age" name="age" multiple>
                         <mat-option *ngFor="let age of ageRange" [value]="age">{{ age }}</mat-option>
                       </mat-select>
                     </mat-form-field>
@@ -49,11 +50,12 @@
                 </th>
 
                 <!-- Foot Filter -->
-                <th *ngIf="selectedRole == 4 || !selectedRole">
+                <th *ngIf="selectedRole == 4" [ngClass]="{'d-none':!selectedRole}">
                   <div class="form-group explore-all_input">
                     <mat-form-field appearance="fill">
                       <mat-label>{{'foot' | translate}}</mat-label>
-                      <mat-select [(ngModel)]="selectedFoot" (selectionChange)="applyFilter()" id="foot" name="foot">
+                      <mat-select #footChnage [(ngModel)]="selectedFoot" (selectionChange)="onFootChange(footChnage)"
+                        id="foot" name="foot">
                         <mat-option value="right">{{'right' | translate}}</mat-option>
                         <mat-option value="left">{{'left' | translate}}</mat-option>
                         <mat-option value="both">{{'both' | translate}}</mat-option>
@@ -63,12 +65,12 @@
                 </th>
 
                 <!-- Top Speed Filter -->
-                <th *ngIf="selectedRole == 4 || !selectedRole">
+                <th *ngIf="selectedRole == 4" [ngClass]="{'d-none':!selectedRole}">
                   <div class="form-group explore-all_input">
                     <mat-form-field appearance="fill">
                       <mat-label>{{'topSpeed' | translate}}</mat-label>
-                      <mat-select [(ngModel)]="selectedTopSpeed" (selectionChange)="applyFilter()" id="top-speed"
-                        name="topSpeed">
+                      <mat-select #topSpeed [(ngModel)]="selectedTopSpeed"
+                        (selectionChange)="onTopSpeedChange(topSpeed)" id="top-speed" name="topSpeed">
                         <mat-option value="15">15-20 Km/hr</mat-option>
                         <mat-option value="20">20-25 km/hr</mat-option>
                         <mat-option value="25">25-30 km/hr</mat-option>
@@ -79,14 +81,15 @@
                   </div>
                 </th>
                 <!-- Country Filter -->
-                <th *ngIf="selectedRole == 4 || selectedRole == 2 || !selectedRole">
+                <th *ngIf="selectedRole == 4 || selectedRole == 2" [ngClass]="{'d-none':!selectedRole}">
                   <div class="form-group explore-all_input">
                     <mat-form-field appearance="fill">
                       <mat-label>{{ 'club' | translate }} {{ 'country' | translate }}</mat-label>
                       <!-- <mat-label>{{ 'country' | translate }}</mat-label> -->
                       <!-- <pre>{{countries | json}}</pre> -->
-                      <mat-select [(ngModel)]="selectedCountry"
-                        (selectionChange)="applyFilter(); countryAndLeauge('country');" id="country" name="country">
+                      <mat-select #countryChange [(ngModel)]="selectedCountry"
+                        (selectionChange)="onCountryChange(countryChange); countryAndLeauge('country');" id="country"
+                        name="country">
                         <mat-option *ngFor="let country of countries" [value]="country.country_id">
                           {{country.location}}
                           <!-- {{country.country_name}} -->
@@ -96,13 +99,13 @@
                   </div>
                 </th>
                 <!-- League Filter -->
-                <th *ngIf="selectedRole == 4 || selectedRole == 2 || !selectedRole">
+                <th *ngIf="selectedRole == 4 || selectedRole == 2" [ngClass]="{'d-none':!selectedRole}">
                   <div class="form-group explore-all_input">
                     <mat-form-field appearance="fill">
                       <mat-label>{{'league' | translate}}</mat-label>
-                      <mat-select [(ngModel)]="selectedLeague"
-                        (selectionChange)="applyFilter(); countryAndLeauge('league');" id="league" name="league"
-                        [disabled]="!leagues || leagues.length === 0">
+                      <mat-select #leaugeChange [(ngModel)]="selectedLeague"
+                        (selectionChange)="onLeaugeChange(leaugeChange); countryAndLeauge('league');" id="league"
+                        name="league" [disabled]="!selectedCountry">
                         <mat-option *ngFor="let league of leagues"
                           [value]="league.id">{{league.league_name}}</mat-option>
                       </mat-select>
@@ -111,12 +114,12 @@
                 </th>
 
                 <!-- Club Filter -->
-                <th *ngIf="selectedRole == 4 || selectedRole == 2 || !selectedRole">
+                <th *ngIf="selectedRole == 4 || selectedRole == 2" [ngClass]="{'d-none':!selectedRole}">
                   <div class="form-group explore-all_input">
                     <mat-form-field appearance="fill">
                       <mat-label>{{'clubRole' | translate}}</mat-label>
-                      <mat-select [(ngModel)]="selectedClub" (selectionChange)="applyFilter()" id="club" name="club"
-                        [disabled]="!clubs || clubs.length === 0">
+                      <mat-select #clubChange [(ngModel)]="selectedClub" (selectionChange)="onClubChange(clubChange)"
+                        id="club" name="club">
                         <mat-option *ngFor="let club of clubs" [value]="club.id">{{club.club_name}}</mat-option>
                       </mat-select>
                     </mat-form-field>
@@ -124,12 +127,12 @@
                 </th>
 
                 <!-- Team Type -->
-                 <th *ngIf="selectedRole == 4 || selectedRole == 2 || !selectedRole">
+                <th *ngIf="selectedRole == 4" [ngClass]="{'d-none':!selectedRole}">
                   <div class="form-group explore-all_input">
                     <mat-form-field appearance="fill">
                       <mat-label>{{'team' | translate}}</mat-label>
-                      <mat-select [(ngModel)]="selectedTeam" (selectionChange)="applyFilter()" id="selectedTeam" name="selectedTeam"
-                        [disabled]="!teamTypesArr || teamTypesArr.length === 0">
+                      <mat-select #teamType multiple [(ngModel)]="selectedTeam" (selectionChange)="onTeamTypeChange($event, teamType)"
+                        id="selectedTeam" name="selectedTeam" [disabled]="!teamTypesArr || teamTypesArr.length === 0">
                         <mat-option *ngFor="let teamType of teamTypesArr" [value]="teamType">{{teamType}}</mat-option>
                       </mat-select>
                     </mat-form-field>
@@ -143,13 +146,19 @@
         <div class="explore-chip d-flex align-items-center my-2" *ngIf="!isLoading">
 
           <div *ngFor="let filter of getSelectedFilters()">
-            <div class="chip" *ngIf="!empty(filter.label) && !empty(filter.value)"> <!-- Check if label is not empty -->
+            <div class="chip" *ngIf="filter.label && !empty(filter.label) && filter.value &&  !empty(filter.value)">
+              <!-- Check if label is not empty -->
               <span>
                 <span [translate]="filter.label"></span>
                 <strong *ngIf="getNameById(filter.label, filter.value) == 'left'">: {{ 'left' | translate}}</strong>
                 <strong *ngIf="getNameById(filter.label, filter.value) == 'right'">: {{ 'right' | translate}}</strong>
                 <strong *ngIf="getNameById(filter.label, filter.value) == 'both'">: {{ 'both' | translate }}</strong>
                 <strong *ngIf="filter.value != 'left' && filter.value != 'right' && filter.value != 'both'">:
+
+                  <!-- First Time When Showing Selected Filter as Talent -->
+                  <!-- <span *ngIf="filter.label == 'category' || filter.label == '4'"> {{'talent' | translate}}</span>
+                  <span *ngIf="filter.label != 'category' && filter.label != '4'"> {{getNameById(filter.label,
+                    filter.value)}}</span> -->
                   {{getNameById(filter.label, filter.value)}}
                 </strong>
               </span>

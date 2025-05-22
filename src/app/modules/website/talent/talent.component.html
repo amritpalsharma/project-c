@@ -125,10 +125,10 @@
                         <h3 class="feature-heading3">{{pageData?.feature_sctn_title}} </h3>
                         <div class="accordion" id="accordionExample">
                             <ng-container *ngFor="let feature of pageData.feature_sctn; let i = index">
-                                <div class="accordion-item" (click)="getArrayItemByIndex(i,'dark_icon')">
+                                <div class="accordion-item" >
                                     <div class="accordion-flex" data-bs-toggle="collapse"
                                         [attr.data-bs-target]="'#collapse' + i" aria-expanded="false"
-                                        [attr.aria-controls]="'collapse' + i">
+                                        [attr.aria-controls]="'collapse' + i" (click)="getArrayItemByIndex(i,'dark_icon')">
                                         <img class="light-feature1"
                                             src="/assets/images/talent_page/icons/{{i}}_light.svg">
                                         <img class="dark-feature1"
@@ -231,11 +231,11 @@
                                 </div>
                             </ng-container> -->
                             <ng-container *ngFor="let feature of pageData.feature_sctn; let i = index">
-                                <div class="accordion-item" (click)="setActiveAccordion(i)">
+                                <div class="accordion-item" >
                                     <div class="accordion-flex" data-bs-toggle="collapse"
                                         [attr.data-bs-target]="'#collapseOne' + i"
                                         [attr.aria-expanded]="activeAccordionIndex === i ? 'true' : 'false'"
-                                        [attr.aria-controls]="'collapseOne' + i">
+                                        [attr.aria-controls]="'collapseOne' + i" (click)="setActiveAccordion(i)">
 
                                         <!-- <img class="light-feature1" src="{{baseUrl + feature.icon}}"> -->
                                         <!-- <img class="dark-feature1" src="{{baseUrl + feature.dark_icon}}"> -->

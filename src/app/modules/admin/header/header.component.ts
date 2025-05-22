@@ -17,6 +17,7 @@ import { TitleService } from '../../../title.service';
 // import { filter, tap } from 'rxjs/operators';
 // import { debounceTime, distinctUntilChanged, switchMap, finalize } from 'rxjs/operators';
 import { TalkService } from '../../../services/talkjs.service';
+import { GlobalSettingsService } from '../../../services/global-settings.service';
 
 interface Notification {
   id: number;
@@ -50,7 +51,8 @@ export class HeaderComponent {
     private socketService: SocketService,
     private talkService: TalkService,
     private cdRef: ChangeDetectorRef,
-    private titleService: TitleService
+    private titleService: TitleService,
+    private globalSettings:GlobalSettingsService
   ) { }
 
   loggedInUser: any = localStorage.getItem('userData');
@@ -431,7 +433,7 @@ export class HeaderComponent {
   toggleTheme(event: any): void {
     this.themeService.setDarkTheme(event.target.checked);
     this.onThemeToggle(event.target.checked);
-
+    this.globalSettings.callIndexComponentFunction();
   }
   onThemeToggle(isDarkModeEnabled: boolean): void {
     // Call the toggleTheme function from the service

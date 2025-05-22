@@ -70,7 +70,7 @@
               <div class="date-input col-lg-4 p-0 mb-3 mb-lg-0">
                 <label for="startDate" class="d-block font-weight-bold">
                 </label>
-                <input type="date" class="form-control join-start" id="startDate" [(ngModel)]="startDate"
+                <input type="date" class="form-control join-start" [ngClass]="{'red-border-start': !startDate && submitClicked}" id="startDate" [(ngModel)]="startDate"
                   placeholder="{{ 'selectStartDate' | translate }}" />
               </div>
 
@@ -78,7 +78,7 @@
               <div class="date-input col-lg-4 p-0 mb-3 mb-lg-0">
                 <label for="endDate" class="d-block font-weight-bold">
                 </label>
-                <input type="date" class="form-control join-end" id="endDate" [(ngModel)]="endDate"
+                <input type="date" class="form-control join-end" id="endDate" [ngClass]="{'red-border-end': !endDate && submitClicked}" [(ngModel)]="endDate"
                   [disabled]="noEndDate" placeholder="{{ 'selectEndDate' | translate }}" />
               </div>
 

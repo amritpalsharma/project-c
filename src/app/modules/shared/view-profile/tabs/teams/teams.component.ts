@@ -16,7 +16,7 @@ export class TeamsComponent {
   teams: any = [];
   players: any = [];
   view: string = "team";
-  displayedColumns: string[] = ['Player Name', 'Joining Date', 'Exit Date', 'Location'];
+  displayedColumns: string[] = ['Player Name', 'Joining Date', 'Exit Date', 'Location', 'View'];
   isLoading: boolean = false;
   selectedTeam: any = "";
   selectTeamName: string = '';
@@ -29,7 +29,8 @@ export class TeamsComponent {
     private route: ActivatedRoute,
     private userService: UserService,
     private clubService: ClubService,
-    private webPages:WebPages
+    private webPages: WebPages,
+    private router: Router
   ) {
     // this.getClubTeams(this.currentClubId);
   }
@@ -37,11 +38,11 @@ export class TeamsComponent {
   ngOnInit(): void {
     this.getClubTeams(this.currentClubId);
 
-    this.webPages.languageId$.subscribe((data) => { 
+    this.webPages.languageId$.subscribe((data) => {
       // 
-      if(this.view == 'player'){
-        this.getTeamPlayers(this.selectedTeamId,this.selectedTeam);
-      }else{
+      if (this.view == 'player') {
+        this.getTeamPlayers(this.selectedTeamId, this.selectedTeam);
+      } else {
         this.getClubTeams(this.currentClubId);
       }
     });
@@ -98,5 +99,12 @@ export class TeamsComponent {
   getTeamTypeById(id: number) {
     const team = this.teams.find((team: any) => team.id === id);
     return team ? team.team_type : null; // Return `null` if not found
+  }
+
+  naviGatePlayer(id:number) {
+    let slug = 'talent';
+    const pageRoute = 'view/' + slug.toLowerCase();
+    //console.log(pageRoute);
+    this.router.navigate([pageRoute, id], { state: { role: slug } });
   }
 }

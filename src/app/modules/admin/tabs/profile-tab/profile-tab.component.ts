@@ -2,6 +2,7 @@ import { Component, Input, OnChanges, SimpleChanges, Output, EventEmitter } from
 import { UserEditPopupComponent } from '../../user-edit-popup/user-edit-popup.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MessagePopupComponent } from '../../message-popup/message-popup.component';
+import { GlobalSettingsService } from '../../../../services/global-settings.service';
 
 @Component({
   selector: 'app-profile-tab',
@@ -10,14 +11,15 @@ import { MessagePopupComponent } from '../../message-popup/message-popup.compone
 })
 export class ProfileTabComponent {
   user: any = {}
+  currentThemeMode: string = localStorage.getItem('theme') || 'light';
   userNationalities: any = [];
   countryFlagUrl: any;
-  baseUrl:string = 'https://api.socceryou.ch/uploads/';
+  baseUrl: string = 'https://api.socceryou.ch/uploads/';
 
   @Input() userData: any;
   @Input() userCountryFlag: any;
   @Output() dataEmitter = new EventEmitter<string>();
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, public globalSettings: GlobalSettingsService) {
 
 
   }
@@ -28,6 +30,10 @@ export class ProfileTabComponent {
     this.user = localStorage.getItem('userData');
     this.user = JSON.parse(this.user);
     console.info('coming this data', this.user);
+
+    this.globalSettings.indexFunctionCall$.subscribe(() => {
+      this.themeChanged(); // Call the function when event is received
+    });
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -54,7 +60,7 @@ export class ProfileTabComponent {
       age--;
     }
 
-    if(isNaN(age)){
+    if (isNaN(age)) {
       age = 0;
     }
 
@@ -116,15 +122,23 @@ export class ProfileTabComponent {
     // console.log(positions)
     if (positions) {
       let pos = JSON.parse(positions);
-      
+
       // Filter out positions where main_position === 1
       let filteredPositions = pos.filter((position: any) => position.main_position !== 1);
-    
+
       // Extract the position names and join them with a "/"
       let positionNames = filteredPositions.map((position: any) => position.position_name).join(' / ');
-    
+
       return positionNames || null; // Return the joined string, or null if no positions match
-    }    
+    }
+  }
+
+  themeChanged() {
+    let currentTheme = localStorage.getItem('theme');
+    this.currentThemeMode = currentTheme + '';
+    if (this.currentThemeMode == null || this.currentThemeMode == undefined) {
+      this.currentThemeMode = 'light';
+    }
   }
 
 }

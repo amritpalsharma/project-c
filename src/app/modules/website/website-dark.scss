@@ -490,12 +490,13 @@
   background: #072944;
 }
 
-.dark-theme .website-code .choice, 
+.dark-theme .website-code .choice,
 .dark-theme .website-code .decline {
   background: #0C3453;
   border: 1px solid #BDE34F;
   color: #fff;
 }
+
 .dark-theme .website-code .accept {
   background: linear-gradient(180deg, #EFFFC1, #BDE34F);
   border: 1px solid #BDE34F;
@@ -509,6 +510,7 @@
 .dark-theme .website-code #footer a.login-btn {
   background-color: transparent;
 }
+
 .dark-theme .website-code .privacy {
   background-color: #072944;
   color: white;
@@ -2445,48 +2447,72 @@ body.dark-theme.static-common-banner {
 
 
 .dark-theme {
-  .common_static_page  {
-    h2, h3, h4 {
+  .common_static_page {
+
+    h2,
+    h3,
+    h4 {
       color: #bde34e;
     }
-    p, li {
+
+    p,
+    li {
       color: #fff;
     }
-    p a, li a, p strong, li strong {
-        color: #bde34e;
+
+    p a,
+    li a,
+    p strong,
+    li strong {
+      color: #bde34e;
     }
   }
+
   .faq .faq-content {
     p strong {
       color: #bde34e;
     }
   }
+
   .bottom_box {
     border-top: 1px solid #4F7A9D;
   }
+
   .logo-box {
     border-bottom: 1px solid #4F7A9D;
   }
+
   #footer .footer-top h4 {
-  &:before {
-    background: #bde34e !important;
+    &:before {
+      background: #bde34e !important;
+    }
   }
-}
-.country-name {
-background: #0c3453 !important;
-.flag_icon { 
-border-color: #bde34e !important;
-}
-}
-.grey_common_banner {
-background-color: #0C3453 !important;
-    h2.cookie-text, .contact-text p, h3 {
+
+  .country-name {
+    background: #0c3453 !important;
+
+    .flag_icon {
+      border-color: #bde34e !important;
+    }
+  }
+
+  .grey_common_banner {
+    background-color: #0C3453 !important;
+
+    h2.cookie-text,
+    .contact-text p,
+    h3 {
       color: #fff !important;
     }
+
     .mail {
-  a {
-    color: #fff !important;
+      a {
+        color: #fff !important;
+      }
+    }
   }
 }
-}
+
+.dark-theme .joined-para p {
+  color: white !important;
 }

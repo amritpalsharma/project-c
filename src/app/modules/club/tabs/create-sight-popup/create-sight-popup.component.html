@@ -6,19 +6,23 @@
   </div>
   <div class="overflow-card popup__body py-3">
     <div class="row align-items-center mb-4 mt-4">
-      <div class="col-sm-7">
+      <div class="col-sm-12">
         <label for="upload-banner">{{ 'eventCoverImage' | translate }}</label>
-        <div class="cupen-btn code-text">
-          <input type="file" class="upload-input " id="upload-banner" (change)="onBannerFileChange($event)"
-            accept="image/*">
+        <div class="cupen-btn code-text text-center">
+          <!-- <input type="file" class="upload-input d-none" id="upload-banner" (change)="onBannerFileChange($event)"
+            accept="image/*"> -->
+            <p class="upload-file_name">{{removeMP4('filesSupported' | translate)}}</p>
+            <p class="upload-file_name">{{'maximumSize5MB' | translate}}</p>
+            <input type="file" (change)="onBannerFileChange($event)" hidden #fileInput />
+            <button type="button" class="upload-img-btn" (click)="fileInput.click()">{{'uploadFiles' | translate}}</button>
         </div>
       </div>
-      <div class="col-sm-4 mt-3 d-flex align-items-center gap-2">
+      <!-- <div class="col-sm-4 mt-3 d-flex align-items-center gap-2">
         <div class="">
           <small class="form-text text-muted code-text">{{ 'filesSupported' | translate }} <br> {{ 'maximumSize5MB' |
             translate }}</small>
         </div>
-      </div>
+      </div> -->
     </div>
 
     <div class="row mt-4 name-details">

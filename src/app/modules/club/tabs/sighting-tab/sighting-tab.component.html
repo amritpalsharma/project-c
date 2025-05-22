@@ -148,9 +148,10 @@
 
         <ng-container matColumnDef="Status">
           <th mat-header-cell *matHeaderCellDef> {{ 'status' | translate }}</th>
-          <td mat-cell *matCellDef="let element">
-            <span *ngIf="element.status === 'active'">{{ 'active' | translate }}</span>
-            <span *ngIf="element.status !== 'active'">{{ 'inactive' | translate }}</span>
+          <td mat-cell *matCellDef="let element" [ngClass]="getStatusClass(element.status)">
+            <span *ngIf="element.status == 'active'" class="bg_success">{{ 'active' | translate }}</span>
+            <span *ngIf="element.status !== 'active'" class="bg_reject text-white">{{ 'inactive' | translate
+              }}</span>
             <!-- <span *ngIf="!element.event_time">-</span> -->
           </td>
         </ng-container>
@@ -222,7 +223,8 @@
         <h2>{{ 'invited' | translate }}</h2>
         <div class="invited-image_box pointer" (click)="viewInvitees(playersInvited)">
           <img *ngFor="let item of playersInvitedFirstFour; let i = index"
-            src="{{getImageUrl(item.profile_image_path)}}" [style.opacity]="item.status !== 'accepted' ? 0.4 : 1" class="invited-img-{{i + 1}}">
+            src="{{getImageUrl(item.profile_image_path)}}" [style.opacity]="item.status !== 'accepted' ? 0.4 : 1"
+            class="invited-img-{{i + 1}}">
         </div>
 
       </div>
