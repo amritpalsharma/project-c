@@ -110,39 +110,21 @@
             <!-- {{sliderDetail?.users | json}} -->
             @for (slider of sliderDetail?.users; track $index) {
             <ng-template carouselSlide>
-              <div *ngIf="slider.role_name != 'Club'" class="player-carousel"  [ngClass]="{'noNationOrBirth' :!getFirstFlag(slider.user_nationalities), 'noClubLogo' : !slider?.current_club_logo }" data-bs-toggle="modal"
+              <div class="player--item" *ngIf="slider.role_name != 'Club'" [ngClass]="{'noNationOrBirth' :!getFirstFlag(slider.user_nationalities), 'noClubLogo' : !slider?.current_club_logo }" data-bs-toggle="modal"
                 data-bs-target="#exampleModal1">
-                <div class="player-border">
-                  <div class="player-img">
-                    <img src="{{slider.meta.profile_image_path}}" (error)="handleImageError($event)"
-                      class="player-image">
-                  </div>
-                  <p class="player-name">{{slider.first_name +' '+ slider.last_name}}</p>
-
-                  <div class="corner-image" *ngIf="slider?.current_club_logo">
-                    <!-- First condition: if current_club_logo exists -->
-                    <img  [src]="club_logo_path + slider.current_club_logo"
-                      alt="CLUBLOGO">
-
-                    <!-- Second condition: if current_club_logo doesn't exist, use pre_current_club_logo -->
-                    <img *ngIf="!slider?.current_club_logo && slider?.pre_current_club_logo"
-                      [src]="club_logo_path + slider.pre_current_club_logo" alt="PreCLUBLOGO" class="preClubLogo">
-
-                    <!-- Third condition: if both are missing, show a blank or default image -->
-                    <!-- <img *ngIf="!slider?.current_club_logo && !slider?.pre_current_club_logo" [src]="'path/to/default/image.jpg'" alt="Default Logo"> -->
-                  </div>
-                  <!-- slider.meta.date_of_birth -->
-                  <div class="flag" [ngClass]="{'no-nation':!getFirstFlag(slider.user_nationalities)}" *ngIf="getFirstFlag(slider.user_nationalities) != '' || getBirthYear(slider.meta.date_of_birth) > 0">
-                    <div class="flag-image" [ngClass]="{'noWhiteBackground':!getFirstFlag(slider.user_nationalities)}" *ngIf="getFirstFlag(slider.user_nationalities) != ''">
-                      <img *ngIf="getFirstFlag(slider.user_nationalities)" src="{{getFirstFlag(slider.user_nationalities)}}" class="flag-img" alt="Nation">
-                      <!-- alt="{{slider.user_nationalities | json}}" -->
-                      <div class="bottom-line" *ngIf="getBirthYear(slider.meta.date_of_birth) && getBirthYear(slider.meta.date_of_birth) > 0"></div>
-                      <div class="flag-bottom" *ngIf="getBirthYear(slider.meta.date_of_birth) && getBirthYear(slider.meta.date_of_birth) > 0">
-                        <img src="./assets/images/birthday.svg" class="birthday-img">
-                        <p class="d-o-b">{{getBirthYear(slider.meta.date_of_birth)}}</p>
-                      </div>
+                <div class="item--inner">
+                  <div class="player--bio-dtl">
+                    <div class="item--icons-list">
+                        <div class="item--club" *ngIf="slider?.current_club_logo">
+                          <img  [src]="club_logo_path + slider.current_club_logo" alt="CLUBLOGO">
+                          <img *ngIf="!slider?.current_club_logo && slider?.pre_current_club_logo" [src]="club_logo_path + slider.pre_current_club_logo" alt="PreCLUBLOGO" class="preClubLogo">
+                        </div>
+                        <img *ngIf="getFirstFlag(slider.user_nationalities)" src="{{getFirstFlag(slider.user_nationalities)}}" class="player--flag" alt="Nation">
+                        <div class="player--dob" *ngIf="getBirthYear(slider.meta.date_of_birth) && getBirthYear(slider.meta.date_of_birth) > 0">{{getBirthYear(slider.meta.date_of_birth)}}</div>
                     </div>
+                    <img src="{{slider.meta.profile_image_path}}" (error)="handleImageError($event)" class="player_profile_img">
                   </div>
+                  <div class="player__name">{{slider.first_name +' '+ slider.last_name}}</div>
                 </div>
               </div>
 

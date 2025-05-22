@@ -173,11 +173,18 @@ body {
   }
 }
 
+.col_padding .edit_button {
+  justify-content: space-between;
+}
+
 .edit_button button {
   border: 1px solid #918f8f;
   background: no-repeat;
   padding: 5px 8px;
   border-radius: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .edit_button button svg {
@@ -200,7 +207,7 @@ body {
 .attachment_box {
   border: 1px solid #EFEFEF;
   padding: 7px;
-  width: calc(100% - 110px);
+  width: 100%;
   margin-right: 15px;
 }
 
@@ -225,8 +232,8 @@ body {
   background-color: #007bff;
   /* Blue */
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 6px 18px;
+  border-radius: 10px;
   color: white;
   font-weight: bold;
 }
@@ -235,8 +242,8 @@ body {
   background-color: #6c757d;
   /* Gray */
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 6px 18px;
+  border-radius: 10px;
   color: white;
   font-weight: bold;
 }
@@ -245,8 +252,8 @@ body {
   background-color: #28a745;
   /* Green */
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 6px 18px;
+  border-radius: 10px;
   color: white;
   font-weight: bold;
 }
@@ -359,18 +366,32 @@ body {
 }
 
 .col_padding {
-  padding: 30px;
+  padding: 20px 10px;
 }
 
 .edit_padding {
-  padding: 10px 30px 30px;
+  padding: 10px 10px 20px;
 }
 
-.inquire-btn {
-  width: 170px !important;
+@media (min-width: 1400px) {
+  .green_bar_sec {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+
+    .text-size {
+      width: max-content;
+      max-width: 40%;
+    }
+
+    .butn_div {
+      width: max-content;
+      max-width: 20%;
+    }
+  }
 }
 
-@media (min-width: 768px) {
+
+@media (min-width: 768px) and (max-width: 1399.98px) {
   .green_bar_sec {
     flex-wrap: nowrap;
     justify-content: space-between;
@@ -378,7 +399,22 @@ body {
     .text-size,
     .butn_div {
       width: max-content;
-      max-width: 100%;
+      max-width: 33.33%;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .green_bar_sec {
+    .green_bar_location {
+      position: relative;
+      padding-left: 40px;
+
+      svg {
+        position: absolute;
+        left: 0;
+        top: 2px;
+      }
     }
   }
 }
@@ -459,6 +495,7 @@ body {
 
 @media (min-width: 1600px) and (max-width: 2999px) {
 
+  // <<<<<<< HEAD 
   .btn.web-create-bg,
   .invite-talent-btn {
     font-size: 22px !important;
@@ -547,9 +584,136 @@ body {
     height: 30px !important;
   }
 }
-.bg_success, .bg_reject, .bg_pending{
-    width: 100%;
-    display: inline-block;
-    max-width: 150px;
-    border-radius: 60px;
+
+.bg_success,
+.bg_reject,
+.bg_pending {
+  width: 100%;
+  display: inline-block;
+  max-width: 150px;
+  border-radius: 60px;
+
+  // =======
+  .sighting-bg img.img-fluid {
+    max-height: 600px !important;
+  }
+
+  .btn.web-create-bg,
+  .invite-talent-btn {
+    font-size: 22px !important;
+    margin-bottom: 10px !important;
+  }
+
+  table td svg,
+  span.back-link svg {
+    width: 30px !important;
+    height: 30px !important;
+    margin-right: 4px;
+  }
+
+  .btn.btn-outline-white.delete-text,
+  .attachment_box span {
+    font-size: 18px !important;
+  }
+
+  .invited-image h2,
+  .text-size,
+  .edit_padding h4,
+  .upload-btn {
+    font-size: 24px !important;
+  }
+
+  .event-text,
+  .edit_padding .d-flex div {
+    font-size: 18px !important;
+  }
+
+  .attachment_box {
+    padding: 11px !important;
+    width: max-content !important;
+    max-width: calc(100% - 60px);
+  }
+
+  .attachment_box svg,
+  .upload-btn svg,
+  .edit_padding svg,
+  .green_bar_sec svg,
+  .download_delete svg {
+    width: 28px !important;
+    height: 28px !important;
+  }
+}
+
+@media (min-width: 3000px) {
+  .sighting-bg img.img-fluid {
+    max-height: unset !important;
+  }
+
+  .btn.web-create-bg,
+  .invite-talent-btn {
+    font-size: 28px !important;
+    margin-bottom: 10px !important;
+  }
+
+  table td svg,
+  span.back-link svg {
+    width: 40px !important;
+    height: 40px !important;
+    margin-right: 4px;
+  }
+
+  .btn.btn-outline-white.delete-text,
+  .attachment_box span {
+    font-size: 26px !important;
+  }
+
+  .invited-image h2,
+  .text-size,
+  .edit_padding h4,
+  .upload-btn {
+    font-size: 32px !important;
+  }
+
+  .download_delete svg {
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  .event-text,
+  .edit_padding .d-flex div {
+    font-size: 28px !important;
+  }
+
+  .attachment_box {
+    padding: 15px !important;
+    width: max-content !important;
+    max-width: calc(100% - 60px);
+  }
+
+  .attachment_box svg,
+  .upload-btn svg,
+  .edit_padding svg,
+  .green_bar_sec svg {
+    width: 35px !important;
+    height: 35px !important;
+  }
+
+  .col_padding {
+    padding: 60px 20px 30px !important;
+  }
+
+  .edit_padding {
+    padding: 60px 40px 30px !important;
+  }
+
+  // >>>>>>>b8a2a77e22689580900f404fd1c78460908d7658
+}
+
+.bg_success,
+.bg_reject,
+.bg_pending {
+  width: 100%;
+  display: inline-block;
+  max-width: 150px;
+  border-radius: 60px;
 }

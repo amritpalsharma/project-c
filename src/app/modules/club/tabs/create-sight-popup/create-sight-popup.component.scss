@@ -308,7 +308,10 @@ input[type="number"] {
   width: 45px;
   height: 45px;
   text-align: center;
-  line-height: 45px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1;
   background: #fff;
   border: 1px solid;
   border-radius: 8px;
@@ -354,4 +357,66 @@ input[type="number"] {
   font-weight: 400;
   padding: 8px 10px;
   margin-top: 14px;
+  margin-top: 0 !important;
+}
+
+
+
+@media (min-width: 2000px) {
+
+  .create-sight .cupen-btn,
+  label {
+    font-size: 20px;
+  }
+
+  .upload-label {
+    height: 61px !important;
+  }
+
+  .add_row_btn {
+    width: 60px !important;
+    height: 61px !important;
+    margin-top: 0 !important;
+  }
+
+  .mt-4,
+  .admin_common_sight .ms-lg-3.mt-4 {
+    margin-top: 30px !important;
+  }
+}
+
+
+@media (min-width: 3000px) {
+
+  .create-sight .cupen-btn,
+  label {
+    font-size: 28px !important;
+  }
+
+  .upload-label {
+    height: 71px !important;
+  }
+
+  .add_row_btn {
+    width: 70px !important;
+    height: 71px !important;
+    margin-top: 0 !important;
+  }
+
+  .mt-4,
+  .admin_common_sight .ms-lg-3.mt-4 {
+    margin-top: 40px !important;
+  }
+}
+
+::ng-deep .cdk-overlay-pane.mat-mdc-dialog-panel {
+  @media (min-width: 2000px) {
+    width: 850px !important;
+  }
+}
+
+::ng-deep .cdk-overlay-pane.mat-mdc-dialog-panel {
+  @media (min-width: 3000px) {
+    width: 1000px !important;
+  }
 }

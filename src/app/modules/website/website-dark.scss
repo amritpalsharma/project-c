@@ -2512,7 +2512,32 @@ body.dark-theme.static-common-banner {
     }
   }
 }
+<<<<<<< HEAD
 
 .dark-theme .joined-para p {
   color: white !important;
+=======
+}
+}
+
+
+.dark-theme {
+  .joined-para p {
+    color: #fff;
+  }
+  .joined-btn .btn-light {
+    background: #BDE34F !important;
+      color: #072944 !important;
+  }
+  .player--item {
+    background: #0C3453;
+    .player--dob {
+      color: #072944;
+    }
+    .player__name {
+      background-color: #BDE34F;
+      color: #072944;
+    }
+  }
+>>>>>>> b8a2a77e22689580900f404fd1c78460908d7658
 }

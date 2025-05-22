@@ -33,7 +33,9 @@ body {
   font-family: "Libre Franklin", sans-serif;
   background: #f0f0f0;
 }
-
+.mat-mdc-row {
+  font-family: inherit !important;
+}
 .light-theme {
   position: relative;
   // background: #f0f0f0 !important;
