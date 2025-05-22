@@ -11,7 +11,7 @@ import { lang } from 'moment';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
 import { TitleService } from '../../../title.service';
 import { UserService } from '../../../services/user.service';
-import { MatSelect ,MatSelectChange } from '@angular/material/select';
+import { MatSelect, MatSelectChange } from '@angular/material/select';
 
 
 @Component({
@@ -43,7 +43,7 @@ export class ExploreComponent implements OnInit {
       this.getJsonTranslations();
     });
   }
-  teamTypesArr: any = ['A', 'B', 'U15', 'U16', 'U17', 'U18', 'U19', 'U20', 'U21', 'U22', 'U23'];
+  teamTypesArr: any = ['A', 'B', 'U12', 'U13', 'U14', 'U15', 'U16', 'U17', 'U18', 'U19', 'U20', 'U21', 'U22', 'U23'];
   selectedTeam: any = [];
   // SelectedFilters: any = this.getSelectedFilters();
   pageTitle: string = '';
@@ -531,7 +531,7 @@ export class ExploreComponent implements OnInit {
     // Prepare query parameters
     let params: any = {
       lang: localStorage.getItem('lang_id'),
-      league_id: this.selectedLeague
+      // league_id: this.selectedLeague
     };
 
     if (this.selectedCountry != 0 && this.selectedCountry != undefined) {
@@ -544,7 +544,7 @@ export class ExploreComponent implements OnInit {
           lang: localStorage.getItem('lang_id'),
           country: getCountryById.country_id,
           // is_taken: 'no',
-          league_id: this.selectedLeague
+          // league_id: this.selectedLeague
         }
       }
     }
@@ -870,11 +870,21 @@ export class ExploreComponent implements OnInit {
   }
 
   onCountryChange(selectRef: MatSelect) {
-    this.applyFilter();      // your existing logic
+
     selectRef.close();       // properly closes dropdown
 
     this.selectedLeague = null;
     this.selectedClub = null;
+    // console.log((this.selectedCountry))
+    if (this.selectedCountry == 211) {
+      this.teamTypesArr = ['A', 'B', 'FE12', 'FE13', 'FE14', 'U15', 'U16', 'U17', 'U18', 'U19', 'U20', 'U21', 'U22', 'U23'];
+    } else {
+      this.teamTypesArr = ['A', 'B', 'U12', 'U13', 'U14', 'U15', 'U16', 'U17', 'U18', 'U19', 'U20', 'U21', 'U22', 'U23'];
+    }
+    this.loadClubs();
+
+    this.applyFilter();      // your existing logic
+
   }
 
   onLeaugeChange(selectRef: MatSelect) {

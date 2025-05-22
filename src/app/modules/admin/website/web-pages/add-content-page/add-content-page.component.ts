@@ -118,12 +118,12 @@ export class AddContentPageComponent implements OnInit {
     }
     for (const key in this.formData) {
       if (Array.isArray(this.formData[key])) {
-        if(key !== 'accordionData' ){
+        if (key !== 'accordionData') {
           this.formData[key].forEach((item: string, index: number) => {
             formData.append(`${key}[${index}]`, item);
           });
         }
-        else{
+        else {
           this.formData.accordionData.forEach((item: any, index: number) => {
             formData.append(`accordionData[${index}][title]`, item.title);
             formData.append(`accordionData[${index}][description]`, item.description);
@@ -156,12 +156,33 @@ export class AddContentPageComponent implements OnInit {
       if (response.status) {
         this.formData.banner_title = response.data.pageData.banner_title;
         this.formData.page_content = response.data.pageData.page_content;
+        this.formData.accordionData = response.data.pageData.accordionDataTerms;
+        if (this.formData.accordionData && this.formData.accordionData.length > 0) { 
+          this.formData.accordionData = JSON.parse(this.formData.accordionData);
+        }
+        // let dataFromAPI = JSON.parse(response);
+        console.info(this.formData.accordionData);
+
         const editor = tinymce.get('editorFirstForCOntet');
         if (editor) {
           setTimeout(() => {
             editor.setContent(this.formData.page_content);
           }, 1500);
         }
+
+        // editor_
+        if (this.formData.accordionData && this.formData.accordionData.length > 0) {
+          for (let i = 0; i < this.formData.accordionData.length; i++) {
+            let editorId = 'editor_' + i;
+            let editor = tinymce.get(editorId);
+            if (editor) {
+              if (this.formData.accordionData[i].description != '' && typeof this.formData.accordionData[i].description !== undefined) {
+                editor.setContent(this.formData.accordionData[i].description);  // Set the content for each editor
+              }
+            }
+          }
+        }
+
         this.formData.meta_title = response.data.meta_title;
         this.formData.meta_description = response.data.meta_description;
         this.bannerImagePreview = response.data?.pageData?.banner_img ? response.data.base_url + response.data.pageData.banner_img : null;

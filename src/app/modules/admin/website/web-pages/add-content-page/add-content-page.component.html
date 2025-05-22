@@ -48,14 +48,14 @@
     </div>
 
     <div class="mb-3" *ngIf="pageType == 'terms_and_conditions'">
-      <h1>Production Mode...</h1>
+      <!-- <h1>Production Mode...</h1> -->
 
       <div *ngFor="let item of formData.accordionData; let i = index" class="accordion-item mb-4">
-        <label>Title</label>
-        <input type="text" class="form-control mb-2" [(ngModel)]="item.title" name="title{{ i }}"
+        <label class="form-label" [for]="'title_' + i">Title</label>
+        <input type="text" [id]="'title_' + i" class="form-control mb-2" [(ngModel)]="item.title" name="title{{ i }}"
           placeholder="Enter title" />
 
-        <label>Description</label>
+        <label class="form-label" [id]="'editor_' + i">Description</label>
         <editor [(ngModel)]="item.description" [init]="editorConfig" [id]="'editor_' + i" name="description{{ i }}">
         </editor>
 
