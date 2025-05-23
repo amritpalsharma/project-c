@@ -16,7 +16,7 @@ form {
 h4 {
   font-size: 20px;
   color: white;
-  font-weight: 700;
+  font-family: var(--bs-avenir-bold);
   margin-bottom: 30px;
 }
 
@@ -98,7 +98,7 @@ body {
 
 .cookie-text {
   font-size: 45px;
-  font-weight: 700;
+  font-family: var(--bs-avenir-bold);
   color: white;
   text-transform: uppercase;
 }
@@ -171,7 +171,7 @@ form button {
   width: 100%;
   height: 41px;
   border-radius: 20px;
-  font-weight: 700;
+  font-family: var(--bs-avenir-bold);
   margin-top: 20px;
   border: none;
   width: max-content !important;
@@ -202,7 +202,7 @@ input.ng-valid.ng-dirty.ng-touched {
 .form-heading {
   font-size: 35px;
   color: white;
-  font-weight: 700;
+  font-family: var(--bs-avenir-bold);
   margin-bottom: 50px;
 }
 
@@ -280,7 +280,7 @@ input.ng-valid.ng-dirty.ng-touched {
     width: 260px;
     height: 41px;
     border-radius: 20px;
-    font-weight: 700;
+    font-family: var(--bs-avenir-bold);
     margin-top: 20px;
     margin-left: 20px;
   }
@@ -301,6 +301,12 @@ input.ng-valid.ng-dirty.ng-touched {
 @media (max-width: 676px) {
   form button {
     margin-left: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  form button {
+    float: left;
   }
 }
 

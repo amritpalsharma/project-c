@@ -89,6 +89,8 @@ li {
 }
 .banner-inner {
     width: 100%;
+    position: relative;
+    z-index: 1;
 }
 .header-transparent {
     position: absolute;
@@ -182,6 +184,73 @@ button.faq-club-button, button.faq-talent-button, button.faq-scout-button {
     font-family: var(--bs-avenir-bold);
 }
 
+
+ul.nav-tabs {
+    border: 0 !important;
+    a.nav-link {
+        background-color: transparent;
+        border: none;
+        color: #86aa7d;
+        font-weight: 500;
+        margin-right: 0;
+        border-radius: 5px;
+        text-transform: uppercase;
+        padding: 10px 30px;
+        cursor: pointer;
+        font-family: var(--bs-avenir-regular);
+        &.active {
+            font-family: var(--bs-avenir-bold);
+            color: #fff;
+            border: 1px solid #175B07;
+            background: linear-gradient(180deg, #236115, #6fb95d);
+        }
+    }
+}
+
+.accordion {
+    .card {
+        border-radius: 0;
+        margin: 1em 0 0;
+        border: none;
+        overflow: hidden;
+        border-bottom: 1px solid #80808047;
+        padding: 0 !important;
+    }
+    .card .card-header {
+        background: transparent;
+        margin-bottom: 0;
+        border: 0;
+    }
+    .card-header a {
+        width: 100%;
+        display: inline-block;
+        padding: 10px 0;
+        padding-right: 50px;
+        position: relative;
+        color: #357525;
+        font-family: var(--bs-avenir-semibold);
+        border-radius: 0;
+    }
+    .card-header a:before {
+        content: ' ';
+        position: absolute;
+        right: 10px;
+        top: 16px;
+        width: 30px;
+        height: 30px;
+        background-image: url(../../../../assets/images/accordion-minus-dark.svg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 25px;
+    }
+    .card-header a.collapsed:before {
+        background-image: url(../../../../assets/images/accordion-plus-dark.svg);
+    }
+    .card-body {
+        padding: 0 0 1rem;
+    }
+}
+
 @media (max-width: 1199px) {
     h3 {
         font-size: 30px;
@@ -207,6 +276,11 @@ button.faq-club-button, button.faq-talent-button, button.faq-scout-button {
     }
     button.faq-club-button, button.faq-talent-button, button.faq-scout-button {
         font-size: 20px;
+    }
+    ul.nav-tabs {
+        a.nav-link {
+            font-size: 20px;
+        }
     }
 }
 
@@ -241,6 +315,24 @@ button.faq-club-button, button.faq-talent-button, button.faq-scout-button {
     .faq-content {
         font-size: 16px;
     }
+    ul.nav-tabs {
+        a.nav-link {
+            font-size: 18px;
+            padding: 10px 20px;
+        }
+    }
+    .accordion {
+        .card-header a {
+            font-size: 19px;
+        }
+        .card-header a:before {
+            right: 0 !important;
+            top: 11px !important;
+            width: 30px !important;
+            height: 30px !important;
+            background-size: 20px !important;
+        }
+    }
 }
 
 @media (max-width: 390px) {
@@ -251,6 +343,12 @@ button.faq-club-button, button.faq-talent-button, button.faq-scout-button {
     .cookie-text {
         font-size: 28px;
     }
+    ul.nav-tabs {
+        a.nav-link {
+            font-size: 16px !important;
+            padding: 8px 10px 6px;
+        }
+    }
 }
 
 @media (min-width: 992px) and (max-width: 1599px) {
@@ -259,6 +357,29 @@ button.faq-club-button, button.faq-talent-button, button.faq-scout-button {
     }
     h3{
       font-size: 45px;
+    }
+}
+
+
+@media (min-width: 992px) and (max-width: 1999px) {
+    .accordion {
+        .card-header a {
+            font-size: 30px;
+        }
+        .card-body p, .card-body li {
+            font-size: 24px;
+        }
+    }
+}
+
+@media (min-width: 576px) and (max-width: 991px) {
+    .accordion {
+        .card-header a {
+            font-size: 24px;
+        }
+        .card-body p, .card-body li {
+            font-size: 20px;
+        }
     }
 }
 
@@ -282,6 +403,24 @@ button.faq-club-button, button.faq-talent-button, button.faq-scout-button {
     .toggle-icon {
         font-size: 75px;
     }
+    ul.nav-tabs {
+        a.nav-link {
+            font-size: 24px !important;
+            padding: 10px 30px;
+        }
+    }
+}
+
+
+@media (min-width: 2000px) {
+    .accordion {
+        .card-header a {
+            font-size: 32px;
+        }
+        .card-body p, .card-body li {
+            font-size: 26px;
+        }
+    }
 }
 
 @media (min-width: 3000px) {
@@ -294,5 +433,25 @@ button.faq-club-button, button.faq-talent-button, button.faq-scout-button {
     .tabs button {
         font-size: 45px !important;
         padding: 19px 50px 13px !important;
+    }
+    .accordion {
+        .card-header a {
+            font-size: 45px;
+        }
+        .card-body p, .card-body li {
+            font-size: 40px;
+        }
+        .card-header a:before {
+            width: 40px;
+            height: 40px;
+            background-size: 40px !important;
+        }
+    }
+    
+    ul.nav-tabs {
+        a.nav-link {
+            font-size: 45px !important;
+            padding: 19px 50px 13px !important;
+        }
     }
 }

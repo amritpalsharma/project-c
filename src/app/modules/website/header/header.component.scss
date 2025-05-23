@@ -1553,7 +1553,7 @@ select.form-select.custom-select1 {
     .navbar-collapse {
         /* padding-bottom: 10px; */
         margin-top: 0;
-        margin-top: -75px;
+        // margin-top: -75px;
     }
 
     .navbar-logo1 {
@@ -1908,7 +1908,7 @@ select.form-select.custom-select1 {
 
     .navbar-collapse {
         margin-top: 0;
-        margin-top: -75px;
+        // margin-top: -75px;
     }
 
     .navbar-logo1 {
@@ -1939,26 +1939,15 @@ select.form-select.custom-select1 {
         display: flex;
         margin-top: 20px;
     }
-
     .forget-password .logo p {
         font-size: 15px;
     }
-
     .forget-password .modal-footer {
         padding: 10px;
     }
-
     .modal-body {
         padding: 10px 15px 0px 15px;
     }
-
-    .forget-password .btn-close {
-        width: 25px;
-        height: 25px;
-        right: 21px;
-        top: 21px;
-    }
-
     .nav-link {
         text-transform: uppercase;
         padding: 0 !important;
@@ -2320,7 +2309,7 @@ select.form-select.custom-select1 {
         font-size: 12px;
     }
 
-    .modal-btn .btn {
+    .modal-btn .btn, .forget-password .modal-btn .btn {
         padding: 5px;
     }
 
@@ -2344,10 +2333,6 @@ select.form-select.custom-select1 {
 
     .forget-password .form-control {
         height: 35px;
-    }
-
-    .forget-password .btn.btn-primary.d-block {
-        font-size: 18px;
     }
 
     .form-control {
@@ -2588,6 +2573,7 @@ select.form-select.custom-select1 {
 
     .navbar-brand img {
         width: 65px;
+        height: 70px;
     }
 }
 

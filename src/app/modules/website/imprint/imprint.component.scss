@@ -164,7 +164,7 @@ h1, h2, h3, strong {
         font-size: 18px;
         margin-bottom: 20px;
     }
-    li {
+    .content_page li {
         font-size: 16px;
     }
     .content_page .py_0 {
@@ -180,15 +180,15 @@ h1, h2, h3, strong {
     .privacy-text {
         font-size: 28px;
     }
-    li::marker {
+    .content_page li::marker {
         font-size: 18px;
     }
 }
 
 @media (max-width: 575px) {
     .cookie-text {
-    font-size: 35px;
-  }
+        font-size: 35px;
+    }
     .content_page li {
         padding-left: 20px;
     }
@@ -238,11 +238,11 @@ h1, h2, h3, strong {
 }
 
 @media (max-width: 400px) {
-    li::before {
+    .content_page li::before {
         top: 13px;
         font-size: 45px;
     }
-    li {
+    .content_page li {
         padding-left: 25px;
     }
     p.list-text {
@@ -251,7 +251,7 @@ h1, h2, h3, strong {
 }
 
 @media (max-width: 321px) {
-    li {
+    .content_page li {
         padding-left: 20px;
     }
     p.list-text {
@@ -296,7 +296,7 @@ h1, h2, h3, strong {
         h3 {
             font-size: 30px;
         }
-        p, address, li {
+        p, address, .content_page li {
             font-size: 24px;
         }
     }
@@ -316,7 +316,7 @@ h1, h2, h3, strong {
         h3 {
             font-size: 24px;
         }
-        p, address, li {
+        p, address, .content_page li {
             font-size: 20px;
         }
     }
@@ -362,7 +362,7 @@ h1, h2, h3, strong {
         h3 {
             font-size: 32px;
         }
-        p, address, li {
+        p, address, .content_page li {
             font-size: 26px;
         }
     }
@@ -385,7 +385,7 @@ h1, h2, h3, strong {
         h3 {
             font-size: 45px;
         }
-        p, address, li {
+        p, address, .content_page li {
             font-size: 40px;
         }
     }
