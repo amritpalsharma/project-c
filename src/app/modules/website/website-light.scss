@@ -1390,7 +1390,7 @@ a {
     display: none;
   }
   .latest-news .news-box p.p-text {
-    color: #7A7A7A !important;
+    color: #E05263 !important;
   }
   .news_detail_text_container .social-icons.news_share_icons {
       border-color: #000;
@@ -1868,6 +1868,14 @@ footer img.web_footer_bg {
     }
     .card-header a.collapsed:before {
         background-image: url(../../../assets/images/accordion-plus-light.svg) !important;
+    }
+  }
+  .news_static_banner {
+    .cookie-text {
+      color: #357525 !important;
+    }
+    p {
+      color: #000;
     }
   }
 }

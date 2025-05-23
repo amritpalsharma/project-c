@@ -1,6 +1,6 @@
 ::ng-deep h3 {
     font-size: 30px;
-    font-weight: 600;
+    font-family: var(--bs-avenir-semibold);
     color: white;
     margin-top: 50px;
     margin-bottom: 20px;
@@ -9,7 +9,7 @@
 ::ng-deep h4 {
     color: white;
     font-size: 35px;
-    font-weight: 600;
+    font-family: var(--bs-avenir-semibold);
     margin-bottom: 30px;
 }
 
@@ -22,9 +22,15 @@
 ::ng-deep h5 {
     color: white;
     font-size: 22px;
-    font-weight: 600;
+    font-family: var(--bs-avenir-semibold);
 }
 
+body {
+  font-family: var(--bs-avenir-regular);
+}
+h1, h2 {
+  font-family: var(--bs-avenir-bold);
+}
 .social-icons a {
     display: inline-block;
     transition: transform 0.3s ease;
@@ -86,7 +92,7 @@ button.back-button img {
 
 h1 {
     font-size: 45px;
-    font-weight: 700;
+    font-family: var(--bs-avenir-bold);
     color: white;
     margin-top: 50px;
 }
@@ -476,7 +482,7 @@ img.banner-image {
 
     h4 {
         font-size: 25px;
-        font-weight: 600;
+        font-family: var(--bs-avenir-semibold);
         margin-bottom: 10px;
     }
 

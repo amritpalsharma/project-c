@@ -3,6 +3,7 @@
 --------------------------------------------------------------*/
 body {
     height: 100%;
+    font-family: var(--bs-avenir-regular);
 }
 
 .thanku-bnr {
@@ -37,13 +38,13 @@ body {
 h1 {
     font-size: 50px;
     line-height: 1.25;
-    font-weight: bold;
+    font-family: var(--bs-avenir-bold);
 }
 
 a.btn.btn-register {
     border-radius: 50px;
     font-size: 18px;
-    font-weight: 700;
+    font-family: var(--bs-avenir-bold);
     width: max-content;
     max-width: 100%;
     z-index: 1;
