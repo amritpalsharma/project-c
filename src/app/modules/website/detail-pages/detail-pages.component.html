@@ -1,5 +1,17 @@
 <section class="website-code news--detail--page">
     <!-- <app-header></app-header> -->
+     <div class="news_static_banner">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 titl_col">
+            <h2 class="cookie-text">{{news.title}}</h2>
+          </div>
+          <div class="col-lg-6 titl_col">
+            <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum.</p>
+          </div>
+        </div>
+      </div>
+  </div>
     <div class="main">
         <div class="learn-banner">
             <div class="container pt-5">
@@ -76,7 +88,7 @@
 
     <div class="latest-news py_0 related_newss">
         <div class="container">
-            <h4 class="text-uppercase" style="font-weight: 700;">{{'more_news' | translate}}</h4>
+            <h4 class="text-uppercase class_bold">{{'more_news' | translate}}</h4>
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-4" *ngFor="let new of moreNews">
                     <div (click)="navigateNews(new.slug)" class="news-box">
