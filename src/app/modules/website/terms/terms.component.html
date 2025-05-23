@@ -83,7 +83,7 @@
       <!-- <div class="container content_page" [innerHTML]="page_content"> -->
       <div class="container content_page">
         <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
-          <div class="card">
+          <!-- <div class="card">
             <div class="card-header p-0" role="tab" id="accordionone">
               <a data-bs-toggle="collapse" href="#accordion__one" role="button"
                 aria-controls="accordion__one">Terms and Conditions (T&C) Succer You Sports AG</a>
@@ -95,135 +95,18 @@
                 <p>These Terms and Conditions (T&C) govern the relationship between Succer You Sports AG (hereinafter “SoccerYou”), a joint-stock company based in Switzerland, and the users and clients of its international web platform SoccerYou. The platform is intended for the promotion and international marketing of professional athletes, particularly in football. It addresses three user groups: Talents (players), Clubs, and Scouts. By using the services of SoccerYou, the user fully agrees to these T&C.</p>
               </div>
             </div>
-          </div>
-          <div class="card">
-            <div class="card-header p-0" role="tab" id="accordiontwo">
-              <a class="collapsed" data-bs-toggle="collapse" href="#accordion__two" role="button" aria-expanded="false"
-                aria-controls="accordion__two">1. Scope of the Terms and Conditions</a>
+          </div> -->
+          <!-- Dynamic COnetnt -->
+          <div class="card" *ngFor="let section of accordionDataTerms; let i = index">
+            <div class="card-header p-0" role="tab" id="accordionone">
+              <a data-bs-toggle="collapse" href="#accordion__{{i}}" role="button" aria-controls="accordion__one">
+                <ng-container *ngIf="i > 0">{{i}}.</ng-container> {{section.title}}
+              </a>
             </div>
-            <div id="accordion__two" class="collapse" role="tabpanel" aria-labelledby="accordiontwo"
-              data-bs-parent="#accordion">
-              <div class="card-body"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec metus erat,
-                vestibulum eget metus ac, sollicitudin imperdiet nibh. Nunc sapien risus, pharetra non diam eu, egestas
-                tempor erat. Phasellus lacinia, arcu sed ultrices dignissim, elit arcu facilisis neque, scelerisque
-                venenatis tellus risus non diam.</p></div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header p-0" role="tab" id="accordionthree">
-              <a class="collapsed" data-bs-toggle="collapse" href="#accordion__three" role="button"
-                aria-expanded="false" aria-controls="accordion__three">2. Conclusion of Contract and Registration</a>
-            </div>
-            <div id="accordion__three" class="collapse" role="tabpanel" aria-labelledby="accordionthree"
-              data-bs-parent="#accordion">
-              <div class="card-body"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec metus erat,
-                vestibulum eget metus ac, sollicitudin imperdiet nibh. Nunc sapien risus, pharetra non diam eu, egestas
-                tempor erat. Phasellus lacinia, arcu sed ultrices dignissim, elit arcu facilisis neque, scelerisque
-                venenatis tellus risus non diam.</p></div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header p-0" role="tab" id="accordionfour">
-              <a class="collapsed" data-bs-toggle="collapse" href="#accordion__four" role="button" aria-expanded="false"
-                aria-controls="accordion__four">3. Services and Memberships</a>
-            </div>
-            <div id="accordion__four" class="collapse" role="tabpanel" aria-labelledby="accordionfour"
-              data-bs-parent="#accordion">
-              <div class="card-body"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec metus erat,
-                vestibulum eget metus ac, sollicitudin imperdiet nibh. Nunc sapien risus, pharetra non diam eu, egestas
-                tempor erat. Phasellus lacinia, arcu sed ultrices dignissim, elit arcu facilisis neque, scelerisque
-                venenatis tellus risus non diam.</p></div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header p-0" role="tab" id="accordionfive">
-              <a class="collapsed" data-bs-toggle="collapse" href="#accordion__five" role="button" aria-expanded="false"
-                aria-controls="accordion__five">4. Data Usage and Public Access:</a>
-            </div>
-            <div id="accordion__five" class="collapse" role="tabpanel" aria-labelledby="accordionfive"
-              data-bs-parent="#accordion">
-              <div class="card-body"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec metus erat,
-                vestibulum eget metus ac, sollicitudin imperdiet nibh. Nunc sapien risus, pharetra non diam eu, egestas
-                tempor erat. Phasellus lacinia, arcu sed ultrices dignissim, elit arcu facilisis neque, scelerisque
-                venenatis tellus risus non diam.</p></div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header p-0" role="tab" id="accordionsix">
-              <a class="collapsed" data-bs-toggle="collapse" href="#accordion__six" role="button" aria-expanded="false"
-                aria-controls="accordion__six">5. Payment Terms</a>
-            </div>
-            <div id="accordion__six" class="collapse" role="tabpanel" aria-labelledby="accordionsix"
-              data-bs-parent="#accordion">
-              <div class="card-body"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec metus erat,
-                vestibulum eget metus ac, sollicitudin imperdiet nibh. Nunc sapien risus, pharetra non diam eu, egestas
-                tempor erat. Phasellus lacinia, arcu sed ultrices dignissim, elit arcu facilisis neque, scelerisque
-                venenatis tellus risus non diam.</p></div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header p-0" role="tab" id="accordionseven">
-              <a class="collapsed" data-bs-toggle="collapse" href="#accordion__seven" role="button"
-                aria-expanded="false" aria-controls="accordion__seven">6. Liability</a>
-            </div>
-            <div id="accordion__seven" class="collapse" role="tabpanel" aria-labelledby="accordionseven"
-              data-bs-parent="#accordion">
-              <div class="card-body"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec metus erat,
-                vestibulum eget metus ac, sollicitudin imperdiet nibh. Nunc sapien risus, pharetra non diam eu, egestas
-                tempor erat. Phasellus lacinia, arcu sed ultrices dignissim, elit arcu facilisis neque, scelerisque
-                venenatis tellus risus non diam.</p></div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header p-0" role="tab" id="accordioneight">
-              <a class="collapsed" data-bs-toggle="collapse" href="#accordion__eight" role="button"
-                aria-expanded="false" aria-controls="accordion__eight">7. Right of Withdrawal and Termination</a>
-            </div>
-            <div id="accordion__eight" class="collapse" role="tabpanel" aria-labelledby="accordioneight"
-              data-bs-parent="#accordion">
-              <div class="card-body"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec metus erat,
-                vestibulum eget metus ac, sollicitudin imperdiet nibh. Nunc sapien risus, pharetra non diam eu, egestas
-                tempor erat. Phasellus lacinia, arcu sed ultrices dignissim, elit arcu facilisis neque, scelerisque
-                venenatis tellus risus non diam.</p></div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header p-0" role="tab" id="accordionnine">
-              <a class="collapsed" data-bs-toggle="collapse" href="#accordion__nine" role="button" aria-expanded="false"
-                aria-controls="accordion__nine">8. Rights and Obligations</a>
-            </div>
-            <div id="accordion__nine" class="collapse" role="tabpanel" aria-labelledby="accordionnine"
-              data-bs-parent="#accordion">
-              <div class="card-body"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec metus erat,
-                vestibulum eget metus ac, sollicitudin imperdiet nibh. Nunc sapien risus, pharetra non diam eu, egestas
-                tempor erat. Phasellus lacinia, arcu sed ultrices dignissim, elit arcu facilisis neque, scelerisque
-                venenatis tellus risus non diam.</p></div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header p-0" role="tab" id="accordionten">
-              <a class="collapsed" data-bs-toggle="collapse" href="#accordion__ten" role="button" aria-expanded="false"
-                aria-controls="accordion__ten">9. Jurisdiction and Applicable Law</a>
-            </div>
-            <div id="accordion__ten" class="collapse" role="tabpanel" aria-labelledby="accordionten"
-              data-bs-parent="#accordion">
-              <div class="card-body"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec metus erat,
-                vestibulum eget metus ac, sollicitudin imperdiet nibh. Nunc sapien risus, pharetra non diam eu, egestas
-                tempor erat. Phasellus lacinia, arcu sed ultrices dignissim, elit arcu facilisis neque, scelerisque
-                venenatis tellus risus non diam.</p></div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header p-0" role="tab" id="accordioneleven">
-              <a class="collapsed" data-bs-toggle="collapse" href="#accordion__eleven" role="button"
-                aria-expanded="false" aria-controls="accordion__eleven">10. Final Provisions</a>
-            </div>
-            <div id="accordion__eleven" class="collapse" role="tabpanel" aria-labelledby="accordioneleven"
-              data-bs-parent="#accordion">
-              <div class="card-body"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec metus erat,
-                vestibulum eget metus ac, sollicitudin imperdiet nibh. Nunc sapien risus, pharetra non diam eu, egestas
-                tempor erat. Phasellus lacinia, arcu sed ultrices dignissim, elit arcu facilisis neque, scelerisque
-                venenatis tellus risus non diam.</p></div>
+            <div id="accordion__{{i}}" [ngClass]="{'collapse': true, 'show': i === 0}" 
+              role="tabpanel" aria-labelledby="accordionone" data-bs-parent="#accordion">
+              <div class="card-body" [innerHTML]="section.description">
+              </div>
             </div>
           </div>
         </div>

@@ -47,7 +47,7 @@
       </div>
     </div>
 
-    <div class="mb-3" *ngIf="pageType == 'terms_and_conditions'">
+    <div class="mb-3" *ngIf="pageType == 'terms_and_conditions' || pageType == 'privacy_policy'">
       <!-- <h1>Production Mode...</h1> -->
 
       <div *ngFor="let item of formData.accordionData; let i = index" class="accordion-item mb-4">

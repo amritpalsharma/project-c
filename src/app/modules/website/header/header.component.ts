@@ -19,6 +19,7 @@ import { SocketService } from '../../../services/socket.service';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { TalentService } from '../../../services/talent.service';
+import { DomainSlugService } from '../../../services/domain-slug.service';
 
 @Component({
   selector: 'app-header',
@@ -275,6 +276,7 @@ export class HeaderComponent implements OnInit {
     private globalSettings: GlobalSettingsService,
     private sanitizer: DomSanitizer,
     private talentService: TalentService,
+    public domainSlugService: DomainSlugService
   ) {
     this.language = translateService.currentLang || 'en';  // Get current language
     this.loadCountries();  // Load countries based on selected language

@@ -32,43 +32,56 @@ import { SuccessComponent } from '../shared/success/success.component';
 
 const routes: Routes = [
   {
-    path:'', component: HomeComponent,
+    path: '', component: HomeComponent,
     children: [
 
       { path: '', component: IndexComponent }, // Default route
-      // { path: 'Index', component: IndexComponent }, // Default route
-      // { path: 'index', component: IndexComponent }, // Default route
+      { path: 'Index', component: IndexComponent }, // Default route
       { path: 'home', component: IndexComponent },
       { path: 'confirm-password', component: ConfirmPasswordComponent },
-      // { path: 'header', component: HeaderComponent },
       { path: 'footer', component: FooterComponent },
-      { path: 'about', component: AboutComponent },
       { path: 'club', component: ClubComponent },
       { path: 'feature', component: FeatureComponent },
-      { path: 'contact', component: ContactComponent },
       { path: 'news', component: NewsComponent },
-      { path: 'pricing', component: PricingComponent },
+
       { path: 'ca', component: CaComponent },
-      { path: 'faq', component: FaqComponent },
-      { path: 'imprint', component: ImprintComponent },
+
+
       { path: 'cookie', component: CookieComponent },
-      { path: 'terms', component: TermsComponent },
-      { path: 'privacy', component: PrivacyComponent },
+
+
       { path: 'talent', component: TalentComponent },
       { path: 'learn-more', component: LearnMoreComponent },
       { path: 'news/:slug', component: DetailPagesComponent },
       { path: 'player-list', component: PlayerListComponent },
       { path: 'error', component: ErrorComponent },
       { path: 'thank-you', component: ThankuComponent },
-      { path: 'cookie-popup', component: CookiePopupComponent},
-      { path: 'new-chat', component: NewChatComponent},
-      { path: 'expired-link', component: PasswordResetLinkComponent},
-      { path: 'password-reset-link', component: PasswordResetLinkComponent},
-      { path: 'email-verify', component:EmailVerifyComponent},
-      
+      { path: 'cookie-popup', component: CookiePopupComponent },
+      { path: 'new-chat', component: NewChatComponent },
+      { path: 'expired-link', component: PasswordResetLinkComponent },
+      { path: 'password-reset-link', component: PasswordResetLinkComponent },
+      { path: 'email-verify', component: EmailVerifyComponent },
+
+      // For England
+      { path: 'about', component: AboutComponent },
+      { path: 'contact', component: ContactComponent },
+      { path: 'pricing', component: PricingComponent },
+      { path: 'faq', component: FaqComponent },
+      { path: 'terms', component: TermsComponent },
+      { path: 'imprint', component: ImprintComponent },
+      { path: 'privacy', component: PrivacyComponent },
+      // For Germen
+      { path: 'uber-uns', component: AboutComponent },
+      { path: 'kontakt', component: ContactComponent },
+      { path: 'preise', component: PricingComponent },
+      { path: 'hilfebereich', component: FaqComponent },
+      { path: 'agb', component: TermsComponent },
+      { path: 'impressum', component: ImprintComponent },
+      { path: 'datenschutz', component: PrivacyComponent },
+
     ]
   },
-  { path: 'success', component:SuccessComponent},
+  { path: 'success', component: SuccessComponent },
   // {path: '', component: ComingSoonComponent},
 ];
 

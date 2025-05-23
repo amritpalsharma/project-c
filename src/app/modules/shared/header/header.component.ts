@@ -512,9 +512,23 @@ export class HeaderComponent {
     }
     console.log(userId);
     this.socketService.disconnectUser(userId);
-
+    let theme = localStorage.getItem('theme') || 'light';
+    let lang = localStorage.getItem('lang') || this.globalSettings.getLanguage();
+    let cookieConsent = localStorage.getItem('cookieConsent');
+    let domainLang = this.globalSettings.getLanguage();
+    if (domainLang != '' && localStorage.getItem('lang') == '' || localStorage.getItem('lang') == undefined) {
+      lang = domainLang;
+    }
+    localStorage.clear();
+    if(cookieConsent && typeof cookieConsent !== undefined){
+      localStorage.setItem('cookieConsent', cookieConsent);
+    }
+    localStorage.setItem('theme', theme);
+    localStorage.setItem('lang', lang);
     this.authService.logout();
-
+    setTimeout(() => {
+      window.location.reload();
+    }, 500);
   }
 
   themeText: string = 'Light Mode'

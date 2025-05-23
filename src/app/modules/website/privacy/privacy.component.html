@@ -83,18 +83,21 @@
       <!-- <div class="container content_page" [innerHTML]="page_content"> -->
       <div class="container content_page">
         <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
-          <div class="card">
+          <div class="card" *ngFor="let section of accordionDataPrivacy; let i = index">
             <div class="card-header p-0" role="tab" id="accordionone">
-              <a data-bs-toggle="collapse" href="#accordion__one" role="button" aria-controls="accordion__one">Privacy Policy of Succer You Sports AG (SoccerYou)</a>
+              <a data-bs-toggle="collapse" href="#accordionPrivacy_{{i}}" role="button" aria-controls="accordion__one">
+                <!-- Privacy Policy of Succer You Sports AG (SoccerYou) -->
+                {{section.title}}
+              </a>
             </div>
-            <div id="accordion__one" class="collapse show" role="tabpanel" aria-labelledby="accordionone"
+            <div id="accordionPrivacy_{{i}}" [ngClass]="{'collapse': true, 'show': i === 0}" role="tabpanel" aria-labelledby="accordionone"
               data-bs-parent="#accordion">
-              <div class="card-body">
-                <p>Data protection and data security are important to Succer You Sports AG (“SoccerYou"; "we"). We process your personal data responsibly, in accordance with applicable legal provisions and in accordance with this Privacy Policy.</p>
+              <div class="card-body" [innerHTML]="section.description">
+                <!-- <p>Data protection and data security are important to Succer You Sports AG (“SoccerYou"; "we"). We process your personal data responsibly, in accordance with applicable legal provisions and in accordance with this Privacy Policy.</p> -->
               </div>
             </div>
           </div>
-          <div class="card">
+          <div class="card d-none">
             <div class="card-header p-0" role="tab" id="accordionthree">
               <a class="collapsed" data-bs-toggle="collapse" href="#accordion__three" role="button"
                 aria-expanded="false" aria-controls="accordion__three">Content of this privacy policy</a>
@@ -106,7 +109,7 @@
               </div>
             </div>
           </div>
-          <div class="card">
+          <!-- <div class="card">
             <div class="card-header p-0" role="tab" id="accordionfour">
               <a class="collapsed" data-bs-toggle="collapse" href="#accordion__four" role="button" aria-expanded="false"
                 aria-controls="accordion__four">Person responsible for data processing</a>
@@ -290,7 +293,7 @@
               data-bs-parent="#accordion">
               <div class="card-body"><p>We may amend this Privacy Policy at any time, in particular if we change our data processing or if new legislation becomes applicable. The version provided on www.socceryou.co.uk</p></div>
             </div>
-          </div>
+          </div> -->
         </div>
         <!-- <div *ngIf="adVisible[2]" class="leaderboard-image">
         <img src="./assets/images/leaderboard - 728x90.png">

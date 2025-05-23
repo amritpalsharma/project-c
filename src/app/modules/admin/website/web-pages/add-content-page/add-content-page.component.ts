@@ -156,8 +156,8 @@ export class AddContentPageComponent implements OnInit {
       if (response.status) {
         this.formData.banner_title = response.data.pageData.banner_title;
         this.formData.page_content = response.data.pageData.page_content;
-        this.formData.accordionData = response.data.pageData.accordionDataTerms;
-        if (this.formData.accordionData && this.formData.accordionData.length > 0) { 
+        if (response.data.pageData.accordionDataTerms && response.data.pageData.accordionDataTerms.length > 0) { 
+          this.formData.accordionData = response.data.pageData.accordionDataTerms;
           this.formData.accordionData = JSON.parse(this.formData.accordionData);
         }
         // let dataFromAPI = JSON.parse(response);

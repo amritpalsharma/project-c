@@ -15,6 +15,7 @@ export class TermsComponent implements OnInit {
   banner_img: any = null;
   base_url: any = null;
   advertisemnet_base_url: string = '';
+  accordionDataTerms:any=[];
 
   isLoading: boolean = true;
   btnLoading: boolean = true;
@@ -88,18 +89,18 @@ export class TermsComponent implements OnInit {
 
   getPageData(languageId: any) {
     this.webPages.getDynamicContentPage('terms_and_conditions', languageId).subscribe((res) => {
-      if (res.status) {
+      if (res.status) { 
+        console.warn('response',res);
         this.banner_title = res.data.pageData.banner_title;
         this.page_content = this.sanitizer.bypassSecurityTrustHtml(res.data.pageData.page_content);
         this.banner_img = res.data.pageData.banner_img;
         this.base_url = res.data.base_url;
-
-
-
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
         this.advertisementData = res?.data?.advertisementData;
         this.advertisementList = res?.data?.allAdsList;
-
+        if(res?.data?.pageData?.accordionDataTerms && typeof res?.data?.pageData?.accordionDataTerms !== undefined){
+          this.accordionDataTerms = JSON.parse(res?.data?.pageData?.accordionDataTerms);
+        }
         this.isLoading = false;
         this.startCountdown();
       }

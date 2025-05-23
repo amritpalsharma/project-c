@@ -18,6 +18,7 @@ export class PrivacyComponent implements OnInit {
   isLoading: boolean = true;
   btnLoading: boolean = true;
   countdown: number = 10;
+  accordionDataPrivacy: any = [];
 
 
   constructor(private webPages: WebPages, private sanitizer: DomSanitizer) {
@@ -97,6 +98,10 @@ export class PrivacyComponent implements OnInit {
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
         this.advertisementData = res?.data?.advertisementData;
         this.advertisementList = res?.data?.allAdsList;
+
+        if (res?.data?.pageData?.accordionDataTerms && typeof res?.data?.pageData?.accordionDataTerms !== undefined) {
+          this.accordionDataPrivacy = JSON.parse(res?.data?.pageData?.accordionDataTerms);
+        }
 
 
         this.isLoading = false;

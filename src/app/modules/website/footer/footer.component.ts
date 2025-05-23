@@ -10,6 +10,7 @@ import { ConfirmPasswordComponent } from '../SetPassword/confirmPassword.compone
 import { MatDialog } from '@angular/material/dialog';
 import { WebPages } from '../../../services/webpages.service';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
+import { DomainSlugService } from '../../../services/domain-slug.service';
 
 declare var bootstrap: any; // Declare bootstrap
 declare var google: any; // Declare google
@@ -224,7 +225,8 @@ export class FooterComponent implements OnInit {
     private router: Router,
     private translateService: TranslateService,
     public dialog: MatDialog,
-    private globalSettings: GlobalSettingsService
+    private globalSettings: GlobalSettingsService,
+    public domainSlugService: DomainSlugService
   ) {
     this.language = translateService.currentLang || 'en';  // Get current language
     this.loadCountries();  // Load countries based on selected language

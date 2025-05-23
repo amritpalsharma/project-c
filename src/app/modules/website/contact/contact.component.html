@@ -119,7 +119,7 @@
             </div>
 
             <div class="col-12">
-              <input id="phone" class="form-control" type="tel" formControlName="phone"
+              <input id="phone" class="form-control" name="phone" type="tel" formControlName="phone"
                 [placeholder]="phone_placeholder" ng-model="contactForm.phone" (keypress)="allowOnlyNumbers($event)"
                 (paste)="preventTextPaste($event)" />
               <div *ngIf="phone?.invalid && (phone?.dirty || phone?.touched)" class="error">
