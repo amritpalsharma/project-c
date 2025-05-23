@@ -31,6 +31,9 @@ body {
 h1, h2, .class_bold, strong {
   font-family: var(--bs-avenir-bold);
 }
+.news_static_banner h3 {
+  font-family: var(--bs-avenir-semibold);
+}
 .social-icons a {
     display: inline-block;
     transition: transform 0.3s ease;
@@ -58,17 +61,38 @@ h1, h2, .class_bold, strong {
 
 
 
-li {
-    font-size: 20px;
+.cookie-text {
+    font-size: 45px;
+    font-family: var(--bs-avenir-bold);
     color: white;
-    font-weight: 400;
-    margin-top: 20px;
+    text-transform: uppercase;
+}
+.news_static_banner {
+    padding: 50px 0;
+    padding-top: 190px;
+    h2.cookie-text{
+      color: #fff;
+    }
 }
 
 p.p-text {
-    color: #7A7A7A;
+    color: #bde34e;
     font-size: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 0;
+}
+.news-dtail--baner p.p-text {
+    color: #fff;
+    padding: 5px 15px;
+    background: #E05263;
+    width: max-content;
+    max-width: 100%;
+    margin-bottom: 1rem;
+}
+li {
+    font-size: 18px;
+    color: white;
+    font-weight: 400;
+    margin-top: 20px;
 }
 
 .learn-banner {
@@ -79,15 +103,27 @@ p.p-text {
 .back-button {
     font-size: 18px;
     font-weight: 400;
-    color: white;
+    color: #000;
     background-color: transparent;
-    border: none;
-    margin-left: -15px;
-}
-
-button.back-button img {
-    height: 15px;
-    width: 30px;
+    border: none !important;
+    padding: 0 !important;
+    outline: none !important;
+    box-shadow: none !important;
+    margin-bottom: 1.5rem;
+    span {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: #357525;
+        padding: 5px;
+        margin-right: 10px;
+    }
+    img {
+        filter: brightness(0) invert(1);
+    }
 }
 
 h1 {
@@ -103,9 +139,7 @@ img.banner-image {
     object-fit: cover;
     border-radius: 10px;
     margin: 0 auto 30px;
-    /* Centers the image horizontally */
     display: block;
-    /* Ensures the image behaves as a block element */
 }
 
 .py_0 {
@@ -325,7 +359,9 @@ img.banner-image {
         height: 270px;
         margin-bottom: 10px;
     }
-
+    .cookie-text {
+        font-size: 40px;
+    }
     h1 {
         font-size: 35px;
     }
@@ -372,11 +408,11 @@ img.banner-image {
         margin-bottom: 10px;
     }
 
-    p {
+    .newss--page p {
         font-size: 14px;
     }
 
-    li {
+    .newss--page li {
         font-size: 14px;
     }
 
@@ -391,7 +427,7 @@ img.banner-image {
 
     h3 {
         font-size: 22px;
-        margin-top: 40px;
+        margin-top: 20px;
         margin-bottom: 10px;
     }
 
@@ -406,7 +442,7 @@ img.banner-image {
     .skyscraper-image img,
     .wide-skyscraper-image img,
     .leaderboard-image img,
-    .banner-image img,
+    // .banner-image img,
     .advertisement,
     .advertisement1,
     .skyscraper-left img,
@@ -416,6 +452,14 @@ img.banner-image {
 }
 
 @media (max-width: 575px) {
+    .cookie-text {
+        font-size: 35px;
+    }
+    .news_static_banner {
+        h3 {
+            font-size: 20px;
+        }
+    }
     img.banner-image {
         height: 230px;
         margin-bottom: 10px;
@@ -440,24 +484,33 @@ img.banner-image {
         font-size: 25px;
         margin-bottom: 10px;
     }
-
-    .back-button {
-        font-size: 14px;
-        margin-left: 0;
-
-    }
-
-    button.back-button img {
-        height: 11px;
-        width: 15px;
-        margin-left: -10px;
-    }
-
     .files img {
         margin-top: 30px;
         margin-left: 7px;
         height: 65px;
         width: auto;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 991px) {
+.news_static_banner {
+    h3 {
+        font-size: 25px;
+    }
+}
+}
+
+@media (min-width: 1600px) and (max-width: 2999px) {
+.news_static_banner {
+    padding: 80px 0;
+    padding-top: 220px;
+}
+}
+
+@media (max-width: 541px) {
+    .news-dtail--baner p.p-text {
+        padding: 3px 10px 2px;
+        margin-bottom: 10px;
     }
 }
 
@@ -500,6 +553,9 @@ img.banner-image {
 }
 
 @media (max-width: 321px) {
+    .cookie-text {
+        font-size: 28px;
+    }
     .files img {
         margin-top: 30px;
         margin-left: 7px;
@@ -510,4 +566,24 @@ img.banner-image {
     .social-icons {
         padding: 10px;
     }
+}
+
+@media (min-width: 2000px) {
+.news_static_banner {
+    h3 {
+    font-size: 45px !important;
+    margin: 1.25rem 0 !important;
+    }
+}
+}
+
+@media (min-width: 3000px) {
+.news_static_banner {
+    padding: 80px 0;
+    padding-top: 320px;
+    h3 {
+        font-size: 55px !important;
+        margin: 1.5rem 0 !important;
+    }
+}
 }

@@ -1,10 +1,14 @@
-<section class="website-code news--detail--page">
+<section class="website-code newss--page">
     <!-- <app-header></app-header> -->
-     <div class="news_static_banner">
+    <div class="news_static_banner news-dtail--baner pb-0">
       <div class="container">
+        <div class="post_back_btn_date">
+            <button [routerLink]="'/news'" class="back-button"> <span><img src="./assets/images/back-image.svg"> </span>{{'back_to_news' | translate}}</button>
+            <p class="p-text">{{news.created_at | date:'dd.MM.yy'}}</p>
+        </div>
         <div class="row">
           <div class="col-lg-6 titl_col">
-            <h2 class="cookie-text">{{news.title}}</h2>
+            <h2 class="cookie-text text-uppercase">{{news.title}}</h2>
           </div>
           <div class="col-lg-6 titl_col">
             <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum.</p>
@@ -13,15 +17,15 @@
       </div>
   </div>
     <div class="main">
-        <div class="learn-banner">
+        <!-- <div class="learn-banner">
             <div class="container pt-5">
                 <button [routerLink]="'/news'" class="back-button"> <img src="./assets/images/back-image.svg"> {{'back_to_news' | translate}}</button>
                 <h1 class="text-uppercase">{{news.title}}</h1>
                 <p class="p-text">{{news.created_at | date:'dd.MM.yy'}}</p>
-                <!-- <img class="banner-image" src="{{news.featured_image}}"> -->
                 <img class="banner-image" [src]="news.featured_image" (error)="handleImageError($event)">
-            </div>
-
+            </div> 
+        </div>-->
+        <div class="adsss">
             <div *ngIf="adVisible[0]" class="skyscraper-left">
                 <img src="./assets/images/skyscraper - 120x600.png">
                 <button (click)="closeAd(0)" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
@@ -31,14 +35,16 @@
                 <img src="./assets/images/skyscraper - 120x600.png">
                 <button (click)="closeAd(1)" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button>
             </div>
-
         </div>
     </div>
     <div class="learn news_detail_text_container">
         <div class="container news_html">
+            <div class="post--full-img mt-3">
+                <img class="banner-image w-100" [src]="news.featured_image" (error)="handleImageError($event)">
+            </div>
             <!-- <div class="text_wrapper" [innerHTML]="news.content"></div> -->
-            <div class="text_wrapper">
-                <p>SoccerYou, the innovative platform designed to connect aspiring soccer talents with scouts and clubs, has made a significant leap by launching in 10 countries. This expansion marks a new era for the platform, aimed at revolutionizing how young players gain visibility and opportunities in the competitive world of soccer.</p>
+            <div class="text_wrapper" [innerHTML]="news.content">
+                <!-- <p>SoccerYou, the innovative platform designed to connect aspiring soccer talents with scouts and clubs, has made a significant leap by launching in 10 countries. This expansion marks a new era for the platform, aimed at revolutionizing how young players gain visibility and opportunities in the competitive world of soccer.</p>
                 <h3>Expanding Horizons</h3>
                 <p>The launch in multiple countries reflects SoccerYou’s commitment to democratizing access to soccer opportunities. By bridging the gap between emerging talents and professional scouts, the platform offers a unique space where players can showcase their skills, track their progress, and get noticed by top clubs and scouts worldwide.</p>
                 <h3>Features and Benefits</h3>

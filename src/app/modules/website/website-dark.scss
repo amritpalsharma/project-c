@@ -2498,16 +2498,15 @@ body.dark-theme.static-common-banner {
       border-color: #bde34e !important;
     }
   }
-
-  .grey_common_banner, .news_static_banner {
+.news_static_banner  {
+background: #072944 !important;
+}
+  .grey_common_banner{
     background-color: #0C3453 !important;
 
-    h2.cookie-text,
-    .contact-text p,
-    h3 {
+    h2.cookie-text, .contact-text p, h3 {
       color: #fff !important;
     }
-
     .mail {
       a {
         color: #fff !important;
@@ -2556,13 +2555,24 @@ body.dark-theme.static-common-banner {
     }
   }
 
-  .news_slider_wrapper {
+  .news_slider_wrapper, .news-dtail--baner {
     .thumbnail.active {
       background: #bde34e !important;
     }
     p.p-text {
       color: #072944 !important;
       background: #bde34e !important;
+    }
+  }
+  .news-dtail--baner {
+    .back-button {
+      color: #fff !important;
+      span {
+        background: #bde34e !important;
+        img {
+          filter: brightness(0) invert(0);
+        }
+      }
     }
   }
 }

@@ -60,8 +60,8 @@ body {
     background-color: #fff;
 }
 .news_static_banner {
-    margin-top: 140px;
     padding: 50px 0;
+    padding-top: 190px;
     h2.cookie-text{
       color: #fff;
     }
@@ -414,20 +414,13 @@ button.learn-more {
     h3 {
         font-size: 25px;
     }
-    .contact-text {
-        font-size: 20px;
-    }
 }
 }
 
 @media (min-width: 1600px) and (max-width: 2999px) {
 .news_static_banner {
     padding: 80px 0;
-    .location-image img {
-    width: 40px !important;
-    height: 40px !important;
-    object-fit: contain;
-  }
+    padding-top: 220px;
 }
 }
 
@@ -457,16 +450,11 @@ h3.text-heading {
 
 @media (min-width: 3000px) {
 .news_static_banner {
-    margin-top: 240px;
     padding: 80px 0;
+    padding-top: 320px;
     h3 {
         font-size: 55px !important;
         margin: 1.5rem 0 !important;
-    }
-    .location-image img {
-        width: 50px !important;
-        height: 50px !important;
-        object-fit: contain;
     }
 }
 }

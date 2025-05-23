@@ -611,10 +611,25 @@ mat-datepicker-toggle button {
       font-size: 30px;
     }
 }
+.post_back_btn_date .back-button {
+    font-size: 28px;
+    span {
+        width: 40px;
+        height: 40px;
+        position: relative;
+        top: -3px;
+    }
+}
+.news_detail_text_container li {
+    font-size: 26px !important;
+}
+.news_detail_text_container h3 {
+    font-size: 40px !important;
+}
 .country-name {
-font-size: 30px !important;
-min-height: 75px !important;
-padding-left: 85px !important;
+    font-size: 30px !important;
+    min-height: 75px !important;
+    padding-left: 85px !important;
     .flag_icon {
         width: 55px !important;
         height: 55px !important;
@@ -1119,6 +1134,12 @@ padding-left: 85px !important;
             height: 40px !important;
         }
     }
+    .news_detail_text_container h3 {
+        font-size: 55px !important;
+    }
+    .news_detail_text_container li {
+        font-size: 40px !important;
+    }
 }
 
 @media (max-width:1300px) and (min-width:992px) {
@@ -1281,7 +1302,7 @@ body.compact-sidebar.dark-theme .sidebar-menu svg path {
     position: unset !important;
 }
 .news_static_banner {
-    margin-top: 100px !important;
+    padding-top: 140px !important;
 }
 }
 
