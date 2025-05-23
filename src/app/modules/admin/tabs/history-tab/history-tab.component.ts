@@ -48,10 +48,12 @@ export class HistoryTabComponent {
           this.isLoading = false;
         } else {
           this.isLoading = false;
+          this.history = '';
           console.error('Invalid API response structure:', response);
         }
       });
     } catch (error) {
+       this.history = '';
       this.isLoading = false;
       console.error('Error fetching users:', error);
     }

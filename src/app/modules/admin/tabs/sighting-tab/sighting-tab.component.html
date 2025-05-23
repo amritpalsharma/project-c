@@ -1,4 +1,13 @@
-<div *ngIf="view == 'listing'" class="bg-0C3453" id="myTabContent-2">
+<div *ngIf="sightings.length == 0 && !isLoading && view == 'listing'" class="noTextTabs-Wrap">
+  <h5 class="noTextTabs">{{ 'noTextTabs' | translate }}</h5>
+</div>
+<div *ngIf="isLoading || sightings.length == '0'">
+  <div class="loader mt-5">
+    <app-loader *ngIf="isLoading"></app-loader>
+  </div>
+</div>
+
+<div *ngIf="view == 'listing' && sightings.length > 0" class="bg-0C3453" id="myTabContent-2">
     <div class="tab-pane fade show active p-3" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
     tabindex="0">
   

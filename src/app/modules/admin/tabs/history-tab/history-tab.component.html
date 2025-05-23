@@ -1,4 +1,13 @@
-<div class="p-3">
+<div *ngIf="!history && !isLoading" class="noTextTabs-Wrap">
+  <h5 class="noTextTabs">{{ 'noTextTabs' | translate }}</h5>
+</div>
+<div *ngIf="isLoading || !history">
+  <div class="loader mt-5">
+    <app-loader *ngIf="isLoading"></app-loader>
+  </div>
+</div>
+
+<div class="p-3" *ngIf="history">
     <div class="d-flex align-items-center">
         <!-- <span>About {{role}}</span> -->
         <h6 class="mb-0 me-2 main-template"> {{ 'about' | translate }} {{role}} </h6>

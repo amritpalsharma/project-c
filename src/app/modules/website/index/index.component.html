@@ -110,7 +110,7 @@
             <!-- {{sliderDetail?.users | json}} -->
             @for (slider of sliderDetail?.users; track $index) {
             <ng-template carouselSlide>
-              <div class="player--item" *ngIf="slider.role_name != 'Club'" [ngClass]="{'noNationOrBirth' :!getFirstFlag(slider.user_nationalities), 'noClubLogo' : !slider?.current_club_logo }" data-bs-toggle="modal"
+              <div class="player--item userIs{{slider.role_name}}" *ngIf="slider.role_name != 'Club'" [ngClass]="{'noNationOrBirth' :!getFirstFlag(slider.user_nationalities), 'noClubLogo' : !slider?.current_club_logo }" data-bs-toggle="modal"
                 data-bs-target="#exampleModal1">
                 <div class="item--inner">
                   <div class="player--bio-dtl">
@@ -119,7 +119,7 @@
                           <img  [src]="club_logo_path + slider.current_club_logo" alt="CLUBLOGO">
                           <img *ngIf="!slider?.current_club_logo && slider?.pre_current_club_logo" [src]="club_logo_path + slider.pre_current_club_logo" alt="PreCLUBLOGO" class="preClubLogo">
                         </div>
-                        <img *ngIf="getFirstFlag(slider.user_nationalities)" src="{{getFirstFlag(slider.user_nationalities)}}" class="player--flag" alt="Nation">
+                        <img *ngIf="getFirstFlag(slider.user_nationalities) && slider.role_name == 'Talent'" src="{{getFirstFlag(slider.user_nationalities)}}" class="player--flag" alt="Nation">
                         <div class="player--dob" *ngIf="getBirthYear(slider.meta.date_of_birth) && getBirthYear(slider.meta.date_of_birth) > 0">{{getBirthYear(slider.meta.date_of_birth)}}</div>
                     </div>
                     <img src="{{slider.meta.profile_image_path}}" (error)="handleImageError($event)" class="player_profile_img">
@@ -128,7 +128,7 @@
                 </div>
               </div>
 
-              <div *ngIf="slider.role_name == 'Club'" class="player--item player--club--item" data-bs-toggle="modal"
+              <div *ngIf="slider.role_name == 'Club'" class="player--item player--club--item  userIs{{slider.role_name}}" data-bs-toggle="modal"
                 data-bs-target="#exampleModal1">
                 <div class="item--inner">
                   <div class="player--bio-dtl">
@@ -136,7 +136,8 @@
                       class="player_profile_img">
                     <!-- <img src="{{slider.meta.profile_image_path}}" (error)="handleImageError($event)" class="player_profile_img"> -->
                   </div>
-                  <div class="player__name">{{slider.first_name +' '+ slider.last_name}}</div>
+                  <div class="player__name">{{slider.current_club_name}}</div>
+                  <!-- <div class="player__name">{{slider.first_name +' '+ slider.last_name}}</div> -->
                 </div>
               </div>
             </ng-template>

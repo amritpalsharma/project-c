@@ -23,7 +23,7 @@
               <span matChipRemove [attr.aria-label]="'remove ' + user" class="cancel-icon"> </span>
             </mat-chip-row>
             }
-            <input placeholder="{{ 'searchUser' | translate }}" #userInput [matAutocomplete]="auto"
+            <input placeholder="{{ 'searchTalent' | translate }}" #userInput [matAutocomplete]="auto"
               [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputFor]="chipGrid"
               (focus)="callListApi(userInput)" (keyup)="onKeyPress($event)" />
           </mat-chip-grid>

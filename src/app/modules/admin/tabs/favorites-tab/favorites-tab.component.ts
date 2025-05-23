@@ -71,15 +71,19 @@ export class FavoritesTabComponent {
         if (response && response.status && response.data) {
           this.userFavorites = response.data[0].favorites;
           this.totalFavorites = response.data[0].totalCount;
-          this.paginator.length = response.data[0].totalCount;
+          if(response.data[0].totalCount && response.data[0].totalCount > 0){
+            this.paginator.length = response.data[0].totalCount;
+          }
           this.isLoading = false;
         } else {
+          this.userFavorites = [];
           this.isLoading = false;
           console.error('Invalid API response structure:', response);
         }
       });
     } catch (error) {
       this.isLoading = false;
+      this.userFavorites = [];
       console.error('Error fetching users:', error);
     }
   }

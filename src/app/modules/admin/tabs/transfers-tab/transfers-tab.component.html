@@ -1,4 +1,12 @@
-<div class="p-3 bg-0C3453 admin_transfer_table w-100">
+<div *ngIf="userTransfers.length == 0 && !isLoading" class="noTextTabs-Wrap">
+  <h5 class="noTextTabs">{{ 'noTextTabs' | translate }}</h5>
+</div>
+<div *ngIf="isLoading || userTransfers.length == '0'">
+  <div class="loader mt-5">
+    <app-loader *ngIf="isLoading"></app-loader>
+  </div>
+</div>
+<div class="p-3 bg-0C3453 admin_transfer_table w-100" *ngIf="userTransfers.length > 0">
   <div class="table-responsive">
   <table class="table table-striped w-100">
     <thead>
