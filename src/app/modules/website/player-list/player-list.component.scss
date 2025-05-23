@@ -356,9 +356,10 @@ button.page-active {
 
 .player--item {
   padding: 15px;
-//   .boosted--profile {
-//     background: linear-gradient(to bottom, #E84577, #9469A3), url(../../../../assets/images/circle-cut.svg) no-repeat center !important; 
-//   }
+  .boosted--profile {
+    background: url(../../../../assets/images/circle-cut.svg) no-repeat center, linear-gradient(to bottom, #E84577, #9469A3) !important; 
+    background-size: cover !important;
+  }
   .item--inner {
     border-radius: 24px;
     overflow: hidden;
@@ -740,6 +741,22 @@ button.page-active {
 }
 
 
+@media (min-width: 1600px) and (max-width: 1999.98px) {
+    .player--item {
+        .player--bio-dtl {
+            height: 320px;
+            padding-bottom: 0;
+        }
+        .player__name {
+            padding: 13px 10px;
+        }
+        .clubPlayers .player_profile_img {
+            padding: 30px 40px 70px;
+        }
+    }
+}
+
+
 @media (min-width: 2000px) {
     .players.player-card .player1 .player-img:after {
         bottom: 46px;
@@ -758,28 +775,31 @@ button.page-active {
     }
 
     .player--item {
-    padding: 17px;
-    .item--icons-list {
-      left: 18px;
-      top: 15px;
-      width: 70px;
-      gap: 10px;
-      img {
-        width: 42px;
-        height: 42px;
-      }
+        padding: 17px;
+        .item--icons-list {
+            left: 18px;
+            top: 15px;
+            width: 70px;
+            gap: 10px;
+            img {
+                width: 42px;
+                height: 42px;
+            }
+        }
+        .player--dob {
+            padding: 8px 15px 6px;
+        }
+        .player--bio-dtl {
+            height: 390px;
+            padding-bottom: 0;
+        }
+        .player__name {
+            padding: 15px 10px;
+        }
+        .clubPlayers .player_profile_img {
+            padding: 30px 40px 70px;
+        }
     }
-    .player--dob {
-      padding: 8px 15px 6px;
-    }
-    .player--bio-dtl {
-      height: 350px;
-      padding-bottom: 40px;
-    }
-    .player__name {
-      padding: 15px 10px;
-    }
-  }
 }
 
 
@@ -823,11 +843,14 @@ button.faq-club-button, button.faq-talent-button {
       padding: 10px 20px 6px;
     }
     .player--bio-dtl {
-      height: 550px;
-      padding-bottom: 55px;
+      height: 590px;
+      padding-bottom: 0;
     }
     .player__name {
       padding: 20px 10px;
+    }
+    .clubPlayers .player_profile_img {
+        padding: 60px 80px 110px;
     }
   }
 }
