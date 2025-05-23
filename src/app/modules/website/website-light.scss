@@ -1858,4 +1858,16 @@ footer img.web_footer_bg {
       color: #fff;
     }
   }
+
+  .faq---page .accordion {
+    p {
+      color: #000;
+    }
+    .card-header a:before {
+        background-image: url(../../../assets/images/accordion-minus-light.svg) !important;
+    }
+    .card-header a.collapsed:before {
+        background-image: url(../../../assets/images/accordion-plus-light.svg) !important;
+    }
+  }
 }

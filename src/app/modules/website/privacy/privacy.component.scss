@@ -157,7 +157,7 @@ h1, h2, h3, strong {
         font-size: 18px;
         margin-bottom: 20px;
     }
-    li {
+    .content_page li {
         font-size: 16px;
     }
     .content_page .py_0 {
@@ -173,12 +173,15 @@ h1, h2, h3, strong {
     .privacy-text {
         font-size: 28px;
     }
-    li::marker {
+    .content_page li::marker {
         font-size: 18px;
     }
 }
 
 @media (max-width: 575px) {
+    .cookie-text {
+        font-size: 35px;
+    }
     .content_page li {
         padding-left: 20px;
     }
@@ -226,14 +229,26 @@ h1, h2, h3, strong {
             font-size: 20px;
         }
     }
+    .accordion {
+        .card-header a {
+            font-size: 19px;
+        }
+        .card-header a:before {
+            right: 0 !important;
+            top: 11px !important;
+            width: 30px !important;
+            height: 30px !important;
+            background-size: 20px !important;
+        }
+    }
 }
 
 @media (max-width: 400px) {
-    li::before {
+    .content_page li::before {
         top: 13px;
         font-size: 45px;
     }
-    li {
+    .content_page li {
         padding-left: 25px;
     }
     p.list-text {
@@ -242,7 +257,7 @@ h1, h2, h3, strong {
 }
 
 @media (max-width: 321px) {
-    li {
+    .content_page li {
         padding-left: 20px;
     }
     p.list-text {
@@ -342,7 +357,7 @@ h1, h2, h3, strong {
         h3, .card-header a {
             font-size: 30px;
         }
-        p, address, li, .card-body p, .card-body li {
+        p, address, .content_page li, .card-body p, .card-body li {
             font-size: 24px;
         }
     }
@@ -362,7 +377,7 @@ h1, h2, h3, strong {
         h3, .card-header a {
             font-size: 24px;
         }
-        p, address, li, .card-body p, .card-body li {
+        p, address, .content_page li, .card-body p, .card-body li {
             font-size: 20px;
         }
     }
@@ -408,7 +423,7 @@ h1, h2, h3, strong {
         h3, .card-header a {
             font-size: 32px;
         }
-        p, address, li, .card-body p, .card-body li {
+        p, address, .content_page li, .card-body p, .card-body li {
             font-size: 26px;
         }
     }
@@ -431,7 +446,7 @@ h1, h2, h3, strong {
         h3, .card-header a {
             font-size: 45px;
         }
-        p, address, li, .card-body p, .card-body li {
+        p, address, .content_page li, .card-body p, .card-body li {
             font-size: 40px;
         }
     }

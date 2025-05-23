@@ -1648,6 +1648,12 @@ button.upload-btn {
 }
 }
 
+@media (max-width: 374px) {
+.grey_common_banner {
+    margin-top: 100px !important;
+}
+}
+
 @media (max-width: 350px) {
 .page-header .theme_dropdown {
     margin-left: -5px;
