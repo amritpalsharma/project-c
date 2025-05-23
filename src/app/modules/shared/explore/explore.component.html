@@ -10,8 +10,9 @@
               <tr class="explore-inputs">
                 <!-- Talent Filter -->
                 <!-- <pre>{{roles | json}}</pre> -->
-                <th>
-                  <div class="form-group explore-all_input" [ngClass]="{'onlyScout':selectedRole == 3 || !selectedRole}">
+                <th [ngClass]="{'onlyScout':selectedRole == 2}">
+                  <div class="form-group explore-all_input"
+                    [ngClass]="{'onlyScout':selectedRole == 3 || selectedRole == 2 || !selectedRole}">
                     <mat-form-field appearance="fill">
                       <mat-label>{{ 'talents' | translate }}</mat-label>
                       <mat-select #roleSelect [(ngModel)]="selectedRole" (selectionChange)="onRoleChange(roleSelect)"
@@ -82,7 +83,7 @@
                 </th>
                 <!-- Country Filter -->
                 <th *ngIf="selectedRole == 4 || selectedRole == 2" [ngClass]="{'d-none':!selectedRole}">
-                  <div class="form-group explore-all_input">
+                  <div class="form-group explore-all_input" [ngClass]="{'onlyScout':selectedRole == 2}">
                     <mat-form-field appearance="fill">
                       <mat-label>{{ 'club' | translate }} {{ 'country' | translate }}</mat-label>
                       <!-- <mat-label>{{ 'country' | translate }}</mat-label> -->
@@ -99,7 +100,8 @@
                   </div>
                 </th>
                 <!-- League Filter -->
-                <th *ngIf="selectedRole == 4 || selectedRole == 2" [ngClass]="{'d-none':!selectedRole || !selectedCountry}">
+                <th *ngIf="selectedRole == 4 || selectedRole == 2"
+                  [ngClass]="{'d-none':!selectedRole || !selectedCountry}">
                   <div class="form-group explore-all_input">
                     <mat-form-field appearance="fill">
                       <mat-label>{{'league' | translate}}</mat-label>
@@ -114,7 +116,8 @@
                 </th>
 
                 <!-- Club Filter -->
-                <th *ngIf="selectedRole == 4 || selectedRole == 2" [ngClass]="{'d-none':!selectedRole}">
+                <th *ngIf="selectedRole == 4 || selectedRole == 2"
+                  [ngClass]="{'d-none':!selectedRole || !selectedCountry}">
                   <div class="form-group explore-all_input">
                     <mat-form-field appearance="fill">
                       <mat-label>{{'clubRole' | translate}}</mat-label>
@@ -131,8 +134,9 @@
                   <div class="form-group explore-all_input">
                     <mat-form-field appearance="fill">
                       <mat-label>{{'team' | translate}}</mat-label>
-                      <mat-select #teamType multiple [(ngModel)]="selectedTeam" (selectionChange)="onTeamTypeChange($event, teamType)"
-                        id="selectedTeam" name="selectedTeam" [disabled]="!teamTypesArr || teamTypesArr.length === 0">
+                      <mat-select #teamType multiple [(ngModel)]="selectedTeam"
+                        (selectionChange)="onTeamTypeChange($event, teamType)" id="selectedTeam" name="selectedTeam"
+                        [disabled]="!teamTypesArr || teamTypesArr.length === 0">
                         <mat-option *ngFor="let teamType of teamTypesArr" [value]="teamType">{{teamType}}</mat-option>
                       </mat-select>
                     </mat-form-field>
@@ -190,11 +194,12 @@
 
           <div class="row player-image-list ">
             <div class="col-lg-2" *ngFor="let player of players">
-              <!-- <pre>{{player | json}}</pre> -->
+
               <ng-container *ngIf="player.id != loggedInUser && !isLoading">
 
                 <div class="image_box cursor-pointer" [ngClass]="{'booster_box': player?.package_name == 'Booster'}"
                   (click)="exploreUser(player.role_name, player.id)">
+                  <!-- <pre>{{player | json}}</pre> -->
                   <div class="image_box2">
                     <div class="player_img">
                       <img *ngIf="player.meta.profile_image && player.role_name != 'Club'"
@@ -206,7 +211,7 @@
                         alt="player-image">
                     </div>
                     <div class="player-names">
-                      <a href="javascript:void(0)">{{player?.first_name?? 'N/A'}}</a>
+                      <a href="javascript:void(0)">{{player?.first_name?? ''}}</a>
                     </div>
                   </div>
 
@@ -218,13 +223,12 @@
                     <img *ngIf="player.current_club_logo && player.role_name != 'Club'"
                       src="{{baseUrl + player.current_club_logo}}" alt="team-logo">
                   </div>
-                  @if (getNationality(player.user_nationalities) ||player?.meta?.formation_date) {
+                  @if (getNationality(player.user_nationalities) || player?.meta?.formation_date && player.role_name != 'Club') {
                   <div class="flag_box" [class]="{'d-none':!getNationality(player.user_nationalities)}">
                     @if (getNationality(player.user_nationalities)) {
                     <img src="{{getNationality(player.user_nationalities)}}">
-                    }@else{
-                    <!-- <span>--</span> -->
                     }
+                    <!-- <span> {{player.role_name}}</span> -->
 
                     <ng-container
                       *ngIf="player?.meta?.formation_date && player?.meta?.formation_date != 'Invalid date'">
@@ -241,6 +245,10 @@
                       </span>
                       <span class="player-age">{{player?.meta?.formation_date | date:'y' }}</span>
                     </ng-container>
+                  </div>
+                  }@else if (player.role_name == 'Club' && player.current_club_country != '') {
+                  <div class="flag_box">
+                    <img src="{{baseUrl+'logos/' + player.current_club_country}}">
                   </div>
                   }
                   <div class="boosted-box" *ngIf="player.package_name == 'Booster'">

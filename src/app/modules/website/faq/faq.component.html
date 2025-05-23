@@ -31,10 +31,11 @@
     <div class="faq py_0">
         <div class="container">
             <h3>{{faq_collapse_titile}}</h3>
-            
+
             <ul class="nav nav-tabs" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" data-bs-toggle="tab" data-bs-target="#Tab1" role="tab">{{faq_first_btn_txt}}</a>
+                    <a class="nav-link active" data-bs-toggle="tab" data-bs-target="#Tab1"
+                        role="tab">{{faq_first_btn_txt}}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="tab" data-bs-target="#Tab2" role="tab">{{faq_sec_btn_txt}}</a>
@@ -46,33 +47,17 @@
             <div class="tab-content">
                 <div class="tab-pane active" id="Tab1" role="tabpanel">
                     <div class="accordion" id="accordionTalent" role="tablist" aria-multiselectable="true">
-                        <div class="card">
-                            <div class="card-header p-0" role="tab" id="accordion_tal-1">
-                                <a data-bs-toggle="collapse" data-bs-target="#accordion__tal_1" role="button"     aria-controls="accordion__tal_1">Dummy Title Talent</a>
+                        <div class="card" *ngFor="let section of talentSections; let i = index">
+                            <div class="card-header p-0" role="tab" id="accordion_tal_{{i}}">
+                                <a data-bs-toggle="collapse" data-bs-target="#accordion__tal_1" role="button"
+                                    aria-controls="accordion__tal_1">
+                                    {{section.title}}
+                                </a>
                             </div>
-                            <div id="accordion__tal_1" class="collapse show" role="tabpanel" aria-labelledby="accordion_tal-1" data-bs-parent="#accordionTalent">
-                                <div class="card-body">
-                                    <p>Lorem Ipsum Dummy Title Talent</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header p-0" role="tab" id="accordion_tal-2">
-                                <a class="collapsed" data-bs-toggle="collapse" data-bs-target="#accordion__tal_2" role="button" aria-controls="accordion__tal_2">Dummy Title Talent</a>
-                            </div>
-                            <div id="accordion__tal_2" class="collapse" role="tabpanel" aria-labelledby="accordion_tal-2" data-bs-parent="#accordionTalent">
-                                <div class="card-body">
-                                    <p>Lorem Ipsum Dummy Title Talent</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header p-0" role="tab" id="accordion_tal-3">
-                                <a class="collapsed" data-bs-toggle="collapse" data-bs-target="#accordion__tal_3" role="button" aria-controls="accordion__tal_3">Dummy Title Talent</a>
-                            </div>
-                            <div id="accordion__tal_3" class="collapse" role="tabpanel" aria-labelledby="accordion_tal-3" data-bs-parent="#accordionTalent">
-                                <div class="card-body">
-                                    <p>Lorem Ipsum Dummy Title Talent</p>
+                            <div id="accordion__tal_{{i}}" [ngClass]="{'collapse': true, 'show': i === 0}" role="tabpanel"
+                                aria-labelledby="accordion_tal-1" data-bs-parent="#accordionTalent">
+                                <div class="card-body" [innerHTML]="section.desc">
+
                                 </div>
                             </div>
                         </div>
@@ -80,33 +65,17 @@
                 </div>
                 <div class="tab-pane" id="Tab2" role="tabpanel">
                     <div class="accordion" id="accordionClub" role="tablist" aria-multiselectable="true">
-                        <div class="card">
-                            <div class="card-header p-0" role="tab" id="accordion_club-1">
-                                <a data-bs-toggle="collapse" data-bs-target="#accordion__club_1" role="button"     aria-controls="accordion__club_1">Dummy Title Club</a>
+                        <div class="card" *ngFor="let section of clubSections; let j = index">
+                            <div class="card-header p-0" role="tab" id="accordion_club-{{j}}">
+                                <a data-bs-toggle="collapse" data-bs-target="#accordion__club_1" role="button"
+                                    aria-controls="accordion__club_1">
+                                    {{section.title}}
+                                </a>
                             </div>
-                            <div id="accordion__club_1" class="collapse show" role="tabpanel" aria-labelledby="accordion_club-1" data-bs-parent="#accordionClub">
-                                <div class="card-body">
-                                    <p>Lorem Ipsum Dummy Title Club</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header p-0" role="tab" id="accordion_club-2">
-                                <a class="collapsed" data-bs-toggle="collapse" data-bs-target="#accordion__club_2" role="button" aria-controls="accordion__club_2">Dummy Title Club</a>
-                            </div>
-                            <div id="accordion__club_2" class="collapse" role="tabpanel" aria-labelledby="accordion_club-2" data-bs-parent="#accordionClub">
-                                <div class="card-body">
-                                    <p>Lorem Ipsum Dummy Title Club</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header p-0" role="tab" id="accordion_club-3">
-                                <a class="collapsed" data-bs-toggle="collapse" data-bs-target="#accordion__club_3" role="button" aria-controls="accordion__club_3">Dummy Title Club</a>
-                            </div>
-                            <div id="accordion__club_3" class="collapse" role="tabpanel" aria-labelledby="accordion_club-3" data-bs-parent="#accordionClub">
-                                <div class="card-body">
-                                    <p>Lorem Ipsum Dummy Title Club</p>
+                            <div id="accordion_club-{{j}}" [ngClass]="{'collapse': true, 'show': j === 0}" role="tabpanel"
+                                aria-labelledby="accordion_club-1" data-bs-parent="#accordionClub">
+                                <div class="card-body" [innerHTML]="section.desc">
+
                                 </div>
                             </div>
                         </div>
@@ -114,22 +83,17 @@
                 </div>
                 <div class="tab-pane" id="Tab3" role="tabpanel">
                     <div class="accordion" id="accordionScout" role="tablist" aria-multiselectable="true">
-                        <div class="card">
-                            <div class="card-header p-0" role="tab" id="accordion_scout-1">
-                                <a data-bs-toggle="collapse" data-bs-target="#accordion__scout_1" role="button"     aria-controls="accordion__scout_1">Dummy Title Scout</a>
+                        <div class="card" *ngFor="let section3 of scoutSections; let s = index">
+                            <div class="card-header p-0" role="tab" id="accordion_scout-{{s}}">
+                                <a data-bs-toggle="collapse" data-bs-target="#accordion__scout_1" role="button"
+                                    aria-controls="accordion__scout_1">
+                                {{section3.title}}
+                                </a>
                             </div>
-                            <div id="accordion__scout_1" class="collapse show" role="tabpanel" aria-labelledby="accordion_scout-1" data-bs-parent="#accordionScout">
-                                <div class="card-body">
-                                    <p>Lorem Ipsum Dummy Title Scout</p>
-                                </div>
-                            </div>
-                        </div><div class="card">
-                            <div class="card-header p-0" role="tab" id="accordion_scout-2">
-                                <a class="collapsed" data-bs-toggle="collapse" data-bs-target="#accordion__scout_2" role="button" aria-controls="accordion__scout_2">Dummy Title Scout</a>
-                            </div>
-                            <div id="accordion__scout_2" class="collapse" role="tabpanel" aria-labelledby="accordion_scout-2" data-bs-parent="#accordionScout">
-                                <div class="card-body">
-                                    <p>Lorem Ipsum Dummy Title Scout</p>
+                            <div id="accordion_scout-{{s}}" [ngClass]="{'collapse': true, 'show': s === 0}" role="tabpanel"
+                                aria-labelledby="accordion_scout-1" data-bs-parent="#accordionScout">
+                                <div class="card-body" [innerHTML]="section3.desc">
+                                  
                                 </div>
                             </div>
                         </div>

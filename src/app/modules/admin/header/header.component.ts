@@ -256,26 +256,24 @@ export class HeaderComponent {
       )
       .subscribe(
         (response: any) => {
-          // if (response?.status && response.data?.userData) {
-          //   this.filteredUsers = response.data.userData;
-          // } else {
-          //   console.error('Invalid API response:', response);
-          //   this.filteredUsers = [];
-          // }
-          // 2 April 2025 By Amrit
           let searchText = response.data.searchText;
           let searchResults = response.data.userData;
-          searchResults = searchResults.filter((user: any) => {
-            const fullName = `${user.first_name} ${user.last_name}`.toLowerCase();
-            const search = searchText.toLowerCase();
+          // searchResults = searchResults.filter((user: any) => {
+          //   const fullName = `${user.first_name} ${user.last_name}`.toLowerCase();
+          //   const search = searchText.toLowerCase();
             
-            return (
-              user.first_name.toLowerCase().startsWith(search) || 
-              user.last_name.toLowerCase().startsWith(search) ||
-              fullName.startsWith(search)
-            );
-          });
-          this.filteredUsers = searchResults;
+          //   return (
+          //     user.first_name.toLowerCase().startsWith(search) || 
+          //     user.last_name.toLowerCase().startsWith(search) ||
+          //     fullName.startsWith(search)
+          //   );
+          // });
+          if (response?.status && Array.isArray(response.data?.userData)) {
+            this.filteredUsers = response.data.userData;
+          } else {
+            this.filteredUsers = [];
+          }
+          // this.filteredUsers = searchResults;
         },
         (error) => {
           console.error('Error fetching users:', error);

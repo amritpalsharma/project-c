@@ -7,6 +7,8 @@ import { environment } from '../../../../../../environments/environment';
 import { BlogService } from '../../../../../services/blog.service';
 import { WebPages } from '../../../../../services/webpages.service';
 import { TranslateService } from '@ngx-translate/core';
+import { EditorConfigService } from '../../../../../services/editor-config.service';
+import tinymce from 'tinymce';
 
 // import { TemplateService } from '../../../../../services/template.service';
 
@@ -69,14 +71,16 @@ export class BlogPopupComponent implements OnInit, OnDestroy {
   metaTitleReruired: string = '';
   descriptionRequired: string = '';
   invalidSlug: string = '';
-
+  editorConfig: any;
   editors: any;
+  lang: string = localStorage.getItem('lang') || 'de';
 
   theme: any = localStorage.getItem('theme');
   constructor(
     public dialogRef: MatDialogRef<BlogPopupComponent>, private blogApi: BlogService,
     private webpages: WebPages,
     private translateService: TranslateService,
+    private configService: EditorConfigService,
     @Inject(MAT_DIALOG_DATA) public blog: any
   ) {
     if (blog) {
@@ -119,6 +123,9 @@ export class BlogPopupComponent implements OnInit, OnDestroy {
     this.webpages.languageId$.subscribe((data: any) => {
       this.getToasterMsg();
     });
+
+    this.editorConfig = this.configService.getConfig(this.lang);
+
   }
 
   ngOnDestroy(): void {
@@ -183,7 +190,7 @@ export class BlogPopupComponent implements OnInit, OnDestroy {
             }
           });
 
-          console.log("lang", this.langs)
+        console.log("lang", this.langs)
       }
     });
   }
