@@ -272,47 +272,59 @@ h1, h2, h3, strong {
     font-size: inherit;
     font-family: var(--bs-avenir-bold);
 }
+.accordion {
+    .card {
+        border-radius: 0;
+        margin: 1em 0 0;
+        border: none;
+        overflow: hidden;
+        border-bottom: 1px solid #80808047;
+        padding: 0 !important;
+    }
+    .card .card-header {
+        background: transparent;
+        margin-bottom: 0;
+        border: 0;
+    }
+    .card-header a {
+        width: 100%;
+        display: inline-block;
+        padding: 10px 0;
+        padding-right: 50px;
+        position: relative;
+        color: #357525;
+        font-family: var(--bs-avenir-semibold);
+        border-radius: 0;
+    }
+    .card-header a:before {
+        content: ' ';
+        position: absolute;
+        right: 10px;
+        top: 16px;
+        width: 30px;
+        height: 30px;
+        background-image: url(../../../../assets/images/accordion-minus-dark.svg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 25px;
+    }
+    .card-header a.collapsed:before {
+        background-image: url(../../../../assets/images/accordion-plus-dark.svg);
+    }
+    .card-body {
+        padding: 0 0 1rem;
+    }
+}
 
-.accordion .card {
-	border-radius: 0;
-    margin: 1em 0 0;
-    border: none;
-    overflow: hidden;
-    border-bottom: 1px solid #80808047;
-    padding: 0;
-}
-.accordion .card .card-header {
-    background: transparent;
-    margin-bottom: 0;
-    border: 0;
-}
-.accordion .card-header a {
-    width: 100%;
-    display: inline-block;
-    padding: 10px 0;
-    padding-right: 50px;
-    position: relative;
-    color: #357525;
-    font-family: var(--bs-avenir-semibold);
-    border-radius: 0;
-}
-.accordion .card-header a:before {
-    content: ' ';
-    position: absolute;
-    right: 10px;
-    top: 16px;
-    width: 30px;
-    height: 30px;
-    background-image: url(../../../../assets/images/accordion-minus-light.svg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 25px;
-}
-.accordion .card-header a.collapsed:before {
-    background-image: url(../../../../assets/images/accordion-plus-light.svg);
-}
-.accordion .card-body {
-    padding: 0 0 1rem;
+.light-theme {
+    .accordion {
+        .card-header a:before {
+            background-image: url(../../../../assets/images/accordion-minus-light.svg) !important;
+        }
+        .card-header a.collapsed:before {
+            background-image: url(../../../../assets/images/accordion-plus-light.svg) !important;
+        }
+    }
 }
 
 @media (min-width: 992px) {
@@ -437,6 +449,14 @@ h1, h2, h3, strong {
             width: 50px !important;
             height: 50px !important;
             object-fit: contain;
+        }
+    }
+    
+    .accordion {
+        .card-header a:before {
+            width: 40px;
+            height: 40px;
+            background-size: 40px !important;
         }
     }
 }

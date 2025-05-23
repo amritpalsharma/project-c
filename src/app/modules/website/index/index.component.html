@@ -128,15 +128,15 @@
                 </div>
               </div>
 
-              <div *ngIf="slider.role_name == 'Club'" class="player-carousel-club" data-bs-toggle="modal"
+              <div *ngIf="slider.role_name == 'Club'" class="player--item player--club--item" data-bs-toggle="modal"
                 data-bs-target="#exampleModal1">
-                <div class="player-border">
-                  <div class="player-img">
-                    <!-- <pre>{{slider | json}}</pre> -->
+                <div class="item--inner">
+                  <div class="player--bio-dtl">
                     <img src="{{advertisemnet_base_url + slider.current_club_logo}}" (error)="handleImageError($event)"
                       class="player-image">
+                    <!-- <img src="{{slider.meta.profile_image_path}}" (error)="handleImageError($event)" class="player_profile_img"> -->
                   </div>
-                  <p class="player-name">{{slider.first_name +' '+ slider.last_name}}</p>
+                  <div class="player__name">{{slider.first_name +' '+ slider.last_name}}</div>
                 </div>
               </div>
             </ng-template>

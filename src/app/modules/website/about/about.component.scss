@@ -56,6 +56,8 @@ body {
 }
 .banner-inner {
   width: 100%;
+  position: relative;
+  z-index: 1;
 }
 .bnr-media {
   position: relative;
@@ -104,24 +106,16 @@ body {
 
 .about-text {
   font-size: 45px;
-  font-weight: 700;
   color: white;
-  filter: brightness(0) invert(1);
   text-transform: uppercase;
   font-family: var(--bs-avenir-bold);
 }
 
 /*--------------------------------------------------------------
-#  Banner
---------------------------------------------------------------*/
-
-
-
-/*--------------------------------------------------------------
 #  about -content
 --------------------------------------------------------------*/
 .content-image img {
-  height: 343px;
+  height: 400px;
   width: 100%;
   object-fit: cover;
 }
@@ -402,9 +396,8 @@ img.join-btn {
   }
 
   .content-image img {
-    height: 280px;
-    width: 450px;
-    object-fit: cover;
+    height: auto;
+    width: 100%;
   }
 
   .content-text {
@@ -447,11 +440,6 @@ img.join-btn {
 
   .about-text {
     font-size: 35px;
-  }
-
-  .content-image img {
-    height: 230px;
-    width: 350px;
   }
 
   .content-text {
@@ -528,11 +516,6 @@ font-size: 14px;
 
 
 @media (max-width: 767px) {
-  .content-image img {
-    height: 230px;
-    width: 100%;
-  }
-
   .country-list {
     padding: 10px;
     width: 100%;
@@ -563,10 +546,6 @@ font-size: 14px;
 
   .club-banner {
     height: 0;
-  }
-
-  .content-image img {
-    width: 100%;
   }
 
   .content-text {

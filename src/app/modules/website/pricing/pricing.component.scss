@@ -101,6 +101,8 @@ body {
 }
 .banner-inner {
     width: 100%;
+    position: relative;
+    z-index: 1;
 }
 .header-transparent {
     position: absolute;

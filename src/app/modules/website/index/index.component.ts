@@ -214,7 +214,7 @@ export class IndexComponent {
 
   // Owl Carousel options
   customOptions: OwlOptions = {
-    loop: true,
+    loop: false,
     margin: 10,
     nav: false,
     mouseDrag: true,
