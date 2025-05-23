@@ -132,7 +132,8 @@
                 data-bs-target="#exampleModal1">
                 <div class="player-border">
                   <div class="player-img">
-                    <img src="{{slider.meta.profile_image_path}}" (error)="handleImageError($event)"
+                    <!-- <pre>{{slider | json}}</pre> -->
+                    <img src="{{advertisemnet_base_url + slider.current_club_logo}}" (error)="handleImageError($event)"
                       class="player-image">
                   </div>
                   <p class="player-name">{{slider.first_name +' '+ slider.last_name}}</p>

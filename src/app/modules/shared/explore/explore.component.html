@@ -99,7 +99,7 @@
                   </div>
                 </th>
                 <!-- League Filter -->
-                <th *ngIf="selectedRole == 4 || selectedRole == 2" [ngClass]="{'d-none':!selectedRole}">
+                <th *ngIf="selectedRole == 4 || selectedRole == 2" [ngClass]="{'d-none':!selectedRole || !selectedCountry}">
                   <div class="form-group explore-all_input">
                     <mat-form-field appearance="fill">
                       <mat-label>{{'league' | translate}}</mat-label>

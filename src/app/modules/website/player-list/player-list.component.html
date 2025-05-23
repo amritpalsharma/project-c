@@ -91,7 +91,7 @@
                     <div class="item--inner clubPlayers">
                       <div class="player--bio-dtl">
                         <div class="item--icons-list">
-                          <img *ngIf="getFlagPath(player.user_nationalities)" [src]="flagPath + player.current_club_country" class="player--flag" />
+                          <img *ngIf="player.current_club_country" [src]="flagPath + player.current_club_country" class="player--flag" />
                         </div>
                         <img class="player_profile_img" [src]="profileBaseUrl + player.current_club_logo" alt="{{ player.first_name + ' '+player.last_name }} ~ Club Log" [ngClass]="{ 'bg-red': player.name === 'Zidane', 'bg-green': player.name !== 'Zidane' }" (error)="setDefaultImage($event)" [ngClass]="{ 'player_profile_img': isDefaultImage }">
                       </div>
@@ -156,7 +156,7 @@
                           <span class="player--flag" *ngIf="player.birth_country_flag && player.birth_country_flag != null && player.birth_country_flag != ''">
                             <img [src]="player.birth_country_flag ? birthCountryFlags + player.birth_country_flag : './assets/images/default-flag.svg'" />
                           </span>
-                          <div class="player--dob">{{ getBirthYear(player.meta.date_of_birth) || 'N/A' }}</div>
+                          <!-- <div class="player--dob">{{ getBirthYear(player.meta.date_of_birth) || 'N/A' }}</div> -->
                         </div>
                         <img src="{{ player.meta.profile_image_path }}" alt="{{ player.first_name + ' ' + player.last_name }}" (error)="setDefaultImage($event)" [ngClass]="{ 'player_profile_img': isDefaultImage }">
                         <div *ngIf="player.package_name === 'Booster'" class="booster_text">{{'boosted' | translate}} </div>
