@@ -258,7 +258,8 @@ export class HeaderComponent implements OnInit {
   isViewPassword1 = false;
   isViewPassword2 = false;
 
-  headerRoutes: string[] = ['/contact', '/terms', '/imprint', '/player-list', '/news', '/privacy'];
+  headerRoutes: string[] = ['/contact', '/terms', '/imprint', '/player-list', '/news', '/privacy', '/news/:slug'];
+  // 
   currentRoute: string = '';
   constructor(
     private sharedservice: SharedService,
@@ -292,6 +293,10 @@ export class HeaderComponent implements OnInit {
   }
 
   isActiveRoute(): boolean {
+    if (this.currentRoute.includes('/news/')) {
+      // For News Detail Page
+       return true;
+    }
     return this.headerRoutes.includes(this.currentRoute);
   }
 
