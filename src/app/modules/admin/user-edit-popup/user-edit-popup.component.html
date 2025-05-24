@@ -692,7 +692,7 @@
                     <div class="btn-group">
                         <select class="cupen-btn-1 form-select" aria-label="Default select example"
                             [(ngModel)]="playerTeam" [ngClass]="{'red-border':isSubmitButtonClicked && !playerTeam}">
-                            <option value="">{{ 'select' | translate }}</option>
+                            <option value="0" [selected]="!playerTeam || playerTeam == 0">{{ 'select' | translate }}</option>
                             <option *ngFor="let option of teamsLisitng" value="{{option.id}}">{{option.team_name}} -
                                 {{option.team_type}} </option>
                         </select>

@@ -58,7 +58,7 @@ export class UserEditPopupComponent {
   // showTeamsDropdown: boolean = false;
   showTeamsDropdown: boolean = true;
   teamsLisitng: any = [];
-  playerTeam: any = "";
+  playerTeam: number = 0;
   isSubmitButtonClicked:boolean=false;
   theme:string=localStorage.getItem('theme') || 'light';
 
@@ -394,7 +394,7 @@ export class UserEditPopupComponent {
       this.takenBy = this.playerClubsListing[index].taken_by;
       formdata.append('user[pre_club_id]', this.playerClub);
       formdata.append('user[current_club]', this.takenBy);
-      formdata.append('user[current_team]', this.playerTeam);
+      formdata.append('user[current_team]', this.playerTeam+'');
     } else {
       formdata.append('user[pre_club_id]', this.playerClub);
     }
