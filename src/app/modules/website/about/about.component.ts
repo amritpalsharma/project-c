@@ -25,6 +25,7 @@ export class AboutComponent {
     { name: 'Denmark', url: 'https://www.socceryou.dk' }
   ];
   about_hero_heading_txt: string = '';
+  about_hero_heading:string='';
   country_section_title: string = '';
   about_hero_btn_txt: string = '';
   about_hero_btn_link: string = '';
@@ -118,6 +119,7 @@ export class AboutComponent {
           this.countries = res.data.pageData.about_country_names;
           this.country_section_title = res.data.pageData.country_section_title;
           this.about_hero_heading_txt = res.data.pageData.about_hero_heading_txt;
+          this.about_hero_heading = res.data.pageData.about_hero_heading;
           this.about_hero_btn_txt = res.data.pageData.about_hero_btn_txt;
           this.about_hero_btn_link = res.data.pageData.about_hero_btn_link;
           // this.about_banner_bg_img = res.data.base_url+res.data.pageData.about_banner_bg_img;

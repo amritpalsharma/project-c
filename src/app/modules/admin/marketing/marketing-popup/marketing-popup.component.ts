@@ -1,4 +1,4 @@
-import { Component, Inject, inject, signal } from '@angular/core';
+import { Component, Inject, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { Editor, Toolbar } from 'ngx-editor';
@@ -7,6 +7,11 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MarketingService } from '../../../../services/marketing.service';
 import { EditorConfigService } from '../../../../services/editor-config.service';
 import tinymce from 'tinymce';
+
+import { provideNativeDateAdapter } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-marketing-popup',
@@ -29,6 +34,11 @@ export class MarketingPopupComponent {
     ['blockquote', 'horizontal_rule'],  // Additional tools
   ];
   html = '';
+  myFilter = (d: Date | null): boolean => {
+    const day = (d || new Date()).getDay();
+    // Prevent Saturday and Sunday from being selected.
+    return day !== 0 && day !== 6;
+  };
   // selectedRole:number = 2;
 
   // roles:any = [];
@@ -71,6 +81,7 @@ export class MarketingPopupComponent {
   lang: any = localStorage.getItem('lang') || 'de';
   constructor(
     private configService: EditorConfigService,
+    public matDatepickerFilter:MatDatepickerModule,
     public dialogRef: MatDialogRef<MarketingPopupComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, private marketingApi: MarketingService
   ) {

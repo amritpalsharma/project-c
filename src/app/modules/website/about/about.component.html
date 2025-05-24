@@ -42,10 +42,10 @@
                 class="w-100">
               <img *ngIf="currentTheme == 'dark'" src="/assets/images/about_page/banner_img_dark.png" alt="About Us"
                 class="w-100"> -->
-                <img src="/assets/images/about_page/banner_img.png" alt="{{about_banner_title}}" class="w-100">
+              <img src="/assets/images/about_page/banner_img.png" alt="{{about_banner_title}}" class="w-100">
             </div>
 
-            
+
           </div>
           <div class="col-lg-6 col-md-6 col-12">
             <div class="content-text" [innerHTML]="about_banner_desc">
@@ -160,7 +160,8 @@
           <div class="data_wrapper">
             <div class="text_side_wrapper">
               <div class="title_text_p">
-                <h3 class="mb-3">{{about_hero_heading_txt}}</h3>
+                <h3 class="mb-3">{{about_hero_heading}}</h3>
+                <p><strong>{{about_hero_heading_txt}}</strong></p>
               </div>
               <div class="club-buttons">
                 <div data-bs-toggle="modal" data-bs-target="#exampleModal1">

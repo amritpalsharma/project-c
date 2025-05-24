@@ -132,6 +132,12 @@ export class NotificationsLogComponent {
     } else {
       this.selectedIds.splice(index, 1);
     }
+
+    if (this.notifications.length === this.selectedIds.length) {
+      this.allSelected = true;
+    } else {
+      this.allSelected = false;
+    }
   }
 
   selectAll() {
@@ -141,7 +147,14 @@ export class NotificationsLogComponent {
     } else {
       this.selectedIds = [];
     }
-    console.log('Selected user IDs:', this.selectedIds);
+    // console.log('Selected user IDs:', this.selectedIds);
+
+
+    if (this.notifications.length === this.selectedIds.length) {
+      this.allSelected = true;
+    } else {
+      this.allSelected = false;
+    }
   }
 
   confirmDeletion(): any {

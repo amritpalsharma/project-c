@@ -70,8 +70,8 @@
 }
 
 .close-img{
-    background-image: url(../../../../assets/images/carbon_close-outline.png);
-    background-size: cover;
+    // background-image: url(../../../../assets/images/carbon_close-outline.png);
+    // background-size: cover;
     width: 33px;
     height: 33px;
     border: none;
@@ -193,4 +193,7 @@ span.platform_url {
 
 .showTeamsDropdown{
   display: block !important;
+}
+::ng-deep .red-border{
+  border: 2px solid red !important;
 }

@@ -1,12 +1,13 @@
 <div *ngIf="userFavorites.length == 0 && !isLoading" class="noTextTabs-Wrap">
   <h5 class="noTextTabs">{{ 'noTextTabs' | translate }}</h5>
 </div>
-<div *ngIf="isLoading || userFavorites.length == '0'">
+<!-- <h1>userFavorites.length {{userFavorites.length}} && isLoading {{isLoading}}</h1> -->
+<div *ngIf="isLoading">
   <div class="loader mt-5">
     <app-loader *ngIf="isLoading"></app-loader>
   </div>
 </div>
-<div class="tab-content-2 Favorite-parent bg-0C3453" id="myTabContent-2" *ngIf="userFavorites.length > 0">
+<div class="tab-content-2 Favorite-parent bg-0C3453" id="myTabContent-2" *ngIf="userFavorites.length > 0 && !isLoading">
   <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
 
     <div class="d-flex align-items-center justify-content-between wrap_for_mobile">

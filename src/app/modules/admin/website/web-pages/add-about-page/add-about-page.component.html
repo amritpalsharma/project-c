@@ -172,11 +172,16 @@
 
     <!-- Hero Heading Text -->
     <div class="mb-3">
-      <label for="about_hero_heading_txt" class="form-label">{{ 'heroHeadingText' | translate }}</label>
-      <input type="text" id="about_hero_heading_txt" class="form-control" name="about_hero_heading_txt"
-        [(ngModel)]="formData.about_hero_heading_txt" required />
+      <label for="about_hero_heading" class="form-label">{{ 'heroHeadingText' | translate }}</label>
+      <input type="text" id="about_hero_heading" class="form-control" name="about_hero_heading"
+        [(ngModel)]="formData.about_hero_heading" required />
     </div>
 
+    <div class="mb-3">
+      <label for="about_hero_btn_txt" class="form-label">{{ 'heroHeading' | translate }}</label>
+      <input type="text" id="about_hero_btn_txt" class="form-control" name="about_hero_heading_txt"
+        [(ngModel)]="formData.about_hero_heading_txt" required />
+    </div>
     <!-- Hero Button Text -->
     <div class="mb-3">
       <label for="about_hero_btn_txt" class="form-label">{{ 'heroButtonText' | translate }}</label>
@@ -199,11 +204,8 @@
 
         <ngx-editor [editor]="editor" class="editor-width" name="address" [(ngModel)]="formData.about_banner_desc"
           [disabled]="false" [placeholder]="'typeHere' | translate"></ngx-editor> -->
-          <editor
-          [(ngModel)]="formData.about_banner_desc" 
-          class="editor-width" name="about_banner_desc" 
-          [init]="editorConfig"
-          [id]="'aboutPageEditor'">
+        <editor [(ngModel)]="formData.about_banner_desc" class="editor-width" name="about_banner_desc"
+          [init]="editorConfig" [id]="'aboutPageEditor'">
         </editor>
       </div>
 

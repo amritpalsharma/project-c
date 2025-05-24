@@ -1,70 +1,90 @@
-.dropdown-toggle:after{
-    display: none !important;
+.dropdown-toggle:after {
+  display: none !important;
+}
+
+@media (max-width: 425px) {
+  .table> :not(caption)>*>* {
+    padding: 0.938rem 0.8rem;
   }
-  @media (max-width: 425px) {
-    .table > :not(caption) > * > * {
-       padding: 0.938rem 0.8rem;
-   }
 }
 
 
 .card-search {
-    width: 100%;
-    max-width: 345px;
+  width: 100%;
+  max-width: 345px;
+}
+
+@media (max-width: 650px) {
+  .website_heder_edits .btn-outline-white {
+    font-size: 0 !important;
+    padding: 5px;
   }
 
-  @media (max-width: 650px) {
-  .website_heder_edits .btn-outline-white {
-      font-size: 0 !important;
-      padding: 5px;
-  }
   .website-header-bar {
     flex-direction: column;
     align-items: flex-start !important;
     gap: 10px;
-}
-.website-header-bar .heading {
-  flex-wrap: wrap;
-  gap: 6px;
-}
   }
 
+  .website-header-bar .heading {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+}
 
-  @media (min-width: 1600px) and (max-width: 2999px){
-    .items-count {
-      font-size: 18px !important;
-    }
-    table td.cursor-pointer svg {
-        width: 32px !important;
-        height: 32px !important;
-    }
-    table td .bg_pending, table td .bg_reject, table td .bg_success {
-        width: 170px !important;
-        font-size: 18px !important;
-        padding: 8px 8px 5px !important;
-        display: inline-block;
-      }
-      a.btn.web-create-bg {
-        font-size: 22px !important;
-    }
+
+@media (min-width: 1600px) and (max-width: 2999px) {
+  .items-count {
+    font-size: 18px !important;
   }
-  
-  
-  @media (min-width: 3000px){
-    .items-count {
-      font-size: 26px !important;
-    }
-    table td.cursor-pointer svg {
-        width: 40px !important;
-        height: 40px !important;
-    }
-    table td .bg_pending, table td .bg_reject, table td .bg_success {
-        width: 200px !important;
-        font-size: 26px !important;
-        padding: 9px 8px 5px !important;
-        display: inline-block;
-    }
-    a.btn.web-create-bg {
-      font-size: 28px !important;
+
+  table td.cursor-pointer svg {
+    width: 32px !important;
+    height: 32px !important;
   }
+
+  table td .bg_pending,
+  table td .bg_reject,
+  table td .bg_success {
+    width: 170px !important;
+    font-size: 18px !important;
+    padding: 8px 8px 5px !important;
+    display: inline-block;
   }
+
+  a.btn.web-create-bg {
+    font-size: 22px !important;
+  }
+}
+
+
+@media (min-width: 3000px) {
+  .items-count {
+    font-size: 26px !important;
+  }
+
+  table td.cursor-pointer svg {
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  table td .bg_pending,
+  table td .bg_reject,
+  table td .bg_success {
+    width: 200px !important;
+    font-size: 26px !important;
+    padding: 9px 8px 5px !important;
+    display: inline-block;
+  }
+
+  a.btn.web-create-bg {
+    font-size: 28px !important;
+  }
+}
+
+
+.status {
+  display: inline-block;
+  width: 100px;
+  text-align: center;
+}

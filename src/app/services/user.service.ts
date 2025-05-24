@@ -100,7 +100,7 @@ export class UserService {
     );
   }
 
-  getProfileDataAdmin(userId: any, lang_id:number): Observable<any> {
+  getProfileDataAdmin(userId: any, lang_id: number): Observable<any> {
     // let lang_id = localStorage.getItem('lang_id');
     return this.http.get<{ status: boolean, message: string, data: { userData: User[] } }>(
       `${this.apiUrl}admin/profile/${lang_id}/${userId}`
@@ -169,12 +169,12 @@ export class UserService {
       'Authorization': `Bearer ${this.userToken}`
     });
 
-    // return this.http.post<any>(`${this.apiUrl2}/delete-user`, { id: userIds, lang: langId }, { headers });
-    return this.http.post<any>(`${this.apiUrl2}/permanent-delete-user`, { id: userIds, lang: langId }, { headers });
+    return this.http.post<any>(`${this.apiUrl2}/delete-user`, { id: userIds, lang: langId }, { headers });
+    // return this.http.post<any>(`${this.apiUrl2}/permanent-delete-user`, { id: userIds, lang: langId }, { headers });
   }
 
   getPerformanceData(userId: any): Observable<any> {
-    let lang_id  = localStorage.getItem('lang_id');
+    let lang_id = localStorage.getItem('lang_id');
     return this.http.get<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl2}/get-performance-detail/${lang_id}/${userId}`
     );
@@ -683,7 +683,7 @@ export class UserService {
   apiToastError(message: string) {
     this.toaster.error(message);
   }
-  
+
   userGetScoutPlayers(userId: any): Observable<any> {
     const userToken = localStorage.getItem('authToken');
     let lang_id = localStorage.getItem('lang_id');
@@ -694,7 +694,7 @@ export class UserService {
       `${this.apiUrl}/user/get-scout-players/${lang_id}/${userId}`, { headers }
     );
   }
-  
+
   getUserPopups(data: any = {}): Observable<any> {
     let lang_id = localStorage.getItem('lang_id');
     let params = new HttpParams();
@@ -730,7 +730,7 @@ export class UserService {
       `${this.apiUrl}user/get-popup-seens/${lang_id}`, { headers, params }
     );
   }
-  
+
   addPopupSeen(data: any): Observable<any> {
     let lang_id = localStorage.getItem('lang_id');
 
@@ -785,6 +785,16 @@ export class UserService {
     });
     return this.http.get<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl}user/delete-profile-image`, { headers }
+    );
+  }
+
+  deleteProfileImageAdmin(userId: any): Observable<any> { 
+    let lang_id = localStorage.getItem('lang_id');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.userToken}`
+    });
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
+      `${this.apiUrl2}/delete-profile-image/${userId}/${lang_id}`, { headers }
     );
   }
 }

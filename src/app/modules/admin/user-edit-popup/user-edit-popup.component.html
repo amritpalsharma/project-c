@@ -4,7 +4,11 @@
             <h6 class="code-text text-center">
                 {{ 'edit' | translate }}
             </h6>
-            <div (click)="close()" class="close-img mb-1"></div>
+            <img *ngIf='theme!="dark"' src="../../../assets/images/carbon_close-outline-light.svg" alt=""
+                class="cursor-pointer close-img mb-1" (click)="close()" />
+            <img *ngIf='theme=="dark"' src="../../../assets/images/carbon_close-outline.svg" alt=""
+                class="cursor-pointer close-img mb-1" (click)="close()" />
+
         </div>
         <div class="popup__body p-3" style="height:460px;overflow: auto;">
             <div class="row">
@@ -295,7 +299,10 @@
             <h6 class="code-text text-center">
                 {{ 'edit' | translate }}
             </h6>
-            <div (click)="close()" class="close-img mb-1"></div>
+            <img *ngIf='theme!="dark"' src="../../../assets/images/carbon_close-outline-light.svg" alt=""
+                class="cursor-pointer close-img mb-1" (click)="close()" />
+            <img *ngIf='theme=="dark"' src="../../../assets/images/carbon_close-outline.svg" alt=""
+                class="cursor-pointer close-img mb-1" (click)="close()" />
         </div>
         <div class="popup__body p-3" style="height:460px;overflow: auto;">
             <div class="row">
@@ -597,7 +604,11 @@
             <h6 class=" code-text text-center">
                 {{ 'edit' | translate }}
             </h6>
-            <div (click)="close()" class="close-img mb-1"></div>
+            <!-- <div (click)="close()" class="close-img mb-1"></div> -->
+            <img *ngIf='theme!="dark"' src="../../../assets/images/carbon_close-outline-light.svg" alt=""
+                class="cursor-pointer close-img mb-1" (click)="close()" />
+            <img *ngIf='theme=="dark"' src="../../../assets/images/carbon_close-outline.svg" alt=""
+                class="cursor-pointer close-img mb-1" (click)="close()" />
         </div>
         <div class="popup__body p-3" style="height:460px;overflow: auto;">
             <div class="row">
@@ -605,7 +616,8 @@
                     <p class="code-text">{{ 'currentClub' | translate }}</p>
                     <div class="btn-group">
                         <select class="cupen-btn-1 form-select" aria-label="Default select example"
-                            (change)="clubChange($event)" [(ngModel)]="playerClub">
+                            (change)="clubChange($event)" [(ngModel)]="playerClub"
+                            [ngClass]="{'red-border':isSubmitButtonClicked && playerClub.length == 0}">
                             <option value="">{{ 'select' | translate }}</option>
                             <option *ngFor="let option of playerClubsListing" value="{{option.id}}">{{option.club_name}}
                             </option>
@@ -623,7 +635,8 @@
                     <div id="player-countryy" class="btn-group main-popup-div player-country"
                         style="position: relative; display: inline-block;">
 
-                        <mat-select multiple class="mat-select-div" [(ngModel)]="playerCountries">
+                        <mat-select multiple class="mat-select-div" [(ngModel)]="playerCountries"
+                            [ngClass]="{'red-border':isSubmitButtonClicked && !playerCountries}">
                             @for (option of countriesListing; track option) {
                             <mat-option [value]="option.id">{{option.country_name}}</mat-option>
                             }
@@ -640,7 +653,8 @@
                     <p class="code-text">{{ 'position' | translate }}</p>
                     <div class="btn-group">
                         <select class="cupen-btn-1 form-select" aria-label="Default select example"
-                            [(ngModel)]="mainPosition">
+                            [(ngModel)]="mainPosition"
+                            [ngClass]="{'red-border':isSubmitButtonClicked && !mainPosition}">
                             <option value="">{{ 'select' | translate }}</option>
                             <option *ngFor="let option of positionsListing" value="{{option.id}}">{{option.position}}
                             </option>
@@ -657,7 +671,8 @@
                     <p class="code-text">{{ 'internationalPlayer' | translate }}</p>
                     <div class="btn-group">
                         <select class="cupen-btn-1 form-select" aria-label="Default select example"
-                            [(ngModel)]="internationalCountry">
+                            [(ngModel)]="internationalCountry"
+                            [ngClass]="{'red-border':isSubmitButtonClicked && !internationalCountry}">
                             <option value="">{{ 'select' | translate }}</option>
                             <option *ngFor="let option of countriesListing" value="{{option.id}}">
                                 {{option.country_name}}</option>
@@ -676,7 +691,7 @@
                     <p class="code-text">{{ 'team' | translate }}</p>
                     <div class="btn-group">
                         <select class="cupen-btn-1 form-select" aria-label="Default select example"
-                            [(ngModel)]="playerTeam">
+                            [(ngModel)]="playerTeam" [ngClass]="{'red-border':isSubmitButtonClicked && !playerTeam}">
                             <option value="">{{ 'select' | translate }}</option>
                             <option *ngFor="let option of teamsLisitng" value="{{option.id}}">{{option.team_name}} -
                                 {{option.team_type}} </option>
@@ -709,7 +724,10 @@
             <h6 class=" code-text text-center">
                 {{ 'edit' | translate }}
             </h6>
-            <div (click)="close()" class="close-img mb-1"></div>
+            <img *ngIf='theme!="dark"' src="../../../assets/images/carbon_close-outline-light.svg" alt=""
+                class="cursor-pointer close-img mb-1" (click)="close()" />
+            <img *ngIf='theme=="dark"' src="../../../assets/images/carbon_close-outline.svg" alt=""
+                class="cursor-pointer close-img mb-1" (click)="close()" />
         </div>
         <div class="popup__body p-3" style="height:460px;overflow: auto;">
             <div class="row">

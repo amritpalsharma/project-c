@@ -141,9 +141,9 @@
       <ng-container matColumnDef="Status">
         <th mat-header-cell *matHeaderCellDef class="text-center"> {{ 'status' | translate }} </th>
         <td mat-cell *matCellDef="let element" class="text-center">
-          <span *ngIf="element.status == 'published'" class="bg_success">{{ 'published' | translate }}</span>
-          <span *ngIf="element.status == 'expired'" class="bg_reject text-white">{{ 'expired' | translate }}</span>
-          <span *ngIf="element.status == 'draft'" class="bg_pending">{{ 'draft' | translate }}</span>
+          <span *ngIf="element.status == 'published'" class="bg_success status">{{ 'published' | translate }}</span>
+          <span *ngIf="element.status == 'expired'" class="bg_reject text-white status">{{ 'expired' | translate }}</span>
+          <span *ngIf="element.status == 'draft'" class="bg_pending status">{{ 'draft' | translate }}</span>
         </td>
       </ng-container>
 

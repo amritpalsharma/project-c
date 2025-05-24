@@ -95,6 +95,7 @@ import { AddPricingPageComponent } from './website/web-pages/add-pricing-page/ad
 import { NotificationsLogComponent } from './setting/notifications-log/notifications-log.component';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { SharedModule } from '../shared/shared.module'; // path depends on your folder structure
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 export const MY_FORMATS = {
@@ -203,7 +204,8 @@ export const MY_FORMATS = {
     NgxDatepickerModule,
     CKEditorModule,
     EditorModule,
-    SharedModule
+    SharedModule,
+    MatTooltipModule
   ],
   providers: [
     UserService,

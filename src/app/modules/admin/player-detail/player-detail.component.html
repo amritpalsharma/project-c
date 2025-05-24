@@ -73,37 +73,38 @@
         <div class="row">
           <div class="col-md-4 col-lg-2 border-end">
             <div class="user-details-left">
-              <div class="user-media ">
+              <div class="user-media " *ngIf="!user.meta.profile_image || user.meta.profile_image == ''">
                 <img src="{{baseUrl + user.meta.profile_image}}" alt="" *ngIf="user.meta && user.meta.profile_image"
                   class="user-img mt-1">
                 <img src="../../../../assets/images/1.png" alt="" *ngIf="!user.meta || !user.meta.profile_image"
                   class="user-img">
                 <div class="user-edit">
-
                   <label for="file-upload"><img src="../../../../assets/images/edit-icon.png"
                       class="edit-profile cursor-pointer" alt=""></label>
-                  <input id="file-upload" (change)="onProfileImageChange($event)" accept="image/*" type="file"
+                  <input id="file-upload" (change)="onProfileFileChange($event)" accept="image/*" type="file"
                     class="d-none" />
-                  <!-- <img *ngIf="user.club_logo_path" src="{{user.club_logo_path}}" class="club-icon-round" alt=""> -->
                   <div class="club-icon" *ngIf="user.club_logo_path">
                     <img *ngIf="user.club_logo_path" src="{{user.club_logo_path}}"
                       class="club-icon-round cursor-pointer" alt="">
-                    <!-- <img *ngIf="user.club_logo_path" src="../../../assets/images/team-badge.png" class="club-icon-round"  alt=""> -->
                   </div>
-
-                  <!-- <img src="path/to/edit-icon.png" alt="Edit Profile" class="edit-profile">
-                      <img src="path/to/team-badge.png" alt="Club Badge" class="club-icon"> -->
                 </div>
               </div>
-              <!-- <div class="user-media">
-                <img src="{{user.meta.profile_image_path}}" alt="" *ngIf="user.meta && user.meta.profile_image_path">
-                <img src="../../../../assets/images/1.png" alt="" *ngIf="!user.meta || !user.meta.profile_image_path">
-                <div class="user-edit">
-                  <img src="../../../../assets/images/edit-icon.png" class="edit-profile" alt=""> -->
-              <!-- <img *ngIf="user.club_logo_path" src="{{user.club_logo_path}}" class="club-icon" alt=""> -->
-              <!-- <img *ngIf="user.club_logo_path" src="../../../assets/images/team-badge.png" class="club-icon" alt="">
-                </div>
-              </div> -->
+              <div class="user-media " *ngIf="user.meta.profile_image && user.meta.profile_image != ''">
+                <img src="{{baseUrl + user.meta.profile_image}}" alt="" *ngIf="user.meta && user.meta.profile_image"
+                  class="user-img mt-1">
+                <img src="../../../../assets/images/1.png" alt="" *ngIf="!user.meta || !user.meta.profile_image"
+                  class="user-img">
+                <label for="profile-upload" class="">
+                  <div class="edit-profile cursor-pointer" id="upload_profilePhoto" (click)="deleteImageConfirm();"
+                    matTooltip="{{'delete' | translate}} {{'profilePhoto' | translate}}" matTooltipPosition="right">
+                    <svg class="cursor-pointer" style="padding: 2px;" xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 448 512">
+                      <path
+                        d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.7 23.7 0 0 0 -21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0 -16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z" />
+                    </svg>
+                  </div>
+                </label>
+              </div>
               <div class="user-info mt-3">
                 <h6><span class="user-info-name">{{user.first_name}} {{user.last_name}}</span>
                   <img src="../../../assets/images/pending.png" alt="" class="user-pending-icon"
@@ -142,7 +143,7 @@
                 <h6 class="mb-1">{{ 'lastPayment' | translate }} :</h6>
                 <h6 class="mb-2 font-w400" *ngIf="user.plan_period_start">
                   <!-- {{user.plan_period_start | date:'MMM d, y' }} -->
-                   {{formatDateTime(user.plan_period_start)}}
+                  {{formatDateTime(user.plan_period_start)}}
                 </h6>
                 <!-- <h6 class="mb-2 font-w400" *ngIf="!user.plan_period_start">NA</h6> -->
                 <p class=" font-w400">{{ 'viewInvoice' | translate }}</p>

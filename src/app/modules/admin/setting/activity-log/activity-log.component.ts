@@ -89,6 +89,12 @@ export class ActivityLogComponent {
     } else {
       this.selectedIds.splice(index, 1);
     }
+
+    if (this.activities.length === this.selectedIds.length) {
+      this.allSelected = true;
+    } else {
+      this.allSelected = false;
+    }
   }
 
   selectAll() {

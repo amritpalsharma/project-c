@@ -109,14 +109,17 @@ export class HistoryTabComponent {
         if (response && response.status && response.data) {
           this.history = history; 
           this.isEditable = false;
+          this.isLoading = false;
           // this.isLoading = false;
         } else {
           // this.isLoading = false;
+          this.isLoading = false;
           console.error('Invalid API response structure:', response);
         }
       });
     } catch (error) {
       // this.isLoading = false;
+      this.isLoading = false;
       console.error('Error fetching users:', error);
     }
   }
@@ -128,6 +131,7 @@ export class HistoryTabComponent {
     if (editor) {
       history = editor.getContent();
     }
+    this.isLoading = false;
     console.log(history);
 
     if(history.trim() == ""){
@@ -139,14 +143,14 @@ export class HistoryTabComponent {
         if (response && response.status && response.data) {
           this.history = history; 
           this.isEditable = false;
-          // this.isLoading = false;
+          this.isLoading = false;
         } else {
-          // this.isLoading = false;
+          this.isLoading = false;
           console.error('Invalid API response structure:', response);
         }
       });
     } catch (error) {
-      // this.isLoading = false;
+      this.isLoading = false;
       console.error('Error fetching users:', error);
     }
   }

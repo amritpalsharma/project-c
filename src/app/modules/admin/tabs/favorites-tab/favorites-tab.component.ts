@@ -14,7 +14,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrl: './favorites-tab.component.scss'
 })
 export class FavoritesTabComponent {
-  isLoading: boolean = false;
+  isLoading: boolean = true;
   userId: any = '';
   displayedColumns: string[] = ['#', 'Name', 'User Type', 'Location', 'Joined Date - Time', 'View Profile', 'Remove'];
   userFavorites: any = [];
@@ -69,17 +69,20 @@ export class FavoritesTabComponent {
       this.userService.getFavoritesData(this.userId, params).subscribe((response) => {
         console.log(response, 'get-user-favorite');
         if (response && response.status && response.data) {
+          this.isLoading = false;
           this.userFavorites = response.data[0].favorites;
           this.totalFavorites = response.data[0].totalCount;
-          if(response.data[0].totalCount && response.data[0].totalCount > 0){
+          if (response.data[0].totalCount && response.data[0].totalCount > 0) {
             this.paginator.length = response.data[0].totalCount;
           }
-          this.isLoading = false;
+
         } else {
           this.userFavorites = [];
           this.isLoading = false;
           console.error('Invalid API response structure:', response);
         }
+
+        this.isLoading = false;
       });
     } catch (error) {
       this.isLoading = false;

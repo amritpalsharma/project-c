@@ -19,6 +19,7 @@ import { CommonHelperService } from '../../../services/common-helper.service';
 import { SharedService } from '../../../services/shared.service';
 import { AdminHelperService } from '../../../services/admin-helper.service';
 import { TitleService } from '../../../title.service';
+import { GlobalSettingsService } from '../../../services/global-settings.service';
 
 interface Notification {
   id: number;
@@ -113,6 +114,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     private sharedservice: SharedService,
     private adminHelper: AdminHelperService,
     private titleService: TitleService,
+    private globalSettings: GlobalSettingsService
   ) {
 
   }
@@ -280,10 +282,13 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       }
     });
 
+    this.globalSettings.indexFunctionCall$.subscribe(() => {
+      this.toggleTheme(); // Call the function when event is received
+    });
     setTimeout(() => {
       let lang_id = localStorage.getItem('lang_id');
-      this.updateChartData(this.selectedYear, this.selectedDomain, lang_id); 
-      this.isGraphLoading = false; 
+      this.updateChartData(this.selectedYear, this.selectedDomain, lang_id);
+      this.isGraphLoading = false;
       // this.selectedYear = e.target.value;
     }, 3500); // show graph after 3.5 seconds
 
@@ -521,6 +526,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       color = '#fff';
     }
 
+
+    let labelcolor = '#86888A';
+    if (localStorage.getItem('theme') != 'light') {
+      labelcolor = '#4F7A9D';
+    }
+
     // Create and store new chart instance
     const newChart = new Chart(ctx, {
       type: 'line',
@@ -543,7 +554,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
           x: {
             grid: { display: false },
             ticks: {
-              // color: color,
+              color: labelcolor,
               display: true,
               font: { size: 20, family: 'poppins,sans-serif', weight: 700 },
             },
@@ -589,10 +600,15 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   updateChartBackgroundColor() {
 
-    let isDarkMode: any;
-    this.themeService.isDarkTheme.subscribe((isDarkTheme: boolean) => {
-      isDarkMode = isDarkTheme;
-    });
+    let isDarkMode = false;
+    // this.themeService.isDarkTheme.subscribe((isDarkTheme: boolean) => {
+    //   isDarkMode = isDarkTheme;
+    // });
+    let labelcolor = '#86888A';
+    if (localStorage.getItem('theme') != 'light') {
+      labelcolor = '#4F7A9D';
+      isDarkMode = true;
+    }
     const charts = [this.chart1, this.chart2, this.chart3];
     charts.forEach((chart) => {
       if (chart.options && chart.options.scales && chart.options.plugins) {
@@ -600,8 +616,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
           chart.options.scales['x'].grid.color = isDarkMode ? '#333' : '#E0E0E0';
         }
         if (chart.options.scales['x'] && chart.options.scales['x'].ticks) {
-          chart.options.scales['x'].ticks.color = isDarkMode ? '#A5AFBA' : '#878787';
-          // chart.options.scales['x'].ticks.color = isDarkMode ? '#fff' : '#878787';
+          // chart.options.scales['x'].ticks.color = isDarkMode ? '#A5AFBA' : '#878787';
+          chart.options.scales['x'].ticks.color = labelcolor;
         }
         if (chart.options.scales['y'] && chart.options.scales['y'].grid) {
           chart.options.scales['y'].grid.color = isDarkMode ? '#333' : '#E0E0E0';
@@ -610,6 +626,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
           chart.options.scales['y'].ticks.color = isDarkMode ? '#fff' : '#878787';
         }
         if (chart.options.plugins.tooltip) {
+          // console.warn('isDarkMode',isDarkMode)
           chart.options.plugins.tooltip.backgroundColor = isDarkMode ? '#BDE34F' : '#E05263';
         }
         // chart.options.backgroundColor = isDarkMode ? '#BDE34F' : '#FFFFFF';
@@ -622,8 +639,17 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
 
-  toggleTheme(event: any): void {
-    this.themeService.setDarkTheme(event.target.checked);
+  toggleTheme(): void {
+    let theme = localStorage.getItem('theme');
+    if (theme == 'dark') {
+      this.themeService.setDarkTheme(true);
+    } else {
+      this.themeService.setDarkTheme(false);
+    }
+    // this.isGraphLoading = true;
+    this.updateChartBackgroundColor();
+    let lang_id = localStorage.getItem('lang_id');
+    // this.updateChartData(this.selectedYear, this.selectedDomain, lang_id);
   }
 
   logout() {
@@ -718,6 +744,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       notificationBox.scrollTop = 0;
     }
     this.clickedNewNotification = false;
+    this.updateChartBackgroundColor();
   }
 
   fetchNotifications(userId: number, langId: any): void {

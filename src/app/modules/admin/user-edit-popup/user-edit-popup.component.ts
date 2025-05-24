@@ -55,9 +55,12 @@ export class UserEditPopupComponent {
   mainPosition: any = "";
   internationalCountry: any = "";
   takenBy: any = "";
-  showTeamsDropdown: boolean = false;
+  // showTeamsDropdown: boolean = false;
+  showTeamsDropdown: boolean = true;
   teamsLisitng: any = [];
   playerTeam: any = "";
+  isSubmitButtonClicked:boolean=false;
+  theme:string=localStorage.getItem('theme') || 'light';
 
   constructor(private userService: UserService, public dialogRef: MatDialogRef<UserDetailPopupComponent>,
     @Inject(MAT_DIALOG_DATA) public request: any) {
@@ -377,9 +380,10 @@ export class UserEditPopupComponent {
   }
 
   updatePlayerGeneralInfo(): any {
-    console.log(this.playerCountries)
-    console.log(this.mainPosition)
-    console.log(this.internationalCountry)
+    // console.log(this.playerCountries)
+    // console.log(this.mainPosition)
+    // console.log(this.internationalCountry)
+    this.isSubmitButtonClicked = true;
 
     let formdata = new FormData();
 
@@ -456,7 +460,7 @@ export class UserEditPopupComponent {
       this.getTeamsByClub(this.takenBy);
       this.showTeamsDropdown = true;
     } else {
-      this.showTeamsDropdown = false;
+      // this.showTeamsDropdown = false;
     }
   }
 }

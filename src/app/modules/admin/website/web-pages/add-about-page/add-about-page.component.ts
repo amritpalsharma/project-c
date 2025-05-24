@@ -64,6 +64,7 @@ export class AddAboutPageComponent implements OnInit {
     about_country_names: [],
     country_section_banner_img: null,
     country_section_banner_img_dark: null,
+    about_hero_heading:'',
     about_hero_heading_txt: '',
     about_hero_btn_txt: '',
     about_hero_btn_link: '',
@@ -118,6 +119,7 @@ export class AddAboutPageComponent implements OnInit {
         this.formData.about_banner_title = response.data.pageData.about_banner_title;
         this.formData.country_section_title = response.data.pageData.country_section_title;
         this.formData.about_hero_heading_txt = response.data.pageData.about_hero_heading_txt;
+        this.formData.about_hero_heading = response.data.pageData.about_hero_heading;
         this.formData.about_hero_btn_txt = response.data.pageData.about_hero_btn_txt;
         this.formData.about_hero_btn_link = response.data.pageData.about_hero_btn_link;
         this.formData.about_banner_desc = response.data.pageData.about_banner_desc;

@@ -17,6 +17,9 @@ export class TransfersTabComponent {
   userTransfers: any = [];
   editableId: string = "";
   teams: any = [];
+  baseUrl:string='https://api.socceryou.ch/uploads/';
+  logoBaseUrl:string='https://api.socceryou.ch/uploads/logos/';
+  theme:string=localStorage.getItem('theme') || 'light';
 
   filterTeams: any[] = []; // Initialize as empty array to avoid undefined issues
   filterTeamsFrom: any[] = [];

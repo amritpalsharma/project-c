@@ -11,6 +11,7 @@ import { SharedService } from '../../../services/shared.service';
 import { ToastrService } from 'ngx-toastr';
 import { Location } from '@angular/common';
 import { Subscription } from 'rxjs';
+import { ImageCropperComponent2 } from '../../shared/image-cropper/image-cropper.component';
 import { AdminHelperService } from '../../../services/admin-helper.service';
 
 
@@ -32,17 +33,19 @@ export class ScoutDetailComponent implements OnInit {
     private sharedservice: SharedService,
     private toaster: ToastrService,
     private location: Location,
-    private adminHelper:AdminHelperService
+    private adminHelper: AdminHelperService
   ) { }
   activeTab: string = 'profile';
   userId: any = {};
   user: any = {};
+  baseUrl: string = '';
   // userNationalities: any = [];
   coverImage: any = "";
   paginationData: any = {};
   pageTitle: string = '';
   userDeleteConfirm: string = '';
   langSubscription!: Subscription;
+  deleteProfileImageConfirm: string = '';
   currentLangId: any = localStorage.getItem('lang_id');
   ngOnInit(): void {
     this.getJsonTranslations();
@@ -74,6 +77,7 @@ export class ScoutDetailComponent implements OnInit {
       this.userService.getProfileDataAdmin(userId, this.currentLangId).subscribe((response) => {
         if (response && response.status && response.data && response.data.user_data) {
           this.user = response.data.user_data;
+          this.baseUrl = response.data.imagePath;
           this.paginationData = response.data.pagination;
           // this.userNationalities = JSON.parse(this.user.user_nationalities);
           if (this.user.meta && this.user.meta.cover_image_path) {
@@ -129,10 +133,15 @@ export class ScoutDetailComponent implements OnInit {
         if (result.action == "delete-confirmed") {
           this.deleteUser();
         }
+        if (result.action == "delete-profile-confirmed") {
+          this.deleteUserProfile();
+        }
         //  console.log('Dialog result:', result);
       }
     });
   }
+
+
 
   switchTab(tab: string) {
     this.activeTab = tab;
@@ -170,41 +179,7 @@ export class ScoutDetailComponent implements OnInit {
     this.getUserProfile(this.userId);
   }
 
-  onProfileImageChange(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      let FileToUpload = input.files[0];
 
-      console.log(FileToUpload)
-      try {
-        const formdata = new FormData();
-        formdata.append("profile_image", FileToUpload);
-        let lang_id = localStorage.getItem('lang_id');
-        formdata.append('lang', lang_id + '');
-
-
-        this.userService.uploadProfileImage(this.userId, formdata).subscribe((response) => {
-          if (response && response.status) {
-            if (response.message != '' && response.message != undefined) {
-              this.showMatDialog(response.message, 'display');
-            } else {
-              this.showMatDialog('Profile image updated successfully!', 'display');
-            }
-            this.user.meta.profile_image_path = environment.url + "uploads/" + response.data.uploaded_fileinfo;
-            // this.dataEmitter.emit(this.coverImage); // Emitting the data
-            // this.isLoading = false;
-          } else {
-            this.showMatDialog('Error in updating profile image!', 'display');
-            // this.isLoading = false;
-            console.error('Invalid API response structure:', response);
-          }
-        });
-      } catch (error) {
-        // this.isLoading = false;
-        console.error('Error upload image:', error);
-      }
-    }
-  }
 
   exportUser() {
     this.userService.exportSingleUser(this.userId).subscribe((response) => {
@@ -294,9 +269,10 @@ export class ScoutDetailComponent implements OnInit {
   }
 
   getJsonTranslations() {
-    this.translateService.get(['dashboard', 'confirmDeleteinformation']).subscribe((translations) => {
+    this.translateService.get(['dashboard', 'confirmDeleteinformation', 'deleteProfilePhoto']).subscribe((translations) => {
       this.pageTitle = translations['dashboard'];
       this.userDeleteConfirm = translations['confirmDeleteinformation'];
+      this.deleteProfileImageConfirm = translations['deleteProfilePhoto'];
       this.titleService.setTitle(this.pageTitle);
       console.log('Title fetch Function Fired');
     })
@@ -311,5 +287,98 @@ export class ScoutDetailComponent implements OnInit {
     // let formattedDate = this.adminHelper.convertAdminDateTime(datetime, 'users');
     let formattedDate = this.adminHelper.getSwitzerlandTime(datetime);
     return formattedDate;
+  }
+  deleteImageConfirm() {
+    this.showMatDialog(this.deleteProfileImageConfirm, "delete-profile-confirmation");
+  }
+
+  deleteUserProfile() {
+    // let langId = localStorage.getItem('lang_id');
+    this.userService.deleteProfileImageAdmin(this.userId).subscribe(
+      response => {
+        this.showMatDialog(response.message, 'display');
+        this.getUserProfile(this.userId);
+        // this.router.navigate(['/admin/users']);
+      },
+      error => {
+        console.error('Error deleting user:', error);
+        // this.showMatDialog('Error deleting user. Please try again.', 'display');
+      }
+    );
+  }
+
+  onProfileFileChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+
+    if (input.files && input.files.length > 0) {
+      const selectedFile = input.files[0];
+
+      if (!selectedFile.type.startsWith('image/')) {
+        // this.toastr.error('Please select a valid image file.', 'Invalid File');
+        return;
+      }
+
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        const imageData = reader.result as string;
+
+        const dialogRef = this.dialog.open(ImageCropperComponent2, {
+          width: '500px',
+          data: { imageUrl: imageData },
+          disableClose: true
+        });
+
+        dialogRef.afterClosed().subscribe((croppedImage) => {
+          if (croppedImage) {
+            console.log('Cropped Image:', croppedImage);
+            this.onProfileImageChange(croppedImage);
+          } else {
+            console.log('No cropped image returned');
+          }
+        });
+      };
+
+      reader.readAsDataURL(selectedFile);
+    } else {
+      console.error('No file selected');
+    }
+  }
+
+   onProfileImageChange(croppedImage: any) {
+    try {
+      // FileToUpload
+      const blob = this.dataURItoBlob(croppedImage);
+      const formData = new FormData();
+      let lang_id = localStorage.getItem('lang_id');
+      formData.append('profile_image', blob, 'cropped-image.png');
+      formData.append('lang', lang_id + '');
+      this.userService.uploadProfileImage(this.userId, formData).subscribe((response) => {
+        if (response && response.status) {
+          this.showMatDialog(response.message, 'display');
+          this.getUserProfile(this.userId);
+          // this.user.meta.profile_image_path = environment.url + "uploads/" + response.data.uploaded_fileinfo;
+          // this.isLoading = false;
+        } else {
+          this.showMatDialog('Error in updating profile image!', 'display');
+          // this.isLoading = false;
+          console.error('Invalid API response structure:', response);
+        }
+      });
+    } catch (error) {
+      // this.isLoading = false;
+      console.error('Error upload image:', error);
+    }
+  }
+  
+  dataURItoBlob(dataURI: string): Blob {
+    const byteString = atob(dataURI.split(',')[1]);
+    const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+    const ab = new ArrayBuffer(byteString.length);
+    const ia = new Uint8Array(ab);
+    for (let i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+    return new Blob([ab], { type: mimeString });
   }
 }
