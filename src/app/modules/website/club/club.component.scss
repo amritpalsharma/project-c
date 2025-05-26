@@ -791,7 +791,7 @@ img.birthday-img {
 
 
 .club-heading4 {
-    color: white;
+    color: #bde34e;
     text-align: center;
     font-size: 35px;
     text-transform: uppercase;
@@ -840,7 +840,7 @@ img.birthday-img {
 }
 
 .feature-heading3 {
-    color: white;
+    color: #bde34e;
     text-align: left;
     font-size: 35px;
     margin-bottom: 20px;
@@ -861,9 +861,8 @@ img.birthday-img {
 .accordion-item,
 .accordion-button {
     // background-color: #092E01;
-    color: white;
+    color: #bde34e;
 }
-
 .accordion-item {
     // background-color: #092E01;
     color: white;
@@ -890,26 +889,16 @@ img.birthday-img {
     box-shadow: none;
 }
 
-.accordion-button:not(.collapsed)::after,
-.accordion-button::after {
-    filter: brightness(0) invert(1);
-}
+// .accordion-button:not(.collapsed)::after,
+// .accordion-button::after {
+//     filter: brightness(0) invert(1);
+// }
 
 .accordion-flex button.accordion-button::after {
-    background-image: url(/assets/images/light-arrow-down.svg) !important;
+    background-image: url(/assets/images/light-arrow-down.svg);
 }
 .accordion-flex button.accordion-button.collapsed::after {
-    background-image: url(/assets/images/light-arrow-down.svg) !important;
-}
-
-
-.dark-theme {
-.accordion-flex button.accordion-button::after {
-    background-image: url(/assets/images/dark-arrow-down.svg) !important;
-}
-.accordion-flex button.accordion-button.collapsed::after {
-    background-image: url(/assets/images/dark-arrow-down.svg) !important;
-}
+    background-image: url(/assets/images/light-arrow-down.svg);
 }
 
 .accordion {
@@ -925,6 +914,7 @@ h2.accordion-header {
     font-size: 20px;
     width: 100%;
     font-weight: 600;
+    color: #bde34e;
 }
 
 button.btn.btn-danger {
@@ -1422,27 +1412,27 @@ img.bg-image {
 
 
 .price-heading3 {
-    color: white;
+    color: #bde34e;
     text-transform: uppercase;
     font-weight: 700;
 }
 
 .premium-heading5 {
     font-size: 20px;
-    color: white;
+    color: #bde34e;
     margin-bottom: 20px;
 }
 
 .premium-heading2 {
     font-size: 40px;
-    color: white;
+    color: #bde34e;
     margin-bottom: 20px;
     font-weight: 700;
 }
 
 .premium-heading3 {
     font-size: 60px;
-    color: white;
+    color: #bde34e;
     font-weight: 700;
 }
 
@@ -5880,6 +5870,9 @@ span {
     .item_column:nth-child(2) {
         .body_card {
             // height: calc(300px + 3rem);
+            .premium-heading5 {
+                color: #fff;
+            }
         } 
         .header_card * {
             color: #fff;
