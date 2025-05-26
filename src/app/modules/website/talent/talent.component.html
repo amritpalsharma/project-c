@@ -30,7 +30,7 @@
             <div class="container">
                 <div class="banner-data">
                     <div class="row">
-                        <div class="col-lg-6 col-lg-4 col-12">
+                        <div class="col-lg-6 col-lg-4 col-12" *ngIf="pageData?.banner_title">
                             <div class="banner-left">
                                 <!-- <h1>Theme {{currentTheme}}</h1> -->
                                 <h1 class="banner-heading">{{pageData?.banner_title}}</h1>
@@ -40,7 +40,7 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-6 col-lg-8 col-12">
+                        <div class="col-lg-6 col-lg-8 col-12" *ngIf="selectedLangSlug">
                             <div class="banner_image_combo">
                                 <!-- <img src="./assets/images/How-it-works.png" /> -->
                                 <!-- <img *ngIf="pageData?.banner_img && currentTheme == 'light'"

@@ -13,7 +13,7 @@ h6 {
 body {
   font-family: var(--bs-avenir-regular);
 }
-h1, h2 {
+h1, h2, .join-text p, .joined-text h3 {
   font-family: var(--bs-avenir-bold);
 }
 h3 {
@@ -153,10 +153,10 @@ mat-card.mat-mdc-card.mdc-card {
     text-transform: uppercase;
   }
 ::ng-deep .dark-theme .about-content h2, ::ng-deep .dark-theme .about-content h4 {
-  color: #fff !important;
+  color: #BDE34F !important;
 }
 ::ng-deep .dark-theme .about-content h4:after {
-  background: #fff !important;
+  background: #BDE34F !important;
 }
 /*--------------------------------------------------------------
 #  Countries
@@ -165,7 +165,7 @@ mat-card.mat-mdc-card.mdc-card {
   position: relative;
 }
 .country-available {
-  color: white;
+  color: #BDE34F;
   font-size: 35px;
   font-weight: 700;
   text-transform: uppercase;
@@ -186,7 +186,7 @@ mat-list-item {
   padding: 0 !important;
 }
 .country-name {
-   color: white !important;
+   color: #BDE34F !important;
     font-size: 20px;
     margin-bottom: 0;
     font-family: var(--bs-avenir-semibold);
@@ -312,10 +312,11 @@ img.vector-img {
 }
 
 .join-text p {
-  font-size: 30px;
+  // color: #072944;
+  font-size: 25px;
   text-align: center;
   line-height: 50px;
-  font-family: var(--bs-avenir-bold);
+  font-weight: 500;
 }
 
 img.join-btn {
@@ -477,10 +478,6 @@ img.join-btn {
     height: 300px;
   }
 
-  h3 {
-    font-size: 25px;
-  }
-
   .join-text p {
     font-size: 24px;
     line-height: 43px;
@@ -568,7 +565,11 @@ font-size: 14px;
   }
 
   h3 {
-    font-size: 26px;
+    font-size: 33px;
+  }
+  .join-text p {
+    font-size: 22px;
+    line-height: 44px;
   }
 
 }
@@ -603,13 +604,10 @@ font-size: 14px;
   .countries.py_0 {
     padding-bottom: 0;
   }
-  h3 {
-    font-size: 25px;
-  }
 
-  .join-text p {
+   .join-text p {
     font-size: 20px;
-    line-height: 40px;
+    line-height: 37px;
   }
 
   .club-buttons {
@@ -683,7 +681,6 @@ h3, .text_side_wrapper p {
 }
 }
 
-
 .club .club_player_dark {
 h3, .text_side_wrapper p {
   color: #072944 !important;
@@ -721,6 +718,9 @@ h3, .text_side_wrapper p {
 @media (min-width: 992px) and (max-width: 1599px) {
   .content-text {
     font-size: 20px;
+  }
+  h3 {
+    font-size: 40px;
   }
   .about-text {
     font-size: 55px;

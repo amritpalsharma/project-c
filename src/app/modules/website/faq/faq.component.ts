@@ -1,48 +1,49 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef  } from '@angular/core';
 import { WebPages } from '../../../services/webpages.service';
 @Component({
   selector: 'app-faq',
   templateUrl: './faq.component.html',
-  styleUrls: ['./faq.component.scss']
+  styleUrl: './faq.component.scss',
+  // encapsulation: ViewEncapsulation.None
 })
 export class FaqComponent {
   selectedTab: string = 'talent'; // Default tab
-  faq_banner_title:string='';
-  faq_collapse_titile:string='';
-  faq_first_btn_txt:string='';
-  faq_sec_btn_txt:string='';
-  faq_third_btn_txt:string='';
-  advertisemnet_base_url:string= '';
+  faq_banner_title: string = '';
+  faq_collapse_titile: string = '';
+  faq_first_btn_txt: string = '';
+  faq_sec_btn_txt: string = '';
+  faq_third_btn_txt: string = '';
+  advertisemnet_base_url: string = '';
 
-  isLoading : boolean = true;
-  btnLoading : boolean = true;
+  isLoading: boolean = true;
+  btnLoading: boolean = true;
   countdown: number = 10;
 
-  
+
   isOpen: { [key: string]: boolean[] } = {
     talent: [],
     club: [],
     scout: []
   };
 
-  constructor( private webPages: WebPages){ 
+  constructor(private webPages: WebPages, private cdRef: ChangeDetectorRef) {
     this.initializeIsOpen();
-  
-  }
-  advertisementList: any= null;
 
-  isActive : any ={
+  }
+  advertisementList: any = null;
+
+  isActive: any = {
     skyscraper: true,
     wide_skyscraper: true,
     leaderboard: true,
-    large_leaderboard:true,
+    large_leaderboard: true,
     banner: true,
-    square:true,
+    square: true,
     small_square: true,
     large_rectangle: true,
     inline_rectangle: true,
   }
-  advertisementData:any = {
+  advertisementData: any = {
     skyscraper: {
       id: '1',
       featured_image: "leaderboard.png"
@@ -85,32 +86,32 @@ export class FaqComponent {
     // this.adVisible = [true, true, true, true, true, true, true];
 
     this.adVisible = [false, false, false, false, false, false, false];
-  
+
     this.webPages.languageId$.subscribe((data) => {
       this.getPageData(data)
     });
   }
 
-  getPageData(languageId: any){
-    this.webPages.getDynamicContentPage('faq',languageId).subscribe((res) => {
-      if(res.status){
-          this.faq_banner_title  = res.data.pageData.faq_banner_title;
-          this.faq_collapse_titile = res.data.pageData.faq_collapse_titile;
-          this.faq_first_btn_txt = res.data.pageData.faq_first_btn_txt;
-          this.faq_sec_btn_txt= res.data.pageData.faq_sec_btn_txt;
-          this.faq_third_btn_txt= res.data.pageData.faq_third_btn_txt;
-          this.talentSections = res.data.pageData.faq_first_btn_content; //this.faq_first_btn_content
-           this.clubSections = res.data.pageData.faq_sec_btn_content;
-           this.scoutSections = res.data.pageData.faq_third_btn_content;
-           this.advertisementData = res?.data?.advertisementData;
-           this.advertisementList = res?.data?.allAdsList;
+  getPageData(languageId: any) {
+    this.webPages.getDynamicContentPage('faq', languageId).subscribe((res) => {
+      if (res.status) {
+        this.faq_banner_title = res.data.pageData.faq_banner_title;
+        this.faq_collapse_titile = res.data.pageData.faq_collapse_titile;
+        this.faq_first_btn_txt = res.data.pageData.faq_first_btn_txt;
+        this.faq_sec_btn_txt = res.data.pageData.faq_sec_btn_txt;
+        this.faq_third_btn_txt = res.data.pageData.faq_third_btn_txt;
+        this.talentSections = res.data.pageData.faq_first_btn_content; //this.faq_first_btn_content
+        this.clubSections = res.data.pageData.faq_sec_btn_content;
+        this.scoutSections = res.data.pageData.faq_third_btn_content;
+        this.advertisementData = res?.data?.advertisementData;
+        this.advertisementList = res?.data?.allAdsList;
 
-           this.advertisemnet_base_url = res.data.advertisemnet_base_url;
+        this.advertisemnet_base_url = res.data.advertisemnet_base_url;
 
-           this.isLoading = false;
-           this.startCountdown();
-          
-        }
+        this.isLoading = false;
+        this.startCountdown();
+
+      }
     });
   }
 
@@ -125,7 +126,7 @@ export class FaqComponent {
     }, 1000);
   }
   // Sections for each tab
-  talentSections:any = [
+  talentSections: any = [
     // {
     //   title: 'What is Soccer?',
     //   desc: `Soccer, also known as football in most countries outside of the United States and Canada, is a popular team sport played between two teams of eleven players each. The game is played on a rectangular field with a goal at each end. The objective is to score by getting a ball into the opposing team's goal. Players primarily use their feet to move the ball, but they can also use their head or torso. The goalkeeper is the only player allowed to use their hands and arms, but only within the penalty area surrounding the goal.`,
@@ -178,7 +179,7 @@ export class FaqComponent {
     // },
   ];
 
-  clubSections:any = [
+  clubSections: any = [
     // {
     //   title: 'What is Soccer?',
     //   desc: `Soccer, also known as football in most countries outside of the United States and Canada, is a popular team sport played between two teams of eleven players each. The game is played on a rectangular field with a goal at each end. The objective is to score by getting a ball into the opposing team's goal. Players primarily use their feet to move the ball, but they can also use their head or torso. The goalkeeper is the only player allowed to use their hands and arms, but only within the penalty area surrounding the goal.`,
@@ -231,7 +232,7 @@ export class FaqComponent {
     // },
   ];
 
-  scoutSections:any = [
+  scoutSections: any = [
     // {
     //   title: 'What is Soccer?',
     //   desc: `Soccer, also known as football in most countries outside of the United States and Canada, is a popular team sport played between two teams of eleven players each. The game is played on a rectangular field with a goal at each end. The objective is to score by getting a ball into the opposing team's goal. Players primarily use their feet to move the ball, but they can also use their head or torso. The goalkeeper is the only player allowed to use their hands and arms, but only within the penalty area surrounding the goal.`,
@@ -317,9 +318,9 @@ export class FaqComponent {
     this.selectedTab = tab;
     this.initializeIsOpen();
   }
- 
+
   adVisible: boolean[] = [true, true, true, true, true, true, true]; // Array to manage ad visibility
-  
+
   // closeAd(index: number) {
   //   this.adVisible[index] = false; // Set the specific ad to not visible based on index
   // }
@@ -329,10 +330,10 @@ export class FaqComponent {
     this.isActive[object] = false;
 
   }
-  
 
-  isEmptyObject(obj:any) {
-    if(typeof obj != 'undefined'){
+
+  isEmptyObject(obj: any) {
+    if (typeof obj != 'undefined') {
       return (obj && (Object.keys(obj).length === 0));
     }
     return true;
@@ -363,5 +364,6 @@ export class FaqComponent {
 
   ngAfterViewInit() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+      this.cdRef.detectChanges();
   }
 }

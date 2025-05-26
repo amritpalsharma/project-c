@@ -28,11 +28,11 @@
         </div>
     </div>
 
-    <div class="faq py_0">
+    <div class="faq py_0 common_static_page">
         <div class="container">
             <h3>{{faq_collapse_titile}}</h3>
 
-            <ul class="nav nav-tabs" role="tablist">
+            <ul class="nav nav-tabs" role="tablist" *ngIf="faq_collapse_titile">
                 <li class="nav-item">
                     <a class="nav-link active" data-bs-toggle="tab" data-bs-target="#Tab1"
                         role="tab">{{faq_first_btn_txt}}</a>

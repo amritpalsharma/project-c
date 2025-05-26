@@ -14,7 +14,7 @@ body {
   font-family: var(--bs-avenir-regular);
 }
 h1, .banner-btn .btn, .joined-text h3, .works h3, .works-btn button.btn.active-btn p,
-.club .club_player_light h3, .join-text p {
+.club h3, .join-text p {
   font-family: var(--bs-avenir-bold);
 }
 .progress_btn a, .works-btn button.btn p, p strong {
@@ -636,7 +636,7 @@ li {
 
 .joined-text h3 {
   text-transform: uppercase;
-  color: white;
+  color: #bde34f;
   font-weight: 700;
 }
 
@@ -849,7 +849,9 @@ li {
   position: relative;
   overflow: hidden;
 }
-
+.works h3 {
+  color: #BDE34F;
+}
 p.club-p {
   font-weight: 400;
   opacity: 75%;
@@ -2618,11 +2620,6 @@ img.success-image {
     right: 26%;
     top: 26%;
   }
-
-  p {
-    font-size: 18px;
-  }
-
 }
 
 

@@ -480,3 +480,10 @@ tr td:last-child {
   pointer-events: none;
   display: none;
 }
+
+
+.same-width {
+  display: inline-block;
+  width: 100px;
+  text-align: center;
+}

@@ -92,7 +92,7 @@ P {
     color: white;
     font-size: 45px;
     text-transform: uppercase;
-    font-weight: 700;
+    font-family: var(--bs-avenir-bold);
 }
 
 .banner-heading5 {
@@ -110,7 +110,7 @@ a.btn.btn-register {
     text-align: center;
     font-size: 18px;
     margin-top: 20px;
-    font-weight: 700;
+    font-family: var(--bs-avenir-bold);
     border: 0 !important;
 }
 
@@ -187,11 +187,10 @@ a.btn.btn-register {
 
 
 .club-heading4 {
-    color: white;
+    color: #BDE34E;
     text-align: center;
     font-size: 35px; 
-    // text-transform: uppercase;
-    font-weight: 700;
+    font-family: var(--bs-avenir-bold);
     height: unset !important;
 }
 
@@ -230,12 +229,12 @@ a.btn.btn-register {
 }
 
 .feature-heading3 {
-    color: white;
+    color: #BDE34E;
     text-align: left;
     font-size: 35px;
     margin-bottom: 20px;
     // text-transform: uppercase;
-    font-weight: 700;
+    font-family: var(--bs-avenir-bold);
 }
 
 .accordion-item:first-of-type {
@@ -281,27 +280,16 @@ a.btn.btn-register {
     box-shadow: none;
 }
 
-.accordion-button:not(.collapsed)::after,
-.accordion-button::after {
-    filter: brightness(0) invert(1);
-}
+// .accordion-button:not(.collapsed)::after,
+// .accordion-button::after {
+//     filter: brightness(0) invert(1);
+// }
 .accordion-flex button.accordion-button::after {
-    background-image: url(/assets/images/light-arrow-down.svg) !important;
+    background-image: url(/assets/images/light-arrow-down.svg);
 }
 .accordion-flex button.accordion-button.collapsed::after {
-    background-image: url(/assets/images/light-arrow-down.svg) !important;
+    background-image: url(/assets/images/light-arrow-down.svg);
 }
-
-
-.dark-theme {
-.accordion-flex button.accordion-button::after {
-    background-image: url(/assets/images/dark-arrow-down.svg) !important;
-}
-.accordion-flex button.accordion-button.collapsed::after {
-    background-image: url(/assets/images/dark-arrow-down.svg) !important;
-}
-}
-
 
 
 .accordion {
@@ -321,12 +309,13 @@ h2.accordion-header {
     font-size: 20px;
     width: 100%;
     font-weight: 600;
+    color: #BDE34E;
 }
 
 button.btn.btn-danger {
     // background-color: white;
     // color: #E05263;
-    font-weight: 700;
+    font-family: var(--bs-avenir-bold);
     // border: 1px solid #E05263;
     border-radius: 20px;
     width: 203px;
@@ -768,7 +757,7 @@ img.dark-feature2 {
 p.d-o-b {
     font-size: 12px;
     color: #559B44;
-    font-weight: 700;
+    font-family: var(--bs-avenir-bold);
 }
 
 .flag-bottom {
@@ -881,7 +870,6 @@ img.bg-image {
 .premium {
     width: 100%;
     min-height: 338px;
-    /* Ensures it starts with a base size */
     border-radius: 10px;
     padding: 50px 20px 40px 40px;
     position: relative;
@@ -890,29 +878,28 @@ img.bg-image {
 
 
 .price-heading3 {
-    color: white;
-    // text-transform: uppercase;
+    color: #bde34e;
     font-weight: bold;
 }
 
 .premium-heading5 {
     font-size: 20px;
-    color: white;
-    font-weight: 700;
+    color: #bde34e;
+    font-family: var(--bs-avenir-bold);
     margin-bottom: 20px;
 }
 
 .premium-heading2 {
     font-size: 40px;
-    color: white;
+    color: #bde34e;
     margin-bottom: 20px;
-    font-weight: 700;
+    font-family: var(--bs-avenir-bold);
 }
 
 .premium-heading3 {
     font-size: 60px;
-    color: white;
-    font-weight: 700;
+    color: #bde34e;
+    font-family: var(--bs-avenir-bold);
 }
 
 span {
@@ -929,7 +916,6 @@ span {
     height: 25px;
     width: 25px;
     border-radius: 50%;
-    // background-color: #092E01;
     margin-right: 10px;
 }
 
@@ -3355,7 +3341,7 @@ span {
     p.d-o-b {
         font-size: 9px;
         color: #559B44;
-        font-weight: 700;
+        font-family: var(--bs-avenir-bold);
     }
 
     img.birthday-img {
@@ -3651,7 +3637,7 @@ span {
     p.d-o-b {
         font-size: 7px;
         color: #559B44;
-        font-weight: 700;
+        font-family: var(--bs-avenir-bold);
     }
 
     img.birthday-img {
@@ -3925,7 +3911,7 @@ span {
             background-image: linear-gradient(180deg, #6FB95D, #236115);
             border: 1px solid #175B07;
             color: #fff;
-            font-weight: 700;
+            font-family: var(--bs-avenir-bold);
         }
     }
 }
@@ -3967,6 +3953,9 @@ span {
     .item_column:nth-child(2) {
         .body_card {
             // height: calc(300px + 3rem);
+            .premium-heading5 {
+                color: #fff;
+            }
         }
         .header_card * {
             color: #fff;

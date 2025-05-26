@@ -2318,9 +2318,11 @@
 
     .item_column:nth-child(odd) {
 
-      .premium-text p,
-      .premium-heading5 {
+      .premium-text p {
         color: #fff !important;
+      }
+      .premium-heading5 {
+        color: #BDE34E !important;
       }
 
       .header_card {
@@ -2503,8 +2505,10 @@ background: #072944 !important;
 }
   .grey_common_banner{
     background-color: #0C3453 !important;
-
-    h2.cookie-text, .contact-text p, h3 {
+    h2.cookie-text, h3 {
+      color: #BDE34F !important;
+    }
+    .contact-text p {
       color: #fff !important;
     }
     .mail {
@@ -2575,4 +2579,11 @@ background: #072944 !important;
       }
     }
   }
+
+.features .accordion-flex button.accordion-button::after {
+    background-image: url(/assets/images/dark-arrow-down.svg) !important;
+}
+.features .accordion-flex button.accordion-button.collapsed::after {
+    background-image: url(/assets/images/dark-arrow-down.svg) !important;
+}
 }
