@@ -2505,8 +2505,10 @@ background: #072944 !important;
 }
   .grey_common_banner{
     background-color: #0C3453 !important;
-
-    h2.cookie-text, .contact-text p, h3 {
+    h2.cookie-text, h3 {
+      color: #BDE34F !important;
+    }
+    .contact-text p {
       color: #fff !important;
     }
     .mail {

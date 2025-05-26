@@ -16,33 +16,33 @@ h4 {
 h3 {
     font-size: 35px;
     font-family: var(--bs-avenir-bold);
-    color: white;
+    color: #bde34e;
     margin-bottom: 50px;
     position: relative;
     text-transform: uppercase;
 }
-h3::after {
-    position: absolute;
-    content: "";
-    z-index: 1;
-    background-color: #FFFFFF;
-    opacity: 10%;
-    height: 1px;
-    width: 100%;
-    bottom: -20px;
-    left: 0;
-}
-p {
-    font-size: 18px;
-    color: white;
-    font-weight: 400;
-}
-li {
-    font-size: 18px;
-    color: white;
-    font-weight: 400;
-    margin-top: 20px;
-}
+// h3::after {
+//     position: absolute;
+//     content: "";
+//     z-index: 1;
+//     background-color: #FFFFFF;
+//     opacity: 10%;
+//     height: 1px;
+//     width: 100%;
+//     bottom: -20px;
+//     left: 0;
+// }
+// p {
+//     font-size: 18px;
+//     color: white;
+//     font-weight: 400;
+// }
+// li {
+//     font-size: 18px;
+//     color: white;
+//     font-weight: 400;
+//     margin-top: 20px;
+// }
 .py_0 {
     padding-top: 50px;
     padding-bottom: 50px;
@@ -234,7 +234,7 @@ ul.nav-tabs {
     .card-header a:before {
         content: ' ';
         position: absolute;
-        right: 10px;
+        right: 0;
         top: 16px;
         width: 30px;
         height: 30px;
@@ -356,29 +356,34 @@ ul.nav-tabs {
       font-size: 55px;
     }
     h3{
-      font-size: 45px;
+        font-size: 45px;
     }
 }
 
-
 @media (min-width: 992px) and (max-width: 1999px) {
-    .accordion {
-        .card-header a {
+    .common_static_page {
+        h2 {
+            font-size: 35px;
+        }
+        h3, .card-header a {
             font-size: 30px;
         }
-        .card-body p, .card-body li {
-            font-size: 24px;
+        p, li {
+            font-size: 24px !important;
         }
     }
 }
 
 @media (min-width: 576px) and (max-width: 991px) {
-    .accordion {
-        .card-header a {
+    .common_static_page {
+        h2 {
+            font-size: 28px;
+        }
+        h3, .card-header a {
             font-size: 24px;
         }
-        .card-body p, .card-body li {
-            font-size: 20px;
+        p, li {
+            font-size: 20px !important;
         }
     }
 }
@@ -411,13 +416,15 @@ ul.nav-tabs {
     }
 }
 
-
 @media (min-width: 2000px) {
-    .accordion {
-        .card-header a {
+    .common_static_page {
+        h2 {
+            font-size: 38px;
+        }
+        h3, .card-header a {
             font-size: 32px;
         }
-        .card-body p, .card-body li {
+        p, li {
             font-size: 26px;
         }
     }
@@ -434,17 +441,15 @@ ul.nav-tabs {
         font-size: 45px !important;
         padding: 19px 50px 13px !important;
     }
-    .accordion {
-        .card-header a {
+    .common_static_page {
+        h2 {
+            font-size: 50px;
+        }
+        h3, .card-header a {
             font-size: 45px;
         }
-        .card-body p, .card-body li {
+        p, li {
             font-size: 40px;
-        }
-        .card-header a:before {
-            width: 40px;
-            height: 40px;
-            background-size: 40px !important;
         }
     }
     

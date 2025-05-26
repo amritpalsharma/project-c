@@ -72,7 +72,7 @@ export class UserEditPopupComponent {
         this.getClubsForPlayer();
       }
     }
-    console.info('user',this.data)
+    // console.info('user',this.data)
   }
 
   ngOnInit() {
@@ -232,7 +232,7 @@ export class UserEditPopupComponent {
           if (this.playerClubsListing[index].is_taken == "yes") {
             this.showTeamsDropdown = true;
             this.takenBy = this.playerClubsListing[index].taken_by;
-            this.playerTeam = this.data.team_id;
+            this.playerTeam = this.data.team_id;  
             this.getTeamsByClub(this.takenBy);
           }
           // this.playerClub = 10;

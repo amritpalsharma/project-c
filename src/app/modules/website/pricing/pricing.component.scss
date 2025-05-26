@@ -145,7 +145,7 @@ body {
 
 .price-heading3 {
     height: unset;
-    color: white;
+    color: #BDE34F;
     text-transform: uppercase;
     width: 100%;
     font-size: 38px;
@@ -154,21 +154,21 @@ body {
 
 .premium-heading5 {
     font-size: 20px;
-    color: white;
+    color: #BDE34F;
     margin-bottom: 20px;
     font-weight: 700;
 }
 
 .premium-heading2 {
     font-size: 36px;
-    color: white;
+    color: #BDE34F;
     margin-bottom: 20px;
     font-weight: 700;
 }
 
 .premium-heading3 {
     font-size: 60px;
-    color: white;
+    color: #BDE34F;
     font-weight: 700;
 }
 
@@ -512,6 +512,9 @@ li::before {
     .item_column:nth-child(2) {
         .body_card {
             // height: calc(300px + 3rem);
+            .premium-heading5 {
+                color: #fff;
+            }
         }
         .header_card * {
             color: #fff;

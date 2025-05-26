@@ -289,8 +289,8 @@ body {
     font-size: 24px !important;
 }
 .website-code nav.navbar .login-btn {
-    width: 220px !important;
-    font-size: 20px !important;
+    width: 240px !important;
+    font-size: 22px !important;
     margin-left: 20px;
 }
 .table th, .table td, .table td span {
@@ -364,7 +364,7 @@ mat-datepicker-toggle button {
     background-size: 26px !important;
 }
 .website-code .feature-heading3, .website-code .club-heading4, .club-banner .title_text_p h3, .price-heading3, .club-banner .club_players h3,
-.website-code .faq h3 {
+.website-code .faq h3, .latest-news h4 {
     font-size: 55px !important;
 }
 .club_text img {
@@ -492,7 +492,7 @@ mat-datepicker-toggle button {
       font-size: 45px !important;
     }
     p, .banner-btn .btn, .premium-heading3 span, .price_mat_wrapper .feature-data ul li, .learn-banner .back-button,
-    .contact-text .location-text {
+    .contact-text .location-text, .post_back_btn_date .back-button {
       font-size: 26px !important;
     }
     .footer-top h4 {
@@ -513,7 +513,7 @@ mat-datepicker-toggle button {
     .recently-joined .flag-image {
       bottom: 60px !important;
     }
-    .club .club_player_light h3 {
+    .club h3 {
         font-size: 45px !important;
     }
     .club-text1 {
@@ -683,6 +683,14 @@ mat-datepicker-toggle button {
     .website-code .frontend_pages_larger_size nav.navbar li.nav-item {
         margin-left: 70px !important;
     }
+    .website-code .website_main_pages.navbar .login-btn {
+        width: 300px !important;
+        font-size: 32px !important;
+        svg {
+            width: 40px !important;
+            height: 25px;
+        }
+    }
     .website_main_pages.navbar .navbar-brand img {
         width: 420px !important;
         height: 216px !important;
@@ -741,7 +749,7 @@ mat-datepicker-toggle button {
         .contact-text .location-text {
             font-size: 40px !important;
         }
-        .thankyou_secc .thankyou_text h4 {
+        .thankyou_secc .thankyou_text h4, .post_back_btn_date .back-button {
             font-size: 34px !important;
         }
         .thankyou_secc .thankyou_text h1 {
@@ -779,7 +787,7 @@ mat-datepicker-toggle button {
         .country-available {
             font-size:  90px !important;
         }
-        .club .club_player_light h3 {
+        .club h3 {
             font-size: 70px !important;
         }
         .club_text img {
@@ -988,14 +996,6 @@ mat-datepicker-toggle button {
     }
     .website_main_pages .works-btn button.btn p {
         font-size: 40px !important;
-    }
-    .website-code nav.navbar .login-btn {
-        width: 300px !important;
-        font-size: 32px !important;
-        svg {
-            width: 40px !important;
-            height: 25px;
-        }
     }
     footer.website_main_pages {
         .social-link {

@@ -76,6 +76,7 @@ export class IndexComponent {
   // advertisementData:any=null;
   advertisementList: any = null;
   imageBaseUrl: string = '';
+  flagPath: string = 'https://api.socceryou.ch/uploads/logos/';
   banner_img: string = '';
   banner_img_dark_mode: string = '';
   banner_bg_img: string = '';
