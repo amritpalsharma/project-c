@@ -816,7 +816,7 @@
   "displayDuration": "Anzeigedauer",
   "newCoupon": "Neuer Gutschein",
   "editCoupon": "Gutschein bearbeiten",
-  "typeOfCoupon": "Wähle die Art des Gutscheins:",
+  "typeOfCoupon": "Wähle die Art des Gutscheins",
   "$Discount": "$ Rabatt",
   "%Discount": "% Rabatt",
   "couponName": "Gutscheinname",

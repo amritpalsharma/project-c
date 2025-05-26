@@ -29,7 +29,7 @@
             <div class="container">
                 <div class="banner-data1">
                     <div class="row">
-                        <div class="col-lg-4 col-md-12 col-12">
+                        <div class="col-lg-4 col-md-12 col-12" *ngIf="pageData?.banner_title">
                             <div class="banner-left">
 
                                 <h2 class="banner-heading">{{pageData?.banner_title}}</h2>
@@ -41,7 +41,7 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-8 col-md-12 col-12">
+                        <div class="col-lg-8 col-md-12 col-12" *ngIf="!isLoading">
                             <div class="banner_image_combo">
                                 <img *ngIf="currentTheme == 'light' && !isLoading"
                                     src="/assets/images/club_page/banner_light_img.png" />

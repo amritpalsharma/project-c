@@ -31,7 +31,7 @@ export class CouponsComponent {
   idsToProceed: any = [];
   selectedIds: any = [];
   customFilters: any = [];
-  count : number = 0;
+  count: number = 0;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -322,5 +322,9 @@ export class CouponsComponent {
   applyUserFilter(filters: any) {
     this.customFilters = filters;
     this.getCoupons(true);
+  }
+
+  parseJson(rawJson: any) {
+    return JSON.parse(rawJson);
   }
 }

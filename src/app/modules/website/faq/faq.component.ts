@@ -1,10 +1,10 @@
-import { Component, ViewEncapsulation  } from '@angular/core';
+import { Component, ChangeDetectorRef  } from '@angular/core';
 import { WebPages } from '../../../services/webpages.service';
 @Component({
   selector: 'app-faq',
   templateUrl: './faq.component.html',
   styleUrl: './faq.component.scss',
-  encapsulation: ViewEncapsulation.None
+  // encapsulation: ViewEncapsulation.None
 })
 export class FaqComponent {
   selectedTab: string = 'talent'; // Default tab
@@ -26,7 +26,7 @@ export class FaqComponent {
     scout: []
   };
 
-  constructor(private webPages: WebPages) {
+  constructor(private webPages: WebPages, private cdRef: ChangeDetectorRef) {
     this.initializeIsOpen();
 
   }
@@ -364,5 +364,6 @@ export class FaqComponent {
 
   ngAfterViewInit() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+      this.cdRef.detectChanges();
   }
 }

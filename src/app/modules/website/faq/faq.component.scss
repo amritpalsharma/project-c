@@ -1,18 +1,25 @@
 body {
-  font-family: var(--bs-avenir-regular);
+    font-family: var(--bs-avenir-regular);
 }
-h1, h2, b, strong {
-  font-family: var(--bs-avenir-bold);
+
+h1,
+h2,
+b,
+strong {
+    font-family: var(--bs-avenir-bold);
 }
+
 ::ng-deep strong {
     font-family: var(--bs-avenir-bold);
 }
+
 h4 {
     font-size: 22px;
     color: white;
     font-family: var(--bs-avenir-semibold);
     margin-bottom: 0;
 }
+
 h3 {
     font-size: 35px;
     font-family: var(--bs-avenir-bold);
@@ -21,6 +28,7 @@ h3 {
     position: relative;
     text-transform: uppercase;
 }
+
 // h3::after {
 //     position: absolute;
 //     content: "";
@@ -47,29 +55,36 @@ h3 {
     padding-top: 50px;
     padding-bottom: 50px;
 }
+
 .tabs {
     margin-bottom: 20px;
     padding-top: 20px;
 }
+
 .main-bnr {
     position: relative;
     z-index: 1;
 }
+
 .bnr-media {
     position: relative;
 }
+
 .bnr-media img {
     width: 100%;
 }
+
 .form-select:focus {
     border-color: none;
     outline: 0;
     box-shadow: none;
 }
+
 .overlay {
     position: absolute;
     height: auto;
 }
+
 .overlay {
     position: absolute;
     height: 100%;
@@ -77,6 +92,7 @@ h3 {
     left: 0;
     top: 0;
 }
+
 .main {
     background-image: url("/assets/images/banner_images/faq_banner_image.png");
     background-repeat: no-repeat;
@@ -87,25 +103,30 @@ h3 {
     align-items: flex-end;
     position: relative;
 }
+
 .banner-inner {
     width: 100%;
     position: relative;
     z-index: 1;
 }
+
 .header-transparent {
     position: absolute;
     z-index: 2;
     width: 100%;
 }
+
 .cookie-text {
     font-size: 45px;
     font-family: var(--bs-avenir-bold);
     color: white;
     text-transform: uppercase;
 }
+
 .tab-content {
     border-top: none;
 }
+
 .header {
     display: flex;
     justify-content: space-between;
@@ -114,10 +135,15 @@ h3 {
     padding-left: 0;
     color: white;
 }
-.talent-content, .club-content {
+
+.talent-content,
+.club-content {
     position: relative;
 }
-.talent-content::after, .club-content::after, .scout-content::after {
+
+.talent-content::after,
+.club-content::after,
+.scout-content::after {
     content: "";
     position: absolute;
     background-color: white;
@@ -128,17 +154,21 @@ h3 {
     z-index: 1;
     margin-top: 20px;
 }
+
 .scout-content {
     position: relative;
     padding-bottom: 0;
 }
+
 .header h3 {
     margin: 0;
     color: white;
 }
+
 h4 {
     margin: 0;
 }
+
 .toggle-icon {
     width: 30px;
     text-align: center;
@@ -148,28 +178,34 @@ h4 {
     margin-left: 20px;
     font-weight: 100;
 }
+
 .faq-content.faq-content-open {
     padding-bottom: 20px;
 }
+
 .faq-content {
     max-height: 0;
     opacity: 0;
     overflow: hidden;
     transform: translateY(-20px);
     transition: max-height 0.5s ease,
-    opacity 0.5s ease,
-    transform 0.5s ease;
+        opacity 0.5s ease,
+        transform 0.5s ease;
 }
+
 .faq-content-open {
     // max-height: 1000px;
     max-height: max-content;
     opacity: 1;
     transform: translateY(0);
     transition: max-height 0.5s ease,
-    opacity 0.5s ease,
-    transform 0.5s ease;
+        opacity 0.5s ease,
+        transform 0.5s ease;
 }
-button.faq-club-button, button.faq-talent-button, button.faq-scout-button {
+
+button.faq-club-button,
+button.faq-talent-button,
+button.faq-scout-button {
     background-color: transparent;
     border: none;
     color: #86AA7D;
@@ -180,6 +216,7 @@ button.faq-club-button, button.faq-talent-button, button.faq-scout-button {
     text-transform: uppercase;
     padding: 10px 30px;
 }
+
 .tabs button.active {
     font-family: var(--bs-avenir-bold);
 }
@@ -187,6 +224,7 @@ button.faq-club-button, button.faq-talent-button, button.faq-scout-button {
 
 ul.nav-tabs {
     border: 0 !important;
+
     a.nav-link {
         background-color: transparent;
         border: none;
@@ -198,6 +236,7 @@ ul.nav-tabs {
         padding: 10px 30px;
         cursor: pointer;
         font-family: var(--bs-avenir-regular);
+
         &.active {
             font-family: var(--bs-avenir-bold);
             color: #fff;
@@ -216,11 +255,13 @@ ul.nav-tabs {
         border-bottom: 1px solid #80808047;
         padding: 0 !important;
     }
+
     .card .card-header {
         background: transparent;
         margin-bottom: 0;
         border: 0;
     }
+
     .card-header a {
         width: 100%;
         display: inline-block;
@@ -231,6 +272,7 @@ ul.nav-tabs {
         font-family: var(--bs-avenir-semibold);
         border-radius: 0;
     }
+
     .card-header a:before {
         content: ' ';
         position: absolute;
@@ -243,9 +285,11 @@ ul.nav-tabs {
         background-position: center;
         background-size: 25px;
     }
+
     .card-header a.collapsed:before {
         background-image: url(../../../../assets/images/accordion-plus-dark.svg);
     }
+
     .card-body {
         padding: 0 0 1rem;
     }
@@ -256,6 +300,7 @@ ul.nav-tabs {
         font-size: 30px;
         margin-bottom: 30px;
     }
+
     .header {
         padding: 8px 0px 8px 0;
     }
@@ -265,18 +310,25 @@ ul.nav-tabs {
     .cookie-text {
         font-size: 40px;
     }
+
     .about {
         margin-top: 50px;
     }
+
     h4 {
         font-size: 21px;
     }
+
     .faq-content {
         font-size: 18px;
     }
-    button.faq-club-button, button.faq-talent-button, button.faq-scout-button {
+
+    button.faq-club-button,
+    button.faq-talent-button,
+    button.faq-scout-button {
         font-size: 20px;
     }
+
     ul.nav-tabs {
         a.nav-link {
             font-size: 20px;
@@ -289,42 +341,57 @@ ul.nav-tabs {
     .header {
         padding: 10px 0px 10px 0px;
     }
-    button.faq-club-button, button.faq-talent-button, button.faq-scout-button {
+
+    button.faq-club-button,
+    button.faq-talent-button,
+    button.faq-scout-button {
         font-size: 18px;
     }
+
     .cookie-text {
         font-size: 35px;
     }
+
     h3 {
         font-size: 22px;
     }
-    button.faq-club-button, button.faq-talent-button, button.faq-scout-button {
+
+    button.faq-club-button,
+    button.faq-talent-button,
+    button.faq-scout-button {
         padding: 10px 20px;
     }
+
     h4 {
         font-size: 19px;
     }
+
     .toggle-icon {
         font-size: 38px;
         min-width: 40px;
     }
+
     .py_0 {
         padding-top: 20px;
         padding-bottom: 20px;
     }
+
     .faq-content {
         font-size: 16px;
     }
+
     ul.nav-tabs {
         a.nav-link {
             font-size: 18px;
             padding: 10px 20px;
         }
     }
+
     .accordion {
         .card-header a {
             font-size: 19px;
         }
+
         .card-header a:before {
             right: 0 !important;
             top: 11px !important;
@@ -336,13 +403,18 @@ ul.nav-tabs {
 }
 
 @media (max-width: 390px) {
-    button.faq-club-button, button.faq-talent-button, button.faq-scout-button {
+
+    button.faq-club-button,
+    button.faq-talent-button,
+    button.faq-scout-button {
         font-size: 16px;
         padding: 8px 10px 6px;
     }
+
     .cookie-text {
         font-size: 28px;
     }
+
     ul.nav-tabs {
         a.nav-link {
             font-size: 16px !important;
@@ -353,9 +425,10 @@ ul.nav-tabs {
 
 @media (min-width: 992px) and (max-width: 1599px) {
     .cookie-text {
-      font-size: 55px;
+        font-size: 55px;
     }
-    h3{
+
+    h3 {
         font-size: 45px;
     }
 }
@@ -365,13 +438,23 @@ ul.nav-tabs {
         h2 {
             font-size: 35px;
         }
-        h3, .card-header a {
+
+        h3,
+        .card-header a {
             font-size: 30px;
         }
-        p, li {
+
+        p,
+        li {
             font-size: 24px !important;
         }
     }
+
+    :host ::ng-deep .common_static_page p,
+    :host ::ng-deep .common_static_page li {
+        font-size: 24px !important;
+    }
+
 }
 
 @media (min-width: 576px) and (max-width: 991px) {
@@ -379,12 +462,21 @@ ul.nav-tabs {
         h2 {
             font-size: 28px;
         }
-        h3, .card-header a {
+
+        h3,
+        .card-header a {
             font-size: 24px;
         }
-        p, li {
+
+        p,
+        li {
             font-size: 20px !important;
         }
+    }
+
+    :host ::ng-deep .common_static_page p,
+    :host ::ng-deep .common_static_page li {
+        font-size: 20px !important;
     }
 }
 
@@ -392,22 +484,28 @@ ul.nav-tabs {
     h3 {
         font-size: 45px;
     }
+
     h2.cookie-text {
         font-size: 50px;
     }
+
     .tabs button {
         font-size: 24px !important;
         padding: 10px 30px;
     }
+
     .header h4 {
         font-size: 28px;
     }
+
     p.faq-content {
         font-size: 24px;
     }
+
     .toggle-icon {
         font-size: 75px;
     }
+
     ul.nav-tabs {
         a.nav-link {
             font-size: 24px !important;
@@ -421,12 +519,21 @@ ul.nav-tabs {
         h2 {
             font-size: 38px;
         }
-        h3, .card-header a {
+
+        h3,
+        .card-header a {
             font-size: 32px;
         }
-        p, li {
+
+        p,
+        li {
             font-size: 26px;
         }
+    }
+
+    :host ::ng-deep .common_static_page p,
+    :host ::ng-deep .common_static_page li {
+        font-size: 26px !important;
     }
 }
 
@@ -434,25 +541,37 @@ ul.nav-tabs {
     .header {
         padding: 20px 10px;
     }
+
     .toggle-icon {
         font-size: 85px !important;
     }
+
     .tabs button {
         font-size: 45px !important;
         padding: 19px 50px 13px !important;
     }
+
     .common_static_page {
         h2 {
             font-size: 50px;
         }
-        h3, .card-header a {
+
+        h3,
+        .card-header a {
             font-size: 45px;
         }
-        p, li {
+
+        p,
+        li {
             font-size: 40px;
         }
     }
-    
+
+    :host ::ng-deep .common_static_page p,
+    :host ::ng-deep .common_static_page li {
+        font-size: 40px !important;
+    }
+
     ul.nav-tabs {
         a.nav-link {
             font-size: 45px !important;

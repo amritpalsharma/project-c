@@ -520,7 +520,7 @@ export class HeaderComponent {
       lang = domainLang;
     }
     localStorage.clear();
-    if(cookieConsent && typeof cookieConsent !== undefined){
+    if(cookieConsent && typeof cookieConsent != undefined){
       localStorage.setItem('cookieConsent', cookieConsent);
     }
     localStorage.setItem('theme', theme);
@@ -528,7 +528,7 @@ export class HeaderComponent {
     this.authService.logout();
     setTimeout(() => {
       window.location.reload();
-    }, 500);
+    }, 100);
   }
 
   themeText: string = 'Light Mode'
