@@ -520,11 +520,11 @@ export class HeaderComponent {
       lang = domainLang;
     }
     localStorage.clear();
-    if(cookieConsent && typeof cookieConsent != undefined){
-      localStorage.setItem('cookieConsent', cookieConsent);
-    }
+    // if(cookieConsent && typeof cookieConsent != undefined){
+    // }
+    // localStorage.setItem('cookieConsent', 'accepted');
     localStorage.setItem('theme', theme);
-    localStorage.setItem('lang', lang);
+    localStorage.setItem('lang', lang); 
     this.authService.logout();
     setTimeout(() => {
       window.location.reload();
