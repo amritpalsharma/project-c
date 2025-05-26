@@ -99,7 +99,7 @@
           <!-- Dynamic COnetnt -->
           <div class="card" *ngFor="let section of accordionDataTerms; let i = index">
             <div class="card-header p-0" role="tab" id="accordionone">
-              <a data-bs-toggle="collapse" href="#accordion__{{i}}" role="button" aria-controls="accordion__one">
+              <a [ngClass]="{'collapse': i === 0,'collapsed': i != 0, 'show': i === 0}" data-bs-toggle="collapse" href="#accordion__{{i}}" role="button" aria-controls="accordion__one">
                 <ng-container *ngIf="i > 0">{{i}}.</ng-container> {{section.title}}
               </a>
             </div>

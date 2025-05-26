@@ -2,6 +2,8 @@
   <div class="popup_header p-3">
     <h6 class="code-text text-center" *ngIf="this.data.action == 'create'">{{ 'newCoupon' | translate }}</h6>
     <h6 class="code-text text-center" *ngIf="this.data.action == 'update'">{{ 'editCoupon' | translate }}</h6>
+    <h6 class="code-text text-center" *ngIf="this.data.action == 'view-only'">{{ 'view' | translate }} {{ viewCounpon}}
+    </h6>
     <!-- <div (click)="close()" class="close-img mb-1"></div> -->
     <div class="close-img mb-1" *ngIf='theme!="dark"'>
       <img src="../../../assets/images/carbon_close-outline-light.svg" alt="" class="" (click)="close()" />
@@ -19,14 +21,14 @@
           <button class="custom-button">
             <label>
               <input class="form-check-input" type="radio" name="options" [(ngModel)]="type" value="amount"
-                (change)="resetDiscountInputs()">
+                (change)="resetDiscountInputs()" [ngClass]="{'pointer-event-none':this.data.action == 'view-only'}">
               {{ '$Discount' | translate }}
             </label>
           </button>
           <button class="custom-button">
             <label>
               <input class="form-check-input" type="radio" name="options" [(ngModel)]="type" value="percent"
-                (change)="resetDiscountInputs()">
+                (change)="resetDiscountInputs()" [ngClass]="{'pointer-event-none':this.data.action == 'view-only'}">
               {{ '%Discount' | translate }}
             </label>
           </button>
@@ -36,54 +38,61 @@
       <div class="col-12 col-sm-6 col-lg-6">
         <div class="form-group coupon_name">
           <label class="code-text">{{ 'couponName' | translate }}</label>
-          <input type="text" class="form-control" [(ngModel)]="name" />
+          <input type="text" class="form-control" [(ngModel)]="name"
+            [ngClass]="{'pointer-event-none':this.data.action == 'view-only'}" />
           <div *ngIf="errorMsg.name" class="error-msg">{{errorMsg.name}}</div>
         </div>
       </div>
       <div class="col-12 col-sm-6 col-lg-6">
         <div class="form-group coupon_code">
           <label class="code-text">{{ 'couponCode' | translate }}</label>
-          <input type="text" class="form-control" [(ngModel)]="code">
+          <input type="text" class="form-control" [(ngModel)]="code"
+            [ngClass]="{'pointer-event-none':this.data.action == 'view-only'}">
           <div *ngIf="errorMsg.code" class="error-msg">{{errorMsg.code}}</div>
         </div>
       </div>
-    <div class="col-12 col-sm-6 col-lg-6">
-      <div *ngIf="type === 'percent'" class="form-group">
-        <label class="code-text">{{ 'discount' | translate }} (%)</label>
-        <!-- <input type="text" class="form-control cupen-btn-1" [(ngModel)]="discount" /> -->
-        <input type="text" class="form-control" [(ngModel)]="discount" />
-        <div *ngIf="errorMsg.discount" class="error-msg">{{ errorMsg.discount }}</div>
-      </div>
-    </div>
-    
-
-
-    <div *ngIf="type === 'amount'" class="col-12">
-      <label class="code-text">{{ 'discount' | translate }} ($)</label>
-      <div class="row" *ngFor="let discount of discountInputs; let i = index">
-        <div class="col-sm-6 col-md-4 col-lg-5">
-          <div class="form-group">
-            <input type="number" class="form-control" [(ngModel)]="discount.discount"
-              placeholder="{{ 'enterDiscountValue' | translate }}">
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-4 col-lg-5">
-          <div class="form-group">
-            <select class="form-control" [(ngModel)]="discount.currency" (change)="validateCurrencySelection(i)">
-              <option *ngFor="let currency of currencies" [value]="currency">
-                {{ currency }}
-              </option>
-            </select>
-          </div>
-        </div>
-        <div class="col-md-4 col-lg-2 text-end">
-          <div class="form-group">
-            <button class="btn btn-danger btn-sm" [disabled]="discountInputs.length === 1" (click)="removeDiscountInput(i)">{{ 'remove' | translate }} </button>
-          </div>
+      <div class="col-12 col-sm-6 col-lg-6">
+        <div *ngIf="type === 'percent'" class="form-group">
+          <label class="code-text">{{ 'discount' | translate }} (%)</label>
+          <!-- <input type="text" class="form-control cupen-btn-1" [(ngModel)]="discount" /> -->
+          <input type="text" class="form-control" [(ngModel)]="discount"
+            [ngClass]="{'pointer-event-none':this.data.action == 'view-only'}" />
+          <div *ngIf="errorMsg.discount" class="error-msg">{{ errorMsg.discount }}</div>
         </div>
       </div>
-      <div *ngIf="errorMsg.discountInputs" class="error-msg">{{errorMsg.discountInputs}}</div>
-        <div class="form-group">
+
+
+
+      <div *ngIf="type === 'amount'" class="col-12">
+        <label class="code-text">{{ 'discount' | translate }} ($)</label>
+        <div class="row" *ngFor="let discount of discountInputs; let i = index">
+          <div class="col-sm-6 col-md-4 col-lg-5">
+            <div class="form-group">
+              <input type="number" class="form-control" [(ngModel)]="discount.discount"
+                placeholder="{{ 'enterDiscountValue' | translate }}"
+                [ngClass]="{'pointer-event-none':this.data.action == 'view-only'}">
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4 col-lg-5">
+            <div class="form-group">
+              <select class="form-control" [(ngModel)]="discount.currency" (change)="validateCurrencySelection(i)"
+                [ngClass]="{'pointer-event-none':this.data.action == 'view-only'}">
+                <option *ngFor="let currency of currencies" [value]="currency">
+                  {{ currency }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-4 col-lg-2 text-end">
+            <div class="form-group" [ngClass]="{'pointer-event-none':this.data.action == 'view-only'}">
+              <button class="btn btn-danger btn-sm" [disabled]="discountInputs.length === 1"
+                (click)="removeDiscountInput(i)">{{ 'remove' | translate }} </button>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="errorMsg.discountInputs" class="error-msg">{{errorMsg.discountInputs}}</div>
+        <div class="form-group"
+          [ngClass]="{'d-none':this.data.action == 'view-only', 'pointer-event-none':this.data.action == 'view-only'}">
           <button class="btn btn-primary" (click)="addDiscountInput()">{{ 'addDiscount' | translate }} </button>
           <div *ngIf="errorMsg.duplicateCurrency" class="text-danger">{{ errorMsg.duplicateCurrency }}</div>
         </div>
@@ -93,7 +102,7 @@
 
     <div class="mb-3">
       <p class="code-text">
-        {{ 'validBetween' | translate }} 
+        {{ 'validBetween' | translate }}
       </p>
       <div class="d-flex calender-inputs-box">
         <div class="d-flex coupon-dateRange">
@@ -104,7 +113,8 @@
               <mat-form-field class="meta-date">
                 <mat-label>{{ 'chooseADate' | translate }} </mat-label>
                 <input matInput [matDatepicker]="picker1" [(ngModel)]="startDate"
-                  (dateChange)="onDateChange('start', $event)" />
+                  (dateChange)="onDateChange('start', $event)"
+                  [ngClass]="{'pointer-event-none':this.data.action == 'view-only'}" />
                 <mat-datepicker-toggle matIconPrefix [for]="picker1"></mat-datepicker-toggle>
                 <mat-datepicker #picker1></mat-datepicker>
               </mat-form-field>
@@ -119,7 +129,8 @@
               <mat-form-field class="meta-date">
                 <mat-label>{{ 'chooseADate' | translate }}</mat-label>
                 <input matInput [matDatepicker]="picker2" [(ngModel)]="endDate"
-                  (dateChange)="onDateChange('end', $event)">
+                  (dateChange)="onDateChange('end', $event)"
+                  [ngClass]="{'pointer-event-none':this.data.action == 'view-only'}">
                 <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
                 <mat-datepicker-toggle matIconPrefix [for]="picker2"></mat-datepicker-toggle>
                 <mat-datepicker #picker2></mat-datepicker>
@@ -132,8 +143,9 @@
           <span class="form-check align-self-center ">
             <label for="defaultCheck1" class="form-check-label">
               <input type="checkbox" value="" id="defaultCheck1" class="form-check-input" [(ngModel)]="noEndDate"
-                (change)="onNoEndDateChange($event)" />
-                {{ 'dontsetAnEnd' | translate }}
+                (change)="onNoEndDateChange($event)"
+                [ngClass]="{'pointer-event-none':this.data.action == 'view-only'}" />
+              {{ 'dontsetAnEnd' | translate }}
             </label>
           </span>
         </div>
@@ -158,7 +170,7 @@
           <label for="defaultCheck3" class="form-check-label">
             <input type="checkbox" value="" id="defaultCheck3" class="form-check-input"
               [(ngModel)]="isSingleUsePerCustomer" />
-              {{ 'limitToOneUseCustomer' | translate }}
+            {{ 'limitToOneUseCustomer' | translate }}
           </label>
         </span>
       </div>
@@ -167,11 +179,20 @@
   </div>
 
 
-    <div class="dialog-actions d-flex justify-content-between popup_footer p-3 mobile_btnns">
-      <div>
-        <a class="btn btn-delete text-danger" (click)="close()">{{ 'cancel' | translate }}</a>
-      </div>
-      <div>
-        <a class="btn Launch px-5" (click)="createCoupon()">{{ 'createCoupon' | translate }}</a>
-      </div>
+  <div class="dialog-actions d-flex justify-content-between popup_footer p-3 mobile_btnns"
+    [ngClass]="{'d-none':this.data.action == 'view-only'}">
+    <div>
+      <a class="btn btn-delete text-danger" (click)="close()">{{ 'cancel' | translate }}</a>
     </div>
+    <div>
+      <a class="btn Launch px-5" (click)="createCoupon()">{{ 'createCoupon' | translate }}</a>
+    </div>
+  </div>
+
+  <!-- Only For View COupon To Button In The Center -->
+  <div class="dialog-actions d-flex justify-content-center popup_footer p-3 mobile_btnns text-center"
+    *ngIf="this.data.action == 'view-only'">
+    <div>
+      <a class="btn btn-delete text-danger" (click)="close()">{{ 'cancel' | translate }}</a>
+    </div>
+  </div>

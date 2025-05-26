@@ -18,7 +18,7 @@ export class CouponsComponent {
 
   coupons: any = [];
   // displayedColumns: string[] = ['#', 'Name', 'Discount', 'Type', 'Code', 'Uses', 'Status', 'Deactivate', 'Edit', 'Remove'];
-  displayedColumns: string[] = ['#', 'Name', 'Discount', 'Type', 'Code', 'Uses', 'Status', 'Edit', 'Remove'];
+  displayedColumns: string[] = ['#', 'Name', 'Discount', 'Type', 'Code', 'Uses', 'Status', 'View', 'Remove'];
 
   checkboxIds: string[] = [];
   allSelected: boolean = false;
@@ -131,11 +131,26 @@ export class CouponsComponent {
       }
     );
   }
-  editCoupon(element: any = null) {
+  editCoupon(element: any) {
+    const createCouponDialog = this.dialog.open(CoupenPopupComponent, {
+      height: '80vh',
+      width: '80vw',
+      panelClass: ['cutam-cupen', 'admin_coupon'],
+      data: {
+        action: 'view-only',
+        couponData: element
+      }
+    });
 
-    this.showMatDialog('Edit coupon is not allowed at the moment!', 'display');
-    // edit coupon not available in stripe
-
+    createCouponDialog.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        if (result.action == "popupAdded") {
+          this.showMatDialog(result.message, 'display');
+          this.getCoupons();
+        }
+        //  console.log('Dialog result:', result);
+      }
+    });
   }
 
 

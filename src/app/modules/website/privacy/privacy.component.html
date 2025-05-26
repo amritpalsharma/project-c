@@ -85,7 +85,7 @@
         <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
           <div class="card" *ngFor="let section of accordionDataPrivacy; let i = index">
             <div class="card-header p-0" role="tab" id="accordionone">
-              <a data-bs-toggle="collapse" href="#accordionPrivacy_{{i}}" role="button" aria-controls="accordion__one">
+              <a data-bs-toggle="collapse" href="#accordionPrivacy_{{i}}" role="button" aria-controls="accordion__one" [ngClass]="{'collapse': i === 0,'collapsed': i != 0, 'show': i === 0}">
                 <!-- Privacy Policy of Succer You Sports AG (SoccerYou) -->
                 {{section.title}}
               </a>

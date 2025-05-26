@@ -1,147 +1,173 @@
-.code-parent{
-    position: relative;
+.code-parent {
+  position: relative;
 }
+
 .create-new_btn {
   justify-content: space-between !important;
   display: flex;
   flex-wrap: wrap;
+
   .code-text {
     width: 100%;
   }
 }
-.create-new_btn .w-50,  .coupon-dateRange .code-text {
+
+.create-new_btn .w-50,
+.coupon-dateRange .code-text {
   width: 49% !important;
 }
-.d-flex.coupon-dateRange > div {
+
+.d-flex.coupon-dateRange>div {
   width: 50%;
 }
+
 .custom-button {
-    color: #999999;
-    border: none;
-    border: 1px solid #999999;
-    border-radius: 10px;
-    padding: 5px 15px;
-    cursor: pointer;
-    background: none;
-    font-size: 14px;
+  color: #999999;
+  border: none;
+  border: 1px solid #999999;
+  border-radius: 10px;
+  padding: 5px 15px;
+  cursor: pointer;
+  background: none;
+  font-size: 14px;
   width: max-content !important;
   max-width: 50%;
   margin-right: 15px;
-    }
-  
+}
+
 .custom-button:hover {
   color: #E05263;
   border: 1px solid #E05263;
   background: none;
-  }
+}
 
-  .cupen-btn{
-    color: black;
-    border: none;
-    border: 1px solid #999999;
-    border-radius: 10px;
-    padding: 8px 8px;
-    // cursor: pointer;
-    background: none;
-    font-size: 13px;
-  }
+.cupen-btn {
+  color: black;
+  border: none;
+  border: 1px solid #999999;
+  border-radius: 10px;
+  padding: 8px 8px;
+  // cursor: pointer;
+  background: none;
+  font-size: 13px;
+}
 
-  .cupen-btn-date{
-    color: black;
-    border: 1px solid #999999;
-    border-radius: 10px;
-    cursor: pointer;
-    background: none;
-    font-size: 13px;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-  }
-  .cupen-btn-date-1{
-    color: black;
-    border: 1px solid #999999;
-    border-radius: 10px;
-    cursor: pointer;
-    background: none;
-    font-size: 13px;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    border-left: none !important;
-  }
-  .cupen-btn-1{
-    color: black;
-    border: none;
-    padding: 8px 8px;
-    // cursor: pointer;
-    font-size: 13px;
-    background: none;
-    width: 350px;
-  }
+.cupen-btn-date {
+  color: black;
+  border: 1px solid #999999;
+  border-radius: 10px;
+  cursor: pointer;
+  background: none;
+  font-size: 13px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
 
-  .codeCoupen{
-    // position: absolute;
-    display: flex;
-    column-gap: 160px; 
-    bottom: -40px;
+.cupen-btn-date-1 {
+  color: black;
+  border: 1px solid #999999;
+  border-radius: 10px;
+  cursor: pointer;
+  background: none;
+  font-size: 13px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left: none !important;
 }
-.Launch{
-    background-color: #6FB95D;
-    color: #ffffff;
+
+.cupen-btn-1 {
+  color: black;
+  border: none;
+  padding: 8px 8px;
+  // cursor: pointer;
+  font-size: 13px;
+  background: none;
+  width: 350px;
 }
-.close-img{
-    // background-image: url(../../../../../assets/images/carbon_close-outline.png);
-    // background-size: cover;
-    width: 33px;
-    height: 33px;
-    border: none;
-    padding: 0px;
-    position: absolute;
-    right: 17px;
-    top: 0px;
-    z-index: 2;
-    opacity: 1;
-    cursor: pointer;
+
+.codeCoupen {
+  // position: absolute;
+  display: flex;
+  column-gap: 160px;
+  bottom: -40px;
 }
-.code-text{
-   color: #000;
+
+.Launch {
+  background-color: #6FB95D;
+  color: #ffffff;
 }
+
+.close-img {
+  // background-image: url(../../../../../assets/images/carbon_close-outline.png);
+  // background-size: cover;
+  width: 33px;
+  height: 33px;
+  border: none;
+  padding: 0px;
+  position: absolute;
+  right: 17px;
+  top: 0px;
+  z-index: 2;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.code-text {
+  color: #000;
+}
+
 .form-check-input:checked {
-    background-color: #e05263 !important;
-    border-color: #e05263 !important;
-  }
-
-  .form-check-input:checked + label .custom-button{
-    border-color: #E05263; /* Border color when checked */
-    color: #E05263;
-  }
-  .form-check-input:checked + label {
-    color: #E05263; /* Text color when checked */
-  }
-  .disable-end-date{
-    opacity: 0.4;
-  }
-  .disable-end-date div, .disable-end-date button {
-      pointer-events: none;
-  }
-  .cutam-cupen .mat-mdc-dialog-surface{
-    overflow: hidden !important;
-  }
-  ::ng-deep .cutam-cupen .mat-mdc-dialog-surface{
-    overflow-y: hidden !important;
-  }
-  .create-new_popup{
-    max-height: 54vh;
-    overflow: auto;
-  }
-  .cupen-btn-date.date_field, .cupen-btn-date-1.date_field {
-    border: 0;
+  background-color: #e05263 !important;
+  border-color: #e05263 !important;
 }
 
-  @media (max-width: 991px) {
-  .coupon-dateRange, .coupon-dateRange .code-text {
+.form-check-input:checked+label .custom-button {
+  border-color: #E05263;
+  /* Border color when checked */
+  color: #E05263;
+}
+
+.form-check-input:checked+label {
+  color: #E05263;
+  /* Text color when checked */
+}
+
+.disable-end-date {
+  opacity: 0.4;
+}
+
+.disable-end-date div,
+.disable-end-date button {
+  pointer-events: none;
+}
+
+.cutam-cupen .mat-mdc-dialog-surface {
+  overflow: hidden !important;
+}
+
+::ng-deep .cutam-cupen .mat-mdc-dialog-surface {
+  overflow-y: hidden !important;
+}
+
+.create-new_popup {
+  max-height: 54vh;
+  overflow: auto;
+}
+
+.cupen-btn-date.date_field,
+.cupen-btn-date-1.date_field {
+  border: 0;
+}
+
+@media (max-width: 991px) {
+
+  .coupon-dateRange,
+  .coupon-dateRange .code-text {
     width: 100% !important;
   }
+
   .calender-inputs-box {
     flex-wrap: wrap;
     gap: 10px;
@@ -149,50 +175,61 @@
 }
 
 
-  @media (max-width: 600px) {
-    .create-new_btn{
-      flex-direction: column;
-      gap: 16px;
-    }
-    .create-new_btn input{
-      width: 100%;
-    }
-    .create-new_btn .ms-3{
-      margin: 0 !important;
-    }
-    .calender-inputs-box{
-      flex-direction: column;
-      gap: 10px;
-    }
-    .coupon-dateRange{
-      flex-direction: column;
-      gap: 16px;
-    }
-    .coupon-dateRange .cupen-btn-date{
-      border-radius: 10px;
-    }
-    .coupon-dateRange mat-form-field{
-      width: 100%;
-    }
-    .coupon-dateRange .cupen-btn-date-1{
-      border-left: 1px solid #999999 !important;
-      border-radius: 10px !important;
-    }
-    .cupen-btn-1{
-      width: 100%;
-    }
-    .btn{
-      font-size: 14px;
-      padding-right: 2rem !important;
-      padding-left: 2rem !important;
-    }
-    .create-new_btn .w-50, .d-flex.coupon-dateRange > div {
-      width: 100% !important;
-    }
-    
+@media (max-width: 600px) {
+  .create-new_btn {
+    flex-direction: column;
+    gap: 16px;
   }
 
-  @media (max-width: 480px) {
+  .create-new_btn input {
+    width: 100%;
+  }
+
+  .create-new_btn .ms-3 {
+    margin: 0 !important;
+  }
+
+  .calender-inputs-box {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .coupon-dateRange {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .coupon-dateRange .cupen-btn-date {
+    border-radius: 10px;
+  }
+
+  .coupon-dateRange mat-form-field {
+    width: 100%;
+  }
+
+  .coupon-dateRange .cupen-btn-date-1 {
+    border-left: 1px solid #999999 !important;
+    border-radius: 10px !important;
+  }
+
+  .cupen-btn-1 {
+    width: 100%;
+  }
+
+  .btn {
+    font-size: 14px;
+    padding-right: 2rem !important;
+    padding-left: 2rem !important;
+  }
+
+  .create-new_btn .w-50,
+  .d-flex.coupon-dateRange>div {
+    width: 100% !important;
+  }
+
+}
+
+@media (max-width: 480px) {
   .mobile_btnns {
     flex-direction: column;
     align-items: center !important;
@@ -200,22 +237,28 @@
   }
 }
 
-  
-  @media (max-width: 360px) {
-    .discount-btn button{
-        width: 100%;
-        
-      }
-      .discount-btn .custom-button{
-        margin-top: 10px;
-      }
-      .discount-btn .custom-button.ms-3{
-        margin-left: 0px !important;
-       
-      }
-    }
 
-    .create-new_popup {
-      max-height: 47vh;
-      overflow: auto;
-    }
+@media (max-width: 360px) {
+  .discount-btn button {
+    width: 100%;
+
+  }
+
+  .discount-btn .custom-button {
+    margin-top: 10px;
+  }
+
+  .discount-btn .custom-button.ms-3 {
+    margin-left: 0px !important;
+
+  }
+}
+
+.create-new_popup {
+  max-height: 47vh;
+  overflow: auto;
+}
+
+.pointer-event-none{
+  pointer-events: none;
+}

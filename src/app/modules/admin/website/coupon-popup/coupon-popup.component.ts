@@ -16,6 +16,7 @@ export class CoupenPopupComponent {
 
   startDate: Date | null = null;
   endDate: Date | null = null;
+  viewCounpon: string = 'Coupon';
 
   type: any = "";
   name: any = "";
@@ -59,9 +60,10 @@ export class CoupenPopupComponent {
     this._locale.set('fr');
     this._adapter.setLocale(this._locale());
 
-    if (this.data.action == "update") {
+    if (this.data.action == "view-only") {
 
       let existingRecord = this.data.couponData;
+      console.log('existingRecord', existingRecord);
       if (existingRecord.discount_type == "amount_off") {
         this.type = 'amount';
       } else if (existingRecord.discount_type == "percent_off") {
@@ -93,6 +95,11 @@ export class CoupenPopupComponent {
       // this.subsciptionCancelSuccess = translations['subsciptionCancelSuccess'];
     });
     this.theme = localStorage.getItem('theme');
+    let lang_id = localStorage.getItem('lang_id');
+    if (lang_id == '2') {
+      this.viewCounpon = 'Gutschein';
+    }
+
   }
 
   getCurrencies() {
@@ -288,8 +295,8 @@ export class CoupenPopupComponent {
           });
         } else {
           //  toaster
-          if(response.status == false && typeof response.data.error != undefined){
-              this.toaster.error(response.data.error);
+          if (response.status == false && typeof response.data.error != undefined) {
+            this.toaster.error(response.data.error);
           }
           this.errorMsg = response.error;
           this.errorMsg.discount = "Discount (%) is required";
