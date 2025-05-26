@@ -1967,6 +1967,10 @@ img.success-image {
 
 .player--item {
   padding: 15px;
+  .boosted--profile {
+    background: url(../../../../assets/images/circle-cut.svg) no-repeat center, linear-gradient(to bottom, #E84577, #9469A3) !important; 
+    background-size: cover !important;
+  }
   .item--inner {
     border-radius: 24px;
     overflow: hidden;
@@ -2027,6 +2031,16 @@ img.success-image {
     text-overflow: ellipsis;
     font-family: var(--bs-avenir-semibold);
   }
+    .booster_text {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #023A4A;
+    color: #fff;
+    border-radius: 0 0 0 20px;
+    padding: 7px 20px;
+    font-family: var(--bs-avenir-semibold);
+}
   &:hover {
     .player_profile_img {
       transform: scale(1.10);
@@ -5225,6 +5239,14 @@ img.success-image {
   .work-text:not(:last-child).active::after {
     display: none;
   }
+.player--item {
+    .booster_text {
+        border-radius: 0 0 0 12px;
+        padding: 7px 11px;
+        font-family: var(--bs-avenir-semibold);
+        font-size: 80%;
+    }
+}
 }
 
 @media (min-width: 992px) and (max-width: 1599px) {

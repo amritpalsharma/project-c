@@ -2536,9 +2536,9 @@ background: #072944 !important;
       color: #072944;
     }
 
-    .player__name {
-      background-color: #BDE34F;
-      color: #072944;
+    .player__name, .booster_text {
+      background: #BDE34F !important;
+      color: #072944 !important;
     }
   }
   .accordion {
