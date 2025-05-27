@@ -360,8 +360,9 @@ button:focus-visible{
   padding: 15px;
   cursor: pointer;
   .boosted--profile {
-    background: url(../../../../../assets/images/circle-cut.svg) no-repeat center, linear-gradient(to bottom, #E84577, #9469A3) !important; 
-    background-size: cover !important;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient_neww 15s ease infinite;
   }
   .item--inner {
     border-radius: 24px;
@@ -369,8 +370,8 @@ button:focus-visible{
     width: 100%;
     height: 100%;
     position: relative;
-    background: #fff url(../../../../../assets/images/circle-cut.svg) no-repeat center;
-    background-size: 130%;
+    cursor: pointer;
+    background-color: #fff;
   }
   .clubPlayers .player_profile_img {
     padding: 30px 40px 70px;
@@ -379,7 +380,16 @@ button:focus-visible{
     width: 100%;
     height: 270px;
     overflow: hidden;
-    position: relative;
+    position: relative;&:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: url(../../../../../assets/images/circle-cut.svg) no-repeat center;
+        background-size: 130%;
+    }
   }
   .item--icons-list {
     z-index: 1;
@@ -413,6 +423,8 @@ button:focus-visible{
     height: 100%;
     object-fit: contain;
     transition: .5s all;
+    position: relative;
+    z-index: 1;
   }
   .player__name {
     position: absolute;
@@ -426,6 +438,7 @@ button:focus-visible{
     white-space: nowrap;
     text-overflow: ellipsis;
     font-family: var(--bs-avenir-semibold);
+    z-index: 1;
   }
   .booster_text {
     position: absolute;
@@ -436,6 +449,7 @@ button:focus-visible{
     border-radius: 0 0 0 20px;
     padding: 7px 20px;
     font-family: var(--bs-avenir-semibold);
+    z-index: 1;
 }
   &:hover {
     .player_profile_img {
@@ -443,6 +457,21 @@ button:focus-visible{
     }
   }
 }
+
+@keyframes gradient_neww {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
 
 @media (max-width: 991px) {
 .player--item {
