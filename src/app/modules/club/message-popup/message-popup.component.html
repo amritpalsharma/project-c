@@ -1,6 +1,7 @@
 <div class="msg-popup-dialog">
     <div class="msg-popup-close">
-        <img src="../../../assets/images/close-icon-circle.png" alt="" class="" (click)="close()" />
+        <img *ngIf='theme!="dark"' src="../../../../assets/images/carbon_close-outline-light.svg" alt="" (click)="close();">
+        <img *ngIf='theme=="dark"' src="../../../../assets/images/carbon_close-outline.svg" alt="" (click)="close();">
     </div>
 
     <div class="msg-popup-content">
@@ -13,7 +14,8 @@
             </div>
         </div>
 
-        <div class="display-message" *ngIf="data.action == 'delete-activity-confirmation' || data.action == 'delete-sighting-confirmation'">
+        <div class="display-message"
+            *ngIf="data.action == 'delete-activity-confirmation' || data.action == 'delete-sighting-confirmation'">
             {{data.message}}
 
             <div class="popup-delete-btn">

@@ -85,13 +85,14 @@
         <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
           <div class="card" *ngFor="let section of accordionDataPrivacy; let i = index">
             <div class="card-header p-0" role="tab" id="accordionone">
-              <a data-bs-toggle="collapse" href="#accordionPrivacy_{{i}}" role="button" aria-controls="accordion__one" [ngClass]="{'collapse': i === 0,'collapsed': i != 0, 'show': i === 0}">
+              <a data-bs-toggle="collapse" href="#accordionPrivacy_{{i}}" role="button" aria-controls="accordion__one"
+                [ngClass]="{'collapse': i === 0,'collapsed': i != 0, 'show': i === 0}">
                 <!-- Privacy Policy of Succer You Sports AG (SoccerYou) -->
                 {{section.title}}
               </a>
             </div>
-            <div id="accordionPrivacy_{{i}}" [ngClass]="{'collapse': true, 'show': i === 0}" role="tabpanel" aria-labelledby="accordionone"
-              data-bs-parent="#accordion">
+            <div id="accordionPrivacy_{{i}}" [ngClass]="{'collapse': true, 'show': i === 0}" role="tabpanel"
+              aria-labelledby="accordionone" data-bs-parent="#accordion">
               <div class="card-body" [innerHTML]="section.description">
                 <!-- <p>Data protection and data security are important to Succer You Sports AG (“SoccerYou"; "we"). We process your personal data responsibly, in accordance with applicable legal provisions and in accordance with this Privacy Policy.</p> -->
               </div>
@@ -105,7 +106,9 @@
             <div id="accordion__three" class="collapse" role="tabpanel" aria-labelledby="accordionthree"
               data-bs-parent="#accordion">
               <div class="card-body">
-                <p>In this privacy policy, we inform you about how we collect and process personal data when you visit our website at www.socceryou.co.uk ("website") or social media pages, contact us or use our services.</p>
+                <p>In this privacy policy, we inform you about how we collect and process personal data when you visit
+                  our website at www.socceryou.co.uk ("website") or social media pages, contact us or use our services.
+                </p>
               </div>
             </div>
           </div>

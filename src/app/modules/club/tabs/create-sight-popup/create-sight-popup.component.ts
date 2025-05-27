@@ -18,6 +18,7 @@ export class CreateSightPopupComponent implements AfterViewInit {
 
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   readonly announcer = inject(LiveAnnouncer);
+  theme: string = localStorage.getItem('theme') || 'light';
   filteredUsers: any = [];
   users: any = [];
   allUsers: any = [];
@@ -52,16 +53,25 @@ export class CreateSightPopupComponent implements AfterViewInit {
     this.clubId = data.clubId;
 
     if (data.sightData) {
+      console.log(data.sightData);
       this.eventName = data.sightData.event_name;
       this.managerName = data.sightData.manager_name;
       this.date = data.sightData.event_date;
       this.dateTime = this.reverseDateFormat(data.sightData.event_date, data.sightData.event_time);
+      // console.log('this.dateTime', this.dateTime)
       this.address = data.sightData.address;
       this.zipcode = data.sightData.zipcode;
       this.city = data.sightData.city;
       this.about = data.sightData.about_event;
       this.idToBeUpdate = data.sightData.id;
+      // this.dateTime = this.formatDateForInput(new Date());
+      this.dateTime = `${this.date}T${data.sightData.event_time}`;
     }
+  }
+
+  formatDateForInput(date: Date): string {
+    const pad = (n: number) => n < 10 ? '0' + n : n;
+    return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(date.getMinutes())}`;
   }
 
   @ViewChild('numInput', { static: false }) numInput!: ElementRef;

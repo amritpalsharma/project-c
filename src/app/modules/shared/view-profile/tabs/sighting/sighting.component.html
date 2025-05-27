@@ -86,7 +86,7 @@
         <ng-container matColumnDef="Time">
           <th mat-header-cell *matHeaderCellDef> {{ 'time' | translate }}</th>
           <td mat-cell *matCellDef="let element">
-            <span *ngIf="element.event_time">{{ element.event_time }}</span>
+            <span *ngIf="element.event_time && element.event_time != 'undefined'">{{ element.event_time }}</span>
             <span *ngIf="!element.event_time">-</span>
           </td>
         </ng-container>
@@ -94,7 +94,10 @@
         <ng-container matColumnDef="Status">
           <th mat-header-cell *matHeaderCellDef> {{ 'status' | translate }}</th>
           <td mat-cell *matCellDef="let element">
-            <span>{{ element.status }}</span>
+            <!-- <span>{{ element.status }}</span> -->
+            <span *ngIf="element.status == 'active'" class="bg_success same-width">{{ 'active' | translate }}</span>
+            <span *ngIf="element.status !== 'active'" class="bg_reject text-white same-width">{{ 'inactive' | translate
+              }}</span>
             <!-- <span *ngIf="!element.event_time">-</span> -->
           </td>
         </ng-container>

@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import {
-  MatDialogRef,MAT_DIALOG_DATA
+  MatDialogRef, MAT_DIALOG_DATA
 } from '@angular/material/dialog';
 @Component({
   selector: 'app-message-popup',
@@ -8,11 +8,12 @@ import {
   styleUrl: './message-popup.component.scss'
 })
 export class MessagePopupComponent {
-  constructor(public dialogRef : MatDialogRef<MessagePopupComponent>,
+  constructor(public dialogRef: MatDialogRef<MessagePopupComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
   }
+  theme: string = localStorage.getItem('theme') || 'light';
 
-  deleteConfirmed(){
+  deleteConfirmed() {
     this.dialogRef.close({
       action: "delete-confirmed"
     });

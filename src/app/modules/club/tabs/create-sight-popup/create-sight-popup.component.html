@@ -2,7 +2,10 @@
   <div class="p-3 d-flex align-items-center popup_header">
     <h4 class="text-center title-text m-auto">{{ 'sighting' | translate }}</h4>
     <div class="close-img" (click)="close()">
+      <img *ngIf='theme!="dark"' src="../../../../assets/images/carbon_close-outline-light.svg" alt="">
+      <img *ngIf='theme=="dark"' src="../../../../assets/images/carbon_close-outline.svg" alt="">
     </div>
+
   </div>
   <div class="overflow-card popup__body py-3">
     <div class="row align-items-center mb-4 mt-4">
@@ -11,10 +14,11 @@
         <div class="cupen-btn code-text text-center">
           <!-- <input type="file" class="upload-input d-none" id="upload-banner" (change)="onBannerFileChange($event)"
             accept="image/*"> -->
-            <p class="upload-file_name">{{removeMP4('filesSupported' | translate)}}</p>
-            <p class="upload-file_name">{{'maximumSize5MB' | translate}}</p>
-            <input type="file" (change)="onBannerFileChange($event)" hidden #fileInput />
-            <button type="button" class="upload-img-btn" (click)="fileInput.click()">{{'uploadFiles' | translate}}</button>
+          <p class="upload-file_name">{{removeMP4('filesSupported' | translate)}}</p>
+          <p class="upload-file_name">{{'maximumSize5MB' | translate}}</p>
+          <input type="file" (change)="onBannerFileChange($event)" hidden #fileInput />
+          <button type="button" class="upload-img-btn" (click)="fileInput.click()">{{'uploadFiles' |
+            translate}}</button>
         </div>
       </div>
       <!-- <div class="col-sm-4 mt-3 d-flex align-items-center gap-2">
@@ -63,7 +67,7 @@
                           *ngIf="!user.meta.profile_image_path" src="../../../../../assets/images/1.png">
                         <img width="25" height="25" style="border-radius: 20px;" class="img-list"
                           *ngIf="user.meta.profile_image_path" src="{{user.meta.profile_image_path}}">
-                        {{user?.first_name}}
+                        {{user?.first_name}} {{user?.last_name}}
                         <span matChipRemove [attr.aria-label]="'remove ' + user" class="cancel-icon">
                           <svg width="13px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
                             <path
@@ -90,7 +94,7 @@
                           *ngIf="!user.meta.profile_image_path" src="../../../../../assets/images/1.png">
                         <img width="50" height="50" class="img-list " *ngIf="user.meta.profile_image_path"
                           src="{{user.meta.profile_image_path}}">
-                        {{user.first_name}}
+                        {{user.first_name}} {{user.last_name}}
                       </mat-option>
                       }
                     </mat-autocomplete>
@@ -191,7 +195,7 @@
     <div class="about-event">
       <label for="about-text" class="code-text">{{ 'aboutEvent' | translate }}</label><br>
       <textarea name="about" id="about-text" rows="4" cols="50" class="w-100 " [(ngModel)]="about">
-      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+      <!-- Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. -->
     </textarea>
     </div>
   </div>

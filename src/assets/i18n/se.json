@@ -324,7 +324,7 @@
   "confirmPasswordLabel": "Bekräfta lösenord",
   "confirmPasswordPlaceholder": "Bekräfta lösenord",
   "confirmPasswordError": "Lösenorden matchar inte.",
-  "privacyPolicyLabel": "För mer information om hur vi hanterar dina uppgifter, vänligen läs vår <a href='/privacy' target='_blank'>integritetspolicy</a>. Genom att skicka in detta formulär bekräftar du att du har läst och förstått SoccerYous integritetspolicy.",
+  "privacyPolicyLabel": "För mer information om hur vi hanterar dina uppgifter, vänligen läs vår <a href='/privacy'>integritetspolicy</a>. Genom att skicka in detta formulär bekräftar du att du har läst och förstått SoccerYous integritetspolicy.",
   "privacyPolicyCheckboxError": "Vänligen acceptera integritetspolicyn.",
   "newsletterLabel": "Prenumerera på nyhetsbrevet",
   "submitButton": "Skapa konto",
@@ -1387,9 +1387,9 @@
   "downloadPDFCommunityGuidelines": "Ladda ner PDF med community-regler",
   "downloadPDFTermsAndConditions": "Ladda ner PDF med användarvillkor",
   "downloadPDFPrivacyPolicy": "Ladda ner PDF med integritetspolicy",
-  "premiunPlanFor": "För Talanger, Klubbar och Scouts",
-  "multiCountryFor": "För Talanger och Scouts",
-  "boostProfileFor": "För Talanger och Scouts",
+  "premiunPlanFor": "För Klubbar & Scouts",
+  "multiCountryFor": "För Scouts",
+  "boostProfileFor": "För Scouts",
   "deleteFromGalleryConfirmation": "Är du säker på att du vill ta bort {{type}} från ditt galleri?",
   "weUseCookies": "Vi använder cookies",
   "scoutHistoryTxt": "Om oss",
@@ -1414,5 +1414,8 @@
   "searchTalent": "Sök talang...",
   "dateAndTime": "Datum / Tid",
   "homeSliderTxt": "Endast verifierade profiler – för riktig synlighet. Upptäck de senaste talangerna, scouterna och klubbarna nu.",
-  "selectHere": "Välj här"
+  "selectHere": "Välj här",
+  "deleteProfilePicture": "Ta bort profilbild",
+  "freePlanText": "2 månader gratis med årsabonnemang",
+  "playerListHeading": "Ny i spelet – Upptäck nu!"
 }

@@ -1,13 +1,15 @@
 <!---------------------- navbar -------------------------->
 
-<nav class="website_main_pages navbar navbar-expand-lg navbar-light sticky"  [ngClass]="{'scrolled': isScrolled, 'transparent-header': isActiveRoute()}">
+<nav class="website_main_pages navbar navbar-expand-lg navbar-light sticky"
+    [ngClass]="{'scrolled': isScrolled, 'transparent-header': isActiveRoute()}">
     <div class="container">
         <a class="navbar-brand" [routerLink]="''">
             <div class="logo">
                 <img width="197" height="79" src="./assets/images/light-logo.svg" class="nav_desktop_logo for_bnr_hdr">
-                <img width="197" height="79" src="./assets/images/green-logo.svg" class="nav_desktop_logo for_trnsprnt_hdr">
-                <img src="./assets/images/soccur-logo-short.svg" class="nav_mobile_logo for_bnr_mobile"> 
-                <img src="./assets/images/soccur-logo-short-green.svg" class="nav_mobile_logo for_trns_mobile"> 
+                <img width="197" height="79" src="./assets/images/green-logo.svg"
+                    class="nav_desktop_logo for_trnsprnt_hdr">
+                <img src="./assets/images/soccur-logo-short.svg" class="nav_mobile_logo for_bnr_mobile">
+                <img src="./assets/images/soccur-logo-short-green.svg" class="nav_mobile_logo for_trns_mobile">
             </div>
         </a>
 
@@ -57,20 +59,23 @@
             <img src="./assets/images/burger-menu-green.svg" class="for_green_btn">
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" [routerLink]="['/' + domainSlugService.getRouteSlug('talent')]" routerLinkActive="active">{{
+                    <a class="nav-link" aria-current="page"
+                        [routerLink]="['/' + domainSlugService.getRouteSlug('talent')]" routerLinkActive="active">{{
                         'talents' | translate }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" [routerLink]="['/' + domainSlugService.getRouteSlug('clubAndScout')]" routerLinkActive="active">{{ 'club&scout' | translate
+                    <a class="nav-link" [routerLink]="['/' + domainSlugService.getRouteSlug('clubAndScout')]"
+                        routerLinkActive="active">{{ 'club&scout' | translate
                         }}</a>
                 </li>
                 <li class="nav-item">
                     <!-- <a class="nav-link" [routerLink]="'/about'" routerLinkActive="active">{{ 'about' | translate }}</a> -->
-                    <a class="nav-link" [routerLink]="['/' + domainSlugService.getRouteSlug('about')]" routerLinkActive="active">{{ 'about' | translate }}</a>
+                    <a class="nav-link" [routerLink]="['/' + domainSlugService.getRouteSlug('about')]"
+                        routerLinkActive="active">{{ 'about' | translate }}</a>
                 </li>
             </ul>
 
@@ -98,20 +103,26 @@
                         <!-- HTML -->
                         <ul class="sidebar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" [routerLink]="['/' + domainSlugService.getRouteSlug('talent')]" (click)="closeNavbar()" routerLinkActive="active">{{ 'talent' | translate }}</a>
+                                <a class="nav-link" [routerLink]="['/' + domainSlugService.getRouteSlug('talent')]"
+                                    (click)="closeNavbar()" routerLinkActive="active">{{ 'talent' | translate }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" [routerLink]="['/' + domainSlugService.getRouteSlug('clubAndScout')]" (click)="closeNavbar()" routerLinkActive="active">{{ 'club&scout' | translate }}</a>
+                                <a class="nav-link"
+                                    [routerLink]="['/' + domainSlugService.getRouteSlug('clubAndScout')]"
+                                    (click)="closeNavbar()" routerLinkActive="active">{{ 'club&scout' | translate }}</a>
                             </li>
                             <li class="nav-item">
                                 <!-- <a class="nav-link" [routerLink]="'/about'" (click)="closeNavbar()" routerLinkActive="active">{{ 'about' | translate }}</a> -->
-                                <a class="nav-link" [routerLink]="['/' + domainSlugService.getRouteSlug('about')]" (click)="closeNavbar()" routerLinkActive="active">{{ 'about' | translate }}</a>
+                                <a class="nav-link" [routerLink]="['/' + domainSlugService.getRouteSlug('about')]"
+                                    (click)="closeNavbar()" routerLinkActive="active">{{ 'about' | translate }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" [routerLink]="'/news'" (click)="closeNavbar()" routerLinkActive="active">{{ 'news' | translate }}</a>
+                                <a class="nav-link" [routerLink]="'/news'" (click)="closeNavbar()"
+                                    routerLinkActive="active">{{ 'news' | translate }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" [routerLink]="['/' + domainSlugService.getRouteSlug('contact')]" (click)="closeNavbar()" routerLinkActive="active">{{ 'contact' | translate }}</a>
+                                <a class="nav-link" [routerLink]="['/' + domainSlugService.getRouteSlug('contact')]"
+                                    (click)="closeNavbar()" routerLinkActive="active">{{ 'contact' | translate }}</a>
                             </li>
                         </ul>
 
@@ -132,24 +143,33 @@
 
                     <div class=" footer-links">
                         <ul class="footer-links1">
-                            <li><a (click)="closeNavbar()" [routerLink]="['/' + domainSlugService.getRouteSlug('pricing')]">{{ 'pricingLabel' | translate }} </a></li>
-                            <li><a (click)="closeNavbar()" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#exampleModal-login">{{ 'signIn' | translate }}</a></li>
-                            <li><a (click)="closeNavbar()" data-bs-toggle="modal" data-bs-target="#exampleModal1">{{ 'createAccount' | translate }}</a>
+                            <li><a (click)="closeNavbar()"
+                                    [routerLink]="['/' + domainSlugService.getRouteSlug('pricing')]">{{ 'pricingLabel' |
+                                    translate }} </a></li>
+                            <li><a (click)="closeNavbar()" href="javascript:void(0);" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal-login">{{ 'signIn' | translate }}</a></li>
+                            <li><a (click)="closeNavbar()" data-bs-toggle="modal" data-bs-target="#exampleModal1">{{
+                                    'createAccount' | translate }}</a>
                             <li><a (click)="closeNavbar()" [routerLink]="'/faq'">{{ 'faq' | translate }}</a></li>
                         </ul>
                         <ul class="footer-links2">
                             <li>
-                                <a><img src="./assets/images/arrow-image.svg" (click)="closeNavbar()" [routerLink]="'/pricing'"></a>
+                                <a><img src="./assets/images/arrow-image.svg" (click)="closeNavbar()"
+                                        [routerLink]="'/pricing'"></a>
                             </li>
                             <li>
-                                <a><img src="./assets/images/arrow-image.svg" (click)="closeNavbar()" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#exampleModal-login"></a>
+                                <a><img src="./assets/images/arrow-image.svg" (click)="closeNavbar()"
+                                        href="javascript:void(0);" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal-login"></a>
 
                             </li>
                             <li>
-                                <a><img src="./assets/images/arrow-image.svg" (click)="closeNavbar()" data-bs-toggle="modal" data-bs-target="#exampleModal1"></a>
+                                <a><img src="./assets/images/arrow-image.svg" (click)="closeNavbar()"
+                                        data-bs-toggle="modal" data-bs-target="#exampleModal1"></a>
                             </li>
                             <li>
-                                <a><img src="./assets/images/arrow-image.svg" (click)="closeNavbar()" [routerLink]="'/faq'"></a>
+                                <a><img src="./assets/images/arrow-image.svg" (click)="closeNavbar()"
+                                        [routerLink]="'/faq'"></a>
                             </li>
                         </ul>
                     </div>
@@ -267,8 +287,10 @@
                 <div class="modal-body">
                     <div class="logo text-center">
                         <div class="logo-image">
-                            <img class="light-images register-logo" src="./assets/images/light-logo-sy.png">
-                            <img class="dark-images register-logo" src="./assets/images/dark-logo-sy.png">
+                            <!-- <img class="light-images register-logo" src="./assets/images/light-logo-sy.png"> -->
+                            <img class="light-images register-logo" src="./assets/images/socceryou-logo-light.svg">
+                            <!-- <img class="dark-images register-logo" src="./assets/images/dark-logo-sy.png"> -->
+                            <img class="dark-images register-logo" src="./assets/images/socceryou-logo-dark.svg">
                         </div>
                         <h6>{{'welcomeBack' | translate}}</h6>
                         <p>{{'loginMessage' | translate}}</p>
@@ -384,11 +406,11 @@
                 <div class="modal-body">
                     <div class="logo text-center">
                         <div class="logo-image">
-                            <img class="light-images register-logo" src="./assets/images/light-logo-sy.png">
-                            <img class="dark-images register-logo" src="./assets/images/dark-logo-sy.png">
+                            <!-- <img class="light-images register-logo" src="./assets/images/light-logo-sy.png"> -->
+                            <img class="light-images register-logo" src="./assets/images/socceryou-logo-light.svg">
+                            <!-- <img class="dark-images register-logo" src="./assets/images/dark-logo-sy.png"> -->
+                            <img class="dark-images register-logo" src="./assets/images/socceryou-logo-dark.svg">
                         </div>
-
-
                         <h6>{{ 'passwordRecovery' | translate }}</h6>
                         <p>{{ 'passwordRecoveryDescription' | translate }}</p>
                     </div>
@@ -499,8 +521,10 @@
                     <div class="modal-body">
                         <div class="logo text-center">
                             <div class="logo-image">
-                                <img class="light-images register-logo" src="./assets/images/light-logo-sy.png">
-                                <img class="dark-images register-logo" src="./assets/images/dark-logo-sy.png">
+                                <!-- <img class="light-images register-logo" src="./assets/images/light-logo-sy.png"> -->
+                                <img class="light-images register-logo" src="./assets/images/socceryou-logo-light.svg">
+                                <!-- <img class="dark-images register-logo" src="./assets/images/dark-logo-sy.png"> -->
+                                <img class="dark-images register-logo" src="./assets/images/socceryou-logo-dark.svg">
                             </div>
                             <h6>{{ 'createAccount' | translate }}</h6>
                             <p>{{ 'createAccountDescription' | translate }}</p>
@@ -678,8 +702,8 @@
                                 <div class="col-lg-12 {{isThisPlayer}}" *ngIf="!isHideClubSection">
                                     <div class="mb-3">
                                         <label class="form-label">{{ 'team' | translate }} </label>
-                                        <select class="form-select" [ngClass]="{'ng-invalid': selectedTeam === null}" (change)="onTeamChange($event)"
-                                            [(ngModel)]="team_id" name="team_id">
+                                        <select class="form-select" [ngClass]="{'ng-invalid': selectedTeam === null}"
+                                            (change)="onTeamChange($event)" [(ngModel)]="team_id" name="team_id">
                                             <option value="" disabled selected>{{ 'team' | translate
                                                 }}</option>
                                             <option *ngFor="let teamArr of teamsArr" [value]="teamArr.id">{{

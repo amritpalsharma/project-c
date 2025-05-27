@@ -15,6 +15,7 @@ import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { TitleService } from '../../../title.service';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
 import { MessagePopupComponent } from '../message-popup/message-popup.component';
+import { TeamsComponent } from './tabs/teams/teams.component';
 
 @Component({
   selector: 'app-view-profile',
@@ -59,6 +60,9 @@ export class ViewProfileComponent implements OnInit {
   videoDuration: number = 0;
   @Output() dataEmitter = new EventEmitter<string>();
   @ViewChild('videoPlayer2') videoElementRef!: ElementRef<HTMLVideoElement>;
+
+  @ViewChild(TeamsComponent)
+  teamsTabComponent!: TeamsComponent;
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
@@ -264,8 +268,14 @@ export class ViewProfileComponent implements OnInit {
   }
 
   switchTab(tab: string) {
-    this.activeTab = tab;
-    console.warn('Active tab is ', this.activeTab, ' and role is ', this.currentUserRole)
+    // this.activeTab = tab;
+    if (this.activeTab === 'teams' && tab === 'teams') {
+      this.teamsTabComponent?.backToTeamView();
+    }
+    else {
+      this.activeTab = tab;
+    }
+    // console.warn('Active tab is ', this.activeTab, ' and role is ', this.currentUserRole)
   }
 
   handleCoverImageData(data: string) {
@@ -538,7 +548,7 @@ export class ViewProfileComponent implements OnInit {
     videoElement.crossOrigin = 'anonymous';
     let number = this.formatDuration(videoElement.duration); // output like this 0:54
     // if (typeof number === 'number' && !isNaN(number)) {
-      return number;
+    return number;
     // }
     // return '';
   }

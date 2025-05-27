@@ -295,7 +295,7 @@ export class HeaderComponent implements OnInit {
   isActiveRoute(): boolean {
     if (this.currentRoute.includes('/news/')) {
       // For News Detail Page
-       return true;
+      return true;
     }
     return this.headerRoutes.includes(this.currentRoute);
   }
@@ -1188,23 +1188,16 @@ export class HeaderComponent implements OnInit {
     };
 
     if (this.selectedCountry != '' && this.selectedCountry != undefined) {
-      //alert(this.selectedCountry)
-      // let getCountryById = this.countries.find((val: any) => {
-      //   return val.id == this.selectedCountry;
-      // });
-      // console.info(getCountryById) 
-      // if (getCountryById && getCountryById.country_id != '' && getCountryById.country_id != undefined) {
       params = {
         lang: localStorage.getItem('lang_id'),
         country: this.selectedCountry,
         is_taken: 'no'
       }
-      // }
     }
     this.talentService.getClubs(params).subscribe(
       (response: any) => {
         if (response.status) {
-          this.clubs = response.data.clubs;
+          this.clubs = this.sortClubsByName(response.data.clubs);
           console.info(this.clubs)
         } else {
           console.error('No data found');
@@ -1214,5 +1207,14 @@ export class HeaderComponent implements OnInit {
         console.error('Error fetching clubs:', error);
       }
     );
+  }
+
+
+  sortClubsByName(clubs: any[]): any[] {
+    return clubs.sort((a, b) => {
+      const nameA = a.club_name.trim().toLowerCase();
+      const nameB = b.club_name.trim().toLowerCase();
+      return nameA.localeCompare(nameB);
+    });
   }
 }
