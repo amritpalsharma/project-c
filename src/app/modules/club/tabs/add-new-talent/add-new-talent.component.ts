@@ -110,6 +110,14 @@ export class AddNewTalentComponent implements OnInit {
       i += 1;
     });
 
+    if (!this.startDate) {
+      return;
+    }
+
+    if (!this.noEndDate && !this.endDate) {
+      return;
+    }
+
     if (this.edit) {
       this.updatePlayer(formData);
     } else {

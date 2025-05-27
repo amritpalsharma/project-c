@@ -56,8 +56,8 @@
         <div class="col-lg-3 col-md-4  col-12 footer-links">
           <h4>{{ 'about' | translate }}</h4>
           <ul>
-            <li><a (click)="navigateAndScroll('talent')">{{ 'talents' | translate }}</a></li>
-            <li><a (click)="navigateAndScroll('club')">{{ 'club&scout' | translate }}</a></li>
+            <li><a [routerLink]="['/' + domainSlugService.getRouteSlug('talent')]">{{ 'talents' | translate }}</a></li>
+            <li><a [routerLink]="['/' + domainSlugService.getRouteSlug('clubAndScout')]">{{ 'club&scout' | translate }}</a></li>
             <!-- <li><a (click)="navigateAndScroll('about')">{{ 'about' | translate }}</a></li> -->
             <li><a [routerLink]="['/' + domainSlugService.getRouteSlug('about')]">{{ 'about' | translate }}</a></li>
             <li><a (click)="navigateAndScroll('news')">{{ 'news&Media' | translate }}</a></li>

@@ -61,11 +61,11 @@
 
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" [routerLink]="'/talent'" routerLinkActive="active">{{
+                    <a class="nav-link" aria-current="page" [routerLink]="['/' + domainSlugService.getRouteSlug('talent')]" routerLinkActive="active">{{
                         'talents' | translate }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" [routerLink]="'/club'" routerLinkActive="active">{{ 'club&scout' | translate
+                    <a class="nav-link" [routerLink]="['/' + domainSlugService.getRouteSlug('clubAndScout')]" routerLinkActive="active">{{ 'club&scout' | translate
                         }}</a>
                 </li>
                 <li class="nav-item">
@@ -98,10 +98,10 @@
                         <!-- HTML -->
                         <ul class="sidebar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" [routerLink]="'/talent'" (click)="closeNavbar()" routerLinkActive="active">{{ 'talent' | translate }}</a>
+                                <a class="nav-link" [routerLink]="['/' + domainSlugService.getRouteSlug('talent')]" (click)="closeNavbar()" routerLinkActive="active">{{ 'talent' | translate }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" [routerLink]="'/club'" (click)="closeNavbar()" routerLinkActive="active">{{ 'club&scout' | translate }}</a>
+                                <a class="nav-link" [routerLink]="['/' + domainSlugService.getRouteSlug('clubAndScout')]" (click)="closeNavbar()" routerLinkActive="active">{{ 'club&scout' | translate }}</a>
                             </li>
                             <li class="nav-item">
                                 <!-- <a class="nav-link" [routerLink]="'/about'" (click)="closeNavbar()" routerLinkActive="active">{{ 'about' | translate }}</a> -->
@@ -111,7 +111,7 @@
                                 <a class="nav-link" [routerLink]="'/news'" (click)="closeNavbar()" routerLinkActive="active">{{ 'news' | translate }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" [routerLink]="'/contact'" (click)="closeNavbar()" routerLinkActive="active">{{ 'contact' | translate }}</a>
+                                <a class="nav-link" [routerLink]="['/' + domainSlugService.getRouteSlug('contact')]" (click)="closeNavbar()" routerLinkActive="active">{{ 'contact' | translate }}</a>
                             </li>
                         </ul>
 
@@ -132,7 +132,7 @@
 
                     <div class=" footer-links">
                         <ul class="footer-links1">
-                            <li><a (click)="closeNavbar()" [routerLink]="'/pricing'">{{ 'pricingLabel' | translate }} </a></li>
+                            <li><a (click)="closeNavbar()" [routerLink]="['/' + domainSlugService.getRouteSlug('pricing')]">{{ 'pricingLabel' | translate }} </a></li>
                             <li><a (click)="closeNavbar()" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#exampleModal-login">{{ 'signIn' | translate }}</a></li>
                             <li><a (click)="closeNavbar()" data-bs-toggle="modal" data-bs-target="#exampleModal1">{{ 'createAccount' | translate }}</a>
                             <li><a (click)="closeNavbar()" [routerLink]="'/faq'">{{ 'faq' | translate }}</a></li>

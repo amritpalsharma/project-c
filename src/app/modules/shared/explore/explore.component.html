@@ -8,16 +8,14 @@
           <table class="table table-striped explore-table" [ngClass]="{'d-none': isHideFilter}">
             <thead>
               <tr class="explore-inputs">
-                <!-- Talent Filter -->
-                <!-- <pre>{{roles | json}}</pre> -->
                 <th [ngClass]="{'onlyScout':selectedRole == 2}">
                   <div class="form-group explore-all_input"
                     [ngClass]="{'onlyScout':selectedRole == 3 || selectedRole == 2 || !selectedRole}">
                     <mat-form-field appearance="fill">
-                      <mat-label>{{ 'talents' | translate }}</mat-label>
+                      <mat-label>{{ 'selectHere' | translate }}</mat-label>
+                    
                       <mat-select #roleSelect [(ngModel)]="selectedRole" (selectionChange)="onRoleChange(roleSelect)"
                         id="roles" name="role">
-                        <!-- <mat-option [value]="null" [selected]="!selectedRole">{{'all' | translate}}</mat-option> -->
                         <mat-option *ngFor="let role of roles" [value]="role.id">{{role.role_name}}</mat-option>
                       </mat-select>
                     </mat-form-field>
@@ -83,17 +81,14 @@
                 </th>
                 <!-- Country Filter -->
                 <th *ngIf="selectedRole == 4 || selectedRole == 2" [ngClass]="{'d-none':!selectedRole}">
-                  <div class="form-group explore-all_input" [ngClass]="{'onlyScout':selectedRole == 2}">
+                  <div class="form-group explore-all_input" [ngClass]="{'onlyScout':selectedRole == 2 && !selectedCountry}">
                     <mat-form-field appearance="fill">
                       <mat-label>{{ 'club' | translate }} {{ 'country' | translate }}</mat-label>
-                      <!-- <mat-label>{{ 'country' | translate }}</mat-label> -->
-                      <!-- <pre>{{countries | json}}</pre> -->
                       <mat-select #countryChange [(ngModel)]="selectedCountry"
                         (selectionChange)="onCountryChange(countryChange); countryAndLeauge('country');" id="country"
                         name="country">
                         <mat-option *ngFor="let country of countries" [value]="country.country_id">
                           {{country.location}}
-                          <!-- {{country.country_name}} -->
                         </mat-option>
                       </mat-select>
                     </mat-form-field>
