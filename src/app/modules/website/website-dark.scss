@@ -238,7 +238,8 @@
 }
 
 .dark-theme .website-code .overlay {
-  background: linear-gradient(to top, #072944 10%, transparent 100%);
+  // background: linear-gradient(to top, #072944 10%, transparent 100%);
+  background: linear-gradient(to top, #072944 0%, transparent 100%);
 }
 
 .dark-theme .overlay {
@@ -2580,10 +2581,12 @@ background: #072944 !important;
     }
   }
 
-.features .accordion-flex button.accordion-button::after {
+.features .accordion-flex button.accordion-button::after, 
+.features1 .accordion-flex button.accordion-button::after {
     background-image: url(/assets/images/dark-arrow-down.svg) !important;
 }
-.features .accordion-flex button.accordion-button.collapsed::after {
+.features .accordion-flex button.accordion-button.collapsed::after,
+.features1 .accordion-flex button.accordion-button.collapsed::after {
     background-image: url(/assets/images/dark-arrow-down.svg) !important;
 }
 }

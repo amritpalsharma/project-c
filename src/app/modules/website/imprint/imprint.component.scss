@@ -300,6 +300,9 @@ h1, h2, h3, strong {
             font-size: 24px;
         }
     }
+    .cookie-text {
+    font-size: 55px;
+  }
     .content_page li::before {
         top: 18px;
     }
@@ -336,11 +339,6 @@ h1, h2, h3, strong {
     }
 }
 
-@media (min-width: 992px) and (max-width: 1599px) {
-  .cookie-text {
-    font-size: 55px;
-  }
-}
 
 @media (min-width: 1600px) and (max-width: 2999px) {
 .grey_common_banner {

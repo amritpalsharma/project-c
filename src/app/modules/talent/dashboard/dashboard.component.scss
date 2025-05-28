@@ -1893,6 +1893,7 @@ span.active_btn {
   border: 3px solid #fff;
   border-radius: 50%;
   line-height: 0;
+  padding-top: 2px;
   width: 40px;
   height: 40px;
   display: flex;
@@ -1999,4 +2000,11 @@ span.active_btn {
 ::ng-deep .dark-theme .social_icons svg .linkedin-innerside{
   color: white !important; 
   fill: #072944;
+}
+
+
+@media (min-width: 2500px) {
+::ng-deep a.introjs-skipbutton {
+  padding-top: 4px;
+}
 }

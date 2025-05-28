@@ -145,13 +145,16 @@ mat-card.mat-mdc-card.mdc-card {
   }
   ::ng-deep .about-content h2 {
     color: #357525;
-    font-size: 35px;
+    font-size: 45px;
     font-family: var(--bs-avenir-bold);
-    line-height: 1.05;
+    line-height: 1.25;
     margin: 10px 0; 
     font-weight: 700;
     text-transform: uppercase;
   }
+  ::ng-deep .about-content p {
+        font-size: 24px;
+    }
 ::ng-deep .dark-theme .about-content h2, ::ng-deep .dark-theme .about-content h4 {
   color: #BDE34F !important;
 }
@@ -166,7 +169,7 @@ mat-card.mat-mdc-card.mdc-card {
 }
 .country-available {
   color: #BDE34F;
-  font-size: 35px;
+  font-size: 45px;
   font-weight: 700;
   text-transform: uppercase;
 }
@@ -434,24 +437,16 @@ img.join-btn {
     padding-top: 30px;
     padding-bottom: 30px;
   }
-
   .main-bnr {
     height: 250px;
   }
-
   .about-text {
     font-size: 35px;
   }
-
   .content-text {
     padding: 10px 0;
-    font-size: 14px;
+    font-size: 16px;
   }
-
- .country-available {
-    font-size: 25px;
-  }
-
   .country-name {
     color: white !important;
     font-size: 16px !important;
@@ -500,15 +495,17 @@ img.join-btn {
 
 }
 
- ::ng-deep .about-content h2 {
+
   @media (max-width: 991px) {
-    font-size: 25px;
-  }
- }
- ::ng-deep .about-content h4 {
-   @media (max-width: 991px) {
-font-size: 14px;
-   }
+     :host ::ng-deep .about-content h2 {
+        font-size: 30px;
+      }
+    :host ::ng-deep .about-content h4 {
+        font-size: 20px;
+    }
+    :host ::ng-deep .about-content p {
+        font-size: 20px;
+    }
  }
 
 
@@ -531,56 +528,46 @@ font-size: 14px;
 }
 
 @media (max-width: 575px) {
-
+  p {
+    font-size: 16px;
+  }
   .about-text {
+    font-size: 35px;
+  }
+  .country-available, .club h3 {
     font-size: 30px;
   }
-
   .main-bnr {
-    height: 200px;
-    padding-top: 70px;
+    padding-top: 110px;
   }
-
   .club-banner {
     height: 0;
   }
-
   .content-text {
     padding: 20px 0;
   }
-
   .about-content.py_0 {
     padding-bottom: 0;
   }
-
   .country-list {
     padding: 10px 0px 10px 0px;
     width: 100%;
     margin-top: 20px;
   }
-
   .mat-mdc-list-base {
     margin-bottom: 30px;
     width: 100%;
   }
-
-  h3 {
-    font-size: 33px;
-  }
   .join-text p {
-    font-size: 22px;
-    line-height: 44px;
+    font-size: 18px;
+    line-height: 43px;
   }
 
 }
 
 @media (max-width: 400px) {
-  .about-text {
-    font-size: 25px;
-  }
   .main-bnr {
-    height: 200px;
-    padding-top: 50px;
+    padding-top: 80px;
   }
   .join-text {
     height: 46px;
@@ -596,20 +583,9 @@ font-size: 14px;
   .website-code {
     overflow: hidden;
   }
-
-  .country-available {
-    font-size: 20px;
-  }
-
   .countries.py_0 {
     padding-bottom: 0;
   }
-
-   .join-text p {
-    font-size: 20px;
-    line-height: 37px;
-  }
-
   .club-buttons {
     margin-top: 20px;
   }
@@ -623,12 +599,6 @@ font-size: 14px;
   }
 
 }
-
- ::ng-deep .about-content h2 {
-  @media (max-width: 321px) {
-    font-size: 20px;
-  }
- }
 
 .mat-mdc-list-item-unscoped-content {
   color: white !important;
@@ -691,6 +661,14 @@ h3, .text_side_wrapper p {
 .content-image img {
   height: auto !important;
 }
+:host ::ng-deep .about-content h2 {
+    font-size: 55px !important;
+    margin: 20px 0;
+}
+
+  :host ::ng-deep .about-content h4 {
+    font-size: 32px;
+}
 }
 
 @media (max-width: 991px) {
@@ -703,19 +681,9 @@ h3, .text_side_wrapper p {
 .club_players .img_side_wrapper img {
   margin-top: 0;
 }
-.club_players .text_side_wrapper .join-text p {
-  font-size: 16px !important;
-}
 }
 
-
-@media (min-width: 1600px) and (max-width: 1999px) {
-.content-text p {
-    font-size: 22px;
-}
-}
-
-@media (min-width: 992px) and (max-width: 1599px) {
+@media (min-width: 992px) and (max-width: 1999px) {
   .content-text {
     font-size: 20px;
   }
@@ -736,7 +704,7 @@ h3, .text_side_wrapper p {
     font-size: 18px;
     padding: 1rem 0 0;
   }
-  .country-available {
+  .country-available, .club h3 {
     font-size: 35px;
   }
   .country-name {
@@ -748,6 +716,9 @@ h3, .text_side_wrapper p {
   @media (min-width: 576px) and (max-width: 991px) {
     font-size: 35px;
   }
+  :host ::ng-deep .about-content p {
+        font-size: 18px;
+    }
  }
 
 
@@ -788,6 +759,13 @@ h3, .text_side_wrapper p {
 
 
 @media (min-width: 3000px) {
+  :host ::ng-deep .about-content h2 {
+    font-size: 90px !important;
+    margin: 30px 0;
+}
+  :host ::ng-deep .about-content h4 {
+    font-size: 40px !important;
+}
   .map {
     height: 2400px;
     img {
@@ -795,19 +773,4 @@ h3, .text_side_wrapper p {
       width: 2620px;
     }
   }
-}
-
-
-::ng-deep .about-content h2 {
-    @media (min-width: 2000px) {
-        font-size: 60px !important;
-        margin: 20px 0;
-    }
-}
-
-::ng-deep .about-content h2 {
-    @media (min-width: 3000px) {
-        font-size: 90px !important;
-        margin: 30px 0 !important;
-    }
 }

@@ -27,7 +27,7 @@ p {
 body {
     font-family: var(--bs-avenir-regular);
 }
-h1, h2, .btn.btn-register, .club-heading4, .feature-heading3, .accordion-header, .price-heading3,
+h1, h2, .btn.btn-register, .club-heading4, .feature-heading3, .price-heading3,
 ul.nav-tabs .nav-link.active, .premium-heading3, .premium-heading2, .btn.fill_btn, strong,
 .premium-heading3 span {
     font-family: var(--bs-avenir-bold);
@@ -913,7 +913,7 @@ img.birthday-img {
 h2.accordion-header {
     font-size: 20px;
     width: 100%;
-    font-weight: 600;
+    font-family: var(--bs-avenir-semibold);
     color: #bde34e;
 }
 
@@ -3269,22 +3269,12 @@ span {
 }
 
 @media (max-width: 991px) {
-
     .accordion-collapse {
         transition: height 0.5s ease-in-out;
-    }
-    h2.accordion-header {
-        font-size: 17px;
     }
     .banner {
         height: 950px;
     }
-
-    span {
-        font-size: 13px;
-    }
-
-
     .player-member1 {
         top: 42%;
         right: 74%;
@@ -5619,12 +5609,6 @@ span {
         right: -7%;
         top: 24%;
     }
-    h2.accordion-header {
-        font-size: 18px !important;
-    }
-    .feature-text {
-        font-size: 13px !important;
-    }
 }
 
 
@@ -5712,9 +5696,6 @@ span {
         height: 36px;
         min-width: 30px !important;
     }
-    h2.accordion-header {
-        font-size: 22px;
-    }
     .feature-text {
         margin-left: 18px !important;
     }
@@ -5776,7 +5757,7 @@ span {
         width: 85px;
         height: 85px;
     }
-    .club-text1 {
+    .club-text1, .btn.fill_btn {
         font-size: 22px;
     }
     h2.accordion-header, .premium-heading5 {
@@ -5930,30 +5911,34 @@ span {
         height: 85px;
     }
     .club-text1 {
-        font-size: 22px;
+        font-size: 24px;
     }
     .premium-heading5 {
-        font-size: 25px;
+        font-size: 30px;
     }
     h2.accordion-header {
-        font-size: 22px;
+        font-size: 30px;
     }
     .accordion-body .feature-text {
-        font-size: 20px;
+        font-size: 24px;
     }
     .red_text_plan {
-        font-size: 18px;
+        font-size: 20px;
     }
     .premium-text p {
-        font-size: 22px;
+        font-size: 24px;
     }
     .premium-text img {
         position: relative;
         top: 2px;
     }
-}
+    
+  .premium-text img {
+    position: relative;
+    top: 4px;
+  }
 
-@media (min-width: 1600px) and (max-width: 1999px) {
+
     .pricing_tabs_container {
         .nav-link {
             font-size: 25px !important;
@@ -5977,6 +5962,7 @@ span {
         width: 8px !important;
     }
 }
+
 
 @media (min-width: 2000px) and (max-width: 2999px) {
     .pricing_tabs_container {
@@ -6098,20 +6084,40 @@ span {
 .shadow_container .item_card {
     padding: 1.25rem;
 }
+.club-heading4 {
+    padding-bottom: 0;
+}
+.banner-heading, .feature-heading3, .club-heading4, h2.price-heading3  {
+    font-size: 35px;
+}
+h2.accordion-header {
+    font-size: 19px;
+}
+.club-text1, .banner-heading5, .accordion-body *, a.btn.btn-register, p {
+    font-size: 16px;
+}
+.premium-text img {
+    top: 2px;
+}
+.premium-heading5 {
+    font-size: 18px;
+}
+.buy_now_btn_front_price .btn.fill_btn {
+    padding: 8px 10px;
+    font-size: 16px;
+}
 }
 
-@media (max-width: 361px) {
-h2.accordion-header {
-    font-size: 20px;
-}
-}
 
 @media (min-width: 992px) and (max-width: 1599px) {
+    p, .premium-heading5, .premium-heading3 span{
+        font-size: 24px;
+    }
     .banner-inner {
       padding-top: 300px;
     }
     .banner-heading {
-      font-size: 52px;
+      font-size: 55px;
     }
     .club-heading4, .feature-heading3 {
       font-size: 45px;
@@ -6120,16 +6126,16 @@ h2.accordion-header {
       font-size: 30px;
     }
     a.btn.btn-register {
-      font-size: 20px;
+      font-size: 24px;
     }
-  .club-text1 {
-      font-size: 22px;
+  .club-text1, .btn.fill_btn {
+      font-size: 24px;
   }
   .feature-text {
-    font-size: 18px;
+    font-size: 24px;
 }
   h2.accordion-header {
-      font-size: 22px;
+      font-size: 30px;
   }
   .club_text img {
       width: 70px;
@@ -6138,6 +6144,11 @@ h2.accordion-header {
   .banner-left {
     margin-right: 1%;
 }
+
+  .premium-text img {
+    position: relative;
+    top: 4px;
+  }
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
@@ -6148,17 +6159,26 @@ h2.accordion-header {
 
 @media (min-width: 576px) and (max-width: 991px) {
 .club-heading4 {
-    font-size: 35px;
     padding-bottom: 0;
 }
-.banner-heading {
+.banner-heading, .feature-heading3, .club-heading4, h2.price-heading3  {
     font-size: 40px;
 }
 h2.accordion-header {
-    font-size: 22px;
+    font-size: 24px;
 }
-.club-text1 {
-    font-size: 18px;
+.club-text1, .banner-heading5, .accordion-body *, a.btn.btn-register, p {
+    font-size: 20px;
+}
+.premium-text img {
+    top: 4px;
+}
+.premium-heading5 {
+    font-size: 24px;
+}
+.buy_now_btn_front_price .btn.fill_btn {
+    padding: 12px;
+    font-size: 20px;
 }
 }
 

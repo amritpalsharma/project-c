@@ -503,6 +503,7 @@ button.page-active {
         font-size: 30px;
         margin-bottom: 20px;
         padding-top: 20px;
+        text-align: center;
     }
 
     .pagination-controls {
@@ -544,10 +545,6 @@ button.page-active {
 }
 
 @media (max-width: 400px) {
-    h1 {
-        font-size: 25px;
-    }
-
     button.faq-club-button,
     button.faq-talent-button {
         font-size: 18px;
@@ -946,7 +943,7 @@ button.faq-club-button, button.faq-talent-button {
 }
 
 @media (max-width: 399px) {
-.talent_tabb_content {
+.talent_tabb_content, .club_tabb_content, .scout_tabb_content {
     .col-6 {
         width: 100%;
     }

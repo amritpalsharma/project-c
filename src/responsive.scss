@@ -477,7 +477,7 @@ mat-datepicker-toggle button {
         }
     }
     .btn {
-        font-size: 20px !important;
+        font-size: 24px !important;
     }
     .club-heading4 {
         height: 50px !important;
@@ -603,7 +603,7 @@ mat-datepicker-toggle button {
     }
 }
 .banner-inner .about h3, .country-available, h2.cookie-text {
-    font-size: 60px !important;
+    font-size: 55px !important;
 }
 .grey_common_banner {
     h3 {
@@ -662,6 +662,10 @@ mat-datepicker-toggle button {
 }
 .website_main_pages .home_banner .banner-inner {
     padding-top: 450px;
+}
+
+.overflow-card .form-check.checkbox input[name=noClub] {
+    top: 4px;
 }
 }
 
@@ -826,7 +830,7 @@ mat-datepicker-toggle button {
             }
         }
         .club_player_sec .title_text_p h3 {
-            font-size: 60px !important;
+            font-size: 75px !important;
         }
         .countries {
             .custom-list-item::before {
