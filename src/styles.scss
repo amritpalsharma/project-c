@@ -2722,3 +2722,13 @@ table td .icon_text_icon {
   text-align: center;
   margin-top: 22px;
 }
+
+
+.overflow-card .form-check.checkbox input[name="noClub"] {
+    top: 3px;
+    position: relative;
+}
+
+.paginator-components .mat-mdc-paginator-range-actions button.mat-mdc-paginator-navigation-next {
+    margin-left: 10px !important;
+}

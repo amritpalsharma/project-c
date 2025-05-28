@@ -72,6 +72,7 @@ h1, h2, .class_bold, strong {
     padding-top: 190px;
     h2.cookie-text{
       color: #fff;
+      word-break: break-word;
     }
 }
 
@@ -167,7 +168,7 @@ img.banner-image {
     margin-top: 40px;
     border-top: 1px solid white;
     border-bottom: 1px solid white;
-    padding: 20px;
+    padding: 20px 0;
 }
 
 .news_share_icons a {
@@ -355,6 +356,9 @@ img.banner-image {
 }
 
 @media (max-width: 1024px) {
+    .news-box .news_img_thumb_wrap {
+        height: 250px;
+    }
     .news-box img {
         height: 270px;
         margin-bottom: 10px;
@@ -407,26 +411,10 @@ img.banner-image {
         height: 280px;
         margin-bottom: 10px;
     }
-
-    .newss--page p {
-        font-size: 14px;
-    }
-
-    .newss--page li {
-        font-size: 14px;
-    }
-
     h1 {
-        font-size: 30px;
         margin-top: 20px;
     }
-
-    p.p-text {
-        font-size: 14px;
-    }
-
     h3 {
-        font-size: 22px;
         margin-top: 20px;
         margin-bottom: 10px;
     }
@@ -452,13 +440,19 @@ img.banner-image {
 }
 
 @media (max-width: 575px) {
-    .cookie-text {
-        font-size: 35px;
-    }
     .news_static_banner {
         h3 {
             font-size: 20px;
         }
+    }
+    :host ::ng-deep p, p.p-text, h5.share {
+        font-size: 16px;
+    }
+    .cookie-text {
+        font-size: 35px;
+    }
+    .latest-news h4 {
+        font-size: 30px;
     }
     img.banner-image {
         height: 230px;
@@ -469,21 +463,6 @@ img.banner-image {
     .news-box img {
         height: 280px;
     }
-
-    p.p-text {
-        margin-bottom: 0;
-    }
-
-    h1 {
-        font-size: 30px;
-        margin-bottom: 10px;
-        margin-top: 10px;
-    }
-
-    h4 {
-        font-size: 25px;
-        margin-bottom: 10px;
-    }
     .files img {
         margin-top: 30px;
         margin-left: 7px;
@@ -492,11 +471,31 @@ img.banner-image {
     }
 }
 
+@media (min-width: 992px) and (max-width: 1999px) {
+.news_static_banner {
+    h3 {
+        font-size: 25px;
+    }
+}
+.latest-news h4, .cookie-text {
+    font-size: 55px;
+}
+:host ::ng-deep p, p.p-text, h5.share {
+    font-size: 24px;
+}
+}
+
 @media (min-width: 576px) and (max-width: 991px) {
 .news_static_banner {
     h3 {
         font-size: 25px;
     }
+}
+.latest-news h4, .cookie-text {
+    font-size: 40px;
+}
+:host ::ng-deep p, p.p-text, h5.share {
+    font-size: 20px;
 }
 }
 
@@ -521,26 +520,12 @@ img.banner-image {
         margin-top: 10px;
     }
 
-    p.p-text {
-        font-size: 12px;
-    }
-
     img.banner-image {
         height: 190px;
     }
 
     .news-box img {
         height: 240px;
-    }
-
-    h4 {
-        font-size: 25px;
-        font-family: var(--bs-avenir-semibold);
-        margin-bottom: 10px;
-    }
-
-    h3 {
-        font-size: 20px;
     }
 
     .social-icons {
@@ -553,18 +538,11 @@ img.banner-image {
 }
 
 @media (max-width: 321px) {
-    .cookie-text {
-        font-size: 28px;
-    }
     .files img {
         margin-top: 30px;
         margin-left: 7px;
         height: 50px;
         width: 100%;
-    }
-
-    .social-icons {
-        padding: 10px;
     }
 }
 
@@ -574,6 +552,9 @@ img.banner-image {
     font-size: 45px !important;
     margin: 1.25rem 0 !important;
     }
+}
+:host ::ng-deep p {
+    font-size: 26px !important;
 }
 }
 
@@ -585,5 +566,8 @@ img.banner-image {
         font-size: 55px !important;
         margin: 1.5rem 0 !important;
     }
+}
+:host ::ng-deep p {
+    font-size: 40px !important;
 }
 }

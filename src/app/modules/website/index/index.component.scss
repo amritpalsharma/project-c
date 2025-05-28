@@ -242,7 +242,7 @@ a {
 }
 
 .main-bnr h1 {
-  font-size: 50px;
+  font-size: 55px;
   font-weight: 700;
 }
 
@@ -647,7 +647,8 @@ li {
 .joined-btn button.btn {
   border-radius: 50px;
   height: auto;
-  width: 230px;
+  min-width: 230px;
+  width: max-content;
   font-family: var(--bs-avenir-bold);
   font-size: 18px;
 }
@@ -2866,21 +2867,11 @@ img.success-image {
   .main-bnr {
     height: 820px;
   }
-
-  .joined-text h3 {
-    font-size: 30px;
-  }
-
   .home-banner-image {
     width: 400px;
     height: 155px;
     object-fit: contain;
   }
-
-  .works h3 {
-    font-size: 28px;
-  }
-
   .nav-link {
     padding: 16px !important;
     font-size: 16px;
@@ -2894,20 +2885,6 @@ img.success-image {
   .navbar-brand img {
     width: 150px;
   }
-
-  .progress_btn a {
-    font-size: 20px;
-  }
-
-  .progress_btn p {
-    margin-top: 10px;
-    font-size: 18px;
-  }
-
-  .club h3 {
-    font-size: 33px;
-  }
-
   .coustom-select .form-select {
     width: 70px;
     height: 40px;
@@ -3197,19 +3174,10 @@ img.success-image {
     z-index: 1;
   }
 
-  .main-bnr h1 {
-    font-size: 32px;
-  }
-
   .navbar-collapse {
     background-color: #f2f2f2;
     padding-bottom: 10px;
   }
-
-  p {
-    font-size: 20px;
-  }
-
   .number p {
     padding-top: 0;
   }
@@ -3243,6 +3211,8 @@ img.success-image {
   .works-1 h3 {
     text-transform: uppercase;
     font-size: 25px;
+    color: #bde34f;
+    font-family: var(--bs-avenir-bold);
   }
 
   .player2 img.birthday-img {
@@ -3283,7 +3253,6 @@ img.success-image {
 
   .progress_btn p {
     margin-top: 10px;
-    font-size: 15px;
   }
 
   .coustom-select .form-select {
@@ -3788,10 +3757,6 @@ img.success-image {
 
 
 @media (max-width: 767px) {
-  .main-bnr h1 {
-    font-size: 28px;
-  }
-
   .talent-img1 img {
     width: 195px;
     height: 275px;
@@ -3916,6 +3881,7 @@ img.success-image {
 
   .main-bnr {
     height: 700px;
+    padding-bottom: 4rem;
   }
 
   .joined-btn button.btn {
@@ -3949,12 +3915,6 @@ img.success-image {
     // height: 310px;
     height: unset;
   }
-
-  .join-text p {
-    font-size: 22px;
-    line-height: 44px;
-  }
-
   .join-text {
     height: 100%;
   }
@@ -3988,12 +3948,6 @@ img.success-image {
     right: 10px;
     top: 110px;
   }
-
-  h3 {
-    font-size: 33px;
-    font-weight: 600;
-  }
-
   .message-panel img {
     width: 210px;
     height: 265px;
@@ -4026,7 +3980,6 @@ img.success-image {
 
   .progress_btn p {
     margin-top: 10px;
-    font-size: 18px;
   }
 
   .progress_btn {
@@ -4062,18 +4015,14 @@ img.success-image {
   .works h3 {
     padding-left: 0;
     padding-right: 0;
-    font-size: 22px;
     text-transform: uppercase;
   }
-
-
   .work-banner {
     margin-left: 0;
     margin-right: 0;
   }
 
   .talent-img3 img {
-
     display: none;
   }
 
@@ -4469,13 +4418,6 @@ img.success-image {
   }
 }
 
-@media (max-width: 413px) {
-  .progress_btn p {
-    font-size: 17px;
-  }
-}
-
-
 @media (max-width: 374px) {
   .works-btn {
     button.btn {
@@ -4579,10 +4521,6 @@ img.success-image {
 }
 
 @media (max-width: 376px) {
-  .main-bnr h1 {
-    font-size: 25px;
-  }
-
   .main-bnr {
     height: 650px;
     padding-top: 80px;
@@ -4730,10 +4668,6 @@ img.success-image {
 
   .progress_btn a {
     font-size: 20px;
-  }
-
-  .progress_btn p {
-    font-size: 16px;
   }
 
   .right-side img.image3 {
@@ -4886,11 +4820,6 @@ img.success-image {
   .button-border {
     width: 216px;
     height: 49px;
-  }
-
-  .join-text p {
-    font-size: 20px;
-    line-height: 37px;
   }
 
   img.join-btn {
@@ -5164,10 +5093,6 @@ img.success-image {
   .home-banner-image {
     width: 660px;
   }
-
-  .main-bnr h1 {
-    font-size: 55px;
-  }
   .main-bnr {
     padding-bottom: 10rem !important;
   }
@@ -5244,6 +5169,21 @@ img.success-image {
 }
 
 @media (max-width: 991px) {
+  .button-border {
+    height: 55px;
+    .join-text {
+      height: 46px;
+      p {
+        font-size: 24px;
+        line-height: 43px;
+      }
+    }
+    img.join-btn {
+        height: 17px;
+        width: 15px;
+        margin: 14px;
+    }
+  }
   .club {
     margin-top: 0;
   }
@@ -5260,11 +5200,6 @@ img.success-image {
   .club_players .img_side_wrapper img {
     margin-top: 0;
   }
-
-  .club_players .text_side_wrapper .join-text p {
-    font-size: 16px !important;
-  }
-
   .work-text:not(:last-child).active::after {
     display: none;
   }
@@ -5278,35 +5213,36 @@ img.success-image {
 }
 }
 
+
 @media (min-width: 992px) and (max-width: 1599px) {
-  .banner-inner {
-    padding-top: 300px;
-  }
-
-  h3,
-  .works h3,
-  .joined-text h3 {
-    font-size: 40px;
-  }
-
-  .works-btn button.btn,
-  .banner-btn .btn {
-    font-size: 20px;
-  }
-
-  .progress_btn a {
-    font-size: 22px;
-  }
+.banner-inner {
+  padding-top: 300px;
+}
+.main-bnr h1 {
+  font-size: 55px;
+}
+p {
+  font-size: 24px;
+}
+h3, .works h3, .joined-text h3 {
+  font-size: 45px;
+}
+.works-btn button.btn, .banner-btn .btn, .joined-btn button.btn {
+  font-size: 24px;
+}
+.progress_btn a {
+  font-size: 30px;
+  line-height: 1.25;
+}
+.work-text .number p {
+  width: 40px !important;
+  height: 40px !important;
+}
 }
 
 @media (min-width: 1600px) and (max-width: 1999px) {
   .banner-inner {
     padding-top: 280px;
-  }
-
-  h3,
-  .works h3 {
-    font-size: 45px;
   }
   .work-text:not(:last-child).active::after {
     left: -8px;
@@ -5315,7 +5251,65 @@ img.success-image {
     border-top-width: 15px;
     transform: translateY(-14px);
   }
+  .main-bnr h1 {
+  font-size: 55px;
 }
+p {
+  font-size: 24px;
+}
+h3, .works h3, .joined-text h3 {
+  font-size: 45px;
+}
+.works-btn button.btn, .banner-btn .btn, .joined-btn button.btn {
+  font-size: 24px;
+}
+.progress_btn a {
+  font-size: 30px;
+  line-height: 1.25;
+}
+.work-text .number p {
+  width: 40px !important;
+  height: 40px !important;
+}
+}
+
+
+@media (min-width: 576px) and (max-width: 991px) {
+.main-bnr h1, .joined h3, .works-1 h3, .club h3 {
+  font-size: 40px;
+}
+p {
+  font-size: 20px;
+}
+.progress_btn a {
+  font-size: 24px;
+}
+}
+
+
+@media (max-width: 575px) {
+.main-bnr h1 {
+  font-size: 35px;
+}
+.joined h3, .works-1 h3, .club h3 {
+  font-size: 30px;
+}
+p, .progress_btn p {
+  font-size: 16px;
+}
+.progress_btn a {
+  font-size: 19px;
+  line-height: 1.2;
+}
+.joined h3 {
+  margin-bottom: 10px;
+}
+.join-text p {
+    font-size: 18px !important;
+    line-height: 43px !important;
+}
+}
+
 
 @media (min-width: 2000px) {
   .work-banner {
@@ -5442,7 +5436,7 @@ img.success-image {
 .player--item {
     padding: 8px;
     .player--bio-dtl {
-      height: 180px;
+      height: 210px;
     }
     .item--icons-list {
       width: 40px;

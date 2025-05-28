@@ -614,7 +614,7 @@ li::before {
         .item_column:nth-child(2) {
             margin-top: -5rem;
             .body_card {
-                height: calc(600px + 5rem);
+                // height: calc(600px + 5rem);
             }
         }
     }
@@ -808,42 +808,31 @@ li::before {
     .shadow_container .item_card {
         padding: 1.5rem;
     }
-}
-
-@media (max-width: 376px) {
-    .feature-heading {
-        margin-bottom: 10px;
-    }
-    .feature-height {
-        height: 350px;
-    }
-    .feature-box {
-        margin-top: 20px;
+    p, .premium-heading5, .premium-heading3 span{
+        font-size: 16px;
     }
     .imprint-text {
-        font-size: 40px;
+      font-size: 35px;
     }
-    .main-bnr {
-        height: 340px;
-    }
-}
-
-@media (max-width: 321px) {
-    .premium-heading2, .price-heading3  {
+    .premium-heading2 {
         font-size: 30px;
-        margin-bottom: 10px;
+    }
+    .premium-heading5 {
+        font-size: 18px;
     }
     .premium-heading3 {
-        font-size: 45px;
-    }
-    .imprint-text {
         font-size: 35px;
     }
+    .price-heading3 {
+      font-size: 30px;
+      text-align: center;
+    }
+}
+
+
+@media (max-width: 321px) {
     .main-bnr {
         height: 300px;
-    }
-    p {
-        font-size: 17px;
     }
     .billed {
         display: flex;
@@ -897,24 +886,92 @@ li::before {
 
 
 @media (min-width: 1600px) and (max-width: 1999px) {
-    .price-heading3 {
-        font-size: 45px;
+.imprint-text {
+        font-size: 55px;
     }
-    .billed__infor small {
-        font-size: 19px;
+    h3, .price-heading3 {
+      font-size: 45px;
     }
-    .free-heading, .feature-heading {
-        font-size: 25px;
+    .club_text img {
+        width: 85px;
+        height: 85px;
     }
-    .feature-height li {
+    .club-text1, .btn.fill_btn {
+        font-size: 24px;
+    }
+    .premium-heading5 {
+        font-size: 30px;
+    }
+    h2.accordion-header {
+        font-size: 30px;
+    }
+    .accordion-body .feature-text {
+        font-size: 24px;
+    }
+    .red_text_plan {
         font-size: 20px;
+    }
+    .premium-text p {
+        font-size: 24px;
+    }    
+  .premium-text img {
+    position: relative;
+    top: 4px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 991px) {
+    p, .premium-heading5, .premium-heading3 span{
+        font-size: 20px;
+    }
+    .imprint-text {
+      font-size: 40px;
+    }
+    .premium-heading2 {
+        font-size: 35px;
+    }
+    .premium-heading5 {
+        font-size: 24px;
+    }
+    .premium-heading3 {
+        font-size: 50px;
+    }
+    .premium-text img {
+        position: relative;
+        top: 4px;
+    }
+    .price-heading3 {
+      font-size: 40px;
+      text-align: center;
     }
 }
 
 @media (min-width: 992px) and (max-width: 1599px) {
+    p, .premium-heading5, .premium-heading3 span{
+        font-size: 24px;
+    }
+    .imprint-text {
+      font-size: 55px;
+    }
     .price-heading3 {
       font-size: 45px;
     }
+    .banner-heading5 {
+      font-size: 30px;
+    }
+  .club-text1, .btn.fill_btn {
+      font-size: 24px;
+  }
+  .feature-text {
+    font-size: 24px;
+}
+  h2.accordion-header {
+      font-size: 30px;
+  }
+  .premium-text img {
+    position: relative;
+    top: 4px;
+  }
 }
 
 

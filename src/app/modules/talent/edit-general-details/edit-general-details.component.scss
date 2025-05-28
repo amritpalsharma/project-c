@@ -151,6 +151,16 @@ span.social_heading {
   background: rgb(228, 228, 228); 
   border-radius: 10px;
 }
+
+@media (min-width:2000px) {
+ .form-group {
+    padding: 0px 10px !important;
+}
+.speed_inputs{
+    padding-right: 10px !important;
+  }
+}
+
 @media (max-width:1440px) {
   .market_input-gap{
     padding: 0 !important;

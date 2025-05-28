@@ -2578,9 +2578,15 @@ input:checked+.slider:before {
   background: #bde34f !important;
 }
 
-.dark-theme .password_field_wrap {
+.dark-theme .modal-body .password_field_wrap {
   .password-toggle {
     background: #072944 !important;
+  }
+}
+
+.dark-theme .password_field_wrap {
+  .password-toggle {
+    background: #0c3453 !important;
   }
 }
 
@@ -2923,4 +2929,10 @@ input:checked+.slider:before {
 }
 .dark-theme .common_profile_modal .red-border{
   border: 2px solid red !important;
+}
+
+.dark-theme {
+  .card-header .mat-mdc-paginator-range-actions svg.mat-mdc-paginator-icon {
+    fill: #072944 !important;
+}
 }

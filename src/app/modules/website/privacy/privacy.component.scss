@@ -367,6 +367,9 @@ h1, h2, h3, strong {
     .contact-text * {
       font-size: 24px;
     }
+    .cookie-text {
+    font-size: 55px;
+  }
 }
 
 @media (min-width: 576px) and (max-width: 991px) {
@@ -395,13 +398,6 @@ h1, h2, h3, strong {
             font-size: 20px;
         }
     }
-}
-
-
-@media (min-width: 992px) and (max-width: 1599px) {
-  .cookie-text {
-    font-size: 55px;
-  }
 }
 
 @media (min-width: 1600px) and (max-width: 2999px) {
@@ -474,4 +470,13 @@ h1, h2, h3, strong {
             background-size: 40px !important;
         }
     }
+}
+
+
+@media (max-width: 767px) {
+.btn.donlod_btn_style {
+    width: 100%;
+    margin-right: 0 !important;
+    padding: 12px !important;
+}
 }

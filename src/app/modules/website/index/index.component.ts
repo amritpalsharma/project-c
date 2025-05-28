@@ -229,6 +229,9 @@ export class IndexComponent {
     navText: ['', ''],
     responsive: {
       0: {
+        items: 1
+      },
+      400: {
         items: 2
       },
       600: {
@@ -241,7 +244,7 @@ export class IndexComponent {
         items: 5
       },
       1400: {
-        items: 6
+        items: 5
       }
     }
   };
