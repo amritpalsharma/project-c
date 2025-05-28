@@ -20,10 +20,38 @@ const moment = _rollupMoment || _moment;
 })
 export class AddTransferComponent {
   readonly date = new FormControl(moment());
+  sessionArr: any = [
+    '25/26',
+    '24/25',
+    '23/24',
+    '22/23',
+    '21/22',
+    '20/21',
+    '19/20',
+    '18/19',
+    '17/18',
+    '16/17',
+    '15/16',
+    '14/15',
+    '13/14',
+    '12/13',
+    '11/12',
+    '10/11',
+    '09/10',
+    '08/09',
+    '07/08',
+    '06/07',
+    '05/06',
+    '04/05',
+    '03/04',
+    '02/03',
+    '01/02'
+  ];
+
   teams: any;  // Assume you get this data from a service
   transfer: any;  // Assume you get this data from a service
   errorTxt: string = '';
-  showFormErrors:boolean=false;
+  showFormErrors: boolean = false;
 
   teamTo: string = ''; // Initialize as empty string to avoid undefined issues
   teamToId: any;
@@ -97,8 +125,8 @@ export class AddTransferComponent {
           ...formData, // Spread the existing formData
           team_to_manual: this.team_to_manual, // Replace team_to with team_to_manual
           team_to_m_country_id: this.team_to_m_country_id, // Replace team_to with team_to_manual
-         // team_to: undefined, // Remove the old team_to key if needed
-          have_no_club_to:true
+          // team_to: undefined, // Remove the old team_to key if needed
+          have_no_club_to: true
         };
       }
 
@@ -107,8 +135,8 @@ export class AddTransferComponent {
           ...formData, // Spread the existing formData
           team_from_manual: this.team_from_manual, // Replace team_to with team_to_manual
           team_from_m_country_id: this.team_from_m_country_id, // Replace team_to with team_to_manual
-        //  team_to: undefined, // Remove the old team_to key if needed
-          have_no_club_from:true
+          //  team_to: undefined, // Remove the old team_to key if needed
+          have_no_club_from: true
         };
       }
       // Show loading notification
@@ -205,12 +233,12 @@ export class AddTransferComponent {
   }
 
   onNoMoveToTeam(value: boolean) {
-    console.log('onNoMoveToTeam',value);
+    console.log('onNoMoveToTeam', value);
     this.noMoveToTeam = value;
   }
 
   onNoMoveFromTeam(value: boolean) {
-    console.log('onNoMoveFromTeam',value);
+    console.log('onNoMoveFromTeam', value);
     this.noMoveFromTeam = value;
   }
 

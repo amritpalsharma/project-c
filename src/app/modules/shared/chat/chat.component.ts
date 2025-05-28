@@ -73,7 +73,8 @@ export class ChatComponent {
           this.talkService.toggleTheme(true);
         }, 2000);
       }
-      console.info('currentTheme is '+theme)
+      // this.talkService.changeLocale(locale);
+      console.info('currentTheme is ' + theme)
     });
   }
 

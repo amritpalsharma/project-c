@@ -146,7 +146,7 @@
   "boostedProfilePreview": "Vorschau Boosted-Abo",
   "selectTargetAudience": "Zielgruppe wählen",
   "defaultProfilePreview": "Standard-Profilvorschau",
-  "saveAndBoost": "Speichern und Boosten",
+  "saveAndBoost": "Jetzt Boosten!",
   "stats": "Statistik",
   "billedMonthly": "Monat",
   "billedYearly": "Jahr",
@@ -951,10 +951,10 @@
     "totalSubscriptions": "Gesamtabonnements: {{count}}"
   },
   "more_news": "Weitere News",
-  "back_to_news": "Zurück zu News & Medien",
+  "back_to_news": "zurück zu News & Medien",
   "share": "Teilen",
   "uses": "verwendet",
-  "news": "Nachrichten",
+  "news": "News & Medien",
   "eltonPrinceCreatedAccount": "(Benutzername) hat ein neues Profil erstellt und wartet auf die Genehmigung.",
   "fourteenHoursAgo": "vor 14 Stunden",
   "cortneyBrimmer": "Cortney Brimmer",
@@ -1417,7 +1417,7 @@
   "PerformaceProfile": "Spielstatistik",
   "subscriptionCanceledSuccessfully": "Das Abonnement wurde erfolgreich gekündigt.",
   "subscriptionPlans": "Abonnement-Pläne",
-  "editBoostProfile": "Boost-Profil bearbeiten",
+  "editBoostProfile": "Boost-Profil Ansichten",
   "uploadHighlightPhotosAndVideos": "Fotos und Videos hochladen",
   "areYouSuretoDeleteNotification": "Bist du sicher, dass du diese Benachrichtigung löschen möchtest?",
   "invalidPhoneNumber": "Bitte geben Sie eine gültige Telefonnummer ein.",
@@ -1476,5 +1476,8 @@
   "homeSliderTxt": "Nur verifizierte Profile – für echte Sichtbarkeit. Entdecke jetzt die neuesten Talente, Scouts und Clubs.",
   "selectHere": "Hier auswählen",
   "deleteProfilePicture": "Profilbild löschen",
-  "playerListHeading": "Neu im Spiel – Jetzt entdecken!"
+  "playerListHeading": "Neu im Spiel – Jetzt entdecken!",
+  "verifiedStatus": "Verifiziert",
+  "pendingStatus": "Ausstehend",
+  "rejectedStatus": "Abgelehnt"
 }

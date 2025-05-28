@@ -30,9 +30,11 @@
                             <div class="player--bio-dtl">
                                 <div class="item--icons-list">
                                     <div class="item--club">
-                                        <img *ngIf="loggedInUser?.club_logo_path" alt="team-logo" src="{{loggedInUser?.club_logo_path}}">
+                                        <img *ngIf="loggedInUser?.club_logo_path" alt="team-logo"
+                                            src="{{loggedInUser?.club_logo_path}}">
                                     </div>
-                                    <div class="player--flag" *ngIf="userNationality || loggedInUser?.meta?.date_of_birth">
+                                    <div class="player--flag"
+                                        *ngIf="userNationality || loggedInUser?.meta?.date_of_birth">
                                         <img *ngIf="userNationality" [src]="userNationality" class="flag-img">
                                         <div *ngIf="isValidBirthDate" div class="age_box">
                                             <!-- <hr  *ngIf='theme=="dark"' style="color: #000;">
@@ -47,7 +49,8 @@
                                                         fill="#6FB95D"></path>
                                                 </svg>
                                             </span> -->
-                                            <div class="player--dob" *ngIf="loggedInUser?.meta?.date_of_birth">{{date_of_birth}}</div>
+                                            <div class="player--dob" *ngIf="loggedInUser?.meta?.date_of_birth">
+                                                {{date_of_birth}}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -55,7 +58,8 @@
                                     *ngIf="loggedInUser?.meta && loggedInUser?.meta?.profile_image_path"
                                     class="player_profile_img" />
                                 <img src="../../../../../assets/images/default/talent-profile-default.png" alt=""
-                                *ngIf="!loggedInUser?.meta || !loggedInUser?.meta?.profile_image_path" class="player_profile_img" />
+                                    *ngIf="!loggedInUser?.meta || !loggedInUser?.meta?.profile_image_path"
+                                    class="player_profile_img" />
                                 <div class="booster_text"> {{'boosted' | translate}} </div>
                             </div>
                             <div class="player__name">{{ loggedInUser.first_name }} {{ loggedInUser.last_name }}</div>
@@ -70,7 +74,8 @@
                             <div class="player--bio-dtl">
                                 <div class="item--icons-list">
                                     <div class="item--club">
-                                        <img *ngIf="loggedInUser?.club_logo_path" alt="team-logo" src="{{loggedInUser?.club_logo_path}}">
+                                        <img *ngIf="loggedInUser?.club_logo_path" alt="team-logo"
+                                            src="{{loggedInUser?.club_logo_path}}">
                                     </div>
                                     <div class="player--flag">
                                         <img [src]="userNationality">
@@ -87,7 +92,8 @@
                                                         fill="#6FB95D"></path>
                                                 </svg>
                                             </span> -->
-                                            <div class="player--dob" *ngIf="loggedInUser?.meta?.date_of_birth">{{date_of_birth}}</div>
+                                            <div class="player--dob" *ngIf="loggedInUser?.meta?.date_of_birth">
+                                                {{date_of_birth}}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -95,7 +101,8 @@
                                     *ngIf="loggedInUser?.meta && loggedInUser?.meta?.profile_image_path"
                                     class="player_profile_img" />
                                 <img src="../../../../../assets/images/default/talent-profile-default.png" alt=""
-                                    *ngIf="!loggedInUser?.meta || !loggedInUser?.meta?.profile_image_path" class="player_profile_img" />
+                                    *ngIf="!loggedInUser?.meta || !loggedInUser?.meta?.profile_image_path"
+                                    class="player_profile_img" />
                             </div>
                             <div class="player__name">{{ loggedInUser.first_name }} {{ loggedInUser.last_name }}</div>
                         </div>
@@ -177,14 +184,20 @@
                                         <td>
                                             <div class="d-flex align-items-center">
                                                 <span class="position-relative">
-                                                    <img *ngIf="user.profile_image"
+                                                    <img *ngIf="user.profile_image && user.role_id != 2"
                                                         src="{{stats.profile_path+user.profile_image}}" alt=""
                                                         class="table_img ng-star-inserted">
-                                                    <img *ngIf="!user.profile_image"
+                                                    <img *ngIf="!user.profile_image  && user.role_id != 2"
                                                         src="../../../../assets/images/default/talent-profile-default.png"
                                                         alt="" class="table_img ng-star-inserted">
+                                                    <span *ngIf="user.role_id == 2">
+                                                        <!-- <img *ngIf="!user.current_club_image  && user.current_club_image != 2"
+                                                        src="../../../../assets/images/default/talent-profile-default.png"
+                                                        alt="" class="table_img ng-star-inserted"> -->
+                                                    </span>
                                                 </span>
-                                                <span class="main-template">{{user.first_name}} </span>
+                                                <span class="main-template">{{user.first_name}}
+                                                    {{user.last_name}}</span>
                                             </div>
                                         </td>
                                         <td colspan="">

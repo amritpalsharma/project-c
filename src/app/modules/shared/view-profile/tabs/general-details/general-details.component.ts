@@ -102,4 +102,8 @@ export class GeneralDetailsComponent {
       }
     }
   }
+
+  getCurrenyByUnit(currencyID:number){
+
+  }
 }

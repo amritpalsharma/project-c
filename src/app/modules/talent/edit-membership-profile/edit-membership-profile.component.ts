@@ -223,7 +223,7 @@ export class EditMembershipProfileComponent {
     }
 
     if (role != '' && user_id != '') {
-      this.dialogRef.close({ action: 'redirect', redirect_path: '/view/' + role, user_id: user_id });
+      this.dialogRef.close({ action: 'redirect', redirect_path: '/view/' + role, user_id: user_id, role:role });
     }
     // console.warn('ROle is '+role_id+' Id is '+user_id)
   }

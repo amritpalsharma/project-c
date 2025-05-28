@@ -169,6 +169,7 @@ export class HeaderComponent {
     //   }
     // }
     this.getUserStatus();
+    this.getUserProfile();
 
     this.commonDataService.profilePic$.subscribe(url => {
       this.profileImgUrl = url;
@@ -374,6 +375,31 @@ export class HeaderComponent {
     });
   }
 
+  getUserProfile() {
+    let params = {
+      lang: localStorage.getItem('lang_id')
+    };
+
+    try {
+      this.talentService.getProfileData(params).subscribe((response) => {
+
+        if (response && response.status && response.data && response.data.user_data) {
+          console.info('UserDataArr', response.data.user_data);
+          let userArr = response.data.user_data;
+          if (userArr?.first_name || userArr?.last_name) {
+            this.titleService.setName(userArr?.first_name + ' ' + userArr.last_name);
+            this.titleService.setRole(userArr?.role_name);
+          }
+          if (userArr?.meta?.profile_image_path && typeof userArr?.meta?.profile_image_path != undefined) {
+            this.commonDataService.updateProfilePic(userArr?.meta?.profile_image_path);
+          }
+        }
+      });
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    }
+  }
+
 
   isUserOnline(senderId: number): boolean {
     if (!this.socketService.onlineUsers) {
@@ -524,7 +550,7 @@ export class HeaderComponent {
     // }
     // localStorage.setItem('cookieConsent', 'accepted');
     localStorage.setItem('theme', theme);
-    localStorage.setItem('lang', lang); 
+    localStorage.setItem('lang', lang);
     this.authService.logout();
     setTimeout(() => {
       window.location.reload();

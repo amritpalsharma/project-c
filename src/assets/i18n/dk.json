@@ -1335,5 +1335,8 @@
   "homeSliderTxt": "Kun verificerede profiler – for ægte synlighed. Oplev de nyeste talenter, scouts og klubber nu.",
   "selectHere": "Vælg her",
   "deleteProfilePicture": "Slet profilbillede",
-  "playerListHeading": "Ny i spillet – Opdag det nu!"
+  "playerListHeading": "Ny i spillet – Opdag det nu!",
+  "verifiedStatus": "Verificeret",
+  "pendingStatus": "Afventer",
+  "rejectedStatus": "Afvist"
 }

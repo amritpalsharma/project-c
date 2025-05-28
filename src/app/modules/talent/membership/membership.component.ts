@@ -439,6 +439,14 @@ export class MembershipComponent {
       if (result) {
         this.getBoosterData()
       }
+
+      if (result.role != undefined && result.role != '') {
+        if (result.role == 'talent' || result.role == 'scout' || result.role == 'club') {
+          if (result.user_id != '' && result.user_id != undefined && result.redirect_path) {
+            this.router.navigate([result.redirect_path, result.user_id]);
+          }
+        }
+      }
     });
   }
   capitalizeFirstLetter(value: string): string {

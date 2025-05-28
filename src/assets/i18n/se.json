@@ -1417,5 +1417,8 @@
   "selectHere": "Välj här",
   "deleteProfilePicture": "Ta bort profilbild",
   "freePlanText": "2 månader gratis med årsabonnemang",
-  "playerListHeading": "Ny i spelet – Upptäck nu!"
+  "playerListHeading": "Ny i spelet – Upptäck nu!",
+  "verifiedStatus": "Verifierad",
+  "pendingStatus": "Väntande",
+  "rejectedStatus": "Avvisad"
 }

@@ -40,15 +40,16 @@
               <div>
                 <div class="user-media text-center ">
                   <img *ngIf="profileImage" [src]="profileImage" class="" alt="" />
-                  <img *ngIf="!profileImage && user.club_logo_path != '' && user.status == '2'" src="{{user.club_logo_path}}" class=""
-                  alt="" />
-                  <img *ngIf="!profileImage && !user.club_logo_path" src="../../../../assets/images/default/talent-profile-default.png" class=""
-                    alt="" />
-                  
+                  <img *ngIf="!profileImage && user.club_logo_path != '' && user.status == '2'"
+                    src="{{user.club_logo_path}}" class="" alt="" />
+                  <img *ngIf="!profileImage && !user.club_logo_path"
+                    src="../../../../assets/images/default/talent-profile-default.png" class="" alt="" />
+
 
                   <div class="user-edit d-none">
                     <label for="profile-upload" class="">
-                      <div class="edit-profile cursor-pointer" matTooltip="{{'uploadNewProfileImage' | translate}} {{'mx_size' | translate}}"
+                      <div class="edit-profile cursor-pointer"
+                        matTooltip="{{'uploadNewProfileImage' | translate}} {{'mx_size' | translate}}"
                         matTooltipPosition="right">
 
                         <!-- <svg width="21" height="19" viewBox="0 0 21 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -73,7 +74,7 @@
                   <div class="boost_profile d-flex align-items-center" *ngIf="booster">
                     <span>{{'boostProfile' | translate}}</span>
                     <span class="active_btn">{{'active' | translate}}</span>
-                    <a (click)="isUserVerified ? navigatePlans() : showVerificationPopup()"  class="cursor-pointer">
+                    <a (click)="isUserVerified ? navigatePlans() : showVerificationPopup()" class="cursor-pointer">
                       <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                           d="M3 17.7505V21.5005H6.75L17.81 10.4405L14.06 6.69049L3 17.7505ZM20.71 7.54049C20.8027 7.44798 20.8762 7.33809 20.9264 7.21712C20.9766 7.09614 21.0024 6.96646 21.0024 6.83549C21.0024 6.70452 20.9766 6.57484 20.9264 6.45387C20.8762 6.33289 20.8027 6.223 20.71 6.13049L18.37 3.79049C18.2775 3.69779 18.1676 3.62424 18.0466 3.57406C17.9257 3.52388 17.796 3.49805 17.665 3.49805C17.534 3.49805 17.4043 3.52388 17.2834 3.57406C17.1624 3.62424 17.0525 3.69779 16.96 3.79049L15.13 5.62049L18.88 9.37049L20.71 7.54049Z"
@@ -91,11 +92,14 @@
                       </h6>
                       <div class="name_icon">
                         <img src="../../../assets/images/pending.png" alt="" class="user-pending-icon"
-                          *ngIf="user.status == '1'" />
+                          *ngIf="user.status == '1'" matTooltip="{{'pendingStatus' | translate}}"
+                          matTooltipPosition="right" />
                         <img src="../../../assets/images/approved.png" alt="" class="user-approved-icon"
-                          *ngIf="user.status == '2'" />
+                          *ngIf="user.status == '2'" matTooltip="{{'verifiedStatus' | translate}}"
+                          matTooltipPosition="right" />
                         <img src="../../../assets/images/rejected.png" alt="" class="user-rejected-icon"
-                          *ngIf="user.status == '3'" />
+                          *ngIf="user.status == '3'" matTooltip="{{'rejectedStatus' | translate}}"
+                          matTooltipPosition="right" />
                       </div>
                     </div>
                     <div class="col-md-4 p-0 edit_button responsive-edit_btn ">
@@ -120,8 +124,7 @@
                           <!-- <img *ngIf="!user.club_logo_path"
                             src="../../../../assets/images/default/Club-logo-default.png" class="fc-club-img" alt=""> -->
 
-                          <img *ngIf="user.club_logo_path" src="{{user.club_logo_path}}"
-                            class="fc-club-img" alt="">
+                          <img *ngIf="user.club_logo_path" src="{{user.club_logo_path}}" class="fc-club-img" alt="">
                         </div>
                         <div class="team-badge_content col-sm-9 p-0">
                           <h6 class="title_2 mb-1">{{ 'clubName' | translate}}</h6>
@@ -135,7 +138,8 @@
                           <h6 class="title_2 mb-1">{{ 'country' | translate }}</h6>
                           <div class="d-flex align-items-center gap-1 mb-1">
                             <div class="team-badge_image">
-                              <img *ngIf="user?.current_club_country_path" [src]="user?.current_club_country_path" alt="">
+                              <img *ngIf="user?.current_club_country_path" [src]="user?.current_club_country_path"
+                                alt="">
                               <!-- <img *ngIf="!nation.flag_path" src="../../../../assets/images/team-flag.png" alt=""> -->
                             </div>
                             <h5 class="title-1" *ngIf="user?.current_club_country">{{user?.current_club_country}} </h5>
@@ -167,8 +171,8 @@
                               </clipPath>
                             </defs>
                           </svg> -->
-                          <svg *ngIf="currentThemeMode == 'light'"  width="100%" height="36px" viewBox="0 0 27 27" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
+                          <svg *ngIf="currentThemeMode == 'light'" width="100%" height="36px" viewBox="0 0 27 27"
+                            fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_2961_4755811)">
                               <path class="blue-bg"
                                 d="M21.0938 -5.16341e-07C20.87 -5.35904e-07 20.6554 0.0888943 20.4971 0.247128C20.3389 0.405362 20.25 0.619973 20.25 0.843749L20.25 1.6875L6.75 1.6875L6.75 0.843748C6.75 0.619972 6.66111 0.405361 6.50287 0.247127C6.34464 0.088893 6.13003 -1.82451e-06 5.90625 -1.84407e-06C5.68247 -1.86364e-06 5.46786 0.088893 5.30963 0.247127C5.1514 0.405361 5.0625 0.619972 5.0625 0.843748L5.0625 1.6875L3.375 1.6875C2.4799 1.6875 1.62145 2.04308 0.988518 2.67601C0.355581 3.30895 1.54302e-06 4.16739 1.46477e-06 5.0625L-1.58015e-07 23.625C-2.36267e-07 24.5201 0.355579 25.3785 0.988515 26.0115C1.62145 26.6444 2.47989 27 3.375 27L23.625 27C24.5201 27 25.3785 26.6444 26.0115 26.0115C26.6444 25.3786 27 24.5201 27 23.625L27 5.0625C27 4.16739 26.6444 3.30895 26.0115 2.67601C25.3785 2.04308 24.5201 1.6875 23.625 1.6875L21.9375 1.6875L21.9375 0.84375C21.9375 0.619973 21.8486 0.405362 21.6904 0.247128C21.5321 0.0888944 21.3175 -4.96778e-07 21.0938 -5.16341e-07ZM25.3125 6.75L25.3125 23.625C25.3125 24.0726 25.1347 24.5018 24.8182 24.8182C24.5018 25.1347 24.0726 25.3125 23.625 25.3125L3.375 25.3125C2.92745 25.3125 2.49822 25.1347 2.18176 24.8182C1.86529 24.5018 1.6875 24.0726 1.6875 23.625L1.6875 6.75L25.3125 6.75Z"
@@ -191,8 +195,8 @@
                           </svg>
 
 
-                          <svg *ngIf="currentThemeMode == 'dark'" width="100%" height="36px"  viewBox="0 0 28 27" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
+                          <svg *ngIf="currentThemeMode == 'dark'" width="100%" height="36px" viewBox="0 0 28 27"
+                            fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_7009_42001)">
                               <path
                                 d="M21.8418 -5.16341e-07C21.618 -5.35904e-07 21.4034 0.0888943 21.2452 0.247128C21.0869 0.405362 20.998 0.619973 20.998 0.843749L20.998 1.6875L7.49805 1.6875L7.49805 0.843748C7.49805 0.619972 7.40915 0.405361 7.25092 0.247127C7.09269 0.088893 6.87807 -1.82451e-06 6.6543 -1.84407e-06C6.43052 -1.86364e-06 6.21591 0.088893 6.05768 0.247127C5.89944 0.405361 5.81055 0.619972 5.81055 0.843748L5.81055 1.6875L4.12305 1.6875C3.22794 1.6875 2.3695 2.04308 1.73656 2.67601C1.10363 3.30895 0.748048 4.16739 0.748048 5.0625L0.748047 23.625C0.748047 24.5201 1.10363 25.3785 1.73656 26.0115C2.3695 26.6444 3.22794 27 4.12305 27L24.373 27C25.2682 27 26.1266 26.6444 26.7595 26.0115C27.3925 25.3786 27.748 24.5201 27.748 23.625L27.748 5.0625C27.748 4.16739 27.3925 3.30895 26.7595 2.67601C26.1266 2.04308 25.2682 1.6875 24.373 1.6875L22.6855 1.6875L22.6855 0.84375C22.6855 0.619973 22.5967 0.405362 22.4384 0.247128C22.2802 0.0888944 22.0656 -4.96778e-07 21.8418 -5.16341e-07ZM26.0605 6.75L26.0605 23.625C26.0605 24.0726 25.8828 24.5018 25.5663 24.8182C25.2498 25.1347 24.8206 25.3125 24.373 25.3125L4.12305 25.3125C3.67549 25.3125 3.24627 25.1347 2.9298 24.8182C2.61334 24.5018 2.43555 24.0726 2.43555 23.625L2.43555 6.75L26.0605 6.75Z"
@@ -576,7 +580,8 @@
               </div>
             </div>
 
-            <div class="col-lg-12 image-gallery mt-4 bg-color p-3 tour-highlights highlights-tour highlights_intro_tour" *ngIf="isPremium">
+            <div class="col-lg-12 image-gallery mt-4 bg-color p-3 tour-highlights highlights-tour highlights_intro_tour"
+              *ngIf="isPremium">
 
               <!-- Add a loader in your template -->
               <div *ngIf="loading" class="loader-container py-5">
@@ -592,7 +597,8 @@
                     <p>{{'featuredPhotosAndVideos' | translate}}</p>
                   </div>
                   <div class="settings cursor-pointer setting_heighlight"
-                    (click)="isHighlightClick ? openHighlight() : null" matTooltip="{{'highlightTooltip' | translate}}" matTooltipPosition="right">
+                    (click)="isHighlightClick ? openHighlight() : null" matTooltip="{{'highlightTooltip' | translate}}"
+                    matTooltipPosition="right">
 
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path
@@ -623,13 +629,15 @@
 
 
                 <div class="d-flex w-100 m-auto image_gallery-box mt-2">
-                  <div class="col-lg-4 gallery_images position-relative" *ngFor="let video of highlights?.videos let j = index">
+                  <div class="col-lg-4 gallery_images position-relative"
+                    *ngFor="let video of highlights?.videos let j = index">
                     <a [href]="highlights.file_path + video.file_name" data-fancybox="gallery" [attr.data-caption]="">
                       <video [src]="highlights.file_path + video.file_name" #videoPlayer
-                      (loadeddata)="setDurationAndThumbnail(videoPlayer)" alt="Video Gallery"></video>
+                        (loadeddata)="setDurationAndThumbnail(videoPlayer)" alt="Video Gallery"></video>
                     </a>
                     <!-- <span class="duration">{{duration}}</span> -->
-                     <span class="duration" *ngIf-="getVideoDuration(videoPlayer) != 'NaN:NaN'">{{getVideoDuration(videoPlayer)}}</span>
+                    <span class="duration"
+                      *ngIf-="getVideoDuration(videoPlayer) != 'NaN:NaN'">{{getVideoDuration(videoPlayer)}}</span>
                     <!-- <video [src]="highlights.file_path + video.file_name" (click)="openImage(j, 'video')" autoplay></video> -->
                   </div>
                 </div>
@@ -760,13 +768,17 @@
               </ul>
             </div>
             <div class="general_details mt-4 p-4 bg-color box_height_eqaul">
-              <club-profile-tab *ngIf="activeTab == 'profile'" [userData]="user"
-                [isPremium]="isPremium" [isUserVerified]="isUserVerified"></club-profile-tab>
-              <club-history-tab *ngIf="activeTab == 'club_history'" role="club" [isPremium]="isPremium" [isUserVerified]="isUserVerified"></club-history-tab>
-              <club-teams-tab *ngIf="activeTab == 'teams'" [userData]="user" [isPremium]="isPremium" [isUserVerified]="isUserVerified"></club-teams-tab>
-              <club-gallery-tab *ngIf="activeTab == 'gallery'"  [coverImage]="coverImage"
-                (dataEmitter)="handleCoverImageData($event)" [isPremium]="isPremium" [isUserVerified]="isUserVerified" (imageDeleted)="onImageDeleted()"></club-gallery-tab>
-              <club-sighting-tab *ngIf="activeTab == 'sighting'" [isPremium]="isPremium" [isUserVerified]="isUserVerified"></club-sighting-tab>
+              <club-profile-tab *ngIf="activeTab == 'profile'" [userData]="user" [isPremium]="isPremium"
+                [isUserVerified]="isUserVerified"></club-profile-tab>
+              <club-history-tab *ngIf="activeTab == 'club_history'" role="club" [isPremium]="isPremium"
+                [isUserVerified]="isUserVerified"></club-history-tab>
+              <club-teams-tab *ngIf="activeTab == 'teams'" [userData]="user" [isPremium]="isPremium"
+                [isUserVerified]="isUserVerified"></club-teams-tab>
+              <club-gallery-tab *ngIf="activeTab == 'gallery'" [coverImage]="coverImage"
+                (dataEmitter)="handleCoverImageData($event)" [isPremium]="isPremium" [isUserVerified]="isUserVerified"
+                (imageDeleted)="onImageDeleted()"></club-gallery-tab>
+              <club-sighting-tab *ngIf="activeTab == 'sighting'" [isPremium]="isPremium"
+                [isUserVerified]="isUserVerified"></club-sighting-tab>
             </div>
           </div>
         </div>

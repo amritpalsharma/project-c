@@ -24,6 +24,34 @@ export class AddPerformanceComponent {
   matches: any;
   goals: any;
   isrequiredField: boolean = false;
+  sessionArr: any = [
+    '25/26',
+    '24/25',
+    '23/24',
+    '22/23',
+    '21/22',
+    '20/21',
+    '19/20',
+    '18/19',
+    '17/18',
+    '16/17',
+    '15/16',
+    '14/15',
+    '13/14',
+    '12/13',
+    '11/12',
+    '10/11',
+    '09/10',
+    '08/09',
+    '07/08',
+    '06/07',
+    '05/06',
+    '04/05',
+    '03/04',
+    '02/03',
+    '01/02'
+  ];
+
 
   currentTeam: string = ''; // Initialize as empty string to avoid undefined issues
   formAllFieldsRequired: string = ''; // Initialize as empty string to avoid undefined issues
@@ -104,8 +132,8 @@ export class AddPerformanceComponent {
     this.isrequiredField = false;
 
 
-    if (this.isHideTeamSection === true) { 
-      if(!this.team_country_id || this.team_country_id == 0){
+    if (this.isHideTeamSection === true) {
+      if (!this.team_country_id || this.team_country_id == 0) {
         console.log('Need to select country please');
         return;
       }
@@ -123,7 +151,7 @@ export class AddPerformanceComponent {
       return;
     }
 
-    
+
 
     const loadingToast = this.toastr.info(this.submittingPerformanceData, this.pleaseWait, { disableTimeOut: true });
     let lang_id = localStorage.getItem('lang_id');

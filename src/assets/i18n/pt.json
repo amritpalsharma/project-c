@@ -1426,5 +1426,8 @@
   "homeSliderTxt": "Apenas perfis verificados – para visibilidade real. Descobre agora os mais recentes talentos, olheiros e clubes.",
   "selectHere": "Selecionar aqui",
   "deleteProfilePicture": "Excluir foto de perfil",
-  "playerListHeading": "Novo no jogo – Descubra agora!"
+  "playerListHeading": "Novo no jogo – Descubra agora!",
+  "verifiedStatus": "Verificado",
+  "pendingStatus": "Pendente",
+  "rejectedStatus": "Rejeitado"
 }

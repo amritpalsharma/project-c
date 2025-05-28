@@ -101,8 +101,16 @@
           <div class="row">
             <div class="form-group col-lg-6">
               <label for="session" class="form-label">{{'saison' | translate}}</label>
-              <input class="form-control" type="text" id="session" name="session" [(ngModel)]="performance.session"
-                required>
+              <!-- <input class="form-control" type="text" id="session" name="session" [(ngModel)]="performance.session"
+                required> -->
+              <!-- sessionArr -->
+              <select [(ngModel)]="performance.session" class="form-select"
+                [ngClass]="{'isrequiredField': isrequiredField}" id="session" name="session" required>
+                <option [value]="0" disabled>{{ 'select' | translate }}</option>
+                <option *ngFor="let session of sessionArr" [value]="session">
+                  {{ session }}
+                </option>
+              </select>
             </div>
             <div class="form-group col-lg-6">
               <label for="player_age" class="form-label">{{'playerAge' | translate}}</label>

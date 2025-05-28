@@ -64,11 +64,11 @@
                   <div class="user-edit" *ngIf="profileImage">
                     <label for="profile-upload" class="">
                       <div class="edit-profile cursor-pointer" id="upload_profilePhoto"
-                        matTooltip="{{'deleteProfilePicture' | translate}}"
-                        matTooltipPosition="right" (click)="openDeleteDialog('profile')">
+                        matTooltip="{{'deleteProfilePicture' | translate}}" matTooltipPosition="right"
+                        (click)="openDeleteDialog('profile')">
 
-                        <svg class="cursor-pointer" style="padding: 2px;"
-                          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                        <svg class="cursor-pointer" style="padding: 2px;" xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 448 512">
                           <path
                             d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.7 23.7 0 0 0 -21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0 -16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z" />
                         </svg>
@@ -104,11 +104,14 @@
                       </h6>
                       <div class="name_icon">
                         <img src="../../../assets/images/pending.png" alt="" class="user-pending-icon"
-                          *ngIf="user.status == '1'" />
+                          *ngIf="user.status == '1'" matTooltip="{{'pendingStatus' | translate}}"
+                          matTooltipPosition="right" />
                         <img src="../../../assets/images/approved.png" alt="" class="user-approved-icon"
-                          *ngIf="user.status == '2'" />
+                          *ngIf="user.status == '2'" matTooltip="{{'verifiedStatus' | translate}}"
+                          matTooltipPosition="right" />
                         <img src="../../../assets/images/rejected.png" alt="" class="user-rejected-icon"
-                          *ngIf="user.status == '3'" />
+                          *ngIf="user.status == '3'" matTooltip="{{'rejectedStatus' | translate}}"
+                          matTooltipPosition="right" />
                       </div>
                     </div>
                     <div class="col-md-4 p-0 edit_button responsive-edit_btn ">
@@ -174,11 +177,11 @@
                         <div class="col-sm-12 p-0">
                           <h6 class="title_2 mb-1">{{ 'country' | translate }}</h6>
                           <div class="d-flex align-items-center gap-1 mb-1 " *ngFor="let nation of userNationalities">
-                          <div class="team-badge_image">
-                          <img *ngIf="nation.flag_path" [src]="nation.flag_path" alt="">
-                          <img *ngIf="!nation.flag_path" src="../../../../assets/images/team-flag.png" alt="">
-                          </div>
-                          <h5 class="title-1">{{nation.country_name | translate }} </h5>
+                            <div class="team-badge_image">
+                              <img *ngIf="nation.flag_path" [src]="nation.flag_path" alt="">
+                              <img *ngIf="!nation.flag_path" src="../../../../assets/images/team-flag.png" alt="">
+                            </div>
+                            <h5 class="title-1">{{nation.country_name | translate }} </h5>
                           </div>
                         </div>
                       </div>
@@ -679,7 +682,8 @@
                         (loadeddata)="setDurationAndThumbnail(videoPlayer)" alt="Video Gallery"></video>
                     </a>
                     <!-- <span class="duration">{{duration}}</span> -->
-                     <span class="duration" *ngIf-="getVideoDuration(videoPlayer) != 'NaN:NaN'">{{getVideoDuration(videoPlayer)}}</span>
+                    <span class="duration"
+                      *ngIf-="getVideoDuration(videoPlayer) != 'NaN:NaN'">{{getVideoDuration(videoPlayer)}}</span>
                     <!-- <video [src]="highlights.file_path + video.file_name" (click)="openImage(j, 'video')" autoplay></video> -->
                   </div>
                 </div>
@@ -829,8 +833,8 @@
               <scout-portfolio-tab *ngIf="activeTab == 'portfolio'" [userData]="user" [isPremium]="isPremium"
                 [isUserVerified]="isUserVerified" role="Scout"></scout-portfolio-tab>
               <scout-gallery-tab *ngIf="activeTab == 'gallery'" [coverImage]="coverImage"
-                (dataEmitter)="handleCoverImageData($event)" [isPremium]="isPremium"
-                [isUserVerified]="isUserVerified" (imageDeleted)="onImageDeleted()"></scout-gallery-tab>
+                (dataEmitter)="handleCoverImageData($event)" [isPremium]="isPremium" [isUserVerified]="isUserVerified"
+                (imageDeleted)="onImageDeleted()"></scout-gallery-tab>
             </div>
           </div>
         </div>

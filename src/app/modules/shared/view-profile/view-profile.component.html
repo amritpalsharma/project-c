@@ -102,11 +102,14 @@
                   </h6>
                   <div class="name_icon">
                     <img src="../../../assets/images/pending.png" alt="" class="user-pending-icon"
-                      *ngIf="user.status == '1'" />
+                      *ngIf="user.status == '1'" matTooltip="{{'pendingStatus' | translate}}"
+                      matTooltipPosition="right" />
                     <img src="../../../assets/images/approved.png" alt="" class="user-approved-icon"
-                      *ngIf="user.status == '2'" />
+                      *ngIf="user.status == '2'" matTooltip="{{'verifiedStatus' | translate}}"
+                      matTooltipPosition="right" />
                     <img src="../../../assets/images/rejected.png" alt="" class="user-rejected-icon"
-                      *ngIf="user.status == '3'" />
+                      *ngIf="user.status == '3'" matTooltip="{{'rejectedStatus' | translate}}"
+                      matTooltipPosition="right" />
                   </div>
                 </div>
                 <div class="row elton-box dashboard-icons">
@@ -280,7 +283,9 @@
                         <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'height' | translate }}</h6>
                           <h5 *ngIf="user.meta && user.meta.height" class="title-1">{{user.meta.height}}
-                            {{user.meta.height_unit}}</h5>
+                            <!-- {{user.meta.height_unit}} -->
+                             cm
+                          </h5>
                           <!-- <h5 *ngIf="!user.meta || !user.meta.height" class="title-1">NA</h5> -->
                         </div>
                       </div>
@@ -319,7 +324,9 @@
                         <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'weight' | translate }}</h6>
                           <h5 *ngIf="user.meta && user.meta.weight" class="title-1">{{user.meta.weight}}
-                            {{user.meta.weight_unit}}</h5>
+                            <!-- {{user.meta.weight_unit}} -->
+                             kg
+                          </h5>
                           <!-- <h5 *ngIf="!user.meta || !user.meta.weight" class="title-1">NA</h5> -->
                         </div>
                       </div>

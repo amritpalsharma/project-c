@@ -1382,5 +1382,8 @@
   "homeSliderTxt":"Only verified profiles – for real visibility. Discover the latest talents, scouts and clubs now.",
   "selectHere":"Select here",
   "deleteProfilePicture":"Delete profile picture",
-  "playerListHeading":"New in the game – Discover now!"
+  "playerListHeading":"New in the game – Discover now!",
+  "verifiedStatus":"Verified",
+  "pendingStatus":"Pending",
+  "rejectedStatus":"Rejected"
 }

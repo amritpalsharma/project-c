@@ -1485,5 +1485,8 @@
   "homeSliderTxt": "Profils vérifiés uniquement – pour une vraie visibilité. Découvre maintenant les derniers talents, recruteurs et clubs.",
   "selectHere": "Sélectionner ici",
   "deleteProfilePicture": "Supprimer la photo de profil",
-  "playerListHeading": "Nouveau dans le jeu – Découvrez-le maintenant !"
+  "playerListHeading": "Nouveau dans le jeu – Découvrez-le maintenant !",
+  "verifiedStatus": "Vérifié",
+  "pendingStatus": "En attente",
+  "rejectedStatus": "Rejeté"
 }

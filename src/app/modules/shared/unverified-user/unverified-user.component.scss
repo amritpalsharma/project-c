@@ -1,6 +1,7 @@
 .msg-popup-close {
     text-align: right;
 }
+
 .msg-popup-dialog {
     padding: 10px 15px 35px;
     text-align: center;
@@ -8,9 +9,11 @@
 
 .msg-popup-close img {
     max-width: 40px;
-    cursor:pointer;
+    cursor: pointer;
 }
-.btn_confirmm, .btn_cancell {
+
+.btn_confirmm,
+.btn_cancell {
     padding: 9px 20px;
     border-radius: 10px;
     min-width: 180px;
@@ -18,21 +21,27 @@
     font-size: 15px;
     font-weight: 700;
     border: 0;
-    outline: none;    
+    outline: none;
     white-space: nowrap;
     margin: 5px;
 }
+
 .btn_confirmm {
     color: #0c3453;
     background-color: #bde34f;
 }
+
 .btn_cancell {
     color: #fff;
     background-color: rgb(249, 60, 101);
 }
 
-.popup-delete-btn{
+.popup-delete-btn {
     color: #FD5454;
-    margin-top:20px;
+    margin-top: 20px;
     cursor: pointer;
+}
+
+::ng-deep .cdk-global-overlay-wrapper {
+    align-items: center !important;
 }
