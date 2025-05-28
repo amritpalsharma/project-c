@@ -232,7 +232,7 @@ export class TermsComponent implements OnInit {
         countryName = 'France_Belgique';
         termsPDF = 'CGU SoccerYou France_Belgique 2025.pdf';
         privacyPDF = 'Déclaration générale de protection des données Succer You Sports AG_2025_France_Belgique.pdf';
-      } else if (tld == 'co.uk') {
+      } else if (tld == 'uk') {
         countryName = 'England';
         termsPDF = 'Terms & Conditions SoccerYou England 2025.pdf';
         privacyPDF = 'General data protection declaration England Succer You Sports AG_2025.pdf';
