@@ -5251,6 +5251,18 @@ h3, .works h3, .joined-text h3 {
     border-top-width: 15px;
     transform: translateY(-14px);
   }
+  .player--item {
+    .player--bio-dtl {
+      height: 310px;
+    }
+    .item--icons-list {
+      width: 80px; 
+      img {
+        width: 50px;
+        height: 50px;
+      }
+    }
+  }
   .main-bnr h1 {
   font-size: 55px;
 }
@@ -5344,20 +5356,20 @@ p, .progress_btn p {
   .player--item {
     padding: 17px;
     .item--icons-list {
-      left: 18px;
-      top: 15px;
-      width: 70px;
-      gap: 10px;
+      left: 20px;
+      top: 18px;
+      width: 90px;
+      gap: 15px;
       img {
-        width: 42px;
-        height: 42px;
+        width: 58px;
+        height: 58px;
       }
     }
     .player--dob {
-      padding: 8px 15px 6px;
+      padding: 8px 18px 6px;
     }
     .player--bio-dtl {
-      height: 350px;
+      height: 410px;
       padding-bottom: 40px;
     }
     .player__name {
@@ -5405,15 +5417,15 @@ p, .progress_btn p {
       width: 100px;
       gap: 18px;
       img {
-        width: 60px;
-        height: 60px;
+        width: 70px;
+        height: 70px;
       }
     }
     .player--dob {
-      padding: 10px 20px 6px;
+      padding: 12px 25px 8px;
     }
     .player--bio-dtl {
-      height: 550px;
+      height: 600px;
       padding-bottom: 55px;
     }
     .player__name {
