@@ -2322,6 +2322,7 @@
       .premium-text p {
         color: #fff !important;
       }
+
       .premium-heading5 {
         color: #BDE34E !important;
       }
@@ -2475,6 +2476,7 @@ body.dark-theme.static-common-banner {
     p strong {
       color: #bde34e;
     }
+
     p {
       color: #fff;
     }
@@ -2501,17 +2503,23 @@ body.dark-theme.static-common-banner {
       border-color: #bde34e !important;
     }
   }
-.news_static_banner  {
-background: #072944 !important;
-}
-  .grey_common_banner{
+
+  .news_static_banner {
+    background: #072944 !important;
+  }
+
+  .grey_common_banner {
     background-color: #0C3453 !important;
-    h2.cookie-text, h3 {
+
+    h2.cookie-text,
+    h3 {
       color: #BDE34F !important;
     }
+
     .contact-text p {
       color: #fff !important;
     }
+
     .mail {
       a {
         color: #fff !important;
@@ -2537,43 +2545,52 @@ background: #072944 !important;
       color: #072944;
     }
 
-    .player__name, .booster_text {
+    .player__name,
+    .booster_text {
       background: #BDE34F !important;
       color: #072944 !important;
     }
   }
+
   .accordion {
     .card-header a {
       color: #BDE34F !important;
     }
   }
+
   .faq---page {
     ul.nav-tabs {
       a.nav-link {
-          color: #86aa7d;
-          &.active {
-            color: #072944 !important;
-            border: 1px solid #BDE34F !important;
-            background-image: linear-gradient(45deg, #efffc1, #bde34f) !important;
-          }
+        color: #86aa7d;
+
+        &.active {
+          color: #072944 !important;
+          border: 1px solid #BDE34F !important;
+          background-image: linear-gradient(45deg, #efffc1, #bde34f) !important;
+        }
       }
     }
   }
 
-  .news_slider_wrapper, .news-dtail--baner {
+  .news_slider_wrapper,
+  .news-dtail--baner {
     .thumbnail.active {
       background: #bde34e !important;
     }
+
     p.p-text {
       color: #072944 !important;
       background: #bde34e !important;
     }
   }
+
   .news-dtail--baner {
     .back-button {
       color: #fff !important;
+
       span {
         background: #bde34e !important;
+
         img {
           filter: brightness(0) invert(0);
         }
@@ -2581,12 +2598,28 @@ background: #072944 !important;
     }
   }
 
-.features .accordion-flex button.accordion-button::after, 
-.features1 .accordion-flex button.accordion-button::after {
+  .features .accordion-flex button.accordion-button::after,
+  .features1 .accordion-flex button.accordion-button::after {
     background-image: url(/assets/images/dark-arrow-down.svg) !important;
-}
-.features .accordion-flex button.accordion-button.collapsed::after,
-.features1 .accordion-flex button.accordion-button.collapsed::after {
+  }
+
+  .features .accordion-flex button.accordion-button.collapsed::after,
+  .features1 .accordion-flex button.accordion-button.collapsed::after {
     background-image: url(/assets/images/dark-arrow-down.svg) !important;
-}
+  }
+
+  .toast-bottom-right .toast-error {
+    background-color: #bde34f !important;
+    color: black;
+  }
+
+  .toast-bottom-right .toast-error::before {
+    color: rgb(70, 167, 14) !important;
+    /* Or any color you want */
+  }
+
+  .toast-error {
+    // background-image: url();
+    background-image: url("/assets/images/toaster-dark-error.svg") !important;
+  }
 }

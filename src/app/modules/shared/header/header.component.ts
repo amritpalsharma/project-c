@@ -524,28 +524,28 @@ export class HeaderComponent {
       let userData = JSON.parse(jsonData);
       userId = userData.id;
     }
-    else {
-      console.log("No data found in localStorage.");
-    }
+    let lang_id = localStorage.getItem('lang_id');
+    let cookieConsentTimestamp = localStorage.getItem('cookieConsentTimestamp');
+    let cookiesent = localStorage.getItem('cookieConsent');
+
     console.log(userId);
     this.socketService.disconnectUser(userId);
     let theme = localStorage.getItem('theme') || 'light';
     let lang = localStorage.getItem('lang') || this.globalSettings.getLanguage();
-    let cookieConsent = localStorage.getItem('cookieConsent');
     let domainLang = this.globalSettings.getLanguage();
     if (domainLang != '' && localStorage.getItem('lang') == '' || localStorage.getItem('lang') == undefined) {
       lang = domainLang;
     }
     localStorage.clear();
-    // if(cookieConsent && typeof cookieConsent != undefined){
-    // }
-    // localStorage.setItem('cookieConsent', 'accepted');
+    localStorage.setItem('cookieConsent', cookiesent + '');
+    localStorage.setItem('cookieConsentTimestamp', cookieConsentTimestamp + '');
     localStorage.setItem('theme', theme);
     localStorage.setItem('lang', lang);
+    localStorage.setItem('lang_id', lang_id + '');
     this.authService.logout();
-    setTimeout(() => {
-      window.location.reload();
-    }, 100);
+    // setTimeout(() => {
+    window.location.reload();
+    // }, 100);
   }
 
   themeText: string = 'Light Mode'

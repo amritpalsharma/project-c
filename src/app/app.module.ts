@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HttpClient,HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgxEditorModule } from 'ngx-editor';
 import { AuthInterceptor } from './auth.interceptor';
 import { AppRoutingModule } from './app-routing.module';
@@ -45,7 +45,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatDialogModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
-      timeOut: 3000,
+      timeOut: 0, // Never hide
+      extendedTimeOut: 0, // Never hide on hover
+      tapToDismiss: false,
+      closeButton: true, // Show close button to manually close
+      // timeOut: 3000,
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
     }),

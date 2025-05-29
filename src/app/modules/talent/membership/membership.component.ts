@@ -93,7 +93,22 @@ export class MembershipComponent {
         this.isLoading = false;
         this.userPurchases = response.data.purchaseHistory;
         this.totalItems = response.data.totalCount; // Assuming API returns the total number of purchases
-        console.log(this.userPurchases)
+        // console.warn(this.userPurchases)
+
+        let hiddenCount = 0;
+        if (this.userPurchases && this.userPurchases.length > 0) {
+          this.userPurchases = this.userPurchases.filter((item: any) => {
+            const amount = parseFloat(item.amount_paid);
+            const isValid = !isNaN(amount) && amount > 0;
+            if (!isValid) hiddenCount++;
+            return isValid;
+          });
+
+          this.totalItems = this.totalItems - hiddenCount;
+        }
+
+        // Filter the array to only keep rows with valid amount_paid > 0
+
       } else {
         this.isLoading = false;
         this.userPurchases = [];

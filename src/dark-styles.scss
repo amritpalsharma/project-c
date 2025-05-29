@@ -2924,15 +2924,21 @@ input:checked+.slider:before {
   border: 2px solid red;
   border-color: red !important;
 }
-.dark-theme .background-dark-theme{
+
+.dark-theme .background-dark-theme {
   background: #072944 !important;
 }
-.dark-theme .common_profile_modal .red-border{
+
+.dark-theme .common_profile_modal .red-border {
   border: 2px solid red !important;
 }
 
 .dark-theme {
   .card-header .mat-mdc-paginator-range-actions svg.mat-mdc-paginator-icon {
     fill: #072944 !important;
+  }
 }
+
+.dark-theme .toast-error {
+  background-image: url("./assets/images/toaster-dark-error.svg") !important;
 }

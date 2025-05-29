@@ -26,6 +26,7 @@ import { SocketService } from '../../../services/socket.service';
 import { UnverifiedUserComponent } from '../../shared/unverified-user/unverified-user.component';
 import { PopupComponent } from '../../shared/popup/popup.component';
 import { descriptors } from 'chart.js/dist/core/core.defaults';
+import { EditMembershipProfileComponent } from '../edit-membership-profile/edit-membership-profile.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -42,6 +43,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   pageTitle: string = '';
   UserName: string = '';
   photoLoading: boolean = true;
+  stats: any = [];
 
 
   constructor(
@@ -141,9 +143,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.getCoverImg();
       this.activeTab = 'profile';
     });
+    this.getBoosterData();
     this.isUserVerified = false;
     this.webPages.languageId$.subscribe((data) => {
       this.getUserProfile(this.userId);
+      this.getBoosterData();
       // this.getHighlightsData();
       this.loadCountries();
       // this.getGalleryData();
@@ -597,7 +601,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     let gotData = false;
     this.popupData.forEach((data: any) => {
-      console.log('indexxxxxxxxxxx', index)
+      // console.log('indexxxxxxxxxxx', index)
       let getId: boolean = false;
       let popup: any = {};
       if (data.frequency_value == this.freq[index]) {
@@ -843,7 +847,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   openHighlight() {
     this.isHighlightClick = false;
     this.getGalleryData();
-    
+
     setTimeout(() => {
       const dialogRef = this.dialog.open(EditHighlightsComponent, {
         width: '800px',
@@ -853,14 +857,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
           // url: this.imageBaseUrl
         }
       });
-  
+
       dialogRef.afterClosed().subscribe(result => {
         // this.duration = result.videoDuration,
         setTimeout(() => {
           this.getHighlightsData();
         }, 1500);
         this.isHighlightClick = true;
-      });      
+      });
     }, 1500);
 
   }
@@ -1413,7 +1417,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   getJsonTranslations() {
-    this.translateService.get(['dashboard', 'forgotPassword.generalError','downloading','pleaseWait']).subscribe((translations) => {
+    this.translateService.get(['dashboard', 'forgotPassword.generalError', 'downloading', 'pleaseWait']).subscribe((translations) => {
       this.pageTitle = translations['dashboard'];
       this.generalError = translations['forgotPassword.generalError'];
       this.downloading = translations['downloading'];
@@ -1494,5 +1498,48 @@ export class DashboardComponent implements OnInit, OnDestroy {
       console.error('Error adding to favorites:', error);
     }
 
+  }
+
+  async getBoosterData() {
+
+    let params: any = {};
+    // params.lang = localStorage.getItem('lang_id');
+
+    try {
+      const response = await this.talentService.getBoosterData(params).toPromise();
+      if (response?.data) {
+        this.stats = response.data;
+        console.log(this.stats)
+        // Ensure the selectedAudienceIds array is cleared and populated with the correct data
+      } else {
+        console.error('Failed to create checkout session', response);
+      }
+    } catch (error) {
+      console.error('Error creating Stripe Checkout session:', error);
+    }
+  }
+
+  editBooster(data: any) {
+
+    const dialogRef = this.dialog.open(EditMembershipProfileComponent, {
+      width: '1000px',
+      data: {
+        stats: this.stats
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.getBoosterData()
+      }
+
+      if (result.role != undefined && result.role != '') {
+        if (result.role == 'talent' || result.role == 'scout' || result.role == 'club') {
+          if (result.user_id != '' && result.user_id != undefined && result.redirect_path) {
+            this.router.navigate([result.redirect_path, result.user_id]);
+          }
+        }
+      }
+    });
   }
 }

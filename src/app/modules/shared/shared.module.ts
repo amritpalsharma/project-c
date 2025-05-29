@@ -62,6 +62,7 @@ import { TeamsComponent } from './view-profile/tabs/teams/teams.component';
 import { LightboxDialogComponent } from './lightbox-dialog/lightbox-dialog.component';
 import { PopupComponent } from './popup/popup.component';
 import { SightingComponent } from './view-profile/tabs/sighting/sighting.component';
+import { PasswordSettingsComponent } from './setting/password-settings/password-settings.component';
 // import { TinymceWrapperComponent } from './tinymce-wrapper/tinymce-wrapper.component';
 // import { ImageCropperDialogComponent } from './image-cropper-dialog/image-cropper-dialog.component';
 
@@ -114,6 +115,7 @@ import { SightingComponent } from './view-profile/tabs/sighting/sighting.compone
     LightboxDialogComponent,
     PopupComponent,
     SightingComponent,
+    PasswordSettingsComponent,
     // TinymceWrapperComponent,
     // ImageCropperDialogComponent
   ],

@@ -51,13 +51,6 @@
   </div>
 
   <div class="row mt-3">
-    <div class='image-upload-container d-flex align-items-center'>
-      <div class="image-previews" (click)="addPhotosPopup()">
-        <div class="image">
-          <div>+</div>
-        </div>
-      </div>
-    </div>
 
     <div class="col-sm-4 col-lg-2 position-relative w-20 my-2" *ngFor="let image of userImages">
       <svg (click)="openMenu(image.id)" id="users-icon" class="me-1 edit-cover pointer" width="24" height="25"
@@ -102,6 +95,16 @@
           </span>
         </div>
       </div>
+
+
+    </div>
+
+    <div class='image-upload-container d-flex align-items-center'>
+      <div class="image-previews" (click)="addPhotosPopup()">
+        <div class="image">
+          <div>+</div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -112,13 +115,6 @@
   </div>
 
   <div class="row mt-3">
-    <div class='image-upload-container d-flex align-items-center'>
-      <div class="image-previews" (click)="addPhotosPopup('video')">
-        <div class="image">
-          <div>+</div>
-        </div>
-      </div>
-    </div>
     <div class="col-sm-4 col-lg-2 position-relative w-20" *ngFor="let image of userVideos">
       <svg (click)="openMenu(image.id)" id="users-icon" class="me-1 edit-cover pointer" width="24" height="25"
         viewBox="0 0 24 25" fill="#787878" xmlns="http://www.w3.org/2000/svg">
@@ -169,6 +165,14 @@
             </svg>
             {{'downloadPhoto' | translate}}
           </span>
+        </div>
+      </div>
+    </div>
+    <!-- Add New Button -->
+    <div class='image-upload-container d-flex align-items-center'>
+      <div class="image-previews" (click)="addPhotosPopup('video')">
+        <div class="image">
+          <div>+</div>
         </div>
       </div>
     </div>

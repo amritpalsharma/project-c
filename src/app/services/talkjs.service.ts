@@ -282,4 +282,19 @@ export class TalkService {
       // }
     }
   }
+
+  public attachMessageSendListener() {
+    console.info('Function called:::');
+    if (this.inbox) {
+      (this.inbox as any).on("send", (event: any) => {
+        console.info("Message sent:", event.message);
+        // this.socketService.emit("sendMessage", {
+        //   text: event.message.text,
+        //   senderId: event.message.sender.id,
+        //   conversationId: event.message.conversation.id,
+        //   timestamp: event.message.sentAt,
+        // });
+      });
+    }
+  }
 }

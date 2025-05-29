@@ -76,6 +76,7 @@ export class ChatComponent {
       // this.talkService.changeLocale(locale);
       console.info('currentTheme is ' + theme)
     });
+    this.talkService.attachMessageSendListener();
   }
 
 

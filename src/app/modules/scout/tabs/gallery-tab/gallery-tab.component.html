@@ -7,7 +7,6 @@
 
     <div class="row mt-3">
       <div class="col-md-2 position-relative w-20 my-2 py-3">
-        <!-- <img src="{{imageBaseUrl}}{{image.file_name}}" alt="" srcset="" class="img-fluid"> -->
       </div>
     </div>
 
@@ -17,10 +16,6 @@
 
     <div class="row mt-3">
       <div class="col-md-2 position-relative w-20 py-3">
-        <!-- <video class="img-fluid" controls>
-          <source src="{{imageBaseUrl}}{{image.file_name}}" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>         -->
       </div>
     </div>
 
@@ -46,13 +41,59 @@
 
 <div class="gallery-parent home_galery" *ngIf="isPremium">
   <div class="d-flex">
-    <!-- <p class="gallery-photo" *ngIf="userImages.length>0">{{'photos' | translate }}</p> -->
-    <!-- <p class="gallery-photo me-3">{{'photos' | translate }}</p> -->
     <p class="gallery-pic-upload pointer" *ngIf="checkRole()" (click)="addPhotosPopup()">{{'addPhotos' | translate}}</p>
   </div>
 
   <div class="row mt-3">
     <div class="row mt-3">
+      <div class="col-md-2 position-relative w-20 my-2" *ngFor="let image of userImages">
+        <svg (click)="openMenu(image.id)" *ngIf="checkRole()" id="users-icon" class="me-1 edit-cover pointer" width="24"
+          height="25" viewBox="0 0 24 25" fill="#787878" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M3 17.7495V21.4995H6.75L17.81 10.4395L14.06 6.68951L3 17.7495ZM20.71 7.53951C20.8027 7.447 20.8762 7.33711 20.9264 7.21614C20.9766 7.09517 21.0024 6.96548 21.0024 6.83451C21.0024 6.70355 20.9766 6.57386 20.9264 6.45289C20.8762 6.33192 20.8027 6.22203 20.71 6.12951L18.37 3.78951C18.2775 3.69681 18.1676 3.62326 18.0466 3.57308C17.9257 3.5229 17.796 3.49707 17.665 3.49707C17.534 3.49707 17.4043 3.5229 17.2834 3.57308C17.1624 3.62326 17.0525 3.69681 16.96 3.78951L15.13 5.61951L18.88 9.36951L20.71 7.53951Z" />
+        </svg>
+        <a [href]="imageBaseUrl + image.file_name" data-fancybox="gallery1" [attr.data-caption]="">
+          <img [src]="imageBaseUrl + image.file_name" alt="" srcset="" class="img-fluid">
+        </a>
+        <!-- <img src="{{imageBaseUrl}}{{image.file_name}}" alt="" srcset="" class="img-fluid"> -->
+
+        <div class="wc_floatingMenu" [ngClass]="{ 'active': openedMenuId == image.id}">
+          <div class="wc_menuItem pointer font-14" (click)="openDeleteDialog(image.id, 'image')">
+            <span>
+              <svg class="del-icon-margin" width="14" height="16" viewBox="0 0 14 16" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M1.50065 14.0589C1.50065 15.0112 2.32565 15.7904 3.33398 15.7904H10.6673C11.6757 15.7904 12.5007 15.0112 12.5007 14.0589V3.66999H1.50065V14.0589ZM13.4173 1.07277H10.209L9.29232 0.207031H4.70898L3.79232 1.07277H0.583984V2.80425H13.4173V1.07277Z"
+                  fill="#111418" />
+              </svg>
+
+              {{'deletePhoto' | translate}}</span>
+          </div>
+          <div class="wc_menuItem pointer font-14" (click)="downloadImage(imageBaseUrl, image.file_name)">
+            <span>
+              <svg class="me-1" width="17" height="17" viewBox="0 0 17 17" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_2403_70930)">
+                  <path
+                    d="M6.37435 15.5846H10.6243C14.166 15.5846 15.5827 14.168 15.5827 10.6263V6.3763C15.5827 2.83464 14.166 1.41797 10.6243 1.41797H6.37435C2.83268 1.41797 1.41602 2.83464 1.41602 6.3763V10.6263C1.41602 14.168 2.83268 15.5846 6.37435 15.5846Z"
+                    stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  <path
+                    d="M6.375 8.15104L8.5 10.276L10.625 8.15104M8.5 10.276V4.60938M4.25 11.6927C7.00542 12.6135 9.99458 12.6135 12.75 11.6927"
+                    stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </g>
+                <defs>
+                  <clipPath id="clip0_2403_70930">
+                    <rect width="17" height="17" fill="white" />
+                  </clipPath>
+                </defs>
+              </svg>
+              {{'downloadPhoto' | translate}}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add New -->
       <div class='image-upload-container d-flex align-items-center'>
         <div class="image-previews" (click)="addPhotosPopup()">
           <div class="image">
@@ -60,120 +101,76 @@
           </div>
         </div>
       </div>
-    <div class="col-md-2 position-relative w-20 my-2" *ngFor="let image of userImages">
-      <svg (click)="openMenu(image.id)" *ngIf="checkRole()" id="users-icon" class="me-1 edit-cover pointer" width="24" height="25"
-        viewBox="0 0 24 25" fill="#787878" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M3 17.7495V21.4995H6.75L17.81 10.4395L14.06 6.68951L3 17.7495ZM20.71 7.53951C20.8027 7.447 20.8762 7.33711 20.9264 7.21614C20.9766 7.09517 21.0024 6.96548 21.0024 6.83451C21.0024 6.70355 20.9766 6.57386 20.9264 6.45289C20.8762 6.33192 20.8027 6.22203 20.71 6.12951L18.37 3.78951C18.2775 3.69681 18.1676 3.62326 18.0466 3.57308C17.9257 3.5229 17.796 3.49707 17.665 3.49707C17.534 3.49707 17.4043 3.5229 17.2834 3.57308C17.1624 3.62326 17.0525 3.69681 16.96 3.78951L15.13 5.61951L18.88 9.36951L20.71 7.53951Z" />
-      </svg>
-      <a [href]="imageBaseUrl + image.file_name" data-fancybox="gallery1" [attr.data-caption]="">
-        <img [src]="imageBaseUrl + image.file_name" alt="" srcset="" class="img-fluid">
-      </a>
-      <!-- <img src="{{imageBaseUrl}}{{image.file_name}}" alt="" srcset="" class="img-fluid"> -->
-
-      <div class="wc_floatingMenu" [ngClass]="{ 'active': openedMenuId == image.id}">
-        <div class="wc_menuItem pointer font-14" (click)="openDeleteDialog(image.id, 'image')">
-          <span>
-            <svg class="del-icon-margin" width="14" height="16" viewBox="0 0 14 16" fill="none"
-              xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M1.50065 14.0589C1.50065 15.0112 2.32565 15.7904 3.33398 15.7904H10.6673C11.6757 15.7904 12.5007 15.0112 12.5007 14.0589V3.66999H1.50065V14.0589ZM13.4173 1.07277H10.209L9.29232 0.207031H4.70898L3.79232 1.07277H0.583984V2.80425H13.4173V1.07277Z"
-                fill="#111418" />
-            </svg>
-
-            {{'deletePhoto' | translate}}</span>
-        </div>
-        <div class="wc_menuItem pointer font-14" (click)="downloadImage(imageBaseUrl, image.file_name)">
-          <span>
-            <svg class="me-1" width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g clip-path="url(#clip0_2403_70930)">
-                <path
-                  d="M6.37435 15.5846H10.6243C14.166 15.5846 15.5827 14.168 15.5827 10.6263V6.3763C15.5827 2.83464 14.166 1.41797 10.6243 1.41797H6.37435C2.83268 1.41797 1.41602 2.83464 1.41602 6.3763V10.6263C1.41602 14.168 2.83268 15.5846 6.37435 15.5846Z"
-                  stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                <path
-                  d="M6.375 8.15104L8.5 10.276L10.625 8.15104M8.5 10.276V4.60938M4.25 11.6927C7.00542 12.6135 9.99458 12.6135 12.75 11.6927"
-                  stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-              </g>
-              <defs>
-                <clipPath id="clip0_2403_70930">
-                  <rect width="17" height="17" fill="white" />
-                </clipPath>
-              </defs>
-            </svg>
-            {{'downloadPhoto' | translate}}
-          </span>
-        </div>
-      </div>
     </div>
-  </div>
 
-  <div class="d-flex mt-4">
-    <!-- <p class="gallery-photo" *ngIf="userVideos.length>0">{{'videos' | translate }} </p> -->
-    <!-- <p class="gallery-photo me-3">{{'videos' | translate }} </p> -->
-    <p class="gallery-pic-upload pointer" *ngIf="checkRole()" (click)="addPhotosPopup('video')">{{'addVideos' | translate}}</p>
-  </div>
+    <div class="d-flex mt-4">
+      <p class="gallery-pic-upload pointer" *ngIf="checkRole()" (click)="addPhotosPopup('video')">{{'addVideos' |
+        translate}}</p>
+    </div>
 
-  <div class="row mt-3">
     <div class="row mt-3">
-      <div class='image-upload-container d-flex align-items-center'>
-        <div class="image-previews" (click)="addPhotosPopup('video')">
-          <div class="image">
-            <div>+</div>
-          </div>
-        </div>
-      </div>
-    <div class="col-md-2 position-relative w-20" *ngFor="let image of userVideos">
-      <svg (click)="openMenu(image.id)" *ngIf="checkRole()" id="users-icon" class="me-1 edit-cover pointer" width="24" height="25"
-        viewBox="0 0 24 25" fill="#787878" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M3 17.7495V21.4995H6.75L17.81 10.4395L14.06 6.68951L3 17.7495ZM20.71 7.53951C20.8027 7.447 20.8762 7.33711 20.9264 7.21614C20.9766 7.09517 21.0024 6.96548 21.0024 6.83451C21.0024 6.70355 20.9766 6.57386 20.9264 6.45289C20.8762 6.33192 20.8027 6.22203 20.71 6.12951L18.37 3.78951C18.2775 3.69681 18.1676 3.62326 18.0466 3.57308C17.9257 3.5229 17.796 3.49707 17.665 3.49707C17.534 3.49707 17.4043 3.5229 17.2834 3.57308C17.1624 3.62326 17.0525 3.69681 16.96 3.78951L15.13 5.61951L18.88 9.36951L20.71 7.53951Z" />
-      </svg>
-      <a [href]="imageBaseUrl + image.file_name" data-fancybox="gallery1" [attr.data-caption]="">
-        <video class="img-fluid">
-          <source [src]="imageBaseUrl + image.file_name" type="video/mp4">
-          {{ 'galleryText' | translate }}
-        </video>
-      </a>
-      <!-- <video class="img-fluid" controls>
+      <div class="row mt-3">
+        <div class="col-md-2 position-relative w-20" *ngFor="let image of userVideos">
+          <svg (click)="openMenu(image.id)" *ngIf="checkRole()" id="users-icon" class="me-1 edit-cover pointer"
+            width="24" height="25" viewBox="0 0 24 25" fill="#787878" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M3 17.7495V21.4995H6.75L17.81 10.4395L14.06 6.68951L3 17.7495ZM20.71 7.53951C20.8027 7.447 20.8762 7.33711 20.9264 7.21614C20.9766 7.09517 21.0024 6.96548 21.0024 6.83451C21.0024 6.70355 20.9766 6.57386 20.9264 6.45289C20.8762 6.33192 20.8027 6.22203 20.71 6.12951L18.37 3.78951C18.2775 3.69681 18.1676 3.62326 18.0466 3.57308C17.9257 3.5229 17.796 3.49707 17.665 3.49707C17.534 3.49707 17.4043 3.5229 17.2834 3.57308C17.1624 3.62326 17.0525 3.69681 16.96 3.78951L15.13 5.61951L18.88 9.36951L20.71 7.53951Z" />
+          </svg>
+          <a [href]="imageBaseUrl + image.file_name" data-fancybox="gallery1" [attr.data-caption]="">
+            <video class="img-fluid">
+              <source [src]="imageBaseUrl + image.file_name" type="video/mp4">
+              {{ 'galleryText' | translate }}
+            </video>
+          </a>
+          <!-- <video class="img-fluid" controls>
         <source src="{{imageBaseUrl}}{{image.file_name}}" type="video/mp4">
         {{'galleryText' | translate}}
       </video> -->
 
 
-      <div class="wc_floatingMenu" [ngClass]="{ 'active': openedMenuId == image.id}">
-        <div class="wc_menuItem pointer font-14" (click)="openDeleteDialog(image.id, 'video')">
-          <span>
-            <svg class="del-icon-margin" width="14" height="16" viewBox="0 0 14 16" fill="none"
-              xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M1.50065 14.0589C1.50065 15.0112 2.32565 15.7904 3.33398 15.7904H10.6673C11.6757 15.7904 12.5007 15.0112 12.5007 14.0589V3.66999H1.50065V14.0589ZM13.4173 1.07277H10.209L9.29232 0.207031H4.70898L3.79232 1.07277H0.583984V2.80425H13.4173V1.07277Z"
-                fill="#111418" />
-            </svg>
+          <div class="wc_floatingMenu" [ngClass]="{ 'active': openedMenuId == image.id}">
+            <div class="wc_menuItem pointer font-14" (click)="openDeleteDialog(image.id, 'video')">
+              <span>
+                <svg class="del-icon-margin" width="14" height="16" viewBox="0 0 14 16" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M1.50065 14.0589C1.50065 15.0112 2.32565 15.7904 3.33398 15.7904H10.6673C11.6757 15.7904 12.5007 15.0112 12.5007 14.0589V3.66999H1.50065V14.0589ZM13.4173 1.07277H10.209L9.29232 0.207031H4.70898L3.79232 1.07277H0.583984V2.80425H13.4173V1.07277Z"
+                    fill="#111418" />
+                </svg>
 
-            {{'deleteVideo' | translate}}</span>
+                {{'deleteVideo' | translate}}</span>
+            </div>
+            <div class="wc_menuItem pointer font-14" (click)="downloadImage(imageBaseUrl, image.file_name)">
+              <span>
+                <svg class="me-1" width="17" height="17" viewBox="0 0 17 17" fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <g clip-path="url(#clip0_2403_70930)">
+                    <path
+                      d="M6.37435 15.5846H10.6243C14.166 15.5846 15.5827 14.168 15.5827 10.6263V6.3763C15.5827 2.83464 14.166 1.41797 10.6243 1.41797H6.37435C2.83268 1.41797 1.41602 2.83464 1.41602 6.3763V10.6263C1.41602 14.168 2.83268 15.5846 6.37435 15.5846Z"
+                      stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <path
+                      d="M6.375 8.15104L8.5 10.276L10.625 8.15104M8.5 10.276V4.60938M4.25 11.6927C7.00542 12.6135 9.99458 12.6135 12.75 11.6927"
+                      stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_2403_70930">
+                      <rect width="17" height="17" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+                {{'downloadVideo' | translate}}
+              </span>
+            </div>
+          </div>
         </div>
-        <div class="wc_menuItem pointer font-14" (click)="downloadImage(imageBaseUrl, image.file_name)">
-          <span>
-            <svg class="me-1" width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g clip-path="url(#clip0_2403_70930)">
-                <path
-                  d="M6.37435 15.5846H10.6243C14.166 15.5846 15.5827 14.168 15.5827 10.6263V6.3763C15.5827 2.83464 14.166 1.41797 10.6243 1.41797H6.37435C2.83268 1.41797 1.41602 2.83464 1.41602 6.3763V10.6263C1.41602 14.168 2.83268 15.5846 6.37435 15.5846Z"
-                  stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                <path
-                  d="M6.375 8.15104L8.5 10.276L10.625 8.15104M8.5 10.276V4.60938M4.25 11.6927C7.00542 12.6135 9.99458 12.6135 12.75 11.6927"
-                  stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-              </g>
-              <defs>
-                <clipPath id="clip0_2403_70930">
-                  <rect width="17" height="17" fill="white" />
-                </clipPath>
-              </defs>
-            </svg>
-            {{'downloadVideo' | translate}}
-          </span>
+
+        <!-- Add New -->
+        <div class='image-upload-container d-flex align-items-center'>
+          <div class="image-previews" (click)="addPhotosPopup('video')">
+            <div class="image">
+              <div>+</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-
-</div>

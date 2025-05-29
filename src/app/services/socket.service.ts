@@ -111,5 +111,28 @@ export class SocketService {
   }
 
 
+  getLoggedInUserDetail(): Promise<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.userToken}`
+    });
+
+    const apiUrl = 'https://api.socceryou.ch/';
+
+    return this.http.get<ApiResponse>(`${apiUrl}api/check-user-status`, { headers })
+      .toPromise()
+      .then((response: any) => {
+        if (response.status === true && response.data.userData.status !== '' && response.data.userData.status !== undefined) {
+          return response.data;
+        } else {
+          return false;
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        return false;
+      });
+  }
+
+
 
 }

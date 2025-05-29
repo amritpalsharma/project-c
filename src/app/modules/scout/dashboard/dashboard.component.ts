@@ -23,6 +23,8 @@ import { GlobalSettingsService } from '../../../services/global-settings.service
 import { ImageCropperComponent2 } from '../../shared/image-cropper/image-cropper.component';
 import { UnverifiedUserComponent } from '../../shared/unverified-user/unverified-user.component';
 import { SocketService } from '../../../services/socket.service';
+import { EditMembershipProfileComponent } from '../edit-membership-profile/edit-membership-profile.component';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -86,6 +88,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   loading: boolean = true;  // Add this line to track loading state
   pageTitle: string = '';
+  stats: any = [];
 
   isUserVerified: boolean = false;
   async ngOnInit() {
@@ -102,6 +105,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.getHighlightsData();
     this.loadCountries();
     this.getGalleryData();
+    this.getBoosterData();
 
     this.getCoverImg();
     this.route.params.subscribe(() => {
@@ -341,7 +345,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
           this.userVideos = [];
         }
         this.loading = false;  // Set loading to false once data is loaded
-        
+
       });
     } catch (error) {
       console.error('Error fetching users:', error);
@@ -550,7 +554,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
           url: this.imageBaseUrl
         }
       });
-  
+
       dialogRef.afterClosed().subscribe(result => {
         this.getHighlightsData()
       });
@@ -1079,6 +1083,49 @@ export class DashboardComponent implements OnInit, OnDestroy {
       if (result !== undefined) {
         if (result.action == "delete-confirmed") {
           // this.deleteUser();
+        }
+      }
+    });
+  }
+
+  async getBoosterData() {
+
+    let params: any = {};
+    // params.lang = localStorage.getItem('lang_id');
+
+    try {
+      const response = await this.scoutService.getBoosterData().toPromise();
+      if (response?.data) {
+        this.stats = response.data;
+        console.log(this.stats)
+        // Ensure the selectedAudienceIds array is cleared and populated with the correct data
+      } else {
+        console.error('Failed to create checkout session', response);
+      }
+    } catch (error) {
+      console.error('Error creating Stripe Checkout session:', error);
+    }
+  }
+
+  editBooster(data: any) {
+
+    const dialogRef = this.dialog.open(EditMembershipProfileComponent, {
+      width: '1000px',
+      data: {
+        stats: this.stats
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.getBoosterData()
+      }
+
+      if (result.role != undefined && result.role != '') {
+        if (result.role == 'talent' || result.role == 'scout' || result.role == 'club') {
+          if (result.user_id != '' && result.user_id != undefined && result.redirect_path) {
+            this.router.navigate([result.redirect_path, result.user_id]);
+          }
         }
       }
     });
