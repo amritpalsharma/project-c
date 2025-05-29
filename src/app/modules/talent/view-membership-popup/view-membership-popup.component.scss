@@ -85,6 +85,11 @@ a.pdf-download_btn {
     background: #7ac557;
     padding: 12px 11px;
     margin-right: 10px;
+    width: 52px;
+    height: 52px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 .pdf-download_btn span svg path{
     stroke: #fff;
