@@ -1,21 +1,23 @@
 <section class="website-code newss--page">
     <!-- <app-header></app-header> -->
     <div class="news_static_banner news-dtail--baner pb-0">
-      <div class="container">
-        <div class="post_back_btn_date">
-            <button [routerLink]="'/news'" class="back-button"> <span><img src="./assets/images/back-image.svg"> </span>{{'back_to_news' | translate}}</button>
-            <p class="p-text">{{news.created_at | date:'dd.MM.yy'}}</p>
+        <div class="container">
+            <div class="post_back_btn_date">
+                <button [routerLink]="'/news'" class="back-button"> <span><img src="./assets/images/back-image.svg">
+                    </span>{{'back_to_news' | translate}}</button>
+                <p class="p-text">{{news.created_at | date:'dd.MM.yy'}}</p>
+            </div>
+            <div class="row">
+                <div class="col-xl-6 titl_col mb-3">
+                    <h2 class="cookie-text text-uppercase">{{news.title}}</h2>
+                </div>
+                <div class="col-xl-6 titl_col mb-3">
+                    <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor,
+                        nisi elit consequat ipsum.</p>
+                </div>
+            </div>
         </div>
-        <div class="row">
-          <div class="col-xl-6 titl_col mb-3">
-            <h2 class="cookie-text text-uppercase">{{news.title}}</h2>
-          </div>
-          <div class="col-xl-6 titl_col mb-3">
-            <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum.</p>
-          </div>
-        </div>
-      </div>
-  </div>
+    </div>
     <div class="main">
         <!-- <div class="learn-banner">
             <div class="container pt-5">
@@ -77,11 +79,11 @@
             </div>
             <div class="social-icons news_share_icons">
                 <h5 class="share">{{'share' | translate}}</h5>
-                <a href="https://www.instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://www.linkedin.com" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
-                <a href="https://www.facebook.com" target="_blank"><i class="fa-brands fa-facebook"></i></a>
-                <a href="https://www.email.com" target="_blank"><i class="fa-regular fa-envelope"></i></a>
-                <a href="https://www.twitter.com" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+                <!-- <a href="https://www.instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a> -->
+                <a [href]="linkedInUrl" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a [href]="facebookUrl" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                <a [href]="emailUrl" target="_blank"><i class="fa-regular fa-envelope"></i></a>
+                <a [href]="twitterUrl" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
             </div>
         </div>
         <div class="advertisment" [ngClass]="{'hidden': !adVisible[2]}">
@@ -99,8 +101,8 @@
                 <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-4" *ngFor="let new of moreNews">
                     <div (click)="navigateNews(new.slug)" class="news-box">
                         <div class="news_img_thumb_wrap">
-                        <img src="{{baseUrl + new.featured_image}}" (error)="handleImageError($event)">
-                    </div>
+                            <img src="{{baseUrl + new.featured_image}}" (error)="handleImageError($event)">
+                        </div>
                         <p class="p-text">{{new.created_at | date:'dd.MM.yy'}}</p>
                         <p [innerHTML]="new.title"></p>
                         <!-- <p>{{news.content}}</p> -->

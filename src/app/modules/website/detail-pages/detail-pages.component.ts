@@ -1,6 +1,7 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, Input } from '@angular/core';
 import { WebPages } from '../../../services/webpages.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ShareService } from '../../../services/share.service';
 
 @Component({
   selector: 'app-detail-pages',
@@ -15,7 +16,12 @@ export class DetailPagesComponent {
   adVisible: boolean[] = [true, true, true, true, true, true]; // Array to manage ad visibility
   baseUrl: string = 'https://api.socceryou.ch/uploads/';
   currentLang: any = localStorage.getItem('lang_id');
-  constructor(private route: ActivatedRoute, private router: Router, private webPages: WebPages) { }
+
+  blogTitle: string = '';
+  blogSlug: string = '';
+
+  blogUrl = window.location.href;
+  constructor(private shareService: ShareService, private route: ActivatedRoute, private router: Router, private webPages: WebPages) { }
 
   ngOnInit() {
     // Initially, all ads are visible
@@ -60,6 +66,29 @@ export class DetailPagesComponent {
   handleImageError(event: Event) {
     const target = event.target as HTMLImageElement;
     target.src = 'assets/images/no_cover_img1.png'; // or wherever your fallback image is
+  }
+
+  // SHARE CODE
+  get facebookUrl() {
+    this.blogTitle = this.news.title;
+    return this.shareService.getFacebookShareUrl(this.blogUrl);
+  }
+
+  get linkedInUrl() {
+    this.blogTitle = this.news.title;
+    return this.shareService.getLinkedInShareUrl(this.blogUrl, this.blogTitle);
+  }
+
+  get twitterUrl() {
+    this.blogTitle = this.news.title;
+    // this.blogSlug = this.news.slug;
+    return this.shareService.getTwitterShareUrl(this.blogUrl, this.blogTitle, '#soccerYou');
+  }
+
+  get emailUrl() {
+    this.blogTitle = this.news.title;
+    // this.blogSlug = this.news.slug;
+    return this.shareService.getEmailShareUrl(this.blogTitle, `description: ${this.blogUrl}`);
   }
 
 }

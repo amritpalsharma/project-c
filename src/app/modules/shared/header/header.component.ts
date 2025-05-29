@@ -486,20 +486,16 @@ export class HeaderComponent {
 
 
   ChangeLang(lang: any) {
-
     this.notifications = [];
-
     const selectedLanguage = typeof lang != 'string' ? lang.target.value : lang;
     localStorage.setItem('lang', selectedLanguage);
     this.lang = selectedLanguage;
-
     const selectedLang = this.domains.find((lang: any) => lang.slug === selectedLanguage);
     this.language = selectedLang;
     let selectedLandId = selectedLang ? selectedLang.id : 1;
     localStorage.setItem('lang_id', selectedLandId);
     this.translateService.use(selectedLanguage)
     this.webPages.updateData(selectedLandId);
-
     let jsonData = localStorage.getItem("userData");
     let userId;
     if (jsonData) {
@@ -509,18 +505,13 @@ export class HeaderComponent {
     else {
       console.log("No data found in localStorage.");
     }
-
     this.socketService.emit('updateLanguage', { userId, langId: selectedLandId });
-
     this.fetchNotifications(userId, selectedLandId);
-
     // Now safely access the locale
     const locale = selectedLang.locale;
-
     // Change the TalkJS locale by passing the locale string (e.g., 'en-US')
     this.talkService.changeLocale(locale);
     this.getPageTitle();
-
     if (this.lang == 'se') {
       this.lang = 'sv';
     }

@@ -158,6 +158,21 @@ export class TalkService {
     }
   }
 
+  toggleTheme30042025(isDarkModeEnabled: boolean): void {
+    if (!this.session) {
+      console.error('TalkJS session not initialized');
+      return;
+    }
+    if (this.inbox) {
+      this.inbox.destroy();
+    }
+    this.inbox = this.session.createInbox({
+      theme: isDarkModeEnabled ? 'dark_custom' : 'default'
+    });
+
+    // Optionally re-mount immediately or allow the component to handle mounting
+    this.inbox.mount(document.getElementById('talkjs-container') as HTMLElement);
+  }
 
   toggleTheme(isDarkModeEnabled: boolean): void {
     if (!this.session) {
@@ -228,6 +243,34 @@ export class TalkService {
     this.inbox.mount(document.getElementById('talkjs-container') as HTMLElement);
   }
 
+
+  startChatWithUser22425(otherUserData: any) {
+    const userDataString = localStorage.getItem('userData');
+    if (userDataString) {
+      let userData = JSON.parse(userDataString);
+      let userArr = {
+        id: userData.id,
+        name: userData.first_name,
+        email: userData.username,
+        photoUrl: userData.profile_image+'?='+ Date.now(),
+        welcomeMessage: null,
+        role: (userData.role == '1') ? "hidden" : "default"
+      };
+      const currentUser = new Talk.User(userArr);
+      const otherUser = new Talk.User(otherUserData);
+
+      const session = new Talk.Session({ appId: 'tmI75KXB', me: currentUser });
+
+      const conversation = session.getOrCreateConversation(Talk.oneOnOneId(currentUser, otherUser));
+      conversation.setParticipant(currentUser);
+      conversation.setParticipant(otherUser);
+
+      const chatbox = session.createChatbox();
+      chatbox.select(conversation);
+      chatbox.mount(document.getElementById('talkjs-container'));
+    }
+  }
+
   startChatWithUser(otherUserData: any) {
     const userDataString = localStorage.getItem('userData');
 
@@ -282,4 +325,8 @@ export class TalkService {
       // }
     }
   }
+
+
+
+
 }

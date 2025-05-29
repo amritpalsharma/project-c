@@ -46,7 +46,7 @@ const routes: Routes = [
       { path: 'cookie', component: CookieComponent },
       { path: 'learn-more', component: LearnMoreComponent },
       { path: 'news/:slug', component: DetailPagesComponent },
-      { path: 'player-list', component: PlayerListComponent },
+      { path: 'explore', component: PlayerListComponent },
       { path: 'error', component: ErrorComponent },
       { path: 'thank-you', component: ThankuComponent },
       { path: 'cookie-popup', component: CookiePopupComponent },

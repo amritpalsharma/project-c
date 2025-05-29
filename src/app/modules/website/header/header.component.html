@@ -42,7 +42,7 @@
             <div class="dropdown-menu dropdown-menu-end">
                 <!-- Loop through langs array to display each language and flag -->
                 <a href="#" *ngFor="let lang of langs" class="dropdown-item ai-icon"
-                    [class.selected]="slug === lang.slug" (click)="ChangeLang(lang.slug, $event)">
+                    [class.selected]="slug === lang.slug" (click)="ChangeLang(lang.slug, lang.id, $event)">
                     <!-- Display language flag -->
                     <img src="https://api.socceryou.ch/uploads/logos/{{ lang.flag }}" width="30" height="24"
                         class="me-3">
@@ -246,7 +246,7 @@
                         <div class="dropdown-menu dropdown-menu-end">
                             <!-- Loop through langs array to display each language with its flag -->
                             <a href="" *ngFor="let lang of langs" class="dropdown-item ai-icon"
-                                [class.selected]="slug === lang.slug" (click)="ChangeLang(lang.slug, $event)">
+                                [class.selected]="slug === lang.slug" (click)="ChangeLang(lang.slug, lang.id, $event)">
                                 <!-- Display language flag -->
                                 <img src="https://api.socceryou.ch/uploads/logos/{{ lang.flag }}" width="30" height="24"
                                     class="me-3">

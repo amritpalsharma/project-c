@@ -486,83 +486,47 @@ export class HeaderComponent implements OnInit {
     document.body.classList.toggle('dark-mode', this.isDarkMode);
   }
 
-  ChangeLang(newSlug: string, event: Event): void {
+  ChangeLang(newSlug: string, lang_id: any, event: Event): void {
     this.translateService.use(newSlug);  // Switch translation language
     // console.log('working', newSlug);
-
     this.slug = newSlug;  // Update the slug to the selected language
-    event.preventDefault(); // Prevent default action (e.g., preventing link navigation)
-
-    let selectedLanguageId: any = null;
-    if (newSlug == 'sv') {
-      // newSlug == 'se';
-    }
-    let getLanguageIndex = this.langs.findIndex((val: any) => {
-      if (val.slug == newSlug) {
-        selectedLanguageId = val.id
-        return val;
-      }
-    });
-
-    this.selectedLanguageId = selectedLanguageId;
     localStorage.setItem('lang', newSlug);
-
+    event.preventDefault(); // Prevent default action (e.g., preventing link navigation)
+    this.selectedLanguageId = lang_id;
     // Retrieve the selected language code from localStorage
     const selectedLanguageSlug = newSlug;
     // Find the corresponding language ID from the langs array
     const selectedLanguageObj = this.langs.find(
       (lang: any) => lang.slug === selectedLanguageSlug
     );
-
-    // Default to a specific language ID if none is found (e.g., English)
-    selectedLanguageId = selectedLanguageObj ? selectedLanguageObj.id : 1;
-
-
-    this.webpage.updateData(selectedLanguageId);
-    localStorage.setItem('lang_id', selectedLanguageId);
-
-    console.log('selectedLanguageId', selectedLanguageId);
+    this.webpage.updateData(lang_id);
+    // console.log('selectedLanguageId', lang_id);
     this.sharedservice.updateData({
       action: 'updatedLang',
-      id: selectedLanguageId
+      id: lang_id
     });
-
     this.sharedservice.data$.subscribe((data: any) => {
       if (data.action == 'updatedLang') {
-        // this.isLoading = true;
         this.lang_id = data.id;
         this.getAllCountries();
         this.getAllClubs();
         this.getAllLanguage();
       }
     });
-
-
-    this.translateService.use(newSlug);
-
-    const target = event.target as HTMLSelectElement;  // Cast target to HTMLSelectElement
-    if (target) {
-      this.lang = target.value;
-      this.getContentForLanguage(this.lang);
-    }
+    this.getContentForLanguage(this.lang);
+    this.globalSettings.callIndexComponentFunction();
     // Define the array of classes to remove
     const MyClassesArray = ['en', 'de', 'it', 'fr', 'es', 'pt', 'da', 'sv'];  // Example array, adjust it as needed
-
     // Get the body element
     const body = document.getElementsByTagName('body')[0];
-
     // Remove all classes that are in the MyClassesArray
     Array.from(body.classList).forEach(className => {
       if (MyClassesArray.includes(className)) {
         body.classList.remove(className);
       }
     });
-
     // Add the new class
     body.classList.add(selectedLanguageSlug);
-
-
-    this.globalSettings.callIndexComponentFunction();
   }
 
   getContentForLanguage(lang: string): void {

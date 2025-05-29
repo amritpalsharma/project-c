@@ -654,7 +654,7 @@ export class FooterComponent implements OnInit {
     }
 
     let selectedLang = this.countrie.find((data: any) => data.slug == this.currentDomainExtension);
-    console.info(selectedLang)
+    // console.info(selectedLang)
     this.name = selectedLang?.name || '';
     this.selectedcountry = selectedLang?.id || '';
   }
