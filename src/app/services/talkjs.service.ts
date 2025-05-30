@@ -25,7 +25,7 @@ export class TalkService {
       id: user.id,
       name: user.name,
       email: user.email,
-      photoUrl: user.photoUrl+'?='+ Date.now(),
+      photoUrl: user.photoUrl + '?=' + Date.now(),
       welcomeMessage: null,
       role: user.role
     });
@@ -61,7 +61,7 @@ export class TalkService {
         id: id,
         name: name,
         email: email,
-        photoUrl: photoUrl+'?='+ Date.now(),
+        photoUrl: photoUrl + '?=' + Date.now(),
         welcomeMessage: null,
         role: 'default'
 
@@ -120,7 +120,7 @@ export class TalkService {
           id: user.id,
           name: user.name,
           email: user.email,
-          photoUrl: user.photoUrl+'?='+ Date.now(),
+          photoUrl: user.photoUrl + '?=' + Date.now(),
           welcomeMessage: null,
           role: 'default'
         });
@@ -204,7 +204,7 @@ export class TalkService {
       id: this.user.id,
       name: this.user.name,
       email: this.user.email,
-      photoUrl: this.user.photoUrl+'?='+ Date.now(),
+      photoUrl: this.user.photoUrl + '?=' + Date.now(),
       welcomeMessage: null,
       role: this.user.role,
       locale: newLocale,
@@ -229,13 +229,21 @@ export class TalkService {
   }
 
   startChatWithUser(otherUserData: any) {
-    const userDataString = localStorage.getItem('userData');
+    // const userDataString = localStorage.getItem('userData');
 
-    if (userDataString && otherUserData) {
-      let userData = JSON.parse(userDataString);
+    if (otherUserData) {
+      let userData;
+      // let userData = JSON.parse(otherUserData);
+      try {
+        userData = JSON.parse(otherUserData);
+      } catch (e) {
+        userData = otherUserData;
+      }
 
-      if (typeof userData.first_name === undefined || userData.first_name == '' && userData.name != '') {
+      if (typeof userData.name !== undefined && userData.name != '') {
         userData.first_name = userData.name;
+      }else if(userData.first_name != '' && userData.last_name != ''){
+         userData.first_name = userData.first_name+' '+userData.last_name;
       }
 
       let userArr = {
@@ -251,7 +259,7 @@ export class TalkService {
         userArr.name = 'Talk User';
       }
 
-      console.log('Chat From View Profile Chat With ',userArr);
+      console.info('User Recived In Talk js servie ', userArr);
 
       const currentUser = new Talk.User(userArr);
       const otherUser = new Talk.User(otherUserData);

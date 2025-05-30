@@ -128,7 +128,7 @@ export class ChatComponent {
           // }
           this.users.push({
             id: user.id,
-            name: user.first_name, // The opened chat options Here
+            name: user.first_name+' '+user.last_name, // The opened chat options Here
             email: user.username,
             photoUrl: this.baseUrl + user.meta.profile_image,
           })
@@ -209,6 +209,7 @@ export class ChatComponent {
 
     if (otherUserData) {
       const otherUser = JSON.parse(otherUserData);
+      console.info('From View Profile Chat With', otherUser);
       // this.startOneOnOneChat(otherUser);
       this.talkService.startChatWithUser(otherUser);
       // localStorage.setItem('otherUserData','');
