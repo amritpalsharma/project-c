@@ -19,6 +19,17 @@ import { TitleService } from '../../../title.service';
 import { TalkService } from '../../../services/talkjs.service';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
 
+// LOCALE FOR CALENDAR
+import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatDatepickerIntl } from '@angular/material/datepicker';
+import { inject } from '@angular/core';
+import 'moment/locale/fr';
+import 'moment/locale/de';
+import 'moment/locale/it';
+import 'moment/locale/es';
+import 'moment/locale/sv';
+import 'moment/locale/da';
+
 interface Notification {
   id: number;
   image: string;
@@ -39,6 +50,11 @@ interface Notification {
 })
 export class HeaderComponent {
   //constructor(private themeService: ThemeService) {}
+
+  // CALENDAR SETTINGS
+  private readonly _adapter = inject<DateAdapter<unknown, unknown>>(DateAdapter);
+  private readonly _intl = inject(MatDatepickerIntl);
+
   constructor(
     private shareService: SharedService,
     private userService: UserService,
@@ -52,8 +68,13 @@ export class HeaderComponent {
     private talkService: TalkService,
     private cdRef: ChangeDetectorRef,
     private titleService: TitleService,
-    private globalSettings:GlobalSettingsService
-  ) { }
+    private globalSettings: GlobalSettingsService
+  ) {
+    let locale = localStorage.getItem('lang') || 'en';
+    this._adapter.setLocale(locale);
+  }
+
+
 
   loggedInUser: any = localStorage.getItem('userData');
   profileImgUrl: any = "";
@@ -261,7 +282,7 @@ export class HeaderComponent {
           // searchResults = searchResults.filter((user: any) => {
           //   const fullName = `${user.first_name} ${user.last_name}`.toLowerCase();
           //   const search = searchText.toLowerCase();
-            
+
           //   return (
           //     user.first_name.toLowerCase().startsWith(search) || 
           //     user.last_name.toLowerCase().startsWith(search) ||
@@ -366,6 +387,7 @@ export class HeaderComponent {
     const selectedLanguage = typeof lang != 'string' ? lang.target.value : lang;
     localStorage.setItem('lang', selectedLanguage);
     this.lang = selectedLanguage;
+    this._adapter.setLocale(selectedLanguage);
     this.translateService.use(selectedLanguage);
     // Retrieve the selected language code from localStorage
     const selectedLanguageSlug = selectedLanguage;
@@ -614,8 +636,8 @@ export class HeaderComponent {
     this.cdRef.detectChanges();
   }
 
-  toggleSearch(){
-     this.isSearchVisible = !this.isSearchVisible;
+  toggleSearch() {
+    this.isSearchVisible = !this.isSearchVisible;
   }
 }
 

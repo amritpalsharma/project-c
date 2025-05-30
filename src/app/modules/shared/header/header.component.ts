@@ -21,6 +21,17 @@ import { GlobalSettingsService } from '../../../services/global-settings.service
 import { MatDialog } from '@angular/material/dialog';
 import { UnverifiedUserComponent } from '../unverified-user/unverified-user.component';
 
+// LOCALE FOR CALENDAR
+import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatDatepickerIntl } from '@angular/material/datepicker';
+import { inject } from '@angular/core';
+import 'moment/locale/fr';
+import 'moment/locale/de';
+import 'moment/locale/it';
+import 'moment/locale/es';
+import 'moment/locale/sv';
+import 'moment/locale/da';
+
 interface Notification {
   id: number;
   image: string;
@@ -48,6 +59,11 @@ export class HeaderComponent {
   showSuggestions: boolean = false;
   viewsTracked: { [profileId: string]: { viewed: boolean, clicked: boolean } } = {}; // Track view and click per profile
 
+  // CALENDAR SETTINGS
+  private readonly _adapter = inject<DateAdapter<unknown, unknown>>(DateAdapter);
+  private readonly _intl = inject(MatDatepickerIntl);
+
+
   constructor(private userService: UserService,
     private router: Router,
     private route: ActivatedRoute,
@@ -63,7 +79,10 @@ export class HeaderComponent {
     private cdRef: ChangeDetectorRef,
     private titleService: TitleService,
     public dialog: MatDialog
-  ) { }
+  ) {
+    let locale = localStorage.getItem('lang') || 'en';
+    this._adapter.setLocale(locale);
+  }
 
   loggedInUser: any = localStorage.getItem('userInfo');
   profileImgUrl: any = "../../../../assets/images/default/talent-profile-default.png";
@@ -489,6 +508,8 @@ export class HeaderComponent {
     this.notifications = [];
     const selectedLanguage = typeof lang != 'string' ? lang.target.value : lang;
     localStorage.setItem('lang', selectedLanguage);
+    // let locale = localStorage.getItem('lang') || 'en';
+    this._adapter.setLocale(selectedLanguage);
     this.lang = selectedLanguage;
     const selectedLang = this.domains.find((lang: any) => lang.slug === selectedLanguage);
     this.language = selectedLang;

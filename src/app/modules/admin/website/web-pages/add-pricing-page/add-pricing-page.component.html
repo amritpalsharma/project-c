@@ -131,45 +131,7 @@
           <input id="firstTabMonthlyPrice" type="text" class="form-control" name="first_tab.features_sub_title"
             [(ngModel)]="formData.first_tab.features_sub_title" />
         </div>
-        <!-- New Fields for First Tab -->
-        <!-- <div class="form-group mb-3">
-          <label for="firstTabMonthlyPrice">{{ 'monthlyPrice' | translate }}</label>
-          <input id="firstTabMonthlyPrice" type="number" class="form-control" name="first_tab.monthly_price"
-            [(ngModel)]="formData.first_tab.monthly_price" />
-        </div> -->
-
-        <!-- <div class="form-group mb-3">
-          <label for="firstTabMonthlyPriceCurrency">{{ 'monthlyPriceCurrency' | translate }}</label>
-          <input id="firstTabMonthlyPriceCurrency" type="text" class="form-control"
-            name="first_tab.monthly_price_currency" [(ngModel)]="formData.first_tab.monthly_price_currency" />
-        </div> -->
-        <!-- 
-        <div class="form-group mb-3">
-          <label for="firstTabYearlyPrice">{{ 'yearlyPrice' | translate }}</label>
-          <input id="firstTabYearlyPrice" type="number" class="form-control" name="first_tab.yearly_price"
-            [(ngModel)]="formData.first_tab.yearly_price" />
-        </div>
-
-        <div class="form-group mb-3">
-          <label for="firstTabYearlyPriceCurrency">{{ 'yearlyPriceCurrency' | translate }}</label>
-          <input id="firstTabYearlyPriceCurrency" type="text" class="form-control"
-            name="first_tab.yearly_price_currency" [(ngModel)]="formData.first_tab.yearly_price_currency" />
-        </div> -->
-
-
-        <!-- Features Section -->
-        <!-- <h1>{{formData.first_tab.free_features_desc}}</h1> -->
-        <!-- <div class="form-group mb-3">
-          <label>{{ 'freeFeatures' | translate }}</label>
-          <div *ngFor="let feature of formData.first_tab.free_features_desc; let i = index" class="mb-2">
-            <input type="text" class="form-control " [(ngModel)]="formData.first_tab.free_features_desc[i]"
-              name="firstTabFeature{{ i }}" placeholder="{{ 'enterFeature' | translate }}" />
-            <button type="button" class="next_btn btn-danger mt-2 " (click)="removeFirstTabDescFeature(i)"
-              *ngIf="formData.first_tab.free_features_desc.length > 1">{{ 'removeFeature' | translate}}</button>
-          </div>
-          <button type="button" class="next_btn" (click)="addFirstTabDescFeature()"> {{ 'addFeature' | translate
-            }}</button>
-        </div> -->
+       
         <!-- Amrit Code  -->
         <div class="form-group mb-3">
           <label>{{ 'freeFeatures' | translate }}</label>
@@ -189,28 +151,6 @@
           </button>
         </div>
         <!-- Amrit Code  -->
-        <!-- New Premium Features Title Field -->
-        <!-- <div class="form-group mb-3">
-          <label for="firstTabPremiumFeaturesTitle">{{ 'premiumFeaturesTitle' | translate }}</label>
-          <input id="firstTabPremiumFeaturesTitle" type="text" class="form-control"
-            name="first_tab.premium_features_title" [(ngModel)]="formData.first_tab.premium_features_title" />
-        </div> -->
-
-        <!-- New Premium Features Description Fields -->
-        <!-- <div class="form-group mt-3">
-          <label>{{ 'premiumFeaturesDescription' | translate }}</label>
-          <div *ngFor="let feature of formData.first_tab.premium_features_desc; let i = index" class="mb-2">
-            <input type="text" class="form-control" [(ngModel)]="formData.first_tab.premium_features_desc[i]"
-              name="firstTabPremiumFeatureDesc{{ i }}" placeholder="{{ 'enterFeatureDescription' | translate }}" />
-            <button type="button" class="next_btn btn-danger mt-2" (click)="remove_premium_features_desc(i)"
-              *ngIf="formData.first_tab.premium_features_desc.length > 1">
-              {{ 'removeFeature' | translate }}
-            </button>
-          </div>
-          <button type="button" class="next_btn" (click)="add_premium_features_desc()">{{ 'addFeature' |
-            translate }}</button>
-        </div> -->
-
         <div class="form-group mt-3">
           <label for="firstTabButtonTxt">{{ 'buttonText' | translate }}</label>
           <input id="firstTabButtonTxt" type="text" class="form-control" name="first_tab.btn_txt"

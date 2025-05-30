@@ -181,7 +181,10 @@
         </div>
         <div class="general_details">
             <h6 class="details_2"> {{ 'marketValue' | translate}}</h6>
-            <h5 class="details-1" *ngIf="user.meta && user.meta.market_value">€{{user.meta.market_value}} </h5>
+            <h5 class="details-1" *ngIf="user.meta && user.meta.market_value">
+                <!-- €{{user.meta.market_value}}  -->
+                {{numberFormatStyle(user.meta.market_value)}}
+            </h5>
             <!-- <h5 class="details-1" *ngIf="!user.meta || !user.meta.market_value">NA</h5> -->
         </div>
         <div class="general_details">
@@ -379,7 +382,7 @@
                 </div>
                 <div *ngIf="user?.meta?.sm_linkedin" class="social_icons mb-1">
                     <span class="me-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="27" height="28" viewBox="0 0 27 28" fill="none">
+                        <!-- <svg xmlns="http://www.w3.org/2000/svg" width="27" height="28" viewBox="0 0 27 28" fill="none">
                             <g clip-path="url(#clip0_242_13596)">
                                 <path fill-rule="evenodd" clip-rule="evenodd"
                                     d="M3 27.0103H24C25.6569 27.0103 27 25.6671 27 24.0103V3.01025C27 1.3534 25.6569 0.0102539 24 0.0102539H3C1.34315 0.0102539 0 1.3534 0 3.01025V24.0103C0 25.6671 1.34315 27.0103 3 27.0103Z"
@@ -393,7 +396,25 @@
                                     <rect width="27" height="27" fill="white" transform="translate(0 0.0102539)" />
                                 </clipPath>
                             </defs>
+                        </svg> -->
+
+
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_250_102)">
+                                <path
+                                    d="M3.23109 6.00613C4.74159 6.00613 5.96609 4.78163 5.96609 3.27113C5.96609 1.76063 4.74159 0.536133 3.23109 0.536133C1.72059 0.536133 0.496094 1.76063 0.496094 3.27113C0.496094 4.78163 1.72059 6.00613 3.23109 6.00613Z"
+                                    fill="black" />
+                                <path
+                                    d="M8.54859 8.0791V23.2529H13.2599V15.7491C13.2599 13.7691 13.6324 11.8516 16.0874 11.8516C18.5086 11.8516 18.5386 14.1154 18.5386 15.8741V23.2541H23.2524V14.9329C23.2524 10.8454 22.3724 7.7041 17.5949 7.7041C15.3011 7.7041 13.7636 8.96285 13.1349 10.1541H13.0711V8.0791H8.54859ZM0.871094 8.0791H5.58984V23.2529H0.871094V8.0791Z"
+                                    fill="black" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_250_102">
+                                    <rect width="24" height="24" fill="white" />
+                                </clipPath>
+                            </defs>
                         </svg>
+
                     </span>
                     <span>
                         <a href="https://www.linkedin.com/{{user?.meta?.sm_linkedin}}" target="_blank">

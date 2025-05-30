@@ -1041,22 +1041,23 @@
 }
 
 span.icon-bg.pdf_btn_icon button {
-    position: absolute;
-    width: 42px;
-    top: 65px;
-    right: 10px;
-    height: 42px;
-    margin-bottom: 5px;
-    background: #fff;
-    border: 1px solid;
-    border-radius: 50%;
-    padding: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    span {
-      display: none;
-    }
+  position: absolute;
+  width: 42px;
+  top: 65px;
+  right: 10px;
+  height: 42px;
+  margin-bottom: 5px;
+  background: #fff;
+  border: 1px solid;
+  border-radius: 50%;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  span {
+    display: none;
+  }
 }
 
 .premium_button svg {
@@ -1655,14 +1656,15 @@ span.active_btn {
     // padding-left: 1px !important;
     // padding-right: 1px !important;
   }
-   span.icon-bg.pdf_btn_icon button {
-        width: 42px;
-        height: 42px;
-        top: 11px;
-        right: -40px;
-        margin-bottom: 5px;
-        padding: 8px;
-    }
+
+  span.icon-bg.pdf_btn_icon button {
+    width: 42px;
+    height: 42px;
+    top: 11px;
+    right: -40px;
+    margin-bottom: 5px;
+    padding: 8px;
+  }
 }
 
 @media (max-width: 991px) {
@@ -1684,15 +1686,18 @@ span.active_btn {
     width: 100px;
     height: 100px;
   }
+
   .user-details-left .user-media {
     margin-top: -50px;
   }
+
   .edit-profile {
     width: 32px !important;
     top: 1px !important;
     right: 30px !important;
     height: 32px !important;
   }
+
   span.icon-bg.pdf_btn_icon button {
     width: 32px;
     height: 32px;
@@ -1700,7 +1705,8 @@ span.active_btn {
     right: -10px;
     margin-bottom: 5px;
     padding: 9px;
-}
+  }
+
   .team-logos:not(:last-child) {
     border-bottom: 1px solid #E5E5E5;
     padding-bottom: 20px;
@@ -1770,8 +1776,10 @@ span.active_btn {
 }
 
 @media (min-width: 1200px) and (max-width: 1599px) {
-  .gallery_images img, .gallery_images video {
-      height: 120px !important;
+
+  .gallery_images img,
+  .gallery_images video {
+    height: 120px !important;
   }
 }
 
@@ -1780,33 +1788,47 @@ span.active_btn {
     width: 32px;
     height: 32px;
   }
+
   .nav-tabs.user-tabs .nav-item .nav-link {
     font-size: 22px;
   }
-  .boost_profile span, .premium_button span, .title-1, .edit_button span, .details-1 {
+
+  .boost_profile span,
+  .premium_button span,
+  .title-1,
+  .edit_button span,
+  .details-1 {
     font-size: 20px;
   }
+
   .premium_button svg {
     width: 24px !important;
   }
+
   .title_2 {
     font-size: 18px;
   }
+
   .details_2 {
     font-size: 21px !important;
   }
+
   .user-info button .tour-personal-details {
     max-width: 145px !important;
   }
+
   .user-details-left .user-info-name {
     font-size: 28px;
   }
+
   .Feature_images h2 {
     font-size: 30px;
   }
+
   .Feature_images p {
     font-size: 24px;
   }
+
   .user-details-left .user-info button .tour-personal-details svg {
     width: 30px !important;
   }
@@ -1817,33 +1839,47 @@ span.active_btn {
     width: 40px;
     height: 40px;
   }
+
   .nav-tabs.user-tabs .nav-item .nav-link {
     font-size: 30px;
   }
-  .boost_profile span, .premium_button span, .edit_button span, .details-1 {
+
+  .boost_profile span,
+  .premium_button span,
+  .edit_button span,
+  .details-1 {
     font-size: 24px;
   }
+
   .premium_button svg {
     width: 30px !important;
   }
+
   .title_2 {
     font-size: 25px;
   }
-  .details_2, .title-1 {
+
+  .details_2,
+  .title-1 {
     font-size: 28px !important;
   }
+
   .user-info button .tour-personal-details {
     max-width: 185px !important;
   }
+
   .user-details-left .user-info-name {
     font-size: 32px;
   }
+
   .Feature_images h2 {
     font-size: 40px;
   }
+
   .Feature_images p {
     font-size: 28px;
   }
+
   .user-details-left .user-info button .tour-personal-details svg {
     width: 35px !important;
   }
@@ -1869,11 +1905,11 @@ span.active_btn {
 }
 
 @media (max-width: 400px) {
-.ground-image {
-  svg {
-    width: 210px;
+  .ground-image {
+    svg {
+      width: 210px;
+    }
   }
-}
 }
 
 ::ng-deep .custom-tooltip {
@@ -1993,18 +2029,29 @@ span.active_btn {
   background: unset !important;
   color: #fff !important;
 }
-::ng-deep .dark-theme .social_icons svg path{
-  color: white !important; 
+
+::ng-deep .dark-theme .social_icons svg path {
+  color: white !important;
   fill: white;
 }
-::ng-deep .dark-theme .social_icons svg .linkedin-innerside{
-  color: white !important; 
+
+::ng-deep .dark-theme .social_icons svg .linkedin-innerside {
+  color: white !important;
   fill: #072944;
 }
 
 
 @media (min-width: 2500px) {
-::ng-deep a.introjs-skipbutton {
-  padding-top: 4px;
+  ::ng-deep a.introjs-skipbutton {
+    padding-top: 4px;
+  }
 }
+
+.disabled-btn-light {
+  opacity: 0.3;
+}
+
+.disabled-btn-dark {
+  background: #bde34e !important;
+  opacity: 0.3;
 }

@@ -5,6 +5,7 @@ import { TalentService } from '../../../../services/talent.service';
 import { ResetPasswordComponent } from '../../../shared/reset-password/reset-password.component';
 import { UnverifiedUserComponent } from '../../../shared/unverified-user/unverified-user.component';
 import { ActivatedRoute, Router } from '@angular/router';
+import { GlobalSettingsService } from '../../../../services/global-settings.service';
 
 @Component({
   selector: 'talent-profile-tab',
@@ -24,7 +25,11 @@ export class ProfileTabComponent {
   @Input() isUserVerified: any;
   isMainPositionFound: boolean = false;
 
-  constructor(public dialog: MatDialog, private talentService: TalentService, private router: Router) {
+  constructor(
+    public globalSetting: GlobalSettingsService,
+    public dialog: MatDialog,
+    private talentService: TalentService,
+    private router: Router) {
     // If you want to load the user data from localStorage during initialization    
   }
 
@@ -197,5 +202,51 @@ export class ProfileTabComponent {
         }
       }
     });
+  }
+  numberFormatStyle(amount: any) {
+    let domainID = this.globalSetting.getdomainId();
+    let currency = this.globalSetting.getDomainCurrency();
+    let currencySymbol;
+    if (currency == 'GBP') {
+      currencySymbol = '£';
+    } else if (currency == 'CHF') {
+      currencySymbol = 'CHF';
+    } else if (currency == 'EUR') {
+      currencySymbol = '€';
+    } else if (currency == 'DKK') {
+      currencySymbol = 'DKK';
+    } else if (currency == 'SEK') {
+      currencySymbol = 'SEK';
+    }
+
+    let locale;
+    if (domainID == 1) {
+      locale = 'de-CH';
+    } else if (domainID == 2) {
+      locale = 'de-DE';
+    } else if (domainID == 3) {
+      locale = 'it-IT';
+    } else if (domainID == 4) {
+      locale = 'fr-FR';
+    } else if (domainID == 5) {
+      locale = 'en-GB';
+    } else if (domainID == 6) {
+      locale = 'es-ES';
+    } else if (domainID == 7) {
+      locale = 'pt-PT';
+    } else if (domainID == 8) {
+      locale = 'nl-BE';
+    } else if (domainID == 9) {
+      locale = 'da-DK';
+    } else if (domainID == 10) {
+      locale = 'sv-SE';
+    }
+    // getdomainId
+    let modifiedAmount = new Intl.NumberFormat(locale).format(amount);
+    if (amount > 0) {
+      return currencySymbol + ' ' + modifiedAmount;
+    } else {
+      return '';
+    }
   }
 }
