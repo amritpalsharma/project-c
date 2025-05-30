@@ -82,7 +82,7 @@
         <h2 class="country-available">{{country_section_title}}
         </h2>
         <div class="row">
-          <div class="col-xxl-4 col-lg-6 col-md-6 col-12">
+          <div class="col-xxl-4 col-lg-6 col-md-6 col-12" *ngIf="countries">
 
             <mat-list>
               <mat-list-item *ngFor="let country of countries; let i = index;" rel="noopener noreferrer">

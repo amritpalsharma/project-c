@@ -85,7 +85,7 @@
 
     </div>
 
-    <div class="club-scout py_0">
+    <div class="club-scout py_0" *ngIf="pageData?.talent_section_title">
         <div class="container">
             <h3 class="club-heading4 pb-4">{{pageData?.talent_section_title}}</h3>
             <div class="row">
@@ -117,7 +117,7 @@
         </div>
     </div>
 
-    <div class="features py_0">
+    <div class="features py_0" *ngIf="pageData.feature_sctn">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-12 col-12">
@@ -193,7 +193,7 @@
     </div>
 
     <!-- mobile-features -->
-    <div class="features1 py_0 ">
+    <div class="features1 py_0 " *ngIf="pageData.feature_sctn">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-12 col-12">
@@ -334,7 +334,7 @@
         </div>
     </div>
 
-    <div class="pricing py_0 pb-0">
+    <div class="pricing py_0 pb-0" *ngIf="priceArr">
         <div class="container">
             <div class="sec_title text-center">
                 <h2 class="text-uppercase price-heading3">{{'freePlanText' | translate}}</h2>
@@ -463,9 +463,9 @@
                                             <h2 class="premium-heading3">
                                                 {{ getPlanPriceByName('boost')}}<span>.- {{Currency}} /
                                                     <span
-                                                        *ngIf="selectedTab == 'yearly'">{{priceArr[0].yearly_label}}</span>
+                                                        *ngIf="selectedTab == 'yearly' && priceArr">{{priceArr[0].yearly_label}}</span>
                                                     <span
-                                                        *ngIf="selectedTab != 'yearly'">{{priceArr[0].monthly_label}}</span>
+                                                        *ngIf="selectedTab != 'yearly' && priceArr">{{priceArr[0].monthly_label}}</span>
                                                 </span>
                                             </h2>
                                             <h3 class="premium-heading2"> {{getDynamicPlanName('boost')}} </h3>
@@ -498,9 +498,9 @@
                                                 <!-- 42<span>.- GBP / <span>Yearly</span></span> -->
                                                 {{ getPlanPriceByName('premium')}}<span>.- {{Currency}} /
                                                     <span
-                                                        *ngIf="selectedTab == 'yearly'">{{priceArr[0].yearly_label}}</span>
+                                                        *ngIf="selectedTab == 'yearly' && priceArr">{{priceArr[0].yearly_label}}</span>
                                                     <span
-                                                        *ngIf="selectedTab != 'yearly'">{{priceArr[0].monthly_label}}</span>
+                                                        *ngIf="selectedTab != 'yearly' && priceArr">{{priceArr[0].monthly_label}}</span>
                                                 </span>
                                             </h2>
                                             <h3 class="premium-heading2">{{getDynamicPlanName('premium')}}</h3>
@@ -532,9 +532,9 @@
                                                 <!-- 10<span>.- GBP / <span>Yearly</span></span> -->
                                                 {{ getPlanPriceByName('country')}}<span>.- {{Currency}} /
                                                     <span
-                                                        *ngIf="selectedTab == 'yearly'">{{priceArr[0].yearly_label}}</span>
+                                                        *ngIf="selectedTab == 'yearly' && priceArr">{{priceArr[0].yearly_label}}</span>
                                                     <span
-                                                        *ngIf="selectedTab != 'yearly'">{{priceArr[0].monthly_label}}</span>
+                                                        *ngIf="selectedTab != 'yearly' && priceArr">{{priceArr[0].monthly_label}}</span>
                                                 </span>
                                             </h2>
                                             <h3 class="premium-heading2"> {{getDynamicPlanName('country')}} </h3>

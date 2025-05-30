@@ -329,26 +329,38 @@ export class TalentComponent {
 
   getDynamicPlanName(planName: string) {
     const lowerPlanName = planName.toLowerCase();
-    if (lowerPlanName.includes('premium')) {
-      return this.priceArr[0].plan_name;
+    if (lowerPlanName.includes('premium')) { 
+      if(this.priceArr){
+        return this.priceArr[0].plan_name;
+      }
     }
     if (lowerPlanName.includes('country')) {
-      return this.priceArr[1].plan_name;
+      if(this.priceArr){
+        return this.priceArr[1].plan_name;
+      }
     }
     if (lowerPlanName.includes('boost')) {
-      return this.priceArr[2].plan_name;
+      if(this.priceArr){
+        return this.priceArr[2].plan_name;
+      }
     }
   }
   getDescByPlanName(planName: string) {
     const lowerPlanName = planName.toLowerCase();
     if (lowerPlanName.includes('premium')) {
-      return this.priceArr[0].plan_feature_desc;
+      if(this.priceArr){
+        return this.priceArr[0].plan_feature_desc;
+      }
     }
     if (lowerPlanName.includes('country')) {
-      return this.priceArr[1].plan_feature_desc;
+      if(this.priceArr){
+        return this.priceArr[1].plan_feature_desc;
+      }
     }
     if (lowerPlanName.includes('boost')) {
-      return this.priceArr[2].plan_feature_desc;
+      if(this.priceArr){
+        return this.priceArr[2].plan_feature_desc;
+      }
     }
   }
   getPlanPriceByName(planName: string): number {

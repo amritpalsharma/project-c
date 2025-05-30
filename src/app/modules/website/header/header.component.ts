@@ -491,6 +491,7 @@ export class HeaderComponent implements OnInit {
     // console.log('working', newSlug);
     this.slug = newSlug;  // Update the slug to the selected language
     localStorage.setItem('lang', newSlug);
+    localStorage.setItem('lang_id', lang_id);
     event.preventDefault(); // Prevent default action (e.g., preventing link navigation)
     this.selectedLanguageId = lang_id;
     // Retrieve the selected language code from localStorage

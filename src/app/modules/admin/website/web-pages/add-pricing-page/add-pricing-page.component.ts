@@ -47,7 +47,7 @@ export class AddPricingPageComponent implements OnInit, OnDestroy {
     page_content: '',
     page_id: '',
     page_type: '',
-    pricing_title: ['PRICING'],
+    // pricing_title: ['PRICING'],
     pricing_tabs_title: ['Membership Plans'],
     pricing_banner_img: '',
     first_tab: {
@@ -58,11 +58,11 @@ export class AddPricingPageComponent implements OnInit, OnDestroy {
       // monthly_price_currency: ['CHF/Month'],
       // yearly_price: ['470'],
       // yearly_price_currency: ['CHF/Year'],
-      features_title: ['Talent Features'],
-      free_features_sub_title: ['Free Features'],
-      free_features_desc: ['Create a personal profile showcasing abilities, performance data, and achievements.'],
+      features_title: '',
+      free_features_sub_title: '',
+      free_features_desc: [''],
       premium_features_title: ['Premium Features'],
-      premium_features_desc: ['Full display of the complete talent profile with career stages and performance data.'],
+      premium_features_desc: [''],
       btn_txt: ['Join Today']
     },
     sec_tab: {
@@ -70,24 +70,24 @@ export class AddPricingPageComponent implements OnInit, OnDestroy {
       yearly_label: ['Billed Yearly'],
       plan_name: ['Multi-Country'],
       // monthly_price: ['11'],
-      // monthly_price_currency: ['CHF/Month'],
-      // yearly_price: ['110'],
-      // yearly_price_currency: ['CHF/Yearly'],
+      monthly_price_currency: ['CHF/Month'],
+      yearly_price: ['110'],
+      yearly_price_currency: ['CHF/Yearly'],
       features_title: ['Club/Scout Features'],
       free_features_sub_title: ['Free Features:'],
-      free_features_desc: ['Create a personal profile showcasing history, players and sighting information.'],
+      free_features_desc: [],
       premium_features_title: ['Premium Features:'],
-      premium_features_desc: ['Access to the complete talent profiles with detailed performance data.'],
+      premium_features_desc: [['Access to the complete talent profiles with detailed performance data.']],
       btn_txt: ['Join Today']
     },
     third_tab: {
       monthly_label: ['Billed Monthly'],
       yearly_label: ['Billed Yearly'],
       plan_name: ['Multi-Country'],
-      // monthly_price: ['11'],
-      // monthly_price_currency: ['CHF/Month'],
-      // yearly_price: ['110'],
-      // yearly_price_currency: ['CHF/Yearly'],
+      monthly_price: ['11'],
+      monthly_price_currency: ['CHF/Month'],
+      yearly_price: ['110'],
+      yearly_price_currency: ['CHF/Yearly'],
       features_title: ['Club/Scout Features'],
       free_features_sub_title: ['Free Features:'],
       free_features_desc: ['Create a personal profile showcasing history, players and sighting information.'],
@@ -184,7 +184,7 @@ export class AddPricingPageComponent implements OnInit, OnDestroy {
 
     // Submit the form data
     this.webpages.addPricingPage(formData).subscribe((response) => {
-      this.isLoading = true;
+      this.isLoading = false;
       this.dialogRef.close({
         action: "page-added-successfully",
         message: response.message

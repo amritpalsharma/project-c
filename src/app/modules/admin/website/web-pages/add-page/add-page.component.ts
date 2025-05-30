@@ -65,9 +65,11 @@ export class AddPageComponent {
     if(this.data){
       this.pageDetail = this.data.page
      // this.title = this.pageDetail.title;
-      this.slug = this.pageDetail.slug;
-      this.status = (this.pageDetail.status == 'draft') ? 1 : 2;
-      this.selectedLanguage = this.lang_id;
+     if(this.pageDetail){
+        this.slug = this.pageDetail.slug;
+        this.status = (this.pageDetail.status == 'draft') ? 1 : 2;
+        this.selectedLanguage = this.lang_id;
+      }
      // this.title = this.pageDetail.title;
     }
     this.theme = localStorage.getItem('theme');

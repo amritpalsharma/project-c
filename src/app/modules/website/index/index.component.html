@@ -103,7 +103,7 @@
         </div>
       </div>
 
-      <div class="container-fluid">
+      <div class="container-fluid" *ngIf="sliderDetail?.users">
         <div class="carousel-slide" #owlCarousel (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()"
           (touchstart)="onTouchStart()" (touchend)="onTouchEnd()">
           <owl-carousel-o [options]="customOptions">
@@ -168,7 +168,7 @@
     <!-- Recently joined -->
 
     <!-- How It Works -->
-    <div class="works py_0">
+    <div class="works py_0" *ngIf="pageDetail?.tabs_data">
       <div class="container">
 
         <h3>{{pageDetail?.tabs_data?.title}}</h3>
@@ -346,7 +346,7 @@
     </div>
 
 
-    <div class="works-1 py_0">
+    <div class="works-1 py_0" *ngIf="pageDetail?.tabs_data">
       <div class="container">
 
         <h3>{{pageDetail?.tabs_data?.title}}</h3>
@@ -522,7 +522,7 @@
       </div>
     </div>
 
-    <div class="advertismnt_container">
+    <div class="advertismnt_container" *ngIf="advertisementData?.banner?.redirect_url">
       <div class="container">
         <div *ngIf="isExists('large_leaderboard')" class="advertisment advertisement_two_top">
 
@@ -574,7 +574,7 @@
     <!-- How It Works-->
 
     <!-- Club-->
-    <div class="club py_0 club_player_sec">
+    <div class="club py_0 club_player_sec" *ngIf="pageDetail?.hero_heading">
       <div class="container">
         <div class="club_players club_player_light" style="background-image: url('{{hero_bg_img}}');">
           <div class="data_wrapper">
