@@ -1378,17 +1378,17 @@ table {
   }
 
   .notification_dropdown a svg {
-    width: 20px;
+    width: 35px !important;
   }
 
   .country_dropdown a img {
-    width: 33px;
-    height: 35px;
+    width: 43px !important;
+    height: 45px !important;
   }
 
   .profile img {
-    height: 35px;
-    width: 35px;
+        height: 45px !important;
+        width: 45px !important;
   }
 
   .page-header .navbarcollapse .navbar-nav {
@@ -2731,4 +2731,15 @@ table td .icon_text_icon {
 
 .paginator-components .mat-mdc-paginator-range-actions button.mat-mdc-paginator-navigation-next {
     margin-left: 10px !important;
+}
+.light-theme {
+.dashboard_tabs_add_btn {
+  background: #6fb95d !important;
+  color: #fff !important;
+  border-color: #6fb95d !important;
+  font-weight: 600;
+  svg {
+    fill: #fff !important;
+  }
+}
 }

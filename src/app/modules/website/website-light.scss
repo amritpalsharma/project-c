@@ -2108,6 +2108,11 @@ body.light-theme.static-common-banner {
       color: #000;
     }
   }
+  #footer {
+    p.footer_link_mobile {
+      color: #fff !important;
+    }
+  }
 }
 
 .toast-bottom-right .toast-error {

@@ -7,15 +7,8 @@
         <div class="col-lg-3 col-md-12 col-12 footer-contact">
           <div class="footer-logo">
             <img class="footer_logo_white" src="./assets/images/pink-logo.png">
-            <!-- <img class="light-images" src="./assets/images/pink-logo.png">
-            <img class="dark-images" src="./assets/images/yellow1-logo.png"> -->
           </div>
           <ul class="social-link">
-            <!-- <li class="facebook-icon">
-              <a href="https://www.linkedin.com/company/socceryou-football/" target="_blank">
-                <i class="fa-brands fa-facebook-f"></i>
-              </a>
-            </li> -->
             <li class="insta-icon">
               <a href="https://www.instagram.com/socceryou_football/" target="_blank">
                 <i class="fa-brands fa-instagram"></i>
@@ -35,7 +28,6 @@
           <ul>
             <li><a [routerLink]="['/' + domainSlugService.getRouteSlug('pricing')]">{{ 'pricingLabel' | translate }}</a>
             </li>
-            <!-- <li><a (click)="navigateAndScroll('pricing')">{{ 'pricingLabel' | translate }}</a></li> -->
             <li>
               <a href="javascript:void(0);" class="login-btn" data-bs-toggle="modal"
                 data-bs-target="#exampleModal-login">
@@ -50,7 +42,6 @@
                 {{ 'createAccount' | translate }}</a>
             </li>
             <li><a [routerLink]="['/' + domainSlugService.getRouteSlug('faq')]">{{ 'faq' | translate }}</a></li>
-            <!-- <li><a [routerLink]="'/faq'">{{ 'faq' | translate }}</a></li> -->
           </ul>
         </div>
 
@@ -60,32 +51,24 @@
             <li><a [routerLink]="['/' + domainSlugService.getRouteSlug('talent')]">{{ 'talents' | translate }}</a></li>
             <li><a [routerLink]="['/' + domainSlugService.getRouteSlug('clubAndScout')]">{{ 'club&scout' | translate
                 }}</a></li>
-            <!-- <li><a (click)="navigateAndScroll('about')">{{ 'about' | translate }}</a></li> -->
             <li><a [routerLink]="['/' + domainSlugService.getRouteSlug('about')]">{{ 'about' | translate }}</a></li>
             <li><a (click)="navigateAndScroll('news')">{{ 'news&Media' | translate }}</a></li>
-            <!-- <li><a (click)="navigateAndScroll('contact')">{{ 'contact' | translate }}</a></li> -->
           </ul>
         </div>
-        <div class="col-lg-3 col-md-4 col-12 footer-links">
+        <div class="col-lg-3 col-md-4 col-12 footer-links hide_form_mobile">
           <h4>{{ 'legal' | translate }}</h4>
           <ul>
-            <!-- <li><a (click)="navigateAndScroll('imprint')" >{{ 'imprint' | translate }}</a></li> -->
             <li><a [routerLink]="['/' + domainSlugService.getRouteSlug('imprint')]">{{ 'imprint' | translate }}</a></li>
-            <!-- <li><a (click)="navigateAndScroll('privacy')" >{{ 'privacyPolicy' | translate }}</a></li> -->
             <li><a [routerLink]="['/' + domainSlugService.getRouteSlug('privacy')]">{{ 'privacyPolicy' | translate
                 }}</a></li>
             <li><a [routerLink]="['/' + domainSlugService.getRouteSlug('terms')]">{{ 'terms&Conditions' | translate
                 }}</a></li>
-            <!-- <li><a (click)="navigateAndScroll('terms')" >{{ 'terms&Conditions' | translate }}</a></li> -->
-            <!-- <li><a (click)="navigateAndScroll('cookie')" >{{ 'cookies' | translate }}</a></li> -->
-            <!-- <li><a (click)="navigateAndScroll('contact')">{{ 'contact' | translate }}</a></li> -->
             <li><a [routerLink]="['/' + domainSlugService.getRouteSlug('contact')]">{{ 'contact' | translate }}</a></li>
           </ul>
         </div>
       </div>
-
+      <div class="view_for_mobile">
       <div class="form-select1">
-
         <p class="country">{{ 'selectCountry' | translate }}</p>
         <a class="form-select select-country" type="button" data-bs-toggle="dropdown" aria-expanded="false">
           {{ name }}
@@ -117,12 +100,19 @@
           </li>
         </ul>
       </div>
+      </div>
     </div>
   </div>
 
   <div class="footer-bottom bgprimary">
     <div class="text-center text-white">
       <p class="mb-0">{{ 'copyright' | translate }}</p>
+      <p class="footer_link_mobile">
+        <a [routerLink]="['/' + domainSlugService.getRouteSlug('imprint')]">{{ 'imprint' | translate }}</a> | 
+        <a [routerLink]="['/' + domainSlugService.getRouteSlug('privacy')]">{{ 'privacyPolicy' | translate }}</a> | 
+        <a [routerLink]="['/' + domainSlugService.getRouteSlug('terms')]">{{ 'terms&Conditions' | translate }}</a> | 
+        <a [routerLink]="['/' + domainSlugService.getRouteSlug('contact')]">{{ 'contact' | translate }}</a>
+      </p>
     </div>
   </div>
 </footer>

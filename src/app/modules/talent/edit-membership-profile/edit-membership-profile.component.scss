@@ -284,6 +284,17 @@ width: 6px;
 background: rgb(228, 228, 228);
 border-radius: 10px;
 }
+
+@media (max-width:1199px) {
+.stats {
+    margin-top: 0;
+}
+.total-bg {
+  padding: 20px;
+}
+}
+
+
 @media (min-width: 851px) and (max-width:1199px) {
   .image-right-border {
       padding: 0px 20px !important;
@@ -562,6 +573,10 @@ button:focus-visible{
   }
 }
 
+@media (max-width: 575px) {
+
+}
+
 @media (max-width: 500px) {
 .player--item {
     padding: 12px;
@@ -569,4 +584,12 @@ button:focus-visible{
       height: 220px;
     }
   }
+}
+
+@media (max-width: 480px) {
+.total-bg {
+ flex-direction: column;
+  gap: 10px;
+  align-items: flex-start !important;
+}
 }

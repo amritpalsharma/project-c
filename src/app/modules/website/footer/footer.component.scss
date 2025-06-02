@@ -1189,188 +1189,7 @@ option.countary {
   }
 }
 
-@media (max-width: 575px) {
-  p {
-    font-size: 14px;
-  }
 
-  .footer-contact img {
-    margin-bottom: 20px;
-    width: 221px;
-    height: 88px;
-  }
-
-  .footer-top {
-    text-align: center;
-  }
-
-  #footer .footer-top .footer-links ul li a {
-    margin-bottom: 8px;
-  }
-
-  .footer-contact {
-    margin-bottom: 20px;
-  }
-
-  .select-country {
-    text-align: left;
-    margin-left: 119px;
-    margin-bottom: 20px;
-  }
-  p.country{
-    margin-left: 119px;
-  }
-
-  .footer-logo {
-    height: 87px;
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 20px;
-  }
-
-  .social-link {
-    margin-top: 40px;
-    margin-left: 119px;
-  }
-
-  #footer .footer-top .footer-links ul {
-    margin-left: 119px;
-    margin-top: 10px;
-    margin-bottom: 30px;
-
-  }
-
-  #footer .footer-top h4 {
-    margin-left: 119px;
-    text-align: left;
-    padding-bottom: 10px;
-  }
-
-  .banner-content svg {
-    width: 200px;
-  }
-
-  .buttonss button {
-    border: 1px solid #8d8c8c;
-    font-size: 14px;
-    font-weight: 500;
-    padding: 5px;
-    border-radius: 20px;
-  }
-
-  .logo {
-    h6 {
-      font-size: 20px;
-    }
-  }
-
-  .form-label {
-    font-size: 14px;
-  }
-
-  .check-resister {
-    span {
-      font-size: 14px !important;
-    }
-  }
-
-  .form-control {
-    height: 44px;
-  }
-
-  .seperter {
-
-    &::after,
-    &::before {
-      width: 84px !important;
-    }
-  }
-
-  .socail_btn {
-    padding: 10px !important;
-    font-size: 14px !important;
-  }
-}
-
-
-@media (max-width: 400px) {
-  #footer .footer-top h4 {
-    margin-bottom: 10px;
-    margin-top: 10px;
-  }
-
-  .social-link {
-    margin-top: 40px;
-    margin-left: 60px;
-  }
-
-  .footer-contact {
-    margin-bottom: 0;
-  }
-
-  #footer .footer-top h4 {
-    margin-left: 60px;
-  }
-
-  #footer .footer-top .footer-links ul {
-    margin-left: 60px;
-    margin-bottom: 20px;
-  }
-
-  .select-country,  p.country {
-    margin-left: 60px;
-  }
-
-  #footer .footer-top .footer-links ul li a {
-    font-size: 14px;
-  }
-
-  .form-select {
-    font-size: 14px;
-  }
-
-  .form-select {
-    width: 145px;
-    line-height: 24px;
-  }
-}
-
-@media (max-width: 321px) {
-  .footer-contact img {
-    margin-bottom: 20px;
-    width: 180px;
-    height: 82px;
-  }
-  p {
-    font-size: 12px;
-  }
-  .footer-logo {
-    margin-bottom: 10px;
-  }
-  #footer .footer-top h4 {
-    margin-left: 70px;
-    margin-top: 0;
-  }
-  .select-country,  p.country {
-    margin-left: 70px;
-  }
-  .social-link {
-    margin-top: 40px;
-    margin-left: 70px;
-  }
-  #footer .footer-top .footer-links ul {
-    margin-left: 70px;
-    margin-bottom: 20px;
-  }
-  .c-name {
-    font-size: 12px;
-  }
-  .form-select {
-    width: 135px;
-    line-height: 20px;
-  }
-}
 
 .check-resister {
   padding: 10px 15px;
@@ -1497,6 +1316,12 @@ option.countary {
 }
 
 
+@media (min-width: 576px) {
+#footer .footer_link_mobile {
+  display: none;
+}
+}
+
 @media (max-width: 575px) {
 #footer .footer-top h4 {
     font-size: 22px;
@@ -1504,4 +1329,192 @@ option.countary {
 #footer .footer-top .footer-links ul li a {
   font-size: 17px;
 }
+#footer .hide_form_mobile {
+  display: none !important;
+}
+p.footer_link_mobile {
+    padding: 0 10px;
+    color: #072944;
+    a {
+      color: inherit;
+      text-decoration: underline;
+    }
+}
+.view_for_mobile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row-reverse;
+}
+.social-link li {
+  margin-right: 8px;
+  a {
+    width: 40px;
+    height: 40px;
+}
+}
+p {
+    font-size: 14px;
+  }
+
+  .footer-contact img {
+    margin-bottom: 20px;
+    width: 221px;
+    height: 88px;
+  }
+
+  .footer-top {
+    text-align: center;
+  }
+
+  #footer .footer-top .footer-links ul li a {
+    margin-bottom: 8px;
+  }
+
+  .footer-contact {
+    margin-bottom: 20px;
+  }
+
+  .select-country {
+    text-align: left;
+    margin-left: 0;
+    margin-bottom: 20px;
+  }
+  p.country{
+    margin-left: 0;
+  }
+
+  .footer-logo {
+    height: 87px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+  }
+
+  .social-link {
+    margin-top: 40px;
+    margin-left: 0;
+  }
+
+  #footer .footer-top .footer-links ul {
+    margin-left: 0;
+    margin-top: 10px;
+    margin-bottom: 30px;
+
+  }
+
+  #footer .footer-top h4 {
+    margin-left: 0;
+    text-align: left;
+    padding-bottom: 10px;
+  }
+
+  .banner-content svg {
+    width: 200px;
+  }
+
+  .buttonss button {
+    border: 1px solid #8d8c8c;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 5px;
+    border-radius: 20px;
+  }
+
+  .logo {
+    h6 {
+      font-size: 20px;
+    }
+  }
+
+  .form-label {
+    font-size: 14px;
+  }
+
+  .check-resister {
+    span {
+      font-size: 14px !important;
+    }
+  }
+
+  .form-control {
+    height: 44px;
+  }
+
+  .seperter {
+
+    &::after,
+    &::before {
+      width: 84px !important;
+    }
+  }
+
+  .socail_btn {
+    padding: 10px !important;
+    font-size: 14px !important;
+  }
+}
+
+
+@media (max-width: 400px) {
+  #footer .footer-top h4 {
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  .social-link {
+    margin-top: 40px;
+  }
+
+  .footer-contact {
+    margin-bottom: 0;
+  }
+
+  #footer .footer-top .footer-links ul {
+    margin-bottom: 20px;
+  }
+
+  // #footer .footer-top .footer-links ul li a {
+  //   font-size: 14px;
+  // }
+
+  // .form-select {
+  //   font-size: 14px;
+  // }
+
+  .form-select {
+    width: 145px;
+    line-height: 24px;
+  }
+}
+
+@media (max-width: 321px) {
+  .footer-contact img {
+    margin-bottom: 20px;
+    width: 180px;
+    height: 82px;
+  }
+  p {
+    font-size: 12px;
+  }
+  .footer-logo {
+    margin-bottom: 10px;
+  }
+  #footer .footer-top h4 {
+    margin-top: 0;
+  }
+
+  .social-link {
+    margin-top: 40px;
+  }
+  #footer .footer-top .footer-links ul {
+    margin-bottom: 20px;
+  }
+  .c-name {
+    font-size: 12px;
+  }
+  .form-select {
+    width: 135px;
+    line-height: 20px;
+  }
 }
