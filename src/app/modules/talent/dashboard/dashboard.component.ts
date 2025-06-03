@@ -175,7 +175,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     this.getUserStatus();
     // this.themeChanged();
-    // this.getUserPopups();
   }
 
   getUserStatus() {
@@ -502,7 +501,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
           //   });
           // }
         }
-
+        this.getUserPopups();
         this.loading = false;  // Set loading to false once data is loaded
       });
     } catch (error) {
@@ -667,7 +666,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   getUserPopups() {
     try {
       let data = {
-        role: '2',
+        role: '4',
         payment_type: this.isPremium ? 'paid' : 'free',
         status: 'active'
       }
