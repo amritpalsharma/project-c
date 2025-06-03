@@ -28,7 +28,7 @@
             <p class="upload-file_name">{{'dragAndDropFilesHere' | translate}}</p>
             <p class="upload-file_name">{{'filesSupported' | translate}}</p>
             <input type="file" (change)="onFileSelect($event)" multiple [accept]="file === 'video' ? 'video/*' : ''"
-                hidden #fileInput />
+                hidden #fileInput   accept="image/jpeg, image/png, video/mp4"/>
 
             <button type="button" (click)="fileInput.click()">{{'chooseFile' | translate}}</button>
             <p class="upload-file_name">{{'maximumSize' | translate}}</p>

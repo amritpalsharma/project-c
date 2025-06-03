@@ -39,8 +39,8 @@
               </div>
               <div>
                 <div class="user-media text-center ">
-                  <img *ngIf="profileImage" [src]="profileImage" class="" alt="" />
-                  <img *ngIf="!profileImage" src="../../../../assets/images/default/talent-profile-default.png" class=""
+                  <img *ngIf="profileImage && !loading" [src]="profileImage" class="" alt="" />
+                  <img *ngIf="!profileImage && !loading" src="../../../../assets/images/default/talent-profile-default.png" class=""
                     alt="" />
 
                   <div class="user-edit " *ngIf="!profileImage">

@@ -67,6 +67,7 @@ export interface ClubMember {
   ]
 })
 export class IndexComponent {
+  isPageLoaded: boolean = false;
   @ViewChild('owlCarousel') owlCarousel!: ElementRef;
   fallbackImage: string = 'assets/images/1.png'; // Path to your fallback image
   currentTheme: string = localStorage.getItem('theme') || 'light';
@@ -385,7 +386,7 @@ export class IndexComponent {
             this.sliderDetail.users.push(
               {
                 isPlaceholder: true, role_name: 'talent', first_name: 'lorem', last_name: 'ipusam',
-                user_nationalities:[],
+                user_nationalities: [],
                 meta: { profile_image_path: this.fallbackImage, date_of_birth: '04-01-2002' }
               });
           }
@@ -475,6 +476,8 @@ export class IndexComponent {
 
   ngAfterViewInit() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    this.isPageLoaded = true;
   }
 
   getLangslugByID(langID: any) {
@@ -503,10 +506,10 @@ export class IndexComponent {
   }
 
   getFirstFlag(userNationalities: any): string | null {
-    if(userNationalities && userNationalities.length > 0){
+    if (userNationalities && userNationalities.length > 0) {
       const parsedNationalities = JSON.parse(userNationalities);
       return parsedNationalities.length > 0 ? parsedNationalities[0].flag_path : null;
-    }else{
+    } else {
       return null;
     }
   }

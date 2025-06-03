@@ -23,9 +23,9 @@ export class UploadPopupComponent {
   pleaseWait: string = '';
   uploadingPhotos: string = '';
 
-  isLoading : boolean = false;
+  isLoading: boolean = false;
 
-  constructor(private userService: TalentService,public dialog: MatDialog, public dialogRef: MatDialogRef<UploadPopupComponent>, private toastr: ToastrService, private translateService: TranslateService,
+  constructor(private userService: TalentService, public dialog: MatDialog, public dialogRef: MatDialogRef<UploadPopupComponent>, private toastr: ToastrService, private translateService: TranslateService,
     @Inject(MAT_DIALOG_DATA) public data: any) {
     this.userId = data.userId;
     this.file = data.file ? data.file : 'all';
@@ -33,7 +33,7 @@ export class UploadPopupComponent {
 
   files: File[] = [];
 
-  theme : any = localStorage.getItem('theme');
+  theme: any = localStorage.getItem('theme');
 
   ngOnInit(): void {
     this.theme = localStorage.getItem('theme');
@@ -57,8 +57,18 @@ export class UploadPopupComponent {
 
   // Handles dropping files into the drop zone
   onFileDropped(event: DragEvent) {
+
     event.preventDefault();
     event.stopPropagation();
+
+    const validTypes = ['image/jpeg', 'image/png', 'video/mp4'];
+    const file = event.dataTransfer?.files[0];
+    if (!file) return;
+    if (!validTypes.includes(file.type)) {
+      console.warn('Invalid file type');
+      return;
+    }
+
     const element = event.currentTarget as HTMLElement;
     element.classList.remove('dragover');
 
@@ -127,7 +137,7 @@ export class UploadPopupComponent {
 
       this.userService.uploadGalleryImages(formdata).subscribe((response) => {
         console.log(response);
-        
+
         response.forEach((row: any) => {
           console.log('row', row);
           // Add both message and status to uploadResponse array
@@ -142,13 +152,13 @@ export class UploadPopupComponent {
           }
         });
 
-        if(response[0].status){
+        if (response[0].status) {
           this.isLoading = false;
           this.showMatDialog(response[0].message, 'display');
           this.dialogRef.close({
             files: this.uploadedFiles
           });
-        }else{
+        } else {
           this.isLoading = false;
         }
       });

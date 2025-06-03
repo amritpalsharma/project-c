@@ -16,7 +16,7 @@
             (drop)="onFileDropped($event)">
             <p class="upload-file_name">{{'dragAndDropFilesHere' | translate}}</p>
             <p class="upload-file_name">{{'filesSupported' | translate}}</p>
-            <input type="file" (change)="onFileSelect($event)" multiple hidden #fileInput />
+            <input type="file" (change)="onFileSelect($event)" multiple hidden #fileInput   accept="image/jpeg, image/png, video/mp4"/>
             <button type="button" (click)="fileInput.click()">{{'uploadFiles' | translate}}</button>
         </div>
 

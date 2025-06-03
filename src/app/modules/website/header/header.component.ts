@@ -29,7 +29,7 @@ import { DomainSlugService } from '../../../services/domain-slug.service';
 export class HeaderComponent implements OnInit {
   @ViewChild('invalidCredMessage') invalidCredMessage!: ElementRef;
   @ViewChild('registerForm') registerForm!: NgForm;
-
+  isPageLoaded: boolean = false;
   //default language
   isHideClubSection: boolean = false;
   slug: string = 'en';
@@ -302,6 +302,7 @@ export class HeaderComponent implements OnInit {
 
   ngAfterViewInit() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    this.isPageLoaded = true;
   }
   loadCountries() {
     if (this.language === 'en') {

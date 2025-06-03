@@ -39,10 +39,10 @@
               </div>
               <div>
                 <div class="user-media text-center ">
-                  <img *ngIf="profileImage" [src]="profileImage" class="" alt="" />
-                  <img *ngIf="!profileImage && user.club_logo_path != '' && user.status == '2'"
+                  <img *ngIf="profileImage && !loading" [src]="profileImage" class="" alt="" />
+                  <img *ngIf="!profileImage && user.club_logo_path != '' && user.status == '2'  && !loading"
                     src="{{user.club_logo_path}}" class="" alt="" />
-                  <img *ngIf="!profileImage && !user.club_logo_path"
+                  <img *ngIf="!profileImage && !user.club_logo_path  && !loading"
                     src="../../../../assets/images/default/talent-profile-default.png" class="" alt="" />
 
 
@@ -81,7 +81,7 @@
                           fill="#787878" />
                       </svg>
                     </a>
-                  </div>
+                  </div> 
                 </div>
 
                 <div class="bg-color card-bg">
