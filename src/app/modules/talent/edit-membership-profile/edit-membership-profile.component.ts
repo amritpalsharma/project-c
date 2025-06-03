@@ -5,6 +5,7 @@ import { PaymentService } from '../../../services/payment.service';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../../../services/user.service';
 import { Router } from '@angular/router';
+import { CommonDataService } from '../../../services/common-data.service';
 
 @Component({
   selector: 'app-edit-membership-profile',
@@ -32,6 +33,7 @@ export class EditMembershipProfileComponent {
   isLoading: boolean = false;
   date_of_birth: any = '';
 
+  profileImgUrl: any = "../../../../assets/images/default/talent-profile-default.png";
   constructor(
     public dialogRef: MatDialogRef<EditMembershipProfileComponent>,
     public talentService: TalentService,
@@ -39,7 +41,8 @@ export class EditMembershipProfileComponent {
     private toastr: ToastrService,
     private userServices: UserService,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private router: Router
+    private router: Router,
+    private commonDataService: CommonDataService,
   ) { }
 
   theme: any = localStorage.getItem('theme');
@@ -53,13 +56,13 @@ export class EditMembershipProfileComponent {
 
     this.loggedInUser = JSON.parse(this.loggedInUser);
 
-    console.info('Details ',this.loggedInUser)
+    console.info('Details ', this.loggedInUser)
     if (this.loggedInUser.meta && this.loggedInUser.meta.date_of_birth != '') {
       //  console.warn(this.loggedInUser)
-     
+
       this.date_of_birth = this.calculateAge(this.loggedInUser.meta.date_of_birth);
       // alert(this.date_of_birth)
-      if(this.date_of_birth != undefined && this.date_of_birth != 'invalid date'){
+      if (this.date_of_birth != undefined && this.date_of_birth != 'invalid date') {
         this.isValidBirthDate = true;
       }
     }
@@ -82,6 +85,10 @@ export class EditMembershipProfileComponent {
     // console.log('audiences:', this.audiences);
 
 
+
+    this.commonDataService.profilePic$.subscribe(url => {
+      this.profileImgUrl = url;
+    });
   }
 
   getRoles() {
@@ -223,7 +230,7 @@ export class EditMembershipProfileComponent {
     }
 
     if (role != '' && user_id != '') {
-      this.dialogRef.close({ action: 'redirect', redirect_path: '/view/' + role, user_id: user_id, role:role });
+      this.dialogRef.close({ action: 'redirect', redirect_path: '/view/' + role, user_id: user_id, role: role });
     }
     // console.warn('ROle is '+role_id+' Id is '+user_id)
   }
