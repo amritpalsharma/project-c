@@ -70,9 +70,14 @@ export class ActivityLogComponent {
       this.activityService.getActivity(params).subscribe((response) => {
         if (response && response.status && response.data && response.data.userData) {
           this.activities = response.data.userData;
-          this.paginator.length = response.data.totalCount;
+          if(response.data.totalCount && response.data.totalCount > 0){
+            this.paginator.length = response.data.totalCount;
+          }else{
+             this.activities = [];
+          }
           this.isLoading = false;
         } else {
+          this.activities = [];
           this.isLoading = false;
           console.error('Invalid API response structure:', response);
         }

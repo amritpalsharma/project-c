@@ -107,6 +107,10 @@ export class MembershipComponent {
           this.totalItems = this.totalItems - hiddenCount;
         }
 
+        if (response.data.totalCount && response.data.totalCount == 0) {
+          this.userPurchases = [];
+        }
+
         // Filter the array to only keep rows with valid amount_paid > 0
 
       } else {

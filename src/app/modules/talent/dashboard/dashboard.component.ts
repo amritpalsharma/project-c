@@ -501,7 +501,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
           //   });
           // }
         }
-        this.getUserPopups();
+        // this.getUserPopups();
         this.loading = false;  // Set loading to false once data is loaded
       });
     } catch (error) {

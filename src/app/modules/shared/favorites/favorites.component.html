@@ -2,6 +2,7 @@
   <div class="main-wrapper">
     <div class="card bg-color border-0">
       <div class="card-header border-0 favorite_card favorite_card_hdr">
+        <!-- <h5>userFavorites {{userFavorites | json}}</h5> -->
         <div class="d-flex align-items-center justify-content-between marketing-header-bar">
           <div class="d-flex align-items-center">
             <h2 class="card-title mb-0 me-3">{{'favorites' | translate}} ({{totalFavorites}})</h2>
@@ -22,7 +23,8 @@
               <input type="text" placeholder="{{ 'search' | translate }}" aria-label="Username"
                 aria-describedby="basic-addon1" class="form-control ps-0 " (keyup)="search($event)" />
             </div>
-            <div [ngClass]="count>0 ? 'filter-applied' : ''" class="d-flex align-items-center pe-2 border-start ps-3 cursor-pointer filter-svg"
+            <div [ngClass]="count>0 ? 'filter-applied' : ''"
+              class="d-flex align-items-center pe-2 border-start ps-3 cursor-pointer filter-svg"
               (click)="showFilterPopup()">
               <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg"
                 class="me-2">
@@ -35,7 +37,7 @@
             </div>
           </div>
         </div>
-        <div class="d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center justify-content-between" *ngIf="userFavorites.length != 0 && !isLoading">
           <div class="d-flex align-items-center">
             <div class="dropdown dropdown-favourites">
               <button
@@ -64,7 +66,7 @@
               {{'removeFromFavorite' | translate }}</a>
 
           </div>
-          <div class="d-flex align-items-center">
+          <div class="d-flex align-items-center" *ngIf="userFavorites.length == 0 && !isLoading">
             <mat-paginator class="paginator-components bg-0C3453 pagination-values" [length]="totalItems"
               [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20]" (page)="onPageChange()"></mat-paginator>
           </div>
@@ -98,9 +100,10 @@
                       <img *ngIf="!element.profile_image && element.role != 2"
                         src="../../../../assets/images/default/talent-profile-default.png" alt="" class="table_img" />
 
-                      <img *ngIf="element.profile_image && element.role != 2" src="{{imageBaseUrl + element.profile_image}}" alt=""class="table_img" />
-                      <img *ngIf="element.club_logo && element.role == 2" src="{{imageBaseUrl + element.club_logo}}" alt=""
-                        class="table_img" />
+                      <img *ngIf="element.profile_image && element.role != 2"
+                        src="{{imageBaseUrl + element.profile_image}}" alt="" class="table_img" />
+                      <img *ngIf="element.club_logo && element.role == 2" src="{{imageBaseUrl + element.club_logo}}"
+                        alt="" class="table_img" />
                       <span class="position-absolute verified-icon">
                         <img src="../../../assets/images/pending.png" alt="" class="user-pending-icon"
                           *ngIf="element.user_status === '1'" />
@@ -186,81 +189,82 @@
           </div>
         </div>
         <div class="hide_table_for_desktop">
-          <div *ngFor="let element of userFavorites">
-            <div class="rounded-lg border bg-card">
-              <div class="p-3">
-                <div class="flex justify-between items-start mb-3">
-                  <span class="form-check align-self-center justify-content-center">
-                    <input type="checkbox" class="form-check-input " [checked]="selectedIds.includes(element.id)"
-                      (change)="onCheckboxChange(element)" />
-                    <label for="defaultCheck1" class="form-check-label"></label>
-                  </span>
-                  <div class="d-flex align-items-center">
-                    <span class="position-relative">
-                      <img *ngIf="!element.profile_image && element.role != 2"
-                        src="../../../../assets/images/default/talent-profile-default.png" alt="" class="table_img" />
-
-                      <img *ngIf="element.profile_image && element.role != 2" src="{{imageBaseUrl + element.profile_image}}" alt=""class="table_img" />
-                      <img *ngIf="element.club_logo && element.role == 2" src="{{imageBaseUrl + element.club_logo}}" alt=""
-                        class="table_img" />
-                      <span class="position-absolute verified-icon">
-                        <img src="../../../assets/images/pending.png" alt="" class="user-pending-icon"
-                          *ngIf="element.user_status === '1'" />
-                        <img src="../../../assets/images/approved.png" alt="" class="user-approved-icon"
-                          *ngIf="element.user_status === '2'" />
-                        <img src="../../../assets/images/rejected.png" alt="" class="user-rejected-icon"
-                          *ngIf="element.user_status === '3'" />
-                      </span>
+          <div class="hasRows" *ngIf="userFavorites.length > 0">
+            <div *ngFor="let element of userFavorites">
+              <div class="rounded-lg border bg-card">
+                <div class="p-3">
+                  <div class="flex justify-between items-start mb-3">
+                    <span class="form-check align-self-center justify-content-center">
+                      <input type="checkbox" class="form-check-input " [checked]="selectedIds.includes(element.id)"
+                        (change)="onCheckboxChange(element)" />
+                      <label for="defaultCheck1" class="form-check-label"></label>
                     </span>
-                    <span class="main-template" style="padding-left: 15px">{{element.first_name}}
-                      {{element.last_name}}</span>
+                    <div class="d-flex align-items-center">
+                      <span class="position-relative">
+                        <img *ngIf="!element.profile_image && element.role != 2"
+                          src="../../../../assets/images/default/talent-profile-default.png" alt="" class="table_img" />
+
+                        <img *ngIf="element.profile_image && element.role != 2"
+                          src="{{imageBaseUrl + element.profile_image}}" alt="" class="table_img" />
+                        <img *ngIf="element.club_logo && element.role == 2" src="{{imageBaseUrl + element.club_logo}}"
+                          alt="" class="table_img" />
+                        <span class="position-absolute verified-icon">
+                          <img src="../../../assets/images/pending.png" alt="" class="user-pending-icon"
+                            *ngIf="element.user_status === '1'" />
+                          <img src="../../../assets/images/approved.png" alt="" class="user-approved-icon"
+                            *ngIf="element.user_status === '2'" />
+                          <img src="../../../assets/images/rejected.png" alt="" class="user-rejected-icon"
+                            *ngIf="element.user_status === '3'" />
+                        </span>
+                      </span>
+                      <span class="main-template" style="padding-left: 15px">{{element.first_name}}
+                        {{element.last_name}}</span>
+                    </div>
                   </div>
-                </div>
-                <div class="space-y-2 text-sm">
-                  <div class="flex justify-between">
-                    <span class="text-muted-foreground">{{'userType' | translate}}</span>
-                    <span>{{element.role_name }}</span>
+                  <div class="space-y-2 text-sm">
+                    <div class="flex justify-between">
+                      <span class="text-muted-foreground">{{'userType' | translate}}</span>
+                      <span>{{element.role_name }}</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-muted-foreground">{{'location' | translate}}</span>
+                      <span>{{element.location }}</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-muted-foreground">{{'joinedDateTime' | translate}}</span>
+                      <span>{{ element.user_created_at | date:'dd.MM.yyyy' }}</span>
+                    </div>
                   </div>
-                  <div class="flex justify-between">
-                    <span class="text-muted-foreground">{{'location' | translate}}</span>
-                    <span>{{element.location }}</span>
+                  <div class="flex_btn mt-3">
+                    <span class="view--eye" class="pointer" (click)="openViewProfile(element)">
+                      <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M12.5 15.625C14.2259 15.625 15.625 14.2259 15.625 12.5C15.625 10.7741 14.2259 9.375 12.5 9.375C10.7741 9.375 9.375 10.7741 9.375 12.5C9.375 14.2259 10.7741 15.625 12.5 15.625Z"
+                          fill="#787878" class="td-icon-favourites" />
+                        <path
+                          d="M24.1715 12.2344C23.2527 9.85754 21.6575 7.80204 19.5831 6.32194C17.5087 4.84184 15.0461 4.00201 12.4997 3.90625C9.9532 4.00201 7.4906 4.84184 5.41623 6.32194C3.34187 7.80204 1.74667 9.85754 0.827793 12.2344C0.765736 12.406 0.765736 12.594 0.827793 12.7656C1.74667 15.1425 3.34187 17.198 5.41623 18.6781C7.4906 20.1582 9.9532 20.998 12.4997 21.0938C15.0461 20.998 17.5087 20.1582 19.5831 18.6781C21.6575 17.198 23.2527 15.1425 24.1715 12.7656C24.2336 12.594 24.2336 12.406 24.1715 12.2344ZM12.4997 17.5781C11.4953 17.5781 10.5135 17.2803 9.67841 16.7223C8.84332 16.1643 8.19244 15.3712 7.80809 14.4433C7.42374 13.5154 7.32318 12.4944 7.51912 11.5093C7.71506 10.5242 8.1987 9.61941 8.90889 8.90922C9.61908 8.19903 10.5239 7.71539 11.509 7.51945C12.494 7.32351 13.5151 7.42407 14.443 7.80842C15.3709 8.19278 16.164 8.84365 16.722 9.67875C17.28 10.5138 17.5778 11.4956 17.5778 12.5C17.5757 13.8462 17.04 15.1366 16.0882 16.0885C15.1363 17.0404 13.8458 17.5761 12.4997 17.5781Z"
+                          fill="#787878" class="td-icon-favourites" />
+                      </svg>
+                    </span>
+                    <span class="view--eye" class="pointer" (click)="confirmSingleDeletion(element.id)">
+                      <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M1.50065 14.0589C1.50065 15.0112 2.32565 15.7904 3.33398 15.7904H10.6673C11.6757 15.7904 12.5007 15.0112 12.5007 14.0589V3.66999H1.50065V14.0589ZM13.4173 1.07277H10.209L9.29232 0.207031H4.70898L3.79232 1.07277H0.583984V2.80425H13.4173V1.07277Z"
+                          fill="#787878" class="td-icon-favourites" />
+                      </svg>
+                    </span>
                   </div>
-                  <div class="flex justify-between">
-                    <span class="text-muted-foreground">{{'joinedDateTime' | translate}}</span>
-                    <span>{{ element.user_created_at | date:'dd.MM.yyyy' }}</span>
-                  </div>
-                </div>
-                <div class="flex_btn mt-3">
-                  <span class="view--eye" class="pointer" (click)="openViewProfile(element)">
-                  <svg width="25" height="25" viewBox="0 0 25 25"
-                    fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      d="M12.5 15.625C14.2259 15.625 15.625 14.2259 15.625 12.5C15.625 10.7741 14.2259 9.375 12.5 9.375C10.7741 9.375 9.375 10.7741 9.375 12.5C9.375 14.2259 10.7741 15.625 12.5 15.625Z"
-                      fill="#787878" class="td-icon-favourites" />
-                    <path
-                      d="M24.1715 12.2344C23.2527 9.85754 21.6575 7.80204 19.5831 6.32194C17.5087 4.84184 15.0461 4.00201 12.4997 3.90625C9.9532 4.00201 7.4906 4.84184 5.41623 6.32194C3.34187 7.80204 1.74667 9.85754 0.827793 12.2344C0.765736 12.406 0.765736 12.594 0.827793 12.7656C1.74667 15.1425 3.34187 17.198 5.41623 18.6781C7.4906 20.1582 9.9532 20.998 12.4997 21.0938C15.0461 20.998 17.5087 20.1582 19.5831 18.6781C21.6575 17.198 23.2527 15.1425 24.1715 12.7656C24.2336 12.594 24.2336 12.406 24.1715 12.2344ZM12.4997 17.5781C11.4953 17.5781 10.5135 17.2803 9.67841 16.7223C8.84332 16.1643 8.19244 15.3712 7.80809 14.4433C7.42374 13.5154 7.32318 12.4944 7.51912 11.5093C7.71506 10.5242 8.1987 9.61941 8.90889 8.90922C9.61908 8.19903 10.5239 7.71539 11.509 7.51945C12.494 7.32351 13.5151 7.42407 14.443 7.80842C15.3709 8.19278 16.164 8.84365 16.722 9.67875C17.28 10.5138 17.5778 11.4956 17.5778 12.5C17.5757 13.8462 17.04 15.1366 16.0882 16.0885C15.1363 17.0404 13.8458 17.5761 12.4997 17.5781Z"
-                      fill="#787878" class="td-icon-favourites" />
-                  </svg>
-                  </span>
-                  <span class="view--eye" class="pointer" (click)="confirmSingleDeletion(element.id)">
-                  <svg width="14" height="16"
-                    viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      d="M1.50065 14.0589C1.50065 15.0112 2.32565 15.7904 3.33398 15.7904H10.6673C11.6757 15.7904 12.5007 15.0112 12.5007 14.0589V3.66999H1.50065V14.0589ZM13.4173 1.07277H10.209L9.29232 0.207031H4.70898L3.79232 1.07277H0.583984V2.80425H13.4173V1.07277Z"
-                      fill="#787878" class="td-icon-favourites" />
-                  </svg>
-                </span>
                 </div>
               </div>
             </div>
           </div>
-            <div class="rounded-lg border bg-card no_record_card">
-              <div class="p-3">
+          <div class="rounded-lg border bg-card no_record_card" *ngIf="userFavorites.length == 0 && !isLoading">
+            <div class="p-3">
               <div class="d-flex justify-content-center">
                 <h6>{{'noResultFound' | translate}}</h6>
               </div>
-              </div>
             </div>
+          </div>
         </div>
       </div>
     </div>

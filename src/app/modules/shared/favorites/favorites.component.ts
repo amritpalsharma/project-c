@@ -42,7 +42,7 @@ export class FavoritesComponent {
   isLoading: boolean = true;
   pageTitle: string = '';
 
-  count : number = 0;
+  count: number = 0;
 
   loggedInUser: any = localStorage.getItem('userData');
 
@@ -162,9 +162,14 @@ export class FavoritesComponent {
           this.isLoading = false;
           this.userFavorites = response.data[0].favorites;
           this.totalFavorites = response.data[0].totalCount;
-          this.paginator.length = response.data[0].totalCount;
+          if (response.data[0].totalCount && response.data[0].totalCount > 0) {
+            this.paginator.length = response.data[0].totalCount;
+          } else if (response.data[0].totalCount && response.data[0].totalCount == 0) {
+            this.userFavorites = [];
+          }
           // this.roles = response.data[0].roles;
         } else {
+          this.userFavorites = [];
           console.error('Invalid API response structure:', response);
         }
       });
@@ -503,7 +508,7 @@ export class FavoritesComponent {
     // });
   }
 
-  test:any;
+  test: any;
 
   getJsonTranslations() {
     this.translateService.get(['favorites']).subscribe((translations) => {

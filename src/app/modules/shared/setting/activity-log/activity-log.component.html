@@ -120,7 +120,7 @@
               </div>
           </div>
         </div>
-        <div class="rounded-lg border bg-card no_record_card">
+        <div class="rounded-lg border bg-card no_record_card" *ngIf="activities.length == 0 && !isLoading">
           <div class="p-3">
             <div class="d-flex justify-content-center">
                 <h6>{{'noRecordFound' | translate}}</h6>

@@ -90,9 +90,12 @@ export class NotificationsLogComponent {
 
     this.talentService.getNotifications(userId, langId, page, pageSize).subscribe({
       next: (response) => {
-        this.notifications = response.notifications;
-        this.paginator.length = response.total_count;
-
+        if (response.total_count && response.total_count > 0) {
+          this.notifications = response.notifications;
+          this.paginator.length = response.total_count;
+        } else if (response.total_count == 0) {
+          this.notifications = [];
+        }
         this.isLoading = false;
 
       }
