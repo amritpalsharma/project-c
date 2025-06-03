@@ -163,8 +163,8 @@
                     <table class="table table-scout-profile table-hover bg-072944 ">
                         <thead class="border-table-thead">
                             <tr>
-                                <th>{{ 'companyRepresentators' | translate }}: &nbsp; &nbsp; <button
-                                        class="btn btn-success btn-sm web-create-bg">{{ 'addNew' | translate }}</button>
+                                <th>{{ 'companyRepresentators' | translate }}: &nbsp; &nbsp; 
+                                    <button class="btn btn-success btn-sm web-create-bg">{{ 'addNew' | translate }}</button>
                                 </th>
                                 <th>{{ 'roles' | translate }}</th>
                                 <th>{{ 'function' | translate }}</th>
@@ -173,7 +173,6 @@
                             </tr>
                         </thead>
                         <tbody class="tbody-scout-profile">
-                            <!-- Add more rows as necessary -->
                         </tbody>
                     </table>
                 </div>
@@ -232,8 +231,8 @@
             <table class="table table-scout-profile table-hover bg-072944">
                 <thead class="border-table-thead">
                     <tr>
-                        <th>{{ 'companyRepresentators' | translate }} &nbsp; &nbsp;<button
-                                class="btn btn-success btn-sm web-create-bg" (click)="addRepresentator()">{{
+                        <th>{{ 'companyRepresentators' | translate }} &nbsp; &nbsp;
+                            <button class="btn btn-success btn-sm web-create-bg" (click)="addRepresentator()">{{
                                 'addNew' | translate }}</button></th>
                         <th>{{ 'roles' | translate }}</th>
                         <th>{{ 'function' | translate }}</th>
@@ -281,16 +280,9 @@
                                     *ngIf="representator.permission == 'transfer.ownership'" selected>{{
                                     'transferOwnership' |
                                     translate }}</option>
-
-                                <!-- <option value="transfer.ownership" *ngIf="representator.permission != 'transfer.ownership'">
-                                    {{ 'transferOwnership' | translate }}</option>
-                                <option value="transfer.ownership" *ngIf="representator.permission == 'transfer.ownership'"
-                                    selected>{{ 'transferOwnership' | translate }}</option> -->
-
                             </select>
                         </td>
                         <td>{{ getMetaValue(representator.meta, 'designation') }}</td>
-                        <!-- <td>{{ representator.designation }}</td> -->
                         <td class="text-center">
                             <svg class="pointer" (click)="editRepresentator(representator)" width="24" height="24"
                                 viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -308,7 +300,6 @@
                             </svg>
                         </td>
                     </tr>
-                    <!-- Add more rows as necessary -->
                 </tbody>
             </table>
         </div>

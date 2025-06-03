@@ -313,3 +313,22 @@ table td svg {
     max-width: 260px;
 }
 }
+
+
+@media (max-width: 575px) {
+    .portfolio_container {
+        padding: 0 !important;
+    }
+    .add-talent_btn {
+        margin-bottom: 0 !important;
+        text-align: left !important;
+    }
+}
+
+@media (max-width: 420px) {
+    .add-talent_btn {
+        .btn {
+            width: 100%;
+        }
+    }
+}

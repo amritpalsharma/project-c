@@ -125,11 +125,7 @@
 
                       <div class="d-flex align-items-center wrap_flex">
                         <div class="d-flex align-items-center slider-arrows">
-                          <mat-paginator
-                            [length]="totalItems"
-                            [pageSize]="pageSize"
-                            [pageSizeOptions]="[5, 10, 20]"
-                            (page)="onPageChange($event)">
+                          <mat-paginator class="paginator-components bg-0C3453 pagination-values" [length]="totalItems" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20]" (page)="onPageChange($event)">
                           </mat-paginator>
                         </div>
                       </div>

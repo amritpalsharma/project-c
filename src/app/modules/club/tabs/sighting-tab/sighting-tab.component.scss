@@ -241,7 +241,7 @@ body {
 .btn-secondary {
   background-color: #6c757d;
   /* Gray */
-  border: none;
+  // border: none;
   padding: 6px 18px;
   border-radius: 10px;
   color: white;
@@ -690,10 +690,7 @@ body {
     max-width: calc(100% - 60px);
   }
 
-  .attachment_box svg,
-  .upload-btn svg,
-  .edit_padding svg,
-  .green_bar_sec svg {
+  .attachment_box svg, .upload-btn svg, .edit_padding svg, .green_bar_sec svg {
     width: 35px !important;
     height: 35px !important;
   }
@@ -705,15 +702,30 @@ body {
   .edit_padding {
     padding: 60px 40px 30px !important;
   }
-
-  // >>>>>>>b8a2a77e22689580900f404fd1c78460908d7658
 }
 
-.bg_success,
-.bg_reject,
-.bg_pending {
+.bg_success, .bg_reject, .bg_pending {
   width: 100%;
   display: inline-block;
   max-width: 150px;
   border-radius: 60px;
+}
+
+
+@media (max-width: 575px) {
+.mat-mdc-paginator-container {
+  justify-content: flex-start !important;
+  margin-left: -20px;
+}
+:host ::ng-deep .mat-mdc-paginator-range-actions {
+    margin-top: 10px !important;
+    max-width: 110px;
+    .mat-mdc-paginator-range-label {
+      margin-right: 0 !important;
+      margin-left: 0 !important;
+    }
+    button {
+      margin-right: 0 !important;
+  }
+}
 }
