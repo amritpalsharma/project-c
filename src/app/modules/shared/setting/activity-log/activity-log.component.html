@@ -1,5 +1,5 @@
 <div class="card mb-3">
-    <div class="card-header border-0 pb-0">
+    <div class="card-header border-0 pb-0 card_titlee">
       <div>
         <h6 class="card-title">{{'activityLog' | translate}}</h6>
         <p>{{'reviewActivities' | translate}}</p>
@@ -48,175 +48,85 @@
 
     </div>
     <div class="card-body p-0">
-      <div class="table-responsive">
-      <table mat-table [dataSource]="activities" class="table table-activity table-striped table-users">
-                 
-        <!-- Position Column -->
-        <ng-container matColumnDef="#">
-          <th mat-header-cell *matHeaderCellDef> </th>
-          <td mat-cell *matCellDef="let element" class="col_checkbox">
-            <span class="form-check align-self-center me-2">
-              <input
-                type="checkbox"
-                class="form-check-input"
-                [checked]="selectedIds.includes(element.id)"
-                (change)="onCheckboxChange(element)"
-              />
-              <label for="defaultCheck1" class="form-check-label"></label>
-            </span>
-          </td>
-        </ng-container>        
-
-        <ng-container matColumnDef="Name">
-          <th mat-header-cell *matHeaderCellDef > {{'name' | translate}} 
-            <!-- <small><i class="fas fa-sort"></i> </small>   -->
-          </th>
-          <td mat-cell *matCellDef="let element">  {{ element.activity }}</td>
-        </ng-container>
-        
-        <ng-container matColumnDef="Date - Time">
-          <th mat-header-cell *matHeaderCellDef> {{'dateTime' | translate}}
-            <!-- <small><i class="fas fa-sort"></i> </small>   -->
-          </th>
-          <td mat-cell *matCellDef="let element"> {{ convertTime(element.created_at)}}</td>
-          <!-- <td mat-cell *matCellDef="let element"> {{ element.created_at | date: 'dd.MM.yyyy hh:mm a' }}</td> -->
-        </ng-container>
-        
-        
-        <ng-container matColumnDef="Remove">
-          <th mat-header-cell *matHeaderCellDef class="text-center"> {{'remove' | translate}} </th>
-          <td mat-cell *matCellDef="let element" class="text-center cursor-pointer">  
-            <svg (click)="confirmSingleDeletion(element.id)" width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M5.49967 17.0589C5.49967 18.0112 6.32467 18.7904 7.33301 18.7904H14.6663C15.6747 18.7904 16.4997 18.0112 16.4997 17.0589V6.66999H5.49967V17.0589ZM17.4163 4.07277H14.208L13.2913 3.20703H8.70801L7.79134 4.07277H4.58301V5.80425H17.4163V4.07277Z" fill="#787878"/>
-            </svg>
-          </td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        
-        <tr class="mat-row user-empty-tr" *matNoDataRow>
-          <td [attr.colspan]="displayedColumns.length" class="user-empty-td">
-             <div *ngIf="activities.length == 0 && !isLoading" style="text-align: center;">{{'noRecordFound' | translate}}</div>
-          </td> 
-        </tr>
-      </table>
-    </div>
-      <!-- <table class="table setting-table">
-        <thead>
-          <tr>
-            <th scope="col"></th>
-            <th scope="col">Name</th>
-            <th scope="col">Date - Time</th>
-            <th scope="col">Remove</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td style="width: 50px">
-              <div class="form-check  ">
+      <div class="hide_table_for_mobile">
+        <div class="table-responsive">
+        <table mat-table [dataSource]="activities" class="table table-activity table-striped table-users">
+          <ng-container matColumnDef="#">
+            <th mat-header-cell *matHeaderCellDef> </th>
+            <td mat-cell *matCellDef="let element" class="col_checkbox">
+              <span class="form-check align-self-center me-2">
                 <input
-                  class="form-check-input"
                   type="checkbox"
-                  value=""
-                  id="flexCheckDefault"
+                  class="form-check-input"
+                  [checked]="selectedIds.includes(element.id)"
+                  (change)="onCheckboxChange(element)"
                 />
-                <label
-                  class="form-check-label"
-                  for="flexCheckDefault"
-                >
-                </label>
-              </div>
+                <label for="defaultCheck1" class="form-check-label"></label>
+              </span>
             </td>
-            <td class="d-flex">
-              You verified and approved JaneDoe’s account.
-            </td>
-            <td>08.04.2024 06:20AM</td>
-            <td class="c_pointer text-center">
-              <svg id="users-icon"
-                width="22"
-                height="22"
-                viewBox="0 0 22 22"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M5.49967 17.0589C5.49967 18.0112 6.32467 18.7904 7.33301 18.7904H14.6663C15.6747 18.7904 16.4997 18.0112 16.4997 17.0589V6.66999H5.49967V17.0589ZM17.4163 4.07277H14.208L13.2913 3.20703H8.70801L7.79134 4.07277H4.58301V5.80425H17.4163V4.07277Z"
-                  fill="#787878"
-                />
+          </ng-container>        
+          <ng-container matColumnDef="Name">
+            <th mat-header-cell *matHeaderCellDef > {{'name' | translate}} </th>
+            <td mat-cell *matCellDef="let element">  {{ element.activity }}</td>
+          </ng-container>
+          
+          <ng-container matColumnDef="Date - Time">
+            <th mat-header-cell *matHeaderCellDef> {{'dateTime' | translate}}</th>
+            <td mat-cell *matCellDef="let element"> {{ convertTime(element.created_at)}}</td>
+        </ng-container>
+          <ng-container matColumnDef="Remove">
+            <th mat-header-cell *matHeaderCellDef class="text-center"> {{'remove' | translate}} </th>
+            <td mat-cell *matCellDef="let element" class="text-center cursor-pointer">  
+              <svg (click)="confirmSingleDeletion(element.id)" width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.49967 17.0589C5.49967 18.0112 6.32467 18.7904 7.33301 18.7904H14.6663C15.6747 18.7904 16.4997 18.0112 16.4997 17.0589V6.66999H5.49967V17.0589ZM17.4163 4.07277H14.208L13.2913 3.20703H8.70801L7.79134 4.07277H4.58301V5.80425H17.4163V4.07277Z" fill="#787878"/>
               </svg>
             </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          <tr class="mat-row user-empty-tr" *matNoDataRow>
+            <td [attr.colspan]="displayedColumns.length" class="user-empty-td">
+              <div *ngIf="activities.length == 0 && !isLoading" style="text-align: center;">{{'noRecordFound' | translate}}</div>
+            </td> 
           </tr>
-          <tr>
-            <td style="width: 50px">
-              <div class="form-check me-3">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value=""
-                  id="flexCheckDefault"
-                />
-                <label
-                  class="form-check-label"
-                  for="flexCheckDefault"
-                >
-                </label>
+        </table>
+        </div>
+      </div>
+      <div class="hide_table_for_desktop">
+        <div class="rounded-lg border bg-card" *ngFor="let element of activities">
+          <div class="p-3">
+              <div class="flex justify-between items-start mb-3">
+                <span class="form-check align-self-center me-2">
+                  <input type="checkbox" class="form-check-input" [checked]="selectedIds.includes(element.id)" (change)="onCheckboxChange(element)" />
+                  <label for="defaultCheck1" class="form-check-label"></label>
+                </span>
               </div>
-            </td>
-            <td class="d-flex">
-              You verified and approved JaneDoe’s account.
-            </td>
-            <td>08.04.2024 06:20AM</td>
-            <td class="c_pointer text-center">
-              <svg id="users-icon"
-                width="22"
-                height="22"
-                viewBox="0 0 22 22"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M5.49967 17.0589C5.49967 18.0112 6.32467 18.7904 7.33301 18.7904H14.6663C15.6747 18.7904 16.4997 18.0112 16.4997 17.0589V6.66999H5.49967V17.0589ZM17.4163 4.07277H14.208L13.2913 3.20703H8.70801L7.79134 4.07277H4.58301V5.80425H17.4163V4.07277Z"
-                  fill="#787878"
-                />
-              </svg>
-            </td>
-          </tr>
-          <tr>
-            <td style="width: 50px">
-              <div class="form-check me-3">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  value=""
-                  id="flexCheckDefault"
-                />
-                <label
-                  class="form-check-label"
-                  for="flexCheckDefault"
-                >
-                </label>
+              <div class="space-y-2 text-sm">
+                <div class="flex justify-between">
+                <span class="text-muted-foreground">{{'name' | translate}}</span>
+                <span>{{ element.activity }}</span>
+                </div>
+                <div class="flex justify-between">
+                <span class="text-muted-foreground">{{'dateTime' | translate}}</span>
+                <span>{{ convertTime(element.created_at)}}</span>
+                </div>
               </div>
-            </td>
-            <td class="d-flex">
-              You verified and approved JaneDoe’s account.
-            </td>
-            <td>08.04.2024 06:20AM</td>
-            <td class="c_pointer text-center">
-              <svg id="users-icon"
-                width="22"
-                height="22"
-                viewBox="0 0 22 22"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M5.49967 17.0589C5.49967 18.0112 6.32467 18.7904 7.33301 18.7904H14.6663C15.6747 18.7904 16.4997 18.0112 16.4997 17.0589V6.66999H5.49967V17.0589ZM17.4163 4.07277H14.208L13.2913 3.20703H8.70801L7.79134 4.07277H4.58301V5.80425H17.4163V4.07277Z"
-                  fill="#787878"
-                />
-              </svg>
-            </td>
-          </tr>
-        </tbody>
-      </table> -->
+              <div class="flex_btn mt-3">
+                <span class="view--eye" class="pointer" (click)="confirmSingleDeletion(element.id)">
+                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5.49967 17.0589C5.49967 18.0112 6.32467 18.7904 7.33301 18.7904H14.6663C15.6747 18.7904 16.4997 18.0112 16.4997 17.0589V6.66999H5.49967V17.0589ZM17.4163 4.07277H14.208L13.2913 3.20703H8.70801L7.79134 4.07277H4.58301V5.80425H17.4163V4.07277Z" fill="#787878"/>
+                  </svg>
+                </span>
+              </div>
+          </div>
+        </div>
+        <div class="rounded-lg border bg-card no_record_card">
+          <div class="p-3">
+            <div class="d-flex justify-content-center">
+                <h6>{{'noRecordFound' | translate}}</h6>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>

@@ -1493,7 +1493,7 @@ input:checked+.slider:before {
 .dark-theme .paginator-components .mat-mdc-paginator-range-actions button {
   background-color: white;
   // --mdc-icon-button-state-layer-size: 32px !important;
-  margin-right: 10px !important;
+  // margin-right: 10px !important;
   padding: 2px !important;
 }
 
@@ -1688,7 +1688,7 @@ input:checked+.slider:before {
   color: #787878;
   width: 30px !important;
   height: 30px !important;
-  margin-right: 5px;
+  // margin-right: 5px;
   cursor: pointer !important;
   pointer-events: visible !important;
 }
