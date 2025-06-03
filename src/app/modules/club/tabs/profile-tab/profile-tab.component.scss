@@ -513,6 +513,19 @@
 }
 
 
+.social_icons a{
+  color: #111418;
+}
+
+.main-position .social_icons {
+    display: block;
+    color: #111418;
+    svg {
+      width: 30px !important;
+      height: 30px !important;
+    }
+}
+
 @media(min-width: 992px){ 
 .visible_mobile_only {
   display: none;

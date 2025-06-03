@@ -170,7 +170,17 @@
   left: 0;
 }
 .moving_box .moving_box_inner {
-  margin-top: -120px;
+  margin-top: 0;
+}
+.transfer_box {
+  position: relative;
+}
+.moving_box .btn_column {
+    position: absolute;
+    top: 0;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: flex-end;
 }
 }
 

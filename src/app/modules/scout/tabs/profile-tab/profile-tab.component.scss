@@ -579,6 +579,19 @@ border-radius: 50%;
   cursor: pointer;
 }
 
+.social_icons a{
+  color: #111418;
+}
+
+.main-position .social_icons {
+    display: block;
+    color: #111418;
+    svg {
+      width: 30px !important;
+      height: 30px !important;
+    }
+}
+
 
 @media(max-width: 575px){
 .details_info {
