@@ -85,10 +85,6 @@
     font-size: 12px;
   }
 
-  .card-title {
-    font-size: 14px;
-  }
-
   .input-filter-text {
     font-size: 10px;
   }
@@ -610,4 +606,23 @@ body {
   width: 100%;
   display: inline-block;
   max-width: 150px;
+}
+
+
+@media (max-width: 575px) {
+.mat-mdc-paginator-container {
+  justify-content: flex-start !important;
+  margin-left: -20px;
+}
+:host ::ng-deep .mat-mdc-paginator-range-actions {
+    margin-top: 10px !important;
+    max-width: 110px;
+    .mat-mdc-paginator-range-label {
+      margin-right: 0 !important;
+      margin-left: 0 !important;
+    }
+    button {
+      margin-right: 0 !important;
+  }
+}
 }
