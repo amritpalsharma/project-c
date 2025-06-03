@@ -13,6 +13,7 @@ export class SidebarComponent {
   sidebarOpen: boolean = false;
   isUserVerified: boolean = false;
   isNum: Number = 1;
+  locksideBar:boolean=true;
   constructor(private socketService: SocketService, public dialog: MatDialog) {
 
   }
@@ -34,6 +35,7 @@ export class SidebarComponent {
       } else {
         this.isUserVerified = false;
       }
+      this.locksideBar = false;
     });
   }
 

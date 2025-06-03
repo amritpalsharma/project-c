@@ -7,3 +7,11 @@
   .sidebar_menu li svg path {
     fill: #fff;
 }
+
+.locksideBar {
+  cursor: progress;
+  opacity: 0.6;
+}
+::ng-deep .locksideBar a{
+  pointer-events: none;
+}

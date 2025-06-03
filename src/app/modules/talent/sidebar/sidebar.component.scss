@@ -12,6 +12,15 @@
 .page-sidebar {
   position: static !important;
 }
+
 .sidebar_state {
   cursor: pointer;
+}
+
+.locksideBar {
+  cursor: progress;
+  opacity: 0.6;
+}
+::ng-deep .locksideBar a{
+  pointer-events: none;
 }

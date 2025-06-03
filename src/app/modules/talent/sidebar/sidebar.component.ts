@@ -13,6 +13,7 @@ export class SidebarComponent implements OnInit {
   isNum: Number = 1;
   isUserVerified: boolean = false;
   loggedInUser: any = localStorage.getItem('userInfo');
+  locksideBar: boolean = true;
   constructor(private socketService: SocketService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -47,9 +48,10 @@ export class SidebarComponent implements OnInit {
       } else {
         this.isUserVerified = false;
       }
+      this.locksideBar = false;
     });
   }
-  
+
 
   toggleState(): void {
     this.sidebarOpen = !this.sidebarOpen; // Toggles the sidebar state

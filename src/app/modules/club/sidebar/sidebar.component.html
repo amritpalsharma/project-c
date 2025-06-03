@@ -40,7 +40,7 @@
           </a>
         </li> -->
 
-      <li>
+      <li [ngClass]="{'locksideBar': locksideBar}">
         <a routerLink="/club/dashboard" (click)="closeSidebar(true)" routerLinkActive="active" class="">
           <svg width="24" height="20" viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg"
             class="my-svg-icon">
@@ -53,7 +53,7 @@
         </a>
       </li>
 
-      <li>
+      <li [ngClass]="{'locksideBar': locksideBar}">
         <a [routerLink]="isUserVerified ? '/club/explore' : null"
           (click)="isUserVerified ? closeSidebar(true) : showVerificationPopup()" [class.disabled]="!isUserVerified"
           routerLinkActive="active">
@@ -66,7 +66,7 @@
           <p class="sidebar_menu_span">{{ 'explore' | translate }}</p>
         </a>
       </li>
-      <li>
+      <li [ngClass]="{'locksideBar': locksideBar}">
         <a [routerLink]="isUserVerified ? '/club/chat' : null"
           (click)="isUserVerified ? closeSidebar(true) : showVerificationPopup()" [class.disabled]="!isUserVerified"
           routerLinkActive="active"><svg width="28" height="26" viewBox="0 0 28 26" fill="none"
@@ -78,7 +78,7 @@
           <p class="sidebar_menu_span"> {{ 'chat' | translate }}</p>
         </a>
       </li>
-      <li>
+      <li [ngClass]="{'locksideBar': locksideBar}">
         <a [routerLink]="isUserVerified ? '/club/favorites' : null"
           (click)="isUserVerified ? closeSidebar(true) : showVerificationPopup()" [class.disabled]="!isUserVerified"
           routerLinkActive="active">
@@ -94,7 +94,7 @@
         </a>
       </li>
 
-      <li>
+      <li [ngClass]="{'locksideBar': locksideBar}">
         <a [routerLink]="isUserVerified ? '/club/membership' : null"
           (click)="isUserVerified ? closeSidebar(true) : showVerificationPopup()" [class.disabled]="!isUserVerified"
           routerLinkActive="active">
@@ -107,7 +107,7 @@
           <p class="sidebar_menu_span"> {{ 'membership' | translate }}</p>
         </a>
       </li>
-      <li>
+      <li [ngClass]="{'locksideBar': locksideBar}">
         <a [routerLink]="isUserVerified ? '/club/plans' : null"
           (click)="isUserVerified ? closeSidebar(true) : showVerificationPopup()" [class.disabled]="!isUserVerified"
           routerLinkActive="active">
