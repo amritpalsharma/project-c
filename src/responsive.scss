@@ -1361,6 +1361,9 @@ body.compact-sidebar.dark-theme .sidebar-menu svg path {
 }
     
 @media (max-width: 767px) {
+.general_details table.table {
+    overflow: hidden;
+}
 .hide_table_for_mobile {
     display: none !important;
 }
