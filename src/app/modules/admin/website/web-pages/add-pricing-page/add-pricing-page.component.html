@@ -100,18 +100,20 @@
         </div>
 
         <!-- Amrit Code  -->
-        <div class="form-group mb-3">
+        <div class="form-group mb-3" *ngIf="formData.first_tab.free_features_desc">
           <label>{{ 'freeFeatures' | translate }}</label>
-          <div *ngFor="let feature of formData.first_tab.free_features_desc || []; let i = index; trackBy: trackByFn"
-            class="mb-2">
-            <div class="row">
-              <div class="col-sm-10">
-                <input type="text" class="form-control" [(ngModel)]="formData.first_tab.free_features_desc[i]"
-                  name="firstTabFeature{{ i }}" placeholder="{{ 'enterFeature' | translate }}" />
+          <div *ngFor="let feature1 of formData.first_tab.free_features_desc || []; let first = index; trackBy: trackByFn"
+          class="mb-2">
+          <div class="row">
+            <div class="col-sm-10">
+              <!-- <h5>{{feature1}}</h5> -->
+                <!-- <h5>{{formData.first_tab.free_features_desc[first]}}</h5> -->
+                <input type="text" class="form-control" [(ngModel)]="formData.first_tab.free_features_desc[first]"
+                  name="firstTabFeature{{ first }}" placeholder="{{ 'enterFeature' | translate }}" />
               </div>
               <div class="col-sm-2">
                 <a *ngIf="formData.first_tab.free_features_desc.length > 1" href="javascript:void(0);"
-                  class="btn btn-outline-white ml-3" (click)="removeFirstTabDescFeature(i)"><svg id="users-icon"
+                  class="btn btn-outline-white ml-3" (click)="removeFirstTabDescFeature(first)"><svg id="users-icon"
                     width="22" class="me-1" height="23" viewBox="0 0 22 23" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -177,12 +179,12 @@
         <!-- Additional Feature Sections for Second Tab -->
         <div class="form-group mb-3">
           <label>{{ 'freeFeatures' | translate }}</label>
-          <div *ngFor="let feature of formData.sec_tab.free_features_desc || []; let i = index; trackBy: trackByFn2"
+          <div *ngFor="let feature2 of formData.sec_tab.free_features_desc || []; let i = index; trackBy: trackByFn2"
             class="mb-2">
             <div class="row">
               <div class="col-sm-10">
                 <input type="text" class="form-control" [(ngModel)]="formData.sec_tab.free_features_desc[i]"
-                  name="firstTabFeature{{ i }}" placeholder="{{ 'enterFeature' | translate }}" />
+                  name="SecTabFeature{{ i }}" placeholder="{{ 'enterFeature' | translate }}" />
               </div>
               <div class="col-sm-2">
                 <a *ngIf="formData.sec_tab.free_features_desc.length > 1" href="javascript:void(0);"
@@ -254,13 +256,13 @@
         <!-- Features Section -->
         <div class="form-group mb-3">
           <label>{{ 'freeFeatures' | translate}}</label>
-          <div *ngFor="let feature of formData.third_tab.free_features_desc || []; let i = index; trackBy: trackByFn3"
+          <div *ngFor="let feature3 of formData.third_tab.free_features_desc || []; let i = index; trackBy: trackByFn3"
             class="mb-2">
 
             <div class="row">
               <div class="col-sm-10">
                 <input type="text" class="form-control" [(ngModel)]="formData.third_tab.free_features_desc[i]"
-                  name="firstTabFeature{{ i }}" placeholder="{{ 'enterFeature' | translate }}" />
+                  name="thirdTabFeature{{ i }}" placeholder="{{ 'enterFeature' | translate }}" />
               </div>
               <div class="col-sm-2">
                 <a *ngIf="formData.third_tab.free_features_desc.length > 1" href="javascript:void(0);"

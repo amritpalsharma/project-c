@@ -62,7 +62,7 @@ export class AddPricingPageComponent implements OnInit, OnDestroy {
       free_features_sub_title: '',
       free_features_desc: [''],
       premium_features_title: ['Premium Features'],
-      premium_features_desc: [''],
+      premium_features_desc: [['test']],
       btn_txt: ['Join Today']
     },
     sec_tab: {
@@ -227,10 +227,10 @@ export class AddPricingPageComponent implements OnInit, OnDestroy {
             yearly_price_currency: pageData.first_tab_yearly_price_currency,
             features_title: pageData.first_tab_free_features_title,
             features_sub_title: pageData.first_tab_free_features_sub_title,
-            // free_features_desc: pageData.first_tab_free_features_desc,
-            free_features_desc: Array.isArray(pageData.first_tab_free_features_desc)
-              ? pageData.first_tab_free_features_desc
-              : [],
+            free_features_desc: pageData.first_tab_free_features_desc,
+            // free_features_desc: Array.isArray(pageData.first_tab_free_features_desc)
+            //   ? pageData.first_tab_free_features_desc
+            //   : [],
 
 
             btn_txt: pageData.first_tab_btn_txt,
@@ -275,6 +275,7 @@ export class AddPricingPageComponent implements OnInit, OnDestroy {
         };
 
         // console.log(this.formData.first_tab.free_features_desc)
+        console.warn('this.formData',this.formData);
         // Update banner image preview
         this.bannerImagePreview = response.data.base_url + pageData.banner_img;
         // this.formData.first_tab.free_features_desc = first_tab_free_features_desc;
@@ -397,11 +398,12 @@ export class AddPricingPageComponent implements OnInit, OnDestroy {
     }
   }
 
-  trackByFn2(index: number, item: any): number {
-    return index; // Tracks items by index to prevent re-rendering
+  trackByFn2(index2: number, item: any): number {
+    return index2; // Tracks items by index to prevent re-rendering
   }
 
-  trackByFn3(index: number, item: any): number {
-    return index; // Tracks items by index to prevent re-rendering
+  trackByFn3(index3: number, item: any): number {
+    return index3; // Tracks items by index to prevent re-rendering
   }
+
 }
