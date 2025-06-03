@@ -109,20 +109,6 @@ a.dropdown-item.ai-icon.selected {
   }
 }
 
-@media(max-width: 768px) {
-  .sidebar-menu a svg {
-    width: 35px;
-    height: 35px;
-  }
-}
-
-@media(max-width: 425px) {
-  .sidebar-menu a svg {
-    width: 27px;
-    height: 27px;
-  }
-
-}
 
 @media(max-width: 450px) {
 
@@ -171,13 +157,6 @@ a.dropdown-item.ai-icon.selected {
     background-color: #ccc;
     -webkit-transition: 0.4s;
     transition: 0.4s;
-  }
-}
-
-@media(max-width: 450px) {
-  .navbar-nav svg {
-    height: 27px;
-    width: 27px;
   }
 }
 
@@ -379,7 +358,7 @@ a.dropdown-item.ai-icon.selected {
 
 @media (max-width: 991px) {
   .mobile_search {
-    display: block;
+    display: none;
     .nav-link img {
       width: 25px;
   }

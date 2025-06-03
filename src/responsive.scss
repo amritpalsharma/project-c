@@ -1167,7 +1167,6 @@ mat-datepicker-toggle button {
 }
 }
 
-
 @media (max-width: 991px) {
 .page-sidebar-inner {
     overflow-x: hidden;
@@ -1252,8 +1251,8 @@ body.compact-sidebar.dark-theme .sidebar-menu svg path {
     stroke: #fff;
 }
 .page-header .sidebar-menu svg{
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
 }
 .dark-theme .page-header .mobile-logo img {
     filter: brightness(0) invert(1);
@@ -1308,6 +1307,12 @@ body.compact-sidebar.dark-theme .sidebar-menu svg path {
 .news_static_banner {
     padding-top: 140px !important;
 }
+.justify_mobile .position-boxs {
+    border-right: 0 !important;
+    .col-lg-6 {
+        width: 50%;
+    }
+}
 }
 
 
@@ -1347,8 +1352,49 @@ body.compact-sidebar.dark-theme .sidebar-menu svg path {
         }
     }
 }
+
+
+@media (min-width: 768px) {
+.hide_table_for_desktop {
+    display: none !important;
+}
+}
     
 @media (max-width: 767px) {
+.hide_table_for_mobile {
+    display: none !important;
+}
+.hide_table_for_desktop {
+    .bg-card {
+        margin-top: 1.5rem;
+        border: 1px solid #8080803d !important;
+        border-radius: 5px;
+    }
+    .justify-between {
+        display: flex;
+        justify-content: flex-start;
+    }
+    .space-y-2 .justify-between {
+        justify-content: space-between;
+        span {
+            margin: 5px 0;
+        }
+    }
+    .flex_btn {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    span.pointer {
+        border: 1px solid #8080803d !important;
+        border-radius: 5px;
+        width: 42px;
+        height: 42px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
     .justify_mobile .details_info {
         flex-wrap: wrap;
         justify-content: flex-start !important;
@@ -1456,10 +1502,36 @@ body.compact-sidebar.dark-theme .sidebar-menu svg path {
 .user_card_header .slide-table .btn-outline-white, .setting_card_hdr_mobil .btn-outline-white, .card-header.setting_card_wrap .btn-outline-white,
 .membership_mobile .wrap_flex .btn-outline-white, .favorite_card_hdr .btn-outline-white {
     font-size: 0 !important;
+    .me-1 {
+        margin-right: 0 !important;
+    }
 }
 }
 
 @media (max-width: 575px) {
+.justify_mobile .position-boxs {
+    flex-direction: column;
+    padding-bottom: 0 !important;
+    .col-lg-6 {
+        width: 100%;
+    }
+    .main-position {
+        margin-top: 1rem;
+    }
+}
+.player_social_links {
+    display: flex;
+    align-items: center;
+    .social_icons {
+        span:last-child {
+            display: none;
+        }
+    }
+}
+.card .card-search {
+    max-width: 100%;
+}
+
 .edit_button span, .edit_button button span {
     white-space: nowrap;
     overflow: hidden;
@@ -1470,6 +1542,24 @@ body.compact-sidebar.dark-theme .sidebar-menu svg path {
     max-width: 75px;
     white-space: nowrap;
     overflow: hidden;
+}
+.user-details-left .user-info .edit_button button {
+    max-width: 100% !important;
+    .tour-personal-details {
+        max-width: 100% !important;
+    }
+}
+.justify_mobile .general_titels {
+    h2 {
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+    .edit_button {
+        margin-left: 0;
+    }
+    .edit_button button {
+        max-width: 100%;
+    }
 }
 .navtabs_button p {
     line-height: 15px;

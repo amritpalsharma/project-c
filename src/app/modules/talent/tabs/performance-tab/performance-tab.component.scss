@@ -407,7 +407,8 @@ tr.table_underline {
 
 @media (max-width: 767px) {
     .new_performance button {
-        font-size: 14px;
+        font-size: 16px;
+        margin-left: 0;
     }
 
     .edit-gap button {
@@ -433,7 +434,7 @@ tr.table_underline {
     }
 
     .underline_gap .country_name * {
-        font-size: 12px;
+        font-size: 14px;
     }
 }
 
@@ -446,26 +447,33 @@ tr.table_underline {
 
     .underline_gap .main-template img,
     .underline_gap .main-template svg {
-        width: 22px;
-        height: 22px;
+        width: 28px;
+        height: 28px;
         object-fit: contain;
+    }
+    .underline_gap .country_name *, .team-names h6.details_2 {
+        font-size: 16px;
     }
 }
 
 @media (max-width: 480px) {
-    .team-names h6.details_2 {
-        font-size: 11px;
+.team_logo {
+    padding: 10px !important;
+    margin-top: 10px;
+}
+.underline_gap {
+    padding: 10px 0;
+    gap: 0;
+    td {
+        width: 100%;
+        border-top: 1px solid #E5E5E5 !important;
+        padding: 15px 0;
+        border-radius: 0;
     }
-
-    .team-names h5.details-1 {
-        font-size: 13px;
-    }
-
-    .team-logos {
-        .team-logo-img img {
-            width: 30px;
-        }
-    }
+}
+.table tbody tr:hover .underline_gap td {
+    border-top: 1px solid #E5E5E5 !important;
+}
 }
 
 .loader-container {

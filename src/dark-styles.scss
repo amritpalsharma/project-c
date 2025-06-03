@@ -2862,7 +2862,7 @@ input:checked+.slider:before {
 }
 
 .dark-theme {
-  .social_icons a {
+  .social_icons a, .main-position .social_icons {
     color: #fff !important;
   }
 
@@ -2876,18 +2876,6 @@ input:checked+.slider:before {
     }
   }
 }
-
-
-// ::ng-deep .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
-//   color: #fff !important;
-// }
-// ::ng-deep .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs>.mat-mdc-tab-header .mat-mdc-tab.mdc-tab--active {
-//   background: red !important;
-// }
-// ::ng-deep .mat-mdc-tab .mdc-tab-indicator__content--underline {
-//   border-color: red !important;
-// }
-
 
 .dark-theme {
   .edit_boost_footer {
@@ -2910,7 +2898,6 @@ input:checked+.slider:before {
 
   .save-btn {
     background: #BDE34F !important;
-    ;
     color: #072944 !important;
   }
 }
@@ -2936,6 +2923,15 @@ input:checked+.slider:before {
 .dark-theme {
   .card-header .mat-mdc-paginator-range-actions svg.mat-mdc-paginator-icon {
     fill: #072944 !important;
+  }
+  .dashboard_tabs_add_btn {
+    background: #BDE34F !important;
+    color: #072944 !important;
+  border-color: #BDE34F !important;
+  font-weight: 600;
+    svg {
+      fill: #072944 !important;
+    }
   }
 }
 

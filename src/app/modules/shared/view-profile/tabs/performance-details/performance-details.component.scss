@@ -334,70 +334,94 @@ table td {
 }
 
 @media (max-width: 991px) {
-.underline_gap td {
-    display: block !important;
-    width: 33%;
-}
-.underline_gap {
-    flex-wrap: wrap;
-    gap: 15px 0;
-    margin-bottom: 0;
-}
+    .underline_gap td {
+        display: block !important;
+        width: 33%;
+    }
+    .underline_gap {
+        flex-wrap: wrap;
+        gap: 15px 0;
+        margin-bottom: 0;
+    }
 }
 
 @media (max-width: 767px) {
-.new_performance button {
-    font-size: 14px;
-}
-.edit-gap button {
-    padding: 5px !important;
-}
-.edit-gap button span {
-    display: none;
-}
-.team-logos {
-    padding-left: 0;
-    padding-right: 0;
-    gap: 10px;
-    .team-logo-img img {
-        width: 40px;
+    .new_performance button {
+        font-size: 16px;
+        margin-left: 0;
     }
-}
-.edit-gap {
-    padding-right: 5px;
-}
-.underline_gap .country_name * {
-    font-size: 12px;
-}
+
+    .edit-gap button {
+        padding: 5px !important;
+    }
+
+    .edit-gap button span {
+        display: none;
+    }
+
+    .team-logos {
+        padding-left: 0;
+        padding-right: 0;
+        gap: 10px;
+
+        .team-logo-img img {
+            width: 40px;
+        }
+    }
+
+    .edit-gap {
+        padding-right: 5px;
+    }
+
+    .underline_gap .country_name * {
+        font-size: 14px;
+    }
 }
 
 
 @media (max-width: 575px) {
-    .underline_gap .main-template img, .underline_gap .main-template svg {
-        width: 22px;
-        height: 22px;
-        object-fit: contain;
-    }
     .underline_gap td {
         display: block !important;
         width: 50%;
-    }   
+    }
+
+    .underline_gap .main-template img,
+    .underline_gap .main-template svg {
+        width: 28px;
+        height: 28px;
+        object-fit: contain;
+    }
+    .underline_gap .country_name *, .team-names h6.details_2 {
+        font-size: 16px;
+    }
 }
 
 @media (max-width: 480px) {
-.team-names h6.details_2 {
-    font-size: 11px;
+.team_logo {
+    padding: 10px !important;
+    margin-top: 10px;
 }
-.team-names h5.details-1 {
-    font-size: 13px;
-}
-.team-logos {
-    .team-logo-img img {
-        width: 30px;
+.underline_gap {
+    padding: 10px 0;
+    gap: 0;
+    td {
+        width: 100%;
+        border-top: 1px solid #E5E5E5 !important;
+        padding: 15px 0;
+        border-radius: 0;
     }
+}
+.table tbody tr:hover .underline_gap td {
+    border-top: 1px solid #E5E5E5 !important;
 }
 }
 
+
+@media (min-width: 1300px) {
+    .table-responsive {
+        overflow-x: unset !important;
+    }
+}
 
 
 @media (min-width: 1600px) and (max-width: 2999px) {
