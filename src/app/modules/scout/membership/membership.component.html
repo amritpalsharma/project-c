@@ -156,71 +156,130 @@
               </div>
             </div>
           </div>
+          <div class="hide_table_for_mobile">
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">{{'name' | translate}}</th>
+                    <th scope="col">{{'transferDate' | translate}}</th>
+                    <th scope="col">{{'voucherCode' | translate}}</th>
+                    <th scope="col">{{'amount' | translate}}</th>
+                    <th scope="col">{{'interval' | translate}}</th>
+                    <th scope="col" class="text-center">{{'view' | translate}}</th>
+                    <th scope="col" class="text-center">{{'download' | translate}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let purchase of userPurchases">
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <span class="main-template" style="padding-left: 15px">{{purchase.package_name}}</span>
+                      </div>
+                    </td>
+                    <td>{{ purchase.plan_period_start | date:'dd.MM.yyyy' }}</td>
+                    <td>
+                      <span *ngIf="purchase.coupon_used">{{purchase.coupon_used}}</span>
+                      <span *ngIf="!purchase.coupon_used">-</span>
+                    </td>
+                    <td>
+                      <span *ngIf="purchase.amount_paid">{{purchase.amount_paid}}
+                        {{purchase.amount_paid_currency.toUpperCase()}}</span>
+                      <span *ngIf="!purchase.amount_paid">-</span>
+                    </td>
 
-          <div class="table-responsive">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">{{'name' | translate}}</th>
-                  <th scope="col">{{'transferDate' | translate}}</th>
-                  <th scope="col">{{'voucherCode' | translate}}</th>
-                  <th scope="col">{{'amount' | translate}}</th>
-                  <th scope="col">{{'interval' | translate}}</th>
-                  <th scope="col" class="text-center">{{'view' | translate}}</th>
-                  <th scope="col" class="text-center">{{'download' | translate}}</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let purchase of userPurchases">
-                  <td>
-                    <div class="d-flex align-items-center">
-                      <span class="main-template" style="padding-left: 15px">{{purchase.package_name}}</span>
-                    </div>
-                  </td>
-                  <td>{{ purchase.plan_period_start | date:'dd.MM.yyyy' }}</td>
-                  <td>
-                    <span *ngIf="purchase.coupon_used">{{purchase.coupon_used}}</span>
-                    <span *ngIf="!purchase.coupon_used">-</span>
-                  </td>
-                  <td>
-                    <span *ngIf="purchase.amount_paid">{{purchase.amount_paid}}
-                      {{purchase.amount_paid_currency.toUpperCase()}}</span>
-                    <span *ngIf="!purchase.amount_paid">-</span>
-                  </td>
+                    <td>
+                      <span>{{ purchase.interval}}</span>
+                    </td>
 
-                  <td>
-                    <span>{{ purchase.interval}}</span>
-                  </td>
-
-                  <td class="text-center">
-                    <svg class="pointer" (click)="viewMembership(purchase.id)" width="25" height="25"
-                      viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        d="M12.5 15.625C14.2259 15.625 15.625 14.2259 15.625 12.5C15.625 10.7741 14.2259 9.375 12.5 9.375C10.7741 9.375 9.375 10.7741 9.375 12.5C9.375 14.2259 10.7741 15.625 12.5 15.625Z"
-                        fill="#787878" class="td-icon-favourites" />
-                      <path
-                        d="M24.1715 12.2344C23.2527 9.85754 21.6575 7.80204 19.5831 6.32194C17.5087 4.84184 15.0461 4.00201 12.4997 3.90625C9.9532 4.00201 7.4906 4.84184 5.41623 6.32194C3.34187 7.80204 1.74667 9.85754 0.827793 12.2344C0.765736 12.406 0.765736 12.594 0.827793 12.7656C1.74667 15.1425 3.34187 17.198 5.41623 18.6781C7.4906 20.1582 9.9532 20.998 12.4997 21.0938C15.0461 20.998 17.5087 20.1582 19.5831 18.6781C21.6575 17.198 23.2527 15.1425 24.1715 12.7656C24.2336 12.594 24.2336 12.406 24.1715 12.2344ZM12.4997 17.5781C11.4953 17.5781 10.5135 17.2803 9.67841 16.7223C8.84332 16.1643 8.19244 15.3712 7.80809 14.4433C7.42374 13.5154 7.32318 12.4944 7.51912 11.5093C7.71506 10.5242 8.1987 9.61941 8.90889 8.90922C9.61908 8.19903 10.5239 7.71539 11.509 7.51945C12.494 7.32351 13.5151 7.42407 14.443 7.80842C15.3709 8.19278 16.164 8.84365 16.722 9.67875C17.28 10.5138 17.5778 11.4956 17.5778 12.5C17.5757 13.8462 17.04 15.1366 16.0882 16.0885C15.1363 17.0404 13.8458 17.5761 12.4997 17.5781Z"
-                        fill="#787878" class="td-icon-favourites" />
-                    </svg>
-                  </td>
-                  <td class="text-center">
-                    <a [href]="purchase.invoice_file_path" target="_blank">
-                      <svg class="pointer" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z"
-                          stroke="#787878" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                          class="td-icon-purchase" />
+                    <td class="text-center">
+                      <svg class="pointer" (click)="viewMembership(purchase.id)" width="25" height="25"
+                        viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
-                          d="M9 11.5117L12 14.5117L15 11.5117M12 14.5117V6.51172M6 16.5117C9.89 17.8117 14.11 17.8117 18 16.5117"
-                          stroke="#787878" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                          class="td-icon-purchase" />
+                          d="M12.5 15.625C14.2259 15.625 15.625 14.2259 15.625 12.5C15.625 10.7741 14.2259 9.375 12.5 9.375C10.7741 9.375 9.375 10.7741 9.375 12.5C9.375 14.2259 10.7741 15.625 12.5 15.625Z"
+                          fill="#787878" class="td-icon-favourites" />
+                        <path
+                          d="M24.1715 12.2344C23.2527 9.85754 21.6575 7.80204 19.5831 6.32194C17.5087 4.84184 15.0461 4.00201 12.4997 3.90625C9.9532 4.00201 7.4906 4.84184 5.41623 6.32194C3.34187 7.80204 1.74667 9.85754 0.827793 12.2344C0.765736 12.406 0.765736 12.594 0.827793 12.7656C1.74667 15.1425 3.34187 17.198 5.41623 18.6781C7.4906 20.1582 9.9532 20.998 12.4997 21.0938C15.0461 20.998 17.5087 20.1582 19.5831 18.6781C21.6575 17.198 23.2527 15.1425 24.1715 12.7656C24.2336 12.594 24.2336 12.406 24.1715 12.2344ZM12.4997 17.5781C11.4953 17.5781 10.5135 17.2803 9.67841 16.7223C8.84332 16.1643 8.19244 15.3712 7.80809 14.4433C7.42374 13.5154 7.32318 12.4944 7.51912 11.5093C7.71506 10.5242 8.1987 9.61941 8.90889 8.90922C9.61908 8.19903 10.5239 7.71539 11.509 7.51945C12.494 7.32351 13.5151 7.42407 14.443 7.80842C15.3709 8.19278 16.164 8.84365 16.722 9.67875C17.28 10.5138 17.5778 11.4956 17.5778 12.5C17.5757 13.8462 17.04 15.1366 16.0882 16.0885C15.1363 17.0404 13.8458 17.5761 12.4997 17.5781Z"
+                          fill="#787878" class="td-icon-favourites" />
                       </svg>
-                    </a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+                    </td>
+                    <td class="text-center">
+                      <a [href]="purchase.invoice_file_path" target="_blank">
+                        <svg class="pointer" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                          xmlns="http://www.w3.org/2000/svg">
+                          <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z"
+                            stroke="#787878" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                            class="td-icon-purchase" />
+                          <path
+                            d="M9 11.5117L12 14.5117L15 11.5117M12 14.5117V6.51172M6 16.5117C9.89 17.8117 14.11 17.8117 18 16.5117"
+                            stroke="#787878" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                            class="td-icon-purchase" />
+                        </svg>
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
+            <div class="hide_table_for_desktop">
+	<div class="rounded-lg border bg-card" *ngFor="let element of userPurchases">
+	  <div class="p-3">
+		<div class="space-y-2 text-sm">
+		  <div class="flex justify-between">
+			<span class="text-muted-foreground">{{'name' | translate}}</span>
+			<span>{{element.package_name}}</span>
+		  </div>
+		  <div class="flex justify-between">
+			<span class="text-muted-foreground">{{'transferDate' | translate}}</span>
+			<span>{{ element.plan_period_start | date:'dd.MM.yyyy' }}</span>
+		  </div>
+		  <div class="flex justify-between">
+			<span class="text-muted-foreground">{{'voucherCode' | translate}}</span>
+			<span><span *ngIf="element.coupon_used">{{element.coupon_used}}</span>
+                        <span *ngIf="!element.coupon_used">-</span></span>
+		  </div>
+		  <div class="flex justify-between">
+			<span class="text-muted-foreground">{{'amount' | translate}}</span>
+			<span><span *ngIf="element.amount_paid">{{element.amount_paid}}
+                          {{element.amount_paid_currency.toUpperCase()}}</span>
+                        <span *ngIf="!element.amount_paid">-</span></span>
+		  </div>
+		  <div class="flex justify-between">
+			<span class="text-muted-foreground">{{'interval' | translate}}</span>
+			<span>{{ element.interval}}</span>
+		  </div>
+		</div>
+		<div class="flex_btn mt-3">
+			<span class="view--eye" class="pointer" (click)="viewMembership(element.id)">
+				<svg class="pointer" width="25" height="25"
+                          viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M12.5 15.625C14.2259 15.625 15.625 14.2259 15.625 12.5C15.625 10.7741 14.2259 9.375 12.5 9.375C10.7741 9.375 9.375 10.7741 9.375 12.5C9.375 14.2259 10.7741 15.625 12.5 15.625Z"
+                            fill="#787878" class="td-icon-favourites" />
+                          <path
+                            d="M24.1715 12.2344C23.2527 9.85754 21.6575 7.80204 19.5831 6.32194C17.5087 4.84184 15.0461 4.00201 12.4997 3.90625C9.9532 4.00201 7.4906 4.84184 5.41623 6.32194C3.34187 7.80204 1.74667 9.85754 0.827793 12.2344C0.765736 12.406 0.765736 12.594 0.827793 12.7656C1.74667 15.1425 3.34187 17.198 5.41623 18.6781C7.4906 20.1582 9.9532 20.998 12.4997 21.0938C15.0461 20.998 17.5087 20.1582 19.5831 18.6781C21.6575 17.198 23.2527 15.1425 24.1715 12.7656C24.2336 12.594 24.2336 12.406 24.1715 12.2344ZM12.4997 17.5781C11.4953 17.5781 10.5135 17.2803 9.67841 16.7223C8.84332 16.1643 8.19244 15.3712 7.80809 14.4433C7.42374 13.5154 7.32318 12.4944 7.51912 11.5093C7.71506 10.5242 8.1987 9.61941 8.90889 8.90922C9.61908 8.19903 10.5239 7.71539 11.509 7.51945C12.494 7.32351 13.5151 7.42407 14.443 7.80842C15.3709 8.19278 16.164 8.84365 16.722 9.67875C17.28 10.5138 17.5778 11.4956 17.5778 12.5C17.5757 13.8462 17.04 15.1366 16.0882 16.0885C15.1363 17.0404 13.8458 17.5761 12.4997 17.5781Z"
+                            fill="#787878" class="td-icon-favourites" />
+                        </svg>
+			</span>
+			<span class="view--eye" class="pointer">
+				<a [href]="element.invoice_file_path" target="_blank">
+					<svg class="pointer" width="24" height="24" viewBox="0 0 24 24" fill="none"
+						xmlns="http://www.w3.org/2000/svg">
+						<path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z"
+						  stroke="#787878" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+						  class="td-icon-purchase" />
+						<path
+						  d="M9 11.5117L12 14.5117L15 11.5117M12 14.5117V6.51172M6 16.5117C9.89 17.8117 14.11 17.8117 18 16.5117"
+						  stroke="#787878" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+						  class="td-icon-purchase" />
+					  </svg>
+				</a>
+			</span>
+		</div>
+	  </div>
+	</div>
+ </div>
         </div>
       </div>
     </div>

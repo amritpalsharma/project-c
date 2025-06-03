@@ -158,9 +158,9 @@ button.premium-edit_btn,a.premium-edit_btn {
   .card-title{
     margin-right: 0 !important;
   }
-  .transaction_box{
-    display: block !important;
-  }
+  // .transaction_box{
+  //   display: block !important;
+  // }
   .transaction_box .card-title{
     margin-bottom: 10px !important;
   }
@@ -248,4 +248,22 @@ button.premium-edit_btn,a.premium-edit_btn {
 
 .dark-theme .table-striped thead th {
   background: none !important;
+}
+
+@media (max-width: 575px) {
+.mat-mdc-paginator-container {
+  justify-content: flex-start !important;
+  margin-left: -20px;
+}
+:host ::ng-deep .mat-mdc-paginator-range-actions {
+  margin-top: 10px !important;
+  max-width: 110px;
+  .mat-mdc-paginator-range-label {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+  }
+  button {
+    margin-right: 0 !important;
+}
+}
 }
