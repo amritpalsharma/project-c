@@ -317,3 +317,33 @@ td.cdk-column-Download.mat-column-Download svg {
         font-size: 28px !important;
     }
 }
+
+
+::ng-deep .dark-theme {
+    // .add_new-btn {
+    //     color: #BDE34F;
+    // }
+    .hide_table_for_desktop {
+    .flex_btn  {
+        span.pointer {
+            border-color: #fff !important;
+        }
+        svg path {
+            stroke: #fff !important;
+        }
+    }
+    }
+}
+
+
+@media (max-width: 767px) {
+    .border_0_mobile {
+        border: 0 !important;
+        padding: 0 !important;
+    }
+    .hide_table_for_desktop {
+        .bg-card:first-child {
+            margin-top: 0 !important;
+        }
+    }
+}

@@ -85,21 +85,6 @@
   margin-bottom: 10px;
 }
 
-
-@media (max-width: 1199px) {
-  .box-square {
-    width: 140px;
-    height: 140px;
-  }
-}
-@media (max-width: 767px) {
-  .box-square {
-    width: 100px;
-    height: 100px;
-    margin-right: 10px;
-  }
-}
-
 .selected_team_name{
   font-size: 18px;
 }
@@ -146,4 +131,39 @@
   font-size: 28px !important;
   margin-bottom: 10px !important;
 }
+}
+
+
+@media (max-width: 1199px) {
+  .box-square {
+    width: 140px;
+    height: 140px;
+  }
+}
+@media (max-width: 767px) {
+  .box-square {
+    width: calc(100% / 4 - 10px);
+    height: 100px;
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+}
+
+
+@media (max-width: 575px) {
+  .box-square {
+    width: calc(100% / 3 - 10px);
+    height: 100px;
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+}
+
+@media (max-width: 460px) {
+  .box-square {
+    width: calc(100% / 2 - 10px);
+    height: 100px;
+    margin-right: 5px;
+    margin-left: 5px;
+  }
 }

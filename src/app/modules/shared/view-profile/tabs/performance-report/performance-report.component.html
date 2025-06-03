@@ -1,7 +1,7 @@
 <!-- unlock page  -->
 <div class="unlock_page" *ngIf="!isPremium">
   <div class="card bg-color">
-    <div class="card-header border-0">
+    <div class="card-header border-0 p-0">
       <div class="table-responsive">
         <table class="table table-striped table-hover table-users">
 
@@ -62,54 +62,86 @@
 </div>
 <!-- NO DATA -->
 
-<div class="card bg-color" *ngIf="isPremium && !noTextTabs">
-  <div class="card-header border-0">
-    <div class="table-responsive">
-      <table mat-table [dataSource]="reports" class="table table-striped table-hover table-users">
+<div class="card bg-color border_0_mobile" *ngIf="isPremium && !noTextTabs">
+  <div class="card-header border-0 p-0">
+    <div class="hide_table_for_mobile"> 
+      <div class="table-responsive">
+        <table mat-table [dataSource]="reports" class="table table-striped table-hover table-users">
 
-        <!-- Name Column -->
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef> {{ 'title' | translate }} </th>
-          <td mat-cell *matCellDef="let element">
-            <div class="d-flex align-items-center">
-              <span class="main-template" style="padding-left: 15px">
-                {{ element.document_title }}
-              </span>
-            </div>
-          </td>
-        </ng-container>
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> {{ 'title' | translate }} </th>
+            <td mat-cell *matCellDef="let element">
+              <div class="d-flex align-items-center">
+                <span class="main-template" style="padding-left: 15px">
+                  {{ element.document_title }}
+                </span>
+              </div>
+            </td>
+          </ng-container>
 
-        <!-- Joined Date Column -->
-        <ng-container matColumnDef="joinedDate">
-          <th mat-header-cell *matHeaderCellDef> {{ 'date' | translate }} </th>
-          <td mat-cell *matCellDef="let element">
-            <!-- {{ element.created_at | date: 'dd.MM.yyyy - hh.mm a' }} -->
-            {{ element.created_at | date: 'dd.MM.yyyy' }}
-          </td>
-        </ng-container>
+          <!-- Joined Date Column -->
+          <ng-container matColumnDef="joinedDate">
+            <th mat-header-cell *matHeaderCellDef> {{ 'date' | translate }} </th>
+            <td mat-cell *matCellDef="let element">
+              <!-- {{ element.created_at | date: 'dd.MM.yyyy - hh.mm a' }} -->
+              {{ element.created_at | date: 'dd.MM.yyyy' }}
+            </td>
+          </ng-container>
 
-        <ng-container matColumnDef="Download">
-          <th mat-header-cell *matHeaderCellDef class="text-center"> {{ 'downloadPerformanceReport' | translate }} </th>
-          <td mat-cell *matCellDef="let element" class="text-center">
-            <svg (click)="downloadInvoice(element.id,path+element.file_name,element.file_type)" class="pointer pe-2"
-              width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke="#787878"
-                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-              <path
-                d="M9 11.5117L12 14.5117L15 11.5117M12 14.5117V6.51172M6 16.5117C9.89 17.8117 14.11 17.8117 18 16.5117"
-                stroke="#787878" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </td>
-        </ng-container>
-        <!-- Header row definition -->
-        <tr mat-header-row *matHeaderRowDef="['name', 'joinedDate', 'Download']"></tr>
+          <ng-container matColumnDef="Download">
+            <th mat-header-cell *matHeaderCellDef class="text-center"> {{ 'downloadPerformanceReport' | translate }} </th>
+            <td mat-cell *matCellDef="let element" class="text-center">
+              <svg (click)="downloadInvoice(element.id,path+element.file_name,element.file_type)" class="pointer pe-2"
+                width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke="#787878"
+                  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                  d="M9 11.5117L12 14.5117L15 11.5117M12 14.5117V6.51172M6 16.5117C9.89 17.8117 14.11 17.8117 18 16.5117"
+                  stroke="#787878" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </td>
+          </ng-container>
+          <!-- Header row definition -->
+          <tr mat-header-row *matHeaderRowDef="['name', 'joinedDate', 'Download']"></tr>
 
-        <!-- Data row definition -->
-        <tr mat-row *matRowDef="let row; columns: ['name', 'joinedDate', 'Download']"></tr>
+          <!-- Data row definition -->
+          <tr mat-row *matRowDef="let row; columns: ['name', 'joinedDate', 'Download']"></tr>
 
 
 
-      </table>
+        </table>
+      </div>
     </div>
+<div class="hide_table_for_desktop">
+	<div class="rounded-lg border bg-card" *ngFor="let element of reports">
+    <!-- <pre>
+      {{element|json}}
+    </pre> -->
+	  <div class="p-3">
+		<div class="space-y-2 text-sm">
+		  <div class="flex justify-between">
+			<span class="text-muted-foreground"> {{ 'title' | translate }}</span>
+			<span>{{ element.document_title }}</span>
+		  </div>
+		  <div class="flex justify-between">
+			<span class="text-muted-foreground"> {{ 'date' | translate }}</span>
+			<span>{{ element.created_at | date: 'dd.MM.yyyy' }}</span>
+		  </div>
+		</div>
+		<div class="flex_btn mt-3">
+			<span class="view--eye" class="pointer" (click)="downloadInvoice(element.id,path + element.file_name,element.file_type)">
+				<svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke="#787878"
+					  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+					<path
+					  d="M9 11.5117L12 14.5117L15 11.5117M12 14.5117V6.51172M6 16.5117C9.89 17.8117 14.11 17.8117 18 16.5117"
+					  stroke="#787878" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+				  </svg>
+			</span>
+		</div>
+	  </div>
+	</div>
+ </div>
   </div>
 </div>

@@ -370,13 +370,10 @@ td.cdk-column-Download.mat-column-Download svg {
 
     .performance_card_hedr .add_new-btn {
         margin: 10px 0 !important;
-        padding: 12px !important;
+        padding: 8px 12px !important;
     }
 }
 
-.dark-theme .add_new-btn {
-    color: #BDE34F;
-}
 
 @media (min-width: 1600px) and (max-width: 2999px) {
     .performance_card_hedr .btn {
@@ -387,5 +384,21 @@ td.cdk-column-Download.mat-column-Download svg {
 @media (min-width: 3000px) {
     .performance_card_hedr .btn {
         font-size: 28px !important;
+    }
+}
+
+::ng-deep .dark-theme {
+    // .add_new-btn {
+    //     color: #BDE34F;
+    // }
+    .hide_table_for_desktop {
+    .flex_btn  {
+        span.pointer {
+            border-color: #fff !important;
+        }
+        svg path {
+            stroke: #fff !important;
+        }
+    }
     }
 }

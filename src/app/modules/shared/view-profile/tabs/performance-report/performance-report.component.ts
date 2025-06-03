@@ -3,14 +3,26 @@ import { TalentService } from '../../../../../services/talent.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 
+interface Report {
+  id: string;
+  document_title: string;
+  created_at: string;
+  file_name: string;
+  file_type: string;
+  selected?: boolean;  // This will store the selected state of the checkbox
+}
+
 @Component({
   selector: 'view-user-performance-report',
   templateUrl: './performance-report.component.html',
   styleUrl: './performance-report.component.scss'
 })
+
+
 export class PerformanceReportComponent  implements OnInit {
 
   reports: Report[] = [];
+  // reports: any = [];
   errorMessage: string | null = null;
   allSelected: boolean = false;
   noTextTabs: boolean = true;
@@ -42,6 +54,7 @@ export class PerformanceReportComponent  implements OnInit {
         if (response.status) {
           this.path = response.data.uploads_path;
           this.reports = response.data.reports;
+          console.warn('this.reports',this.reports);
           this.noTextTabs = false;
         } else {
           this.reports = [];

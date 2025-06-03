@@ -2878,6 +2878,10 @@ input:checked+.slider:before {
       fill: #072944 !important;
     }
   }
+
+  .mat-mdc-icon-button .mat-mdc-paginator-icon {
+      fill: #072944 !important;
+  }
 }
 
 .dark-theme .toast-error {

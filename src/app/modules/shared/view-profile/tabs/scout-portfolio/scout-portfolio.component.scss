@@ -282,3 +282,10 @@ img.flag_country {
         font-size: 28px;
     }
 }
+
+
+@media (max-width: 575px) {
+    .portfolio_container {
+        padding: 0 !important;
+    }
+}
