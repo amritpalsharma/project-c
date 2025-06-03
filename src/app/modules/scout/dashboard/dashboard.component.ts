@@ -126,7 +126,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   getUserStatus() {
     this.socketService.getLoggedInUserStatus().then((result) => {
-      console.log('result is ',result);
+      // console.info('result is ',result);
       if (result == 2) {
         this.isUserVerified = true;
       } else {

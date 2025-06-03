@@ -783,8 +783,9 @@ export class UserService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
+    let lang_id = localStorage.getItem('lang_id');
     return this.http.get<{ status: boolean, message: string, data: {} }>(
-      `${this.apiUrl}user/delete-profile-image`, { headers }
+      `${this.apiUrl}user/delete-profile-image/${lang_id}`, { headers }
     );
   }
 
