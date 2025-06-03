@@ -1510,6 +1510,26 @@ body.compact-sidebar.dark-theme .sidebar-menu svg path {
         margin-right: 0 !important;
     }
 }
+
+body .cdk-overlay-pane {
+    max-width: 95% !important;
+    display: block !important;
+    margin: 0 auto !important;
+}
+body .cdk-overlay-pane .mat-mdc-dialog-container {
+    max-width: 100% !important;
+}
+body .cdk-overlay-pane .overflow-card {
+    max-height: 100% !important;
+}
+body .popup__body {
+    max-height: 400px;
+    overflow: auto;
+}
+body .overflow-card.popup__body {
+    max-height: 400px !important;
+    overflow: auto;
+}
 }
 
 @media (max-width: 575px) {
@@ -1653,16 +1673,16 @@ button.upload-btn {
     justify-content: center;
   }
 
-  .popup__body {
-    max-height: 350px;
-    overflow: auto;
-  }
+//   .popup__body {
+//     max-height: 350px;
+//     overflow: auto;
+//   }
+//   .overflow-card.popup__body {
+//     max-height: 70vh !important;
+// }
   input:not[type="submit"], textarea, select {
     font-size: 16px;
   }
-  .overflow-card.popup__body {
-    max-height: 70vh !important;
-}
 }
 
 @media (min-width: 426px) and (max-width: 575px) {
