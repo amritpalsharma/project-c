@@ -161,3 +161,22 @@ border-color: #D9D9D9 !important;
   margin-top: 1rem !important;
 }
 }
+
+
+@media (max-width: 575px) {
+.mat-mdc-paginator-container {
+  justify-content: flex-start !important;
+  margin-left: -20px;
+}
+:host ::ng-deep .mat-mdc-paginator-range-actions {
+  margin-top: 10px !important;
+  max-width: 110px;
+  .mat-mdc-paginator-range-label {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+  }
+  button {
+    margin-right: 0 !important;
+}
+}
+}

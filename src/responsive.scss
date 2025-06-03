@@ -1379,6 +1379,10 @@ body.compact-sidebar.dark-theme .sidebar-menu svg path {
         span {
             margin: 5px 0;
         }
+        span.text-muted-foreground {
+            min-width: 70px;
+            padding-right: 10px;
+        }
     }
     .flex_btn {
         display: flex;

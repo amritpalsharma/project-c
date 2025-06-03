@@ -71,7 +71,8 @@
     font-size: 16px;
     font-weight: 700;
     border-radius: 10px;
-    padding: 15px 68px;
+    padding: 15px 20px;
+    min-width: 120px;
     &.btn-sm {
       padding: 9px 15px;
     }
@@ -374,24 +375,6 @@
     color: #148DE4;
   }
 
-
-@media (max-width: 767px) {
-    .card .card-header {
-      flex-direction: column;
-      align-items: flex-start !important;
-      gap: 10px;
-  }
-}
-
-@media (max-width: 575px) {
-.mat-mdc-paginator-container {
-  justify-content: flex-start !important;
-  margin-left: -20px;
-}
-}
-
-
-
 .loader {
   border: 6px solid #f3f3f3;
   border-radius: 50%;
@@ -419,6 +402,17 @@ table td, table th {
 }
 
 
+.btn_confirmm {
+    color: #0c3453;
+    background-color: #bde34f;
+}
+
+.btn_cancell {
+  color: #fff;
+  background-color: rgb(249, 60, 101);
+}
+
+
 @media (min-width: 1600px) and (max-width: 2999px){
   .card-header p {
     font-size: 20px !important;
@@ -439,12 +433,37 @@ table td, table th {
   }
 }
 
-.btn_confirmm {
-    color: #0c3453;
-    background-color: #bde34f;
+
+
+
+@media (max-width: 767px) {
+   .btn {
+    min-width: unset !important;
+   }
+    .card .card-header.card_titlee {
+      flex-direction: column;
+      align-items: flex-start !important;
+      gap: 10px;
+  }
 }
 
-.btn_cancell {
-  color: #fff;
-  background-color: rgb(249, 60, 101);
+@media (max-width: 575px) {
+.mat-mdc-paginator-container {
+  justify-content: flex-start !important;
+  margin-left: -20px;
+}
+.header-activity-log{
+  padding: 0px 12px 8px 12px;
+}
+:host ::ng-deep .mat-mdc-paginator-range-actions {
+  margin-top: 0 !important;
+  max-width: 110px;
+  .mat-mdc-paginator-range-label {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+  }
+  button {
+    margin-right: 0 !important;
+}
+}
 }
