@@ -1,4 +1,4 @@
-<div *ngIf="showPopup" class="popup-overlay ">
+<div *ngIf="showPopup" class="popup-overlay" [ngClass]="{'dark_popup_sucees_cancel':theme == 'dark'}">
   <div class="popup-content p-4">
       <div class="inner_container p-5">
           <img class="mb-3" src="../../../../assets/images/cancel.svg" alt="">

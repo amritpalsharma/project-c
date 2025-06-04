@@ -209,3 +209,18 @@ mat-datepicker-toggle {
   border: 1px solid red !important;
   border-color: red !important;
 }
+
+@media (max-width: 480px) {
+.date-imputs.d-flex {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start !important;
+    .date_field {
+      width: 100% !important;
+    }
+    input#from_date, input#to_date {
+      border-width: 1px !important;
+      border-radius: 10px !important;
+  }
+}
+}

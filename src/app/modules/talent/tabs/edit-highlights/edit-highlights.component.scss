@@ -136,7 +136,8 @@
     width: 45%;
 }
 .all-videos .player-image_box video{
-   width: 170px;
+//    width: 170px;
+width: 100%;
 }
 .player-image_box video{
     height: 200px !important;
@@ -155,5 +156,13 @@ button:focus-visible{
 }
 .upload-titel {
     font-size: 20px !important;
+}
+}
+
+@media (max-width: 575px) {
+:host ::ng-deep .dialog-header {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 7px !important;
 }
 }

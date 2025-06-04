@@ -44,3 +44,26 @@
   .my-btn{
     background-color: #6FB95D !important;
   }
+
+
+.dark_popup_sucees_cancel {
+  .popup-content {
+    background: #072944;
+    border-top: 1px solid #1F4360;
+    border-bottom: 1px solid #1F4360;
+    .inner_container  {
+      border-color: #1F4360 !important;
+    }
+    h2, h5 {
+        color: #fff !important;
+    }
+    .btn {
+      background: #BDE34F !important;
+    color: #072944 !important;
+    }
+}
+}
+
+.popup-overlay {
+    background: #fff !important;
+}
