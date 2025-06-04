@@ -2882,6 +2882,9 @@ input:checked+.slider:before {
   .mat-mdc-icon-button .mat-mdc-paginator-icon {
       fill: #072944 !important;
   }
+  .justify-between span.text-muted-foreground {
+    color: #fff !important;
+  }
 }
 
 .dark-theme .toast-error {

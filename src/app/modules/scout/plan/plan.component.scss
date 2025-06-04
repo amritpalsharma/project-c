@@ -78,13 +78,14 @@
     padding: 30px 20px 0px 20px;
 }
 .premium-currency {
-    padding: 36px 0 80px 0;
+    padding: 0 0 1rem;
 }
 .plan_box .d-flex.gap-2 {
     min-height: 50px;
 }
+
 .plan_box.premium-plan-list {
-    padding: 20px 20px 36px;
+    padding: 10px 20px 80px;
 }
 .premium_list-line {
     border: 0.2px solid #205220;
@@ -137,7 +138,10 @@ sub.premium-month_title {
 }
 
 .choose-plan-btn {
-    width: 100%;
+    position: absolute;
+    left: 1rem;
+    bottom: 1rem;
+    width: calc(100% - 2rem);
     padding: 8px;
     border: 1px solid #2a822a;
     color: #fff;

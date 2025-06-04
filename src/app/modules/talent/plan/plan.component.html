@@ -33,17 +33,15 @@
             </div>
             <div class="premium-plan_box">
               <div class="plan_box">
+                <div class="premium-currency">
+                  <h6>{{ premiumPlans.isYearly ? premiumPlans.priceYearly : premiumPlans.priceMonthly }}
+                    <sub class="premium-month_title">.- {{ premiumPlans.currency }} /  {{ premiumPlans.isYearly ? ('year' | translate) : ('month' | translate) }} </sub>
+                  </h6>
+                </div>
                 <div class="d-flex align-items-center justify-content-between gap-2">
                   <h3>{{'premium' | translate}}</h3>
-
-                  <!-- Display this only if there is an active premium plan -->
                   <div class="premium_button py-1 px-3" *ngIf="(( premiumPlans?.package_name==premium?.package_name ))">
                     <span class="px-1">
-                      <!-- <svg width="22" height="23" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                        <path
-                          d="M464 0H112c-4 0-7.8 2-10 5.4L2 152.6c-2.9 4.4-2.6 10.2 .7 14.2l276 340.8c4.8 5.9 13.8 5.9 18.6 0l276-340.8c3.3-4.1 3.6-9.8 .7-14.2L474.1 5.4C471.8 2 468.1 0 464 0zm-19.3 48l63.3 96h-68.4l-51.7-96h56.8zm-202.1 0h90.7l51.7 96H191l51.6-96zm-111.3 0h56.8l-51.7 96H68l63.3-96zm-43 144h51.4L208 352 88.3 192zm102.9 0h193.6L288 435.3 191.2 192zM368 352l68.2-160h51.4L368 352z">
-                        </path>
-                      </svg> -->
                       <svg width="15" height="13" viewBox="0 0 15 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                           d="M3.00019 9.66115e-07C2.90741 4.07945e-06 2.81646 0.0258214 2.73752 0.0745645C2.65858 0.123308 2.59475 0.193054 2.55319 0.276001L0.553186 4.276C0.509933 4.36212 0.492491 4.45891 0.502958 4.55471C0.513426 4.65051 0.551357 4.74125 0.612187 4.816L7.11219 12.816C7.15907 12.8737 7.21822 12.9202 7.28534 12.9521C7.35246 12.9841 7.42586 13.0006 7.50019 13.0006C7.57452 13.0006 7.64791 12.9841 7.71503 12.9521C7.78215 12.9202 7.8413 12.8737 7.88819 12.816L14.3882 4.816C14.4492 4.74135 14.4873 4.65067 14.4979 4.55486C14.5086 4.45906 14.4913 4.36222 14.4482 4.276L12.4482 0.276001C12.4065 0.192902 12.3426 0.123055 12.2634 0.0743015C12.1843 0.0255481 12.0931 -0.000181722 12.0002 9.66115e-07H3.00019ZM1.80919 4L3.30919 1H5.35919L4.60919 4H1.80919ZM2.05019 5H4.63319L6.24619 10.164L2.05019 5ZM5.68019 5H9.32019L7.50019 10.823L5.68019 5ZM10.3682 5H12.9502L8.75419 10.164L10.3682 5ZM13.1912 4H10.3912L9.64119 1H11.6912L13.1912 4ZM9.36019 4H5.64019L6.39019 1H8.61019L9.36019 4Z"
@@ -53,32 +51,8 @@
                     <span>{{'youHaveAnActivePremiumPlan' | translate}}</span>
                   </div>
                 </div>
-
-                <!-- Plan price and frequency -->
-                <div class="premium-currency">
-                  <h6>
-                    {{ premiumPlans.isYearly ? premiumPlans.priceYearly : premiumPlans.priceMonthly }}<sub
-                      class="premium-month_title">.- {{ premiumPlans.currency }} / 
-                      {{ premiumPlans.isYearly ? ('year' | translate) : ('month' | translate) }}
-                    </sub>
-                  </h6>
-                </div>
-
-                <!-- Choose Plan Button -->
-                <div class="row">
-                  <div class="col-lg-12">
-                    <button class="choose-plan-btn"
-                      [disabled]="((premiumPlans?.active_interval=='monthly' && !premiumPlans.isYearly) || premiumPlans?.active_interval=='yearly')"
-                      (click)="openCouponDialog(premiumPlans.isYearly ? premiumPlans.year_package_id : premiumPlans.month_package_id)">
-                      {{'choosePlan' | translate}}
-                    </button>
-                  </div>
-                </div>
               </div>
-
               <hr class="premium_list-line">
-
-              <!-- Plan includes list -->
               <div class="plan_box premium-plan-list">
                 <h3>{{'premiumIncludes' | translate}}</h3>
                 <ul class="premium_list">
@@ -89,6 +63,11 @@
                     </label>
                   </li>
                 </ul>
+                <button class="choose-plan-btn"
+                    [disabled]="((premiumPlans?.active_interval=='monthly' && !premiumPlans.isYearly) || premiumPlans?.active_interval=='yearly')"
+                    (click)="openCouponDialog(premiumPlans.isYearly ? premiumPlans.year_package_id : premiumPlans.month_package_id)">
+                    {{'choosePlan' | translate}}
+                  </button>
               </div>
               <div class="premium-football_icon">
                 <svg width="129" height="259" viewBox="0 0 129 259" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -180,20 +159,17 @@
           <div class="col-lg-4 my-2 ">
             <div class="subscription-switch mb-2">
               <label class="switch_off cursor-pointer">{{'billedMonthly' | translate}}</label>
-              
               <input type="checkbox" (change)="toggleBillingPlan(countryPlans, (selectedPlan?.isYearly), country)"
                 class="cursor-pointer">
-
-                <!-- <input class="cursor-pointer" type="checkbox" [id]="countryPlans.id" [checked]="(countryPlans.isYearly)"
-                [(ngModel)]="countryPlans.isYearly"
-                (change)="toggleBillingPlan(countryPlans, (countryPlans.isYearly), country)"
-                [value]="countryPlans.isYearly"> -->
-
               <label class="switch_on cursor-pointer">{{'billedYearly' | translate}}</label>
             </div>
-
             <div class="premium-plan_box ">
               <div class="plan_box">
+                <div class="premium-currency">
+                  <h6>{{ selectedPlan.isYearly ?  countryYearlyArr?.price : countryMonthlyArr?.price }}
+                    <sub class="premium-month_title">.- {{ selectedPlan?.currency }} /  {{ selectedPlan.isYearly || selectedPlan?.interval=='yearly' ? ('year' | translate) : ('month' | translate) }}</sub>
+                  </h6>
+                </div>
                 <div class="d-flex align-items-center justify-content-between gap-2">
                   <h3>{{'multiCountry' | translate}}</h3>
                   <div class="premium_button  py-1 px-3" *ngIf="getActiveMultiCountryPlanCount() > 0">
@@ -205,13 +181,6 @@
                       </svg>
                     </span>
                     <span class="ps-2">{{'youHaveAnActivemultiCountryPlan' | translate}}</span>
-                    <!-- <button class="premium_btn" (click)="editPlanPopup(countryPlans.plans,country)">
-                      <svg width="22" height="23" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          d="M3 17.7505V21.5005H6.75L17.81 10.4405L14.06 6.69049L3 17.7505ZM20.71 7.54049C20.8027 7.44798 20.8762 7.33809 20.9264 7.21712C20.9766 7.09614 21.0024 6.96646 21.0024 6.83549C21.0024 6.70452 20.9766 6.57484 20.9264 6.45387C20.8762 6.33289 20.8027 6.223 20.71 6.13049L18.37 3.79049C18.2775 3.69779 18.1676 3.62424 18.0466 3.57406C17.9257 3.52388 17.796 3.49805 17.665 3.49805C17.534 3.49805 17.4043 3.52388 17.2834 3.57406C17.1624 3.62424 17.0525 3.69779 16.96 3.79049L15.13 5.62049L18.88 9.37049L20.71 7.54049Z"
-                          fill="#787878"></path>
-                      </svg>
-                    </button> -->
                     <button class="premium_btn" (click)="editPlanPopup(countryPlans,country)">
                       <svg width="22" height="23" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -221,27 +190,8 @@
                     </button>
                   </div>
                 </div>
-                <div class="premium-currency">
-                  <!-- <pre>{{selectedPlan | json}}</pre> -->
-                  <h6>
-                    {{ selectedPlan.isYearly ?  countryYearlyArr?.price : countryMonthlyArr?.price }}<sub class="premium-month_title">.- {{ selectedPlan?.currency }} / 
-                      {{ selectedPlan.isYearly || selectedPlan?.interval=='yearly' ? ('year'
-                      | translate) :
-                      ('month' | translate) }}</sub>
-                  </h6>
-                </div>
-
-                <div class="row  multi-country-select ">
-                  <div class="col-lg-12 plan-2">
-                    <!-- [disabled]="countryHasYearlyPlan && selectedPlan.isYearly" -->
-                    <button  class="choose-plan-btn" (click)="editPlanPopup(countryPlans,country)">{{'choosePlan' |
-                      translate}}</button>
-                  </div>
-                </div>
               </div>
-
               <hr class="premium_list-line">
-
               <div class="plan_box premium-plan-list">
                 <h3>{{'multiCountryPlanIncludes' | translate}}</h3>
                 <ul class="premium_list">
@@ -252,6 +202,7 @@
                     </label>
                   </li>
                 </ul>
+                <button  class="choose-plan-btn" (click)="editPlanPopup(countryPlans,country)">{{'choosePlan' | translate}}</button>
               </div>
               <div class="premium-football_icon">
                 <svg width="129" height="259" viewBox="0 0 129 259" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -277,6 +228,11 @@
             </div>
             <div class="premium-plan_box">
               <div class="plan_box">
+                <div class="premium-currency">
+                  <h6>{{ boostedPlans.isYearly ? boostedPlans.priceYearly : boostedPlans.priceMonthly }}
+                    <sub class="premium-month_title">.- {{ boostedPlans.currency }} / {{ boostedPlans.isYearly || (booster && booster.interval == 'yearly') ? ('year' | translate) : ('month' | translate) }}</sub>
+                  </h6>
+                </div>
                 <div class="d-flex align-items-center justify-content-between gap-2">
                   <h3>{{'boostProfile' | translate}}</h3>
                   <div class="premium_button py-1 px-3 " *ngIf="booster">
@@ -288,7 +244,6 @@
                       </svg>
                     </span>
                     <span>{{'youHaveAnActiveBoostPlan' | translate}}</span>
-
                     <button class="premium_btn" (click)="editBooster(booster)">
                       <svg width="22" height="23" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -296,21 +251,6 @@
                           fill="#787878"></path>
                       </svg>
                     </button>
-                  </div>
-                </div>
-                <div class="premium-currency">
-                  <h6>{{ boostedPlans.isYearly ? boostedPlans.priceYearly :
-                    boostedPlans.priceMonthly }}<sub class="premium-month_title">.- {{ boostedPlans.currency }} / {{
-                      boostedPlans.isYearly || (booster && booster.interval == 'yearly') ? ('year' | translate) :
-                      ('month' | translate) }}</sub>
-                  </h6>
-                </div>
-                <div class="row">
-                  <div class="col-lg-12">
-                    <button class="choose-plan-btn"
-                      [disabled]="((boostedPlans?.active_interval=='monthly' && !boostedPlans.isYearly) || boostedPlans?.active_interval=='yearly')"
-                      (click)="addBoostPopup(boostedPlans.isYearly==true ? boostedPlans.year_package_id : boostedPlans.month_package_id )">{{'choosePlan'
-                      | translate}}</button>
                   </div>
                 </div>
               </div>
@@ -325,6 +265,7 @@
                     </label>
                   </li>
                 </ul>
+                <button class="choose-plan-btn" [disabled]="((boostedPlans?.active_interval=='monthly' && !boostedPlans.isYearly) || boostedPlans?.active_interval=='yearly')" (click)="addBoostPopup(boostedPlans.isYearly==true ? boostedPlans.year_package_id : boostedPlans.month_package_id )">{{'choosePlan' | translate}}</button>
               </div>
               <div class="premium-football_icon">
                 <svg width="129" height="259" viewBox="0 0 129 259" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -336,13 +277,6 @@
             </div>
           </div>
         </div>
-        <!-- <div class="football-icon">
-          <svg width="315" height="324" viewBox="0 0 315 324" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M281.594 317.029C279.217 319.526 274.601 323.744 274.601 323.744C270.087 327.859 265.05 331.491 260.099 334.835C246.904 343.728 232.675 349.832 217.804 352.956C215.378 353.47 212.872 353.811 210.484 354.148L209.72 354.254L185.033 389.549C177.902 399.745 169.602 408.164 160.345 414.546C151.107 420.942 141.269 425.405 131.122 427.848C120.955 430.278 110.608 430.545 100.395 428.609C90.15 426.679 80.2202 422.41 70.892 415.885C61.5639 409.36 54.115 401.503 48.8207 392.535C43.5128 383.587 40.1161 373.794 38.7799 363.434C37.43 353.095 38.2482 342.323 41.2384 331.441C47.0886 310.11 61.7066 292.206 74.1798 274.373C85.4099 258.317 96.4609 242.107 107.691 226.052C113.607 217.594 119.522 209.137 125.438 200.679C126.981 198.472 127.935 195.59 129.3 193.229C134.612 184.116 141.925 176.287 150.322 169.944C152.141 171.652 153.944 173.466 155.717 175.404C149.727 180.028 136.787 194.917 134.838 202.135C128.256 206.17 123.308 211.931 119.948 216.736C120.524 214.23 121.204 211.739 121.994 209.295C108.173 229.385 95.8908 248.544 85.8749 265.449C88.6456 276.055 92.9057 286.133 98.7957 295.808C106.791 308.876 117.575 320.171 131.201 329.702C149.877 342.765 171.446 350.172 194.374 350.589C210.093 350.85 225.813 347.825 240.402 341.74C247.85 338.601 254.979 334.686 261.7 330.166C269.056 325.189 275.912 319.367 282.288 312.714C286.124 308.707 289.81 304.421 293.29 299.816C294.441 298.293 295.586 296.738 296.706 295.137L371.054 188.841C379.442 176.849 385.654 164.439 389.728 151.639C390.534 149.09 391.302 146.515 391.952 143.944C395.816 128.408 396.653 113.054 394.484 97.8943C392.315 82.7348 387.214 68.6078 379.227 55.4876C371.226 42.3869 360.417 31.0449 346.772 21.5007C333.126 11.9565 318.778 5.67346 303.715 2.67102C288.665 -0.350951 273.659 -0.317042 258.743 2.74717C243.827 5.81138 229.719 11.8253 216.464 20.7633C203.195 29.7209 191.472 41.4755 181.266 56.0662L116.332 148.904C118.378 146.757 120.483 144.651 122.629 142.691C127.184 138.518 131.976 134.743 136.974 131.374C150.242 122.416 164.337 116.422 179.253 113.358C181.962 112.809 184.685 112.445 187.394 112.1L211.685 77.3714C219.008 66.902 227.263 58.4231 236.484 51.9285C245.705 45.4339 255.436 41.0414 265.678 38.751C275.919 36.4606 286.212 36.2715 296.542 38.2031C306.873 40.1348 316.731 44.3831 326.136 50.9616C335.542 57.5401 342.914 65.3433 348.271 74.3847C353.629 83.4262 356.896 93.1581 358.112 103.608C359.328 114.057 358.498 124.763 355.637 135.706C352.776 146.649 347.756 157.274 340.57 167.548L314.284 205.129L312.317 207.941L271.126 266.831C269.088 271.223 266.725 275.504 263.856 279.606C260.987 283.708 257.762 287.416 254.35 290.817C251.794 293.364 249.119 295.71 246.325 297.858C245.361 298.58 244.391 299.269 243.389 299.964C242.556 299.963 241.691 299.969 240.675 299.985C239.266 299.989 237.687 299.99 236.147 300.018C238.483 293.682 239.27 285.622 238.449 276.496C243.338 272.091 255.497 255.405 257.446 249.089C263.795 248.178 271.265 245.869 275.338 244.354C275.651 245.795 276.186 247.246 276.801 248.665C276.091 251.978 275.139 254.57 273.973 258.002L273.429 259.599L274.399 258.213C288.082 238.404 300.498 219.135 311.005 201.323C311.322 200.788 310.443 198.515 310.232 197.873C303.696 175.703 290.188 156.278 272.282 141.95C270.2 140.29 268.077 138.689 265.899 137.165C257.592 131.355 248.616 126.502 239.098 122.957C229.561 119.399 218.864 117.211 208.667 116.566C205.148 116.344 201.644 116.307 198.129 116.409C191.354 116.615 184.411 117.227 177.734 118.607C162.818 121.671 148.71 127.685 135.455 136.623C127.852 141.748 120.785 147.83 114.191 154.795C109.111 160.171 104.3 165.736 100.065 171.791C96.3212 177.143 92.5642 182.515 88.8208 187.866C80.5144 199.742 72.208 211.618 63.9016 223.494C55.4312 235.604 46.9609 247.714 38.4905 259.824C31.9602 269.16 25.4291 278.293 20.0383 288.339C15.0485 297.648 10.0732 307.141 6.60454 317.106C0.830712 333.691 -0.394173 352.062 2.16137 369.295C4.37389 384.31 9.5635 398.557 17.5448 411.645C25.526 424.732 36.4702 436.168 50.077 445.685C63.6838 455.203 78.1937 461.541 93.2108 464.569C108.242 467.577 123.426 467.494 138.363 464.358C153.301 461.221 167.576 455.091 180.831 446.153C194.053 437.221 205.856 425.435 215.898 411.079L281.652 317.07L281.594 317.029ZM244.91 201.808C244.302 208.422 242.708 215.132 240.646 219.885C238.284 220.677 235.857 221.48 233.522 222.233C225.822 224.788 217.845 227.412 210.38 230.451C206.146 226.123 193.527 213.922 181.139 209.679C181.566 205.294 181.975 200.606 182.373 196.056C182.634 193.097 182.887 190.191 183.136 187.456C183.328 185.293 183.506 183.439 183.684 181.789C189.544 177.103 197.81 173.78 203.776 171.816C207.554 170.56 210.915 169.653 213.072 169.154C214.372 168.813 215.407 168.606 216.013 168.478C226.82 174.407 235.941 181.514 244.227 188.299C245.204 191.251 245.438 196.127 244.918 201.755L245.349 201.795L245.355 201.828L244.91 201.808ZM133.017 280.941C131.003 278.281 129.136 275.492 127.489 272.595C126.447 270.76 125.545 268.85 124.722 266.907C126.957 269.663 129.284 272.163 131.697 274.375C132.521 277.219 133.658 280.517 135.534 284.155C134.673 283.088 133.831 282.034 133.017 280.941ZM197.735 314.514C194.124 314.548 190.526 314.358 186.962 313.873C180.48 313.004 174.138 311.361 168.101 308.913C163.282 306.938 158.687 304.48 154.332 301.638C161.298 304.154 168.088 305.238 174.545 304.664C182.133 310.641 191.637 313.303 198.425 314.473C198.221 314.476 197.972 314.505 197.735 314.514ZM175.328 280.894C163.499 273.842 154.558 267.501 148.058 261.53C146.919 256.224 146.672 250.175 147.28 243.561C147.806 237.966 148.851 233.025 149.656 229.865C150.113 228.061 150.52 226.659 150.781 225.794C150.816 225.702 150.846 225.578 150.881 225.486C160.176 219.625 170.759 215.246 179.99 211.609C187.268 213.966 194.816 219.507 199.898 223.73C202.317 225.771 204.738 227.93 207.045 230.213C208.021 231.157 208.74 231.893 209.154 232.328C208.927 235.689 208.807 238.979 208.649 242.447C208.395 248.145 208.122 254.033 207.52 260.68C207.38 262.153 207.226 263.645 207.08 265.085C206.658 265.401 206.176 265.762 205.634 266.168C200.325 270.105 186.805 279.381 175.328 280.894ZM152.103 168.629C152.256 168.533 152.404 168.404 152.571 168.288C168.621 156.913 189.027 151.58 208.497 153.33C211.703 153.712 214.88 154.217 217.959 154.945C216.547 158.728 215.689 163.771 215.311 166.445C210.591 167.448 193.416 171.609 182.864 179.761C177.193 176.871 166.882 172.654 157.745 174.35C155.857 172.331 153.985 170.411 152.103 168.629ZM134.976 204.646C136.455 209.549 142.895 220.162 148.7 225.24C147.774 228.287 145.874 235.189 145.129 243.395C144.523 249.923 144.751 255.958 145.811 261.296C138.625 264.676 134.169 268.133 132.202 271.848C128.834 268.62 125.621 264.801 122.593 260.473C122.416 260.233 122.253 259.973 122.09 259.714C120.888 256.139 119.897 252.508 119.217 248.803C119.001 247.634 118.818 246.459 118.669 245.278C117.683 237.782 117.744 230.145 118.848 222.657C118.851 222.571 118.872 222.499 118.889 222.394C121.804 217.365 127.124 209.8 134.976 204.646ZM236.381 288.808C235.974 293.207 235.043 297.122 233.676 300.472C227.072 305.277 215.191 311.307 205.866 313.191C205.591 313.173 205.264 313.148 204.852 313.122C200.596 312.763 185.982 311.006 175.739 302.794C175.558 299.031 175.479 290.075 175.974 284.895C176.034 284.152 176.112 283.508 176.206 282.963C188.783 281.026 203.25 270.725 208.166 266.979C216.254 272.404 226.209 276.021 236.372 277.167C236.7 281.294 236.7 285.192 236.381 288.808ZM257.285 246.94C255.2 239.374 245.865 224.612 242.703 220.597C244.803 215.666 246.448 208.759 247.061 201.974C247.568 196.366 247.377 191.55 246.448 188.282C250.868 187.01 258.035 185.914 264.177 186.08C266.029 188.684 267.681 191.41 269.207 194.194C275.645 206.697 278.812 221.332 278.336 235.514C277.33 237.69 276.366 239.808 275.571 241.929C271.759 243.48 263.76 245.971 257.285 246.94Z"
-              fill="#F0FFEC" />
-          </svg>
-        </div> -->
       </div>
     </div>
   </div>
