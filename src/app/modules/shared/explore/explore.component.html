@@ -13,7 +13,7 @@
                     [ngClass]="{'onlyScout':selectedRole == 3 || selectedRole == 2 || !selectedRole}">
                     <mat-form-field appearance="fill">
                       <mat-label>{{ 'selectHere' | translate }}</mat-label>
-                    
+
                       <mat-select #roleSelect [(ngModel)]="selectedRole" (selectionChange)="onRoleChange(roleSelect)"
                         id="roles" name="role">
                         <mat-option *ngFor="let role of roles" [value]="role.id">{{role.role_name}}</mat-option>
@@ -81,7 +81,8 @@
                 </th>
                 <!-- Country Filter -->
                 <th *ngIf="selectedRole == 4 || selectedRole == 2" [ngClass]="{'d-none':!selectedRole}">
-                  <div class="form-group explore-all_input" [ngClass]="{'onlyScout':selectedRole == 2 && !selectedCountry}">
+                  <div class="form-group explore-all_input"
+                    [ngClass]="{'onlyScout':selectedRole == 2 && !selectedCountry}">
                     <mat-form-field appearance="fill">
                       <mat-label>{{ 'club' | translate }} {{ 'country' | translate }}</mat-label>
                       <mat-select #countryChange [(ngModel)]="selectedCountry"
@@ -190,16 +191,20 @@
               <ng-container *ngIf="player.id != loggedInUser && !isLoading">
                 <div class="player--item" (click)="exploreUser(player.role_name, player.id)">
                   <!-- <pre>{{player | json}}</pre> -->
-                  <div class="item--inner" [ngClass]="{'boosted--profile': player?.package_name == 'Booster','clubPlayers' : player.role_name == 'Club'}">
+                  <div class="item--inner"
+                    [ngClass]="{'boosted--profile': player?.package_name == 'Booster','clubPlayers' : player.role_name == 'Club'}">
                     <div class="player--bio-dtl">
                       <div class="item--icons-list">
                         <div class="item--club">
                           <!-- <div *ngIf="player.current_club_logo && player.role_name != 'Club'" class="team-logo-bg"> </div> -->
-                          <img *ngIf="player.current_club_logo && player.role_name != 'Club'" src="{{baseUrl + player.current_club_logo}}" alt="team-logo">
+                          <img *ngIf="player.current_club_logo && player.role_name != 'Club'"
+                            src="{{baseUrl + player.current_club_logo}}" alt="team-logo">
                         </div>
-                        @if (getNationality(player.user_nationalities) || player?.meta?.formation_date && player.role_name != 'Club') {
+                        @if (getNationality(player.user_nationalities) || player?.meta?.formation_date &&
+                        player.role_name != 'Club') {
                         <div class="player--flag" [class]="{'d-none':!getNationality(player.user_nationalities)}">
-                          @if (getNationality(player.user_nationalities)) { <img src="{{getNationality(player.user_nationalities)}}" class="flag-img"> }
+                          @if (getNationality(player.user_nationalities)) { <img
+                            src="{{getNationality(player.user_nationalities)}}" class="flag-img"> }
                           <!-- <span> {{player.role_name}}</span> -->
                           <ng-container
                             *ngIf="player?.meta?.formation_date && player?.meta?.formation_date != 'Invalid date'">
@@ -225,7 +230,8 @@
                       <img *ngIf="!player.meta.profile_image && player.role_name != 'Club'"
                         src="../../../../assets/images/default/talent-profile-default.png" class="player_profile_img"
                         alt="player-image">
-                      <div class="booster_text" *ngIf="player.package_name == 'Booster'">{{ 'boosted' | translate}}</div>
+                      <div class="booster_text" *ngIf="player.package_name == 'Booster'">{{ 'boosted' | translate}}
+                      </div>
                     </div>
                     <div class="player__name">{{player?.first_name?? ''}} {{player?.last_name?? ''}}</div>
                   </div>
@@ -245,9 +251,13 @@
               <option value="20">20</option>
             </select>
             <div class="pagination_btnss">
-              <button (click)="nextPrevious('previous')"
-                [disabled]="currentPage == 0 || currentPage == 1">{{'PAGINATOR.PREVIOUS_PAGE' |
-                translate}}</button>
+              <button (click)="nextPrevious('previous')" [disabled]="currentPage == 0 || currentPage == 1">
+                <span class="desktop">{{'PAGINATOR.PREVIOUS_PAGE' | translate}}</span>
+                <span class="mobile">
+                  <i class="fa-solid fa-angle-left"></i>
+                  <i class="fa-solid fa-angle-left"></i>
+                </span>
+              </button>
               <!-- <mat-paginator [length]="totalItems" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25, 100]"
               (page)="onPageChange($event)" aria-label="Select page" showFirstLastButtons>
             </mat-paginator> -->
@@ -258,7 +268,13 @@
               </ng-container>
 
               <button (click)="nextPrevious('next')" [disabled]="currentPage === lastPage">
-                {{ 'PAGINATOR.NEXT_PAGE' | translate }}
+                <div class="desktop">{{ 'PAGINATOR.NEXT_PAGE' | translate }}</div>
+                <span class="mobile">
+                  <span class="mobile">
+                    <i class="fa-solid fa-angle-right"></i>
+                    <i class="fa-solid fa-angle-right"></i>
+                  </span>
+                </span>
               </button>
             </div>
           </div>

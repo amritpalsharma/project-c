@@ -41,7 +41,8 @@
         </li> -->
 
       <li [ngClass]="{'locksideBar': locksideBar}">
-        <a routerLink="/club/dashboard" (click)="closeSidebar(true)" routerLinkActive="active" class="">
+        <a [matTooltip]="sidebarOpen ? ('dashboard' | translate) : ''" matTooltipPosition="right"
+          routerLink="/club/dashboard" (click)="closeSidebar(true)" routerLinkActive="active" class="">
           <svg width="24" height="20" viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg"
             class="my-svg-icon">
             <path
@@ -54,7 +55,8 @@
       </li>
 
       <li [ngClass]="{'locksideBar': locksideBar}">
-        <a [routerLink]="isUserVerified ? '/club/explore' : null"
+        <a [matTooltip]="sidebarOpen ? ('explore' | translate) : ''" matTooltipPosition="right"
+         [routerLink]="isUserVerified ? '/club/explore' : null"
           (click)="isUserVerified ? closeSidebar(true) : showVerificationPopup()" [class.disabled]="!isUserVerified"
           routerLinkActive="active">
           <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -67,7 +69,8 @@
         </a>
       </li>
       <li [ngClass]="{'locksideBar': locksideBar}">
-        <a [routerLink]="isUserVerified ? '/club/chat' : null"
+        <a [matTooltip]="sidebarOpen ? ('chat' | translate) : ''" matTooltipPosition="right"
+        [routerLink]="isUserVerified ? '/club/chat' : null"
           (click)="isUserVerified ? closeSidebar(true) : showVerificationPopup()" [class.disabled]="!isUserVerified"
           routerLinkActive="active"><svg width="28" height="26" viewBox="0 0 28 26" fill="none"
             xmlns="http://www.w3.org/2000/svg" class="my-svg-icon">
@@ -79,7 +82,8 @@
         </a>
       </li>
       <li [ngClass]="{'locksideBar': locksideBar}">
-        <a [routerLink]="isUserVerified ? '/club/favorites' : null"
+        <a [matTooltip]="sidebarOpen ? ('favorites' | translate) : ''" matTooltipPosition="right"
+        [routerLink]="isUserVerified ? '/club/favorites' : null"
           (click)="isUserVerified ? closeSidebar(true) : showVerificationPopup()" [class.disabled]="!isUserVerified"
           routerLinkActive="active">
           <svg id="users-icon" width="16" height="21" viewBox="0 0 16 21" fill="none"
@@ -95,7 +99,8 @@
       </li>
 
       <li [ngClass]="{'locksideBar': locksideBar}">
-        <a [routerLink]="isUserVerified ? '/club/membership' : null"
+        <a [matTooltip]="sidebarOpen ? ('membership' | translate) : ''" matTooltipPosition="right"
+         [routerLink]="isUserVerified ? '/club/membership' : null"
           (click)="isUserVerified ? closeSidebar(true) : showVerificationPopup()" [class.disabled]="!isUserVerified"
           routerLinkActive="active">
           <svg width="27" height="22" viewBox="0 0 27 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -108,7 +113,8 @@
         </a>
       </li>
       <li [ngClass]="{'locksideBar': locksideBar}">
-        <a [routerLink]="isUserVerified ? '/club/plans' : null"
+        <a [matTooltip]="sidebarOpen ? ('plans' | translate) : ''" matTooltipPosition="right" 
+        [routerLink]="isUserVerified ? '/club/plans' : null"
           (click)="isUserVerified ? closeSidebar(true) : showVerificationPopup()" [class.disabled]="!isUserVerified"
           routerLinkActive="active">
           <svg width="29" height="18" viewBox="0 0 29 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -134,7 +140,8 @@
   </div>
   <div class="bottom_box">
     <ul class="sidebar_menu">
-      <li><a routerLink="/club/setting" (click)="closeSidebar(true)" routerLinkActive="active">
+      <li><a [matTooltip]="sidebarOpen ? ('settings' | translate) : ''" matTooltipPosition="right" 
+        routerLink="/club/setting" (click)="closeSidebar(true)" routerLinkActive="active">
           <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"
             class="my-svg-icon">
             <path

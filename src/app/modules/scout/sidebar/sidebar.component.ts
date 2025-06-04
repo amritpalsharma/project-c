@@ -13,7 +13,7 @@ export class SidebarComponent {
   isUserVerified: boolean = false;
   isNum: Number = 1;
   loggedInUser: any = localStorage.getItem('userInfo');
-  locksideBar:boolean=true;
+  locksideBar: boolean = true;
   constructor(public dialog: MatDialog, private socketService: SocketService) {
 
   }
@@ -24,8 +24,16 @@ export class SidebarComponent {
       document.body.classList.add('mobile-sidebar-active');
       this.isNum = 0;
     }
-    this.loggedInUser = JSON.parse(this.loggedInUser);
-    console.warn(this.loggedInUser.status)
+    // if(this.loggedInUser && this.loggedInUser != ''){
+    //   this.loggedInUser = JSON.parse(this.loggedInUser);
+    //   console.warn(this.loggedInUser.status)
+    // }
+    if (typeof this.loggedInUser !== 'undefined' && this.loggedInUser !== null && this.loggedInUser !== '') {
+      // Do something
+      this.loggedInUser = JSON.parse(this.loggedInUser);
+    } else {
+      // window.location.reload();
+    }
     this.getUserStatus();
   }
 

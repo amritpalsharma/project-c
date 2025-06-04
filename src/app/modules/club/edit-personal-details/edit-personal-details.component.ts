@@ -29,6 +29,7 @@ export class EditPersonalDetailsComponent implements OnInit {
   contactNumber: string = '';
   website: string = '';
   zipcode: string = '';
+  city: string = '';
   address: string = '';
   social_facebook: string = '';
   social_instagram: string = '';
@@ -178,6 +179,7 @@ export class EditPersonalDetailsComponent implements OnInit {
           this.sm_youtube = this.user.meta.sm_youtube;
           this.website = this.user.meta.website;
           this.zipcode = this.user.meta.zipcode;
+          this.city = this.user.meta.city;
           // this.nationality = this.user.meta.nationality;
           this.userNationalities = JSON.parse(this.user.user_nationalities);
           // console.info(this.userNationalities)
@@ -235,6 +237,7 @@ export class EditPersonalDetailsComponent implements OnInit {
       formData.append('user[sm_youtube]', this.sm_youtube);
       formData.append('user[website]', this.website);
       formData.append('user[zipcode]', this.zipcode);
+      formData.append('user[city]', this.city);
       formData.append('lang', lang_id + '');
       formData.append('user[nationality][]', this.nationality);
 

@@ -411,7 +411,12 @@ export class HeaderComponent {
           }
           if (userArr?.meta?.profile_image_path && typeof userArr?.meta?.profile_image_path != undefined) {
             this.commonDataService.updateProfilePic(userArr?.meta?.profile_image_path);
+          } else if (userArr?.role && userArr?.role == 2 && userArr?.club_logo_path) {
+            // console.warn('userArr', userArr)
+            this.commonDataService.updateProfilePic(userArr?.club_logo_path);
           }
+
+
         }
       });
     } catch (error) {

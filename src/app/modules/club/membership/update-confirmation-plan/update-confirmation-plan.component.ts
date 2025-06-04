@@ -10,8 +10,9 @@ export class UpdateConfirmationPlanComponent {
   constructor(
     public dialogRef: MatDialogRef<UpdateConfirmationPlanComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { message: string }
-  ) {}
+  ) { }
 
+  theme: string = localStorage.getItem('theme') || 'light';
   onConfirm(): void {
     this.dialogRef.close(true);
   }

@@ -191,4 +191,20 @@ export class EditMembershipProfileComponent {
   closeBtn() {
     this.dialogRef.close(true);
   }
+
+  naviGateToProfile(role_id: any, user_id: any) {
+    let role = '';
+    if (role_id == '2') {
+      role = 'club';
+    } else if (role_id == '3') {
+      role = 'scout';
+    } else if (role_id == '4') {
+      role = 'talent';
+    }
+
+    if (role != '' && user_id != '') {
+      this.dialogRef.close({ action: 'redirect', redirect_path: '/view/' + role, user_id: user_id, role: role });
+    }
+    // console.warn('ROle is '+role_id+' Id is '+user_id)
+  }
 }
