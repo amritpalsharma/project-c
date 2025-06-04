@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container statistics_popup">
   <div class="row">
     <!-- Right column: Form for editing player details -->
     <div class="col-md-12 p-0">
@@ -108,7 +108,7 @@
             </div>
           </div>
 
-          <div class="row mb-5">
+          <div class="row mb-md-5">
             <div class="form-group col-lg-6" *ngIf="isHideTeamSection">
               <label for="matches" class="form-label">{{'matches' | translate}}</label>
               <input type="number" id="matches" name="matches" [(ngModel)]="performance.matches">
