@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class SuccessComponent implements OnInit {
 
   showPopup = false; // Flag to control popup visibility
+  theme: string = localStorage.getItem('theme') || 'light';
 
   constructor(private router: Router) { } // Inject Router
 

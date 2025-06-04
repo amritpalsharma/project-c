@@ -1313,6 +1313,16 @@ body.compact-sidebar.dark-theme .sidebar-menu svg path {
         width: 50%;
     }
 }
+body .highlights__popup .popup__body {
+    max-height: 400px !important;
+    overflow: auto;
+}
+body .highlights__popup {
+    .overflow-card {
+        max-height: 100% !important;
+        padding: 0 !important;
+    }
+}
 }
 
 
@@ -1523,7 +1533,8 @@ body.compact-sidebar.dark-theme .sidebar-menu svg path {
 body .cdk-overlay-pane {
     max-width: 95% !important;
     display: block !important;
-    margin: 0 auto !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
 body .cdk-overlay-pane .mat-mdc-dialog-container {
     max-width: 100% !important;
@@ -1582,10 +1593,16 @@ body .dialog-content.add-perfomance {
 body .edit_genrl_details.popup__body {
     max-height: 400px !important;
 }
-body .dialog-content.edit_genrl_details, body .dialog-content.transfer_details, body .statistics_popup {
+body .dialog-content.edit_genrl_details, body .dialog-content.transfer_details, body .statistics_popup, body .highlights__popup {
     .popup__body, .overflow-card.popup__body {
         max-height: 400px !important;
         overflow: auto;
+    }
+}
+
+body .highlights__popup {
+    .overflow-card {
+        padding: 0 !important;
     }
 }
 
