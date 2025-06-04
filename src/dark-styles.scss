@@ -2885,6 +2885,11 @@ input:checked+.slider:before {
   .justify-between span.text-muted-foreground {
     color: #fff !important;
   }
+  .hide_table_for_desktop span.pointer svg:not(.icon__download) {
+    path {
+      fill: #fff !important;
+    }
+  }
 }
 
 .dark-theme .toast-error {

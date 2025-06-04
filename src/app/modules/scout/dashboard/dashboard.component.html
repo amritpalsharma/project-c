@@ -39,9 +39,10 @@
               </div>
               <div>
                 <div class="user-media text-center ">
-                  <img *ngIf="profileImage && !loading" [src]="profileImage" class="" alt="" />
-                  <img *ngIf="!profileImage && !loading" src="../../../../assets/images/default/talent-profile-default.png" class=""
-                    alt="" />
+                  <span class="profile_img_bg_circle">
+                    <img *ngIf="profileImage && !loading" [src]="profileImage" class="" alt="" />
+                    <img *ngIf="!profileImage && !loading" src="../../../../assets/images/default/talent-profile-default.png" class=""  alt="" />
+                  </span>
 
                   <div class="user-edit " *ngIf="!profileImage">
                     <label for="profile-upload" class="">
@@ -177,7 +178,7 @@
                     <div class="col-sm-6 team-logos">
                       <div class="row">
                         <div class="col-sm-12 p-0">
-                          <h6 class="title_2 mb-1">{{ 'country' | translate }}</h6>
+                          <h6 class="title_2 mb-1 title_natinality">{{ 'country' | translate }}</h6>
                           <div class="d-flex align-items-center gap-1 mb-1 " *ngFor="let nation of userNationalities">
                             <div class="team-badge_image">
                               <img *ngIf="nation.flag_path" [src]="nation.flag_path" alt="">

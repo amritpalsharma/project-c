@@ -267,3 +267,17 @@ button.premium-edit_btn,a.premium-edit_btn {
   }
 }
 }
+
+
+@media (max-width: 480px) {
+.premium-card .flex_wrap {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 10px;
+}
+.mob_wrap {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 10px;
+}
+}

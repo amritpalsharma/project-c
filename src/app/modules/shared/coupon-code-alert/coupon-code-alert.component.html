@@ -15,12 +15,12 @@
 
         
 
-        <button *ngIf="!couponApplied" type="button" class="btn btn-success coupon-btn" [disabled]="!couponCode.trim()"
+        <button *ngIf="!couponApplied" type="button" class="btn bg-green btn-success coupon-btn" [disabled]="!couponCode.trim()"
           (click)="applyCoupon()">
           {{ 'checkCoupon' | translate }}
         </button>
 
-        <button *ngIf="couponApplied" class="btn btn-primary proceed-btn" (click)="proceedToCheckout()">
+        <button *ngIf="couponApplied" class="btn bg-green proceed-btn" (click)="proceedToCheckout()">
           {{ 'proceedToCheckout' | translate }}
         </button>
       </div>
@@ -37,10 +37,10 @@
 
       <!-- Option for users who don't have a coupon -->
       <div class="mt-3">
-        <span>{{ "dont'tHaveCoupon" | translate }} </span> 
+        <!-- <span>{{ "dont'tHaveCoupon" | translate }} </span> 
         <button class="btn btn-link coupon-btn-link p-0" (click)="noCoupon()">
           {{ "proceedToCheckout" | translate }}
-        </button>
+        </button> -->
       </div>
     </div>
 

@@ -43,6 +43,7 @@ export class EditPlanComponent implements OnInit {
   newCountryPlanID: any = 0;
   youHaveAlreadyThisPlan: string = '';
   youHaveAlreadyThisPlanTitle: string = '';
+  couponCode: string = '';
   // selectedCountries: any[] = []; // Stores full country objects
 
 
@@ -131,7 +132,7 @@ export class EditPlanComponent implements OnInit {
     this.toastr.info(this.pleaseWait, this.Processing, { timeOut: 2000 });
 
     try {
-      const response = await this.stripeService.createCheckoutSession(planId, '', coupon).toPromise();
+      const response = await this.stripeService.createCheckoutSession(planId, '', this.couponCode).toPromise();
       console.info('response is ', response);
       if (!response.status && response.data.error != '') {
         this.toastr.error(response.data.error, response.message);
@@ -154,17 +155,16 @@ export class EditPlanComponent implements OnInit {
     const dialogRef = this.dialog.open(CouponCodeAlertComponent, { width: '500px' });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.info('After coupoun', result);
+      // console.info('After coupoun', result);
       if (result) {
         let coupon = result;
         if (result == 'proceed_to_checkout_without_coupon') {
           coupon = '';
         }
-
-        this.toastr.info(this.pleaseWait, this.Processing);
+        this.couponCode = coupon; 
         this.redirectToCheckout(planId, coupon);
       } else if (result === null) {
-        this.redirectToCheckout(planId);
+        // this.redirectToCheckout(planId);
       }
     });
   }
@@ -188,7 +188,8 @@ export class EditPlanComponent implements OnInit {
         } else {
           if (this.selectedCountryIds != undefined && this.selectedCountryIds.length > 0) {
             this.isCountrySelected = true;
-            this.openCouponDialog(planId.id);
+            // this.openCouponDialog(planId.id);
+              this.redirectToCheckout(planId.id, this.couponCode);
           } else {
             this.isCountrySelected = false;
           }
@@ -199,7 +200,8 @@ export class EditPlanComponent implements OnInit {
         } else {
           //  this.openCouponDialog(planId.id);
           if (this.selectedCountryIds != undefined && this.selectedCountryIds.length > 0) {
-            this.openCouponDialog(planId.id);
+            // this.openCouponDialog(planId.id);
+            this.redirectToCheckout(planId.id, this.couponCode);
             this.isCountrySelected = true;
           } else {
             this.isCountrySelected = false;
@@ -520,7 +522,7 @@ export class EditPlanComponent implements OnInit {
   handlePayment() {
     let test = this.getSelectedPlanInterval();
     if (test === 'yearly' && !this.isYearly) {
-      this.toastr.warning(this.youHaveAlreadyThisPlan, this.youHaveAlreadyThisPlanTitle);
+      this.toastr.error(this.youHaveAlreadyThisPlan, this.youHaveAlreadyThisPlanTitle);
       return;
     }
     if (this.action == 'buy') {

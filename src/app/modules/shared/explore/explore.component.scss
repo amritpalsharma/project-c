@@ -415,6 +415,9 @@ button#explore_filter_mobile {
             margin-bottom: 10px;
         }
     }
+    .explore-inputs .onlyScout {
+        width: 100% !important;
+    }
 }
 
 @media (min-width: 600px) and (max-width:991px) {
@@ -655,4 +658,20 @@ button#explore_filter_mobile {
       padding: 3px 5px 1px;
     }
   }
+}
+
+@media (min-width: 992px) {
+.pagination_btnss {
+    span.arrow_mobile {
+        display: none !important;
+    }
+}
+}
+
+@media (max-width: 991px) {
+.pagination_btnss {
+    span.arrow_desktop {
+        display: none !important;
+    }
+}
 }

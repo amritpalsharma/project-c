@@ -1,4 +1,4 @@
-<div class="dialog-container">
+<div class="dialog-container edit_genrl_details">
   <div class="personal_edit popup_header p-3">
     <div class="dialog-header mx-auto">
       <h2>{{ 'editPersonalDetails' | translate }}</h2>
@@ -82,8 +82,8 @@
       <!-- Social media Locked View -->
       <!-- Social media Lock View -->
       <div class="row upgrade_unlock position-relative" *ngIf="!isPremium">
-        <div class="social_form-box my-3 col-lg-12 px-4">
-          <span class="social_heddig pe-2">{{'socialMedia' | translate}}</span>
+        <div class="social_form-box my-3 col-lg-12">
+          <span class="social_heddig">{{'socialMedia' | translate}}</span>&nbsp;
           <span class="note_titles">{{'note' | translate}}</span>
         </div>
         <div class="col-lg-12 px-4 ">
@@ -333,15 +333,14 @@
       <!-- End Social media Locked View -->
       <!-- Social media usernames -->
       <div class="row" *ngIf="isPremium">
-        <div class="social_form-box my-3 col-12 px-4">
+        <div class="social_form-box my-3 col-12">
           <span class="social_heddig pe-2">{{ 'socialMedia' | translate }}</span>
           <span class="note_titles">{{ 'note' | translate }}</span>
         </div>
-        <div class="col-lg-12 px-4">
-          <div class="social-media-section">
-            <!-- instagram.com/ & TikTOk -->
-            <div class="d-flex mb-3">
-              <div class="platform_wrapper">
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="social_network platform_wrapper social_instagram">
                 <div class="single_platform">
                   <span class="platform_image">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -384,7 +383,9 @@
                   </span>
                 </div>
               </div>
-              <div class="platform_wrapper lm-5">
+            </div>
+            <div class="col-lg-6">
+              <div class="social_network platform_wrapper social_youtube">
                 <div class="single_platform">
                   <span class="platform_image">
                     <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -415,10 +416,8 @@
                 </div>
               </div>
             </div>
-
-            <!-- youtube.com/ & linkedIn -->
-            <div class="d-flex mb-3">
-              <div class="platform_wrapper">
+            <div class="col-lg-6">
+              <div class="social_network platform_wrapper social_facebook">
                 <div class="single_platform">
                   <span class="platform_image">
                     <svg width="22" height="15" viewBox="0 0 22 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -444,8 +443,9 @@
                   </span>
                 </div>
               </div>
-              <!--  -->
-              <div class="platform_wrapper lm-5">
+            </div>
+            <div class="col-lg-6">
+              <div class="platform_wrapper social_network platform_wrapper social_vimeo">
                 <div class="single_platform">
                   <span class="platform_image">
                     <svg xmlns="http://www.w3.org/2000/svg" width="27" height="28" viewBox="0 0 27 28" fill="none">
@@ -473,10 +473,8 @@
                 </div>
               </div>
             </div>
-
-            <!-- FaceBook & x.com/ -->
-            <div class="d-flex mb-3">
-              <div class="platform_wrapper">
+            <div class="col-lg-6">
+              <div class="social_network platform_wrapper social_tiktok">
                 <div class="single_platform">
                   <span class="platform_image">
                     <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -503,7 +501,9 @@
                   </span>
                 </div>
               </div>
-              <div class="platform_wrapper lm-5">
+            </div>
+            <div class="col-lg-6">
+              <div class="social_network platform_wrapper social_linkedin">
                 <div class="single_platform">
                   <span class="platform_image">
                     <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -527,12 +527,9 @@
                   </span>
                 </div>
               </div>
-
             </div>
-
-            <!-- Vimeo -->
-            <div class="d-flex mb-3">
-              <div class="platform_wrapper">
+            <div class="col-lg-6">
+              <div class="social_network platform_wrapper social_x">
                 <div class="single_platform">
                   <span class="platform_image">
                     <svg width="19" height="16" viewBox="0 0 19 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -555,8 +552,6 @@
                     <input type="text" [(ngModel)]="sm_vimeo" id="sm_vimeo" name="sm_vimeo">
                   </span>
                 </div>
-              </div>
-              <div class="platform_wrapper1 col-6">
               </div>
             </div>
           </div>

@@ -252,8 +252,8 @@
             </select>
             <div class="pagination_btnss">
               <button (click)="nextPrevious('previous')" [disabled]="currentPage == 0 || currentPage == 1">
-                <span class="desktop">{{'PAGINATOR.PREVIOUS_PAGE' | translate}}</span>
-                <span class="mobile">
+                <span class="arrow_desktop">{{'PAGINATOR.PREVIOUS_PAGE' | translate}}</span>
+                <span class="arrow_mobile">
                   <i class="fa-solid fa-angle-left"></i>
                   <i class="fa-solid fa-angle-left"></i>
                 </span>
@@ -268,12 +268,10 @@
               </ng-container>
 
               <button (click)="nextPrevious('next')" [disabled]="currentPage === lastPage">
-                <div class="desktop">{{ 'PAGINATOR.NEXT_PAGE' | translate }}</div>
-                <span class="mobile">
-                  <span class="mobile">
-                    <i class="fa-solid fa-angle-right"></i>
-                    <i class="fa-solid fa-angle-right"></i>
-                  </span>
+                <span class="arrow_desktop">{{ 'PAGINATOR.NEXT_PAGE' | translate }}</span>
+                <span class="arrow_mobile">
+                  <i class="fa-solid fa-angle-right"></i>
+                  <i class="fa-solid fa-angle-right"></i>
                 </span>
               </button>
             </div>

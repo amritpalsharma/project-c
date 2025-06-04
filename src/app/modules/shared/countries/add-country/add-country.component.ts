@@ -11,6 +11,7 @@ import { ScoutService } from '../../../../services/scout.service';
 import { TranslateService } from '@ngx-translate/core';
 import { WebPages } from '../../../../services/webpages.service';
 import { GlobalSettingsService } from '../../../../services/global-settings.service';
+import { CouponCodeAlertComponent } from '../../coupon-code-alert/coupon-code-alert.component';
 
 @Component({
   selector: 'shared-add-country',
@@ -33,6 +34,7 @@ export class AddCountryComponent {
     public webPages: WebPages,
     public global: GlobalSettingsService
   ) { }
+  couponCode: string = '';
   otherPlans: any;
   selectedPlan: any;
   country: any;
@@ -66,12 +68,22 @@ export class AddCountryComponent {
   }
 
   editPlanPopup() {
-    const dialogRef = this.dialog.open(EditPlanComponent, {
-      width: '800px',
-      data: {
-        plans: this.otherPlans,
-        selectedPlan: this.selectedPlan,
-        country: this.country,
+    const dialogRef = this.dialog.open(CouponCodeAlertComponent, { width: '500px' });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // console.info('After coupoun', result);
+      if (result) {
+        let coupon = result;
+        if (result == 'proceed_to_checkout_without_coupon') {
+          coupon = '';
+        }
+        this.couponCode = coupon;
+        if(this.couponCode){
+          this.redirectToCheckout(this.country.id, coupon);
+        }
+        // this.toastr.info(this.pleaseWait, this.Processing);
+      } else if (result === null) {
+        // this.redirectToCheckout(planId);
       }
     });
   }
@@ -122,7 +134,7 @@ export class AddCountryComponent {
     this.toastr.info(this.Processing, this.pleaseWait, { timeOut: 2000 });
 
     try {
-      const response = await this.stripeService.createCheckoutSession(planId, '', coupon).toPromise();
+      const response = await this.stripeService.createCheckoutSession(planId, '', this.couponCode).toPromise();
 
       if (response && response.data.payment_intent.id) {
         const stripe = await this.stripe;
