@@ -1386,6 +1386,12 @@ body.compact-sidebar.dark-theme .sidebar-menu svg path {
             min-width: 70px;
             padding-right: 10px;
         }
+        span:nth-child(1) {
+            text-align: left !important;
+        }
+        span:last-child {
+            text-align: right;
+        }
     }
     .flex_btn {
         display: flex;
@@ -1558,6 +1564,7 @@ body .popup__body {
 .card .card-search {
     max-width: 100%;
 }
+
 body .overflow-card.popup__body {
     max-height: 400px !important;
     overflow: auto;
@@ -1566,6 +1573,22 @@ body .popup__body {
     max-height: 310px !important;
     overflow: auto;
 }
+body .dialog-content.add-perfomance {
+    .popup__body, .overflow-card.popup__body {
+        max-height: 300px !important;
+        overflow: auto;
+    }
+}
+body .edit_genrl_details.popup__body {
+    max-height: 400px !important;
+}
+body .edit_genrl_details {
+    .popup__body, .overflow-card.popup__body {
+        max-height: 400px !important;
+        overflow: auto;
+    }
+}
+
 .edit_button span, .edit_button button span {
     white-space: nowrap;
     overflow: hidden;

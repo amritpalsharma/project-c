@@ -18,14 +18,16 @@
             <div class="user-details-left col-lg-12">
               <div class="user-media text-center">
                 <!-- <pre>{{user.meta | json}}</pre> -->
-                <img [src]="profileImage" alt="{{currentUserRole }} {{'profile' | translate}}"
-                  *ngIf="user.meta && user.meta.profile_image_path && currentUserRole =='talent'" class=" mt-1" />
-                <img [src]="baseUrl + user.meta.profile_image" alt="{{currentUserRole}} Profile 2"
-                  *ngIf="user.meta && user.meta.profile_image && currentUserRole =='scout'" class=" mt-1" />
-                <img [src]="user.club_logo_path" alt="{{currentUserRole}} Profile"
-                  *ngIf="user.club_logo_path && user.club_logo_path && currentUserRole =='club'" class=" mt-1" />
-                <img src="../../../../assets/images/default/talent-profile-default.png" alt=""
-                  *ngIf="!user.meta || !user.meta.profile_image && currentUserRole !='club'" class="" />
+                <span class="profile_img_bg_circle">
+                  <img [src]="profileImage" alt="{{currentUserRole }} {{'profile' | translate}}"
+                    *ngIf="user.meta && user.meta.profile_image_path && currentUserRole =='talent'" class=" mt-1" />
+                  <img [src]="baseUrl + user.meta.profile_image" alt="{{currentUserRole}} Profile 2"
+                    *ngIf="user.meta && user.meta.profile_image && currentUserRole =='scout'" class=" mt-1" />
+                  <img [src]="user.club_logo_path" alt="{{currentUserRole}} Profile"
+                    *ngIf="user.club_logo_path && user.club_logo_path && currentUserRole =='club'" class="club_profile_mob_img mt-1" />
+                  <img src="../../../../assets/images/default/talent-profile-default.png" alt=""
+                    *ngIf="!user.meta || !user.meta.profile_image && currentUserRole !='club'" class="" />
+                </span>
                 <div class="d-flex align-items-center justify-content-between bg_btn_mobile">
                   <div class="premium_icons">
                     <span class="icon-bg" *ngIf="isPremium && currentUserRole != 'scout' && currentUserRole != 'club'">
@@ -159,7 +161,7 @@
                     <div class="col-sm-6 team-logos">
                       <div class="row">
                         <div class="col-sm-12 p-0">
-                          <h6 class="title_2 mb-2" *ngIf="userNationalities.length > 0">{{ 'nationality' | translate }}
+                          <h6 class="title_2 mb-2 title_natinality" *ngIf="userNationalities.length > 0">{{ 'nationality' | translate }}
                           </h6>
                           <div class="d-flex align-items-center gap-1 mb-1" *ngFor="let nation of userNationalities">
                             <div class="col-lg-3 team-badge_image">

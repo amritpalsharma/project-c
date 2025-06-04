@@ -181,6 +181,13 @@
     flex-direction: row;
     gap: 10px;
     justify-content: flex-end;
+    .edit_button {
+      padding: 7px 5px 3px !important;
+      svg {
+        width: 22px !important;
+        height: 23px !important;
+      }
+    }
 }
 }
 

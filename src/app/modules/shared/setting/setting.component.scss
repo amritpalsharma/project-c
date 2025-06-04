@@ -405,3 +405,15 @@
     margin-right: 20px !important;
   }
 }
+
+
+@media (max-width: 991px) {
+  .settings-tabs {
+    li.nav-item {
+      button svg {
+        width: 25px !important;
+        height: 25px !important;
+      }
+    }
+  }
+}

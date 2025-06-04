@@ -39,11 +39,13 @@
               </div>
               <div>
                 <div class="user-media text-center ">
+                <span class="profile_img_bg_circle">
                   <img *ngIf="profileImage && !loading" [src]="profileImage" class="" alt="" />
                   <img *ngIf="!profileImage && user.club_logo_path != '' && user.status == '2'  && !loading"
-                    src="{{user.club_logo_path}}" class="" alt="" />
+                    src="{{user.club_logo_path}}" class="club_profile_mob_img" alt="" />
                   <img *ngIf="!profileImage && !user.club_logo_path  && !loading"
                     src="../../../../assets/images/default/talent-profile-default.png" class="" alt="" />
+                </span>
 
 
                   <div class="user-edit d-none">
@@ -135,7 +137,7 @@
                     <div class="col-sm-6 team-logos">
                       <div class="row">
                         <div class="col-sm-12 p-0">
-                          <h6 class="title_2 mb-1">{{ 'country' | translate }}</h6>
+                          <h6 class="title_2 mb-1 title_natinality">{{ 'country' | translate }}</h6>
                           <div class="d-flex align-items-center gap-1 mb-1">
                             <div class="team-badge_image">
                               <img *ngIf="user?.current_club_country_path" [src]="user?.current_club_country_path"

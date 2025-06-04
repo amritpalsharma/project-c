@@ -162,6 +162,11 @@ border-color: #D9D9D9 !important;
 }
 }
 
+@media (max-width: 767px) {
+.favorite_card .marketing-header-bar {
+  margin-bottom: 1rem;
+}
+}
 
 @media (max-width: 575px) {
 .mat-mdc-paginator-container {
