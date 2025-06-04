@@ -144,6 +144,7 @@ export class GeneralDetailsComponent {
       locale = 'sv-SE';
     }
     // getdomainId
+    currencySymbol = '£';
     let modifiedAmount = new Intl.NumberFormat(locale).format(amount);
     if (amount > 0) {
       return currencySymbol + ' ' + modifiedAmount;

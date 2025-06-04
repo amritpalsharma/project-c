@@ -100,7 +100,7 @@
                   <div class="boost_profile d-flex align-items-center" *ngIf="booster">
                     <span>{{'boostProfile' | translate}}</span>
                     <span class="active_btn">{{'active' | translate}}</span>
-                    <a (click)="editBooster(booster);" class="cursor-pointer team-badge_image">
+                    <a (click)="editBooster(booster);" class="cursor-pointer team-badge_image" matTooltip="{{'boostedProfileViews' | translate}}" matTooltipPosition="right">
                       <!-- <a href="talent/plans" class="cursor-pointer"> -->
                       <!-- <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path

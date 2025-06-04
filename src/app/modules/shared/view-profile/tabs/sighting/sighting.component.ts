@@ -94,6 +94,7 @@ export class SightingComponent {
           this.isLoading = false;
         } else {
           this.totalSightings = 0;
+          this.sightings = [];
           this.isLoading = false;
           console.error('Invalid API response structure:', response);
         }

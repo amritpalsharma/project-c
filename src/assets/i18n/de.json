@@ -35,7 +35,7 @@
   "foot": "Fuss",
   "age": "Alter",
   "featuredPhotosAndVideos": "Ausgewählte Fotos und Videos",
-  "upgradeToUnlock": "Upgrade zum Freischalten",
+  "upgradeToUnlock": "Mit Premium freischalten",
   "dontShowItAgain": "Nicht mehr anzeigen",
   "profilePhoto": "Profilfoto",
   "personalDetails": "Persönliche Angaben",
@@ -1267,7 +1267,7 @@
       "Erzählt eure Club-Geschichte."
     ]
   },
-  "noNotification": "Keine Benachrichtigung gefunden!",
+  "noNotification": "Keine Benachrichtigungen",
   "dontShowAgain": "Nicht mehr anzeigen",
   "cancelConfirmationMsg": "Bist du sicher, dass du diese Mitgliedschaft kündigen möchtest? Dies kann nicht rückgängig gemacht werden.",
   "youHaveAnActivePremiumPlan": "Du hast ein aktives Premium-Abo",
@@ -1479,5 +1479,7 @@
   "playerListHeading": "Neu im Spiel – Jetzt entdecken!",
   "verifiedStatus": "Verifiziert",
   "pendingStatus": "Ausstehend",
-  "rejectedStatus": "Abgelehnt"
+  "rejectedStatus": "Abgelehnt",
+  "doYouHaveAVoucherCode": "Hast du einen Gutscheincode?",
+  "boostedProfileViews":"Boost-Profil Ansichten"
 }

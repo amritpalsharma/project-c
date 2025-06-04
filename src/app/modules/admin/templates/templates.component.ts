@@ -36,7 +36,7 @@ export class TemplatesComponent {
   roles: any = [];
   langs: any = environment.langs;
   pageTitle: string = '';
-  count : number = 0;
+  count: number = 0;
 
   constructor(
     public dialog: MatDialog,
@@ -59,6 +59,7 @@ export class TemplatesComponent {
       if (data.action == 'lang_updated') {
         this.getJsonTranslations();
       }
+      this.getTemplates();
     });
 
     let envRoles: any = environment.roles;
@@ -147,7 +148,7 @@ export class TemplatesComponent {
     }
   }
 
-  showFiltersPopup() { 
+  showFiltersPopup() {
     alert('show filters popup')
     //   this.dialog.open(FilterPopupComponrnt,{
     //     height: '450px',
@@ -319,9 +320,16 @@ export class TemplatesComponent {
     this.getTemplates(true);
   }
 
+  // formatDateTime(datetime: string) {
+  //   // convertAdminDateTime
+  //   let formattedDate = this.adminHelper.convertAdminDateTime(datetime, 'users');
+  //   return formattedDate;
+  // }
+
   formatDateTime(datetime: string) {
     // convertAdminDateTime
-    let formattedDate = this.adminHelper.convertAdminDateTime(datetime, 'users');
+    // let formattedDate = this.adminHelper.convertAdminDateTime(datetime, 'users');
+    let formattedDate = this.adminHelper.getSwitzerlandTime(datetime);
     return formattedDate;
   }
 

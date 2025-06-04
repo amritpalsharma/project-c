@@ -21,7 +21,7 @@
   "age": "Età",
   "highlights": "Punti salienti",
   "featuredPhotosAndVideos": "Foto e video in evidenza",
-  "upgradeToUnlock": "Aggiornamento per sbloccare",
+  "upgradeToUnlock": "Sblocca con Premium",
   "generalDetails": "Dettagli generali",
   "dontShowItAgain": "Non mostrarlo più",
   "profilePhoto": "Profilo Photo",
@@ -1242,7 +1242,7 @@
   "youHaveAnActiveBoostPlan": "Avete un piano Boost attivo",
   "pleaseWait": "Attendere prego...",
   "uploadingPhotos": "Caricamento delle foto",
-  "noNotification": "Nessuna notifica trovata!",
+  "noNotification": "Nessuna notifica",
   "TOOLTIPS": {
     "removeFavorite": "Rimuovi dai preferiti",
     "addFavorite": "Aggiungi ai preferiti",
@@ -1471,5 +1471,7 @@
   "playerListHeading": "Nuovo nel gioco – Scoprilo ora!",
   "verifiedStatus": "Verificato",
   "pendingStatus": "In attesa",
-  "rejectedStatus": "Rifiutato"
+  "rejectedStatus": "Rifiutato",
+  "doYouHaveAVoucherCode": "Hai un codice voucher?",
+  "boostedProfileViews": "Visualizzazioni del profilo potenziate"
 }

@@ -16,7 +16,7 @@
   "league": "Liga",
   "highlights": "Højdepunkter",
   "featuredPhotosAndVideos": "Udvalgte fotos og videoer",
-  "upgradeToUnlock": "Opgrader for at låse op",
+  "upgradeToUnlock": "Lås op med Premium",
   "dontShowItAgain": "Vis det ikke igen",
   "profilePhoto": "Profil foto",
   "firstName": "Fornavn",
@@ -1108,7 +1108,7 @@
   "youHaveAnActiveBoostPlan": "Du har en aktiv Boost Plan",
   "pleaseWait": "Vent venligst lidt...",
   "uploadingPhotos": "Upload af fotos",
-  "noNotification": "Ingen notifikationer fundet!",
+  "noNotification": "Ingen meddelelser",
   "TOOLTIPS": {
     "removeFavorite": "Fjern fra favoritter",
     "addFavorite": "Føj til favoritter",
@@ -1338,5 +1338,7 @@
   "playerListHeading": "Ny i spillet – Opdag det nu!",
   "verifiedStatus": "Verificeret",
   "pendingStatus": "Afventer",
-  "rejectedStatus": "Afvist"
+  "rejectedStatus": "Afvist",
+  "doYouHaveAVoucherCode": "Har du en rabatkode?",
+  "boostedProfileViews": "Boostede profilvisninger"
 }

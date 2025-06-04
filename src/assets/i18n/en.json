@@ -127,7 +127,7 @@
   "title": "Title",
   "topSpeed": "Top Speed",
   "updatePage": "Update Page",
-  "upgradeToUnlock": "Upgrade to unlock",
+  "upgradeToUnlock": "Unlock with Premium",
   "upload": "Upload",
   "videos": "Videos",
   "weight": "Weight",
@@ -1181,7 +1181,7 @@
   "imageDeletedSuccess": "Image deleted successfully!",
   "failedToDeleteImage": "Failed to delete image.",
   "DeleteFailed": "Delete Failed",
-  "noNotification": "No Notification Found!",
+  "noNotification": "No notifications",
   "TOOLTIPS": {
     "profilePhoto": "Upload your best headshot to make a great first impression.",
     "removeFavorite": "Remove from favorites",
@@ -1385,5 +1385,7 @@
   "playerListHeading":"New in the game – Discover now!",
   "verifiedStatus":"Verified",
   "pendingStatus":"Pending",
-  "rejectedStatus":"Rejected"
+  "rejectedStatus":"Rejected",
+  "doYouHaveAVoucherCode":"Do you have a voucher code?",
+  "boostedProfileViews":"Boosted Profile Views"
 }

@@ -81,6 +81,7 @@ export class TeamsComponent {
           console.log(this.players)
           this.isLoading = false;
         } else {
+          this.players = [];
           this.isLoading = false;
           console.error('Invalid API response structure:', response);
         }

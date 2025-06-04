@@ -24,7 +24,7 @@
   "age": "Ålder",
   "highlights": "Höjdpunkter",
   "featuredPhotosAndVideos": "Utvalda foton och videor",
-  "upgradeToUnlock": "Uppgradera för att låsa upp",
+  "upgradeToUnlock": "Lås upp med Premium",
   "generalDetails": "Allmänna detaljer",
   "dontShowItAgain": "Visa det inte igen",
   "profilePhoto": "Profil foto",
@@ -1244,7 +1244,7 @@
   "youHaveAnActiveBoostPlan": "Du har en aktiv Boost Plan",
   "pleaseWait": "Vänligen vänta...",
   "uploadingPhotos": "Ladda upp foton",
-  "noNotification": "Inga meddelanden hittades!",
+  "noNotification": "Inga notiser",
   "TOOLTIPS": {
     "removeFavorite": "Ta bort från favoriter",
     "addFavorite": "Lägg till i favoriter",
@@ -1420,5 +1420,7 @@
   "playerListHeading": "Ny i spelet – Upptäck nu!",
   "verifiedStatus": "Verifierad",
   "pendingStatus": "Väntande",
-  "rejectedStatus": "Avvisad"
+  "rejectedStatus": "Avvisad",
+  "doYouHaveAVoucherCode": "Har du en rabattkod?",
+  "boostedProfileViews": "Förstärkta profilsvisningar"
 }
