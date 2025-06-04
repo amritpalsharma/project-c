@@ -360,7 +360,7 @@ td.cdk-column-Remove.mat-column-Remove svg {
   }
   }
 mat-datepicker-toggle button {
-    background-position: top 16px center !important;
+    background-position: top 13px center !important;
     background-size: 26px !important;
 }
 .website-code .feature-heading3, .website-code .club-heading4, .club-banner .title_text_p h3, .price-heading3, .club-banner .club_players h3,
@@ -1525,12 +1525,12 @@ body .cdk-overlay-pane .mat-mdc-dialog-container {
 body .cdk-overlay-pane .overflow-card {
     max-height: 100% !important;
 }
-body .popup__body {
-    max-height: 400px;
-    overflow: auto;
-}
 body .overflow-card.popup__body {
     max-height: 400px !important;
+    overflow: auto;
+}
+body .popup__body {
+    max-height: 400px;
     overflow: auto;
 }
 }
@@ -1558,7 +1558,14 @@ body .overflow-card.popup__body {
 .card .card-search {
     max-width: 100%;
 }
-
+body .overflow-card.popup__body {
+    max-height: 400px !important;
+    overflow: auto;
+}
+body .popup__body {
+    max-height: 310px !important;
+    overflow: auto;
+}
 .edit_button span, .edit_button button span {
     white-space: nowrap;
     overflow: hidden;
