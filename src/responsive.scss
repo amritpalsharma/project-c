@@ -264,8 +264,8 @@
 }
 .dashboard_page_only {
     .general_details td.cdk-column-Download.mat-column-Download svg {
-        width: 35px !important;
-        height: 35px !important;
+        width: 45px !important;
+        height: 45px !important;
     }
 }
 }
@@ -1156,8 +1156,8 @@ mat-datepicker-toggle button {
     }
     .dashboard_page_only {
         .general_details td.cdk-column-Download.mat-column-Download svg {
-            width: 40px !important;
-            height: 40px !important;
+            width: 55px !important;
+            height: 55px !important;
         }
     }
     .news_detail_text_container h3 {
@@ -1190,9 +1190,20 @@ mat-datepicker-toggle button {
 }
 
 @media (max-width: 991px) {
+.page-sidebar {
+    overflow-y: auto;
+    overflow-x: hidden;
+    .bottom_box {
+        border-top: 0 !important;
+        height: auto !important;
+        min-height: auto !important;
+        padding-top: 0 !important;
+    }
+}
 .page-sidebar-inner {
     overflow-x: hidden;
     overflow-y: auto;
+    height: unset !important;
 }
 .sidebar {
     position: fixed;
@@ -1208,6 +1219,10 @@ mat-datepicker-toggle button {
     .logo-box {
         justify-content: flex-start;
         padding: 0 10px;
+        position: sticky;
+        top: 0;
+        z-index: 9;
+        background: #397b2a;
     }
     .sidebar-close {
         top: 20px;
@@ -1745,13 +1760,6 @@ button.upload-btn {
     justify-content: center;
   }
 
-//   .popup__body {
-//     max-height: 350px;
-//     overflow: auto;
-//   }
-//   .overflow-card.popup__body {
-//     max-height: 70vh !important;
-// }
   input:not[type="submit"], textarea, select {
     font-size: 16px;
   }
@@ -1764,6 +1772,9 @@ button.upload-btn {
 }
 
 @media (max-width: 480px) {
+.footer_main.footer-responsive .footer-text {
+    max-width: 200px;
+}
 .justify_mobile .position-boxs{
     flex-wrap: wrap;
 }

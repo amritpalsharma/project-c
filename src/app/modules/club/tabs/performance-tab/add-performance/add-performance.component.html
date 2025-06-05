@@ -60,10 +60,15 @@
           <div class="row mb-md-5">
             <div class="form-group col-lg-10">
               <div class="col-lg-4 p-0">
-                <label for="form-date" class="form-label">Form-Upto</label>
                 <div class="date-imputs d-flex align-items-center">
+                  <div class="input_label_wrap w-100">
+                  <label for="form-date" class="form-label">Form</label>
                   <input type="date" name="from_date" class="form-upto_date" [(ngModel)]="performance.from_date" required>
+                  </div>
+                  <div class="input_label_wrap w-100">
+                  <label for="form-date" class="form-label">Upto</label>
                   <input type="date" name="to_date" class="form-upto_date-2" [(ngModel)]="performance.to_date" required>
+                  </div>
                 </div>
               </div>
             </div>

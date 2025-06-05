@@ -994,7 +994,6 @@
   align-items: center;
   justify-content: center;
 }
-
 .premium_button svg {
   width: 14px;
 }
@@ -1402,8 +1401,13 @@ span.active_btn {
   }
 }
 
-// new code
-/* Scoped styles for Intro.js in component.scss */
+::ng-deep .introjs-tooltipReferenceLayer * {
+  font-family: "Libre Franklin", sans-serif !important;
+}
+::ng-deep .close-section label {
+    font-weight: bold !important;
+    font-size: 95% !important;
+}
 ::ng-deep .custom-tooltip {
   background-color: unset !important;
   color: #000 !important;
@@ -1421,6 +1425,7 @@ span.active_btn {
   border: 3px solid #fff;
   border-radius: 50%;
   line-height: 0;
+  padding-top: 1px;
   width: 40px;
   height: 40px;
   display: flex;
@@ -1464,11 +1469,13 @@ span.active_btn {
 ::ng-deep .introjs-arrow.left {
   border-right-color: #ffc107;
   left: -9px;
+  top: 13px;
 }
 
 ::ng-deep .introjs-arrow.right {
   border-left-color: #ffc107;
   right: -9px;
+  top: 13px;
 }
 
 ::ng-deep .introjs-arrow.bottom {
@@ -1479,7 +1486,7 @@ span.active_btn {
 ::ng-deep .introjs-tooltiptext {
   background-color: #ffc107 !important;
   border-radius: 5px !important;
-  margin-top: 0;
+  margin-top: 8px;
   font-size: 15px;
   padding: 16px 20px;
 }
@@ -1519,6 +1526,28 @@ span.active_btn {
 ::ng-deep .introjs-dontShowAgain label {
   background: unset !important;
   color: #fff !important;
+}
+
+::ng-deep .dark-theme .social_icons svg path {
+  color: white !important;
+  fill: white;
+}
+
+::ng-deep .dark-theme .social_icons svg .linkedin-innerside {
+  color: white !important;
+  fill: #072944;
+}
+
+@media (min-width: 2700px) and (max-width: 2999px) {
+  ::ng-deep a.introjs-skipbutton {
+    padding-top: 2px;
+  }
+}
+
+@media (min-width: 3000px) {
+  ::ng-deep a.introjs-skipbutton {
+    padding-top: 4px;
+  }
 }
 
 
@@ -1714,7 +1743,16 @@ span.active_btn {
     margin-bottom: 15px;
     border-radius: 8px;
   }
-
+  .dashboard_mobile_design a.team-badge_image {
+right: -40px !important;
+top: 15px !important;
+position: absolute;
+padding: 0 !important;
+border: 0 !important;
+img {
+  max-width: 100%;
+}
+}
   .cover_pic_mobile {
     height: 200px !important;
 
@@ -1828,6 +1866,13 @@ span.active_btn {
     right: 30px !important;
     height: 32px !important;
   }
+  .dashboard_mobile_design a.team-badge_image {
+    right: -10px !important;
+    top: 2px !important;
+    position: absolute;
+    padding: 0 !important;
+    border: 0 !important;
+}
   .team-logos:not(:last-child) {
     border-bottom: 1px solid #E5E5E5;
     padding-bottom: 20px;

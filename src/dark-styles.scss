@@ -2895,3 +2895,23 @@ input:checked+.slider:before {
 .dark-theme .toast-error {
   background-image: url("./assets/images/toaster-dark-error.svg") !important;
 }
+
+.dark-theme .voucher_type button {
+    color: #BDE34E !important
+}
+.dark-theme .add-country-popup {
+  .buy-btn {
+    background: #BDE34E !important;
+    & * {
+      color: #072944 !important;
+    }
+  }
+}
+
+@media (max-width: 991px) {
+.dark-theme .sidebar {
+    .logo-box {
+        background: #072944 !important;
+    }
+  }
+}

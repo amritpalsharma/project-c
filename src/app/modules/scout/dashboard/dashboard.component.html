@@ -57,6 +57,8 @@
                         </svg>
 
                       </div>
+                      <a (click)="editBooster(booster)" class="edit-profile cursor-pointer team-badge_image" matTooltip="{{'boostedProfileViews' | translate}}" matTooltipPosition="right"><img src="../../../assets/images/rocket-icon-{{currentThemeMode}}.svg" alt="" />
+                    </a>
                     </label>
                     <input id="profile-upload" (change)="onProfileFileChange($event)" accept="image/*" type="file"
                       class="d-none" />
@@ -75,6 +77,8 @@
                         </svg>
 
                       </div>
+                      <a (click)="editBooster(booster)" class="edit-profile cursor-pointer team-badge_image" matTooltip="{{'boostedProfileViews' | translate}}" matTooltipPosition="right"><img src="../../../assets/images/rocket-icon-{{currentThemeMode}}.svg" alt="" />
+                    </a>
                     </label>
                   </div>
                   <div class="premium_button " *ngIf="premium">
