@@ -2892,6 +2892,9 @@ input:checked+.slider:before {
       fill: #fff !important;
     }
   }
+  td.mat-column-Download svg.pointer path, td.cdk-column-Download svg.pointer path, svg.dark_mode_white path {
+    stroke: #fff !important;
+}
 }
 
 .dark-theme .toast-error {

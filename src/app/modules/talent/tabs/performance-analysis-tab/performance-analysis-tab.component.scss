@@ -347,8 +347,9 @@ tr.table_underline {
     border-color: #6FB95D;
 }
 td.cdk-column-Download.mat-column-Download svg {
-    width: 30px;
-    height: 30px;
+    width: 35px !important;
+    height: 35px !important;
+    padding-right: 0 !important;
 }
 
 

@@ -1558,7 +1558,7 @@ span.active_btn {
 @media (min-width: 1200px) {
 
   .cover_pic_mobile,
-  .mobile_profile_buttons {
+  .mobile_profile_buttons, span.icon-bg.pdf_btn_icon a.team-badge_image {
     display: none !important;
   }
 
