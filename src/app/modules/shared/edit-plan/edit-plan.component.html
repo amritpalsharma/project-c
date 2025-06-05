@@ -88,8 +88,10 @@
       </div>
     </div>
     <div class="subscription-type voucher_type mt-4">
-      <h2 class="mb-3">
-        <button type="button" (click)="openCouponDialog(selectedPlan?.id)"  [ngClass]="{'d-none': !selectedCountryIds || !selectedCountryIds.length}">{{'doYouHaveAVoucherCode'|
+      <h2 class="mb-3" [ngClass]="{'d-none':isHideCouponCodeOption}">
+        <button type="button"
+          (click)="openCouponDialog(isYearly ? selectedPlan?.yearly?.id : selectedPlan?.monthly?.id)"
+          [ngClass]="{'d-none': !selectedCountryIds || !selectedCountryIds.length}">{{'doYouHaveAVoucherCode'|
           translate}}
         </button>
       </h2>

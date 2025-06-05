@@ -1,6 +1,6 @@
 <!-- unlock page  -->
 <div class="" *ngIf="!isPremium">
-    <div class="general_titels d-flex align-items-center mb-2">
+    <div class="general_titels d-flex align-items-center mb-2 d-none">
         <h2>{{ 'generalDetails' | translate}}</h2>
         <div class="edit_button">
             <button class="tour-general-details" matTooltip="{{ 'editGeneralDetails' | translate }}"
@@ -15,7 +15,7 @@
             </button>
         </div>
     </div>
-    <div class="forms_details">
+    <div class="forms_details d-none">
         <form class="d-flex align-items-center form-boxs">
             <div class="email_box">
                 <label for="email">{{ 'email' | translate}}</label><br>

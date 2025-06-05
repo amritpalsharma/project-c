@@ -1,0 +1,65 @@
+<div class="edit-multi-country-plan container border-0 rounded p-0">
+    <div class="personal_edit p-3 popup_header">
+        <div class="dialog-header m-auto ">
+            <h2>{{ 'premium' | translate }}</h2>
+        </div>
+        <div class="close_buttons" *ngIf='theme=="light"'>
+            <button class="close-btn border-0 padding-0" aria-label="Close" (click)="cancel()">
+                <img src="../../../../assets/images/carbon_close-outline-light.svg" alt="">
+            </button>
+        </div>
+        <div class="close_buttons" *ngIf='theme=="dark"'>
+            <button class="close-btn border-0 padding-0" aria-label="Close" (click)="cancel()">
+                <img src="../../../../assets/images/carbon_close-outline.svg" alt="">
+            </button>
+        </div>
+    </div>
+    <!-- <hr> -->
+
+    <div class="country-plan popup__body">
+        <div class="country-selection mb-4">
+            <!-- <h2>{{selectedPlan/ | json}}</h2> -->
+            <div class="form-group col-lg-7">
+
+            </div>
+        </div>
+
+        <div class="subscription-type mt-4">
+            <h2 class="mb-3">{{'subscriptionType' | translate}}</h2>
+            <div class="form-check p-0">
+                <input id="radio-1" class="form-check-input radio-custom" type="radio" name="isYearly" [value]="false"
+                    [(ngModel)]="isYearly" (change)="toggleBillingPlan(false)">
+                <label for="radio-1" class="form-check-label radio-custom-label smaller-letters">{{'monthly' |
+                    translate}}</label>
+            </div>
+            <div class="form-check p-0">
+                <input id="radio-2" class="form-check-input radio-custom" type="radio" name="isYearly" [value]="true"
+                    [(ngModel)]="isYearly" (change)="toggleBillingPlan(true)">
+                <label for="radio-2" class="form-check-label radio-custom-label smaller-letters">{{'yearly' |
+                    translate}}</label>
+            </div>
+        </div>
+        <div class="subscription-type voucher_type mt-4">
+            <h2 class="mb-3">
+                <button type="button" (click)="openCouponDialog()">
+                    {{'doYouHaveAVoucherCode'|translate}}
+                </button>
+            </h2>
+        </div>
+    </div>
+
+    <div class="country-plan-2 p-3 popup_footer">
+        <div class="actions d-flex justify-content-end">
+            <button class="btn action-cancel" (click)="cancel()">{{'cancel' | translate}}</button>
+            <button class="btn buy-btn d-flex align-items-center gap-5" (click)="buyPlan()">
+                <div class="buy-button">
+                    <h4>
+                        {{ isYearly ? selectedPlan?.priceYearly : selectedPlan?.priceMonthly }}
+                        .- {{ selectedPlan?.currency }} / {{ isYearly ? ('year' | translate ) : ('month' | translate) }}
+                    </h4>
+                </div>
+                <span>{{'buyNow' | translate}} <i class="fa-solid fa-angle-right"></i></span>
+            </button>
+        </div>
+    </div>
+</div>

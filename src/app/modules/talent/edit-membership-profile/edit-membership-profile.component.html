@@ -1,7 +1,7 @@
 <div class="boost-profile boost-profile_popup">
     <div class="personal_edit popup_header p-3">
         <div class="dialog-header mx-auto">
-            <h2 class="text-center">{{ 'editBoostProfile' | translate }}</h2>
+            <h2 class="text-center">{{ 'boostedProfileViews' | translate }}</h2>
             <!-- <pre>{{loggedInUser | json}}</pre> -->
         </div>
         <!-- <div class="close_buttons">
@@ -212,7 +212,7 @@
                                                 {{ user.created_at | date:'dd.MM.yyyy' }}
                                             </h6>
                                         </td>
-                                        <td (click)="naviGateToProfile(user.role_id,user.user_id)">
+                                        <td (click)="naviGateToProfile(user.role_id,user.user_id)" class="cursor-pointer">
                                             <div class="main-template">
                                                 <svg width="25" height="25" viewBox="0 0 25 25" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg" class="pointer">

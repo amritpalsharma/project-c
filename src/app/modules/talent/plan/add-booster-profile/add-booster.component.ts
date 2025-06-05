@@ -21,6 +21,12 @@ export class AddBoosterComponent {
   talent: string = '';
   scout: string = '';
   club: string = '';
+
+
+  youHaveAlreadyThisPlan: string = '';
+  youHaveAlreadyThisPlanTitle: string = '';
+  subscriptionCanceledSuccessfully: string = '';
+  successTxt: string = '';
   // @Input() 
   audiences = [
     { role: this.club, id: 2 },
@@ -67,6 +73,7 @@ export class AddBoosterComponent {
     this.stripe = await this.paymentService.getStripe();
 
     this.getToasterMsg();
+    this.updateTranslation();
     this.webPages.languageId$.subscribe((data: any) => {
       this.getToasterMsg();
       this.audiences = [
@@ -103,17 +110,34 @@ export class AddBoosterComponent {
   }
 
   saveBoost() {
-    // if()
-    if (this.plan && this.plan.interval == 'monthly' && this.boostedPlans.isYearly) {
-      // console.info('user need to upgrade plan from montly to yearly');
+
+    if (this.boostedPlans?.active_interval == 'monthly' && !this.boostedPlans?.isYearly) {
+      this.toastr.error(this.youHaveAlreadyThisPlan, this.youHaveAlreadyThisPlanTitle);
+    } else if (this.boostedPlans?.active_interval == 'monthly' && this.boostedPlans?.isYearly) {
+      // this.toastr.error(this.youHaveAlreadyThisPlan, this.youHaveAlreadyThisPlanTitle);
+      // this.selectedPlan?.monthly?.stripe_plan_id
       this.updatePlan(this.boostedPlans, true, this.plan);
-      return;
-    } else if (this.plan && this.plan.interval == 'yearly' && !this.boostedPlans.isYearly) {
-      // console.info('user need to downgraded plan from yearly to monthly');
-      this.updatePlan(this.boostedPlans, false, this.plan);
-      return;
+      // this.updatePlanByIDS(this.boostedPlans?.monthly?.stripe_plan_id, this.boostedPlans?.yearly?.package_id);
     }
-    this.openCouponDialog()
+    else if (this.boostedPlans?.active_interval == 'yearly') {
+      console.log('You Have Yearly Plan You cannot buy monthly plan');
+      this.toastr.error(this.youHaveAlreadyThisPlan, this.youHaveAlreadyThisPlanTitle);
+    } else {
+      this.redirectToCheckout(this.id, this.selectedAudienceIds);
+    }
+    // return;
+
+    // if (this.plan && this.plan.interval == 'monthly' && this.boostedPlans.isYearly) {
+    //   // console.info('user need to upgrade plan from montly to yearly');
+    //   this.updatePlan(this.boostedPlans, true, this.plan);
+    //   return;
+    // } else if (this.plan && this.plan.interval == 'yearly' && !this.boostedPlans.isYearly) {
+    //   // console.info('user need to downgraded plan from yearly to monthly');
+    //   this.updatePlan(this.boostedPlans, false, this.plan);
+    //   return;
+    // }
+
+
   }
 
   updatePlan(plan: any, isYearly: boolean, subscribeId: any) {
@@ -130,6 +154,20 @@ export class AddBoosterComponent {
         this.updateSubscription(subscribeId.id, newPlanId.id);
       } else {
         plan.isYearly = originalIsYearly;
+      }
+    });
+  }
+
+  updatePlanByIDS(fromPlan: any, toPlan: any) {
+
+
+    const dialogRef = this.dialog.open(UpdateConfirmationPlanComponent, {
+      // data: { plan, isYearly }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.updateSubscription(fromPlan, toPlan);
       }
     });
   }
@@ -236,6 +274,27 @@ export class AddBoosterComponent {
       this.club = translations['club'];
       this.pleaseWait = translations['pleaseWait'];
       this.Processing = translations['Processing'];
+    });
+  }
+
+  toggleBillingPlan(isYearly: boolean) {
+    this.boostedPlans.isYearly = isYearly;
+    // this.boostedPlans
+    if (isYearly) {
+      this.id = this.boostedPlans?.yearly?.id;
+    } else {
+      this.id = this.boostedPlans?.monthly?.id;
+    }
+  }
+
+  updateTranslation() {
+    this.translateService.get(['subscriptionCanceledSuccessfully', 'success!', 'pleaseWait', 'Processing', 'youHaveAlreadyThisPlan', 'youHaveAlreadyThisPlanTitle']).subscribe((res: any) => {
+      this.subscriptionCanceledSuccessfully = res['subscriptionCanceledSuccessfully'];
+      this.successTxt = res['success!'].toUpperCase();
+      this.pleaseWait = res['pleaseWait'];
+      this.Processing = res['Processing'];
+      this.youHaveAlreadyThisPlan = res['youHaveAlreadyThisPlan'];
+      this.youHaveAlreadyThisPlanTitle = res['youHaveAlreadyThisPlanTitle'];
     });
   }
 }

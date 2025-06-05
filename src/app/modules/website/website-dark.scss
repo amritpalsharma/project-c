@@ -2607,19 +2607,4 @@ body.dark-theme.static-common-banner {
   .features1 .accordion-flex button.accordion-button.collapsed::after {
     background-image: url(/assets/images/dark-arrow-down.svg) !important;
   }
-
-  .toast-bottom-right .toast-error {
-    background-color: #bde34f !important;
-    color: black;
-  }
-
-  .toast-bottom-right .toast-error::before {
-    color: rgb(70, 167, 14) !important;
-    /* Or any color you want */
-  }
-
-  .toast-error {
-    // background-image: url();
-    background-image: url("/assets/images/toaster-dark-error.svg") !important;
-  }
 }

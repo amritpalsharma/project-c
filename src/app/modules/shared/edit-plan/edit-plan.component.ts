@@ -18,6 +18,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./edit-plan.component.scss']
 })
 export class EditPlanComponent implements OnInit {
+  isHideCouponCodeOption: boolean = false;
   action: string = 'buy';
   countries: any[] = []; // Array to hold country plans
   selectedCountries: any[] = []; // Holds the selected countries
@@ -71,11 +72,12 @@ export class EditPlanComponent implements OnInit {
     // console.info('this.activePlans', this.activePlans)
     // checkPlanExistance
     if (this.data.allPlans && typeof this.data.allPlans != undefined) {
-      this.allPlans = this.data.allPlans.filter((plan: any) => plan.interval === 'monthly');
-    }
-    if (this.data.allPlans && typeof this.data.allPlans != undefined) {
       this.countryAllPlans = this.data.allPlans;
     }
+    if (this.data.allPlans && typeof this.data.allPlans != undefined) {
+      this.allPlans = this.data.allPlans.filter((plan: any) => plan.interval === 'monthly');
+    }
+
     this.populateCountries();
     this.defaultCard = this.data.defaultCard;
     this.selectedCountries = this.data.country;
@@ -152,16 +154,60 @@ export class EditPlanComponent implements OnInit {
   }
 
   openCouponDialog(planId: any): void {
-    const dialogRef = this.dialog.open(CouponCodeAlertComponent, { width: '500px' });
+    console.log('planId', planId);
+    let isBuyedPlan = this.getSelectedPlanInterval();
+    console.warn('isBuyedPlan', isBuyedPlan)
+    let Yearly = this.data.allPlans.filter((plan: any) => plan.id === planId);
+    // console.log('Yearly',Yearly)
+    if (typeof isBuyedPlan != undefined && isBuyedPlan == 'monthly' && !this.isYearly) {
+      console.warn('You Have already ' + isBuyedPlan + ' Plan You Cant Buy Again');
+      this.toastr.error(this.youHaveAlreadyThisPlan, this.youHaveAlreadyThisPlanTitle);
+      return;
+    }
+    if (typeof isBuyedPlan != undefined && isBuyedPlan == 'yearly' && this.isYearly) {
+      this.toastr.error(this.youHaveAlreadyThisPlan, this.youHaveAlreadyThisPlanTitle);
+      console.warn('You Have already ' + isBuyedPlan + ' Plan You Cant Buy Again');
+      return;
+    }
+    if (isBuyedPlan === 'yearly' && !this.isYearly) {
+      console.warn('You Have already ' + isBuyedPlan + ' Plan You Cant Downgrade this');
+      this.toastr.error(this.youHaveAlreadyThisPlan, this.youHaveAlreadyThisPlanTitle);
+      return;
+    }
 
-    dialogRef.afterClosed().subscribe(result => {
+    if (isBuyedPlan === 'monthly' && this.isYearly) {
+      if (
+        typeof this.selectedPlan?.monthly?.stripe_plan_id != undefined
+        &&
+        this.selectedPlan?.monthly?.stripe_plan_id
+        &&
+        typeof this.selectedPlan?.yearly?.package_id != undefined
+        &&
+        this.selectedPlan?.yearly?.package_id
+      ) {
+        this.isHideCouponCodeOption = true;
+      } else {
+        this.isHideCouponCodeOption = false;
+      }
+    } else {
+      this.isHideCouponCodeOption = false;
+    }
+
+
+    // let dialogRef;
+    // dialogRef = this.dialog.open(CouponCodeAlertComponent, { width: '500px', data: { action: 'upgrade_plan', from_plan_id: this.oldCountryPlanId, to_plan_id: this.newCountryPlanID } });
+    const dialogRef = this.dialog.open(CouponCodeAlertComponent, { width: '500px' });
+    dialogRef.afterClosed().subscribe((result: any) => {
       // console.info('After coupoun', result);
       if (result) {
+        if (result.action && result.action == 'upgrade') {
+
+        }
         let coupon = result;
         if (result == 'proceed_to_checkout_without_coupon') {
           coupon = '';
         }
-        this.couponCode = coupon; 
+        this.couponCode = coupon;
         this.redirectToCheckout(planId, coupon);
       } else if (result === null) {
         // this.redirectToCheckout(planId);
@@ -173,7 +219,7 @@ export class EditPlanComponent implements OnInit {
 
 
     if (this.isPlanAlreadySelected()) {
-      this.toastr.warning(this.youHaveAlreadyThisPlan, this.youHaveAlreadyThisPlanTitle);
+      this.toastr.error(this.youHaveAlreadyThisPlan, this.youHaveAlreadyThisPlanTitle);
       return;
     }
 
@@ -189,7 +235,7 @@ export class EditPlanComponent implements OnInit {
           if (this.selectedCountryIds != undefined && this.selectedCountryIds.length > 0) {
             this.isCountrySelected = true;
             // this.openCouponDialog(planId.id);
-              this.redirectToCheckout(planId.id, this.couponCode);
+            this.redirectToCheckout(planId.id, this.couponCode);
           } else {
             this.isCountrySelected = false;
           }
@@ -277,12 +323,25 @@ export class EditPlanComponent implements OnInit {
     this.isYearly = isYearly; // Toggle between monthly and yearly
     if (this.selectedCountryIds.length > 0) {
       // console.log(this.selectedCountryIds);
-      //  this.checkPlanExistance(this.selectedPlanID);
     }
-    console.log('selectedPlan', this.selectedPlan);
-    console.log('activePlans', this.activePlans);
-
-
+    let isBuyedPlan = this.getSelectedPlanInterval();
+    if (isBuyedPlan === 'monthly' && this.isYearly) {
+      if (
+        typeof this.selectedPlan?.monthly?.stripe_plan_id != undefined
+        &&
+        this.selectedPlan?.monthly?.stripe_plan_id
+        &&
+        typeof this.selectedPlan?.yearly?.package_id != undefined
+        &&
+        this.selectedPlan?.yearly?.package_id
+      ) {
+        this.isHideCouponCodeOption = true;
+      } else {
+        this.isHideCouponCodeOption = false;
+      }
+    } else {
+      this.isHideCouponCodeOption = false;
+    }
 
   }
 
@@ -314,7 +373,7 @@ export class EditPlanComponent implements OnInit {
 
   confirmAndCancelSubscription(subscriptionId: string, canceled = false): void {
     if (canceled) {
-      this.toastr.warning('Subscription is already canceled.', 'Warning');
+      this.toastr.error('Subscription is already canceled.', 'Warning');
       return;
     }
 
@@ -408,15 +467,24 @@ export class EditPlanComponent implements OnInit {
       this.isCountrySelected = true;
     }
     this.selectedPlan = this.countries.find(country => country.id === this.selectedCountryIds);
-    // this.checkPlanExistance(currentPlanID);
-
-    // If a matching plan is found, return true, otherwise return false
-    // return plan !== undefined;
-    // console.log(plan);
-
-    // else{
-    //   this.isCountrySelected = true;
-    // }
+    let isBuyedPlan = this.getSelectedPlanInterval();
+    if (isBuyedPlan === 'monthly' && this.isYearly) {
+      if (
+        typeof this.selectedPlan?.monthly?.stripe_plan_id != undefined
+        &&
+        this.selectedPlan?.monthly?.stripe_plan_id
+        &&
+        typeof this.selectedPlan?.yearly?.package_id != undefined
+        &&
+        this.selectedPlan?.yearly?.package_id
+      ) {
+        this.isHideCouponCodeOption = true;
+      } else {
+        this.isHideCouponCodeOption = false;
+      }
+    } else {
+      this.isHideCouponCodeOption = false;
+    }
   }
 
   // Function to return custom selected display text (showing locations)
@@ -486,9 +554,6 @@ export class EditPlanComponent implements OnInit {
     }
     console.log('Selected  Id is ' + currentPlanID + ' interval selected ' + planInterval)
     const plan = this.activePlans.find(plan => plan.id === currentPlanID && plan.interval === planInterval);
-    // const plan = this.countryAllPlans.find(plan => plan.id === currentPlanID && plan.interval === planInterval);
-    // console.log('planplanplanplanplanplan', plan)
-    // console.log('CurrentActivePlan',plan);
     if (plan && typeof plan !== undefined) {
 
       this.isCountrySelected = true;
@@ -511,10 +576,6 @@ export class EditPlanComponent implements OnInit {
       } else if (typeof currentPlanID != undefined && currentPlanID != 0) {
         this.openCouponDialog(currentPlanID);
       }
-
-      // currentPlanID
-      //console.log('you need to upgrade a plan you have already ' + planError.package_name + '  ' + planError.interval + ' why do you need to purchse monthly you have already Yearly Plan');
-      // console.log('you need to buy a plan');
     }
 
   }
@@ -525,6 +586,7 @@ export class EditPlanComponent implements OnInit {
       this.toastr.error(this.youHaveAlreadyThisPlan, this.youHaveAlreadyThisPlanTitle);
       return;
     }
+    console.warn(this.action);
     if (this.action == 'buy') {
       this.buyNow();
     } else if (this.action == 'upgrade') {

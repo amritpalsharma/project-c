@@ -20,7 +20,10 @@
           {{ 'checkCoupon' | translate }}
         </button>
 
-        <button *ngIf="couponApplied" class="btn bg-green proceed-btn" (click)="proceedToCheckout()">
+        <button *ngIf="couponApplied && !isupgradePlan" class="btn bg-green proceed-btn" (click)="proceedToCheckout()">
+          {{ 'proceedToCheckout' | translate }}
+        </button>
+        <button *ngIf="couponApplied && isupgradePlan" class="btn bg-green proceed-btn" (click)="proceedToUpgrade()">
           {{ 'proceedToCheckout' | translate }}
         </button>
       </div>

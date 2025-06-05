@@ -17,6 +17,7 @@ import { WebPages } from '../../../services/webpages.service';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { TitleService } from '../../../title.service';
 import { Router } from '@angular/router';
+import { PremiumPurchaseComponent } from '../../shared/premium-purchase/premium-purchase.component';
 // import { LoaderComponent } from '../../shared/loader/loader.component';
 
 
@@ -61,6 +62,7 @@ export class PlanComponent implements OnInit, OnDestroy {
   plans: any;
   maxQuantity: number = 10;
   premiumPlans: any;
+  premiumPlanTxt: string = '';
   boostedPlans: any;
   countryPlans: any;
   demoPlans: any;
@@ -142,38 +144,51 @@ export class PlanComponent implements OnInit, OnDestroy {
 
   // Open coupon dialog
   openCouponDialog(planId: any): void {
-    console.log(planId)
     // alert('Dailog Open');
 
     if (this.isPremiumPurchased == 'monthly' || this.isPremiumPurchased == 'yearly') {
       console.info('Already Premium ' + this.isPremiumPurchased + ' Plan is Purchased');
       if (this.isPremiumPurchased == 'monthly' && this.premiumPlans.isYearly) {
-        // console.info('user need to upgrade plan from montly to yearly');
         this.updatePlan(this.premiumPlans, true, this.premiumPurchased);
         return;
       } else if (this.isPremiumPurchased == 'yearly' && !this.premiumPlans.isYearly) {
-        // console.info('user need to downgraded plan from yearly to monthly');
         this.updatePlan(this.premiumPlans, false, this.premiumPurchased);
         return;
       }
     }
 
-    const dialogRef = this.dialog.open(CouponCodeAlertComponent, {
-      width: '500px'
+    const dialogRef = this.dialog.open(PremiumPurchaseComponent, {
+      width: '500px',
+      data: {
+        action: 'premiumPlan',
+        planName: this.premiumPlanTxt,
+        isYearly: this.premiumPlans.isYearly,
+        premiumPlans: this.premiumPlans
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.warn(result)
-      if (result) {
-        if (result == 'proceed_to_checkout_without_coupon') {
-          this.isCouponApplied = false; // Show that the coupon has been applied
-          this.couponCode = ''; // Store the coupon code entered by the user
-        } else {
-          this.isCouponApplied = true; // Show that the coupon has been applied
-          this.couponCode = result; // Store the coupon code entered by the user
-        }
+      // console.warn(result)
+      if (result && typeof result.coupon_code != undefined && result.coupon_code != '') {
+        this.isCouponApplied = true;
+        this.couponCode = result.coupon_code;
+        this.redirectToCheckout(planId);
+      } else if (result == 'buy_plan') {
+        this.isCouponApplied = false;
+        this.couponCode = '';
         this.redirectToCheckout(planId);
       }
+      // if (result) {
+      //   if (result == 'proceed_to_checkout_without_coupon') {
+      //     this.isCouponApplied = false; // Show that the coupon has been applied
+      //     this.couponCode = ''; // Store the coupon code entered by the user
+      //   } else {
+      //     this.isCouponApplied = true; // Show that the coupon has been applied
+      //     this.couponCode = result; // Store the coupon code entered by the user
+      //   }
+
+      // }
+
     });
   }
 
@@ -576,7 +591,7 @@ export class PlanComponent implements OnInit, OnDestroy {
             this.toastr.success('Plan has been updated successfully.');
           }
           this.getUserPlans();
-          
+
           const url = this.router.url;
           const role = url.split('/')[1];
           this.router.navigate([`${role}/success`]);
@@ -781,6 +796,7 @@ export class PlanComponent implements OnInit, OnDestroy {
     this.translate.get(['plans', 'boostProfile']).subscribe((translations) => {
       this.pageTitle = translations['plans'];
       this.boostProfileTxt = translations['boostProfile'];
+      this.premiumPlanTxt = translations['premium'];
       this.titleService.setTitle(this.pageTitle);
       console.log('Title fetch Function Fired');
     })

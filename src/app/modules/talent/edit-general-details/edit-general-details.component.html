@@ -70,7 +70,7 @@
                 <div class="col-lg-12 mobile-input">
                   <label for="marketValue" class="form-label">{{'marketValue' | translate}}(EUR)</label>
                   <input type="text" class="form-control" id="marketValue" name="market_value"
-                    placeholder="{{'enterValue' | translate}}" [(ngModel)]="market_value" />
+                    [placeholder]="market_value ? numberFormatStyle(market_value) : ('enterValue' | translate)" [(ngModel)]="market_value" />
                 </div>
               </div>
               <div class="ground-image col-lg-12 mt-5">

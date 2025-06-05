@@ -2240,28 +2240,42 @@ input:checked+.slider:before {
 }
 
 .dark-theme .country-information p,
-.dark-theme .country-information h2, .dark-theme .social_heading,
-.dark-theme span.platform_url, .dark-theme span.social_heddig {
+.dark-theme .country-information h2,
+.dark-theme .social_heading,
+.dark-theme span.platform_url,
+.dark-theme span.social_heddig {
   color: #fff !important;
 }
+
 .dark-theme .document-title_box input:focus-visible {
   outline: none;
 }
 
-.dark-theme .transfer_box h2, .dark-theme .transfer_box p, .dark-theme .transfer_box button,
-.dark-theme .player-title h6, .dark-theme .details-1, .dark-theme .email_box label, .dark-theme .password_box label, .dark-theme .general-details p, 
-.dark-theme .bottom-details p, .dark-theme .social_network input, .dark-theme span.note_titles, .dark-theme .reset_box label, 
+.dark-theme .transfer_box h2,
+.dark-theme .transfer_box p,
+.dark-theme .transfer_box button,
+.dark-theme .player-title h6,
+.dark-theme .details-1,
+.dark-theme .email_box label,
+.dark-theme .password_box label,
+.dark-theme .general-details p,
+.dark-theme .bottom-details p,
+.dark-theme .social_network input,
+.dark-theme span.note_titles,
+.dark-theme .reset_box label,
 .dark-theme .document-title_box label {
   color: #fff;
 }
 
 .dark-theme {
-.table_underline .edit-gap button {
-  border-color: #fff !important;
-}
-.elton-close_btn svg, .table_underline .edit-gap button svg path {
-  fill: #fff;
-}
+  .table_underline .edit-gap button {
+    border-color: #fff !important;
+  }
+
+  .elton-close_btn svg,
+  .table_underline .edit-gap button svg path {
+    fill: #fff;
+  }
 }
 
 .dark-theme .primary-label {
@@ -2807,7 +2821,9 @@ input:checked+.slider:before {
 }
 
 .dark-theme {
-  .social_icons a, .main-position .social_icons {
+
+  .social_icons a,
+  .main-position .social_icons {
     color: #fff !important;
   }
 
@@ -2869,29 +2885,41 @@ input:checked+.slider:before {
   .card-header .mat-mdc-paginator-range-actions svg.mat-mdc-paginator-icon {
     fill: #072944 !important;
   }
+
   .dashboard_tabs_add_btn {
     background: #BDE34F !important;
     color: #072944 !important;
-  border-color: #BDE34F !important;
-  font-weight: 600;
+    border-color: #BDE34F !important;
+    font-weight: 600;
+
     svg {
       fill: #072944 !important;
     }
   }
 
   .mat-mdc-icon-button .mat-mdc-paginator-icon {
-      fill: #072944 !important;
+    fill: #072944 !important;
   }
+
   .justify-between span.text-muted-foreground {
     color: #fff !important;
   }
+
   .hide_table_for_desktop span.pointer svg:not(.icon__download) {
     path {
       fill: #fff !important;
     }
   }
+
 }
 
-.dark-theme .toast-error {
+.dark-theme .toast-error,
+.dark-theme .toast-warning {
+  color: black !important;
   background-image: url("./assets/images/toaster-dark-error.svg") !important;
+  background-color: #bde34f !important;
+}
+
+.dark-theme .toast-success, .dark-theme .toast-info {
+  background-color: #51A351 !important;
 }

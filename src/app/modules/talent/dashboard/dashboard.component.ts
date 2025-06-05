@@ -44,6 +44,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   UserName: string = '';
   photoLoading: boolean = true;
   stats: any = [];
+  accountVerificationPending:string='';
 
 
   constructor(
@@ -758,7 +759,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   openEditDialog() {
-    console.info('Data passed ', this.user)
+    // if(!this.isUserVerified){
+    //   this.toastr.warning(this.accountVerificationPending);
+    //   return;
+    // }
+
+    // console.info('Data passed ', this.user)
     const dialogRef = this.dialog.open(EditPersonalDetailsComponent, {
       width: '800px',
       data: { user: this.user, countries: this.countries }
@@ -1404,7 +1410,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   getToasterMsg() {
-    this.translateService.get(['pleaseWait', 'uploadingPhotos', 'success!', 'error', 'deletingCoverImage', 'coverImageDeletionCanceled', 'Canceled']).subscribe((translations) => {
+    this.translateService.get(['pleaseWait', 'uploadingPhotos', 'success!', 'error', 'deletingCoverImage', 'coverImageDeletionCanceled', 'Canceled', 'accountVerificationPending']).subscribe((translations) => {
       this.pleaseWait = translations['pleaseWait'];
       this.uploadingPhotos = translations['uploadingPhotos'];
       this.successTxt = translations['success!'];
@@ -1412,6 +1418,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.deletingCoverImage = translations['deletingCoverImage'];
       this.coverImageDeletionCanceled = translations['coverImageDeletionCanceled'];
       this.Canceled = translations['Canceled'];
+      this.accountVerificationPending = translations['accountVerificationPending'];
     });
   }
 

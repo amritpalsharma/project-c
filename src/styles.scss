@@ -1387,8 +1387,8 @@ table {
   }
 
   .profile img {
-        height: 45px !important;
-        width: 45px !important;
+    height: 45px !important;
+    width: 45px !important;
   }
 
   .page-header .navbarcollapse .navbar-nav {
@@ -2725,36 +2725,50 @@ table td .icon_text_icon {
 
 
 .overflow-card .form-check.checkbox input[name="noClub"] {
-    top: 3px;
-    position: relative;
+  top: 3px;
+  position: relative;
 }
 
 .paginator-components .mat-mdc-paginator-range-actions button.mat-mdc-paginator-navigation-next {
-    margin-left: 10px !important;
+  margin-left: 10px !important;
 }
+
 .light-theme {
-.dashboard_tabs_add_btn {
-  background: #6fb95d !important;
-  color: #fff !important;
-  border-color: #6fb95d !important;
-  font-weight: 600;
-  svg {
-    fill: #fff !important;
+  .dashboard_tabs_add_btn {
+    background: #6fb95d !important;
+    color: #fff !important;
+    border-color: #6fb95d !important;
+    font-weight: 600;
+
+    svg {
+      fill: #fff !important;
+    }
   }
-}
 }
 
 
 input[type=number]::-webkit-outer-spin-button,
 input[type=number]::-webkit-inner-spin-button {
-    -webkit-appearance: none !important;
-    margin: 0;
+  -webkit-appearance: none !important;
+  margin: 0;
 }
 
 input[type=number] {
-    -moz-appearance:textfield !important;
+  -moz-appearance: textfield !important;
 }
 
 .title_natinality {
   padding-left: 40px;
+}
+
+.toast-error,
+.toast-warning {
+  color: white !important;
+  // background-image: url("./assets/images/toaster-dark-error.svg") !important;
+  background-color: #E05263 !important;
+}
+
+.toast-success,
+.toast-info {
+  background-color: #51A351 !important;
 }

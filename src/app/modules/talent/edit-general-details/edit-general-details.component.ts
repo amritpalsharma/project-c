@@ -10,6 +10,7 @@ import { default as _rollupMoment } from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { WebPages } from '../../../services/webpages.service';
 import { TranslateService } from '@ngx-translate/core';
+import { GlobalSettingsService } from '../../../services/global-settings.service';
 
 const moment = _rollupMoment || _moment;
 
@@ -20,7 +21,7 @@ const moment = _rollupMoment || _moment;
 })
 export class EditGeneralDetailsComponent {
 
-  theme : any = localStorage.getItem('theme');
+  theme: any = localStorage.getItem('theme');
 
   positions: any[] = [];
   readonly date = new FormControl(moment());
@@ -71,7 +72,8 @@ export class EditGeneralDetailsComponent {
     private toastr: ToastrService,
     private webPages: WebPages,
     private translateService: TranslateService,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public globalSetting: GlobalSettingsService
   ) { }
 
   ngOnInit(): void {
@@ -266,5 +268,53 @@ export class EditGeneralDetailsComponent {
       this.errorTxt = translations['error'];
       this.errorMsg = translations['forgotPassword.generalError'];
     })
+  }
+
+  numberFormatStyle(amount: any) {
+    let domainID = this.globalSetting.getdomainId();
+    let currency = this.globalSetting.getDomainCurrency();
+    let currencySymbol;
+    if (currency == 'GBP') {
+      currencySymbol = '£';
+    } else if (currency == 'CHF') {
+      currencySymbol = 'CHF';
+    } else if (currency == 'EUR') {
+      currencySymbol = '€';
+    } else if (currency == 'DKK') {
+      currencySymbol = 'DKK';
+    } else if (currency == 'SEK') {
+      currencySymbol = 'SEK';
+    }
+
+    let locale;
+    if (domainID == 1) {
+      locale = 'de-CH';
+    } else if (domainID == 2) {
+      locale = 'de-DE';
+    } else if (domainID == 3) {
+      locale = 'it-IT';
+    } else if (domainID == 4) {
+      locale = 'fr-FR';
+    } else if (domainID == 5) {
+      locale = 'en-GB';
+    } else if (domainID == 6) {
+      locale = 'es-ES';
+    } else if (domainID == 7) {
+      locale = 'pt-PT';
+    } else if (domainID == 8) {
+      locale = 'nl-BE';
+    } else if (domainID == 9) {
+      locale = 'da-DK';
+    } else if (domainID == 10) {
+      locale = 'sv-SE';
+    }
+    // getdomainId
+    currencySymbol = '£'; // deafult
+    let modifiedAmount = new Intl.NumberFormat(locale).format(amount);
+    if (amount > 0) {
+      return currencySymbol + ' ' + modifiedAmount;
+    } else {
+      return '';
+    }
   }
 }

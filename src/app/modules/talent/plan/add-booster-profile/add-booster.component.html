@@ -29,7 +29,8 @@
                                                 <img *ngIf="loggedInUser?.club_logo_path" alt="team-logo"
                                                     src="{{loggedInUser?.club_logo_path}}">
                                             </div>
-                                            <div class="player--flag" *ngIf="userNationality || loggedInUser?.meta?.date_of_birth">
+                                            <div class="player--flag"
+                                                *ngIf="userNationality || loggedInUser?.meta?.date_of_birth">
                                                 <img *ngIf="userNationality" [src]="userNationality" class="flag-img">
                                                 <!-- <hr *ngIf="userNationality && loggedInUser?.meta?.date_of_birth"> -->
                                                 <div class="age_box">
@@ -43,16 +44,21 @@
                                                                 fill="#6FB95D"></path>
                                                         </svg>
                                                     </span> -->
-                                                    <div class="player--dob">{{calculateAge(loggedInUser?.meta?.date_of_birth ??'--')}}</div>
+                                                    <div class="player--dob">
+                                                        {{calculateAge(loggedInUser?.meta?.date_of_birth ??'--')}}</div>
                                                 </div>
                                             </div>
                                         </div>
                                         <img [src]="loggedInUser?.meta?.profile_image_path" alt="player-image"
                                             *ngIf="loggedInUser?.meta && loggedInUser?.meta?.profile_image_path"
                                             class="player_profile_img" />
-                                        <img src="../../../../../assets/images/default/talent-profile-default.png" alt="" *ngIf="!loggedInUser?.meta || !loggedInUser?.meta?.profile_image_path" class="player_profile_img" />
+                                        <img src="../../../../../assets/images/default/talent-profile-default.png"
+                                            alt=""
+                                            *ngIf="!loggedInUser?.meta || !loggedInUser?.meta?.profile_image_path"
+                                            class="player_profile_img" />
                                     </div>
-                                    <div class="player__name">{{ loggedInUser.first_name }} {{ loggedInUser.last_name }}</div>
+                                    <div class="player__name">{{ loggedInUser.first_name }} {{ loggedInUser.last_name }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -70,7 +76,8 @@
                                                 <!-- <img *ngIf="!loggedInUser?.club_logo_path" alt="team-logo"
                                                     src="assets\images\team-logo.png"> -->
                                             </div>
-                                            <div class="player--flag" *ngIf="userNationality || loggedInUser?.meta?.date_of_birth">
+                                            <div class="player--flag"
+                                                *ngIf="userNationality || loggedInUser?.meta?.date_of_birth">
                                                 <img *ngIf="userNationality" [src]="userNationality" class="flag-img">
                                                 <!-- <hr *ngIf="userNationality && loggedInUser?.meta?.date_of_birth"> -->
                                                 <div class="age_box">
@@ -85,21 +92,55 @@
                                                                 fill="#6FB95D"></path>
                                                         </svg>
                                                     </span> -->
-                                                    <div class="player--dob">{{calculateAge(loggedInUser?.meta?.date_of_birth ?? '--')}}</div>
+                                                    <div class="player--dob">
+                                                        {{calculateAge(loggedInUser?.meta?.date_of_birth ?? '--')}}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <img [src]="loggedInUser?.meta?.profile_image_path" alt="player-image"
-                                        *ngIf="loggedInUser?.meta && loggedInUser?.meta?.profile_image_path"
-                                        class="player_profile_img" />
-                                        <img src="../../../../../assets/images/default/talent-profile-default.png" alt=""
-                                            *ngIf="!loggedInUser?.meta || !loggedInUser?.meta?.profile_image_path" class="player_profile_img" />
-                                            
+                                            *ngIf="loggedInUser?.meta && loggedInUser?.meta?.profile_image_path"
+                                            class="player_profile_img" />
+                                        <img src="../../../../../assets/images/default/talent-profile-default.png"
+                                            alt=""
+                                            *ngIf="!loggedInUser?.meta || !loggedInUser?.meta?.profile_image_path"
+                                            class="player_profile_img" />
+
                                         <div class="booster_text"> {{'boosted' | translate}} </div>
                                     </div>
-                                    <div class="player__name">{{ loggedInUser.first_name }} {{ loggedInUser.last_name }}</div>
+                                    <div class="player__name">{{ loggedInUser.first_name }} {{ loggedInUser.last_name }}
+                                    </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="subscription-type mt-4">
+                            <h2 class="mb-3">{{'subscriptionType' | translate}}</h2>
+                            <div class="form-check p-0">
+                                <input id="radio-1" class="form-check-input radio-custom" type="radio" name="isYearly"
+                                    [value]="false" [(ngModel)]="this.boostedPlans.isYearly"
+                                    (change)="toggleBillingPlan(false)">
+                                <label for="radio-1"
+                                    class="form-check-label radio-custom-label smaller-letters">{{'monthly' |
+                                    translate}}</label>
+                            </div>
+                            <div class="form-check p-0">
+                                <input id="radio-2" class="form-check-input radio-custom" type="radio" name="isYearly"
+                                    [value]="true" [(ngModel)]="this.boostedPlans.isYearly"
+                                    (change)="toggleBillingPlan(true)">
+                                <label for="radio-2"
+                                    class="form-check-label radio-custom-label smaller-letters">{{'yearly' |
+                                    translate}}</label>
+                            </div>
+                        </div>
+                        <div class="subscription-type voucher_type mt-4"
+                            [ngClass]="{'d-none':boostedPlans?.active_interval=='monthly' || boostedPlans?.active_interval=='yearly'}">
+                            <h2 class="mb-3">
+                                <button type="button" (click)="openCouponDialog()">{{'doYouHaveAVoucherCode'|
+                                    translate}}
+                                </button>
+                            </h2>
                         </div>
                     </div>
                 </div>
@@ -135,10 +176,9 @@
 
 
                 </div> -->
-
                 <div class="actions text-center mb-0">
                     <button class="btn puse-btn" (click)="pauseBoost()">{{ 'cancel' | translate }}</button>
-                    <button class="btn save_button" (click)="saveBoost()">{{ 'saveAndBoost' | translate }}</button>
+                    <button class="btn save_button" (click)="saveBoost()" >{{ 'saveAndBoost' | translate }}</button>
                 </div>
             </div>
 

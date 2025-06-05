@@ -1,5 +1,5 @@
-import { MatDialogRef } from '@angular/material/dialog';
-import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, ChangeDetectorRef, OnInit, Inject } from '@angular/core';
 import { debounceTime, Subject } from 'rxjs';
 import { CouponService } from '../../../services/coupon.service';
 import { TalentService } from '../../../services/talent.service';
@@ -14,13 +14,25 @@ export class CouponCodeAlertComponent implements OnInit {
   couponError: string = '';
   couponSuccess: string = '';
   couponApplied: boolean = false;
+  isupgradePlan: boolean = false;
 
   constructor(
     public dialogRef: MatDialogRef<CouponCodeAlertComponent>,
-    private talentService: TalentService
+    private talentService: TalentService,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    if (this.data && typeof this.data.action != undefined && this.data.action == 'upgrade_plan') {
+      if (typeof this.data.from_plan_id != undefined && typeof this.data.to_plan_id != undefined) {
+        this.isupgradePlan = true;
+      }
+    }
+
+    if (this.data && typeof this.data.action != undefined && this.data.action == 'premiumPlan') {
+
+    }
+  }
 
   // Clear error and success messages when user starts typing a new coupon
   onCouponInput(): void {
@@ -74,6 +86,12 @@ export class CouponCodeAlertComponent implements OnInit {
       this.dialogRef.close(this.couponCode); // Pass coupon code (if applied) or null
     } else {
       this.dialogRef.close('proceed_to_checkout_without_coupon'); // Pass coupon code (if applied) or null
+    }
+  }
+
+  proceedToUpgrade(): void {
+    if (this.couponCode != '' && this.couponApplied) {
+      this.dialogRef.close({ action: 'upgrade', coupon_code: this.couponCode, from_plan_id: this.data.from_plan_id, to_plan_id: this.data.to_plan_id });
     }
   }
 
