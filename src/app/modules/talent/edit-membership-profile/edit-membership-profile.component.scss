@@ -256,8 +256,11 @@ font-weight: 800;
 padding: 0px 30px 30px;
 }
 .overflow-stats{
-max-height: 26vh;
+max-height: 500px;
 overflow: auto;
+}
+.pointer {
+  cursor: pointer;
 }
 .overflow-stats::-webkit-scrollbar-thumb{
 background: none;
@@ -589,7 +592,12 @@ button:focus-visible{
 @media (max-width: 480px) {
 .total-bg {
  flex-direction: column;
-  gap: 10px;
+  gap: 20px;
   align-items: flex-start !important;
 }
+}
+
+
+.total-bg span svg {
+    margin-right: 10px;
 }

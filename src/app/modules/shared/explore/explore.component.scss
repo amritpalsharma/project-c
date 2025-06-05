@@ -319,7 +319,7 @@ button#explore_filter_mobile {
     object-fit: contain;
     transition: .5s all;
     position: relative;
-    z-index: 1;
+    z-index: 0;
   }
   .player__name {
     position: absolute;

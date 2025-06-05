@@ -245,8 +245,11 @@ font-weight: 800;
 padding: 0px 30px 30px;
 }
 .overflow-stats{
-max-height: 26vh;
+max-height: 500px;
 overflow: auto;
+}
+.pointer {
+  cursor: pointer;
 }
 .overflow-stats::-webkit-scrollbar-thumb{
 background: none;
@@ -511,4 +514,17 @@ padding: 0px 10px 20px;
       height: 220px;
     }
   }
+}
+
+
+@media (max-width: 480px) {
+.total-bg {
+ flex-direction: column;
+  gap: 20px;
+  align-items: flex-start !important;
+}
+}
+
+.total-bg span svg {
+    margin-right: 10px;
 }

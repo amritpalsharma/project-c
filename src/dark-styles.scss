@@ -2021,9 +2021,15 @@ input:checked+.slider:before {
 }
 
 .dark-theme .form-group input,
-.dark-theme .form-group select,
 .dark-theme .form-group textarea {
   background: #0C3453 !important;
+  border-color: #1F4360 !important;
+  color: #fff !important;
+}
+
+.dark-theme .form-group select {
+  background: #0C3453 url(./assets/images/select-white-arrow.svg) no-repeat center right 16px !important;
+  background-size: 12px !important;
   border-color: #1F4360 !important;
   color: #fff !important;
 }
@@ -2046,10 +2052,6 @@ input:checked+.slider:before {
 .dark-theme .tabs {
   color: white;
 }
-
-// .dark-theme .form-group select{
-//   color: #fff !important;
-// }
 .dark-theme .bg-color {
   background: #072944 !important;
 }
@@ -2911,6 +2913,9 @@ input:checked+.slider:before {
     }
   }
 
+  td.mat-column-Download svg.pointer path, td.cdk-column-Download svg.pointer path, svg.dark_mode_white path {
+    stroke: #fff !important;
+}
 }
 
 .dark-theme .toast-error,
@@ -2922,4 +2927,24 @@ input:checked+.slider:before {
 
 .dark-theme .toast-success, .dark-theme .toast-info {
   background-color: #51A351 !important;
+}
+
+.dark-theme .voucher_type button {
+    color: #BDE34E !important
+}
+.dark-theme .add-country-popup {
+  .buy-btn {
+    background: #BDE34E !important;
+    & * {
+      color: #072944 !important;
+    }
+  }
+}
+
+@media (max-width: 991px) {
+.dark-theme .sidebar {
+    .logo-box {
+        background: #072944 !important;
+    }
+  }
 }
