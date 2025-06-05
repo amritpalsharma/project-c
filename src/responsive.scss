@@ -236,6 +236,18 @@
 }
 }
 
+
+@media (min-width: 1400px) and (max-width: 1999px) {
+.upgrade_unlock .unlock_btn {
+    padding: 17px 25px 17px !important;
+    font-size: 20px !important;
+    svg {
+        width: 30px !important;
+        height: 30px !important;
+    }
+}
+}
+
 @media (min-width: 1600px) {
 .it .website-code nav.navbar li.nav-item .nav-link, .fr .website-code nav.navbar li.nav-item .nav-link,
 .es .website-code nav.navbar li.nav-item .nav-link, .pt .website-code nav.navbar li.nav-item .nav-link,
@@ -358,7 +370,7 @@ td.cdk-column-Remove.mat-column-Remove svg {
     p {
       font-size: 24px;
   }
-  }
+}
 mat-datepicker-toggle button {
     background-position: top 13px center !important;
     background-size: 26px !important;
@@ -562,7 +574,7 @@ mat-datepicker-toggle button {
       margin-right: 20px !important;
     }
   }
-  .filter_modal_popup {
+.filter_modal_popup {
     margin-top: 200px !important;
     min-width: 350px !important;
     min-height: 250px !important;
@@ -667,6 +679,16 @@ mat-datepicker-toggle button {
 .overflow-card .form-check.checkbox input[name=noClub] {
     top: 4px;
 }
+
+.upgrade_unlock .unlock_btn {
+    padding: 19px 45px 20px !important;
+    font-size: 24px !important;
+    svg {
+        width: 35px !important;
+        height: 35px !important;
+    }
+}
+
 }
 
 

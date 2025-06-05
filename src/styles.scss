@@ -1986,6 +1986,11 @@ nav.navbar .country_dropdown h6.border-bottom {
 .upgrade_unlock .unlock_btn {
   padding: 12px 25px 10px !important;
   font-size: 17px !important;
+    svg {
+      position: relative;
+      top: -3px;
+      margin-right: 10px;
+    }
 }
 
 .edit-multi-country-plan .country-plan {
