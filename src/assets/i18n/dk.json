@@ -1340,5 +1340,6 @@
   "pendingStatus": "Afventer",
   "rejectedStatus": "Afvist",
   "doYouHaveAVoucherCode": "Har du en rabatkode?",
-  "boostedProfileViews": "Boostede profilvisninger"
+  "boostedProfileViews": "Boostede profilvisninger",
+  "sureToAdjustYourSubscription": "Er du sikker på, at du vil justere dit abonnement?"
 }

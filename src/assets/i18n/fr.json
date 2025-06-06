@@ -1490,5 +1490,6 @@
   "pendingStatus": "En attente",
   "rejectedStatus": "Rejeté",
   "doYouHaveAVoucherCode": "Avez-vous un code de bon?",
-  "boostedProfileViews": "Vues de profil boostées"
+  "boostedProfileViews": "Vues de profil boostées",
+  "sureToAdjustYourSubscription": "Êtes-vous sûr de vouloir modifier votre abonnement ?"
 }

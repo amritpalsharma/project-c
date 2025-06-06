@@ -117,7 +117,7 @@
               <div class="col-lg-12 p-0">
                 <div class="date-imputs d-flex align-items-center">
                   <div class="input_label_wrap w-100">
-                  <label for="form-date" class="form-label">{{'form' | translate}}</label>
+                  <label for="form-date" class="form-label">{{getTextBeforeDash('fromUpto' | translate)}}</label>
                   <div class="d-flex align-items-center justify-content-center date_field">
                     <input class="upto-date" matInput id="from_date" name="from_date" [matDatepicker]="from_datepicker"
                       [formControl]="from_date" placeholder="DD.MM.YYYY" required />
@@ -126,7 +126,7 @@
                   </div>
                   </div>
                   <div class="input_label_wrap w-100">
-                  <label for="form-date" class="form-label">{{'upto' | translate}}</label>
+                  <label for="form-date" class="form-label">{{getTextAfterDash('fromUpto' | translate)}}</label>
                   <div class="d-flex align-items-center justify-content-center date_field">
                     <input class="upto-date-2" matInput id="to_date" name="to_date" [matDatepicker]="to_datepicker"
                       [formControl]="to_date" placeholder="DD.MM.YYYY" required />

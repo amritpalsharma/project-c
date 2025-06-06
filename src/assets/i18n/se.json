@@ -1422,5 +1422,6 @@
   "pendingStatus": "Väntande",
   "rejectedStatus": "Avvisad",
   "doYouHaveAVoucherCode": "Har du en rabattkod?",
-  "boostedProfileViews": "Förstärkta profilsvisningar"
+  "boostedProfileViews": "Förstärkta profilsvisningar",
+  "sureToAdjustYourSubscription": "Är du säker på att du vill justera ditt abonnemang?"
 }

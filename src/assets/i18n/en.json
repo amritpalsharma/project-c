@@ -1387,5 +1387,6 @@
   "pendingStatus":"Pending",
   "rejectedStatus":"Rejected",
   "doYouHaveAVoucherCode":"Do you have a voucher code?",
-  "boostedProfileViews":"Boosted Profile Views"
+  "boostedProfileViews":"Boosted Profile Views",
+  "sureToAdjustYourSubscription":"Are you sure you want to adjust your subscription?"
 }

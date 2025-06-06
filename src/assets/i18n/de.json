@@ -573,7 +573,7 @@
   "to": "An:",
   "subscriptionCanceled": "Abonnement gekündigt!",
   "subscriptionProcess": "Ihr Anmeldevorgang wurde abgebrochen. Bitte versuchen Sie es erneut.",
-  "close": "Schliessen",
+  "close": "Schließen",
   "enterCouponCode": "Gutschein-Code eingeben",
   "dont'tHaveCoupon": "Ich habe keinen Gutschein-Code",
   "checkCoupon": "Code prüfen",
@@ -1481,5 +1481,6 @@
   "pendingStatus": "Ausstehend",
   "rejectedStatus": "Abgelehnt",
   "doYouHaveAVoucherCode": "Hast du einen Gutscheincode?",
-  "boostedProfileViews":"Boost-Profil Ansichten"
+  "boostedProfileViews": "Boost-Profil Ansichten",
+  "sureToAdjustYourSubscription": "Bist du sicher, dass du dein Abo anpassen möchtest?"
 }

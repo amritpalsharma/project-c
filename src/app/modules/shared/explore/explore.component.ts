@@ -449,17 +449,35 @@ export class ExploreComponent implements OnInit {
 
   }
 
+  // loadCountries(): void {
+  //   // Prepare query parameters
+
+  //   let lang = localStorage.getItem('lang_id');
+  //   // old getDomains 
+
+  //   this.talentService.getDomains(lang).subscribe(
+  //     (response: any) => {
+  //       if (response && response.status) {
+  //         // this.countries = response.data.countries;
+  //         this.countries = response.data.domains;
+  //       }
+  //     },
+  //     (error: any) => {
+  //       console.error('Error fetching countries:', error);
+  //     }
+  //   );
+  // }
+
   loadCountries(): void {
     // Prepare query parameters
 
     let lang = localStorage.getItem('lang_id');
     // old getDomains 
-
-    this.talentService.getDomains(lang).subscribe(
+    this.talentService.getCountriesHavingClub(lang).subscribe(
       (response: any) => {
         if (response && response.status) {
           // this.countries = response.data.countries;
-          this.countries = response.data.domains;
+          this.countries = response.data.countries;
         }
       },
       (error: any) => {

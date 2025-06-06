@@ -343,7 +343,7 @@ export class EditPersonalDetailsComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    console.log('Form:', form);
+    // console.log('Form:', form);
 
     // Manually validate only the required fields
     if (!this.dateOfBirth.value) {
@@ -358,7 +358,7 @@ export class EditPersonalDetailsComponent implements OnInit {
       this.isTeamSelectError = false;
     }
 
-    const team = this.teamsArr.find(team => team.id === this.CurrentTeamId);
+
     // return team ? team.team_type : "Team ID not found.";
     // console.log('Team',team.team_type)
     if (!this.nationality || this.nationality.length === 0) {
@@ -424,8 +424,8 @@ export class EditPersonalDetailsComponent implements OnInit {
     } else {
       formData.append('user[have_no_club]', '0');
     }
-
-    console.log('Selected Team Id is',this.CurrentTeamId,' and Team Type is ',team.team_type);
+    // const team = this.teamsArr.find(team => team.id === this.CurrentTeamId);
+    // console.log('Selected Team Id is', this.CurrentTeamId, ' and Team Type is ', team.team_type);
 
     // API call for submitting form data
     this.talentService.updateUserProfile(formData).subscribe(

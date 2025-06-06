@@ -258,8 +258,42 @@ export class HeaderComponent implements OnInit {
   isViewPassword1 = false;
   isViewPassword2 = false;
 
-  headerRoutes: string[] = ['/contact', '/terms', '/imprint', '/player-list', '/news', '/privacy', '/news/:slug'];
+  // headerRoutes: string[] = ['/contact', '/terms', '/imprint', '/player-list', '/news', '/privacy', '/news/:slug'];
   // 
+  headerRoutes: string[] = ['/contact',
+    '/kontakt',
+    '/kontakt',
+    '/contacto',
+    '/contato',
+    '/contatto',
+
+    '/terms-conditions',
+    '/agb',
+    '/conditions-generales',
+    '/terminos-condiciones',
+    '/termos-e-condicoees',
+    '/vilkaer-og-betingelser',
+    '/allmaenna-villkor',
+    '/termini-condizioni',
+    '/imprint',
+    '/impressum',
+    '/mentions-legales',
+    '/aviso-legal',
+    '/mentions-legales',
+    '/impronta',
+
+    '/explore',
+    '/news',
+    '/news/:slug',
+    '/privacy',
+    '/datenschutz',
+    '/politique-de-confidentialite',
+    '/politica-de-privacidad',
+    '/política-de-privacidade',
+    '/privatlivspolitik',
+    '/integritetspolicy',
+    '/politique-de-confidentialite',
+    '/politica-sulla-privacy'];
   currentRoute: string = '';
   constructor(
     private sharedservice: SharedService,

@@ -258,6 +258,14 @@ export class TalentService {
     );
   }
 
+  getCountriesHavingClub(params: any): Observable<any> {
+    const headers = this.headers();
+    let lang_id = localStorage.getItem('lang_id');
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
+      `${this.apiUrl}get-countries-having-clubs/${lang_id}`, { headers, params }
+    );
+  }
+
   getExploreDomains(lang_id: any) {
     const headers = this.headers();
 

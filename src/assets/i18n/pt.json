@@ -1431,5 +1431,6 @@
   "pendingStatus": "Pendente",
   "rejectedStatus": "Rejeitado",
   "doYouHaveAVoucherCode": "Você tem um código de voucher?",
-  "boostedProfileViews": "Visualizações de perfil impulsionadas"
+  "boostedProfileViews": "Visualizações de perfil impulsionadas",
+  "sureToAdjustYourSubscription": "Tem certeza de que deseja ajustar sua assinatura?"
 }

@@ -315,5 +315,12 @@ export class AddPerformanceComponent {
     );
   }
 
+  getTextBeforeDash(input: string): string {
+    return input.split('-')[0].trim();
+  }
+
+  getTextAfterDash(input: string): string {
+    return input.split('-')[1]?.trim() || '';
+  }
 
 }

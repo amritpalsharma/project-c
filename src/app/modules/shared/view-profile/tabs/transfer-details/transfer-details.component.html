@@ -1,9 +1,11 @@
 <!-- unlock page -->
 <div class="unlock_page" *ngIf="!isPremium">
-  <div class="table-responsive bg-0C3453">
-    <div class="transfer_box row " *ngFor="let transfer of userTransfers">
+  <div class="table-responsive px-sm-3 bg-0C3453">
+    <div class="new_performance"></div>
+    <hr>
+    <div class="transfer_box row ">
       <div class="col-lg-3 box-transfer">
-        <div class="col-lg-12 col-md-6 col-sm-6 col-12 d-flex align-items-center gap-3">
+        <div class="col-lg-12 col-md-5 col-sm-6 col-12 d-flex align-items-center gap-3">
           <div class="sasion_logos">
             <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -13,10 +15,10 @@
           </div>
           <div class="sasion_text">
             <h6 class="details_2">{{'session' | translate}}</h6>
-            <h5 class="details-1">{{transfer.session}}</h5>
+            <h5 class="details-1">--</h5>
           </div>
         </div>
-        <div class="col-lg-12 col-md-6 col-sm-6 col-12 d-flex align-items-center gap-3 mt-4">
+        <div class="col-lg-12 col-md-5 col-sm-6 col-12 d-flex align-items-center gap-3 mt-4">
           <div class="sasion_logos">
             <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g clip-path="url(#clip0_3255_8501)">
@@ -39,7 +41,7 @@
           </div>
           <div class="sasion_text">
             <h6 class="details_2"> {{'date' | translate}}</h6>
-            <h5 class="details-1">{{ transfer.date_of_transfer | date:'MM.dd.yyyy' }}</h5>
+            <h5 class="details-1">--</h5>
           </div>
         </div>
       </div>
@@ -48,39 +50,36 @@
           <div class="col-lg-6 moving_logo">
             <h2>{{'movingTo' | translate}}</h2>
             <div class="moving-team-logo d-flex gap-2">
-              <img src="{{transfer.team_logo_path_to}}" alt="">
 
               <div class="moving-team_name">
                 <h6 class="details_2">{{'team' | translate}}</h6>
-                <h5 class="details-1">{{transfer.team_name_to}} </h5>
+                <h5 class="details-1">--</h5>
               </div>
             </div>
           </div>
           <div class="col-lg-6 moving_country">
             <div class="moving-team-logo d-flex gap-2">
-              <img src="{{transfer.country_flag_path_to}}">
               <div class="moving-team_name">
                 <h6 class="details_2">{{'country' | translate}}</h6>
-                <h5 class="details-1"> {{transfer.country_name_to}} </h5>
+                <h5 class="details-1">--</h5>
               </div>
             </div>
           </div>
-          <div class="col-lg-5 moving_logo">
+          <div class="col-lg-6 moving_logo">
             <h2>{{'movingFrom' | translate}}</h2>
             <div class="moving-team-logo d-flex gap-2">
-              <img src="{{transfer.team_logo_path_from}}" alt="">
               <div class="moving-team_name">
                 <h6 class="details_2">{{'team' | translate}}</h6>
-                <h5 class="details-1">{{transfer.team_name_from}} </h5>
+                <h5 class="details-1">--</h5>
               </div>
             </div>
           </div>
-          <div class="col-lg-5">
+          <div class="col-lg-6 moving_country">
             <div class="moving-team-logo d-flex gap-2">
-              <img src="{{transfer.country_flag_path_from}}">
+              <img src="-">
               <div class="moving-team_name">
                 <h6 class="details_2">{{'country' | translate}}</h6>
-                <h5 class="details-1"> {{transfer.country_name_from}} </h5>
+                <h5 class="details-1"> -- </h5>
               </div>
             </div>
           </div>
@@ -90,8 +89,7 @@
     </div>
   </div>
   <div class="upgrade_unlock">
-    <button class="unlock_btn" (click)="navigateToPlans()">
-
+    <a class="unlock_btn cursor-pointer" (click)="navigateToPlans()">
       <svg width="15" height="19" viewBox="0 0 15 19" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clip-path="url(#clip0_7084_24851)">
           <path
@@ -104,8 +102,8 @@
           </clipPath>
         </defs>
       </svg>
-      {{'upgradeToUnlock' | translate}}
-    </button>
+      {{'upgradeToUnlock'|translate}}
+    </a>
   </div>
 </div>
 <app-loader *ngIf="isLoading && isPremium" style="width: 100%;"></app-loader>
