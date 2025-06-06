@@ -185,6 +185,8 @@ export class MembershipComponent {
     console.log('userPurchase',userPurchase)
     const dialogRef = this.dialog.open(ViewMembershipPopupComponent, {
       width: '800px',
+      // width: '70vw',
+      panelClass: 'view_membership_popup',
       data: {
         // invoice_number: userPurchase.invoice_number,
         // category: userPurchase.payment_method,

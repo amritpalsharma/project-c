@@ -45,12 +45,26 @@
     background-color: #6FB95D !important;
   }
 
+  .inner_container {
+  img {
+    margin: 0 auto 2rem;
+  }
+}
+img.check_icon_dark_mode {
+  display: none;
+}
 
-.dark_popup_sucees_cancel {
+.popup-overlay.dark_popup_sucees_cancel {
+    background: #072944 !important;
+    img.check_icon_light_mode {
+      display: none;
+    }
+    img.check_icon_dark_mode {
+    display: block;
+  }
   .popup-content {
     background: #072944;
-    border-top: 1px solid #1F4360;
-    border-bottom: 1px solid #1F4360;
+    border: 1px solid #1F4360;
     .inner_container  {
       border-color: #1F4360 !important;
     }
@@ -66,4 +80,21 @@
 
 .popup-overlay {
     background: #fff !important;
+}
+
+
+@media (min-width: 2000px) {
+.inner_container img {
+width: 260px !important;
+}
+h2 {
+    font-size: 80px;
+}
+h5 {
+      font-size: 40px;
+}
+button.my-btn {
+    padding: 20px 50px !important;
+    font-size: 30px;
+}
 }

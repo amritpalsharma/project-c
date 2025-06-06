@@ -2941,6 +2941,13 @@ input:checked+.slider:before {
   }
 }
 
+
+.dark-theme {
+  .unlock_page .upgrade_unlock {
+  background: rgb(12 52 83 / 86%) !important;
+}
+}
+
 @media (max-width: 991px) {
 .dark-theme .sidebar {
     .logo-box {
