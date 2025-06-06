@@ -43,7 +43,7 @@ export class GlobalSettingsService {
       }
     }
     return '';
-  }
+  } 
 
   private setDefaultLanguage(): void {
     const domainExt = this.getDomainExtension();
