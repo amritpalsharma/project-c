@@ -3,38 +3,6 @@
 <div class="unlock_page" *ngIf="!isPremium">
   <div class="card bg-color">
     <div class="card-header border-0">
-      <div class="d-flex align-items-center justify-content-between">
-        <div class="d-flex align-items-center performance_card_hedr">
-          <div class="dropdown dropdown-favourites">
-            <div class="form-check">
-              <input type="checkbox" id="flexCheckDefaultAll"
-                class="form-check-input ng-untouched ng-pristine ng-valid">
-            </div>
-          </div>
-          <!-- <a class="btn btn-outline-white ms-2 delete-text">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
-              class="pointer pe-2">
-              <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke="#787878"
-                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-              <path
-                d="M9 11.5117L12 14.5117L15 11.5117M12 14.5117V6.51172M6 16.5117C9.89 17.8117 14.11 17.8117 18 16.5117"
-                stroke="#787878" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-            </svg>
-            {{ 'downloadAll' | translate }}
-          </a>
-          <a id="users-icon" class="btn btn-outline-white ms-2 delete-text">
-            <svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg" class="me-1">
-              <path
-                d="M5.49967 17.5589C5.49967 18.5112 6.32467 19.2904 7.33301 19.2904H14.6663C15.6747 19.2904 16.4997 18.5112 16.4997 17.5589V7.16999H5.49967V17.5589ZM17.4163 4.57277H14.208L13.2913 3.70703H8.70801L7.79134 4.57277H4.58301V6.30425H17.4163V4.57277Z"
-                fill="#787878"></path>
-            </svg>
-            {{ 'delete' | translate }}
-          </a>
-          <a id="users-icon" class="btn btn-success mx-2 py-1 px-3 delete-text add_new-btn">
-            {{ 'addNew' | translate }}
-          </a> -->
-        </div>
-      </div>
       <div class="hide_table_for_mobile">
         <div class="table-responsive">
           <table 
@@ -57,7 +25,7 @@
                 </th>
                 <th 
                   class="mat-mdc-header-cell mdc-data-table__header-cell cdk-header-cell text-center cdk-column-Download mat-column-Download ng-star-inserted">
-                  {{ 'addNew' | translate }}
+                  {{ 'download' | translate }}
                 </th>
               </tr>
             </thead>

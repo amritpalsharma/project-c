@@ -55,7 +55,7 @@
           <label for="currentClub">{{'currentClub' | translate}}:</label>
 
           <mat-select [(ngModel)]="currentClubId" class="form-select" id="currentClub" name="currentClub"
-            (selectionChange)="clubUpdated()">
+            (selectionChange)="clubUpdated()" appearance="fill">
             <div>
               <input matInput (keyup)="filterClubs($event)" placeholder="{{'search' | translate}}"
                 [(ngModel)]="clubSearch" name="club_search" class="form-control backgroundGray" />

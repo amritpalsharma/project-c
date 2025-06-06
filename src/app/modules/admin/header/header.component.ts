@@ -381,14 +381,13 @@ export class HeaderComponent {
   }
 
   ChangeLang(lang: any) {
-
+    // console.log('LangObj',lang);
     this.notifications = [];
 
     const selectedLanguage = typeof lang != 'string' ? lang.target.value : lang;
     localStorage.setItem('lang', selectedLanguage);
     this.lang = selectedLanguage;
-    this._adapter.setLocale(selectedLanguage);
-    this.translateService.use(selectedLanguage);
+
     // Retrieve the selected language code from localStorage
     const selectedLanguageSlug = selectedLanguage;
     // Find the corresponding language ID from the langs array
@@ -399,7 +398,13 @@ export class HeaderComponent {
 
     // Default to a specific language ID if none is found (e.g., English)
     const selectedLanguageId = selectedLanguageObj ? selectedLanguageObj.id : 1;
-    localStorage.setItem('lang_id', selectedLanguageId);
+    if (lang == 'en') {
+      localStorage.setItem('lang_id', '1');
+    } else if (lang == 'de') {
+      localStorage.setItem('lang_id', '2');
+    } else {
+      localStorage.setItem('lang_id', selectedLanguageId);
+    }
     this.shareService.updateData({
       action: 'lang_updated',
       id: selectedLanguageId
@@ -423,8 +428,10 @@ export class HeaderComponent {
     // Now safely access the locale
     const locale = chatSelectedLanguage.locale;
     // Change the TalkJS locale by passing the locale string (e.g., 'en-US')
+    this.translateService.use(selectedLanguage);
     this.talkService.changeLocale(locale);
     this.getPageTitle();
+    this._adapter.setLocale(selectedLanguage);
     // langs
   }
   getPageTitle() {

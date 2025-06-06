@@ -109,31 +109,35 @@ export class WebPages {
     }
 
     getDynamicHomePage(langId: any): Observable<any> {
+        let lang_id = localStorage.getItem('lang_id');
         let currentDomain = this.globalSettings.getdomainId();
         let random = Math.floor(Math.random() * (10000 - 100 + 1)) + 100;
         return this.http.get<{ status: boolean, message: string, data: {} }>(
-            `${this.frontendApiUrl}get-page-by-slug?page_type=home&whereClause[role]=4&lang_id=${langId}&domain=${currentDomain}&num=${random}`
+            `${this.frontendApiUrl}get-page-by-slug?page_type=home&whereClause[role]=4&lang_id=${lang_id}&domain=${currentDomain}&num=${random}`
         );
     }
 
-    getDynamicContentPage(content: any, langId: any): Observable<any> { 
+    getDynamicContentPage(content: any, langId: any): Observable<any> {
+        let lang_id = localStorage.getItem('lang_id');
         let random = Math.floor(Math.random() * (10000 - 100 + 1)) + 100;
         return this.http.get<{ status: boolean, message: string, data: {} }>(
-            `${this.frontendApiUrl}get-page-by-slug?page_type=${content}&lang_id=${langId}&mum=${random}`
+            `${this.frontendApiUrl}get-page-by-slug?page_type=${content}&lang_id=${lang_id}&mum=${random}`
         );
     }
 
-    getDynamicNewsPage(langID: any): Observable<any>{
+    getDynamicNewsPage(langID: any): Observable<any> {
+        let lang_id = localStorage.getItem('lang_id');
         let random = Math.floor(Math.random() * (10000 - 100 + 1)) + 100;
         return this.http.get<{ status: boolean, message: string, data: {} }>(
-            `${this.frontendApiUrl}get-news-page/${langID}?page_type=news&random=${random}`
+            `${this.frontendApiUrl}get-news-page/${lang_id}?page_type=news&random=${random}`
         );
     }
 
     getNewsContentPage(id: any, langId: any): Observable<any> {
+        let lang_id = localStorage.getItem('lang_id');
         let random = Math.floor(Math.random() * (10000 - 100 + 1)) + 100;
         return this.http.get<{ status: boolean, message: string, data: {} }>(
-            `${this.frontendApiUrl}get-single-news/${id}/${langId}?random=${random}`
+            `${this.frontendApiUrl}get-single-news/${id}/${lang_id}?random=${random}`
         );
     }
 

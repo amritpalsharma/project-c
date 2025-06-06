@@ -178,7 +178,7 @@ export class ProfileTabComponent {
     this.otherPositions = this.positions
       .filter((pos: any) => pos.main_position == null)
       .map((pos: any) => pos.position_name)
-      .join('/');
+      .join('<br>');
   }
 
 

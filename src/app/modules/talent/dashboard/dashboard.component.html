@@ -65,8 +65,8 @@
                     <input id="profile-upload" (change)="onProfileFileChange($event)" accept="image/*" type="file"
                       class="d-none" />
                   </div>
-                  <div class="user-edit" *ngIf="profileImage">
-                    <label for="profile-upload" class="">
+                  <div class="user-edit">
+                    <label for="profile-upload" class="" *ngIf="profileImage">
                       <div class="edit-profile cursor-pointer" id="upload_profilePhoto"
                         matTooltip="{{'deleteProfilePicture' | translate}}" matTooltipPosition="right"
                         (click)="openDeleteDialog('profile')">
@@ -91,7 +91,7 @@
                         <span>Download Player PDF</span>
                       </button>
                     </span>
-                    <span class="icon-bg pdf_btn_icon">
+                    <span class="icon-bg pdf_btn_icon" *ngIf="profileImage">
                       <a (click)="editBooster(booster);" class="cursor-pointer team-badge_image" matTooltip="{{'boostedProfileViews' | translate}}" matTooltipPosition="right">
                         <img src="../../../assets/images/rocket-icon-{{currentThemeMode}}.svg" alt="" class="me-2" />
                       </a>

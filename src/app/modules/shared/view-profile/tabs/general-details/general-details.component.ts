@@ -86,7 +86,7 @@ export class GeneralDetailsComponent {
       const otherPositions = this.positions
         .filter((pos: any) => pos.main_position == null)
         .map((pos: any) => pos.position_name)
-        .join('/');
+        .join('<br>');
 
       this.otherPositions = otherPositions ? `${otherPositions}` : '';
     } else {

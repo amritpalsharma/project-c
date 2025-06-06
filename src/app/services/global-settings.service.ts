@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { AuthService } from '../services/auth.service';
+import { ThemeService } from './theme.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,9 @@ export class GlobalSettingsService {
   private domainCurrency: string = 'GBP';
   private indexFunctionCallSubject = new Subject<void>();
   indexFunctionCall$ = this.indexFunctionCallSubject.asObservable();
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private themeService: ThemeService) {
     this.setDefaultLanguage();
+    // this.setDefaultTheme();
     this.setDomainCurrency();
   }
 
@@ -27,6 +29,10 @@ export class GlobalSettingsService {
       }
     }
     return ''; // Return empty string if no match
+  }
+
+  private setDefaultTheme() {
+    this.themeService.setDarkTheme(true);
   }
 
   public getCurrentDomainExtension() {

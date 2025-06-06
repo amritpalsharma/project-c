@@ -44,7 +44,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   UserName: string = '';
   photoLoading: boolean = true;
   stats: any = [];
-  accountVerificationPending:string='';
+  accountVerificationPending: string = '';
 
 
   constructor(
@@ -75,6 +75,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   userVideos: any = [];
   imageBaseUrl: any;
   defaultCoverImage: any = "./media/palyers.png";
+  defaultProfileImage: any = "../../assets/images/default/talent-profile-default.png";
   premium: any = false;
   booster: any = false;
   activeDomains: any;
@@ -759,6 +760,18 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   openEditDialog() {
+    // this.toastr.success('This will not disappear or hide on click', 'Notice', {
+    //   disableTimeOut: true,
+    //   tapToDismiss: false,
+    //   closeButton: false
+    // });
+
+    // this.toastr.error('This will not disappear or hide on click', 'Notice', {
+    //   disableTimeOut: true,
+    //   tapToDismiss: false,
+    //   closeButton: false
+    // });
+    // return;
     // if(!this.isUserVerified){
     //   this.toastr.warning(this.accountVerificationPending);
     //   return;
@@ -1076,7 +1089,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       response => {
         if (response.status) {
           this.profileImage = null;
-          this.commonDataService.updateProfilePic(this.profileImage);
+          this.commonDataService.updateProfilePic(this.defaultProfileImage);
           this.toastr.success(response.message, this.successTxt);
         }
         else {
