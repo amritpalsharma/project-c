@@ -680,6 +680,27 @@ mat-datepicker-toggle button {
     top: 4px;
 }
 
+.mdc-dialog .add-chat {
+    .join-end-date, .mdc-evolution-chip-set__chips p, input.mat-mdc-form-field-input-control {
+        font-size: 22px !important;
+    }
+    .mat-mdc-standard-chip.mdc-evolution-chip--with-trailing-action .mdc-evolution-chip__action--primary * {
+        font-size: 22px !important;
+    }
+    .mat-mdc-standard-chip .mat-mdc-chip-action-label img.img-list {
+        width: 40px !important;
+        height: 40px !important;
+    }
+    .mat-mdc-chip-set .mdc-evolution-chip {
+        padding: 10px !important;
+        height: 60px !important;
+        border-radius: 50px !important;
+    }
+    .d-flex.align-items-center.ms-lg-3 {
+        margin-top: 10px;
+    }
+}
+
 .upgrade_unlock .unlock_btn {
     padding: 19px 45px 20px !important;
     font-size: 24px !important;
@@ -688,7 +709,9 @@ mat-datepicker-toggle button {
         height: 35px !important;
     }
 }
-
+.view_membership_popup {
+    width: 1000px !important;
+}
 }
 
 
@@ -1165,6 +1188,26 @@ mat-datepicker-toggle button {
     }
     .news_detail_text_container li {
         font-size: 40px !important;
+    }
+    .mdc-dialog .add-chat {
+        .join-end-date, .mdc-evolution-chip-set__chips p, input.mat-mdc-form-field-input-control {
+            font-size: 28px !important;
+        }
+        .mat-mdc-standard-chip.mdc-evolution-chip--with-trailing-action .mdc-evolution-chip__action--primary * {
+            font-size: 28px !important;
+        }
+        .mat-mdc-standard-chip .mat-mdc-chip-action-label img.img-list {
+            width: 50px !important;
+            height: 50px !important;
+        }
+        .mat-mdc-chip-set .mdc-evolution-chip {
+            padding: 10px !important;
+            height: 70px !important;
+            border-radius: 80px !important;
+        }
+        .d-flex.align-items-center.ms-lg-3 {
+            margin-top: 1rem;
+        }
     }
 }
 
