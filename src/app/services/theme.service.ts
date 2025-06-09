@@ -10,27 +10,14 @@ export class ThemeService {
   private readonly themeKey = 'theme';
   private readonly darkThemeClass = 'dark-theme';
   private readonly lightThemeClass = 'light-theme';
-  private themeSubject: BehaviorSubject<string> = new BehaviorSubject<string>('dark'); // ✅ Default theme
-  public theme$: Observable<string> = this.themeSubject.asObservable(); 
+  private themeSubject: BehaviorSubject<string> = new BehaviorSubject<string>('light'); // ✅ Default theme
+  public theme$: Observable<string> = this.themeSubject.asObservable();
   constructor() {
     this.loadTheme();
-    
+
   }
 
-  // private loadTheme() {
-  //   const theme = localStorage.getItem(this.themeKey);
-  //   if (theme === 'dark') {
-  //     this.darkMode.next(true);
-  //     document.body.classList.add(this.darkThemeClass);
-  //     document.body.classList.remove(this.lightThemeClass);
-  //   } else {
-  //     this.darkMode.next(false);
-  //     document.body.classList.add(this.lightThemeClass);
-  //     document.body.classList.remove(this.darkThemeClass);
-  //   }
-  // }
-
-    private loadTheme() {
+  private loadTheme() {
     const theme = localStorage.getItem(this.themeKey);
     if (theme === 'dark') {
       this.darkMode.next(true);
@@ -59,5 +46,17 @@ export class ThemeService {
   getTheme(): string {
     return this.themeSubject.getValue();
   }
+
+
+  setDefaultDarkTheme(): void {
+    const theme = localStorage.getItem(this.themeKey);
+    console.info('setDefaultDarkTheme returns ',theme)
+    if (theme != 'light' && typeof theme === undefined || theme == null) {
+      this.darkMode.next(true);
+      localStorage.setItem(this.themeKey, 'dark');
+    }
+  }
+
+
 
 }

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { GlobalSettingsService } from '../../../services/global-settings.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,9 +9,16 @@ import { Component } from '@angular/core';
 })
 export class SidebarComponent {
   sidebarOpen: boolean = true;
-  isNum : Number = 1;
+  isNum: Number = 1;
+
+  constructor(
+    private authService: AuthService,
+    private globalSettings: GlobalSettingsService,
+  ) {
+
+  }
   ngOnInit() {
-    if(this.isNum == 1 && window.innerWidth >= 992){
+    if (this.isNum == 1 && window.innerWidth >= 992) {
       document.body.classList.remove('compact-sidebar');
       document.body.classList.add('mobile-sidebar-active');
       this.isNum = 0;
@@ -42,5 +51,33 @@ export class SidebarComponent {
         document.body.classList.add('compact-sidebar');
       }
     }
+  }
+
+  logout() {
+    let jsonData = localStorage.getItem("userData");
+    let userId;
+    if (jsonData) {
+      let userData = JSON.parse(jsonData);
+      userId = userData.id;
+    }
+    let lang_id = localStorage.getItem('lang_id');
+    let cookieConsentTimestamp = localStorage.getItem('cookieConsentTimestamp');
+    let cookiesent = localStorage.getItem('cookieConsent');
+
+    console.log(userId);
+    // this.socketService.disconnectUser(userId);
+    let theme = localStorage.getItem('theme') || 'light';
+    let lang = localStorage.getItem('lang') || this.globalSettings.getLanguage();
+    let domainLang = this.globalSettings.getLanguage();
+    if (domainLang != '' && localStorage.getItem('lang') == '' || localStorage.getItem('lang') == undefined) {
+      lang = domainLang;
+    }
+    localStorage.clear();
+    localStorage.setItem('cookieConsent', cookiesent + '');
+    localStorage.setItem('cookieConsentTimestamp', cookieConsentTimestamp + '');
+    localStorage.setItem('theme', theme);
+    localStorage.setItem('lang', lang);
+    localStorage.setItem('lang_id', lang_id + '');
+    this.authService.logout();
   }
 }

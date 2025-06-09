@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { UnverifiedUserComponent } from '../../shared/unverified-user/unverified-user.component';
 import { SocketService } from '../../../services/socket.service';
+import { GlobalSettingsService } from '../../../services/global-settings.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'scout-sidebar',
@@ -14,7 +16,12 @@ export class SidebarComponent {
   isNum: Number = 1;
   loggedInUser: any = localStorage.getItem('userInfo');
   locksideBar: boolean = true;
-  constructor(public dialog: MatDialog, private socketService: SocketService) {
+  constructor(
+    private authService: AuthService,
+    private globalSettings: GlobalSettingsService,
+    public dialog: MatDialog,
+    private socketService: SocketService
+  ) {
 
   }
   ngOnInit(): void {
@@ -92,6 +99,34 @@ export class SidebarComponent {
         }
       }
     });
+  }
+
+  logout() {
+    let jsonData = localStorage.getItem("userData");
+    let userId;
+    if (jsonData) {
+      let userData = JSON.parse(jsonData);
+      userId = userData.id;
+    }
+    let lang_id = localStorage.getItem('lang_id');
+    let cookieConsentTimestamp = localStorage.getItem('cookieConsentTimestamp');
+    let cookiesent = localStorage.getItem('cookieConsent');
+
+    console.log(userId);
+    this.socketService.disconnectUser(userId);
+    let theme = localStorage.getItem('theme') || 'light';
+    let lang = localStorage.getItem('lang') || this.globalSettings.getLanguage();
+    let domainLang = this.globalSettings.getLanguage();
+    if (domainLang != '' && localStorage.getItem('lang') == '' || localStorage.getItem('lang') == undefined) {
+      lang = domainLang;
+    }
+    localStorage.clear();
+    localStorage.setItem('cookieConsent', cookiesent + '');
+    localStorage.setItem('cookieConsentTimestamp', cookieConsentTimestamp + '');
+    localStorage.setItem('theme', theme);
+    localStorage.setItem('lang', lang);
+    localStorage.setItem('lang_id', lang_id + '');
+    this.authService.logout();
   }
 
 }

@@ -17,8 +17,8 @@ export class GlobalSettingsService {
   indexFunctionCall$ = this.indexFunctionCallSubject.asObservable();
   constructor(private authService: AuthService, private themeService: ThemeService) {
     this.setDefaultLanguage();
-    // this.setDefaultTheme();
     this.setDomainCurrency();
+    this.themeService.setDefaultDarkTheme();
   }
 
   private getDomainExtension(): string {
@@ -31,9 +31,6 @@ export class GlobalSettingsService {
     return ''; // Return empty string if no match
   }
 
-  private setDefaultTheme() {
-    this.themeService.setDarkTheme(true);
-  }
 
   public getCurrentDomainExtension() {
     const hostname = window.location.hostname; // Get full domain name
@@ -43,7 +40,7 @@ export class GlobalSettingsService {
       }
     }
     return '';
-  } 
+  }
 
   private setDefaultLanguage(): void {
     const domainExt = this.getDomainExtension();
