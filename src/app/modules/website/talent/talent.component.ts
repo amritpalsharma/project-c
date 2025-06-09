@@ -69,6 +69,12 @@ export class TalentComponent {
 
   setActiveAccordion(index: number): void {
     this.activeAccordionIndex = index;
+    // const accordionElement = document.getElementById('collapseOne' + index);
+    // if (accordionElement) {
+    //   accordionElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // }else{
+    //   alert('not found')
+    // }
   }
 
   constructor(private webPages: WebPages, private globalSettings: GlobalSettingsService) { }
@@ -329,18 +335,18 @@ export class TalentComponent {
 
   getDynamicPlanName(planName: string) {
     const lowerPlanName = planName.toLowerCase();
-    if (lowerPlanName.includes('premium')) { 
-      if(this.priceArr){
+    if (lowerPlanName.includes('premium')) {
+      if (this.priceArr) {
         return this.priceArr[0].plan_name;
       }
     }
     if (lowerPlanName.includes('country')) {
-      if(this.priceArr){
+      if (this.priceArr) {
         return this.priceArr[1].plan_name;
       }
     }
     if (lowerPlanName.includes('boost')) {
-      if(this.priceArr){
+      if (this.priceArr) {
         return this.priceArr[2].plan_name;
       }
     }
@@ -348,17 +354,17 @@ export class TalentComponent {
   getDescByPlanName(planName: string) {
     const lowerPlanName = planName.toLowerCase();
     if (lowerPlanName.includes('premium')) {
-      if(this.priceArr){
+      if (this.priceArr) {
         return this.priceArr[0].plan_feature_desc;
       }
     }
     if (lowerPlanName.includes('country')) {
-      if(this.priceArr){
+      if (this.priceArr) {
         return this.priceArr[1].plan_feature_desc;
       }
     }
     if (lowerPlanName.includes('boost')) {
-      if(this.priceArr){
+      if (this.priceArr) {
         return this.priceArr[2].plan_feature_desc;
       }
     }

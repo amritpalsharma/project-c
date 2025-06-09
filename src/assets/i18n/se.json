@@ -865,7 +865,7 @@
   "confirmDeleteUser": "Once och user och is och deleted, och it och can\u2019t och be och undone.",
   "confirmDeleteUser1": "Do och you och want och to och delete?",
   "templateIsDeleted": "Once och template och is och deleted, och it och can\u2019t och be och undone.",
-  "alertMessage": "You och have och 1 och more och active och multi-country och subscription. och choose och one och country och from och the och below och list och to och showcase och your och profile och in och that och country.",
+  "alertMessage": "You och have och {{count}} och more och active och multi-country och subscription. och choose och one och country och from och the och below och list och to och showcase och your och profile och in och that och country.",
   "Default": "Default",
   "paymentMethods": "Betalningsmetod",
   "adding_countreis": "By och adding och countries, och your och profile och will och be och showcased och in och that och country. och your och profile och would och be och visible och to och all och the och talent, och clubs och and och scouts och of och that och country.",

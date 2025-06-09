@@ -803,7 +803,7 @@
   "confirmDeleteUser": "Once e user e is e deleted, e it e can\u2019t e be e undone.",
   "confirmDeleteUser1": "Do e you e want e to e delete?",
   "templateIsDeleted": "Once e template e is e deleted, e it e can\u2019t e be e undone.",
-  "alertMessage": "You e have e 1 e more e active e multi-country e subscription. e choose e one e country e from e the e below e list e to e showcase e your e profile e in e that e country.",
+  "alertMessage": "You e have e {{count}} e more e active e multi-country e subscription. e choose e one e country e from e the e below e list e to e showcase e your e profile e in e that e country.",
   "Default": "Default",
   "purchased": "Gekauft",
   "paymentMethods": "Método de pagamento",

@@ -2,6 +2,7 @@ import { Component, ViewEncapsulation, Input } from '@angular/core';
 import { WebPages } from '../../../services/webpages.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ShareService } from '../../../services/share.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-detail-pages',
@@ -21,7 +22,13 @@ export class DetailPagesComponent {
   blogSlug: string = '';
 
   blogUrl = window.location.href;
-  constructor(private shareService: ShareService, private route: ActivatedRoute, private router: Router, private webPages: WebPages) { }
+  description: string = '';
+  constructor(
+    private shareService: ShareService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private webPages: WebPages,
+    private translateService: TranslateService) { }
 
   ngOnInit() {
     // Initially, all ads are visible
@@ -31,12 +38,20 @@ export class DetailPagesComponent {
       this.id = params['slug'];
       this.getPageData(this.currentLang);
     });
+    this.getTranslation();
     this.getPageData(this.currentLang);
     this.webPages.languageId$.subscribe((data) => {
       this.currentLang = data;
-      this.getPageData(data)
+      this.getPageData(data);
+       this.getTranslation();
     });
 
+  }
+
+  getTranslation() {
+    this.translateService.get(['description']).subscribe((translations) => {
+      this.description = translations['description'];
+    })
   }
   getPageData(languageId: any): void {
     let str = this.id;
@@ -88,7 +103,7 @@ export class DetailPagesComponent {
   get emailUrl() {
     this.blogTitle = this.news.title;
     // this.blogSlug = this.news.slug;
-    return this.shareService.getEmailShareUrl(this.blogTitle, `description: ${this.blogUrl}`);
+    return this.shareService.getEmailShareUrl(this.blogTitle, `${this.description}: ${this.blogUrl}`);
   }
 
 }

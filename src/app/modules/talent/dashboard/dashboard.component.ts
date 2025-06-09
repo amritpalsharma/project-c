@@ -231,6 +231,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     // this.translateService.use(lang); // Change language before fetching translations
     this.translateService.get([
       'profilePhoto',
+      'deleteProfilePicture',
       'uploadYourBestHeadshot',
       'personalDetails',
       'addYourPersonalDetails',
@@ -246,11 +247,21 @@ export class DashboardComponent implements OnInit, OnDestroy {
       'dontShowAgain'
     ]).subscribe((translations) => {
       this.dontShowAgainTourTxt = translations['dontShowAgain'];
+      // deleteProfilePicture
+      let profileImageTxt = '';
+      let uploadYourBestHeadshot = '';
+      if (!this.profileImage) {
+        profileImageTxt = translations['profilePhoto'];
+        uploadYourBestHeadshot = translations['uploadYourBestHeadshot'];
+      } else {
+        profileImageTxt = translations['deleteProfilePicture'];
+        uploadYourBestHeadshot = profileImageTxt;
+      }
       this.introInstance.setOptions({
         steps: [
           {
             element: '#upload_profilePhoto',
-            intro: `<div><h6>${translations['profilePhoto']}</h6>${translations['uploadYourBestHeadshot']}.</div>`,
+            intro: `<div><h6>${profileImageTxt}</h6>${uploadYourBestHeadshot}.</div>`,
             // tooltipClass: 'custom-tooltip',
             position: 'right'
           },
@@ -272,12 +283,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
             // tooltipClass: 'custom-tooltip',
             position: 'left'
           },
-          {
-            element: '#generalDetailsBtn',
-            intro: `<div><h6>${translations['generalDetails']}</h6>${translations['editGeneralDetails']}.</div>`,
-            // tooltipClass: 'custom-tooltip',
-            position: 'right'
-          },
+          // {
+          //   element: '#generalDetailsBtn',
+          //   intro: `<div><h6>${translations['generalDetails']}</h6>${translations['editGeneralDetails']}.</div>`,
+          //   position: 'right'
+          // },
         ],
         showBullets: false,
         showProgress: false,
@@ -483,7 +493,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
           this.premium = this.user.active_subscriptions?.premium?.length > 0 ? true : false;
           this.booster = this.user.active_subscriptions?.booster?.length > 0 ? true : false;
           this.activeDomains = this.user.active_subscriptions?.country?.length > 0 ? true : false;
-
+          this.profileImage = null;
           if (this.user?.meta?.profile_image_path) {
             this.profileImage = this.user.meta.profile_image_path;
             this.sendMessage();

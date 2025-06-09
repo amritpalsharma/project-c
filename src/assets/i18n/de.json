@@ -512,7 +512,7 @@
   "deafultProfilePreview": "Standard-Profilvorschau",
   "choosePlan": "Abo wählen",
   "onfirmDeleteinformation": "Einmal gelöschte Informationen können nicht mehr rückgängig gemacht werden.",
-  "alertMessage": "Du hast 1 aktives Multi-Länder-Abonnement. Wähle ein Land aus der folgenden Liste, um dein Profil in diesem Land zu präsentieren.",
+  "alertMessage": "Du hast {{count}} aktives Multi-Länder-Abonnement. Wähle ein Land aus der folgenden Liste, um dein Profil in diesem Land zu präsentieren.",
   "active": "Aktiv",
   "Default": "Standard",
   "purchased": "Gekauft",

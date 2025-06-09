@@ -65,6 +65,7 @@ export class EditGeneralDetailsComponent {
   errorTxt: string = '';
   errorMsg: string = '';
 
+  domainCurrency: string = this.globalSetting.getDomainCurrency();
   constructor(
     public dialogRef: MatDialogRef<EditGeneralDetailsComponent>,
     public dialog: MatDialog,

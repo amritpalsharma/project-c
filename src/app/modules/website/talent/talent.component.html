@@ -200,36 +200,6 @@
                     <div class="left-accordion">
                         <h3 class="feature-heading3">{{pageData?.feature_sctn_title}}</h3>
                         <div class="accordion" id="accordionExample">
-                            <!-- <ng-container *ngFor="let feature of pageData.feature_sctn; let i = index">
-                                <div class="accordion-item" (click)="setActiveAccordion(i+1)">
-                                    <div class="accordion-flex" data-bs-toggle="collapse"
-                                        [attr.data-bs-target]="'#collapseOne' + i" aria-expanded="false"
-                                        [attr.aria-controls]="'collapseOne' + i">
-                                        <img class="light-feature1" src="{{baseUrl + feature.icon}}">
-                                        <img class="dark-feature1" src="{{baseUrl + feature.dark_icon}}">
-                                        <h2 class="accordion-header">
-                                            {{feature.title}}
-                                        </h2>
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                            [attr.data-bs-target]="'#collapseOne' + i" aria-expanded="false"
-                                            [attr.aria-controls]="'collapseOne' + i">
-                                        </button>
-                                    </div>
-                                    <div [id]="'collapseOne' + i" class="accordion-collapse collapse"
-                                        data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                            <p class="feature-text">{{feature.desc}}
-                                            </p>
-                                            <div class="talent_tab_image">
-                                                <img class="single_tab_img light-images"
-                                                    src="{{baseUrl + feature.image}}">
-                                                <img class="single_tab_img dark-images"
-                                                    src="{{baseUrl + feature.dark_image	}}">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </ng-container> -->
                             <ng-container *ngFor="let feature of pageData.feature_sctn; let i = index">
                                 <div class="accordion-item" >
                                     <div class="accordion-flex" data-bs-toggle="collapse"

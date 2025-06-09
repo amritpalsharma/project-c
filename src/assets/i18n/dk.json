@@ -714,7 +714,7 @@
   "confirmDeleteinformation3": "Når oplysninger er slettet, kan det ikke gøres om. Ønsker du at slette?",
   "confirmDeleteUser1": "Do og you og want og to og delete?",
   "templateIsDeleted": "Once og template og is og deleted, og it og can\u2019t og be og undone.",
-  "alertMessage": "You og have og 1 og more og active og multi-country og subscription. og choose og one og country og from og the og below og list og to og showcase og your og profile og in og that og country.",
+  "alertMessage": "You og have og {{count}} og more og active og multi-country og subscription. og choose og one og country og from og the og below og list og to og showcase og your og profile og in og that og country.",
   "Default": "Default",
   "purchased": "Gekauft",
   "paymentMethods": "Betalingsmetode",

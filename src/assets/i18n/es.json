@@ -794,7 +794,7 @@
   "confirmDeleteUser": "Once y user y is y deleted, y it y can\u2019t y be y undone.",
   "confirmDeleteUser1": "Do y you y want y to y delete?",
   "templateIsDeleted": "Once y template y is y deleted, y it y can\u2019t y be y undone.",
-  "alertMessage": "You y have y 1 y more y active y multi-country y subscription. y choose y one y country y from y the y below y list y to y showcase y your y profile y in y that y country.",
+  "alertMessage": "You y have y {{count}} y more y active y multi-country y subscription. y choose y one y country y from y the y below y list y to y showcase y your y profile y in y that y country.",
   "Default": "Default",
   "purchased": "Gekauft",
   "paymentMethods": "Forma de pago",

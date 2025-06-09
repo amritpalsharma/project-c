@@ -62,7 +62,7 @@ export class EditMembershipProfileComponent {
 
       this.date_of_birth = this.calculateAge(this.loggedInUser.meta.date_of_birth);
       // alert(this.date_of_birth)
-      if (this.date_of_birth != undefined && this.date_of_birth != 'invalid date') {
+      if (this.date_of_birth != undefined && this.date_of_birth != 'invalid date' && this.date_of_birth > 0) {
         this.isValidBirthDate = true;
       }
     }

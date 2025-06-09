@@ -28,6 +28,7 @@ export class ChatComponent {
   isLoading: boolean = true;
   pageTitle: string = '';
   baseUrl: string = 'https://api.socceryou.ch/uploads/';
+  lang: string = localStorage.getItem('lang') || 'de';
   constructor(
     private talkService: TalkService,
     private route: ActivatedRoute,
@@ -73,9 +74,10 @@ export class ChatComponent {
           this.talkService.toggleTheme(true);
         }, 2000);
       }
-      // this.talkService.changeLocale(locale);
-      console.info('currentTheme is ' + theme)
+
+      // console.info('currentTheme is ' + theme)
     });
+    // this.talkService.changeLocale(this.lang);
     this.talkService.attachMessageSendListener();
   }
 
@@ -117,23 +119,18 @@ export class ChatComponent {
       width: '760px',
     })
       .afterClosed().subscribe(users => {
-        console.info(users.data)
+        // console.info(users.data)
         for (let user of users.data) {
-          console.info('User is ', user)
-          // if (user.profile_image_path != '' && user.profile_image_path != undefined) {
-
-          // } else
-          //  if (user.profile_image != '' && user.profile_image != undefined) {
-          //   user.profile_image = 'https://api.socceryou.ch/uploads/' + user.profile_image;
-          // }
+          // console.info('User is ', user)
           this.users.push({
             id: user.id,
-            name: user.first_name+' '+user.last_name, // The opened chat options Here
+            name: user.first_name + ' ' + user.last_name, // The opened chat options Here
             email: user.username,
             photoUrl: this.baseUrl + user.meta.profile_image,
           })
         }
         if (this.users.length == 1) {
+          console.log('this.users[0]',this.users[0]);
           this.startOneOnOneChat(this.users[0]);
         } else if (this.users.length > 1) {
           this.startGroupChat();

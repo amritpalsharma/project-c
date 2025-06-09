@@ -882,7 +882,7 @@
   "confirmDeleteUser": "Once et user et is et deleted, et it et can\u2019t et be et undone.",
   "confirmDeleteUser1": "Do et you et want et to et delete?",
   "templateIsDeleted": "Once et template et is et deleted, et it et can\u2019t et be et undone.",
-  "alertMessage": "You et have et 1 et more et active et multi-country et subscription. et choose et one et country et from et the et below et list et to et showcase et your et profile et in et that et country.",
+  "alertMessage": "You et have et {{count}} et more et active et multi-country et subscription. et choose et one et country et from et the et below et list et to et showcase et your et profile et in et that et country.",
   "Default": "Default",
   "paymentMethods": "Mode de paiement",
   "adding_countreis": "By et adding et countries, et your et profile et will et be et showcased et in et that et country. et your et profile et would et be et visible et to et all et the et talent, et clubs et and et scouts et of et that et country.",

@@ -229,8 +229,6 @@ export class TalkService {
   }
 
   startChatWithUser(otherUserData: any) {
-    // const userDataString = localStorage.getItem('userData');
-
     if (otherUserData) {
       let userData;
       // let userData = JSON.parse(otherUserData);
@@ -239,16 +237,23 @@ export class TalkService {
       } catch (e) {
         userData = otherUserData;
       }
+      // console.info('User Recived In Talk js servie ', userData);
+      let chatPersonName = '';
+      if (typeof userData.name === 'undefined' || userData.name === '') {
+        userData.name = 'Talk User';
+      }
 
-      if (typeof userData.name !== undefined && userData.name != '') {
-        userData.first_name = userData.name;
-      }else if(userData.first_name != '' && userData.last_name != ''){
-         userData.first_name = userData.first_name+' '+userData.last_name;
+      if (typeof userData.profile_image === 'undefined' || userData.profile_image === '') {
+        console.info('userData.profile_image not found '+userData.profile_image+' && userData.photoUrl '+userData.photoUrl)
+        // userData.name = 'Talk User';
+        if (userData.photoUrl !== undefined && userData.photoUrl !== null && userData.photoUrl !== '') {
+           userData.profile_image = userData.photoUrl;
+        }
       }
 
       let userArr = {
         id: userData.id,
-        name: userData.first_name,
+        name: userData.name,
         email: userData.username,
         photoUrl: userData.profile_image,
         welcomeMessage: null,
@@ -259,7 +264,7 @@ export class TalkService {
         userArr.name = 'Talk User';
       }
 
-      console.info('User Recived In Talk js servie ', userArr);
+
 
       const currentUser = new Talk.User(userArr);
       const otherUser = new Talk.User(otherUserData);

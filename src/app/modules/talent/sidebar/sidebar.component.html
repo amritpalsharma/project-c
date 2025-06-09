@@ -123,7 +123,7 @@
   </div>
   <div class="bottom_box">
     <ul class="sidebar_menu">
-      <li><a routerLink="/talent/setting" matTooltip="{{ 'settings' | translate }}" matTooltipPosition="right"
+      <li><a routerLink="/talent/setting" [matTooltip]="!sidebarOpen ? ('settings' | translate) : ''" matTooltipPosition="right"
           (click)="closeSidebar(true)" routerLinkActive="active">
           <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"
             class="my-svg-icon">
