@@ -344,9 +344,16 @@ button.learn-more {
     }
     .image-text {
         max-width: 100%;
-        padding: 0 0 1rem 1rem;
+        padding: 1rem;
         left: 0;
         bottom: 0;
+        h3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;  
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
     }
     .news_slider_wrapper p.p-text {
         padding: 3px 10px 2px;

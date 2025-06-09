@@ -100,6 +100,10 @@ a.pdf-download_btn {
 thead.table-light th:first-child, thead.table-light td:first-child {
     padding-left: 0;
 }
+.close-btn:focus, .close-btn:focus-visible{
+    border: 0;
+    outline: 0;
+}
 
 @media (min-width: 1600px) and (max-width: 1999px) {
     .dialog-header h2 {
@@ -179,7 +183,36 @@ a.pdf-download_btn {
 }
 }
 
-.close-btn:focus, .close-btn:focus-visible{
-    border: 0;
-    outline: 0;
+@media (min-width: 576px) { 
+span.visible_mob {
+    display: none !important;
+}
+}
+
+@media (max-width: 575px) {
+h2.rechnung-titel {
+    margin-bottom: 1rem !important;
+}
+.overflow-card-2.popup__body  {
+    padding: 1rem !important;
+}
+table {
+    .hide_mobile {
+        display: none !important;
+    }
+    td, thead.table-light td {
+        display: flex;
+        justify-content: space-between;
+        padding: 7px 0 !important;
+        text-align: right;
+        span.visible_mob {
+            text-align: left;
+            font-weight: bold;
+        }
+    }
+}
+.view-membership .table-responsive {
+    overflow: hidden !important;
+    padding: 0;
+}
 }

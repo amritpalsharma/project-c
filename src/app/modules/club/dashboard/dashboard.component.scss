@@ -2017,31 +2017,6 @@ span.active_btn {
   fill: #072944;
 }
 
-
-// @media (min-width: 1441px) and (max-width: 1899.98x) {
-//   ::ng-deep a.introjs-skipbutton {
-//     padding-top: 4px;
-//   }
-// }
-
-// @media (min-width: 2200px) and (max-width: 2699.98px) {
-//   ::ng-deep a.introjs-skipbutton {
-//     padding-top: 4px;
-//   }
-// }
-
-// @media (min-width: 2700px) and (max-width: 2999px) {
-//   ::ng-deep a.introjs-skipbutton {
-//     padding-top: 2px;
-//   }
-// }
-
-// @media (min-width: 3000px) {
-//   ::ng-deep a.introjs-skipbutton {
-//     padding-top: 1px;
-//   }
-// }
-
 .duration {
   position: absolute;
   bottom: 7px;
@@ -2049,4 +2024,27 @@ span.active_btn {
   background: #0000007a;
   color: #fff;
   padding: 0 4px;
+}
+
+@media (max-width: 360px) {
+.premium_button {
+  span {
+    font-size: 10px;
+  }
+}
+}
+
+
+
+@media (max-width: 575px) {
+.social_iconlist {
+  a {
+    margin-top: 10px;
+    display: inline-block;
+  }
+      svg {
+        width: 24px !important;
+        height: 24px !important;
+      }
+  }
 }

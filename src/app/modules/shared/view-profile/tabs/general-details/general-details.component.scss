@@ -564,3 +564,23 @@
       height: 24px !important;
     }
 }
+
+
+
+@media (max-width: 575px) {
+  .player_social_links {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+.main-position .social_icons {
+      span.me-2 {
+        width: 35px !important;
+        height: 35px !important;
+        margin-right: 0 !important;
+      }
+      svg {
+        width: 30px !important;
+        height: 30px !important;
+      }
+  }
+}
