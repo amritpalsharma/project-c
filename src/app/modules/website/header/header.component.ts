@@ -324,6 +324,13 @@ export class HeaderComponent implements OnInit {
     this.router.events.subscribe(() => {
       this.currentRoute = this.router.url; // Update current route
     });
+    let themeFirst = this.themeService.getTheme();
+    if (themeFirst !== undefined && themeFirst !== null && themeFirst !== '') {
+      // console.log("Theme is valid and not empty.");
+      // Perform your logic here
+      // set dark theme as first time
+      // this.themeService.setDarkTheme(true);
+    } 
   }
 
   isActiveRoute(): boolean {

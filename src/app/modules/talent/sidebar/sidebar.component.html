@@ -109,7 +109,7 @@
       <li [ngClass]="{'locksideBar': locksideBar}">
         <a [routerLink]="isUserVerified ? '/talent/countries' : null"
           [matTooltip]="!sidebarOpen ? ('countries' | translate) : ''" matTooltipPosition="right"
-          (click)="isUserVerified ? closeSidebar(true) : showVerificationPopup()" [class.disabled]="!isUserVerified"
+          (click)="isUserVerified ? logout() : showVerificationPopup()" [class.disabled]="!isUserVerified"
           routerLinkActive="active">
           <svg width="27" height="26" viewBox="0 0 27 26" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -119,12 +119,9 @@
           <p class="sidebar_menu_span"> {{ 'countries' | translate }} </p>
         </a>
       </li>
-    </ul>
-  </div>
-  <div class="bottom_box">
-    <ul class="sidebar_menu">
-      <li><a routerLink="/talent/setting" [matTooltip]="!sidebarOpen ? ('settings' | translate) : ''" matTooltipPosition="right"
-          (click)="closeSidebar(true)" routerLinkActive="active">
+      <!-- Settings -->
+      <li><a routerLink="/talent/setting" [matTooltip]="!sidebarOpen ? ('settings' | translate) : ''"
+          matTooltipPosition="right" (click)="closeSidebar(true)" routerLinkActive="active">
           <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"
             class="my-svg-icon">
             <path
@@ -132,6 +129,20 @@
               fill="white" class="my-path" />
           </svg>
           <p class="sidebar_menu_span"> {{ 'settings' | translate }} </p>
+        </a></li>
+    </ul>
+  </div>
+  <div class="bottom_box">
+    <ul class="sidebar_menu">
+      <li><a [matTooltip]="!sidebarOpen ? ('signOut' | translate) : ''"
+          matTooltipPosition="right" (click)="closeSidebar(true)" routerLinkActive="active">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+            class="my-svg-icon">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M16 17L17.41 15.59L14.83 13H22V11H14.83L17.41 8.41L16 7L11 12L16 17ZM2 3H12V5H4V19H12V21H2C1.45 21 1 20.55 1 20V4C1 3.45 1.45 3 2 3Z"
+              fill="white" class="my-path" />
+          </svg>
+          <p class="sidebar_menu_span"> {{ 'signOut' | translate }} </p>
         </a></li>
     </ul>
 
