@@ -1282,6 +1282,10 @@ mat-datepicker-toggle button {
     height: auto;
 }
 }
+.all-page-content .page-container > .outlet_outer {
+    min-height: unset !important;
+    padding-top: 77px;
+}
 .page-header .mobile-logo img {
     width: 40px;
 }
@@ -1304,7 +1308,8 @@ mat-datepicker-toggle button {
     padding: 0 10px !important;
 }
 .compact-sidebar .page-header {
-    padding: 0 !important;
+    padding: 0 8px !important;
+    left: 0;
 }
 .page-header .sidebar-menu a.nav-link {
     padding-left: 0;
@@ -1673,8 +1678,8 @@ body .dialog-content.add-perfomance {
 body .edit_genrl_details.popup__body {
     max-height: 400px !important;
 }
-body .dialog-content.edit_genrl_details, body .dialog-content.transfer_details, body .statistics_popup, body .highlights__popup {
-    .popup__body, .overflow-card.popup__body {
+body .dialog-content.edit_genrl_details, body .dialog-content.transfer_details, body .statistics_popup, body .highlights__popup, body .view_membership_popup {
+    .popup__body, .overflow-card.popup__body, .overflow-card-2.popup__body {
         max-height: 400px !important;
         overflow: auto;
     }
@@ -1770,6 +1775,11 @@ button.upload-btn {
 }
 .popup-delete-btn {
     flex-wrap: wrap;
+    justify-content: center !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
     .btn {
         margin-left: 7px !important;
         margin-right: 7px !important;

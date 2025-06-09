@@ -375,6 +375,15 @@ td.cdk-column-Download.mat-column-Download svg {
     }
 }
 
+@media (max-width: 480px) {
+.card .card-header {
+    padding: 0 !important;
+}
+.hide_table_for_desktop .space-y-2 .justify-between span:nth-child(1) {
+    min-width: 120px !important;
+}
+}
+
 
 @media (min-width: 1600px) and (max-width: 2999px) {
     .performance_card_hedr .btn {

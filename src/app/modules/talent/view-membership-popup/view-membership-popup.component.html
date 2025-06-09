@@ -24,23 +24,21 @@
           <div class="col-lg-8 rechnung-headdings">
             <table class="table table-bordered">
               <thead class="table-light">
-                <tr>
+                <tr class="hide_mobile">
                   <th>{{ 'invoiceNumber' | translate }}</th>
                   <th>{{ 'date' | translate }}</th>
                 </tr>
                 <tr>
-                  <td>#{{ plan.invoice_number }}</td>
-                  <!-- <td>{{ todayDate }}</td> -->
-                  <td>{{ plan.created_at | date: 'dd.MM.YYYY' }}</td>
+                  <td><span class="visible_mob">{{ 'invoiceNumber' | translate }}</span> #{{ plan.invoice_number }}</td>
+                  <td><span class="visible_mob">{{ 'date' | translate }}</span> {{ plan.created_at | date: 'dd.MM.YYYY' }}</td>
                 </tr>
               </thead>
-
             </table>
           </div>
         </div>
         <table class="table table-bordered membership-data">
           <thead class="table-light">
-            <tr>
+            <tr class="hide_mobile">
               <th>{{ 'pos' | translate }}</th>
               <th>{{ 'plan' | translate }}</th>
               <th>{{ 'duration' | translate }}</th>
@@ -48,11 +46,11 @@
               <th class="text-end">{{ 'price' | translate }}</th>
             </tr>
             <tr class="bordered-bottom">
-              <td>1</td>
-              <td>{{ plan.plan }}</td>
-              <td>{{ capitalizeFirstLetter(plan.duration) }}</td>
-              <td>{{ plan.valid_until | date: 'dd.MM.YYYY'}}</td>
-              <td class="text-end">{{ plan.package_price }} {{strUpperCase(plan.currency)}}</td>
+              <td><span class="visible_mob">{{ 'pos' | translate }}</span> 1</td>
+              <td><span class="visible_mob">{{ 'plan' | translate }}</span> {{ plan.plan }}</td>
+              <td><span class="visible_mob">{{ 'duration' | translate }}</span> {{ capitalizeFirstLetter(plan.duration) }}</td>
+              <td><span class="visible_mob" style="text-transform: none;">{{ 'validUntil' | translate }}</span>{{ plan.valid_until | date: 'dd.MM.YYYY'}}</td>
+              <td class="text-end"><span class="visible_mob">{{ 'price' | translate }}</span> {{ plan.package_price }} {{strUpperCase(plan.currency)}}</td>
             </tr>
           </thead>
 

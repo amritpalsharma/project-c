@@ -472,25 +472,21 @@ img.join-btn {
   .map {
     height: 300px;
   }
-
-  .join-text p {
-    font-size: 24px;
-    line-height: 43px;
-  }
-
   .button-border {
-
     height: 55px;
-  }
-
-  .join-text {
-    height: 46px;
-  }
-
-  img.join-btn {
-    height: 17px;
-    width: 15px;
-    margin: 14px;
+    min-width: 230px;
+    .join-text {
+      height: 46px;
+      p {
+        font-size: 24px;
+        line-height: 43px;
+      }
+    }
+    img.join-btn {
+        height: 17px;
+        width: 15px;
+        margin: 14px;
+    }
   }
 
 }
@@ -558,46 +554,25 @@ img.join-btn {
     margin-bottom: 30px;
     width: 100%;
   }
-  .join-text p {
-    font-size: 18px;
-    line-height: 43px;
-  }
-
+.join-text p {
+    font-size: 18px !important;
+    line-height: 43px !important;
+}
 }
 
 @media (max-width: 400px) {
   .main-bnr {
     padding-top: 80px;
   }
-  .join-text {
-    height: 46px;
-    padding-left: 10px;
-  }
-  .button-border {
-    min-width: 230px;
-    height: 55px;
-  }
 }
 
 @media (max-width: 321px) {
-  .website-code {
-    overflow: hidden;
-  }
   .countries.py_0 {
     padding-bottom: 0;
   }
   .club-buttons {
     margin-top: 20px;
   }
-
-  img.join-btn {
-    height: 14px;
-    width: 12px;
-    margin: 0;
-    margin-top: 15px;
-    margin-left: 10px;
-  }
-
 }
 
 .mat-mdc-list-item-unscoped-content {

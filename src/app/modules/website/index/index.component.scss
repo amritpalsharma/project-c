@@ -3919,11 +3919,6 @@ img.success-image {
     height: 100%;
   }
 
-  .button-border {
-    width: 253px;
-    height: 57px;
-  }
-
   img.join-btn {
     height: 18px;
     width: 17px;
@@ -4525,12 +4520,6 @@ img.success-image {
     height: 650px;
     padding-top: 80px;
   }
-
-  .button-border {
-    width: 230px;
-    height: 55px;
-  }
-
   .club h3 {
     font-size: 30px;
   }
@@ -4815,11 +4804,6 @@ img.success-image {
     height: 215px;
     position: static;
     margin-top: 60px;
-  }
-
-  .button-border {
-    width: 216px;
-    height: 49px;
   }
 
   img.join-btn {
@@ -5171,6 +5155,7 @@ img.success-image {
 @media (max-width: 991px) {
   .button-border {
     height: 55px;
+    min-width: 230px;
     .join-text {
       height: 46px;
       p {

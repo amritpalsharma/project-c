@@ -1771,15 +1771,15 @@ span.active_btn {
     border-radius: 8px;
   }
   .dashboard_mobile_design a.team-badge_image {
-right: -40px !important;
-top: 15px !important;
-position: absolute;
-padding: 0 !important;
-border: 0 !important;
-img {
-  max-width: 100%;
-}
-}
+    right: -60px !important;
+    top: 13px !important;
+    position: absolute;
+    padding: 0 !important;
+    border: 0 !important;
+    img {
+      max-width: 100%;
+    }
+  }
   .cover_pic_mobile {
     height: 200px !important;
 
@@ -1877,6 +1877,15 @@ img {
   }
 }
 
+
+@media (min-width: 576px) and (max-width: 1199px) {
+.edit-profile {
+    width: 42px !important;
+    top: 10px !important;
+    right: -10px !important;
+    height: 42px !important;
+  }
+}
 
 @media (max-width: 575px) {
   .user-media span.profile_img_bg_circle {
@@ -2082,5 +2091,27 @@ img {
 
   100% {
       transform: rotate(360deg);
+  }
+}
+
+
+@media (max-width: 360px) {
+.premium_button {
+  span {
+    font-size: 10px;
+  }
+}
+}
+
+@media (max-width: 575px) {
+.social_iconlist {
+  a {
+    margin-top: 10px;
+    display: inline-block;
+  }
+  svg {
+    width: 24px !important;
+    height: 24px !important;
+  }
   }
 }
