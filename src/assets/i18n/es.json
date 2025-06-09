@@ -1423,5 +1423,7 @@
   "rejectedStatus": "Rechazado",
   "doYouHaveAVoucherCode": "¿Tienes un código de cupón?",
   "boostedProfileViews": "Vistas de perfil potenciadas",
-  "sureToAdjustYourSubscription": "¿Estás seguro de que quieres ajustar tu suscripción?"
+  "sureToAdjustYourSubscription": "¿Estás seguro de que quieres ajustar tu suscripción?",
+  "paymentProcessCanceled": "Transacción de pago cancelada.",
+  "paymentProcessCanceledDesc": "Su transacción de pago ha sido cancelada. Inténtelo de nuevo."
 }

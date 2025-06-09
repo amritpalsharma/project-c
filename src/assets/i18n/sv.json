@@ -1475,5 +1475,7 @@
   "rejectedStatus": "Avvisad",
   "doYouHaveAVoucherCode": "Har du en rabattkod?",
   "boostedProfileViews": "Förstärkta profilsvisningar",
-  "sureToAdjustYourSubscription": "Är du säker på att du vill justera ditt abonnemang?"
+  "sureToAdjustYourSubscription": "Är du säker på att du vill justera ditt abonnemang?",
+  "paymentProcessCanceled": "Betalningstransaktion avbruten.",
+  "paymentProcessCanceledDesc": "Din betalningstransaktion har avbrutits. Vänligen försök igen."
 }

@@ -1482,5 +1482,7 @@
   "rejectedStatus": "Abgelehnt",
   "doYouHaveAVoucherCode": "Hast du einen Gutscheincode?",
   "boostedProfileViews": "Boost-Profil Ansichten",
-  "sureToAdjustYourSubscription": "Bist du sicher, dass du dein Abo anpassen möchtest?"
+  "sureToAdjustYourSubscription": "Bist du sicher, dass du dein Abo anpassen möchtest?",
+  "paymentProcessCanceled": "Zahlungsvorgang abgebrochen.",
+  "paymentProcessCanceledDesc": "Dein Zahlungsvorgang wurde abgebrochen. Bitte versuche es nochmals."
 }

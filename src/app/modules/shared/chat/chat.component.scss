@@ -119,6 +119,6 @@ app-loader {
 ::ng-deep #hub-search-field{
   display: none !important;
 }
-::ng-deep .ChatBox .left-button .Panel{
-  display: none;
+::ng-deep  #talkjs-container .ChatBox .left-button .Panel{
+  display: none !important;
 }

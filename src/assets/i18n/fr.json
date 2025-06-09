@@ -1491,5 +1491,7 @@
   "rejectedStatus": "Rejeté",
   "doYouHaveAVoucherCode": "Avez-vous un code de bon?",
   "boostedProfileViews": "Vues de profil boostées",
-  "sureToAdjustYourSubscription": "Êtes-vous sûr de vouloir modifier votre abonnement ?"
+  "sureToAdjustYourSubscription": "Êtes-vous sûr de vouloir modifier votre abonnement ?",
+  "paymentProcessCanceled": "Processus de paiement annulé.",
+  "paymentProcessCanceledDesc": "Ta procédure de paiement a été annulée."
 }

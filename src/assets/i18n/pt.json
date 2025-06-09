@@ -1432,5 +1432,7 @@
   "rejectedStatus": "Rejeitado",
   "doYouHaveAVoucherCode": "Você tem um código de voucher?",
   "boostedProfileViews": "Visualizações de perfil impulsionadas",
-  "sureToAdjustYourSubscription": "Tem certeza de que deseja ajustar sua assinatura?"
+  "sureToAdjustYourSubscription": "Tem certeza de que deseja ajustar sua assinatura?",
+  "paymentProcessCanceled": "Transação de pagamento cancelada.",
+  "paymentProcessCanceledDesc": "A sua transação de pagamento foi cancelada. Por favor, tente novamente."
 }

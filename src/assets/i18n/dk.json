@@ -1341,5 +1341,7 @@
   "rejectedStatus": "Afvist",
   "doYouHaveAVoucherCode": "Har du en rabatkode?",
   "boostedProfileViews": "Boostede profilvisninger",
-  "sureToAdjustYourSubscription": "Er du sikker på, at du vil justere dit abonnement?"
+  "sureToAdjustYourSubscription": "Er du sikker på, at du vil justere dit abonnement?",
+  "paymentProcessCanceled": "Betalingstransaktion annulleret.",
+  "paymentProcessCanceledDesc": "Din betalingstransaktion er blevet annulleret. Prøv venligst igen."
 }

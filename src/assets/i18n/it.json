@@ -1474,5 +1474,7 @@
   "rejectedStatus": "Rifiutato",
   "doYouHaveAVoucherCode": "Hai un codice voucher?",
   "boostedProfileViews": "Visualizzazioni del profilo potenziate",
-  "sureToAdjustYourSubscription": "Sei sicuro di voler modificare il tuo abbonamento?"
+  "sureToAdjustYourSubscription": "Sei sicuro di voler modificare il tuo abbonamento?",
+  "paymentProcessCanceled": "Transazione di pagamento annullata.",
+  "paymentProcessCanceledDesc": "La transazione di pagamento è stata annullata. Si prega di riprovare."
 }

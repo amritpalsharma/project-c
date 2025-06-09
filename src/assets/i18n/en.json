@@ -1388,5 +1388,7 @@
   "rejectedStatus":"Rejected",
   "doYouHaveAVoucherCode":"Do you have a voucher code?",
   "boostedProfileViews":"Boosted Profile Views",
-  "sureToAdjustYourSubscription":"Are you sure you want to adjust your subscription?"
+  "sureToAdjustYourSubscription":"Are you sure you want to adjust your subscription?",
+  "paymentProcessCanceled":"Payment process canceled.",
+  "paymentProcessCanceledDesc":"Your payment transaction has been canceled. Please try again."
 }
