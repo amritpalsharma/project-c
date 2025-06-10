@@ -104,6 +104,14 @@ export class PlayerDetailComponent implements OnInit {
       newStatus = 3;
     }
 
+    if (currentStatus == 2) {
+      newStatus = 2;
+    }
+
+    if(currentStatus == 1){
+       newStatus = 1;
+    }
+
     this.userService.updateUserStatus([this.userId], newStatus).subscribe(response => {
       this.user.status = newStatus;
       // this.showMatDialog('User status updated successfully!', 'display');

@@ -1278,7 +1278,7 @@
   "TOOLTIPS": {
     "profilePhoto": "Laden Sie Ihr bestes Porträtfoto hoch, um einen großartigen ersten Eindruck zu hinterlassen.",
     "removeFavorite": "Aus den Favoriten entfernen",
-    "addFavorite": "Zur Favoritenliste hinzufügen",
+    "addFavorite": "Favoriten hinzufügen",
     "downloadPdf": "Spieler-PDF herunterladen",
     "startConversation": "Nachricht senden"
   },
@@ -1478,11 +1478,17 @@
   "deleteProfilePicture": "Profilbild löschen",
   "playerListHeading": "Neu im Spiel – Jetzt entdecken!",
   "verifiedStatus": "Verifiziert",
-  "pendingStatus": "Ausstehend",
+  "pendingStatus": "Verifizierung in Bearbeitung",
   "rejectedStatus": "Abgelehnt",
   "doYouHaveAVoucherCode": "Hast du einen Gutscheincode?",
   "boostedProfileViews": "Boost-Profil Ansichten",
   "sureToAdjustYourSubscription": "Bist du sicher, dass du dein Abo anpassen möchtest?",
   "paymentProcessCanceled": "Zahlungsvorgang abgebrochen.",
-  "paymentProcessCanceledDesc": "Dein Zahlungsvorgang wurde abgebrochen. Bitte versuche es nochmals."
+  "paymentProcessCanceledDesc": "Dein Zahlungsvorgang wurde abgebrochen. Bitte versuche es nochmals.",
+  "setAsHighlight": "Als Highlight festlegen",
+  "noHighlights": {
+    "talent": "Das Talent hat noch keine Highlights hinzugefügt.",
+    "club": "Der Club hat noch keine Highlights hinzugefügt.",
+    "scout": "Der Scout hat noch keine Highlights hinzugefügt."
+  }
 }

@@ -72,7 +72,7 @@
   "filesSupported": "Archivos admitidos: JPG, PNG, MP4",
   "chooseFile": "Elegir archivo",
   "maximumSize": "Tamaño máximo: 15 MB",
-  "documentTitle": "Información sobre la captación",
+  "documentTitle": "Información de rendimiento",
   "upload": "Cargar",
   "movingTo": "Transferencia de",
   "movingFrom": "Transferencia a",
@@ -1419,11 +1419,17 @@
   "deleteProfilePicture": "Eliminar foto de perfil",
   "playerListHeading": "Nuevo en el juego – ¡Descúbrelo ahora!",
   "verifiedStatus": "Verificado",
-  "pendingStatus": "Pendiente",
+  "pendingStatus": "Verificación en curso",
   "rejectedStatus": "Rechazado",
   "doYouHaveAVoucherCode": "¿Tienes un código de cupón?",
   "boostedProfileViews": "Vistas de perfil potenciadas",
   "sureToAdjustYourSubscription": "¿Estás seguro de que quieres ajustar tu suscripción?",
   "paymentProcessCanceled": "Transacción de pago cancelada.",
-  "paymentProcessCanceledDesc": "Su transacción de pago ha sido cancelada. Inténtelo de nuevo."
+  "paymentProcessCanceledDesc": "Su transacción de pago ha sido cancelada. Inténtelo de nuevo.",
+  "setAsHighlight": "Establecer como destacado",
+  "noHighlights": {
+    "talent": "El talento aún no ha añadido destacados.",
+    "club": "El club aún no ha añadido destacados.",
+    "scout": "El ojeador aún no ha añadido destacados."
+  }
 }

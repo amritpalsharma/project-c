@@ -45,6 +45,7 @@ export class FavoritesComponent {
   count: number = 0;
 
   loggedInUser: any = localStorage.getItem('userData');
+  currentUserRole: string = '';
 
   // Filters and UI variables (other code omitted for brevity)
   viewsTracked: { [profileId: string]: { viewed: boolean, clicked: boolean } } = {}; // Track view and click per profile
@@ -59,7 +60,17 @@ export class FavoritesComponent {
     private translate: TranslateService,
     private translateService: TranslateService,
     private titleService: TitleService,
-  ) { }
+  ) {
+
+    const url = this.router.url;
+    const segments = url.split('/');
+    // console.warn('segments',segments)
+    let role = segments[1]?.toLowerCase();
+    // console.warn('role',role)
+    if (role != '' && role != undefined) {
+      this.currentUserRole = role.toLowerCase();
+    }
+  }
 
   ngOnInit(): void {
     this.loggedInUser = JSON.parse(this.loggedInUser);
@@ -194,6 +205,14 @@ export class FavoritesComponent {
   navigate(slug: string, id: Number): void {
     let pageRoute = '/' + slug.toLowerCase();
     this.router.navigate([pageRoute, id]);
+  }
+
+  navigateToExplore(): void {
+    console.log('this.currentUserRole', this.currentUserRole)
+    if (this.currentUserRole == 'talent' || this.currentUserRole == 'club' || this.currentUserRole == 'scout') {
+      let pageRoute = '/' + this.currentUserRole + '/explore';
+      this.router.navigate([pageRoute]);
+    }
   }
 
   onCheckboxChange(user: any) {

@@ -53,7 +53,7 @@
   "filesSupported": "Understøttede filer: JPG, PNG, MP4",
   "chooseFile": "Vælg fil",
   "maximumSize": "Maksimal størrelse: 15 MB",
-  "documentTitle": "Scoutinginformationer",
+  "documentTitle": "Præstationsoplysninger",
   "upload": "Upload",
   "editCoverPhoto": "Rediger forsidebillede",
   "videos": "Videoer",
@@ -1337,11 +1337,17 @@
   "deleteProfilePicture": "Slet profilbillede",
   "playerListHeading": "Ny i spillet – Opdag det nu!",
   "verifiedStatus": "Verificeret",
-  "pendingStatus": "Afventer",
+  "pendingStatus": "Verifikation i gang",
   "rejectedStatus": "Afvist",
   "doYouHaveAVoucherCode": "Har du en rabatkode?",
   "boostedProfileViews": "Boostede profilvisninger",
   "sureToAdjustYourSubscription": "Er du sikker på, at du vil justere dit abonnement?",
   "paymentProcessCanceled": "Betalingstransaktion annulleret.",
-  "paymentProcessCanceledDesc": "Din betalingstransaktion er blevet annulleret. Prøv venligst igen."
+  "paymentProcessCanceledDesc": "Din betalingstransaktion er blevet annulleret. Prøv venligst igen.",
+  "setAsHighlight": "Angiv som højdepunkt",
+  "noHighlights": {
+    "talent": "Talentet har endnu ikke tilføjet højdepunkter.",
+    "club": "Klubben har endnu ikke tilføjet højdepunkter.",
+    "scout": "Scouten har endnu ikke tilføjet højdepunkter."
+  }
 }

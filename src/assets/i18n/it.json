@@ -70,7 +70,7 @@
   "filesSupported": "File supportati: JPG, PNG, MP4",
   "chooseFile": "Scegli file",
   "maximumSize": "Dimensione massima: 15 MB",
-  "documentTitle": "Informazioni sulla selezione",
+  "documentTitle": "Informazioni sulle prestazioni",
   "upload": "Carica",
   "movingTo": "Trasferimento da",
   "movingFrom": "Trasferimento a",
@@ -1470,11 +1470,17 @@
   "deleteProfilePicture": "Elimina foto profilo",
   "playerListHeading": "Nuovo nel gioco – Scoprilo ora!",
   "verifiedStatus": "Verificato",
-  "pendingStatus": "In attesa",
+  "pendingStatus": "Verifica in corso",
   "rejectedStatus": "Rifiutato",
   "doYouHaveAVoucherCode": "Hai un codice voucher?",
   "boostedProfileViews": "Visualizzazioni del profilo potenziate",
   "sureToAdjustYourSubscription": "Sei sicuro di voler modificare il tuo abbonamento?",
   "paymentProcessCanceled": "Transazione di pagamento annullata.",
-  "paymentProcessCanceledDesc": "La transazione di pagamento è stata annullata. Si prega di riprovare."
+  "paymentProcessCanceledDesc": "La transazione di pagamento è stata annullata. Si prega di riprovare.",
+  "setAsHighlight": "Imposta come highlight",
+  "noHighlights": {
+    "talent": "Il talento non ha ancora aggiunto highlight.",
+    "club": "Il club non ha ancora aggiunto highlight.",
+    "scout": "Lo scout non ha ancora aggiunto highlight."
+  }
 }

@@ -570,7 +570,7 @@ export class HeaderComponent {
     localStorage.setItem('lang_id', lang_id + '');
     this.authService.logout();
     // setTimeout(() => {
-    window.location.reload();
+    // window.location.reload();
     // }, 100);
   }
 

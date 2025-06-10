@@ -72,7 +72,7 @@
   "filesSupported": "Filer som stöds: JPG, PNG, MP4",
   "chooseFile": "Välj fil",
   "maximumSize": "Maximal storlek: 15 MB",
-  "documentTitle": "Scoutinginformation",
+  "documentTitle": "Prestandainformation",
   "upload": "Ladda upp",
   "movingTo": "Överföring från",
   "editCoverPhoto": "Redigera omslagsfoto",
@@ -1419,11 +1419,17 @@
   "freePlanText": "2 månader gratis med årsabonnemang",
   "playerListHeading": "Ny i spelet – Upptäck nu!",
   "verifiedStatus": "Verifierad",
-  "pendingStatus": "Väntande",
+  "pendingStatus": "Verifiering pågår",
   "rejectedStatus": "Avvisad",
   "doYouHaveAVoucherCode": "Har du en rabattkod?",
   "boostedProfileViews": "Förstärkta profilsvisningar",
   "sureToAdjustYourSubscription": "Är du säker på att du vill justera ditt abonnemang?",
   "paymentProcessCanceled": "Betalningstransaktion avbruten.",
-  "paymentProcessCanceledDesc": "Din betalningstransaktion har avbrutits. Vänligen försök igen."
+  "paymentProcessCanceledDesc": "Din betalningstransaktion har avbrutits. Vänligen försök igen.",
+  "setAsHighlight": "Ange som höjdpunkt",
+  "noHighlights": {
+    "talent": "Talangen har ännu inte lagt till några höjdpunkter.",
+    "club": "Klubben har ännu inte lagt till några höjdpunkter.",
+    "scout": "Scouten har ännu inte lagt till några höjdpunkter."
+  }
 }
