@@ -128,12 +128,14 @@
 
                         <ul class="social-links">
                             <li>
-                                <a target="_blank" (click)="closeNavbar()" href="https://www.instagram.com/socceryou_football/">
+                                <a target="_blank" (click)="closeNavbar()"
+                                    href="https://www.instagram.com/socceryou_football/">
                                     <i width="25" height="25" class="fa-brands fa-instagram"></i>
                                 </a>
                             </li>
                             <li>
-                                <a target="_blank" (click)="closeNavbar()" href="https://www.linkedin.com/company/socceryou-football/">
+                                <a target="_blank" (click)="closeNavbar()"
+                                    href="https://www.linkedin.com/company/socceryou-football/">
                                     <i class="fa-brands fa-linkedin-in"></i>
                                 </a>
                             </li>
@@ -329,12 +331,12 @@
                                         data-bs-target="#exampleModal">{{'forgotPasswordLink' | translate}}
                                     </a>
                                 </div>
-                                <div *ngIf="loginButtonClicked && (!email || !password)" class="text-danger">
+                                <p *ngIf="loginButtonClicked && (!email || !password)" class="text-danger">
                                     {{'requiredFieldsMessage' | translate}}
-                                </div>
-                                <div *ngIf="invalidCred" class="text-danger" #invalidCredMessage>
+                                </p>
+                                <p *ngIf="invalidCred" class="text-danger" #invalidCredMessage>
                                     {{ invalidCred | translate}}
-                                </div>
+                                </p>
 
                                 <!-------------------- modal-box-2 ----------------------->
 
@@ -829,10 +831,9 @@
                                     {{ 'requiredFieldsMessage' | translate }}
                                 </div>
 
-                                <div *ngIf="duplicateCreditionals" class="text-danger"
+                                <p *ngIf="duplicateCreditionals" class="text-danger"
                                     [innerHtml]="duplicateCreditionalsError">
-
-                                </div>
+                                </p>
 
                                 <div class="col-lg-12">
                                     <div class="form-check checkbox">

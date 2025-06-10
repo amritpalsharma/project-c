@@ -254,7 +254,8 @@ export class TalkService {
       let userArr = {
         id: userData.id,
         name: userData.name,
-        email: userData.username,
+        email: userData.email,
+        // email: userData.username,
         photoUrl: userData.profile_image,
         welcomeMessage: null,
         role: (userData.role == '1') ? "hidden" : "default"
