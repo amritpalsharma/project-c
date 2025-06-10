@@ -136,9 +136,10 @@
             </div>
         </div>
         <div class="col-lg-3 td_col">
-            <div class="team-details style-1">
+            <div class="team-details style-1" *ngIf="userData?.meta?.foot">
                 <p> {{ 'foot' | translate}}</p>
-                <h6>{{userData?.meta?.foot}}</h6>
+                <!-- <h6 [translate]="userData?.meta?.foot.tolowerCase()"></h6> -->
+                 <h6>{{ userData?.meta?.foot?.toLowerCase() | translate }}</h6>
             </div>
         </div>
         <div class="col-lg-3 td_col">

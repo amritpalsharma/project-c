@@ -35,6 +35,8 @@ export class ProfileTabComponent {
 
   ngOnInit(): void {
     this.user = this.userData;
+    // console.info('this.user',this.user)
+     this.getUserProfile();
   }
 
   ngOnChanges(changes: SimpleChanges) {

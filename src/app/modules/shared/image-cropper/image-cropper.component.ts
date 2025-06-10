@@ -150,55 +150,6 @@ export class ImageCropperComponent2 {
     this.startResize(event);
   }
 
-
-  // startDrag(event: MouseEvent | TouchEvent) {
-  //   this.isDragging = true;
-  //   if (event instanceof MouseEvent) {
-  //     this.offset = {
-  //       x: event.clientX - this.pos.x,
-  //       y: event.clientY - this.pos.y,
-  //     };
-  //   } else if (event instanceof TouchEvent) {
-  //     // clientX = event.touches[0].clientX;
-  //     // clientY = event.touches[0].clientY;
-
-  //     this.offset = {
-  //       x: event.touches[0].clientX - this.pos.x,
-  //       y: event.touches[0].clientY - this.pos.y,
-  //     };
-  //   }
-  //   // this.offset = {
-  //   //   x: event.clientX - this.pos.x,
-  //   //   y: event.clientY - this.pos.y,
-  //   // };
-  //   event.stopPropagation();
-  // }
-
-  // startResize(event: MouseEvent | TouchEvent) {
-  //   this.isResizing = true;
-  //   if (event instanceof MouseEvent) {
-  //     this.offset = {
-  //       x: event.clientX - this.pos.x,
-  //       y: event.clientY - this.pos.y,
-  //     };
-  //   } else if (event instanceof TouchEvent) {
-  //     // clientX = event.touches[0].clientX;
-  //     // clientY = event.touches[0].clientY;
-
-  //     this.offset = {
-  //       x: event.touches[0].clientX - this.pos.x,
-  //       y: event.touches[0].clientY - this.pos.y,
-  //     };
-  //   }
-  //   // this.offset = {
-  //   //   x: event.clientX,
-  //   //   y: event.clientY,
-  //   // };
-  //   this.initialSize = this.size;
-  //   event.stopPropagation();
-  //   event.preventDefault();
-  // }
-
   @HostListener('document:mouseup')
   endDrag() {
     this.isDragging = false;
@@ -286,8 +237,15 @@ export class ImageCropperComponent2 {
     const cropSize = this.size * scaleX; // Assuming square crop
 
     const canvas = document.createElement('canvas');
-    canvas.width = cropSize;
-    canvas.height = cropSize;
+
+    // Set max resolution here
+    const MAX_RESOLUTION = 3000; // Max resolution width/height
+    const resolution = Math.min(cropSize, MAX_RESOLUTION);
+    canvas.width = resolution;
+    canvas.height = resolution;
+
+    // canvas.width = cropSize;
+    // canvas.height = cropSize;
 
     const ctx = canvas.getContext('2d')!;
     ctx.imageSmoothingEnabled = true;
@@ -301,8 +259,10 @@ export class ImageCropperComponent2 {
       cropSize,
       0,
       0,
-      cropSize,
-      cropSize
+      // cropSize,
+      // cropSize,
+      resolution,
+      resolution
     );
 
     // Use 'image/jpeg' with quality or 'image/png' for lossless
