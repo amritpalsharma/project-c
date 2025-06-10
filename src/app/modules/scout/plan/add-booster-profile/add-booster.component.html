@@ -14,7 +14,7 @@
             </button>
         </div>
     </div>
-    <div class="overflow-card popup__body">
+    <div class="overflow-card popup__body plan_popup_card">
         <div class="row mt-4 mobile-table">
             <div class="col-12 image-right-border" style="border-right: 0 !important;">
                 <div class="row">
@@ -129,13 +129,13 @@
 
 
                 </div> -->
-
-                <div class="actions text-center mb-0">
-                    <button class="btn puse-btn" (click)="pauseBoost()">{{ 'cancel' | translate }}</button>
-                    <button class="btn save_button" (click)="saveBoost()">{{ 'saveAndBoost' | translate }}</button>
-                </div>
             </div>
-
+        </div>
+    </div>
+    <div class="country-plan-2 p-3 popup_footer">
+        <div class="actions d-flex justify-content-between">
+            <button class="btn puse-btn" (click)="pauseBoost()">{{ 'cancel' | translate }}</button>
+            <button class="btn save_button" (click)="saveBoost()">{{ 'saveAndBoost' | translate }}</button>
         </div>
     </div>
 </div>

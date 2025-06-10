@@ -383,7 +383,7 @@ tr.table_underline {
 
 @media (min-width: 992px) {
 .underline_gap td {
-    max-width: calc(100% / 6);
+    width: calc(100% / 6);
 }
 .edit-gap {
     padding-right: 0;

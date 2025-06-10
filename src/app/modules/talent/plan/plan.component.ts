@@ -158,7 +158,8 @@ export class PlanComponent implements OnInit, OnDestroy {
     }
 
     const dialogRef = this.dialog.open(PremiumPurchaseComponent, {
-      width: '500px',
+      width: '600px',
+      panelClass: 'all_plan_popups',
       data: {
         action: 'premiumPlan',
         planName: this.premiumPlanTxt,
@@ -672,6 +673,7 @@ export class PlanComponent implements OnInit, OnDestroy {
     // return;
     const dialogRef = this.dialog.open(AddBoosterComponent, {
       width: '850px',
+      panelClass: 'all_plan_memersbhip_popup',
       data: {
         id: planId,
         plan: this.booster,

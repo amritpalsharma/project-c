@@ -55,7 +55,7 @@
     font-weight: 700;
 }
 .buy-button{
-    width: 130px;
+    // width: 130px;
 }
 .buy-button h4, .buy-button p {
     color: #fff;
@@ -111,11 +111,14 @@
   .country-plan-2{
     padding: 0px 50px 40px 50px;
   }
+
   .radio-custom {
     opacity: 0;
     position: absolute;   
 }
-
+.form-check {
+  position: relative;
+}
  .radio-custom, .radio-custom-label {
     display: inline-block;
     vertical-align: middle;
@@ -175,6 +178,15 @@
     text-transform: lowercase;
 }
 
+
+::ng-deep {
+@media (min-width:2000px) {
+    .all_plan_popups {
+        width: 700px !important;
+    }
+}
+}
+
 @media (max-width:768px) {
     .country-plan {
         padding: 20px 10px;
@@ -188,7 +200,7 @@
 }
 @media (max-width:425px) {
     .action-cancel {
-        margin-right: 20px;
+        margin-right: 0;
     }
     .buy-btn {
         gap: 20px !important;
@@ -198,6 +210,20 @@
         flex-direction: column;
         gap: 5px;
     }
+}
+
+@media (max-width:360px) {
+.btn.buy-btn {
+    flex-direction: column;
+    gap: 6px !important;
+    align-items: center !important;
+    .buy-button {
+        width: 100%;
+        & * {
+            text-align: center;
+        }
+    }
+}
 }
 
 .dark-theme .country-plan{
@@ -215,7 +241,7 @@
 }
 
 .voucher_type button {
-    color: #FD5454 !important;
+    color: #FD5454;
     text-decoration: underline !important;
     border: 0 !important;
     background: transparent !important;
