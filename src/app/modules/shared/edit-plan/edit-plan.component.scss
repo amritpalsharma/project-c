@@ -55,7 +55,7 @@
     font-weight: 700;
 }
 .buy-button{
-    width: 130px;
+    // width: 130px;
 }
 .buy-button h4, .buy-button p {
     color: #fff;
@@ -198,6 +198,20 @@
         flex-direction: column;
         gap: 5px;
     }
+}
+
+@media (max-width:360px) {
+.btn.buy-btn {
+    flex-direction: column;
+    gap: 6px !important;
+    align-items: center !important;
+    .buy-button {
+        width: 100%;
+        & * {
+            text-align: center;
+        }
+    }
+}
 }
 
 .dark-theme .country-plan{

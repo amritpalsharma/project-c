@@ -196,7 +196,7 @@ export class EditPlanComponent implements OnInit {
 
     // let dialogRef;
     // dialogRef = this.dialog.open(CouponCodeAlertComponent, { width: '500px', data: { action: 'upgrade_plan', from_plan_id: this.oldCountryPlanId, to_plan_id: this.newCountryPlanID } });
-    const dialogRef = this.dialog.open(CouponCodeAlertComponent, { width: '500px' });
+    const dialogRef = this.dialog.open(CouponCodeAlertComponent, { width: '500px', panelClass: 'all_plan_popups' });
     dialogRef.afterClosed().subscribe((result: any) => {
       // console.info('After coupoun', result);
       if (result) {

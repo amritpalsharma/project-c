@@ -14,10 +14,12 @@
   .upgrade_unlock {
     background: rgb(255 255 255 / 65%);
     position: absolute;
-    height: 73%;
-    width: 100%;
-    top: 70px;
-    right: 0;
+    // height: 73%;
+    // top: 70px;
+    height: calc(100% + 2.90rem);
+    top: 0;
+    width: calc(100% + 2rem);
+    right: -1rem;
     border-radius: 0px 0px 10px 10px;
     text-align: center;
     display: flex;
@@ -505,7 +507,7 @@
   }
 
   .Feature_images h2 {
-    font-size: 20px;
+    // font-size: 20px;
     font-weight: 400;
   }
 
@@ -1932,7 +1934,7 @@ span.active_btn {
 }
 
 ::ng-deep .custom-tooltip .introjs-arrow {
-  border-color: #ffc107 transparent transparent transparent !important;
+  border-color: #BDE34F transparent transparent transparent !important;
 }
 
 ::ng-deep .introjs-tooltip {
@@ -1941,29 +1943,30 @@ span.active_btn {
 }
 
 ::ng-deep .introjs-arrow.top {
-  border-bottom-color: #ffc107;
+  border-bottom-color: #BDE34F;
   top: -9px;
 }
 
 ::ng-deep .introjs-arrow.left {
-  border-right-color: #ffc107;
+  border-right-color: #BDE34F;
   left: -9px;
   top: 13px;
 }
 
 ::ng-deep .introjs-arrow.right {
-  border-left-color: #ffc107;
+  border-left-color: #BDE34F;
   right: -9px;
   top: 13px;
 }
 
 ::ng-deep .introjs-arrow.bottom {
-  border-top-color: #ffc107;
+  border-top-color: #BDE34F;
   bottom: -9px;
 }
 
 ::ng-deep .introjs-tooltiptext {
-  background-color: #ffc107 !important;
+  background-color: #bde34f !important;
+  color: #023A4A !important;
   border-radius: 5px !important;
   margin-top: 8px;
   font-size: 15px;
@@ -1976,20 +1979,20 @@ span.active_btn {
 }
 
 ::ng-deep .introjs-button {
-  border-color: #ffffffbd !important;
-  background-color: unset !important;
-  color: #ffffffbd !important;
+  border-color: #BDE34F !important;
+  background-color: #BDE34F !important;
+  color: #023A4A !important;
   text-shadow: none;
   border-radius: 5px;
   margin: 0px 10px;
-
+  font-weight: 500;
 }
 
 
 ::ng-deep .introjs-tooltipbuttons {
-  border-color: #ffffffbd !important;
+  border-color: #BDE34F !important;
   background-color: unset !important;
-  color: #ffffffbd !important;
+  color: #023A4A !important;
   text-shadow: none;
   display: flex;
   justify-content: right;
@@ -2015,6 +2018,39 @@ span.active_btn {
 ::ng-deep .dark-theme .social_icons svg .linkedin-innerside {
   color: white !important;
   fill: #072944;
+}
+
+
+::ng-deep .light-theme {
+  .introjs-tooltipbuttons {
+    border-color: #4f943f !important;
+    color: #fff !important;
+  }
+  .introjs-button {
+    border-color: #4f943f !important;
+    background-color: #4f943f !important;
+    color: #fff !important;
+  }
+  .introjs-tooltiptext {
+    background-color: #4f943f !important;
+    color: #fff !important;
+  }
+    
+  .custom-tooltip .introjs-arrow {
+    border-color: #4f943f transparent transparent transparent !important;
+  }
+  .introjs-arrow.top {
+    border-bottom-color: #4f943f !important;
+  }
+  .introjs-arrow.left {
+    border-right-color: #4f943f !important;
+  }
+  .introjs-arrow.right {
+    border-left-color: #4f943f !important;
+  }
+  .introjs-arrow.bottom {
+    border-top-color: #4f943f !important;
+  }
 }
 
 .duration {
