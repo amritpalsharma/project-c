@@ -874,8 +874,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   openHighlight() {
     this.isHighlightClick = false;
-    this.getGalleryData();
-
+    // this.getGalleryData();
     setTimeout(() => {
       const dialogRef = this.dialog.open(EditHighlightsComponent, {
         width: '800px',

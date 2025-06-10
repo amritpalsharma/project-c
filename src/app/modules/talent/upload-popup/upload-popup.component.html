@@ -1,11 +1,13 @@
-<div class="msg-popup-dialog">
+<div class="msg-popup-dialog" [ngClass]="{'no-click-popup':isLoading}">
     <div class="msg-popup-close d-flex align-items-center">
         <div class="m-auto">
             <h2 class="upload-file">{{'uploadFiles' | translate}}</h2>
         </div>
-        <img *ngIf="!isLoading && theme!='dark'" src="../../../assets/images/carbon_close-outline-light.svg" alt="" (click)="close()" />
+        <img *ngIf="!isLoading && theme!='dark'" src="../../../assets/images/carbon_close-outline-light.svg" alt=""
+            (click)="close()" />
 
-        <img *ngIf="!isLoading && theme=='dark'" src="../../../../../assets/images/carbon_close-outline.svg" alt="" (click)="close()">
+        <img *ngIf="!isLoading && theme=='dark'" src="../../../../../assets/images/carbon_close-outline.svg" alt=""
+            (click)="close()">
 
     </div>
     <hr>
@@ -28,8 +30,8 @@
             </div>
             <p class="upload-file_name">{{'dragAndDropFilesHere' | translate}}</p>
             <p class="upload-file_name">{{'filesSupported' | translate}}</p>
-            <input type="file" (change)="onFileSelect($event)" multiple accept=".jpg, .jpeg, .png, .mp4"
-                hidden #fileInput />
+            <input type="file" (change)="onFileSelect($event)" multiple accept=".jpg, .jpeg, .png, .mp4" hidden
+                #fileInput />
 
             <button type="button" (click)="fileInput.click()">{{'chooseFile' | translate}}</button>
             <p class="upload-file_name">{{'maximumSize' | translate}}</p>

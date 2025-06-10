@@ -29,7 +29,7 @@ export class GalleryTabComponent {
   @Input() isPremium: any;
   @Input() isUserVerified: any;
   @Output() imageDeleted = new EventEmitter<void>();
-  
+
   pleaseWait: string = '';
   Processing: string = '';
   successTxt: string = '';
@@ -136,6 +136,7 @@ export class GalleryTabComponent {
       position: {
         top: '150px',
       },
+      disableClose: true,  // This disables closing when clicking outside or pressing ESC
       data: {
         userId: this.userId,
         file: type
@@ -205,8 +206,8 @@ export class GalleryTabComponent {
 
     const dialogRef = this.dialog.open(DeletePopupComponent, {
       width: '600px',
-      data:{
-        from_page:'gallery',
+      data: {
+        from_page: 'gallery',
         type: type
       }
     });

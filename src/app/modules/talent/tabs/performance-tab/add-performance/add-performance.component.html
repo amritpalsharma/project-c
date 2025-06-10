@@ -51,7 +51,7 @@
               <label for="team" class="form-label">{{'team' | translate}}</label>
 
 
-              <input type="text" id="currentTeam" name="currentTeam" placeholder="{{'enterAndSearch' | translate}}"
+              <input type="text" id="currentTeam" name="currentTeam" placeholder="{{'enterAndSearch' | translate}}..."
                 [(ngModel)]="currentTeam" #currentTeamsField="ngModel" (input)="onSearchTeams()" autocomplete="off"
                 required style="padding-left: 30px;" [ngClass]="{'isrequiredField': isrequiredField}" />
               <img class="me-2" [src]="currentTeamLogo" class="performance-image">

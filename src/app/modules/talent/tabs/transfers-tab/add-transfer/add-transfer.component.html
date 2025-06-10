@@ -35,7 +35,7 @@
         <div class="form-group">
           <label *ngIf="!noMoveToTeam" for="team_to" class="form-label">{{'team' | translate}}</label>
           <div class="default-func" *ngIf="!noMoveToTeam">
-            <input type="text" id="team_to" name="team_to" placeholder="{{'enterAndSearch' | translate}}"
+            <input type="text" id="team_to" name="team_to" placeholder="{{'enterAndSearch' | translate}}..."
               [(ngModel)]="teamTo" #teamTosField="ngModel" (input)="onSearchTeams()" autocomplete="off" required />
             <!-- Club suggestions -->
             <ul *ngIf="filterTeams.length > 0 && teamTo.length >= 2" class="suggestions-list">

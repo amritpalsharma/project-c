@@ -134,7 +134,7 @@ export class UploadPopupComponent {
       for (let i = 0; i < files.length; i++) {
         formdata.append("gallery_images[]", files[i]);
       }
-
+// return;
       this.userService.uploadGalleryImages(formdata).subscribe((response) => {
         console.log(response);
 
