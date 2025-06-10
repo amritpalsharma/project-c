@@ -1396,5 +1396,6 @@
     "talent": "The talent has not added any highlights yet.",
     "club": "The club has not added any highlights yet.",
     "scout": "The scout has not added any highlights yet."
-  }
+  },
+  "pendingUser":"Pending User"
 }

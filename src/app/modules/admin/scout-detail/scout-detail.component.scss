@@ -304,3 +304,19 @@
     align-items: center;
     justify-content: center;
 }
+
+::ng-deep #users-reject-icon rect {
+    fill: #787878 !important;
+}
+
+::ng-deep .dark-theme #users-reject-icon rect {
+    fill: white !important;
+}
+
+::ng-deep .dark-theme #users-reject-icon {
+    fill: white !important;
+}
+
+::ng-deep .dark-theme #users-reject-icon path {
+    stroke: #787878 !important;
+}

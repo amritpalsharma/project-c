@@ -332,22 +332,30 @@ a.premium-edit_btn {
   .card-billing {
     font-size: 28px !important;
   }
+
   .premium-card h5 {
     font-size: 35px !important;
   }
+
   .premium-card h6 {
-      font-size: 38px !important;
+    font-size: 38px !important;
   }
-  sub.premium-month_title, .premium-card p, button.premium-subscription_btn {
-      font-size: 20px !important;
+
+  sub.premium-month_title,
+  .premium-card p,
+  button.premium-subscription_btn {
+    font-size: 20px !important;
   }
-  button.premium-edit_btn, a.premium-edit_btn {
+
+  button.premium-edit_btn,
+  a.premium-edit_btn {
     font-size: 19px !important;
   }
+
   table td svg.pointer {
     width: 40px;
     height: 40px;
-}
+  }
 }
 
 
@@ -355,22 +363,30 @@ a.premium-edit_btn {
   .card-billing {
     font-size: 35px !important;
   }
+
   .premium-card h5 {
     font-size: 40px !important;
   }
+
   .premium-card h6 {
-      font-size: 45px !important;
+    font-size: 45px !important;
   }
-  sub.premium-month_title, .premium-card p, button.premium-subscription_btn {
-      font-size: 28px !important;
+
+  sub.premium-month_title,
+  .premium-card p,
+  button.premium-subscription_btn {
+    font-size: 28px !important;
   }
-  button.premium-edit_btn, a.premium-edit_btn {
+
+  button.premium-edit_btn,
+  a.premium-edit_btn {
     font-size: 25px !important;
   }
+
   table td svg.pointer {
     width: 55px;
     height: 55px;
-}
+  }
 }
 
 .dark-theme .table-striped thead th {
@@ -379,32 +395,52 @@ a.premium-edit_btn {
 
 
 @media (max-width: 575px) {
-.mat-mdc-paginator-container {
-  justify-content: flex-start !important;
-  margin-left: -20px;
-}
-:host ::ng-deep .mat-mdc-paginator-range-actions {
-  margin-top: 10px !important;
-  max-width: 110px;
-  .mat-mdc-paginator-range-label {
-    margin-right: 0 !important;
-    margin-left: 0 !important;
+  .mat-mdc-paginator-container {
+    justify-content: flex-start !important;
+    margin-left: -20px;
   }
-  button {
-    margin-right: 0 !important;
-}
-}
+
+  :host ::ng-deep .mat-mdc-paginator-range-actions {
+    margin-top: 10px !important;
+    max-width: 110px;
+
+    .mat-mdc-paginator-range-label {
+      margin-right: 0 !important;
+      margin-left: 0 !important;
+    }
+
+    button {
+      margin-right: 0 !important;
+    }
+  }
 }
 
 @media (max-width: 480px) {
-.premium-card .flex_wrap {
+  .premium-card .flex_wrap {
     flex-direction: column;
     align-items: flex-start !important;
     gap: 10px;
-}
-.mob_wrap {
+  }
+
+  .mob_wrap {
     flex-direction: column;
     align-items: flex-start !important;
     gap: 10px;
+  }
 }
+
+table td .bg_pending,
+table td .bg_reject,
+table td .bg_success {
+  width: 120px !important;
+  font-size: 18px !important;
+  padding: 5px 8px 5px !important;
+  display: inline-block;
+  border-radius: 60px;
+}
+
+.status-label {
+  display: inline-block;
+  width: 100px;
+  text-align: center;
 }

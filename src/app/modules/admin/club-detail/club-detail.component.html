@@ -18,7 +18,7 @@
         </div>
         <div class="d-flex align-items-center justify-content-between mt-3">
           <div class="d-flex align-items-center profile_users_btn">
-            <span class="btn btn-outline-white profile-tab-content" (click)="changeUserStatus(user.status)">
+            <!-- <span class="btn btn-outline-white profile-tab-content" (click)="changeUserStatus(user.status)">
               <svg id="users-icon" width="22" height="19" viewBox="0 0 18 19" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
                 <path d="M9 1L2 3.55V8.7265C2 13.019 4.98375 17.0225 9 18C13.0163 17.0225 16 13.019 16 8.7265V3.55L9 1Z"
@@ -29,6 +29,43 @@
               </svg>
               <span *ngIf="user.status == '1' || user.status == '3'">{{ 'verifyUsers' | translate }}</span>
               <span *ngIf="user.status == '2'">{{ 'rejectUser' | translate }}</span>
+            </span> -->
+            <span class="btn btn-outline-white profile-tab-content" (click)="changeUserStatus(2)">
+              <svg id="users-icon" width="22" height="19" viewBox="0 0 18 19" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 1L2 3.55V8.7265C2 13.019 4.98375 17.0225 9 18C13.0163 17.0225 16 13.019 16 8.7265V3.55L9 1Z"
+                  fill="#787878" />
+                <path
+                  d="M13.1749 7.80954L13.3574 7.63087L13.1749 7.45221L12.5303 6.82133L12.3555 6.65026L12.1806 6.82125L7.51415 11.3843L5.81922 9.7294L5.64436 9.55867L5.4697 9.72961L4.82513 10.3605L4.64259 10.5391L4.82513 10.7178L7.33942 13.1787L7.51429 13.3498L7.68915 13.1787L13.1749 7.80954Z"
+                  fill="white" stroke="white" class="reject-stroke" stroke-width="0.5" />
+              </svg>
+              <span>{{ 'verifyUsers' | translate }}</span>
+              <!-- <span *ngIf="user.status == '1' || user.status == '3'">{{ 'verifyUsers' | translate }}</span>
+              <span *ngIf="user.status == '2'">{{ 'rejectUser' | translate }}</span> -->
+            </span>
+
+            <span class="btn btn-outline-white profile-tab-content" (click)="changeUserStatus(1)">
+
+
+              <svg id="users-reject-icon" width="21" height="21" viewBox="0 0 21 21" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <rect width="21" height="21" rx="10.5" />
+                <path
+                  d="M10.5 15.3C11.773 15.3 12.9939 14.7943 13.8941 13.8941C14.7943 12.9939 15.3 11.773 15.3 10.5C15.3 9.22696 14.7943 8.00606 13.8941 7.10589C12.9939 6.20571 11.773 5.7 10.5 5.7C9.22696 5.7 8.00606 6.20571 7.10589 7.10589C6.20571 8.00606 5.7 9.22696 5.7 10.5C5.7 11.773 6.20571 12.9939 7.10589 13.8941C8.00606 14.7943 9.22696 15.3 10.5 15.3ZM10.5 4.5C11.2879 4.5 12.0681 4.65519 12.7961 4.95672C13.5241 5.25825 14.1855 5.70021 14.7426 6.25736C15.2998 6.81451 15.7417 7.47595 16.0433 8.2039C16.3448 8.93185 16.5 9.71207 16.5 10.5C16.5 12.0913 15.8679 13.6174 14.7426 14.7426C13.6174 15.8679 12.0913 16.5 10.5 16.5C7.182 16.5 4.5 13.8 4.5 10.5C4.5 8.9087 5.13214 7.38258 6.25736 6.25736C7.38258 5.13214 8.9087 4.5 10.5 4.5ZM10.8 7.5V10.65L13.5 12.252L13.05 12.99L9.9 11.1V7.5H10.8Z"
+                  fill="white" stroke="white" class="reject-stroke" />
+              </svg>
+              <span>&nbsp;{{ 'pendingUser' | translate }}</span>
+            </span>
+
+            <span class="btn btn-outline-white profile-tab-content" (click)="changeUserStatus(3)">
+              <svg id="users-reject-icon" width="21" height="21" viewBox="0 0 21 21" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <rect x="0.0585938" width="21" height="21" rx="10.5" fill="#FD5454" />
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M11.0631 12.0768L13.7573 14.7679C13.9002 14.9107 14.0941 14.9909 14.2963 14.9909C14.4985 14.9909 14.6924 14.9107 14.8353 14.7679C14.9783 14.6251 15.0586 14.4314 15.0586 14.2295C15.0586 14.0275 14.9783 13.8338 14.8353 13.691L12.1402 11L14.8348 8.30895C14.9056 8.23825 14.9617 8.15431 15 8.06195C15.0382 7.96958 15.0579 7.87058 15.0579 7.77062C15.0579 7.67065 15.0381 7.57166 14.9998 7.47931C14.9615 7.38696 14.9053 7.30305 14.8346 7.23238C14.7638 7.16171 14.6797 7.10566 14.5873 7.06742C14.4948 7.02919 14.3957 7.00952 14.2956 7.00954C14.1955 7.00957 14.0964 7.02928 14.004 7.06756C13.9115 7.10584 13.8275 7.16193 13.7568 7.23264L11.0631 9.92368L8.36903 7.23264C8.29877 7.1599 8.21471 7.10187 8.12175 7.06194C8.0288 7.022 7.92881 7.00096 7.82763 7.00003C7.72644 6.99911 7.62609 7.01832 7.53242 7.05655C7.43874 7.09478 7.35363 7.15126 7.28205 7.22269C7.21046 7.29413 7.15384 7.37909 7.11548 7.47262C7.07712 7.56615 7.05779 7.66637 7.05862 7.76744C7.05945 7.86851 7.08043 7.9684 7.12032 8.06129C7.16021 8.15417 7.21823 8.23819 7.29098 8.30845L9.98611 11L7.29149 13.6916C7.21874 13.7618 7.16072 13.8458 7.12083 13.9387C7.08093 14.0316 7.05996 14.1315 7.05913 14.2326C7.0583 14.3336 7.07762 14.4339 7.11599 14.5274C7.15435 14.6209 7.21097 14.7059 7.28256 14.7773C7.35414 14.8487 7.43925 14.9052 7.53292 14.9435C7.6266 14.9817 7.72695 15.0009 7.82814 15C7.92932 14.999 8.02931 14.978 8.12226 14.9381C8.21522 14.8981 8.29928 14.8401 8.36954 14.7674L11.0631 12.0768Z"
+                  fill="white" />
+              </svg>
+              <span>&nbsp;{{ 'rejectUser' | translate }}</span>
             </span>
             <span class="btn btn-outline-white profile-tab-content" (click)="confirmDeletion()">
               <svg id="users-icon" width="22" height="23" viewBox="0 0 22 23" fill="none"

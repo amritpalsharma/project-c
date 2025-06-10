@@ -77,10 +77,10 @@ export class ClubDetailComponent implements OnInit {
 
   changeUserStatus(currentStatus: any) {
     let newStatus = 2;
-    if (currentStatus == 2) {
-      newStatus = 3;
-    }
-
+    // if (currentStatus == 2) {
+    //   newStatus = 3;
+    // }
+    newStatus = currentStatus;
     this.userService.updateUserStatus([this.userId], newStatus).subscribe(response => {
       this.user.status = newStatus;
       // this.showMatDialog('User status updated successfully!', 'display');

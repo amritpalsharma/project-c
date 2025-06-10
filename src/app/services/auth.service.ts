@@ -59,10 +59,12 @@ export class AuthService {
     localStorage.removeItem('userRole');
     localStorage.removeItem('userData');
     localStorage.removeItem('notificationSeen');
-    sessionStorage.clear();
+    sessionStorage.clear(); 
 
     // localStorage.setItem('logoutMessage', 'true');
     this.router.navigate(['/']); // Redirect to the login or home page
+
+    window.location.reload();
   }
 
   isLoggedIn(): boolean {

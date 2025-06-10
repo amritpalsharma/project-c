@@ -96,11 +96,11 @@ export class ScoutDetailComponent implements OnInit {
   }
 
   changeUserStatus(currentStatus: any) {
-    let newStatus = 2;
-    if (currentStatus == 2) {
-      newStatus = 3;
-    }
-
+    // let newStatus = 2;
+    // if (currentStatus == 2) {
+    //   newStatus = 3;
+    // }
+    let newStatus = currentStatus;
     this.userService.updateUserStatus([this.userId], newStatus).subscribe(response => {
       this.user.status = newStatus;
       if (response.message != '' && response.message != undefined) {
@@ -345,7 +345,7 @@ export class ScoutDetailComponent implements OnInit {
     }
   }
 
-   onProfileImageChange(croppedImage: any) {
+  onProfileImageChange(croppedImage: any) {
     try {
       // FileToUpload
       const blob = this.dataURItoBlob(croppedImage);
@@ -370,7 +370,7 @@ export class ScoutDetailComponent implements OnInit {
       console.error('Error upload image:', error);
     }
   }
-  
+
   dataURItoBlob(dataURI: string): Blob {
     const byteString = atob(dataURI.split(',')[1]);
     const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];

@@ -103,6 +103,9 @@ export class PlayerDetailComponent implements OnInit {
     if (currentStatus == 2) {
       newStatus = 3;
     }
+    if (currentStatus == 3) {
+      newStatus = 3;
+    }
 
     if (currentStatus == 2) {
       newStatus = 2;
