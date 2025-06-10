@@ -51,7 +51,8 @@
 }
 
 .round-checkbox label {
-    border: 2px solid #ccc;
+    border: 2px solid #6fb95d;
+    background-color: #fff;
     border-radius: 50%;
     cursor: pointer;
     height: 28px;
@@ -62,7 +63,7 @@
 }
 
 .round-checkbox label:after {
-    border: 2px solid #6FB95D;
+    border: 2px solid #fff;
     border-top: none;
     border-right: none;
     content: "";
@@ -80,8 +81,8 @@
 }
 
 .round-checkbox input[type="checkbox"]:checked + label {
-    background-color: #fff;
-    border-color: #fff;
+    background-color: #6fb95d;
+    border-color: #6fb95d;
 }
 
 .round-checkbox input[type="checkbox"]:checked + label:after {

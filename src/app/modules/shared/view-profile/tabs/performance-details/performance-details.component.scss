@@ -385,12 +385,17 @@ table td {
         width: 50%;
     }
 
-    .underline_gap .main-template img,
-    .underline_gap .main-template svg {
-        width: 28px;
-        height: 28px;
-        object-fit: contain;
-    }
+    .underline_gap svg {
+	    width: 28px !important;
+	    height: 35px !important;
+	    object-fit: contain;
+        padding: 4px;
+	}
+    .underline_gap img {
+	    width: 28px !important;
+	    height: 28px !important;
+	    object-fit: contain;
+	}
     .underline_gap .country_name *, .team-names h6.details_2 {
         font-size: 16px;
     }
@@ -431,23 +436,35 @@ table td {
     .details-1 {
         font-size: 20px !important;
     }
-    .underline_gap svg, .underline_gap img {
-        width: 42px;
-        height: 42px;
-        object-fit: contain;
-    }
-    }
+    .underline_gap svg {
+	    width: 42px !important;
+	    height: 52px !important;
+        padding: 4px;
+	    object-fit: contain;
+	}
+    .underline_gap img {
+	    width: 42px;
+	    height: 42px;
+	    object-fit: contain;
+	}
+}
     
-    @media (min-width: 3000px) {
+@media (min-width: 3000px) {
     .details_2, .edit_button-2 span {
         font-size: 25px !important;
     }
     .details-1 {
         font-size: 28px !important;
     }
-    .underline_gap svg, .underline_gap img {
-        width: 50px;
-        height: 50px;
-        object-fit: contain;
-    }
-    }
+    .underline_gap svg {
+	    width: 50px !important;
+	    height: 60px !important;
+	    object-fit: contain;
+        padding: 4px;
+	}
+    .underline_gap img {
+	    width: 50px !important;
+	    height: 50px !important;
+	    object-fit: contain;
+	}
+}
