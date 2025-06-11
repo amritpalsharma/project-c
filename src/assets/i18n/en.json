@@ -1397,5 +1397,7 @@
     "club": "The club has not added any highlights yet.",
     "scout": "The scout has not added any highlights yet."
   },
-  "pendingUser":"Pending User"
+  "pendingUser":"Pending User",
+  "paidTxt":"Paid",
+  "openTxt":"Open"
 }

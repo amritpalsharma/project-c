@@ -40,14 +40,14 @@
         <div class="d-flex align-items-center justify-content-between">
           <div class="d-flex align-items-center">
 
-            <div class="dropdown dropdown-favourites" *ngIf="userFavorites.length != 0 && !isLoading">
+            <div class="dropdown dropdown-favourites" *ngIf="userFavorites.length != 0 && !isLoading" >
               <button
                 class="btn btn-secondary dropdown-toggle  toggle-padding dropdown-toggle-checkbox favourites-main-checkbox"
-                type="button" data-bs-toggle="dropdown" aria-expanded="false" (click)="selectAllFavorites()">
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked
-                    *ngIf="allSelected" />
-                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" *ngIf="!allSelected" />
+                type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <div class="form-check"  >
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" [checked]="allSelected"
+                    #masterCheckboxFavorites (change)="selectAllFavorites()"/>
+                  <!-- <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" *ngIf="!allSelected" /> -->
                 </div>
                 <svg width="9" height="5" viewBox="0 0 9 5" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path

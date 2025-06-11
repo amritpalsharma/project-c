@@ -504,8 +504,15 @@ export class HeaderComponent {
 
     // console.log(role)
     const url = this.router.url;
-    const role = url.split('/')[1];
-    this.router.navigate([`${role}/setting`], { fragment });
+
+    if (url.toLowerCase().includes('/view/')) {
+      const role = url.split('/')[2];
+      this.router.navigate([`${role}/setting`], { fragment });
+      // console.log("'/view/' found in URL (case-insensitive check)");
+    } else {
+      const role = url.split('/')[1];
+      this.router.navigate([`/${role}/setting`], { fragment });
+    }
   }
 
 

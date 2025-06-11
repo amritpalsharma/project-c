@@ -1482,5 +1482,7 @@
     "talent": "Il talento non ha ancora aggiunto highlight.",
     "club": "Il club non ha ancora aggiunto highlight.",
     "scout": "Lo scout non ha ancora aggiunto highlight."
-  }
+  },
+  "paidTxt": "Pagato",
+  "openTxt": "Aperto"
 }

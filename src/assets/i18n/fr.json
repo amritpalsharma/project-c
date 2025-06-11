@@ -1499,5 +1499,7 @@
     "talent": "Le talent n’a pas encore ajouté de moments forts.",
     "club": "Le club n’a pas encore ajouté de moments forts.",
     "scout": "Le recruteur n’a pas encore ajouté de moments forts."
-  }
+  },
+  "paidTxt": "Payé",
+  "openTxt": "Ouvert"
 }

@@ -129,6 +129,8 @@ export class ChatComponent {
             photoUrl: this.baseUrl + user.meta.profile_image,
           })
         }
+
+        // this.ngOnDestroy();
         if (this.users.length == 1) {
           console.log('this.users[0]',this.users[0]);
           this.startOneOnOneChat(this.users[0]);

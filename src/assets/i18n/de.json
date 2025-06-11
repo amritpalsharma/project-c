@@ -1491,5 +1491,7 @@
     "club": "Der Club hat noch keine Highlights hinzugefügt.",
     "scout": "Der Scout hat noch keine Highlights hinzugefügt."
   },
-  "pendingUser":"Ausstehend Benutzer"
+  "pendingUser": "Ausstehend Benutzer",
+  "paidTxt": "Bezahlt",
+  "openTxt": "Offen"
 }

@@ -924,5 +924,9 @@ export class ExploreComponent implements OnInit {
     }, 100);
   }
 
+  getBirthYear(birthDate: string) {
+    const date = new Date(birthDate);
+    return date.getFullYear();
+  }
 
 }

@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
@@ -72,6 +72,8 @@ export class FavoritesComponent {
     }
   }
 
+  @ViewChild('masterCheckboxFavorites', { static: false }) masterCheckboxFavorites!: ElementRef;
+
   ngOnInit(): void {
     this.loggedInUser = JSON.parse(this.loggedInUser);
     this.getAllLanguages();
@@ -104,6 +106,22 @@ export class FavoritesComponent {
       this.updateTranslation();
     });
   }
+
+
+
+  updateMasterCheckboxState() {
+    const masterCheckbox = this.masterCheckboxFavorites?.nativeElement;
+    if (!masterCheckbox) return;
+
+    const total = this.userFavorites.length;
+    const selected = this.selectedIds.length;
+    // console.log('total',total);
+    // console.log('selected',selected);
+
+    masterCheckbox.indeterminate = selected > 0 && selected < total;
+    masterCheckbox.checked = selected === total;
+  }
+
   updateTranslation() {
     this.translate.get('removeFavoriteConfirm').subscribe((res: string) => {
       this.translatedText = res;
@@ -234,6 +252,8 @@ export class FavoritesComponent {
     } else {
       this.allSelected = false;
     }
+
+    this.updateMasterCheckboxState();
   }
 
   selectAllFavorites() {
@@ -245,7 +265,15 @@ export class FavoritesComponent {
     } else {
       this.selectedIds = [];
     }
-    console.log('Selected favorite IDs:', this.selectedIds);
+
+
+    if (this.userFavorites.length === this.selectedIds.length) {
+      this.allSelected = true;
+    } else {
+      this.allSelected = false;
+    }
+
+    this.updateMasterCheckboxState();
   }
 
   confirmDeletion(): any {

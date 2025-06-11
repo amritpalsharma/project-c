@@ -34,7 +34,7 @@
                 *ngIf="user?.profile_image_path && edit" src="{{user.profile_image_path}}">
               <img width="20" height="20" style="border-radius: 20px;" class="img-list"
                 *ngIf="user?.meta?.profile_image_path && !edit" src="{{user?.meta?.profile_image_path}}">
-              {{user?.first_name}}
+              {{user?.first_name}} {{user?.last_name}}
               <span matChipRemove [attr.aria-label]="'remove ' + user" class="cancel-icon"></span>
             </mat-chip-row>
             <!-- <input placeholder="{{ 'search' | translate }} {{ 'talent' | translate }}" #userInput
@@ -52,7 +52,7 @@
                 *ngIf="!user.meta.profile_image_path" src="../../../../../assets/images/1.png">
               <img width="50" height="50" class="img-list" *ngIf="user.meta.profile_image_path"
                 src="{{user.meta.profile_image_path}}">
-              {{user.first_name}}
+              {{user.first_name}} {{user.last_name}}
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>

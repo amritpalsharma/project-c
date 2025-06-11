@@ -1349,5 +1349,7 @@
     "talent": "Talentet har endnu ikke tilføjet højdepunkter.",
     "club": "Klubben har endnu ikke tilføjet højdepunkter.",
     "scout": "Scouten har endnu ikke tilføjet højdepunkter."
-  }
+  },
+  "paidTxt": "Betalt",
+  "openTxt": "Åben"
 }

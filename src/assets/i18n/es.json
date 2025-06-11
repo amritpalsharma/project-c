@@ -1431,5 +1431,7 @@
     "talent": "El talento aún no ha añadido destacados.",
     "club": "El club aún no ha añadido destacados.",
     "scout": "El ojeador aún no ha añadido destacados."
-  }
+  },
+  "paidTxt": "Pagado",
+  "openTxt": "Abierto"
 }

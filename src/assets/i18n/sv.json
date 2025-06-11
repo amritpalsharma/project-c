@@ -1483,5 +1483,7 @@
     "talent": "Talangen har ännu inte lagt till några höjdpunkter.",
     "club": "Klubben har ännu inte lagt till några höjdpunkter.",
     "scout": "Scouten har ännu inte lagt till några höjdpunkter."
-  }
+  },
+  "paidTxt": "Betald",
+  "openTxt": "Öppen"
 }

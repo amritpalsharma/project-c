@@ -8,6 +8,7 @@ import { UserService } from '../../../../services/user.service';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { ClubService } from '../../../../services/club.service';
 import { SocketService } from '../../../../services/socket.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-create-sight-popup',
@@ -46,6 +47,7 @@ export class CreateSightPopupComponent implements AfterViewInit {
     public dialogRef: MatDialogRef<CreateSightPopupComponent>,
     public userService: UserService,
     public clubService: ClubService,
+    public toaster: ToastrService,
     private socketService: SocketService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
@@ -146,7 +148,9 @@ export class CreateSightPopupComponent implements AfterViewInit {
   }
 
   removeRow(index: any): any {
-    if (this.attachmentRows.length == 1) {
+    if (this.attachmentRows.length == 1) { 
+      this.attachmentRows[index].title = null;
+      this.attachmentRows[index].file = null;
       return false;
     }
     let temp = this.attachmentRows;
@@ -269,7 +273,11 @@ export class CreateSightPopupComponent implements AfterViewInit {
           }
           this.socketService.emit('inviteTalent', { senderId: myUserId, receiverIds: receiverIds });
         } else {
-          this.userService.apiToasterError();
+          if (response.data.errors && response.data.errors != '' && response.data.errors != undefined) {
+             this.toaster.error(response.data.errors);
+          }else{
+            this.userService.apiToasterError();
+          }
         }
       });
     } catch (error) {
