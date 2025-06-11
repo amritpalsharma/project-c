@@ -716,22 +716,22 @@ mat-datepicker-toggle button {
 
 
 @media (min-width: 3000px) {
-    // body.mobile-sidebar-active {
-    //     .page-container {
-    //         width: calc(100% - 400px) !important;
-    //     }
-    //     .sidebar .page-sidebar{
-    //         width: 310px !important;
-    //     }
-    // }
-    // body.compact-sidebar {
-    //     .page-container {
-    //         width: calc(100% - 400px) !important;
-    //     }
-    // }
-    // .right-sidebar {
-    //     width: 400px !important;
-    // }
+    body.mobile-sidebar-active {
+        .page-container.admin_page-container {
+            width: calc(100% - 400px) !important;
+        }
+        .sidebar .page-sidebar{
+            width: 310px !important;
+        }
+    }
+    body.compact-sidebar {
+        .page-container.admin_page-container {
+            width: calc(100% - 400px) !important;
+        }
+    }
+    .right-sidebar {
+        width: 400px !important;
+    }
     .website_main_pages .container {
         max-width: 2500px !important;
     }
