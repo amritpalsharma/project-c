@@ -16,6 +16,7 @@ import { TitleService } from '../../../title.service';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
 import { MessagePopupComponent } from '../message-popup/message-popup.component';
 import { TeamsComponent } from './tabs/teams/teams.component';
+import { SightingComponent } from './tabs/sighting/sighting.component';
 
 @Component({
   selector: 'app-view-profile',
@@ -63,6 +64,8 @@ export class ViewProfileComponent implements OnInit {
 
   @ViewChild(TeamsComponent)
   teamsTabComponent!: TeamsComponent;
+  @ViewChild(SightingComponent)
+  sightingComponent!: SightingComponent;
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
@@ -271,6 +274,8 @@ export class ViewProfileComponent implements OnInit {
     // this.activeTab = tab;
     if (this.activeTab === 'teams' && tab === 'teams') {
       this.teamsTabComponent?.backToTeamView();
+    }else if(this.activeTab === 'sighting' && tab === 'sighting'){
+      this.sightingComponent.backToSightings();
     }
     else {
       this.activeTab = tab;

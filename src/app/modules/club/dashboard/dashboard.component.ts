@@ -24,6 +24,7 @@ import { GlobalSettingsService } from '../../../services/global-settings.service
 import { SocketService } from '../../../services/socket.service';
 import { UnverifiedUserComponent } from '../../shared/unverified-user/unverified-user.component';
 import { TeamsTabComponent } from '../tabs/teams-tab/teams-tab.component';
+import { SightingTabComponent } from '../tabs/sighting-tab/sighting-tab.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -34,6 +35,8 @@ import { TeamsTabComponent } from '../tabs/teams-tab/teams-tab.component';
 export class DashboardComponent implements OnInit, OnDestroy {
   @ViewChild(TeamsTabComponent)
   teamsTabComponent!: TeamsTabComponent;
+  @ViewChild(SightingTabComponent)
+  sightingTabComponent!: SightingTabComponent;
 
   lightboxIsOpen: boolean = false; // Track the state of the lightbox
   mainImage: { src: string } = { src: '' }; // Current main image source
@@ -333,7 +336,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
           this.userVideos = [];
         }
         this.loading = false;  // Set loading to false once data is loaded
-        
+
       });
     } catch (error) {
       console.error('Error fetching users:', error);
@@ -351,13 +354,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
           localStorage.setItem('userData', JSON.stringify(response.data.user_data));
           this.user = response.data.user_data;
 
-          if(this.user?.first_name || this.user?.last_name){
-            let userName = this.user?.first_name+' '+this.user?.last_name;
+          if (this.user?.first_name || this.user?.last_name) {
+            let userName = this.user?.first_name + ' ' + this.user?.last_name;
             this.titleService.setName(userName);
             this.titleService.setRole(this.user?.role_name);
-            console.info('userName Set Condition true',userName);
-          }else{
-            console.info('userName Does Not Set Condition False',this.user);
+            console.info('userName Set Condition true', userName);
+          } else {
+            console.info('userName Does Not Set Condition False', this.user);
           }
           this.userNationalities = JSON.parse(this.user.user_nationalities);
           this.StartTour = this.user?.show_tour == 1 ? true : false;
@@ -375,7 +378,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
             this.coverImage = this.user.meta.cover_image_path;
           }
 
-          if(this.user.current_club_country && this.user.current_club_country != ''){
+          if (this.user.current_club_country && this.user.current_club_country != '') {
             // this.nationality = this.getCountryIdByName(this.user.current_club_country);
           }
 
@@ -865,8 +868,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
     // }
     if (this.activeTab === 'teams' && tab === 'teams') {
       this.teamsTabComponent?.backToTeamView();
+    } else if (this.activeTab === 'sighting' && tab === 'sighting') {
+      this.sightingTabComponent?.backToSightView();
     }
-    else{
+    else {
       this.activeTab = tab;
     }
   }

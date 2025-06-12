@@ -22,6 +22,8 @@ import { getPaginatorIntl } from './modules/shared/paginator/custom-paginator-in
 // import { TinymceWrapperComponent } from './modules/shared/tinymce-wrapper/tinymce-wrapper.component';
 // import { UnverifiedUserComponent } from './modules/shared/unverified-user/unverified-user.component';
 // import '../../style.scss';
+// import { NgSelectModule } from '@ng-select/ng-select';
+// import { DOCUMENT } from '@angular/common';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -60,6 +62,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     }),
     NgxEditorModule,
+    // NgSelectModule,
     OAuthModule.forRoot()
   ],
   providers: [

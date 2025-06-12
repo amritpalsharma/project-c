@@ -39,13 +39,23 @@
               <label class="form-check-label fs-14 font-w400 text-light" for="team_country_id">
                 {{ 'country' | translate }}
               </label>
-              <select [ngClass]="{'isrequiredField': !team_country_id}" class="form-select" id="team_country_id"
+              <!-- <select [ngClass]="{'isrequiredField': !team_country_id}" class="form-select" id="team_country_id"
                 name="team_country_id" [(ngModel)]="team_country_id">
                 <option value="0" [ngValue]="0">{{'select' | translate}}</option>
                 <option *ngFor="let country of countries" [ngValue]="country.id">
                   {{ country.country_name }}
                 </option>
-              </select>
+              </select> -->
+              <mat-form-field appearance="fill" class="select_search_field">
+                <input [ngClass]="{'isrequiredField': !team_country_id}" class="form-select" type="text"
+                  aria-label="City" matInput [formControl]="countryControl" [matAutocomplete]="auto" (focus)="onInputFocus()" >
+
+                <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayCountry">
+                  <mat-option *ngFor="let country of filteredCities" [value]="country">
+                    {{ country.country_name }}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
             </div>
             <div class="form-group col-lg-6" *ngIf="!isHideTeamSection">
               <label for="team" class="form-label">{{'team' | translate}}</label>
@@ -117,22 +127,22 @@
               <div class="col-lg-12 p-0">
                 <div class="date-imputs d-flex align-items-center">
                   <div class="input_label_wrap w-100">
-                  <label for="form-date" class="form-label">{{getTextBeforeDash('fromUpto' | translate)}}</label>
-                  <div class="d-flex align-items-center justify-content-center date_field">
-                    <input class="upto-date" matInput id="from_date" name="from_date" [matDatepicker]="from_datepicker"
-                      [formControl]="from_date" placeholder="DD.MM.YYYY" required />
-                    <mat-datepicker-toggle matSuffix [for]="from_datepicker"></mat-datepicker-toggle>
-                    <mat-datepicker #from_datepicker></mat-datepicker>
-                  </div>
+                    <label for="form-date" class="form-label">{{getTextBeforeDash('fromUpto' | translate)}}</label>
+                    <div class="d-flex align-items-center justify-content-center date_field">
+                      <input class="upto-date" matInput id="from_date" name="from_date"
+                        [matDatepicker]="from_datepicker" [formControl]="from_date" placeholder="DD.MM.YYYY" required />
+                      <mat-datepicker-toggle matSuffix [for]="from_datepicker"></mat-datepicker-toggle>
+                      <mat-datepicker #from_datepicker></mat-datepicker>
+                    </div>
                   </div>
                   <div class="input_label_wrap w-100">
-                  <label for="form-date" class="form-label">{{getTextAfterDash('fromUpto' | translate)}}</label>
-                  <div class="d-flex align-items-center justify-content-center date_field">
-                    <input class="upto-date-2" matInput id="to_date" name="to_date" [matDatepicker]="to_datepicker"
-                      [formControl]="to_date" placeholder="DD.MM.YYYY" required />
-                    <mat-datepicker-toggle matSuffix [for]="to_datepicker"></mat-datepicker-toggle>
-                    <mat-datepicker #to_datepicker></mat-datepicker>
-                  </div>
+                    <label for="form-date" class="form-label">{{getTextAfterDash('fromUpto' | translate)}}</label>
+                    <div class="d-flex align-items-center justify-content-center date_field">
+                      <input class="upto-date-2" matInput id="to_date" name="to_date" [matDatepicker]="to_datepicker"
+                        [formControl]="to_date" placeholder="DD.MM.YYYY" required />
+                      <mat-datepicker-toggle matSuffix [for]="to_datepicker"></mat-datepicker-toggle>
+                      <mat-datepicker #to_datepicker></mat-datepicker>
+                    </div>
                   </div>
                 </div>
                 <!-- <div class="date-imputs d-flex align-items-center">
