@@ -81,8 +81,8 @@ export class IndexComponent {
   banner_img: string = '';
   banner_img_dark_mode: string = '';
   banner_bg_img: string = '';
-  hero_bg_img: string = '';
-  hero_bg_img_dark_mode: string = '';
+  hero_bg_img_dark_mode: string = 'assets/images/home/hero_bg_img_dark_mode.png';
+  hero_bg_img: string = 'assets/images/home/hero_bg_img_light_mode.png';
   advertisemnet_base_url: string = '';
   isUserLoggedIn: boolean = false;
   club_logo_path: string = '';
@@ -377,9 +377,6 @@ export class IndexComponent {
         this.banner_img = res.data.base_url + pageData.banner_img;
         this.banner_img_dark_mode = res.data.base_url + pageData.banner_img_dark_mode;
         this.banner_bg_img = res.data.base_url + pageData.banner_bg_img;
-        this.hero_bg_img = res.data.base_url + pageData.hero_bg_img;
-        this.hero_bg_img_dark_mode = res.data.base_url + pageData.hero_bg_img_dark_mode;
-
         this.sliderDetail = sliderData;
         if (sliderData.totalCount < 6) {
           for (let i = sliderData.totalCount; i < 7; i++) {

@@ -5,7 +5,7 @@
             <!-- Subscription message -->
             <h4 class="card-billing">{{'multiCountryVisibility' | translate }}</h4>
             <div *ngIf="activeCountryCount == 0 || activeCountryCount == 1" class="alert alert-success multi-country-box mt-4">
-                {{ 'alertMessage' | translate: { count: activeCountryCount } }}
+                {{ 'alertMessage' | translate: { count: 1 } }}
             </div>
 
             <div *ngIf="activeCountryCount > 0 && activeCountryCount > 1" class="alert alert-success multi-country-box mt-4">

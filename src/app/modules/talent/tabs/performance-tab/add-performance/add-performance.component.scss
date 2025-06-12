@@ -224,3 +224,24 @@ mat-datepicker-toggle {
   }
 }
 }
+
+::ng-deep {
+  .select_search_field {
+    width: 100%;
+  }
+  .select_search_field > .mat-mdc-text-field-wrapper.mdc-text-field--filled {
+    padding: 0 !important;
+    width: 100%;
+    border: 0 !important;
+    background: transparent !important;
+  }
+  // div.mat-mdc-autocomplete-panel {
+  //   background: red !important;
+  // }
+}
+
+::ng-deep .dark-theme {
+  div.mat-mdc-autocomplete-panel {
+    background: #0c3453 !important;
+  }
+}

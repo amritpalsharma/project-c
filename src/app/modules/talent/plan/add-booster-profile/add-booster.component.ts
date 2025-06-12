@@ -21,6 +21,7 @@ export class AddBoosterComponent {
   talent: string = '';
   scout: string = '';
   club: string = '';
+  planPrice: string = '';
 
 
   youHaveAlreadyThisPlan: string = '';
@@ -70,6 +71,9 @@ export class AddBoosterComponent {
     this.id = this.data.id || [];
     this.plan = this.data.plan;
     this.boostedPlans = this.data.boostedPlans;
+    if(typeof this.boostedPlans?.isYearly !== undefined){
+      this.toggleBillingPlan(this.boostedPlans?.isYearly);
+    }
     this.stripe = await this.paymentService.getStripe();
 
     this.getToasterMsg();
@@ -282,8 +286,10 @@ export class AddBoosterComponent {
     // this.boostedPlans
     if (isYearly) {
       this.id = this.boostedPlans?.yearly?.id;
+      this.planPrice = this.boostedPlans?.yearly?.price;
     } else {
       this.id = this.boostedPlans?.monthly?.id;
+      this.planPrice = this.boostedPlans?.monthly?.price;
     }
   }
 

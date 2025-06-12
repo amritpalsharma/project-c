@@ -182,7 +182,16 @@
     <div class="country-plan-2 p-3 popup_footer">
         <div class="actions d-flex justify-content-between">
             <button class="btn puse-btn" (click)="pauseBoost()">{{ 'cancel' | translate }}</button>
-            <button class="btn save_button" (click)="saveBoost()" >{{ 'saveAndBoost' | translate }}</button>
+            <button class="btn buy-btn d-flex align-items-center gap-5" (click)="saveBoost()">
+                <div class="buy-button">
+                    <h4>
+                        {{ planPrice }}
+                        .- {{ boostedPlans?.monthly?.currency }} / {{ boostedPlans.isYearly ? ('year' | translate ) :
+                        ('month' | translate) }}
+                    </h4>
+                </div>
+                <span>{{'saveAndBoost' | translate}} <i class="fa-solid fa-angle-right"></i></span>
+            </button>
         </div>
     </div>
 </div>

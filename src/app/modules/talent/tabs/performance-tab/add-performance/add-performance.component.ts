@@ -124,7 +124,11 @@ export class AddPerformanceComponent {
     this.currentTeamLogo = this.performance.team_club_logo_path;
   }
 
-  displayCountry(country: any): string {
+  displayCountry(country: any): string { 
+    this.team_country_id = country.id;
+    // this.team_country_id
+    console.log(country)
+    console.warn(this.team_country_id);
     return country?.country_name || '';
   }
 
@@ -160,7 +164,8 @@ export class AddPerformanceComponent {
 
 
     if (this.isHideTeamSection === true) {
-      if (!this.team_country_id || this.team_country_id == 0) {
+      if (!this.team_country_id || this.team_country_id == 0) { 
+
         console.log('Need to select country please');
         return;
       }
