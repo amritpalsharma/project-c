@@ -271,7 +271,7 @@ export class CreateSightPopupComponent implements AfterViewInit {
           else {
             console.log("No data found in localStorage.");
           }
-          this.socketService.emit('inviteTalent', { senderId: myUserId, receiverIds: receiverIds });
+          this.socketService.emit('inviteTalent', { senderId: myUserId, receiverIds: receiverIds, eventId:response.data.event_id  });
         } else {
           if (response.data.errors && response.data.errors != '' && response.data.errors != undefined) {
              this.toaster.error(response.data.errors);

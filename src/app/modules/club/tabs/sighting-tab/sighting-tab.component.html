@@ -285,7 +285,16 @@
 
       </div>
       <div *ngIf="!isLoading" class="invited-image d-flex align-items-center">
-        <h2>{{ 'invited' | translate }}</h2>
+
+        <h2 *ngIf="playersAccepted.length > 0">{{ 'accepted' | translate }}</h2>
+        <div class="invited-image_box pointer" (click)="viewAccepts(playersAccepted)">
+          <img *ngFor="let item of playersAcceptedFirstFour; let i = index"
+            src="{{getImageUrl(item.profile_image_path)}}" [style.opacity]="item.status !== 'accepted' ? 0.4 : 1"
+            class="invited-img-{{i + 1}}">
+        </div>
+
+
+        <h2 *ngIf="playersInvited.length > 0">{{ 'invited' | translate }}</h2>
         <div class="invited-image_box pointer" (click)="viewInvitees(playersInvited)">
           <img *ngFor="let item of playersInvitedFirstFour; let i = index"
             src="{{getImageUrl(item.profile_image_path)}}" [style.opacity]="item.status !== 'accepted' ? 0.4 : 1"

@@ -7,6 +7,7 @@ import { UserService } from '../../../../services/user.service';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { ClubService } from '../../../../services/club.service';
 import { SocketService } from '../../../../services/socket.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-invite-talent-popup',
@@ -29,9 +30,10 @@ export class InviteTalentPopupComponent {
     private clubService: ClubService,
     public dialogRef: MatDialogRef<InviteTalentPopupComponent>,
     private socketService: SocketService,
+    private router: Router,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    console.log(data);
+    console.log(data, "data here");
     this.action = data.action;
     if (this.action == "showInvitedUsers") {
       this.invitedUsers = data.data
@@ -43,6 +45,11 @@ export class InviteTalentPopupComponent {
 
   ngOnInit(): void {
     this.fetchPlayers();
+  }
+
+  viewProfile(id: number | string): void {
+    this.router.navigate(['/view/talent', id]);
+    this.dialogRef.close()
   }
 
   async fetchPlayers(): Promise<void> {

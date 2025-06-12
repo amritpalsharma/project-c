@@ -86,7 +86,7 @@
     <div class="inbox-body" style="max-height: 450px !important; overflow: auto;">
       <div class="user-details d-flex align-items-center justify-content-between" *ngFor="let invitee of invitedUsers"
         [ngClass]="{'blur': invitee.status == 'pending'}">
-        <div class="user-detail-list">
+        <div class="user-detail-list" style="cursor: pointer;" (click)="viewProfile(invitee.id)">
           <span>
             <img width="60" height="60" *ngIf="invitee.profile_image_path" src="{{invitee.profile_image_path}}"
               src="../../../../../assets/images/1.png" class="img-list">
