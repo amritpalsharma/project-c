@@ -74,6 +74,9 @@ export class NotificationsLogComponent {
     });
   }
 
+  convertTime(dateTime: any) {
+    return this.talentService.convertTalentDateTime(dateTime);
+  }
 
   fetchNotifications(langId: any): void {
     let jsonData = localStorage.getItem("userData");
@@ -215,11 +218,18 @@ export class NotificationsLogComponent {
     this.showMatDialog(this.deleteConfirmation3, "delete-confirmation");
   }
 
+  // formatDateTime(datetime: string) {
+  //   // convertAdminDateTime
+  //   let formattedDate = this.adminHelper.convertAdminDateTime(datetime, 'users');
+  //   return formattedDate;
+  // }
+
   formatDateTime(datetime: string) {
     // convertAdminDateTime
-    let formattedDate = this.adminHelper.convertAdminDateTime(datetime, 'users');
+    let formattedDate = this.adminHelper.getSwitzerlandTime(datetime);
     return formattedDate;
   }
+  
 
   getJsonTranslations() {
     this.translateService.get(['confirmDeleteinformation3', 'selectNotificationFirst']).subscribe((translations) => {

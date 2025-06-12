@@ -267,14 +267,24 @@ export class FavoritesComponent {
     }
 
 
-    if (this.userFavorites.length === this.selectedIds.length) {
-      this.allSelected = true;
-    } else {
-      this.allSelected = false;
-    }
+    // if (this.userFavorites.length === this.selectedIds.length) {
+    //   this.allSelected = true;
+    // } else {
+    //   this.allSelected = false;
+    // }
 
     this.updateMasterCheckboxState();
   }
+
+  // selectAllUsers() {
+  //   this.allSelected = !this.allSelected;
+  //   if (this.allSelected) {
+  //     this.selectedUserIds = this.users.map(user => user.id);
+  //   } else {
+  //     this.selectedUserIds = [];
+  //   }
+  //   console.log('Selected user IDs:', this.selectedUserIds);
+  // }
 
   confirmDeletion(): any {
     if (!this.checkRole()) {

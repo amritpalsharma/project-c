@@ -20,7 +20,7 @@
 </div>
 <div class="player-view-container p-3" *ngIf="view == 'team' && isPremium">
   <div class="mb-3 club-team">{{ 'teams' | translate }}</div>
-  <app-loader *ngIf="isLoading"></app-loader>
+  <!-- <app-loader *ngIf="isLoading"></app-loader> -->
   <div *ngIf="teams.length == '0' && !isLoading">{{ 'NoTeamsAvailable' | translate }}</div>
   <div *ngFor="let team of teams" (click)="getTeamPlayers(team.id, team.team_name) "
     class="box-square position-relative">
@@ -119,7 +119,7 @@
               <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
               <tr class="mat-row user-empty-tr" *matNoDataRow>
                 <td [attr.colspan]="displayedColumns.length" class="user-empty-td">
-                  <app-loader *ngIf="isLoading"></app-loader>
+                  <!-- <app-loader *ngIf="isLoading"></app-loader> -->
                   <div *ngIf="players.length == 0 && !isLoading" style="text-align: center;">{{ 'noRecordFound' | translate }}</div>
                 </td>
               </tr>

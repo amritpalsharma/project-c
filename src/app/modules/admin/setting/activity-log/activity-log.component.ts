@@ -172,11 +172,18 @@ export class ActivityLogComponent {
     this.showMatDialog("", "delete-activity-confirmation");
   }
 
+  // formatDateTime(datetime: string) {
+  //   // convertAdminDateTime
+  //   let formattedDate = this.adminHelper.convertAdminDateTime(datetime, 'users');
+  //   return formattedDate;
+  // }
+  
   formatDateTime(datetime: string) {
     // convertAdminDateTime
-    let formattedDate = this.adminHelper.convertAdminDateTime(datetime, 'users');
+    let formattedDate = this.adminHelper.getSwitzerlandTime(datetime);
     return formattedDate;
   }
+
   getJsonTranslations() {
     this.translateService.get(['selectActivityFirst']).subscribe((translations) => {
       this.selectActivityFirst = translations['selectActivityFirst'];

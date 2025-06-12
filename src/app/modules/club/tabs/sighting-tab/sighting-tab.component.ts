@@ -40,6 +40,8 @@ export class SightingTabComponent {
   view: any = "listing";
   playersInvited: any = [];
   playersInvitedFirstFour: any = [];
+  playersAccepted: any = [];
+  playersAcceptedFirstFour: any = [];
   deleteRepresentorConfirmation: string = '';
   selectSightingFirst: string = '';
 
@@ -288,8 +290,11 @@ export class SightingTabComponent {
     this.clubService.getSingleSighting(id).subscribe((response) => {
       if (response && response.status && response.data) {
         this.sightingData = response.data.sighting;
-        this.playersInvited = response.data.players_invited;
-        this.playersInvitedFirstFour = response.data.players_invited.slice(0, 4);
+        this.playersInvited = response.data.players_invited.filter((player : any) => player.status === 'pending');
+        this.playersAccepted = response.data.players_invited.filter((player : any) => player.status === 'accepted');
+        // this.playersAccepted = response.data.players_invited;
+        this.playersInvitedFirstFour = response.data.players_invited.filter((player : any) => player.status === 'pending').slice(0, 4);
+        this.playersAcceptedFirstFour = response.data.players_invited.filter((player : any) => player.status === 'accepted').slice(0, 4);
         this.attachments = response.data.attachments;
         this.isLoading = false;
       } else {
@@ -330,6 +335,26 @@ export class SightingTabComponent {
   }
 
   viewInvitees(players: any) {
+    const inviteesDialog = this.dialog.open(InviteTalentPopupComponent, {
+      width: '700px',
+      height: '530px',
+      position: {
+        top: '70px'
+      },
+      data: {
+        action: "showInvitedUsers",
+        data: players
+      }
+    })
+
+    inviteesDialog.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        console.log('Dialog result:', result);
+      }
+    });
+  }
+
+  viewAccepts(players: any) {
     const inviteesDialog = this.dialog.open(InviteTalentPopupComponent, {
       width: '700px',
       height: '530px',
