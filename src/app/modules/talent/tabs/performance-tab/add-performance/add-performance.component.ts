@@ -21,7 +21,7 @@ const moment = _rollupMoment || _moment;
 
 export class AddPerformanceComponent {
   readonly date = new FormControl(moment());
-  countryControl = new FormControl('');
+  countryControl = new FormControl();
   filteredCities: any[] = [];
   performance: any = {};
   teams: any[] = [];
@@ -124,11 +124,11 @@ export class AddPerformanceComponent {
     this.currentTeamLogo = this.performance.team_club_logo_path;
   }
 
-  displayCountry(country: any): string { 
-    this.team_country_id = country.id;
+  displayCountry(country: any): string {
+    // this.team_country_id = country.id;
     // this.team_country_id
-    console.log(country)
-    console.warn(this.team_country_id);
+    // console.log(country)
+    // console.warn(this.team_country_id);
     return country?.country_name || '';
   }
 
@@ -164,9 +164,10 @@ export class AddPerformanceComponent {
 
 
     if (this.isHideTeamSection === true) {
-      if (!this.team_country_id || this.team_country_id == 0) { 
+      const selectedCountryId = this.countryControl.value?.id;
+      if (!this.team_country_id || this.team_country_id == 0) {
 
-        console.log('Need to select country please');
+        console.log('Need to select country please', this.team_country_id);
         return;
       }
       this.saveManuly(myForm);
