@@ -252,16 +252,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
       let uploadYourBestHeadshot = '';
       if (!this.profileImage) {
         profileImageTxt = translations['profilePhoto'];
-        uploadYourBestHeadshot = translations['uploadYourBestHeadshot'];
+        uploadYourBestHeadshot = translations['uploadYourBestHeadshot']+'.';
       } else {
         profileImageTxt = translations['deleteProfilePicture'];
-        uploadYourBestHeadshot = profileImageTxt;
+        // uploadYourBestHeadshot = profileImageTxt;
       }
       this.introInstance.setOptions({
         steps: [
           {
             element: '#upload_profilePhoto',
-            intro: `<div><h6>${profileImageTxt}</h6>${uploadYourBestHeadshot}.</div>`,
+            intro: `<div><h6>${profileImageTxt}</h6>${uploadYourBestHeadshot}</div>`,
             // tooltipClass: 'custom-tooltip',
             position: 'right'
           },

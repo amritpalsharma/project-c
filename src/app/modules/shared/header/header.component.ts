@@ -57,6 +57,7 @@ export class HeaderComponent {
   searchResults: any[] = [];
   searchUser: any;
   showSuggestions: boolean = false;
+  userRegisteredDomain: any;
   viewsTracked: { [profileId: string]: { viewed: boolean, clicked: boolean } } = {}; // Track view and click per profile
 
   // CALENDAR SETTINGS
@@ -409,6 +410,7 @@ export class HeaderComponent {
             this.titleService.setName(userArr?.first_name + ' ' + userArr.last_name);
             this.titleService.setRole(userArr?.role_name);
           }
+          // userRegisteredDomain
           if (userArr?.meta?.profile_image_path && typeof userArr?.meta?.profile_image_path != undefined) {
             this.commonDataService.updateProfilePic(userArr?.meta?.profile_image_path);
           } else if (userArr?.role && userArr?.role == 2 && userArr?.club_logo_path) {
@@ -797,10 +799,7 @@ export class HeaderComponent {
   getUserRole() {
     this.titleService.loggedInRole.subscribe(CurrentRole => {
       this.UserRole = CurrentRole;
-      // alert(this.UserRole)
-      // this.role = CurrentRole;
     });
-
   }
 
   toggleSearch() {

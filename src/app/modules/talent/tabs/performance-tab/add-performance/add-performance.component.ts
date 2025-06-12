@@ -1,4 +1,5 @@
 import { Component, Inject } from '@angular/core';
+import { startWith, map } from 'rxjs/operators';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TalentService } from '../../../../../services/talent.service';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
@@ -10,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 
 
+
 const moment = _rollupMoment || _moment;
 @Component({
   selector: 'app-add-performance',
@@ -19,6 +21,8 @@ const moment = _rollupMoment || _moment;
 
 export class AddPerformanceComponent {
   readonly date = new FormControl(moment());
+  countryControl = new FormControl('');
+  filteredCities: any[] = [];
   performance: any = {};
   teams: any[] = [];
   matches: any;
@@ -79,7 +83,20 @@ export class AddPerformanceComponent {
     private talentService: TalentService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private translate: TranslateService
-  ) { }
+  ) {
+
+    this.countryControl.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filter(value || ''))
+      )
+      .subscribe(filtered => this.filteredCities = filtered);
+  }
+
+  private _filter(value: string): string[] {
+    // const filterValue = value.toLowerCase();
+    return this.countries.filter((city: any) => city.country_name.toLowerCase().includes(value));
+  }
 
   ngOnInit(): void {
     this.theme = localStorage.getItem('theme');
@@ -105,6 +122,16 @@ export class AddPerformanceComponent {
     });
     this.loadCountries();
     this.currentTeamLogo = this.performance.team_club_logo_path;
+  }
+
+  displayCountry(country: any): string {
+    return country?.country_name || '';
+  }
+
+  onInputFocus() {
+    if (!this.countryControl.value) {
+      this.filteredCities = this.countries;
+    }
   }
 
   onCancel(): void {
@@ -307,6 +334,7 @@ export class AddPerformanceComponent {
       (response: any) => {
         if (response && response.status) {
           this.countries = response.data.countries;
+          this.filteredCities = this.countries;
         }
       },
       (error: any) => {

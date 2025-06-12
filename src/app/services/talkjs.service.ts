@@ -1,7 +1,7 @@
 // src/app/services/talkjs.service.ts
 import { Injectable } from '@angular/core';
+import { locale } from 'moment';
 import Talk from 'talkjs';
-
 @Injectable({
   providedIn: 'root',
 })
@@ -11,7 +11,10 @@ export class TalkService {
   private inbox: Talk.Inbox | undefined;
   // selectedConversationId: string | null = null;
   selectedConversationId: string | null = null;
-  constructor() { }
+  public localeFirstTime: any = localStorage.getItem('lang');
+  constructor() { 
+    this.localeFirstTime = localStorage.getItem('lang')
+  }
 
   // Generate a unique ID using Date and Math.random
   public generateUniqueId(): string {
@@ -19,6 +22,7 @@ export class TalkService {
   }
 
   async init(user: { id: string; name: string; email: string; photoUrl: string, role: string }) {
+    console.warn('Chat is init lang is '+this.localeFirstTime);
     await Talk.ready;
 
     this.user = new Talk.User({
@@ -27,7 +31,8 @@ export class TalkService {
       email: user.email,
       photoUrl: user.photoUrl + '?=' + Date.now(),
       welcomeMessage: null,
-      role: user.role
+      role: user.role,
+      locale:this.localeFirstTime // set by amrit when chat init
     });
 
     this.session = new Talk.Session({
@@ -192,8 +197,56 @@ export class TalkService {
 
   }
 
-
   public changeLocale(newLocale: string): void {
+    if (!this.session || !this.user) {
+      console.error('TalkJS session is not initialized.');
+      return;
+    }
+
+    // Save current conversation ID if any
+    // const selectedConversation = this.inbox?.selectedConversation;
+
+    // Update user with new locale
+    this.user = new Talk.User({
+      id: this.user.id,
+      name: this.user.name,
+      email: this.user.email,
+      photoUrl: this.user.photoUrl,
+      welcomeMessage: null,
+      role: this.user.role,
+      locale: newLocale,
+    });
+
+    // Destroy old inbox and session
+    if (this.inbox) {
+      this.inbox.destroy();
+      this.inbox = undefined;
+    }
+
+    if (this.session) {
+      this.session.destroy();
+    }
+
+    // Create new session
+    this.session = new Talk.Session({
+      appId: 'tmI75KXB',
+      me: this.user,
+    });
+
+    // Create new inbox
+    this.inbox = this.session.createInbox();
+
+    // If a conversation was open, restore it
+    // if (selectedConversation) {
+    //   this.inbox.select(selectedConversation);
+    // }
+
+    this.inbox.mount(document.getElementById('talkjs-container') as HTMLElement);
+  }
+
+
+
+  public changeLocale12_06_25(newLocale: string): void {
     if (!this.session || !this.user) {
       console.error('TalkJS session is not initialized.');
       return;
@@ -244,10 +297,10 @@ export class TalkService {
       }
 
       if (typeof userData.profile_image === 'undefined' || userData.profile_image === '') {
-        console.info('userData.profile_image not found '+userData.profile_image+' && userData.photoUrl '+userData.photoUrl)
+        console.info('userData.profile_image not found ' + userData.profile_image + ' && userData.photoUrl ' + userData.photoUrl)
         // userData.name = 'Talk User';
         if (userData.photoUrl !== undefined && userData.photoUrl !== null && userData.photoUrl !== '') {
-           userData.profile_image = userData.photoUrl;
+          userData.profile_image = userData.photoUrl;
         }
       }
 
@@ -258,7 +311,8 @@ export class TalkService {
         // email: userData.username,
         photoUrl: userData.profile_image,
         welcomeMessage: null,
-        role: (userData.role == '1') ? "hidden" : "default"
+        role: (userData.role == '1') ? "hidden" : "default",
+        locale:this.localeFirstTime
       };
 
       if (typeof userArr.name === undefined || userArr.name == '') {

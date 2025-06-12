@@ -569,9 +569,13 @@ export class ExploreComponent implements OnInit {
     this.talentService.getClubs(params).subscribe(
       (response: any) => {
         if (response.status) {
-          this.clubs = response.data.clubs;
+          // this.clubs = response.data.clubs;
+          if(response.data.clubs && response.data.clubs.length > 0){
+            this.clubs = response.data.clubs.sort((a : any, b : any) => a.club_name.localeCompare(b.club_name));
+          }
+          // console.log('this.clubs',this.clubs);
         } else {
-          this.clubs = [];
+          this.clubs = [];  
           console.error('No data found');
         }
       },

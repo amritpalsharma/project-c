@@ -68,6 +68,11 @@ export class SightingTabComponent {
     });
   }
 
+  backToSightView() {
+    this.view = 'listing';
+    // this.players = [];
+  }
+
   getSightings() {
     this.isLoading = true;
     try {

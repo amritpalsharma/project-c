@@ -29,6 +29,7 @@ export class CountriesComponent {
   userInfo: any = [];
   filteredCountries: any;
   pageTitle: string = '';
+  activeCountryCount: number = 0;
 
   constructor(
     private talentService: TalentService,
@@ -68,6 +69,7 @@ export class CountriesComponent {
 
           // Filter the countries where is_package_active == 'active'
           this.filteredCountries = this.countries.filter((country: any) => country.is_package_active == 'active');
+          this.activeCountryCount = this.filteredCountries.filter((country: any) => country.is_package_active === 'active').length;
 
         }
       },
