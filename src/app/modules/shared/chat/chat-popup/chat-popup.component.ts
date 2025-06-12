@@ -19,7 +19,8 @@ export class ChatPopupComponent {
   users: any = [];
   allUsers: any = [];
   @ViewChild("userInput") userInput!: ElementRef;
-  theme:string=localStorage.getItem('theme') || 'light';
+  theme: string = localStorage.getItem('theme') || 'light';
+  classForAutoList: string = 'd-none';
 
   constructor(
     private userService: UserService,
@@ -30,7 +31,7 @@ export class ChatPopupComponent {
 
   ngOnInit(): void {
     this.fetchUsers();
-    this.theme = localStorage.getItem('theme')+'';
+    this.theme = localStorage.getItem('theme') + '';
   }
 
   async fetchUsers(): Promise<void> {
@@ -68,8 +69,12 @@ export class ChatPopupComponent {
       console.error('User data is not available');
       return;
     }
+    this.classForAutoList = '';
 
     const searchText = userInput.value.toLowerCase().trim();
+    if (!searchText) {
+      this.classForAutoList = 'd-none';
+    }
     // this.filteredUsers = this.allUsers.filter((user: any) =>
     //   user.first_name && user.first_name.toLowerCase().includes(searchText)
     // );

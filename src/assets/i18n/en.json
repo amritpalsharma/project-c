@@ -669,6 +669,7 @@
   "confirmDeleteUser1": "Do you want to delete?",
   "templateIsDeleted": "Once template is deleted, it can’t be undone.",
   "alertMessage": "You have {{count}} more active Multi-Country subscription. Choose one country from the below list to showcase your profile in that country.",
+  "alertMessage2": "You have {{count}} more active Multi-Country subscription. Choose one country from the below list to showcase your profile in that country.",
   "Default": "Default",
   "purchased": "Purchased",
   "paymentMethods": "Payment Methods",

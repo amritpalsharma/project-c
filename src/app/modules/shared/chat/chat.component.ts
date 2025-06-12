@@ -85,18 +85,24 @@ export class ChatComponent {
 
   // Start a one-on-one chat
   startOneOnOneChat(user: any) {
-    // console.info('Recived User is ',user);
-    this.talkService.createOneOnOneConversation(user.id, user.name, user.email, user.photoUrl)
-      .then(() => {
-        this.talkService.mountChat('talkjs-container');
-
-        setTimeout(() => {
-          this.isLoading = false;
-        }, 1000);
-      })
-      .catch(err => {
-        console.error('Error starting chat:', err);
-      });
+    console.info('User Sent to Talk Js ', user);
+    // this.talkService.createOneOnOneConversation(user.id, user.name, user.email, user.photoUrl)
+    //   .then(() => {
+    //     // this.talkService.mountChat('talkjs-container');
+    //     setTimeout(() => {
+    //       let inbox;
+    //       if (!inbox) {
+    //         inbox = thistalkService.createInbox();
+    //         inbox.mount(document.getElementById("talkjs-container"));
+    //       }
+    //       this.isLoading = false;
+    //     }, 1000);
+    //   })
+    //   .catch(err => {
+    //     console.error('Error starting chat:', err);
+    //   });
+    // add this on 12-06-2025 by amrit to get correct profile image
+    this.talkService.startChatWithUser(user);
   }
 
 
@@ -121,7 +127,7 @@ export class ChatComponent {
       .afterClosed().subscribe(users => {
         // console.info(users.data)
         for (let user of users.data) {
-          // console.info('User is ', user)
+          console.info('User is ', user)
           this.users.push({
             id: user.id,
             name: user.first_name + ' ' + user.last_name, // The opened chat options Here
@@ -132,12 +138,12 @@ export class ChatComponent {
 
         // this.ngOnDestroy();
         if (this.users.length == 1) {
-          console.log('this.users[0]',this.users[0]);
+          console.log('this.users[0]', this.users[0]);
           this.startOneOnOneChat(this.users[0]);
         } else if (this.users.length > 1) {
           this.startGroupChat();
         }
-        console.log('last users', this.users);
+        console.log('users Object For Chat', this.users);
         //this.createGroup();
       });
   }
