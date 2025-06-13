@@ -1494,5 +1494,7 @@
   },
   "pendingUser": "Ausstehend Benutzer",
   "paidTxt": "Bezahlt",
-  "openTxt": "Offen"
+  "openTxt": "Offen",
+  "maxSizeForProfile": "Die Datei young-bearded-man-with-striped-shirt.jpg überschreitet die maximal zulässige Größe von 5 MB.",
+  "aboutImageCaption":"v. l. n. r."
 }

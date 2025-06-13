@@ -1443,5 +1443,7 @@
     "scout": "O olheiro ainda não adicionou destaques."
   },
   "paidTxt": "Pago",
-  "openTxt": "Aberto"
+  "openTxt": "Aberto",
+  "maxSizeForProfile": "O ficheiro young-bearded-man-with-striped-shirt.jpg excede o tamanho máximo permitido de 5 MB.",
+  "aboutImageCaption": "da esq. para dir."
 }

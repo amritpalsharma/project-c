@@ -1485,5 +1485,7 @@
     "scout": "Lo scout non ha ancora aggiunto highlight."
   },
   "paidTxt": "Pagato",
-  "openTxt": "Aperto"
+  "openTxt": "Aperto",
+  "maxSizeForProfile": "Il file young-bearded-man-with-striped-shirt.jpg supera la dimensione massima consentita di 5 MB.",
+  "aboutImageCaption": "da sin. a des."
 }

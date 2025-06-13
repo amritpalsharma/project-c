@@ -1502,5 +1502,7 @@
     "scout": "Le recruteur n’a pas encore ajouté de moments forts."
   },
   "paidTxt": "Payé",
-  "openTxt": "Ouvert"
+  "openTxt": "Ouvert",
+  "maxSizeForProfile": "Le fichier young-bearded-man-with-striped-shirt.jpg dépasse la taille maximale autorisée de 5 MB.",
+  "aboutImageCaption": "de g. à d."
 }

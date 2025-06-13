@@ -2052,6 +2052,7 @@ input:checked+.slider:before {
 .dark-theme .tabs {
   color: white;
 }
+
 .dark-theme .bg-color {
   background: #072944 !important;
 }
@@ -2913,9 +2914,11 @@ input:checked+.slider:before {
     }
   }
 
-  td.mat-column-Download svg.pointer path, td.cdk-column-Download svg.pointer path, svg.dark_mode_white path {
+  td.mat-column-Download svg.pointer path,
+  td.cdk-column-Download svg.pointer path,
+  svg.dark_mode_white path {
     stroke: #fff !important;
-}
+  }
 }
 
 .dark-theme .toast-error,
@@ -2925,16 +2928,19 @@ input:checked+.slider:before {
   background-color: #bde34f !important;
 }
 
-.dark-theme .toast-success, .dark-theme .toast-info {
+.dark-theme .toast-success,
+.dark-theme .toast-info {
   background-color: #51A351 !important;
 }
 
 .dark-theme .voucher_type button {
-    color: #BDE34E !important
+  color: #BDE34E !important
 }
+
 .dark-theme .add-country-popup {
   .buy-btn {
     background: #BDE34E !important;
+
     & * {
       color: #072944 !important;
     }
@@ -2944,14 +2950,18 @@ input:checked+.slider:before {
 
 .dark-theme {
   .unlock_page .upgrade_unlock {
-  background: rgb(12 52 83 / 86%) !important;
-}
+    background: rgb(12 52 83 / 86%) !important;
+  }
+
+  .about-content .content-image p {
+    color: #fff !important;
+  }
 }
 
 @media (max-width: 991px) {
-.dark-theme .sidebar {
+  .dark-theme .sidebar {
     .logo-box {
-        background: #072944 !important;
+      background: #072944 !important;
     }
   }
 }

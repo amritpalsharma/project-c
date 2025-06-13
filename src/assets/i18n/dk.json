@@ -1352,5 +1352,7 @@
     "scout": "Scouten har endnu ikke tilføjet højdepunkter."
   },
   "paidTxt": "Betalt",
-  "openTxt": "Åben"
+  "openTxt": "Åben",
+  "maxSizeForProfile": "Filen young-bearded-man-with-striped-shirt.jpg overskrider den maksimalt tilladte størrelse på 5 MB.",
+  "aboutImageCaption": "fra v. mod h."
 }

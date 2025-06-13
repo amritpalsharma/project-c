@@ -1434,5 +1434,7 @@
     "scout": "Scouten har ännu inte lagt till några höjdpunkter."
   },
   "paidTxt": "Betald",
-  "openTxt": "Öppen"
+  "openTxt": "Öppen",
+  "maxSizeForProfile": "Filen young-bearded-man-with-striped-shirt.jpg överskrider den maximalt tillåtna storleken 5 MB.",
+  "aboutImageCaption": "fr. v. till h."
 }

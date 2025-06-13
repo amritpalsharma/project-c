@@ -13,6 +13,18 @@
     <hr>
     <div class="msg-popup-content">
 
+        <div class="showProggressForFiles">
+            <!-- Progress Bar -->
+            <!-- <div class="progress-container" *ngIf="isLoading">
+                <div class="progress-bar" [style.width.%]="uploadProgress"></div>
+            </div> -->
+
+            <!-- If you want to display just the percentage number -->
+            <!-- <div *ngIf="isLoading" class="progress-percentage">
+                {{ uploadProgress }}%
+            </div> -->
+        </div>
+
         <div *ngIf="!isLoading" class="upload-box" (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)"
             (drop)="onFileDropped($event)">
             <div class="upload-icon mb-2">

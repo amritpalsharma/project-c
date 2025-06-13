@@ -3,6 +3,7 @@ import {
   MatDialogRef, MAT_DIALOG_DATA,
   MatDialog
 } from '@angular/material/dialog';
+import { HttpClient, HttpEventType, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { UserService } from '../../../services/user.service';
 import { TalentService } from '../../../services/talent.service';
 import { ToastrService } from 'ngx-toastr';
@@ -17,6 +18,7 @@ import { MessagePopupComponent } from '../message-popup/message-popup.component'
 export class UploadPopupComponent {
 
   userId: any = '';
+  isProccess: any = '';
   uploadedFiles: any = [];
   uploadResponse: { message: string; status: boolean }[] = []; // Updated type
   file: any = 'all';
@@ -118,7 +120,7 @@ export class UploadPopupComponent {
     });
   }
 
-  uploadImages(files: any) {
+  uploadImages130625(files: any) {
     this.isLoading = true;
     // let loadingToast = [];
     this.translateService.get([
@@ -134,7 +136,6 @@ export class UploadPopupComponent {
       for (let i = 0; i < files.length; i++) {
         formdata.append("gallery_images[]", files[i]);
       }
-// return;
       this.userService.uploadGalleryImages(formdata).subscribe((response) => {
         console.log(response);
 
@@ -164,6 +165,68 @@ export class UploadPopupComponent {
       });
     });
   }
+
+  uploadImages(files: any) {
+    this.isLoading = true;
+    let uploadProgress = 0; // Store upload progress percentage
+
+    this.isProccess = 0;
+
+    // Show loading toast with no timeout
+    this.translateService.get([
+      'pleaseWait',
+      'uploadingPhotos',
+    ]).subscribe((translations) => {
+      const loadingToast = this.toastr.info(translations['pleaseWait'], translations['uploadingPhotos'], {
+        disableTimeOut: true, // Keep the toaster open until manually cleared
+      });
+
+      const formData = new FormData();
+      // Append files to form data
+      for (let i = 0; i < files.length; i++) {
+        formData.append("gallery_images[]", files[i]);
+      }
+
+      // Call the upload service
+      this.userService.uploadGalleryImages(formData).subscribe((event: any) => {
+        switch (event.type) {
+          case HttpEventType.UploadProgress:
+            if (event.total) {
+              // Calculate and update progress
+              uploadProgress = Math.round((100 * event.loaded) / event.total);
+              console.log(`Upload Progress: ${uploadProgress}%`);
+              this.isProccess = uploadProgress;
+            }
+            break;
+          case HttpEventType.Response:
+            // Handle response when upload is complete
+            event.body.forEach((row: any) => {
+              if (row.status) {
+                this.toastr.clear(loadingToast.toastId);
+                this.uploadedFiles.push({ id: row.data.id, file_name: row.data.uploaded_file });
+              } else {
+                this.toastr.clear(loadingToast.toastId);
+                this.toastr.error(row.message, 'Error');
+              }
+            });
+
+            if (event.body[0].status) {
+              this.isLoading = false;
+              this.showMatDialog(event.body[0].message, 'display');
+              this.dialogRef.close({
+                files: this.uploadedFiles
+              });
+            } else {
+              this.isLoading = false;
+            }
+            break;
+          default:
+            break;
+        }
+      });
+    });
+  }
+
 
   close() {
     this.dialogRef.close({

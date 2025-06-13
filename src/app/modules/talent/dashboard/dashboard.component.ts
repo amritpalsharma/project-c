@@ -45,6 +45,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   photoLoading: boolean = true;
   stats: any = [];
   accountVerificationPending: string = '';
+  maxSizeForProfile: string = '';
 
 
   constructor(
@@ -252,7 +253,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       let uploadYourBestHeadshot = '';
       if (!this.profileImage) {
         profileImageTxt = translations['profilePhoto'];
-        uploadYourBestHeadshot = translations['uploadYourBestHeadshot']+'.';
+        uploadYourBestHeadshot = translations['uploadYourBestHeadshot'] + '.';
       } else {
         profileImageTxt = translations['deleteProfilePicture'];
         // uploadYourBestHeadshot = profileImageTxt;
@@ -1123,6 +1124,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
         return;
       }
 
+      const maxSizeInBytes = 5 * 1024 * 1024; // 5 MB
+      if (selectedFile.size > maxSizeInBytes) {
+        this.toastr.error(this.maxSizeForProfile, this.errorTxt, {
+          timeOut: 5000  // Set duration to 5 seconds (5000ms)
+        });
+        return;
+      }
+
       const reader = new FileReader();
 
       reader.onload = () => {
@@ -1432,7 +1441,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   getToasterMsg() {
-    this.translateService.get(['pleaseWait', 'uploadingPhotos', 'success!', 'error', 'deletingCoverImage', 'coverImageDeletionCanceled', 'Canceled', 'accountVerificationPending']).subscribe((translations) => {
+    this.translateService.get(['pleaseWait', 'uploadingPhotos', 'success!', 'error', 'deletingCoverImage', 'coverImageDeletionCanceled', 'Canceled', 'accountVerificationPending', 'maxSizeForProfile']).subscribe((translations) => {
       this.pleaseWait = translations['pleaseWait'];
       this.uploadingPhotos = translations['uploadingPhotos'];
       this.successTxt = translations['success!'];
@@ -1441,6 +1450,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.coverImageDeletionCanceled = translations['coverImageDeletionCanceled'];
       this.Canceled = translations['Canceled'];
       this.accountVerificationPending = translations['accountVerificationPending'];
+      this.maxSizeForProfile = translations['maxSizeForProfile'];
     });
   }
 

@@ -524,16 +524,28 @@ export class EditPersonalDetailsComponent implements OnInit {
   }
 
   filterClubs(event: any) {
-    const searchTerm = this.clubSearch.toLowerCase();
-    this.searchedClubs = this.playerClubsListing.filter((club: any) =>
-      club.club_name.toLowerCase().startsWith(searchTerm)
-    );
 
-    if (Array.isArray(this.searchedClubs) && this.searchedClubs.length > 0) {
-      this.searchedClubs.sort((a, b) =>
-        a.club_name.localeCompare(b.club_name)
-      );
+    const query = this.clubSearch.toLowerCase(); // no trim()
+
+    if (!query) {
+      this.filteredClubs = [];
+      return;
     }
+    console.warn(this.playerClubsListing)
+
+    this.searchedClubs = this.playerClubsListing.filter((club: any) =>
+      club.club_name.toLowerCase().includes(query.toLowerCase())
+    );
+    // const searchTerm = this.clubSearch.toLowerCase();
+    // this.searchedClubs = this.playerClubsListing.filter((club: any) =>
+    //   club.club_name.toLowerCase().startsWith(searchTerm)
+    // );
+
+    // if (Array.isArray(this.searchedClubs) && this.searchedClubs.length > 0) {
+    //   this.searchedClubs.sort((a, b) =>
+    //     a.club_name.localeCompare(b.club_name)
+    //   );
+    // }
   }
 
   filterCountriesOld(event: any) {

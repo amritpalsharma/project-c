@@ -354,6 +354,7 @@ export class AddClubnScoutPageComponent implements OnInit {
             yearly_plan_price_currency: plan.yearly_plan_price_currency || '',
             monthly_label: plan.monthly_label || '',
             yearly_label: plan.yearly_label || '',
+            plan_feature_title: plan.plan_feature_title || '',
             plan_feature_desc: plan.plan_feature_desc || [],
           }));
         } else {

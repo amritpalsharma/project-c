@@ -1190,7 +1190,7 @@
     "downloadPdf": "Download player PDF",
     "startConversation": "Send message"
   },
-  "MyAccount": "go To Dashboard",
+  "MyAccount": "go to Dashboard",
   "boostProfiles": "Boost Profile",
   "renews": "Renews on",
   "changeNewsletterStatus": "Are you sure you want to change newsletter status?",
@@ -1400,5 +1400,7 @@
   },
   "pendingUser":"Pending User",
   "paidTxt":"Paid",
-  "openTxt":"Open"
+  "openTxt":"Open",
+  "maxSizeForProfile":"File young-bearded-man-with-striped-shirt.jpg exceeds the maximum allowed size of 5 MB",
+  "aboutImageCaption":"l–r"
 }
