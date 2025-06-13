@@ -174,14 +174,14 @@
                             <!-- 3 -->
                             <div class="talent_tab_image" [ngClass]="{ 'active': custIndex === 3 }">
                                 <img class="single_tab_img light-images"
-                                    [src]="'../../../../assets/images/talent_page/talent_featured_img_' + selectedLangSlug + '_'  + '3.png'">
+                                    [src]="'../../../../assets/images/talent_page/talent_featured_img_en_'  + '3.png'">
                                 <img class="single_tab_img dark-images"
-                                    [src]="'../../../../assets/images/talent_page/talent_featured_img_dark_' + selectedLangSlug + '_'  + '3.png'">
+                                    [src]="'../../../../assets/images/talent_page/talent_featured_img_dark_en_' + '3.png'">
                             </div>
                             <!-- 4 -->
                             <div class="talent_tab_image" [ngClass]="{ 'active': custIndex === 4 }">
                                 <img class="single_tab_img light-images"
-                                    [src]="'../../../../assets/images/talent_page/talent_featured_img_' + selectedLangSlug + '_'  + '4.png'">
+                                    [src]="'../../../../assets/images/talent_page/talent_featured_img_light_' + selectedLangSlug + '_'  + '4.png'">
                                 <img class="single_tab_img dark-images"
                                     [src]="'../../../../assets/images/talent_page/talent_featured_img_dark_' + selectedLangSlug + '_' + '4.png'">
                             </div>
@@ -441,7 +441,7 @@
                                             <h3 class="premium-heading2"> {{getDynamicPlanName('boost')}} </h3>
                                         </div>
                                         <div class="body_card">
-                                            <h5 class="premium-heading5">{{getDynamicPlanName('boost')}}</h5>
+                                            <h5 class="premium-heading5" *ngIf="priceArr[2].plan_feature_title">{{priceArr[2].plan_feature_title}}</h5>
                                             <div class="text_List_wrap">
                                                 <div class="premium-text"
                                                     *ngFor="let desc of getDescByPlanName('boost');">
@@ -476,7 +476,7 @@
                                             <h3 class="premium-heading2">{{getDynamicPlanName('premium')}}</h3>
                                         </div>
                                         <div class="body_card">
-                                            <h5 class="premium-heading5">{{getDynamicPlanName('premium')}}</h5>
+                                            <h5 class="premium-heading5" *ngIf="priceArr[0].plan_feature_title">{{priceArr[0].plan_feature_title}}</h5>
                                             <div class="text_List_wrap">
                                                 <div class="premium-text"
                                                     *ngFor="let desc of getDescByPlanName('premium');">
@@ -507,10 +507,10 @@
                                                         *ngIf="selectedTab != 'yearly' && priceArr">{{priceArr[0].monthly_label}}</span>
                                                 </span>
                                             </h2>
-                                            <h3 class="premium-heading2"> {{getDynamicPlanName('country')}} </h3>
+                                            <h3 class="premium-heading2"> {{getDynamicPlanName('country')}}</h3>
                                         </div>
                                         <div class="body_card">
-                                            <h5 class="premium-heading5">{{getDynamicPlanName('country')}}</h5>
+                                            <h5 class="premium-heading5" *ngIf="priceArr[1].plan_feature_title">{{priceArr[1].plan_feature_title}}</h5>
                                             <div class="text_List_wrap">
                                                 <div class="premium-text"
                                                     *ngFor="let desc of getDescByPlanName('country');">

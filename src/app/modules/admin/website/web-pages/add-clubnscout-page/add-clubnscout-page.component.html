@@ -414,6 +414,14 @@
               id="plan_name_{{ i }}" placeholder="{{ 'planName' | translate }}" required />
           </div>
 
+          <div class="col-md-6">
+            <label for="yearly_plan_featureTitle_{{ i }}" class="form-label">{{ 'planFeaturesTitle' | translate
+              }}</label>
+            <input type="text" [(ngModel)]="plan.plan_feature_title" class="form-control"
+              name="plan_feature_title{{ i }}" id="yearly_plan_featureTitle_{{ i }}"
+              placeholder="{{ 'planFeaturesTitle' | translate }}" required />
+          </div>
+
 
           <!-- Monthly Price -->
           <div class="col-md-6 d-none">

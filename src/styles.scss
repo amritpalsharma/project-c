@@ -1986,11 +1986,12 @@ nav.navbar .country_dropdown h6.border-bottom {
 .upgrade_unlock .unlock_btn {
   padding: 12px 25px 10px !important;
   font-size: 17px !important;
-    svg {
-      position: relative;
-      top: -3px;
-      margin-right: 10px;
-    }
+
+  svg {
+    position: relative;
+    top: -3px;
+    margin-right: 10px;
+  }
 }
 
 .edit-multi-country-plan .country-plan {
@@ -2780,8 +2781,10 @@ input[type=number] {
 
 .player_positions_lising {
   padding-left: 20px;
+
   li {
-    margin: 5px 0;
+    // margin: 5px 0;
+    margin: 10px 0;
     padding-right: 5px;
   }
 }

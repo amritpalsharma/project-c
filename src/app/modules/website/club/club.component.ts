@@ -34,7 +34,7 @@ export class ClubComponent {
     pricing_sctn_title: '',
     pricing_tab: [],
   }];
-  priceArr:any;
+  priceArr: any;
   // advertisementData:any=null;
   activeIndex: number = 0;
 
@@ -62,7 +62,7 @@ export class ClubComponent {
 
   countryPrice: number = 0;
   countryYearlyPrice: number = 0;
-  selectedTab:string='monthly';
+  selectedTab: string = 'monthly';
   // 
 
   constructor(private webPages: WebPages, private globalSettings: GlobalSettingsService) {
@@ -317,17 +317,17 @@ export class ClubComponent {
   getDynamicPlanName(planName: string) {
     const lowerPlanName = planName.toLowerCase();
     if (lowerPlanName.includes('premium')) {
-      if(this.priceArr){
+      if (this.priceArr) {
         return this.priceArr[0].plan_name;
       }
     }
     if (lowerPlanName.includes('country')) {
-      if(this.priceArr){
+      if (this.priceArr) {
         return this.priceArr[1].plan_name;
       }
     }
     if (lowerPlanName.includes('boost')) {
-      if(this.priceArr){
+      if (this.priceArr) {
         return this.priceArr[2].plan_name;
       }
     }
@@ -335,17 +335,17 @@ export class ClubComponent {
   getDescByPlanName(planName: string) {
     const lowerPlanName = planName.toLowerCase();
     if (lowerPlanName.includes('premium')) {
-      if(this.priceArr){
+      if (this.priceArr) {
         return this.priceArr[0].plan_feature_desc;
       }
     }
     if (lowerPlanName.includes('country')) {
-      if(this.priceArr){
+      if (this.priceArr) {
         return this.priceArr[1].plan_feature_desc;
       }
     }
     if (lowerPlanName.includes('boost')) {
-      if(this.priceArr){
+      if (this.priceArr) {
         return this.priceArr[2].plan_feature_desc;
       }
     }
@@ -438,6 +438,25 @@ export class ClubComponent {
     }
   }
 
+  getSubTitleForPlan(planName: string) {
+    const lowerPlanName = planName.toLowerCase();
+    if (lowerPlanName.includes('premium')) {
+      if (this.priceArr) {
+        return this.priceArr[0].plan_feature_title;
+      }
+    }
+    if (lowerPlanName.includes('country')) {
+      if (this.priceArr) {
+        return this.priceArr[1].plan_feature_title;
+      } 
+    }
+    if (lowerPlanName.includes('boost')) {
+      if (this.priceArr) { 
+        return this.priceArr[2].plan_feature_title;
+      }
+    }
+  }
+
   ThemeUpdated() {
     this.getArrayItemByIndex(this.accordinCurrentIndex, 'image');
     this.currentTheme = localStorage.getItem('theme') + '';
@@ -478,7 +497,7 @@ export class ClubComponent {
     return slug;
   }
 
-  setActiveTab(currentTab:any){
+  setActiveTab(currentTab: any) {
     this.selectedTab = currentTab;
   }
 }

@@ -96,6 +96,7 @@ import { NotificationsLogComponent } from './setting/notifications-log/notificat
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { SharedModule } from '../shared/shared.module'; // path depends on your folder structure
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { PerformanceAnalysisComponent } from './tabs/performance-analysis/performance-analysis.component';
 
 
 export const MY_FORMATS = {
@@ -178,7 +179,8 @@ export const MY_FORMATS = {
     AddClubnScoutPageComponent,
     AddFaqPageComponent,
     AddPricingPageComponent,
-    NotificationsLogComponent
+    NotificationsLogComponent,
+    PerformanceAnalysisComponent
   ],
   imports: [
     CommonModule,

@@ -226,8 +226,29 @@
                       d="M16.375 0H23.375V21H16.375V0ZM18.125 1.75V19.25H21.625V1.75H18.125ZM0.625 5.25H7.625V21H0.625V5.25ZM2.375 7V19.25H5.875V7H2.375ZM8.5 10.5H15.5V21H8.5V10.5ZM10.25 12.25V19.25H13.75V12.25H10.25Z"
                       fill="#023A4A" />
                   </svg>
-                  {{ 'performance' | translate }}</button>
+                  <!-- {{ 'performance' | translate }} -->
+                  {{ 'PerformaceProfile' | translate }}
+                </button>
               </li>
+
+              <!-- Performace Anyalysis -->
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" (click)="switchTab('performanceAnalysis')"
+                  [ngClass]="{'active': activeTab == 'performanceAnalysis'}" id="profile-tab" data-bs-toggle="tab"
+                  data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane"
+                  aria-selected="false">
+                  <svg id="users-icon" width="22" height="21" viewBox="0 0 22 21" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M21.5 0.0546875V21H0.5V5.93359L1.53906 6.15234L5.53125 6.94531L10.8086 3.44531L16.0312 4.32031L20.0781 1.14844L21.5 0.0546875ZM19.75 3.63672L16.7969 5.93359L16.4961 6.17969L16.1133 6.125L11.1914 5.30469L5.94141 8.80469L5.58594 8.72266L2.25 8.06641V11.6484L5.64062 13.0156L10.5078 9.76172L10.8633 9.54297L16.0586 11.2656L19.75 8.33984V3.63672ZM19.75 10.582L16.7969 12.9336L16.4141 13.2344L15.9766 13.0703L11.1641 11.457L5.85938 14.9844L2.25 13.5625V19.25H19.75V10.582Z"
+                      fill="#023A4A" />
+                  </svg>
+                  <!-- {{ 'performance' | translate }} -->
+                  {{ 'performanceAnalysis' | translate }}
+                </button>
+              </li>
+              <!-- Performace Anyalysis -->
+
               <li class="nav-item" role="presentation">
                 <button class=" nav-link" (click)="switchTab('transfers')"
                   [ngClass]="{'active': activeTab == 'transfers'}" id="contact-tab" data-bs-toggle="tab"
@@ -239,7 +260,9 @@
                       d="M17.4141 0.496094L23.293 6.375L17.4141 12.2539L16.1836 10.9961L19.9297 7.25H1.5V5.5H19.9297L16.1836 1.75391L17.4141 0.496094ZM6.58594 12.7461L7.81641 14.0039L4.07031 17.75H22.5V19.5H4.07031L7.81641 23.2461L6.58594 24.5039L0.707031 18.625L6.58594 12.7461Z"
                       fill="#023A4A" />
                   </svg>
-                  {{ 'transfers' | translate }}</button>
+                  <!-- {{ 'transfers' | translate }} -->
+                  {{ 'transfer' | translate }}
+                </button>
               </li>
               <li class="nav-item" role="presentation">
                 <button class="nav-link" (click)="switchTab('gallery')" [ngClass]="{'active': activeTab == 'gallery'}"
@@ -297,6 +320,7 @@
             <app-profile-tab *ngIf="activeTab == 'profile'" [userData]="user" [userCountryFlag]="userCountryFlag"
               (dataEmitter)="handleRefreshAfterUpdate($event)"></app-profile-tab>
             <app-performance-tab *ngIf="activeTab == 'performance'"></app-performance-tab>
+            <app-performance-analysis *ngIf="activeTab == 'performanceAnalysis'"></app-performance-analysis>
             <app-transfers-tab *ngIf="activeTab == 'transfers'"></app-transfers-tab>
             <app-gallery-tab *ngIf="activeTab == 'gallery'" [coverImage]="coverImage"
               (dataEmitter)="handleCoverImageData($event)"></app-gallery-tab>

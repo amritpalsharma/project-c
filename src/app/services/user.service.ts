@@ -180,6 +180,14 @@ export class UserService {
     );
   }
 
+  getPerformanceAnalysis(userId: any): Observable<any> {
+    let lang_id = localStorage.getItem('lang_id');
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
+      `${this.apiUrl2}/get-performance-reports/${userId}`
+    );
+  }
+
+
   getAllTeams(): Observable<any> {
     return this.http.get<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl}get-teams`
@@ -789,7 +797,7 @@ export class UserService {
     );
   }
 
-  deleteProfileImageAdmin(userId: any): Observable<any> { 
+  deleteProfileImageAdmin(userId: any): Observable<any> {
     let lang_id = localStorage.getItem('lang_id');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
