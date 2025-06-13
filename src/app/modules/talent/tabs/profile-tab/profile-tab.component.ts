@@ -36,7 +36,7 @@ export class ProfileTabComponent {
   ngOnInit(): void {
     this.user = this.userData;
     // console.info('this.user',this.user)
-     this.getUserProfile();
+    this.getUserProfile();
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -177,10 +177,19 @@ export class ProfileTabComponent {
 
   // Function to get other positions from the array
   getOtherPositions() {
+    // this.otherPositions = this.positions
+    //   .filter((pos: any) => pos.main_position == null)
+    //   .map((pos: any) => pos.position_name)
+    //   .join('<br>');
+
     this.otherPositions = this.positions
       .filter((pos: any) => pos.main_position == null)
-      .map((pos: any) => pos.position_name)
-      .join('<br>');
+      .map((pos: any) => `<li>${pos.position_name}</li>`)
+      .join('');
+
+    // Then wrap the list items in <ul> tags
+    this.otherPositions = `<ul class="player_positions_lising">${this.otherPositions}</ul>`;
+
   }
 
 

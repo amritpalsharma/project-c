@@ -234,10 +234,18 @@ mat-datepicker-toggle {
     width: 100%;
     border: 0 !important;
     background: transparent !important;
+    outline: none !important;
   }
   // div.mat-mdc-autocomplete-panel {
   //   background: red !important;
   // }
+  .select_search_field > .mat-mdc-text-field-wrapper.mdc-text-field--filled .mdc-line-ripple::before,
+  .select_search_field > .mat-mdc-text-field-wrapper.mdc-text-field--filled .mdc-line-ripple::after {
+    border-bottom: 0 !important	
+  }
+  .mat-mdc-form-field-focus-overlay {
+    background: transparent !important;
+  }
 }
 
 ::ng-deep .dark-theme {
@@ -245,3 +253,5 @@ mat-datepicker-toggle {
     background: #0c3453 !important;
   }
 }
+
+ 

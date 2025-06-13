@@ -83,12 +83,20 @@ export class GeneralDetailsComponent {
   // Function to get other positions from the array
   getOtherPositions() {
     if (this.positions) {
-      const otherPositions = this.positions
-        .filter((pos: any) => pos.main_position == null)
-        .map((pos: any) => pos.position_name)
-        .join('<br>');
+      // const otherPositions = this.positions
+      //   .filter((pos: any) => pos.main_position == null)
+      //   .map((pos: any) => pos.position_name)
+      //   .join('<br>');
 
-      this.otherPositions = otherPositions ? `${otherPositions}` : '';
+      // this.otherPositions = otherPositions ? `${otherPositions}` : '';
+
+      this.otherPositions = this.positions
+        .filter((pos: any) => pos.main_position == null)
+        .map((pos: any) => `<li>${pos.position_name}</li>`)
+        .join('');
+
+      // Then wrap the list items in <ul> tags
+      this.otherPositions = `<ul class="player_positions_lising">${this.otherPositions}</ul>`;
     } else {
       this.otherPositions = '';
     }

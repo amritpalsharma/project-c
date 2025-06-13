@@ -120,17 +120,37 @@ export class ProfileTabComponent {
 
   getOtherPositions(positions: any) {
     // console.log(positions)
+    // if (positions) {
+    //   let pos = JSON.parse(positions);
+
+    //   // Filter out positions where main_position === 1
+    //   let filteredPositions = pos.filter((position: any) => position.main_position !== 1);
+
+    //   // Extract the position names and join them with a "/"
+    //   let positionNames = filteredPositions.map((position: any) => position.position_name).join(' / ');
+
+    //   return positionNames || null; // Return the joined string, or null if no positions match
+    // }
+    let otherPositions;
     if (positions) {
-      let pos = JSON.parse(positions);
+      // const otherPositions = this.positions
+      //   .filter((pos: any) => pos.main_position == null)
+      //   .map((pos: any) => pos.position_name)
+      //   .join('<br>');
 
-      // Filter out positions where main_position === 1
-      let filteredPositions = pos.filter((position: any) => position.main_position !== 1);
+      // this.otherPositions = otherPositions ? `${otherPositions}` : '';
+      positions = JSON.parse(positions);
+      otherPositions = positions
+        .filter((pos: any) => pos.main_position == null)
+        .map((pos: any) => `<li>${pos.position_name}</li>`)
+        .join('');
 
-      // Extract the position names and join them with a "/"
-      let positionNames = filteredPositions.map((position: any) => position.position_name).join(' / ');
-
-      return positionNames || null; // Return the joined string, or null if no positions match
+      // Then wrap the list items in <ul> tags
+      otherPositions = `<ul class="player_positions_lising">${otherPositions}</ul>`;
+    } else {
+      otherPositions = '';
     }
+    return otherPositions;
   }
 
   themeChanged() {

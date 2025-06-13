@@ -9,6 +9,10 @@
 }
 
 @media (min-width: 992px) {
+    .main-position .player_social_links a {
+        display: block;
+        margin-bottom: 10px !important;
+    }
     .mobile-sidebar-active .sidebar .bottom_box {
         position: absolute;
         bottom: 0;

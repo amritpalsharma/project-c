@@ -98,7 +98,7 @@
         <div class="row">
           <div class="col-md-4 col-lg-2 border-end">
             <div class="user-details-left">
-              <div class="user-media " *ngIf="!user.meta.profile_image || user.meta.profile_image == ''">
+              <div class="user-media " *ngIf="!user?.meta?.profile_image || user?.meta?.profile_image == ''">
                 <img src="{{baseUrl + user.meta.profile_image}}" alt="" *ngIf="user.meta && user.meta.profile_image"
                   class="user-img mt-1">
                 <img src="../../../../assets/images/1.png" alt="" *ngIf="!user.meta || !user.meta.profile_image"
