@@ -250,13 +250,13 @@
 .upload-label {
   width: 100%;
   justify-content: center;
-  // height: 47px;
+  height: 47px;
   color: black;
   border: 1px solid #999999;
   border-radius: 10px !important;
   padding: 8px 8px;
   background: none;
-  // font-size: 13px;
+  font-size: 13px;
 }
 
 .inviteesWrap {
@@ -419,4 +419,18 @@ input[type="number"] {
   @media (min-width: 3000px) {
     width: 1000px !important;
   }
+}
+
+::ng-deep #imagePreviewContainer img {
+  max-width: 100%;
+  // max-height: 300px;
+  max-height: 250px;
+}
+
+::ng-deep .emptyRequiredField {
+  border: 2px solid red !important;
+}
+
+::ng-deep .dark-theme .emptyRequiredField {
+  border: 2px solid red !important;
 }

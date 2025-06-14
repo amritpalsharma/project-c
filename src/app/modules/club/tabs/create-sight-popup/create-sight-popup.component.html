@@ -14,11 +14,22 @@
         <div class="cupen-btn code-text text-center">
           <!-- <input type="file" class="upload-input d-none" id="upload-banner" (change)="onBannerFileChange($event)"
             accept="image/*"> -->
-          <p class="upload-file_name">{{removeMP4('filesSupported' | translate)}}</p>
-          <p class="upload-file_name">{{'maximumSize5MB' | translate}}</p>
+          <p *ngIf="!uploadedBannerImage" class="upload-file_name">{{removeMP4('filesSupported' | translate)}}</p>
+          <p *ngIf="!uploadedBannerImage" class="upload-file_name">{{'maximumSize5MB' | translate}}</p>
           <input type="file" (change)="onBannerFileChange($event)" hidden #fileInput />
-          <button type="button" class="upload-img-btn" (click)="fileInput.click()">{{'uploadFiles' |
+          <button *ngIf="!uploadedBannerImage" type="button" class="upload-img-btn"
+            (click)="fileInput.click()">{{'uploadFiles' |
             translate}}</button>
+          <span id="user-icon" *ngIf="uploadedBannerImage">
+            <div class="close_image" *ngIf="uploadedBannerImage" (click)="removeImage('about_banner_bg_img')">
+              <svg width="26px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                <!-- SVG Content -->
+                <path
+                  d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+              </svg>
+            </div>
+          </span>
+          <div id="imagePreviewContainer"></div>
         </div>
       </div>
       <!-- <div class="col-sm-4 mt-3 d-flex align-items-center gap-2">
@@ -32,17 +43,19 @@
     <div class="row mt-4 name-details">
       <div class="col-lg-4 px-2 mb-4">
         <label for="event-name" class="code-text">{{ 'eventName' | translate }}</label>
-        <input type="text" id="event-name" class="cupen-btn code-text w-100" [(ngModel)]="eventName">
+        <input type="text" id="event-name" class="cupen-btn code-text w-100" [(ngModel)]="eventName"
+          [ngClass]="{'emptyRequiredField':submitButtonClicked && !eventName}">
       </div>
       <div class="col-lg-4 px-2 mb-4">
         <label for="manager-name" class="code-text"> {{ 'organizer' | translate }}</label>
-        <input type="text" id="manager-name" class="cupen-btn w-100" [(ngModel)]="managerName">
+        <input type="text" id="manager-name" class="cupen-btn w-100" [(ngModel)]="managerName"
+          [ngClass]="{'emptyRequiredField':submitButtonClicked && !managerName}">
       </div>
       <div class="col-lg-4 px-2 mb-4">
         <label for="date-select" class="code-text">{{ 'dateAndTime' | translate }}</label><br>
-
         <input class="form-control cupen-btn sighting-cal" style="min-width: 170px;" type="datetime-local"
-          id="date-select" [(ngModel)]="dateTime" placeholder="{{ 'selectDateTime' | translate }}">
+          id="date-select" [(ngModel)]="dateTime" placeholder="{{ 'selectDateTime' | translate }}"
+          [ngClass]="{'emptyRequiredField':submitButtonClicked && !managerName}">
       </div>
     </div>
 
@@ -132,15 +145,18 @@
       </div>
       <div class="col-lg-12 mb-4">
         <label for="enter-address" class="code-text">{{ 'address' | translate }}</label><br>
-        <input type="text" id="enter-address" class="cupen-btn  code-text w-100" [(ngModel)]="address">
+        <input type="text" id="enter-address" class="cupen-btn  code-text w-100" [(ngModel)]="address"
+          [ngClass]="{'emptyRequiredField':submitButtonClicked && !address}">
       </div>
       <div class="zipcode-input col-lg-6 mb-4">
         <label for="zipcode" class="code-text"> {{ 'zipcode' | translate }}</label> <br>
-        <input type="text" #numInput id="zipcode" class="cupen-btn  code-text w-100" [(ngModel)]="zipcode">
+        <input type="text" #numInput id="zipcode" class="cupen-btn  code-text w-100" [(ngModel)]="zipcode"
+          [ngClass]="{'emptyRequiredField':submitButtonClicked && !address}">
       </div>
       <div class="city-input col-lg-6 mb-4">
         <label for="city" class="code-text">{{ 'city' | translate }}</label><br>
-        <input type="text" id="city" class="cupen-btn w-100" [(ngModel)]="city">
+        <input type="text" id="city" class="cupen-btn w-100" [(ngModel)]="city"
+          [ngClass]="{'emptyRequiredField':submitButtonClicked && !city}">
       </div>
     </div>
 

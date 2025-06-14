@@ -171,19 +171,33 @@ export class DashboardComponent implements OnInit, OnDestroy {
       'previous',
       'next',
       'finish',
-      'dontShowAgain'
+      'dontShowAgain',
+      'profilePhoto',
+      'uploadYourBestHeadshot',
+      'deleteProfilePicture'
+
     ]).subscribe((translations) => {
       this.dontShowAgainTourTxt = translations['dontShowAgain'];
+
+      let profileImageTxt = '';
+      let uploadYourBestHeadshot = '';
+      if (!this.profileImage) {
+        profileImageTxt = translations['profilePhoto'];
+        uploadYourBestHeadshot = translations['uploadYourBestHeadshot'] + '.';
+      } else {
+        profileImageTxt = translations['deleteProfilePicture'];
+        // uploadYourBestHeadshot = profileImageTxt;
+      }
       this.introInstance.setOptions({
         steps: [
           {
-            element: '#FirstStep',
-            intro: `<div><h6>${translations['profilePhoto']}</h6>${translations['uploadYourBestHeadshot']}.</div>`,
+            element: '#upload_profilePhoto',
+            intro: `<div><h6>${profileImageTxt}</h6>${uploadYourBestHeadshot}</div>`,
             // tooltipClass: 'custom-tooltip',
             position: 'right'
           },
           {
-            element: '.tour-personal-details',
+            element: '#tour-personal-details-intro',
             intro: `<div><h6>${translations['personalDetails']}</h6>${translations['addYourPersonalDetails']}.</div>`,
             // tooltipClass: 'custom-tooltip',
             position: 'right'

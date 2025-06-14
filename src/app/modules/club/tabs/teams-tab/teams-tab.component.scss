@@ -1,60 +1,60 @@
-.user-pending-icon{
-    max-width: 22px;
-    position: absolute;
-    margin-top: 25px;
-    margin-left: -15px;
-  }
+.user-pending-icon {
+  max-width: 22px;
+  position: absolute;
+  margin-top: 25px;
+  margin-left: -15px;
+}
 
-  .user-approved-icon{
-    max-width: 26px;
-    position: absolute;
-    margin-top: 23px;
-    margin-left: -15px;
-  }
+.user-approved-icon {
+  max-width: 26px;
+  position: absolute;
+  margin-top: 23px;
+  margin-left: -15px;
+}
 
-  .user-rejected-icon{
-    max-width: 22px;
-    position: absolute;
-    margin-top: 25px;
-    margin-left: -15px;
-  }
+.user-rejected-icon {
+  max-width: 22px;
+  position: absolute;
+  margin-top: 25px;
+  margin-left: -15px;
+}
 
-.box-square{ 
-  width:150px;
-  height:150px;
-  margin-right:10px;
-  display:inline-block;
+.box-square {
+  width: 150px;
+  height: 150px;
+  margin-right: 10px;
+  display: inline-block;
   color: #FFFFFF;
-  background:#6FB95D;
+  background: #6FB95D;
   text-align: center;
   border-radius: 10px;
   cursor: pointer;
 }
 
-.team-types{
-  position: absolute  ;
+.team-types {
+  position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  left:25px;
+  left: 25px;
 }
 
-.pl-5{
+.pl-5 {
   padding-left: 3rem;
 }
 
-.team-type{
+.team-type {
   font-family: Libre Franklin, sans-serif;
   font-size: 16px;
   font-weight: 700;
 }
 
-.club-team{
+.club-team {
   font-family: Libre Franklin, sans-serif;
   font-size: 14px;
   font-weight: 700;
 }
 
-.back-link{
+.back-link {
   font-size: 12px;
   cursor: pointer;
   margin-right: 12px;
@@ -74,7 +74,8 @@
 
 
 .add-player-link {
-  margin-left: auto; /* This will push the add button to the right */
+  margin-left: auto;
+  /* This will push the add button to the right */
 }
 
 .player-view-container {
@@ -85,52 +86,50 @@
   margin-bottom: 10px;
 }
 
-.selected_team_name{
+.selected_team_name {
   font-size: 18px;
 }
 
-.upgrade_unlock .unlock_btn {
-  padding: 12px 25px 10px !important;
-  font-size: 17px !important;
-  background: #6FB95D;
-  // padding: ;
-  font-weight: 700;
-  color: #fff;
-  border-radius: 10px;
-  border: none;
-  display: inline-block;
-  margin-top: 1rem;
-}
 
 
 @media (min-width: 1600px) and (max-width: 2999px) {
-  .club-team, .back-and-add-container span.selected_team_name {
+
+  .club-team,
+  .back-and-add-container span.selected_team_name {
     font-size: 22px !important;
   }
-  .player-view-container table td svg, .back-and-add-container svg.pointer {
+
+  .player-view-container table td svg,
+  .back-and-add-container svg.pointer {
     width: 33px;
-      height: 33px;
-      margin-right: 4px;
-}
-.btn.web-create-bg {
-  font-size: 22px !important;
-  margin-bottom: 10px !important;
-}
+    height: 33px;
+    margin-right: 4px;
+  }
+
+  .btn.web-create-bg {
+    font-size: 22px !important;
+    margin-bottom: 10px !important;
+  }
 }
 
 @media (min-width: 3000px) {
-.club-team, .back-and-add-container span.selected_team_name {
-  font-size: 28px !important;
-}
-.player-view-container table td svg, .back-and-add-container svg.pointer {
+
+  .club-team,
+  .back-and-add-container span.selected_team_name {
+    font-size: 28px !important;
+  }
+
+  .player-view-container table td svg,
+  .back-and-add-container svg.pointer {
     width: 40px;
-      height: 40px;
-      margin-right: 4px;
-}
-.btn.web-create-bg {
-  font-size: 28px !important;
-  margin-bottom: 10px !important;
-}
+    height: 40px;
+    margin-right: 4px;
+  }
+
+  .btn.web-create-bg {
+    font-size: 28px !important;
+    margin-bottom: 10px !important;
+  }
 }
 
 
@@ -140,6 +139,7 @@
     height: 140px;
   }
 }
+
 @media (max-width: 767px) {
   .box-square {
     width: calc(100% / 4 - 10px);
@@ -165,5 +165,31 @@
     height: 100px;
     margin-right: 5px;
     margin-left: 5px;
+  }
+}
+
+.unlock_page{
+  position: relative;
+  // height: 30vh;
+
+  .unlock_btn{
+    background: #6FB95D;
+    padding: 10px 24px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    border-radius: 10px;
+    border: none;
+  }
+  .upgrade_unlock{
+    height: 100%;
+    background: rgb(255 255 255 / 65%);
+    position: absolute;
+    width: 100%;
+    top: 0;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }

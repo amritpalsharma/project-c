@@ -22,7 +22,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class SettingComponent implements OnInit {
   readonly dialog = inject(MatDialog);
-  tab: string = "activity";
+  tab: string = "setting";
   constructor(
     private themeService: ThemeService,
     private authService: AuthService,
@@ -72,16 +72,7 @@ export class SettingComponent implements OnInit {
         this.tab = fragment;
       }
     });
-    // this.route.fragment.subscribe((fragment) => {
-    //   if (fragment === 'app-settings') {
-    //     this.tab = 'setting'; // Switch to the App Settings tab
-    //   } else if (fragment === 'activity') {
-    //     this.tab = 'activity'; // Switch to Activity Log tab
-    //   }
-    //   else if (fragment === 'notifications') {
-    //     this.tab = 'notifications'; // Switch to Activity Log tab
-    //   }
-    // });
+
     this.webPages.languageId$.subscribe((data) => { 
       this.getJsonTranslations();
     })

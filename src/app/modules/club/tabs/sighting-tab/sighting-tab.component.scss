@@ -480,18 +480,6 @@ body {
   }
 }
 
-.upgrade_unlock .unlock_btn {
-  padding: 12px 25px 10px !important;
-  font-size: 17px !important;
-  background: #6FB95D;
-  // padding: ;
-  font-weight: 700;
-  color: #fff;
-  border-radius: 10px;
-  border: none;
-  display: inline-block;
-  margin-top: 1rem;
-}
 
 @media (min-width: 1600px) and (max-width: 2999px) {
 
@@ -690,7 +678,10 @@ body {
     max-width: calc(100% - 60px);
   }
 
-  .attachment_box svg, .upload-btn svg, .edit_padding svg, .green_bar_sec svg {
+  .attachment_box svg,
+  .upload-btn svg,
+  .edit_padding svg,
+  .green_bar_sec svg {
     width: 35px !important;
     height: 35px !important;
   }
@@ -704,7 +695,9 @@ body {
   }
 }
 
-.bg_success, .bg_reject, .bg_pending {
+.bg_success,
+.bg_reject,
+.bg_pending {
   width: 100%;
   display: inline-block;
   max-width: 150px;
@@ -713,19 +706,74 @@ body {
 
 
 @media (max-width: 575px) {
-.mat-mdc-paginator-container {
-  justify-content: flex-start !important;
-  margin-left: -20px;
-}
-:host ::ng-deep .mat-mdc-paginator-range-actions {
+  .mat-mdc-paginator-container {
+    justify-content: flex-start !important;
+    margin-left: -20px;
+  }
+
+  :host ::ng-deep .mat-mdc-paginator-range-actions {
     margin-top: 10px !important;
     max-width: 110px;
+
     .mat-mdc-paginator-range-label {
       margin-right: 0 !important;
       margin-left: 0 !important;
     }
+
     button {
       margin-right: 0 !important;
+    }
   }
 }
+
+
+// COPY PASTE CSS
+.unlock_page {
+  position: relative;
+  // height: 30vh;
+
+  .unlock_btn {
+    background: #6FB95D;
+    padding: 10px 24px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    border-radius: 10px;
+    border: none;
+  }
+
+  .upgrade_unlock {
+    height: 100%;
+    background: rgb(255 255 255 / 65%);
+    position: absolute;
+    width: 100%;
+    top: 0;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .position-boxs {
+    gap: 20px;
+    border-right: 1px solid #e7e7e7;
+  }
+
+  .social_icons .facebook {
+    width: 12px;
+    margin-right: 14px;
+  }
+
+  .social_icons .instagram {
+    width: 20px;
+    margin-right: 14px;
+  }
+
+  .general_titels h2 {
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: #565555;
+  }
+
 }

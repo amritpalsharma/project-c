@@ -41,6 +41,10 @@ export class CreateSightPopupComponent implements AfterViewInit {
     title: "",
     file: ""
   }];
+
+  uploadedBannerImage: boolean = false;
+
+  submitButtonClicked: boolean = false;
   @ViewChild('fileInput', { static: false }) fileInputElement!: ElementRef;
 
   constructor(
@@ -125,6 +129,36 @@ export class CreateSightPopupComponent implements AfterViewInit {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       this.bannerFile = input.files[0];
+      const file = this.bannerFile;
+      console.info(file);
+      const h5Element = document.createElement('h5');
+      h5Element.innerText = file.name;
+      this.uploadedBannerImage = true;
+      const reader = new FileReader();
+      // This function runs when the file is successfully read
+      reader.onload = (e) => {
+        const imgElement = document.createElement('img');
+        imgElement.src = e.target?.result as string;  // Get the base64-encoded string from FileReader
+        imgElement.alt = file.name;                   // Alt text for the image
+        // Optionally, add the image to a specific container in your HTML
+        const previewContainer = document.getElementById('imagePreviewContainer');
+        if (previewContainer) {
+          previewContainer.innerHTML = '';  // Clear any previous previews
+          previewContainer.appendChild(imgElement);  // Append the new image
+          previewContainer.appendChild(h5Element);  // Append the Name image
+        }
+      };
+      reader.readAsDataURL(file);
+      // this.uploadedBannerImage.sizeInMB = sizeInMB;
+    }
+  }
+
+  removeImage(action: string) {
+    this.bannerFile = [];
+    this.uploadedBannerImage = false;
+    const imagePreviewContainer = document.getElementById('imagePreviewContainer');
+    if (imagePreviewContainer) {
+      imagePreviewContainer.innerHTML = '';  // Clear any previous previews
     }
   }
 
@@ -223,6 +257,7 @@ export class CreateSightPopupComponent implements AfterViewInit {
   }
 
   createSight() {
+    this.submitButtonClicked = true;
     const formData = new FormData();
     let { date, time } = this.getDateTimeFormat(this.dateTime);
     let receiverIds: any[] = [];
@@ -286,6 +321,7 @@ export class CreateSightPopupComponent implements AfterViewInit {
   }
 
   updateSight() {
+    this.submitButtonClicked = true;
     const formData = new FormData();
     let { date, time } = this.getDateTimeFormat(this.dateTime);
     formData.append('event_name', this.eventName);
