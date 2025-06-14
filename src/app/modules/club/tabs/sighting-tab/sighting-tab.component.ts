@@ -5,7 +5,8 @@ import { UserService } from '../../../../services/user.service';
 import { CreateSightPopupComponent } from '../create-sight-popup/create-sight-popup.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { InviteTalentPopupComponent } from '../invite-talent-popup/invite-talent-popup.component';
-import { MessagePopupComponent } from '../../message-popup/message-popup.component';
+// import { MessagePopupComponent } from '../../message-popup/message-popup.component';
+import { MessagePopupComponent } from '../../../shared/message-popup/message-popup.component';
 import { UploadAttachmentComponent } from '../upload-attachment/upload-attachment.component';
 import { ClubService } from '../../../../services/club.service';
 import { environment } from '../../../../../environments/environment';
@@ -149,9 +150,29 @@ export class SightingTabComponent {
   }
 
   showDeleteConfirmationPopup() {
-    this.showMatDialog(this.deleteRepresentorConfirmation, "delete-sighting-confirmation");
+    this.showMatDialogSharedMessagePopup(this.deleteRepresentorConfirmation, "delete-sighting-confirmation");
   }
 
+  showMatDialogSharedMessagePopup(message: string, action: string) {
+    const messageDialog = this.dialog.open(MessagePopupComponent, {
+      width: '500px',
+      position: {
+        top: '150px'
+      },
+      data: {
+        message: message,
+        action: action
+      }
+    })
+
+    messageDialog.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        if (result.action == "delete-confirmed") {
+          this.deleteTeamPlayer('');
+        }
+      }
+    });
+  }
   showMatDialog(message: string, action: string) {
     const messageDialog = this.dialog.open(MessagePopupComponent, {
       width: '500px',
@@ -295,11 +316,11 @@ export class SightingTabComponent {
     this.clubService.getSingleSighting(id).subscribe((response) => {
       if (response && response.status && response.data) {
         this.sightingData = response.data.sighting;
-        this.playersInvited = response.data.players_invited.filter((player : any) => player.status === 'pending');
-        this.playersAccepted = response.data.players_invited.filter((player : any) => player.status === 'accepted');
+        this.playersInvited = response.data.players_invited.filter((player: any) => player.status === 'pending');
+        this.playersAccepted = response.data.players_invited.filter((player: any) => player.status === 'accepted');
         // this.playersAccepted = response.data.players_invited;
-        this.playersInvitedFirstFour = response.data.players_invited.filter((player : any) => player.status === 'pending').slice(0, 4);
-        this.playersAcceptedFirstFour = response.data.players_invited.filter((player : any) => player.status === 'accepted').slice(0, 4);
+        this.playersInvitedFirstFour = response.data.players_invited.filter((player: any) => player.status === 'pending').slice(0, 4);
+        this.playersAcceptedFirstFour = response.data.players_invited.filter((player: any) => player.status === 'accepted').slice(0, 4);
         this.attachments = response.data.attachments;
         this.isLoading = false;
       } else {
@@ -510,5 +531,22 @@ export class SightingTabComponent {
   getStatusClass(status: any): string {
     if (status === null) return 'status-pending';
     return status === 'active' ? 'status-accepted' : 'status-rejected';
+  }
+
+
+  deleteTeamPlayer(delete_id: any) {
+    try {
+      this.clubService.deleteTeamPlayer(delete_id).subscribe((response) => {
+        console.log(response)
+        if (response && response.status) {
+          console.info(response);
+          this.clubService.successMessage(response.message);
+        } else {
+          this.clubService.apiToastError(response.message);
+        }
+      });
+    } catch (error) {
+      this.clubService.apiToasterError();
+    }
   }
 }

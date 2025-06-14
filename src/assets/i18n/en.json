@@ -1398,9 +1398,10 @@
     "club": "The club has not added any highlights yet.",
     "scout": "The scout has not added any highlights yet."
   },
-  "pendingUser":"Pending User",
-  "paidTxt":"Paid",
-  "openTxt":"Open",
-  "maxSizeForProfile":"File young-bearded-man-with-striped-shirt.jpg exceeds the maximum allowed size of 5 MB",
-  "aboutImageCaption":"l–r"
+  "pendingUser": "Pending User",
+  "paidTxt": "Paid",
+  "openTxt": "Open",
+  "maxSizeForProfile": "File young-bearded-man-with-striped-shirt.jpg exceeds the maximum allowed size of 5 MB",
+  "aboutImageCaption": "l–r",
+  "confirmDeleteinformationTeam": "Are You sure To Delete Player From Team"
 }

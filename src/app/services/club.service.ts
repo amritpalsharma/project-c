@@ -7,6 +7,9 @@ import { tap, catchError } from 'rxjs/operators'; // For storing data after fetc
 import { loadStripe, StripeCardElement, StripeElements, Stripe } from '@stripe/stripe-js';
 import { Subject } from 'rxjs';
 
+import { ToastrService } from 'ngx-toastr';
+import { TranslateService } from '@ngx-translate/core';
+
 export interface Notification {
   id: number;
   event: string;
@@ -34,7 +37,11 @@ export class ClubService {
   languages: any = environment.langs;
   private apiUrl3 = "https://alerts.socceryou.ch/";
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private toaster: ToastrService,
+    private translateService: TranslateService
+  ) {
 
     // Retrieve the selected language code from localStorage
     const selectedLanguageSlug = localStorage.getItem('lang') || '';
@@ -700,7 +707,7 @@ export class ClubService {
     );
   }
 
-  
+
   getClubPlayers(teamId: any): Observable<any> {
     const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
@@ -775,6 +782,18 @@ export class ClubService {
     return this.http.post<any>(`${this.apiUrl}club/edit-club-player/${id}`, params, { headers });
   }
 
+  deleteTeamPlayer(id: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.userToken}`
+    });
+    let lang_id = localStorage.getItem('lang_id');
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
+      `${this.apiUrl}club/delete-club-player/${id}/${lang_id}`, { headers }
+    );
+
+    // return this.http.get<any>(`${this.apiUrl}club/delete-club-player/${id}`, params, { headers });
+  }
+
 
   sendScoutPortfolioInvite(id: any, params: any): Observable<any> {
     const headers = new HttpHeaders({
@@ -821,6 +840,24 @@ export class ClubService {
     );
   }
 
+  errorTxt: string = '';
+  errorMsgTxt: string = '';
+
+  apiToasterError() {
+    this.translateService.get(['error', 'forgotPassword.generalError']).subscribe((translations) => {
+      this.errorTxt = translations['error'];
+      this.errorMsgTxt = translations['forgotPassword.generalError'];
+      this.toaster.error(this.errorMsgTxt, this.errorTxt);
+    });
+  }
+
+  apiToastError(message: string) {
+    this.toaster.error(message);
+  }
+
+  successMessage(message: string) {
+    this.toaster.success(message);
+  }
 
 }
 

@@ -148,7 +148,7 @@ export class CreateSightPopupComponent implements AfterViewInit {
   }
 
   removeRow(index: any): any {
-    if (this.attachmentRows.length == 1) { 
+    if (this.attachmentRows.length == 1) {
       this.attachmentRows[index].title = null;
       this.attachmentRows[index].file = null;
       return false;
@@ -271,11 +271,11 @@ export class CreateSightPopupComponent implements AfterViewInit {
           else {
             console.log("No data found in localStorage.");
           }
-          this.socketService.emit('inviteTalent', { senderId: myUserId, receiverIds: receiverIds, eventId:response.data.event_id  });
+          this.socketService.emit('inviteTalent', { senderId: myUserId, receiverIds: receiverIds, eventId: response.data.event_id });
         } else {
           if (response.data.errors && response.data.errors != '' && response.data.errors != undefined) {
-             this.toaster.error(response.data.errors);
-          }else{
+            this.toaster.error(response.data.errors);
+          } else {
             this.userService.apiToasterError();
           }
         }

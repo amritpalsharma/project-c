@@ -7,6 +7,7 @@ import { AddNewTalentComponent } from '../add-new-talent/add-new-talent.componen
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
 import { UnverifiedUserComponent } from '../../../shared/unverified-user/unverified-user.component';
+import { MessagePopupComponent } from '../../../shared/message-popup/message-popup.component';
 
 @Component({
   selector: 'club-teams-tab',
@@ -19,7 +20,7 @@ export class TeamsTabComponent {
   teams: any = [];
   players: any = [];
   view: string = "team";
-  displayedColumns: string[] = ['Player Name', 'Joining Date', 'Exit Date', 'Location', 'view', 'Edit'];
+  displayedColumns: string[] = ['Player Name', 'Joining Date', 'Exit Date', 'Location', 'view', 'Edit', 'Delete'];
   isLoading: boolean = false;
   selectedTeam: any = "";
   selectTeamName: string = '';
@@ -28,6 +29,10 @@ export class TeamsTabComponent {
   @Input() isPremium: any;
   @Input() isUserVerified: any;
 
+
+  confirmDeleteinformationTeam: string = '';
+  errortxt: string = '';
+
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
@@ -35,9 +40,11 @@ export class TeamsTabComponent {
     private router: Router,
     public dialog: MatDialog,
     public toaster: ToastrService,
-    translateService: TranslateService
+    public translateService: TranslateService
   ) {
+    this.getToasterMsg();
     translateService.onLangChange.subscribe(() => {
+      this.getToasterMsg();
       // this.userId = this.userData.id;
       this.getTeamPlayers(this.selectedTeamId, this.selectedTeam);
     });
@@ -48,6 +55,8 @@ export class TeamsTabComponent {
     this.userId = this.userData.id;
     this.getClubTeams(this.userId)
   }
+
+
 
   getClubTeams(userId: any) {
     this.isLoading = true;
@@ -160,6 +169,43 @@ export class TeamsTabComponent {
     this.router.navigate(['/club/plans']);
   }
 
+  confirmDelete(details: any) {
+    console.log(details);
+    const messageDialog = this.dialog.open(MessagePopupComponent, {
+      width: '500px',
+      position: {
+        top: '150px'
+      },
+      data: {
+        message: this.confirmDeleteinformationTeam,
+        action: 'delete-Teamplayer-confirmation'
+      }
+    })
+
+    messageDialog.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        if (result.action == "delete-confirmed") {
+          if (typeof details.player_id !== undefined && details.player_id != '') {
+            this.deleteTeamPlayer(details.player_id);
+          } else {
+            console.log('Player Not found ', details)
+          }
+        }
+      }
+    });
+  }
+
+  getToasterMsg() {
+    this.translateService.get([
+      'confirmDeleteinformationTeam',
+      // 'selectSightingFirst'
+    ]).subscribe((translations) => {
+      this.confirmDeleteinformationTeam = translations['confirmDeleteinformationTeam'];
+      // this.errortxt = translations['selectSightingFirst'];
+    });
+  }
+
+
   showVerificationPopup() {
     const messageDialog = this.dialog.open(UnverifiedUserComponent, {
       width: '500px',
@@ -175,5 +221,22 @@ export class TeamsTabComponent {
         }
       }
     });
+  }
+
+  deleteTeamPlayer(delete_id: any) {
+    try {
+      this.clubService.deleteTeamPlayer(delete_id).subscribe((response) => {
+        console.log(response)
+        if (response && response.status) {
+          console.info(response);
+          this.clubService.successMessage(response.message);
+          this.getTeamPlayers(this.selectedTeamId, this.selectedTeam);
+        } else {
+          this.clubService.apiToastError(response.message);
+        }
+      });
+    } catch (error) {
+      this.clubService.apiToasterError();
+    }
   }
 }

@@ -115,12 +115,25 @@
                   </svg>
                 </td>
               </ng-container>
+              <ng-container matColumnDef="Delete">
+                <th mat-header-cell *matHeaderCellDef class="text-center"> {{ 'delete' | translate }}</th>
+                <td mat-cell *matCellDef="let element" class="text-center cursor-pointer"
+                  (click)="confirmDelete(element)">
+                  <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    class="pointer">
+                    <path
+                      d="M1.50065 14.0589C1.50065 15.0112 2.32565 15.7904 3.33398 15.7904H10.6673C11.6757 15.7904 12.5007 15.0112 12.5007 14.0589V3.66999H1.50065V14.0589ZM13.4173 1.07277H10.209L9.29232 0.207031H4.70898L3.79232 1.07277H0.583984V2.80425H13.4173V1.07277Z"
+                      fill="#787878" class="td-icon-favourites"></path>
+                  </svg>
+                </td>
+              </ng-container>
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
               <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
               <tr class="mat-row user-empty-tr" *matNoDataRow>
                 <td [attr.colspan]="displayedColumns.length" class="user-empty-td">
                   <!-- <app-loader *ngIf="isLoading"></app-loader> -->
-                  <div *ngIf="players.length == 0 && !isLoading" style="text-align: center;">{{ 'noRecordFound' | translate }}</div>
+                  <div *ngIf="players.length == 0 && !isLoading" style="text-align: center;">{{ 'noRecordFound' |
+                    translate }}</div>
                 </td>
               </tr>
             </table>
@@ -128,76 +141,76 @@
         </div>
 
         <div class="hide_table_for_desktop">
-	<div class="rounded-lg border bg-card" *ngFor="let element of players">
-	  <div class="p-3">
-		<div class="flex justify-between items-start mb-3">
-			<div class="d-flex align-items-center pic-with-name">
-				<span class="position-relative">
-				  <img src="../../../assets/images/1.png" alt="" class="table_img"
-					*ngIf="!element.profile_image_path" />
-				  <img src="{{element.profile_image_path}}" alt="" class="table_img"
-					*ngIf="element.profile_image_path" />
-				  <span class="position-absolute verified-icon">
-					<img src="../../../assets/images/pending.png" alt="" class="user-pending-icon"
-					  *ngIf="element.user_status === '1'" />
-					<img src="../../../assets/images/approved.png" alt="" class="user-approved-icon"
-					  *ngIf="element.user_status === '2'" />
-					<img src="../../../assets/images/rejected.png" alt="" class="user-rejected-icon"
-					  *ngIf="element.user_status === '3'" />
-				  </span>
-				</span>
-				<span class="main-template" style="padding-left: 15px">
-				  {{ element.first_name }} {{ element.last_name }}
-				</span>
-			</div>
-		</div>
-		<div class="space-y-2 text-sm">
-		  <div class="flex justify-between">
-			<span class="text-muted-foreground">{{ 'joiningDate' | translate }}</span>
-			<span>{{ element.join_date | date:'dd.MM.yyyy' }}</span>
-		  </div>
-		  <div class="flex justify-between">
-			<span class="text-muted-foreground">{{ 'exitDate' | translate }}</span>
-			<span>
-				<span *ngIf="element.no_end_date==0">{{ element.end_date | date:'dd.MM.yyyy' }}</span>
-                <span *ngIf="element.no_end_date==1">-</span>
-			</span>
-		  </div>
-		  <div class="flex justify-between">
-			<span class="text-muted-foreground">{{ 'location' | translate }}</span>
-			<span>{{element.location}}</span>
-		  </div>
-		</div>
-		<div class="flex_btn mt-3">
-			<span class="view--eye" class="pointer" (click)="onNavigate(element.player_id)">
-				<svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"
-                      class="pointer">
-                      <path
-                        d="M12.5 15.625C14.2259 15.625 15.625 14.2259 15.625 12.5C15.625 10.7741 14.2259 9.375 12.5 9.375C10.7741 9.375 9.375 10.7741 9.375 12.5C9.375 14.2259 10.7741 15.625 12.5 15.625Z"
-                        fill="#787878" class="td-icon-favourites"></path>
-                      <path
-                        d="M24.1715 12.2344C23.2527 9.85754 21.6575 7.80204 19.5831 6.32194C17.5087 4.84184 15.0461 4.00201 12.4997 3.90625C9.9532 4.00201 7.4906 4.84184 5.41623 6.32194C3.34187 7.80204 1.74667 9.85754 0.827793 12.2344C0.765736 12.406 0.765736 12.594 0.827793 12.7656C1.74667 15.1425 3.34187 17.198 5.41623 18.6781C7.4906 20.1582 9.9532 20.998 12.4997 21.0938C15.0461 20.998 17.5087 20.1582 19.5831 18.6781C21.6575 17.198 23.2527 15.1425 24.1715 12.7656C24.2336 12.594 24.2336 12.406 24.1715 12.2344ZM12.4997 17.5781C11.4953 17.5781 10.5135 17.2803 9.67841 16.7223C8.84332 16.1643 8.19244 15.3712 7.80809 14.4433C7.42374 13.5154 7.32318 12.4944 7.51912 11.5093C7.71506 10.5242 8.1987 9.61941 8.90889 8.90922C9.61908 8.19903 10.5239 7.71539 11.509 7.51945C12.494 7.32351 13.5151 7.42407 14.443 7.80842C15.3709 8.19278 16.164 8.84365 16.722 9.67875C17.28 10.5138 17.5778 11.4956 17.5778 12.5C17.5757 13.8462 17.04 15.1366 16.0882 16.0885C15.1363 17.0404 13.8458 17.5761 12.4997 17.5781Z"
-                        fill="#787878" class="td-icon-favourites"></path>
-                    </svg>
-			</span>
-			<span class="view--eye" class="pointer" (click)="editPlayer(element)">
-				<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <div class="rounded-lg border bg-card" *ngFor="let element of players">
+            <div class="p-3">
+              <div class="flex justify-between items-start mb-3">
+                <div class="d-flex align-items-center pic-with-name">
+                  <span class="position-relative">
+                    <img src="../../../assets/images/1.png" alt="" class="table_img"
+                      *ngIf="!element.profile_image_path" />
+                    <img src="{{element.profile_image_path}}" alt="" class="table_img"
+                      *ngIf="element.profile_image_path" />
+                    <span class="position-absolute verified-icon">
+                      <img src="../../../assets/images/pending.png" alt="" class="user-pending-icon"
+                        *ngIf="element.user_status === '1'" />
+                      <img src="../../../assets/images/approved.png" alt="" class="user-approved-icon"
+                        *ngIf="element.user_status === '2'" />
+                      <img src="../../../assets/images/rejected.png" alt="" class="user-rejected-icon"
+                        *ngIf="element.user_status === '3'" />
+                    </span>
+                  </span>
+                  <span class="main-template" style="padding-left: 15px">
+                    {{ element.first_name }} {{ element.last_name }}
+                  </span>
+                </div>
+              </div>
+              <div class="space-y-2 text-sm">
+                <div class="flex justify-between">
+                  <span class="text-muted-foreground">{{ 'joiningDate' | translate }}</span>
+                  <span>{{ element.join_date | date:'dd.MM.yyyy' }}</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-muted-foreground">{{ 'exitDate' | translate }}</span>
+                  <span>
+                    <span *ngIf="element.no_end_date==0">{{ element.end_date | date:'dd.MM.yyyy' }}</span>
+                    <span *ngIf="element.no_end_date==1">-</span>
+                  </span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-muted-foreground">{{ 'location' | translate }}</span>
+                  <span>{{element.location}}</span>
+                </div>
+              </div>
+              <div class="flex_btn mt-3">
+                <span class="view--eye" class="pointer" (click)="onNavigate(element.player_id)">
+                  <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    class="pointer">
+                    <path
+                      d="M12.5 15.625C14.2259 15.625 15.625 14.2259 15.625 12.5C15.625 10.7741 14.2259 9.375 12.5 9.375C10.7741 9.375 9.375 10.7741 9.375 12.5C9.375 14.2259 10.7741 15.625 12.5 15.625Z"
+                      fill="#787878" class="td-icon-favourites"></path>
+                    <path
+                      d="M24.1715 12.2344C23.2527 9.85754 21.6575 7.80204 19.5831 6.32194C17.5087 4.84184 15.0461 4.00201 12.4997 3.90625C9.9532 4.00201 7.4906 4.84184 5.41623 6.32194C3.34187 7.80204 1.74667 9.85754 0.827793 12.2344C0.765736 12.406 0.765736 12.594 0.827793 12.7656C1.74667 15.1425 3.34187 17.198 5.41623 18.6781C7.4906 20.1582 9.9532 20.998 12.4997 21.0938C15.0461 20.998 17.5087 20.1582 19.5831 18.6781C21.6575 17.198 23.2527 15.1425 24.1715 12.7656C24.2336 12.594 24.2336 12.406 24.1715 12.2344ZM12.4997 17.5781C11.4953 17.5781 10.5135 17.2803 9.67841 16.7223C8.84332 16.1643 8.19244 15.3712 7.80809 14.4433C7.42374 13.5154 7.32318 12.4944 7.51912 11.5093C7.71506 10.5242 8.1987 9.61941 8.90889 8.90922C9.61908 8.19903 10.5239 7.71539 11.509 7.51945C12.494 7.32351 13.5151 7.42407 14.443 7.80842C15.3709 8.19278 16.164 8.84365 16.722 9.67875C17.28 10.5138 17.5778 11.4956 17.5778 12.5C17.5757 13.8462 17.04 15.1366 16.0882 16.0885C15.1363 17.0404 13.8458 17.5761 12.4997 17.5781Z"
+                      fill="#787878" class="td-icon-favourites"></path>
+                  </svg>
+                </span>
+                <span class="view--eye" class="pointer" (click)="editPlayer(element)">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                       d="M3 17.4585V20.4985C3 20.7785 3.22 20.9985 3.5 20.9985H6.54C6.67 20.9985 6.8 20.9485 6.89 20.8485L17.81 9.93854L14.06 6.18854L3.15 17.0985C3.05 17.1985 3 17.3185 3 17.4585ZM20.71 7.03854C20.8027 6.94602 20.8762 6.83614 20.9264 6.71516C20.9766 6.59419 21.0024 6.46451 21.0024 6.33354C21.0024 6.20257 20.9766 6.07289 20.9264 5.95191C20.8762 5.83094 20.8027 5.72105 20.71 5.62854L18.37 3.28854C18.2775 3.19583 18.1676 3.12229 18.0466 3.07211C17.9257 3.02192 17.796 2.99609 17.665 2.99609C17.534 2.99609 17.4043 3.02192 17.2834 3.07211C17.1624 3.12229 17.0525 3.19583 16.96 3.28854L15.13 5.11854L18.88 8.86854L20.71 7.03854Z"
                       class="club-edit" fill="#787878" />
                   </svg>
-			</span>
-		</div>
-	  </div>
-	</div>
-	<div class="rounded-lg border bg-card">
-	  <div class="p-3">
-		<div class="d-flex justify-content-center">
-			<h6>{{'noRecordFound' | translate}}</h6>
-		</div>
-	  </div>
-	</div>
- </div>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-lg border bg-card">
+            <div class="p-3">
+              <div class="d-flex justify-content-center">
+                <h6>{{'noRecordFound' | translate}}</h6>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

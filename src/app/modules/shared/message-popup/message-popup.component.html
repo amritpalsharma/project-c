@@ -2,15 +2,15 @@
 <div class="msg-popup-dialog p-3">
     <div class="msg-popup-close">
         <!-- close-icon-circle.png -->
-        <img *ngIf="data.action === 'delete-account-close' && theme !='dark'" src="../../../assets/images/close-grey-icon.png" alt=""
-            (click)="closeAccount()" />
-        <img *ngIf="data.action != 'delete-account-close' && theme !='dark'" src="../../../assets/images/close-grey-icon.png" alt=""
-            (click)="close()" />
-            
-            <img *ngIf="data.action === 'delete-account-close' && theme=='dark'" src="../../../assets/images/carbon_close-outline.svg" alt=""
-                (click)="closeAccount()" />
-            <img *ngIf="data.action != 'delete-account-close' && theme=='dark'" src="../../../assets/images/carbon_close-outline.svg" alt=""
-                (click)="close()" />
+        <img *ngIf="data.action === 'delete-account-close' && theme !='dark'"
+            src="../../../assets/images/close-grey-icon.png" alt="" (click)="closeAccount()" />
+        <img *ngIf="data.action != 'delete-account-close' && theme !='dark'"
+            src="../../../assets/images/close-grey-icon.png" alt="" (click)="close()" />
+
+        <img *ngIf="data.action === 'delete-account-close' && theme=='dark'"
+            src="../../../assets/images/carbon_close-outline.svg" alt="" (click)="closeAccount()" />
+        <img *ngIf="data.action != 'delete-account-close' && theme=='dark'"
+            src="../../../assets/images/carbon_close-outline.svg" alt="" (click)="close()" />
     </div>
     <div class="msg-popup-content p-3 pt-1">
         <div class="display-message">
@@ -18,27 +18,40 @@
         </div>
         <div *ngIf="data.action === 'delete-confirmation'"
             class="popup-delete-btn d-flex align-items-center flex-wrap justify-content-center py-2">
-            <div (click)="deleteConfirmed()" class="btn btn-success me-sm-3 bg-light-btn btn_confirmm">{{ 'confirm' | translate }}</div>
+            <div (click)="deleteConfirmed()" class="btn btn-success me-sm-3 bg-light-btn btn_confirmm">{{ 'confirm' |
+                translate }}</div>
             <div (click)="close()" class="btn btn-danger bg-dark-btn btn_cancell">{{ 'close' | translate }}</div>
         </div>
         <div *ngIf="data.action === 'newsletter-confirmation'"
             class="popup-delete-btn d-flex align-items-center flex-wrap justify-content-center py-2">
-            <div (click)="newsletterConfirmed()" class="btn btn-success me-sm-3 bg-light-btn btn_confirmm">{{ 'confirm' | translate }}</div>
+            <div (click)="newsletterConfirmed()" class="btn btn-success me-sm-3 bg-light-btn btn_confirmm">{{ 'confirm'
+                | translate }}</div>
             <div (click)="close()" class="btn btn-danger bg-dark-btn btn_cancell">{{ 'close' | translate }}</div>
         </div>
         <div *ngIf="data.action === 'activity-confirmation'"
             class="popup-delete-btn d-flex align-items-center flex-wrap justify-content-center py-2">
-            <div (click)="activityConfirmed()" class="btn btn-success me-sm-3 bg-light-btn btn_confirmm">{{ 'confirm' | translate }}</div>
+            <div (click)="activityConfirmed()" class="btn btn-success me-sm-3 bg-light-btn btn_confirmm">{{ 'confirm' |
+                translate }}</div>
             <div (click)="close()" class="btn btn-danger bg-dark-btn btn_cancell">{{ 'close' | translate }}</div>
         </div>
         <div *ngIf="data.action === 'remove-fav-confirmation'"
             class="popup-delete-btn d-flex align-items-center flex-wrap justify-content-center py-2">
-            <div (click)="deleteConfirmed()" class="btn btn-success me-sm-3 bg-light-btn btn_confirmm">{{ 'removeFavbtn' | translate }}</div>
-            <div (click)="close()" class="btn btn-danger bg-dark-btn btn_cancell">{{ 'cancelRemoveFavBtn' | translate }}</div>
+            <div (click)="deleteConfirmed()" class="btn btn-success me-sm-3 bg-light-btn btn_confirmm">{{ 'removeFavbtn'
+                | translate }}</div>
+            <div (click)="close()" class="btn btn-danger bg-dark-btn btn_cancell">{{ 'cancelRemoveFavBtn' | translate }}
+            </div>
         </div>
         <!-- <div *ngIf="data.action === 'delete-account-close'"
             class="popup-delete-btn d-flex align-items-center mx-5 px-5 py-2">
             <div (click)="closeAccount()">{{ 'close' | translate }}</div>
         </div> -->
+        <!--  -->
+        <div *ngIf="data.action === 'delete-Teamplayer-confirmation'"
+            class="popup-delete-btn d-flex align-items-center flex-wrap justify-content-center py-2">
+            <div (click)="deleteConfirmed()" class="btn btn-success me-sm-3 bg-light-btn btn_confirmm">{{ 'removeFavbtn'
+                | translate }}</div>
+            <div (click)="close()" class="btn btn-danger bg-dark-btn btn_cancell">{{ 'cancelRemoveFavBtn' | translate }}
+            </div>
+        </div>
     </div>
 </div>
