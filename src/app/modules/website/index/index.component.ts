@@ -69,6 +69,8 @@ export interface ClubMember {
 export class IndexComponent {
   isPageLoaded: boolean = false;
   @ViewChild('owlCarousel') owlCarousel!: ElementRef;
+
+  @ViewChild('heroVideo') heroVideo!: ElementRef<HTMLVideoElement>;
   fallbackImage: string = 'assets/images/1.png'; // Path to your fallback image
   currentTheme: string = localStorage.getItem('theme') || 'light';
   selectedLangId: any = null;
@@ -474,7 +476,33 @@ export class IndexComponent {
   ngAfterViewInit() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    this.isPageLoaded = true;
+    const videoEl = this.heroVideo.nativeElement;
+
+    // 🔐 Ensure it's muted in code too
+    videoEl.muted = true;
+
+    const tryPlay = () => {
+      const playPromise = videoEl.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            console.log('Video autoplayed successfully.');
+          })
+          .catch((error) => {
+            console.warn('Autoplay failed:', error);
+          });
+      }
+    };
+
+    const io = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        videoEl.load();
+        tryPlay();
+        io.disconnect();
+      }
+    });
+
+    io.observe(videoEl);
   }
 
   getLangslugByID(langID: any) {
