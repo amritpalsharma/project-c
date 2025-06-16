@@ -411,9 +411,9 @@ export class ScoutService {
 
   getCountries(): Observable<any> {
     const headers = this.headers();
-
+    let lang_id = localStorage.getItem('lang_id');
     return this.http.get<{ status: boolean, message: string, data: {} }>(
-      `${this.apiUrl}get-countries`, { headers }
+      `${this.apiUrl}get-countries/${lang_id}`, { headers }
     );
 
   }

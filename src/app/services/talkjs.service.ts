@@ -186,8 +186,6 @@ export class TalkService {
       return;
     }
 
-    // Save current conversation ID if any
-    // const selectedConversation = this.inbox?.selectedConversation;
 
     // Update user with new locale
     this.user = new Talk.User({
@@ -284,25 +282,7 @@ export class TalkService {
       }
       inbox.select(conversation); // optional: opens the specific chat
       inbox.mount(document.getElementById('talkjs-container'));
-
-      // if (conversation?.id) {
-      //   this.selectedConversationId = conversation.id;
-      // }
     }
   }
 
-//   public attachMessageSendListener() {
-//     console.info('Function called:::');
-//     if (this.inbox) {
-//       (this.inbox as any).on("send", (event: any) => {
-//         console.info("Message sent:", event.message);
-//         // this.socketService.emit("sendMessage", {
-//         //   text: event.message.text,
-//         //   senderId: event.message.sender.id,
-//         //   conversationId: event.message.conversation.id,
-//         //   timestamp: event.message.sentAt,
-//         // });
-//       });
-//     }
-//   }
 }
