@@ -9,7 +9,7 @@ ul.nav-tabs .nav-link.active, .premium-heading3, .premium-heading2, .btn.fill_bt
 .premium-heading3 span {
     font-family: var(--bs-avenir-bold);
 }
-.banner-heading5 p, ul.nav-tabs .nav-link, .premium-heading5  {
+.banner-heading5 p, ul.nav-tabs .nav-link  {
     font-family: var(--bs-avenir-semibold);
 }
 h4 {
@@ -157,6 +157,7 @@ body {
     color: #BDE34F;
     margin-bottom: 20px;
     font-weight: 700;
+    font-family: var(--bs-avenir-bold);
 }
 
 .premium-heading2 {
