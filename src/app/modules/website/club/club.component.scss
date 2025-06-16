@@ -32,7 +32,7 @@ ul.nav-tabs .nav-link.active, .premium-heading3, .premium-heading2, .btn.fill_bt
 .premium-heading3 span {
     font-family: var(--bs-avenir-bold);
 }
-.banner-heading5 p, ul.nav-tabs .nav-link, .premium-heading5  {
+.banner-heading5 p, ul.nav-tabs .nav-link  {
     font-family: var(--bs-avenir-semibold);
 }
 .py_0 {
@@ -1421,6 +1421,7 @@ img.bg-image {
     font-size: 20px;
     color: #bde34e;
     margin-bottom: 20px;
+    font-family: var(--bs-avenir-bold);
 }
 
 .premium-heading2 {
