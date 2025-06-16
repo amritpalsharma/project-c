@@ -409,6 +409,38 @@ input[type="number"] {
   }
 }
 
+::ng-deep {
+.close_image {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  background: #58bc5c;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 7px;
+  cursor: pointer;
+  svg {
+      path {
+        fill: #fff;
+      }
+    }
+}
+.dark-theme {
+  .close_image {
+    background: #fff !important;
+    svg {
+      path {
+        fill: #072944 !important;
+      }
+    }
+  }
+}
+}
+
 ::ng-deep .cdk-overlay-pane.mat-mdc-dialog-panel {
   @media (min-width: 2000px) {
     width: 850px !important;
@@ -425,6 +457,9 @@ input[type="number"] {
   max-width: 100%;
   // max-height: 300px;
   max-height: 250px;
+  width: 100%;
+  object-fit: cover;
+  margin-bottom: 10px;
 }
 
 ::ng-deep .emptyRequiredField {
@@ -433,4 +468,15 @@ input[type="number"] {
 
 ::ng-deep .dark-theme .emptyRequiredField {
   border: 2px solid red !important;
+}
+
+::ng-deep {
+  @media (max-width: 575px) {
+    .club_sighting_popup {
+        margin-top: 20px !important;
+        .dialog-actions {
+            margin-top: 0 !important;
+        }
+    }
+  }
 }

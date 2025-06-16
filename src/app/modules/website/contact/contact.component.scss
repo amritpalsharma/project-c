@@ -321,7 +321,7 @@ input.ng-valid.ng-dirty.ng-touched {
   .radio-group {
     flex-wrap: wrap;
     label:first-child {
-      width: 100%;
+      // width: 100%;
       margin-bottom: 10px;
     }
     label {
@@ -385,6 +385,15 @@ input.ng-valid.ng-dirty.ng-touched {
 }
 button.submit_btn {
   cursor: pointer;
+}
+
+::ng-deep {
+  .dark-theme {
+    .submit_btn, .submit_btn:hover {
+        color: #072944 !important;
+        background: #BDE34F !important;
+    }
+  }
 }
 
 
