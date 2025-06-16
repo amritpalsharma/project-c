@@ -1,32 +1,33 @@
-<div class="msg-popup-dialog p-3 cancel_country_plan_popup">
-    <div class="msg-popup-close" *ngIf='theme!="dark"'>
-        <img src="../../../assets/images/close-icon-circle.png" alt="" class="" (click)="close()" />
-    </div>
-    <div class="msg-popup-close" *ngIf='theme=="dark"'>
-        <img src="../../../assets/images/carbon_close-outline.svg" alt="" class="" (click)="close()" />
-    </div>
-    <div class="msg-popup-content p-3 pt-1">
-        <h5 class="popup-title">{{'countryPlanCancel' | translate}}</h5>
-
-        <div *ngIf="uniqueCountries && uniqueCountries.length > 0">
-            <!-- {{data.countries | json}} -->
-            <div class="country-option" *ngFor="let country of uniqueCountries">
-                <label class="country-label">
-                    <input type="radio" name="country" [value]="country.id" [(ngModel)]="selectedCountryId"
-                        [disabled]="country.stripe_cancel_at != null" class="country-radio" />
-                    <span class="country-info">
-                        {{ country.package_name }} - {{ country.price }} {{country.currency}}/
-                        <span>{{ (country.interval === 'monthly' ? 'month' : 'year') | translate }}
-                            <!-- {{country.stripe_cancel_at != null ? ' - Cancelled'
-                            : ''}} -->
-                            <span *ngIf="country.stripe_cancel_at != null"> - {{'cancel' | translate}}</span>
-                            </span>
-                    </span>
-                </label>
+<div class="msg-popup-dialog cancel_country_plan_popup p-0">
+    <div class="popup_header p-3">
+        <div class="dialog-header m-auto">
+            <h2>{{'countryPlanCancel' | translate}}</h2>
+            <div class="close_buttons" *ngIf='theme!="dark"'>
+                <img src="../../../assets/images/close-icon-circle.png" alt="" class="" (click)="close()" />
             </div>
-            <button class="confirm-btn" [disabled]="!selectedCountryId" (click)="confirmSelection()">
-                {{'confirmCancellation' | translate}}
-            </button>
+            <div class="close_buttons" *ngIf='theme=="dark"'>
+                <img src="../../../assets/images/carbon_close-outline.svg" alt="" class="" (click)="close()" />
+            </div>
         </div>
+    </div>
+    <div class="popup__body p-3 pt-1" *ngIf="uniqueCountries && uniqueCountries.length > 0">
+        <!-- {{data.countries | json}} -->
+        <div class="country-option" *ngFor="let country of uniqueCountries">
+            <label class="country-label">
+                <input type="radio" name="country" [value]="country.id" [(ngModel)]="selectedCountryId"
+                    [disabled]="country.stripe_cancel_at != null" class="country-radio" />
+                <span class="country-info">
+                    {{ country.package_name }} - {{ country.price }} {{country.currency}}/
+                    <span>{{ (country.interval === 'monthly' ? 'month' : 'year') | translate }}
+                        <!-- {{country.stripe_cancel_at != null ? ' - Cancelled'
+                        : ''}} -->
+                        <span *ngIf="country.stripe_cancel_at != null"> - {{'cancel' | translate}}</span>
+                        </span>
+                </span>
+            </label>
+        </div>
+        <button class="confirm-btn" [disabled]="!selectedCountryId" (click)="confirmSelection()">
+            {{'confirmCancellation' | translate}}
+        </button>
     </div>
 </div>
