@@ -447,4 +447,9 @@ export class TalentComponent {
     this.selectedTab = currentTab;
   }
 
+  activeAccordionIndexMobile: number = 0;
+
+  setActiveAccordionMobile(index: number): void {
+    this.activeAccordionIndexMobile = this.activeAccordionIndexMobile === index ? -1 : index;
+  }
 }

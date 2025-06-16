@@ -300,7 +300,7 @@
   "emailPlaceholder": "exemplo@email.pt",
   "passwordLabel": "Senha",
   "passwordPlaceholder": "12345688",
-  "requiredFieldsMessage": "Por favor, preencha todos os campos obrigatórios.",
+  "requiredFieldsMessage": "Preenche todos os campos obrigatórios.",
   "forgotPasswordLink": "Esqueceu a senha?",
   "loginButton": "Entrar",
   "orText": "ou",
@@ -1318,7 +1318,7 @@
     "provideValidEmail": "Por favor, forneça um endereço de e-mail válido.",
     "successMessage": "Um link de redefinição foi enviado para seu e-mail.",
     "errorMessage": "Este correio eletrónico não existe",
-    "generalError": "Ocorreu um erro. Por favor, tente novamente mais tarde.",
+    "generalError": "Ocorreu um erro. Tenta novamente mais tarde.",
     "requiredMessage": "Este campo é obrigatório."
   },
   "account": "Conta",
@@ -1445,5 +1445,6 @@
   "paidTxt": "Pago",
   "openTxt": "Aberto",
   "maxSizeForProfile": "O ficheiro young-bearded-man-with-striped-shirt.jpg excede o tamanho máximo permitido de 5 MB.",
-  "aboutImageCaption": "da esq. para dir."
+  "aboutImageCaption": "da esq. para dir.",
+  "confirmDeleteinformationTeam": "Tens a certeza de que queres remover este jogador da equipa?"
 }

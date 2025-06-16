@@ -23,6 +23,7 @@ import { UnverifiedUserComponent } from '../../../shared/unverified-user/unverif
 
 
 export class SightingTabComponent {
+  sightingsArr:any=[];
   userId: any = '';
   @Input() isPremium: any;
   @Input() isUserVerified: any;
@@ -168,7 +169,8 @@ export class SightingTabComponent {
     messageDialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
         if (result.action == "delete-confirmed") {
-          this.deleteTeamPlayer('');
+          // this.deleteTeamPlayer('');
+          this.deleteSightings();
         }
       }
     });

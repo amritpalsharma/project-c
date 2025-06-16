@@ -97,14 +97,14 @@ export class MembershipComponent {
 
         let hiddenCount = 0;
         if (this.userPurchases && this.userPurchases.length > 0) {
-          this.userPurchases = this.userPurchases.filter((item: any) => {
-            const amount = parseFloat(item.amount_paid);
-            const isValid = !isNaN(amount) && amount > 0;
-            if (!isValid) hiddenCount++;
-            return isValid;
-          });
+          // this.userPurchases = this.userPurchases.filter((item: any) => {
+          //   const amount = parseFloat(item.amount_paid);
+          //   const isValid = !isNaN(amount) && amount > 0;
+          //   if (!isValid) hiddenCount++;
+          //   return isValid;
+          // });
 
-          this.totalItems = this.totalItems - hiddenCount;
+          // this.totalItems = this.totalItems - hiddenCount;
         }
 
         if (response.data.totalCount && response.data.totalCount == 0) {

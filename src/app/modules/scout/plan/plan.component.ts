@@ -494,7 +494,7 @@ export class PlanComponent implements OnInit, OnDestroy {
           console.log('userPlans', userPlans);
           console.log('this.premium', this.premium);
 
-          if (this.premium.interval == 'monthly' && !isNaN(this.premium.id) && Number(this.premium.id)) {
+          if (this.premium && this.premium.interval == 'monthly' && !isNaN(this.premium.id) && Number(this.premium.id)) {
             //this.premiumPlans.purchased_plan_id = this.premium.id;
             this.premiumMonthlyPurchasedPlanID = this.premium.id;
           }

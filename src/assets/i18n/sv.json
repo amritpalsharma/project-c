@@ -298,7 +298,7 @@
   "emailPlaceholder": "exempel@email.se",
   "passwordLabel": "Lösenord",
   "passwordPlaceholder": "12345688",
-  "requiredFieldsMessage": "Vänligen fyll i alla obligatoriska fält.",
+  "requiredFieldsMessage": "Fyll i alla obligatoriska fält.",
   "forgotPasswordLink": "Glömt lösenord?",
   "loginButton": "Logga in",
   "orText": "eller",
@@ -1364,7 +1364,7 @@
     "provideValidEmail": "Vänligen ange en giltig e-postadress.",
     "successMessage": "En återställningslänk har skickats till din e-post.",
     "errorMessage": "Denna e-post finns inte",
-    "generalError": "Ett fel inträffade. Vänligen försök igen senare.",
+    "generalError": "Ett fel inträffade. Försök igen senare.",
     "requiredMessage": "Detta fält är obligatoriskt."
   },
   "account": "Konto",
@@ -1488,5 +1488,6 @@
   "paidTxt": "Betald",
   "openTxt": "Öppen",
   "maxSizeForProfile": "Filen young-bearded-man-with-striped-shirt.jpg överskrider den maximalt tillåtna storleken 5 MB.",
-  "aboutImageCaption": "fr. v. till h."
+  "aboutImageCaption": "fr. v. till h.",
+  "confirmDeleteinformationTeam": "Är du säker på att du vill ta bort spelaren från laget?"
 }

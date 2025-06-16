@@ -46,6 +46,12 @@
             <div (click)="closeAccount()">{{ 'close' | translate }}</div>
         </div> -->
         <!--  -->
+        <div *ngIf="data.action === 'delete-sighting-confirmation'"
+            class="popup-delete-btn d-flex align-items-center flex-wrap justify-content-center py-2">
+            <div (click)="deleteConfirmed()" class="btn btn-success me-sm-3 bg-light-btn btn_confirmm">{{ 'confirm' |
+                translate }}</div>
+            <div (click)="close()" class="btn btn-danger bg-dark-btn btn_cancell">{{ 'close' | translate }}</div>
+        </div>
         <div *ngIf="data.action === 'delete-Teamplayer-confirmation'"
             class="popup-delete-btn d-flex align-items-center flex-wrap justify-content-center py-2">
             <div (click)="deleteConfirmed()" class="btn btn-success me-sm-3 bg-light-btn btn_confirmm">{{ 'removeFavbtn'

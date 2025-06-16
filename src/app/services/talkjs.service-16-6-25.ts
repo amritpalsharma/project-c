@@ -41,6 +41,18 @@ export class TalkService {
     });
     return this.session;
   }
+
+
+  /*createInbox(conversations: Talk.ConversationBuilder[]) {
+      if (!this.session) {
+      throw new Error('TalkJS session is not initialized');
+      }
+      const inbox = this.session.createInbox();
+      inbox.setConversations(conversations);
+      return inbox;
+  } */
+
+
   // Create a one-on-one conversation
   createOneOnOneConversation(id: string, name: string, email: string, photoUrl: string): Promise<void> {
 
@@ -178,6 +190,11 @@ export class TalkService {
     // Mount the new inbox
     this.inbox.mount(document.getElementById('talkjs-container') as HTMLElement);
 
+    // Restore the selected conversation (if available)
+    // if (selectedConversationId) {
+    //   this.inbox.select(selectedConversationId);
+    // }
+
   }
 
   public changeLocale(newLocale: string): void {
@@ -212,11 +229,54 @@ export class TalkService {
 
     // Create new session
     this.session = new Talk.Session({
-      appId: 'tmI75KXB', // tHcyGZjg
+      appId: 'tmI75KXB',
       me: this.user,
     });
 
     // Create new inbox
+    this.inbox = this.session.createInbox();
+
+    // If a conversation was open, restore it
+    // if (selectedConversation) {
+    //   this.inbox.select(selectedConversation);
+    // }
+
+    this.inbox.mount(document.getElementById('talkjs-container') as HTMLElement);
+  }
+
+
+
+  public changeLocale12_06_25(newLocale: string): void {
+    if (!this.session || !this.user) {
+      console.error('TalkJS session is not initialized.');
+      return;
+    }
+
+    // Update the user with the new locale
+    this.user = new Talk.User({
+      id: this.user.id,
+      name: this.user.name,
+      email: this.user.email,
+      photoUrl: this.user.photoUrl + '?=' + Date.now(),
+      welcomeMessage: null,
+      role: this.user.role,
+      locale: newLocale,
+    });
+
+    // Destroy the current inbox if it exists
+    if (this.inbox) {
+      this.inbox.destroy();
+      this.inbox = undefined;
+    }
+
+    // Reinitialize the session with the updated user
+    this.session = new Talk.Session({
+      appId: 'tmI75KXB',
+      me: this.user,
+    });
+
+    // Optionally, re-create the inbox or re-mount your chat UI.
+    // For example:
     this.inbox = this.session.createInbox();
     this.inbox.mount(document.getElementById('talkjs-container') as HTMLElement);
   }
@@ -291,18 +351,18 @@ export class TalkService {
     }
   }
 
-//   public attachMessageSendListener() {
-//     console.info('Function called:::');
-//     if (this.inbox) {
-//       (this.inbox as any).on("send", (event: any) => {
-//         console.info("Message sent:", event.message);
-//         // this.socketService.emit("sendMessage", {
-//         //   text: event.message.text,
-//         //   senderId: event.message.sender.id,
-//         //   conversationId: event.message.conversation.id,
-//         //   timestamp: event.message.sentAt,
-//         // });
-//       });
-//     }
-//   }
+  public attachMessageSendListener() {
+    console.info('Function called:::');
+    if (this.inbox) {
+      (this.inbox as any).on("send", (event: any) => {
+        console.info("Message sent:", event.message);
+        // this.socketService.emit("sendMessage", {
+        //   text: event.message.text,
+        //   senderId: event.message.sender.id,
+        //   conversationId: event.message.conversation.id,
+        //   timestamp: event.message.sentAt,
+        // });
+      });
+    }
+  }
 }

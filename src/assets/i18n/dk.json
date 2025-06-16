@@ -256,7 +256,7 @@
   "emailPlaceholder": "eksempel@email.dk",
   "passwordLabel": "Adgangskode",
   "passwordPlaceholder": "12345688",
-  "requiredFieldsMessage": "Udfyld venligst alle obligatoriske felter.",
+  "requiredFieldsMessage": "Udfyld alle obligatoriske felter.",
   "forgotPasswordLink": "Glemt adgangskode?",
   "loginButton": "Log ind",
   "orText": "eller",
@@ -1354,5 +1354,6 @@
   "paidTxt": "Betalt",
   "openTxt": "Åben",
   "maxSizeForProfile": "Filen young-bearded-man-with-striped-shirt.jpg overskrider den maksimalt tilladte størrelse på 5 MB.",
-  "aboutImageCaption": "fra v. mod h."
+  "aboutImageCaption": "fra v. mod h.",
+  "confirmDeleteinformationTeam": "Er du sikker på, at du vil fjerne spilleren fra holdet?"
 }

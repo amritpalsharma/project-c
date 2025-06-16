@@ -91,6 +91,7 @@ export class TeamsTabComponent {
           console.log(this.players)
           this.isLoading = false;
         } else {
+          this.players = [];
           this.isLoading = false;
           console.error('Invalid API response structure:', response);
         }
@@ -185,8 +186,8 @@ export class TeamsTabComponent {
     messageDialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
         if (result.action == "delete-confirmed") {
-          if (typeof details.player_id !== undefined && details.player_id != '') {
-            this.deleteTeamPlayer(details.player_id);
+          if (typeof details.id !== undefined && details.id != '') {
+            this.deleteTeamPlayer(details.id);
           } else {
             console.log('Player Not found ', details)
           }
@@ -232,6 +233,7 @@ export class TeamsTabComponent {
           this.clubService.successMessage(response.message);
           this.getTeamPlayers(this.selectedTeamId, this.selectedTeam);
         } else {
+
           this.clubService.apiToastError(response.message);
         }
       });

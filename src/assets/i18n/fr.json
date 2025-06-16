@@ -1378,7 +1378,7 @@
     "provideValidEmail": "Veuillez fournir une adresse e-mail valide.",
     "successMessage": "Un lien de réinitialisation a été envoyé à votre e-mail.",
     "errorMessage": "Cet e-mail n'existe pas",
-    "generalError": "Une erreur est survenue. Veuillez réessayer plus tard.",
+    "generalError": "Une erreur s’est produite. Veuillez réessayer plus tard.",
     "requiredMessage": "Ce champ est obligatoire."
   },
   "account": "Compte",
@@ -1504,5 +1504,6 @@
   "paidTxt": "Payé",
   "openTxt": "Ouvert",
   "maxSizeForProfile": "Le fichier young-bearded-man-with-striped-shirt.jpg dépasse la taille maximale autorisée de 5 MB.",
-  "aboutImageCaption": "de g. à d."
+  "aboutImageCaption": "de g. à d.",
+  "confirmDeleteinformationTeam": "Es-tu sûr de vouloir supprimer ce joueur de cette équipe ?"
 }

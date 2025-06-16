@@ -444,3 +444,15 @@ table td .bg_success {
   width: 100px;
   text-align: center;
 }
+
+
+::ng-deep .disblebutton {
+  pointer-events: none;
+
+}
+
+::ng-deep .disblebutton svg {
+  pointer-events: none;
+  filter: grayscale(100%) opacity(0.5);
+  /* Grays out the SVG */
+}

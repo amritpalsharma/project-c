@@ -42,7 +42,7 @@
                       </button>
                     </span>
                     <span class="icon-bg" *ngIf="!isPremium && currentUserRole != 'scout' && currentUserRole != 'club'"
-                      mat-raised-button matTooltip="{{'downloadPdf' | translate}} {{'upgradeToUnlock' | translate}}">
+                      mat-raised-button matTooltip="{{downloadPdf | translate}} {{'upgradeToUnlock' | translate}}">
                       <button class="pe-none">
                         <svg width="22" height="22" class="opacity-03" viewBox="0 0 16 20" fill="none"
                           xmlns="http://www.w3.org/2000/svg">
@@ -85,7 +85,7 @@
                       </button>
                     </span>
                     <span class="icon-bg " *ngIf="!isPremium" mat-raised-button
-                      matTooltip="{{'addFavorite' | translate}} {{'upgradeToUnlock' | translate}}">
+                      matTooltip="{{addFavorite | translate}} {{'upgradeToUnlock' | translate}}">
                       <button class="pe-none">
                         <svg width="22" height="22" class="opacity-03" viewBox="0 0 14 18" fill="none"
                           xmlns="http://www.w3.org/2000/svg">

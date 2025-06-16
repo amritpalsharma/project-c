@@ -338,7 +338,7 @@
   "emailPlaceholder": "beispiel@email.de",
   "passwordLabel": "Passwort",
   "passwordPlaceholder": "12345688",
-  "requiredFieldsMessage": "Bitte fülle alle erforderlichen Felder aus.",
+  "requiredFieldsMessage": "Bitte fülle alle Pflichtfelder aus.",
   "forgotPasswordLink": "Passwort vergessen?",
   "loginButton": "Anmelden",
   "orText": "oder",
@@ -513,7 +513,7 @@
   "choosePlan": "Abo wählen",
   "onfirmDeleteinformation": "Einmal gelöschte Informationen können nicht mehr rückgängig gemacht werden.",
   "alertMessage": "Du hast {{count}} aktives Multi-Länder-Abonnement. Wähle ein Land aus der folgenden Liste, um dein Profil in diesem Land zu präsentieren.",
-  "alertMessage2": "Du hast {{count}} aktive Multi-Länder-Abonnement. Wähle ein Land aus der folgenden Liste, um dein Profil in diesem Land zu präsentieren.",
+  "alertMessage2": "Du hast {{count}} aktive Multi-Länder-Abonnemente. Wähle ein Land aus der folgenden Liste, um dein Profil in diesem Land zu präsentieren.",
   "active": "Aktiv",
   "Default": "Standard",
   "purchased": "Gekauft",
@@ -1341,7 +1341,7 @@
     "provideValidEmail": "Bitte gib eine gültige E-Mail an.",
     "successMessage": "Ein Link zum Zurücksetzen wurde an Ihre E-Mail gesendet.",
     "errorMessage": "Diese E-Mail existiert nicht",
-    "generalError": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.",
+    "generalError": "Ein Fehler ist aufgetreten. Bitte versuche es später erneut.",
     "requiredMessage": "Dieses Feld ist erforderlich."
   },
   "account": "Konto",
@@ -1496,5 +1496,6 @@
   "paidTxt": "Bezahlt",
   "openTxt": "Offen",
   "maxSizeForProfile": "Die Datei young-bearded-man-with-striped-shirt.jpg überschreitet die maximal zulässige Größe von 5 MB.",
-  "aboutImageCaption":"v. l. n. r."
+  "aboutImageCaption": "v. l. n. r.",
+  "confirmDeleteinformationTeam": "Bist du sicher, dass du den Spieler aus diesem Team löschen möchtest?"
 }

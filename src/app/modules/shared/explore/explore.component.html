@@ -224,7 +224,7 @@
                       <img *ngIf="player.current_club_logo && player.role_name == 'Club'"
                         [src]="baseUrl + player.current_club_logo" alt="player-image" class="player_profile_img">
                       <img *ngIf="!player.meta.profile_image && player.role_name != 'Club'"
-                        src="../../../../assets/images/default/talent-profile-default.png" class="player_profile_img"
+                        src="../../../../assets/images/default/dummy-image-soccer.png" class="player_profile_img"
                         alt="player-image">
                       <div class="booster_text" *ngIf="player.package_name == 'Booster'">{{ 'boosted' | translate}}
                       </div>
