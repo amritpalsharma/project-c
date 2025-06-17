@@ -90,7 +90,8 @@
                 <div class="col-lg-6">
                   <div class="form-group template-name-input">
                     <label class="text-size" style="margin-right: 5px;">{{ 'metaTitle' | translate }}:</label>
-                    <input type="text" class="form-control template-name-inputField" [(ngModel)]="meta_titles[lang.slug]">
+                    <input type="text" class="form-control template-name-inputField"
+                      [(ngModel)]="meta_titles[lang.slug]">
                     <div *ngIf="errorMsg.meta_title" class="error-msg">{{errorMsg.meta_title}}</div>
                   </div>
                 </div>
@@ -104,7 +105,7 @@
                       {{errorMsg.meta_description}}</div>
                   </div>
                 </div>
-  
+
                 <!-- Featured Image -->
                 <div class="col-lg-6">
                   <div class="form-group">
@@ -117,7 +118,7 @@
                     </div>
                   </div>
                 </div>
-  
+
                 <!-- Editor -->
                 <div class="col-12">
                   <div class="form-group">
@@ -125,9 +126,12 @@
                       {{ 'contentFor' | translate }}({{ lang.slug }}):
                     </label>
                     <div class="NgxEditor__Wrapper">
-                      <ngx-editor-menu [editor]="editors[lang.slug]" [colorPresets]="colorPresets"></ngx-editor-menu>
+                      <!-- <ngx-editor-menu [editor]="editors[lang.slug]" [colorPresets]="colorPresets"></ngx-editor-menu>
                       <ngx-editor [editor]="editors[lang.slug]" class="editor-width" [(ngModel)]="allContent[lang.slug]"
-                        [disabled]="false" [placeholder]="'editors.placeholder' | translate"></ngx-editor>
+                        [disabled]="false" [placeholder]="'editors.placeholder' | translate"></ngx-editor> -->
+
+                      <editor [(ngModel)]="allContent[lang.slug]" [init]="editorConfig" class="ngx-editor"></editor>
+
                       <div *ngIf="errorMsg.content" class="error-msg" style="padding-left:20px;">
                         {{ errorMsg.content }}
                       </div>
