@@ -6,6 +6,9 @@ import { inject } from '@angular/core';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { UserService } from '../../../../services/user.service';
 import { TalentService } from '../../../../services/talent.service';
+import { ChangeDetectorRef } from '@angular/core';
+
+
 @Component({
   selector: 'shared-chat-popup',
   templateUrl: './chat-popup.component.html',
@@ -23,6 +26,7 @@ export class ChatPopupComponent {
   classForAutoList: string = 'd-none';
 
   constructor(
+    private cdr: ChangeDetectorRef,
     private userService: UserService,
     private talentService: TalentService,
     public dialogRef: MatDialogRef<ChatPopupComponent>,
@@ -32,6 +36,11 @@ export class ChatPopupComponent {
   ngOnInit(): void {
     this.fetchUsers();
     this.theme = localStorage.getItem('theme') + '';
+  }
+
+  ngAfterViewInit() {
+    this.classForAutoList = 'd-none';
+    this.cdr.detectChanges(); // 🔁 Re-checks after change
   }
 
   async fetchUsers(): Promise<void> {

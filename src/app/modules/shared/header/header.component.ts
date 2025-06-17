@@ -180,14 +180,6 @@ export class HeaderComponent {
     this.fetchNotifications(userId, langId);
     this.loggedInUser = JSON.parse(this.loggedInUser);
 
-    // console.warn(this.loggedInUser.status)
-    // if (this.loggedInUser && this.loggedInUser.status != '' && this.loggedInUser.status != undefined) {
-    //   if (this.loggedInUser.status == 2) {
-    //     this.isUserVerified = true;
-    //   } else {
-    //     this.isUserVerified = false;
-    //   }
-    // }
     this.getUserStatus();
     this.getUserProfile();
 
@@ -199,20 +191,12 @@ export class HeaderComponent {
 
 
     this.socketService.on('notification').subscribe((data) => {
-      // Fetch all notifications to update this.allNotifications with the latest data
-      // let userId = this.loggedInUser?.id;
-      // if (userId) {
-      //   this.fetchNotifications(userId);
-      // }
-      console.log('working')
 
-      console.log(this.showNotification);
 
       this.unseenCount++;
       this.notificationSeen = false;
       localStorage.setItem('notificationSeen', 'false');
 
-      console.log("data", data);
 
       const obj = {
         id: 0,
@@ -244,27 +228,6 @@ export class HeaderComponent {
       }, 5000); // 5000 ms = 5 seconds
     });
 
-
-
-
-
-    //   this.router.events
-    //   .pipe(
-    //     filter(event => event instanceof NavigationEnd), // Ensure only navigation events are handled
-    //     map(() => {
-    //       const child = this.route.firstChild;
-    //       return child?.snapshot.data['title'] || 'Home'; // Default title if no data
-    //     })
-    //   )
-    //   .subscribe((title: string) => {
-    //     this.currentPageName = title; // Assign the title to `currentPageName`
-    //   });
-
-    // }
-
-    // Set the page name for the initial load
-    // this.setPageTitleFromRoute();
-
     // Listen for route changes and update the title
     this.router.events
       .pipe(
@@ -275,33 +238,6 @@ export class HeaderComponent {
         this.currentPageName = title;
       });
 
-    // old code 
-    // this.searchControl.valueChanges
-    //   .pipe(
-    //     filter((value): value is string => value !== null && value.trim().length > 0), // Exclude null or empty strings
-    //     debounceTime(300),
-    //     distinctUntilChanged(),
-    //     switchMap((searchText: string) => {
-    //       this.isLoading = true;
-    //       return this.userService.searchUser(searchText).pipe(
-    //         finalize(() => (this.isLoading = false))
-    //       );
-    //     })
-    //   )
-    //   .subscribe(
-    //     (response: any) => {
-    //       if (response && response.status && response.data?.userData) {
-    //         this.filteredUsers = response.data.userData;
-    //       } else {
-    //         console.error('Invalid API response structure:', response);
-    //         this.filteredUsers = [];
-    //       }
-    //     },
-    //     (error) => {
-    //       console.error('Error fetching users:', error);
-    //       this.filteredUsers = [];
-    //     }
-    //   );
 
     // code update by amrit 13 march 2025z
     this.searchControl.valueChanges
@@ -325,25 +261,6 @@ export class HeaderComponent {
       )
       .subscribe(
         (response: any) => {
-          // commented on 13 may 2025
-          // if (response?.status && response.data?.userData) {
-          //   let searchText = response.data.searchText;
-          //   let searchResults = response.data.userData;
-          //   searchResults = searchResults.filter((user: any) => {
-          //     const fullName = `${user.first_name} ${user.last_name}`.toLowerCase();
-          //     const search = searchText.toLowerCase();
-
-          //     return (
-          //       user.first_name.toLowerCase().startsWith(search) ||
-          //       user.last_name.toLowerCase().startsWith(search) ||
-          //       fullName.startsWith(search)
-          //     );
-          //   });
-          //   this.filteredUsers = searchResults;
-          // } else {
-          //   console.error("Invalid API response structure:", response);
-          //   this.filteredUsers = [];
-          // }
 
           if (response?.status && Array.isArray(response.data?.userData)) {
             this.filteredUsers = response.data.userData;
@@ -546,6 +463,7 @@ export class HeaderComponent {
     const locale = selectedLang.locale;
     // Change the TalkJS locale by passing the locale string (e.g., 'en-US')
     this.talkService.changeLocale(locale);
+    this.globalSettings.themeAndLangChange('lang', lang);
     this.getPageTitle();
     if (this.lang == 'se') {
       this.lang = 'sv';
@@ -591,6 +509,7 @@ export class HeaderComponent {
     // if(event.target.checked){
     this.onThemeToggle(event.target.checked);
     this.globalSettings.callIndexComponentFunction();
+    this.globalSettings.themeAndLangChange('theme', event);
     // }
   }
 

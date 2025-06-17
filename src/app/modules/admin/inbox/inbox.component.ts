@@ -51,7 +51,7 @@ export class InboxComponent {
         email: this.userData.username,
         photoUrl: this.userData.profile_image_path,
         welcomeMessage: null,
-        role: (this.userData.role == '1') ? "hidden" : "default"
+        role: "hidden"
       };
       const session = await this.talkService.init(this.user);
       const chatbox = session.createInbox();

@@ -274,7 +274,7 @@ export class ViewProfileComponent implements OnInit {
     // this.activeTab = tab;
     if (this.activeTab === 'teams' && tab === 'teams') {
       this.teamsTabComponent?.backToTeamView();
-    }else if(this.activeTab === 'sighting' && tab === 'sighting'){
+    } else if (this.activeTab === 'sighting' && tab === 'sighting') {
       this.sightingComponent.backToSightings();
     }
     else {
@@ -450,12 +450,10 @@ export class ViewProfileComponent implements OnInit {
 
   navigateToChat() {
     localStorage.setItem('otherUserData', '');
-    // console.log('User',this.user)
     if (this.user.meta.profile_image != '' && this.user.meta.profile_image != undefined) {
       this.user.meta.profile_image = this.user.meta.profile_image;
     }
     const role = this.loggedInUser.role_name.toLowerCase();
-    // console.info('role is ',role);
     if (this.currentUserRole == 'club' || this.currentUserRole == 'klubb' || this.currentUserRole == 'klub' || this.currentUserRole == 'Clube' && this.user.club_logo != '' && this.user.club_logo != undefined) {
       this.user.meta.profile_image = this.user.club_logo;
     }
@@ -478,12 +476,6 @@ export class ViewProfileComponent implements OnInit {
       let tempUser = JSON.stringify(userData);
 
       localStorage.setItem('otherUserData', tempUser);
-
-      const encodedUserData = encodeURIComponent(JSON.stringify(userData)); // Convert to JSON and encode
-      // this.router.navigate(['/talent/chat'], { queryParams: { userData: encodedUserData } });
-
-      localStorage.setItem('otherUserData', tempUser);
-
       // this.router.navigate([`/${role}/chat?open_chat=true`]);
       this.router.navigate([`/${role}/chat`], {
         queryParams: { open_chat: 'true' }

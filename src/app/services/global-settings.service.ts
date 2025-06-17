@@ -14,7 +14,9 @@ export class GlobalSettingsService {
   private defaultDomainId: number = 1;
   private domainCurrency: string = 'GBP';
   private indexFunctionCallSubject = new Subject<void>();
+  private themeAndLangCallSubject = new Subject<void>();
   indexFunctionCall$ = this.indexFunctionCallSubject.asObservable();
+  themeAndLangCallSubject$ = this.themeAndLangCallSubject.asObservable();
   constructor(private authService: AuthService, private themeService: ThemeService) {
     this.setDefaultLanguage();
     this.setDomainCurrency();
@@ -137,6 +139,11 @@ export class GlobalSettingsService {
 
   callIndexComponentFunction() {
     this.indexFunctionCallSubject.next(); // Notify listeners (IndexComponent)
+  }
+
+  themeAndLangChange(action: string, object: any) {
+    // this.themeAndLangCallSubject.next(action, object);
+    this.themeAndLangCallSubject.next();
   }
 
   getDeviceType() {

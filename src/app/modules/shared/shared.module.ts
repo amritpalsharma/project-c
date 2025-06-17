@@ -142,9 +142,9 @@ import { PremiumPurchaseComponent } from './premium-purchase/premium-purchase.co
     MatToolbarModule,
     MatPaginator,
     NgxEditorModule,
-    MatTooltipModule 
+    MatTooltipModule
   ],
-  exports:[
+  exports: [
     SuccessComponent,
     CancelComponent,
     ViewProfileComponent,
@@ -159,7 +159,7 @@ import { PremiumPurchaseComponent } from './premium-purchase/premium-purchase.co
     FooterComponent,
     CouponCodeAlertComponent,
     HeaderComponent,
-    
+
   ]
 })
 export class SharedModule { }
