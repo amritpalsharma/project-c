@@ -342,6 +342,11 @@
     color: #111418;
     font-family: "Libre Franklin", sans-serif;
   }
+  .card-body p{
+    font-size: 14px;
+    font-weight: 400; 
+    font-family: "Libre Franklin", sans-serif;
+  }
 
   
 
@@ -417,8 +422,11 @@ table td, table th {
 
 
 @media (min-width: 1600px) and (max-width: 2999px){
-  .card-header p {
-    font-size: 20px !important;
+.card-title {
+      font-size: 24px !important;
+  }
+  .card-header p, .card-body label, .card-body p {
+      font-size: 20px !important;
   }
   td svg {
     width: 32px !important;
@@ -427,9 +435,9 @@ table td, table th {
 }
 
 @media (min-width: 3000px){
-  .card-header p {
-    font-size: 26px !important;
-  }
+  .card-header p, .card-body label, .card-body p {
+      font-size: 26px !important;
+    }
   td svg {
     width: 40px !important;
     height: 40px !important;

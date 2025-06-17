@@ -241,7 +241,7 @@
 }
 
 
-@media (min-width: 1400px) and (max-width: 1999px) {
+@media (min-width: 1400px) and (max-width: 1999.98px) {
 .upgrade_unlock .unlock_btn {
     padding: 17px 25px 17px !important;
     font-size: 20px !important;
@@ -249,6 +249,15 @@
         width: 30px !important;
         height: 30px !important;
     }
+}
+.website_main_pages .club-buttons .button-border {
+    width: 400px !important;
+}
+}
+
+@media (min-width: 992px) and (max-width: 1399.98px) {
+.website_main_pages .club-buttons .button-border {
+    width: 400px !important;
 }
 }
 
@@ -285,6 +294,9 @@
     .website_main_pages .container {
         max-width: 100% !important;
         --bs-gutter-x: 4rem;
+    }
+    .website_main_pages .club-buttons .button-border {
+        width: 400px !important;
     }
 }
 
@@ -1659,6 +1671,9 @@ body .popup__body {
 }
 
 @media (max-width: 575px) {
+.website_main_pages .club-buttons .button-border {
+    width: 320px !important;
+}
 .justify_mobile .position-boxs {
     flex-direction: column;
     padding-bottom: 0 !important;
@@ -1845,6 +1860,9 @@ button.upload-btn {
 }
 
 @media (max-width: 480px) {
+.website_main_pages .club-buttons .button-border {
+    width: 270px !important;
+}
 .footer_main.footer-responsive .footer-text {
     max-width: 200px;
 }

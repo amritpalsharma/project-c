@@ -1981,6 +1981,7 @@ img.success-image {
 
 .player--item {
   padding: 15px;
+  border: 1px solid #fff;
 
   .boosted--profile {
     background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
@@ -5572,6 +5573,14 @@ img.success-image {
   content: '';
   position: absolute;
   z-index: 0 !important;
+}
+
+::ng-deep {
+  .dark-theme {
+    .player--item {
+      border-color: #0C3453 !important;
+    }
+  }
 }
 
 // By AMRIT FOR VIDEO

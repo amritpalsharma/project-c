@@ -68,18 +68,22 @@ input:checked + .slider:before {
     color: #111418;
     font-family: "Libre Franklin", sans-serif;
   }
-
+.card-body p{
+    font-size: 14px;
+    font-weight: 400; 
+    font-family: "Libre Franklin", sans-serif;
+  }
 
   @media (min-width: 1600px) and (max-width: 2999px){
-    .card-header p {
+    .card-title {
+        font-size: 24px !important;
+    }
+    .card-header p, .card-body label, .card-body p {
       font-size: 20px !important;
     }
     td svg {
         width: 32px !important;
         height: 32px !important;
-      }
-      .card-body label, .card-body p {
-        font-size: 24px !important;
       }
       .acount_delete_btn {
         font-size: 20px !important;
@@ -87,7 +91,7 @@ input:checked + .slider:before {
   }
 
   @media (min-width: 3000px){
-    .card-header p {
+    .card-header p, .card-body label, .card-body p {
       font-size: 26px !important;
     }
     
@@ -95,10 +99,7 @@ input:checked + .slider:before {
     width: 40px !important;
     height: 40px !important;
   }
-  .card-body label, .card-body p {
-    font-size: 28px !important;
-  }
   .acount_delete_btn {
-    font-size: 24px !important;
+    font-size: 26px !important;
   }
-  }
+}

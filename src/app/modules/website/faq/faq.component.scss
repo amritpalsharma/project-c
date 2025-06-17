@@ -575,4 +575,18 @@ ul.nav-tabs {
             padding: 19px 50px 13px !important;
         }
     }
+    .accordion {
+        .card-header a:before {
+            width: 40px;
+            height: 40px;
+            background-size: 40px !important;
+        }
+    }
+    :host ::ng-deep {
+        .card-body {
+            ul, ol {
+                padding-left: 60px;
+            }
+        }
+    }
 }
