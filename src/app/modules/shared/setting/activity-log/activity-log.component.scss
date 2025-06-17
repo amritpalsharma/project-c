@@ -379,7 +379,11 @@
   color: #111418;
   font-family: "Libre Franklin", sans-serif;
 }
-
+.card-body p{
+    font-size: 14px;
+    font-weight: 400; 
+    font-family: "Libre Franklin", sans-serif;
+  }
 
 
 .form-control {
@@ -473,6 +477,23 @@
       margin-right: 0 !important;
     }
   }
+}
+
+
+@media (min-width: 1600px) and (max-width: 2999px){
+.card-title {
+      font-size: 24px !important;
+  }
+  .card-header p, .card-body label, .card-body p {
+      font-size: 20px !important;
+  }
+}
+
+
+  @media (min-width: 3000px){
+    .card-header p, .card-body label, .card-body p {
+      font-size: 26px !important;
+    }
 }
 
 @media (min-width: 992px) {
