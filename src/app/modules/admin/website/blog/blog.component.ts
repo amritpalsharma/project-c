@@ -288,7 +288,7 @@ export class BlogComponent {
 
   editBlog(element: any) {
     const dialogRef = this.dialog.open(BlogPopupComponent, {
-      height: '90vh',
+      height: '95vh',
       width: '90vw',
       panelClass: 'blog-popup-2',
       data: element
