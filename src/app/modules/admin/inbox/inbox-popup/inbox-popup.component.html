@@ -47,8 +47,14 @@
 
           <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)" class="listBox w-100">
             @for (user of filteredUsers; track user) {
+              <!-- <pre>{{user | json}}</pre> -->
             <mat-option [value]="user" class="fruit-font">
-              <img width="50" height="50" class="img-list" src="../../../../../assets/images/1.png">
+              <img *ngIf="!isThisClub(user.role_name)" width="50" height="50"
+                class="img-list is_not_club {{user.role_name}}"
+                src="{{user?.meta?.profile_image_path ? user?.meta?.profile_image_path :'../../../../../assets/images/default/talent-profile-default.png'}}">
+              <img *ngIf="isThisClub(user.role_name)" width="50" height="50" class="img-list club_logo_in_search"
+                src="{{user?.pre_current_club_logo ? 'https://api.socceryou.ch/uploads/' + user?.pre_current_club_logo :'../../../../../assets/images/default/talent-profile-default.png'}}">
+              <!-- <img width="50" height="50" class="img-list" src="../../../../../assets/images/1.png"> -->
               {{user.first_name+' '+user.last_name}}
             </mat-option>
             }

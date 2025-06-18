@@ -6,7 +6,9 @@
                     <div class="d-flex align-items-center heading w-100">
                         <h2 class="card-title mb-0 me-3">{{'inbox' | translate}}</h2>
                         <a (click)="editinbox()" href="javascript:void(0);"
-                            class="btn btn-success btn-sm web-create-bg">{{'newMessage' | translate}}</a>
+                            class="btn btn-success btn-sm web-create-bg">
+                            {{'newMessage' | translate}}
+                        </a>
                     </div>
                 </div>
                 <!-- <div class="d-flex align-items-center justify-content-between mt-3">
@@ -18,13 +20,12 @@
             </div>
             <div class="card-body p-0">
                 <div class="chat_row d-flex h-100" style="min-height: 68vh;">
+                    <!-- <h1>isLoading {{isLoading}}</h1> -->
                     <div class="col-lg-12 border-end px-0 " id="talkjs-container"
                         [ngClass]="{ 'invisible': isLoading }">
                     </div>
-                    <div class="col-sm-12">
-                        <div *ngIf="isLoading">
-                            <app-loader></app-loader>
-                        </div>
+                    <div *ngIf="isLoading" class="col-sm-12" [ngClass]="{ 'invisible': !isLoading }">
+                        <app-loader></app-loader>
                     </div>
                 </div>
             </div>

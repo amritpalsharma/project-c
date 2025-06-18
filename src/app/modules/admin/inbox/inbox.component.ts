@@ -7,6 +7,7 @@ import { SocketService } from '../../../services/socket.service';
 import { TitleService } from '../../../title.service';
 import { TranslateService } from '@ngx-translate/core';
 import { SharedService } from '../../../services/shared.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -32,6 +33,7 @@ export class InboxComponent {
     private titleService: TitleService,
     private translateService: TranslateService,
     private sharedservice: SharedService,
+    private router:Router
   ) { }
 
   async ngOnInit() {
@@ -39,6 +41,7 @@ export class InboxComponent {
     this.sharedservice.data$.subscribe((data) => {
       if (data.action == 'lang_updated') {
         this.getJsonTranslations();
+        this.reloadChatComponent();
       }
     })
     const userDataString = localStorage.getItem('userData');
@@ -74,6 +77,14 @@ export class InboxComponent {
     if (theme == 'dark') {
       this.talkService.toggleTheme(true);
     }
+  }
+
+
+  reloadChatComponent() {
+    const currentUrl = this.router.url;
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigateByUrl(currentUrl);
+    });
   }
 
 
@@ -116,7 +127,7 @@ export class InboxComponent {
         for (let user of users.data) {
           this.users.push({
             id: user.id,
-            name: user.first_name+' '+user.last_name,
+            name: user.first_name + ' ' + user.last_name,
             email: user.username,
             photoUrl: user.profile_image_path,
           })

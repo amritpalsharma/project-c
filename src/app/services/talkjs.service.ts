@@ -30,7 +30,7 @@ export class TalkService {
 
   }
   matPrimary = false;
-  currentTheme: any = localStorage.getItem('theme') ? localStorage.getItem('theme') : 'dark_custom';
+  currentTheme: any = localStorage.getItem('theme') == 'light' ? 'default' : 'dark_custom';
   currentLocale: string = localStorage.getItem('lang') || this.globalSettings.getLanguage();
   otherUserDataArr: any;
 
@@ -74,6 +74,12 @@ export class TalkService {
   // }
 
   async init(userData: any): Promise<Talk.Session> {
+    let themeFirstTym;
+    if (this.currentTheme === 'dark') {
+      themeFirstTym = 'dark_custom';
+    } else {
+      themeFirstTym = 'default';
+    }
     await Talk.ready;
 
     const talkUser = new Talk.User({
@@ -84,15 +90,16 @@ export class TalkService {
       welcomeMessage: null,
       role: userData.role == '1' ? 'hidden' : 'default',
       locale: this.currentLocale,
-
+      // theme: themeFirstTym
     });
 
     this.user = talkUser;
     this.session = new Talk.Session({
       appId: 'tmI75KXB',
       me: this.user,
+      // theme: themeFirstTym
     });
-
+    this.toggleTheme30042025(this.currentTheme)
     return this.session;
   }
 
@@ -105,9 +112,9 @@ export class TalkService {
         return;
       }
 
-      console.log('user recived to create converstaion ', photoUrl);
-      photoUrl = photoUrl + '?' + Math.random();
+      // photoUrl = photoUrl + '?' + Math.random();
       let userArr = { id: id, name: name, email: email, photoUrl: photoUrl };
+      console.info('user recived to create converstaion ', userArr);
       const otherUser = new Talk.User({
         id: id,
         name: name,
@@ -125,7 +132,7 @@ export class TalkService {
         role: 'hidden'
       });
 
-
+      console.info('this.user',this.user);
       conversation.setParticipant(this.user);
       conversation.setParticipant(otherUser);
       conversation.setParticipant(hiddenUser);
@@ -137,7 +144,13 @@ export class TalkService {
 
       // ✅ Only create inbox once
       if (!this.inbox) {
-        this.inbox = this.session.createInbox();
+
+        // this.inbox = this.session.createInbox();
+        if (this.currentTheme === 'dark') {
+          this.inbox = this.session.createInbox({ theme: 'dark_custom' });
+        } else {
+          this.inbox = this.session.createInbox({ theme: 'default' });
+        }
         this.inbox.mount(document.getElementById('talkjs-container') as HTMLElement);
       }
       // ✅ Just select conversation if inbox already exists
@@ -210,7 +223,38 @@ export class TalkService {
   toggleTheme(isDark: boolean) {
     let theme = isDark ? 'dark' : 'light';
     localStorage.setItem('theme', theme);
-    // this.currentTheme = isDark ? 'dark_custom' : 'light';
+    this.currentTheme = isDark ? 'dark_custom' : 'light';
+
+    if (!this.session) {
+      console.error('TalkJS session not initialized');
+      return;
+    }
+    if (this.inbox) {
+      this.inbox.destroy();
+    }
+    this.inbox = this.session.createInbox({
+      theme: isDark ? 'dark_custom' : 'default'
+    });
+
+    // Optionally re-mount immediately or allow the component to handle mounting
+    this.inbox.mount(document.getElementById('talkjs-container') as HTMLElement);
+
+  }
+
+  toggleTheme30042025(currentTheme: string): void {
+    if (!this.session) {
+      console.error('TalkJS session not initialized');
+      return;
+    }
+    if (this.inbox) {
+      this.inbox.destroy();
+    }
+    this.inbox = this.session.createInbox({
+      theme: currentTheme
+    });
+
+    // Optionally re-mount immediately or allow the component to handle mounting
+    this.inbox.mount(document.getElementById('talkjs-container') as HTMLElement);
   }
 
   changeLocale(locale: string) {
@@ -273,11 +317,11 @@ export class TalkService {
       // this.selectedConversationId = conversationId;
 
       let inbox;
-      const theme = localStorage.getItem('theme');
-      if (theme === 'dark') {
+      // const theme = localStorage.getItem('theme');
+      if (this.currentTheme === 'dark') {
         inbox = session.createInbox({ theme: 'dark_custom' });
       } else {
-        inbox = session.createInbox();
+        inbox = session.createInbox({ theme: 'default' });
       }
       inbox.select(conversation); // optional: opens the specific chat
       inbox.mount(document.getElementById('talkjs-container'));

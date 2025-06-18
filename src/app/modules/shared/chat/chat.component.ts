@@ -47,10 +47,8 @@ export class ChatComponent {
 
         this.globalSettings.themeAndLangCallSubject$.subscribe((response) => {
             setTimeout(() => {
-                // this.reloadTalk();
                 this.reloadChatComponent();
-                // this.componentVisible = true;
-            }, 500);
+            }, 100);
         });
 
         const userDataString = localStorage.getItem('userData');
@@ -245,5 +243,6 @@ export class ChatComponent {
             this.isLoading = false;
         }, 1500);
     }
+
 
 }
