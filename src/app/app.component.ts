@@ -1,6 +1,6 @@
 // src/app/app.component.ts
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, Event as NavigationEvent, NavigationStart, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { filter } from 'rxjs/operators';
 import { GlobalSettingsService } from './services/global-settings.service';
@@ -16,6 +16,9 @@ export class AppComponent implements OnInit {
   showHeader = true;
   showFooter = true;
   domainSelectedLanguage: string = '';
+
+  event$: any;
+  path: any;
 
   constructor(
     private translateService: TranslateService,
@@ -42,6 +45,16 @@ export class AppComponent implements OnInit {
     ).subscribe(() => {
       this.updateVisibility(); // Update visibility when route changes
     });
+
+
+    this.event$ = this.router.events.subscribe((event: NavigationEvent) => {
+      if (event instanceof NavigationStart) {
+        this.path = event.url;
+        if(document.body.classList.contains('body-overflow')){
+          document.body.classList.remove('body-overflow');
+        }
+      }
+    });
   }
 
   ngOnInit() {
@@ -56,6 +69,12 @@ export class AppComponent implements OnInit {
         localStorage.removeItem('logoutMessage');
       }, 10000);
     }
+    // this.checkBodyClass()
+  }
+
+  checkBodyClass(){
+    const currentRoute = this.router.url;
+    alert(currentRoute)
   }
 
   onCookiesAccepted() {

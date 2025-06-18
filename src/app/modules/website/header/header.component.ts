@@ -330,7 +330,7 @@ export class HeaderComponent implements OnInit {
       // Perform your logic here
       // set dark theme as first time
       // this.themeService.setDarkTheme(true);
-    } 
+    }
   }
 
   isActiveRoute(): boolean {
@@ -517,6 +517,7 @@ export class HeaderComponent implements OnInit {
   toggleNavbar() {
     this.isNavbarExpanded = !this.isNavbarExpanded;
     document.body.classList.toggle('navbar-expanded', this.isNavbarExpanded);
+    document.body.classList.toggle('body-overflow', this.isNavbarExpanded);
   }
 
   toggleTheme(event: any) {
@@ -1070,6 +1071,7 @@ export class HeaderComponent implements OnInit {
 
   closeNavbar() {
     this.isNavbarExpanded = false;
+    document.body.classList.remove('body-overflow');
   }
 
 
