@@ -17,16 +17,23 @@ export class TalkService {
   constructor(private globalSettings: GlobalSettingsService) {
     let currentUserArr = localStorage.getItem('userData');
     if (typeof currentUserArr !== undefined && currentUserArr != '' && typeof currentUserArr == 'string') {
-        let parseArr = JSON.parse(currentUserArr);
-        this.currentUser = parseArr;
-        console.info('this.currentUserthis.currentUser',this.currentUser)
-      //   this.currentUser = new Talk.User({
-      //     id: parseArr.id,
-      //     name: parseArr.first_name + ' ' + parseArr.last_name,
-      //     email: parseArr.email,
-      //     photoUrl: parseArr.meta.profile_image_path,
-      //     role: 'default',
-      //   });
+      let parseArr = JSON.parse(currentUserArr);
+      this.currentUser = parseArr;
+
+      if (this.currentUser?.role && this.currentUser?.role == 2) {
+        this.currentUser = {
+          id: parseArr.id,
+          name: parseArr.first_name + ' ' + parseArr.last_name,
+          email: parseArr.email,
+          photoUrl: parseArr.meta.profile_image_path,
+          role: 'default',
+        };
+      } else {
+
+      }
+      this.currentUser = {};
+      console.info('this.currentUserthis.currentUser', this.currentUser)
+      //   
     }
 
   }
@@ -331,12 +338,82 @@ export class TalkService {
   }
 
   private getCurrentUserData() {
-    console.info('Me ',this.currentUser);
+    console.info('Me ', this.currentUser);
     // Return your actual current user data from state/service
     return this.currentUser;
   }
 
   startChatWithUser(otherUserData: any) {
+    if (otherUserData) {
+      let userData;
+      // let userData = JSON.parse(otherUserData);
+      try {
+        userData = JSON.parse(otherUserData);
+      } catch (e) {
+        userData = otherUserData;
+      }
+      // console.info('User Recived In Talk js servie ', userData);
+      let chatPersonName = '';
+      if (typeof userData.name === 'undefined' || userData.name === '') {
+        userData.name = 'Talk User';
+      }
+
+      if (typeof userData.profile_image === 'undefined' || userData.profile_image === '') {
+        console.info('userData.profile_image not found ' + userData.profile_image + ' && userData.photoUrl ' + userData.photoUrl)
+        // userData.name = 'Talk User';
+        if (userData.photoUrl !== undefined && userData.photoUrl !== null && userData.photoUrl !== '') {
+          userData.profile_image = userData.photoUrl;
+        }
+      }
+
+      let userArr = {
+        id: userData.id,
+        name: userData.name,
+        email: userData.email,
+        // email: userData.username,
+        photoUrl: userData.profile_image,
+        welcomeMessage: null,
+        role: (userData.role == '1') ? "hidden" : "default",
+        // locale: this.localeFirstTime
+      };
+
+      if (typeof userArr.name === undefined || userArr.name == '') {
+        userArr.name = 'Talk User';
+      }
+
+
+
+      const currentUser = new Talk.User(userArr);
+      const otherUser = new Talk.User(otherUserData);
+
+      const session = new Talk.Session({ appId: 'tmI75KXB', me: currentUser });
+
+      const conversation = session.getOrCreateConversation(Talk.oneOnOneId(currentUser, otherUser));
+
+      conversation.setParticipant(currentUser);
+      conversation.setParticipant(otherUser);
+      // this.selectedConversationId = conversation.id;
+      const conversationId = Talk.oneOnOneId(currentUser, otherUser);
+      // session.updateUser(otherUser);
+      // this.selectedConversationId = conversationId;
+
+      let inbox;
+      const theme = localStorage.getItem('theme');
+      if (theme === 'dark') {
+        inbox = session.createInbox({ theme: 'dark_custom' });
+      } else {
+        inbox = session.createInbox();
+      }
+      inbox.select(conversation); // optional: opens the specific chat
+      inbox.mount(document.getElementById('talkjs-container'));
+
+      // if (conversation?.id) {
+      //   this.selectedConversationId = conversation.id;
+      // }
+    }
+  }
+
+  startChatWithUser1806(otherUserData: any) {
     console.log('Received User For Direct Chat', otherUserData);
 
     if (!otherUserData) {
