@@ -58,7 +58,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     private translateService: TranslateService,
     public webPages: WebPages,
     private titleService: TitleService,
-    private globalSettings: GlobalSettingsService,
+    public globalSettings: GlobalSettingsService,
     private socketService: SocketService
   ) { }
   activeTab: string = 'profile';

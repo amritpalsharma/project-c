@@ -111,8 +111,8 @@ export class PlayerDetailComponent implements OnInit {
       newStatus = 2;
     }
 
-    if(currentStatus == 1){
-       newStatus = 1;
+    if (currentStatus == 1) {
+      newStatus = 1;
     }
 
     this.userService.updateUserStatus([this.userId], newStatus).subscribe(response => {
@@ -231,7 +231,7 @@ export class PlayerDetailComponent implements OnInit {
 
         const dialogRef = this.dialog.open(ImageCropperComponent2, {
           width: '500px',
-          data: { imageUrl: imageData },
+          data: { imageUrl: imageData, action: 'profile_image' },
           disableClose: true
         });
 

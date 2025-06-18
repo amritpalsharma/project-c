@@ -297,7 +297,9 @@
                         </div>
                         <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'phone' | translate }}</h6>
-                          <h5 *ngIf="user.meta && user.meta.contact_number" class="title-1">{{user.meta.contact_number}}
+                          <h5 *ngIf="user.meta && user.meta.contact_number" class="title-1">
+                            <!-- {{user.meta.contact_number}} -->
+                             <a href="tel:{{globalSettings.getDialCodeByDomain()}} {{user.meta.contact_number}}" style="color:inherit">{{user.meta.contact_number}}</a>
                           </h5>
                           <!-- <h5 class="title-1" *ngIf="!user.meta || !user.meta.contact_number">NA</h5> -->
                         </div>

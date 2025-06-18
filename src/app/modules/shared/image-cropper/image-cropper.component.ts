@@ -25,11 +25,19 @@ export class ImageCropperComponent2 {
   offset = { x: 0, y: 0 };
   initialSize = 100;
 
+  // cover image
+  width: number = 600; // or dynamically set
+  height: number = 200; // e.g., 3:1 ratio
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<ImageCropperComponent2>
   ) {
     this.imageUrl = data.imageUrl;
+
+    if (this.data.action === 'cover_image') {
+      this.width = 600;
+      this.height = 200;
+    }
   }
 
   ngAfterViewChecked() {

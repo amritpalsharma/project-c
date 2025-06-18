@@ -714,25 +714,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.scoutService.uploadProfileImage(formData).subscribe(
 
       (response) => {
-
-        // if (response && response.status) {
-        //   this.profileImage = `${environment.url}uploads/${response.data.uploaded_fileinfo}`;
-        //   this.dataEmitter.emit(this.profileImage);  // Emit updated profile image
-        //   this.toastr.clear();
-        //   this.commonDataService.updateProfilePic(this.profileImage);
-
-        //   this.toastr.success(response.message);
-        // } else {
-        //   this.toastr.clear();
-        //   if(response.data.errors.profile_image != '' && response.data.errors.profile_image != undefined){
-        //     this.toastr.error(response.data.errors.profile_image);
-        //   }else{
-        //     this.toastr.error('Failed to upload profile image. Please try again.', 'Upload Failed');
-        //   }
-        //   console.error('Invalid API response structure:', response);
-        // }
-        // this.selectedFile = null;
-
         this.toastr.clear();
         if (response && response.status) {
           this.profileImage = `${environment.url}uploads/${response.data.uploaded_fileinfo}`;
@@ -804,7 +785,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
         const dialogRef = this.dialog.open(ImageCropperComponent2, {
           width: '500px',
-          data: { imageUrl: imageData },
+          data: { imageUrl: imageData, action: 'profile_image' },
           disableClose: true
         });
 
@@ -881,7 +862,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     console.log(this.selectedFile, input, input.files)
   }
 
-  onCoverFileChange(event: Event): void {
+  onCoverFileChange1(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       this.selectedFile = input.files[0];
@@ -925,6 +906,77 @@ export class DashboardComponent implements OnInit, OnDestroy {
       }
     }
   }
+
+  onCoverFileChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+
+    if (input.files && input.files.length > 0) {
+      const selectedFile = input.files[0];
+
+      if (!selectedFile.type.startsWith('image/')) {
+        this.toastr.error('Please select a valid image file.', 'Invalid File');
+        return;
+      }
+
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        const imageData = reader.result as string;
+
+        const dialogRef = this.dialog.open(ImageCropperComponent2, {
+          width: '1000px',
+          data: { imageUrl: imageData, action: 'cover_image' },
+          disableClose: true
+        });
+
+        dialogRef.afterClosed().subscribe((croppedImage) => {
+          if (croppedImage) {
+            console.log('Cropped Image:', croppedImage);
+            this.uploadCroppedCoverImage(croppedImage);
+          } else {
+            console.log('No cropped image returned');
+          }
+        });
+      };
+
+      reader.readAsDataURL(selectedFile);
+    } else {
+      console.error('No file selected');
+    }
+  }
+
+
+  uploadCroppedCoverImage(croppedImage: string): void {
+    // Convert the base64 cropped image to a Blob
+    const blob = this.dataURItoBlob(croppedImage);
+    const formData = new FormData();
+    formData.append('cover_image', blob, 'cropped-cover-image.png');
+
+    // Show a loading toast
+    // this.toastr.info(this.uploadingPhotos, this.pleaseWait, { disableTimeOut: true });
+    this.toastr.info("", this.pleaseWait, { disableTimeOut: true });
+
+    this.scoutService.uploadCoverImage(formData).subscribe(
+
+      (response) => {
+        this.toastr.clear();
+        if (response && response.status) {
+          this.coverImage = `${environment.url}uploads/${response.data.uploaded_fileinfo}`;
+          this.dataEmitter.emit(this.coverImage);  // Emit updated cover image
+          this.toastr.clear();
+          this.toastr.success(response.message);
+        } else {
+          this.toastr.error('Failed to upload profile image. Please try again.', 'Upload Failed');
+        }
+      },
+      (error) => {
+        this.toastr.clear();
+        this.toastr.error('An error occurred during upload. Please try again.', 'Upload Error');
+        console.error('Error uploading profile image:', error);
+      }
+    );
+  }
+
 
   deleteCoverImage(): void {
     // Set loading state and display info toast
