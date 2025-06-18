@@ -17,8 +17,9 @@ export class TalkService {
   constructor(private globalSettings: GlobalSettingsService) {
     let currentUserArr = localStorage.getItem('userData');
     if (typeof currentUserArr !== undefined && currentUserArr != '' && typeof currentUserArr == 'string') {
-      //   let parseArr = JSON.parse(currentUserArr);
-
+        let parseArr = JSON.parse(currentUserArr);
+        this.currentUser = parseArr;
+        console.info('this.currentUserthis.currentUser',this.currentUser)
       //   this.currentUser = new Talk.User({
       //     id: parseArr.id,
       //     name: parseArr.first_name + ' ' + parseArr.last_name,
@@ -132,7 +133,7 @@ export class TalkService {
         role: 'hidden'
       });
 
-      console.info('this.user',this.user);
+      console.info('this.user', this.user);
       conversation.setParticipant(this.user);
       conversation.setParticipant(otherUser);
       conversation.setParticipant(hiddenUser);
@@ -261,7 +262,7 @@ export class TalkService {
     this.currentLocale = locale;
   }
 
-  startChatWithUser(otherUserData: any) {
+  startChatWithUser180625(otherUserData: any) {
     console.log('Recived User For Chat to Direct Chat', otherUserData);
     if (otherUserData) {
       let userData;
@@ -280,9 +281,9 @@ export class TalkService {
       if (typeof userData.profile_image === 'undefined' || userData.profile_image === '') {
         console.info('userData.profile_image not found ' + userData.profile_image + ' && userData.photoUrl ' + userData.photoUrl)
         // userData.name = 'Talk User';
-        if (userData.photoUrl !== undefined && userData.photoUrl !== null && userData.photoUrl !== '') {
-          userData.profile_image = userData.photoUrl;
-        }
+        userData.profile_image = userData.photoUrl;
+        // if (userData.photoUrl !== undefined && userData.photoUrl !== null && userData.photoUrl !== '') {
+        // }
       }
 
       let userArr = {
@@ -292,7 +293,8 @@ export class TalkService {
         // email: userData.username,
         photoUrl: userData.profile_image,
         welcomeMessage: null,
-        role: (userData.role == '1') ? "hidden" : "default",
+        // role: (userData.role == '1') ? "hidden" : "default",
+        role: "default",
         locale: this.currentLocale
       };
 
@@ -326,6 +328,86 @@ export class TalkService {
       inbox.select(conversation); // optional: opens the specific chat
       inbox.mount(document.getElementById('talkjs-container'));
     }
+  }
+
+  private getCurrentUserData() {
+    console.info('Me ',this.currentUser);
+    // Return your actual current user data from state/service
+    return this.currentUser;
+  }
+
+  startChatWithUser(otherUserData: any) {
+    console.log('Received User For Direct Chat', otherUserData);
+
+    if (!otherUserData) {
+      console.error('No user data provided for chat');
+      return;
+    }
+
+    // Parse or normalize otherUserData
+    let otherUser;
+    try {
+      otherUser = typeof otherUserData === 'string'
+        ? JSON.parse(otherUserData)
+        : otherUserData;
+    } catch (e) {
+      console.error('Error parsing user data:', e);
+      otherUser = otherUserData;
+    }
+
+    // Normalize other user data
+    const normalizedOtherUser = {
+      id: otherUser.id,
+      name: otherUser.name || 'Talk User',
+      email: otherUser.email || '',
+      photoUrl: otherUser.profile_image || otherUser.photoUrl || '',
+    };
+
+    // Get current user data (assumed to be available in your component/service)
+    const currentUserData = this.getCurrentUserData(); // Implement this method
+    if (!currentUserData) {
+      console.error('Current user data not available');
+      return;
+    }
+
+    // Normalize current user data
+    const normalizedCurrentUser = {
+      id: currentUserData.id,
+      name: currentUserData.name || 'Talk User',
+      email: currentUserData.email || '',
+      photoUrl: currentUserData.profile_image || currentUserData.photoUrl || '',
+      welcomeMessage: null,
+      role: 'default',
+      locale: this.currentLocale
+    };
+
+    // Create TalkJS user objects
+    const talkCurrentUser = new Talk.User(normalizedCurrentUser);
+    const talkOtherUser = new Talk.User(normalizedOtherUser);
+
+    // Create session and conversation
+    const session = new Talk.Session({
+      appId: 'tmI75KXB',
+      me: talkCurrentUser
+    });
+
+    const conversationId = Talk.oneOnOneId(talkCurrentUser, talkOtherUser);
+    const conversation = session.getOrCreateConversation(conversationId);
+
+    // Add participants
+    conversation.setParticipant(talkCurrentUser);
+    conversation.setParticipant(talkOtherUser);
+
+    // Create and mount inbox
+    const inbox = session.createInbox({
+      theme: this.currentTheme === 'dark' ? 'dark_custom' : 'default'
+    });
+
+    // Mount before selecting conversation
+    inbox.mount(document.getElementById('talkjs-container'));
+
+    // Select conversation after mounting
+    inbox.select(conversation);
   }
 
 }
