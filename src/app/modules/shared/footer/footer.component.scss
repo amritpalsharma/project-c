@@ -14,7 +14,7 @@
   align-items: center;
   font-size: 12px;
   font-weight: 400;
-  padding-left: 10rem;
+  padding-left: 10px;
 }
 
 .footer-text {
@@ -41,6 +41,12 @@ padding-right: 10px;
   width: 1px;
   height: 100%;
   background: #858585;
+}
+}
+
+@media(min-width: 992px) {
+.center-copyright {
+  margin: 0 auto;
 }
 }
 

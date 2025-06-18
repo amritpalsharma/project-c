@@ -51,7 +51,7 @@ mat-datepicker-toggle {
 
 .form-group {
   margin-bottom: 26px;
-  padding: 0px 32px;
+  padding: 0px 15px;
 }
 
 .market_input-gap {
@@ -71,7 +71,7 @@ mat-datepicker-toggle {
 }
 
 .form-group input,
-.form-group select {
+.form-group select, .form-group textarea {
   width: 100%;
   padding: 14px;
   line-height: normal;

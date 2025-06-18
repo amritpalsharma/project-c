@@ -1,16 +1,29 @@
-.upgrade_unlock .unlock_btn {
-    padding: 12px 25px 10px !important;
-    font-size: 17px !important;
-    background: #6FB95D;
-    // padding: ;
-    font-weight: 700;
-    color: #fff;
-    border-radius: 10px;
-    border: none;
-    display: inline-block;
-    margin-top: 1rem;
+.unlock_page{
+    position: relative;
+    .upgrade_unlock svg{
+      margin-right: 6px;
+    }
+    .unlock_btn{
+      background: #6FB95D;
+      padding: 10px 24px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #fff;
+      border-radius: 10px;
+      border: none;
+    }
+    .upgrade_unlock{
+      height: 100%;
+      background: rgb(255 255 255 / 65%);
+      position: absolute;
+      width: 100%;
+      top: 0px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 }
-
 
 
 @media (min-width: 1600px) and (max-width: 2999px) {
