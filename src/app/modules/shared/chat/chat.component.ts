@@ -128,6 +128,9 @@ export class ChatComponent {
         //     me: me,
         //     locale: 'de'
         // });
+        
+
+
         this.session = new Talk.Session({
             appId: 'tmI75KXB',
             me: me,
@@ -137,6 +140,11 @@ export class ChatComponent {
         const conversation = this.session.getOrCreateConversation(
             Talk.oneOnOneId(me, other)
         );
+
+
+        conversation.on('messageSent', (message : any) => {
+            console.log('Message sent: ', message.text);
+        });
 
         conversation.setParticipant(me);
         conversation.setParticipant(other);

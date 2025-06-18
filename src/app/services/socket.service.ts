@@ -34,7 +34,7 @@ export class SocketService {
 
     let jsonData = localStorage.getItem("userData");
     let langId = localStorage.getItem("lang_id");
-    let userId;
+    let userId : any;
     if (jsonData && langId) {
       let userData = JSON.parse(jsonData);
       userId = userData.id;
@@ -48,6 +48,14 @@ export class SocketService {
       this.onlineUsers = data.onlineUsers;
       console.log('Updated online users:', this.onlineUsers);
     });
+
+    this.socket.on('sendMessage', (data: any) => {
+      let jsonData = localStorage.getItem("userData") || '';
+      let userData = JSON.parse(jsonData);
+      if(data?.senderId == userData.id){
+        this.socket.emit('sendMessage', data)
+      }
+    })
   }
 
   // Method to emit 'connectUser' event
