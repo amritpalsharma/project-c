@@ -25,22 +25,21 @@
           <input type="text" id="company_name" name="company_name" [(ngModel)]="company_name" required>
         </div>
 
-        <div class="form-group col-lg-6">
-          <label for="country">{{ 'country' | translate }}: </label>
-          <select name="user_nationalities" [(ngModel)]="country" id="" class="cupen-btn-1 form-select">
-            <option value="null" [selected]="!country">{{'select' | translate}}</option>
-            <option [value]="scout_country.id" *ngFor="let scout_country of this.countries"
-              [selected]="scout_country.id == scoutNation">{{scout_country.country_name}}</option>
-          </select>
-        </div>
-
-      </div>
-
-      <div class="row">
         <!-- Formation Date -->
         <div class="form-group col-lg-6">
           <label for="designation">{{ 'function' | translate }}: </label>
           <input type="text" id="designation" name="designation" [(ngModel)]="designation" required>
+        </div>
+
+        <div class="form-group col-lg-12">
+          <label for="address">{{ 'address' | translate }}: </label>
+          <textarea id="address" name="address" [(ngModel)]="address" required></textarea>
+        </div>
+
+         <!-- Zipcode -->
+        <div class="form-group col-lg-6">
+          <label for="zipcode">{{ 'zipCode' | translate }}: </label>
+          <input type="text" id="zipcode" name="zipcode" [(ngModel)]="zipcode" required>
         </div>
 
         <!-- City -->
@@ -49,34 +48,23 @@
           <input type="text" id="city" name="city" [(ngModel)]="city" required>
         </div>
 
-
-      </div>
-
-      <div class="row">
+        <div class="form-group col-lg-6">
+          <label for="country">{{ 'country' | translate }}: </label>
+          <select name="user_nationalities" [(ngModel)]="country" id="" class="cupen-btn-1 form-select">
+            <option value="null" [selected]="!country">{{'select' | translate}}</option>
+            <option [value]="scout_country.id" *ngFor="let scout_country of this.countries"
+              [selected]="scout_country.id == scoutNation">{{scout_country.country_name}}</option>
+          </select>
+        </div>
         <!-- Contact Number -->
         <div class="form-group col-lg-6">
           <label for="contact_number">{{ 'phone' | translate }}: </label>
           <input type="tel" id="contact_number" name="contact_number" [(ngModel)]="contact_number" required>
         </div>
-
         <!-- Website -->
         <div class="form-group col-lg-6">
           <label for="website">{{ 'website' | translate }}: </label>
           <input type="url" id="website" name="website" [(ngModel)]="website" required>
-        </div>
-
-        <!-- Zipcode -->
-        <div class="form-group col-lg-6">
-          <label for="zipcode">{{ 'zipCode' | translate }}: </label>
-          <input type="text" id="zipcode" name="zipcode" [(ngModel)]="zipcode" required>
-        </div>
-      </div>
-
-      <div class="row">
-        <!-- Address -->
-        <div class="form-group col-lg-12">
-          <label for="address">{{ 'address' | translate }}: </label>
-          <textarea id="address" name="address" [(ngModel)]="address" required></textarea>
         </div>
       </div>
       <!-- Social media Locked View -->

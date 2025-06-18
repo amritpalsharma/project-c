@@ -272,7 +272,7 @@ button#explore_filter_mobile {
   }
   .player--bio-dtl {
     width: 100%;
-    height: 270px;
+    height: 260px;
     overflow: hidden;
     position: relative;
     &:before {
@@ -490,6 +490,23 @@ button#explore_filter_mobile {
 }
 
 
+@media (min-width: 1400px) and (max-width: 1599.98px) {
+    .player--item {
+        .player--bio-dtl {
+            height: 245px;
+        }
+    }
+}
+
+@media (min-width: 1080px) and (max-width: 1299.98px) {
+    .player--item {
+        .player--bio-dtl {
+            height: 235px;
+        }
+    }
+}
+
+
 @media (min-width: 2000px) {
 .flag_box {
         bottom: 62px !important;
@@ -514,7 +531,7 @@ button#explore_filter_mobile {
             padding: 8px 15px 6px;
         }
         .player--bio-dtl {
-            height: 390px;
+            height: 360px;
             padding-bottom: 0;
         }
         .player__name {

@@ -366,11 +366,12 @@ h1, h2, h3, strong {
     }
     .content_page li::before {
         top: 19px;
+        font-size: 45px;
     }
     .grey_common_banner {
         h3 {
-        font-size: 45px !important;
-        margin: 1.25rem 0 !important;
+            font-size: 45px !important;
+            margin: 1.25rem 0 !important;
         }
     }
 }
@@ -389,18 +390,19 @@ h1, h2, h3, strong {
     }
     .content_page li::before {
         top: 30px;
+        font-size: 60px;
     }
     .grey_common_banner {
-    margin-top: 240px;
-    padding: 80px 0;
-    h3 {
-      font-size: 55px !important;
-      margin: 1.5rem 0 !important;
+        margin-top: 240px;
+        padding: 80px 0;
+        h3 {
+            font-size: 55px !important;
+            margin: 1.5rem 0 !important;
+        }
+        .location-image img {
+            width: 50px !important;
+            height: 50px !important;
+            object-fit: contain;
+        }
     }
-    .location-image img {
-    width: 50px !important;
-    height: 50px !important;
-    object-fit: contain;
-  }
-}
 }
