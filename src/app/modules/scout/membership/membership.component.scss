@@ -47,8 +47,9 @@
   z-index: 999;
 }
 sub.premium-month_title {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 400;
+  white-space: nowrap;
 }
 .premium-card_box .col-lg-4{
   padding: 0px 8px;
@@ -115,6 +116,12 @@ button.premium-edit_btn,a.premium-edit_btn {
 }
 .table_slide{
   color: #8e8e8e;
+}
+
+.premium-card {
+  .flex_wrap {
+    flex-wrap: wrap;
+  }
 }
 
 @media (max-width:1024px) and (min-width:769px) {

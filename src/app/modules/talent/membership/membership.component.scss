@@ -60,6 +60,7 @@ sub.premium-month_title {
   font-size: 13px;
   font-weight: 400;
   bottom: -.1em;
+  white-space: nowrap;
 }
 
 .premium-card_box .col-lg-4 {
@@ -312,6 +313,11 @@ a.premium-edit_btn {
   margin: 5px 0;
 }
 
+.premium-card {
+  .flex_wrap {
+    flex-wrap: wrap;
+  }
+}
 
 
 @media (min-width: 1700px) {
