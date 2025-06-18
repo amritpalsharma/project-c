@@ -183,4 +183,24 @@ export class GlobalSettingsService {
   getDomainCurrency() {
     return this.domainCurrency;
   }
+
+  getDialCodeByDomain(): string {
+    const domain = window.location.hostname;
+    const domainExt = domain.endsWith('.co.uk') ? '.co.uk' : '.' + domain.split('.').pop();
+
+    const dialCodes: { [key: string]: string } = {
+      '.ch': '+41',
+      '.de': '+49',
+      '.it': '+39',
+      '.fr': '+33',
+      '.co.uk': '+44',
+      '.es': '+34',
+      '.pt': '+351',
+      '.be': '+32',
+      '.dk': '+45',
+      '.se': '+46'
+    };
+
+    return dialCodes[domainExt] || '+1'; // Default to +1 (USA) if no match
+  }
 }

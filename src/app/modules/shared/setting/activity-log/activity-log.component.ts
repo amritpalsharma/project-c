@@ -27,7 +27,8 @@ export class ActivityLogComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   idsToDelete: any = [];
-  selectActivityFirst:string='';
+  selectActivityFirst: string = '';
+  currentOffset: number = 0;
 
   constructor(
     private activityService: ActivityService,
@@ -57,6 +58,7 @@ export class ActivityLogComponent {
     this.isLoading = true;
 
     const page = this.paginator ? this.paginator.pageIndex * 10 : 0;
+
     const pageSize = this.paginator ? this.paginator.pageSize : 10;
     const sortOrder = this.sort ? this.sort.direction : 'asc';
     const sortField = this.sort ? this.sort.active : '';
@@ -65,16 +67,19 @@ export class ActivityLogComponent {
     params.offset = page;
     params.limit = pageSize;
     params.lang = localStorage.getItem('lang_id');
-
+    this.currentOffset = params.offset;
     try {
       this.activityService.getActivity(params).subscribe((response) => {
         if (response && response.status && response.data && response.data.userData) {
           this.activities = response.data.userData;
-          if(response.data.totalCount && response.data.totalCount > 0){
+          if (response.data.totalCount && response.data.totalCount > 0) {
             this.paginator.length = response.data.totalCount;
-          }else{
-             this.activities = [];
+            this.currentOffset = response.data.totalCount;
+          } else {
+            this.currentOffset = 0;
+            this.activities = [];
           }
+          // this.currentPage = this.paginator.pageIndex;
           this.isLoading = false;
         } else {
           this.activities = [];
