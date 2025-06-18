@@ -25,7 +25,7 @@ export class TalkService {
           id: parseArr.id,
           name: parseArr.first_name + ' ' + parseArr.last_name,
           email: parseArr.email,
-          photoUrl: parseArr.meta.profile_image_path,
+          photoUrl: parseArr?.meta?.profile_image_path,
           role: 'default',
         };
       } else {

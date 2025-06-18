@@ -642,3 +642,27 @@ button:focus-visible{
     text-align: left;
   }
 }
+
+
+.buy-btn {
+  background: #6FB95D;
+  padding: 10px 14px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 16px;
+}
+
+.buy-button h4,
+.buy-button p {
+  color: #fff;
+  font-weight: 400;
+  text-align: left;
+}
+
+.buy-button h4 {
+  font-size: 14px !important;
+}
+
+.buy-button p {
+  font-size: 12px !important;
+}

@@ -128,7 +128,7 @@ export class PlanComponent implements OnInit, OnDestroy {
     this.getBoosterData()
     this.stripe = await this.paymentService.getStripe();
     this.loggedInUser = JSON.parse(this.loggedInUser || '{}');
-    this.getBoosterData();
+    // this.getBoosterData();
     this.loadFeatures();
     this.langSubscription = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
       this.loadFeatures(); // Reload features when the language changes
@@ -796,7 +796,7 @@ export class PlanComponent implements OnInit, OnDestroy {
   }
 
   getJsonTranslations() {
-    this.translate.get(['plans', 'boostProfile']).subscribe((translations) => {
+    this.translate.get(['plans', 'boostProfile', 'premium']).subscribe((translations) => {
       this.pageTitle = translations['plans'];
       this.boostProfileTxt = translations['boostProfile'];
       this.premiumPlanTxt = translations['premium'];

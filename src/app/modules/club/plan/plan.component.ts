@@ -16,6 +16,7 @@ import { ScoutService } from '../../../services/scout.service';
 import { EditPlanComponent } from '../../shared/edit-plan/edit-plan.component';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { TitleService } from '../../../title.service';
+import { PremiumPurchaseComponent } from '../../shared/premium-purchase/premium-purchase.component';
 
 
 interface Plan {
@@ -42,7 +43,7 @@ export class PlanComponent implements OnInit, OnDestroy {
   isPremiumPurchased: string = '';
   // premiumMonthlyPackageId: number = 0;
   // premiumYearlyPackageId: number = 0;
-  premiumPurchased:any=0;
+  premiumPurchased: any = 0;
   // End Code By Amrit
   premiumFeatures: any;
   multiCountryPlanDesc: any;
@@ -77,6 +78,7 @@ export class PlanComponent implements OnInit, OnDestroy {
   pleaseWait: string = '';
   Processing: string = '';
   successTxt: string = '';
+  premiumPlanTxt: string = '';
   constructor(
     private ScoutService: ScoutService,
     private paymentService: PaymentService,
@@ -117,8 +119,16 @@ export class PlanComponent implements OnInit, OnDestroy {
         return;
       }
     }
-    const dialogRef = this.dialog.open(CouponCodeAlertComponent, {
-      width: '500px'
+    const dialogRef = this.dialog.open(PremiumPurchaseComponent, {
+      // width: '500px'
+      width: '600px',
+      panelClass: 'all_plan_popups',
+      data: {
+        action: 'premiumPlan',
+        planName: this.premiumPlanTxt,
+        isYearly: this.premiumPlans.isYearly,
+        premiumPlans: this.premiumPlans
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -607,11 +617,12 @@ export class PlanComponent implements OnInit, OnDestroy {
   }
 
   getJsonTranslations() {
-    this.translate.get(['plans', 'pleaseWait', 'Processing', 'success!']).subscribe((translations) => {
+    this.translate.get(['plans', 'pleaseWait', 'Processing', 'success!', 'premium']).subscribe((translations) => {
       this.pageTitle = translations['plans'];
       this.pleaseWait = translations['pleaseWait'];
       this.Processing = translations['Processing'];
       this.successTxt = translations['success!'];
+      this.premiumPlanTxt = translations['premium'];
       this.titleService.setTitle(this.pageTitle);
       console.log('Title fetch Function Fired');
     })
