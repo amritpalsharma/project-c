@@ -1265,6 +1265,9 @@ mat-datepicker-toggle button {
 }
 
 @media (max-width: 991px) {
+body.body-overflow {
+    overflow: hidden;
+}
 .page-sidebar {
     overflow-y: auto;
     overflow-x: hidden;
