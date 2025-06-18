@@ -17,20 +17,28 @@ export class TalkService {
   constructor(private globalSettings: GlobalSettingsService) {
     let currentUserArr = localStorage.getItem('userData');
     if (typeof currentUserArr !== undefined && currentUserArr != '' && typeof currentUserArr == 'string') {
-      //   let parseArr = JSON.parse(currentUserArr);
+      let parseArr = JSON.parse(currentUserArr);
+      this.currentUser = parseArr;
 
-      //   this.currentUser = new Talk.User({
-      //     id: parseArr.id,
-      //     name: parseArr.first_name + ' ' + parseArr.last_name,
-      //     email: parseArr.email,
-      //     photoUrl: parseArr.meta.profile_image_path,
-      //     role: 'default',
-      //   });
+      if (this.currentUser?.role && this.currentUser?.role == 2) {
+        this.currentUser = {
+          id: parseArr.id,
+          name: parseArr.first_name + ' ' + parseArr.last_name,
+          email: parseArr.email,
+          photoUrl: parseArr?.meta?.profile_image_path,
+          role: 'default',
+        };
+      } else {
+
+      }
+      this.currentUser = {};
+      console.info('this.currentUserthis.currentUser', this.currentUser)
+      //   
     }
 
   }
   matPrimary = false;
-  currentTheme: any = localStorage.getItem('theme') ? localStorage.getItem('theme') : 'dark_custom';
+  currentTheme: any = localStorage.getItem('theme') == 'light' ? 'default' : 'dark_custom';
   currentLocale: string = localStorage.getItem('lang') || this.globalSettings.getLanguage();
   otherUserDataArr: any;
 
@@ -74,6 +82,12 @@ export class TalkService {
   // }
 
   async init(userData: any): Promise<Talk.Session> {
+    let themeFirstTym;
+    if (this.currentTheme === 'dark') {
+      themeFirstTym = 'dark_custom';
+    } else {
+      themeFirstTym = 'default';
+    }
     await Talk.ready;
 
     const talkUser = new Talk.User({
@@ -84,15 +98,16 @@ export class TalkService {
       welcomeMessage: null,
       role: userData.role == '1' ? 'hidden' : 'default',
       locale: this.currentLocale,
-
+      // theme: themeFirstTym
     });
 
     this.user = talkUser;
     this.session = new Talk.Session({
       appId: 'tmI75KXB',
       me: this.user,
+      // theme: themeFirstTym
     });
-
+    this.toggleTheme30042025(this.currentTheme)
     return this.session;
   }
 
@@ -105,9 +120,9 @@ export class TalkService {
         return;
       }
 
-      console.log('user recived to create converstaion ', photoUrl);
-      photoUrl = photoUrl + '?' + Math.random();
+      // photoUrl = photoUrl + '?' + Math.random();
       let userArr = { id: id, name: name, email: email, photoUrl: photoUrl };
+      console.info('user recived to create converstaion ', userArr);
       const otherUser = new Talk.User({
         id: id,
         name: name,
@@ -125,7 +140,7 @@ export class TalkService {
         role: 'hidden'
       });
 
-
+      console.info('this.user', this.user);
       conversation.setParticipant(this.user);
       conversation.setParticipant(otherUser);
       conversation.setParticipant(hiddenUser);
@@ -137,7 +152,13 @@ export class TalkService {
 
       // ✅ Only create inbox once
       if (!this.inbox) {
-        this.inbox = this.session.createInbox();
+
+        // this.inbox = this.session.createInbox();
+        if (this.currentTheme === 'dark') {
+          this.inbox = this.session.createInbox({ theme: 'dark_custom' });
+        } else {
+          this.inbox = this.session.createInbox({ theme: 'default' });
+        }
         this.inbox.mount(document.getElementById('talkjs-container') as HTMLElement);
       }
       // ✅ Just select conversation if inbox already exists
@@ -210,15 +231,119 @@ export class TalkService {
   toggleTheme(isDark: boolean) {
     let theme = isDark ? 'dark' : 'light';
     localStorage.setItem('theme', theme);
-    // this.currentTheme = isDark ? 'dark_custom' : 'light';
+    this.currentTheme = isDark ? 'dark_custom' : 'light';
+
+    if (!this.session) {
+      console.error('TalkJS session not initialized');
+      return;
+    }
+    if (this.inbox) {
+      this.inbox.destroy();
+    }
+    this.inbox = this.session.createInbox({
+      theme: isDark ? 'dark_custom' : 'default'
+    });
+
+    // Optionally re-mount immediately or allow the component to handle mounting
+    this.inbox.mount(document.getElementById('talkjs-container') as HTMLElement);
+
+  }
+
+  toggleTheme30042025(currentTheme: string): void {
+    if (!this.session) {
+      console.error('TalkJS session not initialized');
+      return;
+    }
+    if (this.inbox) {
+      this.inbox.destroy();
+    }
+    this.inbox = this.session.createInbox({
+      theme: currentTheme
+    });
+
+    // Optionally re-mount immediately or allow the component to handle mounting
+    this.inbox.mount(document.getElementById('talkjs-container') as HTMLElement);
   }
 
   changeLocale(locale: string) {
     this.currentLocale = locale;
   }
 
-  startChatWithUser(otherUserData: any) {
+  startChatWithUser180625(otherUserData: any) {
     console.log('Recived User For Chat to Direct Chat', otherUserData);
+    if (otherUserData) {
+      let userData;
+      // let userData = JSON.parse(otherUserData);
+      try {
+        userData = JSON.parse(otherUserData);
+      } catch (e) {
+        userData = otherUserData;
+      }
+      // console.info('User Recived In Talk js servie ', userData);
+      let chatPersonName = '';
+      if (typeof userData.name === 'undefined' || userData.name === '') {
+        userData.name = 'Talk User';
+      }
+
+      if (typeof userData.profile_image === 'undefined' || userData.profile_image === '') {
+        console.info('userData.profile_image not found ' + userData.profile_image + ' && userData.photoUrl ' + userData.photoUrl)
+        // userData.name = 'Talk User';
+        userData.profile_image = userData.photoUrl;
+        // if (userData.photoUrl !== undefined && userData.photoUrl !== null && userData.photoUrl !== '') {
+        // }
+      }
+
+      let userArr = {
+        id: userData.id,
+        name: userData.name,
+        email: userData.email,
+        // email: userData.username,
+        photoUrl: userData.profile_image,
+        welcomeMessage: null,
+        // role: (userData.role == '1') ? "hidden" : "default",
+        role: "default",
+        locale: this.currentLocale
+      };
+
+      if (typeof userArr.name === undefined || userArr.name == '') {
+        userArr.name = 'Talk User';
+      }
+
+
+
+      const currentUser = new Talk.User(userArr);
+      const otherUser = new Talk.User(otherUserData);
+
+      const session = new Talk.Session({ appId: 'tmI75KXB', me: currentUser });
+
+      const conversation = session.getOrCreateConversation(Talk.oneOnOneId(currentUser, otherUser));
+
+      conversation.setParticipant(currentUser);
+      conversation.setParticipant(otherUser);
+      // this.selectedConversationId = conversation.id;
+      const conversationId = Talk.oneOnOneId(currentUser, otherUser);
+      // session.updateUser(otherUser);
+      // this.selectedConversationId = conversationId;
+
+      let inbox;
+      // const theme = localStorage.getItem('theme');
+      if (this.currentTheme === 'dark') {
+        inbox = session.createInbox({ theme: 'dark_custom' });
+      } else {
+        inbox = session.createInbox({ theme: 'default' });
+      }
+      inbox.select(conversation); // optional: opens the specific chat
+      inbox.mount(document.getElementById('talkjs-container'));
+    }
+  }
+
+  private getCurrentUserData() {
+    console.info('Me ', this.currentUser);
+    // Return your actual current user data from state/service
+    return this.currentUser;
+  }
+
+  startChatWithUser(otherUserData: any) {
     if (otherUserData) {
       let userData;
       // let userData = JSON.parse(otherUserData);
@@ -249,7 +374,7 @@ export class TalkService {
         photoUrl: userData.profile_image,
         welcomeMessage: null,
         role: (userData.role == '1') ? "hidden" : "default",
-        locale: this.currentLocale
+        // locale: this.localeFirstTime
       };
 
       if (typeof userArr.name === undefined || userArr.name == '') {
@@ -281,7 +406,85 @@ export class TalkService {
       }
       inbox.select(conversation); // optional: opens the specific chat
       inbox.mount(document.getElementById('talkjs-container'));
+
+      // if (conversation?.id) {
+      //   this.selectedConversationId = conversation.id;
+      // }
     }
+  }
+
+  startChatWithUser1806(otherUserData: any) {
+    console.log('Received User For Direct Chat', otherUserData);
+
+    if (!otherUserData) {
+      console.error('No user data provided for chat');
+      return;
+    }
+
+    // Parse or normalize otherUserData
+    let otherUser;
+    try {
+      otherUser = typeof otherUserData === 'string'
+        ? JSON.parse(otherUserData)
+        : otherUserData;
+    } catch (e) {
+      console.error('Error parsing user data:', e);
+      otherUser = otherUserData;
+    }
+
+    // Normalize other user data
+    const normalizedOtherUser = {
+      id: otherUser.id,
+      name: otherUser.name || 'Talk User',
+      email: otherUser.email || '',
+      photoUrl: otherUser.profile_image || otherUser.photoUrl || '',
+    };
+
+    // Get current user data (assumed to be available in your component/service)
+    const currentUserData = this.getCurrentUserData(); // Implement this method
+    if (!currentUserData) {
+      console.error('Current user data not available');
+      return;
+    }
+
+    // Normalize current user data
+    const normalizedCurrentUser = {
+      id: currentUserData.id,
+      name: currentUserData.name || 'Talk User',
+      email: currentUserData.email || '',
+      photoUrl: currentUserData.profile_image || currentUserData.photoUrl || '',
+      welcomeMessage: null,
+      role: 'default',
+      locale: this.currentLocale
+    };
+
+    // Create TalkJS user objects
+    const talkCurrentUser = new Talk.User(normalizedCurrentUser);
+    const talkOtherUser = new Talk.User(normalizedOtherUser);
+
+    // Create session and conversation
+    const session = new Talk.Session({
+      appId: 'tmI75KXB',
+      me: talkCurrentUser
+    });
+
+    const conversationId = Talk.oneOnOneId(talkCurrentUser, talkOtherUser);
+    const conversation = session.getOrCreateConversation(conversationId);
+
+    // Add participants
+    conversation.setParticipant(talkCurrentUser);
+    conversation.setParticipant(talkOtherUser);
+
+    // Create and mount inbox
+    const inbox = session.createInbox({
+      theme: this.currentTheme === 'dark' ? 'dark_custom' : 'default'
+    });
+
+    // Mount before selecting conversation
+    inbox.mount(document.getElementById('talkjs-container'));
+
+    // Select conversation after mounting
+    inbox.select(conversation);
   }
 
 }

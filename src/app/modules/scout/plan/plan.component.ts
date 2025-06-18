@@ -6,7 +6,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import { environment } from '../../../../environments/environment';
 import { PaymentService } from '../../../services/payment.service';
 import { MessagePopupComponent } from '../../shared/message-popup/message-popup.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AddBoosterComponent } from './add-booster-profile/add-booster.component';
 import { CouponCodeAlertComponent } from '../../shared/coupon-code-alert/coupon-code-alert.component';
 import { ToastrService } from 'ngx-toastr';
@@ -17,6 +17,7 @@ import { EditPlanComponent } from '../../shared/edit-plan/edit-plan.component';
 import { TitleService } from '../../../title.service';
 import { WebPages } from '../../../services/webpages.service';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
+import { PremiumPurchaseComponent } from '../../shared/premium-purchase/premium-purchase.component';
 
 
 interface Plan {
@@ -98,6 +99,7 @@ export class PlanComponent implements OnInit, OnDestroy {
   countryYearlyArr: PackageObject | null = null;
   countryPlanPrice: any;
   youHaveAlreadyThisPlan: string = '';
+  premiumPlanTxt: string = '';
 
   langSubscription!: Subscription;
 
@@ -110,6 +112,7 @@ export class PlanComponent implements OnInit, OnDestroy {
     private translateService: TranslateService,
     private titleService: TitleService,
     private webpages: WebPages,
+    private router: Router
   ) { }
 
   async ngOnInit() {
@@ -171,17 +174,34 @@ export class PlanComponent implements OnInit, OnDestroy {
     }
     console.log('this.premiumPlans', this.premiumPlans);
 
-    const dialogRef = this.dialog.open(CouponCodeAlertComponent, {
-      width: '500px'
+    const dialogRef = this.dialog.open(PremiumPurchaseComponent, {
+      // width: '500px'
+      width: '600px',
+      panelClass: 'all_plan_popups',
+      data: {
+        action: 'premiumPlan',
+        planName: this.premiumPlanTxt,
+        isYearly: this.premiumPlans.isYearly,
+        premiumPlans: this.premiumPlans
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.warn(result);
-      if (result == 'proceed_to_checkout_without_coupon') {
+      // console.warn(result);
+      // if (result == 'proceed_to_checkout_without_coupon') {
+      //   this.redirectToCheckout(planId);
+      // } else if (result && result != null) {
+      //   this.isCouponApplied = true; // Show that the coupon has been applied
+      //   this.couponCode = result; // Store the coupon code entered by the user
+      //   this.redirectToCheckout(planId);
+      // }
+      if (result && typeof result.coupon_code != undefined && result.coupon_code != '') {
+        this.isCouponApplied = true;
+        this.couponCode = result.coupon_code;
         this.redirectToCheckout(planId);
-      } else if (result && result != null) {
-        this.isCouponApplied = true; // Show that the coupon has been applied
-        this.couponCode = result; // Store the coupon code entered by the user
+      } else if (result == 'buy_plan') {
+        this.isCouponApplied = false;
+        this.couponCode = '';
         this.redirectToCheckout(planId);
       }
     });
@@ -670,13 +690,34 @@ export class PlanComponent implements OnInit, OnDestroy {
     });
   }
 
-  addBoostPopup(planId: any) {
-    // ((boostedPlans?.active_interval=='monthly' && !boostedPlans.isYearly) || boostedPlans?.active_interval=='yearly')
+  // addBoostPopup(planId: any) {
+  //   // ((boostedPlans?.active_interval=='monthly' && !boostedPlans.isYearly) || boostedPlans?.active_interval=='yearly')
 
+  //   const dialogRef = this.dialog.open(AddBoosterComponent, {
+  //     width: '850px',
+  //     data: {
+  //       id: planId,
+  //     }
+  //   });
+
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     if (result) {
+  //       console.log('Selected Audience IDs received:', result);
+  //     }
+  //   });
+  // }
+
+  addBoostPopup(planId: any) {
+    // alert(planId);
+    // console.log(this.boostedPlans)
+    // return;
     const dialogRef = this.dialog.open(AddBoosterComponent, {
       width: '850px',
+      panelClass: 'all_plan_memersbhip_popup',
       data: {
         id: planId,
+        plan: this.booster,
+        boostedPlans: this.boostedPlans
       }
     });
 
@@ -729,6 +770,10 @@ export class PlanComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        // this.getBoosterData()
+        if (result.action == 'redirect' && result.redirect_path != '' && result.user_id != '') {
+          this.router.navigate([result.redirect_path + '/', result.user_id]);
+        }
         this.getBoosterData()
         // alert('Booster profile updated')
       }
@@ -760,9 +805,10 @@ export class PlanComponent implements OnInit, OnDestroy {
   }
 
   getJsonTranslations() {
-    this.translateService.get(['plans']).subscribe((translations) => {
+    this.translateService.get(['plans', 'premium']).subscribe((translations) => {
       this.pageTitle = translations['plans'];
       this.titleService.setTitle(this.pageTitle);
+      this.premiumPlanTxt = translations['premium'];
       console.log('Title fetch Function Fired');
     })
   }

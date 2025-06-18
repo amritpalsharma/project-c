@@ -35,7 +35,7 @@
           <label for="clubCountry">{{ 'country' | translate }}:</label>
           <select class="cupen-btn-1 form-select" aria-label="Default select example" [(ngModel)]="nationality"
             name="nationality" disabled id="clubCountry">
-            <option value="">{{ 'select' | translate }}</option>
+            <option value="" *ngIf="!nationality" selected>{{ 'select' | translate }}</option>
             <option *ngFor="let option of countries" [value]="option.id" [selected]="nationality === option.id">
               {{option.country_name}}
             </option>

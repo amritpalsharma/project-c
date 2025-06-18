@@ -122,6 +122,7 @@ export class ChatPopupComponent {
   }
 
   isThisClub(role_name: string): boolean {
+    role_name = role_name.toLowerCase();
     const clubRoles = ['club', 'clube', 'klub', 'klubb'];
 
     // return clubRoles.includes(role_name);  

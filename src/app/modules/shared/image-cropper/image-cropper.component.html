@@ -1,4 +1,4 @@
-<div class="cropper_popup">
+<div class="cropper_popup" *ngIf="data.action == 'profile_image'">
     <div class="crop-container" #container>
         <!-- <img #imageElement [src]="imageUrl" [style.transform]="'translate(' + pos.x + 'px,' + pos.y + 'px)'" class="draggable-image" draggable="false"/> -->
         <div style="position: relative;">
@@ -37,5 +37,47 @@
     <div class="actions text-center mb-0 mt-3">
         <button (click)="cropImage()" class="btn save_button">{{'upload' | translate}}</button>
         <button (click)="cancel()" class="btn puse-btn">{{'cancel' | translate}}</button>
+    </div>
+</div>
+
+<!-- COVER IMAGE BY AMRIT -->
+<div class="cropper_popup" *ngIf="data.action == 'cover_image'">
+    <div class="crop-container" #container>
+        <div style="position: relative;">
+            <img #imageElement [src]="imageUrl" class="draggable-image" draggable="false" />
+
+            <div class="crop-box cover-crop-box" #cropBox [ngStyle]="{
+                    top: pos.y + 'px',
+                    left: pos.x + 'px',
+                    width: width + 'px',
+                    height: height + 'px',
+                    cursor: isDragging ? 'move' : 'auto'
+                }" (mousedown)="startDrag($event)" (touchstart.passive)="false"
+                (touchstart)="onTouchStartDrag($event)">
+
+                <div class="crop-grid">
+                    <div class="line v-line" style="left: 33.33%;"></div>
+                    <div class="line v-line" style="left: 66.66%;"></div>
+
+                    <div class="line h-line" style="top: 33.33%;"></div>
+                    <div class="line h-line" style="top: 66.66%;"></div>
+                </div>
+
+                <div class="crop-center">+</div>
+
+                <div class="resize-handle bottom-right" (mousedown)="startResize($event)" (touchstart.passive)="false"
+                    (touchstart)="onTouchStartResize($event)">
+                </div>
+
+                <div class="resize-handle bottom-right2" (mousedown)="startResize($event)" (touchstart.passive)="false"
+                    (touchstart)="onTouchStartResize($event)">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="actions text-center mb-0 mt-3">
+        <button (click)="cropImage()" class="btn save_button">{{ 'upload' | translate }}</button>
+        <button (click)="cancel()" class="btn puse-btn">{{ 'cancel' | translate }}</button>
     </div>
 </div>

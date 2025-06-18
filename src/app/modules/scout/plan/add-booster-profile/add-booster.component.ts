@@ -21,7 +21,7 @@ export class AddBoosterComponent {
   scout: string = '';
   club: string = '';
   // @Input() 
-  audiences : any[] = [
+  audiences: any[] = [
     { role: this.club, id: 2 },
     { role: this.scout, id: 3 },
     { role: this.talent, id: 4 },
@@ -29,14 +29,16 @@ export class AddBoosterComponent {
   selectedAudienceIds: number[] = []; // Store only audience IDs
   id: any;
   loggedInUser: any = localStorage.getItem('userInfo');
-  theme : any = localStorage.getItem('theme');
-  userNationality : string = '';
+  theme: any = localStorage.getItem('theme');
+  userNationality: string = '';
 
   pleaseWait: string = '';
   Processing: string = '';
 
-  hide : boolean = true;
-
+  hide: boolean = true;
+  boostedPlans: any;
+  plan: any;
+  planPrice: string = '';
   constructor(
     public dialogRef: MatDialogRef<AddBoosterComponent>,
     public scoutService: ScoutService,
@@ -46,16 +48,30 @@ export class AddBoosterComponent {
     private webPages: WebPages,
     private translateService: TranslateService,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+  ) { }
 
   async ngOnInit() {
+    // this.loggedInUser = JSON.parse(this.loggedInUser);
+    // let userNationalities = JSON.parse(this.loggedInUser?.user_nationalities);
+
+    // if(userNationalities){
+    //   this.userNationality = userNationalities[0]?.flag_path ? userNationalities[0]?.flag_path : '';
+    // }
+    // this.id = this.data.id || [];
+    this.theme = localStorage.getItem('theme');
+
     this.loggedInUser = JSON.parse(this.loggedInUser);
     let userNationalities = JSON.parse(this.loggedInUser?.user_nationalities);
-    
-    if(userNationalities){
+    if (userNationalities && typeof userNationalities != undefined) {
       this.userNationality = userNationalities[0]?.flag_path ? userNationalities[0]?.flag_path : '';
     }
+    console.warn('this.data', this.data);
     this.id = this.data.id || [];
+    this.plan = this.data.plan;
+    this.boostedPlans = this.data.boostedPlans;
+    if (typeof this.boostedPlans?.isYearly !== undefined) {
+      this.toggleBillingPlan(this.boostedPlans?.isYearly);
+    }
     this.stripe = await this.paymentService.getStripe();
 
     this.theme = localStorage.getItem('theme');
@@ -110,7 +126,7 @@ export class AddBoosterComponent {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         let coupon = null;
-        if(result !== 'proceed_to_checkout_without_coupon'){
+        if (result !== 'proceed_to_checkout_without_coupon') {
           coupon = result;
         }
         this.redirectToCheckout(this.id, this.selectedAudienceIds, coupon);
@@ -126,7 +142,7 @@ export class AddBoosterComponent {
 
     try {
       const response = await this.paymentService.createCheckoutSession(planId, booster_audience.join(','), coupon).toPromise();
-      
+
       if (response?.data?.payment_intent?.id) {
         const stripe = await this.stripe;
         await stripe?.redirectToCheckout({ sessionId: response.data.payment_intent.id });
@@ -167,7 +183,20 @@ export class AddBoosterComponent {
     });
   }
 
-  close(){
+  close() {
     this.dialogRef.close();
+  }
+
+
+  toggleBillingPlan(isYearly: boolean) {
+    this.boostedPlans.isYearly = isYearly;
+    // this.boostedPlans
+    if (isYearly) {
+      this.id = this.boostedPlans?.yearly?.id;
+      this.planPrice = this.boostedPlans?.yearly?.price;
+    } else {
+      this.id = this.boostedPlans?.monthly?.id;
+      this.planPrice = this.boostedPlans?.monthly?.price;
+    }
   }
 }

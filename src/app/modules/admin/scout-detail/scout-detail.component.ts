@@ -325,7 +325,7 @@ export class ScoutDetailComponent implements OnInit {
 
         const dialogRef = this.dialog.open(ImageCropperComponent2, {
           width: '500px',
-          data: { imageUrl: imageData },
+          data: { imageUrl: imageData, action: 'profile_image' },
           disableClose: true
         });
 

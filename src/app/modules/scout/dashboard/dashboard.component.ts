@@ -53,7 +53,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     private translateService: TranslateService,
     public webPages: WebPages,
     private titleService: TitleService,
-    private globalSettings: GlobalSettingsService,
+    public globalSettings: GlobalSettingsService,
     private socketService: SocketService
   ) { }
   activeTab: string = 'profile';
@@ -804,7 +804,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
         const dialogRef = this.dialog.open(ImageCropperComponent2, {
           width: '500px',
-          data: { imageUrl: imageData },
+          data: { imageUrl: imageData, action:'profile_image' },
           disableClose: true
         });
 

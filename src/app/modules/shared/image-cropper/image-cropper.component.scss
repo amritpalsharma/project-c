@@ -23,7 +23,8 @@
   position: relative;
   // width: 100%;
 
-  width: fit-content; /* Fit to the image width */
+  width: fit-content;
+  /* Fit to the image width */
   max-width: 100%;
 
   margin: auto;
@@ -50,39 +51,31 @@
 
     /* This creates a transparent square over the crop box */
     mask:
-      linear-gradient(
-        to bottom,
+      linear-gradient(to bottom,
         black calc(var(--crop-y, 50%) - var(--crop-size, 200px) / 2),
         transparent calc(var(--crop-y, 50%) - var(--crop-size, 200px) / 2),
         transparent calc(var(--crop-y, 50%) + var(--crop-size, 200px) / 2),
-        black calc(var(--crop-y, 50%) + var(--crop-size, 200px) / 2)
-      ),
-      linear-gradient(
-        to right,
+        black calc(var(--crop-y, 50%) + var(--crop-size, 200px) / 2)),
+      linear-gradient(to right,
         black calc(var(--crop-x, 50%) - var(--crop-size, 200px) / 2),
         transparent calc(var(--crop-x, 50%) - var(--crop-size, 200px) / 2),
         transparent calc(var(--crop-x, 50%) + var(--crop-size, 200px) / 2),
-        black calc(var(--crop-x, 50%) + var(--crop-size, 200px) / 2)
-      );
+        black calc(var(--crop-x, 50%) + var(--crop-size, 200px) / 2));
     -webkit-mask:
-      linear-gradient(
-        to bottom,
+      linear-gradient(to bottom,
         black calc(var(--crop-y, 50%) - var(--crop-size, 200px) / 2),
         transparent calc(var(--crop-y, 50%) - var(--crop-size, 200px) / 2),
         transparent calc(var(--crop-y, 50%) + var(--crop-size, 200px) / 2),
-        black calc(var(--crop-y, 50%) + var(--crop-size, 200px) / 2)
-      ),
-      linear-gradient(
-        to right,
+        black calc(var(--crop-y, 50%) + var(--crop-size, 200px) / 2)),
+      linear-gradient(to right,
         black calc(var(--crop-x, 50%) - var(--crop-size, 200px) / 2),
         transparent calc(var(--crop-x, 50%) - var(--crop-size, 200px) / 2),
         transparent calc(var(--crop-x, 50%) + var(--crop-size, 200px) / 2),
-        black calc(var(--crop-x, 50%) + var(--crop-size, 200px) / 2)
-      );
-    
+        black calc(var(--crop-x, 50%) + var(--crop-size, 200px) / 2));
+
     mask-composite: unset;
     -webkit-mask-composite: unset;
-  // }
+    // }
 
 
     //   mask:
@@ -115,10 +108,10 @@
     //     black calc(var(--crop-x, 50%) + var(--crop-size, 200px) / 2),
     //     transparent calc(var(--crop-x, 50%) + var(--crop-size, 200px) / 2)
     //   );
-    
+
     // mask-composite: intersect;
     // -webkit-mask-composite: destination-in;
-    
+
   }
 }
 
@@ -141,7 +134,8 @@
 
 .crop-container img {
   max-width: 100%;
-  max-height: 80vh; /* Limit height to 80% of viewport height */
+  max-height: 80vh;
+  /* Limit height to 80% of viewport height */
   height: auto;
   width: auto;
   display: block;
@@ -201,19 +195,15 @@
 .crop-grid::after {
   content: '';
   position: absolute;
-  background-image: repeating-linear-gradient(
-    to right,
-    transparent,
-    transparent calc(33.33% - 1px),
-    white 0,
-    transparent 1px
-  ), repeating-linear-gradient(
-    to bottom,
-    transparent,
-    transparent calc(33.33% - 1px),
-    white 0,
-    transparent 1px
-  );
+  background-image: repeating-linear-gradient(to right,
+      transparent,
+      transparent calc(33.33% - 1px),
+      white 0,
+      transparent 1px), repeating-linear-gradient(to bottom,
+      transparent,
+      transparent calc(33.33% - 1px),
+      white 0,
+      transparent 1px);
   width: 100%;
   height: 100%;
   pointer-events: none;
@@ -248,4 +238,9 @@
   height: 4px;
   bottom: -3px;
   right: -3px;
+}
+
+.cover-crop-box {
+  border: 2px dashed #ffffff;
+  box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.5);
 }
