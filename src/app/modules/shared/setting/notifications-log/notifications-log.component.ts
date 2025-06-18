@@ -70,6 +70,7 @@ export class NotificationsLogComponent {
     return true;
   }
 
+  totalRecords: number = 0;
   fetchNotifications(): void {
     let jsonData = localStorage.getItem("userData");
     let userId;
@@ -96,6 +97,7 @@ export class NotificationsLogComponent {
         } else if (response.total_count == 0) {
           this.notifications = [];
         }
+        this.totalRecords = response.total_count;
         this.isLoading = false;
 
       }

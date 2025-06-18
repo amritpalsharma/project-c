@@ -3,6 +3,8 @@ import { WebPages } from '../../../services/webpages.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ShareService } from '../../../services/share.service';
 import { TranslateService } from '@ngx-translate/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-detail-pages',
@@ -11,6 +13,7 @@ import { TranslateService } from '@ngx-translate/core';
   // encapsulation: ViewEncapsulation.None
 })
 export class DetailPagesComponent {
+  htmlContent!: SafeHtml;
   id!: string;
   news: any = [{ content: '', title: '', featured_image: '', created_at: '' }]
   moreNews: any = [];
@@ -28,7 +31,9 @@ export class DetailPagesComponent {
     private route: ActivatedRoute,
     private router: Router,
     private webPages: WebPages,
-    private translateService: TranslateService) { }
+    private translateService: TranslateService,
+    private sanitizer: DomSanitizer
+  ) { }
 
   ngOnInit() {
     // Initially, all ads are visible
@@ -43,7 +48,7 @@ export class DetailPagesComponent {
     this.webPages.languageId$.subscribe((data) => {
       this.currentLang = data;
       this.getPageData(data);
-       this.getTranslation();
+      this.getTranslation();
     });
 
   }
@@ -61,6 +66,7 @@ export class DetailPagesComponent {
         this.news = res.data.news;
         this.moreNews = res.data.moreNews;
         this.news.featured_image = res.data.news_img_path + res.data.news.featured_image;
+        this.news.content = this.sanitizer.bypassSecurityTrustHtml(this.news.content);
       } else {
         this.moreNews = [];
         this.news = [];

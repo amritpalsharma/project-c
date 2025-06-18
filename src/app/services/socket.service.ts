@@ -48,6 +48,16 @@ export class SocketService {
       this.onlineUsers = data.onlineUsers;
       console.log('Updated online users:', this.onlineUsers);
     });
+
+    // Hemant Code
+    this.socket.on('sendMessage', (data: any) => {
+      let jsonData = localStorage.getItem("userData") || '';
+      let userData = JSON.parse(jsonData);
+      if (data?.senderId == userData.id) {
+        this.socket.emit('sendMessage', data)
+      }
+    })
+
   }
 
   // Method to emit 'connectUser' event
