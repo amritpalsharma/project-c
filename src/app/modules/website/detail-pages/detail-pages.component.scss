@@ -584,3 +584,24 @@ img.banner-image {
     top: 26px !important;
 }
 }
+
+
+:host-context(.light-theme) ::ng-deep .news_html h3 {
+  color: #357525 !important;
+}
+:host-context(.light-theme) ::ng-deep .news_html strong,
+:host-context(.light-theme) ::ng-deep .news_html p a,
+:host-context(.light-theme) ::ng-deep .news_html li a {
+  color: #e05263 !important;
+}
+
+
+
+:host-context(.dark-theme) ::ng-deep .news_html h3 {
+  color: #bde34e !important;
+}
+:host-context(.dark-theme) ::ng-deep .news_html strong,
+:host-context(.dark-theme) ::ng-deep .news_html p a,
+:host-context(.dark-theme) ::ng-deep .news_html li a {
+  color: #bde34e !important;
+}
