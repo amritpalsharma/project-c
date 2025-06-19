@@ -82,3 +82,6 @@
 ::ng-deep .no-click-popup .modal-content {
   pointer-events: auto;  /* Allow interaction with modal content */
 }
+::ng-deep .dark-theme .upload-box{
+  color:#ffffff !important;
+}

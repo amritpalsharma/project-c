@@ -1,0 +1,28 @@
+<div class="cropper_popup">
+  <div class="crop-container" #container>
+    <div style="position: relative;">
+      <img #imageElement [src]="imageUrl" class="draggable-image" draggable="false" />
+
+      <div class="crop-box" #cropBox
+        [ngStyle]="{ top: pos.y + 'px', left: pos.x + 'px', width: cropWidth + 'px', height: cropHeight + 'px' }"
+        (mousedown)="startDrag($event)" (touchstart)="onTouchStartDrag($event)">
+        
+        <div class="crop-grid">
+          <div class="line v-line" style="left: 33.33%;"></div>
+          <div class="line v-line" style="left: 66.66%;"></div>
+          <div class="line h-line" style="top: 33.33%;"></div>
+          <div class="line h-line" style="top: 66.66%;"></div>
+        </div>
+
+        <div class="resize-handle bottom-right" 
+             (mousedown)="startResize($event)" 
+             (touchstart)="onTouchStartResize($event)"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions text-center mt-3">
+    <button (click)="cropImage()" class="btn save_button">Crop</button>
+    <button (click)="cancel()" class="btn puse-btn">Cancel</button>
+  </div>
+</div>

@@ -28,7 +28,7 @@
                       <span>{{'uploadYourCoverPhoto' | translate}}</span>
                     </label>
                   </div>
-                  <input id="file-upload" (change)="onCoverFileChange($event)" accept="image/*" type="file"
+                  <input id="file-upload" (change)="onCoverImageChange($event)" accept="image/*" type="file"
                     class="d-none" />
                   <svg *ngIf="coverImage" class="delete_image cursor-pointer " (click)="openDeleteDialog()"
                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -621,7 +621,7 @@
                 <div class="d-flex w-100 m-auto image_gallery-box mt-2">
                   <div class="col-lg-4 gallery_images" *ngFor="let image of highlights?.images let i = index">
                     <a [href]="highlights.file_path + image.file_name" data-fancybox="gallery" [attr.data-caption]="">
-                      <img [src]="highlights.file_path + image.file_name" alt="Image Gallery">
+                      <img [src]="highlights.file_path + image.file_name" alt="">
                     </a>
                     <!-- <img [src]="highlights.file_path + image.file_name" alt="" (click)="openImage(i, 'image')"> -->
                   </div>
@@ -679,8 +679,10 @@
                     <span>{{'uploadYourCoverPhoto' | translate}}</span>
                   </label>
                 </div>
-                <input id="file-upload2" (change)="onCoverFileChange($event)" accept="image/*" type="file"
+                <input id="file-upload2" (change)="onCoverImageChange($event)" accept="image/*" type="file"
                   class="d-none" />
+                <!-- <input id="file-upload2" (change)="onCoverFileChange($event)" accept="image/*" type="file"
+                  class="d-none" /> -->
                 <svg *ngIf="coverImage" class="delete_image cursor-pointer " (click)="openDeleteDialog()"
                   xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                   <path

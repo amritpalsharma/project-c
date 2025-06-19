@@ -39,7 +39,7 @@ export class GalleryTabComponent {
     private scoutService: ScoutService,
     private translateService: TranslateService,
     public webPages: WebPages,
-    public router:Router, 
+    public router: Router,
     public dialog: MatDialog) { }
 
 
@@ -142,7 +142,8 @@ export class GalleryTabComponent {
       data: {
         userId: this.userId,
         file: type
-      }
+      },
+      disableClose: true,
     })
 
     messageDialog.afterClosed().subscribe(result => {

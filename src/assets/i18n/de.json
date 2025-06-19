@@ -1198,7 +1198,7 @@
   },
   "selectFavoriteFirst": "Wähle zuerst einen Favorit aus.",
   "removeFavoriteConfirm": "Bist du sicher, dass du den Favorit entfernen möchtest? ",
-  "userPurchasesNotFound": "Keine Käufe gefunden.",
+  "userPurchasesNotFound": "Du hast noch keine Käufe getätigt.",
   "premiumPlanDesc": {
     "features": [
       "Talentprofile mit detaillierten Statistiken, Leistungsdaten, Erfolgen und Transfers sichtbar",

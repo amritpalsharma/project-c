@@ -1446,5 +1446,6 @@
   "openTxt": "Aberto",
   "maxSizeForProfile": "O ficheiro young-bearded-man-with-striped-shirt.jpg excede o tamanho máximo permitido de 5 MB.",
   "aboutImageCaption": "da esq. para dir.",
-  "confirmDeleteinformationTeam": "Tens a certeza de que queres remover este jogador da equipa?"
+  "confirmDeleteinformationTeam": "Tens a certeza de que queres remover este jogador da equipa?",
+  "userPurchasesNotFound": "Ainda não fizeste nenhuma compra."
 }

@@ -1102,7 +1102,7 @@
   "youHaveActiveBoostPlan": "You have active boost plan",
   "selectFavoriteFirst": "First, select a favorite.",
   "removeFavoriteConfirm": "Are to sure to remove favorite?",
-  "userPurchasesNotFound": "No purchases found.",
+  "userPurchasesNotFound": "You haven't made any purchases yet.",
   "premiumPlanDesc": {
     "features": [
       "Talent profiles with detailed statistics, performance data, achievements, and transfers visible",
