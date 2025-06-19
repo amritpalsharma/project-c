@@ -2710,16 +2710,28 @@ table td .icon_text_icon {
 }
 
 
-.favorite_card_hdr table.table tbody tr:hover {
+.favorite_card_hdr table.table tbody tr:hover,
+.table-scout-profile tbody tr:hover,
+.portfolio_container table.table tbody tr:hover,
+.purchase-parent table.table tbody tr:hover,
+.notification_table table.table tbody tr:hover   {
   border-radius: 0 !important;
 }
 
-.favorite_card_hdr table tbody tr td:first-child {
+.favorite_card_hdr table tbody tr td:first-child,
+.table-scout-profile tbody tr td:first-child,
+.portfolio_container table tbody tr td:first-child,
+.purchase-parent table tbody tr td:first-child,
+.notification_table table tbody tr td:first-child   {
   border-top-left-radius: 0 !important;
   border-bottom-left-radius: 0 !important;
 }
 
-.favorite_card_hdr table tbody tr td:last-child {
+.favorite_card_hdr table tbody tr td:last-child,
+.table-scout-profile tbody tr td:last-child,
+.portfolio_container table tbody tr td:last-child,
+.purchase-parent table tbody tr td:last-child,
+.notification_table table tbody tr td:last-child {
   border-top-right-radius: 0 !important;
   border-bottom-right-radius: 0 !important;
 }
