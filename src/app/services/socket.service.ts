@@ -34,7 +34,7 @@ export class SocketService {
 
     let jsonData = localStorage.getItem("userData");
     let langId = localStorage.getItem("lang_id");
-    let userId;
+    let userId : any;
     if (jsonData && langId) {
       let userData = JSON.parse(jsonData);
       userId = userData.id;

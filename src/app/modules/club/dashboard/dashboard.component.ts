@@ -119,10 +119,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.loadCountries();
     this.getGalleryData();
     this.getJsonTranslations();
+    this.getCoverImg();
 
-    this.route.params.subscribe(() => {
-      this.getCoverImg();
-      this.activeTab = 'profile';
+    // this.route.params.subscribe(() => {
+    //   this.activeTab = 'profile';
+    // });
+
+    this.route.fragment.subscribe(fragment => {
+      if (fragment === 'sighting') {
+        this.activeTab = fragment;
+      }
     });
     this.getToasterMsg();
     this.webPages.languageId$.subscribe((data: any) => {
@@ -973,6 +979,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
     else {
       this.activeTab = tab;
+      this.router.navigate([], { fragment: undefined });
     }
   }
 

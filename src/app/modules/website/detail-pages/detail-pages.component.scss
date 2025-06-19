@@ -25,6 +25,10 @@
     font-family: var(--bs-avenir-semibold);
 }
 
+::ng-deep strong {
+    font-family: var(--bs-avenir-bold);
+}
+
 body {
   font-family: var(--bs-avenir-regular);
 }
@@ -216,6 +220,7 @@ img.banner-image {
     }
 }
 
+
 ::ng-deep .news_html ul {
     list-style-type: none;
     /* Remove default markers */
@@ -226,7 +231,7 @@ img.banner-image {
 }
 
 .news_html ::ng-deep li {
-    display: inline-block;
+    display: block;
     position: relative;
     padding-left: 2rem;
     /* Space for the custom marker */
@@ -238,7 +243,7 @@ img.banner-image {
     position: absolute;
     font-size: 60px;
     // color: #E05263; /* Customize marker color */
-    top: 15px;
+    top: 18px;
     left: 0;
     transform: translateY(-50%);
 }
@@ -551,12 +556,15 @@ img.banner-image {
 @media (min-width: 2000px) {
 .news_static_banner {
     h3 {
-    font-size: 45px !important;
-    margin: 1.25rem 0 !important;
+        font-size: 45px !important;
+        margin: 1.25rem 0 !important;
     }
 }
 :host ::ng-deep p {
     font-size: 26px !important;
+}
+.news_html ::ng-deep li::before {
+    top: 19px;
 }
 }
 
@@ -572,4 +580,28 @@ img.banner-image {
 :host ::ng-deep p {
     font-size: 40px !important;
 }
+.news_html ::ng-deep li::before {
+    top: 26px !important;
+}
+}
+
+
+:host-context(.light-theme) ::ng-deep .news_html h3 {
+  color: #357525 !important;
+}
+:host-context(.light-theme) ::ng-deep .news_html strong,
+:host-context(.light-theme) ::ng-deep .news_html p a,
+:host-context(.light-theme) ::ng-deep .news_html li a {
+  color: #e05263 !important;
+}
+
+
+
+:host-context(.dark-theme) ::ng-deep .news_html h3 {
+  color: #bde34e !important;
+}
+:host-context(.dark-theme) ::ng-deep .news_html strong,
+:host-context(.dark-theme) ::ng-deep .news_html p a,
+:host-context(.dark-theme) ::ng-deep .news_html li a {
+  color: #bde34e !important;
 }

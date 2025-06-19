@@ -5,7 +5,6 @@ import { ShareService } from '../../../services/share.service';
 import { TranslateService } from '@ngx-translate/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
-
 @Component({
   selector: 'app-detail-pages',
   templateUrl: './detail-pages.component.html',
@@ -65,8 +64,9 @@ export class DetailPagesComponent {
       if (res.status) {
         this.news = res.data.news;
         this.moreNews = res.data.moreNews;
-        this.news.featured_image = res.data.news_img_path + res.data.news.featured_image;
         this.news.content = this.sanitizer.bypassSecurityTrustHtml(this.news.content);
+        this.news.featured_image = res.data.news_img_path + res.data.news.featured_image;
+        // this.news.content = this.sanitizer.bypassSecurityTrustHtml(this.news.content);
       } else {
         this.moreNews = [];
         this.news = [];

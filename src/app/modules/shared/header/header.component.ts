@@ -43,7 +43,7 @@ interface Notification {
   shouldAnimate: boolean;
   relativeTime: string;
   senderRole: string;
-
+  event: string;
 }
 
 @Component({
@@ -208,7 +208,8 @@ export class HeaderComponent {
         senderId: data.senderId,
         shouldAnimate: true,
         relativeTime: 'just now',
-        senderRole: 'talent'
+        senderRole: 'talent',
+        event: data.event
       };
 
       // Add the notification to the array and show the notification box
@@ -571,7 +572,8 @@ export class HeaderComponent {
             senderId: notif.senderId,
             shouldAnimate: false,
             relativeTime: notif.relativeTime,
-            senderRole: notif.senderRole
+            senderRole: notif.senderRole,
+            event: notif.event
           }));
 
           this.loadMoreNotifications(); // Load the initial set of notifications
@@ -730,8 +732,40 @@ export class HeaderComponent {
       this.showVerificationPopup(false);
     }
     else {
-      let role = (notification.senderRole || '').toString().toLowerCase();
-      this.router.navigate([`/view/${role}`, notification.senderId]);
+
+      console.log(notification)
+      let role = (this.loggedInUser?.role_name || '').toString().toLowerCase();
+
+      if (notification.event === 'sendMessage') {
+        this.router.navigate([`/${role}/chat`]);
+      }
+      else if (notification.event === 'userVerified' || notification.event === 'userRejected' || notification.event === 'scoutAddPlayer' || notification.event === 'inviteTalent' || notification.event === 'acceptScoutRequest' || notification.event === 'rejectScoutRequest' || notification.event === 'acceptClubInvite' || notification.event === 'rejectClubInvite') {
+        let fragment = 'notifications';
+        this.router.navigate([`/${role}/setting`], { fragment });
+      }
+      // else if (notification.event === 'acceptScoutRequest' || notification.event === 'rejectScoutRequest') {
+      //   let fragment = 'portfolio';
+      //   console.log(role, 'role')
+      //   this.router.navigate([`/${role}/dashboard`], { fragment });
+      // }
+      // else if (notification.event === 'acceptClubInvite' || notification.event === 'rejectClubInvite') {
+      //   let fragment = 'sighting';
+      //   this.router.navigate([`/${role}/dashboard`], { fragment });
+      // }
+      else {
+        let role = (notification.senderRole || '').toString().toLowerCase();
+
+        if (role === 'scout representator') {
+          role = 'scout';
+        }
+        if (role === 'admin representator') {
+          role = 'admin';
+        }
+        if (role === 'club representator') {
+          role = 'club';
+        }
+        this.router.navigate([`/view/${role}`, notification.senderId]);
+      }
     }
   }
 

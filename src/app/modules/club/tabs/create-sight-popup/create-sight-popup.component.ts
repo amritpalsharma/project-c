@@ -70,6 +70,7 @@ export class CreateSightPopupComponent implements AfterViewInit {
       this.city = data.sightData.city;
       this.about = data.sightData.about_event;
       this.idToBeUpdate = data.sightData.id;
+      this.status = data.sightData.status === 'active' ? true : false;
       // this.dateTime = this.formatDateForInput(new Date());
       this.dateTime = `${this.date}T${data.sightData.event_time}`;
     }
@@ -79,6 +80,8 @@ export class CreateSightPopupComponent implements AfterViewInit {
     const pad = (n: number) => n < 10 ? '0' + n : n;
     return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(date.getMinutes())}`;
   }
+
+  status: boolean = false;
 
   @ViewChild('numInput', { static: false }) numInput!: ElementRef;
 
@@ -112,6 +115,7 @@ export class CreateSightPopupComponent implements AfterViewInit {
       console.error('Error fetching users:', error);
     }
   }
+
 
   close() {
     this.dialogRef.close();
@@ -272,6 +276,13 @@ export class CreateSightPopupComponent implements AfterViewInit {
     formData.append('about_event', this.about);
     formData.append('banner', this.bannerFile);
 
+    if(this.status){
+      formData.append('status', 'active');
+    }
+    else{
+      formData.append('status', 'inactive');
+    }
+
     let langId: any = localStorage.getItem('lang_id');
 
     formData.append('lang', langId);
@@ -335,6 +346,13 @@ export class CreateSightPopupComponent implements AfterViewInit {
 
     if (this.bannerFile != "") {
       formData.append('banner', this.bannerFile);
+    }
+
+    if(this.status){
+      formData.append('status', 'active');
+    }
+    else{
+      formData.append('status', 'inactive');
     }
 
     this.users.map(function (user: any) {
