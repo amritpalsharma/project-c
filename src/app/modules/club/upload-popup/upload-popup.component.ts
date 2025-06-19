@@ -15,6 +15,7 @@ import { MessagePopupComponent } from '../message-popup/message-popup.component'
 export class UploadPopupComponent {
 
   isLoading : boolean = false;
+  theme:string=localStorage.getItem('theme') || 'dark';
 
   userId: any = '';
   uploadedFiles: any = [];

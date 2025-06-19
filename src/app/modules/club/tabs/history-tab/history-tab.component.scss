@@ -165,3 +165,7 @@
   }
 
 }
+
+::ng-deep .dark-theme .NgxEditor__Placeholder::before{
+   color: #ffffff !important;
+}

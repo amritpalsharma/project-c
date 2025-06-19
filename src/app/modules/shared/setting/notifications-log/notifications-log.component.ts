@@ -93,7 +93,7 @@ export class NotificationsLogComponent {
       next: (response) => {
         if (response.total_count && response.total_count > 0) {
           this.notifications = response.notifications;
-          this.paginator.length = response.total_count;
+          // this.paginator.length = response.total_count;
         } else if (response.total_count == 0) {
           this.notifications = [];
         }

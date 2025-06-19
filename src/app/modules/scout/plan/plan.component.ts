@@ -112,7 +112,7 @@ export class PlanComponent implements OnInit, OnDestroy {
     private translateService: TranslateService,
     private titleService: TitleService,
     private webpages: WebPages,
-    private router:Router
+    private router: Router
   ) { }
 
   async ngOnInit() {
@@ -697,6 +697,8 @@ export class PlanComponent implements OnInit, OnDestroy {
       width: '850px',
       data: {
         id: planId,
+        plan: this.booster,
+        boostedPlans: this.boostedPlans
       }
     });
 

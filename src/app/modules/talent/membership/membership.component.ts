@@ -44,7 +44,7 @@ export class MembershipComponent {
   cancelConfirmationMsg: String = '';
   userPurchasesNotFound: String = '';
   subsciptionCancelSuccess: String = '';
-  isLoading: boolean = false;
+  isLoading: boolean = true;
   pageTitle: string = '';
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 

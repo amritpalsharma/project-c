@@ -708,7 +708,7 @@
 }
 
 .main-wrapper .highlights-tour .unlock-view .d-flex.image_gallery-box {
-    justify-content: center !important;
+  justify-content: center !important;
 }
 
 .unlock-view {
@@ -1562,7 +1562,8 @@ span.active_btn {
 @media (min-width: 1200px) {
 
   .cover_pic_mobile,
-  .mobile_profile_buttons, span.icon-bg.pdf_btn_icon a.team-badge_image {
+  .mobile_profile_buttons,
+  span.icon-bg.pdf_btn_icon a.team-badge_image {
     display: none !important;
   }
 
@@ -1574,7 +1575,7 @@ span.active_btn {
 
 
 @media (min-width: 576px) and (max-width: 1199px) {
-.edit-profile {
+  .edit-profile {
     width: 42px !important;
     top: 10px !important;
     right: -10px !important;
@@ -1641,27 +1642,29 @@ span.active_btn {
   }
 
   .user-media span.profile_img_bg_circle {
-        border: 1px solid #E7E7E7;
-        width: 120px;
-        height: 120px;
-        border-radius: 50%;
-        background: #F6F6F6;
-        object-fit: contain;
-        object-position:top;
-        margin-left: 15px;
-        display: inline-block;
-        overflow: hidden;
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: contain;
-          object-position: top;
-        }
+    border: 1px solid #E7E7E7;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: #F6F6F6;
+    object-fit: contain;
+    object-position: top;
+    margin-left: 15px;
+    display: inline-block;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: top;
     }
-    img.club_profile_mob_img {
-      padding: 1rem;
-      margin-top: 0;
-    }
+  }
+
+  img.club_profile_mob_img {
+    padding: 1rem;
+    margin-top: 0;
+  }
 
   .premium_button {
     padding: 6px 10px;
@@ -1697,12 +1700,14 @@ span.active_btn {
     margin-bottom: 5px;
     padding: 8px;
   }
+
   span.icon-bg.pdf_btn_icon a.team-badge_image {
     right: -110px;
     width: 42px;
     height: 42px;
     top: 11px;
     position: absolute;
+
     img {
       max-width: 100%;
       margin-right: 0 !important;
@@ -1757,6 +1762,7 @@ span.active_btn {
     width: 30px;
     height: 30px;
   }
+
   .team-logos:not(:last-child) {
     border-bottom: 1px solid #E5E5E5;
     padding-bottom: 20px;
@@ -1963,21 +1969,23 @@ span.active_btn {
 }
 
 @media (max-width: 360px) {
-.premium_button {
-  span {
-    font-size: 10px;
+  .premium_button {
+    span {
+      font-size: 10px;
+    }
   }
-}
 }
 
 
 ::ng-deep .introjs-tooltipReferenceLayer * {
   font-family: "Libre Franklin", sans-serif !important;
 }
+
 ::ng-deep .close-section label {
-    font-weight: bold !important;
-    font-size: 95% !important;
+  font-weight: bold !important;
+  font-size: 95% !important;
 }
+
 ::ng-deep .custom-tooltip {
   background-color: unset !important;
   color: #000 !important;
@@ -2000,6 +2008,7 @@ span.active_btn {
   background: url(../../../../assets/images/tooltip-cross.svg) no-repeat center !important;
   background-size: contain !important;
 }
+
 ::ng-deep .introjs-tooltip-header {
   z-index: 99999 !important;
   padding-left: 0;
@@ -2010,37 +2019,46 @@ span.active_btn {
   right: 0;
   top: -20px;
 }
+
 ::ng-deep .introjs-tooltip-title {
   display: none;
 }
+
 ::ng-deep a.introjs-skipbutton:hover {
   color: #fff;
 }
+
 ::ng-deep .custom-tooltip .introjs-arrow {
   border-color: #BDE34F transparent transparent transparent !important;
 }
+
 ::ng-deep .introjs-tooltip {
   background: transparent !important;
   box-shadow: none !important;
 }
+
 ::ng-deep .introjs-arrow.top {
   border-bottom-color: #BDE34F;
   top: -9px;
 }
+
 ::ng-deep .introjs-arrow.left {
   border-right-color: #BDE34F;
   left: -9px;
   top: 13px;
 }
+
 ::ng-deep .introjs-arrow.right {
   border-left-color: #BDE34F;
   right: -9px;
   top: 13px;
 }
+
 ::ng-deep .introjs-arrow.bottom {
   border-top-color: #BDE34F;
   bottom: -9px;
 }
+
 ::ng-deep .introjs-tooltiptext {
   background-color: #bde34f !important;
   color: #023A4A !important;
@@ -2049,10 +2067,12 @@ span.active_btn {
   font-size: 15px;
   padding: 16px 20px;
 }
+
 ::ng-deep .introjs-tooltiptext h6 {
   font-size: 15px;
   font-weight: 600;
 }
+
 ::ng-deep .introjs-button {
   border-color: #BDE34F !important;
   background-color: #BDE34F !important;
@@ -2062,6 +2082,7 @@ span.active_btn {
   margin: 0px 10px;
   font-weight: 500;
 }
+
 ::ng-deep .introjs-tooltipbuttons {
   border-color: #BDE34F !important;
   background-color: unset !important;
@@ -2073,17 +2094,21 @@ span.active_btn {
   margin-top: 0px;
   padding-right: 0px;
 }
+
 ::ng-deep .introjs-helperLayer {
   box-shadow: rgb(33 33 33 / 0%) 0px 0px 1px 2px, rgba(33, 33, 33, 0.5) 0px 0px 0px 5000px !important;
 }
+
 ::ng-deep .introjs-dontShowAgain label {
   background: unset !important;
   color: #fff !important;
 }
+
 ::ng-deep .dark-theme .social_icons svg path {
   color: white !important;
   fill: white;
 }
+
 ::ng-deep .dark-theme .social_icons svg .linkedin-innerside {
   color: white !important;
   fill: #072944;
@@ -2094,38 +2119,46 @@ span.active_btn {
     border-color: #4f943f !important;
     color: #fff !important;
   }
+
   .introjs-button {
     border-color: #4f943f !important;
     background-color: #4f943f !important;
     color: #fff !important;
   }
+
   .introjs-tooltiptext {
     background-color: #4f943f !important;
     color: #fff !important;
   }
-    
+
   .custom-tooltip .introjs-arrow {
     border-color: #4f943f transparent transparent transparent !important;
   }
+
   .introjs-arrow.top {
     border-bottom-color: #4f943f !important;
   }
+
   .introjs-arrow.left {
     border-right-color: #4f943f !important;
   }
+
   .introjs-arrow.right {
     border-left-color: #4f943f !important;
   }
+
   .introjs-arrow.bottom {
     border-top-color: #4f943f !important;
   }
 }
 
 .disabled-btn-light {
-  opacity: 0.3;
+  // opacity: 0.3;
+  background: gray !important;
 }
 
 .disabled-btn-dark {
-  background: #bde34e !important;
-  opacity: 0.3;
+  // background: #bde34e !important;
+  background: gray !important;
+  // opacity: 0.3;
 }

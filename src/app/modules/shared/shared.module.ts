@@ -64,6 +64,7 @@ import { PopupComponent } from './popup/popup.component';
 import { SightingComponent } from './view-profile/tabs/sighting/sighting.component';
 import { PasswordSettingsComponent } from './setting/password-settings/password-settings.component';
 import { PremiumPurchaseComponent } from './premium-purchase/premium-purchase.component';
+import { CoverImageCropperComponent } from './cover-image-cropper/cover-image-cropper.component';
 // import { TinymceWrapperComponent } from './tinymce-wrapper/tinymce-wrapper.component';
 // import { ImageCropperDialogComponent } from './image-cropper-dialog/image-cropper-dialog.component';
 
@@ -118,6 +119,7 @@ import { PremiumPurchaseComponent } from './premium-purchase/premium-purchase.co
     SightingComponent,
     PasswordSettingsComponent,
     PremiumPurchaseComponent,
+    CoverImageCropperComponent,
     // TinymceWrapperComponent,
     // ImageCropperDialogComponent
   ],

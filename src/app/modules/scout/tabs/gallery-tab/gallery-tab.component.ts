@@ -153,6 +153,7 @@ export class GalleryTabComponent {
       position: {
         top: '150px',
       },
+      disableClose: true,
       data: {
         userId: this.userId,
         file: type

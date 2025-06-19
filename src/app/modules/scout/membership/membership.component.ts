@@ -88,6 +88,8 @@ export class MembershipComponent {
         this.totalItems = response.data.totalCount; // Assuming API returns the total number of purchases
         console.log(this.userPurchases)
       } else {
+        this.userPurchases = [];
+         this.totalItems = 0;
         console.error('Invalid API response:', response);
       }
     }, error => {

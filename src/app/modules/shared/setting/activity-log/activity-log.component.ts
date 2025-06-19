@@ -73,7 +73,7 @@ export class ActivityLogComponent {
         if (response && response.status && response.data && response.data.userData) {
           this.activities = response.data.userData;
           if (response.data.totalCount && response.data.totalCount > 0) {
-            this.paginator.length = response.data.totalCount;
+            // this.paginator.length = response.data.totalCount;
             this.currentOffset = response.data.totalCount;
           } else {
             this.currentOffset = 0;

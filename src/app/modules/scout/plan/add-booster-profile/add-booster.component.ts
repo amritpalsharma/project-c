@@ -48,7 +48,9 @@ export class AddBoosterComponent {
     private webPages: WebPages,
     private translateService: TranslateService,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) { }
+  ) {
+    this.boostedPlans = this.data.boostedPlans;
+  }
 
   async ngOnInit() {
     // this.loggedInUser = JSON.parse(this.loggedInUser);
@@ -68,7 +70,7 @@ export class AddBoosterComponent {
     console.warn('this.data', this.data);
     this.id = this.data.id || [];
     this.plan = this.data.plan;
-    this.boostedPlans = this.data.boostedPlans;
+
     if (typeof this.boostedPlans?.isYearly !== undefined) {
       this.toggleBillingPlan(this.boostedPlans?.isYearly);
     }

@@ -288,3 +288,20 @@ button.premium-edit_btn,a.premium-edit_btn {
     gap: 10px;
 }
 }
+.status-label {
+  display: inline-block;
+  width: 100px;
+  text-align: center;
+}
+
+
+::ng-deep .disblebutton {
+  pointer-events: none;
+
+}
+
+::ng-deep .disblebutton svg {
+  pointer-events: none;
+  filter: grayscale(100%) opacity(0.5);
+  /* Grays out the SVG */
+}
