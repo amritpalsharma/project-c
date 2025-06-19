@@ -107,12 +107,12 @@ export class TalkService {
       me: this.user,
       // theme: themeFirstTym
     });
-    this.toggleTheme30042025(this.currentTheme)
+    // this.toggleTheme30042025(this.currentTheme)
     return this.session;
   }
 
   // Create a one-on-one conversation
-  createOneOnOneConversation(id: string, name: string, email: string, photoUrl: string): Promise<void> {
+  createOneOnOneConversation190625(id: string, name: string, email: string, photoUrl: string): Promise<void> {
 
     return new Promise((resolve, reject) => {
       if (!this.user || !this.session) {
@@ -192,7 +192,7 @@ export class TalkService {
       // Add all other users to the conver
       // sation
       userList.forEach(user => {
-        console.info('GroupMember',user)
+        console.info('GroupMember', user)
         const participant = new Talk.User({
           id: user.id,
           name: user.name,
@@ -231,6 +231,7 @@ export class TalkService {
 
 
   toggleTheme(isDark: boolean) {
+    console.log('isDark', isDark);
     let theme = isDark ? 'dark' : 'light';
     localStorage.setItem('theme', theme);
     this.currentTheme = isDark ? 'dark_custom' : 'light';
@@ -338,6 +339,204 @@ export class TalkService {
       inbox.mount(document.getElementById('talkjs-container'));
     }
   }
+
+  createOneOnOneConversation(id: string, name: string, email: string, photoUrl: string): Promise<void> {
+    let userDataArr = { id: id, name: name, email: email, photoUrl: photoUrl };
+    return this.refreshTalkSessionWithUpdatedImage(userDataArr);
+  }
+
+  // async refreshTalkSessionWithUpdatedImage12(userData: any): Promise<void> {
+  //   console.info('User For Chat', userData)
+  //   try {
+  //     // ✅ Destroy previous session if exists
+  //     if (this.session) {
+  //       this.session.destroy();
+  //     }
+
+  //     // ✅ Apply cache busting to photoUrl
+  //     const cacheBustedPhotoUrl = `${userData.photoUrl}?t=${Date.now()}`;
+
+  //     // ✅ Create Talk User
+  //     const talkUser = new Talk.User({
+  //       id: userData.id,
+  //       name: userData.name || 'Talk User',
+  //       email: userData.email || '',
+  //       photoUrl: cacheBustedPhotoUrl,
+  //       role: userData.role === '1' ? 'hidden' : 'default',
+  //       locale: this.currentLocale
+  //     });
+
+  //     // ✅ Create new TalkJS session
+  //     this.session = new Talk.Session({
+  //       appId: 'tmI75KXB', // Replace with your actual app ID
+  //       me: talkUser
+  //     });
+
+  //     this.user = talkUser;
+
+  //     // ✅ Destroy and re-create inbox
+  //     if (this.inbox) {
+  //       this.inbox.destroy();
+  //     }
+
+  //     this.inbox = this.session.createInbox({
+  //       theme: this.currentTheme === 'dark' ? 'dark_custom' : 'default'
+  //     });
+
+  //     const container = document.getElementById('talkjs-container');
+  //     if (!container) {
+  //       throw new Error('TalkJS container element not found');
+  //     }
+
+  //     // ✅ Mount inbox
+  //     this.inbox.mount(container);
+
+  //     // ✅ Optionally store user in localStorage or class state
+  //     this.currentUser = userData;
+
+  //     console.log('✅ TalkJS session refreshed with updated image');
+
+  //   } catch (err) {
+  //     console.error('❌ Error refreshing TalkJS session:', err);
+  //     throw err;
+  //   }
+  // }
+  async refreshTalkSessionWithUpdatedImage12(userData: any): Promise<void> {
+    console.info('User For Chat', userData);
+    try {
+      // ✅ Destroy previous session if exists
+      if (this.session) {
+        this.session.destroy();
+      }
+
+      // ✅ Apply cache busting to photoUrl
+      const cacheBustedPhotoUrl = `${userData.photoUrl}?t=${Date.now()}`;
+
+      // ✅ Create Talk User
+      const talkUser = new Talk.User({
+        id: userData.id,
+        name: userData.name || 'Talk User',
+        email: userData.email || '',
+        photoUrl: cacheBustedPhotoUrl,
+        role: userData.role === '1' ? 'hidden' : 'default',
+        locale: this.currentLocale
+      });
+
+      // ✅ Create new TalkJS session
+      this.session = new Talk.Session({
+        appId: 'tmI75KXB', // Replace with your actual app ID
+        me: talkUser
+      });
+
+      this.user = talkUser;
+
+      // ✅ Destroy and re-create inbox
+      if (this.inbox) {
+        this.inbox.destroy();
+      }
+
+      this.inbox = this.session.createInbox({
+        theme: this.currentTheme === 'dark' ? 'dark_custom' : 'default'
+      });
+
+      const container = document.getElementById('talkjs-container');
+      if (!container) {
+        throw new Error('TalkJS container element not found');
+      }
+
+      // ✅ Mount inbox
+      this.inbox.mount(container);
+
+      // ✅ Optionally store user in localStorage or class state
+      this.currentUser = userData;
+
+      // ✅ Generate a unique conversation ID (based on user IDs or some other unique identifier)
+      const conversationId = `conversation_${this.user.id}_${userData.id}`;
+
+      // ✅ Use getOrCreateConversation with a unique conversation ID
+      const conversation = this.session.getOrCreateConversation(conversationId);
+
+      // ✅ Add participants to the conversation
+      conversation.setParticipant(this.user);
+      conversation.setParticipant(new Talk.User(userData));
+
+      // ✅ Select and open the conversation in the inbox
+      this.inbox.select(conversation);
+
+      console.log('✅ TalkJS session refreshed with updated image, and conversation opened');
+    } catch (err) {
+      console.error('❌ Error refreshing TalkJS session:', err);
+      throw err;
+    }
+  }
+
+
+
+  async refreshTalkSessionWithUpdatedImage(userData: any): Promise<void> {
+    console.info('User For Chat', userData);
+    try {
+      // ✅ Destroy previous session if exists
+      if (this.session) {
+        this.session.destroy();
+      }
+
+      // ✅ Apply cache busting to photoUrl
+      const cacheBustedPhotoUrl = `${userData.photoUrl}?t=${Date.now()}`;
+
+      // ✅ Create Talk User
+      const talkUser = new Talk.User({
+        id: userData.id,
+        name: userData.name || 'Talk User',
+        email: userData.email || '',
+        photoUrl: cacheBustedPhotoUrl,
+        role: userData.role === '1' ? 'hidden' : 'default',
+        locale: this.currentLocale
+      });
+
+      // ✅ Create new TalkJS session
+      this.session = new Talk.Session({
+        appId: 'tmI75KXB', // Replace with your actual app ID
+        me: talkUser
+      });
+
+      this.user = talkUser;
+
+      // ✅ Destroy and re-create inbox
+      if (this.inbox) {
+        this.inbox.destroy();
+      }
+
+      this.inbox = this.session.createInbox({
+        theme: this.currentTheme === 'dark' ? 'dark_custom' : 'default'
+      });
+
+      const container = document.getElementById('talkjs-container');
+      if (!container) {
+        throw new Error('TalkJS container element not found');
+      }
+
+      // ✅ Mount inbox
+      this.inbox.mount(container);
+
+      // ✅ Optionally store user in localStorage or class state
+      this.currentUser = userData;
+
+      // ✅ Create or open conversation with passed user
+      const conversation = this.session.getOrCreateConversation(Talk.oneOnOneId(this.user, new Talk.User(userData)));
+      // const conversation = this.session.getOrCreateConversation([this.user, new Talk.User(userData)]);
+
+      // ✅ Select and open the conversation in the inbox
+      this.inbox.select(conversation);
+
+      console.log('✅ TalkJS session refreshed with updated image, and conversation opened');
+    } catch (err) {
+      console.error('❌ Error refreshing TalkJS session:', err);
+      throw err;
+    }
+  }
+
+
+
 
   private getCurrentUserData() {
     console.info('Me ', this.currentUser);
