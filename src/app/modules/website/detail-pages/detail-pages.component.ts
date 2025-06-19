@@ -8,9 +8,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 @Component({
   selector: 'app-detail-pages',
   templateUrl: './detail-pages.component.html',
-  styleUrl: './detail-pages.component.scss',
-  encapsulation: ViewEncapsulation.None
-  // styleUrls: ['./detail-pages.component.scss'],
+  styleUrls: ['./detail-pages.component.scss'],
   // encapsulation: ViewEncapsulation.None
 })
 export class DetailPagesComponent {
@@ -68,7 +66,7 @@ export class DetailPagesComponent {
         this.moreNews = res.data.moreNews;
         this.news.content = this.sanitizer.bypassSecurityTrustHtml(this.news.content);
         this.news.featured_image = res.data.news_img_path + res.data.news.featured_image;
-        this.news.content = this.sanitizer.bypassSecurityTrustHtml(this.news.content);
+        // this.news.content = this.sanitizer.bypassSecurityTrustHtml(this.news.content);
       } else {
         this.moreNews = [];
         this.news = [];
