@@ -34,7 +34,9 @@ export class ChatComponent {
         private talkService: TalkService,
         private globalSettings: GlobalSettingsService,
         private router: Router
-    ) { }
+    ) {
+
+    }
 
     async ngOnInit() {
         const theme = localStorage.getItem('theme');
@@ -52,6 +54,8 @@ export class ChatComponent {
         });
 
         const userDataString = localStorage.getItem('userData');
+
+
         if (userDataString) {
             this.userData = JSON.parse(userDataString);
             // console.log('My Array', this.userData)
@@ -83,75 +87,16 @@ export class ChatComponent {
             setTimeout(() => {
                 chatbox.mount(document.getElementById('talkjs-container'));
 
-                this.isLoading = false;
+                setTimeout(() => {
+                    let url = new URL(window.location.href);
+                    if (url.searchParams.get("open_chat") === "true") {
+                        this.checkAndRemoveOpenChat();
+                    } else {
+                        this.isLoading = false;
+                    }
+                }, 1500); //after 1.5 sec
             }, 0);
-
-            let url = new URL(window.location.href);
-
-            if (url.searchParams.get("open_chat") === "true") {
-                this.checkAndRemoveOpenChat();
-            }
         }
-    }
-
-    // Full CHAT COMPONENT
-    async reloadTalk() {
-        const theme = localStorage.getItem('theme');
-        if (theme == 'dark') {
-            this.theme = 'dark_custom';
-        } else {
-            this.theme = 'default';
-        }
-        if (!this.user || !this.otherUserDataArr) {
-            console.error('Users not initialized');
-            return;
-        }
-
-        if (this.inbox) {
-            this.inbox.destroy();
-            this.inbox = undefined;
-        }
-
-        if (this.session) {
-            this.session.destroy();
-            this.session = null;
-        }
-
-        // const me = this.user;
-        const me = new Talk.User(this.user); // ✅ CORRECT
-        const other = new Talk.User(this.otherUserDataArr);
-
-        // this.session = new Talk.Session({
-        //     appId: 'tmI75KXB',
-        //     me: me,
-        //     locale: 'de'
-        // });
-        
-
-
-        this.session = new Talk.Session({
-            appId: 'tmI75KXB',
-            me: me,
-            locale: this.currentLocale // or 'de'
-        } as any); // ✅ override types
-
-        const conversation = this.session.getOrCreateConversation(
-            Talk.oneOnOneId(me, other)
-        );
-
-
-        conversation.on('messageSent', (message : any) => {
-            console.log('Message sent: ', message.text);
-        });
-
-        conversation.setParticipant(me);
-        conversation.setParticipant(other);
-        this.inbox = this.session.createInbox({
-            selected: conversation.id, // ✅ Must pass conversation ID, not object
-            theme: localStorage.getItem('theme') == 'light' ? localStorage.getItem('theme') : 'dark_custom'
-        });
-
-        this.inbox.mount(document.getElementById('talkjs-container') as HTMLElement);
     }
 
     reloadChatComponent() {
@@ -160,8 +105,6 @@ export class ChatComponent {
             this.router.navigateByUrl(currentUrl);
         });
     }
-
-
 
     // Start a one-on-one chat
     startOneOnOneChat(user: any) {
@@ -174,10 +117,9 @@ export class ChatComponent {
             });
     }
 
-
-
     // Start a group chat
     startGroupChat() {
+        // console.info('this.users',this.users)
         this.talkService.createGroupConversation(this.talkService.generateUniqueId(), this.users)
             .then(() => {
                 this.talkService.mountChat('talkjs-container');
@@ -216,7 +158,9 @@ export class ChatComponent {
                         })
                     }
                     if (this.users.length == 1) {
-                        this.startOneOnOneChat(this.users[0]);
+                        // this.startOneOnOneChat(this.users[0]);
+                        let chatWithUser = this.users[0];
+                        this.talkService.createOneOnOneConversation(chatWithUser.id, chatWithUser.name, chatWithUser.email, chatWithUser.photoUrl);
                     } else if (this.users.length > 1) {
                         this.startGroupChat();
                     }
@@ -226,10 +170,48 @@ export class ChatComponent {
             });
     }
 
+    // checkAndRemoveOpenChat1545() {
+    //     let url = new URL(window.location.href);
+
+    //     if (url.searchParams.get("open_chat") === "true") {
+    //         url.searchParams.delete("open_chat");
+    //         window.history.replaceState({}, document.title, url.toString()); // ✅ no reload
+    //     }
+
+    //     const otherUserData = localStorage.getItem('otherUserData');
+    //     console.log('selected User For Chat', otherUserData)
+
+    //     if (otherUserData) {
+    //         const otherUser = JSON.parse(otherUserData);
+    //         console.info('From View Profile Chat With', otherUser);
+    //         // this.startOneOnOneChat(otherUser);
+    //         // this.talkService.startChatWithUser(otherUser);
+    //         // localStorage.setItem('otherUserData','');
 
 
-    checkAndRemoveOpenChat() {
-        let url = new URL(window.location.href);
+
+    //         this.user = {
+    //             id: otherUser.id,
+    //             name: otherUser.first_name,
+    //             email: otherUser.email,
+    //             photoUrl: otherUser.profile_image_path,
+    //             welcomeMessage: "Hi!",
+    //             role: "default"
+    //         };
+    //         this.otherUserDataArr = this.user;
+    //         // const session = await this.talkService.init(this.user);
+    //         const chatbox = session.createInbox();
+    //         this.selectedConversation = { user: this.user };
+    //     }
+
+    //     setTimeout(() => {
+    //         this.isLoading = false;
+    //     }, 100);
+    // }
+
+
+    async checkAndRemoveOpenChat() {
+        const url = new URL(window.location.href);
 
         if (url.searchParams.get("open_chat") === "true") {
             url.searchParams.delete("open_chat");
@@ -237,20 +219,59 @@ export class ChatComponent {
         }
 
         const otherUserData = localStorage.getItem('otherUserData');
-        console.log('selected User For Chat', otherUserData)
+        console.info('selected User For Chat', otherUserData);
 
         if (otherUserData) {
             const otherUser = JSON.parse(otherUserData);
-            console.info('From View Profile Chat With', otherUser);
-            // this.startOneOnOneChat(otherUser);
-            this.talkService.startChatWithUser(otherUser);
-            // localStorage.setItem('otherUserData','');
+
+            // Define current user (you)
+            // const currentUser = {
+            //     id: 'your_user_id', // <-- replace with actual current user id
+            //     name: 'Your Name',
+            //     email: 'your@email.com',
+            //     photoUrl: 'your_image.jpg',
+            //     welcomeMessage: "Hi!",
+            //     role: "default"
+            // };
+            const currentUser = this.user;
+            console.info('currentUser', currentUser);
+            // this.user = {
+            //     id: otherUser.id,
+            //     name: otherUser.first_name,
+            //     // email: c,
+            //     photoUrl: otherUser.profile_image_path,
+            //     welcomeMessage: "Hi!",
+            //     role: "default"
+            // };
+
+            this.talkService.createOneOnOneConversation(otherUser.id, otherUser.name, otherUser.email, otherUser.photoUrl);
+
+            // const session = await this.talkService.init(currentUser); // You must return this.session from TalkService
+
+            // const me = new Talk.User(currentUser);
+            // const other = new Talk.User({
+            //     id: otherUser.id,
+            //     name: otherUser.first_name,
+            //     email: otherUser.email,
+            //     photoUrl: otherUser.profile_image_path,
+            //     role: "default"
+            // });
+            // console.info('otherUser', other);
+
+            // const conversation = session.getOrCreateConversation(Talk.oneOnOneId(me, other));
+            // conversation.setParticipant(me);
+            // conversation.setParticipant(other);
+
+            // const chatbox = session.createInbox();
+            // chatbox.select(conversation); // ✅ Required
+            // chatbox.mount(document.getElementById("talkjs-container")!);
+
+            // localStorage.removeItem('otherUserData'); // Optional
         }
 
         setTimeout(() => {
             this.isLoading = false;
-        }, 1500);
+        }, 100);
     }
-
 
 }

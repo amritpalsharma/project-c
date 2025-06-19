@@ -24,8 +24,8 @@
                     <div class="col-lg-12 border-end px-0 " id="talkjs-container"
                         [ngClass]="{ 'invisible': isLoading }">
                     </div>
-                    <div *ngIf="isLoading" class="col-sm-12" [ngClass]="{ 'invisible': !isLoading }">
-                        <app-loader></app-loader>
+                    <div *ngIf="isLoading" class="col-sm-12" [ngClass]="{ 'invisible': isLoading }">
+                         <app-loader></app-loader>
                     </div>
                 </div>
             </div>

@@ -108,18 +108,40 @@ export class NotificationsLogComponent {
 
 
   handleNotiificationClick(notification: any) {
-    let role = (notification.senderRole || '').toString().toLowerCase();
-    console.log('notification', notification)
-    if (role === 'scout representator') {
-      role = 'scout';
+    console.log(notification)
+    let roleName = 'admin';
+    let role = (roleName || '').toString().toLowerCase();
+
+    if (notification.event === 'sendMessage') {
+      this.router.navigate([`/${role}/chat`]);
     }
-    if (role === 'admin representator') {
-      role = 'admin';
+    else if (notification.event === 'userVerified' || notification.event === 'userRejected' || notification.event === 'scoutAddPlayer' || notification.event === 'inviteTalent') {
+      let fragment = 'notifications';
+      this.router.navigate([`/${role}/setting`], { fragment });
     }
-    if (role === 'club representator') {
-      role = 'club';
+    else if (notification.event === 'acceptScoutRequest' || notification.event === 'rejectScoutRequest') {
+      let fragment = 'portfolio';
+      console.log(role, 'role')
+      this.router.navigate([`/${role}/dashboard`], { fragment });
     }
-    this.router.navigate([`/admin/${role}`, notification.senderId]);
+    else if (notification.event === 'acceptClubInvite' || notification.event === 'rejectClubInvite') {
+      let fragment = 'sighting';
+      this.router.navigate([`/${role}/dashboard`], { fragment });
+    }
+    else {
+      let role = (notification.senderRole || '').toString().toLowerCase();
+
+      if (role === 'scout representator') {
+        role = 'scout';
+      }
+      if (role === 'admin representator') {
+        role = 'admin';
+      }
+      if (role === 'club representator') {
+        role = 'club';
+      }
+      this.router.navigate([`/view/${role}`, notification.senderId]);
+    }
 
   }
 
@@ -229,7 +251,7 @@ export class NotificationsLogComponent {
     let formattedDate = this.adminHelper.getSwitzerlandTime(datetime);
     return formattedDate;
   }
-  
+
 
   getJsonTranslations() {
     this.translateService.get(['confirmDeleteinformation3', 'selectNotificationFirst']).subscribe((translations) => {

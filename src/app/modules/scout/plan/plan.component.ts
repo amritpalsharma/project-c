@@ -112,7 +112,7 @@ export class PlanComponent implements OnInit, OnDestroy {
     private translateService: TranslateService,
     private titleService: TitleService,
     private webpages: WebPages,
-    private router: Router
+    private router:Router
   ) { }
 
   async ngOnInit() {
@@ -690,34 +690,13 @@ export class PlanComponent implements OnInit, OnDestroy {
     });
   }
 
-  // addBoostPopup(planId: any) {
-  //   // ((boostedPlans?.active_interval=='monthly' && !boostedPlans.isYearly) || boostedPlans?.active_interval=='yearly')
-
-  //   const dialogRef = this.dialog.open(AddBoosterComponent, {
-  //     width: '850px',
-  //     data: {
-  //       id: planId,
-  //     }
-  //   });
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     if (result) {
-  //       console.log('Selected Audience IDs received:', result);
-  //     }
-  //   });
-  // }
-
   addBoostPopup(planId: any) {
-    // alert(planId);
-    // console.log(this.boostedPlans)
-    // return;
+    // ((boostedPlans?.active_interval=='monthly' && !boostedPlans.isYearly) || boostedPlans?.active_interval=='yearly')
+
     const dialogRef = this.dialog.open(AddBoosterComponent, {
       width: '850px',
-      panelClass: 'all_plan_memersbhip_popup',
       data: {
         id: planId,
-        plan: this.booster,
-        boostedPlans: this.boostedPlans
       }
     });
 

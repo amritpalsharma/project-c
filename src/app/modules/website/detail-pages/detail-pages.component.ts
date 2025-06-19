@@ -34,10 +34,7 @@ export class DetailPagesComponent {
     private webPages: WebPages,
     private translateService: TranslateService,
     private sanitizer: DomSanitizer
-  ) {
-    // let rawHtml = ``;
-
-  }
+  ) { }
 
   ngOnInit() {
     // Initially, all ads are visible
@@ -71,6 +68,7 @@ export class DetailPagesComponent {
         this.moreNews = res.data.moreNews;
         this.news.content = this.sanitizer.bypassSecurityTrustHtml(this.news.content);
         this.news.featured_image = res.data.news_img_path + res.data.news.featured_image;
+        this.news.content = this.sanitizer.bypassSecurityTrustHtml(this.news.content);
       } else {
         this.moreNews = [];
         this.news = [];

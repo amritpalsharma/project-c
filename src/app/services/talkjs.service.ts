@@ -44,7 +44,7 @@ export class TalkService {
 
   // Generate a unique ID using Date and Math.random
   public generateUniqueId(): string {
-    return `group-${Date.now()}-${Math.floor(Math.random() * 10000)}`;
+    return `soccerYou-${Date.now()}-${Math.floor(Math.random() * 10000)}`;
   }
 
   // async init(user: { id: string; name: string; email: string; photoUrl: string, role: string }) {
@@ -124,9 +124,9 @@ export class TalkService {
       let userArr = { id: id, name: name, email: email, photoUrl: photoUrl };
       console.info('user recived to create converstaion ', userArr);
       const otherUser = new Talk.User({
-        id: id,
-        name: name,
-        email: email,
+        id: userArr.id,
+        name: userArr.name,
+        email: userArr.email,
         photoUrl: userArr.photoUrl,
         welcomeMessage: null,
         role: 'default'
@@ -189,14 +189,16 @@ export class TalkService {
       // Add the current user
       conversation.setParticipant(this.user);
 
-      // Add all other users to the conversation
+      // Add all other users to the conver
+      // sation
       userList.forEach(user => {
+        console.info('GroupMember',user)
         const participant = new Talk.User({
           id: user.id,
           name: user.name,
           email: user.email,
           photoUrl: user.photoUrl,
-          welcomeMessage: 'Hey there! How can I help?',
+          // welcomeMessage: 'Hey there! How can I help?',
           role: 'default'
         });
         conversation.setParticipant(participant);
@@ -204,7 +206,7 @@ export class TalkService {
 
       const hiddenUser = new Talk.User({
         id: 1,
-        name: '',
+        name: 'crest',
         email: 'testmails.cts@gmail.com',
         role: 'hidden'
       });

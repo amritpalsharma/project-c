@@ -47,7 +47,7 @@ export class EditPersonalDetailsComponent implements OnInit {
   sm_youtube: any = "";
   sm_vimeo: any = "";
   sm_linkedin: any = "";
-  scoutNation: number = 0;
+  scoutNation: any;
   socialMediaPlatforms = [
     { id: 'x', name: 'X (Twitter)', placeholder: 'x.com/' },
     { id: 'facebook', name: 'Facebook', placeholder: 'facebook.com/' },
@@ -168,7 +168,7 @@ export class EditPersonalDetailsComponent implements OnInit {
       (response: any) => {
         if (response && response.status) {
           this.countries = response.data.countries;
-          console.log('countries', this.countries)
+          console.log('countries 123', this.countries)
         }
       },
       (error: any) => {
@@ -205,6 +205,12 @@ export class EditPersonalDetailsComponent implements OnInit {
           this.zipcode = this.user.meta.zipcode;
 
           // scoutNation
+
+          this.userNationalities = JSON.parse(this.user.user_nationalities);
+          this.scoutNation = this.userNationalities[0].country_id;
+          // this.userNationalities[0].id = JSON.stringify(this.userNationalities[0].country_id) ;
+
+          console.log(this.userNationalities, 'user nation')
         }
       } else {
         console.error('Invalid API response structure:', response);

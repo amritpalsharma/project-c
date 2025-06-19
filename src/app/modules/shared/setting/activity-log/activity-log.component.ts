@@ -52,7 +52,7 @@ export class ActivityLogComponent {
     });
     // areYouSuretoDeleteActivity
   }
-
+  totalRecords: number = 0;
   async getActivity(): Promise<void> {
 
     this.isLoading = true;
@@ -79,9 +79,11 @@ export class ActivityLogComponent {
             this.currentOffset = 0;
             this.activities = [];
           }
+          this.totalRecords = response.data.totalCount;
           // this.currentPage = this.paginator.pageIndex;
           this.isLoading = false;
         } else {
+          this.totalRecords = 0;
           this.activities = [];
           this.isLoading = false;
           console.error('Invalid API response structure:', response);

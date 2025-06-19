@@ -108,8 +108,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.getBoosterData();
 
     this.getCoverImg();
-    this.route.params.subscribe(() => {
-      this.activeTab = 'profile';
+    // this.route.params.subscribe(() => {
+    //   this.activeTab = 'profile';
+    // });
+
+    // Listen for hash changes in the route
+    this.route.fragment.subscribe(fragment => {
+      if (fragment === 'portfolio') {
+        this.activeTab = fragment;
+      }
     });
 
     await this.getAllTeams();
@@ -1040,6 +1047,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   switchTab(tab: string) {
     this.activeTab = tab;
+    this.router.navigate([], { fragment: undefined });
   }
 
   deleteUser() {

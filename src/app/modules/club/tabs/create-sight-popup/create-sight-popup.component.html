@@ -210,12 +210,17 @@
         </div>
       </div>
     </div>
-    <div class="about-event">
+    <div class="about-event mb-4">
       <label for="about-text" class="code-text">{{ 'aboutEvent' | translate }}</label><br>
       <textarea name="about" id="about-text" rows="4" cols="50" class="w-100 " [(ngModel)]="about">
       <!-- Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. -->
     </textarea>
     </div>
+
+    <div class="code-text">
+      <input type="checkbox" [(ngModel)]="status"> {{ status ? "Active" : "Inactive" }}
+    </div>
+
   </div>
   <div class="dialog-actions align-items-center d-flex justify-content-between mt-0 popup_footer p-3">
     <button type="button" class="cancel-btn" (click)="close()">{{ 'cancel' | translate }}</button>
