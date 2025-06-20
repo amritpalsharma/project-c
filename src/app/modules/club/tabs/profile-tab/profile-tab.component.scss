@@ -567,12 +567,14 @@
 }
   }
 
-  select.custom-select.custom-select-wrapper {
-    background: #F1EEEE;
+select.custom-select.custom-select-wrapper {
+    background: transparent;
     border: 0;
     padding: 7px;
+    padding-left: 0 !important;
     outline: none;
     box-shadow: none;
+    color: inherit !important;
 }
 
 @media (min-width: 1600px) and (max-width: 2999px) {
