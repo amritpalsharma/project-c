@@ -1356,5 +1356,7 @@
   "maxSizeForProfile": "Filen young-bearded-man-with-striped-shirt.jpg overskrider den maksimalt tilladte størrelse på 5 MB.",
   "aboutImageCaption": "fra v. mod h.",
   "confirmDeleteinformationTeam": "Er du sikker på, at du vil fjerne spilleren fra holdet?",
-  "userPurchasesNotFound":"Du har endnu ikke foretaget nogen køb."
+  "userPurchasesNotFound": "Du har endnu ikke foretaget nogen køb.",
+  "managePaymentBtnTxt": "Administrér betalinger",
+  "managePaymentBtnTxtBelowTxt": "Prøv betaling igen / Opdater kortoplysninger"
 }

@@ -14,6 +14,7 @@ import { ScoutService } from '../../../services/scout.service';
 import { TranslateService } from '@ngx-translate/core';
 import { TitleService } from '../../../title.service';
 import { WebPages } from '../../../services/webpages.service';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-membership',
@@ -459,5 +460,25 @@ export class MembershipComponent {
       console.log('Title fetch Function Fired');
     })
   }
+
+
+    openCustomerPortal(): void {
+      this.paymentService.generateLinkAndNavigate().pipe(take(1)).subscribe({
+        next: (response: any) => {
+          if (response?.data) {
+            if (response?.data?.[0]?.url?.trim()) {
+              // window.location.href = response?.data?.[0]?.url?.trim(); // ✅ Redirect
+              window.open(response?.data?.[0]?.url?.trim());
+            }
+
+          } else {
+            console.error('URL not found in response');
+          }
+        },
+        error: (err: any) => {
+          console.error('Failed to generate customer portal link:', err);
+        }
+      });
+    }
 
 }

@@ -78,65 +78,11 @@ export class TalkService {
       me: this.user,
       // theme: themeFirstTym
     });
-    this.toggleTheme30042025(this.currentTheme)
+    this.toggleThemeInit(this.currentTheme)
     return this.session;
   }
 
-  // Create a one-on-one conversation
-  createOneOnOneConversation190625(id: string, name: string, email: string, photoUrl: string): Promise<void> {
 
-    return new Promise((resolve, reject) => {
-      if (!this.user || !this.session) {
-        reject('User is not initialized');
-        return;
-      }
-
-      // photoUrl = photoUrl + '?' + Math.random();
-      let userArr = { id: id, name: name, email: email, photoUrl: photoUrl };
-      console.info('user recived to create converstaion ', userArr);
-      const otherUser = new Talk.User({
-        id: userArr.id,
-        name: userArr.name,
-        email: userArr.email,
-        photoUrl: userArr.photoUrl,
-        welcomeMessage: null,
-        role: 'default'
-      });
-      const conversation = this.session.getOrCreateConversation(Talk.oneOnOneId(this.user, otherUser));
-
-      const hiddenUser = new Talk.User({
-        id: 1,
-        name: 'testmails.cts@gmail.com',
-        email: 'testmails.cts@gmail.com',
-        role: 'hidden'
-      });
-
-      console.info('this.user', this.user);
-      conversation.setParticipant(this.user);
-      conversation.setParticipant(otherUser);
-      conversation.setParticipant(hiddenUser);
-      // if (!this.inbox) {
-      //   this.inbox = this.session.createInbox({ selected: conversation });
-      // } else {
-      //   this.inbox.select(conversation);
-      // }
-
-      // ✅ Only create inbox once
-      if (!this.inbox) {
-
-        // this.inbox = this.session.createInbox();
-        if (this.currentTheme === 'dark') {
-          this.inbox = this.session.createInbox({ theme: 'dark_custom' });
-        } else {
-          this.inbox = this.session.createInbox({ theme: 'default' });
-        }
-        this.inbox.mount(document.getElementById('talkjs-container') as HTMLElement);
-      }
-      // ✅ Just select conversation if inbox already exists
-      this.inbox.select(conversation);
-      resolve();
-    });
-  }
 
   // Create a group conversation with multiple users
   createGroupConversation(groupName: string, userList: { id: string; name: string; email: string; photoUrl: string }[]): Promise<void> {
@@ -223,7 +169,7 @@ export class TalkService {
     console.log('themem set is ', theme);
   }
 
-  toggleTheme30042025(currentTheme: string): void {
+  toggleThemeInit(currentTheme: string): void {
     if (!this.session) {
       console.error('TalkJS session not initialized');
       return;
@@ -244,56 +190,6 @@ export class TalkService {
     this.currentLocale = locale;
   }
 
-
-
-  // createOneOnOneConversation(id: string, name: string, email: string, photoUrl: string): Promise<void> {
-  //   let userDataArr = { id: id, name: name, email: email, photoUrl: photoUrl };
-  //   return this.refreshTalkSessionWithUpdatedImage(userDataArr);
-  // }
-
-  createOneOnOneConversation1(id: string, name: string, email: string, photoUrl: string): Promise<void> {
-
-    return new Promise((resolve, reject) => {
-      if (!this.user || !this.session) {
-        reject('User is not initialized');
-        return;
-      }
-
-      console.info('user ' + name + ' selected for chat with Profile Image ' + photoUrl);
-
-      const otherUser = new Talk.User({
-        id: id,
-        name: name,
-        email: email,
-        photoUrl: photoUrl + '?=' + Date.now(),
-        welcomeMessage: null,
-        role: 'default'
-
-      });
-      const conversation = this.session.getOrCreateConversation(Talk.oneOnOneId(this.user, otherUser));
-
-      const hiddenUser = new Talk.User({
-        id: 1,
-        name: 'Crest Tech',
-        email: 'testmails.cts@gmail.com',
-        role: 'hidden'
-      });
-
-
-      conversation.setParticipant(this.user);
-      conversation.setParticipant(otherUser);
-      conversation.setParticipant(hiddenUser);
-      conversation.setAttributes({ custom: { search: `${this.user.name} ${otherUser.name}` } });
-      if (!this.inbox) {
-        this.inbox = this.session.createInbox({ selected: conversation });
-      } else {
-        this.inbox.select(conversation);
-      }
-      // let userArrayForrefresh = { id: id, name: name, email: email, photoUrl: photoUrl };
-      // this.refreshTalkSessionWithUpdatedImage(userArrayForrefresh);
-      resolve();
-    });
-  }
 
   async createOneOnOneConversation(
     id: string,
@@ -316,10 +212,10 @@ export class TalkService {
       // Process profile image with cache busting
       const validatedPhoto = this.isValidImageUrl(photoUrl)
         ? photoUrl
-        : window.location.hostname + '/assets/images/1.png';
+        : 'https://api.socceryou.ch/uploads/default_talent_img.png';
       let finalPhotoUrl = `${validatedPhoto}${validatedPhoto.includes('?') ? '&' : '?'}ts=${Date.now()}`;
       if (finalPhotoUrl.includes("/undefined")) {
-        finalPhotoUrl = '../assets/images/1.png';
+        finalPhotoUrl = 'https://api.socceryou.ch/uploads/default_talent_img.png';
       }
       // Create conversation participant
       const otherUser = new Talk.User({
@@ -334,7 +230,7 @@ export class TalkService {
       // Create hidden admin user (reuse if exists)
       const hiddenAdmin = new Talk.User({
         id: '1',
-        name: 'Crest Tech',
+        name: 'Succer You Sports AG',
         email: 'testmails.cts@gmail.com',
         role: 'hidden',
         // photoUrl: 'https://yourdomain.com/admin-avatar.png'
@@ -362,7 +258,8 @@ export class TalkService {
       conversation.setAttributes({
         photoUrl: finalPhotoUrl, // Image in header
         custom: {
-          search: `${this.user.name} ${otherUser.name}`.toLowerCase()
+          // role:'hidden',
+          // search: `${this.user.name} ${otherUser.name}`.toLowerCase()
         }
       });
 

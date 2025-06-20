@@ -1490,5 +1490,7 @@
   "maxSizeForProfile": "Filen young-bearded-man-with-striped-shirt.jpg överskrider den maximalt tillåtna storleken 5 MB.",
   "aboutImageCaption": "fr. v. till h.",
   "confirmDeleteinformationTeam": "Är du säker på att du vill ta bort spelaren från laget?",
-  "userPurchasesNotFound": "Du har ännu inte gjort några köp."
+  "userPurchasesNotFound": "Du har ännu inte gjort några köp.",
+  "managePaymentBtnTxt": "Hantera betalningar",
+  "managePaymentBtnTxtBelowTxt": "Försök igen med betalning / Uppdatera kortuppgifter"
 }

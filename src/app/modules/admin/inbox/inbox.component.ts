@@ -33,7 +33,7 @@ export class InboxComponent {
     private titleService: TitleService,
     private translateService: TranslateService,
     private sharedservice: SharedService,
-    private router:Router
+    private router: Router
   ) { }
 
   async ngOnInit() {
@@ -125,10 +125,22 @@ export class InboxComponent {
       .subscribe(users => {
 
         for (let user of users.data) {
+          let full_name = '';
+          let currentRole = user?.role_name.toLowerCase();
+          if (typeof user?.role_name !== undefined && currentRole == 'club' || currentRole == 'clube' || currentRole == 'klub' || currentRole == 'klubb' && user?.current_club_logo != '') {
+            user.meta.profile_image_path = 'https://api.socceryou.ch/uploads/' + user?.current_club_logo;
+          }
+          if (typeof user?.meta?.profile_image_path !== undefined && user?.meta?.profile_image_path != '') {
+            user.profile_image_path = user?.meta?.profile_image_path;
+          }
+
+          if (typeof user?.first_name !== undefined && user?.last_name != '') {
+            full_name = user?.first_name + ' ' + user?.last_name;
+          }
           this.users.push({
             id: user.id,
-            name: user.first_name + ' ' + user.last_name,
-            email: user.username,
+            name: full_name,
+            email: user.email,
             photoUrl: user.profile_image_path,
           })
         }

@@ -26,9 +26,15 @@
             <p class="main_to_label">{{ 'to:' | translate }}</p>
             @for (user of users; track $index) {
             <mat-chip-row (removed)="remove(user)">
-              <img width="20" height="20" class="img-list" src="../../../../../assets/images/1.png">
-              {{user?.first_name}}
-              <span matChipRemove [attr.aria-label]="'remove ' + user" class="cancel-icon"> </span>
+              <!-- <img width="20" height="20" class="img-list" src="../../../../../assets/images/1.png"> -->
+              <!-- {{user?.first_name}} -->
+              <img *ngIf="!isThisClub(user.role_name)" width="50" height="50" class="img-list "
+                src="{{user?.meta?.profile_image_path ? user?.meta?.profile_image_path :'../../../../../assets/images/default/talent-profile-default.png'}}" style="width: 30px;height: 30px;">
+              <img *ngIf="isThisClub(user.role_name)" width="50" height="50" class="img-list "
+                src="{{user?.current_club_logo ? 'https://api.socceryou.ch/uploads/' + user?.current_club_logo :'../../../../../assets/images/default/talent-profile-default.png'}}" style="width: 30px;height: 30px;">
+              {{user?.first_name+' '+user?.last_name}}
+              <span matChipRemove [attr.aria-label]="'remove ' + user" class="cancel-icon">
+              </span>
             </mat-chip-row>
             }
             <!-- <input
@@ -47,7 +53,7 @@
 
           <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)" class="listBox w-100">
             @for (user of filteredUsers; track user) {
-              <!-- <pre>{{user | json}}</pre> -->
+            <!-- <pre>{{user | json}}</pre> -->
             <mat-option [value]="user" class="fruit-font">
               <img *ngIf="!isThisClub(user.role_name)" width="50" height="50"
                 class="img-list is_not_club {{user.role_name}}"

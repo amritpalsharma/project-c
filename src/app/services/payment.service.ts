@@ -32,14 +32,14 @@ export class PaymentService {
       if (userData.role == 4) {
         successUrl = window.location.origin + '/talent/success';
         cancelUrl = window.location.origin + '/talent/cancel';
-      }else if(userData.role == 2){
+      } else if (userData.role == 2) {
         successUrl = window.location.origin + '/club/success';
         cancelUrl = window.location.origin + '/club/cancel';
-      }else if(userData.role == 3){
+      } else if (userData.role == 3) {
         successUrl = window.location.origin + '/scout/success';
         cancelUrl = window.location.origin + '/scout/cancel';
       }
-    }else{
+    } else {
       successUrl = window.location.origin + '/success';
     }
     // Define your cancel URL
@@ -91,4 +91,37 @@ export class PaymentService {
 
     return this.http.post<any>(url, data, { headers });
   }
+
+  // generateLinkAndNavigate(): Observable<any> {
+  //   const headers = new HttpHeaders({
+  //     'Authorization': `Bearer ${this.userToken}`
+  //   });
+
+  //   return this.http.post<any>(`https://api.socceryou.ch/api/create-customer-portal`, {return_url:window.location.hostname}, { headers });
+  // }
+
+  generateLinkAndNavigate(): Observable<any> {
+    const formData = new FormData();
+    formData.append('return_url', window.location.protocol + "//" + window.location.hostname); // Add your URL here
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.userToken}` // Include your token here
+    });
+
+    return this.http.post<any>(
+      'https://api.socceryou.ch/api/create-customer-portal',
+      formData,
+      { headers }
+    );
+  }
+
+
+  // genrateLinkAndNavigate() {
+  //   const headers = new HttpHeaders({
+  //     'Authorization': `Bearer ${this.userToken}`
+  //   });
+
+  //   return this.http.get(`${this.apiUrl}/create-customer-portal`, { headers });
+  // }
+
 }

@@ -462,3 +462,33 @@ table td .bg_success {
   filter: grayscale(100%) opacity(0.5);
   /* Grays out the SVG */
 }
+::ng-deep .managePaymentBtnTxtBelowTxt{
+   color: black;
+}
+::ng-deep .dark-theme .managePaymentBtnTxtBelowTxt{
+   color: #072944;
+}
+
+.purchase-parent {
+  .p_size {
+    flex-wrap: wrap;
+    align-items: center;
+
+    p {
+      font-size: 85% !important;
+    }
+  }
+}
+
+@media (max-width: 1600px) {
+  .purchase-parent {
+    .p_size {
+      flex-direction: column;
+      align-items: flex-start;
+
+      p {
+        max-width: 550px;
+      }
+    }
+  }
+}

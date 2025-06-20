@@ -1489,5 +1489,7 @@
   "maxSizeForProfile": "Il file young-bearded-man-with-striped-shirt.jpg supera la dimensione massima consentita di 5 MB.",
   "aboutImageCaption": "da sin. a des.",
   "confirmDeleteinformationTeam": "Sei sicuro di voler rimuovere questo giocatore dalla squadra?",
-  "userPurchasesNotFound":"Non hai ancora effettuato acquisti."
+  "userPurchasesNotFound": "Non hai ancora effettuato acquisti.",
+  "managePaymentBtnTxt": "Gestisci pagamenti",
+  "managePaymentBtnTxtBelowTxt": "Riprova pagamento / Aggiorna dati carta"
 }

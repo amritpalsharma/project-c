@@ -49,7 +49,7 @@ export class ChatComponent {
         //  
         this.globalSettings.themeAndLangCallSubject$.subscribe((response) => {
             setTimeout(() => {
-                // this.reloadChatComponent();
+                this.reloadChatComponent();
             }, 100);
         });
 

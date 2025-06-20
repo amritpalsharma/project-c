@@ -1506,6 +1506,8 @@
   "maxSizeForProfile": "Le fichier young-bearded-man-with-striped-shirt.jpg dépasse la taille maximale autorisée de 5 MB.",
   "aboutImageCaption": "de g. à d.",
   "confirmDeleteinformationTeam": "Es-tu sûr de vouloir supprimer ce joueur de cette équipe ?",
-  "noClubTxt":"Tu n’as pas de club pour le moment ou le tien n’est pas répertorié ? Pas de souci. Tu peux quand même t’inscrire gratuitement et compléter ton profil plus tard.",
-  "userPurchasesNotFound":"Tu n’as pas encore effectué d’achats."
+  "noClubTxt": "Tu n’as pas de club pour le moment ou le tien n’est pas répertorié ? Pas de souci. Tu peux quand même t’inscrire gratuitement et compléter ton profil plus tard.",
+  "userPurchasesNotFound": "Tu n’as pas encore effectué d’achats.",
+  "managePaymentBtnTxt": "Gérer les paiements",
+  "managePaymentBtnTxtBelowTxt": "Réessayer le paiement / Mettre à jour les informations de carte"
 }

@@ -1497,5 +1497,7 @@
   "openTxt": "Offen",
   "maxSizeForProfile": "Die Datei young-bearded-man-with-striped-shirt.jpg überschreitet die maximal zulässige Größe von 5 MB.",
   "aboutImageCaption": "v. l. n. r.",
-  "confirmDeleteinformationTeam": "Bist du sicher, dass du den Spieler aus diesem Team löschen möchtest?"
+  "confirmDeleteinformationTeam": "Bist du sicher, dass du den Spieler aus diesem Team löschen möchtest?",
+  "managePaymentBtnTxt": "Zahlungen verwalten",
+  "managePaymentBtnTxtBelowTxt": "Zahlung wiederholen / Kartendaten aktualisieren"
 }

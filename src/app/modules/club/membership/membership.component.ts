@@ -14,6 +14,7 @@ import { ScoutService } from '../../../services/scout.service';
 import { TranslateService } from '@ngx-translate/core';
 import { TitleService } from '../../../title.service';
 import { WebPages } from '../../../services/webpages.service';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-membership',
@@ -42,8 +43,8 @@ export class MembershipComponent {
   iscountry: any = false;
   isbooster: any = false;
   isdemo: any = false;
-  cancelConfirmationMsg:string='';
-  subscriptionCanceledSuccessfully:string='';
+  cancelConfirmationMsg: string = '';
+  subscriptionCanceledSuccessfully: string = '';
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   pageTitle: string = '';
 
@@ -182,7 +183,7 @@ export class MembershipComponent {
 
   viewMembership(id: any) {
     const userPurchase = this.getSubscriptionById(id);
-    console.log('userPurchase',userPurchase)
+    console.log('userPurchase', userPurchase)
     const dialogRef = this.dialog.open(ViewMembershipPopupComponent, {
       width: '800px',
       // width: '70vw',
@@ -226,11 +227,11 @@ export class MembershipComponent {
         tax_percentage: userPurchase.tax_percentage,
         tax: userPurchase.tax_amount,
         created_at: userPurchase.created_at,
-        package_price:userPurchase.package_price,
-        proration_amount:userPurchase.proration_amount,
-        coupon_used:userPurchase.coupon_used,
-        coupon_discount:userPurchase.coupon_discount,
-        discount_amount:userPurchase.discount_amount,
+        package_price: userPurchase.package_price,
+        proration_amount: userPurchase.proration_amount,
+        coupon_used: userPurchase.coupon_used,
+        coupon_discount: userPurchase.coupon_discount,
+        discount_amount: userPurchase.discount_amount,
       }
     });
   }
@@ -430,12 +431,31 @@ export class MembershipComponent {
     });
   }
   getJsonTranslations() {
-    this.translateService.get(['membership','cancelConfirmationMsg','subscriptionCanceledSuccessfully']).subscribe((translations) => {
+    this.translateService.get(['membership', 'cancelConfirmationMsg', 'subscriptionCanceledSuccessfully']).subscribe((translations) => {
       this.pageTitle = translations['membership'];
       this.cancelConfirmationMsg = translations['cancelConfirmationMsg'];
       this.subscriptionCanceledSuccessfully = translations['subscriptionCanceledSuccessfully'];
       this.titleService.setTitle(this.pageTitle);
       // console.log('Title fetch Function Fired');
     })
+  }
+
+
+  openCustomerPortal(): void {
+    this.paymentService.generateLinkAndNavigate().pipe(take(1)).subscribe({
+      next: (response: any) => {
+        if (response?.data) {
+          if (response?.data?.[0]?.url?.trim()) {
+            // window.location.href = response?.data?.[0]?.url?.trim(); // ✅ Redirect
+            window.open(response?.data?.[0]?.url?.trim());
+          }
+        } else {
+          console.error('URL not found in response');
+        }
+      },
+      error: (err: any) => {
+        console.error('Failed to generate customer portal link:', err);
+      }
+    });
   }
 }
