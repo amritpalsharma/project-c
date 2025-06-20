@@ -125,3 +125,11 @@ mat-datepicker-toggle {
 .checkbox-wrap{
       padding: 0px 32px;
 }
+
+
+
+@media (min-width: 3000px) {
+    label.form-label {
+        font-size: 22px !important;
+    }
+}

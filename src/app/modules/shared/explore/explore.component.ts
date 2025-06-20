@@ -162,7 +162,7 @@ export class ExploreComponent implements OnInit {
     this.getUsers();
 
     // Populate ageRange with numbers from 15 to 50
-    this.ageRange = Array.from({ length: 50 - 15 + 1 }, (_, i) => i + 15);
+    this.ageRange = Array.from({ length: 50 - 11 + 1 }, (_, i) => i + 11);
     // Initialize viewsTracked from sessionStorage
     this.loadTrackedViews();
 
