@@ -69,8 +69,8 @@
                             <span class="cursor-pointer" (click)="handleNotiificationClick(element)">
                                 {{ element.message }}
                             </span>
-                            <span style="color: green;" *ngIf="element.event == 'acceptScoutRequest'">({{ 'accepted' | translate }})</span>
-                            <span style="color: red;" *ngIf="element.event == 'rejectScoutRequest'">({{ 'rejected' | translate }})</span>
+                            <!-- <span style="color: green;" *ngIf="element.event == 'acceptScoutRequest'">({{ 'accepted' | translate }})</span>
+                            <span style="color: red;" *ngIf="element.event == 'rejectScoutRequest'">({{ 'rejected' | translate }})</span> -->
                             <div>
                                 <button *ngIf="element.event == 'scoutAddPlayer' && !element.seen" type="button"
                                     (click)="responseToScoutInvite('accepted', element.senderId, element)"

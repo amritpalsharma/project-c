@@ -211,38 +211,44 @@ mat-datepicker-toggle {
 }
 
 @media (max-width: 480px) {
-.date-imputs.d-flex {
+  .date-imputs.d-flex {
     flex-direction: column;
     gap: 10px;
     align-items: flex-start !important;
+
     .date_field {
       width: 100% !important;
     }
-    input#from_date, input#to_date {
+
+    input#from_date,
+    input#to_date {
       border-width: 1px !important;
       border-radius: 10px !important;
+    }
   }
-}
 }
 
 ::ng-deep {
   .select_search_field {
     width: 100%;
   }
-  .select_search_field > .mat-mdc-text-field-wrapper.mdc-text-field--filled {
+
+  .select_search_field>.mat-mdc-text-field-wrapper.mdc-text-field--filled {
     padding: 0 !important;
     width: 100%;
     border: 0 !important;
     background: transparent !important;
     outline: none !important;
   }
+
   // div.mat-mdc-autocomplete-panel {
   //   background: red !important;
   // }
-  .select_search_field > .mat-mdc-text-field-wrapper.mdc-text-field--filled .mdc-line-ripple::before,
-  .select_search_field > .mat-mdc-text-field-wrapper.mdc-text-field--filled .mdc-line-ripple::after {
-    border-bottom: 0 !important	
+  .select_search_field>.mat-mdc-text-field-wrapper.mdc-text-field--filled .mdc-line-ripple::before,
+  .select_search_field>.mat-mdc-text-field-wrapper.mdc-text-field--filled .mdc-line-ripple::after {
+    border-bottom: 0 !important
   }
+
   .mat-mdc-form-field-focus-overlay {
     background: transparent !important;
   }
@@ -254,4 +260,8 @@ mat-datepicker-toggle {
   }
 }
 
- 
+@media (min-width:1600px) {
+  .form-group {
+    padding: 0px 18px;
+  }
+}
