@@ -1491,5 +1491,7 @@
   "confirmDeleteinformationTeam": "Sei sicuro di voler rimuovere questo giocatore dalla squadra?",
   "userPurchasesNotFound": "Non hai ancora effettuato acquisti.",
   "managePaymentBtnTxt": "Gestisci pagamenti",
-  "managePaymentBtnTxtBelowTxt": "Riprova pagamento / Aggiorna dati carta"
+  "managePaymentBtnTxtBelowTxt": "Riprova pagamento / Aggiorna dati carta",
+  "linkTxt": "Link",
+  "memberShipDetailTxt": "Se lo stato della transazione è \"Aperto\" da più di 1 giorno o \"Fallito\", fai clic sul pulsante \"Gestisci pagamenti\" per intraprendere le azioni necessarie."
 }

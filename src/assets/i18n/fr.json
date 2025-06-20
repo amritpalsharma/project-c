@@ -1509,5 +1509,7 @@
   "noClubTxt": "Tu n’as pas de club pour le moment ou le tien n’est pas répertorié ? Pas de souci. Tu peux quand même t’inscrire gratuitement et compléter ton profil plus tard.",
   "userPurchasesNotFound": "Tu n’as pas encore effectué d’achats.",
   "managePaymentBtnTxt": "Gérer les paiements",
-  "managePaymentBtnTxtBelowTxt": "Réessayer le paiement / Mettre à jour les informations de carte"
+  "managePaymentBtnTxtBelowTxt": "Réessayer le paiement / Mettre à jour les informations de carte",
+   "linkTxt":"Link",
+  "memberShipDetailTxt":"If Transaction Status is \"Open\" for more than 1 day or \"Failed\", please click on \"Manage Payments\" Button to take necessary action."
 }

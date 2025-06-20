@@ -1492,5 +1492,7 @@
   "confirmDeleteinformationTeam": "Är du säker på att du vill ta bort spelaren från laget?",
   "userPurchasesNotFound": "Du har ännu inte gjort några köp.",
   "managePaymentBtnTxt": "Hantera betalningar",
-  "managePaymentBtnTxtBelowTxt": "Försök igen med betalning / Uppdatera kortuppgifter"
+  "managePaymentBtnTxtBelowTxt": "Försök igen med betalning / Uppdatera kortuppgifter",
+   "linkTxt": "Länk",
+  "memberShipDetailTxt": "Om transaktionsstatus är \"Öppen\" i mer än 1 dag eller \"Misslyckad\", klicka på knappen \"Hantera betalningar\" för att vidta nödvändiga åtgärder."
 }

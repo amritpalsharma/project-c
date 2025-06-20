@@ -1358,5 +1358,7 @@
   "confirmDeleteinformationTeam": "Er du sikker på, at du vil fjerne spilleren fra holdet?",
   "userPurchasesNotFound": "Du har endnu ikke foretaget nogen køb.",
   "managePaymentBtnTxt": "Administrér betalinger",
-  "managePaymentBtnTxtBelowTxt": "Prøv betaling igen / Opdater kortoplysninger"
+  "managePaymentBtnTxtBelowTxt": "Prøv betaling igen / Opdater kortoplysninger",
+  "linkTxt": "Link",
+  "memberShipDetailTxt": "Hvis transaktionsstatus er \"Åben\" i mere end 1 dag eller \"Mislykket\", skal du klikke på knappen \"Administrer betalinger\" for at tage de nødvendige skridt."
 }
