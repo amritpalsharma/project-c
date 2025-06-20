@@ -31,6 +31,7 @@ import 'moment/locale/it';
 import 'moment/locale/es';
 import 'moment/locale/sv';
 import 'moment/locale/da';
+// import { ChatComponent } from '../chat/chat.component';
 
 interface Notification {
   id: number;
@@ -80,6 +81,7 @@ export class HeaderComponent {
     private cdRef: ChangeDetectorRef,
     private titleService: TitleService,
     public dialog: MatDialog
+    // public chatComponent:ChatComponent
   ) {
     let locale = localStorage.getItem('lang') || 'en';
     this._adapter.setLocale(locale);
@@ -128,6 +130,7 @@ export class HeaderComponent {
     this.getPageTitle();
     this.getUserName();
     this.getUserRole();
+    // this.chatComponent.reloadChatComponent();
     let isFrontendDarkMode = localStorage.getItem('theme');
     if (isFrontendDarkMode != '' && isFrontendDarkMode == 'dark') {
       this.isDarkMode = true;

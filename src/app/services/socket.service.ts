@@ -54,7 +54,7 @@ export class SocketService {
       let jsonData = localStorage.getItem("userData") || '';
       let userData = JSON.parse(jsonData);
       if (data?.senderId == userData.id) {
-        this.socket.emit('sendMessage', data)
+        this.socket.emit('sendMessage2', data)
       }
     })
 

@@ -46,10 +46,10 @@ export class ChatComponent {
         } else {
             this.theme = 'default';
         }
-
+//  
         this.globalSettings.themeAndLangCallSubject$.subscribe((response) => {
             setTimeout(() => {
-                this.reloadChatComponent();
+                // this.reloadChatComponent();
             }, 100);
         });
 
