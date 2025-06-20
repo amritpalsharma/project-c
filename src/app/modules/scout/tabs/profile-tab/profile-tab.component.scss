@@ -615,6 +615,17 @@ border-radius: 50%;
 }
 }
 
+select.custom-select.custom-select-wrapper {
+    background: transparent;
+    border: 0;
+    padding: 7px;
+    padding-left: 0 !important;
+    height: unset;
+    outline: none;
+    box-shadow: none;
+    color: inherit !important;
+}
+
 
 @media (min-width: 1600px) and (max-width: 2999px) {
   .general_titels h2, .general_details .details_1, .position-boxs .details_1, .main-position .details_1,
