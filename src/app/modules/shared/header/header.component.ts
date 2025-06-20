@@ -178,6 +178,7 @@ export class HeaderComponent {
     // this.role = this.roles.find((role: any) => role.id == userRole);
     let langId = localStorage.getItem('lang_id');
     this.fetchNotifications(userId, langId);
+
     this.loggedInUser = JSON.parse(this.loggedInUser);
 
     this.getUserStatus();
@@ -728,15 +729,26 @@ export class HeaderComponent {
   }
 
   handleNotiificationClick(notification: any) {
+
+
     if (!this.isUserVerified) {
       this.showVerificationPopup(false);
     }
     else {
 
       console.log(notification)
-      let role = (this.loggedInUser?.role_name || '').toString().toLowerCase();
+      // let role = (this.loggedInUser?.role_name || '').toString().toLowerCase();
+
+      let currentUserStr = localStorage.getItem('userData')
+      let role = null;
+      if (currentUserStr) {
+        let currentUser = JSON.parse(currentUserStr);
+
+        role = (currentUser?.role_name).toString().toLowerCase();
+      }
 
       if (notification.event === 'sendMessage') {
+        console.log(role);
         this.router.navigate([`/${role}/chat`]);
       }
       else if (notification.event === 'userVerified' || notification.event === 'userRejected' || notification.event === 'scoutAddPlayer' || notification.event === 'inviteTalent' || notification.event === 'acceptScoutRequest' || notification.event === 'rejectScoutRequest' || notification.event === 'acceptClubInvite' || notification.event === 'rejectClubInvite') {

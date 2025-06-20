@@ -54,7 +54,8 @@ export class SocketService {
       let jsonData = localStorage.getItem("userData") || '';
       let userData = JSON.parse(jsonData);
       if (data?.senderId == userData.id) {
-        this.socket.emit('sendMessage', data)
+        console.log('its done from frontend')
+        this.socket.emit('sendMessage2', data)
       }
     })
 
