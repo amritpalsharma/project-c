@@ -48,6 +48,8 @@ export class TalkService {
     return `soccerYou-${Date.now()}-${Math.floor(Math.random() * 10000)}`;
   }
 
+
+
   async init(userData: any): Promise<Talk.Session> {
     let themeFirstTym;
     if (this.currentTheme === 'dark') {
@@ -293,84 +295,101 @@ export class TalkService {
     });
   }
 
-  createOneOnOneConversation(id: string, name: string, email: string, photoUrl: string): Promise<void> {
-    return new Promise(async (resolve, reject) => {
-      try {
-        // 🔐 Ensure session and user are initialized
-        if (!this.user || !this.session) {
-          console.error("TalkJS user/session is not ready.");
-          reject('User is not initialized');
-          return;
-        }
+  async createOneOnOneConversation(
+    id: string,
+    name: string,
+    email: string,
+    photoUrl: string
+  ): Promise<void> {
+    // Validate TalkJS initialization
+    if (!this.user || !this.session) {
+      throw new Error('TalkJS user/session is not initialized');
+    }
 
-        // 🧠 Validate image or use fallback
-        const finalPhotoUrl = this.isValidImageUrl(photoUrl)
-          ? photoUrl
-          : 'https://yourdomain.com/assets/images/default-profile.png';
+    // Container element check
+    const container = document.getElementById('talkjs-container');
+    if (!container) {
+      throw new Error('TalkJS container element not found');
+    }
 
-        console.info('Starting chat with:', { id, name, email, finalPhotoUrl });
-
-        // 👤 Create the other user
-        const otherUser = new Talk.User({
-          id: id,
-          name: name,
-          email: email,
-          photoUrl: finalPhotoUrl,
-          role: 'default',
-          welcomeMessage: null
-        });
-
-        // 🗨️ Create conversation ID
-        const conversationId = Talk.oneOnOneId(this.user, otherUser);
-
-        // 📩 Get or create the conversation
-        const conversation = this.session.getOrCreateConversation(conversationId);
-        conversation.setParticipant(this.user);
-        conversation.setParticipant(otherUser);
-
-        // Optional: Add hidden admin user
-        const hiddenUser = new Talk.User({
-          id: '1',
-          name: 'Crest Tech',
-          email: 'testmails.cts@gmail.com',
-          role: 'hidden'
-        });
-        conversation.setParticipant(hiddenUser);
-
-        // Set searchable data
-        conversation.setAttributes({
-          custom: {
-            search: `${this.user.name} ${otherUser.name}`
-          }
-        });
-
-        // 🔄 Ensure DOM container exists
-        const container = document.getElementById('talkjs-container');
-        if (!container) {
-          console.error("TalkJS container not found");
-          reject('Chat container not found');
-          return;
-        }
-
-        // 💬 Create or update inbox
-        if (!this.inbox) {
-          this.inbox = this.session.createInbox({ selected: conversation });
-          this.inbox.mount(container);
-        } else {
-          this.inbox.select(conversation);
-        }
-
-        resolve();
-      } catch (err) {
-        console.error("Error opening chat:", err);
-        reject(err);
+    try {
+      // Process profile image with cache busting
+      const validatedPhoto = this.isValidImageUrl(photoUrl)
+        ? photoUrl
+        : window.location.hostname + '/assets/images/1.png';
+      let finalPhotoUrl = `${validatedPhoto}${validatedPhoto.includes('?') ? '&' : '?'}ts=${Date.now()}`;
+      if (finalPhotoUrl.includes("/undefined")) {
+        finalPhotoUrl = '../assets/images/1.png';
       }
-    });
+      // Create conversation participant
+      const otherUser = new Talk.User({
+        id,
+        name,
+        email,
+        photoUrl: finalPhotoUrl,
+        role: 'default',
+        welcomeMessage: null
+      });
+
+      // Create hidden admin user (reuse if exists)
+      const hiddenAdmin = new Talk.User({
+        id: '1',
+        name: 'Crest Tech',
+        email: 'testmails.cts@gmail.com',
+        role: 'hidden',
+        // photoUrl: 'https://yourdomain.com/admin-avatar.png'
+      });
+
+      // Get or create conversation
+      const conversationId = Talk.oneOnOneId(this.user, otherUser);
+      const conversation = this.session.getOrCreateConversation(conversationId);
+
+      // Set participants (idempotent)
+      conversation.setParticipant(this.user);
+      conversation.setParticipant(otherUser);
+      conversation.setParticipant(hiddenAdmin);
+
+      // ✅ Force correct name and image in the chat header
+      // conversation.setAttributes({
+      //   subject: name, // Name in header
+      //   photoUrl: finalPhotoUrl, // Image in header
+      //   custom: {
+      //     search: `${this.user.name} ${name}`.toLowerCase()
+      //   }
+      // });
+      console.info('OtherUserProfileFound', finalPhotoUrl)
+      // Set search metadata
+      conversation.setAttributes({
+        photoUrl: finalPhotoUrl, // Image in header
+        custom: {
+          search: `${this.user.name} ${otherUser.name}`.toLowerCase()
+        }
+      });
+
+      // Initialize or update inbox
+      if (!this.inbox) {
+        this.inbox = this.session.createInbox();
+        this.inbox.mount(container);
+      }
+
+      // Activate conversation
+      await this.inbox.select(conversation);
+
+    } catch (error) {
+      console.error('TalkJS conversation error:', error);
+      throw new Error('Failed to start conversation');
+    }
   }
 
-  // ✅ Image URL Validator
-  isValidImageUrl(url: string): boolean {
-    return /^https?:\/\/.+\.(jpg|jpeg|png|gif|svg|webp)$/i.test(url);
+  // Helper function for image validation
+  private isValidImageUrl(url: string): boolean {
+    if (!url) return false;
+    try {
+      const parsed = new URL(url);
+      return ['http:', 'https:'].includes(parsed.protocol);
+    } catch {
+      return false;
+    }
   }
 
 

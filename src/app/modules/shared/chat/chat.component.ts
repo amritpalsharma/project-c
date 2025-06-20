@@ -46,7 +46,7 @@ export class ChatComponent {
         } else {
             this.theme = 'default';
         }
-//  
+        //  
         this.globalSettings.themeAndLangCallSubject$.subscribe((response) => {
             setTimeout(() => {
                 // this.reloadChatComponent();
@@ -141,6 +141,10 @@ export class ChatComponent {
                     for (let user of users.data) {
                         console.log('user From Chat Popup', user);
                         let full_name = 'Full Name';
+                        let currentRole = user?.role_name.toLowerCase();
+                        if (typeof user?.role_name !== undefined && currentRole == 'club' || currentRole == 'clube' || currentRole == 'klub' || currentRole == 'klubb' && user?.current_club_logo != '') {
+                            user.meta.profile_image_path = 'https://api.socceryou.ch/uploads/' + user?.current_club_logo;
+                        }
                         if (typeof user?.meta?.profile_image_path !== undefined && user?.meta?.profile_image_path != '') {
                             user.profile_image_path = user?.meta?.profile_image_path;
                         }
