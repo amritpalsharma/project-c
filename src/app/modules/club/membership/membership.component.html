@@ -137,8 +137,8 @@
         <div class="purchase-parent bg-0C3453">
           <div class="d-flex align-items-center justify-content-between transaction_box mb-2">
             <div class="d-flex align-items-center">
-              <h2 class="card-title mb-0 me-3 ">{{'latestTransaction' | translate}}</h2>
               <div class="d-flex p_size">
+                <h2 class="card-title mb-0 me-3 ">{{'latestTransaction' | translate}}</h2>
                 <p class="memberShipDetailTxt">{{'memberShipDetailTxt' | translate}}</p>
               </div>
             </div>
@@ -147,7 +147,7 @@
               <div class="d-flex align-items-center slider-arrows">
                 <mat-paginator class="paginator-components bg-0C3453 pagination-values" *ngIf="totalItems > 0"
                   [length]="totalItems" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20]"
-                  (page)="onPageChange($event)"> 
+                  (page)="onPageChange($event)">
                 </mat-paginator>
               </div>
             </div>

@@ -47,6 +47,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   stats: any = [];
   accountVerificationPending: string = '';
   maxSizeForProfile: string = '';
+  scoutInfoDetails: any;
 
 
   constructor(
@@ -449,6 +450,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
           if (this.user?.meta && this.user?.meta?.birth_country_flag != '') {
             // this.countryFlagUrl = this.user?.meta?.birth_country_flag;
           }
+          if (this.user?.scout_info) {
+            this.scoutInfoDetails = JSON.parse(this.user?.scout_info);
+          }
+          // scoutInfoDetails
           this.isPremium = this.user?.active_subscriptions?.premium.length > 0 ? true : false;
           this.photoLoading = false;
           // this.isPremium = false;
@@ -1573,6 +1578,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
     // return '';
   }
 
+  isValidDate(value: any): boolean {
+    return value && !isNaN(new Date(value).getTime());
+  }
+
+
   navigatePlans() {
     this.router.navigate(['/talent/plans']);
   }
@@ -1667,4 +1677,18 @@ export class DashboardComponent implements OnInit, OnDestroy {
       }
     });
   }
+
+  parseJson(jsonObj: any) {
+    if (jsonObj && jsonObj != '') {
+      console.info('jsonObj', jsonObj)
+      // return JSON.parse(jsonObj);
+    }
+  }
+
+
+
+  naviGateScoutProfile(id: string | number): void {
+    this.router.navigate(['view', 'scout', id]);
+  }
+
 }

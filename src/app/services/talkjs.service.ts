@@ -123,7 +123,7 @@ export class TalkService {
 
       const hiddenUser = new Talk.User({
         id: 1,
-        name: 'crest',
+        name: 'Succer You Sports AG',
         email: 'testmails.cts@gmail.com',
         role: 'hidden'
       });
