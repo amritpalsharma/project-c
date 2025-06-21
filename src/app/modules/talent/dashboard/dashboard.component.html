@@ -36,11 +36,11 @@
                 </div>
               </div>
 
-              <div *ngIf="loading && photoLoading" class="loader-container py-5">
+              <!-- <div *ngIf="loading && photoLoading" class="loader-container py-5">
                 <app-talent-loader [width]="'40px'" [height]="'40px'" [border]="'5px'"></app-talent-loader>
-              </div>
+              </div> -->
               <!-- The rest of your content goes here -->
-              <div *ngIf="!photoLoading">
+              <div>
                 <div class="user-media text-center ">
 
                   <span class="profile_img_bg_circle">
@@ -478,8 +478,11 @@
                         </div>
                         <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'contract' | translate}}</h6>
-                          <h5 class="title-1" *ngIf="user?.meta?.contract_start">{{user?.meta?.contract_start | date:'y'
-                            }} - {{user?.meta?.contract_end | date:'y' }}</h5>
+                          <h5 class="title-1"
+                            *ngIf="user?.meta?.contract_start && isValidDate(user?.meta?.contract_start)">
+                            {{user?.meta?.contract_start | date:'y'
+                            }} - {{user?.meta?.contract_end | date:'y' }}
+                          </h5>
                           <!-- <h5 class="title-1" *ngIf="!user?.meta?.contract_start">NA</h5> -->
                         </div>
                       </div>
@@ -777,6 +780,24 @@
                           <h6 class="title_2">{{ 'age' | translate}}</h6>
                           <h5 class="title-1" *ngIf="calculateAge(user?.meta?.date_of_birth) > 0">
                             {{calculateAge(user?.meta?.date_of_birth)}}</h5>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6" *ngIf="scoutInfoDetails">
+                      <div class="row align-items-center">
+                        <div class="col-sm-3 team-badge_image">
+                          <div class="team-badge_image">
+                            <img *ngIf="scoutInfoDetails?.profile_image"
+                              [src]="'https://api.socceryou.ch/uploads/'+scoutInfoDetails?.profile_image" alt="">
+                            <img *ngIf="!scoutInfoDetails?.profile_image"
+                              src="../../../../assets/images/default/talent-profile-default.png" alt="">
+                          </div>
+                        </div>
+                        <div class="ds col-sm-9 p-0 team-badge_content">
+                          <h6 class="title_2 mb-1">{{ 'scout' | translate }}</h6>
+                          <h5 class="title-1 cursor-pointer" (click)="naviGateScoutProfile(scoutInfoDetails.id)">
+                            {{scoutInfoDetails?.first_name}} {{scoutInfoDetails?.last_name}}
+                          </h5>
                         </div>
                       </div>
                     </div>

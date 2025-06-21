@@ -32,11 +32,13 @@ export class MembershipComponent {
   totalItems: number = 0; // Total number of items for pagination
   pageSize: number = 10; // Number of items per page
   currentPage: number = 1; // Current page index
-  premium: any = [];
   country: any = [];
   booster: any = [];
+  premium: any = [];
+  newPremium: any = [];
   demo: any = [];
   ispremium: any = false;
+  isNewpremium: any = false;
   iscountry: any = false;
   isbooster: any = false;
   isdemo: any = false;
@@ -158,6 +160,14 @@ export class MembershipComponent {
     this.talentService.getUserPlans(params).subscribe(response => {
       if (response && response.status && response.data) {
         this.userPlans = response.data.packages;
+        if (this.userPlans.premium_talent[0] && this.userPlans.premium_talent[0] != undefined) {
+          this.newPremium = this.userPlans.premium_talent[0];
+          this.isNewpremium = this.newPremium ? true : false;
+        }
+        if (this.userPlans.premium_talent[1] && this.userPlans.premium_talent[1] != undefined) {
+          this.newPremium = this.userPlans.premium_talent[1];
+          this.isNewpremium = this.newPremium ? true : false;
+        }
         if (this.userPlans.premium[0] && this.userPlans.premium[0] != undefined) {
           this.premium = this.userPlans.premium[0];
           this.ispremium = this.premium ? true : false;

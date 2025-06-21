@@ -495,8 +495,21 @@ export class HeaderComponent {
   }
 
   exploreUser(slug: string, id: Number): void {
-    let pageRoute = 'admin/' + slug.toLowerCase();
-    this.router.navigate([pageRoute, id]);
+    let slugRoute = slug.toLowerCase();
+    const allowedRoles = [
+      'Club',
+      'Clube',
+      'Klub',
+      'Klubb',
+      'Talang',
+      'Talent',
+      'Talento',
+      'Scout'
+    ];
+    if(allowedRoles.includes(slugRoute)){
+      let pageRoute = 'admin/' + slugRoute;
+      this.router.navigate([pageRoute, id]);
+    }
   }
 
 

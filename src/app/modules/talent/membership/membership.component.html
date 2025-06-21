@@ -25,7 +25,7 @@
 
         <div class="row premium-card_box mt-3">
 
-          <div class="col-lg-4" *ngIf="ispremium">
+          <div class="col-lg-4 d-none" *ngIf="ispremium">
             <div class="premium-card ">
               <div class="d-flex align-items-end justify-content-between flex_wrap">
                 <h5>{{ 'premium' | translate }}</h5>
@@ -55,21 +55,23 @@
               </div>
             </div>
           </div>
-          <!-- <div class="col-lg-4 d-none" *ngIf="isdemo">
+          <div class="col-lg-4" *ngIf="isNewpremium">
             <div class="premium-card ">
               <div class="d-flex align-items-end justify-content-between flex_wrap">
-                <h5>{{'demo' | translate}}</h5>
-                <h6> {{ demo.price}}<sub class="premium-month_title">{{demo.currency}}/{{ demo.interval == 'monthly' ?
+                <h5>{{'premium' | translate}}</h5>
+                <h6> {{ newPremium.price}} <sub class="premium-month_title">.-{{newPremium.currency}}/{{ newPremium.interval == 'monthly' ?
                     ('month' | translate) : ('year' | translate) }}</sub></h6>
               </div>
-              <p *ngIf="demo.stripe_cancel_at != null">{{ 'expireOn' | translate }} {{ demo.stripe_cancel_at | date:
-                'dd.MM.yyyy' }}</p>
+              <p *ngIf="newPremium.stripe_cancel_at == null">{{ 'renews' | translate }} {{ newPremium.plan_period_end |
+                date: 'dd.MM.yyyy' }}</p>
+              <p *ngIf="newPremium.stripe_cancel_at != null">{{ 'expireOn' | translate }} {{ newPremium.stripe_cancel_at |
+                date: 'dd.MM.yyyy' }}</p>
               <div class="d-flex align-items-center justify-content-between mt-4 mob_wrap">
-                <a class="premium-edit_btn text-white" href="/talent/plans">{{'editPlan' | translate}}</a>
-                <button class="premium-subscription_btn" [disabled]="demo.stripe_cancel_at != null"
-                  (click)="confirmAndCancelSubscription(demo.id)">
-                  <div *ngIf="demo.stripe_cancel_at == null">{{ 'cancelSubscription' | translate }}</div>
-                  <div *ngIf="demo.stripe_cancel_at != null" routerLink="/talent/plans">{{ 'renewSubscription' |
+                <a class="premium-edit_btn text-white" routerLink="/talent/plans">{{'editPlan' | translate}}</a>
+                <button class="premium-subscription_btn" [disabled]="newPremium.stripe_cancel_at != null"
+                  (click)="confirmAndCancelSubscription(newPremium.id)">
+                  <div *ngIf="newPremium.stripe_cancel_at == null">{{ 'cancelSubscription' | translate }}</div>
+                  <div *ngIf="newPremium.stripe_cancel_at != null" routerLink="/talent/plans">{{ 'renewSubscription' |
                     translate }}</div>
                 </button>
 
@@ -82,7 +84,7 @@
                 </svg>
               </div>
             </div>
-          </div> -->
+          </div>
           <div class="col-lg-4" *ngIf="country.count > 0 && iscountry">
             <div class="premium-card">
               <div class="d-flex align-items-end justify-content-between flex_wrap">
@@ -154,8 +156,8 @@
         <div class="purchase-parent bg-0C3453">
           <div class="d-flex align-items-center justify-content-between transaction_box mb-2">
             <div class="d-flex align-items-center">
-              <h2 class="card-title mb-0 me-3 ">{{'latestTransaction' | translate}}</h2>
               <div class="d-flex p_size">
+                <h2 class="card-title mb-0 me-3 ">{{'latestTransaction' | translate}}</h2>
                 <p class="memberShipDetailTxt">{{'memberShipDetailTxt' | translate}}</p>
               </div>
             </div>
