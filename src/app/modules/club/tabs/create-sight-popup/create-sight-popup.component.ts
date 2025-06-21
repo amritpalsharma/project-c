@@ -301,7 +301,7 @@ export class CreateSightPopupComponent implements AfterViewInit {
 
     try {
       this.clubService.addSight(this.clubId, formData).subscribe((response) => {
-        console.log(this.clubId)
+        console.log(this.clubId, receiverIds)
         if (response && response.status) {
           this.dialogRef.close({
             action: 'added',

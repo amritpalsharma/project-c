@@ -629,10 +629,13 @@
                                                 <input class="form-check-input mt-0" type="checkbox" value=""
                                                     id="flexCheckDefault-5" [(ngModel)]="noClub" name="noClub"
                                                     (ngModelChange)="onNoClubChange($event)" />
-                                                <label class="form-check-label fs-14 font-w400 text-light"
+                                                <label [innerHTML]="'noClubTxt' | translate" class="form-check-label fs-14 font-w400 text-light"
                                                     for="flexCheckDefault-5">
-                                                    {{ 'noClubTxt' | translate }}
+                                                      
                                                 </label>
+
+                                                <!-- <label [innerHTML]="'privacyPolicyLabel' | translate"
+                                            class="form-check-label fs-14 font-w400 text-light" for="flexCheckDefault"> -->
                                             </div>
                                         </div>
                                         <label class="form-label" *ngIf="!isHideClubSection">{{ 'clubDetails' |

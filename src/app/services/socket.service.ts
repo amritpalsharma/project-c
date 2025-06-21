@@ -51,10 +51,11 @@ export class SocketService {
 
     // Hemant Code
     this.socket.on('sendMessage', (data: any) => {
+      console.log(data, 'from here')
       let jsonData = localStorage.getItem("userData") || '';
       let userData = JSON.parse(jsonData);
       if (data?.senderId == userData.id) {
-        this.socket.emit('sendMessage', data)
+        this.socket.emit('sendMessage2', data)
       }
     })
 

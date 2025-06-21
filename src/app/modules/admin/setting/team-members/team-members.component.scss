@@ -401,3 +401,15 @@
       height: 40px !important;
     }
   }
+
+
+  select.custom-select.custom-select-wrapper{
+    background: transparent;
+    border: 0;
+    padding: 7px;
+    padding-left: 0 !important;
+    height: unset;
+    outline: none;
+    box-shadow: none;
+    color: inherit !important;
+}
