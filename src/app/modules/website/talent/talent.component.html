@@ -463,24 +463,14 @@
                                 <div class="col-md-4 item_column">
                                     <div class="item_card">
                                         <div class="header_card">
+                                            <h2 class="premium-heading3">
+                                                {{ getPlanPriceByName('premium')}}
+                                                <span>.- {{Currency}} /
+                                                    <span *ngIf="selectedTab == 'yearly' && priceArr">{{priceArr[0].yearly_label}}</span>
+                                                    <span *ngIf="selectedTab != 'yearly' && priceArr">{{priceArr[0].monthly_label}}</span>
+                                                </span>
+                                            </h2>
                                             <h3 class="premium-heading2">{{getDynamicPlanName('premium')}}</h3>
-                                            <h2 class="premium-heading3">
-                                                {{ getPlanPriceByName('premium')}}
-                                                <span>.- {{Currency}} /
-                                                    <span *ngIf="selectedTab == 'yearly' && priceArr">{{priceArr[0].yearly_label}}</span>
-                                                    <span *ngIf="selectedTab != 'yearly' && priceArr">{{priceArr[0].monthly_label}}</span>
-                                                </span>
-                                            </h2>
-                                            <h5 class="premium-heading5">For Talents, Clubs & Scouts</h5>
-                                            <hr />
-                                            <h2 class="premium-heading3">
-                                                {{ getPlanPriceByName('premium')}}
-                                                <span>.- {{Currency}} /
-                                                    <span *ngIf="selectedTab == 'yearly' && priceArr">{{priceArr[0].yearly_label}}</span>
-                                                    <span *ngIf="selectedTab != 'yearly' && priceArr">{{priceArr[0].monthly_label}}</span>
-                                                </span>
-                                            </h2>
-                                            <h5 class="premium-heading5">For Talents, Clubs & Scouts</h5>
                                         </div>
                                         <div class="body_card">
                                             <h5 class="premium-heading5" *ngIf="priceArr[0].plan_feature_title">{{priceArr[0].plan_feature_title}}</h5>

@@ -11,7 +11,7 @@ export class PricingComponent {
   isActive1 = true; // Premium Plan
   isActive2 = true; // Multi-Country Plan
   isActive3 = true; // Boost Profile Plan
-  selectedTab:string='monthly';
+  selectedTab: string = 'monthly';
   pageData: any; // To hold the API response data
   advertisemnet_base_url: string = '';
   isLoading: boolean = true;
@@ -24,7 +24,7 @@ export class PricingComponent {
   premiumMonthlyPrice: string = '';
   Currency: string = '';
   premiumPackageName: string = '';
-  priceArr:any;
+  priceArr: any;
   premiumPrice: string = '';
   premiumYearlyPrice: string = '';
 
@@ -149,7 +149,7 @@ export class PricingComponent {
         this.advertisementData = res?.data?.advertisementData;
         this.advertisementList = res?.data?.allAdsList;
         this.priceArr = this.pageData.pricing_tab;
-        console.info('pageData',this.pageData);
+        console.info('pageData', this.pageData);
         // this.pricing_banner_img = this.pageData.pricing_banner_img;
         this.base_url = res.data.base_url;
         this.isLoading = false;
@@ -206,19 +206,23 @@ export class PricingComponent {
     return this.advertisementData && this.advertisementData[key] && 'featured_image' in this.advertisementData[key];
   }
 
- 
+  premiumTalentYearlyPrice: string = '';
+  premiumTalentPrice: string = '';
   getCurrencyPrice(interval: string) {
     this.webPages.getPriceAndCurrency(interval).subscribe((res) => {
       if (res.status) {
         if (res.status && res.data?.premium?.plans?.length > 0) {
           this.Currency = res.data.premium.plans[0].currency;
+          // this.Currency = res.data.premium.plans[0].currency;
           if (interval == 'yearly') {
             this.premiumYearlyPrice = parseInt(res.data.premium.plans[0].price, 10) + '';
+            this.premiumTalentYearlyPrice = parseInt(res.data.premium_talent.plans[0].price, 10) + '';
             this.boostYearlyPrice = parseInt(res.data.booster.plans[0].price, 10) + '';
             this.countryYearlyPrice = parseInt(res.data.country.plans[0].price, 10) + '';
           }
           if (interval == 'monthly') {
             this.premiumPrice = parseInt(res.data.premium.plans[0].price, 10) + '';
+            this.premiumTalentPrice = parseInt(res.data.premium_talent.plans[0].price, 10) + '';
             this.boostPrice = parseInt(res.data.booster.plans[0].price, 10) + '';
             this.countryPrice = parseInt(res.data.country.plans[0].price, 10) + '';
           }
@@ -230,7 +234,7 @@ export class PricingComponent {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  setActiveTab(currentTab:any){
+  setActiveTab(currentTab: any) {
     this.selectedTab = currentTab;
   }
 
@@ -248,6 +252,9 @@ export class PricingComponent {
   }
   getDescByPlanName(planName: string) {
     const lowerPlanName = planName.toLowerCase();
+    if (lowerPlanName.includes('premium_talent')) {
+      return this.priceArr[0].plan_feature_desc;
+    }
     if (lowerPlanName.includes('premium')) {
       return this.priceArr[0].plan_feature_desc;
     }
@@ -281,5 +288,5 @@ export class PricingComponent {
     return 0;
   }
 
-  
+
 }

@@ -317,14 +317,17 @@ export class TalentComponent {
     this.webPages.getPriceAndCurrency(interval).subscribe((res) => {
       if (res.status) {
         if (res.status && res.data?.premium?.plans?.length > 0) {
-          this.Currency = res.data.premium.plans[0].currency;
+          this.Currency = res.data.premium_talent.plans[0].currency;
+          // this.Currency = res.data.premium.plans[0].currency;
           if (interval == 'yearly') {
-            this.premiumYearlyPrice = parseInt(res.data.premium.plans[0].price, 10);
+            this.premiumYearlyPrice = parseInt(res.data.premium_talent.plans[0].price, 10);
+            // this.premiumYearlyPrice = parseInt(res.data.premium.plans[0].price, 10);
             this.boostYearlyPrice = parseInt(res.data.booster.plans[0].price, 10);
             this.countryYearlyPrice = parseInt(res.data.country.plans[0].price, 10);
           }
           if (interval == 'monthly') {
-            this.premiumPrice = parseInt(res.data.premium.plans[0].price, 10);
+            this.premiumPrice = parseInt(res.data.premium_talent.plans[0].price, 10);
+            // this.premiumPrice = parseInt(res.data.premium.plans[0].price, 10);
             this.boostPrice = parseInt(res.data.booster.plans[0].price, 10);
             this.countryPrice = parseInt(res.data.country.plans[0].price, 10);
           }

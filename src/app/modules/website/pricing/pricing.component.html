@@ -44,20 +44,20 @@
           </div>
           <div class="col-lg-5">
             <div class="pricing_tabs_container">
-                <ul class="nav nav-tabs justify-content-center border-0 mt-lg-0" role="tablist">
+              <ul class="nav nav-tabs justify-content-center border-0 mt-lg-0" role="tablist">
                 <li class="nav-item" role="presentation">
-                  <a class="nav-link active uppercase-letters" data-bs-toggle="tab" href="#Tab1" role="tab" aria-selected="true"
-                    (click)="setActiveTab('monthly')">{{'billedMonthly' | translate}}</a>
+                  <a class="nav-link active uppercase-letters" data-bs-toggle="tab" href="#Tab1" role="tab"
+                    aria-selected="true" (click)="setActiveTab('monthly')">{{'billedMonthly' | translate}}</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                  <a class="nav-link uppercase-letters" data-bs-toggle="tab" href="#Tab2" role="tab" aria-selected="false"
-                    (click)="setActiveTab('yearly')">{{'billedYearly' | translate}}</a>
+                  <a class="nav-link uppercase-letters" data-bs-toggle="tab" href="#Tab2" role="tab"
+                    aria-selected="false" (click)="setActiveTab('yearly')">{{'billedYearly' | translate}}</a>
                 </li>
               </ul>
-              </div>
+            </div>
           </div>
         </div>
-        
+
         <div class="pricing_tabs_container">
           <div class="tab_data_wrapper">
             <!-- <div class="tab-pane active" id="Tab1" role="tabpanel" *ngIf="selectedTab == 'monthly'">
@@ -227,12 +227,14 @@
                       <div class="header_card">
                         <h3 class="premium-heading2"> {{ pageData?.first_tab_plan_name }} </h3>
                         <h2 class="premium-heading3">
-                          {{ selectedTab != 'yearly' ? premiumPrice : premiumYearlyPrice }}<span>.- {{Currency}} /
+                          {{ selectedTab != 'yearly' ? premiumTalentPrice : premiumTalentYearlyPrice }}<span>.-
+                            {{Currency}} /
                             <span *ngIf="selectedTab == 'yearly'">{{pageData?.first_tab_yearly_label}}</span>
                             <span *ngIf="selectedTab != 'yearly'">{{pageData?.first_tab_monthly_label}}</span>
                           </span>
                         </h2>
-                        <h5 class="premium-heading5">{{pageData?.first_tab_free_features_title}}</h5>
+                        <h5 class="premium-heading5">{{'premiumPlanForTalent' | translate}}</h5>
+                        <!-- <h5 class="premium-heading5">{{pageData?.first_tab_free_features_title}}</h5> -->
                         <hr />
                         <h2 class="premium-heading3">
                           {{ selectedTab != 'yearly' ? premiumPrice : premiumYearlyPrice }}<span>.- {{Currency}} /
@@ -281,7 +283,7 @@
                             <p>{{feature}}</p>
                           </div>
                         </div>
-                      </div> 
+                      </div>
                       <div class="footer_card buy_now_btn_front_price">
                         <a *ngIf="plansPageLink && plansPageLink.length > 0" [routerLink]="plansPageLink"
                           class="btn fill_btn w-100">{{ 'buyNow' | translate }}</a>

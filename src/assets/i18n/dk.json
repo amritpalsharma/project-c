@@ -1319,7 +1319,7 @@
   "downloadProfileBtn": "Download",
   "chatBtntxt": "Chat",
   "favoriteBtnTxt": "Favorit",
-  "noClubTxt": "Er du uden klub lige nu, eller mangler din klub i systemet? Intet problem. Du kan stadig <strong>oprette en gratis profil</strong> og tilføje det hele senere.",  
+  "noClubTxt": "Er du uden klub lige nu, eller mangler din klub i systemet? Intet problem. Du kan stadig <strong>oprette en gratis profil</strong> og tilføje det hele senere.",
   "prorationTxt": "Kredit (ubrugt tid på månedligt abonnement)",
   "youHaveAlreadyThisPlan": "Du har allerede det her medlemskab. Prøv igen – eller tjek din konto.",
   "youHaveAlreadyThisPlanTitle": "Obs!",
@@ -1361,5 +1361,6 @@
   "managePaymentBtnTxt": "Administrér betalinger",
   "managePaymentBtnTxtBelowTxt": "Prøv betaling igen / Opdater kortoplysninger",
   "linkTxt": "Link",
-  "memberShipDetailTxt": "Hvis transaktionsstatus er \"Åben\" i mere end 1 dag eller \"Mislykket\", skal du klikke på knappen \"Administrer betalinger\" for at tage de nødvendige skridt."
+  "memberShipDetailTxt": "Hvis transaktionsstatus er \"Åben\" i mere end 1 dag eller \"Mislykket\", skal du klikke på knappen \"Administrer betalinger\" for at tage de nødvendige skridt.",
+  "premiumPlanForTalent": "For Talenter"
 }
