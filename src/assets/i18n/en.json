@@ -1106,29 +1106,31 @@
   "userPurchasesNotFound": "You haven't made any purchases yet.",
   "premiumPlanDesc": {
     "features": [
-      "Talent profiles with detailed statistics, performance data, achievements, and transfers visible",
-      "Club and scout profiles with all contents visible",
-      "Download talent profile as PDF",
-      "Create your own favorites lists with talents, scouts, or clubs",
-      "Upload highlight photos and videos and view them on other profiles",
-      "Provide and link social media channels and website in your profile",
-      "For scouts: Create a portfolio and invite talents to join it",
-      "For clubs: Organize scouting sessions and invite registered talents to join",
-      "For clubs: Manage your own club players directly in the teams on SoccerYou"
+      "With the Premium package, you can enhance your profile with personal attributes, skills, performance data, transfers, achievements, and more",
+      "Add key details to your profile such as your top speed, market value, contract duration, and much more",
+      "Premium gives you full access to all content added by talents, scouts, and clubs to their profiles",
+      "Download your talent profile as a PDF including all personal information and data – ideal for applications and scouting dossiers",
+      "Create your own favorites lists for talents, clubs, and scouts",
+      "Highlight your best 6 photos or videos from your personal gallery",
+      "Link your social media channels – for greater visibility and reach"
     ]
   },
   "multiCountryPlanDesc": {
     "features": [
-      "Make your profile visible in other countries of your choice",
+      "Display your profile in other countries of your choice to increase your chances of being discovered internationally",
+      "Discover talents, clubs, and scouts in the additional countries and visit their profiles",
+      "Add favorites, chat with users from that country, and download talent PDFs from that region",
       "Increase your visibility – internationally",
-      "Build an international network"
+      "Build your global football network"
     ]
   },
   "bostProfileDesc": {
     "features": [
-      "Your profile picture will have a special and highlighted background",
-      "Your profile will appear at the top of the search results when your characteristics are searched for",
-      "More visibility - higher chances of being discovered"
+      "Your profile picture gets a special, highlighted background",
+      "Your profile appears at the top of search results when users search for your specific attributes",
+      "You can see in your boost statistics who visited your profile and how many clicks your profile received",
+      "Your profile receives a «Boosted» sticker",
+      "More visibility – better chances of being discovered"
     ]
   },
   "scoutPremiumPlanDesc": {
@@ -1145,6 +1147,8 @@
   },
   "scoutMultiCountryPlanDesc": {
     "features": [
+      "Show your profile in countries of your choice and increase your chances of discovering talents internationally",
+      "Add favorites, chat with users from that country, and download talent PDFs from that region",
       "Present your profile to Talents and Leagues in other countries.",
       "Higher chances to get global Talents.",
       "Grow your global network.Be saved as a favorite by talents."
@@ -1152,7 +1156,7 @@
   },
   "scoutBostProfileDesc": {
     "features": [
-      "Jump to the top of the search results.",
+      "You can see in your boost statistics who visited your profile and how many clicks your profile received.",
       "Highlighted scout photo with background effect for more visibility.",
       "Boosted sticker.",
       "In the Scout overview, you will appear in the first positions for matching search parameters.",
@@ -1405,8 +1409,8 @@
   "maxSizeForProfile": "File young-bearded-man-with-striped-shirt.jpg exceeds the maximum allowed size of 5 MB",
   "aboutImageCaption": "l–r",
   "confirmDeleteinformationTeam": "Are you sure you want to remove this player from the team?",
-  "managePaymentBtnTxt":"Manage Payments",
-  "managePaymentBtnTxtBelowTxt":"Retry Payment / Update Card Details",
-  "linkTxt":"Link",
-  "memberShipDetailTxt":"If Transaction Status is \"Open\" for more than 1 day or \"Failed\", please click on \"Manage Payments\" Button to take necessary action."
+  "managePaymentBtnTxt": "Manage Payments",
+  "managePaymentBtnTxtBelowTxt": "Retry Payment / Update Card Details",
+  "linkTxt": "Link",
+  "memberShipDetailTxt": "If Transaction Status is \"Open\" for more than 1 day or \"Failed\", please click on \"Manage Payments\" Button to take necessary action."
 }

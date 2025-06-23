@@ -1201,29 +1201,31 @@
   },
   "premiumPlanDesc": {
     "features": [
-      "Perfiles de talentos con estadísticas detalladas, datos de rendimiento, logros y fichajes visibles",
-      "Perfiles de clubes y ojeadores con todos los contenidos visibles",
-      "Descargar perfil de talentos como PDF",
-      "Crea tus propias listas de favoritos con talentos, ojeadores o clubes",
-      "Subir fotos y vídeos destacados y verlos en otros perfiles",
-      "Proporciona y enlaza canales de redes sociales y sitio web en tu perfil",
-      "Para ojeadores: Crear una cartera e invitar a los talentos a unirse a ella",
-      "Para los clubes: Organizar sesiones de ojeadores e invitar a los talentos registrados a unirse a ellas",
-      "Para clubes: Gestiona los jugadores de tu club directamente en los equipos de SoccerYou"
+      "Con el paquete Premium puedes completar tu perfil con datos personales, habilidades, estadísticas, logros, traspasos y mucho más",
+      "Añade detalles clave como tu velocidad máxima, valor de mercado, duración del contrato, entre otros",
+      "Premium te da acceso completo a todo el contenido añadido por talentos, clubes y ojeadores",
+      "Descarga tu perfil como PDF con todos los datos – ideal para presentaciones y scouting",
+      "Crea tus propias listas de favoritos con talentos, clubes y ojeadores",
+      "Destaca tus 6 mejores fotos o vídeos de tu galería personal",
+      "Enlaza tus redes sociales – para ganar visibilidad y alcance"
     ]
   },
   "multiCountryPlanDesc": {
     "features": [
-      "Haga visible su perfil en otros países de su elección",
-      "Aumente su visibilidad internacional",
-      "Construya una red internacional"
+      "Muestra tu perfil en otros países de tu elección y aumenta tus posibilidades de ser descubierto internacionalmente",
+      "Descubre talentos, clubes y ojeadores en los países añadidos y visita sus perfiles",
+      "Añade favoritos, chatea con usuarios de ese país y descarga PDFs de talentos locales",
+      "Aumenta tu visibilidad – a nivel internacional",
+      "Construye tu red global de fútbol"
     ]
   },
   "bostProfileDesc": {
     "features": [
       "Tu foto de perfil tendrá un fondo especial y destacado",
-      "Tu perfil aparecerá en la parte superior de los resultados de búsqueda cuando se busquen tus características",
-      "Más visibilidad - más posibilidades de ser descubierto"
+      "Tu perfil aparecerá al principio de los resultados de búsqueda cuando se busque según tus características",
+      "Consulta las estadísticas de tu perfil Boost: quién ha visitado tu perfil y cuántos clics ha recibido",
+      "Tu perfil recibe una insignia «Boosted»",
+      "Más visibilidad – más oportunidades de ser descubierto"
     ]
   },
   "scoutPremiumPlanDesc": {
@@ -1240,6 +1242,8 @@
   },
   "scoutMultiCountryPlanDesc": {
     "features": [
+      "Descubre talentos, clubes y ojeadores en los países añadidos y visita sus perfiles",
+      "Añade favoritos, chatea con usuarios de ese país y descarga PDFs de talentos locales",
       "Presente su perfil a talentos y ligas de otros países.",
       "Mayores posibilidades de conseguir talentos globales.",
       "Amplía tu red global."
@@ -1247,7 +1251,7 @@
   },
   "scoutBostProfileDesc": {
     "features": [
-      "Saltar a la parte superior de los resultados de búsqueda.",
+      "Consulta las estadísticas de tu perfil Boost: quién ha visitado tu perfil y cuántos clics ha recibido.",
       "Foto scout resaltada con efecto de fondo para mayor visibilidad.",
       "Pegatina destacada.",
       "En la vista general de ojeadores, aparecerás en las primeras posiciones si coincides con los parámetros de búsqueda.",

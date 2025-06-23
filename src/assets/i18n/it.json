@@ -1251,29 +1251,31 @@
   },
   "premiumPlanDesc": {
     "features": [
-      "Profili dei talenti con statistiche dettagliate, dati sulle prestazioni, risultati e trasferimenti visibili",
-      "Profili di club e scout con tutti i contenuti visibili",
-      "Scarica il profilo del talento in formato PDF",
-      "Creare liste di preferiti con talenti, scout o club",
-      "Caricare foto e video in evidenza e visualizzarli su altri profili",
-      "Fornire e collegare i canali dei social media e il sito web nel proprio profilo",
-      "Per i talent scout: Creare un portfolio e invitare i talenti a farne parte",
-      "Per i club: Organizzare sessioni di scouting e invitare i talenti registrati a partecipare",
-      "Per i club: Gestire i giocatori del proprio club direttamente nelle squadre su SoccerYou"
+      "Con il pacchetto Premium puoi completare il tuo profilo con dati personali, competenze, statistiche, trasferimenti, successi e molto altro",
+      "Aggiungi dettagli importanti come velocità massima, valore di mercato, durata del contratto, ecc.",
+      "Premium ti dà accesso completo a tutti i contenuti aggiunti da talenti, club e scout",
+      "Scarica il tuo profilo in formato PDF con tutte le informazioni – ideale per candidature e dossier di scouting",
+      "Crea le tue liste di preferiti con talenti, club e scout",
+      "Metti in evidenza le tue 6 migliori foto o video dalla tua galleria personale",
+      "Collega i tuoi canali social – per una maggiore visibilità"
     ]
   },
   "multiCountryPlanDesc": {
     "features": [
-      "Rendi visibile il tuo profilo in altri paesi di tua scelta",
-      "Aumenta la tua visibilità - a livello internazionale",
-      "Costruire una rete internazionale"
+      "Mostra il tuo profilo in altri paesi a tua scelta per aumentare le tue possibilità di essere scoperto a livello internazionale",
+      "Scopri talenti, club e scout nei paesi aggiunti e visita i loro profili",
+      "Aggiungi preferiti, chatta con gli utenti di quel paese e scarica i PDF dei talenti locali",
+      "Aumenta la tua visibilità – a livello internazionale",
+      "Costruisci la tua rete calcistica globale"
     ]
   },
   "bostProfileDesc": {
     "features": [
-      "La vostra immagine del profilo avrà uno sfondo speciale e in evidenza",
-      "Il vostro profilo apparirà in cima ai risultati di ricerca quando vengono ricercate le vostre caratteristiche",
-      "Più visibilità - maggiori possibilità di essere scoperti"
+      "La tua foto profilo avrà uno sfondo speciale e in evidenza",
+      "Il tuo profilo apparirà in cima ai risultati di ricerca quando qualcuno cerca i tuoi attributi",
+      "Visualizza le statistiche del profilo Boost: scopri chi ha visitato il tuo profilo e quanti clic ha ricevuto",
+      "Il tuo profilo riceve un badge «Boosted»",
+      "Più visibilità – più possibilità di essere scoperto"
     ]
   },
   "scoutPremiumPlanDesc": {
@@ -1290,6 +1292,8 @@
   },
   "scoutMultiCountryPlanDesc": {
     "features": [
+      "Scopri talenti, club e scout nei paesi aggiunti e visita i loro profili",
+      "Aggiungi preferiti, chatta con gli utenti di quel paese e scarica i PDF dei talenti locali",
       "Presentare il proprio profilo a talenti e leghe di altri Paesi.",
       "Maggiori possibilità di ottenere talenti globali.",
       "Espandere la propria rete globale."
@@ -1297,7 +1301,7 @@
   },
   "scoutBostProfileDesc": {
     "features": [
-      "Salta all'inizio dei risultati della ricerca.",
+      "Visualizza le statistiche del profilo Boost: scopri chi ha visitato il tuo profilo e quanti clic ha ricevuto.",
       "Foto scout evidenziata con effetto di sfondo per una maggiore visibilità.",
       "Adesivo potenziato.",
       "Nella panoramica degli scout, apparirà nelle prime posizioni per i parametri di ricerca corrispondenti.",

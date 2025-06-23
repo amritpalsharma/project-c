@@ -1119,29 +1119,31 @@
   },
   "premiumPlanDesc": {
     "features": [
-      "Talentprofiler med detaljerede statistikker, præstationsdata, præstationer og synlige transfers",
-      "Klub- og spejderprofiler med alt indhold synligt",
-      "Download talentprofil som PDF",
-      "Opret dine egne favoritlister med talenter, spejdere eller klubber",
-      "Upload highlight-fotos og -videoer og se dem på andre profiler",
-      "Angiv og link sociale mediekanaler og hjemmeside i din profil",
-      "For talentspejdere: Opret en portefølje og inviter talenter til at deltage i den",
-      "For klubber: Organiser scouting-sessioner og inviter registrerede talenter til at deltage",
-      "For klubber: Administrer dine egne klubspillere direkte i holdene på SoccerYou"
+      "Med Premium-pakken kan du udvide din profil med personlige oplysninger, færdigheder, statistikker, præstationsdata, overgange, resultater og meget mere",
+      "Tilføj vigtige detaljer som topspeed, markedsværdi, kontraktlængde og mere",
+      "Premium giver dig fuld adgang til alt indhold tilføjet af talenter, klubber og scouts",
+      "Download din talentprofil som PDF med alle oplysninger – perfekt til ansøgninger og scouting",
+      "Opret dine egne favoritlister med talenter, klubber og scouts",
+      "Fremhæv dine 6 bedste billeder eller videoer fra dit galleri",
+      "Tilføj dine sociale medier – for mere synlighed og rækkevidde"
     ]
   },
   "multiCountryPlanDesc": {
     "features": [
-      "Gør din profil synlig i andre lande efter eget valg",
-      "Øg din synlighed - internationalt",
-      "Opbyg et internationalt netværk"
+      "Vis din profil i andre lande, du vælger, og øg dine chancer for at blive opdaget internationalt",
+      "Opdag talenter, klubber og scouts i de tilføjede lande og besøg deres profiler",
+      "Tilføj favoritter, chat med brugere fra det pågældende land og download talent-PDF’er",
+      "Øg din synlighed – internationalt",
+      "Opbyg dit eget internationale fodboldnetværk"
     ]
   },
   "bostProfileDesc": {
     "features": [
       "Dit profilbillede får en særlig og fremhævet baggrund",
-      "Din profil vises øverst i søgeresultaterne, når der søges efter dine egenskaber",
-      "Mere synlighed - større chance for at blive opdaget"
+      "Din profil vises øverst i søgeresultaterne, når nogen søger efter dine egenskaber",
+      "Se i dine Boost-statistikker, hvem der har besøgt din profil, og hvor mange klik den har fået",
+      "Din profil får et «Boosted»-mærke",
+      "Mere synlighed – større chance for at blive opdaget"
     ]
   },
   "scoutPremiumPlanDesc": {
@@ -1158,6 +1160,8 @@
   },
   "scoutMultiCountryPlanDesc": {
     "features": [
+      "Opdag talenter, klubber og scouts i de tilføjede lande og besøg deres profiler",
+      "Tilføj favoritter, chat med brugere fra det pågældende land og download talent-PDF’er Øg din synlighed – internationalt",
       "Præsenter din profil for talenter og ligaer i andre lande.",
       "Større chancer for at få globale talenter.",
       "Udvid dit globale netværk."
@@ -1165,7 +1169,7 @@
   },
   "scoutBostProfileDesc": {
     "features": [
-      "Hop til toppen af søgeresultaterne.",
+      "Se i dine Boost-statistikker, hvem der har besøgt din profil, og hvor mange klik den har fået.",
       "Fremhævet spejderfoto med baggrundseffekt for mere synlighed.",
       "Forstærket klistermærke.",
       "I spejderoversigten vises du i de første positioner for matchende søgeparametre.",
@@ -1319,7 +1323,7 @@
   "downloadProfileBtn": "Download",
   "chatBtntxt": "Chat",
   "favoriteBtnTxt": "Favorit",
-  "noClubTxt": "Er du uden klub lige nu, eller mangler din klub i systemet? Intet problem. Du kan stadig <strong>oprette en gratis profil</strong> og tilføje det hele senere.",  
+  "noClubTxt": "Er du uden klub lige nu, eller mangler din klub i systemet? Intet problem. Du kan stadig <strong>oprette en gratis profil</strong> og tilføje det hele senere.",
   "prorationTxt": "Kredit (ubrugt tid på månedligt abonnement)",
   "youHaveAlreadyThisPlan": "Du har allerede det her medlemskab. Prøv igen – eller tjek din konto.",
   "youHaveAlreadyThisPlanTitle": "Obs!",

@@ -1270,29 +1270,31 @@
   },
   "premiumPlanDesc": {
     "features": [
-      "Profils de talents avec statistiques détaillées, données de performance, réalisations et transferts visibles",
-      "Profils des clubs et des recruteurs avec tous les contenus visibles",
-      "Télécharger le profil du talent au format PDF",
-      "Créez vos propres listes de favoris avec des talents, des recruteurs ou des clubs",
-      "Télécharger des photos et des vidéos de mise en valeur et les visualiser sur d'autres profils",
-      "Fournir et lier des canaux de médias sociaux et un site web dans votre profil",
-      "Pour les recruteurs : Créez un portfolio et invitez les talents à le rejoindre",
-      "Pour les clubs : Organiser des sessions de repérage et inviter les talents inscrits à s'y joindre",
-      "Pour les clubs : Gérez les joueurs de votre club directement dans les équipes sur SoccerYou"
+      "Avec le forfait Premium, tu peux compléter ton profil avec des informations personnelles, des compétences, des statistiques, des performances, des transferts, des réussites et bien plus encore",
+      "Ajoute des détails importants comme ta vitesse maximale, ta valeur marchande, la durée de ton contrat, etc.",
+      "Le Premium te donne un accès complet à tous les contenus ajoutés par les talents, les clubs et les recruteurs",
+      "Télécharge ton profil de talent au format PDF avec toutes les données – idéal pour les candidatures et le scouting",
+      "Crée tes propres listes de favoris avec des talents, des clubs et des recruteurs",
+      "Mets en avant tes 6 meilleures photos ou vidéos de ta galerie personnelle",
+      "Lien vers tes réseaux sociaux – pour plus de visibilité et de portée"
     ]
   },
   "multiCountryPlanDesc": {
     "features": [
-      "Rendez votre profil visible dans les pays de votre choix",
-      "Augmentez votre visibilité à l'international",
-      "Construire un réseau international"
+      "Affiche ton profil dans d’autres pays de ton choix pour augmenter tes chances d’être découverte à l’international",
+      "Découvre des talents, clubs et recruteurs dans les pays ajoutés et consulte leurs profils",
+      "Ajoute des favoris, discute avec les utilisateurs de ce pays et télécharge les PDF de talents locaux",
+      "Augmente ta visibilité – à l’échelle internationale",
+      "Développe ton réseau football mondial"
     ]
   },
   "bostProfileDesc": {
     "features": [
-      "Votre photo de profil aura un arrière-plan spécial et mis en évidence",
-      "Votre profil apparaîtra en tête des résultats de recherche lorsque vos caractéristiques seront recherchées",
-      "Plus de visibilité - plus de chances d'être découvert"
+      "Ta photo de profil obtient un arrière-plan spécial et mis en valeur",
+      "Ton profil apparaît en tête des résultats de recherche lorsqu’un utilisateur cherche selon tes critères",
+      "Accède aux statistiques de ton profil boosté: vois qui a visité ton profil et combien de clics il a reçus",
+      "Ton profil reçoit un badge «Boosté»",
+      "Plus de visibilité – plus de chances d’être découverte"
     ]
   },
   "scoutPremiumPlanDesc": {
@@ -1309,6 +1311,8 @@
   },
   "scoutMultiCountryPlanDesc": {
     "features": [
+      "Découvre des talents, clubs et recruteurs dans les pays ajoutés et consulte leurs profils",
+      "Ajoute des favoris, discute avec les utilisateurs de ce pays et télécharge les PDF de talents locaux",
       "Présente ton profil aux talents et aux ligues d'autres pays.",
       "Augmente tes chances d'obtenir des talents mondiaux.",
       "Élargis ton réseau mondial."
@@ -1316,7 +1320,7 @@
   },
   "scoutBostProfileDesc": {
     "features": [
-      "Saute en tête des résultats de recherche.",
+      "Accède aux statistiques de ton profil boosté : vois qui a visité ton profil et combien de clics il a reçus.",
       "Photo Scout surlignée avec effet de fond pour plus de visibilité.",
       "Autocollant boosté (boosted sticker).",
       "Dans l'aperçu des scouts, tu apparais dans les premières positions en cas de paramètres de recherche matches.",
@@ -1510,6 +1514,6 @@
   "userPurchasesNotFound": "Tu n’as pas encore effectué d’achats.",
   "managePaymentBtnTxt": "Gérer les paiements",
   "managePaymentBtnTxtBelowTxt": "Réessayer le paiement / Mettre à jour les informations de carte",
-   "linkTxt":"Link",
-  "memberShipDetailTxt":"If Transaction Status is \"Open\" for more than 1 day or \"Failed\", please click on \"Manage Payments\" Button to take necessary action."
+  "linkTxt": "Link",
+  "memberShipDetailTxt": "If Transaction Status is \"Open\" for more than 1 day or \"Failed\", please click on \"Manage Payments\" Button to take necessary action."
 }

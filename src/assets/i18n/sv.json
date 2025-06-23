@@ -1257,29 +1257,31 @@
   },
   "premiumPlanDesc": {
     "features": [
-      "Talangprofiler med detaljerad statistik, prestationsdata, prestationer och transfers synliga",
-      "Klubb- och scoutprofiler med allt innehåll synligt",
-      "Ladda ner talangprofilen som PDF",
-      "Skapa dina egna favoritlistor med talanger, scouter eller klubbar",
-      "Ladda upp foton och videor av höjdpunkter och visa dem på andra profiler",
-      "Ange och länka sociala mediekanaler och webbplats i din profil",
-      "För scouter: Skapa en portfölj och bjud in talanger att ansluta sig till den",
-      "För klubbar: Organisera scoutingsessioner och bjud in registrerade talanger att delta",
-      "För klubbar: Hantera dina egna klubbspelare direkt i lagen på SoccerYou"
+      "Med Premium-paketet kan du komplettera din profil med personliga uppgifter, färdigheter, statistik, prestationer, övergångar och mycket mer",
+      "Lägg till viktiga detaljer som maxhastighet, marknadsvärde, kontraktslängd med mera",
+      "Premium ger dig full åtkomst till allt innehåll som lagts till av talanger, klubbar och scouter",
+      "Ladda ner din talangprofil som PDF med all information – perfekt för ansökningar och scouting",
+      "Skapa egna favoritlistor med talanger, klubbar och scouter",
+      "Markera dina 6 bästa bilder eller videor från ditt personliga galleri",
+      "Länka dina sociala medier – för ökad synlighet"
     ]
   },
   "multiCountryPlanDesc": {
     "features": [
-      "Gör din profil synlig i andra länder som du själv väljer",
-      "Öka din synlighet - internationellt",
-      "Bygg upp ett internationellt nätverk"
+      "Visa din profil i andra länder du väljer och öka dina chanser att bli upptäckt internationellt",
+      "Upptäck talanger, klubbar och scouter i de tillagda länderna och besök deras profiler",
+      "Lägg till favoriter, chatta med användare i det landet och ladda ner talang-PDF:er",
+      "Öka din synlighet – internationellt",
+      "Bygg ditt eget internationella fotbollsnätverk"
     ]
   },
   "bostProfileDesc": {
     "features": [
-      "Din profilbild kommer att ha en speciell och markerad bakgrund",
-      "Din profil kommer att visas högst upp i sökresultaten när dina egenskaper söks efter",
-      "Mer synlighet - större chans att bli upptäckt"
+      "Ditt profilfoto får en speciell och framhävande bakgrund",
+      "Din profil visas högst upp i sökresultaten när någon söker efter dina egenskaper",
+      "I din boost-statistik ser du vem som har besökt din profil och hur många klick den fått",
+      "Din profil får en «Boosted»-etikett",
+      "Mer synlighet – större chans att bli upptäckt"
     ]
   },
   "scoutPremiumPlanDesc": {
@@ -1296,6 +1298,8 @@
   },
   "scoutMultiCountryPlanDesc": {
     "features": [
+      "Upptäck talanger, klubbar och scouter i de tillagda länderna och besök deras profiler",
+      "Lägg till favoriter, chatta med användare i det landet och ladda ner talang-PDF:er",
       "Presentera din profil för talanger och ligor i andra länder.",
       "Större chans att få globala talanger.",
       "Utöka ditt globala nätverk."
@@ -1303,7 +1307,7 @@
   },
   "scoutBostProfileDesc": {
     "features": [
-      "Hoppa till toppen av sökresultaten.",
+      "I din boost-statistik ser du vem som har besökt din profil och hur många klick den fått.",
       "Markerat scoutfoto med bakgrundseffekt för mer synlighet.",
       "Förstärkt klistermärke.",
       "I Scout-översikten kommer du att visas i de första positionerna för matchande sökparametrar.",
@@ -1493,6 +1497,6 @@
   "userPurchasesNotFound": "Du har ännu inte gjort några köp.",
   "managePaymentBtnTxt": "Hantera betalningar",
   "managePaymentBtnTxtBelowTxt": "Försök igen med betalning / Uppdatera kortuppgifter",
-   "linkTxt": "Länk",
+  "linkTxt": "Länk",
   "memberShipDetailTxt": "Om transaktionsstatus är \"Öppen\" i mer än 1 dag eller \"Misslyckad\", klicka på knappen \"Hantera betalningar\" för att vidta nödvändiga åtgärder."
 }

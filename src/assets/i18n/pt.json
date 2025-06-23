@@ -1211,29 +1211,31 @@
   },
   "premiumPlanDesc": {
     "features": [
-      "Perfis de talentos com estatísticas detalhadas, dados de desempenho, conquistas e transferências visíveis",
-      "Perfis de clubes e olheiros com todos os conteúdos visíveis",
-      "Descarregar o perfil do talento como PDF",
-      "Criar as suas próprias listas de favoritos com talentos, olheiros ou clubes",
-      "Carregar fotografias e vídeos de destaques e visualizá-los noutros perfis",
-      "Fornecer e ligar canais de redes sociais e sítio Web no seu perfil",
-      "Para olheiros: Criar um portefólio e convidar talentos a juntarem-se a ele",
-      "Para os clubes: Organizar sessões de prospeção e convidar talentos registados a participar",
-      "Para os clubes: Gerir os jogadores do seu próprio clube diretamente nas equipas do SoccerYou"
+      "Com o pacote Premium, podes completar o teu perfil com informações pessoais, competências, estatísticas, dados de desempenho, transferências, conquistas e muito mais",
+      "Adiciona detalhes importantes como velocidade máxima, valor de mercado, duração do contrato, entre outros",
+      "O Premium dá-te acesso total a todo o conteúdo adicionado por talentos, clubes e olheiros",
+      "Descarrega o teu perfil como PDF com todos os dados – ideal para candidaturas e scouting",
+      "Cria listas de favoritos com talentos, clubes e olheiros",
+      "Destaca as tuas 6 melhores fotos ou vídeos da tua galeria",
+      "Liga os teus canais de redes sociais – para mais visibilidade e alcance"
     ]
   },
   "multiCountryPlanDesc": {
     "features": [
-      "Torne o seu perfil visível noutros países à sua escolha",
-      "Aumentar a sua visibilidade - internacional",
-      "Construir uma rede internacional"
+      "Mostra o teu perfil noutros países à tua escolha para aumentares as tuas hipóteses de seres descoberto internacionalmente",
+      "Descobre talentos, clubes e olheiros nos países adicionais e visita os respetivos perfis",
+      "Adiciona favoritos, conversa com utilizadores desse país e descarrega os PDFs dos talentos locais",
+      "Aumenta a tua visibilidade – a nível internacional",
+      "Constrói a tua rede global de futebol"
     ]
   },
   "bostProfileDesc": {
     "features": [
-      "A sua fotografia de perfil terá um fundo especial e destacado",
-      "O seu perfil aparecerá no topo dos resultados da pesquisa quando as suas caraterísticas forem procuradas",
-      "Mais visibilidade - maiores hipóteses de ser descoberto"
+      "A tua foto de perfil terá um fundo especial e destacado",
+      "O teu perfil aparece no topo dos resultados de pesquisa quando alguém procura pelas tuas características",
+      "Consulta as estatísticas do teu perfil Boost: vê quem visitou o teu perfil e quantos cliques recebeu",
+      "O teu perfil recebe um selo «Boosted»",
+      "Mais visibilidade – mais oportunidades de seres descoberto"
     ]
   },
   "scoutPremiumPlanDesc": {
@@ -1250,6 +1252,8 @@
   },
   "scoutMultiCountryPlanDesc": {
     "features": [
+      "Descobre talentos, clubes e olheiros nos países adicionais e visita os respetivos perfis",
+      "Adiciona favoritos, conversa com utilizadores desse país e descarrega os PDFs dos talentos locais",
       "Apresentar o seu perfil a talentos e ligas de outros países.",
       "Maiores hipóteses de obter talentos globais.",
       "Expandir a sua rede global."
@@ -1257,7 +1261,7 @@
   },
   "scoutBostProfileDesc": {
     "features": [
-      "Saltar para o topo dos resultados da pesquisa.",
+      "Consulta as estatísticas do teu perfil Boost: vê quem visitou o teu perfil e quantos cliques recebeu.",
       "Fotografia de escuteiro realçada com efeito de fundo para maior visibilidade.",
       "Autocolante reforçado.",
       "Na visão geral do olheiro, aparecerá nas primeiras posições para os parâmetros de pesquisa correspondentes.",
