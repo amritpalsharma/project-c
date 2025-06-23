@@ -5966,6 +5966,10 @@ span {
 
 
 @media (min-width: 2000px) and (max-width: 2999px) {
+    .banner_image_combo img {
+        top: 200px !important;
+        height: calc(100% - 200px);
+    }
     .pricing_tabs_container {
         .nav-link {
             font-size: 30px !important;
@@ -6005,6 +6009,10 @@ span {
 }
 
 @media (min-width: 3000px) {
+    .banner_image_combo img {
+        top: 260px !important;
+        height: calc(100% - 260px);
+    }
     .shadow_container {
         margin-top: 9rem !important;
         .header_card {

@@ -225,13 +225,21 @@
                   <div class="col-md-4 item_column">
                     <div class="item_card">
                       <div class="header_card">
+                        <h3 class="premium-heading2"> {{ pageData?.first_tab_plan_name }} </h3>
                         <h2 class="premium-heading3">
                           {{ selectedTab != 'yearly' ? premiumPrice : premiumYearlyPrice }}<span>.- {{Currency}} /
                             <span *ngIf="selectedTab == 'yearly'">{{pageData?.first_tab_yearly_label}}</span>
                             <span *ngIf="selectedTab != 'yearly'">{{pageData?.first_tab_monthly_label}}</span>
                           </span>
                         </h2>
-                        <h3 class="premium-heading2"> {{ pageData?.first_tab_plan_name }} </h3>
+                        <h5 class="premium-heading5">{{pageData?.first_tab_free_features_title}}</h5>
+                        <hr />
+                        <h2 class="premium-heading3">
+                          {{ selectedTab != 'yearly' ? premiumPrice : premiumYearlyPrice }}<span>.- {{Currency}} /
+                            <span *ngIf="selectedTab == 'yearly'">{{pageData?.first_tab_yearly_label}}</span>
+                            <span *ngIf="selectedTab != 'yearly'">{{pageData?.first_tab_monthly_label}}</span>
+                          </span>
+                        </h2>
                         <h5 class="premium-heading5">{{pageData?.first_tab_free_features_title}}</h5>
                       </div>
                       <div class="body_card">
