@@ -1365,5 +1365,6 @@
   "managePaymentBtnTxt": "Administrér betalinger",
   "managePaymentBtnTxtBelowTxt": "Prøv betaling igen / Opdater kortoplysninger",
   "linkTxt": "Link",
-  "memberShipDetailTxt": "Hvis transaktionsstatus er \"Åben\" i mere end 1 dag eller \"Mislykket\", skal du klikke på knappen \"Administrer betalinger\" for at tage de nødvendige skridt."
+  "memberShipDetailTxt": "Hvis transaktionsstatus er \"Åben\" i mere end 1 dag eller \"Mislykket\", skal du klikke på knappen \"Administrer betalinger\" for at tage de nødvendige skridt.",
+  "premiumPlanForTalent": "For Talenter"
 }

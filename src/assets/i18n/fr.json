@@ -1515,5 +1515,6 @@
   "managePaymentBtnTxt": "Gérer les paiements",
   "managePaymentBtnTxtBelowTxt": "Réessayer le paiement / Mettre à jour les informations de carte",
   "linkTxt": "Link",
-  "memberShipDetailTxt": "If Transaction Status is \"Open\" for more than 1 day or \"Failed\", please click on \"Manage Payments\" Button to take necessary action."
+  "memberShipDetailTxt": "If Transaction Status is \"Open\" for more than 1 day or \"Failed\", please click on \"Manage Payments\" Button to take necessary action.",
+  "premiumPlanForTalent": "Pour Talents"
 }

@@ -14,8 +14,8 @@
             <!-- Country Cards -->
             <div class="row px-2 countries-box-list">
                 <div class="col-sm-6 col-md-4 col-lg-3 mt-3" *ngFor="let country of countries">
-                    <div class="country-card country-flag-box h-100"
-                        [ngClass]="{'selected': (country.is_default==1 || country.is_package_active=='active')}"
+                    <div class="country-card country-flag-box h-100 status_{{country.is_package_active}}"
+                        [ngClass]="{'selected': (country.is_default==1 || country.is_package_active=='active' || country.is_package_active=='past_due' || country.is_package_active=='incomplete')}"
                         (click)="toggleCountrySelection(country)">
 
                         <div class="contries-flag-image">

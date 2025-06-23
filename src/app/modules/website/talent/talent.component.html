@@ -125,10 +125,11 @@
                         <h3 class="feature-heading3">{{pageData?.feature_sctn_title}} </h3>
                         <div class="accordion" id="accordionExample">
                             <ng-container *ngFor="let feature of pageData.feature_sctn; let i = index">
-                                <div class="accordion-item" >
+                                <div class="accordion-item">
                                     <div class="accordion-flex" data-bs-toggle="collapse"
                                         [attr.data-bs-target]="'#collapse' + i" aria-expanded="false"
-                                        [attr.aria-controls]="'collapse' + i" (click)="getArrayItemByIndex(i,'dark_icon')">
+                                        [attr.aria-controls]="'collapse' + i"
+                                        (click)="getArrayItemByIndex(i,'dark_icon')">
                                         <img class="light-feature1"
                                             src="/assets/images/talent_page/icons/{{i}}_light.svg">
                                         <img class="dark-feature1"
@@ -201,7 +202,7 @@
                         <h3 class="feature-heading3">{{pageData?.feature_sctn_title}}</h3>
                         <div class="accordion" id="accordionExample">
                             <ng-container *ngFor="let feature of pageData.feature_sctn; let i = index">
-                                <div class="accordion-item" >
+                                <div class="accordion-item">
                                     <div class="accordion-flex" data-bs-toggle="collapse"
                                         [attr.data-bs-target]="'#collapseOne' + i"
                                         [attr.aria-expanded]="activeAccordionIndex === i ? 'true' : 'false'"
@@ -311,12 +312,12 @@
             <div class="pricing_tabs_container">
                 <ul class="nav nav-tabs justify-content-center border-0" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link active uppercase-letters" data-bs-toggle="tab" href="#Tab1" role="tab" aria-selected="true"
-                            (click)="setActiveTab('monthly')">{{'billedMonthly'| translate}}</a>
+                        <a class="nav-link active uppercase-letters" data-bs-toggle="tab" href="#Tab1" role="tab"
+                            aria-selected="true" (click)="setActiveTab('monthly')">{{'billedMonthly'| translate}}</a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link uppercase-letters" data-bs-toggle="tab" href="#Tab2" role="tab" aria-selected="false"
-                            (click)="setActiveTab('yearly')">{{'billedYearly'| translate}}</a>
+                        <a class="nav-link uppercase-letters" data-bs-toggle="tab" href="#Tab2" role="tab"
+                            aria-selected="false" (click)="setActiveTab('yearly')">{{'billedYearly'| translate}}</a>
                     </li>
                 </ul>
                 <div class="tab_data_wrapper">
@@ -440,12 +441,15 @@
                                             <h3 class="premium-heading2"> {{getDynamicPlanName('boost')}} </h3>
                                         </div>
                                         <div class="body_card">
-                                            <h5 class="premium-heading5" *ngIf="priceArr[2].plan_feature_title">{{priceArr[2].plan_feature_title}}</h5>
+                                            <h5 class="premium-heading5" *ngIf="priceArr[2].plan_feature_title">
+                                                {{priceArr[2].plan_feature_title}}</h5>
                                             <div class="text_List_wrap">
                                                 <div class="premium-text"
                                                     *ngFor="let desc of getDescByPlanName('boost');">
-                                                    <img src="./assets/images/mdi_tick.svg" class="theme_white_icon" alt="Checkmark">
-                                                    <img src="./assets/images/mdi_tick-blue.svg" class="dark_theme_blue" alt="Checkmark">
+                                                    <img src="./assets/images/mdi_tick.svg" class="theme_white_icon"
+                                                        alt="Checkmark">
+                                                    <img src="./assets/images/mdi_tick-blue.svg" class="dark_theme_blue"
+                                                        alt="Checkmark">
                                                     <p>{{desc}}</p>
                                                 </div>
                                             </div>
@@ -464,8 +468,7 @@
                                     <div class="item_card">
                                         <div class="header_card">
                                             <h2 class="premium-heading3">
-                                                <!-- 42<span>.- GBP / <span>Yearly</span></span> -->
-                                                {{ getPlanPriceByName('premium')}}<span>.- {{Currency}} /
+                                                {{getPlanPriceByName('premium')}}<span>.-{{Currency}} /
                                                     <span
                                                         *ngIf="selectedTab == 'yearly' && priceArr">{{priceArr[0].yearly_label}}</span>
                                                     <span
@@ -475,7 +478,8 @@
                                             <h3 class="premium-heading2">{{getDynamicPlanName('premium')}}</h3>
                                         </div>
                                         <div class="body_card">
-                                            <h5 class="premium-heading5" *ngIf="priceArr[0].plan_feature_title">{{priceArr[0].plan_feature_title}}</h5>
+                                            <h5 class="premium-heading5" *ngIf="priceArr[0].plan_feature_title">
+                                                {{priceArr[0].plan_feature_title}}</h5>
                                             <div class="text_List_wrap">
                                                 <div class="premium-text"
                                                     *ngFor="let desc of getDescByPlanName('premium');">
@@ -509,12 +513,15 @@
                                             <h3 class="premium-heading2"> {{getDynamicPlanName('country')}}</h3>
                                         </div>
                                         <div class="body_card">
-                                            <h5 class="premium-heading5" *ngIf="priceArr[1].plan_feature_title">{{priceArr[1].plan_feature_title}}</h5>
+                                            <h5 class="premium-heading5" *ngIf="priceArr[1].plan_feature_title">
+                                                {{priceArr[1].plan_feature_title}}</h5>
                                             <div class="text_List_wrap">
                                                 <div class="premium-text"
                                                     *ngFor="let desc of getDescByPlanName('country');">
-                                                    <img src="./assets/images/mdi_tick.svg" class="theme_white_icon" alt="Checkmark">
-                                                    <img src="./assets/images/mdi_tick-blue.svg" class="dark_theme_blue" alt="Checkmark">
+                                                    <img src="./assets/images/mdi_tick.svg" class="theme_white_icon"
+                                                        alt="Checkmark">
+                                                    <img src="./assets/images/mdi_tick-blue.svg" class="dark_theme_blue"
+                                                        alt="Checkmark">
                                                     <p>{{desc}}</p>
                                                 </div>
                                             </div>

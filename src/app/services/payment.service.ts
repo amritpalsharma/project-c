@@ -84,6 +84,8 @@ export class PaymentService {
     const data = new FormData();
     data.append('subscription_id', subscriptionId);
     data.append('new_package_id', newPackageId);
+    let currentLang = localStorage.getItem('lang_id');
+    data.append('lang', currentLang + '');
 
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
@@ -91,14 +93,6 @@ export class PaymentService {
 
     return this.http.post<any>(url, data, { headers });
   }
-
-  // generateLinkAndNavigate(): Observable<any> {
-  //   const headers = new HttpHeaders({
-  //     'Authorization': `Bearer ${this.userToken}`
-  //   });
-
-  //   return this.http.post<any>(`https://api.socceryou.ch/api/create-customer-portal`, {return_url:window.location.hostname}, { headers });
-  // }
 
   generateLinkAndNavigate(): Observable<any> {
     const formData = new FormData();
@@ -114,14 +108,4 @@ export class PaymentService {
       { headers }
     );
   }
-
-
-  // genrateLinkAndNavigate() {
-  //   const headers = new HttpHeaders({
-  //     'Authorization': `Bearer ${this.userToken}`
-  //   });
-
-  //   return this.http.get(`${this.apiUrl}/create-customer-portal`, { headers });
-  // }
-
 }

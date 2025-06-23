@@ -38,7 +38,7 @@ export class ChatComponent {
 
     }
 
-    async ngOnInit() {
+    async ngOnInit23062025() {
         const theme = localStorage.getItem('theme');
         if (theme == 'dark') {
             this.theme = 'dark_custom';
@@ -98,6 +98,56 @@ export class ChatComponent {
             }, 0);
         }
     }
+    async ngOnInit() {
+        // Get theme from localStorage
+        const theme = localStorage.getItem('theme');
+        if (theme === 'dark') {
+            this.theme = 'dark_custom';
+            document.body.classList.add('dark-mode'); // Apply dark mode class
+        } else {
+            this.theme = 'default';
+            document.body.classList.remove('dark-mode'); // Remove dark mode class for light theme
+        }
+
+        // Wait for theme to be fully applied before initializing the chat
+        setTimeout(async () => {
+            const userDataString = localStorage.getItem('userData');
+            if (userDataString) {
+                this.userData = JSON.parse(userDataString);
+
+                // Set up user data for Talk.js
+                this.user = {
+                    id: this.userData.id,
+                    name: this.userData.first_name,
+                    email: this.userData.username,
+                    photoUrl: this.userData.profile_image_path,
+                    welcomeMessage: "Hi!",
+                    role: this.userData.role === '1' ? "hidden" : "default"
+                };
+
+                // Initialize the chat session
+                const session = await this.talkService.init(this.user);
+                const chatbox = session.createInbox();
+                this.selectedConversation = { user: this.user };
+
+                // Mount the chatbox after a small delay to ensure everything is loaded
+                setTimeout(() => {
+                    chatbox.mount(document.getElementById('talkjs-container'));
+
+                    // Handle open_chat query param (if present)
+                    setTimeout(() => {
+                        let url = new URL(window.location.href);
+                        if (url.searchParams.get("open_chat") === "true") {
+                            this.checkAndRemoveOpenChat();
+                        } else {
+                            this.isLoading = false;
+                        }
+                    }, 1500); // 1.5 seconds
+                }, 0);
+            }
+        }, 100); // Delay initialization for 100ms to ensure theme is applied
+    }
+
 
     reloadChatComponent() {
         const currentUrl = this.router.url;
@@ -173,46 +223,6 @@ export class ChatComponent {
 
             });
     }
-
-    // checkAndRemoveOpenChat1545() {
-    //     let url = new URL(window.location.href);
-
-    //     if (url.searchParams.get("open_chat") === "true") {
-    //         url.searchParams.delete("open_chat");
-    //         window.history.replaceState({}, document.title, url.toString()); // ✅ no reload
-    //     }
-
-    //     const otherUserData = localStorage.getItem('otherUserData');
-    //     console.log('selected User For Chat', otherUserData)
-
-    //     if (otherUserData) {
-    //         const otherUser = JSON.parse(otherUserData);
-    //         console.info('From View Profile Chat With', otherUser);
-    //         // this.startOneOnOneChat(otherUser);
-    //         // this.talkService.startChatWithUser(otherUser);
-    //         // localStorage.setItem('otherUserData','');
-
-
-
-    //         this.user = {
-    //             id: otherUser.id,
-    //             name: otherUser.first_name,
-    //             email: otherUser.email,
-    //             photoUrl: otherUser.profile_image_path,
-    //             welcomeMessage: "Hi!",
-    //             role: "default"
-    //         };
-    //         this.otherUserDataArr = this.user;
-    //         // const session = await this.talkService.init(this.user);
-    //         const chatbox = session.createInbox();
-    //         this.selectedConversation = { user: this.user };
-    //     }
-
-    //     setTimeout(() => {
-    //         this.isLoading = false;
-    //     }, 100);
-    // }
-
 
     async checkAndRemoveOpenChat() {
         const url = new URL(window.location.href);

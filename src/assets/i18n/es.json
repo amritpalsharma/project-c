@@ -1447,5 +1447,6 @@
   "managePaymentBtnTxt": "Administrar pagos",
   "managePaymentBtnTxtBelowTxt": "Reintentar pago / Actualizar datos de la tarjeta",
   "linkTxt": "Enlace",
-  "memberShipDetailTxt": "Si el estado de la transacción está \"Abierto\" por más de 1 día o \"Fallido\", haga clic en el botón \"Gestionar pagos\" para tomar las medidas necesarias."
+  "memberShipDetailTxt": "Si el estado de la transacción está \"Abierto\" por más de 1 día o \"Fallido\", haga clic en el botón \"Gestionar pagos\" para tomar las medidas necesarias.",
+  "premiumPlanForTalent": "Para Talentos"
 }

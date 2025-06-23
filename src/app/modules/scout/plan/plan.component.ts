@@ -141,7 +141,7 @@ export class PlanComponent implements OnInit, OnDestroy {
   }
 
   // Open coupon dialog
-  openCouponDialog(planId: any): void {
+  openCouponDialog123(planId: any): void {
 
     // Code By Amrit 16-5-25
     if (((this.premiumPlans?.active_interval == 'monthly') || (this.premiumPlans?.active_interval == 'yearly'))) {
@@ -195,6 +195,53 @@ export class PlanComponent implements OnInit, OnDestroy {
       //   this.couponCode = result; // Store the coupon code entered by the user
       //   this.redirectToCheckout(planId);
       // }
+      if (result && typeof result.coupon_code != undefined && result.coupon_code != '') {
+        this.isCouponApplied = true;
+        this.couponCode = result.coupon_code;
+        this.redirectToCheckout(planId);
+      } else if (result == 'buy_plan') {
+        this.isCouponApplied = false;
+        this.couponCode = '';
+        this.redirectToCheckout(planId);
+      }
+    });
+  }
+
+  // New FUnction from Talent
+  openCouponDialog(planId: any): void {
+    // alert('Dailog Open');
+    console.info('this.isPremiumPurchased', this.isPremiumPurchased)
+    if (this.isPremiumPurchased == 'monthly' || this.isPremiumPurchased == 'yearly') {
+      console.info('Already Premium ' + this.isPremiumPurchased + ' Plan is Purchased');
+
+
+      if (this.isPremiumPurchased == 'monthly' && !this.premiumPlans.isYearly) {
+        this.toastr.error(this.youHaveAlreadyThisPlan, this.youHaveAlreadyThisPlanTitle);
+        return;
+      }
+
+      if (this.isPremiumPurchased == 'monthly' && this.premiumPlans.isYearly) {
+        this.updatePlan(this.premiumPlans, true, this.premiumPurchased);
+        return;
+      } else if (this.isPremiumPurchased == 'yearly' && !this.premiumPlans.isYearly) {
+        this.updatePlan(this.premiumPlans, false, this.premiumPurchased);
+        return;
+      }
+    }
+
+    const dialogRef = this.dialog.open(PremiumPurchaseComponent, {
+      width: '600px',
+      panelClass: 'all_plan_popups',
+      data: {
+        action: 'premiumPlan',
+        planName: this.premiumPlanTxt,
+        isYearly: this.premiumPlans.isYearly,
+        premiumPlans: this.premiumPlans
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // console.warn(result)
       if (result && typeof result.coupon_code != undefined && result.coupon_code != '') {
         this.isCouponApplied = true;
         this.couponCode = result.coupon_code;
@@ -277,10 +324,11 @@ export class PlanComponent implements OnInit, OnDestroy {
           Object.keys(res).forEach((key) => {
             console.log('res[key]', res[key]);
             // Group plans by category
-            if (key.toLowerCase().includes('premium')) {
+            if (key.toLowerCase().includes('premium_talent')) {}
+            else if (key.toLowerCase().includes('premium')) {
               this.premiumPlans = res[key];
               this.premiumPlans.isYearly = res[key].active_interval == 'yearly';
-
+              this.premiumPlans.active_interval = res[key].active_interval;
               Object.keys(this.premiumPlans?.plans).forEach((key) => {
                 this.premiumPlans[this.premiumPlans.plans[key].interval] = this.premiumPlans.plans[key];
               })
@@ -295,6 +343,7 @@ export class PlanComponent implements OnInit, OnDestroy {
               this.premiumPlans.month_price = this.premiumPlans['monthly'].price;
               this.premiumPlans.year_package_id = this.premiumPlans['yearly'].id;
               this.premiumPlans.year_price = this.premiumPlans['yearly'].price;
+
               // console.log('!isNaN(res[key].id)',!isNaN(res[key].id));
               // console.log('res[key].id',res[key].id);
 
@@ -501,7 +550,8 @@ export class PlanComponent implements OnInit, OnDestroy {
       console.error('Error during subscription:', error);
     }
   }
-
+  isPremiumPurchased: string = '';
+  premiumPurchased: any;
   getUserPlans(): void {
     this.ScoutService.getUserPlans().subscribe({
       next: (response) => {
@@ -511,12 +561,25 @@ export class PlanComponent implements OnInit, OnDestroy {
           this.demo = userPlans?.demo?.[0] || null;
           this.booster = userPlans?.booster?.[0] || null;
           this.country = userPlans?.country || '';
-          console.log('userPlans', userPlans);
-          console.log('this.premium', this.premium);
+          // console.log('userPlans', userPlans);
+          // console.log('this.premium', this.premium);
 
           if (this.premium && this.premium.interval == 'monthly' && !isNaN(this.premium.id) && Number(this.premium.id)) {
             //this.premiumPlans.purchased_plan_id = this.premium.id;
             this.premiumMonthlyPurchasedPlanID = this.premium.id;
+          }
+
+          
+          if (userPlans.premium[0] != undefined && userPlans.premium[0] != '' && userPlans.premium[0].status == 'active') {
+            this.isPremiumPurchased = 'monthly';
+            // this.premiumMonthlyPackageId = userPlans.premium[0].package_id;
+            this.premiumPurchased = userPlans.premium[0];
+          } else if (userPlans.premium[1] != undefined && userPlans.premium[1] != '' && userPlans.premium[1].status == 'active') {
+            this.isPremiumPurchased = 'yearly';
+            this.premiumPurchased = userPlans.premium[1];
+            // this.premiumYearlyPackageId = userPlans.premium[1].package_id;
+          } else {
+            this.isPremiumPurchased = 'noPlan';
           }
           this.fetchPlans();
 
@@ -566,18 +629,6 @@ export class PlanComponent implements OnInit, OnDestroy {
     return;
   }
 
-
-  // toggleBillingPlan(plan: any, isYearly: boolean, subscribeId: any): void {
-  //   const originalIsYearly = plan.isYearly;
-
-  //   if (plan.isYearly != isYearly) {
-  //     this.toastr.info(`You're already subscribed to the ${isYearly ? 'yearly' : 'monthly'} plan.`);
-  //     return;
-  //   }
-
-  //   plan.isYearly = originalIsYearly;
-  //   return;
-  // }
 
   updatePlan(plan: any, isYearly: boolean, subscribeId: any) {
     const originalIsYearly = plan.isYearly;
@@ -776,12 +827,14 @@ export class PlanComponent implements OnInit, OnDestroy {
       console.error('Error creating Stripe Checkout session:', error);
     }
   }
+  youHaveAlreadyThisPlanTitle: string = '';
 
   getToasterMsg() {
-    this.translateService.get(['pleaseWait', 'Processing', 'youHaveAlreadyThisPlan']).subscribe((translations) => {
+    this.translateService.get(['pleaseWait', 'Processing', 'youHaveAlreadyThisPlan', 'youHaveAlreadyThisPlanTitle']).subscribe((translations) => {
       this.pleaseWait = translations['pleaseWait'];
       this.Processing = translations['Processing'];
       this.youHaveAlreadyThisPlan = translations['youHaveAlreadyThisPlan'];
+      this.youHaveAlreadyThisPlanTitle = translations['youHaveAlreadyThisPlanTitle'];
     });
   }
 

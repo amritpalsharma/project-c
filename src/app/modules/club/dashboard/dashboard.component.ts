@@ -756,6 +756,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
   }
 
+  getSanitizedUrl(url: string): string {
+    if (!url) return '';
+    return url.startsWith('http://') || url.startsWith('https://') ? url : 'https://' + url;
+  }
+
 
   onCoverImageChange(event: Event): void {
     const input = event.target as HTMLInputElement;

@@ -63,11 +63,16 @@
                     </label>
                   </li>
                 </ul>
-                <button class="choose-plan-btn"
-                      [disabled]="((premiumPlans?.active_interval=='monthly' && !premiumPlans.isYearly) || (premiumPlans?.active_interval=='yearly'))"
-                      (click)="openCouponDialog(premiumPlans.isYearly ? premiumPlans.year_package_id : premiumPlans.month_package_id)">
-                      {{'choosePlan' | translate}}
-                    </button>
+                <!-- <button class="choose-plan-btn"
+                  [disabled]="((premiumPlans?.active_interval=='monthly' && !premiumPlans.isYearly) || (premiumPlans?.active_interval=='yearly'))"
+                  (click)="openCouponDialog(premiumPlans.isYearly ? premiumPlans.year_package_id : premiumPlans.month_package_id)">
+                  {{'choosePlan' | translate}}
+                </button> -->
+                <button class="choose-plan-btn {{premiumPlans?.active_interval}} isYearly_{{premiumPlans.isYearly}}"
+                  [disabled]="((premiumPlans?.active_interval=='monthly' && !premiumPlans.isYearly) || premiumPlans?.active_interval=='yearly' && premiumPlans.isYearly)"
+                  (click)="openCouponDialog(premiumPlans.isYearly ? premiumPlans.year_package_id : premiumPlans.month_package_id)">
+                  {{'choosePlan' | translate}}
+                </button>
               </div>
               <div class="premium-football_icon">
                 <svg width="129" height="259" viewBox="0 0 129 259" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -91,7 +96,7 @@
 
             <div class="premium-plan_box ">
               <div class="plan_box">
-                
+
                 <div class="premium-currency">
                   <h6>
                     {{ selectedPlan.isYearly ? countryYearlyArr?.price : countryMonthlyArr?.price }}<sub
@@ -137,7 +142,7 @@
                   </li>
                 </ul>
                 <button class="choose-plan-btn" (click)="editPlanPopup(countryPlans,country)">{{'choosePlan' |
-                      translate}}</button>
+                  translate}}</button>
               </div>
               <div class="premium-football_icon">
                 <svg width="129" height="259" viewBox="0 0 129 259" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -205,9 +210,9 @@
                   </li>
                 </ul>
                 <button class="choose-plan-btn"
-                      [disabled]="((boostedPlans?.active_interval=='monthly' && !boostedPlans.isYearly) || boostedPlans?.active_interval=='yearly')"
-                      (click)="addBoostPopup(boostedPlans.isYearly==true ? boostedPlans.year_package_id : boostedPlans.month_package_id )">{{'choosePlan'
-                      | translate}}</button>
+                  [disabled]="((boostedPlans?.active_interval=='monthly' && !boostedPlans.isYearly) || boostedPlans?.active_interval=='yearly')"
+                  (click)="addBoostPopup(boostedPlans.isYearly==true ? boostedPlans.year_package_id : boostedPlans.month_package_id )">{{'choosePlan'
+                  | translate}}</button>
               </div>
               <div class="premium-football_icon">
                 <svg width="129" height="259" viewBox="0 0 129 259" fill="none" xmlns="http://www.w3.org/2000/svg">
