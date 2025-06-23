@@ -334,8 +334,13 @@
                           <h6 class="title_2">{{ 'website' | translate }}</h6>
                           <h5 *ngIf="user.meta && user.meta.website" class="title-1">
                             <!-- {{user.meta.website}} -->
-                            <a href="{{user.meta.website}}" target="_blank"
-                              style="color:inherit">{{'linkTxt' | translate}}</a>
+                            <!-- <a [href]="user?.meta?.website" target="_blank" rel="noopener"
+                              style="color:inherit">{{'linkTxt' | translate}}</a> -->
+                            <a [href]="getSanitizedUrl(user?.meta?.website)" target="_blank" rel="noopener"
+                              style="color:inherit">
+                              {{ 'linkTxt' | translate }}
+                            </a>
+
                           </h5>
                           <!-- <h5 class="title-1" *ngIf="!user.meta || !user.meta.website">NA</h5> -->
                         </div>

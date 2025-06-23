@@ -200,7 +200,10 @@ export class PlanComponent implements OnInit, OnDestroy {
           Object.keys(res).forEach((key) => {
 
             // Group plans by category
-            if (key.toLowerCase().includes('premium')) {
+            if (key.toLowerCase().includes('premium_talent')) {
+              
+
+            }else if (key.toLowerCase().includes('premium')) {
               this.premiumPlans = res[key];
               this.premiumPlans.isYearly = res[key].active_interval == 'yearly';
 

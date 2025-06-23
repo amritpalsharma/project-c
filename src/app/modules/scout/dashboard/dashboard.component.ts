@@ -309,9 +309,17 @@ export class DashboardComponent implements OnInit, OnDestroy {
   handleTourExit() {
     const checkbox = document.getElementById('dontShowAgain') as HTMLInputElement;
     const dontShowAgain = checkbox?.checked || false;
-
-    // Call the API to update showTour (replace with your API call logic)
-    this.updateShowTour(dontShowAgain ? 0 : 1);
+    if (checkbox) {
+      if (checkbox.checked) {
+        // Save the user's preference
+        localStorage.setItem('dontShowIntroTour', 'true');
+        this.updateShowTour(checkbox.checked ? 0 : 1);
+      } else {
+        console.log('User unchecked "Don’t show it again"');
+        this.updateShowTour(checkbox.checked ? 0 : 1);
+        localStorage.removeItem('dontShowIntroTour');
+      }
+    }
   }
 
   updateShowTour(showTour: number) {
@@ -405,11 +413,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
           } else {
             console.info('userName Does Not Set Condition False', this.user);
           }
-          // if(this.StartTour) {
-          //   setTimeout(() => {
-          //     this.startIntroTour();  // Start the tour after a slight delay
-          //   }, 2500);
-          // }
+
 
           this.isPremium = this.user?.active_subscriptions?.premium.length > 0 ? true : false;
           // this.isPremium = false;
@@ -424,8 +428,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
             this.sendMessage();
           }
 
-          // if (this.StartTour && this.isTourFirstTime) {
-          if (this.StartTour) {
+          if (this.StartTour && this.isTourFirstTime) {
             setTimeout(() => {
               this.isTourFirstTime = false;
               // alert('Found lang in Db : '+response.data.user_data.lang)
@@ -457,7 +460,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
                   console.info('Tour Not working in mobile now');
                 }
               }
-              // this.startIntroTour(dblang);  // Start the tour after a slight delay
             }, 0);
           }
 
@@ -935,51 +937,51 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   onCoverImageChange(event: Event): void {
-      const input = event.target as HTMLInputElement;
-  
-      if (input.files && input.files.length > 0) {
-        const selectedFile = input.files[0];
-        console.info('selectedFile',selectedFile)
-  
-        if (!selectedFile.type.startsWith('image/')) {
-          this.toastr.error('Please select a valid image file.', 'Invalid File');
-          return;
-        }
-  
-        // const maxSizeInBytes = 5 * 1024 * 1024; // 5 MB
-        // if (selectedFile.size > maxSizeInBytes) {
-        //   this.toastr.error(this.maxSizeForProfile, this.errorTxt, {
-        //     timeOut: 5000  // Set duration to 5 seconds (5000ms)
-        //   });
-        //   return;
-        // }
-  
-        const reader = new FileReader();
-  
-        reader.onload = () => {
-          const imageData = reader.result as string;
-  
-          const dialogRef = this.dialog.open(CoverImageCropperComponent, {
-            width: '850px',
-            data: { imageUrl: imageData, action: 'cover_image' },
-            disableClose: true
-          });
-  
-          dialogRef.afterClosed().subscribe((croppedImage) => {
-            if (croppedImage) {
-              console.log('Cropped Image:', croppedImage);
-              this.uploadCroppedCoverImage(croppedImage);
-            } else {
-              console.log('No cropped image returned');
-            }
-          });
-        };
-  
-        reader.readAsDataURL(selectedFile);
-      } else {
-        console.error('No file selected');
+    const input = event.target as HTMLInputElement;
+
+    if (input.files && input.files.length > 0) {
+      const selectedFile = input.files[0];
+      console.info('selectedFile', selectedFile)
+
+      if (!selectedFile.type.startsWith('image/')) {
+        this.toastr.error('Please select a valid image file.', 'Invalid File');
+        return;
       }
+
+      // const maxSizeInBytes = 5 * 1024 * 1024; // 5 MB
+      // if (selectedFile.size > maxSizeInBytes) {
+      //   this.toastr.error(this.maxSizeForProfile, this.errorTxt, {
+      //     timeOut: 5000  // Set duration to 5 seconds (5000ms)
+      //   });
+      //   return;
+      // }
+
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        const imageData = reader.result as string;
+
+        const dialogRef = this.dialog.open(CoverImageCropperComponent, {
+          width: '850px',
+          data: { imageUrl: imageData, action: 'cover_image' },
+          disableClose: true
+        });
+
+        dialogRef.afterClosed().subscribe((croppedImage) => {
+          if (croppedImage) {
+            console.log('Cropped Image:', croppedImage);
+            this.uploadCroppedCoverImage(croppedImage);
+          } else {
+            console.log('No cropped image returned');
+          }
+        });
+      };
+
+      reader.readAsDataURL(selectedFile);
+    } else {
+      console.error('No file selected');
     }
+  }
 
   uploadCroppedCoverImage(croppedImage: string): void {
     const blob = this.dataURItoBlob(croppedImage);
@@ -1241,4 +1243,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
       }
     });
   }
+
+  getSanitizedUrl(url: string): string {
+    if (!url) return '';
+    return url.startsWith('http://') || url.startsWith('https://') ? url : 'https://' + url;
+  }
+
 }

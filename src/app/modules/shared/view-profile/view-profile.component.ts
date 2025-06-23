@@ -614,6 +614,11 @@ export class ViewProfileComponent implements OnInit {
     this.router.navigate(['view', 'scout', id]);
   }
 
+  getSanitizedUrl(url: string): string {
+    if (!url) return '';
+    return url.startsWith('http://') || url.startsWith('https://') ? url : 'https://' + url;
+  }
+
 
 }
 

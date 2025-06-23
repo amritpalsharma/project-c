@@ -163,6 +163,7 @@ export class AddPerformanceComponent {
 
   onSubmit(myForm: NgForm): void {
 
+    console.log('Button Clicked ',this.isHideTeamSection)
 
 
     this.isrequiredField = false;
@@ -175,6 +176,8 @@ export class AddPerformanceComponent {
         console.log('Need to select country please', this.team_country_id);
         return;
       }
+      let formArry = myForm;
+      console.info('formArry', formArry)
       this.saveManuly(myForm);
     } else {
       this.saveDefault(myForm);
@@ -193,6 +196,7 @@ export class AddPerformanceComponent {
 
     const loadingToast = this.toastr.info(this.submittingPerformanceData, this.pleaseWait, { disableTimeOut: true });
     let lang_id = localStorage.getItem('lang_id');
+
     // Add currentTeamId to the form values
     const formData = {
       ...myForm.value, // Include all form values
@@ -205,9 +209,13 @@ export class AddPerformanceComponent {
         : null,
       lang: lang_id
     };
-
+    console.info('In Manualy Data sent', formData);
     this.talentService.addPerformanceManual(formData).subscribe({
       next: (response: any) => {
+        if (response.data.errors) {
+          this.toastr.error(response.data.errors);
+          return;
+        }
         // Close loading message
         this.toastr.clear(loadingToast.toastId);
 
@@ -259,7 +267,7 @@ export class AddPerformanceComponent {
         : null,
       lang: lang_id
     };
-
+    console.info('In Default Data sent', formData);
     this.talentService.addPerformance(formData).subscribe({
       next: (response: any) => {
         // Close loading message
