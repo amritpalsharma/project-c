@@ -66,6 +66,7 @@ export class ViewProfileComponent implements OnInit {
   teamsTabComponent!: TeamsComponent;
   @ViewChild(SightingComponent)
   sightingComponent!: SightingComponent;
+  scoutInfoDetails: any;
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
@@ -163,6 +164,7 @@ export class ViewProfileComponent implements OnInit {
       this.talentService.getUser(userId, params).subscribe((response) => {
         if (response && response.status && response.data && response.data.user_data) {
           this.user = response.data.user_data;
+          // console.info('this.user',this.user);
           let baseUrl = response.data.imagePath;
           this.baseUrl = baseUrl;
           this.isPremium = this.loggedInUser?.active_subscriptions?.premium.length > 0 ? true : false;
@@ -175,6 +177,10 @@ export class ViewProfileComponent implements OnInit {
           // this.profileImage = this.user.meta.profile_image_path || this.profileImage;
           if (this.user.meta.cover_image && this.user.meta.cover_image != '' && this.user.meta.cover_image != undefined) {
             this.coverImage = baseUrl + this.user.meta.cover_image || this.coverImage;
+          }
+
+          if (this.user?.scout_info) {
+            this.scoutInfoDetails = JSON.parse(this.user?.scout_info);
           }
           // console.info(this.user);
           // if(this.user?.meta?.place_of_birth){
@@ -601,6 +607,11 @@ export class ViewProfileComponent implements OnInit {
         }
       }
     });
+  }
+
+
+  naviGateScoutProfile(id: string | number): void {
+    this.router.navigate(['view', 'scout', id]);
   }
 
 

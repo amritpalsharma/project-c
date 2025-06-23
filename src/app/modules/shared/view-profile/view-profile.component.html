@@ -595,6 +595,24 @@
                         </div>
                       </div>
                     </div>
+                    <div class="col-sm-6" *ngIf="scoutInfoDetails && scoutInfoDetails?.id != ''">
+                      <div class="row align-items-center">
+                        <div class="col-sm-3 team-badge_image">
+                          <div class="team-badge_image">
+                            <img *ngIf="scoutInfoDetails?.profile_image"
+                              [src]="'https://api.socceryou.ch/uploads/'+scoutInfoDetails?.profile_image" alt="">
+                            <img *ngIf="!scoutInfoDetails?.profile_image"
+                              src="../../../../assets/images/default/talent-profile-default.png" alt="">
+                          </div>
+                        </div>
+                        <div class="ds col-sm-9 p-0 team-badge_content">
+                          <h6 class="title_2 mb-1">{{ 'scout' | translate }}</h6>
+                          <h5 class="title-1 cursor-pointer" (click)="naviGateScoutProfile(scoutInfoDetails.id)">
+                            {{scoutInfoDetails?.first_name}} {{scoutInfoDetails?.last_name}}
+                          </h5>
+                        </div>
+                      </div>
+                    </div>
                   </ng-container>
                   <ng-container *ngIf="currentUserRole == 'club'">
                     <div class="col-sm-6 team-logos">
@@ -782,8 +800,8 @@
                         <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'website' | translate }}</h6>
                           <h5 *ngIf="user?.meta?.website && user?.meta?.website !== 'undefined'" class="title-1">
-                            <a href="{{user.meta.website}}" target="_blank"
-                              style="color:inherit">{{'linkTxt' | translate}}</a>
+                            <a href="{{user.meta.website}}" target="_blank" style="color:inherit">{{'linkTxt' |
+                              translate}}</a>
                           </h5>
                           <!-- <h5 class="title-1" *ngIf="!user.meta || !user.meta.website">NA</h5> -->
                         </div>

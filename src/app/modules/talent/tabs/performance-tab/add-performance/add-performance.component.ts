@@ -113,6 +113,11 @@ export class AddPerformanceComponent {
       this.performance.to_date ? new Date(this.performance.to_date) : null
     );
 
+    this.countryControl.valueChanges.subscribe(selected => {
+      this.team_country_id = selected;
+    });
+
+
     this.from_date.setValue(this.performance.from_date ? new Date(this.performance.from_date) : null);
     this.to_date.setValue(this.performance.to_date ? new Date(this.performance.to_date) : null);
     this.getToasterMsg();
