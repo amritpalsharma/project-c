@@ -34,6 +34,12 @@ export class FilterPopupComponrnt {
   setFilter(type: any, value: any) {
     if (!(type in this.userFilters)) {
       this.filterCount++; // Increment only if the type is not already in userFilters
+      if(type === 'activity' && 'alphabetically' in this.userFilters){
+        this.filterCount--;
+      }
+      if(type === 'alphabetically' && 'activity' in this.userFilters){
+        this.filterCount--;
+      }
     }
     this.userFilters[type] = value;
     if (type == "activity") {

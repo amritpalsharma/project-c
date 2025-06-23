@@ -447,7 +447,7 @@ table td .bg_success {
 
 .status-label {
   display: inline-block;
-  width: 100px;
+  // width: 100px;
   text-align: center;
 }
 
@@ -491,4 +491,9 @@ table td .bg_success {
       }
     }
   }
+}
+
+
+.cursor-pointer{
+  cursor: pointer !important;
 }

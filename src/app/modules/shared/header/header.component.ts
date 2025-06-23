@@ -365,8 +365,11 @@ export class HeaderComponent {
   //   return senderId.toString() in this.onlineUsers;
   // }
 
+
+
   toggleDropdown() {
     this.notificationSeen = true;
+    this.allNotificationSeen();
     this.unseenCount = 0;
     localStorage.setItem('notificationSeen', 'true');
     let jsonData = localStorage.getItem("userData");
@@ -380,6 +383,26 @@ export class HeaderComponent {
     }
 
     this.isClosed = !this.isClosed;
+  }
+
+
+  allNotificationSeen() {
+    let userData : any = localStorage.getItem('userData');
+    let jsonData = JSON.parse(userData);
+    let userId = jsonData?.id;
+    this.talentService.updateAllNotificationSeen(userId).subscribe({
+      next: (response) => {
+        if (response.status) {
+          console.log('Message from API:', response.message);
+        }
+        else {
+          console.log("something went wrong");
+        }
+      },
+      error: (err) => {
+        console.error('Error:', err);
+      }
+    });
   }
 
   notificationClicked(id: number, seen: number, notification: any) {

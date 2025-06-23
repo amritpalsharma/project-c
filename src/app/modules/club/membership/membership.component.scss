@@ -290,7 +290,7 @@ button.premium-edit_btn,a.premium-edit_btn {
 }
 .status-label {
   display: inline-block;
-  width: 100px;
+  // width: 100px;
   text-align: center;
 }
 
@@ -340,4 +340,8 @@ button.premium-edit_btn,a.premium-edit_btn {
       }
     }
   }
+}
+
+.cursor-pointer{
+  cursor: pointer !important;
 }

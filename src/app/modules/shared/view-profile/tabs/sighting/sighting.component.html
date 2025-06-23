@@ -230,8 +230,16 @@
         <!-- <button class="invite-talent-btn">{{ 'inviteTalents' | translate }}</button> -->
 
       </div>
+
       <div *ngIf="!isLoading" class="invited-image d-flex align-items-center">
-        <h2>{{ 'invited' | translate }}</h2>
+
+        <h2 *ngIf="playersAccepted.length > 0">{{ 'accepted' | translate }}</h2>
+        <div class="invited-image_box pointer">
+          <img *ngFor="let item of playersAcceptedFirstFour; let i = index"
+            src="{{getImageUrl(item.profile_image_path)}}" class="invited-img-{{i + 1}}">
+        </div>
+
+        <h2 *ngIf="playersInvited.length > 0">{{ 'invited' | translate }}</h2>
         <div class="invited-image_box pointer">
           <img *ngFor="let item of playersInvitedFirstFour; let i = index"
             src="{{getImageUrl(item.profile_image_path)}}" class="invited-img-{{i + 1}}">

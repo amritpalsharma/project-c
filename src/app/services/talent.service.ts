@@ -82,6 +82,13 @@ export class TalentService {
       `${this.apiUrl3}updateNotificationSeen?id=${id}&seen=${seen}&isAccepted=${is_accepted}`,
     );
   }
+  
+  updateAllNotificationSeen(userId: number): Observable<any> {
+    return this.http.get<{ status: boolean, message: string }>(
+      `${this.apiUrl3}notifications/mark-all-seen?userId=${userId}`,
+    );
+  }
+
 
   getProfileData(params: any = {}): Observable<any> {
     const headers = this.headers();

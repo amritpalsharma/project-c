@@ -46,6 +46,8 @@ export class SightingComponent {
   view: any = "listing";
   playersInvited: any = [];
   playersInvitedFirstFour: any = [];
+  playersAccepted: any = [];
+  playersAcceptedFirstFour: any = [];
   deleteRepresentorConfirmation: string = '';
   selectSightingFirst: string = '';
   user: any = [];
@@ -151,9 +153,13 @@ export class SightingComponent {
     this.userService.getClubSingleSighting(id).subscribe((response) => {
       if (response && response.status && response.data) {
         this.sightingData = response.data.sighting;
-        this.playersInvited = response.data.players_invited;
-        this.playersInvitedFirstFour = response.data.players_invited.slice(0, 4);
-        this.attachments = response.data.attachments;;
+        // this.playersInvited = response.data.players_invited;
+        this.playersInvited = response.data.players_invited.filter((player: any) => player.status === 'pending');
+        this.playersAccepted = response.data.players_invited.filter((player: any) => player.status === 'accepted');
+        // this.playersInvitedFirstFour = response.data.players_invited.slice(0, 4);
+        this.playersInvitedFirstFour = response.data.players_invited.filter((player: any) => player.status === 'pending').slice(0, 4);
+        this.playersAcceptedFirstFour = response.data.players_invited.filter((player: any) => player.status === 'accepted').slice(0, 4);
+        this.attachments = response.data.attachments;
         this.isLoading = false;
       } else {
         this.isLoading = false;
