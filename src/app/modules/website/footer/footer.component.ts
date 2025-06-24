@@ -217,6 +217,19 @@ export class FooterComponent implements OnInit {
   forgotPasswordEmail: string = '';
   forgotPasswordMessage: string = '';
 
+
+  // Dynamic Routes For Footer
+  privacySlug: string = '';
+  pricing: string = '';
+  faq: string = '';
+  talent: string = '';
+  clubAndScout: string = '';
+  about: string = '';
+  imprint: string = '';
+  terms: string = '';
+  contact: string = '';
+
+
   constructor(
     private themeService: ThemeService,
     private webPages: WebPages,
@@ -228,8 +241,18 @@ export class FooterComponent implements OnInit {
     private globalSettings: GlobalSettingsService,
     public domainSlugService: DomainSlugService
   ) {
+
     this.language = translateService.currentLang || 'en';  // Get current language
     this.loadCountries();  // Load countries based on selected language
+    this.privacySlug = this.domainSlugService.getRouteSlug('privacy');
+    this.pricing = this.domainSlugService.getRouteSlug('pricing');
+    this.faq = this.domainSlugService.getRouteSlug('faq');
+    this.talent = this.domainSlugService.getRouteSlug('talent');
+    this.clubAndScout = this.domainSlugService.getRouteSlug('clubAndScout');
+    this.about = this.domainSlugService.getRouteSlug('about');
+    this.imprint = this.domainSlugService.getRouteSlug('imprint');
+    this.terms = this.domainSlugService.getRouteSlug('terms');
+    this.contact = this.domainSlugService.getRouteSlug('contact');
     translateService.onLangChange.subscribe(() => {
       this.language = translateService.currentLang;
       this.loadCountries();
@@ -659,7 +682,7 @@ export class FooterComponent implements OnInit {
     this.selectedcountry = selectedLang?.id || '';
   }
   scrollToTop() {
-   
+
   }
   navigateAndScroll(path: string) {
     // this.scrollToTop();

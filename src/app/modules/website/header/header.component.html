@@ -64,17 +64,17 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page"
-                        [routerLink]="['/' + domainSlugService.getRouteSlug('talent')]" routerLinkActive="active">{{
+                        [routerLink]="['/' + talent]" routerLinkActive="active">{{
                         'talents' | translate }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" [routerLink]="['/' + domainSlugService.getRouteSlug('clubAndScout')]"
+                    <a class="nav-link" [routerLink]="['/' + clubAndScout]"
                         routerLinkActive="active">{{ 'club&scout' | translate
                         }}</a>
                 </li>
                 <li class="nav-item">
                     <!-- <a class="nav-link" [routerLink]="'/about'" routerLinkActive="active">{{ 'about' | translate }}</a> -->
-                    <a class="nav-link" [routerLink]="['/' + domainSlugService.getRouteSlug('about')]"
+                    <a class="nav-link" [routerLink]="['/' + about]"
                         routerLinkActive="active">{{ 'about' | translate }}</a>
                 </li>
             </ul>
@@ -103,17 +103,17 @@
                         <!-- HTML -->
                         <ul class="sidebar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" [routerLink]="['/' + domainSlugService.getRouteSlug('talent')]"
+                                <a class="nav-link" [routerLink]="['/' + talent]"
                                     (click)="closeNavbar()" routerLinkActive="active">{{ 'talent' | translate }}</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link"
-                                    [routerLink]="['/' + domainSlugService.getRouteSlug('clubAndScout')]"
+                                    [routerLink]="['/' + clubAndScout]"
                                     (click)="closeNavbar()" routerLinkActive="active">{{ 'club&scout' | translate }}</a>
                             </li>
                             <li class="nav-item">
                                 <!-- <a class="nav-link" [routerLink]="'/about'" (click)="closeNavbar()" routerLinkActive="active">{{ 'about' | translate }}</a> -->
-                                <a class="nav-link" [routerLink]="['/' + domainSlugService.getRouteSlug('about')]"
+                                <a class="nav-link" [routerLink]="['/' + about]"
                                     (click)="closeNavbar()" routerLinkActive="active">{{ 'about' | translate }}</a>
                             </li>
                             <li class="nav-item">
@@ -121,7 +121,7 @@
                                     routerLinkActive="active">{{ 'news' | translate }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" [routerLink]="['/' + domainSlugService.getRouteSlug('contact')]"
+                                <a class="nav-link" [routerLink]="['/' + contact]"
                                     (click)="closeNavbar()" routerLinkActive="active">{{ 'contact' | translate }}</a>
                             </li>
                         </ul>
@@ -146,7 +146,7 @@
                     <div class=" footer-links">
                         <ul class="footer-links1">
                             <li><a (click)="closeNavbar()"
-                                    [routerLink]="['/' + domainSlugService.getRouteSlug('pricing')]">{{ 'pricingLabel' |
+                                    [routerLink]="['/' + pricing]">{{ 'pricingLabel' |
                                     translate }} </a></li>
                             <li><a (click)="closeNavbar()" href="javascript:void(0);" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal-login">{{ 'signIn' | translate }}</a></li>
@@ -707,13 +707,35 @@
                                 <div class="col-lg-12 {{isThisPlayer}}" *ngIf="!isHideClubSection">
                                     <div class="mb-3">
                                         <label class="form-label">{{ 'team' | translate }} </label>
-                                        <select class="form-select" [ngClass]="{'ng-invalid': selectedTeam === null}"
-                                            (change)="onTeamChange($event)" [(ngModel)]="team_id" name="team_id">
-                                            <option value="" disabled selected>{{ 'team' | translate
-                                                }}</option>
-                                            <option *ngFor="let teamArr of teamsArr" [value]="teamArr.id">{{
-                                                teamArr.team_name }} - {{teamArr.team_type}}</option>
-                                        </select>
+                                        <div class="row align-items-center">
+                                            <div class="col-lg-6">
+                                                <div class="gen_radio gap-3">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio"
+                                                            name="gender" id="male" value="male" />
+                                                        <label class="form-check-label ms-1" for="male">
+                                                            <span class="font-w400">Male</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio"
+                                                            name="gender" id="female" value="female" />
+                                                        <label class="form-check-label ms-1" for="female">
+                                                            <span class="font-w400">Female</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <select class="form-select" [ngClass]="{'ng-invalid': selectedTeam === null}"
+                                                    (change)="onTeamChange($event)" [(ngModel)]="team_id" name="team_id">
+                                                    <option value="" disabled selected>{{ 'team' | translate
+                                                        }}</option>
+                                                    <option *ngFor="let teamArr of teamsArr" [value]="teamArr.id">{{
+                                                        teamArr.team_name }} - {{teamArr.team_type}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-12">

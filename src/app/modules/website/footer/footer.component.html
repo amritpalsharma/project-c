@@ -26,7 +26,7 @@
         <div class="col-lg-3 col-md-4  col-12 footer-links">
           <h4>{{ 'getStartedNow' | translate }}</h4>
           <ul>
-            <li><a [routerLink]="['/' + domainSlugService.getRouteSlug('pricing')]">{{ 'pricingLabel' | translate }}</a>
+            <li><a [routerLink]="['/' + pricing]">{{ 'pricingLabel' | translate }}</a>
             </li>
             <li>
               <a href="javascript:void(0);" class="login-btn" data-bs-toggle="modal"
@@ -41,65 +41,65 @@
               <a data-bs-toggle="modal" data-bs-target="#exampleModal1">
                 {{ 'createAccount' | translate }}</a>
             </li>
-            <li><a [routerLink]="['/' + domainSlugService.getRouteSlug('faq')]">{{ 'faq' | translate }}</a></li>
+            <li><a [routerLink]="['/' + faq]">{{ 'faq' | translate }}</a></li>
           </ul>
         </div>
 
         <div class="col-lg-3 col-md-4  col-12 footer-links">
           <h4>{{ 'about' | translate }}</h4>
           <ul>
-            <li><a [routerLink]="['/' + domainSlugService.getRouteSlug('talent')]">{{ 'talents' | translate }}</a></li>
-            <li><a [routerLink]="['/' + domainSlugService.getRouteSlug('clubAndScout')]">{{ 'club&scout' | translate
+            <li><a [routerLink]="['/' + talent]">{{ 'talents' | translate }}</a></li>
+            <li><a [routerLink]="['/' + clubAndScout]">{{ 'club&scout' | translate
                 }}</a></li>
-            <li><a [routerLink]="['/' + domainSlugService.getRouteSlug('about')]">{{ 'about' | translate }}</a></li>
+            <li><a [routerLink]="['/' + about]">{{ 'about' | translate }}</a></li>
             <li><a (click)="navigateAndScroll('news')">{{ 'news&Media' | translate }}</a></li>
           </ul>
         </div>
         <div class="col-lg-3 col-md-4 col-12 footer-links hide_form_mobile">
           <h4>{{ 'legal' | translate }}</h4>
           <ul>
-            <li><a [routerLink]="['/' + domainSlugService.getRouteSlug('imprint')]">{{ 'imprint' | translate }}</a></li>
-            <li><a [routerLink]="['/' + domainSlugService.getRouteSlug('privacy')]">{{ 'privacyPolicy' | translate
+            <li><a [routerLink]="['/' + imprint]">{{ 'imprint' | translate }}</a></li>
+            <li><a [routerLink]="['/' + privacySlug]">{{ 'privacyPolicy' | translate
                 }}</a></li>
-            <li><a [routerLink]="['/' + domainSlugService.getRouteSlug('terms')]">{{ 'terms&Conditions' | translate
+            <li><a [routerLink]="['/' + terms]">{{ 'terms&Conditions' | translate
                 }}</a></li>
-            <li><a [routerLink]="['/' + domainSlugService.getRouteSlug('contact')]">{{ 'contact' | translate }}</a></li>
+            <li><a [routerLink]="['/' + contact]">{{ 'contact' | translate }}</a></li>
           </ul>
         </div>
       </div>
       <div class="view_for_mobile">
-      <div class="form-select1">
-        <p class="country">{{ 'selectCountry' | translate }}</p>
-        <a class="form-select select-country" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-          {{ name }}
-        </a>
-        <div class="dropdown-menu dropdown-menu-end">
-          <a *ngFor="let country of countrie" target="_blank" href="{{ country.url }}" class="dropdown-item ai-icon options-country"
-            [class.selected]="selectedcountry == country.id">
-            <img src="https://api.socceryou.ch/uploads/logos/{{country.flag}}" width="30" height="24" class="me-3">
-            <span>{{ country.name }}</span>
+        <div class="form-select1">
+          <p class="country">{{ 'selectCountry' | translate }}</p>
+          <a class="form-select select-country" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{ name }}
           </a>
+          <div class="dropdown-menu dropdown-menu-end">
+            <a *ngFor="let country of countrie" target="_blank" href="{{ country.url }}"
+              class="dropdown-item ai-icon options-country" [class.selected]="selectedcountry == country.id">
+              <img src="https://api.socceryou.ch/uploads/logos/{{country.flag}}" width="30" height="24" class="me-3">
+              <span>{{ country.name }}</span>
+            </a>
+          </div>
         </div>
-      </div>
-      <div class="mobile_scl">
-        <ul class="social-link">
-          <!-- <li class="facebook-icon">
+        <div class="mobile_scl">
+          <ul class="social-link">
+            <!-- <li class="facebook-icon">
             <a href="https://www.linkedin.com" target="_blank">
               <i class="fa-brands fa-facebook-f"></i>
             </a>
           </li> -->
-          <li class="insta-icon">
-            <a href="https://www.instagram.com/socceryou_football" target="_blank">
-              <i class="fa-brands fa-instagram"></i>
-            </a>
-          </li>
-          <li class="linkedin-icon">
-            <a href="https://www.linkedin.com/company/socceryou-football/" target="_blank">
-              <i class="fa-brands fa-linkedin-in"></i>
-            </a>
-          </li>
-        </ul>
-      </div>
+            <li class="insta-icon">
+              <a href="https://www.instagram.com/socceryou_football" target="_blank">
+                <i class="fa-brands fa-instagram"></i>
+              </a>
+            </li>
+            <li class="linkedin-icon">
+              <a href="https://www.linkedin.com/company/socceryou-football/" target="_blank">
+                <i class="fa-brands fa-linkedin-in"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -108,10 +108,10 @@
     <div class="text-center text-white">
       <p class="mb-0">{{ 'copyright' | translate }}</p>
       <p class="footer_link_mobile">
-        <a [routerLink]="['/' + domainSlugService.getRouteSlug('imprint')]">{{ 'imprint' | translate }}</a> | 
-        <a [routerLink]="['/' + domainSlugService.getRouteSlug('privacy')]">{{ 'privacyPolicy' | translate }}</a> | 
-        <a [routerLink]="['/' + domainSlugService.getRouteSlug('terms')]">{{ 'terms&Conditions' | translate }}</a> | 
-        <a [routerLink]="['/' + domainSlugService.getRouteSlug('contact')]">{{ 'contact' | translate }}</a>
+        <a [routerLink]="['/' + imprint]">{{ 'imprint' | translate }}</a> |
+        <a [routerLink]="['/' + privacySlug]">{{ 'privacyPolicy' | translate }}</a> |
+        <a [routerLink]="['/' + terms]">{{ 'terms&Conditions' | translate }}</a> |
+        <a [routerLink]="['/' + contact]">{{ 'contact' | translate }}</a>
       </p>
     </div>
   </div>

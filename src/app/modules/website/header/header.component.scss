@@ -1875,6 +1875,15 @@ select.form-select.custom-select1 {
     .register .form-check .form-check-input {
         margin-top: 3px;
     }
+    .register .gen_radio .form-check .form-check-input {
+        margin-top: 0;
+    }
+    .register .gen_radio .form-check {
+        margin-bottom: 8px;
+        label {
+            font-size: 16px;
+        }
+    }
 
     .register .logo.text-center {
         margin-top: 0;
@@ -2584,4 +2593,9 @@ input[type="checkbox"].form-check-input[ng-reflect-required] {
 }
 #companyName{
  //   border: none;
+}
+
+.gen_radio {
+    display: flex;
+    flex-wrap: wrap;
 }

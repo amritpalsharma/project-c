@@ -1,0 +1,108 @@
+/*--------------------------------------------------------------
+   banner
+--------------------------------------------------------------*/
+body {
+    height: 100%;
+    font-family: var(--bs-avenir-regular);
+}
+
+.thanku-bnr {
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    min-height: 100vh;
+    object-fit: cover;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.thankyou_text {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.thankyou_secc {
+    padding: 300px 0 150px;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+}
+
+.thankyou_text * {
+    color: #fff;
+}
+
+h1 {
+    font-size: 50px;
+    line-height: 1.25;
+    font-family: var(--bs-avenir-bold);
+}
+
+a.btn.btn-register {
+    border-radius: 50px;
+    font-size: 18px;
+    font-family: var(--bs-avenir-bold);
+    width: max-content;
+    max-width: 100%;
+    z-index: 1;
+    color: #072944;
+    border: 0 !important;
+    padding: 13px 30px;
+    background-color: #BDE34F;
+}
+
+.thnkyou_img {
+    max-width: 350px;
+    padding: 20px;
+    margin: 0 auto;
+    display: block;
+    width: 100%;
+}
+
+
+@media (max-width: 767px) {
+    h1 {
+        font-size: 40px;
+        line-height: 1;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+    .thankyou_secc .row {
+        flex-wrap: wrap-reverse;
+        text-align: center;
+    }
+
+    .thankyou_secc {
+        padding: 200px 0 100px;
+    }
+
+    .thnkyou_img {
+        max-width: 250px;
+    }
+
+    a.btn.btn-register {
+        margin: 0 auto;
+    }
+}
+::ng-deep .dark-theme .check-image-light{
+    display: none;
+}
+::ng-deep .light-theme .check-image-dark{
+    display: none;
+}
+
+
+@media (min-width: 3000px) {
+.thankyou_text {
+    max-width: 1000px;
+}
+a.btn.btn-register {
+    padding: 18px 70px !important;
+}
+}
