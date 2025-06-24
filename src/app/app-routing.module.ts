@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 // import { RouterModule, Routes } from '@angular/router';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './services/auth.guard';
+import { RoleGuard } from './services/role.guard';
 import { NonAuthGuard } from './services/non.guard';
 import { SuccessComponent } from './modules/shared/success/success.component';
 import { CancelComponent } from './modules/shared/cancel/cancel.component';
 import { ViewProfileComponent } from './modules/shared/view-profile/view-profile.component';
+import { NotFoundComponent } from './modules/website/not-found/not-found.component';
 
 // import { ViewComponent } from './view/view.component';
 
@@ -29,7 +31,8 @@ const routes: Routes = [
       import('./modules/admin/admin.module').then(
         (m) => m.AdminModule
       ),
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, RoleGuard],
+    data: { roles: ['admin'] }
   },
   {
     path: 'talent',
@@ -37,7 +40,9 @@ const routes: Routes = [
       import('./modules/talent/talent.module').then(
         (m) => m.TalentModule
       ),
-    canActivate: [AuthGuard]  // Protect this route with AuthGuard if necessary
+    // canActivate: [AuthGuard] 
+    canActivate: [AuthGuard, RoleGuard],
+    data: { roles: ['talent'] }
   },
   {
     path: 'scout',
@@ -45,7 +50,9 @@ const routes: Routes = [
       import('./modules/scout/scout.module').then(
         (m) => m.ScoutModule
       ),
-    canActivate: [AuthGuard]  // Protect this route with AuthGuard if necessary
+    // canActivate: [AuthGuard]  
+    canActivate: [AuthGuard, RoleGuard],
+    data: { roles: ['scout'] }
   },
   {
     path: 'view',
@@ -69,8 +76,13 @@ const routes: Routes = [
       import('./modules/club/club.module').then(
         (m) => m.ScoutModule
       ),
+    canActivate: [AuthGuard, RoleGuard],
+    data: { roles: ['club'] }
     // canActivate: [AuthGuard]  // Protect this route with AuthGuard if necessary
   },
+  // Added By Amrit 24-06-2025
+  { path: '404', component: NotFoundComponent },
+  { path: '**', redirectTo: '404' }
   // { path: 'view/:slug/:id', canActivate: [AuthGuard] }
 ];
 

@@ -62,9 +62,9 @@ export class AuthService {
     sessionStorage.clear(); 
 
     // localStorage.setItem('logoutMessage', 'true');
-    // this.router.navigate(['/']); // Redirect to the login or home page
+    this.router.navigate(['/']); // Redirect to the login or home page
 
-    // window.location.reload();
+    window.location.reload();
   }
 
   isLoggedIn(): boolean {

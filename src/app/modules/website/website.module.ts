@@ -49,6 +49,7 @@ import { AuthService } from '../../services/auth.service';
 import { ThemeService } from '../../services/theme.service';
 import { HomeComponent } from './home/home.component';
 import { LinebreaksPipe } from './linebreaks.pipe';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 
@@ -83,7 +84,8 @@ import { LinebreaksPipe } from './linebreaks.pipe';
     ErrorComponent,
     LoaderComponent,
     HomeComponent,
-    LinebreaksPipe
+    LinebreaksPipe,
+    NotFoundComponent
   ],
   imports: [
     CommonModule,
