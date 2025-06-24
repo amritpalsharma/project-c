@@ -7,14 +7,15 @@ import { DomainSlugService } from './domain-slug.service';
   providedIn: 'root' // ✅ Automatically provided to the app
 })
 export class DomainSlugGuard implements CanActivate {
-  constructor(private domainSlugService: DomainSlugService, private router: Router) {}
+  constructor(private domainSlugService: DomainSlugService, private router: Router) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     const requestedSlug = route.url[0]?.path;
+    console.info('DomainSlugGuard', requestedSlug)
 
     const currentDomain = this.domainSlugService['currentDomain'];
     const validSlugs = Object.values(this.domainSlugService['domainSlugMap'][currentDomain] || {});
-
+    console.info('validSlugs', validSlugs)
     if (validSlugs.includes(requestedSlug)) {
       return true; // ✅ Allowed
     }
