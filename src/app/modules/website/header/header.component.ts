@@ -295,6 +295,18 @@ export class HeaderComponent implements OnInit {
     '/politique-de-confidentialite',
     '/politica-sulla-privacy'];
   currentRoute: string = '';
+
+
+  // Dynamic Routes For Footer
+  privacySlug: string = '';
+  pricing: string = '';
+  faq: string = '';
+  talent: string = '';
+  clubAndScout: string = '';
+  about: string = '';
+  imprint: string = '';
+  terms: string = '';
+  contact: string = '';
   constructor(
     private sharedservice: SharedService,
     private themeService: ThemeService,
@@ -313,6 +325,16 @@ export class HeaderComponent implements OnInit {
     private talentService: TalentService,
     public domainSlugService: DomainSlugService
   ) {
+
+    this.privacySlug = this.domainSlugService.getRouteSlug('privacy');
+    this.pricing = this.domainSlugService.getRouteSlug('pricing');
+    this.faq = this.domainSlugService.getRouteSlug('faq');
+    this.talent = this.domainSlugService.getRouteSlug('talent');
+    this.clubAndScout = this.domainSlugService.getRouteSlug('clubAndScout');
+    this.about = this.domainSlugService.getRouteSlug('about');
+    this.imprint = this.domainSlugService.getRouteSlug('imprint');
+    this.terms = this.domainSlugService.getRouteSlug('terms');
+    this.contact = this.domainSlugService.getRouteSlug('contact');
     this.language = translateService.currentLang || 'en';  // Get current language
     this.loadCountries();  // Load countries based on selected language
     translateService.onLangChange.subscribe(() => {

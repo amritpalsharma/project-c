@@ -8,6 +8,7 @@ import { SuccessComponent } from './modules/shared/success/success.component';
 import { CancelComponent } from './modules/shared/cancel/cancel.component';
 import { ViewProfileComponent } from './modules/shared/view-profile/view-profile.component';
 import { NotFoundComponent } from './modules/website/not-found/not-found.component';
+import { DomainSlugService } from './services/domain-slug.service';
 
 // import { ViewComponent } from './view/view.component';
 
@@ -19,6 +20,7 @@ const routes: Routes = [
         (m) => m.WebsiteModule
       ),
     // canActivate: [NonAuthGuard, AuthGuard]
+    // canActivate: [DomainSlugService]
   },
   // Added by amrit
   // { path: 'home', loadChildren: () => import('./modules/website/website.module').then(m => m.WebsiteModule) },
