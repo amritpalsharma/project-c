@@ -707,13 +707,35 @@
                                 <div class="col-lg-12 {{isThisPlayer}}" *ngIf="!isHideClubSection">
                                     <div class="mb-3">
                                         <label class="form-label">{{ 'team' | translate }} </label>
-                                        <select class="form-select" [ngClass]="{'ng-invalid': selectedTeam === null}"
-                                            (change)="onTeamChange($event)" [(ngModel)]="team_id" name="team_id">
-                                            <option value="" disabled selected>{{ 'team' | translate
-                                                }}</option>
-                                            <option *ngFor="let teamArr of teamsArr" [value]="teamArr.id">{{
-                                                teamArr.team_name }} - {{teamArr.team_type}}</option>
-                                        </select>
+                                        <div class="row align-items-center">
+                                            <div class="col-lg-6">
+                                                <div class="gen_radio gap-3">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio"
+                                                            name="gender" id="male" value="male" />
+                                                        <label class="form-check-label ms-1" for="male">
+                                                            <span class="font-w400">Male</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio"
+                                                            name="gender" id="female" value="female" />
+                                                        <label class="form-check-label ms-1" for="female">
+                                                            <span class="font-w400">Female</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <select class="form-select" [ngClass]="{'ng-invalid': selectedTeam === null}"
+                                                    (change)="onTeamChange($event)" [(ngModel)]="team_id" name="team_id">
+                                                    <option value="" disabled selected>{{ 'team' | translate
+                                                        }}</option>
+                                                    <option *ngFor="let teamArr of teamsArr" [value]="teamArr.id">{{
+                                                        teamArr.team_name }} - {{teamArr.team_type}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
