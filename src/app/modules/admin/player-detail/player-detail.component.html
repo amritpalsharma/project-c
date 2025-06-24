@@ -162,7 +162,7 @@
                   <!-- {{user.plan_period_end | date:'MMM d, y' }} / {{user.plan_interval}} cycle -->
                 </h6>
                 <!-- <h6 class="mb-2 font-w400" *ngIf="!user.plan_period_end">NA</h6> -->
-                <p class="font-w400"> {{ 'viewPaymentDetails' | translate }}</p>
+                <p class="font-w400 cursor-pointer" (click)="switchTab('purchases')"> {{ 'viewPaymentDetails' | translate }}</p>
               </div>
               <div class="list-view">
                 <h6 class="mb-1">{{ 'lastPayment' | translate }} :</h6>
@@ -171,7 +171,7 @@
                   {{formatDateTime(user.plan_period_start)}}
                 </h6>
                 <!-- <h6 class="mb-2 font-w400" *ngIf="!user.plan_period_start">NA</h6> -->
-                <p class=" font-w400">{{ 'viewInvoice' | translate }}</p>
+                <!-- <p class=" font-w400">{{ 'viewInvoice' | translate }}</p> -->
               </div>
               <div class="list-view">
                 <h6 class="mb-1">{{ 'voucherApplied' | translate }} :</h6>
