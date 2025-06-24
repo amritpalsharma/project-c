@@ -71,7 +71,7 @@
   "dragAndDropFilesHere": "Dra och släpp filer här",
   "filesSupported": "Filer som stöds: JPG, PNG, MP4",
   "chooseFile": "Välj fil",
-  "maximumSize": "Maximal storlek: 15 MB",
+  "maximumSize": "Maximal storlek: 100 MB",
   "documentTitle": "Titel Prestandarapport",
   "upload": "Ladda upp",
   "movingTo": "Överföring från",
@@ -1445,5 +1445,6 @@
   "managePaymentBtnTxtBelowTxt": "Försök igen med betalning / Uppdatera kortuppgifter",
   "linkTxt": "Länk",
   "memberShipDetailTxt": "Om transaktionsstatus är \"Öppen\" i mer än 1 dag eller \"Misslyckad\", klicka på knappen \"Hantera betalningar\" för att vidta nödvändiga åtgärder.",
-  "premiumPlanForTalent": "För Talanger"
+  "premiumPlanForTalent": "För Talanger",
+  "withoutClub": "För närvarande utan klubb och motiverad att komma igång!"
 }

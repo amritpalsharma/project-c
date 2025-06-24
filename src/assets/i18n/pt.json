@@ -72,7 +72,7 @@
   "dragAndDropFilesHere": "Arraste e solte os arquivos aqui",
   "filesSupported": "Arquivos suportados: JPG, PNG, MP4",
   "chooseFile": "Escolher arquivo",
-  "maximumSize": "Tamanho máximo: 15 MB",
+  "maximumSize": "Tamanho máximo: 100 MB",
   "documentTitle": "Título Relatório de desempenho",
   "upload": "Carregar",
   "movingTo": "Transferência de",
@@ -1457,5 +1457,6 @@
   "managePaymentBtnTxtBelowTxt": "Tentar novamente o pagamento / Atualizar dados do cartão",
   "linkTxt": "Link",
   "memberShipDetailTxt": "Se o status da transação for \"Aberto\" por mais de 1 dia ou \"Falhou\", clique no botão \"Gerenciar Pagamentos\" para tomar as medidas necessárias.",
-  "premiumPlanForTalent": "Para Talentos"
+  "premiumPlanForTalent": "Para Talentos",
+  "withoutClub": "Atualmente sem clube e motivado para recomeçar com tudo!"
 }

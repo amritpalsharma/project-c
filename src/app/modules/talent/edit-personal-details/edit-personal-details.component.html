@@ -25,18 +25,22 @@
        <div class="row">
         <div class="col-sm-12">
           <div class="form-check checkbox mb-3">
-            <label class="form-check-label fs-14 font-w400 text-light mb-2" [innerHTML]="'noClubTxt' | translate" for="flexCheckDefault-5">
-            </label>
-            <div>
-              <input class="form-check-input mt-0" type="checkbox" value="" id="flexCheckDefault-5" [(ngModel)]="isHideClubSection"
+            <input class="form-check-input mt-0" type="checkbox" value="" id="flexCheckDefault-5" [(ngModel)]="isHideClubSection"
               name="noClub" (ngModelChange)="onNoClubChange($event)" />
-            <label class="form-check-label fs-14 font-w400 text-light" for="flexCheckDefault-5">
+            <label class="form-check-label fs-14 font-w400 text-light mb-2" for="flexCheckDefault-5">
+              {{ 'withoutClub' | translate }}
+            </label>
+          </div>
+
+          <div class="form-check checkbox mb-3">
+            <input class="form-check-input mt-0" type="checkbox" value="" id="flexCheckDefault-6" />
+            <label class="form-check-label fs-14 font-w400 text-light" for="flexCheckDefault-6">
               <!-- {{ 'noClubTxt' | translate }} -->
                 {{ 'noTeamAndClub' | translate }}
             </label>
-            </div>
-            
           </div>
+
+          
         </div>
       </div>
       <!-- I DOn't Club Field -->

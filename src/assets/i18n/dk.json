@@ -52,7 +52,7 @@
   "downloadPerformanceReport": "Download resultatrapport",
   "filesSupported": "Understøttede filer: JPG, PNG, MP4",
   "chooseFile": "Vælg fil",
-  "maximumSize": "Maksimal størrelse: 15 MB",
+  "maximumSize": "Maksimal størrelse: 100 MB",
   "documentTitle": "Titel Præstationsrapport",
   "upload": "Upload",
   "editCoverPhoto": "Rediger forsidebillede",
@@ -1366,5 +1366,6 @@
   "managePaymentBtnTxtBelowTxt": "Prøv betaling igen / Opdater kortoplysninger",
   "linkTxt": "Link",
   "memberShipDetailTxt": "Hvis transaktionsstatus er \"Åben\" i mere end 1 dag eller \"Mislykket\", skal du klikke på knappen \"Administrer betalinger\" for at tage de nødvendige skridt.",
-  "premiumPlanForTalent": "For Talenter"
+  "premiumPlanForTalent": "For Talenter",
+  "withoutClub": "Momenteel zonder club en gemotiveerd om er vol voor te gaan!"
 }

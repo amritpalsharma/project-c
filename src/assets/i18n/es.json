@@ -71,7 +71,7 @@
   "dragAndDropFilesHere": "Arrastra y suelta archivos aquí",
   "filesSupported": "Archivos admitidos: JPG, PNG, MP4",
   "chooseFile": "Elegir archivo",
-  "maximumSize": "Tamaño máximo: 15 MB",
+  "maximumSize": "Tamaño máximo: 100 MB",
   "documentTitle": "Información de rendimiento",
   "upload": "Cargar",
   "movingTo": "Transferencia de",
@@ -1448,5 +1448,6 @@
   "managePaymentBtnTxtBelowTxt": "Reintentar pago / Actualizar datos de la tarjeta",
   "linkTxt": "Enlace",
   "memberShipDetailTxt": "Si el estado de la transacción está \"Abierto\" por más de 1 día o \"Fallido\", haga clic en el botón \"Gestionar pagos\" para tomar las medidas necesarias.",
-  "premiumPlanForTalent": "Para Talentos"
+  "premiumPlanForTalent": "Para Talentos",
+  "withoutClub": "Actualmente sin equipo y motivado para empezar con fuerza."
 }

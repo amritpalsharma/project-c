@@ -96,7 +96,7 @@
   "mainPosition": "Main Position",
   "marketValue": "Market Value",
   "matches": "Matches",
-  "maximumSize": "Maximum Size: 15 MB",
+  "maximumSize": "Maximum Size: 100 MB",
   "movingFrom": "Moving From",
   "movingTo": "Moving To",
   "name": "Name",
@@ -1413,5 +1413,6 @@
   "managePaymentBtnTxtBelowTxt":"Retry Payment / Update Card Details",
   "linkTxt":"Link",
   "memberShipDetailTxt":"If Transaction Status is \"Open\" for more than 1 day or \"Failed\", please click on \"Manage Payments\" Button to take necessary action.",
-  "premiumPlanForTalent":"For Talents"
+  "premiumPlanForTalent":"For Talents",
+  "withoutClub":"Currently without a club and motivated to get started!"
 }

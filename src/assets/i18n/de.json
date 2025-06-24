@@ -85,7 +85,7 @@
   "dragAndDropFilesHere": "Ziehe und lege Dateien hier ab",
   "filesSupported": "Unterstützte Dateien: JPG, PNG, MP4",
   "chooseFile": "Datei auswählen",
-  "maximumSize": "Maximale Größe: 15 MB",
+  "maximumSize": "Maximale Größe: 100 MB",
   "documentTitle": "Leistungs-Informationen",
   "upload": "Upload",
   "movingTo": "Transfer zu",
@@ -1506,5 +1506,6 @@
   "managePaymentBtnTxtBelowTxt": "Zahlung wiederholen / Kartendaten aktualisieren",
   "linkTxt": "Link",
   "memberShipDetailTxt": "Wenn der Transaktionsstatus länger als 1 Tag auf „Offen“ steht oder „Fehlgeschlagen“ ist, klicken Sie bitte auf die Schaltfläche „Zahlungen verwalten“, um entsprechende Maßnahmen zu ergreifen.",
-  "premiumPlanForTalent": "Für Talente"
+  "premiumPlanForTalent": "Für Talente",
+  "withoutClub": "Aktuell vereinslos und motiviert, durchzustarten!"
 }
