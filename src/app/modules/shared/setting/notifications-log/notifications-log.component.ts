@@ -182,10 +182,10 @@ export class NotificationsLogComponent {
   }
 
   showMessage(message: string) {
-    this.showMatDialog(message, 'display');
+    this.showMatDialog(message, 'display', 'notify');
   }
 
-  showMatDialog(message: string, action: string) {
+  showMatDialog(message: string, action: string, from: any = null) {
 
     const messageDialog = this.dialog.open(MessagePopupComponent, {
       width: '500px',
@@ -194,7 +194,8 @@ export class NotificationsLogComponent {
       },
       data: {
         message: message,
-        action: action
+        action: action,
+        from_page: from
       }
     })
 

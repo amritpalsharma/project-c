@@ -37,7 +37,7 @@ export class AuthInterceptor implements HttpInterceptor {
     // Remove the token from localStorage
     localStorage.removeItem('authToken');
     localStorage.setItem('logoutMessage', 'true');
-    // this.router.navigate(['/']);
+    this.router.navigate(['/']);
     // Optionally, redirect to the login page
   }
 }

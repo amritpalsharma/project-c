@@ -144,6 +144,7 @@ export class PlanComponent implements OnInit, OnDestroy {
   openCouponDialog123(planId: any): void {
 
     // Code By Amrit 16-5-25
+    
     if (((this.premiumPlans?.active_interval == 'monthly') || (this.premiumPlans?.active_interval == 'yearly'))) {
       if (this.premiumPlans?.active_interval == 'yearly') {
         console.log('You Have Already Premium Yearly Plan');
@@ -210,6 +211,7 @@ export class PlanComponent implements OnInit, OnDestroy {
   // New FUnction from Talent
   openCouponDialog(planId: any): void {
     // alert('Dailog Open');
+    console.info('this.premiumPlans?.active_interval',this.premiumPlans?.active_interval)
     console.info('this.isPremiumPurchased', this.isPremiumPurchased)
     if (this.isPremiumPurchased == 'monthly' || this.isPremiumPurchased == 'yearly') {
       console.info('Already Premium ' + this.isPremiumPurchased + ' Plan is Purchased');
