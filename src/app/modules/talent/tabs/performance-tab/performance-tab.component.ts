@@ -190,10 +190,12 @@ export class PerformanceTabComponent {
       this.talentService.getPerformanceData().subscribe((response) => {
         if (response && response.status && response.data && response.data.performanceDetail) {
           this.editableId = "";
-          this.performances = response.data.performanceDetail;
-          this.performancesManual = response.data.performanceDetailManual;
+          // this.performances = response.data.performanceDetail;
+          this.performances = response.data.newPerformanceDetail;
+          // this.performancesManual = response.data.newPerformanceDetail;
+          // this.performancesManual = response.data.performanceDetailManual;
 
-          console.log(this.performances)
+          // console.log(this.performances)
           this.isLoading = false;
         } else {
           this.performances = [];

@@ -61,6 +61,7 @@ export class PerformanceDetailsComponent {
     this.globalSettings.indexFunctionCall$.subscribe(() => {
       this.themeChanged(); // Call the function when event is received
     });
+
   }
 
   getUserPerformance(userId: any) {
@@ -69,8 +70,9 @@ export class PerformanceDetailsComponent {
       this.talentService.getPerformancesList(userId).subscribe((response) => {
         if (response && response.status && response.data && response.data.performanceDetail) {
           this.editableId = "";
-          this.performances = response.data.performanceDetail;
-          this.performancesManual = response.data.performanceDetailManual;
+          this.performances = response.data.newPerformanceDetail;
+          // this.performances = response.data.performanceDetail;
+          // this.performancesManual = response.data.performanceDetailManual;
           this.isLoading = false;
         } else {
           this.isLoading = false;
@@ -202,7 +204,7 @@ export class PerformanceDetailsComponent {
     }
   }
 
-  
+
   themeChanged() {
     let currentTheme = localStorage.getItem('theme');
     this.currentThemeMode = currentTheme;
@@ -210,6 +212,15 @@ export class PerformanceDetailsComponent {
       this.currentThemeMode = 'light';
     }
   }
+
+  get randomNumber(): number {
+    return Math.floor(Math.random() * 1000000);  // Random number between 0 and 999999
+  }
+
+  trackByFn(index: number, item: any): number {
+    return item.id; // or any unique identifier
+  }
+
 
 }
 

@@ -53,7 +53,7 @@ export class SidebarComponent {
     }
   }
 
-  logout() {
+  logout240625() {
     let jsonData = localStorage.getItem("userData");
     let userId;
     if (jsonData) {
@@ -79,5 +79,45 @@ export class SidebarComponent {
     localStorage.setItem('lang', lang);
     localStorage.setItem('lang_id', lang_id + '');
     this.authService.logout();
+  }
+
+  logout() {
+    const jsonData = localStorage.getItem("userData");
+    let userId;
+    if (jsonData) {
+      const userData = JSON.parse(jsonData);
+      userId = userData.id;
+    }
+
+    const lang_id = localStorage.getItem('lang_id');
+    const cookieConsentTimestamp = localStorage.getItem('cookieConsentTimestamp');
+    const cookiesent = localStorage.getItem('cookieConsent');
+    const theme = localStorage.getItem('theme') || 'light';
+    let lang = localStorage.getItem('lang') || this.globalSettings.getLanguage();
+    const domainLang = this.globalSettings.getLanguage();
+
+    if ((domainLang !== '') && (!localStorage.getItem('lang'))) {
+      lang = domainLang;
+    }
+
+    // 🔌 Disconnect user socket
+    // this.socketService.disconnectUser(userId);
+
+    // 🧹 Clear & Restore necessary values
+    localStorage.clear();
+    localStorage.setItem('cookieConsent', cookiesent + '');
+    localStorage.setItem('cookieConsentTimestamp', cookieConsentTimestamp + '');
+    localStorage.setItem('theme', theme);
+    localStorage.setItem('lang', lang);
+    localStorage.setItem('lang_id', lang_id + '');
+
+    // ✅ Perform logout logic
+    this.authService.logout();
+
+    // 🔁 Navigate directly to homepage or login (choose your route)
+    // this.router.navigate(['/']); // Or use '/login' or another route as needed
+
+    // ✅ Finally, force hard redirect to base page
+    window.location.href = '/';
   }
 }
