@@ -2807,3 +2807,43 @@ input[type=number] {
 img.club_logo_in_search {
     object-fit: contain !important;
 }
+
+.player-view-container .box-square {
+    font-weight: 700;
+    .team-types {
+      top: 50% !important;
+      transform: translateY(-50%);
+    }
+}
+.player-view-container {
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    svg {
+      width: 30px !important;
+      height: 30px !important;
+      margin-right: 15px !important;
+      background: #f6f6f6;
+      border-radius: 4px;
+      path {
+        stroke: #0c3453 !important;
+      }
+    }
+  }
+}
+
+
+::ng-deep {
+  .dark-theme {
+  .player-view-container {
+  .back-link {
+    svg {
+      background: #fff !important;
+      path {
+        stroke: #0c3453 !important;
+      }
+    }
+  }
+}
+}
+}

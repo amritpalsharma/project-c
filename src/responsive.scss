@@ -736,6 +736,20 @@ mat-datepicker-toggle button {
 .view_membership_popup {
     width: 1000px !important;
 }
+.player-view-container .box-square {
+    font-size: 30px;
+    width: 180px !important; 
+    height: 180px !important; 
+}
+.player-view-container .back-link {
+    svg {
+        width: 35px !important;
+        height: 35px !important;
+    }
+    .selected_team_name {
+        font-size: 27px !important;
+    }
+}
 }
 
 
@@ -1249,6 +1263,12 @@ mat-datepicker-toggle button {
             margin-top: 1rem;
         }
     }
+
+.player-view-container .box-square {
+    font-size: 35px !important;
+    width: 200px !important; 
+    height: 200px !important; 
+}
 }
 
 @media (max-width:1300px) and (min-width:992px) {
