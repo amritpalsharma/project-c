@@ -35,6 +35,7 @@
 <div class="player-view-container p-3" *ngIf="view == 'team' && isPremium">
   <div class="mb-3 club-team">{{ 'teams' | translate }}</div>
   <!-- <app-loader *ngIf="isLoading"></app-loader> -->
+   <!-- <pre>{{teams | json}}</pre> -->
   <div *ngIf="teams.length == '0' && !isLoading">{{ 'NoTeamsAvailable' | translate }}</div>
   <div *ngFor="let team of teams" (click)="getTeamPlayers(team.id, team.team_name) "
     class="box-square position-relative">

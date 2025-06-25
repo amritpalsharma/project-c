@@ -63,19 +63,18 @@
 
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page"
-                        [routerLink]="['/' + talent]" routerLinkActive="active">{{
+                    <a class="nav-link" aria-current="page" [routerLink]="['/' + talent]" routerLinkActive="active">{{
                         'talents' | translate }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" [routerLink]="['/' + clubAndScout]"
-                        routerLinkActive="active">{{ 'club&scout' | translate
+                    <a class="nav-link" [routerLink]="['/' + clubAndScout]" routerLinkActive="active">{{ 'club&scout' |
+                        translate
                         }}</a>
                 </li>
                 <li class="nav-item">
                     <!-- <a class="nav-link" [routerLink]="'/about'" routerLinkActive="active">{{ 'about' | translate }}</a> -->
-                    <a class="nav-link" [routerLink]="['/' + about]"
-                        routerLinkActive="active">{{ 'about' | translate }}</a>
+                    <a class="nav-link" [routerLink]="['/' + about]" routerLinkActive="active">{{ 'about' | translate
+                        }}</a>
                 </li>
             </ul>
 
@@ -103,26 +102,25 @@
                         <!-- HTML -->
                         <ul class="sidebar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" [routerLink]="['/' + talent]"
-                                    (click)="closeNavbar()" routerLinkActive="active">{{ 'talent' | translate }}</a>
+                                <a class="nav-link" [routerLink]="['/' + talent]" (click)="closeNavbar()"
+                                    routerLinkActive="active">{{ 'talent' | translate }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link"
-                                    [routerLink]="['/' + clubAndScout]"
-                                    (click)="closeNavbar()" routerLinkActive="active">{{ 'club&scout' | translate }}</a>
+                                <a class="nav-link" [routerLink]="['/' + clubAndScout]" (click)="closeNavbar()"
+                                    routerLinkActive="active">{{ 'club&scout' | translate }}</a>
                             </li>
                             <li class="nav-item">
                                 <!-- <a class="nav-link" [routerLink]="'/about'" (click)="closeNavbar()" routerLinkActive="active">{{ 'about' | translate }}</a> -->
-                                <a class="nav-link" [routerLink]="['/' + about]"
-                                    (click)="closeNavbar()" routerLinkActive="active">{{ 'about' | translate }}</a>
+                                <a class="nav-link" [routerLink]="['/' + about]" (click)="closeNavbar()"
+                                    routerLinkActive="active">{{ 'about' | translate }}</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" [routerLink]="'/news'" (click)="closeNavbar()"
                                     routerLinkActive="active">{{ 'news' | translate }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" [routerLink]="['/' + contact]"
-                                    (click)="closeNavbar()" routerLinkActive="active">{{ 'contact' | translate }}</a>
+                                <a class="nav-link" [routerLink]="['/' + contact]" (click)="closeNavbar()"
+                                    routerLinkActive="active">{{ 'contact' | translate }}</a>
                             </li>
                         </ul>
 
@@ -145,8 +143,7 @@
 
                     <div class=" footer-links">
                         <ul class="footer-links1">
-                            <li><a (click)="closeNavbar()"
-                                    [routerLink]="['/' + pricing]">{{ 'pricingLabel' |
+                            <li><a (click)="closeNavbar()" [routerLink]="['/' + pricing]">{{ 'pricingLabel' |
                                     translate }} </a></li>
                             <li><a (click)="closeNavbar()" href="javascript:void(0);" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal-login">{{ 'signIn' | translate }}</a></li>
@@ -629,9 +626,10 @@
                                                 <input class="form-check-input mt-0" type="checkbox" value=""
                                                     id="flexCheckDefault-5" [(ngModel)]="noClub" name="noClub"
                                                     (ngModelChange)="onNoClubChange($event)" />
-                                                <label [innerHTML]="'noClubTxt' | translate" class="form-check-label fs-14 font-w400 text-light"
+                                                <label [innerHTML]="'noClubTxt' | translate"
+                                                    class="form-check-label fs-14 font-w400 text-light"
                                                     for="flexCheckDefault-5">
-                                                      
+
                                                 </label>
 
                                                 <!-- <label [innerHTML]="'privacyPolicyLabel' | translate"
@@ -711,24 +709,26 @@
                                             <div class="col-lg-6">
                                                 <div class="gen_radio gap-3">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="radio"
-                                                            name="gender" id="male" value="male" />
+                                                        <input class="form-check-input" type="radio" name="gender"
+                                                            id="male" value="male" (change)="setGender('m')" [checked]="gender == 'm'"/>
                                                         <label class="form-check-label ms-1" for="male">
-                                                            <span class="font-w400">Male</span>
+                                                            <span class="font-w400">{{'men' | translate}}</span>
                                                         </label>
                                                     </div>
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="radio"
-                                                            name="gender" id="female" value="female" />
+                                                        <input class="form-check-input" type="radio" name="gender"
+                                                            id="female" value="female" (change)="setGender('w')"  [checked]="gender == 'w'"/>
                                                         <label class="form-check-label ms-1" for="female">
-                                                            <span class="font-w400">Female</span>
+                                                            <span class="font-w400">{{'women' | translate}}</span>
                                                         </label>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
-                                                <select class="form-select" [ngClass]="{'ng-invalid': selectedTeam === null}"
-                                                    (change)="onTeamChange($event)" [(ngModel)]="team_id" name="team_id">
+                                                <select class="form-select"
+                                                    [ngClass]="{'ng-invalid': selectedTeam === null}"
+                                                    (change)="onTeamChange($event)" [(ngModel)]="team_id"
+                                                    name="team_id">
                                                     <option value="" disabled selected>{{ 'team' | translate
                                                         }}</option>
                                                     <option *ngFor="let teamArr of teamsArr" [value]="teamArr.id">{{

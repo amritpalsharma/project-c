@@ -210,7 +210,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
           },
           {
             // element: '.tour-highlights',
-            element: '.highlights_intro_tour',
+            element: '#highlights_intro_tour',
             intro: `<div><h6>${translations['highlights']}</h6>${translations['uploadPhotosAndVideos']}.</div>`,
             // tooltipClass: 'custom-tooltip',
             position: 'right'
@@ -375,6 +375,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
           this.isPremium = this.user?.active_subscriptions?.premium.length > 0 ? true : false;
           this.premium = this.user.active_subscriptions?.premium?.length > 0 ? true : false;
+          // this.isPremium = false;
+          // this.premium = false;
+          // this.startIntroTour('de'); 
           this.booster = this.user.active_subscriptions?.booster?.length > 0 ? true : false;
           this.activeDomains = this.user.active_subscriptions?.country?.length > 0 ? true : false;
 

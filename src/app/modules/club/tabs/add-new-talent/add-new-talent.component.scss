@@ -212,3 +212,68 @@
   border: 2px solid red !important;
   border-left: none !important;
 }
+
+// Code by amrit
+/* Container for the user list */
+::ng-deep .user-list {
+  display: flex;
+  flex-direction: column;
+  /* Stack users vertically */
+  gap: 15px;
+  /* Spacing between user items */
+  max-width: 600px;
+  /* Set max width for the list */
+  margin: 0 auto;
+  /* Center the list horizontally */
+}
+
+/* User Item (Each user in the list) */
+::ng-deep .user-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  /* Space between image, name, and input */
+  border: 1px solid #ccc;
+  /* Light border for each user item */
+  padding: 10px;
+  border-radius: 8px;
+  // background-color: #f9f9f9;
+}
+::ng-deep .dark-theme .user-item{
+  background-color: #072944;
+}
+/* User Image */
+::ng-deep .user-image {
+  width: 40px;
+  /* Set fixed width for images */
+  height: 40px;
+  /* Set fixed height for images */
+  border-radius: 50%;
+  /* Circle-shaped images */
+  object-fit: cover;
+  /* Ensure image aspect ratio is maintained */
+}
+
+/* User Name */
+::ng-deep .user-name {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  flex-grow: 1;
+  /* Push the name to the left */
+}
+
+/* Input Box for Text */
+::ng-deep .user-input {
+  padding: 5px 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  width: 200px;
+  transition: border 0.3s ease;
+}
+
+::ng-deep .user-input:focus {
+  border-color: #007bff;
+}

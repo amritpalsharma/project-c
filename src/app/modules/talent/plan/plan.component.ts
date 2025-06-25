@@ -543,10 +543,10 @@ export class PlanComponent implements OnInit, OnDestroy {
           if (userPlans.premium_talent[0] != undefined && userPlans.premium_talent[0] != '' && userPlans.premium_talent[0].status == 'active') {
             this.newPremiumPurchased = 'monthly';
             // this.premiumMonthlyPackageId = userPlans.premium[0].package_id;
-            this.premiumSubscribeId = userPlans.premium[0];
+            this.premiumSubscribeId = userPlans.premium_talent[0];
           } else if (userPlans.premium_talent[1] != undefined && userPlans.premium_talent[1] != '' && userPlans.premium_talent[1].status == 'active') {
             this.newPremiumPurchased = 'yearly';
-            this.premiumSubscribeId = userPlans.premium[1];
+            this.premiumSubscribeId = userPlans.premium_talent[1];
             // this.premiumYearlyPackageId = userPlans.premium[1].package_id;
           } else {
             this.newPremiumPurchased = 'noPlan';

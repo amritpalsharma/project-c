@@ -463,6 +463,7 @@
   "month": "mes",
   "editPersonalDetails": "Editar datos personales",
   "editGeneralDetails": "Aquí puedes editar tus datos generales",
+  "editGeneralDetailsScout": "Aquí puedes añadir miembros del equipo y asignar roles para editar y mantener vuestro perfil juntos.",
   "performance": "Rendimiento",
   "performanceAnalysis": "Análisis del rendimiento",
   "uploadPerformanceReport": "Cargar informe de resultados",

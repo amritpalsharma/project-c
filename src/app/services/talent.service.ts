@@ -82,7 +82,7 @@ export class TalentService {
       `${this.apiUrl3}updateNotificationSeen?id=${id}&seen=${seen}&isAccepted=${is_accepted}`,
     );
   }
-  
+
   updateAllNotificationSeen(userId: number): Observable<any> {
     return this.http.get<{ status: boolean, message: string }>(
       `${this.apiUrl3}notifications/mark-all-seen?userId=${userId}`,
@@ -917,6 +917,19 @@ export class TalentService {
   getClubTeams(club_id: any): Observable<any> {
     const headers = this.headers();
     return this.http.get<any>(`${this.apiUrl}get-teams?club_id=${club_id}`, { headers }).pipe(
+      tap((response: any) => {
+        if (response && response.status) {
+          this.teams = response.data.teams; // Store teams globally
+          //  localStorage.setItem('teams', JSON.stringify(this.teams)); // Cache in localStorage
+        }
+      }),
+      catchError(this.handleError<any>('getTeams', [])) // Handle errors gracefully
+    );
+  }
+
+  getClubTeamsByGroup(club_id: any, team_group: any): Observable<any> {
+    const headers = this.headers();
+    return this.http.get<any>(`${this.apiUrl}get-teams?club_id=${club_id}&team_group=${team_group}`, { headers }).pipe(
       tap((response: any) => {
         if (response && response.status) {
           this.teams = response.data.teams; // Store teams globally

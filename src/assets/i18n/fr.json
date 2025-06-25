@@ -468,6 +468,7 @@
   "profileTab": "Profil",
   "editPersonalDetails": "Modifier les données personnelles",
   "editGeneralDetails": "Ici, tu peux modifier tes informations générales",
+  "editGeneralDetailsScout": "Ici, tu peux ajouter des membres de l’équipe et attribuer des rôles pour modifier et gérer votre profil ensemble.",
   "newChatLightPopup": "Popup chat léger",
   "resetPasswordPopup": "Réinitialiser le mot de passe",
   "performance": "Performance",
