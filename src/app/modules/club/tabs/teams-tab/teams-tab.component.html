@@ -34,12 +34,39 @@
 </div>
 <div class="player-view-container p-3" *ngIf="view == 'team' && isPremium">
   <div class="mb-3 club-team">{{ 'teams' | translate }}</div>
-  <!-- <app-loader *ngIf="isLoading"></app-loader> -->
-   <!-- <pre>{{teams | json}}</pre> -->
+  <!--  -->
+  <!-- <pre>{{teams | json}}</pre> -->
   <div *ngIf="teams.length == '0' && !isLoading">{{ 'NoTeamsAvailable' | translate }}</div>
-  <div *ngFor="let team of teams" (click)="getTeamPlayers(team.id, team.team_name) "
-    class="box-square position-relative">
-    <div class="team-types">{{team.team_type}}</div>
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" data-bs-toggle="tab" data-bs-target="#Tab1" role="tab"
+        (click)="changeTeamType('m')">{{'men' | translate}}</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-transform-normal" data-bs-toggle="tab" data-bs-target="#Tab2" role="tab" (click)="changeTeamType('w')">{{'women'
+        | translate}}</a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <!-- Tab 1 -->
+    <div class="tab-pane active" id="Tab1" role="tabpanel" [ngClass]="{'active':team_group == 'm'}">
+      <app-loader *ngIf="isLoading"></app-loader>
+      <div class="not" *ngIf="!isLoading">
+        <div *ngFor="let team of teams" (click)="getTeamPlayers(team.id, team.team_name) "
+          class="box-square position-relative">
+          <div class="team-types">{{team.team_type}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane" id="Tab2" role="tabpanel" [ngClass]="{'active':team_group == 'w'}">
+      <app-loader *ngIf="isLoading"></app-loader>
+      <div class="not" *ngIf="!isLoading">
+        <div *ngFor="let team of teams" (click)="getTeamPlayers(team.id, team.team_name) "
+          class="box-square position-relative">
+          <div class="team-types">{{team.team_type}}</div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 

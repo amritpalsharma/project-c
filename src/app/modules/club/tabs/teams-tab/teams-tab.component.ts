@@ -33,6 +33,8 @@ export class TeamsTabComponent {
   confirmDeleteinformationTeam: string = '';
   errortxt: string = '';
 
+  team_group: string = 'm';
+
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
@@ -56,12 +58,17 @@ export class TeamsTabComponent {
     this.getClubTeams(this.userId)
   }
 
+  changeTeamType(team_type: any) {
+    this.team_group = team_type;
+    this.getClubTeams(this.userId)
+  }
+
 
 
   getClubTeams(userId: any) {
     this.isLoading = true;
     try {
-      this.userService.getClubTeams(userId).subscribe((response) => {
+      this.userService.getClubTeamsByGroup(userId, this.team_group).subscribe((response) => {
         if (response && response.status && response.data != '') {
           this.teams = response.data.teams;
           this.isLoading = false;

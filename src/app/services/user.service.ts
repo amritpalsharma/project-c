@@ -806,4 +806,14 @@ export class UserService {
       `${this.apiUrl2}/delete-profile-image/${userId}/${lang_id}`, { headers }
     );
   }
+
+  getClubTeamsByGroup(id: any, team_group: any): Observable<any> {
+    const userToken = localStorage.getItem('authToken');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.userToken}`
+    });
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
+      `${this.apiUrl}get-club-teams/${id}?team_group=${team_group}`, { headers }
+    );
+  }
 }

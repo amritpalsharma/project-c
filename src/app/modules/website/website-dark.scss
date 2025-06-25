@@ -364,7 +364,9 @@
   background: linear-gradient(45deg, #EFFFC1, #BDE34F) !important;
 }
 
-.dark-theme .website-code button.btn.btn-success.active-btn {
+.dark-theme .website-code button.btn.btn-success.active-btn,
+.dark-theme .website-code button.btn.btn-success:focus,
+.dark-theme .website-code button.btn.btn-success:active {
   box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.3);
   background-image: linear-gradient(180deg, #EFFFC1, #BDE34F);
 }

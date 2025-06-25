@@ -1507,5 +1507,7 @@
   "managePaymentBtnTxtBelowTxt": "Zahlung wiederholen / Kartendaten aktualisieren",
   "linkTxt": "Link",
   "memberShipDetailTxt": "Wenn der Transaktionsstatus länger als 1 Tag auf „Offen“ steht oder „Fehlgeschlagen“ ist, klicken Sie bitte auf die Schaltfläche „Zahlungen verwalten“, um entsprechende Maßnahmen zu ergreifen.",
-  "premiumPlanForTalent": "Für Talente"
+  "premiumPlanForTalent": "Für Talente",
+  "men": "Männer",
+  "women": "Frauen"
 }
