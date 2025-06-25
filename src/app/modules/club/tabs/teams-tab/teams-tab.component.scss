@@ -91,6 +91,40 @@
 }
 
 
+.player-view-container ul.nav-tabs {
+    border: 0 !important;
+    margin-bottom: 1rem;
+    .nav-link {
+      background-color: transparent;
+      border: none;
+      color: #000;
+      font-weight: 600;
+      margin-right: 0;
+      border-radius: 5px;
+      text-transform: uppercase;
+      padding: 8px 20px;
+      cursor: pointer;
+      font-family: var(--bs-avenir-bold);
+      &.active {
+          background: #6FB95D;
+          color: #fff;
+      }
+    }
+}
+
+
+::ng-deep .dark-theme {
+.player-view-container ul.nav-tabs {
+    .nav-link {
+      color: #fff !important;
+      &.active {
+          background: #BDE34F !important;
+          color: #023A4A !important;
+      }
+    }
+}
+}
+
 
 @media (min-width: 1600px) and (max-width: 2999px) {
 
