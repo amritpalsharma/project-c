@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ChangeDetectorRef } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, NgForm } from '@angular/forms';
 import { ScoutService } from '../../../services/scout.service';
@@ -104,6 +104,7 @@ export class EditPersonalDetailsComponent implements OnInit {
   isPremium: boolean = false;
   isUserVerified: boolean = false;
   constructor(
+    private cdr: ChangeDetectorRef,
     public dialogRef: MatDialogRef<EditPersonalDetailsComponent>,
     private scoutService: ScoutService,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -135,6 +136,7 @@ export class EditPersonalDetailsComponent implements OnInit {
       this.getJsonTranslations();
     });
     this.getUserStatus();
+    this.cdr.detectChanges();  // Manually trigger change detection
   }
   getUserStatus() {
     this.socketService.getLoggedInUserStatus().then((result) => {
@@ -169,6 +171,7 @@ export class EditPersonalDetailsComponent implements OnInit {
         if (response && response.status) {
           this.countries = response.data.countries;
           console.log('countries 123', this.countries)
+          this.cdr.detectChanges();  // Manually trigger change detection
         }
       },
       (error: any) => {
@@ -208,6 +211,7 @@ export class EditPersonalDetailsComponent implements OnInit {
 
           this.userNationalities = JSON.parse(this.user.user_nationalities);
           this.scoutNation = this.userNationalities[0].country_id;
+          this.country = this.userNationalities[0].country_id;
           // this.userNationalities[0].id = JSON.stringify(this.userNationalities[0].country_id) ;
 
           console.log(this.userNationalities, 'user nation')

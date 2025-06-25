@@ -167,9 +167,16 @@ export class ViewProfileComponent implements OnInit {
           // console.info('this.user',this.user);
           let baseUrl = response.data.imagePath;
           this.baseUrl = baseUrl;
-          this.isPremium = this.loggedInUser?.active_subscriptions?.premium.length > 0 ? true : false;
-          // console.error('Is User Has Premium ',this.isPremium);
-          // this.isPremium = true;
+          if (this.loggedInUser?.role != '4') {
+            this.isPremium = this.loggedInUser?.active_subscriptions?.premium.length > 0 ? true : false;
+            console.info('loggedInUserArray',this.loggedInUser?.active_subscriptions?.premium.length)
+          }
+          if (this.loggedInUser?.active_subscriptions?.premium_talent && this.loggedInUser?.role == '4') {
+            this.isPremium = this.loggedInUser?.active_subscriptions?.premium_talent.length > 0 ? true : false;
+          }
+
+          console.info('UserArrayFromAPi',this.loggedInUser,'andcurrentUserRole',this.currentUserRole)
+      
           if (this.user.user_nationalities != undefined && this.user.user_nationalities != '') {
             this.userNationalities = JSON.parse(this.user.user_nationalities);
           }

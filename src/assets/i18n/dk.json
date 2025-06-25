@@ -256,7 +256,7 @@
   "emailPlaceholder": "eksempel@email.dk",
   "passwordLabel": "Adgangskode",
   "passwordPlaceholder": "12345688",
-  "requiredFieldsMessage": "Udfyld alle obligatoriske felter.",
+  "requiredFieldsMessage": "Udfyld venligst alle obligatoriske felter.",
   "forgotPasswordLink": "Glemt adgangskode?",
   "loginButton": "Log ind",
   "orText": "eller",

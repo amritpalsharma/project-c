@@ -298,7 +298,7 @@
   "emailPlaceholder": "exempel@email.se",
   "passwordLabel": "Lösenord",
   "passwordPlaceholder": "12345688",
-  "requiredFieldsMessage": "Fyll i alla obligatoriska fält.",
+  "requiredFieldsMessage": "Fyll i alla obligatoriska fält, tack.",
   "forgotPasswordLink": "Glömt lösenord?",
   "loginButton": "Logga in",
   "orText": "eller",

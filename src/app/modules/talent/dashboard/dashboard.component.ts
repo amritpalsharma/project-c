@@ -455,6 +455,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
           }
           // scoutInfoDetails
           this.isPremium = this.user?.active_subscriptions?.premium.length > 0 ? true : false;
+
+          if (this.user?.active_subscriptions?.premium_talent) {
+            this.isPremium = this.user?.active_subscriptions?.premium_talent.length > 0 ? true : false;
+          }
           this.photoLoading = false;
           // this.isPremium = false;
           if (this.StartTour && this.isTourFirstTime) {
@@ -497,7 +501,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
           }
 
 
-          this.premium = this.user.active_subscriptions?.premium?.length > 0 ? true : false;
+          // this.premium = this.user.active_subscriptions?.premium?.length > 0 ? true : false;
+          this.premium = this.user.active_subscriptions?.premium_talent?.length > 0 ? true : false;
           this.booster = this.user.active_subscriptions?.booster?.length > 0 ? true : false;
           this.activeDomains = this.user.active_subscriptions?.country?.length > 0 ? true : false;
           this.profileImage = null;

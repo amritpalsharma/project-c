@@ -300,7 +300,7 @@
   "emailPlaceholder": "exemplo@email.pt",
   "passwordLabel": "Senha",
   "passwordPlaceholder": "12345688",
-  "requiredFieldsMessage": "Preenche todos os campos obrigatórios.",
+  "requiredFieldsMessage": "Por favor, preencha todos os campos obrigatórios.",
   "forgotPasswordLink": "Esqueceu a senha?",
   "loginButton": "Entrar",
   "orText": "ou",

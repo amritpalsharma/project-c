@@ -302,3 +302,7 @@ img.flag_country {
         padding: 0 !important;
     }
 }
+
+::ng-deep .dark-theme .noTextTabs{
+    color: #ffffff !important;
+}

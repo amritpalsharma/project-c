@@ -7,10 +7,12 @@ export class EditorConfigService {
     const isDarkMode = currentTheme === 'dark';
 
     return {
-      apiKey: 'vtw0pppfq7efn33a7j0kgks14gccdq6g9dqbigz3vnj26ejy',
+      // apiKey: 'vtw0pppfq7efn33a7j0kgks14gccdq6g9dqbigz3vnj26ejy',
+      apiKey: 'o956zaasi973j6ej01w6us5xe6gmev2rejbqaojnserqeec0',
       readonly: false,
       language: language,
-      language_url: `https://cdn.tiny.cloud/1/vtw0pppfq7efn33a7j0kgks14gccdq6g9dqbigz3vnj26ejy/tinymce/6/langs/${language}.js`,
+      // language_url: `https://cdn.tiny.cloud/1/vtw0pppfq7efn33a7j0kgks14gccdq6g9dqbigz3vnj26ejy/tinymce/6/langs/${language}.js`,
+      language_url: `https://cdn.tiny.cloud/1/o956zaasi973j6ej01w6us5xe6gmev2rejbqaojnserqeec0/tinymce/6/langs/${language}.js`,
       height: 400,
       plugins: 'lists link image table code textcolor',
       toolbar: 'undo redo | bold italic forecolor backcolor | alignleft aligncenter alignright | bullist numlist | heading |  code',
