@@ -1510,5 +1510,9 @@
   "premiumPlanForTalent": "Für Talente",
   "men": "Männer",
   "women": "Frauen",
+<<<<<<< HEAD
   "withoutClub":""
+=======
+  "withoutClub": "Aktuell vereinslos und motiviert, durchzustarten!"
+>>>>>>> 24842f95972ecbe14fdd27a6506abf1b538d0b91
 }
