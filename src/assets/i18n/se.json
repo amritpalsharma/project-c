@@ -1448,5 +1448,6 @@
   "memberShipDetailTxt": "Om transaktionsstatus är \"Öppen\" i mer än 1 dag eller \"Misslyckad\", klicka på knappen \"Hantera betalningar\" för att vidta nödvändiga åtgärder.",
   "premiumPlanForTalent": "För Talanger",
   "men": "Män",
-  "women": "Kvinnor"
+  "women": "Kvinnor",
+  "withoutClub": "För närvarande utan klubb och motiverad att komma igång!"
 }

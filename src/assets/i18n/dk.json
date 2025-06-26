@@ -1369,5 +1369,6 @@
   "memberShipDetailTxt": "Hvis transaktionsstatus er \"Åben\" i mere end 1 dag eller \"Mislykket\", skal du klikke på knappen \"Administrer betalinger\" for at tage de nødvendige skridt.",
   "premiumPlanForTalent": "For Talenter",
   "men": "Mænd",
-  "women": "Kvinder"
+  "women": "Kvinder",
+  "withoutClub": "Momenteel zonder club en gemotiveerd om er vol voor te gaan!"
 }

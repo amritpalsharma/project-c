@@ -1416,5 +1416,6 @@
   "memberShipDetailTxt": "If Transaction Status is \"Open\" for more than 1 day or \"Failed\", please click on \"Manage Payments\" Button to take necessary action.",
   "premiumPlanForTalent": "For Talents",
   "men": "Men",
-  "women": "Women"
+  "women": "Women",
+  "withoutClub":"Currently without a club and motivated to get started!"
 }
