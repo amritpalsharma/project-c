@@ -84,6 +84,7 @@ export class EditPersonalDetailsComponent implements OnInit {
 
   clubSearch: string = '';
   nationSearch: string = '';
+  custom_club_search: string = '';
   filteredClubs: any[] = [];
 
   // playerClubsListing = [
@@ -149,6 +150,14 @@ export class EditPersonalDetailsComponent implements OnInit {
       this.contractEnd = new FormControl(
         this.user?.meta?.contract_end ? new Date(this.user.meta.contract_end) : null
       );
+
+      if (this.user?.custom_club_info && this.user?.custom_club_info != '') {
+        let custom_club_info = JSON.parse(this.user?.custom_club_info);
+        this.custom_club_country = custom_club_info.country_id;
+        this.custom_club = custom_club_info.club_name;
+        this.custom_team = custom_club_info.team_name;
+      }
+      
       // this.currentClubId = this.user.meta.pre_club_id || '';
       // this.loadTeams(this.currentClubId);
       // console.info('Function to get times is called');
@@ -210,7 +219,10 @@ export class EditPersonalDetailsComponent implements OnInit {
     }
 
     this.displayedCountries = [...this.countries];
-    console.info('this.displayedCountries', this.displayedCountries)
+    // this.displayedCountries2 = [...this.countries];
+    this.displayedCountries2 = this.countries;
+
+    // 
   }
 
   ngAfterViewInit(): void {
@@ -424,6 +436,12 @@ export class EditPersonalDetailsComponent implements OnInit {
     } else {
       formData.append('user[have_no_club]', '0');
     }
+
+    if (this.isCustomClubTeam && this.isHideClubSection) {
+      formData.append('user[custom_club]', this.custom_club);
+      formData.append('user[custom_team]', this.custom_team);
+      formData.append('user[custom_club_country]', this.custom_club_country);
+    }
     // const team = this.teamsArr.find(team => team.id === this.CurrentTeamId);
     // console.log('Selected Team Id is', this.CurrentTeamId, ' and Team Type is ', team.team_type);
 
@@ -548,29 +566,7 @@ export class EditPersonalDetailsComponent implements OnInit {
     // }
   }
 
-  filterCountriesOld(event: any) {
-    const keyword = event.target.value.toLowerCase();
-    this.nationSearch = keyword;
 
-    if (keyword === '') {
-      this.displayedCountries = [...this.countries];
-    } else {
-      const matched = this.countries.filter((c: any) =>
-        c.country_name.toLowerCase().includes(keyword)
-      );
-
-      // 👇 Ensure already selected countries stay in the list
-      const selected = this.countries.filter((c: any) => this.nationality.includes(c.id));
-
-      // 👇 Merge and remove duplicates
-      const combined = [...matched, ...selected];
-      const unique = combined.filter((value, index, self) =>
-        index === self.findIndex((t) => t.id === value.id)
-      );
-
-      this.displayedCountries = unique;
-    }
-  }
 
   filterCountries(event: any) {
     const keyword = event.target.value.toLowerCase();
@@ -609,6 +605,22 @@ export class EditPersonalDetailsComponent implements OnInit {
   }
 
 
+  displayedCountries2: any = [];
+  filterCountries2(event: any) {
+    const keyword = event.target.value.toLowerCase();
+    this.custom_club_search = keyword;
+
+    if (keyword === '') {
+      this.displayedCountries2 = [...this.countries];
+    } else {
+      // First, get countries that start with the keyword
+      this.displayedCountries2 = this.playerClubsListing.filter((club: any) =>
+        club.club_name.toLowerCase().includes(keyword.toLowerCase())
+      );
+    }
+  }
+
+
   trackByCountryId(index: number, country: any): number {
     return country.id;
   }
@@ -616,5 +628,13 @@ export class EditPersonalDetailsComponent implements OnInit {
   onNoClubChange(value: boolean) {
     // alert(value); // true if checked, false if unchecked
     this.isHideClubSection = value;
+  }
+
+  custom_club_country: any;
+  custom_club: string = '';
+  custom_team: string = '';
+  isCustomClubTeam: boolean = false;
+  onChnageCustomClubTeam(value: boolean) {
+    this.isCustomClubTeam = value;
   }
 }
