@@ -7,6 +7,11 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { UserService } from '../../../../services/user.service';
 import { ClubService } from '../../../../services/club.service';
 import { SocketService } from '../../../../services/socket.service';
+import { FormControl, NgForm } from '@angular/forms';
+import * as _moment from 'moment';
+// tslint:disable-next-line:no-duplicate-imports
+import { default as _rollupMoment } from 'moment';
+const moment = _rollupMoment || _moment;
 
 @Component({
   selector: 'add-new-talent',
@@ -25,8 +30,10 @@ export class AddNewTalentComponent implements OnInit {
   invitedUsers: any = [];
   eventName: any = "";
   sightId: any = "";
-  startDate: string | null = null;
-  endDate: string | null = null;
+  // startDate: string | null = null;
+  startDate: FormControl = new FormControl(null);
+  endDate: FormControl = new FormControl(null);
+  // endDate: string | null = null;
   noEndDate: boolean = false;
   teamId: any;
   player: any;
@@ -46,6 +53,8 @@ export class AddNewTalentComponent implements OnInit {
     this.player = data.player;
     this.edit = data.edit;
     this.teamName = data.teamName;
+
+    this.startDate.setValue(this.player.join_date ? new Date(this.player.join_date) : null);
   }
 
   ngOnInit(): void {
@@ -56,8 +65,14 @@ export class AddNewTalentComponent implements OnInit {
   }
 
   initializeFormFields(): void {
-    this.startDate = this.player.join_date;
-    this.endDate = this.player.end_date;
+    // this.startDate = this.player.join_date;
+    this.startDate = new FormControl(
+      this.player.join_date ? new Date(this.player.join_date) : null
+    );
+    this.endDate = new FormControl(
+      this.player.end_date ? new Date(this.player.end_date) : null
+    );
+    // this.endDate = this.player.end_date;
     this.noEndDate = this.player.no_end_date === '1';
     this.users = [this.player]; // Assuming you want to pre-fill the user
   }
@@ -96,8 +111,11 @@ export class AddNewTalentComponent implements OnInit {
         this.receiverIds.push(user.player_id);
         formData.append(`player_id`, user.id);
         formData.append(`team_id`, this.teamId);
-        formData.append(`join_date`, this.startDate || '');
-        formData.append(`end_date`, this.noEndDate ? '' : this.endDate || '');
+        const formattedStartDate = moment(this.startDate.value).format('YYYY-MM-DD');
+        formData.append(`join_date`, formattedStartDate);
+        const formattedEndDate = moment(this.endDate.value).format('YYYY-MM-DD');
+        formData.append(`end_date`, formattedEndDate);
+        // formData.append(`end_date`, this.noEndDate ? '' : this.endDate || '');
         formData.append(`no_end_date`, this.noEndDate ? '1' : '0');
         formData.append(`no_end_date`, this.noEndDate ? '1' : '0');
         formData.append(`jersey_number`, user.jersey_number);
@@ -105,8 +123,11 @@ export class AddNewTalentComponent implements OnInit {
         this.receiverIds.push(user.id);
         formData.append(`players[${i}][player_id]`, user.id);
         formData.append(`players[${i}][team_id]`, this.teamId);
-        formData.append(`players[${i}][join_date]`, this.startDate || '');
-        formData.append(`players[${i}][end_date]`, this.noEndDate ? '' : this.endDate || '');
+        const formattedStartDate = moment(this.startDate.value).format('YYYY-MM-DD');
+        formData.append(`players[${i}][join_date]`, formattedStartDate);
+
+        const formattedEndDate = moment(this.endDate.value).format('YYYY-MM-DD');
+        formData.append(`players[${i}][end_date]`, this.noEndDate ? '' : formattedEndDate || '');
         formData.append(`players[${i}][jersey_number]`, user.jersey_number);
       }
       i += 1;

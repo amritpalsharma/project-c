@@ -239,9 +239,11 @@
   border-radius: 8px;
   // background-color: #f9f9f9;
 }
-::ng-deep .dark-theme .user-item{
+
+::ng-deep .dark-theme .user-item {
   background-color: #072944;
 }
+
 /* User Image */
 ::ng-deep .user-image {
   width: 40px;
@@ -276,4 +278,16 @@
 
 ::ng-deep .user-input:focus {
   border-color: #007bff;
+}
+
+::ng-deep .dob {
+  position: relative !important;
+}
+
+::ng-deep mat-datepicker-toggle {
+  position: absolute;
+  right: 0;
+  top: 0px;
+  left: unset !important;
+  margin-left: 0 !important;
 }
