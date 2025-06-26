@@ -803,7 +803,7 @@ export class UserService {
       'Authorization': `Bearer ${this.userToken}`
     });
     return this.http.get<{ status: boolean, message: string, data: {} }>(
-      `${this.apiUrl2}/delete-profile-image/${userId}/${lang_id}`, { headers }
+      `${this.apiUrl2}/delete-profile-image/${lang_id}/${userId}`, { headers }
     );
   }
 

@@ -74,6 +74,7 @@ export class PlanComponent implements OnInit, OnDestroy {
   stripe: any;
   loggedInUser: any = localStorage.getItem('userData');
   premium: any = null;
+  premium_talent: any = null;
   country: any = '';
   booster: any = null;
   demo: any = null;
@@ -83,7 +84,7 @@ export class PlanComponent implements OnInit, OnDestroy {
 
   isPremiumPurchased: string = '';
   newPremiumPurchased: string = '';
-  premiumSubscribeId:any=[];
+  premiumSubscribeId: any = [];
 
   premiumPurchased: any = 0;
 
@@ -518,6 +519,7 @@ export class PlanComponent implements OnInit, OnDestroy {
         if (response?.status && response?.data?.packages) {
           const userPlans = response.data.packages;
           this.premium = userPlans?.premium?.[0] || null;
+          this.premium_talent = userPlans?.premium_talent?.[0] || null;
           this.demo = userPlans?.demo?.[0] || null;
           this.booster = userPlans?.booster?.[0] || null;
           this.country = userPlans?.country || '';
@@ -542,11 +544,13 @@ export class PlanComponent implements OnInit, OnDestroy {
 
           if (userPlans.premium_talent[0] != undefined && userPlans.premium_talent[0] != '' && userPlans.premium_talent[0].status == 'active') {
             this.newPremiumPurchased = 'monthly';
+            this.premium_talent = userPlans?.premium_talent?.[0] || null;
             // this.premiumMonthlyPackageId = userPlans.premium[0].package_id;
             this.premiumSubscribeId = userPlans.premium_talent[0];
           } else if (userPlans.premium_talent[1] != undefined && userPlans.premium_talent[1] != '' && userPlans.premium_talent[1].status == 'active') {
             this.newPremiumPurchased = 'yearly';
             this.premiumSubscribeId = userPlans.premium_talent[1];
+            this.premium_talent = userPlans?.premium_talent?.[1] || null;
             // this.premiumYearlyPackageId = userPlans.premium[1].package_id;
           } else {
             this.newPremiumPurchased = 'noPlan';
@@ -648,8 +652,8 @@ export class PlanComponent implements OnInit, OnDestroy {
 
     const newPlanId = isYearly ? plan.yearly : plan.monthly;
 
-    console.info('subscribeId',subscribeId)
-    console.info('NewPlan',newPlanId)
+    console.info('subscribeId', subscribeId)
+    console.info('NewPlan', newPlanId)
 
     const dialogRef = this.dialog.open(UpdateConfirmationPlanComponent, {
       data: { plan, isYearly }
