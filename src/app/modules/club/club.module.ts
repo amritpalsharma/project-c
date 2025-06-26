@@ -46,7 +46,7 @@ import { AddPerfomanceReportComponent } from './tabs/performance-analysis-tab/ad
 import { EditHighlightsComponent } from './tabs/edit-highlights/edit-highlights.component';
 import { PlanComponent } from './plan/plan.component';
 import { AddCardComponent } from './membership/add-card/add-card.component';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LightboxDialogComponent } from './lightbox-dialog/lightbox-dialog.component';
 import { LoaderComponent } from './loader/loader.component';
 import { AddBoosterComponent } from './plan/add-booster-profile/add-booster.component';
@@ -67,9 +67,23 @@ import { CreateSightPopupComponent } from './tabs/create-sight-popup/create-sigh
 import { AddNewTalentComponent } from './tabs/add-new-talent/add-new-talent.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { EditorModule } from '@tinymce/tinymce-angular';
+import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
 // import { NgxStripeModule } from 'ngx-stripe';
-
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'DD.MM.YYYY', // Parse input in DD.MM.YYYY format
+  },
+  display: {
+    dateInput: 'DD.MM.YYYY', // Display format for date input
+    monthYearLabel: 'MMM YYYY', // Month and year label
+    dateA11yLabel: 'DD.MM.YYYY', // Accessibility label for date
+    monthYearA11yLabel: 'MMMM YYYY', // Accessibility label for month and year
+  },
+};
 @NgModule({
+  providers: [
+    provideMomentDateAdapter(MY_FORMATS),
+  ],
   declarations: [
     IndexComponent,
     DashboardComponent,
@@ -96,7 +110,7 @@ import { EditorModule } from '@tinymce/tinymce-angular';
     EditPerformanceDetailsComponent,
     AddPerformanceComponent,
     AddPerfomanceReportComponent,
-    AddCardComponent,   
+    AddCardComponent,
     PerformanceAnalysisTabComponent,
     LightboxDialogComponent,
     LoaderComponent,
@@ -121,7 +135,7 @@ import { EditorModule } from '@tinymce/tinymce-angular';
     TranslateModule,
     RouterModule,
     RouterOutlet,
-    MatPaginator,    
+    MatPaginator,
     FormsModule,
     MatDialogModule,
     MatIconModule,
@@ -143,7 +157,7 @@ import { EditorModule } from '@tinymce/tinymce-angular';
     GuidedTourModule,
     SharedModule,
     CommonModule,
-    TranslateModule ,
+    TranslateModule,
     FormsModule,
     MatDialogModule,
     MatIconModule,
@@ -156,7 +170,7 @@ import { EditorModule } from '@tinymce/tinymce-angular';
     MatNativeDateModule,
     MatInputModule,
     ReactiveFormsModule,
-    MatTabsModule ,
+    MatTabsModule,
     MatTableModule,
     MatPaginator,
     NgxEditorModule,
