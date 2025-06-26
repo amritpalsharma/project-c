@@ -463,6 +463,7 @@
   "month": "mes",
   "editPersonalDetails": "Editar datos personales",
   "editGeneralDetails": "Aquí puedes editar tus datos generales",
+  "editGeneralDetailsScout": "Aquí puedes añadir miembros del equipo y asignar roles para editar y mantener vuestro perfil juntos.",
   "performance": "Rendimiento",
   "performanceAnalysis": "Análisis del rendimiento",
   "uploadPerformanceReport": "Cargar informe de resultados",
@@ -1449,5 +1450,6 @@
   "linkTxt": "Enlace",
   "memberShipDetailTxt": "Si el estado de la transacción está \"Abierto\" por más de 1 día o \"Fallido\", haga clic en el botón \"Gestionar pagos\" para tomar las medidas necesarias.",
   "premiumPlanForTalent": "Para Talentos",
-  "withoutClub": "Actualmente sin equipo y motivado para empezar con fuerza."
+  "men": "Hombres",
+  "women": "Mujeres"
 }

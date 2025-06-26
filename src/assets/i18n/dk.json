@@ -256,7 +256,7 @@
   "emailPlaceholder": "eksempel@email.dk",
   "passwordLabel": "Adgangskode",
   "passwordPlaceholder": "12345688",
-  "requiredFieldsMessage": "Udfyld alle obligatoriske felter.",
+  "requiredFieldsMessage": "Udfyld venligst alle obligatoriske felter.",
   "forgotPasswordLink": "Glemt adgangskode?",
   "loginButton": "Log ind",
   "orText": "eller",
@@ -422,6 +422,7 @@
   "profileTab": "Profil",
   "editPersonalDetails": "Rediger personlige oplysninger",
   "editGeneralDetails": "Her kan du redigere dine generelle oplysninger",
+  "editGeneralDetailsScout": "Her kan du tilføje teammedlemmer og fordele roller for sammen at redigere og vedligeholde jeres profil.",
   "newChatLightPopup": "Ny chat popup",
   "resetPasswordPopup": "Nulstil adgangskode",
   "addNewPerformancePopup": "Tilføj ny statistik",
@@ -1367,5 +1368,6 @@
   "linkTxt": "Link",
   "memberShipDetailTxt": "Hvis transaktionsstatus er \"Åben\" i mere end 1 dag eller \"Mislykket\", skal du klikke på knappen \"Administrer betalinger\" for at tage de nødvendige skridt.",
   "premiumPlanForTalent": "For Talenter",
-  "withoutClub": "Momenteel zonder club en gemotiveerd om er vol voor te gaan!"
+  "men": "Mænd",
+  "women": "Kvinder"
 }

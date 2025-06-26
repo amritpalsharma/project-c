@@ -91,6 +91,43 @@
 }
 
 
+.player-view-container ul.nav-tabs {
+  border: 0 !important;
+  margin-bottom: 1rem;
+
+  .nav-link {
+    background-color: transparent;
+    border: none;
+    color: #000;
+    font-weight: 600;
+    margin-right: 0;
+    border-radius: 5px;
+    text-transform: uppercase;
+    padding: 8px 20px;
+    cursor: pointer;
+    font-family: var(--bs-avenir-bold);
+
+    &.active {
+      background: #6FB95D;
+      color: #fff;
+    }
+  }
+}
+
+
+::ng-deep .dark-theme {
+  .player-view-container ul.nav-tabs {
+    .nav-link {
+      color: #fff !important;
+
+      &.active {
+        background: #BDE34F !important;
+        color: #023A4A !important;
+      }
+    }
+  }
+}
+
 
 @media (min-width: 1600px) and (max-width: 2999px) {
 
@@ -168,11 +205,11 @@
   }
 }
 
-.unlock_page{
+.unlock_page {
   position: relative;
   // height: 30vh;
 
-  .unlock_btn{
+  .unlock_btn {
     background: #6FB95D;
     padding: 10px 24px;
     font-size: 12px;
@@ -181,7 +218,8 @@
     border-radius: 10px;
     border: none;
   }
-  .upgrade_unlock{
+
+  .upgrade_unlock {
     height: 100%;
     background: rgb(255 255 255 / 65%);
     position: absolute;
@@ -192,4 +230,8 @@
     align-items: center;
     justify-content: center;
   }
+}
+
+::ng-deep.text-transform-normal {
+  text-transform: none;
 }

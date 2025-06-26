@@ -99,13 +99,15 @@ export class AddNewTalentComponent implements OnInit {
         formData.append(`join_date`, this.startDate || '');
         formData.append(`end_date`, this.noEndDate ? '' : this.endDate || '');
         formData.append(`no_end_date`, this.noEndDate ? '1' : '0');
+        formData.append(`no_end_date`, this.noEndDate ? '1' : '0');
+        formData.append(`jersey_number`, user.jersey_number);
       } else {
         this.receiverIds.push(user.id);
         formData.append(`players[${i}][player_id]`, user.id);
         formData.append(`players[${i}][team_id]`, this.teamId);
         formData.append(`players[${i}][join_date]`, this.startDate || '');
         formData.append(`players[${i}][end_date]`, this.noEndDate ? '' : this.endDate || '');
-        formData.append(`players[${i}][no_end_date]`, this.noEndDate ? '1' : '0');
+        formData.append(`players[${i}][jersey_number]`, user.jersey_number);
       }
       i += 1;
     });

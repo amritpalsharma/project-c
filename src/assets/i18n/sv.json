@@ -298,7 +298,7 @@
   "emailPlaceholder": "exempel@email.se",
   "passwordLabel": "Lösenord",
   "passwordPlaceholder": "12345688",
-  "requiredFieldsMessage": "Fyll i alla obligatoriska fält.",
+  "requiredFieldsMessage": "Fyll i alla obligatoriska fält, tack.",
   "forgotPasswordLink": "Glömt lösenord?",
   "loginButton": "Logga in",
   "orText": "eller",
@@ -1500,5 +1500,6 @@
   "linkTxt": "Länk",
   "memberShipDetailTxt": "Om transaktionsstatus är \"Öppen\" i mer än 1 dag eller \"Misslyckad\", klicka på knappen \"Hantera betalningar\" för att vidta nödvändiga åtgärder.",
   "premiumPlanForTalent": "För Talanger",
-  "withoutClub": "För närvarande utan klubb och motiverad att komma igång!"
+  "men": "Män",
+  "women": "Kvinnor"
 }

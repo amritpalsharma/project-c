@@ -470,6 +470,7 @@
   "profileTab": "Profilo",
   "editPersonalDetails": "Modifica dei dati personali",
   "editGeneralDetails": "Qui puoi modificare i tuoi dati generali",
+  "editGeneralDetailsScout": "Qui puoi aggiungere membri del team e assegnare ruoli per modificare e gestire insieme il vostro profilo.",
   "newChatLightPopup": "Nuovo popup chat",
   "resetPasswordPopup": "Reimposta la password",
   "performance": "Prestazioni",
@@ -1498,5 +1499,6 @@
   "linkTxt": "Link",
   "memberShipDetailTxt": "Se lo stato della transazione è \"Aperto\" da più di 1 giorno o \"Fallito\", fai clic sul pulsante \"Gestisci pagamenti\" per intraprendere le azioni necessarie.",
   "premiumPlanForTalent": "Per Talenti",
-  "withoutClub" :"Attualmente senza squadra e motivato a ripartire con entusiasmo!"
+  "men": "Uomini",
+  "women": "Donne"
 }

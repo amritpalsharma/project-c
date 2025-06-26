@@ -300,7 +300,7 @@
   "emailPlaceholder": "exemplo@email.pt",
   "passwordLabel": "Senha",
   "passwordPlaceholder": "12345688",
-  "requiredFieldsMessage": "Preenche todos os campos obrigatórios.",
+  "requiredFieldsMessage": "Por favor, preencha todos os campos obrigatórios.",
   "forgotPasswordLink": "Esqueceu a senha?",
   "loginButton": "Entrar",
   "orText": "ou",
@@ -471,6 +471,7 @@
   "profileTab": "Perfil",
   "editPersonalDetails": "Editar dados pessoais",
   "editGeneralDetails": "Aqui você pode editar seus dados gerais",
+  "editGeneralDetailsScout": "Aqui podes adicionar membros da equipa e atribuir funções para editar e manter o vosso perfil em conjunto.",
   "newChatLightPopup": "Novo popup de chat",
   "resetPasswordPopup": "Redefinir senha",
   "performance": "Desempenho",
@@ -1458,5 +1459,6 @@
   "linkTxt": "Link",
   "memberShipDetailTxt": "Se o status da transação for \"Aberto\" por mais de 1 dia ou \"Falhou\", clique no botão \"Gerenciar Pagamentos\" para tomar as medidas necessárias.",
   "premiumPlanForTalent": "Para Talentos",
-  "withoutClub": "Atualmente sem clube e motivado para recomeçar com tudo!"
+  "men": "Homens",
+  "women": "Mulheres"
 }

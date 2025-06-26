@@ -307,6 +307,7 @@ export class HeaderComponent implements OnInit {
   imprint: string = '';
   terms: string = '';
   contact: string = '';
+  gender: string = 'm';
   constructor(
     private sharedservice: SharedService,
     private themeService: ThemeService,
@@ -516,7 +517,7 @@ export class HeaderComponent implements OnInit {
     }
     console.log('LocalStorage Mode is Dark ? = ' + this.isDarkMode);
     this.getAllCountries();
-    this.getAllClubs();
+    // this.getAllClubs();
     this.getAllLanguage();
     console.log('Header Last updated language localstorage ' + localStorage.getItem('lang'));
   }
@@ -575,7 +576,7 @@ export class HeaderComponent implements OnInit {
       if (data.action == 'updatedLang') {
         this.lang_id = data.id;
         this.getAllCountries();
-        this.getAllClubs();
+        // this.getAllClubs();
         this.getAllLanguage();
       }
     });
@@ -1108,7 +1109,6 @@ export class HeaderComponent implements OnInit {
 
   getClugById(id: any) {
     if (id) {
-      // this.loadLeagues(id);
       this.commonDataService.getAllClubsbyId(id).subscribe((resp) => {
         this.clubs = resp.data.clubs.map((club: any) => ({
           id: club.id || '',
@@ -1194,10 +1194,14 @@ export class HeaderComponent implements OnInit {
     this.isViewPassword2 = !this.isViewPassword2;
   }
 
+  setGender(gender: string) {
+    this.gender = gender;
+    this.loadLeagues(this.selectedClub);
+  }
+
   loadLeagues(country_id: any): void {
 
-
-    this.talentService.getClubTeams(country_id).subscribe(
+    this.talentService.getClubTeamsByGroup(country_id, this.gender).subscribe(
       (response: any) => {
         if (response.status) {
           this.teamsArr = response.data.teams;

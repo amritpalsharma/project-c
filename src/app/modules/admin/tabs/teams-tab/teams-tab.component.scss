@@ -49,16 +49,15 @@
   font-weight: 700;
 }
 
-.back-link{
+.back-link {
   font-size: 12px;
   cursor: pointer;
   margin-right: 12px;
   margin-top: 1px;
-  background: #6FB95D;
-  color: #ffffff;
-  border-radius: 4px;
   padding: 0px 5px;
   letter-spacing: .3px;
+  display: inline-flex;
+  align-items: center;
 }
 
 table th, table td {

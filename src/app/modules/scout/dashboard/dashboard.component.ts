@@ -175,7 +175,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       'coverPhoto',
       'uploadCoverPhoto',
       'generalDetails',
-      'editGeneralDetails',
+      'editGeneralDetailsScout',
       'previous',
       'next',
       'finish',
@@ -224,7 +224,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
           },
           {
             element: '.general_details_tab',
-            intro: `<div><h6>${translations['generalDetails']}</h6>${translations['editGeneralDetails']}.</div>`,
+            intro: `<div><h6>${translations['generalDetails']}</h6>${translations['editGeneralDetailsScout']}.</div>`,
             // tooltipClass: 'custom-tooltip',
             position: 'left'
           },
@@ -418,6 +418,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
           this.isPremium = this.user?.active_subscriptions?.premium.length > 0 ? true : false;
           // this.isPremium = false;
           this.premium = this.user.active_subscriptions?.premium?.length > 0 ? true : false;
+          // this.premium = false;
           this.booster = this.user.active_subscriptions?.booster?.length > 0 ? true : false;
           this.activeDomains = this.user.active_subscriptions?.country?.length > 0 ? true : false;
 

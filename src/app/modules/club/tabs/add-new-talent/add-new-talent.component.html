@@ -45,7 +45,8 @@
               (focus)="callListApi(userInput)" (keyup)="onKeyPress($event)" />
 
             <input [disabled]="edit" placeholder="" [matAutocomplete]="auto"
-              [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputFor]="chipGrid" (keyup)="onKeyPress($event)" />
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputFor]="chipGrid"
+              (keyup)="onKeyPress($event)" />
           </mat-chip-grid>
 
           <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)"
@@ -64,6 +65,29 @@
       <!-- Start and End Date Inputs in a Single Row -->
       <div class="p-3">
         <div class="row px-4">
+          <div class="col-12 mt-3">
+            <div class="user-list">
+              <div *ngFor="let user of users; let i = index" class="user-item">
+
+                <!-- User Image -->
+                <img *ngIf="user?.profile_image_path && !edit" [src]="user?.profile_image_path"
+                  alt="User Image" class="user-image">
+
+                <img *ngIf="!user?.profile_image_path && !edit" src="../../../../../assets/images/1.png"
+                  alt="Default Image" class="user-image">
+
+                <!-- User Name -->
+                <span class="user-name">
+                  {{user?.first_name}} {{user?.last_name}}
+                </span>
+
+                <!-- Input Box for Text -->
+                <input type="text" [(ngModel)]="user.jersey_number" placeholder="Add a comment"
+                  class="user-input">
+
+              </div>
+            </div>
+          </div>
           <div class="col-12 mt-5 mb-2 p-0">
             <h4 class="join-end-date">{{ 'JoinandEndDates' | translate }}</h4>
           </div>

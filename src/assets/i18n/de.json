@@ -338,7 +338,7 @@
   "emailPlaceholder": "beispiel@email.de",
   "passwordLabel": "Passwort",
   "passwordPlaceholder": "12345688",
-  "requiredFieldsMessage": "Bitte fülle alle Pflichtfelder aus.",
+  "requiredFieldsMessage": "Bitte alle Pflichtfelder ausfüllen.",
   "forgotPasswordLink": "Passwort vergessen?",
   "loginButton": "Anmelden",
   "orText": "oder",
@@ -462,6 +462,7 @@
   "month": "Monat",
   "editPersonalDetails": "Persönliche Angaben bearbeiten",
   "editGeneralDetails": "Hier kannst du deine allgemeinen Details bearbeiten",
+  "editGeneralDetailsScout": "Hier kannst du Teammitglieder hinzufügen und Rollen verteilen, um gemeinsam euer Profil zu bearbeiten und zu pflegen.",
   "newChatLightPopup": "Neues Chat-Fenster",
   "resetPasswordPopup": "Passwort zurücksetzen",
   "addNewPerformancePopup": "Neue Statistik hinzufügen",
@@ -1507,5 +1508,6 @@
   "linkTxt": "Link",
   "memberShipDetailTxt": "Wenn der Transaktionsstatus länger als 1 Tag auf „Offen“ steht oder „Fehlgeschlagen“ ist, klicken Sie bitte auf die Schaltfläche „Zahlungen verwalten“, um entsprechende Maßnahmen zu ergreifen.",
   "premiumPlanForTalent": "Für Talente",
-  "withoutClub": "Aktuell vereinslos und motiviert, durchzustarten!"
+  "men": "Männer",
+  "women": "Frauen"
 }
