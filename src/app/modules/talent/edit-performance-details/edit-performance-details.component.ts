@@ -81,7 +81,7 @@ export class EditPerformanceDetailsComponent implements OnInit {
     this.theme = localStorage.getItem('theme');
 
     this.performance = { ...this.data.performance };
-    console.log(this.performance)
+    console.info(this.performance)
     this.teams = [...this.data.teams];
     this.matches = this.performance.matches;
     this.goals = this.performance.goals;
@@ -103,8 +103,13 @@ export class EditPerformanceDetailsComponent implements OnInit {
     this.translate.onLangChange.subscribe((event) => {
       this.getToasterMsg();
     });
-
-    this.isManual = this.data.isManualEntery;
+    console.info('this.performance.type', this.performance.type)
+    if (this.performance?.type === 'manual') {
+      this.isManual = true;
+      this.onNoClubChange(true);
+    }
+    // this.isManual = this.data.isManualEntery;
+    console.info('this.isManual', this.isManual)
   }
 
   onCancel(): void {

@@ -115,22 +115,6 @@
         <div class="row">
           <div class="col-md-4 col-lg-2 border-end">
             <div class="user-details-left">
-              <!-- <div class="user-media ">
-                <img src="{{user.meta.profile_image_path}}" alt="" *ngIf="user.meta && user.meta.profile_image_path"
-                  class="user-img mt-1">
-                <img src="../../../../assets/images/1.png" alt="" *ngIf="!user.meta || !user.meta.profile_image_path"
-                  class="user-img">
-                <div class="user-edit">
-                  <label for="file-upload"><img src="../../../../assets/images/edit-icon.png"
-                      class="edit-profile cursor-pointer" alt=""></label>
-                  <input id="file-upload" (change)="onProfileImageChange($event)" accept="image/*" type="file"
-                    class="d-none" />
-                  <div class="club-icon" *ngIf="user.club_logo_path">
-                    <img *ngIf="user.club_logo_path" src="{{user.club_logo_path}}"
-                      class="club-icon-round cursor-pointer" alt="">
-                  </div>
-                </div>
-              </div> -->
               <div class="user-media " *ngIf="!user.meta.profile_image || user.meta.profile_image == ''">
                 <img src="{{baseUrl + user.meta.profile_image}}" alt="" *ngIf="user.meta && user.meta.profile_image"
                   class="user-img mt-1">

@@ -42,8 +42,11 @@
               <!-- The rest of your content goes here -->
               <div>
                 <div class="user-media text-center ">
-
-                  <span class="profile_img_bg_circle">
+                  <span class="profile_img_bg_circle"
+                    style="position: absolute;top: 45%;transform:translate(-50%, -50%);" *ngIf="profileImageLoading">
+                    <app-talent-loader [width]="'80px'" [height]="'80px'" [border]="'5px'"></app-talent-loader>
+                  </span>
+                  <span class="profile_img_bg_circle" *ngIf="!profileImageLoading">
                     <img *ngIf="profileImage" [src]="profileImage" alt="" class="" />
                     <img *ngIf="!profileImage" src="../../../../assets/images/default/talent-profile-default.png"
                       class="" alt="" />
@@ -116,10 +119,10 @@
                   </div>
                 </div>
                 <!-- Add a loader in your template -->
-                <div *ngIf="loading" class="loader-container py-5">
+                <!-- <div *ngIf="loading" class="loader-container py-5">
                   <app-talent-loader [width]="'40px'" [height]="'40px'" [border]="'5px'"></app-talent-loader>
-                </div>
-                <div class="bg-color card-bg" *ngIf="!loading">
+                </div> -->
+                <div class="bg-color card-bg">
                   <div class="user-info pt-3 row align-items-center justify-content-between p-3 responsive-name">
                     <div class="col-md-8 d-flex align-items-center player-name-box">
                       <h6 class="user-info-name">

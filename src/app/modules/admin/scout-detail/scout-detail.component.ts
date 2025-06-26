@@ -47,6 +47,7 @@ export class ScoutDetailComponent implements OnInit {
   langSubscription!: Subscription;
   deleteProfileImageConfirm: string = '';
   currentLangId: any = localStorage.getItem('lang_id');
+  profileImageLoading: boolean = true;
   ngOnInit(): void {
     this.getJsonTranslations();
     this.sharedservice.data$.subscribe((data: any) => {
@@ -73,6 +74,7 @@ export class ScoutDetailComponent implements OnInit {
   }
 
   getUserProfile(userId: any) {
+    this.profileImageLoading = true;
     try {
       this.userService.getProfileDataAdmin(userId, this.currentLangId).subscribe((response) => {
         if (response && response.status && response.data && response.data.user_data) {
@@ -83,6 +85,7 @@ export class ScoutDetailComponent implements OnInit {
           if (this.user.meta && this.user.meta.cover_image_path) {
             this.coverImage = this.user.meta.cover_image_path;
           }
+          // this.profileImageLoading = false;
           // this.isLoading = false;
         } else {
           // this.isLoading = false;
@@ -90,6 +93,7 @@ export class ScoutDetailComponent implements OnInit {
         }
       });
     } catch (error) {
+      this.profileImageLoading = false;
       // this.isLoading = false;
       console.error('Error fetching users:', error);
     }
@@ -221,11 +225,19 @@ export class ScoutDetailComponent implements OnInit {
     if (type == 'next') {
       let slug = this.getRoleById(this.paginationData.next.role);
       let id = this.paginationData.next.id;
-      this.router.navigate(['admin/' + slug, id]);
+      if (slug == 'no_route_found') {
+        this.router.navigate(['admin/users']);
+      } else {
+        this.router.navigate(['admin/' + slug, id]);
+      }
     } else if (type == 'prev') {
       let slug = this.getRoleById(this.paginationData.prev.role);
       let id = this.paginationData.prev.id;
-      this.router.navigate(['admin/' + slug, id]);
+      if (slug == 'no_route_found') {
+        this.router.navigate(['admin/users']);
+      } else {
+        this.router.navigate(['admin/' + slug, id]);
+      }
     }
   }
 
@@ -236,6 +248,15 @@ export class ScoutDetailComponent implements OnInit {
       return 'scout';
     } else if (roleId == "4") {
       return 'player';
+    } else if (roleId == "5") {
+      return 'admin';
+    } else if (roleId == "6") {
+      return 'club';
+    } else if (roleId == "7") {
+      return 'scout';
+    }
+    else {
+      return 'no_route_found';
     }
   }
 

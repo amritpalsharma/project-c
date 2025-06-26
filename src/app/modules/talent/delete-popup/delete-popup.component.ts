@@ -22,7 +22,9 @@ export class DeletePopupComponent {
 
   ngOnInit(): void {
     this.theme = localStorage.getItem('theme');
-    this.fromPage = this.data.from_page;
+    if(this.data?.from_page){
+      this.fromPage = this.data.from_page;
+    }
     this.type = this.data.type==='video' ? 'video' : 'photo';
     this.type2 = this.data.type2==='profile' ? 'profile' : '';
     this.webPages.languageId$.subscribe((data) => {

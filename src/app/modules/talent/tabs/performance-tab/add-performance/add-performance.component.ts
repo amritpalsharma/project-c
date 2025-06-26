@@ -74,7 +74,7 @@ export class AddPerformanceComponent {
   isHideTeamSection: boolean = false;
   teamName: string = '';
   theme: any = localStorage.getItem('theme');
-  team_country_id: number = 0;
+  team_country_id: any = '';
   countries: any = [];
 
   constructor(
@@ -113,9 +113,10 @@ export class AddPerformanceComponent {
       this.performance.to_date ? new Date(this.performance.to_date) : null
     );
 
-    this.countryControl.valueChanges.subscribe(selected => {
-      this.team_country_id = selected;
-    });
+    // this.countryControl.valueChanges.subscribe(selected => {
+    //   // console.info('SelectedObj', selected)
+    //   // this.team_country_id = selected.id;
+    // });
 
 
     this.from_date.setValue(this.performance.from_date ? new Date(this.performance.from_date) : null);
@@ -163,7 +164,7 @@ export class AddPerformanceComponent {
 
   onSubmit(myForm: NgForm): void {
 
-    console.log('Button Clicked ',this.isHideTeamSection)
+    console.log('Button Clicked ', this.isHideTeamSection)
 
 
     this.isrequiredField = false;
@@ -201,7 +202,9 @@ export class AddPerformanceComponent {
     const formData = {
       ...myForm.value, // Include all form values
       team_name: this.teamName, // Append the selected team ID
+      team_country_id: this.team_country_id,
       from_date: this.from_date.value // Convert FormControl value to string (if necessary)
+
         ? moment(this.from_date.value).format('YYYY-MM-DD')
         : null,
       to_date: this.to_date.value // Convert FormControl value to string (if necessary)
@@ -259,6 +262,7 @@ export class AddPerformanceComponent {
     const formData = {
       ...myForm.value, // Include all form values
       team_id: this.currentTeamId, // Append the selected team ID
+      team_country_id: this.team_country_id,
       from_date: this.from_date.value // Convert FormControl value to string (if necessary)
         ? moment(this.from_date.value).format('YYYY-MM-DD')
         : null,
@@ -370,6 +374,17 @@ export class AddPerformanceComponent {
   getTextAfterDash(input: string): string {
     input = input.toLowerCase();
     return input.split('-')[1]?.trim() || '';
+  }
+
+  // Store the selected country's ID when an option is selected
+  team_country_name: string = '';
+  onCountrySelect(country: any): void {
+    this.team_country_id = Number(country.id);
+    this.team_country_name = country.country_name;
+    this.countryControl.setValue(country.country_name); // Optional: Set country name in the input
+    console.info('SelectedArr', country)
+    console.info('this.team_country_id', this.team_country_id)
+    console.info('this.team_country_name', this.team_country_name)
   }
 
 }

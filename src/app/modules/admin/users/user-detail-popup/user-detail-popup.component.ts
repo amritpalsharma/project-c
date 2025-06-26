@@ -81,4 +81,16 @@ export class UserDetailPopupComponent {
     return formattedDate;
   }
 
+  isCurrentRoleClub(role_name: string): boolean {
+    // Convert the role name to lowercase to ensure case-insensitive comparison
+    role_name = role_name.toLowerCase();
+
+    // Array containing possible translations/variants of the word "club"
+    let clubTranslationsArr = ['club', 'clube', 'klub', 'klubb'];
+
+    // Check if the role_name matches any item in the clubTranslationsArr
+    return clubTranslationsArr.includes(role_name);
+  }
+
+
 }

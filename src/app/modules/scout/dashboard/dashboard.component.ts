@@ -64,6 +64,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   userNationalities: any = [];
   coverImage: any;
   profileImage: any;
+  profileImageLoading: boolean = true;
   selectedFile: any;
   teams: any;
   highlights: any;
@@ -386,7 +387,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   getUserProfile(userId: any) {
     this.loading = true;  // Set loading to true before making the API call
-
+    this.profileImageLoading = true;
     try {
       this.scoutService.getProfileData(userId).subscribe((response) => {
         if (response && response.status && response.data && response.data.user_data) {
@@ -425,9 +426,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
           if (this.user?.meta?.profile_image_path) {
             let baseUrl = response.data.imagePath;
             this.profileImage = baseUrl + this.user.meta.profile_image;
+
             this.commonDataService.updateProfilePic(this.profileImage);
             this.sendMessage();
           }
+
+          this.profileImageLoading = false;
 
           if (this.StartTour && this.isTourFirstTime) {
             setTimeout(() => {
@@ -783,6 +787,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       response => {
         if (response.status) {
           this.profileImage = null;
+          // this.profileImage = '../../../../assets/images/default/talent-profile-default.png';
           this.commonDataService.updateProfilePic(this.profileImage);
           this.toastr.success(response.message);
         }

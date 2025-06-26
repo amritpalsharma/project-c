@@ -39,12 +39,17 @@
               </div>
               <div>
                 <div class="user-media text-center ">
+                  <span class="profile_img_bg_circle" *ngIf="!profileImage && loading"
+                    style="position: absolute;top: 45%;transform:translate(-50%, -50%);">
+                    <app-loader *ngIf="!profileImage"></app-loader>
+                  </span>
                   <span class="profile_img_bg_circle">
                     <img *ngIf="profileImage && !loading" [src]="profileImage" class="" alt="" />
-                    <img *ngIf="!profileImage && user.club_logo_path != '' && user.status == '2'  && !loading"
-                      src="{{user.club_logo_path}}" class="club_profile_mob_img" alt="" />
-                    <img *ngIf="!profileImage && !user.club_logo_path  && !loading"
-                      src="../../../../assets/images/default/talent-profile-default.png" class="" alt="" />
+                    <!-- <img *ngIf="!profileImage && user.club_logo_path != '' && user.status == ' 2' && !loading"
+                    src="{{user.club_logo_path}}" class="club_profile_mob_img" alt="" />
+                  <img *ngIf="!profileImage && !user.club_logo_path  && !loading"
+                    src="../../../../assets/images/default/talent-profile-default.png" class="" alt="" /> -->
+                    
                   </span>
 
 
@@ -596,7 +601,8 @@
               </div>
             </div>
 
-            <div id="highlights_intro_tour" class="col-lg-12 image-gallery mt-4 bg-color p-3 tour-highlights highlights-tour highlights_intro_tour"
+            <div id="highlights_intro_tour"
+              class="col-lg-12 image-gallery mt-4 bg-color p-3 tour-highlights highlights-tour highlights_intro_tour"
               *ngIf="isPremium">
 
               <!-- Add a loader in your template -->

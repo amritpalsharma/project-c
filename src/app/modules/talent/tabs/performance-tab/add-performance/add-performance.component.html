@@ -40,12 +40,18 @@
                 {{ 'country' | translate }}
               </label>
               <mat-form-field appearance="fill" class="select_search_field">
-                <input [ngClass]="{'isrequiredField': !team_country_id}" class="form-select" type="text"
+                <!-- <input [ngClass]="{'isrequiredField': !team_country_id}" class="form-select" type="text"
                   aria-label="City" matInput [formControl]="countryControl" [matAutocomplete]="auto"
-                  (focus)="onInputFocus()" [ngModel]="team_country_id">
+                  (focus)="onInputFocus()" [ngModel]="team_country_name" name="team_country_name"> -->
+                <input [(ngModel)]="team_country_name" [ngClass]="{'isrequiredField': !team_country_id}"
+                  class="form-select" type="text" aria-label="City" matInput [formControl]="countryControl"
+                  [matAutocomplete]="auto" (focus)="onInputFocus()" name="team_country_name" [value]="team_country_name">
+
+
 
                 <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayCountry" [ngModel]="team_country_id">
-                  <mat-option *ngFor="let country of filteredCities" [value]="country">
+                  <mat-option *ngFor="let country of filteredCities" [value]="country"
+                    (click)="onCountrySelect(country)">
                     {{ country.country_name }}
                   </mat-option>
                 </mat-autocomplete>
@@ -63,7 +69,7 @@
 
                 <!-- Club suggestions -->
                 <ul *ngIf="filterTeams.length > 0 && currentTeam.length >= 2" class="suggestions-list d-block">
-                 <!-- <pre>{{filterTeams 
+                  <!-- <pre>{{filterTeams 
                   | json}}
                   </pre> -->
                   <li *ngFor="let team of filterTeams" (click)="onSelectTeam(team)">

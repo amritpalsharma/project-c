@@ -24,6 +24,7 @@ export class TeamsComponent {
   @Input() userData: any;
   @Input() isPremium: any;
   @Input() currentClubId: any;
+  team_group: string = 'm';
 
   constructor(
     private route: ActivatedRoute,
@@ -48,10 +49,14 @@ export class TeamsComponent {
     });
   }
 
+  changeTeamType(team_type: any) {
+    this.team_group = team_type;
+    this.getClubTeams(this.currentClubId)
+  }
   getClubTeams(userId: any) {
     this.isLoading = true;
     try {
-      this.userService.getTeamsByClub(userId).subscribe((response) => {
+      this.userService.getClubTeamsByGroup(userId, this.team_group).subscribe((response) => {
         if (response && response.status && response.data != '') {
           this.teams = response.data.teams;
           this.isLoading = false;
@@ -102,7 +107,7 @@ export class TeamsComponent {
     return team ? team.team_type : null; // Return `null` if not found
   }
 
-  naviGatePlayer(id:number) {
+  naviGatePlayer(id: number) {
     let slug = 'talent';
     const pageRoute = 'view/' + slug.toLowerCase();
     //console.log(pageRoute);

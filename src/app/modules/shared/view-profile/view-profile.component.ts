@@ -33,6 +33,7 @@ export class ViewProfileComponent implements OnInit {
   userNationalities: any = [];
   coverImage: any = '';
   profileImage: any = '';
+  talentProfileImageLoaded: boolean = true;
   selectedFile: any;
   teams: any;
   highlights: any;
@@ -158,6 +159,7 @@ export class ViewProfileComponent implements OnInit {
   }
 
   getUser(userId: any) {
+    this.talentProfileImageLoaded = true;
     try {
       let params: any = {};
       params.lang = localStorage.getItem('lang_id');
@@ -169,18 +171,19 @@ export class ViewProfileComponent implements OnInit {
           this.baseUrl = baseUrl;
           if (this.loggedInUser?.role != '4') {
             this.isPremium = this.loggedInUser?.active_subscriptions?.premium.length > 0 ? true : false;
-            console.info('loggedInUserArray',this.loggedInUser?.active_subscriptions?.premium.length)
+            console.info('loggedInUserArray', this.loggedInUser?.active_subscriptions?.premium.length)
           }
           if (this.loggedInUser?.active_subscriptions?.premium_talent && this.loggedInUser?.role == '4') {
             this.isPremium = this.loggedInUser?.active_subscriptions?.premium_talent.length > 0 ? true : false;
           }
 
-          console.info('UserArrayFromAPi',this.loggedInUser,'andcurrentUserRole',this.currentUserRole)
-      
+          console.info('UserArrayFromAPi', this.loggedInUser, 'andcurrentUserRole', this.currentUserRole)
+
           if (this.user.user_nationalities != undefined && this.user.user_nationalities != '') {
             this.userNationalities = JSON.parse(this.user.user_nationalities);
           }
           this.profileImage = baseUrl + this.user.meta.profile_image || this.profileImage;
+          this.talentProfileImageLoaded = false;
           // this.profileImage = this.user.meta.profile_image_path || this.profileImage;
           if (this.user.meta.cover_image && this.user.meta.cover_image != '' && this.user.meta.cover_image != undefined) {
             this.coverImage = baseUrl + this.user.meta.cover_image || this.coverImage;
@@ -215,6 +218,7 @@ export class ViewProfileComponent implements OnInit {
         }
       });
     } catch (error) {
+      this.talentProfileImageLoaded = true;
       console.error('Error fetching user:', error);
     }
   }

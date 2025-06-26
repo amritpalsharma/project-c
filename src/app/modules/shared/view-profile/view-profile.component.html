@@ -18,9 +18,14 @@
             <div class="user-details-left col-lg-12">
               <div class="user-media text-center">
                 <!-- <pre>{{user.meta | json}}</pre> -->
-                <span class="profile_img_bg_circle">
+                <span class="profile_img_bg_circle" style="position: absolute;top: 45%;transform:translate(-50%, -50%);"
+                  *ngIf="talentProfileImageLoaded">
+                  <app-loader></app-loader>
+                </span>
+                <span class="profile_img_bg_circle" *ngIf="!talentProfileImageLoaded">
                   <img [src]="profileImage" alt="{{currentUserRole }} {{'profile' | translate}}"
                     *ngIf="user.meta && user.meta.profile_image_path && currentUserRole =='talent'" class=" mt-1" />
+
                   <img [src]="baseUrl + user.meta.profile_image" alt="{{currentUserRole}} Profile 2"
                     *ngIf="user.meta && user.meta.profile_image && currentUserRole =='scout'" class=" mt-1" />
                   <img [src]="user.club_logo_path" alt="{{currentUserRole}} Profile"
@@ -87,7 +92,8 @@
                       </button>
                     </span>
                     <span class="icon-bg " *ngIf="!isPremium" mat-raised-button
-                      [matTooltip]="(addFavorite | translate) + '\n' + ('upgradeToUnlock' | translate)" matTooltipClass="multiline-tooltip">
+                      [matTooltip]="(addFavorite | translate) + '\n' + ('upgradeToUnlock' | translate)"
+                      matTooltipClass="multiline-tooltip">
                       <button class="pe-none">
                         <svg width="22" height="22" class="opacity-03" viewBox="0 0 14 18" fill="none"
                           xmlns="http://www.w3.org/2000/svg">

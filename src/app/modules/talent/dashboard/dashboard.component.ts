@@ -70,6 +70,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   userNationalities: any = [];
   coverImage: any;
   profileImage: any;
+  profileImageLoading: boolean = true;
   selectedFile: any;
   isHighlightClick: boolean = true;
   teams: any;
@@ -420,7 +421,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   getUserProfile(userId: any) {
     this.loading = true;  // Set loading to true before making the API call
-
+    this.profileImageLoading = true;
     let params = {
       lang: localStorage.getItem('lang_id')
     };
@@ -510,8 +511,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
             this.profileImage = this.user.meta.profile_image_path;
             this.sendMessage();
             this.commonDataService.updateProfilePic(this.profileImage);
-
           }
+          this.profileImageLoading = false;
           if (this.user?.meta?.cover_image_path) {
             this.coverImage = this.user.meta.cover_image_path;
           }
@@ -529,6 +530,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.loading = false;  // Set loading to false once data is loaded
       });
     } catch (error) {
+      this.profileImageLoading = false;
       console.error('Error fetching users:', error);
       this.loading = false;  // Set loading to false on error
     }
