@@ -96,7 +96,7 @@
   "mainPosition": "Main Position",
   "marketValue": "Market Value",
   "matches": "Matches",
-  "maximumSize": "Maximum Size: 15 MB",
+  "maximumSize": "Maximum Size: 100 MB",
   "movingFrom": "Moving From",
   "movingTo": "Moving To",
   "name": "Name",

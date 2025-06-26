@@ -52,7 +52,7 @@
   "downloadPerformanceReport": "Download resultatrapport",
   "filesSupported": "Understøttede filer: JPG, PNG, MP4",
   "chooseFile": "Vælg fil",
-  "maximumSize": "Maksimal størrelse: 15 MB",
+  "maximumSize": "Maksimal størrelse: 100 MB",
   "documentTitle": "Titel Præstationsrapport",
   "upload": "Upload",
   "editCoverPhoto": "Rediger forsidebillede",

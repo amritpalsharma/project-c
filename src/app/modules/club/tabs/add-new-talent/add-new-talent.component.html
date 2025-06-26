@@ -93,7 +93,7 @@
           <div class="col-12">
             <div class="row align-items-center">
               <!-- Start Date -->
-              <div class="date-input col-lg-4 p-0 mb-3 mb-lg-0 d-flex align-items-center justify-content-center ">
+              <div class="date-input col-lg-4 p-0 mb-3 mb-lg-0 position-relative">
                 <label for="startDate" class="d-block font-weight-bold">
                 </label>
                 <!-- <input type="date" class="form-control join-start"
@@ -107,14 +107,14 @@
               </div>
 
               <!-- End Date -->
-              <div class="date-input col-lg-4 p-0 mb-3 mb-lg-0">
+              <div class="date-input col-lg-4 p-0 mb-3 mb-lg-0 position-relative">
                 <label for="endDate" class="d-block font-weight-bold">
                 </label>
                 <!-- <input type="date" class="form-control join-end" id="endDate"
                   [ngClass]="{'red-border-end': !endDate && submitClicked && !noEndDate}" [(ngModel)]="endDate"
                   [disabled]="noEndDate" placeholder="{{ 'selectEndDate' | translate }}" /> -->
 
-                <input class="form-control join-start dob" matInput id="endDate" name="contractStart" [ngClass]="{'red-border-end': !endDate && submitClicked && !noEndDate}"
+                <input class="form-control join-start" matInput id="endDate" name="contractStart" [ngClass]="{'red-border-end': !endDate && submitClicked && !noEndDate}"
                   [matDatepicker]="contractEndPicker" [formControl]="endDate" placeholder="DD.MM.YYYY" [disabled]="noEndDate"/>
                 <mat-datepicker-toggle matSuffix [for]="contractEndPicker"></mat-datepicker-toggle>
                 <mat-datepicker #contractEndPicker></mat-datepicker>

@@ -72,7 +72,7 @@
   "dragAndDropFilesHere": "Arraste e solte os arquivos aqui",
   "filesSupported": "Arquivos suportados: JPG, PNG, MP4",
   "chooseFile": "Escolher arquivo",
-  "maximumSize": "Tamanho máximo: 15 MB",
+  "maximumSize": "Tamanho máximo: 100 MB",
   "documentTitle": "Título Relatório de desempenho",
   "upload": "Carregar",
   "movingTo": "Transferência de",
