@@ -1452,5 +1452,6 @@
   "premiumPlanForTalent": "Para Talentos",
   "men": "Hombres",
   "women": "Mujeres",
-  "withoutClub": "Actualmente sin equipo y motivado para empezar con fuerza."
+  "withoutClub": "Actualmente sin equipo y motivado para empezar con fuerza.",
+  "404PageNotFound":"Página no encontrada"
 }

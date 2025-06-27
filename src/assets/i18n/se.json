@@ -1449,5 +1449,6 @@
   "premiumPlanForTalent": "För Talanger",
   "men": "Män",
   "women": "Kvinnor",
-  "withoutClub": "För närvarande utan klubb och motiverad att komma igång!"
+  "withoutClub": "För närvarande utan klubb och motiverad att komma igång!",
+  "404PageNotFound": "Sidan kunde inte hittas"
 }

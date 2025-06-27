@@ -1501,5 +1501,6 @@
   "premiumPlanForTalent": "Per Talenti",
   "men": "Uomini",
   "women": "Donne",
-  "withoutClub" :"Attualmente senza squadra e motivato a ripartire con entusiasmo!"
+  "withoutClub" :"Attualmente senza squadra e motivato a ripartire con entusiasmo!",
+  "404PageNotFound":"Pagina non trovata"
 }

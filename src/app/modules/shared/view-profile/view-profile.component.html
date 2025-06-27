@@ -111,7 +111,13 @@
               <div class="bg-color card-bg">
                 <div class="d-flex align-items-center player-name-box p-3 user-info responsive-name">
                   <h6 class="user-info-name">
-                    {{ user.first_name }} {{ user.last_name }}
+                    <ng-container *ngIf="currentUserRole == 'club' && user?.current_club_name">
+                      {{user?.current_club_name}}
+                    </ng-container>
+                    <!-- show scout & talent name -->
+                    <ng-container *ngIf="currentUserRole != 'club'">
+                      {{ user.first_name }} {{ user.last_name }}
+                    </ng-container>
                   </h6>
                   <div class="name_icon">
                     <img src="../../../assets/images/pending.png" alt="" class="user-pending-icon"
@@ -603,7 +609,9 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-sm-6" *ngIf="scoutInfoDetails && scoutInfoDetails?.id != ''">
+                    <div class="col-sm-6"
+                      *ngIf="scoutInfoDetails && scoutInfoDetails?.id != null && scoutInfoDetails?.id !== ''">
+                      <!-- <pre>{{scoutInfoDetails | json}}</pre> -->
                       <div class="row align-items-center">
                         <div class="col-sm-3 team-badge_image">
                           <div class="team-badge_image">
@@ -775,8 +783,12 @@
                         <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2" *ngIf="currentUserRole != 'club'">{{ 'contactNumber' | translate }}</h6>
                           <h6 class="title_2" *ngIf="currentUserRole == 'club'">{{ 'phone' | translate }}</h6>
-                          <h5 *ngIf="user.meta && user.meta.contact_number" class="title-1">{{user.meta.contact_number}}
+                          <h5 *ngIf="user.meta && user.meta.contact_number" class="title-1">
+                            <a href="tel:{{getPhoneWithDailCode(user.meta.contact_number)}}" class="call_button">
+                              {{user.meta.contact_number}}
+                            </a>
                           </h5>
+
                           <!-- <h5 class="title-1" *ngIf="!user.meta || !user.meta.contact_number">NA</h5> -->
                         </div>
                       </div>
@@ -1198,8 +1210,12 @@
                         </div>
                         <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'phone' | translate }}</h6>
-                          <h5 *ngIf="user.meta && user.meta.contact_number" class="title-1">{{user.meta.contact_number}}
+                          <h5 *ngIf="user.meta && user.meta.contact_number" class="title-1">
+                            <a href="tel:{{getPhoneWithDailCode(user.meta.contact_number)}}" class="call_button">
+                              {{user.meta.contact_number}}
+                            </a>
                           </h5>
+
                           <!-- <h5 *ngIf="!user.meta || !user.meta.contact_number" class="title-1">NA</h5> -->
                         </div>
                       </div>

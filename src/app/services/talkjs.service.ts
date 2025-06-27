@@ -38,7 +38,8 @@ export class TalkService {
 
   }
   matPrimary = false;
-  currentTheme: any = localStorage.getItem('theme') == 'dark' ? 'dark_custom' : 'default';
+  // currentTheme: any = localStorage.getItem('theme') == 'dark' ? 'dark_custom' : 'default';
+  currentTheme: any = localStorage.getItem('theme') == 'dark' ? 'dark_custom_users' : 'default_users';
   // currentTheme: any = 'dark_custom';
   currentLocale: string = localStorage.getItem('lang') || this.globalSettings.getLanguage();
   otherUserDataArr: any;
@@ -53,9 +54,9 @@ export class TalkService {
   async init(userData: any): Promise<Talk.Session> {
     let themeFirstTym;
     if (this.currentTheme === 'dark') {
-      themeFirstTym = 'dark_custom';
+      themeFirstTym = 'dark_custom_users';
     } else {
-      themeFirstTym = 'default';
+      themeFirstTym = 'default_users';
     }
     let storage_theme = localStorage.getItem('theme');
     console.info('this.currentTheme is ' + this.currentTheme + ' And Storage theme is ' + storage_theme);
@@ -151,7 +152,7 @@ export class TalkService {
     console.log('isDark', isDark);
     let theme = isDark ? 'dark' : 'light';
     localStorage.setItem('theme', theme);
-    this.currentTheme = isDark ? 'dark_custom' : 'default';
+    this.currentTheme = isDark ? 'dark_custom_users' : 'default_users';
 
     if (!this.session) {
       console.error('TalkJS session not initialized');
@@ -161,7 +162,7 @@ export class TalkService {
       this.inbox.destroy();
     }
     this.inbox = this.session.createInbox({
-      theme: isDark ? 'dark_custom' : 'default'
+      theme: isDark ? 'dark_custom_users' : 'default_users'
     });
 
     // Optionally re-mount immediately or allow the component to handle mounting
@@ -325,7 +326,7 @@ export class TalkService {
       }
 
       this.inbox = this.session.createInbox({
-        theme: this.currentTheme === 'dark' ? 'dark_custom' : 'default'
+        theme: this.currentTheme === 'dark' ? 'dark_custom_users' : 'default_users'
       });
 
       const container = document.getElementById('talkjs-container');
@@ -419,7 +420,7 @@ export class TalkService {
       let inbox;
       const theme = localStorage.getItem('theme');
       if (theme === 'dark') {
-        inbox = session.createInbox({ theme: 'dark_custom' });
+        inbox = session.createInbox({ theme: 'dark_custom_users' });
       } else {
         inbox = session.createInbox();
       }
