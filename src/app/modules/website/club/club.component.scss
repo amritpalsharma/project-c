@@ -72,7 +72,6 @@ P {
     left: 0;
     z-index: 2;
     margin-right: 20%;
-
 }
 
 .banner-heading {
@@ -5751,6 +5750,9 @@ span {
     .banner-heading {
         font-size: 55px;
     }
+    .banner-heading5 {
+        font-size: 24px;
+    }
     h3, .feature-heading3, .club-heading4 {
       font-size: 45px;
     }
@@ -5966,9 +5968,16 @@ span {
 
 
 @media (min-width: 2000px) and (max-width: 2999px) {
+    a.btn.btn-register {
+        padding: 17px 30px;
+    }
     .banner_image_combo img {
         top: 200px !important;
         height: calc(100% - 200px);
+    }
+    .banner-left {
+        top: 85%;
+        margin-right: 0;
     }
     .pricing_tabs_container {
         .nav-link {
@@ -6009,6 +6018,9 @@ span {
 }
 
 @media (min-width: 3000px) {
+    .banner-left {
+        top: 90%;
+    }
     .banner_image_combo img {
         top: 260px !important;
         height: calc(100% - 260px);
