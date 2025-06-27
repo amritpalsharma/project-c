@@ -708,7 +708,7 @@ input:checked+.slider:before {
     display: inline-block !important;
   } */
 
-.form-label {
+.form-label, .login_user_popup p  {
     font-size: 18px;
     font-weight: 400;
 }
@@ -2061,7 +2061,7 @@ select.form-select.custom-select1 {
         }
     }
 
-    .form-label {
+    .form-label, .login_user_popup p {
         font-size: 16px;
     }
 
