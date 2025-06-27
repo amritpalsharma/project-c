@@ -345,7 +345,7 @@ a.premium-edit_btn {
 }
 
 @media (min-width: 1600px) and (max-width: 2999px) {
-  .card-billing {
+  .card-billing, .p_size h2.card-title {
     font-size: 28px !important;
   }
 
@@ -376,7 +376,7 @@ a.premium-edit_btn {
 
 
 @media (min-width: 3000px) {
-  .card-billing {
+  .card-billing, .p_size h2.card-title {
     font-size: 35px !important;
   }
 
