@@ -157,7 +157,7 @@ export class EditPersonalDetailsComponent implements OnInit {
         this.custom_club = custom_club_info.club_name;
         this.custom_team = custom_club_info.team_name;
       }
-      
+
       // this.currentClubId = this.user.meta.pre_club_id || '';
       // this.loadTeams(this.currentClubId);
       // console.info('Function to get times is called');
@@ -541,15 +541,22 @@ export class EditPersonalDetailsComponent implements OnInit {
     this.searchedClubs = [...this.playerClubsListing];
   }
 
-  filterClubs(event: any) {
+  filterClubs(event: KeyboardEvent) {
 
-    const query = this.clubSearch.toLowerCase(); // no trim()
+    let query = this.clubSearch.toLowerCase(); // no trim()
 
-    if (!query) {
-      this.filteredClubs = [];
-      return;
+    console.log(event.key);  // This will print the key being pressed, e.g., " " for space
+    // if (!query) {
+    //   this.filteredClubs = [];
+    //   return;
+    // }
+    // console.warn(this.playerClubsListing)
+    // Special handling for space
+    console.log('query is ', query);
+    if (event.key === ' ' || event.key === 'Spacebar') {
+      query = query + ' ';
+      console.log('query is with space', query);
     }
-    console.warn(this.playerClubsListing)
 
     this.searchedClubs = this.playerClubsListing.filter((club: any) =>
       club.club_name.toLowerCase().includes(query.toLowerCase())
