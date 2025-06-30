@@ -3,16 +3,18 @@
   <div class="chat_box">
     <div class="p-3 w-100">
       <div>
-        <h4 class="text-center mb-3 title-text">{{ 'inviteTalnetsTo' | translate }} {{'eventName' | translate}} {{
+        <h4 class="text-center mb-1 title-text">{{ 'inviteTalnetsTo' | translate }} {{'eventName' | translate}} {{
           'sighting' | translate }}</h4>
       </div>
 
       <div class="close-img" (click)="close()">
+        <img *ngIf='theme!="dark"' src="../../../../assets/images/carbon_close-outline-light.svg" alt="">
+        <img *ngIf='theme=="dark"' src="../../../../assets/images/carbon_close-outline.svg" alt="">
       </div>
     </div>
 
     <div class="inbox-body">
-      <div class="text-center w-100 py-1 px-3 body-background">
+      <div class="text-center w-100 py-2 px-3 body-background border_color_light">
         <mat-form-field class="example-chip-list inbox-wrapper bg-color-2 w-100">
           <!-- <mat-label>To:</mat-label> -->
           <!-- <span>To:</span> -->
@@ -80,7 +82,10 @@
       <div>
         <h4 class="text-center mb-3 title-text">{{ 'peopleJoining' | translate }}</h4>
       </div>
-      <div class="close-img" (click)="close()"></div>
+      <div class="close-img" (click)="close()">
+        <img *ngIf='theme!="dark"' src="../../../../assets/images/carbon_close-outline-light.svg" alt="">
+        <img *ngIf='theme=="dark"' src="../../../../assets/images/carbon_close-outline.svg" alt="">
+      </div>
     </div>
 
     <div class="inbox-body" style="max-height: 450px !important; overflow: auto;">

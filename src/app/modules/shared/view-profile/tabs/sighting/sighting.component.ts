@@ -145,7 +145,7 @@ export class SightingComponent {
     }
   }
 
-  
+
   viewSight(id: any) {
     this.view = 'detail';
     this.isLoading = true;
@@ -241,13 +241,18 @@ export class SightingComponent {
 
   navigateToChat() {
     localStorage.setItem('otherUserData', '');
-    console.log('User',this.user)
+    console.log('User', this.user)
     // return;
-    if (this.user.meta.profile_image != '' && this.user.meta.profile_image != undefined) {
-      this.user.meta.profile_image = this.user.meta.profile_image;
-    }
+    // if (this.user.meta.profile_image != '' && this.user.meta.profile_image != undefined) {
+    //   this.user.meta.profile_image = this.user.meta.profile_image;
+    // }
     this.loggedInUser = JSON.parse(this.loggedInUser);
     const role = this.loggedInUser.role_name.toLowerCase();
+    let name_of_chat_user = this.user.first_name + ' ' + this.user.last_name;
+    this.currentUserRole = this.currentUserRole.toLowerCase();
+    // if (this.currentUserRole == 'club' || this.currentUserRole == 'klubb' || this.currentUserRole == 'klub' || this.currentUserRole == 'clube') {
+    // }
+    name_of_chat_user = this.user?.current_club_name;
     // console.info('role is ',role);
     if (this.currentUserRole == 'club' || this.currentUserRole == 'klubb' || this.currentUserRole == 'klub' || this.currentUserRole == 'Clube' && this.user.club_logo != '' && this.user.club_logo != undefined) {
       this.user.meta.profile_image = this.user.club_logo;
@@ -262,13 +267,13 @@ export class SightingComponent {
 
       const userData = {
         id: this.user.id,
-        name: this.user.first_name + ' ' + this.user.last_name,
+        name: name_of_chat_user,
         email: this.user.email,
         photoUrl: this.baseUrl + this.user.club_logo,
-        message:'Message From Sight Event'
+        message: 'Message From Sight Event'
       };
 
-      console.log('ChatUser',userData);
+      console.log('ChatUser', userData);
       let tempUser = JSON.stringify(userData);
 
       localStorage.setItem('otherUserData', tempUser);

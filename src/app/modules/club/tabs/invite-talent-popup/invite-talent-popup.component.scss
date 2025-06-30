@@ -1,10 +1,10 @@
 .close-img{
-    background-image: url(../../../../../assets/images/carbon_close-outline.png);
-    background-size: cover;
-    width: 35px;
-    height: 35px;
-    border: none;
-    padding: 0px;
+    // background-image: url(../../../../../assets/images/carbon_close-outline.png);
+    // background-size: cover;
+    // width: 35px;
+    // height: 35px;
+    // border: none;
+    // padding: 0px;
     position: absolute;
     right: 17px;
     top: 15px;
@@ -153,4 +153,17 @@
 
   .blur{
     opacity: .4;
+  }
+  .border_color_light {
+    border-top: 1px solid #D9D9D9 !important;
+    border-bottom: 1px solid #D9D9D9 !important;
+  }
+  .border_color_light {
+    ::ng-deep {
+      .mdc-text-field {
+        padding: 3px 16px !important;
+        border-radius: 50px !important;
+        border: 0 !important;
+      }
+    }
   }

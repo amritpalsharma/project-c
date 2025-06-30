@@ -481,10 +481,15 @@ export class ViewProfileComponent implements OnInit {
     // console.log('this.user.this.user',this.user);
     // return;
     if (this.user) {
+      let name_of_chat_user = this.user.first_name + ' ' + this.user.last_name;
+      this.currentUserRole = this.currentUserRole.toLowerCase();
+      if (this.currentUserRole == 'club' || this.currentUserRole == 'klubb' || this.currentUserRole == 'klub' || this.currentUserRole == 'clube') {
+        name_of_chat_user = this.user?.current_club_name;
+      }
 
       const userData = {
         id: this.user.id,
-        name: this.user.first_name + ' ' + this.user.last_name,
+        name: name_of_chat_user,
         email: this.user.email,
         photoUrl: this.baseUrl + this.user.meta.profile_image
       };

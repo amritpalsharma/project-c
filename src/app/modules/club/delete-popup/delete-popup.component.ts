@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { WebPages } from '../../../services/webpages.service';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -10,7 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class DeletePopupComponent {
 
-  constructor(public dialogRef: MatDialogRef<DeletePopupComponent>, private webPages: WebPages, private translateService: TranslateService) {
+  constructor(public dialogRef: MatDialogRef<DeletePopupComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private webPages: WebPages, private translateService: TranslateService) {
 
   }
 
@@ -18,11 +18,11 @@ export class DeletePopupComponent {
   fromPage: string = '';
   type: string = '';
   galleryText: string = '';
-  theme:string=localStorage.getItem('theme') || 'light';
+  theme: string = localStorage.getItem('theme') || 'light';
 
   ngOnInit(): void {
     // this.theme = localStorage.getItem('theme');
-    // this.fromPage = this.data.from_page;
+    this.fromPage = this.data.from_page;
     // this.type = this.data.type==='video' ? 'video' : 'photo';
     this.webPages.languageId$.subscribe((data) => {
       this.mainText = this.getJsonTranslations();

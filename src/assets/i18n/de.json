@@ -93,7 +93,7 @@
   "editCoverPhoto": "Profilfoto bearbeiten",
   "photos": "Fotos",
   "photo": "Foto",
-  "addPhotos": "Fotos hinzufügen",
+  "addPhotos": "Foto hinzufügen",
   "videos": "Videos",
   "addVideo": "Video hinzufügen",
   "accountSettings": "Account Einstellungen",
@@ -771,7 +771,7 @@
   "enterADateRange": "Eingabe eines Datumsbereichs",
   "displayFreq:": "Anzeigefrequenz:",
   "createAndLaunch": "erstellen und starten",
-  "typeHere": "Tippen Sie hier...",
+  "typeHere": "Tippe hier...",
   "startDate": "Startdatum",
   "endDate": "Enddatum",
   "adminPopupText": "Ist ein Popup einmal gelöscht, kann dies nicht mehr rückgängig gemacht werden.",
@@ -945,7 +945,7 @@
     "free": "Gratis"
   },
   "editors": {
-    "placeholder": "Tippen Sie hier..."
+    "placeholder": "Tippe hier..."
   },
   "tooltip": {
     "totalUsers": "Gesamte Benutzer: {{count}}",

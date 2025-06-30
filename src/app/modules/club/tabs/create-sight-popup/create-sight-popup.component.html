@@ -60,7 +60,7 @@
     </div>
 
     <div class="row mt-4">
-      <div class="form-group col-lg-12 mb-4">
+      <div class="form-group col-lg-12 mb-4 d-none">
         <label for="talent" class="code-text">{{ 'inviteTalent' | translate }}</label>
         <div class="select-talent">
           <input type="text" id="talent" class="cupen-btn d-flex justify-content-between code-text w-100"
@@ -124,7 +124,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-12 mb-4 user_chip_wrapper">
+      <div class="col-lg-12 mb-4 user_chip_wrapper d-none">
         <div class="user-chip" *ngFor="let user of users">
           <span class="user-chip_image">
             <img src=" assets/images/1.png" *ngIf="!user.meta.profile_image_path" alt="usre-image">

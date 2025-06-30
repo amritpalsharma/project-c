@@ -46,6 +46,7 @@ export class MembershipComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   pageTitle: string = '';
   cancelConfirmationMsg: string = '';
+  isLoading: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -80,7 +81,7 @@ export class MembershipComponent {
   getUserPurchases(): void {
     const pageNumber = this.currentPage != 0 ? this.currentPage : 1;
     const pageSize = this.pageSize;
-
+    this.isLoading = true;
     let lang = localStorage.getItem('lang_id');
 
     this.scoutService.getPurchaseData(pageNumber, pageSize, lang).subscribe(response => {
@@ -88,11 +89,13 @@ export class MembershipComponent {
         this.userPurchases = response.data.purchaseHistory;
         this.totalItems = response.data.totalCount; // Assuming API returns the total number of purchases
         console.log(this.userPurchases)
+
       } else {
         this.userPurchases = [];
-         this.totalItems = 0;
+        this.totalItems = 0;
         console.error('Invalid API response:', response);
       }
+      this.isLoading = false;
     }, error => {
       console.error('Error fetching user purchases:', error);
     });
@@ -128,39 +131,39 @@ export class MembershipComponent {
     this.scoutService.getUserPlans().subscribe(response => {
       if (response && response.status && response.data) {
         this.userPlans = response.data.packages;
-        if(this.userPlans.premium[0] && this.userPlans.premium[0] != undefined){
+        if (this.userPlans.premium[0] && this.userPlans.premium[0] != undefined) {
           this.premium = this.userPlans.premium[0];
           this.ispremium = this.premium ? true : false;
         }
-         if(this.userPlans.premium[1] && this.userPlans.premium[1] != undefined){
+        if (this.userPlans.premium[1] && this.userPlans.premium[1] != undefined) {
           this.premium = this.userPlans.premium[1];
           this.ispremium = this.premium ? true : false;
         }
         this.premium.count = this.userPlans.premium.length;
 
-        if(this.userPlans.booster[0] && this.userPlans.booster[0] != undefined){
+        if (this.userPlans.booster[0] && this.userPlans.booster[0] != undefined) {
           this.booster = this.userPlans.booster[0];
           this.isbooster = this.booster ? true : false;
         }
-        if(this.userPlans.booster[1] && this.userPlans.booster[1] != undefined){
+        if (this.userPlans.booster[1] && this.userPlans.booster[1] != undefined) {
           this.booster = this.userPlans.booster[1];
           this.isbooster = this.booster ? true : false;
         }
         this.booster.count = this.userPlans.booster.length;
         // this.demo = this.userPlans.demo[0];
-        if(this.userPlans.country && this.userPlans.country != undefined){
+        if (this.userPlans.country && this.userPlans.country != undefined) {
           this.country = this.userPlans.country;
           this.iscountry = this.country ? true : false;
           this.country.count = this.userPlans.country.length;
           // console.log('this.country',this.country)
         }
-       
-        
-    
+
+
+
         // this.isdemo = this.demo ? true : false;
-      
-       
-       
+
+
+
         // this.demo.count = this.userPlans.demo.length;
         console.log('userPlans', this.userPlans)
       } else {
@@ -248,11 +251,11 @@ export class MembershipComponent {
         tax_percentage: userPurchase.tax_percentage,
         tax: userPurchase.tax_amount,
         created_at: userPurchase.created_at,
-        package_price:userPurchase.package_price,
-        proration_amount:userPurchase.proration_amount,
-        coupon_used:userPurchase.coupon_used,
-        coupon_discount:userPurchase.coupon_discount,
-        discount_amount:userPurchase.discount_amount,
+        package_price: userPurchase.package_price,
+        proration_amount: userPurchase.proration_amount,
+        coupon_used: userPurchase.coupon_used,
+        coupon_discount: userPurchase.coupon_discount,
+        discount_amount: userPurchase.discount_amount,
       }
     });
   }
@@ -453,7 +456,7 @@ export class MembershipComponent {
     });
   }
   getJsonTranslations() {
-    this.translateService.get(['membership','cancelConfirmationMsg']).subscribe((translations) => {
+    this.translateService.get(['membership', 'cancelConfirmationMsg']).subscribe((translations) => {
       this.pageTitle = translations['membership'];
       this.cancelConfirmationMsg = translations['cancelConfirmationMsg'];
       this.titleService.setTitle(this.pageTitle);
@@ -462,23 +465,28 @@ export class MembershipComponent {
   }
 
 
-    openCustomerPortal(): void {
-      this.paymentService.generateLinkAndNavigate().pipe(take(1)).subscribe({
-        next: (response: any) => {
-          if (response?.data) {
-            if (response?.data?.[0]?.url?.trim()) {
-              // window.location.href = response?.data?.[0]?.url?.trim(); // ✅ Redirect
-              window.open(response?.data?.[0]?.url?.trim());
-            }
-
-          } else {
-            console.error('URL not found in response');
+  openCustomerPortal(): void {
+    this.paymentService.generateLinkAndNavigate().pipe(take(1)).subscribe({
+      next: (response: any) => {
+        if (response?.data) {
+          if (response?.data?.[0]?.url?.trim()) {
+            // window.location.href = response?.data?.[0]?.url?.trim(); // ✅ Redirect
+            window.open(response?.data?.[0]?.url?.trim());
           }
-        },
-        error: (err: any) => {
-          console.error('Failed to generate customer portal link:', err);
+
+        } else {
+          console.error('URL not found in response');
         }
-      });
-    }
+      },
+      error: (err: any) => {
+        console.error('Failed to generate customer portal link:', err);
+      }
+    });
+  }
+
+  capitalizeFirstLetter(value: string): string {
+    if (!value) return '';
+    return value.charAt(0).toUpperCase() + value.slice(1);
+  }
 
 }

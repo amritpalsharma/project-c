@@ -513,9 +513,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   openHighlight() {
-    this.isHighlightClick = false;
-    this.getGalleryData();
-    setTimeout(() => {
+    // this.isHighlightClick = false;
+    // this.getGalleryData();
+    // setTimeout(() => {
       const dialogRef = this.dialog.open(EditHighlightsComponent, {
         width: '800px',
         panelClass: 'edit_highlights_popup',
@@ -530,7 +530,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.getHighlightsData();
         this.isHighlightClick = true;
       });
-    }, 1500);
+    // }, 1500);
 
   }
 
@@ -908,6 +908,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   openDeleteDialog(): void {
     const dialogRef = this.dialog.open(DeletePopupComponent, {
       width: '600px',
+      data: {
+        from_page: 'coverImageDelete'
+      }
     });
 
     dialogRef.afterClosed().subscribe((result) => {
@@ -915,7 +918,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         // If the user confirms, proceed with deletion
         this.deleteCoverImage();
       } else {
-        this.toastr.info(this.coverImageDeletionCanceled, this.Canceled);
+        // this.toastr.info(this.coverImageDeletionCanceled, this.Canceled);
         console.log('User canceled the delete');
       }
     });
