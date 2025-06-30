@@ -229,7 +229,8 @@
                       <div class="booster_text" *ngIf="player.package_name == 'Booster'">{{ 'boosted' | translate}}
                       </div>
                     </div>
-                    <div class="player__name">{{player?.first_name?? ''}} {{player?.last_name?? ''}}</div>
+                    <div class="player__name" *ngIf="player.role_name != 'Club'">{{player?.first_name?? ''}} {{player?.last_name?? ''}}</div>
+                    <div class="player__name" *ngIf="player.role_name == 'Club'">{{player?.current_club_name	?? ''}}</div>
                   </div>
                 </div>
               </ng-container>

@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrl: './not-found.component.scss'
 })
 export class NotFoundComponent {
+  
+  ngOnInit() {
+    document.body.classList.add('static-common-banner');
+  }
 
+  ngOnDestroy() {
+    document.body.classList.remove('static-common-banner');
+  }
 }

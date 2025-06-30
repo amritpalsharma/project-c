@@ -20,7 +20,7 @@ body {
 
 .thankyou_text {
     text-align: center;
-    // max-width: 600px;
+    max-width: 600px;
     margin: 0 auto;
 }
 
@@ -90,19 +90,22 @@ a.btn.btn-register {
         margin: 0 auto;
     }
 }
-::ng-deep .dark-theme .check-image-light{
+
+::ng-deep .dark-theme .check-image-light {
     display: none;
 }
-::ng-deep .light-theme .check-image-dark{
+
+::ng-deep .light-theme .check-image-dark {
     display: none;
 }
 
 
 @media (min-width: 3000px) {
-.thankyou_text {
-    // max-width: 1000px;
-}
-a.btn.btn-register {
-    padding: 18px 70px !important;
-}
+    .thankyou_text {
+        max-width: 1000px;
+    }
+
+    a.btn.btn-register {
+        padding: 18px 70px !important;
+    }
 }
