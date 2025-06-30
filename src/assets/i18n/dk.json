@@ -1374,5 +1374,6 @@
   "404PageNotFound": "Siden blev ikke fundet",
   "addNewFemalePlayer": "Tilføj ny spiller (kvinde)",
   "crop": "Beskær",
-  "coverImageDelete" : "Er du sikker på, at du vil slette dit forsidebillede?"
+  "coverImageDelete" : "Er du sikker på, at du vil slette dit forsidebillede?",
+  "noPortfolioRecordFound": "Der er endnu ikke tilføjet nogen talenter til porteføljen."
 }

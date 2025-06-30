@@ -1456,5 +1456,6 @@
   "404PageNotFound": "Página no encontrada",
   "addNewFemalePlayer": "Añadir nueva jugadora",
   "crop": "Recortar",
-  "coverImageDelete" : "¿Estás seguro de que quieres eliminar tu imagen de portada?"
+  "coverImageDelete" : "¿Estás seguro de que quieres eliminar tu imagen de portada?",
+  "noPortfolioRecordFound": "Aún no se han añadido talentos al portafolio."
 }

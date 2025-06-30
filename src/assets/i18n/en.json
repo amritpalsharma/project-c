@@ -1421,5 +1421,6 @@
   "404PageNotFound":"Page not found",
   "addNewFemalePlayer": "Add new female player",
   "crop": "Crop",
-  "coverImageDelete" : "Are you sure you want to delete your cover image?"
+  "coverImageDelete" : "Are you sure you want to delete your cover image?",
+  "noPortfolioRecordFound": "No talents have been added to the portfolio yet."
 }

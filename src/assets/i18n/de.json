@@ -1514,5 +1514,6 @@
   "404PageNotFound":"Seite nicht gefunden",
   "addNewFemalePlayer": "Neue Spielerin hinzufügen",
   "crop": "Zuschneiden",
-  "coverImageDelete" : "Bist du sicher, dass du dein Titelbild löschen möchtest?"
+  "coverImageDelete" : "Bist du sicher, dass du dein Titelbild löschen möchtest?",
+  "noPortfolioRecordFound": "Bisher sind keine Talente dem Portfolio hinzugefügt."
 }

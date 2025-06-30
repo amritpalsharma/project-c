@@ -453,11 +453,11 @@ export class HeaderComponent {
     const url = this.router.url;
 
     if (url.toLowerCase().includes('/view/')) {
-      const role = url.split('/')[2];
+      const role = this.loggedInUser.role_name.toLowerCase();
       this.router.navigate([`${role}/setting`], { fragment });
       // console.log("'/view/' found in URL (case-insensitive check)");
     } else {
-      const role = url.split('/')[1];
+      const role = this.loggedInUser.role_name.toLowerCase();
       this.router.navigate([`/${role}/setting`], { fragment });
     }
   }
@@ -796,7 +796,6 @@ export class HeaderComponent {
 
   handleNotiificationClick(notification: any) {
 
-
     if (!this.isUserVerified) {
       this.showVerificationPopup(false);
     }
@@ -817,7 +816,7 @@ export class HeaderComponent {
         console.log(role);
         this.router.navigate([`/${role}/chat`]);
       }
-      else if (notification.event === 'userVerified' || notification.event === 'userRejected' || notification.event === 'scoutAddPlayer' || notification.event === 'inviteTalent' || notification.event === 'acceptScoutRequest' || notification.event === 'rejectScoutRequest' || notification.event === 'acceptClubInvite' || notification.event === 'rejectClubInvite') {
+      else if (notification.event === 'userVerified' || notification.event === 'userRejected' || notification.event === 'scoutAddPlayer' || notification.event === 'inviteTalent' || notification.event === 'acceptScoutRequest' || notification.event === 'rejectScoutRequest' || notification.event === 'acceptClubInvite' || notification.event === 'rejectClubInvite' || !notification.senderRole) {
         let fragment = 'notifications';
         this.router.navigate([`/${role}/setting`], { fragment });
       }

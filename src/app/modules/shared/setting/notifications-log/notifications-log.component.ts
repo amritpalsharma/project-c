@@ -322,11 +322,13 @@ export class NotificationsLogComponent {
 
 
   handleNotiificationClick(notification: any) {
+    if(!notification.senderRole){
+      return;
+    }
     if (!this.isUserVerified) {
       this.showVerificationPopup(false);
     }
     else {
-
       console.log(notification)
       let role = (this.loggedInUser?.role_name || '').toString().toLowerCase();
 
