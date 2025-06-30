@@ -180,6 +180,10 @@
 
 }
 
+.dashboard_tabs_add_btn {
+    padding: 7px 10px;
+    border-radius: 10px;
+}
 .main-template {
     color: black;
 }
@@ -354,6 +358,9 @@ td.cdk-column-Download.mat-column-Download svg {
 
 
 @media (max-width: 767px) {
+    .dashboard_tabs_add_btn {
+        font-size: 16px;
+    }
     .performance_card_hedr .btn-outline-white {
         font-size: 0 !important;
     }
@@ -387,13 +394,19 @@ td.cdk-column-Download.mat-column-Download svg {
 
 @media (min-width: 1600px) and (max-width: 2999px) {
     .performance_card_hedr .btn {
-        font-size: 22px !important;
+        font-size: 24px !important;
+    }
+    .dashboard_tabs_add_btn {
+        font-size: 24px;
     }
 }
 
 @media (min-width: 3000px) {
     .performance_card_hedr .btn {
         font-size: 28px !important;
+    }
+    .dashboard_tabs_add_btn {
+        font-size: 28px;
     }
 }
 
