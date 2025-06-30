@@ -151,8 +151,8 @@
   </div>
   <div class="bottom_box">
     <ul class="sidebar_menu">
-      <li><a [matTooltip]="!sidebarOpen ? ('signOut' | translate) : ''" matTooltipPosition="right"
-          (click)="isUserVerified ? logout() : showVerificationPopup()" routerLinkActive="active">
+      <li><a [matTooltip]="sidebarOpen ? ('signOut' | translate) : ''" matTooltipPosition="right"
+          (click)="logout()" routerLinkActive="active">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
             class="my-svg-icon">
             <path fill-rule="evenodd" clip-rule="evenodd"

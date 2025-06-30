@@ -132,11 +132,22 @@ export class PlanComponent implements OnInit, OnDestroy {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result == 'proceed_to_checkout_without_coupon') {
+      // 30-06-25 code is not working
+      // if (result == 'proceed_to_checkout_without_coupon') {
+      //   this.redirectToCheckout(planId);
+      // } else if (result && result != null) {
+      //   this.isCouponApplied = true; // Show that the coupon has been applied
+      //   this.couponCode = result; // Store the coupon code entered by the user
+      //   this.redirectToCheckout(planId);
+      // }
+
+      if (result && typeof result.coupon_code != undefined && result.coupon_code != '') {
+        this.isCouponApplied = true;
+        this.couponCode = result.coupon_code;
         this.redirectToCheckout(planId);
-      } else if (result && result != null) {
-        this.isCouponApplied = true; // Show that the coupon has been applied
-        this.couponCode = result; // Store the coupon code entered by the user
+      } else if (result == 'buy_plan') {
+        this.isCouponApplied = false;
+        this.couponCode = '';
         this.redirectToCheckout(planId);
       }
     });
@@ -149,7 +160,8 @@ export class PlanComponent implements OnInit, OnDestroy {
 
     try {
       const response = await this.paymentService.createCheckoutSession(planId, '', this.couponCode).toPromise();
-
+      // console.info('response', response);
+      // return;
       if (response?.data?.payment_intent?.id) {
         this.toastr.clear();
 
@@ -201,9 +213,9 @@ export class PlanComponent implements OnInit, OnDestroy {
 
             // Group plans by category
             if (key.toLowerCase().includes('premium_talent')) {
-              
 
-            }else if (key.toLowerCase().includes('premium')) {
+
+            } else if (key.toLowerCase().includes('premium')) {
               this.premiumPlans = res[key];
               this.premiumPlans.isYearly = res[key].active_interval == 'yearly';
 

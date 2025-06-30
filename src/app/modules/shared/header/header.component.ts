@@ -368,6 +368,38 @@ export class HeaderComponent {
 
 
   toggleDropdown() {
+    let isDeleted: any = localStorage.getItem('isDeleted');
+    if (isDeleted) {
+      let jsonData = localStorage.getItem("userData");
+      let userId;
+      if (jsonData) {
+        let userData = JSON.parse(jsonData);
+        userId = userData.id;
+        if (localStorage.getItem("lang") == '' || localStorage.getItem("userData") == null && userData.lang != '') {
+          let dbLanguage = this.getSlugFromID(userData.lang);
+          if (dbLanguage != '') {
+            this.ChangeLang(dbLanguage);
+            this.lang = dbLanguage;
+          }
+        }
+        // console.log('userData => ',userData);
+      }
+      else {
+        console.log("No data found in localStorage.");
+      }
+
+      // let userRole = localStorage.getItem("userRole");
+
+      // Find the role based on the id
+
+
+      // this.role = this.roles.find((role: any) => role.id == userRole);
+      let langId = localStorage.getItem('lang_id');
+      this.notifications = []
+      this.fetchNotifications(userId, langId);
+      // this.fetchNotifications
+      localStorage.removeItem('isDeleted');
+    }
     this.notificationSeen = true;
     this.allNotificationSeen();
     this.unseenCount = 0;
@@ -475,7 +507,7 @@ export class HeaderComponent {
     let selectedLandId = selectedLang ? selectedLang.id : 1;
     localStorage.setItem('lang_id', selectedLandId);
     this.translateService.use(selectedLanguage)
-    this.webPages.updateData(selectedLandId);
+    // this.webPages.updateData(selectedLandId);
     let jsonData = localStorage.getItem("userData");
     let userId;
     if (jsonData) {
@@ -498,36 +530,6 @@ export class HeaderComponent {
     }
   }
 
-  logout240625() {
-    let jsonData = localStorage.getItem("userData");
-    let userId;
-    if (jsonData) {
-      let userData = JSON.parse(jsonData);
-      userId = userData.id;
-    }
-    let lang_id = localStorage.getItem('lang_id');
-    let cookieConsentTimestamp = localStorage.getItem('cookieConsentTimestamp');
-    let cookiesent = localStorage.getItem('cookieConsent');
-
-    console.log(userId);
-    this.socketService.disconnectUser(userId);
-    let theme = localStorage.getItem('theme') || 'light';
-    let lang = localStorage.getItem('lang') || this.globalSettings.getLanguage();
-    let domainLang = this.globalSettings.getLanguage();
-    if (domainLang != '' && localStorage.getItem('lang') == '' || localStorage.getItem('lang') == undefined) {
-      lang = domainLang;
-    }
-    localStorage.clear();
-    localStorage.setItem('cookieConsent', cookiesent + '');
-    localStorage.setItem('cookieConsentTimestamp', cookieConsentTimestamp + '');
-    localStorage.setItem('theme', theme);
-    localStorage.setItem('lang', lang);
-    localStorage.setItem('lang_id', lang_id + '');
-    this.authService.logout();
-    // setTimeout(() => {
-    // window.location.reload();
-    // }, 100);
-  }
 
   logout() {
     const jsonData = localStorage.getItem("userData");

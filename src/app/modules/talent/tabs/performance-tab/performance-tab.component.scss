@@ -98,7 +98,7 @@
         background: none;
         border: 1px solid #E7E7E7;
         padding: 7px 10px;
-        border-radius: 4px;
+        border-radius: 10px;
         color: #a7a7a7;
         display: flex;
         align-items: center;
@@ -285,7 +285,7 @@ select.form-control {
     background: none;
     border: 1px solid #E7E7E7;
     padding: 7px 10px;
-    border-radius: 4px;
+    border-radius: 10px;
     color: #a7a7a7;
     display: flex;
     align-items: center;
@@ -532,10 +532,16 @@ tr.table_underline {
 	    height: 42px;
 	    object-fit: contain;
 	}
-    .edit_button-2 svg, .new_performance button svg {
+    .edit_button-2 svg {
         width: 30px !important;
         height: 40px !important;
         padding-bottom: 4px;
+    }
+    .new_performance button {
+      font-size: 24px;
+      svg {
+        width: 26px;
+      }
     }
 }
 
@@ -557,8 +563,14 @@ tr.table_underline {
 	    height: 50px !important;
 	    object-fit: contain;
 	}
-    .edit_button-2 svg, .new_performance button svg {
+    .edit_button-2 svg {
         width: 38px !important;
         height: 38px !important;
+    }
+    .new_performance button {
+        font-size: 28px;
+        svg {
+            width: 26px;
+        }
     }
 }

@@ -115,7 +115,7 @@ export class NotificationsLogComponent {
     if (notification.event === 'sendMessage') {
       this.router.navigate([`/${role}/chat`]);
     }
-    else if (notification.event === 'userVerified' || notification.event === 'userRejected' || notification.event === 'scoutAddPlayer' || notification.event === 'inviteTalent') {
+    else if (notification.event === 'userVerified' || notification.event === 'userRejected') {
       let fragment = 'notifications';
       this.router.navigate([`/${role}/setting`], { fragment });
     }
@@ -229,6 +229,10 @@ export class NotificationsLogComponent {
     messageDialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
         if (result.action == "delete-confirmed") {
+          let isDeleted : any = localStorage.getItem('isDeleted');
+          if(!isDeleted){
+            localStorage.setItem('isDeleted', 'true');
+          }
           this.deleteActivity();
         }
       }

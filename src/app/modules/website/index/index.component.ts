@@ -8,6 +8,8 @@ import { AuthService } from '../../../services/auth.service';
 import { ThemeService } from '../../../services/theme.service';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
 import { isNumber } from 'util';
+import { Subject, takeUntil } from 'rxjs';
+
 declare var bootstrap: any; // Declare bootstrap
 
 export interface ClubMember {
@@ -333,24 +335,38 @@ export class IndexComponent {
   ngOnInit() {
     this.getLangslugByID(this.currentLang);
     this.globalSettings.indexFunctionCall$.subscribe((data) => {
+      console.log('Global Settings IndexFunction Call');
       this.indexFunction(); // Call the function when event is received
     });
     // Initially, all ads are visible
     this.isUserLoggedIn = this.authService.isLoggedIn();
     this.adVisible = [true, true, true, true, true];
     // alert(localStorage.getItem('lang'));
-    this.webPages.languageId$.subscribe((data) => {
-      // if(confirm('theme is '+this.currentTheme)){
-      this.getPageDynamicData(data);
-      this.getLangslugByID(data);
-      // this.showContent(this.selectedContent);
-    });
+    // this.webPages.languageId$.subscribe((data) => {
+    //   // if(confirm('theme is '+this.currentTheme)){
+    //   this.getPageDynamicData(data);
+    //   this.getLangslugByID(data);
+    //   // this.showContent(this.selectedContent);
+    // });
+    this.webPages.languageId$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(data => {
+        this.getPageDynamicData(data); // ✅ This will stop running after component is destroyed
+        this.getLangslugByID(data); // ✅ This will stop running after component is destroyed
+      });
 
     this.globalSettings.indexFunctionCall$.subscribe(() => {
       this.showContent(this.selectedContent);
     });
     let selectedLang = localStorage.getItem('lang');
     // console.warn('In Index component LocalStorage Language selected = ' + selectedLang)
+  }
+
+  destroy$ = new Subject<void>();
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   closeAd(object: any) {
@@ -526,6 +542,7 @@ export class IndexComponent {
     }
     if (!isNaN(Number(langID))) {
       this.currentLang = slug;
+      console.info('set in index this.currentLang', this.currentLang);
     }
     return slug;
   }

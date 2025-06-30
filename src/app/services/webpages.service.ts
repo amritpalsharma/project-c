@@ -24,6 +24,7 @@ export class WebPages {
     languageId$ = this.languageId.asObservable(); // Expose as observable
 
     updateData(data: string) {
+        // console.info('Cant HIT Frontend API From HERE');
         this.languageId.next(data); // Update the shared data
     }
 

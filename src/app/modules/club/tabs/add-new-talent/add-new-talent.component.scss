@@ -291,3 +291,28 @@
   left: unset !important;
   margin-left: 0 !important;
 }
+
+
+@media (min-width: 1600px) and (max-width: 2999px) {
+.date-input {
+  .mat-datepicker-input {
+    padding-right: 45px;
+    font-size: 18px !important;
+  }
+  .mat-datepicker-toggle {
+    top: 3px;
+  }
+}
+}
+
+@media (min-width: 3000px) {
+.date-input {
+  .mat-datepicker-input {
+    padding-right: 50px;
+    font-size: 22px !important;
+  }
+  .mat-datepicker-toggle {
+    top: 3px;
+  }
+}
+}

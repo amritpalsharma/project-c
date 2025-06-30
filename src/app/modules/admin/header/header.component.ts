@@ -341,6 +341,26 @@ export class HeaderComponent {
   }
 
   toggleDropdown() {
+    let isDeleted: any = localStorage.getItem('isDeleted');
+    if (isDeleted) {
+      let jsonData = localStorage.getItem("userData");
+      let userId;
+      if (jsonData) {
+        let userData = JSON.parse(jsonData);
+        userId = userData.id;
+      }
+      else {
+        console.log("No data found in localStorage.");
+      }
+
+      let langId = localStorage.getItem('lang_id');
+
+      this.notifications = []
+      this.fetchNotifications(userId, langId);
+      // this.fetchNotifications
+      localStorage.removeItem('isDeleted');
+    }
+
     this.notificationSeen = true;
     localStorage.setItem('notificationSeen', 'true');
     let jsonData = localStorage.getItem("userData");
@@ -506,7 +526,7 @@ export class HeaderComponent {
       'Talento',
       'Scout'
     ];
-    if(allowedRoles.includes(slugRoute)){
+    if (allowedRoles.includes(slugRoute)) {
       let pageRoute = 'admin/' + slugRoute;
       this.router.navigate([pageRoute, id]);
     }

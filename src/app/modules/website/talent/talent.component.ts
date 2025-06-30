@@ -11,6 +11,7 @@ import { Component } from '@angular/core';
 import { WebPages } from '../../../services/webpages.service';
 import { provideNetlifyLoader } from '@angular/common';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
+import { Subject, takeUntil } from 'rxjs';
 
 
 @Component({
@@ -97,18 +98,36 @@ export class TalentComponent {
     this.isActive3 = savedState2 === 'true' ? true : false;
     this.adVisible = [true, true, true, true, true, true, true];
 
-    this.webPages.languageId$.subscribe((data) => {
-      // alert(data);
-      this.getPageData(data)
-      this.getCurrencyPrice('monthly');
-      this.getCurrencyPrice('yearly');
-      this.custIndex = 1;
-      this.selectedLangSlug = localStorage.getItem('lang') || "en";
-    });
+    // this.webPages.languageId$.subscribe((data) => {
+    //   // alert(data);
+    //   this.getPageData(data)
+    //   this.getCurrencyPrice('monthly');
+    //   this.getCurrencyPrice('yearly');
+    //   this.custIndex = 1;
+    //   this.selectedLangSlug = localStorage.getItem('lang') || "en";
+    // });
+
+    this.webPages.languageId$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(data => {
+        // ✅ This will stop running after component is destroyed
+        this.getPageData(data); 
+        this.getCurrencyPrice('monthly');
+        this.getCurrencyPrice('yearly');
+        this.custIndex = 1;
+        this.selectedLangSlug = localStorage.getItem('lang') || "en";
+      });
 
     this.globalSettings.indexFunctionCall$.subscribe(() => {
       this.ThemeUpdated(); // Call the function when event is received
     });
+  }
+
+  destroy$ = new Subject<void>();
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   advertisementList: any = null;

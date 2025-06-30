@@ -59,7 +59,7 @@ export class TalkService {
       themeFirstTym = 'default_users';
     }
     let storage_theme = localStorage.getItem('theme');
-    console.info('this.currentTheme is ' + this.currentTheme + ' And Storage theme is ' + storage_theme);
+    console.info('this.currentTheme is ' + this.currentTheme + ' And Storage theme is ' + storage_theme, 'And Current User Is ',userData);
     await Talk.ready;
 
     const talkUser = new Talk.User({

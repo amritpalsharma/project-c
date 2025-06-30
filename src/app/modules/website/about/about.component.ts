@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { WebPages } from '../../../services/webpages.service';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-about',
@@ -38,24 +39,24 @@ export class AboutComponent {
     { name: 'Denmark', url: 'https://www.socceryou.dk' }
   ];
   about_hero_heading_txt: string = '';
-  about_hero_heading:string='';
+  about_hero_heading: string = '';
   country_section_title: string = '';
   about_hero_btn_txt: string = '';
   about_hero_btn_link: string = '';
-  about_banner_bg_img: string = '/assets/images/about_page/banner_bg_img.png'; 
+  about_banner_bg_img: string = '/assets/images/about_page/banner_bg_img.png';
   about_banner_img: string = '';
   country_section_banner_img: string = '';
   country_section_banner_img_dark_mode: string = '';
   // advertisementData:any=null;
   advertisementList: any = null;
-  advertisemnet_base_url:string= '';
-  isLoading : boolean = true;
-  btnLoading : boolean = true;
+  advertisemnet_base_url: string = '';
+  isLoading: boolean = true;
+  btnLoading: boolean = true;
   countdown: number = 10;
 
   // isLoading : boolean = true;
-  
-  isActive : any ={
+
+  isActive: any = {
     skyscraper: true,
     wide_skyscraper: true,
     leaderboard: true,
@@ -112,42 +113,57 @@ export class AboutComponent {
   constructor(
     private webPages: WebPages,
     private globalSettings: GlobalSettingsService
-    ) { }
-    ngOnInit(): void {
-      // Initialize form with validation rules
-      this.webPages.languageId$.subscribe((data) => {
-        this.getPageData(data)
-      });
-      this.globalSettings.indexFunctionCall$.subscribe(() => {
-        this.ThemeUpdated(); // Call the function when event is received
-      });
-    }
+  ) { }
+  ngOnInit(): void {
+    // Initialize form with validation rules
+    // this.webPages.languageId$.subscribe((data) => {
+    //   this.getPageData(data)
+    // });
+    this.globalSettings.indexFunctionCall$.subscribe(() => {
+      this.ThemeUpdated(); // Call the function when event is received
+    });
 
-    
-  getPageData(languageId: any){
-    this.webPages.getDynamicContentPage('about_us',languageId).subscribe((res) => {
-      if(res.status){
-          this.about_banner_title = res.data.pageData.about_banner_title;
-          this.about_banner_desc = res.data.pageData.about_banner_desc;
-          this.countries = res.data.pageData.about_country_names;
-          this.country_section_title = res.data.pageData.country_section_title;
-          this.about_hero_heading_txt = res.data.pageData.about_hero_heading_txt;
-          this.about_hero_heading = res.data.pageData.about_hero_heading;
-          this.about_hero_btn_txt = res.data.pageData.about_hero_btn_txt;
-          this.about_hero_btn_link = res.data.pageData.about_hero_btn_link;
-          // this.about_banner_bg_img = res.data.base_url+res.data.pageData.about_banner_bg_img;
-          this.about_banner_img =  res.data.base_url+res.data.pageData.about_banner_img;
-          this.country_section_banner_img=  res.data.base_url+res.data.pageData.country_section_banner_img;
-         
-          this.advertisementData = res.data.advertisementData;
-          this.advertisementList = res.data.allAdsList;
-          // this.advertisementData = [];
-          this.advertisemnet_base_url = res.data.advertisemnet_base_url;
 
-          this.isLoading = false;
-          this.startCountdown();
-        
-        }
+    this.webPages.languageId$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(data => {
+        this.getPageData(data); // ✅ This will stop running after component is destroyed
+      });
+  }
+
+  destroy$ = new Subject<void>();
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+
+
+  getPageData(languageId: any) {
+    this.webPages.getDynamicContentPage('about_us', languageId).subscribe((res) => {
+      if (res.status) {
+        this.about_banner_title = res.data.pageData.about_banner_title;
+        this.about_banner_desc = res.data.pageData.about_banner_desc;
+        this.countries = res.data.pageData.about_country_names;
+        this.country_section_title = res.data.pageData.country_section_title;
+        this.about_hero_heading_txt = res.data.pageData.about_hero_heading_txt;
+        this.about_hero_heading = res.data.pageData.about_hero_heading;
+        this.about_hero_btn_txt = res.data.pageData.about_hero_btn_txt;
+        this.about_hero_btn_link = res.data.pageData.about_hero_btn_link;
+        // this.about_banner_bg_img = res.data.base_url+res.data.pageData.about_banner_bg_img;
+        this.about_banner_img = res.data.base_url + res.data.pageData.about_banner_img;
+        this.country_section_banner_img = res.data.base_url + res.data.pageData.country_section_banner_img;
+
+        this.advertisementData = res.data.advertisementData;
+        this.advertisementList = res.data.allAdsList;
+        // this.advertisementData = [];
+        this.advertisemnet_base_url = res.data.advertisemnet_base_url;
+
+        this.isLoading = false;
+        this.startCountdown();
+
+      }
     });
   }
 
@@ -161,7 +177,7 @@ export class AboutComponent {
       }
     }, 1000);
   }
- 
+
 
   closeAd(object: any) {
 
@@ -204,7 +220,7 @@ export class AboutComponent {
     // this.getArrayItemByIndex(this.accordinCurrentIndex, 'image');
     this.currentTheme = localStorage.getItem('theme') + '';
   }
-  
+
   ngAfterViewInit() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }

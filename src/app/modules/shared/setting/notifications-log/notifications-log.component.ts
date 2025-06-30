@@ -202,6 +202,10 @@ export class NotificationsLogComponent {
     messageDialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
         if (result.action == "delete-confirmed") {
+          let isDeleted : any = localStorage.getItem('isDeleted');
+          if(!isDeleted){
+            localStorage.setItem('isDeleted', 'true');
+          }
           this.deleteActivity();
         }
       }

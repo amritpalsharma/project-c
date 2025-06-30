@@ -114,8 +114,28 @@ export class ChatComponent {
             const userDataString = localStorage.getItem('userData');
             if (userDataString) {
                 this.userData = JSON.parse(userDataString);
+                if (typeof this.userData.role !== undefined && this.userData.role == '2') {
+                    // Club 
+                    if (typeof this.userData.club_logo_path !== undefined) {
+                        this.userData.profile_image_path = this.userData.club_logo_path;
+                    }
+                }
+                // console.info('ProfileImagePathOfCurrentLoggedInUssr', this.userData.profile_image_path);
+                // if (typeof this.userData.profile_image_path === undefined) {
+                //     if (typeof this.userData.profile_image_path === undefined && this.userData?.meta?.profile_image_path != '') {
+                //         this.userData.profile_image_path = this.userData?.meta?.profile_image_path;
+                //     }
+                // }
 
-                // Set up user data for Talk.js
+                const image = this.userData?.profile_image_path;
+                const metaImage = this.userData?.meta?.profile_image_path;
+
+                if (!image && metaImage) {
+                    this.userData.profile_image_path = metaImage;
+                }
+
+
+                console.info('From Chat Component User Shared For Chat', this.userData);                // Set up user data for Talk.js
                 this.user = {
                     id: this.userData.id,
                     name: this.userData.first_name,
