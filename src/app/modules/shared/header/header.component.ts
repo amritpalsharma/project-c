@@ -1,7 +1,7 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { ThemeService } from '../../../services/theme.service';
 import { AuthService } from '../../../services/auth.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { TalentService } from '../../../services/talent.service';
 import { environment } from '../../../../environments/environment';
 import { UserService } from '../../../services/user.service';
@@ -20,6 +20,8 @@ import { TalkService } from '../../../services/talkjs.service';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
 import { MatDialog } from '@angular/material/dialog';
 import { UnverifiedUserComponent } from '../unverified-user/unverified-user.component';
+
+import { Subscription } from 'rxjs';
 
 // LOCALE FOR CALENDAR
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
@@ -121,8 +123,17 @@ export class HeaderComponent {
   UserRole: string = '';
   currentRole: string = '';
   isUserVerified: boolean = false;
+  justNow : string = '';
+
+  langSubscription!: Subscription;
 
   ngOnInit() {
+    this.getJsonTranslations();
+    this.langSubscription = this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
+      this.getJsonTranslations();
+    });
+
+
     const url = this.router.url;
     const role = url.split('/')[1];
 
@@ -201,17 +212,18 @@ export class HeaderComponent {
       this.notificationSeen = false;
       localStorage.setItem('notificationSeen', 'false');
 
+      this.totalNotification = true;
 
       const obj = {
         id: 0,
         image: data.senderProfileImage,
         title: data.senderName,
         content: data.message,
-        time: 'just now',
+        time: this.justNow,
         seen: data.seen,
         senderId: data.senderId,
         shouldAnimate: true,
-        relativeTime: 'just now',
+        relativeTime: this.justNow,
         senderRole: 'talent',
         event: data.event
       };
@@ -489,7 +501,9 @@ export class HeaderComponent {
       this.router.navigate([`${role}/setting`], { fragment });
       // console.log("'/view/' found in URL (case-insensitive check)");
     } else {
-      const role = this.loggedInUser.role_name.toLowerCase();
+      let loggedInUser: any = localStorage.getItem('userData')
+      let currentUser = JSON.parse(loggedInUser);
+      const role = currentUser.role_name.toLowerCase();
       this.router.navigate([`/${role}/setting`], { fragment });
     }
   }
@@ -846,6 +860,12 @@ export class HeaderComponent {
         this.router.navigate([`/view/${role}`, notification.senderId]);
       }
     }
+  }
+
+  getJsonTranslations() {
+    this.translateService.get(['justNow']).subscribe((translations) => {
+      this.justNow = translations['justNow'];
+    })
   }
 
   showVerificationPopup(isVerified: boolean) {

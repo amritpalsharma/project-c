@@ -108,7 +108,7 @@
                     <tr class="mat-row user-empty-tr" *matNoDataRow>
                         <td [attr.colspan]="displayedColumns.length" class="user-empty-td">
                             <div *ngIf="isLoading" class="loader-container d-flex flex-column py-5 align-items-center">
-                                <app-talent-loader [height]="'80px'" [width]="'80px'" [border]="'5px'"></app-talent-loader>
+                                <app-loader [height]="'80px'" [width]="'80px'" [border]="'5px'"></app-loader>
                             </div>
                             <div *ngIf="notifications.length == 0 && !isLoading" style="text-align: center;">
                                 {{ 'noRecordFound' | translate}}

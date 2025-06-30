@@ -41,6 +41,7 @@ export class CreateSightPopupComponent implements AfterViewInit {
     title: "",
     file: ""
   }];
+  isLoading : boolean = false;
 
   uploadedBannerImage: boolean = false;
 
@@ -261,6 +262,9 @@ export class CreateSightPopupComponent implements AfterViewInit {
   }
 
   createSight() {
+    this.isLoading = true;
+    // alert('done');
+    // return;
     this.submitButtonClicked = true;
     const formData = new FormData();
     let { date, time } = this.getDateTimeFormat(this.dateTime);
@@ -300,6 +304,7 @@ export class CreateSightPopupComponent implements AfterViewInit {
 
 
     try {
+      
       this.clubService.addSight(this.clubId, formData).subscribe((response) => {
         console.log(this.clubId, receiverIds)
         if (response && response.status) {
@@ -318,17 +323,22 @@ export class CreateSightPopupComponent implements AfterViewInit {
             console.log("No data found in localStorage.");
           }
           this.socketService.emit('inviteTalent', { senderId: myUserId, receiverIds: receiverIds, eventId: response.data.event_id });
+          this.isLoading = false;
         } else {
           if (response.data.errors && response.data.errors != '' && response.data.errors != undefined) {
             this.toaster.error(response.data.errors);
           } else {
             this.userService.apiToasterError();
           }
+          this.isLoading = false;
         }
       });
     } catch (error) {
       this.userService.apiToasterError();
+      this.isLoading = false;
     }
+
+    
   }
 
   updateSight() {

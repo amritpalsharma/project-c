@@ -224,8 +224,16 @@
   </div>
   <div class="dialog-actions align-items-center d-flex justify-content-between mt-0 popup_footer p-3">
     <button type="button" class="cancel-btn" (click)="close()">{{ 'cancel' | translate }}</button>
-    <button type="submit" class="create-btn" *ngIf="!data.sightData" (click)="createSight()">{{ 'createSighting' |
-      translate }}</button>
+    <button type="submit" class="create-btn" *ngIf="!data.sightData" (click)="createSight()" [disabled]="isLoading">
+      <!-- {{ 'createSighting' | translate }} -->
+      <ng-container *ngIf="isLoading; else createSighting">
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        <span class="sr-only">Loading...</span>
+      </ng-container>
+      <ng-template #createSighting>
+        {{ 'createSighting' | translate }}
+      </ng-template>
+    </button>
     <button type="submit" class="create-btn" *ngIf="data.sightData" (click)="updateSight()">{{ 'save' | translate
       }}</button>
   </div>
