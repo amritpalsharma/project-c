@@ -63,12 +63,12 @@
 
         <!-- Current Club -->
         <div class="form-group col-lg-6 position_inputs">
-          <label for="currentClub">{{'currentClub' | translate}}:</label>
+          <label for="currentClub">{{'currentClub' | translate}}: clubSearch__{{clubSearch}}</label>
 
           <mat-select [(ngModel)]="currentClubId" class="form-select" id="currentClub" name="currentClub"
             (selectionChange)="clubUpdated()" appearance="fill">
             <div>
-              <input matInput (keyup)="filterClubs($event)" placeholder="{{'search' | translate}}"
+              <input (keyup)="filterClubs($event)" placeholder="{{'search' | translate}}"
                 [(ngModel)]="clubSearch" name="club_search" class="form-control backgroundGray" />
             </div>
             <ng-container *ngIf="clubSearch == ''">

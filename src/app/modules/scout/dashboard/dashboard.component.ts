@@ -225,7 +225,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
           },
           {
             element: '.general_details_tab',
-            intro: `<div><h6>${translations['generalDetails']}</h6>${translations['editGeneralDetailsScout']}.</div>`,
+            intro: `<div><h6>${translations['generalDetails']}</h6>${translations['editGeneralDetails']}.</div>`,
             // tooltipClass: 'custom-tooltip',
             position: 'left'
           },

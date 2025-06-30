@@ -453,6 +453,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
           }
           if (this.user?.scout_info) {
             this.scoutInfoDetails = JSON.parse(this.user?.scout_info);
+
+            if (typeof this.scoutInfoDetails?.id !== 'number' || isNaN(this.scoutInfoDetails?.id)) {
+              this.scoutInfoDetails = [];
+            }
           }
           // scoutInfoDetails
           this.isPremium = this.user?.active_subscriptions?.premium.length > 0 ? true : false;

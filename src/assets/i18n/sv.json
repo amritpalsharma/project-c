@@ -1502,5 +1502,9 @@
   "premiumPlanForTalent": "För Talanger",
   "men": "Män",
   "women": "Kvinnor",
-  "withoutClub": "För närvarande utan klubb och motiverad att komma igång!"
+  "withoutClub": "För närvarande utan klubb och motiverad att komma igång!",
+  "404PageNotFound": "Sidan kunde inte hittas",
+  "addNewFemalePlayer": "Lägg till ny spelare (kvinna)",
+  "crop": "Beskär",
+  "coverImageDelete" : "Är du säker på att du vill ta bort ditt omslagsbild?"
 }

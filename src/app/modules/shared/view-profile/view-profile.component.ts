@@ -630,6 +630,13 @@ export class ViewProfileComponent implements OnInit {
     return url.startsWith('http://') || url.startsWith('https://') ? url : 'https://' + url;
   }
 
+  getPhoneWithDailCode(phone_number: string): string {
+    if (!phone_number) {
+      return '';
+    }
+    return this.globalSettings.getDialCodeByDomain() + ' ' + phone_number;
+  }
+
 
 }
 

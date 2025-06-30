@@ -83,7 +83,9 @@
           <span class="selected_team_name" *ngIf="selectTeamName != ''"> {{selectTeamName}}</span>
         </span>
         <span class="add-player-link">
-          <button class="btn btn-success btn-sm web-create-bg" (click)="addPlayer()">{{ 'addNewPlayer' | translate
+          <button class="btn btn-success btn-sm web-create-bg" *ngIf="team_group === 'm'" (click)="addPlayer()">{{ 'addNewPlayer' | translate
+            }}</button>
+          <button class="btn btn-success btn-sm web-create-bg" *ngIf="team_group === 'w'" (click)="addPlayer()">{{ 'addNewFemalePlayer' | translate
             }}</button>
         </span>
       </div>

@@ -2474,6 +2474,12 @@ body.dark-theme.static-common-banner {
     }
   }
 
+  .about-content-text, .feature-content-text{
+    a, strong {
+      color: #bde34e;
+    }
+  }
+
   .faq .faq-content {
     p strong {
       color: #bde34e;

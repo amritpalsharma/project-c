@@ -1262,15 +1262,15 @@
   },
   "ClubPremiumPlanDesc": {
     "features": [
-      "Con Premium hai accesso completo a tutti i contenuti aggiunti da talenti, club e scout ai loro profili",
-      "Puoi scaricare i profili dei giocatori interessanti in formato PDF",
-      "Crea le tue liste di preferiti con talenti, club e scout",
-      "Collega i tuoi canali social e il tuo sito web",
-      "Metti in evidenza le tue 6 migliori foto o video dalla tua galleria personale",
-      "Aggiungi amministratori o editor e gestite insieme il profilo",
-      "Organizza sessioni di osservazione direttamente su SoccerYou e invita i talenti selezionati",
-      "Gestisci direttamente su SoccerYou i tuoi giocatori e le tue squadre del club",
-      "Racconta la storia del tuo club"
+      "Con Premium tienes acceso completo a todos los contenidos añadidos por talentos, clubes y ojeadores en sus perfiles.",
+      "Puedes descargar los perfiles de los jugadores interesantes en formato PDF.",
+      "Crea tus propias listas de favoritos con talentos, clubes y ojeadores.",
+      "Conecta tus redes sociales y tu sitio web.",
+      "Destaca tus 6 mejores fotos o vídeos de tu galería personal.",
+      "Añade administradores o editores y gestionen juntos el perfil.",
+      "Organiza sesiones de observación directamente en SoccerYou e invita a los talentos seleccionados.",
+      "Gestiona directamente en SoccerYou a tus jugadores y equipos del club.",
+      "Cuenta la historia de tu club."
     ]
   },
   "areYouSuretoDeleteActivity": "¿Estás seguro de que quieres eliminar esta actividad? ",
@@ -1452,5 +1452,9 @@
   "premiumPlanForTalent": "Para Talentos",
   "men": "Hombres",
   "women": "Mujeres",
-  "withoutClub": "Actualmente sin equipo y motivado para empezar con fuerza."
+  "withoutClub": "Actualmente sin equipo y motivado para empezar con fuerza.",
+  "404PageNotFound": "Página no encontrada",
+  "addNewFemalePlayer": "Añadir nueva jugadora",
+  "crop": "Recortar",
+  "coverImageDelete" : "¿Estás seguro de que quieres eliminar tu imagen de portada?"
 }

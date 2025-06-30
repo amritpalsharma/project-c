@@ -1417,5 +1417,9 @@
   "premiumPlanForTalent": "For Talents",
   "men": "Men",
   "women": "Women",
-  "withoutClub":"Currently without a club and motivated to get started!"
+  "withoutClub":"Currently without a club and motivated to get started!",
+  "404PageNotFound":"Page not found",
+  "addNewFemalePlayer": "Add new female player",
+  "crop": "Crop",
+  "coverImageDelete" : "Are you sure you want to delete your cover image?"
 }

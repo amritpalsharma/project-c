@@ -786,8 +786,8 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-sm-6" *ngIf="scoutInfoDetails && scoutInfoDetails?.id != ''">
-                      <div class="row align-items-center">
+                    <div class="col-sm-6 scoutInfoDetails_id_{{scoutInfoDetails?.id}}" *ngIf="scoutInfoDetails && scoutInfoDetails?.id != null && scoutInfoDetails?.id !== ''">
+                      <div class="row align-items-center" *ngIf="scoutInfoDetails && scoutInfoDetails?.id != ''">
                         <div class="col-sm-3 team-badge_image">
                           <div class="team-badge_image">
                             <img *ngIf="scoutInfoDetails?.profile_image"

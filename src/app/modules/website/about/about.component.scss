@@ -189,7 +189,7 @@ mat-list-item {
   padding: 0 !important;
 }
 .country-name {
-   color: #BDE34F !important;
+   color: #fff !important;
     font-size: 20px;
     margin-bottom: 0;
     font-family: var(--bs-avenir-semibold);
@@ -220,6 +220,9 @@ mat-list-item {
     top: 50%;
     transform: translateY(-50%);
   }
+}
+.country-name:hover {
+  color: #BDE34F !important;
 }
 .map {
   height: 750px;
