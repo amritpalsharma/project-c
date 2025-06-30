@@ -264,7 +264,9 @@ export class PlanComponent implements OnInit, OnDestroy {
 
     try {
       const response = await this.paymentService.createCheckoutSession(planId, '', this.couponCode).toPromise();
-
+      //  console.clear();
+      //  console.info('response', response);
+      //  return;
       if (response?.data?.payment_intent?.id) {
         this.toastr.clear();
 
