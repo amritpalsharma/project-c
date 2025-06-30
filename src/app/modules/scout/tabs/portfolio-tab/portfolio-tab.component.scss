@@ -20,6 +20,17 @@ table th, table td {
     max-width: 150px;
     border-radius: 60px;
 }
+.btn.btn-sm {
+    padding: 7px 15px;
+    border-radius: 10px;
+}
+
+.add-talent_btn {
+    .btn {
+        padding: 7px 15px;
+        border-radius: 10px;
+    }
+}
 
 .gallery-pic-upload {
     color: #023A4A;
@@ -246,7 +257,7 @@ img.flag_country {
 }
 
 
-@media (max-width:768px) {
+@media (max-width:767px) {
     .ten-columns>.col-lg-2 {
         width: 100%;
     }
@@ -259,6 +270,11 @@ img.flag_country {
 
     .gallery-all_images .ten-columns .col-lg-2 {
         padding: 0px !important;
+    }
+    .add-talent_btn {
+        .btn {
+            font-size: 16px;    
+        }
     }
 }
 
@@ -274,10 +290,15 @@ img.flag_country {
         height: 35px;
     }
     .btn.web-create-bg {
-        font-size: 22px !important;
+        font-size: 24px !important;
       }
       .bg_success, .bg_reject, .bg_pending{
         max-width: 220px;
+    }
+    .add-talent_btn {
+        .btn {
+            font-size: 24px;
+        }
     }
 }
 
@@ -293,10 +314,14 @@ table td svg {
 }
 .btn.web-create-bg {
     font-size: 28px !important;
-  }
-
-  .bg_success, .bg_reject, .bg_pending{
+}
+.bg_success, .bg_reject, .bg_pending{
     max-width: 260px;
+}
+.add-talent_btn {
+    .btn {
+        font-size: 28px;
+    }
 }
 }
 

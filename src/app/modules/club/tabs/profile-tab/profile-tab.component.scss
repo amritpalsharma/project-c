@@ -266,6 +266,10 @@
       margin-left: 14px;
   }
 }
+.btn.web-create-bg {
+    padding: 7px 10x;
+    border-radius: 10px;
+}
 .user-right-content > div{
     margin-bottom: 24px;
 }
@@ -593,7 +597,7 @@ select.custom-select.custom-select-wrapper {
     font-size: 20px;
   }
   .btn.web-create-bg {
-    font-size: 22px !important;
+    font-size: 24px !important;
     margin-bottom: 10px !important;
 }
 td svg.pointer {
@@ -632,7 +636,11 @@ td .custom-select {
   }
 }
 
-
+@media (max-width: 767px) {
+.btn.web-create-bg {
+    font-size: 16px;
+}
+}
 
 @media (max-width: 575px) {
 .mat-mdc-paginator-container {
