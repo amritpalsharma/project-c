@@ -116,7 +116,8 @@ export class AddBoosterComponent {
   }
 
   saveBoost() {
-    this.openCouponDialog()
+    // this.openCouponDialog()
+    this.redirectToCheckout(this.id, this.selectedAudienceIds);
   }
 
   // Open coupon dialog

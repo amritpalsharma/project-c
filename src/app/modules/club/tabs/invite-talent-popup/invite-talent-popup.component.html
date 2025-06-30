@@ -8,6 +8,8 @@
       </div>
 
       <div class="close-img" (click)="close()">
+        <img *ngIf='theme!="dark"' src="../../../../assets/images/carbon_close-outline-light.svg" alt="">
+        <img *ngIf='theme=="dark"' src="../../../../assets/images/carbon_close-outline.svg" alt="">
       </div>
     </div>
 
@@ -80,7 +82,10 @@
       <div>
         <h4 class="text-center mb-3 title-text">{{ 'peopleJoining' | translate }}</h4>
       </div>
-      <div class="close-img" (click)="close()"></div>
+      <div class="close-img" (click)="close()">
+        <img *ngIf='theme!="dark"' src="../../../../assets/images/carbon_close-outline-light.svg" alt="">
+        <img *ngIf='theme=="dark"' src="../../../../assets/images/carbon_close-outline.svg" alt="">
+      </div>
     </div>
 
     <div class="inbox-body" style="max-height: 450px !important; overflow: auto;">

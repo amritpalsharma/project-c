@@ -28,9 +28,9 @@ export class RoleGuard implements CanActivate {
     let userRole = localStorage.getItem('userRole');
     if (userRole == '1') {
       userRole = 'admin';
-    } else if (userRole == '2') {
+    } else if (userRole == '2' || userRole == '6') {
       userRole = 'club';
-    } else if (userRole == '3') {
+    } else if (userRole == '3' || userRole == '7') {
       userRole = 'scout';
     } else if (userRole == '4') {
       userRole = 'talent';

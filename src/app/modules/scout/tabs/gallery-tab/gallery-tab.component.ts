@@ -10,6 +10,7 @@ import { environment } from '../../../../../environments/environment';
 import { WebPages } from '../../../../services/webpages.service';
 import { TranslateService } from '@ngx-translate/core';
 import { UnverifiedUserComponent } from '../../../shared/unverified-user/unverified-user.component';
+import { DashboardComponent } from '../../dashboard/dashboard.component';
 
 @Component({
   selector: 'scout-gallery-tab',
@@ -49,7 +50,8 @@ export class GalleryTabComponent {
     public webPages: WebPages,
     private translateService: TranslateService,
     private scoutService: ScoutService,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    private dashBoardComponent: DashboardComponent) { }
 
   ngOnInit(): void {
     this.loggedInUser = JSON.parse(this.loggedInUser);
@@ -165,6 +167,7 @@ export class GalleryTabComponent {
         if (result.files.length) {
           console.log(result.files)
           this.getGalleryData()
+          this.dashBoardComponent.getGalleryData();
         }
       }
     });
@@ -220,8 +223,8 @@ export class GalleryTabComponent {
 
     const dialogRef = this.dialog.open(DeletePopupComponent, {
       width: '600px',
-      data:{
-        from_page:'gallery',
+      data: {
+        from_page: 'gallery',
         type: type
       }
     });
@@ -230,7 +233,7 @@ export class GalleryTabComponent {
       if (result) {
         // Proceed with deletion if the user confirms
         this.deleteImage(id, type);
-        
+
       } else {
         console.log('User canceled the delete');
       }
@@ -275,25 +278,25 @@ export class GalleryTabComponent {
     });
   }
 
-    navigatePlans() {
-      this.router.navigate(['/scout/plans']);
-    }
-  
-    showVerificationPopup() {
-      const messageDialog = this.dialog.open(UnverifiedUserComponent, {
-        width: '500px',
-        position: {
-          top: '150px'
+  navigatePlans() {
+    this.router.navigate(['/scout/plans']);
+  }
+
+  showVerificationPopup() {
+    const messageDialog = this.dialog.open(UnverifiedUserComponent, {
+      width: '500px',
+      position: {
+        top: '150px'
+      }
+    })
+
+    messageDialog.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        if (result.action == "delete-confirmed") {
+          // this.deleteUser();
         }
-      })
-  
-      messageDialog.afterClosed().subscribe(result => {
-        if (result !== undefined) {
-          if (result.action == "delete-confirmed") {
-            // this.deleteUser();
-          }
-        }
-      });
-    }
+      }
+    });
+  }
 
 }

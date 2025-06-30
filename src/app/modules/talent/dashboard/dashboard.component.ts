@@ -891,9 +891,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   openHighlight() {
-    this.isHighlightClick = false;
+    // this.isHighlightClick = false;
     // this.getGalleryData();
-    setTimeout(() => {
+    // setTimeout(() => {
       const dialogRef = this.dialog.open(EditHighlightsComponent, {
         width: '800px',
         data: {
@@ -910,7 +910,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         }, 1500);
         this.isHighlightClick = true;
       });
-    }, 1500);
+    // }, 1500);
 
   }
 

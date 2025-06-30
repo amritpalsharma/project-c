@@ -25,6 +25,7 @@ export class InviteTalentPopupComponent {
   invitedUsers: any = [];
   eventName: any = "";
   sightId: any = "";
+  theme:string=localStorage.getItem('theme') || 'dark';
   constructor(
     private userService: UserService,
     private clubService: ClubService,

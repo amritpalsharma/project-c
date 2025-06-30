@@ -9,6 +9,7 @@ import { environment } from '../../../../../environments/environment';
 import { WebPages } from '../../../../services/webpages.service';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { UnverifiedUserComponent } from '../../../shared/unverified-user/unverified-user.component';
+import { DashboardComponent } from '../../dashboard/dashboard.component';
 
 @Component({
   selector: 'talent-gallery-tab',
@@ -46,7 +47,8 @@ export class GalleryTabComponent {
     private translateService: TranslateService,
     public webPages: WebPages,
     public router: Router,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    public dashBoardComponent: DashboardComponent) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: any) => {
@@ -148,6 +150,7 @@ export class GalleryTabComponent {
         if (result.files.length) {
           console.log(result.files)
           this.getGalleryData()
+          this.dashBoardComponent.getGalleryData();
         }
       }
     });
@@ -181,6 +184,8 @@ export class GalleryTabComponent {
             } else {
               this.toastr.success('Image deleted successfully!', 'Delete Success');
             }
+
+            this.dashBoardComponent.getGalleryData();
           } else {
             this.toastr.error('Failed to delete image.', 'Delete Failed');
             console.error('Invalid API response structure:', response);

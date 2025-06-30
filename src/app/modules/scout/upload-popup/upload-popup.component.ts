@@ -5,6 +5,7 @@ import {
 } from '@angular/material/dialog';
 import { ScoutService } from '../../../services/scout.service';
 import { MessagePopupComponent } from '../message-popup/message-popup.component';
+import { HttpEventType } from '@angular/common/http';
 
 
 @Component({
@@ -15,7 +16,7 @@ import { MessagePopupComponent } from '../message-popup/message-popup.component'
 export class UploadPopupComponent {
 
   isLoading: boolean = false;
-  theme : any = localStorage.getItem('theme');
+  theme: any = localStorage.getItem('theme');
 
   userId: any = '';
   uploadedFiles: any = [];
@@ -29,7 +30,7 @@ export class UploadPopupComponent {
 
   files: File[] = [];
 
-  ngOnIt(){
+  ngOnIt() {
     this.theme = localStorage.getItem('theme')
   }
 
@@ -102,7 +103,7 @@ export class UploadPopupComponent {
     });
   }
 
-  uploadImages(files: any) {
+  uploadImages300625(files: any) {
     this.isLoading = true;
     const formdata = new FormData();
 
@@ -133,6 +134,49 @@ export class UploadPopupComponent {
       }
     });
   }
+
+  uploadImages(files: any) {
+    this.isLoading = true;
+    const formdata = new FormData();
+
+    for (let i = 0; i < files.length; i++) {
+      formdata.append("gallery_images[]", files[i]);
+    }
+
+    console.log('Uploading files...');
+
+    this.scoutService.uploadGalleryImages(formdata).subscribe((event: any) => {
+      if (event.type === HttpEventType.UploadProgress) {
+        const percentDone = Math.round((100 * event.loaded) / (event.total || 1));
+        console.log(`Upload progress: ${percentDone}%`);
+      } else if (event.type === HttpEventType.Response) {
+        const response = event.body;
+        console.log('Upload complete:', response);
+
+        response.forEach((row: any) => {
+          this.uploadResponse.push(row.message);
+          if (row.status) {
+            this.uploadedFiles.push({ id: row.data.id, file_name: row.data.uploaded_file });
+          }
+        });
+
+        if (response[0]?.status) {
+          this.isLoading = false;
+          this.showMatDialog(response[0].message, 'display');
+          this.dialogRef.close({
+            files: this.uploadedFiles
+          });
+        }
+      } else {
+        if (event[0] && !event[0].status && event[0].message != '') {
+          this.showMatDialog(event[0].message, 'display');
+          this.dialogRef.close();
+        }
+        // console.info('Event', event);
+      }
+    });
+  }
+
 
   close() {
     this.dialogRef.close({
