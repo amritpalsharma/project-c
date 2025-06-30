@@ -10,6 +10,7 @@ interface FeatureSection {
 import { Component } from '@angular/core';
 import { WebPages } from '../../../services/webpages.service';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-club',
@@ -89,15 +90,31 @@ export class ClubComponent {
     this.getCurrencyPrice('monthly');
     this.getCurrencyPrice('yearly');
 
-    this.webPages.languageId$.subscribe((data) => {
-      this.getPageData(data);
-      this.currentLang = this.getLangslugByID(data);
-      this.getCurrencyPrice('monthly');
-      this.getCurrencyPrice('yearly');
-    });
+    // this.webPages.languageId$.subscribe((data) => {
+    //   this.getPageData(data);
+    //   this.currentLang = this.getLangslugByID(data);
+    //   this.getCurrencyPrice('monthly');
+    //   this.getCurrencyPrice('yearly');
+    // });
+    this.webPages.languageId$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(data => {
+        // ✅ This will stop running after component is destroyed
+        this.getPageData(data);
+        this.currentLang = this.getLangslugByID(data);
+        this.getCurrencyPrice('monthly');
+        this.getCurrencyPrice('yearly');
+      });
     this.globalSettings.indexFunctionCall$.subscribe(() => {
       this.ThemeUpdated(); // Call the function when event is received
     });
+  }
+
+  destroy$ = new Subject<void>();
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
 
@@ -448,10 +465,10 @@ export class ClubComponent {
     if (lowerPlanName.includes('country')) {
       if (this.priceArr) {
         return this.priceArr[1].plan_feature_title;
-      } 
+      }
     }
     if (lowerPlanName.includes('boost')) {
-      if (this.priceArr) { 
+      if (this.priceArr) {
         return this.priceArr[2].plan_feature_title;
       }
     }

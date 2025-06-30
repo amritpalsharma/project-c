@@ -475,7 +475,7 @@ export class HeaderComponent {
     let selectedLandId = selectedLang ? selectedLang.id : 1;
     localStorage.setItem('lang_id', selectedLandId);
     this.translateService.use(selectedLanguage)
-    this.webPages.updateData(selectedLandId);
+    // this.webPages.updateData(selectedLandId);
     let jsonData = localStorage.getItem("userData");
     let userId;
     if (jsonData) {
@@ -498,36 +498,6 @@ export class HeaderComponent {
     }
   }
 
-  logout240625() {
-    let jsonData = localStorage.getItem("userData");
-    let userId;
-    if (jsonData) {
-      let userData = JSON.parse(jsonData);
-      userId = userData.id;
-    }
-    let lang_id = localStorage.getItem('lang_id');
-    let cookieConsentTimestamp = localStorage.getItem('cookieConsentTimestamp');
-    let cookiesent = localStorage.getItem('cookieConsent');
-
-    console.log(userId);
-    this.socketService.disconnectUser(userId);
-    let theme = localStorage.getItem('theme') || 'light';
-    let lang = localStorage.getItem('lang') || this.globalSettings.getLanguage();
-    let domainLang = this.globalSettings.getLanguage();
-    if (domainLang != '' && localStorage.getItem('lang') == '' || localStorage.getItem('lang') == undefined) {
-      lang = domainLang;
-    }
-    localStorage.clear();
-    localStorage.setItem('cookieConsent', cookiesent + '');
-    localStorage.setItem('cookieConsentTimestamp', cookieConsentTimestamp + '');
-    localStorage.setItem('theme', theme);
-    localStorage.setItem('lang', lang);
-    localStorage.setItem('lang_id', lang_id + '');
-    this.authService.logout();
-    // setTimeout(() => {
-    // window.location.reload();
-    // }, 100);
-  }
 
   logout() {
     const jsonData = localStorage.getItem("userData");
