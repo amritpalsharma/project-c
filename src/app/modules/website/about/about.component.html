@@ -50,7 +50,7 @@
 
           </div>
           <div class="col-lg-6 col-md-6 col-12">
-            <div class="content-text" [innerHTML]="about_banner_desc">
+            <div class="content-text about-content-text" [innerHTML]="about_banner_desc">
             </div>
           </div>
         </div>
@@ -88,7 +88,7 @@
 
             <mat-list>
               <mat-list-item *ngFor="let country of countries; let i = index;" rel="noopener noreferrer">
-                <a class="custom-list-item country-name" target="_blank">
+                <a [href]="countriesUrl[i].url" class="custom-list-item country-name" target="_blank">
                   <span class="flag_icon">
                     <!-- <img src="/assets/images/flag-switzerland.svg"> -->
                     <img [src]="'/assets/images/flags/' + (i + 1) + '.svg'">

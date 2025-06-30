@@ -738,7 +738,7 @@
   "selectFrequency": "Frequenz wählen",
   "displayLocation": "Anzeigeort",
   "selectLocation": "Standort auswählen",
-  "inactive": "Inactiv",
+  "inactive": "Inaktiv",
   "showResults": "Resultate anzeigen",
   "selectALanguage": "Wählen Sie eine Sprache",
   "selectLanguage": "Sprache auswählen",
@@ -1511,5 +1511,8 @@
   "men": "Männer",
   "women": "Frauen",
   "withoutClub": "Aktuell vereinslos und motiviert, durchzustarten!",
-  "404PageNotFound":"Seite nicht gefunden"
+  "404PageNotFound":"Seite nicht gefunden",
+  "addNewFemalePlayer": "Neue Spielerin hinzufügen",
+  "crop": "Zuschneiden",
+  "coverImageDelete" : "Bist du sicher, dass du dein Titelbild löschen möchtest?"
 }

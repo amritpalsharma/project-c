@@ -1521,5 +1521,8 @@
   "men": "Hommes",
   "women": "Femmes",
   "withoutClub": "Actuellement sans club et motivé à démarrer en force!",
-  "404PageNotFound": "Page non trouvée"
+  "404PageNotFound": "Page non trouvée",
+  "addNewFemalePlayer": "Ajouter une nouvelle joueuse",
+  "crop": "Rogner",
+  "coverImageDelete" : "Es-tu sûr de vouloir supprimer ton image de couverture ?"
 }

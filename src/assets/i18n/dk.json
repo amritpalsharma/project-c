@@ -1180,15 +1180,15 @@
   },
   "ClubPremiumPlanDesc": {
     "features": [
-      "Du kan tilføje og administrere dine spillere på holdene.",
-      "Registrer nye observationer.",
-      "Inviter talenter til dine screeningsarrangementer.",
-      "Opret din favoritliste.",
-      "Du kan tage flere billeder, videoer og højdepunkter.",
-      "Fremhæv dine bedste fotos og videoer i din profil.",
-      "Tilføj dine sociale mediekanaler og din hjemmeside til din profil.",
-      "Eksporter dine spilleres præstationsdata som PDF.",
-      "Fortæl din klubs historie."
+      "Med Premium får du fuld adgang til alt indhold, som talenter, klubber og scouts har tilføjet til deres profiler",
+      "Du kan downloade spillerprofiler som PDF",
+      "Opret dine egne favoritlister med talenter, klubber og scouts",
+      "Link til dine sociale medier og din hjemmeside",
+      "Fremhæv dine 6 bedste billeder eller videoer fra dit personlige galleri",
+      "Tilføj administratorer eller redaktører og administrer profilen sammen",
+      "Organisér prøvetræninger direkte via SoccerYou og inviter udvalgte talenter",
+      "Administrér dine egne klubspillere og hold direkte på SoccerYou",
+      "Fortæl historien om din klub"
     ]
   },
   "MyAccount": "til Dashboard",
@@ -1371,5 +1371,8 @@
   "men": "Mænd",
   "women": "Kvinder",
   "withoutClub": "Momenteel zonder club en gemotiveerd om er vol voor te gaan!",
-  "404PageNotFound": "Siden blev ikke fundet"
+  "404PageNotFound": "Siden blev ikke fundet",
+  "addNewFemalePlayer": "Tilføj ny spiller (kvinde)",
+  "crop": "Beskær",
+  "coverImageDelete" : "Er du sikker på, at du vil slette dit forsidebillede?"
 }

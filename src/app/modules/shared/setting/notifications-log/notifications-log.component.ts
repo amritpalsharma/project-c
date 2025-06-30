@@ -333,7 +333,7 @@ export class NotificationsLogComponent {
       if (notification.event === 'sendMessage') {
         this.router.navigate([`/${role}/chat`]);
       }
-      else if (notification.event === 'userVerified' || notification.event === 'userRejected' || notification.event === 'scoutAddPlayer' || notification.event === 'inviteTalent') {
+      else if (notification.event === 'userVerified' || notification.event === 'userRejected') {
         let fragment = 'notifications';
         this.router.navigate([`/${role}/setting`], { fragment });
       }

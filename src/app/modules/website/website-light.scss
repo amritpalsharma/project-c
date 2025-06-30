@@ -2038,6 +2038,12 @@ body.light-theme.static-common-banner {
     }
   }
 
+  .about-content-text, .feature-content-text{
+    a, strong {
+      color: #e05263;
+    }
+  }
+
   .shadow_container .header_card .premium-heading5 {
     color: #e05263 !important;
   }

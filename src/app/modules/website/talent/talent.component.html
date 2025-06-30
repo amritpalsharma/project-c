@@ -146,7 +146,7 @@
                                     <div [id]="'collapse' + i" class="accordion-collapse collapse"
                                         data-bs-parent="#accordionExample" [class.show]="activeAccordionIndex === i">
                                         <div class="accordion-body">
-                                            <p class="feature-text" [innerHTML]="feature.desc">
+                                            <p class="feature-text feature-content-text" [innerHTML]="feature.desc">
                                                 <!-- {{feature.desc}} -->
                                             </p>
                                         </div>
@@ -230,7 +230,7 @@
                                     <div [id]="'collapseOne' + i" class="accordion-collapse collapse"
                                         [class.show]="activeAccordionIndex === i" data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
-                                            <p class="feature-text" [innerHTML]="feature.desc"></p>
+                                            <p class="feature-text feature-content-text" [innerHTML]="feature.desc"></p>
                                             <div class="talent_tab_image">
                                                 <!-- <img class="single_tab_img light-images"
                                                     src="{{baseUrl + feature.image}}"> -->

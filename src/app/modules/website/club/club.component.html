@@ -143,7 +143,7 @@
                                         <div id="collapse{{i + 1}}" class="accordion-collapse collapse"
                                             data-bs-parent="#accordionExample" [class.show]="activeIndex == i">
                                             <div class="accordion-body">
-                                                <p class="feature-text" [innerHTML]="feature.desc">
+                                                <p class="feature-text feature-content-text" [innerHTML]="feature.desc">
                                                     <!-- {{feature.desc}} -->
                                                 </p>
                                             </div>
@@ -241,7 +241,7 @@
                                             [ngClass]="{'show': activeIndex === i, 'collapsed' : activeIndex != i}"
                                             data-bs-parent="#accordionExample">
                                             <div class="accordion-body">
-                                                <p class="feature-text" [innerHTML]="feature.desc">
+                                                <p class="feature-text feature-content-text" [innerHTML]="feature.desc">
                                                     <!-- {{ feature.desc }} -->
                                                 </p>
                                                 <div class="talent_tab_image">

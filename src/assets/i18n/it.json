@@ -1502,5 +1502,8 @@
   "men": "Uomini",
   "women": "Donne",
   "withoutClub" :"Attualmente senza squadra e motivato a ripartire con entusiasmo!",
-  "404PageNotFound":"Pagina non trovata"
+  "404PageNotFound":"Pagina non trovata",
+  "addNewFemalePlayer": "Aggiungi nuova giocatrice",
+  "crop": "Ritaglia",
+  "coverImageDelete" : "Sei sicuro di voler eliminare la tua immagine di copertina?"
 }

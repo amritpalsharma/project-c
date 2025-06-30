@@ -25,6 +25,19 @@ export class AboutComponent {
     { name: 'Sweden', url: 'https://www.socceryou.se' },
     { name: 'Denmark', url: 'https://www.socceryou.dk' }
   ];
+
+  countriesUrl = [
+    { name: 'Switzerland', url: 'https://www.socceryou.ch' },
+    { name: 'Germany', url: 'https://www.socceryou.de' },
+    { name: 'France', url: 'https://www.socceryou.fr' },
+    { name: 'Italy', url: 'https://www.socceryou.it' },
+    { name: 'Portugal', url: 'https://www.socceryou.pt' },
+    { name: 'England', url: 'https://www.socceryou.co.uk' },
+    { name: 'Spain', url: 'https://www.socceryou.es' },
+    { name: 'Belgium', url: 'https://www.socceryou.be' },
+    { name: 'Sweden', url: 'https://www.socceryou.se' },
+    { name: 'Denmark', url: 'https://www.socceryou.dk' }
+  ];
   about_hero_heading_txt: string = '';
   about_hero_heading: string = '';
   country_section_title: string = '';
