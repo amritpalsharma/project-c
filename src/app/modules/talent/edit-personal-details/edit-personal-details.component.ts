@@ -361,8 +361,11 @@ export class EditPersonalDetailsComponent implements OnInit {
           this.custom_club = custom_club_info.club_name;
           this.custom_team = custom_club_info.team_name;
           this.isCustomClubTeam = true;
-
+          let selectionArr = this.countries.filter((club: any) =>
+            club.id === parseInt('' + this.custom_club_country + '', 10) // Directly comparing IDs (ensuring 'keyword' is parsed to an integer)
+          );
           console.info('this.custom_club_country', this.custom_club_country);
+          console.info('this.selectionArr', selectionArr);
         }
       }
     } else {
@@ -637,8 +640,8 @@ export class EditPersonalDetailsComponent implements OnInit {
       this.displayedCountries2 = [...this.countries];
     } else {
       // First, get countries that start with the keyword
-      this.displayedCountries2 = this.playerClubsListing.filter((club: any) =>
-        club.club_name.toLowerCase().includes(keyword.toLowerCase())
+      this.displayedCountries2 = this.countries.filter((club: any) =>
+        club.country_name.toLowerCase().includes(keyword.toLowerCase())
       );
     }
   }

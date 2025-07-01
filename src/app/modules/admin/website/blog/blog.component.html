@@ -37,10 +37,11 @@
     <div class="d-flex align-items-center justify-content-between mt-3 website_heder_edits">
       <div class="d-flex align-items-center">
         <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle  website-main-checkbox" type="button"
-            data-bs-toggle="dropdown" aria-expanded="false" (click)="selectAllBlogs()">
+          <button class="btn btn-secondary dropdown-toggle  website-main-checkbox" type="button" aria-expanded="false"
+            (click)="selectAllBlogs()">
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" [checked]="allSelected" />
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" [checked]="allSelected"
+                #blogPageCheckBox />
             </div>
           </button>
 

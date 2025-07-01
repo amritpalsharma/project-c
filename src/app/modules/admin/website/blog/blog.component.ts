@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -36,6 +36,7 @@ export class BlogComponent {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild('blogPageCheckBox', { static: false }) blogPageCheckBox!: ElementRef;
   constructor(private blogService: BlogService, private webpages: WebPages, public dialog: MatDialog, private sharedservice: SharedService, private adminHelper: AdminHelperService) { }
 
   // ngOnInit(): void {
@@ -254,6 +255,7 @@ export class BlogComponent {
       this.selectedIds = [];
     }
     console.log('Selected user IDs:', this.selectedIds);
+    this.updateMasterCheckboxState();
   }
 
   onCheckboxChange(item: any) {
@@ -275,6 +277,7 @@ export class BlogComponent {
     } else {
       this.allSelected = false;
     }
+    this.updateMasterCheckboxState();
   }
 
   confirmSingleDeletion(couponId: any) {
@@ -345,6 +348,20 @@ export class BlogComponent {
     // convertAdminDateTime
     let formattedDate = this.adminHelper.convertAdminDateTime(datetime, 'users');
     return formattedDate;
+  }
+
+
+  updateMasterCheckboxState() {
+    const masterCheckbox = this.blogPageCheckBox?.nativeElement;
+    if (!masterCheckbox) return;
+
+    const total = this.blogs.length;
+    const selected = this.selectedIds.length;
+    // console.log('total',total);
+    // console.log('selected',selected);
+
+    masterCheckbox.indeterminate = selected > 0 && selected < total;
+    masterCheckbox.checked = selected === total;
   }
 
 }

@@ -504,10 +504,10 @@ export class HeaderComponent {
 
 
   selectUser(user: any): void {
-
-    this.searchControl.setValue(`${user.first_name} ${user.last_name}`, {
-      emitEvent: false,
-    });
+    console.info('user', user)
+    // this.searchControl.setValue(`${user.first_name} ${user.last_name}`, {
+    //   emitEvent: false,
+    // });
 
     this.filteredUsers = [];
     // Navigate or perform actions with the selected user
@@ -515,20 +515,25 @@ export class HeaderComponent {
   }
 
   exploreUser(slug: string, id: Number): void {
+    console.log('slug to change ', slug);
+    console.log('slug to change with id ', id);
     let slugRoute = slug.toLowerCase();
     const allowedRoles = [
-      'Club',
-      'Clube',
-      'Klub',
-      'Klubb',
-      'Talang',
-      'Talent',
-      'Talento',
-      'Scout'
+      'club',
+      'clube',
+      'klub',
+      'klubb',
+      'talang',
+      'talent',
+      'talento',
+      'scout'
     ];
     if (allowedRoles.includes(slugRoute)) {
       let pageRoute = 'admin/' + slugRoute;
       this.router.navigate([pageRoute, id]);
+      this.searchControl.setValue(``, {
+        emitEvent: false,
+      });
     }
   }
 

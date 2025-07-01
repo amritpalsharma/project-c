@@ -108,12 +108,14 @@
           <label for="nationality22">{{'club' | translate}} {{'country' | translate}}:</label>
           <mat-select [(ngModel)]="custom_club_country" #customClubCountryField="ngModel" class="form-select"
             id="nationality22" name="nationality22" required>
+            <mat-option *ngIf="!custom_club_country" selected>{{'select' | translate}}</mat-option>
             <div>
               <input matInput (keyup)="filterCountries2($event)" placeholder="{{'search' | translate}}"
                 [(ngModel)]="custom_club_search" name="club_search" class="form-control backgroundGray" />
             </div>
-            <mat-option [value]="custom_club_country" *ngIf="custom_club_country" selected>{{custom_club_country_name}}</mat-option>
-            <mat-option *ngFor="let country of displayedCountries2" [value]="country.id">
+
+
+            <mat-option *ngFor="let country of displayedCountries2; trackBy: trackByCountryId" [value]="country.id">
               {{ country.country_name }}
             </mat-option>
           </mat-select>

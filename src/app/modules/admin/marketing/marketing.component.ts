@@ -1,4 +1,4 @@
-import { Component, inject, ViewChild } from '@angular/core';
+import { Component, inject, ViewChild, ElementRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MarketingPopupComponent } from './marketing-popup/marketing-popup.component';
@@ -32,11 +32,12 @@ export class MarketingComponent {
   idsToDelete: any = [];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild('masterCheckboxMarketing', { static: false }) masterCheckboxMarketing!: ElementRef;
   customFilters: any = [];
   rolesForFilter: any = [];
   langs: any = environment.langs;
   locations: any = environment.domains;
-  count : number = 0;
+  count: number = 0;
   frequency: any = ['Once a day', 'Once a week', 'Once 2 Hrs', 'Twice a day', 'Once a month', 'One time only'];
   pageTitle: string = '';
 
@@ -195,25 +196,52 @@ export class MarketingComponent {
     this.getSystemPopups();
   }
 
-  onCheckboxChange(popup: any) {
+  // onCheckboxChange(popup: any) {
+  //   const index = this.selectedIds.indexOf(popup.id);
+  //   if (index === -1) {
+  //     this.selectedIds.push(popup.id);
+  //   } else {
+  //     this.selectedIds.splice(index, 1);
+  //   }
+  // }
+
+  // selectAllPopups() {
+  //   this.allSelected = !this.allSelected;
+  //   if (this.allSelected) {
+  //     this.selectedIds = this.popups.map((popup: any) => popup.id);
+  //   } else {
+  //     this.selectedIds = [];
+  //   }
+  //   console.log('Selected user IDs:', this.selectedIds);
+  // }
+
+  // Handle checkbox change logic
+  onCheckboxChange(popup: any): void {
     const index = this.selectedIds.indexOf(popup.id);
     if (index === -1) {
+      // Adding the ID if it's not already selected
       this.selectedIds.push(popup.id);
     } else {
+      // Removing the ID if it's already selected
       this.selectedIds.splice(index, 1);
     }
+    console.log('Length of Selected', this.selectedIds.length);
+    this.updateMasterCheckboxState();
   }
 
-  selectAllPopups() {
+  // Handle select all logic
+  selectAllPopups(): void {
     this.allSelected = !this.allSelected;
     if (this.allSelected) {
+      // Select all popups
       this.selectedIds = this.popups.map((popup: any) => popup.id);
     } else {
+      // Deselect all popups
       this.selectedIds = [];
     }
     console.log('Selected user IDs:', this.selectedIds);
+    this.updateMasterCheckboxState();
   }
-
   confirmDeletion(): any {
     if (this.selectedIds.length == 0) {
       let lang_id = localStorage.getItem('lang_id');
@@ -350,7 +378,7 @@ export class MarketingComponent {
       width: '320px',
       panelClass: 'filter_modal_popup',
       position: {
-        right: '30px', 
+        right: '30px',
         top: '180px'
       },
       data: {
@@ -442,5 +470,18 @@ export class MarketingComponent {
     } else {
       return frequency;
     }
+  }
+
+  updateMasterCheckboxState() {
+    const masterCheckbox = this.masterCheckboxMarketing?.nativeElement;
+    if (!masterCheckbox) return;
+
+    const total = this.popups.length;
+    const selected = this.selectedIds.length;
+    // console.log('total',total);
+    // console.log('selected',selected);
+
+    masterCheckbox.indeterminate = selected > 0 && selected < total;
+    masterCheckbox.checked = selected === total;
   }
 }

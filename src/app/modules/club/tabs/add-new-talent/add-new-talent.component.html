@@ -65,14 +65,19 @@
         <div class="row">
           <div class="col-12">
             <div class="user-list user_list_full">
+              <!-- <pre>
+                {{users | json}}
+              </pre> -->
               <div *ngFor="let user of users; let i = index" class="user-item">
 
                 <!-- User Image -->
-                <img *ngIf="user?.profile_image_path && !edit" [src]="user?.profile_image_path" alt="User Image"
-                  class="user-image">
+                <img width="50" height="50" style="border-radius: 50px;" class="img-list"
+                  *ngIf="user?.profile_image_path" src="{{user?.profile_image_path}}">
+                <img width="50" height="50" class="img-list" *ngIf="user.meta.profile_image_path"
+                  src="{{user.meta.profile_image_path}}">
 
-                <img *ngIf="!user?.profile_image_path && !edit" src="../../../../../assets/images/1.png"
-                  alt="Default Image" class="user-image">
+                <img *ngIf="!user?.profile_image_path && !user.meta.profile_image_path"
+                  src="../../../../../assets/images/1.png" alt="Default Image" class="user-image">
 
                 <!-- User Name -->
                 <span class="user-name">
@@ -80,7 +85,8 @@
                 </span>
 
                 <!-- Input Box for Text -->
-                <input type="text" [(ngModel)]="user.jersey_number" placeholder="Add a comment" class="user-input">
+                <input type="text" [(ngModel)]="user.jersey_number" placeholder="{{'addJerseyNumber' | translate}}"
+                  class="user-input">
 
               </div>
             </div>
@@ -95,14 +101,9 @@
                 <div class="date-input col-lg-4 p-0 mb-3 mb-lg-0 position-relative">
                   <label for="startDate" class="d-block font-weight-bold">
                   </label>
-                  <!-- <input type="date" class="form-control join-start"
+                  <input type="date" class="form-control join-start"
                     [ngClass]="{'red-border-start': !startDate && submitClicked}" id="startDate" [(ngModel)]="startDate"
-                    placeholder="{{ 'selectStartDate' | translate }}" /> -->
-
-                  <input class="form-control join-start" matInput id="startDate" name="contractStart"
-                    [matDatepicker]="contractStartPicker" [formControl]="startDate" placeholder="DD.MM.YYYY" />
-                  <mat-datepicker-toggle matSuffix [for]="contractStartPicker"></mat-datepicker-toggle>
-                  <mat-datepicker #contractStartPicker></mat-datepicker>
+                    placeholder="{{ 'selectStartDate' | translate }}" />
                 </div>
                 <!-- End Date -->
                 <div class="date-input col-lg-4 p-0 mb-3 mb-lg-0 position-relative">
@@ -112,8 +113,10 @@
                     [ngClass]="{'red-border-end': !endDate && submitClicked && !noEndDate}" [(ngModel)]="endDate"
                     [disabled]="noEndDate" placeholder="{{ 'selectEndDate' | translate }}" /> -->
 
-                  <input class="form-control join-start" matInput id="endDate" name="contractStart" [ngClass]="{'red-border-end': !endDate && submitClicked && !noEndDate}"
-                    [matDatepicker]="contractEndPicker" [formControl]="endDate" placeholder="DD.MM.YYYY" [disabled]="noEndDate"/>
+                  <input class="form-control join-start" matInput id="endDate" name="contractStart"
+                    [ngClass]="{'red-border-end': !endDate && submitClicked && !noEndDate}"
+                    [matDatepicker]="contractEndPicker" [formControl]="endDate" placeholder="DD.MM.YYYY"
+                    [disabled]="noEndDate" />
                   <mat-datepicker-toggle matSuffix [for]="contractEndPicker"></mat-datepicker-toggle>
                   <mat-datepicker #contractEndPicker></mat-datepicker>
                 </div>

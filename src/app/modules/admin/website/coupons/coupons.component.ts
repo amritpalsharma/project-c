@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -35,6 +35,7 @@ export class CouponsComponent {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild('coponsCodeSelector', { static: false }) coponsCodeSelector!: ElementRef;
 
   constructor(private couponService: CouponService, public dialog: MatDialog, private sharedservice: SharedService) { }
 
@@ -99,6 +100,7 @@ export class CouponsComponent {
     } else {
       this.selectedIds.splice(index, 1);
     }
+    this.updateMasterCheckboxState();
   }
 
   selectAllCoupons() {
@@ -109,6 +111,7 @@ export class CouponsComponent {
       this.selectedIds = [];
     }
     console.log('Selected user IDs:', this.selectedIds);
+    this.updateMasterCheckboxState();
   }
 
   deactivateCoupon(couponId: any) {
@@ -341,5 +344,18 @@ export class CouponsComponent {
 
   parseJson(rawJson: any) {
     return JSON.parse(rawJson);
+  }
+
+  updateMasterCheckboxState() {
+    const masterCheckbox = this.coponsCodeSelector?.nativeElement;
+    if (!masterCheckbox) return;
+
+    const total = this.coupons.length;
+    const selected = this.selectedIds.length;
+    // console.log('total',total);
+    // console.log('selected',selected);
+
+    masterCheckbox.indeterminate = selected > 0 && selected < total;
+    masterCheckbox.checked = selected === total;
   }
 }

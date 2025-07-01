@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -25,6 +25,7 @@ export class ActivityLogComponent {
   selectedIds: any = [];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild('activityAdmin', { static: false }) activityAdmin!: ElementRef;
   idsToDelete: any = [];
 
   constructor(
@@ -95,6 +96,7 @@ export class ActivityLogComponent {
     } else {
       this.allSelected = false;
     }
+    this.updateMasterCheckboxState();
   }
 
   selectAll() {
@@ -104,6 +106,7 @@ export class ActivityLogComponent {
     } else {
       this.selectedIds = [];
     }
+    this.updateMasterCheckboxState();
     console.log('Selected user IDs:', this.selectedIds);
   }
 
@@ -177,7 +180,7 @@ export class ActivityLogComponent {
   //   let formattedDate = this.adminHelper.convertAdminDateTime(datetime, 'users');
   //   return formattedDate;
   // }
-  
+
   formatDateTime(datetime: string) {
     // convertAdminDateTime
     let formattedDate = this.adminHelper.getSwitzerlandTime(datetime);
@@ -189,5 +192,18 @@ export class ActivityLogComponent {
       this.selectActivityFirst = translations['selectActivityFirst'];
       console.log('Title fetch Function Fired');
     })
+  }
+
+  updateMasterCheckboxState() {
+    const masterCheckbox = this.activityAdmin?.nativeElement;
+    if (!masterCheckbox) return;
+
+    const total = this.activities.length;
+    const selected = this.selectedIds.length;
+    // console.log('total',total);
+    // console.log('selected',selected);
+
+    masterCheckbox.indeterminate = selected > 0 && selected < total;
+    masterCheckbox.checked = selected === total;
   }
 }

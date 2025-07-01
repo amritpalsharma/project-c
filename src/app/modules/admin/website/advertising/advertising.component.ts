@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -27,9 +27,10 @@ export class AdvertisingComponent {
   idsToProceed: any = [];
   selectedIds: any = [];
   customFilters: any = [];
-  count : number = 0;
+  count: number = 0;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild('advertisementCheckBox', { static: false }) advertisementCheckBox!: ElementRef;
 
   typeOptions: any = [
     '250 x 250 - Square',
@@ -124,22 +125,42 @@ export class AdvertisingComponent {
   }
 
   onCheckboxChange(item: any) {
+    // const index = this.selectedIds.indexOf(item.id);
+    // if (index === -1) {
+    //   this.selectedIds.push(item.id);
+    // } else {
+    //   this.selectedIds.splice(index, 1);
+    // }
     const index = this.selectedIds.indexOf(item.id);
     if (index === -1) {
+      // Adding the ID if it's not already selected
       this.selectedIds.push(item.id);
     } else {
+      // Removing the ID if it's already selected
       this.selectedIds.splice(index, 1);
     }
+
+    this.updateMasterCheckboxState();
   }
 
   selectAllCoupons() {
+    // this.allSelected = !this.allSelected;
+    // if (this.allSelected) {
+    //   this.selectedIds = this.advertisements.map((ad: any) => ad.id);
+    // } else {
+    //   this.selectedIds = [];
+    // }
+
     this.allSelected = !this.allSelected;
     if (this.allSelected) {
-      this.selectedIds = this.advertisements.map((ad: any) => ad.id);
+      // Select all popups
+      this.selectedIds = this.advertisements.map((popup: any) => popup.id);
     } else {
+      // Deselect all popups
       this.selectedIds = [];
     }
     console.log('Selected user IDs:', this.selectedIds);
+    this.updateMasterCheckboxState();
   }
 
   editAdvertisement(element: any) {
@@ -373,5 +394,17 @@ export class AdvertisingComponent {
     return str.split(" - ")[0]; // Splits at " - " and returns only the first part
   }
 
+  updateMasterCheckboxState() {
+    const masterCheckbox = this.advertisementCheckBox?.nativeElement;
+    if (!masterCheckbox) return;
+
+    const total = this.advertisements.length;
+    const selected = this.selectedIds.length;
+    // console.log('total',total);
+    // console.log('selected',selected);
+
+    masterCheckbox.indeterminate = selected > 0 && selected < total;
+    masterCheckbox.checked = selected === total;
+  }
 }
 
