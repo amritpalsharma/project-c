@@ -51,7 +51,7 @@ export class UserDetailPopupComponent {
     this.dialogRef.close({ user: this.user.id, status: this.selectedOption });
   }
 
-  closePopup(slug: string, id: Number): void {
+  closePopup(slug: string, id: Number, tab: any = ''): void {
     if (slug == 'Club Representator') {
       slug = 'club';
     }
@@ -65,10 +65,19 @@ export class UserDetailPopupComponent {
     if (slug == 'spähervertreter') {
       slug = 'scout';
     }
-    let pageRoute = 'admin/' + slug.toLowerCase();
+    let pageRoute = 'admin/' + slug.toLowerCase() + '/' + id;
+
+
+    pageRoute = 'admin/' + slug.toLowerCase();
     // Navigate to User-detail with query parameter
     this.dialogRef.close();
-    this.router.navigate([pageRoute, id]);
+    if (tab === 'purchases') {
+      let fragment = tab;
+      this.router.navigate([pageRoute, id], { fragment });
+    }
+    else{
+      this.router.navigate([pageRoute, id]);
+    }
   }
 
   onSelectionChange(event: Event): void {

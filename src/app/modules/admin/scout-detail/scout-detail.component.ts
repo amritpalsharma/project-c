@@ -71,6 +71,12 @@ export class ScoutDetailComponent implements OnInit {
       }
       this.getUserProfile(this.userId);
     });
+
+    this.route.fragment.subscribe(fragment => {
+      if (fragment === 'purchases') {
+        this.activeTab = fragment;
+      }
+    });
   }
 
   getUserProfile(userId: any) {

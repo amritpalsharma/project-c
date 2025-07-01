@@ -27,7 +27,7 @@
         <h6 class="font-w400">{{(user.role_name == 'player') ? 'talent' : user.role_name}}</h6>
       </div>
     </div>
-    <h6 (click)="closePopup(user.role_name, user.id)" class="list-view-title">{{ 'viewFullProfile' | translate }}</h6>
+    <h6 (click)="closePopup(user.role_name, user.id)" class="list-view-title pointer">{{ 'viewFullProfile' | translate }}</h6>
 
     <!-- <h6 class="list-view-title">
         <a  class="text-danger">View Full Profile</a>
@@ -82,14 +82,14 @@
       <h6 class="mb-2 font-w400" *ngIf="user.plan_period_end">{{formatDateTime(user.plan_period_end) }} / <span
           [translate]="user.plan_interval"></span></h6>
       <!-- <h6 class="mb-2 font-w400" *ngIf="!user.plan_period_end">NA</h6> -->
-      <h6 class="text-light font-w400">{{'viewPaymentDetails' | translate}}</h6>
+      <h6 class="text-light font-w400" (click)="closePopup(user.role_name, user.id, 'purchases')">{{'viewPaymentDetails' | translate}}</h6>
     </div>
     <div class="list-view">
       <h6 class="mb-2">{{ 'lastPayment' | translate }}</h6>
       <!-- <h6 class="mb-2 font-w400" *ngIf="user.plan_period_start">{{user.plan_period_start | date:'MMM d, y' }}</h6> -->
       <h6 class="mb-2 font-w400" *ngIf="user.plan_period_start">{{formatDateTime(user.plan_period_start) }}</h6>
       <!-- <h6 class="mb-2 font-w400" *ngIf="!user.plan_period_start">NA</h6> -->
-      <h6 class="text-light font-w400">{{'viewInvoice' | translate}}</h6>
+      <!-- <h6 class="text-light font-w400">{{'viewInvoice' | translate}}</h6> -->
     </div>
     <div class="list-view">
       <h6 class="mb-2">{{ 'voucherApplied' | translate }}</h6>

@@ -1819,6 +1819,8 @@ span.active_btn {
 
 ::ng-deep .multiline-tooltip {
   white-space: pre-line;
+  text-align: left; /* Align text to the left */
+//   white-space: pre-line;
 }
 
 ::ng-deep .call_button {
@@ -1831,3 +1833,10 @@ span.active_btn {
 ::ng-deep .dark-theme .call_button {
   color: #fff !important;
 }
+
+
+
+// .left-aligned-tooltip .mat-tooltip {
+//   text-align: left; /* Align text to the left */
+//   white-space: pre-line; /* Ensure line breaks are respected */
+// }

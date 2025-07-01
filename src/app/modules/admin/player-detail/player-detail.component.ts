@@ -63,6 +63,12 @@ export class PlayerDetailComponent implements OnInit {
       this.updateTranslation();
       this.getUserProfile(this.userId);
     });
+
+    this.route.fragment.subscribe(fragment => {
+      if (fragment === 'purchases') {
+        this.activeTab = fragment;
+      }
+    });
   }
 
   updateTranslation() {

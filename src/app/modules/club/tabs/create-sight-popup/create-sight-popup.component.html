@@ -11,7 +11,7 @@
     <div class="row align-items-center mb-4 mt-4">
       <div class="col-sm-12">
         <label for="upload-banner">{{ 'eventCoverImage' | translate }}</label>
-        <div class="cupen-btn code-text text-center position-relative">
+        <div class="cupen-btn code-text text-center position-relative" [ngClass]="{'emptyRequiredField':submitButtonClicked && !uploadedBannerImage}">
           <!-- <input type="file" class="upload-input d-none" id="upload-banner" (change)="onBannerFileChange($event)"
             accept="image/*"> -->
           <p *ngIf="!uploadedBannerImage" class="upload-file_name">{{removeMP4('filesSupported' | translate)}}</p>
@@ -55,7 +55,7 @@
         <label for="date-select" class="code-text">{{ 'dateAndTime' | translate }}</label><br>
         <input class="form-control cupen-btn sighting-cal" style="min-width: 170px;" type="datetime-local"
           id="date-select" [(ngModel)]="dateTime" placeholder="{{ 'selectDateTime' | translate }}"
-          [ngClass]="{'emptyRequiredField':submitButtonClicked && !managerName}">
+          [ngClass]="{'emptyRequiredField':submitButtonClicked && !dateTime}">
       </div>
     </div>
 
@@ -151,7 +151,7 @@
       <div class="zipcode-input col-lg-6 mb-4">
         <label for="zipcode" class="code-text"> {{ 'zipcode' | translate }}</label> <br>
         <input type="text" #numInput id="zipcode" class="cupen-btn  code-text w-100" [(ngModel)]="zipcode"
-          [ngClass]="{'emptyRequiredField':submitButtonClicked && !address}">
+          [ngClass]="{'emptyRequiredField':submitButtonClicked && !zipcode}">
       </div>
       <div class="city-input col-lg-6 mb-4">
         <label for="city" class="code-text">{{ 'city' | translate }}</label><br>
@@ -163,7 +163,7 @@
     <div class="row" *ngFor="let row of attachmentRows; let i = index">
       <div class="document-input col-lg-6 mb-4">
         <label for="document" class="code-text">{{ 'documentTitle' | translate }}</label> <br>
-        <input type="text" id="document" class="cupen-btn  code-text w-100" (keyup)="titleUpdate($event, i)">
+        <input type="text" id="document" class="cupen-btn  code-text w-100" [ngClass]="{'emptyRequiredField':submitButtonClicked && !attachmentRows[i].title}" (keyup)="titleUpdate($event, i)">
       </div>
       <div class="city-input col-lg-5 mb-4">
         <div class="choose-file-box d-flex align-items-center justify-content-between mt-4" *ngIf="row.file != ''">
@@ -212,7 +212,7 @@
     </div>
     <div class="about-event mb-4">
       <label for="about-text" class="code-text">{{ 'aboutEvent' | translate }}</label><br>
-      <textarea name="about" id="about-text" rows="4" cols="50" class="w-100 " [(ngModel)]="about">
+      <textarea name="about" id="about-text" rows="4" cols="50" class="w-100 " [(ngModel)]="about" [ngClass]="{'emptyRequiredField':submitButtonClicked && !about}">
       <!-- Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. -->
     </textarea>
     </div>

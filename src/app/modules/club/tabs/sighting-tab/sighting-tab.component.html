@@ -548,7 +548,9 @@
               d="M13.4994 14.1434C15.2746 14.1434 16.7137 12.7043 16.7137 10.9291C16.7137 9.15393 15.2746 7.71484 13.4994 7.71484C11.7242 7.71484 10.2852 9.15393 10.2852 10.9291C10.2852 12.7043 11.7242 14.1434 13.4994 14.1434Z"
               stroke="white" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
-          {{ sightingData?.address }}, {{ sightingData?.zipcode }} {{ sightingData?.city }}
+          {{ sightingData?.address }}
+          <ng-container><br></ng-container>
+          {{ sightingData?.zipcode }} {{ sightingData?.city }}
         </div>
         <!-- <div class="mb-0 butn_div">
           <button class="btn btn-success btn-sm web-create-bg mx-2 w-100 inquire-btn" type="button">{{ 'inquire' |

@@ -51,6 +51,12 @@ export class ClubDetailComponent implements OnInit {
       this.getUserProfile(this.userId);
       this.activeTab = 'profile';
     });
+
+    this.route.fragment.subscribe(fragment => {
+      if (fragment === 'purchases') {
+        this.activeTab = fragment;
+      }
+    });
   }
 
   getUserProfile(userId: any) {
