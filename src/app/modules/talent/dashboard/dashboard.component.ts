@@ -48,6 +48,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   accountVerificationPending: string = '';
   maxSizeForProfile: string = '';
   scoutInfoDetails: any;
+  customClubInfo: any;
 
 
   constructor(
@@ -437,6 +438,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
           this.user = response.data.user_data;
           this.userNationalities = JSON.parse(this.user.user_nationalities);
           this.StartTour = this.user?.show_tour == 1 ? true : false;
+          // customClubInfo
+          if (this.user?.custom_club_info && this.user?.custom_club_info != '') {
+            this.customClubInfo = JSON.parse(this.user.custom_club_info);
+          }
           // userData.first_name+' '+userData.last_name
           console.info('User', this.user);
           if (this.user?.first_name || this.user?.last_name) {
@@ -894,22 +899,22 @@ export class DashboardComponent implements OnInit, OnDestroy {
     // this.isHighlightClick = false;
     // this.getGalleryData();
     // setTimeout(() => {
-      const dialogRef = this.dialog.open(EditHighlightsComponent, {
-        width: '800px',
-        data: {
-          // images: this.userImages,
-          // videos: this.userVideos,
-          // url: this.imageBaseUrl
-        }
-      });
+    const dialogRef = this.dialog.open(EditHighlightsComponent, {
+      width: '800px',
+      data: {
+        // images: this.userImages,
+        // videos: this.userVideos,
+        // url: this.imageBaseUrl
+      }
+    });
 
-      dialogRef.afterClosed().subscribe(result => {
-        // this.duration = result.videoDuration,
-        setTimeout(() => {
-          this.getHighlightsData();
-        }, 1500);
-        this.isHighlightClick = true;
-      });
+    dialogRef.afterClosed().subscribe(result => {
+      // this.duration = result.videoDuration,
+      setTimeout(() => {
+        this.getHighlightsData();
+      }, 1500);
+      this.isHighlightClick = true;
+    });
     // }, 1500);
 
   }

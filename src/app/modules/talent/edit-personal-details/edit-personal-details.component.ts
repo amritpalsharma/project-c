@@ -156,6 +156,7 @@ export class EditPersonalDetailsComponent implements OnInit {
         this.custom_club_country = custom_club_info.country_id;
         this.custom_club = custom_club_info.club_name;
         this.custom_team = custom_club_info.team_name;
+        this.isCustomClubTeam = true;
       }
 
       // this.currentClubId = this.user.meta.pre_club_id || '';
@@ -219,10 +220,12 @@ export class EditPersonalDetailsComponent implements OnInit {
     }
 
     this.displayedCountries = [...this.countries];
-    // this.displayedCountries2 = [...this.countries];
     this.displayedCountries2 = this.countries;
+    if (this.user?.custom_club_info && this.user?.custom_club_info != '') {
+      let custom_club_info = JSON.parse(this.user?.custom_club_info);
+      this.custom_club_country = custom_club_info.country_id;
+    }
 
-    // 
   }
 
   ngAfterViewInit(): void {
@@ -437,7 +440,7 @@ export class EditPersonalDetailsComponent implements OnInit {
       formData.append('user[have_no_club]', '0');
     }
 
-    if (this.isCustomClubTeam && this.isHideClubSection) {
+    if (this.isCustomClubTeam) {
       formData.append('user[custom_club]', this.custom_club);
       formData.append('user[custom_team]', this.custom_team);
       formData.append('user[custom_club_country]', this.custom_club_country);
