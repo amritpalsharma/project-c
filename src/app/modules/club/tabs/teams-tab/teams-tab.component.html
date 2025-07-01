@@ -36,7 +36,6 @@
   <div class="mb-3 club-team">{{ 'teams' | translate }}</div>
   <!--  -->
   <!-- <pre>{{teams | json}}</pre> -->
-  <div *ngIf="teams.length == '0' && !isLoading">{{ 'NoTeamsAvailable' | translate }}</div>
   <ul class="nav nav-tabs" role="tablist">
     <li class="nav-item">
       <a class="nav-link active" data-bs-toggle="tab" data-bs-target="#Tab1" role="tab"
@@ -49,6 +48,7 @@
   </ul>
   <div class="tab-content">
     <!-- Tab 1 -->
+     <div *ngIf="teams.length == '0' && !isLoading">{{ 'NoTeamsAvailable' | translate }}</div>
     <div class="tab-pane active" id="Tab1" role="tabpanel" [ngClass]="{'active':team_group == 'm'}">
       <app-loader *ngIf="isLoading"></app-loader>
       <div class="not" *ngIf="!isLoading">
