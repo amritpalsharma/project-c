@@ -59,7 +59,7 @@
         </div>
       </div>
 
-      <div class="row" *ngIf="!isHideClubSection">
+      <div class="row" *ngIf="!isHideClubSection && !isCustomClubTeam">
 
         <!-- Current Club -->
         <div class="form-group col-lg-6 position_inputs">
@@ -106,19 +106,12 @@
         </div> -->
         <div class="form-group col-lg-4 position_inputs">
           <label for="nationality22">{{'club' | translate}} {{'country' | translate}}:</label>
-          <mat-select [(ngModel)]="custom_club_country" #customClubCountryField="ngModel" class="form-select"
-            id="nationality22" name="nationality22" required>
-            <mat-option *ngIf="!custom_club_country" selected>{{'select' | translate}}</mat-option>
-            <div>
-              <input matInput (keyup)="filterCountries2($event)" placeholder="{{'search' | translate}}"
-                [(ngModel)]="custom_club_search" name="club_search" class="form-control backgroundGray" />
-            </div>
-
-
-            <mat-option *ngFor="let country of displayedCountries2; trackBy: trackByCountryId" [value]="country.id">
+          <select class="form-select" id="nationality22" name="nationality22" required [(ngModel)]="custom_club_country"
+            #customClubCountryField="ngModel">
+            <option *ngFor="let country of displayedCountries2; trackBy: trackByCountryId" [value]="country.id">
               {{ country.country_name }}
-            </mat-option>
-          </mat-select>
+            </option>
+          </select>
         </div>
 
         <div class="form-group col-lg-4">
@@ -137,16 +130,6 @@
 
         <div class="form-group col-lg-6 position_inputs">
           <label for="nationality">{{'nationality' | translate}}:</label>
-          <!-- <mat-select [(ngModel)]="nationality" class="form-select" id="nationality" name="nationality" multiple
-            #nationalityField="ngModel" required>
-            <div>
-              <input matInput (keyup)="filterClubs($event)" placeholder="{{'search' | translate}}"
-                [(ngModel)]="clubSearch" name="club_search" class="form-control" />
-            </div>
-            <mat-option *ngFor="let country of countries" [value]="country.id">
-              {{ country.country_name }}
-            </mat-option>
-          </mat-select> -->
           <mat-select [(ngModel)]="nationality" class="form-select" id="nationality" name="nationality" multiple
             #nationalityField="ngModel" required>
 

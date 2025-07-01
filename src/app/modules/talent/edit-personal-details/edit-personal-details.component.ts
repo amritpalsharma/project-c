@@ -659,5 +659,10 @@ export class EditPersonalDetailsComponent implements OnInit {
 
   onChnageCustomClubTeam(value: boolean) {
     this.isCustomClubTeam = value;
+    // if (value === true) {
+    //   this.isHideClubSection = true;
+    // } else {
+    //   this.isHideClubSection = false;
+    // }
   }
 }

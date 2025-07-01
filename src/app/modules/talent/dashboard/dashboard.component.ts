@@ -441,6 +441,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
           // customClubInfo
           if (this.user?.custom_club_info && this.user?.custom_club_info != '') {
             this.customClubInfo = JSON.parse(this.user.custom_club_info);
+            console.info('customClubInfo', this.customClubInfo)
           }
           // userData.first_name+' '+userData.last_name
           console.info('User', this.user);

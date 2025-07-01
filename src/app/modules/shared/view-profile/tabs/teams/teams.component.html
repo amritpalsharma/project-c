@@ -5,11 +5,12 @@
             <div class="mb-3 club-team">{{ 'teams' | translate }}</div>
             <ul class="nav nav-tabs" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" data-bs-toggle="tab" data-bs-target="#Tab1" role="tab"
-                        >{{'men' | translate}}</a>
+                    <a class="nav-link active" data-bs-toggle="tab" data-bs-target="#Tab1" role="tab">{{'men' |
+                        translate}}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-transform-normal" data-bs-toggle="tab" data-bs-target="#Tab2" role="tab">{{'women'
+                    <a class="nav-link text-transform-normal" data-bs-toggle="tab" data-bs-target="#Tab2"
+                        role="tab">{{'women'
                         | translate}}</a>
                 </li>
             </ul>
@@ -109,6 +110,10 @@
 
                         <table mat-table [dataSource]="players" class="table table-hover table-striped table-users ">
 
+                            <ng-container matColumnDef="JersyNumber">
+                                <th mat-header-cell *matHeaderCellDef>#</th>
+                                <td mat-cell *matCellDef="let element"> {{ element.jersey_number }}</td>
+                            </ng-container>
                             <!-- Name Column -->
                             <ng-container matColumnDef="Player Name">
                                 <th mat-header-cell *matHeaderCellDef> {{ 'playerName' | translate }} </th>
