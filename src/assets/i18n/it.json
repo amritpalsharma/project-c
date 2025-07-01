@@ -1506,5 +1506,6 @@
   "addNewFemalePlayer": "Aggiungi nuova giocatrice",
   "crop": "Ritaglia",
   "coverImageDelete" : "Sei sicuro di voler eliminare la tua immagine di copertina?",
-  "noPortfolioRecordFound": "Nessun talento è stato ancora aggiunto al portfolio."
+  "noPortfolioRecordFound": "Nessun talento è stato ancora aggiunto al portfolio.",
+  "withoutCurrentClub": "senza club"
 }

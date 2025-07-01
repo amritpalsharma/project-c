@@ -1422,5 +1422,6 @@
   "addNewFemalePlayer": "Add new female player",
   "crop": "Crop",
   "coverImageDelete" : "Are you sure you want to delete your cover image?",
-  "noPortfolioRecordFound": "No talents have been added to the portfolio yet."
+  "noPortfolioRecordFound": "No talents have been added to the portfolio yet.",
+  "withoutCurrentClub": "without a Club"
 }

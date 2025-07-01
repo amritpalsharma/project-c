@@ -1375,5 +1375,6 @@
   "addNewFemalePlayer": "Tilføj ny spiller (kvinde)",
   "crop": "Beskær",
   "coverImageDelete" : "Er du sikker på, at du vil slette dit forsidebillede?",
-  "noPortfolioRecordFound": "Der er endnu ikke tilføjet nogen talenter til porteføljen."
+  "noPortfolioRecordFound": "Der er endnu ikke tilføjet nogen talenter til porteføljen.",
+  "withoutCurrentClub": "uden klub"
 }
