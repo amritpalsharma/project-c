@@ -97,6 +97,11 @@ export class EditPersonalDetailsComponent implements OnInit {
   filterCountriesArr: any = [];
   displayedCountries: any[] = [];
 
+  custom_club_country: number = 0;
+  custom_club_country_name: string = '';
+  custom_club: string = '';
+  custom_team: string = '';
+  isCustomClubTeam: boolean = false;
   constructor(
     public dialogRef: MatDialogRef<EditPersonalDetailsComponent>,
     private talentService: TalentService,
@@ -151,13 +156,7 @@ export class EditPersonalDetailsComponent implements OnInit {
         this.user?.meta?.contract_end ? new Date(this.user.meta.contract_end) : null
       );
 
-      if (this.user?.custom_club_info && this.user?.custom_club_info != '') {
-        let custom_club_info = JSON.parse(this.user?.custom_club_info);
-        this.custom_club_country = custom_club_info.country_id;
-        this.custom_club = custom_club_info.club_name;
-        this.custom_team = custom_club_info.team_name;
-        this.isCustomClubTeam = true;
-      }
+
 
       // this.currentClubId = this.user.meta.pre_club_id || '';
       // this.loadTeams(this.currentClubId);
@@ -224,6 +223,8 @@ export class EditPersonalDetailsComponent implements OnInit {
     if (this.user?.custom_club_info && this.user?.custom_club_info != '') {
       let custom_club_info = JSON.parse(this.user?.custom_club_info);
       this.custom_club_country = custom_club_info.country_id;
+      this.custom_club_country_name = custom_club_info.country_name;
+      console.log('custom_club_country', this.custom_club_country, 'TypeOF', typeof this.custom_club_country)
     }
 
   }
@@ -333,6 +334,8 @@ export class EditPersonalDetailsComponent implements OnInit {
           this.currentClubId = this.user.current_club_id;
         }
 
+
+
         if (this.user.team_id && this.user.team_id != '' && this.user.team_id != undefined) {
           this.team_id = this.user.team_id;
           // this.teamControl.setValue(this.user.team_id);
@@ -350,6 +353,16 @@ export class EditPersonalDetailsComponent implements OnInit {
         if (this.user.meta && this.user.meta.league_level) {
           this.leagueLevel = this.user.meta.league_level;
           console.warn('this.leagueLevel ', this.leagueLevel);
+        }
+
+        if (this.user?.custom_club_info && this.user?.custom_club_info != '') {
+          let custom_club_info = JSON.parse(this.user?.custom_club_info);
+          this.custom_club_country = custom_club_info.country_id;
+          this.custom_club = custom_club_info.club_name;
+          this.custom_team = custom_club_info.team_name;
+          this.isCustomClubTeam = true;
+
+          console.info('this.custom_club_country', this.custom_club_country);
         }
       }
     } else {
@@ -443,7 +456,7 @@ export class EditPersonalDetailsComponent implements OnInit {
     if (this.isCustomClubTeam) {
       formData.append('user[custom_club]', this.custom_club);
       formData.append('user[custom_team]', this.custom_team);
-      formData.append('user[custom_club_country]', this.custom_club_country);
+      formData.append('user[custom_club_country]', this.custom_club_country + '');
     }
     // const team = this.teamsArr.find(team => team.id === this.CurrentTeamId);
     // console.log('Selected Team Id is', this.CurrentTeamId, ' and Team Type is ', team.team_type);
@@ -640,10 +653,7 @@ export class EditPersonalDetailsComponent implements OnInit {
     this.isHideClubSection = value;
   }
 
-  custom_club_country: any;
-  custom_club: string = '';
-  custom_team: string = '';
-  isCustomClubTeam: boolean = false;
+
   onChnageCustomClubTeam(value: boolean) {
     this.isCustomClubTeam = value;
   }

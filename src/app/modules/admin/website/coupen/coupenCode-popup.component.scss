@@ -107,3 +107,6 @@
     color: #E05263; /* Text color when checked */
   }
 
+::ng-deep .dropdown-toggle::after{
+  display: none;
+}

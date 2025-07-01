@@ -155,7 +155,12 @@
                               *ngIf="element.status === '3' && userRoleIn(element.role_name)" />
                           </span>
                         </span>
-                        <span class="main-template" style="padding-left: 15px">
+                        <span class="main-template" style="padding-left: 15px"
+                          *ngIf="element.role_name?.toLowerCase() === 'club'">
+                          {{ element?.pre_current_club_name	}}
+                        </span>
+                        <span class="main-template" style="padding-left: 15px"
+                          *ngIf="element.role_name?.toLowerCase() != 'club'">
                           {{ element.first_name }} {{ element.last_name }}
                         </span>
                       </div>
@@ -247,9 +252,12 @@
                       </span>
                     </th>
                     <td mat-cell *matCellDef="let element">
-                      <span *ngIf="element.status === '1' && userRoleIn(element.role_name)" class="bg_pending">{{ 'pending' | translate }}</span>
-                      <span *ngIf="element.status === '2' && userRoleIn(element.role_name)" class="bg_success">{{ 'approved' | translate }}</span>
-                      <span *ngIf="element.status === '3' && userRoleIn(element.role_name)" class="bg_reject">{{ 'rejected' | translate }}</span>
+                      <span *ngIf="element.status === '1' && userRoleIn(element.role_name)" class="bg_pending">{{
+                        'pending' | translate }}</span>
+                      <span *ngIf="element.status === '2' && userRoleIn(element.role_name)" class="bg_success">{{
+                        'approved' | translate }}</span>
+                      <span *ngIf="element.status === '3' && userRoleIn(element.role_name)" class="bg_reject">{{
+                        'rejected' | translate }}</span>
                     </td>
                   </ng-container>
                   <ng-container matColumnDef="Edit">

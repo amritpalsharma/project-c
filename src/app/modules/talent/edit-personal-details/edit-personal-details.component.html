@@ -106,12 +106,13 @@
         </div> -->
         <div class="form-group col-lg-4 position_inputs">
           <label for="nationality22">{{'club' | translate}} {{'country' | translate}}:</label>
-          <mat-select [(ngModel)]="custom_club_country" class="form-select" id="nationality22" name="nationality22">
+          <mat-select [(ngModel)]="custom_club_country" #customClubCountryField="ngModel" class="form-select"
+            id="nationality22" name="nationality22" required>
             <div>
               <input matInput (keyup)="filterCountries2($event)" placeholder="{{'search' | translate}}"
                 [(ngModel)]="custom_club_search" name="club_search" class="form-control backgroundGray" />
             </div>
-
+            <mat-option [value]="custom_club_country" *ngIf="custom_club_country" selected>{{custom_club_country_name}}</mat-option>
             <mat-option *ngFor="let country of displayedCountries2" [value]="country.id">
               {{ country.country_name }}
             </mat-option>

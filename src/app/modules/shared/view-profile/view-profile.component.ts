@@ -133,8 +133,10 @@ export class ViewProfileComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    const videoEl = this.videoElementRef.nativeElement;
-    videoEl.autoplay = false;
+    if (this.videoElementRef) {
+      const videoEl = this.videoElementRef.nativeElement;
+      videoEl.autoplay = false;
+    }
   }
 
   getToolTips() {
