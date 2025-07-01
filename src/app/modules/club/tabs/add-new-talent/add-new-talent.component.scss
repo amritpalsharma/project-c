@@ -7,12 +7,16 @@
   padding: 0px;
   position: absolute;
   right: 17px;
-  top: 15px;
+  top: 9px;
   z-index: 2;
   opacity: 1;
   cursor: pointer;
 }
-
+::ng-deep {
+  .user_list_full {
+    max-width: 100% !important;
+  }
+}
 .bg-transparent {
   background-color: transparent;
 }
@@ -66,6 +70,14 @@
 //   border-bottom: 2px solid black;
 // }
 
+.popup__body {
+  .popup_overflwo {
+    max-height: 350px;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
+
 .bg-white {
   background-color: white;
   // height: 90% !important;
@@ -74,7 +86,6 @@
 .body-background {
   border-top: 1px solid #D9D9D9 !important;
   border-bottom: 1px solid #D9D9D9 !important;
-
 }
 
 .listBox ::-webkit-scrollbar {
@@ -214,46 +225,34 @@
 }
 
 // Code by amrit
-/* Container for the user list */
 ::ng-deep .user-list {
   display: flex;
   flex-direction: column;
-  /* Stack users vertically */
   gap: 15px;
-  /* Spacing between user items */
   max-width: 600px;
-  /* Set max width for the list */
   margin: 0 auto;
-  /* Center the list horizontally */
 }
 
-/* User Item (Each user in the list) */
 ::ng-deep .user-item {
   display: flex;
   align-items: center;
   gap: 10px;
-  /* Space between image, name, and input */
   border: 1px solid #ccc;
-  /* Light border for each user item */
   padding: 10px;
   border-radius: 8px;
-  // background-color: #f9f9f9;
 }
 
 ::ng-deep .dark-theme .user-item {
   background-color: #072944;
+  border-color: #204a6c !important;
 }
 
 /* User Image */
 ::ng-deep .user-image {
   width: 40px;
-  /* Set fixed width for images */
   height: 40px;
-  /* Set fixed height for images */
   border-radius: 50%;
-  /* Circle-shaped images */
   object-fit: cover;
-  /* Ensure image aspect ratio is maintained */
 }
 
 /* User Name */
@@ -262,7 +261,6 @@
   font-weight: bold;
   color: #333;
   flex-grow: 1;
-  /* Push the name to the left */
 }
 
 /* Input Box for Text */
@@ -291,6 +289,35 @@
   left: unset !important;
   margin-left: 0 !important;
 }
+
+.user_list_full input.user-input {
+    background: #f7f7f7;
+    color: #000;
+    border-radius: 3px !important;
+    border: 1px dashed #cccccc;
+    width: 300px !important;
+}
+
+::ng-deep .dark-theme { 
+  .body-background {
+    border-top: 1px solid #204a6c !important;
+    border-bottom: 1px solid #204a6c !important;
+    background: #0c3453 !important;
+  }
+  .user_list_full input.user-input {
+    background: #0c3453 !important;
+    color: #fff !important;
+    border: 1px dashed #204a6c !important;
+    &::placeholder {
+      color: #fff !important;
+      opacity: 1;
+    }
+    &::-ms-input-placeholder {
+      color: #fff !important;
+    }
+  }
+}
+
 
 
 @media (min-width: 1600px) and (max-width: 2999px) {
