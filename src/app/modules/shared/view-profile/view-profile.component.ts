@@ -68,6 +68,7 @@ export class ViewProfileComponent implements OnInit {
   @ViewChild(SightingComponent)
   sightingComponent!: SightingComponent;
   scoutInfoDetails: any;
+  customClubInfo: any;
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
@@ -133,8 +134,10 @@ export class ViewProfileComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    const videoEl = this.videoElementRef.nativeElement;
-    videoEl.autoplay = false;
+    if (this.videoElementRef) {
+      const videoEl = this.videoElementRef.nativeElement;
+      videoEl.autoplay = false;
+    }
   }
 
   getToolTips() {
@@ -192,17 +195,11 @@ export class ViewProfileComponent implements OnInit {
           if (this.user?.scout_info) {
             this.scoutInfoDetails = JSON.parse(this.user?.scout_info);
           }
-          // console.info(this.user);
-          // if(this.user?.meta?.place_of_birth){
-          //   this.getCountryFromPlaceOfBirth(this.user?.meta?.place_of_birth);
-          // }
 
-          // if (this.userNationalities?.length) {
-          //   // Fetch flag details for each nationality
-          //   this.userNationalities.forEach((nat:any, index:any) => {
-          //     this.getCountry(nat.flag_path, index);
-          //   });
-          // }
+          if (this.user?.custom_club_info && this.user?.custom_club_info != '') {
+            this.customClubInfo = JSON.parse(this.user.custom_club_info);
+          }
+          
 
           // Set isFavorite status based on user data or API response
           this.isFavorite = this.user.marked_favorite; // Assuming API returns this

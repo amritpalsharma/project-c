@@ -1,4 +1,4 @@
-import { Component, inject, ViewChild } from '@angular/core';
+import { Component, inject, ViewChild, ElementRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FilterPopupComponrnt } from '../filter-popup/filter-popup.component';
@@ -33,6 +33,7 @@ export class TemplatesComponent {
   customFilters: any = [];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild('masterCheckboxTemplates', { static: false }) masterCheckboxTemplates!: ElementRef;
   roles: any = [];
   langs: any = environment.langs;
   pageTitle: string = '';
@@ -165,22 +166,34 @@ export class TemplatesComponent {
   }
 
   onCheckboxChange(popup: any) {
+    // const index = this.selectedIds.indexOf(popup.id);
+    // if (index === -1) {
+    //   this.selectedIds.push(popup.id);
+    // } else {
+    //   this.selectedIds.splice(index, 1);
+    // }
     const index = this.selectedIds.indexOf(popup.id);
     if (index === -1) {
+      // Adding the ID if it's not already selected
       this.selectedIds.push(popup.id);
     } else {
+      // Removing the ID if it's already selected
       this.selectedIds.splice(index, 1);
     }
+
+    this.updateMasterCheckboxState();
   }
 
   selectAllPopups() {
     this.allSelected = !this.allSelected;
     if (this.allSelected) {
+      // this.selectedIds = this.templates.map((popup: any) => popup.id);
       this.selectedIds = this.templates.map((popup: any) => popup.id);
     } else {
       this.selectedIds = [];
     }
     console.log('Selected user IDs:', this.selectedIds);
+    this.updateMasterCheckboxState();
   }
 
   confirmDeletion(): any {
@@ -339,5 +352,18 @@ export class TemplatesComponent {
       this.titleService.setTitle(this.pageTitle);
       console.info('Function Fired getJsonTranslations')
     })
+  }
+
+  updateMasterCheckboxState() {
+    const masterCheckbox = this.masterCheckboxTemplates?.nativeElement;
+    if (!masterCheckbox) return;
+
+    const total = this.templates.length;
+    const selected = this.selectedIds.length;
+    // console.log('total',total);
+    // console.log('selected',selected);
+
+    masterCheckbox.indeterminate = selected > 0 && selected < total;
+    masterCheckbox.checked = selected === total;
   }
 }

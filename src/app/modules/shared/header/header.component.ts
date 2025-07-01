@@ -123,7 +123,7 @@ export class HeaderComponent {
   UserRole: string = '';
   currentRole: string = '';
   isUserVerified: boolean = false;
-  justNow : string = '';
+  justNow: string = '';
 
   langSubscription!: Subscription;
 
@@ -263,12 +263,14 @@ export class HeaderComponent {
         tap((value: any) => {
           console.log("Search input changed:", value);
           if (!value) {
+            console.log("Search input Cleared");
             this.filteredUsers = []; // Clear search results when input is empty
           }
         }),
         filter((value) => value.length > 0), // Ensure search triggers only for non-empty input
         debounceTime(300),
         distinctUntilChanged(),
+        filter(text => !!text && text.trim().length >= 2),
         switchMap((searchText: string) => {
           this.isLoading = true;
           return this.userService.searchUser(searchText).pipe(

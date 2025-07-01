@@ -69,12 +69,15 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
 // import { NgxStripeModule } from 'ngx-stripe';
+
+// 01-07-2025
+import { NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
 export const MY_FORMATS = {
   parse: {
     dateInput: 'DD.MM.YYYY', // Parse input in DD.MM.YYYY format
   },
   display: {
-    dateInput: 'DD.MM.YYYY', // Display format for date input
+    dateInput: 'DD.MM.YYYY', // Display format for date input 
     monthYearLabel: 'MMM YYYY', // Month and year label
     dateA11yLabel: 'DD.MM.YYYY', // Accessibility label for date
     monthYearA11yLabel: 'MMMM YYYY', // Accessibility label for month and year
@@ -176,7 +179,10 @@ export const MY_FORMATS = {
     NgxEditorModule,
     MatProgressSpinnerModule,
     MatTooltipModule,
-    EditorModule
+    EditorModule,
+    NgxMatTimepickerModule,
+    NgxMatNativeDateModule,
+    NgxMatTimepickerModule
   ]
 })
 

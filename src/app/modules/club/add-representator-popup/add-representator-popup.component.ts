@@ -34,6 +34,7 @@ export class AddRepresentatorPopupComponent {
   roleIsRequired: string = '';
   firstNameRequired: string = '';
   lastNameRequired: string = '';
+  theme: string = localStorage.getItem('theme') || 'dark';
 
   constructor(
     private clubService: ClubService,

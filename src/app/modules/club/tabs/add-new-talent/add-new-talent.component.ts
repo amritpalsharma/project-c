@@ -45,6 +45,9 @@ export class AddNewTalentComponent implements OnInit {
   theme: string = localStorage.getItem('theme') || 'light';
   submitClicked: boolean = false;
 
+  startDateTime = new FormControl();
+
+
   constructor(
     private clubService: ClubService,
     public dialogRef: MatDialogRef<AddNewTalentComponent>,
@@ -60,7 +63,9 @@ export class AddNewTalentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.fetchPlayers();
+    if (!this.edit) {
+      this.fetchPlayers();
+    }
     if (this.edit && this.player) {
       this.initializeFormFields();
     }

@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -39,6 +39,7 @@ export class NotificationsLogComponent {
   notifications: any[] = [];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild('notificationsAdmin', { static: false }) notificationsAdmin!: ElementRef;
   idsToDelete: any = [];
   deleteConfirmation3: string = '';
   selectNotificationFirst: string = '';
@@ -151,35 +152,40 @@ export class NotificationsLogComponent {
   }
 
   onCheckboxChange(item: any) {
+    // const index = this.selectedIds.indexOf(item.id);
+    // if (index === -1) {
+    //   this.selectedIds.push(item.id);
+    // } else {
+    //   this.selectedIds.splice(index, 1);
+    // }
+
+    // if (this.notifications.length === this.selectedIds.length) {
+    //   this.allSelected = true;
+    // } else {
+    //   this.allSelected = false;
+    // }
     const index = this.selectedIds.indexOf(item.id);
     if (index === -1) {
+      // Adding the ID if it's not already selected
       this.selectedIds.push(item.id);
     } else {
+      // Removing the ID if it's already selected
       this.selectedIds.splice(index, 1);
     }
-
-    if (this.notifications.length === this.selectedIds.length) {
-      this.allSelected = true;
-    } else {
-      this.allSelected = false;
-    }
+    this.updateMasterCheckboxState();
   }
 
   selectAll() {
     this.allSelected = !this.allSelected;
     if (this.allSelected) {
-      this.selectedIds = this.notifications.map((item: any) => item.id);
+      // Select all popups
+      this.selectedIds = this.notifications.map((popup: any) => popup.id);
     } else {
+      // Deselect all popups
       this.selectedIds = [];
     }
-    // console.log('Selected user IDs:', this.selectedIds);
 
-
-    if (this.notifications.length === this.selectedIds.length) {
-      this.allSelected = true;
-    } else {
-      this.allSelected = false;
-    }
+    this.updateMasterCheckboxState();
   }
 
   confirmDeletion(): any {
@@ -229,8 +235,8 @@ export class NotificationsLogComponent {
     messageDialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
         if (result.action == "delete-confirmed") {
-          let isDeleted : any = localStorage.getItem('isDeleted');
-          if(!isDeleted){
+          let isDeleted: any = localStorage.getItem('isDeleted');
+          if (!isDeleted) {
             localStorage.setItem('isDeleted', 'true');
           }
           this.deleteActivity();
@@ -263,5 +269,18 @@ export class NotificationsLogComponent {
       this.selectNotificationFirst = translations['selectNotificationFirst'];
       console.warn(this.selectNotificationFirst);
     })
+  }
+
+  updateMasterCheckboxState() {
+    const masterCheckbox = this.notificationsAdmin?.nativeElement;
+    if (!masterCheckbox) return;
+
+    const total = this.notifications.length;
+    const selected = this.selectedIds.length;
+    // console.log('total',total);
+    // console.log('selected',selected);
+
+    masterCheckbox.indeterminate = selected > 0 && selected < total;
+    masterCheckbox.checked = selected === total;
   }
 }

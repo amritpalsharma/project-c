@@ -20,7 +20,7 @@ export class TeamsTabComponent {
   teams: any = [];
   players: any = [];
   view: string = "team";
-  displayedColumns: string[] = ['Player Name', 'Joining Date', 'Exit Date', 'Location', 'view', 'Edit', 'Delete'];
+  displayedColumns: string[] = ['JersyNumber', 'Player Name', 'Joining Date', 'Exit Date', 'Location', 'view', 'Edit', 'Delete'];
   isLoading: boolean = false;
   selectedTeam: any = "";
   selectTeamName: string = '';
