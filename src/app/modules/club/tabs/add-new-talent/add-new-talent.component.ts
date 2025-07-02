@@ -12,6 +12,7 @@ import * as _moment from 'moment';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 // tslint:disable-next-line:no-duplicate-imports
 import { default as _rollupMoment } from 'moment';
+import { ToastrService } from 'ngx-toastr';
 
 const moment = _rollupMoment || _moment;
 
@@ -32,10 +33,8 @@ export class AddNewTalentComponent implements OnInit {
   invitedUsers: any = [];
   eventName: any = "";
   sightId: any = "";
-  // startDate: string | null = null;
   startDate: FormControl = new FormControl(null);
   endDate: FormControl = new FormControl(null);
-  // endDate: string | null = null;
   noEndDate: boolean = false;
   teamId: any;
   player: any;
@@ -45,6 +44,8 @@ export class AddNewTalentComponent implements OnInit {
   theme: string = localStorage.getItem('theme') || 'light';
   submitClicked: boolean = false;
 
+  jerseyNumber: string = '';
+
   startDateTime = new FormControl();
 
 
@@ -52,14 +53,16 @@ export class AddNewTalentComponent implements OnInit {
     private clubService: ClubService,
     public dialogRef: MatDialogRef<AddNewTalentComponent>,
     private socketService: SocketService,
+    public toaster: ToastrService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.teamId = data.teamId;
     this.player = data.player;
     this.edit = data.edit;
     this.teamName = data.teamName;
+    this.jerseyNumber = data.player.jersey_number;
 
-    this.startDate.setValue(this.player.join_date ? new Date(this.player.join_date) : null);
+    // this.startDate.setValue(this.player.join_date ? new Date(this.player.join_date) : null);
   }
 
   ngOnInit(): void {
@@ -73,13 +76,14 @@ export class AddNewTalentComponent implements OnInit {
 
   initializeFormFields(): void {
     // this.startDate = this.player.join_date;
+    this.startDate.setValue(this.player.join_date ? new Date(this.player.join_date) : null);
     this.startDate = new FormControl(
       this.player.join_date ? new Date(this.player.join_date) : null
     );
+
     this.endDate = new FormControl(
       this.player.end_date ? new Date(this.player.end_date) : null
     );
-    // this.endDate = this.player.end_date;
     this.noEndDate = this.player.no_end_date === '1';
     this.users = [this.player]; // Assuming you want to pre-fill the user
   }
@@ -107,6 +111,11 @@ export class AddNewTalentComponent implements OnInit {
 
   sendInvite() {
     this.submitClicked = true;
+
+    // if(!this.endDate.value && !this.noEndDate){
+    //   return;
+    // }
+    console.log(this.submitClicked, this.startDate)
     const formData = new FormData();
     let i = 0;
     let lang_id = localStorage.getItem('lang_id');
@@ -115,27 +124,37 @@ export class AddNewTalentComponent implements OnInit {
     // return
     this.users.map((user: any) => {
       if (this.edit) {
-        this.receiverIds.push(user.player_id);
+        // this.receiverIds.push(user.player_id);
         formData.append(`player_id`, user.id);
         formData.append(`team_id`, this.teamId);
         const formattedStartDate = moment(this.startDate.value).format('YYYY-MM-DD');
         formData.append(`join_date`, formattedStartDate);
-        const formattedEndDate = moment(this.endDate.value).format('YYYY-MM-DD');
-        formData.append(`end_date`, formattedEndDate);
-        // formData.append(`end_date`, this.noEndDate ? '' : this.endDate || '');
-        formData.append(`no_end_date`, this.noEndDate ? '1' : '0');
-        formData.append(`no_end_date`, this.noEndDate ? '1' : '0');
-        formData.append(`jersey_number`, user.jersey_number);
+        const formattedEndDate = this.endDate.value ? moment(this.endDate.value).format('YYYY-MM-DD') : '';
+        // formData.append(`end_date`, formattedEndDate);
+        // formData.append(`no_end_date`, this.noEndDate ? '1' : '0');
+
+        if(this.noEndDate){
+          formData.append(`no_end_date`, this.noEndDate ? '1' : '0');
+        }
+        else{
+          formData.append(`end_date`, this.noEndDate ? '' : formattedEndDate || '');
+        }
+        formData.append(`jersey_number`, user.jersey_number ? user.jersey_number : '');
       } else {
-        this.receiverIds.push(user.id);
+        // this.receiverIds.push(user.id);
         formData.append(`players[${i}][player_id]`, user.id);
         formData.append(`players[${i}][team_id]`, this.teamId);
         const formattedStartDate = moment(this.startDate.value).format('YYYY-MM-DD');
         formData.append(`players[${i}][join_date]`, formattedStartDate);
 
-        const formattedEndDate = moment(this.endDate.value).format('YYYY-MM-DD');
-        formData.append(`players[${i}][end_date]`, this.noEndDate ? '' : formattedEndDate || '');
-        formData.append(`players[${i}][jersey_number]`, user.jersey_number);
+        const formattedEndDate = this.endDate.value ? moment(this.endDate.value).format('YYYY-MM-DD') : '';
+        if(this.noEndDate){
+          formData.append(`players[${i}][no_end_date]`, this.noEndDate ? '1' : '0');
+        }
+        else{
+          formData.append(`players[${i}][end_date]`, this.noEndDate ? '' : formattedEndDate || '');
+        }
+        formData.append(`players[${i}][jersey_number]`, user.jersey_number ? user.jersey_number : '');
       }
       i += 1;
     });
@@ -151,13 +170,15 @@ export class AddNewTalentComponent implements OnInit {
     if (this.edit) {
       this.updatePlayer(formData);
     } else {
-
       this.addPlayer(formData);
     }
   }
 
+  submitButtonClicked: boolean = false;
+
   addPlayer(formData: FormData) {
     this.clubService.addTeamPlayer(formData).subscribe((response) => {
+      this.submitButtonClicked = true;
       if (response && response.status) {
         let jsonData = localStorage.getItem("userData");
         let myUserId: any;
@@ -169,6 +190,7 @@ export class AddNewTalentComponent implements OnInit {
           console.log("No data found in localStorage.");
         }
         console.log("working", this.receiverIds)
+        this.receiverIds = response.data.playerAdded;
 
         this.receiverIds.forEach((receiverId: any) => {
           console.log("working", receiverId)
@@ -181,33 +203,17 @@ export class AddNewTalentComponent implements OnInit {
           id: this.sightId,
           message: response.message
         });
-
-
       } else {
-        console.error('Invalid API response structure:', response);
+        // console.error('Invalid API response structure:', response);
+        this.toaster.warning(response.data.errors);
       }
     });
   }
 
   updatePlayer(formData: FormData) {
     this.clubService.updateTeamPlayer(this.player.id, formData).subscribe((response) => {
+      this.submitButtonClicked = true;
       if (response && response.status) {
-        let jsonData = localStorage.getItem("userData");
-        let myUserId: any;
-        if (jsonData) {
-          let userData = JSON.parse(jsonData);
-          myUserId = userData.id;
-        }
-        else {
-          console.log("No data found in localStorage.");
-        }
-        console.log("working", this.receiverIds)
-
-        this.receiverIds.forEach((receiverId: any) => {
-          console.log("working", receiverId, myUserId)
-          this.socketService.emit('ClubAddPlayer', { senderIds: { senderId: myUserId, teamName: this.teamName }, receiverId: receiverId });
-        })
-        this.receiverIds = [];
 
         this.dialogRef.close({
           action: 'updated',
@@ -215,7 +221,8 @@ export class AddNewTalentComponent implements OnInit {
           message: response.message
         });
       } else {
-        console.error('Invalid API response structure:', response);
+        // console.error('Invalid API response structure:', response);
+        this.toaster.warning(response.data.errors);
       }
     });
   }
@@ -224,15 +231,27 @@ export class AddNewTalentComponent implements OnInit {
     let keyword = event.target.value;
     console.log(keyword); // You can use this to see the current input value
 
-    this.filteredUsers = this.allUsers.filter((user: any) => (user.first_name !== null && user.first_name !== undefined) &&
-      user.first_name.toLowerCase().indexOf(keyword.toLowerCase()) != -1);
+    // this.filteredUsers = this.allUsers.filter((user: any) => (user.first_name !== null && user.first_name !== undefined) &&
+    //   user.first_name.toLowerCase().indexOf(keyword.toLowerCase()) != -1);
+    this.filteredUsers = this.allUsers
+      .filter((user: any) => user.first_name && user.first_name.toLowerCase().indexOf(keyword.toLowerCase()) !== -1)
+      .sort((a: any, b: any) => {
+        const aIndex = a.first_name.toLowerCase().indexOf(keyword.toLowerCase());
+        const bIndex = b.first_name.toLowerCase().indexOf(keyword.toLowerCase());
+
+        // Sort by the index where the match happens, prioritizing earlier matches
+        return aIndex - bIndex;
+      });
+
   }
 
   onClickOutside() {
     this.dialogRef.close();
   }
+  userSearch: string = '';
 
   callListApi(userInput: HTMLInputElement) {
+    this.userSearch = userInput.value;
     setTimeout(() => {
       this.filteredUsers = this.allUsers.filter((user: any) => (user.first_name !== null && user.first_name !== undefined) &&
         user.first_name.toLowerCase().indexOf(userInput.value.toLowerCase()) != -1

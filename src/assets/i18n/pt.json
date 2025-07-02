@@ -977,7 +977,7 @@
   "addPerformaceDetails": "Add e performace e details",
   "viewMembership": "Mostrar a assinatura",
   "invoice": "Fatura",
-  "invoiceNumber": "Invoice e number",
+  "invoiceNumber": "Número da fatura",
   "pos": "Pos.",
   "duration": "Duração",
   "price": "Preço",
@@ -1468,5 +1468,6 @@
   "coverImageDelete" : "Tens a certeza de que queres apagar a tua imagem de capa?",
   "noPortfolioRecordFound": "Ainda não foram adicionados talentos ao portfólio.",
   "withoutCurrentClub": "sem clube",
-  "scoutingInformation2": "Informações de observação"
+  "scoutingInformation2": "Informações de observação",
+  "addJerseyNumber": "Número da camisa"
 }

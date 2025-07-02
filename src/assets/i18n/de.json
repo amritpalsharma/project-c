@@ -448,7 +448,7 @@
   "deactivate": "Deaktivieren",
   "orderNo": "Bestellnummer",
   "purchasedDate": "Kaufdatum",
-  "validUntil": "Gütig bis",
+  "validUntil": "gütig bis",
   "downloadInvoice": "Rechnung herunterladen",
   "purchaseHistory": "Kaufhistorie",
   "removeFromFavorite": "Aus Favoriten entfernen",
@@ -1517,5 +1517,6 @@
   "coverImageDelete" : "Bist du sicher, dass du dein Titelbild löschen möchtest?",
   "noPortfolioRecordFound": "Bisher sind keine Talente dem Portfolio hinzugefügt.",
   "withoutCurrentClub": "vereinslos",
-  "scoutingInformation2": "Sichtungs-Informationen"
+  "scoutingInformation2": "Sichtungs-Informationen",
+  "addJerseyNumber": "Trikotnummer"
 }

@@ -4,7 +4,9 @@
             <h6 class="card-title mb-0">{{'notification' | translate}}</h6>
             <!-- <p>{{'customizeExperience' | translate}}</p> -->
         </div>
-        <div><p>{{'timeZoneTxt' | translate}}</p></div>
+        <div>
+            <p>{{'timeZoneTxt' | translate}}</p>
+        </div>
     </div>
 </div>
 
@@ -39,21 +41,22 @@
 
         <div class="d-flex align-items-center justify-content-end col-md-4" *ngIf="totalRecords > 0">
             <!-- <p class="mb-0 me-3">1-12 of 100</p> -->
-            <mat-paginator  class="paginator-components bg-0C3453 pagination-values" [length]="totalRecords" [pageSize]="10"
-                (page)="onPageChange()"></mat-paginator>
+            <mat-paginator class="paginator-components bg-0C3453 pagination-values" [length]="totalRecords"
+                [pageSize]="10" (page)="onPageChange()"></mat-paginator>
         </div>
 
     </div>
     <div class="card-body p-0 notification_table">
         <div class="hide_table_for_mobile">
             <div class="table-responsive">
-                <table mat-table [dataSource]="notifications" class="table table-striped table-users notification_table">
+                <table mat-table [dataSource]="notifications"
+                    class="table table-striped table-users notification_table">
                     <ng-container matColumnDef="#">
                         <th mat-header-cell *matHeaderCellDef> </th>
                         <td mat-cell *matCellDef="let element" class="col_checkbox">
                             <span class="form-check align-self-center me-2">
-                                <input type="checkbox" class="form-check-input" [checked]="selectedIds.includes(element.id)"
-                                    (change)="onCheckboxChange(element)" />
+                                <input type="checkbox" class="form-check-input"
+                                    [checked]="selectedIds.includes(element.id)" (change)="onCheckboxChange(element)" />
                                 <label for="defaultCheck1" class="form-check-label"></label>
                             </span>
                         </td>
@@ -69,8 +72,16 @@
                             <span class="cursor-pointer" (click)="handleNotiificationClick(element)">
                                 {{ element.message }}
                             </span>
-                            <!-- <span style="color: green;" *ngIf="element.event == 'acceptScoutRequest'">({{ 'accepted' | translate }})</span>
-                            <span style="color: red;" *ngIf="element.event == 'rejectScoutRequest'">({{ 'rejected' | translate }})</span> -->
+                            <!-- <span *ngIf="element.event == 'inviteTalent'">({{ getStatus(element.eventId) == 'accepted'
+                                ? ('accepted' | translate ) : ('rejected' | translate) }})</span> -->
+
+                            <!-- <ng-container *ngIf="element.event === 'inviteTalent'">
+                                <span *ngIf="getStatus(element.eventId)">({{ 'accepted' | translate
+                                    }})</span>
+                                <span *ngIf="getStatus(element.eventId)">({{ 'rejected' | translate
+                                    }})</span>
+                            </ng-container> -->
+                            <!-- <span style="color: red;" *ngIf="element.event == 'rejectScoutRequest'">({{ 'rejected' | translate }})</span> -->
                             <div>
                                 <button *ngIf="element.event == 'scoutAddPlayer' && !element.seen" type="button"
                                     (click)="responseToScoutInvite('accepted', element.senderId, element)"
@@ -129,8 +140,8 @@
                         </span>
                         <span class="flex_btn">
                             <span class="view--eye" class="pointer" (click)="confirmSingleDeletion(element.id)">
-                                <svg width="22" height="22" viewBox="0 0 22 22"
-                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <svg width="22" height="22" viewBox="0 0 22 22" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M5.49967 17.0589C5.49967 18.0112 6.32467 18.7904 7.33301 18.7904H14.6663C15.6747 18.7904 16.4997 18.0112 16.4997 17.0589V6.66999H5.49967V17.0589ZM17.4163 4.07277H14.208L13.2913 3.20703H8.70801L7.79134 4.07277H4.58301V5.80425H17.4163V4.07277Z"
                                         fill="#787878" />
@@ -149,13 +160,15 @@
                                 <div>
                                     <button *ngIf="element.event == 'scoutAddPlayer' && !element.seen" type="button"
                                         (click)="responseToScoutInvite('accepted', element.senderId, element)"
-                                        class="btn btn_confirmm px-md-5 py-2 me-3 mt-3">{{'accept' | translate}}</button>
+                                        class="btn btn_confirmm px-md-5 py-2 me-3 mt-3">{{'accept' |
+                                        translate}}</button>
                                     <button *ngIf="element.event == 'scoutAddPlayer' && !element.seen" type="button"
                                         (click)="responseToScoutInvite('rejected', element.senderId, element)"
                                         class="btn btn_cancell px-md-5 py-2 mt-3">{{'reject' | translate}}</button>
                                     <button *ngIf="element.event == 'inviteTalent' && !element.seen" type="button"
                                         (click)="updateSightingInviteResponse('accepted',element.eventId, element.senderId, element)"
-                                        class="btn btn_confirmm px-md-5 py-2 me-3 mt-3">{{'accept' | translate}}</button>
+                                        class="btn btn_confirmm px-md-5 py-2 me-3 mt-3">{{'accept' |
+                                        translate}}</button>
                                     <button *ngIf="element.event == 'inviteTalent' && !element.seen" type="button"
                                         (click)="updateSightingInviteResponse('rejected',element.eventId, element.senderId, element)"
                                         class="btn btn_cancell px-md-5 py-2 mt-3">{{'reject' | translate}}</button>
@@ -170,11 +183,11 @@
                 </div>
             </div>
             <div class="rounded-lg border bg-card no_record_card" *ngIf="notifications.length == 0 && !isLoading">
-              <div class="p-3">
-                <div class="d-flex justify-content-center">
-                    <h6>{{'noRecordFound' | translate}}</h6>
+                <div class="p-3">
+                    <div class="d-flex justify-content-center">
+                        <h6>{{'noRecordFound' | translate}}</h6>
+                    </div>
                 </div>
-              </div>
             </div>
         </div>
     </div>

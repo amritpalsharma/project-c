@@ -63,7 +63,7 @@
       <div class="col-lg-4 px-2 mb-4">
         <label for="date-select" class="code-text">{{ 'dateAndTime' | translate }}</label><br>
         <input class="form-control cupen-btn sighting-cal" style="min-width: 170px;" type="datetime-local"
-          id="date-select" [(ngModel)]="dateTime" placeholder="{{ 'selectDateTime' | translate }}"
+          id="date-select" [(ngModel)]="dateTime" placeholder="DD.MM.YYYY HH:mm"
           [ngClass]="{'emptyRequiredField':submitButtonClicked && !dateTime}">
       </div>
     </div>
@@ -72,7 +72,7 @@
       <div class="form-group col-lg-12 mb-4 d-none">
         <label for="talent" class="code-text">{{ 'inviteTalent' | translate }}</label>
         <div class="select-talent">
-          <input type="text" id="talent" class="cupen-btn d-flex justify-content-between code-text w-100"
+          <input #dateInput type="text" id="talent" class="cupen-btn d-flex justify-content-between code-text w-100"
             placeholder="{{ 'selectFromFavorites' | translate }}" readonly (click)="toggleInviteeOverlay()">
 
           <div class="add-chat w-100 inviteesWrap" [ngClass]="{'d-none': hideInviteeOverlay}">

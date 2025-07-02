@@ -23,7 +23,7 @@
       <div class="p-0 moving_select col-sm-6" >
         <!-- <div class="form-group"> -->
           <div class="checkbox-wrapper checkbox-wrap">
-          <h2>{{'movingTo' | translate}}</h2>
+          <label  class="form-label">{{'movingTo' | translate}}</label>
           <div class="form-check checkbox mb-3">
             <label class="form-check-label form-label" for="flexCheckDefault995">
               {{ 'noTeamAndClub' | translate }}
@@ -70,7 +70,7 @@
       <div class="p-0 moving_select col-sm-6">
         
         <div class="form-check1 checkbox1 1mb-3 checkbox-wrap checkbox-wrapper">
-          <h2>{{'movingFrom' | translate}}</h2>
+          <label  class="form-label">{{'movingFrom' | translate}}</label>
           <div class="form-check checkbox mb-3">
             <input class="form-check-input" type="checkbox" value="" id="onNoMoveFromTeam" [(ngModel)]="noMoveFromTeam"
               name="noClub" (ngModelChange)="onNoMoveFromTeam($event)" />
@@ -83,7 +83,7 @@
           <label *ngIf="!noMoveFromTeam" for="team_from" class="form-label">{{'club' | translate}} / {{'team' | translate}}</label>
 
           <div class="old-func" *ngIf="!noMoveFromTeam">
-            <input type="text" id="team_from" name="team_from" placeholder="{{'enterAndSearch' | translate}}"
+            <input type="text" id="team_from" name="team_from" placeholder="{{'enterAndSearch' | translate}}..."
               [(ngModel)]="teamFrom" #teamFromsField="ngModel" (input)="onSearchTeamsFrom()" autocomplete="off"
               required />
 

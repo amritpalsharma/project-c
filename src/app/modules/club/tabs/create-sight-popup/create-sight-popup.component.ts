@@ -9,6 +9,7 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { ClubService } from '../../../../services/club.service';
 import { SocketService } from '../../../../services/socket.service';
 import { ToastrService } from 'ngx-toastr';
+declare var flatpickr: any;
 
 @Component({
   selector: 'app-create-sight-popup',
@@ -16,6 +17,8 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./create-sight-popup.component.scss']
 })
 export class CreateSightPopupComponent implements AfterViewInit {
+  @ViewChild('dateInput', { static: true }) dateInput!: ElementRef;
+  pickerInstance: any;
 
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   readonly announcer = inject(LiveAnnouncer);
@@ -97,6 +100,12 @@ export class CreateSightPopupComponent implements AfterViewInit {
   ngAfterViewInit() {
     this.numInput.nativeElement.addEventListener('wheel', (event: WheelEvent) => {
       event.preventDefault();
+    });
+
+    this.pickerInstance = flatpickr(this.dateInput.nativeElement, {
+      enableTime: true,
+      dateFormat: "d.m.Y H:i",
+      time_24hr: true
     });
   }
 
@@ -387,7 +396,7 @@ export class CreateSightPopupComponent implements AfterViewInit {
     formData.append('city', this.city);
     formData.append('about_event', this.about);
     if(this.deleteImage){
-      formData.append('delete_image', this.deleteImage);
+      formData.append('delete_banner', this.deleteImage);
     }
 
     if (this.bannerFile != "") {
@@ -433,5 +442,11 @@ export class CreateSightPopupComponent implements AfterViewInit {
     const regex = new RegExp(`,?\\s*${textToRemove}`, 'gi');
     return str.replace(regex, '').trim();
     // return str;
+  }
+
+  ngOnDestroy(): void {
+    if (this.pickerInstance) {
+      this.pickerInstance.destroy();
+    }
   }
 }

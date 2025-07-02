@@ -360,7 +360,9 @@ export class EditPersonalDetailsComponent implements OnInit {
           this.custom_club_country = custom_club_info.country_id;
           this.custom_club = custom_club_info.club_name;
           this.custom_team = custom_club_info.team_name;
-          this.isCustomClubTeam = true;
+          if (this.custom_club && this.custom_club != '') {
+            this.isCustomClubTeam = true;
+          }
           let selectionArr = this.countries.filter((club: any) =>
             club.id === parseInt('' + this.custom_club_country + '', 10) // Directly comparing IDs (ensuring 'keyword' is parsed to an integer)
           );
@@ -460,7 +462,12 @@ export class EditPersonalDetailsComponent implements OnInit {
       formData.append('user[custom_club]', this.custom_club);
       formData.append('user[custom_team]', this.custom_team);
       formData.append('user[custom_club_country]', this.custom_club_country + '');
+    } else {
+      formData.append('user[custom_club]', '');
+      formData.append('user[custom_team]', '');
+      formData.append('user[custom_club_country]', '');
     }
+    formData.append('user[isCustomClubTeam]', this.isCustomClubTeam + '');
     // const team = this.teamsArr.find(team => team.id === this.CurrentTeamId);
     // console.log('Selected Team Id is', this.CurrentTeamId, ' and Team Type is ', team.team_type);
 
@@ -563,6 +570,7 @@ export class EditPersonalDetailsComponent implements OnInit {
   filterClubs(event: KeyboardEvent) {
 
     let query = this.clubSearch.toLowerCase(); // no trim()
+    console.info('query is ', query);
 
     console.log(event.key);  // This will print the key being pressed, e.g., " " for space
     // if (!query) {
@@ -571,25 +579,24 @@ export class EditPersonalDetailsComponent implements OnInit {
     // }
     // console.warn(this.playerClubsListing)
     // Special handling for space
-    console.log('query is ', query);
+    // console.log('query is ', query);
     if (event.key === ' ' || event.key === 'Spacebar') {
-      query = query + ' ';
-      console.log('query is with space', query);
+      query = query + '';
     }
 
-    this.searchedClubs = this.playerClubsListing.filter((club: any) =>
-      club.club_name.toLowerCase().includes(query.toLowerCase())
-    );
-    // const searchTerm = this.clubSearch.toLowerCase();
     // this.searchedClubs = this.playerClubsListing.filter((club: any) =>
-    //   club.club_name.toLowerCase().startsWith(searchTerm)
+    //   club.club_name.toLowerCase().includes(query.toLowerCase())
     // );
 
-    // if (Array.isArray(this.searchedClubs) && this.searchedClubs.length > 0) {
-    //   this.searchedClubs.sort((a, b) =>
-    //     a.club_name.localeCompare(b.club_name)
-    //   );
-    // }
+    this.searchedClubs = this.playerClubsListing.filter((club: any) => {
+      // Normalize the spaces in the search query
+      const normalizedQuery = query.trim().replace(/\s+/g, ' ').toLowerCase();
+
+      // Check if the club name contains the normalized query
+      return club.club_name.toLowerCase().includes(normalizedQuery);
+    });
+
+
   }
 
 
@@ -654,15 +661,23 @@ export class EditPersonalDetailsComponent implements OnInit {
   onNoClubChange(value: boolean) {
     // alert(value); // true if checked, false if unchecked
     this.isHideClubSection = value;
+    if (value === true) {
+      this.isCustomClubTeam = false;
+    }
   }
 
 
   onChnageCustomClubTeam(value: boolean) {
     this.isCustomClubTeam = value;
-    // if (value === true) {
-    //   this.isHideClubSection = true;
-    // } else {
-    //   this.isHideClubSection = false;
-    // }
+    if (value === true) {
+      this.isHideClubSection = false;
+    }
+  }
+
+  handleKeydown(event: KeyboardEvent) {
+    if (event.key === ' ') {
+      event.stopPropagation(); // Prevent event from reaching mat-select
+    }
+
   }
 }

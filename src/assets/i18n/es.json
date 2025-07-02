@@ -1459,5 +1459,6 @@
   "coverImageDelete" : "¿Estás seguro de que quieres eliminar tu imagen de portada?",
   "noPortfolioRecordFound": "Aún no se han añadido talentos al portafolio.",
   "withoutCurrentClub": "sin club",
-  "scoutingInformation2": "Datos de visoria"
+  "scoutingInformation2": "Datos de visoria",
+  "addJerseyNumber": "Número de camiseta"
 }

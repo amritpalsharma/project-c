@@ -1527,5 +1527,6 @@
   "coverImageDelete" : "Es-tu sûr de vouloir supprimer ton image de couverture ?",
   "noPortfolioRecordFound": "Aucun talent n’a encore été ajouté au portfolio.",
   "withoutCurrentClub": "sans club",
-  "scoutingInformation2": "Informations de détection"
+  "scoutingInformation2": "Informations de détection",
+  "addJerseyNumber": "Numéro de maillot"
 }

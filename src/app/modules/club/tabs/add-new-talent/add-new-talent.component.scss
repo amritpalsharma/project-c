@@ -215,13 +215,20 @@
 
 ::ng-deep .red-border-start {
   border: 2px solid red !important;
-  border-right: none !important;
-  ;
+  // border-right: none !important;
 }
 
 ::ng-deep .red-border-end {
   border: 2px solid red !important;
-  border-left: none !important;
+  // border-left: none !important;
+}
+
+::ng-deep .emptyRequiredField {
+  border: 2px solid red !important;
+}
+
+::ng-deep .dark-theme .emptyRequiredField {
+  border: 2px solid red !important;
 }
 
 // Code by amrit

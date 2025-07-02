@@ -399,7 +399,7 @@
   "deactivate": "Deaktiver",
   "orderNo": "Ordre nr.",
   "purchasedDate": "Købsdato",
-  "validUntil": "Gyldig indtil",
+  "validUntil": "Varighed",
   "voucherCode": "Rabatkode",
   "downloadInvoice": "Download fakturaen",
   "purchaseHistory": "Købshistorik",
@@ -1377,5 +1377,6 @@
   "coverImageDelete" : "Er du sikker på, at du vil slette dit forsidebillede?",
   "noPortfolioRecordFound": "Der er endnu ikke tilføjet nogen talenter til porteføljen.",
   "withoutCurrentClub": "uden klub",
-  "scoutingInformation2": "Scoutinginformationer"
+  "scoutingInformation2": "Scoutinginformationer",
+  "addJerseyNumber": "Trøjenummer"
 }

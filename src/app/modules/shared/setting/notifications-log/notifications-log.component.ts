@@ -294,6 +294,16 @@ export class NotificationsLogComponent {
     return this.talentService.convertTalentDateTime(dateTime);
   }
 
+  getStatus(eventId: any): void{
+    this.talentService.getSightEventStatus(eventId).subscribe(
+      (response)=>{
+        if(response && response.status){
+          return response.data.status;
+        }
+      }
+    )
+  }
+
   getUserStatus() {
     this.socketService.getLoggedInUserStatus().then((result) => {
       if (result == 2) {

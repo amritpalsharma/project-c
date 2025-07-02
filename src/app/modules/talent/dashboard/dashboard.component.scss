@@ -2154,11 +2154,15 @@ span.active_btn {
 
 .disabled-btn-light {
   // opacity: 0.3;
-  background: gray !important;
+  // background: gray !important;
+  background: #bde34e !important;
+  opacity: 0.6 !important;
 }
 
 .disabled-btn-dark {
   // background: #bde34e !important;
-  background: gray !important;
+  // background: gray !important;
+  background: #bde34e !important;
+  opacity: 0.6 !important;
   // opacity: 0.3;
 }

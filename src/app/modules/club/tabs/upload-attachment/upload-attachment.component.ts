@@ -2,7 +2,8 @@ import { Component, Inject } from '@angular/core';
 import {
   MatDialogRef, MAT_DIALOG_DATA
 } from '@angular/material/dialog';
-import { UserService } from '../../../../services/user.service';
+import { ClubService } from '../../../../services/club.service';
+
 
 @Component({
   selector: 'app-upload-attachment',
@@ -15,8 +16,9 @@ export class UploadAttachmentComponent {
     title: "",
     file: ""
   }];
+  theme:string=localStorage.getItem('theme') || 'dark';
 
-  constructor(public dialogRef: MatDialogRef<UploadAttachmentComponent>, public userService: UserService,
+  constructor(public dialogRef: MatDialogRef<UploadAttachmentComponent>, public clubService: ClubService,
     @Inject(MAT_DIALOG_DATA) public data: any) {
     this.idToBeUpdated = data.id;
 
@@ -67,7 +69,7 @@ export class UploadAttachmentComponent {
 
     formData.append('lang', langId);
     try {
-      this.userService.uploadSightAttachment(this.idToBeUpdated, formData).subscribe((response) => {
+      this.clubService.uploadSightAttachment(this.idToBeUpdated, formData).subscribe((response) => {
         if (response && response.status) {
           this.dialogRef.close({
             id: this.idToBeUpdated,

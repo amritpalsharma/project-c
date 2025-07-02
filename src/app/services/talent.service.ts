@@ -939,4 +939,17 @@ export class TalentService {
       catchError(this.handleError<any>('getTeams', [])) // Handle errors gracefully
     );
   }
+
+  //https://api.socceryou.ch/api/player/check-sighting-invite-response
+  
+  getSightEventStatus(event_id: any): Observable<any> {
+    const headers = this.headers();
+    let params = new HttpParams();
+    params = params.append('event_id', event_id);
+    
+    
+    return this.http.post(`${this.apiUrl}player/check-sighting-invite-response`, params, {
+      headers // Specify response type for downloading files
+    });
+  }
 }

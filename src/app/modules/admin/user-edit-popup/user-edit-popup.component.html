@@ -758,12 +758,12 @@
                             <option *ngFor="let option of footListing" value="{{option}}">{{option?.toLowerCase() |
                                 translate}}</option>
                         </select>
-                        <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none"
+                        <!-- <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M4.08333 3.25838L0.995812 0.170854C0.768006 -0.0569515 0.39866 -0.0569515 0.170854 0.170854C-0.0569515 0.39866 -0.0569515 0.768006 0.170854 0.995812L3.67085 4.49581C3.89866 4.72362 4.26801 4.72362 4.49581 4.49581L7.99581 0.995812C8.22362 0.768006 8.22362 0.39866 7.99581 0.170854C7.76801 -0.0569515 7.39866 -0.0569515 7.17085 0.170854L4.08333 3.25838Z"
                                 fill="#646464" />
-                        </svg>
+                        </svg> -->
                     </div>
                 </div>
                 <div class="col-12 col-md-6 form-group mb-3">
@@ -791,11 +791,11 @@
                     </mat-form-field>
                 </div>
                 <div class="col-12 col-md-6 form-group mb-3">
-                    <p class="code-text">{{ 'topSpeed' | translate }} (KM/h)</p>
+                    <p class="code-text">{{ 'topSpeed' | translate }} (km/h)</p>
                     <input class="cupen-btn-1" [(ngModel)]="speed">
                 </div>
                 <div class="col-12 col-md-6 form-group mb-3">
-                    <p class="code-text">{{ 'height' | translate }}(CM)</p>
+                    <p class="code-text">{{ 'height' | translate }}(cm)</p>
                     <input class="cupen-btn-1" [(ngModel)]="height">
                 </div>
                 <div class="col-12 col-md-6 form-group mb-3">
@@ -810,12 +810,7 @@
                             <mat-option [value]="option.id">{{option.position}}</mat-option>
                             }
                         </mat-select>
-                        <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M4.08333 3.25838L0.995812 0.170854C0.768006 -0.0569515 0.39866 -0.0569515 0.170854 0.170854C-0.0569515 0.39866 -0.0569515 0.768006 0.170854 0.995812L3.67085 4.49581C3.89866 4.72362 4.26801 4.72362 4.49581 4.49581L7.99581 0.995812C8.22362 0.768006 8.22362 0.39866 7.99581 0.170854C7.76801 -0.0569515 7.39866 -0.0569515 7.17085 0.170854L4.08333 3.25838Z"
-                                fill="#646464" />
-                        </svg>
+                        
                     </div>
                 </div>
                 <div class="col-12 social-media-section">
