@@ -10,7 +10,7 @@
                 class="cursor-pointer close-img mb-1" (click)="close()" />
 
         </div>
-        <div class="popup__body p-3" style="height:460px;overflow: auto;">
+        <div class="popup__body p-3" style="height:400px;overflow: auto;">
             <div class="row">
                 <div class="col-12 col-md-6 form-group mb-3">
                     <p class="code-text">{{ 'clubName' | translate }}</p>
@@ -45,12 +45,12 @@
                             <option *ngFor="let option of countriesListing" value="{{option.id}}">
                                 {{option.country_name}}</option>
                         </select>
-                        <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none"
+                        <!-- <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M4.08333 3.25838L0.995812 0.170854C0.768006 -0.0569515 0.39866 -0.0569515 0.170854 0.170854C-0.0569515 0.39866 -0.0569515 0.768006 0.170854 0.995812L3.67085 4.49581C3.89866 4.72362 4.26801 4.72362 4.49581 4.49581L7.99581 0.995812C8.22362 0.768006 8.22362 0.39866 7.99581 0.170854C7.76801 -0.0569515 7.39866 -0.0569515 7.17085 0.170854L4.08333 3.25838Z"
                                 fill="#646464" />
-                        </svg>
+                        </svg> -->
                     </div>
                 </div>
             </div>
@@ -304,7 +304,7 @@
             <img *ngIf='theme=="dark"' src="../../../assets/images/carbon_close-outline.svg" alt=""
                 class="cursor-pointer close-img mb-1" (click)="close()" />
         </div>
-        <div class="popup__body p-3" style="height:460px;overflow: auto;">
+        <div class="popup__body p-3" style="height:400px;overflow: auto;">
             <div class="row">
                 <div class="col-12 col-md-6 form-group mb-3">
                     <p class="code-text">{{ 'firstName' | translate }}:</p>
@@ -351,12 +351,12 @@
                             <option *ngFor="let option of countriesListing" value="{{option.id}}">
                                 {{option.country_name}}</option>
                         </select>
-                        <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none"
+                        <!-- <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M4.08333 3.25838L0.995812 0.170854C0.768006 -0.0569515 0.39866 -0.0569515 0.170854 0.170854C-0.0569515 0.39866 -0.0569515 0.768006 0.170854 0.995812L3.67085 4.49581C3.89866 4.72362 4.26801 4.72362 4.49581 4.49581L7.99581 0.995812C8.22362 0.768006 8.22362 0.39866 7.99581 0.170854C7.76801 -0.0569515 7.39866 -0.0569515 7.17085 0.170854L4.08333 3.25838Z"
                                 fill="#646464" />
-                        </svg>
+                        </svg> -->
                     </div>
                 </div>
             </div>
@@ -610,7 +610,7 @@
             <img *ngIf='theme=="dark"' src="../../../assets/images/carbon_close-outline.svg" alt=""
                 class="cursor-pointer close-img mb-1" (click)="close()" />
         </div>
-        <div class="popup__body p-3" style="height:460px;overflow: auto;">
+        <div class="popup__body p-3" style="height:400px;overflow: auto;">
             <div class="row">
                 <div class="col-12 col-md-6 form-group mb-3">
                     <p class="code-text">{{ 'currentClub' | translate }}</p>
@@ -622,12 +622,12 @@
                             <option *ngFor="let option of playerClubsListing" value="{{option.id}}">{{option.club_name}}
                             </option>
                         </select>
-                        <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none"
+                        <!-- <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M4.08333 3.25838L0.995812 0.170854C0.768006 -0.0569515 0.39866 -0.0569515 0.170854 0.170854C-0.0569515 0.39866 -0.0569515 0.768006 0.170854 0.995812L3.67085 4.49581C3.89866 4.72362 4.26801 4.72362 4.49581 4.49581L7.99581 0.995812C8.22362 0.768006 8.22362 0.39866 7.99581 0.170854C7.76801 -0.0569515 7.39866 -0.0569515 7.17085 0.170854L4.08333 3.25838Z"
                                 fill="#646464" />
-                        </svg>
+                        </svg> -->
                     </div>
                 </div>
                 <div class="col-12 col-md-6 form-group mb-3">
@@ -641,12 +641,12 @@
                             <mat-option [value]="option.id">{{option.country_name}}</mat-option>
                             }
                         </mat-select>
-                        <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none"
+                        <!-- <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M4.08333 3.25838L0.995812 0.170854C0.768006 -0.0569515 0.39866 -0.0569515 0.170854 0.170854C-0.0569515 0.39866 -0.0569515 0.768006 0.170854 0.995812L3.67085 4.49581C3.89866 4.72362 4.26801 4.72362 4.49581 4.49581L7.99581 0.995812C8.22362 0.768006 8.22362 0.39866 7.99581 0.170854C7.76801 -0.0569515 7.39866 -0.0569515 7.17085 0.170854L4.08333 3.25838Z"
                                 fill="#646464" />
-                        </svg>
+                        </svg> -->
                     </div>
                 </div>
                 <div class="col-12 col-md-6 form-group mb-3">
@@ -659,12 +659,12 @@
                             <option *ngFor="let option of positionsListing" value="{{option.id}}">{{option.position}}
                             </option>
                         </select>
-                        <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none"
+                        <!-- <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M4.08333 3.25838L0.995812 0.170854C0.768006 -0.0569515 0.39866 -0.0569515 0.170854 0.170854C-0.0569515 0.39866 -0.0569515 0.768006 0.170854 0.995812L3.67085 4.49581C3.89866 4.72362 4.26801 4.72362 4.49581 4.49581L7.99581 0.995812C8.22362 0.768006 8.22362 0.39866 7.99581 0.170854C7.76801 -0.0569515 7.39866 -0.0569515 7.17085 0.170854L4.08333 3.25838Z"
                                 fill="#646464" />
-                        </svg>
+                        </svg> -->
                     </div>
                 </div>
                 <div class="col-12 col-md-6 form-group mb-3">
@@ -677,12 +677,12 @@
                             <option *ngFor="let option of countriesListing" value="{{option.id}}">
                                 {{option.country_name}}</option>
                         </select>
-                        <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none"
+                        <!-- <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M4.08333 3.25838L0.995812 0.170854C0.768006 -0.0569515 0.39866 -0.0569515 0.170854 0.170854C-0.0569515 0.39866 -0.0569515 0.768006 0.170854 0.995812L3.67085 4.49581C3.89866 4.72362 4.26801 4.72362 4.49581 4.49581L7.99581 0.995812C8.22362 0.768006 8.22362 0.39866 7.99581 0.170854C7.76801 -0.0569515 7.39866 -0.0569515 7.17085 0.170854L4.08333 3.25838Z"
                                 fill="#646464" />
-                        </svg>
+                        </svg> -->
                     </div>
                 </div>
 
@@ -697,12 +697,12 @@
                             <option *ngFor="let option of teamsLisitng" value="{{option.id}}">{{option.team_name}} -
                                 {{option.team_type}} </option>
                         </select>
-                        <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none"
+                        <!-- <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M4.08333 3.25838L0.995812 0.170854C0.768006 -0.0569515 0.39866 -0.0569515 0.170854 0.170854C-0.0569515 0.39866 -0.0569515 0.768006 0.170854 0.995812L3.67085 4.49581C3.89866 4.72362 4.26801 4.72362 4.49581 4.49581L7.99581 0.995812C8.22362 0.768006 8.22362 0.39866 7.99581 0.170854C7.76801 -0.0569515 7.39866 -0.0569515 7.17085 0.170854L4.08333 3.25838Z"
                                 fill="#646464" />
-                        </svg>
+                        </svg> -->
                     </div>
                 </div>
             </div>
@@ -730,7 +730,7 @@
             <img *ngIf='theme=="dark"' src="../../../assets/images/carbon_close-outline.svg" alt=""
                 class="cursor-pointer close-img mb-1" (click)="close()" />
         </div>
-        <div class="popup__body p-3" style="height:460px;overflow: auto;">
+        <div class="popup__body p-3" style="height:400px;overflow: auto;">
             <div class="row">
                 <div class="col-12 col-md-6 form-group mb-3">
                     <p class="code-text">{{ 'firstName' | translate }}:</p>
@@ -758,12 +758,12 @@
                             <option *ngFor="let option of footListing" value="{{option}}">{{option?.toLowerCase() |
                                 translate}}</option>
                         </select>
-                        <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none"
+                        <!-- <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M4.08333 3.25838L0.995812 0.170854C0.768006 -0.0569515 0.39866 -0.0569515 0.170854 0.170854C-0.0569515 0.39866 -0.0569515 0.768006 0.170854 0.995812L3.67085 4.49581C3.89866 4.72362 4.26801 4.72362 4.49581 4.49581L7.99581 0.995812C8.22362 0.768006 8.22362 0.39866 7.99581 0.170854C7.76801 -0.0569515 7.39866 -0.0569515 7.17085 0.170854L4.08333 3.25838Z"
                                 fill="#646464" />
-                        </svg>
+                        </svg> -->
                     </div>
                 </div>
                 <div class="col-12 col-md-6 form-group mb-3">
@@ -810,12 +810,12 @@
                             <mat-option [value]="option.id">{{option.position}}</mat-option>
                             }
                         </mat-select>
-                        <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none"
+                        <!-- <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M4.08333 3.25838L0.995812 0.170854C0.768006 -0.0569515 0.39866 -0.0569515 0.170854 0.170854C-0.0569515 0.39866 -0.0569515 0.768006 0.170854 0.995812L3.67085 4.49581C3.89866 4.72362 4.26801 4.72362 4.49581 4.49581L7.99581 0.995812C8.22362 0.768006 8.22362 0.39866 7.99581 0.170854C7.76801 -0.0569515 7.39866 -0.0569515 7.17085 0.170854L4.08333 3.25838Z"
                                 fill="#646464" />
-                        </svg>
+                        </svg> -->
                     </div>
                 </div>
                 <div class="col-12 social-media-section">
