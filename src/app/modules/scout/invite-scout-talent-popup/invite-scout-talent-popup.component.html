@@ -44,7 +44,7 @@
           </mat-chip-grid>
 
           <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)"
-            class="listBox w-100 users-name-list">
+            class="listBox w-100 users-name-list" [ngClass]="{'d-none':!userSearch || userSearch.length < 2}">
             @for (user of filteredUsers; track user) {
             <mat-option [value]="user" class="mb-4 select-user-name">
               <img width="50" height="50" style="border-radius: 50px;" class="img-list "

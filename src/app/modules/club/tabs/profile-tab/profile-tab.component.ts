@@ -30,6 +30,7 @@ export class ProfileTabComponent {
   @Input() userData: any;
   @Input() isPremium: any;
   @Input() isUserVerified: any;
+  @Input() currentLoggedInPermission: any;
   userId: any = "";
   idsToDelete: any = "";
   deleteRepresentorConfirmation: string = '';

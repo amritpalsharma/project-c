@@ -28,6 +28,7 @@ export class TeamsTabComponent {
   @Input() userData: any;
   @Input() isPremium: any;
   @Input() isUserVerified: any;
+  @Input() currentLoggedInPermission: any;
 
 
   confirmDeleteinformationTeam: string = '';

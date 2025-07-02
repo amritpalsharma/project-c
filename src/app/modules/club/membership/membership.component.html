@@ -7,7 +7,7 @@
           <div class="d-flex align-items-end justify-content-between w-100 mt-2">
             <h2 class="card-title mb-0 me-3">{{'subscriptionPlans' | translate}}</h2>
             <div class="common">
-              <button class="payments-btn" (click)="openCustomerPortal()">{{'managePaymentBtnTxt' | translate}}</button>
+              <button class="payments-btn {{currentLoggedInPermission}}" *ngIf="userPurchases" (click)="openCustomerPortal()">{{'managePaymentBtnTxt' | translate}}</button>
               <!-- <p class="managePaymentBtnTxtBelowTxt">{{'managePaymentBtnTxtBelowTxt' | translate}}</p> -->
             </div>
           </div>

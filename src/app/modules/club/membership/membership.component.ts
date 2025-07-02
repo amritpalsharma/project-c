@@ -2,8 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TalentService } from '../../../services/talent.service';
-import { EditPersonalDetailsComponent } from '../edit-personal-details/edit-personal-details.component';
+// import { TalentService } from '../../../services/talent.service';
+// import { EditPersonalDetailsComponent } from '../edit-personal-details/edit-personal-details.component';
 import { ViewMembershipPopupComponent } from '../view-membership-popup/view-membership-popup.component';
 import { EditMembershipProfileComponent } from '../edit-membership-profile/edit-membership-profile.component';
 import { PaymentsPopupComponent } from '../payments-popup/payments-popup.component';
@@ -15,6 +15,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { TitleService } from '../../../title.service';
 import { WebPages } from '../../../services/webpages.service';
 import { take } from 'rxjs/operators';
+import { ClubService } from '../../../services/club.service';
 
 @Component({
   selector: 'app-membership',
@@ -48,6 +49,8 @@ export class MembershipComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   pageTitle: string = '';
 
+  currentLoggedInPermission: string = '';
+
   constructor(
     private route: ActivatedRoute,
     private scoutService: ScoutService,
@@ -57,12 +60,14 @@ export class MembershipComponent {
     private translateService: TranslateService,
     private titleService: TitleService,
     private webpages: WebPages,
+    private clubService: ClubService
   ) { }
 
   ngOnInit(): void {
     this.getJsonTranslations();
     this.route.params.subscribe((params: any) => {
       this.userId = params.id;
+      this.getUserProfile(this.userId);
       this.getUserPurchases();
       this.getUserPlans();
       this.getUserCards();
@@ -457,5 +462,23 @@ export class MembershipComponent {
         console.error('Failed to generate customer portal link:', err);
       }
     });
+  }
+
+  getUserProfile(userId: any) {
+    try {
+      this.clubService.getProfileData(userId).subscribe((response) => {
+        if (response && response.status && response.data && response.data.user_data) {
+          localStorage.setItem('userInfo', JSON.stringify(response.data.user_data));
+          localStorage.setItem('userData', JSON.stringify(response.data.user_data));
+          if (response.data.representator_data && response.data.representator_data != '') {
+            if (response.data.representator_data.permission == 'admin.view') {
+              this.currentLoggedInPermission = 'club_view_only';
+            }
+          }
+        }
+      });
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    }
   }
 }

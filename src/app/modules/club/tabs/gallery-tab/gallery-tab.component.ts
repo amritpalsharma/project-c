@@ -31,6 +31,7 @@ export class GalleryTabComponent {
   @Input() isPremium: any;
   @Input() isUserVerified: any;
   @Output() imageDeleted = new EventEmitter<void>();
+  @Input() currentLoggedInPermission: any;
 
   isLoading: boolean = false;
 

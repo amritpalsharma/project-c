@@ -50,6 +50,7 @@ export class SettingComponent implements OnInit {
   profileData: any;
   error: string | null = null;
   pageTitle: string = '';
+  currentLoggedInPermission: string = '';
 
   ngOnInit(): void {
     this.getJsonTranslations();
@@ -62,6 +63,15 @@ export class SettingComponent implements OnInit {
       this.firstName = this.userData.first_name || '';
       this.lastName = this.userData.last_name || '';
       this.email = this.userData.username || '';
+      // this.getUserProfile(this.userData.id);
+      // currentLoggedInPermission: string = '';
+
+      if (this.userData.representator_data && this.userData.representator_data != '') {
+        if (this.userData.representator_data.permission == 'admin.view') {
+          this.currentLoggedInPermission = 'club_view_only';
+        }
+      }
+
     } else {
       console.log('No user data found in local storage.');
     }
@@ -73,7 +83,7 @@ export class SettingComponent implements OnInit {
       }
     });
 
-    this.webPages.languageId$.subscribe((data) => { 
+    this.webPages.languageId$.subscribe((data) => {
       this.getJsonTranslations();
     })
     // this.fetchProfileData(); 
@@ -92,5 +102,7 @@ export class SettingComponent implements OnInit {
       console.log('Title fetch Function Fired');
     })
   }
+
+
 
 }

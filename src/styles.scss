@@ -2805,26 +2805,30 @@ input[type=number] {
 }
 
 img.club_logo_in_search {
-    object-fit: contain !important;
+  object-fit: contain !important;
 }
 
 .player-view-container .box-square {
-    font-weight: 700;
-    .team-types {
-      top: 50% !important;
-      transform: translateY(-50%);
-    }
+  font-weight: 700;
+
+  .team-types {
+    top: 50% !important;
+    transform: translateY(-50%);
+  }
 }
+
 .player-view-container {
   .back-link {
     display: inline-flex;
     align-items: center;
+
     svg {
       width: 30px !important;
       height: 30px !important;
       margin-right: 15px !important;
       background: #f6f6f6;
       border-radius: 4px;
+
       path {
         stroke: #0c3453 !important;
       }
@@ -2835,20 +2839,29 @@ img.club_logo_in_search {
 
 ::ng-deep {
   .dark-theme {
-  .player-view-container {
-  .back-link {
-    svg {
-      background: #fff !important;
-      path {
-        stroke: #0c3453 !important;
+    .player-view-container {
+      .back-link {
+        svg {
+          background: #fff !important;
+
+          path {
+            stroke: #0c3453 !important;
+          }
+        }
       }
     }
   }
-}
-}
 }
 
 
 .mat-mdc-autocomplete-panel.mdc-menu-surface.mdc-menu-surface--open.listBox {
   border-bottom: 0 !important;
+}
+
+.club_view_only {
+  pointer-events: none !important;
+  user-select: none !important;
+  cursor: not-allowed !important;
+  opacity: 0.6 !important;
+  filter:grayscale(100%);
 }

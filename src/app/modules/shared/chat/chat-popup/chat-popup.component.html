@@ -29,7 +29,7 @@
                 src="{{user?.meta?.profile_image_path ? user?.meta?.profile_image_path :'../../../../../assets/images/default/talent-profile-default.png'}}">
               <img *ngIf="isThisClub(user.role_name)" width="50" height="50" class="img-list "
                 src="{{user?.current_club_logo ? 'https://api.socceryou.ch/uploads/' + user?.current_club_logo :'../../../../../assets/images/default/talent-profile-default.png'}}">
-              {{user?.first_name+' '+user?.last_name}}
+              &nbsp;{{user?.first_name+' '+user?.last_name}}
               <span matChipRemove [attr.aria-label]="'remove ' + user" class="cancel-icon"> </span>
             </mat-chip-row>
             }
@@ -49,8 +49,8 @@
                 src="{{user?.meta?.profile_image_path ? user?.meta?.profile_image_path :'../../../../../assets/images/default/talent-profile-default.png'}}">
               <img *ngIf="isThisClub(user.role_name)" width="50" height="50" class="img-list club_logo_in_search"
                 src="{{user?.current_club_logo ? 'https://api.socceryou.ch/uploads/' + user?.current_club_logo :'../../../../../assets/images/default/talent-profile-default.png'}}">
-              <span *ngIf="isThisClub(user.role_name)">{{user?.current_club_name}}</span>
-              <span *ngIf="!isThisClub(user.role_name)">{{user?.first_name+' '+user?.last_name}}</span>
+              <span *ngIf="isThisClub(user.role_name)">&nbsp;{{user?.current_club_name}}</span>
+              <span *ngIf="!isThisClub(user.role_name)">&nbsp;{{user?.first_name+' '+user?.last_name}}</span>
             </mat-option>
             }
           </mat-autocomplete>

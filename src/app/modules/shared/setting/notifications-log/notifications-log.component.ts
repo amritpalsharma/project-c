@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ElementRef, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -44,7 +44,11 @@ export class NotificationsLogComponent {
   isUserVerified: boolean = false;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild('notificationLog', { static: false }) notificationLog!: ElementRef;
   idsToDelete: any = [];
+
+
+  @Input() currentLoggedInPermission: any;
 
   constructor(public dialog: MatDialog, public webPages: WebPages, private talentService: TalentService, private translateService: TranslateService, private scoutService: ScoutService, private socketService: SocketService, private router: Router) {
     this.updateTranslation();
@@ -134,12 +138,27 @@ export class NotificationsLogComponent {
   }
 
   onCheckboxChange(item: any) {
+    // const index = this.selectedIds.indexOf(item.id);
+    // if (index === -1) {
+    //   this.selectedIds.push(item.id);
+    // } else {
+    //   this.selectedIds.splice(index, 1);
+    // }
+
     const index = this.selectedIds.indexOf(item.id);
     if (index === -1) {
       this.selectedIds.push(item.id);
     } else {
       this.selectedIds.splice(index, 1);
     }
+
+    if (this.notifications.length === this.selectedIds.length) {
+      this.allSelected = true;
+    } else {
+      this.allSelected = false;
+    }
+
+    this.updateMasterCheckboxState();
   }
 
   selectAll() {
@@ -149,6 +168,7 @@ export class NotificationsLogComponent {
     } else {
       this.selectedIds = [];
     }
+    this.updateMasterCheckboxState();
     console.log('Selected user IDs:', this.selectedIds);
   }
 
@@ -202,8 +222,8 @@ export class NotificationsLogComponent {
     messageDialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
         if (result.action == "delete-confirmed") {
-          let isDeleted : any = localStorage.getItem('isDeleted');
-          if(!isDeleted){
+          let isDeleted: any = localStorage.getItem('isDeleted');
+          if (!isDeleted) {
             localStorage.setItem('isDeleted', 'true');
           }
           this.deleteActivity();
@@ -326,7 +346,7 @@ export class NotificationsLogComponent {
 
 
   handleNotiificationClick(notification: any) {
-    if(!notification.senderRole){
+    if (!notification.senderRole) {
       return;
     }
     if (!this.isUserVerified) {
@@ -397,5 +417,18 @@ export class NotificationsLogComponent {
       this.selectNotificationFirst = res['selectNotificationFirst'];
       this.confirmDeleteinformation = res['areYouSuretoDeleteNotification'];
     });
+  }
+
+  updateMasterCheckboxState() {
+    const masterCheckbox = this.notificationLog?.nativeElement;
+    if (!masterCheckbox) return;
+
+    const total = this.notifications.length;
+    const selected = this.selectedIds.length;
+    // console.log('total',total);
+    // console.log('selected',selected);
+
+    masterCheckbox.indeterminate = selected > 0 && selected < total;
+    masterCheckbox.checked = selected === total;
   }
 }

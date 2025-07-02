@@ -49,6 +49,7 @@ export class SightingTabComponent {
 
   attachments: any = [];
   viewSightId: any = "";
+  @Input() currentLoggedInPermission: any;
   constructor(
     private route: ActivatedRoute,
     private clubService: ClubService,

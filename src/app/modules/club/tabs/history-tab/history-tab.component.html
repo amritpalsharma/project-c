@@ -49,7 +49,7 @@
 
         <h6 class="mb-0 me-2 main-template" [translate]="'tellClubStory'"></h6>
 
-        <a class="btn btn-outline-white main-template" *ngIf="!isEditable" (click)="editHistory()">
+        <a class="btn btn-outline-white main-template {{currentLoggedInPermission}}" *ngIf="!isEditable" (click)="editHistory()">
             <svg id="users-icon" class="me-1" width="24" height="25" viewBox="0 0 24 25" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -59,7 +59,7 @@
             {{ 'edit' | translate}}
         </a>
 
-        <a class="btn btn-outline-white main-template" *ngIf="isEditable" (click)="updateHistory()">
+        <a class="btn btn-outline-white main-template {{currentLoggedInPermission}}" *ngIf="isEditable" (click)="updateHistory()">
             <svg id="users-icon" class="me-1" width="24" height="25" viewBox="0 0 24 25" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
                 <path

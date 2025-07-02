@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -26,9 +26,12 @@ export class ActivityLogComponent {
   selectedIds: any = [];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild('activityUsers', { static: false }) activityUsers!: ElementRef;
   idsToDelete: any = [];
   selectActivityFirst: string = '';
   currentOffset: number = 0;
+
+  @Input() currentLoggedInPermission: any;
 
   constructor(
     private activityService: ActivityService,
@@ -116,6 +119,14 @@ export class ActivityLogComponent {
     } else {
       this.selectedIds.splice(index, 1);
     }
+
+    if (this.activities.length === this.selectedIds.length) {
+      this.allSelected = true;
+    } else {
+      this.allSelected = false;
+    }
+
+    this.updateMasterCheckboxState();
   }
 
   selectAll() {
@@ -125,6 +136,7 @@ export class ActivityLogComponent {
     } else {
       this.selectedIds = [];
     }
+    this.updateMasterCheckboxState();
     console.log('Selected user IDs:', this.selectedIds);
   }
 
@@ -201,5 +213,18 @@ export class ActivityLogComponent {
       this.selectActivityFirst = translations['selectActivityFirst'];
       console.log('Title fetch Function Fired');
     })
+  }
+
+  updateMasterCheckboxState() {
+    const masterCheckbox = this.activityUsers?.nativeElement;
+    if (!masterCheckbox) return;
+
+    const total = this.activities.length;
+    const selected = this.selectedIds.length;
+    // console.log('total',total);
+    // console.log('selected',selected);
+
+    masterCheckbox.indeterminate = selected > 0 && selected < total;
+    masterCheckbox.checked = selected === total;
   }
 }

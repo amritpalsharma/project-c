@@ -32,6 +32,7 @@ export class HistoryTabComponent implements OnInit {
   @Input() isUserVerified: any;
   @Input() role: any;
   @Input() isPremium: any;
+  @Input() currentLoggedInPermission: any;
   @ViewChild('historyTextarea', { static: false }) textarea!: ElementRef;
 
   constructor(
