@@ -199,10 +199,11 @@
                           <img *ngIf="user.club_logo_path" src="{{user.club_logo_path}}" class="fc-club-img" alt="">
                         </div>
                         <div class="team-badge_content col-sm-9 p-0">
-                          <h6 class="title_2 mb-1">{{ 'currentClub' | translate}}</h6>
+                          <h6 class="title_2 mb-1" *ngIf="user?.meta?.have_no_club == '1'">{{ 'withoutCurrentClub' | translate}}</h6>
+                          <h6 class="title_2 mb-1" *ngIf="user?.current_club_name || customClubInfo?.club_name">{{ 'currentClub' | translate}}</h6>
                           <h5 class="title-1" *ngIf="user?.current_club_name">{{user?.current_club_name }}</h5>
-                          <h5 class="title-1" *ngIf="user?.meta?.have_no_club == '1' && customClubInfo?.club_name">{{customClubInfo?.club_name }}</h5>
-                          <h5 class="title-1" *ngIf="user?.meta?.have_no_club == '1' && !customClubInfo?.club_name">{{'withoutCurrentClub' | translate}}</h5>
+                          <h5 class="title-1" *ngIf="customClubInfo?.club_name">{{customClubInfo?.club_name }}</h5>
+                          <!-- <h5 class="title-1" *ngIf="user?.meta?.have_no_club == '1' && !customClubInfo?.club_name">{{'withoutCurrentClub' | translate}}</h5> -->
                         </div>
                       </div>
                     </div>
@@ -610,7 +611,7 @@
                             *ngIf="user?.league_name && user?.team_type != 'A' && user?.team_type != 'B'">
                             {{user?.current_club_name}} - {{user?.team_type}}</h5>
                           <h5 class="title-1"
-                            *ngIf="user?.meta?.have_no_club == '1' && customClubInfo?.team_name">
+                            *ngIf="customClubInfo?.team_name">
                             {{customClubInfo?.team_name}}</h5>
                         </div>
                       </div>

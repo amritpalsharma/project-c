@@ -180,7 +180,7 @@ export const MY_FORMATS = {
     MatProgressSpinnerModule,
     MatTooltipModule,
     EditorModule,
-    NgxMatTimepickerModule,
+    NgxMatDatetimePickerModule,
     NgxMatNativeDateModule,
     NgxMatTimepickerModule
   ]

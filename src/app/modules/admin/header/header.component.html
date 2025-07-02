@@ -102,7 +102,10 @@
             <!-- Club -->
             <img *ngIf="user.role == 2" width="20" height="20" class="img-list me-2"
               [src]="user?.club_logo ? 'https://api.socceryou.ch/uploads/' + user?.club_logo : '../../../../assets/images/default/talent-profile-default.png'" />
-            <span>
+            <span *ngIf="user.role == 2">
+              {{ user.club_name }}
+            </span>
+            <span *ngIf="user.role != 2">
               {{ user.first_name }} {{ user.last_name }}
             </span>
           </mat-option>

@@ -32,10 +32,8 @@ export class AddNewTalentComponent implements OnInit {
   invitedUsers: any = [];
   eventName: any = "";
   sightId: any = "";
-  // startDate: string | null = null;
   startDate: FormControl = new FormControl(null);
   endDate: FormControl = new FormControl(null);
-  // endDate: string | null = null;
   noEndDate: boolean = false;
   teamId: any;
   player: any;
@@ -59,7 +57,7 @@ export class AddNewTalentComponent implements OnInit {
     this.edit = data.edit;
     this.teamName = data.teamName;
 
-    this.startDate.setValue(this.player.join_date ? new Date(this.player.join_date) : null);
+    // this.startDate.setValue(this.player.join_date ? new Date(this.player.join_date) : null);
   }
 
   ngOnInit(): void {
@@ -73,13 +71,14 @@ export class AddNewTalentComponent implements OnInit {
 
   initializeFormFields(): void {
     // this.startDate = this.player.join_date;
+    this.startDate.setValue(this.player.join_date ? new Date(this.player.join_date) : null);
     this.startDate = new FormControl(
       this.player.join_date ? new Date(this.player.join_date) : null
     );
+
     this.endDate = new FormControl(
       this.player.end_date ? new Date(this.player.end_date) : null
     );
-    // this.endDate = this.player.end_date;
     this.noEndDate = this.player.no_end_date === '1';
     this.users = [this.player]; // Assuming you want to pre-fill the user
   }
@@ -122,7 +121,6 @@ export class AddNewTalentComponent implements OnInit {
         formData.append(`join_date`, formattedStartDate);
         const formattedEndDate = moment(this.endDate.value).format('YYYY-MM-DD');
         formData.append(`end_date`, formattedEndDate);
-        // formData.append(`end_date`, this.noEndDate ? '' : this.endDate || '');
         formData.append(`no_end_date`, this.noEndDate ? '1' : '0');
         formData.append(`no_end_date`, this.noEndDate ? '1' : '0');
         formData.append(`jersey_number`, user.jersey_number);
@@ -224,8 +222,18 @@ export class AddNewTalentComponent implements OnInit {
     let keyword = event.target.value;
     console.log(keyword); // You can use this to see the current input value
 
-    this.filteredUsers = this.allUsers.filter((user: any) => (user.first_name !== null && user.first_name !== undefined) &&
-      user.first_name.toLowerCase().indexOf(keyword.toLowerCase()) != -1);
+    // this.filteredUsers = this.allUsers.filter((user: any) => (user.first_name !== null && user.first_name !== undefined) &&
+    //   user.first_name.toLowerCase().indexOf(keyword.toLowerCase()) != -1);
+    this.filteredUsers = this.allUsers
+      .filter((user: any) => user.first_name && user.first_name.toLowerCase().indexOf(keyword.toLowerCase()) !== -1)
+      .sort((a: any, b: any) => {
+        const aIndex = a.first_name.toLowerCase().indexOf(keyword.toLowerCase());
+        const bIndex = b.first_name.toLowerCase().indexOf(keyword.toLowerCase());
+
+        // Sort by the index where the match happens, prioritizing earlier matches
+        return aIndex - bIndex;
+      });
+
   }
 
   onClickOutside() {
