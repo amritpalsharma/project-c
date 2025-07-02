@@ -360,7 +360,7 @@ export class EditPersonalDetailsComponent implements OnInit {
           this.custom_club_country = custom_club_info.country_id;
           this.custom_club = custom_club_info.club_name;
           this.custom_team = custom_club_info.team_name;
-          if(this.custom_club && this.custom_club != ''){
+          if (this.custom_club && this.custom_club != '') {
             this.isCustomClubTeam = true;
           }
           let selectionArr = this.countries.filter((club: any) =>
@@ -660,10 +660,16 @@ export class EditPersonalDetailsComponent implements OnInit {
   onNoClubChange(value: boolean) {
     // alert(value); // true if checked, false if unchecked
     this.isHideClubSection = value;
+    if (value === true) {
+      this.isCustomClubTeam = false;
+    }
   }
 
 
   onChnageCustomClubTeam(value: boolean) {
     this.isCustomClubTeam = value;
+    if (value === true) {
+      this.isHideClubSection = false;
+    }
   }
 }

@@ -231,8 +231,10 @@ export class AddNewTalentComponent implements OnInit {
   onClickOutside() {
     this.dialogRef.close();
   }
+  userSearch: string = '';
 
   callListApi(userInput: HTMLInputElement) {
+    this.userSearch = userInput.value;
     setTimeout(() => {
       this.filteredUsers = this.allUsers.filter((user: any) => (user.first_name !== null && user.first_name !== undefined) &&
         user.first_name.toLowerCase().indexOf(userInput.value.toLowerCase()) != -1
