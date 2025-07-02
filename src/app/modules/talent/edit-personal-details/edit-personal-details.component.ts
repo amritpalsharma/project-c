@@ -467,7 +467,11 @@ export class EditPersonalDetailsComponent implements OnInit {
       formData.append('user[custom_team]', '');
       formData.append('user[custom_club_country]', '');
     }
-    formData.append('user[isCustomClubTeam]', this.isCustomClubTeam + '');
+    if(this.isCustomClubTeam === true){
+      formData.append('user[have_custom_club]', '1');
+    }else{
+      formData.append('user[have_custom_club]', '0');
+    }
     // const team = this.teamsArr.find(team => team.id === this.CurrentTeamId);
     // console.log('Selected Team Id is', this.CurrentTeamId, ' and Team Type is ', team.team_type);
 

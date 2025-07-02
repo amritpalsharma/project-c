@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -8,7 +8,7 @@ import { ActivityService } from '../../../../services/activity';
 import { WebPages } from '../../../../services/webpages.service';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { TalentService } from '../../../../services/talent.service';
-
+import { GlobalSettingsService } from '../../../../services/global-settings.service';
 @Component({
   selector: 'app-activity-log',
   templateUrl: './activity-log.component.html',
@@ -26,9 +26,12 @@ export class ActivityLogComponent {
   selectedIds: any = [];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild('activityUsers', { static: false }) activityUsers!: ElementRef;
   idsToDelete: any = [];
   selectActivityFirst: string = '';
   currentOffset: number = 0;
+
+  currentLoggedInPermission: string = this.gloabalSettings.getCurrentViewOnly();
 
   constructor(
     private activityService: ActivityService,
@@ -36,6 +39,8 @@ export class ActivityLogComponent {
     public webPages: WebPages,
     private translate: TranslateService,
     private talentService: TalentService,
+    private gloabalSettings: GlobalSettingsService,
+
   ) { }
 
   ngOnInit() {
@@ -116,6 +121,14 @@ export class ActivityLogComponent {
     } else {
       this.selectedIds.splice(index, 1);
     }
+
+    if (this.activities.length === this.selectedIds.length) {
+      this.allSelected = true;
+    } else {
+      this.allSelected = false;
+    }
+
+    this.updateMasterCheckboxState();
   }
 
   selectAll() {
@@ -125,12 +138,16 @@ export class ActivityLogComponent {
     } else {
       this.selectedIds = [];
     }
+    this.updateMasterCheckboxState();
     console.log('Selected user IDs:', this.selectedIds);
   }
 
   confirmDeletion(): any {
     if (!this.checkRole()) {
       return;
+    }
+    if (!this.hasPermissionToDelete()) {
+      return; // If no permission, exit early
     }
     if (this.selectedIds.length == 0) {
       this.showMessage(this.selectActivityFirst);
@@ -188,6 +205,10 @@ export class ActivityLogComponent {
     if (!this.checkRole()) {
       return;
     }
+
+    if (!this.hasPermissionToDelete()) {
+      return; // If no permission, exit early
+    }
     this.idsToDelete = [id];
     this.showMatDialog(this.areYouSuretoDeleteActivity, "activity-confirmation");
   }
@@ -201,5 +222,26 @@ export class ActivityLogComponent {
       this.selectActivityFirst = translations['selectActivityFirst'];
       console.log('Title fetch Function Fired');
     })
+  }
+
+  updateMasterCheckboxState() {
+    const masterCheckbox = this.activityUsers?.nativeElement;
+    if (!masterCheckbox) return;
+
+    const total = this.activities.length;
+    const selected = this.selectedIds.length;
+    // console.log('total',total);
+    // console.log('selected',selected);
+
+    masterCheckbox.indeterminate = selected > 0 && selected < total;
+    masterCheckbox.checked = selected === total;
+  }
+
+  hasPermissionToDelete(): boolean {
+    if (this.currentLoggedInPermission === 'club_edit_only') {
+      console.info('YOU DO NOT HAVE PERMISSION TO Add RECORDS');
+      return false; // Return false if the user doesn't have permission
+    }
+    return true; // Return true if the user has permission
   }
 }

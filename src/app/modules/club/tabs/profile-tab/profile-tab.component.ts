@@ -30,6 +30,7 @@ export class ProfileTabComponent {
   @Input() userData: any;
   @Input() isPremium: any;
   @Input() isUserVerified: any;
+  @Input() currentLoggedInPermission: any;
   userId: any = "";
   idsToDelete: any = "";
   deleteRepresentorConfirmation: string = '';
@@ -202,6 +203,9 @@ export class ProfileTabComponent {
 
 
   addRepresentator() {
+    if (!this.hasPermissionToAdd()) {
+      return; // If no permission, exit early
+    }
     const dialog = this.dialog.open(AddRepresentatorPopupComponent, {
       height: '400',
       width: '400px',
@@ -244,6 +248,10 @@ export class ProfileTabComponent {
   }
 
   editRepresentator(representator: any) {
+    if (this.currentLoggedInPermission === 'club_edit_only') {
+      console.info('YOU DO NOT HAVE PERMISSION TO DELETE RECORDS');
+      return; // Return false if the user doesn't have permission
+    }
     console.log(representator)
     const editDialog = this.dialog.open(AddRepresentatorPopupComponent, {
       height: '400',
@@ -270,7 +278,27 @@ export class ProfileTabComponent {
     });
   }
 
+  hasPermissionToDelete(): boolean {
+    if (this.currentLoggedInPermission === 'club_edit_only') {
+      console.info('YOU DO NOT HAVE PERMISSION TO DELETE RECORDS');
+      return false; // Return false if the user doesn't have permission
+    }
+    return true; // Return true if the user has permission
+  }
+
+  hasPermissionToAdd(): boolean {
+    if (this.currentLoggedInPermission === 'club_edit_only') {
+      console.info('YOU DO NOT HAVE PERMISSION TO Add RECORDS');
+      return false; // Return false if the user doesn't have permission
+    }
+    return true; // Return true if the user has permission
+  }
+
   confirmSingleDeletion(id: any) {
+    // Check if the user has permission
+    if (!this.hasPermissionToDelete()) {
+      return; // If no permission, exit early
+    }
     this.idsToDelete = id;
     console.warn(this.deleteRepresentorConfirmation)
     this.showMatDialog(this.deleteRepresentorConfirmation, "delete-representator-confirmation");
@@ -361,4 +389,5 @@ export class ProfileTabComponent {
       }
     });
   }
+
 }

@@ -575,19 +575,19 @@ export class DashboardComponent implements OnInit, OnDestroy {
     // this.getGalleryData();
 
     // setTimeout(() => {
-      const dialogRef = this.dialog.open(EditHighlightsComponent, {
-        width: '800px',
-        panelClass: 'edit_highlights_popup',
-        data: {
-          images: this.userImages,
-          videos: this.userVideos,
-          url: this.imageBaseUrl
-        }
-      });
+    const dialogRef = this.dialog.open(EditHighlightsComponent, {
+      width: '800px',
+      panelClass: 'edit_highlights_popup',
+      data: {
+        images: this.userImages,
+        videos: this.userVideos,
+        url: this.imageBaseUrl
+      }
+    });
 
-      dialogRef.afterClosed().subscribe(result => {
-        this.getHighlightsData()
-      });
+    dialogRef.afterClosed().subscribe(result => {
+      this.getHighlightsData()
+    });
     // }, 1500);
   }
 

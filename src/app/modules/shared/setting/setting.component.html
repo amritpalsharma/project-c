@@ -72,9 +72,9 @@
       </div>
       <div class="col-lg-9">
         <div class="tab-content" id="myTabContent">
-          <app-activity-log id="activity-log" *ngIf="tab === 'activity'"></app-activity-log>
+          <app-activity-log id="activity-log" *ngIf="tab === 'activity'" [currentLoggedInPermission]="currentLoggedInPermission"></app-activity-log>
           <app-app-setting id="app-settings" *ngIf="tab === 'setting'"> </app-app-setting>
-          <app-notifications-log id="notifications-log" *ngIf="tab === 'notifications'"></app-notifications-log>
+          <app-notifications-log id="notifications-log" *ngIf="tab === 'notifications'" [currentLoggedInPermission]="currentLoggedInPermission"></app-notifications-log>
           <app-password-settings id="app-password-settings" *ngIf="tab === 'resetPassword'"></app-password-settings>
         </div>
       </div>

@@ -23,7 +23,7 @@ import { UnverifiedUserComponent } from '../../../shared/unverified-user/unverif
 
 
 export class SightingTabComponent {
-  sightingsArr:any=[];
+  sightingsArr: any = [];
   userId: any = '';
   @Input() isPremium: any;
   @Input() isUserVerified: any;
@@ -49,6 +49,7 @@ export class SightingTabComponent {
 
   attachments: any = [];
   viewSightId: any = "";
+  @Input() currentLoggedInPermission: any;
   constructor(
     private route: ActivatedRoute,
     private clubService: ClubService,
@@ -151,6 +152,10 @@ export class SightingTabComponent {
   }
 
   showDeleteConfirmationPopup() {
+    if (this.currentLoggedInPermission == 'club_edit_only') {
+      console.info('YOU DO NOT HAVE PERMISSION TO DELETE RECORDS');
+      return;
+    }
     this.showMatDialogSharedMessagePopup(this.deleteRepresentorConfirmation, "delete-sighting-confirmation");
   }
 
@@ -232,6 +237,9 @@ export class SightingTabComponent {
   }
 
   createSightPopup() {
+    if (!this.hasPermissionToDelete()) {
+      return; // If no permission, exit early
+    }
     const messageDialog = this.dialog.open(CreateSightPopupComponent, {
       width: '750px',
       panelClass: 'club_sighting_popup',
@@ -552,5 +560,14 @@ export class SightingTabComponent {
     } catch (error) {
       this.clubService.apiToasterError();
     }
+  }
+
+
+  hasPermissionToDelete(): boolean {
+    if (this.currentLoggedInPermission === 'club_edit_only') {
+      console.info('YOU DO NOT HAVE PERMISSION TO DELETE RECORDS');
+      return false; // Return false if the user doesn't have permission
+    }
+    return true; // Return true if the user has permission
   }
 }

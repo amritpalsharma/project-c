@@ -29,6 +29,7 @@ export class InviteScoutTalentPopupComponent {
   eventName: any = "";
   scoutId: any = "";
   pleaseWait: string = '';
+  userSearch: string = '';
   constructor(
     private userService: UserService,
     private scoutService: ScoutService,
@@ -109,6 +110,7 @@ export class InviteScoutTalentPopupComponent {
 
   onKeyPress(event: any) {
     let keyword = event.target.value;
+    this.userSearch = keyword;
     console.log(keyword); // You can use this to see the current input value
 
     this.filteredUsers = this.allUsers.filter((user: any) => (user.first_name !== null && user.first_name !== undefined) &&

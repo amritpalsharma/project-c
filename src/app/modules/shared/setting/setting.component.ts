@@ -8,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { TitleService } from '../../../title.service';
 import { WebPages } from '../../../services/webpages.service';
 import { Location } from '@angular/common';
+import { GlobalSettingsService } from '../../../services/global-settings.service';
 
 import {
   MatDialogRef,
@@ -32,7 +33,8 @@ export class SettingComponent implements OnInit {
     private translateService: TranslateService,
     private titleService: TitleService,
     public webPages: WebPages,
-    private location: Location
+    private location: Location,
+    private gloabalSettings: GlobalSettingsService
   ) { }
 
   userData: any;
@@ -50,6 +52,7 @@ export class SettingComponent implements OnInit {
   profileData: any;
   error: string | null = null;
   pageTitle: string = '';
+  currentLoggedInPermission: string = this.gloabalSettings.getCurrentViewOnly();
 
   ngOnInit(): void {
     this.getJsonTranslations();
@@ -62,6 +65,11 @@ export class SettingComponent implements OnInit {
       this.firstName = this.userData.first_name || '';
       this.lastName = this.userData.last_name || '';
       this.email = this.userData.username || '';
+      // this.getUserProfile(this.userData.id);
+      // currentLoggedInPermission: string = '';
+
+
+
     } else {
       console.log('No user data found in local storage.');
     }
@@ -73,7 +81,7 @@ export class SettingComponent implements OnInit {
       }
     });
 
-    this.webPages.languageId$.subscribe((data) => { 
+    this.webPages.languageId$.subscribe((data) => {
       this.getJsonTranslations();
     })
     // this.fetchProfileData(); 
@@ -92,5 +100,7 @@ export class SettingComponent implements OnInit {
       console.log('Title fetch Function Fired');
     })
   }
+
+
 
 }

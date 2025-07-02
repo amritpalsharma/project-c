@@ -110,7 +110,7 @@
                       </div>
                     </div>
                     <div class="col-md-4 p-0 edit_button responsive-edit_btn ">
-                      <button (click)="openEditDialog()" class="" matTooltip="{{'editPersonalDetails' | translate}}"
+                      <button (click)="openEditDialog()" class="{{currentLoggedInPermission}}" matTooltip="{{'editPersonalDetails' | translate}}"
                         matTooltipPosition="right" id="TourPersonalDetails">
                         <div class="tour-personal-details px-1">
                           <svg class="" width="22" height="23" viewBox="0 0 24 25" fill="none"
@@ -618,7 +618,7 @@
                     <h2 class="text-uppercase">{{'highlights' | translate}}</h2>
                     <p>{{'featuredPhotosAndVideos' | translate}}</p>
                   </div>
-                  <div class="settings cursor-pointer setting_heighlight"
+                  <div class="settings cursor-pointer setting_heighlight {{currentLoggedInPermission}}"
                     (click)="isHighlightClick ? openHighlight() : null" matTooltip="{{'highlightTooltip' | translate}}"
                     matTooltipPosition="right">
 
@@ -690,7 +690,7 @@
 
               <div class="edit-photo d-flex align-items-center tour-cover-photo"
                 matTooltip="{{'editCoverImage' | translate}}" matTooltipPosition="right">
-                <div class="edit_image-2 edit_image-tour" id="coverImageTour">
+                <div class="edit_image-2 edit_image-tour {{currentLoggedInPermission}}" id="coverImageTour">
                   <label for="file-upload" class="cursor-pointer ">
                     <svg class="edit_image" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                       <path
@@ -703,7 +703,7 @@
                   class="d-none" />
                 <!-- <input id="file-upload2" (change)="onCoverFileChange($event)" accept="image/*" type="file"
                   class="d-none" /> -->
-                <svg *ngIf="coverImage" class="delete_image cursor-pointer " (click)="openDeleteDialog()"
+                <svg *ngIf="coverImage" class="delete_image cursor-pointer {{currentLoggedInPermission}}" (click)="openDeleteDialog()"
                   xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                   <path
                     d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.7 23.7 0 0 0 -21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0 -16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z" />
@@ -801,16 +801,16 @@
             </div>
             <div class="general_details mt-4 p-4 bg-color box_height_eqaul">
               <club-profile-tab *ngIf="activeTab == 'profile'" [userData]="user" [isPremium]="isPremium"
-                [isUserVerified]="isUserVerified"></club-profile-tab>
+                [isUserVerified]="isUserVerified" [currentLoggedInPermission]="currentLoggedInPermission"></club-profile-tab>
               <club-history-tab *ngIf="activeTab == 'club_history'" role="club" [isPremium]="isPremium"
-                [isUserVerified]="isUserVerified"></club-history-tab>
+                [isUserVerified]="isUserVerified" [currentLoggedInPermission]="currentLoggedInPermission"></club-history-tab>
               <club-teams-tab *ngIf="activeTab == 'teams'" [userData]="user" [isPremium]="isPremium"
-                [isUserVerified]="isUserVerified"></club-teams-tab>
+                [isUserVerified]="isUserVerified" [currentLoggedInPermission]="currentLoggedInPermission"></club-teams-tab>
               <club-gallery-tab *ngIf="activeTab == 'gallery'" [coverImage]="coverImage"
                 (dataEmitter)="handleCoverImageData($event)" [isPremium]="isPremium" [isUserVerified]="isUserVerified"
-                (imageDeleted)="onImageDeleted()"></club-gallery-tab>
+                (imageDeleted)="onImageDeleted()" [currentLoggedInPermission]="currentLoggedInPermission"></club-gallery-tab>
               <club-sighting-tab *ngIf="activeTab == 'sighting'" [isPremium]="isPremium"
-                [isUserVerified]="isUserVerified"></club-sighting-tab>
+                [isUserVerified]="isUserVerified" [currentLoggedInPermission]="currentLoggedInPermission"></club-sighting-tab>
             </div>
           </div>
         </div>

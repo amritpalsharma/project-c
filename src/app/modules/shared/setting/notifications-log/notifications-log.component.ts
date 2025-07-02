@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ElementRef, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -12,6 +12,7 @@ import { ScoutService } from '../../../../services/scout.service';
 import { SocketService } from '../../../../services/socket.service';
 import { Router } from '@angular/router';
 import { UnverifiedUserComponent } from '../../unverified-user/unverified-user.component';
+import { GlobalSettingsService } from '../../../../services/global-settings.service';
 
 interface Notification {
   id: number;
@@ -44,9 +45,22 @@ export class NotificationsLogComponent {
   isUserVerified: boolean = false;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild('notificationLog', { static: false }) notificationLog!: ElementRef;
   idsToDelete: any = [];
 
-  constructor(public dialog: MatDialog, public webPages: WebPages, private talentService: TalentService, private translateService: TranslateService, private scoutService: ScoutService, private socketService: SocketService, private router: Router) {
+
+  currentLoggedInPermission: string = this.gloabalSettings.getCurrentViewOnly();
+
+  constructor(
+    public dialog: MatDialog,
+    public webPages: WebPages,
+    private talentService: TalentService,
+    private translateService: TranslateService,
+    private scoutService: ScoutService,
+    private socketService: SocketService,
+    private router: Router,
+    private gloabalSettings: GlobalSettingsService,
+  ) {
     this.updateTranslation();
     translateService.onLangChange.subscribe(() => {
       this.fetchNotifications()
@@ -134,12 +148,27 @@ export class NotificationsLogComponent {
   }
 
   onCheckboxChange(item: any) {
+    // const index = this.selectedIds.indexOf(item.id);
+    // if (index === -1) {
+    //   this.selectedIds.push(item.id);
+    // } else {
+    //   this.selectedIds.splice(index, 1);
+    // }
+
     const index = this.selectedIds.indexOf(item.id);
     if (index === -1) {
       this.selectedIds.push(item.id);
     } else {
       this.selectedIds.splice(index, 1);
     }
+
+    if (this.notifications.length === this.selectedIds.length) {
+      this.allSelected = true;
+    } else {
+      this.allSelected = false;
+    }
+
+    this.updateMasterCheckboxState();
   }
 
   selectAll() {
@@ -149,12 +178,17 @@ export class NotificationsLogComponent {
     } else {
       this.selectedIds = [];
     }
+    this.updateMasterCheckboxState();
     console.log('Selected user IDs:', this.selectedIds);
   }
 
   confirmDeletion(): any {
     if (!this.checkRole()) {
       return;
+    }
+
+    if (!this.hasPermissionToDelete()) {
+      return; // If no permission, exit early
     }
     if (this.selectedIds.length == 0) {
       this.showMessage(this.selectNotificationFirst);
@@ -202,8 +236,8 @@ export class NotificationsLogComponent {
     messageDialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
         if (result.action == "delete-confirmed") {
-          let isDeleted : any = localStorage.getItem('isDeleted');
-          if(!isDeleted){
+          let isDeleted: any = localStorage.getItem('isDeleted');
+          if (!isDeleted) {
             localStorage.setItem('isDeleted', 'true');
           }
           this.deleteActivity();
@@ -286,6 +320,9 @@ export class NotificationsLogComponent {
     if (!this.checkRole()) {
       return;
     }
+    if (!this.hasPermissionToDelete()) {
+      return; // If no permission, exit early
+    }
     this.idsToDelete = [id];
     this.showMatDialog(this.confirmDeleteinformation, "delete-confirmation");
   }
@@ -336,7 +373,7 @@ export class NotificationsLogComponent {
 
 
   handleNotiificationClick(notification: any) {
-    if(!notification.senderRole){
+    if (!notification.senderRole) {
       return;
     }
     if (!this.isUserVerified) {
@@ -407,5 +444,26 @@ export class NotificationsLogComponent {
       this.selectNotificationFirst = res['selectNotificationFirst'];
       this.confirmDeleteinformation = res['areYouSuretoDeleteNotification'];
     });
+  }
+
+  updateMasterCheckboxState() {
+    const masterCheckbox = this.notificationLog?.nativeElement;
+    if (!masterCheckbox) return;
+
+    const total = this.notifications.length;
+    const selected = this.selectedIds.length;
+    // console.log('total',total);
+    // console.log('selected',selected);
+
+    masterCheckbox.indeterminate = selected > 0 && selected < total;
+    masterCheckbox.checked = selected === total;
+  }
+
+  hasPermissionToDelete(): boolean {
+    if (this.currentLoggedInPermission === 'club_edit_only') {
+      console.info('YOU DO NOT HAVE PERMISSION TO Add RECORDS');
+      return false; // Return false if the user doesn't have permission
+    }
+    return true; // Return true if the user has permission
   }
 }

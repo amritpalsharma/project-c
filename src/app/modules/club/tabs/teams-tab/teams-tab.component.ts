@@ -28,6 +28,7 @@ export class TeamsTabComponent {
   @Input() userData: any;
   @Input() isPremium: any;
   @Input() isUserVerified: any;
+  @Input() currentLoggedInPermission: any;
 
 
   confirmDeleteinformationTeam: string = '';
@@ -124,7 +125,9 @@ export class TeamsTabComponent {
     this.router.navigate([`view/talent/${elementId}`]);
   }
   addPlayer() {
-
+    if (!this.hasPermissionToAdd()) {
+      return; // If no permission, exit early
+    }
     const messageDialog = this.dialog.open(AddNewTalentComponent, {
       width: '800px',
       data: {
@@ -178,7 +181,27 @@ export class TeamsTabComponent {
     this.router.navigate(['/club/plans']);
   }
 
+  hasPermissionToDelete(): boolean {
+    if (this.currentLoggedInPermission === 'club_edit_only') {
+      console.info('YOU DO NOT HAVE PERMISSION TO DELETE RECORDS');
+      return false; // Return false if the user doesn't have permission
+    }
+    return true; // Return true if the user has permission
+  }
+
+  hasPermissionToAdd(): boolean {
+    if (this.currentLoggedInPermission === 'club_edit_only') {
+      console.info('YOU DO NOT HAVE PERMISSION TO Add RECORDS');
+      return false; // Return false if the user doesn't have permission
+    }
+    return true; // Return true if the user has permission
+  }
   confirmDelete(details: any) {
+
+    if (this.currentLoggedInPermission == 'club_edit_only') {
+      console.info('YOU DO NOT HAVE PERMISSION TO DELETE RECORDS');
+      return;
+    }
     console.log(details);
     const messageDialog = this.dialog.open(MessagePopupComponent, {
       width: '500px',

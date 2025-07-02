@@ -105,6 +105,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   pageTitle: string = '';
 
   currentThemeMode: any = localStorage.getItem('theme');
+  currentLoggedInPermission: string = '';
 
   async ngOnInit() {
     this.introInstance = introJs();
@@ -361,6 +362,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
           localStorage.setItem('userInfo', JSON.stringify(response.data.user_data));
           localStorage.setItem('userData', JSON.stringify(response.data.user_data));
           this.user = response.data.user_data;
+          if (response.data.representator_data && response.data.representator_data != '') {
+            if (response.data.representator_data.permission == 'admin.view') {
+              this.currentLoggedInPermission = 'club_view_only';
+              this.globalSettings.setViewOnly(this.currentLoggedInPermission);
+            } else if (response.data.representator_data.permission == 'admin.edit') {
+              this.currentLoggedInPermission = 'club_edit_only';
+              this.globalSettings.setViewOnly(this.currentLoggedInPermission);
+            }
+          }
+          // console.info('userRecivedFromBackend', this.user);
 
           if (this.user?.first_name || this.user?.last_name) {
             let userName = this.user?.first_name + ' ' + this.user?.last_name;
@@ -392,7 +403,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
           if (this.user.current_club_country && this.user.current_club_country != '') {
             // this.nationality = this.getCountryIdByName(this.user.current_club_country);
           }
-
 
           if (this.StartTour && this.isTourFirstTime) {
             setTimeout(() => {
@@ -516,20 +526,20 @@ export class DashboardComponent implements OnInit, OnDestroy {
     // this.isHighlightClick = false;
     // this.getGalleryData();
     // setTimeout(() => {
-      const dialogRef = this.dialog.open(EditHighlightsComponent, {
-        width: '800px',
-        panelClass: 'edit_highlights_popup',
-        data: {
-          images: this.userImages,
-          videos: this.userVideos,
-          url: this.imageBaseUrl
-        }
-      });
+    const dialogRef = this.dialog.open(EditHighlightsComponent, {
+      width: '800px',
+      panelClass: 'edit_highlights_popup',
+      data: {
+        images: this.userImages,
+        videos: this.userVideos,
+        url: this.imageBaseUrl
+      }
+    });
 
-      dialogRef.afterClosed().subscribe(result => {
-        this.getHighlightsData();
-        this.isHighlightClick = true;
-      });
+    dialogRef.afterClosed().subscribe(result => {
+      this.getHighlightsData();
+      this.isHighlightClick = true;
+    });
     // }, 1500);
 
   }
@@ -1073,4 +1083,5 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     return match ? match.id : null;
   }
+
 }
