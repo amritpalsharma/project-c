@@ -41,9 +41,11 @@ export class CreateSightPopupComponent implements AfterViewInit {
     title: "",
     file: ""
   }];
-  isLoading : boolean = false;
+  isLoading: boolean = false;
 
   uploadedBannerImage: boolean = false;
+  bannerImageName : string = '';
+  deleteImage : string = '';
 
   submitButtonClicked: boolean = false;
   @ViewChild('fileInput', { static: false }) fileInputElement!: ElementRef;
@@ -74,6 +76,12 @@ export class CreateSightPopupComponent implements AfterViewInit {
       this.status = data.sightData.status === 'active' ? true : false;
       // this.dateTime = this.formatDateForInput(new Date());
       this.dateTime = `${this.date}T${data.sightData.event_time}`;
+
+      // this.showImageFromUrl(data.sightData.banner_path, 'Banner Image');
+      this.bannerImageName = data.sightData.banner;
+      setTimeout(() => {
+        this.showImageFromUrl(data.sightData.banner_path, 'Existing Banner');
+      });
     }
   }
 
@@ -150,7 +158,7 @@ export class CreateSightPopupComponent implements AfterViewInit {
         if (previewContainer) {
           previewContainer.innerHTML = '';  // Clear any previous previews
           previewContainer.appendChild(imgElement);  // Append the new image
-          previewContainer.appendChild(h5Element);  // Append the Name image
+          // previewContainer.appendChild(h5Element);  // Append the Name image
         }
       };
       reader.readAsDataURL(file);
@@ -158,12 +166,36 @@ export class CreateSightPopupComponent implements AfterViewInit {
     }
   }
 
+  showImageFromUrl(imageUrl: string, imageName: string = 'Uploaded Image'): void {
+    // this.bannerFile = imageName;
+    this.uploadedBannerImage = true;
+    console.log(imageUrl, 'image')
+    const imgElement = document.createElement('img');
+    imgElement.src = imageUrl;
+    imgElement.alt = imageName;
+
+    const previewContainer: any = document.getElementById('imagePreviewContainer');
+    // if (previewContainer) {
+    previewContainer.innerHTML = '';  // Clear existing content
+    previewContainer.appendChild(imgElement);
+
+    // Optional: Show image name
+    // const h5Element = document.createElement('h5');
+    // h5Element.innerText = imageName;
+    // previewContainer.appendChild(h5Element);
+    // }
+  }
+
+
   removeImage(action: string) {
     this.bannerFile = [];
     this.uploadedBannerImage = false;
     const imagePreviewContainer = document.getElementById('imagePreviewContainer');
     if (imagePreviewContainer) {
       imagePreviewContainer.innerHTML = '';  // Clear any previous previews
+    }
+    if(action === 'yes'){
+      this.deleteImage = this.bannerImageName;
     }
   }
 
@@ -280,10 +312,10 @@ export class CreateSightPopupComponent implements AfterViewInit {
     formData.append('about_event', this.about);
     formData.append('banner', this.bannerFile);
 
-    if(this.status){
+    if (this.status) {
       formData.append('status', 'active');
     }
-    else{
+    else {
       formData.append('status', 'inactive');
     }
 
@@ -304,7 +336,7 @@ export class CreateSightPopupComponent implements AfterViewInit {
 
 
     try {
-      
+
       this.clubService.addSight(this.clubId, formData).subscribe((response) => {
         console.log(this.clubId, receiverIds)
         if (response && response.status) {
@@ -338,10 +370,11 @@ export class CreateSightPopupComponent implements AfterViewInit {
       this.isLoading = false;
     }
 
-    
+
   }
 
   updateSight() {
+    this.isLoading = true;
     this.submitButtonClicked = true;
     const formData = new FormData();
     let { date, time } = this.getDateTimeFormat(this.dateTime);
@@ -353,15 +386,18 @@ export class CreateSightPopupComponent implements AfterViewInit {
     formData.append('zipcode', this.zipcode);
     formData.append('city', this.city);
     formData.append('about_event', this.about);
+    if(this.deleteImage){
+      formData.append('delete_image', this.deleteImage);
+    }
 
     if (this.bannerFile != "") {
       formData.append('banner', this.bannerFile);
     }
 
-    if(this.status){
+    if (this.status) {
       formData.append('status', 'active');
     }
-    else{
+    else {
       formData.append('status', 'inactive');
     }
 
@@ -380,12 +416,15 @@ export class CreateSightPopupComponent implements AfterViewInit {
             id: this.idToBeUpdate,
             message: response.message
           })
+          this.isLoading = false;
         } else {
-          this.userService.apiToastError(response.message);
+          this.userService.apiToastError(response.data.errors);
+          this.isLoading = false;
         }
       });
     } catch (error) {
       this.userService.apiToasterError();
+      this.isLoading = false;
     }
   }
 

@@ -1376,5 +1376,6 @@
   "crop": "Beskær",
   "coverImageDelete" : "Er du sikker på, at du vil slette dit forsidebillede?",
   "noPortfolioRecordFound": "Der er endnu ikke tilføjet nogen talenter til porteføljen.",
-  "withoutCurrentClub": "uden klub"
+  "withoutCurrentClub": "uden klub",
+  "scoutingInformation2": "Scoutinginformationer"
 }

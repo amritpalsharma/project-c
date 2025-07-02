@@ -1423,5 +1423,6 @@
   "crop": "Crop",
   "coverImageDelete" : "Are you sure you want to delete your cover image?",
   "noPortfolioRecordFound": "No talents have been added to the portfolio yet.",
-  "withoutCurrentClub": "without a Club"
+  "withoutCurrentClub": "without a Club",
+  "scoutingInformation2": "Scouting information"
 }

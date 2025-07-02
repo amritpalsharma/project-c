@@ -23,7 +23,7 @@
     </div>
     <div class="px-3 club_history">
       <div *ngIf="scoutPlayers.length == 0 && !isLoading && isPremium" class="mt-3">
-        <h5 class="text-center noTextTabs">{{ 'noTextTabs' | translate }}</h5>
+        <h5 class="text-center noTextTabs">{{ 'noPortfolioRecordFound' | translate }}</h5>
       </div>
     </div>
     <div class="col" *ngIf="isPremium && scoutPlayers.length != 0">
@@ -178,7 +178,7 @@
 	<div class="rounded-lg border bg-card">
 	  <div class="p-3">
 		<div class="d-flex justify-content-center">
-			<h6>{{'noRecordFound' | translate}}</h6>
+			<h6>{{'noPortfolioRecordFound' | translate}}</h6>
 		</div>
 	  </div>
 	</div>

@@ -44,6 +44,9 @@ export class BlogPopupComponent implements OnInit, OnDestroy {
   blogIdToEdit: any = '';
   featured_image: any = "";
   featuredImages: { [key: string]: File } = {};
+  imagePreview: { [key: string]: string } = {};
+  imageUrl: { [key: string]: string } = {};
+  deletedFeaturedImage: { [key: string]: string } = {};
   toolbar: Toolbar = [
     ['bold', 'italic'],
     ['underline', 'strike'],
@@ -161,15 +164,27 @@ export class BlogPopupComponent implements OnInit, OnDestroy {
       this.featured_image = fileToUpload;
       this.featuredImages[key] = fileToUpload;
       console.log("fileToUpload", this.featuredImages);
-
+      
       const reader = new FileReader();
       reader.onload = () => {
         // this.imagePreview = reader.result;
+        this.imagePreview[key] = reader.result as string;
       };
       reader.readAsDataURL(fileToUpload);
     }
-
+    
     console.log("fileToUpload", this.featured_image)
+  }
+
+  
+  closeImage(key: string, imageName: string = ''): void {
+    delete this.imagePreview[key];
+    delete this.imageUrl[key];
+    delete this.featuredImages[key];
+    
+    if(imageName){
+      this.deletedFeaturedImage[key] = imageName;
+    }
   }
 
 
@@ -247,6 +262,7 @@ export class BlogPopupComponent implements OnInit, OnDestroy {
           this.meta_titles = this.blog.meta_title;
           this.meta_descriptions = this.blog.meta_description;
           this.slug = this.blog.slug;
+          this.imageUrl = this.blog.featured_image;
           // this.status = this.blog.status;
           this.isLoading = false;
         } else {
@@ -359,6 +375,10 @@ export class BlogPopupComponent implements OnInit, OnDestroy {
 
     Object.entries(this.allContent).forEach(([key, value]) => {
       formData.append(`content[${key}]`, value as string);
+    });
+
+    Object.entries(this.deletedFeaturedImage).forEach(([key, value]) => {
+      formData.append(`deleted_featured_image[${key}]`, value as string);
     });
 
     this.blogApi.updateBlog(this.blogIdToEdit, formData).subscribe((response) => {

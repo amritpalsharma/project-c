@@ -112,12 +112,55 @@
                     <label class="text-size">
                       {{ 'featuredImage' | translate }}({{ lang.slug }}):
                     </label>
-                    <div class="btn-group">
+                    <div class="btn-group" *ngIf="!imagePreview[lang.slug] && !imageUrl[lang.slug]">
                       <input type="file" class="form-control" (change)="onImageChange($event, lang.slug)"
                         accept="image/*" />
                     </div>
+
+
+                    <div *ngIf="imagePreview[lang.slug] || imageUrl[lang.slug]"
+                      class="preview-image-container position-relative">
+                      <img *ngIf="imagePreview[lang.slug]" [src]="imagePreview[lang.slug]" alt="Preview"
+                        class="image-preview" />
+                      <img *ngIf="!imagePreview[lang.slug] && imageUrl[lang.slug]"
+                        [src]="'https://api.socceryou.ch/uploads/' + imageUrl[lang.slug]" alt="Preview"
+                        class="image-preview" />
+
+                      <button *ngIf="imagePreview[lang.slug]" (click)="closeImage(lang.slug)" class="ad-close-button d-block">
+                        <i class="fa-solid fa-xmark"></i>
+                      </button>
+                      <button *ngIf="!imagePreview[lang.slug] && imageUrl[lang.slug]" (click)="closeImage(lang.slug, imageUrl[lang.slug])" class="ad-close-button d-block">
+                        <i class="fa-solid fa-xmark"></i>
+                      </button>
+
+                    </div>
                   </div>
+                  <!-- <div *ngIf="imagePreview[lang.slug] || imageUrl[lang.slug]"
+                    class="preview-image-container position-relative">
+                    <label class="text-size">
+                      {{ 'featuredImage' | translate }}({{ lang.slug }}):
+                    </label>
+                    <img *ngIf="imagePreview[lang.slug]" [src]="imagePreview[lang.slug]" alt="Preview"
+                      class="image-preview" />
+                    <img *ngIf="!imagePreview[lang.slug] && imageUrl[lang.slug]"
+                      [src]="'https://api.socceryou.ch/uploads/' + imageUrl[lang.slug]" alt="Preview"
+                      class="image-preview" />
+
+                    <button (click)="closeImage(lang.slug)" class="ad-close-button d-block">
+                      <i class="fa-solid fa-xmark"></i>
+                    </button>
+                  </div> -->
                 </div>
+
+                <!-- <div *ngIf="imagePreview[lang.slug] || imageUrl[lang.slug]" class="preview-image-container position-relative">
+                  <img *ngIf="imagePreview[lang.slug]" [src]="imagePreview[lang.slug]" alt="Preview" class="image-preview" />
+                  <img *ngIf="!imagePreview[lang.slug] && imageUrl[lang.slug]"
+                    [src]="'https://api.socceryou.ch/uploads/' + imageUrl[lang.slug]" alt="Preview" class="image-preview" />
+
+                  <button (click)="closeImage(lang.slug)" class="ad-close-button d-block">
+                    <i class="fa-solid fa-xmark"></i>
+                  </button>
+                </div> -->
 
                 <!-- Editor -->
                 <div class="col-12">

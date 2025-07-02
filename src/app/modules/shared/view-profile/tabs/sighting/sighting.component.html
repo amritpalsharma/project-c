@@ -347,7 +347,9 @@
               stroke="white" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
           <!-- {{ sightingData?.address }}, {{ sightingData?.city }}, {{ sightingData?.zipcode }} -->
-          {{ sightingData.address }} {{ sightingData.zipcode }}, {{ sightingData.city }}
+          {{ sightingData.address }}
+          <ng-container><br /></ng-container>
+          {{ sightingData.zipcode }} {{ sightingData.city }}
         </div>
         <div class="mb-0 butn_div">
           <button (click)="navigateToChat();" class="btn btn-success btn-sm web-create-bg mx-2 w-100 inquire-btn"

@@ -1,5 +1,5 @@
 <div *ngIf="scoutPlayers.length == 0 && !isLoading" class="noTextTabs-Wrap">
-  <h5 class="noTextTabs">{{ 'noTextTabs' | translate }}</h5>
+  <h5 class="noTextTabs">{{ 'noPortfolioRecordFound' | translate }}</h5>
 </div>
 <div *ngIf="isLoading || scoutPlayers.length == '0'">
   <div class="loader mt-5">
@@ -107,7 +107,7 @@
             <tr class="mat-row user-empty-tr" *matNoDataRow>
               <td [attr.colspan]="displayedColumns.length" class="user-empty-td">
                 <app-loader *ngIf="isLoading"></app-loader>
-                <div *ngIf="scoutPlayers.length == 0 && !isLoading" style="text-align: center;">{{ 'noRecordFound' | translate }}</div>
+                <div *ngIf="scoutPlayers.length == 0 && !isLoading" style="text-align: center;">{{ 'noPortfolioRecordFound' | translate }}</div>
               </td>
             </tr>
 

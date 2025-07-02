@@ -1455,5 +1455,6 @@
   "crop": "Beskär",
   "coverImageDelete" : "Är du säker på att du vill ta bort ditt omslagsbild?",
   "noPortfolioRecordFound": "Inga talanger har lagts till i portföljen ännu.",
-  "withoutCurrentClub": "utan klubb"
+  "withoutCurrentClub": "utan klubb",
+  "scoutingInformation2": "Scoutinguppgifter"
 }

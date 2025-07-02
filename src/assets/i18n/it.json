@@ -1507,5 +1507,6 @@
   "crop": "Ritaglia",
   "coverImageDelete" : "Sei sicuro di voler eliminare la tua immagine di copertina?",
   "noPortfolioRecordFound": "Nessun talento è stato ancora aggiunto al portfolio.",
-  "withoutCurrentClub": "senza club"
+  "withoutCurrentClub": "senza club",
+  "scoutingInformation2": "Dati di scouting"
 }

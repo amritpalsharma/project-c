@@ -1516,5 +1516,6 @@
   "crop": "Zuschneiden",
   "coverImageDelete" : "Bist du sicher, dass du dein Titelbild löschen möchtest?",
   "noPortfolioRecordFound": "Bisher sind keine Talente dem Portfolio hinzugefügt.",
-  "withoutCurrentClub": "vereinslos"
+  "withoutCurrentClub": "vereinslos",
+  "scoutingInformation2": "Sichtungs-Informationen"
 }
