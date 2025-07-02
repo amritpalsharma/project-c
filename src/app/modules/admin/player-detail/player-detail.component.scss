@@ -281,6 +281,11 @@
     span.bg_success {
         font-size: 22px !important;
     }
+    .list-view {
+        span.bg_success.approv {
+            font-size: 18px !important;
+        } 
+    }
 }
 
 @media (min-width: 3000px) {
@@ -289,6 +294,12 @@
     span.bg_pending,
     span.bg_success {
         font-size: 28px !important;
+    }
+    
+    .list-view {
+        span.bg_success.approv {
+            font-size: 22px !important;
+        } 
     }
 }
 
