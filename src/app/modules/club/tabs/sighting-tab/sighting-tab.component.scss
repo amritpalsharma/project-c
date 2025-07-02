@@ -221,6 +221,12 @@ body {
   font-weight: 500;
 }
 
+.download_delete {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
 .upload-btn {
   color: #787878;
   font-weight: 600;
@@ -639,6 +645,46 @@ body {
   }
 }
 
+.ve_align {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  svg {
+    width: 22px;
+    height: 22px;
+    top: -2px;
+    position: relative;
+}
+}
+
+
+@media (min-width: 1750px) and (max-width: 2500px) {
+.ve_align {
+  svg {
+    width: 26px;
+    height: 26px;
+    top: -1px;
+}
+}
+}
+
+@media (min-width: 2501px) and (max-width: 2900px) {
+.ve_align {
+  svg {
+    width: 26px;
+    height: 26px;
+    top: 0;
+}
+}
+}
+
+
+@media (min-width: 2000px) {
+.download_delete svg {
+    width: 35px !important;
+    height: 35px !important;
+}
+}
 @media (min-width: 3000px) {
   .sighting-bg img.img-fluid {
     max-height: unset !important;
@@ -699,6 +745,13 @@ body {
 
   .edit_padding {
     padding: 60px 40px 30px !important;
+  }
+  .ve_align {
+    svg {
+        width: 35px;
+        height: 35px;
+        top: -1px;
+    }
   }
 }
 
