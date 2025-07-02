@@ -126,6 +126,7 @@ export class HeaderComponent {
   justNow: string = '';
 
   langSubscription!: Subscription;
+  currentLoggedInPermission: string = this.globalSettings.getCurrentViewOnly();
 
   ngOnInit() {
     this.getJsonTranslations();
@@ -352,6 +353,27 @@ export class HeaderComponent {
           } else if (userArr?.role && userArr?.role == 2 && userArr?.club_logo_path) {
             // console.warn('userArr', userArr)
             this.commonDataService.updateProfilePic(userArr?.club_logo_path);
+          }
+
+          if (response.data.representator_data && response.data.representator_data != '') {
+            // if (response.data.representator_data.permission == 'admin.view') {
+            //   // this.currentLoggedInPermission = 'club_view_only';
+            //   this.globalSettings.setViewOnly('club_view_only');
+            // } else if (response.data.representator_data.permission == 'admin.edit') {
+            //   // this.currentLoggedInPermission = 'club_view_only';
+            //   this.globalSettings.setViewOnly('club_edit_only');
+            // }
+
+            if (response.data.representator_data.permission == 'admin.view') {
+              // this.currentLoggedInPermission = 'club_view_only';
+              // this.globalSettings.setViewOnly(this.currentLoggedInPermission);
+              this.globalSettings.setViewOnly('club_view_only');
+            } else if (response.data.representator_data.permission == 'admin.edit') {
+              // this.currentLoggedInPermission = 'club_edit_only';
+              this.globalSettings.setViewOnly('club_edit_only');
+              // this.globalSettings.setViewOnly(this.currentLoggedInPermission);
+            }
+            // alert('response.data.representator_data.permission'+response.data.representator_data.permission)
           }
 
 

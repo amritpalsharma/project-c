@@ -8,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { TitleService } from '../../../title.service';
 import { WebPages } from '../../../services/webpages.service';
 import { Location } from '@angular/common';
+import { GlobalSettingsService } from '../../../services/global-settings.service';
 
 import {
   MatDialogRef,
@@ -32,7 +33,8 @@ export class SettingComponent implements OnInit {
     private translateService: TranslateService,
     private titleService: TitleService,
     public webPages: WebPages,
-    private location: Location
+    private location: Location,
+    private gloabalSettings: GlobalSettingsService
   ) { }
 
   userData: any;
@@ -50,7 +52,7 @@ export class SettingComponent implements OnInit {
   profileData: any;
   error: string | null = null;
   pageTitle: string = '';
-  currentLoggedInPermission: string = '';
+  currentLoggedInPermission: string = this.gloabalSettings.getCurrentViewOnly();
 
   ngOnInit(): void {
     this.getJsonTranslations();
@@ -66,11 +68,7 @@ export class SettingComponent implements OnInit {
       // this.getUserProfile(this.userData.id);
       // currentLoggedInPermission: string = '';
 
-      if (this.userData.representator_data && this.userData.representator_data != '') {
-        if (this.userData.representator_data.permission == 'admin.view') {
-          this.currentLoggedInPermission = 'club_view_only';
-        }
-      }
+
 
     } else {
       console.log('No user data found in local storage.');

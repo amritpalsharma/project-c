@@ -8,7 +8,7 @@ import { ActivityService } from '../../../../services/activity';
 import { WebPages } from '../../../../services/webpages.service';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { TalentService } from '../../../../services/talent.service';
-
+import { GlobalSettingsService } from '../../../../services/global-settings.service';
 @Component({
   selector: 'app-activity-log',
   templateUrl: './activity-log.component.html',
@@ -31,7 +31,7 @@ export class ActivityLogComponent {
   selectActivityFirst: string = '';
   currentOffset: number = 0;
 
-  @Input() currentLoggedInPermission: any;
+  currentLoggedInPermission: string = this.gloabalSettings.getCurrentViewOnly();
 
   constructor(
     private activityService: ActivityService,
@@ -39,6 +39,8 @@ export class ActivityLogComponent {
     public webPages: WebPages,
     private translate: TranslateService,
     private talentService: TalentService,
+    private gloabalSettings: GlobalSettingsService,
+
   ) { }
 
   ngOnInit() {
@@ -144,6 +146,9 @@ export class ActivityLogComponent {
     if (!this.checkRole()) {
       return;
     }
+    if (!this.hasPermissionToDelete()) {
+      return; // If no permission, exit early
+    }
     if (this.selectedIds.length == 0) {
       this.showMessage(this.selectActivityFirst);
       return false;
@@ -200,6 +205,10 @@ export class ActivityLogComponent {
     if (!this.checkRole()) {
       return;
     }
+
+    if (!this.hasPermissionToDelete()) {
+      return; // If no permission, exit early
+    }
     this.idsToDelete = [id];
     this.showMatDialog(this.areYouSuretoDeleteActivity, "activity-confirmation");
   }
@@ -226,5 +235,13 @@ export class ActivityLogComponent {
 
     masterCheckbox.indeterminate = selected > 0 && selected < total;
     masterCheckbox.checked = selected === total;
+  }
+
+  hasPermissionToDelete(): boolean {
+    if (this.currentLoggedInPermission === 'club_edit_only') {
+      console.info('YOU DO NOT HAVE PERMISSION TO Add RECORDS');
+      return false; // Return false if the user doesn't have permission
+    }
+    return true; // Return true if the user has permission
   }
 }

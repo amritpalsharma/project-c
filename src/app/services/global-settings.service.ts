@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, BehaviorSubject } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import { ThemeService } from './theme.service';
 
@@ -17,10 +17,20 @@ export class GlobalSettingsService {
   private themeAndLangCallSubject = new Subject<void>();
   indexFunctionCall$ = this.indexFunctionCallSubject.asObservable();
   themeAndLangCallSubject$ = this.themeAndLangCallSubject.asObservable();
+  private viewOnlyMode = new BehaviorSubject<string>('');
+  viewOnly$ = this.viewOnlyMode.asObservable();
   constructor(private authService: AuthService, private themeService: ThemeService) {
     this.setDefaultLanguage();
     this.setDomainCurrency();
     this.themeService.setDefaultDarkTheme();
+  }
+
+  setViewOnly(state: string) {
+    this.viewOnlyMode.next(state);
+  }
+
+  getCurrentViewOnly(): string {
+    return this.viewOnlyMode.getValue();
   }
 
   private getDomainExtension(): string {

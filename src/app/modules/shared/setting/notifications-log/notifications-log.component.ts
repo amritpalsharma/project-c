@@ -12,6 +12,7 @@ import { ScoutService } from '../../../../services/scout.service';
 import { SocketService } from '../../../../services/socket.service';
 import { Router } from '@angular/router';
 import { UnverifiedUserComponent } from '../../unverified-user/unverified-user.component';
+import { GlobalSettingsService } from '../../../../services/global-settings.service';
 
 interface Notification {
   id: number;
@@ -48,9 +49,18 @@ export class NotificationsLogComponent {
   idsToDelete: any = [];
 
 
-  @Input() currentLoggedInPermission: any;
+  currentLoggedInPermission: string = this.gloabalSettings.getCurrentViewOnly();
 
-  constructor(public dialog: MatDialog, public webPages: WebPages, private talentService: TalentService, private translateService: TranslateService, private scoutService: ScoutService, private socketService: SocketService, private router: Router) {
+  constructor(
+    public dialog: MatDialog,
+    public webPages: WebPages,
+    private talentService: TalentService,
+    private translateService: TranslateService,
+    private scoutService: ScoutService,
+    private socketService: SocketService,
+    private router: Router,
+    private gloabalSettings: GlobalSettingsService,
+  ) {
     this.updateTranslation();
     translateService.onLangChange.subscribe(() => {
       this.fetchNotifications()
@@ -175,6 +185,10 @@ export class NotificationsLogComponent {
   confirmDeletion(): any {
     if (!this.checkRole()) {
       return;
+    }
+
+    if (!this.hasPermissionToDelete()) {
+      return; // If no permission, exit early
     }
     if (this.selectedIds.length == 0) {
       this.showMessage(this.selectNotificationFirst);
@@ -306,6 +320,9 @@ export class NotificationsLogComponent {
     if (!this.checkRole()) {
       return;
     }
+    if (!this.hasPermissionToDelete()) {
+      return; // If no permission, exit early
+    }
     this.idsToDelete = [id];
     this.showMatDialog(this.confirmDeleteinformation, "delete-confirmation");
   }
@@ -430,5 +447,13 @@ export class NotificationsLogComponent {
 
     masterCheckbox.indeterminate = selected > 0 && selected < total;
     masterCheckbox.checked = selected === total;
+  }
+
+  hasPermissionToDelete(): boolean {
+    if (this.currentLoggedInPermission === 'club_edit_only') {
+      console.info('YOU DO NOT HAVE PERMISSION TO Add RECORDS');
+      return false; // Return false if the user doesn't have permission
+    }
+    return true; // Return true if the user has permission
   }
 }

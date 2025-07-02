@@ -365,6 +365,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
           if (response.data.representator_data && response.data.representator_data != '') {
             if (response.data.representator_data.permission == 'admin.view') {
               this.currentLoggedInPermission = 'club_view_only';
+              this.globalSettings.setViewOnly(this.currentLoggedInPermission);
+            } else if (response.data.representator_data.permission == 'admin.edit') {
+              this.currentLoggedInPermission = 'club_edit_only';
+              this.globalSettings.setViewOnly(this.currentLoggedInPermission);
             }
           }
           // console.info('userRecivedFromBackend', this.user);
@@ -1080,13 +1084,4 @@ export class DashboardComponent implements OnInit, OnDestroy {
     return match ? match.id : null;
   }
 
-  checkRole() {
-    if (this.currentLoggedInPermission === 'club_view_only') {
-      return false;
-    }
-    if (this.currentLoggedInPermission === 'admin.edit') {
-      return true;
-    }
-    return true;
-  }
 }

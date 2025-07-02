@@ -1,6 +1,7 @@
 <div class="msg-popup-dialog">
     <div class="msg-popup-close">
-        <img *ngIf='theme!="dark"' src="../../../../assets/images/carbon_close-outline-light.svg" alt="" (click)="close();">
+        <img *ngIf='theme!="dark"' src="../../../../assets/images/carbon_close-outline-light.svg" alt=""
+            (click)="close();">
         <img *ngIf='theme=="dark"' src="../../../../assets/images/carbon_close-outline.svg" alt="" (click)="close();">
     </div>
 
@@ -8,7 +9,6 @@
         <div class="display-message" *ngIf="data.action == 'display'">{{data.message}}</div>
         <div class="display-message" *ngIf="data.action == 'delete-confirmation'">
             {{'confirmDeleteUser' | translate}} <br> {{'confirmDeleteUser1' | translate}}
-
             <div class="popup-delete-btn">
                 <span (click)="deleteConfirmed()">{{'deleteAccount' | translate}}</span>
             </div>
@@ -39,8 +39,14 @@
         </div>
         <div class="display-message" *ngIf="data.action == 'delete-representator-confirmation'">
             {{data.message}}
-            <div class="popup-delete-btn">
+            <!-- <div class="popup-delete-btn">
                 <span (click)="deleteConfirmed()">{{'confirm' | translate}}</span>
+            </div> -->
+            <div class="popup-delete-btn popup-delete-btn d-flex align-items-center justify-content-center py-2">
+                <span (click)="deleteConfirmed()"
+                    class="btn btn-success me-3 bg-light-btn btn_confirmm">{{'removeFavbtn' | translate}}</span>
+                <div (click)="close()" class="btn btn-danger bg-dark-btn btn_cancell">{{ 'cancelRemoveFavBtn' |
+                    translate }}</div>
             </div>
         </div>
         <div class="display-message" *ngIf="data.action == 'delete-attachment-confirmation'">

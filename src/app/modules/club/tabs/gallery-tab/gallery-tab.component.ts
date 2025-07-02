@@ -118,6 +118,10 @@ export class GalleryTabComponent {
   }
 
   deleteCoverImage() {
+    if (this.currentLoggedInPermission == 'club_edit_only') {
+      console.info('YOU DO NOT HAVE PERMISSION TO DELETE RECORDS');
+      return;
+    }
     try {
       this.scoutService.deleteCoverImage().subscribe((response) => {
         if (response && response.status) {
@@ -138,6 +142,9 @@ export class GalleryTabComponent {
   }
 
   addPhotosPopup(type: string = 'all') {
+    if (!this.hasPermissionToDelete()) {
+      return; // If no permission, exit early
+    }
     const messageDialog = this.dialog.open(UploadPopupComponent, {
       width: '715px',
       position: {
@@ -209,6 +216,10 @@ export class GalleryTabComponent {
   }
 
   openDeleteDialog(id: any, type: string): void {
+    if (this.currentLoggedInPermission == 'club_edit_only') {
+      console.info('YOU DO NOT HAVE PERMISSION TO DELETE RECORDS');
+      return;
+    }
     // Close the floating menu when opening the dialog
     this.openedMenuId = null;
 
@@ -287,6 +298,14 @@ export class GalleryTabComponent {
         }
       }
     });
+  }
+
+  hasPermissionToDelete(): boolean {
+    if (this.currentLoggedInPermission === 'club_edit_only') {
+      console.info('YOU DO NOT HAVE PERMISSION TO DELETE RECORDS');
+      return false; // Return false if the user doesn't have permission
+    }
+    return true; // Return true if the user has permission
   }
 }
 

@@ -16,6 +16,7 @@ import { TitleService } from '../../../title.service';
 import { WebPages } from '../../../services/webpages.service';
 import { take } from 'rxjs/operators';
 import { ClubService } from '../../../services/club.service';
+import { GlobalSettingsService } from '../../../services/global-settings.service';
 
 @Component({
   selector: 'app-membership',
@@ -49,7 +50,7 @@ export class MembershipComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   pageTitle: string = '';
 
-  currentLoggedInPermission: string = '';
+  currentLoggedInPermission: string = this.gloabalSettings.getCurrentViewOnly();
 
   constructor(
     private route: ActivatedRoute,
@@ -60,7 +61,8 @@ export class MembershipComponent {
     private translateService: TranslateService,
     private titleService: TitleService,
     private webpages: WebPages,
-    private clubService: ClubService
+    private clubService: ClubService,
+    private gloabalSettings: GlobalSettingsService
   ) { }
 
   ngOnInit(): void {
