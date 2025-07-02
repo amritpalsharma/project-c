@@ -14,8 +14,7 @@
   align-items: center;
   font-size: 12px;
   font-weight: 400;
-  padding-left: 10rem;
-
+  padding-left: 10px;
 }
 
 .footer-text {
@@ -45,13 +44,17 @@ padding-right: 10px;
 }
 }
 
+@media(min-width: 992px) {
+.center-copyright {
+  margin: 0 auto;
+}
+}
+
 @media(max-width: 480px) {
 
   .footer-responsive {
     display: flex;
     flex-direction: column;
-    left: 0;
-    right: 0;
   }
 
   .footer_main_inner {
