@@ -360,7 +360,9 @@ export class EditPersonalDetailsComponent implements OnInit {
           this.custom_club_country = custom_club_info.country_id;
           this.custom_club = custom_club_info.club_name;
           this.custom_team = custom_club_info.team_name;
-          this.isCustomClubTeam = true;
+          if(this.custom_club && this.custom_club != ''){
+            this.isCustomClubTeam = true;
+          }
           let selectionArr = this.countries.filter((club: any) =>
             club.id === parseInt('' + this.custom_club_country + '', 10) // Directly comparing IDs (ensuring 'keyword' is parsed to an integer)
           );
@@ -460,6 +462,10 @@ export class EditPersonalDetailsComponent implements OnInit {
       formData.append('user[custom_club]', this.custom_club);
       formData.append('user[custom_team]', this.custom_team);
       formData.append('user[custom_club_country]', this.custom_club_country + '');
+    } else {
+      formData.append('user[custom_club]', '');
+      formData.append('user[custom_team]', '');
+      formData.append('user[custom_club_country]', '');
     }
     // const team = this.teamsArr.find(team => team.id === this.CurrentTeamId);
     // console.log('Selected Team Id is', this.CurrentTeamId, ' and Team Type is ', team.team_type);
@@ -659,10 +665,5 @@ export class EditPersonalDetailsComponent implements OnInit {
 
   onChnageCustomClubTeam(value: boolean) {
     this.isCustomClubTeam = value;
-    // if (value === true) {
-    //   this.isHideClubSection = true;
-    // } else {
-    //   this.isHideClubSection = false;
-    // }
   }
 }
