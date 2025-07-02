@@ -121,7 +121,7 @@ h1, h2, h3, strong {
 .content_page li::before {
     content: '•';
     position: absolute;
-    font-size:  30px;
+    font-size: 43px;
     top: 15px;
     left: 0;
     transform: translateY(-50%);
@@ -417,6 +417,9 @@ h1, h2, h3, strong {
     object-fit: contain;
   }
 }
+.content_page li::before {
+    font-size: 55px;
+}
 }
 
 @media (min-width: 2000px) {
@@ -431,9 +434,12 @@ h1, h2, h3, strong {
             font-size: 26px;
         }
     }
+    .content_page li {
+        padding-left: 2.5rem;
+    }
     .content_page li::before {
         top: 19px;
-        font-size: 45px;
+        font-size: 60px;
     }
     .grey_common_banner {
         h3 {
@@ -455,9 +461,12 @@ h1, h2, h3, strong {
             font-size: 40px;
         }
     }
+    .content_page li {
+        padding-left: 2.75rem;
+    }
     .content_page li::before {
         top: 30px;
-        font-size: 60px;
+        font-size: 75px;
     }
     .grey_common_banner {
         margin-top: 240px;
