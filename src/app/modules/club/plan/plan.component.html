@@ -15,7 +15,7 @@
 
           <!-- premium plans -->
           <!-- <div class="col-lg-12 col-sm-12 my-2 "> -->
-          <div class="col-lg-4 col-sm-4 my-2 ">
+          <div class="col-lg-8 col-sm-4 my-2 ">
             <div class="subscription-switch mb-2">
               <label class="switch_off cursor-pointer" (click)="toggleBillingPlan(premiumPlans, false ,premium)">
                 {{'billedMonthly' | translate}}</label>
@@ -31,7 +31,8 @@
               <div class="plan_box">
                 <div class="premium-currency">
                   <h6>
-                    {{ premiumPlans.isYearly ? premiumPlans.priceYearly : premiumPlans.priceMonthly }}<sub class="premium-month_title">.-{{ premiumPlans.currency }} / {{ premiumPlans.isYearly ||
+                    {{ premiumPlans.isYearly ? premiumPlans.priceYearly : premiumPlans.priceMonthly }}<sub
+                      class="premium-month_title">.-{{ premiumPlans.currency }} / {{ premiumPlans.isYearly ||
                       (premium
                       && premium.interval == 'yearly') ? ('year' | translate) : ('month' | translate) }}</sub>
                   </h6>
@@ -46,7 +47,7 @@
                         </path>
                       </svg>
                     </span>
-                      <span>{{'youHaveAnActivePremiumPlan' | translate}}</span>
+                    <span>{{'youHaveAnActivePremiumPlan' | translate}}</span>
                   </div>
                 </div>
               </div>
@@ -57,20 +58,48 @@
               <div class="plan_box premium-plan-list">
                 <h3>{{'premium' | translate}}</h3>
                 <!-- <pre>{{ premiumFeatures | json }}</pre> -->
-                <ul class="premium_list">
+
+                <!-- <ul class="premium_list">
                   <li *ngFor="let feature of premiumFeatures">
-                    <!-- <li *ngFor="let feature of premiumPlans.includes"> -->
                     <label>
                       <input type="checkbox" checked="checked" disabled>
-                      <!-- <span class="checkmark"></span>{{ 'feature' | translate }} -->
                       <span class="checkmark"></span>{{ feature }}
                     </label>
                   </li>
-                </ul>
-                <button class="choose-plan-btn" [disabled]="((premiumPlans?.active_interval=='monthly' && !premiumPlans.isYearly) || premiumPlans?.active_interval=='yearly')"
-                      (click)="openCouponDialog(premiumPlans.isYearly ? premiumPlans.year_package_id : premiumPlans.month_package_id)">
-                      {{'choosePlan' | translate}}
-                    </button>
+                </ul> -->
+
+                <div class="row premium_list">
+                  <!-- Left Column -->
+                  <div class="col-6">
+                    <ul class="premium_list">
+                      <li *ngFor="let feature of premiumFeatures.slice(0, 5)">
+                        <label>
+                          <input type="checkbox" checked="checked" disabled>
+                          <span class="checkmark"></span>{{ feature }}
+                        </label>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <!-- Right Column -->
+                  <div class="col-6">
+                    <ul class="premium_list">
+                      <li *ngFor="let feature of premiumFeatures.slice(5, 9)">
+                        <label>
+                          <input type="checkbox" checked="checked" disabled>
+                          <span class="checkmark"></span>{{ feature }}
+                        </label>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+
+                <button class="choose-plan-btn"
+                  [disabled]="((premiumPlans?.active_interval=='monthly' && !premiumPlans.isYearly) || premiumPlans?.active_interval=='yearly')"
+                  (click)="openCouponDialog(premiumPlans.isYearly ? premiumPlans.year_package_id : premiumPlans.month_package_id)">
+                  {{'choosePlan' | translate}}
+                </button>
               </div>
               <div class="premium-football_icon">
                 <svg width="129" height="259" viewBox="0 0 129 259" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -80,7 +109,7 @@
                 </svg>
               </div>
             </div>
-          </div>          
+          </div>
         </div>
       </div>
     </div>
