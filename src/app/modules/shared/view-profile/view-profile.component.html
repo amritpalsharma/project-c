@@ -843,7 +843,7 @@
                           <h6 class="title_2" *ngIf="currentUserRole != 'club'">{{ 'contactNumber' | translate }}</h6>
                           <h6 class="title_2" *ngIf="currentUserRole == 'club'">{{ 'phone' | translate }}</h6>
                           <h5 *ngIf="user.meta && user.meta.contact_number" class="title-1">
-                            <a href="tel:{{getPhoneWithDailCode(user.meta.contact_number)}}" class="call_button">
+                            <a href="tel:{{getPhoneWithDailCode(user.meta.contact_number)}}" class="call_button phone_a">
                               {{user.meta.contact_number}}
                             </a>
                           </h5>
@@ -1270,7 +1270,7 @@
                         <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'phone' | translate }}</h6>
                           <h5 *ngIf="user.meta && user.meta.contact_number" class="title-1">
-                            <a href="tel:{{getPhoneWithDailCode(user.meta.contact_number)}}" class="call_button">
+                            <a href="tel:{{getPhoneWithDailCode(user.meta.contact_number)}}" class="call_button phone_a">
                               {{user.meta.contact_number}}
                             </a>
                           </h5>

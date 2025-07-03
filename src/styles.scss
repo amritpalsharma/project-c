@@ -2865,3 +2865,12 @@ img.club_logo_in_search {
   opacity: 0.6 !important;
   filter:grayscale(100%);
 }
+
+.phone_a {
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-right: 2px;
+    display: inline-block;
+}
