@@ -39,10 +39,10 @@
                 <input type="text" class="form-control performance-dark-bg coach-debt-input"
                   (input)="suggestTeams($event)" [(ngModel)]="inputValue">
                 <div class="suggestion-wrap" *ngIf="filteredTeams.length">
-                  <div *ngFor="let team of filteredTeams"
-                    (click)="selectTeam(team.id, team.team_name, team.country_name)">
+                  <div *ngFor="let team of filteredTeams" class="suggestion-list"
+                    (click)="selectTeam(team.id, team.team_name, team.team_type)">
                     <img *ngIf="team.team_club_logo_path" src="{{team.team_club_logo_path}}">
-                    {{team.team_name}}, {{team.country_name}}
+                    {{team.team_name}} - {{team.team_type}}
                   </div>
                 </div>
               </div>
