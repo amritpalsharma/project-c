@@ -17,9 +17,9 @@ export class TransfersTabComponent {
   userTransfers: any = [];
   editableId: string = "";
   teams: any = [];
-  baseUrl:string='https://api.socceryou.ch/uploads/';
-  logoBaseUrl:string='https://api.socceryou.ch/uploads/logos/';
-  theme:string=localStorage.getItem('theme') || 'light';
+  baseUrl: string = 'https://api.socceryou.ch/uploads/';
+  logoBaseUrl: string = 'https://api.socceryou.ch/uploads/logos/';
+  theme: string = localStorage.getItem('theme') || 'light';
 
   filterTeams: any[] = []; // Initialize as empty array to avoid undefined issues
   filterTeamsFrom: any[] = [];
@@ -180,5 +180,9 @@ export class TransfersTabComponent {
     const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
     const day = String(date.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`;
+  }
+
+  get reversedSeasons(): string[] {
+    return [...this.seasons].reverse(); // this avoids mutating original array
   }
 }

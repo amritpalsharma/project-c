@@ -114,7 +114,7 @@
                   </div>
                 </div>
               </div>
-              <div class="user-media " *ngIf="user.meta.profile_image && user.meta.profile_image != ''">
+              <div class="user-media " *ngIf="user?.meta?.profile_image && user?.meta?.profile_image != ''">
                 <img src="{{baseUrl + user.meta.profile_image}}" alt="" *ngIf="user.meta && user.meta.profile_image"
                   class="user-img mt-1">
                 <img src="../../../../assets/images/1.png" alt="" *ngIf="!user.meta || !user.meta.profile_image"
@@ -150,9 +150,7 @@
               <div class="list-view">
                 <h6 class="mb-1">{{'registrationDate' | translate }} :</h6>
                 <h6 class="mb-0 font-w400">
-                  {{formatDateTime(user.created_at)}}
-                  <!-- {{ user.created_at | date:'MM.dd.yyyy' }} -->
-                  <!-- - {{ user.created_at | date:'hh.mma' }} -->
+                  {{formatDateTime(user?.created_at)}}
                 </h6>
               </div>
               <div class="list-view">
@@ -162,7 +160,8 @@
                   <!-- {{user.plan_period_end | date:'MMM d, y' }} / {{user.plan_interval}} cycle -->
                 </h6>
                 <!-- <h6 class="mb-2 font-w400" *ngIf="!user.plan_period_end">NA</h6> -->
-                <p class="font-w400 cursor-pointer" (click)="switchTab('purchases')"> {{ 'viewPaymentDetails' | translate }}</p>
+                <p class="font-w400 cursor-pointer" (click)="switchTab('purchases')"> {{ 'viewPaymentDetails' |
+                  translate }}</p>
               </div>
               <div class="list-view">
                 <h6 class="mb-1">{{ 'lastPayment' | translate }} :</h6>

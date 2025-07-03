@@ -50,6 +50,7 @@ export class SidebarComponent implements OnInit {
 
   getUserStatus() {
     this.socketService.getLoggedInUserStatus().then((result) => {
+      console.info('SideBar get status called::')
       if (result == 2) {
         this.isUserVerified = true;
       } else {
