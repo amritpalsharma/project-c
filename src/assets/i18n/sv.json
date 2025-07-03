@@ -1062,7 +1062,7 @@
   "overview": "Overview",
   "totalSubscriptions": "Total och subscriptions",
   "noDataFound": "No och data och found",
-  "noDataFoundText": "There och is och no och data och to och show och you och right och now",
+  "noDataFoundText": "Det finns inga data att visa just nu",
   "editPopUp": "Edit och pop och up",
   "for:": "For:",
   "language:": "Language:",
@@ -1510,5 +1510,9 @@
   "noPortfolioRecordFound": "Inga talanger har lagts till i portföljen ännu.",
   "withoutCurrentClub": "utan klubb",
   "scoutingInformation2": "Scoutinguppgifter",
-  "addJerseyNumber": "Tröjnummer"
+  "addJerseyNumber": "Tröjnummer",
+  "boostFeatures": "Boostfunktioner",
+  "premiumFeatures": "Premiumfunktioner",
+  "multiCountryFeatures": "Flera länder funktioner",
+  "newsHeading": "Håll dig uppdaterad: Här hittar du de senaste nyheterna, medierapporterna och spännande uppdateringar om SoccerYou."
 }

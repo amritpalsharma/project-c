@@ -1,11 +1,9 @@
-// cover-image-cropper.component.ts
 import {
   Component,
   Inject,
   ElementRef,
   ViewChild,
   HostListener,
-  AfterViewInit,
 } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
@@ -14,94 +12,82 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   templateUrl: './cover-image-cropper.component.html',
   styleUrls: ['./cover-image-cropper.component.scss'],
 })
-export class CoverImageCropperComponent implements AfterViewInit {
+export class CoverImageCropperComponent {
   @ViewChild('imageElement') imageElement!: ElementRef<HTMLImageElement>;
   @ViewChild('cropBox') cropBox!: ElementRef<HTMLDivElement>;
   @ViewChild('container') container!: ElementRef<HTMLDivElement>;
 
   imageUrl: string = '';
   pos = { x: 0, y: 0 };
-  cropWidth = 800;
-  cropHeight = 360;
+  size = 100;
   isDragging = false;
   isResizing = false;
   offset = { x: 0, y: 0 };
-  initial = { width: 800, height: 360 };
+  initialSize = 100;
 
+  // cover image
+  width: number = 600;
+  height: number = 200;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<CoverImageCropperComponent>
   ) {
     this.imageUrl = data.imageUrl;
+
+    // if (this.data.action === 'cover_image') {
+    //   this.width = 600;
+    //   this.height = 200;
+    // }
   }
 
-  ngAfterViewInit(): void {
-    // Center crop box based on image container
-    const containerRect = this.container.nativeElement.getBoundingClientRect();
-    this.pos.x = (containerRect.width - this.cropWidth) / 2;
-    this.pos.y = (containerRect.height - this.cropHeight) / 2;
+  // ngAfterViewChecked() {
+  //   const container = this.container.nativeElement;
+  //   container.style.setProperty('--crop-x', `${this.pos.x + this.size / 2}px`);
+  //   container.style.setProperty('--crop-y', `${this.pos.y + this.size / 2}px`);
+  //   container.style.setProperty('--crop-size', `${this.size}px`);
+  // }
 
-    this.centerCropBox(); // image already loaded
-    this.updateCropMaskVars();
+  ngAfterViewChecked() {
+    const container = this.container.nativeElement;
+    const cropWidth = this.size * 5 / 2;
+    const cropHeight = this.size;
+
+    container.style.setProperty('--crop-x', `${this.pos.x + cropWidth / 2}px`);
+    container.style.setProperty('--crop-y', `${this.pos.y + cropHeight / 2}px`);
+    container.style.setProperty('--crop-width', `${cropWidth}px`);
+    container.style.setProperty('--crop-height', `${cropHeight}px`);
   }
+
 
   startDrag(event: MouseEvent | TouchEvent) {
     event.preventDefault();
     event.stopPropagation();
     this.isDragging = true;
+
     const point = this.getEventPoint(event);
     this.offset = {
       x: point.x - this.pos.x,
       y: point.y - this.pos.y,
     };
+
     document.addEventListener('mousemove', this.onMoveDrag);
     document.addEventListener('touchmove', this.onMoveDrag, { passive: false });
     document.addEventListener('mouseup', this.stopAction);
     document.addEventListener('touchend', this.stopAction);
-
   }
-
-  updateCropMaskVars() {
-    const container = this.container.nativeElement;
-    container.style.setProperty('--crop-x', `${this.pos.x + this.cropWidth / 2}px`);
-    container.style.setProperty('--crop-y', `${this.pos.y + this.cropHeight / 2}px`);
-    container.style.setProperty('--crop-width', `${this.cropWidth}px`);
-    container.style.setProperty('--crop-height', `${this.cropHeight}px`);
-  }
-
-  centerCropBox() {
-    // const containerRect = this.container.nativeElement.getBoundingClientRect();
-
-    // // Ensure the crop box fits inside the container
-    // this.cropWidth = Math.min(this.cropWidth, containerRect.width);
-    // this.cropHeight = Math.min(this.cropHeight, containerRect.height);
-
-    // this.pos.x = (containerRect.width - this.cropWidth) / 2;
-    // this.pos.y = (containerRect.height - this.cropHeight) / 2;
-
-    const containerRect = this.container.nativeElement.getBoundingClientRect();
-    const imageRect = this.imageElement.nativeElement.getBoundingClientRect();
-
-    const cropW = Math.min(this.cropWidth, imageRect.width);
-    const cropH = Math.min(this.cropHeight, imageRect.height);
-
-    this.cropWidth = cropW;
-    this.cropHeight = cropH;
-
-    this.pos.x = (imageRect.width - cropW) / 2 + (imageRect.left - containerRect.left);
-    this.pos.y = (imageRect.height - cropH) / 2 + (imageRect.top - containerRect.top);
-
-    this.updateCropMaskVars(); // ensure white area is correct
-  }
-
 
   startResize(event: MouseEvent | TouchEvent) {
     event.preventDefault();
     event.stopPropagation();
     this.isResizing = true;
+
     const point = this.getEventPoint(event);
-    this.offset = { x: point.x, y: point.y };
-    this.initial = { width: this.cropWidth, height: this.cropHeight };
+    this.offset = {
+      x: point.x,
+      y: point.y,
+    };
+    this.initialSize = this.size;
+
     document.addEventListener('mousemove', this.onMoveResize);
     document.addEventListener('touchmove', this.onMoveResize, { passive: false });
     document.addEventListener('mouseup', this.stopAction);
@@ -110,51 +96,96 @@ export class CoverImageCropperComponent implements AfterViewInit {
 
   onMoveDrag = (event: MouseEvent | TouchEvent) => {
     if (!this.isDragging) return;
+
+    event.preventDefault();
+
     const point = this.getEventPoint(event);
+
+    const containerRect = this.container.nativeElement.getBoundingClientRect();
+    const cropBoxRect = this.cropBox.nativeElement.getBoundingClientRect();
+
     const newX = point.x - this.offset.x;
     const newY = point.y - this.offset.y;
-    const containerRect = this.container.nativeElement.getBoundingClientRect();
-    this.pos.x = Math.max(0, Math.min(newX, containerRect.width - this.cropWidth));
-    this.pos.y = Math.max(0, Math.min(newY, containerRect.height - this.cropHeight));
-    this.updateCropMaskVars();
+
+    // Make sure the box stays inside container
+    const maxX = containerRect.width - cropBoxRect.width;
+    const maxY = containerRect.height - cropBoxRect.height;
+
+    this.pos.x = Math.max(0, Math.min(newX, maxX));
+    this.pos.y = Math.max(0, Math.min(newY, maxY));
   };
 
-  // onMoveResize = (event: MouseEvent | TouchEvent) => {
-  //   if (!this.isResizing) return;
-  //   const point = this.getEventPoint(event);
-  //   const deltaX = point.x - this.offset.x;
-  //   const deltaY = point.y - this.offset.y;
 
-  //   const newWidth = this.initial.width + deltaX;
-  //   const newHeight = this.initial.height + deltaY;
 
-  //   const containerRect = this.container.nativeElement.getBoundingClientRect();
-
-  //   this.cropWidth = Math.max(100, Math.min(newWidth, containerRect.width - this.pos.x));
-  //   this.cropHeight = Math.max(60, Math.min(newHeight, containerRect.height - this.pos.y));
-  //   this.updateCropMaskVars();
-  // };
   onMoveResize = (event: MouseEvent | TouchEvent) => {
-    if (!this.isResizing) return;
-    const point = this.getEventPoint(event);
-    const deltaX = point.x - this.offset.x;
-    const deltaY = point.y - this.offset.y;
+  if (!this.isResizing) return;
 
-    const newWidth = this.initial.width + deltaX;
-    const newHeight = this.initial.height + deltaY;
+  event.preventDefault();
+
+  const point = this.getEventPoint(event);
+  const deltaX = point.x - this.offset.x;
+
+  // Maintain 5:2 ratio: width = size * 2.5, height = size
+  let newSize = this.initialSize + deltaX;
+
+  const containerRect = this.container.nativeElement.getBoundingClientRect();
+
+  // Calculate width and height of new crop box
+  let newWidth = newSize * 2.5;
+  let newHeight = newSize;
+
+  // Restrict resizing if it goes outside container
+  const maxWidth = containerRect.width - this.pos.x;
+  const maxHeight = containerRect.height - this.pos.y;
+
+  // Adjust size so it fits within container bounds
+  if (newWidth > maxWidth) {
+    newWidth = maxWidth;
+    newSize = newWidth / 2.5;
+    newHeight = newSize;
+  }
+  if (newHeight > maxHeight) {
+    newHeight = maxHeight;
+    newSize = newHeight;
+    newWidth = newSize * 2.5;
+  }
+
+  // Minimum size constraint
+  newSize = Math.max(50, newSize);
+
+  this.size = newSize;
+};
+
+
+  onMoveResize2 = (event: MouseEvent | TouchEvent) => {
+    if (!this.isResizing) return;
+
+    event.preventDefault();
+
+    const point = this.getEventPoint(event);
+    const delta = {
+      x: point.x - this.offset.x,
+      y: point.y - this.offset.y,
+    };
+
+    let newSize = this.initialSize + Math.max(delta.x, delta.y);
 
     const containerRect = this.container.nativeElement.getBoundingClientRect();
 
-    // Enforcing the max width and height limits
-    this.cropWidth = Math.max(100, Math.min(newWidth, 800, containerRect.width - this.pos.x));
-    this.cropHeight = Math.max(60, Math.min(newHeight, 360, containerRect.height - this.pos.y));
+    // Prevent the box from resizing outside container
+    const maxWidth = containerRect.width - this.pos.x;
+    const maxHeight = containerRect.height - this.pos.y;
+    const maxSize = Math.min(maxWidth, maxHeight);
 
-    this.updateCropMaskVars();
+    this.size = Math.max(50, Math.min(newSize, maxSize)); // minimum 50px
   };
 
-  stopAction = () => {
+
+  stopAction = (event: MouseEvent | TouchEvent) => {
+    event.preventDefault();
     this.isDragging = false;
     this.isResizing = false;
+
     document.removeEventListener('mousemove', this.onMoveDrag);
     document.removeEventListener('touchmove', this.onMoveDrag);
     document.removeEventListener('mousemove', this.onMoveResize);
@@ -163,7 +194,7 @@ export class CoverImageCropperComponent implements AfterViewInit {
     document.removeEventListener('touchend', this.stopAction);
   };
 
-  getEventPoint(event: MouseEvent | TouchEvent): { x: number; y: number } {
+  private getEventPoint(event: MouseEvent | TouchEvent): { x: number; y: number } {
     if (event instanceof MouseEvent) {
       return { x: event.clientX, y: event.clientY };
     } else {
@@ -172,31 +203,134 @@ export class CoverImageCropperComponent implements AfterViewInit {
     }
   }
 
+  onTouchStartDrag(event: TouchEvent) {
+    event.preventDefault();
+    this.startDrag(event);
+  }
+
+  onTouchStartResize(event: TouchEvent) {
+    event.preventDefault();
+    this.startResize(event);
+  }
+
+  @HostListener('document:mouseup')
+  endDrag() {
+    this.isDragging = false;
+    this.isResizing = false;
+  }
+
+  @HostListener('document:mousemove', ['$event'])
+  onMouseMove(event: MouseEvent) {
+    const containerRect = this.container.nativeElement.getBoundingClientRect();
+
+    if (this.isDragging) {
+      const newX = event.clientX - this.offset.x;
+      const newY = event.clientY - this.offset.y;
+
+      this.pos.x = Math.min(
+        Math.max(0, newX),
+        containerRect.width - this.size
+      );
+      this.pos.y = Math.min(
+        Math.max(0, newY),
+        containerRect.height - this.size
+      );
+    }
+
+    if (this.isResizing) {
+      const dx = event.clientX - this.offset.x;
+      const dy = event.clientY - this.offset.y;
+
+      const delta = Math.max(dx, dy);
+      let newSize = this.initialSize + delta;
+
+      const maxWidth = containerRect.width - this.pos.x;
+      const maxHeight = containerRect.height - this.pos.y;
+      newSize = Math.min(newSize, maxWidth, maxHeight);
+      newSize = Math.max(50, newSize); // minimum size
+
+      this.size = newSize;
+    }
+  }
+
+
+
   cropImage() {
+  const img = this.imageElement.nativeElement;
+  const containerRect = this.container.nativeElement.getBoundingClientRect();
+  const imageRect = img.getBoundingClientRect();
+
+  const scaleX = img.naturalWidth / imageRect.width;
+  const scaleY = img.naturalHeight / imageRect.height;
+
+  const cropWidth = this.size * 2.5;
+  const cropHeight = this.size;
+
+  // Calculate exact crop positions on the image
+  const cropLeft = (this.pos.x + containerRect.left - imageRect.left) * scaleX;
+  const cropTop = (this.pos.y + containerRect.top - imageRect.top) * scaleY;
+  const cropW = cropWidth * scaleX;
+  const cropH = cropHeight * scaleY;
+
+  const canvas = document.createElement('canvas');
+  canvas.width = Math.round(cropW);
+  canvas.height = Math.round(cropH);
+
+  const ctx = canvas.getContext('2d')!;
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = 'high';
+
+  ctx.drawImage(
+    img,
+    cropLeft, cropTop, cropW, cropH, // source from original image
+    0, 0, canvas.width, canvas.height // destination on canvas
+  );
+
+  const croppedBase64 = canvas.toDataURL('image/jpeg', 0.92);
+  this.dialogRef.close(croppedBase64);
+}
+
+
+  // By Amrit 16-5-25
+  cropImage2() {
     const img = this.imageElement.nativeElement;
     const containerRect = this.container.nativeElement.getBoundingClientRect();
     const imageRect = img.getBoundingClientRect();
+
     const scaleX = img.naturalWidth / imageRect.width;
     const scaleY = img.naturalHeight / imageRect.height;
+
     const cropLeft = (this.pos.x - imageRect.left + containerRect.left) * scaleX;
     const cropTop = (this.pos.y - imageRect.top + containerRect.top) * scaleY;
+    const cropSize = this.size * scaleX; // Assuming square crop
+
     const canvas = document.createElement('canvas');
-    canvas.width = this.cropWidth * scaleX;
-    canvas.height = this.cropHeight * scaleY;
+
+    // Set max resolution here
+    const MAX_RESOLUTION = 3000; // Max resolution width/height
+    const resolution = Math.min(cropSize, MAX_RESOLUTION);
+    canvas.width = resolution;
+    canvas.height = resolution;
+
     const ctx = canvas.getContext('2d')!;
     ctx.imageSmoothingEnabled = true;
     ctx.imageSmoothingQuality = 'high';
+
     ctx.drawImage(
       img,
       cropLeft,
       cropTop,
-      this.cropWidth * scaleX,
-      this.cropHeight * scaleY,
+      cropSize,
+      cropSize,
       0,
       0,
-      canvas.width,
-      canvas.height
+      // cropSize,
+      // cropSize,
+      resolution,
+      resolution
     );
+
+    // Use 'image/jpeg' with quality or 'image/png' for lossless
     const croppedBase64 = canvas.toDataURL('image/jpeg', 0.92);
     this.dialogRef.close(croppedBase64);
   }
@@ -205,11 +339,6 @@ export class CoverImageCropperComponent implements AfterViewInit {
     this.dialogRef.close(null);
   }
 
-  onTouchStartDrag(event: TouchEvent) {
-    this.startDrag(event);
-  }
 
-  onTouchStartResize(event: TouchEvent) {
-    this.startResize(event);
-  }
+
 }

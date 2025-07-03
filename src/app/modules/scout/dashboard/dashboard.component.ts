@@ -943,6 +943,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   onCoverImageChange(event: Event): void {
+
+    console.log('working')
+
     const input = event.target as HTMLInputElement;
 
     if (input.files && input.files.length > 0) {

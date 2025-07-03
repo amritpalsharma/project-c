@@ -976,8 +976,8 @@
 
           </div>
           <div class="col-lg-9 card_box--2 padding_mobile_0 dashboard_page_only">
-            <div class="players_image d-flex align-items-center justify-content-center cover_pic_desktop">
-              <img [src]="coverImage" *ngIf="coverImage" alt="Cover Image" />
+            <div class="players_image d-flex align-items-center justify-content-center cover_pic_desktop" [ngStyle]="{'background-image': 'url(' + coverImage + ')'}">
+              <!-- <img [src]="coverImage" *ngIf="coverImage" alt="Cover Image" /> -->
               <svg *ngIf="!coverImage" width="54" height="54" viewBox="0 0 54 54" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -997,10 +997,10 @@
                     <span>{{'uploadYourCoverPhoto' | translate}}</span>
                   </label>
                 </div>
-                <input id="file-upload" (change)="onCoverFileChange($event)" accept="image/*" type="file"
-                  class="d-none" />
-                <!-- <input id="file-upload" (change)="onCoverImageChange($event)" accept="image/*" type="file"
+                <!-- <input id="file-upload" (change)="onCoverFileChange($event)" accept="image/*" type="file"
                   class="d-none" /> -->
+                <input id="file-upload" (change)="onCoverImageChange($event)" accept="image/*" type="file"
+                  class="d-none" />
                 <svg *ngIf="coverImage" class="delete_image cursor-pointer " (click)="openDeleteDialog('cover')"
                   xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                   <path

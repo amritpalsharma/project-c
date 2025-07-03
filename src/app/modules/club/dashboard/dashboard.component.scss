@@ -185,7 +185,8 @@
     .edit_button.responsive-edit_btn {
       text-align: right;
       padding-right: 10px !important;
-  }
+    }
+
     span.active_btn {
       margin: 0px 32px 0px 8px !important;
     }
@@ -199,7 +200,7 @@
 
   }
 
- 
+
 
   @media(max-width: 425px) {
     .btn-outline-white {
@@ -718,7 +719,7 @@
 }
 
 .main-wrapper .unlock_page .unlock-view .d-flex.image_gallery-box {
-    justify-content: center !important;
+  justify-content: center !important;
 }
 
 .unlock-view {
@@ -915,7 +916,8 @@
   .edit_button.responsive-edit_btn {
     text-align: right;
     padding-right: 10px !important;
-}
+  }
+
   span.active_btn {
     margin: 0px 32px 0px 8px !important;
   }
@@ -1174,8 +1176,12 @@
 }
 
 .players_image {
-  height: 400px;
+  // height: 400px;
   width: 100%;
+  aspect-ratio: 5/2;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  background-position: center !important;
 }
 
 .user-info h6 {
@@ -1426,7 +1432,7 @@ span.active_btn {
   .position-boxs {
     border-right: 1px solid #e7e7e7;
   }
-  }
+}
 
 @media(max-width:1024px) {
   .player-name-box {
@@ -1573,35 +1579,42 @@ span.active_btn {
   .user-info-name {
     font-size: 20px;
   }
+
   .user-info button {
-  padding: 5px 0 !important;
-}
-.user-info button .tour-personal-details {
-  display: flex;
-  align-items: center;
-  max-width: 75px;
-  overflow: hidden;
-}
-.user-info button .tour-personal-details svg {
-  width: 15px !important;
-  min-width: 15px;
-}
-.user-info button .tour-personal-details span {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
+    padding: 5px 0 !important;
+  }
+
+  .user-info button .tour-personal-details {
+    display: flex;
+    align-items: center;
+    max-width: 75px;
+    overflow: hidden;
+  }
+
+  .user-info button .tour-personal-details svg {
+    width: 15px !important;
+    min-width: 15px;
+  }
+
+  .user-info button .tour-personal-details span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 
 @media (min-width: 1200px) {
-.cover_pic_mobile, .mobile_profile_buttons {
-  display: none !important;
-}
-.user-info .edit_button.responsive-edit_btn {
-  text-align: right;
-  padding-right: 8px !important;
-}
+
+  .cover_pic_mobile,
+  .mobile_profile_buttons {
+    display: none !important;
+  }
+
+  .user-info .edit_button.responsive-edit_btn {
+    text-align: right;
+    padding-right: 8px !important;
+  }
 }
 
 
@@ -1609,12 +1622,15 @@ span.active_btn {
   .cover_pic_desktop {
     display: none !important;
   }
+
   .padding_mobile_0 {
     padding: 0 !important;
   }
+
   .mobile_profile_buttons {
     padding: 0 15px;
   }
+
   .mobile_profile_buttons .btn_style {
     background: #6FB95D;
     margin-right: 8px;
@@ -1625,23 +1641,29 @@ span.active_btn {
     margin-bottom: 15px;
     border-radius: 8px;
   }
-  .cover_pic_mobile{
+
+  .cover_pic_mobile {
     height: 200px !important;
-     img {
-        height: 200px !important;
-     }
-     .edit-photo {
-        bottom: auto;
-        right: 20px;
-        top: 20px;
-      }
-     .delete_image {
+
+    img {
+      height: 200px !important;
+    }
+
+    .edit-photo {
+      bottom: auto;
+      right: 20px;
+      top: 20px;
+    }
+
+    .delete_image {
       width: 35px;
     }
+
     .edit_image-2 span {
       font-size: 12px;
     }
   }
+
   .user-details-left .user-media {
     border: 0;
     width: calc(100% - 15px);
@@ -1652,138 +1674,166 @@ span.active_btn {
     text-align: left !important;
     margin-top: -70px;
     margin-bottom: 15px;
-}
-.user-media span.profile_img_bg_circle {
-        border: 1px solid #E7E7E7;
-        width: 120px;
-        height: 120px;
-        border-radius: 50%;
-        background: #F6F6F6;
-        object-fit: contain;
-        object-position:top;
-        margin-left: 15px;
-        display: inline-block;
-        overflow: hidden;
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: contain;
-          object-position: top;
-        }
+  }
+
+  .user-media span.profile_img_bg_circle {
+    border: 1px solid #E7E7E7;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: #F6F6F6;
+    object-fit: contain;
+    object-position: top;
+    margin-left: 15px;
+    display: inline-block;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: top;
     }
-    img.club_profile_mob_img {
-      padding: 1rem;
-      margin-top: 0;
-    }
-.premium_button {
+  }
+
+  img.club_profile_mob_img {
+    padding: 1rem;
+    margin-top: 0;
+  }
+
+  .premium_button {
     padding: 6px 10px;
     right: 0;
     left: auto;
     bottom: 10px;
     top: auto;
-}
-.user-edit {
+  }
+
+  .user-edit {
     top: 60px;
     left: 135px;
     right: auto !important;
-}
-.boost_profile {
+  }
+
+  .boost_profile {
     display: none !important;
-}
-.user-info.responsive-name {
-  background: transparent !important;
-  margin-left: -1px;
-  width: calc(100% + 2px);
-  // padding-left: 1px !important;
-  // padding-right: 1px !important;
-}
+  }
+
+  .user-info.responsive-name {
+    background: transparent !important;
+    margin-left: -1px;
+    width: calc(100% + 2px);
+    // padding-left: 1px !important;
+    // padding-right: 1px !important;
+  }
 }
 
 @media (max-width: 991px) {
-  .card_box-1, .card_box--2 {
+
+  .card_box-1,
+  .card_box--2 {
     padding-left: 0;
     padding-right: 0;
   }
+
   .card_box--2 {
     margin-top: 15px;
   }
- }
+}
 
 
 @media (max-width: 575px) {
   .user-media span.profile_img_bg_circle {
     width: 100px;
-    height: 100px;        
+    height: 100px;
     margin-left: 0 !important;
   }
+
   .user-details-left .user-media {
     margin-top: -50px;
   }
+
   .edit-profile {
     width: 32px !important;
     top: 1px !important;
     right: 30px !important;
     height: 32px !important;
   }
-  .team-logos:not(:last-child){
+
+  .team-logos:not(:last-child) {
     border-bottom: 1px solid #E5E5E5;
     padding-bottom: 20px;
   }
-  .elton-box{
+
+  .elton-box {
     flex-direction: column;
   }
+
   .general_details {
     padding: 15px !important;
   }
-.title_2 {
+
+  .title_2 {
     font-size: 16px;
-}
-.title-1 {
-  font-size: 18px;
-  padding-top: 3px;
-}
-.elton-box.dashboard-icons .team-badge_content {
-  padding-left: 5px !important;
-}
-.nav-tabs_box {
-  background: transparent !important;
-  border: 0 !important;
-  ul {
-    border-bottom: 0 !important;
-    li {
-      margin-right: 8px;
-      margin-top: 8px;
-    }
-    .nav-link {
-      background: transparent !important;
-      border: 1px solid #023A4A !important;
-      border-radius: 50px !important;
-      padding: 8px 15px !important;
-      &:after {
-        display: none !important;
+  }
+
+  .title-1 {
+    font-size: 18px;
+    padding-top: 3px;
+  }
+
+  .elton-box.dashboard-icons .team-badge_content {
+    padding-left: 5px !important;
+  }
+
+  .nav-tabs_box {
+    background: transparent !important;
+    border: 0 !important;
+
+    ul {
+      border-bottom: 0 !important;
+
+      li {
+        margin-right: 8px;
+        margin-top: 8px;
       }
-  }
-  .nav-link.active {
-    background: #023A4A !important;
-    color: #fff !important;
-    svg path {
-      fill: #fff !important;
+
+      .nav-link {
+        background: transparent !important;
+        border: 1px solid #023A4A !important;
+        border-radius: 50px !important;
+        padding: 8px 15px !important;
+
+        &:after {
+          display: none !important;
+        }
+      }
+
+      .nav-link.active {
+        background: #023A4A !important;
+        color: #fff !important;
+
+        svg path {
+          fill: #fff !important;
+        }
+      }
     }
-}
   }
-}
-.mobile_profile_buttons .btn_style {
-  margin-right: 5px;
-  padding: 6px 10px;
-  font-size: 12px;
-  margin-bottom: 8px;
-}
+
+  .mobile_profile_buttons .btn_style {
+    margin-right: 5px;
+    padding: 6px 10px;
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
 }
 
 
 @media (min-width: 1200px) and (max-width: 1599px) {
-  .gallery_images img, .gallery_images video {
-      height: 120px !important;
+
+  .gallery_images img,
+  .gallery_images video {
+    height: 120px !important;
   }
 }
 
@@ -1792,33 +1842,47 @@ span.active_btn {
     width: 32px;
     height: 32px;
   }
+
   .nav-tabs.user-tabs .nav-item .nav-link {
     font-size: 22px;
   }
-  .boost_profile span, .premium_button span, .title-1, .edit_button span, .details-1 {
+
+  .boost_profile span,
+  .premium_button span,
+  .title-1,
+  .edit_button span,
+  .details-1 {
     font-size: 20px;
   }
+
   .premium_button svg {
     width: 24px !important;
   }
+
   .title_2 {
     font-size: 18px;
   }
+
   .details_2 {
     font-size: 21px !important;
   }
+
   .user-info button .tour-personal-details {
     max-width: 145px !important;
   }
+
   .user-details-left .user-info-name {
     font-size: 28px;
   }
+
   .Feature_images h2 {
     font-size: 30px;
   }
+
   .Feature_images p {
     font-size: 24px;
   }
+
   .user-details-left .user-info button .tour-personal-details svg {
     width: 30px !important;
   }
@@ -1829,35 +1893,47 @@ span.active_btn {
     width: 40px;
     height: 40px;
   }
+
   .nav-tabs.user-tabs .nav-item .nav-link {
     font-size: 30px;
   }
-  .boost_profile span, .premium_button span, .edit_button span, .details-1 {
+
+  .boost_profile span,
+  .premium_button span,
+  .edit_button span,
+  .details-1 {
     font-size: 24px;
   }
+
   .premium_button svg {
     width: 30px !important;
   }
+
   .title_2 {
     font-size: 25px;
   }
-  .details_2, .title-1 {
+
+  .details_2,
+  .title-1 {
     font-size: 28px !important;
   }
+
   .user-info button .tour-personal-details {
     max-width: 185px !important;
   }
+
   .user-details-left .user-info-name {
     font-size: 32px;
   }
-  
+
   .Feature_images h2 {
     font-size: 40px;
   }
+
   .Feature_images p {
     font-size: 28px;
   }
-  
+
   .user-details-left .user-info button .tour-personal-details svg {
     width: 35px !important;
   }
@@ -1873,10 +1949,12 @@ span.active_btn {
 ::ng-deep .introjs-tooltipReferenceLayer * {
   font-family: "Libre Franklin", sans-serif !important;
 }
+
 ::ng-deep .close-section label {
-    font-weight: bold !important;
-    font-size: 95% !important;
+  font-weight: bold !important;
+  font-size: 95% !important;
 }
+
 ::ng-deep .custom-tooltip {
   background-color: unset !important;
   color: #000 !important;
@@ -2028,28 +2106,34 @@ span.active_btn {
     border-color: #4f943f !important;
     color: #fff !important;
   }
+
   .introjs-button {
     border-color: #4f943f !important;
     background-color: #4f943f !important;
     color: #fff !important;
   }
+
   .introjs-tooltiptext {
     background-color: #4f943f !important;
     color: #fff !important;
   }
-    
+
   .custom-tooltip .introjs-arrow {
     border-color: #4f943f transparent transparent transparent !important;
   }
+
   .introjs-arrow.top {
     border-bottom-color: #4f943f !important;
   }
+
   .introjs-arrow.left {
     border-right-color: #4f943f !important;
   }
+
   .introjs-arrow.right {
     border-left-color: #4f943f !important;
   }
+
   .introjs-arrow.bottom {
     border-top-color: #4f943f !important;
   }
@@ -2065,24 +2149,25 @@ span.active_btn {
 }
 
 @media (max-width: 360px) {
-.premium_button {
-  span {
-    font-size: 10px;
+  .premium_button {
+    span {
+      font-size: 10px;
+    }
   }
-}
 }
 
 
 
 @media (max-width: 575px) {
-.social_iconlist {
-  a {
-    margin-top: 10px;
-    display: inline-block;
-  }
-      svg {
-        width: 24px !important;
-        height: 24px !important;
-      }
+  .social_iconlist {
+    a {
+      margin-top: 10px;
+      display: inline-block;
+    }
+
+    svg {
+      width: 24px !important;
+      height: 24px !important;
+    }
   }
 }

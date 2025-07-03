@@ -1425,5 +1425,9 @@
   "noPortfolioRecordFound": "No talents have been added to the portfolio yet.",
   "withoutCurrentClub": "without a Club",
   "scoutingInformation2": "Scouting information",
-  "addJerseyNumber": "Jersey number"
+  "addJerseyNumber": "Jersey number",
+  "boostFeatures": "Boost Features",
+  "premiumFeatures": "Premium Features",
+  "multiCountryFeatures": "Multi-Country Features",
+  "newsHeading": "Stay up to date: Here you’ll find the latest news, media coverage, and exciting updates about SoccerYou."
 }
