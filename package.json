@@ -61,7 +61,7 @@
     "rxjs": "~7.8.0",
     "socket.io-client": "^4.8.1",
     "talkjs": "^0.22.0",
-    "tinymce": "^7.8.0",
+    "tinymce": "^7.9.1",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
   },

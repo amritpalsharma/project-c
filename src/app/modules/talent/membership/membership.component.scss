@@ -425,17 +425,22 @@ a.premium-edit_btn {
 
   :host ::ng-deep .mat-mdc-paginator-range-actions {
     margin-top: 10px !important;
-    max-width: 110px;
+    max-width: 100%;
+    flex-wrap: nowrap !important;
 
     .mat-mdc-paginator-range-label {
-      margin-right: 0 !important;
+      margin-right: 10px !important;
       margin-left: 0 !important;
+      margin-bottom: 0 !important;
     }
 
     button {
       margin-right: 0 !important;
     }
   }
+  .purchase-parent .transaction_box {
+    flex-wrap: wrap;
+}
 }
 
 @media (max-width: 480px) {
