@@ -133,10 +133,10 @@ export class AddNewTalentComponent implements OnInit {
         // formData.append(`end_date`, formattedEndDate);
         // formData.append(`no_end_date`, this.noEndDate ? '1' : '0');
 
-        if(this.noEndDate){
+        if (this.noEndDate) {
           formData.append(`no_end_date`, this.noEndDate ? '1' : '0');
         }
-        else{
+        else {
           formData.append(`end_date`, this.noEndDate ? '' : formattedEndDate || '');
         }
         formData.append(`jersey_number`, user.jersey_number ? user.jersey_number : '');
@@ -148,10 +148,10 @@ export class AddNewTalentComponent implements OnInit {
         formData.append(`players[${i}][join_date]`, formattedStartDate);
 
         const formattedEndDate = this.endDate.value ? moment(this.endDate.value).format('YYYY-MM-DD') : '';
-        if(this.noEndDate){
+        if (this.noEndDate) {
           formData.append(`players[${i}][no_end_date]`, this.noEndDate ? '1' : '0');
         }
-        else{
+        else {
           formData.append(`players[${i}][end_date]`, this.noEndDate ? '' : formattedEndDate || '');
         }
         formData.append(`players[${i}][jersey_number]`, user.jersey_number ? user.jersey_number : '');
@@ -278,4 +278,25 @@ export class AddNewTalentComponent implements OnInit {
       this.userInput.nativeElement.value = "";
     }
   }
+
+  validateNumber(event: KeyboardEvent): void {
+    // Allow backspace, delete, tab, and arrow keys
+    const allowedKeys = ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'];
+
+    if (allowedKeys.includes(event.key)) {
+      return;  // Let these keys through
+    }
+
+    // If the key is not a digit (0-9), prevent it
+    if (!/\d/.test(event.key)) {
+      event.preventDefault();
+    }
+
+    // Check if the current value contains a decimal point and prevent it
+    const value = (event.target as HTMLInputElement).value;
+    if (value.includes('.') && event.key === '.') {
+      event.preventDefault();  // Prevent entering another decimal point
+    }
+  }
+
 }

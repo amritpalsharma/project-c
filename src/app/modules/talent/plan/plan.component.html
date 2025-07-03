@@ -125,7 +125,7 @@
                 <div class="row">
                   <div class="col-lg-12">
                     <button class="choose-plan-btn"
-                      [disabled]="((newPremium?.active_interval=='monthly' && !newPremium.isYearly) || newPremium?.active_interval=='yearly' && newPremium.isYearly)"
+                      [disabled]="((newPremium?.active_interval=='monthly' && !newPremium.isYearly) || newPremium?.active_interval=='yearly')"
                       (click)="openCouponDialog2(newPremium.isYearly ? newPremium.year_package_id : newPremium.month_package_id)">
                       {{'choosePlan' | translate}}
                     </button>

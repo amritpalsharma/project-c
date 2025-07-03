@@ -9,27 +9,28 @@ import { UserService } from '../../../../services/user.service';
 })
 export class TeamsTabComponent {
 
-  userId:any = '';
-  teams:any = [];
-  players:any = [];
+  userId: any = '';
+  teams: any = [];
+  players: any = [];
   view: string = "team";
-  displayedColumns: string[] = ['Player Name', 'Joining Date', 'Exit Date', 'Location','Edit'];
-  isLoading:boolean = false;
-  selectedTeam:any = "";
-  constructor(private route: ActivatedRoute, private userService: UserService, private router: Router){}
+  displayedColumns: string[] = ['Player Name', 'Joining Date', 'Exit Date', 'Location', 'Edit'];
+  isLoading: boolean = false;
+  selectedTeam: any = "";
+  team_group: string = 'm';
+  constructor(private route: ActivatedRoute, private userService: UserService, private router: Router) { }
 
 
-  ngOnInit(){
-    this.route.params.subscribe((params:any) => {
+  ngOnInit() {
+    this.route.params.subscribe((params: any) => {
       this.userId = params.id;
       this.getClubTeams(this.userId)
     })
   }
 
-  getClubTeams(userId:any){
+  getClubTeams(userId: any) {
     this.isLoading = true;
     try {
-      this.userService.getClubTeams(userId).subscribe((response)=>{
+      this.userService.getClubTeamsByGroup(userId, this.team_group).subscribe((response) => {
         if (response && response.status && response.data) {
           this.teams = response.data.teams;
           this.isLoading = false;
@@ -41,19 +42,19 @@ export class TeamsTabComponent {
       });
     } catch (error) {
       // this.isLoading = false;
-      console.error('Error fetching users:', error); 
+      console.error('Error fetching users:', error);
     }
   }
 
-  getTeamPlayers(teamId:any, teamName:any){
+  getTeamPlayers(teamId: any, teamName: any) {
     this.selectedTeam = teamName;
     this.view = 'player';
     this.isLoading = true;
     try {
-      this.userService.getTeamPlayers(teamId).subscribe((response)=>{
+      this.userService.getTeamPlayers(teamId).subscribe((response) => {
         if (response && response.status && response.data) {
           this.players = response.data.players;
-          console.log(this.players) 
+          console.log(this.players)
           this.isLoading = false;
         } else {
           this.isLoading = false;
@@ -62,17 +63,22 @@ export class TeamsTabComponent {
       });
     } catch (error) {
       this.isLoading = false;
-      console.error('Error fetching users:', error);  
+      console.error('Error fetching users:', error);
     }
   }
 
-  backToTeamView(){
+  backToTeamView() {
     this.view = 'team';
     this.players = [];
   }
 
-  navigate(playerId:any){
+  navigate(playerId: any) {
     let pageRoute = 'admin/player';
     this.router.navigate([pageRoute, playerId]);
+  }
+
+  changeTeamType(team_type: any) {
+    this.team_group = team_type;
+    this.getClubTeams(this.userId);
   }
 }

@@ -400,6 +400,11 @@ ul.nav-tabs {
             background-size: 20px !important;
         }
     }
+    .tab-content {
+        li::marker {
+            font-size: 22px !important;
+        }
+    }
 }
 
 @media (max-width: 390px) {

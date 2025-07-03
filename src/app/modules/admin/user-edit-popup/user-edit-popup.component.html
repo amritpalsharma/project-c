@@ -619,7 +619,9 @@
                             (change)="clubChange($event)" [(ngModel)]="playerClub"
                             [ngClass]="{'red-border':isSubmitButtonClicked && playerClub.length == 0}">
                             <option value="">{{ 'select' | translate }}</option>
-                            <option *ngFor="let option of playerClubsListing" value="{{option.id}}">{{option.club_name}}
+                            <option *ngFor="let option of playerClubsListing" value="{{option.id}}">
+                                <!-- <pre>{{option | json}}</pre> -->
+                                {{option.club_name}}
                             </option>
                         </select>
                         <!-- <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none"

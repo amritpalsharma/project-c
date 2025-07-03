@@ -1884,6 +1884,15 @@ button.upload-btn {
   input:not[type="submit"], textarea, select {
     font-size: 16px;
   }
+
+  .social_form-box {
+    .social_heading, .social_heddig {
+        display: block;
+    }
+    .note_titles {
+        margin-left: 0 !important;
+    }
+  }
 }
 
 @media (min-width: 426px) and (max-width: 575px) {
