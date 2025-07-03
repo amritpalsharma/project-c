@@ -257,6 +257,7 @@ export class BlogPopupComponent implements OnInit, OnDestroy {
 
           this.titles = this.blog.title;
           this.allContent = this.blog.content;
+          console.info('this.allContent', this.allContent)
           // this.selectedLang = Number(this.blog.lang_id);
           this.selectedLang = this.blog.lang_id;
           this.meta_titles = this.blog.meta_title;

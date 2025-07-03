@@ -59,8 +59,8 @@ export class UserEditPopupComponent {
   showTeamsDropdown: boolean = true;
   teamsLisitng: any = [];
   playerTeam: number = 0;
-  isSubmitButtonClicked:boolean=false;
-  theme:string=localStorage.getItem('theme') || 'light';
+  isSubmitButtonClicked: boolean = false;
+  theme: string = localStorage.getItem('theme') || 'light';
 
   constructor(private userService: UserService, public dialogRef: MatDialogRef<UserDetailPopupComponent>,
     @Inject(MAT_DIALOG_DATA) public request: any) {
@@ -107,12 +107,12 @@ export class UserEditPopupComponent {
     let otherPositions = this.data.positions;
     if (otherPositions) {
       otherPositions = JSON.parse(otherPositions);
-      console.info('otherPositions',otherPositions);
+      console.info('otherPositions', otherPositions);
       for (let n of otherPositions) {
-        if(n.main_position == 1){
-            console.info('position id '+n.position_id+' and position name '+n.position_name+ ' is skip from otherPosition')
-        }else{
-          console.info('position id '+n.position_id+' and position name '+n.position_name+ ' is added in otherPosition')
+        if (n.main_position == 1) {
+          console.info('position id ' + n.position_id + ' and position name ' + n.position_name + ' is skip from otherPosition')
+        } else {
+          console.info('position id ' + n.position_id + ' and position name ' + n.position_name + ' is added in otherPosition')
           this.otherPosition.push(String(n.position_id))
         }
       }
@@ -145,9 +145,17 @@ export class UserEditPopupComponent {
       }
     }
 
-    if (this.data.meta && this.data.meta.pre_club_id) {
-      this.playerClub = this.data.meta.pre_club_id;
+    console.info('PlayerData', this.data);
+    // if (this.data.meta && this.data.meta.pre_club_id) {
+    //   this.playerClub = this.data.meta.pre_club_id;
+    // }
+    if (this.data && this.data?.current_club_id) {
+      this.playerClub = this.data?.current_club_id;
     }
+
+    // if (this.data.meta && this.data.meta.current_club) {
+    //   this.playerClub = this.data.meta.current_club;
+    // }
     // if(this.data.meta && this.data.meta.pre_club_id && this.data.meta.current_club){
     //   this.playerClub = this.data.meta.current_club;
     // }else 
@@ -156,7 +164,8 @@ export class UserEditPopupComponent {
   }
 
   getTeamsByClub(clubId: any) {
-    this.userService.getTeamsByClub(clubId).subscribe(
+    this.userService.searchTeamsAdmin(clubId).subscribe(
+    // this.userService.getTeamsByClub(clubId).subscribe(
       response => {
         if (response.status) {
           this.teamsLisitng = response.data.teams;
@@ -232,7 +241,7 @@ export class UserEditPopupComponent {
           if (this.playerClubsListing[index].is_taken == "yes") {
             this.showTeamsDropdown = true;
             this.takenBy = this.playerClubsListing[index].taken_by;
-            this.playerTeam = this.data.team_id;  
+            this.playerTeam = this.data.team_id;
             this.getTeamsByClub(this.takenBy);
           }
           // this.playerClub = 10;
@@ -394,7 +403,7 @@ export class UserEditPopupComponent {
       this.takenBy = this.playerClubsListing[index].taken_by;
       formdata.append('user[pre_club_id]', this.playerClub);
       formdata.append('user[current_club]', this.takenBy);
-      formdata.append('user[current_team]', this.playerTeam+'');
+      formdata.append('user[current_team]', this.playerTeam + '');
     } else {
       formdata.append('user[pre_club_id]', this.playerClub);
     }
@@ -455,12 +464,10 @@ export class UserEditPopupComponent {
   clubChange(event: any) {
 
     let index = this.playerClubsListing.findIndex((x: any) => x.id == this.playerClub)
-    if (this.playerClubsListing[index].is_taken == "yes") {
-      this.takenBy = this.playerClubsListing[index].taken_by;
-      this.getTeamsByClub(this.takenBy);
-      this.showTeamsDropdown = true;
-    } else {
-      // this.showTeamsDropdown = false;
+    console.info('Index',this.playerClubsListing[index])
+    let clubId = this.playerClubsListing[index].id;
+    if (clubId && clubId != '') {
+      this.getTeamsByClub(clubId);
     }
   }
 }

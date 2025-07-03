@@ -29,7 +29,7 @@
               </span>
               <span class="main-template" *ngIf="editableId != performance.id">
                 <img src="{{performance.team_club_logo_path	}}" height="50px" class="verticl_middle" />
-                {{performance.country_name}}
+                {{performance.team_name}} - {{performance.team_type}}
                 <img src="{{performance.country_flag_path}}" width="26" height="26" alt="" class="verticl_middle">
               </span>
             </div>
@@ -76,7 +76,7 @@
 
             <input *ngIf="editableId == performance.id" type="text" value="{{performance.player_age}}"
               class="form-control performance-dark-bg year-input" (input)="onInputChange($event, 'player_age')" /> <span
-              id="Player-age-year" *ngIf="editableId != performance.id"> &nbsp;Year</span>
+              id="Player-age-year" *ngIf="editableId != performance.id"> &nbsp;{{'year' | translate}}</span>
           </td>
 
           <td class="text-center">
@@ -89,13 +89,13 @@
 
             <!-- <img *ngIf="editableId == performance.id" (click)="savePerformance(performance.id)" src="../../../../assets/images/save-icon.png" width="26px"> -->
 
-            <svg *ngIf="editableId == performance.id" (click)="savePerformance(performance.id)"
+            <!-- <svg *ngIf="editableId == performance.id" (click)="savePerformance(performance.id)"
               class="light-performance-save-svg cursor-pointer mt-2" width="22" height="22" viewBox="0 0 22 21"
               fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M21.3496 4.66667V18.6667C21.3496 19.3083 21.1213 19.8578 20.6648 20.3152C20.2082 20.7725 19.6587 21.0008 19.0163 21H2.68294C2.04128 21 1.49216 20.7717 1.03561 20.3152C0.579054 19.8586 0.350387 19.3091 0.349609 18.6667V2.33333C0.349609 1.69167 0.578276 1.14256 1.03561 0.686C1.49294 0.229444 2.04205 0.000777778 2.68294 0H16.6829L21.3496 4.66667ZM10.8496 17.5C11.8218 17.5 12.6482 17.1597 13.3288 16.4792C14.0093 15.7986 14.3496 14.9722 14.3496 14C14.3496 13.0278 14.0093 12.2014 13.3288 11.5208C12.6482 10.8403 11.8218 10.5 10.8496 10.5C9.87739 10.5 9.051 10.8403 8.37044 11.5208C7.68989 12.2014 7.34961 13.0278 7.34961 14C7.34961 14.9722 7.68989 15.7986 8.37044 16.4792C9.051 17.1597 9.87739 17.5 10.8496 17.5ZM3.84961 8.16667H14.3496V3.5H3.84961V8.16667Z"
                 fill="#BDE34F" />
-            </svg>
+            </svg> -->
 
             <svg *ngIf="editableId == performance.id" (click)="savePerformance(performance.id)"
               class="dark-performance-save-svg cursor-pointer mt-2" width="22" height="22" viewBox="0 0 22 22"

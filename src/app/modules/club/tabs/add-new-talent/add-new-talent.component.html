@@ -88,8 +88,9 @@
                 <!-- <input type="text" [ngClass]="{'emptyRequiredField':submitClicked && !jerseyNumber}" [(ngModel)]="jerseyNumber" placeholder="{{'addJerseyNumber' | translate}}"
                   class="user-input"> -->
 
-                  <input type="text" [ngClass]="{'emptyRequiredField':submitClicked && !user.jersey_number}" [(ngModel)]="user.jersey_number" placeholder="{{'addJerseyNumber' | translate}}"
-                  class="user-input">
+                <input type="number" (keydown)="validateNumber($event)"
+                  [ngClass]="{'emptyRequiredField':submitClicked && !user.jersey_number}"
+                  [(ngModel)]="user.jersey_number" placeholder="{{'addJerseyNumber' | translate}}" class="user-input">
 
               </div>
             </div>
@@ -101,13 +102,13 @@
             <div class="p-3">
               <div class="row align-items-center">
                 <!-- Start Date -->
-                <div class="date-input col-lg-4 p-0 mb-3 mb-lg-0 position-relative" >
+                <div class="date-input col-lg-4 p-0 mb-3 mb-lg-0 position-relative">
                   <label for="startDate" class="d-block font-weight-bold">
                   </label>
                   <input placeholder="DD.MM.YYYY" class="form-control join-start"
                     [ngClass]="{'emptyRequiredField': !startDate.value && submitClicked}" id="startDate"
-                    [matDatepicker]="contractStartPicker" [formControl]="startDate"/>
-                    <mat-datepicker-toggle matSuffix [for]="contractStartPicker"></mat-datepicker-toggle>
+                    [matDatepicker]="contractStartPicker" [formControl]="startDate" />
+                  <mat-datepicker-toggle matSuffix [for]="contractStartPicker"></mat-datepicker-toggle>
                   <mat-datepicker #contractStartPicker></mat-datepicker>
                 </div>
                 <!-- End Date -->

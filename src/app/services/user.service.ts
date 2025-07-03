@@ -816,4 +816,32 @@ export class UserService {
       `${this.apiUrl}get-club-teams/${id}?team_group=${team_group}`, { headers }
     );
   }
+
+  searchTeams(team: string): Observable<any> {
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.userToken}`
+    });
+
+    // Fetch teams from the API, store in global variable and localStorage
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
+      `https://api.socceryou.ch/api/get-teams?search=${team}`, { headers }
+    );
+
+  }
+
+
+  searchTeamsAdmin(club_id: string): Observable<any> {
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.userToken}`
+    });
+
+    // Fetch teams from the API, store in global variable and localStorage
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
+      `https://api.socceryou.ch/api/get-teams?club_id=${club_id}`, { headers }
+    );
+
+  }
+
 }
