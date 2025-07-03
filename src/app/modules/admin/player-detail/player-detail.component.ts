@@ -42,6 +42,7 @@ export class PlayerDetailComponent implements OnInit {
   deleteProfileImageConfirm: string = '';
 
   currentLangId: any;
+  customClubInfo: any;
 
   ngOnInit(): void {
     this.currentLangId = localStorage.getItem('lang_id');
@@ -91,6 +92,10 @@ export class PlayerDetailComponent implements OnInit {
           // this.userNationalities = JSON.parse(this.user.user_nationalities);
           if (this.user.meta && this.user.meta.cover_image_path) {
             this.coverImage = this.user.meta.cover_image_path;
+          }
+
+          if (this.user?.custom_club_info && this.user?.custom_club_info != '') {
+            this.customClubInfo = JSON.parse(this.user.custom_club_info);
           }
           // this.isLoading = false;
         } else {
@@ -323,8 +328,11 @@ export class PlayerDetailComponent implements OnInit {
   formatDateTime(datetime: string) {
     // convertAdminDateTime
     // let formattedDate = this.adminHelper.convertAdminDateTime(datetime, 'users');
-    let formattedDate = this.adminHelper.getSwitzerlandTime(datetime);
-    return formattedDate;
+    if (datetime && datetime != '') {
+      let formattedDate = this.adminHelper.getSwitzerlandTime(datetime);
+      return formattedDate;
+    }
+    return;
   }
 
   deleteImageConfirm() {

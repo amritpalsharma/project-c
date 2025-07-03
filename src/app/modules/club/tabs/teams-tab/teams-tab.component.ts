@@ -113,7 +113,7 @@ export class TeamsTabComponent {
   backToTeamView() {
     this.view = 'team';
     this.players = [];
-    this.team_group = 'm';
+    // this.team_group = 'm';
   }
 
   navigate(playerId: any) {
