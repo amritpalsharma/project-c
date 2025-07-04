@@ -75,43 +75,6 @@
 
     mask-composite: unset;
     -webkit-mask-composite: unset;
-    // }
-
-
-    //   mask:
-    //   linear-gradient(
-    //     to bottom,
-    //     transparent calc(var(--crop-y, 50%) - var(--crop-size, 200px) / 2),
-    //     black calc(var(--crop-y, 50%) - var(--crop-size, 200px) / 2),
-    //     black calc(var(--crop-y, 50%) + var(--crop-size, 200px) / 2),
-    //     transparent calc(var(--crop-y, 50%) + var(--crop-size, 200px) / 2)
-    //   ),
-    //   linear-gradient(
-    //     to right,
-    //     transparent calc(var(--crop-x, 50%) - var(--crop-size, 200px) / 2),
-    //     black calc(var(--crop-x, 50%) - var(--crop-size, 200px) / 2),
-    //     black calc(var(--crop-x, 50%) + var(--crop-size, 200px) / 2),
-    //     transparent calc(var(--crop-x, 50%) + var(--crop-size, 200px) / 2)
-    //   );
-    // -webkit-mask:
-    //   linear-gradient(
-    //     to bottom,
-    //     transparent calc(var(--crop-y, 50%) - var(--crop-size, 200px) / 2),
-    //     black calc(var(--crop-y, 50%) - var(--crop-size, 200px) / 2),
-    //     black calc(var(--crop-y, 50%) + var(--crop-size, 200px) / 2),
-    //     transparent calc(var(--crop-y, 50%) + var(--crop-size, 200px) / 2)
-    //   ),
-    //   linear-gradient(
-    //     to right,
-    //     transparent calc(var(--crop-x, 50%) - var(--crop-size, 200px) / 2),
-    //     black calc(var(--crop-x, 50%) - var(--crop-size, 200px) / 2),
-    //     black calc(var(--crop-x, 50%) + var(--crop-size, 200px) / 2),
-    //     transparent calc(var(--crop-x, 50%) + var(--crop-size, 200px) / 2)
-    //   );
-
-    // mask-composite: intersect;
-    // -webkit-mask-composite: destination-in;
-
   }
 }
 

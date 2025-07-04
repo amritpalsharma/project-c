@@ -1076,7 +1076,7 @@
   "overview": "Overview",
   "totalSubscriptions": "Total et subscriptions",
   "noDataFound": "No et data et found",
-  "noDataFoundText": "There et is et no et data et to et show et you et right et now",
+  "noDataFoundText": "Il n'y a aucune donnée à vous montrer pour le moment",
   "editPopUp": "Edit et pop et up",
   "for:": "For:",
   "language:": "Language:",
@@ -1528,5 +1528,9 @@
   "noPortfolioRecordFound": "Aucun talent n’a encore été ajouté au portfolio.",
   "withoutCurrentClub": "sans club",
   "scoutingInformation2": "Informations de détection",
-  "addJerseyNumber": "Numéro de maillot"
+  "addJerseyNumber": "Numéro de maillot",
+  "boostFeatures": "Functionnalités Boost",
+  "premiumFeatures": "Functionnalités Premium",
+  "multiCountryFeatures": "Functionnalités Multi-Pays",
+  "newsHeading": "Reste informé : Tu trouveras ici les dernières actualités, articles de presse et nouveautés autour de SoccerYou."
 }

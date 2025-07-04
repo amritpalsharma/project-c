@@ -756,7 +756,7 @@
   "overview": "Übersicht",
   "newRegistrations": "Neue Registrationen",
   "noDataFound": "Keine Daten gefunden",
-  "noDataFoundText": "Im Moment gibt es keine Daten, die Sie zeigen könnten.",
+  "noDataFoundText": "Es sind derzeit keine Daten verfügbar, die angezeigt werden können",
   "alphabetically": "Alphabetisch",
   "recentLogin": "Letzte Anmeldung",
   "newsletterSubscription": "Newsletter Anmeldung",
@@ -1518,5 +1518,9 @@
   "noPortfolioRecordFound": "Bisher sind keine Talente dem Portfolio hinzugefügt.",
   "withoutCurrentClub": "vereinslos",
   "scoutingInformation2": "Sichtungs-Informationen",
-  "addJerseyNumber": "Trikotnummer"
+  "addJerseyNumber": "Trikotnummer",
+  "boostFeatures": "Boost Profil Funktionen",
+  "premiumFeatures": "Premium Funktionen",
+  "multiCountryFeatures": "Multi-Länder Funktionen",
+  "newsHeading": "Bleib auf dem Laufenden: Hier findest du aktuelle News, Medienberichte und spannende Updates rund um SoccerYou."
 }

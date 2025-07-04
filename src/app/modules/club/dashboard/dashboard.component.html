@@ -678,8 +678,8 @@
 
 
           <div class="col-lg-9 card_box--2 padding_mobile_0 dashboard_page_only">
-            <div class="players_image d-flex align-items-center justify-content-center cover_pic_desktop">
-              <img *ngIf="coverImage" [src]="coverImage" alt="Cover Image" />
+            <div class="players_image d-flex align-items-center justify-content-center cover_pic_desktop" [ngStyle]="{'background-image': 'url(' + coverImage + ')'}">
+              <!-- <img *ngIf="coverImage" [src]="coverImage" alt="Cover Image" /> -->
               <svg *ngIf="!coverImage" width="54" height="54" viewBox="0 0 54 54" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
                 <path

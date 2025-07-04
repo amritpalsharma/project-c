@@ -1215,8 +1215,12 @@ span.icon-bg.pdf_btn_icon button {
 }
 
 .players_image {
-  height: 400px;
+  // height: 400px;
   width: 100%;
+  aspect-ratio: 5/2;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  background-position: center !important;
 }
 
 .user-info h6 {
