@@ -18,6 +18,10 @@
     color: white;
     font-family: var(--bs-avenir-regular);
 }
+::ng-deep .news_detail_text_container li {
+    font-size: 20px;
+    font-family: var(--bs-avenir-regular);
+}
 
 ::ng-deep h5 {
     color: white;
@@ -233,7 +237,7 @@ img.banner-image {
 .news_html ::ng-deep li {
     display: block;
     position: relative;
-    padding-left: 2rem;
+    padding-left: 1.5rem;
     /* Space for the custom marker */
 }
 
@@ -241,7 +245,7 @@ img.banner-image {
     content: '•';
     /* Custom marker */
     position: absolute;
-    font-size: 60px;
+    font-size: inherit;
     // color: #E05263; /* Customize marker color */
     top: 18px;
     left: 0;
@@ -432,6 +436,9 @@ img.banner-image {
         padding-top: 20px;
         padding-bottom: 20px;
     }
+    .news_html ::ng-deep li::before {
+        top: 15px;
+    }
 
     .leaderboard-club-image img,
     .small-sqaure-image img,
@@ -456,6 +463,12 @@ img.banner-image {
     }
     :host ::ng-deep p, p.p-text, h5.share {
         font-size: 16px;
+    }
+    :host ::ng-deep .news_detail_text_container li {
+        font-size: 16px;
+    }
+    .news_html ::ng-deep li::before {
+        top: 12px;
     }
     .cookie-text {
         font-size: 35px;
@@ -496,6 +509,9 @@ img.banner-image {
 :host ::ng-deep p, p.p-text, h5.share {
     font-size: 24px;
 }
+:host ::ng-deep .news_detail_text_container li {
+    font-size: 24px;
+}
 }
 
 @media (min-width: 576px) and (max-width: 991px) {
@@ -508,6 +524,9 @@ img.banner-image {
     font-size: 40px;
 }
 :host ::ng-deep p, p.p-text, h5.share {
+    font-size: 20px;
+}
+:host ::ng-deep .news_detail_text_container li {
     font-size: 20px;
 }
 }
@@ -573,6 +592,9 @@ img.banner-image {
 :host ::ng-deep p {
     font-size: 26px !important;
 }
+:host ::ng-deep .news_detail_text_container li {
+    font-size: 26px !important;
+}
 .news_html ::ng-deep li::before {
     top: 19px;
 }
@@ -588,6 +610,9 @@ img.banner-image {
     }
 }
 :host ::ng-deep p {
+    font-size: 40px !important;
+}
+:host ::ng-deep .news_detail_text_container li {
     font-size: 40px !important;
 }
 .news_html ::ng-deep li::before {
