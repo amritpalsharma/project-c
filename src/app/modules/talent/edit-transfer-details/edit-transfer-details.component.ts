@@ -37,32 +37,32 @@ export class EditTransferDetailsComponent {
   isLoadingModel: boolean = true;
 
   sessionArr: any = [
-  '25/26',
-  '24/25',
-  '23/24',
-  '22/23',
-  '21/22',
-  '20/21',
-  '19/20',
-  '18/19',
-  '17/18',
-  '16/17',
-  '15/16',
-  '14/15',
-  '13/14',
-  '12/13',
-  '11/12',
-  '10/11',
-  '09/10',
-  '08/09',
-  '07/08',
-  '06/07',
-  '05/06',
-  '04/05',
-  '03/04',
-  '02/03',
-  '01/02'
-];
+    '25/26',
+    '24/25',
+    '23/24',
+    '22/23',
+    '21/22',
+    '20/21',
+    '19/20',
+    '18/19',
+    '17/18',
+    '16/17',
+    '15/16',
+    '14/15',
+    '13/14',
+    '12/13',
+    '11/12',
+    '10/11',
+    '09/10',
+    '08/09',
+    '07/08',
+    '06/07',
+    '05/06',
+    '04/05',
+    '03/04',
+    '02/03',
+    '01/02'
+  ];
 
 
   constructor(
@@ -91,10 +91,12 @@ export class EditTransferDetailsComponent {
     // You might want to load your teams from a service here
     this.teams = this.data.teams;
     this.transfer = this.data.transfer;
+
     if (this.transfer.team_to_manual != '' && !this.transfer.team_to) {
       this.is_team_to_manual = true;
       this.team_to_manual = this.transfer.team_to_manual;
       this.team_to_m_country_id = this.transfer.team_to_m_country_id;
+
     }
 
     if (this.transfer.team_from_manual != '' && !this.transfer.team_from) {
@@ -102,6 +104,7 @@ export class EditTransferDetailsComponent {
       this.team_from_manual = this.transfer.team_from_manual;
       this.team_from_m_country_id = this.transfer.team_from_m_country_id;
     }
+
     this.date_of_transfer = new FormControl(
       this.transfer.date_of_transfer ? new Date(this.transfer.date_of_transfer) : null
     );
@@ -126,9 +129,9 @@ export class EditTransferDetailsComponent {
     setTimeout(() => {
       //     this.onNoMoveToTeam(true);
       //     // this.is_team_to_manual = true;
-      //     // this.cdr.detectChanges();
+      this.cdr.detectChanges();
       this.isLoadingModel = false;
-    }, 1500);
+    }, 500);
     // }
 
   }
@@ -150,7 +153,9 @@ export class EditTransferDetailsComponent {
         date_of_transfer: this.date_of_transfer.value // Convert date to string if necessary
           ? moment(this.date_of_transfer.value).format('YYYY-MM-DD')
           : null,
-        lang: lang_id
+        lang: lang_id,
+        have_no_club_to: this.is_team_to_manual,
+        have_no_club_from: this.is_team_from_manual
       };
 
       this.talentService.updateTransfer(this.transfer.id, formData).subscribe(

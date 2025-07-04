@@ -3,7 +3,10 @@
         <div class="popup_header p-3">
             <h6 class=" code-text text-left" *ngIf="data.action == 'add'">{{ 'addTeamMember' | translate }}</h6>
             <h6 class=" code-text text-left" *ngIf="data.action == 'edit'">{{ 'editTeamMember' | translate }}</h6>
-            <div (click)="close()" class="close-img mb-1"></div>
+            <div (click)="close()" class="close-img mb-1">
+                <img  *ngIf='theme!="dark"' src="../../../assets/images/carbon_close-outline-light.svg" alt="" class="" />
+                 <img  *ngIf='theme=="dark"' src="../../../assets/images/carbon_close-outline.svg" alt="" class=""  />
+            </div>
         </div>
         <div class="popup__body">
             <div class="p-3" *ngIf="data.action == 'add'">
@@ -32,8 +35,8 @@
                     <div>
                         <p class="code-text">{{ 'siteRole' | translate }}</p>
                         <div class="btn-group" style="width:100%;">
-                            <select class="cupen-btn-1 form-select" style="width:100%;" aria-label="Default select example"
-                                [(ngModel)]="role">
+                            <select class="cupen-btn-1 form-select" style="width:100%;"
+                                aria-label="Default select example" [(ngModel)]="role">
                                 <option value="">{{ 'select' | translate }}</option>
                                 <option value="admin-access">{{ 'admin' | translate }}</option>
                                 <option value="view-only">{{ 'viewOnly' | translate }}</option>
@@ -73,7 +76,7 @@
                     </div>
                 </div>
             </div>
-            <div class="p-3" *ngIf="data.action == 'admin-add'"> 
+            <div class="p-3" *ngIf="data.action == 'admin-add'">
                 <div class="d-flex1 mb-3">
                     <div>
                         <p class="code-text">{{ 'firstName' | translate }}</p>
@@ -99,8 +102,8 @@
                     <div>
                         <p class="code-text">{{ 'siteRole' | translate }}</p>
                         <div class="btn-group" style="width:100%;">
-                            <select class="cupen-btn-1 form-select" style="width:100%;" aria-label="Default select example"
-                                [(ngModel)]="role">
+                            <select class="cupen-btn-1 form-select" style="width:100%;"
+                                aria-label="Default select example" [(ngModel)]="role">
                                 <option value="">{{ 'select' | translate }}</option>
                                 <option value="admin-access">{{ 'admin' | translate }}</option>
                                 <option value="view-only">{{ 'viewOnly' | translate }}</option>

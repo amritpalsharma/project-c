@@ -43,16 +43,26 @@
             <div *ngIf="editableId == performance.id" class="select-wrapper perfermance-team-country mt-1">
 
               <div class="autocomplete-wrap">
-                <input type="text" class="form-control performance-dark-bg coach-debt-input" [(ngModel)]="performance.team_name" (input)="onInputChange($event, 'team_name')">
+                <input type="text" class="form-control performance-dark-bg coach-debt-input"
+                  [(ngModel)]="performance.team_name" (input)="onInputChange($event, 'team_name')">
               </div>
             </div>
           </td>
           <!-- Team Session Here -->
           <td *ngIf="performance?.type == 'manual'" class="text-center" style="white-space: nowrap;">
-            <span *ngIf="editableId != performance.id"
+            <!-- <span *ngIf="editableId != performance.id"
               class="d-flex justify-content-center">{{performance.session}}</span>
             <input *ngIf="editableId == performance.id" type="text" value="{{performance.session}}"
-              (input)="onInputChange($event, 'session')" class="form-control performance-dark-bg w-100 text-center">
+              (input)="onInputChange($event, 'session')" class="form-control performance-dark-bg w-100 text-center"> -->
+            <span *ngIf="editableId !== performance.id">{{ performance.session }}</span>
+            <div class="dropdown-container" *ngIf="editableId === performance.id">
+              <select class="form-select w-100 custom-size h-auto py-1 px-2 custom-size-season no-arrow"
+                [(ngModel)]="performance.session" (ngModelChange)="onInputChange($event, 'session')">
+                <option *ngFor="let season of reversedSeasons" [value]="season">
+                  {{ season }}
+                </option>
+              </select>
+            </div>
           </td>
           <!-- Team Match Here -->
           <td *ngIf="performance?.type == 'manual'" class="text-center">
@@ -68,7 +78,7 @@
             <input *ngIf="editableId == performance.id" type="text" value="{{performance.goals}}"
               class="form-control w-100 performance-dark-bg text-center" (input)="onInputChange($event, 'goals')">
           </td>
-           <!-- Team Coach Here -->
+          <!-- Team Coach Here -->
           <td *ngIf="performance?.type == 'manual'">
             <span *ngIf="editableId != performance.id">{{performance.coach}}</span>
             <input *ngIf="editableId == performance.id" type="text" value="{{performance.coach}}"
@@ -112,10 +122,20 @@
 
 
           <td *ngIf="performance?.type == 'auto'" class="text-center" style="white-space: nowrap;">
-            <span *ngIf="editableId != performance.id"
+            <!-- <span *ngIf="editableId != performance.id"
               class="d-flex justify-content-center">{{performance.session}}</span>
             <input *ngIf="editableId == performance.id" type="text" value="{{performance.session}}"
-              (input)="onInputChange($event, 'session')" class="form-control performance-dark-bg w-100 text-center">
+              (input)="onInputChange($event, 'session')" class="form-control performance-dark-bg w-100 text-center"> -->
+
+            <span *ngIf="editableId !== performance.id">{{ performance.session }}</span>
+            <div class="dropdown-container" *ngIf="editableId === performance.id">
+              <select class="form-select w-100 custom-size h-auto py-1 px-2 custom-size-season no-arrow"
+                [(ngModel)]="performance.session" (ngModelChange)="onInputChange($event, 'session')">
+                <option *ngFor="let season of reversedSeasons" [value]="season">
+                  {{ season }}
+                </option>
+              </select>
+            </div>
           </td>
 
 

@@ -1,196 +1,263 @@
-
-.date-togal{
-    color: black;
+.date-togal {
+  color: black;
 }
+
 .custom-size {
-    padding: 5px 11px;
-    border: 1px solid #dee2e6;
-  }
+  padding: 5px 11px;
+  border: 1px solid #dee2e6;
+}
 
 .custom-size-calendar {
   width: 120px;
   padding-bottom: 0px;
+}
+
+
+
+.custom-size-calendar .mat-form-field-underline {
+  display: none;
+}
+
+.custom-size-2 {
+  width: 200px;
+  border: 1px solid #dee2e6;
+}
+
+.custom-size-season {
+  min-width: 100px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.dropdown-wrapper {
+  position: relative;
+  display: inline-block;
+  width: fit-content;
+}
+
+select {
+  width: 200px;
+  padding: 8px 28px 8px 8px !important;
+}
+
+.form-control {
+  min-width: 60px;
+  appearance: none;
+  padding: 6px;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.dropdown-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.dropdown-container {
+  position: relative;
+  display: inline-block;
+  width: fit-content;
+}
+
+.no-arrow {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: none;
+}
+
+td img {
+  object-fit: contain;
+  margin: 0 2px;
+  vertical-align: bottom;
+}
+
+.custom-size-calendar .mat-mdc-text-field-wrapper {
+  height: 38px;
+  padding: 8px !important;
+}
+
+table td {
+  white-space: nowrap;
+}
+
+.transfer_box:not(:last-child) {
+  border-bottom: 1px solid #dadada;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+}
+
+
+
+@media (max-width: 1300px) {
+  .details-1 {
+    font-size: 14px;
   }
 
-
-
-  .custom-size-calendar .mat-form-field-underline {
-    display: none;
+  .details_2 {
+    font-size: 12px;
   }
-  .custom-size-2{
-    width: 200px;
-    border: 1px solid #dee2e6;
-  }
+}
 
-  .custom-size-season{
-    min-width: 100px;
+@media (max-width: 991px) {
+  .moving_box {
+    padding: 0;
   }
 
-  .pointer{
-    cursor:pointer;
+  .transfer_box.row {
+    flex-wrap: wrap-reverse;
   }
 
-  .dropdown-wrapper {
-    position: relative;
-    display: inline-block;
-    width: fit-content;
-    }
-    
-    select{
-      width: 200px;
-      padding: 8px 28px 8px 8px !important;
-    }
-    
-    .form-control {
-      min-width: 60px;
-      appearance: none;
-      padding: 6px;
-      outline: none !important;
-      box-shadow: none !important;
-    }
-    .dropdown-icon {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    pointer-events: none; 
-    }
-
-    .dropdown-container {
-      position: relative;
-      display: inline-block;
-      width: fit-content;
-    }
-
-    .no-arrow {
-      appearance: none; 
-      -webkit-appearance: none; 
-      -moz-appearance: none; 
-      background-image: none; 
-    }
-
-    td img {
-      object-fit: contain;
-      margin: 0 2px;
-      vertical-align: bottom;
-    }
-    .custom-size-calendar .mat-mdc-text-field-wrapper {
-      height: 38px;
-      padding: 8px !important;
-  }
-    table td {
-      white-space: nowrap;
-    }
-
-    .transfer_box:not(:last-child) {
-      border-bottom: 1px solid #dadada;
-      margin-bottom: 2rem;
-      padding-bottom: 2rem;
-  }
-
-
-
-  @media (max-width: 1300px) {
-    .details-1 {
-      font-size: 14px;
-    }
-    .details_2 {
-      font-size: 12px;
-    }
-  }
-  
-  @media (max-width: 991px) {
-    .moving_box {
-      padding: 0;
-    }
-    .transfer_box.row {
-      flex-wrap: wrap-reverse;
-  }
   .transfer_box .box-transfer {
     border-right: 0;
   }
-  }
-  
-  @media (max-width: 991px) and (min-width: 576px) {
+}
+
+@media (max-width: 991px) and (min-width: 576px) {
   .transfer_box .box-transfer {
     display: flex;
     flex-direction: row;
     padding: 0 .75rem;
     margin-bottom: 20px;
   }
+
   .transfer_box .box-transfer .col-lg-12:last-child {
     margin-left: -20px;
   }
-  }
-  
-  
-  @media (max-width: 575px){
+}
+
+
+@media (max-width: 575px) {
   .moving_box_inner .moving-team-logo img {
     width: 30px;
     height: 30px;
   }
+
   .moving_box .btn_column .edit_button span {
-      display: none;
+    display: none;
   }
+
   .moving_box .btn_column .edit_button svg {
     left: 0;
   }
+
   .moving_box .moving_box_inner {
     margin-top: -120px;
   }
+}
+
+
+
+@media (min-width: 1600px) and (max-width: 2999px) {
+  .moving_box_inner h2 {
+    font-size: 22px !important;
   }
-  
-  
-  
-  @media (min-width: 1600px) and (max-width: 2999px) {
-    .moving_box_inner h2 {
-      font-size: 22px !important;
-    }
-    .details_2, .edit_button-2 span {
-        font-size: 18px !important;
-      }
-      .details-1, .btn_column .edit_button span {
-          font-size: 20px !important;
-      }
-      .new_performance button {
-        font-size: 24px;
-    }
-    td svg.pointer {
-      width: 32px !important;
-      height: 32px !important;
-    }
+
+  .details_2,
+  .edit_button-2 span {
+    font-size: 18px !important;
   }
-  
-  @media (min-width: 3000px){
-    .moving_box_inner h2 {
-      font-size: 28px !important;
-    }
-    .details_2, .edit_button-2 span, .btn_column .edit_button span {
-        font-size: 25px !important;
-      }
-      .details-1 {
-          font-size: 28px !important;
-      }
-      .btn_column .edit_button svg {
-        width: 38px;
-        height: 38px;
-        margin-right: 4px;
-      }
-      .transfer_box .box-transfer .sasion_logos svg {
-        width: 40px;
-        height: 40px;
-        margin-right: 10px;
-    }
-    .moving_box_inner .moving_country .moving-team-logo img {
-      width: 40px !important;
-      height: 40px !important;
-      margin-right: 10px;
-    }
-    .new_performance button {
-        font-size: 28px;
-    }
-    td svg.pointer {
-      width: 40px !important;
-      height: 40px !important;
-    }
+
+  .details-1,
+  .btn_column .edit_button span {
+    font-size: 20px !important;
   }
+
+  .new_performance button {
+    font-size: 24px;
+  }
+
+  td svg.pointer {
+    width: 32px !important;
+    height: 32px !important;
+  }
+}
+
+@media (min-width: 3000px) {
+  .moving_box_inner h2 {
+    font-size: 28px !important;
+  }
+
+  .details_2,
+  .edit_button-2 span,
+  .btn_column .edit_button span {
+    font-size: 25px !important;
+  }
+
+  .details-1 {
+    font-size: 28px !important;
+  }
+
+  .btn_column .edit_button svg {
+    width: 38px;
+    height: 38px;
+    margin-right: 4px;
+  }
+
+  .transfer_box .box-transfer .sasion_logos svg {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+  }
+
+  .moving_box_inner .moving_country .moving-team-logo img {
+    width: 40px !important;
+    height: 40px !important;
+    margin-right: 10px;
+  }
+
+  .new_performance button {
+    font-size: 28px;
+  }
+
+  td svg.pointer {
+    width: 40px !important;
+    height: 40px !important;
+  }
+}
+
+::ng-deep .dark-theme .suggestion-list {
+  color: white !important;
+  background: #0C3453 !important;
+}
+
+::ng-deep .dark-theme .dark-performance-save-svg {
+  display: block !important;
+
+  path {
+    fill: #ccc !important;
+  }
+}
+
+
+.suggestion-wrap {
+  background: #ffffff;
+  position: absolute;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+
+}
+
+.suggestion-wrap div {
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #ccc;
+}
+
+.suggestion-wrap div:hover {
+  cursor: pointer;
+}
+
+.suggestion-wrap div img {
+  margin-right: 10px;
+  width: 20px
+}

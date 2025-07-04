@@ -48,19 +48,19 @@ export class TransfersTabComponent {
     this.translate.onLangChange.subscribe((event) => {
       this.getUserTransfers(this.userId);
     });
-    this.getSeasonsOptions();
+    // this.getSeasonsOptions();
     // this.getAllTeams();
   }
 
-  getSeasonsOptions() {
-    const startYear = 2000;
-    const currentYear = new Date().getFullYear();
+  // getSeasonsOptions() {
+  //   const startYear = 2000;
+  //   const currentYear = new Date().getFullYear();
 
-    // Populate the years array from startYear to currentYear
-    for (let year = startYear; year <= currentYear; year++) {
-      this.seasons.push(year);
-    }
-  }
+  //   // Populate the years array from startYear to currentYear
+  //   for (let year = startYear; year <= currentYear; year++) {
+  //     this.seasons.push(year);
+  //   }
+  // }
   getUserTransfers(userId: any) {
     this.isLoading = true;
     try {
@@ -134,15 +134,18 @@ export class TransfersTabComponent {
     });
   }
 
+  have_no_club_from: boolean = false;
+  have_no_club_to: boolean = false;
   editPerformance(performanceId: any) {
 
     this.editableId = performanceId;
     let index = this.userTransfers.findIndex((x: any) => x.id == performanceId);
     let currentRow = this.userTransfers[index];
-    console.log('currentRow',currentRow)
+    console.log('currentRow', currentRow)
     if (currentRow.team_name_to && currentRow.team_name_to != '') {
       this.movingTosearch = currentRow.team_name_to;
     }
+
 
     this.movingFromsearch = '';
 
@@ -150,12 +153,36 @@ export class TransfersTabComponent {
       this.movingFromsearch = currentRow.team_name_from;
     }
 
+
+    if (!currentRow.team_name_to && currentRow.team_to_manual != '') {
+      this.have_no_club_to = true;
+    }
+    if (!currentRow.team_name_from && currentRow.team_from_manual != '') {
+      this.have_no_club_from = true;
+    }
+
     this.defaultDate = currentRow.date_of_transfer;
     this.dataTOBeUpdated = {
       team_from: currentRow.team_from,
       team_to: currentRow.team_to,
       session: currentRow.session,
-      date_of_transfer: currentRow.date_of_transfer
+      date_of_transfer: currentRow.date_of_transfer,
+      have_no_club_to: this.have_no_club_to,
+      have_no_club_from: this.have_no_club_from,
+    }
+    if (this.have_no_club_from && this.have_no_club_to) {
+      this.dataTOBeUpdated = {
+        team_from: currentRow.team_from,
+        team_to: currentRow.team_to,
+        session: currentRow.session,
+        date_of_transfer: currentRow.date_of_transfer,
+        have_no_club_to: this.have_no_club_to,
+        have_no_club_from: this.have_no_club_from,
+        team_from_manual: currentRow.team_from_manual,
+        team_to_manual: currentRow.team_to_manual,
+        team_to_m_country_id: currentRow.team_to_m_country_id,
+        team_from_m_country_id: currentRow.team_from_m_country_id
+      }
     }
 
     console.log(this.dataTOBeUpdated);
@@ -173,7 +200,13 @@ export class TransfersTabComponent {
 
   onSelectChange(event: Event, key: string): void {
     const selectElement = event.target as HTMLSelectElement;
-    this.updateRow(key, Number(selectElement.value));
+    this.updateRow(key, (selectElement.value));
+  }
+
+  onInputValueChange(event: any, key: string) {
+    const value = event.target.value;
+    // this.transferData[field] = value;
+    this.updateRow(key, value);
   }
 
   onDateChange(event: MatDatepickerInputEvent<Date>): void {
@@ -201,7 +234,34 @@ export class TransfersTabComponent {
   }
 
   get reversedSeasons(): string[] {
-    return [...this.seasons].reverse(); // this avoids mutating original array
+    let sessionArr = [
+      '25/26',
+      '24/25',
+      '23/24',
+      '22/23',
+      '21/22',
+      '20/21',
+      '19/20',
+      '18/19',
+      '17/18',
+      '16/17',
+      '15/16',
+      '14/15',
+      '13/14',
+      '12/13',
+      '11/12',
+      '10/11',
+      '09/10',
+      '08/09',
+      '07/08',
+      '06/07',
+      '05/06',
+      '04/05',
+      '03/04',
+      '02/03',
+      '01/02'
+    ];
+    return sessionArr;
   }
   selectedTeam: any;
   // selectTeam(team: any) {
@@ -236,16 +296,20 @@ export class TransfersTabComponent {
     });
   }
   inputValue: string = '';
-  selectTeam(teamId: any, name: any, country: any, type: string) {
+  selectTeam(teamId: any, name: any, team_type: any, type: string) {
     if (type == 'moving_to') {
-    this.updateRow('team_id', teamId);
+      this.updateRow('team_name_to', name + ' - ' + team_type);
+      this.filteredTeamsMovingTo = [];
+      this.movingTosearch = name + ' - ' + team_type;
     }
 
     if (type == 'moving_from') {
-
+      this.updateRow('team_name_from', name + ' - ' + team_type);
+      this.filteredTeamsMovingFrom = [];
+      this.movingFromsearch = name + ' - ' + team_type;
     }
     // this.inputValue = name + ", " + country;
-    this.updateRow('team_id', teamId);
+    // this.updateRow('team_id', teamId);
     // this.filteredTeams = [];
   }
 

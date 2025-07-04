@@ -149,9 +149,49 @@ export class PerformanceTabComponent {
     this.updateRow('team_id', Number(selectElement.value));
   }
 
+  onSelectChangeSession(event: Event): void {
+    const selectElement = event.target as HTMLSelectElement;
+    this.updateRow('session', Number(selectElement.value));
+  }
+
+  get reversedSeasons(): string[] {
+    let sessionArr = [
+      '25/26',
+      '24/25',
+      '23/24',
+      '22/23',
+      '21/22',
+      '20/21',
+      '19/20',
+      '18/19',
+      '17/18',
+      '16/17',
+      '15/16',
+      '14/15',
+      '13/14',
+      '12/13',
+      '11/12',
+      '10/11',
+      '09/10',
+      '08/09',
+      '07/08',
+      '06/07',
+      '05/06',
+      '04/05',
+      '03/04',
+      '02/03',
+      '01/02'
+    ];
+    return sessionArr;
+  }
+
   onInputChange(event: Event, key: string): void {
-    let inputElement = event.target as HTMLInputElement;
-    this.updateRow(key, inputElement.value);
+    if (key == 'session') {
+      this.updateRow(key, event);
+    } else {
+      let inputElement = event.target as HTMLInputElement;
+      this.updateRow(key, inputElement.value);
+    }
   }
 
   updateRow(key: any, value: any) {
