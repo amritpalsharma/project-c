@@ -274,7 +274,10 @@ export class HeaderComponent {
         filter(text => !!text && text.trim().length >= 2),
         switchMap((searchText: string) => {
           this.isLoading = true;
-          return this.userService.searchUser(searchText).pipe(
+          // return this.userService.searchUser(searchText).pipe(
+          //   finalize(() => (this.isLoading = false))
+          // );
+          return this.userService.exploreSearchUser(searchText).pipe(
             finalize(() => (this.isLoading = false))
           );
         })
@@ -282,8 +285,8 @@ export class HeaderComponent {
       .subscribe(
         (response: any) => {
 
-          if (response?.status && Array.isArray(response.data?.userData)) {
-            this.filteredUsers = response.data.userData;
+          if (response?.status && Array.isArray(response.data?.userData?.users)) {
+            this.filteredUsers = response.data.userData.users;
           } else {
             this.filteredUsers = [];
           }

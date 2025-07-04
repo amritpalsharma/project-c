@@ -65,12 +65,21 @@
 
             <div class="dropdown-wrapper" *ngIf="editableId === transfer.id">
               <ng-container *ngIf="!transfer.team_from_manual">
-                <select class="form-control dark-form-select-bg h-auto py-1 px-2"
+                <!-- <select class="form-control dark-form-select-bg h-auto py-1 px-2"
                   (change)="onSelectChange($event, 'team_from')">
                   <option *ngFor="let team of teams" [selected]="team.id === transfer.team_from" [value]="team.id">
                     {{ team.team_name }}, {{ team.team_type }}
                   </option>
-                </select>
+                </select> -->
+                <input type="text" class="form-control performance-dark-bg coach-debt-input"
+                  (input)="suggestTeamsMovingFrom()" [(ngModel)]="movingFromsearch">
+                <div class="suggestion-wrap" *ngIf="filteredTeamsMovingFrom && filteredTeamsMovingFrom?.length > 0">
+                  <div *ngFor="let team of filteredTeamsMovingFrom" class="suggestion-list"
+                    (click)="selectTeam(team.id, team.team_name, team.team_type, 'moving_from')">
+                    <img *ngIf="team.team_club_logo_path" src="{{team.team_club_logo_path}}">
+                    {{team.team_name}} - {{team.team_type}}
+                  </div>
+                </div>
               </ng-container>
               <ng-container *ngIf="transfer.team_from_manual">
                 <input type="text" class="form-control dark-form-select-bg h-auto py-1 px-2"
@@ -94,12 +103,21 @@
             </span>
             <div class="dropdown-container" *ngIf="editableId === transfer.id">
               <ng-container *ngIf="!transfer.team_to_manual">
-                <select class="form-control h-auto py-1 px-2 dark-form-select-bg"
+                <!-- <select class="form-control h-auto py-1 px-2 dark-form-select-bg"
                   (change)="onSelectChange($event, 'team_to')" (keyup)="getAllTeams();" [(ngModel)]="searchKeyword">
                   <option *ngFor="let team of teams" [selected]="team.id === transfer.team_to" [value]="team.id">
                     {{ team.team_name }}, {{ team.team_type }}
                   </option>
-                </select>
+                </select> -->
+                <input type="text" class="form-control performance-dark-bg coach-debt-input"
+                  (input)="suggestTeamsMovingTo()" [(ngModel)]="movingTosearch">
+                <div class="suggestion-wrap" *ngIf="filteredTeamsMovingTo && filteredTeamsMovingTo?.length > 0">
+                  <div *ngFor="let team of filteredTeamsMovingTo" class="suggestion-list"
+                    (click)="selectTeam(team.id, team.team_name, team.team_type, 'moving_to')">
+                    <img *ngIf="team.team_club_logo_path" src="{{team.team_club_logo_path}}">
+                    {{team.team_name}} - {{team.team_type}}
+                  </div>
+                </div>
               </ng-container>
               <ng-container *ngIf="transfer.team_to_manual">
                 <input type="text" class="form-control dark-form-select-bg h-auto py-1 px-2"

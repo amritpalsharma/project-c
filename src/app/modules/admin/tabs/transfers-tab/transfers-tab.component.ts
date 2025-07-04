@@ -31,6 +31,8 @@ export class TransfersTabComponent {
     date_of_transfer: ""
   }
   seasons: any = [];
+  movingTosearch: string = '';
+  movingFromsearch: string = '';
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
@@ -47,6 +49,7 @@ export class TransfersTabComponent {
       this.getUserTransfers(this.userId);
     });
     this.getSeasonsOptions();
+    // this.getAllTeams();
   }
 
   getSeasonsOptions() {
@@ -120,10 +123,10 @@ export class TransfersTabComponent {
   // }
   searchKeyword: string = '';
   getAllTeams() {
-    if (this.searchKeyword.length < 2) {
-      return;
-    }
-    this.userService.searchTeams(this.searchKeyword).subscribe((response) => {
+    // if (this.searchKeyword.length < 2) {
+    //   return;
+    // }
+    this.userService.getAllTeams().subscribe((response) => {
       if (response && response.status && response.data && response.data.teams) {
         this.teams = response.data.teams;
         // console.log(this.teams)
@@ -132,10 +135,21 @@ export class TransfersTabComponent {
   }
 
   editPerformance(performanceId: any) {
-    // this.getAllTeams();
+
     this.editableId = performanceId;
     let index = this.userTransfers.findIndex((x: any) => x.id == performanceId);
     let currentRow = this.userTransfers[index];
+    console.log('currentRow',currentRow)
+    if (currentRow.team_name_to && currentRow.team_name_to != '') {
+      this.movingTosearch = currentRow.team_name_to;
+    }
+
+    this.movingFromsearch = '';
+
+    if (currentRow.team_name_from && currentRow.team_name_from != '') {
+      this.movingFromsearch = currentRow.team_name_from;
+    }
+
     this.defaultDate = currentRow.date_of_transfer;
     this.dataTOBeUpdated = {
       team_from: currentRow.team_from,
@@ -190,10 +204,49 @@ export class TransfersTabComponent {
     return [...this.seasons].reverse(); // this avoids mutating original array
   }
   selectedTeam: any;
-  selectTeam(team: any) {
-    this.selectedTeam = team.team_name + ' - ' + team.team_type;
-    console.log('Selected team:', this.selectedTeam); // This will log the full selected team object
-    this.teams = [];
+  // selectTeam(team: any) {
+  //   this.selectedTeam = team.team_name + ' - ' + team.team_type;
+  //   console.log('Selected team:', this.selectedTeam); // This will log the full selected team object
+  //   this.teams = [];
+  // }
+
+  filteredTeams: any;
+  filteredTeamsMovingTo: any;
+  filteredTeamsMovingFrom: any;
+  suggestTeamsMovingTo() {
+    this.suggestTeams(this.movingTosearch, 'moving_to');
+  }
+  suggestTeamsMovingFrom() {
+    this.suggestTeams(this.movingFromsearch, 'moving_from');
+  }
+  suggestTeams(keyword: any, search_for: string): void {
+    // let inputElement = event.target as HTMLInputElement;
+    // let keyword = inputElement.value;
+    if (keyword.length < 2) {
+      return;
+    }
+    this.userService.searchTeams(keyword).subscribe((response) => {
+      if (response && response.status && response.data && response.data.teams) {
+        if (search_for == 'moving_to') {
+          this.filteredTeamsMovingTo = response.data.teams;
+        } else if (search_for == 'moving_from') {
+          this.filteredTeamsMovingFrom = response.data.teams;
+        }
+      }
+    });
+  }
+  inputValue: string = '';
+  selectTeam(teamId: any, name: any, country: any, type: string) {
+    if (type == 'moving_to') {
+    this.updateRow('team_id', teamId);
+    }
+
+    if (type == 'moving_from') {
+
+    }
+    // this.inputValue = name + ", " + country;
+    this.updateRow('team_id', teamId);
+    // this.filteredTeams = [];
   }
 
 }
