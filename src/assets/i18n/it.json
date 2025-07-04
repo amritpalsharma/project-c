@@ -1497,7 +1497,7 @@
   "managePaymentBtnTxt": "Gestisci pagamenti",
   "managePaymentBtnTxtBelowTxt": "Riprova pagamento / Aggiorna dati carta",
   "linkTxt": "Link",
-  "memberShipDetailTxt": "Se lo stato della transazione è \"Aperto\" da più di 1 giorno o \"Fallito\", fai clic sul pulsante \"Gestisci pagamenti\" per intraprendere le azioni necessarie.",
+  "memberShipDetailTxt": "Se lo stato della transazione resta su \"In sospeso\" per più di un giorno o risulta \"Fallita\", clicca sul pulsante \"Gestisci pagamenti\" per agire di conseguenza.",
   "premiumPlanForTalent": "Per Talenti",
   "men": "Uomini",
   "women": "Donne",

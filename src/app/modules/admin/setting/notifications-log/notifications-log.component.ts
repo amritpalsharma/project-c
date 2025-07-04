@@ -141,7 +141,7 @@ export class NotificationsLogComponent {
       if (role === 'club representator') {
         role = 'club';
       }
-      this.router.navigate([`/view/${role}`, notification.senderId]);
+      this.router.navigate([`/admin/${role}`, notification.senderId]);
     }
 
   }
@@ -256,11 +256,11 @@ export class NotificationsLogComponent {
   //   return formattedDate;
   // }
 
-  formatDateTime(datetime: string) {
-    // convertAdminDateTime
-    let formattedDate = this.adminHelper.getSwitzerlandTime(datetime);
-    return formattedDate;
-  }
+  // formatDateTime(datetime: string) {
+  //   // convertAdminDateTime
+  //   let formattedDate = this.adminHelper.getSwitzerlandTime(datetime);
+  //   return formattedDate;
+  // }
 
 
   getJsonTranslations() {

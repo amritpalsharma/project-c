@@ -1445,7 +1445,7 @@
   "managePaymentBtnTxt": "Hantera betalningar",
   "managePaymentBtnTxtBelowTxt": "Försök igen med betalning / Uppdatera kortuppgifter",
   "linkTxt": "Länk",
-  "memberShipDetailTxt": "Om transaktionsstatus är \"Öppen\" i mer än 1 dag eller \"Misslyckad\", klicka på knappen \"Hantera betalningar\" för att vidta nödvändiga åtgärder.",
+  "memberShipDetailTxt": "Om transaktionsstatus är \"Öppen\" i mer än 1 dag eller \"Misslyckades\", klicka på knappen \"Hantera betalningar\" för att vidta lämpliga åtgärder.",
   "premiumPlanForTalent": "För Talanger",
   "men": "Män",
   "women": "Kvinnor",

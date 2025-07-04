@@ -76,8 +76,8 @@
                 <th mat-header-cell *matHeaderCellDef> {{'dateTime' | translate}}
                     <!-- <small><i class="fas fa-sort"></i> </small>   -->
                 </th>
-                <td mat-cell *matCellDef="let element"> {{ formatDateTime(element.time) }}</td>
-                <!-- <td mat-cell *matCellDef="let element"> {{ element.time | date: 'dd.MM.yyyy hh:mm a' }}</td> -->
+                <!-- <td mat-cell *matCellDef="let element"> {{ formatDateTime(element.time) }}</td> -->
+                <td mat-cell *matCellDef="let element"> {{ element.time | date: 'dd.MM.yyyy HH:mm' }}</td>
             </ng-container>
 
 

@@ -24,6 +24,34 @@
   font-size: 14px;
 }
 
+.drag-drop-container{
+  border: 2px dashed #999999;
+}
+
+.unsupported-file{
+  border: 2px dashed red !important;
+  border-color: red !important;
+  // background-color: red !important;
+
+  .upload-img-btn{
+    opacity: 0;
+  }
+
+  p{
+    color: red;
+  }
+}
+
+// .large-file{
+//   color: red !important;
+// }
+
+.drag-drop-container.dragover {
+  border: 2px dashed #3f51b5 !important;
+  border-color: #3f51b5 !important;
+  background-color: #f0f8ff;
+}
+
 .code-text {
   color: #000;
 }
@@ -486,11 +514,19 @@ input[type="number"] {
 }
 
 ::ng-deep .emptyRequiredField {
-  border: 2px solid red !important;
+  // border: 2px solid red !important;
+  border-color: red !important;
 }
 
 ::ng-deep .dark-theme .emptyRequiredField {
-  border: 2px solid red !important;
+  // border: 2px solid red !important;
+  border-color: red !important;
+}
+
+.label-disabled{
+  pointer-events: none; /* Prevent clicks */
+  opacity: 0.5;         /* Make it look disabled */
+  cursor: not-allowed;
 }
 
 ::ng-deep {

@@ -181,11 +181,11 @@ export class ActivityLogComponent {
   //   return formattedDate;
   // }
 
-  formatDateTime(datetime: string) {
-    // convertAdminDateTime
-    let formattedDate = this.adminHelper.getSwitzerlandTime(datetime);
-    return formattedDate;
-  }
+  // formatDateTime(datetime: string) {
+  //   // convertAdminDateTime
+  //   let formattedDate = this.adminHelper.getSwitzerlandTime(datetime);
+  //   return formattedDate;
+  // }
 
   getJsonTranslations() {
     this.translateService.get(['selectActivityFirst']).subscribe((translations) => {
