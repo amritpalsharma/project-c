@@ -199,8 +199,13 @@ export class UserService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
-
-    return this.http.post<any>(`${this.apiUrl2}/edit-performance-detail/${performanceId}`, params, { headers });
+    let lang_id = localStorage.getItem('lang_id');
+    console.info('recivedDataInService', params);
+    if (params?.type == 'manual') {
+      return this.http.post<any>(`${this.apiUrl2}/edit-performance-detail-manual/${performanceId}/${lang_id}`, params, { headers });
+    } else {
+      return this.http.post<any>(`${this.apiUrl2}/edit-performance-detail/${performanceId}/${lang_id}`, params, { headers });
+    }
   }
 
   updateTransfer(transferId: any, params: any): Observable<any> {
@@ -648,6 +653,23 @@ export class UserService {
         throw error;
       })
     );
+  }
+
+  exploreSearchUser(query: string): Observable<any[]> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.userToken}`
+    });
+    return this.http.get<any[]>(`${this.apiUrl}users-frontend-with-login?search=${query}`, { headers }).pipe(
+      catchError((error) => {
+        console.error('Error occurred during user search:', error);
+        throw error;
+      })
+    );
+
+    // return this.http.get <any[]{ status: boolean, message: string, data: { } }> (
+    //   `${this.apiUrl}users-frontend-with-login`,
+    //   { params: queryParams, headers } // Combine params and headers here
+    // );
   }
   // Function By amrit
   getUsersAll(data: any = {}): Observable<{ status: boolean, message: string, data: { userData: User[], totalCount: number } }> {

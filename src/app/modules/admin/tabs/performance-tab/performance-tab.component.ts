@@ -25,12 +25,13 @@ export class PerformanceTabComponent {
     player_age: ""
   }
 
-  inputValue: any = "";
+  inputValue: string = "";
+  theme: string = localStorage.getItem('theme') || 'dark';
   // from_date:2021-01-01
   //   to_date:2022-01-01
   constructor(
-    private route: ActivatedRoute, 
-    private userService: UserService, 
+    private route: ActivatedRoute,
+    private userService: UserService,
     private router: Router,
     private translate: TranslateService
   ) { }
@@ -55,7 +56,8 @@ export class PerformanceTabComponent {
       this.userService.getPerformanceData(userId).subscribe((response) => {
         if (response && response.status && response.data && response.data.performanceDetail) {
           this.editableId = "";
-          this.performances = response.data.performanceDetail;
+          // this.performances = response.data.performanceDetail;
+          this.performances = response.data.newPerformanceDetail;
           this.isLoading = false;
         } else {
           this.isLoading = false;
@@ -78,20 +80,38 @@ export class PerformanceTabComponent {
 
   editPerformance(performanceId: any) {
     console.log(performanceId)
-    this.inputValue = "";
+    // console.log('this.inputValue', this.inputValue)
+
     this.editableId = performanceId;
     let index = this.performances.findIndex((x: any) => x.id == performanceId);
     let currentRow = this.performances[index];
-    console.log(currentRow, 'current-row');
-    this.dataTOBeUpdated = {
-      coach: currentRow.coach,
-      team_id: currentRow.team_id,
-      matches: currentRow.matches,
-      goals: currentRow.goals,
-      session: currentRow.session,
-      player_age: currentRow.player_age
+    console.log('currentRow', currentRow);
+    if (currentRow?.type == 'manual') {
+      this.dataTOBeUpdated = {
+        noClub: true,
+        coach: currentRow.coach,
+        team_name: currentRow.team_name,
+        matches: currentRow.matches,
+        goals: currentRow.goals,
+        session: currentRow.session,
+        player_age: currentRow.player_age,
+        team_country_id: currentRow.team_country_id,
+        type: "manual"
+      }
+    } else {
+      this.dataTOBeUpdated = {
+        coach: currentRow.coach,
+        team_id: currentRow.team_id,
+        matches: currentRow.matches,
+        goals: currentRow.goals,
+        session: currentRow.session,
+        player_age: currentRow.player_age
+      }
     }
-    this.inputValue = currentRow.team_name+' - '+currentRow.team_type;
+
+    this.inputValue = currentRow.team_name + (currentRow?.team_type ? ' - ' + currentRow?.team_type : '');
+
+    // this.inputValue = currentRow.team_name + currentRow?.team_type ? ' - ' + currentRow?.team_type : '';
   }
 
 
@@ -100,7 +120,8 @@ export class PerformanceTabComponent {
     // let index = this.performances.findIndex((x:any) => x.id == performanceId);
 
     // let teamInfo = this.getUpdatedTeamInfoToDisplay(this.dataTOBeUpdated.team_id)
-    // let updatedIndexData = this.dataTOBeUpdated;
+    let updatedIndexData = this.dataTOBeUpdated;
+    console.info('updatedIndexData', updatedIndexData);
     // updatedIndexData.id = performanceId;
 
 
@@ -108,6 +129,10 @@ export class PerformanceTabComponent {
 
     // console.log(JSON.stringify(this.performances))
     // this.editableId = "";
+    let index = this.performances.findIndex((x: any) => x.id == performanceId);
+    let currentRow = this.performances[index];
+    console.info('currentRow', currentRow);
+
     this.userService.updatePerformance(performanceId, this.dataTOBeUpdated).subscribe((response) => {
       // console.log(response)
       // this.editableId = "";
@@ -116,6 +141,7 @@ export class PerformanceTabComponent {
         this.getUserPerformance(this.userId);
       }
     });
+
   }
 
   onSelectChange(event: Event): void {
@@ -123,9 +149,49 @@ export class PerformanceTabComponent {
     this.updateRow('team_id', Number(selectElement.value));
   }
 
+  onSelectChangeSession(event: Event): void {
+    const selectElement = event.target as HTMLSelectElement;
+    this.updateRow('session', Number(selectElement.value));
+  }
+
+  get reversedSeasons(): string[] {
+    let sessionArr = [
+      '25/26',
+      '24/25',
+      '23/24',
+      '22/23',
+      '21/22',
+      '20/21',
+      '19/20',
+      '18/19',
+      '17/18',
+      '16/17',
+      '15/16',
+      '14/15',
+      '13/14',
+      '12/13',
+      '11/12',
+      '10/11',
+      '09/10',
+      '08/09',
+      '07/08',
+      '06/07',
+      '05/06',
+      '04/05',
+      '03/04',
+      '02/03',
+      '01/02'
+    ];
+    return sessionArr;
+  }
+
   onInputChange(event: Event, key: string): void {
-    let inputElement = event.target as HTMLInputElement;
-    this.updateRow(key, inputElement.value);
+    if (key == 'session') {
+      this.updateRow(key, event);
+    } else {
+      let inputElement = event.target as HTMLInputElement;
+      this.updateRow(key, inputElement.value);
+    }
   }
 
   updateRow(key: any, value: any) {
@@ -144,8 +210,8 @@ export class PerformanceTabComponent {
   }
 
   selectTeam(teamId: any, name: any, country: any) {
-    console.log(teamId, name, country, 'testing');
-    this.inputValue = name + ", " + country;
+    // console.log(teamId, name, country, 'testing');
+    this.inputValue = name + " - " + country;
     this.updateRow('team_id', teamId);
     this.filteredTeams = [];
   }

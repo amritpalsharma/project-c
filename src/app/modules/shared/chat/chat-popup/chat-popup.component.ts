@@ -8,6 +8,9 @@ import { UserService } from '../../../../services/user.service';
 import { TalentService } from '../../../../services/talent.service';
 import { ChangeDetectorRef } from '@angular/core';
 
+import { Subject, Subscription } from 'rxjs';
+import { of } from 'rxjs';
+import { debounceTime, distinctUntilChanged, switchMap, catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'shared-chat-popup',
@@ -24,6 +27,8 @@ export class ChatPopupComponent {
   @ViewChild("userInput") userInput!: ElementRef;
   theme: string = localStorage.getItem('theme') || 'light';
   classForAutoList: string = 'd-none';
+  private searchSubject = new Subject<string>();
+  private searchSubscription: Subscription | undefined;
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -34,8 +39,32 @@ export class ChatPopupComponent {
   ) { }
 
   ngOnInit(): void {
-    this.fetchUsers();
+    // this.fetchUsers();
     this.theme = localStorage.getItem('theme') + '';
+
+    // New code for search 
+    this.searchSubscription = this.searchSubject.pipe(
+      debounceTime(300), // Wait 300ms after user stops typing
+      distinctUntilChanged(), // Only emit if the value changed
+      switchMap((searchText: string) =>
+        this.userService.exploreSearchUser(searchText).pipe(
+          catchError((error) => {
+            console.error('API Error:', error);
+            return of({ status: false, data: { userData: { users: [] } } }); // prevent stream break
+          })
+        )
+      )
+    ).subscribe((response: any) => {
+      if (response?.status && response.data?.userData?.users) {
+        this.allUsers = response.data.userData.users;
+        // this.filteredUsers = [...this.allUsers];
+        this.filteredUsers = this.allUsers;
+      } else {
+        this.allUsers = [];
+        this.filteredUsers = [];
+      }
+    });
+
   }
 
   ngAfterViewInit() {
@@ -144,6 +173,21 @@ export class ChatPopupComponent {
     } else {
       return false;
     }
+  }
+
+
+  onSearchChange(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    const query = inputElement.value;
+    if (query.length > 1) {
+      this.searchSubject.next(query);
+      this.classForAutoList = '';
+    } else {
+      this.classForAutoList = 'd-none';
+    }
+  }
+  ngOnDestroy(): void {
+    this.searchSubscription?.unsubscribe();
   }
 
 }

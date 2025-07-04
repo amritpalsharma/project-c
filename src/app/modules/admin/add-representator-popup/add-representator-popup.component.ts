@@ -19,6 +19,7 @@ export class AddRepresentatorPopupComponent {
   userId: any = ""
   email: any = "";
   role: any = "";
+  theme: string = localStorage.getItem('theme') || 'dark';
 
   firstName: any = "";
   lastName: any = "";
@@ -179,7 +180,7 @@ export class AddRepresentatorPopupComponent {
     params.site_role = this.role;
     params.lang = localStorage.getItem('lang_id');
     params.verification_link = verification_link;
-    
+
     this.userService.sendInviteToRepresentator(this.userId, params).subscribe((response) => {
       if (response && response.status) {
         this.dialogRef.close({
