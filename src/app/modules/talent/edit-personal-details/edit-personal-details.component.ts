@@ -102,6 +102,8 @@ export class EditPersonalDetailsComponent implements OnInit {
   custom_club: string = '';
   custom_team: string = '';
   isCustomClubTeam: boolean = false;
+
+  team_type: string = 'm';
   constructor(
     public dialogRef: MatDialogRef<EditPersonalDetailsComponent>,
     private talentService: TalentService,
@@ -156,17 +158,6 @@ export class EditPersonalDetailsComponent implements OnInit {
         this.user?.meta?.contract_end ? new Date(this.user.meta.contract_end) : null
       );
 
-
-
-      // this.currentClubId = this.user.meta.pre_club_id || '';
-      // this.loadTeams(this.currentClubId);
-      // console.info('Function to get times is called');
-      // this.talentService.getClubTeams(this.currentClubId).subscribe((response) => {
-      //   if(response.status && response.data.teams != '' && response.data.teams != undefined){
-      //     this.teamsArr = response.data.teams;
-      //   }
-      //   console.info('Recived Teams ',this.teamsArr);
-      // });
       this.talentService.getClubTeams(this.currentClubId).subscribe((response) => {
         if (response.status && Array.isArray(response.data.teams) && response.data.teams.length > 0) {
           this.teamsArr = [...response.data.teams]; // Ensure a new reference for change detection
@@ -255,6 +246,11 @@ export class EditPersonalDetailsComponent implements OnInit {
 
   onCancel(): void {
     this.dialogRef.close();
+  }
+
+  setTeamType(teamType: string) {
+    this.team_type = teamType;
+    this.loadTeams(this.currentClubId, this.team_type)
   }
 
   getClubsForPlayer() {
@@ -406,8 +402,9 @@ export class EditPersonalDetailsComponent implements OnInit {
 
     // Enable loading state and notify user
     this.toastr.info(this.Processing, this.pleaseWait, { disableTimeOut: true });
-
+    
     const formData = new FormData();
+    formData.append('user[team_type]', this.team_type);
 
     // Handling `current_club` and `pre_club_id`
     let index = this.playerClubsListing.findIndex((x: any) => x.id === this.currentClubId);
@@ -467,13 +464,11 @@ export class EditPersonalDetailsComponent implements OnInit {
       formData.append('user[custom_team]', '');
       formData.append('user[custom_club_country]', '');
     }
-    if(this.isCustomClubTeam === true){
+    if (this.isCustomClubTeam === true) {
       formData.append('user[have_custom_club]', '1');
-    }else{
+    } else {
       formData.append('user[have_custom_club]', '0');
     }
-    // const team = this.teamsArr.find(team => team.id === this.CurrentTeamId);
-    // console.log('Selected Team Id is', this.CurrentTeamId, ' and Team Type is ', team.team_type);
 
     // API call for submitting form data
     this.talentService.updateUserProfile(formData).subscribe(
@@ -544,17 +539,19 @@ export class EditPersonalDetailsComponent implements OnInit {
   }
   clubUpdated() {
     console.warn('Function called');
-    this.loadTeams(this.currentClubId)
+    this.loadTeams(this.currentClubId, this.team_type)
     this.CurrentTeamId = 0;
   }
 
-  loadTeams(club_id: any): void {
-
-    this.talentService.getClubTeams(club_id).subscribe(
+  loadTeams(club_id: any, teamType: string): void {
+    this.teamsArr = [];
+    this.talentService.getClubTeamsByGroup(club_id, teamType).subscribe(
       (response: any) => {
         if (response.status) {
           this.teamsArr = response.data.teams;
           this.CurrentTeamId = 0;
+
+          this.cdr.detectChanges();
           // this.CurrentTeamId = this.FirstTimeSelectedTeam;
         } else {
           this.teamsArr = [];

@@ -62,14 +62,15 @@
       <div class="row" *ngIf="!isHideClubSection && !isCustomClubTeam">
 
         <!-- Current Club -->
-        <div class="form-group col-lg-6 position_inputs">
+        <div class="form-group col-lg-4 position_inputs">
           <label for="currentClub">{{'currentClub' | translate}}:</label>
 
           <mat-select [(ngModel)]="currentClubId" class="form-select" id="currentClub" name="currentClub"
             (selectionChange)="clubUpdated()" appearance="fill">
             <div>
-              <input  (keydown)="handleKeydown($event)"  (keyup)="filterClubs($event)" placeholder="{{'search' | translate}}" [(ngModel)]="clubSearch"
-                name="club_search" class="form-control backgroundGray" />
+              <input (keydown)="handleKeydown($event)" (keyup)="filterClubs($event)"
+                placeholder="{{'search' | translate}}" [(ngModel)]="clubSearch" name="club_search"
+                class="form-control backgroundGray" />
             </div>
             <ng-container *ngIf="clubSearch == ''">
               <mat-option *ngFor="let club of playerClubsListing" [value]="club.id">
@@ -84,15 +85,42 @@
           </mat-select>
         </div>
 
+        <!-- Team Type Men & Women -->
+        <div class="form-group-1 col-lg-4">
+          <label class="form-label">{{ 'team' | translate }} </label>
+          <div class="row align-items-center">
+            <div class="col-lg-12">
+              <div class="gen_radio gap-3">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="team_type" id="male" value="male"
+                    (change)="setTeamType('m')" [checked]="team_type == 'm'" />
+                  <label class="form-check-label ms-1" for="male">
+                    <span class="font-w400">{{'men' | translate}}</span>
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="team_type" id="female" value="female"
+                    (change)="setTeamType('w')" [checked]="team_type == 'w'" />
+                  <label class="form-check-label ms-1" for="female">
+                    <span class="font-w400">{{'women' | translate}}</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <!--  -->
+          </div>
+        </div>
+        <!-- Team Type Men & Women -->
         <!-- Team According to club -->
-        <div class="form-group col-lg-6 position_inputs">
-          <label for="team_id">{{'team' | translate}}:</label>
+        <div class="form-group col-lg-4 position_inputs">
+          <!-- <label for="team_id">{{'team' | translate}}:</label> -->
+          <label for="team_id">&nbsp;</label>
           <!-- <pre>{{teamsArr | json}}</pre> -->
           <!-- <h3>Selected {{CurrentTeamId}}</h3> -->
 
           <mat-select [(ngModel)]="CurrentTeamId" class="form-select" [ngClass]="{ 'error-border': isTeamSelectError }"
             id="team_id" name="team_id" required>
-            <mat-option [value]="0" disabled>{{ 'select' | translate }}</mat-option>
+            <mat-option [value]="0">{{ 'select' | translate }}</mat-option>
             <mat-option *ngFor="let teamArr of teamsArr" [value]="teamArr.id">
               {{teamArr.team_name }} - {{teamArr.team_type}}
             </mat-option>

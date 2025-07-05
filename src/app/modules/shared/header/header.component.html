@@ -44,7 +44,7 @@
         <input matInput placeholder="{{ 'search' | translate }}" [formControl]="searchControl" [matAutocomplete]="auto"
           class="form-control w-100" [class.disabled]="!isUserVerified"
           (click)="isUserVerified ? showVerificationPopup(true) : showVerificationPopup(false)"
-          [readonly]="!isUserVerified && !isLoading" />
+          [readonly]="!isUserVerified && !isLoading" [disabled]="isLoading" />
 
         <mat-autocomplete #auto="matAutocomplete" class="suggestion-list" [ngClass]="{'d-none':!filteredUsers}"
           [displayWith]="displayUserFn" (optionSelected)="selectUser($event.option.value)">
@@ -59,18 +59,14 @@
             <!-- <img *ngIf="user.role != 2" width="20" height="20" class="img-list me-2"
               [src]="user?.profile_image ? user?.profile_image : '../../../../assets/images/default/talent-profile-default.png'" /> -->
 
-            <img *ngIf="user.role != 2" width="20" height="20" class="img-list me-2"
-              [src]="user?.meta?.profile_image ? user?.meta?.profile_image : '../../../../assets/images/default/talent-profile-default.png'" />
+            <img *ngIf="user.role_id != 2" width="20" height="20" class="img-list me-2"
+              [src]="user?.meta?.profile_image ? 'https://api.socceryou.ch/uploads/'+user?.meta?.profile_image : '../../../../assets/images/default/talent-profile-default.png'" />
 
             <!-- Club -->
-            <img *ngIf="user.role == 2" width="20" height="20" class="img-list me-2"
+            <img *ngIf="user.role_id == 2" width="20" height="20" class="img-list me-2"
               [src]="user?.current_club_logo ? 'https://api.socceryou.ch/uploads/' + user?.current_club_logo : '../../../../assets/images/default/talent-profile-default.png'" />
-
-            <!-- <span *ngIf="!UserName">{{ user.first_name }} {{ user.last_name }}</span>
-            <span *ngIf="UserName">{{ UserName }}</span> -->
-            <!-- <span *ngIf="user.role == 2">{{ user?.club_name }}</span> -->
-            <span *ngIf="user.role == 2">{{ user?.club_name }}</span>
-            <span *ngIf="user.role != 2">{{ user.first_name }} {{ user.last_name }}</span>
+            <span *ngIf="user.role_id == 2">{{ user?.current_club_name }}</span>
+            <span *ngIf="user.role_id != 2">{{ user.first_name }} {{ user.last_name }}</span>
           </mat-option>
 
           <!-- No results -->

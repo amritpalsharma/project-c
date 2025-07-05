@@ -855,6 +855,7 @@ export class HeaderComponent implements OnInit {
       company_name: this.companyName,
       team_id: this.team_id,
       country: this.selectedCountry,
+      team_type: this.gender,
       // company_name:this.selectedCountry
     };
     if (this.privacyPolicy === false) {

@@ -687,8 +687,31 @@
                         </svg> -->
                     </div>
                 </div>
-
-                <div class="col-12 form-group mb-3" style="display: none;"
+                <div class="col-12 col-md-6 form-groups mb-3">
+                    <label class="form-label">{{ 'team' | translate }} </label>
+                    <div class="row align-items-center">
+                        <div class="col-lg-12">
+                            <div class="gen_radio gap-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="team_type" id="male" value="male"
+                                        (change)="setTeamType('m')" [checked]="team_type == 'm'" />
+                                    <label class="form-check-label ms-1" for="male">
+                                        <span class="font-w400">{{'men' | translate}}</span>
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="team_type" id="female"
+                                        value="female" (change)="setTeamType('w')" [checked]="team_type == 'w'" />
+                                    <label class="form-check-label ms-1" for="female">
+                                        <span class="font-w400">{{'women' | translate}}</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <!--  -->
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 form-group mb-3" style="display: none;"
                     [ngClass]="{'showTeamsDropdown': showTeamsDropdown}">
                     <p class="code-text">{{ 'team' | translate }}</p>
                     <div class="btn-group">
@@ -812,7 +835,7 @@
                             <mat-option [value]="option.id">{{option.position}}</mat-option>
                             }
                         </mat-select>
-                        
+
                     </div>
                 </div>
                 <div class="col-12 social-media-section">

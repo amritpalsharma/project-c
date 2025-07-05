@@ -228,38 +228,7 @@ export class HeaderComponent {
     });
 
 
-    // this.searchControl.valueChanges
-    //   .pipe(
-    //     filter((value): value is string => value !== null), // Exclude null or empty strings
-    //     // filter((value): value is string => value !== null && value.trim().length > 0), // removed by amrit
-    //     debounceTime(300),
-    //     distinctUntilChanged(),
-    //     tap((value: any) => {
-    //       if (!value?.trim()) {
-    //         this.filteredUsers = []; // Clear search results if input is empty
-    //       }
-    //     }),
-    //     switchMap((searchText: string) => {
-    //       this.isLoading = true;
-    //       return this.userService.searchUser(searchText).pipe(
-    //         finalize(() => (this.isLoading = false))
-    //       );
-    //     })
-    //   )
-    //   .subscribe(
-    //     (response: any) => {
-    //       if (response && response.status && response.data?.userData) {
-    //         this.filteredUsers = response.data.userData;
-    //       } else {
-    //         console.error('Invalid API response structure:', response);
-    //         this.filteredUsers = [];
-    //       }
-    //     },
-    //     (error) => {
-    //       console.error('Error fetching users:', error);
-    //       this.filteredUsers = [];
-    //     }
-    //   );
+
 
     //  Update code by amrit for search
     // this is used in ngOnit Now 
@@ -327,7 +296,17 @@ export class HeaderComponent {
         console.error('Invalid API response structure:', response);
       }
     });
+    let current_lang = localStorage.getItem('lang');;
+    if (current_lang == 'en' || current_lang == 'de') {
 
+    } else {
+      console.info('Current Selected Lang is ' + current_lang + ' Now set as de default for admin only')
+      current_lang = 'de'; // by default de selected
+      localStorage.setItem('lang', 'de');
+      localStorage.setItem('lang_id', '2');
+      this.translateService.use('de');
+      this.language.flag = 'Germany.svg';
+    }
 
   }
 

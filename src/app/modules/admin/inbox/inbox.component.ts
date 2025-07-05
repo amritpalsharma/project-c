@@ -123,32 +123,64 @@ export class InboxComponent {
     })
       .afterClosed()
       .subscribe(users => {
+        if (this.users?.length > 0) {
+          for (let user of users.data) {
+            // let full_name = '';
+            // let currentRole = user?.role_name.toLowerCase();
+            // if (typeof user?.role_name !== undefined && currentRole == 'club' || currentRole == 'clube' || currentRole == 'klub' || currentRole == 'klubb' && user?.current_club_logo != '') {
+            //   user.meta.profile_image_path = 'https://api.socceryou.ch/uploads/' + user?.current_club_logo;
+            // }
+            // if (typeof user?.meta?.profile_image_path !== undefined && user?.meta?.profile_image_path != '') {
+            //   user.profile_image_path = user?.meta?.profile_image_path;
+            // }
 
-        for (let user of users.data) {
-          let full_name = '';
-          let currentRole = user?.role_name.toLowerCase();
-          if (typeof user?.role_name !== undefined && currentRole == 'club' || currentRole == 'clube' || currentRole == 'klub' || currentRole == 'klubb' && user?.current_club_logo != '') {
-            user.meta.profile_image_path = 'https://api.socceryou.ch/uploads/' + user?.current_club_logo;
-          }
-          if (typeof user?.meta?.profile_image_path !== undefined && user?.meta?.profile_image_path != '') {
-            user.profile_image_path = user?.meta?.profile_image_path;
+            // if (typeof user?.first_name !== undefined && user?.last_name != '') {
+            //   full_name = user?.first_name + ' ' + user?.last_name;
+            // }
+            // this.users.push({
+            //   id: user.id,
+            //   name: full_name,
+            //   email: user.email,
+            //   photoUrl: user.profile_image_path,
+            // })
+
+            console.log('user From Chat Popup', user);
+            let full_name = 'Full Name';
+            let currentRole = user?.role_name.toLowerCase();
+            if (typeof user?.first_name !== undefined && user?.last_name != '') {
+              full_name = user?.first_name + ' ' + user?.last_name;
+            }
+            if (typeof user?.role_name !== undefined && currentRole == 'club' || currentRole == 'clube' || currentRole == 'klub' || currentRole == 'klubb' && user?.current_club_logo != '') {
+              user.meta.profile_image_path = 'https://api.socceryou.ch/uploads/' + user?.current_club_logo;
+              // full_name = 
+              if (user?.current_club_name && user?.current_club_name != '') {
+                full_name = user.current_club_name;
+              }
+            }
+            if (typeof user?.meta?.profile_image_path !== undefined && user?.meta?.profile_image_path != '') {
+              user.profile_image_path = user?.meta?.profile_image_path;
+            }
+
+
+
+            // console.log('Modified User as ', user);
+            this.users.push({
+              id: user.id,
+              name: full_name,
+              email: user.username,
+              photoUrl: user.profile_image_path,
+            })
           }
 
-          if (typeof user?.first_name !== undefined && user?.last_name != '') {
-            full_name = user?.first_name + ' ' + user?.last_name;
+          if (this.users.length == 1) {
+            let chatWithUser = this.users[0];
+            this.talkService.createOneOnOneConversation(chatWithUser.id, chatWithUser.name, chatWithUser.email, chatWithUser.photoUrl);
+          } else if (this.users.length > 1) {
+            this.startGroupChat();
           }
-          this.users.push({
-            id: user.id,
-            name: full_name,
-            email: user.email,
-            photoUrl: user.profile_image_path,
-          })
         }
-        if (this.users.length == 1) {
-          this.startOneOnOneChat(this.users[0]);
-        } else if (this.users.length > 1) {
-          this.startGroupChat();
-        }
+
+
         console.log('last users', this.users);
         //this.createGroup();
       });

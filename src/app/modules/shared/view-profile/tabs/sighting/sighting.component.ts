@@ -87,6 +87,9 @@ export class SightingComponent {
       // params.offset = page;
       // params.search = this.keyword;
       // params.limit = pageSize;
+      // params.whereClasue['status'] = 'active';
+      // params = "whereClasue['status']=active";
+      // params = 'view_profile_sight';
 
       this.userService.getClubSightings(this.userId, params).subscribe((response) => {
         if (response && response.status && response.data) {
@@ -98,7 +101,7 @@ export class SightingComponent {
           this.totalSightings = 0;
           this.sightings = [];
           this.isLoading = false;
-          console.error('Invalid API response structure:', response);
+          // console.error('Invalid API response structure:', response);
         }
       });
     } catch (error) {
@@ -145,7 +148,6 @@ export class SightingComponent {
     }
   }
 
-
   viewSight(id: any) {
     this.view = 'detail';
     this.isLoading = true;
@@ -167,7 +169,6 @@ export class SightingComponent {
       }
     });
   }
-
 
   backToSightings() {
     this.view = "listing";
@@ -196,7 +197,6 @@ export class SightingComponent {
         console.error('There was an error downloading the file:', error);
       });
   }
-
 
   getImageUrl(url: any) {
     if (url) {
