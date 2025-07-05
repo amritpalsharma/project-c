@@ -578,7 +578,7 @@
         </div>
         <div class="col-md-6 club_attacment_column">
           <div class="col_padding">
-            <h3 class="mb-3 text-size">{{ 'attachments' | translate }}</h3>
+            <h3 class="mb-3 text-size">{{ 'scoutingInformation2' | translate }}</h3>
             <div class="d-flex attach_delete_club mb-3 align-items-center" *ngFor="let item of attachments">
               <div class="attachment_box">
                 <span>
@@ -603,7 +603,12 @@
                       stroke="#787878" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                   </svg>
                 </a>
+
+
+                <!-- https://api.socceryou.ch/api/club/delete-sighting-attachment/21/2 -->
+
                 <a class="float-right mx-3 pointer {{currentLoggedInPermission}}" (click)="confirmDeleteAttachment(item.id)">
+                <!-- <a class="float-right mx-3 pointer {{currentLoggedInPermission}} tits" (click)="confirmSingleDeletion2(item.id)"> -->
                   <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                       d="M5.50065 17.0589C5.50065 18.0112 6.32565 18.7904 7.33398 18.7904H14.6673C15.6757 18.7904 16.5007 18.0112 16.5007 17.0589V6.66999H5.50065V17.0589ZM17.4173 4.07277H14.209L13.2923 3.20703H8.70898L7.79232 4.07277H4.58398V5.80425H17.4173V4.07277Z"

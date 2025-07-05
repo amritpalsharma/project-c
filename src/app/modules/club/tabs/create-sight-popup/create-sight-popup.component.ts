@@ -227,6 +227,12 @@ export class CreateSightPopupComponent implements AfterViewInit {
     });
   }
 
+  removeFile(index: any){
+    if (this.attachmentRows.length > 0) {
+      this.attachmentRows[index].file = '';
+    }
+  }
+
   removeRow(index: any): any {
     if (this.attachmentRows.length == 1) {
       this.attachmentRows[index].title = null;

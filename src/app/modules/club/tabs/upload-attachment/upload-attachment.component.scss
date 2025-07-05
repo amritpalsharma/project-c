@@ -360,23 +360,35 @@ input[type="number"] {
   margin-top: 0 !important;
 }
 
+.delete-file-upload {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 5;
+}
+
 .choose-file-box {
   span.w-100 {
     position: relative;
-    padding-left: 40px;
+    // padding-left: 40px;
+    padding-left: 25px;
     overflow: hidden;
     text-overflow: ellipsis;
-    padding-right: 10px;
+    padding-right: 40px;
+
     svg {
       position: absolute;
       left: 0;
     }
-    span.ps-2 {
+
+    span.ps-0 {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+    }
   }
-}
 }
 
 @media (min-width: 992px) {
@@ -387,7 +399,8 @@ input[type="number"] {
 
 @media (min-width: 2000px) {
 
-  .create-sight .cupen-btn,  label {
+  .create-sight .cupen-btn,
+  label {
     font-size: 20px !important;
   }
 
@@ -399,6 +412,7 @@ input[type="number"] {
     width: 50px !important;
     height: 61px !important;
     margin-top: 0 !important;
+
     svg {
       width: 20px !important;
     }
@@ -426,6 +440,7 @@ input[type="number"] {
     width: 60px !important;
     height: 71px !important;
     margin-top: 0 !important;
+
     svg {
       width: 25px !important;
     }
@@ -438,35 +453,38 @@ input[type="number"] {
 }
 
 ::ng-deep {
-.close_image {
-  position: absolute;
-  right: 15px;
-  top: 15px;
-  background: #58bc5c;
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  padding: 7px;
-  cursor: pointer;
-  svg {
+  .close_image {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    background: #58bc5c;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 7px;
+    cursor: pointer;
+
+    svg {
       path {
         fill: #fff;
       }
     }
-}
-.dark-theme {
-  .close_image {
-    background: #fff !important;
-    svg {
-      path {
-        fill: #072944 !important;
+  }
+
+  .dark-theme {
+    .close_image {
+      background: #fff !important;
+
+      svg {
+        path {
+          fill: #072944 !important;
+        }
       }
     }
   }
-}
 }
 
 ::ng-deep .cdk-overlay-pane.mat-mdc-dialog-panel {
@@ -501,10 +519,11 @@ input[type="number"] {
 ::ng-deep {
   @media (max-width: 575px) {
     .club_sighting_popup {
-        margin-top: 20px !important;
-        .dialog-actions {
-            margin-top: 0 !important;
-        }
+      margin-top: 20px !important;
+
+      .dialog-actions {
+        margin-top: 0 !important;
+      }
     }
   }
 }
