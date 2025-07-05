@@ -151,6 +151,8 @@ export class UserEditPopupComponent {
     // }
     if (this.data && this.data?.current_club_id) {
       this.playerClub = this.data?.current_club_id;
+      this.current_club = this.data?.current_club_id;
+      this.getClubTeamsByGroup(this.playerClub, this.team_type);
     }
 
     // if (this.data.meta && this.data.meta.current_club) {
@@ -163,9 +165,24 @@ export class UserEditPopupComponent {
 
   }
 
+  getClubTeamsByGroup(club_id: any, type: string) {
+    console.info('getClubTeamsByGroup called with club_id "'+club_id+'" and type "'+type+'"')
+    this.userService.getClubTeamsByGroupAndClubId(club_id, type).subscribe(
+      response => {
+        if (response.status) {
+          this.teamsLisitng = response.data.teams;
+          console.info('teamListing',this.teamsLisitng);
+        } else {
+          this.teamsLisitng = [];
+        }
+      }
+    )
+
+  }
+
   getTeamsByClub(clubId: any) {
     this.userService.searchTeamsAdmin(clubId).subscribe(
-    // this.userService.getTeamsByClub(clubId).subscribe(
+      // this.userService.getTeamsByClub(clubId).subscribe(
       response => {
         if (response.status) {
           this.teamsLisitng = response.data.teams;
@@ -242,7 +259,9 @@ export class UserEditPopupComponent {
             this.showTeamsDropdown = true;
             this.takenBy = this.playerClubsListing[index].taken_by;
             this.playerTeam = this.data.team_id;
-            this.getTeamsByClub(this.takenBy);
+            // this.getTeamsByClub(this.takenBy);
+            // this.current_club = this.playerTeam;
+            // this.getClubTeamsByGroup(this.current_club, this.team_type);
           }
           // this.playerClub = 10;
         } else {
@@ -396,6 +415,7 @@ export class UserEditPopupComponent {
 
     let formdata = new FormData();
 
+    formdata.append('user[team_type]', this.team_type);
 
     let index = this.playerClubsListing.findIndex((x: any) => x.id == this.playerClub)
     if (this.playerClubsListing[index].is_taken == "yes") {
@@ -461,13 +481,21 @@ export class UserEditPopupComponent {
     this.dialogRef.close();
   }
 
+  current_club: any;
   clubChange(event: any) {
-
     let index = this.playerClubsListing.findIndex((x: any) => x.id == this.playerClub)
-    console.info('Index',this.playerClubsListing[index])
+    console.info('Index', this.playerClubsListing[index])
     let clubId = this.playerClubsListing[index].id;
     if (clubId && clubId != '') {
-      this.getTeamsByClub(clubId);
+      this.current_club = clubId;
+      this.getClubTeamsByGroup(this.playerClub, this.team_type);
     }
+  }
+
+  team_type: string = 'm';
+  setTeamType(teamType: string) {
+    this.team_type = teamType;
+    this.getClubTeamsByGroup(this.playerClub, this.team_type);
+    // this.loadTeams(this.currentClubId, this.team_type)
   }
 }

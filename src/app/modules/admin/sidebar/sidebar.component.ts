@@ -118,6 +118,6 @@ export class SidebarComponent {
     // this.router.navigate(['/']); // Or use '/login' or another route as needed
 
     // ✅ Finally, force hard redirect to base page
-    window.location.href = '/';
+    // window.location.href = '/';
   }
 }

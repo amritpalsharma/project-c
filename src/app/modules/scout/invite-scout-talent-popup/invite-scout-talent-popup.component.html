@@ -8,10 +8,12 @@
 
       <!-- <div class="close-img" (click)="close()"></div> -->
       <!-- <div class="msg-popup-close" *ngIf='theme!="dark"'> -->
-        <img *ngIf='theme!="dark"' src="../../../../assets/images/carbon_close-outline-light.svg" alt="" class="" (click)="close()" />
+      <img *ngIf='theme!="dark"' src="../../../../assets/images/carbon_close-outline-light.svg" alt="" class="cursor-pointer"
+        (click)="close()" />
       <!-- </div> -->
       <!-- <div class="msg-popup-close" *ngIf='theme=="dark"'> -->
-        <img *ngIf='theme=="dark"' src="../../../../assets/images/carbon_close-outline.svg" alt="" class="" (click)="close()" />
+      <img *ngIf='theme=="dark"' src="../../../../assets/images/carbon_close-outline.svg" alt="" class="cursor-pointer"
+        (click)="close()" />
       <!-- </div> -->
 
     </div>
@@ -38,12 +40,12 @@
               [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputFor]="chipGrid"
               (focus)="callListApi(userInput)" (keyup)="onKeyPress($event)" /> -->
 
-              <input placeholder="{{ 'searchTalent' | translate }}" #userInput [matAutocomplete]="auto"
+            <input placeholder="{{ 'searchTalent' | translate }}" #userInput [matAutocomplete]="auto"
               [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputFor]="chipGrid"
-              (focus)="callListApi(userInput)" (keyup)="onKeyPress($event)" />
+              (focus)="callListApi(userInput)" (keyup)="onKeyPress($event)" [disabled]="isLoading"/>
           </mat-chip-grid>
 
-          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)"
+          <!-- <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)"
             class="listBox w-100 users-name-list" [ngClass]="{'d-none':!userSearch || userSearch.length < 2}">
             @for (user of filteredUsers; track user) {
             <mat-option [value]="user" class="mb-4 select-user-name">
@@ -54,6 +56,22 @@
               {{user?.first_name}} {{user?.last_name}}
             </mat-option>
             }
+          </mat-autocomplete> -->
+
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)"
+            class="listBox w-100 users-name-list" [ngClass]="{'d-none':!userSearch || userSearch.length < 1}">
+
+            <div class="optionsListHere" *ngIf="userSearch && userSearch.length > 0">
+              @for (user of filteredUsers; track user) {
+              <mat-option [value]="user" class="mb-4 select-user-name">
+                <img width="50" height="50" style="border-radius: 50px;" class="img-list "
+                  *ngIf="!user.meta.profile_image_path" src="../../../../../assets/images/1.png">
+                <img width="50" height="50" class="img-list " *ngIf="user.meta.profile_image_path"
+                  src="{{user.meta.profile_image_path}}">
+                {{user?.first_name}} {{user?.last_name}}
+              </mat-option>
+              }
+            </div>
           </mat-autocomplete>
 
         </mat-form-field>

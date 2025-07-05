@@ -25,7 +25,9 @@ export class InviteTalentPopupComponent {
   invitedUsers: any = [];
   eventName: any = "";
   sightId: any = "";
-  theme:string=localStorage.getItem('theme') || 'dark';
+  theme: string = localStorage.getItem('theme') || 'dark';
+
+  isLoading: boolean = false;
   constructor(
     private userService: UserService,
     private clubService: ClubService,
@@ -54,17 +56,30 @@ export class InviteTalentPopupComponent {
   }
 
   async fetchPlayers(): Promise<void> {
-    try {
-      this.clubService.getAllPlayers().subscribe((response) => {
-        if (response && response.status && response.data && response.data.userData) {
-          this.allUsers = response.data.userData.users;
-        } else {
-          console.error('Invalid API response structure:', response);
-        }
-      });
-    } catch (error) {
-      console.error('Error fetching users:', error);
-    }
+    // try {
+    //   this.clubService.getAllPlayers().subscribe((response) => {
+    //     if (response && response.status && response.data && response.data.userData) {
+    //       this.allUsers = response.data.userData.users;
+    //     } else {
+    //       console.error('Invalid API response structure:', response);
+    //     }
+    //   });
+    // } catch (error) {
+    //   console.error('Error fetching users:', error);
+    // }
+
+    // exploreSearchUser
+    this.isLoading = true;
+    let customFilter = this.searchVal + '&whereClasue[role]=4';
+    this.userService.exploreSearchUser(customFilter).subscribe((response: any) => {
+      if (response && response.status && response.data && response.data.userData) {
+        this.allUsers = response.data.userData.users;
+      } else {
+        this.allUsers = [];
+        console.error('Invalid API response structure:', response);
+      }
+      this.isLoading = false;
+    })
   }
 
   close() {
@@ -73,7 +88,7 @@ export class InviteTalentPopupComponent {
 
   sendInvite() {
     const formData = new FormData();
-    let receiverIds : any[] = [];
+    let receiverIds: any[] = [];
 
     this.users.map(function (user: any) {
       formData.append('invites[]', user.id);
@@ -88,7 +103,7 @@ export class InviteTalentPopupComponent {
         this.dialogRef.close({
           action: 'added',
           id: this.sightId,
-          message:response.message
+          message: response.message
         });
 
         let jsonData = localStorage.getItem("userData");
@@ -101,20 +116,32 @@ export class InviteTalentPopupComponent {
           console.log("No data found in localStorage.");
         }
         console.log("datatat", myUserId, receiverIds);
-        this.socketService.emit('inviteTalent', { senderId: myUserId, receiverIds: response.data.inviteAdded, eventId: this.sightId});
+        this.socketService.emit('inviteTalent', { senderId: myUserId, receiverIds: response.data.inviteAdded, eventId: this.sightId });
 
       } else {
         console.error('Invalid API response structure:', response);
       }
     });
   }
+  searchVal: any = '';
 
   onKeyPress(event: any) {
     let keyword = event.target.value;
     console.log(keyword); // You can use this to see the current input value
+    this.searchVal = keyword;
+    if (!keyword || keyword.length < 1) {
+      this.searchVal = null;
+    }
+    // this.filteredUsers = this.allUsers.filter((user: any) => (user.first_name !== null && user.first_name !== undefined) &&
+    //   user.first_name.toLowerCase().indexOf(keyword.toLowerCase()) != -1);
 
-    this.filteredUsers = this.allUsers.filter((user: any) => (user.first_name !== null && user.first_name !== undefined) &&
-      user.first_name.toLowerCase().indexOf(keyword.toLowerCase()) != -1);
+    this.filteredUsers = this.allUsers.filter((user: any) => {
+      const firstNameMatch = user.first_name && user.first_name.toLowerCase().startsWith(keyword.toLowerCase());
+      const lastNameMatch = user.last_name && user.last_name.toLowerCase().startsWith(keyword.toLowerCase());
+
+      return (firstNameMatch || lastNameMatch);
+    });
+
   }
 
   onClickOutside() {

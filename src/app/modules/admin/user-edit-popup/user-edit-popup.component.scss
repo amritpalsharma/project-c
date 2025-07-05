@@ -221,3 +221,7 @@ mat-form-field.mat-mdc-form-field.cupen-btn-1 {
     font-size: 18px !important;
 }
 }
+::ng-deep .gen_radio{
+  display: flex;
+  flex-wrap: wrap;
+}

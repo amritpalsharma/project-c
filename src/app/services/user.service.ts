@@ -366,8 +366,9 @@ export class UserService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
+    
     return this.http.get<{ status: boolean, message: string, data: {} }>(
-      `${this.apiUrl}get-sightings/${id}`, { params }
+      `${this.apiUrl}get-sightings/${id}?whereClause[status]=active`, { params }
     );
   }
 
@@ -835,8 +836,20 @@ export class UserService {
       'Authorization': `Bearer ${this.userToken}`
     });
     return this.http.get<{ status: boolean, message: string, data: {} }>(
-      `${this.apiUrl}get-club-teams/${id}?team_group=${team_group}`, { headers }
-    );
+      `${this.apiUrl}get-club-teams/${id}?`, { headers }
+      // `${this.apiUrl}get-club-teams/${id}?team_group=${team_group}`, { headers }
+    )
+  }
+
+  getClubTeamsByGroupAndClubId(id: any, team_group: any): Observable<any> {
+    const userToken = localStorage.getItem('authToken');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.userToken}`
+    });
+    return this.http.get<{ status: boolean, message: string, data: {} }>(
+      // `${this.apiUrl}get-club-teams/${id}?`, { headers }
+      `${this.apiUrl}get-teams?club_id=${id}&team_group=${team_group}`, { headers }
+    )
   }
 
   searchTeams(team: string): Observable<any> {

@@ -80,8 +80,7 @@
 
 
                     <svg *ngIf="currentThemeMode != 'light' && (userData?.team_type == 'A' || userData?.team_type == 'B')"
-                        width="40" height="36" viewBox="0 0 32 25" fill="none" xmlns="http://www.w3.org/2000/svg"
-                        >
+                        width="40" height="36" viewBox="0 0 32 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M16.373 2.29492C17.61 2.29492 18.7412 2.08333 19.7666 1.66016C20.792 1.23698 21.5651 0.683594 22.0859 0L23.5996 0.78125C23.4043 1.00911 23.1927 1.2207 22.9648 1.41602C21.1419 3.04362 18.9447 3.85742 16.373 3.85742C13.8014 3.85742 11.6042 3.04362 9.78125 1.41602C9.55339 1.2207 9.3418 1.00911 9.14648 0.78125L10.709 0C11.0345 0.455729 11.474 0.854492 12.0273 1.19629C12.5807 1.53809 13.2399 1.80664 14.0049 2.00195C14.7699 2.19727 15.5592 2.29492 16.373 2.29492ZM2.01758 4.29688L3.43359 3.61328L6.90039 10.5957L5.5332 11.2793L2.01758 4.29688ZM29.3125 3.61328L30.7285 4.29688L27.2129 11.2793L25.8457 10.5957L29.3125 3.61328Z"
                             fill="#BDE34F" />
@@ -105,6 +104,37 @@
                     <h6 *ngIf="userData?.team_type == 'A' || userData?.team_type == 'B'">{{userData?.league_name}}</h6>
                 </div>
             </div>
+        </div>
+        <div class="col-lg-3 td_col" *ngIf="this.userData?.scout_info && this.userData?.scout_info != null && this.userData?.scout_info !== ''">
+            <div class="team-details">
+                <p> {{ 'scout' | translate}}</p>
+                <div class="d-flex align-items-center cursor-pointer" (click)="naviGateScoutProfile(scoutInfoDetails.id)">
+                    <img *ngIf="scoutInfoDetails?.profile_image"
+                        [src]="'https://api.socceryou.ch/uploads/'+scoutInfoDetails?.profile_image" alt="" style="width: 50px;">
+                    <img *ngIf="!scoutInfoDetails?.profile_image"
+                        src="../../../../assets/images/default/talent-profile-default.png" alt="" style="width: 50px;">
+                    <h6>{{scoutInfoDetails?.first_name}} {{scoutInfoDetails?.last_name}}</h6>
+                </div>
+            </div>
+            <!-- <div class="scoutInfoDetails_id_{{scoutInfoDetails?.id}}"
+                *ngIf="scoutInfoDetails && scoutInfoDetails?.id != null && scoutInfoDetails?.id !== ''">
+                <div class="row align-items-center" *ngIf="scoutInfoDetails && scoutInfoDetails?.id != ''">
+                    <div class="col-sm-3 team-badge_image">
+                        <div class="team-badge_image">
+                            <img *ngIf="scoutInfoDetails?.profile_image"
+                                [src]="'https://api.socceryou.ch/uploads/'+scoutInfoDetails?.profile_image" alt="">
+                            <img *ngIf="!scoutInfoDetails?.profile_image"
+                                src="../../../../assets/images/default/talent-profile-default.png" alt="">
+                        </div>
+                    </div>
+                    <div class="ds col-sm-9 p-0 team-badge_content">
+                        <h6 class="title_2 mb-1">{{ 'scout' | translate }}</h6>
+                        <h5 class="title-1 cursor-pointer" (click)="naviGateScoutProfile(scoutInfoDetails.id)">
+                            {{scoutInfoDetails?.first_name}} {{scoutInfoDetails?.last_name}}
+                        </h5>
+                    </div>
+                </div>
+            </div> -->
         </div>
     </div>
 </div>
@@ -139,7 +169,7 @@
             <div class="team-details style-1" *ngIf="userData?.meta?.foot">
                 <p> {{ 'foot' | translate}}</p>
                 <!-- <h6 [translate]="userData?.meta?.foot.tolowerCase()"></h6> -->
-                 <h6>{{ userData?.meta?.foot?.toLowerCase() | translate }}</h6>
+                <h6>{{ userData?.meta?.foot?.toLowerCase() | translate }}</h6>
             </div>
         </div>
         <div class="col-lg-3 td_col">
@@ -197,7 +227,8 @@
         <div class="col-lg-3 td_col mt-3">
             <div class="team-details style-1">
                 <p> {{ 'otherPositions' | translate }}</p>
-                <h6 *ngIf="userData.positions && getOtherPositions(userData.positions)" [innerHTML]="getOtherPositions(userData.positions)"></h6>
+                <h6 *ngIf="userData.positions && getOtherPositions(userData.positions)"
+                    [innerHTML]="getOtherPositions(userData.positions)"></h6>
                 <!-- <h6 *ngIf="userData.meta && userData.meta.other_position">{{userData.meta.other_position}}</h6> -->
                 <!-- <h6 *ngIf="!userData.meta || !userData.meta.other_position">NA</h6> -->
             </div>

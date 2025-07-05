@@ -746,6 +746,7 @@ export class HeaderComponent {
     this.filteredUsers = [];
     // Navigate or perform actions with the selected user
     this.exploreUser(user.role_name, user.id);
+    this.searchControl.setValue(''); // empty input
   }
 
   exploreUser(slug: string, id: number): void {

@@ -4,7 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { MessagePopupComponent } from '../../message-popup/message-popup.component';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
-import { DeleteProfileComponent } from '../../delete-profile/delete-profile.component'
+import { DeleteProfileComponent } from '../../delete-profile/delete-profile.component';
+import { GlobalSettingsService } from '../../../../services/global-settings.service';
 
 @Component({
   selector: 'app-app-setting',
@@ -12,11 +13,16 @@ import { DeleteProfileComponent } from '../../delete-profile/delete-profile.comp
   styleUrls: ['./app-setting.component.scss'],
 })
 export class AppSettingComponent {
+  currentLoggedInPermission: string = this.gloabalSettings.getCurrentViewOnly();
   loggedInUser: any = localStorage.getItem('userData'); // User data from local storage
   translatedText: string = '';
   deleteProfiletranslatedText: string = '';
   langSubscription!: Subscription;
-  constructor(private talentService: TalentService, public dialog: MatDialog, private translate: TranslateService) { }
+  constructor(
+    private gloabalSettings: GlobalSettingsService,
+    private talentService: TalentService,
+    public dialog: MatDialog,
+    private translate: TranslateService) { }
 
   ngOnInit() {
     // Parse user data from localStorage

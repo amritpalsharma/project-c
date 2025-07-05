@@ -3,6 +3,7 @@ import { UserEditPopupComponent } from '../../user-edit-popup/user-edit-popup.co
 import { MatDialog } from '@angular/material/dialog';
 import { MessagePopupComponent } from '../../message-popup/message-popup.component';
 import { GlobalSettingsService } from '../../../../services/global-settings.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile-tab',
@@ -19,7 +20,8 @@ export class ProfileTabComponent {
   @Input() userData: any;
   @Input() userCountryFlag: any;
   @Output() dataEmitter = new EventEmitter<string>();
-  constructor(public dialog: MatDialog, public globalSettings: GlobalSettingsService) {
+  scoutInfoDetails: any;
+  constructor(private router: Router, public dialog: MatDialog, public globalSettings: GlobalSettingsService) {
 
 
   }
@@ -30,6 +32,8 @@ export class ProfileTabComponent {
     this.user = localStorage.getItem('userData');
     this.user = JSON.parse(this.user);
     console.info('coming this data', this.user);
+    console.info('coming this this.userData', this.userData);
+
 
     this.globalSettings.indexFunctionCall$.subscribe(() => {
       this.themeChanged(); // Call the function when event is received
@@ -40,6 +44,14 @@ export class ProfileTabComponent {
     if (changes['userData']) {
       if (changes['userData'].currentValue.user_nationalities) {
         this.userNationalities = JSON.parse(this.userData.user_nationalities);
+      }
+
+      if (this.userData?.scout_info) {
+        this.scoutInfoDetails = JSON.parse(this.userData?.scout_info);
+
+        if (typeof this.scoutInfoDetails?.id !== 'number' || isNaN(this.scoutInfoDetails?.id)) {
+          this.scoutInfoDetails = [];
+        }
       }
     }
   }
@@ -161,4 +173,7 @@ export class ProfileTabComponent {
     }
   }
 
+  naviGateScoutProfile(id: string | number): void {
+    this.router.navigate(['admin', 'scout', id]);
+  }
 }

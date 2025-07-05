@@ -209,7 +209,15 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.getNewRegistrationsWithPlayers();
     this.getChardData(this.selectedYear, this.selectedDomain, lang_id);
     this.generateYears();
-    this.lang = localStorage.getItem('lang') || 'en';
+    this.lang = localStorage.getItem('lang') || 'de';
+    if (this.lang == 'en' || this.lang == 'de') {
+
+    } else {
+      console.info('Current Selected Lang is '+this.lang+' Now set as de default for admin only')
+      this.lang = 'de'; // by default de selected
+      localStorage.setItem('lang','de');
+      localStorage.setItem('lang_id','2');
+    }
     this.getLocations();
 
 

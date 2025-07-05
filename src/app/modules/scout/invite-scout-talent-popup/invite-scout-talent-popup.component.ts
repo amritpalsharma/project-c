@@ -42,26 +42,38 @@ export class InviteScoutTalentPopupComponent {
     this.scoutId = data.scoutId;
   }
 
-  theme : any = localStorage.getItem('theme');
-  
+  theme: any = localStorage.getItem('theme');
+
   ngOnInit(): void {
     this.theme = localStorage.getItem('theme');
     this.fetchPlayers();
     this.getToasterMsg();
   }
-
+  isLoading: boolean = true;
   async fetchPlayers(): Promise<void> {
-    try {
-      this.scoutService.getAllPlayers().subscribe((response) => {
-        if (response && response.status && response.data && response.data.userData) {
-          this.allUsers = response?.data?.userData?.users;
-        } else {
-          console.error('Invalid API response structure:', response);
-        }
-      });
-    } catch (error) {
-      console.error('Error fetching users:', error);
-    }
+    // try {
+    //   this.scoutService.getAllPlayers().subscribe((response) => {
+    //     if (response && response.status && response.data && response.data.userData) {
+    //       this.allUsers = response?.data?.userData?.users;
+    //     } else {
+    //       console.error('Invalid API response structure:', response);
+    //     }
+    //   });
+    // } catch (error) {
+    //   console.error('Error fetching users:', error);
+    // }
+
+    this.isLoading = true;
+    let customFilter = this.userSearch + '&whereClasue[role]=4';
+    this.userService.exploreSearchUser(customFilter).subscribe((response: any) => {
+      if (response && response.status && response.data && response.data.userData) {
+        this.allUsers = response.data.userData.users;
+      } else {
+        this.allUsers = [];
+        console.error('Invalid API response structure:', response);
+      }
+      this.isLoading = false;
+    })
   }
 
   close() {
@@ -112,9 +124,19 @@ export class InviteScoutTalentPopupComponent {
     let keyword = event.target.value;
     this.userSearch = keyword;
     console.log(keyword); // You can use this to see the current input value
+    if (!keyword) {
+      this.userSearch = '';
+      return;
+    }
 
-    this.filteredUsers = this.allUsers.filter((user: any) => (user.first_name !== null && user.first_name !== undefined) &&
-      user.first_name.toLowerCase().indexOf(keyword.toLowerCase()) != -1);
+    // this.filteredUsers = this.allUsers.filter((user: any) => (user.first_name !== null && user.first_name !== undefined) &&
+    //   user.first_name.toLowerCase().indexOf(keyword.toLowerCase()) != -1);
+    this.filteredUsers = this.allUsers.filter((user: any) => {
+      const firstNameMatch = user.first_name && user.first_name.toLowerCase().startsWith(keyword.toLowerCase());
+      const lastNameMatch = user.last_name && user.last_name.toLowerCase().startsWith(keyword.toLowerCase());
+
+      return (firstNameMatch || lastNameMatch);
+    });
   }
 
   onClickOutside() {

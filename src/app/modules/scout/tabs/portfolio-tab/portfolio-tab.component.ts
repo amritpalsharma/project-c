@@ -109,6 +109,7 @@ export class PortfolioTabComponent {
             this.getScoutPlayers();
           } else {
             this.showMatDialog("Players invited successfully", 'display')
+            this.getScoutPlayers();
           }
         }
         console.log('Dialog result:', result);
