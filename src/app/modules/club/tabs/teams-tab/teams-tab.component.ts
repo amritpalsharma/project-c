@@ -20,7 +20,7 @@ export class TeamsTabComponent {
   teams: any = [];
   players: any = [];
   view: string = "team";
-  displayedColumns: string[] = [ 'Player Name', 'Joining Date', 'Exit Date', 'JersyNumber', 'view', 'Edit', 'Delete'];
+  displayedColumns: string[] = ['Player Name', 'Joining Date', 'Exit Date', 'JersyNumber', 'view', 'Edit', 'Delete'];
   isLoading: boolean = false;
   selectedTeam: any = "";
   selectTeamName: string = '';
@@ -141,12 +141,15 @@ export class TeamsTabComponent {
 
     messageDialog.afterClosed().subscribe(result => {
       console.log('result', result);
-      setTimeout(() => {
-        this.getTeamPlayers(this.selectedTeamId, this.selectedTeam);
-      }, 1500);
-      if (result.message != '') {
-        this.toaster.info(result.message);
+      if (result?.status && result?.status == true) {
+        setTimeout(() => {
+          this.getTeamPlayers(this.selectedTeamId, this.selectedTeam);
+        }, 1500);
+        if (result.message != '') {
+          this.toaster.info(result.message);
+        }
       }
+
     });
 
   }

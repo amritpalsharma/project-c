@@ -42,7 +42,7 @@
 
             <input placeholder="{{ 'searchTalent' | translate }}" #userInput [matAutocomplete]="auto"
               [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputFor]="chipGrid"
-              (focus)="callListApi(userInput)" (keyup)="onKeyPress($event)" [disabled]="isLoading"/>
+              (focus)="callListApi(userInput)" (keyup)="onKeyPress($event)"/>
           </mat-chip-grid>
 
           <!-- <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)"

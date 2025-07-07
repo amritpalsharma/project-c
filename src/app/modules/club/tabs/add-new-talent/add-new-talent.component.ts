@@ -55,6 +55,7 @@ export class AddNewTalentComponent implements OnInit {
     public dialogRef: MatDialogRef<AddNewTalentComponent>,
     private socketService: SocketService,
     public toaster: ToastrService,
+    private userService: UserService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.teamId = data.teamId;
@@ -69,7 +70,7 @@ export class AddNewTalentComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.edit) {
-      this.fetchPlayers();
+      // this.fetchPlayers();
     }
     if (this.edit && this.player) {
       this.initializeFormFields();
@@ -90,12 +91,26 @@ export class AddNewTalentComponent implements OnInit {
     this.users = [this.player]; // Assuming you want to pre-fill the user
   }
 
-  async fetchPlayers(): Promise<void> {
+  async fetchPlayers(keyword: string): Promise<void> {
+    this.userSearch = keyword;
+    if (!keyword || keyword.length <= 0) {
+      this.filteredUsers = [];
+      this.userSearch = '';
+      return;
+    }
+    if (keyword && keyword.length > 1) {
+    } else {
+      this.filteredUsers = [];
+      return;
+    }
+
     try {
-      this.clubService.getAllPlayers().subscribe((response) => {
+      this.userService.exploreSearchUser(keyword, true).subscribe((response: any) => {
+        // this.clubService.getAllPlayers().subscribe((response) => {
         if (response && response.status && response.data && response.data.userData) {
           this.allUsers = response.data.userData.users;
-          console.info(this.allUsers)
+          this.filteredUsers = response.data.userData.users;
+          // console.info(this.allUsers)
         } else {
           console.error('Invalid API response structure:', response);
         }
@@ -231,19 +246,34 @@ export class AddNewTalentComponent implements OnInit {
 
   onKeyPress(event: any) {
     let keyword = event.target.value;
-    console.log(keyword); // You can use this to see the current input value
+    // console.log('KeyWord : '+keyword+' keyword.length : '+keyword.length); // You can use this to see the current input value
+    if (!keyword || keyword.length == 0) {
+      this.userSearch = '';
+      this.filteredUsers = [];
+      return;
+    }
+    this.userSearch = keyword;
 
-    // this.filteredUsers = this.allUsers.filter((user: any) => (user.first_name !== null && user.first_name !== undefined) &&
-    //   user.first_name.toLowerCase().indexOf(keyword.toLowerCase()) != -1);
-    this.filteredUsers = this.allUsers
-      .filter((user: any) => user.first_name && user.first_name.toLowerCase().indexOf(keyword.toLowerCase()) !== -1)
-      .sort((a: any, b: any) => {
-        const aIndex = a.first_name.toLowerCase().indexOf(keyword.toLowerCase());
-        const bIndex = b.first_name.toLowerCase().indexOf(keyword.toLowerCase());
+    this.fetchPlayers(this.userSearch);
 
-        // Sort by the index where the match happens, prioritizing earlier matches
-        return aIndex - bIndex;
-      });
+
+    // this.filteredUsers = this.allUsers
+    //   .filter((user: any) => {
+    //     const fullName = `${user.first_name || ''} ${user.last_name || ''}`.toLowerCase().trim();
+    //     const keywordLower = keyword.toLowerCase().trim();
+    //     return fullName.includes(keywordLower);
+    //   })
+    //   .sort((a: any, b: any) => {
+    //     const aFull = `${a.first_name || ''} ${a.last_name || ''}`.toLowerCase().trim();
+    //     const bFull = `${b.first_name || ''} ${b.last_name || ''}`.toLowerCase().trim();
+    //     const keywordLower = keyword.toLowerCase().trim();
+
+    //     const aIndex = aFull.indexOf(keywordLower);
+    //     const bIndex = bFull.indexOf(keywordLower);
+
+    //     return aIndex - bIndex;
+    //   });
+
 
   }
 
@@ -252,15 +282,6 @@ export class AddNewTalentComponent implements OnInit {
   }
   userSearch: string = '';
 
-  callListApi(userInput: HTMLInputElement) {
-    this.userSearch = userInput.value;
-    setTimeout(() => {
-      this.filteredUsers = this.allUsers.filter((user: any) => (user.first_name !== null && user.first_name !== undefined) &&
-        user.first_name.toLowerCase().indexOf(userInput.value.toLowerCase()) != -1
-      );
-    }, 2000);
-    console.log(userInput.value);
-  }
 
   remove(user: any): void {
     const index = this.users.indexOf(user);
