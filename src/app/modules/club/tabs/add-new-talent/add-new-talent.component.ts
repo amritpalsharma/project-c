@@ -45,6 +45,7 @@ export class AddNewTalentComponent implements OnInit {
   submitClicked: boolean = false;
 
   jerseyNumber: string = '';
+  teamGroup: string = 'w';
 
   startDateTime = new FormControl();
 
@@ -59,6 +60,7 @@ export class AddNewTalentComponent implements OnInit {
     this.teamId = data.teamId;
     this.player = data.player;
     this.edit = data.edit;
+    this.teamGroup = data.team_group;
     this.teamName = data.teamName;
     this.jerseyNumber = data.player.jersey_number;
 

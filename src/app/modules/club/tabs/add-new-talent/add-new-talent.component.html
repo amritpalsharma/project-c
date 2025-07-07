@@ -3,7 +3,8 @@
     <div class="popup_header p-3">
       <div>
         <h4 class="text-center mb-0 title-text" *ngIf="edit">{{ 'edit' | translate }}</h4>
-        <h4 class="text-center mb-0 title-text" *ngIf="!edit">{{ 'addNewPlayer' | translate }}</h4>
+        <h4 class="text-center mb-0 title-text" *ngIf="!edit && teamGroup == 'm'">{{ 'addNewPlayer' | translate }}</h4>
+        <h4 class="text-center mb-0 title-text" *ngIf="!edit && teamGroup == 'w'">{{ 'addNewFemalePlayer' | translate }}</h4>
       </div>
       <div class="close_buttons" *ngIf='theme!="dark"'>
         <button class="close-img bg-transparent border-0 padding-0" aria-label="Close" (click)="close()">

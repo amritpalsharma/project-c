@@ -41,7 +41,12 @@ export class ActivityLogComponent {
     private talentService: TalentService,
     private gloabalSettings: GlobalSettingsService,
 
-  ) { }
+  ) { 
+    translate.onLangChange.subscribe(() => {
+      this.getActivity()
+      this.getJsonTranslations();
+    });
+  }
 
   ngOnInit() {
     this.loggedInUser = JSON.parse(this.loggedInUser);
