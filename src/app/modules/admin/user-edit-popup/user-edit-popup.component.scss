@@ -200,28 +200,45 @@ span.platform_url {
 }
 
 
+::ng-deep .gen_radio{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
 @media (min-width: 2000px) {
 span.platform_input input {
-    font-size: 17px;
+    font-size: 19px;
 }
 mat-form-field.mat-mdc-form-field.cupen-btn-1 {
     padding: 12px !important;
 }
+.form-check-label {
+  font-size: 17px !important;
+}
 }
 
+@media (min-width: 3000px) {
+.popup__body p.code-text, input.cupen-btn-1, label.form-label, .form-check-label {
+    font-size: 18px !important;
+}
+}
+
+
+
 ::ng-deep {
+  @media (min-width: 2000px) {
+    .mat-mdc-select-trigger, .mat-mdc-form-field-input-control.mat-mdc-form-field-input-control {
+      font-size: 19px !important;
+    }
+  }
   .mat-mdc-dialog-surface {
     height: auto;
     max-height: 100%;
   }
-}
-
-@media (min-width: 3000px) {
-.popup__body p.code-text, input.cupen-btn-1 {
-    font-size: 18px !important;
-}
-}
-::ng-deep .gen_radio{
-  display: flex;
-  flex-wrap: wrap;
+   @media (min-width: 3000px) {
+    .mat-mdc-select-trigger, .mat-mdc-form-field-input-control.mat-mdc-form-field-input-control {
+      font-size: 19px !important;
+    }
+  }
 }
