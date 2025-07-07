@@ -110,9 +110,9 @@
                 <p> {{ 'scout' | translate}}</p>
                 <div class="d-flex align-items-center cursor-pointer" (click)="naviGateScoutProfile(scoutInfoDetails.id)">
                     <img *ngIf="scoutInfoDetails?.profile_image"
-                        [src]="'https://api.socceryou.ch/uploads/'+scoutInfoDetails?.profile_image" alt="" style="width: 50px;">
+                        [src]="'https://api.socceryou.ch/uploads/'+scoutInfoDetails?.profile_image" alt="" style="width: 35px;">
                     <img *ngIf="!scoutInfoDetails?.profile_image"
-                        src="../../../../assets/images/default/talent-profile-default.png" alt="" style="width: 50px;">
+                        src="../../../../assets/images/default/talent-profile-default.png" alt="" style="width: 35px;">
                     <h6>{{scoutInfoDetails?.first_name}} {{scoutInfoDetails?.last_name}}</h6>
                 </div>
             </div>
