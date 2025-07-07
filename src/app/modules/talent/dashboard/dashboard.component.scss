@@ -1637,6 +1637,7 @@ span.active_btn {
     border: 0;
     width: calc(100% - 15px);
     height: unset;
+    min-height: 50px;
     min-width: unset;
     margin-left: 15px;
     background: transparent !important;
