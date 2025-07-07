@@ -72,8 +72,13 @@ input:checked + .slider:before {
     font-size: 14px;
     font-weight: 400; 
     font-family: "Libre Franklin", sans-serif;
-  }
+}
 
+  @media (max-width: 991px) {
+      .acount_del-item {
+          gap: 10px;
+      }
+  }
   @media (min-width: 1600px) and (max-width: 2999px){
     .card-title {
         font-size: 24px !important;

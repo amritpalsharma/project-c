@@ -177,6 +177,7 @@ export class SightingTabComponent {
   createSightPopup(){
     const messageDialog = this.dialog.open(CreateSightPopupComponent,{
       width: '750px',
+      panelClass: 'club_sighting_popup',
       position: {
         top:'70px'
       },
@@ -199,6 +200,7 @@ export class SightingTabComponent {
   editSight(sightData:any, playersInvited:any){
     const editDialog = this.dialog.open(CreateSightPopupComponent,{
       width: '750px',
+      panelClass: 'club_sighting_popup',
       position: {
         top:'70px'
       },
