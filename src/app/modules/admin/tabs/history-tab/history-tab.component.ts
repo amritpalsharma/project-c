@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../../../services/user.service';
 import { EditorConfigService } from '../../../../services/editor-config.service';
 import tinymce from 'tinymce';
+import { UserRoleService } from '../../../../services/user-role.service';
 
 @Component({
   selector: 'app-history-tab',
@@ -20,6 +21,7 @@ export class HistoryTabComponent {
   editorConfig: any;
   
   constructor(
+    public userRoleService: UserRoleService,
     private configService: EditorConfigService,
     private route: ActivatedRoute, 
     private userService: UserService){

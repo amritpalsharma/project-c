@@ -8,6 +8,7 @@ import { CouponService } from '../../../../services/coupon.service';
 import { CoupenPopupComponent } from '../coupon-popup/coupon-popup.component';
 import { CommonFilterPopupComponent } from '../../common-filter-popup/common-filter-popup.component';
 import { SharedService } from '../../../../services/shared.service';
+import { UserRoleService } from '../../../../services/user-role.service';
 
 @Component({
   selector: 'app-coupons',
@@ -37,7 +38,9 @@ export class CouponsComponent {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild('coponsCodeSelector', { static: false }) coponsCodeSelector!: ElementRef;
 
-  constructor(private couponService: CouponService, public dialog: MatDialog, private sharedservice: SharedService) { }
+  constructor(
+    public userRoleService: UserRoleService,
+    private couponService: CouponService, public dialog: MatDialog, private sharedservice: SharedService) { }
 
   ngOnInit() {
     this.getCoupons();

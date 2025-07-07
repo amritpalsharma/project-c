@@ -126,7 +126,7 @@
             </div>
           </td>
 
-          <td class="d-flex justify-content-center">
+          <td class="d-flex justify-content-center" [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}">
             <svg *ngIf="editableId !== transfer.id" (click)="editPerformance(transfer.id)" width="24" height="24"
               viewBox="0 0 24 24" fill="#787878" class="pointer">
               <path

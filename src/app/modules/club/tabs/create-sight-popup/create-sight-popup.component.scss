@@ -420,11 +420,17 @@ input[type="number"] {
   }
 }
 
+@media (max-width: 991px) {
+.dummy_label {
+  display: none;
+}
+}
+
 
 @media (min-width: 2000px) {
 
   .create-sight .cupen-btn,
-  label {
+  label, .dummy_label {
     font-size: 20px !important;
   }
 
@@ -439,6 +445,7 @@ input[type="number"] {
 
     svg {
       width: 20px !important;
+      height: 20px !important;
     }
   }
 
@@ -446,13 +453,15 @@ input[type="number"] {
   .admin_common_sight .ms-lg-3.mt-4 {
     margin-top: 30px !important;
   }
+  .choose-file-box {
+    padding: 9px 30px 9px 12px;
+  }
 }
 
 
 @media (min-width: 3000px) {
-
   .create-sight .cupen-btn,
-  label {
+  label, .dummy_label {
     font-size: 28px !important;
   }
 
@@ -466,13 +475,17 @@ input[type="number"] {
     margin-top: 0 !important;
 
     svg {
-      width: 25px !important;
+      width: 28px !important;
+      height: 28px !important;
     }
   }
 
   .mt-4,
   .admin_common_sight .ms-lg-3.mt-4 {
     margin-top: 40px !important;
+  }
+  .choose-file-box {
+    padding: 14.5px 30px 14.5px 12px;
   }
 }
 

@@ -8,6 +8,8 @@
               {{ 'userManagement' | translate}} \
               <span class="user-text" style="font-weight: 400;">{{user.first_name}} {{user.last_name}}</span>
               <span style="margin-left: 10px;" class="bg_pending">{{user.role_name}}</span>
+
+              <!-- Role {{userRoleService.getRole()}} -->
             </h2>
           </div>
           <a class="btn btn-success web-create-bg" (click)="goToBack()">
@@ -17,7 +19,7 @@
         </div>
         <div class="d-flex align-items-center justify-content-between mt-3">
           <div class="d-flex align-items-center profile_users_btn">
-            <span class="btn btn-outline-white profile-tab-content" (click)="changeUserStatus(2)">
+            <span class="btn btn-outline-white profile-tab-content" (click)="changeUserStatus(2)" [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}">
               <svg id="users-icon" width="22" height="19" viewBox="0 0 18 19" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
                 <path d="M9 1L2 3.55V8.7265C2 13.019 4.98375 17.0225 9 18C13.0163 17.0225 16 13.019 16 8.7265V3.55L9 1Z"
@@ -31,7 +33,7 @@
               <span *ngIf="user.status == '2'">{{ 'rejectUser' | translate }}</span> -->
             </span>
 
-            <span class="btn btn-outline-white profile-tab-content" (click)="changeUserStatus(1)">
+            <span class="btn btn-outline-white profile-tab-content" (click)="changeUserStatus(1)" [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}">
 
 
               <svg id="users-reject-icon" width="21" height="21" viewBox="0 0 22 22" fill="none"
@@ -44,7 +46,7 @@
               <span>&nbsp;{{ 'pendingUser' | translate }}</span>
             </span>
 
-            <span class="btn btn-outline-white profile-tab-content" (click)="changeUserStatus(3)">
+            <span class="btn btn-outline-white profile-tab-content" (click)="changeUserStatus(3)" [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}">
               <svg id="users-reject-icon" width="21" height="21" viewBox="0 0 22 22" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
                 <rect x="0.0585938" width="21" height="21" rx="10.5" fill="#FD5454" />
@@ -54,7 +56,7 @@
               </svg>
               <span>&nbsp;{{ 'rejectUser' | translate }}</span>
             </span>
-            <span class="btn btn-outline-white profile-tab-content" (click)="confirmDeletion()">
+            <span class="btn btn-outline-white profile-tab-content" (click)="confirmDeletion()" [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}">
               <svg id="users-icon" width="22" height="23" viewBox="0 0 22 23" fill="none"
                 xmlns="http://www.w3.org/2000/svg" class="me-1">
                 <path
@@ -62,7 +64,7 @@
                   fill="#787878"></path>
               </svg>
               {{ 'deleteUsers' | translate }}</span>
-            <a class="btn btn-outline-white profile-tab-content export-xls" (click)="exportUser()">
+            <a class="btn btn-outline-white profile-tab-content export-xls" (click)="exportUser()" [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}">
               <svg id="users-icon" width="23" height="23" viewBox="0 0 23 23" fill="none"
                 xmlns="http://www.w3.org/2000/svg" class="me-1">
                 <path
@@ -103,7 +105,7 @@
                   class="user-img mt-1">
                 <img src="../../../../assets/images/1.png" alt="" *ngIf="!user.meta || !user.meta.profile_image"
                   class="user-img">
-                <div class="user-edit">
+                <div class="user-edit" [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}">
                   <label for="file-upload"><img src="../../../../assets/images/edit-icon.png"
                       class="edit-profile cursor-pointer" alt=""></label>
                   <input id="file-upload" (change)="onProfileFileChange($event)" accept="image/*" type="file"
@@ -119,7 +121,7 @@
                   class="user-img mt-1">
                 <img src="../../../../assets/images/1.png" alt="" *ngIf="!user.meta || !user.meta.profile_image"
                   class="user-img">
-                <label for="profile-upload" class="">
+                <label for="profile-upload" [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}">
                   <div class="edit-profile cursor-pointer" id="upload_profilePhoto" (click)="deleteImageConfirm();"
                     matTooltip="{{'deleteProfilePicture' | translate}}" matTooltipPosition="right">
                     <svg class="cursor-pointer" style="padding: 2px;" xmlns="http://www.w3.org/2000/svg"
@@ -334,48 +336,3 @@
     </div>
   </div>
 </div>
-
-
-
-
-<!--
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header border-0 pb-0 justify-content-end">
-
-        <a  data-bs-dismiss="modal" aria-label="Close"><svg width="41" height="41" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M20.5 2.5625C10.5062 2.5625 2.5625 10.5062 2.5625 20.5C2.5625 30.4937 10.5062 38.4375 20.5 38.4375C30.4937 38.4375 38.4375 30.4937 38.4375 20.5C38.4375 10.5062 30.4937 2.5625 20.5 2.5625ZM20.5 35.875C12.0437 35.875 5.125 28.9562 5.125 20.5C5.125 12.0437 12.0437 5.125 20.5 5.125C28.9562 5.125 35.875 12.0437 35.875 20.5C35.875 28.9562 28.9562 35.875 20.5 35.875Z" fill="#627C97"/>
-          <path d="M27.4187 29.4688L20.5 22.55L13.5813 29.4688L11.5312 27.4187L18.45 20.5L11.5312 13.5813L13.5813 11.5312L20.5 18.45L27.4187 11.5312L29.4688 13.5813L22.55 20.5L29.4688 27.4187L27.4187 29.4688Z" fill="#627C97"/>
-          </svg>
-        </a>
-      </div>
-      <div class="modal-body text-center pb-5">
-           {{ 'UserAlreadyVerified'  | translate }}
-      </div>
-
-    </div>
-  </div>
-</div>
-
- <div class="modal modal-delete fade" id="exampleModal-1" tabindex="-1" aria-labelledby="exampleModalLabel-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header border-0 pb-0 justify-content-end">
-
-        <a  data-bs-dismiss="modal" aria-label="Close"><svg width="41" height="41" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M20.5 2.5625C10.5062 2.5625 2.5625 10.5062 2.5625 20.5C2.5625 30.4937 10.5062 38.4375 20.5 38.4375C30.4937 38.4375 38.4375 30.4937 38.4375 20.5C38.4375 10.5062 30.4937 2.5625 20.5 2.5625ZM20.5 35.875C12.0437 35.875 5.125 28.9562 5.125 20.5C5.125 12.0437 12.0437 5.125 20.5 5.125C28.9562 5.125 35.875 12.0437 35.875 20.5C35.875 28.9562 28.9562 35.875 20.5 35.875Z" fill="#627C97"/>
-          <path d="M27.4187 29.4688L20.5 22.55L13.5813 29.4688L11.5312 27.4187L18.45 20.5L11.5312 13.5813L13.5813 11.5312L20.5 18.45L27.4187 11.5312L29.4688 13.5813L22.55 20.5L29.4688 27.4187L27.4187 29.4688Z" fill="#627C97"/>
-          </svg>
-        </a>
-      </div>
-      <div class="modal-body text-center user-text">
-         {{ 'ConfirmDeleteUser' | translate }}
-      </div>
-      <div class="modal-footer border-0 justify-content-center pb-4">
-        <a  class="text-danger" data-bs-dismiss="modal"> {{ 'DeleteAccount' | translate }}</a>
-      </div>
-
-    </div>
-  </div>
-</div> -->

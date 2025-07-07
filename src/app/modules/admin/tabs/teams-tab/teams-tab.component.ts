@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../../../services/user.service';
+import { UserRoleService } from '../../../../services/user-role.service';
 
 @Component({
   selector: 'app-teams-tab',
@@ -17,7 +18,11 @@ export class TeamsTabComponent {
   isLoading: boolean = false;
   selectedTeam: any = "";
   team_group: string = 'm';
-  constructor(private route: ActivatedRoute, private userService: UserService, private router: Router) { }
+  constructor(
+    public userRoleService: UserRoleService,
+    private route: ActivatedRoute,
+    private userService: UserService,
+    private router: Router) { }
 
 
   ngOnInit() {

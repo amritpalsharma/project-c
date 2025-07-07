@@ -713,6 +713,8 @@ export class HeaderComponent implements OnInit {
           localStorage.setItem('authToken', token);
           localStorage.setItem('userRole', userRole);
           localStorage.setItem('userData', JSON.stringify(userData));
+
+          console.info('navigationRoute',navigationRoute)
           this.router.navigate([navigationRoute]).then(() => {
             // Delay non-essential operations (WebSocket, etc.)
             setTimeout(() => {

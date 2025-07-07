@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { BarController } from 'chart.js';
 import { environment } from '../../../../../environments/environment';
 import { ToastrService } from 'ngx-toastr';
+import { UserRoleService } from '../../../../services/user-role.service';
 
 @Component({
   selector: 'app-profile',
@@ -32,7 +33,9 @@ export class ProfileComponent {
   isReadonly: boolean = true;
   imageUploaded : boolean = false;
 
-  constructor(private userService: UserService, public dialog: MatDialog, private toastr: ToastrService) {
+  constructor(
+    public userRoleService: UserRoleService,
+    private userService: UserService, public dialog: MatDialog, private toastr: ToastrService) {
 
   }
   ngOnInit(): void {

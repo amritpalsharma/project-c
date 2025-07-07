@@ -165,7 +165,7 @@
               id="Player-age-year" *ngIf="editableId != performance.id"> &nbsp;{{'year' | translate}}</span>
           </td>
 
-          <td class="text-center">
+          <td class="text-center" [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}">
             <svg *ngIf="editableId != performance.id" (click)="editPerformance(performance.id)" id="users-icon"
               width="24" height="24" viewBox="0 0 24 24" fill="#787878" xmlns="http://www.w3.org/2000/svg"
               class="pointer ">

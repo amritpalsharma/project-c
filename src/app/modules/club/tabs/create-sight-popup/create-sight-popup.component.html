@@ -81,14 +81,17 @@
           [ngClass]="{'emptyRequiredField':submitButtonClicked && !dateTime}">
       </div>
     </div>
-
-    <div class="radio-buttons">
-      <label class="me-3">
-        <input type="radio" name="status" [(ngModel)]="status" [value]="true"> Active
-      </label>
-      <label>
-        <input type="radio" name="status" [(ngModel)]="status" [value]="false"> Inactive
-      </label>
+    <div class="row">
+      <div class="col-lg-4 ms-auto">
+        <div class="radio-buttons active_radio_btn">
+          <label class="me-3">
+            <input type="radio" name="status" [(ngModel)]="status" [value]="true"> {{ 'active' | translate }}
+          </label>
+          <label>
+            <input type="radio" name="status" [(ngModel)]="status" [value]="false">  {{ 'inactive' | translate }}
+          </label>
+        </div>
+      </div>
     </div>
 
     <div class="row mt-4">
@@ -201,7 +204,8 @@
           <input type="text" id="document" class="cupen-btn code-text w-100" (keyup)="titleUpdate($event, i)">
         </div>
         <div class="city-input col-lg-4 col-8 mb-4">
-          <div class="choose-file-box d-flex align-items-center justify-content-between mt-4" *ngIf="row.file != ''">
+          <div class="dummy_label">&nbsp;</div>
+          <div class="choose-file-box d-flex align-items-center justify-content-between" *ngIf="row.file != ''">
 
 
             <svg width="43" (click)="removeFile(i)" class="delete-file-upload" height="43" viewBox="0 0 43 43"
@@ -233,7 +237,7 @@
 
           </div>
 
-          <div class="mt-4" *ngIf="row.file == ''">
+          <div class="upload_field_wrap" *ngIf="row.file == ''">
             <label for="file-upload-{{i}}" type="button"
               class="btn btn-outline-white code-text upload-label cupen-btn">{{
               'upload' | translate }}</label>
@@ -242,8 +246,8 @@
           </div>
         </div>
 
-        <div class="col-md-1 col-2 text-end mb-4 mt-4 add_new_btn_row">
-
+        <div class="col-md-1 col-2 text-end mb-4 add_new_btn_row">
+          <div class="dummy_label">&nbsp;</div>
           <label for="reportUpload" class="add_row_btn" (click)="removeRow(i)"
             [class.label-disabled]="1==attachmentRows.length" *ngIf="attachmentRows.length > 0">
             <!-- <label for="reportUpload" class="add_row_btn" (click)="removeRow(i)" *ngIf="attachmentRows.length != i+1"> -->
@@ -256,7 +260,8 @@
           </label>
         </div>
 
-        <div class="col-md-1 col-2 text-end mb-4 mt-4 add_new_btn_row">
+        <div class="col-md-1 col-2 text-end mb-4 add_new_btn_row">
+          <div class="dummy_label">&nbsp;</div>
           <div (click)="addNewRow()" class="add_row_btn" *ngIf="attachmentRows.length == i+1">
             <svg style="transform: rotate(45deg);" width="13px" xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 384 512">

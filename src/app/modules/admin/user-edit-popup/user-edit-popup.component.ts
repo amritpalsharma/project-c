@@ -5,6 +5,7 @@ import {
 import { UserService } from '../../../services/user.service';
 import { UserDetailPopupComponent } from '../users/user-detail-popup/user-detail-popup.component';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { UserRoleService } from '../../../services/user-role.service';
 
 @Component({
   selector: 'app-user-edit-popup',
@@ -62,7 +63,9 @@ export class UserEditPopupComponent {
   isSubmitButtonClicked: boolean = false;
   theme: string = localStorage.getItem('theme') || 'light';
 
-  constructor(private userService: UserService, public dialogRef: MatDialogRef<UserDetailPopupComponent>,
+  constructor(
+    public userRoleService: UserRoleService,
+    private userService: UserService, public dialogRef: MatDialogRef<UserDetailPopupComponent>,
     @Inject(MAT_DIALOG_DATA) public request: any) {
     this.data = request.data;
     this.role = request.role;

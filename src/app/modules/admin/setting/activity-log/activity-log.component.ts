@@ -8,6 +8,7 @@ import { ActivityService } from '../../../../services/activity';
 import { AdminHelperService } from '../../../../services/admin-helper.service';
 import { TranslateService } from '@ngx-translate/core';
 import { SharedService } from '../../../../services/shared.service';
+import { UserRoleService } from '../../../../services/user-role.service';
 
 @Component({
   selector: 'app-activity-log',
@@ -29,6 +30,7 @@ export class ActivityLogComponent {
   idsToDelete: any = [];
 
   constructor(
+    public userRoleService: UserRoleService,
     private activityService: ActivityService,
     public dialog: MatDialog,
     public adminHelper: AdminHelperService,

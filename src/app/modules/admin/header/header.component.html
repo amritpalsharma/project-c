@@ -379,6 +379,7 @@
         <li class="nav-item dropdown  profile">
           <a class="nav-link" role="button" data-bs-toggle="dropdown">
             <img *ngIf="loggedInUser.profile_image_path" src="{{profileImgUrl}}" width="56" alt="">
+            <img *ngIf="!loggedInUser.profile_image_path" src="../../../../assets/images/1.png" width="56" alt="">
           </a>
           <div class="dropdown-menu dropdown-menu-end">
             <h6>{{loggedInUser.first_name}} {{loggedInUser.last_name}}</h6>

@@ -145,7 +145,6 @@ font-size: 14px;
     line-height: normal;
     border: 1px solid #bbb7b7;
     border-radius: 10px;
-    margin-top: 22px;
 }
 .about-event textarea{
   overflow: auto;
@@ -293,40 +292,62 @@ input[type="number"] {
 }
 
 
+@media (max-width: 991px) {
+.dummy_label {
+  display: none;
+}
+}
+
 
 @media (min-width: 2000px) {
-.create-sight .cupen-btn, label {
+.create-sight .cupen-btn, label, .dummy_label {
   font-size: 20px;
 }
 .upload-label {
   height: 61px !important;
 }
 .add_row_btn {
-  width: 60px !important;
-  height: 61px !important;
-  margin-top: 0 !important;
+    width: 50px !important;
+    height: 61px !important;
+    margin-top: 0 !important;
+
+    svg {
+      width: 20px !important;
+      height: 20px !important;
+    }
 }
 .mt-4, .admin_common_sight .ms-lg-3.mt-4 {
     margin-top: 30px !important;
 }
+.choose-file-box {
+    padding: 9px 30px 9px 12px;
+  }
 }
 
 
 @media (min-width: 3000px) {
-.create-sight .cupen-btn, label {
+.create-sight .cupen-btn, label, .dummy_label {
   font-size: 28px !important;
 }
 .upload-label {
   height: 71px !important;
 }
 .add_row_btn {
-  width: 70px !important;
-  height: 71px !important;
-  margin-top: 0 !important;
-}
+    width: 60px !important;
+    height: 71px !important;
+    margin-top: 0 !important;
+
+    svg {
+      width: 28px !important;
+      height: 28px !important;
+    }
+  }
 .mt-4, .admin_common_sight .ms-lg-3.mt-4 {
     margin-top: 40px !important;
 }
+.choose-file-box {
+    padding: 14.5px 30px 14.5px 12px;
+  }
 }
 
 ::ng-deep .cdk-overlay-pane.mat-mdc-dialog-panel {

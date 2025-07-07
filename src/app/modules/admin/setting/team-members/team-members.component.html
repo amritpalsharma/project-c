@@ -9,7 +9,7 @@
 <div class="card">
   <div class="card-header d-flex align-items-center justify-content-between">
     <h4 class="card-title">{{ 'team' | translate }}</h4>
-    <a (click)="addRepresentator()"  class="cursor-pointer"><small><i class="fa-solid fa-plus plus-color me-1 "></i></small> <span class="Addmember"
+    <a [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}" (click)="addRepresentator()"  class="cursor-pointer"><small><i class="fa-solid fa-plus plus-color me-1 "></i></small> <span class="Addmember"
         >{{ 'addMember' | translate }}</span></a>
   </div>
   <div class="card-body px-3 py-2">
@@ -26,7 +26,7 @@
               </span>
             </div>
           </td>
-          <td>
+          <!-- <td>
             @if(currentUserId != representator.id){
             <span class="bg_pending" *ngIf="representator.status == '1'">{{ 'invited' | translate }}</span>
             <span class="bg_success" *ngIf="representator.status == '2'">{{ 'active' | translate }}</span>
@@ -36,9 +36,9 @@
               'active' | translate }}</span>
             }
 
-          </td>
+          </td> -->
 
-          <td>
+          <td [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}">
             <select class="custom-select custom-select-wrapper" *ngIf="currentUserId != representator.id"
               (change)="updateRepresentatorRole($event, representator.id)">
 
@@ -85,7 +85,7 @@
 
             <p *ngIf="currentUserId == representator.id">{{ 'owner' | translate }}</p>
           </td>
-          <td class="c_pointer">
+          <td class="c_pointer" [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}">
             <svg *ngIf="currentUserId != representator.id" (click)="confirmSingleDeletion(representator.id)"
               id="users-icon" width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path

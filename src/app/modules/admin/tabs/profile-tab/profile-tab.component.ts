@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MessagePopupComponent } from '../../message-popup/message-popup.component';
 import { GlobalSettingsService } from '../../../../services/global-settings.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UserRoleService } from '../../../../services/user-role.service';
 
 @Component({
   selector: 'app-profile-tab',
@@ -21,7 +22,9 @@ export class ProfileTabComponent {
   @Input() userCountryFlag: any;
   @Output() dataEmitter = new EventEmitter<string>();
   scoutInfoDetails: any;
-  constructor(private router: Router, public dialog: MatDialog, public globalSettings: GlobalSettingsService) {
+  constructor(
+    public userRoleService: UserRoleService,
+    private router: Router, public dialog: MatDialog, public globalSettings: GlobalSettingsService) {
 
 
   }

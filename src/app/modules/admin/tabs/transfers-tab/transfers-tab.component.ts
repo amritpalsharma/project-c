@@ -5,6 +5,7 @@ import { UserService } from '../../../../services/user.service';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { tap, catchError } from 'rxjs/operators'; // For storing data after fetching
+import { UserRoleService } from '../../../../services/user-role.service';
 
 @Component({
   selector: 'app-transfers-tab',
@@ -34,6 +35,7 @@ export class TransfersTabComponent {
   movingTosearch: string = '';
   movingFromsearch: string = '';
   constructor(
+    public userRoleService: UserRoleService,
     private route: ActivatedRoute,
     private userService: UserService,
     private router: Router,

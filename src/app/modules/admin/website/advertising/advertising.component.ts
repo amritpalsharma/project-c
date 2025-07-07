@@ -7,6 +7,8 @@ import { MessagePopupComponent } from '../../message-popup/message-popup.compone
 import { AdvertisementService } from '../../../../services/advertisement.service';
 import { AdvertisingPopupComponent } from '../advertising-popup/advertising-popup.component';
 import { CommonFilterPopupComponent } from '../../common-filter-popup/common-filter-popup.component';
+import { UserRoleService } from '../../../../services/user-role.service';
+
 @Component({
   selector: 'app-advertising',
   templateUrl: './advertising.component.html',
@@ -54,7 +56,9 @@ export class AdvertisingComponent {
   // ];
   pageOptions: any = [];
 
-  constructor(private advertisementService: AdvertisementService, public dialog: MatDialog) { }
+  constructor(
+    public userRoleService: UserRoleService,
+    private advertisementService: AdvertisementService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
 

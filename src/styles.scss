@@ -2864,14 +2864,25 @@ img.club_logo_in_search {
   user-select: none !important;
   cursor: not-allowed !important;
   opacity: 0.6 !important;
-  filter:grayscale(100%);
+  filter: grayscale(100%);
 }
 
 .phone_a {
-    max-width: 100%;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    padding-right: 2px;
-    display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding-right: 2px;
+  display: inline-block;
+}
+
+.admin_view_only {
+  pointer-events: none !important;
+  /* Disable all mouse events */
+  user-select: none;
+  /* Prevent text selection */
+  opacity: 0.6;
+  /* Dim to show it's inactive */
+  cursor: not-allowed !important;
+  /* Show blocked cursor */
 }

@@ -75,12 +75,13 @@
 .position-absolute{
    top: 25rem;
    bottom:0;
-
 }
 .check-user-list {
   position: relative;
 }
-
+.club_logo_serched {
+  object-fit: contain;
+}
 .check-user-list label {
   background-color: #fff;
   border: 1px solid #ccc;

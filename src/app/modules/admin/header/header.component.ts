@@ -29,6 +29,9 @@ import 'moment/locale/it';
 import 'moment/locale/es';
 import 'moment/locale/sv';
 import 'moment/locale/da';
+import { permission } from 'process';
+
+import { UserRoleService } from '../../../services/user-role.service';
 
 interface Notification {
   id: number;
@@ -68,7 +71,8 @@ export class HeaderComponent {
     private talkService: TalkService,
     private cdRef: ChangeDetectorRef,
     private titleService: TitleService,
-    private globalSettings: GlobalSettingsService
+    private globalSettings: GlobalSettingsService,
+    public userRoleService: UserRoleService
   ) {
     let locale = localStorage.getItem('lang') || 'en';
     this._adapter.setLocale(locale);
@@ -116,6 +120,7 @@ export class HeaderComponent {
 
   notificationSeen: boolean = false;
   isSearchVisible: boolean = false;
+  adminRoleAccess: string = '';
 
   ngOnInit() {
     // Component's Title
@@ -281,6 +286,20 @@ export class HeaderComponent {
     this.userService.getAdminProfile().subscribe((response) => {
       if (response && response.status) {
         let userData = response.data.user_data;
+        // adminRoleAccess
+        if (response?.data?.representator_data && response?.data?.representator_data != '') {
+          // permission	
+          let userType = '';
+          if (response?.data?.representator_data?.permission && response?.data?.representator_data?.permission == 'editor') {
+            this.adminRoleAccess = 'admin_editor';
+            userType = 'admin.editor';
+          }
+          if (response?.data?.representator_data?.permission && response?.data?.representator_data?.permission == 'view-only') {
+            this.adminRoleAccess = 'admin_view_only';
+            userType = 'admin.view';
+          }
+          this.userRoleService.setRole(userType, this.adminRoleAccess);
+        }
         // this.firstName = this.userData.first_name || '';
         // this.lastName = this.userData.last_name || '';
         // this.email = this.userData.username || '';
@@ -450,7 +469,7 @@ export class HeaderComponent {
       console.log("No data found in localStorage.");
     }
     this.socketService.disconnectUser(userId);
-
+    localStorage.removeItem('userPermissionRole');
     this.authService.logout();
   }
 

@@ -20,7 +20,7 @@ import { SharedService } from '../../../services/shared.service';
 import { AdminHelperService } from '../../../services/admin-helper.service';
 import { TitleService } from '../../../title.service';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
-
+import { UserRoleService } from '../../../services/user-role.service';
 interface Notification {
   id: number;
   image: string;
@@ -114,7 +114,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     private sharedservice: SharedService,
     private adminHelper: AdminHelperService,
     private titleService: TitleService,
-    private globalSettings: GlobalSettingsService
+    private globalSettings: GlobalSettingsService,
+    public userRoleService: UserRoleService
   ) {
 
   }

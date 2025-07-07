@@ -130,6 +130,7 @@ export class TeamsTabComponent {
     }
     const messageDialog = this.dialog.open(AddNewTalentComponent, {
       width: '800px',
+      panelClass: 'club_add_team_popup',
       data: {
         teamId: this.selectedTeamId,
         player: [],
@@ -158,6 +159,7 @@ export class TeamsTabComponent {
     console.log('player', player);
     const messageDialog = this.dialog.open(AddNewTalentComponent, {
       width: '800px',
+      panelClass: 'club_add_team_popup',
       data: {
         teamId: this.selectedTeamId,
         player: player,

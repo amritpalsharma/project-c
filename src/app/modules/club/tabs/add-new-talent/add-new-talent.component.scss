@@ -321,7 +321,13 @@
   }
 }
 
-
+::ng-deep {
+  @media (min-width: 2000px) {
+    .club_add_team_popup {
+      width: 950px !important;
+    }
+  }
+}
 
 @media (min-width: 1600px) and (max-width: 2999px) {
 .date-input {

@@ -13,7 +13,7 @@ import { WebPages } from '../../../services/webpages.service';
 import { SharedService } from '../../../services/shared.service';
 import { TitleService } from '../../../title.service';
 import { TranslateService } from '@ngx-translate/core';
-
+import { UserRoleService } from '../../../services/user-role.service';
 
 
 @Component({
@@ -44,6 +44,7 @@ export class MarketingComponent {
   sortDirection: 'asc' | 'desc' = 'asc';
   sortField: string = '';
   constructor(
+    public userRoleService: UserRoleService,
     public dialog: MatDialog,
     private marketingApi: MarketingService,
     private webpages: WebPages,

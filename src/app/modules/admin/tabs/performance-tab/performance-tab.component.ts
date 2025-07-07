@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../../../services/user.service';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
+import { UserRoleService } from '../../../../services/user-role.service';
 
 @Component({
   selector: 'app-performance-tab',
@@ -30,6 +31,7 @@ export class PerformanceTabComponent {
   // from_date:2021-01-01
   //   to_date:2022-01-01
   constructor(
+    public userRoleService: UserRoleService,
     private route: ActivatedRoute,
     private userService: UserService,
     private router: Router,

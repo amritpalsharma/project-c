@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { AddPageComponent } from './add-page/add-page.component';
 import { SharedService } from '../../../../services/shared.service';
 import { CommonFilterPopupComponent } from '../../common-filter-popup/common-filter-popup.component';
+import { UserRoleService } from '../../../../services/user-role.service';
 interface WebPage {
   id: string;
   user_id: string;
@@ -48,7 +49,9 @@ export class WebPagesComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private sharedservice:SharedService, private webpages: WebPages, private datePipe: DatePipe, public dialog: MatDialog, private router: Router) {}
+  constructor(
+    public userRoleService: UserRoleService,
+    private sharedservice:SharedService, private webpages: WebPages, private datePipe: DatePipe, public dialog: MatDialog, private router: Router) {}
 
   ngOnInit(){
     this.getAllPagesData();

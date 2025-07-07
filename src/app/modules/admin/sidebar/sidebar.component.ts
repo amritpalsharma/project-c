@@ -110,6 +110,7 @@ export class SidebarComponent {
     localStorage.setItem('theme', theme);
     localStorage.setItem('lang', lang);
     localStorage.setItem('lang_id', lang_id + '');
+    localStorage.removeItem('userPermissionRole');
 
     // ✅ Perform logout logic
     this.authService.logout();

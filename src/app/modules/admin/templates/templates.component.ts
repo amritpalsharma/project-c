@@ -14,6 +14,7 @@ import { AdminHelperService } from '../../../services/admin-helper.service';
 import { TitleService } from '../../../title.service';
 import { SharedService } from '../../../services/shared.service';
 import { TranslateService } from '@ngx-translate/core';
+import { UserRoleService } from '../../../services/user-role.service';
 
 @Component({
   selector: 'app-templates',
@@ -40,6 +41,7 @@ export class TemplatesComponent {
   count: number = 0;
 
   constructor(
+    public userRoleService: UserRoleService,
     public dialog: MatDialog,
     private tempalateApi: TemplateService,
     public adminHelper: AdminHelperService,

@@ -2449,8 +2449,12 @@ input:checked+.slider:before {
 
 .dark-theme .mdc-list-item__primary-text img {
   background: #fff;
-  object-fit: cover;
-  object-position: top center;
+  // object-fit: cover;
+  // object-position: top center;
+}
+
+.dark-theme .mat-date-range-input-separator {
+  color: #fff !important;
 }
 
 .dark-theme .cdk-overlay-pane:not(.mat-mdc-select-panel-above) div.mat-mdc-select-panel {

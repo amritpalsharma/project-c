@@ -2,7 +2,7 @@
     <div class="d-flex align-items-center">
         <!-- <h6 class="mb-0 me-2 main-template"> {{ 'GeneralDetails' | translate}} </h6> -->
         <h6 class="mb-0 me-2 main-template"> {{ 'generalDetails' | translate}} </h6>
-        <a class="btn btn-outline-white main-template" (click)="editScout(userData)">
+        <a class="btn btn-outline-white main-template" (click)="editScout(userData)" [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}">
             <svg id="users-icon" class="me-1" width="24" height="25" viewBox="0 0 24 25" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -214,7 +214,7 @@
                 <thead class="border-table-thead">
                     <tr>
                         <th>{{ 'representators:' | translate }} &nbsp; &nbsp;<button
-                                class="btn btn-success btn-sm web-create-bg" (click)="addRepresentator()">{{ 'addNew' |
+                             [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}"  class="btn btn-success btn-sm web-create-bg" (click)="addRepresentator()">{{ 'addNew' |
                                 translate }}</button></th>
                         <th>{{ 'roles' | translate }}</th>
                         <th>{{ 'designation' | translate }}</th>
@@ -236,7 +236,7 @@
                         </td>
                         <td>
                             <select class="custom-select custom-select-wrapper"
-                                (change)="updateRepresentatorRole($event, representator.id)">
+                                (change)="updateRepresentatorRole($event, representator.id)" [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}">
 
                                 <!-- <option value="admin-access"
                                     *ngIf="representator.permission != null && representator.permission != 'admin-access'">
@@ -291,7 +291,7 @@
                             </select>
                         </td>
                         <td>{{ getMetaValue(representator.meta, 'designation') }}</td>
-                        <td class="text-center">
+                        <td class="text-center" [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}">
                             <svg class="pointer" (click)="editRepresentator(representator)" width="24" height="24"
                                 viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -299,7 +299,7 @@
                                     fill="#787878" class="scout-edit" />
                             </svg>
                         </td>
-                        <td class="text-center">
+                        <td class="text-center" [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}">
                             <svg class="pointer" (click)="confirmSingleDeletion(representator.id)" width="13"
                                 height="16" viewBox="0 0 13 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path

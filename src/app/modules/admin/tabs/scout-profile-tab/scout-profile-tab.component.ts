@@ -5,6 +5,7 @@ import { MessagePopupComponent } from '../../message-popup/message-popup.compone
 import { Router } from '@angular/router';
 import { UserService } from '../../../../services/user.service';
 import { AddRepresentatorPopupComponent } from '../../add-representator-popup/add-representator-popup.component';
+import { UserRoleService } from '../../../../services/user-role.service';
 
 @Component({
   selector: 'app-scout-profile-tab',
@@ -21,7 +22,11 @@ export class ScoutProfileTabComponent {
   idsToDelete: any = "";
   @Input() userData: any;
   @Output() dataEmitter = new EventEmitter<string>();
-  constructor(public dialog: MatDialog, private router: Router, private userService: UserService) { }
+  constructor(
+    public userRoleService: UserRoleService,
+    public dialog: MatDialog,
+    private router: Router,
+    private userService: UserService) { }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['userData']) {

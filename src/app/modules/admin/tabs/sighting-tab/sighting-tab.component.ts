@@ -8,6 +8,8 @@ import { InviteTalentPopupComponent } from '../invite-talent-popup/invite-talent
 import { MessagePopupComponent } from '../../message-popup/message-popup.component';
 import { UploadAttachmentComponent } from '../upload-attachment/upload-attachment.component';
 import { environment } from '../../../../../environments/environment';
+import { UserRoleService } from '../../../../services/user-role.service';
+
 @Component({
   selector: 'app-sighting-tab',
   templateUrl: './sighting-tab.component.html',
@@ -35,7 +37,9 @@ export class SightingTabComponent {
   
   attachments:any = [];
   viewSightId:any = "";
-  constructor(private route: ActivatedRoute, private userService: UserService, private router: Router, public dialog: MatDialog) { }
+  constructor(
+    public userRoleService: UserRoleService,
+    private route: ActivatedRoute, private userService: UserService, private router: Router, public dialog: MatDialog) { }
   
   ngOnInit(): void {
     this.route.params.subscribe((params:any) => {
@@ -177,6 +181,7 @@ export class SightingTabComponent {
   createSightPopup(){
     const messageDialog = this.dialog.open(CreateSightPopupComponent,{
       width: '750px',
+      panelClass: 'club_sighting_popup',
       position: {
         top:'70px'
       },
@@ -199,6 +204,7 @@ export class SightingTabComponent {
   editSight(sightData:any, playersInvited:any){
     const editDialog = this.dialog.open(CreateSightPopupComponent,{
       width: '750px',
+      panelClass: 'club_sighting_popup',
       position: {
         top:'70px'
       },
