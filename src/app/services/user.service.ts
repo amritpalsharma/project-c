@@ -660,7 +660,7 @@ export class UserService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
-    return this.http.get<any[]>(`${this.apiUrl}users-frontend-with-login?search=${query}`, { headers }).pipe(
+    return this.http.get<any[]>(`${this.apiUrl}users-frontend-with-login?search=${query}&noLimit=1`, { headers }).pipe(
       catchError((error) => {
         console.error('Error occurred during user search:', error);
         throw error;

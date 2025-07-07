@@ -144,12 +144,35 @@ export class InviteScoutTalentPopupComponent {
   }
 
   callListApi(userInput: HTMLInputElement) {
-    setTimeout(() => {
-      this.filteredUsers = this.allUsers.filter((user: any) => (user.first_name !== null && user.first_name !== undefined) &&
-        user.first_name.toLowerCase().indexOf(userInput.value.toLowerCase()) != -1
-      );
-    }, 2000);
-    console.log(userInput.value);
+    // setTimeout(() => {
+    //   this.filteredUsers = this.allUsers.filter((user: any) => (user.first_name !== null && user.first_name !== undefined) &&
+    //     user.first_name.toLowerCase().indexOf(userInput.value.toLowerCase()) != -1
+    //   );
+    // }, 2000);
+    let keyword = userInput.value.toLowerCase(); 
+    if (!keyword || keyword.length == 0) {
+      this.userSearch = '';
+      this.filteredUsers = [];
+      return;
+    }
+
+    this.filteredUsers = this.allUsers
+      .filter((user: any) => {
+        const fullName = `${user.first_name || ''} ${user.last_name || ''}`.toLowerCase().trim();
+        const keywordLower = keyword.toLowerCase().trim();
+        return fullName.includes(keywordLower);
+      })
+      .sort((a: any, b: any) => {
+        const aFull = `${a.first_name || ''} ${a.last_name || ''}`.toLowerCase().trim();
+        const bFull = `${b.first_name || ''} ${b.last_name || ''}`.toLowerCase().trim();
+        const keywordLower = keyword.toLowerCase().trim();
+
+        const aIndex = aFull.indexOf(keywordLower);
+        const bIndex = bFull.indexOf(keywordLower);
+
+        return aIndex - bIndex;
+      });
+    // console.log(userInput.value);
   }
 
   remove(user: any): void {

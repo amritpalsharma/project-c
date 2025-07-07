@@ -54,6 +54,7 @@ export class AddNewTalentComponent implements OnInit {
     public dialogRef: MatDialogRef<AddNewTalentComponent>,
     private socketService: SocketService,
     public toaster: ToastrService,
+    private userService: UserService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.teamId = data.teamId;
@@ -90,7 +91,8 @@ export class AddNewTalentComponent implements OnInit {
 
   async fetchPlayers(): Promise<void> {
     try {
-      this.clubService.getAllPlayers().subscribe((response) => {
+      this.userService.exploreSearchUser('').subscribe((response: any) => {
+        // this.clubService.getAllPlayers().subscribe((response) => {
         if (response && response.status && response.data && response.data.userData) {
           this.allUsers = response.data.userData.users;
           console.info(this.allUsers)
@@ -229,19 +231,43 @@ export class AddNewTalentComponent implements OnInit {
 
   onKeyPress(event: any) {
     let keyword = event.target.value;
-    console.log(keyword); // You can use this to see the current input value
+    // console.log('KeyWord : '+keyword+' keyword.length : '+keyword.length); // You can use this to see the current input value
+    if (!keyword || keyword.length == 0) {
+      this.userSearch = '';
+      this.filteredUsers = [];
+      return;
+    }
 
     // this.filteredUsers = this.allUsers.filter((user: any) => (user.first_name !== null && user.first_name !== undefined) &&
     //   user.first_name.toLowerCase().indexOf(keyword.toLowerCase()) != -1);
-    this.filteredUsers = this.allUsers
-      .filter((user: any) => user.first_name && user.first_name.toLowerCase().indexOf(keyword.toLowerCase()) !== -1)
-      .sort((a: any, b: any) => {
-        const aIndex = a.first_name.toLowerCase().indexOf(keyword.toLowerCase());
-        const bIndex = b.first_name.toLowerCase().indexOf(keyword.toLowerCase());
+    // this.filteredUsers = this.allUsers
+    //   .filter((user: any) => user.first_name && user.first_name.toLowerCase().indexOf(keyword.toLowerCase()) !== -1)
+    //   .sort((a: any, b: any) => {
+    //     const aIndex = a.first_name.toLowerCase().indexOf(keyword.toLowerCase());
+    //     const bIndex = b.first_name.toLowerCase().indexOf(keyword.toLowerCase());
 
-        // Sort by the index where the match happens, prioritizing earlier matches
+    //     // Sort by the index where the match happens, prioritizing earlier matches
+    //     return aIndex - bIndex;
+    //   });
+
+
+    this.filteredUsers = this.allUsers
+      .filter((user: any) => {
+        const fullName = `${user.first_name || ''} ${user.last_name || ''}`.toLowerCase().trim();
+        const keywordLower = keyword.toLowerCase().trim();
+        return fullName.includes(keywordLower);
+      })
+      .sort((a: any, b: any) => {
+        const aFull = `${a.first_name || ''} ${a.last_name || ''}`.toLowerCase().trim();
+        const bFull = `${b.first_name || ''} ${b.last_name || ''}`.toLowerCase().trim();
+        const keywordLower = keyword.toLowerCase().trim();
+
+        const aIndex = aFull.indexOf(keywordLower);
+        const bIndex = bFull.indexOf(keywordLower);
+
         return aIndex - bIndex;
       });
+
 
   }
 
