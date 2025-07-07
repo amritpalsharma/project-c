@@ -38,6 +38,12 @@
                 <span (click)="deleteConfirmed()">{{'delete' | translate}}</span>
             </div>
         </div>
+        <div class="display-message" *ngIf="data.action == 'delete-coupon-confirmation2'">
+            {{'blogDelete' | translate}}
+            <div class="popup-delete-btn">
+                <span class="btn btn-danger bg-dark-btn" (click)="deleteConfirmed()">{{'delete' | translate}}</span>
+            </div>
+        </div>
         <div class="display-message" *ngIf="data.action == 'delete-coupon-confirmation'">
             {{'areToSure' | translate}}
             <div class="popup-delete-btn">

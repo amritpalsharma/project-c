@@ -6,6 +6,7 @@ import { ResetPasswordComponent } from '../../../shared/reset-password/reset-pas
 import { UnverifiedUserComponent } from '../../../shared/unverified-user/unverified-user.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GlobalSettingsService } from '../../../../services/global-settings.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'talent-profile-tab',
@@ -29,8 +30,12 @@ export class ProfileTabComponent {
     public globalSetting: GlobalSettingsService,
     public dialog: MatDialog,
     private talentService: TalentService,
+    private translate: TranslateService,
     private router: Router) {
     // If you want to load the user data from localStorage during initialization    
+    translate.onLangChange.subscribe(() => {
+      this.getUserProfile();
+    });
   }
 
   ngOnInit(): void {

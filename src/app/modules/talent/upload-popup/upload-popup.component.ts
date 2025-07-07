@@ -148,6 +148,7 @@ export class UploadPopupComponent {
             this.toastr.clear(loadingToast.toastId);
             this.uploadedFiles.push({ id: row.data.id, file_name: row.data.uploaded_file });
           } else {
+            this.files = [];
             this.toastr.clear(loadingToast.toastId);
             this.toastr.error(row.message);
           }
@@ -160,6 +161,7 @@ export class UploadPopupComponent {
             files: this.uploadedFiles
           });
         } else {
+          this.files = [];
           this.isLoading = false;
         }
       });

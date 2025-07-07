@@ -1430,5 +1430,6 @@
   "premiumFeatures": "Premium Features",
   "multiCountryFeatures": "Multi-Country Features",
   "newsHeading": "Stay up to date: Here you’ll find the latest news, media coverage, and exciting updates about SoccerYou.",
-  "editSighting": "Edit scouting session"
+  "editSighting": "Edit scouting session",
+  "blogDelete": "Are you sure you want to delete the blog post?"
 }

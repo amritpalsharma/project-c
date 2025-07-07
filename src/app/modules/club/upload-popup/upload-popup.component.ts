@@ -117,6 +117,7 @@ export class UploadPopupComponent {
           this.uploadedFiles.push({ id: row.data.id, file_name: row.data.uploaded_file });
         } else {
           this.toastr.error(row.message);
+          this.files = [];
         }
 
       });
@@ -128,6 +129,7 @@ export class UploadPopupComponent {
           files: this.uploadedFiles
         });
       } else {
+        this.files = [];
         this.isLoading = false;
       }
     });

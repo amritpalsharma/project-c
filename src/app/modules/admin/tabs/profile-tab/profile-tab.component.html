@@ -105,12 +105,15 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-3 td_col" *ngIf="this.userData?.scout_info && this.userData?.scout_info != null && this.userData?.scout_info !== ''">
+        <div class="col-lg-3 td_col"
+            *ngIf="this.userData?.scout_info && this.userData?.scout_info != null && this.userData?.scout_info !== ''">
             <div class="team-details">
                 <p> {{ 'scout' | translate}}</p>
-                <div class="d-flex align-items-center cursor-pointer" (click)="naviGateScoutProfile(scoutInfoDetails.id)">
+                <div class="d-flex align-items-center cursor-pointer"
+                    (click)="naviGateScoutProfile(scoutInfoDetails.id)">
                     <img *ngIf="scoutInfoDetails?.profile_image"
-                        [src]="'https://api.socceryou.ch/uploads/'+scoutInfoDetails?.profile_image" alt="" style="width: 50px;">
+                        [src]="'https://api.socceryou.ch/uploads/'+scoutInfoDetails?.profile_image" alt=""
+                        style="width: 50px;">
                     <img *ngIf="!scoutInfoDetails?.profile_image"
                         src="../../../../assets/images/default/talent-profile-default.png" alt="" style="width: 50px;">
                     <h6>{{scoutInfoDetails?.first_name}} {{scoutInfoDetails?.last_name}}</h6>
@@ -236,46 +239,7 @@
         <div class="col-lg-6 td_col mt-3">
             <div class="team-details style-1 admin_social_profile">
                 <p> {{'socialMedia' | translate }}</p>
-                <div class="d-flex align-items-center team-details-sub" *ngIf="userData.meta && userData.meta.sm_x">
-                    <h6>
-                        <svg id="users-icon" width="17" height="17" viewBox="0 0 17 17" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_3008_6581)">
-                                <path
-                                    d="M10.0834 7.19844L16.276 0H14.8084L9.43159 6.25016L5.13697 0H0.183594L6.67786 9.45147L0.183594 17H1.65117L7.32944 10.3996L11.8647 17H16.8181L10.083 7.19844H10.0834ZM8.07345 9.53461L7.41537 8.5935L2.1799 1.10473H4.43399L8.65889 7.1485L9.31684 8.08961L14.809 15.9455H12.5552L8.07345 9.53501V9.53461Z"
-                                    fill="black" />
-                            </g>
-                            <defs>
-                                <clipPath id="clip0_3008_6581">
-                                    <rect width="17" height="17" fill="white" />
-                                </clipPath>
-                            </defs>
-                        </svg>
 
-
-                        www.x.com/{{userData.meta.sm_x}}
-                    </h6>
-                </div>
-                <div class="d-flex align-items-center team-details-sub"
-                    *ngIf="userData.meta && userData.meta.sm_facebook">
-                    <h6>
-                        <svg id="users-icon" width="19" height="19" viewBox="0 0 19 19" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_3009_6591)">
-                                <!-- <path d="M17.3151 0.716797H1.68609C1.15077 0.716797 0.716797 1.15077 0.716797 1.68609V17.3151C0.716797 17.8504 1.15077 18.2844 1.68609 18.2844H17.3151C17.8504 18.2844 18.2844 17.8504 18.2844 17.3151V1.68609C18.2844 1.15077 17.8504 0.716797 17.3151 0.716797Z" fill="#3D5A98"/> -->
-                                <path
-                                    d="M12.8366 18.2829V11.48H15.1196L15.461 8.82892H12.8366V7.13673C12.8366 6.36931 13.0504 5.84532 14.1503 5.84532H15.5545V3.47032C14.8745 3.39959 14.1912 3.36589 13.5076 3.36939C11.4859 3.36939 10.0935 4.60142 10.0935 6.874V8.82892H7.81055V11.48H10.0935V18.2829H12.8366Z"
-                                    fill="#111418" />
-                            </g>
-                            <defs>
-                                <clipPath id="clip0_3009_6591">
-                                    <rect width="19" height="19" fill="white" />
-                                </clipPath>
-                            </defs>
-                        </svg>
-                        www.facebook.com/{{userData.meta.sm_facebook}}
-                    </h6>
-                </div>
                 <div class="d-flex align-items-center team-details-sub"
                     *ngIf="userData.meta && userData.meta.sm_instagram">
                     <h6>
@@ -324,19 +288,6 @@
                     </h6>
                 </div>
 
-                <div class="d-flex align-items-center team-details-sub" *ngIf="userData.meta && userData.meta.sm_vimeo">
-                    <h6>
-
-                        <svg id="users-icon" width="20" height="17" viewBox="0 0 20 17" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M19.9903 3.93085C19.9002 5.84478 18.5418 8.46293 15.9109 11.7896C13.1921 15.2632 10.8908 17 9.00937 17C7.84226 17 6.85758 15.9437 6.05094 13.8267C5.51244 11.8868 4.97614 9.94914 4.43765 8.00929C3.83981 5.89446 3.19801 4.83597 2.51005 4.83597C2.36059 4.83597 1.83748 5.14488 0.940719 5.76269L0 4.57242C0.986876 3.71915 1.96057 2.86803 2.91887 2.01476C4.23544 0.89794 5.22451 0.308212 5.88389 0.249886C7.44004 0.102993 8.39834 1.14852 8.7566 3.38648C9.14564 5.80157 9.41379 7.30291 9.56545 7.89048C10.0138 9.89514 10.5084 10.8953 11.0469 10.8953C11.4645 10.8953 12.0953 10.2451 12.9327 8.94465C13.7701 7.64638 14.2185 6.65701 14.28 5.97655C14.3987 4.85541 13.9503 4.29376 12.9327 4.29376C12.4535 4.29376 11.959 4.40177 11.4513 4.61563C12.4338 1.45095 14.313 -0.0849463 17.0846 0.00362153C19.1397 0.0619467 20.109 1.37318 19.9903 3.93301V3.93085Z"
-                                fill="#111418" />
-                        </svg>
-                        www.vimeo.com/{{userData.meta.sm_vimeo}}
-                    </h6>
-                </div>
-
                 <div class="d-flex align-items-center team-details-sub"
                     *ngIf="userData.meta && userData.meta.sm_linkedin">
                     <h6>
@@ -357,6 +308,64 @@
                         www.linkedin.com/{{userData.meta.sm_linkedin}}
                     </h6>
                 </div>
+
+                <div class="d-flex align-items-center team-details-sub"
+                    *ngIf="userData.meta && userData.meta.sm_facebook">
+                    <h6>
+                        <svg id="users-icon" width="19" height="19" viewBox="0 0 19 19" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_3009_6591)">
+                                <!-- <path d="M17.3151 0.716797H1.68609C1.15077 0.716797 0.716797 1.15077 0.716797 1.68609V17.3151C0.716797 17.8504 1.15077 18.2844 1.68609 18.2844H17.3151C17.8504 18.2844 18.2844 17.8504 18.2844 17.3151V1.68609C18.2844 1.15077 17.8504 0.716797 17.3151 0.716797Z" fill="#3D5A98"/> -->
+                                <path
+                                    d="M12.8366 18.2829V11.48H15.1196L15.461 8.82892H12.8366V7.13673C12.8366 6.36931 13.0504 5.84532 14.1503 5.84532H15.5545V3.47032C14.8745 3.39959 14.1912 3.36589 13.5076 3.36939C11.4859 3.36939 10.0935 4.60142 10.0935 6.874V8.82892H7.81055V11.48H10.0935V18.2829H12.8366Z"
+                                    fill="#111418" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_3009_6591">
+                                    <rect width="19" height="19" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                        www.facebook.com/{{userData.meta.sm_facebook}}
+                    </h6>
+                </div>
+
+                <div class="d-flex align-items-center team-details-sub" *ngIf="userData.meta && userData.meta.sm_x">
+                    <h6>
+                        <svg id="users-icon" width="17" height="17" viewBox="0 0 17 17" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_3008_6581)">
+                                <path
+                                    d="M10.0834 7.19844L16.276 0H14.8084L9.43159 6.25016L5.13697 0H0.183594L6.67786 9.45147L0.183594 17H1.65117L7.32944 10.3996L11.8647 17H16.8181L10.083 7.19844H10.0834ZM8.07345 9.53461L7.41537 8.5935L2.1799 1.10473H4.43399L8.65889 7.1485L9.31684 8.08961L14.809 15.9455H12.5552L8.07345 9.53501V9.53461Z"
+                                    fill="black" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_3008_6581">
+                                    <rect width="17" height="17" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+
+
+                        www.x.com/{{userData.meta.sm_x}}
+                    </h6>
+                </div>
+
+
+                <div class="d-flex align-items-center team-details-sub" *ngIf="userData.meta && userData.meta.sm_vimeo">
+                    <h6>
+
+                        <svg id="users-icon" width="20" height="17" viewBox="0 0 20 17" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M19.9903 3.93085C19.9002 5.84478 18.5418 8.46293 15.9109 11.7896C13.1921 15.2632 10.8908 17 9.00937 17C7.84226 17 6.85758 15.9437 6.05094 13.8267C5.51244 11.8868 4.97614 9.94914 4.43765 8.00929C3.83981 5.89446 3.19801 4.83597 2.51005 4.83597C2.36059 4.83597 1.83748 5.14488 0.940719 5.76269L0 4.57242C0.986876 3.71915 1.96057 2.86803 2.91887 2.01476C4.23544 0.89794 5.22451 0.308212 5.88389 0.249886C7.44004 0.102993 8.39834 1.14852 8.7566 3.38648C9.14564 5.80157 9.41379 7.30291 9.56545 7.89048C10.0138 9.89514 10.5084 10.8953 11.0469 10.8953C11.4645 10.8953 12.0953 10.2451 12.9327 8.94465C13.7701 7.64638 14.2185 6.65701 14.28 5.97655C14.3987 4.85541 13.9503 4.29376 12.9327 4.29376C12.4535 4.29376 11.959 4.40177 11.4513 4.61563C12.4338 1.45095 14.313 -0.0849463 17.0846 0.00362153C19.1397 0.0619467 20.109 1.37318 19.9903 3.93301V3.93085Z"
+                                fill="#111418" />
+                        </svg>
+                        www.vimeo.com/{{userData.meta.sm_vimeo}}
+                    </h6>
+                </div>
+
+
             </div>
         </div>
         <div class="col-lg-3 td_col">

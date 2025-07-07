@@ -203,7 +203,7 @@ export class BlogComponent {
   }
 
   showDeleteConfirmationPopup() {
-    this.showMatDialog("", "delete-coupon-confirmation");
+    this.showMatDialog("", "delete-coupon-confirmation2");
   }
 
   showMatDialog(message: string, action: string) {
