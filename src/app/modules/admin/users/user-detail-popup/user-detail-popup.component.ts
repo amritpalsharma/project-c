@@ -5,6 +5,7 @@ import {
 import { Router } from '@angular/router';
 import { SocketService } from '../../../../services/socket.service';
 import { AdminHelperService } from '../../../../services/admin-helper.service';
+import { UserRoleService } from '../../../../services/user-role.service';
 
 @Component({
   selector: 'app-user-detail-popup',
@@ -15,7 +16,9 @@ export class UserDetailPopupComponent {
   updatedData: any;
   selectedOption: any = "";
 
-  constructor(private router: Router, private socketService: SocketService,
+  constructor(
+    public userRoleService: UserRoleService,
+    private router: Router, private socketService: SocketService,
     public dialogRef: MatDialogRef<UserDetailPopupComponent>,
     private adminHelper: AdminHelperService,
     @Inject(MAT_DIALOG_DATA) public user: any) {

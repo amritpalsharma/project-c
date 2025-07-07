@@ -234,11 +234,13 @@ export class AddRepresentatorPopupComponent {
       return false;
     }
 
+    let verification_link = window.location.origin + '/home';
     let params: any = {}
     params.email = this.email;
     params.site_role = this.role;
     params.first_name = this.firstName;
     params.last_name = this.lastName;
+    params.verification_link = verification_link;
     let lang_id = localStorage.getItem('lang_id');
     params.lang = lang_id;
     this.userService.sendInviteToAdminRepresentator(params).subscribe((response) => {

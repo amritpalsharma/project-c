@@ -432,7 +432,7 @@
                     />
                   </svg>
                 </td> -->
-          <td class="c_pointer text-center">
+          <td class="c_pointer text-center" [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}">
             <svg (click)="editPage(page)" id="users-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
               xmlns="http://www.w3.org/2000/svg">
               <path

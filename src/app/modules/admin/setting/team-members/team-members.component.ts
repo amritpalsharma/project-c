@@ -5,6 +5,7 @@ import { MessagePopupComponent } from '../../message-popup/message-popup.compone
 import { AddRepresentatorPopupComponent } from '../../add-representator-popup/add-representator-popup.component';
 import { TranslateService } from '@ngx-translate/core';
 import { SharedService } from '../../../../services/shared.service';
+import { UserRoleService } from '../../../../services/user-role.service';
 
 @Component({
   selector: 'app-team-members',
@@ -21,6 +22,7 @@ export class TeamMembersComponent {
   confirmDeleteinformation: string = '';
 
   constructor(
+    public userRoleService: UserRoleService,
     public dialog: MatDialog,
     private userService: UserService,
     private translateService: TranslateService,

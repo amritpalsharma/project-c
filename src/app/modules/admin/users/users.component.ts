@@ -13,6 +13,7 @@ import { SharedService } from '../../../services/shared.service';
 import { AdminHelperService } from '../../../services/admin-helper.service';
 import { TitleService } from '../../../title.service';
 import { TranslateService } from '@ngx-translate/core';
+import { UserRoleService } from '../../../services/user-role.service';
 
 @Component({
   selector: 'app-users',
@@ -47,6 +48,7 @@ export class UsersComponent implements OnInit {
 
 
   constructor(
+    public userRoleService: UserRoleService,
     private userService: UserService,
     public dialog: MatDialog,
     private socketService: SocketService,

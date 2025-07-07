@@ -29,7 +29,7 @@
               <span *ngIf="user.status == '1' || user.status == '3'">{{ 'verifyUsers' | translate }}</span>
               <span *ngIf="user.status == '2'">{{ 'rejectUser' | translate }}</span>
             </span> -->
-            <span class="btn btn-outline-white profile-tab-content" (click)="changeUserStatus(2)">
+            <span class="btn btn-outline-white profile-tab-content" (click)="changeUserStatus(2)" [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}">
               <svg id="users-icon" width="22" height="19" viewBox="0 0 18 19" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
                 <path d="M9 1L2 3.55V8.7265C2 13.019 4.98375 17.0225 9 18C13.0163 17.0225 16 13.019 16 8.7265V3.55L9 1Z"
@@ -43,7 +43,7 @@
               <span *ngIf="user.status == '2'">{{ 'rejectUser' | translate }}</span> -->
             </span>
 
-            <span class="btn btn-outline-white profile-tab-content" (click)="changeUserStatus(1)">
+            <span class="btn btn-outline-white profile-tab-content" (click)="changeUserStatus(1)" [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}">
 
 
               <svg id="users-reject-icon" width="21" height="21" viewBox="0 0 21 21" fill="none"
@@ -56,7 +56,7 @@
               <span>&nbsp;{{ 'pendingUser' | translate }}</span>
             </span>
 
-            <span class="btn btn-outline-white profile-tab-content" (click)="changeUserStatus(3)">
+            <span class="btn btn-outline-white profile-tab-content" (click)="changeUserStatus(3)" [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}">
               <svg id="users-reject-icon" width="21" height="21" viewBox="0 0 21 21" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
                 <rect x="0.0585938" width="21" height="21" rx="10.5" fill="#FD5454" />
@@ -66,7 +66,7 @@
               </svg>
               <span>&nbsp;{{ 'rejectUser' | translate }}</span>
             </span>
-            <span class="btn btn-outline-white profile-tab-content" (click)="confirmDeletion()">
+            <span class="btn btn-outline-white profile-tab-content" (click)="confirmDeletion()" [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}">
               <svg id="users-icon" width="22" height="23" viewBox="0 0 22 23" fill="none"
                 xmlns="http://www.w3.org/2000/svg" class="me-1">
                 <path
@@ -90,7 +90,7 @@
               {{ 'exportPDF' | translate }}</a> -->
 
             <a *ngIf="activeTab == 'portfolio'" class="btn btn-outline-white btn-success btn-sm web-create-bg"
-              style="color:#ffffff;" (click)="inviteTalent()">
+              style="color:#ffffff;" (click)="inviteTalent()" [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}">
               {{ 'addNewTalent' | translate }}</a>
           </div>
           <div class="d-flex align-items-center profile_count_next_btn">
@@ -122,9 +122,9 @@
                   class="user-img">
                 <div class="user-edit">
                   <label for="file-upload"><img src="../../../../assets/images/edit-icon.png"
-                      class="edit-profile cursor-pointer" alt=""></label>
+                      class="edit-profile cursor-pointer" alt="" [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}"></label>
                   <input id="file-upload" (change)="onProfileFileChange($event)" accept="image/*" type="file"
-                    class="d-none" />
+                    class="d-none" [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}"/>
                   <div class="club-icon" *ngIf="user.club_logo_path">
                     <img *ngIf="user.club_logo_path" src="{{user.club_logo_path}}"
                       class="club-icon-round cursor-pointer" alt="">
@@ -138,7 +138,7 @@
                   class="user-img">
                 <label for="profile-upload" class="">
                   <div class="edit-profile cursor-pointer" id="upload_profilePhoto" (click)="deleteImageConfirm();"
-                    matTooltip="{{'deleteProfilePicture' | translate}}" matTooltipPosition="right">
+                    matTooltip="{{'deleteProfilePicture' | translate}}" matTooltipPosition="right" [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}">
                     <svg class="cursor-pointer" style="padding: 2px;" xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 448 512">
                       <path

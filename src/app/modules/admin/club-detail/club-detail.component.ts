@@ -10,6 +10,7 @@ import { SharedService } from '../../../services/shared.service';
 import { ToastrService } from 'ngx-toastr';
 import { Location } from '@angular/common';
 import { AdminHelperService } from '../../../services/admin-helper.service';
+import { UserRoleService } from '../../../services/user-role.service';
 @Component({
   selector: 'app-club-detail',
   templateUrl: './club-detail.component.html',
@@ -27,7 +28,8 @@ export class ClubDetailComponent implements OnInit {
     private sharedservice: SharedService,
     private toaster: ToastrService,
     private location: Location,
-    private adminHelper: AdminHelperService
+    private adminHelper: AdminHelperService,
+    public userRoleService: UserRoleService,
   ) { }
   activeTab: string = 'profile';
   userId: any = {};

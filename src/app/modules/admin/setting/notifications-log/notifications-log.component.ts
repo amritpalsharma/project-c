@@ -11,6 +11,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { AdminHelperService } from '../../../../services/admin-helper.service';
 import { SharedService } from '../../../../services/shared.service';
 import { Router } from '@angular/router';
+import { UserRoleService } from '../../../../services/user-role.service';
 
 interface Notification {
   id: number;
@@ -45,6 +46,7 @@ export class NotificationsLogComponent {
   selectNotificationFirst: string = '';
 
   constructor(
+    public userRoleService: UserRoleService,
     public dialog: MatDialog,
     public webPages: WebPages,
     private talentService: TalentService,

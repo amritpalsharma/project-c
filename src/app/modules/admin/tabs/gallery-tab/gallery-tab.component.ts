@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { environment } from '../../../../../environments/environment';
 import { CoverImageCropperComponent } from '../../../shared/cover-image-cropper/cover-image-cropper.component';
 import { ToastrService } from 'ngx-toastr';
+import { UserRoleService } from '../../../../services/user-role.service';
 
 @Component({
   selector: 'app-gallery-tab',
@@ -25,7 +26,9 @@ export class GalleryTabComponent {
   openedMenuId: any = '';
   @Input() coverImage: string = '';  // Define an input property
   @Output() dataEmitter = new EventEmitter<string>();
-  constructor(private route: ActivatedRoute, private userService: UserService, public dialog: MatDialog, private toastr: ToastrService) { }
+  constructor(
+    public userRoleService: UserRoleService,
+    private route: ActivatedRoute, private userService: UserService, public dialog: MatDialog, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: any) => {
@@ -99,7 +102,7 @@ export class GalleryTabComponent {
           if (croppedImage) {
             console.log('Cropped Image:', croppedImage);
             this.uploadCroppedCoverImage(croppedImage);
-            
+
           } else {
             console.log('No cropped image returned');
           }
@@ -122,7 +125,7 @@ export class GalleryTabComponent {
     // this.toastr.info(this.uploadingPhotos, this.pleaseWait, { disableTimeOut: true });
 
     try {
-      this.userService.uploadCoverImage(this.userId ,formData).subscribe(
+      this.userService.uploadCoverImage(this.userId, formData).subscribe(
         (response) => {
           if (response && response.status) {
             this.coverImage = `${environment.url}uploads/${response.data.uploaded_fileinfo}`;

@@ -10,6 +10,7 @@ import { WebPages } from '../../../../services/webpages.service';
 import { CommonFilterPopupComponent } from '../../common-filter-popup/common-filter-popup.component';
 import { SharedService } from '../../../../services/shared.service';
 import { AdminHelperService } from '../../../../services/admin-helper.service';
+import { UserRoleService } from '../../../../services/user-role.service';
 
 @Component({
   selector: 'app-blog',
@@ -37,7 +38,9 @@ export class BlogComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild('blogPageCheckBox', { static: false }) blogPageCheckBox!: ElementRef;
-  constructor(private blogService: BlogService, private webpages: WebPages, public dialog: MatDialog, private sharedservice: SharedService, private adminHelper: AdminHelperService) { }
+  constructor(
+    public userRoleService: UserRoleService,
+    private blogService: BlogService, private webpages: WebPages, public dialog: MatDialog, private sharedservice: SharedService, private adminHelper: AdminHelperService) { }
 
   // ngOnInit(): void {
   //   this.getAllLanguages();

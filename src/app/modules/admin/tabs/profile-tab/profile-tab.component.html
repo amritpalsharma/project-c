@@ -1,7 +1,8 @@
 <div class="user-right-content">
     <div class="d-flex align-items-center">
         <h6 class="mb-0 me-2 main-template"> {{ 'generalDetails' | translate}} </h6>
-        <a class="btn btn-outline-white main-template" (click)="editPlayer(userData, 'general')">
+        <a class="btn btn-outline-white main-template" (click)="editPlayer(userData, 'general')"
+            [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}">
             <svg id="users-icon" class="me-1" width="24" height="25" viewBox="0 0 24 25" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -105,12 +106,15 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-3 td_col" *ngIf="this.userData?.scout_info && this.userData?.scout_info != null && this.userData?.scout_info !== ''">
+        <div class="col-lg-3 td_col"
+            *ngIf="this.userData?.scout_info && this.userData?.scout_info != null && this.userData?.scout_info !== ''">
             <div class="team-details">
                 <p> {{ 'scout' | translate}}</p>
-                <div class="d-flex align-items-center cursor-pointer" (click)="naviGateScoutProfile(scoutInfoDetails.id)">
+                <div class="d-flex align-items-center cursor-pointer"
+                    (click)="naviGateScoutProfile(scoutInfoDetails.id)">
                     <img *ngIf="scoutInfoDetails?.profile_image"
-                        [src]="'https://api.socceryou.ch/uploads/'+scoutInfoDetails?.profile_image" alt="" style="width: 35px;">
+                        [src]="'https://api.socceryou.ch/uploads/'+scoutInfoDetails?.profile_image" alt=""
+                        style="width: 35px;">
                     <img *ngIf="!scoutInfoDetails?.profile_image"
                         src="../../../../assets/images/default/talent-profile-default.png" alt="" style="width: 35px;">
                     <h6>{{scoutInfoDetails?.first_name}} {{scoutInfoDetails?.last_name}}</h6>
@@ -142,7 +146,7 @@
 <div class="user-right-content">
     <div class="d-flex align-items-center">
         <h6 class="mb-0 me-2 main-template"> {{ 'personalDetails' | translate}}</h6>
-        <a class="btn btn-outline-white  main-template" (click)="editPlayer(userData, 'personal')">
+        <a class="btn btn-outline-white  main-template" (click)="editPlayer(userData, 'personal')" [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}">
             <svg id="users-icon" class="me-1" width="24" height="25" viewBox="0 0 24 25" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
                 <path

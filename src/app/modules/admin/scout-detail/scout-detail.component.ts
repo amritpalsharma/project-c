@@ -13,6 +13,7 @@ import { Location } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { ImageCropperComponent2 } from '../../shared/image-cropper/image-cropper.component';
 import { AdminHelperService } from '../../../services/admin-helper.service';
+import { UserRoleService } from '../../../services/user-role.service';
 
 
 @Component({
@@ -24,6 +25,7 @@ import { AdminHelperService } from '../../../services/admin-helper.service';
 export class ScoutDetailComponent implements OnInit {
 
   constructor(
+    public userRoleService: UserRoleService,
     private route: ActivatedRoute,
     private userService: UserService,
     public dialog: MatDialog,

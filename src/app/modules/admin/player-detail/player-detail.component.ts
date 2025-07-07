@@ -10,6 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Location } from '@angular/common';
 import { AdminHelperService } from '../../../services/admin-helper.service';
 import { ImageCropperComponent2 } from '../../shared/image-cropper/image-cropper.component';
+import { UserRoleService } from '../../../services/user-role.service';
 
 @Component({
   selector: 'app-player-detail',
@@ -26,7 +27,8 @@ export class PlayerDetailComponent implements OnInit {
     private translate: TranslateService,
     private toaster: ToastrService,
     private location: Location,
-    private adminHelper: AdminHelperService
+    private adminHelper: AdminHelperService,
+    public userRoleService: UserRoleService
   ) { }
   activeTab: string = 'profile';
   userId: any = {};
