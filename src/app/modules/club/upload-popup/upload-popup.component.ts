@@ -5,6 +5,7 @@ import {
 } from '@angular/material/dialog';
 import { ScoutService } from '../../../services/scout.service';
 import { MessagePopupComponent } from '../message-popup/message-popup.component';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -14,13 +15,13 @@ import { MessagePopupComponent } from '../message-popup/message-popup.component'
 })
 export class UploadPopupComponent {
 
-  isLoading : boolean = false;
-  theme:string=localStorage.getItem('theme') || 'dark';
+  isLoading: boolean = false;
+  theme: string = localStorage.getItem('theme') || 'dark';
 
   userId: any = '';
   uploadedFiles: any = [];
   uploadResponse: any = [];
-  constructor(private scoutService: ScoutService, public dialog: MatDialog, public dialogRef: MatDialogRef<UploadPopupComponent>,
+  constructor(private scoutService: ScoutService, private toastr: ToastrService, public dialog: MatDialog, public dialogRef: MatDialogRef<UploadPopupComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
     this.userId = data.userId;
   }
@@ -114,6 +115,8 @@ export class UploadPopupComponent {
         this.uploadResponse.push(row.message)
         if (row.status) {
           this.uploadedFiles.push({ id: row.data.id, file_name: row.data.uploaded_file });
+        } else {
+          this.toastr.error(row.message);
         }
 
       });
@@ -124,6 +127,8 @@ export class UploadPopupComponent {
         this.dialogRef.close({
           files: this.uploadedFiles
         });
+      } else {
+        this.isLoading = false;
       }
     });
   }

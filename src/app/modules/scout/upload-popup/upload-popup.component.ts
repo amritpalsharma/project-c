@@ -6,6 +6,7 @@ import {
 import { ScoutService } from '../../../services/scout.service';
 import { MessagePopupComponent } from '../message-popup/message-popup.component';
 import { HttpEventType } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class UploadPopupComponent {
   uploadedFiles: any = [];
   uploadResponse: any = [];
   file: any = 'all';
-  constructor(private scoutService: ScoutService, public dialog: MatDialog, public dialogRef: MatDialogRef<UploadPopupComponent>,
+  constructor(private scoutService: ScoutService, private toastr: ToastrService, public dialog: MatDialog, public dialogRef: MatDialogRef<UploadPopupComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
     this.userId = data.userId;
     this.file = data.file ? data.file : 'all';
@@ -103,7 +104,7 @@ export class UploadPopupComponent {
     });
   }
 
-  uploadImages300625(files: any) {
+  uploadImages(files: any) {
     this.isLoading = true;
     const formdata = new FormData();
 
@@ -121,8 +122,9 @@ export class UploadPopupComponent {
         this.uploadResponse.push(row.message)
         if (row.status) {
           this.uploadedFiles.push({ id: row.data.id, file_name: row.data.uploaded_file });
+        } else {
+          this.toastr.error(row.message);
         }
-
       });
 
       if (response[0].status) {
@@ -131,11 +133,13 @@ export class UploadPopupComponent {
         this.dialogRef.close({
           files: this.uploadedFiles
         });
+      } else {
+        this.isLoading = false;
       }
     });
   }
 
-  uploadImages(files: any) {
+  uploadImages123(files: any) {
     this.isLoading = true;
     const formdata = new FormData();
 

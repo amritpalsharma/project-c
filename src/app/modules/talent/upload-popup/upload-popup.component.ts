@@ -27,7 +27,7 @@ export class UploadPopupComponent {
 
   isLoading: boolean = false;
 
-  constructor(private userService: TalentService, public dialog: MatDialog, public dialogRef: MatDialogRef<UploadPopupComponent>, private toastr: ToastrService, private translateService: TranslateService,
+  constructor(private talentService: TalentService, public dialog: MatDialog, public dialogRef: MatDialogRef<UploadPopupComponent>, private toastr: ToastrService, private translateService: TranslateService,
     @Inject(MAT_DIALOG_DATA) public data: any) {
     this.userId = data.userId;
     this.file = data.file ? data.file : 'all';
@@ -120,7 +120,7 @@ export class UploadPopupComponent {
     });
   }
 
-  uploadImages130625(files: any) {
+  uploadImages(files: any) {
     this.isLoading = true;
     // let loadingToast = [];
     this.translateService.get([
@@ -136,7 +136,7 @@ export class UploadPopupComponent {
       for (let i = 0; i < files.length; i++) {
         formdata.append("gallery_images[]", files[i]);
       }
-      this.userService.uploadGalleryImages(formdata).subscribe((response) => {
+      this.talentService.uploadGalleryImages(formdata).subscribe((response) => {
         console.log(response);
 
         response.forEach((row: any) => {
@@ -149,7 +149,7 @@ export class UploadPopupComponent {
             this.uploadedFiles.push({ id: row.data.id, file_name: row.data.uploaded_file });
           } else {
             this.toastr.clear(loadingToast.toastId);
-            this.toastr.error(row.message, 'Error');
+            this.toastr.error(row.message);
           }
         });
 
@@ -166,7 +166,7 @@ export class UploadPopupComponent {
     });
   }
 
-  uploadImages(files: any) {
+  uploadImages123(files: any) {
     this.isLoading = true;
     let uploadProgress = 0; // Store upload progress percentage
 
@@ -188,7 +188,7 @@ export class UploadPopupComponent {
       }
 
       // Call the upload service
-      this.userService.uploadGalleryImages(formData).subscribe((event: any) => {
+      this.talentService.uploadGalleryImages(formData).subscribe((event: any) => {
         switch (event.type) {
           case HttpEventType.UploadProgress:
             if (event.total) {
