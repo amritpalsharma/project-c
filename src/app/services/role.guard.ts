@@ -34,6 +34,8 @@ export class RoleGuard implements CanActivate {
       userRole = 'scout';
     } else if (userRole == '4') {
       userRole = 'talent';
+    }else if (userRole == '5') {
+      userRole = 'admin';
     }
     console.info('expectedRoles', expectedRoles);
     console.info('userRole', userRole);

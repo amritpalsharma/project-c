@@ -26,7 +26,7 @@
               </span>
             </div>
           </td>
-          <td>
+          <!-- <td>
             @if(currentUserId != representator.id){
             <span class="bg_pending" *ngIf="representator.status == '1'">{{ 'invited' | translate }}</span>
             <span class="bg_success" *ngIf="representator.status == '2'">{{ 'active' | translate }}</span>
@@ -36,7 +36,7 @@
               'active' | translate }}</span>
             }
 
-          </td>
+          </td> -->
 
           <td>
             <select class="custom-select custom-select-wrapper" *ngIf="currentUserId != representator.id"
