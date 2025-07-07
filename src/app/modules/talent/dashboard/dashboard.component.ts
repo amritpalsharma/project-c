@@ -814,6 +814,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     // console.info('Data passed ', this.user)
     const dialogRef = this.dialog.open(EditPersonalDetailsComponent, {
       width: '800px',
+      panelClass: 'edit_p_detail',
       data: { user: this.user, countries: this.countries }
     });
 

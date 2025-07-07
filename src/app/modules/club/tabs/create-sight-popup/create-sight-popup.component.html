@@ -81,14 +81,17 @@
           [ngClass]="{'emptyRequiredField':submitButtonClicked && !dateTime}">
       </div>
     </div>
-
-    <div class="radio-buttons">
-      <label class="me-3">
-        <input type="radio" name="status" [(ngModel)]="status" [value]="true"> Active
-      </label>
-      <label>
-        <input type="radio" name="status" [(ngModel)]="status" [value]="false"> Inactive
-      </label>
+    <div class="row">
+      <div class="col-lg-4 ms-auto">
+        <div class="radio-buttons active_radio_btn">
+          <label class="me-3">
+            <input type="radio" name="status" [(ngModel)]="status" [value]="true"> {{ 'active' | translate }}
+          </label>
+          <label>
+            <input type="radio" name="status" [(ngModel)]="status" [value]="false">  {{ 'inactive' | translate }}
+          </label>
+        </div>
+      </div>
     </div>
 
     <div class="row mt-4">

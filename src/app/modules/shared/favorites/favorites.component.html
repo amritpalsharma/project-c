@@ -69,8 +69,12 @@
               {{'removeFromFavorite' | translate }}</a>
 
             <!-- Add In Favorites From Explore -->
-            <a class="btn btn-outline-white me-2 delete-text" id="users-icon" (click)="navigateToExplore()">
-              {{'TOOLTIPS.addFavorite' | translate }}</a>
+            <a class="btn btn-outline-white me-2 delete-text fav_outline_btn" id="users-icon" (click)="navigateToExplore()">
+              <svg class="me-1" width="18" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M0.25 0.75H13.75V18L7 12.9375L0.25 18V0.75ZM1.75 2.25V15L7 11.0625L12.25 15V2.25H1.75Z"
+                            fill="#000" />
+                        </svg>{{'TOOLTIPS.addFavorite' | translate }}</a>
             <!-- Add In Favorites From Explore -->
 
           </div>
