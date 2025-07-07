@@ -835,5 +835,10 @@ body {
     text-transform: uppercase;
     color: #565555;
   }
+}
 
+.btn.web-create-bg {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }

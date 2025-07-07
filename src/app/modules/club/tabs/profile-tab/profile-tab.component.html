@@ -48,14 +48,26 @@
             <div class="club_profile_table_wrapper">
                 <div class="visible_mobile_only">
                     {{ 'companyRepresentators' | translate }}: &nbsp; &nbsp;
-                    <button class="btn btn-success btn-sm web-create-bg">{{ 'addNew' | translate }}</button>
+                    <button class="btn btn-success btn-sm web-create-bg dashboard_tabs_add_btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="width: 16px;">
+                            <path
+                                d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z" />
+                        </svg>
+                        {{ 'addNew' | translate }}
+                    </button>
                 </div>
                 <div class="table-responsive ">
                     <table class="table table-scout-profile table-hover bg-072944 ">
                         <thead class="border-table-thead">
                             <tr>
                                 <th>{{ 'companyRepresentators' | translate }}: &nbsp; &nbsp;
-                                    <button class="btn btn-success btn-sm web-create-bg">{{ 'addNew' | translate
+                                    <button class="btn btn-success btn-sm web-create-bg dashboard_tabs_add_btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
+                                            style="width: 16px;">
+                                            <path
+                                                d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z" />
+                                        </svg>
+                                        {{ 'addNew' | translate
                                         }}</button>
                                 </th>
                                 <th>{{ 'roles' | translate }}</th>
@@ -117,7 +129,13 @@
         <div class="club_profile_table_wrapper">
             <div class="visible_mobile_only">
                 <strong>{{ 'companyRepresentators' | translate }}:</strong> &nbsp; &nbsp;
-                <button class="btn btn-success btn-sm web-create-bg {{currentLoggedInPermission}}">{{ 'addNew' | translate }}</button>
+                <button class="btn btn-success btn-sm web-create-bg dashboard_tabs_add_btn {{currentLoggedInPermission}}">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="width: 16px;">
+                        <path
+                            d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z" />
+                    </svg>
+                    {{ 'addNew' |
+                    translate }}</button>
             </div>
             <div class="hide_table_for_mobile">
                 <div class="table-responsive ">
@@ -125,7 +143,14 @@
                         <thead class="border-table-thead">
                             <tr>
                                 <th>{{ 'companyRepresentators' | translate }} &nbsp; &nbsp;
-                                    <button class="btn btn-success btn-sm web-create-bg {{currentLoggedInPermission}}" (click)="addRepresentator()">{{
+                                    <button class="btn btn-success btn-sm web-create-bg dashboard_tabs_add_btn {{currentLoggedInPermission}}"
+                                        (click)="addRepresentator()">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
+                                            style="width: 16px;">
+                                            <path
+                                                d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z" />
+                                        </svg>
+                                        {{
                                         'addNew' | translate }}</button>
                                 </th>
                                 <th>{{ 'roles' | translate }}</th>
@@ -147,7 +172,8 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <select class="table_select custom-select custom-select-wrapper {{currentLoggedInPermission}}"
+                                    <select
+                                        class="table_select custom-select custom-select-wrapper {{currentLoggedInPermission}}"
                                         (change)="updateRepresentatorRole($event, representator.id)">
 
                                         <option value="admin.access"
@@ -180,16 +206,18 @@
                                 </td>
                                 <td>{{ getMetaValue(representator.meta, 'designation') }}</td>
                                 <td class="text-center">
-                                    <svg class="pointer cursor-pointer {{currentLoggedInPermission}}" (click)="editRepresentator(representator)" width="24"
-                                        height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <svg class="pointer cursor-pointer {{currentLoggedInPermission}}"
+                                        (click)="editRepresentator(representator)" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path
                                             d="M3 17.4585V20.4985C3 20.7785 3.22 20.9985 3.5 20.9985H6.54C6.67 20.9985 6.8 20.9485 6.89 20.8485L17.81 9.93854L14.06 6.18854L3.15 17.0985C3.05 17.1985 3 17.3185 3 17.4585ZM20.71 7.03854C20.8027 6.94602 20.8762 6.83614 20.9264 6.71516C20.9766 6.59419 21.0024 6.46451 21.0024 6.33354C21.0024 6.20257 20.9766 6.07289 20.9264 5.95191C20.8762 5.83094 20.8027 5.72105 20.71 5.62854L18.37 3.28854C18.2775 3.19583 18.1676 3.12229 18.0466 3.07211C17.9257 3.02192 17.796 2.99609 17.665 2.99609C17.534 2.99609 17.4043 3.02192 17.2834 3.07211C17.1624 3.12229 17.0525 3.19583 16.96 3.28854L15.13 5.11854L18.88 8.86854L20.71 7.03854Z"
                                             fill="#787878" class="scout-edit" />
                                     </svg>
                                 </td>
                                 <td class="text-center">
-                                    <svg class="pointer cursor-pointer {{currentLoggedInPermission}}" (click)="confirmSingleDeletion(representator.id)" width="13"
-                                        height="16" viewBox="0 0 13 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <svg class="pointer cursor-pointer {{currentLoggedInPermission}}"
+                                        (click)="confirmSingleDeletion(representator.id)" width="13" height="16"
+                                        viewBox="0 0 13 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path
                                             d="M0.916667 13.8519C0.916667 14.8042 1.74167 15.5833 2.75 15.5833H10.0833C11.0917 15.5833 11.9167 14.8042 11.9167 13.8519V3.46296H0.916667V13.8519ZM12.8333 0.865741H9.625L8.70833 0H4.125L3.20833 0.865741H0V2.59722H12.8333V0.865741Z"
                                             fill="#787878" class="scout-delete" />
@@ -219,7 +247,8 @@
                             <div class="flex justify-between">
                                 <span class="text-muted-foreground">{{ 'roles' | translate }}</span>
                                 <span>
-                                    <select id="scout_profile" class="custom-select custom-select-wrapper {{currentLoggedInPermission}}"
+                                    <select id="scout_profile"
+                                        class="custom-select custom-select-wrapper {{currentLoggedInPermission}}"
                                         (change)="updateRepresentatorRole($event, representator.id)">
                                         <option value="admin.access"
                                             *ngIf="representator.permission != null && representator.permission != 'admin.access'">
@@ -247,7 +276,8 @@
                             </div>
                         </div>
                         <div class="flex_btn mt-3">
-                            <span class="view--eye {{currentLoggedInPermission}}" class="pointer" (click)="editRepresentator(representator)">
+                            <span class="view--eye {{currentLoggedInPermission}}" class="pointer"
+                                (click)="editRepresentator(representator)">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -255,7 +285,8 @@
                                         fill="#787878" class="scout-edit" />
                                 </svg>
                             </span>
-                            <span class="view--eye {{currentLoggedInPermission}}" class="pointer" (click)="confirmSingleDeletion(representator.id)">
+                            <span class="view--eye {{currentLoggedInPermission}}" class="pointer"
+                                (click)="confirmSingleDeletion(representator.id)">
                                 <svg width="13" height="16" viewBox="0 0 13 16" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path

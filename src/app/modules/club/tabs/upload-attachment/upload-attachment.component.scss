@@ -391,6 +391,14 @@ input[type="number"] {
   }
 }
 
+.label-disabled {
+  pointer-events: none;
+  /* Prevent clicks */
+  opacity: 0.5;
+  /* Make it look disabled */
+  cursor: not-allowed;
+}
+
 @media (min-width: 992px) {
   .add_new_btn_row {
     padding-left: 0;

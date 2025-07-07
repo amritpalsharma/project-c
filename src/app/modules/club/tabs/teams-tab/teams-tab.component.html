@@ -61,8 +61,8 @@
   <div class="mb-3 club-team">{{ 'teams' | translate }}</div>
   <ul class="nav nav-tabs" role="tablist">
     <li class="nav-item">
-      <a class="nav-link" [ngClass]="{'active':team_group == 'm'}" data-bs-toggle="tab" data-bs-target="#Tab1" role="tab"
-        (click)="changeTeamType('m')">{{'men' | translate}}</a>
+      <a class="nav-link" [ngClass]="{'active':team_group == 'm'}" data-bs-toggle="tab" data-bs-target="#Tab1"
+        role="tab" (click)="changeTeamType('m')">{{'men' | translate}}</a>
     </li>
     <li class="nav-item">
       <a class="nav-link text-transform-normal" data-bs-toggle="tab" data-bs-target="#Tab2" role="tab"
@@ -112,12 +112,22 @@
           </span>
         </span>
         <span class="add-player-link">
-          <button class="btn btn-success btn-sm web-create-bg {{currentLoggedInPermission}}" *ngIf="team_group === 'm'"
-            (click)="addPlayer()">{{
+          <button class="btn btn-success btn-sm web-create-bg dashboard_tabs_add_btn {{currentLoggedInPermission}}" *ngIf="team_group === 'm'"
+            (click)="addPlayer()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="width: 16px;">
+              <path
+                d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z" />
+            </svg>
+            {{
             'addNewPlayer' | translate
             }}</button>
-          <button class="btn btn-success btn-sm web-create-bg {{currentLoggedInPermission}}" *ngIf="team_group === 'w'"
-            (click)="addPlayer()">{{
+          <button class="btn btn-success btn-sm web-create-bg dashboard_tabs_add_btn {{currentLoggedInPermission}}" *ngIf="team_group === 'w'"
+            (click)="addPlayer()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="width: 16px;">
+              <path
+                d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z" />
+            </svg>
+            {{
             'addNewFemalePlayer' | translate
             }}</button>
         </span>
@@ -293,7 +303,7 @@
           </div>
           <div class="rounded-lg border bg-card" *ngIf="!players || players.length <= 0">
             <div class="p-3">
-              <div class="d-flex justify-content-center" >
+              <div class="d-flex justify-content-center">
                 <h6>{{'noRecordFound' | translate}}</h6>
               </div>
             </div>

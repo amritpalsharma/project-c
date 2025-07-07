@@ -232,6 +232,12 @@
   }
 }
 
+.btn.web-create-bg {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
 ::ng-deep.text-transform-normal {
   text-transform: none;
 }
