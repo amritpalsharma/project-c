@@ -48,7 +48,7 @@
           </mat-chip-grid>
 
           <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)"
-            class="listBox w-100 users-name-list" [ngClass]="{'d-none':!userSearch || userSearch.length < 2}">
+            class="listBox w-100 users-name-list box_search_{{userSearch.length}}" [ngClass]="{'d-none':!userSearch || userSearch.length < 2}">
             <mat-option *ngFor="let user of filteredUsers" [value]="user" class="mb-4 select-user-name">
               <img width="50" height="50" style="border-radius: 50px;" class="img-list"
                 *ngIf="!user.meta.profile_image_path" src="../../../../../assets/images/1.png">

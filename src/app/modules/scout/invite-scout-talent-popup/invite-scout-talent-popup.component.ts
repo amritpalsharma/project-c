@@ -46,36 +46,54 @@ export class InviteScoutTalentPopupComponent {
 
   ngOnInit(): void {
     this.theme = localStorage.getItem('theme');
-    this.fetchPlayers();
+    // this.fetchPlayers();
     this.getToasterMsg();
   }
-  isLoading: boolean = true;
-  async fetchPlayers(): Promise<void> {
-    // try {
-    //   this.scoutService.getAllPlayers().subscribe((response) => {
-    //     if (response && response.status && response.data && response.data.userData) {
-    //       this.allUsers = response?.data?.userData?.users;
-    //     } else {
-    //       console.error('Invalid API response structure:', response);
-    //     }
-    //   });
-    // } catch (error) {
-    //   console.error('Error fetching users:', error);
-    // }
+  // isLoading: boolean = true;
+  // async fetchPlayers(): Promise<void> {
+  //   this.isLoading = true;
+  //   let customFilter = this.userSearch + '&whereClasue[role]=4';
+  //   this.userService.exploreSearchUser(customFilter).subscribe((response: any) => {
+  //     if (response && response.status && response.data && response.data.userData) {
+  //       this.allUsers = response.data.userData.users;
+  //     } else {
+  //       this.allUsers = [];
+  //       console.error('Invalid API response structure:', response);
+  //     }
+  //     this.isLoading = false;
+  //   })
+  // }
 
-    this.isLoading = true;
-    let customFilter = this.userSearch + '&whereClasue[role]=4';
-    this.userService.exploreSearchUser(customFilter).subscribe((response: any) => {
-      if (response && response.status && response.data && response.data.userData) {
-        this.allUsers = response.data.userData.users;
-      } else {
-        this.allUsers = [];
-        console.error('Invalid API response structure:', response);
-      }
-      this.isLoading = false;
-    })
+  async fetchPlayers(keyword: string): Promise<void> {
+    this.userSearch = keyword;
+    if (!keyword || keyword.length <= 0) {
+      this.filteredUsers = [];
+      this.userSearch = '';
+      return;
+    }
+    if (keyword && keyword.length > 1) {
+    } else {
+      this.filteredUsers = [];
+      return;
+    }
+    // this.isLoading = true;
+
+    try {
+      this.userService.exploreSearchUser(keyword, true).subscribe((response: any) => {
+        // this.clubService.getAllPlayers().subscribe((response) => {
+        if (response && response.status && response.data && response.data.userData) {
+          this.allUsers = response.data.userData.users;
+          this.filteredUsers = response.data.userData.users;
+          // console.info(this.allUsers)
+        } else {
+          console.error('Invalid API response structure:', response);
+        }
+        // this.isLoading = false;
+      });
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    }
   }
-
   close() {
     this.dialogRef.close();
   }
@@ -122,21 +140,24 @@ export class InviteScoutTalentPopupComponent {
 
   onKeyPress(event: any) {
     let keyword = event.target.value;
-    this.userSearch = keyword;
-    console.log(keyword); // You can use this to see the current input value
+    this.userSearch = keyword; // You can use this to see the current input value
     if (!keyword) {
       this.userSearch = '';
       return;
     }
 
+    // if(keyword && keyq)
+
+    this.fetchPlayers(this.userSearch);
+
     // this.filteredUsers = this.allUsers.filter((user: any) => (user.first_name !== null && user.first_name !== undefined) &&
     //   user.first_name.toLowerCase().indexOf(keyword.toLowerCase()) != -1);
-    this.filteredUsers = this.allUsers.filter((user: any) => {
-      const firstNameMatch = user.first_name && user.first_name.toLowerCase().startsWith(keyword.toLowerCase());
-      const lastNameMatch = user.last_name && user.last_name.toLowerCase().startsWith(keyword.toLowerCase());
+    // this.filteredUsers = this.allUsers.filter((user: any) => {
+    //   const firstNameMatch = user.first_name && user.first_name.toLowerCase().startsWith(keyword.toLowerCase());
+    //   const lastNameMatch = user.last_name && user.last_name.toLowerCase().startsWith(keyword.toLowerCase());
 
-      return (firstNameMatch || lastNameMatch);
-    });
+    //   return (firstNameMatch || lastNameMatch);
+    // });
   }
 
   onClickOutside() {
@@ -149,7 +170,7 @@ export class InviteScoutTalentPopupComponent {
     //     user.first_name.toLowerCase().indexOf(userInput.value.toLowerCase()) != -1
     //   );
     // }, 2000);
-    let keyword = userInput.value.toLowerCase(); 
+    let keyword = userInput.value.toLowerCase();
     if (!keyword || keyword.length == 0) {
       this.userSearch = '';
       this.filteredUsers = [];

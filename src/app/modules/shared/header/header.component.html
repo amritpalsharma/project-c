@@ -44,7 +44,7 @@
         <input matInput placeholder="{{ 'search' | translate }}" [formControl]="searchControl" [matAutocomplete]="auto"
           class="form-control w-100" [class.disabled]="!isUserVerified"
           (click)="isUserVerified ? showVerificationPopup(true) : showVerificationPopup(false)"
-          [readonly]="!isUserVerified && !isLoading" [disabled]="isLoading" />
+          [readonly]="!isUserVerified && !isLoading" [disabled]="isVerifiedStatusLoaded" />
 
         <mat-autocomplete #auto="matAutocomplete" class="suggestion-list" [ngClass]="{'d-none':!filteredUsers}"
           [displayWith]="displayUserFn" (optionSelected)="selectUser($event.option.value)">

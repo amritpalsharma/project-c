@@ -366,7 +366,7 @@ export class UserService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
-    
+
     return this.http.get<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl}get-sightings/${id}?whereClause[status]=active`, { params }
     );
@@ -656,11 +656,15 @@ export class UserService {
     );
   }
 
-  exploreSearchUser(query: string): Observable<any[]> {
+  exploreSearchUser(query: string, isOnlyTalent = false): Observable<any[]> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
-    return this.http.get<any[]>(`${this.apiUrl}users-frontend-with-login?search=${query}&noLimit=1`, { headers }).pipe(
+    let whereClasue;
+    if (isOnlyTalent) {
+      whereClasue = "&whereClasue[role]=4";
+    }
+    return this.http.get<any[]>(`${this.apiUrl}users-frontend-with-login?search=${query}&noLimit=1${whereClasue}`, { headers }).pipe(
       catchError((error) => {
         console.error('Error occurred during user search:', error);
         throw error;

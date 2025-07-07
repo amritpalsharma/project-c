@@ -325,6 +325,7 @@ export class HeaderComponent {
   }
 
 
+  isVerifiedStatusLoaded: boolean = false;
   getUserStatus() {
     this.socketService.getLoggedInUserStatus().then((result) => {
       if (result == 2) {
@@ -332,6 +333,7 @@ export class HeaderComponent {
       } else {
         this.isUserVerified = false;
       }
+      this.isVerifiedStatusLoaded = true;
     });
   }
 
@@ -898,6 +900,9 @@ export class HeaderComponent {
 
   showVerificationPopup(isVerified: boolean) {
     if (isVerified) {
+      return;
+    }
+    if (!this.isVerifiedStatusLoaded) {
       return;
     }
     const messageDialog = this.dialog.open(UnverifiedUserComponent, {
