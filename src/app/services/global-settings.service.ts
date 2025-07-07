@@ -26,6 +26,7 @@ export class GlobalSettingsService {
   }
 
   setViewOnly(state: string) {
+    console.info('state set in global service as ',state)
     this.viewOnlyMode.next(state);
   }
 

@@ -74,7 +74,7 @@
               </ul> -->
         </div>
 
-        <a class="btn btn-outline-white ms-2 delete-text" id="users-icon" (click)="confirmDeletion()" [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}">
+        <a class="btn btn-outline-white ms-2 delete-text" id="users-icon" (click)="confirmDeletion()" [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view', 'admin_editor_only' :userRoleService.getRole() == 'admin.edit'}">
           <svg width="22" height="23" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M12 16.5L7 11.5L8.4 10.05L11 12.65V4.5H13V12.65L15.6 10.05L17 11.5L12 16.5ZM4 20.5V15.5H6V18.5H18V15.5H20V20.5H4Z"
@@ -358,7 +358,7 @@
                       stroke="#787878" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                   </svg>
                 </a>
-                <a class="float-right mx-3 pointer" (click)="confirmDeleteAttachment(item.id)">
+                <a class="float-right mx-3 pointer" (click)="confirmDeleteAttachment(item.id)" [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view', 'admin_editor_only' :userRoleService.getRole() == 'admin.edit'}">
                   <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                       d="M5.50065 17.0589C5.50065 18.0112 6.32565 18.7904 7.33398 18.7904H14.6673C15.6757 18.7904 16.5007 18.0112 16.5007 17.0589V6.66999H5.50065V17.0589ZM17.4173 4.07277H14.209L13.2923 3.20703H8.70898L7.79232 4.07277H4.58398V5.80425H17.4173V4.07277Z"

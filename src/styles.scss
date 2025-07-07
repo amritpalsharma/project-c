@@ -2885,3 +2885,14 @@ img.club_logo_in_search {
   cursor: not-allowed !important;
   /* Show blocked cursor */
 }
+
+.admin_editor_only {
+  pointer-events: none !important;
+  /* Disable all mouse events */
+  user-select: none;
+  /* Prevent text selection */
+  opacity: 0.6;
+  /* Dim to show it's inactive */
+  cursor: not-allowed !important;
+  /* Show blocked cursor */
+}

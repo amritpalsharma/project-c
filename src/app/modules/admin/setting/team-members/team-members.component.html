@@ -76,16 +76,16 @@
               <option value="admin.edit" *ngIf="representator.permission == 'admin.edit'" selected>{{ 'editor' |
                 translate }}</option>
 
-              <option value="transfer.ownership" *ngIf="representator.permission != 'transfer.ownership'">
+              <!-- <option value="transfer.ownership" *ngIf="representator.permission != 'transfer.ownership'">
                 {{ 'transferOwnership' | translate }}</option>
               <option value="transfer.ownership" *ngIf="representator.permission == 'transfer.ownership'" selected>{{
-                'transferOwnership' | translate }}</option>
+                'transferOwnership' | translate }}</option> -->
 
             </select>
 
             <p *ngIf="currentUserId == representator.id">{{ 'owner' | translate }}</p>
           </td>
-          <td class="c_pointer" [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}">
+          <td class="c_pointer" [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view', 'admin_editor_only' :userRoleService.getRole() == 'admin.edit'}">
             <svg *ngIf="currentUserId != representator.id" (click)="confirmSingleDeletion(representator.id)"
               id="users-icon" width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
