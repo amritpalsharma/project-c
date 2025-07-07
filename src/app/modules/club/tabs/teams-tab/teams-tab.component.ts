@@ -135,7 +135,7 @@ export class TeamsTabComponent {
         player: [],
         edit: false,
         teamName: this.selectTeamName,
-        playerType: this.team_group
+        team_group: this.team_group
       }
     })
 
