@@ -45,7 +45,7 @@ export class CouponsComponent {
       if (data.action == 'lang_updated') {
         this.isLoading = true;
         this.lang_id = data.id;
-        this.getCoupons();
+        // this.getCoupons();
       }
     });
   }
@@ -67,10 +67,24 @@ export class CouponsComponent {
 
     try {
       this.couponService.getCoupons(params).subscribe((response) => {
-        if (response && response.status && response.data && response.data.coupons) {
+        // if (response && response.status && response.data && response.data.coupons) {
+        if (response && response.status) {
           this.coupons = response.data.coupons;
           // this.paginator.length = response.data.totalCount;
+
+          this.coupons.forEach((coupon: any) => {
+            if (coupon.coupon_discount_amounts) {
+              try {
+                coupon.parsed_discount_amounts = JSON.parse(coupon.coupon_discount_amounts);
+              } catch (e) {
+                coupon.parsed_discount_amounts = [];
+                console.error('Invalid JSON in coupon_discount_amounts:', coupon.coupon_discount_amounts);
+              }
+            }
+          });
+
           this.isLoading = false;
+
         } else {
           this.isLoading = false;
           this.coupons = [];

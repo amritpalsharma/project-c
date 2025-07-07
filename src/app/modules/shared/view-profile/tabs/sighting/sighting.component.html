@@ -78,7 +78,7 @@
             <!-- <td mat-cell *matCellDef="let element"> {{ element.address }}, {{ element.city }}, {{ element.zipcode }}
             </td> -->
             <!-- {{ element?.address }} {{ element?.zipcode }}, {{ element?.city }} -->
-            <td mat-cell *matCellDef="let element"> {{ element.address }} {{ element.zipcode }}, {{ element.city }}
+            <td mat-cell *matCellDef="let element"> {{ element.address }}, {{ element.zipcode }} {{ element.city }}
             </td>
           </ng-container>
 
@@ -164,7 +164,7 @@
             <div class="flex justify-between">
               <span class="text-muted-foreground">{{ 'place' | translate }}</span>
               <!-- <span>{{ element.address }}, {{ element.city }}, {{ element.zipcode }}</span> -->
-              <span> {{ element.address }} {{ element.zipcode }}, {{ element.city }}</span>
+              <span> {{ element.address }}, {{ element.zipcode }} {{ element.city }}</span>
             </div>
             <div class="flex justify-between">
               <span class="text-muted-foreground">{{ 'date' | translate }}</span>

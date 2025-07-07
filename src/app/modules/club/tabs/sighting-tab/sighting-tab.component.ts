@@ -473,7 +473,7 @@ export class SightingTabComponent {
   confirmDeleteAttachment(id: any) {
     this.singleIdToDelete = id;
     console.warn(this.deleteRepresentorConfirmation)
-    this.showMatDialogV2(this.deleteRepresentorConfirmation, "delete-attachment-confirmation");
+    this.showMatDialogV2(this.deleteRepresentorConfirmation, "delete-sighting-confirmation");
   }
 
   deleteAttachment(): any {
@@ -482,12 +482,13 @@ export class SightingTabComponent {
       response => {
         if (response.status) {
           this.singleIdToDelete = "";
-          let index = this.attachments.findIndex((x: any) => x.id == this.singleIdToDelete);
-          let temp = this.attachments;
-          temp.splice(index, 1);
-          this.attachments = temp;
+          // let index = this.attachments.findIndex((x: any) => x.id == this.singleIdToDelete);
+          // let temp = this.attachments;
+          // temp.splice(index, 1);
+          // this.attachments = temp;
           if (response.message != '' && response.message != undefined) {
             this.showMatDialog(response.message, 'display');
+            this.viewSight(this.viewSightId)
           } else {
             this.showMatDialog('Attachment removed successfully!.', 'display');
           }

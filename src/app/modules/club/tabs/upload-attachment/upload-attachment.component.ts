@@ -3,6 +3,7 @@ import {
   MatDialogRef, MAT_DIALOG_DATA
 } from '@angular/material/dialog';
 import { ClubService } from '../../../../services/club.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class UploadAttachmentComponent {
   theme:string=localStorage.getItem('theme') || 'dark';
 
   constructor(public dialogRef: MatDialogRef<UploadAttachmentComponent>, public clubService: ClubService,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
+    @Inject(MAT_DIALOG_DATA) public data: any, private toaster: ToastrService) {
     this.idToBeUpdated = data.id;
 
     console.log(this.idToBeUpdated)
@@ -58,6 +59,12 @@ export class UploadAttachmentComponent {
     }
   }
 
+  removeFile(index: any){
+    if (this.attachmentRows.length > 0) {
+      this.attachmentRows[index].file = '';
+    }
+  }
+
   upload() {
     const formData = new FormData();
 
@@ -77,6 +84,7 @@ export class UploadAttachmentComponent {
             message: response.message
           })
         } else {
+          this.toaster.error(response.data.errors.attachments)
           console.error('Invalid API response structure:', response);
         }
       });

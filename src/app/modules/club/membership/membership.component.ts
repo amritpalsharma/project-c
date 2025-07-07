@@ -11,7 +11,7 @@ import { PaymentService } from '../../../services/payment.service';
 import { MessagePopupComponent } from '../../shared/message-popup/message-popup.component';
 import { CancelCountryPlanComponent } from './cancel-country-plan/cancel-country-plan.component';
 import { ScoutService } from '../../../services/scout.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { TitleService } from '../../../title.service';
 import { WebPages } from '../../../services/webpages.service';
 import { take } from 'rxjs/operators';
@@ -81,6 +81,10 @@ export class MembershipComponent {
       this.getUserCards();
       this.getBoosterData();
       this.getJsonTranslations();
+    });
+
+    this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
+      this.getUserPurchases();
     });
   }
 

@@ -1,23 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Observable  } from 'rxjs';
+import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class CouponService {
     private apiUrl;
     constructor(private http: HttpClient) {
         this.apiUrl = environment?.apiUrl;
-    
+
     }
-    getCoupons(params:any): Observable<{ status: boolean, message: string, data: any }> {
+    
+    getCoupons(params: any): Observable<{ status: boolean, message: string, data: any }> {
         let currentLang = localStorage.getItem('lang_id');
         return this.http.get<{ status: boolean, message: string, data: any }>(
-            `${this.apiUrl}admin/get-coupons/${currentLang}`, {params}
-          );
+            `${this.apiUrl}admin/get-coupons/${currentLang}`, { params }
+        );
     }
 
     addPopups(record: any): Observable<any> {

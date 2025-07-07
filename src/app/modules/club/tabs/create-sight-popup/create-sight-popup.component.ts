@@ -47,8 +47,8 @@ export class CreateSightPopupComponent implements AfterViewInit {
   isLoading: boolean = false;
 
   uploadedBannerImage: boolean = false;
-  bannerImageName : string = '';
-  deleteImage : string = '';
+  bannerImageName: string = '';
+  deleteImage: string = '';
 
   submitButtonClicked: boolean = false;
   @ViewChild('fileInput', { static: false }) fileInputElement!: ElementRef;
@@ -203,7 +203,7 @@ export class CreateSightPopupComponent implements AfterViewInit {
     if (imagePreviewContainer) {
       imagePreviewContainer.innerHTML = '';  // Clear any previous previews
     }
-    if(action === 'yes'){
+    if (action === 'yes') {
       this.deleteImage = this.bannerImageName;
     }
   }
@@ -225,6 +225,12 @@ export class CreateSightPopupComponent implements AfterViewInit {
       title: "",
       file: ""
     });
+  }
+
+  removeFile(index: any){
+    if (this.attachmentRows.length > 0) {
+      this.attachmentRows[index].file = '';
+    }
   }
 
   removeRow(index: any): any {
@@ -367,7 +373,11 @@ export class CreateSightPopupComponent implements AfterViewInit {
           this.isLoading = false;
         } else {
           if (response.data.errors && response.data.errors != '' && response.data.errors != undefined) {
-            this.toaster.error(response.data.errors);
+            if(response.data.file_errors && this.uploadedBannerImage){
+              this.toaster.error(response.data.file_errors);
+            }else{
+              this.toaster.error(response.data.errors);
+            }
           } else {
             this.userService.apiToasterError();
           }
@@ -395,7 +405,7 @@ export class CreateSightPopupComponent implements AfterViewInit {
     formData.append('zipcode', this.zipcode);
     formData.append('city', this.city);
     formData.append('about_event', this.about);
-    if(this.deleteImage){
+    if (this.deleteImage) {
       formData.append('delete_banner', this.deleteImage);
     }
 
@@ -443,6 +453,86 @@ export class CreateSightPopupComponent implements AfterViewInit {
     return str.replace(regex, '').trim();
     // return str;
   }
+
+
+
+
+  isDragOver: boolean = false;
+  isUnsupportedFile: boolean = false;
+  // isFileTooLarge: boolean = false;
+
+  onDragOver(event: DragEvent) {
+    event.preventDefault();
+    // this.isDragOver = true;
+
+    const items = event.dataTransfer?.items;
+    if (items && items.length > 0) {
+      const fileType = items[0].type;
+      const validTypes = ['image/png', 'image/jpeg'];
+      this.isUnsupportedFile = !validTypes.includes(fileType);
+      this.isDragOver = validTypes.includes(fileType);
+    }
+  }
+
+  onDragLeave(event: DragEvent) {
+    event.preventDefault();
+    this.isDragOver = false;
+    this.isUnsupportedFile = false;
+  }
+
+  // onDrop(event: DragEvent) {
+  //   event.preventDefault();
+  //   this.isDragOver = false;
+
+  //   const files = event.dataTransfer?.files;
+  //   if (files && files.length > 0) {
+  //     const fileList: FileList = files;
+  //     const fakeEvent = {
+  //       target: {
+  //         files: fileList
+  //       }
+  //     } as unknown as Event;
+
+  //     this.onBannerFileChange(fakeEvent);
+  //   }
+  // }
+
+  onDrop(event: DragEvent) {
+    event.preventDefault();
+    this.isDragOver = false;
+    this.isUnsupportedFile = false;
+
+    const files = event.dataTransfer?.files;
+    if (files && files.length > 0) {
+      const file = files[0];
+
+      // Validate file type
+      const validTypes = ['image/png', 'image/jpeg'];
+      if (!validTypes.includes(file.type)) {
+        // this.showMatDialog('Only PNG and JPG files are allowed.', 'display'); // optional feedback
+        return;
+      }
+
+
+      const maxSizeMB = 5;
+      const maxSizeBytes = maxSizeMB * 1024 * 1024;
+
+      // if (file.size > maxSizeBytes) {
+      //   this.isFileTooLarge = true;
+      //   return;
+      // }
+
+      // Simulate the file input change event
+      const fakeEvent = {
+        target: {
+          files: [file]
+        }
+      } as unknown as Event;
+
+      this.onBannerFileChange(fakeEvent);
+    }
+  }
+
 
   ngOnDestroy(): void {
     if (this.pickerInstance) {
