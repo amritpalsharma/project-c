@@ -290,9 +290,9 @@ export class HeaderComponent {
         if (response?.data?.representator_data && response?.data?.representator_data != '') {
           // permission	
           let userType = '';
-          if (response?.data?.representator_data?.permission && response?.data?.representator_data?.permission == 'editor') {
+          if (response?.data?.representator_data?.permission && response?.data?.representator_data?.permission == 'admin.edit') {
             this.adminRoleAccess = 'admin_editor';
-            userType = 'admin.editor';
+            userType = 'admin.edit';
           }
           if (response?.data?.representator_data?.permission && response?.data?.representator_data?.permission == 'view-only') {
             this.adminRoleAccess = 'admin_view_only';

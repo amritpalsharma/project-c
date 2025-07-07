@@ -197,7 +197,7 @@ export class HeaderComponent {
     this.loggedInUser = JSON.parse(this.loggedInUser);
 
     this.getUserStatus();
-    this.getUserProfile();
+
 
     this.commonDataService.profilePic$.subscribe(url => {
       this.profileImgUrl = url;
@@ -257,26 +257,64 @@ export class HeaderComponent {
       });
 
 
-    // code update by amrit 13 march 2025z
+    // code update by amrit 13 march 2025
+    // this.searchControl.valueChanges
+    //   .pipe(
+    //     map((value) => (typeof value === 'string' ? value.trim() : '')), // Ensure value is a trimmed string
+    //     tap((value: any) => {
+    //       console.log("Search input changed:", value);
+    //       if (!value) {
+    //         console.log("Search input Cleared");
+    //         this.filteredUsers = []; // Clear search results when input is empty
+    //       }
+    //     }),
+    //     filter((value) => value.length > 0), // Ensure search triggers only for non-empty input
+    //     debounceTime(300),
+    //     distinctUntilChanged(),
+    //     filter(text => !!text && text.trim().length >= 2),
+    //     switchMap((searchText: string) => {
+    //       this.isLoading = true;
+    //       return this.userService.exploreSearchUser(searchText).pipe(
+    //         finalize(() => (this.isLoading = false))
+    //       );
+    //     })
+    //   )
+    //   .subscribe(
+    //     (response: any) => {
+
+    //       if (response?.status && Array.isArray(response.data?.userData?.users)) {
+    //         this.filteredUsers = response.data.userData.users;
+    //       } else {
+    //         this.filteredUsers = [];
+    //       }
+
+    //     },
+    //     (error) => {
+    //       console.error("Error fetching users:", error);
+    //       this.filteredUsers = [];
+    //     }
+    //   );
+
+    // code update by amrit 07 june 2025
     this.searchControl.valueChanges
       .pipe(
-        map((value) => (typeof value === 'string' ? value.trim() : '')), // Ensure value is a trimmed string
-        tap((value: any) => {
-          console.log("Search input changed:", value);
-          if (!value) {
-            console.log("Search input Cleared");
-            this.filteredUsers = []; // Clear search results when input is empty
-          }
-        }),
-        filter((value) => value.length > 0), // Ensure search triggers only for non-empty input
         debounceTime(300),
         distinctUntilChanged(),
-        filter(text => !!text && text.trim().length >= 2),
+        map((value: any) => {
+          if (typeof value === 'string') return value.trim();
+          if (value && value.first_name) return `${value.first_name} ${value.last_name || ''}`.trim();
+          return '';
+        }),
+        tap((value: string) => {
+          console.log("Search input changed:", value);
+          if (!value) {
+            console.log("Search input cleared");
+            this.filteredUsers = [];
+          }
+        }),
+        filter((text: string) => !!text && text.length >= 2),
         switchMap((searchText: string) => {
           this.isLoading = true;
-          // return this.userService.searchUser(searchText).pipe(
-          //   finalize(() => (this.isLoading = false))
-          // );
           return this.userService.exploreSearchUser(searchText).pipe(
             finalize(() => (this.isLoading = false))
           );
@@ -284,19 +322,19 @@ export class HeaderComponent {
       )
       .subscribe(
         (response: any) => {
-
           if (response?.status && Array.isArray(response.data?.userData?.users)) {
             this.filteredUsers = response.data.userData.users;
           } else {
             this.filteredUsers = [];
           }
-
         },
         (error) => {
           console.error("Error fetching users:", error);
           this.filteredUsers = [];
         }
       );
+
+    // end code update by amrit 07 june 2025
 
     this.route.params.subscribe(() => {
       this.searchControl.setValue('', { emitEvent: false }); // Clear search input
@@ -318,6 +356,8 @@ export class HeaderComponent {
     if (selectedLanguageArr == undefined || selectedLanguageArr != '') {
       this.language = selectedLanguageArr;
     }
+
+    this.getUserProfile();
   }
   displayUserFn(user: any): string {
     // return user ? `${user.first_name} ${user.last_name}` : '';
@@ -346,7 +386,7 @@ export class HeaderComponent {
       this.talentService.getProfileData(params).subscribe((response) => {
 
         if (response && response.status && response.data && response.data.user_data) {
-          console.info('UserDataArr', response.data.user_data);
+          // console.info('UserDataArrSharedHeader', response.data);
           let userArr = response.data.user_data;
           if (userArr?.first_name || userArr?.last_name) {
             this.titleService.setName(userArr?.first_name + ' ' + userArr.last_name);
@@ -359,31 +399,23 @@ export class HeaderComponent {
             // console.warn('userArr', userArr)
             this.commonDataService.updateProfilePic(userArr?.club_logo_path);
           }
-
-          if (response.data.representator_data && response.data.representator_data != '') {
-            // if (response.data.representator_data.permission == 'admin.view') {
-            //   // this.currentLoggedInPermission = 'club_view_only';
-            //   this.globalSettings.setViewOnly('club_view_only');
-            // } else if (response.data.representator_data.permission == 'admin.edit') {
-            //   // this.currentLoggedInPermission = 'club_view_only';
-            //   this.globalSettings.setViewOnly('club_edit_only');
-            // }
-
+          if (response?.data?.representator_data && response?.data?.representator_data != '') {
+            console.info('representator_data', response?.data?.representator_data)
+            // console.info('representator_data_permission',response.data.representator_data.permission)
             if (response.data.representator_data.permission == 'admin.view') {
-              // this.currentLoggedInPermission = 'club_view_only';
-              // this.globalSettings.setViewOnly(this.currentLoggedInPermission);
-              this.globalSettings.setViewOnly('club_view_only');
-            } else if (response.data.representator_data.permission == 'admin.edit') {
-              // this.currentLoggedInPermission = 'club_edit_only';
-              this.globalSettings.setViewOnly('club_edit_only');
-              // this.globalSettings.setViewOnly(this.currentLoggedInPermission);
+              this.currentLoggedInPermission = 'club_view_only';
+              this.globalSettings.setViewOnly(this.currentLoggedInPermission);
+              console.info('Set as  view in Header')
             }
-            // alert('response.data.representator_data.permission'+response.data.representator_data.permission)
+            if (response.data.representator_data.permission == 'admin.edit') {
+              this.currentLoggedInPermission = 'club_edit_only';
+              this.globalSettings.setViewOnly(this.currentLoggedInPermission);
+            }
           }
-
-
         }
       });
+      // console.info('Profile Set as '+response)
+      console.info('Profile Set as ' + this.currentLoggedInPermission)
     } catch (error) {
       console.error('Error fetching users:', error);
     }

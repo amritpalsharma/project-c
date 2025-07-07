@@ -6,7 +6,7 @@ import { MessagePopupComponent } from '../../message-popup/message-popup.compone
 import { MatPaginator } from '@angular/material/paginator';
 import { SharedService } from '../../../../services/shared.service';
 import { TranslateService } from '@ngx-translate/core';
-
+import { UserRoleService } from '../../../../services/user-role.service';
 
 @Component({
   selector: 'app-favorites-tab',
@@ -27,6 +27,7 @@ export class FavoritesTabComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   keyword: any = "";
   constructor(
+    public userRoleService: UserRoleService,
     private route: ActivatedRoute,
     private userService: UserService,
     private router: Router,

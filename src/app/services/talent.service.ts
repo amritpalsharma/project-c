@@ -94,7 +94,7 @@ export class TalentService {
     const headers = this.headers();
     let lang_id = localStorage.getItem('lang_id');
     return this.http.get<{ status: boolean, message: string, data: { userData: User[] } }>(
-      `${this.apiUrl}profile/${lang_id}`,
+      `${this.apiUrl}profile/${lang_id}?header_profile=true`,
       { headers, params }
     );
   }

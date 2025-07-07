@@ -69,6 +69,10 @@ export class ViewProfileComponent implements OnInit {
   sightingComponent!: SightingComponent;
   scoutInfoDetails: any;
   customClubInfo: any;
+
+  currentLoggedInPermission: string = this.globalSettings.getCurrentViewOnly();
+
+
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
@@ -82,7 +86,17 @@ export class ViewProfileComponent implements OnInit {
     private translate: TranslateService,
     private titleService: TitleService,
     private globalSettings: GlobalSettingsService
-  ) { }
+  ) {
+    //  setTimeout(() => {
+    //   this.currentLoggedInPermission = this.globalSettings.getCurrentViewOnly();
+    //  }, 500);
+    // console.info('role fetch in view profile ',this.currentLoggedInPermission)
+
+    this.globalSettings.viewOnly$.subscribe((value) => {
+      this.currentLoggedInPermission = value;
+      console.log('ViewOnly Changed:', value);
+    });
+  }
 
   ngOnInit(): void {
     this.themeChanged();
@@ -199,7 +213,7 @@ export class ViewProfileComponent implements OnInit {
           if (this.user?.custom_club_info && this.user?.custom_club_info != '') {
             this.customClubInfo = JSON.parse(this.user.custom_club_info);
           }
-          
+
 
           // Set isFavorite status based on user data or API response
           this.isFavorite = this.user.marked_favorite; // Assuming API returns this

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ResetPasswordComponent } from '../../../shared/reset-password/reset-password.component';
 import { SocketService } from '../../../../services/socket.service';
+import { GlobalSettingsService } from '../../../../services/global-settings.service';
 
 @Component({
   selector: 'app-password-settings',
@@ -11,8 +12,11 @@ import { SocketService } from '../../../../services/socket.service';
 export class PasswordSettingsComponent {
   loggedInUser: any = [];
   userEmail: string = '';
+  currentLoggedInPermission: string = this.gloabalSettings.getCurrentViewOnly();
 
-  constructor(public dialog: MatDialog, private socketService: SocketService) {
+  constructor(
+    private gloabalSettings: GlobalSettingsService,
+    public dialog: MatDialog, private socketService: SocketService) {
     this.getUserStatus();
   }
 
