@@ -1,7 +1,7 @@
 <div class="create-sight">
   <div class="p-3 d-flex align-items-center popup_header">
     <h4 class="text-center title-text m-auto" *ngIf="!data.sightData">{{ 'createSighting' | translate }}</h4>
-    <h4 class="text-center title-text m-auto" *ngIf="data.sightData"> {{ 'edit' | translate}} {{ 'sighting' | translate }}</h4>
+    <h4 class="text-center title-text m-auto" *ngIf="data.sightData"> {{ 'editSighting' | translate}}</h4>
     <div class="close-img" (click)="close()">
       <img *ngIf='theme!="dark"' src="../../../../assets/images/carbon_close-outline-light.svg" alt="">
       <img *ngIf='theme=="dark"' src="../../../../assets/images/carbon_close-outline.svg" alt="">
@@ -80,6 +80,15 @@
           id="date-select" [(ngModel)]="dateTime" placeholder="DD.MM.YYYY HH:mm"
           [ngClass]="{'emptyRequiredField':submitButtonClicked && !dateTime}">
       </div>
+    </div>
+
+    <div class="radio-buttons">
+      <label class="me-3">
+        <input type="radio" name="status" [(ngModel)]="status" [value]="true"> Active
+      </label>
+      <label>
+        <input type="radio" name="status" [(ngModel)]="status" [value]="false"> Inactive
+      </label>
     </div>
 
     <div class="row mt-4">
@@ -266,10 +275,6 @@
         [ngClass]="{'emptyRequiredField':submitButtonClicked && !about}">
       <!-- Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. -->
     </textarea>
-    </div>
-
-    <div class="code-text">
-      <input type="checkbox" [(ngModel)]="status"> {{ status ? "Active" : "Inactive" }}
     </div>
 
   </div>

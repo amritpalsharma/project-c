@@ -1532,5 +1532,6 @@
   "boostFeatures": "Functionnalités Boost",
   "premiumFeatures": "Functionnalités Premium",
   "multiCountryFeatures": "Functionnalités Multi-Pays",
-  "newsHeading": "Reste informé : Tu trouveras ici les dernières actualités, articles de presse et nouveautés autour de SoccerYou."
+  "newsHeading": "Reste informé : Tu trouveras ici les dernières actualités, articles de presse et nouveautés autour de SoccerYou.",
+  "editSighting": "Modifier la session de détection"
 }
