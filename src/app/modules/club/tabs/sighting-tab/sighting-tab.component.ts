@@ -71,11 +71,6 @@ export class SightingTabComponent {
     });
   }
 
-  backToSightView() {
-    this.view = 'listing';
-    // this.players = [];
-  }
-
   getSightings() {
     this.isLoading = true;
     try {
@@ -413,6 +408,7 @@ export class SightingTabComponent {
   }
 
   backToSightings() {
+    this.getSightings()
     this.view = "listing";
   }
 

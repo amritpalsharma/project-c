@@ -996,7 +996,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     if (this.activeTab === 'teams' && tab === 'teams') {
       this.teamsTabComponent?.backToTeamView();
     } else if (this.activeTab === 'sighting' && tab === 'sighting') {
-      this.sightingTabComponent?.backToSightView();
+      this.sightingTabComponent?.backToSightings();
     }
     else {
       this.activeTab = tab;
