@@ -297,4 +297,15 @@ export class EditPerformanceDetailsComponent implements OnInit {
       }
     );
   }
+
+  getTextBeforeDash(input: string): string {
+    input = input.toLowerCase();
+    return input.split('-')[0].trim();
+  }
+
+  getTextAfterDash(input: string): string {
+    input = input.toLowerCase();
+    return input.split('-')[1]?.trim() || '';
+  }
+  
 }
