@@ -303,7 +303,7 @@
             </div>
           </div>
         </div>
-        <div class="rounded-lg border bg-card">
+        <div class="rounded-lg border bg-card" *ngIf="scoutPlayers.length == 0 && !isLoading">
           <div class="p-3">
             <div class="d-flex justify-content-center">
               <h6>{{'noPortfolioRecordFound' | translate}}</h6>

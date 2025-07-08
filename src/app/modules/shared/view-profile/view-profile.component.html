@@ -417,8 +417,14 @@
                         </div>
                         <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'contract' | translate}}</h6>
-                          <h5 class="title-1" *ngIf="user?.meta?.contract_start">{{user?.meta?.contract_start | date:'y'
-                            }} - {{user?.meta?.contract_end | date:'y' }}</h5>
+                          <h5 class="title-1"
+                            *ngIf="safeDate(user?.meta?.contract_start) && safeDate(user?.meta?.contract_end)">
+                            {{ safeDate(user?.meta?.contract_start) | date: 'y' }} -
+                            {{ safeDate(user?.meta?.contract_end) | date: 'y' }}
+                          </h5>
+
+                          <!-- <h5 class="title-1" *ngIf="user?.meta?.contract_start">{{user?.meta?.contract_start | date:'y'
+                            }} - {{user?.meta?.contract_end | date:'y' }}</h5> -->
                           <!-- <h5 class="title-1" *ngIf="!user?.meta?.contract_start">NA</h5> -->
                         </div>
                       </div>

@@ -488,9 +488,8 @@ export class ClubComponent {
       this.activeIndex = index;
     }
   }
-  ngAfterViewInit() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
+
+
 
   getLangslugByID(langID: any) {
     let slug = 'en';
@@ -516,5 +515,9 @@ export class ClubComponent {
 
   setActiveTab(currentTab: any) {
     this.selectedTab = currentTab;
+  }
+
+  ngAfterViewInit() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }
