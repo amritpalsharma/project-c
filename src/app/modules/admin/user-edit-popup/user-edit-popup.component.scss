@@ -143,8 +143,13 @@
 .disable-end-date div, .disable-end-date button {
     pointer-events: none;
 }
-
-
+.popup__body::-webkit-scrollbar {
+  width: 6px;
+}
+.popup__body::-webkit-scrollbar-thumb {
+  background: rgb(228, 228, 228);
+  border-radius: 10px;
+}
 .display-duration{
   min-height: 48px;
   justify-content: center;
@@ -203,6 +208,18 @@ span.platform_url {
 ::ng-deep .gen_radio{
   display: flex;
   flex-wrap: wrap;
+}
+
+::ng-deep {
+  @media (min-width: 2000px) {
+    .user_edit_popup_admin {
+      width: 900px !important;
+      height: 1000px !important;
+    }
+    .popup__body {
+      height: 700px !important;
+    }
+  }
 }
 
 

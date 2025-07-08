@@ -1843,6 +1843,8 @@ span.active_btn {
         margin-left: 15px;
         display: inline-block;
         overflow: hidden;
+        position: unset !important;
+        transform: none !important;
         img {
           width: 100%;
           height: 100%;
@@ -1880,6 +1882,16 @@ span.active_btn {
     // padding-left: 1px !important;
     // padding-right: 1px !important;
   }
+}
+
+::ng-deep {
+@media (max-width: 1199px) {
+	.user-media span.profile_img_bg_circle {
+	    .profilepic_mobile_loader > div {
+	      margin-top: 10px !important;
+	    }
+	}
+}
 }
 
 @media (max-width: 991px) {
