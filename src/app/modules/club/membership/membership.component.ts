@@ -52,6 +52,8 @@ export class MembershipComponent {
 
   currentLoggedInPermission: string = this.gloabalSettings.getCurrentViewOnly();
 
+  isLoading: boolean = true;
+
   constructor(
     private route: ActivatedRoute,
     private scoutService: ScoutService,
@@ -90,6 +92,7 @@ export class MembershipComponent {
 
   // Fetch purchases from API with pagination parameters
   getUserPurchases(): void {
+    this.isLoading = true;
     const pageNumber = this.currentPage != 0 ? this.currentPage : 1;
     const pageSize = this.pageSize;
 
@@ -103,7 +106,9 @@ export class MembershipComponent {
       } else {
         console.error('Invalid API response:', response);
       }
+      this.isLoading = false;
     }, error => {
+      this.isLoading = false;
       console.error('Error fetching user purchases:', error);
     });
   }

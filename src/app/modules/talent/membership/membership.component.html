@@ -22,8 +22,15 @@
           </div>
         </div>
 
+        <!-- Loader -->
+        <div class="row premium-card_box mt-3" *ngIf="isLoading">
+          <div class="col-sm-12">
+            <app-talent-loader [width]="'80px'" [height]="'80px'" [border]="'8px'"></app-talent-loader>
+          </div>
+        </div>
+        <!-- Loader -->
 
-        <div class="row premium-card_box mt-3">
+        <div class="row premium-card_box mt-3" *ngIf="!isLoading">
 
           <div class="col-lg-4 d-none" *ngIf="ispremium">
             <div class="premium-card ">
@@ -59,12 +66,14 @@
             <div class="premium-card ">
               <div class="d-flex align-items-end justify-content-between flex_wrap">
                 <h5>{{'premium' | translate}}</h5>
-                <h6> {{ newPremium.price}} <sub class="premium-month_title">.-{{newPremium.currency}}/{{ newPremium.interval == 'monthly' ?
+                <h6> {{ newPremium.price}} <sub class="premium-month_title">.-{{newPremium.currency}}/{{
+                    newPremium.interval == 'monthly' ?
                     ('month' | translate) : ('year' | translate) }}</sub></h6>
               </div>
               <p *ngIf="newPremium.stripe_cancel_at == null">{{ 'renews' | translate }} {{ newPremium.plan_period_end |
                 date: 'dd.MM.yyyy' }}</p>
-              <p *ngIf="newPremium.stripe_cancel_at != null">{{ 'expireOn' | translate }} {{ newPremium.stripe_cancel_at |
+              <p *ngIf="newPremium.stripe_cancel_at != null">{{ 'expireOn' | translate }} {{ newPremium.stripe_cancel_at
+                |
                 date: 'dd.MM.yyyy' }}</p>
               <div class="d-flex align-items-center justify-content-between mt-4 mob_wrap">
                 <a class="premium-edit_btn text-white" routerLink="/talent/plans">{{'editPlan' | translate}}</a>
@@ -151,7 +160,7 @@
       </div>
     </div>
 
-    <div class="card bg-color membership_mobile">
+    <div class="card bg-color membership_mobile" *ngIf="!isLoading">
       <div class="card-header border-0">
         <div class="purchase-parent bg-0C3453">
           <div class="d-flex align-items-center justify-content-between transaction_box mb-2">

@@ -13,7 +13,7 @@
         </div>
 
 
-        <div class="row premium-card_box mt-3">
+        <div class="row premium-card_box mt-3" *ngIf="!isLoading">
 
           <div class="col-lg-4" *ngIf="ispremium">
             <div class="premium-card ">
@@ -130,10 +130,19 @@
 
         </div>
 
+        <div class="row premium-card_box mt-3" *ngIf="isLoading">
+          <div class="col-sm-12">
+            <app-loader></app-loader>
+            <!-- <app-talent-loader [width]="'80px'" [height]="'80px'" [border]="'8px'"></app-talent-loader> -->
+          </div>
+        </div>
+
+
+
       </div>
     </div>
 
-    <div class="card bg-color membership_mobile">
+    <div class="card bg-color membership_mobile" *ngIf="!isLoading">
       <div class="card-header border-0">
         <div class="purchase-parent bg-0C3453">
           <div class="d-flex align-items-center justify-content-between transaction_box mb-2">

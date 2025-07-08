@@ -87,8 +87,11 @@ export class MembershipComponent {
 
   }
 
+  // isLoading: boolean = true;
+
   // Fetch purchases from API with pagination parameters
   getUserPurchases(): void {
+    this.isLoading = true;
     const pageNumber = this.currentPage != 0 ? this.currentPage : 1;
     const pageSize = this.pageSize;
 
@@ -119,7 +122,7 @@ export class MembershipComponent {
         }
 
         // Filter the array to only keep rows with valid amount_paid > 0
-
+        this.isLoading = false;
       } else {
         this.isLoading = false;
         this.userPurchases = [];
