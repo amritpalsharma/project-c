@@ -1515,6 +1515,8 @@ span.active_btn {
     margin-left: 15px;
     display: inline-block;
     overflow: hidden;
+    position: unset !important;
+    transform: none !important;
 
     img {
       width: 100%;
@@ -1523,6 +1525,8 @@ span.active_btn {
       object-position: top;
     }
   }
+
+  
 
   img.club_profile_mob_img {
     padding: 1rem;
@@ -1584,6 +1588,16 @@ span.active_btn {
       display: block;
     }
   }
+}
+
+::ng-deep {
+@media (max-width: 1199px) {
+	.user-media span.profile_img_bg_circle {
+	    .profilepic_mobile_loader > div {
+	      margin-top: 10px !important;
+	    }
+	}
+}
 }
 
 

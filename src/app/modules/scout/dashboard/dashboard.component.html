@@ -46,7 +46,7 @@
                   <span class="profile_img_bg_circle"
                     style="position: absolute;top: 45%;transform:translate(-50%, -50%);"
                     *ngIf="profileImageLoading">
-                    <app-loader></app-loader>
+                    <app-loader class="profilepic_mobile_loader"></app-loader>
                   </span>
                   <span class="profile_img_bg_circle" *ngIf="!profileImageLoading">
                     <img *ngIf="profileImage && !loading" [src]="profileImage" class="" alt="" />

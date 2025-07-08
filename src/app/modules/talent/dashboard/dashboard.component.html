@@ -44,7 +44,7 @@
                 <div class="user-media text-center ">
                   <span class="profile_img_bg_circle"
                     style="position: absolute;top: 45%;transform:translate(-50%, -50%);" *ngIf="profileImageLoading">
-                    <app-talent-loader [width]="'80px'" [height]="'80px'" [border]="'5px'"></app-talent-loader>
+                    <app-talent-loader class="profilepic_mobile_loader" [width]="'80px'" [height]="'80px'" [border]="'5px'"></app-talent-loader>
                   </span>
                   <span class="profile_img_bg_circle" *ngIf="!profileImageLoading">
                     <img *ngIf="profileImage" [src]="profileImage" alt="" class="" />
