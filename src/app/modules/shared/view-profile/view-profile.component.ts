@@ -96,6 +96,10 @@ export class ViewProfileComponent implements OnInit {
       this.currentLoggedInPermission = value;
       console.log('ViewOnly Changed:', value);
     });
+
+    translate.onLangChange.subscribe(() => {
+      this.getUser(this.userId);
+    });
   }
 
   ngOnInit(): void {

@@ -153,7 +153,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.getBoosterData();
     this.isUserVerified = false;
     this.webPages.languageId$.subscribe((data) => {
-      this.getUserProfile(this.userId);
+      // this.getUserProfile(this.userId);
       this.getBoosterData();
       // this.getHighlightsData();
       this.loadCountries();
@@ -536,7 +536,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
           //   });
           // }
         }
-        // this.getUserPopups();
+        this.getUserPopups();
         this.loading = false;  // Set loading to false once data is loaded
       });
     } catch (error) {
@@ -598,9 +598,24 @@ export class DashboardComponent implements OnInit, OnDestroy {
       });
   }
 
-  freq: any = ['once', 'days', 'weeks', 'months'];
+  openPopup(popups: any) {
+    popups.forEach((data: any) => {
+      this.dialog.open(PopupComponent, {
+        width: '500px',
+        position: {
+          top: '150px'
+        },
+        data: {
+          title: data.title,
+          description: data.description
+        }
+      })
+      this.editPopupSeen(data);
+    })
+  }
 
-  openPopup(dataFound: boolean, index: any = 0) {
+
+  openPopup2(dataFound: boolean, index: any = 0) {
     if (index >= 3) {
       return;
     }
@@ -621,14 +636,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
               description: data.description
             }
           })
-          this.editPopupSeen(data, data.frequency_value);
+          // this.editPopupSeen(data, data.frequency_value);
           console.log('got the data', data)
         }
       })
 
       if (!gotData) {
         index += 1;
-        this.openPopup(false, index);
+        this.openPopup2(false, index);
       }
 
       return;
@@ -663,13 +678,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
               }
             })
 
-            this.editPopupSeen(popup, data.frequency_value);
+            // this.editPopupSeen(popup, data.frequency_value);
           }
           // }
         }
         else {
           console.log('pending popups', data, popup.popup_id, data.id);
-          this.addPopupSeen(data);
+          // this.addPopupSeen(data);
 
           if (data.frequency_value == this.freq[index]) {
             this.dialog.open(PopupComponent, {
@@ -683,7 +698,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
               }
             })
           }
-          this.editPopupSeen(data, data.frequency_value);
+          // this.editPopupSeen(data, data.frequency_value);
         }
 
         gotData = true;
@@ -695,7 +710,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     if (!gotData) {
       index += 1;
-      this.openPopup(true, index);
+      this.openPopup2(true, index);
     }
   }
 
@@ -704,12 +719,17 @@ export class DashboardComponent implements OnInit, OnDestroy {
       let data = {
         role: '4',
         payment_type: this.isPremium ? 'paid' : 'free',
-        status: 'active'
+        status: 'active',
+        language: localStorage.getItem('lang_id'),
+        domain_id: this.loggedInUser.user_domain_id
       }
       this.userService.getUserPopups(data).subscribe((response) => {
         if (response && response.status) {
           console.info('this.popups', response.data);
           this.popupData = response.data.popups;
+          this.popupData.forEach((data: any) => {
+            this.addPopupSeen(data);
+          });
           this.getPopupSeen();
         } else {
           // this.highlights = [];
@@ -733,18 +753,42 @@ export class DashboardComponent implements OnInit, OnDestroy {
         if (response && response.status) {
           console.info('this.popupSeen data: ', response.data);
           this.popupSeen = response.data.popupSeens;
-          this.openPopup(true, 0);
-        } else {
-          console.error('no data for popup-seen:', response);
-          this.openPopup(false, 0);
-          this.popupData.forEach((data: any) => {
-            this.addPopupSeen(data);
-          });
+          this.showPopups(0);
         }
+        // else {
+        //   console.error('no data for popup-seen:', response);
+        //   this.openPopup(false, 0);
+        //   this.popupData.forEach((data: any) => {
+        //     this.addPopupSeen(data);
+        //   });
+        // }
       });
     } catch (error) {
       // this.isLoading = false;
       console.error('Error fetching users:', error);
+    }
+  }
+
+  freq: any = ['once', 'days', 'weeks', 'months'];
+
+  showPopups(index: any) {
+    if(index == 4){
+      return;
+    }
+    let popups: any[] = [];
+    this.popupSeen.forEach((element: any) => {
+      if (element[this.freq[index]] === '1') {
+        let popup = this.popupData.filter((pop: any) => pop.id === element.popup_id)
+        popups.push(popup[0]);
+      }
+    });
+    console.log(popups, "here");
+    if (popups.length === 0) {
+      index += 1;
+      this.showPopups(index);
+    }
+    else {
+      this.openPopup(popups);
     }
   }
 
@@ -773,11 +817,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
   }
 
-  editPopupSeen(data: any, column: any) {
+  editPopupSeen(data: any) {
     let formData: any = {};
 
-    formData[column] = data[column] - 1;
-    formData.popup_id = data.popup_id;
+    // formData[freq] = 0;
+    formData.popup_id = data.id;
 
     try {
       this.userService.editPopupSeen(data.id, formData).subscribe((response) => {
