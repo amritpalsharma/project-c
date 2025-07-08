@@ -164,10 +164,21 @@ font-weight: 700;
 .suggestions-list li:hover {
   background-color: #f0f0f0;
 }
+
+@media(min-width: 481px) {
+.upto-date {
+    border-right: none !important;
+    border-radius: 10px 0px 0px 10px !important;
+}
+.upto-date-2  {
+    border-radius: 0px 10px 10px 0px !important;
+}
+}
+
 @media(max-width:768px){
   .form-group {
-    margin-bottom: 26px;
-    padding: 0px 26px;
+    margin-bottom: 20px;
+    padding: 0px 15px;
 }
 
 .mobile-input{
@@ -176,4 +187,12 @@ font-weight: 700;
 }
 mat-datepicker-toggle{
   margin-left: -50px;
+}
+
+@media(max-width: 480px) {
+.date-imputs.d-flex {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start !important;
+}
 }

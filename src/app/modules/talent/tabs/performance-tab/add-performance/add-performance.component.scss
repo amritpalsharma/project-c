@@ -20,15 +20,6 @@
   padding: 20px 20px 0px 20px;
 }
 
-.upto-date {
-  border-right: none !important;
-  border-radius: 10px 0px 0px 10px !important;
-}
-
-.upto-date-2 {
-  border-radius: 0px 10px 10px 0px !important;
-}
-
 .overflow-card {
   max-height: 60vh;
   overflow-y: auto;
@@ -209,6 +200,17 @@ mat-datepicker-toggle {
   border: 1px solid red !important;
   border-color: red !important;
 }
+
+@media (min-width: 481px) {
+.upto-date {
+  border-right: none !important;
+  border-radius: 10px 0px 0px 10px !important;
+}
+.upto-date-2 {
+  border-radius: 0px 10px 10px 0px !important;
+}
+}
+
 
 @media (max-width: 480px) {
   .date-imputs.d-flex {
