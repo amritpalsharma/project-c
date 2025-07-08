@@ -743,7 +743,7 @@ export class UserService {
       'Authorization': `Bearer ${this.userToken}`
     });
     return this.http.get<{ status: boolean, message: string, data: {} }>(
-      `${this.apiUrl}/user/get-system-popups/${lang_id}`, { headers, params }
+      `${this.apiUrl}user/get-system-popups/${lang_id}`, { headers, params }
       // https://api.socceryou.ch/api/user/get-system-popups/1
     );
     // return this.http.post<any>(`${this.apiUrl2}/edit-performance-detail/${performanceId}`, params, { headers });
