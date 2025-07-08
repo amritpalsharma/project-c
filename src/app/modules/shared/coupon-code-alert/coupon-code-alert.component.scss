@@ -34,6 +34,7 @@
   position: absolute;
   right: 7px;
   top: 50%;
+  padding: 8px;
   transform: translateY(-50%);
   border-radius: 0.375rem;
 }
@@ -76,7 +77,7 @@ input#couponCode {
     padding: 1rem !important;
   }
 
-  .coupon-btn {
+  .coupon-btn, .proceed-btn {
     width: 100%;
     padding: 8px;
     position: unset;
