@@ -199,7 +199,7 @@ export class MembershipComponent {
 
         this.iscountry = this.country ? true : false;
 
-        this.isdemo = this.demo ? false : false;
+        // this.isdemo = this.demo ? false : false;
         this.country.count = this.userPlans.country.length;
         this.premium.count = this.userPlans.premium.length;
         this.booster.count = this.userPlans.booster.length;
@@ -421,11 +421,13 @@ export class MembershipComponent {
           console.log('Subscription canceled successfully:', response);
           setTimeout(() => {
             this.getUserPlans();
-          }, 1500);
+          }, 100);
 
         } else {
           console.error('Failed to cancel subscription', response);
-          this.getUserPlans();
+          setTimeout(() => {
+            this.getUserPlans();
+          }, 0);
 
         }
       },

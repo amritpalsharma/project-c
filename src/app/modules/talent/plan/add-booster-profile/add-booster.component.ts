@@ -9,6 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { WebPages } from '../../../../services/webpages.service';
 import { UpdateConfirmationPlanComponent } from '../../../shared/update-confirmation-plan/update-confirmation-plan.component';
 import { Router } from '@angular/router';
+import { CommonDataService } from '../../../../services/common-data.service';
 
 @Component({
   selector: 'add-booster',
@@ -46,6 +47,7 @@ export class AddBoosterComponent {
 
   plan: any;
   boostedPlans: any;
+  profileImgUrl: string = '';
 
   constructor(
     public dialogRef: MatDialogRef<AddBoosterComponent>,
@@ -56,6 +58,7 @@ export class AddBoosterComponent {
     private translateService: TranslateService,
     private webPages: WebPages,
     private router: Router,
+    private commonDataService: CommonDataService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
@@ -67,11 +70,14 @@ export class AddBoosterComponent {
     if (userNationalities && typeof userNationalities != undefined) {
       this.userNationality = userNationalities[0]?.flag_path ? userNationalities[0]?.flag_path : '';
     }
+
+    this.profileImgUrl = this.commonDataService.getCurrentProfileImage();
+    console.info('this.profileImgUrl', this.profileImgUrl)
     console.warn('this.data', this.data);
     this.id = this.data.id || [];
     this.plan = this.data.plan;
     this.boostedPlans = this.data.boostedPlans;
-    if(typeof this.boostedPlans?.isYearly !== undefined){
+    if (typeof this.boostedPlans?.isYearly !== undefined) {
       this.toggleBillingPlan(this.boostedPlans?.isYearly);
     }
     this.stripe = await this.paymentService.getStripe();

@@ -3,26 +3,32 @@
         <div class="dialog-header m-auto">
             <h2>{{'countryPlanCancel' | translate}}</h2>
             <div class="close_buttons" *ngIf='theme!="dark"'>
-                <img src="../../../assets/images/close-icon-circle.png" alt="" class="" (click)="close()" />
+                <img src="../../../assets/images/close-icon-circle.png" alt="" class="" (click)="close()" style="width: 100%;width: 30px;height: 30px;"/>
             </div>
             <div class="close_buttons" *ngIf='theme=="dark"'>
-                <img src="../../../assets/images/carbon_close-outline.svg" alt="" class="" (click)="close()" />
+                <img src="../../../assets/images/carbon_close-outline.svg" alt="" class="" (click)="close()" style="width: 100%;width: 30px;height: 30px;"/>
             </div>
         </div>
     </div>
     <div class="popup__body p-3 pt-1" *ngIf="uniqueCountries && uniqueCountries.length > 0">
         <!-- {{data.countries | json}} -->
         <div class="country-option" *ngFor="let country of uniqueCountries">
+            <!-- {{country | json}} -->
             <label class="country-label">
                 <input type="radio" name="country" [value]="country.id" [(ngModel)]="selectedCountryId"
                     [disabled]="country.stripe_cancel_at != null" class="country-radio" />
                 <span class="country-info">
                     {{ country.package_name }} - {{ country.price }} {{country.currency}}/
                     <span>{{ (country.interval === 'monthly' ? 'month' : 'year') | translate }}
-                        <!-- {{country.stripe_cancel_at != null ? ' - Cancelled'
-                        : ''}} -->
-                        <span *ngIf="country.stripe_cancel_at != null"> - {{'cancel' | translate}}</span>
-                        </span>
+
+                        <span *ngIf="country.stripe_cancel_at != null"> 
+                            <span class="cancel_keyword">({{'cancel' | translate}})</span>
+                            - {{'expireOn' |
+                            translate }} {{
+                            country.stripe_cancel_at | date: 'dd.MM.yyyy' }}</span>
+                        <span *ngIf="!country.stripe_cancel_at && country.plan_period_end != null"> - {{ 'renews' | translate }} {{ country.plan_period_end | date: 'dd.MM.yyyy' }}</span>
+                    </span>
+                    <!-- plan_period_end -->
                 </span>
             </label>
         </div>

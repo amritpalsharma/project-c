@@ -45,7 +45,7 @@
                   (focus)="onInputFocus()" [ngModel]="team_country_name" name="team_country_name"> -->
                 <input [(ngModel)]="team_country_name" [ngClass]="{'isrequiredField': !team_country_id}"
                   class="form-select" type="text" aria-label="City" matInput [formControl]="countryControl"
-                  [matAutocomplete]="auto" (focus)="onInputFocus()" name="team_country_name" [value]="team_country_name">
+                  [matAutocomplete]="auto" (focus)="onInputFocus()" name="team_country_name" [value]="team_country_name" placeholder="{{'noTeamAndClubPlaceHolder' | translate}}">
 
 
 

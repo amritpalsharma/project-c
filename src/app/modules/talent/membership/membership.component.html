@@ -132,9 +132,11 @@
               </div>
               <p *ngIf="booster.stripe_cancel_at == null">{{ 'renews' | translate }} {{ booster.plan_period_end |
                 date: 'dd.MM.yyyy' }}</p>
-              <p *ngIf="booster.stripe_cancel_at != null" routerLink="/talent/plans">{{ 'renewSubscription' | translate
+              <!-- <p *ngIf="booster.stripe_cancel_at != null" routerLink="/talent/plans">{{ 'renewSubscription' | translate
                 }} {{
-                booster.stripe_cancel_at | date: 'dd.MM.yyyy' }}</p>
+                booster.stripe_cancel_at | date: 'dd.MM.yyyy' }}</p> -->
+              <p *ngIf="booster.stripe_cancel_at != null">{{ 'expireOn' | translate }} {{ booster.stripe_cancel_at |
+                date: 'dd.MM.yyyy' }}</p>
               <div class="d-flex align-items-center justify-content-between mt-4 mob_wrap">
                 <a class="premium-edit_btn text-white cursor-pointer" (click)="editBooster(booster)">{{'editPlan' |
                   translate}}</a>

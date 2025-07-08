@@ -49,8 +49,10 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <img *ngIf="profileImgUrl" [src]="profileImgUrl"
+                                            class="player_profile_img {{profileImgUrl}}">
                                         <img [src]="loggedInUser?.meta?.profile_image_path" alt="player-image"
-                                            *ngIf="loggedInUser?.meta && loggedInUser?.meta?.profile_image_path"
+                                            *ngIf="!profileImgUrl && loggedInUser?.meta && loggedInUser?.meta?.profile_image_path"
                                             class="player_profile_img" />
                                         <img src="../../../../../assets/images/default/talent-profile-default.png"
                                             alt=""
@@ -98,8 +100,10 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <img *ngIf="profileImgUrl" [src]="profileImgUrl"
+                                            class="player_profile_img {{profileImgUrl}}">
                                         <img [src]="loggedInUser?.meta?.profile_image_path" alt="player-image"
-                                            *ngIf="loggedInUser?.meta && loggedInUser?.meta?.profile_image_path"
+                                            *ngIf="!profileImgUrl && loggedInUser?.meta && loggedInUser?.meta?.profile_image_path"
                                             class="player_profile_img" />
                                         <img src="../../../../../assets/images/default/talent-profile-default.png"
                                             alt=""

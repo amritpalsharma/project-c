@@ -78,3 +78,9 @@
     margin-top: 20px;
     font-weight: 500;
 }
+.cancel_keyword{
+    color: rgb(249, 60, 101) !important;
+}
+::ng-deep .dark-theme .cancel_keyword{
+    color: #bde34f !important;
+}
