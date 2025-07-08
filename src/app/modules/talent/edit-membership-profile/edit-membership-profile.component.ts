@@ -57,6 +57,7 @@ export class EditMembershipProfileComponent {
     this.loggedInUser = JSON.parse(this.loggedInUser);
 
     console.info('Details ', this.loggedInUser)
+    // this.getUserProfile();
     if (this.loggedInUser.meta && this.loggedInUser.meta.date_of_birth != '') {
       //  console.warn(this.loggedInUser)
 
@@ -86,9 +87,8 @@ export class EditMembershipProfileComponent {
 
 
 
-    this.commonDataService.profilePic$.subscribe(url => {
-      this.profileImgUrl = url;
-    });
+    this.profileImgUrl = this.commonDataService.getCurrentProfileImage();
+    console.info('this.profileImgUrl',this.profileImgUrl)
   }
 
   getRoles() {
@@ -234,5 +234,4 @@ export class EditMembershipProfileComponent {
     }
     // console.warn('ROle is '+role_id+' Id is '+user_id)
   }
-
 }

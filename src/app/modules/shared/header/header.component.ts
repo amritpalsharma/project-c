@@ -194,7 +194,7 @@ export class HeaderComponent {
     let langId = localStorage.getItem('lang_id');
     this.fetchNotifications(userId, langId);
 
-    this.loggedInUser = JSON.parse(this.loggedInUser);
+
 
     this.getUserStatus();
 
@@ -388,6 +388,11 @@ export class HeaderComponent {
         if (response && response.status && response.data && response.data.user_data) {
           // console.info('UserDataArrSharedHeader', response.data);
           let userArr = response.data.user_data;
+          if (!this.loggedInUser || this.loggedInUser == '' || typeof this.loggedInUser === undefined) {
+            this.loggedInUser = userArr;
+            // localStorage.setItem('userInfo', JSON.stringify(response.data.user_data));
+            localStorage.setItem('userData', JSON.stringify(response.data.user_data));
+          }
           if (userArr?.first_name || userArr?.last_name) {
             this.titleService.setName(userArr?.first_name + ' ' + userArr.last_name);
             this.titleService.setRole(userArr?.role_name);

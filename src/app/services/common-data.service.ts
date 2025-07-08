@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
-import { tap, catchError } from 'rxjs/operators'; 
+import { tap, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +15,8 @@ export class CommonDataService {
   public teams: any[] = [];
   private messageSource = new Subject<string>();
   message$ = this.messageSource.asObservable();
-  public lang:any; // You can dynamically set this if needed
-  languages:any = environment.langs;
+  public lang: any; // You can dynamically set this if needed
+  languages: any = environment.langs;
 
   private profilePicSource = new BehaviorSubject<string>('../../assets/images/default/talent-profile-default.png');
   profilePic$ = this.profilePicSource.asObservable();
@@ -35,7 +35,7 @@ export class CommonDataService {
 
     // Find the corresponding language ID from the langs array
     const lang = this.languages.find(
-      (lang:any) => lang.slug === selectedLanguageSlug
+      (lang: any) => lang.slug === selectedLanguageSlug
     );
 
     // Default to a specific language ID if none is found (e.g., English)
@@ -68,7 +68,7 @@ export class CommonDataService {
       `${this.apiUrl}get-currencies`
     );
   }
-  getAllClubsbyId(id=0): Observable<any> {
+  getAllClubsbyId(id = 0): Observable<any> {
     // console.log(" >>>>>>>>>>>>>>>>>>>> getAllClubsbyId id>> ", id);
     return this.http.get(
       `${this.apiUrl}get-clubs-list?country=${id}`
@@ -87,6 +87,10 @@ export class CommonDataService {
   // Change the language
   changeLanguage(lang: string) {
     this.currentLangSubject.next(lang);  // Emit the new language
+  }
+
+  getCurrentProfileImage(): string {
+    return this.profilePicSource.getValue();
   }
 
 }
