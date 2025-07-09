@@ -6,20 +6,14 @@
                     <div class="d-flex align-items-center heading w-100">
                         <h2 class="card-title mb-0 me-3">{{ 'inbox' | translate }}</h2>
                         <a (click)="editinbox()" href="javascript:void(0);"
-                            class="btn btn-success btn-sm web-create-bg">{{ 'newMessage' | translate }}</a>
+                            class="btn btn-success btn-sm web-create-bg">{{ 'newMessage' | translate }} isLoading {{isLoading}}</a>
                     </div>
                 </div>
-
-
-
-
-
             </div>
             <div class="card-body p-0">
                 <div class="chat_row d-flex h-100 testing" style="min-height: 68vh;">
-
-                    <div class="col-lg-12 border-end px-0" id="talkjs-container">
-
+                    <app-loader *ngIf="isLoading" class="col-lg-12 border-end px-0"></app-loader>
+                    <div class="col-lg-12 border-end px-0" id="talkjs-container" [ngClass]="{'invisible':isLoading}">
                     </div>
 
                 </div>

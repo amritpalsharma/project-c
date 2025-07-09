@@ -236,3 +236,10 @@
 // }
 
 /* Customize additional styles as per TalkJS themes */
+
+::ng-deep .invisible {
+  opacity: 0;
+  /* Makes it invisible but still detectable */
+  pointer-events: none;
+  /* Prevents interaction while loading */
+}

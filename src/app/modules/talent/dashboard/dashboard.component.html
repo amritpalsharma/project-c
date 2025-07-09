@@ -106,7 +106,7 @@
                         <span>{{'downloadPDF' | translate}}</span>
                       </button>
                     </span>
-                    <span class="icon-bg pdf_btn_icon" *ngIf="profileImage">
+                    <span class="icon-bg pdf_btn_icon" *ngIf="booster">
                       <a (click)="editBooster(booster);" class="cursor-pointer team-badge_image"
                         matTooltip="{{'boostedProfileViews' | translate}}" matTooltipPosition="right">
                         <img src="../../../assets/images/rocket-icon-{{currentThemeMode}}.svg" alt="" class="me-2" />

@@ -27,6 +27,7 @@ export class InboxComponent {
   receiverUser: any = {};
   pageTitle: string = '';
   private isDarkMode = false;
+  isLoading: boolean = true;
   constructor(
     private talkService: TalkService,
     private socketService: SocketService,
@@ -69,7 +70,12 @@ export class InboxComponent {
       // Defer mounting chatbox until next event loop cycle
       setTimeout(() => {
         chatbox.mount(document.getElementById('talkjs-container'));
+
       }, 0);
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 1500);
+
     }
 
     const theme = localStorage.getItem('theme');
@@ -125,26 +131,6 @@ export class InboxComponent {
       .subscribe(users => {
         if (this.users?.length > 0) {
           for (let user of users.data) {
-            // let full_name = '';
-            // let currentRole = user?.role_name.toLowerCase();
-            // if (typeof user?.role_name !== undefined && currentRole == 'club' || currentRole == 'clube' || currentRole == 'klub' || currentRole == 'klubb' && user?.current_club_logo != '') {
-            //   user.meta.profile_image_path = 'https://api.socceryou.ch/uploads/' + user?.current_club_logo;
-            // }
-            // if (typeof user?.meta?.profile_image_path !== undefined && user?.meta?.profile_image_path != '') {
-            //   user.profile_image_path = user?.meta?.profile_image_path;
-            // }
-
-            // if (typeof user?.first_name !== undefined && user?.last_name != '') {
-            //   full_name = user?.first_name + ' ' + user?.last_name;
-            // }
-            // this.users.push({
-            //   id: user.id,
-            //   name: full_name,
-            //   email: user.email,
-            //   photoUrl: user.profile_image_path,
-            // })
-
-            console.log('user From Chat Popup', user);
             let full_name = 'Full Name';
             let currentRole = user?.role_name.toLowerCase();
             if (typeof user?.first_name !== undefined && user?.last_name != '') {

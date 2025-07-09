@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TalentService } from '../../../services/talent.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
-import { loadStripe } from '@stripe/stripe-js';
+// import { loadStripe } from '@stripe/stripe-js';
 import { environment } from '../../../../environments/environment';
 import { PaymentService } from '../../../services/payment.service';
 import { MessagePopupComponent } from '../../shared/message-popup/message-popup.component';
@@ -20,7 +20,9 @@ import { Router } from '@angular/router';
 import { PremiumPurchaseComponent } from '../../shared/premium-purchase/premium-purchase.component';
 // import { LoaderComponent } from '../../shared/loader/loader.component';
 
-
+import { StripeLoaderService } from '../../../services/stripe-loader.service';
+// import { Stripe } from '@stripe/stripe-js';
+import { Stripe, loadStripe } from '@stripe/stripe-js';  // Import the Stripe type
 
 interface Plan {
   id: number;
@@ -96,7 +98,10 @@ export class PlanComponent implements OnInit, OnDestroy {
   isLoadingCards: boolean = false;
 
   private plansSubscription: Subscription = new Subscription();
-  stripePromise = loadStripe(environment.stripePublishableKey);
+  // stripe: Stripe | null = null;
+  // stripePromise = loadStripe(environment.stripePublishableKey);
+  // stripePromise: Promise<Stripe | null> | null = null;
+  stripePromise: Promise<Stripe | null> | null = null;
   premiumFeatures: string[] = []; // Store the fetched feature list
   multiCountryPlanDesc: string[] = []; // Store the fetched feature list
   bostProfileDesc: string[] = []; // Store the fetched feature list
@@ -113,6 +118,7 @@ export class PlanComponent implements OnInit, OnDestroy {
 
   countryHasYearlyPlan: boolean = false;
   constructor(
+    private stripeService: StripeLoaderService,
     private talentService: TalentService,
     private paymentService: PaymentService,
     public dialog: MatDialog,
@@ -125,11 +131,12 @@ export class PlanComponent implements OnInit, OnDestroy {
   ) { }
 
   async ngOnInit() {
+    this.loadStripe();
     this.getJsonTranslations();
     this.isLoadingPlans = true;
     this.getUserPlans();
     this.getBoosterData()
-    this.stripe = await this.paymentService.getStripe();
+    // this.stripe = await this.paymentService.getStripe();
     this.loggedInUser = JSON.parse(this.loggedInUser || '{}');
     // this.getBoosterData();
     this.loadFeatures();
@@ -143,6 +150,17 @@ export class PlanComponent implements OnInit, OnDestroy {
     this.webPages.languageId$.subscribe((data: any) => {
       this.getToasterMsg();
     });
+  }
+
+  loadStripe() {
+    try {
+      this.stripePromise = this.stripeService.getStripe(); // store the promise
+      this.stripePromise.then(stripe => {
+        console.log('Stripe Loaded:', stripe);
+      });
+    } catch (error) {
+      console.error('Error loading Stripe:', error);
+    }
   }
 
   // Open coupon dialog

@@ -136,13 +136,26 @@ export class PerformanceAnalysisTabComponent implements OnInit {
       for (const report of selectedReports) {
         selectedIds.push(report.id);
       }
-
+      const newWindow = window.open('', '_blank');
+      if (!newWindow) {
+        return;
+      }
       this.talentService.downloadReports(selectedIds).subscribe(
         response => {
-          if (response.status) {
-            console.log(selectedIds);
+          if (response.status && response.data?.zip_path) {
+            // console.log(selectedIds);
+            const fileUrl = response.data.zip_path;
             // Open the file in a new tab
-            window.open(response.data.zip_path);
+            // window.open(response.data.zip_path);
+
+            if (!fileUrl.startsWith('http')) {
+              console.info('Invalid FIle Url');
+              // newWindow.document.write('<p>Invalid file URL.</p>');
+              return;
+            }
+
+            // ✅ Redirect opened tab to the file
+            newWindow.location.href = fileUrl;
           }
         },
         error => {
