@@ -83,7 +83,7 @@ export const environment = {
     { name: 'German', slug: 'de', id: 2, flag: 'Germany.svg', locale: 'de-DE' },
     { name: 'Italy', slug: 'it', id: 3, flag: 'Italy.svg', locale: 'it-IT' },
     { name: 'France', slug: 'fr', id: 4, flag: 'France.svg', locale: 'fr-FR' },
-    { name: 'United Kingdom', slug: 'uk', id: 5, flag: 'England.svg', locale: 'en-GB' },
+    { name: 'England', slug: 'uk', id: 5, flag: 'England.svg', locale: 'en-GB' },
     { name: 'Spain', slug: 'es', id: 6, flag: 'Spain.svg', locale: 'es-ES' },
     { name: 'Portugal', slug: 'pt', id: 7, flag: 'Portugal.svg', locale: 'pt-PT' },
     { name: 'Belgium', slug: 'be', id: 8, flag: 'Belgium.svg', locale: 'fr-BE' }, // or 'nl-BE' depending on the language
