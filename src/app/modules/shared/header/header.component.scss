@@ -324,11 +324,8 @@ a.dropdown-item.ai-icon.selected {
     left: 6px;
     fill: #FF9500;
     transition: 0.3s;
-
-    image {
-      filter: none;
-      opacity: 1;
-    }
+    filter: none;
+    opacity: 1;
   }
 
   label svg.moon {
@@ -336,10 +333,7 @@ a.dropdown-item.ai-icon.selected {
     fill: #1C2C4A;
     transition: 0.4s;
     width: 18px;
-
-    image {
-      opacity: 0.5;
-    }
+    opacity: 0.5;
   }
 
   label:after {
@@ -361,21 +355,15 @@ a.dropdown-item.ai-icon.selected {
   }
 
   input:checked+label svg.moon {
-
+    filter: none;
+    opacity: 1;
     // fill: #1C2C4A;
-    image {
-      filter: none;
-      opacity: 1;
-    }
   }
 
   input:checked+label svg.sun {
-
+    filter: brightness(0) invert(1);
+    opacity: 0.5;
     // fill: #C1C6CF;
-    image {
-      filter: brightness(0) invert(1);
-      opacity: 0.5;
-    }
   }
 }
 
