@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TalentService } from '../../../services/talent.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
-// import { loadStripe } from '@stripe/stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 import { environment } from '../../../../environments/environment';
 import { PaymentService } from '../../../services/payment.service';
 import { MessagePopupComponent } from '../../shared/message-popup/message-popup.component';
@@ -19,10 +19,8 @@ import { TitleService } from '../../../title.service';
 import { Router } from '@angular/router';
 import { PremiumPurchaseComponent } from '../../shared/premium-purchase/premium-purchase.component';
 // import { LoaderComponent } from '../../shared/loader/loader.component';
-
 import { StripeLoaderService } from '../../../services/stripe-loader.service';
-// import { Stripe } from '@stripe/stripe-js';
-import { Stripe, loadStripe } from '@stripe/stripe-js';  // Import the Stripe type
+
 
 interface Plan {
   id: number;
@@ -98,10 +96,7 @@ export class PlanComponent implements OnInit, OnDestroy {
   isLoadingCards: boolean = false;
 
   private plansSubscription: Subscription = new Subscription();
-  // stripe: Stripe | null = null;
   // stripePromise = loadStripe(environment.stripePublishableKey);
-  // stripePromise: Promise<Stripe | null> | null = null;
-  stripePromise: Promise<Stripe | null> | null = null;
   premiumFeatures: string[] = []; // Store the fetched feature list
   multiCountryPlanDesc: string[] = []; // Store the fetched feature list
   bostProfileDesc: string[] = []; // Store the fetched feature list
@@ -118,7 +113,6 @@ export class PlanComponent implements OnInit, OnDestroy {
 
   countryHasYearlyPlan: boolean = false;
   constructor(
-    private stripeService: StripeLoaderService,
     private talentService: TalentService,
     private paymentService: PaymentService,
     public dialog: MatDialog,
@@ -128,15 +122,15 @@ export class PlanComponent implements OnInit, OnDestroy {
     private translate: TranslateService,
     private titleService: TitleService,
     private router: Router,
+    private stripeService: StripeLoaderService
   ) { }
 
   async ngOnInit() {
-    this.loadStripe();
     this.getJsonTranslations();
     this.isLoadingPlans = true;
     this.getUserPlans();
     this.getBoosterData()
-    // this.stripe = await this.paymentService.getStripe();
+    this.stripe = await this.paymentService.getStripe();
     this.loggedInUser = JSON.parse(this.loggedInUser || '{}');
     // this.getBoosterData();
     this.loadFeatures();
@@ -150,17 +144,6 @@ export class PlanComponent implements OnInit, OnDestroy {
     this.webPages.languageId$.subscribe((data: any) => {
       this.getToasterMsg();
     });
-  }
-
-  loadStripe() {
-    try {
-      this.stripePromise = this.stripeService.getStripe(); // store the promise
-      this.stripePromise.then(stripe => {
-        console.log('Stripe Loaded:', stripe);
-      });
-    } catch (error) {
-      console.error('Error loading Stripe:', error);
-    }
   }
 
   // Open coupon dialog
@@ -253,6 +236,7 @@ export class PlanComponent implements OnInit, OnDestroy {
     this.toastr.info(this.pleaseWait, this.Processing, { disableTimeOut: true });
 
     try {
+      await this.stripeService.initStripe();
       const response = await this.paymentService.createCheckoutSession(planId, '', this.couponCode).toPromise();
 
       if (response?.data?.payment_intent?.id) {
@@ -287,60 +271,44 @@ export class PlanComponent implements OnInit, OnDestroy {
     }
   }
 
-  async redirectToCheckout(planId: string) {
-    this.isLoadingCheckout = true; // Show loading spinner or disable button
 
-    // Show "please wait" toast while redirecting
-    this.toastr.info(this.pleaseWait, this.Processing, { disableTimeOut: true });
+  async redirectToCheckout(planId: string) {
+    this.isLoadingCheckout = true;
+    this.toastr.info('Please wait...', 'Redirecting to payment', { disableTimeOut: true });
 
     try {
-      // ✅ Step 1: Call your backend API to create a Stripe Checkout session
+      // ✅ Step 1: Init Stripe with correct key based on API mode
+      await this.stripeService.initStripe();
+
+      // ✅ Step 2: Call your backend to create checkout session
       const response = await this.paymentService
         .createCheckoutSession(planId, '', this.couponCode)
         .toPromise();
 
-      // ✅ Step 2: Validate response and extract Stripe session ID
-      const sessionId = response?.data?.id; // Correct field: `id` is the session ID
+      const sessionId = response?.data?.id;
 
       if (sessionId) {
-        // Clear loading toast
-        this.toastr.clear();
-
-        // ✅ Optional: Show error from backend, if provided
-        if (response?.data?.error) {
-          this.toastr.error(response.data.error);
-          return;
-        }
-
-        // ✅ Step 3: Load Stripe (must use publishable key — already done elsewhere)
-        const stripe = await this.stripe;
+        // ✅ Step 3: Get Stripe instance after it’s initialized
+        const stripe = await this.stripeService.getStripe();
 
         if (!stripe) {
           this.toastr.error('Stripe failed to initialize.');
           return;
         }
 
-        // ✅ Step 4: Redirect to Stripe Checkout using the session ID
+        // ✅ Step 4: Redirect to Stripe
         const result = await stripe.redirectToCheckout({ sessionId });
 
-        // ✅ Step 5: Handle any Stripe redirect errors
         if (result?.error) {
-          this.toastr.error(result.error.message || 'Stripe redirection failed.');
-          console.error('Stripe redirection error:', result.error);
+          this.toastr.error(result.error.message);
         }
       } else {
-        // ❌ If no session ID returned, show backend error or fallback
-        this.toastr.clear();
         this.toastr.error(response?.data?.error || 'Failed to create checkout session.');
-        console.error('Checkout session creation failed:', response);
       }
-    } catch (error) {
-      // ❌ Catch any unexpected API or network errors
-      this.toastr.clear();
-      this.toastr.error('Error creating Stripe Checkout session. Please try again.', 'Error');
-      console.error('Stripe Checkout session error:', error);
+    } catch (err) {
+      this.toastr.error('Error during payment. Try again.');
+      console.error('Stripe Checkout error:', err);
     } finally {
-      // ✅ Always reset loading state
       this.toastr.clear();
       this.isLoadingCheckout = false;
     }
