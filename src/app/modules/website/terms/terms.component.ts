@@ -223,34 +223,34 @@ export class TermsComponent implements OnInit {
       if (tld == 'ch' || tld == 'de') {
         countryName = 'Schweiz_Deutschland';
         privacyPDF = 'Allgemeine Datenschutzerklärung Succer You Sports AG_2025_Schweiz_Deutschland.pdf';
-        termsPDF = 'AGB SoccerYou Schweiz_Deutschland 2025.pdf';
+        termsPDF = 'AGB_SoccerYou_Schweiz_Deutschland_2025.pdf';
       } else if (tld == 'it') {
         countryName = 'Italia';
-        termsPDF = 'Termini & Condizioni SoccerYou Italia 2025.pdf';
+        termsPDF = 'Termini_Condizioni_SoccerYou_Italia_2025.pdf';
         privacyPDF = 'Informativa generale sulla privacy Italila Succer You Sports AG_2025.pdf';
       } else if (tld == 'fr' || tld == 'be') {
         countryName = 'France_Belgique';
-        termsPDF = 'CGU SoccerYou France_Belgique 2025.pdf';
+        termsPDF = 'CGU_SoccerYou_France_Belgique_2025.pdf';
         privacyPDF = 'Déclaration générale de protection des données Succer You Sports AG_2025_France_Belgique.pdf';
       } else if (tld == 'uk') {
         countryName = 'England';
-        termsPDF = 'Terms & Conditions SoccerYou England 2025.pdf';
+        termsPDF = 'Terms_Conditions_SoccerYou_England_2025.pdf';
         privacyPDF = 'General data protection declaration England Succer You Sports AG_2025.pdf';
       } else if (tld == 'es') {
         countryName = 'España';
-        termsPDF = 'Normas Comunitairas SoccerYou Espagna 2025.pdf';
+        termsPDF = 'Normas_Comunitairas_SoccerYou_Espagna_2025.pdf';
         privacyPDF = 'Política general de privacidad Espagnia Succer You Sports AG_2025.pdf';
       } else if (tld == 'pt') {
         countryName = 'Portugal';
-        termsPDF = 'Termos & Condições SoccerYou Portugal 2025.pdf';
+        termsPDF = 'Termos_Condicoees_SoccerYou_Portugal_2025.pdf';
         privacyPDF = 'Política geral de privacidade Portugal Succer You Sports AG_2025.pdf';
       } else if (tld == 'dk') {
         countryName = 'Danmark';
-        termsPDF = 'Vilkår & Betingelser SoccerYou Danmark 2025.pdf';
+        termsPDF = 'Vilkaer_Betingelser_SoccerYou_Danmark_2025.pdf';
         privacyPDF = 'Generel privatlivspolitik Danmark Succer You Sports AG_2025.pdf';
       } else if (tld == 'se') {
         countryName = 'Sverige';
-        termsPDF = 'Allmänna villkor SoccerYou Sverige 2025.pdf';
+        termsPDF = 'Allmaenna_villkor_SoccerYou_Sverige_2025.pdf';
         privacyPDF = 'Allmän integritetspolicy Sverige Succer You Sports AG_2025.pdf';
       }
       let pdfName = '';
