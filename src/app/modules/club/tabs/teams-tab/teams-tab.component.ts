@@ -142,10 +142,8 @@ export class TeamsTabComponent {
 
     messageDialog.afterClosed().subscribe(result => {
       console.log('result', result);
-      if (result?.status && result?.status == true) {
-        setTimeout(() => {
-          this.getTeamPlayers(this.selectedTeamId, this.selectedTeam);
-        }, 1500);
+      if (true) {
+        this.getTeamPlayers(this.selectedTeamId, this.selectedTeam);
         if (result.message != '') {
           this.toaster.info(result.message);
         }
@@ -169,15 +167,27 @@ export class TeamsTabComponent {
     })
 
     messageDialog.afterClosed().subscribe(result => {
-      setTimeout(() => {
-        this.getTeamPlayers(this.selectedTeamId, this.selectedTeam);
-      }, 1500);
+      this.getTeamPlayers(this.selectedTeamId, this.selectedTeam);
       if (result.message != '') {
         this.toaster.info(result.message);
       }
     });
 
   }
+
+  showMatDialog(message: string, action: string) {
+    const messageDialog = this.dialog.open(MessagePopupComponent, {
+      width: '500px',
+      position: {
+        top: '150px'
+      },
+      data: {
+        message: message,
+        action: action
+      }
+    })
+  }
+
   getTeamTypeById(id: number) {
     const team = this.teams.find((team: any) => team.id === id);
     return team ? team.team_type : null; // Return `null` if not found

@@ -45,6 +45,8 @@ export class CreateSightPopupComponent implements AfterViewInit {
     file: ""
   }];
   isLoading: boolean = false;
+  status: boolean = true;
+  
 
   uploadedBannerImage: boolean = false;
   bannerImageName: string = '';
@@ -92,8 +94,6 @@ export class CreateSightPopupComponent implements AfterViewInit {
     const pad = (n: number) => n < 10 ? '0' + n : n;
     return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(date.getMinutes())}`;
   }
-
-  status: boolean = false;
 
   @ViewChild('numInput', { static: false }) numInput!: ElementRef;
 
