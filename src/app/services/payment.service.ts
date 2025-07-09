@@ -21,7 +21,7 @@ export class PaymentService {
     this.apiUrl = environment.apiUrl; // Ensure this is defined in your environment
     this.userToken = localStorage.getItem('authToken');
     this.stripePromise = loadStripe(environment.stripePublishableKey);
-
+    this.initStripe();
   }
 
   /**
