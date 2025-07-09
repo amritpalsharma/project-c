@@ -81,7 +81,7 @@ export class PlanComponent implements OnInit, OnDestroy {
   successTxt: string = '';
   premiumPlanTxt: string = '';
   constructor(
-    private ScoutService: ScoutService,
+    private ScoutService: ScoutService, 
     private paymentService: PaymentService,
     public dialog: MatDialog,
     private route: ActivatedRoute,

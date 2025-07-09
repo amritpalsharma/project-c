@@ -380,12 +380,13 @@ export class HeaderComponent {
 
   setPaymentStatus() {
     this.socketService.getLoggedInUserPaymentStatus().then((result) => {
+      result = result.toLowerCase();
       if (result === 'live') {
-        localStorage.setItem('payment_mode', 'live');
+        localStorage.setItem('payment_mode', result);
       } else {
-        localStorage.setItem('payment_mode', 'test');
+        localStorage.setItem('payment_mode', result);
       }
-      console.info('Payment Set In Header');
+      console.info('Payment Set In Header '+result);
     });
   }
 
