@@ -247,7 +247,7 @@ export class PlanComponent implements OnInit, OnDestroy {
   }
 
   // Redirect to Stripe Checkout with coupon code logic
-  async redirectToCheckout(planId: string) {
+  async redirectToCheckout1(planId: string) {
     this.isLoadingCheckout = true;
     // this.toastr.info('Redirecting to payment...', 'Loading', { disableTimeOut: true });
     this.toastr.info(this.pleaseWait, this.Processing, { disableTimeOut: true });
@@ -286,6 +286,66 @@ export class PlanComponent implements OnInit, OnDestroy {
       this.isLoadingCheckout = false;
     }
   }
+
+  async redirectToCheckout(planId: string) {
+    this.isLoadingCheckout = true; // Show loading spinner or disable button
+
+    // Show "please wait" toast while redirecting
+    this.toastr.info(this.pleaseWait, this.Processing, { disableTimeOut: true });
+
+    try {
+      // ✅ Step 1: Call your backend API to create a Stripe Checkout session
+      const response = await this.paymentService
+        .createCheckoutSession(planId, '', this.couponCode)
+        .toPromise();
+
+      // ✅ Step 2: Validate response and extract Stripe session ID
+      const sessionId = response?.data?.id; // Correct field: `id` is the session ID
+
+      if (sessionId) {
+        // Clear loading toast
+        this.toastr.clear();
+
+        // ✅ Optional: Show error from backend, if provided
+        if (response?.data?.error) {
+          this.toastr.error(response.data.error);
+          return;
+        }
+
+        // ✅ Step 3: Load Stripe (must use publishable key — already done elsewhere)
+        const stripe = await this.stripe;
+
+        if (!stripe) {
+          this.toastr.error('Stripe failed to initialize.');
+          return;
+        }
+
+        // ✅ Step 4: Redirect to Stripe Checkout using the session ID
+        const result = await stripe.redirectToCheckout({ sessionId });
+
+        // ✅ Step 5: Handle any Stripe redirect errors
+        if (result?.error) {
+          this.toastr.error(result.error.message || 'Stripe redirection failed.');
+          console.error('Stripe redirection error:', result.error);
+        }
+      } else {
+        // ❌ If no session ID returned, show backend error or fallback
+        this.toastr.clear();
+        this.toastr.error(response?.data?.error || 'Failed to create checkout session.');
+        console.error('Checkout session creation failed:', response);
+      }
+    } catch (error) {
+      // ❌ Catch any unexpected API or network errors
+      this.toastr.clear();
+      this.toastr.error('Error creating Stripe Checkout session. Please try again.', 'Error');
+      console.error('Stripe Checkout session error:', error);
+    } finally {
+      // ✅ Always reset loading state
+      this.toastr.clear();
+      this.isLoadingCheckout = false;
+    }
+  }
+
 
   // Apply coupon logic (e.g., send to backend for validation)
   applyCoupon(): void {
