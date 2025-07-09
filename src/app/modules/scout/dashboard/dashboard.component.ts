@@ -25,6 +25,7 @@ import { UnverifiedUserComponent } from '../../shared/unverified-user/unverified
 import { SocketService } from '../../../services/socket.service';
 import { EditMembershipProfileComponent } from '../edit-membership-profile/edit-membership-profile.component';
 import { CoverImageCropperComponent } from '../../shared/cover-image-cropper/cover-image-cropper.component';
+import { PopupComponent } from '../../shared/popup/popup.component';
 
 
 @Component({
@@ -162,6 +163,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.stopIntroTour(); // Ensure the tour stops when the component is destroyed
   }
   showOnce: boolean = true;
+
+  popupData: any;
+
+  popupSeen: any;
 
   startIntroTour(lang: string) {
     // introJs().start().goToStep(1);
@@ -478,7 +483,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
           // }
 
         }
-
+        this.getUserPopups();
         this.loading = false;  // Set loading to false once data is loaded
       });
     } catch (error) {
@@ -547,6 +552,146 @@ export class DashboardComponent implements OnInit, OnDestroy {
       return true;
     }
     return true;
+  }
+
+
+  openPopup(popups: any) {
+    popups.forEach((data: any) => {
+      this.dialog.open(PopupComponent, {
+        width: '500px',
+        position: {
+          top: '150px'
+        },
+        data: {
+          title: data.title,
+          description: data.description
+        }
+      })
+      this.editPopupSeen(data);
+    })
+  }
+
+  getUserPopups() {
+    try {
+      let data = {
+        role: '4',
+        payment_type: this.isPremium ? 'paid' : 'free',
+        status: 'active',
+        language: localStorage.getItem('lang_id'),
+        domain_id: this.user.user_domain_id
+      }
+      this.userService.getUserPopups(data).subscribe((response) => {
+        if (response && response.status) {
+          console.info('this.popups', response.data);
+          this.popupData = response.data.popups;
+          this.popupData.forEach((data: any) => {
+            this.addPopupSeen(data);
+          });
+          this.getPopupSeen();
+        } else {
+          // this.highlights = [];
+          // this.isLoading = false;
+          console.error('Invalid API response structure:', response);
+        }
+      });
+    } catch (error) {
+      // this.isLoading = false;
+      console.error('Error fetching users:', error);
+    }
+  }
+
+  getPopupSeen() {
+    // 
+    let data = {
+      user_id: this.userId
+    }
+    try {
+      this.userService.getPopupSeen(data).subscribe((response) => {
+        if (response && response.status) {
+          console.info('this.popupSeen data: ', response.data);
+          this.popupSeen = response.data.popupSeens;
+          this.showPopups(0);
+        }
+        // else {
+        //   console.error('no data for popup-seen:', response);
+        //   this.openPopup(false, 0);
+        //   this.popupData.forEach((data: any) => {
+        //     this.addPopupSeen(data);
+        //   });
+        // }
+      });
+    } catch (error) {
+      // this.isLoading = false;
+      console.error('Error fetching users:', error);
+    }
+  }
+
+  freq: any = ['once', 'days', 'weeks', 'months'];
+
+  showPopups(index: any) {
+    if(index == 4){
+      return;
+    }
+    let popups: any[] = [];
+    this.popupSeen.forEach((element: any) => {
+      if (element[this.freq[index]] === '1') {
+        let popup = this.popupData.filter((pop: any) => pop.id === element.popup_id)
+        popups.push(popup[0]);
+      }
+    });
+    console.log(popups, "here");
+    if (popups.length === 0) {
+      index += 1;
+      this.showPopups(index);
+    }
+    else {
+      this.openPopup(popups);
+    }
+  }
+
+  addPopupSeen(data: any) {
+    let formData: any = {};
+    formData.popup_id = data.id;
+    if (data.frequency_value) {
+      formData[data.frequency_value] = data.frequency_count;
+    }
+    else {
+      return
+    }
+
+    console.log('formdata for adding popup seen', formData)
+    try {
+      this.userService.addPopupSeen(formData).subscribe((response) => {
+        if (response && response.status) {
+          console.info('this.popupSeen data: ', response.data);
+        } else {
+          console.error('no data for popup-seen:', response);
+        }
+      });
+    } catch (error) {
+      // this.isLoading = false;
+      console.error('Error fetching users:', error);
+    }
+  }
+
+  editPopupSeen(data: any) {
+    let formData: any = {};
+
+    // formData[freq] = 0;
+    formData.popup_id = data.id;
+
+    try {
+      this.userService.editPopupSeen(data.id, formData).subscribe((response) => {
+        if (response && response.status) {
+          console.info('this.popupSeen data: ', response.data);
+        } else {
+          console.error('no data for popup-seen:', response);
+        }
+      });
+    } catch (error) {
+      // this.isLoading = false;
+      console.error('Error fetching users:', error);
+    }
   }
 
   openEditDialog() {

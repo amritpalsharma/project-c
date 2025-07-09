@@ -617,106 +617,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
     })
   }
 
-
-  openPopup2(dataFound: boolean, index: any = 0) {
-    if (index >= 3) {
-      return;
-    }
-    // let gotData = false
-    if (!dataFound) {
-      console.log('working with ', index)
-      let gotData: boolean = false;
-      this.popupData.forEach((data: any) => {
-        if (data.frequency_value == this.freq[index]) {
-          gotData = true;
-          this.dialog.open(PopupComponent, {
-            width: '500px',
-            position: {
-              top: '150px'
-            },
-            data: {
-              title: data.title,
-              description: data.description
-            }
-          })
-          // this.editPopupSeen(data, data.frequency_value);
-          console.log('got the data', data)
-        }
-      })
-
-      if (!gotData) {
-        index += 1;
-        this.openPopup2(false, index);
-      }
-
-      return;
-    }
-
-    let gotData = false;
-    this.popupData.forEach((data: any) => {
-      // console.log('indexxxxxxxxxxx', index)
-      let getId: boolean = false;
-      let popup: any = {};
-      if (data.frequency_value == this.freq[index]) {
-        console.log(this.freq[index], index, data.frequency_value, 'here freq')
-        this.popupSeen.forEach((seenData: any) => {
-          if (seenData.popup_id === data.id) {
-            getId = true;
-            popup = seenData;
-          }
-          // console.log('got id', popup)
-        });
-        if (getId) {
-          console.log('got id', popup)
-          // if(data.frequency_value == this.freq[index]){
-          if (popup[data.frequency_value] > 0) {
-            this.dialog.open(PopupComponent, {
-              width: '500px',
-              position: {
-                top: '150px'
-              },
-              data: {
-                title: data.title,
-                description: data.description
-              }
-            })
-
-            // this.editPopupSeen(popup, data.frequency_value);
-          }
-          // }
-        }
-        else {
-          console.log('pending popups', data, popup.popup_id, data.id);
-          // this.addPopupSeen(data);
-
-          if (data.frequency_value == this.freq[index]) {
-            this.dialog.open(PopupComponent, {
-              width: '500px',
-              position: {
-                top: '150px'
-              },
-              data: {
-                title: data.title,
-                description: data.description
-              }
-            })
-          }
-          // this.editPopupSeen(data, data.frequency_value);
-        }
-
-        gotData = true;
-      }
-
-
-
-    });
-
-    if (!gotData) {
-      index += 1;
-      this.openPopup2(true, index);
-    }
-  }
-
   getUserPopups() {
     try {
       let data = {
@@ -724,7 +624,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         payment_type: this.isPremium ? 'paid' : 'free',
         status: 'active',
         language: localStorage.getItem('lang_id'),
-        domain_id: this.loggedInUser.user_domain_id
+        domain_id: this.user.user_domain_id
       }
       this.userService.getUserPopups(data).subscribe((response) => {
         if (response && response.status) {
