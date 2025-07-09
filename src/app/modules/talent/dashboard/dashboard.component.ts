@@ -15,7 +15,7 @@ import { Lightbox } from 'ngx-lightbox';
 import { LightboxDialogComponent } from '../../shared/lightbox-dialog/lightbox-dialog.component';
 import { NavigationEnd } from '@angular/router';
 import { Subscription, timeout } from 'rxjs';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { environment } from '../../../../environments/environment';
 import { CommonDataService } from '../../../services/common-data.service';
 import { WebPages } from '../../../services/webpages.service';
@@ -120,6 +120,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   savedDate: any;
   loginCount: any = localStorage.getItem('popupLoginCount') || 0;
 
+
+  langSubscription!: Subscription;
+
   async ngOnInit() {
 
     this.savedDate = localStorage.getItem('popupLoginDate');
@@ -152,17 +155,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     });
     this.getBoosterData();
     this.isUserVerified = false;
-    this.webPages.languageId$.subscribe((data) => {
-      // this.getUserProfile(this.userId);
-      this.getBoosterData();
-      // this.getHighlightsData();
-      this.loadCountries();
-      // this.getGalleryData();
-      this.getJsonTranslations();
-    });
 
     await this.getAllTeams();
-
     // Listen for route changes
     this.routeSubscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -171,13 +165,22 @@ export class DashboardComponent implements OnInit, OnDestroy {
     });
 
     this.getClubsForPlayer();
-
     this.getToasterMsg();
-    this.webPages.languageId$.subscribe((data: any) => {
-      this.getToasterMsg();
-    });
     this.globalSettings.indexFunctionCall$.subscribe(() => {
+      console.info('Theme  changed in dashboard')
       this.themeChanged(); // Call the function when event is received
+
+    });
+
+    this.langSubscription = this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
+      this.getToasterMsg();
+      this.getUserProfile(this.userId);
+      this.getBoosterData();
+      // this.getHighlightsData();
+      this.loadCountries();
+      // this.getGalleryData();
+      this.getJsonTranslations();
+      console.info('Language Updated')
     });
 
     this.getUserStatus();
@@ -772,7 +775,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   freq: any = ['once', 'days', 'weeks', 'months'];
 
   showPopups(index: any) {
-    if(index == 4){
+    if (index == 4) {
       return;
     }
     let popups: any[] = [];

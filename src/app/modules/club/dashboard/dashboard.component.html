@@ -39,17 +39,12 @@
               </div>
               <div>
                 <div class="user-media text-center ">
-                  <span class="profile_img_bg_circle" *ngIf="!profileImage && loading"
+                  <span class="profile_img_bg_circle" *ngIf="loading"
                     style="position: absolute;top: 45%;transform:translate(-50%, -50%);">
                     <app-loader class="profilepic_mobile_loader" *ngIf="!profileImage"></app-loader>
                   </span>
-                  <span class="profile_img_bg_circle">
-                    <img *ngIf="profileImage && !loading" [src]="profileImage" class="" alt="" />
-                    <!-- <img *ngIf="!profileImage && user.club_logo_path != '' && user.status == ' 2' && !loading"
-                    src="{{user.club_logo_path}}" class="club_profile_mob_img" alt="" />
-                  <img *ngIf="!profileImage && !user.club_logo_path  && !loading"
-                    src="../../../../assets/images/default/talent-profile-default.png" class="" alt="" /> -->
-                    
+                  <span class="profile_img_bg_circle" *ngIf="!loading">
+                    <img *ngIf="profileImage && !loading" [src]="profileImage" class="" alt="" />                    
                   </span>
 
 
@@ -58,13 +53,6 @@
                       <div class="edit-profile cursor-pointer"
                         matTooltip="{{'uploadNewProfileImage' | translate}} {{'mx_size' | translate}}"
                         matTooltipPosition="right">
-
-                        <!-- <svg width="21" height="19" viewBox="0 0 21 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path
-                            d="M2.1 2.11111H5.25L7.35 0H13.65L15.75 2.11111H18.9C19.457 2.11111 19.9911 2.33353 20.3849 2.72944C20.7787 3.12535 21 3.66232 21 4.22222V16.8889C21 17.4488 20.7787 17.9858 20.3849 18.3817C19.9911 18.7776 19.457 19 18.9 19H2.1C1.54305 19 1.0089 18.7776 0.615076 18.3817C0.221249 17.9858 0 17.4488 0 16.8889V4.22222C0 3.66232 0.221249 3.12535 0.615076 2.72944C1.0089 2.33353 1.54305 2.11111 2.1 2.11111ZM10.5 5.27778C9.10761 5.27778 7.77226 5.83383 6.78769 6.8236C5.80312 7.81338 5.25 9.1558 5.25 10.5556C5.25 11.9553 5.80312 13.2977 6.78769 14.2875C7.77226 15.2773 9.10761 15.8333 10.5 15.8333C11.8924 15.8333 13.2277 15.2773 14.2123 14.2875C15.1969 13.2977 15.75 11.9553 15.75 10.5556C15.75 9.1558 15.1969 7.81338 14.2123 6.8236C13.2277 5.83383 11.8924 5.27778 10.5 5.27778ZM10.5 7.38889C11.3354 7.38889 12.1366 7.72252 12.7274 8.31638C13.3181 8.91025 13.65 9.7157 13.65 10.5556C13.65 11.3954 13.3181 12.2009 12.7274 12.7947C12.1366 13.3886 11.3354 13.7222 10.5 13.7222C9.66457 13.7222 8.86335 13.3886 8.27261 12.7947C7.68187 12.2009 7.35 11.3954 7.35 10.5556C7.35 9.7157 7.68187 8.91025 8.27261 8.31638C8.86335 7.72252 9.66457 7.38889 10.5 7.38889Z"
-                            fill="black" />
-                        </svg> -->
-
                       </div>
                     </label>
                     <input id="profile-upload" (change)="onProfileFileChange($event)" accept="image/*" type="file"

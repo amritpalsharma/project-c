@@ -1,12 +1,13 @@
 export const environment = {
-  production: true,
+  production: false,
   googleApiKey: 'gfdgfhgfhfj',
 
   targetDomain: {
     name: 'Switzerland', domain: "ch", id: 1, default_lang: 1, flag: "Switzerland.svg"
   },
 
-  stripePublishableKey: 'pk_live_51PVE08Ru80loAFQXNIL4kBDfjj9YNWZNgyZZQRzDJXl1Xc629uJkegyUbV3qCSnFyfVlaKlM4u1Qmrs4waZB6Q55001haMAUKO', // Your Stripe publishable key for production
+  stripePublishableKey: 'pk_test_51PVE08Ru80loAFQXg7MVGXFZuriJbluM9kOaTzZ0GteRhI0FIlkzkL2TSVDQ9QEIp1bZcVBzmzWne3fGkCITAy7X00gGODbR8a', // Your Stripe publishable key for production
+  // stripePublishableKey: 'pk_live_51PVE08Ru80loAFQXNIL4kBDfjj9YNWZNgyZZQRzDJXl1Xc629uJkegyUbV3qCSnFyfVlaKlM4u1Qmrs4waZB6Q55001haMAUKO', // Your Stripe publishable key for production
 
   roles: [
     { role: "Admin", name: "Admin", slug: "admin", id: 1 },
