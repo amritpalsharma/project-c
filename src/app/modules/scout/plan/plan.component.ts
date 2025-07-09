@@ -92,7 +92,8 @@ export class PlanComponent implements OnInit, OnDestroy {
   isLoadingCards: boolean = false;
 
   private plansSubscription: Subscription = new Subscription();
-  stripePromise = loadStripe(environment.stripePublishableKey);
+  // stripePromise = loadStripe(environment.stripePublishableKey);
+  stripePromise = localStorage.getItem('payment_mode') == 'live' ? loadStripe(environment.stripePublishableKey) : loadStripe(environment.stripePublishableTestKey);
   pageTitle: string = '';
 
   countryMonthlyArr: PackageObject | null = null;  // Store a single object, not an array

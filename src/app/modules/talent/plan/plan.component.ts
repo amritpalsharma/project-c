@@ -96,7 +96,9 @@ export class PlanComponent implements OnInit, OnDestroy {
   isLoadingCards: boolean = false;
 
   private plansSubscription: Subscription = new Subscription();
-  stripePromise = loadStripe(environment.stripePublishableKey);
+  // stripePromise = loadStripe(environment.stripePublishableKey);
+  // payment_mode = localStorage.getItem('payment_mode');
+  stripePromise = localStorage.getItem('payment_mode') == 'live' ? loadStripe(environment.stripePublishableKey) : loadStripe(environment.stripePublishableTestKey);
   premiumFeatures: string[] = []; // Store the fetched feature list
   multiCountryPlanDesc: string[] = []; // Store the fetched feature list
   bostProfileDesc: string[] = []; // Store the fetched feature list
