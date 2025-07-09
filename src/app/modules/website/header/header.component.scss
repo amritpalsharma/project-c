@@ -7,7 +7,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-weight: 600;
+    font-weight: unset;
     font-family: var(--bs-avenir-bold);
 }
 
@@ -409,7 +409,7 @@ li.nav-item {
 .nav-link {
     text-transform: uppercase;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 500;
     color: #fff;
     position: relative;
     font-family: var(--bs-avenir-semibold);
@@ -752,6 +752,7 @@ input:checked+.slider:before {
     width: 100%;
     padding: 10px;
     border-radius: 8px;
+    font-weight: unset !important;
 }
 
 .text-primary {
@@ -2497,11 +2498,8 @@ input[type="checkbox"].form-check-input[ng-reflect-required] {
         left: 6px;
         fill: #FF9500;
         transition: 0.3s;
-
-        image {
-            filter: none;
-            opacity: 1;
-        }
+        filter: none;
+        opacity: 1;
     }
 
     label svg.moon {
@@ -2509,10 +2507,7 @@ input[type="checkbox"].form-check-input[ng-reflect-required] {
         fill: #1C2C4A;
         transition: 0.4s;
         width: 18px;
-
-        image {
-            opacity: 0.5;
-        }
+        opacity: 0.5;
     }
 
     label:after {
@@ -2534,21 +2529,15 @@ input[type="checkbox"].form-check-input[ng-reflect-required] {
     }
 
     input:checked+label svg.moon {
-
+        filter: none;
+        opacity: 1;
         // fill: #1C2C4A;
-        image {
-            filter: none;
-            opacity: 1;
-        }
     }
 
     input:checked+label svg.sun {
-
         // fill: #C1C6CF;
-        image {
-            filter: brightness(0) invert(1);
-            opacity: 0.5;
-        }
+        filter: brightness(0) invert(1);
+        opacity: 0.5;
     }
 }
 

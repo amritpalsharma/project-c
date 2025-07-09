@@ -138,6 +138,12 @@ a.premium-edit_btn {
   color: #8e8e8e;
 }
 
+.premium-card .flex_wrap {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 10px;
+  }
+
 .premium-card {
   .flex_wrap {
     flex-wrap: wrap;

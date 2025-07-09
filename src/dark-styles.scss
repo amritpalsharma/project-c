@@ -1,7 +1,7 @@
 .dark-theme {
   position: relative;
   background: #0C3453;
-  font-family: "Libre Franklin", sans-serif !important;
+  //font-family: "Libre Franklin", sans-serif !important;
 }
 
 .dark-theme .light-images {
@@ -2978,5 +2978,17 @@ input:checked+.slider:before {
   .border_color_light {
     border-top: 1px solid #204a6b !important;
     border-bottom: 1px solid #204a6b !important;
+  }
+}
+
+
+@media (max-width: 1199px) {
+  .dark-theme {
+    .dashboard_mobile_design {
+      .user-media span.profile_img_bg_circle {
+        background: #0c3453 !important;
+        border-color: #1f4360 !important;
+      }
+    }
   }
 }

@@ -1595,7 +1595,7 @@ span.active_btn {
 }
 
 ::ng-deep {
-@media (max-width: 1199px) {
+@media (max-width: 575px) {
 	.user-media span.profile_img_bg_circle {
 	    .profilepic_mobile_loader > div {
 	      margin-top: 10px !important;
@@ -1680,6 +1680,7 @@ span.active_btn {
         border: 1px solid #023A4A !important;
         border-radius: 50px !important;
         padding: 8px 15px !important;
+        line-height: 2;
 
         &:after {
           display: none !important;
