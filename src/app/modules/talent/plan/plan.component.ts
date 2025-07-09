@@ -22,6 +22,7 @@ import { PremiumPurchaseComponent } from '../../shared/premium-purchase/premium-
 import { StripeLoaderService } from '../../../services/stripe-loader.service';
 
 
+
 interface Plan {
   id: number;
   name: string;
@@ -97,7 +98,8 @@ export class PlanComponent implements OnInit, OnDestroy {
 
   private plansSubscription: Subscription = new Subscription();
   // stripePromise = loadStripe(environment.stripePublishableKey);
-  premiumFeatures: string[] = []; // Store the fetched feature list
+  stripePromise: any = {};
+  premiumFeatures: string[] = []; // Store the fetched feature listr
   multiCountryPlanDesc: string[] = []; // Store the fetched feature list
   bostProfileDesc: string[] = []; // Store the fetched feature list
   langSubscription!: Subscription;
@@ -230,13 +232,12 @@ export class PlanComponent implements OnInit, OnDestroy {
   }
 
   // Redirect to Stripe Checkout with coupon code logic
-  async redirectToCheckout1(planId: string) {
+  async redirectToCheckout(planId: string) {
     this.isLoadingCheckout = true;
     // this.toastr.info('Redirecting to payment...', 'Loading', { disableTimeOut: true });
     this.toastr.info(this.pleaseWait, this.Processing, { disableTimeOut: true });
 
     try {
-      await this.stripeService.initStripe();
       const response = await this.paymentService.createCheckoutSession(planId, '', this.couponCode).toPromise();
 
       if (response?.data?.payment_intent?.id) {
@@ -270,50 +271,6 @@ export class PlanComponent implements OnInit, OnDestroy {
       this.isLoadingCheckout = false;
     }
   }
-
-
-  async redirectToCheckout(planId: string) {
-    this.isLoadingCheckout = true;
-    this.toastr.info('Please wait...', 'Redirecting to payment', { disableTimeOut: true });
-
-    try {
-      // ✅ Step 1: Init Stripe with correct key based on API mode
-      await this.stripeService.initStripe();
-
-      // ✅ Step 2: Call your backend to create checkout session
-      const response = await this.paymentService
-        .createCheckoutSession(planId, '', this.couponCode)
-        .toPromise();
-
-      const sessionId = response?.data?.id;
-
-      if (sessionId) {
-        // ✅ Step 3: Get Stripe instance after it’s initialized
-        const stripe = await this.stripeService.getStripe();
-
-        if (!stripe) {
-          this.toastr.error('Stripe failed to initialize.');
-          return;
-        }
-
-        // ✅ Step 4: Redirect to Stripe
-        const result = await stripe.redirectToCheckout({ sessionId });
-
-        if (result?.error) {
-          this.toastr.error(result.error.message);
-        }
-      } else {
-        this.toastr.error(response?.data?.error || 'Failed to create checkout session.');
-      }
-    } catch (err) {
-      this.toastr.error('Error during payment. Try again.');
-      console.error('Stripe Checkout error:', err);
-    } finally {
-      this.toastr.clear();
-      this.isLoadingCheckout = false;
-    }
-  }
-
 
   // Apply coupon logic (e.g., send to backend for validation)
   applyCoupon(): void {
@@ -952,5 +909,25 @@ export class PlanComponent implements OnInit, OnDestroy {
     } else {
       this.countryHasYearlyPlan = false;
     }
+  }
+
+
+  publishableKey: any;
+  initStripe() {
+    this.stripeService.getStripePublishKey().subscribe({
+      next: (key: any) => {
+        if (key) {
+          this.publishableKey = key;
+          this.stripePromise = loadStripe(this.publishableKey);
+        }
+      },
+      error: (err: any) => {
+        console.error('Error:', err);
+        // Handle error here (e.g., show an alert or message)
+      },
+      complete: () => {
+        console.log('Stripe initialization complete.');
+      }
+    });
   }
 }
