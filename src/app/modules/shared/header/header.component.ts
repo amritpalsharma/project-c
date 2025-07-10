@@ -142,6 +142,7 @@ export class HeaderComponent {
     this.getPageTitle();
     this.getUserName();
     this.getUserRole();
+    this.setPaymentStatus();
     // this.chatComponent.reloadChatComponent();
     let isFrontendDarkMode = localStorage.getItem('theme');
     if (isFrontendDarkMode != '' && isFrontendDarkMode == 'dark') {
@@ -374,6 +375,18 @@ export class HeaderComponent {
         this.isUserVerified = false;
       }
       this.isVerifiedStatusLoaded = true;
+    });
+  }
+
+  setPaymentStatus() {
+    this.socketService.getLoggedInUserPaymentStatus().then((result) => {
+      result = result.toLowerCase();
+      if (result === 'live') {
+        localStorage.setItem('payment_mode', result);
+      } else {
+        localStorage.setItem('payment_mode', result);
+      }
+      console.info('Payment Set In Header '+result);
     });
   }
 

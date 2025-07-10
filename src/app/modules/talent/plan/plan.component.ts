@@ -19,7 +19,6 @@ import { TitleService } from '../../../title.service';
 import { Router } from '@angular/router';
 import { PremiumPurchaseComponent } from '../../shared/premium-purchase/premium-purchase.component';
 // import { LoaderComponent } from '../../shared/loader/loader.component';
-import { StripeLoaderService } from '../../../services/stripe-loader.service';
 
 
 
@@ -98,8 +97,9 @@ export class PlanComponent implements OnInit, OnDestroy {
 
   private plansSubscription: Subscription = new Subscription();
   // stripePromise = loadStripe(environment.stripePublishableKey);
-  stripePromise: any = {};
-  premiumFeatures: string[] = []; // Store the fetched feature listr
+  // payment_mode = localStorage.getItem('payment_mode');
+  stripePromise = localStorage.getItem('payment_mode') == 'live' ? loadStripe(environment.stripePublishableKey) : loadStripe(environment.stripePublishableTestKey);
+  premiumFeatures: string[] = []; // Store the fetched feature list
   multiCountryPlanDesc: string[] = []; // Store the fetched feature list
   bostProfileDesc: string[] = []; // Store the fetched feature list
   langSubscription!: Subscription;
@@ -124,12 +124,10 @@ export class PlanComponent implements OnInit, OnDestroy {
     private translate: TranslateService,
     private titleService: TitleService,
     private router: Router,
-    private stripeService: StripeLoaderService
   ) { }
 
   async ngOnInit() {
     this.getJsonTranslations();
-    this.initStripe();
     this.isLoadingPlans = true;
     this.getUserPlans();
     this.getBoosterData()
@@ -910,25 +908,5 @@ export class PlanComponent implements OnInit, OnDestroy {
     } else {
       this.countryHasYearlyPlan = false;
     }
-  }
-
-
-  publishableKey: any;
-  initStripe() {
-    this.stripeService.getStripePublishKey().subscribe({
-      next: (key: any) => {
-        if (key) {
-          this.publishableKey = key;
-          this.stripePromise = loadStripe(this.publishableKey);
-        }
-      },
-      error: (err: any) => {
-        console.error('Error:', err);
-        // Handle error here (e.g., show an alert or message)
-      },
-      complete: () => {
-        console.log('Stripe initialization complete.');
-      }
-    });
   }
 }

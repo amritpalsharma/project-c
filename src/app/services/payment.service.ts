@@ -13,44 +13,12 @@ export class PaymentService {
   private userToken: string | null;
   stripePromise: Promise<Stripe | null>;
 
-  private readonly testKey = 'pk_test_51PVE08Ru80loAFQXg7MVGXFZuriJbluM9kOaTzZ0GteRhI0FIlkzkL2TSVDQ9QEIp1bZcVBzmzWne3fGkCITAy7X00gGODbR8a';
-  private readonly liveKey = 'pk_live_51PVE08Ru80loAFQXNIL4kBDfjj9YNWZNgyZZQRzDJXl1Xc629uJkegyUbV3qCSnFyfVlaKlM4u1Qmrs4waZB6Q55001haMAUKO';
-
-
   constructor(private http: HttpClient) {
     this.apiUrl = environment.apiUrl; // Ensure this is defined in your environment
     this.userToken = localStorage.getItem('authToken');
-    this.stripePromise = loadStripe(environment.stripePublishableKey);
-
+    let payment_mode = localStorage.getItem('payment_mode');
+    this.stripePromise = payment_mode == 'live' ? loadStripe(environment.stripePublishableKey) : loadStripe(environment.stripePublishableTestKey);
   }
-
-  /**
- * Call API to get payment mode and initialize Stripe
- */
-  async initStripe(): Promise<void> {
-    try {
-      const headers = new HttpHeaders({
-        Authorization: `Bearer ${this.userToken || ''}`
-      });
-
-      const response: any = await this.http
-        .get(`${this.apiUrl}get-payment-mode`, { headers })
-        .toPromise();
-
-      const mode = response?.data?.mode;
-
-      const publishableKey = mode === 'live'
-        ? this.liveKey
-        : this.testKey;
-
-      this.stripePromise = loadStripe(publishableKey);
-
-      console.log(`Stripe initialized with ${mode} key`);
-    } catch (error) {
-      console.error('Failed to initialize Stripe:', error);
-    }
-  }
-
 
   async getStripe(): Promise<Stripe | null> {
     return await this.stripePromise;

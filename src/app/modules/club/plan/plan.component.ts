@@ -73,14 +73,15 @@ export class PlanComponent implements OnInit, OnDestroy {
 
   private plansSubscription: Subscription = new Subscription();
   langSubscription!: Subscription;
-  stripePromise = loadStripe(environment.stripePublishableKey);
+  // stripePromise = loadStripe(environment.stripePublishableKey);
+  stripePromise = localStorage.getItem('payment_mode') == 'live' ? loadStripe(environment.stripePublishableKey) : loadStripe(environment.stripePublishableTestKey);
   pageTitle: string = '';
   pleaseWait: string = '';
   Processing: string = '';
   successTxt: string = '';
   premiumPlanTxt: string = '';
   constructor(
-    private ScoutService: ScoutService,
+    private ScoutService: ScoutService, 
     private paymentService: PaymentService,
     public dialog: MatDialog,
     private route: ActivatedRoute,
