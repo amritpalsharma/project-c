@@ -1653,33 +1653,54 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.router.navigate(['view', 'scout', id]);
   }
 
-  forceDownload(fileUrl: string, fileName: string): void {
-    // Use fetch to get the blob and manually trigger the download
-    fetch(fileUrl, {
-      mode: 'cors' // Required for cross-origin
-    })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.blob();
-      })
-      .then(blob => {
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = fileName; // <-- Important: force file name
-        a.style.display = 'none';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        window.URL.revokeObjectURL(url);
-      })
-      .catch(error => {
-        console.error('Download failed:', error);
+  // forceDownload(fileUrl: string, fileName: string): void {
+  //   // Use fetch to get the blob and manually trigger the download
+  //   fetch(fileUrl, {
+  //     mode: 'cors' // Required for cross-origin
+  //   })
+  //     .then(response => {
+  //       if (!response.ok) {
+  //         throw new Error('Network response was not ok');
+  //       }
+  //       return response.blob();
+  //     })
+  //     .then(blob => {
+  //       const url = window.URL.createObjectURL(blob);
+  //       const a = document.createElement('a');
+  //       a.href = url;
+  //       a.download = fileName; // <-- Important: force file name
+  //       a.style.display = 'none';
+  //       document.body.appendChild(a);
+  //       a.click();
+  //       document.body.removeChild(a);
+  //       window.URL.revokeObjectURL(url);
+  //     })
+  //     .catch(error => {
+  //       console.error('Download failed:', error);
 
-        // Fallback: open in new tab (last resort for Safari)
-        window.open(fileUrl, '_blank');
-      });
+  //       // Fallback: open in new tab (last resort for Safari)
+  //       window.open(fileUrl, '_blank');
+  //     });
+  // }
+
+
+  async forceDownload(src: string, filename: string) {
+    try {
+      const response = await fetch(src);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const blob = await response.blob(); // Convert the response to a Blob object
+      const url = window.URL.createObjectURL(blob);
+      const anchor = document.createElement('a');
+      anchor.href = url;
+      anchor.download = filename; // Use the filename passed to the function
+      document.body.appendChild(anchor);
+      anchor.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(anchor);
+    } catch (error) {
+      console.error('There was an error downloading the file:', error);
+    }
   }
 }

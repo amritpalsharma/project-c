@@ -101,6 +101,24 @@ export class PerformanceAnalysisTabComponent implements OnInit {
   }
 
   // Download selected reports
+  // async downloadSelectedReports() {
+  //   const selectedReports = this.reports.filter(report => report.selected);
+  //   let selectedIds :any = [];
+
+  //   console.log(selectedReports)
+  //   if (selectedReports.length > 0) {
+  //     // Loop through each selected report and download it
+  //     for (const report of selectedReports) {
+  //       selectedIds[] = report.id
+  //       await this.downloadInvoice(selectedIds);
+  //       // await this.downloadInvoice(report.id, this.path+report.file_name ,report.file_type);
+  //     }
+  //   } else {
+  //     console.log('No reports selected for download.');
+  //   }
+  // }
+
+  // Download selected reports
   downloadSelectedReports() {
     const selectedReports = this.reports.filter(report => report.selected);
     let selectedIds: any[] = []; // Initialize as an array
@@ -118,13 +136,26 @@ export class PerformanceAnalysisTabComponent implements OnInit {
       for (const report of selectedReports) {
         selectedIds.push(report.id);
       }
-
+      // const newWindow = window.open('', '_blank');
+      // if (!newWindow) {
+      //   return;
+      // }
       this.talentService.downloadReports(selectedIds).subscribe(
         response => {
           if (response.status && response.data?.zip_path) {
             // console.log(selectedIds);
             const fileUrl = response.data.zip_path;
-            this.forceDownload(fileUrl, response.data.zip_path ? response.data.zip_path : 'documents.zip');
+            // Open the file in a new tab
+            // window.open(response.data.zip_path);
+            this.forceDownload(response.data.zip_path, response.data.zip_name ? response.data.zip_name : 'documents.zip');
+            if (!fileUrl.startsWith('http')) {
+              console.info('Invalid FIle Url');
+              // newWindow.document.write('<p>Invalid file URL.</p>');
+              return;
+            }
+
+            // ✅ Redirect opened tab to the file
+            // newWindow.location.href = fileUrl;
           }
         },
         error => {
@@ -329,36 +360,24 @@ export class PerformanceAnalysisTabComponent implements OnInit {
   }
 
 
-  forceDownload(fileUrl: string, fileName: string): void {
-    // Use fetch to get the blob and manually trigger the download
-    fetch(fileUrl, {
-      mode: 'cors' // Required for cross-origin
-    })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.blob();
-      })
-      .then(blob => {
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = fileName; // <-- Important: force file name
-        a.style.display = 'none';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        window.URL.revokeObjectURL(url);
-      })
-      .catch(error => {
-        console.error('Download failed:', error);
 
-        // Fallback: open in new tab (last resort for Safari)
-        window.open(fileUrl, '_blank');
-      });
+  async forceDownload(src: string, filename: string) {
+    try {
+      const response = await fetch(src);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const blob = await response.blob(); // Convert the response to a Blob object
+      const url = window.URL.createObjectURL(blob);
+      const anchor = document.createElement('a');
+      anchor.href = url;
+      anchor.download = filename; // Use the filename passed to the function
+      document.body.appendChild(anchor);
+      anchor.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(anchor);
+    } catch (error) {
+      console.error('There was an error downloading the file:', error);
+    }
   }
-
-
-
 }

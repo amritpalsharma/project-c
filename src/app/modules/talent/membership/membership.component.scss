@@ -142,9 +142,9 @@ a.premium-edit_btn {
 }
 
 .premium-card .flex_wrap {
-    flex-direction: column;
-    align-items: flex-start !important;
-    gap: 10px;
+  flex-direction: column;
+  align-items: flex-start !important;
+  gap: 10px;
 }
 
 
@@ -340,17 +340,19 @@ a.premium-edit_btn {
 }
 
 @media (min-width: 1650px) and (max-width: 2000px) {
-.premium-card {
-  .flex_wrap {
-    flex-direction: column;
-    align-items: flex-start !important;
-    gap: 10px;
+  .premium-card {
+    .flex_wrap {
+      flex-direction: column;
+      align-items: flex-start !important;
+      gap: 10px;
+    }
   }
-}
 }
 
 @media (min-width: 1600px) and (max-width: 2999px) {
-  .card-billing, .p_size h2.card-title {
+
+  .card-billing,
+  .p_size h2.card-title {
     font-size: 28px !important;
   }
 
@@ -377,6 +379,7 @@ a.premium-edit_btn {
     width: 40px;
     height: 40px;
   }
+
   .manage_payment_btn {
     font-size: 18px;
   }
@@ -384,7 +387,9 @@ a.premium-edit_btn {
 
 
 @media (min-width: 3000px) {
-  .card-billing, .p_size h2.card-title {
+
+  .card-billing,
+  .p_size h2.card-title {
     font-size: 35px !important;
   }
 
@@ -411,7 +416,7 @@ a.premium-edit_btn {
     width: 55px;
     height: 55px;
   }
-  
+
   .manage_payment_btn {
     font-size: 26px;
   }
@@ -443,9 +448,10 @@ a.premium-edit_btn {
       margin-right: 0 !important;
     }
   }
+
   .purchase-parent .transaction_box {
     flex-wrap: wrap;
-}
+  }
 }
 
 @media (max-width: 480px) {
@@ -489,11 +495,13 @@ table td .bg_success {
   filter: grayscale(100%) opacity(0.5);
   /* Grays out the SVG */
 }
-::ng-deep .managePaymentBtnTxtBelowTxt{
-   color: black;
+
+::ng-deep .managePaymentBtnTxtBelowTxt {
+  color: black;
 }
-::ng-deep .dark-theme .managePaymentBtnTxtBelowTxt{
-   color: #072944;
+
+::ng-deep .dark-theme .managePaymentBtnTxtBelowTxt {
+  color: #072944;
 }
 
 .purchase-parent {
@@ -521,6 +529,13 @@ table td .bg_success {
 }
 
 
-.cursor-pointer{
+.cursor-pointer {
   cursor: pointer !important;
+}
+
+::ng-deep .is_stop_true {
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+  min-width: 250px !important;
+  text-align: center !important;
 }

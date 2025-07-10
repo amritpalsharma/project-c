@@ -12,9 +12,17 @@
               </div>
             </div>
           </div>
-          <div class="card_btn_side">
-            <a type="button" class="manage_payment_btn" (click)="openCustomerPortal()">
-              {{ 'managePaymentBtnTxt' | translate }}
+          <div class="card_btn_side" >
+            <a type="button" class="manage_payment_btn is_stop_{{isopenCustomerPortal}}" (click)="openCustomerPortal()"
+              >
+
+              <ng-container *ngIf="isopenCustomerPortal; else loginText">
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                <span class="sr-only">Loading...</span>
+              </ng-container>
+              <ng-template #loginText>
+                {{ 'managePaymentBtnTxt' | translate }}
+              </ng-template>
             </a>
             <!-- <p class="managePaymentBtnTxtBelowTxt">{{'managePaymentBtnTxtBelowTxt' | translate}}</p> -->
 
