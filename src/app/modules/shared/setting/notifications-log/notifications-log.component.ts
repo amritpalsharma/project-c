@@ -297,18 +297,20 @@ export class NotificationsLogComponent {
     }
     let langId = localStorage.getItem('lang_id');
 
+
     this.talentService.updateSightingInviteResponse(status, eventId, langId).subscribe((response) => {
       // if (response && response.status) {
       if (true) {
         if (status === 'accepted') {
           this.socketService.emit("acceptClubInvite", { senderId: userId, receiverId: clubId })
+          this.notificationClicked(notification.id, notification.seen, notification, true)
         }
         else {
           this.socketService.emit("rejectClubInvite", { senderId: userId, receiverId: clubId })
+          this.notificationClicked(notification.id, notification.seen, notification, false)
         }
         this.showMessage(response.message);
         // this.isResponded = true;
-        this.notificationClicked(notification.id, notification.seen, notification)
       } else {
         console.error('Invalid API response structure:', response);
         this.showMessage(response.message);
