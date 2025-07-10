@@ -57,7 +57,7 @@ export class SettingComponent implements OnInit {
   ngOnInit(): void {
     this.getJsonTranslations();
     const userDataString = localStorage.getItem('userData');
-    console.log(userDataString, "check the userdata")
+    // console.log(userDataString, "check the userdata")
     if (userDataString) {
       this.userData = JSON.parse(userDataString);
 

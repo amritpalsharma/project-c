@@ -1580,12 +1580,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
         if (response && response.status && response.data) {
           console.info('response', response.data);
           this.toastr.clear();
-
-          //this.downloadPath = response.data.file_path;
-          // Open the file in a new tab
-          // window.open(response.data.file_path);
-          window.open(response.data.file_path, '_blank', 'noopener,noreferrer');
-
+          if (response?.data?.file_path != '') {
+            this.forceDownload(response?.data?.file_path, response?.data?.file_name ? response?.data?.file_name : 'player_pdf.pdf');
+          }
         } else {
           this.toastr.clear();
           this.toastr.error('Failed to download. Please try again.', 'Download Failed');
@@ -1656,4 +1653,33 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.router.navigate(['view', 'scout', id]);
   }
 
+  forceDownload(fileUrl: string, fileName: string): void {
+    // Use fetch to get the blob and manually trigger the download
+    fetch(fileUrl, {
+      mode: 'cors' // Required for cross-origin
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.blob();
+      })
+      .then(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = fileName; // <-- Important: force file name
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+      })
+      .catch(error => {
+        console.error('Download failed:', error);
+
+        // Fallback: open in new tab (last resort for Safari)
+        window.open(fileUrl, '_blank');
+      });
+  }
 }

@@ -714,7 +714,7 @@ export class HeaderComponent implements OnInit {
           localStorage.setItem('userRole', userRole);
           localStorage.setItem('userData', JSON.stringify(userData));
 
-          console.info('navigationRoute',navigationRoute)
+          // console.info('navigationRoute',navigationRoute)
           this.router.navigate([navigationRoute]).then(() => {
             // Delay non-essential operations (WebSocket, etc.)
             setTimeout(() => {
@@ -723,7 +723,7 @@ export class HeaderComponent implements OnInit {
           });
 
           this.isLoading = false;
-          this.router.navigate([navigationRoute]);
+          // this.router.navigate([navigationRoute]);
         }
       },
       error => {
