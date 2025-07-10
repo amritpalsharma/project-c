@@ -32,8 +32,8 @@
                 <a class="premium-edit_btn text-white" href="/club/plans">{{'editPlan' | translate}}</a>
                 <button class="premium-subscription_btn" [disabled]="premium.stripe_cancel_at != null"
                   (click)="confirmAndCancelSubscription(premium.id)">
-                  <div *ngIf="premium.stripe_cancel_at == null">{{ 'cancelSubscription' | translate }}</div>
-                  <div *ngIf="premium.stripe_cancel_at != null" routerLink="/club/plans">{{ 'renewSubscription' |
+                  <div *ngIf="premium.stripe_cancel_at != null">{{ 'cancelSubscription' | translate }}</div>
+                  <div *ngIf="premium.stripe_cancel_at == null" routerLink="/club/plans">{{ 'renewSubscription' |
                     translate }}</div>
                 </button>
               </div>

@@ -411,11 +411,11 @@ export class IndexComponent {
         }
         this.club_logo_path = this.sliderDetail.imagePath;
         this.pre_club_logo_path = this.sliderDetail.flagPath;
+        
+        console.log("data is here", res.data.advertisementData, res.data.advertisemnet_base_url)
+
         this.advertisementData = res.data.advertisementData;
         this.advertisementList = res.data.allAdsList;
-        // this.advertisementData = [];
-
-        // console.log('advertisementData', this.advertisementData);
         this.imageBaseUrl = res.data.base_url;
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
 
@@ -460,6 +460,7 @@ export class IndexComponent {
 
   checkActive(obj: any) {
     if (this.isExists(obj) && this.isFeaturedImageExists(obj) && this.isActive[obj]) {
+      // console.log('working true', this.advertisementData, this.advertisemnet_base_url)
       return true;
     }
     return false;
