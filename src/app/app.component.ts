@@ -50,9 +50,17 @@ export class AppComponent implements OnInit {
     this.event$ = this.router.events.subscribe((event: NavigationEvent) => {
       if (event instanceof NavigationStart) {
         this.path = event.url;
-        if(document.body.classList.contains('body-overflow')){
+        if (document.body.classList.contains('body-overflow')) {
           document.body.classList.remove('body-overflow');
         }
+        const el = document.querySelector('body');
+        if (el) {
+          el.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          // fallback to window
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        // window.scrollTo({ top: 0, behavior: 'smooth' }); // You can remove `behavior` if not needed
       }
     });
   }
@@ -72,7 +80,7 @@ export class AppComponent implements OnInit {
     // this.checkBodyClass()
   }
 
-  checkBodyClass(){
+  checkBodyClass() {
     const currentRoute = this.router.url;
     alert(currentRoute)
   }

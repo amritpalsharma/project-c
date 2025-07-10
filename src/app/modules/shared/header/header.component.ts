@@ -386,7 +386,7 @@ export class HeaderComponent {
       } else {
         localStorage.setItem('payment_mode', result);
       }
-      console.info('Payment Set In Header '+result);
+      console.info('Payment Set In Header ' + result);
     });
   }
 
@@ -561,6 +561,7 @@ export class HeaderComponent {
   }
 
   navigateToTab(tab: string, userRole: string) {
+    console.log('recivedfromfun', userRole)
     let fragment = 'activity'; // Default fragment
 
     if (tab === 'setting') {
@@ -575,15 +576,26 @@ export class HeaderComponent {
     // console.log(role)
     const url = this.router.url;
 
-    if (url.toLowerCase().includes('/view/')) {
-      const role = this.loggedInUser.role_name.toLowerCase();
+    if (url.toLowerCase().includes('/view/') && userRole) {
+      const role = userRole.toLowerCase();
       this.router.navigate([`${role}/setting`], { fragment });
       // console.log("'/view/' found in URL (case-insensitive check)");
     } else {
-      let loggedInUser: any = localStorage.getItem('userData')
-      let currentUser = JSON.parse(loggedInUser);
-      const role = currentUser.role_name.toLowerCase();
-      this.router.navigate([`/${role}/setting`], { fragment });
+      if (this.loggedInUser && this.loggedInUser.role_name != '') {
+        const role = this.loggedInUser.role_name.toLowerCase();
+        this.router.navigate([`/${role}/setting`], { fragment });
+      } else {
+        let loggedInUser = localStorage.getItem('userData')
+        if (loggedInUser) {
+          let currentUser = JSON.parse(loggedInUser);
+          const role = currentUser.role_name.toLowerCase();
+          this.router.navigate([`/${role}/setting`], { fragment });
+        } else {
+          console.error('some thing wrong user redirection not found');
+        }
+
+      }
+      //
     }
   }
 

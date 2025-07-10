@@ -136,10 +136,10 @@ export class PerformanceAnalysisTabComponent implements OnInit {
       for (const report of selectedReports) {
         selectedIds.push(report.id);
       }
-      const newWindow = window.open('', '_blank');
-      if (!newWindow) {
-        return;
-      }
+      // const newWindow = window.open('', '_blank');
+      // if (!newWindow) {
+      //   return;
+      // }
       this.talentService.downloadReports(selectedIds).subscribe(
         response => {
           if (response.status && response.data?.zip_path) {
@@ -147,7 +147,7 @@ export class PerformanceAnalysisTabComponent implements OnInit {
             const fileUrl = response.data.zip_path;
             // Open the file in a new tab
             // window.open(response.data.zip_path);
-
+            this.forceDownload(response.data.zip_path, response.data.zip_name ? response.data.zip_name : 'documents.zip');
             if (!fileUrl.startsWith('http')) {
               console.info('Invalid FIle Url');
               // newWindow.document.write('<p>Invalid file URL.</p>');
@@ -155,7 +155,7 @@ export class PerformanceAnalysisTabComponent implements OnInit {
             }
 
             // ✅ Redirect opened tab to the file
-            newWindow.location.href = fileUrl;
+            // newWindow.location.href = fileUrl;
           }
         },
         error => {
@@ -357,5 +357,27 @@ export class PerformanceAnalysisTabComponent implements OnInit {
         }
       }
     });
+  }
+
+
+
+  async forceDownload(src: string, filename: string) {
+    try {
+      const response = await fetch(src);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const blob = await response.blob(); // Convert the response to a Blob object
+      const url = window.URL.createObjectURL(blob);
+      const anchor = document.createElement('a');
+      anchor.href = url;
+      anchor.download = filename; // Use the filename passed to the function
+      document.body.appendChild(anchor);
+      anchor.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(anchor);
+    } catch (error) {
+      console.error('There was an error downloading the file:', error);
+    }
   }
 }

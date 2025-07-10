@@ -510,21 +510,66 @@ export class MembershipComponent {
     })
   }
 
+  isopenCustomerPortal: boolean = false;
+  // openCustomerPortal(): void {
+  //   this.isopenCustomerPortal = true;
+  //   this.paymentService.generateLinkAndNavigate().pipe(take(1)).subscribe({
+  //     next: (response: any) => {
+  //       if (response?.data) {
+  //         if (response?.data?.[0]?.url?.trim()) {
+  //           this.isopenCustomerPortal = false;
+  //           // window.location.href = response?.data?.[0]?.url?.trim(); // ✅ Redirect
+  //           window.open(response?.data?.[0]?.url?.trim());
+  //         }
+  //         this.isopenCustomerPortal = false;
+  //       } else {
+  //         console.error('URL not found in response');
+  //       }
+  //       this.isopenCustomerPortal = false;
+  //     },
+  //     error: (err: any) => {
+  //       console.error('Failed to generate customer portal link:', err);
+  //       this.isopenCustomerPortal = false;
+  //     }
+  //   });
+  // }
+
   openCustomerPortal(): void {
+    this.isopenCustomerPortal = true;
+
     this.paymentService.generateLinkAndNavigate().pipe(take(1)).subscribe({
       next: (response: any) => {
-        if (response?.data) {
-          if (response?.data?.[0]?.url?.trim()) {
-            // window.location.href = response?.data?.[0]?.url?.trim(); // ✅ Redirect
-            window.open(response?.data?.[0]?.url?.trim());
-          }
-        } else {
+        this.isopenCustomerPortal = false;
+
+        const url = response?.data?.[0]?.url?.trim();
+        if (!url) {
           console.error('URL not found in response');
+          return;
+        }
+
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream;
+        const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+        const isSafariIOS = isIOS || isSafari;
+
+        if (isSafariIOS) {
+          // 🧠 SAFARI FIX: Use anchor element (not window.open)
+          const link = document.createElement('a');
+          link.href = url;
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        } else {
+          // ✅ For Chrome, Firefox, Edge etc.
+          window.open(url, '_blank');
         }
       },
       error: (err: any) => {
         console.error('Failed to generate customer portal link:', err);
+        this.isopenCustomerPortal = false;
       }
     });
   }
+
 }

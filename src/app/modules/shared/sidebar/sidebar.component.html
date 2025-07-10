@@ -130,7 +130,7 @@
         </a>
       </li>
       <!-- Settings -->
-      <li><a routerLink="/talent/setting" [matTooltip]="!sidebarOpen ? ('settings' | translate) : ''"
+      <li><a routerLink="/{{role(loggedInUser?.role_name)}}/setting" [matTooltip]="!sidebarOpen ? ('settings' | translate) : ''"
           matTooltipPosition="right" (click)="closeSidebar(true)" routerLinkActive="active">
           <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"
             class="my-svg-icon">
