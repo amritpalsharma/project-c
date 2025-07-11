@@ -298,31 +298,42 @@ img.flag_country {
     .add-talent_btn {
         .btn {
             font-size: 24px;
+            min-width: 320px;
+            text-align: center;
         }
     }
 }
 
 @media (min-width: 3000px){
-table td svg {
-    width: 40px;
-    height: 40px;
-    margin-right: 4px;
-}
-.icon_text_icon img.flag_country {
-    width: 45px;
-    height: 45px;
-}
-.btn.web-create-bg {
-    font-size: 28px !important;
-}
-.bg_success, .bg_reject, .bg_pending{
-    max-width: 260px;
-}
-.add-talent_btn {
-    .btn {
-        font-size: 28px;
+    table td svg {
+        width: 40px;
+        height: 40px;
+        margin-right: 4px;
+    }
+    .icon_text_icon img.flag_country {
+        width: 45px;
+        height: 45px;
+    }
+    .btn.web-create-bg {
+        font-size: 28px !important;
+    }
+    .bg_success, .bg_reject, .bg_pending{
+        max-width: 260px;
+    }
+    .add-talent_btn {
+        .btn {
+            font-size: 28px;
+            min-width: 370px;
+            text-align: center;
+        }
     }
 }
+
+@media (min-width: 992px) and (max-width: 1599.98px) {
+  .add-talent_btn .btn {
+    min-width: 230px;
+    text-align: center;
+  }
 }
 
 

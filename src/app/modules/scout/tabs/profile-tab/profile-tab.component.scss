@@ -645,6 +645,8 @@ select.custom-select.custom-select-wrapper {
   .btn.web-create-bg {
     font-size: 22px !important;
     margin-bottom: 10px !important;
+    min-width: 250px;
+    text-align: center;
 }
 td svg.pointer {
     width: 32px !important;
@@ -672,6 +674,8 @@ td .custom-select {
   .btn.web-create-bg {
     font-size: 28px !important;
     margin-bottom: 10px !important;
+    min-width: 300px;
+    text-align: center;
   }
   td svg.pointer {
     width: 40px !important;
@@ -679,5 +683,13 @@ td .custom-select {
   }
   td .custom-select {
     height: 46px !important;
+  }
+}
+
+
+@media (min-width: 992px) and (max-width: 1599.98px) {
+  .btn.web-create-bg {
+    min-width: 190px;
+    text-align: center;
   }
 }

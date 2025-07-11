@@ -398,6 +398,11 @@ td.cdk-column-Download.mat-column-Download svg {
     }
     .dashboard_tabs_add_btn {
         font-size: 24px;
+        min-width: 270px;
+    }
+    .btn-outline-white.delete-text {
+        min-width: 250px;
+        justify-content: center;
     }
 }
 
@@ -407,7 +412,22 @@ td.cdk-column-Download.mat-column-Download svg {
     }
     .dashboard_tabs_add_btn {
         font-size: 28px;
+        min-width: 300px;
     }
+    .btn-outline-white.delete-text {
+        min-width: 320px;
+        justify-content: center;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1599.98px) {
+  .btn-outline-white.delete-text {
+    min-width: 160px;
+    justify-content: center;
+}
+  .dashboard_tabs_add_btn {
+    min-width: 190px;
+  }
 }
 
 ::ng-deep .dark-theme {
