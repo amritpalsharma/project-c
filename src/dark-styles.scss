@@ -352,7 +352,7 @@ legend.w-auto.px-2 {
   border: 1px solid #D9D9D9;
   font-size: 14px;
   color: #787878;
-  font-weight: 400;
+  font-weight: 600;
   display: flex;
   align-items: center;
   border-radius: 5px !important;
@@ -2366,7 +2366,17 @@ input:checked+.slider:before {
 }
 
 .dark-theme .choose-plan-btn {
-  background: rgba(23, 91, 7, 1);
+    background: rgb(7 41 68) !important;
+    color: #bde34f !important;
+}
+
+.dark-theme {
+  .subscription-switch input[type=checkbox]:checked {
+    background: #bde34f !important;
+    &:before {
+        background: #0c3453 !important;
+    }
+}
 }
 
 .dark-theme .premium_list label input:checked~.checkmark {
@@ -2763,9 +2773,10 @@ input:checked+.slider:before {
   .popup_footer .Launch {
     background: #BDE34F;
     color: #072944;
+    font-weight: 600;
   }
 
-  .edit-multi-country-plan .actions {
+  .edit-multi-country-plan .actions, .boost-profile.boost-profile_popup .actions {
     .buy-btn {
       background: #bde34e !important;
       color: #072944 !important;
@@ -2978,6 +2989,13 @@ input:checked+.slider:before {
   .border_color_light {
     border-top: 1px solid #204a6b !important;
     border-bottom: 1px solid #204a6b !important;
+  }
+  .unlock_page .unlock_btn {
+    background: #bde34f !important;
+    color: #0c3453 !important;
+    svg path {
+      fill: #0c3453 !important;
+    }
   }
 }
 

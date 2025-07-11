@@ -198,7 +198,7 @@
         <div class="form-group col-lg-6">
           <label for="weight">{{'weight' | translate}} (kg):</label>
           <input type="number" id="weight" name="weight" [(ngModel)]="weight" #weightField="ngModel"
-            placeholder="{{ 'enterValue' | translate }}" />
+            placeholder="{{ 'enterValue' | translate }}" (keypress)="onKeyPress($event)"/>
         </div>
       </div>
 

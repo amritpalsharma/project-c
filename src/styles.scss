@@ -503,7 +503,7 @@ input#contractEnd {
 
 .btn {
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
   border-radius: 10px;
   padding: 8px 24px;
 
@@ -2897,4 +2897,25 @@ img.club_logo_in_search {
   /* Dim to show it's inactive */
   cursor: not-allowed !important;
   /* Show blocked cursor */
+}
+
+
+.popup_footer .Launch {
+  font-weight: 600;
+}
+
+.add_btn_club_edit_only {
+  pointer-events: none !important;
+  user-select: none;
+  opacity: 0.6;
+  cursor: not-allowed !important;
+  filter: grayscale(100%);
+}
+
+.delete_btn_club_edit_only {
+  pointer-events: none !important;
+  user-select: none;
+  opacity: 0.6;
+  cursor: not-allowed !important;
+  filter: grayscale(100%);
 }

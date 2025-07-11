@@ -11,6 +11,7 @@ import { environment } from '../../../../environments/environment';
 import { UserService } from '../../../services/user.service';
 import { Subscription } from 'rxjs';
 import { TitleService } from '../../../title.service';
+import { SharedDataService } from '../shared-data.service';
 
 @Component({
   selector: 'shared-favorites',
@@ -46,11 +47,13 @@ export class FavoritesComponent {
 
   loggedInUser: any = localStorage.getItem('userData');
   currentUserRole: string = '';
+  currentLoggedInPermission: string = '';
 
   // Filters and UI variables (other code omitted for brevity)
   viewsTracked: { [profileId: string]: { viewed: boolean, clicked: boolean } } = {}; // Track view and click per profile
   langSubscription!: Subscription;
   constructor(
+    private sharedDataService: SharedDataService,
     private userService: UserService,
     private route: ActivatedRoute,
     private talentService: TalentService,
@@ -104,6 +107,11 @@ export class FavoritesComponent {
     // Listen for language changes
     this.langSubscription = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
       this.updateTranslation();
+    });
+
+
+    this.sharedDataService.sharedText$.subscribe(text => {
+      this.currentLoggedInPermission = text;
     });
   }
 

@@ -19,58 +19,10 @@
   </div>
   <form class="transfer_box popup__body p-3" (ngSubmit)="onSubmit(transferForm)" #transferForm="ngForm">
     <div class="row mb-4">
-      <!-- <div class="p-0 moving_select" [ngClass]="{'col-sm-12': noMoveToTeam, 'col-sm-6': !noMoveToTeam}"> -->
-      <div class="p-0 moving_select col-sm-6" >
-        <!-- <div class="form-group"> -->
-          <div class="checkbox-wrapper checkbox-wrap">
-          <label  class="form-label">{{'movingTo' | translate}}</label>
-          <div class="form-check checkbox mb-3">
-            <label class="form-check-label form-label" for="flexCheckDefault995">
-              {{ 'noTeamAndClub' | translate }}
-            </label>
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault995" [(ngModel)]="noMoveToTeam"
-              name="noClub" (ngModelChange)="onNoMoveToTeam($event)" />
-          </div>
-        </div>
-        <!-- </div> -->
-        <div class="form-group">
-          <label *ngIf="!noMoveToTeam" for="team_to" class="form-label">{{'club' | translate}} / {{'team' | translate}}</label>
-          <div class="default-func" *ngIf="!noMoveToTeam">
-            <input type="text" id="team_to" name="team_to" placeholder="{{'enterAndSearch' | translate}}..."
-              [(ngModel)]="teamTo" #teamTosField="ngModel" (input)="onSearchTeams()" autocomplete="off" required />
-            <!-- Club suggestions -->
-            <ul *ngIf="filterTeams.length > 0 && teamTo.length >= 2" class="suggestions-list">
-              <li *ngFor="let team of filterTeams" (click)="onSelectTeamTo(team)">
-                {{ team.team_name }} - {{ team.team_type }}
-              </li>
-            </ul>
-          </div>
-          <div class="row" *ngIf="noMoveToTeam">
-            <div class="col-sm-12 mb-3">
-              <label for="team_to" class="form-label">{{'club' | translate}} / {{'team' | translate}}</label>
-              <input type="text" id="team_to" name="team_to_manual"
-                placeholder="{{'noTeamAndClubPlaceHolder' | translate}}..." [(ngModel)]="team_to_manual" required />
-            </div>
-
-            <div class="col-sm-12">
-              <label for="team_country_id" class="form-label">{{'country' | translate}}</label>
-              <select class="form-select" id="team_country_id" name="team_country_id"
-                [(ngModel)]="team_to_m_country_id">
-                <option value="" [ngValue]="null">{{'select' | translate}}</option>
-                <option *ngFor="let country of countries" [ngValue]="country.id">
-                  {{ country.country_name }}
-                </option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-      </div>
-      <!-- <div class="p-0 moving_select " [ngClass]="{'col-sm-12': noMoveFromTeam, 'col-sm-6': !noMoveFromTeam}"> -->
       <div class="p-0 moving_select col-sm-6">
-        
+
         <div class="form-check1 checkbox1 1mb-3 checkbox-wrap checkbox-wrapper">
-          <label  class="form-label">{{'movingFrom' | translate}}</label>
+          <label class="form-label">{{'movingFrom' | translate}}</label>
           <div class="form-check checkbox mb-3">
             <input class="form-check-input" type="checkbox" value="" id="onNoMoveFromTeam" [(ngModel)]="noMoveFromTeam"
               name="noClub" (ngModelChange)="onNoMoveFromTeam($event)" />
@@ -80,7 +32,8 @@
           </div>
         </div>
         <div class="form-group">
-          <label *ngIf="!noMoveFromTeam" for="team_from" class="form-label">{{'club' | translate}} / {{'team' | translate}}</label>
+          <label *ngIf="!noMoveFromTeam" for="team_from" class="form-label">{{'club' | translate}} / {{'team' |
+            translate}}</label>
 
           <div class="old-func" *ngIf="!noMoveFromTeam">
             <input type="text" id="team_from" name="team_from" placeholder="{{'enterAndSearch' | translate}}..."
@@ -118,6 +71,56 @@
           </div>
         </div>
       </div>
+
+      <div class="p-0 moving_select col-sm-6">
+        <!-- <div class="form-group"> -->
+        <div class="checkbox-wrapper checkbox-wrap">
+          <label class="form-label">{{'movingTo' | translate}}</label>
+          <div class="form-check checkbox mb-3">
+            <label class="form-check-label form-label" for="flexCheckDefault995">
+              {{ 'noTeamAndClub' | translate }}
+            </label>
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault995" [(ngModel)]="noMoveToTeam"
+              name="noClub" (ngModelChange)="onNoMoveToTeam($event)" />
+          </div>
+        </div>
+        <!-- </div> -->
+        <div class="form-group">
+          <label *ngIf="!noMoveToTeam" for="team_to" class="form-label">{{'club' | translate}} / {{'team' |
+            translate}}</label>
+          <div class="default-func" *ngIf="!noMoveToTeam">
+            <input type="text" id="team_to" name="team_to" placeholder="{{'enterAndSearch' | translate}}..."
+              [(ngModel)]="teamTo" #teamTosField="ngModel" (input)="onSearchTeams()" autocomplete="off" required />
+            <!-- Club suggestions -->
+            <ul *ngIf="filterTeams.length > 0 && teamTo.length >= 2" class="suggestions-list">
+              <li *ngFor="let team of filterTeams" (click)="onSelectTeamTo(team)">
+                {{ team.team_name }} - {{ team.team_type }}
+              </li>
+            </ul>
+          </div>
+          <div class="row" *ngIf="noMoveToTeam">
+            <div class="col-sm-12 mb-3">
+              <label for="team_to" class="form-label">{{'club' | translate}} / {{'team' | translate}}</label>
+              <input type="text" id="team_to" name="team_to_manual"
+                placeholder="{{'noTeamAndClubPlaceHolder' | translate}}..." [(ngModel)]="team_to_manual" required />
+            </div>
+
+            <div class="col-sm-12">
+              <label for="team_country_id" class="form-label">{{'country' | translate}}</label>
+              <select class="form-select" id="team_country_id" name="team_country_id"
+                [(ngModel)]="team_to_m_country_id">
+                <option value="" [ngValue]="null">{{'select' | translate}}</option>
+                <option *ngFor="let country of countries" [ngValue]="country.id">
+                  {{ country.country_name }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
     </div>
     <hr>
     <div class="row mt-5 mb-4">

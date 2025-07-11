@@ -71,6 +71,10 @@
             font-size: 18px !important;
         }
     }
+    .btn-outline-white {
+        min-width: 170px;
+        justify-content: center;
+    }
 }
 
 
@@ -85,6 +89,17 @@
             font-size: 24px !important;
         }
     }
+    .btn-outline-white {
+        min-width: 240px;
+        justify-content: center;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1599.98px) {
+  .btn-outline-white {
+    min-width: 140px;
+    justify-content: center;
+  }
 }
 
 // COPY PASTE CSS

@@ -482,8 +482,10 @@ export class MembershipComponent {
     })
   }
 
+  isopenCustomerPortal: boolean = false;
 
   openCustomerPortal(): void {
+    this.isopenCustomerPortal = true;
     this.paymentService.generateLinkAndNavigate().pipe(take(1)).subscribe({
       next: (response: any) => {
         if (response?.data) {
@@ -492,6 +494,7 @@ export class MembershipComponent {
             window.open(response?.data?.[0]?.url?.trim());
           }
 
+          this.isopenCustomerPortal = false;
         } else {
           console.error('URL not found in response');
         }
@@ -499,7 +502,10 @@ export class MembershipComponent {
       error: (err: any) => {
         console.error('Failed to generate customer portal link:', err);
       }
+
+
     });
+    this.isopenCustomerPortal = false;
   }
 
   capitalizeFirstLetter(value: string): string {

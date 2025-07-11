@@ -44,7 +44,8 @@
                 <div class="user-media text-center ">
                   <span class="profile_img_bg_circle"
                     style="position: absolute;top: 45%;transform:translate(-50%, -50%);" *ngIf="profileImageLoading">
-                    <app-talent-loader class="profilepic_mobile_loader" [width]="'80px'" [height]="'80px'" [border]="'5px'"></app-talent-loader>
+                    <app-talent-loader class="profilepic_mobile_loader" [width]="'80px'" [height]="'80px'"
+                      [border]="'5px'"></app-talent-loader>
                   </span>
                   <span class="profile_img_bg_circle" *ngIf="!profileImageLoading">
                     <img *ngIf="profileImage" [src]="profileImage" alt="" class="" />
@@ -96,7 +97,8 @@
                       </button>
 
                       <button *ngIf="!isPremium" (click)="exportSingleUser()" [disabled]="!isPremium"
-                        [matTooltip]="('downloadPDF' | translate) + '\n' + ('upgradeToUnlock' | translate)" matTooltipPosition="right"
+                        [matTooltip]="('downloadPDF' | translate) + '\n' + ('upgradeToUnlock' | translate)"
+                        matTooltipPosition="right"
                         [ngClass]="{'disabled-btn-light':!isPremium && currentThemeMode == 'light', 'disabled-btn-dark':!isPremium && currentThemeMode == 'dark'}">
                         <svg width="22" height="22" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path
@@ -210,7 +212,9 @@
                           <img *ngIf="user.club_logo_path" src="{{user.club_logo_path}}" class="fc-club-img" alt="">
                         </div>
                         <div class="team-badge_content col-sm-9 p-0">
-                          <h6 class="title_2 mb-1" *ngIf="!user?.current_club_name && !customClubInfo?.club_name && user?.meta?.have_no_club != '1'">{{
+                          <h6 class="title_2 mb-1"
+                            *ngIf="!user?.current_club_name && !customClubInfo?.club_name && user?.meta?.have_no_club != '1'">
+                            {{
                             'withoutCurrentClub' | translate}}</h6>
                           <h6 class="title_2 mb-1" *ngIf="user?.meta?.have_no_club == '1'">{{ 'withoutCurrentClub' |
                             translate}}</h6>
@@ -501,9 +505,12 @@
                           <h5 class="title-1"
                             *ngIf="user?.meta?.contract_start && isValidDate(user?.meta?.contract_start)">
                             {{user?.meta?.contract_start | date:'y'
-                            }} - {{user?.meta?.contract_end | date:'y' }}
+                            }} -
+                            <span *ngIf="user?.meta?.contract_end && isValidDate(user?.meta?.contract_end)">
+                              {{ user.meta.contract_end | date: 'y' }}
+                            </span>
+                            <span *ngIf="!user?.meta?.contract_end || !isValidDate(user?.meta?.contract_end)">{{'untilToday' | translate}}</span>
                           </h5>
-                          <!-- <h5 class="title-1" *ngIf="!user?.meta?.contract_start">NA</h5> -->
                         </div>
                       </div>
                     </div>
@@ -991,7 +998,8 @@
 
           </div>
           <div class="col-lg-9 card_box--2 padding_mobile_0 dashboard_page_only">
-            <div class="players_image d-flex align-items-center justify-content-center cover_pic_desktop" [ngStyle]="{'background-image': 'url(' + coverImage + ')'}">
+            <div class="players_image d-flex align-items-center justify-content-center cover_pic_desktop"
+              [ngStyle]="{'background-image': 'url(' + coverImage + ')'}">
               <!-- <img [src]="coverImage" *ngIf="coverImage" alt="Cover Image" /> -->
               <svg *ngIf="!coverImage" width="54" height="54" viewBox="0 0 54 54" fill="none"
                 xmlns="http://www.w3.org/2000/svg">

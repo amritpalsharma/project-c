@@ -143,7 +143,7 @@
                         <thead class="border-table-thead">
                             <tr>
                                 <th>{{ 'companyRepresentators' | translate }} &nbsp; &nbsp;
-                                    <button class="btn btn-success btn-sm web-create-bg dashboard_tabs_add_btn {{currentLoggedInPermission}}"
+                                    <button class="btn btn-success btn-sm web-create-bg dashboard_tabs_add_btn {{currentLoggedInPermission}} add_btn_{{currentLoggedInPermission}}"
                                         (click)="addRepresentator()">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
                                             style="width: 16px;">
@@ -215,7 +215,7 @@
                                     </svg>
                                 </td>
                                 <td class="text-center">
-                                    <svg class="pointer cursor-pointer {{currentLoggedInPermission}}"
+                                    <svg class="pointer cursor-pointer {{currentLoggedInPermission}} delete_btn_{{currentLoggedInPermission}}"
                                         (click)="confirmSingleDeletion(representator.id)" width="13" height="16"
                                         viewBox="0 0 13 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path

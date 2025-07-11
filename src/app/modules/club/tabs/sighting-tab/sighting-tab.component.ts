@@ -147,10 +147,10 @@ export class SightingTabComponent {
   }
 
   showDeleteConfirmationPopup() {
-    if (this.currentLoggedInPermission == 'club_edit_only') {
-      console.info('YOU DO NOT HAVE PERMISSION TO DELETE RECORDS');
-      return;
-    }
+    // if (this.currentLoggedInPermission == 'club_edit_only') {
+    //   console.info('YOU DO NOT HAVE PERMISSION TO DELETE RECORDS');
+    //   return;
+    // }
     this.showMatDialogSharedMessagePopup(this.deleteRepresentorConfirmation, "delete-sighting-confirmation");
   }
 

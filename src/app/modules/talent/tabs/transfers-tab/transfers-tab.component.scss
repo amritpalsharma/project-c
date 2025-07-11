@@ -306,6 +306,10 @@
   padding-bottom: 2rem;
 }
 
+.table_padd_noscroll {
+  padding: 0 .75rem;
+}
+
 
 @media (max-width: 1300px) {
   .details-1 {
@@ -421,6 +425,12 @@
     width: 30px !important;
     height: 30px !important;
   }
+  .moving_box .btn_column .edit_button {
+    min-width: 185px;
+  }
+  .new_performance button {
+    min-width: 380px;
+  }
 }
 
 @media (min-width: 3000px){
@@ -450,6 +460,7 @@
   }
   .new_performance button {
     font-size: 28px;
+    min-width: 440px;
     svg {
       width: 26px;
     }
@@ -458,7 +469,22 @@
   width: 38px !important;
   height: 38px !important;
 }
+
+  .moving_box .btn_column .edit_button {
+    min-width: 200px;
+  }
 }
+
+@media (min-width: 992px) and (max-width: 1599.98px) {
+  .moving_box .btn_column .edit_button {
+    min-width: 120px;
+  }
+  .new_performance button {
+    min-width: 270px;
+    justify-content: center;
+  }
+}
+
 .loader-container {
   display: flex;
   flex-direction: column;

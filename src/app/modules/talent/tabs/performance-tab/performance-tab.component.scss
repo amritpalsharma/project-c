@@ -543,6 +543,19 @@ tr.table_underline {
         width: 26px;
       }
     }
+    .edit_button-2 {
+        justify-content: center;
+    }
+    .edit_button-2:first-child {
+        min-width: 170px;
+    }
+    .edit_button-2:nth-child(2) {
+        min-width: 270px;
+    }
+    .dashboard_tabs_add_btn {
+        min-width: 420px;
+        justify-content: center;
+    }
 }
 
 @media (min-width: 3000px) {
@@ -572,5 +585,34 @@ tr.table_underline {
         svg {
             width: 26px;
         }
+    }
+    .edit_button-2 {
+        justify-content: center;
+    }
+    .edit_button-2:first-child {
+        min-width: 215px;
+    }
+    .edit_button-2:nth-child(2) {
+        min-width: 340px;
+    }
+    .dashboard_tabs_add_btn {
+        min-width: 490px;
+        justify-content: center;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1599.98px) {
+    .edit_button-2 {
+        justify-content: center;
+    }
+    .edit_button-2:first-child {
+        min-width: 140px;
+    }
+    .edit_button-2:nth-child(2) {
+        min-width: 235px;
+    }
+    .dashboard_tabs_add_btn {
+        min-width: 285px;
+        justify-content: center;
     }
 }

@@ -212,3 +212,15 @@ table {
     padding: 0;
 }
 }
+
+
+::ng-deep {
+  .dark-theme {
+  .pdf-download_btn span {
+    background: #BDE34F !important;
+    svg path {
+      stroke: #0c3453 !important;
+    }
+  }
+}
+}

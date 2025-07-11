@@ -118,7 +118,10 @@
   }
 }
 
-.no_country_plan{
-  pointer-events: none;
-  
+::ng-deep .dark-theme {
+  .multi-country-box {
+    background: #BDE34F !important;
+    color: #0c3453 !important;
+    border-color: #0c3453 !important;
+  }
 }

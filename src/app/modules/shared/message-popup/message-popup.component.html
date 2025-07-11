@@ -13,7 +13,7 @@
             src="../../../assets/images/carbon_close-outline.svg" alt="" (click)="close()" />
     </div>
     <div class="msg-popup-content p-3 pt-1" [ngClass]="{'px-5':data.action == 'notify'}">
-        <div class="display-message">
+        <div class="display-message" [ngClass]="{'popop_no_title':data.action == 'display'}">
             {{ data.message }}
         </div>
         <div *ngIf="data.action === 'delete-confirmation'"

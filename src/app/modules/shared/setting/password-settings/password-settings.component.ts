@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ResetPasswordComponent } from '../../../shared/reset-password/reset-password.component';
 import { SocketService } from '../../../../services/socket.service';
 import { GlobalSettingsService } from '../../../../services/global-settings.service';
+import { SharedDataService } from '../../shared-data.service';
 
 @Component({
   selector: 'app-password-settings',
@@ -16,8 +17,12 @@ export class PasswordSettingsComponent {
 
   constructor(
     private gloabalSettings: GlobalSettingsService,
+    private sharedDataService: SharedDataService,
     public dialog: MatDialog, private socketService: SocketService) {
     this.getUserStatus();
+    this.sharedDataService.sharedText$.subscribe(text => {
+      this.currentLoggedInPermission = text;
+    });
   }
 
   getUserStatus() {

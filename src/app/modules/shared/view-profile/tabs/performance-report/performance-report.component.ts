@@ -93,7 +93,7 @@ export class PerformanceReportComponent  implements OnInit {
         const url = window.URL.createObjectURL(blob);
         const anchor = document.createElement('a');
         anchor.href = url;
-        anchor.download = `report-${id}.${type}`; // Set the filename for download
+        anchor.download = `SoccerYou_Performance_Report-${id}.${type}`; // Set the filename for download
         document.body.appendChild(anchor);
         anchor.click();
         window.URL.revokeObjectURL(url);

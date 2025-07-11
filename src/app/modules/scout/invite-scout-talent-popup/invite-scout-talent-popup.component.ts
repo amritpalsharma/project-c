@@ -97,8 +97,9 @@ export class InviteScoutTalentPopupComponent {
   close() {
     this.dialogRef.close();
   }
-
+  isInviteSent: boolean = false;
   sendInvite() {
+    this.isInviteSent = true;
     // this.toastr.info(this.pleaseWait);
     const toastRef = this.toastr.info(this.pleaseWait, '', {
       disableTimeOut: true, // Don't auto close
@@ -134,7 +135,7 @@ export class InviteScoutTalentPopupComponent {
       } else {
         console.error('Invalid API response structure:', response);
       }
-
+      this.isInviteSent = false;
     });
   }
 

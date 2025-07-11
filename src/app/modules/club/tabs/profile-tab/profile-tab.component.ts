@@ -248,10 +248,10 @@ export class ProfileTabComponent {
   }
 
   editRepresentator(representator: any) {
-    if (this.currentLoggedInPermission === 'club_edit_only') {
-      console.info('YOU DO NOT HAVE PERMISSION TO DELETE RECORDS');
-      return; // Return false if the user doesn't have permission
-    }
+    // if (this.currentLoggedInPermission === 'club_edit_only') {
+    //   console.info('YOU DO NOT HAVE PERMISSION TO DELETE RECORDS');
+    //   return; // Return false if the user doesn't have permission
+    // }
     console.log(representator)
     const editDialog = this.dialog.open(AddRepresentatorPopupComponent, {
       height: '400',
