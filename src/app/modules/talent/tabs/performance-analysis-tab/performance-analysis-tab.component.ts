@@ -146,13 +146,13 @@ export class PerformanceAnalysisTabComponent implements OnInit {
             // console.log(selectedIds);
             const fileUrl = response.data.zip_path;
             // Open the file in a new tab
-            // window.open(response.data.zip_path);
             this.forceDownload(response.data.zip_path, response.data.zip_name ? response.data.zip_name : 'documents.zip');
             if (!fileUrl.startsWith('http')) {
               console.info('Invalid FIle Url');
               // newWindow.document.write('<p>Invalid file URL.</p>');
               return;
             }
+            window.open(response.data.zip_path);
 
             // ✅ Redirect opened tab to the file
             // newWindow.location.href = fileUrl;

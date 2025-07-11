@@ -510,10 +510,7 @@
                               {{ user.meta.contract_end | date: 'y' }}
                             </span>
                             <span *ngIf="!user?.meta?.contract_end || !isValidDate(user?.meta?.contract_end)">{{'untilToday' | translate}}</span>
-
-                            <!-- <span *ngIf="!user?.meta?.contract_end | date:'y'"></span> -->
                           </h5>
-                          <!-- <h5 class="title-1" *ngIf="!user?.meta?.contract_start">NA</h5> -->
                         </div>
                       </div>
                     </div>
