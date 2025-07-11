@@ -46,7 +46,7 @@
               </div>
             </div>
           </div>
-          
+
         </div>
 
         <div class="row premium-card_box mt-3" *ngIf="isLoading">
@@ -124,6 +124,10 @@
                         translate }}</span>
                       <span *ngIf="purchase.invoice_status == 'open'" class="status-label bg_reject text-white">{{
                         'openTxt' |
+                        translate }}</span>
+                      <span *ngIf="purchase.invoice_status != 'open' && purchase.invoice_status != 'paid'"
+                        class="status-label bg_reject text-white">{{
+                        'failedTxt' |
                         translate }}</span>
                     </td>
                     <td class="text-center" [ngClass]="{'disblebutton':purchase.invoice_status == 'open'}">

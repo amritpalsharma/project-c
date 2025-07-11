@@ -257,45 +257,6 @@ export class HeaderComponent {
         this.currentPageName = title;
       });
 
-
-    // code update by amrit 13 march 2025
-    // this.searchControl.valueChanges
-    //   .pipe(
-    //     map((value) => (typeof value === 'string' ? value.trim() : '')), // Ensure value is a trimmed string
-    //     tap((value: any) => {
-    //       console.log("Search input changed:", value);
-    //       if (!value) {
-    //         console.log("Search input Cleared");
-    //         this.filteredUsers = []; // Clear search results when input is empty
-    //       }
-    //     }),
-    //     filter((value) => value.length > 0), // Ensure search triggers only for non-empty input
-    //     debounceTime(300),
-    //     distinctUntilChanged(),
-    //     filter(text => !!text && text.trim().length >= 2),
-    //     switchMap((searchText: string) => {
-    //       this.isLoading = true;
-    //       return this.userService.exploreSearchUser(searchText).pipe(
-    //         finalize(() => (this.isLoading = false))
-    //       );
-    //     })
-    //   )
-    //   .subscribe(
-    //     (response: any) => {
-
-    //       if (response?.status && Array.isArray(response.data?.userData?.users)) {
-    //         this.filteredUsers = response.data.userData.users;
-    //       } else {
-    //         this.filteredUsers = [];
-    //       }
-
-    //     },
-    //     (error) => {
-    //       console.error("Error fetching users:", error);
-    //       this.filteredUsers = [];
-    //     }
-    //   );
-
     // code update by amrit 07 june 2025
     this.searchControl.valueChanges
       .pipe(
@@ -582,8 +543,17 @@ export class HeaderComponent {
       // console.log("'/view/' found in URL (case-insensitive check)");
     } else {
       if (this.loggedInUser && this.loggedInUser.role_name != '') {
-        const role = this.loggedInUser.role_name.toLowerCase();
-        this.router.navigate([`/${role}/setting`], { fragment });
+        if (this.loggedInUser.role_name && this.loggedInUser.role_name != '') {
+          const role = this.loggedInUser.role_name.toLowerCase();
+          this.router.navigate([`/${role}/setting`], { fragment });
+        } else {
+          let loggedInUser = localStorage.getItem('userData')
+          if (loggedInUser) {
+            let currentUser = JSON.parse(loggedInUser);
+            const role = currentUser.role_name.toLowerCase();
+            this.router.navigate([`/${role}/setting`], { fragment });
+          }
+        }
       } else {
         let loggedInUser = localStorage.getItem('userData')
         if (loggedInUser) {

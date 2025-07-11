@@ -506,10 +506,10 @@
                             *ngIf="user?.meta?.contract_start && isValidDate(user?.meta?.contract_start)">
                             {{user?.meta?.contract_start | date:'y'
                             }} -
-                            <span *ngIf="user?.meta?.contract_end">
+                            <span *ngIf="user?.meta?.contract_end && isValidDate(user?.meta?.contract_end)">
                               {{ user.meta.contract_end | date: 'y' }}
                             </span>
-                            <span *ngIf="!user?.meta?.contract_end || user?.meta?.contract_end == 'Invalid date'">{{'untilToday' | translate}}</span>
+                            <span *ngIf="!user?.meta?.contract_end || !isValidDate(user?.meta?.contract_end)">{{'untilToday' | translate}}</span>
 
                             <!-- <span *ngIf="!user?.meta?.contract_end | date:'y'"></span> -->
                           </h5>

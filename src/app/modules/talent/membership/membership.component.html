@@ -12,9 +12,9 @@
               </div>
             </div>
           </div>
-          <div class="card_btn_side" >
-            <a type="button" class="manage_payment_btn is_stop_{{isopenCustomerPortal}}" (click)="openCustomerPortal()"
-              >
+          <div class="card_btn_side">
+            <a type="button" class="text-center manage_payment_btn is_stop_{{isopenCustomerPortal}}"
+              (click)="openCustomerPortal()">
 
               <ng-container *ngIf="isopenCustomerPortal; else loginText">
                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -238,6 +238,10 @@
                           translate }}</span>
                         <span *ngIf="purchase.invoice_status == 'open'" class="status-label bg_reject text-white">{{
                           'openTxt' |
+                          translate }}</span>
+                        <span *ngIf="purchase.invoice_status != 'open' && purchase.invoice_status != 'paid'"
+                          class="status-label bg_reject text-white">{{
+                          'failedTxt' |
                           translate }}</span>
                       </td>
                       <td class="text-center" [ngClass]="{'disblebutton':purchase.invoice_status == 'open'}">

@@ -402,7 +402,7 @@ export class EditPersonalDetailsComponent implements OnInit {
 
     // Enable loading state and notify user
     this.toastr.info(this.Processing, this.pleaseWait, { disableTimeOut: true });
-    
+
     const formData = new FormData();
     formData.append('user[team_type]', this.team_type);
 
@@ -680,5 +680,12 @@ export class EditPersonalDetailsComponent implements OnInit {
       event.stopPropagation(); // Prevent event from reaching mat-select
     }
 
+  }
+
+  onKeyPress(event: KeyboardEvent) {
+    const charCode = event.charCode;
+    if (charCode < 48 || charCode > 57) {
+      event.preventDefault(); // Prevent non-numeric characters
+    }
   }
 }

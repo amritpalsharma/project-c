@@ -8,8 +8,8 @@
 
       <!-- <div class="close-img" (click)="close()"></div> -->
       <!-- <div class="msg-popup-close" *ngIf='theme!="dark"'> -->
-      <img *ngIf='theme!="dark"' src="../../../../assets/images/carbon_close-outline-light.svg" alt="" class="cursor-pointer"
-        (click)="close()" />
+      <img *ngIf='theme!="dark"' src="../../../../assets/images/carbon_close-outline-light.svg" alt=""
+        class="cursor-pointer" (click)="close()" />
       <!-- </div> -->
       <!-- <div class="msg-popup-close" *ngIf='theme=="dark"'> -->
       <img *ngIf='theme=="dark"' src="../../../../assets/images/carbon_close-outline.svg" alt="" class="cursor-pointer"
@@ -42,7 +42,7 @@
 
             <input placeholder="{{ 'searchTalent' | translate }}" #userInput [matAutocomplete]="auto"
               [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputFor]="chipGrid"
-              (focus)="callListApi(userInput)" (keyup)="onKeyPress($event)"/>
+              (focus)="callListApi(userInput)" (keyup)="onKeyPress($event)" />
           </mat-chip-grid>
 
           <!-- <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)"
@@ -90,8 +90,12 @@
         </div> -->
   </div>
   <div class="chat-btn">
-    <button class="btn btn-success btn-sm web-create-bg w-100" (click)="sendInvite()" type="button">{{ 'add' | translate
-      }}</button>
+    <button *ngIf="!isInviteSent" class="btn btn-success btn-sm web-create-bg w-100" (click)="sendInvite()"
+      type="button">{{ 'add' | translate }}</button>
+    <button *ngIf="isInviteSent" class="btn btn-success btn-sm web-create-bg w-100" type="button">
+      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      <span class="sr-only">Loading...</span>
+    </button>
   </div>
 
 </div>

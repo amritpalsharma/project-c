@@ -139,10 +139,10 @@ a.premium-edit_btn {
 }
 
 .premium-card .flex_wrap {
-    flex-direction: column;
-    align-items: flex-start !important;
-    gap: 10px;
-  }
+  flex-direction: column;
+  align-items: flex-start !important;
+  gap: 10px;
+}
 
 .premium-card {
   .flex_wrap {
@@ -151,13 +151,13 @@ a.premium-edit_btn {
 }
 
 @media (min-width: 1650px) and (max-width: 2000px) {
-.premium-card {
-  .flex_wrap {
-    flex-direction: column;
-    align-items: flex-start !important;
-    gap: 10px;
+  .premium-card {
+    .flex_wrap {
+      flex-direction: column;
+      align-items: flex-start !important;
+      gap: 10px;
+    }
   }
-}
 }
 
 @media (max-width:1024px) and (min-width:769px) {
@@ -258,7 +258,9 @@ a.premium-edit_btn {
 }
 
 @media (min-width: 1600px) and (max-width: 2999px) {
-  .card-billing, .p_size h2.card-title {
+
+  .card-billing,
+  .p_size h2.card-title {
     font-size: 28px !important;
   }
 
@@ -285,11 +287,17 @@ a.premium-edit_btn {
     width: 40px;
     height: 40px;
   }
+
+  .manage_payment_btn {
+    font-size: 18px;
+  }
 }
 
 
 @media (min-width: 3000px) {
-  .card-billing, .p_size h2.card-title {
+
+  .card-billing,
+  .p_size h2.card-title {
     font-size: 35px !important;
   }
 
@@ -315,6 +323,10 @@ a.premium-edit_btn {
   table td svg.pointer {
     width: 55px;
     height: 55px;
+  }
+
+  .manage_payment_btn {
+    font-size: 26px;
   }
 }
 
@@ -343,9 +355,10 @@ a.premium-edit_btn {
       margin-right: 0 !important;
     }
   }
+
   .purchase-parent .transaction_box {
     flex-wrap: wrap;
-}
+  }
 }
 
 
@@ -420,6 +433,21 @@ a.premium-edit_btn {
 }
 
 
-.cursor-pointer{
+.cursor-pointer {
   cursor: pointer !important;
+}
+
+
+.manage_payment_btn {
+  padding: 9px 30px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  border: 0;
+  outline: none;
+  color: #fff;
+  background: #6FB95D;
+  display: inline-block;
+  margin: 5px 0;
+  min-width: 250px;
 }
