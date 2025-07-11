@@ -96,13 +96,31 @@ export class EditTransferDetailsComponent {
       this.is_team_to_manual = true;
       this.team_to_manual = this.transfer.team_to_manual;
       this.team_to_m_country_id = this.transfer.team_to_m_country_id;
-
     }
 
     if (this.transfer.team_from_manual != '' && !this.transfer.team_from) {
       this.is_team_from_manual = true;
       this.team_from_manual = this.transfer.team_from_manual;
       this.team_from_m_country_id = this.transfer.team_from_m_country_id;
+    }
+
+    if (this.transfer?.country_name_to_manual && this.transfer?.country_name_to_manual != '' && this.transfer?.team_to_manual && this.transfer?.team_to_manual != '') {
+      this.is_team_to_manual = true;
+    } else {
+      this.is_team_to_manual = false;
+    }
+
+
+    if (this.transfer?.country_name_to_manual && this.transfer?.country_name_to_manual != '' && this.transfer?.team_to_manual && this.transfer?.team_to_manual != '') {
+      this.is_team_to_manual = true;
+    } else {
+      this.is_team_to_manual = false;
+    }
+
+    if (this.transfer?.team_from_manual && this.transfer?.team_from_manual != '' && this.transfer?.country_name_from_manual && this.transfer?.country_name_from_manual != '') {
+      this.is_team_from_manual = true;
+    } else {
+      this.is_team_from_manual = false;
     }
 
     this.date_of_transfer = new FormControl(
