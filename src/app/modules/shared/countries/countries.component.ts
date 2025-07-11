@@ -82,11 +82,24 @@ export class CountriesComponent {
   selectedCountries: string[] = []; // Store selected country names here
 
   toggleCountrySelection(country: any) {
+    if (!this.checkRole()) {
+      return;
+    }
     if (country.is_default == 1 || country.is_package_active == 'active') {
       return
     }
     // console.warn(country);
     this.addCountryPopup(country);
+  }
+
+  checkRole() {
+    if (!this.loggedInUser.isRepresentator) {
+      return true;
+    }
+    if (this.loggedInUser.permission === 'admin.view' || this.loggedInUser.permission === 'admin.edit') {
+      return false;
+    }
+    return true;
   }
 
   addCountryPopup(country: any) {

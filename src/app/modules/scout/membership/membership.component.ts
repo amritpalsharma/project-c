@@ -59,7 +59,11 @@ export class MembershipComponent {
     private webpages: WebPages
   ) { }
 
+  loggedInUser: any = localStorage.getItem('userData');
+  
   ngOnInit(): void {
+    this.loggedInUser = JSON.parse(this.loggedInUser);
+
     this.getJsonTranslations();
     this.route.params.subscribe((params: any) => {
       this.userId = params.id;
@@ -191,6 +195,16 @@ export class MembershipComponent {
     }, error => {
       console.error('Error fetching user purchases:', error);
     });
+  }
+
+  checkRole() {
+    if (!this.loggedInUser.isRepresentator) {
+      return true;
+    }
+    if (this.loggedInUser.permission === 'admin.view' || this.loggedInUser.permission === 'admin.edit') {
+      return false;
+    }
+    return true;
   }
 
   // Event triggered when paginator changes

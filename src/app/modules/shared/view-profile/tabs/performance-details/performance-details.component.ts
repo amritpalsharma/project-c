@@ -185,22 +185,22 @@ export class PerformanceDetailsComponent {
   getPresentText(lang: string): string {
     switch (lang) {
       case 'de': // German
-        return 'Gegenwart';
+        return 'bis heute';
       case 'it': // Italian
-        return 'Presente';
+        return 'fino ad oggi';
       case 'fr': // French
-        return 'Présent';
+        return "jusqu'à aujourd'hui";
       case 'es': // Spanish
-        return 'Presente';
+        return 'hasta hoy';
       case 'pt': // Portuguese
-        return 'Presente';
+        return 'até hoje';
       case 'da': // Danish
-        return 'Nuværende';
+        return 'indtil i dag';
       case 'sv': // Swedish
-        return 'Nuvarande';
+        return 'fram till idag';
       case 'en': // English
       default:
-        return 'Present';
+        return 'until today';
     }
   }
 

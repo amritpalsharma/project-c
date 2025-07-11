@@ -61,6 +61,9 @@ export class AppSettingComponent {
 
   // Handle toggle event
   onNewsletterToggle(event: any) {
+    if (!this.checkRole()) {
+      return;
+    }
     this.showMatDialog(
       this.translatedText,
       "newsletter-confirmation",

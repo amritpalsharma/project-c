@@ -80,22 +80,25 @@
                             </ng-container> -->
                             <!-- <span style="color: red;" *ngIf="element.event == 'rejectScoutRequest'">({{ 'rejected' | translate }})</span> -->
                             <div>
-                                <button *ngIf="element.event == 'scoutAddPlayer' && !element.seen" type="button"
-                                    (click)="responseToScoutInvite('accepted', element.senderId, element)"
-                                    class="btn btn_confirmm px-md-5 py-2 me-3 mt-3 {{currentLoggedInPermission}}">{{'accept'
-                                    | translate}}</button>
+                                
                                 <button *ngIf="element.event == 'scoutAddPlayer' && !element.seen" type="button"
                                     (click)="responseToScoutInvite('rejected', element.senderId, element)"
-                                    class="btn btn_cancell px-5 py-2 mt-3 {{currentLoggedInPermission}}">{{'reject' |
+                                    class="btn btn_cancell px-5 py-2 me-3 mt-3 {{currentLoggedInPermission}}">{{'reject' |
+                                    translate}}</button>
+                                <button *ngIf="element.event == 'scoutAddPlayer' && !element.seen" type="button"
+                                    (click)="responseToScoutInvite('accepted', element.senderId, element)"
+                                    class="btn btn_confirmm px-md-5 py-2 mt-3 {{currentLoggedInPermission}}">{{'accept'
+                                    | translate}}</button>
+
+                                
+                                <button *ngIf="element.event == 'inviteTalent' && !element.seen" type="button"
+                                    (click)="updateSightingInviteResponse('rejected',element.eventId, element.senderId, element)"
+                                    class="btn btn_cancell px-5 py-2 me-3 mt-3 {{currentLoggedInPermission}}">{{'reject' |
                                     translate}}</button>
                                 <button *ngIf="element.event == 'inviteTalent' && !element.seen" type="button"
                                     (click)="updateSightingInviteResponse('accepted',element.eventId, element.senderId, element)"
-                                    class="btn btn_confirmm px-md-5 py-2 me-3 mt-3 {{currentLoggedInPermission}}">{{'accept'
+                                    class="btn btn_confirmm px-md-5 py-2 mt-3 {{currentLoggedInPermission}}">{{'accept'
                                     | translate}}</button>
-                                <button *ngIf="element.event == 'inviteTalent' && !element.seen" type="button"
-                                    (click)="updateSightingInviteResponse('rejected',element.eventId, element.senderId, element)"
-                                    class="btn btn_cancell px-5 py-2 mt-3 {{currentLoggedInPermission}}">{{'reject' |
-                                    translate}}</button>
                             </div>
                         </td>
                     </ng-container>
@@ -164,20 +167,20 @@
 
                                     <button *ngIf="element.event == 'scoutAddPlayer' && !element.seen" type="button"
                                         (click)="responseToScoutInvite('rejected', element.senderId, element)"
-                                        class="btn btn_cancell px-md-5 py-2 mt-3 {{currentLoggedInPermission}}">{{'reject'
+                                        class="btn btn_cancell px-md-5 py-2 me-3 mt-3 {{currentLoggedInPermission}}">{{'reject'
                                         | translate}}</button>
                                     <button *ngIf="element.event == 'scoutAddPlayer' && !element.seen" type="button"
                                         (click)="responseToScoutInvite('accepted', element.senderId, element)"
-                                        class="btn btn_confirmm px-md-5 py-2 me-3 mt-3 {{currentLoggedInPermission}}">{{'accept'
+                                        class="btn btn_confirmm px-md-5 py-2 mt-3 {{currentLoggedInPermission}}">{{'accept'
                                         | translate}}</button>
 
                                     <button *ngIf="element.event == 'inviteTalent' && !element.seen" type="button"
                                         (click)="updateSightingInviteResponse('rejected',element.eventId, element.senderId, element)"
-                                        class="btn btn_cancell px-md-5 py-2 mt-3"
+                                        class="btn btn_cancell px-md-5 py-2 me-3 mt-3"
                                         {{currentLoggedInPermission}}>{{'reject' | translate}}</button>
                                     <button *ngIf="element.event == 'inviteTalent' && !element.seen" type="button"
                                         (click)="updateSightingInviteResponse('accepted',element.eventId, element.senderId, element)"
-                                        class="btn btn_confirmm px-md-5 py-2 me-3 mt-3 {{currentLoggedInPermission}}">{{'accept'
+                                        class="btn btn_confirmm px-md-5 py-2 mt-3 {{currentLoggedInPermission}}">{{'accept'
                                         | translate}}</button>
                                 </div>
                             </span>

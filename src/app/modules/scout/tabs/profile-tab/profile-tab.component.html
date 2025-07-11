@@ -31,7 +31,7 @@
                         <tr>
                             <th>{{ 'companyRepresentators' | translate }}: &nbsp; &nbsp;
                                 <button class="btn btn-success btn-sm web-create-bg dashboard_tabs_add_btn"
-                                    *ngIf="checkRole()" (click)="addRepresentator()">
+                                    [disabled]="!checkRole()" [class.club_view_only]="!checkRole()" (click)="addRepresentator()">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="width: 16px;">
                                         <path
                                             d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z" />
@@ -58,7 +58,7 @@
                                 </div>
                             </td>
                             <td>
-                                <select [disabled]="!checkRole()"
+                                <select [disabled]="!checkRole()" [class.club_view_only]="!checkRole()"
                                     class="table_select custom-select custom-select-wrapper"
                                     (change)="updateRepresentatorRole($event, representator.id)">
 
@@ -193,7 +193,7 @@
                         <th>{{ 'companyRepresentators' | translate }}: &nbsp; &nbsp;
 
                             <button class="btn btn-success btn-sm web-create-bg dashboard_tabs_add_btn"
-                                *ngIf="checkRole()" (click)="addRepresentator()">
+                                [disabled]="!checkRole()" [class.club_view_only]="!checkRole()" (click)="addRepresentator()">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="width: 16px;">
                                     <path
                                         d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z" />
@@ -219,7 +219,7 @@
                             </div>
                         </td>
                         <td>
-                            <select [disabled]="!checkRole()" class="custom-select custom-select-wrapper"
+                            <select [disabled]="!checkRole()" [class.club_view_only]="!checkRole()" class="custom-select custom-select-wrapper"
                                 (change)="updateRepresentatorRole($event, representator.id)">
                                 <option value="admin.access"
                                     *ngIf="representator.permission != null && representator.permission != 'admin.access'">
@@ -278,8 +278,8 @@
                     <div class="d-flex justify-content-between mb-3" *ngIf="i===0">
                         <span class="text-muted-foreground">{{ 'companyRepresentators' | translate }}:</span>
                         <span>
-                            <button class="btn btn-success btn-sm web-create-bg" *ngIf="checkRole()"
-                                (click)="addRepresentator()">{{ 'addNew' | translate }}</button>
+                            <button class="btn btn-success btn-sm web-create-bg" [disabled]="!checkRole()"
+                                [class.club_view_only]="!checkRole()" (click)="addRepresentator()">{{ 'addNew' | translate }}</button>
                         </span>
                     </div>
                     <div class="space-y-2 text-sm">
@@ -296,7 +296,7 @@
                         <div class="flex justify-between">
                             <span class="text-muted-foreground">{{ 'roles' | translate }}</span>
                             <span>
-                                <select [disabled]="!checkRole()" class="custom-select custom-select-wrapper"
+                                <select [disabled]="!checkRole()" [class.club_view_only]="!checkRole()" class="custom-select custom-select-wrapper"
                                     (change)="updateRepresentatorRole($event, representator.id)">
                                     <option value="admin.access"
                                         *ngIf="representator.permission != null && representator.permission != 'admin.access'">

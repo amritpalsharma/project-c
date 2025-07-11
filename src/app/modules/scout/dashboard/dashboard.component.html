@@ -17,7 +17,7 @@
                 </svg>
 
 
-                <div *ngIf="checkRole()" class="edit-photo d-flex align-items-center tour-cover-photo"
+                <div [class.club_view_only]="!checkRole()" class="edit-photo d-flex align-items-center tour-cover-photo"
                   matTooltip="{{'editCoverImage' | translate}}" matTooltipPosition="right">
                   <div class="edit_image-2 ">
                     <label for="file-upload" class="cursor-pointer ">
@@ -56,7 +56,7 @@
 
                   <div class="user-edit " *ngIf="!profileImage">
                     <label for="profile-upload" class="">
-                      <div class="edit-profile cursor-pointer" *ngIf="checkRole()"
+                      <div class="edit-profile cursor-pointer" [class.club_view_only]="!checkRole()"
                         matTooltip="{{'uploadNewProfileImage' | translate}} {{'mx_size' | translate}}"
                         matTooltipPosition="right" id="upload_profilePhoto">
 
@@ -78,7 +78,7 @@
                   </div>
                   <div class="user-edit" *ngIf="profileImage">
                     <label for="profile-upload" class="">
-                      <div class="edit-profile cursor-pointer" id="upload_profilePhoto"
+                      <div class="edit-profile cursor-pointer" [class.club_view_only]="!checkRole()" id="upload_profilePhoto"
                         matTooltip="{{'deleteProfilePicture' | translate}}" matTooltipPosition="right"
                         (click)="openDeleteDialog('profile')">
 
@@ -137,7 +137,7 @@
                       </div>
                     </div>
                     <div class="col-md-4 p-0 edit_button responsive-edit_btn ">
-                      <button *ngIf="checkRole()" (click)="openEditDialog()" class=""
+                      <button [class.club_view_only]="!checkRole()" (click)="openEditDialog()" class=""
                         matTooltip="{{'editPersonalDetails' | translate}}" matTooltipPosition="right">
                         <div class="tour-personal-details px-1" id="tour-personal-details-intro">
                           <svg class="" width="22" height="23" viewBox="0 0 24 25" fill="none"
@@ -673,7 +673,7 @@
                     <h2 class="text-uppercase">{{'highlights' | translate}}</h2>
                     <p>{{'featuredPhotosAndVideos' | translate}}</p>
                   </div>
-                  <div class="settings cursor-pointer setting_heighlight" *ngIf="checkRole()" (click)="openHighlight()"
+                  <div class="settings cursor-pointer setting_heighlight" [class.club_view_only]="!checkRole()" (click)="openHighlight()"
                     matTooltip="{{'highlightTooltip' | translate}}" matTooltipPosition="right">
 
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -742,7 +742,7 @@
               </svg>
 
 
-              <div *ngIf="checkRole()" class="edit-photo d-flex align-items-center tour-cover-photo">
+              <div [class.club_view_only]="!checkRole()" class="edit-photo d-flex align-items-center tour-cover-photo">
                 <div class="edit_image-2 edit_image-tour" matTooltip="{{'editCoverImage' | translate}}"
                   matTooltipPosition="right">
                   <label for="file-upload" class="cursor-pointer ">

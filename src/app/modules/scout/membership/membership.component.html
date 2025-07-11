@@ -7,7 +7,7 @@
           <div class="d-flex align-items-end justify-content-between w-100 mt-2">
             <h2 class="card-title mb-0 me-3">{{'subscriptionPlans' | translate}}</h2>
             <div>
-              <button class="payments-btn" (click)="openCustomerPortal()">{{'managePaymentBtnTxt' | translate}}</button>
+              <button class="payments-btn" [class.club_view_only]="!checkRole()" (click)="openCustomerPortal()">{{'managePaymentBtnTxt' | translate}}</button>
             </div>
           </div>
         </div>
@@ -29,7 +29,7 @@
               <div class="d-flex align-items-center justify-content-between mt-4 mob_wrap">
                 <a class="premium-edit_btn text-white" href="/scout/plans">{{'editPlan' | translate}}</a>
                 <button class="premium-subscription_btn" [disabled]="premium.stripe_cancel_at != null"
-                  (click)="confirmAndCancelSubscription(premium.id)">
+                  (click)="confirmAndCancelSubscription(premium.id)" [class.club_view_only]="!checkRole()">
                   <div *ngIf="premium.stripe_cancel_at == null">{{ 'cancelSubscription' | translate }}</div>
                   <div *ngIf="premium.stripe_cancel_at != null" routerLink="/scout/plans">{{ 'renewSubscription' |
                     translate }}</div>
@@ -59,7 +59,7 @@
               <div class="d-flex align-items-center justify-content-between mt-4 mob_wrap">
                 <a class="premium-edit_btn text-white" href="/talent/plans">{{'editPlan' | translate}}</a>
                 <button class="premium-subscription_btn" [disabled]="demo.stripe_cancel_at != null"
-                  (click)="confirmAndCancelSubscription(demo.id)">
+                  (click)="confirmAndCancelSubscription(demo.id)" [class.club_view_only]="!checkRole()">
                   <div *ngIf="demo.stripe_cancel_at == null">{{ 'cancelSubscription' | translate }}</div>
                   <div *ngIf="demo.stripe_cancel_at != null">{{ 'renewSubscription' | translate }}</div>
                 </button>
@@ -85,7 +85,7 @@
                 date: 'dd.MM.yyyy' }}</p>
               <div class="d-flex align-items-center justify-content-between mt-4 mob_wrap">
                 <a class="premium-edit_btn text-white" href="/scout/plans">{{ 'editPlan' | translate }}</a>
-                <button class="premium-subscription_btn" (click)="confirmCountryPlanCancellation(country)">
+                <button class="premium-subscription_btn" (click)="confirmCountryPlanCancellation(country)" [class.club_view_only]="!checkRole()">
                   {{ 'cancelSubscription' | translate }}
                 </button>
               </div>
@@ -113,7 +113,7 @@
                 <a class="premium-edit_btn text-white cursor-pointer" (click)="editBooster(booster)">{{'editPlan' |
                   translate}}</a>
                 <button class="premium-subscription_btn" [disabled]="booster.stripe_cancel_at != null"
-                  (click)="confirmAndCancelSubscription(booster.id)">
+                  (click)="confirmAndCancelSubscription(booster.id)" [class.club_view_only]="!checkRole()">
                   <div *ngIf="booster.stripe_cancel_at == null">{{ 'cancelSubscription' | translate }}</div>
                   <div *ngIf="booster.stripe_cancel_at != null">{{ 'renewSubscription' | translate }}</div>
                 </button>
