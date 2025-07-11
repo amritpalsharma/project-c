@@ -9,16 +9,20 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { ClubService } from '../../../../services/club.service';
 import { SocketService } from '../../../../services/socket.service';
 import { ToastrService } from 'ngx-toastr';
+import { DatePipe } from '@angular/common';
 declare var flatpickr: any;
 
 @Component({
   selector: 'app-create-sight-popup',
   templateUrl: './create-sight-popup.component.html',
-  styleUrls: ['./create-sight-popup.component.scss']
+  styleUrls: ['./create-sight-popup.component.scss'],
+  providers: [DatePipe]
 })
 export class CreateSightPopupComponent implements AfterViewInit {
   @ViewChild('dateInput', { static: true }) dateInput!: ElementRef;
   pickerInstance: any;
+
+  @ViewChild('dateInput2', { static: true }) dateInput2!: ElementRef;
 
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   readonly announcer = inject(LiveAnnouncer);
@@ -46,7 +50,7 @@ export class CreateSightPopupComponent implements AfterViewInit {
   }];
   isLoading: boolean = false;
   status: boolean = true;
-  
+
 
   uploadedBannerImage: boolean = false;
   bannerImageName: string = '';
@@ -227,7 +231,7 @@ export class CreateSightPopupComponent implements AfterViewInit {
     });
   }
 
-  removeFile(index: any){
+  removeFile(index: any) {
     if (this.attachmentRows.length > 0) {
       this.attachmentRows[index].file = '';
     }
@@ -373,9 +377,9 @@ export class CreateSightPopupComponent implements AfterViewInit {
           this.isLoading = false;
         } else {
           if (response.data.errors && response.data.errors != '' && response.data.errors != undefined) {
-            if(response.data.file_errors && this.uploadedBannerImage){
+            if (response.data.file_errors && this.uploadedBannerImage) {
               this.toaster.error(response.data.file_errors);
-            }else{
+            } else {
               this.toaster.error(response.data.errors);
             }
           } else {
@@ -531,6 +535,15 @@ export class CreateSightPopupComponent implements AfterViewInit {
 
       this.onBannerFileChange(fakeEvent);
     }
+  }
+
+
+  onDateInput(): void {
+    let value = this.date.replace(/[^\d]/g, '').slice(0, 8); // Only digits, limit to 8 digits for DDMMYYYY
+    if (value.length >= 2) value = value.slice(0, 2) + '.' + value.slice(2);
+    if (value.length >= 5) value = value.slice(0, 5) + '.' + value.slice(5);
+    if (value.length > 10) value = value.slice(0, 10);
+    this.date = value;
   }
 
 

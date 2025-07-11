@@ -29,7 +29,7 @@
         <div class="overflow-card">
           <!-- In the team since -->
           <div class="row">
-            <div class="form-group col-lg-4">
+            <!-- <div class="form-group col-lg-4">
               <label for="teamSince" class="form-label">{{'inTheTeamSince' | translate}}</label>
               <div class="d-flex align-items-center justify-content-center position-relative date_field">
                 <input matInput id="teamSince" name="in_team_since" [matDatepicker]="dp" [formControl]="in_team_since"
@@ -37,14 +37,14 @@
                 <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
                 <mat-datepicker #dp></mat-datepicker>
               </div>
-            </div>
+            </div> -->
 
             <!-- Top speed -->
             <div class="form-group speed_inputs col-lg-4 d-flex align-items-center">
               <div class="col-lg-12 mobile-input">
                 <label for="topSpeed" class="form-label">{{'topSpeed' | translate}}(km/h)</label>
                 <input type="text" class="form-control" id="topSpeed" name="top_speed"
-                  placeholder="{{'enterValue' | translate}}" [(ngModel)]="top_speed" />
+                  placeholder="{{'enterValue' | translate}}" [(ngModel)]="top_speed" (keypress)="onKeyPress($event)"/>
               </div>
             </div>
 
@@ -69,7 +69,7 @@
               <div class="d-flex market_input-gap align-items-center">
                 <div class="col-lg-12 mobile-input">
                   <label for="marketValue" class="form-label">{{'marketValue' | translate}}({{domainCurrency}})</label>
-                  <input type="text" class="form-control" id="marketValue" name="market_value"
+                  <input type="text" class="form-control" id="marketValue" name="market_value" (keypress)="onKeyPress($event)"
                     [placeholder]="market_value ? numberFormatStyle(market_value) : ('enterValue' | translate)" [(ngModel)]="market_value" />
                 </div>
               </div>

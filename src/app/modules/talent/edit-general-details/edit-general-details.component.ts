@@ -97,7 +97,7 @@ export class EditGeneralDetailsComponent {
     this.currency = this.user?.currency || '';
     this.international_player = this.user?.meta.international_player;
     this.last_change.setValue(this.user.meta.last_change ? new Date(this.user.meta.last_change) : null);
-    this.market_value = this.user?.meta.market_value || 0;
+    this.market_value = this.user?.meta.market_value || '';
     this.social_facebook = this.user?.meta.sm_facebook || '';
     this.social_instagram = this.user?.meta.sm_instagram || '';
     this.social_tiktok = this.user?.meta.sm_tiktok || '';
@@ -106,7 +106,7 @@ export class EditGeneralDetailsComponent {
     this.social_youtube = this.user?.meta.sm_youtube || '';
     this.social_linkedin = this.user?.meta.sm_linkedin || '';
     this.speed_unit = this.user?.meta.top_speed_unit || '';
-    this.top_speed = this.user?.meta.top_speed || 0;
+    this.top_speed = this.user?.meta.top_speed || '';
 
 
     this.getJsonTranslations();
@@ -316,6 +316,15 @@ export class EditGeneralDetailsComponent {
       return currencySymbol + ' ' + modifiedAmount;
     } else {
       return '';
+    }
+  }
+
+
+
+  onKeyPress(event: KeyboardEvent) {
+    const charCode = event.charCode;
+    if (charCode < 48 || charCode > 57) {
+      event.preventDefault(); // Prevent non-numeric characters
     }
   }
 }

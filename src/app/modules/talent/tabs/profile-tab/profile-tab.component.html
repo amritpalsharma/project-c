@@ -166,7 +166,8 @@
     <div class="d-flex justify-content-between mt-4 details_info">
         <div class="general_details">
             <h6 class="details_2">{{ 'inTheTeamSince' | translate}}</h6>
-            <h5 class="details-1">{{user?.meta?.in_team_since | date:'dd.MM.yyyy' }}</h5>
+            <!-- <h5 class="details-1">{{user?.meta?.in_team_since | date:'dd.MM.yyyy' }}</h5> -->
+            <h5 class="details-1">{{user?.meta?.contract_start | date:'dd.MM.yyyy' }}</h5>
         </div>
         <div class="general_details">
             <h6 class="details_2"> {{ 'topSpeed' | translate}}</h6>
