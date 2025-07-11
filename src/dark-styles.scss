@@ -2366,7 +2366,17 @@ input:checked+.slider:before {
 }
 
 .dark-theme .choose-plan-btn {
-  background: rgba(23, 91, 7, 1);
+    background: rgb(7 41 68) !important;
+    color: #bde34f !important;
+}
+
+.dark-theme {
+  .subscription-switch input[type=checkbox]:checked {
+    background: #bde34f !important;
+    &:before {
+        background: #0c3453 !important;
+    }
+}
 }
 
 .dark-theme .premium_list label input:checked~.checkmark {
