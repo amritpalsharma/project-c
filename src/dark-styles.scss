@@ -352,7 +352,7 @@ legend.w-auto.px-2 {
   border: 1px solid #D9D9D9;
   font-size: 14px;
   color: #787878;
-  font-weight: 400;
+  font-weight: 600;
   display: flex;
   align-items: center;
   border-radius: 5px !important;
@@ -2773,6 +2773,7 @@ input:checked+.slider:before {
   .popup_footer .Launch {
     background: #BDE34F;
     color: #072944;
+    font-weight: 600;
   }
 
   .edit-multi-country-plan .actions, .boost-profile.boost-profile_popup .actions {

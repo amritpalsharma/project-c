@@ -1,8 +1,8 @@
 <ng-container>
     <div class="p-0 code-parent">
         <div class="popup_header p-3">
-            <h6 class=" code-text text-left" *ngIf="data.action == 'add'">{{ 'addTeamMember' | translate }}</h6>
-            <h6 class=" code-text text-left" *ngIf="data.action == 'edit'">{{ 'editTeamMember' | translate }}</h6>
+            <h4 class="title-text text-left" *ngIf="data.action == 'add'">{{ 'addTeamMember' | translate }}</h4>
+            <h4 class="title-text text-left" *ngIf="data.action == 'edit'">{{ 'editTeamMember' | translate }}</h4>
             <div (click)="close()" class="close-img mb-1">
                 <img *ngIf="theme != 'dark'" src="../../../assets/images/carbon_close-outline-light.svg" alt="" class="" />
                 <img *ngIf="theme == 'dark'" src="../../../assets/images/carbon_close-outline.svg" alt="" class="" />

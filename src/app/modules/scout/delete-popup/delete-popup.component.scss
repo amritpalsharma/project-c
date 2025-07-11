@@ -16,7 +16,7 @@
   min-width: 180px;
   text-align: center;
   font-size: 15px;
-  font-weight: 700;
+  font-weight: 600;
   border: 0;
   outline: none;    
   white-space: nowrap;
@@ -28,11 +28,18 @@
 }
 .btn_cancell {
   color: #fff;
-  background-color: rgb(249, 60, 101);
+  background-color: #FD5454;
 }
 
 .popup-delete-btn{
   color: #FD5454;
   margin-top:20px;
   cursor: pointer;
+}
+
+::ng-deep .dark-theme {
+.btn_confirmm {
+  color: #0c3453;
+  background-color: #bde34f;
+}
 }

@@ -1,6 +1,6 @@
 <!-- unlock page -->
 <div class="unlock_page" *ngIf="!isPremium">
-  <div class="table-responsive px-sm-3 bg-0C3453">
+  <div class="table-responsive px-sm-3 bg-0C3453 table_padd_noscroll">
     <div class="new_performance"></div>
     <hr>
     <div class="transfer_box row ">
@@ -107,7 +107,7 @@
   </div>
 </div>
 <app-loader *ngIf="isLoading && isPremium" style="width: 100%;"></app-loader>
-<div class="table-responsive bg-0C3453" *ngIf="isPremium && !isLoading">
+<div class="table-responsive table_padd_noscroll bg-0C3453" *ngIf="isPremium && !isLoading">
   <div class="transfer_box row " *ngFor="let transfer of userTransfers">
     <div class="col-lg-3 box-transfer">
       <div class="col-lg-12 col-md-6 col-sm-6 col-12 d-flex align-items-center gap-3">
