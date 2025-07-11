@@ -124,7 +124,7 @@ span.social_heddig {
 .save-btn {
   padding: 10px 15px;
   border: none;
-  border-radius: 4px;
+  border-radius: 10px;
   cursor: pointer;
 }
 
@@ -265,5 +265,13 @@ mat-datepicker-toggle {
 @media (min-width:1600px) {
   .form-group {
     padding: 0px 18px;
+  }
+}
+
+
+::ng-deep .dark-theme {
+  .save-btn {
+    color: #072944 !important;
+    background: #bde34f !important;
   }
 }

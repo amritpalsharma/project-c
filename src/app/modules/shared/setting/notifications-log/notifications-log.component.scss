@@ -72,7 +72,7 @@
   }
   .btn {
     font-size: 16px;
-    font-weight: 700;
+    font-weight: 600;
     border-radius: 10px;
     padding: 15px 20px;
     min-width: 120px;
@@ -411,13 +411,21 @@ table td, table th {
 
 
 .btn_confirmm {
-    color: #0c3453;
-    background-color: #bde34f;
+    color: #fff;
+    background-color: #6fb95d;
 }
 
 .btn_cancell {
   color: #fff;
   background-color: rgb(249, 60, 101);
+}
+
+
+::ng-deep .dark-theme {
+.btn_confirmm {
+    color: #0c3453 !important;
+    background-color: #bde34f !important;
+}
 }
 
 

@@ -234,7 +234,7 @@
 }
 .puse-btn{
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 600;
   color: #FD5454;
   padding: 12px 40px;
   border: none;
@@ -245,7 +245,7 @@
   border-radius: 10px;
   color: #fff;
   font-size: 16px;
-  font-weight: 800;
+  font-weight: 600;
 }
 // .stats{
 //   margin-top: 70px;
@@ -665,4 +665,11 @@ button:focus-visible{
 
 .buy-button p {
   font-size: 12px !important;
+}
+
+::ng-deep .dark-theme {
+  .save_button {
+    background: rgb(7, 41, 68) !important;
+    color: #bde34f !important;
+  }
 }
