@@ -1465,7 +1465,7 @@
   "404PageNotFound": "Página não encontrada",
   "addNewFemalePlayer": "Adicionar nova jogadora",
   "crop": "Cortar",
-  "coverImageDelete" : "Tens a certeza de que queres apagar a tua imagem de capa?",
+  "coverImageDelete": "Tens a certeza de que queres apagar a tua imagem de capa?",
   "noPortfolioRecordFound": "Ainda não foram adicionados talentos ao portfólio.",
   "withoutCurrentClub": "sem clube",
   "scoutingInformation2": "Informações de observação",
@@ -1476,5 +1476,6 @@
   "newsHeading": "Fica a par de tudo: Aqui encontras as últimas notícias, reportagens e novidades sobre o SoccerYou.",
   "editSighting": "Editar avistamento",
   "participatingTalents": "Talentos participantes",
-  "untilToday": "até hoje"
+  "untilToday": "até hoje",
+  "failedTxt": "Falhou"
 }

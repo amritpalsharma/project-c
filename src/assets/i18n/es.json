@@ -1456,7 +1456,7 @@
   "404PageNotFound": "Página no encontrada",
   "addNewFemalePlayer": "Añadir nueva jugadora",
   "crop": "Recortar",
-  "coverImageDelete" : "¿Estás seguro de que quieres eliminar tu imagen de portada?",
+  "coverImageDelete": "¿Estás seguro de que quieres eliminar tu imagen de portada?",
   "noPortfolioRecordFound": "Aún no se han añadido talentos al portafolio.",
   "withoutCurrentClub": "sin club",
   "scoutingInformation2": "Datos de visoria",
@@ -1467,5 +1467,6 @@
   "newsHeading": "Mantente al día: Aquí encontrarás las últimas noticias, artículos en medios y novedades sobre SoccerYou.",
   "editSighting": "Editar avistamiento",
   "participatingTalents": "Talentos participantes",
-  "untilToday": "hasta hoy"
+  "untilToday": "hasta hoy",
+  "failedTxt": "Misslyckades"
 }

@@ -1433,5 +1433,6 @@
   "editSighting": "Edit scouting session",
   "blogDelete": "Are you sure you want to delete the blog post?",
   "participatingTalents": "Participating Talents",
-  "untilToday": "until today"
+  "untilToday": "until today",
+  "failedTxt":"Failed"
 }

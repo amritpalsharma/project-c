@@ -1506,7 +1506,7 @@
   "404PageNotFound": "Sidan kunde inte hittas",
   "addNewFemalePlayer": "Lägg till ny spelare (kvinna)",
   "crop": "Beskär",
-  "coverImageDelete" : "Är du säker på att du vill ta bort ditt omslagsbild?",
+  "coverImageDelete": "Är du säker på att du vill ta bort ditt omslagsbild?",
   "noPortfolioRecordFound": "Inga talanger har lagts till i portföljen ännu.",
   "withoutCurrentClub": "utan klubb",
   "scoutingInformation2": "Scoutinguppgifter",
@@ -1517,5 +1517,6 @@
   "newsHeading": "Håll dig uppdaterad: Här hittar du de senaste nyheterna, medierapporterna och spännande uppdateringar om SoccerYou.",
   "editSighting": "Redigera scouting-session",
   "participatingTalents": "Deltagande talanger",
-  "untilToday": "fram till idag"
+  "untilToday": "fram till idag",
+  "failedTxt": "Misslyckades"
 }

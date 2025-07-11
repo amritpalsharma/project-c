@@ -1511,10 +1511,10 @@
   "men": "Männer",
   "women": "Frauen",
   "withoutClub": "Aktuell vereinslos und motiviert, durchzustarten!",
-  "404PageNotFound":"Seite nicht gefunden",
+  "404PageNotFound": "Seite nicht gefunden",
   "addNewFemalePlayer": "Neue Spielerin hinzufügen",
   "crop": "Zuschneiden",
-  "coverImageDelete" : "Bist du sicher, dass du dein Titelbild löschen möchtest?",
+  "coverImageDelete": "Bist du sicher, dass du dein Titelbild löschen möchtest?",
   "noPortfolioRecordFound": "Bisher sind keine Talente dem Portfolio hinzugefügt.",
   "withoutCurrentClub": "vereinslos",
   "scoutingInformation2": "Sichtungs-Informationen",
@@ -1526,5 +1526,6 @@
   "editSighting": "Sichtung bearbeiten",
   "blogDelete": "Bist du sicher, dass du den Blogbeitrag löschen möchtest?",
   "participatingTalents": "Teilnehmende Talente",
-  "untilToday": "bis heute"
+  "untilToday": "bis heute",
+  "failedTxt": "Fehlgeschlagen"
 }

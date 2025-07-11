@@ -1501,11 +1501,11 @@
   "premiumPlanForTalent": "Per Talenti",
   "men": "Uomini",
   "women": "Donne",
-  "withoutClub" :"Attualmente senza squadra e motivato a ripartire con entusiasmo!",
-  "404PageNotFound":"Pagina non trovata",
+  "withoutClub": "Attualmente senza squadra e motivato a ripartire con entusiasmo!",
+  "404PageNotFound": "Pagina non trovata",
   "addNewFemalePlayer": "Aggiungi nuova giocatrice",
   "crop": "Ritaglia",
-  "coverImageDelete" : "Sei sicuro di voler eliminare la tua immagine di copertina?",
+  "coverImageDelete": "Sei sicuro di voler eliminare la tua immagine di copertina?",
   "noPortfolioRecordFound": "Nessun talento è stato ancora aggiunto al portfolio.",
   "withoutCurrentClub": "senza club",
   "scoutingInformation2": "Dati di scouting",
@@ -1516,5 +1516,6 @@
   "newsHeading": "Rimani aggiornato: Qui trovi le ultime notizie, articoli e aggiornamenti su SoccerYou.",
   "editSighting": "Modifica sessione di osservazione",
   "participatingTalents": "Talenti partecipanti",
-  "untilToday": "fino ad oggi"
+  "untilToday": "fino ad oggi",
+  "failedTxt": "Fallita"
 }
