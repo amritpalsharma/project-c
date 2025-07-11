@@ -97,7 +97,8 @@
               <tr class="mat-row user-empty-tr" *matNoDataRow>
                 <td [attr.colspan]="displayedColumns.length" class="user-empty-td">
                   <app-loader *ngIf="isLoading"></app-loader>
-                  <div *ngIf="scoutPlayers.length == 0 && !isLoading" style="text-align: center;">{{ 'noPortfolioRecordFound' |
+                  <div *ngIf="scoutPlayers.length == 0 && !isLoading" style="text-align: center;">{{
+                    'noPortfolioRecordFound' |
                     translate }}</div>
                 </td>
               </tr>
@@ -128,8 +129,13 @@
 <!-- End unlock -->
 <div class="container-fluid portfolio_container bg-0C3453" *ngIf="isPremium">
   <div class="add-talent_btn text-end mb-3">
-    <a id="talent_button" (click)="inviteTalent()" class="btn btn-success btn-sm web-create-bg">{{ 'addNewTalent' |
-      translate }}</a>
+    <a id="talent_button" (click)="inviteTalent()" class="btn btn-success btn-sm web-create-bg dashboard_tabs_add_btn">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="width: 16px;">
+        <path
+          d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z" />
+      </svg>
+      {{ 'addNewTalent' | translate }}
+    </a>
   </div>
   <div class="row">
     <div class="col">
@@ -223,7 +229,8 @@
             <tr class="mat-row user-empty-tr" *matNoDataRow>
               <td [attr.colspan]="displayedColumns.length" class="user-empty-td">
                 <app-loader *ngIf="isLoading"></app-loader>
-                <div *ngIf="scoutPlayers.length == 0 && !isLoading" style="text-align: center;">{{ 'noPortfolioRecordFound' |
+                <div *ngIf="scoutPlayers.length == 0 && !isLoading" style="text-align: center;">{{
+                  'noPortfolioRecordFound' |
                   translate }}</div>
               </td>
             </tr>

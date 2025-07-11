@@ -354,7 +354,12 @@ export class TalentService {
   uploadGalleryImages(formdata: any): Observable<any> {
     const headers = this.headers();
     let currentLang = localStorage.getItem('lang_id');
-    return this.http.post<any>(`${this.apiUrl}user/upload-gallery-image/${currentLang}/`, formdata, { headers });
+    return this.http.post<any>(`${this.apiUrl}user/upload-gallery-image/${currentLang}/`, formdata,
+      {
+        headers,
+        reportProgress: true,
+        observe: 'events'
+      });
   }
 
   deleteGalleryImage(params: any): Observable<any> {
@@ -941,13 +946,13 @@ export class TalentService {
   }
 
   //https://api.socceryou.ch/api/player/check-sighting-invite-response
-  
+
   getSightEventStatus(event_id: any): Observable<any> {
     const headers = this.headers();
     let params = new HttpParams();
     params = params.append('event_id', event_id);
-    
-    
+
+
     return this.http.post(`${this.apiUrl}player/check-sighting-invite-response`, params, {
       headers // Specify response type for downloading files
     });

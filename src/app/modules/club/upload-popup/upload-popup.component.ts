@@ -1,4 +1,7 @@
 import { Component, Inject } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { HttpEvent, HttpEventType } from '@angular/common/http';
+
 import {
   MatDialogRef, MAT_DIALOG_DATA,
   MatDialog
@@ -21,7 +24,7 @@ export class UploadPopupComponent {
   userId: any = '';
   uploadedFiles: any = [];
   uploadResponse: any = [];
-  constructor(private scoutService: ScoutService, private toastr: ToastrService, public dialog: MatDialog, public dialogRef: MatDialogRef<UploadPopupComponent>,
+  constructor(private scoutService: ScoutService, private translateService: TranslateService, private toastr: ToastrService, public dialog: MatDialog, public dialogRef: MatDialogRef<UploadPopupComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
     this.userId = data.userId;
   }
@@ -97,41 +100,110 @@ export class UploadPopupComponent {
     });
   }
 
+  uploadProgress: any;
+
   uploadImages(files: any) {
     this.isLoading = true;
-    const formdata = new FormData();
+    this.uploadProgress = 0;
 
-    for (let i = 0; i < files.length; i++) {
-      formdata.append("gallery_images[]", files[i]);
-    }
-
-    console.log('formdata')
-    console.log(formdata)
-
-    this.scoutService.uploadGalleryImages(formdata).subscribe((response) => {
-      console.log(response)
-      response.forEach((row: any) => {
-        console.log(row);
-        this.uploadResponse.push(row.message)
-        if (row.status) {
-          this.uploadedFiles.push({ id: row.data.id, file_name: row.data.uploaded_file });
-        } else {
-          this.toastr.error(row.message);
-          this.files = [];
-        }
-
+    this.translateService.get(['pleaseWait', 'uploadFiles']).subscribe((translations) => {
+      const loadingToast = this.toastr.info(`${translations['pleaseWait']}`, translations['uploadFiles'], {
+        disableTimeOut: true,
       });
 
-      if (response[0].status) {
-        this.isLoading = false;
-        this.showMatDialog(response[0].message, 'display');
-        this.dialogRef.close({
-          files: this.uploadedFiles
-        });
-      } else {
-        this.files = [];
-        this.isLoading = false;
+      const formdata = new FormData();
+      for (let i = 0; i < files.length; i++) {
+        formdata.append("gallery_images[]", files[i]);
       }
+
+      this.scoutService.uploadGalleryImages(formdata).subscribe({
+        next: (event: HttpEvent<any>) => {
+          if (event.type === HttpEventType.UploadProgress && event.total) {
+            this.uploadProgress = Math.round((100 * event.loaded) / event.total);
+            // this.toastr.update(loadingToast.toastId, `${translations['pleaseWait']} (${this.uploadProgress}%)`, translations['uploadFiles']);
+          }
+
+          if (event.type === HttpEventType.Response) {
+            const response = event.body;
+
+            response.forEach((row: any) => {
+              if (row.status) {
+                this.toastr.clear(loadingToast.toastId);
+                this.uploadedFiles.push({ id: row.data.id, file_name: row.data.uploaded_file });
+              } else {
+                this.files = [];
+                this.toastr.clear(loadingToast.toastId);
+                this.toastr.error(row.message);
+              }
+            });
+
+            if (response[0].status) {
+              this.isLoading = false;
+              this.showMatDialog(response[0].message, 'display');
+              this.dialogRef.close({
+                files: this.uploadedFiles
+              });
+            } else {
+              this.files = [];
+              this.isLoading = false;
+            }
+          }
+        },
+        error: (err) => {
+          this.toastr.clear(loadingToast.toastId);
+          this.toastr.error('Upload failed');
+          this.isLoading = false;
+        }
+      });
+    });
+  }
+
+  uploadImages54(files: any) {
+    this.isLoading = true;
+    this.translateService.get([
+      'pleaseWait',
+      'uploadFiles',
+    ]).subscribe((translations) => {
+      const loadingToast = this.toastr.info(translations['pleaseWait'], translations['uploadFiles'], {
+        disableTimeOut: true, // Keep the toaster open until manually cleared
+      });
+
+      const formdata = new FormData();
+
+      for (let i = 0; i < files.length; i++) {
+        formdata.append("gallery_images[]", files[i]);
+      }
+
+      console.log('formdata')
+      console.log(formdata)
+
+      this.scoutService.uploadGalleryImages(formdata).subscribe((response) => {
+        console.log(response)
+        response.forEach((row: any) => {
+          console.log(row);
+
+          if (row.status) {
+            this.toastr.clear(loadingToast.toastId);
+            this.uploadedFiles.push({ id: row.data.id, file_name: row.data.uploaded_file });
+          } else {
+            this.files = [];
+            this.toastr.clear(loadingToast.toastId);
+            this.toastr.error(row.message);
+          }
+
+        });
+
+        if (response[0].status) {
+          this.isLoading = false;
+          this.showMatDialog(response[0].message, 'display');
+          this.dialogRef.close({
+            files: this.uploadedFiles
+          });
+        } else {
+          this.files = [];
+          this.isLoading = false;
+        }
+      });
     });
   }
 
