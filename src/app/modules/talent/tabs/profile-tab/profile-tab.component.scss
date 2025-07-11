@@ -543,6 +543,9 @@
   .details-1 {
     font-size: 20px;
   }
+  .edit_button button {
+    min-width: 140px;
+  }
 }
 
 @media (min-width: 3000px) {
@@ -558,6 +561,17 @@
   }
   .details-1 {
     font-size: 28px;
+  }
+  .edit_button button {
+    min-width: 180px;
+  }
+}
+
+
+
+@media (min-width: 992px) and (max-width: 1599.98px) {
+  .edit_button button {
+    min-width: 120px;
   }
 }
 
