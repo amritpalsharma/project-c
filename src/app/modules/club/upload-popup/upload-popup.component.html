@@ -27,6 +27,11 @@
 
         <div *ngIf="isLoading" class="upload-box">
             {{'pleaseWait' | translate}}
+
+            <div class="progress-container">
+                <div class="progress-bar" [style.width.%]="uploadProgress">{{uploadProgress}}%</div>
+            </div>
+
         </div>
     </div>
 </div>

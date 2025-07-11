@@ -495,7 +495,7 @@ export class ScoutService {
   updateUserProfile(formData: FormData): Observable<any> {
     const headers = this.headers();
 
-    console.warn('formData',formData);
+    console.warn('formData', formData);
 
     return this.http.post(`${this.apiUrl}user/update-profile`, formData, { headers });
   }
@@ -558,10 +558,15 @@ export class ScoutService {
     return this.http.post<any>(`${this.apiUrl}user/upload-profile-image/${lang_id}`, formdata, { headers });
   }
 
-  uploadGalleryImages(formdata: any): Observable<any> { 
+  uploadGalleryImages(formdata: any): Observable<any> {
     const headers = this.headers();
     let lang_id = localStorage.getItem('lang_id');
-    return this.http.post<any>(`${this.apiUrl}user/upload-gallery-image/${lang_id}`, formdata, { headers });
+    return this.http.post<any>(`${this.apiUrl}user/upload-gallery-image/${lang_id}`, formdata,
+      {
+        headers,
+        reportProgress: true,
+        observe: 'events'
+      });
   }
 
   deleteGalleryImage(params: any): Observable<any> {
@@ -675,7 +680,7 @@ export class ScoutService {
       params = params.append('id[]', id);  // Append each ID to the 'ids[]' query param
     });
 
-    if(unset_all){
+    if (unset_all) {
       params = params.append('unset_all', true);
     }
 
@@ -815,7 +820,7 @@ export class ScoutService {
     return this.http.post<any>(`${this.apiUrl}scout/add-representator`, params, { headers });
   }
 
-  updateRepresentatorRole(id: any, params: any, langId:any): Observable<any> {
+  updateRepresentatorRole(id: any, params: any, langId: any): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });

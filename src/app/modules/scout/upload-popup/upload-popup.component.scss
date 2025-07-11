@@ -56,3 +56,22 @@ font-weight: 600;
 ::ng-deep .dark-theme .upload-box{
   color:#ffffff !important;
 }
+
+
+
+.progress-container {
+  height: 18px;
+  background: #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #4caf50;
+  width: 0%;
+  transition: width 0.3s ease-in-out;
+  font-size: 14px;
+  color: #ffffff;
+}

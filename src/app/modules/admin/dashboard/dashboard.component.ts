@@ -579,6 +579,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             intersect: false,
             backgroundColor: '#E05263',
             titleColor: '#fff',
+            bodyColor: '#fff',            
             titleFont: { family: 'Poppins', size: 20, weight: 800 },
             callbacks: {
               label: (tooltipItem: any) => {
@@ -637,6 +638,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         if (chart.options.plugins.tooltip) {
           // console.warn('isDarkMode',isDarkMode)
           chart.options.plugins.tooltip.backgroundColor = isDarkMode ? '#BDE34F' : '#E05263';
+          chart.options.plugins.tooltip.titleColor = isDarkMode ? '#072944' : '#fff';
+          chart.options.plugins.tooltip.bodyColor = isDarkMode ? '#072944' : '#fff';
         }
         // chart.options.backgroundColor = isDarkMode ? '#BDE34F' : '#FFFFFF';
         chart.options.backgroundColor = isDarkMode ? '#BDE34F' : 'red';
