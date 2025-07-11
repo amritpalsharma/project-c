@@ -2775,7 +2775,7 @@ input:checked+.slider:before {
     color: #072944;
   }
 
-  .edit-multi-country-plan .actions {
+  .edit-multi-country-plan .actions, .boost-profile.boost-profile_popup .actions {
     .buy-btn {
       background: #bde34e !important;
       color: #072944 !important;
@@ -2988,6 +2988,13 @@ input:checked+.slider:before {
   .border_color_light {
     border-top: 1px solid #204a6b !important;
     border-bottom: 1px solid #204a6b !important;
+  }
+  .unlock_page .unlock_btn {
+    background: #bde34f !important;
+    color: #0c3453 !important;
+    svg path {
+      fill: #0c3453 !important;
+    }
   }
 }
 

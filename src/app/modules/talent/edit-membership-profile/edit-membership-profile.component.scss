@@ -601,3 +601,12 @@ button:focus-visible{
 .total-bg span svg {
     margin-right: 10px;
 }
+
+::ng-deep .dark-theme {
+  .totle-view svg path{
+    fill: #BDE34F !important;
+  }
+  .total_clicks svg path {
+    stroke: #BDE34F !important;
+  }
+}
