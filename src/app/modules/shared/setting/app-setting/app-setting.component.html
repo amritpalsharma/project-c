@@ -18,7 +18,7 @@
       <label for="newsletter" class="mb-0"><b>{{'newsLetter' | translate}}</b></label>
       <label class="switch">
         <input type="checkbox"  *ngIf="checkRole()" id="newsletter" name="newsletter" [checked]="loggedInUser.newsletter == 1"
-          (change)="onNewsletterToggle($event)" class="news_latter_btn {{currentLoggedInPermission}}">
+          (change)="onNewsletterToggle($event)" class="news_latter_btn {{currentLoggedInPermission}} add_btn_{{currentLoggedInPermission}}">
         <span  *ngIf="checkRole()" class="slider round"></span>
       </label>
     </div>
@@ -33,7 +33,7 @@
     </div>
     <div class="acount_del-item d-flex align-items-center justify-content-between flex-wrap">
       <p>{{ 'deleteAccountDesc' | translate}}</p>
-      <button *ngIf="checkRole()" id="DeleteAccount" type="button" class="button acount_delete_btn {{currentLoggedInPermission}}" (click)="confirmDeleteProfile(1)">{{'deleteMyAccount' | translate}}</button>
+      <button *ngIf="checkRole()" id="DeleteAccount" type="button" class="button acount_delete_btn {{currentLoggedInPermission}} delete_btn_{{currentLoggedInPermission}}" (click)="confirmDeleteProfile(1)">{{'deleteMyAccount' | translate}}</button>
     </div>
   </div>
 </div>

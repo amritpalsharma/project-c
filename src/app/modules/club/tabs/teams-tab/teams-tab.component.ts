@@ -125,9 +125,9 @@ export class TeamsTabComponent {
     this.router.navigate([`view/talent/${elementId}`]);
   }
   addPlayer() {
-    if (!this.hasPermissionToAdd()) {
-      return; // If no permission, exit early
-    }
+    // if (!this.hasPermissionToAdd()) {
+    //   return; // If no permission, exit early
+    // }
     const messageDialog = this.dialog.open(AddNewTalentComponent, {
       width: '800px',
       panelClass: 'club_add_team_popup',

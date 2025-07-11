@@ -7,7 +7,7 @@
           <div class="d-flex align-items-end justify-content-between w-100 mt-2">
             <h2 class="card-title mb-0 me-3">{{'subscriptionPlans' | translate}}</h2>
             <div class="common">
-              <button class="payments-btn {{currentLoggedInPermission}}" *ngIf="userPurchases"
+              <button class="payments-btn {{currentLoggedInPermission}} add_btn_{{currentLoggedInPermission}}" *ngIf="userPurchases"
                 (click)="openCustomerPortal()">{{'managePaymentBtnTxt' | translate}}</button>
               <!-- <p class="managePaymentBtnTxtBelowTxt">{{'managePaymentBtnTxtBelowTxt' | translate}}</p> -->
             </div>
@@ -30,7 +30,7 @@
                 date: 'dd.MM.yyyy' }}</p>
               <div class="d-flex align-items-center justify-content-between mt-4 mob_wrap">
                 <a class="premium-edit_btn text-white" href="/club/plans">{{'editPlan' | translate}}</a>
-                <button class="premium-subscription_btn" [disabled]="premium.stripe_cancel_at != null"
+                <button class="premium-subscription_btn " [disabled]="premium.stripe_cancel_at != null"
                   (click)="confirmAndCancelSubscription(premium.id)">
                   <div *ngIf="premium.stripe_cancel_at != null">{{ 'cancelSubscription' | translate }}</div>
                   <div *ngIf="premium.stripe_cancel_at == null" routerLink="/club/plans">{{ 'renewSubscription' |

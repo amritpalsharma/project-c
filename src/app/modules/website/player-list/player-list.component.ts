@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { GlobalSettingsService } from '../../../services/global-settings.service';
 
 interface Player {
   name: string;
@@ -30,9 +31,9 @@ export class PlayerListComponent implements OnInit {
   profileBaseUrl: string = 'https://api.socceryou.ch/uploads/';
   birthCountryFlags: string = 'https://api.socceryou.ch/uploads/logos/';
   apiDefaultImage: string = '/assets/images/default/dummy-image-soccer.png';
-  flagPath:string='https://api.socceryou.ch/uploads/logos/';
+  flagPath: string = 'https://api.socceryou.ch/uploads/logos/';
   isDefaultImage: string = 'default_img';
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private globalSettings: GlobalSettingsService) { }
 
   players: Player[] = [ /* ... existing player data ... */];
   clubPlayers: Player[] = [ /* ... existing club player data ... */];
@@ -142,9 +143,10 @@ export class PlayerListComponent implements OnInit {
 
     // Calculate offset based on current page and items per page
     const offset = (this.currentPage - 1) * this.itemsPerPage;
-
+    let user_domain = this.globalSettings.getdomainId();
     const params = {
       'whereClause[role]': role,
+      'whereClause[user_domain]': user_domain,
       limit: this.itemsPerPage.toString(),
       offset: offset.toString(), // Dynamic offset
     };

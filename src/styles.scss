@@ -2898,3 +2898,19 @@ img.club_logo_in_search {
   cursor: not-allowed !important;
   /* Show blocked cursor */
 }
+
+.add_btn_club_edit_only {
+  pointer-events: none !important;
+  user-select: none;
+  opacity: 0.6;
+  cursor: not-allowed !important;
+  filter: grayscale(100%);
+}
+
+.delete_btn_club_edit_only {
+  pointer-events: none !important;
+  user-select: none;
+  opacity: 0.6;
+  cursor: not-allowed !important;
+  filter: grayscale(100%);
+}

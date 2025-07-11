@@ -484,6 +484,9 @@ export class MembershipComponent {
           if (response.data.representator_data && response.data.representator_data != '') {
             if (response.data.representator_data.permission == 'admin.view') {
               this.currentLoggedInPermission = 'club_view_only';
+            } 
+            if (response.data.representator_data.permission == 'admin.edit') {
+              this.currentLoggedInPermission = 'club_edit_only';
             }
           }
         }

@@ -9,6 +9,7 @@ import { WebPages } from '../../../../services/webpages.service';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { TalentService } from '../../../../services/talent.service';
 import { GlobalSettingsService } from '../../../../services/global-settings.service';
+import { SharedDataService } from '../../shared-data.service';
 @Component({
   selector: 'app-activity-log',
   templateUrl: './activity-log.component.html',
@@ -34,6 +35,7 @@ export class ActivityLogComponent {
   currentLoggedInPermission: string = this.gloabalSettings.getCurrentViewOnly();
 
   constructor(
+    private sharedDataService: SharedDataService,
     private activityService: ActivityService,
     public dialog: MatDialog,
     public webPages: WebPages,
@@ -41,11 +43,13 @@ export class ActivityLogComponent {
     private talentService: TalentService,
     private gloabalSettings: GlobalSettingsService,
 
-  ) { 
+  ) {
     translate.onLangChange.subscribe(() => {
       this.getActivity()
       this.getJsonTranslations();
     });
+
+    console.info('Activity_currentLoggedInPermission', this.currentLoggedInPermission)
   }
 
   ngOnInit() {
@@ -59,6 +63,11 @@ export class ActivityLogComponent {
       this.translate.get('areYouSuretoDeleteActivity').subscribe((res: string) => {
         this.areYouSuretoDeleteActivity = res;
       });
+    });
+
+
+    this.sharedDataService.sharedText$.subscribe(text => {
+      this.currentLoggedInPermission = text;
     });
     // areYouSuretoDeleteActivity
   }

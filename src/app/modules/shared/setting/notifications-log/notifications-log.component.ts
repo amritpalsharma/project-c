@@ -13,6 +13,7 @@ import { SocketService } from '../../../../services/socket.service';
 import { Router } from '@angular/router';
 import { UnverifiedUserComponent } from '../../unverified-user/unverified-user.component';
 import { GlobalSettingsService } from '../../../../services/global-settings.service';
+import { SharedDataService } from '../../shared-data.service';
 
 interface Notification {
   id: number;
@@ -52,6 +53,7 @@ export class NotificationsLogComponent {
   currentLoggedInPermission: string = this.gloabalSettings.getCurrentViewOnly();
 
   constructor(
+    private sharedDataService: SharedDataService,
     public dialog: MatDialog,
     public webPages: WebPages,
     private talentService: TalentService,
@@ -72,6 +74,11 @@ export class NotificationsLogComponent {
     this.loggedInUser = JSON.parse(this.loggedInUser);
     this.getUserStatus();
     this.fetchNotifications();
+
+
+    this.sharedDataService.sharedText$.subscribe(text => {
+      this.currentLoggedInPermission = text;
+    });
   }
 
   checkRole() {
@@ -333,10 +340,10 @@ export class NotificationsLogComponent {
     return this.talentService.convertTalentDateTime(dateTime);
   }
 
-  getStatus(eventId: any): void{
+  getStatus(eventId: any): void {
     this.talentService.getSightEventStatus(eventId).subscribe(
-      (response)=>{
-        if(response && response.status){
+      (response) => {
+        if (response && response.status) {
           return response.data.status;
         }
       }

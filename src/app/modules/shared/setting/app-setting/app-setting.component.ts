@@ -6,6 +6,7 @@ import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { DeleteProfileComponent } from '../../delete-profile/delete-profile.component';
 import { GlobalSettingsService } from '../../../../services/global-settings.service';
+import { SharedDataService } from '../../shared-data.service';
 
 @Component({
   selector: 'app-app-setting',
@@ -19,6 +20,7 @@ export class AppSettingComponent {
   deleteProfiletranslatedText: string = '';
   langSubscription!: Subscription;
   constructor(
+    private sharedDataService: SharedDataService,
     private gloabalSettings: GlobalSettingsService,
     private talentService: TalentService,
     public dialog: MatDialog,
@@ -30,6 +32,11 @@ export class AppSettingComponent {
     this.updateTranslation();
     this.langSubscription = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
       this.updateTranslation();
+    });
+
+
+    this.sharedDataService.sharedText$.subscribe(text => {
+      this.currentLoggedInPermission = text;
     });
   }
   updateTranslation() {

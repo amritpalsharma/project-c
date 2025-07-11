@@ -35,6 +35,8 @@ import 'moment/locale/sv';
 import 'moment/locale/da';
 // import { ChatComponent } from '../chat/chat.component';
 
+import { SharedDataService } from '../shared-data.service';
+
 interface Notification {
   id: number;
   image: string;
@@ -68,7 +70,9 @@ export class HeaderComponent {
   private readonly _intl = inject(MatDatepickerIntl);
 
 
-  constructor(private userService: UserService,
+  constructor(
+    private userService: UserService,
+    private sharedDataService: SharedDataService,
     private router: Router,
     private route: ActivatedRoute,
     private talentService: TalentService,
@@ -321,6 +325,12 @@ export class HeaderComponent {
 
     this.getUserProfile();
   }
+
+
+  setHeaderData(): void {
+    const someHeaderText = this.currentLoggedInPermission;
+    this.sharedDataService.setSharedText(someHeaderText);
+  }
   displayUserFn(user: any): string {
     // return user ? `${user.first_name} ${user.last_name}` : '';
     return user && user.first_name ? `${user.first_name} ${user.last_name}` : '';
@@ -384,12 +394,21 @@ export class HeaderComponent {
             if (response.data.representator_data.permission == 'admin.view') {
               this.currentLoggedInPermission = 'club_view_only';
               this.globalSettings.setViewOnly(this.currentLoggedInPermission);
-              console.info('Set as  view in Header')
+              // console.info('Set as  view in Header')
             }
             if (response.data.representator_data.permission == 'admin.edit') {
               this.currentLoggedInPermission = 'club_edit_only';
               this.globalSettings.setViewOnly(this.currentLoggedInPermission);
             }
+
+
+            if (response.data.representator_data.permission == 'admin.access') {
+              this.currentLoggedInPermission = 'club_admin';
+              this.globalSettings.setViewOnly(this.currentLoggedInPermission);
+            }
+            // admin.access
+            console.info('Set In Header this.currentLoggedInPermission ', this.currentLoggedInPermission)
+            this.setHeaderData();
           }
         }
       });
@@ -951,5 +970,9 @@ export class HeaderComponent {
         }
       }
     });
+  }
+
+  getCurrentRoleClass(): string {
+    return this.currentLoggedInPermission;
   }
 }
