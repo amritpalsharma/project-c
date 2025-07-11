@@ -11,13 +11,17 @@
     border: none;
   }
 
+  .unlock-view {
+      height: 140px;
+  }
+
   .upgrade_unlock {
     background: rgb(255 255 255 / 65%);
     position: absolute;
-    height: 73%;
-    width: 100%;
-    top: 70px;
-    right: 0;
+    height: calc(100% + 4.35rem);
+    top: 0;
+    width: calc(100% + 2rem);
+    right: -1rem;
     border-radius: 0px 0px 10px 10px;
     text-align: center;
     display: flex;
@@ -35,6 +39,9 @@
 
   .image_gallery-box {
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
   }
 
   .user-details-left {
