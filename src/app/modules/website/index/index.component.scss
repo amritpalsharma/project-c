@@ -316,8 +316,11 @@ a {
   color: #fff;
   margin-right: 10px;
   padding-right: 0;
+  font-family: var(--bs-avenir-regular);
 }
-
+option {
+  font-family: "AvenirNextLTPro-Regular", sans-serif;
+}
 .switch {
   position: relative;
   display: inline-block;
