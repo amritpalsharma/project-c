@@ -1387,5 +1387,9 @@
   "participatingTalents": "Deltagende talenter",
   "untilToday": "jusqu'à aujourd'hui",
   "failedTxt": "Mislykket",
-  "emailVerifiedSuccessfully": "E-mailen er blevet bekræftet."
+  "emailVerifiedSuccessfully": "E-mailen er blevet bekræftet.",
+  "pdfTitle": "PDF titel",
+  "AreYouSureToMatchStatistic": "Er du sikker på, at du vil slette den valgte kampstatistik?",
+  "AreYouSureToTransferRecord": "Er du sikker på, at du vil slette den valgte overførselsregistrering?",
+  "areYouSureToUpdateRole": "Er du sikker på, at du vil opdatere teammedlemmets rolle?"
 }

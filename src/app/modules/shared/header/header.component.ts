@@ -230,7 +230,7 @@ export class HeaderComponent {
         senderId: data.senderId,
         shouldAnimate: true,
         relativeTime: this.justNow,
-        senderRole: 'talent',
+        senderRole: data.senderRole,
         event: data.event
       };
 

@@ -1519,5 +1519,9 @@
   "participatingTalents": "Deltagande talanger",
   "untilToday": "fram till idag",
   "failedTxt": "Misslyckades",
-  "emailVerifiedSuccessfully": "E-postadressen har verifierats."
+  "emailVerifiedSuccessfully": "E-postadressen har verifierats.",
+  "pdfTitle": "PDF titel",
+  "AreYouSureToMatchStatistic": "Är du säker på att du vill radera den valda matchstatistiken?",
+  "AreYouSureToTransferRecord": "Är du säker på att du vill radera den valda överföringsposten?",
+  "areYouSureToUpdateRole": "Är du säker på att du vill uppdatera teammedlemmens roll?"
 }

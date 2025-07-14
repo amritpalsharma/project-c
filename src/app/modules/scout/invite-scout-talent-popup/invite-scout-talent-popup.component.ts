@@ -101,11 +101,11 @@ export class InviteScoutTalentPopupComponent {
   sendInvite() {
     this.isInviteSent = true;
     // this.toastr.info(this.pleaseWait);
-    const toastRef = this.toastr.info(this.pleaseWait, '', {
-      disableTimeOut: true, // Don't auto close
-      tapToDismiss: false,  // Optional: don't dismiss on click
-      closeButton: true     // Optional: show close button
-    });
+    // const toastRef = this.toastr.info(this.pleaseWait, '', {
+    //   disableTimeOut: true, // Don't auto close
+    //   tapToDismiss: false,  // Optional: don't dismiss on click
+    //   closeButton: true     // Optional: show close button
+    // });
     const formData = new FormData();
     let x = 0;
     let receiverIds: any[] = [];
@@ -120,7 +120,7 @@ export class InviteScoutTalentPopupComponent {
     formData.append('lang', langId);
 
     this.scoutService.sendScoutPortfolioInvite(this.scoutId, formData).subscribe((response) => {
-      this.toastr.clear(toastRef.toastId);
+      // this.toastr.clear(toastRef.toastId);
       if (response && response.status) {
         console.log(this.scoutId)
         receiverIds.forEach((id: any) => {

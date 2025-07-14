@@ -16,7 +16,7 @@ export class TeamsComponent {
   teams: any = [];
   players: any = [];
   view: string = "team";
-  displayedColumns: string[] = ['JersyNumber', 'Player Name', 'Joining Date', 'Exit Date', 'Location', 'View'];
+  displayedColumns: string[] = ['Player Name', 'Joining Date', 'Exit Date', 'JersyNumber', 'View'];
   isLoading: boolean = false;
   selectedTeam: any = "";
   selectTeamName: string = '';

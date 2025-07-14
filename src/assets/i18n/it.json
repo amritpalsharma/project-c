@@ -1518,5 +1518,9 @@
   "participatingTalents": "Talenti partecipanti",
   "untilToday": "fino ad oggi",
   "failedTxt": "Fallita",
-  "emailVerifiedSuccessfully": "Email verificata con successo."
+  "emailVerifiedSuccessfully": "Email verificata con successo.",
+  "pdfTitle": "Titolo PDF",
+  "AreYouSureToMatchStatistic": "Sei sicuro di voler eliminare la statistica della partita selezionata?",
+  "AreYouSureToTransferRecord": "Sei sicuro di voler eliminare il record di trasferimento selezionato?",
+  "areYouSureToUpdateRole": "Sei sicuro di voler aggiornare il ruolo del membro del team?"
 }

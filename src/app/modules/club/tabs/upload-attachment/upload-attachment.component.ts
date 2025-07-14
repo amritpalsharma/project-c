@@ -84,7 +84,9 @@ export class UploadAttachmentComponent {
             message: response.message
           })
         } else {
-          this.toaster.error(response.data.errors.attachments)
+          if(response.data.errors.attachments){
+            this.toaster.error(response.data.errors.attachments)
+          }
           console.error('Invalid API response structure:', response);
         }
       });

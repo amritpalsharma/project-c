@@ -58,7 +58,8 @@ export class SightingTabComponent {
     private router: Router,
     public dialog: MatDialog,
     public webPages: WebPages,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -210,12 +211,21 @@ export class SightingTabComponent {
           this.getSightings();
           this.selectedIds = [];
           this.allSelected = false;
+<<<<<<< HEAD
           // if (response.message) {
           //   this.showMatDialog(response.message, 'display');
           // } else {
           //   this.showMatDialog('Sighting(s) deleted successfully!.', 'display');
           // }
           this.toaster.success(response.message)
+=======
+          if (response.message) {
+            // this.showMatDialog(response.message, 'display');
+            this.toastr.success(response.message)
+          } else {
+            this.showMatDialog('Sighting(s) deleted successfully!.', 'display');
+          }
+>>>>>>> 91d64e783328088d8f083ced951bc2247f850d7a
           this.getSightings();
         } else {
           this.showMatDialog('Error in deleting sighting. Please try again.', 'display');
@@ -314,7 +324,14 @@ export class SightingTabComponent {
           //   this.showMatDialog("Attachment(s) added successfully", 'display');
           // }
           if (result.message != '' && result.message != undefined) {
+<<<<<<< HEAD
             this.toaster.success(result.message);
+=======
+            // this.showMatDialog(result.message, 'display');
+            this.toastr.success(result.message);
+          } else {
+            this.showMatDialog("Attachment(s) added successfully", 'display');
+>>>>>>> 91d64e783328088d8f083ced951bc2247f850d7a
           }
         }
         //  console.log('Dialog result:', result);
@@ -364,6 +381,10 @@ export class SightingTabComponent {
           this.viewSight(result.id);
           if (result.message != '' && result.message != undefined) {
             // this.showMatDialog(result.message, 'display');
+<<<<<<< HEAD
+=======
+            this.toastr.success(result.message)
+>>>>>>> 91d64e783328088d8f083ced951bc2247f850d7a
           } else {
             // this.showMatDialog("Players invited successfully", 'display')
           }
@@ -498,7 +519,15 @@ export class SightingTabComponent {
           //   this.showMatDialog('Attachment removed successfully!.', 'display');
           // }
           if (response.message != '' && response.message != undefined) {
+<<<<<<< HEAD
             this.toaster.success(response.message);
+=======
+            // this.showMatDialog(response.message, 'display');
+            this.toastr.success(response.message)
+            this.viewSight(this.viewSightId)
+          } else {
+            this.showMatDialog('Attachment removed successfully!.', 'display');
+>>>>>>> 91d64e783328088d8f083ced951bc2247f850d7a
           }
         } else {
           this.showMatDialog('Error in removing attachment. Please try again.', 'display');

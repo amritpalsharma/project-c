@@ -1537,5 +1537,9 @@
   "participatingTalents": "Talents participants",
   "untilToday": "indtil i dag",
   "failedTxt": "Échoué",
-  "emailVerifiedSuccessfully": "Courriel vérifié avec succès."
+  "emailVerifiedSuccessfully": "Courriel vérifié avec succès.",
+  "pdfTitle": "Titre PDF",
+  "AreYouSureToMatchStatistic": "Voulez-vous vraiment supprimer la statistique de match sélectionnée?",
+  "AreYouSureToTransferRecord": "Voulez-vous vraiment supprimer l’enregistrement de transfert sélectionné?",
+  "areYouSureToUpdateRole": "Êtes-vous sûr de vouloir mettre à jour le rôle du membre de l’équipe?"
 }

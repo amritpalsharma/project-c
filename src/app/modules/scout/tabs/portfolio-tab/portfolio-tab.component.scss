@@ -10,16 +10,21 @@ p {
     font-weight: 700;
     color: #111418;
 }
-table th, table td {
+
+table th,
+table td {
     padding: 0.938rem 15px !important;
 }
 
-.bg_success, .bg_reject, .bg_pending{
+.bg_success,
+.bg_reject,
+.bg_pending {
     width: 100%;
     display: inline-block;
     max-width: 150px;
     border-radius: 60px;
 }
+
 .btn.btn-sm {
     padding: 7px 15px;
     border-radius: 10px;
@@ -178,6 +183,7 @@ button.add_potos-btn {
     position: absolute;
     bottom: -3px;
     right: -7px;
+
     .status_icon_size {
         width: 25px;
         height: 25px;
@@ -241,19 +247,20 @@ th {
 }
 
 .icon_text_icon {
-img.club_logo_icn {
-    width: 40px;
-    height: 40px;
-    object-fit: contain;
-    margin-right: 10px;
-}
-img.flag_country {
-    width: 30px;
-    height: 30px;
-    object-fit: contain;
-    margin-right: 10px;
-    margin-left: 10px;
-}
+    img.club_logo_icn {
+        width: 40px;
+        height: 40px;
+        object-fit: contain;
+        margin-right: 10px;
+    }
+
+    img.flag_country {
+        width: 30px;
+        height: 30px;
+        object-fit: contain;
+        margin-right: 10px;
+        margin-left: 10px;
+    }
 }
 
 
@@ -271,30 +278,37 @@ img.flag_country {
     .gallery-all_images .ten-columns .col-lg-2 {
         padding: 0px !important;
     }
+
     .add-talent_btn {
         .btn {
-            font-size: 16px;    
+            font-size: 16px;
         }
     }
 }
 
 
-@media (min-width: 1600px) and (max-width: 2999px){
+@media (min-width: 1600px) and (max-width: 2999px) {
     table td svg {
         width: 33px;
         height: 33px;
         margin-right: 4px;
     }
+
     .icon_text_icon img.flag_country {
         width: 35px;
         height: 35px;
     }
+
     .btn.web-create-bg {
         font-size: 24px !important;
-      }
-      .bg_success, .bg_reject, .bg_pending{
+    }
+
+    .bg_success,
+    .bg_reject,
+    .bg_pending {
         max-width: 220px;
     }
+
     .add-talent_btn {
         .btn {
             font-size: 24px;
@@ -304,22 +318,28 @@ img.flag_country {
     }
 }
 
-@media (min-width: 3000px){
+@media (min-width: 3000px) {
     table td svg {
         width: 40px;
         height: 40px;
         margin-right: 4px;
     }
+
     .icon_text_icon img.flag_country {
         width: 45px;
         height: 45px;
     }
+
     .btn.web-create-bg {
         font-size: 28px !important;
     }
-    .bg_success, .bg_reject, .bg_pending{
+
+    .bg_success,
+    .bg_reject,
+    .bg_pending {
         max-width: 260px;
     }
+
     .add-talent_btn {
         .btn {
             font-size: 28px;
@@ -330,10 +350,10 @@ img.flag_country {
 }
 
 @media (min-width: 992px) and (max-width: 1599.98px) {
-  .add-talent_btn .btn {
-    min-width: 230px;
-    text-align: center;
-  }
+    .add-talent_btn .btn {
+        min-width: 230px;
+        text-align: center;
+    }
 }
 
 
@@ -341,6 +361,7 @@ img.flag_country {
     .portfolio_container {
         padding: 0 !important;
     }
+
     .add-talent_btn {
         margin-bottom: 0 !important;
         text-align: left !important;
@@ -357,57 +378,63 @@ img.flag_country {
 
 // COPY PASTE CSS
 .unlock_page {
-  position: relative;
-  // height: 30vh;
+    position: relative;
+    // height: 30vh;
 
-  .unlock_btn {
-    background: #6FB95D;
-    padding: 10px 24px;
-    font-size: 12px;
-    font-weight: 700;
-    color: #fff;
-    border-radius: 10px;
-    border: none;
-  }
+    .unlock_btn {
+        background: #6FB95D;
+        padding: 10px 24px;
+        font-size: 12px;
+        font-weight: 700;
+        color: #fff;
+        border-radius: 10px;
+        border: none;
+    }
 
-  .upgrade_unlock {
-    height: 100%;
-    background: rgb(255 255 255 / 65%);
-    position: absolute;
-    width: 100%;
-    top: 0;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+    .upgrade_unlock {
+        height: 100%;
+        background: rgb(255 255 255 / 65%);
+        position: absolute;
+        width: 100%;
+        top: 0;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-  .position-boxs {
-    gap: 20px;
-    border-right: 1px solid #e7e7e7;
-  }
+    .position-boxs {
+        gap: 20px;
+        border-right: 1px solid #e7e7e7;
+    }
 
-  .social_icons .facebook {
-    width: 12px;
-    margin-right: 14px;
-  }
+    .social_icons .facebook {
+        width: 12px;
+        margin-right: 14px;
+    }
 
-  .social_icons .instagram {
-    width: 20px;
-    margin-right: 14px;
-  }
+    .social_icons .instagram {
+        width: 20px;
+        margin-right: 14px;
+    }
 
-  .general_titels h2 {
-    font-size: 16px;
-    font-weight: 400;
-    text-transform: uppercase;
-    color: #565555;
-  }
+    .general_titels h2 {
+        font-size: 16px;
+        font-weight: 400;
+        text-transform: uppercase;
+        color: #565555;
+    }
 
 }
 
 .btn.web-create-bg {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+
+.add-talent_btn .btn {
+    // min-width: 230px;
+    justify-content: center;
 }

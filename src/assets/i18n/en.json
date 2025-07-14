@@ -1435,5 +1435,9 @@
   "participatingTalents": "Participating Talents",
   "untilToday": "until today",
   "failedTxt":"Failed",
-  "emailVerifiedSuccessfully":"Email verified successfully."
+  "emailVerifiedSuccessfully":"Email verified successfully.",
+  "pdfTitle": "PDF Title",
+  "AreYouSureToMatchStatistic": "Are you sure you want to delete the selected Match Statistic?",
+  "AreYouSureToTransferRecord": "Are you sure you want to delete the selected Transfer Record?",
+  "areYouSureToUpdateRole": "Are you sure you want to update Team-Member's role?"
 }
