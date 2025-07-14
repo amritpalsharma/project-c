@@ -224,16 +224,32 @@ export class ProfileTabComponent {
   }
 
   updateRepresentatorRole(event: Event, id: any) {
-    const target = event.target as HTMLSelectElement;
-    let newRole = target.value;
 
-    let langId = localStorage.getItem('lang_id');
-
-    this.scoutService.updateRepresentatorRole(id, { site_role: newRole }, langId).subscribe((response) => {
-      if (response && response.status) {
-        this.showMatDialog(response.message, 'display');
-      } else {
-        console.error('Invalid API response structure:', response);
+    const messageDialog = this.dialog.open(MessagePopupComponent, {
+      width: '500px',
+      position: {
+        top: '150px'
+      },
+      data: {
+        message: '',
+        action: 'updateRepo'
+      }
+    })
+    
+    messageDialog.afterClosed().subscribe(result => {
+      if(result.action == 'delete-confirmed'){
+        const target = event.target as HTMLSelectElement;
+        let newRole = target.value;
+    
+        let langId = localStorage.getItem('lang_id');
+    
+        this.scoutService.updateRepresentatorRole(id, { site_role: newRole }, langId).subscribe((response) => {
+          if (response && response.status) {
+            this.showMatDialog(response.message, 'display');
+          } else {
+            console.error('Invalid API response structure:', response);
+          }
+        });
       }
     });
   }

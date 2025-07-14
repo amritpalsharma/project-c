@@ -122,6 +122,9 @@ export class PerformanceTabComponent {
     const dialogRef = this.dialog.open(DeletePopupComponent, {
       width: '600px',
       minWidth: '400px', // Add min-width here
+      data: {
+        from_page: 'performance_tab'
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {

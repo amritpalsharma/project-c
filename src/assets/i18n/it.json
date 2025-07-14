@@ -1516,5 +1516,9 @@
   "newsHeading": "Rimani aggiornato: Qui trovi le ultime notizie, articoli e aggiornamenti su SoccerYou.",
   "editSighting": "Modifica sessione di osservazione",
   "participatingTalents": "Talenti partecipanti",
-  "untilToday": "fino ad oggi"
+  "untilToday": "fino ad oggi",
+  "pdfTitle": "Titolo PDF",
+  "AreYouSureToMatchStatistic": "Sei sicuro di voler eliminare la statistica della partita selezionata?",
+  "AreYouSureToTransferRecord": "Sei sicuro di voler eliminare il record di trasferimento selezionato?",
+  "areYouSureToUpdateRole": "Sei sicuro di voler aggiornare il ruolo del membro del team?"
 }

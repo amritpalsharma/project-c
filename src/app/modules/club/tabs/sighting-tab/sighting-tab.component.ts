@@ -13,6 +13,7 @@ import { environment } from '../../../../../environments/environment';
 import { WebPages } from '../../../../services/webpages.service';
 import { TranslateService } from '@ngx-translate/core';
 import { UnverifiedUserComponent } from '../../../shared/unverified-user/unverified-user.component';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -56,7 +57,8 @@ export class SightingTabComponent {
     private router: Router,
     public dialog: MatDialog,
     public webPages: WebPages,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -209,7 +211,8 @@ export class SightingTabComponent {
           this.selectedIds = [];
           this.allSelected = false;
           if (response.message) {
-            this.showMatDialog(response.message, 'display');
+            // this.showMatDialog(response.message, 'display');
+            this.toastr.success(response.message)
           } else {
             this.showMatDialog('Sighting(s) deleted successfully!.', 'display');
           }
@@ -306,7 +309,8 @@ export class SightingTabComponent {
         if (result.action == "added") {
           this.viewSight(result.id);
           if (result.message != '' && result.message != undefined) {
-            this.showMatDialog(result.message, 'display');
+            // this.showMatDialog(result.message, 'display');
+            this.toastr.success(result.message);
           } else {
             this.showMatDialog("Attachment(s) added successfully", 'display');
           }
@@ -357,7 +361,8 @@ export class SightingTabComponent {
         if (result.action == "added") {
           this.viewSight(result.id);
           if (result.message != '' && result.message != undefined) {
-            this.showMatDialog(result.message, 'display');
+            // this.showMatDialog(result.message, 'display');
+            this.toastr.success(result.message)
           } else {
             this.showMatDialog("Players invited successfully", 'display')
           }
@@ -483,7 +488,8 @@ export class SightingTabComponent {
           // temp.splice(index, 1);
           // this.attachments = temp;
           if (response.message != '' && response.message != undefined) {
-            this.showMatDialog(response.message, 'display');
+            // this.showMatDialog(response.message, 'display');
+            this.toastr.success(response.message)
             this.viewSight(this.viewSightId)
           } else {
             this.showMatDialog('Attachment removed successfully!.', 'display');

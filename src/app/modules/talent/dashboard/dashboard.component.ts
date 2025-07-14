@@ -1406,7 +1406,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(DeletePopupComponent, {
       width: '600px',
       data: {
-        type2: type
+        type2: type,
+        from_page: 'cover'
       }
     });
 

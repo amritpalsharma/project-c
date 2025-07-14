@@ -31,7 +31,8 @@
                         <tr>
                             <th>{{ 'companyRepresentators' | translate }}: &nbsp; &nbsp;
                                 <button class="btn btn-success btn-sm web-create-bg dashboard_tabs_add_btn"
-                                    [disabled]="!checkRole()" [class.club_view_only]="!checkRole()" (click)="addRepresentator()">
+                                    [disabled]="!checkRole()" [class.club_view_only]="!checkRole()"
+                                    (click)="addRepresentator()">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="width: 16px;">
                                         <path
                                             d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z" />
@@ -62,59 +63,31 @@
                                     class="table_select custom-select custom-select-wrapper"
                                     (change)="updateRepresentatorRole($event, representator.id)">
 
-                                    <!-- <option value="admin-access"
-                                    *ngIf="representator.permission != null && representator.permission != 'admin-access'">
-                                    {{ 'admin' | translate }}</option>
-                                <option value="admin-access"
-                                    *ngIf="representator.permission == null || representator.permission == 'admin-access'"
-                                    selected>{{ 'admin' | translate }}</option>
-    
-                                <option value="view-only" *ngIf="representator.permission != 'view-only'">{{ 'viewOnly'
-                                    | translate }}</option>
-                                <option value="view-only" *ngIf="representator.permission == 'view-only'" selected>{{
-                                    'viewOnly' | translate }}</option>
-    
-                                <option value="editor" *ngIf="representator.permission != 'editor'">{{ 'editor' |
-                                    translate }}</option>
-                                <option value="editor" *ngIf="representator.permission == 'editor'" selected>{{ 'editor'
-                                    | translate }}</option>
-    
-                                <option value="transfer-ownership"
-                                    *ngIf="representator.permission != 'transfer-ownership'">{{ 'transferOwnership' |
-                                    translate }}</option>
-                                <option value="transfer-ownership"
-                                    *ngIf="representator.permission == 'transfer-ownership'" selected>{{
-                                    'transferOwnership' | translate }}</option> -->
-
                                     <option value="admin.access"
                                         *ngIf="representator.permission != null && representator.permission != 'admin.access'">
-                                        {{ 'admin' | translate }}</option>
+                                        {{ 'admin' | translate }}
+                                    </option>
                                     <option value="admin.access"
                                         *ngIf="representator.permission == null || representator.permission == 'admin.access'"
-                                        selected>{{ 'admin' | translate }}</option>
+                                        selected>
+                                        {{ 'admin' | translate }}
+                                    </option>
 
-                                    <option value="admin.view" *ngIf="representator.permission != 'admin.view'">{{
-                                        'viewOnly'
-                                        | translate }}</option>
+                                    <option value="admin.view" *ngIf="representator.permission != 'admin.view'">
+                                        {{ 'viewOnly' | translate }}
+                                    </option>
                                     <option value="admin.view" *ngIf="representator.permission == 'admin.view'"
-                                        selected>{{
-                                        'viewOnly' | translate }}</option>
+                                        selected>
+                                        {{ 'viewOnly' | translate }}
+                                    </option>
 
-                                    <option value="admin.edit" *ngIf="representator.permission != 'admin.edit'">{{
-                                        'editor' |
-                                        translate }}</option>
+                                    <option value="admin.edit" *ngIf="representator.permission != 'admin.edit'">
+                                        {{ 'editor' | translate }}
+                                    </option>
                                     <option value="admin.edit" *ngIf="representator.permission == 'admin.edit'"
-                                        selected>{{
-                                        'editor'
-                                        | translate }}</option>
-
-                                    <!-- <option value="transfer.ownership"
-                                        *ngIf="representator.permission != 'transfer.ownership'">
-                                        {{ 'transferOwnership' |
-                                        translate }}</option>   
-                                    <option value="transfer.ownership"
-                                        *ngIf="representator.permission == 'transfer.ownership'" selected>{{
-                                        'transferOwnership' | translate }}</option> -->
+                                        selected>
+                                        {{ 'editor' | translate }}
+                                    </option>
                                 </select>
                             </td>
                             <td>{{ getMetaValue(representator.meta, 'designation') }}</td>
@@ -193,7 +166,8 @@
                         <th>{{ 'companyRepresentators' | translate }}: &nbsp; &nbsp;
 
                             <button class="btn btn-success btn-sm web-create-bg dashboard_tabs_add_btn"
-                                [disabled]="!checkRole()" [class.club_view_only]="!checkRole()" (click)="addRepresentator()">
+                                [disabled]="!checkRole()" [class.club_view_only]="!checkRole()"
+                                (click)="addRepresentator()">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="width: 16px;">
                                     <path
                                         d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z" />
@@ -219,7 +193,8 @@
                             </div>
                         </td>
                         <td>
-                            <select [disabled]="!checkRole()" [class.club_view_only]="!checkRole()" class="custom-select custom-select-wrapper"
+                            <select [disabled]="!checkRole()" [class.club_view_only]="!checkRole()"
+                                class="custom-select custom-select-wrapper"
                                 (change)="updateRepresentatorRole($event, representator.id)">
                                 <option value="admin.access"
                                     *ngIf="representator.permission != null && representator.permission != 'admin.access'">
@@ -279,7 +254,8 @@
                         <span class="text-muted-foreground">{{ 'companyRepresentators' | translate }}:</span>
                         <span>
                             <button class="btn btn-success btn-sm web-create-bg" [disabled]="!checkRole()"
-                                [class.club_view_only]="!checkRole()" (click)="addRepresentator()">{{ 'addNew' | translate }}</button>
+                                [class.club_view_only]="!checkRole()" (click)="addRepresentator()">{{ 'addNew' |
+                                translate }}</button>
                         </span>
                     </div>
                     <div class="space-y-2 text-sm">
@@ -296,7 +272,8 @@
                         <div class="flex justify-between">
                             <span class="text-muted-foreground">{{ 'roles' | translate }}</span>
                             <span>
-                                <select [disabled]="!checkRole()" [class.club_view_only]="!checkRole()" class="custom-select custom-select-wrapper"
+                                <select [disabled]="!checkRole()" [class.club_view_only]="!checkRole()"
+                                    class="custom-select custom-select-wrapper"
                                     (change)="updateRepresentatorRole($event, representator.id)">
                                     <option value="admin.access"
                                         *ngIf="representator.permission != null && representator.permission != 'admin.access'">

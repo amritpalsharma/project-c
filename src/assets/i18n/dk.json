@@ -1385,5 +1385,9 @@
   "newsHeading": "Hold dig opdateret: Her finder du de seneste nyheder, medieomtaler og spændende opdateringer om SoccerYou.",
   "editSighting": "Rediger scouting-session",
   "participatingTalents": "Deltagende talenter",
-  "untilToday": "jusqu'à aujourd'hui"
+  "untilToday": "jusqu'à aujourd'hui",
+  "pdfTitle": "PDF titel",
+  "AreYouSureToMatchStatistic": "Er du sikker på, at du vil slette den valgte kampstatistik?",
+  "AreYouSureToTransferRecord": "Er du sikker på, at du vil slette den valgte overførselsregistrering?",
+  "areYouSureToUpdateRole": "Er du sikker på, at du vil opdatere teammedlemmets rolle?"
 }

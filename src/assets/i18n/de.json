@@ -1526,5 +1526,9 @@
   "editSighting": "Sichtung bearbeiten",
   "blogDelete": "Bist du sicher, dass du den Blogbeitrag löschen möchtest?",
   "participatingTalents": "Teilnehmende Talente",
-  "untilToday": "bis heute"
+  "untilToday": "bis heute",
+  "pdfTitle": "PDF Titel",
+  "AreYouSureToMatchStatistic": "Möchten Sie die ausgewählte Spielstatistik wirklich löschen?",
+  "AreYouSureToTransferRecord": "Möchten Sie den ausgewählten Transferdatensatz wirklich löschen?",
+  "areYouSureToUpdateRole": "Sind Sie sicher, dass Sie die Rolle von Team-Mitglied aktualisieren möchten?"
 }

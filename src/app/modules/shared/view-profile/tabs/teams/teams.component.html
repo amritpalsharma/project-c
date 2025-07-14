@@ -107,10 +107,10 @@
 
                         <table mat-table [dataSource]="players" class="table table-hover table-striped table-users ">
 
-                            <ng-container matColumnDef="JersyNumber">
-                                <th mat-header-cell *matHeaderCellDef>#</th>
+                            <!-- <ng-container matColumnDef="JersyNumber">
+                                <th mat-header-cell *matHeaderCellDef>{{ 'addJerseyNumber' | translate }}</th>
                                 <td mat-cell *matCellDef="let element"> {{ element.jersey_number }}</td>
-                            </ng-container>
+                            </ng-container> -->
                             <!-- Name Column -->
                             <ng-container matColumnDef="Player Name">
                                 <th mat-header-cell *matHeaderCellDef> {{ 'playerName' | translate }} </th>
@@ -155,9 +155,14 @@
                                 </td>
                             </ng-container>
 
-                            <ng-container matColumnDef="Location">
+                            <!-- <ng-container matColumnDef="Location">
                                 <th mat-header-cell *matHeaderCellDef> {{ 'location' | translate }} </th>
                                 <td mat-cell *matCellDef="let element"> {{element.location}} </td>
+                            </ng-container> -->
+
+                            <ng-container matColumnDef="JersyNumber">
+                                <th mat-header-cell *matHeaderCellDef>{{ 'addJerseyNumber' | translate }}</th>
+                                <td mat-cell *matCellDef="let element"> {{ element.jersey_number }}</td>
                             </ng-container>
 
                             <ng-container matColumnDef="View">

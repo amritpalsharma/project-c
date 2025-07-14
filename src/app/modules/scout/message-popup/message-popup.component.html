@@ -64,6 +64,25 @@
                 <span (click)="deleteConfirmed()">{{'remove' | translate}}</span>
             </div>
         </div>
+
+        <!-- <div class="display-message p-3" *ngIf="data.action == 'updateRepo'">
+            {{'areToSure' | translate}}
+            <div class="popup-delete-btn">
+                <span (click)="deleteConfirmed()">{{'proceed' | translate}}</span>
+            </div>
+        </div> -->
+
+        <div class="display-message p-3" *ngIf="data.action == 'updateRepo'">
+            {{'areYouSureToUpdateRole' | translate}}
+            <div *ngIf="data.action === 'updateRepo'"
+                class="popup-delete-btn d-flex align-items-center flex-wrap justify-content-center py-2">
+                <div (click)="close()" class="btn btn_cancell bg-dark-btn me-3 btn_cancell">{{ 'portfolioCloseBtn' | translate }}
+                </div>
+                <div (click)="deleteConfirmed()" class="btn btn-success bg-light-btn btn_confirmm">{{
+                    'proceed' | translate }}</div>
+            </div>
+        </div>
+
         <div class="display-message p-3" *ngIf="data.action == 'portfolio-delete-confirmation' && data.message != ''">
             {{'portfolioDeleteConfirmation' | translate}}</div>
         <div *ngIf="data.action === 'portfolio-delete-confirmation'"

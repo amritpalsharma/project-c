@@ -241,7 +241,7 @@
             <label for="file-upload-{{i}}" type="button"
               class="btn btn-outline-white code-text upload-label cupen-btn">{{
               'upload' | translate }}</label>
-            <input id="file-upload-{{i}}" (change)="onAttachmentFileChange($event, i)"
+            <input id="file-upload-{{i}}" accept="application/pdf" (change)="onAttachmentFileChange($event, i)"
               type="file" class="d-none" />
           </div>
         </div>
