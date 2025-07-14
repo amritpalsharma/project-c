@@ -22,6 +22,7 @@ export class DeletePopupComponent {
 
   ngOnInit(): void {
     this.theme = localStorage.getItem('theme');
+    console.log(this.data)
     if(this.data?.from_page){
       this.fromPage = this.data.from_page;
     }

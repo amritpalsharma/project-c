@@ -58,7 +58,7 @@
 
 <div class="gallery-parent home_galery" *ngIf="isPremium">
   <div class="d-flex">
-    <p class="gallery-pic-upload pointer" *ngIf="checkRole()" (click)="addPhotosPopup()">{{'addPhotos' | translate}}</p>
+    <p class="gallery-pic-upload pointer" [class.club_view_only]="!checkRole()" (click)="addPhotosPopup()">{{'addPhotos' | translate}}</p>
   </div>
 
   <div class="row mt-3">
@@ -113,7 +113,7 @@
       <!-- Add New -->
       <div class='image-upload-container d-flex align-items-center'>
         <div class="image-previews" (click)="addPhotosPopup()">
-          <div class="image">
+          <div class="image" [class.club_view_only]="!checkRole()">
             <div>+</div>
           </div>
         </div>
@@ -121,7 +121,7 @@
     </div>
 
     <div class="d-flex mt-4">
-      <p class="gallery-pic-upload pointer" *ngIf="checkRole()" (click)="addPhotosPopup('video')">{{'addVideos' |
+      <p class="gallery-pic-upload pointer" [class.club_view_only]="!checkRole()" (click)="addPhotosPopup('video')">{{'addVideos' |
         translate}}</p>
     </div>
 
@@ -184,7 +184,7 @@
         <!-- Add New -->
         <div class='image-upload-container d-flex align-items-center'>
           <div class="image-previews" (click)="addPhotosPopup('video')">
-            <div class="image">
+            <div class="image" [class.club_view_only]="!checkRole()">
               <div>+</div>
             </div>
           </div>

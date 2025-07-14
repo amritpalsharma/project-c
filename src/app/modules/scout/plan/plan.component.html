@@ -70,7 +70,7 @@
                   {{'choosePlan' | translate}}
                 </button> -->
                 <button class="choose-plan-btn {{premiumPlans?.active_interval}} isYearly_{{premiumPlans.isYearly}}"
-                  [disabled]="((premiumPlans?.active_interval=='monthly' && !premiumPlans.isYearly) || premiumPlans?.active_interval=='yearly' && premiumPlans.isYearly)"
+                  [disabled]="((premiumPlans?.active_interval=='monthly' && !premiumPlans.isYearly) || premiumPlans?.active_interval=='yearly' && premiumPlans.isYearly)" [class.club_view_only]="!checkRole()"
                   (click)="openCouponDialog(premiumPlans.isYearly ? premiumPlans.year_package_id : premiumPlans.month_package_id)">
                   {{'choosePlan' | translate}}
                 </button>
@@ -119,7 +119,7 @@
                     </span>
                     <span class="ps-2">{{'youHaveAnActivemultiCountryPlan' | translate}}</span>
                     <!-- <span class="ps-2">{{getActiveMultiCountryPlanCount()}} {{'activeMulti-CountryPlan'| translate}}</span> -->
-                    <button class="premium_btn" (click)="editPlanPopup(countryPlans.plans,country)">
+                    <button class="premium_btn" (click)="editPlanPopup(countryPlans.plans,country)" [class.club_view_only]="!checkRole()">
                       <svg width="22" height="23" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                           d="M3 17.7505V21.5005H6.75L17.81 10.4405L14.06 6.69049L3 17.7505ZM20.71 7.54049C20.8027 7.44798 20.8762 7.33809 20.9264 7.21712C20.9766 7.09614 21.0024 6.96646 21.0024 6.83549C21.0024 6.70452 20.9766 6.57484 20.9264 6.45387C20.8762 6.33289 20.8027 6.223 20.71 6.13049L18.37 3.79049C18.2775 3.69779 18.1676 3.62424 18.0466 3.57406C17.9257 3.52388 17.796 3.49805 17.665 3.49805C17.534 3.49805 17.4043 3.52388 17.2834 3.57406C17.1624 3.62424 17.0525 3.69779 16.96 3.79049L15.13 5.62049L18.88 9.37049L20.71 7.54049Z"
@@ -142,7 +142,7 @@
                     </label>
                   </li>
                 </ul>
-                <button class="choose-plan-btn" (click)="editPlanPopup(countryPlans,country)">{{'choosePlan' |
+                <button class="choose-plan-btn" (click)="editPlanPopup(countryPlans,country)" [class.club_view_only]="!checkRole()">{{'choosePlan' |
                   translate}}</button>
               </div>
               <div class="premium-football_icon">
@@ -189,7 +189,7 @@
                       </svg>
                     </span>
                     <span>{{'youHaveAnActiveBoostPlan' | translate}}</span>
-                    <button class="premium_btn" (click)="editBooster(booster)">
+                    <button class="premium_btn" (click)="editBooster(booster)" [class.club_view_only]="!checkRole()">
                       <svg width="22" height="23" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                           d="M3 17.7505V21.5005H6.75L17.81 10.4405L14.06 6.69049L3 17.7505ZM20.71 7.54049C20.8027 7.44798 20.8762 7.33809 20.9264 7.21712C20.9766 7.09614 21.0024 6.96646 21.0024 6.83549C21.0024 6.70452 20.9766 6.57484 20.9264 6.45387C20.8762 6.33289 20.8027 6.223 20.71 6.13049L18.37 3.79049C18.2775 3.69779 18.1676 3.62424 18.0466 3.57406C17.9257 3.52388 17.796 3.49805 17.665 3.49805C17.534 3.49805 17.4043 3.52388 17.2834 3.57406C17.1624 3.62424 17.0525 3.69779 16.96 3.79049L15.13 5.62049L18.88 9.37049L20.71 7.54049Z"
@@ -210,7 +210,7 @@
                     </label>
                   </li>
                 </ul>
-                <button class="choose-plan-btn"
+                <button class="choose-plan-btn" [class.club_view_only]="!checkRole()"
                   [disabled]="((boostedPlans?.active_interval=='monthly' && !boostedPlans.isYearly) || boostedPlans?.active_interval=='yearly')"
                   (click)="addBoostPopup(boostedPlans.isYearly==true ? boostedPlans.year_package_id : boostedPlans.month_package_id )">{{'choosePlan'
                   | translate}}</button>

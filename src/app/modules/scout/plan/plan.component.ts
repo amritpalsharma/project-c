@@ -141,6 +141,17 @@ export class PlanComponent implements OnInit, OnDestroy {
     })
   }
 
+
+  checkRole() {
+    if (!this.loggedInUser.isRepresentator) {
+      return true;
+    }
+    if (this.loggedInUser.permission === 'admin.view' || this.loggedInUser.permission === 'admin.edit') {
+      return false;
+    }
+    return true;
+  }
+
   // Open coupon dialog
   openCouponDialog123(planId: any): void {
 

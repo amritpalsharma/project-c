@@ -177,6 +177,9 @@ export class TransfersTabComponent {
   openDeleteDialog(id: any) {
     const dialogRef = this.dialog.open(DeletePopupComponent, {
       width: '600px',
+      data: {
+        from_page: 'transfer'
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {

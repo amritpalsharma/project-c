@@ -129,7 +129,7 @@
 <!-- End unlock -->
 <div class="container-fluid portfolio_container bg-0C3453" *ngIf="isPremium">
   <div class="add-talent_btn text-end mb-3">
-    <a id="talent_button" (click)="inviteTalent()" class="btn btn-success btn-sm web-create-bg dashboard_tabs_add_btn">
+    <a id="talent_button" (click)="inviteTalent()" [class.club_view_only]="!checkRole()" class="btn btn-success btn-sm web-create-bg dashboard_tabs_add_btn">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="width: 16px;">
         <path
           d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z" />
@@ -214,8 +214,8 @@
 
             <ng-container matColumnDef="Delete">
               <th mat-header-cell *matHeaderCellDef class="text-center"> {{ 'delete' | translate }} </th>
-              <td mat-cell *matCellDef="let element" class="text-center cursor-pointer">
-                <svg (click)=confirmDeletion(element.id,element.first_name,element.last_name) width="13" height="16"
+              <td mat-cell *matCellDef="let element" class="text-center" [class.cursor-pointer]="checkRole()">
+                <svg (click)=confirmDeletion(element.id,element.first_name,element.last_name)  width="13" height="16"
                   viewBox="0 0 13 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M0.916667 13.8519C0.916667 14.8042 1.74167 15.5833 2.75 15.5833H10.0833C11.0917 15.5833 11.9167 14.8042 11.9167 13.8519V3.46296H0.916667V13.8519ZM12.8333 0.865741H9.625L8.70833 0H4.125L3.20833 0.865741H0V2.59722H12.8333V0.865741Z"
