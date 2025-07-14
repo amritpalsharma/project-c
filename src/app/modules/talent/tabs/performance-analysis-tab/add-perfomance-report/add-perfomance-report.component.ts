@@ -60,7 +60,10 @@ export class AddPerfomanceReportComponent {
     }
   }
 
+  isSubmited: boolean = false;
+
   uploadFile() {
+    this.isSubmited = true;
     if (this.selectedFile) {
       const formData = new FormData();
       formData.append('report', this.selectedFile);
@@ -79,7 +82,17 @@ export class AddPerfomanceReportComponent {
         } else if (event.type === HttpEventType.Response) {
           // Handle successful upload response
           console.log('Upload complete', event.body);
-          this.dialogRef.close({ uploaded: true, message: event.body.message }); // Close dialog on success
+          const response = event.body;
+          // this.dialogRef.close({ uploaded: true, message: event.body.message }); // Close dialog on success
+
+          if (response.status) {
+            this.toastr.success(response.message);
+
+            this.dialogRef.close({ uploaded: true, message: response.message }); // Close the dialog and return success
+          }
+          else {
+            this.toastr.error(response.message);
+          }
         }
       }, error => {
         console.error('Error uploading report:', error);

@@ -17,29 +17,29 @@
                 <div class="d-flex1 mb-3">
                     <div>
                         <p class="code-text">{{ 'firstName' | translate }}</p>
-                        <input class="cupen-btn-1 code-text" style="width:100%;" [(ngModel)]="firstName">
-                        <div *ngIf="errorMsg.firstName" class="error-msg">{{'firstNameRequired' | translate}}</div>
+                        <input class="cupen-btn-1 code-text" style="width:100%;" [ngClass]="{'isrequiredField': !firstName && isSubmited}" [(ngModel)]="firstName">
+                        <!-- <div *ngIf="errorMsg.firstName" class="error-msg" >{{'firstNameRequired' | translate}}</div> -->
                     </div>
                 </div>
                 <div class="d-flex1 mb-3">
                     <div>
                         <p class="code-text">{{ 'lastName' | translate }}</p>
-                        <input class="cupen-btn-1 code-text" style="width:100%;" [(ngModel)]="lastName">
-                        <div *ngIf="errorMsg.lastName" class="error-msg">{{'lastNameRequired' | translate}}</div>
+                        <input class="cupen-btn-1 code-text" style="width:100%;" [ngClass]="{'isrequiredField': !lastName && isSubmited}" [(ngModel)]="lastName">
+                        <!-- <div *ngIf="errorMsg.lastName" class="error-msg">{{'lastNameRequired' | translate}}</div> -->
                     </div>
                 </div>
                 <div class="d-flex1 mb-3">
                     <div>
                         <p class="code-text">{{ 'email' | translate }}</p>
-                        <input class="cupen-btn-1 code-text" style="width:100%;" [(ngModel)]="email">
+                        <input class="cupen-btn-1 code-text" style="width:100%;" [ngClass]="{'isrequiredField': !email && isSubmited}" [(ngModel)]="email">
                         <!-- <div *ngIf="errorMsg.email" class="error-msg">{{errorMsg.email}}</div> -->
                     </div>
                 </div>
                 <div class="d-flex1 mb-3">
                     <div>
                         <p class="code-text">{{ 'siteRole' | translate }}</p>
-                        <div class="btn-group" style="width:100%;">
-                            <select class="cupen-btn-1 form-select" style="width:100%;"
+                        <div class="btn-group" style="width:100%;" >
+                            <select class="cupen-btn-1 form-select" [ngClass]="{'isrequiredField': !role && isSubmited}" style="width:100%;"
                                 aria-label="Default select example" [(ngModel)]="role">
                                 <option value="">{{ 'select' | translate }}</option>
                                 <option value="admin.access">{{ 'admin' | translate }}</option>
@@ -54,7 +54,7 @@
                                     fill="#646464" />
                             </svg>
                         </div>
-                        <div *ngIf="errorMsg.role" class="error-msg">{{'roleIsRequired' | translate}}</div>
+                        <!-- <div *ngIf="errorMsg.role" class="error-msg">{{'roleIsRequired' | translate}}</div> -->
                     </div>
                 </div>
             </div>
@@ -63,15 +63,15 @@
                 <div class="d-flex1 mb-3">
                     <div>
                         <p class="code-text">{{ 'firstName' | translate }}</p>
-                        <input class="cupen-btn-1 code-text" style="width:100%;" [(ngModel)]="firstName">
-                        <div *ngIf="errorMsg.firstName" class="error-msg">{{'firstNameRequired' | translate}}</div>
+                        <input class="cupen-btn-1 code-text" style="width:100%;" [ngClass]="{'isrequiredField': !firstName && isSubmited}" [(ngModel)]="firstName">
+                        <!-- <div *ngIf="errorMsg.firstName" class="error-msg">{{'firstNameRequired' | translate}}</div> -->
                     </div>
                 </div>
                 <div class="d-flex1 mb-3">
                     <div>
                         <p class="code-text">{{ 'lastName' | translate }}</p>
-                        <input class="cupen-btn-1 code-text" style="width:100%;" [(ngModel)]="lastName">
-                        <div *ngIf="errorMsg.lastName" class="error-msg">{{'lastNameRequired' | translate}}</div>
+                        <input class="cupen-btn-1 code-text" style="width:100%;" [ngClass]="{'isrequiredField': !lastName && isSubmited}" [(ngModel)]="lastName">
+                        <!-- <div *ngIf="errorMsg.lastName" class="error-msg">{{'lastNameRequired' | translate}}</div> -->
                     </div>
                 </div>
                 <!-- <div class="d-flex1 mb-3">
@@ -86,15 +86,15 @@
                 <div class="d-flex1 mb-3">
                     <div>
                         <p class="code-text">{{ 'email' | translate }}</p>
-                        <input class="cupen-btn-1 code-text" style="width:100%;" [(ngModel)]="email">
-                        <div *ngIf="errorMsg.email" class="error-msg">{{'emailRequiredError' | translate}}</div>
+                        <input class="cupen-btn-1 code-text" style="width:100%;" [ngClass]="{'isrequiredField': !email && isSubmited}" [(ngModel)]="email">
+                        <!-- <div *ngIf="errorMsg.email" class="error-msg">{{'emailRequiredError' | translate}}</div> -->
                     </div>
                 </div>
                 <div class="d-flex1 mb-3">
                     <div>
                         <p class="code-text">{{ 'siteRole' | translate }}</p>
                         <div class="btn-group" style="width:100%;">
-                            <select class="cupen-btn-1 form-select" style="width:100%;"
+                            <select class="cupen-btn-1 form-select" [ngClass]="{'isrequiredField': !role && isSubmited}" style="width:100%;"
                                 aria-label="Default select example" [(ngModel)]="role">
                                 <option value="">{{ 'select' | translate }}</option>
                                 <option value="admin-access">{{ 'admin' | translate }}</option>
@@ -109,7 +109,7 @@
                                     fill="#646464" />
                             </svg>
                         </div>
-                        <div *ngIf="errorMsg.role" class="error-msg">{{'roleIsRequired' | translate}}</div>
+                        <!-- <div *ngIf="errorMsg.role" class="error-msg">{{'roleIsRequired' | translate}}</div> -->
                     </div>
                 </div>
             </div>

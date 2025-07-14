@@ -141,3 +141,9 @@
     background: #bde34f !important;
   }
 }
+
+
+::ng-deep .isrequiredField {
+  // border: 1px solid red !important;
+  border-color: red !important;
+}

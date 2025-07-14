@@ -196,3 +196,8 @@ span.platform_url {
 .showTeamsDropdown{
   display: block !important;
 }
+
+::ng-deep .isrequiredField {
+  // border: 1px solid red !important;
+  border-color: red !important;
+}
