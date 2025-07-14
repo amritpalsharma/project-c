@@ -660,7 +660,7 @@ export class UserService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
-    let whereClasue;
+    let whereClasue = '';
     if (isOnlyTalent) {
       whereClasue = "&whereClause[role]=4";
     }
