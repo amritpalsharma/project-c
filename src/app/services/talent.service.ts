@@ -957,4 +957,14 @@ export class TalentService {
       headers // Specify response type for downloading files
     });
   }
+
+  deleteScoutFromProfile(scoutID: string): Observable<any> {
+    const headers = this.headers();
+    let params = new HttpParams();
+    params = params.append('scout_id', scoutID);
+    let langID = localStorage.getItem('lang_id');
+    return this.http.post(`${this.apiUrl}player/remove-scout/${langID}`, params, {
+      headers // Specify response type for downloading files
+    });
+  }
 }

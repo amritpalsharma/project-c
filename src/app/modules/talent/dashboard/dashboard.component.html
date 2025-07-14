@@ -856,11 +856,14 @@
                               src="../../../../assets/images/default/talent-profile-default.png" alt="">
                           </div>
                         </div>
-                        <div class="ds col-sm-9 p-0 team-badge_content">
+                        <div class="ds col-sm-7 p-0 team-badge_content">
                           <h6 class="title_2 mb-1">{{ 'scout' | translate }}</h6>
                           <h5 class="title-1 cursor-pointer" (click)="naviGateScoutProfile(scoutInfoDetails.id)">
                             {{scoutInfoDetails?.first_name}} {{scoutInfoDetails?.last_name}}
                           </h5>
+                        </div>
+                        <div class="col-sm-2 p-0" (click)="deleteScoutFromProfile()">
+                          dlt
                         </div>
                       </div>
                     </div>

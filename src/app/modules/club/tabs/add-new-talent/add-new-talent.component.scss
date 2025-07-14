@@ -12,47 +12,49 @@
   opacity: 1;
   cursor: pointer;
 }
- ::ng-deep {
+
+::ng-deep {
   .user_list_full {
     max-width: 100% !important;
   }
 }
+
 .bg-transparent {
   background-color: transparent;
 }
- 
+
 .inbox-wrapper {
   width: 545px;
 }
- 
+
 .chat-btn button {
   padding: 15px 20px;
 }
- 
+
 .chat-btn {
   padding: 12px 16px;
 }
- 
+
 .select-user-name span {
   font-size: 16px !important;
 }
- 
+
 .fruit-font {
   font-size: 1.5rem;
   padding: 1rem;
 }
- 
+
 .add-chat {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
 }
- 
+
 .img-list {
   border-radius: 50%;
 }
- 
+
 .cancel-icon {
   background-image: url(../../../../../assets/images/cross-icon.png);
   background-size: contain;
@@ -64,41 +66,41 @@
   opacity: 1;
   cursor: pointer;
 }
- 
+
 // .messanger-selector{
 //   border-top: 2px solid black;
 //   border-bottom: 2px solid black;
 // }
- 
+
 .bg-white {
   background-color: white;
   // height: 90% !important;
 }
- 
+
 .body-background {
   border-top: 1px solid #D9D9D9 !important;
   border-bottom: 1px solid #D9D9D9 !important;
- 
+
 }
- 
+
 .listBox ::-webkit-scrollbar {
   width: 0px !important;
 }
- 
+
 .position-absolute {
   top: 25rem;
   bottom: 0;
- 
+
 }
- 
+
 // .position-absolute .btn{
 //   width: 33.2rem !important;
 // }
- 
+
 .check-user-list {
   position: relative;
 }
- 
+
 .check-user-list label {
   background-color: #fff;
   border: 1px solid #ccc;
@@ -110,7 +112,7 @@
   top: 0;
   width: 28px;
 }
- 
+
 .check-user-list label:after {
   border: 2px solid #fff;
   border-top: none;
@@ -124,27 +126,27 @@
   transform: rotate(-45deg);
   width: 12px;
 }
- 
+
 .check-user-list input[type="checkbox"] {
   visibility: hidden;
 }
- 
+
 .check-user-list input[type="checkbox"]:checked+label {
   background-color: #148DE4;
   border-color: #148DE4;
 }
- 
+
 .check-user-list input[type="checkbox"]:checked+label:after {
   opacity: 1;
 }
- 
+
 .user-name {
   font-size: 14px;
   font-weight: 600;
   color: #111418;
   margin-left: 12px;
 }
- 
+
 .check-user-list {
   min-width: 30px;
   display: flex;
@@ -153,70 +155,70 @@
   padding: 5px;
   box-sizing: border-box;
 }
- 
+
 .user-details {
   background: #FAFAFA;
   border-bottom: 1px solid #EBEBEB;
   padding: 12px 20px;
 }
- 
+
 .bg-color {
   background: #fff;
 }
- 
+
 .messanger-selector-name ::ng-deep input::placeholder {
   color: rgb(0, 0, 0);
 }
- 
- 
+
+
 .blur {
   opacity: .4;
 }
- 
+
 .date-input {
   flex: 1;
 }
- 
+
 .date-input input {
   width: 100%;
 }
- 
+
 .d-flex {
   display: flex;
 }
- 
+
 .align-items-center {
   align-items: center;
 }
- 
+
 .justify-content-between {
   justify-content: space-between;
 }
- 
+
 .mr-2 {
   margin-right: 0.5rem;
 }
- 
+
 .mb-0 {
   margin-bottom: 0;
 }
- 
- 
+
+
 .dark-theme .mdc-text-field--filled:not(.mdc-text-field--disabled) {
   border: 0 !important;
 }
- 
+
 ::ng-deep .red-border-start {
   border: 2px solid red !important;
   border-right: none !important;
   ;
 }
- 
+
 ::ng-deep .red-border-end {
   border: 2px solid red !important;
   border-left: none !important;
 }
- 
+
 
 
 ::ng-deep .emptyRequiredField {
@@ -294,27 +296,30 @@
 }
 
 .user_list_full input.user-input {
-    background: #f7f7f7;
-    color: #000;
-    border-radius: 3px !important;
-    border: 1px dashed #cccccc;
-    width: 300px !important;
+  background: #f7f7f7;
+  color: #000;
+  border-radius: 3px !important;
+  border: 1px dashed #cccccc;
+  width: 300px !important;
 }
 
-::ng-deep .dark-theme { 
+::ng-deep .dark-theme {
   .body-background {
     border-top: 1px solid #204a6c !important;
     border-bottom: 1px solid #204a6c !important;
     background: #0c3453 !important;
   }
+
   .user_list_full input.user-input {
     background: #0c3453 !important;
     color: #fff !important;
     border: 1px dashed #204a6c !important;
+
     &::placeholder {
       color: #fff !important;
       opacity: 1;
     }
+
     &::-ms-input-placeholder {
       color: #fff !important;
     }
@@ -330,25 +335,34 @@
 }
 
 @media (min-width: 1600px) and (max-width: 2999px) {
-.date-input {
-  .mat-datepicker-input {
-    padding-right: 45px;
-    font-size: 18px !important;
+  .date-input {
+    .mat-datepicker-input {
+      padding-right: 45px;
+      font-size: 18px !important;
+    }
+
+    .mat-datepicker-toggle {
+      top: 3px;
+    }
   }
-  .mat-datepicker-toggle {
-    top: 3px;
-  }
-}
 }
 
 @media (min-width: 3000px) {
-.date-input {
-  .mat-datepicker-input {
-    padding-right: 50px;
-    font-size: 22px !important;
-  }
-  .mat-datepicker-toggle {
-    top: 3px;
+  .date-input {
+    .mat-datepicker-input {
+      padding-right: 50px;
+      font-size: 22px !important;
+    }
+
+    .mat-datepicker-toggle {
+      top: 3px;
+    }
   }
 }
+
+::ng-deep .dark-theme .user-item .emptyRequiredField {
+  border: 1px solid red !important;
+}
+.dark-theme .user_list_full input.emptyRequiredField{
+   border: 1px solid red !important;
 }

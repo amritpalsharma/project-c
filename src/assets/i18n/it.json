@@ -1517,5 +1517,6 @@
   "editSighting": "Modifica sessione di osservazione",
   "participatingTalents": "Talenti partecipanti",
   "untilToday": "fino ad oggi",
-  "failedTxt": "Fallita"
+  "failedTxt": "Fallita",
+  "emailVerifiedSuccessfully": "Email verificata con successo."
 }

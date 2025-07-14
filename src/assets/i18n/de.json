@@ -1527,5 +1527,6 @@
   "blogDelete": "Bist du sicher, dass du den Blogbeitrag löschen möchtest?",
   "participatingTalents": "Teilnehmende Talente",
   "untilToday": "bis heute",
-  "failedTxt": "Fehlgeschlagen"
+  "failedTxt": "Fehlgeschlagen",
+  "emailVerifiedSuccessfully": "E-Mail erfolgreich verifiziert."
 }

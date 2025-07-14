@@ -1465,5 +1465,6 @@
   "editSighting": "Redigera scouting-session",
   "participatingTalents": "Deltagande talanger",
   "untilToday": "fram till idag",
-  "failedTxt": "Misslyckades"
+  "failedTxt": "Misslyckades",
+  "emailVerifiedSuccessfully": "E-postadressen har verifierats."
 }

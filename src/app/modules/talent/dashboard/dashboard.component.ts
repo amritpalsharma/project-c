@@ -1703,4 +1703,17 @@ export class DashboardComponent implements OnInit, OnDestroy {
       console.error('There was an error downloading the file:', error);
     }
   }
+
+  deleteScoutFromProfile() {
+    this.talentService.deleteScoutFromProfile(this.scoutInfoDetails.id).subscribe(
+      (response: any) => {
+        this.showMatDialog(response.message, 'display');
+        this.scoutInfoDetails = [];
+      },
+      error => {
+        console.error('Error deleting user:', error);
+        this.showMatDialog(this.generalError, 'display');
+      }
+    );
+  }
 }

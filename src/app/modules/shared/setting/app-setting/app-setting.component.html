@@ -33,11 +33,7 @@
     </div>
     <div class="acount_del-item d-flex align-items-center justify-content-between flex-wrap">
       <p>{{ 'deleteAccountDesc' | translate}}</p>
-<<<<<<< HEAD
       <button [class.club_view_only]="!checkRole()" id="DeleteAccount" type="button" class="button acount_delete_btn {{currentLoggedInPermission}}" (click)="confirmDeleteProfile(1)">{{'deleteMyAccount' | translate}}</button>
-=======
-      <button *ngIf="checkRole()" id="DeleteAccount" type="button" class="button acount_delete_btn {{currentLoggedInPermission}} delete_btn_{{currentLoggedInPermission}}" (click)="confirmDeleteProfile(1)">{{'deleteMyAccount' | translate}}</button>
->>>>>>> d43e4e0a47f511b705fb246845b7393edba3c8f7
     </div>
   </div>
 </div>

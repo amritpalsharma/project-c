@@ -555,6 +555,10 @@ input[type="number"] {
   border-color: red !important;
 }
 
+::ng-deep .dark-theme .user-item .emptyRequiredField {
+  border: 1px solid red !important;
+}
+
 .label-disabled {
   pointer-events: none;
   /* Prevent clicks */

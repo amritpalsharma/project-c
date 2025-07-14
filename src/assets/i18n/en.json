@@ -1434,5 +1434,6 @@
   "blogDelete": "Are you sure you want to delete the blog post?",
   "participatingTalents": "Participating Talents",
   "untilToday": "until today",
-  "failedTxt":"Failed"
+  "failedTxt":"Failed",
+  "emailVerifiedSuccessfully":"Email verified successfully."
 }

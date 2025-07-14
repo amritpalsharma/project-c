@@ -1536,5 +1536,6 @@
   "editSighting": "Modifier la session de détection",
   "participatingTalents": "Talents participants",
   "untilToday": "indtil i dag",
-  "failedTxt": "Échoué"
+  "failedTxt": "Échoué",
+  "emailVerifiedSuccessfully": "Courriel vérifié avec succès."
 }
