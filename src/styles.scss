@@ -2919,3 +2919,8 @@ img.club_logo_in_search {
   cursor: not-allowed !important;
   filter: grayscale(100%);
 }
+
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-text-field__input {
+    caret-color: inherit !important;
+}

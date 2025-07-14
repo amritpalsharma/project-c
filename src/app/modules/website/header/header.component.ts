@@ -1143,9 +1143,9 @@ export class HeaderComponent implements OnInit {
       }
     });
   }
-
+  emailVerifiedSuccessfully: string = '';
   loadToasterMsg() {
-    this.translateService.get(['pleaseWait', 'registrationInProcess', 'success!', 'registrationFailed', 'error', 'Processing', 'EmailVerified', 'requiredFieldsMessage']).subscribe((translations) => {
+    this.translateService.get(['pleaseWait', 'registrationInProcess', 'success!', 'registrationFailed', 'error', 'Processing', 'EmailVerified', 'requiredFieldsMessage', 'emailVerifiedSuccessfully']).subscribe((translations) => {
       this.pleaseWait = translations['pleaseWait'];
       this.registrationInProcess = translations['registrationInProcess'];
       this.successTxt = translations['success!'];
@@ -1154,6 +1154,7 @@ export class HeaderComponent implements OnInit {
       this.Processing = translations['Processing'];
       this.EmailVerified = translations['EmailVerified'];
       this.requiredFieldsMessage = translations['requiredFieldsMessage'];
+      this.emailVerifiedSuccessfully = translations['emailVerifiedSuccessfully'];
     });
 
     this.translateService.get(['firstNameRequired', 'lastNameRequired', 'usernameRequired', 'emailRequiredError', 'passwordRequiredError', 'confirmPasswordError']).subscribe((translations) => {

@@ -59,32 +59,45 @@
 }
 
 
+h6.main-template {
+    font-size: 21px;
+    font-weight: 700;
+}
 
 @media (min-width: 1600px) and (max-width: 2999px) {
-    .club_history {
-        h6.main-template {
-            font-size: 22px;
-        }
-
-        .btn-outline-white,
-        .history-text {
-            font-size: 18px !important;
-        }
+    h6.main-template {
+        font-size: 26px;
+    }
+    .history-text {
+        font-size: 20px !important;
+    }
+    .btn-outline-white {
+        font-size: 18px !important;
+        min-width: 170px;
+        justify-content: center;
     }
 }
 
 
 @media (min-width: 3000px) {
-    .club_history {
-        h6.main-template {
-            font-size: 28px;
-        }
-
-        .btn-outline-white,
-        .history-text {
-            font-size: 24px !important;
-        }
+    h6.main-template {
+        font-size: 32px;
     }
+    .history-text {
+        font-size: 24px !important;
+    }
+    .btn-outline-white {
+        min-width: 240px;
+        justify-content: center;
+        font-size: 24px !important;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1599.98px) {
+  .btn-outline-white {
+    min-width: 140px;
+    justify-content: center;
+  }
 }
 
 ::ng-deep .tox-promotion {
@@ -124,7 +137,7 @@
     background: #6FB95D;
     padding: 10px 24px;
     font-size: 12px;
-    font-weight: 700;
+    font-weight: 600;
     color: #fff;
     border-radius: 10px;
     border: none;

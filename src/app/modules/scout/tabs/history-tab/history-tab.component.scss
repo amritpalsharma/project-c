@@ -28,19 +28,6 @@
 }
 
 
-@media (min-width: 2000px) {
-    .company_history {
-        h6.main-template {
-            font-size: 20px;
-        }
-
-        .btn-outline-white,
-        .history-text {
-            font-size: 18px !important;
-        }
-    }
-}
-
 ::ng-deep {
     /* to penetrate <ngx-editor> CSS styling */
 
@@ -60,18 +47,20 @@
 }
 
 
-@media (min-width: 1600px) and (max-width: 2999px) {
-    .company_history {
-        h6.main-template {
-            font-size: 22px;
-        }
+h6.main-template {
+    font-size: 21px;
+    font-weight: 700;
+}
 
-        .btn-outline-white,
-        .history-text {
-            font-size: 18px !important;
-        }
+@media (min-width: 1600px) and (max-width: 2999px) {
+    h6.main-template {
+        font-size: 26px;
+    }
+    .history-text {
+        font-size: 20px !important;
     }
     .btn-outline-white {
+        font-size: 18px !important;
         min-width: 170px;
         justify-content: center;
     }
@@ -79,19 +68,16 @@
 
 
 @media (min-width: 3000px) {
-    .company_history {
-        h6.main-template {
-            font-size: 28px;
-        }
-
-        .btn-outline-white,
-        .history-text {
-            font-size: 24px !important;
-        }
+    h6.main-template {
+        font-size: 32px;
+    }
+    .history-text {
+        font-size: 24px !important;
     }
     .btn-outline-white {
         min-width: 240px;
         justify-content: center;
+        font-size: 24px !important;
     }
 }
 
@@ -100,6 +86,36 @@
     min-width: 140px;
     justify-content: center;
   }
+}
+
+
+
+::ng-deep .tox-promotion {
+    display: none !important;
+}
+
+::ng-deep .dark-theme .tox-menubar {
+    background-color: #072944 !important;
+}
+
+::ng-deep .dark-theme .tox-toolbar__primary {
+    background-color: #072944 !important;
+}
+
+::ng-deep .dark-theme .tox-tinymce {
+    border: 2px solid #072944 !important;
+}
+
+::ng-deep .tox-statusbar {
+    display: none !important;
+}
+
+::ng-deep .dark-theme .tox:not(.tox-tinymce-inline) .tox-editor-header {
+    background-color: #072944 !important;
+}
+
+::ng-deep .dark-theme.tox .tox-toolbar-overlord {
+    background-color: #072944 !important;
 }
 
 // COPY PASTE CSS
@@ -111,7 +127,7 @@
     background: #6FB95D;
     padding: 10px 24px;
     font-size: 12px;
-    font-weight: 700;
+    font-weight: 600;
     color: #fff;
     border-radius: 10px;
     border: none;

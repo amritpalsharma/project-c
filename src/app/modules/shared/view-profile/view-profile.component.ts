@@ -187,7 +187,7 @@ export class ViewProfileComponent implements OnInit {
       this.talentService.getUser(userId, params).subscribe((response) => {
         if (response && response.status && response.data && response.data.user_data) {
           this.user = response.data.user_data;
-          // console.info('this.user',this.user);
+          console.info('this.user',this.user);
           let baseUrl = response.data.imagePath;
           this.baseUrl = baseUrl;
           if (this.loggedInUser?.role != '4') {
@@ -208,6 +208,11 @@ export class ViewProfileComponent implements OnInit {
           // this.profileImage = this.user.meta.profile_image_path || this.profileImage;
           if (this.user.meta.cover_image && this.user.meta.cover_image != '' && this.user.meta.cover_image != undefined) {
             this.coverImage = baseUrl + this.user.meta.cover_image || this.coverImage;
+          } 
+          // When no cover image
+          if (!this.user.meta.cover_image || this.user.meta.cover_image == '') {
+            this.coverImage = '';
+            console.info('No Cover Image');
           }
 
           if (this.user?.scout_info) {
