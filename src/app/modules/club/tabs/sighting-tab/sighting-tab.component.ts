@@ -92,11 +92,13 @@ export class SightingTabComponent {
           this.paginator.length = response.data.totalCount;
           this.isLoading = false;
         } else {
+          this.sightings = [];
           this.isLoading = false;
           console.error('Invalid API response structure:', response);
         }
       });
     } catch (error) {
+      this.sightings = [];
       // this.isLoading = false;
       console.error('Error fetching users:', error);
     }
