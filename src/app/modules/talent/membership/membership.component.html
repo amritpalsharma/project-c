@@ -305,7 +305,7 @@
                 </div>
                 <div class="flex_btn mt-3">
                   <span class="view--eye" class="pointer" (click)="viewMembership(element.id)"
-                    [ngClass]="{'disblebutton':element.invoice_status == 'open'}">
+                    [ngClass]="{'disblebutton':element.invoice_status != 'paid'}">
                     <svg class="pointer cursor-pointer" width="25" height="25" viewBox="0 0 25 25" fill="none"
                       xmlns="http://www.w3.org/2000/svg">
                       <path
@@ -318,7 +318,7 @@
                   </span>
                   <span class="view--eye" class="pointer">
                     <a [href]="element.invoice_file_path" target="_blank"
-                      [ngClass]="{'disblebutton':element.invoice_status == 'open'}">
+                      [ngClass]="{'disblebutton':element.invoice_status != 'paid'}">
                       <svg class="icon__download" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z"
