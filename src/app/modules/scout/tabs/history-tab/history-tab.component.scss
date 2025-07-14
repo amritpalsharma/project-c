@@ -28,19 +28,6 @@
 }
 
 
-@media (min-width: 2000px) {
-    .company_history {
-        h6.main-template {
-            font-size: 20px;
-        }
-
-        .btn-outline-white,
-        .history-text {
-            font-size: 18px !important;
-        }
-    }
-}
-
 ::ng-deep {
     /* to penetrate <ngx-editor> CSS styling */
 
@@ -60,10 +47,15 @@
 }
 
 
+h6.main-template {
+    font-size: 18px;
+}
+
+
 @media (min-width: 1600px) and (max-width: 2999px) {
-    .company_history {
+    .club_history {
         h6.main-template {
-            font-size: 22px;
+            font-size: 25px;
         }
 
         .btn-outline-white,
@@ -79,9 +71,9 @@
 
 
 @media (min-width: 3000px) {
-    .company_history {
+    .club_history {
         h6.main-template {
-            font-size: 28px;
+            font-size: 30px;
         }
 
         .btn-outline-white,
@@ -100,6 +92,36 @@
     min-width: 140px;
     justify-content: center;
   }
+}
+
+
+
+::ng-deep .tox-promotion {
+    display: none !important;
+}
+
+::ng-deep .dark-theme .tox-menubar {
+    background-color: #072944 !important;
+}
+
+::ng-deep .dark-theme .tox-toolbar__primary {
+    background-color: #072944 !important;
+}
+
+::ng-deep .dark-theme .tox-tinymce {
+    border: 2px solid #072944 !important;
+}
+
+::ng-deep .tox-statusbar {
+    display: none !important;
+}
+
+::ng-deep .dark-theme .tox:not(.tox-tinymce-inline) .tox-editor-header {
+    background-color: #072944 !important;
+}
+
+::ng-deep .dark-theme.tox .tox-toolbar-overlord {
+    background-color: #072944 !important;
 }
 
 // COPY PASTE CSS

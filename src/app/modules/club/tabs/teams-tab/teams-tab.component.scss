@@ -50,7 +50,7 @@
 
 .club-team {
   font-family: Libre Franklin, sans-serif;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 700;
 }
 
@@ -147,6 +147,10 @@
     font-size: 22px !important;
     margin-bottom: 10px !important;
   }
+  .add-player-link .dashboard_tabs_add_btn {
+    min-width: 340px;
+    justify-content: center;
+  }
 }
 
 @media (min-width: 3000px) {
@@ -166,6 +170,18 @@
   .btn.web-create-bg {
     font-size: 28px !important;
     margin-bottom: 10px !important;
+  }
+  .add-player-link .dashboard_tabs_add_btn {
+    min-width: 420px;
+    justify-content: center;
+  }
+}
+
+
+@media (min-width: 992px) and (max-width: 1599.98px) {
+  .add-player-link .dashboard_tabs_add_btn {
+    min-width: 260px;
+    justify-content: center;
   }
 }
 
