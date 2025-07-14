@@ -11,7 +11,7 @@
     background: #6FB95D;
     padding: 10px 24px;
     font-size: 12px;
-    font-weight: 700;
+    font-weight: 600;
     color: #fff;
     border-radius: 10px;
     border: none;
@@ -581,6 +581,14 @@ select.custom-select.custom-select-wrapper {
     color: inherit !important;
 }
 
+@media (min-width: 992px) and (max-width: 1599.98px) {
+  .btn.web-create-bg {
+    min-width: 210px;
+    text-align: center;
+    justify-content: center;
+  }
+}
+
 @media (min-width: 1600px) and (max-width: 2999px) {
   .general_titels h2, .general_details .details_1, .position-boxs .details_1, .main-position .details_1,
   .forms_details .email_box {
@@ -599,6 +607,9 @@ select.custom-select.custom-select-wrapper {
   .btn.web-create-bg {
     font-size: 24px !important;
     margin-bottom: 10px !important;
+    min-width: 290px;
+    text-align: center;
+    justify-content: center;
 }
 td svg.pointer {
     width: 32px !important;
@@ -626,6 +637,9 @@ td .custom-select {
   .btn.web-create-bg {
     font-size: 28px !important;
     margin-bottom: 10px !important;
+    min-width: 330px;
+    text-align: center;
+    justify-content: center;
   }
   td svg.pointer {
     width: 40px !important;

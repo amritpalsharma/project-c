@@ -20,7 +20,16 @@
   border: none;
   font-size: 16px;
   border-radius: 10px;
-  font-weight: 700;
+  font-weight: 600;
+}
+
+::ng-deep {
+  .dark-theme {
+    .add_btn_.invite-talent-btn {
+      background: #bde34f !important;
+      color: #072944 !important;
+    }
+  }
 }
 
 @media(max-width: 425px) {
@@ -370,7 +379,7 @@ body {
 }
 
 .card-search {
-  max-width: 344px;
+  max-width: 300px;
   width: 100%;
 }
 
@@ -493,6 +502,14 @@ body {
   }
 }
 
+@media (min-width: 992px) and (max-width: 1599.98px) {
+  .btn.web-create-bg {
+    min-width: 300px;
+    text-align: center;
+    justify-content: center;
+  }
+}
+
 
 @media (min-width: 1600px) and (max-width: 2999px) {
 
@@ -535,6 +552,12 @@ body {
   .upload-btn svg {
     width: 25px !important;
     height: 25px !important;
+  }
+
+  .btn.web-create-bg {
+    min-width: 430px;
+    text-align: center;
+    justify-content: center;
   }
 }
 
@@ -583,6 +606,12 @@ body {
   .upload-btn svg {
     width: 30px !important;
     height: 30px !important;
+  }
+
+  .btn.web-create-bg {
+    min-width: 490px;
+    text-align: center;
+    justify-content: center;
   }
 }
 
@@ -796,7 +825,7 @@ body {
     background: #6FB95D;
     padding: 10px 24px;
     font-size: 12px;
-    font-weight: 700;
+    font-weight: 600;
     color: #fff;
     border-radius: 10px;
     border: none;
