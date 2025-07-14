@@ -60,21 +60,19 @@
 
 
 h6.main-template {
-    font-size: 18px;
+    font-size: 21px;
+    font-weight: 700;
 }
 
-
 @media (min-width: 1600px) and (max-width: 2999px) {
-    .club_history {
-        h6.main-template {
-            font-size: 25px;
-        }
-
-        .btn-outline-white,
-        .history-text {
-            font-size: 18px !important;
-        }
-    }.btn-outline-white {
+    h6.main-template {
+        font-size: 26px;
+    }
+    .history-text {
+        font-size: 20px !important;
+    }
+    .btn-outline-white {
+        font-size: 18px !important;
         min-width: 170px;
         justify-content: center;
     }
@@ -82,19 +80,16 @@ h6.main-template {
 
 
 @media (min-width: 3000px) {
-    .club_history {
-        h6.main-template {
-            font-size: 30px;
-        }
-
-        .btn-outline-white,
-        .history-text {
-            font-size: 24px !important;
-        }
+    h6.main-template {
+        font-size: 32px;
+    }
+    .history-text {
+        font-size: 24px !important;
     }
     .btn-outline-white {
         min-width: 240px;
         justify-content: center;
+        font-size: 24px !important;
     }
 }
 

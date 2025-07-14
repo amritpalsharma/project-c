@@ -25,26 +25,40 @@
     }
 }
 
-
-h6.main-template {
-    font-size: 18px;
+.history-text {
+    font-family: Libre Franklin, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.39px;
+    text-align: left;
 }
+h6.main-template {
+    font-size: 21px;
+    font-weight: 700;
+}
+
+
 @media (min-width: 1600px) and (max-width: 2999px) {
     h6.main-template {
-        font-size: 25px;
+        font-size: 26px;
     }
-    .btn-outline-white, .history-text {
-            font-size: 18px !important;
-        }
+    .history-text {
+        font-size: 20px !important;
+    }
+    .btn-outline-white {
+        font-size: 18px !important;
+    }
 }
 @media (min-width: 3000px) {
     h6.main-template {
-        font-size: 30px;
+        font-size: 32px;
     }
-    .btn-outline-white, .history-text {
+    .history-text {
         font-size: 24px !important;
     }
-
+    .btn-outline-white {
+        font-size: 24px !important;
+    }
 }
 
 
