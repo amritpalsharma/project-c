@@ -1000,7 +1000,7 @@
                           <h6 class="title_2">{{ 'socialMedia' | translate}}</h6>
 
                           <a class="platform_image px-1" *ngIf="user?.meta?.sm_x"
-                            [href]="'https://www.x.com/' + user.meta.sm_x">
+                            [href]="'https://www.x.com/' + user.meta.sm_x" target="_blank">
                             <svg width="17" height="17" viewBox="0 0 17 17" fill="none"
                               xmlns="http://www.w3.org/2000/svg">
                               <g clip-path="url(#clip0_3008_6581)">
@@ -1016,7 +1016,7 @@
                             </svg>
                           </a>
                           <a class="platform_image px-1" *ngIf="user?.meta?.sm_facebook"
-                            [href]="'https://www.facebook.com/' + user.meta.sm_facebook">
+                            [href]="'https://www.facebook.com/' + user.meta.sm_facebook" target="_blank">
                             <svg width="19" height="19" viewBox="0 0 19 19" fill="none"
                               xmlns="http://www.w3.org/2000/svg">
                               <g clip-path="url(#clip0_3009_6591)">
@@ -1035,7 +1035,7 @@
                             </svg>
                           </a>
                           <a class="platform_image px-1" *ngIf="user?.meta?.sm_instagram"
-                            [href]="'https://www.instagram.com/' + user.meta.sm_instagram">
+                            [href]="'https://www.instagram.com/' + user.meta.sm_instagram" target="_blank">
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                               xmlns="http://www.w3.org/2000/svg">
                               <g clip-path="url(#clip0_3008_6583)">
@@ -1072,7 +1072,7 @@
                             </svg>
                           </a>
                           <a class="platform_image px-1" *ngIf="user?.meta?.sm_tiktok"
-                            [href]="'https://www.tiktok.com/@' + user.meta.sm_tiktok">
+                            [href]="'https://www.tiktok.com/@' + user.meta.sm_tiktok" target="_blank">
                             <svg width="16" height="18" viewBox="0 0 16 18" fill="none"
                               xmlns="http://www.w3.org/2000/svg">
                               <g clip-path="url(#clip0_3009_6594)">
@@ -1094,7 +1094,7 @@
                             </svg>
                           </a>
                           <a class="platform_image px-1" *ngIf="user?.meta?.sm_youtube"
-                            [href]="'https://www.youtube.com/c/' + user.meta.sm_youtube">
+                            [href]="'https://www.youtube.com/c/' + user.meta.sm_youtube" target="_blank">
                             <svg width="22" height="15" viewBox="0 0 22 15" fill="none"
                               xmlns="http://www.w3.org/2000/svg">
                               <g clip-path="url(#clip0_3008_6588)">
@@ -1111,7 +1111,7 @@
                             </svg>
                           </a>
                           <a class="platform_image px-1" *ngIf="user?.meta?.sm_vimeo"
-                            [href]="'https://www.vimeo.com/' + user.meta.sm_vimeo">
+                            [href]="'https://www.vimeo.com/' + user.meta.sm_vimeo" target="_blank">
                             <svg width="19" height="16" viewBox="0 0 19 16" fill="none"
                               xmlns="http://www.w3.org/2000/svg">
                               <g clip-path="url(#clip0_3009_6598)">
@@ -1127,7 +1127,7 @@
                             </svg>
                           </a>
                           <a class="platform_image px-1" *ngIf="user?.meta?.sm_linkedin"
-                            [href]="'https://www.linkedin.com/' + user.meta.sm_linkedin">
+                            [href]="'https://www.linkedin.com/' + user.meta.sm_linkedin" target="_blank">
                             <svg xmlns="http://www.w3.org/2000/svg" width="27" height="28" viewBox="0 0 27 28"
                               fill="none">
                               <g clip-path="url(#clip0_242_13596)">
@@ -1223,7 +1223,7 @@
 
                         </div>
                         <div class="team-badge_content col-sm-9 p-0">
-                          <h6 class="title_2 mb-1">{{ 'companyName' | translate}}</h6>
+                          <h6 class="title_2 mb-1">{{ 'company' | translate}}</h6>
                           <h5 class="title-1">{{user?.meta?.company_name |translate }} </h5>
                         </div>
                       </div>
@@ -1231,7 +1231,7 @@
                     <div class="col-sm-6 team-logos">
                       <div class="row">
                         <div class="col-sm-12 p-0">
-                          <h6 class="title_2 mb-1">{{ 'nationality' | translate }}</h6>
+                          <h6 class="title_2 mb-1">{{ 'country' | translate }}</h6>
                           <div class="d-flex align-items-center gap-1 mb-1 " *ngFor="let nation of userNationalities">
                             <div class="team-badge_image">
                               <img *ngIf="nation.flag_path" [src]="nation.flag_path" alt="">
@@ -1270,7 +1270,7 @@
 
                         </div>
                         <div class="col-sm-9 p-0 team-badge_content">
-                          <h6 class="title_2">{{ 'designation' | translate}}</h6>
+                          <h6 class="title_2">{{ 'function' | translate}}</h6>
                           <h5 class="title-1">{{user?.meta?.designation }}</h5>
                         </div>
                       </div>
@@ -1429,7 +1429,7 @@
                           <h6 class="title_2"
                             *ngIf="user?.meta?.sm_x || user?.meta?.sm_facebook || user?.meta?.sm_instagram || user?.meta?.sm_tiktok || user?.meta?.sm_youtube || user?.meta?.sm_vimeo">
                             {{ 'socialMedia' | translate}}</h6>
-                          <a class="platform_image px-1" *ngIf="user?.meta?.sm_x"
+                          <a class="platform_image px-1" *ngIf="user?.meta?.sm_x" target="_blank"
                             [href]="'https://www.x.com/' + user.meta.sm_x">
                             <svg width="17" height="17" viewBox="0 0 17 17" fill="none"
                               xmlns="http://www.w3.org/2000/svg">
@@ -1446,7 +1446,7 @@
                             </svg>
                           </a>
                           <a class="platform_image px-1" *ngIf="user?.meta?.sm_facebook"
-                            [href]="'https://www.facebook.com/' + user.meta.sm_facebook">
+                            [href]="'https://www.facebook.com/' + user.meta.sm_facebook" target="_blank">
                             <svg width="19" height="19" viewBox="0 0 19 19" fill="none"
                               xmlns="http://www.w3.org/2000/svg">
                               <g clip-path="url(#clip0_3009_6591)">
@@ -1465,7 +1465,7 @@
                             </svg>
                           </a>
                           <a class="platform_image px-1" *ngIf="user?.meta?.sm_instagram"
-                            [href]="'https://www.instagram.com/' + user.meta.sm_instagram">
+                            [href]="'https://www.instagram.com/' + user.meta.sm_instagram" target="_blank">
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                               xmlns="http://www.w3.org/2000/svg">
                               <g clip-path="url(#clip0_3008_6583)">
@@ -1502,7 +1502,7 @@
                             </svg>
                           </a>
                           <a class="platform_image px-1" *ngIf="user?.meta?.sm_tiktok"
-                            [href]="'https://www.tiktok.com/@' + user.meta.sm_tiktok">
+                            [href]="'https://www.tiktok.com/@' + user.meta.sm_tiktok" target="_blank">
                             <svg width="16" height="18" viewBox="0 0 16 18" fill="none"
                               xmlns="http://www.w3.org/2000/svg">
                               <g clip-path="url(#clip0_3009_6594)">
@@ -1524,7 +1524,7 @@
                             </svg>
                           </a>
                           <a class="platform_image px-1" *ngIf="user?.meta?.sm_youtube"
-                            [href]="'https://www.youtube.com/c/' + user.meta.sm_youtube">
+                            [href]="'https://www.youtube.com/c/' + user.meta.sm_youtube" target="_blank">
                             <svg width="22" height="15" viewBox="0 0 22 15" fill="none"
                               xmlns="http://www.w3.org/2000/svg">
                               <g clip-path="url(#clip0_3008_6588)">
@@ -1540,7 +1540,7 @@
                               </defs>
                             </svg>
                           </a>
-                          <a class="platform_image px-1" *ngIf="user?.meta?.sm_vimeo"
+                          <a class="platform_image px-1" *ngIf="user?.meta?.sm_vimeo" target="_blank"
                             [href]="'https://www.vimeo.com/' + user.meta.sm_vimeo">
                             <svg width="19" height="16" viewBox="0 0 19 16" fill="none"
                               xmlns="http://www.w3.org/2000/svg">
@@ -1556,7 +1556,7 @@
                               </defs>
                             </svg>
                           </a>
-                          <a class="platform_image px-1" *ngIf="user?.meta?.sm_linkedin"
+                          <a class="platform_image px-1" *ngIf="user?.meta?.sm_linkedin" target="_blank"
                             [href]="'https://www.linkedin.com/' + user.meta.sm_linkedin">
                             <svg xmlns="http://www.w3.org/2000/svg" width="27" height="28" viewBox="0 0 27 28"
                               fill="none">

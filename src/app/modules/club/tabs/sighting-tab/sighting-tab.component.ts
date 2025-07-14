@@ -13,6 +13,7 @@ import { environment } from '../../../../../environments/environment';
 import { WebPages } from '../../../../services/webpages.service';
 import { TranslateService } from '@ngx-translate/core';
 import { UnverifiedUserComponent } from '../../../shared/unverified-user/unverified-user.component';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -51,6 +52,7 @@ export class SightingTabComponent {
   viewSightId: any = "";
   @Input() currentLoggedInPermission: any;
   constructor(
+    public toaster: ToastrService,
     private route: ActivatedRoute,
     private clubService: ClubService,
     private router: Router,
@@ -208,11 +210,12 @@ export class SightingTabComponent {
           this.getSightings();
           this.selectedIds = [];
           this.allSelected = false;
-          if (response.message) {
-            this.showMatDialog(response.message, 'display');
-          } else {
-            this.showMatDialog('Sighting(s) deleted successfully!.', 'display');
-          }
+          // if (response.message) {
+          //   this.showMatDialog(response.message, 'display');
+          // } else {
+          //   this.showMatDialog('Sighting(s) deleted successfully!.', 'display');
+          // }
+          this.toaster.success(response.message)
           this.getSightings();
         } else {
           this.showMatDialog('Error in deleting sighting. Please try again.', 'display');
@@ -250,11 +253,11 @@ export class SightingTabComponent {
       if (result !== undefined) {
         if (result.action == "added") {
           this.getSightings();
-          if (result.message != '' && result.message != undefined) {
-            this.showMatDialog(result.message, 'display');
-          } else {
-            this.showMatDialog("Sighting added successfully", 'display');
-          }
+          // if (result.message != '' && result.message != undefined) {
+          //   this.showMatDialog(result.message, 'display');
+          // } else {
+          //   this.showMatDialog("Sighting added successfully", 'display');
+          // }
         }
         console.log('Dialog result:', result);
       }
@@ -305,10 +308,13 @@ export class SightingTabComponent {
       if (result !== undefined) {
         if (result.action == "added") {
           this.viewSight(result.id);
+          // if (result.message != '' && result.message != undefined) {
+          //   this.showMatDialog(result.message, 'display');
+          // } else {
+          //   this.showMatDialog("Attachment(s) added successfully", 'display');
+          // }
           if (result.message != '' && result.message != undefined) {
-            this.showMatDialog(result.message, 'display');
-          } else {
-            this.showMatDialog("Attachment(s) added successfully", 'display');
+            this.toaster.success(result.message);
           }
         }
         //  console.log('Dialog result:', result);
@@ -357,9 +363,12 @@ export class SightingTabComponent {
         if (result.action == "added") {
           this.viewSight(result.id);
           if (result.message != '' && result.message != undefined) {
-            this.showMatDialog(result.message, 'display');
+            // this.showMatDialog(result.message, 'display');
           } else {
-            this.showMatDialog("Players invited successfully", 'display')
+            // this.showMatDialog("Players invited successfully", 'display')
+          }
+          if (result.message != '' && result.message != undefined) {
+            this.toaster.success(result.message);
           }
         }
         console.log('Dialog result:', result);
@@ -482,11 +491,14 @@ export class SightingTabComponent {
           // let temp = this.attachments;
           // temp.splice(index, 1);
           // this.attachments = temp;
+          // if (response.message != '' && response.message != undefined) {
+          //   this.showMatDialog(response.message, 'display');
+          //   this.viewSight(this.viewSightId)
+          // } else {
+          //   this.showMatDialog('Attachment removed successfully!.', 'display');
+          // }
           if (response.message != '' && response.message != undefined) {
-            this.showMatDialog(response.message, 'display');
-            this.viewSight(this.viewSightId)
-          } else {
-            this.showMatDialog('Attachment removed successfully!.', 'display');
+            this.toaster.success(response.message);
           }
         } else {
           this.showMatDialog('Error in removing attachment. Please try again.', 'display');

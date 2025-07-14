@@ -361,9 +361,9 @@ export class CreateSightPopupComponent implements AfterViewInit {
         if (response && response.status) {
           this.dialogRef.close({
             action: 'added',
-            message: response.message
+            // message: response.message
           })
-
+          this.toaster.success(response.message);
           let jsonData = localStorage.getItem("userData");
           let myUserId: any;
           if (jsonData) {

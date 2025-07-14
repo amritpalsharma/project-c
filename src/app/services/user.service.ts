@@ -662,7 +662,7 @@ export class UserService {
     });
     let whereClasue;
     if (isOnlyTalent) {
-      whereClasue = "&whereClasue[role]=4";
+      whereClasue = "&whereClause[role]=4";
     }
     return this.http.get<any[]>(`${this.apiUrl}users-frontend-with-login?search=${query}&noLimit=1${whereClasue}`, { headers }).pipe(
       catchError((error) => {
