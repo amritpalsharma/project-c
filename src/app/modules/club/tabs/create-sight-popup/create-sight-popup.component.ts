@@ -10,6 +10,8 @@ import { ClubService } from '../../../../services/club.service';
 import { SocketService } from '../../../../services/socket.service';
 import { ToastrService } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
+import { FormControl } from '@angular/forms';
+
 declare var flatpickr: any;
 
 @Component({
@@ -84,13 +86,22 @@ export class CreateSightPopupComponent implements AfterViewInit {
       this.idToBeUpdate = data.sightData.id;
       this.status = data.sightData.status === 'active' ? true : false;
       // this.dateTime = this.formatDateForInput(new Date());
-      this.dateTime = `${this.date}T${data.sightData.event_time}`;
+      // this.dateTime = `${this.date}T${data.sightData.event_time}`;
 
       // this.showImageFromUrl(data.sightData.banner_path, 'Banner Image');
       this.bannerImageName = data.sightData.banner;
       setTimeout(() => {
         this.showImageFromUrl(data.sightData.banner_path, 'Existing Banner');
       });
+
+
+      const event_date = data.sightData.event_date;
+      const event_time = data.sightData.event_time;
+      const [year, month, day] = event_date.split('-').map(Number);
+      const [hour, minute] = event_time.split(':').map(Number);
+      this.dateTime = new Date(year, month - 1, day, hour, minute); // ✅ JavaScript months are 0-based
+      this.dateControl.setValue(this.dateTime); // For <mat-datepicker>
+      this.timeString = event_time;             // For <input type="time">
     }
   }
 
@@ -300,7 +311,7 @@ export class CreateSightPopupComponent implements AfterViewInit {
     return `${dateArr[1]}-${dateArr[2]}-${dateArr[0]} ${time}`;
   }
 
-  getDateTimeFormat(dateTimeString: any) {
+  getDateTimeFormat111(dateTimeString: any) {
     let arr = dateTimeString.split('T');
     let dateArr = arr[0].split('-');
     let time = arr[1];
@@ -312,7 +323,31 @@ export class CreateSightPopupComponent implements AfterViewInit {
     };
   }
 
+  getDateTimeFormat(dateTimeValue: any) {
+    // Ensure we are working with a string
+    let isoString = '';
+
+    if (dateTimeValue instanceof Date) {
+      isoString = dateTimeValue.toISOString(); // "2025-07-23T09:15:00.000Z"
+    } else if (typeof dateTimeValue === 'string') {
+      isoString = dateTimeValue;
+    } else {
+      return { date: '', time: '' }; // fallback for invalid input
+    }
+
+    let arr = isoString.split('T');
+    let dateArr = arr[0].split('-');
+    let time = arr[1]?.slice(0, 5); // only HH:mm
+
+    const formattedDate = `${dateArr[0]}-${dateArr[1]}-${dateArr[2]}`;
+    return {
+      date: formattedDate,
+      time: time
+    };
+  }
+
   createSight() {
+    console.info('this.dateTime', this.dateTime)
     this.isLoading = true;
     // alert('done');
     // return;
@@ -569,6 +604,33 @@ export class CreateSightPopupComponent implements AfterViewInit {
       this.dateTime.setValue(combinedDateTime);  // Combine and store
     } else {
       this.dateTime.setValue(null);  // If no date is selected, set null
+    }
+  }
+
+
+  dateTimeNew: Date | null = null;
+  dateControl = new FormControl(); // Just for binding to mat-datepicker
+
+  timeString: string = '';
+  // When user selects date
+  onDateChange1(event: any) {
+    const selectedDate = event.value;
+    if (selectedDate) {
+      const time = this.timeString ? this.timeString.split(':') : ['00', '00'];
+      const hours = parseInt(time[0], 10);
+      const minutes = parseInt(time[1], 10);
+      this.dateTime = new Date(selectedDate);
+      this.dateTime.setHours(hours, minutes);
+    }
+  }
+
+  // When user selects time
+  onTimeChange1(event: any) {
+    this.timeString = event.target.value;
+    if (this.dateControl.value) {
+      const [hours, minutes] = this.timeString.split(':').map(Number);
+      this.dateTimeNew = new Date(this.dateControl.value);
+      this.dateTimeNew.setHours(hours, minutes);
     }
   }
 }

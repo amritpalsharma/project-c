@@ -587,3 +587,7 @@ input[type="number"] {
     color: #072944 !important;
   }
 }
+::ng-deep mat-datepicker-toggle{
+   left: unset;
+  right: 0 !important;
+}

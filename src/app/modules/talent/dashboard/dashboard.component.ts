@@ -1706,15 +1706,34 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   deleteScoutFromProfile() {
-    this.talentService.deleteScoutFromProfile(this.scoutInfoDetails.id).subscribe(
-      (response: any) => {
-        this.showMatDialog(response.message, 'display');
-        this.scoutInfoDetails = [];
+    // Confirmation 
+    const messageDialog = this.dialog.open(DeletePopupComponent, {
+      width: '500px',
+      position: {
+        top: '150px'
       },
-      error => {
-        console.error('Error deleting user:', error);
-        this.showMatDialog(this.generalError, 'display');
+      data: {
+        from_page: 'dashboard-delete-scout'
       }
-    );
+    })
+
+    messageDialog.afterClosed().subscribe(result => {
+      if (result == 'delete-confirmed') {
+        this.talentService.deleteScoutFromProfile(this.scoutInfoDetails.id).subscribe(
+          (response: any) => {
+            this.showMatDialog(response.message, 'display');
+            this.scoutInfoDetails = [];
+          },
+          error => {
+            console.error('Error deleting user:', error);
+            this.showMatDialog(this.generalError, 'display');
+          }
+        );
+      } else {
+        return;
+      }
+    })
+    //End Confirmation 
+
   }
 }

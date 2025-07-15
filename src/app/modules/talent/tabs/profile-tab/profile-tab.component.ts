@@ -236,27 +236,28 @@ export class ProfileTabComponent {
     }
 
     let locale;
-    if (domainID == 1) {
-      locale = 'de-CH';
-    } else if (domainID == 2) {
-      locale = 'de-DE';
-    } else if (domainID == 3) {
-      locale = 'it-IT';
-    } else if (domainID == 4) {
-      locale = 'fr-FR';
-    } else if (domainID == 5) {
-      locale = 'en-GB';
-    } else if (domainID == 6) {
-      locale = 'es-ES';
-    } else if (domainID == 7) {
-      locale = 'pt-PT';
-    } else if (domainID == 8) {
-      locale = 'nl-BE';
-    } else if (domainID == 9) {
-      locale = 'da-DK';
-    } else if (domainID == 10) {
-      locale = 'sv-SE';
-    }
+    locale = 'de-CH';
+    // if (domainID == 1) {
+    //   locale = 'de-CH';
+    // } else if (domainID == 2) {
+    //   locale = 'de-DE';
+    // } else if (domainID == 3) {
+    //   locale = 'it-IT';
+    // } else if (domainID == 4) {
+    //   locale = 'fr-FR';
+    // } else if (domainID == 5) {
+    //   locale = 'en-GB';
+    // } else if (domainID == 6) {
+    //   locale = 'es-ES';
+    // } else if (domainID == 7) {
+    //   locale = 'pt-PT';
+    // } else if (domainID == 8) {
+    //   locale = 'nl-BE';
+    // } else if (domainID == 9) {
+    //   locale = 'da-DK';
+    // } else if (domainID == 10) {
+    //   locale = 'sv-SE';
+    // }
     // getdomainId
     currencySymbol = '£'; // deafult
     let modifiedAmount = new Intl.NumberFormat(locale).format(amount);

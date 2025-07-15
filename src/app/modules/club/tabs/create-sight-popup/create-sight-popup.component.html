@@ -74,16 +74,44 @@
         <input type="text" id="manager-name" class="cupen-btn w-100" [(ngModel)]="managerName"
           [ngClass]="{'emptyRequiredField':submitButtonClicked && !managerName}">
       </div>
+      <!-- <div class="col-lg-4 px-2 mb-4">
+        <label for="date-select" class="code-text">{{ 'dateAndTime' | translate }}</label><br>
+        <div class="row">
+          <div class="col-sm-7">
+            <div classs="position-relative common" style="position: relative !important;width: 150px;">
+              <input placeholder="DD.MM.YYYY" class="form-control cupen-btn sighting-cal"
+                [ngClass]="{'emptyRequiredField': submitButtonClicked && !dateTime}"
+                [matDatepicker]="contractStartPicker" [formControl]="dateTime" [(ngModel)]="dateTime"  />
+              <mat-datepicker-toggle matSuffix [for]="contractStartPicker"></mat-datepicker-toggle>
+              <mat-datepicker #contractStartPicker></mat-datepicker>
+            </div>
+          </div>
+          <div class="col-sm-5">
+            <input type="time" id="appt" name="appt">
+          </div>
+        </div>
+      </div> -->
+
       <div class="col-lg-4 px-2 mb-4">
         <label for="date-select" class="code-text">{{ 'dateAndTime' | translate }}</label><br>
-        <div classs="position-relative common">
-          <input placeholder="DD.MM.YYYY" class="form-control"
-            [ngClass]="{'emptyRequiredField': submitButtonClicked && !dateTime}" [matDatepicker]="contractStartPicker"
-            [formControl]="dateTime" />
-          <mat-datepicker-toggle matSuffix [for]="contractStartPicker"></mat-datepicker-toggle>
-          <mat-datepicker #contractStartPicker></mat-datepicker>
+        <div class="row">
+          <div class="col-sm-7">
+            <div class="position-relative common" style="width: 150px;">
+              <input placeholder="DD.MM.YYYY" class="form-control cupen-btn sighting-cal"
+                [ngClass]="{'emptyRequiredField': submitButtonClicked && !dateTimeNew}"
+                [matDatepicker]="contractStartPicker" [formControl]="dateControl"
+                (dateChange)="onDateChange1($event)" />
+              <mat-datepicker-toggle matSuffix [for]="contractStartPicker"></mat-datepicker-toggle>
+              <mat-datepicker #contractStartPicker></mat-datepicker>
+            </div>
+          </div>
+          <div class="col-sm-5">
+            <input type="time" id="appt" name="appt" class="form-control" [value]="timeString"
+              (change)="onTimeChange1($event)">
+          </div>
         </div>
       </div>
+
     </div>
     <div class="row">
       <div class="col-lg-4 ms-auto">
