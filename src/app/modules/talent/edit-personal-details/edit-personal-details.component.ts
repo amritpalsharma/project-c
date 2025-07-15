@@ -222,6 +222,14 @@ export class EditPersonalDetailsComponent implements OnInit {
       console.log('custom_club_country', this.custom_club_country, 'TypeOF', typeof this.custom_club_country)
     }
 
+    if (this.user?.have_custom_club == 1) {
+      this.isCustomClubTeam = true;
+    }
+
+    if (this.user?.have_registered_club == 1) {
+      this.isCustomClubTeam = false;
+    }
+
   }
 
   ngAfterViewInit(): void {
@@ -318,7 +326,7 @@ export class EditPersonalDetailsComponent implements OnInit {
         if (this.user.meta.have_no_club == '1') {
           this.isHideClubSection = true;
           this.userHasNoClub = true;
-        }else{
+        } else {
           this.userHasNoClub = false;
           this.isHideClubSection = false;
         }
@@ -391,7 +399,7 @@ export class EditPersonalDetailsComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    // console.log('Form:', form);
+    console.log('Form:', form);
 
     // Manually validate only the required fields
     if (!this.dateOfBirth.value) {

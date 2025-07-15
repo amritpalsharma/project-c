@@ -179,6 +179,8 @@ export class ViewProfileComponent implements OnInit {
       this.startConversation = tooltip;
     });
   }
+  registredClubArr: any;
+  customClubArr: any;
 
   getUser(userId: any) {
     this.talentProfileImageLoaded = true;
@@ -233,7 +235,12 @@ export class ViewProfileComponent implements OnInit {
             this.getGalleryData(this.userId);
             // this.exportSingleUser(this.userId);
           }
-
+          if (this.user?.meta?.have_registered_club == 1 && this.user?.registered_club_info != '') {
+            this.registredClubArr = JSON.parse(this.user?.registered_club_info);
+          }
+          if (this.user?.meta?.have_custom_club == 1 && this.user?.custom_club_info != '') {
+            this.customClubArr = JSON.parse(this.user?.custom_club_info);
+          }
         } else {
           console.error('Invalid API response structure:', response);
         }

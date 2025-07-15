@@ -1564,10 +1564,11 @@ span.active_btn {
 
 #scoutInfoDetails {
   .team-badge_content {
-      max-width: calc(100% - 75px);
-      width: max-content !important;
-      min-width: calc(50% - 35px);
+    max-width: calc(100% - 75px);
+    width: max-content !important;
+    min-width: calc(50% - 35px);
   }
+
   .delet_iconnn {
     cursor: pointer;
   }
@@ -1734,13 +1735,13 @@ span.active_btn {
 }
 
 ::ng-deep {
-@media (max-width: 575px) {
-	.user-media span.profile_img_bg_circle {
-	    .profilepic_mobile_loader > div {
-	      margin-top: 10px !important;
-	    }
-	}
-}
+  @media (max-width: 575px) {
+    .user-media span.profile_img_bg_circle {
+      .profilepic_mobile_loader>div {
+        margin-top: 10px !important;
+      }
+    }
+  }
 }
 
 @media (max-width: 991px) {
@@ -1754,6 +1755,7 @@ span.active_btn {
   .card_box--2 {
     margin-top: 15px;
   }
+
   #scoutInfoDetails {
     .team-badge_content {
       min-width: unset;
@@ -2186,7 +2188,8 @@ span.active_btn {
   }
 }
 
-.disabled-btn-light, .disabled-btn-dark {
+.disabled-btn-light,
+.disabled-btn-dark {
   background: #fff !important;
   opacity: 0.6 !important;
 }
@@ -2197,4 +2200,12 @@ span.active_btn {
       stroke: #fff !important;
     }
   }
+
+  .feather-trash {
+    stroke: #bde34f !important;
+  }
+}
+
+::ng-deep .feather-trash {
+  stroke: #023a4a !important;
 }

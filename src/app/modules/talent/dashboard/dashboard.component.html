@@ -243,7 +243,7 @@
                         <div class="team-badge_content col-sm-9 p-0">
                           <!-- No Club Logic -->
                           <ng-container *ngIf="user?.meta?.have_no_club == '1'">
-                            <h6 class="title_2 mb-1">
+                            <h6 class="title_2 mb-1 have_no_club">
                               {{ 'withoutCurrentClub' | translate}}
                             </h6>
                             <h5 class="title-1"></h5>
@@ -251,7 +251,7 @@
                           <!-- No Club Logic -->
                           <!-- When Talent has Registred Club -->
                           <ng-container *ngIf="user?.meta?.have_registered_club == '1' && registredClubArr != ''">
-                            <h6 class="title_2 mb-1">
+                            <h6 class="title_2 mb-1 have_registered_club">
                               {{ 'currentClub' | translate}}
                             </h6>
                             <h5 class="title-1">{{registredClubArr?.club_name}}</h5>
@@ -259,7 +259,7 @@
                           <!-- End When Talent has Registred Club -->
                           <!-- When User Has Custom Club  -->
                           <ng-container *ngIf="user?.meta?.have_custom_club == '1' && customClubArr != ''">
-                            <h6 class="title_2 mb-1">
+                            <h6 class="title_2 mb-1 have_custom_club">
                               {{ 'currentClub' | translate}}
                             </h6>
                             <h5 class="title-1">{{customClubArr?.club_name}}</h5>
@@ -667,18 +667,14 @@
                           </svg>
                         </div>
                         <div class="col-sm-9 p-0 team-badge_content">
-                          <h6 class="title_2" *ngIf="user?.team_type != 'A' && user?.team_type != 'B'">{{ 'team' |
+                          <h6 class="title_2">{{ 'team' |
                             translate}}</h6>
-                          <h6 class="title_2" *ngIf="user?.team_type == 'A' || user?.team_type == 'B'">{{ 'leagueLevel'
-                            | translate}}</h6>
-                          <h5 class="title-1"
-                            *ngIf="user?.league_name && user?.team_type == 'A' || user?.team_type == 'B'">
-                            {{user?.league_name}}</h5>
-                          <h5 class="title-1"
-                            *ngIf="user?.league_name && user?.team_type != 'A' && user?.team_type != 'B'">
-                            {{user?.current_club_name}} - {{user?.team_type}}</h5>
-                          <h5 class="title-1" *ngIf="customClubInfo?.team_name">
-                            {{customClubInfo?.team_name}}</h5>
+                          <ng-container *ngIf="user?.meta?.have_registered_club == '1' && registredClubArr != ''">
+                            <h5 class="title-1">{{registredClubArr?.team_name}}</h5>
+                          </ng-container>
+                          <ng-container *ngIf="user?.meta?.have_custom_club == '1' && customClubArr != ''">
+                            <h5 class="title-1">{{customClubArr?.team_name}}</h5>
+                          </ng-container>
                         </div>
                       </div>
                     </div>
