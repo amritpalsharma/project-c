@@ -106,11 +106,11 @@ export class CreateSightPopupComponent implements AfterViewInit {
       event.preventDefault();
     });
 
-    this.pickerInstance = flatpickr(this.dateInput.nativeElement, {
-      enableTime: true,
-      dateFormat: "d.m.Y H:i",
-      time_24hr: true
-    });
+    // this.pickerInstance = flatpickr(this.dateInput.nativeElement, {
+    //   enableTime: true,
+    //   dateFormat: "d.m.Y H:i",
+    //   time_24hr: true
+    // });
   }
 
   ngOnInit(): void {
@@ -550,6 +550,25 @@ export class CreateSightPopupComponent implements AfterViewInit {
   ngOnDestroy(): void {
     if (this.pickerInstance) {
       this.pickerInstance.destroy();
+    }
+  }
+
+  combineDateTime(date: Date, time: string): Date {
+    if (time) {
+      const [hours, minutes] = time.split(':').map(num => parseInt(num, 10));
+      date.setHours(hours);
+      date.setMinutes(minutes);
+    }
+    return date;
+  }
+  time: string = '';
+  onDateChange(event: MatDatepickerInputEvent<Date>) {
+    const selectedDate: Date | null = event.value;  // Ensure it is either Date or null
+    if (selectedDate) {
+      const combinedDateTime = this.combineDateTime(selectedDate, this.time);
+      this.dateTime.setValue(combinedDateTime);  // Combine and store
+    } else {
+      this.dateTime.setValue(null);  // If no date is selected, set null
     }
   }
 }
