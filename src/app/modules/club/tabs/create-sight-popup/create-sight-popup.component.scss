@@ -258,6 +258,34 @@
   margin-bottom: 14px;
 }
 
+.date_tiem_comb {
+  display: flex;
+  input[type="time"]::-webkit-inner-spin-button,
+  input[type="time"]::-webkit-calendar-picker-indicator {
+     opacity: 0;
+  }
+  // input[type="time"]{
+  //   -moz-appearance: none !important;
+  //   appearance: none !important;
+  //   -webkit-appearance: none !important; 
+  // }
+  #appt {
+      width: 40%;
+      border-top-left-radius: 0 !important;
+      border-bottom-left-radius: 0 !important;
+      background-image: url(../../../../../assets/images/clock-blackk.svg);
+      background-repeat: no-repeat !important;
+      background-position: right 10px center !important;
+  }
+  .common {
+    width: 60%;
+    .mat-datepicker-input {
+      border-top-right-radius: 0 !important;
+      border-bottom-right-radius: 0 !important;
+    }
+  }
+}
+
 @media (max-width:768px) {
   .name-details {
     row-gap: 20px;
@@ -590,4 +618,13 @@ input[type="number"] {
 ::ng-deep mat-datepicker-toggle{
    left: unset;
   right: 0 !important;
+}
+
+
+::ng-deep .dark-theme {
+  .date_tiem_comb {
+    input#appt {
+      background: #0C3453 url(../../../../../assets/images/clock-whitee.svg) !important;
+    }
+  }
 }
