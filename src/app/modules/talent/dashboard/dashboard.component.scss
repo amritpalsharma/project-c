@@ -1562,6 +1562,17 @@ span.active_btn {
   }
 }
 
+#scoutInfoDetails {
+  .team-badge_content {
+      max-width: calc(100% - 75px);
+      width: max-content !important;
+      min-width: calc(50% - 35px);
+  }
+  .delet_iconnn {
+    cursor: pointer;
+  }
+}
+
 
 @media (min-width: 1200px) {
 
@@ -1742,6 +1753,11 @@ span.active_btn {
 
   .card_box--2 {
     margin-top: 15px;
+  }
+  #scoutInfoDetails {
+    .team-badge_content {
+      min-width: unset;
+    }
   }
 }
 
@@ -2173,4 +2189,13 @@ span.active_btn {
 .disabled-btn-light, .disabled-btn-dark {
   background: #fff !important;
   opacity: 0.6 !important;
+}
+
+
+::ng-deep .dark-theme {
+  #scoutInfoDetails {
+    .delet_iconnn svg {
+      stroke: #fff !important;
+    }
+  }
 }
