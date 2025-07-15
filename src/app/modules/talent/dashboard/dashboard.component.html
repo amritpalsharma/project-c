@@ -213,9 +213,10 @@
                         </div>
                         <div class="team-badge_content col-sm-9 p-0">
                           <h6 class="title_2 mb-1"
-                            *ngIf="!user?.current_club_name && !customClubInfo?.club_name && user?.meta?.have_no_club != '1'">
+                            *ngIf="!user?.current_club_name && !customClubInfo?.club_name && user?.meta?.have_no_club == '1'">
                             {{
-                            'withoutCurrentClub' | translate}}</h6>
+                            'withoutCurrentClub' | translate}}
+                          </h6>
                           <h6 class="title_2 mb-1" *ngIf="user?.meta?.have_no_club == '1'">{{ 'withoutCurrentClub' |
                             translate}}</h6>
                           <h6 class="title_2 mb-1" *ngIf="user?.current_club_name || customClubInfo?.club_name">{{
@@ -509,7 +510,9 @@
                             <span *ngIf="user?.meta?.contract_end && isValidDate(user?.meta?.contract_end)">
                               {{ user.meta.contract_end | date: 'y' }}
                             </span>
-                            <span *ngIf="!user?.meta?.contract_end || !isValidDate(user?.meta?.contract_end)">{{'untilToday' | translate}}</span>
+                            <span
+                              *ngIf="!user?.meta?.contract_end || !isValidDate(user?.meta?.contract_end)">{{'untilToday'
+                              | translate}}</span>
                           </h5>
                         </div>
                       </div>
@@ -863,7 +866,14 @@
                           </h5>
                         </div>
                         <div class="col-sm-2 team-badge_image delet_iconnn" (click)="deleteScoutFromProfile()">
-                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash" viewBox="0 0 24 24"> <path d="M19 6l-2 14H7L5 6"></path><path d="M10 11v6"></path><path d="M14 11v6"></path><path d="M9 6V4h6v2"></path></svg>
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#000" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash"
+                            viewBox="0 0 24 24">
+                            <path d="M19 6l-2 14H7L5 6"></path>
+                            <path d="M10 11v6"></path>
+                            <path d="M14 11v6"></path>
+                            <path d="M9 6V4h6v2"></path>
+                          </svg>
                         </div>
                       </div>
                     </div>

@@ -408,13 +408,13 @@ export class EditPersonalDetailsComponent implements OnInit {
 
     // Handling `current_club` and `pre_club_id`
     let index = this.playerClubsListing.findIndex((x: any) => x.id === this.currentClubId);
-    if (this.playerClubsListing[index]?.is_taken === "yes") {
-      this.takenBy = this.playerClubsListing[index].taken_by;
-      formData.append('user[pre_club_id]', this.currentClubId);
-      formData.append('user[current_club]', this.takenBy);
-    } else {
-      formData.append('user[pre_club_id]', this.currentClubId);
-    }
+    // if (this.playerClubsListing[index]?.is_taken === "yes") {
+    //   this.takenBy = this.playerClubsListing[index].taken_by;
+    //   formData.append('user[pre_club_id]', this.currentClubId);
+    //   formData.append('user[current_club]', this.takenBy);
+    // } else {
+    //   formData.append('user[pre_club_id]', this.currentClubId);
+    // }
 
 
 
@@ -422,7 +422,7 @@ export class EditPersonalDetailsComponent implements OnInit {
     const formattedDateOfBirth = moment(this.dateOfBirth.value).format('YYYY-MM-DD');
     formData.append('user[date_of_birth]', formattedDateOfBirth);
     formData.append('user[foot]', this.dominantFoot);
-    formData.append('user[current_team]', this.CurrentTeamId);
+    // formData.append('user[current_team]', this.CurrentTeamId);
 
     // Append Nationality array
     this.nationality.forEach((nation: any) => {
@@ -448,27 +448,70 @@ export class EditPersonalDetailsComponent implements OnInit {
     let lang = localStorage.getItem('lang_id') + '';
     formData.append('lang', lang);
 
-    if (this.isHideClubSection === true) {
+    // if (this.isHideClubSection === true) {
+    //   formData.append('user[have_no_club]', '1');
+    //   formData.append('user[current_team]', '0');
+    // } else {
+    //   formData.append('user[have_no_club]', '0');
+    // }
+
+    // if (this.isCustomClubTeam) {
+    //   formData.append('user[custom_club]', this.custom_club);
+    //   formData.append('user[custom_team]', this.custom_team);
+    //   formData.append('user[custom_club_country]', this.custom_club_country + '');
+    // } else {
+    //   formData.append('user[custom_club]', '');
+    //   formData.append('user[custom_team]', '');
+    //   formData.append('user[custom_club_country]', '');
+    // }
+    // if (this.isCustomClubTeam === true) {
+    //   formData.append('user[have_custom_club]', '1');
+    // } else {
+    //   formData.append('user[have_custom_club]', '0');
+    // }
+
+    // if (this.userHasNoClub === true) {
+    //   formData.append('user[have_no_club]', '1');
+    //   console.info('You Have No Club');
+    // } else {
+    //   if (this.userHasRegistredClub === true) {
+    //     formData.append('user[registered_club]', this.currentClubId);
+    //     formData.append('user[registered_club_team_type]', this.team_type);
+    //     formData.append('user[registered_club_team]', this.CurrentTeamId);
+    //     formData.append('user[have_registered_club]', '1');
+    //     formData.append('user[have_custom_club]', '0');
+    //     console.info('You Have Registred Club');
+    //   } else {
+    //     formData.append('user[have_registered_club]', '0');
+    //     formData.append('user[have_custom_club]', '1');
+    //     formData.append('user[custom_club]', this.custom_club);
+    //     formData.append('user[custom_team]', this.custom_team);
+    //     formData.append('user[custom_club_country]', this.custom_club_country + '');
+    //     console.info('You Have Custom Club with details custom_club ' + this.custom_club + ' custom_team ' + this.custom_team + ' custom_club_country ' + this.custom_club_country);
+    //   }
+    // }
+
+    if (this.userHasNoClub === true) {
       formData.append('user[have_no_club]', '1');
-      formData.append('user[current_team]', '0');
     } else {
-      formData.append('user[have_no_club]', '0');
+      formData.append('user[have_no_club]', '1');
     }
 
-    if (this.isCustomClubTeam) {
+    if (this.userHasCustomClub === true) {
+      formData.append('user[have_custom_club]', '1');
+      formData.append('user[have_registered_club]', '0');
       formData.append('user[custom_club]', this.custom_club);
       formData.append('user[custom_team]', this.custom_team);
       formData.append('user[custom_club_country]', this.custom_club_country + '');
     } else {
-      formData.append('user[custom_club]', '');
-      formData.append('user[custom_team]', '');
-      formData.append('user[custom_club_country]', '');
-    }
-    if (this.isCustomClubTeam === true) {
-      formData.append('user[have_custom_club]', '1');
-    } else {
       formData.append('user[have_custom_club]', '0');
+      formData.append('user[have_registered_club]', '1');
+      formData.append('user[registered_club]', this.currentClubId);
+      formData.append('user[registered_club_team_type]', this.team_type);
+      formData.append('user[registered_club_team]', this.CurrentTeamId);
     }
+
+
 
     // API call for submitting form data
     this.talentService.updateUserProfile(formData).subscribe(
@@ -659,20 +702,23 @@ export class EditPersonalDetailsComponent implements OnInit {
     return country.id;
   }
 
+  userHasNoClub: boolean = true;
   onNoClubChange(value: boolean) {
-    // alert(value); // true if checked, false if unchecked
     this.isHideClubSection = value;
     if (value === true) {
       this.isCustomClubTeam = false;
     }
+    this.userHasNoClub = value;
   }
 
 
+  userHasCustomClub: boolean = false;
   onChnageCustomClubTeam(value: boolean) {
     this.isCustomClubTeam = value;
     if (value === true) {
       this.isHideClubSection = false;
     }
+    this.userHasCustomClub = value;
   }
 
   handleKeydown(event: KeyboardEvent) {

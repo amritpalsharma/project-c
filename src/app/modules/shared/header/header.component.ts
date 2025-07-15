@@ -132,6 +132,8 @@ export class HeaderComponent {
   langSubscription!: Subscription;
   currentLoggedInPermission: string = this.globalSettings.getCurrentViewOnly();
 
+  currentLoggedInUserId: number = 0;
+
   ngOnInit() {
     this.getJsonTranslations();
     this.langSubscription = this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
@@ -177,6 +179,7 @@ export class HeaderComponent {
     if (jsonData) {
       let userData = JSON.parse(jsonData);
       userId = userData.id;
+      this.currentLoggedInUserId = userId;
       if (localStorage.getItem("lang") == '' || localStorage.getItem("userData") == null && userData.lang != '') {
         let dbLanguage = this.getSlugFromID(userData.lang);
         if (dbLanguage != '') {
@@ -805,7 +808,13 @@ export class HeaderComponent {
   exploreUser(slug: string, id: number): void {
     this.trackProfileClick(id);
     const pageRoute = `view/${slug.toLowerCase()}`;
-    this.router.navigate([pageRoute, id]);
+    if (this.currentLoggedInUserId === id) {
+      let currentRole = slug.toLowerCase();
+      this.router.navigate([currentRole, 'dashboard']);
+    } else {
+      // Navigate to Explore
+      this.router.navigate([pageRoute, id]);
+    }
   }
 
   private trackProfileClick(profileId: number): void {

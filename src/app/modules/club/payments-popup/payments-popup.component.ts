@@ -3,7 +3,7 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
 import { AddCardComponent } from '../membership/add-card/add-card.component';
 
 @Component({
-  selector: 'app-payments-popup',
+  selector: 'app-payments-popup-alt',
   templateUrl: './payments-popup.component.html',
   styleUrls: ['./payments-popup.component.scss']
 })
