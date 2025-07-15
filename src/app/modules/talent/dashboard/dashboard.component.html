@@ -845,7 +845,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-sm-6 scoutInfoDetails_id_{{scoutInfoDetails?.id}}"
+                    <div id="scoutInfoDetails" class="col-sm-12 scoutInfoDetails_id_{{scoutInfoDetails?.id}}"
                       *ngIf="scoutInfoDetails && scoutInfoDetails?.id != null && scoutInfoDetails?.id !== ''">
                       <div class="row align-items-center" *ngIf="scoutInfoDetails && scoutInfoDetails?.id != ''">
                         <div class="col-sm-3 team-badge_image">
@@ -862,8 +862,8 @@
                             {{scoutInfoDetails?.first_name}} {{scoutInfoDetails?.last_name}}
                           </h5>
                         </div>
-                        <div class="col-sm-2 team-badge_image" (click)="deleteScoutFromProfile()">
-                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash" viewBox="0 0 24 24"> <path d="M19 6l-2 14H7L5 6"></path><path d="M10 11v6"></path><path d="M14 11v6"></path><path d="M9 6V4h6v2"></path></svg>
+                        <div class="col-sm-2 team-badge_image delet_iconnn" (click)="deleteScoutFromProfile()">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash" viewBox="0 0 24 24"> <path d="M19 6l-2 14H7L5 6"></path><path d="M10 11v6"></path><path d="M14 11v6"></path><path d="M9 6V4h6v2"></path></svg>
                         </div>
                       </div>
                     </div>
