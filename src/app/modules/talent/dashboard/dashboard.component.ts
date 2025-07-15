@@ -423,6 +423,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
   }
 
+  registredClubArr: any;
+  customClubArr: any;
   getUserProfile(userId: any) {
     this.loading = true;  // Set loading to true before making the API call
     this.profileImageLoading = true;
@@ -538,6 +540,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
           //     this.getCountry(nat.flag_path, index);
           //   });
           // }
+
+
+          if (this.user?.meta?.have_registered_club == 1 && this.user?.registered_club_info != '') {
+            this.registredClubArr = JSON.parse(this.user?.registered_club_info);
+          }
+          if (this.user?.meta?.have_custom_club == 1 && this.user?.custom_club_info != '') {
+            this.customClubArr = JSON.parse(this.user?.custom_club_info);
+          }
         }
         this.getUserPopups();
         this.loading = false;  // Set loading to false once data is loaded

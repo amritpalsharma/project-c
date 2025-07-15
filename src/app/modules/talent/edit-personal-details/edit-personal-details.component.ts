@@ -164,7 +164,11 @@ export class EditPersonalDetailsComponent implements OnInit {
         } else {
           this.teamsArr = []; // Clear teamsArr if no teams are available
         }
+        if (this.user?.meta?.have_registered_club == 1 && this.user?.registered_club_info != '') {
+          this.CurrentTeamId = this.registredClubArr.team_id;
+        }
         console.info('Received Teams:', this.teamsArr);
+
         this.cdr.detectChanges();
       });
       console.log('user', this.contractStart)
@@ -303,6 +307,9 @@ export class EditPersonalDetailsComponent implements OnInit {
     //this.filteredClubs = [];  // Clear the suggestion list
   }
 
+  registredClubArr: any;
+  customClubArr: any;
+
   getUserProfile(userId: any) {
     if (this.userData) {
       this.user = this.userData;
@@ -310,6 +317,10 @@ export class EditPersonalDetailsComponent implements OnInit {
       if (this.user.meta) {
         if (this.user.meta.have_no_club == '1') {
           this.isHideClubSection = true;
+          this.userHasNoClub = true;
+        }else{
+          this.userHasNoClub = false;
+          this.isHideClubSection = false;
         }
         // console.info('this.user.meta',this.user.meta)
         this.dateOfBirth = this.user.meta.date_of_birth || '';
@@ -334,14 +345,9 @@ export class EditPersonalDetailsComponent implements OnInit {
 
         if (this.user.team_id && this.user.team_id != '' && this.user.team_id != undefined) {
           this.team_id = this.user.team_id;
-          // this.teamControl.setValue(this.user.team_id);
-          // this.FirstTimeSelectedTeam = this.team_id;
           this.CurrentTeamId = this.team_id;
         }
 
-        // alert('this.team_id ' + this.team_id)
-        // console.info(this.team_id)
-        // Ensure userNationalities is parsed correctly as an array of IDs only
         this.userNationalities = JSON.parse(this.user.user_nationalities || '[]');
         this.nationality = Array.isArray(this.userNationalities) ? this.userNationalities.map((nation: any) => nation.country_id) : [];
 
@@ -351,20 +357,33 @@ export class EditPersonalDetailsComponent implements OnInit {
           console.warn('this.leagueLevel ', this.leagueLevel);
         }
 
-        if (this.user?.custom_club_info && this.user?.custom_club_info != '') {
-          let custom_club_info = JSON.parse(this.user?.custom_club_info);
-          this.custom_club_country = custom_club_info.country_id;
-          this.custom_club = custom_club_info.club_name;
-          this.custom_team = custom_club_info.team_name;
-          if (this.custom_club && this.custom_club != '') {
-            this.isCustomClubTeam = true;
-          }
-          let selectionArr = this.countries.filter((club: any) =>
-            club.id === parseInt('' + this.custom_club_country + '', 10) // Directly comparing IDs (ensuring 'keyword' is parsed to an integer)
-          );
-          console.info('this.custom_club_country', this.custom_club_country);
-          console.info('this.selectionArr', selectionArr);
-        }
+        // if (this.user?.custom_club_info && this.user?.custom_club_info != '') {
+        //   let custom_club_info = JSON.parse(this.user?.custom_club_info);
+        //   this.custom_club_country = custom_club_info.country_id;
+        //   this.custom_club = custom_club_info.club_name;
+        //   this.custom_team = custom_club_info.team_name;
+        //   if (this.custom_club && this.custom_club != '') {
+        //     this.isCustomClubTeam = true;
+        //   }
+        //   let selectionArr = this.countries.filter((club: any) =>
+        //     club.id === parseInt('' + this.custom_club_country + '', 10) // Directly comparing IDs (ensuring 'keyword' is parsed to an integer)
+        //   );
+        //   console.info('this.custom_club_country', this.custom_club_country);
+        //   console.info('this.selectionArr', selectionArr);
+        // }
+
+
+
+      }
+
+      if (this.user?.meta?.have_registered_club == 1 && this.user?.registered_club_info != '') {
+        this.registredClubArr = JSON.parse(this.user?.registered_club_info);
+        this.currentClubId = this.registredClubArr.club_id + '';
+        this.team_type = this.registredClubArr.team_group;
+        this.CurrentTeamId = this.registredClubArr.team_id;
+      }
+      if (this.user?.meta?.have_custom_club == 1 && this.user?.custom_club_info != '') {
+        this.customClubArr = JSON.parse(this.user?.custom_club_info);
       }
     } else {
       console.error('Invalid API this.userData structure:', this.userData);
@@ -491,11 +510,7 @@ export class EditPersonalDetailsComponent implements OnInit {
     //   }
     // }
 
-    if (this.userHasNoClub === true) {
-      formData.append('user[have_no_club]', '1');
-    } else {
-      formData.append('user[have_no_club]', '1');
-    }
+
 
     if (this.userHasCustomClub === true) {
       formData.append('user[have_custom_club]', '1');
@@ -511,6 +526,13 @@ export class EditPersonalDetailsComponent implements OnInit {
       formData.append('user[registered_club_team]', this.CurrentTeamId);
     }
 
+    if (this.userHasNoClub === true) {
+      formData.append('user[have_no_club]', '1');
+      formData.append('user[have_custom_club]', '0');
+      formData.append('user[have_registered_club]', '0');
+    } else {
+      formData.append('user[have_no_club]', '0');
+    }
 
 
     // API call for submitting form data
