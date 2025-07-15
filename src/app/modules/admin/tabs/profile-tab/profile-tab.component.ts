@@ -31,11 +31,21 @@ export class ProfileTabComponent {
   ngAfterViewInit() {
     //console.log('coming this data',this.userData)
   }
+  registredClubArr:any;
+  customClubArr:any;
   ngOnInit(): void {
     this.user = localStorage.getItem('userData');
     this.user = JSON.parse(this.user);
-    console.info('coming this data', this.user);
-    console.info('coming this this.userData', this.userData);
+    // console.info('coming this data', this.user);
+    // console.info('coming this this.userData', this.userData);
+
+
+    if (this.user?.meta?.have_registered_club == 1 && this.user?.registered_club_info != '') {
+      this.registredClubArr = JSON.parse(this.user?.registered_club_info);
+    }
+    if (this.user?.meta?.have_custom_club == 1 && this.user?.custom_club_info != '') {
+      this.customClubArr = JSON.parse(this.user?.custom_club_info);
+    }
 
 
     this.globalSettings.indexFunctionCall$.subscribe(() => {
