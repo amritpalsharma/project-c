@@ -1482,5 +1482,8 @@
   "pdfTitle": "Título PDF",
   "AreYouSureToMatchStatistic": "Tem a certeza de que pretende eliminar a estatística de jogo selecionada??",
   "AreYouSureToTransferRecord": "Tem a certeza de que pretende eliminar o registo de transferência selecionado?",
-  "areYouSureToUpdateRole": "Tem certeza de que deseja atualizar o cargo do membro da equipe?"
+  "areYouSureToUpdateRole": "Tem certeza de que deseja atualizar o cargo do membro da equipe?",
+  "areYouSureToRemoveScout": "Queres remover este olheiro do teu perfil?",
+  "yesRemoveScout": "Sim, remover",
+  "cancelRemoveScout": "Não, não remover"
 }

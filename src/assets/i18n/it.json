@@ -1522,5 +1522,8 @@
   "pdfTitle": "Titolo PDF",
   "AreYouSureToMatchStatistic": "Sei sicuro di voler eliminare la statistica della partita selezionata?",
   "AreYouSureToTransferRecord": "Sei sicuro di voler eliminare il record di trasferimento selezionato?",
-  "areYouSureToUpdateRole": "Sei sicuro di voler aggiornare il ruolo del membro del team?"
+  "areYouSureToUpdateRole": "Sei sicuro di voler aggiornare il ruolo del membro del team?",
+  "areYouSureToRemoveScout": "Vuoi rimuovere questo scout dal tuo profilo?",
+  "yesRemoveScout": "Sì, rimuovi",
+  "cancelRemoveScout": "No, non rimuovere"
 }

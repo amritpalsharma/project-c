@@ -1532,5 +1532,8 @@
   "pdfTitle": "PDF Titel",
   "AreYouSureToMatchStatistic": "Möchten Sie die ausgewählte Spielstatistik wirklich löschen?",
   "AreYouSureToTransferRecord": "Möchten Sie den ausgewählten Transferdatensatz wirklich löschen?",
-  "areYouSureToUpdateRole": "Sind Sie sicher, dass Sie die Rolle von Team-Mitglied aktualisieren möchten?"
+  "areYouSureToUpdateRole": "Sind Sie sicher, dass Sie die Rolle von Team-Mitglied aktualisieren möchten?",
+  "areYouSureToRemoveScout": "Willst du diesen Scout aus deinem Profil entfernen?",
+  "yesRemoveScout": "Ja, entfernen",
+  "cancelRemoveScout": "Nein, nicht entfernen"
 }

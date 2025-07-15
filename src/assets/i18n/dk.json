@@ -1391,5 +1391,8 @@
   "pdfTitle": "PDF titel",
   "AreYouSureToMatchStatistic": "Er du sikker på, at du vil slette den valgte kampstatistik?",
   "AreYouSureToTransferRecord": "Er du sikker på, at du vil slette den valgte overførselsregistrering?",
-  "areYouSureToUpdateRole": "Er du sikker på, at du vil opdatere teammedlemmets rolle?"
+  "areYouSureToUpdateRole": "Er du sikker på, at du vil opdatere teammedlemmets rolle?",
+  "areYouSureToRemoveScout": "Vil du fjerne denne scout fra din profil?",
+  "yesRemoveScout": "Ja, fjern",
+  "cancelRemoveScout": "Nej, fjern ikke"
 }
