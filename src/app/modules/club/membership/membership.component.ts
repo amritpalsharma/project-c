@@ -475,19 +475,28 @@ export class MembershipComponent {
     });
   }
 
+
+
   getUserProfile(userId: any) {
+    let params = {
+      lang: localStorage.getItem('lang_id')
+    };
+
     try {
-      this.clubService.getProfileData(userId).subscribe((response) => {
+      this.clubService.getProfileData(params).subscribe((response) => {
+
         if (response && response.status && response.data && response.data.user_data) {
-          localStorage.setItem('userInfo', JSON.stringify(response.data.user_data));
-          localStorage.setItem('userData', JSON.stringify(response.data.user_data));
-          if (response.data.representator_data && response.data.representator_data != '') {
+          // console.info('UserDataArrSharedHeader', response.data);
+
+          if (response?.data?.representator_data && response?.data?.representator_data != '') {
             if (response.data.representator_data.permission == 'admin.view') {
               this.currentLoggedInPermission = 'club_view_only';
-            } 
+            }
             if (response.data.representator_data.permission == 'admin.edit') {
               this.currentLoggedInPermission = 'club_edit_only';
             }
+
+            console.info('Set In Header this.currentLoggedInPermission ', this.currentLoggedInPermission)
           }
         }
       });

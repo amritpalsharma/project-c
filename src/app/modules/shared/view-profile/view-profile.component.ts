@@ -1,4 +1,4 @@
-import { Component, EventEmitter, ViewChild, ElementRef, AfterViewInit, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, ViewChild, ElementRef, AfterViewInit, OnInit, Output, SimpleChanges } from '@angular/core';
 // import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../../services/user.service';
@@ -109,6 +109,7 @@ export class ViewProfileComponent implements OnInit {
     this.route.params.subscribe((params: any) => {
       this.userId = params.id;
       this.getUser(this.userId);
+      // this.reloadViewProfileComponent();
       this.activeTab = 'profile';
       // code by amrit
       this.getToolTips();
@@ -178,6 +179,8 @@ export class ViewProfileComponent implements OnInit {
       this.startConversation = tooltip;
     });
   }
+  registredClubArr: any;
+  customClubArr: any;
 
   getUser(userId: any) {
     this.talentProfileImageLoaded = true;
@@ -187,7 +190,7 @@ export class ViewProfileComponent implements OnInit {
       this.talentService.getUser(userId, params).subscribe((response) => {
         if (response && response.status && response.data && response.data.user_data) {
           this.user = response.data.user_data;
-          console.info('this.user',this.user);
+          console.info('this.user', this.user);
           let baseUrl = response.data.imagePath;
           this.baseUrl = baseUrl;
           if (this.loggedInUser?.role != '4') {
@@ -208,7 +211,7 @@ export class ViewProfileComponent implements OnInit {
           // this.profileImage = this.user.meta.profile_image_path || this.profileImage;
           if (this.user.meta.cover_image && this.user.meta.cover_image != '' && this.user.meta.cover_image != undefined) {
             this.coverImage = baseUrl + this.user.meta.cover_image || this.coverImage;
-          } 
+          }
           // When no cover image
           if (!this.user.meta.cover_image || this.user.meta.cover_image == '') {
             this.coverImage = '';
@@ -232,7 +235,12 @@ export class ViewProfileComponent implements OnInit {
             this.getGalleryData(this.userId);
             // this.exportSingleUser(this.userId);
           }
-
+          if (this.user?.meta?.have_registered_club == 1 && this.user?.registered_club_info != '') {
+            this.registredClubArr = JSON.parse(this.user?.registered_club_info);
+          }
+          if (this.user?.meta?.have_custom_club == 1 && this.user?.custom_club_info != '') {
+            this.customClubArr = JSON.parse(this.user?.custom_club_info);
+          }
         } else {
           console.error('Invalid API response structure:', response);
         }
@@ -667,6 +675,20 @@ export class ViewProfileComponent implements OnInit {
     return isNaN(parsed.getTime()) ? null : parsed;
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    // This will detect any changes in the input parameters if applicable
+    if (changes['id']) {
+      this.reloadViewProfileComponent();
+    }
+  }
+
+
+  reloadViewProfileComponent() {
+    const currentUrl = this.router.url;
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigateByUrl(currentUrl);
+    });
+  }
 
 }
 

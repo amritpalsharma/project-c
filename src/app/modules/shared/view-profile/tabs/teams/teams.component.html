@@ -101,7 +101,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col p-0">
+            <div class="col p-0" *ngIf="players.length > 0 && players && !isLoading">
                 <div class="hide_table_for_mobile">
                     <div class="table-responsive">
 
@@ -162,7 +162,7 @@
 
                             <ng-container matColumnDef="JersyNumber">
                                 <th mat-header-cell *matHeaderCellDef>{{ 'addJerseyNumber' | translate }}</th>
-                                <td mat-cell *matCellDef="let element"> {{ element.jersey_number }}</td>
+                                <td mat-cell *matCellDef="let element"> #{{ element.jersey_number }}</td>
                             </ng-container>
 
                             <ng-container matColumnDef="View">

@@ -423,6 +423,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
   }
 
+  registredClubArr: any;
+  customClubArr: any;
   getUserProfile(userId: any) {
     this.loading = true;  // Set loading to true before making the API call
     this.profileImageLoading = true;
@@ -538,6 +540,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
           //     this.getCountry(nat.flag_path, index);
           //   });
           // }
+
+
+          if (this.user?.meta?.have_registered_club == 1 && this.user?.registered_club_info != '') {
+            this.registredClubArr = JSON.parse(this.user?.registered_club_info);
+          }
+          if (this.user?.meta?.have_custom_club == 1 && this.user?.custom_club_info != '') {
+            this.customClubArr = JSON.parse(this.user?.custom_club_info);
+          }
         }
         this.getUserPopups();
         this.loading = false;  // Set loading to false once data is loaded
@@ -1706,18 +1716,40 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   deleteScoutFromProfile() {
-    this.talentService.deleteScoutFromProfile(this.scoutInfoDetails.id).subscribe(
-      (response: any) => {
-        if(response.status){
-          this.showMatDialog(response.message, 'display');
-          this.socketService.emit("scoutRemoved", { senderId: this.loggedInUser.id, receiverId: this.scoutInfoDetails.id })
-          this.scoutInfoDetails = [];
-        }
+    // Confirmation 
+    const messageDialog = this.dialog.open(DeletePopupComponent, {
+      width: '500px',
+      position: {
+        top: '150px'
       },
-      error => {
-        console.error('Error deleting user:', error);
-        this.showMatDialog(this.generalError, 'display');
+      data: {
+        from_page: 'dashboard-delete-scout'
       }
-    );
+    })
+
+    messageDialog.afterClosed().subscribe(result => {
+      if (result == 'delete-confirmed') {
+        this.talentService.deleteScoutFromProfile(this.scoutInfoDetails.id).subscribe(
+          (response: any) => {
+            // this.showMatDialog(response.message, 'display');
+            // this.scoutInfoDetails = [];
+
+            if (response.status) {
+              this.showMatDialog(response.message, 'display');
+              this.socketService.emit("scoutRemoved", { senderId: this.loggedInUser.id, receiverId: this.scoutInfoDetails.id })
+              this.scoutInfoDetails = [];
+            }
+          },
+          error => {
+            console.error('Error deleting user:', error);
+            this.showMatDialog(this.generalError, 'display');
+          }
+        );
+      } else {
+        return;
+      }
+    })
+    //End Confirmation 
+
   }
 }
