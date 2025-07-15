@@ -840,6 +840,14 @@ export class ClubService {
     );
   }
 
+  updateEventStatus(params: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.userToken}`
+    });
+    let lang_id = localStorage.getItem('lang_id');
+    return this.http.post<any>(`${this.apiUrl}club/update-sighting-status/${lang_id}`, params, { headers });
+  }
+
   errorTxt: string = '';
   errorMsgTxt: string = '';
 

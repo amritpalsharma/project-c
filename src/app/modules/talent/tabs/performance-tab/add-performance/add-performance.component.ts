@@ -161,10 +161,13 @@ export class AddPerformanceComponent {
     );
   }
 
+  isSubmited: boolean = false;
+
 
   onSubmit(myForm: NgForm): void {
 
-    console.log('Button Clicked ', this.isHideTeamSection)
+    this.isSubmited = true;
+    console.log('Button Clicked ', this.isHideTeamSection, this.currentTeam)
 
 
     this.isrequiredField = false;

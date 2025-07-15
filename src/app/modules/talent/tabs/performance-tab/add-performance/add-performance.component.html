@@ -43,9 +43,10 @@
                 <!-- <input [ngClass]="{'isrequiredField': !team_country_id}" class="form-select" type="text"
                   aria-label="City" matInput [formControl]="countryControl" [matAutocomplete]="auto"
                   (focus)="onInputFocus()" [ngModel]="team_country_name" name="team_country_name"> -->
-                <input [(ngModel)]="team_country_name" [ngClass]="{'isrequiredField': !team_country_id}"
+                <input [(ngModel)]="team_country_name" [ngClass]="{'isrequiredField': !team_country_id && isSubmited}"
                   class="form-select" type="text" aria-label="City" matInput [formControl]="countryControl"
-                  [matAutocomplete]="auto" (focus)="onInputFocus()" name="team_country_name" [value]="team_country_name" placeholder="{{'noTeamAndClubPlaceHolder' | translate}}">
+                  [matAutocomplete]="auto" (focus)="onInputFocus()" name="team_country_name" [value]="team_country_name"
+                  placeholder="{{'noTeamAndClubPlaceHolder' | translate}}">
 
 
 
@@ -64,7 +65,7 @@
               <div class="mine-f" style="position: relative;">
                 <input type="text" id="currentTeam" name="currentTeam" placeholder="{{'enterAndSearch' | translate}}..."
                   [(ngModel)]="currentTeam" #currentTeamsField="ngModel" (input)="onSearchTeams()" autocomplete="off"
-                  required [ngClass]="{'isrequiredField': isrequiredField}" />
+                  required [ngClass]="{'isrequiredField': !currentTeam && isSubmited}" />
                 <img class="me-2" [src]="currentTeamLogo" class="performance-image">
 
                 <!-- Club suggestions -->
@@ -82,9 +83,9 @@
             </div>
             <div class="form-group col-lg-6" *ngIf="isHideTeamSection">
               <label for="team" class="form-label">{{'club' | translate}} / {{'team' | translate}}</label>
-              <input [ngClass]="{'isrequiredField': !teamName}" type="text" id="teamName" name="teamName"
+              <input type="text" id="teamName" name="teamName"
                 placeholder="{{'noTeamAndClubPlaceHolder' | translate}}" [(ngModel)]="teamName" required
-                style="padding-left: 30px;" [ngClass]="{'isrequiredField': isrequiredField}" />
+                style="padding-left: 30px;" [ngClass]="{'isrequiredField': !teamName && isSubmited}" />
 
             </div>
             <div class="form-group col-lg-6" *ngIf="!isHideTeamSection">
@@ -110,7 +111,7 @@
               <!-- <input type="text" id="session" name="session" [(ngModel)]="performance.session"
                 [ngClass]="{'isrequiredField': isrequiredField}"> -->
               <select [(ngModel)]="performance.session" class="form-select"
-                [ngClass]="{'isrequiredField': isrequiredField}" id="session" name="session" required>
+                [ngClass]="{'isrequiredField': !performance.session && isSubmited}" id="session" name="session" required>
                 <option [value]="0" disabled>{{ 'select' | translate }}</option>
                 <option *ngFor="let session of sessionArr" [value]="session">
                   {{ session }}

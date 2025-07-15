@@ -872,3 +872,7 @@ body {
   align-items: center;
   gap: 6px;
 }
+
+::ng-deep .mat-mdc-select-arrow svg{
+  color: #fff !important;
+}

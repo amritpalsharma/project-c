@@ -535,3 +535,9 @@ input[type="number"] {
     }
   }
 }
+
+
+::ng-deep .isrequiredField {
+  // border: 1px solid red !important;
+  border-color: red !important;
+}

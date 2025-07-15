@@ -131,7 +131,10 @@ export class AddRepresentatorPopupComponent {
     return regex.test(email);
   }
 
+  isSubmited: boolean = false;
+
   sendInvite(): any {
+    this.isSubmited = true;
 
     let validForm: any = this.validateInviteForm();
     if (validForm) {
@@ -168,7 +171,7 @@ export class AddRepresentatorPopupComponent {
   }
 
   updateRepresentator(): any {
-
+    this.isSubmited = true;
     let validForm: any = this.validateUpdateForm();
     if (validForm) {
       return false;

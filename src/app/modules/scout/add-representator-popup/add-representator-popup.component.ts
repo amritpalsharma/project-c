@@ -132,12 +132,14 @@ export class AddRepresentatorPopupComponent {
     return regex.test(email);
   }
 
-  sendInvite(): any {
+  isSubmited: boolean = false;
 
-    let validForm: any = this.validateInviteForm();
-    if (validForm) {
-      return false;
-    }
+  sendInvite(): any {
+    this.isSubmited = true;
+    // let validForm: any = this.validateInviteForm();
+    // if (validForm) {
+    //   return false;
+    // }
 
     let verification_link = window.location.origin + '/home';
 
@@ -182,7 +184,8 @@ export class AddRepresentatorPopupComponent {
   }
 
   updateRepresentator(): any {
-
+    this.isSubmited = true;
+    
     let validForm: any = this.validateUpdateForm();
     if (validForm) {
       return false;

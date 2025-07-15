@@ -118,7 +118,7 @@ export class PerformanceTabComponent {
     });
   }
 
-  openDeleteDialog(id: any) {
+  openDeleteDialog(id: any, type: string) {
     const dialogRef = this.dialog.open(DeletePopupComponent, {
       width: '600px',
       minWidth: '400px', // Add min-width here
@@ -130,8 +130,12 @@ export class PerformanceTabComponent {
     dialogRef.afterClosed().subscribe(result => {
       console.log('openDeleteDialog', id)
       if (result) {
-        // If result is true, proceed with deletion logic
-        this.deleteUserPerformance(id);
+        if(type === 'auto'){
+          this.deleteUserPerformance(id);
+        }
+        else{
+          this.deleteUserPerformanceManual(id);
+        }
       } else {
         console.log('User canceled the delete');
       }

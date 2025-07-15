@@ -1535,5 +1535,6 @@
   "areYouSureToUpdateRole": "Sind Sie sicher, dass Sie die Rolle von Team-Mitglied aktualisieren möchten?",
   "areYouSureToRemoveScout": "Willst du diesen Scout aus deinem Profil entfernen?",
   "yesRemoveScout": "Ja, entfernen",
-  "cancelRemoveScout": "Nein, nicht entfernen"
+  "cancelRemoveScout": "Nein, nicht entfernen",
+  "areYouSureToUpdateReviewTraining": "Bist du sicher, dass du den Status des Sichtungs-Trainings aktualisieren möchtest?"
 }

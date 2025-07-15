@@ -1476,5 +1476,6 @@
   "areYouSureToUpdateRole": "¿Estás seguro de que quieres actualizar el rol del miembro del equipo?",
   "areYouSureToRemoveScout": "¿Quieres eliminar a este ojeador de tu perfil?",
   "yesRemoveScout": "Sí, eliminar",
-  "cancelRemoveScout": "No, no eliminar"
+  "cancelRemoveScout": "No, no eliminar",
+  "areYouSureToUpdateReviewTraining": "¿Estás seguro de que deseas actualizar el estado del entrenamiento de revisión?"
 }

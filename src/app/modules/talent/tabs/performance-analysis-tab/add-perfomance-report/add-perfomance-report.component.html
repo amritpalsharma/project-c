@@ -22,7 +22,7 @@
     <div class="overflow-card perfomance-report popup__body p-3">
 
         <label class="choose-file d-block cursor-pointer" for="reportUpload"
-            (dragover)="onDragOver($event)" (drop)="onDrop($event)">
+            (dragover)="onDragOver($event)" (drop)="onDrop($event)" [ngClass]="{'isrequiredField': !selectedFile && isSubmited}">
             <div class="choose-icon">
                 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -45,7 +45,7 @@
         <div class="row align-items-end document-title_box">
             <div class="form-group col-lg-6 m-0">
                 <label for="document-title">{{'documentTitle' | translate}}</label> <br>
-                <input type="text" id="document-title" [(ngModel)]="documentTitle" placeholder="{{enterDocumentTitle}}" />
+                <input type="text" id="document-title" [ngClass]="{'isrequiredField': !documentTitle && isSubmited}" [(ngModel)]="documentTitle" placeholder="{{enterDocumentTitle}}" />
             </div>
             <div class="col-lg-6 " id="upload-file-process"  *ngIf="selectedFile" >
                 <div class="choose-file-name m-0">
@@ -57,9 +57,9 @@
                             </svg>
                             <span class="ps-2">{{ selectedFile.name }}</span>
                             
-                            <div class="progress d-block" *ngIf="uploadProgress > 0">
+                            <!-- <div class="progress d-block" *ngIf="uploadProgress > 0">
                                 <div class="progress-bar" [ngStyle]="{ 'width': uploadProgress + '%' }"></div>
-                            </div>
+                            </div> -->
                         </span>
     
                         

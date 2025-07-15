@@ -136,3 +136,8 @@ mat-datepicker-toggle {
         font-size: 22px !important;
     }
 }
+
+::ng-deep .isrequiredField {
+  border: 1px solid red !important;
+  border-color: red !important;
+}

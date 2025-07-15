@@ -65,7 +65,11 @@ export class UploadAttachmentComponent {
     }
   }
 
+  isSubmited : boolean = false;
+
   upload() {
+    this.isSubmited = true;
+    
     const formData = new FormData();
 
     this.attachmentRows.map(function (attachment: any, index: any) {
