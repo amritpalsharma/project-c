@@ -1708,8 +1708,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
   deleteScoutFromProfile() {
     this.talentService.deleteScoutFromProfile(this.scoutInfoDetails.id).subscribe(
       (response: any) => {
-        this.showMatDialog(response.message, 'display');
-        this.scoutInfoDetails = [];
+        if(response.status){
+          this.showMatDialog(response.message, 'display');
+          this.socketService.emit("scoutRemoved", { senderId: this.loggedInUser.id, receiverId: this.scoutInfoDetails.id })
+          this.scoutInfoDetails = [];
+        }
       },
       error => {
         console.error('Error deleting user:', error);

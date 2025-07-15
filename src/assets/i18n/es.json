@@ -1473,5 +1473,6 @@
   "pdfTitle": "Título PDF",
   "AreYouSureToMatchStatistic": "Está seguro de que desea eliminar la estadística de partido seleccionada?",
   "AreYouSureToTransferRecord": "¿Está seguro de que desea eliminar el registro de transferencia seleccionado?",
-  "areYouSureToUpdateRole": "¿Estás seguro de que quieres actualizar el rol del miembro del equipo?"
+  "areYouSureToUpdateRole": "¿Estás seguro de que quieres actualizar el rol del miembro del equipo?",
+  "areYouSureToUpdateReviewTraining": "¿Estás seguro de que deseas actualizar el estado del entrenamiento de revisión?"
 }

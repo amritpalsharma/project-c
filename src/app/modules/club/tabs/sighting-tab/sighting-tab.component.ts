@@ -424,6 +424,58 @@ export class SightingTabComponent {
     this.view = "listing";
   }
 
+  updateEventStatus(element: any, status: string): void {
+    
+    // console.log(status, element);
+
+    // return;
+
+    element.status = status;
+
+    const messageDialog = this.dialog.open(MessagePopupComponent, {
+      width: '500px',
+      position: {
+        top: '150px'
+      },
+      data: {
+        message: '',
+        action: 'update_event'
+      }
+    })
+
+    messageDialog.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        if (result.action == "delete-confirmed") {
+
+          let formdata = new FormData();
+          formdata.append("event_id", element.id);
+          formdata.append("status", status);
+
+          this.clubService.updateEventStatus(formdata).subscribe({
+            next: (response: any) => {
+              if (response.status) {
+                this.toastr.success(response.message);
+              }
+            },
+            error: (err: any) => {
+              console.error('Status update failed', err);
+            }
+          });
+        }
+      }
+      else{
+        console.log("working")
+        if(status === 'active'){
+          element.status = 'inactive';
+        }
+        else{
+          element.status = 'active';
+        }
+      }
+    });
+  }
+
+
   downloadAttachment(path: any, fileName: any) {
 
     fetch(path)

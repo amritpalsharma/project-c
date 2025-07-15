@@ -1439,5 +1439,6 @@
   "pdfTitle": "PDF Title",
   "AreYouSureToMatchStatistic": "Are you sure you want to delete the selected Match Statistic?",
   "AreYouSureToTransferRecord": "Are you sure you want to delete the selected Transfer Record?",
-  "areYouSureToUpdateRole": "Are you sure you want to update Team-Member's role?"
+  "areYouSureToUpdateRole": "Are you sure you want to update Team-Member's role?",
+  "areYouSureToUpdateReviewTraining": "Are you sure you want to update the status of the review training?"
 }

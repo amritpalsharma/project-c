@@ -108,6 +108,10 @@ export class AddTransferComponent {
 
   onSubmit(myForm: NgForm): void {
     this.showFormErrors = true;
+    console.log(this.date_of_transfer)
+
+
+
     if (myForm.valid) {
       let lang_id = localStorage.getItem('lang_id');
       let formData = {

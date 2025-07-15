@@ -1391,5 +1391,6 @@
   "pdfTitle": "PDF titel",
   "AreYouSureToMatchStatistic": "Er du sikker på, at du vil slette den valgte kampstatistik?",
   "AreYouSureToTransferRecord": "Er du sikker på, at du vil slette den valgte overførselsregistrering?",
-  "areYouSureToUpdateRole": "Er du sikker på, at du vil opdatere teammedlemmets rolle?"
+  "areYouSureToUpdateRole": "Er du sikker på, at du vil opdatere teammedlemmets rolle?",
+  "areYouSureToUpdateReviewTraining": "Er du sikker på, at du vil opdatere status for gennemgangstræningen?"
 }

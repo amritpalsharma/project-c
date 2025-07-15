@@ -59,5 +59,18 @@
             <div (click)="deleteConfirmed()" class="btn btn-success me-sm-3 bg-light-btn btn_confirmm">{{ 'removeFavbtn'
                 | translate }}</div>
         </div>
+
+        <div class="display-message" *ngIf="data.action == 'update_event'">
+            {{'areYouSureToUpdateReviewTraining' | translate}}
+            <!-- <div class="popup-delete-btn">
+                <span (click)="deleteConfirmed()">{{'confirm' | translate}}</span>
+            </div> -->
+            <div class="popup-delete-btn popup-delete-btn d-flex align-items-center justify-content-center py-2">
+                <div (click)="close()" class="btn btn-danger bg-dark-btn btn_cancell me-3">{{ 'close' |
+                    translate }}</div>
+                <span (click)="deleteConfirmed()"
+                    class="btn btn-success bg-light-btn btn_confirmm">{{'update' | translate}}</span>
+            </div>
+        </div>
     </div>
 </div>
