@@ -96,12 +96,12 @@
                     </div> -->
                     <div class="no-records" *ngIf="players.length == 0 || !players && !isLoading">
                         <div class="mt-3">
-                            <h5 class="text-center">{{'noRecordFound' | translate}}</h5>
+                            <!-- <h5 class="text-center">{{'noRecordFound' | translate}}</h5> -->
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col p-0">
+            <div class="col p-0" *ngIf="players.length > 0 && players && !isLoading">
                 <div class="hide_table_for_mobile">
                     <div class="table-responsive">
 
