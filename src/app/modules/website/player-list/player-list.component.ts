@@ -39,6 +39,7 @@ export class PlayerListComponent implements OnInit {
   clubPlayers: Player[] = [ /* ... existing club player data ... */];
   scoutsPlayers: Player[] = [ /* ... existing scouts player data ... */];
   adVisible: boolean[] = [false, false, false, false, false];
+  theme:string=localStorage.getItem('theme') || 'dark';
 
   ngOnInit() {
     this.fetchData('talent');

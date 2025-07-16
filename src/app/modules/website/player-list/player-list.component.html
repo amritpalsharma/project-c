@@ -33,8 +33,11 @@
                       <div class="player--bio-dtl">
                         <div class="item--icons-list">
                           <div class="item--club" *ngIf="player.current_club_logo && player.current_club_logo != ''">
-                            <img
-                              [src]="player.current_club_logo ? profileBaseUrl +  player.current_club_logo : (player.current_club_logo ? profileBaseUrl +  player.current_club_logo : './assets/images/default-corner.png')" />
+                            <img *ngIf="player.current_club_logo && player.current_club_logo == 'no-logo'"
+                            src="../../../../assets/club_logo/default_logo_{{theme}}.svg" alt="team-logo">
+                          <!-- <img *ngIf="player.current_club_logo && player.current_club_logo != 'no-logo' && player.role_name != 'Club'"
+                            src="{{baseUrl + player.current_club_logo}}" alt="team-logo"> -->
+                            <img *ngIf="player.current_club_logo && player.current_club_logo != 'no-logo'" [src]="player.current_club_logo ? profileBaseUrl +  player.current_club_logo : (player.current_club_logo ? profileBaseUrl +  player.current_club_logo : './assets/images/default-corner.png')" />
                           </div>
                           <span class="player--flag"
                             *ngIf="getFirstFlag(player.user_nationalities) && getFirstFlag(player.user_nationalities) != ''">

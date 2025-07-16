@@ -443,7 +443,7 @@ export class EditPersonalDetailsComponent implements OnInit {
       return;
     }
 
-    if (!this.CurrentTeamId && this.currentClubId) {
+    if (!this.CurrentTeamId && this.currentClubId && !this.userHasCustomClub) {
       this.isTeamSelectError = true;
       return;
     } else {
@@ -502,6 +502,7 @@ export class EditPersonalDetailsComponent implements OnInit {
     if (this.userHasCustomClub === true) {
       formData.append('user[have_custom_club]', '1');
       formData.append('user[have_registered_club]', '0');
+      formData.append('user[have_no_club]', '0');
       formData.append('user[custom_club]', this.custom_club);
       formData.append('user[custom_team]', this.custom_team);
       formData.append('user[custom_club_country]', this.custom_club_country + '');
@@ -509,6 +510,7 @@ export class EditPersonalDetailsComponent implements OnInit {
     } else {
       formData.append('user[have_custom_club]', '0');
       formData.append('user[have_registered_club]', '1');
+      formData.append('user[have_no_club]', '0');
       formData.append('user[registered_club]', this.currentClubId);
       formData.append('user[registered_club_team_type]', this.team_type);
       formData.append('user[registered_club_team]', this.CurrentTeamId + '');

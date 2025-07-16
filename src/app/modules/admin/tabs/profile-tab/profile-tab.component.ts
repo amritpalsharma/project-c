@@ -5,6 +5,7 @@ import { MessagePopupComponent } from '../../message-popup/message-popup.compone
 import { GlobalSettingsService } from '../../../../services/global-settings.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserRoleService } from '../../../../services/user-role.service';
+import { UserService } from '../../../../services/user.service';
 
 @Component({
   selector: 'app-profile-tab',
@@ -19,10 +20,14 @@ export class ProfileTabComponent {
   baseUrl: string = 'https://api.socceryou.ch/uploads/';
 
   @Input() userData: any;
+  @Input() userDataArr: any;
   @Input() userCountryFlag: any;
   @Output() dataEmitter = new EventEmitter<string>();
   scoutInfoDetails: any;
+  currentClubInfo: any;
+  customClubInfo: any;
   constructor(
+    public userService: UserService,
     public userRoleService: UserRoleService,
     private router: Router, public dialog: MatDialog, public globalSettings: GlobalSettingsService) {
 
@@ -33,18 +38,25 @@ export class ProfileTabComponent {
   }
   registredClubArr: any;
   customClubArr: any;
+  userNewData: any;
   ngOnInit(): void {
     this.user = localStorage.getItem('userData');
     this.user = JSON.parse(this.user);
     // console.info('coming this data', this.user);
     console.info('coming this this.user', this.userData);
-
-
-    if (this.userData?.meta?.have_registered_club == 1 && this.userData?.registered_club_info != '') {
-      this.registredClubArr = JSON.parse(this.userData?.registered_club_info);
+    if (this.userData?.id && Number(this.userData?.id) && this.userData?.id != '' && typeof this.userData?.id !== undefined) {
+      // this.getUser(this.userData?.id);
     }
-    if (this.userData?.meta?.have_custom_club == 1 && this.userData?.custom_club_info != '') {
-      this.customClubArr = JSON.parse(this.userData?.custom_club_info);
+
+    if (this.userDataArr?.meta?.have_registered_club == 1 && this.userDataArr?.registered_club_info != null) {
+      this.registredClubArr = JSON.parse(this.userDataArr?.registered_club_info);
+    }
+    if (this.userDataArr?.meta?.have_custom_club == 1 && this.userDataArr?.custom_club_info != null) {
+      this.customClubArr = JSON.parse(this.userDataArr?.custom_club_info);
+      console.info('this.customClubArr',this.customClubArr)
+    }
+    if (this.userDataArr?.meta?.have_custom_club != 1 && this.userDataArr?.meta?.have_registered_club != 1 && this.userData?.current_club_info != null) {
+      this.currentClubInfo = JSON.parse(this.userDataArr?.current_club_info);
     }
 
 
@@ -190,5 +202,8 @@ export class ProfileTabComponent {
   naviGateScoutProfile(id: string | number): void {
     this.router.navigate(['admin', 'scout', id]);
   }
+
+
+
 
 }

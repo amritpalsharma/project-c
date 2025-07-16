@@ -150,6 +150,7 @@ export class ExploreComponent implements OnInit {
   baseUrl: string = '';
   // isTalentFilter:boolean=true;
 
+  theme: string = localStorage.getItem('theme') || 'dark';
 
   ngOnInit(): void {
 

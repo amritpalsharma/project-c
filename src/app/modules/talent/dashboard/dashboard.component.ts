@@ -425,6 +425,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   registredClubArr: any;
   customClubArr: any;
+  currentClubInfo: any;
   getUserProfile(userId: any) {
     this.loading = true;  // Set loading to true before making the API call
     this.profileImageLoading = true;
@@ -548,6 +549,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
           if (this.user?.meta?.have_custom_club == 1 && this.user?.custom_club_info != '') {
             this.customClubArr = JSON.parse(this.user?.custom_club_info);
           }
+
+          if (this.user?.meta?.have_custom_club != 1 && this.user?.meta?.have_registered_club != 1 && this.user?.current_club_info != '') {
+            this.currentClubInfo = JSON.parse(this.user?.current_club_info);
+          }
+
         }
         this.getUserPopups();
         this.loading = false;  // Set loading to false once data is loaded
@@ -1728,7 +1734,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     })
 
     messageDialog.afterClosed().subscribe(result => {
-      console.log('result',result)
+      console.log('result', result)
       if (result && result.action == 'delete-confirmed') {
         this.talentService.deleteScoutFromProfile(this.scoutInfoDetails.id).subscribe(
           (response: any) => {

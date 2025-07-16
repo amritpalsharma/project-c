@@ -196,8 +196,9 @@
                     <div class="player--bio-dtl">
                       <div class="item--icons-list">
                         <div class="item--club">
-                          <!-- <div *ngIf="player.current_club_logo && player.role_name != 'Club'" class="team-logo-bg"> </div> -->
-                          <img *ngIf="player.current_club_logo && player.role_name != 'Club'"
+                          <img *ngIf="player.current_club_logo && player.current_club_logo == 'no-logo' && player.role_name != 'Club'"
+                            src="../../../../assets/club_logo/default_logo_{{theme}}.svg" alt="team-logo">
+                          <img *ngIf="player.current_club_logo && player.current_club_logo != 'no-logo' && player.role_name != 'Club'"
                             src="{{baseUrl + player.current_club_logo}}" alt="team-logo">
                         </div>
                         @if (getNationality(player.user_nationalities) || player?.meta?.formation_date &&
@@ -229,8 +230,10 @@
                       <div class="booster_text" *ngIf="player.package_name == 'Booster'">{{ 'boosted' | translate}}
                       </div>
                     </div>
-                    <div class="player__name" *ngIf="player.role_name != 'Club'">{{player?.first_name?? ''}} {{player?.last_name?? ''}}</div>
-                    <div class="player__name" *ngIf="player.role_name == 'Club'">{{player?.current_club_name	?? ''}}</div>
+                    <div class="player__name" *ngIf="player.role_name != 'Club'">{{player?.first_name?? ''}}
+                      {{player?.last_name?? ''}}</div>
+                    <div class="player__name" *ngIf="player.role_name == 'Club'">{{player?.current_club_name ?? ''}}
+                    </div>
                   </div>
                 </div>
               </ng-container>
