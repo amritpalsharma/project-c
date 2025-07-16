@@ -6,6 +6,7 @@ import { Editor, Toolbar } from 'ngx-editor';
 import { environment } from '../../../../../environments/environment';
 import { UnverifiedUserComponent } from '../../../shared/unverified-user/unverified-user.component';
 import { MatDialog } from '@angular/material/dialog';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'scout-app-history-tab',
@@ -35,6 +36,7 @@ export class HistoryTabComponent {
   @ViewChild('historyTextarea', { static: false }) textarea!: ElementRef;
 
   constructor(
+    private sanitizer: DomSanitizer,
     private route: ActivatedRoute,
     private router: Router,
     private scoutService: ScoutService,
@@ -111,6 +113,23 @@ export class HistoryTabComponent {
     this.updateScoutHistory();
   }
 
+  // ✅ This function removes only anchor tags, keeps inner content
+  private removeLinks(html: string): string {
+    if (!html) return '';
+
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = html;
+
+    // Remove <a> tags but preserve text
+    tempDiv.querySelectorAll('a').forEach(anchor => {
+      const span = document.createElement('span');
+      span.innerHTML = anchor.innerHTML;
+      anchor.replaceWith(span);
+    });
+
+    return tempDiv.innerHTML;
+  }
+
   updateScoutHistory(): any {
     // const history = this.textarea.nativeElement.value;
 
@@ -118,8 +137,9 @@ export class HistoryTabComponent {
     //   return false;
     // }
 
-    console.log(this.history)
-
+    // console.log(this.history)
+    // this.history = this.sanitizer.bypassSecurityTrustHtml(this.history);
+    this.history = this.removeLinks(this.history);
     if (this.history === "") {
       return false;
     }

@@ -840,8 +840,8 @@ export class UserService {
       'Authorization': `Bearer ${this.userToken}`
     });
     return this.http.get<{ status: boolean, message: string, data: {} }>(
-      `${this.apiUrl}get-club-teams/${id}?`, { headers }
-      // `${this.apiUrl}get-club-teams/${id}?team_group=${team_group}`, { headers }
+      // `${this.apiUrl}get-club-teams/${id}?`, { headers }
+      `${this.apiUrl}get-club-teams/${id}?team_group=${team_group}`, { headers }
     )
   }
 

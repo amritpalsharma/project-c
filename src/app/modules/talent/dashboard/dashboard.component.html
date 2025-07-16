@@ -239,6 +239,9 @@
                           <img *ngIf="user?.meta?.have_registered_club == '1'"
                             src="https://api.socceryou.ch/uploads/{{registredClubArr?.club_logo}}" class="fc-club-img"
                             alt="">
+                            <img *ngIf="user?.meta?.have_registered_club != '1' && user?.meta?.have_no_club != '1' && currentClubInfo != ''"
+                            src="https://api.socceryou.ch/uploads/{{currentClubInfo?.club_logo}}" class="fc-club-img"
+                            alt="">
                         </div>
                         <div class="team-badge_content col-sm-9 p-0">
                           <!-- No Club Logic -->
@@ -265,6 +268,14 @@
                             <h5 class="title-1">{{customClubArr?.club_name}}</h5>
                           </ng-container>
                           <!-- End When User Has Custom Club  -->
+                          <!-- When User Has In Club Team  -->
+                          <ng-container *ngIf="user?.meta?.have_custom_club != '1' && user?.meta?.have_registered_club != '1'  && currentClubInfo != ''">
+                            <h6 class="title_2 mb-1 have_custom_club">
+                              {{ 'currentClub' | translate}}
+                            </h6>
+                            <h5 class="title-1">{{currentClubInfo?.club_name}}</h5>
+                          </ng-container>
+                          <!-- End When User Has In Club Team  -->
                         </div>
                       </div>
                     </div>
@@ -674,6 +685,9 @@
                           </ng-container>
                           <ng-container *ngIf="user?.meta?.have_custom_club == '1' && customClubArr != ''">
                             <h5 class="title-1">{{customClubArr?.team_name}}</h5>
+                          </ng-container>
+                          <ng-container *ngIf="user?.meta?.have_custom_club != '1' && user?.meta?.have_registered_club != '1' && currentClubInfo != ''">
+                            <h5 class="title-1">{{currentClubInfo?.team_name}}</h5>
                           </ng-container>
                         </div>
                       </div>

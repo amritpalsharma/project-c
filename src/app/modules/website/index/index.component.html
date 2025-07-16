@@ -121,9 +121,15 @@
                   <div class="player--bio-dtl">
                     <div class="item--icons-list">
                       <div class="item--club" *ngIf="slider?.current_club_logo">
-                        <img [src]="club_logo_path + slider.current_club_logo" alt="CLUBLOGO">
-                        <img *ngIf="!slider?.current_club_logo && slider?.pre_current_club_logo"
-                          [src]="club_logo_path + slider.pre_current_club_logo" alt="PreCLUBLOGO" class="preClubLogo">
+                         <img *ngIf="slider.current_club_logo && slider.current_club_logo == 'no-logo'"
+                          src="../../../../assets/club_logo/default_logo_{{currentTheme}}.svg" alt="team-logo">
+                        <img *ngIf="slider?.current_club_logo != 'no-logo'"
+                          src="{{advertisemnet_base_url + slider.current_club_logo}}" (error)="handleImageError($event)"
+                          class="player_profile_img">
+
+                        <!-- <img [src]="club_logo_path + slider.current_club_logo" alt="CLUBLOGO"> -->
+                        <!-- <img *ngIf="!slider?.current_club_logo && slider?.pre_current_club_logo"
+                          [src]="club_logo_path + slider.pre_current_club_logo" alt="PreCLUBLOGO" class="preClubLogo"> -->
                       </div>
                       <img *ngIf="getFirstFlag(slider.user_nationalities) && slider.role_name == 'Talent'"
                         src="{{getFirstFlag(slider.user_nationalities)}}" class="player--flag" alt="Nation">

@@ -1542,5 +1542,8 @@
   "AreYouSureToMatchStatistic": "Voulez-vous vraiment supprimer la statistique de match sélectionnée?",
   "AreYouSureToTransferRecord": "Voulez-vous vraiment supprimer l’enregistrement de transfert sélectionné?",
   "areYouSureToUpdateRole": "Êtes-vous sûr de vouloir mettre à jour le rôle du membre de l’équipe?",
+  "areYouSureToRemoveScout": "Veux-tu retirer ce recruteur de ton profil ?",
+  "yesRemoveScout": "Oui, retirer",
+  "cancelRemoveScout": "Non, ne pas retirer",
   "areYouSureToUpdateReviewTraining": "Es-tu sûr de vouloir mettre à jour le statut de la formation de révision?"
 }

@@ -1440,6 +1440,8 @@
   "AreYouSureToMatchStatistic": "Are you sure you want to delete the selected Match Statistic?",
   "AreYouSureToTransferRecord": "Are you sure you want to delete the selected Transfer Record?",
   "areYouSureToUpdateRole": "Are you sure you want to update Team-Member's role?",
+  "yesRemoveScout":"Yes, remove",
+  "cancelRemoveScout":"No, don’t remove",
   "areYouSureToUpdateReviewTraining": "Are you sure you want to update the status of the review training?",
   "areYouSureToRemoveScout":"Do you want to remove this Scout from your profile?"
 }

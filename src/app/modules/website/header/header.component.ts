@@ -858,6 +858,7 @@ export class HeaderComponent implements OnInit {
       team_id: this.team_id,
       country: this.selectedCountry,
       team_type: this.gender,
+      have_no_club: this.isHideClubSection === true ? '1' : '0'
       // company_name:this.selectedCountry
     };
     if (this.privacyPolicy === false) {

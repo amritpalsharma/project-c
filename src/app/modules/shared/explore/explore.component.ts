@@ -150,6 +150,7 @@ export class ExploreComponent implements OnInit {
   baseUrl: string = '';
   // isTalentFilter:boolean=true;
 
+  theme: string = localStorage.getItem('theme') || 'dark';
 
   ngOnInit(): void {
 
@@ -279,20 +280,18 @@ export class ExploreComponent implements OnInit {
     if (slug == 'talento' || slug == 'Talang') {
       slug = 'talent';
     }
-    const pageRoute = 'view/' + slug.toLowerCase();
-    //console.log(pageRoute);
-    this.router.navigate([pageRoute, id], { state: { role: slug } });
-
+    let pageRoute = 'view/' + slug.toLowerCase();
     let jsonData = localStorage.getItem("userData");
     let userId;
     if (jsonData) {
       let userData = JSON.parse(jsonData);
       userId = userData.id;
     }
-    else {
-      console.log("No data found in localStorage.");
+    if (Number(userId) === Number(id)) {
+      this.router.navigate([slug.toLowerCase(), 'dashboard']);
+    } else {
+      this.router.navigate([pageRoute, id], { state: { role: slug } });
     }
-
     this.socketService.emit("profileViewed", { senderId: userId, receiverId: id })
   }
 
@@ -570,12 +569,12 @@ export class ExploreComponent implements OnInit {
       (response: any) => {
         if (response.status) {
           // this.clubs = response.data.clubs;
-          if(response.data.clubs && response.data.clubs.length > 0){
-            this.clubs = response.data.clubs.sort((a : any, b : any) => a.club_name.localeCompare(b.club_name));
+          if (response.data.clubs && response.data.clubs.length > 0) {
+            this.clubs = response.data.clubs.sort((a: any, b: any) => a.club_name.localeCompare(b.club_name));
           }
           // console.log('this.clubs',this.clubs);
         } else {
-          this.clubs = [];  
+          this.clubs = [];
           console.error('No data found');
         }
       },

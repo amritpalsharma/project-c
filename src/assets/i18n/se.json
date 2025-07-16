@@ -1471,5 +1471,8 @@
   "AreYouSureToMatchStatistic": "Är du säker på att du vill radera den valda matchstatistiken?",
   "AreYouSureToTransferRecord": "Är du säker på att du vill radera den valda överföringsposten?",
   "areYouSureToUpdateRole": "Är du säker på att du vill uppdatera teammedlemmens roll?",
+  "areYouSureToRemoveScout": "Vill du ta bort den här scouten från din profil?",
+  "yesRemoveScout": "Ja, ta bort",
+  "cancelRemoveScout": "Nej, ta inte bort",
   "areYouSureToUpdateReviewTraining": "Är du säker på att du vill uppdatera statusen för granskningsträningen?"
 }

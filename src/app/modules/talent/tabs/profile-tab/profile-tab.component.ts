@@ -259,7 +259,7 @@ export class ProfileTabComponent {
     //   locale = 'sv-SE';
     // }
     // getdomainId
-    currencySymbol = '£'; // deafult
+    currencySymbol = '€'; // deafult
     let modifiedAmount = new Intl.NumberFormat(locale).format(amount);
     if (amount > 0) {
       return currencySymbol + ' ' + modifiedAmount;

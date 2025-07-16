@@ -181,7 +181,7 @@ export class ViewProfileComponent implements OnInit {
   }
   registredClubArr: any;
   customClubArr: any;
-
+  currentClubInfo: any;
   getUser(userId: any) {
     this.talentProfileImageLoaded = true;
     try {
@@ -240,6 +240,9 @@ export class ViewProfileComponent implements OnInit {
           }
           if (this.user?.meta?.have_custom_club == 1 && this.user?.custom_club_info != '') {
             this.customClubArr = JSON.parse(this.user?.custom_club_info);
+          }
+          if (this.user?.meta?.have_custom_club != 1 && this.user?.meta?.have_registered_club != 1 && this.user?.current_club_info != '') {
+            this.currentClubInfo = JSON.parse(this.user?.current_club_info);
           }
         } else {
           console.error('Invalid API response structure:', response);

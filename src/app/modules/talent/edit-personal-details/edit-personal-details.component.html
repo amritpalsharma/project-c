@@ -21,6 +21,12 @@
   </div>
   <form class="popup__body pt-3" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
     <div class="overflow-card">
+      <div class="row">
+        <!-- <div class="col-sm-12">
+          <h1>userHasNoClub {{userHasNoClub}}</h1>
+          <h1>userHasCustomClub {{userHasCustomClub}}</h1>
+        </div> -->
+      </div>
       <!-- I DOn't Club Field -->
       <div class="row">
         <div class="col-sm-12">
@@ -116,20 +122,10 @@
           <!-- <label for="team_id">{{'team' | translate}}:</label> -->
           <!-- <label for="team_id">&nbsp;</label> -->
           <label for="team_id">{{ 'team' | translate }}</label>
-          <!-- <pre>{{teamsArr | json}}</pre> -->
-          <!-- <h3>Selected {{CurrentTeamId}}</h3> -->
-
-          <!-- <mat-select [(ngModel)]="CurrentTeamId" class="form-select" [ngClass]="{ 'error-border': isTeamSelectError }"
-            id="team_id" name="team_id" required>
-            <mat-option [value]="0">{{ 'select' | translate }}</mat-option>
-            <mat-option *ngFor="let teamArr of teamsArr" [value]="teamArr.id" [selected]="CurrentTeamId === teamArr.id">
-              {{teamArr.team_name }} - {{teamArr.team_type}}
-            </mat-option>
-          </mat-select> -->
           <ng-container>
             <mat-select [(ngModel)]="CurrentTeamId" class="form-select"
               [ngClass]="{ 'error-border': isTeamSelectError }" id="team_id" name="team_id" required>
-              <mat-option [value]="0">{{ 'select' | translate }}</mat-option>
+              <mat-option [value]="0" disabled selected>{{ 'select' | translate }}</mat-option>
               <mat-option *ngFor="let teamArr of teamsArr" [value]="teamArr.id">
                 {{ teamArr.team_name }} - {{ teamArr.team_type }}
               </mat-option>

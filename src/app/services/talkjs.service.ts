@@ -200,6 +200,7 @@ export class TalkService {
   ): Promise<void> {
     // Validate TalkJS initialization
     if (!this.user || !this.session) {
+      console.info('this.userthis.user',this.user)
       throw new Error('TalkJS user/session is not initialized');
     }
 
