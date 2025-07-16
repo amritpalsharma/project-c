@@ -1098,7 +1098,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   getUserPopups() {
     try {
       let data = {
-        role: '4',
+        role: '2',
         payment_type: this.isPremium ? 'paid' : 'free',
         status: 'active',
         language: localStorage.getItem('lang_id'),

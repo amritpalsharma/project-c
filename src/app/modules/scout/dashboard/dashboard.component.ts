@@ -85,6 +85,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   pleaseWait: string = '';
 
+  isRepsState = { value: false };
+
+  profileReady: boolean = false;
+
   @Output() dataEmitter = new EventEmitter<string>();
   private routeSubscription: Subscription | null = null; // Initialize with null
   private introInstance: any; // Reference to the Intro.js instance
@@ -390,7 +394,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
   }
 
+  
+
   getUserProfile(userId: any) {
+    let changed = false;
     this.loading = true;  // Set loading to true before making the API call
     this.profileImageLoading = true;
     try {
@@ -399,10 +406,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
           localStorage.setItem('userInfo', JSON.stringify(response.data.user_data));
           localStorage.setItem('userData', JSON.stringify(response.data.user_data));
           if (response.data.representator_data) {
+            this.isRepsState.value = true;
+            console.log(this.isRepsState.value, 'reps 2')
             this.loggedInUser = response.data.representator_data;
             this.loggedInUser.isRepresentator = true;
             let representatorData = JSON.stringify(this.loggedInUser);
             localStorage.setItem('userData', representatorData);
+            changed = true;
             // this.isRepresentator = true;
           }
 
@@ -490,6 +500,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
       console.error('Error fetching users:', error);
       this.loading = false;  // Set loading to false on error
     }
+    finally {
+      if(changed){
+        this.profileReady = true;
+      }
+      else{
+        setTimeout(() => {
+          this.profileReady = true;
+        }, 2000);
+      }
+    }
   }
 
   getCountry(placeOfBirth: string, key: any): void {
@@ -551,6 +571,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     if (this.loggedInUser.permission === 'admin.edit') {
       return true;
     }
+
     return true;
   }
 
@@ -574,7 +595,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   getUserPopups() {
     try {
       let data = {
-        role: '4',
+        role: '3',
         payment_type: this.isPremium ? 'paid' : 'free',
         status: 'active',
         language: localStorage.getItem('lang_id'),
@@ -629,7 +650,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   freq: any = ['once', 'days', 'weeks', 'months'];
 
   showPopups(index: any) {
-    if(index == 4){
+    if (index == 4) {
       return;
     }
     let popups: any[] = [];

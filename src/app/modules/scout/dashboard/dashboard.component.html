@@ -865,9 +865,14 @@
                 </li>
               </ul>
             </div>
-            <div class="general_details mt-4 p-4 bg-color box_height_eqaul">
-              <scout-profile-tab *ngIf="activeTab == 'profile' && !loading" [userData]="user" [isPremium]="isPremium"
-                [isUserVerified]="isUserVerified" [logInUser]="loggedInUser"></scout-profile-tab>
+            <div class="general_details mt-4 p-4 bg-color box_height_eqaul position-relative">
+              <span class="profile_img_bg_circle"
+                    style="position: absolute;top: 45%;left: 50%;transform:translate(-50%, -50%);"
+                    *ngIf="!profileReady">
+                    <app-loader class="profilepic_mobile_loader"></app-loader>
+                  </span>
+              <scout-profile-tab *ngIf="activeTab == 'profile' && profileReady" [userData]="user" [isPremium]="isPremium"
+                [isUserVerified]="isUserVerified" [logInUser]="loggedInUser" [isReps]="isRepsState.value"></scout-profile-tab>
               <scout-app-history-tab *ngIf="activeTab == 'company_history'" role="Scout" [isPremium]="isPremium"
                 [isUserVerified]="isUserVerified"></scout-app-history-tab>
               <scout-portfolio-tab *ngIf="activeTab == 'portfolio'" [userData]="user" [isPremium]="isPremium"
