@@ -155,7 +155,7 @@ export class ProfileTabComponent {
       return mainPos ? mainPos.position_name : null;
     }
   }
-
+  
   getOtherPositions(positions: any) {
     // console.log(positions)
     // if (positions) {
