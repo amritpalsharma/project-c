@@ -323,28 +323,58 @@ export class CreateSightPopupComponent implements AfterViewInit {
     };
   }
 
-  getDateTimeFormat(dateTimeValue: any) {
-    // Ensure we are working with a string
-    let isoString = '';
+  // getDateTimeFormat(dateTimeValue: any) {
+  //   // Ensure we are working with a string
+  //   let isoString = '';
 
-    if (dateTimeValue instanceof Date) {
-      isoString = dateTimeValue.toISOString(); // "2025-07-23T09:15:00.000Z"
-    } else if (typeof dateTimeValue === 'string') {
-      isoString = dateTimeValue;
-    } else {
-      return { date: '', time: '' }; // fallback for invalid input
+  //   if (dateTimeValue instanceof Date) {
+  //     isoString = dateTimeValue.toISOString(); // "2025-07-23T09:15:00.000Z"
+  //   } else if (typeof dateTimeValue === 'string') {
+  //     isoString = dateTimeValue;
+  //   } else {
+  //     return { date: '', time: '' }; // fallback for invalid input
+  //   }
+
+  //   let arr = isoString.split('T');
+  //   let dateArr = arr[0].split('-');
+  //   let time = arr[1]?.slice(0, 5); // only HH:mm
+
+  //   const formattedDate = `${dateArr[0]}-${dateArr[1]}-${dateArr[2]}`;
+  //   return {
+  //     date: formattedDate,
+  //     time: time
+  //   };
+  // }
+
+
+  getDateTimeFormat(dateTimeValue: any) {
+    if (!dateTimeValue) {
+      return { date: '', time: '' };
     }
 
-    let arr = isoString.split('T');
-    let dateArr = arr[0].split('-');
-    let time = arr[1]?.slice(0, 5); // only HH:mm
+    let dateObj: Date;
 
-    const formattedDate = `${dateArr[0]}-${dateArr[1]}-${dateArr[2]}`;
+    if (typeof dateTimeValue === 'string') {
+      dateObj = new Date(dateTimeValue);
+    } else if (dateTimeValue instanceof Date) {
+      dateObj = dateTimeValue;
+    } else {
+      return { date: '', time: '' };
+    }
+
+    // Extract local date and time
+    const year = dateObj.getFullYear();
+    const month = String(dateObj.getMonth() + 1).padStart(2, '0'); // 0-indexed
+    const day = String(dateObj.getDate()).padStart(2, '0');
+    const hours = String(dateObj.getHours()).padStart(2, '0');
+    const minutes = String(dateObj.getMinutes()).padStart(2, '0');
+
     return {
-      date: formattedDate,
-      time: time
+      date: `${year}-${month}-${day}`,
+      time: `${hours}:${minutes}`
     };
   }
+
 
   createSight() {
     console.info('this.dateTime', this.dateTime)
@@ -353,7 +383,14 @@ export class CreateSightPopupComponent implements AfterViewInit {
     // return;
     this.submitButtonClicked = true;
     const formData = new FormData();
+
+    if (!this.timeString) {
+      this.isLoading = false;
+      return;
+    }
     let { date, time } = this.getDateTimeFormat(this.dateTime);
+
+    console.info(time);
     let receiverIds: any[] = [];
 
     formData.append('event_name', this.eventName);
@@ -433,9 +470,17 @@ export class CreateSightPopupComponent implements AfterViewInit {
 
   updateSight() {
     this.isLoading = true;
-    this.submitButtonClicked = true;
+    // this.submitButtonClicked = true;
+    if (!this.timeString) {
+      this.isLoading = false;
+      return;
+    }
     const formData = new FormData();
+    console.log('this.dateTime', this.dateTime)
     let { date, time } = this.getDateTimeFormat(this.dateTime);
+    console.info('time', time);
+    // this.isLoading = false;
+    // return;
     formData.append('event_name', this.eventName);
     formData.append('manager_name', this.managerName);
     formData.append('event_date', date);
@@ -614,23 +659,46 @@ export class CreateSightPopupComponent implements AfterViewInit {
   timeString: string = '';
   // When user selects date
   onDateChange1(event: any) {
+    console.info('this.timeString', this.timeString)
     const selectedDate = event.value;
     if (selectedDate) {
+      // const time = selectedDate ? selectedDate.split(':') : ['00', '00'];
       const time = this.timeString ? this.timeString.split(':') : ['00', '00'];
       const hours = parseInt(time[0], 10);
       const minutes = parseInt(time[1], 10);
       this.dateTime = new Date(selectedDate);
       this.dateTime.setHours(hours, minutes);
     }
+
+    console.info('this.dateTime', this.dateTime)
   }
 
   // When user selects time
+  // onTimeChange1(event: any) {
+  //   this.timeString = event.target.value;
+  //   if (this.dateControl.value) {
+  //     const [hours, minutes] = this.timeString.split(':').map(Number);
+  //     this.dateTimeNew = new Date(this.dateControl.value);
+  //     this.dateTimeNew.setHours(hours, minutes);
+  //   }
+  //   console.info('Time is updated current time is ',this.timeString)
+  //   console.info('this.dateControl.value',this.dateControl.value);
+  //   console.info('this.dateTime', this.dateTime)
+  // }
   onTimeChange1(event: any) {
     this.timeString = event.target.value;
     if (this.dateControl.value) {
       const [hours, minutes] = this.timeString.split(':').map(Number);
       this.dateTimeNew = new Date(this.dateControl.value);
       this.dateTimeNew.setHours(hours, minutes);
+
+      // ✅ Update dateTime with the new value
+      this.dateTime = new Date(this.dateTimeNew);
     }
+
+    console.info('Time is updated current time is ', this.timeString);
+    console.info('this.dateControl.value', this.dateControl.value);
+    console.info('this.dateTime', this.dateTime); // ✅ Now reflects updated time
   }
+
 }

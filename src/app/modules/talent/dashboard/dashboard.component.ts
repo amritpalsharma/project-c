@@ -1728,7 +1728,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     })
 
     messageDialog.afterClosed().subscribe(result => {
-      if (result == 'delete-confirmed') {
+      console.log('result',result)
+      if (result && result.action == 'delete-confirmed') {
         this.talentService.deleteScoutFromProfile(this.scoutInfoDetails.id).subscribe(
           (response: any) => {
             // this.showMatDialog(response.message, 'display');

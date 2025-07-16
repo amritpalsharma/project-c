@@ -84,13 +84,29 @@ export class HistoryTabComponent implements OnInit {
     this.updateClubHistory();
   }
 
+  // ✅ This function removes only anchor tags, keeps inner content
+  private removeLinks(html: string): string {
+    if (!html) return '';
+
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = html;
+
+    // Remove <a> tags but preserve text
+    tempDiv.querySelectorAll('a').forEach(anchor => {
+      const span = document.createElement('span');
+      span.innerHTML = anchor.innerHTML;
+      anchor.replaceWith(span);
+    });
+
+    return tempDiv.innerHTML;
+  }
   updateClubHistory(): any {
-    const history = this.history;
+    let history = this.history;
 
     // if(history.trim() == ""){
     //   return false;
     // }
-
+     history = this.removeLinks(history);  
     if (history === "") {
       return false;
     }

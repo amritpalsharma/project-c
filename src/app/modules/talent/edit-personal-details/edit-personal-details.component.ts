@@ -104,6 +104,7 @@ export class EditPersonalDetailsComponent implements OnInit {
   isCustomClubTeam: boolean = false;
 
   team_type: string = 'm';
+  userHasNoClub: boolean = true;
   constructor(
     public dialogRef: MatDialogRef<EditPersonalDetailsComponent>,
     private talentService: TalentService,
@@ -120,6 +121,7 @@ export class EditPersonalDetailsComponent implements OnInit {
 
 
   theme: any = localStorage.getItem('theme');
+  teamNameDefault: string = '';
 
   ngOnInit(): void {
     this.theme = localStorage.getItem('theme');
@@ -146,6 +148,11 @@ export class EditPersonalDetailsComponent implements OnInit {
       this.playerClubsListing = [];  // Default to empty array if no clubs in localStorage
     }
 
+    if (this.user?.meta?.have_registered_club == 1 && this.user?.registered_club_info != '') {
+      let registedClubArr = JSON.parse(this.user?.registered_club_info);
+      this.team_type = registedClubArr.team_group;
+    }
+
     if (this.user.meta) {
       this.dateOfBirth = new FormControl(
         this.user?.meta?.dateOfBirth ? new Date(this.user.meta.dateOfBirth) : null
@@ -158,18 +165,45 @@ export class EditPersonalDetailsComponent implements OnInit {
         this.user?.meta?.contract_end ? new Date(this.user.meta.contract_end) : null
       );
 
-      this.talentService.getClubTeams(this.currentClubId).subscribe((response) => {
+      this.talentService.getClubTeamsByGroup(this.currentClubId, this.team_type).subscribe((response) => {
         if (response.status && Array.isArray(response.data.teams) && response.data.teams.length > 0) {
           this.teamsArr = [...response.data.teams]; // Ensure a new reference for change detection
         } else {
           this.teamsArr = []; // Clear teamsArr if no teams are available
         }
         if (this.user?.meta?.have_registered_club == 1 && this.user?.registered_club_info != '') {
-          this.CurrentTeamId = this.registredClubArr.team_id;
+          let registedClubArr = JSON.parse(this.user?.registered_club_info);
+          this.team_type = registedClubArr.team_group;
+          // setTimeout(() => {
+          //   if (this.teamsArr.length > 0) {
+          //     this.CurrentTeamId = registedClubArr.team_id; // or any default logic
+          //   }
+          //   this.cdr.detectChanges();
+          // }, 4000);
+
+          setTimeout(() => {
+            const idToSelect = String(registedClubArr.team_id); // Convert to string since your IDs are strings
+            const matchingTeam = this.teamsArr.find(t => t.id === idToSelect);
+
+            console.log('All team IDs:', this.teamsArr.map(t => t.id));
+            console.log('Trying to set CurrentTeamId to:', idToSelect);
+
+            if (matchingTeam) {
+              this.CurrentTeamId = (idToSelect);
+              console.log('Match found. Selected:', matchingTeam);
+            } else {
+              console.warn('No matching team found for:', idToSelect);
+            }
+
+            this.cdr.detectChanges();
+          }, 500);
+
+
         }
+
         console.info('Received Teams:', this.teamsArr);
 
-        this.cdr.detectChanges();
+
       });
       console.log('user', this.contractStart)
       this.height = this.user.meta.height || 0;
@@ -197,9 +231,6 @@ export class EditPersonalDetailsComponent implements OnInit {
 
       this.birthCountry = this.user.meta.birth_country || '3';
 
-      // if (this.user.meta && this.user.meta.pre_club_id) {
-      //   this.currentClubId = this.user.meta.pre_club_id;
-      // }
     }
     this.getJsonTranslations();
     this.webPages.languageId$.subscribe((data) => {
@@ -222,11 +253,17 @@ export class EditPersonalDetailsComponent implements OnInit {
       console.log('custom_club_country', this.custom_club_country, 'TypeOF', typeof this.custom_club_country)
     }
 
-    if (this.user?.have_custom_club == 1) {
+    if (this.user?.meta?.have_custom_club == 1) {
       this.isCustomClubTeam = true;
+      if (this.user?.custom_club_info && this.user?.custom_club_info != '' && typeof this.user?.custom_club_info !== undefined) {
+        let customClubArr = JSON.parse(this.user?.custom_club_info);
+        this.custom_club_country = customClubArr.country_id;
+        this.custom_club = customClubArr.club_name;
+        this.custom_team = customClubArr.team_name;
+      }
     }
 
-    if (this.user?.have_registered_club == 1) {
+    if (this.user?.meta?.have_registered_club == 1) {
       this.isCustomClubTeam = false;
     }
 
@@ -326,9 +363,9 @@ export class EditPersonalDetailsComponent implements OnInit {
         if (this.user.meta.have_no_club == '1') {
           this.isHideClubSection = true;
           this.userHasNoClub = true;
-        } else {
-          this.userHasNoClub = false;
+        } else if (this.user.meta.have_no_club == '0') {
           this.isHideClubSection = false;
+          this.userHasNoClub = false;
         }
         // console.info('this.user.meta',this.user.meta)
         this.dateOfBirth = this.user.meta.date_of_birth || '';
@@ -353,7 +390,6 @@ export class EditPersonalDetailsComponent implements OnInit {
 
         if (this.user.team_id && this.user.team_id != '' && this.user.team_id != undefined) {
           this.team_id = this.user.team_id;
-          this.CurrentTeamId = this.team_id;
         }
 
         this.userNationalities = JSON.parse(this.user.user_nationalities || '[]');
@@ -433,23 +469,10 @@ export class EditPersonalDetailsComponent implements OnInit {
     const formData = new FormData();
     formData.append('user[team_type]', this.team_type);
 
-    // Handling `current_club` and `pre_club_id`
-    let index = this.playerClubsListing.findIndex((x: any) => x.id === this.currentClubId);
-    // if (this.playerClubsListing[index]?.is_taken === "yes") {
-    //   this.takenBy = this.playerClubsListing[index].taken_by;
-    //   formData.append('user[pre_club_id]', this.currentClubId);
-    //   formData.append('user[current_club]', this.takenBy);
-    // } else {
-    //   formData.append('user[pre_club_id]', this.currentClubId);
-    // }
-
-
-
     // Format and append required fields
     const formattedDateOfBirth = moment(this.dateOfBirth.value).format('YYYY-MM-DD');
     formData.append('user[date_of_birth]', formattedDateOfBirth);
     formData.append('user[foot]', this.dominantFoot);
-    // formData.append('user[current_team]', this.CurrentTeamId);
 
     // Append Nationality array
     this.nationality.forEach((nation: any) => {
@@ -475,72 +498,33 @@ export class EditPersonalDetailsComponent implements OnInit {
     let lang = localStorage.getItem('lang_id') + '';
     formData.append('lang', lang);
 
-    // if (this.isHideClubSection === true) {
-    //   formData.append('user[have_no_club]', '1');
-    //   formData.append('user[current_team]', '0');
-    // } else {
-    //   formData.append('user[have_no_club]', '0');
-    // }
-
-    // if (this.isCustomClubTeam) {
-    //   formData.append('user[custom_club]', this.custom_club);
-    //   formData.append('user[custom_team]', this.custom_team);
-    //   formData.append('user[custom_club_country]', this.custom_club_country + '');
-    // } else {
-    //   formData.append('user[custom_club]', '');
-    //   formData.append('user[custom_team]', '');
-    //   formData.append('user[custom_club_country]', '');
-    // }
-    // if (this.isCustomClubTeam === true) {
-    //   formData.append('user[have_custom_club]', '1');
-    // } else {
-    //   formData.append('user[have_custom_club]', '0');
-    // }
-
-    // if (this.userHasNoClub === true) {
-    //   formData.append('user[have_no_club]', '1');
-    //   console.info('You Have No Club');
-    // } else {
-    //   if (this.userHasRegistredClub === true) {
-    //     formData.append('user[registered_club]', this.currentClubId);
-    //     formData.append('user[registered_club_team_type]', this.team_type);
-    //     formData.append('user[registered_club_team]', this.CurrentTeamId);
-    //     formData.append('user[have_registered_club]', '1');
-    //     formData.append('user[have_custom_club]', '0');
-    //     console.info('You Have Registred Club');
-    //   } else {
-    //     formData.append('user[have_registered_club]', '0');
-    //     formData.append('user[have_custom_club]', '1');
-    //     formData.append('user[custom_club]', this.custom_club);
-    //     formData.append('user[custom_team]', this.custom_team);
-    //     formData.append('user[custom_club_country]', this.custom_club_country + '');
-    //     console.info('You Have Custom Club with details custom_club ' + this.custom_club + ' custom_team ' + this.custom_team + ' custom_club_country ' + this.custom_club_country);
-    //   }
-    // }
-
-
-
+    let details;
     if (this.userHasCustomClub === true) {
       formData.append('user[have_custom_club]', '1');
       formData.append('user[have_registered_club]', '0');
       formData.append('user[custom_club]', this.custom_club);
       formData.append('user[custom_team]', this.custom_team);
       formData.append('user[custom_club_country]', this.custom_club_country + '');
+      details = 'You Have Custom Club With Name ' + this.custom_club + ' And Team is ' + this.custom_team;
     } else {
       formData.append('user[have_custom_club]', '0');
       formData.append('user[have_registered_club]', '1');
       formData.append('user[registered_club]', this.currentClubId);
       formData.append('user[registered_club_team_type]', this.team_type);
-      formData.append('user[registered_club_team]', this.CurrentTeamId);
+      formData.append('user[registered_club_team]', this.CurrentTeamId + '');
+      details = 'You Have registered Club With id ' + this.currentClubId + ' And Team ID is ' + this.CurrentTeamId;
     }
 
     if (this.userHasNoClub === true) {
+      details = 'You Have no club no registred no custom';
       formData.append('user[have_no_club]', '1');
       formData.append('user[have_custom_club]', '0');
       formData.append('user[have_registered_club]', '0');
     } else {
       formData.append('user[have_no_club]', '0');
     }
+
+    console.info('details', details)
 
 
     // API call for submitting form data
@@ -613,7 +597,6 @@ export class EditPersonalDetailsComponent implements OnInit {
   clubUpdated() {
     console.warn('Function called');
     this.loadTeams(this.currentClubId, this.team_type)
-    this.CurrentTeamId = 0;
   }
 
   loadTeams(club_id: any, teamType: string): void {
@@ -622,10 +605,7 @@ export class EditPersonalDetailsComponent implements OnInit {
       (response: any) => {
         if (response.status) {
           this.teamsArr = response.data.teams;
-          this.CurrentTeamId = 0;
-
           this.cdr.detectChanges();
-          // this.CurrentTeamId = this.FirstTimeSelectedTeam;
         } else {
           this.teamsArr = [];
           console.error('No data found');
@@ -732,13 +712,13 @@ export class EditPersonalDetailsComponent implements OnInit {
     return country.id;
   }
 
-  userHasNoClub: boolean = true;
+
   onNoClubChange(value: boolean) {
     this.isHideClubSection = value;
+    this.userHasNoClub = value;
     if (value === true) {
       this.isCustomClubTeam = false;
     }
-    this.userHasNoClub = value;
   }
 
 

@@ -107,7 +107,7 @@
                 <mat-datepicker-toggle matSuffix [for]="contractStartPicker"></mat-datepicker-toggle>
                 <mat-datepicker #contractStartPicker></mat-datepicker>
               </div>
-              <input type="time" id="appt" name="appt" class="cupen-btn code-text form-control" [value]="timeString" (change)="onTimeChange1($event)">
+              <input type="time" id="appt" name="appt" [ngClass]="{'emptyRequiredField': submitButtonClicked && !timeString}" class="cupen-btn code-text form-control" [value]="timeString" (change)="onTimeChange1($event)">
             </div>
           </div>
         </div>
