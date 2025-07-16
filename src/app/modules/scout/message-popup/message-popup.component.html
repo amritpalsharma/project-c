@@ -88,12 +88,12 @@
             {{'portfolioDeleteConfirmation' | translate}}</div>
         <div *ngIf="data.action === 'portfolio-delete-confirmation'"
             class="popup-delete-btn d-flex align-items-center flex-wrap justify-content-center py-2">
-            <div (click)="deleteConfirmed()" class="btn btn-success bg-light-btn btn_confirmm me-3">{{
-                'portfolioDeletebtn' |
-                translate }}</div>
             <div (click)="close()" class="btn btn_cancell bg-dark-btn btn_cancell">{{ 'portfolioCloseBtn' |
                 translate }}
             </div>
+            <div (click)="deleteConfirmed()" class="btn btn-success bg-light-btn btn_confirmm me-3">{{
+                'portfolioDeletebtn' |
+                translate }}</div>
         </div>
     </div>
 </div>
