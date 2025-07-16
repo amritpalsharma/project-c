@@ -286,9 +286,10 @@ export class SightingTabComponent {
         if (result.action == "updated") {
           this.viewSight(result.id);
           if (result.message != '' && result.message != undefined) {
-            this.showMatDialog(result.message, 'display');
+            // this.showMatDialog(result.message, 'display');
+            this.toastr.success(result.message)
           } else {
-            this.showMatDialog("Sighting updated successfully", 'display');
+            this.toastr.success("Sighting updated successfully");
           }
         }
         console.log('Dialog result:', result);
