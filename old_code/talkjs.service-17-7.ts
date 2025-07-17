@@ -58,8 +58,8 @@ export class TalkService {
     } else {
       themeFirstTym = 'default_users';
     }
-    // let storage_theme = localStorage.getItem('theme');
-    // console.info('this.currentTheme is ' + this.currentTheme + ' And Storage theme is ' + storage_theme, 'And Current User Is ', userData);
+    let storage_theme = localStorage.getItem('theme');
+    console.info('this.currentTheme is ' + this.currentTheme + ' And Storage theme is ' + storage_theme, 'And Current User Is ',userData);
     await Talk.ready;
 
     const talkUser = new Talk.User({
@@ -79,7 +79,7 @@ export class TalkService {
       me: this.user,
       // theme: themeFirstTym
     });
-    // this.toggleThemeInit('dark')
+    this.toggleThemeInit(this.currentTheme)
     return this.session;
   }
 
@@ -171,7 +171,6 @@ export class TalkService {
   }
 
   toggleThemeInit(currentTheme: string): void {
-    console.info('Init Tym theme is ' + currentTheme)
     if (!this.session) {
       console.error('TalkJS session not initialized');
       return;
@@ -179,10 +178,11 @@ export class TalkService {
     if (this.inbox) {
       this.inbox.destroy();
     }
-
+    console.info('Init Tym theme is ' + currentTheme)
     this.inbox = this.session.createInbox({
       theme: currentTheme
     });
+
     // Optionally re-mount immediately or allow the component to handle mounting
     this.inbox.mount(document.getElementById('talkjs-container') as HTMLElement);
   }
@@ -192,7 +192,7 @@ export class TalkService {
   }
 
 
-  async createOneOnOneConversation17_7_25(
+  async createOneOnOneConversation(
     id: string,
     name: string,
     email: string,
@@ -200,7 +200,7 @@ export class TalkService {
   ): Promise<void> {
     // Validate TalkJS initialization
     if (!this.user || !this.session) {
-      console.info('this.userthis.user', this.user)
+      console.info('this.userthis.user',this.user)
       throw new Error('TalkJS user/session is not initialized');
     }
 
@@ -279,97 +279,6 @@ export class TalkService {
       throw new Error('Failed to start conversation');
     }
   }
-
-
-
-  async createOneOnOneConversation(
-    id: string,
-    name: string,
-    email: string,
-    photoUrl: string
-  ): Promise<void> {
-    // Validate TalkJS initialization
-    if (!this.user || !this.session) {
-      console.error('TalkJS user or session is not initialized');
-      throw new Error('TalkJS user/session is not initialized');
-    }
-
-    // Container element check
-    const container = document.getElementById('talkjs-container');
-    if (!container) {
-      console.warn('TalkJS container element not found. Retrying...');
-      // Retry logic or better user feedback
-      setTimeout(() => {
-        this.createOneOnOneConversation(id, name, email, photoUrl);
-      }, 1000); // Retry after 1 second
-      return;
-    }
-
-    try {
-      // Process profile image with cache busting
-      const validatedPhoto = this.isValidImageUrl(photoUrl)
-        ? photoUrl
-        : 'https://api.socceryou.ch/uploads/default_talent_img.png';
-      let finalPhotoUrl = `${validatedPhoto}${validatedPhoto.includes('?') ? '&' : '?'}ts=${Date.now()}`;
-
-      if (finalPhotoUrl.includes("/undefined")) {
-        finalPhotoUrl = 'https://api.socceryou.ch/uploads/default_talent_img.png';
-      }
-
-      // Create conversation participant
-      const otherUser = new Talk.User({
-        id,
-        name,
-        email,
-        photoUrl: finalPhotoUrl,
-        role: 'default',
-        welcomeMessage: null
-      });
-
-      // Create hidden admin user (reuse if exists)
-      const hiddenAdmin = new Talk.User({
-        id: '1',
-        name: 'Succer You Sports AG',
-        email: 'testmails.cts@gmail.com',
-        role: 'hidden',
-      });
-
-      // Get or create conversation
-      const conversationId = Talk.oneOnOneId(this.user, otherUser);
-      const conversation = this.session.getOrCreateConversation(conversationId);
-
-      // Set participants (idempotent)
-      conversation.setParticipant(this.user);
-      conversation.setParticipant(otherUser);
-      conversation.setParticipant(hiddenAdmin);
-
-      // ✅ Set search metadata
-      conversation.setAttributes({
-        photoUrl: finalPhotoUrl, // Image in header
-        custom: {
-          // Add other custom attributes here if needed
-        }
-      });
-
-      // Initialize or update inbox only if not already initialized
-      if (!this.inbox) {
-        this.inbox = this.session.createInbox();
-        this.inbox.mount(container);
-      } else {
-        // Handle case where inbox might already be mounted
-        // this.inbox.updateConversation(conversation);
-      }
-
-      // Activate conversation
-      await this.inbox.select(conversation);
-
-    } catch (error) {
-      console.error('TalkJS conversation error:', error);
-      // Provide a more meaningful error message
-      throw new Error('Failed to start conversation. Please try again later.');
-    }
-  }
-
 
   // Helper function for image validation
   private isValidImageUrl(url: string): boolean {
