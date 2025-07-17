@@ -107,6 +107,17 @@ export class UserEditPopupComponent {
       this.playerTeam = registredClubArr.team_id;
       this.getClubTeamsByGroup(this.playerClub, this.team_type);
     }
+    console.info('this.data?.have_no_club', typeof this.data?.meta?.have_no_club)
+    if (this.data?.meta?.have_no_club != null && this.data?.meta?.have_no_club == '1') {
+      this.onNoClubChange(true);
+    }
+
+    if (this.data?.current_club_info != null && typeof this.data?.current_club_info !== undefined) {
+      let currentClubArr = JSON.parse(this.data?.current_club_info);
+      this.playerClub = currentClubArr.club_id;
+      this.playerTeam = currentClubArr.team_id;
+      this.getClubTeamsByGroup(this.playerClub, this.team_type);
+    }
     // 
     this.clubName = this.data?.current_club_name;
     this.contact = this.data?.meta?.contact_number || '';

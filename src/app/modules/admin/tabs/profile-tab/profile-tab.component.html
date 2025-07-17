@@ -19,6 +19,9 @@
         <div class="col-lg-3 td_col">
             <div class="team-details style-1">
                 <!-- No Club Logic -->
+                <ng-container *ngIf="userData?.meta?.have_no_club == '1'">
+                    <p class="withoutCurrentClub">{{ 'withoutCurrentClub' | translate}}</p>
+                </ng-container>
                 <!-- When Talent has Registred Club -->
                 <ng-container *ngIf="userData?.meta?.have_registered_club == '1' && registredClubArr != ''">
                     <p class="registredClubArr">{{ 'currentClub' | translate}}</p>
@@ -83,7 +86,8 @@
         <div class="col-lg-3 td_col">
             <div class="team-details style-1">
                 <p> {{ 'leagueLevel' | translate }}</p>
-                <h6 *ngIf="currentClubInfo != undefined && currentClubInfo != null">{{ currentClubInfo.league_name | translate }}</h6>
+                <h6 *ngIf="currentClubInfo != undefined && currentClubInfo != null">{{ currentClubInfo.league_name |
+                    translate }}</h6>
             </div>
         </div>
         <div class="col-lg-3 td_col">
@@ -123,11 +127,12 @@
                         <img *ngIf="userData?.meta?.have_registered_club == '1'"
                             src="https://api.socceryou.ch/uploads/{{registredClubArr?.club_logo}}" class="fc-club-img"
                             alt="">
-                            <h6>{{registredClubArr.team_name}}</h6>
+                        <h6>{{registredClubArr.team_name}}</h6>
                     </ng-container>
                     <!-- End When Talent has Registred Club -->
                     <!-- When User Has Custom Club  -->
-                    <ng-container *ngIf="userData?.meta?.have_custom_club == '1' && userData?.custom_club_info != '' && customClubArr">
+                    <ng-container
+                        *ngIf="userData?.meta?.have_custom_club == '1' && userData?.custom_club_info != '' && customClubArr">
                         <span *ngIf="userData?.meta?.have_custom_club == '1' && currentThemeMode != 'dark'">
                             <svg width="35" height="35" viewBox="0 0 25 25" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -165,7 +170,7 @@
                         <img *ngIf="currentClubInfo.club_logo"
                             src="https://api.socceryou.ch/uploads/{{currentClubInfo.club_logo}}" class="fc-club-img"
                             alt="{{currentClubInfo.club_logo}}">
-                            <h6>{{currentClubInfo.team_name}}</h6>
+                        <h6>{{currentClubInfo.team_name}}</h6>
                     </ng-container>
                     <!-- D -->
                 </div>
@@ -226,7 +231,8 @@
         <div class="col-lg-3 td_col">
             <div class="team-details style-1">
                 <p>{{ 'inTheTeamSince' | translate}}</p>
-                <h6 *ngIf="isValidDate(userData?.meta?.in_team_since)">{{userData?.meta?.in_team_since | date:'dd.MM.yyyy' }}</h6>
+                <h6 *ngIf="isValidDate(userData?.meta?.in_team_since)">{{userData?.meta?.in_team_since |
+                    date:'dd.MM.yyyy' }}</h6>
             </div>
         </div>
         <div class="col-lg-3 td_col mt-3">

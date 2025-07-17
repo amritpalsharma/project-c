@@ -740,7 +740,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-12 col-md-6 form-group mb-3" *ngIf="isCustomClub">
+                <div class="col-12 col-md-6 form-group mb-3" *ngIf="isCustomClub && !isNoClub">
                     <div class="form-group col-lg-44">
                         <p class="code-text">{{ 'team' | translate }}</p>
                         <input type="text" class="cupen-btn-1 code-text" id="custom_team" name="custom_team" [(ngModel)]="custom_team" />
