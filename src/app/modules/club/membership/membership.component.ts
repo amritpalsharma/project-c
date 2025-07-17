@@ -495,6 +495,9 @@ export class MembershipComponent {
             if (response.data.representator_data.permission == 'admin.edit') {
               this.currentLoggedInPermission = 'club_edit_only';
             }
+            if (response.data.representator_data.permission == 'admin.access') {
+              this.currentLoggedInPermission = 'club_edit_only';
+            }
 
             console.info('Set In Header this.currentLoggedInPermission ', this.currentLoggedInPermission)
           }
