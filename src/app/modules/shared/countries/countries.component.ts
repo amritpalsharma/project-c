@@ -83,6 +83,7 @@ export class CountriesComponent {
 
   toggleCountrySelection(country: any) {
     if (!this.checkRole()) {
+      console.log(this.checkRole(), this.loggedInUser.permission)
       return;
     }
     if (country.is_default == 1 || country.is_package_active == 'active') {
@@ -97,6 +98,9 @@ export class CountriesComponent {
       return true;
     }
     if (this.loggedInUser.permission === 'admin.view' || this.loggedInUser.permission === 'admin.edit') {
+      return false;
+    }
+    if (this.loggedInUser.permission) {
       return false;
     }
     return true;

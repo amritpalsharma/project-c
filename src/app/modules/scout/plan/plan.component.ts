@@ -149,6 +149,9 @@ export class PlanComponent implements OnInit, OnDestroy {
     if (this.loggedInUser.permission === 'admin.view' || this.loggedInUser.permission === 'admin.edit') {
       return false;
     }
+    if (this.loggedInUser.permission) {
+      return false;
+    }
     return true;
   }
 

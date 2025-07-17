@@ -29,6 +29,7 @@ export class ProfileTabComponent {
   @Input() isPremium: any;
   @Input() logInUser: any;
   @Input() isUserVerified: any;
+  @Input() isReps: any;
   userId: any = "";
   idsToDelete: any = "";
 
@@ -40,8 +41,12 @@ export class ProfileTabComponent {
     // If you want to load the user data from localStorage during initialization
   }
 
+  isRepresentator: boolean = false;
+
   ngOnInit(): void {
     this.loggedInUser = this.logInUser;
+    this.isRepresentator = this.isReps;
+    console.log(this.isReps, "here reps")
     this.user = this.userData;
 
     this.getRepresentators();
@@ -87,7 +92,7 @@ export class ProfileTabComponent {
   }
 
   checkRole() {
-    if (!this.loggedInUser.isRepresentator) {
+    if (!this.isReps ) {
       return true;
     }
     if (this.loggedInUser.permission === 'admin.view' || this.loggedInUser.permission === 'admin.edit') {
