@@ -27,7 +27,7 @@
       </div>
     </div>
     <div class="col" *ngIf="isPremium && scoutPlayers.length != 0">
-      <div class="hide_table_for_mobile"> 
+      <div class="hide_table_for_mobile">
         <div class="table-responsive">
           <table mat-table [dataSource]="scoutPlayers" class="table table-hover table-striped table-users ">
 
@@ -66,11 +66,15 @@
             <ng-container matColumnDef="Club">
               <th mat-header-cell *matHeaderCellDef> {{ 'club' | translate }} </th>
               <td mat-cell *matCellDef="let element">
-                <div class="d-flex icon_text_icon">
+                <div class="d-flex icon_text_icon val_{{element.club_name}}"
+                  *ngIf="element.club_name != '' && element.club_name != null">
                   <img src="{{uploadsPath + element.club_logo}}" *ngIf="element.club_logo" class="club_logo_icn">
                   {{ element.club_name }}
-                  <!-- <img src="{{logoPath + element.country_flag}}" *ngIf="element.country_flag" class="flag_country"> -->
+                  <img src="{{logoPath + element.country_flag}}" *ngIf="element.country_flag" class="flag_country">
                 </div>
+                <span *ngIf="!element.club_name || element.club_name == null">
+                  {{'withoutCurrentClub' | translate}}
+                </span>
               </td>
             </ng-container>
 
@@ -86,9 +90,9 @@
 
             <ng-container matColumnDef="View">
               <th mat-header-cell *matHeaderCellDef>{{ 'view' | translate }}</th>
-              <td mat-cell *matCellDef="let element"> 
-                <svg class="pointer" (click)="navigateToProfiel(element.player_id)" width="25"
-                  height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <td mat-cell *matCellDef="let element">
+                <svg class="pointer" (click)="navigateToProfiel(element.player_id)" width="25" height="25"
+                  viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M12.5 15.625C14.2259 15.625 15.625 14.2259 15.625 12.5C15.625 10.7741 14.2259 9.375 12.5 9.375C10.7741 9.375 9.375 10.7741 9.375 12.5C9.375 14.2259 10.7741 15.625 12.5 15.625Z"
                     fill="#787878" class="td-icon-favourites" />
@@ -112,77 +116,85 @@
         </div>
       </div>
       <div class="hide_table_for_desktop">
-	<div class="rounded-lg border bg-card" *ngFor="let element of scoutPlayers">
-	  <div class="p-3">
-		<div class="space-y-2 text-sm">
-		  <div class="flex justify-between">
-			<span>
-				<div class="d-flex align-items-center pic-with-name">
-					<span class="position-relative">
-					  <img src="../../../assets/images/1.png" alt="" class="table_img" *ngIf="!element.profile_image" />
-					  <img src="{{baseUrl + element.profile_image}}" alt="" class="table_img"
-						*ngIf="element.profile_image" />
-					  <span class="position-absolute verified-icon">
-						<img src="../../../assets/images/pending.png" alt="" class="user-pending-icon status_icon_size"
-						  *ngIf="element.user_status === '1'" />
-						<img src="../../../assets/images/approved.png" alt="" class="user-approved-icon status_icon_size"
-						  *ngIf="element.user_status === '2'" />
-						<img src="../../../assets/images/rejected.png" alt="" class="user-rejected-icon status_icon_size"
-						  *ngIf="element.user_status === '3'" />
-					  </span>
-					</span>
-					<span class="main-template" style="padding-left: 15px">
-					  {{ element.first_name }} {{ element.last_name }}
-					</span>
-				</div>
-			  </span>
-		  </div>
-		  <div class="flex justify-between">
-			<span class="text-muted-foreground">{{ 'language' | translate }}</span>
-			<span>{{ element.language }}</span>
-		  </div>
-		  <div class="flex justify-between">
-			<span class="text-muted-foreground"> {{ 'club' | translate }}</span>
-			<span>
-				<div class="d-flex icon_text_icon align-items-center">
-					<img src="{{uploadsPath + element.club_logo}}" *ngIf="element.club_logo" class="club_logo_icn">
-					{{ element.club_name }}
-				</div>
-			</span>
-		  </div>
-		  <div class="flex justify-between">
-			<span class="text-muted-foreground">{{ 'status' | translate }}</span>
-			<span>
-				<span *ngIf="element.is_accepted == 'accepted'" class="bg_success">{{ 'accepted' | translate }}</span>
-				<span *ngIf="element.is_accepted == 'rejected'" class="bg_reject text-white">{{ 'rejected' | translate
-                }}</span>
-				<span *ngIf="element.is_accepted == null" class="bg_pending">{{ 'pending' | translate }}</span>
-			</span>
-		  </div>	
-		</div>
-		<div class="flex_btn mt-3">
-			<span class="view--eye" class="pointer" (click)="navigateToProfiel(element.player_id)">
-				<svg width="25"
-                height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M12.5 15.625C14.2259 15.625 15.625 14.2259 15.625 12.5C15.625 10.7741 14.2259 9.375 12.5 9.375C10.7741 9.375 9.375 10.7741 9.375 12.5C9.375 14.2259 10.7741 15.625 12.5 15.625Z"
-                  fill="#787878" class="td-icon-favourites" />
-                <path
-                  d="M24.1715 12.2344C23.2527 9.85754 21.6575 7.80204 19.5831 6.32194C17.5087 4.84184 15.0461 4.00201 12.4997 3.90625C9.9532 4.00201 7.4906 4.84184 5.41623 6.32194C3.34187 7.80204 1.74667 9.85754 0.827793 12.2344C0.765736 12.406 0.765736 12.594 0.827793 12.7656C1.74667 15.1425 3.34187 17.198 5.41623 18.6781C7.4906 20.1582 9.9532 20.998 12.4997 21.0938C15.0461 20.998 17.5087 20.1582 19.5831 18.6781C21.6575 17.198 23.2527 15.1425 24.1715 12.7656C24.2336 12.594 24.2336 12.406 24.1715 12.2344ZM12.4997 17.5781C11.4953 17.5781 10.5135 17.2803 9.67841 16.7223C8.84332 16.1643 8.19244 15.3712 7.80809 14.4433C7.42374 13.5154 7.32318 12.4944 7.51912 11.5093C7.71506 10.5242 8.1987 9.61941 8.90889 8.90922C9.61908 8.19903 10.5239 7.71539 11.509 7.51945C12.494 7.32351 13.5151 7.42407 14.443 7.80842C15.3709 8.19278 16.164 8.84365 16.722 9.67875C17.28 10.5138 17.5778 11.4956 17.5778 12.5C17.5757 13.8462 17.04 15.1366 16.0882 16.0885C15.1363 17.0404 13.8458 17.5761 12.4997 17.5781Z"
-                  fill="#787878" class="td-icon-favourites" />
-              </svg>
-			</span>
-		</div>
-	  </div>
-	</div>
-	<div class="rounded-lg border bg-card">
-	  <div class="p-3">
-		<div class="d-flex justify-content-center">
-			<h6>{{'noPortfolioRecordFound' | translate}}</h6>
-		</div>
-	  </div>
-	</div>
- </div>
+        <div class="rounded-lg border bg-card" *ngFor="let element of scoutPlayers">
+          <div class="p-3">
+            <div class="space-y-2 text-sm">
+              <div class="flex justify-between">
+                <span>
+                  <div class="d-flex align-items-center pic-with-name">
+                    <span class="position-relative">
+                      <img src="../../../assets/images/1.png" alt="" class="table_img" *ngIf="!element.profile_image" />
+                      <img src="{{baseUrl + element.profile_image}}" alt="" class="table_img"
+                        *ngIf="element.profile_image" />
+                      <span class="position-absolute verified-icon">
+                        <img src="../../../assets/images/pending.png" alt="" class="user-pending-icon status_icon_size"
+                          *ngIf="element.user_status === '1'" />
+                        <img src="../../../assets/images/approved.png" alt=""
+                          class="user-approved-icon status_icon_size" *ngIf="element.user_status === '2'" />
+                        <img src="../../../assets/images/rejected.png" alt=""
+                          class="user-rejected-icon status_icon_size" *ngIf="element.user_status === '3'" />
+                      </span>
+                    </span>
+                    <span class="main-template" style="padding-left: 15px">
+                      {{ element.first_name }} {{ element.last_name }}
+                    </span>
+                  </div>
+                </span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-muted-foreground">{{ 'language' | translate }}</span>
+                <span>{{ element.language }}</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-muted-foreground"> {{ 'club' | translate }}</span>
+                <span>
+                  <!-- <div class="d-flex icon_text_icon align-items-center"> -->
+                  <!-- <img src="{{uploadsPath + element.club_logo}}" *ngIf="element.club_logo" class="club_logo_icn">
+                    {{ element.club_name }} -->
+                  <!-- </div> -->
+                  <div class="d-flex icon_text_icon val_{{element.club_name}}"
+                    *ngIf="element.club_name != '' && element.club_name != null">
+                    <img src="{{uploadsPath + element.club_logo}}" *ngIf="element.club_logo" class="club_logo_icn">
+                    {{ element.club_name }}
+                    <img src="{{logoPath + element.country_flag}}" *ngIf="element.country_flag" class="flag_country">
+                  </div>
+                  <span *ngIf="!element.club_name || element.club_name == null">
+                    {{'withoutCurrentClub' | translate}}
+                  </span>
+                </span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-muted-foreground">{{ 'status' | translate }}</span>
+                <span>
+                  <span *ngIf="element.is_accepted == 'accepted'" class="bg_success">{{ 'accepted' | translate }}</span>
+                  <span *ngIf="element.is_accepted == 'rejected'" class="bg_reject text-white">{{ 'rejected' | translate
+                    }}</span>
+                  <span *ngIf="element.is_accepted == null" class="bg_pending">{{ 'pending' | translate }}</span>
+                </span>
+              </div>
+            </div>
+            <div class="flex_btn mt-3">
+              <span class="view--eye" class="pointer" (click)="navigateToProfiel(element.player_id)">
+                <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M12.5 15.625C14.2259 15.625 15.625 14.2259 15.625 12.5C15.625 10.7741 14.2259 9.375 12.5 9.375C10.7741 9.375 9.375 10.7741 9.375 12.5C9.375 14.2259 10.7741 15.625 12.5 15.625Z"
+                    fill="#787878" class="td-icon-favourites" />
+                  <path
+                    d="M24.1715 12.2344C23.2527 9.85754 21.6575 7.80204 19.5831 6.32194C17.5087 4.84184 15.0461 4.00201 12.4997 3.90625C9.9532 4.00201 7.4906 4.84184 5.41623 6.32194C3.34187 7.80204 1.74667 9.85754 0.827793 12.2344C0.765736 12.406 0.765736 12.594 0.827793 12.7656C1.74667 15.1425 3.34187 17.198 5.41623 18.6781C7.4906 20.1582 9.9532 20.998 12.4997 21.0938C15.0461 20.998 17.5087 20.1582 19.5831 18.6781C21.6575 17.198 23.2527 15.1425 24.1715 12.7656C24.2336 12.594 24.2336 12.406 24.1715 12.2344ZM12.4997 17.5781C11.4953 17.5781 10.5135 17.2803 9.67841 16.7223C8.84332 16.1643 8.19244 15.3712 7.80809 14.4433C7.42374 13.5154 7.32318 12.4944 7.51912 11.5093C7.71506 10.5242 8.1987 9.61941 8.90889 8.90922C9.61908 8.19903 10.5239 7.71539 11.509 7.51945C12.494 7.32351 13.5151 7.42407 14.443 7.80842C15.3709 8.19278 16.164 8.84365 16.722 9.67875C17.28 10.5138 17.5778 11.4956 17.5778 12.5C17.5757 13.8462 17.04 15.1366 16.0882 16.0885C15.1363 17.0404 13.8458 17.5761 12.4997 17.5781Z"
+                    fill="#787878" class="td-icon-favourites" />
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="rounded-lg border bg-card">
+          <div class="p-3">
+            <div class="d-flex justify-content-center">
+              <h6>{{'noPortfolioRecordFound' | translate}}</h6>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -6,6 +6,7 @@ import { UserService } from '../../../services/user.service';
 import { UserDetailPopupComponent } from '../users/user-detail-popup/user-detail-popup.component';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { UserRoleService } from '../../../services/user-role.service';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-user-edit-popup',
@@ -62,8 +63,14 @@ export class UserEditPopupComponent {
   playerTeam: number = 0;
   isSubmitButtonClicked: boolean = false;
   theme: string = localStorage.getItem('theme') || 'light';
+  isNoClub: boolean = false;
 
+  isCustomClub: boolean = false;
+  custom_club_country: number = 0;
+  custom_club: string = '';
+  custom_team: string = '';
   constructor(
+    private cdr: ChangeDetectorRef,
     public userRoleService: UserRoleService,
     private userService: UserService, public dialogRef: MatDialogRef<UserDetailPopupComponent>,
     @Inject(MAT_DIALOG_DATA) public request: any) {
@@ -77,7 +84,7 @@ export class UserEditPopupComponent {
     }
     // console.info('user',this.data)
   }
-
+  testCustomArr: any;
   ngOnInit() {
 
     this.getCountries();
@@ -85,6 +92,22 @@ export class UserEditPopupComponent {
 
     this.idToUpdate = this.data.id;
     // this.clubName = this.data?.meta?.club_name;
+    if (this.data?.custom_club_info != null && typeof this.data?.custom_club_info !== undefined) {
+      this.isUserHasCustomClub(true);
+      let customClubArr = JSON.parse(this.data?.custom_club_info);
+      console.info('customClubArr', customClubArr)
+      this.testCustomArr = customClubArr;
+      this.custom_club_country = Number(customClubArr.country_id);
+      this.custom_club = customClubArr?.club_name;
+      this.custom_team = customClubArr?.team_name;
+    }
+    if (this.data?.registered_club_info != null && typeof this.data?.registered_club_info !== undefined) {
+      let registredClubArr = JSON.parse(this.data?.registered_club_info);
+      this.playerClub = registredClubArr.club_id;
+      this.playerTeam = registredClubArr.team_id;
+      this.getClubTeamsByGroup(this.playerClub, this.team_type);
+    }
+    // 
     this.clubName = this.data?.current_club_name;
     this.contact = this.data?.meta?.contact_number || '';
     this.website = this.data?.meta?.website || '';
@@ -110,12 +133,12 @@ export class UserEditPopupComponent {
     let otherPositions = this.data.positions;
     if (otherPositions) {
       otherPositions = JSON.parse(otherPositions);
-      console.info('otherPositions', otherPositions);
+      // console.info('otherPositions', otherPositions);
       for (let n of otherPositions) {
         if (n.main_position == 1) {
-          console.info('position id ' + n.position_id + ' and position name ' + n.position_name + ' is skip from otherPosition')
+          // console.info('position id ' + n.position_id + ' and position name ' + n.position_name + ' is skip from otherPosition')
         } else {
-          console.info('position id ' + n.position_id + ' and position name ' + n.position_name + ' is added in otherPosition')
+          // console.info('position id ' + n.position_id + ' and position name ' + n.position_name + ' is added in otherPosition')
           this.otherPosition.push(String(n.position_id))
         }
       }
@@ -128,7 +151,8 @@ export class UserEditPopupComponent {
     this.sm_youtube = this.data?.meta?.sm_youtube
     this.sm_vimeo = this.data?.meta?.sm_vimeo
     this.sm_linkedin = this.data?.meta?.sm_linkedin
-    this.internationalCountry = this.data.int_player_country_id
+    // this.internationalCountry = this.data.int_player_country_id
+    this.internationalCountry = this.data.int_player_country_id;
 
     let playerNationality = this.data.user_nationalities;
     if (playerNationality) {
@@ -165,16 +189,17 @@ export class UserEditPopupComponent {
     //   this.playerClub = this.data.meta.current_club;
     // }else 
 
-
+    // Manually trigger change detection
+    this.cdr.detectChanges();
   }
 
   getClubTeamsByGroup(club_id: any, type: string) {
-    console.info('getClubTeamsByGroup called with club_id "'+club_id+'" and type "'+type+'"')
+    // console.info('getClubTeamsByGroup called with club_id "' + club_id + '" and type "' + type + '"')
     this.userService.getClubTeamsByGroupAndClubId(club_id, type).subscribe(
       response => {
         if (response.status) {
           this.teamsLisitng = response.data.teams;
-          console.info('teamListing',this.teamsLisitng);
+          console.info('teamListing', this.teamsLisitng);
         } else {
           this.teamsLisitng = [];
         }
@@ -258,14 +283,11 @@ export class UserEditPopupComponent {
           //check taken by status to show teams dropdown
 
           let index = this.playerClubsListing.findIndex((x: any) => x.id == this.data.meta.pre_club_id);
-          if (this.playerClubsListing[index].is_taken == "yes") {
-            this.showTeamsDropdown = true;
-            this.takenBy = this.playerClubsListing[index].taken_by;
-            this.playerTeam = this.data.team_id;
-            // this.getTeamsByClub(this.takenBy);
-            // this.current_club = this.playerTeam;
-            // this.getClubTeamsByGroup(this.current_club, this.team_type);
-          }
+          // if (this.playerClubsListing[index].is_taken == "yes") {
+          //   this.showTeamsDropdown = true;
+          //   this.takenBy = this.playerClubsListing[index].taken_by;
+          //   this.playerTeam = this.data.team_id;
+          // }
           // this.playerClub = 10;
         } else {
 
@@ -421,15 +443,15 @@ export class UserEditPopupComponent {
     formdata.append('user[team_type]', this.team_type);
 
     let index = this.playerClubsListing.findIndex((x: any) => x.id == this.playerClub)
-    if (this.playerClubsListing[index].is_taken == "yes") {
+    // if (this.playerClubsListing[index].is_taken == "yes") {
 
-      this.takenBy = this.playerClubsListing[index].taken_by;
-      formdata.append('user[pre_club_id]', this.playerClub);
-      formdata.append('user[current_club]', this.takenBy);
-      formdata.append('user[current_team]', this.playerTeam + '');
-    } else {
-      formdata.append('user[pre_club_id]', this.playerClub);
-    }
+    //   this.takenBy = this.playerClubsListing[index].taken_by;
+    //   formdata.append('user[pre_club_id]', this.playerClub);
+    //   formdata.append('user[current_club]', this.takenBy);
+    //   formdata.append('user[current_team]', this.playerTeam + '');
+    // } else {
+    //   formdata.append('user[pre_club_id]', this.playerClub);
+    // }
 
     formdata.append('user[main_position]', this.mainPosition);
     formdata.append('user[international_player]', this.internationalCountry);
@@ -440,6 +462,33 @@ export class UserEditPopupComponent {
     });
     let lang_id = localStorage.getItem('lang_id');
     formdata.append('lang', lang_id + '');
+
+    if (this.isNoClub === true) {
+      formdata.append('user[have_no_club]', '1');
+      formdata.append('user[have_registered_club]', '0');
+      formdata.append('user[have_custom_club]', '0');
+    }
+
+    if (this.isCustomClub === true) {
+      formdata.append('user[have_no_club]', '0');
+      formdata.append('user[have_custom_club]', '1');
+      formdata.append('user[have_registered_club]', '0');
+      formdata.append('user[custom_club]', this.custom_club);
+      formdata.append('user[custom_team]', this.custom_team);
+      formdata.append('user[custom_club_country]', this.custom_club_country + '');
+    } else if (!this.isNoClub && !this.isCustomClub) {
+      // let index = this.playerClubsListing.findIndex((x: any) => x.id == this.playerClub)
+      // if (this.playerClubsListing[index].is_taken == "yes") {
+
+      // }
+
+      formdata.append('user[have_no_club]', '0');
+      formdata.append('user[have_custom_club]', '0');
+      formdata.append('user[have_registered_club]', '1');
+      formdata.append('user[registered_club]', this.playerClub);
+      formdata.append('user[registered_club_team]', this.playerTeam + '');
+      formdata.append('user[registered_club_team_type]', this.team_type);
+    }
 
     this.userService.updateUser(this.idToUpdate, formdata).subscribe(
       response => {
@@ -500,5 +549,24 @@ export class UserEditPopupComponent {
     this.team_type = teamType;
     this.getClubTeamsByGroup(this.playerClub, this.team_type);
     // this.loadTeams(this.currentClubId, this.team_type)
+  }
+
+  onNoClubChange(value: boolean) {
+    this.isNoClub = value;
+    if (value === true) {
+      this.isCustomClub = false;
+    }
+  }
+
+  isUserHasCustomClub(value: boolean) {
+    this.isCustomClub = value;
+    if (this.isNoClub === true) {
+      this.isNoClub = false;
+    }
+    // if (value === true) {
+    //   this.isNoClub = false;
+    // } else {
+    //   this.isNoClub = true;
+    // }
   }
 }

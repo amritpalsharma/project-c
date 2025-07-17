@@ -613,7 +613,25 @@
         </div>
         <div class="popup__body p-3" style="height:400px;overflow: auto;">
             <div class="row">
-                <div class="col-12 col-md-6 form-group mb-3">
+                <div class="col-sm-12">
+                    <div class="form-check checkbox mb-3">
+                        <input class="form-check-input mt-0" type="checkbox" value="" id="flexCheckDefault-5"
+                            [(ngModel)]="isNoClub" name="noClub" (ngModelChange)="onNoClubChange($event)" />
+                        <label class="form-check-label fs-14 font-w400 text-light mb-2" for="flexCheckDefault-5">
+                            {{ 'withoutClub' | translate }}
+                        </label>
+                    </div>
+
+                    <div class="form-check checkbox mb-3">
+                        <input class="form-check-input mt-0" type="checkbox" value="" id="flexCheckDefault-6"
+                            [(ngModel)]="isCustomClub" name="isCustomClub"
+                            (ngModelChange)="isUserHasCustomClub($event)" />
+                        <label class="form-check-label fs-14 font-w400 text-light" for="flexCheckDefault-6">
+                            {{ 'noTeamAndClub' | translate }}
+                        </label>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 form-group mb-3" *ngIf="!isCustomClub && !isNoClub">
                     <p class="code-text">{{ 'currentClub' | translate }}</p>
                     <div class="btn-group">
                         <select class="cupen-btn-1 form-select" aria-label="Default select example"
@@ -625,14 +643,29 @@
                                 {{option.club_name}}
                             </option>
                         </select>
-                        <!-- <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M4.08333 3.25838L0.995812 0.170854C0.768006 -0.0569515 0.39866 -0.0569515 0.170854 0.170854C-0.0569515 0.39866 -0.0569515 0.768006 0.170854 0.995812L3.67085 4.49581C3.89866 4.72362 4.26801 4.72362 4.49581 4.49581L7.99581 0.995812C8.22362 0.768006 8.22362 0.39866 7.99581 0.170854C7.76801 -0.0569515 7.39866 -0.0569515 7.17085 0.170854L4.08333 3.25838Z"
-                                fill="#646464" />
-                        </svg> -->
+                        <!-- When Custom Club -->
                     </div>
                 </div>
+                <ng-container *ngIf="isCustomClub && !isNoClub">
+                    <div class="col-sm-6">
+                        <div class="form-group col-lg-4d position_inputs">
+                            <label for="nationality22">{{'club' | translate}} {{'country' | translate}}:</label>
+                            <select class="form-select cupen-btn-1" id="nationality22" name="nationality22" required
+                                [(ngModel)]="custom_club_country">
+                                <option *ngFor="let country of countriesListing" [value]="country.id">
+                                    {{ country.country_name }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group col-lg-4d">
+                            <label for="currentClubCustom">{{'currentClub' | translate}}:</label>
+                            <input type="text" id="currentClubCustom" name="currentClubCustom" [(ngModel)]="custom_club"
+                                placeholder="{{custom_club}}" class="cupen-btn-1 code-text"/>
+                        </div>
+                    </div>
+                </ng-container>
                 <div class="col-12 col-md-6 form-group mb-3">
                     <p class="code-text">{{ 'nationality' | translate }}</p>
                     <div id="player-countryy" class="btn-group main-popup-div player-country"
@@ -644,12 +677,6 @@
                             <mat-option [value]="option.id">{{option.country_name}}</mat-option>
                             }
                         </mat-select>
-                        <!-- <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M4.08333 3.25838L0.995812 0.170854C0.768006 -0.0569515 0.39866 -0.0569515 0.170854 0.170854C-0.0569515 0.39866 -0.0569515 0.768006 0.170854 0.995812L3.67085 4.49581C3.89866 4.72362 4.26801 4.72362 4.49581 4.49581L7.99581 0.995812C8.22362 0.768006 8.22362 0.39866 7.99581 0.170854C7.76801 -0.0569515 7.39866 -0.0569515 7.17085 0.170854L4.08333 3.25838Z"
-                                fill="#646464" />
-                        </svg> -->
                     </div>
                 </div>
                 <div class="col-12 col-md-6 form-group mb-3">
@@ -662,12 +689,6 @@
                             <option *ngFor="let option of positionsListing" value="{{option.id}}">{{option.position}}
                             </option>
                         </select>
-                        <!-- <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M4.08333 3.25838L0.995812 0.170854C0.768006 -0.0569515 0.39866 -0.0569515 0.170854 0.170854C-0.0569515 0.39866 -0.0569515 0.768006 0.170854 0.995812L3.67085 4.49581C3.89866 4.72362 4.26801 4.72362 4.49581 4.49581L7.99581 0.995812C8.22362 0.768006 8.22362 0.39866 7.99581 0.170854C7.76801 -0.0569515 7.39866 -0.0569515 7.17085 0.170854L4.08333 3.25838Z"
-                                fill="#646464" />
-                        </svg> -->
                     </div>
                 </div>
                 <div class="col-12 col-md-6 form-group mb-3">
@@ -680,12 +701,6 @@
                             <option *ngFor="let option of countriesListing" value="{{option.id}}">
                                 {{option.country_name}}</option>
                         </select>
-                        <!-- <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M4.08333 3.25838L0.995812 0.170854C0.768006 -0.0569515 0.39866 -0.0569515 0.170854 0.170854C-0.0569515 0.39866 -0.0569515 0.768006 0.170854 0.995812L3.67085 4.49581C3.89866 4.72362 4.26801 4.72362 4.49581 4.49581L7.99581 0.995812C8.22362 0.768006 8.22362 0.39866 7.99581 0.170854C7.76801 -0.0569515 7.39866 -0.0569515 7.17085 0.170854L4.08333 3.25838Z"
-                                fill="#646464" />
-                        </svg> -->
                     </div>
                 </div>
                 <div class="col-12 col-md-6 form-groups mb-3">
@@ -713,7 +728,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-6 form-group mb-3" style="display: none;"
-                    [ngClass]="{'showTeamsDropdown': showTeamsDropdown}">
+                    [ngClass]="{'showTeamsDropdown': showTeamsDropdown}" *ngIf="!isCustomClub">
                     <p class="code-text">{{ 'team' | translate }}</p>
                     <div class="btn-group">
                         <select class="cupen-btn-1 form-select" aria-label="Default select example"
@@ -723,12 +738,12 @@
                             <option *ngFor="let option of teamsLisitng" value="{{option.id}}">{{option.team_name}} -
                                 {{option.team_type}} </option>
                         </select>
-                        <!-- <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M4.08333 3.25838L0.995812 0.170854C0.768006 -0.0569515 0.39866 -0.0569515 0.170854 0.170854C-0.0569515 0.39866 -0.0569515 0.768006 0.170854 0.995812L3.67085 4.49581C3.89866 4.72362 4.26801 4.72362 4.49581 4.49581L7.99581 0.995812C8.22362 0.768006 8.22362 0.39866 7.99581 0.170854C7.76801 -0.0569515 7.39866 -0.0569515 7.17085 0.170854L4.08333 3.25838Z"
-                                fill="#646464" />
-                        </svg> -->
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 form-group mb-3" *ngIf="isCustomClub">
+                    <div class="form-group col-lg-44">
+                        <p class="code-text">{{ 'team' | translate }}</p>
+                        <input type="text" class="cupen-btn-1 code-text" id="custom_team" name="custom_team" [(ngModel)]="custom_team" />
                     </div>
                 </div>
             </div>

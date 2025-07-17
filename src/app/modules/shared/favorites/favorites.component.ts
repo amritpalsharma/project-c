@@ -86,14 +86,17 @@ export class FavoritesComponent {
       this.getUserFavorites();
     });
 
-    this.getLocations();
-    this.getUserRoles();
-    this.webPages.languageId$.subscribe((data) => {
+    // Listen for language changes
+    this.langSubscription = this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
       this.getLocations();
       this.getUserRoles();
       this.getUserFavorites();
       this.getJsonTranslations();
-    });
+      this.updateTranslation();
+    })
+
+    this.getLocations();
+    this.getUserRoles();
     // let envRoles:any = environment.roles;
     //     envRoles.unshift({id: 0, role: 'All'});
     // this.roles = envRoles;
@@ -104,10 +107,7 @@ export class FavoritesComponent {
     ];
     this.updateTranslation();
 
-    // Listen for language changes
-    this.langSubscription = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
-      this.updateTranslation();
-    });
+
 
 
     this.sharedDataService.sharedText$.subscribe(text => {

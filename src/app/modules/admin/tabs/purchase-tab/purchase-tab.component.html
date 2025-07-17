@@ -25,8 +25,8 @@
               <path d="M10.8408 10.8398L15.0062 15.0058" stroke="black" stroke-width="1.2" stroke-linecap="round"
                 stroke-linejoin="round" class="search-icon-purchase"></path>
             </g>
-          </svg></span><input type="text" placeholder="{{ 'search' | translate }}" aria-label="Username" aria-describedby="basic-addon1"
-          class="form-control ps-0" />
+          </svg></span><input type="text" placeholder="{{ 'search' | translate }}" aria-label="Username"
+          aria-describedby="basic-addon1" class="form-control ps-0" />
       </div>
     </div>
   </div>
@@ -44,7 +44,7 @@
             fill="#646464" />
         </svg>
       </button>
-     
+
     </div>
     <a class="btn btn-outline-white ms-2 delete-text" id="users-icon" (click)="downloadAll()">
       <svg width="22" height="23" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -63,6 +63,7 @@
         <tr>
           <th></th>
           <th scope="col">{{'orderNo' | translate}}</th>
+          <th scope="col">{{'name' | translate}}</th>
           <th scope="col">{{'purchasedDate' | translate}}</th>
           <th scope="col">{{'validUntil' | translate}}
           </th>
@@ -82,6 +83,11 @@
           <td>
             <div class="d-flex align-items-center">
               <span class="main-template">{{purchase.id}}</span>
+            </div>
+          </td>
+          <td>
+            <div class="d-flex align-items-center">
+              <span class="main-template">{{purchase.package_name	}}</span>
             </div>
           </td>
           <!-- <td>{{ purchase.plan_period_start | date:'MM.dd.yyyy - hh.mm a' }}</td> -->
@@ -107,7 +113,8 @@
         <tr *ngIf="isLoading || userPurchases.length == '0'">
           <td colspan="6">
             <app-loader *ngIf="isLoading"></app-loader>
-            <div *ngIf="userPurchases.length == 0 && !isLoading" style="text-align: center;">{{ 'noRecordFound' | translate }}</div>
+            <div *ngIf="userPurchases.length == 0 && !isLoading" style="text-align: center;">{{ 'noRecordFound' |
+              translate }}</div>
           </td>
         </tr>
       </tbody>

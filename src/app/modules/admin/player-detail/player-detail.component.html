@@ -324,7 +324,7 @@
             </ul>
 
             <app-profile-tab *ngIf="activeTab == 'profile'" [userData]="user" [userCountryFlag]="userCountryFlag"
-              (dataEmitter)="handleRefreshAfterUpdate($event)" [userDataArr]="user"></app-profile-tab>
+              (dataEmitter)="handleRefreshAfterUpdate($event)"></app-profile-tab>
             <app-performance-tab *ngIf="activeTab == 'performance'"></app-performance-tab>
             <app-performance-analysis *ngIf="activeTab == 'performanceAnalysis'"></app-performance-analysis>
             <app-transfers-tab *ngIf="activeTab == 'transfers'"></app-transfers-tab>

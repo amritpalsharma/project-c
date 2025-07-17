@@ -269,7 +269,7 @@
                           </ng-container>
                           <!-- End When User Has Custom Club  -->
                           <!-- When User Has In Club Team  -->
-                          <ng-container *ngIf="user?.meta?.have_custom_club != '1' && user?.meta?.have_registered_club != '1'  && currentClubInfo != ''">
+                          <ng-container *ngIf="user?.meta?.have_custom_club != '1' && user?.meta?.have_registered_club != '1'  && currentClubInfo != undefined">
                             <h6 class="title_2 mb-1 have_custom_club">
                               {{ 'currentClub' | translate}}
                             </h6>
