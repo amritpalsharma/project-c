@@ -763,6 +763,9 @@ mat-datepicker-toggle button {
             width: 310px !important;
         }
     }
+    .page-sidebar-inner {
+        height: calc(100% - 300px) !important;
+    }
     body.compact-sidebar {
         .page-container.admin_page-container {
             width: calc(100% - 400px) !important;

@@ -103,12 +103,12 @@
       </div> -->
     <!-- New COde For Attachment -->
     <div class="row mb-4" *ngFor="let row of attachmentRows; let i = index">
+      <div class="col-12"><label for="document" class="code-text mb-3"> {{'pdfTitle' | translate}}</label></div>
       <div class="document-input col-lg-6 mb-4">
-        <label for="document" class="code-text"> {{'pdfTitle' | translate}}</label> <br>
         <input type="text" id="document" class="cupen-btn  code-text w-100" [ngClass]="{'isrequiredField': !row.title && isSubmited}" (keyup)="titleUpdate($event, i)">
       </div>
-      <div class="city-input col-lg-4 mb-4">
-        <div class="choose-file-box position-relative d-flex align-items-center justify-content-between mt-4"
+      <div class="city-input col-lg-4 col-sm-8 mb-4">
+        <div class="choose-file-box position-relative d-flex align-items-center justify-content-between"
           *ngIf="row.file != ''">
 
           <svg width="43" (click)="removeFile(i)" class="delete-file-upload" height="43" viewBox="0 0 43 43" fill="none"
@@ -138,12 +138,12 @@
           </span>
         </div>
 
-        <div class="mt-4" *ngIf="row.file == ''">
+        <div class="upload_field_wrap" *ngIf="row.file == ''">
           <label for="file-upload-{{i}}" [ngClass]="{'isrequiredField': !row.file && isSubmited}" type="button" class="btn btn-outline-white code-text upload-label">{{'selectFile' | translate}}</label>
           <input id="file-upload-{{i}}" accept="application/pdf" (change)="onAttachmentFileChange($event, i)" type="file" class="d-none" />
         </div>
       </div>
-      <div class="col-lg-1 mb-4 mt-4 add_new_btn_row">
+      <div class="col-md-1 col-2 text-end mb-4 add_new_btn_row">
         <label for="reportUpload" class="add_row_btn" (click)="removeRow(i)"
           [class.label-disabled]="1==attachmentRows.length" *ngIf="attachmentRows.length > 0">
           <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -155,7 +155,7 @@
         </label>
       </div>
 
-      <div class="col-lg-1 mb-4 mt-4 add_new_btn_row">
+      <div class="col-md-1 col-2 text-end mb-4 add_new_btn_row">
         <div (click)="addNewRow()" class="add_row_btn" *ngIf="attachmentRows.length == i+1">
           <svg style="transform: rotate(45deg);" width="13px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
             <path
