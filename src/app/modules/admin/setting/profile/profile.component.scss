@@ -381,6 +381,14 @@
   .plus-color{
     color: #148DE4;
   }
+
+::ng-deep .dark-theme {
+  a.btn-primary {
+    background: #BDE34F !important;
+    color: #072944 !important;
+  }
+}
+
   @media (max-width: 768px) {
     .setting-btn a{
       width: 100%;

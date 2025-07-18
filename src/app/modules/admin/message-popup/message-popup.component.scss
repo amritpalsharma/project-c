@@ -15,4 +15,14 @@
     color: #FD5454;
     margin-top:20px;
     cursor: pointer;
+    .bg-dark-btn {
+        color: #fff !important;
+    }
+}
+
+ ::ng-deep .dark-theme {
+  a.btn-primary, a.btn-success {
+    background: #BDE34F !important;
+    color: #072944 !important;
+  }
 }
