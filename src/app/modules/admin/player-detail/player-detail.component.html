@@ -82,7 +82,7 @@
               </svg>
               {{ 'exportPDF' | translate }}</a>
           </div>
-          <div class="d-flex align-items-center profile_count_next_btn" *ngIf="paginationData.total">
+          <!-- <div class="d-flex align-items-center profile_count_next_btn" *ngIf="paginationData.total">
             <div class="paging-data" style="margin-right: 10px;">
               {{paginationData.current}} of {{paginationData.total}}
             </div>
@@ -97,7 +97,7 @@
                 <path d="M14 12L19 16.5L14 21" stroke="#787878" stroke-width="2" stroke-linecap="round"></path>
               </svg>
             </a>
-          </div>
+          </div> -->
         </div>
       </div>
       <div class="card-body pb-0">
@@ -186,7 +186,7 @@
               <div class="list-view border-0">
                 <h6 class="mb-2">{{ 'paymentMethod' | translate }} :</h6>
                 <div class="d-flex align-items-center visa-card">
-                  <svg width="29" height="13" viewBox="0 0 29 13" fill="none" xmlns="http://www.w3.org/2000/svg"
+                  <!-- <svg width="29" height="13" viewBox="0 0 29 13" fill="none" xmlns="http://www.w3.org/2000/svg"
                     *ngIf="user.last4 && user.last4 != 0">
                     <g clip-path="url(#clip0_2019_4040)">
                       <path
@@ -198,8 +198,8 @@
                         <rect width="29" height="13" fill="white" />
                       </clipPath>
                     </defs>
-                  </svg>
-                  <h6 class="mb-2 font-w400" *ngIf="user.brand && user.brand != ''">{{user.brand}}</h6>
+                  </svg> -->
+                  <h6 class="mb-2 font-w400" *ngIf="user.brand && user.brand != ''">{{user.brand.toUpperCase()}}</h6>
                   <h6 class="mb-2 font-w400" *ngIf="user.last4 && user.last4 != 0">••••••••{{user.last4}}</h6>
                   <!-- <h6 class="mb-2 ml-2 font-w400" *ngIf="!user.last4"> NA</h6> -->
                 </div>

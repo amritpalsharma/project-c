@@ -703,8 +703,9 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-12 col-md-6 form-groups mb-3">
-                    <label class="form-label">{{ 'team' | translate }} </label>
+                <div class="col-12 col-md-6 form-groups mb-3" *ngIf="!isNoClub">
+                    <label class="form-label">&nbsp;</label>
+                    <!-- <label class="form-label">{{ 'team' | translate }} </label> -->
                     <div class="row align-items-center">
                         <div class="col-lg-12">
                             <div class="gen_radio gap-3">
@@ -728,7 +729,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-6 form-group mb-3" style="display: none;"
-                    [ngClass]="{'showTeamsDropdown': showTeamsDropdown}" *ngIf="!isCustomClub">
+                    [ngClass]="{'showTeamsDropdown': showTeamsDropdown}" *ngIf="!isCustomClub && !isNoClub">
                     <p class="code-text">{{ 'team' | translate }}</p>
                     <div class="btn-group">
                         <select class="cupen-btn-1 form-select" aria-label="Default select example"
