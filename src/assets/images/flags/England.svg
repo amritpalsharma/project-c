@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="24" viewBox="0 0 30 24">
+  <defs>
+    <clipPath id="clip-England">
+      <rect width="30" height="24"/>
+    </clipPath>
+  </defs>
+  <g id="England" clip-path="url(#clip-England)">
+    <g id="Flag_of_England" transform="translate(0 3)">
+      <rect id="Rectangle_95" data-name="Rectangle 95" width="30" height="18" fill="#fff"/>
+      <g id="Group_864" data-name="Group 864">
+        <rect id="Rectangle_96" data-name="Rectangle 96" width="4" height="18" transform="translate(13)" fill="#ce1124"/>
+        <rect id="Rectangle_97" data-name="Rectangle 97" width="30" height="4" transform="translate(0 7)" fill="#ce1124"/>
+      </g>
+    </g>
+  </g>
+</svg>

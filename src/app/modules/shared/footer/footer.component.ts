@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
 import { DomainSlugService } from '../../../services/domain-slug.service';
+import {
+  Router,
+  NavigationStart,
+  Event as NavigationEvent,
+  RouterOutlet,
+} from '@angular/router';
 
 @Component({
   selector: 'shared-footer',
@@ -7,7 +13,16 @@ import { DomainSlugService } from '../../../services/domain-slug.service';
   styleUrl: './footer.component.scss'
 })
 export class FooterComponent {
-  constructor(public domainSlugService: DomainSlugService) {
-
+  event$: any;
+  constructor(public domainSlugService: DomainSlugService, public router: Router) {
+    this.event$ = this.router.events.subscribe((event: NavigationEvent) => {
+      if (event instanceof NavigationStart) {
+        // this.path = event.url;
+        const targetDiv = document.querySelector('.page-container');
+        if (targetDiv) {
+          targetDiv.scrollTo(0, 0);
+        }
+      }
+    });
   }
 }

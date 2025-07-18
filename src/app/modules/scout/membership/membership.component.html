@@ -35,14 +35,14 @@
               </div>
               <p *ngIf="premium.stripe_cancel_at == null">{{ 'renews' | translate }} {{ premium.plan_period_end | date:
                 'dd.MM.yyyy' }}</p>
-              <p *ngIf="premium.stripe_cancel_at != null">{{ 'expiresOn' | translate }} {{ premium.stripe_cancel_at |
+              <p *ngIf="premium.stripe_cancel_at != null">{{ 'expireOn' | translate }} {{ premium.stripe_cancel_at |
                 date: 'dd.MM.yyyy' }}</p>
               <div class="d-flex align-items-center justify-content-between mt-4 mob_wrap">
                 <a class="premium-edit_btn text-white" (click)="!checkRole() && $event.preventDefault()" [class.club_view_only]="!checkRole()" href="/scout/plans">{{'editPlan' | translate}}</a>
                 <button class="premium-subscription_btn" [disabled]="premium.stripe_cancel_at != null"
                   (click)="confirmAndCancelSubscription(premium.id)" [class.club_view_only]="!checkRole()">
                   <div *ngIf="premium.stripe_cancel_at == null">{{ 'cancelSubscription' | translate }}</div>
-                  <div *ngIf="premium.stripe_cancel_at != null" routerLink="/scout/plans">{{ 'renewSubscription' |
+                  <div *ngIf="premium.stripe_cancel_at != null" routerLink="/scout/plans" class="cursor-pointer">{{ 'renewSubscription' |
                     translate }}</div>
                 </button>
 
@@ -65,14 +65,14 @@
               </div>
               <p *ngIf="demo.stripe_cancel_at == null">{{ '2_countries' | translate }} {{ demo.plan_period_end | date:
                 'dd.MM.yyyy' }}</p>
-              <p *ngIf="demo.stripe_cancel_at != null">{{ 'expiresOn' | translate }} {{ demo.stripe_cancel_at | date:
+              <p *ngIf="demo.stripe_cancel_at != null">{{ 'expireOn' | translate }} {{ demo.stripe_cancel_at | date:
                 'dd.MM.yyyy' }}</p>
               <div class="d-flex align-items-center justify-content-between mt-4 mob_wrap">
                 <a class="premium-edit_btn text-white" (click)="!checkRole() && $event.preventDefault()" [class.club_view_only]="!checkRole()" href="/talent/plans">{{'editPlan' | translate}}</a>
                 <button class="premium-subscription_btn" [disabled]="demo.stripe_cancel_at != null"
                   (click)="confirmAndCancelSubscription(demo.id)" [class.club_view_only]="!checkRole()">
-                  <div *ngIf="demo.stripe_cancel_at == null">{{ 'cancelSubscription' | translate }}</div>
-                  <div *ngIf="demo.stripe_cancel_at != null">{{ 'renewSubscription' | translate }}</div>
+                  <div *ngIf="demo.stripe_cancel_at == null" class="cursor-pointer">{{ 'cancelSubscription' | translate }}</div>
+                  <div *ngIf="demo.stripe_cancel_at != null" class="cursor-pointer">{{ 'renewSubscription' | translate }}</div>
                 </button>
 
               </div>
@@ -125,8 +125,8 @@
                   translate}}</a>
                 <button class="premium-subscription_btn" [disabled]="booster.stripe_cancel_at != null"
                   (click)="confirmAndCancelSubscription(booster.id)" [class.club_view_only]="!checkRole()">
-                  <div *ngIf="booster.stripe_cancel_at == null">{{ 'cancelSubscription' | translate }}</div>
-                  <div *ngIf="booster.stripe_cancel_at != null">{{ 'renewSubscription' | translate }}</div>
+                  <div *ngIf="booster.stripe_cancel_at == null" class="cursor-pointer">{{ 'cancelSubscription' | translate }}</div>
+                  <div *ngIf="booster.stripe_cancel_at != null" class="cursor-pointer">{{ 'renewSubscription' | translate }}</div>
                 </button>
               </div>
               <div class="premium-card_football">

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="24" viewBox="0 0 30 24">
+  <defs>
+    <clipPath id="clip-Germany">
+      <rect width="30" height="24"/>
+    </clipPath>
+  </defs>
+  <g id="Germany" clip-path="url(#clip-Germany)">
+    <g id="Flag_of_Germany" transform="translate(0 3)">
+      <rect id="black_stripe" width="30" height="18"/>
+      <rect id="red_stripe" width="30" height="12" transform="translate(0 6)" fill="#d00"/>
+      <rect id="gold_stripe" width="30" height="6" transform="translate(0 12)" fill="#ffce00"/>
+    </g>
+  </g>
+</svg>

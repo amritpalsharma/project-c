@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { SocketService } from '../../../services/socket.service';
 import { MatDialog } from '@angular/material/dialog';
 import { UnverifiedUserComponent } from '../../shared/unverified-user/unverified-user.component';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
 import { AuthService } from '../../../services/auth.service';
+
+// New Code
+import { Router, NavigationStart, NavigationEnd } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'talent-sidebar',
@@ -16,11 +20,15 @@ export class SidebarComponent implements OnInit {
   isUserVerified: boolean = false;
   loggedInUser: any = localStorage.getItem('userInfo');
   locksideBar: boolean = true;
+  // New Code
+  private routerEventsSubscription!: Subscription
   constructor(
     private authService: AuthService,
     private globalSettings: GlobalSettingsService,
     private socketService: SocketService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router,// New Code
+    // New Code
   ) { }
 
   ngOnInit(): void {
@@ -36,16 +44,31 @@ export class SidebarComponent implements OnInit {
     } else {
       // window.location.reload();
     }
-
-    // console.warn(this.loggedInUser.status)
-    // if (this.loggedInUser && this.loggedInUser.status != '' && this.loggedInUser.status != undefined) {
-    //   if (this.loggedInUser.status == 2) {
-    //     this.isUserVerified = true;
-    //   } else {
     this.isUserVerified = false;
-    //   }
-    // }
     this.getUserStatus();
+
+    this.routerEventsSubscription = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        // If the current URL is the same as the target URL, prevent any action
+        const currentUrl = this.router.url;
+        const targetUrl = event.url;  // The URL being navigated to
+        console.info('currentUrl ' + currentUrl + ' targetUrl = ' + targetUrl)
+        if (currentUrl === targetUrl) {
+          console.log('You are already on the target page, no need to navigate');
+          // Optionally, you can handle this case specifically, for example:
+          // Resetting scroll position, showing a message, etc.
+          const targetDiv = document.querySelector('.page-container');
+          if (targetDiv) {
+            targetDiv.scrollTo(0, 0);
+          }
+          return;  // Stop further execution if the route is the same
+        }
+
+        // If the navigation is to a different route, proceed with custom actions
+        console.log('Navigating to a different route:', targetUrl);
+        // You can perform actions like scroll reset, etc.
+      }
+    });
   }
 
   getUserStatus() {
@@ -183,4 +206,39 @@ export class SidebarComponent implements OnInit {
     window.location.href = '/';
   }
 
+
+  ngOnDestroy() {
+    // Cleanup the subscription when the component is destroyed
+    if (this.routerEventsSubscription) {
+      this.routerEventsSubscription.unsubscribe();
+    }
+  }
+
+  ngAfterViewInit() {
+    // Adding the click event listener to detect clicks anywhere in the document
+    document.body.addEventListener('click', (event) => {
+      const target = event.target as HTMLElement;
+      console.info('target', target.tagName)
+      // Check if the target is an svg or p tag (children inside the a tag)
+      if (target && (target.tagName === 'SVG' || target.tagName === 'P' || target.tagName === 'A')) {
+        // Find the closest parent <a> tag
+        const parentLink = target.closest('a') as HTMLElement;
+
+        // Check if the parent <a> tag has the "active" class
+        if (parentLink && parentLink.classList.contains('active')) {
+          console.log('Clicked on an active link!');
+          // You can add custom logic here, like resetting scroll position
+          // Example: Reset scroll when clicking on the active link
+          const targetDiv = document.querySelector('.page-container');
+          if (targetDiv) {
+            targetDiv.scrollTo({
+              top: 0,
+              left: 0,
+              behavior: 'smooth'
+            });
+          }
+        }
+      }
+    });
+  }
 }

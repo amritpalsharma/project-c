@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="24" viewBox="0 0 30 24">
+  <defs>
+    <clipPath id="clip-Italy">
+      <rect width="30" height="24"/>
+    </clipPath>
+  </defs>
+  <g id="Italy" clip-path="url(#clip-Italy)">
+    <g id="Group_877" data-name="Group 877" transform="translate(0 -3)">
+      <path id="Path_5225" data-name="Path 5225" d="M0,0H10V20H0Z" transform="translate(0 5)" fill="#009246"/>
+      <path id="Path_5226" data-name="Path 5226" d="M0,0H10V20H0Z" transform="translate(10 5)" fill="#fff"/>
+      <path id="Path_5227" data-name="Path 5227" d="M0,0H10V20H0Z" transform="translate(20 5)" fill="#ce2b37"/>
+    </g>
+  </g>
+</svg>
