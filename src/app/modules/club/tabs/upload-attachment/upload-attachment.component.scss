@@ -460,6 +460,13 @@ input[type="number"] {
   }
 }
 
+::ng-deep .dark-theme {
+  .create-btn {
+    background: #BDE34F !important;
+    color: #072944 !important;
+  }
+}
+
 ::ng-deep {
   .close_image {
     position: absolute;
@@ -540,4 +547,12 @@ input[type="number"] {
 ::ng-deep .isrequiredField {
   // border: 1px solid red !important;
   border-color: red !important;
+}
+
+::ng-deep {
+  @media (max-width: 400px) {
+    .add_new_btn_row {
+        margin-right: 1rem;
+    }
+  }
 }

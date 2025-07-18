@@ -608,6 +608,15 @@ input[type="number"] {
 }
 
 
+::ng-deep {
+  @media (max-width: 400px) {
+    .add_new_btn_row {
+        margin-right: 1rem;
+    }
+  }
+}
+
+
 
 ::ng-deep .dark-theme {
   .create-btn {

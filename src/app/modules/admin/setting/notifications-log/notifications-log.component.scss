@@ -378,6 +378,13 @@
     color: #148DE4;
   }
 
+  ::ng-deep .dark-theme {
+  a.btn-primary, .btn-success {
+    background: #BDE34F !important;
+    color: #072944 !important;
+  }
+}
+
 @media (max-width: 575px) {
   .setting_card_wrap {
     flex-direction: column;
