@@ -7,6 +7,7 @@ import { catchError, Observable, of, tap, fromEvent } from 'rxjs';
 import { AuthService } from '../../../services/auth.service';
 import { TranslateService } from '@ngx-translate/core';
 import { WebPages } from '../../../services/webpages.service';
+import { Renderer2 } from '@angular/core';
 
 // Depending on whether rollup is used, moment needs to be imported differently.
 // Since Moment.js doesn't have a default export, we normally need to import using the `* as`
@@ -106,6 +107,7 @@ export class EditPersonalDetailsComponent implements OnInit {
   team_type: string = 'm';
   userHasNoClub: boolean = true;
   constructor(
+    private el: ElementRef, private renderer: Renderer2,
     public dialogRef: MatDialogRef<EditPersonalDetailsComponent>,
     private talentService: TalentService,
     private toastr: ToastrService,
@@ -124,6 +126,10 @@ export class EditPersonalDetailsComponent implements OnInit {
   teamNameDefault: string = '';
 
   ngOnInit(): void {
+
+    // let selector = document.querySelector('.cdk-overlay-connected-position-bounding-box .cdk-overlay-pane');
+    // console.log('selector',selector.style);
+    // console.log('selector', selector?.style)
     this.theme = localStorage.getItem('theme');
     this.userData = this.user = { ...this.data.user };
 
@@ -270,9 +276,24 @@ export class EditPersonalDetailsComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
-    // this.initGooglePlacesAutocomplete();
-  }
+    setTimeout(() => {
+      const selector = this.el.nativeElement.querySelector('.cdk-overlay-connected-position-bounding-box .cdk-overlay-pane');
 
+      if (selector) {
+        // Access current styles
+        console.log('Current styles:', window.getComputedStyle(selector));
+
+        // Update styles using Renderer2
+        this.renderer.setStyle(selector, 'background-color', 'red');
+        this.renderer.setStyle(selector, 'padding', '10px');
+
+        // Direct inline style manipulation
+        selector.style.border = '2px solid blue';
+      } else {
+        console.log('Element not found');
+      }
+    }, 2000); // Delay to give time for the overlay to render
+  }
   onSelectSuggestion(place: any): void {
     this.placeOfBirthInput.nativeElement.value = place.description;
     this.placeSuggestions = [];  // Clear suggestions

@@ -2997,3 +2997,9 @@ input:checked+.slider:before {
     }
   }
 }
+
+::ng-deep .cdk-overlay-pane {
+  left: 0 !important;
+  transform: none !important;
+  width: 100% !important;
+}

@@ -1006,7 +1006,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
     else {
       this.activeTab = tab;
-      this.router.navigate([], { fragment: undefined });
+      // this.router.navigate([], { fragment: undefined });
     }
   }
 
