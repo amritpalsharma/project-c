@@ -2366,18 +2366,17 @@ input:checked+.slider:before {
 }
 
 .dark-theme .choose-plan-btn {
-  background: rgb(7 41 68) !important;
-  color: #bde34f !important;
+    background: rgb(7 41 68) !important;
+    color: #bde34f !important;
 }
 
 .dark-theme {
   .subscription-switch input[type=checkbox]:checked {
     background: #bde34f !important;
-
     &:before {
-      background: #0c3453 !important;
+        background: #0c3453 !important;
     }
-  }
+}
 }
 
 .dark-theme .premium_list label input:checked~.checkmark {
@@ -2777,8 +2776,7 @@ input:checked+.slider:before {
     font-weight: 600;
   }
 
-  .edit-multi-country-plan .actions,
-  .boost-profile.boost-profile_popup .actions {
+  .edit-multi-country-plan .actions, .boost-profile.boost-profile_popup .actions {
     .buy-btn {
       background: #bde34e !important;
       color: #072944 !important;
@@ -2983,8 +2981,7 @@ input:checked+.slider:before {
   }
 }
 
-.dark-theme .coupon-btn,
-.dark-theme .proceed-btn {
+.dark-theme .coupon-btn, .dark-theme .proceed-btn {
   color: #072944 !important;
 }
 
@@ -2993,11 +2990,9 @@ input:checked+.slider:before {
     border-top: 1px solid #204a6b !important;
     border-bottom: 1px solid #204a6b !important;
   }
-
   .unlock_page .unlock_btn {
     background: #bde34f !important;
     color: #0c3453 !important;
-
     svg path {
       fill: #0c3453 !important;
     }
@@ -3013,21 +3008,4 @@ input:checked+.slider:before {
       }
     }
   }
-}
-
-// Css By Amrit
-.dark-theme .sidebar_menu .un_verified a:hover {
-  background: none !important;
-  color: #4f7a9d;
-}
-.dark-theme .sidebar_menu .un_verified a:hover p{
-  background: none !important;
-  color: #4f7a9d;
-}
-.dark-theme .sidebar_menu .un_verified p{
-  background: none !important;
-  // color: #4f7a9d;
-}
-.dark-theme .sidebar_menu .un_verified a:hover svg path {
-  fill: #4f7a9d !important;
 }

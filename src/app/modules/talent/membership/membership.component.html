@@ -12,7 +12,7 @@
               </div>
             </div>
           </div>
-          <div class="card_btn_side">
+          <div class="card_btn_side" *ngIf="userPurchases && userPurchases.length > 0 && totalItems > 0">
             <a type="button" class="text-center manage_payment_btn is_stop_{{isopenCustomerPortal}}"
               (click)="openCustomerPortal()">
 
@@ -24,9 +24,6 @@
                 {{ 'managePaymentBtnTxt' | translate }}
               </ng-template>
             </a>
-            <!-- <p class="managePaymentBtnTxtBelowTxt">{{'managePaymentBtnTxtBelowTxt' | translate}}</p> -->
-
-            <!-- <button class="payments-btn"  >{{'managePayments' | translate}}</button> -->
           </div>
         </div>
 
