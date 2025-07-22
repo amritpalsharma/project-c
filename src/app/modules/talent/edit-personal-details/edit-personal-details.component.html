@@ -68,7 +68,7 @@
       <div class="row" *ngIf="!isHideClubSection && !isCustomClubTeam">
 
         <!-- Current Club -->
-        <div class="form-group col-lg-4 position_inputs">
+        <!-- <div class="form-group col-lg-4 position_inputs">
           <label for="currentClub">{{'currentClub' | translate}}:</label>
 
           <mat-select [(ngModel)]="currentClubId" class="form-select" id="currentClub" name="currentClub"
@@ -89,8 +89,21 @@
               </mat-option>
             </ng-container>
           </mat-select>
-        </div>
+        </div> -->
 
+        <div class="form-group col-lg-4 position_inputs">
+          <mat-form-field appearance="fill" class="form-group col-lg-4 position_inputs">
+            <mat-label>{{ 'currentClub' | translate }}</mat-label>
+            <input type="text" matInput [(ngModel)]="clubSearch" [matAutocomplete]="auto" (keyup)="filterClubs($event)"
+              placeholder="{{ 'search' | translate }}" name="club_search" />
+
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="clubUpdated()">
+              <mat-option *ngFor="let club of searchedClubs" [value]="club.club_name">
+                {{ club.club_name }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
         <!-- Team Type Men & Women -->
         <div class="form-group-1 col-lg-4 team_gender_p">
           <label class="form-label">&nbsp;</label>
