@@ -669,23 +669,23 @@ input#contractEnd {
   white-space: nowrap;
 }
 
-.sidebar_menu a:hover {
-  justify-content: inherit !important;
-}
-
 html {
   top: 0 !important;
 }
 
-.sidebar_menu a:hover p {
-  background: #023A4A;
-  border-radius: 10px;
-  border-top-left-radius: 0px;
-  border-bottom-left-radius: 0px;
-}
-
-.sidebar_menu a:hover {
-  background: #023A4A;
+@media (min-width: 992px) {
+  .sidebar_menu a:hover {
+    justify-content: inherit !important;
+  }
+  .sidebar_menu a:hover p {
+    background: #023A4A;
+    border-radius: 10px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+  }
+  .sidebar_menu a:hover {
+    background: #023A4A;
+  }
 }
 
 .compact-sidebar .page-sidebar .sidebar_menu a .sidebar_menu_span {
