@@ -417,6 +417,9 @@ legend.w-auto.px-2 {
   .dark-theme .sidebar_menu li a:hover svg path {
     fill: #072944 !important;
   }
+  .dark-theme a:hover .my-svg-icon .my-path {
+  fill: #072944 !important;
+}
 }
 
 .dark-theme .sidebar_menu a.active p {
@@ -1617,16 +1620,6 @@ input:checked+.slider:before {
 
 }
 
-// .dark-theme .my-svg-icon .my-path a.active{
-
-// }
-// .dark-theme .active .my-svg-icon .my-path {
-//   fill: white !important ; /* Change the color of the SVG when the link is active */
-// }
-.dark-theme a:hover .my-svg-icon .my-path {
-  fill: #072944 !important;
-  /* Change the color of the SVG when the link is active */
-}
 
 .dark-theme .card-search .form-control {
   color: #ffffff !important;
