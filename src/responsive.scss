@@ -1376,11 +1376,22 @@ body.body-overflow {
 .compact-sidebar .page-container {
     padding: 77px 10px 0 !important;
 }
+.compact-sidebar .d-flex.main_flex {
+    display: block !important;
+}
+.all-page-content.flex-grow-1 {
+    overflow: auto !important;
+    height: max-content;
+}
 .compact-sidebar .page-header {
     padding: 0 8px !important;
     position: fixed !important;
     left: 0;
     left: 0;
+}
+.all-page-content .page-container {
+    height: auto !important;
+    overflow: unset !important;
 }
 .all-page-content .page-container > .outlet_outer {
     min-height: 100vh;
