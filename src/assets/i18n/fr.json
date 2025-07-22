@@ -1508,7 +1508,7 @@
   },
   "paidTxt": "Payé",
   "openTxt": "Ouvert",
-  "maxSizeForProfile": "Le fichier young-bearded-man-with-striped-shirt.jpg dépasse la taille maximale autorisée de 5 MB.",
+  "maxSizeForProfile": "Le fichier {{filename}} dépasse la taille maximale autorisée de15 MB.",
   "aboutImageCaption": "de g. à d.",
   "confirmDeleteinformationTeam": "Es-tu sûr de vouloir supprimer ce joueur de cette équipe ?",
   "noClubTxt": "Tu n’as pas de club pour le moment ou le tien n’est pas répertorié ? Pas de souci. Tu peux quand même <strong>t’inscrire gratuitement</strong> et compléter ton profil plus tard.",

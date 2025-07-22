@@ -35,6 +35,7 @@ export class DetailPagesComponent {
   ) { }
 
   ngOnInit() {
+    this.description = 'SoccerYou News';
     // Initially, all ads are visible
     // this.adVisible = [true, true, true,true, true, true];
     this.adVisible = [false, false, false, false, false, false];
@@ -42,19 +43,19 @@ export class DetailPagesComponent {
       this.id = params['slug'];
       this.getPageData(this.currentLang);
     });
-    this.getTranslation();
+    // this.getTranslation(); News
     this.getPageData(this.currentLang);
     this.webPages.languageId$.subscribe((data) => {
       this.currentLang = data;
       this.getPageData(data);
-      this.getTranslation();
+      // this.getTranslation();
     });
 
   }
 
   getTranslation() {
     this.translateService.get(['description']).subscribe((translations) => {
-      this.description = translations['description'];
+      // this.description = translations['description'];
     })
   }
   getPageData(languageId: any): void {

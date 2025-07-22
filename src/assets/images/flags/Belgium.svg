@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="24" viewBox="0 0 30 24">
+  <defs>
+    <clipPath id="clip-Belgium">
+      <rect width="30" height="24"/>
+    </clipPath>
+  </defs>
+  <g id="Belgium" clip-path="url(#clip-Belgium)">
+    <rect width="30" height="24" fill="#fff"/>
+    <g id="Flag_of_Belgium">
+      <path id="Path_5145" data-name="Path 5145" d="M0,0H30V26H0Z" fill="#ef3340"/>
+      <path id="Path_5146" data-name="Path 5146" d="M0,0H20V26H0Z" fill="#fdda25"/>
+      <path id="Path_5147" data-name="Path 5147" d="M0,0H10V26H0Z"/>
+    </g>
+  </g>
+</svg>

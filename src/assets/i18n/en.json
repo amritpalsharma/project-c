@@ -1407,7 +1407,7 @@
   "pendingUser": "Pending User",
   "paidTxt": "Paid",
   "openTxt": "Open",
-  "maxSizeForProfile": "File young-bearded-man-with-striped-shirt.jpg exceeds the maximum allowed size of 5 MB",
+  "maxSizeForProfile": "File {{filename}} exceeds the maximum allowed size of15 MB",
   "aboutImageCaption": "l–r",
   "confirmDeleteinformationTeam": "Are you sure you want to remove this player from the team?",
   "managePaymentBtnTxt": "Manage Payments",

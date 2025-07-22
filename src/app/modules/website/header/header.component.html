@@ -44,8 +44,7 @@
                 <a href="#" *ngFor="let lang of langs" class="dropdown-item ai-icon"
                     [class.selected]="slug === lang.slug" (click)="ChangeLang(lang.slug, lang.id, $event)">
                     <!-- Display language flag -->
-                    <img src="https://api.socceryou.ch/uploads/logos/{{ lang.flag }}" width="30" height="24"
-                        class="me-3">
+                    <img src="./../../../../assets/images/flags/{{ lang.flag }}" width="30" height="24" class="me-3">
                     <!-- Display language slug -->
                     <span style="text-transform: uppercase;">{{ lang.slug }}</span>
                 </a>
@@ -247,7 +246,9 @@
                             <a href="" *ngFor="let lang of langs" class="dropdown-item ai-icon"
                                 [class.selected]="slug === lang.slug" (click)="ChangeLang(lang.slug, lang.id, $event)">
                                 <!-- Display language flag -->
-                                <img src="https://api.socceryou.ch/uploads/logos/{{ lang.flag }}" width="30" height="24"
+                                <!-- <img src="https://api.socceryou.ch/uploads/logos/{{ lang.flag }}" width="30" height="24"
+                                    class="me-3"> -->
+                                <img src="./../../../../assets/images/flags/{{ lang.flag }}" width="30" height="24"
                                     class="me-3">
                                 <!-- Display language slug (uppercase) -->
                                 <span style="text-transform: uppercase;">{{ lang.slug }}</span>
@@ -276,7 +277,8 @@
 
 <!-- login -->
 
-<div class="modal fade login_user_popup" id="exampleModal-login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade login_user_popup" id="exampleModal-login" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="login">
             <div class="modal-content">
@@ -395,7 +397,8 @@
 
 <!-- forget-password -->
 
-<div class="modal fade login_user_popup" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade login_user_popup" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="forget-password">
             <div class="modal-content">
@@ -453,7 +456,8 @@
 
 <!-- confirm password -->
 
-<div class="modal fade login_user_popup" id="exampleModal-confirm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade login_user_popup" id="exampleModal-confirm" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header border-0">
@@ -508,7 +512,8 @@
 
 <!-- Register modal -->
 
-<div class="modal fade login_user_popup" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade login_user_popup" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="reg-model">
         <div class="modal-dialog modal-dialog-centered">
             <div class="register">
@@ -710,14 +715,16 @@
                                                 <div class="gen_radio gap-3">
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="radio" name="gender"
-                                                            id="male" value="male" (change)="setGender('m')" [checked]="gender == 'm'"/>
+                                                            id="male" value="male" (change)="setGender('m')"
+                                                            [checked]="gender == 'm'" />
                                                         <label class="form-check-label ms-1" for="male">
                                                             <span class="font-w400">{{'men' | translate}}</span>
                                                         </label>
                                                     </div>
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="radio" name="gender"
-                                                            id="female" value="female" (change)="setGender('w')"  [checked]="gender == 'w'"/>
+                                                            id="female" value="female" (change)="setGender('w')"
+                                                            [checked]="gender == 'w'" />
                                                         <label class="form-check-label ms-1" for="female">
                                                             <span class="font-w400">{{'women' | translate}}</span>
                                                         </label>

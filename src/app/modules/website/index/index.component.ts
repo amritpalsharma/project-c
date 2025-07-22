@@ -88,7 +88,7 @@ export class IndexComponent {
   hero_bg_img_dark_mode: string = 'assets/images/home/hero_bg_img_dark_mode.png';
   hero_bg_img: string = 'assets/images/home/hero_bg_img_light_mode.png';
   advertisemnet_base_url: string = '';
-  isUserLoggedIn: boolean = false;
+  // isUserLoggedIn: boolean = false;
   club_logo_path: string = '';
   pre_club_logo_path: string = '';
   heroSectionBgImage: string = '';
@@ -261,6 +261,11 @@ export class IndexComponent {
   // Manage Navbar Expansion
   isNavbarExpanded = false;
 
+
+  // DashBoard MobilE
+  isUserLoggedIn: boolean = false;
+  LoggedInUserDashboardLink: string = '';
+
   constructor(private shareservice: SharedService, private advertisementService: AdvertisementService, private webPages: WebPages, private authService: AuthService, private themeService: ThemeService, private globalSettings: GlobalSettingsService) {
 
   }
@@ -358,7 +363,8 @@ export class IndexComponent {
     this.globalSettings.indexFunctionCall$.subscribe(() => {
       this.showContent(this.selectedContent);
     });
-    let selectedLang = localStorage.getItem('lang');
+    // let selectedLang = localStorage.getItem('lang');
+    this.LoggedInUserDashboardLink = this.authService.getDashboardLink();
     // console.warn('In Index component LocalStorage Language selected = ' + selectedLang)
   }
 
@@ -411,7 +417,7 @@ export class IndexComponent {
         }
         this.club_logo_path = this.sliderDetail.imagePath;
         this.pre_club_logo_path = this.sliderDetail.flagPath;
-        
+
         console.log("data is here", res.data.advertisementData, res.data.advertisemnet_base_url)
 
         this.advertisementData = res.data.advertisementData;

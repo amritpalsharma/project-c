@@ -187,20 +187,20 @@
 
 
 .resize-handle {
-  width: 4px;
-  height: 12px;
+  width: 8px;
+  height: 25px;
   background: white;
   position: absolute;
-  right: -3px;
+  right: -4px;
   bottom: 0;
   cursor: nwse-resize;
 }
 
 .resize-handle.bottom-right2 {
-  width: 15px;
-  height: 4px;
+  width: 25px;
+  height: 8px;
   bottom: -3px;
-  right: -3px;
+  right: -4px;
 }
 
 .cover-crop-box {
