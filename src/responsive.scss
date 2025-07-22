@@ -1765,11 +1765,11 @@ body .dialog-content.add-perfomance {
     }
 }
 body .edit_genrl_details.popup__body {
-    max-height: 400px !important;
+    max-height: 310px !important;
 }
 body .dialog-content.edit_genrl_details, body .dialog-content.transfer_details, body .statistics_popup, body .highlights__popup, body .view_membership_popup {
     .popup__body, .overflow-card.popup__body, .overflow-card-2.popup__body {
-        max-height: 400px !important;
+        max-height: 310px !important;
         overflow: auto;
     }
 }
@@ -1846,24 +1846,24 @@ table.table  th {
     overflow-x: auto !important;
 }
 .edit_highlights_popup {
-.popup_header {
-    padding-bottom: 0 !important;
-    .dialog-header {
-        flex-direction: column;
-        align-items: flex-start !important;
-        gap: 5px !important;
-        p {
-            font-size: 14px !important;
+    .popup_header {
+        padding-bottom: 0 !important;
+        .dialog-header {
+            flex-direction: column;
+            align-items: flex-start !important;
+            gap: 5px !important;
+            p {
+                font-size: 14px !important;
+            }
+        }
+        .close-btn {
+            padding-right: 0 !important;
         }
     }
-    .close-btn {
-        padding-right: 0 !important;
+    button.upload-btn {
+        font-size: 14px !important;
+        padding: 10px !important;
     }
-}
-button.upload-btn {
-    font-size: 14px !important;
-    padding: 10px !important;
-}
 }
 .popup-delete-btn {
     flex-wrap: wrap;
@@ -1879,8 +1879,8 @@ button.upload-btn {
 }
 .mobile_popup_responsive {
      .close-img {
-    top: 8px;
-}
+        top: 8px;
+    }
 }
 .club-banner .title_text_p {
     h3 {
