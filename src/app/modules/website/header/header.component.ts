@@ -443,7 +443,7 @@ export class HeaderComponent implements OnInit {
               if (response.status) {
                 // this.toastr.clear();
                 if (response.message != '') {
-                  this.toastr.success(response.message, this.EmailVerified);
+                  this.toastr.success(this.emailVerifiedSuccessfully, this.EmailVerified);
                 } else {
                   this.toastr.success('Email is verified. You can login now...', this.EmailVerified);
                 }

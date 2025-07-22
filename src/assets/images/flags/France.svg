@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="24" viewBox="0 0 30 24">
+  <defs>
+    <clipPath id="clip-France">
+      <rect width="30" height="24"/>
+    </clipPath>
+  </defs>
+  <g id="France" clip-path="url(#clip-France)">
+    <g id="Flag_of_France_2_" data-name="Flag_of_France (2)" transform="translate(0 1.887)">
+      <rect id="Rectangle_104" data-name="Rectangle 104" width="30" height="20" transform="translate(0 0.113)" fill="#ce1126"/>
+      <rect id="Rectangle_105" data-name="Rectangle 105" width="20" height="20" transform="translate(0 0.113)" fill="#fff"/>
+      <rect id="Rectangle_106" data-name="Rectangle 106" width="10" height="20" transform="translate(0 0.113)" fill="#002654"/>
+    </g>
+  </g>
+</svg>

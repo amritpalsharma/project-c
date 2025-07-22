@@ -718,8 +718,8 @@ export class EditPersonalDetailsComponent implements OnInit {
   onNoClubChange(value: boolean) {
     this.isHideClubSection = value;
     this.userHasNoClub = value;
-    if (value === true) {
-      this.isCustomClubTeam = false;
+    if (this.userHasNoClub) {
+      this.onChnageCustomClubTeam(false);
     }
   }
 
@@ -729,6 +729,7 @@ export class EditPersonalDetailsComponent implements OnInit {
     this.isCustomClubTeam = value;
     if (value === true) {
       this.isHideClubSection = false;
+      this.userHasNoClub = false;
     }
     this.userHasCustomClub = value;
   }

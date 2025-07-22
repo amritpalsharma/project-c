@@ -501,7 +501,12 @@ export class ViewProfileComponent implements OnInit {
     if (this.user.meta.profile_image != '' && this.user.meta.profile_image != undefined) {
       this.user.meta.profile_image = this.user.meta.profile_image;
     }
-    const role = this.loggedInUser.role_name.toLowerCase();
+    let role = this.loggedInUser.role_name.toLowerCase();
+    if (role == 'talento' || role == 'talang') {
+      role = 'talent';
+    } else if (role == 'club' || role == 'klubb' || role == 'klub' || role == 'clube') {
+      role = 'club';
+    }
     if (this.currentUserRole == 'club' || this.currentUserRole == 'klubb' || this.currentUserRole == 'klub' || this.currentUserRole == 'Clube' && this.user.club_logo != '' && this.user.club_logo != undefined) {
       this.user.meta.profile_image = this.user.club_logo;
     }

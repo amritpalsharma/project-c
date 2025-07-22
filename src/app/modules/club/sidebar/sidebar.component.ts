@@ -158,4 +158,32 @@ export class SidebarComponent {
     // ✅ Finally, force hard redirect to base page
     window.location.href = '/';
   }
+
+  ngAfterViewInit() {
+    // Adding the click event listener to detect clicks anywhere in the document
+    document.body.addEventListener('click', (event) => {
+      const target = event.target as HTMLElement;
+      console.info('target', target.tagName)
+      // Check if the target is an svg or p tag (children inside the a tag)
+      if (target && (target.tagName === 'SVG' || target.tagName === 'P' || target.tagName === 'A')) {
+        // Find the closest parent <a> tag
+        const parentLink = target.closest('a') as HTMLElement;
+
+        // Check if the parent <a> tag has the "active" class
+        if (parentLink && parentLink.classList.contains('active')) {
+          console.log('Clicked on an active link!');
+          // You can add custom logic here, like resetting scroll position
+          // Example: Reset scroll when clicking on the active link
+          const targetDiv = document.querySelector('.page-container');
+          if (targetDiv) {
+            targetDiv.scrollTo({
+              top: 0,
+              left: 0,
+              behavior: 'smooth'
+            });
+          }
+        }
+      }
+    });
+  }
 }

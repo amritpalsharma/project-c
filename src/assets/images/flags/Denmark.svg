@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="24" viewBox="0 0 30 24">
+  <defs>
+    <clipPath id="clip-Denmark">
+      <rect width="30" height="24"/>
+    </clipPath>
+  </defs>
+  <g id="Denmark" clip-path="url(#clip-Denmark)">
+    <g id="Flag_of_Denmark" transform="translate(0 1)">
+      <path id="Path_5155" data-name="Path 5155" d="M0,0H30V22.7H0Z" fill="#c8102e"/>
+      <path id="Path_5156" data-name="Path 5156" d="M0,11.351H30M11.351,0V22.7" stroke="#fff" stroke-width="4"/>
+    </g>
+  </g>
+</svg>

@@ -210,7 +210,7 @@
         </div>
       </div>
 
-      <div class="row">
+      <div class="row" *ngIf="!isHideClubSection">
         <!-- Contract Start Date -->
         <div class="form-group col-lg-6">
           <label for="contractStart">{{'contractStartDate' | translate}}:</label>

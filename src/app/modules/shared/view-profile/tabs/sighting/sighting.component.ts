@@ -247,7 +247,12 @@ export class SightingComponent {
     //   this.user.meta.profile_image = this.user.meta.profile_image;
     // }
     this.loggedInUser = JSON.parse(this.loggedInUser);
-    const role = this.loggedInUser.role_name.toLowerCase();
+    let role = this.loggedInUser.role_name.toLowerCase();
+    if (role == 'talento' || role == 'talang') {
+      role = 'talent';
+    } else if (role == 'club' || role == 'klubb' || role == 'klub' || role == 'clube') {
+      role = 'club';
+    }
     let name_of_chat_user = this.user.first_name + ' ' + this.user.last_name;
     this.currentUserRole = this.currentUserRole.toLowerCase();
     // if (this.currentUserRole == 'club' || this.currentUserRole == 'klubb' || this.currentUserRole == 'klub' || this.currentUserRole == 'clube') {

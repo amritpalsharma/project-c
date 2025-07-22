@@ -232,7 +232,8 @@
 
       <div class="row" *ngFor="let row of attachmentRows; let i = index">
         <div class="document-input col-lg-6 mb-4">
-          <label for="document" class="code-text">{{ 'scoutingInformation2' | translate }}</label> <br>
+          <!-- <label for="document" class="code-text">{{ 'scoutingInformation2' | translate }}</label> <br> -->
+          <label for="document" class="code-text">{{ 'pdfTitle' | translate }}</label> <br>
           <!-- <label for="document" class="code-text">{{ 'documentTitle' | translate }}</label> <br> -->
           <input type="text" id="document" class="cupen-btn code-text w-100" (keyup)="titleUpdate($event, i)">
         </div>
@@ -272,8 +273,10 @@
 
           <div class="upload_field_wrap" *ngIf="row.file == ''">
             <label for="file-upload-{{i}}" type="button"
-              class="btn btn-outline-white code-text upload-label cupen-btn">{{
-              'upload' | translate }}</label>
+              class="btn btn-outline-white code-text upload-label cupen-btn">
+              <!-- PDF {{'upload' | translate }} -->
+               {{'chooseFile' | translate }} 
+            </label>
             <input id="file-upload-{{i}}" accept="application/pdf" (change)="onAttachmentFileChange($event, i)"
               type="file" class="d-none" />
           </div>

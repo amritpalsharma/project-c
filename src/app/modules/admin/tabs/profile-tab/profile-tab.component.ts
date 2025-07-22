@@ -20,9 +20,9 @@ export class ProfileTabComponent {
   baseUrl: string = 'https://api.socceryou.ch/uploads/';
 
   @Input() userData: any;
-  @Input() userDataArr: any;
   @Input() userCountryFlag: any;
   @Output() dataEmitter = new EventEmitter<string>();
+  userDataArr: any;
   scoutInfoDetails: any;
   currentClubInfo: any;
   customClubInfo: any;
@@ -44,20 +44,7 @@ export class ProfileTabComponent {
     this.user = JSON.parse(this.user);
     // console.info('coming this data', this.user);
     console.info('coming this this.user', this.userData);
-    if (this.userData?.id && Number(this.userData?.id) && this.userData?.id != '' && typeof this.userData?.id !== undefined) {
-      // this.getUser(this.userData?.id);
-    }
 
-    if (this.userDataArr?.meta?.have_registered_club == 1 && this.userDataArr?.registered_club_info != null) {
-      this.registredClubArr = JSON.parse(this.userDataArr?.registered_club_info);
-    }
-    if (this.userDataArr?.meta?.have_custom_club == 1 && this.userDataArr?.custom_club_info != null) {
-      this.customClubArr = JSON.parse(this.userDataArr?.custom_club_info);
-      console.info('this.customClubArr',this.customClubArr)
-    }
-    if (this.userDataArr?.meta?.have_custom_club != 1 && this.userDataArr?.meta?.have_registered_club != 1 && this.userData?.current_club_info != null) {
-      this.currentClubInfo = JSON.parse(this.userDataArr?.current_club_info);
-    }
 
 
     this.globalSettings.indexFunctionCall$.subscribe(() => {
@@ -71,13 +58,13 @@ export class ProfileTabComponent {
         this.userNationalities = JSON.parse(this.userData.user_nationalities);
       }
 
-      if (this.userData?.scout_info) {
-        this.scoutInfoDetails = JSON.parse(this.userData?.scout_info);
+      setTimeout(() => {
+        console.warn('Function Called Before ' + this.userData?.id);
 
-        if (typeof this.scoutInfoDetails?.id !== 'number' || isNaN(this.scoutInfoDetails?.id)) {
-          this.scoutInfoDetails = [];
+        if (this.userData?.id && !isNaN(Number(this.userData?.id))) {
+          this.getUserProfile(this.userData?.id);
         }
-      }
+      }, 500); // 1000 ms delay
     }
   }
 
@@ -127,7 +114,9 @@ export class ProfileTabComponent {
           } else {
             this.showMatDialog("Player updated successfully.", 'display');
           }
-
+          if (this.userData?.id && !isNaN(Number(this.userData?.id))) {
+            this.getUserProfile(this.userData?.id);
+          }
         }
         //  console.log('Dialog result:', result);
       }
@@ -155,7 +144,7 @@ export class ProfileTabComponent {
       return mainPos ? mainPos.position_name : null;
     }
   }
-  
+
   getOtherPositions(positions: any) {
     // console.log(positions)
     // if (positions) {
@@ -205,5 +194,44 @@ export class ProfileTabComponent {
 
 
 
+
+  getUserProfile(userId: any) {
+    try {
+      let currentLangId = localStorage.getItem('lang_id');
+      this.userService.getProfileDataAdmin(userId, Number(currentLangId)).subscribe((response) => {
+        if (response && response.status && response.data && response.data.user_data) {
+          this.userDataArr = response.data.user_data;
+          console.info('this.userDataArr_userDataArr_userDataArr', this.userDataArr)
+          if (this.userDataArr?.meta?.have_registered_club == 1 && this.userDataArr?.registered_club_info != null) {
+            this.registredClubArr = JSON.parse(this.userDataArr?.registered_club_info);
+          }
+          if (this.userDataArr?.meta?.have_custom_club == 1 && this.userDataArr?.custom_club_info != null) {
+            this.customClubArr = JSON.parse(this.userDataArr?.custom_club_info);
+
+          }
+          if (this.userDataArr?.meta?.have_custom_club != 1 && this.userDataArr?.meta?.have_registered_club != 1 && this.userData?.current_club_info != null) {
+            this.currentClubInfo = JSON.parse(this.userDataArr?.current_club_info);
+          }
+          if (this.userDataArr?.scout_info) {
+            this.scoutInfoDetails = JSON.parse(this.userDataArr?.scout_info);
+            if (typeof this.scoutInfoDetails?.id !== 'number' || isNaN(this.scoutInfoDetails?.id)) {
+              this.scoutInfoDetails = [];
+            }
+          }
+          console.info('userDataArr', this.userDataArr);
+        } else {
+          // this.isLoading = false;
+          console.error('Invalid API response structure:', response);
+        }
+      });
+    } catch (error) {
+      // this.isLoading = false;
+      console.error('Error fetching users:', error);
+    }
+  }
+
+  isValidDate(value: any): boolean {
+    return value && !isNaN(new Date(value).getTime());
+  }
 
 }

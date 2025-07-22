@@ -105,7 +105,6 @@
     <div class="row mb-4" *ngFor="let row of attachmentRows; let i = index">
       <div class="col-12"><label for="document" class="code-text mb-3"> {{'pdfTitle' | translate}}</label></div>
       <div class="document-input col-lg-6 mb-4">
-        <label for="document" class="code-text"> {{'pdfTitle' | translate}}</label> <br>
         <input type="text" id="document" class="cupen-btn  code-text w-100" [ngClass]="{'isrequiredField': !row.title && isSubmited}" (keyup)="titleUpdate($event, i)">
       </div>
       <div class="city-input col-lg-4 col-sm-8 mb-4">
@@ -139,7 +138,7 @@
           </span>
         </div>
 
-        <div class="mt-4" *ngIf="row.file == ''">
+        <div class="upload_field_wrap" *ngIf="row.file == ''">
           <label for="file-upload-{{i}}" [ngClass]="{'isrequiredField': !row.file && isSubmited}" type="button" class="btn btn-outline-white code-text upload-label">{{'selectFile' | translate}}</label>
           <input id="file-upload-{{i}}" accept="application/pdf" (change)="onAttachmentFileChange($event, i)" type="file" class="d-none" />
         </div>

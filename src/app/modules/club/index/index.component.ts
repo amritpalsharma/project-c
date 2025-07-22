@@ -11,19 +11,22 @@ import {
   templateUrl: './index.component.html',
   styleUrl: './index.component.scss'
 })
-export class IndexComponent implements OnInit{
+export class IndexComponent implements OnInit {
   event$: any;
   path: any;
   constructor(
     private router: Router,
-  ){
-    this.event$ = this.router.events.subscribe((event: NavigationEvent) => {
-      if (event instanceof NavigationStart) {
-        this.path = event.url;
-        console.log('scout-index',this.path);
-      }
-    });
+  ) {
+    // this.event$ = this.router.events.subscribe((event: NavigationEvent) => {
+    //   if (event instanceof NavigationStart) {
+    //     this.path = event.url;
+    //     const targetDiv = document.querySelector('.page-container');
+    //     if (targetDiv) {
+    //       targetDiv.scrollTo(0, 0);
+    //     }
+    //   }
+    // });
   }
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
 }
