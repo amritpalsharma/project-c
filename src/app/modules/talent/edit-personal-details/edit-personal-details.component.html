@@ -180,6 +180,18 @@
           </mat-select>
 
 
+          <!-- 
+          <ng-select
+  [items]="displayedCountries2"
+  bindLabel="country_name"
+  bindValue="id"
+  [(ngModel)]="nationality"
+  [multiple]="true"
+  placeholder="Select Nationality">
+</ng-select>
+           -->
+
+
           <!-- Validation message -->
           <div *ngIf="!userHasNoClub && nationalityField.invalid && (nationalityField.touched || myForm.submitted)"
             class="alert text-danger my-0 px-0">

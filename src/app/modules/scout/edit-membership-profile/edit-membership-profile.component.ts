@@ -11,6 +11,7 @@ import { UserService } from '../../../services/user.service';
 })
 export class EditMembershipProfileComponent {
 
+  theme: string = localStorage.getItem('theme') || 'dark';
   isLoadingCheckout: boolean = false;
   stripe: any;
   // @Input() audiences = [

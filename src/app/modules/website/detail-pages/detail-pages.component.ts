@@ -54,9 +54,6 @@ export class DetailPagesComponent {
   }
 
   getTranslation() {
-    this.translateService.get(['description']).subscribe((translations) => {
-      // this.description = translations['description'];
-    })
   }
   getPageData(languageId: any): void {
     let str = this.id;
@@ -110,7 +107,7 @@ export class DetailPagesComponent {
   get emailUrl() {
     this.blogTitle = this.news.title;
     // this.blogSlug = this.news.slug;
-    return this.shareService.getEmailShareUrl(this.blogTitle, `${this.description}: ${this.blogUrl}`);
+    return this.shareService.getEmailShareUrl(this.blogTitle, `${this.description}\n\n${this.blogTitle}\n\n${this.blogUrl}`);
   }
 
 }

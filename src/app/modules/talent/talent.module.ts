@@ -58,6 +58,7 @@ import { TalentLoaderComponent } from './talent-loader/talent-loader.component';
 // import { AngularCropperjsModule } from 'angular-cropperjs';
 // See the Moment.js docs for the meaning of these formats:
 // https://momentjs.com/docs/#/displaying/format/
+import { NgSelectModule } from '@ng-select/ng-select';
 export const MY_FORMATS = {
   parse: {
     dateInput: 'DD.MM.YYYY', // Parse input in DD.MM.YYYY format
@@ -136,7 +137,8 @@ export const MY_FORMATS = {
     MatTooltipModule,
     LightboxModule,
     GuidedTourModule,
-    SharedModule
+    SharedModule,
+    NgSelectModule
   ]
 })
 

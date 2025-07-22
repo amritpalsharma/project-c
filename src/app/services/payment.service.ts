@@ -97,7 +97,7 @@ export class PaymentService {
 
   generateLinkAndNavigate(): Observable<any> {
     const formData = new FormData();
-    formData.append('return_url', window.location.protocol + "//" + window.location.hostname); // Add your URL here
+    formData.append('return_url', window.location.href); // Add your URL here
 
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}` // Include your token here

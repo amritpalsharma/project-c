@@ -400,6 +400,7 @@ legend.w-auto.px-2 {
       display: block;
     }
   }
+
   .dark-theme .sidebar_menu a:hover p {
     background: #BDE34F;
     padding: 0px !important;
@@ -408,18 +409,22 @@ legend.w-auto.px-2 {
     border-bottom-left-radius: 0px;
     color: #072944;
   }
+
   .dark-theme .sidebar_menu a:hover {
     background: #BDE34F;
   }
+
   .dark-theme .sidebar_menu a {
     color: #4F7A9D !important;
   }
+
   .dark-theme .sidebar_menu li a:hover svg path {
     fill: #072944 !important;
   }
+
   .dark-theme a:hover .my-svg-icon .my-path {
-  fill: #072944 !important;
-}
+    fill: #072944 !important;
+  }
 }
 
 .dark-theme .sidebar_menu a.active p {
@@ -1509,6 +1514,10 @@ input:checked+.slider:before {
   color: white !important;
 }
 
+.dark-theme .main-popup-div ng-select {
+  color: white !important;
+}
+
 .dark-theme .main-popup-div .mat-mdc-select-trigger {
   border: 1px solid rgb(31, 67, 96) !important;
   background-color: #0c3453;
@@ -2317,6 +2326,13 @@ input:checked+.slider:before {
   border-radius: 10px;
 }
 
+.dark-theme .form-group ng-select {
+  color: #fff;
+  background: #0C3453;
+  border-color: #1F4360 !important;
+  border-radius: 10px;
+}
+
 .dark-theme .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) .mdc-list-item__primary-text {
   color: #fff !important;
 }
@@ -2360,17 +2376,18 @@ input:checked+.slider:before {
 }
 
 .dark-theme .choose-plan-btn {
-    background: rgb(7 41 68) !important;
-    color: #bde34f !important;
+  background: rgb(7 41 68) !important;
+  color: #bde34f !important;
 }
 
 .dark-theme {
   .subscription-switch input[type=checkbox]:checked {
     background: #bde34f !important;
+
     &:before {
-        background: #0c3453 !important;
+      background: #0c3453 !important;
     }
-}
+  }
 }
 
 .dark-theme .premium_list label input:checked~.checkmark {
@@ -2764,7 +2781,8 @@ input:checked+.slider:before {
     font-weight: 600;
   }
 
-  .edit-multi-country-plan .actions, .boost-profile.boost-profile_popup .actions {
+  .edit-multi-country-plan .actions,
+  .boost-profile.boost-profile_popup .actions {
     .buy-btn {
       background: #bde34e !important;
       color: #072944 !important;
@@ -2969,7 +2987,8 @@ input:checked+.slider:before {
   }
 }
 
-.dark-theme .coupon-btn, .dark-theme .proceed-btn {
+.dark-theme .coupon-btn,
+.dark-theme .proceed-btn {
   color: #072944 !important;
 }
 
@@ -2978,9 +2997,11 @@ input:checked+.slider:before {
     border-top: 1px solid #204a6b !important;
     border-bottom: 1px solid #204a6b !important;
   }
+
   .unlock_page .unlock_btn {
     background: #bde34f !important;
     color: #0c3453 !important;
+
     svg path {
       fill: #0c3453 !important;
     }
@@ -3003,3 +3024,35 @@ input:checked+.slider:before {
   transform: none !important;
   width: 100% !important;
 }
+
+
+// ::ng-deep .dark-theme {
+//   .mat-datepicker-content-container {
+//     background: #0c3453;
+//     color: white;
+//   }
+
+//   .mdc-button__label span {
+//     color: white !important;
+//   }
+
+//   .mat-calendar-arrow {
+//     fill: white !important;
+//   }
+
+//   .mat-calendar-table-header th {
+//     color: white !important;
+//   }
+
+//   .mat-calendar-table-header th span {
+//     color: white !important;
+//   }
+
+//   .mat-calendar-body-label {
+//     color: white !important;
+//   }
+
+//   .mat-calendar-body-cell-content {
+//     color: white !important;
+//   }
+// }

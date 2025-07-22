@@ -35,7 +35,7 @@
               <span matChipRemove [attr.aria-label]="'remove ' + user" class="cancel-icon"> </span>
             </mat-chip-row>
             }
-            <input placeholder="{{'searchUser' | translate}}" #userInput (input)="onSearchChange($event)"
+            <input *ngIf="!users || users.length == 0" placeholder="{{'searchUser' | translate}}" #userInput (input)="onSearchChange($event)"
               [matAutocomplete]="auto" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
               [matChipInputFor]="chipGrid" />
 

@@ -7,7 +7,7 @@
           <div class="col-lg-3 border-end p-lg-0 card_box-1">
 
             <div class="user-details-left col-lg-12 dashboard_mobile_design">
-              <div class="players_image d-flex align-items-center justify-content-center cover_pic_mobile" >
+              <div class="players_image d-flex align-items-center justify-content-center cover_pic_mobile">
                 <img *ngIf="coverImage" [src]="coverImage" alt="Cover Image" />
                 <svg *ngIf="!coverImage" width="54" height="54" viewBox="0 0 54 54" fill="none"
                   xmlns="http://www.w3.org/2000/svg">
@@ -31,8 +31,8 @@
                   <!-- <input id="file-upload" (change)="onCoverFileChange($event)" accept="image/*" type="file"
                     class="d-none" /> -->
 
-                    <input id="file-upload" (change)="onCoverImageChange($event)" accept="image/*" type="file"
-                  class="d-none" />
+                  <input id="file-upload" (change)="onCoverImageChange($event)" accept="image/*" type="file"
+                    class="d-none" />
 
                   <svg *ngIf="coverImage" class="delete_image cursor-pointer " (click)="openDeleteDialog('cover')"
                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -44,8 +44,7 @@
               <div>
                 <div class="user-media text-center ">
                   <span class="profile_img_bg_circle"
-                    style="position: absolute;top: 45%;transform:translate(-50%, -50%);"
-                    *ngIf="profileImageLoading">
+                    style="position: absolute;top: 45%;transform:translate(-50%, -50%);" *ngIf="profileImageLoading">
                     <app-loader class="profilepic_mobile_loader"></app-loader>
                   </span>
                   <span class="profile_img_bg_circle" *ngIf="!profileImageLoading">
@@ -68,7 +67,8 @@
 
                       </div>
                       <a (click)="editBooster(booster)" class="edit-profile cursor-pointer team-badge_image"
-                        matTooltip="{{'boostedProfileViews' | translate}}" matTooltipPosition="right"><img
+                        *ngIf="booster" matTooltip="{{'boostedProfileViews' | translate}}"
+                        matTooltipPosition="right"><img
                           src="../../../assets/images/rocket-icon-{{currentThemeMode}}.svg" alt="" />
                       </a>
                     </label>
@@ -78,9 +78,9 @@
                   </div>
                   <div class="user-edit" *ngIf="profileImage">
                     <label for="profile-upload" class="">
-                      <div class="edit-profile cursor-pointer" [class.club_view_only]="!checkRole()" id="upload_profilePhoto"
-                        matTooltip="{{'deleteProfilePicture' | translate}}" matTooltipPosition="right"
-                        (click)="openDeleteDialog('profile')">
+                      <div class="edit-profile cursor-pointer" [class.club_view_only]="!checkRole()"
+                        id="upload_profilePhoto" matTooltip="{{'deleteProfilePicture' | translate}}"
+                        matTooltipPosition="right" (click)="openDeleteDialog('profile')">
 
                         <svg class="cursor-pointer" style="padding: 2px;" xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 448 512">
@@ -105,7 +105,7 @@
                   <div class="boost_profile d-flex align-items-center" *ngIf="booster">
                     <span>{{'boostProfile' | translate}}</span>
                     <span class="active_btn">{{'active' | translate}}</span>
-                    <a (click)="editBooster(booster)" class="cursor-pointer team-badge_image"
+                    <a (click)="editBooster(booster)" class="cursor-pointer team-badge_image" *ngIf="booster"
                       matTooltip="{{'boostedProfileViews' | translate}}" matTooltipPosition="right">
                       <!-- <a href="scout/plans" class="cursor-pointer"> -->
                       <!-- <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -350,7 +350,8 @@
                           <h6 class="title_2">{{ 'phone' | translate }}</h6>
                           <h5 *ngIf="user?.meta?.contact_number && user?.meta?.contact_number !== 'undefined'"
                             class="title-1">
-                            <a href="tel:{{globalSettings.getDialCodeByDomain()}} {{user.meta.contact_number}}" style="color:inherit" class="phone_a">{{user.meta.contact_number}}</a>
+                            <a href="tel:{{globalSettings.getDialCodeByDomain()}} {{user.meta.contact_number}}"
+                              style="color:inherit" class="phone_a">{{user.meta.contact_number}}</a>
                           </h5>
                           <!-- <h5 *ngIf="!user.meta || !user.meta.contact_number" class="title-1">NA</h5> -->
                         </div>
@@ -673,8 +674,9 @@
                     <h2 class="text-uppercase">{{'highlights' | translate}}</h2>
                     <p>{{'featuredPhotosAndVideos' | translate}}</p>
                   </div>
-                  <div class="settings cursor-pointer setting_heighlight" [class.club_view_only]="!checkRole()" (click)="openHighlight()"
-                    matTooltip="{{'highlightTooltip' | translate}}" matTooltipPosition="right">
+                  <div class="settings cursor-pointer setting_heighlight" [class.club_view_only]="!checkRole()"
+                    (click)="openHighlight()" matTooltip="{{'highlightTooltip' | translate}}"
+                    matTooltipPosition="right">
 
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path
@@ -732,7 +734,8 @@
           </div>
 
           <div class="col-lg-9 card_box--2 padding_mobile_0 dashboard_page_only">
-            <div class="players_image d-flex align-items-center justify-content-center cover_pic_desktop" [ngStyle]="{'background-image': 'url(' + coverImage + ')'}">
+            <div class="players_image d-flex align-items-center justify-content-center cover_pic_desktop"
+              [ngStyle]="{'background-image': 'url(' + coverImage + ')'}">
               <!-- <img *ngIf="coverImage" [src]="coverImage" alt="Cover Image" /> -->
               <svg *ngIf="!coverImage" width="54" height="54" viewBox="0 0 54 54" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
@@ -867,12 +870,12 @@
             </div>
             <div class="general_details mt-4 p-4 bg-color box_height_eqaul position-relative">
               <span class="profile_img_bg_circle"
-                    style="position: absolute;top: 45%;left: 50%;transform:translate(-50%, -50%);"
-                    *ngIf="!profileReady">
-                    <app-loader class="profilepic_mobile_loader"></app-loader>
-                  </span>
-              <scout-profile-tab *ngIf="activeTab == 'profile' && profileReady" [userData]="user" [isPremium]="isPremium"
-                [isUserVerified]="isUserVerified" [logInUser]="loggedInUser" [isReps]="isRepsState.value"></scout-profile-tab>
+                style="position: absolute;top: 45%;left: 50%;transform:translate(-50%, -50%);" *ngIf="!profileReady">
+                <app-loader class="profilepic_mobile_loader"></app-loader>
+              </span>
+              <scout-profile-tab *ngIf="activeTab == 'profile' && profileReady" [userData]="user"
+                [isPremium]="isPremium" [isUserVerified]="isUserVerified" [logInUser]="loggedInUser"
+                [isReps]="isRepsState.value"></scout-profile-tab>
               <scout-app-history-tab *ngIf="activeTab == 'company_history'" role="Scout" [isPremium]="isPremium"
                 [isUserVerified]="isUserVerified"></scout-app-history-tab>
               <scout-portfolio-tab *ngIf="activeTab == 'portfolio'" [userData]="user" [isPremium]="isPremium"
