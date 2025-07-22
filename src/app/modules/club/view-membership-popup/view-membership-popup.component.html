@@ -120,14 +120,14 @@
           <thead class="table-light">
             <tr class="hide_mobile">
               <th>{{ 'pos' | translate }}</th>
-              <th>{{ 'plan' | translate }}</th>
+              <th>{{ 'Plan' | translate }}</th>
               <th>{{ 'duration' | translate }}</th>
               <th style="text-transform:lowercase">{{ 'validUntil' | translate }}</th>
               <th class="text-end">{{ 'price' | translate }}</th>
             </tr>
             <tr class="bordered-bottom">
               <td><span class="visible_mob">{{ 'pos' | translate }}</span>1</td>
-              <td><span class="visible_mob">{{ 'plan' | translate }}</span>{{ plan.plan }}</td>
+              <td><span class="visible_mob">{{ 'Plan' | translate }}</span>{{ plan.plan }}</td>
               <td><span class="visible_mob">{{ 'duration' | translate }}</span>{{ capitalizeFirstLetter(plan.duration) }}</td>
               <td><span class="visible_mob" style="text-transform:lowercase">{{ 'validUntil' | translate }}</span>{{ plan.valid_until | date: 'dd.MM.YYYY'}}</td>
               <td class="text-end"><span class="visible_mob">{{ 'price' | translate }}</span>{{ plan.package_price }} {{strUpperCase(plan.currency)}}</td>

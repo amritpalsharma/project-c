@@ -786,6 +786,7 @@ export class HeaderComponent implements OnInit {
   }
 
   register() {
+    // this.isFormValid();
     this.registerButtonClicked = true;
     // console.log(this.role);
     if (this.role === 4) {
@@ -975,6 +976,7 @@ export class HeaderComponent implements OnInit {
 
 
   isFormValid(): boolean {
+    // this.toastr.info(this.registrationInProcess, this.pleaseWait, { disableTimeOut: true });
     let fieldType = ['string', 'boolean'];
     return [
       this.firstName,

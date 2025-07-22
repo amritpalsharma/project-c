@@ -115,7 +115,8 @@ export class SidebarComponent implements OnInit {
     }
   }
 
-  showVerificationPopup() {
+  showVerificationPopup(event: Event) {
+    event.preventDefault();
     const messageDialog = this.dialog.open(UnverifiedUserComponent, {
       width: '500px',
       position: {
@@ -130,6 +131,8 @@ export class SidebarComponent implements OnInit {
         }
       }
     });
+
+    event.preventDefault();
   }
 
   // openSidebar(): void {

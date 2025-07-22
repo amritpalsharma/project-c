@@ -449,15 +449,25 @@ export class EditPersonalDetailsComponent implements OnInit {
     } else {
       this.isTeamSelectError = false;
     }
-
+    const formData = new FormData();
 
     // return team ? team.team_type : "Team ID not found.";
     // console.log('Team',team.team_type)
-    if (!this.nationality || this.nationality.length === 0) {
-      this.toastr.warning(this.nationalityRequired, this.errorTxt);
-      return;
-    }
 
+
+    if (!this.userHasNoClub) {
+      if (!this.nationality || this.nationality.length === 0) {
+        this.toastr.warning(this.nationalityRequired, this.errorTxt);
+        return;
+      }
+
+      // Append Nationality array
+      this.nationality.forEach((nation: any) => {
+        formData.append('user[nationality][]', nation);
+      });
+
+
+    }
     if (!this.dominantFoot) {
       this.toastr.warning(this.dominantFootRequired, this.errorTxt);
       return;
@@ -466,7 +476,7 @@ export class EditPersonalDetailsComponent implements OnInit {
     // Enable loading state and notify user
     this.toastr.info(this.Processing, this.pleaseWait, { disableTimeOut: true });
 
-    const formData = new FormData();
+
     formData.append('user[team_type]', this.team_type);
 
     // Format and append required fields
@@ -474,10 +484,6 @@ export class EditPersonalDetailsComponent implements OnInit {
     formData.append('user[date_of_birth]', formattedDateOfBirth);
     formData.append('user[foot]', this.dominantFoot);
 
-    // Append Nationality array
-    this.nationality.forEach((nation: any) => {
-      formData.append('user[nationality][]', nation);
-    });
 
     // Append optional fields only if they exist
     if (this.placeOfBirth) formData.append('user[place_of_birth]', this.placeOfBirth);

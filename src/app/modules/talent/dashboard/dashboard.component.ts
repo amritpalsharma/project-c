@@ -1151,9 +1151,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
         return;
       }
 
-      const maxSizeInBytes = 5 * 1024 * 1024; // 5 MB
+      const maxSizeInBytes = 15 * 1024 * 1024; // 5 MB
       if (selectedFile.size > maxSizeInBytes) {
-        this.toastr.error(this.maxSizeForProfile, this.errorTxt, {
+        let dynamicMessage = this.maxSizeForProfile.replace('{{fileName}}', selectedFile.name);
+        this.toastr.error(dynamicMessage, this.errorTxt, {
           timeOut: 5000  // Set duration to 5 seconds (5000ms)
         });
         return;
@@ -1197,7 +1198,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         return;
       }
 
-      const maxSizeInBytes = 5 * 1024 * 1024; // 5 MB
+      const maxSizeInBytes = 15 * 1024 * 1024; // 5 MB
       if (selectedFile.size > maxSizeInBytes) {
         this.toastr.error(this.maxSizeForProfile, this.errorTxt, {
           timeOut: 5000  // Set duration to 5 seconds (5000ms)

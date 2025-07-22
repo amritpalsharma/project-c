@@ -16,6 +16,18 @@ export class SidebarComponent {
   isUserVerified: boolean = false;
   isNum: Number = 1;
   locksideBar: boolean = true;
+
+
+  menuItems = [
+    { labelKey: 'dashboard', icon: 'dashboard', link: '/club/dashboard', requiresVerification: false },
+    { labelKey: 'explore', icon: 'explore', link: '/club/explore', requiresVerification: true },
+    { labelKey: 'chat', icon: 'chat', link: '/club/chat', requiresVerification: true },
+    { labelKey: 'favorites', icon: 'favorites', link: '/club/favorites', requiresVerification: true },
+    { labelKey: 'membership', icon: 'membership', link: '/club/membership', requiresVerification: true },
+    { labelKey: 'plans', icon: 'plans', link: '/club/plans', requiresVerification: true },
+    { labelKey: 'settings', icon: 'settings', link: '/club/setting', requiresVerification: false }
+  ];
+
   constructor(
     private authService: AuthService,
     private globalSettings: GlobalSettingsService,
@@ -74,7 +86,8 @@ export class SidebarComponent {
     }
   }
 
-  showVerificationPopup() {
+  showVerificationPopup(event: Event) {
+    event.preventDefault();
     const messageDialog = this.dialog.open(UnverifiedUserComponent, {
       width: '500px',
       position: {
@@ -162,6 +175,9 @@ export class SidebarComponent {
   ngAfterViewInit() {
     // Adding the click event listener to detect clicks anywhere in the document
     document.body.addEventListener('click', (event) => {
+      if (!this.isUserVerified) {
+        return;
+      }
       const target = event.target as HTMLElement;
       console.info('target', target.tagName)
       // Check if the target is an svg or p tag (children inside the a tag)
@@ -186,4 +202,15 @@ export class SidebarComponent {
       }
     });
   }
+
+
+  onMenuClick(item: any, event: Event) {
+    if (item.requiresVerification && !this.isUserVerified) {
+      event.preventDefault();
+      this.dialog.open(UnverifiedUserComponent, { width: '500px', position: { top: '150px' } });
+    } else {
+      this.closeSidebar(true);
+    }
+  }
+
 }

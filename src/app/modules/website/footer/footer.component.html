@@ -76,7 +76,8 @@
           <div class="dropdown-menu dropdown-menu-end">
             <a *ngFor="let country of countrie" target="_blank" href="{{ country.url }}"
               class="dropdown-item ai-icon options-country" [class.selected]="selectedcountry == country.id">
-              <img src="https://api.socceryou.ch/uploads/logos/{{country.flag}}" width="30" height="24" class="me-3">
+              <img src="./../../../../assets/images/flags/{{country.flag}}" width="30" height="24" class="me-3">
+              <!-- <img src="https://api.socceryou.ch/uploads/logos/{{country.flag}}" width="30" height="24" class="me-3"> -->
               <span>{{ country.name }}</span>
             </a>
           </div>
