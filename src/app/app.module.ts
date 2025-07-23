@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HttpClient,HTTP_INTERCEPTORS } from '@angular/common/http';
+// import { FormsModule } from '@angular/forms';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgxEditorModule } from 'ngx-editor';
 import { AuthInterceptor } from './auth.interceptor';
 import { AppRoutingModule } from './app-routing.module';
@@ -26,6 +26,13 @@ import { getPaginatorIntl } from './modules/shared/paginator/custom-paginator-in
 // import { NgSelectModule } from '@ng-select/ng-select';
 // import { DOCUMENT } from '@angular/common';
 
+// New By Amrit
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+
+
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -41,6 +48,8 @@ export function HttpLoaderFactory(http: HttpClient) {
   imports: [
     BrowserModule,
     AppRoutingModule,
+
+    ReactiveFormsModule,
     FormsModule,
     MatTooltipModule,
     HttpClientModule,
@@ -65,7 +74,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
     NgxEditorModule,
     // NgSelectModule,
-    OAuthModule.forRoot()
+    OAuthModule.forRoot(),
+    // Added By AMrit
+    MatSelectModule,
+    MatFormFieldModule,
+    NgxMatSelectSearchModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

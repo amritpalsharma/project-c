@@ -69,7 +69,8 @@
 
         <!-- Current Club -->
         <div class="form-group col-lg-4 position_inputs">
-          <label for="currentClub">{{'currentClub' | translate}}:</label>
+          <mat-label>{{ 'currentClub' | translate }}</mat-label>
+          <!-- <label for="currentClub">{{'currentClub' | translate}}:</label>
 
           <mat-select [(ngModel)]="currentClubId" class="form-select" id="currentClub" name="currentClub"
             (selectionChange)="clubUpdated()" appearance="fill">
@@ -88,7 +89,33 @@
                 {{ club.club_name }}
               </mat-option>
             </ng-container>
-          </mat-select>
+          </mat-select> -->
+          <mat-form-field appearance="fill" class="w-100">
+            <!-- <pre>{{nationControl | json}}</pre> -->
+            <mat-select [(ngModel)]="currentClubId" class="form-select mat-search-selector" id="currentClub" name="currentClub"
+              (selectionChange)="clubUpdated()">
+              <!-- Search input inside dropdown -->
+              <ngx-mat-select-search [formControl]="clubSearching"
+                placeholder="A"></ngx-mat-select-search>
+
+              <!-- List of countries -->
+              <!-- <mat-option *ngFor="let country of displayedCountries" [value]="country.id">
+                {{ country.country_name }}
+              </mat-option> -->
+
+              <ng-container *ngIf="clubSearching.value == ''">
+                <mat-option *ngFor="let club of playerClubsListing" [value]="club.id">
+                  {{ club.club_name }}
+                </mat-option>
+              </ng-container>
+              <ng-container *ngIf="clubSearching.value != ''">
+                <mat-option *ngFor="let club of searchedClubs" [value]="club.id">
+                  {{ club.club_name }}
+                </mat-option>
+              </ng-container>
+            </mat-select>
+          </mat-form-field>
+
         </div>
 
         <!-- Team Type Men & Women -->
@@ -165,7 +192,25 @@
         <!-- Nationality (Updated for multiple selection) -->
 
         <div class="form-group col-lg-6 position_inputs">
-          <label for="nationality">{{'nationality' | translate}}:</label>
+          <!-- New Selector -->
+          <mat-label>{{ 'nationality' | translate }}</mat-label>
+          <mat-form-field appearance="fill" class="w-100">
+            <!-- <pre>{{nationControl | json}}</pre> -->
+            <mat-select [formControl]="nationControl" multiple #singleSelect class="form-select mat-search-selector">
+              <!-- Search input inside dropdown -->
+              <ngx-mat-select-search [formControl]="nationFilterCtrl"
+                placeholder="Search countries"></ngx-mat-select-search>
+
+              <!-- List of countries -->
+              <mat-option *ngFor="let country of displayedCountries" [value]="country.id">
+                {{ country.country_name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+
+          <!-- End New Selector -->
+          <!-- <label for="nationality">{{'nationality' | translate}}:</label>
           <mat-select [(ngModel)]="nationality" class="form-select" id="nationality" name="nationality" multiple
             #nationalityField="ngModel" required>
 
@@ -177,14 +222,26 @@
             <mat-option *ngFor="let country of displayedCountries; trackBy: trackByCountryId" [value]="country.id">
               {{ country.country_name }}
             </mat-option>
-          </mat-select>
+          </mat-select> -->
+
+
+          <!-- 
+          <ng-select
+  [items]="displayedCountries2"
+  bindLabel="country_name"
+  bindValue="id"
+  [(ngModel)]="nationality"
+  [multiple]="true"
+  placeholder="Select Nationality">
+</ng-select>
+           -->
 
 
           <!-- Validation message -->
-          <div *ngIf="!userHasNoClub && nationalityField.invalid && (nationalityField.touched || myForm.submitted)"
+          <!-- <div *ngIf="!userHasNoClub && nationalityField.invalid && (nationalityField.touched || myForm.submitted)"
             class="alert text-danger my-0 px-0">
             {{'nationalityRequired' | translate}}
-          </div>
+          </div> -->
         </div>
 
         <!-- Place of Birth -->

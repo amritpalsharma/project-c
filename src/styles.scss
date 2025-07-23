@@ -677,12 +677,14 @@ html {
   .sidebar_menu a:hover {
     justify-content: inherit !important;
   }
+
   .sidebar_menu a:hover p {
     background: #023A4A;
     border-radius: 10px;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
   }
+
   .sidebar_menu a:hover {
     background: #023A4A;
   }
@@ -2922,5 +2924,31 @@ img.club_logo_in_search {
 
 
 .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-text-field__input {
-    caret-color: inherit !important;
+  caret-color: inherit !important;
+}
+
+::ng-deep {
+  .mat-datepicker-content .mat-calendar {
+    background: #0c3453 !important;
+  }
+
+  .mat-mdc-button:not(:disabled) {
+    color: white !important;
+  }
+
+  .mat-calendar-arrow {
+    fill: white !important;
+  }
+
+  .cdk-visually-hidden,
+  .mat-calendar-table-header th,
+  .mat-calendar-body-label,
+  .mat-calendar-body-cell-content {
+    color: white !important;
+  }
+
+
+  .mat-calendar-body-today:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical) {
+    border-color: #bde34f !important;
+  }
 }

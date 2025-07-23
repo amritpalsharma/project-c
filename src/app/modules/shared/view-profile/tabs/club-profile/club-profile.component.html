@@ -1,7 +1,7 @@
 <!-- unlock page  -->
 <div class="unlock_page general_details_club_intro" *ngIf="!isPremium">
     <div class="general_titels d-flex align-items-center">
-        <h2>{{ 'generalDetails' | translate}}</h2>
+        <!-- <h2>{{ 'generalDetails' | translate}}</h2> -->
         <div class="edit_button">
             <button class="tour-general-details" matTooltip="Edit General Details" matTooltipPosition="right">
                 <svg width="22" height="23" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -108,7 +108,7 @@
 </div>
 
 <ng-container *ngIf="isPremium" class="general_details_club_intro">
-    <div class="general_titels d-flex align-items-center mb-2 d-none">
+    <!-- <div class="general_titels d-flex align-items-center mb-2 d-none">
         <h2>{{ 'generalDetails' | translate}}</h2>
     </div>
     <div class="forms_details mb-2 d-none">
@@ -122,13 +122,10 @@
                 <label for="pass"> {{ 'password' | translate}}</label><br>
                 <input type="password" id="pass" name="password" minlength="8" value="***************" required
                     readonly />
-                <!-- <input class="password" type="reset" value="{{'resetPassword' | translate}}" -->
-                    <!-- > -->
             </div>
         </form>
     </div>
-
-    <hr>
+    <hr> -->
 
     <div class="table-responsive ">
         <table class="table table-scout-profile table-hover bg-072944 table-striped">

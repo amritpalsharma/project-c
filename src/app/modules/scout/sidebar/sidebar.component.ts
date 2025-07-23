@@ -84,7 +84,8 @@ export class SidebarComponent {
       }
     }
   }
-  showVerificationPopup() {
+  showVerificationPopup(event: Event) {
+    event.preventDefault();
     const messageDialog = this.dialog.open(UnverifiedUserComponent, {
       width: '500px',
       position: {

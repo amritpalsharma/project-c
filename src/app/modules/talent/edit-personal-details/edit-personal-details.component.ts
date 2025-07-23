@@ -105,6 +105,12 @@ export class EditPersonalDetailsComponent implements OnInit {
 
   team_type: string = 'm';
   userHasNoClub: boolean = true;
+  // nationControl = new FormControl([]);
+  nationControl = new FormControl<string[]>([]);
+
+  nationFilterCtrl = new FormControl('');
+  clubSearching = new FormControl('');
+
   constructor(
     public dialogRef: MatDialogRef<EditPersonalDetailsComponent>,
     private talentService: TalentService,
@@ -224,10 +230,10 @@ export class EditPersonalDetailsComponent implements OnInit {
       this.userNationalities = JSON.parse(this.user.user_nationalities) || [];
 
       // Ensure userNationalities is parsed correctly as an array of IDs only
-      this.userNationalities = JSON.parse(this.user.user_nationalities || '[]');
-      this.nationality = Array.isArray(this.userNationalities) ? this.userNationalities.map(item =>
-        String(item.country_id)
-      ) : [];
+      // this.userNationalities = JSON.parse(this.user.user_nationalities || '[]');
+      // this.nationality = Array.isArray(this.userNationalities) ? this.userNationalities.map(item =>
+      //   String(item.country_id)
+      // ) : [];
 
       this.birthCountry = this.user.meta.birth_country || '3';
 
@@ -245,6 +251,9 @@ export class EditPersonalDetailsComponent implements OnInit {
     }
 
     this.displayedCountries = [...this.countries];
+
+    console.log(this.displayedCountries);
+    // console.log(typeof this.displayedCountries[0].id);
     this.displayedCountries2 = this.countries;
     if (this.user?.custom_club_info && this.user?.custom_club_info != '') {
       let custom_club_info = JSON.parse(this.user?.custom_club_info);
@@ -267,6 +276,40 @@ export class EditPersonalDetailsComponent implements OnInit {
       this.isCustomClubTeam = false;
     }
 
+
+    this.nationFilterCtrl.valueChanges.subscribe(() => {
+      const search = this.nationFilterCtrl.value?.toLowerCase() || '';
+      this.displayedCountries = this.countries.filter(
+        (country: any) => country.country_name.toLowerCase().includes(search)
+      );
+    });
+
+    this.clubSearching.valueChanges.subscribe(() => {
+      const search = this.clubSearching.value?.toLowerCase() || '';
+      this.searchedClubs = this.playerClubsListing.filter(
+        (club: any) => club.club_name.toLowerCase().includes(search)
+      );
+    });
+
+
+    // this.nationControl.setValue(['10', '2']); // or ['10', '2'] if your country.id is string
+    try {
+      // Step 1: Parse the API response string into an array
+      const parsedNationalities = JSON.parse(this.user?.user_nationalities);
+
+      // Step 2: Validate that the parsed object is an array of objects and contains 'country_id'
+      if (Array.isArray(parsedNationalities)) {
+        // Step 3: Extract only the country_id's
+        const countryIds = parsedNationalities.map(item => item.country_id.toString());
+
+        // Step 4: Set the extracted country_ids into the form control
+        this.nationControl.setValue(countryIds);
+      } else {
+        console.error('Parsed data is not in expected array format.');
+      }
+    } catch (error) {
+      console.error('Error parsing nationalities:', error);
+    }
   }
 
   ngAfterViewInit(): void {
@@ -359,6 +402,23 @@ export class EditPersonalDetailsComponent implements OnInit {
     if (this.userData) {
       this.user = this.userData;
       console.info('this.user', this.user)
+      if (this.user?.user_nationalities && this.user?.user_nationalities != null) {
+        let userNationalitiesRaw = this.user?.user_nationalities;
+        try {
+          // If it's already an object (parsed), skip JSON.parse
+          if (typeof userNationalitiesRaw === 'string') {
+            userNationalitiesRaw = JSON.parse(userNationalitiesRaw);
+          }
+
+          const selectedIds = userNationalitiesRaw.map((item: any) => item.country_id);
+          this.nationControl.setValue(selectedIds);
+
+        } catch (error) {
+          console.error('Failed to parse user_nationalities:', error);
+        }
+      }
+
+      // this.nationControl.setValue(['10', '2']);
       if (this.user.meta) {
         if (this.user.meta.have_no_club == '1') {
           this.isHideClubSection = true;
@@ -392,8 +452,11 @@ export class EditPersonalDetailsComponent implements OnInit {
           this.team_id = this.user.team_id;
         }
 
-        this.userNationalities = JSON.parse(this.user.user_nationalities || '[]');
-        this.nationality = Array.isArray(this.userNationalities) ? this.userNationalities.map((nation: any) => nation.country_id) : [];
+        // this.userNationalities = JSON.parse(this.user.user_nationalities || '[]');
+        // const selectedIds = this.userNationalities.map((item: any) => item.country_id); // extract only IDs
+
+        // this.nationControl.setValue(selectedIds); // set the values to your mat-select
+        // this.nationality = Array.isArray(this.userNationalities) ? this.userNationalities.map((nation: any) => nation.country_id) : [];
 
 
         if (this.user.meta && this.user.meta.league_level) {
@@ -429,13 +492,14 @@ export class EditPersonalDetailsComponent implements OnInit {
       if (this.user?.meta?.have_custom_club == 1 && this.user?.custom_club_info != '') {
         this.customClubArr = JSON.parse(this.user?.custom_club_info);
       }
-    } else {
-      console.error('Invalid API this.userData structure:', this.userData);
+
+      // console.log(typeof this.displayedCountries[0].id);
     }
   }
 
   onSubmit(form: NgForm) {
-    console.log('Form:', form);
+    // console.log('Form:', this.nationControl.value);
+    // return;
 
     // Manually validate only the required fields
     if (!this.dateOfBirth.value) {
@@ -449,24 +513,31 @@ export class EditPersonalDetailsComponent implements OnInit {
     } else {
       this.isTeamSelectError = false;
     }
-    const formData = new FormData();
+
 
     // return team ? team.team_type : "Team ID not found.";
     // console.log('Team',team.team_type)
 
-
+    const formData = new FormData();
     if (!this.userHasNoClub) {
-      if (!this.nationality || this.nationality.length === 0) {
+      if (!this.nationControl.value || this.nationControl.value.length === 0) {
         this.toastr.warning(this.nationalityRequired, this.errorTxt);
         return;
       }
 
       // Append Nationality array
-      this.nationality.forEach((nation: any) => {
+      // this.nationality.forEach((nation: any) => {
+      //   formData.append('user[nationality][]', nation);
+      // });
+
+
+
+    }
+    const selectedNations = this.nationControl.value || [];
+    if (selectedNations) {
+      selectedNations.forEach((nation: any) => {
         formData.append('user[nationality][]', nation);
       });
-
-
     }
     if (!this.dominantFoot) {
       this.toastr.warning(this.dominantFootRequired, this.errorTxt);
