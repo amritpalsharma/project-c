@@ -19,11 +19,11 @@ export class ImageCropperComponent2 {
 
   imageUrl: string = '';
   pos = { x: 0, y: 0 };
-  size = 100;
+  size = 200;
   isDragging = false;
   isResizing = false;
   offset = { x: 0, y: 0 };
-  initialSize = 100;
+  initialSize = 200;
 
   // cover image
   width: number = 600; // or dynamically set
@@ -123,7 +123,7 @@ export class ImageCropperComponent2 {
     const maxHeight = containerRect.height - this.pos.y;
     const maxSize = Math.min(maxWidth, maxHeight);
 
-    this.size = Math.max(50, Math.min(newSize, maxSize)); // minimum 50px
+    this.size = Math.max(200, Math.min(newSize, maxSize)); // minimum 50px
   };
 
   stopAction = (event: MouseEvent | TouchEvent) => {

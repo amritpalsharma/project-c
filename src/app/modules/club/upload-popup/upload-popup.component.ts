@@ -139,7 +139,8 @@ export class UploadPopupComponent {
 
             if (response[0].status) {
               this.isLoading = false;
-              this.showMatDialog(response[0].message, 'display');
+              // this.showMatDialog(response[0].message, 'display');
+              this.toastr.success(response[0].message);
               this.dialogRef.close({
                 files: this.uploadedFiles
               });

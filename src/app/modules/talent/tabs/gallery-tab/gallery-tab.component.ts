@@ -286,4 +286,18 @@ export class GalleryTabComponent {
     });
   }
 
+  isVideo(fileName: string): boolean {
+    return /\.(mp4|mov)$/i.test(fileName);
+  }
+
+
+  getMimeType(fileName: string): string {
+    const ext = fileName.split('.').pop()?.toLowerCase();
+    switch (ext) {
+      case 'mp4': return 'video/mp4';
+      case 'mov': return 'video/quicktime';
+      case 'webp': return 'image/webp'; // not used in video <source>
+      default: return '';
+    }
+  }
 }
