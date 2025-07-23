@@ -54,6 +54,7 @@
     "ngx-editor": "^17.5.4",
     "ngx-guided-tour": "^2.0.1",
     "ngx-lightbox": "^3.0.0",
+    "ngx-mat-select-search": "^6.0.0",
     "ngx-owl-carousel-o": "^18.0.0",
     "ngx-stripe": "^18.1.0",
     "ngx-toastr": "^19.0.0",
