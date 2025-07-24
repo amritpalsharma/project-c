@@ -44,7 +44,7 @@
                     <app-loader class="profilepic_mobile_loader" *ngIf="!profileImage"></app-loader>
                   </span>
                   <span class="profile_img_bg_circle" *ngIf="!loading">
-                    <img *ngIf="profileImage && !loading" [src]="profileImage" class="" alt="" />                    
+                    <img *ngIf="profileImage && !loading" [src]="profileImage" class="" alt="" />
                   </span>
 
 
@@ -98,8 +98,9 @@
                       </div>
                     </div>
                     <div class="col-md-4 p-0 edit_button responsive-edit_btn ">
-                      <button (click)="openEditDialog()" class="{{currentLoggedInPermission}}" matTooltip="{{'editPersonalDetails' | translate}}"
-                        matTooltipPosition="right" id="TourPersonalDetails">
+                      <button (click)="openEditDialog()" class="{{currentLoggedInPermission}}"
+                        matTooltip="{{'editPersonalDetails' | translate}}" matTooltipPosition="right"
+                        id="TourPersonalDetails">
                         <div class="tour-personal-details px-1">
                           <svg class="" width="22" height="23" viewBox="0 0 24 25" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
@@ -292,7 +293,8 @@
                           <h6 class="title_2">{{ 'phone' | translate }}</h6>
                           <h5 *ngIf="user.meta && user.meta.contact_number" class="title-1">
                             <!-- {{user.meta.contact_number}} -->
-                            <a href="tel:{{globalSettings.getDialCodeByDomain()}} {{user.meta.contact_number}}" style="color:inherit" class="phone_a">{{user.meta.contact_number}}</a>
+                            <a href="tel:{{globalSettings.getDialCodeByDomain()}} {{user.meta.contact_number}}"
+                              style="color:inherit" class="phone_a">{{user.meta.contact_number}}</a>
                           </h5>
                           <!-- <h5 class="title-1" *ngIf="!user.meta || !user.meta.contact_number">NA</h5> -->
                         </div>
@@ -338,33 +340,50 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-sm-6 team-logos ">
+                    <!-- address -->
+                    <div class="col-sm-6 team-logos">
                       <div class="row align-items-center">
                         <div class="col-sm-3 team-badge_image">
-                          <svg *ngIf="currentThemeMode == 'dark'" width="22" height="32" viewBox="0 0 23 32" fill="none"
+                          <svg *ngIf="currentThemeMode == 'dark'" width="22" height="30" viewBox="0 0 23 30" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
-                            <path
-                              d="M11.1241 0.884766C6.14687 0.884766 2.25879 4.8384 2.25879 9.7163V30.6325H5.66879V23.7911H16.5808V30.6325H19.9908V9.7163C19.9908 4.8384 16.1034 0.884766 11.1241 0.884766Z"
-                              fill="#1F4360" />
-                            <path d="M4.45898 9.93164H17.659V13.242H4.45898V9.93164Z" fill="#BDE34F" />
+                            <g clip-path="url(#clip0_10817_31683)">
+                              <path
+                                d="M22.0586 11.25C22.0586 16.3711 15.3555 25.4883 12.4164 29.25C11.7117 30.1465 10.4055 30.1465 9.70078 29.25C6.76172 25.4883 0.0585938 16.3711 0.0585938 11.25C0.0585938 5.03906 4.98568 0 11.0586 0C17.1315 0 22.0586 5.03906 22.0586 11.25Z"
+                                fill="#1F4360" />
+                              <circle cx="11.5586" cy="10.5" r="4.5" fill="#BDE34F" />
+                            </g>
+                            <defs>
+                              <clipPath id="clip0_10817_31683">
+                                <rect width="22" height="30" fill="white" transform="translate(0.0585938)" />
+                              </clipPath>
+                            </defs>
                           </svg>
 
 
-                          <svg *ngIf="currentThemeMode == 'light'" width="22" height="32" viewBox="0 0 22 32"
+                          <svg *ngIf="currentThemeMode == 'light'" width="22" height="30" viewBox="0 0 22 30"
                             fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                              d="M11.0645 0.884766C6.0873 0.884766 2.19922 4.8384 2.19922 9.7163V30.6325H5.60922V23.7911H16.5212V30.6325H19.9312V9.7163C19.9312 4.8384 16.0438 0.884766 11.0645 0.884766Z"
-                              fill="#023A4A" />
-                            <path d="M4.40039 9.93164H17.6004V13.242H4.40039V9.93164Z" fill="#6FB95D" />
+                            <g clip-path="url(#clip0_5197_10528)">
+                              <path
+                                d="M22 11.25C22 16.3711 15.2969 25.4883 12.3578 29.25C11.6531 30.1465 10.3469 30.1465 9.64219 29.25C6.70313 25.4883 0 16.3711 0 11.25C0 5.03906 4.92708 0 11 0C17.0729 0 22 5.03906 22 11.25Z"
+                                fill="#023A4A" />
+                              <circle cx="11.5" cy="10.5" r="4.5" fill="#6FB95D" />
+                            </g>
+                            <defs>
+                              <clipPath id="clip0_5197_10528">
+                                <rect width="22" height="30" fill="white" />
+                              </clipPath>
+                            </defs>
                           </svg>
                         </div>
                         <div class="col-sm-9 p-0 team-badge_content">
-                          <h6 class="title_2">{{ 'zipcode' | translate}}</h6>
-                          <h5 class="title-1" *ngIf="user?.meta?.zipcode">{{user?.meta?.zipcode}}</h5>
-                          <!-- <h5 class="title-1" *ngIf="!user?.meta?.zipcode">NA</h5> -->
+                          <h6 class="title_2">{{ 'address' | translate}}</h6>
+                          <h5 class="title-1" *ngIf="user?.meta?.address">{{user?.meta?.address}}</h5>
+                          <!-- <h5 class="title-1" *ngIf="!user?.meta?.address">NA</h5> -->
                         </div>
                       </div>
                     </div>
+
+                    <!-- Social Media -->
                     <div class="col-sm-6 team-logos">
                       <div class="row align-items-center">
                         <div class="col-lg-12 p-0 team-badge_content social_iconlist">
@@ -500,49 +519,34 @@
                         </div>
                       </div>
                     </div>
-
-                    <div class="col-sm-6 team-logos">
+                    <!-- Zip Code -->
+                    <div class="col-sm-6 team-logos ">
                       <div class="row align-items-center">
                         <div class="col-sm-3 team-badge_image">
-                          <svg *ngIf="currentThemeMode == 'dark'" width="22" height="30" viewBox="0 0 23 30" fill="none"
+                          <svg *ngIf="currentThemeMode == 'dark'" width="22" height="32" viewBox="0 0 23 32" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_10817_31683)">
-                              <path
-                                d="M22.0586 11.25C22.0586 16.3711 15.3555 25.4883 12.4164 29.25C11.7117 30.1465 10.4055 30.1465 9.70078 29.25C6.76172 25.4883 0.0585938 16.3711 0.0585938 11.25C0.0585938 5.03906 4.98568 0 11.0586 0C17.1315 0 22.0586 5.03906 22.0586 11.25Z"
-                                fill="#1F4360" />
-                              <circle cx="11.5586" cy="10.5" r="4.5" fill="#BDE34F" />
-                            </g>
-                            <defs>
-                              <clipPath id="clip0_10817_31683">
-                                <rect width="22" height="30" fill="white" transform="translate(0.0585938)" />
-                              </clipPath>
-                            </defs>
+                            <path
+                              d="M11.1241 0.884766C6.14687 0.884766 2.25879 4.8384 2.25879 9.7163V30.6325H5.66879V23.7911H16.5808V30.6325H19.9908V9.7163C19.9908 4.8384 16.1034 0.884766 11.1241 0.884766Z"
+                              fill="#1F4360" />
+                            <path d="M4.45898 9.93164H17.659V13.242H4.45898V9.93164Z" fill="#BDE34F" />
                           </svg>
 
 
-                          <svg *ngIf="currentThemeMode == 'light'" width="22" height="30" viewBox="0 0 22 30"
+                          <svg *ngIf="currentThemeMode == 'light'" width="22" height="32" viewBox="0 0 22 32"
                             fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_5197_10528)">
-                              <path
-                                d="M22 11.25C22 16.3711 15.2969 25.4883 12.3578 29.25C11.6531 30.1465 10.3469 30.1465 9.64219 29.25C6.70313 25.4883 0 16.3711 0 11.25C0 5.03906 4.92708 0 11 0C17.0729 0 22 5.03906 22 11.25Z"
-                                fill="#023A4A" />
-                              <circle cx="11.5" cy="10.5" r="4.5" fill="#6FB95D" />
-                            </g>
-                            <defs>
-                              <clipPath id="clip0_5197_10528">
-                                <rect width="22" height="30" fill="white" />
-                              </clipPath>
-                            </defs>
+                            <path
+                              d="M11.0645 0.884766C6.0873 0.884766 2.19922 4.8384 2.19922 9.7163V30.6325H5.60922V23.7911H16.5212V30.6325H19.9312V9.7163C19.9312 4.8384 16.0438 0.884766 11.0645 0.884766Z"
+                              fill="#023A4A" />
+                            <path d="M4.40039 9.93164H17.6004V13.242H4.40039V9.93164Z" fill="#6FB95D" />
                           </svg>
                         </div>
                         <div class="col-sm-9 p-0 team-badge_content">
-                          <h6 class="title_2">{{ 'address' | translate}}</h6>
-                          <h5 class="title-1" *ngIf="user?.meta?.address">{{user?.meta?.address}}</h5>
-                          <!-- <h5 class="title-1" *ngIf="!user?.meta?.address">NA</h5> -->
+                          <h6 class="title_2">{{ 'zipcode' | translate}}</h6>
+                          <h5 class="title-1" *ngIf="user?.meta?.zipcode">{{user?.meta?.zipcode}}</h5>
+                          <!-- <h5 class="title-1" *ngIf="!user?.meta?.zipcode">NA</h5> -->
                         </div>
                       </div>
                     </div>
-
                   </div>
                 </div>
               </div>
@@ -568,7 +572,8 @@
                     </div>
                   </div>
                   <div class="upgrade_unlock">
-                    <a class="unlock_btn cursor-pointer" (click)="isUserVerified ? navigatePlans() : showVerificationPopup()">
+                    <a class="unlock_btn cursor-pointer"
+                      (click)="isUserVerified ? navigatePlans() : showVerificationPopup()">
                       <svg width="15" height="19" viewBox="0 0 15 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_7084_24851)">
                           <path
@@ -666,7 +671,8 @@
 
 
           <div class="col-lg-9 card_box--2 padding_mobile_0 dashboard_page_only">
-            <div class="players_image d-flex align-items-center justify-content-center cover_pic_desktop" [ngStyle]="{'background-image': 'url(' + coverImage + ')'}">
+            <div class="players_image d-flex align-items-center justify-content-center cover_pic_desktop"
+              [ngStyle]="{'background-image': 'url(' + coverImage + ')'}">
               <!-- <img *ngIf="coverImage" [src]="coverImage" alt="Cover Image" /> -->
               <svg *ngIf="!coverImage" width="54" height="54" viewBox="0 0 54 54" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
@@ -690,8 +696,8 @@
                   class="d-none" />
                 <!-- <input id="file-upload2" (change)="onCoverFileChange($event)" accept="image/*" type="file"
                   class="d-none" /> -->
-                <svg *ngIf="coverImage" class="delete_image cursor-pointer {{currentLoggedInPermission}}" (click)="openDeleteDialog()"
-                  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <svg *ngIf="coverImage" class="delete_image cursor-pointer {{currentLoggedInPermission}}"
+                  (click)="openDeleteDialog()" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                   <path
                     d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.7 23.7 0 0 0 -21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0 -16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z" />
                 </svg>
@@ -788,16 +794,21 @@
             </div>
             <div class="general_details mt-4 p-4 bg-color box_height_eqaul">
               <club-profile-tab *ngIf="activeTab == 'profile'" [userData]="user" [isPremium]="isPremium"
-                [isUserVerified]="isUserVerified" [currentLoggedInPermission]="currentLoggedInPermission"></club-profile-tab>
+                [isUserVerified]="isUserVerified"
+                [currentLoggedInPermission]="currentLoggedInPermission"></club-profile-tab>
               <club-history-tab *ngIf="activeTab == 'club_history'" role="club" [isPremium]="isPremium"
-                [isUserVerified]="isUserVerified" [currentLoggedInPermission]="currentLoggedInPermission"></club-history-tab>
+                [isUserVerified]="isUserVerified"
+                [currentLoggedInPermission]="currentLoggedInPermission"></club-history-tab>
               <club-teams-tab *ngIf="activeTab == 'teams'" [userData]="user" [isPremium]="isPremium"
-                [isUserVerified]="isUserVerified" [currentLoggedInPermission]="currentLoggedInPermission"></club-teams-tab>
+                [isUserVerified]="isUserVerified"
+                [currentLoggedInPermission]="currentLoggedInPermission"></club-teams-tab>
               <club-gallery-tab *ngIf="activeTab == 'gallery'" [coverImage]="coverImage"
                 (dataEmitter)="handleCoverImageData($event)" [isPremium]="isPremium" [isUserVerified]="isUserVerified"
-                (imageDeleted)="onImageDeleted()" [currentLoggedInPermission]="currentLoggedInPermission"></club-gallery-tab>
+                (imageDeleted)="onImageDeleted()"
+                [currentLoggedInPermission]="currentLoggedInPermission"></club-gallery-tab>
               <club-sighting-tab *ngIf="activeTab == 'sighting'" [isPremium]="isPremium"
-                [isUserVerified]="isUserVerified" [currentLoggedInPermission]="currentLoggedInPermission"></club-sighting-tab>
+                [isUserVerified]="isUserVerified"
+                [currentLoggedInPermission]="currentLoggedInPermission"></club-sighting-tab>
             </div>
           </div>
         </div>

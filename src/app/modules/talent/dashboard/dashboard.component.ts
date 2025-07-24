@@ -426,7 +426,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   registredClubArr: any;
   customClubArr: any;
   currentClubInfo: any;
-  getUserProfile(userId: any) {
+  getUserProfile(userId: any) { 
+    console.info('active tab is ',this.activeTab)
     this.loading = true;  // Set loading to true before making the API call
     this.profileImageLoading = true;
     let params = {
