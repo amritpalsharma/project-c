@@ -340,6 +340,13 @@ a.premium-edit_btn {
     margin-left: -20px;
   }
 
+  .mobile_column_flex {
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start !important;
+    gap: 10px;
+  }
+
   :host ::ng-deep .mat-mdc-paginator-range-actions {
     margin-top: 10px !important;
     max-width: 100%;

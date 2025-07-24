@@ -1577,6 +1577,10 @@ mat-datepicker-toggle button {
                 text-align: right;
                 word-break: break-word;
             }
+            span.status-label {
+                width: max-content;
+                display: inline-block;
+            }
         }
         .flex_btn {
             display: flex;
@@ -1773,8 +1777,12 @@ body .dialog-content.edit_genrl_details, body .dialog-content.transfer_details, 
         overflow: auto;
     }
 }
-body .popup__body, body .popup__body.plan_popup_card, body .popup__body.sighting_popup_card {
+body .popup__body, body .popup__body.sighting_popup_card {
     max-height: 310px !important;
+    overflow: auto;
+}
+body .country-plan.popup__body, body .popup__body.plan_popup_card {
+    max-height: 210px !important;
     overflow: auto;
 }
 body .highlights__popup {

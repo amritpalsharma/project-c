@@ -419,21 +419,6 @@ h3 {
   }
 }
 
-@media (max-width:600px) {
-  .puse-btn {
-    margin-right: 0 !important;
-    width: 100%;
-    text-align: center;
-    margin-bottom: 10px;
-  }
-
-  .save_button {
-    margin-right: 0 !important;
-    width: 100%;
-    text-align: center;
-
-  }
-}
 
 .card-shape {
   background: linear-gradient(90deg, rgb(111, 185, 93) 0%, rgb(35, 97, 21) 100%);
@@ -701,20 +686,46 @@ button:focus-visible {
   }
 }
 
-@media (max-width:425px) {
+@media (max-width:575px) {
   .action-cancel {
     margin-right: 0;
   }
 
-  .buy-btn {
-    gap: 20px !important;
+ .btn.buy-btn {
     justify-content: space-between;
-  }
+}
 
   .actions {
     flex-direction: column;
     gap: 5px;
   }
+  .puse-btn {
+    margin-right: 0 !important;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .save_button {
+    margin-right: 0 !important;
+    width: 100%;
+    text-align: center;
+
+  }
+}
+
+@media (max-width:480px) {
+    .buy-btn {
+        flex-direction: column;
+        gap: 6px !important;
+        align-items: center !important;
+        .buy-button {
+            width: 100%;
+            & * {
+                text-align: center;
+            }
+        }
+    }
 }
 
 .voucher_type button {
