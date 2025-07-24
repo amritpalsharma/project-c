@@ -1764,7 +1764,7 @@ body .overflow-card.popup__body {
 }
 body .dialog-content.add-perfomance {
     .popup__body, .overflow-card.popup__body {
-        max-height: 220px !important;
+        max-height: 260px !important;
         overflow: auto;
     }
 }
@@ -1782,7 +1782,7 @@ body .popup__body, body .popup__body.sighting_popup_card {
     overflow: auto;
 }
 body .country-plan.popup__body, body .popup__body.plan_popup_card {
-    max-height: 210px !important;
+    max-height: 250px !important;
     overflow: auto;
 }
 body .highlights__popup {
