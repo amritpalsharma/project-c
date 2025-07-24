@@ -97,9 +97,8 @@ export class ChatComponent implements AfterViewInit {
 
     async ngAfterViewInit() {
         const themeStored = localStorage.getItem('theme');
-        this.theme = themeStored === 'dark' ? 'dark_custom' : 'default';
-        document.body.classList.toggle('dark-mode', this.theme === 'dark_custom');
-
+        this.theme = themeStored === 'dark' ? 'dark_custom_users' : 'default_users';
+        document.body.classList.toggle('dark-mode', this.theme === 'dark_custom_users');
         const userDataString = localStorage.getItem('userData');
         if (!userDataString) return;
 

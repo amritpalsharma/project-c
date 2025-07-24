@@ -175,24 +175,26 @@ mat-datepicker-toggle {
 }
 
 ::ng-deep {
-@media(min-width:1600px) {
-  .edit_p_detail {
-    width: 1000px !important;
-  }
-  .team_gender_p {
-    .gen_radio {
+  @media(min-width:1600px) {
+    .edit_p_detail {
+      width: 1000px !important;
+    }
+
+    .team_gender_p {
+      .gen_radio {
         min-height: 52px !important;
+      }
     }
   }
-}
 }
 
 @media(min-width:992px) {
   .team_gender_p {
     padding: 0px !important;
+
     .gen_radio {
-        min-height: 45px;
-        align-items: center;
+      min-height: 45px;
+      align-items: center;
     }
   }
 }
@@ -260,5 +262,31 @@ mat-datepicker-toggle {
   .save-btn {
     color: #072944 !important;
     background: #bde34f !important;
+  }
+}
+
+::ng-deep {
+  .custom_select_mat {
+    .mat-focused .mat-mdc-form-field-focus-overlay {
+      opacity: 0 !important;
+    }
+
+    .mdc-text-field {
+      padding: 0 !important;
+      background: transparent !important;
+    }
+
+    .mdc-line-ripple {
+      display: none !important;
+    }
+
+    .mat-mdc-select-arrow {
+      display: none !important;
+    }
+
+    .dark-theme .custom_search_mat {
+      background: #0c3453;
+      color: white !important;
+    }
   }
 }

@@ -70,32 +70,12 @@
         <!-- Current Club -->
         <div class="form-group col-lg-4 position_inputs">
           <mat-label>{{ 'currentClub' | translate }}</mat-label>
-          <!-- <label for="currentClub">{{'currentClub' | translate}}:</label>
-
-          <mat-select [(ngModel)]="currentClubId" class="form-select" id="currentClub" name="currentClub"
-            (selectionChange)="clubUpdated()" appearance="fill">
-            <div>
-              <input (keydown)="handleKeydown($event)" (keyup)="filterClubs($event)"
-                placeholder="{{'search' | translate}}" [(ngModel)]="clubSearch" name="club_search"
-                class="form-control backgroundGray" />
-            </div>
-            <ng-container *ngIf="clubSearch == ''">
-              <mat-option *ngFor="let club of playerClubsListing" [value]="club.id">
-                {{ club.club_name }}
-              </mat-option>
-            </ng-container>
-            <ng-container *ngIf="clubSearch != ''">
-              <mat-option *ngFor="let club of searchedClubs" [value]="club.id">
-                {{ club.club_name }}
-              </mat-option>
-            </ng-container>
-          </mat-select> -->
-          <mat-form-field appearance="fill" class="w-100">
+          <mat-form-field appearance="fill" class="w-100 custom_select_mat">
             <!-- <pre>{{nationControl | json}}</pre> -->
-            <mat-select [(ngModel)]="currentClubId" class="form-select mat-search-selector" id="currentClub" name="currentClub"
-              (selectionChange)="clubUpdated()">
+            <mat-select [(ngModel)]="currentClubId" class="form-select mat_search_selector" id="currentClub"
+              name="currentClub" (selectionChange)="clubUpdated()">
               <!-- Search input inside dropdown -->
-              <ngx-mat-select-search [formControl]="clubSearching"
+              <ngx-mat-select-search class="custom_search_mat" [formControl]="clubSearching"
                 placeholder="A"></ngx-mat-select-search>
 
               <!-- List of countries -->
@@ -148,15 +128,29 @@
         <div class="form-group col-lg-4 position_inputs">
           <!-- <label for="team_id">{{'team' | translate}}:</label> -->
           <!-- <label for="team_id">&nbsp;</label> -->
-          <label for="team_id">{{ 'team' | translate }}</label>
+          <!-- <label for="team_id">{{ 'team' | translate }}</label> -->
+          <mat-label for="team_id">{{ 'team' | translate }}</mat-label>
           <ng-container>
-            <mat-select [(ngModel)]="CurrentTeamId" class="form-select"
+            <!-- <mat-select [(ngModel)]="CurrentTeamId" class="form-select"
               [ngClass]="{ 'error-border': isTeamSelectError }" id="team_id" name="team_id" required>
               <mat-option [value]="0" disabled selected>{{ 'select' | translate }}</mat-option>
               <mat-option *ngFor="let teamArr of teamsArr" [value]="teamArr.id">
                 {{ teamArr.team_name }} - {{ teamArr.team_type }}
               </mat-option>
-            </mat-select>
+            </mat-select> -->
+            <!-- <mat-label>{{ 'currentClub' | translate }}</mat-label> -->
+            <mat-form-field appearance="fill" class="w-100 custom_select_mat">
+              <mat-select [(ngModel)]="CurrentTeamId" class="form-select mat_search_selector"
+                [ngClass]="{ 'error-border': isTeamSelectError }" id="team_id" name="team_id">
+                <!-- Search input inside dropdown -->
+                <!-- <ngx-mat-select-search [formControl]="clubSearching" placeholder="A"></ngx-mat-select-search> -->
+                <ng-container *ngIf="teamsArr">
+                  <mat-option *ngFor="let teamArr of teamsArr" [value]="teamArr.id">
+                    {{ teamArr.team_name }} - {{ teamArr.team_type }}
+                  </mat-option>
+                </ng-container>
+              </mat-select>
+            </mat-form-field>
           </ng-container>
 
 
@@ -168,13 +162,27 @@
           
         </div> -->
         <div class="form-group col-lg-4 position_inputs">
-          <label for="nationality22">{{'club' | translate}} {{'country' | translate}}:</label>
-          <select class="form-select" id="nationality22" name="nationality22" required [(ngModel)]="custom_club_country"
+          <mat-label for="nationality_input">{{'club' | translate}} {{'country' | translate}}:</mat-label>
+          <!-- <label for="nationality22">{{'club' | translate}} {{'country' | translate}}:</label> -->
+          <!-- <select class="form-select" id="nationality22" name="nationality22" required [(ngModel)]="custom_club_country"
             #customClubCountryField="ngModel">
             <option *ngFor="let country of displayedCountries2; trackBy: trackByCountryId" [value]="country.id">
               {{ country.country_name }}
             </option>
-          </select>
+          </select> -->
+          <mat-form-field appearance="fill" class="w-100 custom_select_mat">
+            <mat-select [(ngModel)]="CurrentTeamId" class="form-select mat_search_selector"
+              [ngClass]="{ 'error-border': isTeamSelectError }" id="nationality_input" name="nationality_input"
+              name="nationality22" required [(ngModel)]="custom_club_country" #customClubCountryField="ngModel">
+              <!-- Search input inside dropdown -->
+              <ngx-mat-select-search [formControl]="customClubCountrySearch" placeholder="A"></ngx-mat-select-search>
+              <ng-container *ngIf="displayedCountries2">
+                <mat-option *ngFor="let country of displayedCountries2" [value]="country.id">
+                  {{ country.country_name }}
+                </mat-option>
+              </ng-container>
+            </mat-select>
+          </mat-form-field>
         </div>
 
         <div class="form-group col-lg-4">
@@ -194,13 +202,12 @@
         <div class="form-group col-lg-6 position_inputs">
           <!-- New Selector -->
           <mat-label>{{ 'nationality' | translate }}</mat-label>
-          <mat-form-field appearance="fill" class="w-100">
+          <mat-form-field appearance="fill" class="w-100 custom_select_mat">
             <!-- <pre>{{nationControl | json}}</pre> -->
-            <mat-select [formControl]="nationControl" multiple #singleSelect class="form-select mat-search-selector">
+            <mat-select [formControl]="nationControl" multiple #singleSelect class="form-select mat_search_selector">
               <!-- Search input inside dropdown -->
               <ngx-mat-select-search [formControl]="nationFilterCtrl"
                 placeholder="Search countries"></ngx-mat-select-search>
-
               <!-- List of countries -->
               <mat-option *ngFor="let country of displayedCountries" [value]="country.id">
                 {{ country.country_name }}

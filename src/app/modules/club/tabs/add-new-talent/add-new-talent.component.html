@@ -89,7 +89,7 @@
                 <!-- <input type="text" [ngClass]="{'emptyRequiredField':submitClicked && !jerseyNumber}" [(ngModel)]="jerseyNumber" placeholder="{{'addJerseyNumber' | translate}}"
                   class="user-input"> -->
 
-                <input type="number" (keydown)="validateNumber($event)"
+                <input type="number" (keydown)="validateNumber($event)" class="mobile-font"
                   [ngClass]="{'emptyRequiredField':submitClicked && !user.jersey_number}"
                   [(ngModel)]="user.jersey_number" placeholder="{{'addJerseyNumber' | translate}}" class="user-input">
 

@@ -89,7 +89,7 @@
                         </svg>
 
                       </div>
-                      <a (click)="editBooster(booster)" class="edit-profile cursor-pointer team-badge_image"
+                      <a *ngIf="booster" (click)="editBooster(booster)" class="edit-profile cursor-pointer team-badge_image"
                         matTooltip="{{'boostedProfileViews' | translate}}" matTooltipPosition="right"><img
                           src="../../../assets/images/rocket-icon-{{currentThemeMode}}.svg" alt="" />
                       </a>

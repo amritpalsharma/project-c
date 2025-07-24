@@ -110,6 +110,7 @@ export class EditPersonalDetailsComponent implements OnInit {
 
   nationFilterCtrl = new FormControl('');
   clubSearching = new FormControl('');
+  customClubCountrySearch = new FormControl('');
 
   constructor(
     public dialogRef: MatDialogRef<EditPersonalDetailsComponent>,
@@ -132,6 +133,32 @@ export class EditPersonalDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.theme = localStorage.getItem('theme');
     this.userData = this.user = { ...this.data.user };
+
+    // Code By Amrit When Club Add Talent Into Team
+    if (typeof this.user?.current_club_info !== undefined && this.user?.current_club_info != '' && this.user?.current_club_info != null) {
+      let registedClubArr = JSON.parse(this.user?.current_club_info);
+      this.team_type = registedClubArr.team_group;
+      this.currentClubId = String(registedClubArr.club_id);
+      setTimeout(() => {
+        this.currentClubId = String(registedClubArr.club_id);
+        const idToSelect = String(registedClubArr.team_id); // Convert to string since your IDs are strings
+        const matchingTeam = this.teamsArr.find(t => t.id === idToSelect);
+
+        console.log('All team IDs:', this.teamsArr.map(t => t.id));
+        console.log('Trying to set CurrentTeamId to:', idToSelect);
+
+        if (matchingTeam) {
+          this.CurrentTeamId = (idToSelect);
+          console.log('Match found. Selected:', matchingTeam);
+        } else {
+          console.warn('No matching team found for:', idToSelect);
+        }
+
+        this.cdr.detectChanges();
+      }, 500);
+
+
+    }
 
     this.countries = this.data.countries;
     // this.user = JSON.parse(localStorage.getItem('userInfo') || '{}');
@@ -170,7 +197,9 @@ export class EditPersonalDetailsComponent implements OnInit {
       this.contractEnd = new FormControl(
         this.user?.meta?.contract_end ? new Date(this.user.meta.contract_end) : null
       );
+      if(typeof this.currentClubId === undefined){
 
+      }
       this.talentService.getClubTeamsByGroup(this.currentClubId, this.team_type).subscribe((response) => {
         if (response.status && Array.isArray(response.data.teams) && response.data.teams.length > 0) {
           this.teamsArr = [...response.data.teams]; // Ensure a new reference for change detection
@@ -180,13 +209,6 @@ export class EditPersonalDetailsComponent implements OnInit {
         if (this.user?.meta?.have_registered_club == 1 && this.user?.registered_club_info != '') {
           let registedClubArr = JSON.parse(this.user?.registered_club_info);
           this.team_type = registedClubArr.team_group;
-          // setTimeout(() => {
-          //   if (this.teamsArr.length > 0) {
-          //     this.CurrentTeamId = registedClubArr.team_id; // or any default logic
-          //   }
-          //   this.cdr.detectChanges();
-          // }, 4000);
-
           setTimeout(() => {
             const idToSelect = String(registedClubArr.team_id); // Convert to string since your IDs are strings
             const matchingTeam = this.teamsArr.find(t => t.id === idToSelect);
@@ -288,6 +310,13 @@ export class EditPersonalDetailsComponent implements OnInit {
       const search = this.clubSearching.value?.toLowerCase() || '';
       this.searchedClubs = this.playerClubsListing.filter(
         (club: any) => club.club_name.toLowerCase().includes(search)
+      );
+    });
+
+    this.customClubCountrySearch.valueChanges.subscribe(() => {
+      const search = this.customClubCountrySearch.value?.toLowerCase() || '';
+      this.displayedCountries2 = this.countries.filter(
+        (country: any) => country.country_name.toLowerCase().includes(search)
       );
     });
 
