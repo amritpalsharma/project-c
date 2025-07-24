@@ -7,8 +7,8 @@
           <div class="d-flex align-items-end justify-content-between w-100 mt-2 mobile_column_flex">
             <h2 class="card-title mb-0 me-3">{{'subscriptionPlans' | translate}}</h2>
             <div class="common" *ngIf="userPurchases && userPurchases.length > 0 && totalItems > 0">
-              <button class="payments-btn {{currentLoggedInPermission}} add_btn_{{currentLoggedInPermission}}" *ngIf="userPurchases"
-                (click)="openCustomerPortal()">{{'managePaymentBtnTxt' | translate}}</button>
+              <button class="payments-btn {{currentLoggedInPermission}} add_btn_{{currentLoggedInPermission}}"
+                *ngIf="userPurchases" (click)="openCustomerPortal()">{{'managePaymentBtnTxt' | translate}}</button>
               <!-- <p class="managePaymentBtnTxtBelowTxt">{{'managePaymentBtnTxtBelowTxt' | translate}}</p> -->
             </div>
           </div>
@@ -29,9 +29,11 @@
               <p *ngIf="premium.stripe_cancel_at != null">{{ 'expireOn' | translate }} {{ premium.stripe_cancel_at |
                 date: 'dd.MM.yyyy' }}</p>
               <div class="d-flex align-items-center justify-content-between mt-4 mob_wrap">
-                <a class="premium-edit_btn text-white {{currentLoggedInPermission}} add_btn_{{currentLoggedInPermission}}" href="/club/plans">{{'editPlan' | translate}}</a>
-                <button class="premium-subscription_btn {{currentLoggedInPermission}} add_btn_{{currentLoggedInPermission}}" [disabled]="premium.stripe_cancel_at != null"
-                  (click)="confirmAndCancelSubscription(premium.id)">
+                <a class="premium-edit_btn text-white {{currentLoggedInPermission}} add_btn_{{currentLoggedInPermission}}"
+                  href="/club/plans">{{'editPlan' | translate}}</a>
+                <button
+                  class="premium-subscription_btn {{currentLoggedInPermission}} add_btn_{{currentLoggedInPermission}}"
+                  [disabled]="premium.stripe_cancel_at != null" (click)="confirmAndCancelSubscription(premium.id)">
                   <div *ngIf="premium.stripe_cancel_at != null">{{ 'cancelSubscription' | translate }}</div>
                   <div *ngIf="premium.stripe_cancel_at == null" routerLink="/club/plans">{{ 'renewSubscription' |
                     translate }}</div>

@@ -284,6 +284,19 @@
                     <span class="text-muted-foreground">{{'interval' | translate}}</span>
                     <span>{{ capitalizeFirstLetter(element.interval) }}</span>
                   </div>
+                   <div class="flex justify-between">
+                    <span class="text-muted-foreground">{{'status' | translate}}</span>
+
+                    <span *ngIf="element.invoice_status == 'paid'" class="status-label bg_success">{{ 'paidTxt' |
+                      translate }}</span>
+                    <span *ngIf="element.invoice_status == 'open'" class="status-label bg_reject text-white">{{
+                      'openTxt' |
+                      translate }}</span>
+                    <span *ngIf="element.invoice_status != 'open' && element.invoice_status != 'paid'"
+                      class="status-label bg_reject text-white">{{
+                      'failedTxt' |
+                      translate }}</span>
+                  </div>
                 </div>
                 <div class="flex_btn mt-3">
                   <span class="view--eye" class="pointer" (click)="viewMembership(element.id)"
