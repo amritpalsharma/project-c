@@ -71,7 +71,7 @@ export const MY_FORMATS = {
     dateInput: 'DD.MM.YYYY', // Parse input in DD.MM.YYYY format
   },
   display: {
-    dateInput: 'DD.MM.YYYY', // Display format for date input
+    dateInput: 'DD.MM.YYYY', // Display format for date input 
     monthYearLabel: 'MMM YYYY', // Month and year label
     dateA11yLabel: 'DD.MM.YYYY', // Accessibility label for date
     monthYearA11yLabel: 'MMMM YYYY', // Accessibility label for month and year

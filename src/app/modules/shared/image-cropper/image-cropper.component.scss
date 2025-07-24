@@ -188,12 +188,13 @@
 
 .resize-handle {
   width: 8px;
-  height: 25px;
+  height: 28px;
   background: white;
   position: absolute;
   right: -4px;
-  bottom: 0;
+  bottom: -3px;
   cursor: nwse-resize;
+  z-index: 1000;
 }
 
 .resize-handle.bottom-right2 {

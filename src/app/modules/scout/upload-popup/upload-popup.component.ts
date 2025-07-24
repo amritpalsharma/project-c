@@ -105,62 +105,63 @@ export class UploadPopupComponent {
   }
 
   uploadProgress: any;
-  
-    uploadImages(files: any) {
-      this.isLoading = true;
-      this.uploadProgress = 0;
-  
-      this.translateService.get(['pleaseWait', 'uploadFiles']).subscribe((translations) => {
-        const loadingToast = this.toastr.info(`${translations['pleaseWait']}`, translations['uploadFiles'], {
-          disableTimeOut: true,
-        });
-  
-        const formdata = new FormData();
-        for (let i = 0; i < files.length; i++) {
-          formdata.append("gallery_images[]", files[i]);
-        }
-  
-        this.scoutService.uploadGalleryImages(formdata).subscribe({
-          next: (event: HttpEvent<any>) => {
-            if (event.type === HttpEventType.UploadProgress && event.total) {
-              this.uploadProgress = Math.round((100 * event.loaded) / event.total);
-              // this.toastr.update(loadingToast.toastId, `${translations['pleaseWait']} (${this.uploadProgress}%)`, translations['uploadFiles']);
-            }
-  
-            if (event.type === HttpEventType.Response) {
-              const response = event.body;
-  
-              response.forEach((row: any) => {
-                if (row.status) {
-                  this.toastr.clear(loadingToast.toastId);
-                  this.uploadedFiles.push({ id: row.data.id, file_name: row.data.uploaded_file });
-                } else {
-                  this.files = [];
-                  this.toastr.clear(loadingToast.toastId);
-                  this.toastr.error(row.message);
-                }
-              });
-  
-              if (response[0].status) {
-                this.isLoading = false;
-                this.showMatDialog(response[0].message, 'display');
-                this.dialogRef.close({
-                  files: this.uploadedFiles
-                });
+
+  uploadImages(files: any) {
+    this.isLoading = true;
+    this.uploadProgress = 0;
+
+    this.translateService.get(['pleaseWait', 'uploadFiles']).subscribe((translations) => {
+      const loadingToast = this.toastr.info(`${translations['pleaseWait']}`, translations['uploadFiles'], {
+        disableTimeOut: true,
+      });
+
+      const formdata = new FormData();
+      for (let i = 0; i < files.length; i++) {
+        formdata.append("gallery_images[]", files[i]);
+      }
+
+      this.scoutService.uploadGalleryImages(formdata).subscribe({
+        next: (event: HttpEvent<any>) => {
+          if (event.type === HttpEventType.UploadProgress && event.total) {
+            this.uploadProgress = Math.round((100 * event.loaded) / event.total);
+            // this.toastr.update(loadingToast.toastId, `${translations['pleaseWait']} (${this.uploadProgress}%)`, translations['uploadFiles']);
+          }
+
+          if (event.type === HttpEventType.Response) {
+            const response = event.body;
+
+            response.forEach((row: any) => {
+              if (row.status) {
+                this.toastr.clear(loadingToast.toastId);
+                this.uploadedFiles.push({ id: row.data.id, file_name: row.data.uploaded_file });
               } else {
                 this.files = [];
-                this.isLoading = false;
+                this.toastr.clear(loadingToast.toastId);
+                this.toastr.error(row.message);
               }
+            });
+
+            if (response[0].status) {
+              this.isLoading = false;
+              // this.showMatDialog(response[0].message, 'display');
+              this.toastr.success(response[0].message);
+              this.dialogRef.close({
+                files: this.uploadedFiles
+              });
+            } else {
+              this.files = [];
+              this.isLoading = false;
             }
-          },
-          error: (err) => {
-            this.toastr.clear(loadingToast.toastId);
-            this.toastr.error('Upload failed');
-            this.isLoading = false;
           }
-        });
+        },
+        error: (err) => {
+          this.toastr.clear(loadingToast.toastId);
+          this.toastr.error('Upload failed');
+          this.isLoading = false;
+        }
       });
-    }
+    });
+  }
 
   uploadImages54(files: any) {
     this.isLoading = true;
