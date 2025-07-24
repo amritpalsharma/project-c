@@ -77,6 +77,7 @@ export class AddPerformanceComponent {
   team_country_id: any = '';
   countries: any = [];
 
+  countrySearch: FormControl = new FormControl(null);
   constructor(
     private toastr: ToastrService,
     public dialogRef: MatDialogRef<AddPerformanceComponent>,
@@ -128,6 +129,13 @@ export class AddPerformanceComponent {
     });
     this.loadCountries();
     this.currentTeamLogo = this.performance.team_club_logo_path;
+
+    this.countrySearch.valueChanges.subscribe(() => {
+      const search = this.countrySearch.value?.toLowerCase() || '';
+      this.filteredCities = this.countries.filter(
+        (country: any) => country.country_name.toLowerCase().includes(search)
+      );
+    });
   }
 
   displayCountry(country: any): string {

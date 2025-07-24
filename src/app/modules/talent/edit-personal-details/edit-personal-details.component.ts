@@ -197,7 +197,7 @@ export class EditPersonalDetailsComponent implements OnInit {
       this.contractEnd = new FormControl(
         this.user?.meta?.contract_end ? new Date(this.user.meta.contract_end) : null
       );
-      if(typeof this.currentClubId === undefined){
+      if (typeof this.currentClubId === undefined) {
 
       }
       this.talentService.getClubTeamsByGroup(this.currentClubId, this.team_type).subscribe((response) => {
@@ -279,7 +279,9 @@ export class EditPersonalDetailsComponent implements OnInit {
     this.displayedCountries2 = this.countries;
     if (this.user?.custom_club_info && this.user?.custom_club_info != '') {
       let custom_club_info = JSON.parse(this.user?.custom_club_info);
-      this.custom_club_country = custom_club_info.country_id;
+      setTimeout(() => {
+        this.custom_club_country = Number(custom_club_info.country_id);
+      }, 1000)
       this.custom_club_country_name = custom_club_info.country_name;
       console.log('custom_club_country', this.custom_club_country, 'TypeOF', typeof this.custom_club_country)
     }
@@ -288,7 +290,10 @@ export class EditPersonalDetailsComponent implements OnInit {
       this.isCustomClubTeam = true;
       if (this.user?.custom_club_info && this.user?.custom_club_info != '' && typeof this.user?.custom_club_info !== undefined) {
         let customClubArr = JSON.parse(this.user?.custom_club_info);
-        this.custom_club_country = customClubArr.country_id;
+        // this.custom_club_country = Number(customClubArr.country_id);
+        setTimeout(() => {
+          this.custom_club_country = Number(customClubArr.country_id);
+        }, 1000)
         this.custom_club = customClubArr.club_name;
         this.custom_team = customClubArr.team_name;
       }
@@ -493,20 +498,6 @@ export class EditPersonalDetailsComponent implements OnInit {
           console.warn('this.leagueLevel ', this.leagueLevel);
         }
 
-        // if (this.user?.custom_club_info && this.user?.custom_club_info != '') {
-        //   let custom_club_info = JSON.parse(this.user?.custom_club_info);
-        //   this.custom_club_country = custom_club_info.country_id;
-        //   this.custom_club = custom_club_info.club_name;
-        //   this.custom_team = custom_club_info.team_name;
-        //   if (this.custom_club && this.custom_club != '') {
-        //     this.isCustomClubTeam = true;
-        //   }
-        //   let selectionArr = this.countries.filter((club: any) =>
-        //     club.id === parseInt('' + this.custom_club_country + '', 10) // Directly comparing IDs (ensuring 'keyword' is parsed to an integer)
-        //   );
-        //   console.info('this.custom_club_country', this.custom_club_country);
-        //   console.info('this.selectionArr', selectionArr);
-        // }
 
 
 

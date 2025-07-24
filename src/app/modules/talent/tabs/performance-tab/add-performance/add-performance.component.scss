@@ -275,3 +275,42 @@ mat-datepicker-toggle {
     background: #bde34f !important;
   }
 }
+
+::ng-deep {
+  .custom_select_mat {
+    .mat-focused .mat-mdc-form-field-focus-overlay {
+      opacity: 0 !important;
+    }
+
+    .mdc-text-field {
+      padding: 0 !important;
+      background: transparent !important;
+    }
+
+    .mdc-line-ripple {
+      display: none !important;
+    }
+
+    .mat-mdc-select-arrow {
+      display: none !important;
+    }
+
+    .dark-theme .custom_search_mat {
+      background: #0c3453;
+      color: white !important;
+    }
+    .dark-theme .mat-mdc-select-min-line {
+      color: white !important;
+    }
+  }
+  .dark-theme .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: #0c3453;
+  }
+  .dark-theme .mat-select-search-no-entries-found{
+     color: white !important;
+  }
+}
+
+.mat_search_selector {
+  padding: 11px;
+}
