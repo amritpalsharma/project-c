@@ -12,6 +12,9 @@
   opacity: 1;
   cursor: pointer;
 }
+h4.title-text {
+  padding-right: 40px;
+}
 
 ::ng-deep {
   .user_list_full {
@@ -356,6 +359,20 @@
 
     .mat-datepicker-toggle {
       top: 3px;
+    }
+  }
+}
+
+
+::ng-deep {
+  @media (max-width: 575px) {
+    .user-list.user_list_full {
+      .user-item {
+        flex-wrap: wrap;
+      }
+      input.user-input {
+        width: 100% !important;
+      }
     }
   }
 }

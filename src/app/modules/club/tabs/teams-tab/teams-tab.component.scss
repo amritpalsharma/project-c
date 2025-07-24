@@ -210,6 +210,15 @@
     margin-right: 5px;
     margin-left: 5px;
   }
+  .back-and-add-container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start !important;
+    gap: 10px;
+    .add-player-link {
+      margin-left: 0;
+    }
+  }
 }
 
 @media (max-width: 460px) {

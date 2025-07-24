@@ -88,7 +88,17 @@ h6.main-template {
   }
 }
 
-
+@media (max-width: 575px) {
+    .mobile_column_flex {
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start !important;
+        gap: 10px;
+    }
+    h6.main-template {
+        font-size: 18px;
+    }
+}
 
 ::ng-deep .tox-promotion {
     display: none !important;

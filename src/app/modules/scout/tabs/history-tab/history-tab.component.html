@@ -2,7 +2,7 @@
     <!-- unlock -->
     <div class="club_history unlock_page" *ngIf="!isPremium">
         <div class="locked-tab">
-            <div class="d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center justify-content-between mobile_column_flex">
                 <!-- <h6 class="mb-0 me-2 main-template">About Us</h6> -->
                   <h6 class="mb-0 me-2 main-template" [translate]="'scoutStory'"> </h6>
                 <a class="btn btn-outline-white main-template">
@@ -45,7 +45,7 @@
         </div>
     </div>
     <!-- End unlock -->
-    <div class="d-flex align-items-center justify-content-between" *ngIf="isPremium">
+    <div class="d-flex align-items-center justify-content-between mobile_column_flex" *ngIf="isPremium">
         <!-- <span>About {{role}}</span> -->
         <!-- <h6 class="mb-0 me-2 main-template"> {{ 'SoccerHire' | translate}} </h6> -->
         <h6 class="mb-0 me-2 main-template" [translate]="'scoutStory'"> </h6>
