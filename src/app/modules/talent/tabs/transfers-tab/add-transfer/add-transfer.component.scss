@@ -107,6 +107,7 @@
     .form-group {
         padding: 0px;
     }
+
     .checkbox-wrap {
         padding: 0px 15px;
     }
@@ -121,23 +122,52 @@ mat-datepicker-toggle {
     overflow-y: auto;
     overflow-x: hidden;
 }
-::ng-deep .form-red-border .red-border{
+
+::ng-deep .form-red-border .red-border {
     border: 2px solid red;
 }
 
-.checkbox-wrap{
-      padding: 0px 32px;
+.checkbox-wrap {
+    padding: 0px 32px;
 }
 
 
 
 @media (min-width: 3000px) {
-    label.form-label, .moving_select h2 {
+
+    label.form-label,
+    .moving_select h2 {
         font-size: 22px !important;
     }
 }
 
 ::ng-deep .isrequiredField {
-  border: 1px solid red !important;
-  border-color: red !important;
+    border: 1px solid red !important;
+    border-color: red !important;
+}
+
+::ng-deep {
+    .custom_select_mat {
+        .mat-focused .mat-mdc-form-field-focus-overlay {
+            opacity: 0 !important;
+        }
+
+        .mdc-text-field {
+            padding: 0 !important;
+            background: transparent !important;
+        }
+
+        .mdc-line-ripple {
+            display: none !important;
+        }
+
+        .mat-mdc-select-arrow {
+            display: none !important;
+        }
+
+        .dark-theme .custom_search_mat {
+            background: #0c3453;
+            color: white !important;
+        }
+    }
 }

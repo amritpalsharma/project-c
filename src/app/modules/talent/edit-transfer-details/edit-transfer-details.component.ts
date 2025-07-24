@@ -96,11 +96,13 @@ export class EditTransferDetailsComponent {
       // this.is_team_to_manual = true;
       this.team_to_manual = this.transfer.team_to_manual;
       this.team_to_m_country_id = this.transfer.team_to_m_country_id;
+      this.is_team_to_manual = true;
     }
 
     if (this.transfer.team_from_manual != '' && !this.transfer.team_from) {
       this.team_from_manual = this.transfer.team_from_manual;
       this.team_from_m_country_id = this.transfer.team_from_m_country_id;
+      this.is_team_from_manual = true;
     }
 
     // if (this.transfer?.country_name_to_manual && this.transfer?.country_name_to_manual != '' && this.transfer?.team_to_manual && this.transfer?.team_to_manual != '') {

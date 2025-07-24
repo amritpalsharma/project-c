@@ -97,7 +97,7 @@ export class EditPersonalDetailsComponent implements OnInit {
   filterCountriesArr: any = [];
   displayedCountries: any[] = [];
 
-  custom_club_country: number = 0;
+  custom_club_country: any = 0;
   custom_club_country_name: string = '';
   custom_club: string = '';
   custom_team: string = '';
@@ -111,7 +111,7 @@ export class EditPersonalDetailsComponent implements OnInit {
   nationFilterCtrl = new FormControl('');
   clubSearching = new FormControl('');
   customClubCountrySearch = new FormControl('');
-
+  userHasCustomClub: boolean = false;
   constructor(
     public dialogRef: MatDialogRef<EditPersonalDetailsComponent>,
     private talentService: TalentService,
@@ -280,17 +280,19 @@ export class EditPersonalDetailsComponent implements OnInit {
     if (this.user?.custom_club_info && this.user?.custom_club_info != '') {
       let custom_club_info = JSON.parse(this.user?.custom_club_info);
       // console.info('custom_club_info', custom_club_info);
-      this.custom_club_country = Number(custom_club_info.country_id);
+      this.custom_club_country = String(custom_club_info.country_id);
       this.custom_club_country_name = custom_club_info.country_name;
     }
 
     if (this.user?.meta?.have_custom_club == 1) {
       this.isCustomClubTeam = true;
+      this.userHasCustomClub = true;
       if (this.user?.custom_club_info && this.user?.custom_club_info != '' && typeof this.user?.custom_club_info !== undefined) {
         let customClubArr = JSON.parse(this.user?.custom_club_info);
-        this.custom_club_country = Number(customClubArr.country_id);
+        this.custom_club_country = String(customClubArr.country_id);
         this.custom_club = customClubArr.club_name;
         this.custom_team = customClubArr.team_name;
+        this.userHasCustomClub = true;
       }
     }
 
@@ -513,6 +515,8 @@ export class EditPersonalDetailsComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
+    console.info('this.userHasCustomClub', this.userHasCustomClub);
+    console.info('this.userHasNoClub', this.userHasNoClub);
     // console.log('Form:', this.nationControl.value);
     // return;
 
@@ -524,7 +528,9 @@ export class EditPersonalDetailsComponent implements OnInit {
 
     if (!this.CurrentTeamId && this.currentClubId && !this.userHasCustomClub) {
       this.isTeamSelectError = true;
-      return;
+      if (!this.userHasNoClub) {
+        return;
+      }
     } else {
       this.isTeamSelectError = false;
     }
@@ -591,13 +597,14 @@ export class EditPersonalDetailsComponent implements OnInit {
     formData.append('lang', lang);
 
     let details;
+
     if (this.userHasCustomClub === true) {
       formData.append('user[have_custom_club]', '1');
       formData.append('user[have_registered_club]', '0');
       formData.append('user[have_no_club]', '0');
       formData.append('user[custom_club]', this.custom_club);
       formData.append('user[custom_team]', this.custom_team);
-      formData.append('user[custom_club_country]', '"' + this.custom_club_country + '"');
+      formData.append('user[custom_club_country]', this.custom_club_country + '');
       details = 'You Have Custom Club With Name ' + this.custom_club + ' And Team is ' + this.custom_team;
     } else {
       formData.append('user[have_custom_club]', '0');
@@ -816,7 +823,7 @@ export class EditPersonalDetailsComponent implements OnInit {
   }
 
 
-  userHasCustomClub: boolean = false;
+
   onChnageCustomClubTeam(value: boolean) {
     this.isCustomClubTeam = value;
     if (value === true) {

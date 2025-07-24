@@ -71,8 +71,11 @@ export class AddTransferComponent {
   noMoveFromTeam: boolean = false;
   team_from_manual: string = '';
   countries: any = [];
+  countries2: any = [];
   team_from_m_country_id: number = 0;
 
+  countrySearch: FormControl = new FormControl(null);
+  countrySearch2: FormControl = new FormControl(null);
   constructor(
     private toastr: ToastrService,
     public dialogRef: MatDialogRef<AddTransferComponent>,
@@ -99,6 +102,20 @@ export class AddTransferComponent {
 
     this.webPages.languageId$.subscribe((data) => {
       this.getJsonTranslations();
+    });
+
+    this.countrySearch.valueChanges.subscribe(() => {
+      const search = this.countrySearch.value?.toLowerCase() || '';
+      this.countries = this.countries.filter(
+        (country: any) => country.country_name.toLowerCase().includes(search)
+      );
+    });
+
+    this.countrySearch2.valueChanges.subscribe(() => {
+      const search = this.countrySearch2.value?.toLowerCase() || '';
+      this.countries2 = this.countries2.filter(
+        (country: any) => country.country_name.toLowerCase().includes(search)
+      );
     });
   }
 
@@ -255,6 +272,7 @@ export class AddTransferComponent {
       (response: any) => {
         if (response && response.status) {
           this.countries = response.data.countries;
+          this.countries2 = response.data.countries;
         }
       },
       (error: any) => {
