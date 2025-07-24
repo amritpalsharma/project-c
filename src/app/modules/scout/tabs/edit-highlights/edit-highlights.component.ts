@@ -318,6 +318,7 @@ export class EditHighlightsComponent {
   addPhotosPopup(){
     const messageDialog = this.dialog.open(UploadPopupComponent,{
       width: '500px',
+      panelClass: 'upload_highligh_popup',
       position: {
         top:'150px'
       },

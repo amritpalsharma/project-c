@@ -1764,7 +1764,7 @@ body .overflow-card.popup__body {
 }
 body .dialog-content.add-perfomance {
     .popup__body, .overflow-card.popup__body {
-        max-height: 300px !important;
+        max-height: 220px !important;
         overflow: auto;
     }
 }
@@ -1853,9 +1853,12 @@ table.table  th {
 .view-membership .table-responsive {
     overflow-x: auto !important;
 }
+.upload_highligh_popup {
+    margin-top: 50px !important;
+}
 .edit_highlights_popup {
     .popup_header {
-        padding-bottom: 0 !important;
+        // padding-bottom: 0 !important;
         .dialog-header {
             flex-direction: column;
             align-items: flex-start !important;

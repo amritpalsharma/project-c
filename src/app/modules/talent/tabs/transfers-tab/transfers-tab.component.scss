@@ -342,6 +342,14 @@
 }
 }
 
+
+@media (max-width: 480px) {
+  button.dashboard_tabs_add_btn {
+      width: 100%;
+      justify-content: center;
+  }
+}
+
 @media (max-width: 991px) and (min-width: 576px) {
 .transfer_box .box-transfer {
   display: flex;
@@ -510,4 +518,11 @@
   100% {
       transform: rotate(360deg);
   }
+}
+
+
+@media (max-width: 400px) {
+    .dashboard_tabs_add_btn {
+        font-size: 14px !important;
+    }
 }
