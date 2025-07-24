@@ -1917,6 +1917,11 @@ table.table  th {
         margin-left: 0 !important;
     }
   }
+
+  .upgrade_unlock .unlock_btn {
+        padding: 10px 15px 8px !important;
+        font-size: 14px !important;
+    }
 }
 
 @media (min-width: 426px) and (max-width: 575px) {

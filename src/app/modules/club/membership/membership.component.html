@@ -4,7 +4,7 @@
       <div class="card-header border-0">
         <h4 class="card-billing ">{{'billing' | translate}}</h4>
         <div class="d-flex align-items-center justify-content-between marketing-header-bar">
-          <div class="d-flex align-items-end justify-content-between w-100 mt-2">
+          <div class="d-flex align-items-end justify-content-between w-100 mt-2 mobile_column_flex">
             <h2 class="card-title mb-0 me-3">{{'subscriptionPlans' | translate}}</h2>
             <div class="common" *ngIf="userPurchases && userPurchases.length > 0 && totalItems > 0">
               <button class="payments-btn {{currentLoggedInPermission}} add_btn_{{currentLoggedInPermission}}" *ngIf="userPurchases"
