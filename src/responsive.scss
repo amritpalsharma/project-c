@@ -766,6 +766,9 @@ mat-datepicker-toggle button {
     .page-sidebar-inner {
         height: calc(100% - 300px) !important;
     }
+    .page-sidebar .logo-box {
+        max-height: 300px;
+    }
     body.compact-sidebar {
         .page-container.admin_page-container {
             width: calc(100% - 400px) !important;
