@@ -365,7 +365,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-sm-6 team-logos">
+                    <div class="col-sm-6 team-logos"  *ngIf="user?.meta?.sm_x && user?.meta?.sm_instagram && user?.meta?.sm_tiktok && user?.meta?.sm_youtube && user?.meta?.sm_vimeo">
                       <div class="row align-items-center">
                         <div class="col-lg-12 p-0 team-badge_content social_iconlist">
                           <h6 class="title_2">{{ 'socialMedia' | translate}}</h6>

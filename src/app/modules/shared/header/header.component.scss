@@ -11,17 +11,14 @@ a.dropdown-item.ai-icon.selected {
 }
 
 .header-view-profile {
-  font-size: 12px;
   color: grey;
 }
-
-.header-view {
-  font-size: 12px;
-}
-
-.header-peter {
-  font-size: 12px;
-}
+// .header-view {
+//   font-size: 12px;
+// }
+// .header-peter {
+//   font-size: 12px;
+// }
 
 .live-notification-box {
   transform-origin: top;
@@ -364,6 +361,12 @@ a.dropdown-item.ai-icon.selected {
     filter: brightness(0) invert(1);
     opacity: 0.5;
     // fill: #C1C6CF;
+  }
+}
+
+@media (min-width: 992px) {
+  .header-view-profile {
+    font-size: 12px;
   }
 }
 

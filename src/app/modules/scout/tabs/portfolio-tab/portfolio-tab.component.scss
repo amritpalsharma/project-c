@@ -284,6 +284,21 @@ th {
             font-size: 16px;
         }
     }
+
+    .hide_table_for_desktop {
+        .club_namee {
+            img.club_logo_icn  {
+                width: 26px;
+                height: 26px;
+                margin-right: 7px;
+            }
+            span {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+    }
 }
 
 
