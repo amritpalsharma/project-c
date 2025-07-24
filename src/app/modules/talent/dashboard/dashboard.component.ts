@@ -151,7 +151,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     this.route.params.subscribe(() => {
       this.getCoverImg();
-      this.activeTab = 'profile';
+      // this.activeTab = 'profile';
     });
     this.getBoosterData();
     this.isUserVerified = false;
@@ -180,7 +180,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.loadCountries();
       // this.getGalleryData();
       this.getJsonTranslations();
-      console.info('Language Updated')
+      // console.info('Language Updated')
     });
 
     this.getUserStatus();
