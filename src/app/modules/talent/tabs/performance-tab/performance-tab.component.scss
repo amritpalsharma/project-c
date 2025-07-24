@@ -471,13 +471,20 @@ tr.table_underline {
     gap: 0;
     td {
         width: 100%;
-        border-top: 1px solid #E5E5E5 !important;
+        border-top: 1px solid #e5e5e566 !important;
         padding: 15px 0;
         border-radius: 0;
     }
 }
+tr.table_underline {
+    border-bottom-width: 1px !important;
+}
 .table tbody tr:hover .underline_gap td {
-    border-top: 1px solid #E5E5E5 !important;
+    border-top: 1px solid #e5e5e566 !important;
+}
+button.dashboard_tabs_add_btn {
+    width: 100%;
+    justify-content: center;
 }
 }
 
@@ -614,5 +621,11 @@ tr.table_underline {
     .dashboard_tabs_add_btn {
         min-width: 285px;
         justify-content: center;
+    }
+}
+
+@media (max-width: 400px) {
+    .dashboard_tabs_add_btn {
+        font-size: 14px !important;
     }
 }
