@@ -66,7 +66,7 @@ export class EditPerformanceDetailsComponent implements OnInit {
   team_country_id: number = 0;
   teamName: string = '';
   countries: any = [];
-
+  countrySearch: FormControl = new FormControl(null);
   constructor(
     public dialogRef: MatDialogRef<EditPerformanceDetailsComponent>,
     private talentService: TalentService,
@@ -109,7 +109,14 @@ export class EditPerformanceDetailsComponent implements OnInit {
       this.onNoClubChange(true);
     }
     // this.isManual = this.data.isManualEntery;
-    console.info('this.isManual', this.isManual)
+    // console.info('this.isManual', this.isManual)
+
+    this.countrySearch.valueChanges.subscribe(() => {
+      const search = this.countrySearch.value?.toLowerCase() || '';
+      this.countries = this.countries.filter(
+        (country: any) => country.country_name.toLowerCase().includes(search)
+      );
+    });
   }
 
   onCancel(): void {
@@ -307,5 +314,5 @@ export class EditPerformanceDetailsComponent implements OnInit {
     input = input.toLowerCase();
     return input.split('-')[1]?.trim() || '';
   }
-  
+
 }

@@ -276,10 +276,10 @@
               <div class="flex justify-between">
                 <span class="text-muted-foreground">{{ 'club' | translate }}</span>
                 <span>
-                  <div class="d-flex icon_text_icon val_{{element.club_name}}"
+                  <div class="d-flex icon_text_icon club_namee"
                     *ngIf="element.club_name != '' && element.club_name != null">
                     <img src="{{uploadsPath + element.club_logo}}" *ngIf="element.club_logo" class="club_logo_icn">
-                    {{ element.club_name }}
+                    <span>{{ element.club_name }}</span>
                     <img src="{{logoPath + element.country_flag}}" *ngIf="element.country_flag" class="flag_country">
                   </div>
                   <span *ngIf="!element.club_name || element.club_name == null">

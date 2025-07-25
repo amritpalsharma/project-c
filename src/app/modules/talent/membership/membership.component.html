@@ -241,7 +241,8 @@
                           'failedTxt' |
                           translate }}</span>
                       </td>
-                      <td class="text-center disable_btn_{{purchase.invoice_status}}" [ngClass]="{'disblebutton':purchase.invoice_status != 'paid'}">
+                      <td class="text-center disable_btn_{{purchase.invoice_status}}"
+                        [ngClass]="{'disblebutton':purchase.invoice_status != 'paid'}">
                         <svg class="cursor-pointer pointer" (click)="viewMembership(purchase.id)" width="25" height="25"
                           viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path
@@ -252,7 +253,8 @@
                             fill="#787878" class="td-icon-favourites" />
                         </svg>
                       </td>
-                      <td class="text-center disable_btn_{{purchase.invoice_status}}" [ngClass]="{'disblebutton':purchase.invoice_status != 'paid'}">
+                      <td class="text-center disable_btn_{{purchase.invoice_status}}"
+                        [ngClass]="{'disblebutton':purchase.invoice_status != 'paid'}">
                         <a [href]="purchase.invoice_file_path" target="_blank">
                           <svg class="pointer" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
@@ -298,6 +300,19 @@
                   <div class="flex justify-between">
                     <span class="text-muted-foreground">{{'interval' | translate}}</span>
                     <span>{{ capitalizeFirstLetter(element.interval) }}</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-muted-foreground">{{'status' | translate}}</span>
+
+                    <span *ngIf="element.invoice_status == 'paid'" class="status-label bg_success">{{ 'paidTxt' |
+                      translate }}</span>
+                    <span *ngIf="element.invoice_status == 'open'" class="status-label bg_reject text-white">{{
+                      'openTxt' |
+                      translate }}</span>
+                    <span *ngIf="element.invoice_status != 'open' && element.invoice_status != 'paid'"
+                      class="status-label bg_reject text-white">{{
+                      'failedTxt' |
+                      translate }}</span>
                   </div>
                 </div>
                 <div class="flex_btn mt-3">

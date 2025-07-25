@@ -12,6 +12,7 @@ import { UserService } from '../../../services/user.service';
 import { Subscription } from 'rxjs';
 import { TitleService } from '../../../title.service';
 import { SharedDataService } from '../shared-data.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'shared-favorites',
@@ -63,6 +64,7 @@ export class FavoritesComponent {
     private translate: TranslateService,
     private translateService: TranslateService,
     private titleService: TitleService,
+    private toaster: ToastrService
   ) {
 
     const url = this.router.url;
@@ -432,12 +434,15 @@ export class FavoritesComponent {
           this.allSelected = false;
           console.log('User deleted successfully:', response);
           if (response.message != '') {
-            this.showMatDialog(response.message, 'display');
+            this.toaster.success(response.message);
+            // this.showMatDialog(response.message, 'display');
           } else {
-            this.showMatDialog(response.message, 'display');
+             this.toaster.success(response.message);
+            // this.showMatDialog(response.message, 'display');
           }
         } else {
-          this.showMatDialog('Error in removing favorite. Please try again.', 'display');
+          this.toaster.error('Error in removing favorite. Please try again.');
+          // this.showMatDialog('Error in removing favorite. Please try again.', 'display');
         }
       },
       error => {

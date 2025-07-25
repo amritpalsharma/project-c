@@ -186,12 +186,11 @@
     }
     
 }
-@media (max-width:425px) {
+@media (max-width:575px) {
     .action-cancel {
         margin-right: 20px;
     }
     .buy-btn {
-        gap: 20px !important;
         justify-content: space-between;
     }
     .country-plan-2 .actions {
@@ -200,18 +199,18 @@
     }
 }
 
-@media (max-width:360px) {
-.btn.buy-btn {
-    flex-direction: column;
-    gap: 6px !important;
-    align-items: center !important;
-    .buy-button {
-        width: 100%;
-        & * {
-            text-align: center;
+@media (max-width:480px) {
+    .buy-btn {
+        flex-direction: column;
+        gap: 6px !important;
+        align-items: center !important;
+        .buy-button {
+            width: 100%;
+            & * {
+                text-align: center;
+            }
         }
     }
-}
 }
 
 .dark-theme .country-plan{

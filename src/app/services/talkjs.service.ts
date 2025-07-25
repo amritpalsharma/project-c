@@ -7,7 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class TalkService {
   private session: Talk.Session | null = null;
   private currentUser: Talk.User | null = null;
-  currentTheme: any = localStorage.getItem('theme') == 'dark' ? 'dark_custom_users' : 'default_users';
+  currentTheme: string = localStorage.getItem('theme') == 'dark' ? 'dark_custom_users' : 'default_users';
   public currentUserRole: string = '';
   public currentUserId: string = '';
   private talkSession: Talk.Session | null = null;
@@ -28,7 +28,7 @@ export class TalkService {
       name: user.name,
       email: user.email,
       photoUrl: user.photoUrl,
-      // welcomeMessage: '',
+      welcomeMessage: null,
       role: user.role || 'default',
       locale: localStorage.getItem('lang') || 'de'
       // role: 'default'
@@ -39,6 +39,20 @@ export class TalkService {
       me: this.currentUser,
     });
 
+
+    // Code FOr First Time Theme
+    if (!this.session) {
+      console.error('TalkJS session not initialized');
+      // return;
+    }
+    if (this.inbox) {
+      this.inbox.destroy();
+    }
+    console.info('Chat init with theme '+this.currentTheme)
+    this.inbox = this.session.createInbox({
+      theme: this.currentTheme
+    });
+    this.inbox.mount(document.getElementById('talkjs-container') as HTMLElement);
     return this.session;
   }
 

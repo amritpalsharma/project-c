@@ -135,6 +135,7 @@ export class GalleryTabComponent {
   addPhotosPopup(type: string = 'all') {
     const messageDialog = this.dialog.open(UploadPopupComponent, {
       width: '715px',
+      panelClass: 'upload_highligh_popup',
       position: {
         top: '150px',
       },

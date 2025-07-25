@@ -64,6 +64,7 @@ export class EditGeneralDetailsComponent {
   successTxt: string = '';
   errorTxt: string = '';
   errorMsg: string = '';
+  clubSearching: FormControl = new FormControl(null);
 
   domainCurrency: string = this.globalSetting.getDomainCurrency();
   constructor(
@@ -114,6 +115,14 @@ export class EditGeneralDetailsComponent {
       this.loadPositions();
       this.loadCountries();
       this.getJsonTranslations();
+    });
+
+
+    this.clubSearching.valueChanges.subscribe(() => {
+      const search = this.clubSearching.value?.toLowerCase() || '';
+      this.countries = this.countries.filter(
+        (country: any) => country.country_name.toLowerCase().includes(search)
+      );
     });
   }
 

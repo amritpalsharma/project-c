@@ -360,6 +360,7 @@ td.cdk-column-Download.mat-column-Download svg {
 @media (max-width: 767px) {
     .dashboard_tabs_add_btn {
         font-size: 16px;
+        padding: 7px 10px !important;
     }
     .performance_card_hedr .btn-outline-white {
         font-size: 0 !important;
@@ -388,6 +389,10 @@ td.cdk-column-Download.mat-column-Download svg {
 }
 .hide_table_for_desktop .space-y-2 .justify-between span:nth-child(1) {
     min-width: 120px !important;
+}
+button.dashboard_tabs_add_btn {
+    width: 100%;
+    justify-content: center;
 }
 }
 
@@ -450,4 +455,11 @@ td.cdk-column-Download.mat-column-Download svg {
   display: inline-flex;
   align-items: center;
   gap: 6px;
+}
+
+
+@media (max-width: 400px) {
+    .dashboard_tabs_add_btn {
+        font-size: 14px !important;
+    }
 }

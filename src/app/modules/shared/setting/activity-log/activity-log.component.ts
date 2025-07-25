@@ -10,6 +10,7 @@ import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { TalentService } from '../../../../services/talent.service';
 import { GlobalSettingsService } from '../../../../services/global-settings.service';
 import { SharedDataService } from '../../shared-data.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-activity-log',
   templateUrl: './activity-log.component.html',
@@ -35,6 +36,7 @@ export class ActivityLogComponent {
   currentLoggedInPermission: string = this.gloabalSettings.getCurrentViewOnly();
 
   constructor(
+    private toaster: ToastrService,
     private sharedDataService: SharedDataService,
     private activityService: ActivityService,
     public dialog: MatDialog,
@@ -164,7 +166,7 @@ export class ActivityLogComponent {
       return; // If no permission, exit early
     }
     if (this.selectedIds.length == 0) {
-      this.showMessage(this.selectActivityFirst);
+      this.toaster.error(this.selectActivityFirst);
       return false;
     }
 
@@ -180,7 +182,7 @@ export class ActivityLogComponent {
         this.getActivity();
         this.selectedIds = [];
         this.allSelected = false;
-        this.showMessage(response.message);
+        this.toaster.success(response.message);
       },
       error => {
         console.error('Error deleting activity:', error);

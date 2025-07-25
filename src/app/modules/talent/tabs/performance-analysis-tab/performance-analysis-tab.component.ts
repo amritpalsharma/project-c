@@ -7,6 +7,7 @@ import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { UnverifiedUserComponent } from '../../../shared/unverified-user/unverified-user.component';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 interface Report {
   id: string;
@@ -43,6 +44,7 @@ export class PerformanceAnalysisTabComponent implements OnInit {
     private talentService: TalentService,
     public dialog: MatDialog,
     private translateService: TranslateService,
+    private toaster: ToastrService,
     public router: Router) { }
 
   ngOnInit() {
@@ -123,13 +125,15 @@ export class PerformanceAnalysisTabComponent implements OnInit {
     const selectedReports = this.reports.filter(report => report.selected);
     let selectedIds: any[] = []; // Initialize as an array
     if (this.selectedIds.length <= 0) {
-      this.dialog.open(MessagePopupComponent, {
-        width: '500px',
-        data: {
-          message: this.selectPerformanceFirst,
-          action: 'no-performance-selected'
-        }
-      })
+      // this.dialog.open(MessagePopupComponent, {
+      //   width: '500px',
+      //   data: {
+      //     message: this.selectPerformanceFirst,
+      //     action: 'no-performance-selected'
+      //   }
+      // })
+      this.toaster.error(this.selectPerformanceFirst);
+      return;
     }
     if (selectedReports.length > 0) {
       // Collect all selected report IDs
@@ -177,13 +181,14 @@ export class PerformanceAnalysisTabComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(result)
       if (result.uploaded === true && result.message != undefined) {
-        this.dialog.open(MessagePopupComponent, {
-          width: '500px',
-          data: {
-            message: result.message,
-            action: 'no-performance-selected'
-          }
-        })
+        this.toaster.success(result.message);
+        // this.dialog.open(MessagePopupComponent, {
+        //   width: '500px',
+        //   data: {
+        //     message: result.message,
+        //     action: 'no-performance-selected'
+        //   }
+        // })
       }
       if (result) {
         this.loadReports(); // Reload reports after a new one is added
@@ -240,13 +245,14 @@ export class PerformanceAnalysisTabComponent implements OnInit {
 
   deleteReports() {
     if (this.selectedIds.length <= 0) {
-      this.dialog.open(MessagePopupComponent, {
-        width: '500px',
-        data: {
-          message: this.selectPerformanceFirst,
-          action: 'no-performance-selected'
-        }
-      })
+      // this.dialog.open(MessagePopupComponent, {
+      //   width: '500px',
+      //   data: {
+      //     message: this.selectPerformanceFirst,
+      //     action: 'no-performance-selected'
+      //   }
+      // })
+      this.toaster.error(this.selectPerformanceFirst);
       return
     }
     let lang_id = localStorage.getItem('lang_id');
@@ -268,6 +274,9 @@ export class PerformanceAnalysisTabComponent implements OnInit {
           this.talentService.deletePerformanceReport(params).subscribe(
             (response) => {
               if (response.status) {
+                if(response.message && response.message != ''){
+                  this.toaster.success(response.message);
+                }
                 this.loadReports();
                 this.selectedIds = [];
                 this.allSelected = false;

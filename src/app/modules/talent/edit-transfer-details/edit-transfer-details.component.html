@@ -25,9 +25,6 @@
           <div class="form-check1 checkbox1 1mb-3 checkbox-wrap checkbox-wrapper">
             <label class="form-label">{{'movingFrom' | translate}}</label>
             <div class="form-check checkbox mb-3">
-              <!-- <input class="form-check-input" type="checkbox" value="" id="onNoMoveFromTeam"
-                [(ngModel)]="is_team_from_manual" name="noClub" (ngModelChange)="onNoMoveFromTeam($event)"
-                [checked]="is_team_from_manual === true" /> -->
               <input class="form-check-input" id="onNoMoveFromTeam" type="checkbox" [(ngModel)]="is_team_from_manual" name="noClub"
                 (ngModelChange)="onNoMoveFromTeam($event)" />
               <label class="form-check-label form-label" for="onNoMoveFromTeam"> {{ 'noTeamAndClub' | translate }}
@@ -49,7 +46,7 @@
               <div class="col-sm-12 mb-3">
                 <!-- <label for="team_from" class="form-label">{{'team' | translate}}</label> -->
                 <input type="text" id="team_from_manual" name="team_from_manual"
-                  placeholder="{{'typeToSearch' | translate}}" [(ngModel)]="team_from_manual" required />
+                  placeholder="{{'typeToSearch' | translate}} {{team_from_manual}}" [(ngModel)]="team_from_manual" required />
               </div>
               <div class="col-sm-12">
                 <label class="form-label" for="team_country_id">{{ 'country' | translate }}</label>

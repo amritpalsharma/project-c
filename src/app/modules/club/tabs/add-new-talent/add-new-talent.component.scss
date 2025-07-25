@@ -12,6 +12,9 @@
   opacity: 1;
   cursor: pointer;
 }
+h4.title-text {
+  padding-right: 40px;
+}
 
 ::ng-deep {
   .user_list_full {
@@ -358,6 +361,26 @@
       top: 3px;
     }
   }
+}
+
+
+::ng-deep {
+  @media (max-width: 991px) {
+      .mobile-font {
+          font-size: 16px !important;
+        }
+    }
+  @media (max-width: 575px) {
+    .user-list.user_list_full {
+      .user-item {
+        flex-wrap: wrap;
+      }
+      input.user-input {
+        width: 100% !important;
+      }
+    }
+  }
+
 }
 
 ::ng-deep .dark-theme .user-item .emptyRequiredField {

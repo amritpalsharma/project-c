@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 import { UnverifiedUserComponent } from '../../unverified-user/unverified-user.component';
 import { GlobalSettingsService } from '../../../../services/global-settings.service';
 import { SharedDataService } from '../../shared-data.service';
+import { ToastrService } from 'ngx-toastr';
 
 interface Notification {
   id: number;
@@ -53,6 +54,7 @@ export class NotificationsLogComponent {
   currentLoggedInPermission: string = this.gloabalSettings.getCurrentViewOnly();
 
   constructor(
+    private toaster: ToastrService,
     private sharedDataService: SharedDataService,
     public dialog: MatDialog,
     public webPages: WebPages,
@@ -198,7 +200,7 @@ export class NotificationsLogComponent {
       return; // If no permission, exit early
     }
     if (this.selectedIds.length == 0) {
-      this.showMessage(this.selectNotificationFirst);
+      this.toaster.error(this.selectNotificationFirst);
       return false;
     }
     this.idsToDelete = this.selectedIds;
@@ -213,17 +215,18 @@ export class NotificationsLogComponent {
           this.fetchNotifications();
           this.selectedIds = [];
           this.allSelected = false;
-          this.showMessage(response.message);
+          this.toaster.success(response.message);
         }
         else {
-          this.showMessage('getting some error!');
+          // this.toaster.error('getting some error!');
         }
       }
     )
   }
 
   showMessage(message: string) {
-    this.showMatDialog(message, 'display', 'notify');
+    // this.showMatDialog(message, 'display', 'notify');
+    this.toaster.success(message);
   }
 
   showMatDialog(message: string, action: string, from: any = null) {

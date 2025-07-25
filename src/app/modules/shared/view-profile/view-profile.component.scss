@@ -12,7 +12,7 @@
   }
 
   .unlock-view {
-      height: 140px;
+    height: 140px;
   }
 
   .upgrade_unlock {
@@ -1537,7 +1537,7 @@ span.active_btn {
     }
   }
 
-  
+
 
   img.club_profile_mob_img {
     padding: 1rem;
@@ -1576,6 +1576,8 @@ span.active_btn {
     margin-left: 0;
     width: 100%;
 
+
+
     button {
       border-radius: 5px !important;
       background: #6FB95D !important;
@@ -1585,6 +1587,10 @@ span.active_btn {
       margin: 10px 8px 0 0 !important;
       border: 0;
       width: calc(100% - 8px);
+    }
+
+    .disabled_grey_btn {
+      background: #b7b9b2 !important;
     }
 
     span {
@@ -1602,13 +1608,13 @@ span.active_btn {
 }
 
 ::ng-deep {
-@media (max-width: 575px) {
-	.user-media span.profile_img_bg_circle {
-	    .profilepic_mobile_loader > div {
-	      margin-top: 10px !important;
-	    }
-	}
-}
+  @media (max-width: 575px) {
+    .user-media span.profile_img_bg_circle {
+      .profilepic_mobile_loader>div {
+        margin-top: 10px !important;
+      }
+    }
+  }
 }
 
 
@@ -1844,8 +1850,9 @@ span.active_btn {
 
 ::ng-deep .multiline-tooltip {
   white-space: pre-line;
-  text-align: left; /* Align text to the left */
-//   white-space: pre-line;
+  text-align: left;
+  /* Align text to the left */
+  //   white-space: pre-line;
 }
 
 ::ng-deep .call_button {
@@ -1857,6 +1864,10 @@ span.active_btn {
 
 ::ng-deep .dark-theme .call_button {
   color: #fff !important;
+}
+
+::ng-deep .premium_icons .disabled_grey_btn {
+  background: #b7b9b2 !important;
 }
 
 

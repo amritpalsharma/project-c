@@ -151,7 +151,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     this.route.params.subscribe(() => {
       this.getCoverImg();
-      this.activeTab = 'profile';
+      // this.activeTab = 'profile';
     });
     this.getBoosterData();
     this.isUserVerified = false;
@@ -180,7 +180,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.loadCountries();
       // this.getGalleryData();
       this.getJsonTranslations();
-      console.info('Language Updated')
+      // console.info('Language Updated')
     });
 
     this.getUserStatus();
@@ -426,7 +426,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   registredClubArr: any;
   customClubArr: any;
   currentClubInfo: any;
-  getUserProfile(userId: any) {
+  getUserProfile(userId: any) { 
+    console.info('active tab is ',this.activeTab)
     this.loading = true;  // Set loading to true before making the API call
     this.profileImageLoading = true;
     let params = {
@@ -866,6 +867,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     // setTimeout(() => {
     const dialogRef = this.dialog.open(EditHighlightsComponent, {
       width: '800px',
+      panelClass: 'edit_highlights_popup',
       data: {
         // images: this.userImages,
         // videos: this.userVideos,

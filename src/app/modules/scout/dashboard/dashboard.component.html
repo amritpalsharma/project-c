@@ -89,7 +89,7 @@
                         </svg>
 
                       </div>
-                      <a (click)="editBooster(booster)" class="edit-profile cursor-pointer team-badge_image"
+                      <a *ngIf="booster" (click)="editBooster(booster)" class="edit-profile cursor-pointer team-badge_image"
                         matTooltip="{{'boostedProfileViews' | translate}}" matTooltipPosition="right"><img
                           src="../../../assets/images/rocket-icon-{{currentThemeMode}}.svg" alt="" />
                       </a>
@@ -397,6 +397,50 @@
                         </div>
                       </div>
                     </div>
+                    <!-- Address -->
+                    <div class="col-sm-12 team-logos">
+                      <div class="row align-items-center">
+                        <div class="col-sm-3 team-badge_image">
+                          <svg *ngIf="currentThemeMode == 'dark'" width="22" height="30" viewBox="0 0 23 30" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_10817_31683)">
+                              <path
+                                d="M22.0586 11.25C22.0586 16.3711 15.3555 25.4883 12.4164 29.25C11.7117 30.1465 10.4055 30.1465 9.70078 29.25C6.76172 25.4883 0.0585938 16.3711 0.0585938 11.25C0.0585938 5.03906 4.98568 0 11.0586 0C17.1315 0 22.0586 5.03906 22.0586 11.25Z"
+                                fill="#1F4360" />
+                              <circle cx="11.5586" cy="10.5" r="4.5" fill="#BDE34F" />
+                            </g>
+                            <defs>
+                              <clipPath id="clip0_10817_31683">
+                                <rect width="22" height="30" fill="white" transform="translate(0.0585938)" />
+                              </clipPath>
+                            </defs>
+                          </svg>
+
+
+                          <svg *ngIf="currentThemeMode == 'light'" width="22" height="30" viewBox="0 0 22 30"
+                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_5197_10528)">
+                              <path
+                                d="M22 11.25C22 16.3711 15.2969 25.4883 12.3578 29.25C11.6531 30.1465 10.3469 30.1465 9.64219 29.25C6.70313 25.4883 0 16.3711 0 11.25C0 5.03906 4.92708 0 11 0C17.0729 0 22 5.03906 22 11.25Z"
+                                fill="#023A4A" />
+                              <circle cx="11.5" cy="10.5" r="4.5" fill="#6FB95D" />
+                            </g>
+                            <defs>
+                              <clipPath id="clip0_5197_10528">
+                                <rect width="22" height="30" fill="white" />
+                              </clipPath>
+                            </defs>
+                          </svg>
+
+                        </div>
+                        <div class="col-sm-9 p-0 team-badge_content">
+                          <h6 class="title_2">{{ 'address' | translate}}</h6>
+                          <h5 class="title-1" *ngIf="user?.meta?.address && user?.meta?.address !== 'undefined'">
+                            {{user?.meta?.address}}</h5>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Zip COde -->
                     <div class="col-sm-6 team-logos ">
                       <div class="row align-items-center">
                         <div class="col-sm-3 team-badge_image">
@@ -427,7 +471,8 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-sm-6 team-logos">
+                    <!-- Social Media -->
+                    <div class="col-sm-6 team-logos" *ngIf="user?.meta?.sm_x && user?.meta?.sm_instagram && user?.meta?.sm_tiktok && user?.meta?.sm_youtube && user?.meta?.sm_vimeo">
                       <div class="row align-items-center">
                         <div class="col-lg-12 p-0 team-badge_content social_iconlist">
                           <h6 class="title_2"
@@ -569,51 +614,6 @@
                         </div>
                       </div>
                     </div>
-
-                    <div class="col-sm-12 team-logos">
-                      <div class="row align-items-center">
-                        <div class="col-sm-3 team-badge_image">
-                          <svg *ngIf="currentThemeMode == 'dark'" width="22" height="30" viewBox="0 0 23 30" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_10817_31683)">
-                              <path
-                                d="M22.0586 11.25C22.0586 16.3711 15.3555 25.4883 12.4164 29.25C11.7117 30.1465 10.4055 30.1465 9.70078 29.25C6.76172 25.4883 0.0585938 16.3711 0.0585938 11.25C0.0585938 5.03906 4.98568 0 11.0586 0C17.1315 0 22.0586 5.03906 22.0586 11.25Z"
-                                fill="#1F4360" />
-                              <circle cx="11.5586" cy="10.5" r="4.5" fill="#BDE34F" />
-                            </g>
-                            <defs>
-                              <clipPath id="clip0_10817_31683">
-                                <rect width="22" height="30" fill="white" transform="translate(0.0585938)" />
-                              </clipPath>
-                            </defs>
-                          </svg>
-
-
-                          <svg *ngIf="currentThemeMode == 'light'" width="22" height="30" viewBox="0 0 22 30"
-                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_5197_10528)">
-                              <path
-                                d="M22 11.25C22 16.3711 15.2969 25.4883 12.3578 29.25C11.6531 30.1465 10.3469 30.1465 9.64219 29.25C6.70313 25.4883 0 16.3711 0 11.25C0 5.03906 4.92708 0 11 0C17.0729 0 22 5.03906 22 11.25Z"
-                                fill="#023A4A" />
-                              <circle cx="11.5" cy="10.5" r="4.5" fill="#6FB95D" />
-                            </g>
-                            <defs>
-                              <clipPath id="clip0_5197_10528">
-                                <rect width="22" height="30" fill="white" />
-                              </clipPath>
-                            </defs>
-                          </svg>
-
-                        </div>
-                        <div class="col-sm-9 p-0 team-badge_content">
-                          <h6 class="title_2">{{ 'address' | translate}}</h6>
-                          <h5 class="title-1" *ngIf="user?.meta?.address && user?.meta?.address !== 'undefined'">
-                            {{user?.meta?.address}}</h5>
-                          <!-- <h5 class="title-1" *ngIf="!user?.meta?.address">NA</h5> -->
-                        </div>
-                      </div>
-                    </div>
-
                   </div>
                 </div>
               </div>
