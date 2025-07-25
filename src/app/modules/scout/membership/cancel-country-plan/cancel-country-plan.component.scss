@@ -78,3 +78,19 @@
     margin-top: 20px;
     font-weight: 500;
 }
+
+
+@media (min-width: 576px) {
+    .break_for_mobile {
+        display: none;
+    }
+}
+
+@media (max-width: 575px) {
+.country-radio {
+    margin-top: 5px;
+}
+.country-label {
+    align-items: flex-start;
+}
+}

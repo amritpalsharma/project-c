@@ -3,7 +3,17 @@
     <!-- Dialog header -->
     <div class="modal-header pb-2">
       <h5 class="modal-title" id="couponModalLabel">{{'enterCouponCode' | translate}}</h5>
-      <button type="button" class="btn-close" (click)="closeDialog()"></button>
+      <!-- <button type="button" class="btn-close" (click)="closeDialog()"></button> -->
+      <div class="close_buttons" *ngIf='theme=="light"'>
+        <button class="close-btn border-0 padding-0" aria-label="Close" (click)="closeDialog()">
+          <img src="../../../../assets/images/carbon_close-outline-light.svg" alt="">
+        </button>
+      </div>
+      <div class="close_buttons" *ngIf='theme=="dark"'>
+        <button class="close-btn border-0 padding-0" aria-label="Close" (click)="closeDialog()">
+          <img src="../../../../assets/images/carbon_close-outline.svg" alt="">
+        </button>
+      </div>
     </div>
 
     <!-- Dialog body -->
@@ -13,10 +23,10 @@
         <input type="text" class="form-control p-3 coupon_input" id="couponCode" [(ngModel)]="couponCode"
           placeholder="{{'enterYourCouponCode' | translate}}" (input)="onCouponInput()" />
 
-        
 
-        <button *ngIf="!couponApplied" type="button" class="btn bg-green btn-success coupon-btn" [disabled]="!couponCode.trim()"
-          (click)="applyCoupon()">
+
+        <button *ngIf="!couponApplied" type="button" class="btn bg-green btn-success coupon-btn"
+          [disabled]="!couponCode.trim()" (click)="applyCoupon()">
           {{ 'checkCoupon' | translate }}
         </button>
 

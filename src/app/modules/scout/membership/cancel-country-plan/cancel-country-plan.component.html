@@ -3,7 +3,7 @@
         <div class="dialog-header m-auto">
             <h2>{{'countryPlanCancel' | translate}}</h2>
             <div class="close_buttons" *ngIf='theme!="dark"'>
-                <img src="../../../assets/images/close-icon-circle.png" alt="" class="" (click)="close()" />
+               <img src="../../../../assets/images/carbon_close-outline-light.svg" alt="" (click)="close()">
             </div>
             <div class="close_buttons" *ngIf='theme=="dark"'>
                 <img src="../../../assets/images/carbon_close-outline.svg" alt="" class="" (click)="close()" />
@@ -17,7 +17,7 @@
                 <label class="country-label">
                     <input type="radio" name="country" [value]="country.id" [(ngModel)]="selectedCountryId" [disabled]="country.stripe_cancel_at != null" class="country-radio" />
                     <span class="country-info">
-                        {{ country.package_name }} - {{ country.price }} {{country.currency}}/{{ country.interval === 'monthly' ? ('month' | translate) : ('year' | translate) }} {{country.stripe_cancel_at != null ? ' - Cancelled' : ''}}
+                        {{ country.package_name }} <br class="break_for_mobile"> {{ country.price }} {{country.currency}}/{{ country.interval === 'monthly' ? ('month' | translate) : ('year' | translate) }} {{country.stripe_cancel_at != null ? ' - Cancelled' : ''}}
                     </span>
                 </label>
             </div>

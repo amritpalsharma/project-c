@@ -15,6 +15,7 @@ export class CouponCodeAlertComponent implements OnInit {
   couponSuccess: string = '';
   couponApplied: boolean = false;
   isupgradePlan: boolean = false;
+  theme: string = localStorage.getItem('theme') || 'dark';
 
   constructor(
     public dialogRef: MatDialogRef<CouponCodeAlertComponent>,
@@ -108,7 +109,7 @@ export class CouponCodeAlertComponent implements OnInit {
   // Close the dialog
   closeDialog(): void {
     if (this.couponCode != '' && this.couponApplied) {
-      this.dialogRef.close(this.couponCode); // Pass coupon code (if applied) or null
+      this.dialogRef.close(); // Pass coupon code (if applied) or null
     } else {
       //  this.dialogRef.close('proceed_to_checkout_without_coupon'); // Pass coupon code (if applied) or null
       this.dialogRef.close(false);
