@@ -53,7 +53,12 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 
 
-
+// By Amrit
+import { NgSelectModule } from '@ng-select/ng-select';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 @NgModule({
   declarations: [
     IndexComponent,
@@ -105,7 +110,12 @@ import { NotFoundComponent } from './not-found/not-found.component';
     TranslateModule, // Make sure to include TranslateModule here if using in this module
     MatProgressSpinnerModule,
     ReactiveFormsModule,
-    TranslateModule // Import TranslateModule here if using it in this module
+    TranslateModule, // Import TranslateModule here if using it in this module
+    NgSelectModule,
+    NgxMatSelectSearchModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule
   ],
   providers: [
     AuthService,

@@ -2,7 +2,7 @@ import { Component, HostListener, ViewChild, ElementRef, OnInit } from '@angular
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { AuthService } from '../../../services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
+import { FormControl, NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
 import { ThemeService } from '../../../services/theme.service';
@@ -308,6 +308,11 @@ export class HeaderComponent implements OnInit {
   terms: string = '';
   contact: string = '';
   gender: string = 'm';
+
+  nationFilterCtrl: FormControl = new FormControl('');
+  clubFilterCtrl: FormControl = new FormControl('');
+  displayedCountries: any;
+  displayedClubs: any;
   constructor(
     private sharedservice: SharedService,
     private themeService: ThemeService,
@@ -386,6 +391,8 @@ export class HeaderComponent implements OnInit {
     } else if (this.language === 'se') {
       this.countrie = this.countrie_se;
     }
+    this.displayedCountries = this.countrie;
+    console.info('this.displayedCountries',this.displayedCountries)
   }
 
   isScrolled = false;
@@ -1241,6 +1248,7 @@ export class HeaderComponent implements OnInit {
         if (response.status) {
           this.clubs = this.sortClubsByName(response.data.clubs);
           console.info(this.clubs)
+          this.displayedClubs = this.clubs;
         } else {
           console.error('No data found');
         }

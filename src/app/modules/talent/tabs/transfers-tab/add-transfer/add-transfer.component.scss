@@ -170,10 +170,55 @@ mat-datepicker-toggle {
             color: white !important;
         }
     }
+
+    mat-label {
+        margin-bottom: 5px;
+        font-weight: 500;
+        display: block;
+    }
+
+    .mat-select-search-clear {
+        display: none !important;
+    }
 }
 
 ::ng-deep {
-    #internationalPlayer, #team_to_m_country_id, #session, #country {
+
+    #internationalPlayer,
+    #team_to_m_country_id,
+    #session,
+    #country {
         padding: 10px 12px !important;
+    }
+
+    .dark-theme {
+        .mat-select-search-input {
+            color: #fff !important;
+            background-color: #072944 !important;
+        }
+
+        .mat-select-search-no-entries-found {
+            color: #fff !important;
+        }
+
+        .mat-select-search-input::-webkit-input-placeholder {
+            /* Chrome/Opera/Safari */
+            color: #fff !important;
+        }
+
+        .mat-select-search-input::-moz-placeholder {
+            /* Firefox 19+ */
+            color: #fff !important;
+        }
+
+        .mat-select-search-input:-ms-input-placeholder {
+            /* IE 10+ */
+            color: #fff !important;
+        }
+
+        .mat-select-search-input:-moz-placeholder {
+            /* Firefox 18- */
+            color: #fff !important;
+        }
     }
 }

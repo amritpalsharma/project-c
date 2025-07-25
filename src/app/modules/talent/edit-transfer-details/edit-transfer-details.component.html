@@ -25,8 +25,8 @@
           <div class="form-check1 checkbox1 1mb-3 checkbox-wrap checkbox-wrapper">
             <label class="form-label">{{'movingFrom' | translate}}</label>
             <div class="form-check checkbox mb-3">
-              <input class="form-check-input" id="onNoMoveFromTeam" type="checkbox" [(ngModel)]="is_team_from_manual" name="noClub"
-                (ngModelChange)="onNoMoveFromTeam($event)" />
+              <input class="form-check-input" id="onNoMoveFromTeam" type="checkbox" [(ngModel)]="is_team_from_manual"
+                name="noClub" (ngModelChange)="onNoMoveFromTeam($event)" />
               <label class="form-check-label form-label" for="onNoMoveFromTeam"> {{ 'noTeamAndClub' | translate }}
               </label>
             </div>
@@ -46,15 +46,21 @@
               <div class="col-sm-12 mb-3">
                 <!-- <label for="team_from" class="form-label">{{'team' | translate}}</label> -->
                 <input type="text" id="team_from_manual" name="team_from_manual"
-                  placeholder="{{'typeToSearch' | translate}} {{team_from_manual}}" [(ngModel)]="team_from_manual" required />
+                  placeholder="{{'typeToSearch' | translate}} {{team_from_manual}}" [(ngModel)]="team_from_manual"
+                  required />
               </div>
               <div class="col-sm-12">
                 <label class="form-label" for="team_country_id">{{ 'country' | translate }}</label>
-                <select class="form-select" id="team_from_m_country_id" name="team_from_m_country_id"
-                  [(ngModel)]="team_from_m_country_id">
-                  <option value="" [ngValue]="null">{{'select' | translate}}</option>
-                  <option *ngFor="let country of countries" [ngValue]="country.id"> {{ country.country_name }} </option>
-                </select>
+                <mat-form-field appearance="fill" class="w-100 custom_select_mat">
+                  <mat-select id="team_from_m_country_id" name="team_from_m_country_id"
+                    [(ngModel)]="team_from_m_country_id" class="form-select mat_search_selector">
+                    <ngx-mat-select-search [formControl]="nationFilterCtrl"
+                      placeholder="Search countries"></ngx-mat-select-search>
+                    <mat-option *ngFor="let country of displayedCountries" [value]="country.id">
+                      {{ country.country_name }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
               </div>
             </div>
           </div>
@@ -87,11 +93,21 @@
               </div>
               <div class="col-sm-12">
                 <label for="team_to_m_country_id" class="form-label">{{'country' | translate}}</label>
-                <select class="form-select" id="team_to_m_country_id" name="team_to_m_country_id"
+                <!-- <select class="form-select" id="team_to_m_country_id" name="team_to_m_country_id"
                   [(ngModel)]="team_to_m_country_id">
                   <option value="" [ngValue]="null">{{'select' | translate}}</option>
                   <option *ngFor="let country of countries" [ngValue]="country.id"> {{ country.country_name }} </option>
-                </select>
+                </select> -->
+                <mat-form-field appearance="fill" class="w-100 custom_select_mat">
+                  <mat-select id="team_to_m_country_id" name="team_to_m_country_id" [(ngModel)]="team_to_m_country_id"
+                    class="form-select mat_search_selector">
+                    <ngx-mat-select-search [formControl]="nationFilterCtrl2"
+                      placeholder="Search countries"></ngx-mat-select-search>
+                    <mat-option *ngFor="let country of displayedCountries2" [value]="country.id">
+                      {{ country.country_name }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
               </div>
             </div>
           </div>
@@ -105,12 +121,21 @@
         <div class="form-group moving_select col-lg-6">
           <label for="session" class="form-label">{{'session' | translate}}</label>
           <!-- <input class="form-control" type="text" id="session" name="session" [(ngModel)]="transfer.session" required> -->
-          <select [(ngModel)]="transfer.session" class="form-select" required id="session" name="session" required>
+          <!-- <select [(ngModel)]="transfer.session" class="form-select" required id="session" name="session" required>
             <option [value]="0" disabled>{{ 'select' | translate }}</option>
             <option *ngFor="let session of sessionArr" [value]="session">
               {{ session }}
             </option>
-          </select>
+          </select> -->
+          <mat-form-field appearance="fill" class="w-100 custom_select_mat">
+            <mat-select [(ngModel)]="transfer.session" class="form-select" required id="session" name="session" required
+              class="form-select mat_search_selector">
+              <mat-option [value]="0" disabled>{{ 'select' | translate }}</mat-option>
+              <mat-option *ngFor="let session of sessionArr" [value]="session">
+                {{ session }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
         <div class="form-group moving_select col-lg-6">
           <label for="date_of_transfer" class="form-label">{{'transferDate' | translate}}</label>

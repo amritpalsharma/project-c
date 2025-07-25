@@ -202,13 +202,14 @@ mat-datepicker-toggle {
 }
 
 @media (min-width: 481px) {
-.upto-date {
-  border-right: none !important;
-  border-radius: 10px 0px 0px 10px !important;
-}
-.upto-date-2 {
-  border-radius: 0px 10px 10px 0px !important;
-}
+  .upto-date {
+    border-right: none !important;
+    border-radius: 10px 0px 0px 10px !important;
+  }
+
+  .upto-date-2 {
+    border-radius: 0px 10px 10px 0px !important;
+  }
 }
 
 
@@ -299,18 +300,65 @@ mat-datepicker-toggle {
       background: #0c3453;
       color: white !important;
     }
+
     .dark-theme .mat-mdc-select-min-line {
       color: white !important;
     }
   }
+
   .dark-theme .mdc-text-field--filled:not(.mdc-text-field--disabled) {
     background-color: #0c3453;
   }
-  .dark-theme .mat-select-search-no-entries-found{
-     color: white !important;
+
+  .dark-theme .mat-select-search-no-entries-found {
+    color: white !important;
+  }
+
+  mat-label {
+    margin-bottom: 5px;
+    font-weight: 500;
+    display: block;
+  }
+
+  .mat-select-search-clear {
+    display: none !important;
+  }
+
+  .mat_search_selector,
+  .session_field {
+    padding: 11px;
   }
 }
 
-.mat_search_selector {
-  padding: 11px;
+
+
+::ng-deep .dark-theme {
+  .mat-select-search-input {
+    color: #fff !important;
+    background-color: #072944 !important;
+  }
+
+  .mat-select-search-no-entries-found {
+    color: #fff !important;
+  }
+
+  .mat-select-search-input::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: #fff !important;
+  }
+
+  .mat-select-search-input::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #fff !important;
+  }
+
+  .mat-select-search-input:-ms-input-placeholder {
+    /* IE 10+ */
+    color: #fff !important;
+  }
+
+  .mat-select-search-input:-moz-placeholder {
+    /* Firefox 18- */
+    color: #fff !important;
+  }
 }

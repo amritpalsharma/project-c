@@ -222,9 +222,11 @@ mat-datepicker-toggle {
     margin-bottom: 15px;
     padding: 0px 15px;
   }
+
   .hide_lable_mobile {
     display: none;
   }
+
   .align_radio_ {
     input.form-check-input {
       position: relative;
@@ -306,12 +308,56 @@ mat-datepicker-toggle {
     .mdc-line-ripple {
       display: none !important;
     }
-    .mat-mdc-select-value, .form-select {
+
+    .mat-mdc-select-value,
+    .form-select {
       --bs-form-select-bg-img: none !important;
     }
+
     .dark-theme .custom_search_mat {
       background: #0c3453;
       color: white !important;
     }
+  }
+
+  mat-label {
+    margin-bottom: 5px;
+    font-weight: 500;
+    display: block;
+  }
+
+  .mat-select-search-clear {
+    display: none !important;
+  }
+}
+
+::ng-deep .dark-theme {
+  .mat-select-search-input {
+    color: #fff !important;
+    background-color: #072944 !important;
+  }
+
+  .mat-select-search-no-entries-found {
+    color: #fff !important;
+  }
+
+  .mat-select-search-input::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: #fff !important;
+  }
+
+  .mat-select-search-input::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #fff !important;
+  }
+
+  .mat-select-search-input:-ms-input-placeholder {
+    /* IE 10+ */
+    color: #fff !important;
+  }
+
+  .mat-select-search-input:-moz-placeholder {
+    /* Firefox 18- */
+    color: #fff !important;
   }
 }

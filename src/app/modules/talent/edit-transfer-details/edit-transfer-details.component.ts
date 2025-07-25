@@ -64,7 +64,10 @@ export class EditTransferDetailsComponent {
     '01/02'
   ];
 
-
+  nationFilterCtrl = new FormControl('');
+  nationFilterCtrl2 = new FormControl('');
+  displayedCountries: any;
+  displayedCountries2: any;
   constructor(
     private toastr: ToastrService,
     private cdr: ChangeDetectorRef,
@@ -151,7 +154,20 @@ export class EditTransferDetailsComponent {
 
 
 
+    this.nationFilterCtrl.valueChanges.subscribe(() => {
+      const search = this.nationFilterCtrl.value?.toLowerCase() || '';
+      this.displayedCountries = this.countries.filter(
+        (country: any) => country.country_name.toLowerCase().includes(search)
+      );
+    });
 
+
+    this.nationFilterCtrl2.valueChanges.subscribe(() => {
+      const search = this.nationFilterCtrl2.value?.toLowerCase() || '';
+      this.displayedCountries2 = this.countries.filter(
+        (country: any) => country.country_name.toLowerCase().includes(search)
+      );
+    });
 
   }
 
@@ -287,6 +303,8 @@ export class EditTransferDetailsComponent {
       (response: any) => {
         if (response && response.status) {
           this.countries = response.data.countries;
+          this.displayedCountries = response.data.countries;
+          this.displayedCountries2 = response.data.countries;
         }
       },
       (error: any) => {

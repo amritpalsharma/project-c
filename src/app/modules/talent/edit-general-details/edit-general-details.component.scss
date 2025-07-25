@@ -1,215 +1,249 @@
-mat-datepicker-toggle{
+mat-datepicker-toggle {
   margin-left: -50px;
 }
+
 .dialog-container {
-   
-    border-radius: 4px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  .dialog-content{
-    padding: 0px 20px 20px 20px;
-  }
-  .dialog-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .personal_edit {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 20px 0px 20px;
-  }
-  .position_inputs mat-select{
-    width: 100%;
-    padding: 12px 14px;
-    line-height: normal;
-    border: 1px solid #bbb7b7;
-    border-radius: 10px;
-    font-weight: 300;
-  }
-  .close-btn {
-    background: none;
-    font-size: 19px;
-    cursor: pointer;
-    font-weight: 600;
-    padding: 2px 9px;
-    color: #849aa2;
-    border: 4px solid #849aa2;
-    border-radius: 50%;
-  }
-  
-  .dialog-content {
-    margin-top: 20px;
-  }
-  
-  .form-group {
-    margin-bottom: 26px;
-    padding: 0px 32px;
-  }
-  .market_input-gap{
-    gap: 10px;
-    padding-right: 10px;
-  }
-  .form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 500;
-  }
-  .speed_inputs{
-    gap: 10px;
-    padding-right: 42px !important;
-  }
-  .form-group input, .form-group select {
-    width:100%;
-    padding: 14px;
-    line-height: normal;
-    border: 1px solid #bbb7b7;
-    border-radius: 10px;
-    font-weight: 300;
-  }
-  .social_network{
-    // width:94%;
-    width: 100%;
-    padding:16px 14px;
-    line-height: normal;
-    border: 1px solid #bbb7b7;
-    border-radius: 10px;
-    margin-bottom: 26px;
-  }
-  span.note_titles {
-    margin-left: 26px;
-    font-weight: 500;
-    font-size: 16px;
+
+  border-radius: 4px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
-.position_inputs{
+
+.dialog-content {
+  padding: 0px 20px 20px 20px;
+}
+
+.dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.personal_edit {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 20px 0px 20px;
+}
+
+.position_inputs mat-select {
+  width: 100%;
+  padding: 12px 14px;
+  line-height: normal;
+  border: 1px solid #bbb7b7;
+  border-radius: 10px;
+  font-weight: 300;
+}
+
+.close-btn {
+  background: none;
+  font-size: 19px;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 2px 9px;
+  color: #849aa2;
+  border: 4px solid #849aa2;
+  border-radius: 50%;
+}
+
+.dialog-content {
+  margin-top: 20px;
+}
+
+.form-group {
+  margin-bottom: 26px;
+  padding: 0px 32px;
+}
+
+.market_input-gap {
+  gap: 10px;
+  padding-right: 10px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.speed_inputs {
+  gap: 10px;
+  padding-right: 42px !important;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 14px;
+  line-height: normal;
+  border: 1px solid #bbb7b7;
+  border-radius: 10px;
+  font-weight: 300;
+}
+
+.social_network {
+  // width:94%;
+  width: 100%;
+  padding: 16px 14px;
+  line-height: normal;
+  border: 1px solid #bbb7b7;
+  border-radius: 10px;
+  margin-bottom: 26px;
+}
+
+span.note_titles {
+  margin-left: 26px;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.position_inputs {
   margin-bottom: 36px;
 }
 
-.social_icon{
+.social_icon {
   position: absolute;
   top: 10px;
   left: 46px;
 }
+
 .social_network input {
-border: none;
-background: none;
+  border: none;
+  background: none;
 }
+
 .social_network input:focus-visible {
   border: none !important;
   outline: none;
-  }
+}
+
 span.social_heading {
   font-size: 16px;
   font-weight: 700;
 }
-  .dialog-actions {
-    margin-top: 20px;
-    text-align: right;
-    padding: 0px 20px 20px 20px;
-  }
-  
-  .cancel-btn, .save-btn {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-  }
-  
-  .cancel-btn {
-    background: none;
-    color: #FD5454;
-    font-weight: 600;
-    width: 45%;
-  }
 
-  .social_form-box{
-    margin: 20px 0px;
-  }
-  .save-btn {
-    background: #58bc5c;
-    color: white;
-    font-weight: 600;
-    width: 45%;
-  }
-  .dialog-header h2 {
-    font-size: 18px;
-    font-weight: 600;
+.dialog-actions {
+  margin-top: 20px;
+  text-align: right;
+  padding: 0px 20px 20px 20px;
 }
-.overflow-card{
+
+.cancel-btn,
+.save-btn {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.cancel-btn {
+  background: none;
+  color: #FD5454;
+  font-weight: 600;
+  width: 45%;
+}
+
+.social_form-box {
+  margin: 20px 0px;
+}
+
+.save-btn {
+  background: #58bc5c;
+  color: white;
+  font-weight: 600;
+  width: 45%;
+}
+
+.dialog-header h2 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.overflow-card {
   max-height: 60vh;
   overflow-y: auto;
   overflow-x: hidden;
-  padding:0px 20px 0px 20px;
+  padding: 0px 20px 0px 20px;
 }
-.mat-mdc-dialog-surface{
+
+.mat-mdc-dialog-surface {
   overflow: hidden !important;
 }
+
 .overflow-card::-webkit-scrollbar {
   width: 6px;
 }
+
 .overflow-card::-webkit-scrollbar-thumb {
-  background: rgb(228, 228, 228); 
+  background: rgb(228, 228, 228);
   border-radius: 10px;
 }
 
 @media (min-width:2000px) {
- .form-group {
+  .form-group {
     padding: 0px 10px !important;
-}
-.speed_inputs{
+  }
+
+  .speed_inputs {
     padding-right: 10px !important;
   }
 }
 
 @media (max-width:1440px) {
-  .market_input-gap{
+  .market_input-gap {
     padding: 0 !important;
   }
 }
+
 @media (max-width:1024px) {
   .form-group {
     padding: 0px 26px;
-}
-.social_network{
-  width: 100% !important;
-}
-.social_network input {
-  max-width: 180px;
+  }
+
+  .social_network {
+    width: 100% !important;
+  }
+
+  .social_network input {
+    max-width: 180px;
   }
 
 }
-@media(max-width:768px){
-  .mobile-input{
+
+@media(max-width:768px) {
+  .mobile-input {
     width: 100% !important;
   }
-  .speed_inputs{
+
+  .speed_inputs {
     gap: 10px;
-     padding-right: 26px !important; 
-}
-.social_network input {
-  max-width: 100%;
+    padding-right: 26px !important;
   }
+
+  .social_network input {
+    max-width: 100%;
+  }
+
   .form-group {
     padding: 0px 15px;
-}
-.speed_inputs {
-  padding-left: 15px !important;
-  padding-right: 15px !important;
-}
+  }
+
+  .speed_inputs {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
 }
 
-@media(max-width:575px){
-.social_network {
-  padding: 10px 14px !important;
-}
+@media(max-width:575px) {
+  .social_network {
+    padding: 10px 14px !important;
+  }
 }
 
 
-@media(max-width:480px){
-.ground-image svg {
+@media(max-width:480px) {
+  .ground-image svg {
     width: 100% !important;
-}
+  }
 }
 
 
@@ -235,7 +269,8 @@ span.social_heading {
       display: none !important;
     }
 
-    .mat-mdc-select-value, .form-select {
+    .mat-mdc-select-value,
+    .form-select {
       --bs-form-select-bg-img: none !important;
     }
 
@@ -243,42 +278,52 @@ span.social_heading {
       background: #0c3453;
       color: white !important;
     }
-    
+
   }
 
-  
-    mat-label {
-        margin-bottom: 5px;
-        font-weight: 500;
-        display: block;
-    }
-    .mat-select-search-clear {
-      display: none !important;
-    }
 
-  #internationalPlayer{
-      padding: 12px 14px !important;
+  mat-label {
+    margin-bottom: 5px;
+    font-weight: 500;
+    display: block;
+  }
+
+  .mat-select-search-clear {
+    display: none !important;
+  }
+
+  #internationalPlayer {
+    padding: 12px 14px !important;
   }
 }
 
 ::ng-deep .dark-theme {
   .mat-select-search-input {
-        color: #fff !important;
-        background-color: #072944 !important;
+    color: #fff !important;
+    background-color: #072944 !important;
   }
+
   .mat-select-search-no-entries-found {
     color: #fff !important;
   }
-  .mat-select-search-input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+
+  .mat-select-search-input::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
     color: #fff !important;
   }
-  .mat-select-search-input::-moz-placeholder { /* Firefox 19+ */
+
+  .mat-select-search-input::-moz-placeholder {
+    /* Firefox 19+ */
     color: #fff !important;
   }
-  .mat-select-search-input:-ms-input-placeholder { /* IE 10+ */
+
+  .mat-select-search-input:-ms-input-placeholder {
+    /* IE 10+ */
     color: #fff !important;
   }
-  .mat-select-search-input:-moz-placeholder { /* Firefox 18- */
+
+  .mat-select-search-input:-moz-placeholder {
+    /* Firefox 18- */
     color: #fff !important;
   }
 }
