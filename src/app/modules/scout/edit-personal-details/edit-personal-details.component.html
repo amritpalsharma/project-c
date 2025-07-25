@@ -36,7 +36,7 @@
           <textarea id="address" name="address" [(ngModel)]="address" required></textarea>
         </div>
 
-         <!-- Zipcode -->
+        <!-- Zipcode -->
         <div class="form-group col-lg-6">
           <label for="zipcode">{{ 'zipCode' | translate }}: </label>
           <input type="text" id="zipcode" name="zipcode" [(ngModel)]="zipcode" required>
@@ -50,11 +50,24 @@
 
         <div class="form-group col-lg-6">
           <label for="country">{{ 'country' | translate }}: </label>
-          <select name="user_nationalities" [(ngModel)]="country" id="" class="cupen-btn-1 form-select">
+          <!-- <select name="user_nationalities" [(ngModel)]="country" id="" class="cupen-btn-1 form-select">
             <option value="null" [selected]="!country || !scoutNation">{{'select' | translate}}</option>
             <option [value]="scout_country.id" *ngFor="let scout_country of this.countries"
               [selected]="scout_country.id == country">{{scout_country.country_name}}</option>
-          </select>
+          </select> -->
+          <mat-form-field appearance="fill" class="w-100 custom_select_mat">
+            <mat-select [(ngModel)]="country" class="form-select mat_search_selector"
+              [ngClass]="{ 'error-border': !country }" id="nationality_input" name="nationality_input"
+              name="nationality22" required>
+              <!-- Search input inside dropdown -->
+              <ngx-mat-select-search [formControl]="countrySearching" placeholder="A"></ngx-mat-select-search>
+              <ng-container *ngIf="this.countries">
+                <mat-option *ngFor="let country of this.countries" [value]="country.id">
+                  {{ country.country_name }}
+                </mat-option>
+              </ng-container>
+            </mat-select>
+          </mat-form-field>
         </div>
         <!-- Contact Number -->
         <div class="form-group col-lg-6">

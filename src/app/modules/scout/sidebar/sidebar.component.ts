@@ -43,7 +43,7 @@ export class SidebarComponent {
     }
     this.getUserStatus();
   }
-
+  isLoadingStatus: boolean = true;
   getUserStatus() {
     this.socketService.getLoggedInUserStatus().then((result) => {
       if (result == 2) {
@@ -53,6 +53,7 @@ export class SidebarComponent {
         this.isUserVerified = false;
       }
       this.locksideBar = false;
+      this.isLoadingStatus = false;
     });
   }
 

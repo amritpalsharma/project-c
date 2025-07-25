@@ -1526,5 +1526,6 @@
   "areYouSureToRemoveScout": "Vuoi rimuovere questo scout dal tuo profilo?",
   "yesRemoveScout": "Sì, rimuovi",
   "cancelRemoveScout": "No, non rimuovere",
-  "areYouSureToUpdateReviewTraining": "Sei sicuro di voler aggiornare lo stato dell'addestramento di revisione?"
+  "areYouSureToUpdateReviewTraining": "Sei sicuro di voler aggiornare lo stato dell'addestramento di revisione?",
+  "noTeamMemberAddedHere": "Nessun Membro del team è stato aggiunto qui."
 }

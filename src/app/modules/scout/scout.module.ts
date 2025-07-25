@@ -37,7 +37,7 @@ import { DeletePopupComponent } from './delete-popup/delete-popup.component';
 import { EditHighlightsComponent } from './tabs/edit-highlights/edit-highlights.component';
 import { PlanComponent } from './plan/plan.component';
 import { AddCardComponent } from './membership/add-card/add-card.component';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HistoryTabComponent } from './tabs/history-tab/history-tab.component';
 import { LoaderComponent } from './loader/loader.component';
 import { PortfolioTabComponent } from './tabs/portfolio-tab/portfolio-tab.component';
@@ -52,6 +52,10 @@ import { AddRepresentatorPopupComponent } from './add-representator-popup/add-re
 import { InviteScoutTalentPopupComponent } from './invite-scout-talent-popup/invite-scout-talent-popup.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 // import { NgxStripeModule } from 'ngx-stripe';
+
+// New By Amrit
+import { NgSelectModule } from '@ng-select/ng-select';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 @NgModule({
   declarations: [
@@ -112,7 +116,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatProgressSpinnerModule,
     LightboxModule,
     GuidedTourModule,
-    SharedModule
+    SharedModule,
+    NgSelectModule,
+    NgxMatSelectSearchModule
     // NgxStripeModule.forRoot('pk_test_51PVE08Ru80loAFQXg7MVGXFZuriJbluM9kOaTzZ0GteRhI0FIlkzkL2TSVDQ9QEIp1bZcVBzmzWne3fGkCITAy7X00gGODbR8a')
   ]
 })

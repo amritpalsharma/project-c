@@ -71,7 +71,8 @@ mat-datepicker-toggle {
 }
 
 .form-group input,
-.form-group select, .form-group textarea {
+.form-group select,
+.form-group textarea {
   width: 100%;
   padding: 14px;
   line-height: normal;
@@ -303,9 +304,40 @@ textarea {
 }
 
 
-::ng-deep .dark-theme {
-  .save-btn {
-    color: #072944 !important;
-    background: #bde34f !important;
+::ng-deep {
+  .dark-theme {
+    .save-btn {
+      color: #072944 !important;
+      background: #bde34f !important;
+    }
+  }
+
+  .custom_select_mat {
+    .mat-focused .mat-mdc-form-field-focus-overlay {
+      opacity: 0 !important;
+    }
+
+    .mdc-text-field {
+      padding: 0 !important;
+      background: transparent !important;
+    }
+
+    .mdc-line-ripple {
+      display: none !important;
+    }
+
+    .mat-mdc-select-value,
+    .form-select {
+      --bs-form-select-bg-img: none !important;
+    }
+
+    .dark-theme .custom_search_mat {
+      background: #0c3453;
+      color: white !important;
+    }
+  }
+
+    #nationality_input{
+      padding: 12px 14px !important;
   }
 }

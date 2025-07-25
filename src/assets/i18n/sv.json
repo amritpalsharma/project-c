@@ -1524,5 +1524,6 @@
   "AreYouSureToMatchStatistic": "Är du säker på att du vill radera den valda matchstatistiken?",
   "AreYouSureToTransferRecord": "Är du säker på att du vill radera den valda överföringsposten?",
   "areYouSureToUpdateRole": "Är du säker på att du vill uppdatera teammedlemmens roll?",
-  "areYouSureToUpdateReviewTraining": "Är du säker på att du vill uppdatera statusen för granskningsträningen?"
+  "areYouSureToUpdateReviewTraining": "Är du säker på att du vill uppdatera statusen för granskningsträningen?",
+  "noTeamMemberAddedHere": "Inga Medlem i teamet har lagts till här."
 }

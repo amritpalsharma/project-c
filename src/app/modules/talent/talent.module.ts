@@ -58,9 +58,9 @@ import { TalentLoaderComponent } from './talent-loader/talent-loader.component';
 // import { AngularCropperjsModule } from 'angular-cropperjs';
 // See the Moment.js docs for the meaning of these formats:
 // https://momentjs.com/docs/#/displaying/format/
-import { NgSelectModule } from '@ng-select/ng-select';
 
 // New By Amrit
+import { NgSelectModule } from '@ng-select/ng-select';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 // import { MatSelectModule } from '@angular/material/select';
 // import { MatFormFieldModule } from '@angular/material/form-field';

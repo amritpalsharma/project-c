@@ -1536,5 +1536,6 @@
   "areYouSureToRemoveScout": "Willst du diesen Scout aus deinem Profil entfernen?",
   "yesRemoveScout": "Ja, entfernen",
   "cancelRemoveScout": "Nein, nicht entfernen",
-  "areYouSureToUpdateReviewTraining": "Bist du sicher, dass du den Status des Sichtungs-Trainings aktualisieren möchtest?"
+  "areYouSureToUpdateReviewTraining": "Bist du sicher, dass du den Status des Sichtungs-Trainings aktualisieren möchtest?",
+  "noTeamMemberAddedHere":"Hier wurde kein Team-Mitglied hinzugefügt."
 }

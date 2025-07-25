@@ -149,6 +149,9 @@ export class HeaderComponent {
     this.getUserName();
     this.getUserRole();
     this.setPaymentStatus();
+    this.themeService.isDarkTheme.subscribe((isDarkTheme: boolean) => {
+      this.isDarkMode = isDarkTheme;
+    });
     // this.chatComponent.reloadChatComponent();
     let isFrontendDarkMode = localStorage.getItem('theme');
     if (isFrontendDarkMode != '' && isFrontendDarkMode == 'dark') {
@@ -156,10 +159,6 @@ export class HeaderComponent {
     } else {
       this.isDarkMode = false;
     }
-    this.themeService.isDarkTheme.subscribe((isDarkTheme: boolean) => {
-      this.isDarkMode = isDarkTheme;
-    });
-
     let notificationStatus = localStorage.getItem("notificationSeen");
     if (notificationStatus) {
       let jsonData = JSON.parse(notificationStatus);

@@ -1477,5 +1477,6 @@
   "areYouSureToRemoveScout": "¿Quieres eliminar a este ojeador de tu perfil?",
   "yesRemoveScout": "Sí, eliminar",
   "cancelRemoveScout": "No, no eliminar",
-  "areYouSureToUpdateReviewTraining": "¿Estás seguro de que deseas actualizar el estado del entrenamiento de revisión?"
+  "areYouSureToUpdateReviewTraining": "¿Estás seguro de que deseas actualizar el estado del entrenamiento de revisión?",
+  "noTeamMemberAddedHere": "No se ha añadido ningún Miembro del equipo aquí."
 }

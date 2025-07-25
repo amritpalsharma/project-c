@@ -28,6 +28,7 @@ export class SidebarComponent {
     { labelKey: 'settings', icon: 'settings', link: '/club/setting', requiresVerification: false }
   ];
 
+  isLoadingStatus: boolean = true;
   constructor(
     private authService: AuthService,
     private globalSettings: GlobalSettingsService,
@@ -46,6 +47,7 @@ export class SidebarComponent {
     this.getUserStatus();
   }
 
+
   getUserStatus() {
     this.socketService.getLoggedInUserStatus().then((result) => {
       // console.info('result',result)
@@ -55,6 +57,7 @@ export class SidebarComponent {
         this.isUserVerified = false;
       }
       this.locksideBar = false;
+      this.isLoadingStatus = false;
     });
   }
 

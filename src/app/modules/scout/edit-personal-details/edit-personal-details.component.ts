@@ -103,6 +103,8 @@ export class EditPersonalDetailsComponent implements OnInit {
   designation: any;
   isPremium: boolean = false;
   isUserVerified: boolean = false;
+
+  countrySearching = new FormControl('');
   constructor(
     private cdr: ChangeDetectorRef,
     public dialogRef: MatDialogRef<EditPersonalDetailsComponent>,
@@ -137,6 +139,14 @@ export class EditPersonalDetailsComponent implements OnInit {
     });
     this.getUserStatus();
     this.cdr.detectChanges();  // Manually trigger change detection
+
+
+    this.countrySearching.valueChanges.subscribe(() => {
+      const search = this.countrySearching.value?.toLowerCase() || '';
+      this.countries = this.countries.filter(
+        (country: any) => country.country_name.toLowerCase().includes(search)
+      );
+    });
   }
   getUserStatus() {
     this.socketService.getLoggedInUserStatus().then((result) => {

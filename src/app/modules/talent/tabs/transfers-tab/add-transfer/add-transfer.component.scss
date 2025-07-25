@@ -171,3 +171,9 @@ mat-datepicker-toggle {
         }
     }
 }
+
+::ng-deep {
+    #internationalPlayer, #team_to_m_country_id, #session, #country {
+        padding: 10px 12px !important;
+    }
+}

@@ -1486,5 +1486,6 @@
   "areYouSureToRemoveScout": "Queres remover este olheiro do teu perfil?",
   "yesRemoveScout": "Sim, remover",
   "cancelRemoveScout": "Não, não remover",
-  "areYouSureToUpdateReviewTraining": "Tem certeza de que deseja atualizar o status do treino de revisão?"
+  "areYouSureToUpdateReviewTraining": "Tem certeza de que deseja atualizar o status do treino de revisão?",
+  "noTeamMemberAddedHere": "Nenhum Membro da equipe foi adicionado aqui."
 }

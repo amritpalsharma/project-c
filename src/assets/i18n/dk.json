@@ -1395,5 +1395,6 @@
   "areYouSureToRemoveScout": "Vil du fjerne denne scout fra din profil?",
   "yesRemoveScout": "Ja, fjern",
   "cancelRemoveScout": "Nej, fjern ikke",
-  "areYouSureToUpdateReviewTraining": "Er du sikker på, at du vil opdatere status for gennemgangstræningen?"
+  "areYouSureToUpdateReviewTraining": "Er du sikker på, at du vil opdatere status for gennemgangstræningen?",
+  "noTeamMemberAddedHere": "Der er ikke tilføjet nogen Medlem af teamet her."
 }
