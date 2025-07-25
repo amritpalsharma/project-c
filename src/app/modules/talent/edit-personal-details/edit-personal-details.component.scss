@@ -174,6 +174,24 @@ mat-datepicker-toggle {
   margin-left: -50px;
 }
 
+.check_align {
+  .form-check-input {
+    position: relative;
+    top: 2px;
+  }
+}
+
+::ng-deep {
+  @media(min-width:2000px) {
+    .check_align {
+      .form-check-input {
+        position: relative;
+        top: 2px;
+      }
+    }
+  }
+}
+
 ::ng-deep {
   @media(min-width:1600px) {
     .edit_p_detail {
@@ -203,6 +221,15 @@ mat-datepicker-toggle {
   .form-group {
     margin-bottom: 15px;
     padding: 0px 15px;
+  }
+  .hide_lable_mobile {
+    display: none;
+  }
+  .align_radio_ {
+    input.form-check-input {
+      position: relative;
+      top: -2px;
+    }
   }
 }
 
@@ -279,11 +306,9 @@ mat-datepicker-toggle {
     .mdc-line-ripple {
       display: none !important;
     }
-
-    .mat-mdc-select-arrow {
-      display: none !important;
+    .mat-mdc-select-value, .form-select {
+      --bs-form-select-bg-img: none !important;
     }
-
     .dark-theme .custom_search_mat {
       background: #0c3453;
       color: white !important;

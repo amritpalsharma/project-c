@@ -220,8 +220,8 @@ mat-datepicker-toggle{
       display: none !important;
     }
 
-    .mat-mdc-select-arrow {
-      display: none !important;
+    .mat-mdc-select-value, .form-select {
+      --bs-form-select-bg-img: none !important;
     }
 
     .dark-theme .custom_search_mat {

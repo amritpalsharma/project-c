@@ -30,7 +30,7 @@
       <!-- I DOn't Club Field -->
       <div class="row">
         <div class="col-sm-12">
-          <div class="form-check checkbox mb-3">
+          <div class="form-check checkbox mb-3 check_align">
             <input class="form-check-input mt-0" type="checkbox" value="" id="flexCheckDefault-5"
               [(ngModel)]="isHideClubSection" name="noClub" (ngModelChange)="onNoClubChange($event)" />
             <label class="form-check-label fs-14 font-w400 text-light mb-2" for="flexCheckDefault-5">
@@ -38,7 +38,7 @@
             </label>
           </div>
 
-          <div class="form-check checkbox mb-3">
+          <div class="form-check checkbox mb-3 check_align">
             <input class="form-check-input mt-0" type="checkbox" value="" id="flexCheckDefault-6"
               [(ngModel)]="isCustomClubTeam" name="isCustomClubTeam" (ngModelChange)="onChnageCustomClubTeam($event)" />
             <label class="form-check-label fs-14 font-w400 text-light" for="flexCheckDefault-6">
@@ -100,18 +100,18 @@
 
         <!-- Team Type Men & Women -->
         <div class="form-group-1 col-lg-4 team_gender_p">
-          <label class="form-label">&nbsp;</label>
+          <label class="form-label hide_lable_mobile">&nbsp;</label>
           <div class="row align-items-center">
             <div class="col-lg-12">
               <div class="gen_radio gap-3">
-                <div class="form-check">
+                <div class="form-check align_radio_">
                   <input class="form-check-input" type="radio" name="team_type" id="male" value="male"
                     (change)="setTeamType('m')" [checked]="team_type == 'm'" />
                   <label class="form-check-label ms-1" for="male">
                     <span class="font-w400">{{'men' | translate}}</span>
                   </label>
                 </div>
-                <div class="form-check">
+                <div class="form-check align_radio_">
                   <input class="form-check-input" type="radio" name="team_type" id="female" value="female"
                     (change)="setTeamType('w')" [checked]="team_type == 'w'" />
                   <label class="form-check-label ms-1" for="female">

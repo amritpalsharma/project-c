@@ -9,6 +9,9 @@
 }
 
 @media (min-width: 992px) {
+    .vis_unlock_mobile {
+        display: none !important;
+    }
     .main-position .player_social_links a {
         display: block;
         margin-bottom: 10px !important;
@@ -1301,6 +1304,29 @@ mat-datepicker-toggle button {
 }
 
 @media (max-width: 991px) {
+    .hide_unlock_mobile, hr.done_mobile {
+        display: none !important;
+    }
+    .vis_unlock_mobile {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100px;
+        .unlock_btn {
+            background: #6FB95D;
+            color: #fff;
+            font-weight: 600;
+            border-radius: 10px;
+            border: none;
+            padding: 12px 15px 10px;
+            font-size: 17px;
+            svg {
+                position: relative;
+                top: -3px;
+                margin-right: 10px;
+            }
+        }
+    }
     body.body-overflow {
         overflow: hidden;
     }
@@ -1735,6 +1761,12 @@ mat-datepicker-toggle button {
 }
 
 @media (max-width: 575px) {
+.vis_unlock_mobile {
+    .unlock_btn {
+        padding: 10px 15px 8px !important;
+        font-size: 14px !important;
+    }
+}
 .website_main_pages .club-buttons .button-border {
     width: 320px !important;
 }
