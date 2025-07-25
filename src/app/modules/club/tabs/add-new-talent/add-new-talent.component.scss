@@ -365,8 +365,8 @@ h4.title-text {
 
 
 ::ng-deep {
-  @media (max-width: 991px) {
-      .mobile-font {
+    @media (max-width: 991px) {
+      .user-list.user_list_full input.user-input {
           font-size: 16px !important;
         }
     }
