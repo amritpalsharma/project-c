@@ -1526,6 +1526,7 @@ mat-datepicker-toggle button {
         .overflow-card {
             max-height: 100% !important;
             padding: 0 !important;
+            overflow: hidden !important;
         }
     }
     .compact-sidebar {
@@ -1829,7 +1830,6 @@ body .country-plan.popup__body, body .popup__body.plan_popup_card {
 body .highlights__popup {
     .overflow-card {
         padding: 0 !important;
-        overflow: hidden !important;
     }
 }
 
