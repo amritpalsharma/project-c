@@ -14,7 +14,7 @@ import { WebPages } from '../../../services/webpages.service';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { TitleService } from '../../../title.service';
 import { take } from 'rxjs/operators';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-membership',
   templateUrl: './membership.component.html',
@@ -59,7 +59,8 @@ export class MembershipComponent {
     private router: Router,
     private webpages: WebPages,
     private translateService: TranslateService,
-    private titleService: TitleService
+    private titleService: TitleService,
+    private toaster: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -72,17 +73,14 @@ export class MembershipComponent {
       this.getBoosterData()
     });
     this.loadTranslations();
-    this.webpages.languageId$.subscribe((data) => {
+    this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
+      this.getUserPurchases();
       this.getUserPurchases();
       this.getUserPlans();
       this.getUserCards();
       this.getBoosterData();
       this.loadTranslations();
       this.getJsonTranslations();
-    });
-
-    this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
-      this.getUserPurchases();
     });
 
   }
@@ -411,13 +409,14 @@ export class MembershipComponent {
       (response: any) => {
         if (response && response.status) {
           // Open the MessagePopupComponent with a success message
-          this.dialog.open(MessagePopupComponent, {
-            width: '600px',
-            data: {
-              action: 'display',
-              message: this.subsciptionCancelSuccess
-            }
-          });
+          // this.dialog.open(MessagePopupComponent, {
+          //   width: '600px',
+          //   data: {
+          //     action: 'display',
+          //     message: this.subsciptionCancelSuccess
+          //   }
+          // });
+          this.toaster.success(this.subsciptionCancelSuccess + '');
           console.log('Subscription canceled successfully:', response);
           setTimeout(() => {
             this.getUserPlans();
