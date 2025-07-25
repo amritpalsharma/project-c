@@ -11,7 +11,7 @@ import { MessagePopupComponent } from '../../message-popup/message-popup.compone
 import { InviteScoutTalentPopupComponent } from '../../invite-scout-talent-popup/invite-scout-talent-popup.component';
 import { TranslateService } from '@ngx-translate/core';
 import { UnverifiedUserComponent } from '../../../shared/unverified-user/unverified-user.component';
-
+import { ToastrService } from 'ngx-toastr';
 export interface DialogData {
   animal: string;
   name: string;
@@ -33,6 +33,7 @@ export class PortfolioTabComponent {
     // private scoutService: ScoutService,
     public dialog: MatDialog,
     private router: Router,
+    private toaster: ToastrService,
     public translateService: TranslateService) {
     translateService.onLangChange.subscribe(() => {
       this.getScoutPlayers();
@@ -105,10 +106,10 @@ export class PortfolioTabComponent {
         console.log(result)
         if (result.action == "added") {
           if (result.message != '' && result.message != undefined) {
-            this.showMatDialog(result.message, 'display')
+            this.toaster.success(result.message)
             this.getScoutPlayers();
           } else {
-            this.showMatDialog("Players invited successfully", 'display')
+            this.toaster.success("Players invited successfully")
             this.getScoutPlayers();
           }
         }
@@ -214,9 +215,11 @@ export class PortfolioTabComponent {
     this.scoutservice.deleteScoutPlayer(this.idToBeDeleted, langId).subscribe((response: any) => {
       if (response && response.status) {
         if (response.message != '' && response.message != undefined) {
-          this.showMatDialog(response.message, 'display')
+          // this.showMatDialog(response.message, 'display')
+          this.toaster.success(response.message)
         } else {
-          this.showMatDialog('Player removed from Scout successfully!', 'display');
+          // this.showMatDialog('Player removed from Scout successfully!', 'display');
+          this.toaster.success('Player removed from Scout successfully!');
         }
         this.getScoutPlayers();
       }

@@ -40,7 +40,7 @@
               [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputFor]="chipGrid"
               (focus)="callListApi(userInput)" (keyup)="onKeyPress($event)" /> -->
 
-            <input placeholder="{{ 'searchTalent' | translate }}" #userInput [matAutocomplete]="auto"
+            <input *ngIf="!users || users.length == 0" placeholder="{{ 'searchTalent' | translate }}" #userInput [matAutocomplete]="auto"
               [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputFor]="chipGrid"
               (focus)="callListApi(userInput)" (keyup)="onKeyPress($event)" />
           </mat-chip-grid>

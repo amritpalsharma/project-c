@@ -38,7 +38,7 @@
               <p *ngIf="premium.stripe_cancel_at != null">{{ 'expireOn' | translate }} {{ premium.stripe_cancel_at |
                 date: 'dd.MM.yyyy' }}</p>
               <div class="d-flex align-items-center justify-content-between mt-4 mob_wrap">
-                <a class="premium-edit_btn text-white" (click)="!checkRole() && $event.preventDefault()" [class.club_view_only]="!checkRole()" href="/scout/plans">{{'editPlan' | translate}}</a>
+                <a class="premium-edit_btn text-white" (click)="!checkRole() && $event.preventDefault()" [class.club_view_only]="!checkRole()" routerLink="/scout/plans">{{'editPlan' | translate}}</a>
                 <button class="premium-subscription_btn" [disabled]="premium.stripe_cancel_at != null"
                   (click)="confirmAndCancelSubscription(premium.id)" [class.club_view_only]="!checkRole()">
                   <div *ngIf="premium.stripe_cancel_at == null">{{ 'cancelSubscription' | translate }}</div>
@@ -68,7 +68,7 @@
               <p *ngIf="demo.stripe_cancel_at != null">{{ 'expireOn' | translate }} {{ demo.stripe_cancel_at | date:
                 'dd.MM.yyyy' }}</p>
               <div class="d-flex align-items-center justify-content-between mt-4 mob_wrap">
-                <a class="premium-edit_btn text-white" (click)="!checkRole() && $event.preventDefault()" [class.club_view_only]="!checkRole()" href="/talent/plans">{{'editPlan' | translate}}</a>
+                <a class="premium-edit_btn text-white" (click)="!checkRole() && $event.preventDefault()" [class.club_view_only]="!checkRole()" routerLink="/talent/plans">{{'editPlan' | translate}}</a>
                 <button class="premium-subscription_btn" [disabled]="demo.stripe_cancel_at != null"
                   (click)="confirmAndCancelSubscription(demo.id)" [class.club_view_only]="!checkRole()">
                   <div *ngIf="demo.stripe_cancel_at == null" class="cursor-pointer">{{ 'cancelSubscription' | translate }}</div>
@@ -95,7 +95,7 @@
               <p>{{ 'renews' | translate }} {{ country[0].plan_period_end |
                 date: 'dd.MM.yyyy' }}</p>
               <div class="d-flex align-items-center justify-content-between mt-4 mob_wrap">
-                <a class="premium-edit_btn text-white" (click)="!checkRole() && $event.preventDefault()" [class.club_view_only]="!checkRole()" href="/scout/plans">{{ 'editPlan' | translate }}</a>
+                <a class="premium-edit_btn text-white" (click)="!checkRole() && $event.preventDefault()" [class.club_view_only]="!checkRole()" routerLink="/scout/plans">{{ 'editPlan' | translate }}</a>
                 <button class="premium-subscription_btn" (click)="confirmCountryPlanCancellation(country)" [class.club_view_only]="!checkRole()">
                   {{ 'cancelSubscription' | translate }}
                 </button>

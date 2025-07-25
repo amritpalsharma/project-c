@@ -48,7 +48,7 @@
             <div class="club_profile_table_wrapper">
                 <div class="visible_mobile_only">
                     {{ 'companyRepresentators' | translate }}: &nbsp; &nbsp;
-                    <button class="btn btn-success btn-sm">
+                    <button class="btn btn-success btn-sm" (click)="addRepresentator()">
                         <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="width: 16px;">
                             <path
                                 d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z" />
@@ -105,31 +105,11 @@
 
 <ng-container *ngIf="isPremium">
     <div class="club_intor_tao general_details_club_intro">
-        <!-- <div class="general_titels d-flex align-items-center mb-2">
-            <h2>{{ 'generalDetails' | translate}}</h2>
-        </div>
-        <div class="forms_details mb-2 d-none">
-            <form class="d-flex align-items-center form-boxs">
-                <div class="email_box">
-                    <label for="email">{{ 'email' | translate}}</label><br>
-                    <div>{{user.email}}</div>
-                </div>
-                <div class="password_box">
-                    <label for="password"></label>
-                    <label for="pass"> {{ 'password' | translate}}</label><br>
-                    <input type="password" id="pass" name="password" minlength="8" value="***************" required
-                        readonly />
-                    <input class="password" type="reset" value="{{'resetPassword' | translate}}"
-                        (click)="openResetDialog()">
-                </div>
-            </form>
-        </div> -->
-
-        <!-- <hr> -->
+       
         <div class="club_profile_table_wrapper">
             <div class="visible_mobile_only">
                 <strong>{{ 'companyRepresentators' | translate }}:</strong> &nbsp; &nbsp;
-                <button class="btn btn-success btn-sm {{currentLoggedInPermission}}">
+                <button class="btn btn-success btn-sm {{currentLoggedInPermission}}" (click)="addRepresentator()">
                     <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="width: 16px;">
                         <path
                             d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z" />
