@@ -1575,9 +1575,6 @@ span.active_btn {
     // flex-wrap: wrap;
     margin-left: 0;
     width: 100%;
-
-
-
     button {
       border-radius: 5px !important;
       background: #6FB95D !important;
@@ -1603,6 +1600,9 @@ span.active_btn {
 
     button span {
       display: block;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
     }
   }
 }

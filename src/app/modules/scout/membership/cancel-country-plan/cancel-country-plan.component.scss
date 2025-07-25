@@ -2,15 +2,18 @@
     padding: 15px;
     text-align: center;
 }
+
 .dialog-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
+
 .dialog-header h2 {
     font-size: 18px;
     font-weight: 600;
 }
+
 .close_buttons {
     background: none;
     font-size: 19px;
@@ -18,13 +21,16 @@
     color: #849aa2;
     border-radius: 50%;
 }
+
 .msg-popup-close {
     text-align: right;
 }
+
 .msg-popup-close img {
     max-width: 40px;
     cursor: pointer;
 }
+
 .popup-title {
     font-size: 1.25rem;
     font-weight: 600;
@@ -32,26 +38,31 @@
     margin-bottom: 20px;
     text-align: left;
 }
+
 .country-option {
     margin: 10px 0;
     display: flex;
     align-items: center;
 }
+
 .country-label {
     display: flex;
     align-items: center;
     font-size: 1rem;
     color: #555555;
 }
+
 .country-radio {
     margin-right: 10px;
     accent-color: rgb(249, 60, 101);
     margin-top: -3px;
 }
+
 .country-info {
     font-weight: 500;
     text-align: left;
 }
+
 .confirm-btn {
     width: 100%;
     padding: 9px 12px;
@@ -65,13 +76,16 @@
     cursor: pointer;
     transition: background-color 0.3s;
 }
+
 .confirm-btn:disabled {
     background-color: #ccc;
     cursor: not-allowed;
 }
+
 .confirm-btn:not(:disabled):hover {
     background-color: rgb(249, 60, 101);
 }
+
 .already-canceled-message {
     font-size: 1rem;
     color: #777777;
@@ -87,10 +101,11 @@
 }
 
 @media (max-width: 575px) {
-.country-radio {
-    margin-top: 5px;
-}
-.country-label {
-    align-items: flex-start;
-}
+    .country-radio {
+        margin-top: 5px;
+    }
+
+    .country-label {
+        align-items: flex-start;
+    }
 }
