@@ -239,7 +239,8 @@
                           <img *ngIf="user?.meta?.have_registered_club == '1'"
                             src="https://api.socceryou.ch/uploads/{{registredClubArr?.club_logo}}" class="fc-club-img"
                             alt="">
-                            <img *ngIf="user?.meta?.have_registered_club != '1' && user?.meta?.have_no_club != '1' && currentClubInfo != ''"
+                          <img
+                            *ngIf="user?.meta?.have_registered_club != '1' && user?.meta?.have_no_club != '1' && currentClubInfo != ''"
                             src="https://api.socceryou.ch/uploads/{{currentClubInfo?.club_logo}}" class="fc-club-img"
                             alt="">
                         </div>
@@ -269,7 +270,8 @@
                           </ng-container>
                           <!-- End When User Has Custom Club  -->
                           <!-- When User Has In Club Team  -->
-                          <ng-container *ngIf="user?.meta?.have_custom_club != '1' && user?.meta?.have_registered_club != '1'  && currentClubInfo != undefined">
+                          <ng-container
+                            *ngIf="user?.meta?.have_custom_club != '1' && user?.meta?.have_registered_club != '1'  && currentClubInfo != undefined">
                             <h6 class="title_2 mb-1 have_custom_club">
                               {{ 'currentClub' | translate}}
                             </h6>
@@ -686,7 +688,8 @@
                           <ng-container *ngIf="user?.meta?.have_custom_club == '1' && customClubArr != ''">
                             <h5 class="title-1">{{customClubArr?.team_name}}</h5>
                           </ng-container>
-                          <ng-container *ngIf="user?.meta?.have_custom_club != '1' && user?.meta?.have_registered_club != '1' && currentClubInfo != ''">
+                          <ng-container
+                            *ngIf="user?.meta?.have_custom_club != '1' && user?.meta?.have_registered_club != '1' && currentClubInfo != ''">
                             <h5 class="title-1">{{currentClubInfo?.team_name}}</h5>
                           </ng-container>
                         </div>
@@ -945,15 +948,14 @@
                 <div class="position-relative highlights_pos_rel">
                   <div class="unlock-view">
                     <div class="d-flex justify-content-center w-100 m-auto image_gallery-box mt-2">
-                      <svg class="" width="22" height="23" viewBox="0 0 24 25" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          d="M3 17.7505V21.5005H6.75L17.81 10.4405L14.06 6.69049L3 17.7505ZM20.71 7.54049C20.8027 7.44798 20.8762 7.33809 20.9264 7.21712C20.9766 7.09614 21.0024 6.96646 21.0024 6.83549C21.0024 6.70452 20.9766 6.57484 20.9264 6.45387C20.8762 6.33289 20.8027 6.223 20.71 6.13049L18.37 3.79049C18.2775 3.69779 18.1676 3.62424 18.0466 3.57406C17.9257 3.52388 17.796 3.49805 17.665 3.49805C17.534 3.49805 17.4043 3.52388 17.2834 3.57406C17.1624 3.62424 17.0525 3.69779 16.96 3.79049L15.13 5.62049L18.88 9.37049L20.71 7.54049Z"
-                          fill="#787878" />
-                      </svg>
-
+                      <div class="hide_unlock_mobile">
+                        <svg width="22" height="23" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M3 17.7505V21.5005H6.75L17.81 10.4405L14.06 6.69049L3 17.7505ZM20.71 7.54049C20.8027 7.44798 20.8762 7.33809 20.9264 7.21712C20.9766 7.09614 21.0024 6.96646 21.0024 6.83549C21.0024 6.70452 20.9766 6.57484 20.9264 6.45387C20.8762 6.33289 20.8027 6.223 20.71 6.13049L18.37 3.79049C18.2775 3.69779 18.1676 3.62424 18.0466 3.57406C17.9257 3.52388 17.796 3.49805 17.665 3.49805C17.534 3.49805 17.4043 3.52388 17.2834 3.57406C17.1624 3.62424 17.0525 3.69779 16.96 3.79049L15.13 5.62049L18.88 9.37049L20.71 7.54049Z"
+                            fill="#787878" />
+                        </svg>
+                      </div>
                     </div>
-
                   </div>
                   <div class="upgrade_unlock">
                     <a class="unlock_btn cursor-pointer"
@@ -976,7 +978,6 @@
                 </div>
               </div>
             </div>
-
             <div class="col-lg-12 image-gallery highlights-tour mt-4 bg-color p-3 tour-highlights" *ngIf="isPremium">
 
               <!-- Add a loader in your template -->

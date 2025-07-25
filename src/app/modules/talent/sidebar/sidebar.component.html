@@ -130,7 +130,7 @@
         </li>
       </ng-container>
       <ng-container *ngIf="!isUserVerified">
-        <li class="un_verified">
+        <li class="un_verified" [ngClass]="{'locksideBar': locksideBar}">
           <a *ngIf="!isUserVerified" [matTooltip]="!sidebarOpen ? ('explore' | translate) : ''"
             matTooltipPosition="right" (click)="showVerificationPopup($event)">
             <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -141,7 +141,7 @@
             <p class="sidebar_menu_span">{{ 'explore' | translate }}</p>
           </a>
         </li>
-        <li class="un_verified">
+        <li class="un_verified" [ngClass]="{'locksideBar': locksideBar}">
           <a *ngIf="!isUserVerified" [matTooltip]="!sidebarOpen ? ( 'chat' | translate) : ''" matTooltipPosition="right"
             (click)="showVerificationPopup($event)" [class.disabled]="!isUserVerified"><svg width="28" height="26"
               viewBox="0 0 28 26" fill="none" xmlns="http://www.w3.org/2000/svg" class="my-svg-icon">
@@ -152,7 +152,7 @@
             <p class="sidebar_menu_span"> {{ 'chat' | translate }}</p>
           </a>
         </li>
-        <li class="un_verified">
+        <li class="un_verified" [ngClass]="{'locksideBar': locksideBar}">
           <a *ngIf="!isUserVerified" (click)="showVerificationPopup($event)" [class.disabled]="!isUserVerified"
             [matTooltip]="!sidebarOpen ? ('favorites' | translate) : ''" matTooltipPosition="right">
             <svg id="users-icon" width="18" height="23" viewBox="0 0 16 21" fill="none"
@@ -166,7 +166,7 @@
             </p>
           </a>
         </li>
-        <li class="un_verified">
+        <li class="un_verified" [ngClass]="{'locksideBar': locksideBar}">
           <a *ngIf="!isUserVerified" [matTooltip]="!sidebarOpen ? ('membership' | translate) : ''"
             matTooltipPosition="right" (click)="showVerificationPopup($event)" [class.disabled]="!isUserVerified">
             <svg width="27" height="22" viewBox="0 0 27 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -178,7 +178,7 @@
             <p class="sidebar_menu_span"> {{ 'membership' | translate }}</p>
           </a>
         </li>
-        <li class="un_verified">
+        <li class="un_verified" [ngClass]="{'locksideBar': locksideBar}">
           <a *ngIf="!isUserVerified" (click)="showVerificationPopup($event)" [class.disabled]="!isUserVerified"
             [matTooltip]="!sidebarOpen? ('plans' | translate) : ''" matTooltipPosition="right">
             <svg width="29" height="22" viewBox="0 0 29 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -190,7 +190,7 @@
             <p class="sidebar_menu_span"> {{ 'plans' | translate }} </p>
           </a>
         </li>
-        <li class="un_verified">
+        <li class="un_verified" [ngClass]="{'locksideBar': locksideBar}">
           <a *ngIf="!isUserVerified" [matTooltip]="!sidebarOpen ? ('countries' | translate) : ''"
             matTooltipPosition="right" (click)="showVerificationPopup($event)" [class.disabled]="!isUserVerified">
             <svg width="27" height="26" viewBox="0 0 27 26" fill="none" xmlns="http://www.w3.org/2000/svg">
