@@ -2,7 +2,7 @@
     <div class="media-wrapper">
       <ng-container [ngSwitch]="currentItem.type">
         <img *ngSwitchCase="'image'" [src]="currentItem.src" alt="Image" />
-        <video *ngSwitchCase="'video'" controls [src]="currentItem.src"></video>
+        <video *ngSwitchCase="'video'" controls [src]="currentItem.src" autoplay muted playsinline controls></video>
       </ng-container>
     </div>
   
