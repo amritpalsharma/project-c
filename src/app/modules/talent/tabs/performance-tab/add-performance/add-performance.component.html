@@ -67,8 +67,8 @@
                   </pre> -->
                   <li *ngFor="let team of filterTeams" (click)="onSelectTeam(team)">
                     <!-- {{ team.team_name }} - {{ team.team_type }} -->
-                    <img class="me-2" [src]="team.team_club_logo_path" class="me-3" style="max-width: 25px;"> {{
-                    team.team_name }} - {{ team.team_type }}
+                    <!-- <img class="me-2" [src]="team.team_club_logo_path" class="me-3" style="max-width: 25px;">  -->
+                    {{ team.team_name }} - {{ team.team_type }}
                   </li>
                 </ul>
               </div>
