@@ -34,10 +34,9 @@
                         <div class="item--icons-list">
                           <div class="item--club" *ngIf="player.current_club_logo && player.current_club_logo != ''">
                             <img *ngIf="player.current_club_logo && player.current_club_logo == 'no-logo'"
-                            src="../../../../assets/club_logo/default_logo_{{theme}}.svg" alt="team-logo">
-                          <!-- <img *ngIf="player.current_club_logo && player.current_club_logo != 'no-logo' && player.role_name != 'Club'"
-                            src="{{baseUrl + player.current_club_logo}}" alt="team-logo"> -->
-                            <img *ngIf="player.current_club_logo && player.current_club_logo != 'no-logo'" [src]="player.current_club_logo ? profileBaseUrl +  player.current_club_logo : (player.current_club_logo ? profileBaseUrl +  player.current_club_logo : './assets/images/default-corner.png')" />
+                              src="../../../../assets/club_logo/default_logo_{{theme}}.svg" alt="team-logo">
+                            <img *ngIf="player.current_club_logo && player.current_club_logo != 'no-logo'"
+                              [src]="player.current_club_logo ? profileBaseUrl +  player.current_club_logo : (player.current_club_logo ? profileBaseUrl +  player.current_club_logo : './assets/images/default-corner.png')" />
                           </div>
                           <span class="player--flag"
                             *ngIf="getFirstFlag(player.user_nationalities) && getFirstFlag(player.user_nationalities) != ''">
@@ -167,18 +166,26 @@
 
             </div>
             <!-- Scouts Tab Content -->
-            <!-- {{scoutProfiles | json}} -->
+            <!-- {{ScoutPlayers | json}} -->
             <div *ngIf="selectedTab === 'scouts' && !isLoading">
               <div class="row scout_tabb_content">
                 <div class="col-lg-3 col-md-4 col-sm-4 col-6 mt-4" *ngFor="let player of ScoutPlayers; let i = index">
                   <div class="player--item" data-bs-toggle="modal" data-bs-target="#exampleModal1">
-                    <div class="item--inner scoutsArr" [ngClass]="{'boosted--profile':player.package_name === 'Booster'}">
+                    <div class="item--inner scoutsArr"
+                      [ngClass]="{'boosted--profile':player.package_name === 'Booster'}">
                       <div class="player--bio-dtl">
                         <div class="item--icons-list">
-                          <span class="player--flag"
+                          <!-- <span class="player--flag"
+                          
                             *ngIf="player.birth_country_flag && player.birth_country_flag != null && player.birth_country_flag != ''">
                             <img
                               [src]="player.birth_country_flag ? birthCountryFlags + player.birth_country_flag : './assets/images/default-flag.svg'" />
+                          </span> -->
+                          <span class="player--flag"
+                            *ngIf="getFirstFlag(player.user_nationalities) && getFirstFlag(player.user_nationalities) != ''">
+                            <img
+                              [src]="getFirstFlag(player.user_nationalities) ? getFirstFlag(player.user_nationalities) : './assets/images/default/Club-logo-default.png'"
+                              class="flag-img" />
                           </span>
                           <!-- <div class="player--dob">{{ getBirthYear(player.meta.date_of_birth) || 'N/A' }}</div> -->
                         </div>

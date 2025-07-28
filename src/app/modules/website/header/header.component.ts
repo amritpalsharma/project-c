@@ -1,4 +1,5 @@
 import { Component, HostListener, ViewChild, ElementRef, OnInit } from '@angular/core';
+import { Inject, AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { AuthService } from '../../../services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -392,7 +393,7 @@ export class HeaderComponent implements OnInit {
       this.countrie = this.countrie_se;
     }
     this.displayedCountries = this.countrie;
-    console.info('this.displayedCountries',this.displayedCountries)
+    // console.info('this.displayedCountries',this.displayedCountries)
   }
 
   isScrolled = false;
@@ -408,8 +409,9 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.loadToasterMsg();
     this.route.queryParams.subscribe(params => {
-      this.token = params['confirm-token'] || '';
-      if (this.token) {
+      this.token = params['token'] || '';
+      this.verifyTime = params['time'];
+      if (this.token && !this.verifyTime) {
         this.toastr.info(this.Processing, this.pleaseWait);
 
         this.authService.magicLogin(this.token).subscribe(
@@ -1113,6 +1115,7 @@ export class HeaderComponent implements OnInit {
 
   getAllCountries() {
     this.commonDataService.getAllCountries().subscribe((resp) => {
+      this.displayedCountries = resp.data.domains;
       this.countries = resp.data.domains.map((country: any) => ({
         code: country.country_id || '',
         name: country.location || ''
