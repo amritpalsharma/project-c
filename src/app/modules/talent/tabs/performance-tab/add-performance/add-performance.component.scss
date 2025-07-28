@@ -362,3 +362,20 @@ mat-datepicker-toggle {
     color: #fff !important;
   }
 }
+
+
+
+::ng-deep {
+    .dark-theme {
+        .suggestions-list {
+            background: #072944 !important;
+            border-color: #1F4360 !important;
+            & * {
+                color: #fff !important;
+            }
+            li:hover {
+                background: rgb(7 39 65) !important;
+            }
+        }
+    }
+}

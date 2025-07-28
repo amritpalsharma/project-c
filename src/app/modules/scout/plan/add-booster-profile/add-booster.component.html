@@ -26,8 +26,8 @@
                                     <div class="player--bio-dtl">
                                         <div class="item--icons-list">
                                             <div class="item--club">
-                                                <img *ngIf="loggedInUser?.club_logo_path" alt="team-logo"
-                                                    src="{{loggedInUser?.club_logo_path}}">
+                                                <!-- <img *ngIf="loggedInUser?.club_logo_path" alt="team-logo"
+                                                    src="{{loggedInUser?.club_logo_path}}"> -->
                                             </div>
                                             <div class="player--flag"
                                                 *ngIf="userNationality || loggedInUser?.meta?.date_of_birth">
@@ -46,7 +46,7 @@
                                                         </svg>
                                                     </span> -->
                                                     <div class="player--dob">
-                                                        {{calculateAge(loggedInUser?.meta?.date_of_birth ??'--')}}</div>
+                                                        <!-- {{calculateAge(loggedInUser?.meta?.date_of_birth ??'--')}}</div> -->
                                                 </div>
                                             </div>
                                         </div>
@@ -72,8 +72,8 @@
                                     <div class="player--bio-dtl">
                                         <div class="item--icons-list">
                                             <div class="item--club">
-                                                <img *ngIf="loggedInUser?.club_logo_path" alt="team-logo"
-                                                    src="{{loggedInUser?.club_logo_path}}">
+                                                <!-- <img *ngIf="loggedInUser?.club_logo_path" alt="team-logo"
+                                                    src="{{loggedInUser?.club_logo_path}}"> -->
                                             </div>
                                             <div class="player--flag"
                                                 *ngIf="userNationality || loggedInUser?.meta?.date_of_birth">
@@ -92,7 +92,8 @@
                                                         </svg>
                                                     </span> -->
                                                     <div class="player--dob">
-                                                        {{calculateAge(loggedInUser?.meta?.date_of_birth ??'--')}}</div>
+                                                        <!-- {{calculateAge(loggedInUser?.meta?.date_of_birth ??'--')}} -->
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

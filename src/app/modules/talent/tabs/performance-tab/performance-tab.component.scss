@@ -625,3 +625,19 @@ button.dashboard_tabs_add_btn {
 ::ng-deep #internationalPlayer {
   padding: 10px 12px !important;
 }
+
+
+::ng-deep {
+    .dark-theme {
+        .suggestions-list {
+            background: #072944 !important;
+            border-color: #1F4360 !important;
+            & * {
+                color: #fff !important;
+            }
+            li:hover {
+                background: rgb(7 39 65) !important;
+            }
+        }
+    }
+}

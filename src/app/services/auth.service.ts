@@ -74,7 +74,7 @@ export class AuthService {
   }
 
   forgotPassword(email: string): Observable<any> {
-    let confirmation_link = window.location.origin + '/home?confirm-token=';
+    let confirmation_link = window.location.origin + '/home';
     return this.http.post(`${this.apiUrl}/forgot-password`, { email, confirmation_link });
   }
 
