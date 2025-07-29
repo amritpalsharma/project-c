@@ -482,6 +482,9 @@ body {
 @media (max-width: 600px) {
   .card_sight_btns .btn-outline-white {
     font-size: 0 !important;
+    svg {
+      margin-right: 0 !important;
+    }
   }
 
   .view_back_sight {
