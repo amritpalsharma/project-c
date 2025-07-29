@@ -12,7 +12,21 @@
 .Favorite-parent {
   padding: 0;
 }
-
+.card_sight_btns {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.dropdown-favourites {
+  .form-check {
+    padding-left: 0 !important;
+  }
+  .form-check-input {
+    margin-left: 0 !important;
+  }
+}
+::ng-deep .mat-mdc-select-arrow-wrapper {
+  margin-left: 10px;
+}
 .invite-talent-btn {
   background: #6FB95D;
   color: #fff;
