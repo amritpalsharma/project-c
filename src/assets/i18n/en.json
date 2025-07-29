@@ -1225,7 +1225,7 @@
   "discountInputsEr": "At least one discount with currency is required",
   "startDateEr": "Start date is required",
   "limitEr": "Limit is required",
-  "deleteAccountDesc": "This will permanently delete your account from our database.",
+  "deleteAccountDesc": "This will delete your account permanently.",
   "deleteMyAccount": "Delete My Account",
   "uploadNewProfileImage": "Upload New Profile Image",
   "editCoverImage": "Edit Cover Image",

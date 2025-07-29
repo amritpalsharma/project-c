@@ -362,6 +362,9 @@ export class ViewProfileComponent implements OnInit {
     try {
       this.userService.addFavoritesData(userId).subscribe((response) => {
         if (response && response.status && response.data) {
+          if (response.message != null && typeof response.message !== undefined) {
+            this.toastr.success(response.message);
+          }
           this.isFavorite = true; // Mark as favorite
           console.log(userId);
           this.getUser(userId);
@@ -627,6 +630,9 @@ export class ViewProfileComponent implements OnInit {
     try {
       this.userService.removeSingleFavorite(userId).subscribe((response) => {
         if (response && response.status && response.data) {
+          if (response.message != null && typeof response.message !== undefined) {
+            this.toastr.success(response.message);
+          }
           this.isFavorite = false; // Mark as not favorite
           this.getUser(userId);
         } else {

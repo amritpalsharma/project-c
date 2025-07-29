@@ -1330,7 +1330,7 @@
   },
   "areYouSuretoDeleteActivity": "Är du säker på att du vill ta bort denna aktivitet? ",
   "subsciptionCancelSuccess": "Din prenumeration har framgångsrikt avslutats.",
-  "deleteAccountDesc": "Detta kommer att radera ditt konto permanent från vår databas.",
+  "deleteAccountDesc": "Detta kommer att permanent radera ditt konto.",
   "deleteMyAccount": "Ta bort mitt konto",
   "uploadNewProfileImage": "Ladda upp ny profilbild",
   "editCoverImage": "Redigera omslagsbild",

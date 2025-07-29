@@ -1293,7 +1293,7 @@
   "manageConsentPreferences": "Configuración de cookies",
   "allowAll": "Permitir todo",
   "refuseAll": "Rechazar todo",
-  "deleteAccountDesc": "Esto eliminará su cuenta permanentemente de nuestra base de datos.",
+  "deleteAccountDesc": "Esto eliminará tu cuenta de forma permanente.",
   "deleteMyAccount": "Eliminar mi cuenta",
   "uploadNewProfileImage": "Cargar nueva imagen de perfil",
   "editCoverImage": "Editar imagen de portada",

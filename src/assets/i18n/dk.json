@@ -1211,7 +1211,7 @@
   "manageConsentPreferences": "Cookieindstillinger",
   "allowAll": "Tillad alle",
   "refuseAll": "Afvis alle",
-  "deleteAccountDesc": "Dette vil slette din konto permanent fra vores database.",
+  "deleteAccountDesc": "Dette vil slette din konto permanent.",
   "deleteMyAccount": "Slet min konto",
   "uploadNewProfileImage": "Upload nyt profilbillede",
   "editCoverImage": "Rediger forsidebillede",

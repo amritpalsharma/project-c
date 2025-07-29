@@ -1288,7 +1288,7 @@
   "changeNewsletterStatus": "Tem certeza de que deseja alterar o status da newsletter?",
   "areYouSuretoDeleteActivity": "Tem certeza de que deseja excluir esta atividade?",
   "subsciptionCancelSuccess": "A sua subscrição foi cancelada com sucesso.",
-  "deleteAccountDesc": "Esta ação elimina permanentemente a sua conta da nossa base de dados.",
+  "deleteAccountDesc": "Isso excluirá permanentemente sua conta.",
   "deleteMyAccount": "Eliminar a minha conta",
   "uploadNewProfileImage": "Carregar nova imagem de perfil",
   "editCoverImage": "Editar imagem de capa",

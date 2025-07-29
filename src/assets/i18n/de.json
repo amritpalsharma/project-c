@@ -1319,7 +1319,7 @@
   "startDateEr": "Startdatum ist erforderlich",
   "limitEr": "Grenze ist erforderlich",
   "discountPercent": "Rabatt ist erforderlich",
-  "deleteAccountDesc": "Damit wird dein Konto dauerhaft aus unserer Datenbank gelöscht.",
+  "deleteAccountDesc": "Dies wird Ihr Konto dauerhaft löschen.",
   "deleteMyAccount": "Mein Konto löschen",
   "learnMore": "Mehr erfahren",
   "removeFavbtn": "Ja, löschen",
