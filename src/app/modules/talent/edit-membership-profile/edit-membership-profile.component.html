@@ -212,7 +212,8 @@
                                                 {{ user.created_at | date:'dd.MM.yyyy' }}
                                             </h6>
                                         </td>
-                                        <td (click)="naviGateToProfile(user.role_id,user.user_id)" class="cursor-pointer">
+                                        <td (click)="naviGateToProfile(user.role_id,user.user_id)"
+                                            class="cursor-pointer">
                                             <div class="main-template">
                                                 <svg width="25" height="25" viewBox="0 0 25 25" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg" class="pointer">
@@ -235,7 +236,7 @@
                             <div class="p-3">
                                 <div class="flex justify-between items-start mb-3">
                                     <div class="d-flex align-items-center">
-                                        <span class="position-relative">
+                                        <!-- <span class="position-relative">
                                             <img *ngIf="user.profile_image && user.role_id != 2"
                                                 src="{{stats.profile_path+user.profile_image}}" alt=""
                                                 class="table_img ng-star-inserted">
@@ -247,8 +248,25 @@
                                                     src="../../../../assets/images/default/talent-profile-default.png"
                                                     alt="" class="table_img ng-star-inserted">
                                             </span>
+                                        </span> -->
+                                        <span class="position-relative">
+                                            <img *ngIf="user.profile_image && user.role_id != 2"
+                                                src="{{stats.profile_path+user.profile_image}}" alt=""
+                                                class="table_img ng-star-inserted">
+                                            <img *ngIf="!user.profile_image  && user.role_id != 2"
+                                                src="../../../../assets/images/default/talent-profile-default.png"
+                                                alt="" class="table_img ng-star-inserted">
+                                            <span *ngIf="user.role_id == 2">
+                                                <img *ngIf="user.club_logo" src="{{stats.profile_path+user.club_logo}}"
+                                                    alt="" class="table_img ng-star-inserted">
+                                                <img *ngIf="!user.club_logo"
+                                                    src="../../../../assets/images/default/talent-profile-default.png"
+                                                    alt="" class="table_img ng-star-inserted">
+                                            </span>
                                         </span>
-                                        <span class="main-template">{{user.first_name}} {{user.last_name}}</span>
+                                        <span *ngIf="user.role_id != 2" class="main-template">{{user.first_name}}
+                                            {{user.last_name}}</span>
+                                        <span *ngIf="user.role_id == 2" class="main-template">{{user?.club_name}}</span>
                                     </div>
                                 </div>
                                 <div class="space-y-2 text-sm">
