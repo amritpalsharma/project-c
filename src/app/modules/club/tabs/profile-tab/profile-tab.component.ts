@@ -12,6 +12,7 @@ import { WebPages } from '../../../../services/webpages.service';
 import { TranslateService } from '@ngx-translate/core';
 import { UnverifiedUserComponent } from '../../../shared/unverified-user/unverified-user.component';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'club-profile-tab',
@@ -36,6 +37,7 @@ export class ProfileTabComponent {
   deleteRepresentorConfirmation: string = '';
 
   constructor(
+    public toaster: ToastrService,
     public dialog: MatDialog,
     private clubService: ClubService,
     public webPages: WebPages,
@@ -220,7 +222,8 @@ export class ProfileTabComponent {
         if (result.action == "added") {
           this.getRepresentators();
           if (result.message != '') {
-            this.showMatDialog(result.message, 'display');
+            this.toaster.success(result.message);
+            // this.showMatDialog(result.message, 'display');
           } else {
             this.showMatDialog("Invite sent successfully.", 'display');
           }
@@ -237,7 +240,8 @@ export class ProfileTabComponent {
     this.clubService.updateRepresentatorRole(id, { site_role: newRole }).subscribe((response) => {
       if (response && response.status) {
         if (response.message != '') {
-          this.showMatDialog(response.message, 'display');
+          // this.showMatDialog(response.message, 'display');
+          this.toaster.success(response.message);
         } else {
           this.showMatDialog("Role updated successfully.", 'display');
         }
@@ -268,7 +272,8 @@ export class ProfileTabComponent {
         if (result.action == "updated") {
           this.getRepresentators();
           if (result.message != '') {
-            this.showMatDialog(result.message, 'display');
+            // this.showMatDialog(result.message, 'display');
+            this.toaster.success(result.message);
           } else {
             this.showMatDialog("Representator updated successfully.", 'display');
           }
@@ -311,7 +316,8 @@ export class ProfileTabComponent {
         if (response.status) {
           this.getRepresentators();
           if (response.message) {
-            this.showMatDialog(response.message, 'display');
+            // this.showMatDialog(response.message, 'display');
+            this.toaster.success(response.message);
           } else {
             this.showMatDialog('Representator removed successfully!.', 'display');
           }

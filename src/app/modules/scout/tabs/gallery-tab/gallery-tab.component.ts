@@ -299,5 +299,12 @@ export class GalleryTabComponent {
       }
     });
   }
+  
+  setDurationAndThumbnail(videoElement: HTMLVideoElement) {
+    videoElement.crossOrigin = 'anonymous';
+    // Set Duration
+    // this.videoDuration = this.formatDuration(videoElement.duration);
+
+  }
 
 }

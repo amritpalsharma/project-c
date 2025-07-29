@@ -494,7 +494,8 @@ export class MembershipComponent {
         if (response?.data) {
           if (response?.data?.[0]?.url?.trim()) {
             // window.location.href = response?.data?.[0]?.url?.trim(); // ✅ Redirect
-            window.open(response?.data?.[0]?.url?.trim());
+            // window.open(response?.data?.[0]?.url?.trim());
+            window.location.href = response?.data?.[0]?.url?.trim();
           }
 
           this.isopenCustomerPortal = false;

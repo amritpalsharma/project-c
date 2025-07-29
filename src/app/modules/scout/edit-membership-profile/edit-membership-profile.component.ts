@@ -10,7 +10,7 @@ import { UserService } from '../../../services/user.service';
   styleUrls: ['./edit-membership-profile.component.scss']
 })
 export class EditMembershipProfileComponent {
-
+  userNationality: string = '';
   theme: string = localStorage.getItem('theme') || 'dark';
   isLoadingCheckout: boolean = false;
   stripe: any;
@@ -62,7 +62,8 @@ export class EditMembershipProfileComponent {
     // console.log('Pre-selected Audience IDs:', this.selectedAudienceIds,'this_stats_booster_audience',this.stats?.booster_audience);
 
     // console.log('audiences:', this.audiences);
-
+    let userNationalities = JSON.parse(this.loggedInUser?.user_nationalities);
+    this.userNationality = userNationalities[0]?.flag_path ? userNationalities[0]?.flag_path : '';
   }
 
   getRoles() {

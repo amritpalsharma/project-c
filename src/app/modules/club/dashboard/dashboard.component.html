@@ -649,12 +649,14 @@
                   <div class="col-lg-4 gallery_images position-relative"
                     *ngFor="let video of highlights?.videos let j = index">
                     <a [href]="highlights.file_path + video.file_name" data-fancybox="gallery" [attr.data-caption]="">
+                      <!-- <video [src]="highlights.file_path + video.file_name" #videoPlayer
+                        (loadeddata)="setDurationAndThumbnail(videoPlayer)" alt="Video Gallery"></video> -->
                       <video [src]="highlights.file_path + video.file_name" #videoPlayer
-                        (loadeddata)="setDurationAndThumbnail(videoPlayer)" alt="Video Gallery"></video>
+                        (loadeddata)="setDurationAndThumbnail(videoPlayer)" muted></video>
                     </a>
                     <!-- <span class="duration">{{duration}}</span> -->
-                    <span class="duration"
-                      *ngIf-="getVideoDuration(videoPlayer) != 'NaN:NaN'">{{getVideoDuration(videoPlayer)}}</span>
+                    <!-- <span class="duration"
+                      *ngIf-="getVideoDuration(videoPlayer) != 'NaN:NaN'">{{getVideoDuration(videoPlayer)}}</span> -->
                     <!-- <video [src]="highlights.file_path + video.file_name" (click)="openImage(j, 'video')" autoplay></video> -->
                   </div>
                 </div>

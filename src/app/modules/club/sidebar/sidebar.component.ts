@@ -176,14 +176,57 @@ export class SidebarComponent {
   }
 
   ngAfterViewInit() {
+    // // Adding the click event listener to detect clicks anywhere in the document
+    // document.body.addEventListener('click', (event) => {
+    //   if (!this.isUserVerified) {
+    //     return;
+    //   }
+    //   const target = event.target as HTMLElement;
+    //   console.info('target', target.tagName)
+    //   // Check if the target is an svg or p tag (children inside the a tag)
+    //   if (target && (target.tagName === 'SVG' || target.tagName === 'P' || target.tagName === 'A')) {
+    //     // Find the closest parent <a> tag
+    //     const parentLink = target.closest('a') as HTMLElement;
+
+    //     // Check if the parent <a> tag has the "active" class
+    //     if (parentLink && parentLink.classList.contains('active')) {
+    //       console.log('Clicked on an active link!');
+    //       // You can add custom logic here, like resetting scroll position
+    //       // Example: Reset scroll when clicking on the active link
+    //       const targetDiv = document.querySelector('.page-container');
+    //       if (targetDiv) {
+    //         targetDiv.scrollTo({
+    //           top: 0,
+    //           left: 0,
+    //           behavior: 'smooth'
+    //         });
+    //       }
+    //     }
+    //   }
+    // });
+
+
     // Adding the click event listener to detect clicks anywhere in the document
     document.body.addEventListener('click', (event) => {
+      // Check if the user is verified
       if (!this.isUserVerified) {
         return;
       }
+
+      // Define the sidebar element (you can replace the selector with your actual sidebar class or ID)
+      const sidebar = document.querySelector('.sidebar_club'); // Use the correct selector for your sidebar
+
+      // Check if the click occurred inside the sidebar
       const target = event.target as HTMLElement;
-      console.info('target', target.tagName)
-      // Check if the target is an svg or p tag (children inside the a tag)
+      if (!sidebar || !sidebar.contains(target)) {
+        // If the click is outside the sidebar, return early
+        return;
+      }
+
+      // Log the target element tag name
+      console.info('target', target.tagName);
+
+      // Check if the target is an svg, p tag, or a link
       if (target && (target.tagName === 'SVG' || target.tagName === 'P' || target.tagName === 'A')) {
         // Find the closest parent <a> tag
         const parentLink = target.closest('a') as HTMLElement;
@@ -204,6 +247,7 @@ export class SidebarComponent {
         }
       }
     });
+
   }
 
 

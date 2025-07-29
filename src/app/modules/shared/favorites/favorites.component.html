@@ -131,7 +131,7 @@
                       {{element.last_name}}
                     </span>
                     <span class="main-template" style="padding-left: 15px" *ngIf="element.role == 2">
-                      {{element.club_name	}}
+                      {{element.club_name }}
                     </span>
                   </div>
                 </td>
@@ -235,8 +235,13 @@
                             *ngIf="element.user_status === '3'" />
                         </span>
                       </span>
-                      <span class="main-template" style="padding-left: 15px">{{element.first_name}}
-                        {{element.last_name}}</span>
+                      <span class="main-template" style="padding-left: 15px" *ngIf="element.role != 2">
+                        {{element.first_name}}
+                        {{element.last_name}}
+                      </span>
+                      <span class="main-template" style="padding-left: 15px" *ngIf="element.role == 2">
+                        {{element.club_name }}
+                      </span>
                     </div>
                   </div>
                   <div class="space-y-2 text-sm">

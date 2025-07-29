@@ -39,6 +39,7 @@ export class PerformanceAnalysisTabComponent implements OnInit {
   selectPerformanceFirst: string = '';
   langSubscription!: Subscription;
   @Input() isUserVerified: any;
+  isLoading: boolean = false;
 
   constructor(
     private talentService: TalentService,
@@ -57,6 +58,7 @@ export class PerformanceAnalysisTabComponent implements OnInit {
   }
 
   loadReports() {
+    this.isLoading = true;
     this.talentService.getPerformanceReports().subscribe(
       response => {
         if (response.status) {
@@ -69,6 +71,8 @@ export class PerformanceAnalysisTabComponent implements OnInit {
           this.reports = [];
           this.errorMessage = response.message;
         }
+
+        this.isLoading = false;
       },
       error => {
         this.errorMessage = 'Error fetching reports: ' + error.message;
@@ -274,7 +278,7 @@ export class PerformanceAnalysisTabComponent implements OnInit {
           this.talentService.deletePerformanceReport(params).subscribe(
             (response) => {
               if (response.status) {
-                if(response.message && response.message != ''){
+                if (response.message && response.message != '') {
                   this.toaster.success(response.message);
                 }
                 this.loadReports();

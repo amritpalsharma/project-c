@@ -301,4 +301,11 @@ export class GalleryTabComponent {
       default: return '';
     }
   }
+
+  setDurationAndThumbnail(videoElement: HTMLVideoElement) {
+    videoElement.crossOrigin = 'anonymous';
+    // Set Duration
+    // this.videoDuration = this.formatDuration(videoElement.duration);
+
+  }
 }

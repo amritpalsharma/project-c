@@ -308,5 +308,12 @@ export class GalleryTabComponent {
     }
     return true; // Return true if the user has permission
   }
+
+  setDurationAndThumbnail(videoElement: HTMLVideoElement) {
+    videoElement.crossOrigin = 'anonymous';
+    // Set Duration
+    // this.videoDuration = this.formatDuration(videoElement.duration);
+
+  }
 }
 

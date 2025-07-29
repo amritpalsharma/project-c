@@ -558,15 +558,27 @@
                         <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'contract' | translate}}</h6>
                           <h5 class="title-1"
-                            *ngIf="user?.meta?.contract_start && isValidDate(user?.meta?.contract_start)">
-                            {{user?.meta?.contract_start | date:'y'
-                            }} -
+                            *ngIf="currentClubInfo && currentClubInfo?.contract_start && isValidDate(currentClubInfo?.contract_start)">
+                            {{ currentClubInfo.contract_start | date: 'y' }} -
+                            <ng-container
+                              *ngIf="isValidDate(currentClubInfo.contract_end) && currentClubInfo.contract_end != null">
+                              {{ currentClubInfo.contract_end | date: 'y' }}
+                            </ng-container>
+                            <ng-container
+                              *ngIf="!isValidDate(currentClubInfo.contract_end) && currentClubInfo.contract_end == null">
+                              {{ 'untilToday' | translate }}
+                            </ng-container>
+                          </h5>
+
+                          <h5 class="title-1"
+                            *ngIf="!currentClubInfo && user?.meta?.contract_start && isValidDate(user?.meta?.contract_start) && user?.meta?.have_no_club != '1'">
+                            {{ user?.meta?.contract_start | date: 'y' }} -
                             <span *ngIf="user?.meta?.contract_end && isValidDate(user?.meta?.contract_end)">
                               {{ user.meta.contract_end | date: 'y' }}
                             </span>
-                            <span
-                              *ngIf="!user?.meta?.contract_end || !isValidDate(user?.meta?.contract_end)">{{'untilToday'
-                              | translate}}</span>
+                            <span *ngIf="!user?.meta?.contract_end || !isValidDate(user?.meta?.contract_end)">
+                              {{ 'untilToday' | translate }}
+                            </span>
                           </h5>
                         </div>
                       </div>
@@ -1035,7 +1047,7 @@
                 </div>
 
 
-                <div class="d-flex w-100 m-auto image_gallery-box mt-2 ">
+                <!-- <div class="d-flex w-100 m-auto image_gallery-box mt-2 ">
                   <div class="col-6 col-sm-4 col-md-3 col-lg-4 gallery_images position-relative pb-0"
                     *ngFor="let video of highlights?.videos let j = index">
                     <a [href]="highlights.file_path + video.file_name" data-fancybox="gallery" [attr.data-caption]="">
@@ -1044,10 +1056,29 @@
                     </a>
                     <span class="duration"
                       *ngIf="getVideoDuration(videoPlayer) != 'NaN:NaN'">{{getVideoDuration(videoPlayer)}}</span>
-                    <!-- <span class="duration">{{duration}}</span> -->
-                    <!-- <video [src]="highlights.file_path + video.file_name" #videoPlayer
-                      (loadeddata)="setDurationAndThumbnail(videoPlayer)" (click)="openImage(j, 'video')"></video>
-                    <span class="duration">{{duration}}</span> -->
+                  </div>
+                </div> -->
+                <div class="d-flex w-100 m-auto image_gallery-box mt-2 ">
+                  <div class="col-6 col-sm-4 col-md-3 col-lg-4 gallery_images position-relative pb-0"
+                    *ngFor="let video of highlights?.videos; let j = index">
+                    <a [href]="highlights.file_path + video.file_name" data-fancybox="gallery" [attr.data-caption]="">
+
+                      <!-- Display thumbnail if available (image) -->
+                      <!-- <img *ngIf="video.thumbnailUrl" [src]="video.thumbnailUrl" alt="Video Thumbnail"
+                        class="video-thumbnail" /> -->
+
+                      <!-- Video element is hidden, but still present for data fetching -->
+                      <!-- <video #videoPlayer [src]="highlights.file_path + video.file_name"
+                        (loadeddata)="generateThumbnail(videoPlayer, j)">
+                      </video> -->
+                      <video [src]="highlights.file_path + video.file_name" #videoPlayer
+                        (loadeddata)="setDurationAndThumbnail(videoPlayer)" muted autoplay></video>
+                    </a>
+
+                    <!-- Duration Display (only if the video is available) -->
+                    <!-- <span class="duration" *ngIf="getVideoDuration(videoPlayer) != 'NaN:NaN'">
+                      {{ getVideoDuration(videoPlayer) }}
+                    </span> -->
                   </div>
                 </div>
               </div>

@@ -546,29 +546,53 @@ export class MembershipComponent {
           return;
         }
 
-        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream;
-        const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-        const isSafariIOS = isIOS || isSafari;
+        // this.forceDownload(url, 'Open Member Ship');
+        window.location.href = url;
+        // window.open(response?.data?.[0]?.url?.trim());
+        // const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream;
+        // const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+        // const isSafariIOS = isIOS || isSafari;
 
-        if (isSafariIOS) {
-          // 🧠 SAFARI FIX: Use anchor element (not window.open)
-          const link = document.createElement('a');
-          link.href = url;
-          link.target = '_blank';
-          link.rel = 'noopener noreferrer';
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-        } else {
-          // ✅ For Chrome, Firefox, Edge etc.
-          window.open(url, '_blank');
-        }
+        // if (isSafariIOS) {
+        //   // 🧠 SAFARI FIX: Use anchor element (not window.open)
+        //   const link = document.createElement('a');
+        //   link.href = url;
+        //   link.target = '_blank';
+        //   link.rel = 'noopener noreferrer';
+        //   document.body.appendChild(link);
+        //   link.click();
+        //   document.body.removeChild(link);
+        // } else {
+        //   // ✅ For Chrome, Firefox, Edge etc.
+        //   window.open(url, '_blank');
+        // }
       },
       error: (err: any) => {
         console.error('Failed to generate customer portal link:', err);
         this.isopenCustomerPortal = false;
       }
     });
+  }
+
+
+  async forceDownload(src: string, filename: string) {
+    try {
+      const response = await fetch(src);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const blob = await response.blob(); // Convert the response to a Blob object
+      const url = window.URL.createObjectURL(blob);
+      const anchor = document.createElement('a');
+      anchor.href = url;
+      anchor.download = filename; // Use the filename passed to the function
+      document.body.appendChild(anchor);
+      anchor.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(anchor);
+    } catch (error) {
+      console.error('There was an error downloading the file:', error);
+    }
   }
 
 }

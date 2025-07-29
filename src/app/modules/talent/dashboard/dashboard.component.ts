@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output, OnDestroy } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../../services/user.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -50,7 +50,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   scoutInfoDetails: any;
   customClubInfo: any;
 
-
+  @ViewChild('videoPlayer') videoPlayer!: ElementRef<HTMLVideoElement>;
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
@@ -145,7 +145,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     // Adding a slight delay to ensure elements are rendered before the tour starts
     this.getUserProfile(this.userId);
-    this.getHighlightsData();
+
     this.loadCountries();
     this.getGalleryData();
 
@@ -184,6 +184,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     });
 
     this.getUserStatus();
+    this.getHighlightsData();
     // this.themeChanged();
   }
 
@@ -426,8 +427,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   registredClubArr: any;
   customClubArr: any;
   currentClubInfo: any;
-  getUserProfile(userId: any) { 
-    console.info('active tab is ',this.activeTab)
+  getUserProfile(userId: any) {
+    console.info('active tab is ', this.activeTab)
     this.loading = true;  // Set loading to true before making the API call
     this.profileImageLoading = true;
     let params = {
@@ -448,22 +449,19 @@ export class DashboardComponent implements OnInit, OnDestroy {
           // customClubInfo
           if (this.user?.custom_club_info && this.user?.custom_club_info != '') {
             this.customClubInfo = JSON.parse(this.user.custom_club_info);
-            console.info('customClubInfo', this.customClubInfo)
+            // console.info('customClubInfo', this.customClubInfo)
+          } else {
+            this.customClubInfo = [];
           }
           // userData.first_name+' '+userData.last_name
-          console.info('User', this.user);
           if (this.user?.first_name || this.user?.last_name) {
             this.UserName = this.user?.first_name + ' ' + this.user?.last_name;
             this.titleService.setName(this.UserName);
             this.titleService.setRole(this.user?.role_name);
             console.info('userName Set Condition true', this.UserName);
-          } else {
-            console.info('userName Does Not Set Condition False', this.user);
           }
 
-          if (this.user?.meta && this.user?.meta?.birth_country_flag != '') {
-            // this.countryFlagUrl = this.user?.meta?.birth_country_flag;
-          }
+
           if (this.user?.scout_info) {
             this.scoutInfoDetails = JSON.parse(this.user?.scout_info);
 
@@ -546,13 +544,19 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
           if (this.user?.meta?.have_registered_club == 1 && this.user?.registered_club_info != '') {
             this.registredClubArr = JSON.parse(this.user?.registered_club_info);
+          } else {
+            this.registredClubArr = [];
           }
           if (this.user?.meta?.have_custom_club == 1 && this.user?.custom_club_info != '') {
             this.customClubArr = JSON.parse(this.user?.custom_club_info);
+          } else {
+            this.customClubArr = [];
           }
 
           if (this.user?.meta?.have_custom_club != 1 && this.user?.meta?.have_registered_club != 1 && this.user?.current_club_info != '') {
             this.currentClubInfo = JSON.parse(this.user?.current_club_info);
+          } else {
+            this.currentClubInfo = [];
           }
 
         }
@@ -1761,5 +1765,47 @@ export class DashboardComponent implements OnInit, OnDestroy {
     })
     //End Confirmation 
 
+  }
+
+  generateThumbnail(videoElement: HTMLVideoElement, index: number): void {
+    videoElement.crossOrigin = 'anonymous';
+    // const canvas = document.createElement('canvas');
+    // const context = canvas.getContext('2d');
+
+    // if (context) {
+    //   // Set canvas dimensions equal to video dimensions
+    //   canvas.width = videoElement.videoWidth;
+    //   canvas.height = videoElement.videoHeight;
+
+    //   // Draw the current frame on the canvas
+    //   context.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+
+    //   // Handle iOS Safari-specific issues with canvas.toDataURL()
+    //   const isIOSSafari = this.isIOS() && /Safari/.test(navigator.userAgent);
+    //   if (isIOSSafari) {
+    //     // Fallback for iOS Safari if canvas is not allowed directly
+    //     setTimeout(() => {
+    //       // Convert canvas to a Blob to avoid issues with Safari's base64 data URL restrictions
+    //       canvas.toBlob((blob) => {
+    //         if (blob) {
+    //           const imageUrl = URL.createObjectURL(blob);
+    //           this.highlights.videos[index].thumbnailUrl = imageUrl;
+    //         }
+    //       }, 'image/jpeg');
+    //     }, 100);
+    //   } else {
+    //     // Standard case for most browsers: convert to base64
+    //     const imageUrl = canvas.toDataURL('image/jpeg');
+    //     this.highlights.videos[index].thumbnailUrl = imageUrl;
+    //   }
+    // }
+  }
+
+  // Helper method to check if the device is an iOS device
+  isIOS(): boolean {
+    const userAgent = navigator.userAgent || navigator.vendor || (window as any).opera;
+
+    // Check for iOS devices (iPhone, iPad, iPod)
+    return /iPad|iPhone|iPod/.test(userAgent) && !(/Opera Mini/.test(userAgent)) && !('MSStream' in window);
   }
 }

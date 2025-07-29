@@ -20,7 +20,7 @@
     </a>
   </div>
   <div class="page-sidebar-inner">
-    <ul class="sidebar_menu">
+    <ul class="sidebar_menu side_bar_parent">
       <li [ngClass]="{'locksideBar': locksideBar}">
         <a routerLink="/talent/dashboard" [matTooltip]="!sidebarOpen ? ('dashboard' | translate) : ''"
           matTooltipPosition="right" (click)="closeSidebar(true)" routerLinkActive="active" class="">

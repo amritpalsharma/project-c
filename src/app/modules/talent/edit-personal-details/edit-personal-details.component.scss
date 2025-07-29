@@ -329,6 +329,14 @@ mat-datepicker-toggle {
   .mat-select-search-clear {
     display: none !important;
   }
+
+  .is_grey_true {
+    background: #dfdfdf !important;
+  }
+
+  .dark-theme .is_grey_true {
+    background: #dfdfdf !important;
+  }
 }
 
 ::ng-deep .dark-theme {

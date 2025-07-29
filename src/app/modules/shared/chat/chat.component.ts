@@ -114,7 +114,7 @@ export class ChatComponent implements AfterViewInit {
 
         const user = {
             id: this.userData.id,
-            name: this.userData.first_name + this.userData.last_name,
+            name: this.userData.first_name +' '+ this.userData.last_name,
             email: this.userData.username,
             photoUrl: this.userData.profile_image_path,
             welcomeMessage: 'Hi!',

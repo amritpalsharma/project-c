@@ -151,10 +151,11 @@
       </svg>
       <!-- <video class="img-fluid" controls> -->
       <a [href]="imageBaseUrl + image.file_name" data-fancybox="gallery1" [attr.data-caption]="">
-        <video class="img-fluid">
+        <!-- <video class="img-fluid">
           <source [src]="imageBaseUrl + image.file_name" type="video/mp4">
           {{ 'galleryText' | translate }}
-        </video>
+        </video> -->
+        <video [src]="imageBaseUrl + image.file_name" #videoPlayer (loadeddata)="setDurationAndThumbnail(videoPlayer)"></video>
         <!-- <video controls autoplay muted playsinline width="100%" height="auto">
           <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
           Your browser does not support the video tag.

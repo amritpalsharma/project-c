@@ -93,7 +93,7 @@ export class ProfileTabComponent {
 
     return age;
   }
-
+  currentClubInfo: any;
   getUserProfile() {
     try {
       this.talentService.getProfileData().subscribe((response) => {
@@ -108,6 +108,10 @@ export class ProfileTabComponent {
           // Check if user_nationalities exist and parse it
           if (this.user && this.user.user_nationalities) {
             this.userNationalities = JSON.parse(this.user.user_nationalities);
+          }
+
+          if (this.user?.meta?.have_custom_club != 1 && this.user?.meta?.have_registered_club != 1 && this.user?.current_club_info != '') {
+            this.currentClubInfo = JSON.parse(this.user?.current_club_info);
           }
 
           this.getMainPosition();
@@ -267,4 +271,10 @@ export class ProfileTabComponent {
       return '';
     }
   }
+
+
+  isValidDate(value: any): boolean {
+    return value && !isNaN(new Date(value).getTime());
+  }
+
 }
