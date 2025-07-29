@@ -792,7 +792,7 @@
   "christmasOffer": "Christmas e offer",
   "christmasDiscount": "$10",
   "christmasDiscountCode": "Play10",
-  "expired": "Expired",
+  "expired": "SCADUTO",
   "newCoupon": "New e coupon",
   "selectCouponType": "Select e the e type e of e coupon:",
   "discount": "Discount",
@@ -1527,5 +1527,7 @@
   "yesRemoveScout": "Sì, rimuovi",
   "cancelRemoveScout": "No, non rimuovere",
   "areYouSureToUpdateReviewTraining": "Sei sicuro di voler aggiornare lo stato dell'addestramento di revisione?",
-  "noTeamMemberAddedHere": "Nessun Membro del team è stato aggiunto qui."
+  "noTeamMemberAddedHere": "Nessun Membro del team è stato aggiunto qui.",
+  "passwordResetLinkHasExpired": "Spiacenti, il link per reimpostare la password è scaduto. Visita la pagina \"Password dimenticata\" per riceverne uno nuovo.",
+  "linkExpired": "LINK SCADUTO"
 }

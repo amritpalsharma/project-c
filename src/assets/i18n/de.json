@@ -1537,5 +1537,8 @@
   "yesRemoveScout": "Ja, entfernen",
   "cancelRemoveScout": "Nein, nicht entfernen",
   "areYouSureToUpdateReviewTraining": "Bist du sicher, dass du den Status des Sichtungs-Trainings aktualisieren möchtest?",
-  "noTeamMemberAddedHere":"Hier wurde kein Team-Mitglied hinzugefügt."
+  "noTeamMemberAddedHere": "Hier wurde kein Team-Mitglied hinzugefügt.",
+  "passwordResetLinkHasExpired": "Leider ist Ihr Link zum Zurücksetzen des Passworts abgelaufen. Bitte besuchen Sie die Seite „Passwort vergessen“, um einen neuen Link zu erhalten.",
+  "linkExpired": "LINK ABGELAUFEN"
+  
 }

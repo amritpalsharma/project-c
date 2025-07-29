@@ -1396,5 +1396,7 @@
   "yesRemoveScout": "Ja, fjern",
   "cancelRemoveScout": "Nej, fjern ikke",
   "areYouSureToUpdateReviewTraining": "Er du sikker på, at du vil opdatere status for gennemgangstræningen?",
-  "noTeamMemberAddedHere": "Der er ikke tilføjet nogen Medlem af teamet her."
+  "noTeamMemberAddedHere": "Der er ikke tilføjet nogen Medlem af teamet her.",
+  "passwordResetLinkHasExpired": "Beklager, dit link til nulstilling af adgangskode er udløbet. Besøg venligst siden \"Glemt adgangskode\" for at få et nyt link.",
+  "linkExpired": "LINK UDLØBET"
 }

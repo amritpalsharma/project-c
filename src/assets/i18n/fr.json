@@ -803,7 +803,7 @@
   "christmasOffer": "Christmas et offer",
   "christmasDiscount": "$10",
   "christmasDiscountCode": "Play10",
-  "expired": "Expired",
+  "expired": "EXPIRÉ",
   "newCoupon": "New et coupon",
   "selectCouponType": "Select et the et type et of et coupon:",
   "discount": "Discount",
@@ -1546,5 +1546,7 @@
   "yesRemoveScout": "Oui, retirer",
   "cancelRemoveScout": "Non, ne pas retirer",
   "areYouSureToUpdateReviewTraining": "Es-tu sûr de vouloir mettre à jour le statut de la formation de révision?",
-  "noTeamMemberAddedHere": "Aucun Membre de l'équipe n'a été ajouté ici."
+  "noTeamMemberAddedHere": "Aucun Membre de l'équipe n'a été ajouté ici.",
+  "passwordResetLinkHasExpired": "Désolé, votre lien de réinitialisation du mot de passe a expiré. Veuillez visiter la page « Mot de passe oublié » pour en recevoir un nouveau.",
+  "linkExpired": "LIEN EXPIRÉ"
 }
