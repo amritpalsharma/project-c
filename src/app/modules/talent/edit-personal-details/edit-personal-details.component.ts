@@ -129,6 +129,7 @@ export class EditPersonalDetailsComponent implements OnInit {
 
   theme: any = localStorage.getItem('theme');
   teamNameDefault: string = '';
+  isreadOnlyContract: boolean = false;
 
   ngOnInit(): void {
     this.theme = localStorage.getItem('theme');
@@ -139,25 +140,21 @@ export class EditPersonalDetailsComponent implements OnInit {
       let registedClubArr = JSON.parse(this.user?.current_club_info);
       this.team_type = registedClubArr.team_group;
       this.currentClubId = String(registedClubArr.club_id);
+      this.isreadOnlyContract = true;
       setTimeout(() => {
         this.currentClubId = String(registedClubArr.club_id);
         const idToSelect = String(registedClubArr.team_id); // Convert to string since your IDs are strings
         const matchingTeam = this.teamsArr.find(t => t.id === idToSelect);
 
-        console.log('All team IDs:', this.teamsArr.map(t => t.id));
-        console.log('Trying to set CurrentTeamId to:', idToSelect);
-
         if (matchingTeam) {
           this.CurrentTeamId = (idToSelect);
-          console.log('Match found. Selected:', matchingTeam);
+          // console.log('Match found. Selected:', matchingTeam);
         } else {
           console.warn('No matching team found for:', idToSelect);
         }
 
         this.cdr.detectChanges();
       }, 500);
-
-
     }
 
     this.countries = this.data.countries;

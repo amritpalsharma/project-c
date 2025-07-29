@@ -507,4 +507,9 @@ export class MembershipComponent {
       console.error('Error fetching users:', error);
     }
   }
+
+  capitalizeFirstLetter(value: string): string {
+    if (!value) return '';
+    return value.charAt(0).toUpperCase() + value.slice(1);
+  }
 }

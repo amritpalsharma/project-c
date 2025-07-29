@@ -245,8 +245,8 @@
           <label for="contractStart">{{'contractStartDate' | translate}}:</label>
           <div class="d-flex align-items-center justify-content-center dob1">
             <input class="dob" matInput id="contractStart" name="contractStart" [matDatepicker]="contractStartPicker"
-              [formControl]="contractStart" placeholder="DD.MM.YYYY" />
-            <mat-datepicker-toggle matSuffix [for]="contractStartPicker"></mat-datepicker-toggle>
+              [formControl]="contractStart" placeholder="DD.MM.YYYY" [readonly]="isreadOnlyContract"/>
+            <mat-datepicker-toggle matSuffix [for]="contractStartPicker" [disabled]="isreadOnlyContract"></mat-datepicker-toggle>
             <mat-datepicker #contractStartPicker></mat-datepicker>
           </div>
         </div>
@@ -256,8 +256,8 @@
           <label for="contractEnd">{{'contractEndDate' | translate}}:</label>
           <div class="d-flex align-items-center justify-content-center dob1">
             <input class="dob" matInput id="contractEnd" name="contractEnd" [matDatepicker]="contractEndPicker"
-              [formControl]="contractEnd" placeholder="DD.MM.YYYY" />
-            <mat-datepicker-toggle matSuffix [for]="contractEndPicker"></mat-datepicker-toggle>
+              [formControl]="contractEnd" placeholder="DD.MM.YYYY" [readonly]="isreadOnlyContract"/>
+            <mat-datepicker-toggle matSuffix [for]="contractEndPicker" [disabled]="isreadOnlyContract"></mat-datepicker-toggle>
             <mat-datepicker #contractEndPicker></mat-datepicker>
           </div>
         </div>

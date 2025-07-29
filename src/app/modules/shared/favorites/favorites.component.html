@@ -79,8 +79,8 @@
             <!-- Add In Favorites From Explore -->
 
           </div>
-          <div class="d-flex align-items-center" *ngIf="userFavorites.length > 9 && !isLoading">
-            <mat-paginator class="paginator-components bg-0C3453 pagination-values" [length]="totalItems"
+          <div class="d-flex align-items-center" *ngIf="totalFavorites > 9 && !isLoading">
+            <mat-paginator class="paginator-components bg-0C3453 pagination-values" [length]="totalFavorites"
               [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20]" (page)="onPageChange()"></mat-paginator>
           </div>
         </div>
