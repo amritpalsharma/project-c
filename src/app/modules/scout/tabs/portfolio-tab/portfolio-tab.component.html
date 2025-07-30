@@ -97,9 +97,7 @@
               <tr class="mat-row user-empty-tr" *matNoDataRow>
                 <td [attr.colspan]="displayedColumns.length" class="user-empty-td">
                   <app-loader *ngIf="isLoading"></app-loader>
-                  <div *ngIf="scoutPlayers.length == 0 && !isLoading" style="text-align: center;">{{
-                    'noPortfolioRecordFound' |
-                    translate }}</div>
+                  <div class="no_data_font_text" *ngIf="scoutPlayers.length == 0 && !isLoading" style="text-align: center;">{{ 'noPortfolioRecordFound' | translate }}</div>
                 </td>
               </tr>
             </table>
@@ -251,7 +249,7 @@
             <tr class="mat-row user-empty-tr" *matNoDataRow>
               <td [attr.colspan]="displayedColumns.length" class="user-empty-td">
                 <app-loader *ngIf="isLoading"></app-loader>
-                <div *ngIf="scoutPlayers.length == 0 && !isLoading" style="text-align: center;">{{
+                <div class="no_data_font_text" *ngIf="scoutPlayers.length == 0 && !isLoading" style="text-align: center;">{{
                   'noPortfolioRecordFound' |
                   translate }}</div>
               </td>

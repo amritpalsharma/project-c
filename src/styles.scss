@@ -2930,3 +2930,24 @@ img.club_logo_in_search {
 ::ng-deep .premium_icons .disabled_grey_btn {
   background: #b7b9b2 !important;
 }
+
+.dropdown-toggle-checkbox {
+  .form-check {
+    padding-left: 0 !important;
+    .form-check-input {
+      margin-left: 0 !important;
+    }
+  }
+}
+
+mat-select {
+  font-family: "Libre Franklin", sans-serif !important;
+}
+
+.no_data_font_text {
+    padding: 10px 0;
+    text-align: center;
+    width: 100%;
+    font-family: "Libre Franklin", sans-serif;
+    font-size: 16px;
+}

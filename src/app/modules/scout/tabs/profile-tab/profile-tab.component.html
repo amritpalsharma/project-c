@@ -159,7 +159,7 @@
                 <tbody class="tbody-scout-profile">
                     <tr *ngIf="!representators || representators?.length == 0">
                         <td colspan="4" class="text-center">
-                            <h5 class="">{{'noTeamMemberAddedHere' | translate}}</h5>
+                            <div class="no_data_font_text">{{'noTeamMemberAddedHere' | translate}}</div>
                         </td>
                     </tr>
                     <tr *ngFor="let representator of representators">
@@ -232,7 +232,7 @@
     <div class="hide_table_for_desktop">
         <tr *ngIf="!representators || representators?.length == 0">
             <td colspan="4" class="text-center">
-                <h5 class="">{{'noTeamMemberAddedHere' | translate}}</h5>
+                <div class="no_data_font_text">{{'noTeamMemberAddedHere' | translate}}</div>
             </td>
         </tr>
         <ng-container *ngIf="representators && representators?.length > 0">

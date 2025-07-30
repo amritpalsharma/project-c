@@ -244,7 +244,7 @@
               <tr class="mat-row user-empty-tr" *matNoDataRow>
                 <td [attr.colspan]="displayedColumns.length" class="user-empty-td">
                   <!-- <app-loader *ngIf="isLoading"></app-loader> -->
-                  <div *ngIf="players.length == 0 && !isLoading" style="text-align: center;">{{ 'noRecordFound' |
+                  <div class="no_data_font_text" *ngIf="players.length == 0 && !isLoading" style="text-align: center;">{{ 'noRecordFound' |
                     translate }}</div>
                 </td>
               </tr>
