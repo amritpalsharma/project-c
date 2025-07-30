@@ -328,6 +328,8 @@ h5{
      }
 
   .wc_floatingMenu {
+    max-width: 100%;
+    overflow: hidden;
       display: none;
       position: absolute;
       float: left;
@@ -337,6 +339,14 @@ h5{
       padding: 10px 10px;
       border-radius: 4px;
       box-shadow: 1px 1px 4px #999;
+      .wc_menuItem {
+        span {
+          width: 100%;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          display: inline-block;
+        }
+      }
   }
 
   .wc_floatingMenu.active{
