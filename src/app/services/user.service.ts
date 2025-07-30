@@ -122,8 +122,9 @@ export class UserService {
 
   addFavoritesData(id: any): Observable<any> {
     const formData = new FormData();
+    let lang_id = localStorage.getItem('lang_id');
     formData.append('favorite_id', id);
-
+    formData.append('lang_id', String(lang_id));
     return this.http.post<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl}add-favorite`,
       formData // directly pass formData here
@@ -132,8 +133,9 @@ export class UserService {
 
   removeFavoritesData(id: any): Observable<any> {
     const formData = new FormData();
+    let lang_id = localStorage.getItem('lang_id');
     formData.append('id[]', id);
-
+    formData.append('lang_id', String(lang_id));
     return this.http.post<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl}delete-favorites`,
       formData // directly pass formData here
@@ -142,7 +144,9 @@ export class UserService {
 
   removeSingleFavorite(id: any): Observable<any> {
     const formData = new FormData();
+    let lang_id = localStorage.getItem('lang_id');
     formData.append('id[]', id);
+    formData.append('lang_id', String(lang_id));
 
     return this.http.post<{ status: boolean, message: string, data: {} }>(
       `${this.apiUrl}remove-favorites-talent`,

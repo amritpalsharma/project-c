@@ -394,7 +394,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
   }
 
-  
+
 
   getUserProfile(userId: any) {
     let changed = false;
@@ -501,10 +501,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.loading = false;  // Set loading to false on error
     }
     finally {
-      if(changed){
+      if (changed) {
         this.profileReady = true;
       }
-      else{
+      else {
         setTimeout(() => {
           this.profileReady = true;
         }, 2000);

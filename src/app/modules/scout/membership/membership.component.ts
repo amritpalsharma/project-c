@@ -15,6 +15,7 @@ import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { TitleService } from '../../../title.service';
 import { WebPages } from '../../../services/webpages.service';
 import { take } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-membership',
@@ -56,11 +57,12 @@ export class MembershipComponent {
     private router: Router,
     private translateService: TranslateService,
     private titleService: TitleService,
-    private webpages: WebPages
+    private webpages: WebPages,
+    private toaster: ToastrService
   ) { }
 
   loggedInUser: any = localStorage.getItem('userData');
-  
+
   ngOnInit(): void {
     this.loggedInUser = JSON.parse(this.loggedInUser);
 
@@ -411,13 +413,14 @@ export class MembershipComponent {
       (response: any) => {
         if (response && response.status) {
           // Open the MessagePopupComponent with a success message
-          this.dialog.open(MessagePopupComponent, {
-            width: '600px',
-            data: {
-              action: 'display',
-              message: 'Subscription canceled successfully.'
-            }
-          });
+          // this.dialog.open(MessagePopupComponent, {
+          //   width: '600px',
+          //   data: {
+          //     action: 'display',
+          //     message: 'Subscription canceled successfully.'
+          //   }
+          // });
+          this.toaster.success(response.message)
           console.log('Subscription canceled successfully:', response);
           this.getUserPlans();
 
@@ -473,6 +476,14 @@ export class MembershipComponent {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.getBoosterData()
+      }
+
+      if (result.role != undefined && result.role != '') {
+        if (result.role == 'talent' || result.role == 'scout' || result.role == 'club') {
+          if (result.user_id != '' && result.user_id != undefined && result.redirect_path) {
+            this.router.navigate([result.redirect_path, result.user_id]);
+          }
+        }
       }
     });
   }

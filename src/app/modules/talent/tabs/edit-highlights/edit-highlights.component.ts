@@ -241,6 +241,8 @@ export class EditHighlightsComponent {
       unset_all = true;
     }
 
+    
+
     // Show loading notification
     const loadingToast = this.toastr.info(this.Processing, this.pleaseWait, { disableTimeOut: true });
 

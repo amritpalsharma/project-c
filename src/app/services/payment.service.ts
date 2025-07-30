@@ -76,7 +76,8 @@ export class PaymentService {
     });
     const formData = new FormData();
     formData.append('subscription_id', subscriptionId);
-
+    let currentLang = localStorage.getItem('lang_id');
+    formData.append('lang_id', currentLang + '');
     return this.http.post<any>(url, formData, { headers });
   }
 
@@ -86,7 +87,7 @@ export class PaymentService {
     data.append('subscription_id', subscriptionId);
     data.append('new_package_id', newPackageId);
     let currentLang = localStorage.getItem('lang_id');
-    data.append('lang', currentLang + '');
+    data.append('lang_id', currentLang + '');
 
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
