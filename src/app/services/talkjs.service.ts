@@ -35,8 +35,7 @@ export class TalkService {
     });
 
     this.session = new Talk.Session({
-      appId: 'tmI75KXB', // testt
-      // appId: 'UAid8HWJ',
+      appId: 'tmI75KXB',
       me: this.currentUser,
     });
 
@@ -122,7 +121,72 @@ export class TalkService {
   }
 
 
- 
+  async createOneOnOneConversation1111(
+    userId: string,
+    name: string,
+    email: string,
+    photoUrl: string
+  ): Promise<void> {
+    try {
+      if (!this.session && this.currentUser) {
+        await this.init(this.currentUser);
+      }
+
+      // === BLOCK chatting with admin for regular users ===
+      const ADMIN_ID = '1'; // <-- Replace with actual admin user id
+
+      if (this.currentUserRole !== '1' && userId === ADMIN_ID) {
+        console.warn('Regular users cannot chat with admin.');
+        return; // Prevent chat creation with admin
+      }
+
+      // Admin role can chat with anyone, no restrictions
+
+      const otherUser = new Talk.User({
+        id: userId,
+        name: name,
+        email: email,
+        photoUrl: photoUrl,
+        role: 'default',
+        locale: localStorage.getItem('lang') || 'de'
+      });
+
+      const conversation = this.session!.getOrCreateConversation(
+        Talk.oneOnOneId(this.currentUser!, otherUser)
+      );
+      // const hiddenUser = new Talk.User({
+      //   id: 1,
+      //   name: 'Succer You Sports AG',
+      //   email: 'testmails.cts@gmail.com',
+      //   role: 'hidden'
+      // });
+      conversation.setParticipant(this.currentUser!);
+      // conversation.setParticipant(hiddenUser);
+      conversation.setParticipant(otherUser);
+      const validatedPhoto = this.isValidImageUrl(photoUrl)
+        ? photoUrl
+        : 'https://api.socceryou.ch/uploads/default_talent_img.png';
+      let finalPhotoUrl = `${validatedPhoto}${validatedPhoto.includes('?') ? '&' : '?'}ts=${Date.now()}`;
+      if (finalPhotoUrl.includes("/undefined")) {
+        finalPhotoUrl = 'https://api.socceryou.ch/uploads/default_talent_img.png';
+      }
+      conversation.setAttributes({
+        photoUrl: finalPhotoUrl, // Image in header
+        custom: {
+          // role:'hidden',
+          // search: `${this.user.name} ${otherUser.name}`.toLowerCase()
+        }
+      });
+      const inbox = this.session!.createInbox({
+        theme: this.currentTheme
+      });
+
+      inbox.select(conversation);
+      inbox.mount(document.getElementById('talkjs-container')!);
+    } catch (err) {
+      console.error('Error in createOneOnOneConversation:', err);
+    }
+  }
 
   setCurrentUserRoleAndId(role: string, id: string) {
     this.currentUserRole = role;
@@ -183,12 +247,11 @@ export class TalkService {
       const conversation = this.session!.getOrCreateConversation(conversationId);
 
       conversation.setParticipant(this.currentUser!);
-      conversation.setParticipant(hiddenAdmin);
       conversation.setParticipant(otherUser);
+      conversation.setParticipant(hiddenAdmin);
 
       conversation.setAttributes({
-        subject: name,
-        // photoUrl: this.getValidPhotoUrl(photoUrl, true), // For conversation header
+        photoUrl: this.getValidPhotoUrl(photoUrl, true), // For conversation header
       });
 
       // DESTROY existing inbox before mounting new one

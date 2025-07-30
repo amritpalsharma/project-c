@@ -127,6 +127,8 @@
                         <!-- <img *ngIf="!slider?.current_club_logo && slider?.pre_current_club_logo"
                           [src]="club_logo_path + slider.pre_current_club_logo" alt="PreCLUBLOGO" class="preClubLogo"> -->
                       </div>
+                        <img *ngIf="getFirstFlag(slider.user_nationalities) && slider.role_name == 'Scout'"
+                        src="{{getFirstFlag(slider.user_nationalities)}}" class="player--flag" alt="Nation">
                       <img *ngIf="getFirstFlag(slider.user_nationalities) && slider.role_name == 'Talent'"
                         src="{{getFirstFlag(slider.user_nationalities)}}" class="player--flag" alt="Nation">
                       <div class="player--dob"
