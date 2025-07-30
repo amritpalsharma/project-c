@@ -1288,7 +1288,7 @@
   "changeNewsletterStatus": "Tem certeza de que deseja alterar o status da newsletter?",
   "areYouSuretoDeleteActivity": "Tem certeza de que deseja excluir esta atividade?",
   "subsciptionCancelSuccess": "A sua subscrição foi cancelada com sucesso.",
-  "deleteAccountDesc": "Esta ação elimina permanentemente a sua conta da nossa base de dados.",
+  "deleteAccountDesc": "Isso excluirá permanentemente sua conta.",
   "deleteMyAccount": "Eliminar a minha conta",
   "uploadNewProfileImage": "Carregar nova imagem de perfil",
   "editCoverImage": "Editar imagem de capa",
@@ -1487,5 +1487,7 @@
   "yesRemoveScout": "Sim, remover",
   "cancelRemoveScout": "Não, não remover",
   "areYouSureToUpdateReviewTraining": "Tem certeza de que deseja atualizar o status do treino de revisão?",
-  "noTeamMemberAddedHere": "Nenhum Membro da equipe foi adicionado aqui."
+  "noTeamMemberAddedHere": "Nenhum Membro da equipe foi adicionado aqui.",
+  "passwordResetLinkHasExpired": "Desculpe, o link para redefinir sua senha expirou. Por favor, acesse a página \"Esqueceu a senha\" para receber um novo link.",
+  "linkExpired": "LINK EXPIRADO"
 }

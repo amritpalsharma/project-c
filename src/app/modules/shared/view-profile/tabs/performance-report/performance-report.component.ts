@@ -19,7 +19,7 @@ interface Report {
 })
 
 
-export class PerformanceReportComponent  implements OnInit {
+export class PerformanceReportComponent implements OnInit {
 
   reports: Report[] = [];
   // reports: any = [];
@@ -28,39 +28,42 @@ export class PerformanceReportComponent  implements OnInit {
   noTextTabs: boolean = true;
   selectedIds: number[] = [];
   userId: any = [];
-  path: any ;
+  path: any;
+  isLoading: boolean = false;
   @Input() isPremium: any;
 
   constructor(
     private talentService: TalentService,
-     public dialog: MatDialog,
-     private route: ActivatedRoute,
-    private router:Router
-   ) {}
+    public dialog: MatDialog,
+    private route: ActivatedRoute,
+    private router: Router
+  ) { }
 
   ngOnInit() {
-    
-    this.route.params.subscribe((params:any) => {
+
+    this.route.params.subscribe((params: any) => {
       this.userId = params.id;
-      if(this.isPremium){
-        this.loadReports(this.userId);      
+      if (this.isPremium) {
+        this.loadReports(this.userId);
       }
     });
   }
 
-  loadReports(id:any) {
+  loadReports(id: any) {
+    this.isLoading = true;
     this.talentService.getPerformanceReportsData(id).subscribe(
       response => {
         if (response.status) {
           this.path = response.data.uploads_path;
           this.reports = response.data.reports;
-          console.warn('this.reports',this.reports);
+          console.warn('this.reports', this.reports);
           this.noTextTabs = false;
         } else {
           this.reports = [];
           this.noTextTabs = true;
           this.errorMessage = response.message;
         }
+        this.isLoading = false;
       },
       error => {
         this.noTextTabs = true;
@@ -82,25 +85,25 @@ export class PerformanceReportComponent  implements OnInit {
   }
 
 
-    // Download a single report
-    async downloadInvoice(id: any, src: any, type: any) {
-      try {
-        const response = await fetch(src);
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const blob = await response.blob(); // Convert the response to a Blob object
-        const url = window.URL.createObjectURL(blob);
-        const anchor = document.createElement('a');
-        anchor.href = url;
-        anchor.download = `SoccerYou_Performance_Report-${id}.${type}`; // Set the filename for download
-        document.body.appendChild(anchor);
-        anchor.click();
-        window.URL.revokeObjectURL(url);
-        document.body.removeChild(anchor);
-      } catch (error) {
-        console.error('There was an error downloading the file:', error);
+  // Download a single report
+  async downloadInvoice(id: any, src: any, type: any) {
+    try {
+      const response = await fetch(src);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
       }
+      const blob = await response.blob(); // Convert the response to a Blob object
+      const url = window.URL.createObjectURL(blob);
+      const anchor = document.createElement('a');
+      anchor.href = url;
+      anchor.download = `SoccerYou_Performance_Report-${id}.${type}`; // Set the filename for download
+      document.body.appendChild(anchor);
+      anchor.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(anchor);
+    } catch (error) {
+      console.error('There was an error downloading the file:', error);
     }
-  
+  }
+
 }

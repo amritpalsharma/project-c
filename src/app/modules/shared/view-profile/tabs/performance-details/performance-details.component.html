@@ -117,8 +117,8 @@
   </a>
 </div>
 <app-loader *ngIf="isLoading && isPremium" style="width: 100%;"></app-loader>
-<div class="text-center">
-  <h5 *ngIf="!performances || performances.length === 0 && !isLoading && isPremium">{{'noTextTabs' | translate}}</h5>
+<div class="text-center" *ngIf="!performances && !isLoading && isPremium">
+  <h5>{{'noTextTabs' | translate}}</h5>
 </div>
 <div class="table-responsive bg-0C3453" style="width: 100%;" *ngIf="isPremium">
   <table class="table w-100 no_hover_tr" *ngIf="!isLoading">
@@ -171,10 +171,11 @@
           <td>
             <div class="d-flex country-details">
               <div class="main-template" *ngIf="editableId != performance.id">
-                <img *ngIf="performance.country_flag_path && performance.country_flag_path != ''" [src]="performance.country_flag_path" alt=""
-                  class="country_flag_country_flag_country_flag">
-                <img *ngIf="performance.country_flag && performance.country_flag != '' && !performance.country_flag_path" [src]="flagPath + performance.country_flag" alt=""
-                  class="country_flag_country_flag">
+                <img *ngIf="performance.country_flag_path && performance.country_flag_path != ''"
+                  [src]="performance.country_flag_path" alt="" class="country_flag_country_flag_country_flag">
+                <img
+                  *ngIf="performance.country_flag && performance.country_flag != '' && !performance.country_flag_path"
+                  [src]="flagPath + performance.country_flag" alt="" class="country_flag_country_flag">
               </div>
               <div class="country_name">
                 <h6 class="details_2 m-0">{{ 'country' | translate }}</h6>

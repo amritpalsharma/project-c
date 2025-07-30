@@ -1319,7 +1319,7 @@
   "startDateEr": "Startdatum ist erforderlich",
   "limitEr": "Grenze ist erforderlich",
   "discountPercent": "Rabatt ist erforderlich",
-  "deleteAccountDesc": "Damit wird dein Konto dauerhaft aus unserer Datenbank gelöscht.",
+  "deleteAccountDesc": "Dies wird Ihr Konto dauerhaft löschen.",
   "deleteMyAccount": "Mein Konto löschen",
   "learnMore": "Mehr erfahren",
   "removeFavbtn": "Ja, löschen",
@@ -1537,5 +1537,8 @@
   "yesRemoveScout": "Ja, entfernen",
   "cancelRemoveScout": "Nein, nicht entfernen",
   "areYouSureToUpdateReviewTraining": "Bist du sicher, dass du den Status des Sichtungs-Trainings aktualisieren möchtest?",
-  "noTeamMemberAddedHere":"Hier wurde kein Team-Mitglied hinzugefügt."
+  "noTeamMemberAddedHere": "Hier wurde kein Team-Mitglied hinzugefügt.",
+  "passwordResetLinkHasExpired": "Leider ist Ihr Link zum Zurücksetzen des Passworts abgelaufen. Bitte besuchen Sie die Seite „Passwort vergessen“, um einen neuen Link zu erhalten.",
+  "linkExpired": "LINK ABGELAUFEN"
+  
 }

@@ -5,31 +5,29 @@
     <div class="card-header border-0">
       <div class="hide_table_for_mobile">
         <div class="table-responsive">
-          <table 
-            class="mat-mdc-table mdc-data-table__table cdk-table table table-striped table-hover table-users"
+          <table class="mat-mdc-table mdc-data-table__table cdk-table table table-striped table-hover table-users"
             role="table">
             <!---->
             <thead role="rowgroup" class="ng-star-inserted">
-              <tr 
-                class="mat-mdc-header-row mdc-data-table__header-row cdk-header-row ng-star-inserted">
-                <th 
+              <tr class="mat-mdc-header-row mdc-data-table__header-row cdk-header-row ng-star-inserted">
+                <th
                   class="mat-mdc-header-cell mdc-data-table__header-cell cdk-header-cell cdk-column-select mat-column-select ng-star-inserted">
                 </th>
-                <th 
+                <th
                   class="mat-mdc-header-cell mdc-data-table__header-cell cdk-header-cell cdk-column-Name mat-column-Name ng-star-inserted">
                   {{ 'title' | translate }}
                 </th>
-                <th 
+                <th
                   class="mat-mdc-header-cell mdc-data-table__header-cell cdk-header-cell cdk-column-joinedDate mat-column-joinedDate ng-star-inserted">
                   {{ 'transferDate' | translate }}
                 </th>
-                <th 
+                <th
                   class="mat-mdc-header-cell mdc-data-table__header-cell cdk-header-cell text-center cdk-column-Download mat-column-Download ng-star-inserted">
                   {{ 'download' | translate }}
                 </th>
               </tr>
             </thead>
-            <tbody  class="mdc-data-table__content ng-star-inserted">
+            <tbody class="mdc-data-table__content ng-star-inserted">
             </tbody>
           </table>
         </div>
@@ -74,14 +72,15 @@
 </div>
 <!-- NO DATA -->
 <!-- No data row -->
-<div *ngIf="noTextTabs && isPremium">
+<app-loader *ngIf="isLoading && isPremium" style="width: 100%;"></app-loader>
+<div *ngIf="!isLoading && noTextTabs && isPremium">
   <h5 class="text-center">{{'noTextTabs' | translate}}</h5>
 </div>
 <!-- NO DATA -->
 
 <div class="card bg-color border_0_mobile" *ngIf="isPremium && !noTextTabs">
   <div class="card-header border-0 p-0">
-    <div class="hide_table_for_mobile"> 
+    <div class="hide_table_for_mobile">
       <div class="table-responsive">
         <table mat-table [dataSource]="reports" class="table table-striped table-hover table-users">
 
@@ -107,7 +106,8 @@
           </ng-container>
 
           <ng-container matColumnDef="Download">
-            <th mat-header-cell *matHeaderCellDef class="text-center"> {{ 'downloadPerformanceReport' | translate }} </th>
+            <th mat-header-cell *matHeaderCellDef class="text-center"> {{ 'downloadPerformanceReport' | translate }}
+            </th>
             <td mat-cell *matCellDef="let element" class="text-center">
               <svg (click)="downloadInvoice(element.id,path+element.file_name,element.file_type)" class="pointer pe-2"
                 width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -130,35 +130,37 @@
         </table>
       </div>
     </div>
-<div class="hide_table_for_desktop">
-	<div class="rounded-lg border bg-card" *ngFor="let element of reports">
-    <!-- <pre>
+    <div class="hide_table_for_desktop">
+      <div class="rounded-lg border bg-card" *ngFor="let element of reports">
+        <!-- <pre>
       {{element|json}}
     </pre> -->
-	  <div class="p-3">
-		<div class="space-y-2 text-sm">
-		  <div class="flex justify-between">
-			<span class="text-muted-foreground"> {{ 'title' | translate }}</span>
-			<span>{{ element.document_title }}</span>
-		  </div>
-		  <div class="flex justify-between">
-			<span class="text-muted-foreground"> {{ 'date' | translate }}</span>
-			<span>{{ element.created_at | date: 'dd.MM.yyyy' }}</span>
-		  </div>
-		</div>
-		<div class="flex_btn mt-3">
-			<span class="view--eye" class="pointer" (click)="downloadInvoice(element.id,path + element.file_name,element.file_type)">
-				<svg class="icon__download" width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke="#787878"
-					  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-					<path
-					  d="M9 11.5117L12 14.5117L15 11.5117M12 14.5117V6.51172M6 16.5117C9.89 17.8117 14.11 17.8117 18 16.5117"
-					  stroke="#787878" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-				  </svg>
-			</span>
-		</div>
-	  </div>
-	</div>
- </div>
+        <div class="p-3">
+          <div class="space-y-2 text-sm">
+            <div class="flex justify-between">
+              <span class="text-muted-foreground"> {{ 'title' | translate }}</span>
+              <span>{{ element.document_title }}</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-muted-foreground"> {{ 'date' | translate }}</span>
+              <span>{{ element.created_at | date: 'dd.MM.yyyy' }}</span>
+            </div>
+          </div>
+          <div class="flex_btn mt-3">
+            <span class="view--eye" class="pointer"
+              (click)="downloadInvoice(element.id,path + element.file_name,element.file_type)">
+              <svg class="icon__download" width="26" height="26" viewBox="0 0 24 24" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke="#787878"
+                  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path
+                  d="M9 11.5117L12 14.5117L15 11.5117M12 14.5117V6.51172M6 16.5117C9.89 17.8117 14.11 17.8117 18 16.5117"
+                  stroke="#787878" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

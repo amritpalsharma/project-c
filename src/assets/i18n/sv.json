@@ -1330,7 +1330,7 @@
   },
   "areYouSuretoDeleteActivity": "Är du säker på att du vill ta bort denna aktivitet? ",
   "subsciptionCancelSuccess": "Din prenumeration har framgångsrikt avslutats.",
-  "deleteAccountDesc": "Detta kommer att radera ditt konto permanent från vår databas.",
+  "deleteAccountDesc": "Detta kommer att permanent radera ditt konto.",
   "deleteMyAccount": "Ta bort mitt konto",
   "uploadNewProfileImage": "Ladda upp ny profilbild",
   "editCoverImage": "Redigera omslagsbild",
@@ -1525,5 +1525,7 @@
   "AreYouSureToTransferRecord": "Är du säker på att du vill radera den valda överföringsposten?",
   "areYouSureToUpdateRole": "Är du säker på att du vill uppdatera teammedlemmens roll?",
   "areYouSureToUpdateReviewTraining": "Är du säker på att du vill uppdatera statusen för granskningsträningen?",
-  "noTeamMemberAddedHere": "Inga Medlem i teamet har lagts till här."
+  "noTeamMemberAddedHere": "Inga Medlem i teamet har lagts till här.",
+  "passwordResetLinkHasExpired": "Tyvärr har din länk för att återställa lösenordet gått ut. Besök sidan \"Glömt lösenord\" för att få en ny länk.",
+  "linkExpired": "LÄNKEN HAR GÅTT UT"
 }

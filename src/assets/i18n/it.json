@@ -792,7 +792,7 @@
   "christmasOffer": "Christmas e offer",
   "christmasDiscount": "$10",
   "christmasDiscountCode": "Play10",
-  "expired": "Expired",
+  "expired": "SCADUTO",
   "newCoupon": "New e coupon",
   "selectCouponType": "Select e the e type e of e coupon:",
   "discount": "Discount",
@@ -1328,7 +1328,7 @@
   "changeNewsletterStatus": "Sei sicuro di voler cambiare lo stato della newsletter?",
   "areYouSuretoDeleteActivity": "Sei sicuro di voler eliminare questa attività? ",
   "subsciptionCancelSuccess": "L'abbonamento è stato annullato con successo.",
-  "deleteAccountDesc": "In questo modo il vostro account verrà eliminato definitivamente dal nostro database.",
+  "deleteAccountDesc": "Questo eliminerà definitivamente il tuo account.",
   "deleteMyAccount": "Cancellare il mio account",
   "uploadNewProfileImage": "Carica nuova immagine del profilo",
   "editCoverImage": "Modifica dell'immagine di copertina",
@@ -1527,5 +1527,7 @@
   "yesRemoveScout": "Sì, rimuovi",
   "cancelRemoveScout": "No, non rimuovere",
   "areYouSureToUpdateReviewTraining": "Sei sicuro di voler aggiornare lo stato dell'addestramento di revisione?",
-  "noTeamMemberAddedHere": "Nessun Membro del team è stato aggiunto qui."
+  "noTeamMemberAddedHere": "Nessun Membro del team è stato aggiunto qui.",
+  "passwordResetLinkHasExpired": "Spiacenti, il link per reimpostare la password è scaduto. Visita la pagina \"Password dimenticata\" per riceverne uno nuovo.",
+  "linkExpired": "LINK SCADUTO"
 }
