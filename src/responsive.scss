@@ -264,6 +264,12 @@
 }
 }
 
+@media (min-width: 1600px) and (max-width: 2999.98px) {
+    .no_data_font_text {
+        font-size: 24px;
+    }
+}
+
 @media (min-width: 1600px) {
 .it .website-code nav.navbar li.nav-item .nav-link, .fr .website-code nav.navbar li.nav-item .nav-link,
 .es .website-code nav.navbar li.nav-item .nav-link, .pt .website-code nav.navbar li.nav-item .nav-link,
@@ -307,7 +313,7 @@
 .admin_adv_popup, .admin_coupon {
     max-width: 900px !important;
 }
-body, .no_data_font_text {
+body {
     font-size: 22px !important;
 }
 .it .website-code nav.navbar li.nav-item .nav-link, .fr .website-code nav.navbar li.nav-item .nav-link,
@@ -767,6 +773,9 @@ mat-datepicker-toggle button {
 
 
 @media (min-width: 3000px) {
+    .no_data_font_text {
+        font-size: 28px;
+    }
     body.mobile-sidebar-active {
         .page-container.admin_page-container {
             width: calc(100% - 400px) !important;
