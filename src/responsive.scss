@@ -623,8 +623,11 @@ mat-datepicker-toggle button {
     }
     
 }
-.position_inputs mat-select, .date_field input, .form-select {
-    font-size: 19px !important;
+.position_inputs mat-select, .date_field input, .form-select, mat-select {
+    font-size: 22px !important;
+}
+.mat-datepicker-toggle {
+    top: 4px !important;
 }
 .social_form-box span.social_heading, .social_form-box span.note_titles {
     font-size: inherit !important;
@@ -1581,6 +1584,14 @@ mat-datepicker-toggle button {
 }
     
 @media (max-width: 767px) {
+    .mob_eql_size {
+        width: 35px !important;
+        height: 35px !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 5px !important;
+    }
     .general_details table.table {
         overflow: hidden;
     }
