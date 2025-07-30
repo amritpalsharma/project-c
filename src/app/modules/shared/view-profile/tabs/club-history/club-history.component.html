@@ -61,7 +61,7 @@
     <div class="mt-3">
         <app-loader *ngIf="isLoading"></app-loader>
         <div *ngIf="!clubHistory || clubHistory == '' && !isLoading">
-            <h5 class="text-center">{{'noTextTabs' | translate}}</h5>
+            <div class="no_data_font_text">{{'noTextTabs' | translate}}</div>
         </div>
         <div *ngIf="!isEditable && !isLoading" class="history-text" [innerHTML]="replaceEmptyParagraphs(clubHistory)">
         </div>
