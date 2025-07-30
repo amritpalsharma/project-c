@@ -112,12 +112,19 @@ export class ChatComponent implements AfterViewInit {
             this.userData.profile_image_path = this.userData.meta.profile_image_path;
         }
 
+        let nameOfUser = this.userData.first_name + ' ' + this.userData.last_name;
+        let profileImgOfUser = this.userData.profile_image_path;
+        if (typeof this.userData.role !== undefined && Number(this.userData.role) === 2) {
+            nameOfUser = this.userData?.current_club_name;
+            profileImgOfUser = this.userData.club_logo_path;
+            // console.info('this.userData_nameOfUser', this.userData)
+        }
         const user = {
             id: this.userData.id,
-            name: this.userData.first_name +' '+ this.userData.last_name,
+            name: nameOfUser,
             email: this.userData.username,
-            photoUrl: this.userData.profile_image_path,
-            welcomeMessage: 'Hi!',
+            photoUrl: profileImgOfUser,
+            welcomeMessage: null,
             role: this.userData.role === '1' ? 'hidden' : 'default'
         };
 

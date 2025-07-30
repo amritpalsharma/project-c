@@ -20,6 +20,7 @@ export class ScoutPortfolioComponent {
   @Input() currentScoutId: any;
   displayedColumns: string[] = ['Name', 'Language', 'Club', 'Status', 'View'];
   baseUrl: string = 'https://api.socceryou.ch/uploads/';
+  theme: string = localStorage.getItem('theme') || 'dark';
   // displayedColumns: string[] = ['Name', 'Language', 'Club', 'Status', 'View'];
 
   ngOnInit(): void {

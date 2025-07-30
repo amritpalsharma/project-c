@@ -57,6 +57,7 @@ export class PortfolioTabComponent {
   portfolioDeleteConfirmation: string = '';
   portfolioDeletebtn: string = '';
   portfolioCloseBtn: string = '';
+  theme: string = localStorage.getItem('theme') || 'dark';
 
   ngOnInit(): void {
     this.loggedInUser = JSON.parse(this.loggedInUser);

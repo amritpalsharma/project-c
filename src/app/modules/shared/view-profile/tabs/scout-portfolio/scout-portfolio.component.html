@@ -83,13 +83,26 @@
             <ng-container matColumnDef="Club">
               <th mat-header-cell *matHeaderCellDef> {{ 'club' | translate }} </th>
               <td mat-cell *matCellDef="let element">
-                <div class="d-flex icon_text_icon val_{{element.club_name}}"
+                <!-- <div class="d-flex icon_text_icon val_{{element.club_name}}"
                   *ngIf="element.club_name != '' && element.club_name != null">
                   <img src="{{uploadsPath + element.club_logo}}" *ngIf="element.club_logo" class="club_logo_icn">
                   {{ element.club_name }}
                   <img src="{{logoPath + element.country_flag}}" *ngIf="element.country_flag" class="flag_country">
                 </div>
                 <span *ngIf="!element.club_name || element.club_name == null">
+                  {{'withoutCurrentClub' | translate}}
+                </span> -->
+                <div class="d-flex icon_text_icon val_{{element?.club_info?.club_name}}"
+                  *ngIf="element.club_info != '' && element.club_info != null">
+                  <img src="{{uploadsPath + element?.club_info?.club_logo}}" *ngIf="element?.club_info?.club_logo"
+                    class="club_logo_icn">
+                  <img src="../../../../assets/club_logo/default_logo_{{theme}}.svg"
+                    *ngIf="!element?.club_info?.club_logo" class="club_logo_icn custom_club">
+                  {{ element?.club_info?.club_name }}
+                  <img src="{{logoPath + element?.club_info?.country_flag}}" *ngIf="element?.club_info?.country_flag"
+                    class="flag_country">
+                </div>
+                <span *ngIf="!element?.club_info?.club_name || element?.club_info?.club_name == null">
                   {{'withoutCurrentClub' | translate}}
                 </span>
               </td>
@@ -169,13 +182,26 @@
                   <!-- <img src="{{uploadsPath + element.club_logo}}" *ngIf="element.club_logo" class="club_logo_icn">
                     {{ element.club_name }} -->
                   <!-- </div> -->
-                  <div class="d-flex icon_text_icon val_{{element.club_name}}"
+                  <!-- <div class="d-flex icon_text_icon val_{{element.club_name}}"
                     *ngIf="element.club_name != '' && element.club_name != null">
                     <img src="{{uploadsPath + element.club_logo}}" *ngIf="element.club_logo" class="club_logo_icn">
                     {{ element.club_name }}
                     <img src="{{logoPath + element.country_flag}}" *ngIf="element.country_flag" class="flag_country">
                   </div>
                   <span *ngIf="!element.club_name || element.club_name == null">
+                    {{'withoutCurrentClub' | translate}}
+                  </span> -->
+                  <div class="d-flex icon_text_icon val_{{element?.club_info?.club_name}}"
+                    *ngIf="element.club_info != '' && element.club_info != null">
+                    <img src="{{uploadsPath + element?.club_info?.club_logo}}" *ngIf="element?.club_info?.club_logo"
+                      class="club_logo_icn">
+                    <img src="../../../../assets/club_logo/default_logo_{{theme}}.svg"
+                      *ngIf="!element?.club_info?.club_logo" class="club_logo_icn custom_club">
+                    {{ element?.club_info?.club_name }}
+                    <img src="{{logoPath + element?.club_info?.country_flag}}" *ngIf="element?.club_info?.country_flag"
+                      class="flag_country">
+                  </div>
+                  <span *ngIf="!element?.club_info?.club_name || element?.club_info?.club_name == null">
                     {{'withoutCurrentClub' | translate}}
                   </span>
                 </span>

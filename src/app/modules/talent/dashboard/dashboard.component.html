@@ -557,7 +557,7 @@
                         </div>
                         <div class="col-sm-9 p-0 team-badge_content">
                           <h6 class="title_2">{{ 'contract' | translate}}</h6>
-                          <h5 class="title-1"
+                          <!-- <h5 class="title-1"
                             *ngIf="currentClubInfo && currentClubInfo?.contract_start && isValidDate(currentClubInfo?.contract_start)">
                             {{ currentClubInfo.contract_start | date: 'y' }} -
                             <ng-container
@@ -568,9 +568,9 @@
                               *ngIf="!isValidDate(currentClubInfo.contract_end) && currentClubInfo.contract_end == null">
                               {{ 'untilToday' | translate }}
                             </ng-container>
-                          </h5>
+                          </h5> -->
 
-                          <h5 class="title-1"
+                          <!-- <h5 class="title-1"
                             *ngIf="!currentClubInfo && user?.meta?.contract_start && isValidDate(user?.meta?.contract_start)">
                             {{ user?.meta?.contract_start | date: 'y' }} -
                             <span *ngIf="user?.meta?.contract_end && isValidDate(user?.meta?.contract_end)">
@@ -579,6 +579,17 @@
                             <span *ngIf="!user?.meta?.contract_end || !isValidDate(user?.meta?.contract_end)">
                               {{ 'untilToday' | translate }}
                             </span>
+                          </h5> -->
+                          <h5 class="title-1"
+                            *ngIf="user?.meta?.contract_start && isValidDate(user?.meta?.contract_start)">
+                            {{user?.meta?.contract_start | date:'y'
+                            }} -
+                            <span *ngIf="user?.meta?.contract_end && isValidDate(user?.meta?.contract_end)">
+                              {{ user.meta.contract_end | date: 'y' }}
+                            </span>
+                            <span
+                              *ngIf="!user?.meta?.contract_end || !isValidDate(user?.meta?.contract_end)">{{'untilToday'
+                              | translate}}</span>
                           </h5>
                         </div>
                       </div>
