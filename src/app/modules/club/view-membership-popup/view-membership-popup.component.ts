@@ -14,6 +14,7 @@ export class ViewMembershipPopupComponent {
 
   plan: any;
   todayDate: any;
+  theme: string = localStorage.getItem('theme') || 'dark';
   constructor(public dialogRef: MatDialogRef<ViewMembershipPopupComponent>,
     public dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any,

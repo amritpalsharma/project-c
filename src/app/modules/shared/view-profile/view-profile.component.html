@@ -75,7 +75,7 @@
                     </span>
                     <span class="icon-bg premium_plan_btns" *ngIf="isPremium">
                       <button *ngIf="!isFavorite" (click)="addToFavorites(user.id)" mat-raised-button
-                        [matTooltip]="addFavorite" class="premium_add_fav_btn {{currentLoggedInPermission}}">
+                        [matTooltip]="addFavorite" class="premium_add_fav_btn {{currentLoggedInPermission}} disabled_grey_btn">
                         <svg width="22" height="22" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path
                             d="M0.25 0.75H13.75V18L7 12.9375L0.25 18V0.75ZM1.75 2.25V15L7 11.0625L12.25 15V2.25H1.75Z"

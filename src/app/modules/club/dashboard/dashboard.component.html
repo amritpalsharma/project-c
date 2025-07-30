@@ -651,8 +651,8 @@
                     <a [href]="highlights.file_path + video.file_name" data-fancybox="gallery" [attr.data-caption]="">
                       <!-- <video [src]="highlights.file_path + video.file_name" #videoPlayer
                         (loadeddata)="setDurationAndThumbnail(videoPlayer)" alt="Video Gallery"></video> -->
-                      <video [src]="highlights.file_path + video.file_name" #videoPlayer
-                        (loadeddata)="setDurationAndThumbnail(videoPlayer)" muted></video>
+                     <video [src]="highlights.file_path + video.file_name" #videoPlayer
+                        (loadeddata)="setDurationAndThumbnail(videoPlayer)" muted autoplay></video>
                     </a>
                     <!-- <span class="duration">{{duration}}</span> -->
                     <!-- <span class="duration"

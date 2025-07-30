@@ -208,7 +208,7 @@
         </a>
       </div>
 
-      <div class="card-search bg-072944 p-1 club_sight_search">
+      <div class="card-search bg-072944 p-1 club_sight_search" *ngIf="sightings.length != 0 && !isLoading">
         <div class="input-group d-flex align-items-center ">
           <span class="input-group-text "><svg width="16" height="16" viewBox="0 0 16 16" fill="none"
               xmlns="http://www.w3.org/2000/svg">
@@ -225,7 +225,7 @@
         </div>
       </div>
     </div>
-    <div class="d-flex align-items-center justify-content-between card_sight_btns ">
+    <div class="d-flex align-items-center justify-content-between card_sight_btns " *ngIf="sightings.length != 0 && !isLoading">
       <div class="d-flex align-items-center">
         <div class="dropdown dropdown-favourites">
           <button

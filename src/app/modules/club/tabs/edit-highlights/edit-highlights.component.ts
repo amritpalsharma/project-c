@@ -48,24 +48,26 @@ export class EditHighlightsComponent {
     this.images = this.data.images || [];
     this.videos = this.data.videos || [];
     this.url = this.data.url || '';
-
+    this.getGalleryData();
     console.log(this.videos, this.data);
 
     // Preselect images that are already featured
-    this.images.forEach((image: any) => {
-      if (image.is_featured != 0) {
-        this.selectedImageIds.push(image.id);
-        this.totalSelected++; // Increment total selected count
-      }
-    });
+    // this.images.forEach((image: any) => {
+    //   if (image.is_featured != 0) {
+    //     this.selectedImageIds.push(image.id);
+    //     this.totalSelected++; // Increment total selected count
+    //   }
+    // });
 
-    // Preselect videos that are already featured
-    this.videos.forEach((video: any) => {
-      if (video.is_featured != 0) {
-        this.selectedVideoIds.push(video.id);
-        this.totalSelected++; // Increment total selected count
-      }
-    });
+    // // Preselect videos that are already featured
+    // this.videos.forEach((video: any) => {
+    //   if (video.is_featured != 0) {
+    //     this.selectedVideoIds.push(video.id);
+    //     this.totalSelected++; // Increment total selected count
+    //   }
+    // });
+
+
 
     this.getToasterMsg();
     this.webPages.languageId$.subscribe((data: any) => {
@@ -80,6 +82,8 @@ export class EditHighlightsComponent {
           this.images = response.data.images;
           this.videos = response.data.videos;
           this.url = response.data.file_path;
+
+          this.setFeaturedData();
         } else {
           console.error('Invalid API response structure:', response);
         }
@@ -292,6 +296,29 @@ export class EditHighlightsComponent {
       this.savingSelectedFiles = translations['savingSelectedFiles'];
       // this.coverImageDeletionCanceled = translations['coverImageDeletionCanceled'];
       this.Canceled = translations['Canceled'];
+    });
+  }
+
+  setDurationAndThumbnail(videoElement: HTMLVideoElement) {
+    videoElement.crossOrigin = 'anonymous';
+  }
+
+
+  setFeaturedData() {
+    // Preselect images that are already featured
+    this.images.forEach((image: any) => {
+      if (image.is_featured != 0) {
+        this.selectedImageIds.push(image.id);
+        this.totalSelected++; // Increment total selected count
+      }
+    });
+
+    // Preselect videos that are already featured
+    this.videos.forEach((video: any) => {
+      if (video.is_featured != 0) {
+        this.selectedVideoIds.push(video.id);
+        this.totalSelected++; // Increment total selected count
+      }
     });
   }
 }
