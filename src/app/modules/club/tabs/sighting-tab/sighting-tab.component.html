@@ -143,7 +143,7 @@
           <tr class="mat-row user-empty-tr" *matNoDataRow>
             <td [attr.colspan]="displayedColumns.length" class="user-empty-td">
               <app-loader *ngIf="isLoading"></app-loader>
-              <div *ngIf="sightings.length == 0 && !isLoading" style="text-align: center;">{{ 'noRecordFound' |
+              <div class="no_data_font_text" *ngIf="sightings.length == 0 && !isLoading" style="text-align: center;">{{ 'noRecordFound' |
                 translate
                 }}</div>
             </td>
@@ -229,7 +229,7 @@
       <div class="d-flex align-items-center">
         <div class="dropdown dropdown-favourites">
           <button
-            class="btn btn-secondary dropdown-toggle toggle-padding dropdown-toggle-checkbox favourites-main-checkbox"
+            class="mob_eql_size btn btn-secondary dropdown-toggle toggle-padding dropdown-toggle-checkbox favourites-main-checkbox"
             type="button" data-bs-toggle="dropdown" aria-expanded="false" (click)="selectAll()">
             <div class="form-check">
               <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked
@@ -244,7 +244,7 @@
           </button>
         </div>
 
-        <a class="btn btn-outline-white ms-2 delete-text delete_btn_{{currentLoggedInPermission}} {{currentLoggedInPermission}}"
+        <a class="mob_eql_size btn btn-outline-white ms-2 delete-text delete_btn_{{currentLoggedInPermission}} {{currentLoggedInPermission}}"
           id="users-icon" (click)="confirmDeletion()">
           <svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg" class="me-1">
             <path class="td-icon-favourites"
