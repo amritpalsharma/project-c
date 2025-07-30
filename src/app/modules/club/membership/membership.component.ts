@@ -17,6 +17,7 @@ import { WebPages } from '../../../services/webpages.service';
 import { take } from 'rxjs/operators';
 import { ClubService } from '../../../services/club.service';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-membership',
@@ -64,7 +65,8 @@ export class MembershipComponent {
     private titleService: TitleService,
     private webpages: WebPages,
     private clubService: ClubService,
-    private gloabalSettings: GlobalSettingsService
+    private gloabalSettings: GlobalSettingsService,
+    private toaster: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -381,13 +383,15 @@ export class MembershipComponent {
       (response: any) => {
         if (response && response.status) {
           // Open the MessagePopupComponent with a success message
-          this.dialog.open(MessagePopupComponent, {
-            width: '600px',
-            data: {
-              action: 'display',
-              message: this.subscriptionCanceledSuccessfully
-            }
-          });
+          // this.dialog.open(MessagePopupComponent, {
+          //   width: '600px',
+          //   data: {
+          //     action: 'display',
+          //     message: this.subscriptionCanceledSuccessfully
+          //   }
+
+          // });
+          this.toaster.success(response.message);
           console.log('Subscription canceled successfully:', response);
           this.getUserPlans();
 
