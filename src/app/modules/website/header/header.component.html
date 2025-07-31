@@ -512,8 +512,8 @@
 
 <!-- Register modal -->
 
-<div class="modal fade login_user_popup" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+<div class="modal fade login_user_popup register_modal_popupp" id="exampleModal1" tabindex="-1"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="reg-model">
         <div class="modal-dialog modal-dialog-centered">
             <div class="register">
@@ -559,7 +559,7 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                <!-- Talent Box -->
                                 <div class="col-lg-4 col-md-4 col-12">
                                     <label for="ManualInput" [ngClass]="{'active': activeIndex === 1}"
                                         class="check-resister" (click)="setActive(1)">
@@ -575,7 +575,7 @@
                                         </div>
                                     </label>
                                 </div>
-
+                                <!-- Club Box -->
                                 <div class="col-lg-4 col-md-4 col-12">
                                     <label for="AutomaticInput" [ngClass]="{'active': activeIndex === 2}"
                                         class="check-resister" (click)="setActive(2)">
@@ -591,7 +591,7 @@
                                         </div>
                                     </label>
                                 </div>
-
+                                <!-- Scout Box -->
                                 <div class="col-lg-4 col-md-4 col-12">
                                     <label for="scoutRole" [ngClass]="{'active': activeIndex === 3}"
                                         class="check-resister" (click)="setActive(3)">
@@ -629,31 +629,29 @@
                                         <label class="form-label" *ngIf="!isHideClubSection">{{ 'clubDetails' |
                                             translate }}</label>
                                         <div class="col-lg-6 col-md-6 col-12 mb-3" *ngIf="!isHideClubSection">
-                                            <select class="form-select"
+                                            <!-- <select class="form-select"
                                                 [ngClass]="{'ng-invalid' : !selectedCountry || selectedCountry == ''}"
                                                 (change)="onCountryChange($event)">
                                                 <option value="" disabled selected>{{ 'country' | translate
                                                     }}</option>
                                                 <option *ngFor="let country of countries" [value]="country.code">{{
                                                     country.name }}</option>
-                                            </select>
+                                            </select> -->
 
-                                            <!-- <mat-form-field appearance="fill" class="w-100 custom_select_mat">
+                                            <mat-form-field appearance="fill" class="w-100 custom_select_mat">
                                                 <mat-select [(ngModel)]="selectedCountry"
-                                                    class="form-select mat_search_selector"
+                                                    class="form-select mat_search_selector talent_country_for_club"
                                                     [ngClass]="{'ng-invalid' : !selectedCountry || selectedCountry == ''}"
-                                                    (change)="onCountryChange($event)">
-                                                    <ngx-mat-select-search [formControl]="nationFilterCtrl"
-                                                        placeholder="Search countries"></ngx-mat-select-search>
+                                                    (selectionChange)="onCountryChange($event)" name="selectedCountry">
                                                     <mat-option *ngFor="let country of displayedCountries"
-                                                        [value]="country.id">
-                                                        {{ country.country_name }}
+                                                        [value]="country.country_id">
+                                                        {{ country.location }}
                                                     </mat-option>
                                                 </mat-select>
-                                            </mat-form-field> -->
+                                            </mat-form-field>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-12 mb-3" *ngIf="!isHideClubSection">
-                                            <select class="form-select" (change)="onClubChange($event)"
+                                            <!-- <select class="form-select" (change)="onClubChange($event)"
                                                 [ngClass]="{'ng-invalid' : !selectedCountry || selectedCountry == ''}"
                                                 [disabled]="!selectedCountry" *ngIf="!isHideClubSection">
                                                 <option value="" disabled selected>{{ 'clubRole' | translate }}
@@ -661,19 +659,39 @@
                                                 <option *ngFor="let club of clubs" [value]="club.id">{{ club.club_name
                                                     }}
                                                 </option>
-                                            </select>
-                                            <!-- <mat-form-field appearance="fill" class="w-100 custom_select_mat">
-                                                <mat-select [(ngModel)]="selectedCountry"
+                                            </select> -->
+                                            <mat-form-field appearance="fill" class="w-100 custom_select_mat">
+                                                <mat-select [(ngModel)]="selectedClub"
                                                     class="form-select mat_search_selector"
                                                     [ngClass]="{'ng-invalid' : !selectedCountry || selectedCountry == ''}"
-                                                    (change)="onClubChange($event)">
-                                                    <ngx-mat-select-search [formControl]="clubFilterCtrl"
-                                                        placeholder="Search countries"></ngx-mat-select-search>
+                                                    (selectionChange)="onClubChange($event)" name="selectedCountry">
+                                                    <!-- <mat-option> -->
+                                                        <!-- ✅ SEARCH INPUT GOES HERE -->
+                                                        <!-- <ngx-mat-select-search [formControl]="clubSearching" class="club_search_input"
+                                                            placeholderLabel="Search club..."></ngx-mat-select-search> -->
+                                                    <!-- </mat-option> -->
+                                                    <!-- 🔁 Options -->
                                                     <mat-option *ngFor="let club of clubs" [value]="club.id">
                                                         {{ club.club_name }}
                                                     </mat-option>
+
+                                                    <!-- <ng-container *ngIf="searchedClubsPlayer?.length > 0">
+                                                        <mat-option *ngFor="let club of searchedClubsPlayer"
+                                                            [value]="club.id">
+                                                            {{ club.club_name }}
+                                                        </mat-option>
+                                                    </ng-container>
+
+                                                    <ng-container
+                                                        *ngIf="!searchedClubsPlayer && displayedClubs.length > 0">
+                                                        <mat-option *ngFor="let club of displayedClubs"
+                                                            [value]="club.id">
+                                                            {{ club.club_name }}
+                                                        </mat-option>
+                                                    </ng-container> -->
+
                                                 </mat-select>
-                                            </mat-form-field> -->
+                                            </mat-form-field>
                                         </div>
                                     </div>
                                 </div>
@@ -682,49 +700,32 @@
                                     <label class="form-label">{{ 'clubDetails' | translate }}</label>
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6 col-12 mb-3">
-
-                                            <select class="form-select" (change)="onCountryChange($event)">
-                                                <option value="" disabled selected>{{ 'country' | translate
-                                                    }}</option>
-                                                <option *ngFor="let country of countries" [value]="country.code">{{
-                                                    country.name }}</option>
-                                            </select>
-                                            <!-- 
                                             <mat-form-field appearance="fill" class="w-100 custom_select_mat">
                                                 <mat-select [(ngModel)]="selectedCountry"
                                                     class="form-select mat_search_selector"
                                                     [ngClass]="{'ng-invalid' : !selectedCountry || selectedCountry == ''}"
-                                                    (change)="onCountryChange($event)">
-                                                    <ngx-mat-select-search [formControl]="nationFilterCtrl"
-                                                        placeholder="Search countries"></ngx-mat-select-search>
+                                                    (selectionChange)="onCountryChange($event)" name="selectedCountry">
                                                     <mat-option *ngFor="let country of displayedCountries"
-                                                        [value]="country.id">
-                                                        {{ country.country_name }}
+                                                        [value]="country.country_id">
+                                                        {{ country.location }}
                                                     </mat-option>
                                                 </mat-select>
-                                            </mat-form-field> -->
+                                            </mat-form-field>
 
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-12 mb-3">
-                                            <select class="form-select" (change)="onClubChange($event)">
-                                                <option value="" disabled selected>{{ 'clubRole' | translate }}
-                                                </option>
-                                                <option *ngFor="let club of clubs" [value]="club.id">{{ club.club_name
-                                                    }}
-                                                </option>
-                                            </select>
-                                            <!-- <mat-form-field appearance="fill" class="w-100 custom_select_mat">
-                                                <mat-select [(ngModel)]="selectedCountry"
+                                            <mat-form-field appearance="fill" class="w-100 custom_select_mat">
+                                                <mat-select [(ngModel)]="selectedClub"
                                                     class="form-select mat_search_selector"
-                                                    [ngClass]="{'ng-invalid' : !selectedCountry || selectedCountry == ''}"
-                                                    (change)="onClubChange($event)">
+                                                    [ngClass]="{'ng-invalid' : !selectedClub}"
+                                                    (selectionChange)="onClubChange($event)" name="selectedCountry">
                                                     <ngx-mat-select-search [formControl]="clubFilterCtrl"
                                                         placeholder="Search countries"></ngx-mat-select-search>
                                                     <mat-option *ngFor="let club of clubs" [value]="club.id">
                                                         {{ club.club_name }}
                                                     </mat-option>
                                                 </mat-select>
-                                            </mat-form-field> -->
+                                            </mat-form-field>
                                         </div>
                                     </div>
                                 </div>
@@ -769,15 +770,24 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
-                                                <select class="form-select"
-                                                    [ngClass]="{'ng-invalid': selectedTeam === null}"
-                                                    (change)="onTeamChange($event)" [(ngModel)]="team_id"
-                                                    name="team_id">
-                                                    <option value="" disabled selected>{{ 'team' | translate
-                                                        }}</option>
-                                                    <option *ngFor="let teamArr of teamsArr" [value]="teamArr.id">{{
-                                                        teamArr.team_name }} - {{teamArr.team_type}}</option>
-                                                </select>
+
+                                                <!-- New Team -->
+                                                <mat-form-field appearance="fill" class="w-100 custom_select_mat">
+                                                    <mat-select [(ngModel)]="team_id"
+                                                        class="form-select mat_search_selector"
+                                                        [ngClass]="{'ng-invalid': selectedTeam === null}"
+                                                        (selectionChange)="onTeamChange($event)">
+                                                        <!-- <ngx-mat-select-search [formControl]="clubFilterCtrl"
+                                                            placeholder="Search countries"></ngx-mat-select-search> -->
+                                                        <mat-option *ngFor="let teamArr of teamsArr"
+                                                            [value]="teamArr.id">
+                                                            {{
+                                                            teamArr.team_name }} - {{teamArr.team_type}}
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                                <!-- New Team -->
+
                                             </div>
                                         </div>
                                     </div>

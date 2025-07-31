@@ -1489,5 +1489,6 @@
   "areYouSureToUpdateReviewTraining": "Tem certeza de que deseja atualizar o status do treino de revisão?",
   "noTeamMemberAddedHere": "Nenhum Membro da equipe foi adicionado aqui.",
   "passwordResetLinkHasExpired": "Desculpe, o link para redefinir sua senha expirou. Por favor, acesse a página \"Esqueceu a senha\" para receber um novo link.",
-  "linkExpired": "LINK EXPIRADO"
+  "linkExpired": "LINK EXPIRADO",
+  "noSightFound":"Ainda não foi registrado nenhum evento de avistamento."
 }

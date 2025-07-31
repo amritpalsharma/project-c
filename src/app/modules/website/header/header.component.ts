@@ -21,6 +21,8 @@ import { GlobalSettingsService } from '../../../services/global-settings.service
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { TalentService } from '../../../services/talent.service';
 import { DomainSlugService } from '../../../services/domain-slug.service';
+import { MatSelectChange } from '@angular/material/select';
+
 
 @Component({
   selector: 'app-header',
@@ -71,7 +73,7 @@ export class HeaderComponent implements OnInit {
   tokenVerified: boolean = false;
   languages: any = environment.langs;
   selectedClub: number | null = null;
-  selectedCountry: string = '';
+  selectedCountry: string | number = ''; // or initialize with a default country ID
   selectedTeam: number | null = null;
   companyName: string = '';
   registerationErrorHtml: string = '';
@@ -314,6 +316,8 @@ export class HeaderComponent implements OnInit {
   clubFilterCtrl: FormControl = new FormControl('');
   displayedCountries: any = [];
   displayedClubs: any = [];
+
+  clubSearching = new FormControl('');
   constructor(
     private sharedservice: SharedService,
     private themeService: ThemeService,
@@ -404,7 +408,7 @@ export class HeaderComponent implements OnInit {
   onWindowScroll() {
     this.isScrolled = window.scrollY > 50; // Adjust the scroll value as needed
   }
-
+  searchedClubsPlayer: any = [];
   ngOnInit(): void {
     this.loadToasterMsg();
     this.route.queryParams.subscribe(params => {
@@ -523,11 +527,19 @@ export class HeaderComponent implements OnInit {
     } else {
       this.isDarkMode = false;
     }
-    console.log('LocalStorage Mode is Dark ? = ' + this.isDarkMode);
+    // console.log('LocalStorage Mode is Dark ? = ' + this.isDarkMode);
     this.getAllCountries();
     // this.getAllClubs();
     this.getAllLanguage();
-    console.log('Header Last updated language localstorage ' + localStorage.getItem('lang'));
+    // console.log('Header Last updated language localstorage ' + localStorage.getItem('lang'));
+
+
+    this.clubSearching.valueChanges.subscribe(() => {
+      const search = this.clubSearching.value?.toLowerCase() || '';
+      this.searchedClubsPlayer = this.displayedClubs.filter(
+        (club: any) => club.club_name.toLowerCase().includes(search)
+      );
+    });
   }
 
 
@@ -802,9 +814,11 @@ export class HeaderComponent implements OnInit {
 
       } else {
         if (!this.selectedClub) {
+          console.info('selectedClub Empty ', this.selectedClub)
           this.toastr.warning(this.requiredFieldsMessage, this.errorTxt);
           return;
         } else if (!this.team_id) {
+          console.info('team_id Empty ', this.team_id)
           this.toastr.warning(this.requiredFieldsMessage, this.errorTxt);
           return;
         }
@@ -816,6 +830,7 @@ export class HeaderComponent implements OnInit {
 
     if (!this.isFormValid()) {
       this.serverBusy = false;
+      console.info('isFormValid Empty ', this.isFormValid())
       this.toastr.warning(this.requiredFieldsMessage, this.errorTxt);
       return;
     } else {
@@ -824,6 +839,7 @@ export class HeaderComponent implements OnInit {
 
     if (this.isValidated() === true) {
       this.isShowErrors = false;
+      console.info('isValidated Empty ', this.isValidated())
       this.toastr.error(this.isValidated() + '', this.errorTxt);
       return;
     } else {
@@ -1075,24 +1091,27 @@ export class HeaderComponent implements OnInit {
     this.dialog.open(ConfirmPasswordComponent, { width: '500px' });
   }
 
-  onCountryChange(event: Event): void {
-    const selectElement = event.target as HTMLSelectElement;
-    this.selectedCountry = selectElement.value;
+  onCountryChange(event: MatSelectChange): void {
+    // const selectElement = event.target as HTMLSelectElement;
+    // console.log('Selected country:', selectElement.value);
+    this.selectedCountry = event.value;
     // let clubs = this.getClugById(this.selectedCountry);
+    console.info('current selected country is ', this.selectedCountry);
     this.loadClubs(this.selectedCountry);
   }
 
-  onClubChange(event: Event): void {
-    const selectElement = event.target as HTMLSelectElement;
-    this.selectedClub = +selectElement.value; // Convert to number
+  onClubChange(event: MatSelectChange): void {
+    // const selectElement = event.target as HTMLSelectElement;
+    this.selectedClub = event.value; // Convert to number
     console.log('Selected Club ID:', this.selectedClub);
     this.loadLeagues(this.selectedClub);
   }
 
-  onTeamChange(event: Event): void {
-    const selectElement = event.target as HTMLSelectElement;
-    this.selectedTeam = +selectElement.value; // Convert to number
+  onTeamChange(event: MatSelectChange): void {
+    // const selectElement = event.target as HTMLSelectElement;
+    this.selectedTeam = event.value; // Convert to number
     console.log('Selected Team ID:', this.selectedTeam);
+    this.team_id = String(this.selectedTeam);
   }
   onCompanyNameChange(event: Event): void {
     const inputElement = event.target as HTMLInputElement;
@@ -1115,17 +1134,21 @@ export class HeaderComponent implements OnInit {
   getAllCountries() {
     this.commonDataService.getAllCountries().subscribe((resp) => {
       // this.displayedCountries = resp.data.domains;
+      let test = 'noting';
       if (resp.data && Array.isArray(resp.data.domains)) {
         // If `domains` is already an array, assign directly
         this.displayedCountries = resp.data.domains;
+        test = 'array';
       } else if (resp.data && typeof resp.data.domains === 'object') {
         // If `domains` is an object, convert to array
         this.displayedCountries = Object.keys(resp.data.domains).map(key => resp.data.domains[key]);
+        test = 'Object';
       } else {
+        test = 'elsePart';
         // If no valid domains, fallback to empty array
         this.displayedCountries = [];
       }
-      console.info('displayedCountries', this.displayedCountries, 'TypeOf', typeof this.displayedCountries)
+      console.info('displayedCountries', this.displayedCountries, 'TypeOf', typeof this.displayedCountries, 'testtesttest', test)
       this.countries = resp.data.domains.map((country: any) => ({
         code: country.country_id || '',
         name: country.location || ''

@@ -1529,5 +1529,6 @@
   "areYouSureToUpdateReviewTraining": "Sei sicuro di voler aggiornare lo stato dell'addestramento di revisione?",
   "noTeamMemberAddedHere": "Nessun Membro del team è stato aggiunto qui.",
   "passwordResetLinkHasExpired": "Spiacenti, il link per reimpostare la password è scaduto. Visita la pagina \"Password dimenticata\" per riceverne uno nuovo.",
-  "linkExpired": "LINK SCADUTO"
+  "linkExpired": "LINK SCADUTO",
+  "noSightFound":"Nessun evento di avvistamento è stato ancora registrato."
 }

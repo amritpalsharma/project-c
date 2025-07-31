@@ -86,7 +86,7 @@ export class EditPersonalDetailsComponent implements OnInit {
   contact_number: any;
   cover_image: any;
   cover_image_path: any;
-  country: any;
+  country: string = '0';
   profile_image: any;
   profile_image_path: any;
 
@@ -204,7 +204,7 @@ export class EditPersonalDetailsComponent implements OnInit {
           this.cover_image = this.user.meta.cover_image;
           this.cover_image_path = this.user.meta.cover_image_path;
           this.designation = this.user.meta.designation;
-          this.country = this.user.meta.user_nationalities;
+          // this.country = this.user.meta.user_nationalities;
           this.profile_image = this.user.meta.profile_image;
           this.profile_image_path = this.user.meta.profile_image_path;
           this.sm_facebook = this.user.meta.sm_facebook;
@@ -220,11 +220,12 @@ export class EditPersonalDetailsComponent implements OnInit {
           // scoutNation
 
           this.userNationalities = JSON.parse(this.user.user_nationalities);
+          console.log(this.userNationalities, 'user nation')
           this.scoutNation = this.userNationalities[0].country_id;
-          this.country = this.userNationalities[0].country_id;
+          this.country = String(this.userNationalities[0].country_id);
           // this.userNationalities[0].id = JSON.stringify(this.userNationalities[0].country_id) ;
 
-          console.log(this.userNationalities, 'user nation')
+          this.cdr.detectChanges();
         }
       } else {
         console.error('Invalid API response structure:', response);
@@ -254,7 +255,7 @@ export class EditPersonalDetailsComponent implements OnInit {
     // formData.append('user[cover_image]' , this.cover_image);
     // formData.append('user[cover_image_path]' , this.cover_image_path);
     formData.append('user[designation]', this.designation);
-    formData.append('user[nationality][]', this.country);
+    formData.append('user[nationality][]', String(this.country));
     // user[nationality][]
     // formData.append('user[profile_image]' , this.profile_image);
     // formData.append('user[profile_image_path]' , this.profile_image_path);

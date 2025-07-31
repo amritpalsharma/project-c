@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Injectable({ providedIn: 'root' })
 export class TalkService {
   private session: Talk.Session | null = null;
-  private currentUser: Talk.User | null = null;
+  public currentUser: Talk.User | null = null;
   currentTheme: string = localStorage.getItem('theme') == 'dark' ? 'dark_custom_users' : 'default_users';
   public currentUserRole: string = '';
   public currentUserId: string = '';
@@ -19,7 +19,7 @@ export class TalkService {
 
   }
   async init(user: any): Promise<Talk.Session> {
-    // console.info('Chat Init ', user)
+    console.info('Chat Init ', user)
     this.currentLoggedInUser = user;
 
     await Talk.ready;
@@ -48,7 +48,6 @@ export class TalkService {
     if (this.inbox) {
       this.inbox.destroy();
     }
-    console.info('Chat init with theme '+this.currentTheme)
     this.inbox = this.session.createInbox({
       theme: this.currentTheme
     });
@@ -120,74 +119,6 @@ export class TalkService {
     inbox.mount(document.getElementById('talkjs-container')!);
   }
 
-
-  async createOneOnOneConversation1111(
-    userId: string,
-    name: string,
-    email: string,
-    photoUrl: string
-  ): Promise<void> {
-    try {
-      if (!this.session && this.currentUser) {
-        await this.init(this.currentUser);
-      }
-
-      // === BLOCK chatting with admin for regular users ===
-      const ADMIN_ID = '1'; // <-- Replace with actual admin user id
-
-      if (this.currentUserRole !== '1' && userId === ADMIN_ID) {
-        console.warn('Regular users cannot chat with admin.');
-        return; // Prevent chat creation with admin
-      }
-
-      // Admin role can chat with anyone, no restrictions
-
-      const otherUser = new Talk.User({
-        id: userId,
-        name: name,
-        email: email,
-        photoUrl: photoUrl,
-        role: 'default',
-        locale: localStorage.getItem('lang') || 'de'
-      });
-
-      const conversation = this.session!.getOrCreateConversation(
-        Talk.oneOnOneId(this.currentUser!, otherUser)
-      );
-      // const hiddenUser = new Talk.User({
-      //   id: 1,
-      //   name: 'Succer You Sports AG',
-      //   email: 'testmails.cts@gmail.com',
-      //   role: 'hidden'
-      // });
-      conversation.setParticipant(this.currentUser!);
-      // conversation.setParticipant(hiddenUser);
-      conversation.setParticipant(otherUser);
-      const validatedPhoto = this.isValidImageUrl(photoUrl)
-        ? photoUrl
-        : 'https://api.socceryou.ch/uploads/default_talent_img.png';
-      let finalPhotoUrl = `${validatedPhoto}${validatedPhoto.includes('?') ? '&' : '?'}ts=${Date.now()}`;
-      if (finalPhotoUrl.includes("/undefined")) {
-        finalPhotoUrl = 'https://api.socceryou.ch/uploads/default_talent_img.png';
-      }
-      conversation.setAttributes({
-        photoUrl: finalPhotoUrl, // Image in header
-        custom: {
-          // role:'hidden',
-          // search: `${this.user.name} ${otherUser.name}`.toLowerCase()
-        }
-      });
-      const inbox = this.session!.createInbox({
-        theme: this.currentTheme
-      });
-
-      inbox.select(conversation);
-      inbox.mount(document.getElementById('talkjs-container')!);
-    } catch (err) {
-      console.error('Error in createOneOnOneConversation:', err);
-    }
-  }
-
   setCurrentUserRoleAndId(role: string, id: string) {
     this.currentUserRole = role;
     this.currentUserId = id;
@@ -214,18 +145,28 @@ export class TalkService {
       const ADMIN_ID = '1';
       const currentLang = localStorage.getItem('lang') || 'de';
 
-      // Init TalkJS session if not already initialized
+
       if (!this.session && this.currentUser) {
         await this.init(this.currentUser);
       }
 
-      // Block regular users from chatting with admin
+
       if (this.currentUserRole !== '1' && userId === ADMIN_ID) {
         console.warn('Regular users cannot chat with admin.');
         return;
       }
 
-      // Create the other user object
+      const otherUserConsole = {
+        id: userId,
+        name: name,
+        email: email,
+        photoUrl: this.getValidPhotoUrl(photoUrl),
+        role: 'default',
+        locale: currentLang
+      };
+
+      console.info("CHAT WITH ", otherUserConsole);
+
       const otherUser = new Talk.User({
         id: userId,
         name: name,
@@ -235,33 +176,33 @@ export class TalkService {
         locale: currentLang
       });
 
-      // Create hidden admin user (reuse if exists)
+
       const hiddenAdmin = new Talk.User({
         id: '1',
         name: 'Succer You Sports AG',
         email: 'testmails.cts@gmail.com',
         role: 'hidden',
-        // photoUrl: 'https://yourdomain.com/admin-avatar.png'
+
       });
       const conversationId = Talk.oneOnOneId(this.currentUser!, otherUser);
       const conversation = this.session!.getOrCreateConversation(conversationId);
 
       conversation.setParticipant(this.currentUser!);
       conversation.setParticipant(otherUser);
-      conversation.setParticipant(hiddenAdmin);
+      // conversation.setParticipant(hiddenAdmin);
 
       conversation.setAttributes({
-        photoUrl: this.getValidPhotoUrl(photoUrl, true), // For conversation header
+        //photoUrl: this.getValidPhotoUrl(photoUrl, true), // For conversation header
       });
 
-      // DESTROY existing inbox before mounting new one
+
       if (this.inbox) {
         this.inbox.destroy();
       }
 
       this.inbox = this.session!.createInbox({
         theme: this.currentTheme,
-        // locale: currentLang,
+
       });
 
       this.inbox.select(conversation);
@@ -271,17 +212,21 @@ export class TalkService {
     }
   }
 
-  private getValidPhotoUrl(photoUrl: string, appendTimestamp: boolean = false): string {
-    const fallback = 'https://api.socceryou.ch/uploads/default_talent_img.png';
-    let validatedPhoto = this.isValidImageUrl(photoUrl) ? photoUrl : fallback;
 
-    if (validatedPhoto.includes('/undefined')) {
-      validatedPhoto = fallback;
+
+  private getValidPhotoUrl(photoUrl: string | undefined, appendTimestamp: boolean = false): string {
+    const fallback = 'https://api.socceryou.ch/uploads/default_talent_img.png';
+
+    // Handle undefined/null
+    if (!photoUrl || !this.isValidImageUrl(photoUrl) || photoUrl.includes('/undefined')) {
+      return fallback;
     }
 
+    // Cache busting
+    let validatedPhoto = photoUrl;
     if (appendTimestamp) {
-      validatedPhoto += validatedPhoto.includes('?') ? '&' : '?';
-      validatedPhoto += `ts=${Date.now()}`;
+      const separator = validatedPhoto.includes('?') ? '&' : '?';
+      validatedPhoto += `${separator}ts=${Date.now()}`;
     }
 
     return validatedPhoto;
