@@ -1834,9 +1834,15 @@ body .dialog-content.add-perfomance {
 body .edit_genrl_details.popup__body {
     max-height: 310px !important;
 }
-body .dialog-content.edit_genrl_details, body .dialog-content.transfer_details, body .statistics_popup, body .highlights__popup, body .view_membership_popup {
+body .dialog-content.edit_genrl_details, body .dialog-content.transfer_details, body .statistics_popup, body .view_membership_popup {
     .popup__body, .overflow-card.popup__body, .overflow-card-2.popup__body {
         max-height: 310px !important;
+        overflow: auto;
+    }
+}
+body .highlights__popup {
+    .popup__body {
+        max-height: 335px !important;
         overflow: auto;
     }
 }
