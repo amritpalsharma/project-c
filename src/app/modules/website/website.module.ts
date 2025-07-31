@@ -54,11 +54,15 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 
 // By Amrit
-import { NgSelectModule } from '@ng-select/ng-select';
-import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
+// New By Amrit
 import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+
+
+
 @NgModule({
   declarations: [
     IndexComponent,

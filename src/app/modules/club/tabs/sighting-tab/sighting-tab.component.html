@@ -143,7 +143,7 @@
           <tr class="mat-row user-empty-tr" *matNoDataRow>
             <td [attr.colspan]="displayedColumns.length" class="user-empty-td">
               <app-loader *ngIf="isLoading"></app-loader>
-              <div class="no_data_font_text" *ngIf="sightings.length == 0 && !isLoading" style="text-align: center;">{{ 'noRecordFound' |
+              <div class="no_data_font_text" *ngIf="sightings.length == 0 && !isLoading" style="text-align: center;">{{ 'noSightFound' |
                 translate
                 }}</div>
             </td>
@@ -362,7 +362,7 @@
           <tr class="mat-row user-empty-tr" *matNoDataRow>
             <td [attr.colspan]="displayedColumns.length" class="user-empty-td">
               <app-loader *ngIf="isLoading"></app-loader>
-              <div *ngIf="sightings.length == 0 && !isLoading" style="text-align: center;">{{ 'noRecordFound' |
+              <div *ngIf="sightings.length == 0 && !isLoading" style="text-align: center;">{{ 'noSightFound' |
                 translate
                 }}</div>
             </td>
@@ -454,7 +454,7 @@
       <div class="rounded-lg border bg-card" *ngIf="sightings.length == 0 && !isLoading">
         <div class="p-3">
           <div class="d-flex justify-content-center">
-            <h6>{{'noRecordFound' | translate}}</h6>
+            <h6>{{'noSightFound' | translate}}</h6>
           </div>
         </div>
       </div>

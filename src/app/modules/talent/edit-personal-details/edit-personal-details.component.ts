@@ -56,7 +56,7 @@ export class EditPersonalDetailsComponent implements OnInit {
   weightUnit: string = 'kg';
   leagueLevel: any = 1;
   placeOfBirth: string = '';
-  dominantFoot: string = 'Right'; // Set a default value for dominant foot
+  dominantFoot: string = 'no_foot'; // Set a default value for dominant foot
   currentClub: string = '';
   firstName: string = '';
   lastName: string = '';
@@ -104,7 +104,7 @@ export class EditPersonalDetailsComponent implements OnInit {
   isCustomClubTeam: boolean = false;
 
   team_type: string = 'm';
-  userHasNoClub: boolean = true;
+  userHasNoClub: boolean = false;
   // nationControl = new FormControl([]);
   nationControl = new FormControl<string[]>([]);
 
@@ -238,7 +238,7 @@ export class EditPersonalDetailsComponent implements OnInit {
       this.weightUnit = this.user.meta.weight_unit || 'kg';
       this.leagueLevel = this.user.meta.league_level || 1;
       this.placeOfBirth = this.user.meta.place_of_birth || '';
-      this.dominantFoot = this.user.meta.foot || 'Right';
+      this.dominantFoot = this.user.meta.foot || 'no_foot';
       this.currentClub = this.user.pre_current_club_name || '';
       this.firstName = this.user.first_name || '';
       this.lastName = this.user.last_name || '';
@@ -424,6 +424,7 @@ export class EditPersonalDetailsComponent implements OnInit {
     //this.filteredClubs = [];  // Clear the suggestion list
   }
 
+  nationError: boolean = false;
   registredClubArr: any;
   customClubArr: any;
   previousTeamId: number = 0;
@@ -466,7 +467,7 @@ export class EditPersonalDetailsComponent implements OnInit {
         this.contractEnd = this.user.meta.contract_end || '';
         this.leagueLevel = this.user.meta.league_level || 1;
         this.placeOfBirth = this.user.meta.place_of_birth || '';
-        this.dominantFoot = this.user.meta.foot || 'Right';
+        this.dominantFoot = this.user.meta.foot || 'no_foot';
         this.currentClub = this.user.pre_current_club_name || '';
         this.firstName = this.user.first_name || '';
         this.lastName = this.user.last_name || '';
@@ -539,10 +540,11 @@ export class EditPersonalDetailsComponent implements OnInit {
 
     const formData = new FormData();
     if (!this.userHasNoClub) {
-      if (!this.nationControl.value || this.nationControl.value.length === 0) {
-        this.toastr.warning(this.nationalityRequired, this.errorTxt);
-        return;
-      }
+      // if (!this.nationControl.value || this.nationControl.value.length === 0) {
+      //   this.nationError = true;
+      //   this.toastr.warning(this.nationalityRequired, this.errorTxt);
+      //   return;
+      // }
 
       // Append Nationality array
       // this.nationality.forEach((nation: any) => {
@@ -552,6 +554,13 @@ export class EditPersonalDetailsComponent implements OnInit {
 
 
     }
+
+    if (!this.nationControl.value || this.nationControl.value.length === 0) {
+      this.nationError = true;
+      this.toastr.warning(this.nationalityRequired, this.errorTxt);
+      return;
+    }
+
     const selectedNations = this.nationControl.value || [];
     if (selectedNations) {
       selectedNations.forEach((nation: any) => {

@@ -295,6 +295,10 @@ mat-datepicker-toggle {
 }
 
 ::ng-deep {
+  .is_nation_error_ {
+    border: 1px solid red !important;
+  }
+
   .custom_select_mat {
     .mat-focused .mat-mdc-form-field-focus-overlay {
       opacity: 0 !important;
@@ -340,6 +344,10 @@ mat-datepicker-toggle {
 }
 
 ::ng-deep .dark-theme {
+  .is_nation_error_ {
+    border: 1px solid red !important;
+  }
+
   .mat-select-search-input {
     color: #fff !important;
     background-color: #072944 !important;

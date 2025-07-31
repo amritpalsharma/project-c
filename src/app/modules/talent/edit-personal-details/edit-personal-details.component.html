@@ -21,12 +21,6 @@
   </div>
   <form class="popup__body pt-3" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
     <div class="overflow-card">
-      <div class="row">
-        <!-- <div class="col-sm-12">
-          <h1>userHasNoClub {{userHasNoClub}}</h1>
-          <h1>userHasCustomClub {{userHasCustomClub}}</h1>
-        </div> -->
-      </div>
       <!-- I DOn't Club Field -->
       <div class="row">
         <div class="col-sm-12">
@@ -46,25 +40,9 @@
               {{ 'noTeamAndClub' | translate }}
             </label>
           </div>
-
-
         </div>
       </div>
       <!-- I DOn't Club Field -->
-      <div class="row">
-        <!-- First Name -->
-        <div class="form-group col-lg-6">
-          <label for="first_name">{{'firstName' | translate}}:</label>
-          <input type="text" id="first_name" name="first_name" [(ngModel)]="firstName" #firstNameField="ngModel" />
-        </div>
-
-        <!-- Last Name -->
-        <div class="form-group col-lg-6">
-          <label for="last_name">{{'lastName' | translate}}:</label>
-          <input type="text" id="last_name" name="last_name" [(ngModel)]="lastName" #lastNameField="ngModel" />
-        </div>
-      </div>
-
       <div class="row" *ngIf="!isHideClubSection && !isCustomClubTeam">
 
         <!-- Current Club -->
@@ -158,21 +136,12 @@
       </div>
 
       <div class="row" id="customFieldsRow" *ngIf="isCustomClubTeam">
-        <!-- <div class="customFields_inputs" id="customFields">
-          
-        </div> -->
         <div class="form-group col-lg-4 position_inputs">
           <mat-label for="nationality_input">{{'club' | translate}} {{'country' | translate}}:</mat-label>
-          <!-- <label for="nationality22">{{'club' | translate}} {{'country' | translate}}:</label> -->
-          <!-- <select class="form-select" id="nationality22" name="nationality22" required [(ngModel)]="custom_club_country"
-            #customClubCountryField="ngModel">
-            <option *ngFor="let country of displayedCountries2; trackBy: trackByCountryId" [value]="country.id">
-              {{ country.country_name }}
-            </option>
-          </select> -->
           <mat-form-field appearance="fill" class="w-100 custom_select_mat">
-            <mat-select [(ngModel)]="CurrentTeamId" class="form-select mat_search_selector"
-              [ngClass]="{ 'error-border': isTeamSelectError }" id="nationality_input" name="nationality_input"
+            <mat-select [(ngModel)]="CurrentTeamId"
+              class="form-select mat_search_selector is_nation_error_{{nationError}}"
+              [ngClass]="{ 'error-border': isTeamSelectError}" id="nationality_input" name="nationality_input"
               name="nationality22" required [(ngModel)]="custom_club_country" #customClubCountryField="ngModel">
               <!-- Search input inside dropdown -->
               <ngx-mat-select-search [formControl]="customClubCountrySearch" placeholder="A"></ngx-mat-select-search>
@@ -195,6 +164,19 @@
         </div>
       </div>
 
+      <div class="row">
+        <!-- First Name -->
+        <div class="form-group col-lg-6">
+          <label for="first_name">{{'firstName' | translate}}:</label>
+          <input type="text" id="first_name" name="first_name" [(ngModel)]="firstName" #firstNameField="ngModel" />
+        </div>
+
+        <!-- Last Name -->
+        <div class="form-group col-lg-6">
+          <label for="last_name">{{'lastName' | translate}}:</label>
+          <input type="text" id="last_name" name="last_name" [(ngModel)]="lastName" #lastNameField="ngModel" />
+        </div>
+      </div>
 
       <div class="row">
         <!-- Nationality (Updated for multiple selection) -->
@@ -202,9 +184,11 @@
         <div class="form-group col-lg-6 position_inputs">
           <!-- New Selector -->
           <mat-label>{{ 'nationality' | translate }}</mat-label>
-          <mat-form-field appearance="fill" class="w-100 custom_select_mat">
+          <mat-form-field appearance="fill" class="w-100 custom_select_mat is_nation_error_{{nationError}}">
             <!-- <pre>{{nationControl | json}}</pre> -->
-            <mat-select [formControl]="nationControl" multiple #singleSelect class="form-select mat_search_selector">
+            <!-- <mat-select [formControl]="nationControl" multiple #singleSelect class="form-select mat_search_selector"  [ngClass]="{ 'error-border': !nationControl}"> -->
+            <mat-select [formControl]="nationControl" multiple #singleSelect class="form-select mat_search_selector"
+              [class.error-border]="nationError">
               <!-- Search input inside dropdown -->
               <ngx-mat-select-search [formControl]="nationFilterCtrl"
                 placeholder="Search countries"></ngx-mat-select-search>
@@ -244,9 +228,11 @@
         <div class="form-group col-lg-6">
           <label for="contractStart">{{'contractStartDate' | translate}}:</label>
           <div class="d-flex align-items-center justify-content-center dob1">
-            <input class="dob is_grey_{{isreadOnlyContract}}" matInput id="contractStart" name="contractStart" [matDatepicker]="contractStartPicker"
-              [formControl]="contractStart" placeholder="DD.MM.YYYY" [readonly]="isreadOnlyContract"/>
-            <mat-datepicker-toggle matSuffix [for]="contractStartPicker" [disabled]="isreadOnlyContract"></mat-datepicker-toggle>
+            <input class="dob is_grey_{{isreadOnlyContract}}" matInput id="contractStart" name="contractStart"
+              [matDatepicker]="contractStartPicker" [formControl]="contractStart" placeholder="DD.MM.YYYY"
+              [readonly]="isreadOnlyContract" />
+            <mat-datepicker-toggle matSuffix [for]="contractStartPicker"
+              [disabled]="isreadOnlyContract"></mat-datepicker-toggle>
             <mat-datepicker #contractStartPicker></mat-datepicker>
           </div>
         </div>
@@ -255,9 +241,11 @@
         <div class="form-group col-lg-6">
           <label for="contractEnd">{{'contractEndDate' | translate}}:</label>
           <div class="d-flex align-items-center justify-content-center dob1">
-            <input class="dob is_grey_{{isreadOnlyContract}}" matInput id="contractEnd" name="contractEnd" [matDatepicker]="contractEndPicker"
-              [formControl]="contractEnd" placeholder="DD.MM.YYYY" [readonly]="isreadOnlyContract"/>
-            <mat-datepicker-toggle matSuffix [for]="contractEndPicker" [disabled]="isreadOnlyContract"></mat-datepicker-toggle>
+            <input class="dob is_grey_{{isreadOnlyContract}}" matInput id="contractEnd" name="contractEnd"
+              [matDatepicker]="contractEndPicker" [formControl]="contractEnd" placeholder="DD.MM.YYYY"
+              [readonly]="isreadOnlyContract" />
+            <mat-datepicker-toggle matSuffix [for]="contractEndPicker"
+              [disabled]="isreadOnlyContract"></mat-datepicker-toggle>
             <mat-datepicker #contractEndPicker></mat-datepicker>
           </div>
         </div>
@@ -267,23 +255,14 @@
         <!-- Dominant Foot -->
         <div class="form-group col-lg-6 position_inputs">
           <label for="dominantFoot">{{'dominantFoot' | translate}}:</label>
-          <!-- <mat-select class="form-select" id="dominantFoot" name="dominantFoot" [(ngModel)]="dominantFoot"
-            #dominantFootField="ngModel" required>
-            <mat-option value="Right">{{'right' | translate}}</mat-option>
-            <mat-option value="Left">{{'left' | translate}}</mat-option>
-            <mat-option value="Both">{{'both' | translate}}</mat-option>
-          </mat-select> -->
           <mat-form-field appearance="fill" class="w-100 custom_select_mat">
             <!-- <pre>{{nationControl | json}}</pre> -->
-            <mat-select #singleSelect class="form-select mat_search_selector" id="dominantFoot"
-              name="dominantFoot" [(ngModel)]="dominantFoot" #dominantFootField="ngModel" required>
+            <mat-select #singleSelect class="form-select mat_search_selector" id="dominantFoot" name="dominantFoot"
+              [(ngModel)]="dominantFoot" #dominantFootField="ngModel" required>
+              <mat-option [value]="'no_foot'" disabled selected>{{'select' | translate}}</mat-option>
               <mat-option value="Right">{{'right' | translate}}</mat-option>
               <mat-option value="Left">{{'left' | translate}}</mat-option>
               <mat-option value="Both">{{'both' | translate}}</mat-option>
-              <!-- Search input inside dropdown -->
-              <!-- <ngx-mat-select-search [formControl]="nationFilterCtrl"
-                placeholder="Search countries"></ngx-mat-select-search> -->
-              <!-- List of countries -->
             </mat-select>
           </mat-form-field>
           <!-- Validation message -->

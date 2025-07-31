@@ -312,8 +312,8 @@ export class HeaderComponent implements OnInit {
 
   nationFilterCtrl: FormControl = new FormControl('');
   clubFilterCtrl: FormControl = new FormControl('');
-  displayedCountries: any;
-  displayedClubs: any;
+  displayedCountries: any = [];
+  displayedClubs: any = [];
   constructor(
     private sharedservice: SharedService,
     private themeService: ThemeService,
@@ -393,7 +393,6 @@ export class HeaderComponent implements OnInit {
       this.countrie = this.countrie_se;
     }
     this.displayedCountries = this.countrie;
-    // console.info('this.displayedCountries',this.displayedCountries)
   }
 
   isScrolled = false;
@@ -1115,7 +1114,18 @@ export class HeaderComponent implements OnInit {
 
   getAllCountries() {
     this.commonDataService.getAllCountries().subscribe((resp) => {
-      this.displayedCountries = resp.data.domains;
+      // this.displayedCountries = resp.data.domains;
+      if (resp.data && Array.isArray(resp.data.domains)) {
+        // If `domains` is already an array, assign directly
+        this.displayedCountries = resp.data.domains;
+      } else if (resp.data && typeof resp.data.domains === 'object') {
+        // If `domains` is an object, convert to array
+        this.displayedCountries = Object.keys(resp.data.domains).map(key => resp.data.domains[key]);
+      } else {
+        // If no valid domains, fallback to empty array
+        this.displayedCountries = [];
+      }
+      console.info('displayedCountries', this.displayedCountries, 'TypeOf', typeof this.displayedCountries)
       this.countries = resp.data.domains.map((country: any) => ({
         code: country.country_id || '',
         name: country.location || ''
@@ -1240,18 +1250,26 @@ export class HeaderComponent implements OnInit {
     };
 
     if (this.selectedCountry != '' && this.selectedCountry != undefined) {
-      params = {
-        lang: localStorage.getItem('lang_id'),
-        country: this.selectedCountry,
-        is_taken: 'no'
+      if (this.activeIndex == 1) {
+        params = {
+          lang: localStorage.getItem('lang_id'),
+          country: this.selectedCountry,
+        }
+      } else {
+        params = {
+          lang: localStorage.getItem('lang_id'),
+          country: this.selectedCountry,
+          is_taken: 'no'
+        }
       }
+
     }
     this.talentService.getClubs(params).subscribe(
       (response: any) => {
         if (response.status) {
           this.clubs = this.sortClubsByName(response.data.clubs);
           console.info(this.clubs)
-          this.displayedClubs = this.clubs;
+          this.displayedClubs = response.data.clubs;
         } else {
           console.error('No data found');
         }
