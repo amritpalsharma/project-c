@@ -842,6 +842,7 @@ body {
   .bg_success, .bg_reject, .bg_pending {
       max-width: 100px;
       padding-left: 7px;
+      padding-top: 4px !important;
       font-size: 14px !important;
   }
 }
