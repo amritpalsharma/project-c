@@ -259,8 +259,8 @@
           <mat-form-field appearance="fill" class="w-100 custom_select_mat">
             <!-- <pre>{{nationControl | json}}</pre> -->
             <mat-select #singleSelect class="form-select mat_search_selector" id="dominantFoot" name="dominantFoot"
-              [(ngModel)]="dominantFoot" #dominantFootField="ngModel" required>
-              <mat-option [value]="'no_foot'" disabled selected>{{'select' | translate}}</mat-option>
+              [(ngModel)]="dominantFoot" #dominantFootField="ngModel" required [ngClass]="{ 'error-border': !dominantFoot }">
+              <mat-option value="" disabled selected>{{'select' | translate}}</mat-option>
               <mat-option value="Right">{{'right' | translate}}</mat-option>
               <mat-option value="Left">{{'left' | translate}}</mat-option>
               <mat-option value="Both">{{'both' | translate}}</mat-option>

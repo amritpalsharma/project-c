@@ -56,7 +56,7 @@ export class EditPersonalDetailsComponent implements OnInit {
   weightUnit: string = 'kg';
   leagueLevel: any = 1;
   placeOfBirth: string = '';
-  dominantFoot: string = 'no_foot'; // Set a default value for dominant foot
+  dominantFoot: string = ''; // Set a default value for dominant foot
   currentClub: string = '';
   firstName: string = '';
   lastName: string = '';
@@ -238,7 +238,7 @@ export class EditPersonalDetailsComponent implements OnInit {
       this.weightUnit = this.user.meta.weight_unit || 'kg';
       this.leagueLevel = this.user.meta.league_level || 1;
       this.placeOfBirth = this.user.meta.place_of_birth || '';
-      this.dominantFoot = this.user.meta.foot || 'no_foot';
+      this.dominantFoot = this.user.meta.foot || '';
       this.currentClub = this.user.pre_current_club_name || '';
       this.firstName = this.user.first_name || '';
       this.lastName = this.user.last_name || '';
@@ -467,7 +467,7 @@ export class EditPersonalDetailsComponent implements OnInit {
         this.contractEnd = this.user.meta.contract_end || '';
         this.leagueLevel = this.user.meta.league_level || 1;
         this.placeOfBirth = this.user.meta.place_of_birth || '';
-        this.dominantFoot = this.user.meta.foot || 'no_foot';
+        this.dominantFoot = this.user.meta.foot || '';
         this.currentClub = this.user.pre_current_club_name || '';
         this.firstName = this.user.first_name || '';
         this.lastName = this.user.last_name || '';

@@ -2736,8 +2736,12 @@ input[type="checkbox"].form-check-input[ng-reflect-required] {
 }
 
 
-::ng-deep .cdk-overlay-container,
+// ::ng-deep .cdk-overlay-container,
+// ::ng-deep .mat-select-panel {
+//   z-index: 9999 !important;
+//   pointer-events: auto !important;
+// }
 ::ng-deep .mat-select-panel {
-  z-index: 9999 !important;
-  pointer-events: auto !important;
+    z-index: 9999 !important;
+    /* Only bump z-index if needed */
 }
