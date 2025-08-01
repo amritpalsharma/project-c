@@ -203,9 +203,36 @@ mat-datepicker-toggle{
     color: #072944 !important;
     background: #bde34f !important;
   }
+  .mat-select-search-input {
+    color: #fff !important;
+    background-color: #072944 !important;
+  }
+  .mat-select-search-inner {
+        background: #072944 !important;
+    }
+  .mat-select-search-input::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: #fff !important;
+  }
+
+  .mat-select-search-input::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #fff !important;
+  }
+
+  .mat-select-search-input:-ms-input-placeholder {
+    /* IE 10+ */
+    color: #fff !important;
+  }
+
+  .mat-select-search-input:-moz-placeholder {
+    /* Firefox 18- */
+    color: #fff !important;
+  }
 }
 
 ::ng-deep {
+  
   .custom_select_mat {
     .mat-focused .mat-mdc-form-field-focus-overlay {
       opacity: 0 !important;
