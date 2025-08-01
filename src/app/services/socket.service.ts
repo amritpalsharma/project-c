@@ -27,6 +27,8 @@ export class SocketService {
   private readonly socketUrl: string = environment.socketUrl; // Replace with your backend URL
 
   public onlineUsers: { [userId: string]: string } = {};
+  private paymentStatus: string = '';
+  private chatMode: string = '';
   userToken: any;
   constructor(private http: HttpClient) {
     // Initialize the socket connection
@@ -131,7 +133,11 @@ export class SocketService {
     return this.http.get<ApiResponse>(`${apiUrl}api/check-user-status`, { headers })
       .toPromise()
       .then((response: any) => {
+        if (response.status === true && response.data.chat_mode !== '' && response.data.chat_mode !== undefined) {
+          this.chatMode = response.data.chat_mode;
+        }
         if (response.status === true && response.data.payment_mode !== '' && response.data.payment_mode !== undefined) {
+          this.paymentStatus = response.data.payment_mode;
           return response.data.payment_mode;
         } else {
           return false;
@@ -166,6 +172,12 @@ export class SocketService {
       });
   }
 
+  getPaymentStatus() {
+    return this.paymentStatus;
+  }
 
+  getChatMode() {
+    return this.chatMode;
+  }
 
 }

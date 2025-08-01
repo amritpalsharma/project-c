@@ -18,7 +18,7 @@ import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { TitleService } from '../../../title.service';
 import { PremiumPurchaseComponent } from '../../shared/premium-purchase/premium-purchase.component';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
-
+import { SocketService } from '../../../services/socket.service';
 
 interface Plan {
   id: number;
@@ -41,6 +41,17 @@ interface Plan {
 })
 export class PlanComponent implements OnInit, OnDestroy {
   // Code By Amrit
+  constructor(
+    private socketService: SocketService,
+    private gloabalSettings: GlobalSettingsService,
+    private ScoutService: ScoutService,
+    private paymentService: PaymentService,
+    public dialog: MatDialog,
+    private route: ActivatedRoute,
+    private toastr: ToastrService,
+    private translate: TranslateService,
+    private titleService: TitleService,
+  ) { }
   isPremiumPurchased: string = '';
   // premiumMonthlyPackageId: number = 0;
   // premiumYearlyPackageId: number = 0;
@@ -75,22 +86,14 @@ export class PlanComponent implements OnInit, OnDestroy {
   private plansSubscription: Subscription = new Subscription();
   langSubscription!: Subscription;
   // stripePromise = loadStripe(environment.stripePublishableKey);
-  stripePromise = localStorage.getItem('payment_mode') == 'live' ? loadStripe(environment.stripePublishableKey) : loadStripe(environment.stripePublishableTestKey);
+  stripePromise = this.socketService.getPaymentStatus() == 'live' ? loadStripe(environment.stripePublishableKey) : loadStripe(environment.stripePublishableTestKey);
+  // stripePromise = localStorage.getItem('payment_mode') == 'live' ? loadStripe(environment.stripePublishableKey) : loadStripe(environment.stripePublishableTestKey);
   pageTitle: string = '';
   pleaseWait: string = '';
   Processing: string = '';
   successTxt: string = '';
   premiumPlanTxt: string = '';
-  constructor(
-    private gloabalSettings: GlobalSettingsService,
-    private ScoutService: ScoutService,
-    private paymentService: PaymentService,
-    public dialog: MatDialog,
-    private route: ActivatedRoute,
-    private toastr: ToastrService,
-    private translate: TranslateService,
-    private titleService: TitleService,
-  ) { }
+
 
   currentLoggedInPermission: string = '';
 
@@ -662,7 +665,7 @@ export class PlanComponent implements OnInit, OnDestroy {
 
         if (response && response.status && response.data && response.data.user_data) {
           // console.info('UserDataArrSharedHeader', response.data);
-          
+
           if (response?.data?.representator_data && response?.data?.representator_data != '') {
             if (response.data.representator_data.permission == 'admin.view') {
               this.currentLoggedInPermission = 'club_view_only';

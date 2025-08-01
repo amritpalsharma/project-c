@@ -18,7 +18,7 @@ import { TitleService } from '../../../title.service';
 import { WebPages } from '../../../services/webpages.service';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { PremiumPurchaseComponent } from '../../shared/premium-purchase/premium-purchase.component';
-
+import { SocketService } from '../../../services/socket.service';
 
 interface Plan {
   id: number;
@@ -93,7 +93,8 @@ export class PlanComponent implements OnInit, OnDestroy {
 
   private plansSubscription: Subscription = new Subscription();
   // stripePromise = loadStripe(environment.stripePublishableKey);
-  stripePromise = localStorage.getItem('payment_mode') == 'live' ? loadStripe(environment.stripePublishableKey) : loadStripe(environment.stripePublishableTestKey);
+  stripePromise = this.socketService.getPaymentStatus() == 'live' ? loadStripe(environment.stripePublishableKey) : loadStripe(environment.stripePublishableTestKey);
+  // stripePromise = localStorage.getItem('payment_mode') == 'live' ? loadStripe(environment.stripePublishableKey) : loadStripe(environment.stripePublishableTestKey);
   pageTitle: string = '';
 
   countryMonthlyArr: PackageObject | null = null;  // Store a single object, not an array
@@ -113,7 +114,8 @@ export class PlanComponent implements OnInit, OnDestroy {
     private translateService: TranslateService,
     private titleService: TitleService,
     private webpages: WebPages,
-    private router: Router
+    private router: Router,
+    private socketService: SocketService,
   ) { }
 
   async ngOnInit() {
@@ -159,7 +161,7 @@ export class PlanComponent implements OnInit, OnDestroy {
   openCouponDialog123(planId: any): void {
 
     // Code By Amrit 16-5-25
-    
+
     if (((this.premiumPlans?.active_interval == 'monthly') || (this.premiumPlans?.active_interval == 'yearly'))) {
       if (this.premiumPlans?.active_interval == 'yearly') {
         console.log('You Have Already Premium Yearly Plan');
@@ -226,7 +228,7 @@ export class PlanComponent implements OnInit, OnDestroy {
   // New FUnction from Talent
   openCouponDialog(planId: any): void {
     // alert('Dailog Open');
-    console.info('this.premiumPlans?.active_interval',this.premiumPlans?.active_interval)
+    console.info('this.premiumPlans?.active_interval', this.premiumPlans?.active_interval)
     console.info('this.isPremiumPurchased', this.isPremiumPurchased)
     if (this.isPremiumPurchased == 'monthly' || this.isPremiumPurchased == 'yearly') {
       console.info('Already Premium ' + this.isPremiumPurchased + ' Plan is Purchased');
@@ -343,7 +345,7 @@ export class PlanComponent implements OnInit, OnDestroy {
           Object.keys(res).forEach((key) => {
             console.log('res[key]', res[key]);
             // Group plans by category
-            if (key.toLowerCase().includes('premium_talent')) {}
+            if (key.toLowerCase().includes('premium_talent')) { }
             else if (key.toLowerCase().includes('premium')) {
               this.premiumPlans = res[key];
               this.premiumPlans.isYearly = res[key].active_interval == 'yearly';
@@ -588,7 +590,7 @@ export class PlanComponent implements OnInit, OnDestroy {
             this.premiumMonthlyPurchasedPlanID = this.premium.id;
           }
 
-          
+
           if (userPlans.premium[0] != undefined && userPlans.premium[0] != '' && userPlans.premium[0].status == 'active') {
             this.isPremiumPurchased = 'monthly';
             // this.premiumMonthlyPackageId = userPlans.premium[0].package_id;

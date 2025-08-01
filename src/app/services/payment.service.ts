@@ -3,6 +3,7 @@ import { environment } from '../../environments/environment';
 import { loadStripe, Stripe } from '@stripe/stripe-js';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { SocketService } from './socket.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +14,12 @@ export class PaymentService {
   private userToken: string | null;
   stripePromise: Promise<Stripe | null>;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private socketService : SocketService) {
     this.apiUrl = environment.apiUrl; // Ensure this is defined in your environment
     this.userToken = localStorage.getItem('authToken');
     let payment_mode = localStorage.getItem('payment_mode');
-    this.stripePromise = payment_mode == 'live' ? loadStripe(environment.stripePublishableKey) : loadStripe(environment.stripePublishableTestKey);
+    // this.stripePromise = payment_mode == 'live' ? loadStripe(environment.stripePublishableKey) : loadStripe(environment.stripePublishableTestKey);
+    this.stripePromise = this.socketService.getPaymentStatus() == 'live' ? loadStripe(environment.stripePublishableKey) : loadStripe(environment.stripePublishableTestKey);
   }
 
   async getStripe(): Promise<Stripe | null> {

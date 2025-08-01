@@ -549,7 +549,7 @@ export class SightingTabComponent {
           // this.attachments = temp;
           // if (response.message != '' && response.message != undefined) {
           //   this.showMatDialog(response.message, 'display');
-          //   this.viewSight(this.viewSightId)
+            this.viewSight(this.viewSightId)
           // } else {
           //   this.showMatDialog('Attachment removed successfully!.', 'display');
           // }

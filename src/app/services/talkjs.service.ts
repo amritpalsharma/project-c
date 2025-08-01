@@ -2,6 +2,7 @@
 import { Injectable } from '@angular/core';
 import Talk from 'talkjs';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SocketService } from './socket.service';
 
 @Injectable({ providedIn: 'root' })
 export class TalkService {
@@ -14,12 +15,26 @@ export class TalkService {
   private inbox: Talk.Inbox | null = null;
 
   private currentLoggedInUser: any;
+  private chatMode: string = this.socketService.getChatMode();
 
-  constructor(public router: Router) {
+  constructor(public router: Router, private socketService: SocketService) {
 
   }
   async init(user: any): Promise<Talk.Session> {
+
+    let authToken = localStorage.getItem('authToken');
+    const res = await fetch('https://api.socceryou.ch/api/get-talk-signature', {
+      method: 'GET',
+      headers: {
+        'Authorization': 'Bearer '+authToken,
+        'Content-Type': 'application/json'
+      }
+    });
+
+    const data = await res.json();
+
     console.info('Chat Init ', user)
+    console.info('Api Response Talk ', data)
     this.currentLoggedInUser = user;
 
     await Talk.ready;
@@ -33,9 +48,17 @@ export class TalkService {
       locale: localStorage.getItem('lang') || 'de'
       // role: 'default'
     });
-
+    let appID;
+    let secretKey;
+    if (this.chatMode == 'live') {
+      appID = 'UAid8HWJ';
+      secretKey = 'sk_live_aJEAQN0XdY4f9NbrK0YP9muJyahXWzj3';
+    } else {
+      appID = 'tmI75KXB';
+      secretKey = 'sk_test_llIR3hv00wvqHx8DDp6MWBvObF7BScP8';
+    }
     this.session = new Talk.Session({
-      appId: 'tmI75KXB',
+      appId: appID,
       me: this.currentUser,
     });
 

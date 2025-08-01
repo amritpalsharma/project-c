@@ -19,6 +19,7 @@ import { TitleService } from '../../../title.service';
 import { Router } from '@angular/router';
 import { PremiumPurchaseComponent } from '../../shared/premium-purchase/premium-purchase.component';
 // import { LoaderComponent } from '../../shared/loader/loader.component';
+import { SocketService } from '../../../services/socket.service';
 
 
 
@@ -98,7 +99,8 @@ export class PlanComponent implements OnInit, OnDestroy {
   private plansSubscription: Subscription = new Subscription();
   // stripePromise = loadStripe(environment.stripePublishableKey);
   // payment_mode = localStorage.getItem('payment_mode');
-  stripePromise = localStorage.getItem('payment_mode') == 'live' ? loadStripe(environment.stripePublishableKey) : loadStripe(environment.stripePublishableTestKey);
+  stripePromise = this.socketService.getPaymentStatus() == 'live' ? loadStripe(environment.stripePublishableKey) : loadStripe(environment.stripePublishableTestKey);
+  // stripePromise = localStorage.getItem('payment_mode') == 'live' ? loadStripe(environment.stripePublishableKey) : loadStripe(environment.stripePublishableTestKey);
   premiumFeatures: string[] = []; // Store the fetched feature list
   multiCountryPlanDesc: string[] = []; // Store the fetched feature list
   bostProfileDesc: string[] = []; // Store the fetched feature list
@@ -124,6 +126,7 @@ export class PlanComponent implements OnInit, OnDestroy {
     private translate: TranslateService,
     private titleService: TitleService,
     private router: Router,
+    private socketService: SocketService,
   ) { }
 
   async ngOnInit() {

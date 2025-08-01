@@ -33,6 +33,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
+// No Scroll Body
+import { Overlay, OverlayModule } from '@angular/cdk/overlay';
+import { MAT_SELECT_SCROLL_STRATEGY } from '@angular/material/select';
+import { ScrollStrategy } from '@angular/cdk/overlay';
+
+export function matSelectScrollStrategyFactory(overlay: Overlay): ScrollStrategy {
+  return overlay.scrollStrategies.reposition(); // you can try .noop() as well
+}
+// End No Scroll Body
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -78,7 +87,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     // Added By AMrit
     MatSelectModule,
     MatFormFieldModule,
-    NgxMatSelectSearchModule
+    NgxMatSelectSearchModule,
+    OverlayModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
@@ -86,6 +96,11 @@ export function HttpLoaderFactory(http: HttpClient) {
       provide: MatPaginatorIntl,
       useFactory: getPaginatorIntl,
       deps: [TranslateService] // or TranslateService if used directly in factory
+    },
+    {
+      provide: MAT_SELECT_SCROLL_STRATEGY,
+      useFactory: matSelectScrollStrategyFactory,
+      deps: [Overlay],
     }
   ],
   bootstrap: [AppComponent]
