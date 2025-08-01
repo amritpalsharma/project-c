@@ -52,14 +52,15 @@ export class TalkService {
     let secretKey;
     if (this.chatMode == 'live') {
       appID = 'UAid8HWJ';
-      secretKey = 'sk_live_aJEAQN0XdY4f9NbrK0YP9muJyahXWzj3';
+      // secretKey = 'sk_live_aJEAQN0XdY4f9NbrK0YP9muJyahXWzj3';
     } else {
       appID = 'tmI75KXB';
-      secretKey = 'sk_test_llIR3hv00wvqHx8DDp6MWBvObF7BScP8';
+      // secretKey = 'sk_test_llIR3hv00wvqHx8DDp6MWBvObF7BScP8';
     }
     this.session = new Talk.Session({
       appId: appID,
       me: this.currentUser,
+      // signature: data.signature 
     });
 
 
