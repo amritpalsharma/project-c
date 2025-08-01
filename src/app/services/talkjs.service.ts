@@ -39,7 +39,7 @@ export class TalkService {
 
     await Talk.ready;
     this.currentUser = new Talk.User({
-      id: user.id,
+      id: String(user.id),
       name: user.name,
       email: user.email,
       photoUrl: user.photoUrl,
