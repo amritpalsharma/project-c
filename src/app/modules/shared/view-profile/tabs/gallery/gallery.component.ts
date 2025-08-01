@@ -79,4 +79,9 @@ export class GalleryComponent {
       }
     }
   }
+
+  
+  setDurationAndThumbnail(videoElement: HTMLVideoElement) {
+    videoElement.crossOrigin = 'anonymous';
+  }
 }
