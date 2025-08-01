@@ -4032,7 +4032,10 @@ img.success-image {
   .work-text.active .number p {
     height: 30px;
     width: 30px;
-    line-height: 30px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .player-image1 {
@@ -4445,11 +4448,11 @@ img.success-image {
   .right-side img.image5 {
     width: 270px;
   }
-  .work-text.active .number p {
-    height: 30px;
-    width: 30px;
-    line-height: 29px;
-  }
+  // .work-text.active .number p {
+  //   height: 30px;
+  //   width: 30px;
+  //   line-height: 29px;
+  // }
 }
 
 @media (max-width: 374px) {
