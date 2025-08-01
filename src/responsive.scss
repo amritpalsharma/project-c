@@ -1552,8 +1552,9 @@ mat-datepicker-toggle button {
     }
     .chat_height_mobile {
         min-height: 100vh;
+        padding-bottom: 0 !important;
         .chat_row {
-            min-height: 100vh;
+            min-height: 100vh !important;
         }
     }
 }
