@@ -792,13 +792,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
         return;
       }
 
-      // const maxSizeInBytes = 5 * 1024 * 1024; // 5 MB
-      // if (selectedFile.size > maxSizeInBytes) {
-      //   this.toastr.error(this.maxSizeForProfile, this.errorTxt, {
-      //     timeOut: 5000  // Set duration to 5 seconds (5000ms)
-      //   });
-      //   return;
-      // }
+      const maxSizeInBytes = 5 * 1024 * 1024; // 5 MB
+      if (selectedFile.size > maxSizeInBytes) {
+        let dynamicMessage = this.maxSizeForProfile.replace('{{fileName}}', selectedFile.name);
+        this.toastr.error(dynamicMessage, this.errorTxt, {
+          timeOut: 5000  // Set duration to 5 seconds (5000ms)
+        });
+        return;
+      }
 
       const reader = new FileReader();
 
@@ -1028,7 +1029,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.coverImage = data; // Assign the received data to a variable
     console.log('Data received from child:', data);
   }
-
+  maxSizeForProfile: string = '';
   getToasterMsg() {
     this.translateService.get(['pleaseWait', 'uploadingPhotos', 'success!', 'error', 'deletingCoverImage', 'coverImageDeletionCanceled', 'Canceled', 'requiredFieldsMessage']).subscribe((translations) => {
       this.pleaseWait = translations['pleaseWait'];
@@ -1038,6 +1039,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.deletingCoverImage = translations['deletingCoverImage'];
       this.coverImageDeletionCanceled = translations['coverImageDeletionCanceled'];
       this.Canceled = translations['Canceled'];
+      this.maxSizeForProfile = translations['maxSizeForProfile'];
       this.requiredFieldsMessage = translations['requiredFieldsMessage'];
     });
   }
@@ -1153,7 +1155,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   freq: any = ['once', 'days', 'weeks', 'months'];
 
   showPopups(index: any) {
-    if(index == 4){
+    if (index == 4) {
       return;
     }
     let popups: any[] = [];

@@ -96,6 +96,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   loading: boolean = true;  // Add this line to track loading state
   pageTitle: string = '';
   stats: any = [];
+  maxSizeForProfile: string = '';
 
   isUserVerified: boolean = false;
   async ngOnInit() {
@@ -1123,6 +1124,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
         return;
       }
 
+      const maxSizeInBytes = 100 * 1024 * 1024; // 5 MB
+      if (selectedFile.size > maxSizeInBytes) {
+        let dynamicMessage = this.maxSizeForProfile.replace('{{fileName}}', selectedFile.name);
+        this.toastr.error(dynamicMessage, '', {
+          timeOut: 5000  // Set duration to 5 seconds (5000ms)
+        });
+        return;
+      }
+
       // const maxSizeInBytes = 5 * 1024 * 1024; // 5 MB
       // if (selectedFile.size > maxSizeInBytes) {
       //   this.toastr.error(this.maxSizeForProfile, this.errorTxt, {
@@ -1335,8 +1345,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   getJsonTranslations() {
-    this.translateService.get(['dashboard']).subscribe((translations) => {
+    this.translateService.get(['dashboard', 'pageTitle', 'maxSizeForProfile']).subscribe((translations) => {
       this.pageTitle = translations['pageTitle'];
+      this.maxSizeForProfile = translations['maxSizeForProfile'];
       this.titleService.setTitle(this.pageTitle);
       console.log('Title fetch Function Fired');
     })
