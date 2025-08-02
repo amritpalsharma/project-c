@@ -37,6 +37,7 @@ import 'moment/locale/da';
 
 import { SharedDataService } from '../shared-data.service';
 
+import { UserStateService } from '../../../services/user-state.service';
 interface Notification {
   id: number;
   image: string;
@@ -71,6 +72,7 @@ export class HeaderComponent {
 
 
   constructor(
+    private userState: UserStateService,
     private userService: UserService,
     private sharedDataService: SharedDataService,
     private router: Router,
@@ -91,6 +93,7 @@ export class HeaderComponent {
   ) {
     let locale = localStorage.getItem('lang') || 'en';
     this._adapter.setLocale(locale);
+    this.userState.loadPremiumStatus();
   }
 
   loggedInUser: any = localStorage.getItem('userInfo');
@@ -134,7 +137,13 @@ export class HeaderComponent {
 
   currentLoggedInUserId: number = 0;
 
+  isPremium: boolean | null = null;
   ngOnInit() {
+
+    this.userState.isPremium$.subscribe(val => {
+      this.isPremium = val;
+    });
+
     this.getJsonTranslations();
     this.langSubscription = this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
       this.getJsonTranslations();

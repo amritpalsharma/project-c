@@ -26,7 +26,7 @@ import { SocketService } from '../../../services/socket.service';
 import { EditMembershipProfileComponent } from '../edit-membership-profile/edit-membership-profile.component';
 import { CoverImageCropperComponent } from '../../shared/cover-image-cropper/cover-image-cropper.component';
 import { PopupComponent } from '../../shared/popup/popup.component';
-
+import { UserStateService } from '../../../services/user-state.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -44,6 +44,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   countryFlagUrl: string = './assets/images/city-icon-light.png';
 
   constructor(
+    private userState: UserStateService,
     private route: ActivatedRoute,
     private userService: UserService,
     private scoutService: ScoutService,
@@ -100,6 +101,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   isUserVerified: boolean = false;
   async ngOnInit() {
+    this.userState.isPremium$.subscribe(val => {
+      this.isPremium = val;
+    });
     this.getJsonTranslations();
     this.themeChanged();
     this.introInstance = introJs();
@@ -432,9 +436,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
           }
 
 
-          this.isPremium = this.user?.active_subscriptions?.premium.length > 0 ? true : false;
+          // this.isPremium = this.user?.active_subscriptions?.premium.length > 0 ? true : false;
           // this.isPremium = false;
-          this.premium = this.user.active_subscriptions?.premium?.length > 0 ? true : false;
+          // this.premium = this.user.active_subscriptions?.premium?.length > 0 ? true : false;
           // this.premium = false;
           this.booster = this.user.active_subscriptions?.booster?.length > 0 ? true : false;
           this.activeDomains = this.user.active_subscriptions?.country?.length > 0 ? true : false;
@@ -1435,4 +1439,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     return url.startsWith('http://') || url.startsWith('https://') ? url : 'https://' + url;
   }
 
+  getThumbnailName(fileName: string): string {
+    const fileNameWithoutExt = fileName.replace(/\.[^/.]+$/, ''); // Remove the file extension (e.g., '.mp4')
+    return fileNameWithoutExt + '.jpg'; // Append .jpg for the thumbnail
+  }
 }

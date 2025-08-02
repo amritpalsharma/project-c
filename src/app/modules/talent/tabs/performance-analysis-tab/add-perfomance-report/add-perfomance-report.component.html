@@ -76,7 +76,10 @@
     </div>
     <div class="dialog-actions align-items-center d-flex justify-content-between perfomance-report-btn popup_footer p-3">            
         <button class="cancel-btn" (click)="dialogRef.close()">{{'cancel' | translate}}</button>
-        <button class="upload-btn" (click)="uploadFile()">{{'upload' | translate}}</button>
+        <button class="upload-btn" (click)="uploadFile()">
+            <span *ngIf="!isSubmited">{{'upload' | translate}}</span>
+            <span *ngIf="isSubmited">{{'Processing' | translate}}</span>
+        </button>
     </div>
 
 </div>

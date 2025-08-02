@@ -156,7 +156,7 @@
               <source [src]="imageBaseUrl + image.file_name" type="video/mp4">
               {{ 'galleryText' | translate }}
             </video> -->
-             <video [src]="imageBaseUrl + image.file_name" #videoPlayer (loadeddata)="setDurationAndThumbnail(videoPlayer)" muted controls></video>
+             <video [src]="imageBaseUrl + image.file_name" #videoPlayer (loadeddata)="setDurationAndThumbnail(videoPlayer)" muted controls [attr.poster]="imageBaseUrl + 'thumbnail/' + getThumbnailName(image.file_name)"></video>
           </a>
           <!-- <video class="img-fluid" controls>
         <source src="{{imageBaseUrl}}{{image.file_name}}" type="video/mp4">

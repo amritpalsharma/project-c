@@ -158,7 +158,7 @@
             </video> -->
             <!-- <video [src]="imageBaseUrl + image.file_name" #videoPlayer (loadeddata)="setDurationAndThumbnail(videoPlayer)" muted></video> -->
             <video [src]="imageBaseUrl + image.file_name" #videoPlayer
-              (loadeddata)="setDurationAndThumbnail(videoPlayer)" controls muted></video>
+              (loadeddata)="setDurationAndThumbnail(videoPlayer)" muted controls [attr.poster]="imageBaseUrl + 'thumbnail/' + getThumbnailName(image.file_name)"></video>
           </a>
           <div class="wc_floatingMenu" [ngClass]="{ 'active': openedMenuId == image.id}">
             <div class="wc_menuItem pointer font-14 {{currentLoggedInPermission}}"

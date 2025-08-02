@@ -117,7 +117,7 @@
   </a>
 </div>
 <app-loader *ngIf="isLoading && isPremium" style="width: 100%;"></app-loader>
-<div class="text-center" *ngIf="!performances && !isLoading && isPremium">
+<div class="text-center" *ngIf="performances?.length == '0' && !isLoading && isPremium">
   <h5>{{'noTextTabs' | translate}}</h5>
 </div>
 <div class="table-responsive bg-0C3453" style="width: 100%;" *ngIf="isPremium">

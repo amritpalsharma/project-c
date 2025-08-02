@@ -652,7 +652,7 @@
                       <!-- <video [src]="highlights.file_path + video.file_name" #videoPlayer
                         (loadeddata)="setDurationAndThumbnail(videoPlayer)" alt="Video Gallery"></video> -->
                      <video [src]="highlights.file_path + video.file_name" #videoPlayer
-                        (loadeddata)="setDurationAndThumbnail(videoPlayer)" muted autoplay></video>
+                        (loadeddata)="setDurationAndThumbnail(videoPlayer)" muted controls [attr.poster]="highlights.file_path + 'thumbnail/' + getThumbnailName(video.file_name)"></video>
                     </a>
                     <!-- <span class="duration">{{duration}}</span> -->
                     <!-- <span class="duration"

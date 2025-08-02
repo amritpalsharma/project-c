@@ -366,4 +366,11 @@ export class EditHighlightsComponent {
       console.log('Title fetch Function Fired');
     })
   }
+
+  getThumbnailName(fileName: string): string {
+    const fileNameWithoutExt = fileName.replace(/\.[^/.]+$/, ''); // Remove the file extension (e.g., '.mp4')
+    return fileNameWithoutExt + '.jpg'; // Append .jpg for the thumbnail
+  }
+
+  defaultPoster = 'assets/images/green-video-loader.gif'; // fallback image
 }

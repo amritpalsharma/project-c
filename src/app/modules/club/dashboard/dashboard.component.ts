@@ -28,7 +28,7 @@ import { SightingTabComponent } from '../tabs/sighting-tab/sighting-tab.componen
 import { CoverImageCropperComponent } from '../../shared/cover-image-cropper/cover-image-cropper.component';
 import { PopupComponent } from '../../shared/popup/popup.component';
 
-
+import { UserStateService } from '../../../services/user-state.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -50,6 +50,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   currentYear: string = '2025';
   isUserVerified: boolean = false;
   constructor(
+    private userState: UserStateService,
     private route: ActivatedRoute,
     private userService: UserService,
     private talentService: ScoutService,
@@ -145,6 +146,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     this.globalSettings.indexFunctionCall$.subscribe(() => {
       this.themeChanged(); // Call the function when event is received
+    });
+    this.userState.isPremium$.subscribe(val => {
+      this.isPremium = val;
+      this.premium = val;
     });
     this.getUserStatus();
   }
@@ -388,8 +393,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
           this.userNationalities = JSON.parse(this.user.user_nationalities);
           this.StartTour = this.user?.show_tour == 1 ? true : false;
 
-          this.isPremium = this.user?.active_subscriptions?.premium.length > 0 ? true : false;
-          this.premium = this.user.active_subscriptions?.premium?.length > 0 ? true : false;
+          // this.isPremium = this.user?.active_subscriptions?.premium.length > 0 ? true : false;
+          // this.premium = this.user.active_subscriptions?.premium?.length > 0 ? true : false;
           // this.isPremium = false;
           // this.premium = false;
           // this.startIntroTour('de'); 
@@ -1229,6 +1234,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
     );
 
     return match ? match.id : null;
+  }
+
+  getThumbnailName(fileName: string): string {
+    const fileNameWithoutExt = fileName.replace(/\.[^/.]+$/, ''); // Remove the file extension (e.g., '.mp4')
+    return fileNameWithoutExt + '.jpg'; // Append .jpg for the thumbnail
   }
 
 }

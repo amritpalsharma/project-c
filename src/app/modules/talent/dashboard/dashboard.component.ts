@@ -28,7 +28,7 @@ import { UnverifiedUserComponent } from '../../shared/unverified-user/unverified
 import { PopupComponent } from '../../shared/popup/popup.component';
 import { descriptors } from 'chart.js/dist/core/core.defaults';
 import { EditMembershipProfileComponent } from '../edit-membership-profile/edit-membership-profile.component';
-
+import { UserStateService } from '../../../services/user-state.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -52,6 +52,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   @ViewChild('videoPlayer') videoPlayer!: ElementRef<HTMLVideoElement>;
   constructor(
+    private userState: UserStateService,
     private route: ActivatedRoute,
     private userService: UserService,
     private talentService: TalentService,
@@ -125,6 +126,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   async ngOnInit() {
 
+    this.userState.isPremium$.subscribe(val => {
+      this.isPremium = val;
+    });
     this.savedDate = localStorage.getItem('popupLoginDate');
 
     if (this.savedDate !== this.today) {
@@ -216,6 +220,33 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
 
   ngAfterViewInit() {
+    // const videoEl = this.videoPlayer.nativeElement;
+
+    // // 🔐 Ensure it's muted in code too
+    // videoEl.muted = true;
+
+    // const tryPlay = () => {
+    //   const playPromise = videoEl.play();
+    //   if (playPromise !== undefined) {
+    //     playPromise
+    //       .then(() => {
+    //         console.log('Video autoplayed successfully.');
+    //       })
+    //       .catch((error) => {
+    //         console.warn('Autoplay failed:', error);
+    //       });
+    //   }
+    // };
+
+    // const io = new IntersectionObserver((entries) => {
+    //   if (entries[0].isIntersecting) {
+    //     videoEl.load();
+    //     tryPlay();
+    //     io.disconnect();
+    //   }
+    // });
+
+    // io.observe(videoEl);
   }
 
   stopIntroTour() {
@@ -470,10 +501,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
             }
           }
           // scoutInfoDetails
-          this.isPremium = this.user?.active_subscriptions?.premium.length > 0 ? true : false;
+          // this.isPremium = this.user?.active_subscriptions?.premium.length > 0 ? true : false;
 
           if (this.user?.active_subscriptions?.premium_talent) {
-            this.isPremium = this.user?.active_subscriptions?.premium_talent.length > 0 ? true : false;
+            // this.isPremium = this.user?.active_subscriptions?.premium_talent.length > 0 ? true : false;
           }
           this.photoLoading = false;
           // this.isPremium = false;
@@ -1808,5 +1839,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     // Check for iOS devices (iPhone, iPad, iPod)
     return /iPad|iPhone|iPod/.test(userAgent) && !(/Opera Mini/.test(userAgent)) && !('MSStream' in window);
+  }
+
+  getThumbnailName(fileName: string): string {
+    const fileNameWithoutExt = fileName.replace(/\.[^/.]+$/, ''); // Remove the file extension (e.g., '.mp4')
+    return fileNameWithoutExt + '.jpg'; // Append .jpg for the thumbnail
   }
 }

@@ -1746,7 +1746,7 @@
 
                   <a [href]="highlights.file_path + video.file_name" data-fancybox="gallery" [attr.data-caption]="">
                     <video [src]="highlights.file_path + video.file_name" #videoPlayer
-                      (loadeddata)="setDurationAndThumbnail(videoPlayer, j)" alt="Video Gallery"></video>
+                      (loadeddata)="setDurationAndThumbnail(videoPlayer, j)" alt="Video Gallery" controls muted [attr.poster]="highlights.file_path + 'thumbnail/' + getThumbnailName(video.file_name)"></video>
                   </a>
                   <span class="duration"
                     *ngIf="getVideoDuration(videoPlayer) != 'NaN:NaN'">{{getVideoDuration(videoPlayer) }}</span>

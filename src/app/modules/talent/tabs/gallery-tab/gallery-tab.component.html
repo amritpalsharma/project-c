@@ -155,7 +155,7 @@
           <source [src]="imageBaseUrl + image.file_name" type="video/mp4">
           {{ 'galleryText' | translate }}
         </video> -->
-        <video [src]="imageBaseUrl + image.file_name" #videoPlayer (loadeddata)="setDurationAndThumbnail(videoPlayer)" controls></video>
+        <video [src]="imageBaseUrl + image.file_name" #videoPlayer (loadeddata)="setDurationAndThumbnail(videoPlayer)" muted controls [attr.poster]="imageBaseUrl + 'thumbnail/' + getThumbnailName(image.file_name)"></video>
         <!-- <video controls autoplay muted playsinline width="100%" height="auto">
           <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
           Your browser does not support the video tag.

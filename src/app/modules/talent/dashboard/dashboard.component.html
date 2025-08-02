@@ -1083,7 +1083,7 @@
                         (loadeddata)="generateThumbnail(videoPlayer, j)">
                       </video> -->
                       <video [src]="highlights.file_path + video.file_name" #videoPlayer
-                        (loadeddata)="setDurationAndThumbnail(videoPlayer)" muted autoplay></video>
+                        (loadeddata)="setDurationAndThumbnail(videoPlayer)" muted autoplay controls [attr.poster]="highlights.file_path + 'thumbnail/' + getThumbnailName(video.file_name)"></video>
                     </a>
 
                     <!-- Duration Display (only if the video is available) -->

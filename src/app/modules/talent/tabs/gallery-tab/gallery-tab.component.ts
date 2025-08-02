@@ -308,4 +308,9 @@ export class GalleryTabComponent {
     // this.videoDuration = this.formatDuration(videoElement.duration);
 
   }
+
+   getThumbnailName(fileName: string): string {
+    const fileNameWithoutExt = fileName.replace(/\.[^/.]+$/, ''); // Remove the file extension (e.g., '.mp4')
+    return fileNameWithoutExt + '.jpg'; // Append .jpg for the thumbnail
+  }
 }

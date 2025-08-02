@@ -18,6 +18,7 @@ import { MessagePopupComponent } from '../message-popup/message-popup.component'
 import { TeamsComponent } from './tabs/teams/teams.component';
 import { SightingComponent } from './tabs/sighting/sighting.component';
 
+import { UserStateService } from '../../../services/user-state.service';
 @Component({
   selector: 'app-view-profile',
   templateUrl: './view-profile.component.html',
@@ -74,6 +75,7 @@ export class ViewProfileComponent implements OnInit {
 
 
   constructor(
+    private userState: UserStateService,
     private route: ActivatedRoute,
     private userService: UserService,
     private talentService: TalentService,
@@ -104,6 +106,10 @@ export class ViewProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.themeChanged();
+
+    this.userState.isPremium$.subscribe(val => {
+      this.isPremium = val;
+    });
 
     this.loggedInUser = JSON.parse(this.loggedInUser);
     this.route.params.subscribe((params: any) => {
@@ -193,13 +199,13 @@ export class ViewProfileComponent implements OnInit {
           console.info('this.user', this.user);
           let baseUrl = response.data.imagePath;
           this.baseUrl = baseUrl;
-          if (this.loggedInUser?.role != '4') {
-            this.isPremium = this.loggedInUser?.active_subscriptions?.premium.length > 0 ? true : false;
-            console.info('loggedInUserArray', this.loggedInUser?.active_subscriptions?.premium.length)
-          }
-          if (this.loggedInUser?.active_subscriptions?.premium_talent && this.loggedInUser?.role == '4') {
-            this.isPremium = this.loggedInUser?.active_subscriptions?.premium_talent.length > 0 ? true : false;
-          }
+          // if (this.loggedInUser?.role != '4') {
+          //   this.isPremium = this.loggedInUser?.active_subscriptions?.premium.length > 0 ? true : false;
+          //   console.info('loggedInUserArray', this.loggedInUser?.active_subscriptions?.premium.length)
+          // }
+          // if (this.loggedInUser?.active_subscriptions?.premium_talent && this.loggedInUser?.role == '4') {
+          //   this.isPremium = this.loggedInUser?.active_subscriptions?.premium_talent.length > 0 ? true : false;
+          // }
 
           console.info('UserArrayFromAPi', this.loggedInUser, 'andcurrentUserRole', this.currentUserRole)
 
@@ -702,6 +708,11 @@ export class ViewProfileComponent implements OnInit {
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
       this.router.navigateByUrl(currentUrl);
     });
+  }
+
+  getThumbnailName(fileName: string): string {
+    const fileNameWithoutExt = fileName.replace(/\.[^/.]+$/, ''); // Remove the file extension (e.g., '.mp4')
+    return fileNameWithoutExt + '.jpg'; // Append .jpg for the thumbnail
   }
 
 }

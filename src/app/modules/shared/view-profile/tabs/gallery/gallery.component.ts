@@ -18,7 +18,7 @@ export class GalleryComponent {
   selectedFile: any = '';
   defaultCoverImage: any = ".";
   openedMenuId: any = '';
-  showNotxtTab:boolean=false;
+  showNotxtTab: boolean = false;
   @Input() coverImage: string = '';  // Define an input property
   @Input() isPremium: any;
   @Output() dataEmitter = new EventEmitter<string>();
@@ -51,10 +51,10 @@ export class GalleryComponent {
           this.userVideos = response.data.videos;
           this.imageBaseUrl = response.data.file_path;
           this.showNotxtTab = false;
-          if(this.userImages.length === 0){
+          if (this.userImages.length === 0) {
             this.showNotxtTab = true;
           }
-          if(this.userVideos.length === 0){
+          if (this.userVideos.length === 0) {
             this.showNotxtTab = true;
           }
 
@@ -80,8 +80,13 @@ export class GalleryComponent {
     }
   }
 
-  
+
   setDurationAndThumbnail(videoElement: HTMLVideoElement) {
     videoElement.crossOrigin = 'anonymous';
+  }
+
+  getThumbnailName(fileName: string): string {
+    const fileNameWithoutExt = fileName.replace(/\.[^/.]+$/, ''); // Remove the file extension (e.g., '.mp4')
+    return fileNameWithoutExt + '.jpg'; // Append .jpg for the thumbnail
   }
 }

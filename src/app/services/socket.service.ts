@@ -172,6 +172,37 @@ export class SocketService {
       });
   }
 
+  getUserMemberShipStatus(): Promise<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.userToken}`
+    });
+
+    const apiUrl = 'https://api.socceryou.ch/';
+
+    return this.http.get<ApiResponse>(`${apiUrl}api/profile`, { headers })
+      .toPromise()
+      .then((response: any) => {
+        console.info('SocketService', response);
+        if (response?.status === true && response?.data) {
+          if (response.data.user_data.status !== '' && response.data.user_data.status !== undefined) {
+            if (response.data.user_data.role && Number(response.data.user_data.role) === 4) {
+              return response?.data?.user_data?.active_subscriptions?.premium_talent.length > 0 ? true : false;
+            }else{
+              return response?.data?.user_data?.active_subscriptions?.premium.length > 0 ? true : false;
+            }
+          } else {
+            return false;
+          }
+        } else {
+          return false;
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        return false;
+      });
+  }
+
   getPaymentStatus() {
     return this.paymentStatus;
   }

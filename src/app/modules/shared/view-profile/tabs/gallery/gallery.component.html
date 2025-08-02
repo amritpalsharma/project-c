@@ -107,7 +107,7 @@
           {{ 'browserDoesNotSupport' | translate }}
         </video> -->
          <video [src]="imageBaseUrl + image.file_name" #videoPlayer
-              (loadeddata)="setDurationAndThumbnail(videoPlayer)" controls muted></video>
+              (loadeddata)="setDurationAndThumbnail(videoPlayer)" muted controls [attr.poster]="imageBaseUrl + 'thumbnail/' + getThumbnailName(image.file_name)"></video>
       </a>
       <!-- <video class="img-fluid" controls>
         <source src="{{imageBaseUrl}}{{image.file_name}}" type="video/mp4">

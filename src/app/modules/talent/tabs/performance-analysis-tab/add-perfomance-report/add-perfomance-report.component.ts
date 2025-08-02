@@ -70,7 +70,9 @@ export class AddPerfomanceReportComponent {
       formData.append('document_title', this.documentTitle);
       let lang_id = localStorage.getItem('lang_id');
       formData.append('lang', lang_id + '');
-
+      const loadingToast = this.toastr.info(this.submittingPerformanceData, this.pleaseWait, {
+        disableTimeOut: true
+      });
       // Using talentService to upload the file with progress tracking
       this.talentService.uploadReport(formData).subscribe(event => {
         if (event.type === HttpEventType.UploadProgress) {
@@ -90,9 +92,12 @@ export class AddPerfomanceReportComponent {
 
             this.dialogRef.close({ uploaded: true, message: response.message }); // Close the dialog and return success
           }
+
           else {
             this.toastr.error(response.message);
           }
+
+          this.toastr.clear(loadingToast.toastId);
         }
       }, error => {
         console.error('Error uploading report:', error);
@@ -135,11 +140,13 @@ export class AddPerfomanceReportComponent {
     }
   }
 
+  submittingPerformanceData: string = '';
+  pleaseWait: string = '';
   getToasterMsg() {
     this.translate.get(['enterDocumentTitle', 'submittingPerformanceData', 'pleaseWait']).subscribe((res: any) => {
       this.enterDocumentTitle = res['enterDocumentTitle'];
-      // this.submittingPerformanceData = res['submittingPerformanceData'];
-      // this.pleaseWait = res['pleaseWait'];
+      this.submittingPerformanceData = res['submittingPerformanceData'];
+      this.pleaseWait = res['pleaseWait'];
       // this.downloading = res['downloading'];
     });
   }
