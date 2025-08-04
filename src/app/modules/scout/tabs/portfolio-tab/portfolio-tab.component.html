@@ -295,7 +295,10 @@
                 <span>{{ element.language }}</span>
               </div>
               <div class="flex justify-between">
-                <span class="text-muted-foreground">{{ 'club' | translate }}</span>
+                <span class="text-muted-foreground">
+                  <!-- {{ 'club' | translate }} -->
+                    {{ element?.club_info?.club_name }}
+                </span>
                 <span>
                   <!-- <div class="d-flex icon_text_icon club_namee"
                     *ngIf="element.club_name != '' && element.club_name != null">
@@ -312,7 +315,7 @@
                       class="club_logo_icn">
                     <img src="../../../../assets/club_logo/default_logo_{{theme}}.svg"
                       *ngIf="!element?.club_info?.club_logo" class="club_logo_icn custom_club">
-                    {{ element?.club_info?.club_name }}
+
                     <img src="{{logoPath + element?.club_info?.country_flag}}" *ngIf="element?.club_info?.country_flag"
                       class="flag_country">
                   </div>

@@ -285,6 +285,14 @@ th {
         }
     }
 
+    .icon_text_icon {
+        align-items: center;
+        img.flag_country {
+            margin-right: 0;
+            margin-left: 0;
+        }
+    }
+
     .hide_table_for_desktop {
         .club_namee {
             img.club_logo_icn  {
