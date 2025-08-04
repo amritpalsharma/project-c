@@ -271,9 +271,10 @@ p {
     }
 
     .model-heading {
-        height: 40px;
+        height: auto;
         font-size: 14px;
         padding-top: 12px;
+        padding-bottom: 12px;
     }
 
     .modal-text-h6 {
@@ -316,6 +317,16 @@ p {
     input:checked+.slider:before {
         transform: translateX(15px);
     }
+
+    .personalization-box {
+        p, h6 {
+            font-size: 16px;
+        }
+        .modal-body {
+            max-height: 50vh;
+            overflow-y: auto;
+        }
+    }
 }
 
 @media (max-width: 650px) {
@@ -347,10 +358,6 @@ p {
         padding: 15px;
     }
 
-    .cookie-button button {
-        width: 100%;
-    }
-
     .accept\&decline {
         flex-direction: column;
         gap: 10px;
@@ -358,8 +365,23 @@ p {
     }
 
     .cookie-button {
-        flex-direction: column;
+        flex-direction: column-reverse;
         gap: 10px;
+        align-items: center;
+    }
+    .cookie-button button {
+        width: 250px !important;
+        font-size: 16px;
+        border-radius: 8px;
+        margin-right: 0 !important;
+        padding: 11px 10px 9px;
+        &.choice {
+            border: 0 !important;
+            background: transparent !important;
+        }
+        &.decline {
+            background: transparent !important;
+        }
     }
 
     .cookie-popup .container {
@@ -399,7 +421,6 @@ p {
     }
 
     .model-heading {
-        height: 35px;
         font-size: 12px;
         padding-top: 10px;
     }
