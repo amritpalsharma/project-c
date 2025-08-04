@@ -262,6 +262,7 @@
                         'approved' | translate }}</span>
                       <span *ngIf="element.status === '3' && userRoleIn(element.role_name)" class="bg_reject">{{
                         'rejected' | translate }}</span>
+                        <span *ngIf="!userRoleIn(element.role_name)" class=""> - </span>
                     </td>
                   </ng-container>
                   <ng-container matColumnDef="Edit">

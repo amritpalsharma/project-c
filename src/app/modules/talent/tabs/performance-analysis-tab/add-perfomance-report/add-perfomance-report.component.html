@@ -19,7 +19,7 @@
             </button>
         </div>
     </div>
-    <div class="overflow-card perfomance-report popup__body p-3">
+    <div class="overflow-card perfomance-report popup__body p-3" #popupBody>
 
         <label class="choose-file d-block cursor-pointer" for="reportUpload" (dragover)="onDragOver($event)"
             (drop)="onDrop($event)" [ngClass]="{'isrequiredField': !selectedFile && isSubmited}">

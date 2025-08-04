@@ -31,8 +31,13 @@
                             <div class="player--bio-dtl">
                                 <div class="item--icons-list">
                                     <div class="item--club">
-                                        <img *ngIf="loggedInUser?.club_logo_path" alt="team-logo"
-                                            src="{{loggedInUser?.club_logo_path}}">
+                                        <!-- <img *ngIf="loggedInUser?.club_logo_path" alt="team-logo"
+                                            src="{{loggedInUser?.club_logo_path}}"> -->
+                                        <img *ngIf="current_club_logo && current_club_logo == 'no-logo'"
+                                            src="../../../../assets/club_logo/default_logo_{{theme}}.svg"
+                                            alt="team-logo {{current_club_logo}}" class="team-logo">
+                                        <img *ngIf="current_club_logo && current_club_logo != 'no-logo'"
+                                            src="{{baseUrl + current_club_logo}}" alt="team-logo" class="team-logo">
                                     </div>
                                     <div class="player--flag">
                                         <img [src]="userNationality">
@@ -71,8 +76,11 @@
                             <div class="player--bio-dtl">
                                 <div class="item--icons-list">
                                     <div class="item--club">
-                                        <img *ngIf="loggedInUser?.club_logo_path" alt="team-logo"
-                                            src="{{loggedInUser?.club_logo_path}}">
+                                       <img *ngIf="current_club_logo && current_club_logo == 'no-logo'"
+                                            src="../../../../assets/club_logo/default_logo_{{theme}}.svg"
+                                            alt="team-logo {{current_club_logo}}" class="team-logo">
+                                        <img *ngIf="current_club_logo && current_club_logo != 'no-logo'"
+                                            src="{{baseUrl + current_club_logo}}" alt="team-logo" class="team-logo">
                                     </div>
                                     <div class="player--flag"
                                         *ngIf="userNationality || loggedInUser?.meta?.date_of_birth">

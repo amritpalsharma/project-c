@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
 import { TalentService } from '../../../../../services/talent.service';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
+import { ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-add-perfomance-report',
@@ -19,6 +20,7 @@ export class AddPerfomanceReportComponent {
 
   theme: any = localStorage.getItem('theme');
 
+  @ViewChild('popupBody') popupBody!: ElementRef;
   constructor(
     private toastr: ToastrService,
     public dialogRef: MatDialogRef<AddPerfomanceReportComponent>,
@@ -37,9 +39,19 @@ export class AddPerfomanceReportComponent {
     });
   }
 
+  scrollToTop() {
+    if (this.popupBody?.nativeElement) {
+      this.popupBody.nativeElement.scrollTo({
+        top: this.popupBody.nativeElement.scrollHeight,
+        behavior: 'smooth'
+      });
+    }
+  }
+
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
     console.log(this.selectedFile, 'file')
+    this.scrollToTop();
   }
 
   deleteFile() {
@@ -51,12 +63,14 @@ export class AddPerfomanceReportComponent {
 
   onDragOver(event: DragEvent) {
     event.preventDefault(); // Prevent default behavior (Prevent file from being opened)
+    this.scrollToTop();
   }
 
   onDrop(event: DragEvent) {
     event.preventDefault(); // Prevent default behavior (Prevent file from being opened)
     if (event.dataTransfer?.files.length) {
       this.selectedFile = event.dataTransfer.files[0];
+      this.scrollToTop();
     }
   }
 

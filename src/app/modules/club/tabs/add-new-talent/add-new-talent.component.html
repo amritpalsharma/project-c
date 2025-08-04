@@ -108,7 +108,7 @@
                   </label>
                   <input placeholder="DD.MM.YYYY" class="form-control join-start"
                     [ngClass]="{'emptyRequiredField': !startDate.value && submitClicked}" id="startDate"
-                    [matDatepicker]="contractStartPicker" [formControl]="startDate" />
+                    [matDatepicker]="contractStartPicker" [formControl]="startDate" [readonly]="true"/>
                   <mat-datepicker-toggle matSuffix [for]="contractStartPicker"></mat-datepicker-toggle>
                   <mat-datepicker #contractStartPicker></mat-datepicker>
                 </div>
@@ -123,7 +123,7 @@
                   <input class="form-control join-end" matInput id="endDate" name="contractStart"
                     [ngClass]="{'emptyRequiredField': !endDate.value && submitClicked && !noEndDate}"
                     [matDatepicker]="contractEndPicker" [formControl]="endDate" placeholder="DD.MM.YYYY"
-                    [disabled]="noEndDate" />
+                    [disabled]="noEndDate" [readonly]="true"/>
 
                   <mat-datepicker-toggle matSuffix [for]="contractEndPicker"></mat-datepicker-toggle>
                   <mat-datepicker #contractEndPicker></mat-datepicker>
@@ -145,8 +145,10 @@
 
   <div class="popup__footer chat-btn p-3">
     <button class="btn btn-success btn-sm web-create-bg w-100" (click)="sendInvite()" type="button">
-      <span *ngIf="edit">{{ 'update' | translate }}</span>
-      <span *ngIf="!edit">{{ 'add' | translate }}</span>
+      <span *ngIf="edit && submitButtonClicked">{{ 'Processing' | translate }}</span>
+      <span *ngIf="edit && !submitButtonClicked">{{ 'update' | translate }}</span>
+      <span *ngIf="!edit && submitButtonClicked">{{ 'Processing' | translate }}</span>
+      <span *ngIf="!edit && !submitButtonClicked">{{ 'add' | translate }}</span>
     </button>
   </div>
 </div>
