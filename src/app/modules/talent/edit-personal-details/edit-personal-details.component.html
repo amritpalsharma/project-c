@@ -172,7 +172,7 @@
           <div class="d-flex align-items-center justify-content-center dob1">
             <input class="dob is_grey_{{isreadOnlyContract}}" matInput id="contractStart" name="contractStart"
               [matDatepicker]="contractStartPicker" [formControl]="contractStart" placeholder="DD.MM.YYYY"
-              [readonly]="isreadOnlyContract" />
+              [readonly]="true" />
             <mat-datepicker-toggle matSuffix [for]="contractStartPicker"
               [disabled]="isreadOnlyContract"></mat-datepicker-toggle>
             <mat-datepicker #contractStartPicker></mat-datepicker>
@@ -185,7 +185,7 @@
           <div class="d-flex align-items-center justify-content-center dob1">
             <input class="dob is_grey_{{isreadOnlyContract}}" matInput id="contractEnd" name="contractEnd"
               [matDatepicker]="contractEndPicker" [formControl]="contractEnd" placeholder="DD.MM.YYYY"
-              [readonly]="isreadOnlyContract" />
+              [readonly]="true" />
             <mat-datepicker-toggle matSuffix [for]="contractEndPicker"
               [disabled]="isreadOnlyContract"></mat-datepicker-toggle>
             <mat-datepicker #contractEndPicker></mat-datepicker>
@@ -259,7 +259,8 @@
           <mat-form-field appearance="fill" class="w-100 custom_select_mat">
             <!-- <pre>{{nationControl | json}}</pre> -->
             <mat-select #singleSelect class="form-select mat_search_selector" id="dominantFoot" name="dominantFoot"
-              [(ngModel)]="dominantFoot" #dominantFootField="ngModel" required [ngClass]="{ 'error-border': !dominantFoot }">
+              [(ngModel)]="dominantFoot" #dominantFootField="ngModel" required
+              [ngClass]="{ 'error-border': !dominantFoot }">
               <mat-option value="" disabled selected>{{'select' | translate}}</mat-option>
               <mat-option value="Right">{{'right' | translate}}</mat-option>
               <mat-option value="Left">{{'left' | translate}}</mat-option>
@@ -277,7 +278,7 @@
           <label for="dateOfBirth">{{ 'dateOfBirth' | translate }}:</label>
           <div class="d-flex align-items-center justify-content-center dob1">
             <input class="dob" matInput id="dateOfBirth" name="dateOfBirth" [matDatepicker]="dp"
-              [formControl]="dateOfBirth" placeholder="DD.MM.YYYY" required />
+              [formControl]="dateOfBirth" placeholder="DD.MM.YYYY" required [readonly]="true"/>
             <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
             <mat-datepicker #dp panelClass="custom-datepicker"></mat-datepicker>
           </div>

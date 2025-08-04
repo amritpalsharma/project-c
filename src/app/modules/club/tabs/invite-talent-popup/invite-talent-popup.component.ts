@@ -70,7 +70,7 @@ export class InviteTalentPopupComponent {
 
     // exploreSearchUser
     this.isLoading = true;
-    let customFilter = this.searchVal + '&whereClasue[role]=4';
+    let customFilter = this.searchVal + '&whereClause[role]=4';
     this.userService.exploreSearchUser(customFilter).subscribe((response: any) => {
       if (response && response.status && response.data && response.data.userData) {
         this.allUsers = response.data.userData.users;

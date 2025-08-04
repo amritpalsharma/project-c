@@ -264,6 +264,7 @@ export class TermsComponent implements OnInit {
       }
       if (type == 'terms') {
         pdfName = termsPDF;
+        // src = '../assets/pdf/terms/' + termsPDF;
         src = '../assets/pdf/newTerms/' + termsPDF;
       }
 

@@ -1350,7 +1350,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   getJsonTranslations() {
     this.translateService.get(['dashboard', 'pageTitle', 'maxSizeForProfile']).subscribe((translations) => {
-      this.pageTitle = translations['pageTitle'];
+      this.pageTitle = translations['dashboard'];
       this.maxSizeForProfile = translations['maxSizeForProfile'];
       this.titleService.setTitle(this.pageTitle);
       console.log('Title fetch Function Fired');

@@ -30,7 +30,7 @@
     <h6 (click)="closePopup(user.role_name, user.id)" class="list-view-title pointer">{{ 'viewFullProfile' | translate
       }}</h6>
 
-   
+
 
     <div class="list-view d-flex align-items-center">
       <h6 class="mb-0 me-3">{{ 'status' | translate }}:</h6>
@@ -38,19 +38,19 @@
       <span class="bg_success" *ngIf="user.status == '2'">{{ 'approved' | translate }}</span>
       <span class="bg_reject" *ngIf="user.status == '3'">{{ 'rejected' | translate }}</span>
     </div>
-  
+
 
     <div class="list-view">
       <h6 class="mb-2">{{ 'registrationDate' | translate }}</h6>
-      <!-- <h6 class="mb-0">{{ user.created_at | date: 'dd.MM.yyyy' }}</h6> -->
-      <h6 class="mb-0">{{ formatDateTime(user.created_at)}}</h6>
+      <h6 class="mb-0">{{ user.created_at | date: 'dd.MM.yyyy' }}</h6>
+      <!-- <h6 class="mb-0">{{ formatDateTime(user.created_at)}}</h6> -->
       <!-- <h6 class="mb-0">{{ user.created_at.strftime('%I:%M %p') }}</h6> -->
     </div>
     <div class="list-view">
       <h6 class="mb-2">{{ 'nextPaymentDue' | translate }}</h6>
       <!-- <h6 class="mb-2 font-w400" *ngIf="user.plan_period_end">{{user.plan_period_end | date:'MMM d, y' }} / {{user.plan_interval}} cycle</h6> -->
-      <h6 class="mb-2 font-w400" *ngIf="user.plan_period_end">{{formatDateTime(user.plan_period_end) }} / <span
-          [translate]="user.plan_interval"></span></h6>
+      <h6 class="mb-2 font-w400" *ngIf="user.plan_period_end">
+        {{user.plan_period_end | date: 'dd.MM.yyyy' }} / <span [translate]="user.plan_interval"></span></h6>
       <!-- <h6 class="mb-2 font-w400" *ngIf="!user.plan_period_end">NA</h6> -->
       <h6 class="text-light font-w400 pointer" (click)="closePopup(user.role_name, user.id, 'purchases')">
         {{'viewPaymentDetails' | translate}}</h6>
@@ -70,7 +70,7 @@
     <div class="list-view">
       <h6 class="mb-2">{{ 'paymentMethod' | translate }}</h6>
       <div class="d-flex align-items-center">
-      
+
 
         <svg width="29" height="13" viewBox="0 0 29 13" fill="none" xmlns="http://www.w3.org/2000/svg"
           *ngIf="user.last4 && user.last4 != 0">
@@ -92,12 +92,14 @@
 
     <div class="list-view mb-3" style="border: none;">
       <div class="form-check" *ngIf="user.status == '1' || user.status == '3'">
-        <label class="form-check-label pointer" for="flexCheckDefault1" [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}">
+        <label class="form-check-label pointer" for="flexCheckDefault1"
+          [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}">
           <input class="form-check-input" name="userAction" type="radio" value="2" id="flexCheckDefault1"
             (change)="onSelectionChange($event)" /> {{ 'verifyUserAfterSave' | translate }}
         </label>
       </div>
-      <div class="form-check" *ngIf="user.status == '1' || user.status == '2'" [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}">
+      <div class="form-check" *ngIf="user.status == '1' || user.status == '2'"
+        [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}">
         <label class="form-check-label pointer text-danger" for="flexCheckDefault2">
           <input class="form-check-input" name="userAction" type="radio" value="3" id="flexCheckDefault2"
             (change)="onSelectionChange($event)" /> {{ 'rejectUserAfterSave' | translate }}
@@ -109,7 +111,8 @@
     <div class="d-flex align-items-center justify-content-between">
       <span class="text-danger pointer" (click)="closePopup(user.role_name, user.id)">{{ 'editAccount' | translate
         }}</span>
-      <button class="btn btn-success btn-sm web-create-bg" (click)="save()" [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}">{{ 'save' | translate }}</button>
+      <button class="btn btn-success btn-sm web-create-bg" (click)="save()"
+        [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}">{{ 'save' | translate }}</button>
 
     </div>
   </div>

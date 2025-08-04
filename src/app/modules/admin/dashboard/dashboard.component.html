@@ -168,8 +168,8 @@
               <td>{{user.role_name}}</td>
               <td>{{ user.language }}</td>
               <td> {{ user.user_location }}</td>
-              <td> {{ formatDateTime(user.created_at) }}</td>
-              <!-- <td> {{ user.created_at  | date:'MM.dd.yyyy - hh.mm a' }}</td> -->
+              <!-- <td> {{ formatDateTime(user.created_at) }}</td> -->
+              <td> {{ user.created_at  | date:'dd.MM.yyyy - hh.mm' }}</td>
               <!-- <td> {{ user.created_at }}</td> -->
               <td class="main-table-2">
                 <span *ngIf="user.status==1 && userRoleIn(user.role_name)" class="bg_pending same-width">{{ 'pending' | translate
@@ -179,6 +179,8 @@
                   translate }}</span>
                 <span *ngIf="user.status==3 && userRoleIn(user.role_name)" class="bg_reject same-width"> {{ 'rejected' | translate
                   }}
+                </span>
+                <span *ngIf="!userRoleIn(user.role_name)" class="same-width"> - 
                 </span>
               </td>
             </tr>

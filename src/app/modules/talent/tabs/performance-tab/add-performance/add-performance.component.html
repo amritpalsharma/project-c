@@ -128,7 +128,7 @@
                     <label for="form-date" class="form-label">{{getTextBeforeDash('fromUpto' | translate)}}</label>
                     <div class="d-flex align-items-center justify-content-center date_field">
                       <input class="upto-date" matInput id="from_date" name="from_date"
-                        [matDatepicker]="from_datepicker" [formControl]="from_date" placeholder="DD.MM.YYYY" required />
+                        [matDatepicker]="from_datepicker" [formControl]="from_date" placeholder="DD.MM.YYYY" required [readonly]="true"/>
                       <mat-datepicker-toggle matSuffix [for]="from_datepicker"></mat-datepicker-toggle>
                       <mat-datepicker #from_datepicker></mat-datepicker>
                     </div>
@@ -137,7 +137,7 @@
                     <label for="form-date" class="form-label">{{getTextAfterDash('fromUpto' | translate)}}</label>
                     <div class="d-flex align-items-center justify-content-center date_field">
                       <input class="upto-date-2" matInput id="to_date" name="to_date" [matDatepicker]="to_datepicker"
-                        [formControl]="to_date" placeholder="DD.MM.YYYY" required />
+                        [formControl]="to_date" placeholder="DD.MM.YYYY" required [readonly]="true"/>
                       <mat-datepicker-toggle matSuffix [for]="to_datepicker"></mat-datepicker-toggle>
                       <mat-datepicker #to_datepicker></mat-datepicker>
                     </div>

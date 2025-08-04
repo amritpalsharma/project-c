@@ -129,7 +129,7 @@ export class AddPerfomanceReportComponent {
         },
         error: (error) => {
           console.error('Error uploading report:', error);
-
+          this.isSubmited = false;
           // Close loading toaster, then show error message
           this.toastr.clear(loadingToast.toastId);
           this.toastr.error('Failed to upload report. Please try again.', 'Error');

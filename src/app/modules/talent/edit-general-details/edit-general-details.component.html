@@ -139,7 +139,7 @@
                 <label for="lastChange" class="form-label">{{'lastChange' | translate}}</label>
                 <div class="d-flex align-items-center justify-content-center position-relative date_field">
                   <input matInput id="lastChange" name="last_change" [matDatepicker]="last_changepicker"
-                    [formControl]="last_change" placeholder="DD.MM.YYYY" required />
+                    [formControl]="last_change" placeholder="DD.MM.YYYY" required [readonly]="true"/>
                   <mat-datepicker-toggle matSuffix [for]="last_changepicker"></mat-datepicker-toggle>
                   <mat-datepicker #last_changepicker></mat-datepicker>
                 </div>
