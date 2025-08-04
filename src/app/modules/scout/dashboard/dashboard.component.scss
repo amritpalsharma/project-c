@@ -1753,7 +1753,7 @@ span.active_btn {
 @media (min-width: 1200px) {
 
   .cover_pic_mobile,
-  .mobile_profile_buttons, .dashboard_mobile_design a.team-badge_image {
+  .mobile_profile_buttons, .dashboard_mobile_design .user-edit a.hide_boost_icon {
     display: none !important;
   }
 
@@ -1932,7 +1932,7 @@ span.active_btn {
     right: 30px !important;
     height: 32px !important;
   }
-  .dashboard_mobile_design a.team-badge_image {
+  .dashboard_mobile_design a.hide_boost_icon {
     right: -10px !important;
     top: 2px !important;
     position: absolute;
