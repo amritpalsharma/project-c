@@ -234,21 +234,21 @@
     <div class="hide_table_for_desktop">
         <tr *ngIf="!representators || representators?.length == 0">
             <td colspan="4" class="text-center">
-                <div class="no_data_font_text">{{'noTeamMemberAddedHere' | translate}}</div>
+                <!-- <div class="no_data_font_text">{{'noTeamMemberAddedHere' | translate}}</div> -->
             </td>
         </tr>
-        <ng-container *ngIf="representators && representators?.length > 0">
-            <div *ngFor="let representator of representators;let i=index">
-                <div class="rounded-lg border bg-card">
-                    <div class="p-3">
-                        <div class="d-flex justify-content-between mb-3" *ngIf="i===0">
-                            <span class="text-muted-foreground">{{ 'companyRepresentators' | translate }}</span>
-                            <span>
-                                <button class="btn btn-success btn-sm web-create-bg" [disabled]="!checkRole()"
-                                    [class.club_view_only]="!checkRole()" (click)="addRepresentator()">{{ 'addNew' |
-                                    translate }}</button>
-                            </span>
-                        </div>
+        <ng-container>
+            <div class="rounded-lg border bg-card">
+                <div class="p-3">
+                    <div class="d-flex justify-content-between mb-3">
+                        <span class="text-muted-foreground">{{ 'companyRepresentators' | translate }}</span>
+                        <span>
+                            <button class="btn btn-success btn-sm web-create-bg" [disabled]="!checkRole()"
+                                [class.club_view_only]="!checkRole()" (click)="addRepresentator()">{{ 'addNew' |
+                                translate }}</button>
+                        </span>
+                    </div>
+                    <ng-container *ngFor="let representator of representators;let i=index">
                         <div class="space-y-2 text-sm">
                             <div class="flex justify-between">
                                 <span><img src="../../../assets/images/1.png" alt="#" class="table_img" /></span>
@@ -320,7 +320,7 @@
                                 </svg>
                             </span>
                         </div>
-                    </div>
+                    </ng-container>
                 </div>
             </div>
         </ng-container>
