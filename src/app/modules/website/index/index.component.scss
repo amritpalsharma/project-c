@@ -974,29 +974,14 @@ p.club-p {
   animation: pulse-animation_new 2s infinite;
 }
 
-// .work-text.active::before {
-//   content: "";
-//   position: absolute;
-//   left: 0;
-//   top: 53%;
-//   transform: translateY(-50%);
-//   width: 1px;
-//   height: 100%;
-//   background-color: #6FB95D;
-// }
-// .work-text:not(:last-child).active::after {
-//   content: "🡣";
-//   position: absolute;
-// 	// margin: 0 auto;
-//   margin: 0 0 0 -13px;
-// 	left: 0; 
-//   right: 0;
-//   width: 25px;
-//   height: 35px;
-//   font-size: 30px;
-//   color: #6FB95D;
-//   animation: arrow-pulse-down 1200ms linear infinite;
-// }
+.work-text .number p {
+  line-height: 1;
+  padding-top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @keyframes arrow-pulse-down {
   0% {
     // bottom: -20px;
@@ -3031,7 +3016,6 @@ img.success-image {
   .work-text.active .number p {
     height: 35px;
     width: 35px;
-    line-height: 28px;
   }
 
   .player2 img.birthday-img {
@@ -3236,7 +3220,6 @@ img.success-image {
   .work-text.active .number p {
     height: 35px;
     width: 35px;
-    line-height: 35px;
   }
 
   .works-1 h3 {
@@ -4032,11 +4015,7 @@ img.success-image {
   .work-text.active .number p {
     height: 30px;
     width: 30px;
-    line-height: 1;
     padding-top: 2px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
   .player-image1 {
@@ -4449,11 +4428,6 @@ img.success-image {
   .right-side img.image5 {
     width: 270px;
   }
-  // .work-text.active .number p {
-  //   height: 30px;
-  //   width: 30px;
-  //   line-height: 29px;
-  // }
 }
 
 @media (max-width: 374px) {
@@ -5342,6 +5316,7 @@ img.success-image {
   .work-text .number p {
     width: 40px !important;
     height: 40px !important;
+    padding-top: 2px;
   }
 }
 
