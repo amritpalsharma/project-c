@@ -200,6 +200,19 @@ body {
         font-size: 30px;
         padding-top: 3rem;
     }
+    .cookie-button {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+    .cookie-button button {
+        width: 100%;
+        width: 250px;
+        font-size: 16px;
+        border-radius: 8px;
+        margin-right: 0 !important;
+        padding: 11px 10px 9px;
+    }
 }
 @media (max-width: 400px) {
     .content_page li::before {
