@@ -103,7 +103,7 @@
                 <input placeholder="DD.MM.YYYY" class="form-control cupen-btn sighting-cal"
                   [ngClass]="{'emptyRequiredField': submitButtonClicked && !dateTimeNew}"
                   [matDatepicker]="contractStartPicker" [formControl]="dateControl"
-                  (dateChange)="onDateChange1($event)" />
+                  (dateChange)="onDateChange1($event)" [readonly]="true" />
                 <mat-datepicker-toggle matSuffix [for]="contractStartPicker"></mat-datepicker-toggle>
                 <mat-datepicker #contractStartPicker></mat-datepicker>
               </div>

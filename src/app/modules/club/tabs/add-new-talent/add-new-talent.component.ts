@@ -224,6 +224,8 @@ export class AddNewTalentComponent implements OnInit {
         // console.error('Invalid API response structure:', response);
         this.toaster.warning(response.data.errors);
       }
+
+       this.submitButtonClicked = false;
     });
   }
 

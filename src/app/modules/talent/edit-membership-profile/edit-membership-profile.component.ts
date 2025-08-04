@@ -34,6 +34,8 @@ export class EditMembershipProfileComponent {
   date_of_birth: any = '';
 
   profileImgUrl: any = "../../../../assets/images/default/talent-profile-default.png";
+  baseUrl: string = 'https://api.socceryou.ch/uploads/';
+  current_club_logo: string = '';
   constructor(
     public dialogRef: MatDialogRef<EditMembershipProfileComponent>,
     public talentService: TalentService,
@@ -88,7 +90,27 @@ export class EditMembershipProfileComponent {
 
 
     this.profileImgUrl = this.commonDataService.getCurrentProfileImage();
-    console.info('this.profileImgUrl',this.profileImgUrl)
+    console.info('this.profileImgUrl', this.profileImgUrl)
+
+    if (this.loggedInUser?.custom_club_info && this.loggedInUser?.custom_club_info != '') {
+      let custom_club_info = JSON.parse(this.loggedInUser?.custom_club_info);
+      console.info("custom_club_info", custom_club_info)
+      this.current_club_logo = 'no-logo';
+    }
+
+    if (this.loggedInUser?.registered_club_info && this.loggedInUser?.registered_club_info != '') {
+      let registered_club_info = JSON.parse(this.loggedInUser?.registered_club_info);
+      console.info("registered_club_info", registered_club_info)
+      this.current_club_logo = registered_club_info.club_logo;
+    }
+
+    if (typeof this.loggedInUser?.current_club_info !== undefined && this.loggedInUser?.current_club_info != '' && this.loggedInUser?.current_club_info != null) {
+      let registedClubArr = JSON.parse(this.loggedInUser?.current_club_info)
+      console.info("registered_club_info", registedClubArr)
+      this.current_club_logo = registedClubArr.club_logo;
+    }
+
+
   }
 
   getRoles() {
