@@ -66,15 +66,13 @@
                         </svg>
 
                       </div>
-                       <a (click)="editBooster(booster)" class="edit-profile cursor-pointer hide_boost_icon"
-                        *ngIf="booster" matTooltip="{{'boostedProfileViews' | translate}}"
-                        matTooltipPosition="right"><img
-                          src="../../../assets/images/rocket-icon-{{currentThemeMode}}.svg" alt="" />
-                      </a>
                     </label>
                     <input id="profile-upload" (change)="onProfileFileChange($event)" accept="image/*" type="file"
                       class="d-none" />
-
+                    <a (click)="editBooster(booster)" class="edit-profile cursor-pointer hide_boost_icon"
+                      *ngIf="booster" matTooltip="{{'boostedProfileViews' | translate}}" matTooltipPosition="right"><img
+                        src="../../../assets/images/rocket-icon-{{currentThemeMode}}.svg" alt="" />
+                    </a>
                   </div>
                   <div class="user-edit" *ngIf="profileImage">
                     <label for="profile-upload" class="">
@@ -715,7 +713,8 @@
                     *ngFor="let video of highlights?.videos let j = index">
                     <a [href]="highlights.file_path + video.file_name" data-fancybox="gallery" [attr.data-caption]="">
                       <video [src]="highlights.file_path + video.file_name" #videoPlayer
-                        (loadeddata)="setDurationAndThumbnail(videoPlayer)" alt="Video Gallery" controls [attr.poster]="highlights.file_path + 'thumbnail/' + getThumbnailName(video.file_name)"></video>
+                        (loadeddata)="setDurationAndThumbnail(videoPlayer)" alt="Video Gallery" controls
+                        [attr.poster]="highlights.file_path + 'thumbnail/' + getThumbnailName(video.file_name)"></video>
                     </a>
                     <!-- <span class="duration">{{duration}}</span> -->
                     <span class="duration"

@@ -932,4 +932,10 @@ export class ExploreComponent implements OnInit {
     return date.getFullYear();
   }
 
+
+  triggerChangeDetection() {
+    console.info("MANUALLY TRIGGRED")
+    this.cdr.detectChanges(); // Manually trigger change detection
+  }
+
 }

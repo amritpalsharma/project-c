@@ -117,7 +117,7 @@
         </li>
 
         <li [ngClass]="{'locksidebar':locksideBar}">
-          <a [matTooltip]="sidebarOpen ? ('settings' | translate) : ''" matTooltipPosition="right"
+          <a [matTooltip]="!sidebarOpen ? ('settings' | translate) : ''" matTooltipPosition="right"
             routerLink="/talent/setting" (click)="closeSidebar(true)" routerLinkActive="active">
             <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"
               class="my-svg-icon">
@@ -202,7 +202,7 @@
           </a>
         </li>
         <li class="">
-          <a [matTooltip]="sidebarOpen ? ('settings' | translate) : ''" matTooltipPosition="right"
+          <a [matTooltip]="!sidebarOpen ? ('settings' | translate) : ''" matTooltipPosition="right"
             routerLink="/talent/setting" (click)="closeSidebar(true)" routerLinkActive="active">
             <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"
               class="my-svg-icon">

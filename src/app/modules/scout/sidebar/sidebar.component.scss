@@ -15,11 +15,11 @@
 }
 
 ::ng-deep .locksideBar a {
-  pointer-events: none;
+  // pointer-events: none;
 }
 
 .loading_sidebar {
   cursor: progress;
-  pointer-events: none;
+  // pointer-events: none;
   opacity: 0.6;
 }
