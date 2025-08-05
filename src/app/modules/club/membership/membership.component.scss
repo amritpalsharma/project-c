@@ -130,6 +130,16 @@ button.premium-edit_btn,a.premium-edit_btn {
   }
 }
 
+table td .bg_pending,
+table td .bg_reject,
+table td .bg_success {
+  width: 140px !important;
+  font-size: 16px !important;
+  padding: 5px 8px 5px !important;
+  display: inline-block;
+  border-radius: 60px;
+}
+
 @media (min-width: 1650px) and (max-width: 2000px) {
 .premium-card {
   .flex_wrap {
@@ -247,6 +257,16 @@ button.premium-edit_btn,a.premium-edit_btn {
 }
 
 
+@media (min-width: 2000px) {
+  table td .bg_pending,
+  table td .bg_reject,
+  table td .bg_success {
+      width: 200px !important;
+      font-size: 22px !important;
+      padding: 8px 8px 8px !important;
+  }
+}
+
 @media (min-width: 3000px) {
   .card-billing, .p_size h2.card-title {
     font-size: 35px !important;
@@ -267,6 +287,12 @@ button.premium-edit_btn,a.premium-edit_btn {
     width: 55px;
     height: 55px;
 }
+table td .bg_pending,
+  table td .bg_reject,
+  table td .bg_success {
+      width: 300px !important;
+      font-size: 30px !important;
+  }
 }
 
 .dark-theme .table-striped thead th {
