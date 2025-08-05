@@ -13,7 +13,7 @@ import { AuthService } from '../../../services/auth.service';
 
 export class SidebarComponent {
   sidebarOpen: boolean = false;
-  isUserVerified: boolean = false;
+  isUserVerified: boolean = true;
   isNum: Number = 1;
   locksideBar: boolean = true;
 
@@ -225,6 +225,7 @@ export class SidebarComponent {
 
       // Log the target element tag name
       console.info('target', target.tagName);
+      // alert('target '+target.tagName+' clicked')
 
       // Check if the target is an svg, p tag, or a link
       if (target && (target.tagName === 'SVG' || target.tagName === 'P' || target.tagName === 'A')) {
