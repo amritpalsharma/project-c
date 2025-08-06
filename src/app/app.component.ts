@@ -25,19 +25,22 @@ export class AppComponent implements OnInit {
     private router: Router,
     private globalSettings: GlobalSettingsService
   ) {
-    //this.translateService.setDefaultLang('en'); // Set default language
     this.domainSelectedLanguage = this.globalSettings.getLanguage();
+    let domainLangId = this.globalSettings.getLanguageId();
     let selectedLang = localStorage.getItem('lang');
+    let selectedLangID = localStorage.getItem('lang_id');
     if (selectedLang == null || selectedLang == undefined) {
       this.translateService.use(this.domainSelectedLanguage);
       localStorage.setItem('lang', this.domainSelectedLanguage);
+      localStorage.setItem('lang_id', String(domainLangId));
       console.warn('In App component Domain Language selected = ' + this.domainSelectedLanguage);
     } else if (selectedLang != '') {
       localStorage.setItem('lang', selectedLang);
+      localStorage.setItem('lang_id', String(selectedLangID));
       console.warn('In App component LocalStorage Language selected = ' + selectedLang)
       this.translateService.setDefaultLang(selectedLang);
     } else {
-      this.translateService.setDefaultLang('en');
+      console.error('Report To Dev For this language mess');
     }
     // Listen to router events to check route changes
     this.router.events.pipe(

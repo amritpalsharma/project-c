@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TalentService } from '../../../services/talent.service';
-import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { MatDatepickerInputEvent, MatDatepicker } from '@angular/material/datepicker';
 import { FormControl, NgForm } from '@angular/forms';
 import * as _moment from 'moment';
 // tslint:disable-next-line:no-duplicate-imports
@@ -313,6 +313,10 @@ export class EditPerformanceDetailsComponent implements OnInit {
   getTextAfterDash(input: string): string {
     input = input.toLowerCase();
     return input.split('-')[1]?.trim() || '';
+  }
+
+    openDatePicker(datepicker: MatDatepicker<any>) {
+    datepicker.open();  // Opens the date picker
   }
 
 }

@@ -2,7 +2,7 @@ import { Component, ElementRef, Inject, OnInit, ViewChild, AfterViewInit, Change
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TalentService } from '../../../services/talent.service';
 import { FormControl, NgForm } from '@angular/forms';
-import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { MatDatepickerInputEvent, MatDatepicker } from '@angular/material/datepicker';
 import { catchError, Observable, of, tap, fromEvent } from 'rxjs';
 import { AuthService } from '../../../services/auth.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -860,5 +860,8 @@ export class EditPersonalDetailsComponent implements OnInit {
     if (charCode < 48 || charCode > 57) {
       event.preventDefault(); // Prevent non-numeric characters
     }
+  }
+  openDatePicker(datepicker: MatDatepicker<any>) {
+    datepicker.open();  // Opens the date picker
   }
 }

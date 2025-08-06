@@ -43,7 +43,7 @@ export class SocketService {
       this.connectUser({ userId: userData.id, langId });
     }
     else {
-      console.log("No data found in localStorage.");
+      console.log("No {{jsonData}} found in localStorage.");
     }
     this.userToken = localStorage.getItem('authToken');
     this.socket.on('updateOnlineUsers', (data: { onlineUsers: { [userId: string]: string } }) => {

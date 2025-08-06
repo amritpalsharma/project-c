@@ -9,7 +9,7 @@ import { ClubService } from '../../../../services/club.service';
 import { SocketService } from '../../../../services/socket.service';
 import { FormControl, NgForm } from '@angular/forms';
 import * as _moment from 'moment';
-import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { MatDatepickerInputEvent, MatDatepicker } from '@angular/material/datepicker';
 // tslint:disable-next-line:no-duplicate-imports
 import { default as _rollupMoment } from 'moment';
 import { ToastrService } from 'ngx-toastr';
@@ -225,7 +225,7 @@ export class AddNewTalentComponent implements OnInit {
         this.toaster.warning(response.data.errors);
       }
 
-       this.submitButtonClicked = false;
+      this.submitButtonClicked = false;
     });
   }
 
@@ -322,6 +322,10 @@ export class AddNewTalentComponent implements OnInit {
     if (value.includes('.') && event.key === '.') {
       event.preventDefault();  // Prevent entering another decimal point
     }
+  }
+
+  openDatePicker(datepicker: MatDatepicker<any>) {
+    datepicker.open();  // Opens the date picker
   }
 
 }

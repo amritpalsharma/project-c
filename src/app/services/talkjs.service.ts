@@ -23,30 +23,31 @@ export class TalkService {
   async init(user: any): Promise<Talk.Session> {
 
     let authToken = localStorage.getItem('authToken');
-    const res = await fetch('https://api.socceryou.ch/api/get-talk-signature', {
+
+    // 🔄 Fetch both appId and signature from backend
+    const res = await fetch('https://api.socceryou.ch/api/get-talk-signature?chatMode=' + this.chatMode, {
       method: 'GET',
       headers: {
-        'Authorization': 'Bearer ' + authToken,
+        'Authorization': 'Bearer ' + localStorage.getItem('authToken'),
         'Content-Type': 'application/json'
       }
     });
 
     const data = await res.json();
+    let appID = 'tmI75KXB'; // testkey
+    if (!data.signature || !data.appId) {
+      console.error('Missing appId or signature in response.');
+    } else {
+      appID = data.appId;
+    }
 
-    console.error('Chat Init ', user)
-    console.error('Api Response Talk ', data)
+
     this.currentLoggedInUser = user;
 
-    console.error("Signature received from backend:", data.signature);
 
-    if (!data.signature) {
-      console.error('No valid signature received from backend.');
-      // return;
-    }
     await Talk.ready;
     this.currentUser = new Talk.User({
       id: String(user.id),
-      // id: user.id.toString(), // ✅ must be string
       name: user.name,
       email: user.email,
       photoUrl: user.photoUrl,
@@ -55,21 +56,13 @@ export class TalkService {
       locale: localStorage.getItem('lang') || 'de'
       // role: 'default'
     });
-    let appID;
-    let secretKey;
-    if (this.chatMode == 'live') {
-      appID = 'UAid8HWJ';
-      // secretKey = 'sk_live_aJEAQN0XdY4f9NbrK0YP9muJyahXWzj3';
-    } else {
-      appID = 'tmI75KXB';
-      // secretKey = 'sk_test_llIR3hv00wvqHx8DDp6MWBvObF7BScP8';
-    }
-    appID = 'tmI75KXB';
+
     this.session = new Talk.Session({
       appId: appID,
       me: this.currentUser,
-      // signature: data.signature,
-      // token: String(authToken)
+      tokenFetcher: async () => {
+        return data.signature;
+      }
     });
 
 

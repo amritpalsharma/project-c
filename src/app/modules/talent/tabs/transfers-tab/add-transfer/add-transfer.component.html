@@ -32,23 +32,24 @@
           </div>
         </div>
         <div class="form-group">
-          <label *ngIf="!noMoveFromTeam" for="team_from" class="form-label">{{'club' | translate}} / {{'team' |
+          <label [ngClass]="{'d-none':noMoveFromTeam}" for="team_from" class="form-label">{{'club' | translate}} /
+            {{'team' |
             translate}}</label>
 
-          <div class="old-func" *ngIf="!noMoveFromTeam">
+          <div class="old-func" [ngClass]="{'d-none':noMoveFromTeam}">
             <input type="text" id="team_from" name="team_from" placeholder="{{'enterAndSearch' | translate}}..."
               [(ngModel)]="teamFrom" #teamFromsField="ngModel" (input)="onSearchTeamsFrom()" autocomplete="off" required
               [ngClass]="{'isrequiredField': !teamFrom && showFormErrors}" />
 
             <!-- Club suggestions -->
-            <ul *ngIf="filterTeamsFrom.length > 0 && teamFrom.length >= 2" class="suggestions-list">
+            <ul *ngIf="filterTeamsFrom && filterTeamsFrom.length > 0 && teamFrom.length >= 2" class="suggestions-list">
               <li *ngFor="let team of filterTeamsFrom" (click)="onSelectTeamFrom(team)">
                 {{ team.team_name }} - {{ team.team_type }}
               </li>
             </ul>
           </div>
 
-          <div class="row" *ngIf="noMoveFromTeam">
+          <div class="row" [ngClass]="{'d-none':!noMoveFromTeam}">
             <div class="col-sm-12 mb-3">
               <label for="team_from" class="form-label">{{'club' | translate}} / {{'team' | translate}}</label>
               <input type="text" id="team_to" name="team_to_manual"
@@ -57,17 +58,6 @@
             </div>
 
             <div class="col-sm-12">
-              <!-- <label class="form-label fs-14 font-w400 text-light" for="team_country_id"> -->
-              <!-- <label class="form-label" for="team_country_id">
-                {{ 'country' | translate }}
-              </label> -->
-              <!-- <select class="form-select" id="team_country_id" name="team_country_id"
-                [(ngModel)]="team_from_m_country_id" required [ngClass]="{'isrequiredField': !team_from_m_country_id && showFormErrors}">
-                <option value="" [ngValue]="null">{{'select' | translate}}</option>
-                <option *ngFor="let country of countries" [ngValue]="country.id">
-                  {{ country.country_name }}
-                </option>
-              </select> -->
               <mat-label for="country">{{ 'country' | translate }}</mat-label>
               <mat-form-field appearance="fill" class="w-100 custom_select_mat">
                 <mat-select id="country" name="country" [(ngModel)]="team_from_m_country_id"
@@ -75,8 +65,8 @@
                   class="form-select mat_search_selector">
                   <!-- Search input inside dropdown -->
                   <ngx-mat-select-search [formControl]="countrySearch" placeholder="A"></ngx-mat-select-search>
-                  <ng-container *ngIf="countries">
-                    <mat-option *ngFor="let country of countries" [value]="country.id">
+                  <ng-container *ngIf="countriesFromArr">
+                    <mat-option *ngFor="let country of countriesFromArr" [value]="country.id">
                       {{ country.country_name }}
                     </mat-option>
                   </ng-container>
@@ -101,9 +91,10 @@
         </div>
         <!-- </div> -->
         <div class="form-group">
-          <label *ngIf="!noMoveToTeam" for="team_to" class="form-label">{{'club' | translate}} / {{'team' |
+          <label [ngClass]="{'d-none':noMoveToTeam}" for="team_to" class="form-label">{{'club' | translate}} / {{'team'
+            |
             translate}}</label>
-          <div class="default-func" *ngIf="!noMoveToTeam">
+          <div class="default-func" [ngClass]="{'d-none':noMoveToTeam}">
             <input type="text" id="team_to" name="team_to" placeholder="{{'enterAndSearch' | translate}}..."
               [(ngModel)]="teamTo" #teamTosField="ngModel" (input)="onSearchTeams()" autocomplete="off" required
               [ngClass]="{'isrequiredField': !teamTo && showFormErrors}" />
@@ -114,7 +105,7 @@
               </li>
             </ul>
           </div>
-          <div class="row" *ngIf="noMoveToTeam">
+          <div class="row" [ngClass]="{'d-none':!noMoveToTeam}">
             <div class="col-sm-12 mb-3">
               <label for="team_to" class="form-label">{{'club' | translate}} / {{'team' | translate}}</label>
               <input type="text" id="team_to" name="team_to_manual"
@@ -123,14 +114,6 @@
             </div>
 
             <div class="col-sm-12">
-              <!-- <label for="team_country_id" class="form-label">{{'country' | translate}}</label>
-              <select class="form-select" id="team_country_id" name="team_country_id"
-                [(ngModel)]="team_to_m_country_id" required [ngClass]="{'isrequiredField': !team_to_m_country_id && showFormErrors}">
-                <option value="" [ngValue]="null">{{'select' | translate}}</option>
-                <option *ngFor="let country of countries" [ngValue]="country.id">
-                  {{ country.country_name }}
-                </option>
-              </select> -->
               <label for="team_to_m_country_id" class="form-label">{{'country' | translate}}</label>
               <mat-form-field appearance="fill" class="w-100 custom_select_mat">
                 <mat-select id="team_to_m_country_id" name="team_to_m_country_id" [(ngModel)]="team_to_m_country_id"
@@ -138,8 +121,8 @@
                   class="form-select mat_search_selector">
                   <!-- Search input inside dropdown -->
                   <ngx-mat-select-search [formControl]="countrySearch2" placeholder="A"></ngx-mat-select-search>
-                  <ng-container *ngIf="countries">
-                    <mat-option *ngFor="let country of countries2" [value]="country.id">
+                  <ng-container *ngIf="countriesToArr">
+                    <mat-option *ngFor="let country of countriesToArr" [value]="country.id">
                       {{ country.country_name }}
                     </mat-option>
                   </ng-container>
@@ -170,24 +153,15 @@
             </ng-container>
           </mat-select>
         </mat-form-field>
-        <!-- <input type="text" id="session" name="session" [(ngModel)]="data.session" required> -->
-        <!-- <select [(ngModel)]="data.session" class="form-select" [ngClass]="{'isrequiredField': !data.session && showFormErrors}" required id="session" name="session" required>
-          <option [value]="0" disabled>{{ 'select' | translate }}</option>
-          <option *ngFor="let session of sessionArr" [value]="session">
-            {{ session }}
-          </option>
-        </select> -->
-
       </div>
       <div class="form-group moving_select col-lg-6">
         <label for="date_of_transfer" class="form-label">{{'date' | translate}}</label>
         <div class="d-flex align-items-center justify-content-center date_field">
           <input matInput id="date_of_transfer" name="date_of_transfer" [matDatepicker]="date_of_transferpicker"
-            [formControl]="date_of_transfer" placeholder="DD.MM.YYYY" required [readonly]="true"/>
+            [formControl]="date_of_transfer" placeholder="DD.MM.YYYY" required [readonly]="true" (click)="openDatePicker(date_of_transferpicker)"/>
           <mat-datepicker-toggle matSuffix [for]="date_of_transferpicker"></mat-datepicker-toggle>
           <mat-datepicker #date_of_transferpicker></mat-datepicker>
         </div>
-        <!-- <input type="date" id="date_of_transfer" name="date_of_transfer" [(ngModel)]="data.date_of_transfer" required>         -->
       </div>
     </div>
     <div class="dialog-actions align-items-center d-flex justify-content-between">

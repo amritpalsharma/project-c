@@ -5,7 +5,7 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { ChangeDetectionStrategy, computed, inject, model, signal } from '@angular/core';
 import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { UserService } from '../../../../services/user.service';
-import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { MatDatepickerInputEvent, MatDatepicker } from '@angular/material/datepicker';
 import { ClubService } from '../../../../services/club.service';
 import { SocketService } from '../../../../services/socket.service';
 import { ToastrService } from 'ngx-toastr';
@@ -699,6 +699,10 @@ export class CreateSightPopupComponent implements AfterViewInit {
     console.info('Time is updated current time is ', this.timeString);
     console.info('this.dateControl.value', this.dateControl.value);
     console.info('this.dateTime', this.dateTime); // ✅ Now reflects updated time
+  }
+
+  openDatePicker(datepicker: MatDatepicker<any>) {
+    datepicker.open();  // Opens the date picker
   }
 
 }

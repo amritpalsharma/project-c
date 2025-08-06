@@ -95,26 +95,27 @@ export class EditTransferDetailsComponent {
     this.teams = this.data.teams;
     this.transfer = this.data.transfer;
 
-    if (this.transfer.team_to_manual != '' && !this.transfer.team_to) {
-      // this.is_team_to_manual = true;
+    if (this.transfer.team_to_manual != '' && this.transfer.team_to_manual != null && typeof this.transfer.team_to_manual !== undefined) {
       this.team_to_manual = this.transfer.team_to_manual;
       this.team_to_m_country_id = this.transfer.team_to_m_country_id;
-      this.is_team_to_manual = true;
+      // this.is_team_to_manual = true;
+      // this.onNoMoveToTeam(true);
+      // setTimeout(() => {
+        this.is_team_to_manual = true;
+      // }, 1000);
+    } else {
+      // setTimeout(() => {
+        this.is_team_to_manual = false;
+      // }, 1000);
     }
-
-    if (this.transfer.team_from_manual != '' && !this.transfer.team_from) {
+    if (this.transfer.team_from_manual != '' && this.transfer.team_from_manual != null && typeof this.transfer.team_from_manual !== undefined) {
+      // if (this.transfer.team_from_manual != '' && !this.transfer.team_from) {
       this.team_from_manual = this.transfer.team_from_manual;
       this.team_from_m_country_id = this.transfer.team_from_m_country_id;
       this.is_team_from_manual = true;
+    } else {
+      this.is_team_from_manual = false;
     }
-
-    // if (this.transfer?.country_name_to_manual && this.transfer?.country_name_to_manual != '' && this.transfer?.team_to_manual && this.transfer?.team_to_manual != '') {
-    //   this.is_team_to_manual = true;
-    // } else {
-    //   this.is_team_to_manual = false;
-    // }
-
-
 
 
     this.date_of_transfer = new FormControl(
@@ -123,21 +124,11 @@ export class EditTransferDetailsComponent {
     this.date_of_transfer.setValue(this.transfer.date_of_transfer ? new Date(this.transfer.date_of_transfer) : null);
     console.log('transfer', this.transfer)
     if (this.transfer.team_name_to && typeof this.transfer.team_name_to != undefined && this.transfer.team_name_to != null && this.transfer.team_name_to != '') {
-      // this.is_team_to_manual = true;
       this.teamTo = this.transfer.team_name_to + ' - ' + this.transfer.team_type_to; // Set the selected team's name to the input
     }
     if (this.transfer.team_name_from && typeof this.transfer.team_name_from != undefined && this.transfer.team_name_from != null && this.transfer.team_name_from != '') {
       this.teamFrom = this.transfer.team_name_from + ' - ' + this.transfer.team_type_from; // Set the selected team's name to the input
     }
-
-    if (this.transfer?.team_to_manual && this.transfer?.team_to_manual != '' && this.transfer?.country_name_to_manual && this.transfer?.country_name_to_manual != '') {
-      this.is_team_to_manual = true;
-      // this.onNoMoveToTeam(this.is_team_to_manual);
-    } else {
-      this.is_team_to_manual = false;
-    }
-
-
 
     this.teamToId = this.transfer.team_to;
     this.teamFromId = this.transfer.team_from;
@@ -147,9 +138,9 @@ export class EditTransferDetailsComponent {
     });
 
     setTimeout(() => {
-      this.cdr.detectChanges();
       this.isLoadingModel = false;
     }, 500);
+    this.cdr.detectChanges();
     // }
 
 

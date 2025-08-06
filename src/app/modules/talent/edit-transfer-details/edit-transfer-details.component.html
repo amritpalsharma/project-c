@@ -26,7 +26,7 @@
             <label class="form-label">{{'movingFrom' | translate}}</label>
             <div class="form-check checkbox mb-3">
               <input class="form-check-input" id="onNoMoveFromTeam" type="checkbox" [(ngModel)]="is_team_from_manual"
-                name="noClub" (ngModelChange)="onNoMoveFromTeam($event)" />
+                name="noClub" />
               <label class="form-check-label form-label" for="onNoMoveFromTeam"> {{ 'noTeamAndClub' | translate }}
               </label>
             </div>
@@ -37,7 +37,7 @@
               <input type="text" id="team_from" name="team_from" placeholder="{{ 'typeToSearch' | translate }}"
                 [(ngModel)]="teamFrom" #teamFromsField="ngModel" (input)="onSearchTeamsFrom()" autocomplete="off"
                 required />
-              <ul *ngIf="filterTeamsFrom.length > 0 && teamFrom.length >= 2" class="suggestions-list">
+              <ul *ngIf="filterTeamsFrom && filterTeamsFrom.length > 0 && teamFrom.length >= 2" class="suggestions-list">
                 <li *ngFor="let team of filterTeamsFrom" (click)="onSelectTeamFrom(team)"> {{ team.team_name }} - {{
                   team.team_type }} </li>
               </ul>
@@ -80,7 +80,7 @@
             <div class="default-func" *ngIf="!is_team_to_manual">
               <input type="text" id="team_to" name="team_to" placeholder="{{ 'typeToSearch' | translate }}"
                 [(ngModel)]="teamTo" #teamTosField="ngModel" (input)="onSearchTeams()" autocomplete="off" required />
-              <ul *ngIf="filterTeams.length > 0 && teamTo.length >= 2" class="suggestions-list">
+              <ul *ngIf="filterTeams && filterTeams.length > 0 && teamTo.length >= 2" class="suggestions-list">
                 <li *ngFor="let team of filterTeams" (click)="onSelectTeamTo(team)"
                   [class.selected]="teamToId == team.id">{{ team.team_name }} - {{ team.team_type }}</li>
               </ul>

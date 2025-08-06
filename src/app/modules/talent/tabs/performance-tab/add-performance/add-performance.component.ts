@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { startWith, map } from 'rxjs/operators';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TalentService } from '../../../../../services/talent.service';
-import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { MatDatepickerInputEvent, MatDatepicker } from '@angular/material/datepicker';
 import { FormControl, NgForm } from '@angular/forms';
 import * as _moment from 'moment';
 // tslint:disable-next-line:no-duplicate-imports
@@ -398,4 +398,7 @@ export class AddPerformanceComponent {
     console.info('this.team_country_name', this.team_country_name)
   }
 
+  openDatePicker(datepicker: MatDatepicker<any>) {
+    datepicker.open();  // Opens the date picker
+  }
 }

@@ -139,7 +139,7 @@
                     <label for="form-date" class="form-label">{{getTextBeforeDash('fromUpto' | translate)}}</label>
                     <div class="d-flex align-items-center justify-content-center date_field position-relative">
                       <input class="upto-date" matInput id="from_date" name="from_date" [matDatepicker]="from_datepicker"
-                      [formControl]="from_date" placeholder="DD.MM.YYYY" required [readonly]="true"/>
+                      [formControl]="from_date" placeholder="DD.MM.YYYY" required [readonly]="true" (click)="openDatePicker(from_datepicker)"/>
                       <mat-datepicker-toggle matSuffix [for]="from_datepicker"></mat-datepicker-toggle>
                       <mat-datepicker #from_datepicker></mat-datepicker>
                     </div>
@@ -148,7 +148,7 @@
                     <label for="form-date" class="form-label">{{getTextAfterDash('fromUpto' | translate)}}</label>
                     <div class="d-flex align-items-center justify-content-center date_field position-relative">
                       <input class="upto-date-2" matInput id="to_date" name="to_date" [matDatepicker]="to_datepicker" [formControl]="to_date"
-                      placeholder="DD.MM.YYYY" required [readonly]="true"/>
+                      placeholder="DD.MM.YYYY" required [readonly]="true" (click)="openDatePicker(to_datepicker)"/>
                       <mat-datepicker-toggle matSuffix [for]="to_datepicker"></mat-datepicker-toggle>
                       <mat-datepicker #to_datepicker></mat-datepicker>
                     </div>
@@ -156,29 +156,6 @@
                 </div>
               </div>
             </div>
-
-            <!-- <div class="form-group">
-              <div class="col-lg-9 p-0">
-                <label for="form-date" class="form-label">{{'form-upto' | translate}}</label>
-                <div class="date-imputs d-flex align-items-center">
-                  <div class="d-flex align-items-center justify-content-center position-relative date_field">
-                    <input matInput id="from_date" name="from_date" [matDatepicker]="from_datepicker"
-                      [formControl]="from_date" placeholder="DD.MM.YYYY" required />
-                    <mat-datepicker-toggle matSuffix [for]="from_datepicker"></mat-datepicker-toggle>
-                    <mat-datepicker #from_datepicker></mat-datepicker>
-                  </div>
-                  <div class="d-flex align-items-center justify-content-center position-relative date_field">
-                    <input matInput id="to_date" name="to_date" [matDatepicker]="to_datepicker" [formControl]="to_date"
-                      placeholder="DD.MM.YYYY" required />
-                    <mat-datepicker-toggle matSuffix [for]="to_datepicker"></mat-datepicker-toggle>
-                    <mat-datepicker #to_datepicker></mat-datepicker>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 p-0">
-              <input type="date" name="form-date" id="form-date">
-            </div>
-            </div> -->
           </div>
         </div>
         <div class="dialog-actions align-items-center d-flex justify-content-between">

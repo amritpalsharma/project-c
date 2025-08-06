@@ -133,12 +133,6 @@ export class GlobalSettingsService {
     } else if (language == 'se') {
       this.defaultLangId = 8;
     }
-    let localStorage_lang_id = localStorage.getItem('lang_id');
-    if (localStorage_lang_id == null || localStorage_lang_id === undefined) {
-      // localStorage.setItem('lang_id', this.defaultLangId + '');
-    } else {
-      // console.log('In Global service Localstorage has already  lang ' + localStorage_lang_id);
-    }
     return this.defaultLangId;
   }
 

@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TalentService } from '../../../services/talent.service';
-import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { MatDatepickerInputEvent, MatDatepicker } from '@angular/material/datepicker';
 import { FormControl, NgForm } from '@angular/forms';
 import * as _moment from 'moment';
 // tslint:disable-next-line:no-duplicate-imports
@@ -336,4 +336,25 @@ export class EditGeneralDetailsComponent {
       event.preventDefault(); // Prevent non-numeric characters
     }
   }
+
+  openDatePicker(datepicker: MatDatepicker<any>) {
+    datepicker.open();  // Opens the date picker
+  }
+
+
+  topSpeedonKeyPress(event: KeyboardEvent) {
+    const charCode = event.charCode;
+    const inputValue = event.target as HTMLInputElement;
+
+    // Allow numbers (0-9) and one decimal point (.)
+    if (
+      (charCode >= 48 && charCode <= 57) || // Allow numbers 0-9
+      charCode === 46 && !inputValue.value.includes('.') // Allow only one decimal point
+    ) {
+      return; // Allow the character
+    } else {
+      event.preventDefault(); // Prevent non-numeric or additional decimal point
+    }
+  }
+
 }

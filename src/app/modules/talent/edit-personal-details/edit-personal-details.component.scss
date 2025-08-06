@@ -336,10 +336,12 @@ mat-datepicker-toggle {
 
   .is_grey_true {
     background: #dfdfdf !important;
+    pointer-events: none !important;
   }
 
   .dark-theme .is_grey_true {
     background: #dfdfdf !important;
+    pointer-events: none !important;
   }
 }
 
@@ -352,9 +354,10 @@ mat-datepicker-toggle {
     color: #fff !important;
     background-color: #072944 !important;
   }
+
   .mat-select-search-inner {
-        background: #072944 !important;
-    }
+    background: #072944 !important;
+  }
 
   .mat-select-search-no-entries-found {
     color: #fff !important;

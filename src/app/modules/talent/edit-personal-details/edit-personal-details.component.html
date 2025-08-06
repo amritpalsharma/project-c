@@ -172,7 +172,7 @@
           <div class="d-flex align-items-center justify-content-center dob1">
             <input class="dob is_grey_{{isreadOnlyContract}}" matInput id="contractStart" name="contractStart"
               [matDatepicker]="contractStartPicker" [formControl]="contractStart" placeholder="DD.MM.YYYY"
-              [readonly]="true" />
+              [readonly]="true" (click)="openDatePicker(contractStartPicker)"/>
             <mat-datepicker-toggle matSuffix [for]="contractStartPicker"
               [disabled]="isreadOnlyContract"></mat-datepicker-toggle>
             <mat-datepicker #contractStartPicker></mat-datepicker>
@@ -185,7 +185,7 @@
           <div class="d-flex align-items-center justify-content-center dob1">
             <input class="dob is_grey_{{isreadOnlyContract}}" matInput id="contractEnd" name="contractEnd"
               [matDatepicker]="contractEndPicker" [formControl]="contractEnd" placeholder="DD.MM.YYYY"
-              [readonly]="true" />
+              [readonly]="true" (click)="openDatePicker(contractEndPicker)"/>
             <mat-datepicker-toggle matSuffix [for]="contractEndPicker"
               [disabled]="isreadOnlyContract"></mat-datepicker-toggle>
             <mat-datepicker #contractEndPicker></mat-datepicker>
@@ -278,7 +278,7 @@
           <label for="dateOfBirth">{{ 'dateOfBirth' | translate }}:</label>
           <div class="d-flex align-items-center justify-content-center dob1">
             <input class="dob" matInput id="dateOfBirth" name="dateOfBirth" [matDatepicker]="dp"
-              [formControl]="dateOfBirth" placeholder="DD.MM.YYYY" required [readonly]="true"/>
+              [formControl]="dateOfBirth" placeholder="DD.MM.YYYY" required [readonly]="true" (click)="openDatePicker(dp)"/>
             <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
             <mat-datepicker #dp panelClass="custom-datepicker"></mat-datepicker>
           </div>

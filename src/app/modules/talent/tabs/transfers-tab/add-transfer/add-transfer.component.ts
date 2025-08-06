@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { TalentService } from '../../../../../services/talent.service';
-import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { MatDatepickerInputEvent, MatDatepicker } from '@angular/material/datepicker';
 import { FormControl, NgForm } from '@angular/forms';
 import * as _moment from 'moment';
 // tslint:disable-next-line:no-duplicate-imports
@@ -76,6 +76,9 @@ export class AddTransferComponent {
 
   countrySearch: FormControl = new FormControl(null);
   countrySearch2: FormControl = new FormControl(null);
+
+  countriesFromArr: any = [];
+  countriesToArr: any = [];
   constructor(
     private toastr: ToastrService,
     public dialogRef: MatDialogRef<AddTransferComponent>,
@@ -106,18 +109,32 @@ export class AddTransferComponent {
 
     this.countrySearch.valueChanges.subscribe(() => {
       const search = this.countrySearch.value?.toLowerCase() || '';
-      this.countries = this.countries.filter(
+      if (!search) {
+        this.countriesFromArr = this.countries;
+      }
+      this.countriesFromArr = this.countries.filter(
         (country: any) => country.country_name.toLowerCase().includes(search)
       );
     });
 
     this.countrySearch2.valueChanges.subscribe(() => {
       const search = this.countrySearch2.value?.toLowerCase() || '';
-      this.countries2 = this.countries2.filter(
+      if (!search) {
+        this.countriesToArr = this.countries;
+      }
+      this.countriesToArr = this.countries2.filter(
         (country: any) => country.country_name.toLowerCase().includes(search)
       );
     });
   }
+  // isFieldVisible: boolean = true;
+  // toggleFieldVisibility() {
+  //   if (!this.isFieldVisible) {
+  //     this.form.removeControl('hiddenField');  // Remove the control from the form
+  //   } else {
+  //     this.form.addControl('hiddenField', new FormControl(''));  // Add the control back
+  //   }
+  // }
 
   onCancel(): void {
     this.dialogRef.close(); // Close dialog without saving
@@ -125,11 +142,12 @@ export class AddTransferComponent {
 
   onSubmit(myForm: NgForm): void {
     this.showFormErrors = true;
-    console.log(this.date_of_transfer)
+    console.log(this.date_of_transfer.value)
 
 
 
-    if (myForm.valid) {
+    // if (myForm.valid) {
+      console.info(myForm.value);
       let lang_id = localStorage.getItem('lang_id');
       let formData = {
         ...myForm.value,
@@ -182,7 +200,6 @@ export class AddTransferComponent {
           console.error('Error submitting form:', error);
         }
       });
-    }
   }
 
   // Function to handle dynamic fetching of clubs based on search input
@@ -254,7 +271,7 @@ export class AddTransferComponent {
   }
 
   onNoMoveToTeam(value: boolean) {
-    console.log('onNoMoveToTeam', value);
+    // console.log('onNoMoveToTeam', value);
     this.noMoveToTeam = value;
   }
 
@@ -273,11 +290,17 @@ export class AddTransferComponent {
         if (response && response.status) {
           this.countries = response.data.countries;
           this.countries2 = response.data.countries;
+          this.countriesToArr = this.countries;
+          this.countriesFromArr = this.countries;
         }
       },
       (error: any) => {
         console.error('Error fetching countries:', error);
       }
     );
+  }
+
+  openDatePicker(datepicker: MatDatepicker<any>) {
+    datepicker.open();  // Opens the date picker
   }
 }

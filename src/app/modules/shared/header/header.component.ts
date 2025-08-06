@@ -580,7 +580,14 @@ export class HeaderComponent {
           let loggedInUser = localStorage.getItem('userData')
           if (loggedInUser) {
             let currentUser = JSON.parse(loggedInUser);
-            const role = currentUser.role_name.toLowerCase();
+            let role = currentUser.role_name.toLowerCase();
+            if (role == 'talento' || role == 'talang') {
+              role = 'talent';
+            } else if (role == 'scout') {
+              role = 'scout';
+            } else if (role == 'clube' || role == 'klub' || role == 'klubb') {
+              role = 'club';
+            }
             this.router.navigate([`/${role}/setting`], { fragment });
           }
         }
@@ -588,7 +595,14 @@ export class HeaderComponent {
         let loggedInUser = localStorage.getItem('userData')
         if (loggedInUser) {
           let currentUser = JSON.parse(loggedInUser);
-          const role = currentUser.role_name.toLowerCase();
+          let role = currentUser.role_name.toLowerCase();
+          if (role == 'talento' || role == 'talang') {
+            role = 'talent';
+          } else if (role == 'scout') {
+            role = 'scout';
+          } else if (role == 'clube' || role == 'klub' || role == 'klubb') {
+            role = 'club';
+          }
           this.router.navigate([`/${role}/setting`], { fragment });
         } else {
           console.error('some thing wrong user redirection not found');

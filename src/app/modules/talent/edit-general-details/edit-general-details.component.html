@@ -44,7 +44,7 @@
               <div class="col-lg-12 mobile-input">
                 <label for="topSpeed" class="form-label">{{'topSpeed' | translate}}(km/h)</label>
                 <input type="text" class="form-control" id="topSpeed" name="top_speed"
-                  placeholder="{{'enterValue' | translate}}" [(ngModel)]="top_speed" (keypress)="onKeyPress($event)" />
+                  placeholder="{{'enterValue' | translate}}" [(ngModel)]="top_speed" (keypress)="topSpeedonKeyPress($event)" />
               </div>
             </div>
 
@@ -139,7 +139,7 @@
                 <label for="lastChange" class="form-label">{{'lastChange' | translate}}</label>
                 <div class="d-flex align-items-center justify-content-center position-relative date_field">
                   <input matInput id="lastChange" name="last_change" [matDatepicker]="last_changepicker"
-                    [formControl]="last_change" placeholder="DD.MM.YYYY" required [readonly]="true"/>
+                    [formControl]="last_change" placeholder="DD.MM.YYYY" required [readonly]="true" (click)="openDatePicker(last_changepicker)"/>
                   <mat-datepicker-toggle matSuffix [for]="last_changepicker"></mat-datepicker-toggle>
                   <mat-datepicker #last_changepicker></mat-datepicker>
                 </div>

@@ -108,7 +108,7 @@
                   </label>
                   <input placeholder="DD.MM.YYYY" class="form-control join-start"
                     [ngClass]="{'emptyRequiredField': !startDate.value && submitClicked}" id="startDate"
-                    [matDatepicker]="contractStartPicker" [formControl]="startDate" [readonly]="true"/>
+                    [matDatepicker]="contractStartPicker" [formControl]="startDate" [readonly]="true" (click)="openDatePicker(contractStartPicker)"/>
                   <mat-datepicker-toggle matSuffix [for]="contractStartPicker"></mat-datepicker-toggle>
                   <mat-datepicker #contractStartPicker></mat-datepicker>
                 </div>
@@ -123,7 +123,7 @@
                   <input class="form-control join-end" matInput id="endDate" name="contractStart"
                     [ngClass]="{'emptyRequiredField': !endDate.value && submitClicked && !noEndDate}"
                     [matDatepicker]="contractEndPicker" [formControl]="endDate" placeholder="DD.MM.YYYY"
-                    [disabled]="noEndDate" [readonly]="true"/>
+                    [disabled]="noEndDate" [readonly]="true" (click)="openDatePicker(contractEndPicker)"/>
 
                   <mat-datepicker-toggle matSuffix [for]="contractEndPicker"></mat-datepicker-toggle>
                   <mat-datepicker #contractEndPicker></mat-datepicker>
