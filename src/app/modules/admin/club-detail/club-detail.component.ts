@@ -94,8 +94,10 @@ export class ClubDetailComponent implements OnInit {
       // this.showMatDialog('User status updated successfully!', 'display');
       if (response.message != '' && response.message != undefined) {
         this.showMatDialog(response.message, 'display');
+        this.toaster.success(response.message);
       } else {
-        this.showMatDialog('User status updated successfully!', 'display');
+        // this.showMatDialog('User status updated successfully!', 'display');
+        this.toaster.error('Fehler bei der Aktualisierung des Benutzerstatus. Bitte versuchen Sie es erneut.');
       }
     },
       error => {

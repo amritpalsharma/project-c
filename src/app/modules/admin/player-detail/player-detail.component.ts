@@ -132,12 +132,14 @@ export class PlayerDetailComponent implements OnInit {
       this.user.status = newStatus;
       // this.showMatDialog('User status updated successfully!', 'display');
       if (response.message != '') {
-        this.showMatDialog(response.message, 'display');
+        // this.showMatDialog(response.message, 'display');
+        this.toaster.success(response.message);
       }
     },
       error => {
         console.error('Error updating user status:', error);
-        this.showMatDialog('Error updating user status. Please try again.', 'display');
+         this.toaster.error('Fehler bei der Aktualisierung des Benutzerstatus. Bitte versuchen Sie es erneut.');
+        // this.showMatDialog('Error updating user status. Please try again.', 'display');
       }
     );
   }

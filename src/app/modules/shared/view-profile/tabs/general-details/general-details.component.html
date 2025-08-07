@@ -122,7 +122,7 @@
         <div class="general_details">
             <h6 class="details_2">{{ 'inTheTeamSince' | translate}}</h6>
             <!-- <h5 class="details-1">{{user?.meta?.in_team_since | date:'MMM d, y' }}</h5> -->
-            <h5 class="details-1">{{user?.meta?.contract_start | date:'dd.MM.yyyy' }}</h5>
+            <h5 class="details-1" *ngIf="safeDate(user?.meta?.contract_start)">{{user?.meta?.contract_start | date:'dd.MM.yyyy' }}</h5>
         </div>
         <div class="general_details">
             <h6 class="details_2"> {{ 'topSpeed' | translate}}</h6>
@@ -145,7 +145,7 @@
         </div>
         <div class="general_details">
             <h6 class="details_2"> {{ 'lastChange' | translate}}</h6>
-            <h5 class="details-1" *ngIf="user.meta && user.meta.last_change">
+            <h5 class="details-1" *ngIf="user.meta && safeDate(user.meta.last_change)">
                 <!-- {{user.meta.last_change |date:'MMM d, y'}} -->
                 {{user?.meta?.last_change | date:'dd.MM.yyyy' }}
              </h5>

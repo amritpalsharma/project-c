@@ -118,12 +118,14 @@ export class ScoutDetailComponent implements OnInit {
       if (response.message != '' && response.message != undefined) {
         this.showMatDialog(response.message, 'display');
       } else {
-        this.showMatDialog('User status updated successfully!', 'display');
+        // this.showMatDialog('User status updated successfully!', 'display');
+        this.toaster.success(response.message);
       }
     },
       error => {
+        this.toaster.error('Fehler bei der Aktualisierung des Benutzerstatus. Bitte versuchen Sie es erneut.');
         console.error('Error updating user status:', error);
-        this.showMatDialog('Error updating user status. Please try again.', 'display');
+        // this.showMatDialog('Error updating user status. Please try again.', 'display');
       }
     );
   }

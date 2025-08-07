@@ -114,7 +114,7 @@ export class AdminHelperService {
     return datetime;
   }
 
-  getSwitzerlandTime(inputDate: any) {
+  getSwitzerlandTime11(inputDate: any) {
     const date = new Date(inputDate + " UTC");  // Appending ' UTC' to ensure the time is treated as UTC
 
     // Options for formatting date-time in Switzerland time zone
@@ -146,4 +146,40 @@ export class AdminHelperService {
   }
 
 
+  getSwitzerlandTime(inputDate: any) {
+    let date: Date;
+
+    // Safely parse input (assuming input is like '2025-08-07 10:00:00')
+    if (typeof inputDate === 'string' && inputDate.includes(' ')) {
+      // Convert 'YYYY-MM-DD HH:mm:ss' to 'YYYY-MM-DDTHH:mm:ssZ'
+      const isoString = inputDate.replace(' ', 'T') + 'Z';
+      date = new Date(isoString);
+    } else {
+      date = new Date(inputDate);
+    }
+
+    // Check for invalid date
+    if (isNaN(date.getTime())) {
+      console.error('Invalid date provided:', inputDate);
+      return '';
+    }
+
+    const options: Intl.DateTimeFormatOptions = {
+      timeZone: 'Europe/Zurich',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false,
+    };
+
+    const formatter = new Intl.DateTimeFormat('en-GB', options);
+    const formattedDate = formatter.format(date);
+
+    const [day, month, year, hour, minute, second] = formattedDate.match(/\d+/g) || [];
+
+    return `${day}.${month}.${year} ${hour}:${minute}:${second}`;
+  }
 }
