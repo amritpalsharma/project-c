@@ -168,7 +168,8 @@
               <div class="list-view">
                 <h6 class="mb-1">{{'registrationDate' | translate }} :</h6>
                 <h6 class="mb-0 font-w400">
-                  {{formatDateTime(user.created_at)}}
+                  {{user.created_at}}
+                  <!-- {{formatDateTime(user.created_at)}} -->
                   <!-- {{ user.created_at | date:'MM.dd.yyyy' }} - {{ user.created_at | date:'hh.mm a' }} -->
                 </h6>
               </div>

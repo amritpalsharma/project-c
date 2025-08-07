@@ -34,7 +34,7 @@ export class TalkService {
     });
 
     const data = await res.json();
-    let appID = 'tmI75KXB'; // testkey
+    let appID = ''; // testkey
     if (!data.signature || !data.appId) {
       console.error('Missing appId or signature in response.');
     } else {
