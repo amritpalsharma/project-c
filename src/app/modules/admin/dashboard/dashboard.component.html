@@ -162,7 +162,8 @@
                       <img src="../../../assets/images/1.png" class="table_img" alt="">
                   </ng-template> -->
 
-                  <span>{{user.first_name +' '+user.last_name }}</span>
+                  <span *ngIf="!userRoleClubOrClubRep(user.role_name)">{{user.first_name +' '+user.last_name }}</span>
+                  <span *ngIf="userRoleClubOrClubRep(user.role_name)">{{user.pre_current_club_name }}</span>
                 </div>
               </td>
               <td>{{user.role_name}}</td>
@@ -249,7 +250,14 @@
             <img src="../../../assets/images/1.png" class="message-media me-3" alt=""
               *ngIf="!club.pre_current_club_logo || !club.pre_current_club_logo">
             <div class="mesaage-content">
-              <h6 class="mb-0">{{club.first_name}} {{club.last_name}}</h6>
+              <!-- <pre> -->
+                <!-- {{club | json}} -->
+              <!-- </pre> -->
+              <h6 class="mb-0" *ngIf="club.current_club_name">{{club.current_club_name}}</h6>
+              <h6 class="mb-0" *ngIf="!club.current_club_name && club.pre_current_club_name">
+                {{club.pre_current_club_name}}
+              </h6>
+              <!-- <h6 class="mb-0">{{club.first_name}} {{club.last_name}}</h6> -->
               <small>{{club.registration_time}}</small>
               <!-- <small>{{getDaysAgo(club.created_at)}}</small> -->
             </div>

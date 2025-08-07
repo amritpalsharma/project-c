@@ -55,19 +55,41 @@ export class UserDetailPopupComponent {
   }
 
   closePopup(slug: string, id: Number, tab: any = ''): void {
-    if (slug == 'Club Representator') {
+    slug = slug.toLowerCase();
+    // club roles
+    if (slug == 'club representator') {
       slug = 'club';
     }
     slug = slug.toLowerCase();
     if (slug == 'vereinsvertreter') {
       slug = 'club';
     }
+
+    // New code for club teamMember
+    if (slug == 'club team-member') {
+      slug = 'club';
+    }
+
+    if (slug == 'vereinsmitglied') {
+      slug = 'club';
+    }
+    // scout roles
     if (slug == 'scout representator') {
       slug = 'scout';
     }
     if (slug == 'spähervertreter') {
       slug = 'scout';
     }
+
+    // Scout Team member
+    if (slug == 'scout team-member') {
+      slug = 'scout';
+    }
+
+    if (slug == 'scout-teammitglied') {
+      slug = 'scout';
+    }
+
     let pageRoute = 'admin/' + slug.toLowerCase() + '/' + id;
 
 
@@ -78,7 +100,7 @@ export class UserDetailPopupComponent {
       let fragment = tab;
       this.router.navigate([pageRoute, id], { fragment });
     }
-    else{
+    else {
       this.router.navigate([pageRoute, id]);
     }
   }

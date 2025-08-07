@@ -116,7 +116,7 @@
           </a>
         </li>
       </ng-container>
-      <ng-container *ngIf="!isUserVerified && isUserVerified">
+      <ng-container *ngIf="!isUserVerified">
         <li class="un_verified" [ngClass]="{'locksidebar':locksideBar, 'loading_sidebar':isLoadingStatus}">
           <a *ngIf="!isUserVerified" [matTooltip]="sidebarOpen ? ('explore' | translate) : ''"
             matTooltipPosition="right" (click)="showVerificationPopup($event)">

@@ -7,6 +7,7 @@ import { UserDetailPopupComponent } from '../users/user-detail-popup/user-detail
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { UserRoleService } from '../../../services/user-role.service';
 import { ChangeDetectorRef } from '@angular/core';
+import { FormControl, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-user-edit-popup',
@@ -69,6 +70,8 @@ export class UserEditPopupComponent {
   custom_club_country: number = 0;
   custom_club: string = '';
   custom_team: string = '';
+  nationFilterCtrl = new FormControl('');
+
   constructor(
     private cdr: ChangeDetectorRef,
     public userRoleService: UserRoleService,
@@ -85,6 +88,7 @@ export class UserEditPopupComponent {
     // console.info('user',this.data)
   }
   testCustomArr: any;
+  clubsListingArr: any = [];
   ngOnInit() {
 
     this.getCountries();
@@ -201,6 +205,17 @@ export class UserEditPopupComponent {
     // }else 
 
     // Manually trigger change detection
+
+    this.nationFilterCtrl.valueChanges.subscribe(() => {
+      const search = this.nationFilterCtrl.value?.toLowerCase() || '';
+      if (!search) {
+        this.playerClubsListing = this.clubsListingArr;
+        return;
+      }
+      this.playerClubsListing = this.clubsListingArr.filter(
+        (club: any) => club.club_name.toLowerCase().includes(search)
+      );
+    });
     this.cdr.detectChanges();
   }
 
@@ -290,6 +305,7 @@ export class UserEditPopupComponent {
       response => {
         if (response.status) {
           this.playerClubsListing = response.data.clubs;
+          this.clubsListingArr = this.playerClubsListing;
 
           //check taken by status to show teams dropdown
 

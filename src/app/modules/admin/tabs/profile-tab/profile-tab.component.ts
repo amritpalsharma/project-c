@@ -6,6 +6,7 @@ import { GlobalSettingsService } from '../../../../services/global-settings.serv
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserRoleService } from '../../../../services/user-role.service';
 import { UserService } from '../../../../services/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-profile-tab',
@@ -27,6 +28,7 @@ export class ProfileTabComponent {
   currentClubInfo: any;
   customClubInfo: any;
   constructor(
+    public toaster: ToastrService,
     public userService: UserService,
     public userRoleService: UserRoleService,
     private router: Router, public dialog: MatDialog, public globalSettings: GlobalSettingsService) {
@@ -110,9 +112,11 @@ export class ProfileTabComponent {
           this.dataEmitter.emit('updated');
 
           if (result.message != null && result.message != undefined) {
-            this.showMatDialog(result.message, 'display');
+            // this.showMatDialog(result.message, 'display');
+            this.toaster.success(result.message);
           } else {
-            this.showMatDialog("Player updated successfully.", 'display');
+            this.toaster.success("Der Player wurde erfolgreich aktualisiert.");
+            // this.showMatDialog("", 'display');
           }
           if (this.userData?.id && !isNaN(Number(this.userData?.id))) {
             this.getUserProfile(this.userData?.id);

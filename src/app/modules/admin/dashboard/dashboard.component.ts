@@ -565,7 +565,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             ticks: {
               color: labelcolor,
               display: true,
-              font: { size: 20, family: 'poppins,sans-serif', weight: 700 },
+              font: { size: 20, family: 'Libre Franklin,sans-serif', weight: 700 },
+              // font: { size: 20, family: 'poppins,sans-serif', weight: 700 },
             },
             border: { display: false },
           },
@@ -580,7 +581,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             backgroundColor: '#E05263',
             titleColor: '#fff',
             bodyColor: '#fff',            
-            titleFont: { family: 'Poppins', size: 20, weight: 800 },
+            titleFont: { family: 'Libre Franklin,sans-serif', size: 20, weight: 800 },
+            // titleFont: { family: 'Poppins', size: 20, weight: 800 },
             callbacks: {
               label: (tooltipItem: any) => {
                 let graph_label_tooltip = 'tooltip.totalUsers';

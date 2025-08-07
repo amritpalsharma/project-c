@@ -176,11 +176,11 @@
                 </div>
             </div>
         </div>
-        {{scoutInfoDetails | json}}
+        <!-- {{scoutInfoDetails | json}} -->
         <div class="col-lg-3 td_col"
             *ngIf="this.userDataArr?.scout_info && scoutInfoDetails != null && scoutInfoDetails !== ''">
             <div class="team-details">
-                <p> {{ 'scout' | translate}}</p>
+                <p *ngIf="scoutInfoDetails?.first_name"> {{ 'scout' | translate}}</p>
                 <div class="d-flex align-items-center cursor-pointer"
                     (click)="naviGateScoutProfile(scoutInfoDetails.id)">
                     <img *ngIf="scoutInfoDetails?.profile_image"

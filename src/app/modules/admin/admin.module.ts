@@ -98,7 +98,8 @@ import { SharedModule } from '../shared/shared.module'; // path depends on your 
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { PerformanceAnalysisComponent } from './tabs/performance-analysis/performance-analysis.component';
 
-
+import { NgSelectModule } from '@ng-select/ng-select';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 export const MY_FORMATS = {
   parse: {
     dateInput: 'DD.MM.YYYY', // Parse input in DD.MM.YYYY format
@@ -207,7 +208,9 @@ export const MY_FORMATS = {
     CKEditorModule,
     EditorModule,
     SharedModule,
-    MatTooltipModule
+    MatTooltipModule,
+    NgSelectModule,
+    NgxMatSelectSearchModule
   ],
   providers: [
     UserService,
