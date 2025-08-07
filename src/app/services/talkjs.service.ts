@@ -22,8 +22,6 @@ export class TalkService {
   }
   async init(user: any): Promise<Talk.Session> {
 
-    // let authToken = localStorage.getItem('authToken');
-
     // 🔄 Fetch both appId and signature from backend
     const res = await fetch('https://api.socceryou.ch/api/get-talk-signature?chatMode=' + this.chatMode, {
       method: 'GET',

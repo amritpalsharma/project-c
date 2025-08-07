@@ -123,11 +123,7 @@
                   <input class="form-control join-end" matInput id="endDate" name="contractStart"
                     [ngClass]="{'emptyRequiredField': !endDate.value && submitClicked && !noEndDate}"
                     [matDatepicker]="contractEndPicker" [formControl]="endDate" placeholder="DD.MM.YYYY"
-<<<<<<< HEAD
                     [disabled]="noEndDate" [readonly]="true" (click)="openDatePicker(contractEndPicker)"/>
-=======
-                    [disabled]="noEndDate" [readonly]="true"/>
->>>>>>> 404bc6fc2cb3d1bf4c4ec1bd613978dab77047d7
 
                   <mat-datepicker-toggle matSuffix [for]="contractEndPicker"></mat-datepicker-toggle>
                   <mat-datepicker #contractEndPicker></mat-datepicker>
