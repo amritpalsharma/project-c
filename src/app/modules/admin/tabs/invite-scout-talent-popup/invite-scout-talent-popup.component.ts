@@ -7,6 +7,7 @@ import { UserService } from '../../../../services/user.service';
 import { TalentService } from '../../../../services/talent.service';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { debounceTime, Subject } from 'rxjs';
+// import { PortfolioTabComponent } from '../portfolio-tab/portfolio-tab.component';
 
 
 @Component({
@@ -27,7 +28,10 @@ export class InviteScoutTalentPopupComponent {
   invitedUsers: any = [];
   eventName: any = "";
   scoutId: any = "";
+  theme: string = localStorage.getItem('theme') || 'dark';
+  currentSearch: string = '';
   constructor(
+    // private portfolioTab: PortfolioTabComponent,
     private userService: UserService,
     private talentService: TalentService,
     public dialogRef: MatDialogRef<InviteScoutTalentPopupComponent>,
@@ -37,11 +41,21 @@ export class InviteScoutTalentPopupComponent {
     this.scoutId = data.scoutId;
 
     this.searchSubject.pipe(debounceTime(300)).subscribe(keyword => {
-      this.filteredUsers = this.allUsers.filter((user: any) => {
-        let firstName = user.first_name ? user.first_name.toLowerCase() : '';
-        let lastName = user.last_name ? user.last_name.toLowerCase() : '';
+      if (keyword.length < 2) {
+        this.filteredUsers = [];
+        this.currentSearch = '';
+        return;
+      }
+      this.currentSearch = keyword;
+      // this.filteredUsers = this.allUsers.filter((user: any) => {
+      //   let firstName = user.first_name ? user.first_name.toLowerCase() : '';
+      //   let lastName = user.last_name ? user.last_name.toLowerCase() : '';
 
-        return firstName.includes(keyword) || lastName.includes(keyword);
+      //   return firstName.includes(keyword) || lastName.includes(keyword);
+      // });
+      this.filteredUsers = this.allUsers.filter((user: any) => {
+        const fullName = `${user.first_name ?? ''} ${user.last_name ?? ''}`.toLowerCase().trim();
+        return fullName.includes(keyword.toLowerCase());
       });
     });
   }
@@ -86,6 +100,7 @@ export class InviteScoutTalentPopupComponent {
           id: this.scoutId,
           message: response.message
         });
+        // this.portfolioTab.getScoutPlayers();
       } else {
         console.error('Invalid API response structure:', response);
       }
@@ -94,10 +109,20 @@ export class InviteScoutTalentPopupComponent {
 
   onKeyPress(event: any) {
     let keyword = event.target.value;
-    console.log(keyword); // You can use this to see the current input value
 
-    this.filteredUsers = this.allUsers.filter((user: any) => (user.first_name !== null && user.first_name !== undefined) &&
-      user.first_name.toLowerCase().indexOf(keyword.toLowerCase()) != -1);
+    keyword = keyword.toLowerCase();
+    // console.log(keyword); // You can use this to see the current input value
+    if (keyword.length < 2) {
+      this.filteredUsers = [];
+      this.currentSearch = '';
+      return;
+    }
+    // this.filteredUsers = this.allUsers.filter((user: any) => (user.first_name !== null && user.first_name !== undefined) &&
+    //   user.first_name.toLowerCase().indexOf(keyword.toLowerCase()) != -1);
+    this.filteredUsers = this.allUsers.filter((user: any) => {
+      const fullName = `${user.first_name ?? ''} ${user.last_name ?? ''}`.toLowerCase().trim();
+      return fullName.includes(keyword.toLowerCase());
+    });
   }
 
   onClickOutside() {
@@ -115,6 +140,11 @@ export class InviteScoutTalentPopupComponent {
 
   callListApi(userInput: HTMLInputElement) {
     const keyword = userInput.value.trim().toLowerCase(); // Trim spaces and convert to lowercase
+    if (keyword.length < 2) {
+      this.filteredUsers = [];
+      this.currentSearch = '';
+      return;
+    }
     this.searchSubject.next(keyword); // Send input to debounce stream
   }
 

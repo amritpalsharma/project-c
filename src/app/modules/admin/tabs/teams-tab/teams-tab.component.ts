@@ -14,7 +14,7 @@ export class TeamsTabComponent {
   teams: any = [];
   players: any = [];
   view: string = "team";
-  displayedColumns: string[] = ['Player Name', 'Joining Date', 'Exit Date', 'Location', 'Edit'];
+  displayedColumns: string[] = ['Player Name', 'JersyNumber', 'Joining Date', 'Exit Date', 'Location', 'Edit'];
   isLoading: boolean = false;
   selectedTeam: any = "";
   team_group: string = 'm';
@@ -78,7 +78,7 @@ export class TeamsTabComponent {
   }
 
   navigate(playerId: any) {
-    let pageRoute = 'admin/player';
+    let pageRoute = 'admin/talent';
     this.router.navigate([pageRoute, playerId]);
   }
 

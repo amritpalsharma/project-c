@@ -90,13 +90,21 @@
               </td>
             </ng-container>
 
+            <ng-container matColumnDef="JersyNumber">
+              <th mat-header-cell *matHeaderCellDef>{{ 'addJerseyNumber' | translate }}</th>
+              <td mat-cell *matCellDef="let element"> #{{ element.jersey_number }}</td>
+            </ng-container>
+
             <ng-container matColumnDef="Joining Date">
               <th mat-header-cell *matHeaderCellDef>{{ 'joiningDate' | translate }}
                 <!-- <svg width="9" height="13" viewBox="0 0 9 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M1.15341 7.43701H7.84716C8.44903 7.43701 8.74997 8.1958 8.32528 8.63818L4.97841 12.1245C4.71404 12.3999 4.28654 12.3999 4.02497 12.1245L0.675285 8.63818C0.250597 8.1958 0.551535 7.43701 1.15341 7.43701ZM8.32528 4.36084L4.97841 0.874512C4.71404 0.599121 4.28654 0.599121 4.02497 0.874512L0.675285 4.36084C0.250597 4.80322 0.551535 5.56201 1.15341 5.56201H7.84716C8.44903 5.56201 8.74997 4.80322 8.32528 4.36084Z"  class="team-up-down" fill="#111418"/>
                     </svg>                     -->
               </th>
-              <td mat-cell *matCellDef="let element"> {{ element.join_date | date:'MM.dd.yyyy' }}</td>
+              <td mat-cell *matCellDef="let element">
+                {{ element.join_date | date:'dd.MM.yyyy' }}
+                <!-- {{ element.join_date | date:'MM.dd.yyyy' }} -->
+              </td>
             </ng-container>
 
             <ng-container matColumnDef="Exit Date">
@@ -106,7 +114,7 @@
                     </svg>                     -->
               </th>
               <td mat-cell *matCellDef="let element">
-                <span *ngIf="element.end_date">{{ element.end_date | date:'MM.dd.yyyy' }}</span>
+                <span *ngIf="element.end_date">{{ element.end_date | date:'dd.MM.yyyy' }}</span>
                 <span *ngIf="!element.end_date">-</span>
               </td>
             </ng-container>
@@ -118,7 +126,8 @@
 
             <ng-container matColumnDef="Edit">
               <th mat-header-cell *matHeaderCellDef class="text-center"> {{ 'edit' | translate }}</th>
-              <td mat-cell *matCellDef="let element" class="text-center cursor-pointer" [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}">
+              <td mat-cell *matCellDef="let element" class="text-center cursor-pointer"
+                [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}">
                 <svg (click)="navigate(element.player_id)" width="24" height="24" viewBox="0 0 24 24" fill="none"
                   xmlns="http://www.w3.org/2000/svg">
                   <path

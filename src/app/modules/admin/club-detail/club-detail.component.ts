@@ -93,7 +93,7 @@ export class ClubDetailComponent implements OnInit {
       this.user.status = newStatus;
       // this.showMatDialog('User status updated successfully!', 'display');
       if (response.message != '' && response.message != undefined) {
-        this.showMatDialog(response.message, 'display');
+        // this.showMatDialog(response.message, 'display');
         this.toaster.success(response.message);
       } else {
         // this.showMatDialog('User status updated successfully!', 'display');
@@ -102,7 +102,7 @@ export class ClubDetailComponent implements OnInit {
     },
       error => {
         console.error('Error updating user status:', error);
-        this.showMatDialog('Error updating user status. Please try again.', 'display');
+        // this.showMatDialog('Error updating user status. Please try again.', 'display');
       }
     );
   }
@@ -142,7 +142,10 @@ export class ClubDetailComponent implements OnInit {
     let langId = localStorage.getItem('lang_id');
     this.userService.deleteUser([this.userId], langId).subscribe(
       response => {
-        this.showMatDialog('User deleted successfully!', 'display');
+        if(response.message != ''){
+            this.toaster.success(response.message);
+        }
+        // this.showMatDialog('User deleted successfully!', 'display');
         this.router.navigate(['/admin/users']);
       },
       error => {
@@ -176,15 +179,17 @@ export class ClubDetailComponent implements OnInit {
         this.userService.uploadProfileImage(this.userId, formdata).subscribe((response) => {
           if (response && response.status) {
             if (response.message != '' && response.message != undefined) {
-              this.showMatDialog(response.message, 'display');
+              // this.showMatDialog(response.message, 'display');
+              this.toaster.success(response.message);
             } else {
-              this.showMatDialog('Profile image updated successfully!', 'display');
+              this.toaster.success('Profilbild erfolgreich aktualisiert!');
+              // this.showMatDialog('Profile image updated successfully!', 'display');
             }
             this.user.meta.profile_image_path = environment.url + "uploads/" + response.data.uploaded_fileinfo;
             // this.dataEmitter.emit(this.coverImage); // Emitting the data
             // this.isLoading = false;
           } else {
-            this.showMatDialog('Error in updating profile image!', 'display');
+            // this.showMatDialog('Error in updating profile image!', 'display');
             // this.isLoading = false;
             console.error('Invalid API response structure:', response);
           }

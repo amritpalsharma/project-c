@@ -23,7 +23,7 @@ export class UserDetailPopupComponent {
     private adminHelper: AdminHelperService,
     @Inject(MAT_DIALOG_DATA) public user: any) {
     console.log('edit user', user);
-
+    // alert("HERE")
   }
   close() {
     this.dialogRef.close();

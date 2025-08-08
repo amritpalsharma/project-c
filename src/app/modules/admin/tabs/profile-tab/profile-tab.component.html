@@ -109,8 +109,11 @@
             <div class="team-details">
                 <p> {{ 'internationalPlayer' | translate}}</p>
                 <div class="d-flex align-items-center">
-                    <img *ngIf="userData.int_player_country_logo_path" src="{{userData.int_player_country_logo_path}}"
-                        alt="">
+                    <!-- <pre>
+                        {{userData | json}}
+                    </pre> -->
+                    <img *ngIf="userData.int_player_country_logo"
+                        src="{{baseUrl +'logos/'+ userData.int_player_country_logo}}" alt="">
                     <h6>{{userData?.int_player_country}}</h6>
                 </div>
             </div>
@@ -232,8 +235,7 @@
         <div class="col-lg-3 td_col">
             <div class="team-details style-1">
                 <p>{{ 'inTheTeamSince' | translate}}</p>
-                <h6 *ngIf="isValidDate(userData?.meta?.in_team_since)">{{userData?.meta?.in_team_since |
-                    date:'dd.MM.yyyy' }}</h6>
+                <h6 class="details-1" *ngIf="isValidDate(userData?.meta?.contract_start)">{{userData?.meta?.contract_start | date:'dd.MM.yyyy' }}</h6>
             </div>
         </div>
         <div class="col-lg-3 td_col mt-3">

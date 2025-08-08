@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { UserService } from '../../../../services/user.service';
 import { AddRepresentatorPopupComponent } from '../../add-representator-popup/add-representator-popup.component';
 import { UserRoleService } from '../../../../services/user-role.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-scout-profile-tab',
@@ -23,6 +24,7 @@ export class ScoutProfileTabComponent {
   @Input() userData: any;
   @Output() dataEmitter = new EventEmitter<string>();
   constructor(
+    public toaster: ToastrService,
     public userRoleService: UserRoleService,
     public dialog: MatDialog,
     private router: Router,
@@ -79,9 +81,11 @@ export class ScoutProfileTabComponent {
         if (result.action == "updated") {
           this.dataEmitter.emit('updated');
           if (result.message != '' && result.message != undefined) {
-            this.showMatDialog(result.message, 'display');
-          } else {
-            this.showMatDialog("Scout updated successfully.", 'display');
+            // this.showMatDialog(result.message, 'display');
+              this.toaster.success(result.message);
+            } else {
+            this.toaster.success("Scout erfolgreich aktualisiert.");
+            // this.showMatDialog("Scout updated successfully.", 'display');
           }
         }
         //  console.log('Dialog result:', result);
@@ -126,9 +130,11 @@ export class ScoutProfileTabComponent {
         if (result.action == "added") {
           this.getRepresentators();
           if (result.message != '' && result.message != undefined) {
-            this.showMatDialog(result.message, 'display');
+            // this.showMatDialog(result.message, 'display');
+            this.toaster.success(result.message);
           } else {
-            this.showMatDialog("Invite sent successfully.", 'display');
+            this.toaster.success("Einladung erfolgreich versendet.");
+            // this.showMatDialog("", 'display');
           }
         }
         //  console.log('Dialog result:', result);
@@ -143,9 +149,11 @@ export class ScoutProfileTabComponent {
     this.userService.updateRepresentatorRole(id, { site_role: newRole }).subscribe((response) => {
       if (response && response.status) {
         if (response.message != '' && response.message != undefined) {
-          this.showMatDialog(response.message, 'display');
+          // this.showMatDialog(response.message, 'display');
+          this.toaster.success(response.message);
         } else {
-          this.showMatDialog("Role updated successfully.", 'display');
+          this.toaster.success("Rolle erfolgreich aktualisiert.");
+          // this.showMatDialog("Role updated successfully.", 'display');
         }
       } else {
         console.error('Invalid API response structure:', response);
@@ -169,9 +177,11 @@ export class ScoutProfileTabComponent {
         if (result.action == "updated") {
           this.getRepresentators();
           if (result.message != '' && result.message != undefined) {
-            this.showMatDialog(result.message, 'display');
+            // this.showMatDialog(result.message, 'display');
+            this.toaster.success(result.message);
           } else {
-            this.showMatDialog("Representator updated successfully.", 'display');
+            this.toaster.success("Vertreter erfolgreich aktualisiert.");
+            // this.showMatDialog("", 'display');
           }
         }
         //  console.log('Dialog result:', result);
@@ -192,9 +202,11 @@ export class ScoutProfileTabComponent {
         if (response.status) {
           this.getRepresentators();
           if (response.message != '' && response.message != undefined) {
-            this.showMatDialog(response.message, 'display');
+            // this.showMatDialog(response.message, 'display');
+            this.toaster.success(response.message);
           } else {
-            this.showMatDialog('Representator removed successfully!.', 'display');
+            // this.showMatDialog('Representator removed successfully!.', 'display');
+            this.toaster.success("Vertreter erfolgreich entfernt!");
           }
         } else {
           this.showMatDialog('Error in removing Representator. Please try again.', 'display');

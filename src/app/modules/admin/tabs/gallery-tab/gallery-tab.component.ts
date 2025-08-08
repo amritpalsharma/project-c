@@ -18,7 +18,7 @@ export class GalleryTabComponent {
   userId: any = '';
   userImages: any = [];
   userVideos: any = [];
-  imageBaseUrl: any = `${environment.url}uploads/`;
+  imageBaseUrl: any = `${environment.url}public/uploads/`;
   selectedFile: any = '';
   isdefaultCoverImage: string = '';
   // defaultCoverImage:any = "./media/palyers.png";
@@ -224,6 +224,7 @@ export class GalleryTabComponent {
       position: {
         top: '150px'
       },
+      disableClose: true,
       data: {
         userId: this.userId,
         type: "image"
@@ -248,6 +249,7 @@ export class GalleryTabComponent {
       position: {
         top: '150px'
       },
+      disableClose: true,
       data: {
         userId: this.userId,
         type: "video"
@@ -362,6 +364,9 @@ export class GalleryTabComponent {
 
 
 
-
+  getThumbnailName(fileName: string): string {
+    const fileNameWithoutExt = fileName.replace(/\.[^/.]+$/, ''); // Remove the file extension (e.g., '.mp4')
+    return fileNameWithoutExt + '.jpg'; // Append .jpg for the thumbnail
+  }
 
 }

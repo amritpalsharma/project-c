@@ -23,7 +23,8 @@
         <!-- </div> -->
       </div>
       <div class="edit-canvas-content">
-        <h6>{{ user.first_name }} {{ user.last_name }}</h6>
+        <h6 *ngIf="isCurrentRoleClub(user?.role_name)">{{ user.pre_current_club_name }}</h6>
+        <h6 *ngIf="!isCurrentRoleClub(user?.role_name)">{{ user.first_name }} {{ user.last_name }}</h6>
         <h6 class="font-w400">{{(user.role_name == 'player') ? 'talent' : user.role_name}}</h6>
       </div>
     </div>

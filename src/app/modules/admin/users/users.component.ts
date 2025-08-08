@@ -270,6 +270,7 @@ export class UsersComponent implements OnInit {
 
   editUser(user: any): void {
     console.log(user)
+    // alert("CONFIRM EDIT")
     const dialogRef = this.dialog.open(UserDetailPopupComponent, {
       data: user,
     });

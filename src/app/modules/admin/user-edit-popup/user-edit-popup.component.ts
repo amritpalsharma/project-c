@@ -52,10 +52,10 @@ export class UserEditPopupComponent {
   height: any = "";
   otherPosition: any = [];
   playerClubsListing: any = [];
-  playerClub: any = "";
+  playerClub: any;
   playerCountries: any = [];
   footListing: any = ['Left', 'Right', 'Both'];
-  mainPosition: any = "";
+  mainPosition: any;
   internationalCountry: any = "";
   takenBy: any = "";
   // showTeamsDropdown: boolean = false;
@@ -71,6 +71,8 @@ export class UserEditPopupComponent {
   custom_club: string = '';
   custom_team: string = '';
   nationFilterCtrl = new FormControl('');
+  clubSearching = new FormControl('');
+  club_Searching = new FormControl('');
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -89,6 +91,8 @@ export class UserEditPopupComponent {
   }
   testCustomArr: any;
   clubsListingArr: any = [];
+  filterCountriesListing: any = [];
+  filterplayerClubsListing: any = [];
   ngOnInit() {
 
     this.getCountries();
@@ -107,7 +111,7 @@ export class UserEditPopupComponent {
     }
     if (this.data?.registered_club_info != null && typeof this.data?.registered_club_info !== undefined) {
       let registredClubArr = JSON.parse(this.data?.registered_club_info);
-      this.playerClub = registredClubArr.club_id;
+      this.playerClub = String(registredClubArr.club_id);
       this.playerTeam = registredClubArr.team_id;
       this.getClubTeamsByGroup(this.playerClub, this.team_type);
     }
@@ -133,7 +137,8 @@ export class UserEditPopupComponent {
     this.lastName = this.data?.last_name || '';
     this.companyName = this.data?.meta?.company_name || '';
     this.designation = this.data?.meta?.designation || '';
-    this.dob = this.data?.meta?.date_of_birth || '';
+    // this.dob = this.data?.meta?.date_of_birth || '';
+    this.dob = new Date(this.data?.meta?.date_of_birth) || ''; // where data.dob is "2023-08-07"
     this.foot = this.data?.meta?.foot || '';
     this.sinceInTeam = this.data?.meta?.in_team_since || '';
     if (this.sinceInTeam != "") {
@@ -182,7 +187,7 @@ export class UserEditPopupComponent {
       playerPositions = JSON.parse(playerPositions);
       for (let n of playerPositions) {
         if (n.main_position == '1') {
-          this.mainPosition = n.position_id
+          this.mainPosition = String(n.position_id)
         }
       }
     }
@@ -213,6 +218,28 @@ export class UserEditPopupComponent {
         return;
       }
       this.playerClubsListing = this.clubsListingArr.filter(
+        (club: any) => club.club_name.toLowerCase().includes(search)
+      );
+    });
+
+    this.clubSearching.valueChanges.subscribe(() => {
+      const search = this.clubSearching.value?.toLowerCase() || '';
+      if (!search) {
+        this.filterCountriesListing = this.countriesListing;
+        return;
+      }
+      this.filterCountriesListing = this.countriesListing.filter(
+        (country: any) => country.country_name.toLowerCase().includes(search)
+      );
+    });
+
+    this.club_Searching.valueChanges.subscribe(() => {
+      const search = this.club_Searching.value?.toLowerCase() || '';
+      if (!search) {
+        this.playerClubsListing = this.playerClubsListing;
+        return;
+      }
+      this.filterplayerClubsListing = this.playerClubsListing.filter(
         (club: any) => club.club_name.toLowerCase().includes(search)
       );
     });
@@ -539,6 +566,7 @@ export class UserEditPopupComponent {
   onDateChange(event: MatDatepickerInputEvent<Date>, type: any): void {
     const selectedDate = event.value;
     let date = this.formatDate(selectedDate);
+    // let date = selectedDate;
 
     if (type == 'dob') {
       this.dob = date;
@@ -549,10 +577,28 @@ export class UserEditPopupComponent {
     }
   }
 
-  formatDate(date: any) {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
-    const day = String(date.getDate()).padStart(2, '0');
+  // formatDate(date: any) {
+  //   const year = date.getFullYear();
+  //   const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+  //   const day = String(date.getDate()).padStart(2, '0');
+  //   return `${year}-${month}-${day}`;
+  // }
+
+  formatDate(date: any): string | null {
+    if (!date) return null;
+
+    // Convert string timestamps or invalid types
+    const parsedDate = (date instanceof Date) ? date : new Date(date);
+
+    if (isNaN(parsedDate.getTime())) {
+      console.error('Invalid date passed to formatDate:', date);
+      return null;
+    }
+
+    const year = parsedDate.getFullYear();
+    const month = String(parsedDate.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+    const day = String(parsedDate.getDate()).padStart(2, '0');
+
     return `${year}-${month}-${day}`;
   }
 

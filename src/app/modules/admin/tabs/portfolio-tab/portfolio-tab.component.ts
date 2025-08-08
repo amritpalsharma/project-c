@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../../../services/user.service';
 import { MessagePopupComponent } from '../../message-popup/message-popup.component';
 import { ScoutPlayerViewPopupComponent } from '../scout-player-view-popup/scout-player-view-popup.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
+// import {  } from '@angular/router';
 
 @Component({
   selector: 'app-portfolio-tab',
@@ -16,15 +17,20 @@ export class PortfolioTabComponent {
 
   userId: any = '';
   scoutPlayers: any = [];
-  displayedColumns: string[] = ['Name', 'Language', 'Club', 'Contract Starts', 'Contract Expires', 'View', 'Delete'];
+  displayedColumns: string[] = ['Name', 'Language', 'Club', 'View', 'Delete'];
+  // displayedColumns: string[] = ['Name', 'Language', 'Club', 'Contract Starts', 'Contract Expires', 'View', 'Delete'];
   isLoading = false;
   idToBeDeleted: any = '';
 
   langSubscription!: Subscription;
   currentLangId: any = localStorage.getItem('lang_id');
+
+  baseUrl: string = 'https://api.socceryou.ch/uploads/';
+  theme: string = localStorage.getItem('theme') || 'dark';
   constructor(
-    private route: ActivatedRoute, 
-    private userService: UserService, 
+    private route: ActivatedRoute,
+    private router: Router,
+    private userService: UserService,
     public dialog: MatDialog,
     private translateService: TranslateService
   ) { }
@@ -37,9 +43,9 @@ export class PortfolioTabComponent {
     this.langSubscription = this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
       // this.getUserProfile(this.userId);
       // alert('lang update to '+event.lang)
-      if(event.lang == 'de'){
+      if (event.lang == 'de') {
         this.currentLangId = 2;
-      }else if(event.lang == 'en'){
+      } else if (event.lang == 'en') {
         this.currentLangId = 1;
       }
       this.getScoutPlayers();
@@ -66,22 +72,24 @@ export class PortfolioTabComponent {
   }
 
   viewScoutPlayer(playerId: any) {
-    const playerViewDialog = this.dialog.open(ScoutPlayerViewPopupComponent, {
-      width: '1000px',
-      height: '600px',
-      position: {
-        top: '30px'
-      },
-      data: {
-        playerId: playerId
-      }
-    })
+    let pageRoute = 'admin/talent';
+    this.router.navigate([pageRoute, playerId]);
+    // const playerViewDialog = this.dialog.open(ScoutPlayerViewPopupComponent, {
+    //   width: '1000px',
+    //   height: '600px',
+    //   position: {
+    //     top: '30px'
+    //   },
+    //   data: {
+    //     playerId: playerId
+    //   }
+    // })
 
-    playerViewDialog.afterClosed().subscribe(result => {
-      // if (result !== undefined) {
-      //  console.log('Dialog result:', result);
-      // }
-    });
+    // playerViewDialog.afterClosed().subscribe(result => {
+    //   // if (result !== undefined) {
+    //   //  console.log('Dialog result:', result);
+    //   // }
+    // });
   }
 
   confirmDeletion(id: any, firstName: any, lastName: any) {

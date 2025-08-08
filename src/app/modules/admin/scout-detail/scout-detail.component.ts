@@ -287,10 +287,16 @@ export class ScoutDetailComponent implements OnInit {
         console.log(result)
         if (result.action == "added") {
           if (result.message != '' && result.message != undefined) {
-            this.showMatDialog(result.message, 'display')
+            // this.showMatDialog(result.message, 'display')
+            this.toaster.success(result.message)
           } else {
-            this.showMatDialog("Players invited successfully", 'display')
+            this.toaster.success("Spieler erfolgreich eingeladen")
+            // this.showMatDialog("Players invited successfully", 'display')
           }
+          // this.activeTab = 'profile';
+
+          // this.activeTab = 'portfolio';
+          // this.switchTab('portfolio');
           // this.viewSight(result.id);
 
         }
@@ -327,7 +333,8 @@ export class ScoutDetailComponent implements OnInit {
     // let langId = localStorage.getItem('lang_id');
     this.userService.deleteProfileImageAdmin(this.userId).subscribe(
       response => {
-        this.showMatDialog(response.message, 'display');
+        // this.showMatDialog(response.message, 'display');
+        this.toaster.success(response.message)
         this.getUserProfile(this.userId);
         // this.router.navigate(['/admin/users']);
       },
@@ -386,7 +393,8 @@ export class ScoutDetailComponent implements OnInit {
       formData.append('lang', lang_id + '');
       this.userService.uploadProfileImage(this.userId, formData).subscribe((response) => {
         if (response && response.status) {
-          this.showMatDialog(response.message, 'display');
+          // this.showMatDialog(response.message, 'display');
+          this.toaster.success(response.message)
           this.getUserProfile(this.userId);
           // this.user.meta.profile_image_path = environment.url + "uploads/" + response.data.uploaded_fileinfo;
           // this.isLoading = false;

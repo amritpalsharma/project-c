@@ -1,8 +1,16 @@
 <div class="add-chat admin_profile_chatbox w-100" *ngIf="action != 'showInvitedUsers'">
   <div class="chat_box">
     <div class="popup_header p-3 w-100">
-      <div><h4 class="text-center mb-0 title-text">{{ 'addNewTalent' | translate }}</h4></div>
-      <div class="close-img" (click)="close()"></div>
+      <div>
+        <h4 class="text-center mb-0 title-text">{{ 'addNewTalent' | translate }}</h4>
+      </div>
+      <!-- <div class="close-img" (click)="close()"></div> -->
+      <div class="close-img" *ngIf='theme!="dark"'>
+        <img src="../../../assets/images/carbon_close-outline-light.svg" alt="" class="" (click)="close()" />
+      </div>
+      <div class="close-img" *ngIf='theme=="dark"'>
+        <img src="../../../assets/images/carbon_close-outline.svg" alt="" class="" (click)="close()" />
+      </div>
     </div>
 
     <div class="inbox-body popup__body py-3">
@@ -25,11 +33,11 @@
             }
             <input placeholder="{{ 'searchTalent' | translate }}" #userInput [matAutocomplete]="auto"
               [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputFor]="chipGrid"
-              (focus)="callListApi(userInput)" (keyup)="onKeyPress($event)" />
+              (keyup)="onKeyPress($event)" />
           </mat-chip-grid>
 
           <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)"
-            class="listBox w-100 users-name-list">
+            class="listBox w-100 users-name-list" [ngClass]="{'d-none':currentSearch.length < 2}">
             @for (user of filteredUsers; track user) {
             <mat-option [value]="user" class="mb-4 select-user-name">
               <img width="50" height="50" style="border-radius: 50px;" class="img-list "
@@ -58,7 +66,8 @@
   </div>
 
   <div class="chat-btn popup_footer p-3">
-    <button class="btn btn-success btn-sm web-create-bg w-100" (click)="sendInvite()" type="button">{{ 'add' | translate }}</button>
+    <button class="btn btn-success btn-sm web-create-bg w-100" (click)="sendInvite()" type="button">{{ 'add' | translate
+      }}</button>
   </div>
 
 </div>

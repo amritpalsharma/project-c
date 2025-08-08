@@ -248,14 +248,27 @@ export class UserService {
     );
   }
 
+  // uploadGalleryImages(userId: any, formdata: any): Observable<any> {
+  //   const userToken = localStorage.getItem('authToken');
+  //   const headers = new HttpHeaders({
+  //     'Authorization': `Bearer ${this.userToken}`
+  //   });
+  //   console.log('Data sending......')
+  //   console.log(formdata);
+  //   return this.http.post<any>(`${this.apiUrl2}/upload-gallery-image/${userId}/?lang=` + localStorage.getItem('lang_id'), formdata, { headers });
+  // }
+
   uploadGalleryImages(userId: any, formdata: any): Observable<any> {
-    const userToken = localStorage.getItem('authToken');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.userToken}`
     });
-    console.log('Data sending......')
-    console.log(formdata);
-    return this.http.post<any>(`${this.apiUrl2}/upload-gallery-image/${userId}/?lang=` + localStorage.getItem('lang_id'), formdata, { headers });
+    let currentLang = localStorage.getItem('lang_id') + '';
+    return this.http.post<any>(`${this.apiUrl2}/upload-gallery-image/${userId}/?lang=` + localStorage.getItem('lang_id'), formdata,
+
+      {
+        headers, reportProgress: true,
+        observe: 'events'
+      });
   }
 
   deleteGalleryImage(params: any): Observable<any> {

@@ -1,15 +1,18 @@
 .msg-popup-close {
-    text-align: right;
+  text-align: right;
 }
+
 .msg-popup-dialog {
-    padding: 10px 15px 35px;
-    text-align: center;
+  padding: 10px 15px 35px;
+  text-align: center;
 }
+
 .title-text {
   font-size: 18px;
 }
-.close-img{
-  background-image: url(../../../../assets/images/carbon_close-outline.png);
+
+.close-img {
+  // background-image: url(../../../../assets/images/carbon_close-outline.png);
   background-size: cover;
   width: 35px;
   height: 35px;
@@ -24,60 +27,108 @@
 }
 
 .msg-popup-close img {
-    max-width: 40px;
-    cursor:pointer;
+  max-width: 40px;
+  cursor: pointer;
 }
 
-.pointer{
-    cursor:pointer;
+.pointer {
+  cursor: pointer;
 }
 
 .upload-box {
-    border: 2px dashed #EBEBEB;
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
-    cursor: pointer;
-    margin: 10px;
-  }
-  
-  .upload-box.dragover {
-    border-color: #3f51b5;
-    background-color: #f0f8ff;
-  }
-  
-  .file-list {
-    margin-top: 20px;
-  } 
-  .file-list span{
-    color: #FD5454ed;
-  }
-  h6, p{
-    color: #A9AAAB;
-  }
+  border: 2px dashed #EBEBEB;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  margin: 10px;
+}
 
-  .gallery-upload-button{    
-      color: #A9AAAB;
-      background: #fff;
-      border: 1px solid #A9AAAB;
-      border-radius: 5px;
-      padding: 5px 10px;
+.upload-box.dragover {
+  border-color: #3f51b5;
+  background-color: #f0f8ff;
+}
 
-  }
+.file-list {
+  margin-top: 20px;
+}
 
-  .gallery-h6 {
-    font-family: Libre Franklin, sans-serif;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 27px;
-    text-align: center;
-  }
+.file-list span {
+  color: #FD5454ed;
+}
 
-  .gallery-p{
-    font-family: Libre Franklin,sans-serif;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 21px;
-    text-align: center;
+h6,
+p {
+  color: #A9AAAB;
+}
 
-  }
+.gallery-upload-button {
+  color: #A9AAAB;
+  background: #fff;
+  border: 1px solid #A9AAAB;
+  border-radius: 5px;
+  padding: 5px 10px;
+
+}
+
+.gallery-h6 {
+  font-family: Libre Franklin, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 27px;
+  text-align: center;
+}
+
+.gallery-p {
+  font-family: Libre Franklin, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  text-align: center;
+
+}
+
+
+.please-wait-box {
+  color: #000 !important;
+}
+
+::ng-deep .dark-theme .please-wait-box {
+  color: #fff !important;
+}
+
+::ng-deep .no-interaction-toast {
+  pointer-events: none;
+  /* Prevent any mouse interaction with the toast */
+}
+
+::ng-deep .no-click-popup .modal-backdrop {
+  pointer-events: none;  /* Disable interaction with the backdrop */
+}
+
+/* Optional: Style the modal content itself */
+::ng-deep .no-click-popup .modal-content {
+  pointer-events: auto;  /* Allow interaction with modal content */
+}
+::ng-deep .dark-theme .upload-box{
+  color:#ffffff !important;
+}
+
+
+
+.progress-container {
+  height: 18px;
+  background: #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #4caf50;
+  width: 0%;
+  transition: width 0.3s ease-in-out;
+  font-size: 14px;
+  color: #ffffff;
+}
