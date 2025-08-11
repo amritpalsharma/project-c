@@ -15,13 +15,12 @@
       <div class="col-sm-12">
         <label for="upload-banner">{{ 'uploadBanner' | translate }}</label>
         <div class="cupen-btn code-text text-center position-relative drag-drop-container"
-          [ngClass]="{'emptyRequiredField':submitButtonClicked}" (drop)="onDrop($event)"
-          (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)" [class.dragover]="isDragOver"
-          [class.unsupported-file]="isUnsupportedFile">
+          [ngClass]="{'emptyRequiredField':submitButtonClicked}" (drop)="onDrop($event)" (dragover)="onDragOver($event)"
+          (dragleave)="onDragLeave($event)" [class.dragover]="isDragOver" [class.unsupported-file]="isUnsupportedFile">
           <!-- <input type="file" class="upload-input d-none" id="upload-banner" (change)="onBannerFileChange($event)"
             accept="image/*"> -->
           <p *ngIf="!uploadedBannerImage" class="upload-file_name">{{removeMP4('filesSupported' | translate)}}</p>
-          <p *ngIf="!uploadedBannerImage" class="upload-file_name">{{'maximumSize5MB' | translate}}</p>
+          <p *ngIf="!uploadedBannerImage" class="upload-file_name">{{'maximumSize' | translate}}</p>
           <input type="file" (change)="onBannerFileChange($event)" accept=".png,.jpg,.jpeg,image/png,image/jpeg" hidden
             #fileInput />
           <button *ngIf="!uploadedBannerImage && !isUnsupportedFile" type="button" class="upload-img-btn"
@@ -57,56 +56,78 @@
           <div id="imagePreviewContainer"></div>
         </div>
       </div>
-      <div class="col-lg-6 mt-4 d-flex align-items-center gap-2">
-        <div class="">
-          <small class="form-text text-muted code-text">{{ 'filesSupported' | translate }} <br> {{
-            'maximumSize5MB' | translate }}</small>
-        </div>
-      </div>
     </div>
 
     <div class="row mb-4 mt-4 name-details">
-      <div class="col-lg-4 px-2">
+      <div class="col-lg-6 px-2">
         <label for="event-name" class="code-text">{{ 'eventName' | translate }}</label>
         <input type="text" id="event-name" class="cupen-btn form-control code-text w-100" [(ngModel)]="eventName">
       </div>
-      <div class="col-lg-4 px-2">
+      <div class="col-lg-6 px-2">
         <label for="manager-name" class="code-text"> {{ 'managerName' | translate }}</label>
         <input type="text" id="manager-name" class="form-control cupen-btn w-100" [(ngModel)]="managerName">
       </div>
-      <div class="col-lg-4 px-2">
+      <!-- <div class="col-lg-4 px-2">
         <label for="date-select" class="code-text">{{ 'date' | translate }}</label>
         <input class="form-control cupen-btn sighting-cal" style="min-width: 170px;" type="text" datetimepicker
           placeholder="{{'selectDateTime' | translate}}" [format]="'MM-DD-YYYY hh:mm A'" [(ngModel)]="dateTime">
-      </div>
+      </div> -->
 
     </div>
 
+    <!-- Copy From Club Create Sighting -->
+    <div class="row">
+      <div class="col-lg-6 mb-4">
+        <label for="date-select" class="code-text">{{ 'dateAndTime' | translate }}</label><br>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="date_tiem_comb">
+              <div class="position-relative common">
+                <input placeholder="DD.MM.YYYY" class="form-control cupen-btn sighting-cal"
+                  [ngClass]="{'emptyRequiredField': submitButtonClicked && !dateTimeNew}"
+                  [matDatepicker]="contractStartPicker" [formControl]="dateControl" (dateChange)="onDateChange1($event)"
+                  [readonly]="true" (click)="openDatePicker(contractStartPicker)" />
+                <mat-datepicker-toggle matSuffix [for]="contractStartPicker"></mat-datepicker-toggle>
+                <mat-datepicker #contractStartPicker></mat-datepicker>
+              </div>
+              <input type="time" id="appt" name="appt"
+                [ngClass]="{'emptyRequiredField': submitButtonClicked && !timeString}"
+                class="cupen-btn code-text form-control" [value]="timeString" (change)="onTimeChange1($event)">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 mb-4 ms-auto">
+        <div class="status_label">&nbsp;</div>
+        <div class="radio-buttons active_radio_btn website-code">
+          <label class="me-3 cursor-pointer">
+            <input class="form-check-input" type="radio" name="status" [(ngModel)]="status" [value]="true"> {{ 'active'
+            | translate }}
+          </label>
+          <label class="cursor-pointer">
+            <input class="form-check-input" type="radio" name="status" [(ngModel)]="status" [value]="false"> {{
+            'inactive' | translate }}
+          </label>
+        </div>
+      </div>
+    </div>
+    <!-- Copy From Club Create Sighting -->
 
 
-    <div class="row ">
+    <!-- <div class="row ">
 
       <div class="form-group col-lg-8">
         <label for="talent" class="code-text">{{ 'inviteTalent' | translate }}</label>
         <div class="select-talent">
           <input type="text" id="talent" class="form-control cupen-btn d-flex justify-content-between code-text w-100"
             placeholder="{{'selectFromFavorites' | translate}}" readonly (click)="toggleInviteeOverlay()">
-          <!-- <select name="invite-talent" id="talent" class=""
-            style="font-size: 14px;">
-            <option value="talent">Select Talent</option>
-            <option value="talent">Select Talent 2</option>
-            <option value="talent">Select Talent 3</option>
-            <option value="talent">Select Talent 4</option>
-          </select> -->
 
           <div class="add-chat w-100 inviteesWrap" [ngClass]="{'d-none': hideInviteeOverlay}">
             <div class="chat_box">
               <div class="inbox-body">
                 <div class="text-center w-100 py-1 body-background">
                   <mat-form-field class="example-chip-list inbox-wrapper bg-color-2 w-100">
-                    <!-- <mat-label>To:</mat-label> -->
-                    <!-- <span>To:</span> -->
-                    <mat-chip-grid #chipGrid aria-label="Fruit selection "
+                  <mat-chip-grid #chipGrid aria-label="Fruit selection "
                       class="messanger-selector messanger-selector-name bg-color-2 w-100 ">
                       <p>Search:</p>
                       @for (user of users; track $index) {
@@ -147,16 +168,6 @@
                 </div>
 
               </div>
-              <!-- <div class="user-details d-flex align-items-center justify-content-between">
-                  <div class="user-detail-list">
-                    <span><img width="60" height="60" class="img-list" src="../../../../../assets/images/1.png"></span>
-                    <span class="user-name">Lindsey Vetrovs</span>
-                  </div>
-                  <div class="check-user-list">
-                      <input type="checkbox" checked id="user-checkbox" />
-                    <label for="user-checkbox"></label>
-                  </div>
-              </div> -->
             </div>
             <div class="chat-btn">
               <button class="btn btn-success btn-sm web-create-bg w-100" (click)="sendInvite()" type="button">{{
@@ -185,15 +196,15 @@
           </svg>
         </button>
       </span>
-    </div>
+    </div> -->
     <div class="row mb-4 mt-4">
       <label for="enter-address" class="code-text">{{ 'address' | translate }}</label><br>
-      <div class="col-lg-8">
+      <div class="col-lg-12">
         <input type="text" id="enter-address" class="cupen-btn form-control code-text w-100" [(ngModel)]="address">
       </div>
     </div>
     <div class="row mb-4">
-      <div class="col-lg-8  gap-3 input-box d-flex">
+      <div class="col-lg-12 gap-3 input-box d-flex">
         <div class="zipcode-input  col-lg-6">
           <label for="zipcode" class="code-text"> {{ 'zipcode' | translate }}</label> <br>
           <input type="text" id="zipcode" class="cupen-btn form-control code-text w-100" [(ngModel)]="zipcode">
@@ -205,34 +216,7 @@
       </div>
     </div>
 
-    <!-- <div class="upload-img mb-4">
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M16.0007 29.3347H6.66732C5.93094 29.3347 5.33398 28.7377 5.33398 28.0013V4.0013C5.33398 3.26492 5.93094 2.66797 6.66732 2.66797H25.334C26.0704 2.66797 26.6673 3.26492 26.6673 4.0013V16.0013"
-          stroke="#787878" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        <path d="M23.668 29.3346V20.668" stroke="#787878" stroke-width="2" stroke-linecap="round"
-          stroke-linejoin="round" />
-        <path d="M20.668 23L21.668 22L23.668 20L25.668 22L26.668 23" stroke="#787878" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round" />
-        <path d="M10.668 10.668H21.3346" stroke="#787878" stroke-width="2" stroke-linecap="round" />
-        <path d="M10.668 16H16.0013" stroke="#787878" stroke-width="2" stroke-linecap="round" />
-      </svg>
-
-      <h5 class="heading-text mb-1 mt-2">
-        Drag and Drop files here
-      </h5>
-      <p class="main-upload-text mb-2">
-        Files supported: JPG, PNG, PDF
-      </p>
-      <div class="file-input-wrapper">
-        <button class="custom-file-button" (click)="triggerFileInput()">Choose File</button>
-        <input type="file" #fileInput style="display: none;">
-      </div>
-      <p class="main-upload-text mb-1">
-        Maximum Size: 5MB
-      </p>
-    </div> -->
-    <div class="row mb-4" *ngFor="let row of attachmentRows; let i = index">
+    <!-- <div class="row mb-4" *ngFor="let row of attachmentRows; let i = index">
       <div class="document-input col-lg-6 mb-4">
         <label for="document" class="code-text">{{ 'documentTitle' | translate }}</label> <br>
         <input type="text" id="document" class="cupen-btn form-control code-text w-100"
@@ -282,7 +266,90 @@
           </svg>
         </div>
       </div>
-    </div>
+    </div> -->
+    <!-- PDF  -->
+    <ng-container *ngIf="!data.sightData">
+
+      <div class="row" *ngFor="let row of attachmentRows; let i = index">
+        <div class="document-input col-lg-6 mb-4">
+          <!-- <label for="document" class="code-text">{{ 'scoutingInformation2' | translate }}</label> <br> -->
+          <label for="document" class="code-text">{{ 'pdfTitle' | translate }}</label> <br>
+          <!-- <label for="document" class="code-text">{{ 'documentTitle' | translate }}</label> <br> -->
+          <input type="text" id="document" class="cupen-btn code-text w-100" (keyup)="titleUpdate($event, i)">
+        </div>
+        <div class="city-input col-lg-4 col-sm-8 mb-4">
+          <div class="dummy_label">&nbsp;</div>
+          <div class="choose-file-box d-flex align-items-center justify-content-between" *ngIf="row.file != ''">
+
+
+            <svg width="43" (click)="removeFile(i)" class="delete-file-upload" height="43" viewBox="0 0 43 43"
+              fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- <path
+                d="M21.7871 3.5C11.7934 3.5 3.84961 11.4437 3.84961 21.4375C3.84961 31.4312 11.7934 39.375 21.7871 39.375C31.7809 39.375 39.7246 31.4312 39.7246 21.4375C39.7246 11.4437 31.7809 3.5 21.7871 3.5ZM21.7871 36.8125C13.3309 36.8125 6.41211 29.8937 6.41211 21.4375C6.41211 12.9812 13.3309 6.0625 21.7871 6.0625C30.2434 6.0625 37.1621 12.9812 37.1621 21.4375C37.1621 29.8937 30.2434 36.8125 21.7871 36.8125Z"
+                fill="white" /> -->
+              <path
+                d="M28.8535 30.5977L21.7871 23.5313L14.7207 30.5977L12.627 28.5039L19.6934 21.4375L12.627 14.3711L14.7207 12.2773L21.7871 19.3437L28.8535 12.2773L30.9473 14.3711L23.8809 21.4375L30.9473 28.5039L28.8535 30.5977Z"
+                fill="white" />
+            </svg>
+
+
+            <span class="w-100">
+              <svg width="18" height="24" viewBox="0 0 18 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M3 0C2.20435 0 1.44129 0.316071 0.87868 0.87868C0.31607 1.44129 0 2.20435 0 3V21C0 21.7956 0.31607 22.5587 0.87868 23.1213C1.44129 23.6839 2.20435 24 3 24H15C15.7956 24 16.5587 23.6839 17.1213 23.1213C17.6839 22.5587 18 21.7956 18 21V3C18 2.20435 17.6839 1.44129 17.1213 0.87868C16.5587 0.316071 15.7956 0 15 0L3 0ZM3 1.5H15C15.3978 1.5 15.7794 1.65804 16.0607 1.93934C16.342 2.22064 16.5 2.60218 16.5 3V21C16.5 21.3978 16.342 21.7794 16.0607 22.0607C15.7794 22.342 15.3978 22.5 15 22.5H3C2.60218 22.5 2.22064 22.342 1.93934 22.0607C1.65804 21.7794 1.5 21.3978 1.5 21V3C1.5 2.60218 1.65804 2.22064 1.93934 1.93934C2.22064 1.65804 2.60218 1.5 3 1.5Z"
+                  fill="black" />
+                <path
+                  d="M3.90426 18.1295C3.61102 18.0139 3.37502 17.7876 3.24726 17.4995C2.95476 16.9175 3.05226 16.3355 3.36726 15.8465C3.66426 15.386 4.15626 14.9945 4.71276 14.666C5.41777 14.2664 6.16287 13.9421 6.93576 13.6985C7.535 12.6189 8.06701 11.5032 8.52876 10.358C8.25358 9.73207 8.03764 9.08173 7.88376 8.41551C7.75476 7.81551 7.70526 7.22151 7.81476 6.71151C7.92726 6.18051 8.22576 5.70351 8.78976 5.47701C9.07776 5.36151 9.38976 5.29701 9.69276 5.36151C9.84517 5.39395 9.98846 5.45992 10.1122 5.55462C10.236 5.64932 10.3371 5.77037 10.4083 5.90901C10.5403 6.15501 10.5883 6.44301 10.5988 6.71601C10.6093 6.99651 10.5808 7.30851 10.5283 7.63701C10.4023 8.40201 10.1233 9.33801 9.74826 10.328C10.1624 11.2129 10.6544 12.0592 11.2183 12.857C11.8859 12.8049 12.5574 12.8301 13.2193 12.932C13.7653 13.0295 14.3203 13.2245 14.6593 13.6295C14.8393 13.8455 14.9488 14.1095 14.9593 14.4065C14.9698 14.6945 14.8888 14.9795 14.7523 15.251C14.634 15.5026 14.4507 15.718 14.2213 15.875C13.9943 16.0226 13.7267 16.095 13.4563 16.082C12.9598 16.061 12.4753 15.788 12.0568 15.4565C11.5478 15.0359 11.0892 14.5577 10.6903 14.0315C9.67583 14.1462 8.67346 14.35 7.69476 14.6405C7.24609 15.4355 6.73392 16.193 6.16326 16.8975C5.58426 17.6175 4.84926 18.1695 4.05326 18.4075C4.11176 18.2935 4.22601 18.229 4.34776 18.181C4.34326 18.1735 4.33876 18.166 4.33426 18.1585C4.20526 18.0285 4.06426 17.9115 3.90426 18.1295Z"
+                  fill="black" />
+              </svg>
+              <span class="ps-0">{{row.file.name}}</span>
+
+              <div class="progress d-block">
+                <div class="progress-bar" [ngStyle]="{ 'width': 100 + '%' }"></div>
+              </div>
+            </span>
+
+          </div>
+
+          <div class="upload_field_wrap" *ngIf="row.file == ''">
+            <label for="file-upload-{{i}}" type="button" class="btn btn-outline-white code-text upload-label cupen-btn">
+              <!-- PDF {{'upload' | translate }} -->
+              {{'chooseFile' | translate }}
+            </label>
+            <input id="file-upload-{{i}}" accept="application/pdf" (change)="onAttachmentFileChange($event, i)"
+              type="file" class="d-none" />
+          </div>
+        </div>
+
+        <div class="col-md-1 col-2 text-end mb-4 add_new_btn_row">
+          <div class="dummy_label">&nbsp;</div>
+          <label for="reportUpload" class="add_row_btn" (click)="removeRow(i)"
+            [class.label-disabled]="1==attachmentRows.length" *ngIf="attachmentRows.length > 0">
+            <!-- <label for="reportUpload" class="add_row_btn" (click)="removeRow(i)" *ngIf="attachmentRows.length != i+1"> -->
+            <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg"
+              class="pointer">
+              <path
+                d="M1.50065 14.0589C1.50065 15.0112 2.32565 15.7904 3.33398 15.7904H10.6673C11.6757 15.7904 12.5007 15.0112 12.5007 14.0589V3.66999H1.50065V14.0589ZM13.4173 1.07277H10.209L9.29232 0.207031H4.70898L3.79232 1.07277H0.583984V2.80425H13.4173V1.07277Z"
+                fill="#787878"></path>
+            </svg>
+          </label>
+        </div>
+
+        <div class="col-md-1 col-2 text-end mb-4 add_new_btn_row">
+          <div class="dummy_label">&nbsp;</div>
+          <div (click)="addNewRow()" class="add_row_btn" *ngIf="attachmentRows.length == i+1">
+            <svg style="transform: rotate(45deg);" width="13px" xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 384 512">
+              <path
+                d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z">
+              </path>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <!-- End PDF  -->
+
     <div class="about-event">
       <label for="about-text" class="code-text">{{ 'aboutEvent' | translate }}</label><br>
       <textarea name="about" id="about-text" rows="4" cols="50" class="form-control w-100 " [(ngModel)]="about">

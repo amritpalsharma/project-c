@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../../../services/user.service';
 import { UserRoleService } from '../../../../services/user-role.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AddTeamPlayerComponent } from '../add-team-player/add-team-player.component';
 
 @Component({
   selector: 'app-teams-tab',
@@ -19,6 +21,7 @@ export class TeamsTabComponent {
   selectedTeam: any = "";
   team_group: string = 'm';
   constructor(
+    public dialog: MatDialog,
     public userRoleService: UserRoleService,
     private route: ActivatedRoute,
     private userService: UserService,
@@ -50,9 +53,10 @@ export class TeamsTabComponent {
       console.error('Error fetching users:', error);
     }
   }
-
+  selectedTeamID: any;
   getTeamPlayers(teamId: any, teamName: any) {
     this.selectedTeam = teamName;
+    this.selectedTeamID = teamId;
     this.view = 'player';
     this.isLoading = true;
     try {
@@ -77,13 +81,47 @@ export class TeamsTabComponent {
     this.players = [];
   }
 
-  navigate(playerId: any) {
-    let pageRoute = 'admin/talent';
-    this.router.navigate([pageRoute, playerId]);
+  navigate(player: any) {
+
+    // console.info(player)
+    // let pageRoute = 'admin/talent';
+    // this.router.navigate([pageRoute, playerId]);
+
+    const messageDialog = this.dialog.open(AddTeamPlayerComponent, {
+      width: '800px',
+      panelClass: 'club_add_team_popup',
+      position: {
+        top: '150px'
+      },
+      data: {
+        user_id: this.userId,
+        teamId: this.selectedTeamID,
+        player: player,
+        edit: true,
+      }
+    })
+
+    messageDialog.afterClosed().subscribe(result => { })
   }
 
   changeTeamType(team_type: any) {
     this.team_group = team_type;
     this.getClubTeams(this.userId);
+  }
+
+  addPlayerToTeam() {
+    const messageDialog = this.dialog.open(AddTeamPlayerComponent, {
+      width: '800px',
+      panelClass: 'club_add_team_popup',
+      position: {
+        top: '150px'
+      },
+      data: {
+        user_id: this.userId,
+        teamId: this.selectedTeamID
+      }
+    })
+
+    messageDialog.afterClosed().subscribe(result => { })
   }
 }

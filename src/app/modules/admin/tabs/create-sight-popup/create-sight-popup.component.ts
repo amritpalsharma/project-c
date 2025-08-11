@@ -7,7 +7,11 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { ChangeDetectionStrategy, computed, inject, model, signal } from '@angular/core';
 import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { UserService } from '../../../../services/user.service';
-import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { ToastrService } from 'ngx-toastr';
+import { DatePipe } from '@angular/common';
+import { FormControl } from '@angular/forms';
+import { MatDatepickerInputEvent, MatDatepicker } from '@angular/material/datepicker';
+
 
 @Component({
   selector: 'app-create-sight-popup',
@@ -39,7 +43,14 @@ export class CreateSightPopupComponent implements AfterViewInit {
     title: "",
     file: ""
   }];
+  status: boolean = true;
   @ViewChild('fileInput', { static: false }) fileInputElement!: ElementRef;
+
+
+  dateTimeNew: Date | null = null;
+  dateControl = new FormControl(); // Just for binding to mat-datepicker
+
+  timeString: string = '';
   constructor(public dialogRef: MatDialogRef<CreateSightPopupComponent>, public userService: UserService,
     @Inject(MAT_DIALOG_DATA) public data: any) {
 
@@ -55,8 +66,44 @@ export class CreateSightPopupComponent implements AfterViewInit {
       this.city = data.sightData.city;
       this.about = data.sightData.about_event;
       this.idToBeUpdate = data.sightData.id;
+
+      this.bannerImageName = data.sightData.banner;
+      setTimeout(() => {
+        this.showImageFromUrl(data.sightData.banner_path, 'Existing Banner');
+      });
+
+      
+      const event_date = data.sightData.event_date;
+      const event_time = data.sightData.event_time;
+      const [year, month, day] = event_date.split('-').map(Number);
+      const [hour, minute] = event_time.split(':').map(Number);
+      this.dateTime = new Date(year, month - 1, day, hour, minute); // ✅ JavaScript months are 0-based
+      this.dateControl.setValue(this.dateTime); // For <mat-datepicker>
+      this.timeString = event_time;             // For <input type="time">
     }
   }
+
+  showImageFromUrl(imageUrl: string, imageName: string = 'Uploaded Image'): void {
+    // this.bannerFile = imageName;
+    this.uploadedBannerImage = true;
+    console.log(imageUrl, 'image')
+    const imgElement = document.createElement('img');
+    imgElement.src = imageUrl;
+    imgElement.alt = imageName;
+
+    const previewContainer: any = document.getElementById('imagePreviewContainer');
+    // if (previewContainer) {
+    previewContainer.innerHTML = '';  // Clear existing content
+    previewContainer.appendChild(imgElement);
+
+    // Optional: Show image name
+    // const h5Element = document.createElement('h5');
+    // h5Element.innerText = imageName;
+    // previewContainer.appendChild(h5Element);
+    // }
+  }
+
+
   ngAfterViewInit() {
   }
 
@@ -275,7 +322,7 @@ export class CreateSightPopupComponent implements AfterViewInit {
     return `${dateArr[1]}-${dateArr[2]}-${dateArr[0]} ${time}`;
   }
 
-  getDateTimeFormat(dateTimeString: any) {
+  getDateTimeFormat00(dateTimeString: any) {
     let arr = dateTimeString.split(' ');
     let dateArr = arr[0].split('-');
 
@@ -287,6 +334,37 @@ export class CreateSightPopupComponent implements AfterViewInit {
       time: formattedTime
     };
   }
+
+
+  getDateTimeFormat(dateTimeValue: any) {
+    if (!dateTimeValue) {
+      return { date: '', time: '' };
+    }
+
+    let dateObj: Date;
+
+    if (typeof dateTimeValue === 'string') {
+      dateObj = new Date(dateTimeValue);
+    } else if (dateTimeValue instanceof Date) {
+      dateObj = dateTimeValue;
+    } else {
+      return { date: '', time: '' };
+    }
+
+    // Extract local date and time
+    const year = dateObj.getFullYear();
+    const month = String(dateObj.getMonth() + 1).padStart(2, '0'); // 0-indexed
+    const day = String(dateObj.getDate()).padStart(2, '0');
+    const hours = String(dateObj.getHours()).padStart(2, '0');
+    const minutes = String(dateObj.getMinutes()).padStart(2, '0');
+
+    return {
+      date: `${year}-${month}-${day}`,
+      time: `${hours}:${minutes}`
+    };
+  }
+
+
   submitButtonClicked: boolean = false;
 
   createSight() {
@@ -335,10 +413,11 @@ export class CreateSightPopupComponent implements AfterViewInit {
   updateSight() {
     this.submitButtonClicked = true;
     const formData = new FormData();
+    let { date, time } = this.getDateTimeFormat(this.dateTime);
     formData.append('event_name', this.eventName);
     formData.append('manager_name', this.managerName);
-    formData.append('event_date', this.date);
-    formData.append('event_time', "10:20 AM");
+    formData.append('event_date', date);
+    formData.append('event_time', time);
     formData.append('address', this.address);
     formData.append('zipcode', this.zipcode);
     formData.append('city', this.city);
@@ -397,5 +476,48 @@ export class CreateSightPopupComponent implements AfterViewInit {
     event.preventDefault();
     this.isDragOver = false;
     this.isUnsupportedFile = false;
+  }
+
+
+  onDateChange1(event: any) {
+    console.info('this.timeString', this.timeString)
+    const selectedDate = event.value;
+    if (selectedDate) {
+      // const time = selectedDate ? selectedDate.split(':') : ['00', '00'];
+      const time = this.timeString ? this.timeString.split(':') : ['00', '00'];
+      const hours = parseInt(time[0], 10);
+      const minutes = parseInt(time[1], 10);
+      this.dateTime = new Date(selectedDate);
+      this.dateTime.setHours(hours, minutes);
+    }
+
+    console.info('this.dateTime', this.dateTime)
+  }
+
+  openDatePicker(datepicker: MatDatepicker<any>) {
+    datepicker.open();  // Opens the date picker
+  }
+
+
+  onTimeChange1(event: any) {
+    this.timeString = event.target.value;
+    if (this.dateControl.value) {
+      const [hours, minutes] = this.timeString.split(':').map(Number);
+      this.dateTimeNew = new Date(this.dateControl.value);
+      this.dateTimeNew.setHours(hours, minutes);
+
+      // ✅ Update dateTime with the new value
+      this.dateTime = new Date(this.dateTimeNew);
+    }
+
+    console.info('Time is updated current time is ', this.timeString);
+    console.info('this.dateControl.value', this.dateControl.value);
+    console.info('this.dateTime', this.dateTime); // ✅ Now reflects updated time
+  }
+
+  removeFile(index: any) {
+    if (this.attachmentRows.length > 0) {
+      this.attachmentRows[index].file = '';
+    }
   }
 }

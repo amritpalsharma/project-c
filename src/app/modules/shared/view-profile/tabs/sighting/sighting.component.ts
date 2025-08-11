@@ -242,10 +242,6 @@ export class SightingComponent {
   navigateToChat() {
     localStorage.setItem('otherUserData', '');
     console.log('User', this.user)
-    // return;
-    // if (this.user.meta.profile_image != '' && this.user.meta.profile_image != undefined) {
-    //   this.user.meta.profile_image = this.user.meta.profile_image;
-    // }
     this.loggedInUser = JSON.parse(this.loggedInUser);
     let role = this.loggedInUser.role_name.toLowerCase();
     if (role == 'talento' || role == 'talang') {
@@ -255,8 +251,6 @@ export class SightingComponent {
     }
     let name_of_chat_user = this.user.first_name + ' ' + this.user.last_name;
     this.currentUserRole = this.currentUserRole.toLowerCase();
-    // if (this.currentUserRole == 'club' || this.currentUserRole == 'klubb' || this.currentUserRole == 'klub' || this.currentUserRole == 'clube') {
-    // }
     name_of_chat_user = this.user?.current_club_name;
     // console.info('role is ',role);
     if (this.currentUserRole == 'club' || this.currentUserRole == 'klubb' || this.currentUserRole == 'klub' || this.currentUserRole == 'Clube' && this.user.club_logo != '' && this.user.club_logo != undefined) {

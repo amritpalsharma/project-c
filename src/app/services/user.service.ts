@@ -900,4 +900,21 @@ export class UserService {
 
   }
 
+  addTeamPlayerAdmin(params: any, clubID: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.userToken}`
+    });
+
+    return this.http.post<any>(`${this.apiUrl}admin/add-club-player/${clubID}`, params, { headers });
+  }
+
+
+  updateTeamPlayer(id: any, params: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.userToken}`
+    });
+
+    return this.http.post<any>(`${this.apiUrl}admin/edit-club-player/${id}`, params, { headers });
+  }
+
 }

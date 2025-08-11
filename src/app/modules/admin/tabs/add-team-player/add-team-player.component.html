@@ -1,0 +1,154 @@
+<div class="add-chat w-100 club_add_player" id="club_team" *ngIf="action != 'showInvitedUsers'">
+  <div class="chat_box">
+    <div class="popup_header p-3">
+      <div>
+        <h4 class="text-center mb-0 title-text" *ngIf="edit">{{ 'edit' | translate }}</h4>
+        <h4 class="text-center mb-0 title-text" *ngIf="!edit && teamGroup == 'm'">{{ 'addNewPlayer' | translate }}</h4>
+        <h4 class="text-center mb-0 title-text" *ngIf="!edit && teamGroup == 'w'">{{ 'addNewFemalePlayer' | translate }}</h4>
+      </div>
+      <div class="close_buttons" *ngIf='theme!="dark"'>
+        <button class="close-img bg-transparent border-0 padding-0" aria-label="Close" (click)="close()">
+          <img src="../../../../assets/images/carbon_close-outline-light.svg" alt="">
+        </button>
+      </div>
+      <div class="close_buttons" *ngIf='theme=="dark"'>
+        <button class="close-img bg-transparent border-0 padding-0" aria-label="Close" (click)="close()">
+          <img src="../../../../assets/images/carbon_close-outline.svg" alt="">
+        </button>
+      </div>
+    </div>
+
+    <div class="inbox-body popup__body">
+      <!-- Input for selecting users -->
+      <div class="text-center w-100 py-3 px-3 body-background">
+        <mat-form-field class="example-chip-list inbox-wrapper bg-color-2 w-100">
+          <mat-chip-grid #chipGrid aria-label="User selection" class="messanger-selector bg-color-2 w-100">
+            <p>{{ 'to' | translate }}</p>
+            <mat-chip-row *ngFor="let user of users; let i = index" (removed)="remove(user)">
+              <img width="20" height="20" style="border-radius: 20px;" class="img-list"
+                *ngIf="!user?.profile_image_path && edit" src="../../../../../assets/images/1.png">
+              <img width="20" height="20" style="border-radius: 20px;" class="img-list"
+                *ngIf="!user?.meta?.profile_image_path && !edit" src="../../../../../assets/images/1.png">
+              <img width="20" height="20" style="border-radius: 20px;" class="img-list"
+                *ngIf="user?.profile_image_path && edit" src="{{user.profile_image_path}}">
+              <img width="20" height="20" style="border-radius: 20px;" class="img-list"
+                *ngIf="user?.meta?.profile_image_path && !edit" src="{{user?.meta?.profile_image_path}}">
+              {{user?.first_name}} {{user?.last_name}}
+              <span *ngIf="!edit" matChipRemove [attr.aria-label]="'remove ' + user" class="cancel-icon"></span>
+            </mat-chip-row>
+            <!-- <input placeholder="{{ 'search' | translate }} {{ 'talent' | translate }}" #userInput
+              [matAutocomplete]="auto" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputFor]="chipGrid"
+              (focus)="callListApi(userInput)" (keyup)="onKeyPress($event)" /> -->
+            <input *ngIf="!edit && users?.length == 0" placeholder="{{ 'searchTalent' | translate }}" #userInput [matAutocomplete]="auto"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputFor]="chipGrid"
+              (keyup)="onKeyPress($event)" />
+
+            <input [disabled]="edit" placeholder="" [matAutocomplete]="auto"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputFor]="chipGrid"
+              (keyup)="onKeyPress($event)" />
+          </mat-chip-grid>
+
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)"
+            class="listBox w-100 users-name-list box_search_{{userSearch.length}}" [ngClass]="{'d-none':!userSearch || userSearch.length < 2}">
+            <mat-option *ngFor="let user of filteredUsers" [value]="user" class="mb-4 select-user-name">
+              <img width="50" height="50" style="border-radius: 50px;" class="img-list"
+                *ngIf="!user.meta.profile_image_path" src="../../../../../assets/images/1.png">
+              <img width="50" height="50" class="img-list" *ngIf="user.meta.profile_image_path"
+                src="{{user.meta.profile_image_path}}">
+              {{user.first_name}} {{user.last_name}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+
+      <!-- Start and End Date Inputs in a Single Row -->
+      <div class="p-3 popup_overflwo">
+        <div class="row">
+          <div class="col-12">
+            <div class="user-list user_list_full">
+              <!-- <pre>
+                {{users | json}}
+              </pre> -->
+              <div *ngFor="let user of users; let i = index" class="user-item">
+
+                <!-- User Image -->
+                <img width="50" height="50" style="border-radius: 50px;" class="img-list"
+                  *ngIf="user?.profile_image_path" src="{{user?.profile_image_path}}">
+                <img width="50" height="50" class="img-list" *ngIf="user.meta.profile_image_path"
+                  src="{{user.meta.profile_image_path}}">
+
+                <img *ngIf="!user?.profile_image_path && !user.meta.profile_image_path"
+                  src="../../../../../assets/images/1.png" alt="Default Image" class="user-image">
+
+                <!-- User Name -->
+                <span class="user-name">
+                  {{user?.first_name}} {{user?.last_name}}
+                </span>
+
+                <!-- Input Box for Text -->
+                <!-- <input type="text" [ngClass]="{'emptyRequiredField':submitClicked && !jerseyNumber}" [(ngModel)]="jerseyNumber" placeholder="{{'addJerseyNumber' | translate}}"
+                  class="user-input"> -->
+
+                <input type="number" (keydown)="validateNumber($event)" class="mobile-font"
+                  [ngClass]="{'emptyRequiredField':submitClicked && !user.jersey_number}"
+                  [(ngModel)]="user.jersey_number" placeholder="{{'addJerseyNumber' | translate}}" class="user-input">
+
+              </div>
+            </div>
+          </div>
+          <div class="col-12 mt-5 mb-2">
+            <h4 class="join-end-date">{{ 'JoinandEndDates' | translate }}</h4>
+          </div>
+          <div class="col-12">
+            <div class="p-3">
+              <div class="row align-items-center">
+                <!-- Start Date -->
+                <div class="date-input col-lg-4 p-0 mb-3 mb-lg-0 position-relative">
+                  <label for="startDate" class="d-block font-weight-bold">
+                  </label>
+                  <input placeholder="DD.MM.YYYY" class="form-control join-start"
+                    [ngClass]="{'emptyRequiredField': !startDate.value && submitClicked}" id="startDate"
+                    [matDatepicker]="contractStartPicker" [formControl]="startDate" [readonly]="true" (click)="openDatePicker(contractStartPicker)"/>
+                  <mat-datepicker-toggle matSuffix [for]="contractStartPicker"></mat-datepicker-toggle>
+                  <mat-datepicker #contractStartPicker></mat-datepicker>
+                </div>
+                <!-- End Date -->
+                <div class="date-input col-lg-4 p-0 mb-3 mb-lg-0 position-relative">
+                  <label for="endDate" class="d-block font-weight-bold">
+                  </label>
+                  <!-- <input type="date" class="form-control join-end" id="endDate"
+                    [ngClass]="{'red-border-end': !endDate && submitClicked && !noEndDate}" [(ngModel)]="endDate"
+                    [disabled]="noEndDate" placeholder="{{ 'selectEndDate' | translate }}" /> -->
+
+                  <input class="form-control join-end" matInput id="endDate" name="contractStart"
+                    [ngClass]="{'emptyRequiredField': !endDate.value && submitClicked && !noEndDate}"
+                    [matDatepicker]="contractEndPicker" [formControl]="endDate" placeholder="DD.MM.YYYY"
+                    [disabled]="noEndDate" [readonly]="true" (click)="openDatePicker(contractEndPicker)"/>
+
+                  <mat-datepicker-toggle matSuffix [for]="contractEndPicker"></mat-datepicker-toggle>
+                  <mat-datepicker #contractEndPicker></mat-datepicker>
+                </div>
+                <!-- Checkbox for "Don't Set End Date" -->
+                <div class="d-flex align-items-center col-lg-6 p-0 ms-lg-3">
+                  <input type="checkbox" id="noEndDate" class="mr-2" [(ngModel)]="noEndDate" />
+                  <label for="noEndDate" class="mb-0">
+                    {{ 'dontSetEndDate' | translate }}
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="popup__footer chat-btn p-3">
+    <button class="btn btn-success btn-sm web-create-bg w-100" (click)="sendInvite()" type="button">
+      <span *ngIf="edit && submitButtonClicked">{{ 'Processing' | translate }}</span>
+      <span *ngIf="edit && !submitButtonClicked">{{ 'update' | translate }}</span>
+      <span *ngIf="!edit && submitButtonClicked">{{ 'Processing' | translate }}</span>
+      <span *ngIf="!edit && !submitButtonClicked">{{ 'add' | translate }}</span>
+    </button>
+  </div>
+</div>

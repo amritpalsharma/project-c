@@ -13,7 +13,8 @@
     <div class="d-flex align-items-center justify-content-between mobile_sight">
       <div class="d-flex align-items-center card_sight_title">
         <h2 class="card-title mb-0 me-3">{{'sighting' | translate}}</h2>
-        <a [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}" (click)="createSightPopup()" class="btn btn-success btn-sm pop-up-button web-create-bg">{{'addNewSighting' |
+        <a [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}" (click)="createSightPopup()"
+          class="btn btn-success btn-sm pop-up-button web-create-bg">{{'addNewSighting' |
           translate}}</a>
       </div>
 
@@ -55,7 +56,8 @@
         <div class="dropdown dropdown-favourites">
           <button
             class="btn btn-secondary dropdown-toggle  toggle-padding dropdown-toggle-checkbox favourites-main-checkbox"
-            type="button" data-bs-toggle="dropdown" aria-expanded="false" (click)="selectAll()" [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}">
+            type="button" data-bs-toggle="dropdown" aria-expanded="false" (click)="selectAll()"
+            [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}">
             <div class="form-check">
               <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked
                 *ngIf="allSelected" />
@@ -74,7 +76,8 @@
               </ul> -->
         </div>
 
-        <a class="btn btn-outline-white ms-2 delete-text" id="users-icon" (click)="confirmDeletion()" [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view', 'admin_editor_only' :userRoleService.getRole() == 'admin.edit'}">
+        <a class="btn btn-outline-white ms-2 delete-text" id="users-icon" (click)="confirmDeletion()"
+          [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view', 'admin_editor_only' :userRoleService.getRole() == 'admin.edit'}">
           <svg width="22" height="23" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M12 16.5L7 11.5L8.4 10.05L11 12.65V4.5H13V12.65L15.6 10.05L17 11.5L12 16.5ZM4 20.5V15.5H6V18.5H18V15.5H20V20.5H4Z"
@@ -187,11 +190,10 @@
       <div class="d-flex align-items-center">
         <h2 class="card-title mb-0 me-3">
           <span class="back-link">
-            <svg (click)="backToSightings()" class="pointer" width="22" height="23" viewBox="0 0 24 25" fill="none"
+            <svg (click)="backToSightings()" class="pointer" width="22" height="23" viewBox="0 0 24 24" fill="none"
               xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M3 17.7505V21.5005H6.75L17.81 10.4405L14.06 6.69049L3 17.7505ZM20.71 7.54049C20.8027 7.44798 20.8762 7.33809 20.9264 7.21712C20.9766 7.09614 21.0024 6.96646 21.0024 6.83549C21.0024 6.70452 20.9766 6.57484 20.9264 6.45387C20.8762 6.33289 20.8027 6.223 20.71 6.13049L18.37 3.79049C18.2775 3.69779 18.1676 3.62424 18.0466 3.57406C17.9257 3.52388 17.796 3.49805 17.665 3.49805C17.534 3.49805 17.4043 3.52388 17.2834 3.57406C17.1624 3.62424 17.0525 3.69779 16.96 3.79049L15.13 5.62049L18.88 9.37049L20.71 7.54049Z"
-                fill="#787878" />
+              <path d="M19 12H5M5 12L9 8M5 12L9 16" stroke="#787878" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
             </svg>
           </span>
           {{'sighting' | translate}}
@@ -308,10 +310,10 @@
           <ng-container><br /></ng-container>
           {{ sightingData.zipcode }} {{ sightingData.city }}
         </div>
-        <div class="mb-0 butn_div">
-          <button class="btn btn-success btn-sm web-create-bg mx-2 w-100 inquire-btn" type="button">{{ 'inquire' |
+        <!-- <div class="mb-0 butn_div">
+          <button class="btn btn-success btn-sm web-create-bg mx-2 w-100 inquire-btn" type="button" (click)="navigateToChat()">{{ 'inquire' |
             translate }}</button>
-        </div>
+        </div> -->
       </div>
       <div class="row justify-content-between space-box">
         <div class="sighting-bg col-md-6 row p-4 pb-5 dark_mode_sighting-bg">
@@ -358,7 +360,8 @@
                       stroke="#787878" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                   </svg>
                 </a>
-                <a class="float-right mx-3 pointer" (click)="confirmDeleteAttachment(item.id)" [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view', 'admin_editor_only' :userRoleService.getRole() == 'admin.edit'}">
+                <a class="float-right mx-3 pointer" (click)="confirmDeleteAttachment(item.id)"
+                  [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view', 'admin_editor_only' :userRoleService.getRole() == 'admin.edit'}">
                   <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                       d="M5.50065 17.0589C5.50065 18.0112 6.32565 18.7904 7.33398 18.7904H14.6673C15.6757 18.7904 16.5007 18.0112 16.5007 17.0589V6.66999H5.50065V17.0589ZM17.4173 4.07277H14.209L13.2923 3.20703H8.70898L7.79232 4.07277H4.58398V5.80425H17.4173V4.07277Z"

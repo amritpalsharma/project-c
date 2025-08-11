@@ -238,4 +238,25 @@ export class InboxComponent {
       this.titleService.setTitle(this.pageTitle);
     })
   }
+
+
+
+  async checkAndRemoveOpenChat() {
+        const url = new URL(window.location.href);
+        url.searchParams.delete('open_chat');
+        window.history.replaceState({}, document.title, url.toString());
+
+        const otherUserData = localStorage.getItem('otherUserData');
+        console.info('otherUserData', otherUserData)
+        if (otherUserData) {
+            const otherUser = JSON.parse(otherUserData);
+            await this.talkService.createOneOnOneConversation(
+                otherUser.id,
+                otherUser.name,
+                otherUser.email,
+                otherUser.photoUrl
+            );
+        }
+        setTimeout(() => (this.isLoading = false), 100);
+    }
 }

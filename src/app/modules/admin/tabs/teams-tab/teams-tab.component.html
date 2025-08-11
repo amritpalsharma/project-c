@@ -57,6 +57,29 @@
             {{selectedTeam}}
           </span>
         </span>
+
+        <span class="add-player-link">
+          <button
+            class="btn btn-success btn-sm web-create-bg dashboard_tabs_add_btn "
+            *ngIf="team_group === 'm'" (click)="addPlayerToTeam()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="width: 16px;">
+              <path
+                d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z" />
+            </svg>
+            {{
+            'addNewPlayer' | translate
+            }}</button>
+          <button
+            class="btn btn-success btn-sm web-create-bg dashboard_tabs_add_btn"
+            *ngIf="team_group === 'w'" (click)="addPlayerToTeam()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="width: 16px;">
+              <path
+                d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z" />
+            </svg>
+            {{
+            'addNewFemalePlayer' | translate
+            }}</button>
+        </span>
       </span>
       <div class="col">
         <div class="table-responsive">
@@ -128,7 +151,7 @@
               <th mat-header-cell *matHeaderCellDef class="text-center"> {{ 'edit' | translate }}</th>
               <td mat-cell *matCellDef="let element" class="text-center cursor-pointer"
                 [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}">
-                <svg (click)="navigate(element.player_id)" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                <svg (click)="navigate(element)" width="24" height="24" viewBox="0 0 24 24" fill="none"
                   xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M3 17.4585V20.4985C3 20.7785 3.22 20.9985 3.5 20.9985H6.54C6.67 20.9985 6.8 20.9485 6.89 20.8485L17.81 9.93854L14.06 6.18854L3.15 17.0985C3.05 17.1985 3 17.3185 3 17.4585ZM20.71 7.03854C20.8027 6.94602 20.8762 6.83614 20.9264 6.71516C20.9766 6.59419 21.0024 6.46451 21.0024 6.33354C21.0024 6.20257 20.9766 6.07289 20.9264 5.95191C20.8762 5.83094 20.8027 5.72105 20.71 5.62854L18.37 3.28854C18.2775 3.19583 18.1676 3.12229 18.0466 3.07211C17.9257 3.02192 17.796 2.99609 17.665 2.99609C17.534 2.99609 17.4043 3.02192 17.2834 3.07211C17.1624 3.12229 17.0525 3.19583 16.96 3.28854L15.13 5.11854L18.88 8.86854L20.71 7.03854Z"

@@ -16,6 +16,8 @@ export class UploadAttachmentComponent {
     file: ""
   }];
 
+  theme:string=localStorage.getItem('theme') || 'dark';
+
   constructor(public dialogRef : MatDialogRef<UploadAttachmentComponent>, public userService: UserService,
     @Inject(MAT_DIALOG_DATA) public data: any) {
       this.idToBeUpdated = data.id;
@@ -57,6 +59,7 @@ export class UploadAttachmentComponent {
   }
 
   upload(){
+    this.isSubmited = true;
     const formData = new FormData();
 
     this.attachmentRows.map(function(attachment:any, index:any) {
@@ -79,5 +82,14 @@ export class UploadAttachmentComponent {
      console.error('Error:', error);
    }
   }
+
+  
+  removeFile(index: any){
+    if (this.attachmentRows.length > 0) {
+      this.attachmentRows[index].file = '';
+    }
+  }
+
+  isSubmited : boolean = false;
     
 }

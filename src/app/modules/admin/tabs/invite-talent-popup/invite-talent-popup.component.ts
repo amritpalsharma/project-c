@@ -1,5 +1,5 @@
-import { COMMA, ENTER} from '@angular/cdk/keycodes';
-import { Component, Inject,ViewChild,ElementRef } from '@angular/core';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { Component, Inject, ViewChild, ElementRef } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ChangeDetectionStrategy, computed, inject, model, signal } from '@angular/core';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
@@ -15,14 +15,15 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 export class InviteTalentPopupComponent {
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   readonly announcer = inject(LiveAnnouncer);
-  filteredUsers:any = [];
-  users:any = [];
-  allUsers:any = [];
+  filteredUsers: any = [];
+  users: any = [];
+  allUsers: any = [];
+  theme: string = localStorage.getItem('theme') || 'dark';
   @ViewChild("userInput") userInput!: ElementRef;
-  action:any = "";
-  invitedUsers:any = [];
-  eventName:any = "";
-  sightId:any = "";
+  action: any = "";
+  invitedUsers: any = [];
+  eventName: any = "";
+  sightId: any = "";
   constructor(
     private userService: UserService,
     private talentService: TalentService,
@@ -31,9 +32,9 @@ export class InviteTalentPopupComponent {
   ) {
     console.log(data);
     this.action = data.action;
-    if(this.action == "showInvitedUsers"){
+    if (this.action == "showInvitedUsers") {
       this.invitedUsers = data.data
-    }else if(this.action == "inviteUsers"){
+    } else if (this.action == "inviteUsers") {
       this.eventName = data.data;
       this.sightId = data.sightId;
     }
@@ -42,50 +43,55 @@ export class InviteTalentPopupComponent {
   ngOnInit(): void {
     this.fetchPlayers();
   }
- 
+
   async fetchPlayers(): Promise<void> {
     try {
-      this.userService.getAllPlayers().subscribe((response)=>{
+      this.userService.getAllPlayers().subscribe((response) => {
         if (response && response.status && response.data && response.data.userData) {
-          this.allUsers = response.data.userData; 
-          } else {
-            console.error('Invalid API response structure:', response);
-          }
-        });     
-      } catch (error) {
-        console.error('Error fetching users:', error);
-      }
-  
+          this.allUsers = response.data.userData;
+        } else {
+          console.error('Invalid API response structure:', response);
+        }
+      });
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    }
+
   }
 
   close() {
     this.dialogRef.close();
   }
 
-  sendInvite(){
-    const formData = new FormData();  
-    this.users.map(function(user:any) {
+  sendInvite() {
+    const formData = new FormData();
+    this.users.map(function (user: any) {
       formData.append('invites[]', user.id);
     });
 
-    this.userService.sendSightingInvite(this.sightId, formData).subscribe((response)=>{
+    this.userService.sendSightingInvite(this.sightId, formData).subscribe((response) => {
       if (response && response.status) {
         this.dialogRef.close({
           action: 'added',
           id: this.sightId
         });
-      
+
       } else {
         console.error('Invalid API response structure:', response);
       }
-    });     
+    });
   }
-
-  onKeyPress(event: any){
+  searchVal: string = '';
+  onKeyPress(event: any) {
     let keyword = event.target.value;
+
+    this.searchVal = keyword;
+    if (!keyword || keyword.length < 1) {
+      this.searchVal = '';
+    }
     console.log(keyword); // You can use this to see the current input value
 
-    this.filteredUsers = this.allUsers.filter((user:any) => (user.first_name !== null && user.first_name !== undefined)  && 
+    this.filteredUsers = this.allUsers.filter((user: any) => (user.first_name !== null && user.first_name !== undefined) &&
       user.first_name.toLowerCase().indexOf(keyword.toLowerCase()) != -1);
   }
 
@@ -93,14 +99,14 @@ export class InviteTalentPopupComponent {
     this.dialogRef.close();
   }
 
-  callListApi(userInput: HTMLInputElement) {
-    setTimeout(() => {
-      this.filteredUsers = this.allUsers.filter((user:any) => (user.first_name !== null && user.first_name !== undefined)  && 
-      user.first_name.toLowerCase().indexOf(userInput.value.toLowerCase()) != -1
-      );
-    }, 2000);
-    console.log(userInput.value);
-  }
+  // callListApi(userInput: HTMLInputElement) {
+  //   setTimeout(() => {
+  //     this.filteredUsers = this.allUsers.filter((user: any) => (user.first_name !== null && user.first_name !== undefined) &&
+  //       user.first_name.toLowerCase().indexOf(userInput.value.toLowerCase()) != -1
+  //     );
+  //   }, 2000);
+  //   console.log(userInput.value);
+  // }
 
   remove(user: any): void {
     const index = this.users.indexOf(user);
@@ -110,15 +116,15 @@ export class InviteTalentPopupComponent {
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    if (!this.users?.length){
+    if (!this.users?.length) {
       this.users.push(event.option.value);
       this.userInput.nativeElement.value = "";
-    }else if (this.users?.length && !this.users.find((user:any) => user.id === event.option.value.id)) {
+    } else if (this.users?.length && !this.users.find((user: any) => user.id === event.option.value.id)) {
       this.users.push(event.option.value);
       this.userInput.nativeElement.value = "";
     } else {
       this.userInput.nativeElement.value = "";
     }
   }
- 
+
 }

@@ -1,0 +1,391 @@
+.close-img {
+  // background-image: url(../../../../../assets/images/carbon_close-outline.png);
+  // background-size: cover;
+  width: 35px;
+  height: 35px;
+  border: none;
+  padding: 0px;
+  position: absolute;
+  right: 17px;
+  top: 12px;
+  z-index: 2;
+  opacity: 1;
+  cursor: pointer;
+}
+h4.title-text {
+  padding-right: 40px;
+}
+
+::ng-deep {
+  .user_list_full {
+    max-width: 100% !important;
+  }
+}
+
+.bg-transparent {
+  background-color: transparent;
+}
+
+.inbox-wrapper {
+  width: 545px;
+}
+
+.chat-btn button {
+  padding: 15px 20px;
+}
+
+.chat-btn {
+  padding: 12px 16px;
+}
+
+.select-user-name span {
+  font-size: 16px !important;
+}
+
+.fruit-font {
+  font-size: 1.5rem;
+  padding: 1rem;
+}
+
+.add-chat {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.img-list {
+  border-radius: 50%;
+}
+
+.cancel-icon {
+  background-image: url(../../../../../assets/images/cross-icon.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-size: 10px 10px;
+  margin-left: 12px;
+  margin-top: 7px;
+  z-index: 2;
+  opacity: 1;
+  cursor: pointer;
+}
+
+// .messanger-selector{
+//   border-top: 2px solid black;
+//   border-bottom: 2px solid black;
+// }
+
+.bg-white {
+  background-color: white;
+  // height: 90% !important;
+}
+
+.body-background {
+  border-top: 1px solid #D9D9D9 !important;
+  border-bottom: 1px solid #D9D9D9 !important;
+
+}
+
+.listBox ::-webkit-scrollbar {
+  width: 0px !important;
+}
+
+.position-absolute {
+  top: 25rem;
+  bottom: 0;
+
+}
+
+// .position-absolute .btn{
+//   width: 33.2rem !important;
+// }
+
+.check-user-list {
+  position: relative;
+}
+
+.check-user-list label {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 28px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 28px;
+}
+
+.check-user-list label:after {
+  border: 2px solid #fff;
+  border-top: none;
+  border-right: none;
+  content: "";
+  height: 6px;
+  left: 7px;
+  opacity: 0;
+  position: absolute;
+  top: 8px;
+  transform: rotate(-45deg);
+  width: 12px;
+}
+
+.check-user-list input[type="checkbox"] {
+  visibility: hidden;
+}
+
+.check-user-list input[type="checkbox"]:checked+label {
+  background-color: #148DE4;
+  border-color: #148DE4;
+}
+
+.check-user-list input[type="checkbox"]:checked+label:after {
+  opacity: 1;
+}
+
+.user-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111418;
+  margin-left: 12px;
+}
+
+.check-user-list {
+  min-width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.user-details {
+  background: #FAFAFA;
+  border-bottom: 1px solid #EBEBEB;
+  padding: 12px 20px;
+}
+
+.bg-color {
+  background: #fff;
+}
+
+.messanger-selector-name ::ng-deep input::placeholder {
+  color: rgb(0, 0, 0);
+}
+
+
+.blur {
+  opacity: .4;
+}
+
+.date-input {
+  flex: 1;
+}
+
+.date-input input {
+  width: 100%;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+.mr-2 {
+  margin-right: 0.5rem;
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
+
+
+.dark-theme .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  border: 0 !important;
+}
+
+::ng-deep .red-border-start {
+  border: 2px solid red !important;
+  border-right: none !important;
+  ;
+}
+
+::ng-deep .red-border-end {
+  border: 2px solid red !important;
+  border-left: none !important;
+}
+
+
+
+::ng-deep .emptyRequiredField {
+  border: 2px solid red !important;
+}
+
+::ng-deep .dark-theme .emptyRequiredField {
+  border: 2px solid red !important;
+}
+
+// Code by amrit
+::ng-deep .user-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+::ng-deep .user-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+::ng-deep .dark-theme .user-item {
+  background-color: #072944;
+  border-color: #204a6c !important;
+}
+
+/* User Image */
+::ng-deep .user-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* User Name */
+::ng-deep .user-name {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  flex-grow: 1;
+}
+
+/* Input Box for Text */
+::ng-deep .user-input {
+  padding: 5px 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  width: 200px;
+  transition: border 0.3s ease;
+}
+
+::ng-deep .user-input:focus {
+  border-color: #007bff;
+}
+
+::ng-deep .dob {
+  position: relative !important;
+}
+
+::ng-deep mat-datepicker-toggle {
+  position: absolute;
+  right: 0;
+  top: 0px;
+  left: unset !important;
+  margin-left: 0 !important;
+}
+
+.user_list_full input.user-input {
+  background: #f7f7f7;
+  color: #000;
+  border-radius: 3px !important;
+  border: 1px dashed #cccccc;
+  width: 300px !important;
+}
+
+::ng-deep .dark-theme {
+  .body-background {
+    border-top: 1px solid #204a6c !important;
+    border-bottom: 1px solid #204a6c !important;
+    background: #0c3453 !important;
+  }
+
+  .user_list_full input.user-input {
+    background: #0c3453 !important;
+    color: #fff !important;
+    // border: 1px dashed #204a6c !important;
+
+    &::placeholder {
+      color: #fff !important;
+      opacity: 1;
+    }
+
+    &::-ms-input-placeholder {
+      color: #fff !important;
+    }
+  }
+}
+
+::ng-deep {
+  @media (min-width: 2000px) {
+    .club_add_team_popup {
+      width: 950px !important;
+    }
+  }
+}
+
+@media (min-width: 1600px) and (max-width: 2999px) {
+  .date-input {
+    .mat-datepicker-input {
+      padding-right: 45px;
+      font-size: 18px !important;
+    }
+
+    .mat-datepicker-toggle {
+      top: 3px;
+    }
+  }
+}
+
+@media (min-width: 3000px) {
+  .date-input {
+    .mat-datepicker-input {
+      padding-right: 50px;
+      font-size: 22px !important;
+    }
+
+    .mat-datepicker-toggle {
+      top: 3px;
+    }
+  }
+}
+
+
+::ng-deep {
+    @media (max-width: 991px) {
+      .user-list.user_list_full input.user-input {
+          font-size: 16px !important;
+        }
+    }
+  @media (max-width: 575px) {
+    .user-list.user_list_full {
+      .user-item {
+        flex-wrap: wrap;
+      }
+      input.user-input {
+        width: 100% !important;
+      }
+    }
+  }
+
+}
+
+::ng-deep .dark-theme .user-item .emptyRequiredField {
+  border: 1px solid red !important;
+}
+.dark-theme .user_list_full input.emptyRequiredField{
+   border: 1px solid red !important;
+}

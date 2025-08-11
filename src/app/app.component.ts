@@ -84,6 +84,14 @@ export class AppComponent implements OnInit {
         localStorage.removeItem('logoutMessage');
       }, 10000);
     }
+
+
+    window.addEventListener('storage', (event) => {
+      if (event.key === 'lang' || event.key === 'theme') {
+        // Option 1: Reload page
+        window.location.reload();
+      }
+    });
     // this.checkBodyClass()
   }
 

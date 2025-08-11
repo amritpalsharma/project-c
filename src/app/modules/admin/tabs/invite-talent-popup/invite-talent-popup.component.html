@@ -7,7 +7,11 @@
           translate }}</h4>
       </div>
 
-      <div class="close-img" (click)="close()">
+      <div class="close-img" *ngIf='theme!="dark"'>
+        <img src="../../../assets/images/carbon_close-outline-light.svg" alt="" class="" (click)="close()" />
+      </div>
+      <div class="close-img" *ngIf='theme=="dark"'>
+        <img src="../../../assets/images/carbon_close-outline.svg" alt="" class="" (click)="close()" />
       </div>
     </div>
 
@@ -31,39 +35,32 @@
             }
             <input placeholder="{{ 'searchUser' | translate }}" #userInput [matAutocomplete]="auto"
               [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputFor]="chipGrid"
-              (focus)="callListApi(userInput)" (keyup)="onKeyPress($event)" />
+              (keyup)="onKeyPress($event)" />
           </mat-chip-grid>
 
           <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)"
-            class="listBox w-100 users-name-list">
-            @for (user of filteredUsers; track user) {
-            <mat-option [value]="user" class="mb-4 select-user-name">
-              <img width="50" height="50" style="border-radius: 50px;" class="img-list "
-                *ngIf="!user.meta.profile_image_path" src="../../../../../assets/images/1.png">
-              <img width="50" height="50" class="img-list " *ngIf="user.meta.profile_image_path"
-                src="{{user.meta.profile_image_path}}">
-              {{user.first_name}}
-            </mat-option>
-            }
+            class="listBox w-100 users-name-list" [ngClass]="{'d-none':!searchVal || searchVal.length < 1}">
+            <div class="parent_div_condition" *ngIf="searchVal && searchVal.length > 0">
+              @for (user of filteredUsers; track user) {
+              <mat-option [value]="user" class="mb-4 select-user-name">
+                <img width="50" height="50" style="border-radius: 50px;" class="img-list "
+                  *ngIf="!user.meta.profile_image_path" src="../../../../../assets/images/1.png">
+                <img width="50" height="50" class="img-list " *ngIf="user.meta.profile_image_path"
+                  src="{{user.meta.profile_image_path}}">
+                {{user.first_name}}
+              </mat-option>
+              }
+            </div>
           </mat-autocomplete>
 
         </mat-form-field>
       </div>
 
     </div>
-    <!-- <div class="user-details d-flex align-items-center justify-content-between">
-            <div class="user-detail-list">
-              <span><img width="60" height="60" class="img-list" src="../../../../../assets/images/1.png"></span>
-              <span class="user-name">Lindsey Vetrovs</span>
-            </div>
-            <div class="check-user-list">
-                <input type="checkbox" checked id="user-checkbox" />
-              <label for="user-checkbox"></label>
-            </div>
-        </div> -->
   </div>
   <div class="chat-btn popup_footer">
-    <button class="btn btn-success btn-sm web-create-bg w-100" (click)="sendInvite()" type="button">{{ 'sendInvite' | translate }}</button>
+    <button class="btn btn-success btn-sm web-create-bg w-100" (click)="sendInvite()" type="button">{{ 'sendInvite' |
+      translate }}</button>
   </div>
 
 </div>
@@ -72,8 +69,15 @@
 
   <div class="chat_box">
     <div class="popup_header p-3 w-100">
-      <div><h4 class="text-center mb-0 title-text">{{ 'peopleJoining' | translate }}</h4></div>
-      <div class="close-img" (click)="close()"></div>
+      <div>
+        <h4 class="text-center mb-0 title-text">{{ 'participatingTalents' | translate }}</h4>
+      </div>
+      <div class="close-img" *ngIf='theme!="dark"'>
+        <img src="../../../assets/images/carbon_close-outline-light.svg" alt="" class="" (click)="close()" />
+      </div>
+      <div class="close-img" *ngIf='theme=="dark"'>
+        <img src="../../../assets/images/carbon_close-outline.svg" alt="" class="" (click)="close()" />
+      </div>
     </div>
 
     <div class="inbox-body popup__body py-3" style="max-height: 450px !important; overflow: auto;">
@@ -88,7 +92,7 @@
           </span>
           <span class="user-name">
             {{invitee.first_name}} {{invitee.last_name}} <span class="ml-4"
-              [ngClass]="{'d-none': invitee.status != 'pending'}">(Invite Sent)</span>
+              [ngClass]="{'d-none': invitee.status != 'pending'}">({{'inviteSent' | translate}})</span>
           </span>
         </div>
         <div class="check-user-list">

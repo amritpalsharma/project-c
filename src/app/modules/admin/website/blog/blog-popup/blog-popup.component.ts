@@ -9,7 +9,7 @@ import { WebPages } from '../../../../../services/webpages.service';
 import { TranslateService } from '@ngx-translate/core';
 import { EditorConfigService } from '../../../../../services/editor-config.service';
 import tinymce from 'tinymce';
-
+import { ChangeDetectorRef } from '@angular/core';
 // import { TemplateService } from '../../../../../services/template.service';
 
 @Component({
@@ -80,6 +80,7 @@ export class BlogPopupComponent implements OnInit, OnDestroy {
 
   theme: any = localStorage.getItem('theme');
   constructor(
+    private cdr:ChangeDetectorRef,
     public dialogRef: MatDialogRef<BlogPopupComponent>, private blogApi: BlogService,
     private webpages: WebPages,
     private translateService: TranslateService,
@@ -266,6 +267,7 @@ export class BlogPopupComponent implements OnInit, OnDestroy {
           this.imageUrl = this.blog.featured_image;
           // this.status = this.blog.status;
           this.isLoading = false;
+          this.cdr.detectChanges();
         } else {
           this.blog = [];
           this.isLoading = false;
