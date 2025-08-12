@@ -9,6 +9,7 @@ import { MessagePopupComponent } from '../../message-popup/message-popup.compone
 import { UploadAttachmentComponent } from '../upload-attachment/upload-attachment.component';
 import { environment } from '../../../../../environments/environment';
 import { UserRoleService } from '../../../../services/user-role.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-sighting-tab',
@@ -40,6 +41,7 @@ export class SightingTabComponent {
 
   @Input() userData: any;
   constructor(
+    public toaster: ToastrService,
     public userRoleService: UserRoleService,
     private route: ActivatedRoute, private userService: UserService, private router: Router, public dialog: MatDialog) { }
 
@@ -163,7 +165,11 @@ export class SightingTabComponent {
           this.selectedIds = [];
           this.allSelected = false;
 
-          this.showMatDialog('Sighting(s) deleted successfully!.', 'display');
+          // this.showMatDialog('Sighting(s) deleted successfully!.', 'display');
+
+          if (response.message != '' && response.message) {
+            this.toaster.success(response.message);
+          }
         } else {
           this.showMatDialog('Error in deleting sighting. Please try again.', 'display');
         }
@@ -196,7 +202,10 @@ export class SightingTabComponent {
       if (result !== undefined) {
         if (result.action == "added") {
           this.getSightings();
-          this.showMatDialog("Sighting added successfully", 'display');
+          // this.showMatDialog("Sighting added successfully", 'display');
+          if (result.msg != '' && result.msg) {
+            this.toaster.success(result.msg);
+          }
         }
         console.log('Dialog result:', result);
       }
@@ -221,7 +230,10 @@ export class SightingTabComponent {
       if (result !== undefined) {
         if (result.action == "updated") {
           this.viewSight(result.id);
-          this.showMatDialog("Sighting updated successfully", 'display');
+          if (result.msg != '' && result.msg) {
+            this.toaster.success(result.msg);
+          }
+          // this.showMatDialog("Sighting updated successfully", 'display');
         }
         console.log('Dialog result:', result);
       }
@@ -243,7 +255,10 @@ export class SightingTabComponent {
       if (result !== undefined) {
         if (result.action == "added") {
           this.viewSight(result.id);
-          this.showMatDialog("Attachment(s) added successfully", 'display');
+          // this.showMatDialog("Attachment(s) added successfully", 'display');
+          if (result.msg != '' && result.msg) {
+            this.toaster.success(result.msg);
+          }
         }
         //  console.log('Dialog result:', result);
       }
@@ -287,7 +302,10 @@ export class SightingTabComponent {
         console.log(result)
         if (result.action == "added") {
           this.viewSight(result.id);
-          this.showMatDialog("Players invited successfully", 'display')
+          // this.showMatDialog("Players invited successfully", 'display')
+          if (result.msg != '' && result.msg) {
+            this.toaster.success(result.msg);
+          }
         }
         console.log('Dialog result:', result);
       }
@@ -387,7 +405,10 @@ export class SightingTabComponent {
           let temp = this.attachments;
           temp.splice(index, 1);
           this.attachments = temp;
-          this.showMatDialog('Attachment removed successfully!.', 'display');
+          // this.showMatDialog('Attachment removed successfully!.', 'display');
+          if (response.message != '' && response.message) {
+            this.toaster.success(response.message);
+          }
         } else {
           this.showMatDialog('Error in removing attachment. Please try again.', 'display');
         }
@@ -429,6 +450,6 @@ export class SightingTabComponent {
     this.router.navigate([`/admin/inbox`], {
       queryParams: { open_chat: 'true' }
     });
-    
+
   }
 }

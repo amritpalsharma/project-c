@@ -72,7 +72,7 @@ export class CreateSightPopupComponent implements AfterViewInit {
         this.showImageFromUrl(data.sightData.banner_path, 'Existing Banner');
       });
 
-      
+
       const event_date = data.sightData.event_date;
       const event_time = data.sightData.event_time;
       const [year, month, day] = event_date.split('-').map(Number);
@@ -396,7 +396,8 @@ export class CreateSightPopupComponent implements AfterViewInit {
         console.log(response)
         if (response && response.status) {
           this.dialogRef.close({
-            action: 'added'
+            action: 'added',
+            msg: response.message
           })
         } else {
           console.error('Invalid API response structure:', response);
@@ -442,7 +443,8 @@ export class CreateSightPopupComponent implements AfterViewInit {
         if (response && response.status) {
           this.dialogRef.close({
             action: 'updated',
-            id: this.idToBeUpdate
+            id: this.idToBeUpdate,
+            msg: response.message
           })
         } else {
           console.error('Invalid API response structure:', response);

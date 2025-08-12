@@ -1540,6 +1540,6 @@
   "noTeamMemberAddedHere": "Hier wurde kein Team-Mitglied hinzugefügt.",
   "passwordResetLinkHasExpired": "Leider ist Ihr Link zum Zurücksetzen des Passworts abgelaufen. Bitte besuchen Sie die Seite „Passwort vergessen“, um einen neuen Link zu erhalten.",
   "linkExpired": "LINK ABGELAUFEN",
-  "noSightFound":"Es wurde noch kein Sichtungs-Event erfasst."
-  
+  "noSightFound":"Es wurde noch kein Sichtungs-Event erfasst.",
+  "manageNoPaymentBtnTxt":"zu den Abos"
 }

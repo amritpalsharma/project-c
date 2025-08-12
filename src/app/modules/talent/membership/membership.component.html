@@ -25,6 +25,11 @@
               </ng-template>
             </a>
           </div>
+          <div class="card_btn_side" *ngIf="!userPurchases || totalItems == 0">
+            <a type="button" [routerLink]="'/talent/plans'" class="text-center manage_payment_btn">
+              {{ 'manageNoPaymentBtnTxt' | translate }}
+            </a>
+          </div>
         </div>
 
         <!-- Loader -->

@@ -73,7 +73,8 @@ export class InviteTalentPopupComponent {
       if (response && response.status) {
         this.dialogRef.close({
           action: 'added',
-          id: this.sightId
+          id: this.sightId,
+          msg:response.message
         });
 
       } else {

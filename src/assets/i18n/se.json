@@ -1478,5 +1478,6 @@
   "noTeamMemberAddedHere": "Inga Medlem i teamet har lagts till här.",
   "passwordResetLinkHasExpired":"Tyvärr har din länk för att återställa lösenordet gått ut. Besök sidan \"Glömt lösenord\" för att få en ny länk.",
   "linkExpired":"LÄNKEN HAR GÅTT UT",
-  "noSightFound":"Inget observationshändelse har registrerats ännu."
+  "noSightFound":"Inget observationshändelse har registrerats ännu.",
+  "manageNoPaymentBtnTxt":"till planer"
 }

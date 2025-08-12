@@ -1447,5 +1447,6 @@
   "noTeamMemberAddedHere": "No Team Member is added here.",
   "passwordResetLinkHasExpired": "Sorry, your password reset link has expired. Please visit the Forgot Password page to receive a new link.",
   "linkExpired": "LINK EXPIRED",
-  "noSightFound":"No sighting event has been recorded yet."
+  "noSightFound":"No sighting event has been recorded yet.",
+  "manageNoPaymentBtnTxt":"to the plans"
 }

@@ -72,7 +72,8 @@ export class UploadAttachmentComponent {
        if (response && response.status) {
          this.dialogRef.close({
           id: this.idToBeUpdated,
-          action: 'added'
+          action: 'added',
+          msg:response.message
          })
        } else {
          console.error('Invalid API response structure:', response); 

@@ -1549,5 +1549,6 @@
   "noTeamMemberAddedHere": "Aucun Membre de l'équipe n'a été ajouté ici.",
   "passwordResetLinkHasExpired": "Désolé, votre lien de réinitialisation du mot de passe a expiré. Veuillez visiter la page « Mot de passe oublié » pour en recevoir un nouveau.",
   "linkExpired": "LIEN EXPIRÉ",
-  "noSightFound":"Aucun événement d'observation n'a encore été enregistré."
+  "noSightFound":"Aucun événement d'observation n'a encore été enregistré.",
+  "manageNoPaymentBtnTxt":"aux plans"
 }

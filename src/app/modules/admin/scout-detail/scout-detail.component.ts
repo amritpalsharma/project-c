@@ -116,7 +116,8 @@ export class ScoutDetailComponent implements OnInit {
     this.userService.updateUserStatus([this.userId], newStatus).subscribe(response => {
       this.user.status = newStatus;
       if (response.message != '' && response.message != undefined) {
-        this.showMatDialog(response.message, 'display');
+        // this.showMatDialog(response.message, 'display');
+        this.toaster.success(response.message);
       } else {
         // this.showMatDialog('User status updated successfully!', 'display');
         this.toaster.success(response.message);
@@ -171,9 +172,11 @@ export class ScoutDetailComponent implements OnInit {
     this.userService.deleteUser([this.userId], langId).subscribe(
       response => {
         if (response.message != '' && response.message != undefined) {
-          this.showMatDialog(response.message, 'display');
+          // this.showMatDialog(response.message, 'display');
+          this.toaster.success(response.message);
         } else {
-          this.showMatDialog('User deleted successfully!', 'display');
+          // this.showMatDialog('User deleted successfully!', 'display');
+          this.toaster.success(response.message);
         }
         this.router.navigate(['/admin/users']);
       },

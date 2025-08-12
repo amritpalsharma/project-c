@@ -1481,5 +1481,6 @@
   "noTeamMemberAddedHere": "No se ha añadido ningún Miembro del equipo aquí.",
   "passwordResetLinkHasExpired": "Lo sentimos, tu enlace para restablecer la contraseña ha caducado. Visita la página \"¿Olvidaste tu contraseña?\" para recibir un nuevo enlace.",
   "linkExpired": "ENLACE CADUCADO",
-  "noSightFound":"Aún no se ha registrado ningún evento de avistamiento."
+  "noSightFound": "Aún no se ha registrado ningún evento de avistamiento.",
+  "manageNoPaymentBtnTxt": "a las planes"
 }
