@@ -592,20 +592,29 @@ export class ViewProfileComponent implements OnInit {
     // this.captureThumbnail(videoElement);
   }
   videoDurations: string[] = [];
-  setDurationAndThumbnail(videoElement: HTMLVideoElement, index: number) {
-    videoElement.crossOrigin = 'anonymous';
+  // setDurationAndThumbnail(videoElement: HTMLVideoElement, index: number) {
+  //   videoElement.crossOrigin = 'anonymous';
 
-    // Wait for metadata to load
-    videoElement.addEventListener('loadedmetadata', () => {
-      // Set duration
-      const duration = videoElement.duration;
-      this.duration = this.formatDuration(duration);
-      // return this.duration;
-      this.highlights.videos[index].duration = this.duration;
-      this.videoDurations[index] = this.duration;
-      // Optional: Capture thumbnail after video is loaded
-      // this.captureThumbnail(videoElement);
-    });
+  //   // Wait for metadata to load
+  //   videoElement.addEventListener('loadedmetadata', () => {
+  //     // Set duration
+  //     const duration = videoElement.duration;
+  //     this.duration = this.formatDuration(duration);
+  //     // return this.duration;
+  //     this.highlights.videos[index].duration = this.duration;
+  //     this.videoDurations[index] = this.duration;
+  //     // Optional: Capture thumbnail after video is loaded
+  //     // this.captureThumbnail(videoElement);
+  //   });
+  // }
+
+  setDurationAndThumbnail(videoElement: HTMLVideoElement) {
+    videoElement.crossOrigin = 'anonymous';
+    // Set Duration
+    this.duration = this.formatDuration(videoElement.duration);
+
+    // Capture Thumbnail
+    // this.captureThumbnail(videoElement);
   }
 
   getVideoDuration(videoElement: HTMLVideoElement) {

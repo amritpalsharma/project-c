@@ -1082,8 +1082,20 @@
                       <!-- <video #videoPlayer [src]="highlights.file_path + video.file_name"
                         (loadeddata)="generateThumbnail(videoPlayer, j)">
                       </video> -->
-                      <video [src]="highlights.file_path + video.file_name" #videoPlayer
-                        (loadeddata)="setDurationAndThumbnail(videoPlayer)" muted controls [attr.poster]="highlights.file_path + 'thumbnail/' + getThumbnailName(video.file_name)"></video>
+                      <!-- <video [src]="highlights.file_path + video.file_name" #videoPlayer autoplay="false"
+                        (loadeddata)="setDurationAndThumbnail(videoPlayer)" type="video/mp4" preload="metadata"
+                        [attr.poster]="highlights.file_path + 'thumbnail/' + getThumbnailName(video.file_name)">
+                      </video> -->
+
+                      <video #videoPlayer preload="none" muted type="video/mp4"
+                        [attr.poster]="highlights.file_path + 'thumbnail/' + getThumbnailName(video.file_name)"
+                        (play)="setDurationAndThumbnail(videoPlayer)">
+                      </video>
+
+
+                      <div class="video-overlay-play-button">
+                         <img src="../../../../assets/images/play-button-{{currentThemeMode}}.svg" alt="" class="play_button_svg">
+                      </div>
                     </a>
 
                     <!-- Duration Display (only if the video is available) -->

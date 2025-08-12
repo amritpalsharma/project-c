@@ -309,7 +309,13 @@ export class GalleryTabComponent {
 
   }
 
-   getThumbnailName(fileName: string): string {
+  playVideo(video: HTMLVideoElement, fileName: string) {
+    // Set the source only when user clicks play
+    video.src = this.imageBaseUrl + fileName;
+    video.play();
+  }
+  
+  getThumbnailName(fileName: string): string {
     const fileNameWithoutExt = fileName.replace(/\.[^/.]+$/, ''); // Remove the file extension (e.g., '.mp4')
     return fileNameWithoutExt + '.jpg'; // Append .jpg for the thumbnail
   }

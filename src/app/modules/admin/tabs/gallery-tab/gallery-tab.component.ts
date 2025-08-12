@@ -7,7 +7,7 @@ import { environment } from '../../../../../environments/environment';
 import { CoverImageCropperComponent } from '../../../shared/cover-image-cropper/cover-image-cropper.component';
 import { ToastrService } from 'ngx-toastr';
 import { UserRoleService } from '../../../../services/user-role.service';
-
+import { MessagePopupComponent } from '../../message-popup/message-popup.component';
 @Component({
   selector: 'app-gallery-tab',
   templateUrl: './gallery-tab.component.html',
@@ -271,6 +271,27 @@ export class GalleryTabComponent {
     this.openedMenuId = id;
   }
 
+  confirmationTOdelete(action: any, id: any) {
+    const messageDialog = this.dialog.open(MessagePopupComponent, {
+      width: '500px',
+      position: {
+        top: '150px'
+      },
+      data: {
+        action: action
+      }
+    })
+
+    messageDialog.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        if (result.action == "delete-img-confirm") {
+          this.deleteImage(id);
+        }
+        //  console.log('Dialog result:', result);
+      }
+    });
+  }
+
   deleteImage(id: any) {
 
     try {
@@ -369,4 +390,11 @@ export class GalleryTabComponent {
     return fileNameWithoutExt + '.jpg'; // Append .jpg for the thumbnail
   }
 
+
+  setDurationAndThumbnail(videoElement: HTMLVideoElement) {
+    videoElement.crossOrigin = 'anonymous';
+    // Set Duration
+    // this.videoDuration = this.formatDuration(videoElement.duration);
+
+  }
 }

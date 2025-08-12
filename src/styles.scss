@@ -6,7 +6,7 @@
     url('./assets/fonts/AvenirNextLTPro-Bold.woff2') format('woff2'),
     url('./assets/fonts/AvenirNextLTPro-Bold.eot'),
     url('./assets/fonts/AvenirNextLTPro-Bold.eot?#iefix') format('embedded-opentype'),
-    url('./assets/fonts/AvenirNextLTPro-Bold.otf') format('truetype'); 
+    url('./assets/fonts/AvenirNextLTPro-Bold.otf') format('truetype');
 }
 
 @font-face {
@@ -2934,6 +2934,7 @@ img.club_logo_in_search {
 .dropdown-toggle-checkbox {
   .form-check {
     padding-left: 0 !important;
+
     .form-check-input {
       margin-left: 0 !important;
     }
@@ -2945,9 +2946,20 @@ mat-select {
 }
 
 .no_data_font_text {
-    padding: 10px 0;
-    text-align: center;
-    width: 100%;
-    font-family: "Libre Franklin", sans-serif;
-    font-size: 16px;
+  padding: 10px 0;
+  text-align: center;
+  width: 100%;
+  font-family: "Libre Franklin", sans-serif;
+  font-size: 16px;
+}
+
+.video-overlay-play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 50px;
+  color: white;
+  cursor: pointer;
+  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }

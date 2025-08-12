@@ -75,7 +75,8 @@
                     </span>
                     <span class="icon-bg premium_plan_btns" *ngIf="isPremium">
                       <button *ngIf="!isFavorite" (click)="addToFavorites(user.id)" mat-raised-button
-                        [matTooltip]="addFavorite" class="premium_add_fav_btn {{currentLoggedInPermission}} disabled_grey_btn">
+                        [matTooltip]="addFavorite"
+                        class="premium_add_fav_btn {{currentLoggedInPermission}} disabled_grey_btn">
                         <svg width="22" height="22" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path
                             d="M0.25 0.75H13.75V18L7 12.9375L0.25 18V0.75ZM1.75 2.25V15L7 11.0625L12.25 15V2.25H1.75Z"
@@ -1745,11 +1746,21 @@
                     (loadeddata)="setDurationAndThumbnail(videoPlayer, j)"></video> -->
 
                   <a [href]="highlights.file_path + video.file_name" data-fancybox="gallery" [attr.data-caption]="">
-                    <video [src]="highlights.file_path + video.file_name" #videoPlayer
-                      (loadeddata)="setDurationAndThumbnail(videoPlayer, j)" alt="Video Gallery" controls muted [attr.poster]="highlights.file_path + 'thumbnail/' + getThumbnailName(video.file_name)"></video>
+                    <!-- <video [src]="highlights.file_path + video.file_name" #videoPlayer
+                      (loadeddata)="setDurationAndThumbnail(videoPlayer, j)" alt="Video Gallery" controls muted [attr.poster]="highlights.file_path + 'thumbnail/' + getThumbnailName(video.file_name)"></video> -->
+                    <video #videoPlayer preload="none" muted type="video/mp4"
+                      [attr.poster]="highlights.file_path + 'thumbnail/' + getThumbnailName(video.file_name)"
+                      (play)="setDurationAndThumbnail(videoPlayer)">
+                    </video>
+
+
+                    <div class="video-overlay-play-button">
+                      <img src="../../../../assets/images/play-button-{{currentThemeMode}}.svg" alt=""
+                        class="play_button_svg">
+                    </div>
                   </a>
-                  <span class="duration"
-                    *ngIf="getVideoDuration(videoPlayer) != 'NaN:NaN'">{{getVideoDuration(videoPlayer) }}</span>
+                  <!-- <span class="duration"
+                    *ngIf="getVideoDuration(videoPlayer) != 'NaN:NaN'">{{getVideoDuration(videoPlayer) }}</span> -->
                   <!-- <span class="duration">{{duration}}</span> -->
                 </div>
 
