@@ -812,7 +812,7 @@
                     <p class="code-text">{{ 'team' | translate }}</p>
                     <div class="btn-group">
                         <mat-form-field appearance="fill" class="w-100 custom_select_mat">
-                            <mat-select class="cupen-btn-1 form-select" aria-label="Default select example"
+                            <mat-select class="cupen-btn-1 form-select playerTeam_{{playerTeam}}" aria-label="Default select example"
                                 [(ngModel)]="playerTeam"
                                 [ngClass]="{'red-border':isSubmitButtonClicked && !playerTeam}">
                                 <mat-option [value]="null" *ngIf="!playerTeam">{{ 'select' | translate }}

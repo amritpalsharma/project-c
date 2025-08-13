@@ -112,9 +112,11 @@ export class ScoutDetailComponent implements OnInit {
     // if (currentStatus == 2) {
     //   newStatus = 3;
     // }
+    this.toaster.info(this.pleaseWait, this.loadingTxt, { disableTimeOut: true });
     let newStatus = currentStatus;
     this.userService.updateUserStatus([this.userId], newStatus).subscribe(response => {
       this.user.status = newStatus;
+      this.toaster.clear();
       if (response.message != '' && response.message != undefined) {
         // this.showMatDialog(response.message, 'display');
         this.toaster.success(response.message);
@@ -307,12 +309,15 @@ export class ScoutDetailComponent implements OnInit {
       }
     });
   }
-
+  pleaseWait: string = '';
+  loadingTxt: string = '';
   getJsonTranslations() {
-    this.translateService.get(['dashboard', 'confirmDeleteinformation', 'deleteProfilePhoto']).subscribe((translations) => {
+    this.translateService.get(['dashboard', 'confirmDeleteinformation', 'deleteProfilePhoto', 'pleaseWait', 'loading']).subscribe((translations) => {
       this.pageTitle = translations['dashboard'];
       this.userDeleteConfirm = translations['confirmDeleteinformation'];
       this.deleteProfileImageConfirm = translations['deleteProfilePhoto'];
+      this.pleaseWait = translations['pleaseWait'];
+      this.loadingTxt = translations['loading'];
       this.titleService.setTitle(this.pageTitle);
       console.log('Title fetch Function Fired');
     })

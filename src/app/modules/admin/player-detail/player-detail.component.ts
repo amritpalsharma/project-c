@@ -73,13 +73,22 @@ export class PlayerDetailComponent implements OnInit {
       }
     });
   }
-
+  pleaseWait: string = '';
+  loadingTxt: string = '';
   updateTranslation() {
     this.translate.get('deleteProfileConfirm').subscribe((res: string) => {
       this.deleteProfileConfirm = res;
     });
     this.translate.get('deleteProfilePhoto').subscribe((res: string) => {
       this.deleteProfileImageConfirm = res;
+    });
+
+    this.translate.get('pleaseWait').subscribe((res: string) => {
+      this.pleaseWait = res;
+    });
+
+    this.translate.get('loading').subscribe((res: string) => {
+      this.loadingTxt = res;
     });
 
   }
@@ -127,9 +136,10 @@ export class PlayerDetailComponent implements OnInit {
     if (currentStatus == 1) {
       newStatus = 1;
     }
-
+    this.toaster.info(this.pleaseWait, this.loadingTxt, { disableTimeOut: true });
     this.userService.updateUserStatus([this.userId], newStatus).subscribe(response => {
       this.user.status = newStatus;
+      this.toaster.clear();
       // this.showMatDialog('User status updated successfully!', 'display');
       if (response.message != '') {
         // this.showMatDialog(response.message, 'display');
@@ -138,7 +148,7 @@ export class PlayerDetailComponent implements OnInit {
     },
       error => {
         console.error('Error updating user status:', error);
-         this.toaster.error('Fehler bei der Aktualisierung des Benutzerstatus. Bitte versuchen Sie es erneut.');
+        this.toaster.error('Fehler bei der Aktualisierung des Benutzerstatus. Bitte versuchen Sie es erneut.');
         // this.showMatDialog('Error updating user status. Please try again.', 'display');
       }
     );

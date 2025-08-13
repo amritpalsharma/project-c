@@ -61,7 +61,7 @@ export class UserEditPopupComponent {
   // showTeamsDropdown: boolean = false;
   showTeamsDropdown: boolean = true;
   teamsLisitng: any = [];
-  playerTeam: number = 0;
+  playerTeam: any = 0;
   isSubmitButtonClicked: boolean = false;
   theme: string = localStorage.getItem('theme') || 'light';
   isNoClub: boolean = false;
@@ -112,7 +112,7 @@ export class UserEditPopupComponent {
     if (this.data?.registered_club_info != null && typeof this.data?.registered_club_info !== undefined) {
       let registredClubArr = JSON.parse(this.data?.registered_club_info);
       this.playerClub = String(registredClubArr.club_id);
-      this.playerTeam = registredClubArr.team_id;
+      this.playerTeam = String(registredClubArr.team_id);
       this.getClubTeamsByGroup(this.playerClub, this.team_type);
     }
     console.info('this.data?.have_no_club', typeof this.data?.meta?.have_no_club)
@@ -122,8 +122,8 @@ export class UserEditPopupComponent {
 
     if (this.data?.current_club_info != null && typeof this.data?.current_club_info !== undefined) {
       let currentClubArr = JSON.parse(this.data?.current_club_info);
-      this.playerClub = currentClubArr.club_id;
-      this.playerTeam = currentClubArr.team_id;
+      this.playerClub = String(currentClubArr.club_id);
+      this.playerTeam = String(currentClubArr.team_id);
       this.getClubTeamsByGroup(this.playerClub, this.team_type);
     }
     // 

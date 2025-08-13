@@ -89,8 +89,11 @@ export class ClubDetailComponent implements OnInit {
     //   newStatus = 3;
     // }
     newStatus = currentStatus;
+    // this.toaster.info(this.pleaseWait, this,loadingTxt, { disableTimeOut: true });
+    this.toaster.info(this.pleaseWait, this.loadingTxt, { disableTimeOut: true });
     this.userService.updateUserStatus([this.userId], newStatus).subscribe(response => {
       this.user.status = newStatus;
+      this.toaster.clear();
       // this.showMatDialog('User status updated successfully!', 'display');
       if (response.message != '' && response.message != undefined) {
         // this.showMatDialog(response.message, 'display');
@@ -142,8 +145,8 @@ export class ClubDetailComponent implements OnInit {
     let langId = localStorage.getItem('lang_id');
     this.userService.deleteUser([this.userId], langId).subscribe(
       response => {
-        if(response.message != ''){
-            this.toaster.success(response.message);
+        if (response.message != '') {
+          this.toaster.success(response.message);
         }
         // this.showMatDialog('User deleted successfully!', 'display');
         this.router.navigate(['/admin/users']);
@@ -258,11 +261,14 @@ export class ClubDetailComponent implements OnInit {
       return 'player';
     }
   }
-
+  pleaseWait: string = '';
+  loadingTxt: string = '';
   getJsonTranslations() {
-    this.translateService.get(['dashboard', 'confirmDeleteinformation']).subscribe((translations) => {
+    this.translateService.get(['dashboard', 'confirmDeleteinformation', 'pleaseWait', 'loading']).subscribe((translations) => {
       this.pageTitle = translations['dashboard'];
       this.userDeleteConfirm = translations['confirmDeleteinformation'];
+      this.pleaseWait = translations['pleaseWait'];
+      this.loadingTxt = translations['loading'];
       this.titleService.setTitle(this.pageTitle);
       console.log('Title fetch Function Fired');
     })
