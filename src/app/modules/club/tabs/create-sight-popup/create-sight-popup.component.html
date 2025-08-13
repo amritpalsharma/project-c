@@ -95,11 +95,10 @@
     </div>
     <div class="row">
       <div class="col-lg-6 mb-4">
-        <label for="date-select" class="code-text">{{ 'dateAndTime' | translate }}</label><br>
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="date_tiem_comb">
-              <div class="position-relative common">
+          <div class="date_tiem_comb  d-flex align-items-center">
+            <div class="input_label_wrap w-100">
+              <label for="date-select" class="code-text">{{ 'dateAndTime' | translate }}</label><br>
+              <div class="position-relative common w-100">
                 <input placeholder="DD.MM.YYYY" class="form-control cupen-btn sighting-cal"
                   [ngClass]="{'emptyRequiredField': submitButtonClicked && !dateTimeNew}"
                   [matDatepicker]="contractStartPicker" [formControl]="dateControl"
@@ -107,10 +106,12 @@
                 <mat-datepicker-toggle matSuffix [for]="contractStartPicker"></mat-datepicker-toggle>
                 <mat-datepicker #contractStartPicker></mat-datepicker>
               </div>
-              <input type="time" id="appt" name="appt" [ngClass]="{'emptyRequiredField': submitButtonClicked && !timeString}" class="cupen-btn code-text form-control" [value]="timeString" (change)="onTimeChange1($event)">
+            </div>
+            <div class="input_label_wrap w-100">
+              <label for="date-select" class="code-text">{{ 'dateAndTime' | translate }}</label><br>
+              <input type="time" id="appt" name="appt" [ngClass]="{'emptyRequiredField': submitButtonClicked && !timeString}" class="cupen-btn code-text form-control w-100" [value]="timeString" (change)="onTimeChange1($event)">
             </div>
           </div>
-        </div>
       </div>
       <div class="col-lg-4 mb-4 ms-auto">
         <div class="status_label">&nbsp;</div>
