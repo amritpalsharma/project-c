@@ -83,7 +83,7 @@ export class PurchaseTabComponent {
         const url = window.URL.createObjectURL(blob);
         const anchor = document.createElement('a');
         anchor.href = url;
-        anchor.download = 'invoice-' + invoideId + '.pdf'; // Set the filename for download
+        anchor.download = 'socceryou_invoice-' + invoideId + '.pdf'; // Set the filename for download
         document.body.appendChild(anchor);
         anchor.click();
         window.URL.revokeObjectURL(url);
