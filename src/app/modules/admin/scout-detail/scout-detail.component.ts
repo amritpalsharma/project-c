@@ -112,7 +112,8 @@ export class ScoutDetailComponent implements OnInit {
     // if (currentStatus == 2) {
     //   newStatus = 3;
     // }
-    this.toaster.info(this.pleaseWait, this.loadingTxt, { disableTimeOut: true });
+    this.toaster.info(this.loadingTxt, '', { disableTimeOut: true });
+    // this.toaster.info(this.pleaseWait, this.loadingTxt, { disableTimeOut: true });
     let newStatus = currentStatus;
     this.userService.updateUserStatus([this.userId], newStatus).subscribe(response => {
       this.user.status = newStatus;

@@ -522,4 +522,17 @@ export class CreateSightPopupComponent implements AfterViewInit {
       this.attachmentRows[index].file = '';
     }
   }
+
+
+  // Test
+
+  getTextBeforeDash(input: string): string {
+    // input = input.toLowerCase();
+    return input.split('/')[0].trim();
+  }
+
+  getTextAfterDash(input: string): string {
+    // input = input.toLowerCase();
+    return input.split('/')[1]?.trim() || '';
+  }
 }

@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class GalleryComponent {
 
+  currentThemeMode: string = localStorage.getItem('theme') || 'dark';
   userId: any = '';
   userImages: any = [];
   userVideos: any = [];

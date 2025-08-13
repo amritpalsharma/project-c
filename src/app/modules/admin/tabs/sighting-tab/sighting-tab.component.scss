@@ -8,14 +8,23 @@
 .Favorite-parent{
     padding: 0;
 }
-.invite-talent-btn{
+.invite-talent-btn {
   background: #6FB95D;
   color: #fff;
   padding: 7px 24px;
-  border: none ;
+  border: none;
   font-size: 16px;
   border-radius: 10px;
-  font-weight: 700;
+  font-weight: 600;
+}
+
+::ng-deep {
+  .dark-theme {
+    .add_btn_.invite-talent-btn {
+      background: #bde34f !important;
+      color: #072944 !important;
+    }
+  }
 }
 
 @media(max-width: 425px){
@@ -402,6 +411,7 @@ margin-top: 20px;
 }
 
 @media (max-width: 600px) {
+
 .card_sight_btns .btn-outline-white {
   font-size: 0 !important;
 }

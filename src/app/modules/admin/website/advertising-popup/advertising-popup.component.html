@@ -78,7 +78,7 @@
         </p>
         <label for="file-upload" class="btn btn-secondary upload-btn mb-2 mt-2">{{ 'chooseFile' | translate }}</label>
         <input id="file-upload" type="file" class="setting-media-2" style="display: none;"
-          (change)="onImageChange($event)" accept="image/*" />
+          (change)="onImageChange($event)"  accept=".jpg, .jpeg, .png, .dng, image/jpeg, image/png, image/dng" />
         <p class="main-upload-text mb-1">
           {{ 'maximumSize5MB' | translate }}
         </p>

@@ -2013,6 +2013,12 @@ span.active_btn {
   .gallery_images img, .gallery_images video {
       height: 120px !important;
   }
+
+  .gallery_images .play_button_svg {
+      height: 50px !important;
+      width: 50px !important;
+  }
+
 }
 
 @media (min-width: 1600px) and (max-width: 2999px) {

@@ -136,7 +136,7 @@ export class PlayerDetailComponent implements OnInit {
     if (currentStatus == 1) {
       newStatus = 1;
     }
-    this.toaster.info(this.pleaseWait, this.loadingTxt, { disableTimeOut: true });
+    this.toaster.info(this.loadingTxt, '', { disableTimeOut: true });
     this.userService.updateUserStatus([this.userId], newStatus).subscribe(response => {
       this.user.status = newStatus;
       this.toaster.clear();
@@ -277,7 +277,10 @@ export class PlayerDetailComponent implements OnInit {
   }
 
   exportUser() {
+    // this.toaster.info(this.pleaseWait, this.loadingTxt, { disableTimeOut: true });
+    this.toaster.info(this.loadingTxt, '', { disableTimeOut: true });
     this.userService.exportSingleUser(this.userId).subscribe((response) => {
+      this.toaster.clear();
       if (response && response.status) {
         let fileUrl = response.data.file_path;
         let fileName = response.data.file_name;

@@ -76,7 +76,7 @@
                             <div class="player--bio-dtl">
                                 <div class="item--icons-list">
                                     <div class="item--club">
-                                       <img *ngIf="current_club_logo && current_club_logo == 'no-logo'"
+                                        <img *ngIf="current_club_logo && current_club_logo == 'no-logo'"
                                             src="../../../../assets/club_logo/default_logo_{{theme}}.svg"
                                             alt="team-logo {{current_club_logo}}" class="team-logo">
                                         <img *ngIf="current_club_logo && current_club_logo != 'no-logo'"
@@ -186,6 +186,11 @@
                         <div class="table-responsive mt-3">
                             <table class="table w-100 table-striped">
                                 <tbody>
+                                    <tr *ngIf="!stats?.get_booster_data || stats?.get_booster_data.length == '0'">
+                                        <td colspan="3" class="text-center">
+                                            <h5>{{'noRecordFound' | translate}}</h5>
+                                        </td>
+                                    </tr>
                                     <tr *ngFor="let user of stats?.get_booster_data">
                                         <td>
                                             <div class="d-flex align-items-center">

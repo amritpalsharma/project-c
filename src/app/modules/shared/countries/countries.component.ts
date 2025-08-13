@@ -70,7 +70,7 @@ export class CountriesComponent {
           // Filter the countries where is_package_active == 'active'
           this.filteredCountries = this.countries.filter((country: any) => country.is_package_active == 'active');
           this.activeCountryCount = this.filteredCountries.filter((country: any) => country.is_package_active === 'active').length;
-
+          console.log('this.activeCountryCount',this.activeCountryCount)
         }
       },
       (error: any) => {

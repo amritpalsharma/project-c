@@ -1,7 +1,7 @@
 import { Component, Inject, ChangeDetectorRef } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TalentService } from '../../../services/talent.service';
-import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { MatDatepickerInputEvent, MatDatepicker } from '@angular/material/datepicker';
 import { FormControl, NgForm } from '@angular/forms';
 import * as _moment from 'moment';
 // tslint:disable-next-line:no-duplicate-imports
@@ -101,11 +101,11 @@ export class EditTransferDetailsComponent {
       // this.is_team_to_manual = true;
       // this.onNoMoveToTeam(true);
       // setTimeout(() => {
-        this.is_team_to_manual = true;
+      this.is_team_to_manual = true;
       // }, 1000);
     } else {
       // setTimeout(() => {
-        this.is_team_to_manual = false;
+      this.is_team_to_manual = false;
       // }, 1000);
     }
     if (this.transfer.team_from_manual != '' && this.transfer.team_from_manual != null && typeof this.transfer.team_from_manual !== undefined) {
@@ -314,6 +314,11 @@ export class EditTransferDetailsComponent {
 
   ngAfterViewChecked() {
     // this.cdr.detectChanges();
+  }
+
+
+  openDatePicker(datepicker: MatDatepicker<any>) {
+    datepicker.open();  // Opens the date picker
   }
 
 

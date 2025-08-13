@@ -19,10 +19,10 @@
 
     <div class="inbox-body chat_popup_srch_color">
       <div class="text-center w-100  body-background">
-        <mat-form-field class="example-chip-list inbox-wrapper bg-white">
+        <mat-form-field class="example-chip-list inbox-wrapper bg-color-2 w-100">
           <!-- <mat-label>To:</mat-label> -->
           <!-- <span>To:</span> -->
-          <mat-chip-grid #chipGrid aria-label="Fruit selection " class="messanger-selector bg-white w-100 ">
+          <mat-chip-grid #chipGrid aria-label="Fruit selection " class="messanger-selector messanger-selector-name bg-color-2 w-100 ">
             <p class="main_to_label">{{ 'to:' | translate }}</p>
             @for (user of users; track $index) {
             <mat-chip-row (removed)="remove(user)">
@@ -64,18 +64,18 @@
           </mat-chip-grid>
 
 
-          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)" class="listBox w-100">
-            <span *ngIf="isLoading">{{'loading' | translate}}</span>
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)" class="listBox w-100 users-name-list">
+            <!-- <span *ngIf="isLoading">{{'loading' | translate}}</span> -->
             @for (user of filteredUsers; track user) {
             <!-- <pre>{{user | json}}</pre> -->
-            <mat-option [value]="user" class="fruit-font">
+            <mat-option [value]="user" class="mb-4 select-user-name {{classForAutoList}}">
               <img *ngIf="!isThisClub(user.role_name)" width="50" height="50"
                 class="img-list is_not_club {{user.role_name}}"
                 src="{{user?.profile_image ? user?.profile_image :'../../../../../assets/images/default/talent-profile-default.png'}}">
               <img *ngIf="isThisClub(user.role_name)" width="50" height="50" class="img-list club_logo_in_search"
                 src="{{user?.club_logo ? 'https://api.socceryou.ch/uploads/' + user?.club_logo :'../../../../../assets/images/default/talent-profile-default.png'}}">
-              <span *ngIf="user?.role != 2">{{user.first_name+' '+user.last_name}}</span>
-              <span *ngIf="user?.role == 2">{{user?.club_name}}</span>
+              <span *ngIf="user?.role != 2">&nbsp;{{user.first_name+' '+user.last_name}}</span>
+              <span *ngIf="user?.role == 2">&nbsp;{{user?.club_name}}</span>
             </mat-option>
             }
           </mat-autocomplete>

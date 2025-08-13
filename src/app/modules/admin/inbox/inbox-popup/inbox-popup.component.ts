@@ -88,9 +88,16 @@ export class InboxPopupComponent {
     this.dialogRef.close();
   }
 
-
+  classForAutoList: string = 'd-none';
   callListApi(userInput: HTMLInputElement) {
     const keyword = userInput.value.trim().toLowerCase(); // Trim spaces and convert to lowercase
+    // const query = inputElement.value;
+    if (keyword.length > 1) {
+      this.searchSubject.next(keyword);
+      this.classForAutoList = '';
+    } else {
+      this.classForAutoList = 'd-none';
+    }
     this.searchSubject.next(keyword); // Send input to debounce stream
   }
 

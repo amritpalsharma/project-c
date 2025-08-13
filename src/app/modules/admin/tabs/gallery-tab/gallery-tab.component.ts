@@ -8,6 +8,9 @@ import { CoverImageCropperComponent } from '../../../shared/cover-image-cropper/
 import { ToastrService } from 'ngx-toastr';
 import { UserRoleService } from '../../../../services/user-role.service';
 import { MessagePopupComponent } from '../../message-popup/message-popup.component';
+import { GlobalSettingsService } from '../../../../services/global-settings.service';
+
+
 @Component({
   selector: 'app-gallery-tab',
   templateUrl: './gallery-tab.component.html',
@@ -27,6 +30,7 @@ export class GalleryTabComponent {
   @Input() coverImage: string = '';  // Define an input property
   @Output() dataEmitter = new EventEmitter<string>();
   constructor(
+    public globalSettings: GlobalSettingsService,
     public userRoleService: UserRoleService,
     private route: ActivatedRoute, private userService: UserService, public dialog: MatDialog, private toastr: ToastrService) { }
 
@@ -45,7 +49,21 @@ export class GalleryTabComponent {
       // Client ask remove deafult image for admin in ticket #196
       // https://farooqmalik.atlassian.net/jira/software/projects/KAN/boards/1?selectedIssue=KAN-196&text=Talent
     }
+
+    this.globalSettings.indexFunctionCall$.subscribe(() => {
+      this.themeChanged(); // Call the function when event is received
+    });
   }
+
+  currentThemeMode: string = localStorage.getItem('theme') || 'dark';
+  themeChanged() {
+    let currentTheme = localStorage.getItem('theme');
+    this.currentThemeMode = String(currentTheme);
+    if (this.currentThemeMode == null || this.currentThemeMode == undefined) {
+      this.currentThemeMode = 'light';
+    }
+  }
+
 
   getUserGallery(userId: any) {
     console.log(userId)

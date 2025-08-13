@@ -164,6 +164,11 @@
                         <div class="table-responsive mt-3">
                             <table class="table w-100 table-striped">
                                 <tbody>
+                                    <tr *ngIf="!stats?.get_booster_data || stats?.get_booster_data.length == '0'">
+                                        <td colspan="3" class="text-center">
+                                            <h5>{{'noRecordFound' | translate}}</h5>
+                                        </td>
+                                    </tr>
                                     <tr *ngFor="let user of stats?.get_booster_data">
                                         <td>
                                             <div class="d-flex align-items-center">
@@ -242,8 +247,9 @@
                                     <div class="flex justify-between align-items-center">
                                         <span class="text-muted-foreground">{{ user.created_at | date:'dd.MM.yyyy'
                                             }}</span>
-                                        <div class="flex_btn" >
-                                            <span class="view--eye pointer" (click)="naviGateToProfile(user.role_id,user.user_id)">
+                                        <div class="flex_btn">
+                                            <span class="view--eye pointer"
+                                                (click)="naviGateToProfile(user.role_id,user.user_id)">
                                                 <svg width="25" height="25" viewBox="0 0 25 25" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg" class="pointer">
                                                     <path

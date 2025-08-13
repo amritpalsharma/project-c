@@ -115,14 +115,23 @@
         <!-- <video [src]="imageBaseUrl + video.file_name" #videoPlayer (loadeddata)="setDurationAndThumbnail(videoPlayer)"
           muted controls [attr.poster]="imageBaseUrl + 'thumbnail/' + getThumbnailName(video.file_name)"
           preload="none"></video> -->
-          <video
+        <!-- <video
   [src]="imageBaseUrl + video.file_name"
   preload="none"
   muted
   controls
   [attr.poster]="imageBaseUrl + 'thumbnail/' + getThumbnailName(video.file_name)">
-</video>
+</video> -->
 
+        <video #videoPlayer preload="none" muted type="video/mp4"
+          [attr.poster]="imageBaseUrl + 'thumbnail/' + getThumbnailName(video.file_name)"
+          (play)="setDurationAndThumbnail(videoPlayer)">
+        </video>
+
+
+        <div class="video-overlay-play-button">
+          <img src="../../../../assets/images/play-button-{{currentThemeMode}}.svg" alt="" class="play_button_svg">
+        </div>
       </a>
       <!-- <video style="max-width:100%;">
       <source src="{{imageBaseUrl}}{{video.file_name}}" type="video/mp4">

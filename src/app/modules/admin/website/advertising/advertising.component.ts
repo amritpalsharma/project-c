@@ -8,6 +8,7 @@ import { AdvertisementService } from '../../../../services/advertisement.service
 import { AdvertisingPopupComponent } from '../advertising-popup/advertising-popup.component';
 import { CommonFilterPopupComponent } from '../../common-filter-popup/common-filter-popup.component';
 import { UserRoleService } from '../../../../services/user-role.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-advertising',
@@ -57,6 +58,7 @@ export class AdvertisingComponent {
   pageOptions: any = [];
 
   constructor(
+    public toaster: ToastrService,
     public userRoleService: UserRoleService,
     private advertisementService: AdvertisementService, public dialog: MatDialog) { }
 
@@ -181,7 +183,8 @@ export class AdvertisingComponent {
     updateAdDialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
         if (result.action == "updated") {
-          this.showMatDialog(result.message, 'display');
+          // this.showMatDialog(result.message, 'display');
+          this.toaster.success(result.message);
           this.getAdvertisements();
         }
         //  console.log('Dialog result:', result);
@@ -203,7 +206,8 @@ export class AdvertisingComponent {
     createAdDialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
         if (result.action == "added") {
-          this.showMatDialog(result.message, 'display');
+          // this.showMatDialog(result.message, 'display');
+          this.toaster.success(result.message);
           this.getAdvertisements();
         }
         //  console.log('Dialog result:', result);
@@ -246,9 +250,10 @@ export class AdvertisingComponent {
           this.allSelected = false;
           // console.log('Coupons deleted successfully:', response);
           // this.showMatDialog('Advertisement(s) published successfully!.', 'display');
-          this.showMatDialog(response.message, 'display');
+          // this.showMatDialog(response.message, 'display');
+          this.toaster.success(response.message);
         } else {
-          this.showMatDialog('Error in publishing advertisement. Please try again.', 'display');
+          // this.showMatDialog('Error in publishing advertisement. Please try again.', 'display');
         }
       },
       error => {
@@ -279,7 +284,8 @@ export class AdvertisingComponent {
           this.selectedIds = [];
           this.allSelected = false;
           // this.showMatDialog('Advertisement(s) drafted successfully!.', 'display');
-          this.showMatDialog(response.message, 'display');
+          // this.showMatDialog(response.message, 'display');
+          this.toaster.success(response.message);
         } else {
           this.showMatDialog('Error in drafting advertisement. Please try again.', 'display');
         }
@@ -343,9 +349,10 @@ export class AdvertisingComponent {
           this.allSelected = false;
           // console.log('Coupons deleted successfully:', response);
           // this.showMatDialog('Advertisement(s) deleted successfully!.', 'display');
-          this.showMatDialog(response.message, 'display');
+          // this.showMatDialog(response.message, 'display');
+          this.toaster.success(response.message);
         } else {
-          this.showMatDialog('Error in removing advertisement. Please try again.', 'display');
+          // this.showMatDialog('Error in removing advertisement. Please try again.', 'display');
         }
       },
       error => {

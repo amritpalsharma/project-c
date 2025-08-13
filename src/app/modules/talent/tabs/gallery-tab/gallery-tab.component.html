@@ -157,13 +157,24 @@
         </video> -->
         <!-- <video [src]="imageBaseUrl + image.file_name" #videoPlayer (loadeddata)="setDurationAndThumbnail(videoPlayer)" muted controls [attr.poster]="imageBaseUrl + 'thumbnail/' + getThumbnailName(image.file_name)"></video> -->
 
-        <video #videoPlayer muted controls
+        <!-- <video #videoPlayer muted controls
           [attr.poster]="imageBaseUrl + 'thumbnail/' + getThumbnailName(image.file_name)">
+        </video> -->
+
+
+        <video #videoPlayer preload="none" muted type="video/mp4"
+          [attr.poster]="imageBaseUrl + 'thumbnail/' + getThumbnailName(image.file_name)"
+          (play)="setDurationAndThumbnail(videoPlayer)">
         </video>
 
-        <div class="video-overlay" (click)="playVideo(videoPlayer, image.file_name)">
-          <!-- ▶ -->
+
+        <div class="video-overlay-play-button">
+          <img src="../../../../assets/images/play-button-{{currentThemeMode}}.svg" alt="" class="play_button_svg">
         </div>
+
+        <!-- <div class="video-overlay" (click)="playVideo(videoPlayer, image.file_name)"> -->
+        <!-- ▶ -->
+        <!-- </div> -->
         <!-- <video controls autoplay muted playsinline width="100%" height="auto">
           <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
           Your browser does not support the video tag.

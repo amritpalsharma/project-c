@@ -157,8 +157,17 @@
               {{ 'galleryText' | translate }}
             </video> -->
             <!-- <video [src]="imageBaseUrl + image.file_name" #videoPlayer (loadeddata)="setDurationAndThumbnail(videoPlayer)" muted></video> -->
-            <video [src]="imageBaseUrl + image.file_name" #videoPlayer
-              (loadeddata)="setDurationAndThumbnail(videoPlayer)" muted controls [attr.poster]="imageBaseUrl + 'thumbnail/' + getThumbnailName(image.file_name)"></video>
+            <!-- <video [src]="imageBaseUrl + image.file_name" #videoPlayer
+              (loadeddata)="setDurationAndThumbnail(videoPlayer)" muted controls [attr.poster]="imageBaseUrl + 'thumbnail/' + getThumbnailName(image.file_name)"></video> -->
+            <video #videoPlayer preload="none" muted type="video/mp4"
+              [attr.poster]="imageBaseUrl + 'thumbnail/' + getThumbnailName(image.file_name)"
+              (play)="setDurationAndThumbnail(videoPlayer)">
+            </video>
+
+
+            <div class="video-overlay-play-button">
+              <img src="../../../../assets/images/play-button-{{currentThemeMode}}.svg" alt="" class="play_button_svg">
+            </div>
           </a>
           <div class="wc_floatingMenu" [ngClass]="{ 'active': openedMenuId == image.id}">
             <div class="wc_menuItem pointer font-14 {{currentLoggedInPermission}}"

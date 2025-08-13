@@ -90,7 +90,8 @@ export class ClubDetailComponent implements OnInit {
     // }
     newStatus = currentStatus;
     // this.toaster.info(this.pleaseWait, this,loadingTxt, { disableTimeOut: true });
-    this.toaster.info(this.pleaseWait, this.loadingTxt, { disableTimeOut: true });
+    // this.toaster.info(this.pleaseWait, this.loadingTxt, { disableTimeOut: true });
+    this.toaster.info(this.loadingTxt, '', { disableTimeOut: true });
     this.userService.updateUserStatus([this.userId], newStatus).subscribe(response => {
       this.user.status = newStatus;
       this.toaster.clear();

@@ -637,3 +637,18 @@ input[type="number"] {
     }
   }
 }
+
+
+@media (max-width: 480px) {
+  .date_tiem_comb.d-flex {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start !important;
+    input#appt {
+        border-radius: 10px !important;
+    }
+    .common input.mat-datepicker-input {
+      border-radius: 10px !important;
+    }
+}
+}

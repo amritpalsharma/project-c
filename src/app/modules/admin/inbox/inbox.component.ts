@@ -125,7 +125,9 @@ export class InboxComponent {
     this.users = [];
     this.dialog.open(InboxPopupComponent, {
       height: '450px',
-      width: '850px',
+      width: '760px',
+      // height: '450px',
+      // width: '760px',
     })
       .afterClosed()
       .subscribe(users => {
@@ -242,21 +244,21 @@ export class InboxComponent {
 
 
   async checkAndRemoveOpenChat() {
-        const url = new URL(window.location.href);
-        url.searchParams.delete('open_chat');
-        window.history.replaceState({}, document.title, url.toString());
+    const url = new URL(window.location.href);
+    url.searchParams.delete('open_chat');
+    window.history.replaceState({}, document.title, url.toString());
 
-        const otherUserData = localStorage.getItem('otherUserData');
-        console.info('otherUserData', otherUserData)
-        if (otherUserData) {
-            const otherUser = JSON.parse(otherUserData);
-            await this.talkService.createOneOnOneConversation(
-                otherUser.id,
-                otherUser.name,
-                otherUser.email,
-                otherUser.photoUrl
-            );
-        }
-        setTimeout(() => (this.isLoading = false), 100);
+    const otherUserData = localStorage.getItem('otherUserData');
+    console.info('otherUserData', otherUserData)
+    if (otherUserData) {
+      const otherUser = JSON.parse(otherUserData);
+      await this.talkService.createOneOnOneConversation(
+        otherUser.id,
+        otherUser.name,
+        otherUser.email,
+        otherUser.photoUrl
+      );
     }
+    setTimeout(() => (this.isLoading = false), 100);
+  }
 }

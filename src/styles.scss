@@ -2969,3 +2969,9 @@ mat-select {
   width: 50px !important;
 }
 
+@media (min-width: 1200px) and (max-width: 1599px) {
+  .gallery_images .play_button_svg {
+    height: 50px !important;
+    width: 50px !important;
+  }
+}

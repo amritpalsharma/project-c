@@ -31,7 +31,7 @@
 
             <h6 class="gallery-h6 mt-2">{{ 'dragAndDropFilesHere' | translate }}</h6>
             <p class="gallery-p">{{ 'filesSupported' | translate }} </p>
-            <input type="file" (change)="onFileSelect($event)" multiple hidden #fileInput />
+            <input type="file" (change)="onFileSelect($event)" multiple hidden #fileInput accept="image/jpeg, image/png, video/mp4" />
             <button type="button" (click)="fileInput.click()" class="gallery-upload-button mb-3 mt-3">{{ 'uploadFiles' |
                 translate }}</button>
             <!-- <p class="gallery-p">{{ 'maximumSize5MB' | translate }}</p> -->

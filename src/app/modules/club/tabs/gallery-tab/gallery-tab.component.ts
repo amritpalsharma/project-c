@@ -11,6 +11,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { WebPages } from '../../../../services/webpages.service';
 import { UnverifiedUserComponent } from '../../../shared/unverified-user/unverified-user.component';
 import { DashboardComponent } from '../../dashboard/dashboard.component';
+import { GlobalSettingsService } from '../../../../services/global-settings.service';
 
 @Component({
   selector: 'club-gallery-tab',
@@ -35,7 +36,9 @@ export class GalleryTabComponent {
 
   isLoading: boolean = false;
 
+  currentThemeMode: string = localStorage.getItem('theme') || 'dark';
   constructor(
+    private globalSettings: GlobalSettingsService,
     private toastr: ToastrService,
     private route: ActivatedRoute,
     private scoutService: ScoutService,
@@ -70,6 +73,21 @@ export class GalleryTabComponent {
       this.getToasterMsg();
     });
 
+
+    //  on change
+    this.globalSettings.indexFunctionCall$.subscribe(() => {
+      this.themeChanged(); // Call the function when event is received
+    });
+
+  }
+
+
+  themeChanged() {
+    let currentTheme = localStorage.getItem('theme');
+    this.currentThemeMode = String(currentTheme);
+    if (this.currentThemeMode == null || this.currentThemeMode == undefined) {
+      this.currentThemeMode = 'light';
+    }
   }
 
   getGalleryData() {

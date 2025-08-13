@@ -141,7 +141,7 @@
           <label for="date_of_transfer" class="form-label">{{'transferDate' | translate}}</label>
           <div class="d-flex align-items-center justify-content-center date_field position-relative">
             <input matInput id="date_of_transfer" name="date_of_transfer" [matDatepicker]="date_of_transferpicker"
-              [formControl]="date_of_transfer" placeholder="DD.MM.YYYY" required [readonly]="true"/>
+              [formControl]="date_of_transfer" placeholder="DD.MM.YYYY" required [readonly]="true" [readonly]="true" (click)="openDatePicker(date_of_transferpicker)"/>
             <mat-datepicker-toggle matSuffix [for]="date_of_transferpicker"></mat-datepicker-toggle>
             <mat-datepicker #date_of_transferpicker></mat-datepicker>
           </div>

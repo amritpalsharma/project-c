@@ -533,7 +533,7 @@ export class CreateSightPopupComponent implements AfterViewInit {
 
   removeMP4(str: string) {
     let textToRemove = 'MP4, MOV';
-    
+
     const regex = new RegExp(`,?\\s*${textToRemove}`, 'gi');
     return str.replace(regex, '').trim();
     // return str;
@@ -706,4 +706,13 @@ export class CreateSightPopupComponent implements AfterViewInit {
     datepicker.open();  // Opens the date picker
   }
 
+  getTextBeforeDash(input: string): string {
+    // input = input.toLowerCase();
+    return input.split('/')[0].trim();
+  }
+
+  getTextAfterDash(input: string): string {
+    // input = input.toLowerCase();
+    return input.split('/')[1]?.trim() || '';
+  }
 }
