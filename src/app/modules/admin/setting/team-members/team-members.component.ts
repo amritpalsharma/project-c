@@ -6,6 +6,7 @@ import { AddRepresentatorPopupComponent } from '../../add-representator-popup/ad
 import { TranslateService } from '@ngx-translate/core';
 import { SharedService } from '../../../../services/shared.service';
 import { UserRoleService } from '../../../../services/user-role.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-team-members',
@@ -22,6 +23,7 @@ export class TeamMembersComponent {
   confirmDeleteinformation: string = '';
 
   constructor(
+    public toaster: ToastrService,
     public userRoleService: UserRoleService,
     public dialog: MatDialog,
     private userService: UserService,
@@ -78,9 +80,10 @@ export class TeamMembersComponent {
     this.userService.updateRepresentatorRole(id, { site_role: newRole }).subscribe((response) => {
       if (response && response.status) {
         if (response.message != '' && response.message != undefined) {
-          this.showMatDialog(response.message, 'display');
+          // this.showMatDialog(response.message, 'display');
+          this.toaster.success(response.message);
         } else {
-          this.showMatDialog("Role updated successfully.", 'display');
+//  /         this.showMatDialog("Role updated successfully.", 'display');
         }
       } else {
         console.error('Invalid API response structure:', response);
@@ -125,12 +128,13 @@ export class TeamMembersComponent {
         if (response.status) {
           this.getRepresentators();
           if (response.message != '' && response.message != undefined) {
-            this.showMatDialog(response.message, 'display');
+            // this.showMatDialog(response.message, 'display');
+            this.toaster.success(response.message);
           } else {
-            this.showMatDialog('Representator removed successfully!.', 'display');
+            // this.showMatDialog('Representator removed successfully!.', 'display');
           }
         } else {
-          this.showMatDialog('Error in removing Representator. Please try again.', 'display');
+          // this.showMatDialog('Error in removing Representator. Please try again.', 'display');
         }
       },
       error => {
@@ -154,9 +158,10 @@ export class TeamMembersComponent {
         if (result.action == "added") {
           this.getRepresentators();
           if (result.message != '' && result.message != undefined) {
-            this.showMatDialog(result.message, 'display');
+            // this.showMatDialog(result.message, 'display');
+            this.toaster.success(result.message);
           } else {
-            this.showMatDialog("Invite sent successfully.", 'display');
+            // this.showMatDialog("Invite sent successfully.", 'display');
           }
         }
         //  console.log('Dialog result:', result);

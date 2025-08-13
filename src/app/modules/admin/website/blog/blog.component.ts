@@ -11,6 +11,7 @@ import { CommonFilterPopupComponent } from '../../common-filter-popup/common-fil
 import { SharedService } from '../../../../services/shared.service';
 import { AdminHelperService } from '../../../../services/admin-helper.service';
 import { UserRoleService } from '../../../../services/user-role.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-blog',
@@ -39,6 +40,7 @@ export class BlogComponent {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild('blogPageCheckBox', { static: false }) blogPageCheckBox!: ElementRef;
   constructor(
+    public toastr: ToastrService,
     public userRoleService: UserRoleService,
     private blogService: BlogService, private webpages: WebPages, public dialog: MatDialog, private sharedservice: SharedService, private adminHelper: AdminHelperService) { }
 
@@ -137,9 +139,10 @@ export class BlogComponent {
           this.getBlogs();
           this.selectedIds = [];
           this.allSelected = false;
-          this.showMatDialog(response.message, 'display');
+          // this.showMatDialog(response.message, 'display');
+          this.toastr.success(response.message);
         } else {
-          this.showMatDialog('Error in publishing blog. Please try again.', 'display');
+          // this.showMatDialog('Error in publishing blog. Please try again.', 'display');
         }
       },
       error => {
@@ -178,9 +181,10 @@ export class BlogComponent {
           this.getBlogs();
           this.selectedIds = [];
           this.allSelected = false;
-          this.showMatDialog(response.message, 'display');
+          // this.showMatDialog(response.message, 'display');
+          this.toastr.success(response.message);
         } else {
-          this.showMatDialog('Error in drafting Blog. Please try again.', 'display');
+          // this.showMatDialog('Error in drafting Blog. Please try again.', 'display');
         }
       },
       error => {
@@ -239,9 +243,10 @@ export class BlogComponent {
           this.getBlogs();
           this.selectedIds = [];
           this.allSelected = false;
-          this.showMatDialog(response.message, 'display');
+          // this.showMatDialog(response.message, 'display');
+          this.toastr.success(response.message);
         } else {
-          this.showMatDialog('Error in removing Blog. Please try again.', 'display');
+          // this.showMatDialog('Error in removing Blog. Please try again.', 'display');
         }
       },
       error => {
@@ -302,10 +307,12 @@ export class BlogComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.action == "templateUpdated") {
-        this.showMatDialog(result.message, 'display');
+        // this.showMatDialog(result.message, 'display');
+        this.toastr.success(result.message);
         this.getBlogs();
       } else if (result && result.action == 'blogAdded') {
-        this.showMatDialog(result.message, 'display');
+        // this.showMatDialog(result.message, 'display');
+        this.toastr.success(result.message);
         this.getBlogs();
       }
     });

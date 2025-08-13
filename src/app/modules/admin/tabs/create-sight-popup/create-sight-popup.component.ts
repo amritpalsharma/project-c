@@ -152,7 +152,7 @@ export class CreateSightPopupComponent implements AfterViewInit {
   }
 
   removeMP4(str: string) {
-    let textToRemove = 'MP4';
+    let textToRemove = 'MP4, MOV';
     const regex = new RegExp(`,?\\s*${textToRemove}`, 'gi');
     return str.replace(regex, '').trim();
   }

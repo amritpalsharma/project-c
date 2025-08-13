@@ -15,6 +15,7 @@ import { TitleService } from '../../../title.service';
 import { SharedService } from '../../../services/shared.service';
 import { TranslateService } from '@ngx-translate/core';
 import { UserRoleService } from '../../../services/user-role.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-templates',
@@ -41,6 +42,7 @@ export class TemplatesComponent {
   count: number = 0;
 
   constructor(
+    public toaster: ToastrService,
     public userRoleService: UserRoleService,
     public dialog: MatDialog,
     private tempalateApi: TemplateService,
@@ -132,7 +134,8 @@ export class TemplatesComponent {
       if (result !== undefined) {
         if (result.action == "templateAdded") {
           if (result.message != '' && result.message != undefined) {
-            this.showMessage(result.message);
+            // this.showMessage(result.message);
+            this.toaster.success(result.message);
           } else {
             this.showMessage('Email template created successfully!');
           }
@@ -228,9 +231,10 @@ export class TemplatesComponent {
         this.selectedIds = [];
         this.allSelected = false;
         if (response.message != '' && response.message != undefined) {
-          this.showMessage(response.message);
+          // this.showMessage(response.message);
+          this.toaster.success(response.message);
         } else {
-          this.showMessage('Template(s) deleted successfully!');
+          // this.showMessage('Template(s) deleted successfully!');
         }
         // console.log('Popups deleted successfully:', response);
       },
@@ -242,7 +246,8 @@ export class TemplatesComponent {
   }
 
   showMessage(message: string) {
-    this.showMatDialog(message, 'display');
+    // this.showMatDialog(message, 'display');
+    this.toaster.success(message);
   }
 
   showMatDialog(message: string, action: string) {
@@ -280,9 +285,10 @@ export class TemplatesComponent {
       if (result !== undefined) {
         if (result.action == "templateUpdated") {
           if (result.message != '' && result.message != undefined) {
-            this.showMessage(result.message);
+            // this.showMessage(result.message);
+            this.toaster.success(result.message);
           } else {
-            this.showMessage('Email template updated successfully!');
+            // this.showMessage('Email template updated successfully!');
           }
           this.getTemplates();
         }

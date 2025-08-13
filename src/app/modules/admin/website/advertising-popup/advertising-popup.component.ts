@@ -55,6 +55,7 @@ export class AdvertisingPopupComponent {
   pageName: any = "";
   imageUrl: any = null;
   theme: any = localStorage.getItem('theme');
+  isSubmitButtonClicked: boolean = false;
   constructor(
     public dialogRef: MatDialogRef<AdvertisingPopupComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -224,7 +225,8 @@ export class AdvertisingPopupComponent {
 
 
   validateAdvertisementForm() {
-
+    this.startDateError = false;
+    this.endDateError = false;
     this.error = false;
     this.errorMsg = {};
 
@@ -258,29 +260,35 @@ export class AdvertisingPopupComponent {
 
     if ((this.endDate == "0000-00-00" || !this.endDate) && !this.disableEndDate) {
       this.error = true;
+      this.endDateError = true;
       // this.errorMsg.endDate = "enter the end date or check the box";
       this.errorMsg.endDate = this.endDateRequired;
     }
 
-    if (this.maxViews == "") {
-      this.error = true;
-      // this.errorMsg.maxViews = "Max views is required";
-      this.errorMsg.maxViews = this.maxViewsRequired;
+    if ((this.startDate == "0000-00-00" || !this.startDate)) {
+      this.startDateError = true;
     }
+    // if (this.maxViews == "") {
+    //   this.error = true;
+    //   // this.errorMsg.maxViews = "Max views is required";
+    //   this.errorMsg.maxViews = this.maxViewsRequired;
+    // }
 
-    if (this.maxClicks == "") {
-      this.error = true;
-      // this.errorMsg.maxClicks = "Max clicks is required";
-      this.errorMsg.maxClicks = this.maxClicksRequired;
-    }
+    // if (this.maxClicks == "") {
+    //   this.error = true;
+    //   // this.errorMsg.maxClicks = "Max clicks is required";
+    //   this.errorMsg.maxClicks = this.maxClicksRequired;
+    // }
     return this.error;
 
   }
-
+  startDateError: boolean = false;
+  endDateError: boolean = false;
   createAd(): any {
-
+    this.isSubmitButtonClicked = true;
     let validForm: any = this.validateAdvertisementForm();
     if (validForm) {
+      this.isSubmitButtonClicked = false;
       return false;
     }
     let formdata = new FormData();

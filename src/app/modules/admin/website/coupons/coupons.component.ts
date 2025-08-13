@@ -9,6 +9,7 @@ import { CoupenPopupComponent } from '../coupon-popup/coupon-popup.component';
 import { CommonFilterPopupComponent } from '../../common-filter-popup/common-filter-popup.component';
 import { SharedService } from '../../../../services/shared.service';
 import { UserRoleService } from '../../../../services/user-role.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-coupons',
@@ -39,6 +40,7 @@ export class CouponsComponent {
   @ViewChild('coponsCodeSelector', { static: false }) coponsCodeSelector!: ElementRef;
 
   constructor(
+    public Toastr: ToastrService,
     public userRoleService: UserRoleService,
     private couponService: CouponService, public dialog: MatDialog, private sharedservice: SharedService) { }
 
@@ -165,7 +167,8 @@ export class CouponsComponent {
     createCouponDialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
         if (result.action == "popupAdded") {
-          this.showMatDialog(result.message, 'display');
+          // this.showMatDialog(result.message, 'display');
+          this.Toastr.success(result.message);
           this.getCoupons();
         }
         //  console.log('Dialog result:', result);
@@ -187,7 +190,8 @@ export class CouponsComponent {
     createCouponDialog.afterClosed().subscribe(result => {
       if (result !== undefined) {
         if (result.action == "popupAdded") {
-          this.showMatDialog(result.message, 'display');
+          // this.showMatDialog(result.message, 'display');
+          this.Toastr.success(result.message);
           this.getCoupons();
         }
         //  console.log('Dialog result:', result);
@@ -216,9 +220,10 @@ export class CouponsComponent {
           this.getCoupons();
           this.selectedIds = [];
           this.allSelected = false;
-          this.showMatDialog(response.message, 'display');
+          // this.showMatDialog(response.message, 'display');
+          this.Toastr.success(response.message);
         } else {
-          this.showMatDialog('Error in publishing coupons. Please try again.', 'display');
+          // this.showMatDialog('Error in publishing coupons. Please try again.', 'display');
         }
       },
       error => {
@@ -248,9 +253,10 @@ export class CouponsComponent {
           this.getCoupons();
           this.selectedIds = [];
           this.allSelected = false;
-          this.showMatDialog(response.message, 'display');
+          // this.showMatDialog(response.message, 'display');
+          this.Toastr.success(response.message);
         } else {
-          this.showMatDialog('Error in drafting coupons. Please try again.', 'display');
+          // this.showMatDialog('Error in drafting coupons. Please try again.', 'display');
         }
       },
       error => {
@@ -310,9 +316,10 @@ export class CouponsComponent {
           this.getCoupons();
           this.selectedIds = [];
           this.allSelected = false;
-          this.showMatDialog(response.message, 'display');
+          // this.showMatDialog(response.message, 'display');
+          this.Toastr.success(response.message);
         } else {
-          this.showMatDialog('Error in removing coupons. Please try again.', 'display');
+          // this.showMatDialog('Error in removing coupons. Please try again.', 'display');
         }
       },
       error => {

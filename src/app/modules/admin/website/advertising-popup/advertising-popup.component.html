@@ -98,7 +98,7 @@
         <div class="d-flex calender-inputs-box">
           <div class="d-flex coupon-dateRange">
             <div>
-              <div class="cupen-btn-date">
+              <div class="cupen-btn-date" [ngClass]="{'isrequiredField': startDateError}">
                 <mat-form-field class="meta-date">
                   <mat-label>{{ 'chooseADate' | translate }}</mat-label>
                   <input matInput [min]="today" readonly [matDatepicker]="dp" [(ngModel)]="startDate"
@@ -110,7 +110,7 @@
             </div>
 
             <div>
-              <div class="cupen-btn-date-1" [ngClass]="{'disable-end-date': disableEndDate}">
+              <div class="cupen-btn-date-1" [ngClass]="{'disable-end-date': disableEndDate, 'isrequiredField': endDateError}">
                 <!-- <div class="cupen-btn-date-1" > -->
                 <mat-form-field class="meta-date">
                   <mat-label>{{ 'chooseADate' | translate }}</mat-label>
@@ -135,7 +135,7 @@
         <div *ngIf="errorMsg.endDate" class="error-msg">{{errorMsg.endDate}}</div>
       </div>
 
-      <div class="row add-banners ">
+      <div class="row add-banners d-none">
         <div class="form-group col-sm-6 col-lg-6">
           <label class="code-text"> {{ 'maxViews' | translate }}</label>
           <input class="form-control" [(ngModel)]="maxViews">

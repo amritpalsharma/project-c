@@ -14,7 +14,7 @@ import { SharedService } from '../../../services/shared.service';
 import { TitleService } from '../../../title.service';
 import { TranslateService } from '@ngx-translate/core';
 import { UserRoleService } from '../../../services/user-role.service';
-
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-marketing',
@@ -44,6 +44,7 @@ export class MarketingComponent {
   sortDirection: 'asc' | 'desc' = 'asc';
   sortField: string = '';
   constructor(
+    public toastr: ToastrService,
     public userRoleService: UserRoleService,
     public dialog: MatDialog,
     private marketingApi: MarketingService,
@@ -150,7 +151,8 @@ export class MarketingComponent {
       if (result !== undefined) {
         if (result.action == "popupAdded") {
           // this.showMessage('Popup created successfully!');
-          this.showMessage(result.message);
+          // this.showMessage(result.message);
+          this.toastr.success(result.message);
           this.getSystemPopups();
         }
         //  console.log('Dialog result:', result);
@@ -284,7 +286,9 @@ export class MarketingComponent {
   }
 
   showMessage(message: string) {
-    this.showMatDialog(message, 'display');
+    // this.showMatDialog(message, 'display');
+    this.toastr.success(message);
+
   }
 
   showMatDialog(message: string, action: string) {
