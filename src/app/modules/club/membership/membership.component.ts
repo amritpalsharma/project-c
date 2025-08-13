@@ -50,6 +50,7 @@ export class MembershipComponent {
   subscriptionCanceledSuccessfully: string = '';
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   pageTitle: string = '';
+  isopenCustomerPortal:boolean=false;
 
   currentLoggedInPermission: string = this.gloabalSettings.getCurrentViewOnly();
 
@@ -462,6 +463,7 @@ export class MembershipComponent {
 
 
   openCustomerPortal(): void {
+    this.isopenCustomerPortal = true;
     this.paymentService.generateLinkAndNavigate().pipe(take(1)).subscribe({
       next: (response: any) => {
         if (response?.data) {
@@ -473,6 +475,8 @@ export class MembershipComponent {
         } else {
           console.error('URL not found in response');
         }
+
+        this.isopenCustomerPortal = false;
       },
       error: (err: any) => {
         console.error('Failed to generate customer portal link:', err);

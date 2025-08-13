@@ -511,6 +511,11 @@
     object-position: top center;
   }
 
+  .gallery_images .play_button_svg {
+    height: 50px !important;
+    width: 50px !important;
+  }
+
   .settings svg {
     width: 20px;
   }
@@ -1200,6 +1205,10 @@
   object-fit: cover !important;
   object-position: top center;
 }
+.gallery_images .play_button_svg {
+  height: 50px !important;
+  width: 50px !important;
+}
 
 .settings svg {
   width: 20px;
@@ -1575,6 +1584,7 @@ span.active_btn {
     // flex-wrap: wrap;
     margin-left: 0;
     width: 100%;
+
     button {
       border-radius: 5px !important;
       background: #6FB95D !important;
@@ -1846,6 +1856,11 @@ span.active_btn {
   .gallery_images video {
     height: 120px !important;
   }
+
+  .gallery_images .play_button_svg {
+    height: 50px !important;
+    width: 50px !important;
+  }
 }
 
 ::ng-deep .multiline-tooltip {
@@ -1876,3 +1891,8 @@ span.active_btn {
 //   text-align: left; /* Align text to the left */
 //   white-space: pre-line; /* Ensure line breaks are respected */
 // }
+
+::ng-deep .video-overlay-play-button .play_button_svg {
+  height: 50px !important;
+  width: 50px !important;
+}

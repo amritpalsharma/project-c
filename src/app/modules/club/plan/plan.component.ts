@@ -498,7 +498,7 @@ export class PlanComponent implements OnInit, OnDestroy {
           if (response.message != '' && response.message != undefined) {
             this.toastr.success(response.message);
           } else {
-            this.toastr.success('Plan has been updated successfully.');
+            // this.toastr.success('Plan has been updated successfully.');
           }
           this.getUserPlans();
         } else {

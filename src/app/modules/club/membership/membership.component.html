@@ -8,7 +8,15 @@
             <h2 class="card-title mb-0 me-3">{{'subscriptionPlans' | translate}}</h2>
             <div class="common" *ngIf="userPurchases && userPurchases.length > 0 && totalItems > 0">
               <button class="payments-btn {{currentLoggedInPermission}} add_btn_{{currentLoggedInPermission}}"
-                *ngIf="userPurchases" (click)="openCustomerPortal()">{{'managePaymentBtnTxt' | translate}}</button>
+                *ngIf="userPurchases" (click)="openCustomerPortal()">
+              <ng-container *ngIf="isopenCustomerPortal; else loginText">
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                <span class="sr-only">Loading...</span>
+              </ng-container>
+              <ng-template #loginText>
+                {{ 'managePaymentBtnTxt' | translate }}
+              </ng-template>
+              </button>
               <!-- <p class="managePaymentBtnTxtBelowTxt">{{'managePaymentBtnTxtBelowTxt' | translate}}</p> -->
             </div>
             <div class="common" *ngIf="!userPurchases || totalItems == 0">
