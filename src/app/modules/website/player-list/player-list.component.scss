@@ -899,6 +899,9 @@ button.faq-club-button, button.faq-talent-button {
         font-size: 80%;
     }
 }
+.if_no_data {
+    font-size: 18px !important;
+}
 }
 
 @media (min-width: 701px) and (max-width: 800px) {
@@ -973,4 +976,12 @@ button.faq-club-button, button.faq-talent-button {
       padding: 3px 5px 1px;
     }
   }
+}
+
+::ng-deep {
+    .dark-theme {
+        .if_no_data {
+            color: #fff !important;
+        }
+    }
 }
