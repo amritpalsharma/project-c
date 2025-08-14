@@ -395,7 +395,7 @@ export class FooterComponent implements OnInit {
           if (storedToken === token) {
             console.log('Token successfully saved to local storage.');
 
-            this.translateService.use(selectedLanguage);
+            // this.translateService.use(selectedLanguage);
 
             let modal = bootstrap.Modal.getInstance(document.getElementById('exampleModal-login'));
             if (modal) {

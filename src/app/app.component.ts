@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
     let selectedLang = localStorage.getItem('lang');
     let selectedLangID = localStorage.getItem('lang_id');
     if (selectedLang == null || selectedLang == undefined) {
-      this.translateService.use(this.domainSelectedLanguage);
+      // this.translateService.use(this.domainSelectedLanguage);
       localStorage.setItem('lang', this.domainSelectedLanguage);
       localStorage.setItem('lang_id', String(domainLangId));
       console.warn('In App component Domain Language selected = ' + this.domainSelectedLanguage);
@@ -38,7 +38,7 @@ export class AppComponent implements OnInit {
       localStorage.setItem('lang', selectedLang);
       localStorage.setItem('lang_id', String(selectedLangID));
       console.warn('In App component LocalStorage Language selected = ' + selectedLang)
-      this.translateService.setDefaultLang(selectedLang);
+      // this.translateService.setDefaultLang(selectedLang);
     } else {
       console.error('Report To Dev For this language mess');
     }

@@ -26,7 +26,7 @@ export class GlobalSettingsService {
   }
 
   setViewOnly(state: string) {
-    console.info('state set in global service as ',state)
+    console.info('state set in global service as ', state)
     this.viewOnlyMode.next(state);
   }
 
@@ -107,6 +107,17 @@ export class GlobalSettingsService {
   }
 
   public getLanguage(): string {
+    let localStorageLang = localStorage.getItem('lang');
+    if (this.defaultLanguage === localStorageLang) {
+      console.log('Both Langs Matched');
+      return this.defaultLanguage;
+    } else {
+      if (localStorageLang != null && typeof localStorageLang !== undefined) {
+        this.defaultLanguage = String(localStorageLang);
+        console.info('LocalStorage Lang is ' + localStorageLang + ' And domain lang is ' + this.defaultLanguage);
+        return this.defaultLanguage;
+      }
+    }
     return this.defaultLanguage;
   }
 

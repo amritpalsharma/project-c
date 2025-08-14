@@ -37,6 +37,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Overlay, OverlayModule } from '@angular/cdk/overlay';
 import { MAT_SELECT_SCROLL_STRATEGY } from '@angular/material/select';
 import { ScrollStrategy } from '@angular/cdk/overlay';
+import { GlobalSettingsService } from './services/global-settings.service';
 
 export function matSelectScrollStrategyFactory(overlay: Overlay): ScrollStrategy {
   return overlay.scrollStrategies.reposition(); // you can try .noop() as well
@@ -44,6 +45,7 @@ export function matSelectScrollStrategyFactory(overlay: Overlay): ScrollStrategy
 // End No Scroll Body
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
+
 }
 // import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 @NgModule({
@@ -74,7 +76,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     WebsiteModule,
     BrowserAnimationsModule,
     TranslateModule.forRoot({
-      defaultLanguage: 'en',
+      // defaultLanguage: 'en',
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
@@ -105,4 +107,24 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(
+    private globalSettingsService: GlobalSettingsService,
+    private translateService: TranslateService
+  ) {
+    this.setLanguage();
+  }
+
+
+
+  // Set the language based on the GlobalSettingsService
+  setLanguage(): void {
+    let languageSlug = this.globalSettingsService.getLanguage();
+    if (languageSlug) {
+      this.translateService.use(languageSlug);
+    } else {
+      // Default language fallback
+      this.translateService.use('de');
+    }
+  }
+}

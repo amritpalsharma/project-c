@@ -493,11 +493,11 @@ export class HeaderComponent implements OnInit {
       this.slug = this.lang;
     }
     // Set default language to English if not set
-    if (!this.lang || this.lang === '' && localStorage.getItem('lang') == null) {
-      this.lang = 'en';
-      localStorage.setItem('lang', this.lang); // Store default language in localStorage
-      this.translateService.use(this.lang);
-    }
+    // if (!this.lang || this.lang === '' && localStorage.getItem('lang') == null) {
+    //   this.lang = 'en';
+    //   localStorage.setItem('lang', this.lang); // Store default language in localStorage
+    //   // this.translateService.use(this.lang);
+    // }
     document.body.classList.add(this.slug);
 
     this.lang_id = this.globalSettings.getLanguageId();
