@@ -173,7 +173,7 @@
         border-top: none !important;
         border-left: none !important;
         border-right: none !important;
-        border-bottom: 3.3px solid #e6e6e6 !important;
+        border-bottom: 2px solid #e6e6e6 !important;
         background: none;
     }
 
@@ -356,12 +356,14 @@ table td {
 .table-striped>tbody>tr:nth-of-type(odd)>* {
     --bs-table-bg-type: none !important;
 }
-
+.table tbody tr {
+    border-bottom: 1px solid #e6e6e6 !important;
+}
 .table tbody tr:hover {
     border-top: none !important;
     border-left: none !important;
     border-right: none !important;
-    border-bottom: 3.3px solid #e6e6e6 !important;
+    border-bottom: 2px solid #e6e6e6 !important;
     background: none;
 }
 
@@ -467,9 +469,6 @@ table td {
         padding: 15px 0;
         border-radius: 0;
     }
-}
-tr.table_underline, .table tbody tr:hover {
-    border-bottom-width: 1px !important;
 }
 .table tbody tr:hover .underline_gap td {
     border-top: 1px solid #e5e5e566 !important;
@@ -629,6 +628,9 @@ button.dashboard_tabs_add_btn {
 
 ::ng-deep {
     .dark-theme {
+        .table tbody tr {
+            border-bottom-color: #ffffff !important;
+        }
         .suggestions-list {
             background: #072944 !important;
             border-color: #1F4360 !important;

@@ -2376,9 +2376,7 @@ body.dark-theme.static-common-banner {
 @media (min-width: 1024px) {
   .dark-theme {
     .shadow_container {
-
-      .item_column:first-child,
-      .item_column:last-child {
+      .item_column:first-child, .item_column:last-child {
         .body_card {
           img.theme_white_icon {
             display: none;
@@ -2422,6 +2420,17 @@ body.dark-theme.static-common-banner {
 @media (max-width: 1023px) {
   .dark-theme {
     .shadow_container {
+      .item_column:first-child, .item_column:last-child {
+        .body_card {
+          img.theme_white_icon {
+            display: none;
+          }
+
+          img.dark_theme_blue {
+            display: block !important;
+          }
+        }
+      }
       .item_column:nth-child(2) .item_card {
         background: #BDE34F !important;
         color: #072944 !important;
