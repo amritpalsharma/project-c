@@ -8,6 +8,7 @@ import { environment } from '../../environments/environment';
 import { BehaviorSubject } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from '@ngx-translate/core';
+import { GlobalSettingsService } from './global-settings.service';
 
 @Injectable({
   providedIn: 'root'
@@ -22,10 +23,12 @@ export class UserService {
   adminImageUrl = this.adminImageUrlSource.asObservable();
   errorTxt: string = '';
   errorMsgTxt: string = '';
+  userDomain: number = this.globalSettings.getdomainId();
   constructor(
     private http: HttpClient,
     private toaster: ToastrService,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private globalSettings: GlobalSettingsService,
   ) {
     this.apiUrl = environment?.apiUrl;
     this.userToken = localStorage.getItem('authToken');
@@ -681,7 +684,7 @@ export class UserService {
     if (isOnlyTalent) {
       whereClasue = "&whereClause[role]=4";
     }
-    return this.http.get<any[]>(`${this.apiUrl}users-frontend-with-login?search=${query}&noLimit=1${whereClasue}`, { headers }).pipe(
+    return this.http.get<any[]>(`${this.apiUrl}users-frontend-with-login?search=${query}&noLimit=1${whereClasue}&whereClause[user_domain]=${this.userDomain}`, { headers }).pipe(
       catchError((error) => {
         console.error('Error occurred during user search:', error);
         throw error;
