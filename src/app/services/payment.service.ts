@@ -14,12 +14,19 @@ export class PaymentService {
   private userToken: string | null;
   stripePromise: Promise<Stripe | null>;
 
-  constructor(private http: HttpClient, private socketService : SocketService) {
+  constructor(private http: HttpClient, private socketService: SocketService) {
     this.apiUrl = environment.apiUrl; // Ensure this is defined in your environment
     this.userToken = localStorage.getItem('authToken');
     let payment_mode = localStorage.getItem('payment_mode');
     // this.stripePromise = payment_mode == 'live' ? loadStripe(environment.stripePublishableKey) : loadStripe(environment.stripePublishableTestKey);
-    this.stripePromise = this.socketService.getPaymentStatus() == 'live' ? loadStripe(environment.stripePublishableKey) : loadStripe(environment.stripePublishableTestKey);
+    // this.stripePromise = this.socketService.getPaymentStatus() == 'live' ? loadStripe(environment.stripePublishableKey) : loadStripe(environment.stripePublishableTestKey);
+    const paymentMode = this.socketService.getPaymentStatus();
+    this.stripePromise = loadStripe(
+      paymentMode === 'test'
+        ? environment.stripePublishableTestKey
+        : environment.stripePublishableKey
+    );
+
   }
 
   async getStripe(): Promise<Stripe | null> {

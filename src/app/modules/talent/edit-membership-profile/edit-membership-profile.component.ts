@@ -58,6 +58,10 @@ export class EditMembershipProfileComponent {
 
     this.loggedInUser = JSON.parse(this.loggedInUser);
 
+
+    this.profileImgUrl = this.commonDataService.getCurrentProfileImage();
+    console.info('this.profileImgUrl', this.profileImgUrl)
+
     console.info('Details ', this.loggedInUser)
     // this.getUserProfile();
     if (this.loggedInUser.meta && this.loggedInUser.meta.date_of_birth != '') {
@@ -89,8 +93,6 @@ export class EditMembershipProfileComponent {
 
 
 
-    this.profileImgUrl = this.commonDataService.getCurrentProfileImage();
-    console.info('this.profileImgUrl', this.profileImgUrl)
 
     if (this.loggedInUser?.custom_club_info && this.loggedInUser?.custom_club_info != '') {
       let custom_club_info = JSON.parse(this.loggedInUser?.custom_club_info);

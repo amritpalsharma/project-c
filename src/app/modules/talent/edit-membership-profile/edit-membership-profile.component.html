@@ -40,7 +40,7 @@
                                             src="{{baseUrl + current_club_logo}}" alt="team-logo" class="team-logo">
                                     </div>
                                     <div class="player--flag">
-                                        <img [src]="userNationality">
+                                        <img [src]="userNationality" *ngIf="userNationality">
                                         <div *ngIf="isValidBirthDate">
                                             <!-- <hr  *ngIf='theme=="dark"' style="color: #000;">
                                             <hr  *ngIf='theme != "dark"'>
@@ -63,7 +63,7 @@
                                     *ngIf="profileImgUrl && profileImgUrl != ''" class="player_profile_img" />
                                 <img src="../../../../../assets/images/default/talent-profile-default.png" alt=""
                                     *ngIf="!profileImgUrl || !loggedInUser?.meta?.profile_image_path"
-                                    class="player_profile_img" />
+                                    class="player_profile_img defaultImage" />
                             </div>
                             <div class="player__name">{{ loggedInUser.first_name }} {{ loggedInUser.last_name }}</div>
                         </div>
@@ -103,11 +103,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                <img [src]="profileImgUrl" alt="player-image"
+                                <img [src]="profileImgUrl" alt="player-image {{profileImgUrl}}"
                                     *ngIf="profileImgUrl && profileImgUrl != ''" class="player_profile_img" />
                                 <img src="../../../../../assets/images/default/talent-profile-default.png" alt=""
                                     *ngIf="!profileImgUrl || !loggedInUser?.meta?.profile_image_path"
-                                    class="player_profile_img" />
+                                    class="player_profile_img defaultImage" />
                                 <div class="booster_text"> {{'boosted' | translate}} </div>
                             </div>
                             <div class="player__name">{{ loggedInUser.first_name }} {{ loggedInUser.last_name }}</div>
@@ -202,7 +202,7 @@
                                                         src="../../../../assets/images/default/talent-profile-default.png"
                                                         alt="" class="table_img ng-star-inserted">
                                                     <span *ngIf="user.role_id == 2">
-                                                        <img *ngIf="user.club_logo"
+                                                        <img *ngIf="user.club_logo != ''"
                                                             src="{{stats.profile_path+user.club_logo}}" alt=""
                                                             class="table_img ng-star-inserted">
                                                         <img *ngIf="!user.club_logo"
@@ -270,7 +270,7 @@
                                                 src="../../../../assets/images/default/talent-profile-default.png"
                                                 alt="" class="table_img ng-star-inserted">
                                             <span *ngIf="user.role_id == 2">
-                                                <img *ngIf="user.club_logo" src="{{stats.profile_path+user.club_logo}}"
+                                                <img *ngIf="user.club_logo != ''" src="{{stats.profile_path+user.club_logo}}"
                                                     alt="" class="table_img ng-star-inserted">
                                                 <img *ngIf="!user.club_logo"
                                                     src="../../../../assets/images/default/talent-profile-default.png"

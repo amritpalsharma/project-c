@@ -265,13 +265,14 @@ export class AddBoosterComponent {
   calculateAge(dob: string | Date): number {
     const birthDate = new Date(dob);
     const today = new Date();
-    let age = today.getFullYear() - birthDate.getFullYear();
-    const monthDifference = today.getMonth() - birthDate.getMonth();
-    const dayDifference = today.getDate() - birthDate.getDate();
+    let age = birthDate.getFullYear();
+    // let age = today.getFullYear() - birthDate.getFullYear();
+    // const monthDifference = today.getMonth() - birthDate.getMonth();
+    // const dayDifference = today.getDate() - birthDate.getDate();
 
-    if (monthDifference < 0 || (monthDifference === 0 && dayDifference < 0)) {
-      age--;
-    }
+    // if (monthDifference < 0 || (monthDifference === 0 && dayDifference < 0)) {
+    //   age--;
+    // }
 
     return age;
   }

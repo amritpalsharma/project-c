@@ -27,8 +27,8 @@ export class SocketService {
   private readonly socketUrl: string = environment.socketUrl; // Replace with your backend URL
 
   public onlineUsers: { [userId: string]: string } = {};
-  private paymentStatus: string = '';
-  private chatMode: string = '';
+  private paymentStatus: string = 'test';
+  private chatMode: string = 'test';
   userToken: any;
   constructor(private http: HttpClient) {
     // Initialize the socket connection
