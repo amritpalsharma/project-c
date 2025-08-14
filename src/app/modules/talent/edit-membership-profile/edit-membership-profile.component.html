@@ -54,8 +54,8 @@
                                                         fill="#6FB95D"></path>
                                                 </svg>
                                             </span> -->
-                                            <div class="player--dob" *ngIf="loggedInUser?.meta?.date_of_birth">
-                                                {{date_of_birth}}</div>
+                                            <div class="player--dob" *ngIf="getBirthYear(loggedInUser?.meta?.date_of_birth)">
+                                                {{getBirthYear(loggedInUser?.meta?.date_of_birth)}}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -98,8 +98,8 @@
                                                         fill="#6FB95D"></path>
                                                 </svg>
                                             </span> -->
-                                            <div class="player--dob" *ngIf="loggedInUser?.meta?.date_of_birth">
-                                                {{date_of_birth}}</div>
+                                            <div class="player--dob" *ngIf="getBirthYear(loggedInUser?.meta?.date_of_birth)">
+                                                {{getBirthYear(loggedInUser?.meta?.date_of_birth)}}</div>
                                         </div>
                                     </div>
                                 </div>

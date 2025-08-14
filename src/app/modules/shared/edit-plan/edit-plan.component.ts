@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 import { UpdateConfirmationPlanComponent } from '../update-confirmation-plan/update-confirmation-plan.component';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { SocketService } from '../../../services/socket.service';
 
 @Component({
   selector: 'shared-edit-plan',
@@ -23,7 +24,8 @@ export class EditPlanComponent implements OnInit {
   countries: any[] = []; // Array to hold country plans
   selectedCountries: any[] = []; // Holds the selected countries
   selectedPlan: any = {}; // Selected country plan details
-  stripePromise = loadStripe(environment.stripePublishableKey); // Your Stripe public key
+  // stripePromise = loadStripe(environment.stripePublishableKey); // Your Stripe public key
+  stripePromise = this.socketService.getPaymentStatus() == 'live' ? loadStripe(environment.stripePublishableKey) : loadStripe(environment.stripePublishableTestKey);
   stripe: any;
   isYearly = false; // Subscription type
   defaultCard: any = null; // Variable to hold the default card
@@ -53,6 +55,7 @@ export class EditPlanComponent implements OnInit {
   isShowBuyButton: boolean = true;
   constructor(
     public dialogRef: MatDialogRef<EditPlanComponent>,
+    public socketService: SocketService,
     public talentService: TalentService,
     private stripeService: PaymentService,
     private paymentService: PaymentService,

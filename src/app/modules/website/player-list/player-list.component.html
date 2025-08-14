@@ -99,6 +99,9 @@
             <!-- Club Tab Content -->
             <div *ngIf="selectedTab === 'club' && !isLoading">
               <div class="row club_tabb_content">
+                <div class="col-sm-12 text-center" *ngIf="!clubsArr || clubsArr?.length == '0'">
+                  <h5 class="player__name">{{'noClubFound' | translate}}</h5>
+                </div>
                 <div class="col-lg-3 col-md-4 col-sm-4 col-6 mt-4" *ngFor="let player of clubsArr; let i = index">
                   <div class="player--item"
                     [ngClass]="{ 'bg-red': player.name === 'Zidane', 'bg-green': player.name !== 'Zidane' }"
@@ -169,6 +172,9 @@
             <!-- {{ScoutPlayers | json}} -->
             <div *ngIf="selectedTab === 'scouts' && !isLoading">
               <div class="row scout_tabb_content">
+                <div class="col-sm-12 text-center" *ngIf="!ScoutPlayers || ScoutPlayers?.length == '0'">
+                  <h5 class="player__name">{{'noScoutFound' | translate}}</h5>
+                </div>
                 <div class="col-lg-3 col-md-4 col-sm-4 col-6 mt-4" *ngFor="let player of ScoutPlayers; let i = index">
                   <div class="player--item" data-bs-toggle="modal" data-bs-target="#exampleModal1">
                     <div class="item--inner scoutsArr"

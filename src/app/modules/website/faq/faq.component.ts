@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef  } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { WebPages } from '../../../services/webpages.service';
 @Component({
   selector: 'app-faq',
@@ -364,6 +364,23 @@ export class FaqComponent {
 
   ngAfterViewInit() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-      this.cdRef.detectChanges();
+    this.cdRef.detectChanges();
+
+    document.querySelectorAll<HTMLElement>('.collapse').forEach(collapseEl => {
+      collapseEl.addEventListener('shown.bs.collapse', (event) => {
+        const collapse = event.currentTarget as HTMLElement;
+        const card = collapse.closest('.card') as HTMLElement;
+        if (!card) return;
+
+        const resizeObserver = new ResizeObserver(() => {
+          const cardTop = card.getBoundingClientRect().top + window.scrollY - 100;
+          window.scrollTo({ top: cardTop, behavior: 'smooth' });
+          resizeObserver.disconnect();
+        });
+
+        resizeObserver.observe(collapse);
+      });
+    });
   }
+
 }

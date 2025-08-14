@@ -258,4 +258,19 @@ export class EditMembershipProfileComponent {
     }
     // console.warn('ROle is '+role_id+' Id is '+user_id)
   }
+
+  getBirthYear(dateOfBirth: any) {
+    if (dateOfBirth) {
+      const birthDate = new Date(dateOfBirth);
+
+      if (isNaN(birthDate.getTime())) {
+        console.log("Invalid date of birth.");
+      } else {
+        const year = birthDate.getFullYear();
+        return year;
+        // console.log("Year of Birth:", year);
+      }
+    }
+    return false;
+  }
 }
