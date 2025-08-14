@@ -21,10 +21,16 @@ export class PaymentService {
     // this.stripePromise = payment_mode == 'live' ? loadStripe(environment.stripePublishableKey) : loadStripe(environment.stripePublishableTestKey);
     // this.stripePromise = this.socketService.getPaymentStatus() == 'live' ? loadStripe(environment.stripePublishableKey) : loadStripe(environment.stripePublishableTestKey);
     const paymentMode = this.socketService.getPaymentStatus();
+    // this.stripePromise = loadStripe(
+    //   paymentMode === 'test'
+    //     ? environment.stripePublishableTestKey
+    //     : environment.stripePublishableKey
+    // );
+
     this.stripePromise = loadStripe(
-      paymentMode === 'test'
-        ? environment.stripePublishableTestKey
-        : environment.stripePublishableKey
+      // paymentMode === 'test'
+        // ? environment.stripePublishableTestKey
+        environment.stripePublishableKey
     );
 
   }

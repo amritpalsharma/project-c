@@ -1491,6 +1491,8 @@
   "noTeamMemberAddedHere": "Nenhum Membro da equipe foi adicionado aqui.",
   "passwordResetLinkHasExpired": "Desculpe, o link para redefinir sua senha expirou. Por favor, acesse a página \"Esqueceu a senha\" para receber um novo link.",
   "linkExpired": "LINK EXPIRADO",
-  "noSightFound":"Ainda não foi registrado nenhum evento de avistamento.",
-  "manageNoPaymentBtnTxt":"às planos"
+  "noSightFound": "Ainda não foi registrado nenhum evento de avistamento.",
+  "manageNoPaymentBtnTxt": "às planos",
+  "noScoutFound": "És olheiro? Regista-te agora gratuitamente – o teu perfil será exibido aqui e poderás descobrir talentos e ser contactado por eles.",
+  "noClubFound": "São um clube? Registem-se agora gratuitamente – o vosso perfil será exibido aqui e poderão descobrir o vosso próximo talento."
 }

@@ -1542,5 +1542,7 @@
   "passwordResetLinkHasExpired": "Leider ist Ihr Link zum Zurücksetzen des Passworts abgelaufen. Bitte besuchen Sie die Seite „Passwort vergessen“, um einen neuen Link zu erhalten.",
   "linkExpired": "LINK ABGELAUFEN",
   "noSightFound":"Es wurde noch kein Sichtungs-Event erfasst.",
-  "manageNoPaymentBtnTxt":"zu den Abos"
+  "manageNoPaymentBtnTxt":"zu den Abos",
+  "noScoutFound":"Bist du ein Scout? Registriere dich jetzt kostenlos – dein Profil wird hier angezeigt und Talente können dich entdecken und kontaktieren.",
+  "noClubFound":"Ihr seid ein Club? Registriert euch jetzt kostenlos – euer Profil wird hier angezeigt und ihr könnt euer neues Talent entdecken."
 }

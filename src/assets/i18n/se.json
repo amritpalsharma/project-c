@@ -1477,8 +1477,10 @@
   "cancelRemoveScout": "Nej, ta inte bort",
   "areYouSureToUpdateReviewTraining": "Är du säker på att du vill uppdatera statusen för granskningsträningen?",
   "noTeamMemberAddedHere": "Inga Medlem i teamet har lagts till här.",
-  "passwordResetLinkHasExpired":"Tyvärr har din länk för att återställa lösenordet gått ut. Besök sidan \"Glömt lösenord\" för att få en ny länk.",
-  "linkExpired":"LÄNKEN HAR GÅTT UT",
-  "noSightFound":"Inget observationshändelse har registrerats ännu.",
-  "manageNoPaymentBtnTxt":"till planer"
+  "passwordResetLinkHasExpired": "Tyvärr har din länk för att återställa lösenordet gått ut. Besök sidan \"Glömt lösenord\" för att få en ny länk.",
+  "linkExpired": "LÄNKEN HAR GÅTT UT",
+  "noSightFound": "Inget observationshändelse har registrerats ännu.",
+  "manageNoPaymentBtnTxt": "till planer",
+  "noScoutFound": "Är du en scout? Registrera dig nu gratis så visas din profil här och du kan upptäcka talanger och bli kontaktad.",
+  "noClubFound": "Är ni en klubb? Registrera er nu gratis – er profil visas här och ni kan hitta ert nästa stjärnskott."
 }

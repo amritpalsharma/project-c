@@ -104,7 +104,7 @@ export class MembershipComponent {
       pageNumber = 1;
     }
 
-    const pageSize = this.paginator ? this.paginator.pageSize : 10;
+    const pageSize = this.paginator ? this.paginator.pageSize : 20;
     let lang = localStorage.getItem('lang_id');
 
     this.talentService.getPurchaseData(pageNumber, pageSize, lang).subscribe(response => {

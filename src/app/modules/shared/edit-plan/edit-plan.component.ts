@@ -25,7 +25,8 @@ export class EditPlanComponent implements OnInit {
   selectedCountries: any[] = []; // Holds the selected countries
   selectedPlan: any = {}; // Selected country plan details
   // stripePromise = loadStripe(environment.stripePublishableKey); // Your Stripe public key
-  stripePromise = this.socketService.getPaymentStatus() == 'live' ? loadStripe(environment.stripePublishableKey) : loadStripe(environment.stripePublishableTestKey);
+  // stripePromise = this.socketService.getPaymentStatus() == 'live' ? loadStripe(environment.stripePublishableKey) : loadStripe(environment.stripePublishableTestKey);
+  stripePromise = loadStripe(environment.stripePublishableKey);
   stripe: any;
   isYearly = false; // Subscription type
   defaultCard: any = null; // Variable to hold the default card
