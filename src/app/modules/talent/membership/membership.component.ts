@@ -30,7 +30,7 @@ export class MembershipComponent {
   idsToDownload: any = [];
   selectedIds: number[] = [];
   totalItems: number = 0; // Total number of items for pagination
-  pageSize: number = 10; // Number of items per page
+  pageSize: number = 15; // Number of items per page
   currentPage: number = 1; // Current page index
   country: any = [];
   booster: any = [];
@@ -75,7 +75,7 @@ export class MembershipComponent {
     this.loadTranslations();
     this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
       this.getUserPurchases();
-      this.getUserPurchases();
+      // this.getUserPurchases();
       this.getUserPlans();
       this.getUserCards();
       this.getBoosterData();
@@ -85,14 +85,26 @@ export class MembershipComponent {
 
   }
 
+  // ngAfterViewInit() {
+  //   this.paginator.page.subscribe(event => {
+  //     console.log('Page Index (0-based):', event.pageIndex); // Log the page index (0-based)
+  //     this.currentPage = event.pageIndex; // Store the 0-based page index
+  //     this.getUserPurchases(); // Fetch new data based on the current page
+  //   });
+  // }
+
   // isLoading: boolean = true;
 
   // Fetch purchases from API with pagination parameters
   getUserPurchases(): void {
     this.isLoading = true;
-    const pageNumber = this.currentPage != 0 ? this.currentPage : 1;
-    const pageSize = this.pageSize;
+    let pageNumber = this.currentPage;
 
+    if (pageNumber == 0) {
+      pageNumber = 1;
+    }
+
+    const pageSize = this.paginator ? this.paginator.pageSize : 10;
     let lang = localStorage.getItem('lang_id');
 
     this.talentService.getPurchaseData(pageNumber, pageSize, lang).subscribe(response => {
@@ -117,6 +129,10 @@ export class MembershipComponent {
 
         if (response.data.totalCount && response.data.totalCount == 0) {
           this.userPurchases = [];
+        }
+
+        if (response.data.currentPage && response.data.currentPage > 0) {
+          this.currentPage = response.data.currentPage;
         }
 
         // Filter the array to only keep rows with valid amount_paid > 0
@@ -227,12 +243,22 @@ export class MembershipComponent {
   }
 
   // Event triggered when paginator changes
-  onPageChange(event: any): void {
-    this.currentPage = event.pageIndex;
-    this.pageSize = event.pageSize;
+  onPageChangesss(event: any): void {
+
+    this.currentPage = this.paginator ? this.paginator.pageIndex : 0;
+    this.pageSize = this.paginator ? this.paginator.pageSize : 10;
+
+    if (event.pageIndex == 1) {
+      this.currentPage = 2;
+    }
+    console.log('Page Index:', event.pageIndex); // Check what pageIndex is when Next is clicked
     this.getUserPurchases(); // Fetch new data when page changes
   }
 
+  onPageChange(event: any): void {
+    this.currentPage = event.pageIndex;
+    this.getUserPurchases(); // Fetch new data when page changes
+  }
   onCheckboxChange(user: any) {
     const index = this.selectedIds.indexOf(user.id);
     if (index === -1) {

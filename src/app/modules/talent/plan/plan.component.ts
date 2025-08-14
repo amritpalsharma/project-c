@@ -265,8 +265,8 @@ export class PlanComponent implements OnInit, OnDestroy {
     } catch (error) {
       this.toastr.clear();
       // Show error message if API call fails
-      this.toastr.error('Error creating Stripe Checkout session. Please try again later.', 'Error');
-      console.error('Error creating Stripe Checkout session:', error);
+      this.toastr.error(this.stripeError);
+      // console.error('Error creating Stripe Checkout session:', error);
     } finally {
       this.toastr.clear();
 
@@ -696,7 +696,7 @@ export class PlanComponent implements OnInit, OnDestroy {
           this.router.navigate([`${role}/success`]);
         } else {
           this.toastr.clear();
-          this.toastr.error('Failed to update subscription. Please try again.');
+          // this.toastr.error('Failed to update subscription. Please try again.');
           console.error('Failed to update subscription', response);
         }
       },
@@ -892,12 +892,14 @@ export class PlanComponent implements OnInit, OnDestroy {
       this.Processing = translations['Processing'];
     });
   }
-
+  stripeError: string = '';
   getJsonTranslations() {
-    this.translate.get(['plans', 'boostProfile', 'premium']).subscribe((translations) => {
+    this.translate.get(['plans', 'boostProfile', 'premium', 'stripeError']).subscribe((translations) => {
       this.pageTitle = translations['plans'];
       this.boostProfileTxt = translations['boostProfile'];
       this.premiumPlanTxt = translations['premium'];
+      this.premiumPlanTxt = translations['premium'];
+      this.stripeError = translations['stripeError'];
       this.titleService.setTitle(this.pageTitle);
       console.log('Title fetch Function Fired');
     })

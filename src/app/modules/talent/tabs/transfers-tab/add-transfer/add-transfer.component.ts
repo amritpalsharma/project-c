@@ -147,59 +147,60 @@ export class AddTransferComponent {
 
 
     // if (myForm.valid) {
-      console.info(myForm.value);
-      let lang_id = localStorage.getItem('lang_id');
-      let formData = {
-        ...myForm.value,
-        team_to: this.teamToId,
-        team_from: this.teamFromId,
-        date_of_transfer: this.date_of_transfer.value // Convert FormControl value to string (if necessary)
-          ? moment(this.date_of_transfer.value).format('YYYY-MM-DD')
-          : null,
-        lang: lang_id
+    console.info(myForm.value);
+    let lang_id = localStorage.getItem('lang_id');
+    let formData = {
+      ...myForm.value,
+      team_to: this.teamToId,
+      team_from: this.teamFromId,
+      date_of_transfer: this.date_of_transfer.value // Convert FormControl value to string (if necessary)
+        ? moment(this.date_of_transfer.value).format('YYYY-MM-DD')
+        : null,
+      lang: lang_id
+    };
+
+    if (this.noMoveToTeam) {
+      formData = {
+        ...formData, // Spread the existing formData
+        team_to_manual: this.team_to_manual, // Replace team_to with team_to_manual
+        team_to_m_country_id: this.team_to_m_country_id, // Replace team_to with team_to_manual
+        // team_to: undefined, // Remove the old team_to key if needed
+        have_no_club_to: true
       };
+    }
 
-      if (this.noMoveToTeam) {
-        formData = {
-          ...formData, // Spread the existing formData
-          team_to_manual: this.team_to_manual, // Replace team_to with team_to_manual
-          team_to_m_country_id: this.team_to_m_country_id, // Replace team_to with team_to_manual
-          // team_to: undefined, // Remove the old team_to key if needed
-          have_no_club_to: true
-        };
-      }
+    if (this.noMoveFromTeam) {
+      formData = {
+        ...formData, // Spread the existing formData
+        team_from_manual: this.team_from_manual, // Replace team_to with team_to_manual
+        team_from_m_country_id: this.team_from_m_country_id, // Replace team_to with team_to_manual
+        //  team_to: undefined, // Remove the old team_to key if needed
+        have_no_club_from: true
+      };
+    }
+    // Show loading notification
+    const loadingToast = this.toastr.info(this.Processing, this.pleaseWait, { disableTimeOut: true });
 
-      if (this.noMoveFromTeam) {
-        formData = {
-          ...formData, // Spread the existing formData
-          team_from_manual: this.team_from_manual, // Replace team_to with team_to_manual
-          team_from_m_country_id: this.team_from_m_country_id, // Replace team_to with team_to_manual
-          //  team_to: undefined, // Remove the old team_to key if needed
-          have_no_club_from: true
-        };
-      }
-      // Show loading notification
-      const loadingToast = this.toastr.info(this.Processing, this.pleaseWait, { disableTimeOut: true });
-
-      this.talentService.addTransfer(formData).subscribe({
-        next: (response: any) => {
-          this.toastr.clear(loadingToast.toastId); // Clear loading notification
-          if (response.status == true && response.message != '' && response.message != undefined) {
-            this.toastr.success(response.message, this.successTxt); // Show success notification
-          } else if (response.message != '' && response.message != undefined) {
-            this.toastr.success(response.message, this.errorTxt); // Show success notification
-          } else {
-            this.toastr.success('Transfer added successfully!', 'Success'); // Show success notification
-          }
-          console.log('Form submitted successfully:', response);
-          this.dialogRef.close(response.data); // Close dialog and return response data
-        },
-        error: (error: any) => {
-          this.toastr.clear(loadingToast.toastId); // Clear loading notification
-          this.toastr.error('Failed to submit transfer. Please try again.', 'Error'); // Show error notification
-          console.error('Error submitting form:', error);
+    this.talentService.addTransfer(formData).subscribe({
+      next: (response: any) => {
+        this.toastr.clear(loadingToast.toastId); // Clear loading notification
+        if (response.status == true && response.message != '' && response.message != undefined) {
+          this.toastr.success(response.message, this.successTxt); // Show success notification
+          this.dialogRef.close(response.data);
+        } else if (response.message != '' && response.message != undefined) {
+          // this.toastr.error(response.message, this.errorTxt.toUpperCase()); // Show success notification
+        } else {
+          // this.toastr.success('Transfer added successfully!', 'Success'); // Show success notification
         }
-      });
+        console.log('Form submitted successfully:', response);
+        // Close dialog and return response data
+      },
+      error: (error: any) => {
+        this.toastr.clear(loadingToast.toastId); // Clear loading notification
+        this.toastr.error('Failed to submit transfer. Please try again.', 'Error'); // Show error notification
+        console.error('Error submitting form:', error);
+      }
+    });
   }
 
   // Function to handle dynamic fetching of clubs based on search input

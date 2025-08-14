@@ -68,7 +68,8 @@ export class TalentComponent {
 
 
 
-  setActiveAccordion(index: number): void {
+  setActiveAccordion(index: number, event?: Event): void {
+    if (event) { event.preventDefault(); }
     this.activeAccordionIndex = index;
     // const accordionElement = document.getElementById('collapseOne' + index);
     // if (accordionElement) {
@@ -111,7 +112,7 @@ export class TalentComponent {
       .pipe(takeUntil(this.destroy$))
       .subscribe(data => {
         // ✅ This will stop running after component is destroyed
-        this.getPageData(data); 
+        this.getPageData(data);
         this.getCurrencyPrice('monthly');
         this.getCurrencyPrice('yearly');
         this.custIndex = 1;
@@ -473,5 +474,17 @@ export class TalentComponent {
 
   setActiveAccordionMobile(index: number): void {
     this.activeAccordionIndexMobile = this.activeAccordionIndexMobile === index ? -1 : index;
+  }
+
+  // New code
+  activeIndex: number = 0;
+  setActiveAccordionNew(index: number): void {
+    if (this.activeIndex === index) {
+      // If the clicked tab is already active, close it
+      this.activeIndex = -1;
+    } else {
+      // Open the clicked tab
+      this.activeIndex = index;
+    }
   }
 }

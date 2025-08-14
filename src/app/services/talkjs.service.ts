@@ -16,6 +16,7 @@ export class TalkService {
 
   private currentLoggedInUser: any;
   private chatMode: string = this.socketService.getChatMode();
+  clientEmail: string = 'testmails.cts@gmail.com';
 
   constructor(public router: Router, private socketService: SocketService) {
 
@@ -33,6 +34,10 @@ export class TalkService {
 
     const data = await res.json();
     let appID = ''; // testkey
+    if (data?.chatMode && data?.chatMode == 'live') {
+      this.clientEmail = 'info@socceryou.ch';
+    }
+
     if (!data.signature || !data.appId) {
       console.error('Missing appId or signature in response.');
     } else {
@@ -204,9 +209,8 @@ export class TalkService {
       const hiddenAdmin = new Talk.User({
         id: '1',
         name: 'Succer You Sports AG',
-        email: 'testmails.cts@gmail.com',
+        email: this.clientEmail,
         role: 'hidden',
-
       });
       const conversationId = Talk.oneOnOneId(this.currentUser!, otherUser);
       const conversation = this.session!.getOrCreateConversation(conversationId);

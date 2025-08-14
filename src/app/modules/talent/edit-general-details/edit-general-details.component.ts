@@ -251,6 +251,7 @@ export class EditGeneralDetailsComponent {
           } else {
             this.toastr.clear();
             this.toastr.error(this.errorMsg, this.errorTxt);
+
             console.error('API response error:', response);
           }
         },
