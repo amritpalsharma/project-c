@@ -132,7 +132,7 @@
               </div>
 
               <!-- Pagination controls -->
-              <div class="pagination-controls">
+              <div class="pagination-controls" *ngIf="clubsArr && clubsArr?.length > 0">
                 <div class="input-number">
                   <label for="numberSelect">{{'resultsPerPage' | translate}}</label>
                   <select id="numberSelect" [(ngModel)]="itemsPerPage" (change)="onItemsPerPageChange()" required>
@@ -209,7 +209,7 @@
               </div>
 
               <!-- Pagination controls -->
-              <div class="pagination-controls">
+              <div class="pagination-controls" *ngIf="ScoutPlayers && ScoutPlayers?.length > 0">
                 <div class="input-number">
                   <label for="numberSelect">{{'resultsPerPage' | translate}}</label>
                   <select id="numberSelect" [(ngModel)]="itemsPerPage" (change)="onItemsPerPageChange()" required>
