@@ -852,7 +852,7 @@ export class HeaderComponent implements OnInit {
     this.serverBusy = true;
     this.registerFormSubmitted = true;
     this.showRequiredErrors = true;
-
+ 
     if (!this.isFormValid()) {
       this.serverBusy = false;
       console.info('isFormValid Empty ', this.isFormValid())
