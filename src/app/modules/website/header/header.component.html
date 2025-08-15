@@ -37,7 +37,7 @@
         <div class="coustom-select1">
             <a class="form-select custom-select1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <!-- Display current language name -->
-                <span>{{ slug.toUpperCase() }}</span>
+                <span>{{ checkSlug(slug) }}</span>
             </a>
             <div class="dropdown-menu dropdown-menu-end">
                 <!-- Loop through langs array to display each language and flag -->
@@ -239,7 +239,7 @@
                         <a class="form-select custom-select" type="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
                             <!-- Display current language (slug is 'en' by default) -->
-                            <span>{{ slug.toUpperCase() }}</span>
+                            <span>{{ checkSlug(slug) }}</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end">
                             <!-- Loop through langs array to display each language with its flag -->
@@ -667,7 +667,7 @@
                                                     (selectionChange)="onClubChange($event)" name="selectedClub">
                                                     <!-- <ngx-mat-select-search [formControl]="clubSearching"
                                                         placeholderLabel="Search"></ngx-mat-select-search> -->
-                                                          <!-- <input type="text" matInput [formControl]="clubSearching" /> -->
+                                                    <!-- <input type="text" matInput [formControl]="clubSearching" /> -->
                                                     <!-- <mat-option> -->
                                                     <!-- ✅ SEARCH INPUT GOES HERE -->
                                                     <!-- <ngx-mat-select-search [formControl]="clubSearching" class="club_search_input"
@@ -722,7 +722,8 @@
                                                 <mat-select [(ngModel)]="selectedClub"
                                                     class="form-select mat_search_selector"
                                                     [ngClass]="{'ng-invalid' : !selectedClub}"
-                                                    (selectionChange)="onClubChange($event)" name="selectedClub">
+                                                    (selectionChange)="onClubChange($event)" name="selectedClub"
+                                                    [ngClass]="{'ng-invalid' : !selectedClub || selectedClub == 0}" required>
                                                     <!-- <ngx-mat-select-search [formControl]="clubFilterCtrl"
                                                         placeholder="Search countries"></ngx-mat-select-search> -->
                                                     <mat-option *ngFor="let club of clubs" [value]="club.id">

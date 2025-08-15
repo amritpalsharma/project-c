@@ -122,6 +122,10 @@ export class TalentComponent {
     this.globalSettings.indexFunctionCall$.subscribe(() => {
       this.ThemeUpdated(); // Call the function when event is received
     });
+
+    if (this.selectedLangSlug == 'se') {
+      this.selectedLangSlug = 'sv';
+    }
   }
 
   destroy$ = new Subject<void>();

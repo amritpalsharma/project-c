@@ -403,9 +403,11 @@ export class ViewProfileComponent implements OnInit {
           this.toastr.clear();
 
           this.downloadPath = response.data.file_path;
+          this.forceDownload(response.data.file_path, response.data.file_name);
           // Open the file in a new tab
           // window.open(response.data.file_path);
           window.open(response.data.file_path, '_blank', 'noopener,noreferrer');
+
 
         } else {
           this.toastr.clear();
@@ -419,6 +421,25 @@ export class ViewProfileComponent implements OnInit {
       console.error('Error adding to favorites:', error);
     }
 
+  }
+
+
+  forceDownload(src: string, filename: string) {
+    try {
+      const link = document.createElement('a');
+      link.href = src; // Must be the actual server URL
+      link.setAttribute('download', filename); // Suggest filename
+
+      // For iOS Safari: target="_blank" helps avoid blocking
+      link.setAttribute('target', '_blank');
+      link.setAttribute('rel', 'noopener');
+
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error('Error downloading file:', error);
+    }
   }
 
 

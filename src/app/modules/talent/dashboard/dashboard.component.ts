@@ -1740,7 +1740,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   // }
 
 
-  async forceDownload(src: string, filename: string) {
+  async forceDownload11(src: string, filename: string) {
     try {
       const response = await fetch(src);
       if (!response.ok) {
@@ -1759,6 +1759,25 @@ export class DashboardComponent implements OnInit, OnDestroy {
       console.error('There was an error downloading the file:', error);
     }
   }
+
+  forceDownload(src: string, filename: string) {
+    try {
+      const link = document.createElement('a');
+      link.href = src; // Must be the actual server URL
+      link.setAttribute('download', filename); // Suggest filename
+
+      // For iOS Safari: target="_blank" helps avoid blocking
+      link.setAttribute('target', '_blank');
+      link.setAttribute('rel', 'noopener');
+
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error('Error downloading file:', error);
+    }
+  }
+
 
   deleteScoutFromProfile() {
     // Confirmation 

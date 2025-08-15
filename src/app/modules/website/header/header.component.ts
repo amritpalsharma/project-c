@@ -550,7 +550,7 @@ export class HeaderComponent implements OnInit {
       if (modal) {
         setTimeout(() => {
           modal.show();
-        }, 2000);
+        }, 3000);
       }
     }
   }
@@ -837,6 +837,18 @@ export class HeaderComponent implements OnInit {
         }
       }
     }
+    if (this.role === 2) {
+      if (!this.selectedCountry) {
+        console.info('selectedClub Empty ', this.selectedCountry)
+        this.toastr.warning(this.requiredFieldsMessage, this.errorTxt);
+        return;
+      } else if (!this.selectedClub) {
+        console.info('team_id Empty ', this.selectedClub)
+        this.toastr.warning(this.requiredFieldsMessage, this.errorTxt);
+        return;
+      }
+    }
+
     this.serverBusy = true;
     this.registerFormSubmitted = true;
     this.showRequiredErrors = true;
@@ -1323,5 +1335,14 @@ export class HeaderComponent implements OnInit {
       const nameB = b.club_name.trim().toLowerCase();
       return nameA.localeCompare(nameB);
     });
+  }
+
+
+  checkSlug(slug: string) {
+    if (slug == 'se') {
+      slug = 'sv';
+    }
+    slug = slug.toUpperCase();
+    return slug;
   }
 }

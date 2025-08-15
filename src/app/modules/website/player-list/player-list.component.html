@@ -103,6 +103,7 @@
                   <h4 class="player__name if_no_data">{{'noClubFound' | translate}}</h4>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-4 col-6 mt-4" *ngFor="let player of clubsArr; let i = index">
+                  <!-- <pre>{{player | json}}</pre> -->
                   <div class="player--item"
                     [ngClass]="{ 'bg-red': player.name === 'Zidane', 'bg-green': player.name !== 'Zidane' }"
                     data-bs-toggle="modal" data-bs-target="#exampleModal1">
