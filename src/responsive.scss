@@ -2052,7 +2052,8 @@
         padding-bottom: 0 !important;
 
         .chat_row {
-            min-height: 100vh !important;
+            // min-height: 100vh !important;
+                min-height: 80vh !important;
         }
     }
 }

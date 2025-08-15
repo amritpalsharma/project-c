@@ -37,6 +37,7 @@ const routes: Routes = [
     children: [
 
       { path: '', component: IndexComponent }, // Default route
+      { path: 'login', component: IndexComponent }, // Default route
       { path: 'index', component: IndexComponent }, // Default route
       { path: 'Index', component: IndexComponent }, // Default route
       { path: 'home', component: IndexComponent },

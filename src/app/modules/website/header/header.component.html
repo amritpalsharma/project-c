@@ -705,7 +705,8 @@
                                         <div class="col-lg-6 col-md-6 col-12 mb-3">
                                             <mat-form-field appearance="fill" class="w-100 custom_select_mat">
                                                 <mat-select [(ngModel)]="selectedCountry"
-                                                    class="form-select mat_search_selector"
+                                                    class="form-select mat_search_selector {{selectedCountry}}"
+                                                    #selectedCountryControl="ngModel" required
                                                     [ngClass]="{'ng-invalid' : !selectedCountry || selectedCountry == ''}"
                                                     (selectionChange)="onCountryChange($event)" name="selectedCountry">
                                                     <mat-option *ngFor="let country of displayedCountries"

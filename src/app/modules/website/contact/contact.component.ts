@@ -34,7 +34,7 @@ export class ContactComponent implements OnInit {
   txt_before_radio_btn: string = '';
   advertisementList: any;
   advertisemnet_base_url: string = '';
-  messageText:string='';
+  messageText: string = '';
 
   isLoading: boolean = true;
   btnLoading: boolean = true;
@@ -70,10 +70,10 @@ export class ContactComponent implements OnInit {
     this.contactForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phone: ['', [
-        Validators.required,
-        // Validators.pattern(/^\+?(41|49|39|33|44|34|351|32|45|46)\d{7,}$/)
-      ]],
+      // phone: ['', [
+      // Validators.required,
+      // Validators.pattern(/^\+?(41|49|39|33|44|34|351|32|45|46)\d{7,}$/)
+      // ]],
       // message: ['', Validators.required],
       domain: window.location.hostname,
       lang: localStorage.getItem('lang_id'),
@@ -232,10 +232,10 @@ export class ContactComponent implements OnInit {
         required: this.provideEmailAddress,
         email: this.provideEmailAddress,
       },
-      phone: {
-        required: this.phoneRequired,
-        pattern: this.invalidPhoneNumber,
-      },
+      // phone: {
+      //   required: this.phoneRequired,
+      //   pattern: this.invalidPhoneNumber,
+      // },
     };
 
     return errorMessages[field]?.[errorType] || this.requiredFieldsMessage;
@@ -273,7 +273,7 @@ export class ContactComponent implements OnInit {
         }
       );
       this.disableSentButton = true;
-      const ContactformData = { ...this.contactForm.value, captchaToken: this.recaptchaToken, role: role, message:this.messageText };
+      const ContactformData = { ...this.contactForm.value, captchaToken: this.recaptchaToken, role: role, message: this.messageText };
 
       this.http.post<any>(this.apiUrl + '/frontend/save-contact-form', ContactformData).subscribe(
         (response) => {

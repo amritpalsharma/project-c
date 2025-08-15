@@ -1,47 +1,47 @@
 <section class="website-code">
   <!-- <app-header></app-header> -->
-   <div class="grey_common_banner">
-      <div class="container">
-        <h2 class="cookie-text">{{banner_title}}</h2>
-        <h3>Succer You Sports AG</h3>
-        <div class="row">
-          <div class="col-md-6 address_col">
-            <div class="contact-text">
-                <div class="location">
-                    <div class="location-image">
-                        <img class="dark-location" src="./assets/images/location logo.svg">
-                        <img class="light-location" src="./assets/images/location-light.svg">
-                    </div>
-                    <div [innerHTML]="address" class="location-text"></div>
-                </div>
+  <div class="grey_common_banner">
+    <div class="container">
+      <h2 class="cookie-text">{{banner_title}}</h2>
+      <h3>Succer You Sports AG</h3>
+      <div class="row">
+        <div class="col-md-6 address_col">
+          <div class="contact-text">
+            <div class="location">
+              <div class="location-image">
+                <img class="dark-location" src="./assets/images/location logo.svg">
+                <img class="light-location" src="./assets/images/location-light.svg">
               </div>
+              <div [innerHTML]="address" class="location-text"></div>
+            </div>
           </div>
-          <div class="col-md-6">
-            <div class="contact-text">
-                <div class="mail">
-                    <div class="location-image">
-                        <img class="dark-mail" src="./assets/images/website-dark.svg">
-                        <img class="light-mail" src="./assets/images/website-light.svg">
-                    </div>
-                    <div>
-                        <a class="location-text" href="https://www.socceryou.ch/">www.socceryou.ch</a>
-                    </div>
-                </div>
-                <div class="mail">
-                    <div class="location-image">
-                        <img class="dark-mail" src="./assets/images/mail logo.svg">
-                        <img class="light-mail" src="./assets/images/mail-light.svg">
-                    </div>
-                    <div>
-                        <a class="location-text" href="mailto:info@socceryou.ch">{{semail}}</a>
-                    </div>
-                </div>
+        </div>
+        <div class="col-md-6">
+          <div class="contact-text">
+            <div class="mail">
+              <div class="location-image">
+                <img class="dark-mail" src="./assets/images/website-dark.svg">
+                <img class="light-mail" src="./assets/images/website-light.svg">
+              </div>
+              <div>
+                <a class="location-text" href="https://www.socceryou.ch/">www.socceryou.ch</a>
+              </div>
+            </div>
+            <div class="mail">
+              <div class="location-image">
+                <img class="dark-mail" src="./assets/images/mail logo.svg">
+                <img class="light-mail" src="./assets/images/mail-light.svg">
+              </div>
+              <div>
+                <a class="location-text" href="mailto:info@socceryou.ch">{{semail}}</a>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-   <!-- <div class="main contact_banner">
+  </div>
+  <!-- <div class="main contact_banner">
    <div class="overlay"></div>
     <div class="banner-inner py_0">
       <div class="container">
@@ -100,46 +100,44 @@
           <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
             <input type="hidden" name="domain" ng-model="contactForm.domain" />
             <div class="row">
-            <div class="col-sm-6">
-              <input id="name" class="form-control" formControlName="name" [placeholder]="name_placeholder"
-                ng-model="contactForm.name" />
-              <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="error">
-                <div *ngIf="name?.errors?.['required']">{{'nameRequired' | translate}}</div>
+              <div class="col-sm-6">
+                <input id="name" class="form-control" formControlName="name" [placeholder]="name_placeholder"
+                  ng-model="contactForm.name" />
+                <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="error">
+                  <div *ngIf="name?.errors?.['required']">{{'nameRequired' | translate}}</div>
+                </div>
               </div>
-            </div>
 
-            <div class="col-sm-6">
-              <input id="email" class="form-control" type="email" formControlName="email"
-                [placeholder]="email_placeholder" ng-model="contactForm.email" />
-              <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="error">
-                <div *ngIf="email?.errors?.['required']">{{'emailRequired' | translate}}</div>
-                <!-- <div *ngIf="email?.errors?.['email']">{{'emailRequired' | translate}}</div> -->
-                <!-- <div *ngIf="email?.errors?.['email']">Invalid email address.</div> -->
+              <div class="col-sm-6">
+                <input id="email" class="form-control" type="email" formControlName="email"
+                  [placeholder]="email_placeholder" ng-model="contactForm.email" />
+                <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="error">
+                  <div *ngIf="email?.errors?.['required']">{{'emailRequired' | translate}}</div>
+                  <!-- <div *ngIf="email?.errors?.['email']">{{'emailRequired' | translate}}</div> -->
+                  <!-- <div *ngIf="email?.errors?.['email']">Invalid email address.</div> -->
+                </div>
               </div>
-            </div>
 
-            <div class="col-12">
-              <input id="phone" class="form-control" name="phone" type="tel" formControlName="phone"
-                [placeholder]="phone_placeholder" ng-model="contactForm.phone" (keypress)="allowOnlyNumbers($event)"
-                (paste)="preventTextPaste($event)" />
-              <div *ngIf="phone?.invalid && (phone?.dirty || phone?.touched)" class="error">
+              <div class="col-12">
+                <input id="phone" class="form-control" name="phone" type="tel" formControlName="phone"
+                  [placeholder]="phone_placeholder" ng-model="contactForm.phone" (keypress)="allowOnlyNumbers($event)"
+                  (paste)="preventTextPaste($event)" />
+                <!-- <div *ngIf="phone?.invalid && (phone?.dirty || phone?.touched)" class="error">
                 <div *ngIf="phone?.errors?.['required']">{{'phoneRequired' | translate}}</div>
-                <!-- <div *ngIf="phone?.errors?.['pattern']">{{'phoneRequired' | translate}}</div> -->
-                <!-- <div *ngIf="phone?.errors?.['pattern']">Invalid phone number.</div> -->
+              </div> -->
               </div>
-            </div>
 
-            <div class="col-12">
-              <!-- <textarea id="message" class="form-control" formControlName="message" [placeholder]="message_placeholder"
+              <div class="col-12">
+                <!-- <textarea id="message" class="form-control" formControlName="message" [placeholder]="message_placeholder"
               ng-model="messageText" (onblur)="onBlur($event)"></textarea> -->
-              <textarea id="message" class="form-control" [(ngModel)]="messageText"
-                [placeholder]="message_placeholder" (blur)="onBlur($event)"></textarea>
+                <textarea id="message" class="form-control" [(ngModel)]="messageText"
+                  [placeholder]="message_placeholder" (blur)="onBlur($event)"></textarea>
 
-              <div *ngIf="message?.invalid && (message?.dirty || message?.touched)" class="error">
+                <div *ngIf="message?.invalid && (message?.dirty || message?.touched)" class="error">
 
-                <div *ngIf="message?.errors?.['required']">{{'messageRequired' | translate}}</div>
+                  <div *ngIf="message?.errors?.['required']">{{'messageRequired' | translate}}</div>
+                </div>
               </div>
-            </div>
             </div>
             <div class="row justify-content-between">
               <div class="col-lg-6 col-md-6 col-12">

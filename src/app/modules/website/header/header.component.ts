@@ -540,6 +540,19 @@ export class HeaderComponent implements OnInit {
         (club: any) => club.club_name.toLowerCase().includes(search)
       );
     });
+
+
+    // alert(this.router.url)
+    if (this.router.url === '/login') {
+      let modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('exampleModal-login'));
+      // let modal = bootstrap.Modal.getInstance(document.getElementById('exampleModal-login'));
+      // console.info('modalmodal', modal)
+      if (modal) {
+        setTimeout(() => {
+          modal.show();
+        }, 2000);
+      }
+    }
   }
 
 
