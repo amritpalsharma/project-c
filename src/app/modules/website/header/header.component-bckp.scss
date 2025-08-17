@@ -1196,11 +1196,6 @@ select.form-select.custom-select1 {
     height: 53px;
     filter: none;
 }
-::ng-deep {
-    .mat-mdc-select.mat-mdc-select-empty.form-select.ng-valid {
-        border: 1px solid red !important;
-    }
-}
 
 /*--------------------------------------------------------------
 #  Club
