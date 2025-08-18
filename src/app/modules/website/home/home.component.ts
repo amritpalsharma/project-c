@@ -15,6 +15,9 @@ export class HomeComponent {
       if (this.router.url === '/explore') {
         this.isExplorePage = true;
       }
+      else {
+         this.isExplorePage = false;
+      }
     });
   }
 }

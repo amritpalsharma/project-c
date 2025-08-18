@@ -354,6 +354,15 @@
             height: 45px !important;
         }
     }
+
+    .page-container2.explore_no_data {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        app-footer {
+            margin-top: auto;
+        }
+    }
 }
 
 @media (min-width: 992px) and (max-width: 1999px) {
