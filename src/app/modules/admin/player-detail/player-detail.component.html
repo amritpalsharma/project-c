@@ -160,14 +160,14 @@
                 <h6 class="mb-1">{{'registrationDate' | translate }} :</h6>
                 <h6 class="mb-0 font-w400">
                   <!-- {{user?.created_at}} -->
-                  {{ user.created_at | date:'dd.MM.yyyy - hh.mm' }}
+                  {{ user.created_at | date:'dd.MM.yyyy - hh:mm' }}
                   <!-- {{formatDateTime(user?.created_at)}} -->
                 </h6>
               </div>
               <div class="list-view">
                 <h6 class="mb-1">{{'nextPaymentDue' | translate }} :</h6>
                 <h6 class="mb-2 font-w400" *ngIf="user.plan_period_end">
-                  {{ user.plan_period_end | date:'dd.MM.yyyy - hh.mm' }} / <span
+                  {{ user.plan_period_end | date:'dd.MM.yyyy - hh:mm' }} / <span
                     [translate]="user.plan_interval"></span>
                   <!-- {{user.plan_period_end | date:'MMM d, y' }} / {{user.plan_interval}} cycle -->
                 </h6>
@@ -180,7 +180,7 @@
                 <h6 class="mb-2 font-w400" *ngIf="user.plan_period_start">
                   <!-- {{user.plan_period_start | date:'MMM d, y' }} -->
                   <!-- {{formatDateTime(user.plan_period_start)}} -->
-                  {{ user.plan_period_start | date:'dd.MM.yyyy - hh.mm' }}
+                  {{ user.plan_period_start | date:'dd.MM.yyyy - hh:mm' }}
                 </h6>
                 <!-- <h6 class="mb-2 font-w400" *ngIf="!user.plan_period_start">NA</h6> -->
                 <!-- <p class=" font-w400">{{ 'viewInvoice' | translate }}</p> -->

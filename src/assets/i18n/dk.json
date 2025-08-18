@@ -1398,7 +1398,7 @@
   "cancelRemoveScout": "Nej, fjern ikke",
   "areYouSureToUpdateReviewTraining": "Er du sikker på, at du vil opdatere status for gennemgangstræningen?",
   "noTeamMemberAddedHere": "Der er ikke tilføjet nogen Medlem af teamet her.",
-  "passwordResetLinkHasExpired": "Beklager, dit link til nulstilling af adgangskode er udløbet. Besøg venligst siden \"Glemt adgangskode\" for at få et nyt link.",
+  "passwordResetLinkHasExpired": "Desværre er dit link til at nulstille din adgangskode udløbet. Klik på «Glemt adgangskode» igen for at få et nyt link.",
   "linkExpired": "LINK UDLØBET",
   "noSightFound": "Der er endnu ikke registreret nogen observationsbegivenhed.",
   "manageNoPaymentBtnTxt": "til planer",

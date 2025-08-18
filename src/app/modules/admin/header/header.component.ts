@@ -84,6 +84,7 @@ export class HeaderComponent {
   profileImgUrl: any = "";
   lang: string = '';
   domains: any = environment.domains;
+  apiUrl = environment?.apiUrl;
   langs: any = environment.langs;
   envLang: any = environment.adminLangs;
   isDarkMode: boolean = false;

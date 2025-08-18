@@ -1529,7 +1529,7 @@
   "cancelRemoveScout": "No, non rimuovere",
   "areYouSureToUpdateReviewTraining": "Sei sicuro di voler aggiornare lo stato dell'addestramento di revisione?",
   "noTeamMemberAddedHere": "Nessun Membro del team è stato aggiunto qui.",
-  "passwordResetLinkHasExpired": "Spiacenti, il link per reimpostare la password è scaduto. Visita la pagina \"Password dimenticata\" per riceverne uno nuovo.",
+  "passwordResetLinkHasExpired": "Purtroppo il link per reimpostare la password è scaduto. Clicca di nuovo su «Password dimenticata» per riceverne uno nuovo.",
   "linkExpired": "LINK SCADUTO",
   "noSightFound": "Nessun evento di avvistamento è stato ancora registrato.",
   "manageNoPaymentBtnTxt": "agli piani",

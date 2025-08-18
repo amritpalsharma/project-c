@@ -1445,7 +1445,7 @@
   "areYouSureToUpdateReviewTraining": "Are you sure you want to update the status of the review training?",
   "areYouSureToRemoveScout": "Do you want to remove this Scout from your profile?",
   "noTeamMemberAddedHere": "No Team Member is added here.",
-  "passwordResetLinkHasExpired": "Sorry, your password reset link has expired. Please visit the Forgot Password page to receive a new link.",
+  "passwordResetLinkHasExpired": "Unfortunately, your password reset link has expired. Please click on «Forgot password» again to receive a new link.",
   "linkExpired": "LINK EXPIRED",
   "noSightFound":"No sighting event has been recorded yet.",
   "manageNoPaymentBtnTxt":"to the plans",

@@ -40,7 +40,7 @@ export class InviteTalentPopupComponent {
     this.action = data.action;
     if (this.action == "showInvitedUsers") {
       this.invitedUsers = data.data;
-      console.log('this.invitedUsers',this.invitedUsers)
+      console.log('this.invitedUsers', this.invitedUsers)
     } else if (this.action == "inviteUsers") {
       this.eventName = data.data;
       this.sightId = data.sightId;
@@ -135,15 +135,22 @@ export class InviteTalentPopupComponent {
     if (!keyword || keyword.length < 1) {
       this.searchVal = null;
     }
-    // this.filteredUsers = this.allUsers.filter((user: any) => (user.first_name !== null && user.first_name !== undefined) &&
-    //   user.first_name.toLowerCase().indexOf(keyword.toLowerCase()) != -1);
+
+    // this.filteredUsers = this.allUsers.filter((user: any) => {
+    //   const firstNameMatch = user.first_name && user.first_name.toLowerCase().startsWith(keyword.toLowerCase());
+    //   const lastNameMatch = user.last_name && user.last_name.toLowerCase().startsWith(keyword.toLowerCase());
+
+    //   return (firstNameMatch || lastNameMatch);
+    // });
 
     this.filteredUsers = this.allUsers.filter((user: any) => {
-      const firstNameMatch = user.first_name && user.first_name.toLowerCase().startsWith(keyword.toLowerCase());
-      const lastNameMatch = user.last_name && user.last_name.toLowerCase().startsWith(keyword.toLowerCase());
+      // Make sure to safely check and lowercase the names before comparison
+      const firstNameMatch = user.first_name && user.first_name.toLowerCase().includes(keyword.trim().toLowerCase());
+      const lastNameMatch = user.last_name && user.last_name.toLowerCase().includes(keyword.trim().toLowerCase());
 
-      return (firstNameMatch || lastNameMatch);
+      return (firstNameMatch || lastNameMatch); // Return true if either matches
     });
+
 
   }
 

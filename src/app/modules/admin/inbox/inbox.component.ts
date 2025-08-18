@@ -8,6 +8,7 @@ import { TitleService } from '../../../title.service';
 import { TranslateService } from '@ngx-translate/core';
 import { SharedService } from '../../../services/shared.service';
 import { Router } from '@angular/router';
+import { environment } from '../../../../environments/environment';
 
 
 @Component({
@@ -27,6 +28,7 @@ export class InboxComponent {
   receiverUser: any = {};
   pageTitle: string = '';
   private isDarkMode = false;
+  apiUrl: string = environment?.apiUrl;
   isLoading: boolean = true;
   constructor(
     private talkService: TalkService,
@@ -139,7 +141,7 @@ export class InboxComponent {
               full_name = user?.first_name + ' ' + user?.last_name;
             }
             if (typeof user?.role_name !== undefined && currentRole == 'club' || currentRole == 'clube' || currentRole == 'klub' || currentRole == 'klubb' && user?.current_club_logo != '') {
-              user.meta.profile_image_path = 'https://api.socceryou.ch/uploads/' + user?.current_club_logo;
+              user.meta.profile_image_path = this.apiUrl + '/uploads/' + user?.current_club_logo;
               // full_name = 
               if (user?.current_club_name && user?.current_club_name != '') {
                 full_name = user.current_club_name;

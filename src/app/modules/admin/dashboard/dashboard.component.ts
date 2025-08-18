@@ -21,6 +21,7 @@ import { AdminHelperService } from '../../../services/admin-helper.service';
 import { TitleService } from '../../../title.service';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
 import { UserRoleService } from '../../../services/user-role.service';
+
 interface Notification {
   id: number;
   image: string;
@@ -42,8 +43,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   @ViewChild('canvas1') canvas1!: ElementRef<HTMLCanvasElement>;
   @ViewChild('canvas2') canvas2!: ElementRef<HTMLCanvasElement>;
   @ViewChild('canvas3') canvas3!: ElementRef<HTMLCanvasElement>;
+  private apiUrl = environment?.apiUrl;
   // @ViewChild('canvas4') canvas4!: ElementRef<HTMLCanvasElement>;
-  baseUrl: string = 'https://api.socceryou.ch/uploads/';
+  baseUrl: string = this.apiUrl+'/uploads/';
   lang: string = '';
   chart1!: Chart;
   chart2!: Chart;
@@ -214,10 +216,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     if (this.lang == 'en' || this.lang == 'de') {
 
     } else {
-      console.info('Current Selected Lang is '+this.lang+' Now set as de default for admin only')
+      console.info('Current Selected Lang is ' + this.lang + ' Now set as de default for admin only')
       this.lang = 'de'; // by default de selected
-      localStorage.setItem('lang','de');
-      localStorage.setItem('lang_id','2');
+      localStorage.setItem('lang', 'de');
+      localStorage.setItem('lang_id', '2');
     }
     this.getLocations();
 
@@ -580,7 +582,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             intersect: false,
             backgroundColor: '#E05263',
             titleColor: '#fff',
-            bodyColor: '#fff',            
+            bodyColor: '#fff',
             titleFont: { family: 'Libre Franklin,sans-serif', size: 20, weight: 800 },
             // titleFont: { family: 'Poppins', size: 20, weight: 800 },
             callbacks: {

@@ -197,7 +197,7 @@ export class AddTransferComponent {
       },
       error: (error: any) => {
         this.toastr.clear(loadingToast.toastId); // Clear loading notification
-        this.toastr.error('Failed to submit transfer. Please try again.', 'Error'); // Show error notification
+        this.toastr.error('Die Überweisung konnte nicht durchgeführt werden. Bitte versuchen Sie es erneut.', 'Fehler'); // Show error notification
         console.error('Error submitting form:', error);
       }
     });
