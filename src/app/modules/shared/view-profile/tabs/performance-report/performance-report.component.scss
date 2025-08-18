@@ -269,8 +269,19 @@ pointer-events: none;
     margin-bottom: 10px;
     word-break: break-word;
   }
-  .team-logo-img img {
-    width: 72px;
+.team-logo-img {
+    width: 65px;
+    height: 60px;
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+    svg {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
 }
 .team-logos{
     gap: 20px;
