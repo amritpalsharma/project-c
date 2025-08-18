@@ -852,7 +852,7 @@ export class HeaderComponent implements OnInit {
     this.serverBusy = true;
     this.registerFormSubmitted = true;
     this.showRequiredErrors = true;
- 
+
     if (!this.isFormValid()) {
       this.serverBusy = false;
       console.info('isFormValid Empty ', this.isFormValid())
@@ -1069,9 +1069,10 @@ export class HeaderComponent implements OnInit {
     this.authService.forgotPassword(this.forgotPasswordEmail).subscribe(
       response => {
         const translationKey = response.status ? 'forgotPassword.successMessage' : 'forgotPassword.errorMessage';
-        this.translateService.get(translationKey, { message: response.message }).subscribe((res: string) => {
-          this.forgotPasswordMessage = res;
-        });
+        this.forgotPasswordMessage = response.message;
+        // this.translateService.get(translationKey, { message: response.message }).subscribe((res: string) => {
+        //   this.forgotPasswordMessage = res;
+        // });
       },
       () => {
         this.translateService.get('forgotPassword.generalError').subscribe((res: string) => {

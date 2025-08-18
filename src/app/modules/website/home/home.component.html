@@ -1,8 +1,8 @@
 <div class="website-code">
-    <div class="page-container2 frontend_pages_larger_size">
+    <div class="page-container2 frontend_pages_larger_size" [ngClass]="{'explore_no_data':isExplorePage}">
         <!-- Always visible Header -->
         <app-header></app-header>
-        
+
         <!-- Main content area that changes based on routes -->
         <div class="outlet_outer website_main_pages">
             <router-outlet></router-outlet>
