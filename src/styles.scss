@@ -2454,7 +2454,9 @@ td.col_checkbox {
   }
 }
 
-
+.club_history .history-text p {
+  line-height: 1.5;
+}
 .club_history .history-text p:not(:last-child) {
   margin-bottom: 15px !important;
 }
