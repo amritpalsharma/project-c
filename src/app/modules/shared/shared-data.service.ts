@@ -11,4 +11,9 @@ export class SharedDataService {
   setSharedText(text: string): void {
     this.sharedTextSource.next(text);
   }
+
+  // Method to get the current value of the shared text
+  getCurrentStatus(): string {
+    return this.sharedTextSource.getValue(); // Return the current value
+  }
 }

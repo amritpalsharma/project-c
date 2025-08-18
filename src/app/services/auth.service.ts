@@ -31,9 +31,12 @@ export class AuthService {
 
   resetPassword(newPassword: string, confirmPassword: string): Observable<any> {
     let token = localStorage.getItem('authToken');
+    // formData.append('lang', langId);
+    let langID = localStorage.getItem('lang_id');
     const data = {
       new_password: newPassword,
       new_con_password: confirmPassword,
+      lang:langID
     };
     return this.http.post(this.apiUrl + '/reset-password', data, {
       headers: {
@@ -59,7 +62,7 @@ export class AuthService {
     localStorage.removeItem('userRole');
     localStorage.removeItem('userData');
     localStorage.removeItem('notificationSeen');
-    sessionStorage.clear(); 
+    sessionStorage.clear();
 
     // localStorage.setItem('logoutMessage', 'true');
     this.router.navigate(['/']); // Redirect to the login or home page

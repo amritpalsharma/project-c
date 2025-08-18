@@ -188,7 +188,9 @@ export const environment = {
   pages: [
     'home', 'talent', 'clubs_and_scouts', 'about_us', 'pricing', 'news', 'contact', 'imprint', 'privacy_policy', 'terms_and_conditions', 'cookie_policy', 'faq', 'content_page'
   ],
-  apiUrl: 'https://apitest.socceryou.ch/api/',
+  // apiUrl: 'https://apitest.socceryou.ch/api/',
+  apiUrl: 'https://api.socceryou.ch/api/',
+  apiBaseUrl: 'https://api.socceryou.ch/',
   url: 'https://apitest.socceryou.ch/',
   socketUrl: 'https://alerts.socceryou.ch/',
   mailchimp: {

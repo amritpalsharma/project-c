@@ -559,6 +559,10 @@ export class SightingTabComponent {
           // }
           if (response.message != '' && response.message != undefined) {
             this.toaster.success(response.message);
+            // this.toastr.success(response.message, '', {
+            //   timeOut: 0,        // Keep the toast visible indefinitely
+            //   closeButton: true, // Optional: Adds a close button to the toast
+            // });
           }
         } else {
           this.showMatDialog('Error in removing attachment. Please try again.', 'display');

@@ -4,6 +4,7 @@ import { SocketService } from '../../../services/socket.service';
 import { MatDialog } from '@angular/material/dialog';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
 import { AuthService } from '../../../services/auth.service';
+import { SharedDataService } from '../../shared/shared-data.service';
 
 @Component({
   selector: 'club-sidebar',
@@ -16,6 +17,8 @@ export class SidebarComponent {
   isUserVerified: boolean = true;
   isNum: Number = 1;
   locksideBar: boolean = true;
+
+  currentLoggedInPermission: string = this.sharedDataService.getCurrentStatus();
 
 
   menuItems = [
@@ -31,6 +34,7 @@ export class SidebarComponent {
   isLoadingStatus: boolean = true;
   constructor(
     private authService: AuthService,
+    private sharedDataService: SharedDataService,
     private globalSettings: GlobalSettingsService,
     private socketService: SocketService,
     public dialog: MatDialog

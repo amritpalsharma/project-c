@@ -45,7 +45,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   @ViewChild('canvas3') canvas3!: ElementRef<HTMLCanvasElement>;
   private apiUrl = environment?.apiUrl;
   // @ViewChild('canvas4') canvas4!: ElementRef<HTMLCanvasElement>;
-  baseUrl: string = this.apiUrl+'/uploads/';
+  baseUrl: string = this.apiUrl + '/uploads/';
   lang: string = '';
   chart1!: Chart;
   chart2!: Chart;
@@ -930,11 +930,17 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   redirectUser(slug: string, id: Number): void {
-
-    if (slug == 'Club Representator') {
+    slug = slug.toLowerCase();
+    if (slug == 'club representator') {
       slug = 'club';
     }
-    slug = slug.toLowerCase();
+    if (slug == 'club team-member') {
+      slug = 'club';
+    }
+    if (slug == 'scout team-member') {
+      slug = 'scout';
+    }
+
     if (slug == 'vereinsvertreter') {
       slug = 'club';
     }

@@ -15,9 +15,10 @@ export class WebPages {
         this.apiUrl = environment?.apiUrl;
     }
     private apiUrl = environment?.apiUrl;
+    private apiBaseUrl = environment?.apiBaseUrl;
     private url = environment?.url;
     // private frontendApiUrl = this.url + 'frontend/';
-    private frontendApiUrl = this.apiUrl + '/frontend/';
+    private frontendApiUrl = this.apiBaseUrl + '/frontend/';
     private domainDefaultLang = this.globalSettings.getLanguageId();
     private langId = localStorage.getItem('lang_id') || '' + this.domainDefaultLang + '';
     private languageId = new BehaviorSubject<string>(this.langId); // Initial value

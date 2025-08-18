@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import Talk from 'talkjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SocketService } from './socket.service';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class TalkService {
@@ -17,6 +18,7 @@ export class TalkService {
   private currentLoggedInUser: any;
   private chatMode: string = this.socketService.getChatMode();
   clientEmail: string = 'testmails.cts@gmail.com';
+  private apiUrl: string = environment?.apiUrl;
 
   constructor(public router: Router, private socketService: SocketService) {
 
@@ -24,7 +26,7 @@ export class TalkService {
   async init(user: any): Promise<Talk.Session> {
 
     // 🔄 Fetch both appId and signature from backend
-    const res = await fetch('https://api.socceryou.ch/api/get-talk-signature?chatMode=' + this.chatMode, {
+    const res = await fetch(this.apiUrl + '/get-talk-signature?chatMode=' + this.chatMode, {
       method: 'GET',
       headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('authToken'),
