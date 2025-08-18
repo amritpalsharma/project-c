@@ -557,10 +557,13 @@
     .dashboard_footer .footer-text,
     .dashboard_footer .footer_main_inner,
     label.form-label,
-    .popup__body p.code-text,
-    input.cupen-btn-1,
     .login_user_popup p {
         font-size: 18px !important;
+    }
+
+    .popup__body p.code-text,
+    input.cupen-btn-1 {
+        font-size: 22px !important;
     }
 
     .popup_header h6 {
@@ -1011,6 +1014,11 @@
         .selected_team_name {
             font-size: 27px !important;
         }
+    }
+
+    .popup_footer .Launch {
+        padding-top: 10px;
+        padding-bottom: 8px;
     }
 }
 
@@ -1634,8 +1642,8 @@
     .dashboard_footer .footer-text,
     .dashboard_footer .footer_main_inner,
     label.form-label,
-    .popup__body p.code-text,
-    input.cupen-btn-1,
+    // .popup__body p.code-text,
+    // input.cupen-btn-1,
     .login_user_popup p {
         font-size: 26px !important;
     }
