@@ -37,6 +37,7 @@ export class PerformanceAnalysisTabComponent implements OnInit {
   @Input() isPremium: any;
   deletePerformanceConfirm: string = '';
   selectPerformanceFirst: string = '';
+  deleteSelectPerformanceFirst: string = '';
   langSubscription!: Subscription;
   @Input() isUserVerified: any;
   isLoading: boolean = false;
@@ -249,14 +250,7 @@ export class PerformanceAnalysisTabComponent implements OnInit {
 
   deleteReports() {
     if (this.selectedIds.length <= 0) {
-      // this.dialog.open(MessagePopupComponent, {
-      //   width: '500px',
-      //   data: {
-      //     message: this.selectPerformanceFirst,
-      //     action: 'no-performance-selected'
-      //   }
-      // })
-      this.toaster.error(this.selectPerformanceFirst);
+      this.toaster.error(this.deleteSelectPerformanceFirst);
       return
     }
     let lang_id = localStorage.getItem('lang_id');
@@ -341,9 +335,10 @@ export class PerformanceAnalysisTabComponent implements OnInit {
   }
 
   translateMsg() {
-    this.translateService.get(['deletePerformanceConfirm', 'selectPerformanceFirst']).subscribe((translations) => {
+    this.translateService.get(['deletePerformanceConfirm', 'selectPerformanceFirst', 'deleteSelectPerformanceFirst']).subscribe((translations) => {
       this.deletePerformanceConfirm = translations['deletePerformanceConfirm'];
       this.selectPerformanceFirst = translations['selectPerformanceFirst'];
+      this.deleteSelectPerformanceFirst = translations['deleteSelectPerformanceFirst'];
     })
   }
 

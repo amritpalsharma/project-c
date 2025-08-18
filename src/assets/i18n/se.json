@@ -460,6 +460,7 @@
   "MovingTo": "Flyttar till",
   "ExportPDF": "Exportera PDF",
   "selectCountry": "Välj land",
+  "selectPerformanceFirst": "Välj vilka analyser du vill ladda ner.",
   "provideEmailAddress": "Vänligen ange en giltig e-postadress.",
   "clubDetails": "Detaljer om klubben",
   "companyName": "Företag Namn",
@@ -1482,5 +1483,6 @@
   "noSightFound": "Inget observationshändelse har registrerats ännu.",
   "manageNoPaymentBtnTxt": "till planer",
   "noScoutFound": "Är du en scout? Registrera dig nu gratis så visas din profil här och du kan upptäcka talanger och bli kontaktad.",
-  "noClubFound": "Är ni en klubb? Registrera er nu gratis – er profil visas här och ni kan hitta ert nästa stjärnskott."
+  "noClubFound": "Är ni en klubb? Registrera er nu gratis – er profil visas här och ni kan hitta ert nästa stjärnskott.",
+  "deleteSelectPerformanceFirst": "Välj vilka analyser du vill ta bort."
 }

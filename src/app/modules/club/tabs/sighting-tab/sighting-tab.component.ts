@@ -218,7 +218,11 @@ export class SightingTabComponent {
           // } else {
           //   this.showMatDialog('Sighting(s) deleted successfully!.', 'display');
           // }
-          this.toaster.success(response.message)
+          // this.toaster.success(response.message)
+          this.toastr.success(response.message, '', {
+            toastClass: 'custom-toast-width',
+            // timeOut: 0,
+          })
           this.getSightings();
         } else {
           this.showMatDialog('Error in deleting sighting. Please try again.', 'display');
@@ -426,7 +430,7 @@ export class SightingTabComponent {
   }
 
   updateEventStatus(element: any, status: string): void {
-    
+
     // console.log(status, element);
 
     // return;
@@ -464,12 +468,12 @@ export class SightingTabComponent {
           });
         }
       }
-      else{
+      else {
         console.log("working")
-        if(status === 'active'){
+        if (status === 'active') {
           element.status = 'inactive';
         }
-        else{
+        else {
           element.status = 'active';
         }
       }
@@ -549,7 +553,7 @@ export class SightingTabComponent {
           // this.attachments = temp;
           // if (response.message != '' && response.message != undefined) {
           //   this.showMatDialog(response.message, 'display');
-            this.viewSight(this.viewSightId)
+          this.viewSight(this.viewSightId)
           // } else {
           //   this.showMatDialog('Attachment removed successfully!.', 'display');
           // }

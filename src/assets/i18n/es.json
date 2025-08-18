@@ -1358,7 +1358,7 @@
   "acceptAll": "Aceptar todas",
   "pleaseConfirmSpellings": "Los valores no coinciden, por favor verifica tu ortografía.",
   "formAllFieldsRequired": "Por favor, completa el formulario correctamente antes de enviarlo.",
-  "selectPerformanceFirst": "Seleccione primero el rendimiento.",
+  "selectPerformanceFirst": "Selecciona qué análisis deseas descargar.",
   "removeSection": "Eliminar sección",
   "addMore": "Añadir más",
   "selectSightingFirst": "Seleccione primero los avistamientos.",
@@ -1485,5 +1485,6 @@
   "noSightFound": "Aún no se ha registrado ningún evento de avistamiento.",
   "manageNoPaymentBtnTxt": "a las planes",
   "noScoutFound": "¿Eres ojeador? Regístrate ahora gratis, tu perfil se mostrará aquí y podrás descubrir talentos y ser contactado por ellos.",
-  "noClubFound": "¿Sois un club? Registraos ahora gratis – vuestro perfil se mostrará aquí y podréis descubrir vuestro próximo talento."
+  "noClubFound": "¿Sois un club? Registraos ahora gratis – vuestro perfil se mostrará aquí y podréis descubrir vuestro próximo talento.",
+  "deleteSelectPerformanceFirst": "Selecciona qué análisis deseas eliminar."
 }

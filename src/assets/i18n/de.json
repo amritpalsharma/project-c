@@ -1414,7 +1414,7 @@
   },
   "pleaseConfirmSpellings": "Werte stimmen nicht überein, bitte überprüfe deine Rechtschreibung.",
   "formAllFieldsRequired": "Bitte fülle das Formular korrekt aus, bevor du es absendest.",
-  "selectPerformanceFirst": "Wählen Sie zuerst Leistung.",
+  "selectPerformanceFirst": "Wähle aus, welche Analysen du downloaden möchtest.",
   "removeSection": "Abschnitt entfernen",
   "addMore": "Mehr hinzufügen",
   "selectSightingFirst": "Wähle zuerst die Sichtung aus.",
@@ -1544,5 +1544,6 @@
   "noSightFound":"Es wurde noch kein Sichtungs-Event erfasst.",
   "manageNoPaymentBtnTxt":"zu den Abos",
   "noScoutFound":"Bist du ein Scout? Registriere dich jetzt kostenlos – dein Profil wird hier angezeigt und Talente können dich entdecken und kontaktieren.",
-  "noClubFound":"Ihr seid ein Club? Registriert euch jetzt kostenlos – euer Profil wird hier angezeigt und ihr könnt euer neues Talent entdecken."
+  "noClubFound":"Ihr seid ein Club? Registriert euch jetzt kostenlos – euer Profil wird hier angezeigt und ihr könnt euer neues Talent entdecken.",
+  "deleteSelectPerformanceFirst":"Wähle aus, welche Analysen du löschen möchtest."
 }

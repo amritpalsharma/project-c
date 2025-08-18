@@ -406,7 +406,7 @@ export class ViewProfileComponent implements OnInit {
           this.forceDownload(response.data.file_path, response.data.file_name);
           // Open the file in a new tab
           // window.open(response.data.file_path);
-          window.open(response.data.file_path, '_blank', 'noopener,noreferrer');
+          // window.open(response.data.file_path, '_blank', 'noopener,noreferrer');
 
 
         } else {

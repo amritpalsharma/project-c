@@ -39,7 +39,8 @@ export class InviteTalentPopupComponent {
     console.log(data, "data here");
     this.action = data.action;
     if (this.action == "showInvitedUsers") {
-      this.invitedUsers = data.data
+      this.invitedUsers = data.data;
+      console.log('this.invitedUsers',this.invitedUsers)
     } else if (this.action == "inviteUsers") {
       this.eventName = data.data;
       this.sightId = data.sightId;
@@ -47,7 +48,9 @@ export class InviteTalentPopupComponent {
   }
 
   ngOnInit(): void {
-    this.fetchPlayers();
+    if (this.action != "showInvitedUsers") {
+      this.fetchPlayers();
+    }
   }
 
   viewProfile(id: number | string): void {

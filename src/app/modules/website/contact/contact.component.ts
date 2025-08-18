@@ -14,6 +14,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 
 export class ContactComponent implements OnInit {
+  honeypot:string='';
   apiUrl: any = environment.url;
   disableSentButton: boolean = false;
   base_url: string = '';

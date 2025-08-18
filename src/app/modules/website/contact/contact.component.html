@@ -99,6 +99,7 @@
         <div>
           <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
             <input type="hidden" name="domain" ng-model="contactForm.domain" />
+            <input type="text" name="hp_hidden" style="display:none;" [(ngModel)]="honeypot">
             <div class="row">
               <div class="col-sm-6">
                 <input id="name" class="form-control" formControlName="name" [placeholder]="name_placeholder"

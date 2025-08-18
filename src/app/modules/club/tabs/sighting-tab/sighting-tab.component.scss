@@ -908,3 +908,6 @@ body {
 ::ng-deep .mat-mdc-select-arrow svg{
   color: #fff !important;
 }
+::ng-deep .custom-toast-width{
+    width: 400px !important; /* Adjust the width as per your requirement */
+}

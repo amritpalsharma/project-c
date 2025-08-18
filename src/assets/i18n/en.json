@@ -1324,7 +1324,7 @@
   },
   "pleaseConfirmSpellings": "Values do not match, please confirm your spelling.",
   "formAllFieldsRequired": "Please fill out the form correctly before submitting.",
-  "selectPerformanceFirst": "Select performance(s) first.",
+  "selectPerformanceFirst": "Select which analyses you would like to download.",
   "removeSection": "Remove Section",
   "addMore": "Add More",
   "selectSightingFirst": "Select sighting(s) first.",
@@ -1450,5 +1450,6 @@
   "noSightFound":"No sighting event has been recorded yet.",
   "manageNoPaymentBtnTxt":"to the plans",
   "noScoutFound":"Are you a scout? Register now for free, and your profile will be visible here – allowing you to discover talents and be contacted by them.",
-  "noClubFound":"Are you a club? Register now for free – your profile will be visible here, and you can discover your next talent."
+  "noClubFound":"Are you a club? Register now for free – your profile will be visible here, and you can discover your next talent.",
+  "deleteSelectPerformanceFirst":"Select which analyses you would like to delete."
 }

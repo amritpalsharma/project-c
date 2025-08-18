@@ -13,7 +13,7 @@ import { environment } from '../../../../../../environments/environment';
 import { WebPages } from '../../../../../services/webpages.service';
 import { TranslateService } from '@ngx-translate/core';
 import { UnverifiedUserComponent } from '../../../unverified-user/unverified-user.component';
-
+import { InviteTalentPopupComponent } from '../../../../club/tabs/invite-talent-popup/invite-talent-popup.component';
 
 @Component({
   selector: 'app-sighting',
@@ -148,6 +148,7 @@ export class SightingComponent {
     }
   }
 
+  allInvitedUsers:any;
   viewSight(id: any) {
     this.view = 'detail';
     this.isLoading = true;
@@ -155,6 +156,7 @@ export class SightingComponent {
     this.userService.getClubSingleSighting(id).subscribe((response) => {
       if (response && response.status && response.data) {
         this.sightingData = response.data.sighting;
+        this.allInvitedUsers = response.data.players_invited; 
         // this.playersInvited = response.data.players_invited;
         this.playersInvited = response.data.players_invited.filter((player: any) => player.status === 'pending');
         this.playersAccepted = response.data.players_invited.filter((player: any) => player.status === 'accepted');
@@ -289,5 +291,39 @@ export class SightingComponent {
     } else {
       console.warn('No userData available and this.user is ', this.user);
     }
+  }
+
+
+  inviteTalentsPopup(eventName: any) {
+    const inviteDialog = this.dialog.open(InviteTalentPopupComponent, {
+      width: '700px',
+      height: '530px',
+      position: {
+        top: '70px'
+      },
+      data: {
+        action: "showInvitedUsers",
+        data: this.allInvitedUsers,
+        sightId: this.viewSightId
+      }
+    })
+
+    inviteDialog.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        console.log(result)
+        if (result.action == "added") {
+          this.viewSight(result.id);
+          if (result.message != '' && result.message != undefined) {
+            // this.showMatDialog(result.message, 'display');
+          } else {
+            // this.showMatDialog("Players invited successfully", 'display')
+          }
+          if (result.message != '' && result.message != undefined) {
+            // this.toaster.success(result.message);
+          }
+        }
+        console.log('Dialog result:', result);
+      }
+    });
   }
 }

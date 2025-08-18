@@ -1411,7 +1411,7 @@
   "acceptAll": "Acceptera alla",
   "pleaseConfirmSpellings": "Värdena matchar inte, vänligen bekräfta din stavning.",
   "formAllFieldsRequired": "Vänligen fyll i formuläret korrekt innan du skickar in det.",
-  "selectPerformanceFirst": "Välj prestanda först.",
+  "selectPerformanceFirst": "Välj vilka analyser du vill ladda ner.",
   "removeSection": "Ta bort sektion",
   "addMore": "Lägg till mer",
   "selectSightingFirst": "Välj sikte först.",
@@ -1530,5 +1530,8 @@
   "passwordResetLinkHasExpired": "Tyvärr har din länk för att återställa lösenordet gått ut. Besök sidan \"Glömt lösenord\" för att få en ny länk.",
   "linkExpired": "LÄNKEN HAR GÅTT UT",
   "noSightFound": "Inget observationshändelse har registrerats ännu.",
-  "manageNoPaymentBtnTxt":"till planer"
+  "manageNoPaymentBtnTxt": "till planer",
+  "noScoutFound": "Är du en scout? Registrera dig nu gratis så visas din profil här och du kan upptäcka talanger och bli kontaktad.",
+  "noClubFound": "Är ni en klubb? Registrera er nu gratis – er profil visas här och ni kan hitta ert nästa stjärnskott.",
+  "deleteSelectPerformanceFirst": "Välj vilka analyser du vill ta bort."
 }

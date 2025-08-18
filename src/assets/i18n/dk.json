@@ -1276,7 +1276,7 @@
   "acceptAll": "Accepter alle",
   "pleaseConfirmSpellings": "Værdierne stemmer ikke overens, bekræft venligst din stavning.",
   "formAllFieldsRequired": "Udfyld venligst formularen korrekt, før du sender det.",
-  "selectPerformanceFirst": "Vælg performance først.",
+  "selectPerformanceFirst": "Vælg hvilke analyser du ønsker at downloade.",
   "removeSection": "Fjern sektion",
   "addMore": "Tilføj mere",
   "selectSightingFirst": "Vælg observation(er) først.",
@@ -1403,5 +1403,6 @@
   "noSightFound": "Der er endnu ikke registreret nogen observationsbegivenhed.",
   "manageNoPaymentBtnTxt": "til planer",
   "noScoutFound": "Er du en scout? Registrer dig gratis nu – din profil vil blive vist her, og du kan opdage talenter og blive kontaktet.",
-  "noClubFound": "Er I en klub? Registrer jer nu gratis – jeres profil vil blive vist her, og I kan opdage jeres næste talent."
+  "noClubFound": "Er I en klub? Registrer jer nu gratis – jeres profil vil blive vist her, og I kan opdage jeres næste talent.",
+  "deleteSelectPerformanceFirst": "Vælg hvilke analyser du ønsker at slette."
 }
