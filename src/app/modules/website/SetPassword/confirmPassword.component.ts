@@ -14,6 +14,12 @@ export class ConfirmPasswordComponent implements OnInit {
   confirmPassword = '';
   userRole: any = localStorage.getItem('userRole');
 
+  // Variables to control password visibility
+  passwordVisible: boolean = false;
+  confirmPasswordVisible: boolean = false;
+
+  theme: any = localStorage.getItem('theme');
+
   constructor(
     private authService: AuthService,
     private toastService: ToastrService,
@@ -21,9 +27,9 @@ export class ConfirmPasswordComponent implements OnInit {
     private router: Router,
     private dialog: MatDialog,
     private dialogRef: MatDialogRef<ConfirmPasswordComponent>
-  ) {}
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   savePassword(): void {
     if (this.newPassword !== this.confirmPassword) {
@@ -65,5 +71,19 @@ export class ConfirmPasswordComponent implements OnInit {
           console.error(error);
         },
       });
+  }
+
+
+  // Toggle the visibility of the password field
+  togglePasswordVisibility(inputId: string): void {
+    if (inputId === 'password') {
+      this.passwordVisible = !this.passwordVisible;
+    } else if (inputId === 'confirm-password') {
+      this.confirmPasswordVisible = !this.confirmPasswordVisible;
+    }
+  }
+
+  onCancel(): void {
+    this.dialogRef.close(); // Close the dialog without saving
   }
 }
