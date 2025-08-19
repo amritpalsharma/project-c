@@ -39,7 +39,7 @@ export class PlayerListComponent implements OnInit {
   clubPlayers: Player[] = [ /* ... existing club player data ... */];
   scoutsPlayers: Player[] = [ /* ... existing scouts player data ... */];
   adVisible: boolean[] = [false, false, false, false, false];
-  theme:string=localStorage.getItem('theme') || 'dark';
+  theme: string = localStorage.getItem('theme') || 'dark';
 
   ngOnInit() {
     this.fetchData('talent');
@@ -78,7 +78,7 @@ export class PlayerListComponent implements OnInit {
     if (this.currentPage > 1) {
       this.currentPage--;
       this.fetchData(this.selectedTab); // Added fetchData call
-      this.fetchData(this.selectedTab); // Added fetchData call
+      // this.fetchData(this.selectedTab); // Added fetchData call
     }
   }
 
@@ -142,6 +142,10 @@ export class PlayerListComponent implements OnInit {
       role = '4';
     }
 
+    setTimeout(function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 500);  // Adjust the delay as per the content loading time
+
     // Calculate offset based on current page and items per page
     const offset = (this.currentPage - 1) * this.itemsPerPage;
     let user_domain = this.globalSettings.getdomainId();
@@ -166,6 +170,10 @@ export class PlayerListComponent implements OnInit {
         this.totalPagesCount = Math.ceil(response.data.userData.totalCount / this.itemsPerPage);
         this.TotalCount = response.data.userData.totalCount;
         this.isLoading = false;
+
+        setTimeout(function () {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 100);  // Adjust the delay as per the content loading time
       },
       (error) => {
         console.error(error);

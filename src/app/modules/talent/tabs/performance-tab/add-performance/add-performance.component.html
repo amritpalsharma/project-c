@@ -21,8 +21,6 @@
       <form class="general_form popup__body pt-3" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
         <div class="overflow-card">
           <div class="row">
-            <!-- <p>isHideTeamSection {{isHideTeamSection}}</p> -->
-            <!-- [ngClass]="{'col-sm-6':isHideTeamSection,'col-sm-12':!isHideTeamSection}" -->
             <div>
               <div class="checkbox-wrap">
                 <div class="form-check checkbox mb-3">
@@ -36,7 +34,8 @@
 
             </div>
             <div class="form-group col-sm-6" *ngIf="isHideTeamSection">
-              <label for="team_country_name" class="form-check-label fs-14 font-w400 text-light">{{ 'country' | translate }}</label>
+              <label for="team_country_name" class="form-check-label fs-14 font-w400 text-light">{{ 'country' |
+                translate }}</label>
               <mat-form-field appearance="fill" class="w-100 custom_select_mat">
                 <mat-select id="team_country_name" name="team_country_name" [(ngModel)]="team_country_id"
                   class="form-select mat_search_selector">
@@ -75,9 +74,9 @@
             </div>
             <div class="form-group col-lg-6" *ngIf="isHideTeamSection">
               <label for="team" class="form-label">{{'club' | translate}} / {{'team' | translate}}</label>
-              <input type="text" id="teamName" name="teamName"
-                placeholder="{{'noTeamAndClubPlaceHolder' | translate}}" [(ngModel)]="teamName" required
-                style="padding-left: 30px;" [ngClass]="{'isrequiredField': !teamName && isSubmited}" />
+              <input type="text" id="teamName" name="teamName" placeholder="{{'noTeamAndClubPlaceHolder' | translate}}"
+                [(ngModel)]="teamName" required style="padding-left: 30px;"
+                [ngClass]="{'isrequiredField': !teamName && isSubmited}" />
 
             </div>
             <div class="form-group col-lg-6" *ngIf="!isHideTeamSection">
@@ -86,7 +85,7 @@
             </div>
           </div>
 
-          <div class="row">
+          <div class="row" *ngIf="!isHideTeamSection">
             <div class="form-group col-lg-6">
               <label for="goals" class="form-label">{{'goal' | translate}}</label>
               <input type="number" id="goals" name="goals" [(ngModel)]="performance.goals">
@@ -97,13 +96,12 @@
             </div>
           </div>
 
-          <div class="row">
+          <div class="row" *ngIf="!isHideTeamSection">
             <div class="form-group col-lg-6">
               <label for="session" class="form-label">{{'saison' | translate}}</label>
-              <!-- <input type="text" id="session" name="session" [(ngModel)]="performance.session"
-                [ngClass]="{'isrequiredField': isrequiredField}"> -->
               <mat-select [(ngModel)]="performance.session" class="form-select session_field"
-                [ngClass]="{'isrequiredField': !performance.session && isSubmited}" id="session" name="session" required>
+                [ngClass]="{'isrequiredField': !performance.session && isSubmited}" id="session" name="session"
+                required>
                 <mat-option [value]="0" disabled>{{ 'select' | translate }}</mat-option>
                 <mat-option *ngFor="let session of sessionArr" [value]="session">
                   {{ session }}
@@ -116,7 +114,7 @@
             </div>
           </div>
 
-          <div class="row mb-md-5">
+          <div class="row mb-md-5" *ngIf="!isHideTeamSection">
             <div class="form-group col-lg-6" *ngIf="isHideTeamSection">
               <label for="matches" class="form-label">{{'matches' | translate}}</label>
               <input type="number" id="matches" name="matches" [(ngModel)]="performance.matches">
@@ -128,7 +126,8 @@
                     <label for="form-date" class="form-label">{{getTextBeforeDash('fromUpto' | translate)}}</label>
                     <div class="d-flex align-items-center justify-content-center date_field">
                       <input class="upto-date" matInput id="from_date" name="from_date"
-                        [matDatepicker]="from_datepicker" [formControl]="from_date" placeholder="DD.MM.YYYY" required [readonly]="true" (click)="openDatePicker(from_datepicker)"/>
+                        [matDatepicker]="from_datepicker" [formControl]="from_date" placeholder="DD.MM.YYYY" required
+                        [readonly]="true" (click)="openDatePicker(from_datepicker)" />
                       <mat-datepicker-toggle matSuffix [for]="from_datepicker"></mat-datepicker-toggle>
                       <mat-datepicker #from_datepicker></mat-datepicker>
                     </div>
@@ -137,16 +136,75 @@
                     <label for="form-date" class="form-label">{{getTextAfterDash('fromUpto' | translate)}}</label>
                     <div class="d-flex align-items-center justify-content-center date_field">
                       <input class="upto-date-2" matInput id="to_date" name="to_date" [matDatepicker]="to_datepicker"
-                        [formControl]="to_date" placeholder="DD.MM.YYYY" required [readonly]="true" (click)="openDatePicker(to_datepicker)"/>
+                        [formControl]="to_date" placeholder="DD.MM.YYYY" required [readonly]="true"
+                        (click)="openDatePicker(to_datepicker)" />
                       <mat-datepicker-toggle matSuffix [for]="to_datepicker"></mat-datepicker-toggle>
                       <mat-datepicker #to_datepicker></mat-datepicker>
                     </div>
                   </div>
                 </div>
-                <!-- <div class="date-imputs d-flex align-items-center">
-                  <input type="date" name="from_date" class="form-upto_date" [(ngModel)]="performance.from_date" required>
-                  <input type="date" name="to_date" class="form-upto_date-2" [(ngModel)]="performance.to_date" required>
-                </div> -->
+              </div>
+            </div>
+          </div>
+          <!-- when user select no club -->
+          <div class="row mb-md-5" *ngIf="isHideTeamSection">
+            <!-- matches -->
+            <div class="form-group col-lg-6">
+              <label for="matches" class="form-label">{{'matches' | translate}}</label>
+              <input type="number" id="matches" name="matches" [(ngModel)]="performance.matches">
+            </div>
+            <!-- goals -->
+            <div class="form-group col-lg-6">
+              <label for="goals" class="form-label">{{'goal' | translate}}</label>
+              <input type="number" id="goals" name="goals" [(ngModel)]="performance.goals">
+            </div>
+            <!-- coach -->
+            <div class="form-group col-lg-6">
+              <label for="Coach" class="form-label">{{'coachDuringDebut' | translate}}</label>
+              <input type="text" id="Coach" name="coach" [(ngModel)]="performance.coach">
+            </div>
+            <!-- Saison -->
+            <div class="form-group col-lg-6">
+              <label for="session" class="form-label">{{'saison' | translate}}</label>
+              <mat-select [(ngModel)]="performance.session" class="form-select session_field"
+                [ngClass]="{'isrequiredField': !performance.session && isSubmited}" id="session" name="session"
+                required>
+                <mat-option [value]="0" disabled>{{ 'select' | translate }}</mat-option>
+                <mat-option *ngFor="let session of sessionArr" [value]="session">
+                  {{ session }}
+                </mat-option>
+              </mat-select>
+            </div>
+            <!-- Alter -->
+            <div class="form-group col-lg-6">
+              <label for="player_age" class="form-label">{{'playerAge' | translate}}</label>
+              <input type="text" id="player_age" name="player_age" [(ngModel)]="performance.player_age">
+            </div>
+            <!-- from upto -->
+            <div class="form-group col-lg-6">
+              <div class="col-lg-12 p-0">
+                <div class="date-imputs d-flex align-items-center">
+                  <div class="input_label_wrap w-100">
+                    <label for="form-date" class="form-label">{{getTextBeforeDash('fromUpto' | translate)}}</label>
+                    <div class="d-flex align-items-center justify-content-center date_field">
+                      <input class="upto-date" matInput id="from_date" name="from_date"
+                        [matDatepicker]="from_datepicker" [formControl]="from_date" placeholder="DD.MM.YYYY" required
+                        [readonly]="true" (click)="openDatePicker(from_datepicker)" />
+                      <mat-datepicker-toggle matSuffix [for]="from_datepicker"></mat-datepicker-toggle>
+                      <mat-datepicker #from_datepicker></mat-datepicker>
+                    </div>
+                  </div>
+                  <div class="input_label_wrap w-100">
+                    <label for="form-date" class="form-label">{{getTextAfterDash('fromUpto' | translate)}}</label>
+                    <div class="d-flex align-items-center justify-content-center date_field">
+                      <input class="upto-date-2" matInput id="to_date" name="to_date" [matDatepicker]="to_datepicker"
+                        [formControl]="to_date" placeholder="DD.MM.YYYY" required [readonly]="true"
+                        (click)="openDatePicker(to_datepicker)" />
+                      <mat-datepicker-toggle matSuffix [for]="to_datepicker"></mat-datepicker-toggle>
+                      <mat-datepicker #to_datepicker></mat-datepicker>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
