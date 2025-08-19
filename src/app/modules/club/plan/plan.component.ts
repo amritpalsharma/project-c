@@ -155,10 +155,16 @@ export class PlanComponent implements OnInit, OnDestroy {
       if (result && typeof result.coupon_code != undefined && result.coupon_code != '') {
         this.isCouponApplied = true;
         this.couponCode = result.coupon_code;
+        if (result.plan_id && typeof result.plan_id != null && typeof result.plan_id !== undefined) {
+          planId = result.plan_id;
+        }
         this.redirectToCheckout(planId);
       } else if (result == 'buy_plan') {
         this.isCouponApplied = false;
         this.couponCode = '';
+        if (result.plan_id && typeof result.plan_id != null && typeof result.plan_id !== undefined) {
+          planId = result.plan_id;
+        }
         this.redirectToCheckout(planId);
       }
     });

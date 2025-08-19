@@ -43,6 +43,10 @@ export class PremiumPurchaseComponent {
 
   toggleBillingPlan(isYearly: boolean) {
     this.isYearly = isYearly;
+    console.info('isYearly', this.isYearly);
+    console.info('selectedPlan', this.selectedPlan);
+    let planID = this.isYearly ? this.selectedPlan?.yearly?.id : this.selectedPlan?.monthly?.id;
+    console.info('planID', planID);
   }
 
   cancel(): void {
@@ -50,10 +54,12 @@ export class PremiumPurchaseComponent {
   }
 
   buyPlan(): void {
+    let planID = this.isYearly ? this.selectedPlan?.yearly?.id : this.selectedPlan?.monthly?.id;
+    console.info('buy now ',planID); 
     if (this.couponCode && typeof this.couponCode != undefined && this.couponCode != '') {
-      this.dialogRef.close({ coupon_code: this.couponCode });
+      this.dialogRef.close({ coupon_code: this.couponCode, plan_id: planID });
     } else {
-      this.dialogRef.close({ action: 'buy_plan' });
+      this.dialogRef.close({ action: 'buy_plan', plan_id: planID });
     }
   }
 
@@ -63,15 +69,15 @@ export class PremiumPurchaseComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      let planID = this.selectedPlan.isYearly ? this.selectedPlan?.yearly?.id : this.selectedPlan?.monthly?.id;
+      let planID = this.isYearly ? this.selectedPlan?.yearly?.id : this.selectedPlan?.monthly?.id;
       console.log('result', result)
       if (result) {
         this.couponCode = result;
-        this.dialogRef.close({ coupon_code: this.couponCode });
+        this.dialogRef.close({ coupon_code: this.couponCode, pland_id: planID });
         // this.redirectToCheckout(planID);
       } else if (result === null || result == 'proceed_to_checkout_without_coupon') {
         // this.redirectToCheckout(planID);
-        this.dialogRef.close({ action: 'buy_plan' });
+        this.dialogRef.close({ action: 'buy_plan', pland_id: planID });
       }
     });
   }
