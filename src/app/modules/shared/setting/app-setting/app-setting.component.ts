@@ -29,6 +29,8 @@ export class AppSettingComponent {
   ngOnInit() {
     // Parse user data from localStorage
     this.loggedInUser = JSON.parse(this.loggedInUser);
+    console.info('this.loggedInUser',this.loggedInUser)
+    
     this.updateTranslation();
     this.langSubscription = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
       this.updateTranslation();
@@ -68,9 +70,10 @@ export class AppSettingComponent {
 
   // Handle toggle event
   onNewsletterToggle(event: any) {
-    // if (!this.checkRole()) {
-    //   return;
-    // }
+    console.info('this.loggedInUser.permission',this.loggedInUser.permission)
+    if (!this.checkRole()) {
+      return;
+    }
     this.showMatDialog(
       this.translatedText,
       "newsletter-confirmation",

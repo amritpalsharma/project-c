@@ -1,110 +1,137 @@
 /* The switch container */
 .switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
 }
 
 /* Hide default checkbox */
 .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
 
 /* The slider itself */
 .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: .4s;
-    border-radius: 34px;
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px;
 }
 
 /* The knob */
 .slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    transition: .4s;
-    border-radius: 50%;
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
 }
 
 /* When checked, change background color */
-input:checked + .slider {
-    background-color: #2196F3;
+input:checked+.slider {
+  background-color: #2196F3;
 }
 
 /* Move the knob when checked */
-input:checked + .slider:before {
-    transform: translateX(26px);
+input:checked+.slider:before {
+  transform: translateX(26px);
 }
 
 
 
 
 .acount_delete_btn {
-    padding: 9px 30px;
-    border-radius: 10px;
-    font-size: 15px;
-    font-weight: 600;
-    border: 0;
-    outline: none;
-    color: #fff;
-    background-color: rgba(249, 60, 101, 1);
-}
-.card-header p{
-    font-size: 14px;
-    font-weight: 400; 
-    color: #111418;
-    font-family: "Libre Franklin", sans-serif;
-  }
-.card-body p{
-    font-size: 14px;
-    font-weight: 400; 
-    font-family: "Libre Franklin", sans-serif;
+  padding: 9px 30px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  border: 0;
+  outline: none;
+  color: #fff;
+  background-color: rgba(249, 60, 101, 1);
 }
 
-  @media (max-width: 991px) {
-      .acount_del-item {
-          gap: 10px;
-      }
+.card-header p {
+  font-size: 14px;
+  font-weight: 400;
+  color: #111418;
+  font-family: "Libre Franklin", sans-serif;
+}
+
+.card-body p {
+  font-size: 14px;
+  font-weight: 400;
+  font-family: "Libre Franklin", sans-serif;
+}
+
+@media (max-width: 991px) {
+  .acount_del-item {
+    gap: 10px;
   }
-  @media (min-width: 1600px) and (max-width: 2999px){
-    .card-title {
-        font-size: 24px !important;
-    }
-    .card-header p, .card-body label, .card-body p {
-      font-size: 20px !important;
-    }
-    td svg {
-        width: 32px !important;
-        height: 32px !important;
-      }
-      .acount_delete_btn {
-        font-size: 20px !important;
-      }
+}
+
+@media (min-width: 1600px) and (max-width: 2999px) {
+  .card-title {
+    font-size: 24px !important;
   }
 
-  @media (min-width: 3000px){
-    .card-header p, .card-body label, .card-body p {
-      font-size: 26px !important;
-    }
-    
+  .card-header p,
+  .card-body label,
+  .card-body p {
+    font-size: 20px !important;
+  }
+
+  td svg {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  .acount_delete_btn {
+    font-size: 20px !important;
+  }
+}
+
+@media (min-width: 3000px) {
+
+  .card-header p,
+  .card-body label,
+  .card-body p {
+    font-size: 26px !important;
+  }
+
   td svg {
     width: 40px !important;
     height: 40px !important;
   }
+
   .acount_delete_btn {
     font-size: 26px !important;
   }
+}
+
+::ng-deep button.add_btn_club_view_only {
+  pointer-events: none !important;
+  user-select: none !important;
+  cursor: not-allowed !important;
+  opacity: 0.6 !important;
+  filter: grayscale(100%);
+}
+::ng-deep input[type="checkbox"]:disabled {
+  pointer-events: none;
+  user-select: none;
+  cursor: not-allowed;
+  opacity: 0.6;
+  filter: grayscale(100%);
 }

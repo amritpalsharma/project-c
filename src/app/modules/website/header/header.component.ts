@@ -1042,7 +1042,8 @@ export class HeaderComponent implements OnInit {
   }
 
 
-
+  isForgotPasswordClicked: boolean = false;
+  isForgotPasswordDisable: boolean = false;
   forgotPassword() {
     if (!this.forgotPasswordEmail?.trim()) {
       this.translateService.get('forgotPassword.provideValidEmail').subscribe((res: string) => {
@@ -1064,12 +1065,14 @@ export class HeaderComponent implements OnInit {
       return;
     }
 
+    this.isForgotPasswordClicked = true;
     this.forgotPasswordMessage = ''; // Clear error message before API call
 
     this.authService.forgotPassword(this.forgotPasswordEmail).subscribe(
       response => {
         const translationKey = response.status ? 'forgotPassword.successMessage' : 'forgotPassword.errorMessage';
         this.forgotPasswordMessage = response.message;
+        this.isForgotPasswordDisable = true;
         // this.translateService.get(translationKey, { message: response.message }).subscribe((res: string) => {
         //   this.forgotPasswordMessage = res;
         // });
@@ -1079,6 +1082,7 @@ export class HeaderComponent implements OnInit {
           this.forgotPasswordMessage = res;
         });
       }
+      
     );
   }
 

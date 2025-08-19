@@ -71,6 +71,8 @@ export class PremiumPurchaseComponent {
     dialogRef.afterClosed().subscribe(result => {
       let planID = this.isYearly ? this.selectedPlan?.yearly?.id : this.selectedPlan?.monthly?.id;
       console.log('result', result)
+      console.log('planID', planID)
+      return;
       if (result) {
         this.couponCode = result;
         this.dialogRef.close({ coupon_code: this.couponCode, pland_id: planID });

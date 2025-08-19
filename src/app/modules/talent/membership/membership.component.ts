@@ -444,6 +444,7 @@ export class MembershipComponent {
           // });
           this.toaster.success(this.subsciptionCancelSuccess + '');
           console.log('Subscription canceled successfully:', response);
+          this.newPremium.stripe_cancel_at = 'now'; // disable button after click
           setTimeout(() => {
             this.getUserPlans();
           }, 100);

@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output, OnDestroy } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { UserService } from '../../../services/user.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -27,6 +27,7 @@ import { EditMembershipProfileComponent } from '../edit-membership-profile/edit-
 import { CoverImageCropperComponent } from '../../shared/cover-image-cropper/cover-image-cropper.component';
 import { PopupComponent } from '../../shared/popup/popup.component';
 import { UserStateService } from '../../../services/user-state.service';
+import { GalleryTabComponent } from '../tabs/gallery-tab/gallery-tab.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -43,6 +44,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   countryFlagUrl: string = './assets/images/city-icon-light.png';
 
+  @ViewChild(GalleryTabComponent) galleryTab!: GalleryTabComponent;
   constructor(
     private userState: UserStateService,
     private route: ActivatedRoute,
@@ -79,7 +81,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   booster: any = false;
   activeDomains: any;
   countries: any;
-  isPremium: any = true;
+  isPremium: any = false;
   StartTour: boolean = true;
   dontShowAgainTourTxt: string = 'profile';
   duration: any;
@@ -400,7 +402,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
 
-
+  currentLoggedInPermission: string = '';
   getUserProfile(userId: any) {
     let changed = false;
     this.loading = true;  // Set loading to true before making the API call
@@ -419,6 +421,17 @@ export class DashboardComponent implements OnInit, OnDestroy {
             localStorage.setItem('userData', representatorData);
             changed = true;
             // this.isRepresentator = true;
+          }
+
+          if (response.data.representator_data && response.data.representator_data != '') {
+            localStorage.setItem('sideBarinfo', JSON.stringify(response.data.representator_data));
+            if (response.data.representator_data.permission == 'admin.view') {
+              this.currentLoggedInPermission = 'scout_view_only';
+              this.globalSettings.setViewOnly(this.currentLoggedInPermission);
+            } else if (response.data.representator_data.permission == 'admin.edit') {
+              this.currentLoggedInPermission = 'scout_view_only';
+              this.globalSettings.setViewOnly(this.currentLoggedInPermission);
+            }
           }
 
           this.user = response.data.user_data;
@@ -758,6 +771,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe(result => {
       this.getHighlightsData()
+
+      this.galleryTab.getGalleryData();
     });
     // }, 1500);
   }

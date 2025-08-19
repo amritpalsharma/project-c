@@ -17,7 +17,7 @@
     <div class="permission-item d-flex align-items-center justify-content-between">
       <label for="newsletter" class="mb-0"><b>{{'newsLetter' | translate}}</b></label>
       <label class="switch">
-        <input type="checkbox" id="newsletter" name="newsletter" [checked]="loggedInUser.newsletter == 1"
+        <input type="checkbox" id="newsletter" [disabled]="currentLoggedInPermission" name="newsletter" [checked]="loggedInUser.newsletter == 1"
           (change)="onNewsletterToggle($event)" class="news_latter_btn {{currentLoggedInPermission}} add_btn_{{currentLoggedInPermission}}">
         <span class="slider round"></span>
       </label>
@@ -33,7 +33,7 @@
     </div>
     <div class="acount_del-item d-flex align-items-center justify-content-between flex-wrap">
       <p>{{ 'deleteAccountDesc' | translate}}</p>
-      <button [class.club_view_only]="!checkRole()" id="DeleteAccount" type="button" class="button acount_delete_btn {{currentLoggedInPermission}}" (click)="confirmDeleteProfile(1)">{{'deleteMyAccount' | translate}}</button>
+      <button [class.club_view_only]="!checkRole()" id="DeleteAccount" type="button" class="button acount_delete_btn {{currentLoggedInPermission}} add_btn_{{currentLoggedInPermission}}" (click)="confirmDeleteProfile(1)">{{'deleteMyAccount' | translate}}</button>
     </div>
   </div>
 </div>

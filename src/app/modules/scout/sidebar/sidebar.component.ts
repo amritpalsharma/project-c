@@ -4,6 +4,7 @@ import { UnverifiedUserComponent } from '../../shared/unverified-user/unverified
 import { SocketService } from '../../../services/socket.service';
 import { GlobalSettingsService } from '../../../services/global-settings.service';
 import { AuthService } from '../../../services/auth.service';
+import { SharedDataService } from '../../shared/shared-data.service';
 
 @Component({
   selector: 'scout-sidebar',
@@ -16,10 +17,12 @@ export class SidebarComponent {
   isNum: Number = 1;
   loggedInUser: any = localStorage.getItem('userInfo');
   locksideBar: boolean = true;
+  currentLoggedInPermission: string = this.sharedDataService.getCurrentStatus();
   constructor(
     private authService: AuthService,
     private globalSettings: GlobalSettingsService,
     public dialog: MatDialog,
+    private sharedDataService: SharedDataService,
     private socketService: SocketService
   ) {
 
@@ -41,6 +44,10 @@ export class SidebarComponent {
     } else {
       // window.location.reload();
     }
+
+    this.sharedDataService.sharedText$.subscribe(text => {
+      this.currentLoggedInPermission = text;
+    });
     this.getUserStatus();
   }
   isLoadingStatus: boolean = true;

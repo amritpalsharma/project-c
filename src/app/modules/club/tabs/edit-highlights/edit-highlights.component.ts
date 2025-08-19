@@ -45,8 +45,8 @@ export class EditHighlightsComponent {
 
     this.loggedInUser = JSON.parse(this.loggedInUser);
     this.userId = this.loggedInUser.id;
-    this.images = this.data.images || [];
-    this.videos = this.data.videos || [];
+    // this.images = this.data.images || [];
+    // this.videos = this.data.videos || [];
     this.url = this.data.url || '';
     this.getGalleryData();
     console.log(this.videos, this.data);

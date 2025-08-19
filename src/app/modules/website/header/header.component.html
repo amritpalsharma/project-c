@@ -444,8 +444,19 @@
                     </div>
                 </div>
                 <div class="modal-footer modal-btn border-0 justify-content-center">
-                    <button (click)="forgotPassword()" class="btn btn-primary d-block">{{ 'reset' | translate
-                        }}</button>
+                    <!-- <button (click)="forgotPassword()" class="btn btn-primary d-block">
+                        {{ 'reset' | translate}}
+                    </button> -->
+                    <button (click)="forgotPassword()" class="btn btn-primary d-block"
+                        [disabled]="isForgotPasswordDisable">
+                        <ng-container *ngIf="isForgotPasswordClicked && !isForgotPasswordDisable; else resetTxt">
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            <span class="sr-only">...</span>
+                        </ng-container>
+                        <ng-template #resetTxt>
+                            {{ 'reset' | translate}}
+                        </ng-template>
+                    </button>
                     <a class="register mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal-login">{{
                         'backToLogin' | translate }}</a>
                 </div>
@@ -495,7 +506,7 @@
                         <div class="mb-4">
                             <label class="form-label">{{ 'confirmPasswordLabel' | translate }}</label>
                             <input type="password" class="form-control" placeholder="" name="confirmPassword"
-                                required /> 
+                                required />
                         </div>
                     </div>
                     <div class="d-flex justify-content-center">
@@ -723,7 +734,8 @@
                                                     class="form-select mat_search_selector"
                                                     [ngClass]="{'ng-invalid' : !selectedClub}"
                                                     (selectionChange)="onClubChange($event)" name="selectedClub"
-                                                    [ngClass]="{'ng-invalid' : !selectedClub || selectedClub == 0}" required>
+                                                    [ngClass]="{'ng-invalid' : !selectedClub || selectedClub == 0}"
+                                                    required>
                                                     <!-- <ngx-mat-select-search [formControl]="clubFilterCtrl"
                                                         placeholder="Search countries"></ngx-mat-select-search> -->
                                                     <mat-option *ngFor="let club of clubs" [value]="club.id">

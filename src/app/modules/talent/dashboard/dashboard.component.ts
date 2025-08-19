@@ -29,6 +29,8 @@ import { PopupComponent } from '../../shared/popup/popup.component';
 import { descriptors } from 'chart.js/dist/core/core.defaults';
 import { EditMembershipProfileComponent } from '../edit-membership-profile/edit-membership-profile.component';
 import { UserStateService } from '../../../services/user-state.service';
+import { GalleryTabComponent } from '../tabs/gallery-tab/gallery-tab.component';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -51,6 +53,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   customClubInfo: any;
 
   @ViewChild('videoPlayer') videoPlayer!: ElementRef<HTMLVideoElement>;
+  @ViewChild(GalleryTabComponent) galleryTab!: GalleryTabComponent;
   constructor(
     private userState: UserStateService,
     private route: ActivatedRoute,
@@ -914,7 +917,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
       // this.duration = result.videoDuration,
       setTimeout(() => {
         this.getHighlightsData();
-      }, 1500);
+      }, 500);
+      this.galleryTab.getGalleryData();
       this.isHighlightClick = true;
     });
     // }, 1500);

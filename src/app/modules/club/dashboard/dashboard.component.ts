@@ -29,6 +29,8 @@ import { CoverImageCropperComponent } from '../../shared/cover-image-cropper/cov
 import { PopupComponent } from '../../shared/popup/popup.component';
 
 import { UserStateService } from '../../../services/user-state.service';
+import { GalleryTabComponent } from '../tabs/gallery-tab/gallery-tab.component';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -40,6 +42,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   teamsTabComponent!: TeamsTabComponent;
   @ViewChild(SightingTabComponent)
   sightingTabComponent!: SightingTabComponent;
+  @ViewChild(GalleryTabComponent) galleryTab!: GalleryTabComponent;
 
   lightboxIsOpen: boolean = false; // Track the state of the lightbox
   mainImage: { src: string } = { src: '' }; // Current main image source
@@ -372,6 +375,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
           localStorage.setItem('userData', JSON.stringify(response.data.user_data));
           this.user = response.data.user_data;
           if (response.data.representator_data && response.data.representator_data != '') {
+            localStorage.setItem('sideBarinfo', JSON.stringify(response.data.representator_data	));
             if (response.data.representator_data.permission == 'admin.view') {
               this.currentLoggedInPermission = 'club_view_only';
               this.globalSettings.setViewOnly(this.currentLoggedInPermission);
@@ -550,6 +554,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(result => {
       this.getHighlightsData();
       this.isHighlightClick = true;
+
+      this.galleryTab.getGalleryData();
     });
     // }, 1500);
 
