@@ -19,6 +19,16 @@
   <form class="popup__body pt-3" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
     <div class="overflow-card">
       <div class="row">
+        <!-- first Name -->
+        <div class="form-group col-lg-6">
+          <label for="firstName">{{ 'firstName' | translate }}: </label>
+          <input type="text" id="firstName" name="firstName" [(ngModel)]="firstName" #firstNameField="ngModel" required>
+        </div>
+        <!-- last Name -->
+        <div class="form-group col-lg-6">
+          <label for="lastName">{{ 'lastName' | translate }}: </label>
+          <input type="text" id="lastName" name="lastName" [(ngModel)]="lastName" #lastNameField="ngModel" required>
+        </div>
         <!-- Club Name -->
         <div class="form-group col-lg-6">
           <label for="company_name">{{ 'company' | translate }}: </label>

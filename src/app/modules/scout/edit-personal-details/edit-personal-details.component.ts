@@ -194,7 +194,8 @@ export class EditPersonalDetailsComponent implements OnInit {
     this.scoutService.getProfileData(userId).subscribe((response: any) => {
       if (response && response.status && response.data && response.data.user_data) {
         this.user = response.data.user_data;
-
+        this.firstName = this.user.first_name || '';
+        this.lastName = this.user.last_name || '';
         // Update component properties with user data
         if (this.user.meta) {
           this.address = this.user.meta.address;
@@ -247,7 +248,8 @@ export class EditPersonalDetailsComponent implements OnInit {
     console.log('Form Data:', form.value);
     this.dialogRef.close(form.value);
     const formData = new FormData();
-
+    if (this.firstName) formData.append('user[first_name]', this.firstName);
+    if (this.lastName) formData.append('user[last_name]', this.lastName);
     formData.append('user[address]', this.address);
     formData.append('user[city]', this.city);
     formData.append('user[company_name]', this.company_name);
