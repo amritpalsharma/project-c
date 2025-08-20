@@ -2208,15 +2208,15 @@ span.active_btn {
 ::ng-deep .dark-theme {
   #scoutInfoDetails {
     .delet_iconnn svg {
-      stroke: #fff !important;
+      // stroke: #fff !important;
     }
   }
 
-  .feather-trash {
-    stroke: #bde34f !important;
-  }
+  // .feather-trash {
+  //   stroke: #bde34f !important;
+  // }
 }
 
 ::ng-deep .feather-trash {
-  stroke: #023a4a !important;
+  stroke: #E05263 !important;
 }
