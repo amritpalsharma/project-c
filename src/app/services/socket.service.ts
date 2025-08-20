@@ -106,7 +106,7 @@ export class SocketService {
       'Authorization': `Bearer ${this.userToken}`
     });
 
-    const apiUrl = 'https://api.socceryou.ch/';
+    const apiUrl = environment.apiUrl;
 
     return this.http.get<ApiResponse>(`${apiUrl}api/check-user-status`, { headers })
       .toPromise()
@@ -128,7 +128,7 @@ export class SocketService {
       'Authorization': `Bearer ${this.userToken}`
     });
 
-    const apiUrl = 'https://api.socceryou.ch/';
+    const apiUrl = environment.apiUrl;
 
     return this.http.get<ApiResponse>(`${apiUrl}api/check-user-status`, { headers })
       .toPromise()
@@ -155,7 +155,7 @@ export class SocketService {
       'Authorization': `Bearer ${this.userToken}`
     });
 
-    const apiUrl = 'https://api.socceryou.ch/';
+    const apiUrl = environment.apiUrl;
 
     return this.http.get<ApiResponse>(`${apiUrl}api/check-user-status`, { headers })
       .toPromise()
@@ -177,7 +177,7 @@ export class SocketService {
       'Authorization': `Bearer ${this.userToken}`
     });
 
-    const apiUrl = 'https://api.socceryou.ch/';
+    const apiUrl = environment.apiUrl;
 
     return this.http.get<ApiResponse>(`${apiUrl}api/profile`, { headers })
       .toPromise()
@@ -187,7 +187,7 @@ export class SocketService {
           if (response.data.user_data.status !== '' && response.data.user_data.status !== undefined) {
             if (response.data.user_data.role && Number(response.data.user_data.role) === 4) {
               return response?.data?.user_data?.active_subscriptions?.premium_talent.length > 0 ? true : false;
-            }else{
+            } else {
               return response?.data?.user_data?.active_subscriptions?.premium.length > 0 ? true : false;
             }
           } else {

@@ -104,7 +104,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   isUserVerified: boolean = false;
   async ngOnInit() {
     this.userState.isPremium$.subscribe(val => {
-      this.isPremium = val;
+      // this.isPremium = val;
     });
     this.getJsonTranslations();
     this.themeChanged();

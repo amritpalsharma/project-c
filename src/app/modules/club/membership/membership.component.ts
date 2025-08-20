@@ -395,7 +395,7 @@ export class MembershipComponent {
           this.toaster.success(response.message);
           console.log('Subscription canceled successfully:', response);
           this.getUserPlans();
-
+            window.location.reload();
         } else {
           console.error('Failed to cancel subscription', response);
           this.getUserPlans();
