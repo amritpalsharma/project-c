@@ -92,6 +92,7 @@ export class TalentService {
 
   getProfileData(params: any = {}): Observable<any> {
     const headers = this.headers();
+    console.warn('tetstetsts',this.apiUrl + 'profile/')
     let lang_id = localStorage.getItem('lang_id');
     return this.http.get<{ status: boolean, message: string, data: { userData: User[] } }>(
       `${this.apiUrl}profile/${lang_id}?header_profile=true`,

@@ -14,6 +14,7 @@ import { AdminHelperService } from '../../../services/admin-helper.service';
 import { TitleService } from '../../../title.service';
 import { TranslateService } from '@ngx-translate/core';
 import { UserRoleService } from '../../../services/user-role.service';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-users',
@@ -36,7 +37,7 @@ export class UsersComponent implements OnInit {
   lang_id: string = '';
   filterDialogRef: any = "";
   count: number = 0;
-  baseUrl:string='https://api.socceryou.ch/uploads/';
+  baseUrl: string = environment.baseUrl;
 
   customFilters: any = [];
   locations: any = [];
@@ -568,7 +569,7 @@ export class UsersComponent implements OnInit {
       'Talento',
       'Scout'
     ];
-  
+
     return allowedRoles.includes(userRole);
   }
 }

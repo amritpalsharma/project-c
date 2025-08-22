@@ -17,7 +17,7 @@ export class UserService {
 
   private apiUrl;
   private userToken;
-  private apiUrl2 = 'https://api.socceryou.ch/api/admin';
+  private apiUrl2 = environment.apiUrl+'admin';
 
   private adminImageUrlSource = new BehaviorSubject<string>('default');
   adminImageUrl = this.adminImageUrlSource.asObservable();

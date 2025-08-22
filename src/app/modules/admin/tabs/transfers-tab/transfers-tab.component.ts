@@ -6,7 +6,7 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { tap, catchError } from 'rxjs/operators'; // For storing data after fetching
 import { UserRoleService } from '../../../../services/user-role.service';
-
+import { environment } from '../../../../../environments/environment';
 @Component({
   selector: 'app-transfers-tab',
   templateUrl: './transfers-tab.component.html',
@@ -19,8 +19,8 @@ export class TransfersTabComponent {
   userTransfers: any = [];
   editableId: string = "";
   teams: any = [];
-  baseUrl: string = 'https://api.socceryou.ch/uploads/';
-  logoBaseUrl: string = 'https://api.socceryou.ch/uploads/logos/';
+  baseUrl: string = environment.baseUrl;
+  logoBaseUrl: string = environment.baseUrl+'/logos/';
   theme: string = localStorage.getItem('theme') || 'light';
 
   filterTeams: any[] = []; // Initialize as empty array to avoid undefined issues

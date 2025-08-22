@@ -7,6 +7,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { SharedService } from '../../../../services/shared.service';
 import { TranslateService } from '@ngx-translate/core';
 import { UserRoleService } from '../../../../services/user-role.service';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-favorites-tab',
@@ -22,7 +23,7 @@ export class FavoritesTabComponent {
   allSelected: boolean = false;
   idsToDelete: any = [];
   selectFavoriteFirst: string = '';
-  imageBaseUrl: any = "https://api.socceryou.ch/uploads/";
+  imageBaseUrl: any = environment.baseUrl;
   selectedIds: number[] = [];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   keyword: any = "";

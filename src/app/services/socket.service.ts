@@ -108,7 +108,7 @@ export class SocketService {
 
     const apiUrl = environment.apiUrl;
 
-    return this.http.get<ApiResponse>(`${apiUrl}api/check-user-status`, { headers })
+    return this.http.get<ApiResponse>(`${apiUrl}/check-user-status`, { headers })
       .toPromise()
       .then((response: any) => {
         if (response.status === true && response.data.userData.status !== '' && response.data.userData.status !== undefined) {
@@ -130,7 +130,7 @@ export class SocketService {
 
     const apiUrl = environment.apiUrl;
 
-    return this.http.get<ApiResponse>(`${apiUrl}api/check-user-status`, { headers })
+    return this.http.get<ApiResponse>(`${apiUrl}/check-user-status`, { headers })
       .toPromise()
       .then((response: any) => {
         if (response.status === true && response.data.chat_mode !== '' && response.data.chat_mode !== undefined) {
@@ -157,7 +157,7 @@ export class SocketService {
 
     const apiUrl = environment.apiUrl;
 
-    return this.http.get<ApiResponse>(`${apiUrl}api/check-user-status`, { headers })
+    return this.http.get<ApiResponse>(`${apiUrl}/check-user-status`, { headers })
       .toPromise()
       .then((response: any) => {
         if (response.status === true && response.data.userData.status !== '' && response.data.userData.status !== undefined) {
@@ -179,7 +179,7 @@ export class SocketService {
 
     const apiUrl = environment.apiUrl;
 
-    return this.http.get<ApiResponse>(`${apiUrl}api/profile`, { headers })
+    return this.http.get<ApiResponse>(`${apiUrl}/profile`, { headers })
       .toPromise()
       .then((response: any) => {
         console.info('SocketService', response);
@@ -204,7 +204,8 @@ export class SocketService {
   }
 
   getPaymentStatus() {
-    return this.paymentStatus;
+    return (environment.paymentMode as string);
+    // return this.paymentStatus;
   }
 
   getChatMode() {

@@ -13,6 +13,7 @@ import { MatDatepickerInputEvent, MatDatepicker } from '@angular/material/datepi
 // tslint:disable-next-line:no-duplicate-imports
 import { default as _rollupMoment } from 'moment';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from '../../../../../environments/environment';
 
 const moment = _rollupMoment || _moment;
 
@@ -40,7 +41,7 @@ export class AddTeamPlayerComponent implements OnInit {
   player: any;
   edit: boolean = false;
   teamName: string = '';
-  baseUrl: string = 'https://api.socceryou.ch/uploads/';
+  baseUrl: string = environment.baseUrl;
   theme: string = localStorage.getItem('theme') || 'light';
   submitClicked: boolean = false;
 
