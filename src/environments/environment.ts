@@ -190,10 +190,10 @@ export const environment = {
   ],
   // apiUrl: 'https://apitest.socceryou.ch/api/',  
   paymentMode: 'live',
-  apiUrl: 'https://api.socceryou.ch/api/',
-  apiBaseUrl: 'https://api.socceryou.ch/',
+  apiUrl: 'https://apitest.socceryou.ch/api/',
+  apiBaseUrl: 'https://apitest.socceryou.ch/',
   baseUrl:'https://api.socceryou.ch/uploads/',
-  url: 'https://api.socceryou.ch/',
+  url: 'https://apitest.socceryou.ch/',
   socketUrl: 'https://alerts.socceryou.ch/',
   mailchimp: {
     apiUrl: 'https://us5.api.mailchimp.com/3.0/lists/7afbbb070a/members',

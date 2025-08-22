@@ -2096,6 +2096,33 @@ span.active_btn {
   }
 }
 
+@media (min-width: 1300px) and (max-width: 1400px) {
+  .title_2 {
+    font-size: 11px;
+  }
+  .title-1 {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1299px) {
+  .title_2 {
+    font-size: 10px;
+  }
+  .title-1 {
+    font-size: 11px;
+  }
+  .elton-box.dashboard-icons .team-badge_image {
+    width: 30px !important;
+  }
+  .elton-box.dashboard-icons .team-badge_content {
+    width: calc(100% - 30px) !important;
+  }
+  .user-media {
+    height: 230px;
+  }
+}
+
 .setting_heighlight svg {
   width: 30px;
   height: 30px;
