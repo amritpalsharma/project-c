@@ -173,6 +173,7 @@ export class TalkService {
     photoUrl: string
   ): Promise<void> {
     try {
+      console.info('chat with  profile ', photoUrl);
       const ADMIN_ID = '1';
       const currentLang = localStorage.getItem('lang') || 'de';
 
@@ -207,6 +208,8 @@ export class TalkService {
         locale: currentLang
       });
 
+      console.info("CHAT WITH ", otherUserConsole);
+      console.info("CHAT WITH FOR TALK METHOD", otherUser);
 
       const hiddenAdmin = new Talk.User({
         id: '1',
@@ -219,7 +222,7 @@ export class TalkService {
 
       conversation.setParticipant(this.currentUser!);
       conversation.setParticipant(otherUser);
-      conversation.setParticipant(hiddenAdmin);
+      // conversation.setParticipant(hiddenAdmin);    
 
       conversation.setAttributes({
         //photoUrl: this.getValidPhotoUrl(photoUrl, true), // For conversation header
@@ -246,6 +249,11 @@ export class TalkService {
 
   private getValidPhotoUrl(photoUrl: string | undefined, appendTimestamp: boolean = false): string {
     const fallback = 'https://api.socceryou.ch/uploads/default_talent_img.png';
+
+    if (typeof photoUrl === undefined) {
+      console.info('photo url is undefined ', photoUrl, 'typeof photoUrl ', typeof photoUrl);
+      return fallback + '?ts=' + Date.now();
+    }
 
     // Handle undefined/null
     if (!photoUrl || !this.isValidImageUrl(photoUrl) || photoUrl.includes('/undefined')) {

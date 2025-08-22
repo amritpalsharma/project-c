@@ -120,7 +120,7 @@ export class PaymentService {
     });
 
     return this.http.post<any>(
-      'https://api.socceryou.ch/api/create-customer-portal',
+      this.apiUrl+'create-customer-portal',
       formData,
       { headers }
     );
