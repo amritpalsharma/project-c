@@ -222,7 +222,7 @@ export class TalkService {
 
       conversation.setParticipant(this.currentUser!);
       conversation.setParticipant(otherUser);
-      // conversation.setParticipant(hiddenAdmin);    
+      conversation.setParticipant(hiddenAdmin);    
 
       conversation.setAttributes({
         //photoUrl: this.getValidPhotoUrl(photoUrl, true), // For conversation header
