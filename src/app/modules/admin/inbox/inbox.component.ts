@@ -30,6 +30,7 @@ export class InboxComponent {
   private isDarkMode = false;
   apiUrl: string = environment?.apiUrl;
   isLoading: boolean = true;
+  theme: string = 'default';
   constructor(
     private talkService: TalkService,
     private socketService: SocketService,
@@ -44,39 +45,39 @@ export class InboxComponent {
     this.sharedservice.data$.subscribe((data) => {
       if (data.action == 'lang_updated') {
         this.getJsonTranslations();
-        this.reloadChatComponent();
+        // this.reloadChatComponent();
       }
     })
     const userDataString = localStorage.getItem('userData');
     if (userDataString) {
       this.userData = JSON.parse(userDataString);
       console.log('pic', this.userData)
-      this.user = {
-        id: this.userData.id,
-        name: this.userData.first_name,
-        email: this.userData.username,
-        photoUrl: this.userData.profile_image_path,
-        welcomeMessage: null,
-        role: "hidden"
-      };
-      const session = await this.talkService.init(this.user);
-      const chatbox = session.createInbox();
+      // this.user = {
+      //   id: this.userData.id,
+      //   name: this.userData.first_name,
+      //   email: this.userData.username,
+      //   photoUrl: this.userData.profile_image_path,
+      //   welcomeMessage: null,
+      //   role: "hidden"
+      // };
+      // const session = await this.talkService.init(this.user);
+      // const chatbox = session.createInbox();
 
 
-      chatbox.onSendMessage((event) => {
-        let getReceiverIds = Object.keys(event.conversation.participants)
-          .filter(val => val != this.user.id);
-        this.socketService.emit('sendMessage', { senderId: this.user.id, receiverIds: getReceiverIds });
-      });
+      // chatbox.onSendMessage((event) => {
+      //   let getReceiverIds = Object.keys(event.conversation.participants)
+      //     .filter(val => val != this.user.id);
+      //   this.socketService.emit('sendMessage', { senderId: this.user.id, receiverIds: getReceiverIds });
+      // });
 
-      // Defer mounting chatbox until next event loop cycle
-      setTimeout(() => {
-        chatbox.mount(document.getElementById('talkjs-container'));
+      // // Defer mounting chatbox until next event loop cycle
+      // setTimeout(() => {
+      //   chatbox.mount(document.getElementById('talkjs-container'));
 
-      }, 0);
-      setTimeout(() => {
-        this.isLoading = false;
-      }, 1500);
+      // }, 0);
+      // setTimeout(() => {
+      //   this.isLoading = false;
+      // }, 1500);
 
     }
 
@@ -88,12 +89,12 @@ export class InboxComponent {
   }
 
 
-  reloadChatComponent() {
-    const currentUrl = this.router.url;
-    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-      this.router.navigateByUrl(currentUrl);
-    });
-  }
+  // reloadChatComponent() {
+  //   const currentUrl = this.router.url;
+  //   this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+  //     this.router.navigateByUrl(currentUrl);
+  //   });
+  // }
 
 
 
@@ -123,7 +124,7 @@ export class InboxComponent {
       });
   }
 
-  editinbox() {
+  editinbox11() {
     this.users = [];
     this.dialog.open(InboxPopupComponent, {
       height: '450px',
@@ -262,5 +263,115 @@ export class InboxComponent {
       );
     }
     setTimeout(() => (this.isLoading = false), 100);
+  }
+
+
+  // code by amrit
+  async ngAfterViewInit() {
+    const themeStored = localStorage.getItem('theme');
+    this.theme = themeStored === 'dark' ? 'dark_custom_users' : 'default_users';
+    document.body.classList.toggle('dark-mode', this.theme === 'dark_custom_users');
+    const userDataString = localStorage.getItem('userData');
+    if (!userDataString) return;
+
+    this.userData = JSON.parse(userDataString);
+
+    if (this.userData.role === '2' && this.userData.club_logo_path) {
+      this.userData.profile_image_path = this.userData.club_logo_path;
+    }
+
+    if (!this.userData.profile_image_path && this.userData.meta?.profile_image_path) {
+      this.userData.profile_image_path = this.userData.meta.profile_image_path;
+    }
+
+    let nameOfUser = this.userData.first_name + ' ' + this.userData.last_name;
+    let profileImgOfUser = this.userData.profile_image_path;
+    if (typeof this.userData.role !== undefined && Number(this.userData.role) === 2) {
+      nameOfUser = this.userData?.current_club_name;
+      profileImgOfUser = this.userData.club_logo_path;
+      // console.info('this.userData_nameOfUser', this.userData)
+    }
+    const user = {
+      id: this.userData.id,
+      name: nameOfUser,
+      email: this.userData.username,
+      photoUrl: profileImgOfUser,
+      welcomeMessage: null,
+      role: 'hidden'
+    };
+
+    // ✅ Set theme before init
+    this.talkService.currentTheme = this.theme;
+    let role;
+    // if (this.userData.role && Number(this.userData.role) === 1) {
+    //     role = 'hidden';
+    // } else {
+
+    // }
+    this.talkService.setCurrentUserRoleAndId('admin', this.userData.id);
+
+    // ✅ Initialize session
+    await this.talkService.init(user);
+
+    // ✅ Mount inbox with theme
+    this.talkService.mountInboxWithTheme();
+
+    // Optional: handle open_chat param
+    setTimeout(() => {
+      const url = new URL(window.location.href);
+      if (url.searchParams.get('open_chat') === 'true') {
+        this.checkAndRemoveOpenChat();
+      } else {
+        this.isLoading = false;
+      }
+    }, 1500);
+  }
+
+
+  // code by amrit
+  editinbox() {
+    this.users = [];
+    this.dialog.open(InboxPopupComponent, {
+      height: '450px',
+      width: '760px',
+    }).afterClosed().subscribe(async users => {
+      if (!users?.data || !Array.isArray(users.data)) return;
+
+      users.data.forEach((user: any) => {
+        let full_name = user?.first_name + ' ' + user?.last_name;
+        if (["club", "klub", "klubb", "clube"].includes(user?.role_name?.toLowerCase())) {
+          if (user?.current_club_logo) {
+            user.meta.profile_image_path = 'https://api.socceryou.ch/uploads/' + user.current_club_logo;
+          }
+          if (user?.current_club_name) {
+            full_name = user.current_club_name;
+          }
+        }
+        if (user.meta?.profile_image_path) {
+          user.profile_image_path = user.meta.profile_image_path;
+        }
+
+        this.users.push({
+          id: user.id,
+          name: full_name,
+          email: user.username,
+          photoUrl: user.profile_image_path
+        });
+      });
+      console.info('Users Selected for chats ', this.users)
+      if (this.users.length === 1) {
+        const u = this.users[0];
+        await this.talkService.createOneOnOneConversation(u.id, u.name, u.email, u.photoUrl);
+      } else if (this.users.length > 1) {
+        // this.talkService.createGroupConversation(this.talkService['session']!.id + '_' + Date.now(), this.users);
+        this.talkService.createGroupConversation(this.generateGroupId(), this.users);
+
+      }
+    });
+  }
+
+  generateGroupId(): string {
+    const userIds = this.users.map(u => u.id).join('_');
+    return 'SoccerYou_' + userIds + '_' + Date.now();
   }
 }

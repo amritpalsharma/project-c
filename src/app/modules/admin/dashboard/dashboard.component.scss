@@ -416,6 +416,7 @@ tr td:last-child {
   padding: 26px;
   margin: 0;
   background: #ecf7f3;
+    image-rendering: crisp-edges; // by amrit
 }
 
 @media (max-width: 991px) {

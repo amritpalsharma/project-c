@@ -170,18 +170,21 @@
               <td>{{ user.language }}</td>
               <td> {{ user.user_location }}</td>
               <!-- <td> {{ formatDateTime(user.created_at) }}</td> -->
-              <td> {{ user.created_at  | date:'dd.MM.yyyy - hh:mm' }}</td>
+              <td> {{ user.created_at  | date:'dd.MM.yyyy - HH:mm' }}</td>
               <!-- <td> {{ user.created_at }}</td> -->
               <td class="main-table-2">
-                <span *ngIf="user.status==1 && userRoleIn(user.role_name)" class="bg_pending same-width">{{ 'pending' | translate
+                <span *ngIf="user.status==1 && userRoleIn(user.role_name)" class="bg_pending same-width">{{ 'pending' |
+                  translate
                   }}
                 </span>
-                <span *ngIf="user.status==2 && userRoleIn(user.role_name)" class="bg_success approved same-width"> {{ 'approved' |
+                <span *ngIf="user.status==2 && userRoleIn(user.role_name)" class="bg_success approved same-width"> {{
+                  'approved' |
                   translate }}</span>
-                <span *ngIf="user.status==3 && userRoleIn(user.role_name)" class="bg_reject same-width"> {{ 'rejected' | translate
+                <span *ngIf="user.status==3 && userRoleIn(user.role_name)" class="bg_reject same-width"> {{ 'rejected' |
+                  translate
                   }}
                 </span>
-                <span *ngIf="!userRoleIn(user.role_name)" class="same-width"> - 
+                <span *ngIf="!userRoleIn(user.role_name)" class="same-width"> -
                 </span>
               </td>
             </tr>
@@ -251,7 +254,7 @@
               *ngIf="!club.pre_current_club_logo || !club.pre_current_club_logo">
             <div class="mesaage-content">
               <!-- <pre> -->
-                <!-- {{club | json}} -->
+              <!-- {{club | json}} -->
               <!-- </pre> -->
               <h6 class="mb-0" *ngIf="club.current_club_name">{{club.current_club_name}}</h6>
               <h6 class="mb-0" *ngIf="!club.current_club_name && club.pre_current_club_name">
