@@ -12,8 +12,13 @@
   opacity: 1;
   cursor: pointer;
 }
-h4.title-text {
+.dialog-header {
+  text-align: center;
   padding-right: 40px;
+}
+.dialog-header h2 {
+  font-size: 20px;
+  font-weight: 600;
 }
 
 ::ng-deep {

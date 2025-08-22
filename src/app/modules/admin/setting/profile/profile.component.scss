@@ -55,13 +55,11 @@
     font-weight: 600;
     font-size: 14px;
   }
-  .form-control,
-  .form-select {
+  .form-control, .form-select {
     border-color: #111418;
     height: 44px;
     border-radius: 5px;
     color: #111418;
-
     padding: 13px 19px;
     &::placeholder {
       color: #111418;
@@ -407,6 +405,9 @@
     .card-header svg#users-icon {
       width: 25px !important;
       height: 25px !important;
+    }
+    .form-control, .form-select {
+      height: 55px;
     }
   }
   

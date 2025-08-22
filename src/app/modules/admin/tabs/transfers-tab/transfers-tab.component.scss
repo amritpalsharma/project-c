@@ -92,6 +92,21 @@ table td {
   padding-bottom: 2rem;
 }
 
+.edit_td_btn {
+  svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+
+table td {
+  .custom-size-calendar .mdc-text-field--filled {
+    border: unset !important;
+  }
+}  
 
 
 @media (max-width: 1300px) {

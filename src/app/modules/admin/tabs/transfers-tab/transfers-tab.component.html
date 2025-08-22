@@ -27,9 +27,9 @@
         <tr *ngFor="let transfer of userTransfers">
           <td>
             <span *ngIf="editableId !== transfer.id">{{ transfer.session }}</span>
-            <div class="dropdown-container" *ngIf="editableId === transfer.id">
+            <div class="dropdown-container w-100" *ngIf="editableId === transfer.id">
               <select (change)="onSelectChange($event, 'session')"
-                class="form-select w-100 custom-size h-auto py-1 px-2 custom-size-season no-arrow">
+                class="form-select w-100 custom-size custom-size-season no-arrow">
                 <option *ngFor="let season of reversedSeasons" [selected]="transfer.session === season"
                   [value]="season">
                   {{ season }}
@@ -40,7 +40,7 @@
 
           <td>
             <span *ngIf="editableId !== transfer.id">{{ transfer.date_of_transfer | date: 'MM.dd.yyyy' }}</span>
-            <mat-form-field *ngIf="editableId === transfer.id" class="custom-size-calendar h-auto" appearance="fill">
+            <mat-form-field *ngIf="editableId === transfer.id" class="custom-size-calendar h-auto w-100" appearance="fill">
               <input matInput [matDatepicker]="picker" (click)="picker.open()" (dateChange)="onDateChange($event)"
                 [value]="transfer.date_of_transfer" style="background-color: transparent; border: none;" />
               <mat-datepicker #picker></mat-datepicker>
@@ -63,7 +63,7 @@
 
             </span>
 
-            <div class="dropdown-wrapper" *ngIf="editableId === transfer.id">
+            <div class="dropdown-wrapper w-100" *ngIf="editableId === transfer.id">
               <ng-container *ngIf="!transfer.team_from_manual">
                 <!-- <select class="form-control dark-form-select-bg h-auto py-1 px-2"
                   (change)="onSelectChange($event, 'team_from')">
@@ -101,7 +101,7 @@
                 [src]="'https://api.socceryou.ch/uploads/logos/'+transfer.country_flag_to_namual" width="26"
                 height="26">
             </span>
-            <div class="dropdown-container" *ngIf="editableId === transfer.id">
+            <div class="dropdown-container w-100" *ngIf="editableId === transfer.id">
               <ng-container *ngIf="!transfer.team_to_manual">
                 <!-- <select class="form-control h-auto py-1 px-2 dark-form-select-bg"
                   (change)="onSelectChange($event, 'team_to')" (keyup)="getAllTeams();" [(ngModel)]="searchKeyword">
@@ -120,27 +120,26 @@
                 </div>
               </ng-container>
               <ng-container *ngIf="transfer.team_to_manual">
-                <input type="text" class="form-control dark-form-select-bg h-auto py-1 px-2"
+                <input type="text" class="form-control dark-form-select-bg"
                   [(ngModel)]="transfer.team_to_manual" placeholder="Enter team to manually" >
               </ng-container>
             </div>
           </td>
 
-          <td class="d-flex justify-content-center" [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}">
+          <td align="center" class="edit_td_btn position-relative" [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}">
             <svg *ngIf="editableId !== transfer.id" (click)="editPerformance(transfer.id)" width="24" height="24"
               viewBox="0 0 24 24" fill="#787878" class="pointer">
               <path
                 d="M3 17.4585V20.4985C3 20.7785 3.22 20.9985 3.5 20.9985H6.54C6.67 20.9985 6.8 20.9485 6.89 20.8485L17.81 9.93854L14.06 6.18854L3.15 17.0985C3.05 17.1985 3 17.3185 3 17.4585ZM20.71 7.03854C20.8027 6.94602 20.8762 6.83614 20.9264 6.71516C20.9766 6.59419 21.0024 6.46451 21.0024 6.33354C21.0024 6.20257 20.9766 6.07289 20.9264 5.95191C20.8762 5.83094 20.8027 5.72105 20.71 5.62854L18.37 3.28854C18.2775 3.19583 18.1676 3.12229 18.0466 3.07211C17.9257 3.02192 17.796 2.99609 17.665 2.99609C17.534 2.99609 17.4043 3.02192 17.2834 3.07211C17.1624 3.12229 17.0525 3.19583 16.96 3.28854L15.13 5.11854L18.88 8.86854L20.71 7.03854Z" />
             </svg>
-
             <!-- Save icons -->
             <svg *ngIf="editableId == transfer.id" (click)="updateTransfer(transfer.id)"
-              class="light-performance-save-svg cursor-pointer mt-2" width="22" height="22" viewBox="0 0 22 21"
+              class="light-performance-save-svg cursor-pointer" width="22" height="22" viewBox="0 0 22 21"
               fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M21.3496 4.66667V18.6667..." fill="#BDE34F" />
             </svg>
             <svg *ngIf="editableId == transfer.id" (click)="updateTransfer(transfer.id)"
-              class="dark-performance-save-svg cursor-pointer mt-2" width="22" height="22" viewBox="0 0 22 22"
+              class="dark-performance-save-svg cursor-pointer" width="22" height="22" viewBox="0 0 22 22"
               fill="none" xmlns="http://www.w3.org/2000/svg">
               <!-- <path d="M21.5 5.16667V19.1667..." fill="#236115" /> -->
               <path

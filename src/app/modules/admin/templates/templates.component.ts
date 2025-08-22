@@ -126,7 +126,7 @@ export class TemplatesComponent {
     const dialogRef = this.dialog.open(TemplatePopupComponent, {
       // height: '598px',
       // width: '600px',
-      height: '90vh',
+      //height: '90vh',
       width: '90vw',
     });
 
@@ -276,7 +276,7 @@ export class TemplatesComponent {
     const updateDialogRef = this.dialog.open(TemplatePopupComponent, {
       // height: '598px',
       // width: '600px',
-      height: '90vh',
+      //height: '90vh',
       width: '90vw',
       data: data
     });

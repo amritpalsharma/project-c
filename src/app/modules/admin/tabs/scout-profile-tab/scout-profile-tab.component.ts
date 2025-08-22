@@ -70,6 +70,7 @@ export class ScoutProfileTabComponent {
     const dialog = this.dialog.open(UserEditPopupComponent, {
       height: '598px',
       width: '600px',
+      panelClass: 'user_edit_popup_admin',
       data: {
         role: 'scout',
         data: data
