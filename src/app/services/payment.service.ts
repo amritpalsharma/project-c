@@ -26,12 +26,12 @@ export class PaymentService {
     //     ? environment.stripePublishableTestKey
     //     : environment.stripePublishableKey
     // );
-
-    this.stripePromise = loadStripe(
-      // paymentMode === 'test'
-        // ? environment.stripePublishableTestKey
-        environment.stripePublishableKey
-    );
+    this.stripePromise = this.socketService.getPaymentStatus() == 'live' ? loadStripe(environment.stripePublishableKey) : loadStripe(environment.stripePublishableTestKey);
+    // this.stripePromise = loadStripe(
+    //   // paymentMode === 'test'
+    //   // ? environment.stripePublishableTestKey
+    //   environment.stripePublishableKey
+    // );
 
   }
 

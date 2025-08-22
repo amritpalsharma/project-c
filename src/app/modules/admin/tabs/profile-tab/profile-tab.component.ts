@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UserRoleService } from '../../../../services/user-role.service';
 import { UserService } from '../../../../services/user.service';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-profile-tab',
@@ -18,7 +19,7 @@ export class ProfileTabComponent {
   currentThemeMode: string = localStorage.getItem('theme') || 'light';
   userNationalities: any = [];
   countryFlagUrl: any;
-  baseUrl: string = 'https://api.socceryou.ch/uploads/';
+  baseUrl: string = environment.baseUrl;
 
   @Input() userData: any;
   @Input() userCountryFlag: any;

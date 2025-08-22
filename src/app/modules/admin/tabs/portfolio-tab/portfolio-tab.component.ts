@@ -6,6 +6,7 @@ import { ScoutPlayerViewPopupComponent } from '../scout-player-view-popup/scout-
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
+import { environment } from '../../../../../environments/environment';
 // import {  } from '@angular/router';
 
 @Component({
@@ -25,7 +26,7 @@ export class PortfolioTabComponent {
   langSubscription!: Subscription;
   currentLangId: any = localStorage.getItem('lang_id');
 
-  baseUrl: string = 'https://api.socceryou.ch/uploads/';
+  baseUrl: string = environment.baseUrl;
   theme: string = localStorage.getItem('theme') || 'dark';
   constructor(
     private route: ActivatedRoute,

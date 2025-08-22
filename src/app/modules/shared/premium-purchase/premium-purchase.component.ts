@@ -6,7 +6,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import { environment } from '../../../../environments/environment';
 import { ToastrService } from 'ngx-toastr';
 import { CouponCodeAlertComponent } from '../coupon-code-alert/coupon-code-alert.component';
-
+import { SocketService } from '../../../services/socket.service';
 @Component({
   selector: 'app-premium-purchase',
   templateUrl: './premium-purchase.component.html',
@@ -21,11 +21,13 @@ export class PremiumPurchaseComponent {
   stripe: any;
 
   private plansSubscription: Subscription = new Subscription();
-  stripePromise = loadStripe(environment.stripePublishableKey);
+  stripePromise = this.socketService.getPaymentStatus() == 'live' ? loadStripe(environment.stripePublishableKey) : loadStripe(environment.stripePublishableTestKey);
+  // stripePromise = loadStripe(environment.stripePublishableKey);
 
   constructor(
     public dialogRef: MatDialogRef<PremiumPurchaseComponent>,
     private paymentService: PaymentService,
+    private socketService: SocketService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private toastr: ToastrService,
     public dialog: MatDialog,
@@ -70,9 +72,9 @@ export class PremiumPurchaseComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       let planID = this.isYearly ? this.selectedPlan?.yearly?.id : this.selectedPlan?.monthly?.id;
-      console.log('result', result)
-      console.log('planID', planID)
-      return;
+      // console.log('result', result)
+      // console.log('planID', planID)
+      // return;
       if (result) {
         this.couponCode = result;
         this.dialogRef.close({ coupon_code: this.couponCode, pland_id: planID });
