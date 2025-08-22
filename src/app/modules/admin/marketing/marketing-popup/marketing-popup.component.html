@@ -1,20 +1,21 @@
-<div appClickOutside (clickOutside)="onClickOutside()" class="p-0 marketing_modal mobile_popup_responsive">
-  <div class="p-3 popup_header d-flex justify-content-between align-items-center">
-    <h4 class="text-center w-100" *ngIf="!data">{{ 'createNewPopUp' | translate }}</h4>
-    <h4 class="text-center w-100" *ngIf="data">{{ 'editPopUp' | translate }}</h4>
+<div appClickOutside (clickOutside)="onClickOutside()" class="p-0 marketing_modal mobile_popup_responsive" id="no_pad_border_pop">
+  <div class="popup_header p-3">
+      <div class="dialog-header m-auto">
+        <h2 class="text-center w-100" *ngIf="!data">{{ 'createNewPopUp' | translate }}</h2>
+        <h2 class="text-center w-100" *ngIf="data">{{ 'editPopUp' | translate }}</h2>
+      </div>
     <!-- <div class="close-img" (click)="close()"></div> -->
-    <div class="msg-popup-close" *ngIf='theme!="dark"'>
+    <div class="close-img" *ngIf='theme!="dark"'>
       <img src="../../../assets/images/carbon_close-outline-light.svg" alt="" class="" (click)="close()" />
     </div>
-    <div class="msg-popup-close" *ngIf='theme=="dark"'>
+    <div class="close-img" *ngIf='theme=="dark"'>
       <img src="../../../assets/images/carbon_close-outline.svg" alt="" class="" (click)="close()" />
     </div>
   </div>
   <div class="popup__body template_body_form">
     <div class="d-flex align-items-baseline py-2 bg-0C3453">
-      <h4 class="text-size">Name: &nbsp;</h4>
-      <input type="text" class="template-name-inputField" [(ngModel)]="title"
-        style="border: none; width: 100%; outline: none;">
+      <label class="text-size">Name: &nbsp;</label>
+      <input type="text" class="template-name-inputField form-control" [(ngModel)]="title" />
     </div>
     <div *ngIf="errorMsg.title" class="error-msg" style="padding-left:15px;">{{'requiredFieldsMessage' | translate}}
     </div>
@@ -23,10 +24,10 @@
 
     <div class="row main-popup-div py-2 bg-0C3453">
       <div class="col-12 col-sm-6 col-lg-4 d-flex align-items-baseline mt-3">
-        <h4 class="text-size">{{ 'for:' | translate }}</h4>
+        <label class="text-size">{{ 'for:' | translate }}</label>
         <div class="btn-group" style="position: relative; display: inline-block;">
 
-          <mat-select multiple class="mat-select-div" [(ngModel)]="selectedRole"
+          <mat-select multiple class="mat-select-div no_pad_border" [(ngModel)]="selectedRole"
             (selectionChange)="onSelectionChange($event)">
             @for (option of options; track option) {
             <mat-option [value]="option.id" *ngIf="option.id == '0'">All</mat-option>
@@ -45,9 +46,9 @@
 
       </div>
       <div class="col-12 col-sm-6 col-lg-4 d-flex align-items-baseline mt-3">
-        <h4 class="text-size">{{ 'language:' | translate }}</h4>
+        <label class="text-size">{{ 'language:' | translate }}</label>
         <div class="btn-group">
-          <mat-select [(ngModel)]="selectedLang" class="mat-select-div">
+          <mat-select [(ngModel)]="selectedLang" class="mat-select-div no_pad_border">
             @for (lang of langs; track lang) {
             <mat-option [value]="lang.id">{{lang.language}}</mat-option>
             }
@@ -62,9 +63,9 @@
         </div>
       </div>
       <div class="col-12 col-sm-6 col-lg-4 d-flex align-items-baseline mt-3">
-        <h4 class="text-size">{{ 'location' | translate }}</h4>
+        <label class="text-size">{{ 'location' | translate }}</label>
         <div class="btn-group">
-          <mat-select [(ngModel)]="selectedLocation" class="mat-select-div">
+          <mat-select [(ngModel)]="selectedLocation" class="mat-select-div no_pad_border">
             @for (location of locations; track location) {
             <mat-option [value]="location.id">{{location.name}}</mat-option>
             }
@@ -102,9 +103,9 @@
 
       </div>
       <div class="d-flex align-items-center my_mobile col-12 col-md-6 mb-3 mb-md-0">
-        <h4 class="text-size fw-bold"> {{ 'displayFreq:' | translate }} </h4>
+        <label class="text-size"> {{ 'displayFreq:' | translate }} </label>
         <div class="btn-group">
-          <mat-select [(ngModel)]="selectedFrequency" class="mat-select-div">
+          <mat-select [(ngModel)]="selectedFrequency" class="mat-select-div no_pad_border">
             @for (freq of frequency; track freq) {
             <mat-option [value]="freq">{{translateFrequency(freq.freq)}}</mat-option>
             }
@@ -132,12 +133,9 @@
       </div>
     </div>
   </div>
-  <div class="popup_buttons_mobile">
-    <div class="d-flex justify-content-around popup_footer dialog-actions p-3">
-      <div><a class="btn btn-delete text-danger" (click)="close()">{{ 'cancel' | translate }}</a></div>
-      <div>
-        <a class="btn Launch px-5" (click)="createPopup()" *ngIf="!data">{{ 'createAndLaunch' | translate }}</a>
-        <a class="btn Launch px-5" (click)="updatePopup()" *ngIf="data">{{ 'update' | translate }}</a>
-      </div>
+  <div class="dialog-actions align-items-center d-flex justify-content-between">
+      <button type="button" class="cancel-btn"  (click)="close()">{{ 'cancel' | translate }}</button>
+      <button type="submit" class="save-btn" (click)="createPopup()" *ngIf="!data">{{ 'createAndLaunch' | translate }}</button>
+      <button type="submit" class="save-btn" (click)="updatePopup()" *ngIf="data">{{ 'update' | translate }}</button>
     </div>
   </div>

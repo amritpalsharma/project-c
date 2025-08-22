@@ -188,11 +188,11 @@ export const environment = {
   pages: [
     'home', 'talent', 'clubs_and_scouts', 'about_us', 'pricing', 'news', 'contact', 'imprint', 'privacy_policy', 'terms_and_conditions', 'cookie_policy', 'faq', 'content_page'
   ],
-  // apiUrl: 'https://apitest.socceryou.ch/api/',  
+  // apiUrl: 'https://apitest.socceryou.ch/api/',
   paymentMode: 'test',
   apiUrl: 'https://apitest.socceryou.ch/api/',
   apiBaseUrl: 'https://apitest.socceryou.ch/',
-  baseUrl:'https://apitest.socceryou.ch/uploads/',
+  baseUrl: 'https://apitest.socceryou.ch/uploads/',
   url: 'https://apitest.socceryou.ch/',
   socketUrl: 'https://alerts.socceryou.ch/',
   mailchimp: {

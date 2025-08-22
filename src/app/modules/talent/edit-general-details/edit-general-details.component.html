@@ -40,7 +40,7 @@
             </div> -->
 
             <!-- Top speed -->
-            <div class="form-group speed_inputs col-lg-4 d-flex align-items-center">
+            <div class="form-group speed_inputs col-lg-4">
               <div class="col-lg-12 mobile-input">
                 <label for="topSpeed" class="form-label">{{'topSpeed' | translate}}(km/h)</label>
                 <input type="text" class="form-control" id="topSpeed" name="top_speed"
@@ -49,7 +49,7 @@
             </div>
 
             <!-- International player -->
-            <div class=" form-group col-lg-4">
+            <div class="form-group col-lg-4">
               <!-- <label for="internationalPlayer" class="form-label">{{'internationalPlayer' | translate}}</label>
               <select class="form-select" id="internationalPlayer" name="international_player"
                 [(ngModel)]="international_player">
@@ -58,20 +58,21 @@
                   {{ country.country_name }}
                 </option>
               </select> -->
-
-              <mat-label for="internationalPlayer">{{ 'internationalPlayer' | translate }}</mat-label>
-              <mat-form-field appearance="fill" class="w-100 custom_select_mat">
-                <mat-select id="internationalPlayer" name="international_player" [(ngModel)]="international_player"
-                  class="form-select mat_search_selector">
-                  <!-- Search input inside dropdown -->
-                  <ngx-mat-select-search [formControl]="clubSearching" placeholder="A"></ngx-mat-select-search>
-                  <ng-container *ngIf="countries">
-                    <mat-option *ngFor="let country of countries" [value]="country.id">
-                      {{ country.country_name }}
-                    </mat-option>
-                  </ng-container>
-                </mat-select>
-              </mat-form-field>
+              <div class="col-lg-12 mobile-input">
+                <mat-label for="internationalPlayer" class="form-label">{{ 'internationalPlayer' | translate }}</mat-label>
+                <mat-form-field appearance="fill" class="w-100 custom_select_mat">
+                  <mat-select id="internationalPlayer" name="international_player" [(ngModel)]="international_player"
+                    class="form-select mat_search_selector">
+                    <!-- Search input inside dropdown -->
+                    <ngx-mat-select-search [formControl]="clubSearching" placeholder="A"></ngx-mat-select-search>
+                    <ng-container *ngIf="countries">
+                      <mat-option *ngFor="let country of countries" [value]="country.id">
+                        {{ country.country_name }}
+                      </mat-option>
+                    </ng-container>
+                  </mat-select>
+                </mat-form-field>
+              </div>
             </div>
           </div>
 
@@ -154,7 +155,7 @@
                     {{ position.position }}
                   </mat-option>
                 </mat-select> -->
-                <mat-label for="mainPosition">{{ 'mainPosition' | translate }}</mat-label>
+                <mat-label for="mainPosition" class="form-label">{{ 'mainPosition' | translate }}</mat-label>
                 <mat-form-field appearance="fill" class="w-100 custom_select_mat">
                   <mat-select id="mainPosition" name="mainPosition" [(ngModel)]="main_position"
                     class="form-select mat_search_selector">
@@ -178,7 +179,7 @@
                     {{ position.position }}
                   </mat-option>
                 </mat-select> -->
-                <mat-label for="otherPositions">{{ 'otherPositions' | translate }}</mat-label>
+                <mat-label for="otherPositions" class="form-label">{{ 'otherPositions' | translate }}</mat-label>
                 <mat-form-field appearance="fill" class="w-100 custom_select_mat">
                   <mat-select id="otherPositions" name="otherPositions" [(ngModel)]="other_positions"
                     class="form-select mat_search_selector" multiple>

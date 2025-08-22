@@ -76,11 +76,18 @@
     padding: 0px;
     position: absolute;
     right: 17px;
-    // top: 11px;
-    top: 2px;
+    top: 11px;
     z-index: 2;
     opacity: 1;
     cursor: pointer;
+}
+.dialog-header {
+  text-align: center;
+  padding-right: 40px;
+}
+.dialog-header h2 {
+  font-size: 20px;
+  font-weight: 600;
 }
 .code-text{
 

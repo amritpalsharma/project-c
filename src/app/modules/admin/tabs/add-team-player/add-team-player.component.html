@@ -1,21 +1,21 @@
 <div class="add-chat w-100 club_add_player" id="club_team" *ngIf="action != 'showInvitedUsers'">
   <div class="chat_box">
     <div class="popup_header p-3">
-      <div>
-        <h4 class="text-center mb-0 title-text" *ngIf="edit">{{ 'edit' | translate }}</h4>
-        <h4 class="text-center mb-0 title-text" *ngIf="!edit && teamGroup == 'm'">{{ 'addNewPlayer' | translate }}</h4>
-        <h4 class="text-center mb-0 title-text" *ngIf="!edit && teamGroup == 'w'">{{ 'addNewFemalePlayer' | translate }}</h4>
-      </div>
-      <div class="close_buttons" *ngIf='theme!="dark"'>
-        <button class="close-img bg-transparent border-0 padding-0" aria-label="Close" (click)="close()">
-          <img src="../../../../assets/images/carbon_close-outline-light.svg" alt="">
-        </button>
-      </div>
-      <div class="close_buttons" *ngIf='theme=="dark"'>
-        <button class="close-img bg-transparent border-0 padding-0" aria-label="Close" (click)="close()">
-          <img src="../../../../assets/images/carbon_close-outline.svg" alt="">
-        </button>
-      </div>
+        <div class="dialog-header m-auto">
+            <h2 class="text-center mb-0" *ngIf="edit">{{ 'edit' | translate }}</h2>
+            <h2 class="text-center mb-0" *ngIf="!edit && teamGroup == 'm'">{{ 'addNewPlayer' | translate }}</h2>
+            <h2 class="text-center mb-0" *ngIf="!edit && teamGroup == 'w'">{{ 'addNewFemalePlayer' | translate }}</h2>
+        </div>
+        <div class="close_buttons" *ngIf='theme!="dark"'>
+          <button class="close-img bg-transparent border-0 padding-0" aria-label="Close" (click)="close()">
+            <img src="../../../../assets/images/carbon_close-outline-light.svg" alt="">
+          </button>
+        </div>
+        <div class="close_buttons" *ngIf='theme=="dark"'>
+          <button class="close-img bg-transparent border-0 padding-0" aria-label="Close" (click)="close()">
+            <img src="../../../../assets/images/carbon_close-outline.svg" alt="">
+          </button>
+        </div>
     </div>
 
     <div class="inbox-body popup__body">

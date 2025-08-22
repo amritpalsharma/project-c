@@ -1,11 +1,13 @@
-<div class="p-0 email_temp_popup mobile_popup_responsive">
-  <div class="p-3 popup_header d-flex justify-content-between align-items-center">
-    <h4 class="text-center mb-0 w-100">{{ 'emailTemplate' | translate }}</h4>
-    <!-- <img src="../../../assets/images/close-icon-circle.png" alt="" class="close-img" (click)="close()" /> -->
-    <img *ngIf='theme!="dark"' src="../../../assets/images/carbon_close-outline-light.svg" alt="" class="cursor-pointer"
-      (click)="close()" />
-    <img *ngIf='theme=="dark"' src="../../../assets/images/carbon_close-outline.svg" alt="" class="cursor-pointer"
-      (click)="close()" />
+<div class="p-0 email_temp_popup mobile_popup_responsive" id="no_pad_border_pop">
+  <div class="popup_header p-3">
+      <div class="dialog-header m-auto">
+        <h2 class="text-center mb-0">{{ 'emailTemplate' | translate }}</h2>
+      </div>
+      <!-- <img src="../../../assets/images/close-icon-circle.png" alt="" class="close-img" (click)="close()" /> -->
+      <img *ngIf='theme!="dark"' src="../../../assets/images/carbon_close-outline-light.svg" alt="" class="cursor-pointer close-img"
+        (click)="close()" />
+      <img *ngIf='theme=="dark"' src="../../../assets/images/carbon_close-outline.svg" alt="" class="cursor-pointer close-img"
+        (click)="close()" />
   </div>
 
   <div class="popup__body template_body_form">
@@ -36,11 +38,11 @@
 
     <div class="row main-popup-div py-2 bg-0C3453">
       <div class="col-12 col-md-6 col-lg-4 mt-3 d-flex align-items-baseline ">
-        <h4 class="text-size">{{ 'for' | translate }}</h4>
+        <label class="text-size">{{ 'for' | translate }}</label>
 
         <div class="btn-group" style="position: relative; display: inline-block;">
           <!-- {{roles | json}} -->
-          <mat-select [(ngModel)]="selectedRole" class="mat-select-div">
+          <mat-select [(ngModel)]="selectedRole" class="mat-select-div no_pad_border">
             <ng-container *ngFor="let role of roles">
               <mat-option [value]="role.id" *ngIf="selectedRole == role.id" selected>{{ role.role }}</mat-option>
               <mat-option [value]="role.id" *ngIf="selectedRole != role.id">{{ role.role }}</mat-option>
@@ -57,9 +59,9 @@
 
       </div>
       <div class="col-12 col-md-6 col-lg-4 mt-3 d-flex align-items-baseline">
-        <h4 class="text-size">{{ 'language' | translate }}</h4>
+        <label class="text-size">{{ 'language' | translate }}</label>
         <div class="btn-group">
-          <mat-select [(ngModel)]="selectedLang" class="mat-select-div">
+          <mat-select [(ngModel)]="selectedLang" class="mat-select-div no_pad_border">
             @for (lang of langs; track lang) {
             <mat-option [value]="lang.id" *ngIf="selectedLang == lang.id" selected>{{lang.language}}</mat-option>
             <mat-option [value]="lang.id" *ngIf="selectedLang != lang.id">{{lang.language}}</mat-option>
@@ -75,9 +77,9 @@
         </div>
       </div>
       <div class="col-12 col-md-6 col-lg-4 mt-3 d-flex align-items-baseline">
-        <h4 class="text-size">{{ 'location' | translate }}:</h4>
+        <label class="text-size">{{ 'location' | translate }}:</label>
         <div class="btn-group">
-          <mat-select [(ngModel)]="selectedLocation" class="mat-select-div">
+          <mat-select [(ngModel)]="selectedLocation" class="mat-select-div no_pad_border">
             @for (location of locations; track location) {
             <mat-option [value]="location.id" *ngIf="selectedLocation == location.id"
               selected>{{location.name}}</mat-option>
@@ -106,14 +108,9 @@
       <div *ngIf="errorMsg.content" class="error-msg" style="padding-left:20px;">{{errorMsg.content}}</div>
     </div>
   </div>
-
-  <div class="d-flex justify-content-around popup_footer dialog-actions p-3 popup_buttons_mobile">
-
-    <div><a class="btn btn-delete text-danger" (click)="close()">{{ 'cancel' | translate }}</a></div>
-    <div>
-      <a class="btn Launch px-5" *ngIf="!template" (click)="createTemplate()">{{ 'createAndLaunch' | translate }}</a>
-      <a class="btn Launch px-5" *ngIf="template" (click)="updateTemplate()">{{ 'update' | translate }}</a>
-    </div>
-
+    <div class="dialog-actions align-items-center d-flex justify-content-between">
+      <button type="button" class="cancel-btn"  (click)="close()">{{ 'cancel' | translate }}</button>
+      <button type="submit" class="save-btn" *ngIf="!template" (click)="createTemplate()">{{ 'createAndLaunch' | translate }}</button>
+      <button type="submit" class="save-btn" *ngIf="template" (click)="updateTemplate()">{{ 'update' | translate }}</button>
   </div>
 </div>

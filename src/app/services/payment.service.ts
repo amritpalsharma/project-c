@@ -16,7 +16,7 @@ export class PaymentService {
 
   constructor(private http: HttpClient, private socketService: SocketService) {
     this.apiUrl = environment.apiUrl; // Ensure this is defined in your environment
-    this.userToken = localStorage.getItem('authToken');
+    this.userToken = localStorage.getItem('authToken'); 
     let payment_mode = localStorage.getItem('payment_mode');
     // this.stripePromise = payment_mode == 'live' ? loadStripe(environment.stripePublishableKey) : loadStripe(environment.stripePublishableTestKey);
     // this.stripePromise = this.socketService.getPaymentStatus() == 'live' ? loadStripe(environment.stripePublishableKey) : loadStripe(environment.stripePublishableTestKey);
