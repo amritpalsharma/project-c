@@ -221,8 +221,8 @@ export class TalkService {
       const conversation = this.session!.getOrCreateConversation(conversationId);
 
       conversation.setParticipant(this.currentUser!);
-      conversation.setParticipant(otherUser);
       conversation.setParticipant(hiddenAdmin);    
+      conversation.setParticipant(otherUser);
 
       conversation.setAttributes({
         //photoUrl: this.getValidPhotoUrl(photoUrl, true), // For conversation header
