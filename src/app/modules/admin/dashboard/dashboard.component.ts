@@ -43,9 +43,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   @ViewChild('canvas1') canvas1!: ElementRef<HTMLCanvasElement>;
   @ViewChild('canvas2') canvas2!: ElementRef<HTMLCanvasElement>;
   @ViewChild('canvas3') canvas3!: ElementRef<HTMLCanvasElement>;
-  private apiUrl = environment?.apiUrl;
+  private apiBaseUrl = environment?.apiBaseUrl;
   // @ViewChild('canvas4') canvas4!: ElementRef<HTMLCanvasElement>;
-  baseUrl: string = this.apiUrl + '/uploads/';
+  baseUrl: string = this.apiBaseUrl + '/uploads/';
   lang: string = '';
   chart1!: Chart;
   chart2!: Chart;

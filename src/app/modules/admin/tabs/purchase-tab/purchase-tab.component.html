@@ -65,9 +65,9 @@
           <th scope="col">{{'orderNo' | translate}}</th>
           <th scope="col">{{'name' | translate}}</th>
           <th scope="col">{{'purchasedDate' | translate}}</th>
-          <th scope="col">{{'validUntil' | translate}}
-          </th>
+          <th scope="col">{{'validUntil' | translate}}</th>
           <th scope="col">{{'voucherCode' | translate}}</th>
+          <th scope="col">{{'status' | translate}}</th>
           <th scope="col" class="text-center">{{'downloadInvoice' | translate}}</th>
         </tr>
       </thead>
@@ -87,7 +87,7 @@
           </td>
           <td>
             <div class="d-flex align-items-center">
-              <span class="main-template">{{purchase.package_name	}}</span>
+              <span class="main-template">{{purchase.package_name }}</span>
             </div>
           </td>
           <!-- <td>{{ purchase.plan_period_start | date:'MM.dd.yyyy - hh.mm a' }}</td> -->
@@ -98,7 +98,18 @@
             <span *ngIf="purchase.coupon_used">{{purchase.coupon_used}}</span>
             <span *ngIf="!purchase.coupon_used">-</span>
           </td>
-          <td class="text-center">
+          <td>
+            <span *ngIf="purchase.invoice_status == 'paid'" class="status-label bg_success">{{ 'paidTxt' |
+              translate }}</span>
+            <span *ngIf="purchase.invoice_status == 'open'" class="status-label bg_reject text-white">{{
+              'openTxt' |
+              translate }}</span>
+            <span *ngIf="purchase.invoice_status != 'open' && purchase.invoice_status != 'paid'"
+              class="status-label bg_reject text-white">{{
+              'failedTxt' |
+              translate }}</span>
+          </td>
+          <td class="text-center disable_btn_{{purchase.invoice_status}}" [ngClass]="{'disblebutton':purchase.invoice_status != 'paid'}">
             <svg class="pointer" (click)="downloadInvoice(purchase.id, purchase.invoice_file_path)" width="24"
               height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke="#787878"
