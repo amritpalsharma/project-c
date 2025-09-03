@@ -83,7 +83,7 @@
         <!-- <h6 *ngIf="!userData.meta || !userData.meta.website">NA</h6> -->
       </div>
     </div>
-    <div class="col-lg-7">
+    <div class="col-lg-6">
       <div class="scout-team style-1 admin_social_profile">
         <p> {{ 'socialMedia' | translate }}</p>
         <div class="d-flex align-items-center team-details-sub" *ngIf="userData.meta && userData.meta.sm_x">
@@ -189,7 +189,7 @@
         </div>
       </div>
     </div>
-    <!-- <div class="col-lg-2 td_col" *ngIf="userData?.user_domain_id">
+    <div class="col-lg-3 td_col" *ngIf="userData?.user_domain_id">
       <div class="team-details">
         <p> {{ 'location' | translate }}</p>
         <div class="d-flex align-items-center">
@@ -198,7 +198,7 @@
           <h6>{{ getNameAndFlagById(userData?.user_domain_id,'location') }}</h6>
         </div>
       </div>
-    </div> -->
+    </div>
 
     <div class="row">
       <div class="col-lg-3">

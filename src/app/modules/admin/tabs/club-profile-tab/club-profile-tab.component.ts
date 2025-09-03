@@ -7,6 +7,7 @@ import { UserService } from '../../../../services/user.service';
 import { AddRepresentatorPopupComponent } from '../../add-representator-popup/add-representator-popup.component';
 import { UserRoleService } from '../../../../services/user-role.service';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-club-profile-tab',
@@ -22,13 +23,17 @@ export class ClubProfileTabComponent {
   idsToDelete: any = "";
   @Input() userData: any;
   @Output() dataEmitter = new EventEmitter<string>();
+  userDomains: any = environment.domains_de;
   constructor(
     public toaster: ToastrService,
     public userRoleService: UserRoleService,
     public dialog: MatDialog, private router: Router, private userService: UserService) { }
 
   ngOnInit(): void {
-
+    let langID = localStorage.getItem('lang_id');
+    if (Number(langID) === 1) {
+      this.userDomains = environment.domains;
+    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -208,7 +213,7 @@ export class ClubProfileTabComponent {
             // this.showMatDialog(response.message, 'display');
             this.toaster.success(response.message);
           } else {
-            
+
             // this.showMatDialog('Representator removed successfully!.', 'display');
           }
         } else {
@@ -220,5 +225,20 @@ export class ClubProfileTabComponent {
 
       }
     );
+  }
+
+  getNameAndFlagById(id: number, field: any) {
+    const domain = this.userDomains.find((domain: any) => domain.id === Number(id));
+    if (domain) {
+      if (field == 'flag') {
+        return domain.flag;
+      } else if (field == 'location') {
+        return domain.name;
+      } else {
+        return { name: domain.name, flag: domain.flag };
+      }
+    } else {
+      return null; // If no domain is found with that id
+    }
   }
 }
