@@ -19,8 +19,8 @@
                       stroke-linecap="round" stroke-linejoin="round"></path>
                   </g>
                 </svg></span>
-              <input matInput placeholder="{{ 'search' | translate }}" aria-label="search" (keyup)="applyFilter($event)"
-                aria-describedby="basic-addon1" class="form-control ps-0" />
+              <input matInput placeholder="{{ 'search' | translate }}" aria-label="search"
+                (keyup)="applyFilter($event)" aria-describedby="basic-addon1" class="form-control ps-0" />
 
 
             </div>
@@ -108,6 +108,17 @@
               </svg>
 
               {{ 'exportXLS' | translate }}</a>
+            <!-- resend email button -->
+            <a [ngClass]="{'admin_view_only':userRoleService.getRole() == 'admin.view'}" class="btn btn-outline-white"
+              id="users-icon" (click)="resendEmailLink()">
+              <svg class="me-1" width="23" height="23" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M3.75 5.25L3 6V18L3.75 18.75H20.25L21 18V6L20.25 5.25H3.75ZM4.5 7.6955V17.25H19.5V7.69525L11.9999 14.5136L4.5 7.6955ZM18.3099 6.75H5.68986L11.9999 12.4864L18.3099 6.75Z"
+                  fill="#787878" />
+              </svg>
+
+              {{ 'reset' | translate }}</a>
+            <!-- end resend email button -->
           </div>
           <div class="d-flex align-items-center pagination_wrapp">
             <mat-paginator class="paginator-components bg-072944 pagination-values" [length]="0" [pageSize]="10"
@@ -139,7 +150,7 @@
                   <ng-container matColumnDef="Name">
                     <th mat-header-cell *matHeaderCellDef> {{ 'name' | translate }} </th>
                     <td mat-cell *matCellDef="let element">
-                      <!-- <pre>{{element | json}}</pre> -->
+                      <!-- <pre>{{ element | json }}</pre> -->
                       <div class="d-flex align-items-center pic-with-name">
                         <span class="position-relative">
                           <img *ngIf="element.role_name"
@@ -147,7 +158,7 @@
                             class="dashboard_users_profile_images table_img"
                             onerror="this.onerror=null; this.src='../../../assets/images/1.png';">
 
-                          <!-- <img *ngIf="role_name" src="{{element.meta.profile_image_path}}"
+                          <!-- <img *ngIf="role_name" src="{{ element.meta.profile_image_path }}"
                             class="dashboard_users_profile_images table_img"
                             onerror="this.onerror=null; this.src='../../../assets/images/1.png';"> -->
                           <span class="position-absolute verified-icon">
@@ -230,7 +241,8 @@
                     </th>
                     <!-- <td mat-cell *matCellDef="let element"> {{ formatDateTime(element.updated_at) }}</td> -->
                     <!-- <td mat-cell *matCellDef="let element"> {{ element.created_at }}</td> -->
-                    <td mat-cell *matCellDef="let element"> {{ element.created_at | date: 'dd.MM.yyyy - HH:mm' }}</td>
+                    <td mat-cell *matCellDef="let element">
+                      {{ element.created_at | date: 'dd.MM.yyyy - HH:mm' }}</td>
                   </ng-container>
                   <ng-container matColumnDef="Email">
                     <th mat-header-cell *matHeaderCellDef> {{ 'email' | translate }} </th>
@@ -263,11 +275,12 @@
                         'approved' | translate }}</span>
                       <span *ngIf="element.status === '3' && userRoleIn(element.role_name)" class="bg_reject">{{
                         'rejected' | translate }}</span>
-                        <span *ngIf="!userRoleIn(element.role_name)" class=""> - </span>
+                      <span *ngIf="!userRoleIn(element.role_name)" class=""> - </span>
                     </td>
                   </ng-container>
                   <ng-container matColumnDef="Edit">
-                    <th mat-header-cell *matHeaderCellDef class="text-center"> {{ 'edit' | translate }} </th>
+                    <th mat-header-cell *matHeaderCellDef class="text-center">
+                      {{ 'edit' | translate }} </th>
                     <td mat-cell *matCellDef="let element" class="text-center cursor-pointer">
                       <svg (click)="editUser(element)" id="users-icon" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -309,7 +322,8 @@
   aria-labelledby="offcanvasRightLabel">
   <div class="offcanvas-header">
     <h5 class="offcanvas-title" id="offcanvasRightLabel">{{ 'userDetails' | translate }}</h5>
-    <a class="close c_pointer" data-bs-dismiss="offcanvas" aria-label="Close">{{ 'close' | translate }}</a>
+    <a class="close c_pointer" data-bs-dismiss="offcanvas"
+      aria-label="Close">{{ 'close' | translate }}</a>
   </div>
   <div class="offcanvas-body">
     <div class="d-flex align-items-center edit-bx">

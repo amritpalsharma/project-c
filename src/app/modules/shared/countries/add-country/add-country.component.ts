@@ -78,8 +78,24 @@ export class AddCountryComponent {
           coupon = '';
         }
         this.couponCode = coupon;
-        if(this.couponCode){
-          this.redirectToCheckout(this.country.id, coupon);
+        if (this.couponCode) {
+
+          let interval;
+          if (this.isYearly === true) {
+            interval = 'yearly';
+          } else {
+            interval = 'monthly';
+          }
+          console.info('this.country', this.country);
+          const selected = this.countryPlans.find(
+            (plan: any) => plan.package_name === this.country.package_name && plan.interval === interval
+          );
+          console.log('selected_selected',selected)
+          if (selected.id != '') {
+            this.redirectToCheckout(selected.id, coupon);
+          }else{
+            console.error('something went wrong no package found');
+          }
         }
         // this.toastr.info(this.pleaseWait, this.Processing);
       } else if (result === null) {
@@ -192,6 +208,7 @@ export class AddCountryComponent {
     const selected = this.countryPlans.find(
       (plan: any) => plan.package_name === this.country.package_name && plan.interval === interval
     );
+    // console.info('selected',selected);
     if (selected.price != '' && selected.price != undefined) {
       this.countryPlanPrice = selected.price;
     } else {

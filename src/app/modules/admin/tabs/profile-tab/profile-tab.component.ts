@@ -8,6 +8,7 @@ import { UserRoleService } from '../../../../services/user-role.service';
 import { UserService } from '../../../../services/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from '../../../../../environments/environment';
+import { env } from 'node:process';
 
 @Component({
   selector: 'app-profile-tab',
@@ -20,6 +21,7 @@ export class ProfileTabComponent {
   userNationalities: any = [];
   countryFlagUrl: any;
   baseUrl: string = environment.baseUrl;
+  userDomains: any = environment.domains_de;
 
   @Input() userData: any;
   @Input() userCountryFlag: any;
@@ -53,6 +55,11 @@ export class ProfileTabComponent {
     this.globalSettings.indexFunctionCall$.subscribe(() => {
       this.themeChanged(); // Call the function when event is received
     });
+
+    let langID = localStorage.getItem('lang_id');
+    if (Number(langID) === 1) {
+      this.userDomains = environment.domains;
+    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -237,6 +244,21 @@ export class ProfileTabComponent {
 
   isValidDate(value: any): boolean {
     return value && !isNaN(new Date(value).getTime());
+  }
+
+  getNameAndFlagById(id: number, field: any) {
+    const domain = this.userDomains.find((domain: any) => domain.id === Number(id));
+    if (domain) {
+      if (field == 'flag') {
+        return domain.flag;
+      } else if (field == 'location') {
+        return domain.name;
+      } else {
+        return { name: domain.name, flag: domain.flag };
+      }
+    } else {
+      return null; // If no domain is found with that id
+    }
   }
 
 }

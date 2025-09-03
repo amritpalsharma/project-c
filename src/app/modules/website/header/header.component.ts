@@ -841,7 +841,7 @@ export class HeaderComponent implements OnInit {
       if (!this.selectedCountry) {
         console.info('selectedClub Empty ', this.selectedCountry)
         this.toastr.warning(this.requiredFieldsMessage, this.errorTxt);
-        return;
+        return; 
       } else if (!this.selectedClub) {
         console.info('team_id Empty ', this.selectedClub)
         this.toastr.warning(this.requiredFieldsMessage, this.errorTxt);

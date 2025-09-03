@@ -4,16 +4,16 @@
       <div class="card-header border-0">
         <div class="card_title_btn">
           <div class="title_side">
-            <h4 class="card-billing ">{{'billing' | translate}}</h4>
+            <h4 class="card-billing ">{{ 'billing' | translate }}</h4>
             <div class="d-flex align-items-center justify-content-between marketing-header-bar">
               <div class="d-flex align-items-end justify-content-between w-100 mt-2">
-                <h2 class="card-title mb-0 me-3">{{'subscriptionPlans' | translate}}</h2>
-                <!-- <button class="payments-btn"  (click)="paymentDialog()">{{'Manage Payments' | translate}} 11</button> -->
+                <h2 class="card-title mb-0 me-3">{{ 'subscriptionPlans' | translate }}</h2>
+                <!-- <button class="payments-btn"  (click)="paymentDialog()">{{ 'Manage Payments' | translate }} 11</button> -->
               </div>
             </div>
           </div>
           <div class="card_btn_side" *ngIf="userPurchases && userPurchases.length > 0 && totalItems > 0">
-            <a type="button" class="text-center manage_payment_btn is_stop_{{isopenCustomerPortal}}"
+            <a type="button" class="text-center manage_payment_btn is_stop_{{ isopenCustomerPortal }}"
               (click)="openCustomerPortal()">
 
               <ng-container *ngIf="isopenCustomerPortal; else loginText">
@@ -42,11 +42,11 @@
 
         <div class="row premium-card_box mt-3" *ngIf="!isLoading">
 
-          <div class="col-lg-4 d-none" *ngIf="ispremium">
+          <!-- <div class="col-lg-4 d-none" *ngIf="ispremium">
             <div class="premium-card ">
               <div class="d-flex align-items-end justify-content-between flex_wrap">
                 <h5>{{ 'premium' | translate }}</h5>
-                <h6> {{ premium.price}}<sub class="premium-month_title">.- {{premium.currency}}/{{ premium.interval ==
+                <h6> {{ premium.price }}<sub class="premium-month_title">.- {{ premium.currency }}/{{ premium.interval ==
                     'monthly' ? ('month' | translate) : ('year' | translate) }}</sub></h6>
               </div>
               <p *ngIf="premium.stripe_cancel_at == null">{{ 'renews' | translate }} {{ premium.plan_period_end |
@@ -54,7 +54,7 @@
               <p *ngIf="premium.stripe_cancel_at != null">{{ 'expireOn' | translate }} {{ premium.stripe_cancel_at |
                 date: 'dd.MM.yyyy' }}</p>
               <div class="d-flex align-items-center justify-content-between mt-4 mob_wrap">
-                <a class="premium-edit_btn text-white" routerLink="/talent/plans">{{'editPlan' | translate}}</a>
+                <a class="premium-edit_btn text-white" routerLink="/talent/plans">{{ 'editPlan' | translate }}</a>
                 <button class="premium-subscription_btn" [disabled]="premium.stripe_cancel_at != null"
                   (click)="confirmAndCancelSubscription(premium.id)">
                   <div *ngIf="premium.stripe_cancel_at == null">{{ 'cancelSubscription' | translate }}</div>
@@ -71,12 +71,12 @@
                 </svg>
               </div>
             </div>
-          </div>
+          </div> -->
           <div class="col-lg-4" *ngIf="isNewpremium">
             <div class="premium-card ">
               <div class="d-flex align-items-end justify-content-between flex_wrap">
-                <h5>{{'premium' | translate}}</h5>
-                <h6> {{ newPremium.price}} <sub class="premium-month_title">.-{{newPremium.currency}}/{{
+                <h5>{{ 'premium' | translate }}</h5>
+                <h6> {{ newPremium.price }} <sub class="premium-month_title">.-{{ newPremium.currency }}/{{
                     newPremium.interval == 'monthly' ?
                     ('month' | translate) : ('year' | translate) }}</sub></h6>
               </div>
@@ -86,11 +86,13 @@
                 |
                 date: 'dd.MM.yyyy' }}</p>
               <div class="d-flex align-items-center justify-content-between mt-4 mob_wrap">
-                <a class="premium-edit_btn text-white" routerLink="/talent/plans">{{'editPlan' | translate}}</a>
-                <button class="premium-subscription_btn" [disabled]="newPremium.stripe_cancel_at != null"
+                <a class="premium-edit_btn text-white"
+                  routerLink="/talent/plans">{{ 'editPlan' | translate }}</a>
+                <button class="premium-subscription_btn cursor-pointer" [disabled]="newPremium.is_canceled == 'yes'"
                   (click)="confirmAndCancelSubscription(newPremium.id)">
-                  <div *ngIf="newPremium.stripe_cancel_at == null">{{ 'cancelSubscription' | translate }}</div>
-                  <div *ngIf="newPremium.stripe_cancel_at != null" routerLink="/talent/plans">{{ 'renewSubscription' |
+                  <div *ngIf="newPremium.is_canceled != 'yes'">
+                    {{ 'cancelSubscription' | translate }}</div>
+                  <div *ngIf="newPremium.is_canceled == 'yes'" routerLink="/talent/plans">{{ 'renewSubscription' |
                     translate }}</div>
                 </button>
 
@@ -108,8 +110,8 @@
             <div class="premium-card">
               <div class="d-flex align-items-end justify-content-between flex_wrap">
                 <!-- <h5>{{ 'boostProfiles' | translate }}</h5> -->
-                <h5>{{'multiCountry' | translate}}</h5>
-                <h6> {{ country[0].price }}<sub class="premium-month_title">.- {{country[0].currency}}/{{
+                <h5>{{ 'multiCountry' | translate }}</h5>
+                <h6> {{ country[0].price }}<sub class="premium-month_title">.- {{ country[0].currency }}/{{
                     country[0].interval
                     == 'month' || country[0].interval
                     == 'monthly' ? ('month' | translate) : ('year' | translate) }}</sub></h6>
@@ -117,7 +119,8 @@
               <p>{{ 'renews' | translate }} {{ country[0].plan_period_end |
                 date: 'dd.MM.yyyy' }}</p>
               <div class="d-flex align-items-center justify-content-between mt-4 mob_wrap">
-                <a class="premium-edit_btn text-white" routerLink="/talent/plans">{{ 'editPlan' | translate }}</a>
+                <a class="premium-edit_btn text-white"
+                  routerLink="/talent/plans">{{ 'editPlan' | translate }}</a>
                 <button class="premium-subscription_btn" (click)="confirmCountryPlanCancellation(country)">
                   {{ 'cancelSubscription' | translate }}
                 </button>
@@ -135,7 +138,7 @@
             <div class="premium-card ">
               <div class="d-flex align-items-end justify-content-between flex_wrap">
                 <h5>{{ 'boostProfile' | translate }}</h5>
-                <h6> {{ booster.price}}<sub class="premium-month_title">.- {{booster.currency}}/{{booster.interval ==
+                <h6> {{ booster.price }}<sub class="premium-month_title">.- {{ booster.currency }}/{{booster.interval ==
                     'monthly' ? ('month' | translate) : ('year' | translate) }}
                   </sub>
                 </h6>
@@ -150,10 +153,14 @@
               <div class="d-flex align-items-center justify-content-between mt-4 mob_wrap">
                 <a class="premium-edit_btn text-white cursor-pointer" (click)="editBooster(booster)">{{'editPlan' |
                   translate}}</a>
-                <button class="premium-subscription_btn" [disabled]="booster.stripe_cancel_at != null"
+                <button class="premium-subscription_btn cursor-pointer" [disabled]="booster.is_canceled == 'yes'"
                   (click)="confirmAndCancelSubscription(booster.id)">
-                  <div *ngIf="booster.stripe_cancel_at == null">{{ 'cancelSubscription' | translate }}</div>
+                  <!-- <div *ngIf="booster.stripe_cancel_at == null">{{ 'cancelSubscription' | translate }}</div>
                   <div *ngIf="booster.stripe_cancel_at != null" routerLink="/talent/plans">{{ 'renewSubscription' |
+                    translate }}</div> -->
+                  <div *ngIf="booster.is_canceled != 'yes'">
+                    {{ 'cancelSubscription' | translate }}</div>
+                  <div *ngIf="booster.is_canceled == 'yes'" routerLink="/talent/plans">{{ 'renewSubscription' |
                     translate }}</div>
                 </button>
               </div>
@@ -178,8 +185,8 @@
           <div class="d-flex align-items-center justify-content-between transaction_box mb-2">
             <div class="d-flex align-items-center">
               <div class="d-flex p_size">
-                <h2 class="card-title mb-0 me-3 ">{{'latestTransaction' | translate}}</h2>
-                <p class="memberShipDetailTxt">{{'memberShipDetailTxt' | translate}}</p>
+                <h2 class="card-title mb-0 me-3 ">{{ 'latestTransaction' | translate }}</h2>
+                <p class="memberShipDetailTxt">{{ 'memberShipDetailTxt' | translate }}</p>
               </div>
             </div>
 
@@ -196,14 +203,14 @@
               <table class="table table-striped">
                 <thead>
                   <tr>
-                    <th scope="col">{{'name' | translate}}</th>
-                    <th scope="col">{{'transferDate' | translate}}</th>
-                    <th scope="col">{{'voucherCode' | translate}}</th>
-                    <th scope="col">{{'amount' | translate}}</th>
-                    <th scope="col">{{'interval' | translate}}</th>
-                    <th scope="col">{{'status' | translate}}</th>
-                    <th scope="col" class="text-center">{{'view' | translate}}</th>
-                    <th scope="col" class="text-center">{{'download' | translate}}</th>
+                    <th scope="col">{{ 'name' | translate }}</th>
+                    <th scope="col">{{ 'transferDate' | translate }}</th>
+                    <th scope="col">{{ 'voucherCode' | translate }}</th>
+                    <th scope="col">{{ 'amount' | translate }}</th>
+                    <th scope="col">{{ 'interval' | translate }}</th>
+                    <th scope="col">{{ 'status' | translate }}</th>
+                    <th scope="col" class="text-center">{{ 'view' | translate }}</th>
+                    <th scope="col" class="text-center">{{ 'download' | translate }}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -216,17 +223,17 @@
                     <tr *ngFor="let purchase of userPurchases">
                       <td>
                         <div class="d-flex align-items-center">
-                          <span class="main-template" style="padding-left: 15px">{{purchase.package_name}}</span>
+                          <span class="main-template" style="padding-left: 15px">{{ purchase.package_name }}</span>
                         </div>
                       </td>
                       <td>{{ purchase.plan_period_start | date:'dd.MM.yyyy' }}</td>
                       <td>
-                        <span *ngIf="purchase.coupon_used">{{purchase.coupon_used}}</span>
+                        <span *ngIf="purchase.coupon_used">{{ purchase.coupon_used }}</span>
                         <span *ngIf="!purchase.coupon_used">-</span>
                       </td>
                       <td>
-                        <span *ngIf="purchase.amount_paid">{{purchase.amount_paid}}
-                          {{purchase.amount_paid_currency.toUpperCase()}}</span>
+                        <span *ngIf="purchase.amount_paid">{{ purchase.amount_paid }}
+                          {{ purchase.amount_paid_currency.toUpperCase() }}</span>
                         <span *ngIf="!purchase.amount_paid">-</span>
                       </td>
 
@@ -246,7 +253,7 @@
                           'failedTxt' |
                           translate }}</span>
                       </td>
-                      <td class="text-center disable_btn_{{purchase.invoice_status}}"
+                      <td class="text-center disable_btn_{{ purchase.invoice_status }}"
                         [ngClass]="{'disblebutton':purchase.invoice_status != 'paid'}">
                         <svg class="cursor-pointer pointer" (click)="viewMembership(purchase.id)" width="25" height="25"
                           viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -258,7 +265,7 @@
                             fill="#787878" class="td-icon-favourites" />
                         </svg>
                       </td>
-                      <td class="text-center disable_btn_{{purchase.invoice_status}}"
+                      <td class="text-center disable_btn_{{ purchase.invoice_status }}"
                         [ngClass]="{'disblebutton':purchase.invoice_status != 'paid'}">
                         <a [href]="purchase.invoice_file_path" target="_blank">
                           <svg class="pointer" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -284,30 +291,30 @@
               <div class="p-3">
                 <div class="space-y-2 text-sm">
                   <div class="flex justify-between">
-                    <span class="text-muted-foreground">{{'name' | translate}}</span>
-                    <span>{{element.package_name}}</span>
+                    <span class="text-muted-foreground">{{ 'name' | translate }}</span>
+                    <span>{{ element.package_name }}</span>
                   </div>
                   <div class="flex justify-between">
-                    <span class="text-muted-foreground">{{'transferDate' | translate}}</span>
+                    <span class="text-muted-foreground">{{ 'transferDate' | translate }}</span>
                     <span>{{ element.plan_period_start | date:'dd.MM.yyyy' }}</span>
                   </div>
                   <div class="flex justify-between">
-                    <span class="text-muted-foreground">{{'voucherCode' | translate}}</span>
-                    <span><span *ngIf="element.coupon_used">{{element.coupon_used}}</span>
+                    <span class="text-muted-foreground">{{ 'voucherCode' | translate }}</span>
+                    <span><span *ngIf="element.coupon_used">{{ element.coupon_used }}</span>
                       <span *ngIf="!element.coupon_used">-</span></span>
                   </div>
                   <div class="flex justify-between">
-                    <span class="text-muted-foreground">{{'amount' | translate}}</span>
-                    <span><span *ngIf="element.amount_paid">{{element.amount_paid}}
-                        {{element.amount_paid_currency.toUpperCase()}}</span>
+                    <span class="text-muted-foreground">{{ 'amount' | translate }}</span>
+                    <span><span *ngIf="element.amount_paid">{{ element.amount_paid }}
+                        {{ element.amount_paid_currency.toUpperCase() }}</span>
                       <span *ngIf="!element.amount_paid">-</span></span>
                   </div>
                   <div class="flex justify-between">
-                    <span class="text-muted-foreground">{{'interval' | translate}}</span>
+                    <span class="text-muted-foreground">{{ 'interval' | translate }}</span>
                     <span>{{ capitalizeFirstLetter(element.interval) }}</span>
                   </div>
                   <div class="flex justify-between">
-                    <span class="text-muted-foreground">{{'status' | translate}}</span>
+                    <span class="text-muted-foreground">{{ 'status' | translate }}</span>
 
                     <span *ngIf="element.invoice_status == 'paid'" class="status-label bg_success">{{ 'paidTxt' |
                       translate }}</span>
@@ -354,7 +361,7 @@
             <div class="rounded-lg border bg-card" *ngIf="!userPurchases || totalItems == 0 && !isLoading">
               <div class="p-3">
                 <div class="d-flex justify-content-center">
-                  <h6>{{'userPurchasesNotFound' | translate}}</h6>
+                  <h6>{{ 'userPurchasesNotFound' | translate }}</h6>
                 </div>
               </div>
             </div>

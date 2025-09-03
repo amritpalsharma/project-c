@@ -638,7 +638,8 @@ export class PlanComponent implements OnInit, OnDestroy {
 
     // this.animate = (!this.animate);
 
-    // console.log('toggleBillingPlan', plan, isYearly, subscribeId, this.selectedPlan);
+    console.log('toggleBillingPlan', this.selectedPlan.isYearly);
+    console.log('toggleBillingPlanRecivedInterval', isYearly);
     const originalIsYearly = plan.isYearly;
 
     if (isYearly && plan.active_interval == 'yearly') {

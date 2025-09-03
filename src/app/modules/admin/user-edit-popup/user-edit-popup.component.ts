@@ -8,6 +8,7 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { UserRoleService } from '../../../services/user-role.service';
 import { ChangeDetectorRef } from '@angular/core';
 import { FormControl, NgForm } from '@angular/forms';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-user-edit-popup',
@@ -73,6 +74,7 @@ export class UserEditPopupComponent {
   nationFilterCtrl = new FormControl('');
   clubSearching = new FormControl('');
   club_Searching = new FormControl('');
+  userDomains: any = environment.domains_de;
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -87,12 +89,17 @@ export class UserEditPopupComponent {
         this.getClubsForPlayer();
       }
     }
+    let langID = localStorage.getItem('lang_id');
+    if (langID == '1') {
+      this.userDomains = environment.domains;
+    }
     // console.info('user',this.data)
   }
   testCustomArr: any;
   clubsListingArr: any = [];
   filterCountriesListing: any = [];
   filterplayerClubsListing: any = [];
+  user_domain: number = 0;
   ngOnInit() {
 
     this.getCountries();
@@ -193,9 +200,10 @@ export class UserEditPopupComponent {
     }
 
     console.info('PlayerData', this.data);
-    // if (this.data.meta && this.data.meta.pre_club_id) {
-    //   this.playerClub = this.data.meta.pre_club_id;
-    // }
+
+    if (this.data.user_domain_id && this.data.user_domain_id) {
+      this.user_domain = Number(this.data.user_domain_id);
+    }
     if (this.data && this.data?.current_club_id) {
       this.playerClub = this.data?.current_club_id;
       this.current_club = this.data?.current_club_id;
@@ -543,6 +551,7 @@ export class UserEditPopupComponent {
       formdata.append('user[registered_club_team]', this.playerTeam + '');
       formdata.append('user[registered_club_team_type]', this.team_type);
     }
+    formdata.append('user[user_domain]', String(this.user_domain));
 
     this.userService.updateUser(this.idToUpdate, formdata).subscribe(
       response => {

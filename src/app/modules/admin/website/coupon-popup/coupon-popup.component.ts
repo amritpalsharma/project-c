@@ -76,7 +76,7 @@ export class CoupenPopupComponent {
       // this.validBetween =
       this.isLimitedUse = existingRecord.is_limit;
       this.limit = existingRecord.limit;
-      this.isSingleUsePerCustomer = existingRecord.limit_per_user;
+      this.isSingleUsePerCustomer = existingRecord.limit_per_user  == 1 ? true : false;
       this.startDate = existingRecord.valid_from;
       this.endDate = existingRecord.valid_to;
     }

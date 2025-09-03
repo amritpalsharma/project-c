@@ -455,8 +455,8 @@ export class UsersComponent implements OnInit {
 
   exportUsers(): any {
 
-    if (this.users.length == 0) {
-      this.showMessage("No users to export");
+    if (this.selectedUserIds.length == 0) {
+      this.showMessage(this.selectUserFirst);
       return false;
     }
 
@@ -571,5 +571,16 @@ export class UsersComponent implements OnInit {
     ];
 
     return allowedRoles.includes(userRole);
+  }
+  resendEmailLink(): void {
+    if (this.selectedUserIds.length == 0) {
+      this.showMessage(this.selectUserFirst);
+      return;
+    }
+    this.userService.resendConfirmationLink(this.selectedUserIds).subscribe((response) => {
+      if (response && response.status) {
+        this.showMessage(response.message);
+      }
+    })
   }
 }

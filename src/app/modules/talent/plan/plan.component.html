@@ -161,7 +161,7 @@
           <div class="col-lg-4 my-2 ">
             <div class="subscription-switch mb-2">
               <label class="switch_off cursor-pointer">{{'billedMonthly' | translate}}</label>
-              <input type="checkbox" (change)="toggleBillingPlan2(countryPlans, (selectedPlan?.isYearly), country)"
+              <input type="checkbox" (change)="toggleBillingPlan(countryPlans, (selectedPlan?.isYearly), country)"
                 class="cursor-pointer">
               <label class="switch_on cursor-pointer">{{'billedYearly' | translate}}</label>
             </div>

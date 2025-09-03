@@ -920,4 +920,27 @@ export class UserService {
     return this.http.post<any>(`${this.apiUrl}admin/edit-club-player/${id}`, params, { headers });
   }
 
+
+
+  resendConfirmationLink(userIds: any): Observable<any> {
+    const userToken = localStorage.getItem('authToken');
+    const langId = localStorage.getItem('lang_id');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.userToken}`
+    });
+
+    return this.http.post<any>(`${this.apiUrl2}/resend-confirmation-email`, { id: userIds, lang: langId }, { headers });
+  }
+
+
+  changeUserLocation(userID: any, domainID:any): Observable<any> {
+    const userToken = localStorage.getItem('authToken');
+    const langId = localStorage.getItem('lang_id');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.userToken}`
+    });
+
+    return this.http.post<any>(`${this.apiUrl2}/update-user-location/${langId}/${userID}`, { user_domain: domainID }, { headers });
+  }
+
 }

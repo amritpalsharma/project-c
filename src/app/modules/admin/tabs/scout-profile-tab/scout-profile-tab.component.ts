@@ -7,6 +7,7 @@ import { UserService } from '../../../../services/user.service';
 import { AddRepresentatorPopupComponent } from '../../add-representator-popup/add-representator-popup.component';
 import { UserRoleService } from '../../../../services/user-role.service';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-scout-profile-tab',
@@ -23,12 +24,18 @@ export class ScoutProfileTabComponent {
   idsToDelete: any = "";
   @Input() userData: any;
   @Output() dataEmitter = new EventEmitter<string>();
+  userDomains: any = environment.domains_de;
   constructor(
     public toaster: ToastrService,
     public userRoleService: UserRoleService,
     public dialog: MatDialog,
     private router: Router,
-    private userService: UserService) { }
+    private userService: UserService) {
+    let langID = localStorage.getItem('lang_id');
+    if (Number(langID) === 1) {
+      this.userDomains = environment.domains;
+    }
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['userData']) {
@@ -38,6 +45,11 @@ export class ScoutProfileTabComponent {
       }
       if (changes['userData'].currentValue.user_nationalities) {
         this.userNationalities = JSON.parse(this.userData.user_nationalities);
+      }
+
+      let langID = localStorage.getItem('lang_id');
+      if (Number(langID) === 1) {
+        this.userDomains = environment.domains;
       }
     }
   }
@@ -83,8 +95,8 @@ export class ScoutProfileTabComponent {
           this.dataEmitter.emit('updated');
           if (result.message != '' && result.message != undefined) {
             // this.showMatDialog(result.message, 'display');
-              this.toaster.success(result.message);
-            } else {
+            this.toaster.success(result.message);
+          } else {
             this.toaster.success("Scout erfolgreich aktualisiert.");
             // this.showMatDialog("Scout updated successfully.", 'display');
           }
@@ -218,6 +230,21 @@ export class ScoutProfileTabComponent {
 
       }
     );
+  }
+
+  getNameAndFlagById(id: number, field: any) {
+    const domain = this.userDomains.find((domain: any) => domain.id === Number(id));
+    if (domain) {
+      if (field == 'flag') {
+        return domain.flag;
+      } else if (field == 'location') {
+        return domain.name;
+      } else {
+        return { name: domain.name, flag: domain.flag };
+      }
+    } else {
+      return null; // If no domain is found with that id
+    }
   }
 
 }

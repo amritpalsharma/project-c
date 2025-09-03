@@ -48,8 +48,8 @@
                 <button
                   class="premium-subscription_btn {{currentLoggedInPermission}} add_btn_{{currentLoggedInPermission}}"
                   [disabled]="premium.stripe_cancel_at != null" (click)="confirmAndCancelSubscription(premium.id)">
-                  <div *ngIf="premium.stripe_cancel_at != null">{{ 'cancelSubscription' | translate }}</div>
-                  <div *ngIf="premium.stripe_cancel_at == null" routerLink="/club/plans">{{ 'renewSubscription' |
+                  <div *ngIf="premium.is_canceled != 'yes'">{{ 'cancelSubscription' | translate }}</div>
+                  <div *ngIf="premium.is_canceled == 'yes'" routerLink="/club/plans">{{ 'renewSubscription' |
                     translate }}</div>
                 </button>
               </div>
