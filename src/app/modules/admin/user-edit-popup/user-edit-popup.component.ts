@@ -381,6 +381,7 @@ export class UserEditPopupComponent {
     formdata.append('user[nationality][]', this.selectedCountry);
     let lang_id = localStorage.getItem('lang_id');
     formdata.append('lang', lang_id + '');
+    formdata.append('user[change_user_location]', String(this.user_domain));
 
     this.userService.updateUser(this.idToUpdate, formdata).subscribe(
       response => {
@@ -423,6 +424,7 @@ export class UserEditPopupComponent {
     formdata.append('user[last_name]', this.lastName);
     let lang_id = localStorage.getItem('lang_id');
     formdata.append('lang', lang_id + '');
+    formdata.append('user[change_user_location]', String(this.user_domain));
 
     this.userService.updateUser(this.idToUpdate, formdata).subscribe(
       response => {
@@ -473,6 +475,7 @@ export class UserEditPopupComponent {
     formdata.append('user[nationality][]', this.selectedCountry);
     let lang_id = localStorage.getItem('lang_id');
     formdata.append('lang', lang_id + '');
+    // formdata.append('user[change_user_location]', String(this.user_domain));
 
 
     this.userService.updateUser(this.idToUpdate, formdata).subscribe(
@@ -551,7 +554,7 @@ export class UserEditPopupComponent {
       formdata.append('user[registered_club_team]', this.playerTeam + '');
       formdata.append('user[registered_club_team_type]', this.team_type);
     }
-    formdata.append('user[user_domain]', String(this.user_domain));
+    formdata.append('user[change_user_location]', String(this.user_domain));
 
     this.userService.updateUser(this.idToUpdate, formdata).subscribe(
       response => {
