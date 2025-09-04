@@ -80,13 +80,9 @@ export class TalkService {
       this.inbox.destroy();
     }
     this.inbox = this.session.createInbox({
-      theme: this.currentTheme,
-      conversationActions: [
-        { id: 'delete_convo', label: this.getDeleteLabel(String(localStorage.getItem('lang'))), icon: 'trash' }
-      ]
-    } as any);
+      theme: this.currentTheme
+    });
     this.inbox.mount(document.getElementById('talkjs-container') as HTMLElement);
-    this.registerConversationActionHandler(); // <-- add this line
     return this.session;
   }
 
@@ -143,23 +139,15 @@ export class TalkService {
 
 
   mountInboxWithTheme(conversation?: Talk.Conversation) {
-    // const inbox = this.session!.createInbox({
-    //   theme: this.currentTheme // ✅ theme applied here
-    // });
-
     const inbox = this.session!.createInbox({
-      theme: this.currentTheme,
-      conversationActions: [
-        { id: 'delete_convo', label: this.getDeleteLabel(String(localStorage.getItem('lang'))), icon: 'trash' }
-      ]
-    } as any);
+      theme: this.currentTheme // ✅ theme applied here
+    });
 
     if (conversation) {
       inbox.select(conversation);
     }
 
     inbox.mount(document.getElementById('talkjs-container')!);
-    this.registerConversationActionHandler();
   }
 
   setCurrentUserRoleAndId(role: string, id: string) {
@@ -233,7 +221,7 @@ export class TalkService {
       const conversation = this.session!.getOrCreateConversation(conversationId);
 
       conversation.setParticipant(this.currentUser!);
-      //   conversation.setParticipant(hiddenAdmin);
+      conversation.setParticipant(hiddenAdmin);    
       conversation.setParticipant(otherUser);
 
       conversation.setAttributes({
@@ -247,14 +235,11 @@ export class TalkService {
 
       this.inbox = this.session!.createInbox({
         theme: this.currentTheme,
-        conversationActions: [
-          { id: 'delete_convo', label: this.getDeleteLabel(String(localStorage.getItem('lang'))), icon: 'trash' }
-        ]
-      } as any);
+
+      });
 
       this.inbox.select(conversation);
       this.inbox.mount(document.getElementById('talkjs-container')!);
-      this.registerConversationActionHandler(); // <-- add this line
     } catch (err) {
       console.error('Error in createOneOnOneConversation:', err);
     }
@@ -285,112 +270,5 @@ export class TalkService {
     return validatedPhoto;
   }
 
-  private conversationActionSubscription: any = null;
-  // helper to register handler (add to class)
-  private registerConversationActionHandler() {
-    if (!this.inbox) return;
-
-    // there is text
-
-    // unsubscribe previous
-    try {
-      if (this.conversationActionSubscription && this.conversationActionSubscription.unsubscribe) {
-        this.conversationActionSubscription.unsubscribe();
-      }
-    } catch (e) { /* ignore */ }
-    this.conversationActionSubscription = null;
-
-    // listen for `delete` action
-    this.conversationActionSubscription = this.inbox.onCustomConversationAction('delete_convo', async (event: any) => {
-      try {
-        const conversationId = event?.conversation?.id;
-        if (!conversationId) {
-          console.warn('No conversation id from event', event);
-          return;
-        }
-        const currentLang = localStorage.getItem('lang') || 'de';
-        // simple confirm - replace with your app modal if needed
-        const ok = window.confirm(this.getDeleteConfirmMessage(currentLang));
-        if (!ok) return;
-
-        // call your backend (secure) endpoint
-        const resp = await fetch(`${this.apiUrl}deleteTalkConversation`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + localStorage.getItem('authToken') // your auth header
-          },
-          body: JSON.stringify({ conversationId })
-        });
-
-        if (resp.ok) {
-          // talkjs will update the UI in realtime; optional: give feedback / recreate inbox
-          alert(this.getDeleteSuccessMessage(currentLang));
-          // optional: destroy and recreate inbox to refresh UI cleanly
-          if (this.inbox) {
-            this.inbox.destroy();
-            this.inbox = this.session!.createInbox({
-              theme: this.currentTheme,
-              conversationActions: [
-                { id: 'delete_convo', label: this.getDeleteLabel(String(localStorage.getItem('lang'))), icon: 'trash' }
-              ]
-            } as any);
-            this.inbox.mount(document.getElementById('talkjs-container') as HTMLElement);
-            this.registerConversationActionHandler();
-          }
-        } else {
-          const text = await resp.text();
-          console.error('Delete failed', resp.status, text);
-          // alert('Could not delete conversation. See console for details.');
-        }
-      } catch (err) {
-        console.error('Error handling delete action', err);
-        // alert('Error deleting conversation.');
-      }
-    });
-  }
-
-
-  private getDeleteLabel(lang: string): string {
-    const labels: Record<string, string> = {
-      en: 'Delete',
-      de: 'Löschen',
-      fr: 'Supprimer',
-      it: 'Elimina',
-      es: 'Eliminar',
-      pt: 'Excluir',
-      da: 'Slet',
-      sv: 'Radera'
-    };
-    return labels[lang] || labels['de'];
-  }
-
-  private getDeleteConfirmMessage(lang: string): string {
-    const messages: any = {
-      en: 'Permanently delete this conversation? This cannot be undone.',
-      de: 'Diese Konversation endgültig löschen? Dies kann nicht rückgängig gemacht werden.',
-      fr: 'Supprimer définitivement cette conversation ? Cette action est irréversible.',
-      it: 'Eliminare definitivamente questa conversazione? Questa azione non può essere annullata.',
-      es: '¿Eliminar permanentemente esta conversación? Esta acción no se puede deshacer.',
-      pt: 'Excluir permanentemente esta conversa? Esta ação não pode ser desfeita.',
-      da: 'Slet denne samtale permanent? Dette kan ikke fortrydes.',
-      sv: 'Radera denna konversation permanent? Detta kan inte ångras.'
-    };
-    return messages[lang] || messages.en;
-  }
-
-  private getDeleteSuccessMessage(lang: string): string {
-    const messages: any = {
-      en: 'The conversation was deleted successfully.',
-      de: 'Die Konversation wurde erfolgreich gelöscht.',
-      fr: 'La conversation a été supprimée avec succès.',
-      it: 'La conversazione è stata eliminata con successo.',
-      es: 'La conversación se eliminó correctamente.',
-      pt: 'A conversa foi excluída com sucesso.',
-      da: 'Samtalen blev slettet med succes.',
-      sv: 'Konversationen raderades framgångsrikt.'
-    };
-    return messages[lang] || messages.en;
-  }
 
 }

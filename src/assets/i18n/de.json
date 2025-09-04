@@ -1545,5 +1545,6 @@
   "manageNoPaymentBtnTxt":"zu den Abos",
   "noScoutFound":"Bist du ein Scout? Registriere dich jetzt kostenlos – dein Profil wird hier angezeigt und Talente können dich entdecken und kontaktieren.",
   "noClubFound":"Ihr seid ein Club? Registriert euch jetzt kostenlos – euer Profil wird hier angezeigt und ihr könnt euer neues Talent entdecken.",
-  "deleteSelectPerformanceFirst":"Wähle aus, welche Analysen du löschen möchtest."
+  "deleteSelectPerformanceFirst":"Wähle aus, welche Analysen du löschen möchtest.",
+  "resendEmailVerification":"E-Mail-Verifizierung"
 }

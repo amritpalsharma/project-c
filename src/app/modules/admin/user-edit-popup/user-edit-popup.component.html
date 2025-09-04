@@ -736,8 +736,8 @@
           <div class="btn-group">
             <mat-form-field appearance="fill" class="w-100 custom_select_mat">
               <mat-select class="form-control form-select" aria-label="Default select example"
-                [(ngModel)]="internationalCountry"
-                [ngClass]="{'red-border':isSubmitButtonClicked && !internationalCountry}">
+                [(ngModel)]="internationalCountry">
+                <!-- [ngClass]="{'red-border':isSubmitButtonClicked && !internationalCountry}" -->
                 <!-- <mat-option value="">{{ 'select' | translate }}</mat-option> -->
                 <mat-option>
                   <ngx-mat-select-search class="custom_search_mat" [formControl]="clubSearching" placeholder="A">

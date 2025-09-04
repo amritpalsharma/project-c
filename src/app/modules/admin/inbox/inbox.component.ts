@@ -308,7 +308,7 @@ export class InboxComponent {
     // } else {
 
     // }
-    this.talkService.setCurrentUserRoleAndId('admin', this.userData.id);
+    this.talkService.setCurrentUserRoleAndId('hidden', this.userData.id);
 
     // ✅ Initialize session
     await this.talkService.init(user);
