@@ -1533,5 +1533,6 @@
   "manageNoPaymentBtnTxt": "till planer",
   "noScoutFound": "Är du en scout? Registrera dig nu gratis så visas din profil här och du kan upptäcka talanger och bli kontaktad.",
   "noClubFound": "Är ni en klubb? Registrera er nu gratis – er profil visas här och ni kan hitta ert nästa stjärnskott.",
-  "deleteSelectPerformanceFirst": "Välj vilka analyser du vill ta bort."
+  "deleteSelectPerformanceFirst": "Välj vilka analyser du vill ta bort.",
+    "areYouSureToDeleteConvo":"Är du säker på att du vill radera denna konversation permanent? Detta kan inte ångras."
 }

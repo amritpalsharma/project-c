@@ -1535,5 +1535,6 @@
   "manageNoPaymentBtnTxt": "agli piani",
   "noScoutFound": "Sei uno scout? Registrati ora gratuitamente – il tuo profilo sarà visibile qui e potrai scoprire talenti ed essere contattato.",
   "noClubFound": "Siete un club? Registratevi ora gratuitamente – il vostro profilo sarà visibile qui e potrete scoprire il vostro prossimo talento.",
-  "deleteSelectPerformanceFirst": "Seleziona quali analisi desideri eliminare."
+  "deleteSelectPerformanceFirst": "Seleziona quali analisi desideri eliminare.",
+  "areYouSureToDeleteConvo":"Sei sicuro di voler eliminare definitivamente questa conversazione? Questa azione non può essere annullata."
 }

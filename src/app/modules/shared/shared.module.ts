@@ -65,6 +65,7 @@ import { SightingComponent } from './view-profile/tabs/sighting/sighting.compone
 import { PasswordSettingsComponent } from './setting/password-settings/password-settings.component';
 import { PremiumPurchaseComponent } from './premium-purchase/premium-purchase.component';
 import { CoverImageCropperComponent } from './cover-image-cropper/cover-image-cropper.component';
+import { TalkJsHelperComponent } from './talk-js-helper/talk-js-helper.component';
 // import { TinymceWrapperComponent } from './tinymce-wrapper/tinymce-wrapper.component';
 // import { ImageCropperDialogComponent } from './image-cropper-dialog/image-cropper-dialog.component';
 
@@ -120,6 +121,7 @@ import { CoverImageCropperComponent } from './cover-image-cropper/cover-image-cr
     PasswordSettingsComponent,
     PremiumPurchaseComponent,
     CoverImageCropperComponent,
+    TalkJsHelperComponent,
     // TinymceWrapperComponent,
     // ImageCropperDialogComponent
   ],

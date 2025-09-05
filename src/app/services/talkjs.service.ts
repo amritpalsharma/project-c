@@ -5,6 +5,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SocketService } from './socket.service';
 import { environment } from '../../environments/environment';
 
+import { MatDialog } from '@angular/material/dialog';
+import { TalkJsHelperComponent, ConfirmDialogData } from '../modules/shared/talk-js-helper/talk-js-helper.component';
+import { NgZone } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { ToastrService } from 'ngx-toastr';
+
 @Injectable({ providedIn: 'root' })
 export class TalkService {
   private session: Talk.Session | null = null;
@@ -20,7 +26,14 @@ export class TalkService {
   clientEmail: string = 'testmails.cts@gmail.com';
   private apiUrl: string = environment?.apiUrl;
 
-  constructor(public router: Router, private socketService: SocketService) {
+  constructor(
+    public router: Router,
+    private socketService: SocketService,
+    private dialog: MatDialog,
+    private translateService: TranslateService,
+    private ngZone: NgZone,
+    private toaster: ToastrService,
+  ) {
 
   }
   async init(user: any): Promise<Talk.Session> {
@@ -200,16 +213,16 @@ export class TalkService {
         return;
       }
 
-      const otherUserConsole = {
-        id: userId,
-        name: name,
-        email: email,
-        photoUrl: this.getValidPhotoUrl(photoUrl),
-        role: 'default',
-        locale: currentLang
-      };
+      // const otherUserConsole = {
+      //   id: userId,
+      //   name: name,
+      //   email: email,
+      //   photoUrl: this.getValidPhotoUrl(photoUrl),
+      //   role: 'default',
+      //   locale: currentLang
+      // };
 
-      console.info("CHAT WITH ", otherUserConsole);
+      // console.info("CHAT WITH ", otherUserConsole);
 
       const otherUser = new Talk.User({
         id: userId,
@@ -220,25 +233,24 @@ export class TalkService {
         locale: currentLang
       });
 
-      console.info("CHAT WITH ", otherUserConsole);
-      console.info("CHAT WITH FOR TALK METHOD", otherUser);
 
       const hiddenAdmin = new Talk.User({
         id: '1',
         name: 'Succer You Sports AG',
         email: this.clientEmail,
-        role: 'hidden',
+        role: 'admin',
+        // photoUrl: this.getValidPhotoUrl(photoUrl),
       });
       const conversationId = Talk.oneOnOneId(this.currentUser!, otherUser);
       const conversation = this.session!.getOrCreateConversation(conversationId);
 
+      // conversation.setParticipant(hiddenAdmin);
       conversation.setParticipant(this.currentUser!);
-      //   conversation.setParticipant(hiddenAdmin);
       conversation.setParticipant(otherUser);
 
-      conversation.setAttributes({
-        //photoUrl: this.getValidPhotoUrl(photoUrl, true), // For conversation header
-      });
+      // conversation.setAttributes({
+      //   photoUrl: this.getValidPhotoUrl(photoUrl, true), // For conversation header
+      // });
 
 
       if (this.inbox) {
@@ -308,41 +320,52 @@ export class TalkService {
           console.warn('No conversation id from event', event);
           return;
         }
-        const currentLang = localStorage.getItem('lang') || 'de';
-        // simple confirm - replace with your app modal if needed
-        const ok = window.confirm(this.getDeleteConfirmMessage(currentLang));
-        if (!ok) return;
 
-        // call your backend (secure) endpoint
-        const resp = await fetch(`${this.apiUrl}deleteTalkConversation`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + localStorage.getItem('authToken') // your auth header
-          },
-          body: JSON.stringify({ conversationId })
+
+        this.ngZone.run(() => {
+          const dialogRef = this.dialog.open(TalkJsHelperComponent, {
+            width: '500px',
+            position: { top: '150px' },
+            data: {
+              action: 'confirmation'
+            }
+          });
+
+          dialogRef.afterClosed().subscribe(async (result: boolean) => {
+            if (!result) return;
+            if (result) {
+              // call your backend (secure) endpoint
+              const resp = await fetch(`${this.apiUrl}deleteTalkConversation`, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Bearer ' + localStorage.getItem('authToken') // your auth header
+                },
+                body: JSON.stringify({ conversationId })
+              });
+
+              if (resp.ok) {
+                this.toaster.success(this.getDeleteSuccessMessage(String(localStorage.getItem('lang'))));
+                if (this.inbox) {
+                  this.inbox.destroy();
+                  this.inbox = this.session!.createInbox({
+                    theme: this.currentTheme,
+                    conversationActions: [
+                      { id: 'delete_convo', label: this.getDeleteLabel(String(localStorage.getItem('lang'))), icon: 'trash' }
+                    ]
+                  } as any);
+                  this.inbox.mount(document.getElementById('talkjs-container') as HTMLElement);
+                  this.registerConversationActionHandler();
+                }
+              } else {
+                const text = await resp.text();
+                console.error('Delete failed', resp.status, text);
+                // alert('Could not delete conversation. See console for details.');
+              }
+            }
+          })
         });
 
-        if (resp.ok) {
-          // talkjs will update the UI in realtime; optional: give feedback / recreate inbox
-          alert(this.getDeleteSuccessMessage(currentLang));
-          // optional: destroy and recreate inbox to refresh UI cleanly
-          if (this.inbox) {
-            this.inbox.destroy();
-            this.inbox = this.session!.createInbox({
-              theme: this.currentTheme,
-              conversationActions: [
-                { id: 'delete_convo', label: this.getDeleteLabel(String(localStorage.getItem('lang'))), icon: 'trash' }
-              ]
-            } as any);
-            this.inbox.mount(document.getElementById('talkjs-container') as HTMLElement);
-            this.registerConversationActionHandler();
-          }
-        } else {
-          const text = await resp.text();
-          console.error('Delete failed', resp.status, text);
-          // alert('Could not delete conversation. See console for details.');
-        }
       } catch (err) {
         console.error('Error handling delete action', err);
         // alert('Error deleting conversation.');
@@ -365,19 +388,6 @@ export class TalkService {
     return labels[lang] || labels['de'];
   }
 
-  private getDeleteConfirmMessage(lang: string): string {
-    const messages: any = {
-      en: 'Permanently delete this conversation? This cannot be undone.',
-      de: 'Diese Konversation endgültig löschen? Dies kann nicht rückgängig gemacht werden.',
-      fr: 'Supprimer définitivement cette conversation ? Cette action est irréversible.',
-      it: 'Eliminare definitivamente questa conversazione? Questa azione non può essere annullata.',
-      es: '¿Eliminar permanentemente esta conversación? Esta acción no se puede deshacer.',
-      pt: 'Excluir permanentemente esta conversa? Esta ação não pode ser desfeita.',
-      da: 'Slet denne samtale permanent? Dette kan ikke fortrydes.',
-      sv: 'Radera denna konversation permanent? Detta kan inte ångras.'
-    };
-    return messages[lang] || messages.en;
-  }
 
   private getDeleteSuccessMessage(lang: string): string {
     const messages: any = {
@@ -392,5 +402,7 @@ export class TalkService {
     };
     return messages[lang] || messages.en;
   }
+
+
 
 }

@@ -38,6 +38,7 @@ import { Overlay, OverlayModule } from '@angular/cdk/overlay';
 import { MAT_SELECT_SCROLL_STRATEGY } from '@angular/material/select';
 import { ScrollStrategy } from '@angular/cdk/overlay';
 import { GlobalSettingsService } from './services/global-settings.service';
+import { TalkJsHelperComponent } from './app/modules/shared/talk-js-helper/talk-js-helper.component';
 
 export function matSelectScrollStrategyFactory(overlay: Overlay): ScrollStrategy {
   return overlay.scrollStrategies.reposition(); // you can try .noop() as well
@@ -52,6 +53,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     AppComponent,
     LightboxDialogComponent,
+    TalkJsHelperComponent,
     // PerformanceAnalysisComponent,
     // TinymceWrapperComponent,
     // UnverifiedUserComponent,

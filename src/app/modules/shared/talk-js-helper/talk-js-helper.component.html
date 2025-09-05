@@ -1,0 +1,27 @@
+<div class="msg-popup-dialog p-3 delete-confirmation-modal">
+  <div class="text-end">
+
+    <div class="msg-popup-close" *ngIf='theme!="dark"'>
+      <img src="../../../assets/images/carbon_close-outline-light.svg" alt="" class="" (click)="cancel()" />
+    </div>
+    <div class="msg-popup-close" *ngIf='theme=="dark"'>
+      <img src="../../../assets/images/carbon_close-outline.svg" alt="" class="" (click)="cancel()" />
+    </div>
+
+  </div>
+
+  <div class="msg-popup-content p-3 pt-1">
+    <div class="display-message delete-confirmation">
+      {{ 'areYouSureToDeleteConvo' | translate }}
+    </div>
+
+    <div class="popup-delete-btn popup-delete-btn d-flex align-items-center justify-content-center py-2">
+      <div (click)="cancel()" class="btn btn-danger bg-dark-btn btn_cancell">
+        {{ 'cancelRemoveFavBtn' | translate }}
+      </div>
+      <span (click)="confirmDelete()" class="btn btn-success me-3 bg-light-btn btn_confirmm">
+        {{ 'removeFavbtn' | translate }}
+      </span>
+    </div>
+  </div>
+</div>

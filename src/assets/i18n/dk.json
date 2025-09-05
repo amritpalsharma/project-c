@@ -1404,5 +1404,6 @@
   "manageNoPaymentBtnTxt": "til planer",
   "noScoutFound": "Er du en scout? Registrer dig gratis nu – din profil vil blive vist her, og du kan opdage talenter og blive kontaktet.",
   "noClubFound": "Er I en klub? Registrer jer nu gratis – jeres profil vil blive vist her, og I kan opdage jeres næste talent.",
-  "deleteSelectPerformanceFirst": "Vælg hvilke analyser du ønsker at slette."
+  "deleteSelectPerformanceFirst": "Vælg hvilke analyser du ønsker at slette.",
+  "areYouSureToDeleteConvo":"Er du sikker på, at du vil slette denne samtale permanent? Dette kan ikke fortrydes."
 }

@@ -1546,5 +1546,6 @@
   "noScoutFound":"Bist du ein Scout? Registriere dich jetzt kostenlos – dein Profil wird hier angezeigt und Talente können dich entdecken und kontaktieren.",
   "noClubFound":"Ihr seid ein Club? Registriert euch jetzt kostenlos – euer Profil wird hier angezeigt und ihr könnt euer neues Talent entdecken.",
   "deleteSelectPerformanceFirst":"Wähle aus, welche Analysen du löschen möchtest.",
-  "resendEmailVerification":"E-Mail-Verifizierung"
+  "resendEmailVerification":"E-Mail-Verifizierung",
+  "areYouSureToDeleteConvo":"Möchten Sie diese Konversation endgültig löschen? Dies kann nicht rückgängig gemacht werden."
 }

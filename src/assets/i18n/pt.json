@@ -1495,5 +1495,6 @@
   "manageNoPaymentBtnTxt": "às planos",
   "noScoutFound": "És olheiro? Regista-te agora gratuitamente – o teu perfil será exibido aqui e poderás descobrir talentos e ser contactado por eles.",
   "noClubFound": "São um clube? Registem-se agora gratuitamente – o vosso perfil será exibido aqui e poderão descobrir o vosso próximo talento.",
-  "deleteSelectPerformanceFirst": "Seleciona quais análises desejas eliminar."
+  "deleteSelectPerformanceFirst": "Seleciona quais análises desejas eliminar.",
+  "areYouSureToDeleteConvo":"Tem certeza de que deseja excluir permanentemente esta conversa? Esta ação não pode ser desfeita."
 }
