@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 // import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -38,7 +38,8 @@ import { Overlay, OverlayModule } from '@angular/cdk/overlay';
 import { MAT_SELECT_SCROLL_STRATEGY } from '@angular/material/select';
 import { ScrollStrategy } from '@angular/cdk/overlay';
 import { GlobalSettingsService } from './services/global-settings.service';
-import { TalkJsHelperComponent } from './app/modules/shared/talk-js-helper/talk-js-helper.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 export function matSelectScrollStrategyFactory(overlay: Overlay): ScrollStrategy {
   return overlay.scrollStrategies.reposition(); // you can try .noop() as well
@@ -53,7 +54,6 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     AppComponent,
     LightboxDialogComponent,
-    TalkJsHelperComponent,
     // PerformanceAnalysisComponent,
     // TinymceWrapperComponent,
     // UnverifiedUserComponent,
@@ -92,7 +92,14 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatSelectModule,
     MatFormFieldModule,
     NgxMatSelectSearchModule,
-    OverlayModule
+    OverlayModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      // enabled: !isDevMode(),
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

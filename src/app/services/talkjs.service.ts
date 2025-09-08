@@ -244,7 +244,7 @@ export class TalkService {
       const conversationId = Talk.oneOnOneId(this.currentUser!, otherUser);
       const conversation = this.session!.getOrCreateConversation(conversationId);
 
-      // conversation.setParticipant(hiddenAdmin);
+      conversation.setParticipant(hiddenAdmin);
       conversation.setParticipant(this.currentUser!);
       conversation.setParticipant(otherUser);
 
