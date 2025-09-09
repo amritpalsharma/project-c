@@ -55,11 +55,7 @@
             "scripts": [],
             "allowedCommonJsDependencies": [
               "moment"
-            ],
-            "serviceWorker": {
-              "enabled": true,
-              "ngswConfigPath": "ngsw-config.json"
-            }
+            ]
           },
           "configurations": {
             "production": {
@@ -116,7 +112,6 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/manifest.webmanifest",
               "src/manifest.webmanifest"
             ],
             "styles": [
