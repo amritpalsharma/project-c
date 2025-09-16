@@ -770,7 +770,8 @@ export class PlanComponent implements OnInit, OnDestroy {
         defaultCard: this.defaultCard,
         country: country,
         selectedInterval: this.selectedPlan.isYearly
-      }
+      },
+      panelClass:'edit_plan_country_popup'
     });
   }
 

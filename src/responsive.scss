@@ -2461,6 +2461,11 @@
         overflow: auto;
     }
 
+    body .edit_plan_country_popup .country-plan.popup__body {
+        max-height: 500px !important;
+        overflow: auto;
+    }
+
     body .highlights__popup {
         .overflow-card {
             padding: 0 !important;

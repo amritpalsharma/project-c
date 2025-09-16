@@ -178,6 +178,11 @@
   color: inherit;
   border: 1px solid;
 }
+@media (min-width: 991px) {
+ .min-width{
+  min-width: 242px;
+ }
+}
 
 @media (max-width: 600px) {
   .add-banners {
@@ -248,7 +253,7 @@
   width: 300px;
   margin-bottom: 10px;
 
-  img {
+  img, video {
     width: 100%;
     height: 100%;
     object-fit: cover;

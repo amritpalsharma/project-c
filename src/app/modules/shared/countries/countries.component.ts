@@ -111,7 +111,8 @@ export class CountriesComponent {
       width: '600px',
       data: {
         country: country,
-      }
+      },
+      panelClass:'edit_plan_country_popup'
     });
   }
 

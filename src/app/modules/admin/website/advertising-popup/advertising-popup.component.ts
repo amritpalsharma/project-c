@@ -7,6 +7,8 @@ import { ToastrService } from 'ngx-toastr';
 import { environment } from '../../../../../environments/environment';
 import { TranslateService } from '@ngx-translate/core';
 import { WebPages } from '../../../../services/webpages.service';
+
+
 @Component({
   selector: 'app-AdvertisingPopupComponent',
   templateUrl: './advertising-popup.component.html',
@@ -16,6 +18,9 @@ export class AdvertisingPopupComponent {
 
   private readonly _adapter = inject<DateAdapter<unknown, unknown>>(DateAdapter);
   private readonly _locale = signal(inject<unknown>(MAT_DATE_LOCALE));
+
+  baseUrl: string = environment.baseUrl;
+  apiBaseUrl: string = environment.apiBaseUrl;
 
   typeOptions: any = [];
 
@@ -88,6 +93,12 @@ export class AdvertisingPopupComponent {
       this.noEndDate = existingRecord.no_validity;
       this.imageUrl = existingRecord.featured_image;
       this.imageToUpload = existingRecord.featured_image;
+      // Code by amrit
+      // Check if the image is a video and adjust accordingly
+      if (this.isVideo(this.imageUrl)) {
+        this.generateThumbnailFromVideo(this.imageUrl);
+      }
+
       if (this.noEndDate == '0') {
         this.disableEndDate = false;
         this.noEndDate = false;
@@ -174,7 +185,7 @@ export class AdvertisingPopupComponent {
 
   imagePreview: any = null;
 
-  onImageChange(event: Event): void {
+  onImageChange16_09_25(event: Event): void {
     this.error = false;
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
@@ -191,6 +202,39 @@ export class AdvertisingPopupComponent {
 
     this.validateAdvertisementForm();
   }
+
+  onImageChange(event: Event): void {
+    this.error = false;
+    const input = event.target as HTMLInputElement;
+
+    if (input.files && input.files.length > 0) {
+      let fileToUpload = input.files[0];
+      this.imageToUpload = fileToUpload;
+
+      // Check if the file is a video
+      const isVideoFile = fileToUpload.type.startsWith('video');
+      const isImageFile = fileToUpload.type.startsWith('image');
+
+      // If it's a video, create a URL for it
+      if (isVideoFile) {
+        this.imagePreview = URL.createObjectURL(fileToUpload); // Video Preview URL
+        this.generateThumbnailFromVideo(this.imagePreview); // Generate Video Thumbnail
+      }
+      // If it's an image, create a base64 preview
+      else if (isImageFile) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          this.imagePreview = reader.result as string; // Image Preview URL (base64)
+        };
+        reader.readAsDataURL(fileToUpload);
+      }
+
+      // Validation or any further logic
+      this.validateAdvertisementForm();
+    }
+  }
+
+
 
   closeImage() {
     this.imagePreview = null;
@@ -284,6 +328,7 @@ export class AdvertisingPopupComponent {
   }
   startDateError: boolean = false;
   endDateError: boolean = false;
+  isClickedButton: boolean = false;
   createAd(): any {
     this.isSubmitButtonClicked = true;
     let validForm: any = this.validateAdvertisementForm();
@@ -311,6 +356,7 @@ export class AdvertisingPopupComponent {
     formdata.append("views", this.maxViews);
     formdata.append("clicks", this.maxClicks);
 
+    this.isClickedButton = true;
     this.advertisementService.createAd(formdata).subscribe(
       response => {
         if (response.status) {
@@ -323,6 +369,7 @@ export class AdvertisingPopupComponent {
         } else {
           this.toastr.error(response.message);
         }
+        this.isClickedButton = false;
       },
       error => {
         console.error('Error publishing coupon:', error);
@@ -362,6 +409,7 @@ export class AdvertisingPopupComponent {
     formdata.append("views", this.maxViews);
     formdata.append("clicks", this.maxClicks);
 
+    this.isClickedButton = true;
     this.advertisementService.updateAd(this.idToEdit, formdata).subscribe(
       response => {
         if (response.status) {
@@ -375,6 +423,8 @@ export class AdvertisingPopupComponent {
           this.errorMsg = response.message
           this.toastr.error(response.message, 'Error');
         }
+
+        this.isClickedButton = false;
       },
       error => {
         console.error('Error publishing ad:', error);
@@ -417,6 +467,105 @@ export class AdvertisingPopupComponent {
   removeTextAfterDash(str: string) {
     return str.split(" - ")[0]; // Splits at " - " and returns only the first part
   }
+
+  // functions by amrit show thumbnail when video
+
+
+  /**
+ * Check if the URL is a video file (based on the file extension or mime type).
+ */
+  isVideo(fileUrl: string): boolean {
+    const videoExtensions = ['mp4', 'mov', 'avi', 'mkv', 'webm', 'flv'];
+    const fileExtension = fileUrl.split('.').pop()?.toLowerCase();
+    return videoExtensions.includes(fileExtension!);
+  }
+
+  /**
+   * Generate a thumbnail for the video by extracting the first frame.
+   */
+  generateVideoThumbnail(videoUrl: string): void {
+    const videoElement = document.createElement('video');
+    videoElement.src = videoUrl;
+    videoElement.preload = 'metadata';
+
+    videoElement.onloadeddata = () => {
+      // Set current time to capture the first frame of the video
+      videoElement.currentTime = 0;
+      videoElement.onseeked = () => {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = videoElement.videoWidth;
+        canvas.height = videoElement.videoHeight;
+        ctx?.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+        this.imageUrl = canvas.toDataURL('image/png'); // Set the thumbnail as the imageUrl
+      };
+    };
+  }
+
+  generateThumbnail(videoElement: HTMLVideoElement): void {
+    videoElement.crossOrigin = 'anonymous';
+    videoElement.onloadeddata = () => {
+      videoElement.currentTime = 1;
+      videoElement.onseeked = () => {
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+
+        if (context) {
+          canvas.width = videoElement.videoWidth;
+          canvas.height = videoElement.videoHeight;
+
+          context.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+
+          const isIOSSafari = this.isIOS() && /Safari/.test(navigator.userAgent);
+          let imageUrl;
+          if (isIOSSafari) {
+            setTimeout(() => {
+              canvas.toBlob((blob) => {
+                if (blob) {
+                  imageUrl = URL.createObjectURL(blob);
+                }
+              }, 'image/jpeg');
+            }, 100);
+          } else {
+            imageUrl = canvas.toDataURL('image/jpeg');
+          }
+          console.log('imageUrl', imageUrl)
+        }
+      };
+    };
+  }
+
+  // Helper method to check if the device is an iOS device
+  isIOS(): boolean {
+    const userAgent = navigator.userAgent || navigator.vendor || (window as any).opera;
+    // Check for iOS devices (iPhone, iPad, iPod)
+    return /iPad|iPhone|iPod/.test(userAgent) && !(/Opera Mini/.test(userAgent)) && !('MSStream' in window);
+  }
+
+  generateThumbnailFromVideo(videoUrl: string): void {
+    const videoElement = document.createElement('video');
+    videoElement.src = videoUrl;
+    videoElement.preload = 'metadata'; // Load metadata first
+
+    videoElement.onloadeddata = () => {
+      // When video is loaded, seek to 1 second (or any point where the thumbnail is generated)
+      videoElement.currentTime = 1;
+
+      videoElement.onseeked = () => {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+
+        // Set the canvas size to the video dimensions
+        canvas.width = videoElement.videoWidth;
+        canvas.height = videoElement.videoHeight;
+        ctx?.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+
+        // Convert the canvas to base64 image
+        this.imageUrl = canvas.toDataURL('image/jpeg'); // Store as image URL for video preview
+      };
+    };
+  }
+
 }
 
 

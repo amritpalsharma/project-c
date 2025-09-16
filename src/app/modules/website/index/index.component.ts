@@ -88,6 +88,7 @@ export class IndexComponent {
   hero_bg_img_dark_mode: string = 'assets/images/home/hero_bg_img_dark_mode.png';
   hero_bg_img: string = 'assets/images/home/hero_bg_img_light_mode.png';
   advertisemnet_base_url: string = '';
+  advertisemnet_new_base_url: string = '';
   // isUserLoggedIn: boolean = false;
   club_logo_path: string = '';
   pre_club_logo_path: string = '';
@@ -97,7 +98,7 @@ export class IndexComponent {
 
 
   isLoading: boolean = true;
-  btnLoading: boolean = true;
+  btnLoading: boolean = false; // by default true
   countdown: number = 10;
   talentBtnImage: string = 'assets/images/home/talent/1_light.png';
 
@@ -424,6 +425,7 @@ export class IndexComponent {
         this.advertisementList = res.data.allAdsList;
         this.imageBaseUrl = res.data.base_url;
         this.advertisemnet_base_url = res.data.advertisemnet_base_url;
+        this.advertisemnet_new_base_url = res.data.advertisemnet_new_base_url;
 
         this.isLoading = false;
 
@@ -526,6 +528,68 @@ export class IndexComponent {
     });
 
     io.observe(videoEl);
+
+    // new code by amrit to play ads 
+
+    // Run immediately after DOM is ready
+    document.addEventListener('DOMContentLoaded', () => {
+      const adVideos = document.querySelectorAll('.auto-play-video');
+      console.info('adVideos found:', adVideos.length);
+
+      if (adVideos.length === 0) {
+        console.warn('No advertisement videos found!');
+        return;
+      }
+
+      adVideos.forEach((adVideoEl: Element) => {
+        const video = adVideoEl as HTMLVideoElement;
+
+        // Force attributes for autoplay compatibility
+        video.muted = true;
+        video.setAttribute('muted', 'true');
+        video.setAttribute('playsinline', 'true'); // iOS Safari requirement
+        video.setAttribute('preload', 'auto');     // Helps instant playback
+        video.setAttribute('autoplay', '');     // Helps instant playback
+        video.setAttribute('loop', '');     // Helps instant playback
+
+        // Function to safely attempt autoplay
+        const tryPlayAd = () => {
+          video.muted = true; // Re-enforce mute (some browsers unmute)
+          const playPromise = video.play();
+          if (playPromise !== undefined) {
+            playPromise
+              .then(() => console.log('Advertisement video autoplayed successfully.'))
+              .catch((error) => console.warn('Autoplay failed for advertisement:', error));
+          }
+        };
+
+        // IntersectionObserver → play when visible
+        const adVideoIo = new IntersectionObserver((entries) => {
+          if (entries[0].isIntersecting) {
+            video.load();  // Reload fresh
+            tryPlayAd();
+            adVideoIo.disconnect(); // Only need to trigger once
+          }
+        });
+
+        adVideoIo.observe(video);
+
+        // Restart if user/browser pauses it
+        video.addEventListener('pause', () => {
+          console.log('Video paused, restarting...');
+          tryPlayAd();
+        });
+
+        // Auto replay when ended
+        video.addEventListener('ended', () => {
+          console.log('Video ended, restarting...');
+          video.currentTime = 0; // Reset to beginning
+          tryPlayAd();
+        });
+      });
+    });
+
+
   }
 
   getLangslugByID(langID: any) {

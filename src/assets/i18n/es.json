@@ -1487,5 +1487,6 @@
   "noScoutFound": "¿Eres ojeador? Regístrate ahora gratis, tu perfil se mostrará aquí y podrás descubrir talentos y ser contactado por ellos.",
   "noClubFound": "¿Sois un club? Registraos ahora gratis – vuestro perfil se mostrará aquí y podréis descubrir vuestro próximo talento.",
   "deleteSelectPerformanceFirst": "Selecciona qué análisis deseas eliminar.",
-  "areYouSureToDeleteConvo":"¿Está seguro de que desea eliminar permanentemente esta conversación? Esta acción no se puede deshacer."
+  "areYouSureToDeleteConvo": "¿Está seguro de que desea eliminar permanentemente esta conversación? Esta acción no se puede deshacer.",
+  "updateSubscriptionSuccess": "Tu suscripción se ha actualizado correctamente."
 }

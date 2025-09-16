@@ -1453,5 +1453,6 @@
   "noClubFound":"Are you a club? Register now for free – your profile will be visible here, and you can discover your next talent.",
   "deleteSelectPerformanceFirst":"Select which analyses you would like to delete.",
   "resendEmailVerification":"E-Mail Verification",
-  "areYouSureToDeleteConvo":"Do you want to permanently delete this conversation? This action cannot be undone."
+  "areYouSureToDeleteConvo":"Do you want to permanently delete this conversation? This action cannot be undone.",
+  "updateSubscriptionSuccess":"Your subscription has been updated successfully."
 }

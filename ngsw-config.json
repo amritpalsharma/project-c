@@ -29,7 +29,7 @@
     {
       "name": "api",
       "urls": [
-        "https://apitest.socceryou.ch/**"
+        "https://api.socceryou.ch/**"
       ],
       "cacheConfig": {
         "maxSize": 100,
@@ -41,8 +41,8 @@
     {
       "name": "images",
       "urls": [
-        "https://testing.socceryou.ch/assets/**",
-        "https://apitest.socceryou.ch/uploads/**"
+        "https://testing.socceryou.co.uk/assets/**",
+        "https://api.socceryou.ch/uploads/**"
       ],
       "cacheConfig": {
         "maxSize": 50,

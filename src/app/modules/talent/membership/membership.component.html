@@ -85,14 +85,15 @@
                     == 'month' || country[0].interval
                     == 'monthly' ? ('month' | translate) : ('year' | translate) }}</sub></h6>
               </div>
-              <p>{{ 'renews' | translate }} {{ country[0].plan_period_end |
-                date: 'dd.MM.yyyy' }}</p>
+              <!-- <p>{{ 'renews' | translate }} {{ country[0].plan_period_end |
+                date: 'dd.MM.yyyy' }}</p> -->
+              <p>&nbsp;</p>
               <div class="d-flex align-items-center justify-content-between mt-4 mob_wrap">
                 <a class="premium-edit_btn text-white"
                   routerLink="/talent/plans">{{ 'editPlan' | translate }}</a>
-                <!-- <button class="premium-subscription_btn" (click)="confirmCountryPlanCancellation(country)">
+                <button class="premium-subscription_btn" (click)="confirmCountryPlanCancellation(country)">
                   {{ 'cancelSubscription' | translate }}
-                </button> -->
+                </button>
               </div>
               <div class="premium-card_football">
                 <svg width="226" height="185" viewBox="0 0 226 153" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -120,7 +121,7 @@
                 <a class="premium-edit_btn text-white cursor-pointer" (click)="editBooster(booster)">{{'editPlan' |
                   translate}}</a>
                 <button class="premium-subscription_btn cursor-pointer" [disabled]="booster.is_canceled == 'yes'"
-                  (click)="confirmAndCancelSubscription(booster.id)">                  
+                  (click)="confirmAndCancelSubscription(booster.id)">
                   <div *ngIf="booster.is_canceled != 'yes'">
                     {{ 'cancelSubscription' | translate }}</div>
                   <div *ngIf="booster.is_canceled == 'yes'" routerLink="/talent/plans">{{ 'renewSubscription' |
@@ -153,7 +154,7 @@
               </div>
             </div>
 
-            <div class="d-flex align-items-center wrap_flex">             
+            <div class="d-flex align-items-center wrap_flex">
             </div>
           </div>
           <div class="hide_table_for_mobile">

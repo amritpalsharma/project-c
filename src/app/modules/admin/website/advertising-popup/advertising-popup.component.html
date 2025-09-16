@@ -21,38 +21,38 @@
         <div class="form-group col-sm-6 col-lg-6">
           <label class="code-text">{{ 'name' | translate }}</label>
           <input class="form-control" [(ngModel)]="name">
-          <div *ngIf="errorMsg.name" class="error-msg">{{errorMsg.name}}</div>
+          <div *ngIf="errorMsg.name" class="error-msg">{{ errorMsg.name }}</div>
         </div>
         <div class="form-group col-sm-6 col-lg-6">
           <label class="code-text">{{ 'clickDirectUrl' | translate }}</label>
           <input class="form-control" [(ngModel)]="redirect">
-          <div *ngIf="errorMsg.redirect" class="error-msg">{{errorMsg.redirect}}</div>
+          <div *ngIf="errorMsg.redirect" class="error-msg">{{ errorMsg.redirect }}</div>
         </div>
       </div>
       <div class="row add-banners">
         <div class="form-group col-sm-6 col-lg-6">
           <label class="code-text">{{ 'page' | translate }}</label>
           <div class="btn-group">
-            <select class="form-control" style="cursor: pointer !important;"
-              aria-label="Default select example" [(ngModel)]="page" (change)="onChange()">
+            <select class="form-control" style="cursor: pointer !important;" aria-label="Default select example"
+              [(ngModel)]="page" (change)="onChange()">
               <option value="">{{ 'select' | translate }}</option>
-              <option *ngFor="let option of pageOptions" [value]="option.id">{{option.page}}</option>
+              <option *ngFor="let option of pageOptions" [value]="option.id">{{ option.page }}</option>
             </select>
           </div>
-          <div *ngIf="errorMsg.page" class="error-msg">{{errorMsg.page}}</div>
+          <div *ngIf="errorMsg.page" class="error-msg">{{ errorMsg.page }}</div>
         </div>
 
         <div class="form-group col-sm-6 col-lg-6">
           <label class="code-text">{{ 'type' | translate }}</label>
           <div class="btn-group">
-            <select class="form-control" style="cursor: pointer !important;"
-              aria-label="Default select example" [(ngModel)]="type">
+            <select class="form-control" style="cursor: pointer !important;" aria-label="Default select example"
+              [(ngModel)]="type">
               <option value="">{{ 'select' | translate }}</option>
-              <option *ngFor="let option of typeOptions" value="{{option}}">{{removeTextAfterDash(option)}}</option>
+              <option *ngFor="let option of typeOptions" value="{{ option }}">{{ removeTextAfterDash(option) }}</option>
             </select>
-            
+
           </div>
-          <div *ngIf="errorMsg.type" class="error-msg">{{errorMsg.type}}</div>
+          <div *ngIf="errorMsg.type" class="error-msg">{{ errorMsg.type }}</div>
         </div>
       </div>
 
@@ -73,24 +73,35 @@
           {{ 'dragAndDropFilesHere' | translate }}
         </h5>
         <p class="main-upload-text mb-2">
-          <span class="mr-4" *ngIf="type"> {{ 'dimensions:' | translate }} {{type}}</span> <br> {{ 'filesSupported' |
+          <span class="mr-4" *ngIf="type"> {{ 'dimensions:' | translate }} {{ type }}</span>
+          <br> {{ 'filesSupported' |
           translate }}
         </p>
-        <label for="file-upload" class="btn btn-secondary upload-btn mb-2 mt-2">{{ 'chooseFile' | translate }}</label>
+        <label for="file-upload"
+          class="btn btn-secondary upload-btn mb-2 mt-2">{{ 'chooseFile' | translate }}</label>
         <input id="file-upload" type="file" class="setting-media-2" style="display: none;"
-          (change)="onImageChange($event)"  accept=".jpg, .jpeg, .png, .dng, image/jpeg, image/png, image/dng" />
+          (change)="onImageChange($event)"
+          accept=".jpg, .jpeg, .png, .dng, image/jpeg, image/png, image/dng, .mp4, .avi, .mov, video/mp4, video/avi, video/quicktime" />
         <p class="main-upload-text mb-1">
           {{ 'maximumSize5MB' | translate }}
         </p>
       </div>
-      <div *ngIf="errorMsg.image" class="error-msg mb-3 text-center">{{errorMsg.image}}</div>
+      <div *ngIf="errorMsg.image" class="error-msg mb-3 text-center">{{ errorMsg.image }}</div>
 
       <div *ngIf="imagePreview || imageUrl" class="preview-image-container position-relative">
-        <img *ngIf="imagePreview" [src]="imagePreview" alt="Preview" class="image-preview" />
-        <img *ngIf="imageUrl" [src]="'https://api.socceryou.ch/uploads/' + imageUrl" alt="Preview"
-          class="image-preview" />
+        <img *ngIf="imagePreview && !isVideo(imageUrl)" [src]="imagePreview" alt="Preview" class="image-preview" />
+        <!-- <img *ngIf="imageUrl" [src]="baseUrl + imageUrl" alt="Preview" class="image-preview" /> -->
+        <img *ngIf="imageUrl && !isVideo(imageUrl)" [src]="apiBaseUrl + 'public/uploads/advertisements/' + imageUrl"
+          alt="Preview" class="image-preview" />
+        <ng-container *ngIf="isVideo(imageUrl)">
+          <video #videoPlayer [src]="apiBaseUrl + 'public/uploads/advertisements/' + imageUrl"
+            (loadeddata)="generateThumbnail(videoPlayer)" class="image-preview">
+          </video>
+        </ng-container>
 
-        <button (click)="closeImage()" class="ad-close-button d-block"><i class="fa-solid fa-xmark"></i></button>
+        <button (click)="closeImage()" class="ad-close-button d-block">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
       </div>
 
       <div class="mb-3">
@@ -110,7 +121,8 @@
             </div>
 
             <div>
-              <div class="cupen-btn-date-1" [ngClass]="{'disable-end-date': disableEndDate, 'isrequiredField': endDateError}">
+              <div class="cupen-btn-date-1"
+                [ngClass]="{'disable-end-date': disableEndDate, 'isrequiredField': endDateError}">
                 <!-- <div class="cupen-btn-date-1" > -->
                 <mat-form-field class="meta-date">
                   <mat-label>{{ 'chooseADate' | translate }}</mat-label>
@@ -132,20 +144,20 @@
             </span> {{ 'dontsetAnEnd' | translate }}
           </div>
         </div>
-        <div *ngIf="errorMsg.endDate" class="error-msg">{{errorMsg.endDate}}</div>
+        <div *ngIf="errorMsg.endDate" class="error-msg">{{ errorMsg.endDate }}</div>
       </div>
 
       <div class="row add-banners d-none">
-        <div class="form-group col-sm-6 col-lg-6">
+        <!-- <div class="form-group col-sm-6 col-lg-6">
           <label class="code-text"> {{ 'maxViews' | translate }}</label>
           <input class="form-control" [(ngModel)]="maxViews">
-          <div *ngIf="errorMsg.maxViews" class="error-msg">{{errorMsg.maxViews}}</div>
+          <div *ngIf="errorMsg.maxViews" class="error-msg">{{ errorMsg.maxViews }}</div>
         </div>
         <div class="form-group col-sm-6 col-lg-6">
           <label class="code-text">{{ 'maxClicks' | translate }}</label>
           <input class="form-control" [(ngModel)]="maxClicks">
-          <div *ngIf="errorMsg.maxClicks" class="error-msg">{{errorMsg.maxClicks}}</div>
-        </div>
+          <div *ngIf="errorMsg.maxClicks" class="error-msg">{{ errorMsg.maxClicks }}</div>
+        </div> -->
 
       </div>
     </div>
@@ -157,9 +169,24 @@
           <a class="btn btn-delete text-danger" (click)="close()">{{ 'cancel' | translate }}</a>
         </div>
         <div>
-          <a class="btn Launch px-5" *ngIf="data.action == 'create'" (click)="createAd()">{{ 'createAndLaunch' |
-            translate }}</a>
-          <a class="btn Launch px-5" *ngIf="data.action == 'update'" (click)="updateAd()">{{ 'update' | translate }}</a>
+          <a class="btn Launch px-5 min-width" *ngIf="data.action == 'create'" (click)="createAd()">
+            <ng-container *ngIf="isClickedButton; else loginText">
+              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              <span class="sr-only">Loading...</span>
+            </ng-container>
+            <ng-template #loginText>
+              {{ 'createAndLaunch' | translate }}
+            </ng-template>
+          </a>
+          <a class="btn Launch px-5 min-width" *ngIf="data.action == 'update'" (click)="updateAd()">
+            <ng-container *ngIf="isClickedButton; else loginText">
+              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              <span class="sr-only">Loading...</span>
+            </ng-container>
+            <ng-template #loginText>
+              {{ 'update' | translate }}
+            </ng-template>
+          </a>
         </div>
       </div>
     </div>
@@ -173,8 +200,12 @@
       <h6 class="main_heading_title code-text text-center ">
         {{ 'advertising' | translate }}
       </h6>
-      <div (click)="close()" class="close-img mb-1"></div>
-
+      <div class="close-img mb-1" *ngIf='theme!="dark"'>
+        <img src="../../../assets/images/carbon_close-outline-light.svg" alt="" class="" (click)="close()" />
+      </div>
+      <div class="close-img mb-1" *ngIf='theme=="dark"'>
+        <img src="../../../assets/images/carbon_close-outline.svg" alt="" class="" (click)="close()" />
+      </div>
     </div>
 
     <div class="popup__body p-3 create-new_popup">
@@ -182,13 +213,13 @@
         <div class="form-group col-sm-6 col-lg-6">
           <label class="code-text">{{ 'name' | translate }}</label>
           <div class="cupen-btn-1 form-control" style="cursor: no-drop !important;">
-            {{name}}
+            {{ name }}
           </div>
         </div>
         <div class="form-group col-sm-6 col-lg-6">
           <label class="code-text">{{ 'clickDirectUrl' | translate }}</label>
           <div class="cupen-btn-1 form-control" style="cursor: no-drop !important;">
-            {{redirect}}
+            {{ redirect }}
           </div>
         </div>
       </div>
@@ -200,7 +231,7 @@
             <select disabled class="form-control" style="cursor: no-drop !important;"
               aria-label="Default select example" [(ngModel)]="page" (change)="onChange()">
               <option value="">{{ 'select' | translate }}</option>
-              <option *ngFor="let option of pageOptions" [value]="option.id">{{option.page}}</option>
+              <option *ngFor="let option of pageOptions" [value]="option.id">{{ option.page }}</option>
             </select>
             <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none"
               xmlns="http://www.w3.org/2000/svg">
@@ -216,7 +247,7 @@
             <select disabled class="form-control" style="cursor: no-drop !important;"
               aria-label="Default select example" [(ngModel)]="type">
               <option value="">{{ 'select' | translate }}</option>
-              <option *ngFor="let option of typeOptions" value="{{option}}">{{option}}</option>
+              <option *ngFor="let option of typeOptions" value="{{ option }}">{{ option }}</option>
             </select>
             <svg class="dropdown-icon" width="9" height="5" viewBox="0 0 9 5" fill="none"
               xmlns="http://www.w3.org/2000/svg">
@@ -231,11 +262,15 @@
       </div>
 
       <div *ngIf="imagePreview || imageUrl" class="preview-image-container position-relative">
-        <img *ngIf="imagePreview" [src]="imagePreview" alt="Preview" class="image-preview" />
-        <img *ngIf="imageUrl" [src]="'https://api.socceryou.ch/uploads/' + imageUrl" alt="Preview"
-          class="image-preview" />
-
-        <!-- <button (click)="closeImage()" class="ad-close-button"><i class="fa-solid fa-xmark"></i></button> -->
+        <img *ngIf="imagePreview && !isVideo(imageUrl)" [src]="imagePreview" alt="Preview" class="image-preview" />
+        <!-- <img *ngIf="imageUrl" [src]="baseUrl + imageUrl" alt="Preview" class="image-preview" /> -->
+        <img *ngIf="imageUrl && !isVideo(imageUrl)" [src]="apiBaseUrl + 'public/uploads/advertisements/' + imageUrl"
+          alt="Preview" class="image-preview" />
+        <ng-container *ngIf="isVideo(imageUrl)">
+          <video #videoPlayer [src]="apiBaseUrl + 'public/uploads/advertisements/' + imageUrl"
+            (loadeddata)="generateThumbnail(videoPlayer)" class="image-preview">
+          </video>
+        </ng-container>
       </div>
 
 
@@ -291,7 +326,8 @@
             </div>
 
             <div>
-              <div class="cupen-btn-date-1 display-duration view_add_dates" [ngClass]="{'disable-end-date': disableEndDate}">
+              <div class="cupen-btn-date-1 display-duration view_add_dates"
+                [ngClass]="{'disable-end-date': disableEndDate}">
 
                 <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <g clip-path="url(#clip0_2457_3571)">
@@ -345,14 +381,14 @@
       </div>
 
       <div class="row add-banners">
-        <div class="form-group col-sm-6 col-lg-6">
+        <!-- <div class="form-group col-sm-6 col-lg-6">
           <label class="code-text"> Max Views</label>
-          <div class="cupen-btn-1">{{maxViews}}</div>
+          <div class="cupen-btn-1">{{ maxViews }}</div>
         </div>
         <div class="form-group col-sm-6 col-lg-6">
           <label class="code-text">{{ 'maxClicks' | translate }}</label>
-          <div class="cupen-btn-1">{{maxClicks}}</div>
-        </div>
+          <div class="cupen-btn-1">{{ maxClicks }}</div>
+        </div> -->
 
       </div>
 

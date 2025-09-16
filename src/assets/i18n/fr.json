@@ -1555,5 +1555,6 @@
   "noScoutFound": "Vous êtes recruteur ? Inscrivez-vous gratuitement dès maintenant – votre profil sera visible ici et vous pourrez découvrir des talents et être contacté.",
   "noClubFound": "Vous êtes un club ? Inscrivez-vous gratuitement dès maintenant – votre profil sera visible ici et vous pourrez découvrir votre prochain talent.",
   "deleteSelectPerformanceFirst": "Sélectionne les analyses que tu souhaites supprimer.",
-  "areYouSureToDeleteConvo":"Êtes-vous sûr de vouloir supprimer cette conversation ? Cette action est irréversible."
+  "areYouSureToDeleteConvo": "Êtes-vous sûr de vouloir supprimer cette conversation ? Cette action est irréversible.",
+  "updateSubscriptionSuccess": "Votre abonnement a été mis à jour avec succès."
 }

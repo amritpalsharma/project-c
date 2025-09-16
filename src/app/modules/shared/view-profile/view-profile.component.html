@@ -1734,7 +1734,7 @@
                 <div class="col-lg-4 gallery_images" *ngFor="let image of highlights?.images">
                   <!-- <img [src]="highlights.file_path + image.file_name" alt=""> -->
                   <a [href]="highlights.file_path + image.file_name" data-fancybox="gallery" [attr.data-caption]="">
-                    <img [src]="highlights.file_path + image.file_name" alt="">
+                    <img [src]="highlights.file_path + image.file_name" alt="" loading="lazy">
                   </a>
                 </div>
 
@@ -1750,11 +1750,11 @@
                       (loadeddata)="setDurationAndThumbnail(videoPlayer, j)" alt="Video Gallery" controls muted [attr.poster]="highlights.file_path + 'thumbnail/' + getThumbnailName(video.file_name)"></video> -->
                     <video #videoPlayer preload="none" muted type="video/mp4"
                       [attr.poster]="highlights.file_path + 'thumbnail/' + getThumbnailName(video.file_name)"
-                      (play)="setDurationAndThumbnail(videoPlayer)">
+                      (play)="setDurationAndThumbnail(videoPlayer)" loading="lazy">
                     </video> 
                     <div class="video-overlay-play-button">
                       <img src="../../../../assets/images/play-button-{{currentThemeMode}}.svg" alt=""
-                        class="play_button_svg">
+                        class="play_button_svg" loading="lazy">
                     </div>
                   </a>
                   <!-- <span class="duration"

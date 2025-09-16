@@ -103,15 +103,16 @@
                 <h6> {{ country[0].price }}<sub class="premium-month_title">.- {{country[0].currency}} / {{
                     country.interval == 'monthly' ? ('month' | translate) : ('year' | translate) }}</sub></h6>
               </div>
-              <p>{{ 'renews' | translate }} {{ country[0].plan_period_end |
-                date: 'dd.MM.yyyy' }}</p>
+              <!-- <p>{{ 'renews' | translate }} {{ country[0].plan_period_end |
+                date: 'dd.MM.yyyy' }}</p> -->
+                <p>&nbsp;</p>
               <div class="d-flex align-items-center justify-content-between mt-4 mob_wrap">
                 <a class="premium-edit_btn text-white" (click)="!checkRole() && $event.preventDefault()"
                   [class.club_view_only]="!checkRole()" routerLink="/scout/plans">{{ 'editPlan' | translate }}</a>
-                <!-- <button class="premium-subscription_btn" (click)="confirmCountryPlanCancellation(country)"
+                <button class="premium-subscription_btn" (click)="confirmCountryPlanCancellation(country)"
                   [class.club_view_only]="!checkRole()">
                   {{ 'cancelSubscription' | translate }}
-                </button> -->
+                </button>
               </div>
               <div class="premium-card_football">
                 <svg width="226" height="185" viewBox="0 0 226 153" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -134,7 +134,6 @@ export class EditPlanComponent implements OnInit {
 
 
   async redirectToCheckout(planId: string, coupon: any = '') {
-    // this.toastr.error('redirectToCheckout');
     this.toastr.info(this.pleaseWait, this.Processing, { timeOut: 2000 });
 
     try {
@@ -261,14 +260,12 @@ export class EditPlanComponent implements OnInit {
       // console.info('isCountrySelected', this.isCountrySelected)
       // console.log('You Have Already Yearly Plan You can')
     } else {
-      this.toastr.error('No country plan selected', 'Error');
       console.error('No country plan selected');
     }
   }
 
   updatePlan(plan: any, isYearly: boolean, subscribeId: any): void {
     if (plan?.is_package_active === 'active') {
-      // this.toastr.warning('This plan has already been subscribed.', 'Warning');
       return;
     }
 
@@ -297,23 +294,23 @@ export class EditPlanComponent implements OnInit {
     this.paymentService.upgradeSubscription(oldSubscriptionId, newPlanId).subscribe(
       response => {
         if (response && response.status) {
-          this.toastr.success('Your subscription has been updated successfully.', 'Success');
-          this.dialog.open(MessagePopupComponent, {
-            width: '600px',
-            data: {
-              action: 'display',
-              message: 'Your subscription has been updated successfully.'
-            }
-          });
+          // updateSubscriptionSuccess
+          this.toastr.success(this.updateSubscriptionSuccess, this.successTxt);
+          // this.dialog.open(MessagePopupComponent, {
+          //   width: '600px',
+          //   data: {
+          //     action: 'display',
+          //     message: this.updateSubscriptionSuccess
+          //   }
+          // });
+          this.dialogRef.close();
 
           console.log('Subscription updated successfully:', response);
         } else {
-          this.toastr.error('Failed to update subscription. Please try again.', 'Error');
           console.error('Failed to update subscription', response);
         }
       },
       error => {
-        this.toastr.error('Error updating subscription. Please try again later.', 'Error');
         console.error('Error updating subscription:', error);
       }
     );
@@ -377,7 +374,7 @@ export class EditPlanComponent implements OnInit {
 
   confirmAndCancelSubscription(subscriptionId: string, canceled = false): void {
     if (canceled) {
-      this.toastr.error('Subscription is already canceled.', 'Warning');
+      // this.toastr.error('Subscription is already canceled.', 'Warning');
       return;
     }
 
@@ -385,13 +382,13 @@ export class EditPlanComponent implements OnInit {
       width: '600px',
       data: {
         action: 'delete-confirmation',
-        message: 'Are you sure you want to cancel this subscription? This action cannot be undone.'
+        message: this.cancelConfirmationMsg
       }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.action === 'delete-confirmed') {
-        this.toastr.info('Cancelling subscription, please wait...', this.pleaseWait);
+        this.toastr.info(this.pleaseWait);
         this.cancelSubscription(subscriptionId);
       }
     });
@@ -406,17 +403,15 @@ export class EditPlanComponent implements OnInit {
             width: '600px',
             data: {
               action: 'display',
-              message: 'Subscription canceled successfully.'
+              message: this.subscriptionCanceledSuccessfully
             }
           });
           console.log('Subscription canceled successfully:', response);
         } else {
-          this.toastr.error('Failed to cancel subscription. Please try again.', 'Error');
           console.error('Failed to cancel subscription', response);
         }
       },
       error => {
-        this.toastr.error('Error cancelling subscription. Please try again later.', 'Error');
         console.error('Error cancelling subscription:', error);
       }
     );
@@ -439,23 +434,6 @@ export class EditPlanComponent implements OnInit {
       }
     );
   }
-
-  // onCountrySelect(event: any) {
-  //   console.log(event.value);
-  //   const selectedCountryIds = event.value;
-  //   console.log(selectedCountryIds)
-
-  //   const selectedCountries = this.countries.filter(country => selectedCountryIds.includes(country.id));
-
-  //   const selectedLocations = selectedCountries.map(country => country.monthly.location);
-
-  //   console.log('Selected Countries:', selectedCountries ); // Full objects
-  //   console.log('Selected Locations:', selectedLocations); // Only locations
-  //   console.log('Selected this.selectedCountries:', this.selectedCountries); // Only locations
-
-  //   // this.selectedPlan = this.countries.find(country => country.id === selectedCountryId);
-  //   // console.log(this.selectedCountries);
-  // }
 
   alreadySelected: boolean = false;
 
@@ -512,21 +490,7 @@ export class EditPlanComponent implements OnInit {
     }
   }
 
-  // getUniqueCountries(countriesArr: any[]) {
-  //   const uniqueCountries = [];
-  //   const packageNames = new Set(); // To track unique package names
-  //   // let countriesArr = this.activePlans;
-  //   for (const country of countriesArr) {
-  //     if (!packageNames.has(country.package_name)) {
-  //       packageNames.add(country.package_name);
-  //       uniqueCountries.push(country);
-  //     }else{
-  //       console.log(country.package_name+' is already exist in list')
-  //     }
-  //   }
 
-  //   return uniqueCountries;
-  // }
   get uniqueActivePlans() {
     const seen = new Set();
     return this.activePlans.filter(country => {
@@ -538,14 +502,18 @@ export class EditPlanComponent implements OnInit {
     });
   }
 
+  updateSubscriptionSuccess: string = '';
+  cancelConfirmationMsg: string = '';
   updateTranslation() {
-    this.translate.get(['subscriptionCanceledSuccessfully', 'success!', 'pleaseWait', 'Processing', 'youHaveAlreadyThisPlan', 'youHaveAlreadyThisPlanTitle']).subscribe((res: any) => {
+    this.translate.get(['subscriptionCanceledSuccessfully', 'success!', 'pleaseWait', 'Processing', 'youHaveAlreadyThisPlan', 'youHaveAlreadyThisPlanTitle', 'updateSubscriptionSuccess', 'cancelConfirmationMsg']).subscribe((res: any) => {
       this.subscriptionCanceledSuccessfully = res['subscriptionCanceledSuccessfully'];
       this.successTxt = res['success!'].toUpperCase();
       this.pleaseWait = res['pleaseWait'];
       this.Processing = res['Processing'];
       this.youHaveAlreadyThisPlan = res['youHaveAlreadyThisPlan'];
       this.youHaveAlreadyThisPlanTitle = res['youHaveAlreadyThisPlanTitle'];
+      this.updateSubscriptionSuccess = res['updateSubscriptionSuccess'];
+      this.cancelConfirmationMsg = res['cancelConfirmationMsg'];
     });
   }
 
