@@ -616,15 +616,12 @@ li {
   display: none;
 }
 
-.leaderboard-image img, .leaderboard-image video {
-  height: 90px;
-  width: 728px;
+.leaderboard-image img, .leaderboard-image video, .leaderboard-club-image img, .leaderboard-club-image video {
+  height: 100%;
+  width: 100%;
 }
 
-.leaderboard-club-image img, .leaderboard-club-image video {
-  width: 728px;
-  height: 90px;
-}
+
 
 .small-sqaure-image img, .small-sqaure-image video {
   height: 200px;
